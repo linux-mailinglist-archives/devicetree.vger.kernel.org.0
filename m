@@ -2,174 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 483CF5447E4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 11:43:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D5D054480E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 11:54:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234924AbiFIJme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 05:42:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52636 "EHLO
+        id S242136AbiFIJyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 05:54:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242882AbiFIJmb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 05:42:31 -0400
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9065B50B14;
-        Thu,  9 Jun 2022 02:42:24 -0700 (PDT)
-Received: by mail-qk1-f179.google.com with SMTP id k6so14280624qkf.4;
-        Thu, 09 Jun 2022 02:42:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CdScqDIt7cletpD0dszRyDkdpl0EPlQmkhSL9q4U+Ck=;
-        b=ceds/elGnpkjID5ZoIdSwaSld41Dac4zAVRQ+xs7tmk+Cu6VrDmMqe0S4dyQ0J0rHd
-         aFt8KDxCidnvaEVsMV69K+rr9G8Au5rTM1fNo2LfJsheidTmFO4s4J/I9YBj9ENbBByE
-         7I5dy9RM1L8zRBHMWc7pFZvUS7DA89qqAQpT2AXRZ669ZsK4MmDGtUE970sV2aZPePf3
-         ksoz/BZWSwq8zDJaTr90X+/9OrcH9e58QSa3NmuHCv5zW3KSKCrP9SyFciTWkHLwONJ2
-         Nn4jR4WXsT3Ls45G7lBmAE5WXBKlXH842DSDuLiYsteSHfoP7vgNh8b4otbfE+BIJIN4
-         bo7A==
-X-Gm-Message-State: AOAM531toxFFOFWJQb68P+/O2L/+fxx1UaAKx52Kr1ungv3mbZSQx3wb
-        w8VK5aYSVoNtCucMKidh863QQNBZJQxNgQ==
-X-Google-Smtp-Source: ABdhPJzY6ooSfoUi3N1kpt/bhEZP6s3kjylbACz/P3zuPsnkekUsrz8vJaSsT/CbY55BIMPgEz9eaA==
-X-Received: by 2002:a37:5ac4:0:b0:69a:1423:4cac with SMTP id o187-20020a375ac4000000b0069a14234cacmr25828294qkb.41.1654767743443;
-        Thu, 09 Jun 2022 02:42:23 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id f9-20020ac80689000000b002f3e127be41sm15723549qth.20.2022.06.09.02.42.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 02:42:22 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-31336535373so84198547b3.2;
-        Thu, 09 Jun 2022 02:42:22 -0700 (PDT)
-X-Received: by 2002:a81:1dd2:0:b0:30f:a4fc:315e with SMTP id
- d201-20020a811dd2000000b0030fa4fc315emr43772632ywd.383.1654767742001; Thu, 09
- Jun 2022 02:42:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220524172214.5104-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220524172214.5104-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220524172214.5104-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 9 Jun 2022 11:42:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVos-hVhGar91oBvZaCOLfjdsNR7vRGnX-KuNt0UX3xWQ@mail.gmail.com>
-Message-ID: <CAMuHMdVos-hVhGar91oBvZaCOLfjdsNR7vRGnX-KuNt0UX3xWQ@mail.gmail.com>
-Subject: Re: [PATCH RFC 1/2] dt-bindings: interrupt-controller: sifive,plic:
- Document Renesas RZ/Five SoC
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S242416AbiFIJye (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 05:54:34 -0400
+Received: from mail.shift-gmbh.com (mail.shift-gmbh.com [IPv6:2a01:4f8:a0:5496::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8399A195974;
+        Thu,  9 Jun 2022 02:54:29 -0700 (PDT)
+From:   Alexander Martinz <amartinz@shiftphones.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shiftphones.com;
+        s=2018; t=1654768466;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=EHEuZTnae7JIoJINVmYOdraD9EvP6HM8Di56khNR+uQ=;
+        b=r94IREh6bcly39S5nnsnaC5t+otHkGUEXkMrZ9yFu0zBDWm6TtlStPI0XD1Bc0Thiz4VhD
+        XPbChYw5Y5VVPHQ0PF5ysE6ugU3fiCwUC8jD+sp6wHGear7yTJxH9USFXF6AoqKM9/oY8L
+        clMD62V4sKmSRhQcPZNBvbMud5+MhvuYLPQWwDflx2Rjw0uyzNczWKSgS9vmpHDfYs8PYQ
+        ZcatI4/USt/HRHZl6fGhTMhqtigmjgmGD7jey4HknDfruQwI0hx4P44QGEpidKmWr8D7iL
+        lKJrXA7xhFEGBxbAfuE9ZH+AqnR976qYgMio72jXzlLg89tmRp7Wdb3PxFC4Rg==
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Dylan Van Assche <me@dylanvanassche.be>,
+        Alexander Martinz <amartinz@shiftphones.com>
+Subject: [PATCH 1/2] arch: arm64: qcom: sdm845-shift-axolotl: fix Bluetooth firmware loading
+Date:   Thu,  9 Jun 2022 11:54:11 +0200
+Message-Id: <20220609095412.211060-1-amartinz@shiftphones.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+        auth=pass smtp.auth=amartinz@shiftphones.com smtp.mailfrom=amartinz@shiftphones.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+From: Dylan Van Assche <me@dylanvanassche.be>
 
-On Tue, May 24, 2022 at 7:22 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Document Renesas RZ/Five (R9A07G043) SoC.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Add hsuart0 alias, firmware name and prevent garbage data on Bluetooth UART lines
+on the SHIFT 6mq based on the Qualcomm SDM845 chip.
+I discovered that these were missing by comparing the DTS with similar
+devices such as the Oneplus 6/6T and Dragonboard 845c.
 
-Thanks for your patch!
+Signed-of-by: Dylan Van Assche <me@dylanvanassche.be>
+Tested-by: Alexander Martinz <amartinz@shiftphones.com>
+---
+ .../boot/dts/qcom/sdm845-shift-axolotl.dts    | 33 +++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> @@ -28,7 +28,10 @@ description:
->
->    While the PLIC supports both edge-triggered and level-triggered interrupts,
->    interrupt handlers are oblivious to this distinction and therefore it is not
-> -  specified in the PLIC device-tree binding.
-> +  specified in the PLIC device-tree binding for SiFive PLIC (and similar PLIC's),
-> +  but for the Renesas RZ/Five Soc (AX45MP AndesCore) which has NCEPLIC100 we need
-> +  to specify the interrupt type as the flow for EDGE interrupts is different
-> +  compared to LEVEL interrupts.
->
->    While the RISC-V ISA doesn't specify a memory layout for the PLIC, the
->    "sifive,plic-1.0.0" device is a concrete implementation of the PLIC that
-> @@ -57,6 +60,7 @@ properties:
->            - enum:
->                - allwinner,sun20i-d1-plic
->            - const: thead,c900-plic
-> +      - const: renesas-r9a07g043-plic
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index 103cc40816fd..fa72f23ef0c2 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -20,6 +20,7 @@ / {
+ 
+ 	aliases {
+ 		display0 = &framebuffer0;
++		hsuart0 = &uart6;
+ 		serial0 = &uart9;
+ 	};
+ 
+@@ -529,6 +530,32 @@ volume_down_resin: resin {
+ 	};
+ };
+ 
++/*
++ * Prevent garbage data on bluetooth UART lines
++ */
++&qup_uart6_default {
++        pinmux {
++                pins = "gpio45", "gpio46", "gpio47", "gpio48";
++                function = "qup6";
++        };
++
++        cts {
++                pins = "gpio45";
++                bias-pull-down;
++        };
++
++        rts-tx {
++                pins = "gpio46", "gpio47";
++                drive-strength = <2>;
++                bias-disable;
++        };
++
++        rx {
++                pins = "gpio48";
++                bias-pull-up;
++        };
++};
++
+ &qup_uart9_default {
+ 	pinconf-rx {
+ 		pins = "gpio5";
+@@ -667,6 +694,12 @@ &uart6 {
+ 	bluetooth {
+ 		compatible = "qcom,wcn3990-bt";
+ 
++		/*
++		 * This path is relative to the qca/
++		 * subdir under lib/firmware.
++		 */
++		firmware-name = "axolotl/crnv21.bin";
++
+ 		vddio-supply = <&vreg_s4a_1p8>;
+ 		vddxo-supply = <&vreg_l7a_1p8>;
+ 		vddrf-supply = <&vreg_l17a_1p3>;
+-- 
+2.36.1
 
-renesas,r9a07g043-plic
-
->
->    reg:
->      maxItems: 1
-> @@ -64,8 +68,7 @@ properties:
->    '#address-cells':
->      const: 0
->
-> -  '#interrupt-cells':
-> -    const: 1
-> +  '#interrupt-cells': true
->
->    interrupt-controller: true
->
-> @@ -91,6 +94,35 @@ required:
->    - interrupts-extended
->    - riscv,ndev
->
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: renesas-r9a07g043-plic
-
-renesas,r9a07g043-plic
-
-> +then:
-> +  properties:
-> +    clocks:
-> +      maxItems: 1
-> +
-> +    resets:
-> +      maxItems: 1
-> +
-> +    power-domains:
-> +      maxItems: 1
-> +
-> +    '#interrupt-cells':
-> +      const: 2
-> +
-> +  required:
-> +    - clocks
-> +    - resets
-> +    - power-domains
-> +
-> +else:
-> +  properties:
-> +    '#interrupt-cells':
-> +      const: 1
-> +
->  additionalProperties: false
->
->  examples:
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
