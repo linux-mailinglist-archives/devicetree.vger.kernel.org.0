@@ -2,122 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA6025455AA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 22:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 107D75455B4
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 22:34:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244709AbiFIUbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 16:31:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32930 "EHLO
+        id S232983AbiFIUeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 16:34:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234626AbiFIUbq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 16:31:46 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70A921808;
-        Thu,  9 Jun 2022 13:31:44 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id w20so18092350lfa.11;
-        Thu, 09 Jun 2022 13:31:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=CA2137blCv89eq2ZgR16JFTYhMBK9m/DAMtjtrUnzv4=;
-        b=FNyhUSkOM7ITAVGM42a2lcYI7sMqsdl0l5PUJFKaAoyxqtp/3p7EMeU5IC1E/DLGTN
-         lFmGYHU8olzBe1VrTMlwtGoLufWejlLWT3IoxvVDLA7fA96M9N3DyArbCRhj9J5BTi0y
-         66tc0iPJyUKSeQNfOl5YWQAyoeFRDpT95Lw2i1DzMQ0sSdXFwyUarMLWXWBBhhcS4jz6
-         svQcbwKYUzyq4m8WcM6yhHR50Lg3Uw1M4kx7kwKszV2XrqZO8g8J4rWI4N5IvNTPgTGV
-         xCBD6S5Xq9y/UXULLjfiwt4AoyAhnRzEnd7ZZAmYgtIW4fLG6J+vbT/8IRmLlf9MG3kb
-         SDBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=CA2137blCv89eq2ZgR16JFTYhMBK9m/DAMtjtrUnzv4=;
-        b=Q6buC3mnk+spodJoYpS0iByHA8QJQuabEEBLPMSIyaDXzt133aQjnhnIQBhXgtQs4e
-         W51zULw5WiVvuPe+wOhURoP6YiyinTC1/7gJloc8IXRUYkXfZciqT41o2f6QQT6zAqo0
-         m2OdTg/qsGUEpE5K7GsRwnN64V9unNJdi9p2CzHxoZSvOLIhwpduH5EjgLnPUBtWbWwY
-         cCT4ylmrDowmEDjm7Jk9T84h4np+GG1lqL27QCVbrAAZqrGQewTl63T4/v8g6/guoRJi
-         kiwBe0r3ahoVEvww4mUYKfysH8ynM8CQdH5tBHzPDZnsj50DKr5a/ffTnDEpQ0xH2QZz
-         mpbA==
-X-Gm-Message-State: AOAM532j3nKIK6XWXuu7zLHP1pc40mfTOw69TlmXujAOVU+hq93DiyZF
-        kOYmnTjYVzgJeIfV5xUMN9w=
-X-Google-Smtp-Source: ABdhPJzhToDwB+G1T0rZoz9FzKJtAL3yXpSGu2fYpJJiJS5R8uUYEpkNX6PVk+RkVORC1F5SWSz7Bw==
-X-Received: by 2002:ac2:4c50:0:b0:479:55a9:2e08 with SMTP id o16-20020ac24c50000000b0047955a92e08mr11574855lfk.642.1654806703162;
-        Thu, 09 Jun 2022 13:31:43 -0700 (PDT)
-Received: from [192.168.0.131] ([194.183.54.57])
-        by smtp.gmail.com with ESMTPSA id q22-20020a194316000000b0047255d210e0sm4389159lfa.15.2022.06.09.13.31.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 13:31:42 -0700 (PDT)
-Message-ID: <4a7f8ab6-c061-3861-5790-b6c0fbd7cad1@gmail.com>
-Date:   Thu, 9 Jun 2022 22:31:41 +0200
+        with ESMTP id S233887AbiFIUeC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 16:34:02 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 488FB9E9ED;
+        Thu,  9 Jun 2022 13:34:00 -0700 (PDT)
+Received: from mercury (unknown [185.209.196.172])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 057316601752;
+        Thu,  9 Jun 2022 21:33:59 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1654806839;
+        bh=VNekLhmfPjsUN9yizbSGziR2L3VN05ZPmSRaQ6aqrU8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=n1Q4M3aNHFlWYJQ7bRaYmOi4AR26Z7YrA4ye4kJgw5VrkzBid7LMfmYrDiq4evp0I
+         GOa4yUqsSGbzVBybkOqQ8HudjO7Uvt2XVM1eZUqGy2naC008eWbj+zH07CBB3YhEHe
+         ahCcbtflljV9YdQUYquIZ0MMFAR1vcoAXgLOdwAZ4mME0zVRgxA0J9bMecIzKJ87Zd
+         WWIc5wFhWerUYCwkvBmiG1AXlzm/Eu1eiSywYCL0H7R/PP9xXsy0Tdiu5vRm4xP6Xj
+         HFEhJkXYNog486WMIqnl01EARkxErJeTEqkVty91eQTzLkGgA0ebQ/0Tuo5xhLRnHS
+         bNHPHow56bNow==
+Received: by mercury (Postfix, from userid 1000)
+        id 25E6410605B9; Thu,  9 Jun 2022 22:33:56 +0200 (CEST)
+Date:   Thu, 9 Jun 2022 22:33:56 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        p.zabel@pengutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 6/9] power: reset: at91-reset: add at91_reset_data
+Message-ID: <20220609203356.75oamac2sjqli4op@mercury.elektranox.org>
+References: <20220608083942.1584087-1-claudiu.beznea@microchip.com>
+ <20220608083942.1584087-7-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 3/3] ARM: dts: exynos: add function and color to aat1290
- flash LED node in Galaxy S3
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20220607085343.72414-1-krzysztof.kozlowski@linaro.org>
- <20220607085343.72414-3-krzysztof.kozlowski@linaro.org>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-In-Reply-To: <20220607085343.72414-3-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="e3iabka34udetqlt"
+Content-Disposition: inline
+In-Reply-To: <20220608083942.1584087-7-claudiu.beznea@microchip.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On 6/7/22 10:53, Krzysztof Kozlowski wrote:
-> Add common LED properties - the function and color - to aat1290 flash
-> LED node in Galaxy S3.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--e3iabka34udetqlt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Wed, Jun 08, 2022 at 11:39:39AM +0300, Claudiu Beznea wrote:
+> Add struct at91_reset_data to keep per platform related information.
+> This is a prerequisite for adding reset_controller_dev support.
+>=20
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 > ---
->   arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi b/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
-> index 72901772fcad..d76f3678dcab 100644
-> --- a/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
-> +++ b/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
-> @@ -7,6 +7,7 @@
->    */
->   
->   /dts-v1/;
-> +#include <dt-bindings/leds/common.h>
->   #include "exynos4412-midas.dtsi"
->   
->   / {
-> @@ -27,6 +28,8 @@ led-controller {
->   
->   		led {
->   			label = "flash";
-> +			function = LED_FUNCTION_FLASH;
-> +			color = <LED_COLOR_ID_WHITE>;
+>  drivers/power/reset/at91-reset.c | 38 ++++++++++++++++++++++++--------
+>  1 file changed, 29 insertions(+), 9 deletions(-)
+>=20
+> diff --git a/drivers/power/reset/at91-reset.c b/drivers/power/reset/at91-=
+reset.c
+> index e62798750b6b..1b2aca3f490d 100644
+> --- a/drivers/power/reset/at91-reset.c
+> +++ b/drivers/power/reset/at91-reset.c
+> @@ -79,6 +79,16 @@ struct at91_reset {
+>  	u32 ramc_lpr;
+>  };
+> =20
+> +/**
+> + * struct at91_reset_data - AT91 reset data
+> + * @reset_args:		SoC specific system reset arguments
+> + * @n_device_reset:	number of device resets
+> + */
+> +struct at91_reset_data {
+> +	u32 reset_args;
+> +	u32 n_device_reset;
+> +};
+> +
+>  /*
+>  * unless the SDRAM is cleanly shutdown before we hit the
+>  * reset register it can be left driving the data bus and
+> @@ -173,29 +183,34 @@ static const struct of_device_id at91_ramc_of_match=
+[] =3D {
+>  	{ /* sentinel */ }
+>  };
+> =20
+> +static const struct at91_reset_data sam9260 =3D {
+> +	.reset_args =3D AT91_RSTC_KEY | AT91_RSTC_PERRST | AT91_RSTC_PROCRST,
+> +};
+> +
+> +static const struct at91_reset_data samx7 =3D {
+> +	.reset_args =3D AT91_RSTC_KEY | AT91_RSTC_PROCRST,
+> +};
+> +
+>  static const struct of_device_id at91_reset_of_match[] =3D {
+>  	{
+>  		.compatible =3D "atmel,at91sam9260-rstc",
+> -		.data =3D (void *)(AT91_RSTC_KEY | AT91_RSTC_PERRST |
+> -				 AT91_RSTC_PROCRST),
+> +		.data =3D &sam9260,
+>  	},
+>  	{
+>  		.compatible =3D "atmel,at91sam9g45-rstc",
+> -		.data =3D (void *)(AT91_RSTC_KEY | AT91_RSTC_PERRST |
+> -				 AT91_RSTC_PROCRST)
+> +		.data =3D &sam9260,
+>  	},
+>  	{
+>  		.compatible =3D "atmel,sama5d3-rstc",
+> -		.data =3D (void *)(AT91_RSTC_KEY | AT91_RSTC_PERRST |
+> -				 AT91_RSTC_PROCRST)
+> +		.data =3D &sam9260,
+>  	},
+>  	{
+>  		.compatible =3D "atmel,samx7-rstc",
+> -		.data =3D (void *)(AT91_RSTC_KEY | AT91_RSTC_PROCRST)
+> +		.data =3D &samx7,
+>  	},
+>  	{
+>  		.compatible =3D "microchip,sam9x60-rstc",
+> -		.data =3D (void *)(AT91_RSTC_KEY | AT91_RSTC_PROCRST)
+> +		.data =3D &samx7,
+>  	},
+>  	{ /* sentinel */ }
+>  };
+> @@ -204,6 +219,7 @@ MODULE_DEVICE_TABLE(of, at91_reset_of_match);
+>  static int __init at91_reset_probe(struct platform_device *pdev)
+>  {
+>  	const struct of_device_id *match;
+> +	const struct at91_reset_data *data;
+>  	struct at91_reset *reset;
+>  	struct device_node *np;
+>  	int ret, idx =3D 0;
+> @@ -233,9 +249,13 @@ static int __init at91_reset_probe(struct platform_d=
+evice *pdev)
+>  	}
+> =20
+>  	match =3D of_match_node(at91_reset_of_match, pdev->dev.of_node);
+> +	if (!match || !match->data)
+> +		return -ENODEV;
+> +
+> +	data =3D match->data;
 
-Addition of these two properties will not change anything because
-the label has precedence. It is deprecated, but if you introduce
-function and color to the binding instead of the label, the resulting
-LED class device name will change.
+data =3D device_get_match_data(&pdev->dev);
+if (!data)
+		return -ENODEV;
 
->   			led-max-microamp = <520833>;
->   			flash-max-microamp = <1012500>;
->   			flash-max-timeout-us = <1940000>;
+Otherwise LGTM.
 
--- 
-Best regards,
-Jacek Anaszewski
+-- Sebastian
+
+>  	reset->nb.notifier_call =3D at91_reset;
+>  	reset->nb.priority =3D 192;
+> -	reset->args =3D (u32)match->data;
+> +	reset->args =3D data->reset_args;
+> =20
+>  	reset->sclk =3D devm_clk_get(&pdev->dev, NULL);
+>  	if (IS_ERR(reset->sclk))
+> --=20
+> 2.33.0
+>=20
+
+--e3iabka34udetqlt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmKiWTMACgkQ2O7X88g7
++pqFEBAAhZVanjy/8HLzpTLEX5MMG0hTMRcG+h/W2PQHRJqV8memujSFsmxGhwFC
+FW6HE6dtpzmtxq+Pf4JdljCt76Pu3Pb0Ggb+HONtPPisaJgsck958RWVmjALrAFE
+efgGd6KdxkyJc31YqDnOwSNoV+sFmbjz9luHeGZfEifp233OAOULc4+0db5cElM/
+np9YbF2M72T/8kseQJZTeYdhFti9VHHhO/lDDA7z56XS1ZBTem7Z0Fcuh1hyNRZ3
+teil1ydJyY8MAZ2/4GgTVzC9UklK4KwpTjJDbc0TdMUGfOqbhXhjCWocOjqhMgsk
+5mygLnug/rKdgdJY+SwSGMImRdYv4yTJrtGg1nIiptEX23Z7VA6RZ0BagWufmF2W
+dbOBxq7LWO78FouwtZbBirQ8gHd8nZv56Q7lfnQYjxi40KNW+U0Fcu498wHev4gw
+w3nzye72NAH+xnEUUMmivXR7QQOnXd5hXnyXI5/Ucj9UOmbg2r6Nv6HDgnhZgYqJ
+eJoiJonnTN67N8ja+4zqaBTKQ4UH+E+sEExxuST1g/Fne0RptB2XqLLUOv/i7JVe
+1ee4AvdA6nOF+xYb8MWB06V2zgSonuT7Sni7YvRSA5JU1uehfhcHgZONSRLQa73w
+FF164Pm9LcJOLyzkZeD0cLvu2xbtd3twMp+o108izbY+yDR3XII=
+=P0Hb
+-----END PGP SIGNATURE-----
+
+--e3iabka34udetqlt--
