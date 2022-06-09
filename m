@@ -2,98 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1B9C543FF6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 01:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C21FC54406E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 02:15:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233907AbiFHXj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 19:39:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33344 "EHLO
+        id S235990AbiFIAPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 20:15:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233832AbiFHXj6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 19:39:58 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA31516B2FD
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 16:39:50 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id f13so2605038qtb.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 16:39:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=qQ2RizqshOjzvB3iH/wwzC+NVOLya1wNYtoVU7GxDvM=;
-        b=UAUcZUkiV3VZQTR71Swi9iSLP2iNUgDgdZHzGDfJ1q/EFyU2zOn3EEmie/e/d8eyrk
-         BCOb4HzXqzi46EUby2v8egnyivPyJ7IOpkpbUgurwodmXHMd2jq472sLIjoalYSwQxJO
-         4YxfrIRcr9xYU16fuugZ8uiVRNZdTkZQ5gpERziLKwu4cAfIa2ye+Iq/EB/Upc+nwD/b
-         Qr8CG2/CjIe6vW19WYbiVvTvibQB/Nc9ON1c0nmBWGmLiB5d0N8DNXHJeZLE4sJmxDqx
-         uOIBbgt+OPOL5bndMn27FUTwT/Qh0ZyJHEztS4IoOPqfcby1uaM4OWWT+HBGl4wCGOtN
-         ReaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=qQ2RizqshOjzvB3iH/wwzC+NVOLya1wNYtoVU7GxDvM=;
-        b=LShXWcMM1mPXBH+lqRgw6shhL1bOZRQyIHy1SLPwupPJ934B37rXVwXR+xshUBK974
-         oyBSkJYer9zcAQ+iI9Fr6/YvdPYo8U9c4nZbNPFDI8lC4f+kuWSMm3Twtcl4Qk0J/8ms
-         bQJ7dFDTr+niwCPijAlpsiSHaAdJ7Pv00e8XJZ7PqQU1Utg3N+Fra/soypa6U6WTn1Gb
-         rvf0HUYCMTnzCqoaJ8u1VuDFQbe50WNhLfpnGtCRoPNI0IqwlbdOalY4vvJCRQCsxocS
-         Y+sm4nlixJ7Zkj9HMEx5BK4HbqNkAu39cazHJlQIHVXKvz9OPL4ccIKYcPrvV0qgFGb8
-         IhHg==
-X-Gm-Message-State: AOAM532mfYTrqoIT5T1z02Oyvv/hei5yoTos4lGNSJSh2cegWWuE+Phi
-        ckNt8q9KYlpSdRdgU8EIfhRFBh+3xr8P1JraZhehtw==
-X-Google-Smtp-Source: ABdhPJwtH2lhtilN1G9Xw/rEf0VpiHf/XCVrIWgDPfCF0plfDp6bJ/WTYHxyxCYLxZFEeB0dzqn7AnVcRfYOD7c28rY=
-X-Received: by 2002:a05:622a:5ce:b0:304:c37f:e7c5 with SMTP id
- d14-20020a05622a05ce00b00304c37fe7c5mr29342704qtb.398.1654731589495; Wed, 08
- Jun 2022 16:39:49 -0700 (PDT)
+        with ESMTP id S235953AbiFIAPP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 20:15:15 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95FBD24090;
+        Wed,  8 Jun 2022 17:15:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654733714; x=1686269714;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VJaoEcVsxQq1bvI/6bf3ZD+VGSdcsRuFeFp57nRDdjc=;
+  b=mFXFR3ajhmTAghtq8gMvdRabflgzq2sexcREy1yXf1hN4ZEbvu8BrLCB
+   26i9vTHgUop5je5xzUEVMosbaPr6C/NyUhJY7pjNpzneQW+TQRQM1/sIR
+   jwY22F2vOc8cJarB95MbXiSHcz8pS4urnW1bO9Og8/opRUo63yLtomUNN
+   a3QqtnPp90vw+ecNxZ9DO+df3MeIjLPcALK5iUsdOlyPBvq1hlDPy/njN
+   9EB+BKaY9nl301IamnKlsXAfpg0T9l2IRrIFgjEAc48shvtT8mS/PtiaM
+   BYAzavk5nRyuoXY/wtFfyizATMV3ppTqdqOdVqilk8oMYMDFyTS0OP8CA
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10372"; a="260229851"
+X-IronPort-AV: E=Sophos;i="5.91,287,1647327600"; 
+   d="scan'208";a="260229851"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2022 17:15:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,287,1647327600"; 
+   d="scan'208";a="609915376"
+Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 08 Jun 2022 17:15:08 -0700
+Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nz5pL-000FG8-Nb;
+        Thu, 09 Jun 2022 00:15:07 +0000
+Date:   Thu, 9 Jun 2022 08:14:49 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Prashant Malani <pmalani@chromium.org>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, heikki.krogerus@linux.intel.com,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>, Jonas Karlman <jonas@kwiboo.se>,
+        swboyd@chromium.org, Pin-Yen Lin <treapking@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Xin Ji <xji@analogixsemi.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        =?iso-8859-1?Q?Jos=E9_Exp=F3sito?= <jose.exposito89@gmail.com>
+Subject: Re: [PATCH 7/7] drm/bridge: anx7625: Add typec_mux_set callback
+ function
+Message-ID: <202206090842.UVDwwfxx-lkp@intel.com>
+References: <20220607190131.1647511-8-pmalani@chromium.org>
 MIME-Version: 1.0
-From:   Atul Khare <atulkhare@rivosinc.com>
-Date:   Wed, 8 Jun 2022 16:39:39 -0700
-Message-ID: <CABMhjYp4ChJ3KfP=jQmA5nnv7YB=Kkanjb2KwDEVWSS+Sn5m1g@mail.gmail.com>
-Subject: [PATCH v2 2/2] dt-bindings: sifive: add gpio-line-names
-To:     Palmer Dabbelt <palmer@rivosinc.com>,
-        Atul Khare <atulkhare@rivosinc.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220607190131.1647511-8-pmalani@chromium.org>
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixes device tree schema validation messages like 'gpio-line-names'
-does not match any of the regexes: 'pinctrl-[0-9]+' From schema: ...
-sifive,gpio.yaml'.
+Hi Prashant,
 
-The bindings were missing the gpio-line-names element, which was
-causing the dt-schema checker to trip-up.
+Thank you for the patch! Yet something to improve:
 
-Signed-off-by: Atul Khare <atulkhare@rivosinc.com>
----
-Changes since v1 [1]: Rebased on latest version
-[1]: https://tinyurl.com/yvdvmsjd
----
----
- Documentation/devicetree/bindings/gpio/sifive,gpio.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+[auto build test ERROR on drm/drm-next]
+[also build test ERROR on usb/usb-testing v5.19-rc1 next-20220608]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-diff --git a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-index 939e31c48081..787ce7300118 100644
---- a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-@@ -47,6 +47,9 @@ properties:
-     default: 16
+url:    https://github.com/intel-lab-lkp/linux/commits/Prashant-Malani/usb-typec-Introduce-typec-switch-binding/20220608-042545
+base:   git://anongit.freedesktop.org/drm/drm drm-next
+config: nios2-buildonly-randconfig-r006-20220608 (https://download.01.org/0day-ci/archive/20220609/202206090842.UVDwwfxx-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/49c4c89ed5b50cbd623e611c8f4eba4b5ca9dd02
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Prashant-Malani/usb-typec-Introduce-typec-switch-binding/20220608-042545
+        git checkout 49c4c89ed5b50cbd623e611c8f4eba4b5ca9dd02
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=nios2 SHELL=/bin/bash drivers/gpu/drm/bridge/analogix/
 
-   gpio-controller: true
-+  gpio-line-names:
-+    minItems: 1
-+    maxItems: 32
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
- required:
-   - compatible
---
-2.34.1
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/bridge/analogix/anx7625.c:19:
+   include/linux/usb/typec_mux.h:83:19: warning: no previous prototype for 'fwnode_typec_mux_get' [-Wmissing-prototypes]
+      83 | struct typec_mux *fwnode_typec_mux_get(struct fwnode_handle *fwnode,
+         |                   ^~~~~~~~~~~~~~~~~~~~
+   include/linux/usb/typec_mux.h:89:6: warning: no previous prototype for 'typec_mux_put' [-Wmissing-prototypes]
+      89 | void typec_mux_put(struct typec_mux *mux) {}
+         |      ^~~~~~~~~~~~~
+   include/linux/usb/typec_mux.h:91:5: warning: no previous prototype for 'typec_mux_set' [-Wmissing-prototypes]
+      91 | int typec_mux_set(struct typec_mux *mux, struct typec_mux_state *state)
+         |     ^~~~~~~~~~~~~
+   include/linux/usb/typec_mux.h:103:1: warning: no previous prototype for 'typec_mux_register' [-Wmissing-prototypes]
+     103 | typec_mux_register(struct device *parent, const struct typec_mux_desc *desc)
+         | ^~~~~~~~~~~~~~~~~~
+   include/linux/usb/typec_mux.h:107:6: warning: no previous prototype for 'typec_mux_unregister' [-Wmissing-prototypes]
+     107 | void typec_mux_unregister(struct typec_mux *mux) {}
+         |      ^~~~~~~~~~~~~~~~~~~~
+   include/linux/usb/typec_mux.h:109:6: warning: no previous prototype for 'typec_mux_set_drvdata' [-Wmissing-prototypes]
+     109 | void typec_mux_set_drvdata(struct typec_mux *mux, void *data) {}
+         |      ^~~~~~~~~~~~~~~~~~~~~
+   include/linux/usb/typec_mux.h:110:7: warning: no previous prototype for 'typec_mux_get_drvdata' [-Wmissing-prototypes]
+     110 | void *typec_mux_get_drvdata(struct typec_mux *mux)
+         |       ^~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/bridge/analogix/anx7625.c: In function 'anx7625_typec_mux_set':
+>> drivers/gpu/drm/bridge/analogix/anx7625.c:2616:64: error: passing argument 1 of 'typec_mux_get_drvdata' from incompatible pointer type [-Werror=incompatible-pointer-types]
+    2616 |         struct anx7625_port_data *data = typec_mux_get_drvdata(mux);
+         |                                                                ^~~
+         |                                                                |
+         |                                                                struct typec_mux_dev *
+   In file included from drivers/gpu/drm/bridge/analogix/anx7625.c:19:
+   include/linux/usb/typec_mux.h:110:47: note: expected 'struct typec_mux *' but argument is of type 'struct typec_mux_dev *'
+     110 | void *typec_mux_get_drvdata(struct typec_mux *mux)
+         |                             ~~~~~~~~~~~~~~~~~~^~~
+   drivers/gpu/drm/bridge/analogix/anx7625.c: In function 'anx7625_register_mode_switch':
+   drivers/gpu/drm/bridge/analogix/anx7625.c:2675:30: error: assignment to 'struct typec_mux_dev *' from incompatible pointer type 'struct typec_mux *' [-Werror=incompatible-pointer-types]
+    2675 |         port_data->typec_mux = typec_mux_register(dev, &mux_desc);
+         |                              ^
+   drivers/gpu/drm/bridge/analogix/anx7625.c: In function 'anx7625_unregister_typec_switches':
+   drivers/gpu/drm/bridge/analogix/anx7625.c:2689:57: error: passing argument 1 of 'typec_mux_unregister' from incompatible pointer type [-Werror=incompatible-pointer-types]
+    2689 |                 typec_mux_unregister(ctx->typec_ports[i].typec_mux);
+         |                                      ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+         |                                                         |
+         |                                                         struct typec_mux_dev *
+   In file included from drivers/gpu/drm/bridge/analogix/anx7625.c:19:
+   include/linux/usb/typec_mux.h:107:45: note: expected 'struct typec_mux *' but argument is of type 'struct typec_mux_dev *'
+     107 | void typec_mux_unregister(struct typec_mux *mux) {}
+         |                           ~~~~~~~~~~~~~~~~~~^~~
+   cc1: some warnings being treated as errors
+
+
+vim +/typec_mux_get_drvdata +2616 drivers/gpu/drm/bridge/analogix/anx7625.c
+
+  2612	
+  2613	static int anx7625_typec_mux_set(struct typec_mux_dev *mux,
+  2614					 struct typec_mux_state *state)
+  2615	{
+> 2616		struct anx7625_port_data *data = typec_mux_get_drvdata(mux);
+  2617		struct anx7625_data *ctx = data->ctx;
+  2618		struct device *dev = &ctx->client->dev;
+  2619	
+  2620		bool old_dp_connected = (ctx->typec_ports[0].dp_connected ||
+  2621					 ctx->typec_ports[1].dp_connected);
+  2622		bool new_dp_connected;
+  2623	
+  2624		if (ctx->num_typec_switches == 1)
+  2625			return 0;
+  2626	
+  2627		dev_dbg(dev, "mux_set dp_connected: c0=%d, c1=%d\n",
+  2628			ctx->typec_ports[0].dp_connected, ctx->typec_ports[1].dp_connected);
+  2629	
+  2630		data->dp_connected = (state->alt && state->alt->svid == USB_TYPEC_DP_SID &&
+  2631				      state->alt->mode == USB_TYPEC_DP_MODE);
+  2632	
+  2633		new_dp_connected = (ctx->typec_ports[0].dp_connected ||
+  2634				    ctx->typec_ports[1].dp_connected);
+  2635	
+  2636		/* dp on, power on first */
+  2637		if (!old_dp_connected && new_dp_connected)
+  2638			pm_runtime_get_sync(dev);
+  2639	
+  2640		anx7625_typec_two_ports_update(ctx);
+  2641	
+  2642		/* dp off, power off last */
+  2643		if (old_dp_connected && !new_dp_connected)
+  2644			pm_runtime_put_sync(dev);
+  2645	
+  2646		return 0;
+  2647	}
+  2648	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
