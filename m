@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FA35545431
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 20:33:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EFFA545444
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 20:39:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231907AbiFISd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 14:33:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50194 "EHLO
+        id S233205AbiFISjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 14:39:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231477AbiFISdz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 14:33:55 -0400
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BFC736E1E;
-        Thu,  9 Jun 2022 11:33:54 -0700 (PDT)
-Received: by mail-il1-f178.google.com with SMTP id d6so8555960ilm.4;
-        Thu, 09 Jun 2022 11:33:54 -0700 (PDT)
+        with ESMTP id S244450AbiFISjR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 14:39:17 -0400
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58BEFB8BE1;
+        Thu,  9 Jun 2022 11:39:16 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id h8so4698054iof.11;
+        Thu, 09 Jun 2022 11:39:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=yjLp36AHdSqY0OzW26Jz18S5rMmSenhLhsO9ff9VDN0=;
-        b=gd6Bihklt5tvu4cu1EXf8FCpsauEehwJnpvmCtjHI886iVUHGe3nkFiV9p/GfuNpvT
-         8s9UGzPlWzg8jRY06ec6/zKzW2sj+8x/YsarzdykezQH9OnzIJVl1Nch9WroJGZhRf3/
-         nxrbjrWH9SgTORA2opKTQ7dhepD/u2uOe7Uf41xeTyiRxtJGB3NXY2oqOpWYIzYaW3uB
-         I/DP+XOb85y5tbReUdB9uT/tvFK4J9SGg5TUmXrVr+xt32/s4+L5tHX5yea9hL87CIMX
-         xcLr+RjW822H5woplXD9qca7AjuLv5bbbadOA4cv9sqX/FTIAjFBfLGm5oxG5VV7EAt3
-         +KGg==
-X-Gm-Message-State: AOAM5306BwhbXbi3NicKteTUojRFiSKXxZVWKFzKUZ0jkjisHpk2IyYN
-        MPVZNkV07J83CGw5zZN79g==
-X-Google-Smtp-Source: ABdhPJw5uhY5WYkLXPaUEKy4FK6Ff3jLXV7VjuZ37mMIdftbI88KntHhJABZm5VboUtyoRtKqshWNA==
-X-Received: by 2002:a05:6e02:1ba6:b0:2d1:b582:a9db with SMTP id n6-20020a056e021ba600b002d1b582a9dbmr22860477ili.90.1654799633880;
-        Thu, 09 Jun 2022 11:33:53 -0700 (PDT)
+        bh=8vpGjf5f2hCMK/dOd5Ud/UWN4pv1x98Yt51zG6FEFrE=;
+        b=VWFMejHyx0ma4xgYF2MKaBYkTZWoccVpYuY1zv7EtV2ozPrWDpTdD7dycl2MuCDTn+
+         CBFztDZNzmvzKtP92EYgzLs17hHSkkiQkZFfYbCIQWp9luhV54SC4KneBgUtl4U56skc
+         IaPAxSyAhYwS2sA9qlWNwvz8mLbhDMtKrjmQaaiSbCJOhczLJX0KniApGZPmwsX85Q8g
+         EA94Xu99i8wecUpxGjs20enRpfSqNWgCGWYazTPoLuqgytWFNTHdbJnn86a3sCmIhZTy
+         OsARXbQFVjlo0mI/aYWdozsDi4/4Nq3/XC8JCSZHeTmQZ8pp05yYypk5ZX2xUamVBpMj
+         unxg==
+X-Gm-Message-State: AOAM5320Fc5If34B0DA7PRFOKIJV3qhVbM3r0rSy/zMGCynMSSRFLW4z
+        g8Pc49WqcxcO3z9VFTv3Tw==
+X-Google-Smtp-Source: ABdhPJxZ9+SqYHxtLPBH9TYjtcQ7aniemxdDnaQl2V9C86e9xNpwSUF8mIBOq6HuXa4wWu2EuYGXvg==
+X-Received: by 2002:a05:6638:3389:b0:331:f5e7:7dda with SMTP id h9-20020a056638338900b00331f5e77ddamr4163700jav.93.1654799955565;
+        Thu, 09 Jun 2022 11:39:15 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id x4-20020a023404000000b00331f63a3dfasm1973963jae.122.2022.06.09.11.33.52
+        by smtp.gmail.com with ESMTPSA id b14-20020a05663805ae00b00331d98c9a7fsm3509665jar.40.2022.06.09.11.39.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 11:33:53 -0700 (PDT)
-Received: (nullmailer pid 4083400 invoked by uid 1000);
-        Thu, 09 Jun 2022 18:33:51 -0000
-Date:   Thu, 9 Jun 2022 12:33:51 -0600
+        Thu, 09 Jun 2022 11:39:15 -0700 (PDT)
+Received: (nullmailer pid 4090610 invoked by uid 1000);
+        Thu, 09 Jun 2022 18:39:12 -0000
+Date:   Thu, 9 Jun 2022 12:39:12 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-kernel@vger.kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jens Axboe <axboe@kernel.dk>, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        =?utf-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>
-Subject: Re: [PATCH v5 2/3] dt-bindings: mtd: partitions: add additional
- example for qcom,smem-part
-Message-ID: <20220609183351.GA4083315-robh@kernel.org>
-References: <20220606151417.19227-1-ansuelsmth@gmail.com>
- <20220606151417.19227-3-ansuelsmth@gmail.com>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        Biju Das <biju.das@bp.renesas.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Add RZ/G2L GPT binding
+Message-ID: <20220609183912.GA4090532-robh@kernel.org>
+References: <20220606160509.250962-1-biju.das.jz@bp.renesas.com>
+ <20220606160509.250962-2-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220606151417.19227-3-ansuelsmth@gmail.com>
+In-Reply-To: <20220606160509.250962-2-biju.das.jz@bp.renesas.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -72,15 +71,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Jun 2022 17:14:16 +0200, Ansuel Smith wrote:
-> Add additional example for qcom,smem-part to declare a dynamic
-> partition to provide NVMEM cells for the commonly ART partition
-> provided by this parser.
+On Mon, 06 Jun 2022 17:05:08 +0100, Biju Das wrote:
+> Add device tree bindings for the General PWM Timer (GPT).
 > 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../mtd/partitions/qcom,smem-part.yaml        | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
+> v1->v2:
+>  * Added '|' after 'description:' to preserve formatting.
+>  * Removed description for pwm_cells as it is common property.
+>  * Changed the reg size in example from 0xa4->0x100
+>  * Added Rb tag from Geert.
+> RFC->v1:
+>  * Added Description
+>  * Removed comments from reg and clock
+> ---
+>  .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 129 ++++++++++++++++++
+>  1 file changed, 129 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
