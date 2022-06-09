@@ -2,139 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15033544D80
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 15:24:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B192A544DC4
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 15:34:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343820AbiFINYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 09:24:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46452 "EHLO
+        id S236658AbiFINdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 09:33:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343786AbiFINYV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 09:24:21 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4DD036B69;
-        Thu,  9 Jun 2022 06:24:19 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id h19so31227910edj.0;
-        Thu, 09 Jun 2022 06:24:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=6jeqtgRl8bKHnXZ4AwxPt+xAQ0F0PxiC5aWs7JdMOrY=;
-        b=cJVhmrHYyT63kIWknwWNHq8H3Fm9koj9Te576ocCrSOqv18WrgBUMotLdhsN3HIdgM
-         /aoYBLe/1EthBKwzLMOnDMzMig7pgkcWUDz16SM9QlGmsvii3FqSwftw9IOpua1hqHWt
-         25Lmz9S4wLtucB+FC0jlpNDPXt28Iw7T+JqGvOtDSU9eNPMNLImvrJ4EyIofVj3wjzF/
-         NmsQbdligcS3Jl35T6bp6lduzJbYTPUS2LCFpZA5Koky7S9y1t5KWRyGqqGgjh0huMkj
-         4YDSGmibIrJm/1RE4XIvWQzFiHPn6y7ILU3OChbYMf6D77+KLKMiE9opqoyC8nXEIaNw
-         Emdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6jeqtgRl8bKHnXZ4AwxPt+xAQ0F0PxiC5aWs7JdMOrY=;
-        b=HBP1A7FG+fFH5bAACeWi5dsPQ/70i89IIsn+knSkWTKeF8cxYwcD1XY7rbHId2/78v
-         aoJpy5ZF9LkaiiQ6eY2jfUekQRqqtgBeZfKpv7G2Q301dH0kx1Eo06zEjjMrJyffiqJe
-         MoWuJ4sT11MMDqX63BZ53MQeigQhzcBPdnkbVFUSPC1VpN300LbYBn7huhb/agMABfTt
-         lGvudZ4RJ6zdWYmIlVyR3DHxbv/13IKfS8xYsQ+1XYK/AFkHlNGvwGtlSG8dYpFDWk5w
-         9NtgY3TqmKM6g5OHul2s7HTyHH+v91xzEMyWSbXwRXvsS6Xq40A4CTTqbw3gHqC8tIA0
-         M7NA==
-X-Gm-Message-State: AOAM5315kcf3rOi2Wcc2udJKQcBAjeOPyx3cZAWRV4uWWRZ55sIaxeiV
-        MsNHDCSP5J49gjRRK+MhhAs=
-X-Google-Smtp-Source: ABdhPJz4eKUEq7ZrMsvoEKZtpxBHOSayxyiXJ2PgF4vC9W0d68Yh4tOffD3uKBEr3qTbYLCZAaDwpA==
-X-Received: by 2002:a05:6402:31fa:b0:42d:cd6d:c8fd with SMTP id dy26-20020a05640231fa00b0042dcd6dc8fdmr44609520edb.347.1654781058277;
-        Thu, 09 Jun 2022 06:24:18 -0700 (PDT)
-Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.googlemail.com with ESMTPSA id i2-20020a056402054200b004315050d7dfsm8360263edx.81.2022.06.09.06.24.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 06:24:17 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S239509AbiFINdw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 09:33:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8007451E58;
+        Thu,  9 Jun 2022 06:33:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0355661D3E;
+        Thu,  9 Jun 2022 13:33:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A641BC34114;
+        Thu,  9 Jun 2022 13:33:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654781630;
+        bh=By/LmjmkZstbquCKqvZQy6ApS9VkUQsifOo+GuV6Dko=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jBjS/rOwm0hXNM3I8qiEPO7/IWTr1BS4RG6x9wN9iGRDrDP9gF+wZT1lEBA/ZPR3E
+         /IznIWKF1BjwRBQm+yZjYzHz4pWUj8mScY/u/lV2NkIej/gw6RywABIeNCvJs9IdK4
+         th2rkhqsJp/PKLG3zb1z9m9UeN6qRprBs562Aj/2KeDD+OeNMciH67M6F5pVx6scZ0
+         ZcH7msHNtn5u64cIA6FePjvBIyLF4Ix87m6SMxaXkGNAhALWn6ZXdcMSUKX09U5OZ7
+         bEByuQ0LUh4bmqVP9WuIiZTTSWrp0ZzdcUuzDTDkfYjNAEF0IfjvbysQQuF/vGSYMc
+         rGQAi9DvNHL8g==
+Date:   Thu, 9 Jun 2022 14:33:44 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>
-Subject: [PATCH v6 3/3] dt-bindings: mtd: qcom_nandc: document qcom,boot-partitions binding
-Date:   Thu,  9 Jun 2022 15:23:44 +0200
-Message-Id: <20220609132344.17548-4-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220609132344.17548-1-ansuelsmth@gmail.com>
-References: <20220609132344.17548-1-ansuelsmth@gmail.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>, asahi@lists.linux.dev
+Subject: Re: [RFC PATCH v2 5/5] ASoC: apple: Add macaudio machine driver
+Message-ID: <YqH2uCgaedf0HQPE@sirena.org.uk>
+References: <20220606191910.16580-1-povik+lin@cutebit.org>
+ <20220606191910.16580-6-povik+lin@cutebit.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Yt9911NapMtJ1eUK"
+Content-Disposition: inline
+In-Reply-To: <20220606191910.16580-6-povik+lin@cutebit.org>
+X-Cookie: Space is limited.
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document new qcom,boot-partition binding used to apply special
-read/write layout to boot partitions.
 
-QCOM apply a special layout where spare data is not protected
-by ECC for some special pages (used for boot partition). Add
-Documentation on how to declare these special pages.
+--Yt9911NapMtJ1eUK
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
----
- .../devicetree/bindings/mtd/qcom,nandc.yaml   | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+On Mon, Jun 06, 2022 at 09:19:10PM +0200, Martin Povi=C5=A1er wrote:
 
-diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-index 84ad7ff30121..482a2c068740 100644
---- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-+++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-@@ -102,6 +102,31 @@ allOf:
-             - const: rx
-             - const: cmd
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,ipq806x-nand
-+
-+    then:
-+      properties:
-+        qcom,boot-partitions:
-+          $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+          items:
-+            items:
-+              - description: offset
-+              - description: size
-+          description:
-+            Boot partition use a different layout where the 4 bytes of spare
-+            data are not protected by ECC. Use this to declare these special
-+            partitions by defining first the offset and then the size.
-+
-+            It's in the form of <offset1 size1 offset2 size2 offset3 ...>
-+            and should be declared in ascending order.
-+
-+            Refer to the ipq8064 example on how to use this special binding.
-+
- required:
-   - compatible
-   - reg
-@@ -135,6 +160,8 @@ examples:
-         nand-ecc-strength = <4>;
-         nand-bus-width = <8>;
- 
-+        qcom,boot-partitions = <0x0 0x58a0000>;
-+
-         partitions {
-           compatible = "fixed-partitions";
-           #address-cells = <1>;
--- 
-2.36.1
+> +		/*
+> +		 * Primary FE
+> +		 *
+> +		 * The mclk/fs ratio at 64 for the primary frontend is important
+> +		 * to ensure that the headphones codec's idea of left and right
+> +		 * in a stereo stream over I2S fits in nicely with everyone else's.
+> +		 * (This is until the headphones codec's driver supports
+> +		 * set_tdm_slot.)
+> +		 *
+> +		 * The low mclk/fs ratio precludes transmitting more than two
+> +		 * channels over I2S, but that's okay since there is the secondary
+> +		 * FE for speaker arrays anyway.
+> +		 */
+> +		.mclk_fs =3D 64,
+> +	},
 
+This seems weird - it looks like it's confusing MCLK and the bit clock
+for the audio bus.  These are two different clocks.  Note that it's very
+common for devices to require a higher MCLK/fs ratio to deliver the best
+audio performance, 256fs is standard.
+
+> +	{
+> +		/*
+> +		 * Secondary FE
+> +		 *
+> +		 * Here we want frames plenty long to be able to drive all
+> +		 * those fancy speaker arrays.
+> +		 */
+> +		.mclk_fs =3D 256,
+> +	}
+
+Same thing here - this is at least confusing MCLK and the bit clock.
+
+> +static bool macaudio_match_kctl_name(const char *pattern, const char *na=
+me)
+> +{
+> +	if (pattern[0] =3D=3D '*') {
+> +		int namelen, patternlen;
+> +
+> +		pattern++;
+> +		if (pattern[0] =3D=3D ' ')
+> +			pattern++;
+> +
+> +		namelen =3D strlen(name);
+> +		patternlen =3D strlen(pattern);
+> +
+> +		if (namelen > patternlen)
+> +			name +=3D (namelen - patternlen);
+> +	}
+> +
+> +	return !strcmp(name, pattern);
+> +}
+> +
+> +static int macaudio_limit_volume(struct snd_soc_card *card,
+> +				 const char *pattern, int max)
+> +{
+> +	struct snd_kcontrol *kctl;
+> +	struct soc_mixer_control *mc;
+> +	int found =3D 0;
+> +
+> +	list_for_each_entry(kctl, &card->snd_card->controls, list) {
+> +		if (!macaudio_match_kctl_name(pattern, kctl->id.name))
+> +			continue;
+> +
+> +		found++;
+> +		dev_dbg(card->dev, "limiting volume on '%s'\n", kctl->id.name);
+> +
+> +		/*
+> +		 * TODO: This doesn't decrease the volume if it's already
+> +		 * above the limit!
+> +		 */
+> +		mc =3D (struct soc_mixer_control *)kctl->private_value;
+> +		if (max <=3D mc->max)
+> +			mc->platform_max =3D max;
+> +
+> +	}
+> +
+> +	return found;
+> +}
+
+This shouldn't be open coded in a driver, please factor it out into the
+core so we've got an API for "set limit X on control Y" then call that.
+
+--Yt9911NapMtJ1eUK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKh9rcACgkQJNaLcl1U
+h9Be8Qf/cbx1SuNmXunfKG1D6mfqR8Q1iocw25ztL4MzTR16bJ8oAGIVuIFGvp6F
+65sLYF0riHrCUz1DZvyFCKmcDB+GeSWR9BICYOSnaQg6DnBXQdaBl3uY7v9DRrA6
+ypLzKzTdy5LhR58xRaThyGAiep77ZxpxGmOmPyMZS+oq+NQ4idOE/5z5ENxRSg3n
+qjMDlWlotFv3MjVNNBBFmZsH1oWa2CuxnXjpM/JrOAhEk7rt7Ylx4I3Bhqpv+lgo
+++g3qBUAP1cMdsyYOJza5Jkh4WynmGe3dQ7zj68UbdWoGtvHV8x6SucSnSeVrWXM
+IzZswmQla/NHnxdszylvTnONJmU8kg==
+=K4AF
+-----END PGP SIGNATURE-----
+
+--Yt9911NapMtJ1eUK--
