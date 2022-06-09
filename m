@@ -2,126 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B7BD5443C7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 08:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90EAC5443DE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 08:35:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238909AbiFIG1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 02:27:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45442 "EHLO
+        id S239054AbiFIGfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 02:35:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231339AbiFIG1G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 02:27:06 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21A5A60C1
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 23:27:05 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id y15so19622702ljc.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 23:27:05 -0700 (PDT)
+        with ESMTP id S232974AbiFIGfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 02:35:21 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E7DA30557;
+        Wed,  8 Jun 2022 23:35:20 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id w20so14806501lfa.11;
+        Wed, 08 Jun 2022 23:35:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=cycGJJ91H4YHdjGIAutpI1GaX9p7h4brlXbJX4MVN/Q=;
-        b=Mpa9s8ZMhN2wGYXSvQKctpW3XIJWSKFkN2WMMwjNevVr4R381DlULaGujGUPT96e+q
-         PxBqdKrEmav5wKR4JLDwgQTChoaxM/pbFLs6hfpje0G3cBfmyEyXNR3cxJzc02ougGp6
-         deQUeFXF5HkLZrqF7q+HnV+SQXBah/jMfVPuFcGZbmvg6puK7keBrGeVpsdPuP9pV3Dy
-         a4E1igC8EOMKif/t8j9j8LX973xuDLKgrBiJ36j+uBJs3JeIs6Rv2ywYgIFmoQ0ahx1r
-         rGJYIvAdX4nR4nncPacsckqfBuOtYQnaWzumcK0pPE1e9ZfiEiiC0aNj1o3vJvZVm3LL
-         LwPQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=5k/LjccvaikJ+eBEqduBSIW5NO0M91symnhTe30/FZI=;
+        b=TG5P/jOhm/GqNEc+I2Txp4nZ30m6y7oVShefLeKz7zQuPkVhSUUMeuZu30kuzHW7YZ
+         5C8lO9ukM5+unqVpCQwQE/5uGwFTm8Radr7eubJfq4K9RjzzHhzPARzNzWC1Pscg3CMz
+         nPOfztGg4t6ujCy3FXi7LOFxHSQ5RjTVuv9G5kO1lgLJk90A8tawyxufWIfF2XaUmzlo
+         04+GFdOGwfQvDS5TamfE4mTlQC0te0ZULJOisXZDLeX5FpLoPTNG9qd0qTPsBv+ZBo3W
+         gLTDpmFQINCTxDD/i4QB0UQCAfDN5fy/x8WgPD/CXalargPvX0di6CqjEigWCW0DdNi/
+         3bxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cycGJJ91H4YHdjGIAutpI1GaX9p7h4brlXbJX4MVN/Q=;
-        b=yrhyNsxrupC/5GLRobKTPDqPvZMgvKrx5Z2jEn2IaGnNLu3wkz+qHZsimYZKvLeyVi
-         SfDQoBQnEm5ylSlYHNUwesB+66mXXTo/aywFIH8uRC9S+/M0/fLR//x3DIIC7GpgKM9A
-         kvL54ZJPw/BFPmCLrQP2TCgI3jqUvzPIonCebN2nmGUbsryt9f33tJCwgsW7r2d6Lk52
-         CUFOARF6JJf0cWUaexPSCfi4YUf6iLdaWnldaiLto7zvTSFJLyahzwSce0bdKOLGWskZ
-         uwFvADNh2wq3IXB0WVlCK9UB/lLlMO2EReTXvLTD3yGOMDqjYcaBJYdSVc9EEN67o1Ly
-         cSVQ==
-X-Gm-Message-State: AOAM533pwOXqGxbJNpWv6o/gcjHjxPWOGgh63UGeNVyCHp33d8Urloqi
-        mafJesmJF43dwIlB0zxqrz2BVg==
-X-Google-Smtp-Source: ABdhPJwH50v0hPsS84CEB+KQLzlSSoTIQA5T8P964OIyZkPVqZ+avwaWZ78IjDxe1VKTt2yylpUxSA==
-X-Received: by 2002:a2e:8e38:0:b0:255:59c2:7192 with SMTP id r24-20020a2e8e38000000b0025559c27192mr25338422ljk.156.1654756023379;
-        Wed, 08 Jun 2022 23:27:03 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id bf43-20020a05651225ab00b004790823d354sm3861368lfb.26.2022.06.08.23.27.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 23:27:02 -0700 (PDT)
-Message-ID: <89941420-717a-c311-54fe-cd8fcd0b0a06@linaro.org>
-Date:   Thu, 9 Jun 2022 09:27:02 +0300
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=5k/LjccvaikJ+eBEqduBSIW5NO0M91symnhTe30/FZI=;
+        b=aSe4GqPGF8mT1kSVJtkSynmfu4q1uZsDqvBbHMyQ06pAgWxOEjNH08NiKR+8vdwWWp
+         e/OWPcY9pN92jsLA0oIs/tCQfixW4H0QZD9aOlrSu9AvBYvrcuxWHm1WizIOQelqCw5z
+         hILf1qwzA85lyvriLrVKTyF2hhQk76V+YDi9miKk31rSo3AodNblyTnwm4IzLqcR12Vw
+         nm7Vq7H7+BFM3cD3V2ak1TGKVMqVw+Ll1Ivvs5fNzlx7xLksiT4iUySXj7z+gZ3l+zpF
+         2Df69UFNGop5AB/mV1okhDOTp0MJk0BUT+lI66dS5d24Z+J2eHVyvoc5rCZobYS7zT41
+         ADog==
+X-Gm-Message-State: AOAM5314ibLclCu4nftqXcGl2OKj3m3E/27HBGMr/dO1EEd0QeZEn9GA
+        mX6v4al2vGgFzttseq138PTPhx85VttOJBUBVnDvemYS
+X-Google-Smtp-Source: ABdhPJyFnfJae7mt5bBlEmzK1eNW7vfgBpZsel/i2E0gdbwP8xGDAayfM3kLMnkWeD0k4eBnDvZzvsU0rIGMu/wmvSA=
+X-Received: by 2002:a05:6512:529:b0:479:2158:da27 with SMTP id
+ o9-20020a056512052900b004792158da27mr17202634lfc.389.1654756518692; Wed, 08
+ Jun 2022 23:35:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 06/12] drm/msm/hdmi: drop unused GPIO support
-Content-Language: en-GB
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+References: <1654581161-12349-1-git-send-email-u0084500@gmail.com>
+ <1654581161-12349-4-git-send-email-u0084500@gmail.com> <Yp+gS6r5Kpi33Ags@sirena.org.uk>
+ <CADiBU38+0vp3Dv6i7uYzCwR431PKBr-HNQnY0Qe7fvvRYGEJmw@mail.gmail.com> <YqB19O/HYvEAxdiM@sirena.org.uk>
+In-Reply-To: <YqB19O/HYvEAxdiM@sirena.org.uk>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Thu, 9 Jun 2022 14:35:07 +0800
+Message-ID: <CADiBU390XRXZ2yx5CT2NxhN3aROHXcxs7w2d-xhB6+EYn+uTfA@mail.gmail.com>
+Subject: Re: [PATCH 3/4] regulator: rt5120: Add PMIC regulator support
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org
-References: <20220608120723.2987843-1-dmitry.baryshkov@linaro.org>
- <20220608120723.2987843-7-dmitry.baryshkov@linaro.org>
- <CAE-0n53z_nWsgVVn-4LbsP1GuzTgCa+DDDDE0y8k3+s-t=eSBA@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <CAE-0n53z_nWsgVVn-4LbsP1GuzTgCa+DDDDE0y8k3+s-t=eSBA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Lee Jones <lee.jones@linaro.org>, dmitry.torokhov@gmail.com,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        linux-input@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2022 23:59, Stephen Boyd wrote:
-> Quoting Dmitry Baryshkov (2022-06-08 05:07:17)
->> @@ -543,41 +529,16 @@ static int msm_hdmi_bind(struct device *dev, struct device *master, void *data)
->>          hdmi_cfg->mmio_name     = "core_physical";
->>          hdmi_cfg->qfprom_mmio_name = "qfprom_physical";
->>
->> -       for (i = 0; i < HDMI_MAX_NUM_GPIO; i++) {
-> [...]
->> -               if (gpiod)
->> -                       gpiod_set_consumer_name(gpiod, msm_hdmi_gpio_pdata[i].label);
->> -               hdmi_cfg->gpios[i].output = msm_hdmi_gpio_pdata[i].output;
->> -               hdmi_cfg->gpios[i].value = msm_hdmi_gpio_pdata[i].value;
->> -       }
->> +       hdmi->hpd_gpiod = devm_gpiod_get_optional(dev, "hpd", GPIOD_IN);
->> +       /* This will catch e.g. -PROBE_DEFER */
-> 
-> EPROBE_DEFER?
+Mark Brown <broonie@kernel.org> =E6=96=BC 2022=E5=B9=B46=E6=9C=888=E6=97=A5=
+ =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=886:12=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Wed, Jun 08, 2022 at 11:15:56AM +0800, ChiYuan Huang wrote:
+> > Mark Brown <broonie@kernel.org> =E6=96=BC 2022=E5=B9=B46=E6=9C=888=E6=
+=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=883:00=E5=AF=AB=E9=81=93=EF=BC=9A
+> > > On Tue, Jun 07, 2022 at 01:52:40PM +0800, cy_huang wrote:
+>
+> > > > +     static const char * const name[] =3D { "buck1", "buck2", "buc=
+k3", "buck4",
+> > > > +                                          "ldo", "exten" };
+> > > > +     static const char * const sname[] =3D { "vin1", "vin2", "vin3=
+", "vin4",
+> > > > +                                           "vinldo", NULL };
+>
+> > > It would be easier and clearer to just make this a static table like
+> > > other drivers do, there's no need to generate anything dynamically as
+> > > far as I can see.
+>
+> > My excuse. let me explain it.
+> > buck1 voltage range from 600mV to 1393.75mV.
+> > buck2~4/ldo/exten is the fixed regulator.
+> > buck3 and buck4 is fixed by the IC efuse default.
+> > buck2 and ldo is fixed by the external resistor chosen.
+> > exten is designed to connected to the external power.
+>
+> > That's why I cannot directly declared it as the static regulator_desc.
+>
+> So buck 2-4 need some dynamic handling then but the rest can be static -
+> that would be a lot clearer.  You could also have a template for the
+> ones with some dynamic values and just override the few fields that need
+> it.
+>
+Not just buck2/3, buck2/3/4/ldo/exten all need the dynamic handling.
 
-Ack.
+> > > > +     if (init_data->constraints.min_uV !=3D init_data->constraints=
+.max_uV) {
+> > > > +             dev_err(priv->dev, "Variable voltage for fixed regula=
+tor\n");
+> > > > +             return -EINVAL;
+> > > > +     }
+> > > > +
+> > > > +     desc->fixed_uV =3D init_data->constraints.min_uV;
+> > > > +     init_data->constraints.apply_uV =3D 0;
+>
+> > > Drivers should never override constraints passed in by machine driver=
+s,
+> > > if there's validation needed let the core do it.  The same probably
+> > > applies to providing a voltage range for a fixed regulator though tha=
+t's
+> > > not modifying everything so not such a problem.
+>
+> > Please check the above explanation about each power rails.
+>
+> I'm not sure what you're referencing here?
+>
+Sorry. Let me explain it.
+You mean 'of_parse_cb' must not override constraint.
+But if the regulator is fixed and dynamic, after
+'of_get_regulation_constraint', apply_uV will be true.
+The is referring to 'fixed.c'
 
-> 
->> +       if (IS_ERR(hdmi->hpd_gpiod))
->> +               return PTR_ERR(hdmi->hpd_gpiod);
->> +
->> +       if (!hdmi->hpd_gpiod)
->> +               DBG("failed to get HPD gpio");
-> 
-> Does DBG() add newlines?
-
-Yes, it does.
-
-> 
->> +
->> +       if (hdmi->hpd_gpiod)
->> +               gpiod_set_consumer_name(hdmi->hpd_gpiod, "HDMI_HPD");
->>
->>          dev->platform_data = hdmi_cfg;
->>
-
-
--- 
-With best wishes
-Dmitry
+> > > > +     for (i =3D 0; i < RT5120_MAX_REGULATOR; i++) {
+> > > > +             ret =3D rt5120_of_parse_cb(priv, i, rt5120_regu_match=
+ + i);
+> > > > +             if (ret) {
+> > > > +                     dev_err(priv->dev, "Failed in [%d] of_passe_c=
+b\n", i);
+> > > > +                     return ret;
+> > > > +             }
+> > > > +     }
+> > >
+> > > This is all open coding stuff that's in the core - just provde an
+> > > of_parse_cb() operation and let the core take care of calling it.
+>
+> > Ditto
+>
+> Or here.
+If I put 'of_parce_cb' to make core handling it, the input parameter
+'init_data' is declared as const.
+I cannot override the 'apply_uV'.
+Right?
