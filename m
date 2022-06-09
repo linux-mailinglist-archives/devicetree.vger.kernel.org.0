@@ -2,142 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB5A2544819
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 11:56:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F6315448D6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 12:27:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238888AbiFIJ4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 05:56:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60256 "EHLO
+        id S242751AbiFIK1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 06:27:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230164AbiFIJ4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 05:56:48 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 084773A780A;
-        Thu,  9 Jun 2022 02:56:47 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id s39so13323973ybi.0;
-        Thu, 09 Jun 2022 02:56:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=trU76HfpJ1kVO7VlsUAYRiM1gRVI7EygRQZUmQ7VGqo=;
-        b=fgKM2m+rhk/HGRenipS8Qk3+m9xu5wfr47e9uF7eE1YRJ0ybfQejhpfXLQChff+XYv
-         hafih0d855i3MrUhMB2sGhxM9w2JmLEH9tiJZNdGufcB0lrtJEIjQ2SIAw0JO7YYutDQ
-         Xv+uK+WlC5o9hlCyfk43tb0wBV0AsDfy863XUjzH6HNO4sFwN3t4i1SAb2BuU+z6n+XH
-         kvzJyEFiBzfNsQXOsByiXIoe1vLrWoLmvlzrZTSyOj2JfcPrrYb9Y0YjYsV/i4XmA0mN
-         h732l4AK8a0K2QVLtpMqmWZnCfoqvT18IUxfP5xWulq0rpRiIdhkYa3U3h8RWxgbEc9g
-         JgOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=trU76HfpJ1kVO7VlsUAYRiM1gRVI7EygRQZUmQ7VGqo=;
-        b=Yz1oJtwJB5SxzppO5o7e6XshCfJv6x6R9prr0m0S9CNuHVjypTLMLZ+QHpPKGWMzoo
-         r/rs8bo1kvoDdVuumVttOzDfmhKWEG3qVgKUGoBq5GQ1xNDhnNLG0TvVRPb3j9xOmMdf
-         CSR4AGfLYvwnN+aA5AZxTDRU2RgtAkLbCGMAhfoIfpWeq0A2NsIYPyuHCcHgG3SnMs+5
-         EWMNDvdqZrbghKBFLLoPiMe1a+hWPDVxvb6n5ygn/aoZkyBb+jQgeUodk9NoZLL9n0mq
-         aq53Xv6JAvtN4q+MYifV+nlbXMU5TvwzxN8Yk1zC1rW4mIMV0j/XbQo/VlsIWOJWZJij
-         gxrg==
-X-Gm-Message-State: AOAM5313VHESguNN1i+QRfIpjABZD1Xpec43zcViLLvucLg/Jr/0D9Mp
-        K8SBMMvSv6vIyIfJ57vK/vXCSwRS4GvVtReth7k=
-X-Google-Smtp-Source: ABdhPJxhy2kL9Nq1aL2YQVFH7TdE2ydKeKC87G9lJV827pmes5MPSF3+nz+aCbGUsxsZ9EA+TZcoqpeUR27tr8/ClLA=
-X-Received: by 2002:a25:cc4c:0:b0:65c:8e83:fd5e with SMTP id
- l73-20020a25cc4c000000b0065c8e83fd5emr41469747ybf.563.1654768606253; Thu, 09
- Jun 2022 02:56:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220505193143.31826-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220505193143.31826-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdX0egGvyu94-=tJdvW0=q6Y==ZNkexCJpnmrNJezuiqDw@mail.gmail.com>
- <CA+V-a8sxZOZRXG_gsCnQGJdNDw-uVLmuTZ-dOsmUfhS9KL0Esg@mail.gmail.com> <CAMuHMdW0hbVnCcbcC5E8J7Jc_UZPVSpHkmtPd3Haio-WnhhbpQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdW0hbVnCcbcC5E8J7Jc_UZPVSpHkmtPd3Haio-WnhhbpQ@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Thu, 9 Jun 2022 10:56:20 +0100
-Message-ID: <CA+V-a8tD5E7J5pG7yFZ7aiJ58Zt5MMRiC8o3VRFhudkqW1y5XQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/4] dt-bindings: clock: r9a07g043-cpg: Add Renesas
- RZ/Five CPG Clock and Reset Definitions
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S242791AbiFIK1I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 06:27:08 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8614200154;
+        Thu,  9 Jun 2022 03:27:04 -0700 (PDT)
+X-UUID: 009436b30a654539b7a5d4b2f444c9cf-20220609
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:1abcdc8a-07b2-4608-93d5-27f0d2cb489c,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:90
+X-CID-INFO: VERSION:1.1.5,REQID:1abcdc8a-07b2-4608-93d5-27f0d2cb489c,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:90
+X-CID-META: VersionHash:2a19b09,CLOUDID:38b9ca7e-c8dc-403a-96e8-6237210dceee,C
+        OID:d42f080b6477,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:0,BEC:nil
+X-UUID: 009436b30a654539b7a5d4b2f444c9cf-20220609
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 246476666; Thu, 09 Jun 2022 18:26:57 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id 15.2.792.3;
+ Thu, 9 Jun 2022 10:25:59 +0000
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Thu, 9 Jun 2022 16:31:05 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.3 via Frontend Transport; Thu, 9 Jun 2022 16:31:05 +0800
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Mark Brown <broonie@kernel.org>,
+        YC Hung <yc.hung@mediatek.com>,
+        Curtis Malainey <cujomalainey@chromium.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v2 0/3] Add MT8186 ADSP dt-binding
+Date:   Thu, 9 Jun 2022 16:30:58 +0800
+Message-ID: <20220609083101.24195-1-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+v1 -> v2:
+1. Change mbox-names from mbox0/mbox1 to rep/req for both mt8186 and mt8195.
+2. rename clock-names and remove unused headers
 
-Sorry for the late reply.
+Tinghan Shen (3):
+  dt-bindings: dsp: mediatek: Use meaningful names for mbox
+  firmware: mediatek: Use meaningful names for mbox
+  dt-bindings: dsp: mediatek: add mt8186 dsp document
 
-On Thu, May 19, 2022 at 7:57 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Thu, May 19, 2022 at 7:45 AM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> > On Tue, May 10, 2022 at 3:02 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > On Thu, May 5, 2022 at 9:32 PM Lad Prabhakar
-> > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > > Renesas RZ/Five SoC has almost the same clock structure compared to the
-> > > > Renesas RZ/G2UL SoC, re-use the r9a07g043-cpg.h header file and just
-> > > > ammend the RZ/Five CPG clock and reset definitions.
-> > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > > --- a/include/dt-bindings/clock/r9a07g043-cpg.h
-> > > > +++ b/include/dt-bindings/clock/r9a07g043-cpg.h
-> > > > @@ -108,6 +108,15 @@
-> > > >  #define R9A07G043_ADC_ADCLK            76
-> > > >  #define R9A07G043_ADC_PCLK             77
-> > > >  #define R9A07G043_TSU_PCLK             78
-> > > > +#define R9A07G043_NCEPLDM_DM_CLK       79      /* RZ/Five Only */
-> > >
-> > > While NCEPLDM_DM_CLK is listed in the clock list spreadsheet, its
-> > > control bit is not documented.
-> > >
-> > > > +#define R9A07G043_NCEPLDM_ACLK         80      /* RZ/Five Only */
-> > > > +#define R9A07G043_NCEPLDM_TCK          81      /* RZ/Five Only */
-> > >
-> > > While NCEPLDM_TCK is listed in the clock list spreadsheet, its
-> > > control bit is not documented.
-> > >
-> > I have got the feedback for the above, NCEPLDM_DM_CLK and NCEPLDM_TCK
-> > clocks cannot be stopped as a result there are no register bits for it
-> > in the HW manual (clock spreadsheet will be updated). I will drop this
-> > and send a v2 including your RB.
->
-> The question is not if the clocks can be stopped or not, but if there
-> is any need to refer to them from a DT node.
-As per DT rule we have to add ;)
+ .../bindings/dsp/mediatek,mt8186-dsp.yaml     | 91 +++++++++++++++++++
+ .../bindings/dsp/mediatek,mt8195-dsp.yaml     |  6 +-
+ drivers/firmware/mtk-adsp-ipc.c               |  6 +-
+ 3 files changed, 99 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
 
-> What's the nature of the future update to the clock spreadsheet?
->
-I have got confirmation from HW team, the UM and clock list will not be updated,
+-- 
+2.18.0
 
-* NCEPLDM_DM_CLK, NCEPLDM_TCK and NCEPLDM_ACLK actually exist, and
-should be listed on the clock list. Only NCEPLDM_ACLK has a mechanism
-to stop.
-* Therefore, only NCEPLDM_ACLK should appear on the Clock Control
-register on the UM.
-
-> Of course, if we don't add these clock definitions now, they can
-> still be added later. DT binding definitions are append-only.
->
-For now I will keep them.
-
-Cheers,
-Prabhakar
