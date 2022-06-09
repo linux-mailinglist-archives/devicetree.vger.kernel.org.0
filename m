@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6570B544AA0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:41:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 860CB544A85
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:41:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243215AbiFILlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 07:41:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38576 "EHLO
+        id S243004AbiFILlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 07:41:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243948AbiFILkn (ORCPT
+        with ESMTP id S243952AbiFILkn (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:40:43 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD3471E1775
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:40:14 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id g25so404028ejh.9
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:40:14 -0700 (PDT)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EC1B1E225B
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:40:15 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id b8so14140994edj.11
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:40:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=CNSMqPOWSXzw+Ck8M30e8l38LaeW0dc38daK1PaMf9A=;
-        b=mNZv/vOTlgWw33oah/CqDorwmXalyTLA9BKQ25HQG6NfYltICakt5zZVVDjeF9AdIB
-         lg9XtD34rEryysprD956jx1BJEB2y+b7QCbjgr/8W7zZ2bhq0YoFP5IKAOQRSyH/xW8q
-         LBk8PH1/qkRnLxCU1Wm9sX4MoV2kxQFNYRgzjhaXSSHoI3q7JdZC+sXukltg5WmyM8Hc
-         ydHE4Ro7TDaiavP+mZCZRdyS/TtWj1t3hs/5vssvk9Ii9ibpl0GYgI3YkMWAQeM0rlmf
-         510h5UMxnN/ap47vWnT78ToH/45kN5npPdfVkwgxJIEWqGJGIEC1NQa9aL08XwH56BYt
-         tJMQ==
+        bh=tGTPqf53Lj9/8GsMg13z01n1z5EhrPKNzDb0BXUNfys=;
+        b=kitaKtvp0SE7mSBoE2pXSTHt21w7Sr98N1rPkBMLXtlzrxPFs3C6pPpgiO8TUgB5vu
+         ags+20VIXPW3rq3v27384LQ/XV1dfIlYL/DZFDHhjmcdv1PtEMpkOCYlbQ7XhlYfTJxs
+         z39Yc1n9es73zxZmEtVBqZWhy/+MtxCRhL0sZ3gC+G8gP7xJswe7PeHEdmzjkb3Ne2Gf
+         NdqBkE8GNjb1x9+Cx82ia4JYKGgYI3mqzKMqY0uQvMCMsLOIWNz1E5r3+U2N2mUr5ZxD
+         GOYLb2cKpNPTPsYDWdah6SdXoe33L/XdONnGsx2ILtmTadzAgTcN6XeuVtn7/91xd1BU
+         wi4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=CNSMqPOWSXzw+Ck8M30e8l38LaeW0dc38daK1PaMf9A=;
-        b=qB/RmLlUvwX5I1wYuj3OeFRDYGV05eU1mHwvbyKlsNPoqnRx08JIjPl9o7CT4MPOnR
-         vz0sgDJXhntuKaxE98J5b6W4LYxH0TcwrONbtaCMPThPuqUA1tkWe5v/dtTSSUVn5Jq1
-         pqFl5vq1UzmPuHAEcuJ3ryNafSmahJmy9gj7Id7Dd0RuQGnQZ7YanlusBZTFlgEl49Ec
-         jO6r0UBlPnsUfiSwybKqCXRTGoU6cpQvKTZVveqONmUEim2bS2JaH9ncffaSZ7RIHIcM
-         6jgTRs8umuUZ8DIOvu2lWygsofTsxucHJBpKsRiU6hzDcayxAMqbztGMfbBIf07nK6PJ
-         BO8w==
-X-Gm-Message-State: AOAM533dLyjblCFbGz83plrR1R4lGCn4s0ydszPyyRKMUOBPKL3dpk5N
-        SSoFZ+zWxDh9Qy5WLqot8L6VYCAQpCmsBQ==
-X-Google-Smtp-Source: ABdhPJxmAk2Y+XroE7iF0LDQjobmFkH/yU0gGNvbSEj5slHvWwdNDLIfiKGfqCCpS+4l9xnWfXsPTA==
-X-Received: by 2002:a17:907:5010:b0:711:f093:3a93 with SMTP id fw16-20020a170907501000b00711f0933a93mr9061053ejc.620.1654774812751;
-        Thu, 09 Jun 2022 04:40:12 -0700 (PDT)
+        bh=tGTPqf53Lj9/8GsMg13z01n1z5EhrPKNzDb0BXUNfys=;
+        b=pPWrAFa4LNjTIGNm+wiuA7wmzQIbbRpfprsO0/19RcyIDmwn0+lN33mzDnVPXUZMc1
+         taC20tsk8/Dee0gBW25dx/IZYzQWtCs4zpMZfamG6LlfQWGc1lVr2mqx4PyHB75Uj8mh
+         4FvmjxHvn9CgZKnw+ViCJciiAjWcG1gwYGmWG7B0Wu86zemH9hnokBLw7JozOr9CT+Gq
+         WlS1eYl1BI2yl3zhQ5TjqL0/+vMaClvlTnCqFSqMS4+RHX5BMDCNde0+LTy/wsPbeMCY
+         oBz0iPKtny2kA01oh3V9Zk3fSOwmK5gxDlkx/tTgtNfPtoIdKTWenhmHbkNMdbpcm0rA
+         H0jw==
+X-Gm-Message-State: AOAM530B7diFNRy8XoxLwIA32BKxYBEorF/NRf1gTWpDH9jMJbvByvuK
+        BKBVitzGQaS+6dMzqXV5dSBg8Q==
+X-Google-Smtp-Source: ABdhPJwzVf4vg45Ge9eQ2e4ZvQucxMpqgoHucsajxGzyvrMmlr/roydrDvsgVFKB6iuVuc/JneEgRg==
+X-Received: by 2002:a05:6402:34cc:b0:431:67ed:96a0 with SMTP id w12-20020a05640234cc00b0043167ed96a0mr21782473edc.372.1654774814117;
+        Thu, 09 Jun 2022 04:40:14 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id q1-20020a170906360100b006ff59151e34sm10638441ejb.39.2022.06.09.04.40.11
+        by smtp.gmail.com with ESMTPSA id q1-20020a170906360100b006ff59151e34sm10638441ejb.39.2022.06.09.04.40.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 04:40:12 -0700 (PDT)
+        Thu, 09 Jun 2022 04:40:13 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
@@ -55,9 +55,9 @@ To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 23/48] arm64: dts: mediatek: mt7622-rfb1: correct gpio-keys properties
-Date:   Thu,  9 Jun 2022 13:39:56 +0200
-Message-Id: <20220609114002.380563-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 24/48] ARM: dts: mediatek: align gpio-key node names with dtschema
+Date:   Thu,  9 Jun 2022 13:39:57 +0200
+Message-Id: <20220609114002.380563-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
 References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
@@ -66,32 +66,125 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-gpio-keys children do not use unit addresses.
+The node names should be generic and DT schema expects certain pattern
+(e.g. with key/button/switch).
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm/boot/dts/mt7623a-rfb-emmc.dts        | 4 ++--
+ arch/arm/boot/dts/mt7623a-rfb-nand.dts        | 4 ++--
+ arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts | 4 ++--
+ arch/arm/boot/dts/mt7623n-rfb-emmc.dts        | 4 ++--
+ arch/arm/boot/dts/mt7629-rfb.dts              | 4 ++--
+ 5 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts b/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
-index c28da9323a9c..1a86857c9027 100644
---- a/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
-@@ -40,7 +40,6 @@ cpu@1 {
+diff --git a/arch/arm/boot/dts/mt7623a-rfb-emmc.dts b/arch/arm/boot/dts/mt7623a-rfb-emmc.dts
+index 13c86936d1c8..e8b4b6d30d19 100644
+--- a/arch/arm/boot/dts/mt7623a-rfb-emmc.dts
++++ b/arch/arm/boot/dts/mt7623a-rfb-emmc.dts
+@@ -45,13 +45,13 @@ gpio-keys {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&key_pins_a>;
  
+-		factory {
++		button-factory {
+ 			label = "factory";
+ 			linux,code = <BTN_0>;
+ 			gpios = <&pio 256 GPIO_ACTIVE_LOW>;
+ 		};
+ 
+-		wps {
++		button-wps {
+ 			label = "wps";
+ 			linux,code = <KEY_WPS_BUTTON>;
+ 			gpios = <&pio 257 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm/boot/dts/mt7623a-rfb-nand.dts b/arch/arm/boot/dts/mt7623a-rfb-nand.dts
+index 88d8f0b2f4c2..61f5da68d4b0 100644
+--- a/arch/arm/boot/dts/mt7623a-rfb-nand.dts
++++ b/arch/arm/boot/dts/mt7623a-rfb-nand.dts
+@@ -45,13 +45,13 @@ gpio-keys {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&key_pins_a>;
+ 
+-		factory {
++		button-factory {
+ 			label = "factory";
+ 			linux,code = <BTN_0>;
+ 			gpios = <&pio 256 GPIO_ACTIVE_LOW>;
+ 		};
+ 
+-		wps {
++		button-wps {
+ 			label = "wps";
+ 			linux,code = <KEY_WPS_BUTTON>;
+ 			gpios = <&pio 257 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
+index 027c1b0c6a98..5008115d2494 100644
+--- a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
++++ b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
+@@ -91,13 +91,13 @@ gpio-keys {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&key_pins_a>;
+ 
+-		factory {
++		button-factory {
+ 			label = "factory";
+ 			linux,code = <BTN_0>;
+ 			gpios = <&pio 256 GPIO_ACTIVE_LOW>;
+ 		};
+ 
+-		wps {
++		button-wps {
+ 			label = "wps";
+ 			linux,code = <KEY_WPS_BUTTON>;
+ 			gpios = <&pio 257 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm/boot/dts/mt7623n-rfb-emmc.dts b/arch/arm/boot/dts/mt7623n-rfb-emmc.dts
+index 1b9b9a8145a7..bf67a8e9be59 100644
+--- a/arch/arm/boot/dts/mt7623n-rfb-emmc.dts
++++ b/arch/arm/boot/dts/mt7623n-rfb-emmc.dts
+@@ -60,13 +60,13 @@ gpio-keys {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&key_pins_a>;
+ 
+-		factory {
++		button-factory {
+ 			label = "factory";
+ 			linux,code = <BTN_0>;
+ 			gpios = <&pio 256 GPIO_ACTIVE_LOW>;
+ 		};
+ 
+-		wps {
++		button-wps {
+ 			label = "wps";
+ 			linux,code = <KEY_WPS_BUTTON>;
+ 			gpios = <&pio 257 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm/boot/dts/mt7629-rfb.dts b/arch/arm/boot/dts/mt7629-rfb.dts
+index eb536cbebd9b..84e14bee7235 100644
+--- a/arch/arm/boot/dts/mt7629-rfb.dts
++++ b/arch/arm/boot/dts/mt7629-rfb.dts
+@@ -23,13 +23,13 @@ chosen {
  	gpio-keys {
  		compatible = "gpio-keys";
--		poll-interval = <100>;
  
- 		key-factory {
+-		reset {
++		button-reset {
  			label = "factory";
+ 			linux,code = <KEY_RESTART>;
+ 			gpios = <&pio 60 GPIO_ACTIVE_LOW>;
+ 		};
+ 
+-		wps {
++		button-wps {
+ 			label = "wps";
+ 			linux,code = <KEY_WPS_BUTTON>;
+ 			gpios = <&pio 58 GPIO_ACTIVE_LOW>;
 -- 
 2.34.1
 
