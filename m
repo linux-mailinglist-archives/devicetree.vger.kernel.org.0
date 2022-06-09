@@ -2,129 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3624C545014
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:03:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5CAC54501D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:06:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235178AbiFIPDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 11:03:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42206 "EHLO
+        id S229893AbiFIPF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 11:05:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344242AbiFIPDk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:03:40 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C91146442;
-        Thu,  9 Jun 2022 08:03:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 860CCB82E09;
-        Thu,  9 Jun 2022 15:03:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77D5FC34115;
-        Thu,  9 Jun 2022 15:03:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654787013;
-        bh=ZGSUzWDwWXAmiQOo13GFnbChwNWQBClHSdybMstPJBU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=spG2dWJXt/OtibBPi8WHIfGHUXxfeyy5/Sm7zVjMItXwD0iVyfgYaWK8utduXnVFx
-         7KhswRD3hP50E+mhKzh1thRj+VzxpgR4M3I7Rju85SZd9AxFEheO1CkK5J6TIy9DBK
-         vtvWZvmd9pwSt/8DYskm74XRtCKyJT+cPqW2ntmMP9fbO2isWU2i4DOaQ9Q8tHyOQ9
-         FjfsojDm+IPdwWfcNhhRhmMbcqerCSBQDlCMvLOxLqyQ9LndHfVbHxr4o0lf5PQUjC
-         4okYtP2tiJqVIJc455B8a1DpNQmvZFlHZCgqGmozRMOjx4ehAzEpw4ZBlGGJPDMAyT
-         ZCgeLLJWxS7rQ==
-Date:   Thu, 9 Jun 2022 16:03:27 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>, asahi@lists.linux.dev
-Subject: Re: [RFC PATCH v2 5/5] ASoC: apple: Add macaudio machine driver
-Message-ID: <YqILv21K+tZ00Qhx@sirena.org.uk>
-References: <20220606191910.16580-1-povik+lin@cutebit.org>
- <20220606191910.16580-6-povik+lin@cutebit.org>
- <YqHylN3xba9XFrF8@sirena.org.uk>
- <0E611F13-96E3-41FD-9550-F900B2EFB00A@cutebit.org>
+        with ESMTP id S237089AbiFIPFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:05:54 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CBB2050CC
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 08:05:52 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id bg6so28265312ejb.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 08:05:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=lPZqyysbfO+3buaJKul7mEmadI+ROjg8n1gq6FC8MZk=;
+        b=GUuTlPoRfZMUwhoNlPqshTBdDwigWGKdXr6k1ybuLUMRk2PTHVOD3lsSAoLIulEL6C
+         oe92M3x9VO4xZ2QTeXagALdpleC5i3UaH0EGMg+hUItb/yl5a/qhN0SZ78mE4C5N2//2
+         r97Sa/VVq2NbaU9VlkkW2e+vHsw97ZoXL0UovybFrboNLb9FSj5sD96Kp4dj+9eF1vJD
+         wnrEe/U2wRXuJ0XISAg0QTdXxbGl4SRWXhEn5qu/D4FDBJ7RQDvT4PCju9fo0a0NOyLk
+         YKz0nPjUA32KKVwKU4lAYVyVzSCLj/X3PrmqGOVVwHVN3j7gAGhbod8t86XY6CKh8Ob3
+         D8fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=lPZqyysbfO+3buaJKul7mEmadI+ROjg8n1gq6FC8MZk=;
+        b=6Y/41jAqsRtmvJeqVPE1c9UkmNFWROiXh0hgRQS+EL9me9D9GMFCr7V8ZZnDF71qhG
+         xCXDZM4l6NEUO2B4w7ToRoB+74y8WwtzQ+2DL0cBzRaNMUpzjXo8eVY6vgDqFUhwGn7P
+         RKDyXE/VOcVg0ZAZbZlH11DsnIedC+XHoMIlvrgd9gScJ9RgUcrUkxUKBeXSJmjw6C/8
+         cOMLhQfv320E86lQ+mqVx7h2FBrhf3a99qmrRsFp5rOr/2EA3poS1s+sNXrrfA2vsDca
+         +lZw0DGizyRJwtAmbxQUpdP5oKB+SoIlxzkIIDMZbNtAC7lDBjrQhijgoKtocS4IkSZ9
+         QwoQ==
+X-Gm-Message-State: AOAM53230twy/o8Klzivmi0kLAb6eFwL26g7q+AVicwVhFmEC1VB5tta
+        X95+9fsb1xbU0/6LhzJXOmrppA==
+X-Google-Smtp-Source: ABdhPJwkyyWsIEB6RI1cOVWGgt6CQYMSQhhBa+63/Q1yQVUN9GDh93/YoJ+vTNkZewfJ+r2RpRKqAA==
+X-Received: by 2002:a17:906:d550:b0:704:7ba6:9854 with SMTP id cr16-20020a170906d55000b007047ba69854mr35879652ejc.579.1654787151224;
+        Thu, 09 Jun 2022 08:05:51 -0700 (PDT)
+Received: from [192.168.0.198] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id l1-20020a1709060e0100b006fec4ee28d0sm9305486eji.189.2022.06.09.08.05.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Jun 2022 08:05:50 -0700 (PDT)
+Message-ID: <e6406956-07b7-d217-f8f4-ef6168647cc2@linaro.org>
+Date:   Thu, 9 Jun 2022 17:05:49 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vbGz0wp4L4rRy+b7"
-Content-Disposition: inline
-In-Reply-To: <0E611F13-96E3-41FD-9550-F900B2EFB00A@cutebit.org>
-X-Cookie: Space is limited.
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 32/48] arm64: dts: rockchip: align gpio-key node names
+ with dtschema
+Content-Language: en-US
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-kernel@vger.kernel.org
+References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
+ <CAO_MupKxvaXRQvMyEUZMThBZ9033OeJec+BtBndjs5oZ3etTEQ@mail.gmail.com>
+ <e0f7146d-3ccc-a194-bb1e-c3475ca8c29e@linaro.org> <2126178.C4sosBPzcN@diego>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <2126178.C4sosBPzcN@diego>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 09/06/2022 16:56, Heiko Stübner wrote:
+> Am Donnerstag, 9. Juni 2022, 16:15:25 CEST schrieb Krzysztof Kozlowski:
+>> On 09/06/2022 15:57, Maya Matuszczyk wrote:
+>>> czw., 9 cze 2022 o 13:56 Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> napisał(a):
+>>>>
+>>>> The node names should be generic and DT schema expects certain pattern
+>>>> (e.g. with key/button/switch).
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> ---
+>>>>  arch/arm64/boot/dts/rockchip/rk3308-evb.dts   |  2 +-
+>>>>  .../boot/dts/rockchip/rk3326-odroid-go2.dts   | 32 +++++++++----------
+>>>>  .../boot/dts/rockchip/rk3328-nanopi-r2s.dts   |  2 +-
+>>>>  arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi  |  2 +-
+>>>>  .../boot/dts/rockchip/rk3368-geekbox.dts      |  2 +-
+>>>>  .../dts/rockchip/rk3368-orion-r68-meta.dts    |  2 +-
+>>>>  .../boot/dts/rockchip/rk3368-px5-evb.dts      |  2 +-
+>>>>  arch/arm64/boot/dts/rockchip/rk3368-r88.dts   |  2 +-
+>>>>  .../boot/dts/rockchip/rk3399-firefly.dts      |  2 +-
+>>>>  .../dts/rockchip/rk3399-gru-chromebook.dtsi   |  2 +-
+>>>>  .../boot/dts/rockchip/rk3399-gru-kevin.dts    |  2 +-
+>>>>  .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi |  2 +-
+>>>>  .../boot/dts/rockchip/rk3399-khadas-edge.dtsi |  2 +-
+>>>>  .../boot/dts/rockchip/rk3399-nanopi-r4s.dts   |  4 +--
+>>>>  .../boot/dts/rockchip/rk3399-nanopi4.dtsi     |  2 +-
+>>>>  .../boot/dts/rockchip/rk3399-orangepi.dts     |  2 +-
+>>>>  .../boot/dts/rockchip/rk3399-pinebook-pro.dts |  4 +--
+>>>>  .../boot/dts/rockchip/rk3399-roc-pc.dtsi      |  2 +-
+>>>>  .../boot/dts/rockchip/rk3399-rockpro64.dtsi   |  2 +-
+>>>>  .../boot/dts/rockchip/rk3399-sapphire.dtsi    |  2 +-
+>>>>  .../boot/dts/rockchip/rk3566-pinenote.dtsi    |  2 +-
+>>>>  21 files changed, 38 insertions(+), 38 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
+>>>> index 9b4f855ea5d4..4b5413b12bfa 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
+>>>> @@ -75,7 +75,7 @@ gpio-keys {
+>>>>                 pinctrl-names = "default";
+>>>>                 pinctrl-0 = <&pwr_key>;
+>>>>
+>>>> -               power {
+>>>> +               power-key {
+> 
+> hmm, it looks like all the others below are named key-power, while
+> only this uses power-key ?
+> 
 
---vbGz0wp4L4rRy+b7
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Because a bit earlier in DTS, there are two adc-keys nodes with "key"
+suffix, so I kept that approach to be consistent within one DTS. If you
+prefer, I can change it to key-power.
 
-On Thu, Jun 09, 2022 at 03:42:09PM +0200, Martin Povi=C5=A1er wrote:
-> > On 9. 6. 2022, at 15:16, Mark Brown <broonie@kernel.org> wrote:
+> 
+>>>>                         gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_LOW>;
+>>>>                         linux,code = <KEY_POWER>;
+>>>>                         label = "GPIO Key Power";
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+>>>> index ea0695b51ecd..72328dd993ee 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+>>>> @@ -71,82 +71,82 @@ gpio-keys {
+>>>>                  * |------------------------------------------------|
+>>>>                  */
+>>>>
+>>>> -               sw1 {
+>>>> +               switch-1 {
+>>> Wouldn't it make more sense to rename this and all other
+>>> renamed nodes in this dts into "button-dpad-up" or "button-1",
+>>> as on the physical device those are buttons and the naming
+>>> scheme of "sw" + number seems to be a carryover from
+>>> downstream sources.
+> 
+> The naming actually carries over from the device itself.
+> In the schematics the relevant keys are also named sw1, sw2, etc.
+> 
+> And I do believe it is way nicer when devicetree names correspond to the
+> things you find in device schematics and not be named "arbitarily" to
+> only conform to some schema ;-)
 
-> > As far as I can tell this demux is entirely software based - why not
-> > just expose the routing control to userspace and let it handle
-> > switching (which I suspect may be more featureful than what's
-> > implemented here)?
+Then you are entirely depending on hardware engineers which might start
+calling their buttons "cute-pony-xxx" :)
 
-> Well, userspace should have the other two muxes at its disposal to
-> implement any routing/switching it wishes -- but in addition we are
-> also offering letting kernel take care of the switching, by pointing
-> the muxes to the demux.
+> 
+> So personally I'd actually prefer going with switch-sw1 (or button-sw1 if
+> you prefer) as being able to just use the search function in schematic pdfs
+> is a helpful tool.
 
-> I assume (but I don=E2=80=99t know the extent of what=E2=80=99s possible =
-with UCM files),
-> that this will be of some value to users running plain ALSA with no
-> sound server.
+Both are fine with me, let's just pick one - switch-sw1 or button-sw1.
+Since these are physically buttons, I propose the latter.
 
-That's basically no userspaces at this point TBH.  I'm not convinced
-it's a good idea to be adding custom code for that use case.
 
-> > This should be integrated with the core jack detection stuff in
-> > soc-jack.c and/or the core stuff that's wrapping - that way you'll
-> > ensure that events are generated and status readable via all the
-> > interfaces userspace might be looking for.  The ASoC stuff also has some
-> > DAPM integration for turning on/off outputs which might DTRT for you if
-> > you do need it in kernel.
-
-> Aren=E2=80=99t all the right events to userspace generated already by the
-> codec calling snd_soc_jack_report?
-
-I wasn't able to find any references to snd_soc_jack_report() in your
-series?
-
-> I looked at the existing DAPM integration but I couldn=E2=80=99t figure o=
-ut
-> how to switch the demux with it.
-
-Yes, it won't do that.  If you can't stream the same audio to both then
-you'd need something else.
-
---vbGz0wp4L4rRy+b7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKiC74ACgkQJNaLcl1U
-h9CaSwf+K7qAgCHyPIBkRRBsmZJ9BXgtuDVApqNRqwM4iuIPyr9H8Ro7YZhyqNXv
-iGc9p09J9KRFc8LdHqqe+WcUutRCIHrIEjkTmUlEN8I6hr2yWyVx8foGVKV9us8H
-0ifiPXkXLbXph9C5KBM9ssKYB+Zcu+TnyVEQn68L6z0MRsirKK6t/aEWRgrCu9Mp
-+P14CgDfGtI0WnudAYVYIbB4euQcqy/kNCPmBzCce6+0AWhRi5r84seF3pAtECkw
-/aXfYtwposNztGqSsZe2ryWBdztM1VQdt6ZQ1TtPxaIllUigNTvqe0JRPkk3Ii3J
-49VwyPQb1UL/MJYuO9hTxO04Iz8G9g==
-=WcrN
------END PGP SIGNATURE-----
-
---vbGz0wp4L4rRy+b7--
+Best regards,
+Krzysztof
