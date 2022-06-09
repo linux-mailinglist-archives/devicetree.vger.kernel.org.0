@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30821544AC9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69FE8544ADF
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:46:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244280AbiFILnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 07:43:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36558 "EHLO
+        id S244718AbiFILp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 07:45:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244556AbiFILms (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:42:48 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 362281DAF3B
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:41:05 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id v1so36217389ejg.13
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:41:05 -0700 (PDT)
+        with ESMTP id S244581AbiFILmt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:42:49 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE021E049A
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:41:06 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 25so30540190edw.8
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:41:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=wlyfMpqGXVB3B8Sp9d9Fw1nG62ItFJzUUJSrBMxtd/M=;
-        b=T4OPENj0j818Dka+qluWpuHUcpbCLpG0bBn4XqNPUfk9cOsLMKB1qgM1L3Uaa67WLd
-         1OPGRNzkeBIlpUwV0XcMlA8B6LuZH55AWtOfLQ/ul4EGubEiYTqRiG2OD5LtYW14MNB/
-         /3S1yBW4AZ3Jq9bc0KeMLT022R7bybLL68rE57HnDSzAL4Ny4Y3b8cONARd/p8c72TDA
-         Az18I87/ozN8BJQpXQlPxSpWbrfo4b7mkH2M2EeIUOelRG+5ln0DalKyO3rKooRqpm6Q
-         nk2jvdlbK/YKllCc2N263sxSq0OtHmQRRg7DkCK9CtJyAkfcF9tnnC7GJejdZJl5RlV+
-         NJTA==
+        bh=Gpn7JqseIm0vh0gpd7q4DWQubHQ0jsw35Hsu6S6dEzI=;
+        b=kvsnHK++hy6P9FYjJCDS6+qQamnfahcYExnWCuyC3uJTv7PIfm4usqubs3Z8YqvHRO
+         DjLsDfaGEhenp9FVqtuELGC9oN7/OhU81DfGMTLH3Wkt65j1a2GLXT0kLncsekghlUsc
+         mqLUxv6QfnPxnt8de6j6E/zCndCQnsHF1Mnq+VAHL0oR9fNlaP01f19WZTOFMBshCjiK
+         ZjEfStRZnBVsbKiFN9PneFYtPKzFS2poQDeuqz+DHnnud5wkVaGpRu4NZe4W4YF5pACf
+         shC5I/G6K8a7Hnomk+Ac93rPRhGfOr6zfc+nslmdB+/lyZxDCNX20n1wi6BHfjcjEhVi
+         /xmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=wlyfMpqGXVB3B8Sp9d9Fw1nG62ItFJzUUJSrBMxtd/M=;
-        b=ojRMvAx2VQrhrhY662tdfmyrgkKdHuHTlMcfJvKpIGYTo46pU2ybYqka+9Cah1r2Z6
-         zzWPJmeR8do2lLCcNBeLp1AORB5FnDlWw9sY7Zpa0J0GZf3AOQD3rdnFcrYw0RiZ0su5
-         zCXN0rpaFwkT0+Ju0yXsrKxI1U9c2nY7+8tdif9ILicqnNdgIQ5HcwN3eNmINZInbXSm
-         atvWxHHY7U5aN+cuka/X2alqN/EWJ5qSYHVOog2iNHCPNeGI248nL2gfPvN9awMYa7+i
-         mdiMH2/R40a31dDk4uZ5zLwYwzEFhRRecCTjSB3Yt3ggrx4VjKQNw4t5TJZEREBnsdV2
-         1nWQ==
-X-Gm-Message-State: AOAM530zlPYqSEaRSS/Vn2HvCJwOxt8joYjVy+sHaXxyfYkfyXintBTQ
-        7AddRLM+SZcRJ9niZa/YtlU9yg==
-X-Google-Smtp-Source: ABdhPJzyurk8T+/gdHotwYEIB44m4zpdWpgtcHUpbVaPxoviQXMxT9Nf1Jei89sQixCUE3E33ojk8Q==
-X-Received: by 2002:a17:907:94c6:b0:6f5:287a:2bf2 with SMTP id dn6-20020a17090794c600b006f5287a2bf2mr36930792ejc.124.1654774863746;
-        Thu, 09 Jun 2022 04:41:03 -0700 (PDT)
+        bh=Gpn7JqseIm0vh0gpd7q4DWQubHQ0jsw35Hsu6S6dEzI=;
+        b=Y5M2M8YwryXF9pTCEroEt1lUm18kq3Q0FiznFTzuBBAuzQH2WboOYZ2MsaPmP6pqfu
+         CdWnHz1G9j1msb5Q/1HgR0IMOvKAhHzzclgT86PQoM4kA8BZMl6Gi32ugT3WGrQcEFtN
+         W8AgZLLa3gChxNn+HFTGzNjpeEBPTYnGSFNsdTgpWeg8Jc8zeS55WpZvH04XzmkZMDqf
+         nOygNgEfPmZXLE0PGrjSCYCb3mQNUOR972RHwkwdHtaRjI8CA0kvVSZqMMzh6hNvGc1o
+         pySwiXEORa1QyCvBSFkUsSlg9ZI7whOLJ2jT+qlHNJQFZ1b/+ufpHOeCgTx4DLlwaWHd
+         hkzw==
+X-Gm-Message-State: AOAM530kNDc1Z7ulqMqrU/cR4EOgYnDkq7A2zp65dGeW3gmo6zIOpxbe
+        7IfTQbt5xTvg9apdRKDhpnQdXvxK8jpaSg==
+X-Google-Smtp-Source: ABdhPJwT+7kUr2sta77J0wJZy0BuCltCldWfJaTcXTeAdRDkcGZS4UKZb7000TCkaLQnVJ+A6ZoBEQ==
+X-Received: by 2002:a05:6402:3906:b0:42a:ad43:6477 with SMTP id fe6-20020a056402390600b0042aad436477mr44503045edb.20.1654774864945;
+        Thu, 09 Jun 2022 04:41:04 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id bk2-20020a170906b0c200b006fef557bb7asm10498662ejb.80.2022.06.09.04.41.02
+        by smtp.gmail.com with ESMTPSA id bk2-20020a170906b0c200b006fef557bb7asm10498662ejb.80.2022.06.09.04.41.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 04:41:03 -0700 (PDT)
+        Thu, 09 Jun 2022 04:41:04 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
@@ -55,9 +55,9 @@ To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 47/48] ARM: dts: exynos: align gpio-key node names with dtschema
-Date:   Thu,  9 Jun 2022 13:40:46 +0200
-Message-Id: <20220609114047.380793-8-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 48/48] ARM: dts: s5pv210: align gpio-key node names with dtschema
+Date:   Thu,  9 Jun 2022 13:40:47 +0200
+Message-Id: <20220609114047.380793-9-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
 References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
@@ -78,259 +78,73 @@ The node names should be generic and DT schema expects certain pattern
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/exynos4210-i9100.dts        |  8 ++++----
- arch/arm/boot/dts/exynos4210-origen.dts       | 10 +++++-----
- arch/arm/boot/dts/exynos4412-itop-elite.dts   | 10 +++++-----
- arch/arm/boot/dts/exynos5250-arndale.dts      | 12 ++++++------
- arch/arm/boot/dts/exynos5250-snow-common.dtsi |  2 +-
- arch/arm/boot/dts/exynos5250-spring.dts       |  2 +-
- arch/arm/boot/dts/exynos5420-arndale-octa.dts |  2 +-
- arch/arm/boot/dts/exynos5420-peach-pit.dts    |  2 +-
- arch/arm/boot/dts/exynos5800-peach-pi.dts     |  2 +-
- 9 files changed, 25 insertions(+), 25 deletions(-)
+ arch/arm/boot/dts/s5pv210-fascinate4g.dts | 6 +++---
+ arch/arm/boot/dts/s5pv210-galaxys.dts     | 8 ++++----
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
-index 3c0a18b30837..bba85011ecc9 100644
---- a/arch/arm/boot/dts/exynos4210-i9100.dts
-+++ b/arch/arm/boot/dts/exynos4210-i9100.dts
-@@ -89,21 +89,21 @@ vt_core_15v_reg: regulator-5 {
+diff --git a/arch/arm/boot/dts/s5pv210-fascinate4g.dts b/arch/arm/boot/dts/s5pv210-fascinate4g.dts
+index eae51b197ee9..eaa7c4f0e257 100644
+--- a/arch/arm/boot/dts/s5pv210-fascinate4g.dts
++++ b/arch/arm/boot/dts/s5pv210-fascinate4g.dts
+@@ -17,20 +17,20 @@ chosen {
  	gpio-keys {
  		compatible = "gpio-keys";
- 
--		vol-down {
-+		key-vol-down {
- 			gpios = <&gpx2 1 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_VOLUMEDOWN>;
- 			label = "volume down";
- 			debounce-interval = <10>;
- 		};
- 
--		vol-up {
-+		key-vol-up {
- 			gpios = <&gpx2 0 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_VOLUMEUP>;
- 			label = "volume up";
- 			debounce-interval = <10>;
- 		};
  
 -		power {
 +		key-power {
- 			gpios = <&gpx2 7 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_POWER>;
  			label = "power";
-@@ -111,7 +111,7 @@ power {
- 			wakeup-source;
- 		};
- 
--		ok {
-+		key-ok {
- 			gpios = <&gpx3 5 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_OK>;
- 			label = "ok";
-diff --git a/arch/arm/boot/dts/exynos4210-origen.dts b/arch/arm/boot/dts/exynos4210-origen.dts
-index a08ce2f37ea2..bfdc21854914 100644
---- a/arch/arm/boot/dts/exynos4210-origen.dts
-+++ b/arch/arm/boot/dts/exynos4210-origen.dts
-@@ -46,35 +46,35 @@ mmc_reg: voltage-regulator {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		up {
-+		key-up {
- 			label = "Up";
- 			gpios = <&gpx2 0 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_UP>;
- 			wakeup-source;
- 		};
- 
--		down {
-+		key-down {
- 			label = "Down";
- 			gpios = <&gpx2 1 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_DOWN>;
- 			wakeup-source;
- 		};
- 
--		back {
-+		key-back {
- 			label = "Back";
- 			gpios = <&gpx1 7 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_BACK>;
- 			wakeup-source;
- 		};
- 
--		home {
-+		key-home {
- 			label = "Home";
- 			gpios = <&gpx1 6 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_HOME>;
- 			wakeup-source;
- 		};
- 
--		menu {
-+		key-menu {
- 			label = "Menu";
- 			gpios = <&gpx1 5 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_MENU>;
-diff --git a/arch/arm/boot/dts/exynos4412-itop-elite.dts b/arch/arm/boot/dts/exynos4412-itop-elite.dts
-index a9406280b979..05db9eb9b24c 100644
---- a/arch/arm/boot/dts/exynos4412-itop-elite.dts
-+++ b/arch/arm/boot/dts/exynos4412-itop-elite.dts
-@@ -44,31 +44,31 @@ led3 {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		home {
-+		key-home {
- 			label = "GPIO Key Home";
- 			linux,code = <KEY_HOME>;
- 			gpios = <&gpx1 1 GPIO_ACTIVE_LOW>;
- 		};
- 
--		back {
-+		key-back {
- 			label = "GPIO Key Back";
- 			linux,code = <KEY_BACK>;
- 			gpios = <&gpx1 2 GPIO_ACTIVE_LOW>;
- 		};
- 
--		sleep {
-+		key-sleep {
- 			label = "GPIO Key Sleep";
+ 			gpios = <&gph2 6 GPIO_ACTIVE_LOW>;
  			linux,code = <KEY_POWER>;
- 			gpios = <&gpx3 3 GPIO_ACTIVE_LOW>;
- 		};
- 
--		vol-up {
-+		key-vol-up {
- 			label = "GPIO Key Vol+";
- 			linux,code = <KEY_UP>;
- 			gpios = <&gpx2 1 GPIO_ACTIVE_LOW>;
+ 			wakeup-source;
  		};
  
 -		vol-down {
 +		key-vol-down {
- 			label = "GPIO Key Vol-";
- 			linux,code = <KEY_DOWN>;
- 			gpios = <&gpx2 0 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm/boot/dts/exynos5250-arndale.dts b/arch/arm/boot/dts/exynos5250-arndale.dts
-index f7795f2d0f0e..71c0e87d3a1d 100644
---- a/arch/arm/boot/dts/exynos5250-arndale.dts
-+++ b/arch/arm/boot/dts/exynos5250-arndale.dts
-@@ -30,42 +30,42 @@ chosen {
+ 			label = "volume_down";
+ 			gpios = <&gph3 2 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_VOLUMEDOWN>;
+ 		};
+ 
+-		vol-up {
++		key-vol-up {
+ 			label = "volume_up";
+ 			gpios = <&gph3 1 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_VOLUMEUP>;
+diff --git a/arch/arm/boot/dts/s5pv210-galaxys.dts b/arch/arm/boot/dts/s5pv210-galaxys.dts
+index aaf880792f36..cdd3653d487f 100644
+--- a/arch/arm/boot/dts/s5pv210-galaxys.dts
++++ b/arch/arm/boot/dts/s5pv210-galaxys.dts
+@@ -24,26 +24,26 @@ nand_pwrseq: nand-pwrseq {
  	gpio-keys {
  		compatible = "gpio-keys";
  
--		menu {
-+		key-menu {
- 			label = "SW-TACT2";
- 			gpios = <&gpx1 4 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_MENU>;
+-		power {
++		key-power {
+ 			label = "power";
+ 			gpios = <&gph2 6 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_POWER>;
  			wakeup-source;
+ 		};
+ 
+-		vol-down {
++		key-vol-down {
+ 			label = "volume_down";
+ 			gpios = <&gph3 1 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_VOLUMEDOWN>;
+ 		};
+ 
+-		vol-up {
++		key-vol-up {
+ 			label = "volume_up";
+ 			gpios = <&gph3 2 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_VOLUMEUP>;
  		};
  
 -		home {
 +		key-home {
- 			label = "SW-TACT3";
- 			gpios = <&gpx1 5 GPIO_ACTIVE_LOW>;
+ 			label = "home";
+ 			gpios = <&gph3 5 GPIO_ACTIVE_LOW>;
  			linux,code = <KEY_HOME>;
- 			wakeup-source;
- 		};
- 
--		up {
-+		key-up {
- 			label = "SW-TACT4";
- 			gpios = <&gpx1 6 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_UP>;
- 			wakeup-source;
- 		};
- 
--		down {
-+		key-down {
- 			label = "SW-TACT5";
- 			gpios = <&gpx1 7 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_DOWN>;
- 			wakeup-source;
- 		};
- 
--		back {
-+		key-back {
- 			label = "SW-TACT6";
- 			gpios = <&gpx2 0 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_BACK>;
- 			wakeup-source;
- 		};
- 
--		wakeup {
-+		key-wakeup {
- 			label = "SW-TACT7";
- 			gpios = <&gpx2 1 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_WAKEUP>;
-diff --git a/arch/arm/boot/dts/exynos5250-snow-common.dtsi b/arch/arm/boot/dts/exynos5250-snow-common.dtsi
-index c15ecfc4077d..3d84b9c6dea3 100644
---- a/arch/arm/boot/dts/exynos5250-snow-common.dtsi
-+++ b/arch/arm/boot/dts/exynos5250-snow-common.dtsi
-@@ -32,7 +32,7 @@ gpio-keys {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&power_key_irq &lid_irq>;
- 
--		power {
-+		power-key {
- 			label = "Power";
- 			gpios = <&gpx1 3 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_POWER>;
-diff --git a/arch/arm/boot/dts/exynos5250-spring.dts b/arch/arm/boot/dts/exynos5250-spring.dts
-index 24609bb20158..5eca10ecd550 100644
---- a/arch/arm/boot/dts/exynos5250-spring.dts
-+++ b/arch/arm/boot/dts/exynos5250-spring.dts
-@@ -33,7 +33,7 @@ gpio-keys {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&power_key_irq>, <&lid_irq>;
- 
--		power {
-+		power-key {
- 			label = "Power";
- 			gpios = <&gpx1 3 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_POWER>;
-diff --git a/arch/arm/boot/dts/exynos5420-arndale-octa.dts b/arch/arm/boot/dts/exynos5420-arndale-octa.dts
-index 946b791faf85..55b7759682a9 100644
---- a/arch/arm/boot/dts/exynos5420-arndale-octa.dts
-+++ b/arch/arm/boot/dts/exynos5420-arndale-octa.dts
-@@ -42,7 +42,7 @@ oscclk {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		wakeup {
-+		key-wakeup {
- 			label = "SW-TACT1";
- 			gpios = <&gpx2 7 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_WAKEUP>;
-diff --git a/arch/arm/boot/dts/exynos5420-peach-pit.dts b/arch/arm/boot/dts/exynos5420-peach-pit.dts
-index d6434ec86022..9e2123470cad 100644
---- a/arch/arm/boot/dts/exynos5420-peach-pit.dts
-+++ b/arch/arm/boot/dts/exynos5420-peach-pit.dts
-@@ -60,7 +60,7 @@ gpio-keys {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&power_key_irq &lid_irq>;
- 
--		power {
-+		power-key {
- 			label = "Power";
- 			gpios = <&gpx1 2 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_POWER>;
-diff --git a/arch/arm/boot/dts/exynos5800-peach-pi.dts b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-index 4ee76281979c..0ebcb66c6319 100644
---- a/arch/arm/boot/dts/exynos5800-peach-pi.dts
-+++ b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-@@ -59,7 +59,7 @@ gpio-keys {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&power_key_irq &lid_irq>;
- 
--		power {
-+		power-key {
- 			label = "Power";
- 			gpios = <&gpx1 2 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_POWER>;
 -- 
 2.34.1
 
