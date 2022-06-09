@@ -2,81 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1767254558A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 22:25:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01A92545598
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 22:28:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245602AbiFIUZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 16:25:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32844 "EHLO
+        id S234472AbiFIU2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 16:28:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbiFIUY5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 16:24:57 -0400
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 129F61C2D59;
-        Thu,  9 Jun 2022 13:24:56 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id u2so18634480iln.2;
-        Thu, 09 Jun 2022 13:24:56 -0700 (PDT)
+        with ESMTP id S234419AbiFIU2V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 16:28:21 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE80A1E04B1;
+        Thu,  9 Jun 2022 13:28:19 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id j20so3816179ljg.8;
+        Thu, 09 Jun 2022 13:28:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=46OkSZCeD56sfzrRV9ixVa9kbc26s0RkXULJ1qM0uHw=;
+        b=Cqo4DSvIxHUHTuqtmXxBEQEss56ECscrzgfl6tFBQQHCwHv4gHc+tfptnqcWotUnwn
+         kfM7AqT75NAxphIsW4UmWdx1OMvBH82UlNcB/J3l+xA8Q25UnaHbCypKPUGW1epXcIKW
+         3IBLprzy5gOxwNAFx+x8NZCg3gTeT62BvN7F1YSOfoRuJo6+ew2xM1G0cAoCpdUwZ2kp
+         kZBttUZCWNmLKpe7pg00P+/0iVJoNtSmAcO2jLvQpGHsCBOGni1DyGQUkMTpo0JoxCH9
+         /8y4RA7vHZS/yy51dpCqH9fZ3EATcI+zV+1c4+nvuiJCJ6JNvUwSokhuStUyONTQ67/k
+         fLGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3gzLa7UFwCFZsq+e9Nmv+9/zeZm6wTMqpqjdJSLEQNo=;
-        b=6TOxtsEAg5kedseg8b43fRvONFy14B6bltQmyJX6gp095i/0WUfErTV1uyeKnyY2kV
-         p6b9jTntKO1rJLcFm7YBk2VPobMpHT12kci4l3dvWLaWbvjSSAA7vUwgyNMng+UCb4xy
-         L4TOBif8VhWR3tZVnjH0aFBSa4v6jQXb5XFyHrvfnbeBCq0gnC5QakIQjttVpbVY/v0r
-         xS+6wElJTXN5BXuC9wiK1tFBkwu50+YSuB07tl53jScxEaBXncLK2T3LZ01PMPcqOXXL
-         UYekJeMac8tB4CSfHP5YJBxPMh4gyPXPrHBorNzTKj2y2l2qlLysESst+0iS8gtADyD7
-         sCbg==
-X-Gm-Message-State: AOAM531axKzCx5ANTj0R/rlTguWu992gTGlwxeFxL8TGwRP+uaNhbTZk
-        v3SSTEcfbli1TFrdAWd7jA==
-X-Google-Smtp-Source: ABdhPJxy6ETnyfQ4Pw5rJbmhIgNPv0+kJ+uoK8is5QFGNewfoVKGQEp27HCEqJIk0jXTpc2z0bjBUg==
-X-Received: by 2002:a92:a041:0:b0:2d7:7935:effa with SMTP id b1-20020a92a041000000b002d77935effamr695227ilm.222.1654806295325;
-        Thu, 09 Jun 2022 13:24:55 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id ay24-20020a056638411800b00331ce22e1e4sm4065691jab.2.2022.06.09.13.24.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 13:24:55 -0700 (PDT)
-Received: (nullmailer pid 43066 invoked by uid 1000);
-        Thu, 09 Jun 2022 20:24:52 -0000
-Date:   Thu, 9 Jun 2022 14:24:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-Cc:     linux-gpio@vger.kernel.org, quic_gurus@quicinc.com,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
-        linux-iio@vger.kernel.org, lee.jones@linaro.org,
-        linux-kernel@vger.kernel.org, sre@kernel.org, broonie@kernel.org,
-        rafael@kernel.org, lgirdwood@gmail.com, linus.walleij@linaro.org,
-        jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        linux-pm@vger.kernel.org, brgl@bgdev.pl
-Subject: Re: [PATCH v2 07/17] dt-bindings: power: axp20x-battery: Add AXP192
- compatible
-Message-ID: <20220609202452.GA42970-robh@kernel.org>
-References: <20220607155324.118102-1-aidanmacdonald.0x0@gmail.com>
- <20220607155324.118102-8-aidanmacdonald.0x0@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=46OkSZCeD56sfzrRV9ixVa9kbc26s0RkXULJ1qM0uHw=;
+        b=n5x0kifhw/XGnaQXvwgLnhiWKRWXJsclrdhZtZ+MFE3vcDQylP9seGTIosf9sN5kbv
+         +uim5SpRX2nxlmpE+Ou1M45OgkF41lo1rrVybdtcZi+gV+1lGdaF19zJpjGQqx0ezvbY
+         ckNcJ4vpik7Eqmc3TK+0tLuRgG+K7QniKAZCZeo7u6zpxBdaLmkr5yWB0Kmig+xM4ZId
+         aLn1H1VBdJAfzu3JyOYYJmezTf+jrJdLG4p10hGJhppe3BD2dwPMHlJjL53+bp9RMjhp
+         xabITciWrpwoimZOHuw/kZ6WHtvVlouZsxXnr0SJ7j5xp9Zuz2o8Fhn3uEqS524q24hC
+         42lQ==
+X-Gm-Message-State: AOAM533A9J74+6G4MoKKclP9PSKlioUoogoeRoLomiOwvDCDqAFDlp2L
+        weYvOrOVrRbXyGVSwLf3LsiSRjVTro0=
+X-Google-Smtp-Source: ABdhPJyyeult8NpzAQqn7PaWa4sRx7dCdjWErZ27oucNSpMUlcJj32mPjTi39OlTcDR82vmZrn5E7w==
+X-Received: by 2002:a2e:9808:0:b0:255:59c1:3086 with SMTP id a8-20020a2e9808000000b0025559c13086mr27890832ljj.495.1654806498059;
+        Thu, 09 Jun 2022 13:28:18 -0700 (PDT)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id p20-20020ac24ed4000000b004744bfd620fsm198164lfr.236.2022.06.09.13.28.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Jun 2022 13:28:17 -0700 (PDT)
+Message-ID: <d6d1642c-26b4-e4a8-5ae7-c4b952ae6c62@gmail.com>
+Date:   Thu, 9 Jun 2022 22:28:16 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220607155324.118102-8-aidanmacdonald.0x0@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH 1/3] dt-bindings: leds: skyworks,aat1290: convert to
+ dtschema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20220607085343.72414-1-krzysztof.kozlowski@linaro.org>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+In-Reply-To: <20220607085343.72414-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 07 Jun 2022 16:53:14 +0100, Aidan MacDonald wrote:
-> The AXP192's battery charger is similar to the others supported by
-> the axp20x_battery driver.
-> 
-> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-> ---
->  .../power/supply/x-powers,axp20x-battery-power-supply.yaml       | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Hi Krzysztof,
 
-Acked-by: Rob Herring <robh@kernel.org>
+On 6/7/22 10:53, Krzysztof Kozlowski wrote:
+> Convert the Skyworks Solutions, Inc. AAT1290 Current Regulator bindings
+> to DT Schema.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+[...]
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    // Ct = 220 nF, Rset = 160 kOhm
+> +    led-controller {
+> +        compatible = "skyworks,aat1290";
+> +        flen-gpios = <&gpj1 1 GPIO_ACTIVE_HIGH>;
+> +        enset-gpios = <&gpj1 2 GPIO_ACTIVE_HIGH>;
+> +
+> +        pinctrl-names = "default", "host", "isp";
+> +        pinctrl-0 = <&camera_flash_host>;
+> +        pinctrl-1 = <&camera_flash_host>;
+> +        pinctrl-2 = <&camera_flash_isp>;
+> +
+> +        led {
+> +            label = "flash";
+
+Why are you adding label? It is deprecated, but has the precedence over
+new function and color for backwards compatibility, so it would make
+those unused by the driver now. Please drop the label from this example.
+
+> +            function = LED_FUNCTION_FLASH;
+> +            color = <LED_COLOR_ID_WHITE>;
+> +            led-max-microamp = <520833>;
+> +            flash-max-microamp = <1012500>;
+> +            flash-max-timeout-us = <1940000>;
+> +        };
+> +    };
+
+-- 
+Best regards,
+Jacek Anaszewski
