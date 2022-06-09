@@ -2,103 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2BE25448E9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 12:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3618544950
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 12:41:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234347AbiFIKbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 06:31:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40112 "EHLO
+        id S234990AbiFIKlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 06:41:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229887AbiFIKbt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 06:31:49 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7293020E174
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 03:31:46 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id x62so30580409ede.10
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 03:31:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ufnscmxQX0AEbzv5PDtE4okgkONgzlvCJEgtYxQypeY=;
-        b=PvTB125tZx08/hSvZa0syMVCHbKXmlH9QhWjjk13m1U4RJs0l+5sC2JJ3fHV+Nb1/u
-         ep/DvZG+xBu13nOf1ivLWhHz8VBNxtgqz/kf/AQdhwfxjiQQ5wRBIWfNyI5qhHtm8/YN
-         a5pbig0h3m4TSnO4UgWGOHYITPP7Ye9e2st1LR8xlyuBjbzWObAXC6FE0A33sPe13JGW
-         uGu5S5TVz1Z8TtvQu9FkHT0EUsxkpHx5/c9mZvZJkPPE2RCcy3/lJxsBVT2LdUcRpy80
-         PF1ArDfyrRwbGp1zKwVwTbv0kpmI9vo+/YeU+llZcojlFMT7uinD924FB2KFN2yeD0J6
-         Kn3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ufnscmxQX0AEbzv5PDtE4okgkONgzlvCJEgtYxQypeY=;
-        b=cl9f5maXjiIkQD/sG/hnD0Dm5TBCQZqqkNpuTWwXer5B1bQhCpsSJU7NOAx2U3WeHL
-         XInKRkMUDNKmIpvyP4AZeBQtow12T5jtE/Q0ZqTJ9Ap3Xa09zOI0y7ZR5Ap8d51VjyAh
-         fB2KslqzBb5qd8JaqBlF2flDT7zvvvUgvgReRTGHDyMQn7UX95iIN7LU1oA+kpyKdlpe
-         AhoOOXtME4se7F5bheFYIDgzyg8UgcmtNFaKP2B6KHvVst/OnKEkKvsJOt1NRE5kK1vL
-         Rk8f+adJDqdhOxuPGmOEMZFTXJU02PnWPHDuS3/fVA0BwxgcgEyhildyS9UWFKrhhrM1
-         8D0g==
-X-Gm-Message-State: AOAM532O6lowbH7u8L6qRfDdb7S3/AKo/JPZzbUOtb8tTqQrlu0ox1Kj
-        IOdcz+DHP7EgBuVwWK38D9ERhQ==
-X-Google-Smtp-Source: ABdhPJw5ncZiCRvmHdPWyeUur4wU6OHfZmwNQw3+Rny6dLpgU8K5SbVI4FBkZ6nYipWKlORRD78xpg==
-X-Received: by 2002:a05:6402:270a:b0:431:43f6:1e02 with SMTP id y10-20020a056402270a00b0043143f61e02mr27435767edd.317.1654770705027;
-        Thu, 09 Jun 2022 03:31:45 -0700 (PDT)
-Received: from [192.168.0.196] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p23-20020a170906499700b0070f36b8cb39sm8066737eju.103.2022.06.09.03.31.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 03:31:44 -0700 (PDT)
-Message-ID: <7b8653c1-355d-b390-042d-e02085a3910a@linaro.org>
-Date:   Thu, 9 Jun 2022 12:31:42 +0200
+        with ESMTP id S243229AbiFIKku (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 06:40:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 104721105DE;
+        Thu,  9 Jun 2022 03:40:31 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A00B961D98;
+        Thu,  9 Jun 2022 10:40:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81D8DC34114;
+        Thu,  9 Jun 2022 10:40:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654771230;
+        bh=Wf1dhu5SQZfFcciS3upZkCwdHerc+NxnCZv0l+U13g8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iLTslnYCa+oM6PAoLH8GepLVVcc/R2U8AJ6EJEvHCTiFddGWW/AjUau6qbWbXwezQ
+         2CRcan9QZd5dfHRgByYGdP9WNSFT6edd90LxCOIE/oWUWIbrzydsqj7Gio3ad5OyVW
+         2HFwrNBIyGMU5aaQI+rKk3iZ23PFEeqnGgEBxwhH5lMVt/3LVw3047oiHm+/GRVRqz
+         wvm/aQizoP19YBog/Hr2aIyv0LfdKViW6zMfGeUC1VDEQyDffKJTJjYzXOrYWD8vDY
+         wFMnMbSyuNSc6MREiqj7QLu1qTmCb4WjTzEBV+d3bleZ1iBjuuTHwjAS+xcP2BY9Y6
+         z/VKtPiEdYPIQ==
+Date:   Thu, 9 Jun 2022 16:09:44 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/3] dt-bindings: mtd: qcom_nandc: document
+ qcom,boot-partitions binding
+Message-ID: <20220609103944.GD2758@thinkpad>
+References: <20220608001030.18813-1-ansuelsmth@gmail.com>
+ <20220608001030.18813-3-ansuelsmth@gmail.com>
+ <20220609072029.GA2758@thinkpad>
+ <62a1ca9a.1c69fb81.3b355.0b02@mx.google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: backlight: rt4831: Add the new ocp
- level property
-Content-Language: en-US
-To:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
-        daniel.thompson@linaro.org, jingoohan1@gmail.com
-Cc:     pavel@ucw.cz, deller@gmx.de, cy_huang@richtek.com,
-        lucas_tsai@richtek.com, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <1654741339-12756-1-git-send-email-u0084500@gmail.com>
- <1654741339-12756-2-git-send-email-u0084500@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1654741339-12756-2-git-send-email-u0084500@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <62a1ca9a.1c69fb81.3b355.0b02@mx.google.com>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/06/2022 04:22, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
+On Thu, Jun 09, 2022 at 12:25:27PM +0200, Ansuel Smith wrote:
+> On Thu, Jun 09, 2022 at 12:50:29PM +0530, Manivannan Sadhasivam wrote:
+> > On Wed, Jun 08, 2022 at 02:10:29AM +0200, Ansuel Smith wrote:
+> > > Document new qcom,boot-partition binding used to apply special
+> > > read/write layout to boot partitions.
+> > > 
+> > > QCOM apply a special layout where spare data is not protected
+> > > by ECC for some special pages (used for boot partition). Add
+> > > Documentation on how to declare these special pages.
+> > > 
+> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > > ---
+> > >  .../devicetree/bindings/mtd/qcom,nandc.yaml   | 26 +++++++++++++++++++
+> > >  1 file changed, 26 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > > index 84ad7ff30121..a0914ccb95b0 100644
+> > > --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > > +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > > @@ -102,6 +102,30 @@ allOf:
+> > >              - const: rx
+> > >              - const: cmd
+> > >  
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            enum:
+> > > +              - qcom,ipq806x-nand
+> > > +
+> > > +    then:
+> > > +      properties:
+> > > +        qcom,boot-partitions:
+> > > +          $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > 
+> > Wondering if u32 is enough for covering all ranges? Other than this,
+> > 
+> > Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+> > 
+> > Thanks,
+> > Mani
+> >
 > 
-> Add 'richtek,bled-ocp-microamp' property to make it chooseable.
-> 
-> The wrong backlight ocp level may affect the backlight channel output
-> current smaller than configured.
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
-> Since v3:
-> - Refine the description for backlight ocp property.
-> - Use the enum to list the supported value.
-> 
-> Since v2:
-> - Change the property name from 'richtek,bled-ocp-sel' to 'richtek,bled-ocp-microamp'.
+> I mean they are offset and sizes... Considering it's an old SoC and max
+> nand mounted is 1g we should be safe with u32.
 > 
 
+I thought so but wanted to confirm...
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks,
+Mani
 
-Best regards,
-Krzysztof
+> > > +          items:
+> > > +            items:
+> > > +              - description: offset
+> > > +              - description: size
+> > > +          description:
+> > > +            Boot partition use a different layout where the 4 bytes of spare
+> > > +            data are not protected by ECC. Use this to declare these special
+> > > +            partitions by defining first the offset and then the size.
+> > > +
+> > > +            It's in the form of <offset1 size1 offset2 size2 offset3 ...>
+> > > +
+> > > +            Refer to the ipq8064 example on how to use this special binding.
+> > > +
+> > >  required:
+> > >    - compatible
+> > >    - reg
+> > > @@ -135,6 +159,8 @@ examples:
+> > >          nand-ecc-strength = <4>;
+> > >          nand-bus-width = <8>;
+> > >  
+> > > +        qcom,boot-partitions = <0x0 0x58a0000>;
+> > > +
+> > >          partitions {
+> > >            compatible = "fixed-partitions";
+> > >            #address-cells = <1>;
+> > > -- 
+> > > 2.36.1
+> > > 
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
+> 
+> -- 
+> 	Ansuel
+
+-- 
+மணிவண்ணன் சதாசிவம்
