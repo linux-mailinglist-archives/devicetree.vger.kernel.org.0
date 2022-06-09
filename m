@@ -2,67 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A07D7545102
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:38:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 248E9545149
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:54:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241234AbiFIPic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 11:38:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56124 "EHLO
+        id S241301AbiFIPyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 11:54:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237587AbiFIPib (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:38:31 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F240F261B21;
-        Thu,  9 Jun 2022 08:38:29 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id a10so22488486ioe.9;
-        Thu, 09 Jun 2022 08:38:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aciXCtRvsxNKm3QmZmc3M0v0OBWtOSC2RTKujD1oQSI=;
-        b=3qxSM+DXLw3wOXAQp2xZcWHbC1LFjUdtWc9JUVnc/FMI1pcMcr1iQvNyPYVKP9+bE+
-         3bqTEXpq8/eCBjMqa8bxUryP4RZPQ50M8cZ5CRaj2taqn+4EYdVbGYt3p/t1RAGw3Lcp
-         X3ufvLJed9x/GMZSCH+/yqgU5anBvFv+G4PtF9SXLt/TRvA9A+wxyqWzjAAZFRKCDkY6
-         9Aev88iHWSJ9b/HBu67GDJtKVxgHq3iJPd+QuLWqc7TqWEEv8UqSp8fta1Hu0w+AhLlf
-         vdwqWpMxDcpd9YpkABxQ6P7LhIaG/HPWj2FnNBIcMAIMWHC5S1XoK9+0hcJJvCQOt+Tl
-         ncNw==
-X-Gm-Message-State: AOAM531PxKWXwBRUC8ghcmsXplzVHRKFQSEmLjpOIdiRf15LlewkeJcC
-        EIzQYyxBI1RBjIgdyrqfSw==
-X-Google-Smtp-Source: ABdhPJw+fKj2cdpkgrJfuThrcRw2G3NRMDlKW2cVvanp6oQx+IZghhceQJwGMUbp3UQ57biVIVIyAg==
-X-Received: by 2002:a05:6638:1607:b0:331:bcef:784d with SMTP id x7-20020a056638160700b00331bcef784dmr9883034jas.208.1654789109229;
-        Thu, 09 Jun 2022 08:38:29 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id m12-20020a02c88c000000b0032e40f3e40dsm8678909jao.124.2022.06.09.08.38.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 08:38:28 -0700 (PDT)
-Received: (nullmailer pid 3840834 invoked by uid 1000);
-        Thu, 09 Jun 2022 15:38:26 -0000
-Date:   Thu, 9 Jun 2022 09:38:26 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Harsh Agarwal <quic_harshq@quicinc.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-        ahalaney@redhat.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: usb: dwc3: Add support for multiport
- related properties
-Message-ID: <20220609153826.GA3828657-robh@kernel.org>
-References: <1654709787-23686-1-git-send-email-quic_harshq@quicinc.com>
- <1654709787-23686-2-git-send-email-quic_harshq@quicinc.com>
+        with ESMTP id S237581AbiFIPyH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:54:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 788691E3C2;
+        Thu,  9 Jun 2022 08:54:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 149BB61E86;
+        Thu,  9 Jun 2022 15:54:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E221C34114;
+        Thu,  9 Jun 2022 15:54:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654790045;
+        bh=d6IpKcReOM0BAzYys8GQhWOY3da05wd4CwqGIOwNcnY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Db15ot9lABxO3UDTeilr4THVUTIhS5xY67yd39M0pz3GRSLiVbaUWWzAqu3M8vDpl
+         eZ1Jw4GN7i49o6r941HRcZ31gj0EcToE6PjyDn/1IT39g3MDPXc7Ef+EHdo5+XThCj
+         65tGwXPC/wqgbmiUQ5mdFDio+QFPuNpFZBUIjyIBHSzrf/6C9K3cQCkva6OzChTm3J
+         i8hgY7BZkrDYydCMFPTWdPam//3L6igIRKdTXs+KseTpoZvFoagI5jImY+D1s6dVji
+         XgJzO9/uuSA4lR/zr4S+fJBUDBoSGMpzCnECkyjAVWIHS+nFuuT5amgxmWlYN4rjjC
+         0ITOxZtE8FWiw==
+Date:   Thu, 9 Jun 2022 16:53:59 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>, asahi@lists.linux.dev
+Subject: Re: [RFC PATCH v2 0/5] Apple Macs machine/platform ASoC driver
+Message-ID: <YqIXlwTzQWwtzbdN@sirena.org.uk>
+References: <20220606191910.16580-1-povik+lin@cutebit.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="th3PZ0FiY0ufDWny"
 Content-Disposition: inline
-In-Reply-To: <1654709787-23686-2-git-send-email-quic_harshq@quicinc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <20220606191910.16580-1-povik+lin@cutebit.org>
+X-Cookie: Space is limited.
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,62 +62,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 08, 2022 at 11:06:25PM +0530, Harsh Agarwal wrote:
-> Added support for multiport, mport, num_usb2_phy and num_usb3_phy
-> properties. These properties are used to support devices having
-> a multiport controller.
-> 
-> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
-> ---
->  .../devicetree/bindings/usb/snps,dwc3.yaml         | 53 ++++++++++++++++++++++
->  1 file changed, 53 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> index d41265b..9332fa2 100644
-> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> @@ -343,6 +343,32 @@ properties:
->        This port is used with the 'usb-role-switch' property  to connect the
->        dwc3 to type C connector.
->  
-> +  multiport:
 
-Again, I don't think this is going to play well if you need to describe 
-USB devices in your DT. For example, a USB hub with additional DT 
-properties.
+--th3PZ0FiY0ufDWny
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +    description:
-> +      If a single USB controller supports multiple ports, then it's referred to as
-> +      a multiport controller. Each port of the multiport controller can support
-> +      either High Speed or Super Speed or both and have their own PHY phandles. Each
-> +      port is represented by "mport" node and all the "mport" nodes are grouped
-> +      together inside the "multiport" node where individual "mport" node defines the
-> +      PHYs supported by that port.
-> +
-> +  num_usb2_phy:
-> +    description: Total number of HS-PHYs defined by the multiport controller.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  num_usb3_phy:
-> +    description: Total number of SS-PHYs defined by the multiport controller.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  mport:
-> +    description: Each mport node represents one port of the multiport controller.
-> +    oneOf:
-> +      - required:
-> +        - usb-phy
+On Mon, Jun 06, 2022 at 09:19:05PM +0200, Martin Povi=C5=A1er wrote:
 
-This is deprecated. Why are you adding it?
+>  - The way the platform/machine driver handles the fact that multiple I2S
+>    ports (now backend DAIs) can be driven by/connected to the same SERDES
+>    unit (now in effect a frontend DAI). After previous discussion I have
+>    transitioned to DPCM to model this. I took the opportunity of dynamic
+>    backend/frontend routing to support speakers/headphones runtime
+>    switching. More on this in comments at top of the machine and platform
+>    driver.
 
-> +      - required:
-> +        - phys
-> +        - phy-names
+This looks roughly like I'd expect now, there's some issues from myself
+and Pierre but it's more around the edges than anything big picture.
 
-Other multi port USB hosts just have a list of phys. Why can't you just 
-use phy-names to identify each phy:
+--th3PZ0FiY0ufDWny
+Content-Type: application/pgp-signature; name="signature.asc"
 
-phy-names = "port0-hs", "port0-ss", "port1-hs", "port1-ss", "port2-hs", 
-  "port3-hs";
+-----BEGIN PGP SIGNATURE-----
 
-Rob
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKiF5YACgkQJNaLcl1U
+h9AlNgf7BPncxFpRN1RmT8l9lbVRvoJyMKLO0MWxXCBeHx7bbO/8GXmDIpg/VmXO
+J2vqhrtWSMijrffbeG4efWXldQMGhUAhz/GgB1FFgAdwzgE+6ndaNCEP8HGG9dIP
+xUlcJxbPK9XGpJEgqG+ihrsaA9WjcXD0HaH96yjCoL687emR3fOXtKSjOC/Dqebp
+GOg1+ilWEn1BRvCdj+CtBWLiPWcrY9AD8ObLl0fYql8FH5KYoF2FWNsfaGWE5Qh8
+He2vyrMlaFwsqPZcUuznV0PPE8tF/cq8syXxk4ReXHeq8WPp1ttG+egBd0fTlRys
+YKpwyOdMaqdnrDwryruzRc9I0CrW/g==
+=YWSx
+-----END PGP SIGNATURE-----
+
+--th3PZ0FiY0ufDWny--
