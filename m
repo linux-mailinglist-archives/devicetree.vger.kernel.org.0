@@ -2,114 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F3075450DE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:32:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A07D7545102
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:38:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236527AbiFIPb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 11:31:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56470 "EHLO
+        id S241234AbiFIPic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 11:38:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243442AbiFIPb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:31:58 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 101CA3D48E
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 08:31:56 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id c2so31676522edf.5
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 08:31:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=PeAB4WdUupDaLbzIqQrrnRA29amPQ8PYJd3E0QmEGsE=;
-        b=EakJTslO6FLE81sHxNC1bk/UhJdyWwE3LaolAbYnM/XwG1uFz5Ko+NX7UNNu3tbcoN
-         K4rcFigA5wVJgxMnlO7NLPQdS3C/ggA1Vn8OzBb8vvyKZFT1e8iQCHxDYA2eB8gQtft+
-         7HzbxwQvQgZY6ae+bwehfzc7RnStB3PIBUZf7baw2dZU6u3EZKK9c5vh03InUK7PI/Xs
-         PjArKEXUAAVAQfrkTYYW6QeCkqxbR+gH5Pemmw+ozW5iwl6YhpAMgD9p9LlKl6lrcgHH
-         VT+W3GXIoaXr5Nc/REr/+pECZOjR0CqcLiiXkWlDSxBfAIMKAiL7Nj6L+FzleyxE5OcS
-         rrfQ==
+        with ESMTP id S237587AbiFIPib (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:38:31 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F240F261B21;
+        Thu,  9 Jun 2022 08:38:29 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id a10so22488486ioe.9;
+        Thu, 09 Jun 2022 08:38:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=PeAB4WdUupDaLbzIqQrrnRA29amPQ8PYJd3E0QmEGsE=;
-        b=gym8uOm5QxGEhrEfvU85/UeKaRFMXAiT1J+vNnW0NXtVU4LTB7mCtMqNhiknKRq184
-         qYeBcrQS7ndD84iVbSUrAi8mQxDznwhCx5XZ193fzO9nk2VFM+SMI8HkrJtUOjBBl7hQ
-         TmGObtW4QOObWdc6PhYR4QZl1Ttspe6c+JfTjRuzHfD+YthIDH3uLPGddQwm7jMXooWy
-         5iNcpq3thd4d20YX5tQpbmIlMBXVpvcoaeaQCnT7c3ReZqW7TICR/fhT/Bg2w2zXjzx2
-         I3F7+7J25obn/lE+W1zWYGQa/X+n3OwDIQY3PbbPVXjC/uf4ykGg2IjkfYbuXOLnClpi
-         NKcw==
-X-Gm-Message-State: AOAM530z2A9+4n8ujtMGy+3PRlqFCVlvxtsWS5V92cx+9X0oCupjeEhB
-        pWpE+3cMe3InXNlaK5zX3QBKeA==
-X-Google-Smtp-Source: ABdhPJwOIiJjZlxWJ8Qllh5BIHfUY6pWFLHsCbCBYUYtWh67b6d6/Fy01aSRrec+f5WJFGHljJB2KQ==
-X-Received: by 2002:a05:6402:2788:b0:431:3f86:1d4e with SMTP id b8-20020a056402278800b004313f861d4emr29911904ede.238.1654788714499;
-        Thu, 09 Jun 2022 08:31:54 -0700 (PDT)
-Received: from [192.168.0.199] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id f27-20020a17090624db00b006f3ef214dcdsm10940096ejb.51.2022.06.09.08.31.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 08:31:53 -0700 (PDT)
-Message-ID: <6d460a14-5da3-19f8-c614-307c2e737c17@linaro.org>
-Date:   Thu, 9 Jun 2022 17:31:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 04/48] dt-bindings: pinctrl: nuvoton,wpcm450-pinctrl:
- align key node name
-Content-Language: en-US
-To:     =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=aciXCtRvsxNKm3QmZmc3M0v0OBWtOSC2RTKujD1oQSI=;
+        b=3qxSM+DXLw3wOXAQp2xZcWHbC1LFjUdtWc9JUVnc/FMI1pcMcr1iQvNyPYVKP9+bE+
+         3bqTEXpq8/eCBjMqa8bxUryP4RZPQ50M8cZ5CRaj2taqn+4EYdVbGYt3p/t1RAGw3Lcp
+         X3ufvLJed9x/GMZSCH+/yqgU5anBvFv+G4PtF9SXLt/TRvA9A+wxyqWzjAAZFRKCDkY6
+         9Aev88iHWSJ9b/HBu67GDJtKVxgHq3iJPd+QuLWqc7TqWEEv8UqSp8fta1Hu0w+AhLlf
+         vdwqWpMxDcpd9YpkABxQ6P7LhIaG/HPWj2FnNBIcMAIMWHC5S1XoK9+0hcJJvCQOt+Tl
+         ncNw==
+X-Gm-Message-State: AOAM531PxKWXwBRUC8ghcmsXplzVHRKFQSEmLjpOIdiRf15LlewkeJcC
+        EIzQYyxBI1RBjIgdyrqfSw==
+X-Google-Smtp-Source: ABdhPJw+fKj2cdpkgrJfuThrcRw2G3NRMDlKW2cVvanp6oQx+IZghhceQJwGMUbp3UQ57biVIVIyAg==
+X-Received: by 2002:a05:6638:1607:b0:331:bcef:784d with SMTP id x7-20020a056638160700b00331bcef784dmr9883034jas.208.1654789109229;
+        Thu, 09 Jun 2022 08:38:29 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id m12-20020a02c88c000000b0032e40f3e40dsm8678909jao.124.2022.06.09.08.38.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jun 2022 08:38:28 -0700 (PDT)
+Received: (nullmailer pid 3840834 invoked by uid 1000);
+        Thu, 09 Jun 2022 15:38:26 -0000
+Date:   Thu, 9 Jun 2022 09:38:26 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Harsh Agarwal <quic_harshq@quicinc.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
- <20220609113911.380368-3-krzysztof.kozlowski@linaro.org>
- <YqIP1vYuLztSQR+n@latitude>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YqIP1vYuLztSQR+n@latitude>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Felipe Balbi <balbi@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
+        ahalaney@redhat.com
+Subject: Re: [PATCH v3 1/3] dt-bindings: usb: dwc3: Add support for multiport
+ related properties
+Message-ID: <20220609153826.GA3828657-robh@kernel.org>
+References: <1654709787-23686-1-git-send-email-quic_harshq@quicinc.com>
+ <1654709787-23686-2-git-send-email-quic_harshq@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1654709787-23686-2-git-send-email-quic_harshq@quicinc.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/06/2022 17:20, Jonathan Neuschäfer wrote:
-> On Thu, Jun 09, 2022 at 01:39:06PM +0200, Krzysztof Kozlowski wrote:
->> gpio-keys schema requires keys to have more generic name.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../devicetree/bindings/pinctrl/nuvoton,wpcm450-pinctrl.yaml    | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/pinctrl/nuvoton,wpcm450-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nuvoton,wpcm450-pinctrl.yaml
->> index 47a56b83a610..4c7691c38b10 100644
->> --- a/Documentation/devicetree/bindings/pinctrl/nuvoton,wpcm450-pinctrl.yaml
->> +++ b/Documentation/devicetree/bindings/pinctrl/nuvoton,wpcm450-pinctrl.yaml
->> @@ -152,7 +152,7 @@ examples:
->>        pinctrl-names = "default";
->>        pinctrl-0 = <&pinctrl_uid>, <&pinmux_uid>;
->>  
->> -      uid {
->> +      switch-uid {
+On Wed, Jun 08, 2022 at 11:06:25PM +0530, Harsh Agarwal wrote:
+> Added support for multiport, mport, num_usb2_phy and num_usb3_phy
+> properties. These properties are used to support devices having
+> a multiport controller.
 > 
-> In this example, and more importantly the original copy in
-> nuvoton-wpcm450-supermicro-x9sci-ln4f.dts, I think button-uid fits
-> slightly better, because it's a momentary push button. (Still arguably a
-> switch, but not one that would stay in both the on and off position.)
+> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
+> ---
+>  .../devicetree/bindings/usb/snps,dwc3.yaml         | 53 ++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> index d41265b..9332fa2 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -343,6 +343,32 @@ properties:
+>        This port is used with the 'usb-role-switch' property  to connect the
+>        dwc3 to type C connector.
+>  
+> +  multiport:
 
-Sure, I'll change it to button-uid.
+Again, I don't think this is going to play well if you need to describe 
+USB devices in your DT. For example, a USB hub with additional DT 
+properties.
 
-Thanks!
+> +    description:
+> +      If a single USB controller supports multiple ports, then it's referred to as
+> +      a multiport controller. Each port of the multiport controller can support
+> +      either High Speed or Super Speed or both and have their own PHY phandles. Each
+> +      port is represented by "mport" node and all the "mport" nodes are grouped
+> +      together inside the "multiport" node where individual "mport" node defines the
+> +      PHYs supported by that port.
+> +
+> +  num_usb2_phy:
+> +    description: Total number of HS-PHYs defined by the multiport controller.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  num_usb3_phy:
+> +    description: Total number of SS-PHYs defined by the multiport controller.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  mport:
+> +    description: Each mport node represents one port of the multiport controller.
+> +    oneOf:
+> +      - required:
+> +        - usb-phy
 
+This is deprecated. Why are you adding it?
 
-Best regards,
-Krzysztof
+> +      - required:
+> +        - phys
+> +        - phy-names
+
+Other multi port USB hosts just have a list of phys. Why can't you just 
+use phy-names to identify each phy:
+
+phy-names = "port0-hs", "port0-ss", "port1-hs", "port1-ss", "port2-hs", 
+  "port3-hs";
+
+Rob
