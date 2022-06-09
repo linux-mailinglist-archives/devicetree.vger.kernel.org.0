@@ -2,94 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 007D6544C54
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 14:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9197E544C5D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 14:44:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343511AbiFIMmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 08:42:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37928 "EHLO
+        id S244899AbiFIMog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 08:44:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245758AbiFIMmu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 08:42:50 -0400
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8D1A2F00F;
-        Thu,  9 Jun 2022 05:42:48 -0700 (PDT)
-Received: by mail-qk1-f173.google.com with SMTP id d128so9745720qkg.8;
-        Thu, 09 Jun 2022 05:42:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OwkCUGiaBE5pGkYM38twOtTXunQNzCIQYE/XvxVgKnc=;
-        b=H67cvOqYdxWUFCcbqZa1WgSWVAEqlN0dwrrp8t0q8e4HeL1vDZ2lK51LM8qnlKFE/2
-         9WTEy69bUYGevXnkGCULDwIhvKnlULQseg33FBjY2rWn2ZDYh30K41FT4/7iDhte5x5X
-         lY4MO3IhlLFOheA/hbmsLvBsAsyItb5dL948MAHfqHk/ZEml9Y0EX8U8JS/wxnbCa+yW
-         XfyPrmsGIxlqQetMVd7Im1i1zRlSh8FBVlpQs+M2hj6z4n44IHUXVrdx3KyCjdxYtN4z
-         qtx2jfDdIpe4eco6CE/9HkrksVrMEvlqv8LJ1A7zEvTDEPYlsOz5c6xInqJ85h1ObrVm
-         ni/A==
-X-Gm-Message-State: AOAM532abzDYVIsr8YupmNQhCF0iQ2CkTbOgoAOLzNb58Z2rMLiD5BfF
-        gD3ZUuDWr2fgmQDSwYGlPhdFJJpXIQ3zBg==
-X-Google-Smtp-Source: ABdhPJzzJ+2LjYVp7HlI6FrSY4qO51kDcZvbRV70ivkBCnboGVmkx9hz9Bvdt3ih4OfhMYhmXSnSnA==
-X-Received: by 2002:a05:620a:370e:b0:6a7:2471:b3eb with SMTP id de14-20020a05620a370e00b006a72471b3ebmr2575170qkb.631.1654778567663;
-        Thu, 09 Jun 2022 05:42:47 -0700 (PDT)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id v7-20020ac873c7000000b002f93be3ccfdsm11822987qtp.18.2022.06.09.05.42.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 05:42:47 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-3137c877092so39539017b3.13;
-        Thu, 09 Jun 2022 05:42:46 -0700 (PDT)
-X-Received: by 2002:a0d:f801:0:b0:30f:f716:2950 with SMTP id
- i1-20020a0df801000000b0030ff7162950mr38956789ywf.358.1654778566374; Thu, 09
- Jun 2022 05:42:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220608173025.22792-1-biju.das.jz@bp.renesas.com> <20220608173025.22792-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220608173025.22792-2-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 9 Jun 2022 14:42:35 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXSQ_y2XQSM3RU4xUUn5H5q83DrWUc+gTqgN8kNxPc2UQ@mail.gmail.com>
-Message-ID: <CAMuHMdXSQ_y2XQSM3RU4xUUn5H5q83DrWUc+gTqgN8kNxPc2UQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: renesas: rzg2ul-smarc: Enable RSPI1 on
- carrier board
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1343708AbiFIMoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 08:44:18 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C0A50070;
+        Thu,  9 Jun 2022 05:44:16 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 2A9C31BF213;
+        Thu,  9 Jun 2022 12:44:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1654778655;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=fpphnyK7b9ecDg9PuHfvurWOcMuG1P88E9vjHqCoLrI=;
+        b=O5rUK0/7QdJ8mcqUhI8ZENgYNQURVW8+InTVJyOMjBEq7YSZhwdxFQxXiBs/HxuyNc1JOA
+        cVdLaOV1A1bXu0dcKdY44/5/fLGxU0l1487TkWw4//9OnkVYLI2Fny70T1JZkrCBpM+RYZ
+        rDLy8SStl/o/p0wJ77Hzbxh3dpRaa6nWujG+4v/so1pQMh5YqWIOczjRYoBUjjxHdLWT4U
+        TCf+2Fk7OxT7J3BTAoWl/xUEWRWNxlepQAjbnAy4/Fx0wEkLDODRGcRnYEw3koXUM4cYsW
+        6jw0ESR24ss1CPBGXxZP4gpWIfnjhLT8hPYJykHdy3vnW33W79c2vZzqVc9a9Q==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        =?utf-8?q?Uwe_Klei?= =?utf-8?q?ne-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mtd: mxc-nand: Drop undocumented properties from example
+Date:   Thu,  9 Jun 2022 14:44:13 +0200
+Message-Id: <20220609124413.209204-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220525205947.2487165-1-robh@kernel.org>
+References: 
+MIME-Version: 1.0
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'99c1734f318c97492083c16910cbda2583830eb1'
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 8, 2022 at 7:31 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> RSPI1 (SPI1) interface is available on PMOD0 connector (J1) on the
-> carrier board.  This patch adds pinmux and spi1 nodes to the carrier
-> board dtsi file and drops deleting pinctl* properties from board
-> DTS file.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Wed, 2022-05-25 at 20:59:46 UTC, Rob Herring wrote:
+> With unevaluatedProperties issues fixed, 'nand-bus-width' and
+> 'nand-ecc-mode' are flagged as undocumented. Removing them from the example
+> is the easiest solution to silence the warnings.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.20.
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Miquel
