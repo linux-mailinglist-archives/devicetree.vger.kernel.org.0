@@ -2,773 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8586F544984
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 12:55:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1F395449D2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:17:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236028AbiFIKzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 06:55:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60650 "EHLO
+        id S236432AbiFILRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 07:17:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243132AbiFIKzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 06:55:39 -0400
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [5.144.164.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C51D15738
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 03:55:34 -0700 (PDT)
-Received: from [10.1.250.9] (unknown [194.29.137.21])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        with ESMTP id S229771AbiFILRP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:17:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF97A1B8;
+        Thu,  9 Jun 2022 04:17:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 6B8CB20871;
-        Thu,  9 Jun 2022 12:55:32 +0200 (CEST)
-Message-ID: <2115d87d-23d6-ce59-03f4-28b1a977d808@somainline.org>
-Date:   Thu, 9 Jun 2022 12:55:31 +0200
+        by ams.source.kernel.org (Postfix) with ESMTPS id 03215B81DB1;
+        Thu,  9 Jun 2022 11:17:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73055C34114;
+        Thu,  9 Jun 2022 11:17:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654773429;
+        bh=i4y+kKhqo1/9kIpy8Z3cfCpottSPUqX6cuBdqT/GrnM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gEgxX+jBfkAeTo6kIoJKSN17TsXJGqeHXB5ZtYkTMY9pdkHRri0dsaTnX0m/A/lGR
+         FTLsLhP9F1cY9sSVTY/N496hByTpN6AYYX/eCelvEE01odmXC0nacjhOjiTyUXxLLR
+         vmZ+5H9qoAEAPcZRWDWXFqSY6nLssuT5GgOAondT7fOv/o/s6eC+Q1lto5C87o3lVr
+         IY3T/wHFplAlRg+Nfp7Msa/o4FKfBP7KQ1qwcJUsBj9Eu2WcyAbsLsdE5OcJzH2b/F
+         EAVUmwPAqRdqtyEXp64t/DLFmiYCzct8BTwE9DJzcZOUfkdp5SdClYbN9MyfNHwnmm
+         IA9i5Y66xKMrA==
+Date:   Thu, 9 Jun 2022 16:46:55 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] mtd: nand: raw: qcom_nandc: add support for
+ unprotected spare data pages
+Message-ID: <20220609111655.GF2758@thinkpad>
+References: <20220608001030.18813-1-ansuelsmth@gmail.com>
+ <20220608001030.18813-2-ansuelsmth@gmail.com>
+ <20220609075254.GC2758@thinkpad>
+ <62a1ca5a.1c69fb81.d403.b325@mx.google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.10.0
-Subject: Re: [PATCH v5 2/6] clk: qcom: add support for SM8350 GPUCC
-To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        jonathan@marek.ca, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20220609092940.304740-1-robert.foss@linaro.org>
- <20220609092940.304740-3-robert.foss@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220609092940.304740-3-robert.foss@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <62a1ca5a.1c69fb81.d403.b325@mx.google.com>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 09, 2022 at 12:24:22PM +0200, Ansuel Smith wrote:
+> On Thu, Jun 09, 2022 at 01:22:54PM +0530, Manivannan Sadhasivam wrote:
+> > On Wed, Jun 08, 2022 at 02:10:28AM +0200, Ansuel Smith wrote:
+> > > IPQ8064 nand have special pages where a different layout scheme is used.
+> > > These special page are used by boot partition and on reading them
+> > > lots of warning are reported about wrong ECC data and if written to
+> > > results in broken data and not bootable device.
+> > > 
+> > > The layout scheme used by these special page consist in using 512 bytes
+> > > as the codeword size (even for the last codeword) while writing to CFG0
+> > > register. This forces the NAND controller to unprotect the 4 bytes of
+> > > spare data.
+> > > 
+> > > Since the kernel is unaware of this different layout for these special
+> > > page, it does try to protect the spare data too during read/write and
+> > > warn about CRC errors.
+> > > 
+> > > Add support for this by permitting the user to declare these special
+> > > pages in dts by declaring offset and size of the partition. The driver
+> > > internally will convert these value to nand pages.
+> > > 
+> > > On user read/write the page is checked and if it's a boot page the
+> > > correct layout is used.
+> > > 
+> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > > ---
+> > >  drivers/mtd/nand/raw/qcom_nandc.c | 174 +++++++++++++++++++++++++++++-
+> > >  1 file changed, 169 insertions(+), 5 deletions(-)
+> > > 
+> > > diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
+> > > index 1a77542c6d67..06ee9a836a3b 100644
+> > > --- a/drivers/mtd/nand/raw/qcom_nandc.c
+> > > +++ b/drivers/mtd/nand/raw/qcom_nandc.c
+> > > @@ -80,8 +80,10 @@
+> > >  #define	DISABLE_STATUS_AFTER_WRITE	4
+> > >  #define	CW_PER_PAGE			6
+> > >  #define	UD_SIZE_BYTES			9
+> > > +#define	UD_SIZE_BYTES_MASK		GENMASK(18, 9)
+> > >  #define	ECC_PARITY_SIZE_BYTES_RS	19
+> > >  #define	SPARE_SIZE_BYTES		23
+> > > +#define	SPARE_SIZE_BYTES_MASK		GENMASK(26, 23)
+> > >  #define	NUM_ADDR_CYCLES			27
+> > >  #define	STATUS_BFR_READ			30
+> > >  #define	SET_RD_MODE_AFTER_STATUS	31
+> > > @@ -102,6 +104,7 @@
+> > >  #define	ECC_MODE			4
+> > >  #define	ECC_PARITY_SIZE_BYTES_BCH	8
+> > >  #define	ECC_NUM_DATA_BYTES		16
+> > > +#define	ECC_NUM_DATA_BYTES_MASK		GENMASK(25, 16)
+> > >  #define	ECC_FORCE_CLK_OPEN		30
+> > >  
+> > >  /* NAND_DEV_CMD1 bits */
+> > > @@ -418,6 +421,19 @@ struct qcom_nand_controller {
+> > >  	const struct qcom_nandc_props *props;
+> > >  };
+> > >  
+> > > +/*
+> > > + * NAND special boot partitions
+> > > + *
+> > > + * @page_offset:		offset of the partition where spare data is not protected
+> > > + *				by ECC (value in pages)
+> > 
+> > s/page_offset/offset
+> >
+> 
+> Mhhh i changed this to page_offset since the struct is called
+> boot_partition and it can be confusing since internally the values is in
+> pages. Someone can think that the real partition offset/size is used
+> instead of the value converted in pages.
 
-On 09/06/2022 11:29, Robert Foss wrote:
-> The GPUCC manages the clocks for the Adreno GPU found on the
-> sm8350 SoCs.
->
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> ---
->
-> Changes since v1
->   - Remove .name assignments for clk_parent_data - Dmitry
->   - Use ARRAY_SIZE where possible - Dmitry
->   - Remove commented out code - Dmitry
->   - Set CLAMP_IO flag for gpu_gx_gdsc - Dmitry
->   - Assign .parent_hws instead of .hw - Dmitry
->
-> Changes since v2
->   - Switch license to dual BSD/GPL - Bjorn
->   - Add Jonathans SoB - Jonathan
->   - Add Linaro to copyright statement - Bjorn
->   - Make .hw.init assignment const - Bjorn
->   - Extract & deduplicate bi_tcxo parent_data - Bjorn
->   - Removed further .name assignment - Bjorn
->   - Move of_device_id declaration - Bjorn
->
-> Changes since v3
->   - Change license to BSD/GPL - Rob/Bjorn
->   - Switch from .fw_name to .index
->
-> Changes since v4
->   - Change year of copyright statement
->   - Change to dual license for header file - Rob
->
->
->   drivers/clk/qcom/Kconfig        |   8 +
->   drivers/clk/qcom/Makefile       |   1 +
->   drivers/clk/qcom/gpucc-sm8350.c | 637 ++++++++++++++++++++++++++++++++
->   3 files changed, 646 insertions(+)
->   create mode 100644 drivers/clk/qcom/gpucc-sm8350.c
->
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index bc4dcf356d82..b11235c21952 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -712,6 +712,14 @@ config SM_GPUCC_8250
->   	  Say Y if you want to support graphics controller devices and
->   	  functionality such as 3D graphics.
->   
-> +config SM_GPUCC_8350
-> +	tristate "SM8350 Graphics Clock Controller"
-> +	select SM_GCC_8350
-> +	help
-> +	  Support for the graphics clock controller on SM8350 devices.
-> +	  Say Y if you want to support graphics controller devices and
-> +	  functionality such as 3D graphics.
-> +
->   config SM_VIDEOCC_8150
->   	tristate "SM8150 Video Clock Controller"
->   	select SM_GCC_8150
-> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> index 36789f5233ef..ef9c64824424 100644
-> --- a/drivers/clk/qcom/Makefile
-> +++ b/drivers/clk/qcom/Makefile
-> @@ -101,6 +101,7 @@ obj-$(CONFIG_SM_GCC_8450) += gcc-sm8450.o
->   obj-$(CONFIG_SM_GPUCC_6350) += gpucc-sm6350.o
->   obj-$(CONFIG_SM_GPUCC_8150) += gpucc-sm8150.o
->   obj-$(CONFIG_SM_GPUCC_8250) += gpucc-sm8250.o
-> +obj-$(CONFIG_SM_GPUCC_8350) += gpucc-sm8350.o
->   obj-$(CONFIG_SM_VIDEOCC_8150) += videocc-sm8150.o
->   obj-$(CONFIG_SM_VIDEOCC_8250) += videocc-sm8250.o
->   obj-$(CONFIG_SPMI_PMIC_CLKDIV) += clk-spmi-pmic-div.o
-> diff --git a/drivers/clk/qcom/gpucc-sm8350.c b/drivers/clk/qcom/gpucc-sm8350.c
-> new file mode 100644
-> index 000000000000..68d85757e064
-> --- /dev/null
-> +++ b/drivers/clk/qcom/gpucc-sm8350.c
-> @@ -0,0 +1,637 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
-> +/*
-> + * Copyright (c) 2019-2020, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022, Linaro Limited
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/err.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <dt-bindings/clock/qcom,gpucc-sm8350.h>
-> +
-> +#include "clk-alpha-pll.h"
-> +#include "clk-branch.h"
-> +#include "clk-pll.h"
-> +#include "clk-rcg.h"
-> +#include "clk-regmap.h"
-> +#include "common.h"
-> +#include "clk-regmap-mux.h"
-> +#include "clk-regmap-divider.h"
-> +#include "gdsc.h"
-> +#include "reset.h"
-> +
-> +enum {
-> +	P_BI_TCXO,
-> +	P_GPLL0_OUT_MAIN,
-> +	P_GPLL0_OUT_MAIN_DIV,
-> +	P_GPU_CC_PLL0_OUT_MAIN,
-> +	P_GPU_CC_PLL1_OUT_MAIN,
-> +};
-> +
-> +static struct pll_vco lucid_5lpe_vco[] = {
-> +	{ 249600000, 1750000000, 0 },
-> +};
-> +
-> +static const struct alpha_pll_config gpu_cc_pll0_config = {
-> +	.l = 0x18,
-> +	.alpha = 0x6000,
-> +	.config_ctl_val = 0x20485699,
-> +	.config_ctl_hi_val = 0x00002261,
-> +	.config_ctl_hi1_val = 0x2A9A699C,
+Hmm, okay.
 
-Lowercase hex, please.
+> 
+> > > + * @page_offset:		size of the partition where spare data is not protected
+> > > + *				by ECC (value in pages)
+> > 
 
+[...]
 
-> +	.test_ctl_val = 0x00000000,
-> +	.test_ctl_hi_val = 0x00000000,
-> +	.test_ctl_hi1_val = 0x01800000,
-> +	.user_ctl_val = 0x00000000,
-> +	.user_ctl_hi_val = 0x00000805,
-> +	.user_ctl_hi1_val = 0x00000000,
-> +};
-> +
-> +static const struct clk_parent_data gpu_cc_parent = {
-> +	.fw_name = "bi_tcxo",
-> +};
-> +
-> +static struct clk_alpha_pll gpu_cc_pll0 = {
-> +	.offset = 0x0,
-> +	.vco_table = lucid_5lpe_vco,
-> +	.num_vco = ARRAY_SIZE(lucid_5lpe_vco),
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID],
-> +	.clkr = {
-> +		.hw.init = &(const struct clk_init_data){
-> +			.name = "gpu_cc_pll0",
-> +			.parent_data = &gpu_cc_parent,
-> +			.num_parents = 1,
-> +			.ops = &clk_alpha_pll_lucid_5lpe_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static const struct alpha_pll_config gpu_cc_pll1_config = {
-> +	.l = 0x1A,
-> +	.alpha = 0xAAA,
-> +	.config_ctl_val = 0x20485699,
-> +	.config_ctl_hi_val = 0x00002261,
-> +	.config_ctl_hi1_val = 0x2A9A699C,
-> +	.test_ctl_val = 0x00000000,
-> +	.test_ctl_hi_val = 0x00000000,
-> +	.test_ctl_hi1_val = 0x01800000,
-> +	.user_ctl_val = 0x00000000,
-> +	.user_ctl_hi_val = 0x00000805,
-> +	.user_ctl_hi1_val = 0x00000000,
-> +};
-> +
-> +static struct clk_alpha_pll gpu_cc_pll1 = {
-> +	.offset = 0x100,
-> +	.vco_table = lucid_5lpe_vco,
-> +	.num_vco = ARRAY_SIZE(lucid_5lpe_vco),
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID],
-> +	.clkr = {
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_pll1",
-> +			.parent_data = &gpu_cc_parent,
-> +			.num_parents = 1,
-> +			.ops = &clk_alpha_pll_lucid_5lpe_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static const struct parent_map gpu_cc_parent_map_0[] = {
-> +	{ P_BI_TCXO, 0 },
-> +	{ P_GPU_CC_PLL0_OUT_MAIN, 1 },
-> +	{ P_GPU_CC_PLL1_OUT_MAIN, 3 },
-> +	{ P_GPLL0_OUT_MAIN, 5 },
-> +	{ P_GPLL0_OUT_MAIN_DIV, 6 },
-> +};
-> +
-> +static const struct clk_parent_data gpu_cc_parent_data_0[] = {
-> +	gpu_cc_parent,
-> +	{ .hw = &gpu_cc_pll0.clkr.hw },
-> +	{ .hw = &gpu_cc_pll1.clkr.hw },
-> +	{ .fw_name = "gcc_gpu_gpll0_clk_src" },
-> +	{ .fw_name = "gcc_gpu_gpll0_div_clk_src" },
-> +};
-> +
-> +static const struct parent_map gpu_cc_parent_map_1[] = {
-> +	{ P_BI_TCXO, 0 },
-> +	{ P_GPU_CC_PLL1_OUT_MAIN, 3 },
-> +	{ P_GPLL0_OUT_MAIN, 5 },
-> +	{ P_GPLL0_OUT_MAIN_DIV, 6 },
-> +};
-> +
-> +static const struct clk_parent_data gpu_cc_parent_data_1[] = {
-> +	gpu_cc_parent,
-> +	{ .hw = &gpu_cc_pll1.clkr.hw },
-> +	{ .fw_name = "gcc_gpu_gpll0_clk_src" },
-> +	{ .fw_name = "gcc_gpu_gpll0_div_clk_src" },
-> +};
-> +
-> +static const struct freq_tbl ftbl_gpu_cc_gmu_clk_src[] = {
-> +	F(19200000, P_BI_TCXO, 1, 0, 0),
-> +	F(200000000, P_GPLL0_OUT_MAIN_DIV, 1.5, 0, 0),
-> +	F(500000000, P_GPU_CC_PLL1_OUT_MAIN, 1, 0, 0),
-> +	{ }
-> +};
-> +
-> +static struct clk_rcg2 gpu_cc_gmu_clk_src = {
-> +	.cmd_rcgr = 0x1120,
-> +	.mnd_width = 0,
-> +	.hid_width = 5,
-> +	.parent_map = gpu_cc_parent_map_0,
-> +	.freq_tbl = ftbl_gpu_cc_gmu_clk_src,
-> +	.clkr.hw.init = &(struct clk_init_data){
-> +		.name = "gpu_cc_gmu_clk_src",
-> +		.parent_data = gpu_cc_parent_data_0,
-> +		.num_parents = ARRAY_SIZE(gpu_cc_parent_data_0),
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.ops = &clk_rcg2_ops,
-> +	},
-> +};
-> +
-> +static const struct freq_tbl ftbl_gpu_cc_hub_clk_src[] = {
-> +	F(150000000, P_GPLL0_OUT_MAIN_DIV, 2, 0, 0),
-> +	F(240000000, P_GPLL0_OUT_MAIN, 2.5, 0, 0),
-> +	F(300000000, P_GPLL0_OUT_MAIN, 2, 0, 0),
-> +	{ }
-> +};
-> +
-> +static struct clk_rcg2 gpu_cc_hub_clk_src = {
-> +	.cmd_rcgr = 0x117c,
-> +	.mnd_width = 0,
-> +	.hid_width = 5,
-> +	.parent_map = gpu_cc_parent_map_1,
-> +	.freq_tbl = ftbl_gpu_cc_hub_clk_src,
-> +	.clkr.hw.init = &(struct clk_init_data){
-> +		.name = "gpu_cc_hub_clk_src",
-> +		.parent_data = gpu_cc_parent_data_1,
-> +		.num_parents = ARRAY_SIZE(gpu_cc_parent_data_1),
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.ops = &clk_rcg2_ops,
-> +	},
-> +};
-> +
-> +static struct clk_regmap_div gpu_cc_hub_ahb_div_clk_src = {
-> +	.reg = 0x11c0,
-> +	.shift = 0,
-> +	.width = 4,
-> +	.clkr.hw.init = &(struct clk_init_data) {
-> +		.name = "gpu_cc_hub_ahb_div_clk_src",
-> +		.parent_hws = (const struct clk_hw*[]){
-> +			&gpu_cc_hub_clk_src.clkr.hw,
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.ops = &clk_regmap_div_ro_ops,
-> +	},
-> +};
-> +
-> +static struct clk_regmap_div gpu_cc_hub_cx_int_div_clk_src = {
-> +	.reg = 0x11bc,
-> +	.shift = 0,
-> +	.width = 4,
-> +	.clkr.hw.init = &(struct clk_init_data) {
-> +		.name = "gpu_cc_hub_cx_int_div_clk_src",
-> +		.parent_hws = (const struct clk_hw*[]){
-> +			&gpu_cc_hub_clk_src.clkr.hw,
-> +		},
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +		.ops = &clk_regmap_div_ro_ops,
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_ahb_clk = {
-> +	.halt_reg = 0x1078,
-> +	.halt_check = BRANCH_HALT_DELAY,
-> +	.clkr = {
-> +		.enable_reg = 0x1078,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_ahb_clk",
-> +			.parent_hws = (const struct clk_hw*[]){
-> +				&gpu_cc_hub_ahb_div_clk_src.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_cb_clk = {
-> +	.halt_reg = 0x1170,
-> +	.halt_check = BRANCH_HALT,
-> +	.clkr = {
-> +		.enable_reg = 0x1170,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_cb_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_crc_ahb_clk = {
-> +	.halt_reg = 0x107c,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.clkr = {
-> +		.enable_reg = 0x107c,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_crc_ahb_clk",
-> +			.parent_hws = (const struct clk_hw*[]){
-> +				&gpu_cc_hub_ahb_div_clk_src.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_cx_apb_clk = {
-> +	.halt_reg = 0x1088,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.clkr = {
-> +		.enable_reg = 0x1088,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_cx_apb_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_cx_gmu_clk = {
-> +	.halt_reg = 0x1098,
-> +	.halt_check = BRANCH_HALT,
-> +	.clkr = {
-> +		.enable_reg = 0x1098,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_cx_gmu_clk",
-> +			.parent_hws = (const struct clk_hw*[]){
-> +				&gpu_cc_gmu_clk_src.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_branch2_aon_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_cx_qdss_at_clk = {
-> +	.halt_reg = 0x1080,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.clkr = {
-> +		.enable_reg = 0x1080,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_cx_qdss_at_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_cx_qdss_trig_clk = {
-> +	.halt_reg = 0x1094,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.clkr = {
-> +		.enable_reg = 0x1094,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_cx_qdss_trig_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_cx_qdss_tsctr_clk = {
-> +	.halt_reg = 0x1084,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.clkr = {
-> +		.enable_reg = 0x1084,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_cx_qdss_tsctr_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_cx_snoc_dvm_clk = {
-> +	.halt_reg = 0x108c,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.clkr = {
-> +		.enable_reg = 0x108c,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_cx_snoc_dvm_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_cxo_aon_clk = {
-> +	.halt_reg = 0x1004,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.clkr = {
-> +		.enable_reg = 0x1004,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_cxo_aon_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_cxo_clk = {
-> +	.halt_reg = 0x109c,
-> +	.halt_check = BRANCH_HALT,
-> +	.clkr = {
-> +		.enable_reg = 0x109c,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_cxo_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_freq_measure_clk = {
-> +	.halt_reg = 0x120c,
-> +	.halt_check = BRANCH_HALT,
-> +	.clkr = {
-> +		.enable_reg = 0x120c,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_freq_measure_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_gx_gmu_clk = {
-> +	.halt_reg = 0x1064,
-> +	.halt_check = BRANCH_HALT,
-> +	.clkr = {
-> +		.enable_reg = 0x1064,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_gx_gmu_clk",
-> +			.parent_hws = (const struct clk_hw*[]){
-> +				&gpu_cc_gmu_clk_src.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_gx_qdss_tsctr_clk = {
-> +	.halt_reg = 0x105c,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.clkr = {
-> +		.enable_reg = 0x105c,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_gx_qdss_tsctr_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_gx_vsense_clk = {
-> +	.halt_reg = 0x1058,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.clkr = {
-> +		.enable_reg = 0x1058,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_gx_vsense_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_hlos1_vote_gpu_smmu_clk = {
-> +	.halt_reg = 0x5000,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.clkr = {
-> +		.enable_reg = 0x5000,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_hlos1_vote_gpu_smmu_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_hub_aon_clk = {
-> +	.halt_reg = 0x1178,
-> +	.halt_check = BRANCH_HALT,
-> +	.clkr = {
-> +		.enable_reg = 0x1178,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_hub_aon_clk",
-> +			.parent_hws = (const struct clk_hw*[]){
-> +				&gpu_cc_hub_clk_src.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_branch2_aon_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_hub_cx_int_clk = {
-> +	.halt_reg = 0x1204,
-> +	.halt_check = BRANCH_HALT,
-> +	.clkr = {
-> +		.enable_reg = 0x1204,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_hub_cx_int_clk",
-> +			.parent_hws = (const struct clk_hw*[]){
-> +				&gpu_cc_hub_cx_int_div_clk_src.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_branch2_aon_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_mnd1x_0_gfx3d_clk = {
-> +	.halt_reg = 0x802c,
-> +	.halt_check = BRANCH_HALT,
-> +	.clkr = {
-> +		.enable_reg = 0x802c,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_mnd1x_0_gfx3d_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_mnd1x_1_gfx3d_clk = {
-> +	.halt_reg = 0x8030,
-> +	.halt_check = BRANCH_HALT,
-> +	.clkr = {
-> +		.enable_reg = 0x8030,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_mnd1x_1_gfx3d_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gpu_cc_sleep_clk = {
-> +	.halt_reg = 0x1090,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.clkr = {
-> +		.enable_reg = 0x1090,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gpu_cc_sleep_clk",
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct gdsc gpu_cx_gdsc = {
-> +	.gdscr = 0x106c,
-> +	.gds_hw_ctrl = 0x1540,
-> +	.pd = {
-> +		.name = "gpu_cx_gdsc",
-> +	},
-> +	.pwrsts = PWRSTS_OFF_ON,
-> +	.flags = VOTABLE,
-> +};
-> +
-> +static struct gdsc gpu_gx_gdsc = {
-> +	.gdscr = 0x100c,
-> +	.clamp_io_ctrl = 0x1508,
-> +	.pd = {
-> +		.name = "gpu_gx_gdsc",
-> +		.power_on = gdsc_gx_do_nothing_enable,
-> +	},
-> +	.pwrsts = PWRSTS_OFF_ON,
-> +	.flags = CLAMP_IO | AON_RESET | POLL_CFG_GDSCR,
-> +};
-> +
-> +static struct clk_regmap *gpu_cc_sm8350_clocks[] = {
-> +	[GPU_CC_AHB_CLK] = &gpu_cc_ahb_clk.clkr,
-> +	[GPU_CC_CB_CLK] = &gpu_cc_cb_clk.clkr,
-> +	[GPU_CC_CRC_AHB_CLK] = &gpu_cc_crc_ahb_clk.clkr,
-> +	[GPU_CC_CX_APB_CLK] = &gpu_cc_cx_apb_clk.clkr,
-> +	[GPU_CC_CX_GMU_CLK] = &gpu_cc_cx_gmu_clk.clkr,
-> +	[GPU_CC_CX_QDSS_AT_CLK] = &gpu_cc_cx_qdss_at_clk.clkr,
-> +	[GPU_CC_CX_QDSS_TRIG_CLK] = &gpu_cc_cx_qdss_trig_clk.clkr,
-> +	[GPU_CC_CX_QDSS_TSCTR_CLK] = &gpu_cc_cx_qdss_tsctr_clk.clkr,
-> +	[GPU_CC_CX_SNOC_DVM_CLK] = &gpu_cc_cx_snoc_dvm_clk.clkr,
-> +	[GPU_CC_CXO_AON_CLK] = &gpu_cc_cxo_aon_clk.clkr,
-> +	[GPU_CC_CXO_CLK] = &gpu_cc_cxo_clk.clkr,
-> +	[GPU_CC_FREQ_MEASURE_CLK] = &gpu_cc_freq_measure_clk.clkr,
-> +	[GPU_CC_GMU_CLK_SRC] = &gpu_cc_gmu_clk_src.clkr,
-> +	[GPU_CC_GX_GMU_CLK] = &gpu_cc_gx_gmu_clk.clkr,
-> +	[GPU_CC_GX_QDSS_TSCTR_CLK] = &gpu_cc_gx_qdss_tsctr_clk.clkr,
-> +	[GPU_CC_GX_VSENSE_CLK] = &gpu_cc_gx_vsense_clk.clkr,
-> +	[GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK] = &gpu_cc_hlos1_vote_gpu_smmu_clk.clkr,
-> +	[GPU_CC_HUB_AHB_DIV_CLK_SRC] = &gpu_cc_hub_ahb_div_clk_src.clkr,
-> +	[GPU_CC_HUB_AON_CLK] = &gpu_cc_hub_aon_clk.clkr,
-> +	[GPU_CC_HUB_CLK_SRC] = &gpu_cc_hub_clk_src.clkr,
-> +	[GPU_CC_HUB_CX_INT_CLK] = &gpu_cc_hub_cx_int_clk.clkr,
-> +	[GPU_CC_HUB_CX_INT_DIV_CLK_SRC] = &gpu_cc_hub_cx_int_div_clk_src.clkr,
-> +	[GPU_CC_MND1X_0_GFX3D_CLK] = &gpu_cc_mnd1x_0_gfx3d_clk.clkr,
-> +	[GPU_CC_MND1X_1_GFX3D_CLK] = &gpu_cc_mnd1x_1_gfx3d_clk.clkr,
-> +	[GPU_CC_PLL0] = &gpu_cc_pll0.clkr,
-> +	[GPU_CC_PLL1] = &gpu_cc_pll1.clkr,
-> +	[GPU_CC_SLEEP_CLK] = &gpu_cc_sleep_clk.clkr,
-> +};
-> +
-> +static const struct qcom_reset_map gpu_cc_sm8350_resets[] = {
-> +	[GPUCC_GPU_CC_ACD_BCR] = { 0x1160 },
-> +	[GPUCC_GPU_CC_CB_BCR] = { 0x116c },
-> +	[GPUCC_GPU_CC_CX_BCR] = { 0x1068 },
-> +	[GPUCC_GPU_CC_FAST_HUB_BCR] = { 0x1174 },
-> +	[GPUCC_GPU_CC_GFX3D_AON_BCR] = { 0x10a0 },
-> +	[GPUCC_GPU_CC_GMU_BCR] = { 0x111c },
-> +	[GPUCC_GPU_CC_GX_BCR] = { 0x1008 },
-> +	[GPUCC_GPU_CC_XO_BCR] = { 0x1000 },
-> +};
-> +
-> +static struct gdsc *gpu_cc_sm8350_gdscs[] = {
-> +	[GPU_CX_GDSC] = &gpu_cx_gdsc,
-> +	[GPU_GX_GDSC] = &gpu_gx_gdsc,
-> +};
-> +
-> +static const struct regmap_config gpu_cc_sm8350_regmap_config = {
-> +	.reg_bits = 32,
-> +	.reg_stride = 4,
-> +	.val_bits = 32,
-> +	.max_register = 0x8030,
-> +	.fast_io = true,
-> +};
-> +
-> +static const struct qcom_cc_desc gpu_cc_sm8350_desc = {
-> +	.config = &gpu_cc_sm8350_regmap_config,
-> +	.clks = gpu_cc_sm8350_clocks,
-> +	.num_clks = ARRAY_SIZE(gpu_cc_sm8350_clocks),
-> +	.resets = gpu_cc_sm8350_resets,
-> +	.num_resets = ARRAY_SIZE(gpu_cc_sm8350_resets),
-> +	.gdscs = gpu_cc_sm8350_gdscs,
-> +	.num_gdscs = ARRAY_SIZE(gpu_cc_sm8350_gdscs),
-> +};
-> +
-> +static int gpu_cc_sm8350_probe(struct platform_device *pdev)
-> +{
-> +	struct regmap *regmap;
-> +
-> +	regmap = qcom_cc_map(pdev, &gpu_cc_sm8350_desc);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(&pdev->dev, "Failed to map gpu cc registers\n");
+> > > +static bool
+> > > +qcom_nandc_is_boot_page(struct qcom_nand_host *host, int page)
+> > 
+> > Move function name to previous line. If it exceeds 100 lines then wrap
+> > arguments.
+> > 
+> > s/qcom_nandc_is_boot_page/qcom_nandc_is_boot_partition
+> > 
+> 
+> Again considering the check is done on the page and not on the
+> partition, wonder what is correct.
+> 
 
-I think we'd get a probe error even without this, no?
+But the end goal is to detect if the page belongs to boot partitionis, right?
 
+Also, mixing up boot_pages and boot_partitions is confusing. Let's stick to the
+fact that this patch checks for pages belonging to the boot partition.
 
-Konrad
+> > > +{
+> > > +	struct qcom_nand_boot_partition *boot_partition;
+> > > +	u32 start, end;
+> > > +	int i;
+> > > +
+> > > +	for (i = 0; i < host->nr_boot_partitions; i++) {
+> > > +		boot_partition = &host->boot_partitions[i];
+> > > +		start = boot_partition->page_offset;
+> > > +		end = start + boot_partition->page_size;
+> > > +
+> > > +		/* Boot pages are normally at the start of
+> > 
+> > Block comments should start with:
+> > 
+> > 	/*
+> > 	 * ...
+> > 
+> > Also, are you sure that only few pages in the partitions have different layout
+> > and not all pages? If not, then this comment needs to be reworded.
+> > 
+> 
+> I probably worderd this bad...
+> Each page of the boot partitions require the codeword fix.
+> But other may have the normal codeword
+> For example this is from a Netgear router:
+> mtd0: 00c80000 00020000 "qcadata" (require codeword fix)
+> mtd1: 00500000 00020000 "APPSBL"  (require codeword fix)
+> mtd2: 00080000 00020000 "APPSBLENV" (doesn't require codeword fix)
+> mtd3: 00140000 00020000 "art"       (doesn't)
+> mtd4: 00140000 00020000 "artbak"    (doesn't)
+> mtd5: 00400000 00020000 "kernel"    (doesn't)
+> mtd6: 06080000 00020000 "ubi"       (doesn't)
+> mtd7: 00700000 00020000 "reserve"   (doesn't)
+> 
+> This is part of the case tho as there are some partition table with
+> something like
+> 
+> mtd0: 00c80000 00020000 "qcadata" (require codeword fix)
+> mtd1: 00500000 00020000 "APPSBL"  (require codeword fix)
+> mtd2: 00080000 00020000 "APPSBLENV" (doesn't require codeword fix)
+> mtd3: 00140000 00020000 "APPSBL2"  (require codeword fix)
+> [...]
+> 
+> In all case 99% of the time in a normal system what you commonly write
+> are the rootfs partition that are AFTER the boot partition so checking
+> if the page is after such partition should speed up the check.
 
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	clk_lucid_pll_configure(&gpu_cc_pll0, regmap, &gpu_cc_pll0_config);
-> +	clk_lucid_pll_configure(&gpu_cc_pll1, regmap, &gpu_cc_pll1_config);
-> +
-> +	return qcom_cc_really_probe(pdev, &gpu_cc_sm8350_desc, regmap);
-> +}
-> +
-> +static const struct of_device_id gpu_cc_sm8350_match_table[] = {
-> +	{ .compatible = "qcom,sm8350-gpucc" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, gpu_cc_sm8350_match_table);
-> +
-> +static struct platform_driver gpu_cc_sm8350_driver = {
-> +	.probe = gpu_cc_sm8350_probe,
-> +	.driver = {
-> +		.name = "sm8350-gpucc",
-> +		.of_match_table = gpu_cc_sm8350_match_table,
-> +	},
-> +};
-> +
-> +static int __init gpu_cc_sm8350_init(void)
-> +{
-> +	return platform_driver_register(&gpu_cc_sm8350_driver);
-> +}
-> +subsys_initcall(gpu_cc_sm8350_init);
-> +
-> +static void __exit gpu_cc_sm8350_exit(void)
-> +{
-> +	platform_driver_unregister(&gpu_cc_sm8350_driver);
-> +}
-> +module_exit(gpu_cc_sm8350_exit);
-> +
-> +MODULE_DESCRIPTION("QTI GPU_CC SM8350 Driver");
-> +MODULE_LICENSE("GPL v2");
+This should be included in the comment.
+
+> Now that I think about it, a good idea is also start checking the
+> boot_partition table from the end to improve the checking even more.
+> 
+
+Yes and if the page lies after last boot partition then we can bail out in the
+first iteration itself. But the binding should make it clear that the offset
+should be specified in ascending order.
+
+> So tell me if the comments is wronlgy worded.
+> 
+
+Based on the above algorithm:
+
+/*
+ * Since the frequent access will be to the non-boot partitions like rootfs,
+ * optimize the page check by:
+
+ * 1. Checking if the page lies after the last boot partition.
+ * 2. Checking from the boot partition end.
+ */
+
+> > > +		 * the nand in various partition.
+> > > +		 * Check the page from the boot page end first
+> > > +		 * to save one extra check and optimize this
+> > > +		 * in case real no-boot partition are used.
+> > > +		 */
+> > > +		if (page < end && page >= start)
+> > > +			return true;
+> > > +	}
+> > > +
+> > > +	return false;
+> > > +}
+> > > +
+> > > +static void
+> > > +qcom_nandc_codeword_fixup(struct qcom_nand_host *host, int page)
+> > > +{
+> > > +	bool codeword_fixup = qcom_nandc_is_boot_page(host, page);
+> > > +
+> > > +	/* Skip conf write if we are already in the correct mode */
+> > > +	if (codeword_fixup == host->codeword_fixup)
+> > > +		return;
+> > > +
+> > > +	host->codeword_fixup = codeword_fixup;
+> > > +
+> > > +	host->cw_data = codeword_fixup ? 512 : 516;
+> > > +	host->spare_bytes = host->cw_size - host->ecc_bytes_hw -
+> > > +			    host->bbm_size - host->cw_data;
+> > > +
+> > > +	host->cfg0 &= ~(SPARE_SIZE_BYTES_MASK | UD_SIZE_BYTES_MASK);
+> > > +	host->cfg0 |= host->spare_bytes << SPARE_SIZE_BYTES |
+> > > +		      host->cw_data << UD_SIZE_BYTES;
+> > > +
+> > > +	host->ecc_bch_cfg &= ~ECC_NUM_DATA_BYTES_MASK;
+> > > +	host->ecc_bch_cfg |= host->cw_data << ECC_NUM_DATA_BYTES;
+> > > +	host->ecc_buf_cfg = (codeword_fixup ? 0x1ff : 0x203) << NUM_STEPS;
+> > 
+> > s/1ff/(512 - 1)
+> > s/203/(516 - 1)
+> > 
+> 
+> ok. I wonder if this can just be reduced to (host->cw_data - 1) and
+> skipping the check entirely.
+> 
+
+Yeah, that sounds even good.
+
+Thanks,
+Mani
