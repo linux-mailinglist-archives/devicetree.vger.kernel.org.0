@@ -2,250 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB899544C65
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 14:45:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAB96544C74
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 14:47:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343753AbiFIMo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 08:44:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47592 "EHLO
+        id S240811AbiFIMrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 08:47:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244113AbiFIMou (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 08:44:50 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0A1166D5C
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 05:44:49 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id bg6so27432507ejb.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 05:44:49 -0700 (PDT)
+        with ESMTP id S238349AbiFIMrq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 08:47:46 -0400
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00B3B359FD1
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 05:47:43 -0700 (PDT)
+Received: by mail-qt1-x833.google.com with SMTP id x7so17024079qta.6
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 05:47:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=lJk716YMYQiC9XdFOVA3hLNWPHrzbYIFzsjHZ4lXqXw=;
-        b=jV749h/yzGdD7UVInBT9kRK0Jme4OUSWL30CvqTehv0OIPHZlrLh6yxz+uV4nlmaTT
-         hyp845TnOHon/x7gEdAOK/HuLHltS6oC9HxWnNMR5S8ogJ9Z7JEZoA2UBxE3wlBo5DRH
-         7PwNnpKT0SDKX59RxX4l7Sa1MuuIhZ6ouMthRqlJAVN574gK+mQ5h+J3z57z+Dj70Ltm
-         tRTKF4wUesxloNjYbv7eM7BGrn0Rdd/4KR94SamXC+bL3AEBmrzZyrm4e5jcd6U7pFjD
-         2J+x+a9wGbBFbhmkjFSqJ+L7wHho2UKB/rTNWO+LrGnjtVC3Sx2xCzYeMN3tH9lc4k4E
-         o6yA==
+        bh=h8cWqvPg9zbI1Q43jZ22k5KFlen0dxXXQmLtqMTzZJM=;
+        b=W3iSqn+U6DYPLx0Gt6muJSyYUB8gxNK8sU1bPvLeuDq+RHwCPr02xyazKxVG5njrL+
+         TEHtdxgOlEiy8lGZeAdkKfkVGnIbRVz3/NJIM0RiZgRRVFD0hipcqJPQyE4MOCSiKkTG
+         CwMrD5Bumyr+5pxKhAK/uAMPADY1s1UyiD4wiXxn/kGf4/XdAmdLG4dVpQQIUJd6cMB8
+         f3N0AcjzAaO1vMMs0BoTpvhaqFN9zHX9LLYboRY18/BkgPNskeisffwebtUATlmNBFgT
+         WW/qXdf0o8SAXjb6NPZNoRB/X7aK+YNgvI7QYmq3GhO+k1RMvr1YJRBs6DKtv0yvq4ud
+         9hSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=lJk716YMYQiC9XdFOVA3hLNWPHrzbYIFzsjHZ4lXqXw=;
-        b=RukqOQddOI2xLvSqZLFTJjypf5b79uAcLpLEaKFeB/duAYELXp8relVazLypQUyEfx
-         rAH4OqEy1ROaAU+atwSTEaTrtM/5rqpGkGWnBZdYkt0OScKtSUiPbQ4ZU2KxFRWhZhgR
-         oqqMkKM3wh15564b2I3OHogJ++nhOFzgfJOlW0MUcPciTO2JpJN9eq2P4E2KMfqSOUMv
-         PSNKnTQiQ9KltbUuarCw0MkU1UWxfz6HJeSMW9SKfwr1f1rahHuqk2jXReJjl4GFCO6+
-         njnTlMb5Yov8bzoEAFtRzqiWLbZYX6Hx2/xLYhHL7uZDjdf2GFerwRGVD+obQjxjFx8C
-         RVHQ==
-X-Gm-Message-State: AOAM531fmGnFCSjanoDsBJdYTXnY2Rh86ZaOdVQZ/SthjEt1aZJ9UH08
-        Gd7qfspuD8VlsRmGjtIVrrSnzpGpWmtvipBMLAHSwg==
-X-Google-Smtp-Source: ABdhPJy6NNm52gjoT01K7OZnUFOxRXn6NtlR60/k5jcSePS1DE8jJ2xxM+kEnefp7nXZd72DEpx4T6QluDGZOm4xKoo=
-X-Received: by 2002:a17:907:6ea4:b0:711:d106:b93a with SMTP id
- sh36-20020a1709076ea400b00711d106b93amr18861166ejc.189.1654778687717; Thu, 09
- Jun 2022 05:44:47 -0700 (PDT)
+        bh=h8cWqvPg9zbI1Q43jZ22k5KFlen0dxXXQmLtqMTzZJM=;
+        b=L5EDX8EaTObJpWu/BM9Zc8225ajswGaGF4ilxFX15QVn07ulskFvOcskqDRsFx/QJX
+         eZ9Gk3ZwuZmoYEFPOSNlsd+0cT7q+zC6cLEqJ1l/Hibp9bxfpsn41rismt6Ebcnj8v0x
+         gj4SXEIl5ZQAyQpm+3DGT+2NSVw2gWw8168vn+KPTGpjVNRgw+bqCkMM0UqVT0kMxMez
+         040vkQHCDYOZSidLuo4tsZ+hssEKMOI0VTwAuoqCMoV85puU+9BI0UuPnb5HDIRVzd1e
+         SPJ8EOh9rnCaS7/cw8pxysIiGXP5XVJIvMjOpGwYKxEX647mkfPusjbk/5DBEhFUnbAx
+         y5Iw==
+X-Gm-Message-State: AOAM532UwwoFTWIArI/gcs9WRflK8qHFHMvX2nil8uPhFhn8Ii6Zx/3Y
+        WgeLPqO2HQ1ak2qWkak1byPLk0dVHCOieJAL/Owy/g==
+X-Google-Smtp-Source: ABdhPJwIC+f21r6zvATp/buJdHq/JKIw15pStNVdzdxyxyK2vJJ81iSA3iUJwPYvzI/sWZ2iYPbRMyCFUYI7hs9I2yQ=
+X-Received: by 2002:ac8:598f:0:b0:305:8f8:2069 with SMTP id
+ e15-20020ac8598f000000b0030508f82069mr4867390qte.370.1654778863045; Thu, 09
+ Jun 2022 05:47:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220523090822.3035189-1-tzungbi@kernel.org> <20220523090822.3035189-3-tzungbi@kernel.org>
-In-Reply-To: <20220523090822.3035189-3-tzungbi@kernel.org>
-From:   Guenter Roeck <groeck@google.com>
-Date:   Thu, 9 Jun 2022 05:44:36 -0700
-Message-ID: <CABXOdTeXB8V7ma9W6ZEQJeedvDg2xQOtJ5TduDmND-=BeDJpRA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/5] platform/chrome: cros_kbd_led_backlight: separate
- ACPI backend
-To:     Tzung-Bi Shih <tzungbi@kernel.org>
-Cc:     Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
+References: <20220609095412.211060-1-amartinz@shiftphones.com>
+In-Reply-To: <20220609095412.211060-1-amartinz@shiftphones.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 9 Jun 2022 15:47:31 +0300
+Message-ID: <CAA8EJpqz32_LxmBVbcLt0sV=e1JzGtWEmMsKsQNoZzuGgLWbBQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arch: arm64: qcom: sdm845-shift-axolotl: fix
+ Bluetooth firmware loading
+To:     Alexander Martinz <amartinz@shiftphones.com>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:CHROME HARDWARE PLATFORM SUPPORT" 
-        <chrome-platform@lists.linux.dev>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Dylan Van Assche <me@dylanvanassche.be>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 2:08 AM Tzung-Bi Shih <tzungbi@kernel.org> wrote:
+On Thu, 9 Jun 2022 at 12:54, Alexander Martinz <amartinz@shiftphones.com> wrote:
 >
-> cros_kbd_led_backlight uses ACPI_KEYBOARD_BACKLIGHT_WRITE and
-> ACPI_KEYBOARD_BACKLIGHT_READ for setting and getting the brightness
-> respectively.
+> From: Dylan Van Assche <me@dylanvanassche.be>
 >
-> Separate ACPI operations for preparing the driver to support other
-> backends.
->
-> Signed-off-by: Tzung-Bi Shih <tzungbi@kernel.org>
+> Add hsuart0 alias, firmware name and prevent garbage data on Bluetooth UART lines
 
-Reviewed-by: Guenter Roeck <groeck@chromium.org>
+hsuart aliases are not standard. Please use serialN alias instead.
 
+> on the SHIFT 6mq based on the Qualcomm SDM845 chip.
+> I discovered that these were missing by comparing the DTS with similar
+> devices such as the Oneplus 6/6T and Dragonboard 845c.
+>
+> Signed-of-by: Dylan Van Assche <me@dylanvanassche.be>
+> Tested-by: Alexander Martinz <amartinz@shiftphones.com>
 > ---
-> Changes from v3:
-> - Remove CROS_KBD_LED_BACKLIGHT_ACPI Kconfig.
-> - Remove stub function.
+>  .../boot/dts/qcom/sdm845-shift-axolotl.dts    | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
 >
-> Changes from v2:
-> - Use #ifdef for boolean CONFIG_CROS_KBD_LED_BACKLIGHT_ACPI.
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+> index 103cc40816fd..fa72f23ef0c2 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+> @@ -20,6 +20,7 @@ / {
 >
-> Changes from v1:
-> - Update email address accordingly.
-> - Use CONFIG_ACPI guard per "kernel test robot <lkp@intel.com>" reported an
->   unused variable issue.
+>         aliases {
+>                 display0 = &framebuffer0;
+> +               hsuart0 = &uart6;
+>                 serial0 = &uart9;
+>         };
 >
->  .../platform/chrome/cros_kbd_led_backlight.c  | 82 ++++++++++++++++---
->  1 file changed, 69 insertions(+), 13 deletions(-)
+> @@ -529,6 +530,32 @@ volume_down_resin: resin {
+>         };
+>  };
 >
-> diff --git a/drivers/platform/chrome/cros_kbd_led_backlight.c b/drivers/platform/chrome/cros_kbd_led_backlight.c
-> index f9587a562bb7..a86d664854ae 100644
-> --- a/drivers/platform/chrome/cros_kbd_led_backlight.c
-> +++ b/drivers/platform/chrome/cros_kbd_led_backlight.c
-> @@ -13,6 +13,33 @@
->  #include <linux/platform_device.h>
->  #include <linux/slab.h>
->
-> +/**
-> + * struct keyboard_led_drvdata - keyboard LED driver data.
-> + * @init:                      Init function.
-> + * @brightness_get:            Get LED brightness level.
-> + * @brightness_set:            Set LED brightness level.  Must not sleep.
-> + * @brightness_set_blocking:   Set LED brightness level.  It can block the
-> + *                             caller for the time required for accessing a
-> + *                             LED device register
-> + * @max_brightness:            Maximum brightness.
-> + *
-> + * See struct led_classdev in include/linux/leds.h for more details.
+> +/*
+> + * Prevent garbage data on bluetooth UART lines
 > + */
-> +struct keyboard_led_drvdata {
-> +       int (*init)(struct platform_device *pdev);
+> +&qup_uart6_default {
+> +        pinmux {
+> +                pins = "gpio45", "gpio46", "gpio47", "gpio48";
+> +                function = "qup6";
+> +        };
+
+This chunk should probably go into sdm845.dtsi. I'd suggest either
+adding a separate qup_uart6_4pin or just making qup_uart6_default the
+4-pin UART.
+
 > +
-> +       enum led_brightness (*brightness_get)(struct led_classdev *led_cdev);
+> +        cts {
+> +                pins = "gpio45";
+
+Then the label and 'pins' can go into the dtsi, while keeping just the
+bias and drive-strength in the platform dtsi.
+
+> +                bias-pull-down;
+> +        };
 > +
-> +       void (*brightness_set)(struct led_classdev *led_cdev,
-> +                              enum led_brightness brightness);
-> +       int (*brightness_set_blocking)(struct led_classdev *led_cdev,
-> +                                      enum led_brightness brightness);
+> +        rts-tx {
+> +                pins = "gpio46", "gpio47";
+> +                drive-strength = <2>;
+> +                bias-disable;
+> +        };
 > +
-> +       enum led_brightness max_brightness;
+> +        rx {
+> +                pins = "gpio48";
+> +                bias-pull-up;
+> +        };
 > +};
 > +
-> +#ifdef CONFIG_ACPI
+>  &qup_uart9_default {
+>         pinconf-rx {
+>                 pins = "gpio5";
+> @@ -667,6 +694,12 @@ &uart6 {
+>         bluetooth {
+>                 compatible = "qcom,wcn3990-bt";
+>
+> +               /*
+> +                * This path is relative to the qca/
+> +                * subdir under lib/firmware.
+> +                */
+> +               firmware-name = "axolotl/crnv21.bin";
+
+Do you know what is the difference between axolotl's bin and the regular one?
+
 > +
->  /* Keyboard LED ACPI Device must be defined in firmware */
->  #define ACPI_KEYBOARD_BACKLIGHT_DEVICE "\\_SB.KBLT"
->  #define ACPI_KEYBOARD_BACKLIGHT_READ   ACPI_KEYBOARD_BACKLIGHT_DEVICE ".KBQC"
-> @@ -20,8 +47,8 @@
->
->  #define ACPI_KEYBOARD_BACKLIGHT_MAX            100
->
-> -static void keyboard_led_set_brightness(struct led_classdev *cdev,
-> -                                       enum led_brightness brightness)
-> +static void keyboard_led_set_brightness_acpi(struct led_classdev *cdev,
-> +                                            enum led_brightness brightness)
->  {
->         union acpi_object param;
->         struct acpi_object_list input;
-> @@ -40,7 +67,7 @@ static void keyboard_led_set_brightness(struct led_classdev *cdev,
->  }
->
->  static enum led_brightness
-> -keyboard_led_get_brightness(struct led_classdev *cdev)
-> +keyboard_led_get_brightness_acpi(struct led_classdev *cdev)
->  {
->         unsigned long long brightness;
->         acpi_status status;
-> @@ -56,12 +83,10 @@ keyboard_led_get_brightness(struct led_classdev *cdev)
->         return brightness;
->  }
->
-> -static int keyboard_led_probe(struct platform_device *pdev)
-> +static int keyboard_led_init_acpi(struct platform_device *pdev)
->  {
-> -       struct led_classdev *cdev;
->         acpi_handle handle;
->         acpi_status status;
-> -       int error;
->
->         /* Look for the keyboard LED ACPI Device */
->         status = acpi_get_handle(ACPI_ROOT_OBJECT,
-> @@ -73,15 +98,44 @@ static int keyboard_led_probe(struct platform_device *pdev)
->                 return -ENXIO;
->         }
->
-> +       return 0;
-> +}
-> +
-> +static const struct keyboard_led_drvdata keyboard_led_drvdata_acpi = {
-> +       .init = keyboard_led_init_acpi,
-> +       .brightness_set = keyboard_led_set_brightness_acpi,
-> +       .brightness_get = keyboard_led_get_brightness_acpi,
-> +       .max_brightness = ACPI_KEYBOARD_BACKLIGHT_MAX,
-> +};
-> +
-> +#endif /* CONFIG_ACPI */
-> +
-> +static int keyboard_led_probe(struct platform_device *pdev)
-> +{
-> +       struct led_classdev *cdev;
-> +       const struct keyboard_led_drvdata *drvdata;
-> +       int error;
-> +
-> +       drvdata = acpi_device_get_match_data(&pdev->dev);
-> +       if (!drvdata)
-> +               return -EINVAL;
-> +
-> +       if (drvdata->init) {
-> +               error = drvdata->init(pdev);
-> +               if (error)
-> +                       return error;
-> +       }
-> +
->         cdev = devm_kzalloc(&pdev->dev, sizeof(*cdev), GFP_KERNEL);
->         if (!cdev)
->                 return -ENOMEM;
->
->         cdev->name = "chromeos::kbd_backlight";
-> -       cdev->max_brightness = ACPI_KEYBOARD_BACKLIGHT_MAX;
->         cdev->flags |= LED_CORE_SUSPENDRESUME;
-> -       cdev->brightness_set = keyboard_led_set_brightness;
-> -       cdev->brightness_get = keyboard_led_get_brightness;
-> +       cdev->max_brightness = drvdata->max_brightness;
-> +       cdev->brightness_set = drvdata->brightness_set;
-> +       cdev->brightness_set_blocking = drvdata->brightness_set_blocking;
-> +       cdev->brightness_get = drvdata->brightness_get;
->
->         error = devm_led_classdev_register(&pdev->dev, cdev);
->         if (error)
-> @@ -90,16 +144,18 @@ static int keyboard_led_probe(struct platform_device *pdev)
->         return 0;
->  }
->
-> -static const struct acpi_device_id keyboard_led_id[] = {
-> -       { "GOOG0002", 0 },
-> +#ifdef CONFIG_ACPI
-> +static const struct acpi_device_id keyboard_led_acpi_match[] = {
-> +       { "GOOG0002", (kernel_ulong_t)&keyboard_led_drvdata_acpi },
->         { }
->  };
-> -MODULE_DEVICE_TABLE(acpi, keyboard_led_id);
-> +MODULE_DEVICE_TABLE(acpi, keyboard_led_acpi_match);
-> +#endif
->
->  static struct platform_driver keyboard_led_driver = {
->         .driver         = {
->                 .name   = "chromeos-keyboard-leds",
-> -               .acpi_match_table = ACPI_PTR(keyboard_led_id),
-> +               .acpi_match_table = ACPI_PTR(keyboard_led_acpi_match),
->         },
->         .probe          = keyboard_led_probe,
->  };
-> --
-> 2.36.1.124.g0e6072fb45-goog
->
+>                 vddio-supply = <&vreg_s4a_1p8>;
+>                 vddxo-supply = <&vreg_l7a_1p8>;
+>                 vddrf-supply = <&vreg_l17a_1p3>;
+
+-- 
+With best wishes
+Dmitry
