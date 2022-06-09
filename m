@@ -2,64 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5DD0544AB5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:43:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78F77544ABD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:43:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243890AbiFILmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 07:42:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35792 "EHLO
+        id S244404AbiFILmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 07:42:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244456AbiFILmX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:42:23 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED1DE1DF111
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:40:46 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id y19so46904407ejq.6
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:40:46 -0700 (PDT)
+        with ESMTP id S244495AbiFILmY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:42:24 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B75BA1ECD69
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:40:53 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id y19so46905033ejq.6
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:40:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=JDp4i9fK6ZlNgpwtecp/EcLoXznY+8QAd3GbFyU5H28=;
-        b=GqO4nqAq5vON4VyW/I8XiGjnAvDTvOEmxbTGcEuwgRNwxDUoh+YDDMxRp9e9fj5dIV
-         4TyZkU0ItY8LecYZvkhgh0PZcGCiNRn2wBE1z+vbHWtVpqhhgNDHojzJb/3AQVg/JWK2
-         1hH1p4YgKymYTcmUALO7O6P8oiPawE/xguvEU8kafLz/ycxGcSuCOrA34Ddi9yYsEY5e
-         pvD52rLNHJ5xmgIPud28EcrqoQ2yhhNVI4VbizndnoII0wBau1rdJTfeQgBErfcm1Fct
-         T7ERyqI4/tk1uPJmJDxmRmsdhrPafwr0GJEFzqluA8GPcyyftFvgZSJa8NwqNLee+bQX
-         d1pA==
+        bh=ouHToTpfN91IdC1bQjCsmRZ9s0XMaKvgoUPDfBZdkoE=;
+        b=MCGCVjufFqOOIqY2BmXcaAlOQZP/Mb+gEcACSVAlis2Z8u5cPYXb0vv1bolsxVRWIL
+         6w8c7VAOzqydEgwsZrxcNAjPTgKFSWbtgFo5K/dU3ikxMhoSakVBi5ZsZVu88h6PZ8vV
+         eKJFs1KM9Pric7/nas8TK64Mibp6DgyMO00AQS6rB5QI624a/23Ajww+GB6jBy3Z+464
+         m3h1BxP0wtfBG6hxyUXwFl0qgLRXBJZ4O/hZ6axe/6wPj8C8SLqLPdRYU/5qLfc4LnRx
+         pKqCTW5/szu1KTxaulfufe8/WxKqGAiDvLzN13ijGS245X3U28yqx5qxu8HiWnb3U8jz
+         5YSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=JDp4i9fK6ZlNgpwtecp/EcLoXznY+8QAd3GbFyU5H28=;
-        b=T/gd63w7ovUkZdNuMsvYZalmwoMIo20rMpJtJzlznm5ENQb/2Kw/IZ4HWZiIdFtpQl
-         W91v5tNVkUEPA2/IxgLRZFWfyiYsDAhxcS03c9RpyZHJLRBS42m/Q5081+plqjh8l4J9
-         RLKvZ2yrS2n7fvlOu/9LaM6kLW6eAh21obKdJOXxVMSI+Egh8c9CDXvymilKDWz9E0tN
-         bE5B51H04/qiee6gk6BtmGxLo6pen8smZyTJyvW98VIR8ioctxqQd9yuyn7/XYYxylx1
-         lv5ETHw9Tfi3pZukFvmgDt6vgZIslLcBSJqXFg5q/AzMvTtqKKyJSQGMwIejTGiJLYzW
-         ICnw==
-X-Gm-Message-State: AOAM530as/sJzW02uljqCw0dt/Pf4LCHq7e/TcCgq+XduPppqDKCkWcx
-        IYbuEdIIG5+b6SzeEfBk2I1Z6Q==
-X-Google-Smtp-Source: ABdhPJwdOJJnQY+KyvjJJDp1BkJ69H0dYCgysCMAgOU2vZcTBzDQVuwXv7e60fCPy1rxWS2umbbfjg==
-X-Received: by 2002:a17:906:b788:b0:711:fc54:e55e with SMTP id dt8-20020a170906b78800b00711fc54e55emr5527011ejb.270.1654774845260;
-        Thu, 09 Jun 2022 04:40:45 -0700 (PDT)
+        bh=ouHToTpfN91IdC1bQjCsmRZ9s0XMaKvgoUPDfBZdkoE=;
+        b=wa4bSJOnSk4NzQ1ca3DWzLobX32ODT33hxmjxXwlPYxT112aONdNwVVelSOkCu6113
+         ghOi2nZtSmRzmBQPi24zsAunFTaJvyvscmcfXQ0eGzNE+q3lCy6zkrxCIZf4u7t4W51a
+         jyeyr0XIQPeTwoHkNlQ0JZ0/pz6tcz0tsyg54KCkJGTEQesqFGrO762Rx7U6WU6Spn7X
+         pF7id7F1O6VK6yJUDyqeUoqDuhtemIRUlgwrxZlk415Tyz8KGjzKVFBFfKL7mO7yMXf6
+         qi4xZgkJQVcg0url2vn4XSueTkPsJeqJiZGykOKlh185N89VHhXUE7llvl3oj5QLm/XF
+         kx9g==
+X-Gm-Message-State: AOAM533cLCnV3JFrm2JeJQ2p3QrLq0zClvkILv6utE54c5wg/CBLmTXy
+        FgH3+XQP7IWLtsSGP1EIKNpsfw==
+X-Google-Smtp-Source: ABdhPJzz6M1UXqHNUIFcQq/P9/vNHhMGDrGeRXnd7+DWHIroLqIpwMzDeGqSSb7yKePjKhWbv85fhQ==
+X-Received: by 2002:a17:907:3f97:b0:711:d61d:df9 with SMTP id hr23-20020a1709073f9700b00711d61d0df9mr16406402ejc.644.1654774852403;
+        Thu, 09 Jun 2022 04:40:52 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id 10-20020a170906058a00b007101f6f0720sm7760844ejn.120.2022.06.09.04.40.44
+        by smtp.gmail.com with ESMTPSA id bk2-20020a170906b0c200b006fef557bb7asm10498662ejb.80.2022.06.09.04.40.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 04:40:44 -0700 (PDT)
+        Thu, 09 Jun 2022 04:40:52 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 39/48] ARM: dts: omap: correct gpio-keys properties
-Date:   Thu,  9 Jun 2022 13:40:26 +0200
-Message-Id: <20220609114026.380682-10-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 40/48] ARM: dts: animeo: align gpio-key node names with dtschema
+Date:   Thu,  9 Jun 2022 13:40:39 +0200
+Message-Id: <20220609114047.380793-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
 References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
@@ -68,153 +64,56 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-gpio-keys children do not use unit addresses.
+The node names should be generic and DT schema expects certain pattern
+(e.g. with key/button/switch).
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/am335x-evm.dts                  | 2 --
- arch/arm/boot/dts/am335x-guardian.dts             | 2 --
- arch/arm/boot/dts/am335x-moxa-uc-2100-common.dtsi | 4 +---
- arch/arm/boot/dts/am335x-moxa-uc-8100-common.dtsi | 4 +---
- arch/arm/boot/dts/am335x-pcm-953.dtsi             | 4 ++--
- arch/arm/boot/dts/am335x-pepper.dts               | 8 +++-----
- arch/arm/boot/dts/am437x-idk-evm.dts              | 4 +---
- 7 files changed, 8 insertions(+), 20 deletions(-)
+ arch/arm/boot/dts/animeo_ip.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/am335x-evm.dts b/arch/arm/boot/dts/am335x-evm.dts
-index 730898310641..25c6ac9913d2 100644
---- a/arch/arm/boot/dts/am335x-evm.dts
-+++ b/arch/arm/boot/dts/am335x-evm.dts
-@@ -94,8 +94,6 @@ &gpio1 26 GPIO_ACTIVE_HIGH		/* Bank1, pin26 */
+diff --git a/arch/arm/boot/dts/animeo_ip.dts b/arch/arm/boot/dts/animeo_ip.dts
+index 7da718abbd85..3fa3db2d9d02 100644
+--- a/arch/arm/boot/dts/animeo_ip.dts
++++ b/arch/arm/boot/dts/animeo_ip.dts
+@@ -168,26 +168,26 @@ tx_red {
+ 		};
+ 	};
  
- 	gpio_keys: volume-keys {
+-	gpio_keys {
++	gpio-keys {
  		compatible = "gpio-keys";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		autorepeat;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
  
- 		switch-9 {
-diff --git a/arch/arm/boot/dts/am335x-guardian.dts b/arch/arm/boot/dts/am335x-guardian.dts
-index 1a7e187b1953..f6356266564c 100644
---- a/arch/arm/boot/dts/am335x-guardian.dts
-+++ b/arch/arm/boot/dts/am335x-guardian.dts
-@@ -33,8 +33,6 @@ guardian_buttons: gpio-keys {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&guardian_button_pins>;
- 		compatible = "gpio-keys";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 
- 		select-button {
- 			label = "guardian-select-button";
-diff --git a/arch/arm/boot/dts/am335x-moxa-uc-2100-common.dtsi b/arch/arm/boot/dts/am335x-moxa-uc-2100-common.dtsi
-index 92a0e98ec231..7b40ca9483ca 100644
---- a/arch/arm/boot/dts/am335x-moxa-uc-2100-common.dtsi
-+++ b/arch/arm/boot/dts/am335x-moxa-uc-2100-common.dtsi
-@@ -166,10 +166,8 @@ &mmc2 {
- &buttons {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&push_button_pins>;
--	#address-cells = <1>;
--	#size-cells = <0>;
- 
--	button@0 {
-+	button-0 {
- 		label = "push_button";
- 		linux,code = <0x100>;
- 		gpios = <&gpio2 23 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm/boot/dts/am335x-moxa-uc-8100-common.dtsi b/arch/arm/boot/dts/am335x-moxa-uc-8100-common.dtsi
-index e7e439a0630a..e0364adb8393 100644
---- a/arch/arm/boot/dts/am335x-moxa-uc-8100-common.dtsi
-+++ b/arch/arm/boot/dts/am335x-moxa-uc-8100-common.dtsi
-@@ -378,10 +378,8 @@ &mmc3 {
- &buttons {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&push_button_pins>;
--	#address-cells = <1>;
--	#size-cells = <0>;
- 
--	button@0 {
-+	button-0 {
- 		label = "push_button";
- 		linux,code = <0x100>;
- 		gpios = <&gpio3 21 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm/boot/dts/am335x-pcm-953.dtsi b/arch/arm/boot/dts/am335x-pcm-953.dtsi
-index 124026fa0d09..dae448040a97 100644
---- a/arch/arm/boot/dts/am335x-pcm-953.dtsi
-+++ b/arch/arm/boot/dts/am335x-pcm-953.dtsi
-@@ -54,14 +54,14 @@ user_buttons: user_buttons {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&user_buttons_pins>;
- 
--		button@0 {
-+		button-0 {
- 			label = "home";
- 			linux,code = <KEY_HOME>;
- 			gpios = <&gpio3 7 GPIO_ACTIVE_HIGH>;
+-		keyswitch_in {
++		key-switch-in {
+ 			label = "keyswitch_in";
+ 			gpios = <&pioB 1 GPIO_ACTIVE_HIGH>;
+ 			linux,code = <28>;
  			wakeup-source;
  		};
  
--		button@1 {
-+		button-1 {
- 			label = "menu";
- 			linux,code = <KEY_MENU>;
- 			gpios = <&gpio3 8 GPIO_ACTIVE_HIGH>;
-diff --git a/arch/arm/boot/dts/am335x-pepper.dts b/arch/arm/boot/dts/am335x-pepper.dts
-index b5e88e627bc1..8691eec33b61 100644
---- a/arch/arm/boot/dts/am335x-pepper.dts
-+++ b/arch/arm/boot/dts/am335x-pepper.dts
-@@ -596,24 +596,22 @@ led1 {
- &buttons {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&user_buttons_pins>;
--	#address-cells = <1>;
--	#size-cells = <0>;
+-		error_in {
++		key-error-in {
+ 			label = "error_in";
+ 			gpios = <&pioB 2 GPIO_ACTIVE_HIGH>;
+ 			linux,code = <29>;
+ 			wakeup-source;
+ 		};
  
--	button0 {
-+	button-0 {
- 		label = "home";
- 		linux,code = <KEY_HOME>;
- 		gpios = <&gpio1 22 GPIO_ACTIVE_LOW>;
- 		wakeup-source;
- 	};
- 
--	button1 {
-+	button-1 {
- 		label = "menu";
- 		linux,code = <KEY_MENU>;
- 		gpios = <&gpio1 23 GPIO_ACTIVE_LOW>;
- 		wakeup-source;
- 	};
- 
--	buttons2 {
-+	button-2 {
- 		label = "power";
- 		linux,code = <KEY_POWER>;
- 		gpios = <&gpio0 7 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm/boot/dts/am437x-idk-evm.dts b/arch/arm/boot/dts/am437x-idk-evm.dts
-index d46cd721f27e..123a95f87554 100644
---- a/arch/arm/boot/dts/am437x-idk-evm.dts
-+++ b/arch/arm/boot/dts/am437x-idk-evm.dts
-@@ -102,10 +102,8 @@ gpio_keys: gpio-keys {
- 		compatible = "gpio-keys";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&gpio_keys_pins_default>;
--		#address-cells = <1>;
--		#size-cells = <0>;
- 
--		switch0 {
-+		switch-0 {
- 			label = "power-button";
- 			linux,code = <KEY_POWER>;
- 			gpios = <&gpio4 2 GPIO_ACTIVE_LOW>;
+-		btn {
++		key-s {
+ 			label = "btn";
+ 			gpios = <&pioC 23 GPIO_ACTIVE_HIGH>;
+ 			linux,code = <31>;
 -- 
 2.34.1
 
