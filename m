@@ -2,99 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28CB9545367
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 19:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFEBC5453AB
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 20:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241642AbiFIRvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 13:51:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36844 "EHLO
+        id S233676AbiFISGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 14:06:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343563AbiFIRvl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 13:51:41 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92F9131AEA7;
-        Thu,  9 Jun 2022 10:51:39 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id h19so32235035edj.0;
-        Thu, 09 Jun 2022 10:51:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=references:from:to:cc:subject:in-reply-to:date:message-id
-         :mime-version;
-        bh=cfnFNEELhJfGAq/OjhFTkSl+Ek4qHu5L5VyE1+b7HTY=;
-        b=e93IIVKnlvb402Ftt9aZOW48kNScNs12uI9NjAPZ6RBwjOYTq0TFHjOZgSelyr1pqY
-         cNXCnzB7pde0fmWKvaUI6X2jJLkMgc3MAJye6X1fGCMgl0EpLqZ2oCIZOFe+ItaV4X5/
-         YYux3bUNFJo8dgz75sq5W44HGybT9VSXohjQUox1cWKnM/Wxf2gIpm9N1aMxuxGk6wZ4
-         JFWES8SeePyv2NNsQFI/szWWIWfpVfnofb8ejHPiYfC1LUUTGwrHXE7pvdMB+Ea7xAS8
-         AZhrlqL7wqo8E4Go4FOmqxZnYIMwNvJeUEkMTPBe/crVfVInGg5C+EIPj55+b3g1D4TM
-         yYQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:references:from:to:cc:subject:in-reply-to:date
-         :message-id:mime-version;
-        bh=cfnFNEELhJfGAq/OjhFTkSl+Ek4qHu5L5VyE1+b7HTY=;
-        b=GaTAlxUj9f1N5AoiBSS/fem0lOmD8emFvSNJfVQP+CAoMwbV30UINNiXj2KGmzmRcU
-         drJ87L/2pzT71HF3CC/HlyTKhHUFtOHNfZP9WMgP0FvYtazcI9QDBWw1FdGwxknBAnWc
-         4qg3sKbxWaziFMIFC8rrjXWwE81PRJhZkwzaMOuBmTnyydCbe7IZ6u5FafhCOImCQdAf
-         VglApO/nU7xTpC5dlcWxx1B5rKJmo3mMc9FGctG4OaEvn8WLZCG7cpoKPjP+IWEzbGAi
-         8SHN3U0uNXJvJOjN/k0Ju8V2+ldpOxhzt3yaGaMTK9fQuRS90LeYnlOh361S4O3pEB8r
-         190g==
-X-Gm-Message-State: AOAM532p+H4yw1Jf5SAwaZb+nPfNgJkqNc8gsHAZqCpg/SU8guxf2nkV
-        lYxx5vYb7RyyPoe0vBe1aIY=
-X-Google-Smtp-Source: ABdhPJw517rOIR4mHIiR+isPEkhFdVM+dJvQny5LZ2Cl9wto1cn5fPQdgomcbox5pf/JWlfD+KF62A==
-X-Received: by 2002:a05:6402:1d4a:b0:42e:93de:17f4 with SMTP id dz10-20020a0564021d4a00b0042e93de17f4mr38464878edb.8.1654797098116;
-        Thu, 09 Jun 2022 10:51:38 -0700 (PDT)
-Received: from localhost (92.40.202.100.threembb.co.uk. [92.40.202.100])
-        by smtp.gmail.com with ESMTPSA id a9-20020a50ff09000000b0042fb3badd48sm10678142edu.9.2022.06.09.10.51.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 10:51:37 -0700 (PDT)
-References: <20220607155324.118102-1-aidanmacdonald.0x0@gmail.com>
- <20220607155324.118102-4-aidanmacdonald.0x0@gmail.com>
- <d5465a36-f18a-ff48-b13e-e5f9c48a398a@linaro.org>
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org, jic23@kernel.org,
-        lee.jones@linaro.org, sre@kernel.org, broonie@kernel.org,
-        gregkh@linuxfoundation.org, lgirdwood@gmail.com, lars@metafoo.de,
-        rafael@kernel.org, quic_gurus@quicinc.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 03/17] dt-bindings: mfd: add bindings for AXP192 MFD
- device
-In-reply-to: <d5465a36-f18a-ff48-b13e-e5f9c48a398a@linaro.org>
-Date:   Thu, 09 Jun 2022 18:52:41 +0100
-Message-ID: <SAOEKBJz99Moqt4btaOY5IlUjs9zZAvh@localhost>
+        with ESMTP id S234168AbiFISGP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 14:06:15 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11E363207F3;
+        Thu,  9 Jun 2022 11:06:10 -0700 (PDT)
+X-UUID: ee99b984265c4058ac6cfab810248d3e-20220610
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:bfdda56a-d5a8-48be-aa50-547f0f4203a1,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.5,REQID:bfdda56a-d5a8-48be-aa50-547f0f4203a1,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:2a19b09,CLOUDID:ec22d47e-c8dc-403a-96e8-6237210dceee,C
+        OID:656875a871f0,Recheck:0,SF:28|17|19|48,TC:nil,Content:-5,EDM:-3,IP:nil,
+        URL:0,File:nil,QS:0,BEC:nil
+X-UUID: ee99b984265c4058ac6cfab810248d3e-20220610
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <miles.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1258525352; Fri, 10 Jun 2022 02:06:07 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Fri, 10 Jun 2022 02:06:05 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.3 via Frontend Transport; Fri, 10 Jun 2022 02:06:05 +0800
+From:   Miles Chen <miles.chen@mediatek.com>
+To:     <angelogioacchino.delregno@collabora.com>
+CC:     <devicetree@vger.kernel.org>, <iommu@lists.linux-foundation.org>,
+        <joro@8bytes.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
+        <robh+dt@kernel.org>, <will@kernel.org>, <yong.wu@mediatek.com>
+Subject: Re: [PATCH v3 3/6] arm64: dts: mediatek: mt8173: Add mediatek,infracfg phandle for IOMMU
+Date:   Fri, 10 Jun 2022 02:06:05 +0800
+Message-ID: <20220609180605.31142-1-miles.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20220609100802.54513-4-angelogioacchino.delregno@collabora.com>
+References: <20220609100802.54513-4-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> The IOMMU driver now looks for the "mediatek,infracfg" phandle as a
+> new way to retrieve a syscon to that:
+> even though the old way is retained, it has been deprecated and the
+> driver will write a message in kmsg advertising to use the phandle
+> way instead.
+> 
+> For this reason, assign the right phandle to mediatek,infracfg in
+> the iommu node.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+Reviewed-by: Miles Chen <miles.chen@mediatek.com> 
 
-> On 07/06/2022 17:53, Aidan MacDonald wrote:
->> The AXP192 is another X-Powers PMIC similar to the existing ones.
->> 
->> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
->> ---
->>  Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 1 +
->
-> You got here ack, didn't you? Why sending without it?
->
-> https://elixir.bootlin.com/linux/v5.19-rc1/source/Documentation/process/submitting-patches.rst#L536
->
->
-> Best regards,
-> Krzysztof
-
-I'm sorry, I'm pretty new to kernel development and I forgot. Will make
-sure to add them in future. Thanks for pointing out my mistake.
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8173.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> index 40d7b47fc52e..825a3c670373 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> @@ -588,6 +588,7 @@ iommu: iommu@10205000 {
+>  			interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_LOW>;
+>  			clocks = <&infracfg CLK_INFRA_M4U>;
+>  			clock-names = "bclk";
+> +			mediatek,infracfg = <&infracfg>;
+>  			mediatek,larbs = <&larb0>, <&larb1>, <&larb2>,
+>  					 <&larb3>, <&larb4>, <&larb5>;
+>  			#iommu-cells = <1>;
+> -- 
+> 2.35.1
+> 
+> 
