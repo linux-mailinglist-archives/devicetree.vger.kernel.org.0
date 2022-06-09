@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC41A544AA6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C4D544AA8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:43:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244392AbiFILmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 07:42:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35744 "EHLO
+        id S244017AbiFILmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 07:42:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244064AbiFILlH (ORCPT
+        with ESMTP id S244002AbiFILlH (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:41:07 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D21181D4DDC
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:40:31 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id kq6so33864307ejb.11
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:40:31 -0700 (PDT)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E9BF1DD4EA
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:40:33 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id y19so46902300ejq.6
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:40:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=XMCBqJLXl1yZV+e3LQN80RorsyQqGZTi99dCXoJkMfc=;
-        b=qk/KaHJFHCh8zCxlBYjxy8QY41cdfTArL+3znQJN/TBpcY+XRFYhIa3pSN1DbdHJAS
-         JE+niEp5QhXkayHgVZzXji2p+WiOv9dvVnaFKM/sfdO4rLPUZLoHuc5QAl7XGuRCTlE4
-         VwirU2W4+XNrX5wUiY4EGD1Oi77DdpS7TUYSzxI6q3PBZET1BfLVLBBp/ijS/38zXFZU
-         VP585XlgQ0My+qMK96iw7j61hKFKew4eL9XUNWaLH4doNxIC3MmRuJILlupANb00T4ez
-         r5Nj6wKiYIi/hjPBUmCcGZcZEKFJxsWnvQJNGAsglybndLadj/hBLcWz9jaNu4t+ELwP
-         7pyQ==
+        bh=VIMCTR1frvgpFCy/vc70wP9R+xYc4n9eebnCO6KFjK8=;
+        b=e87w43dqaKRQ7Z/dx+eIcL+FrCawq+shSTObf8LVjoQtraBFuU9aOy5zqaETz0fAu5
+         sOjEiZqfSRL1Qvn3y+om0xZsVLmMggAgQPn9t0SJ2S3xMtB+MTRF2tmyOUw3yF9MNQR5
+         fejPJ/pGRUhL66yMSYmRWbgVSUGuuqOZkwpB6jmoVgIY3Qlg15kXmqmCBlyynUfjLaEq
+         srqqTDE6kT9Vtl50jxgDHRowOHnGC+Da8f8+QUd36Vs8YMzAP+tFMjRLSn8aNTiHQz/K
+         uuFUbdx5SXkCMdhX6JegFLquuwlb/q1x+JeEj4uugHxcUwWZjvTiuwZvNUwGnOxBMEcj
+         UOqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=XMCBqJLXl1yZV+e3LQN80RorsyQqGZTi99dCXoJkMfc=;
-        b=SjjgXjGKOO2nxzg36oGQRe88+Kv878+bPL6pqwREU3iRslzlXvybNTvPDJzDXrlJTK
-         0mW/QrKHMu1WHMlpMAv2qDVyAeir6/9qjw8RZRTWl2+jv68mb8tJ+qgW/UgfXkhf86WO
-         5vYnNj2Y0mFOnDyvDk1l1wCydR4zWwW6J34XEzygTh23Ydy129ZHDnCCEjzX7gUt5AyM
-         NrF+RE0WV/YzdkmA5SUSrpJfAV9QjU3KblH3XBIb6HIbZd0UXrS1CpwBg8Zi/8iZnSmv
-         uc6nwYA1QqhlprGt0hkY6wHNhZZSHYxA3XfEpx5W54LM4e2j36wwbuV/R++v3VN5ws9o
-         aBZg==
-X-Gm-Message-State: AOAM530wGcIQXn/jToXgG/7knzrIl7xjRsxtFyOE61e1OM3KDyoB2oyu
-        aWVDVsrRsEIVXEvKT1cz7YwQxQ==
-X-Google-Smtp-Source: ABdhPJxbd78BBuGPzfZgPbl7ytPLqMtFXPkhThO5phsGGLXyk/qipWs1Qn0F5ngNlRDlUT0xX8BSzg==
-X-Received: by 2002:a17:907:2b05:b0:710:dabf:fde2 with SMTP id gc5-20020a1709072b0500b00710dabffde2mr23714513ejc.114.1654774831427;
-        Thu, 09 Jun 2022 04:40:31 -0700 (PDT)
+        bh=VIMCTR1frvgpFCy/vc70wP9R+xYc4n9eebnCO6KFjK8=;
+        b=UsRqVwFDWnYzOlYXnnFHqFG/XduhbGh/eh14FRoPmOoLYcqCP0CsEfOS/X9F0SULyx
+         WLa0bKN3BPR7cPS7qhcDlf2+EPnNrltoajiu56+Sw/TZJEL1sDXOIxCilGlyVwxIgf3z
+         ZKo8UuBkFMIdjr4c5BucfruQZtdfaGdr7OzaVfm8ffzDEVTPLu7nrpPOEnIgl8PpEjYU
+         KxKtaveW5foEaA0cmTxI/ytpMrEEBAtjDfveoMwvFR+pS3nb5LW7Zk+GHAiMulYeLWHs
+         0xTOUPoxwXQTSBovZ6a3kbQJfkqFf0Wct7rzk+zTREc7+M0siqgWL17/GfH8C9cOJjWg
+         JpHQ==
+X-Gm-Message-State: AOAM531Bo74gFPus9Sk7Bte4r6Zmr3ATfCqmtnzfdCLKI/gRa4Pldjfk
+        0TOKx1Szi0S9UnR7sBnmkzo6ew==
+X-Google-Smtp-Source: ABdhPJxg5RjCwZhjIijeZmNGh2LNUXMbxIJjQHT/neGfAI+evNUZBpeF4c5I0UK2Tq9zSG8JegRfWg==
+X-Received: by 2002:a17:907:1310:b0:709:bfa:4f3e with SMTP id vj16-20020a170907131000b007090bfa4f3emr28754314ejb.589.1654774833043;
+        Thu, 09 Jun 2022 04:40:33 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id 10-20020a170906058a00b007101f6f0720sm7760844ejn.120.2022.06.09.04.40.30
+        by smtp.gmail.com with ESMTPSA id 10-20020a170906058a00b007101f6f0720sm7760844ejn.120.2022.06.09.04.40.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 04:40:31 -0700 (PDT)
+        Thu, 09 Jun 2022 04:40:32 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         arm@kernel.org, soc@kernel.org, Andy Gross <agross@kernel.org>,
@@ -56,9 +56,9 @@ To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 30/48] arm64: dts: qcom: align led node names with dtschema
-Date:   Thu,  9 Jun 2022 13:40:17 +0200
-Message-Id: <20220609114026.380682-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 31/48] ARM: dts: qcom: align gpio-key node names with dtschema
+Date:   Thu,  9 Jun 2022 13:40:18 +0200
+Message-Id: <20220609114026.380682-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
 References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
@@ -75,65 +75,294 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 The node names should be generic and DT schema expects certain pattern
-with 'led'.
+(e.g. with key/button/switch).
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts | 4 ++--
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts      | 6 +++---
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts        | 4 ++--
+ arch/arm/boot/dts/qcom-apq8064-sony-xperia-lagan-yuga.dts | 8 ++++----
+ arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi             | 2 +-
+ arch/arm/boot/dts/qcom-ipq8064-rb3011.dts                 | 4 ++--
+ arch/arm/boot/dts/qcom-ipq8064-v1.0.dtsi                  | 6 +++---
+ arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts  | 4 ++--
+ arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi     | 8 ++++----
+ arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts       | 6 +++---
+ arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts        | 6 +++---
+ .../dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts    | 8 ++++----
+ 10 files changed, 28 insertions(+), 28 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
-index 6a200f37c035..0a5b4617a8e6 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
-@@ -133,7 +133,7 @@ button-camera-focus {
- 	keyboard-leds {
- 		compatible = "gpio-leds";
+diff --git a/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts b/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
+index ca9f73528196..549f3ef53b2d 100644
+--- a/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
++++ b/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
+@@ -44,12 +44,12 @@ ext_3p3v: regulator-fixed@1 {
  
--		backlight {
-+		led-0 {
- 			color = <LED_COLOR_ID_WHITE>;
- 			default-state = "off";
- 			function = LED_FUNCTION_KBD_BACKLIGHT;
-@@ -142,7 +142,7 @@ backlight {
- 			retain-state-suspended;
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		volume_up {
++		key-volume-up {
+ 			label = "Volume Up";
+ 			gpios = <&pm8921_gpio 4 GPIO_ACTIVE_HIGH>;
+ 			linux,code = <KEY_VOLUMEUP>;
+ 		};
+-		volume_down {
++		key-volume-down {
+ 			label = "Volume Down";
+ 			gpios = <&pm8921_gpio 38 GPIO_ACTIVE_HIGH>;
+ 			linux,code = <KEY_VOLUMEDOWN>;
+diff --git a/arch/arm/boot/dts/qcom-apq8064-sony-xperia-lagan-yuga.dts b/arch/arm/boot/dts/qcom-apq8064-sony-xperia-lagan-yuga.dts
+index 0cee62c7b8b0..13826462fee5 100644
+--- a/arch/arm/boot/dts/qcom-apq8064-sony-xperia-lagan-yuga.dts
++++ b/arch/arm/boot/dts/qcom-apq8064-sony-xperia-lagan-yuga.dts
+@@ -23,28 +23,28 @@ gpio-keys {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+ 
+-		camera-focus {
++		key-camera-focus {
+ 			label = "camera_focus";
+ 			gpios = <&pm8921_gpio 3 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+ 			linux,code = <KEY_CAMERA_FOCUS>;
  		};
  
--		caps-lock {
-+		led-1 {
- 			color = <LED_COLOR_ID_YELLOW>;
- 			default-state = "off";
- 			function = LED_FUNCTION_CAPSLOCK;
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index a6986f95a80a..72b234ad9fab 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -60,21 +60,21 @@ key-vol-up {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		user4 {
-+		led-0 {
- 			label = "green:user4";
- 			gpios = <&pm8998_gpio 13 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "panic-indicator";
- 			default-state = "off";
+-		camera-snapshot {
++		key-camera-snapshot {
+ 			label = "camera_snapshot";
+ 			gpios = <&pm8921_gpio 4 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+ 			linux,code = <KEY_CAMERA>;
  		};
  
--		wlan {
-+		led-1 {
- 			label = "yellow:wlan";
- 			gpios = <&pm8998_gpio 9 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "phy0tx";
- 			default-state = "off";
+-		volume-down {
++		key-volume-down {
+ 			label = "volume_down";
+ 			gpios = <&pm8921_gpio 29 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+ 			linux,code = <KEY_VOLUMEDOWN>;
  		};
  
--		bt {
-+		led-2 {
- 			label = "blue:bt";
- 			gpios = <&pm8998_gpio 5 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "bluetooth-power";
+-		volume-up {
++		key-volume-up {
+ 			label = "volume_up";
+ 			gpios = <&pm8921_gpio 35 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+diff --git a/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi b/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
+index 1f3b1ce82108..af9a26fb5d4a 100644
+--- a/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
+@@ -11,7 +11,7 @@ / {
+ 	keys {
+ 		compatible = "gpio-keys";
+ 
+-		reset {
++		key-reset {
+ 			label = "reset";
+ 			gpios = <&tlmm 63 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_RESTART>;
+diff --git a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
+index 596d129d4a95..760151b52add 100644
+--- a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
++++ b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
+@@ -187,12 +187,12 @@ partition@0 {
+ 			};
+ 		};
+ 
+-		gpio_keys {
++		gpio-keys {
+ 			compatible = "gpio-keys";
+ 			pinctrl-0 = <&buttons_pins>;
+ 			pinctrl-names = "default";
+ 
+-			button@1 {
++			button {
+ 				label = "reset";
+ 				linux,code = <KEY_RESTART>;
+ 				gpios = <&qcom_pinmux 66 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm/boot/dts/qcom-ipq8064-v1.0.dtsi b/arch/arm/boot/dts/qcom-ipq8064-v1.0.dtsi
+index 5c802b99e15f..ccebb7d56113 100644
+--- a/arch/arm/boot/dts/qcom-ipq8064-v1.0.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq8064-v1.0.dtsi
+@@ -65,19 +65,19 @@ sata@29000000 {
+ 			status = "okay";
+ 		};
+ 
+-		gpio_keys {
++		gpio-keys {
+ 			compatible = "gpio-keys";
+ 			pinctrl-0 = <&buttons_pins>;
+ 			pinctrl-names = "default";
+ 
+-			button@1 {
++			button-1 {
+ 				label = "reset";
+ 				linux,code = <KEY_RESTART>;
+ 				gpios = <&qcom_pinmux 54 GPIO_ACTIVE_LOW>;
+ 				linux,input-type = <1>;
+ 				debounce-interval = <60>;
+ 			};
+-			button@2 {
++			button-2 {
+ 				label = "wps";
+ 				linux,code = <KEY_WPS_BUTTON>;
+ 				gpios = <&qcom_pinmux 65 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+index 9493886a5c0d..72e82033252e 100644
+--- a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
++++ b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+@@ -24,14 +24,14 @@ gpio-keys {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+ 
+-		volume-up {
++		key-volume-up {
+ 			label = "volume_up";
+ 			gpios = <&pm8941_gpios 2 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+ 			linux,code = <KEY_VOLUMEUP>;
+ 		};
+ 
+-		volume-down {
++		key-volume-down {
+ 			label = "volume_down";
+ 			gpios = <&pm8941_gpios 3 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
+index 1d21de46f85c..e0152f118495 100644
+--- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
+@@ -20,28 +20,28 @@ gpio-keys {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+ 
+-		volume-down {
++		key-volume-down {
+ 			label = "volume_down";
+ 			gpios = <&pm8941_gpios 2 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+ 			linux,code = <KEY_VOLUMEDOWN>;
+ 		};
+ 
+-		camera-snapshot {
++		key-camera-snapshot {
+ 			label = "camera_snapshot";
+ 			gpios = <&pm8941_gpios 3 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+ 			linux,code = <KEY_CAMERA>;
+ 		};
+ 
+-		camera-focus {
++		key-camera-focus {
+ 			label = "camera_focus";
+ 			gpios = <&pm8941_gpios 4 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+ 			linux,code = <KEY_CAMERA_FOCUS>;
+ 		};
+ 
+-		volume-up {
++		key-volume-up {
+ 			label = "volume_up";
+ 			gpios = <&pm8941_gpios 5 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+diff --git a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
+index 58cb2ce1e4df..92857283a675 100644
+--- a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
++++ b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
+@@ -25,7 +25,7 @@ gpio-keys {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+ 
+-		camera-snapshot {
++		key-camera-snapshot {
+ 			label = "camera_snapshot";
+ 			gpios = <&pm8941_gpios 1 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_CAMERA>;
+@@ -33,7 +33,7 @@ camera-snapshot {
+ 			debounce-interval = <15>;
+ 		};
+ 
+-		volume-down {
++		key-volume-down {
+ 			label = "volume_down";
+ 			gpios = <&pm8941_gpios 2 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_VOLUMEDOWN>;
+@@ -41,7 +41,7 @@ volume-down {
+ 			debounce-interval = <15>;
+ 		};
+ 
+-		volume-up {
++		key-volume-up {
+ 			label = "volume_up";
+ 			gpios = <&pm8941_gpios 5 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_VOLUMEUP>;
+diff --git a/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts b/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts
+index d6b2300a8223..1ed40c14f9d3 100644
+--- a/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts
++++ b/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts
+@@ -25,7 +25,7 @@ gpio-keys {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+ 
+-		volume-down {
++		key-volume-down {
+ 			label = "volume_down";
+ 			gpios = <&pma8084_gpios 2 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+@@ -33,7 +33,7 @@ volume-down {
+ 			debounce-interval = <15>;
+ 		};
+ 
+-		home-key {
++		key-home {
+ 			label = "home_key";
+ 			gpios = <&pma8084_gpios 3 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+@@ -42,7 +42,7 @@ home-key {
+ 			debounce-interval = <15>;
+ 		};
+ 
+-		volume-up {
++		key-volume-up {
+ 			label = "volume_up";
+ 			gpios = <&pma8084_gpios 5 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+diff --git a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+index 9bd8faea61a5..e409c12edc81 100644
+--- a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
++++ b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+@@ -24,28 +24,28 @@ gpio-keys {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+ 
+-		volume-down {
++		key-volume-down {
+ 			label = "volume_down";
+ 			gpios = <&pm8941_gpios 2 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+ 			linux,code = <KEY_VOLUMEDOWN>;
+ 		};
+ 
+-		camera-snapshot {
++		key-camera-snapshot {
+ 			label = "camera_snapshot";
+ 			gpios = <&pm8941_gpios 3 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+ 			linux,code = <KEY_CAMERA>;
+ 		};
+ 
+-		camera-focus {
++		key-camera-focus {
+ 			label = "camera_focus";
+ 			gpios = <&pm8941_gpios 4 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
+ 			linux,code = <KEY_CAMERA_FOCUS>;
+ 		};
+ 
+-		volume-up {
++		key-volume-up {
+ 			label = "volume_up";
+ 			gpios = <&pm8941_gpios 5 GPIO_ACTIVE_LOW>;
+ 			linux,input-type = <1>;
 -- 
 2.34.1
 
