@@ -2,87 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19F5F545099
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E40E15450AE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:23:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344416AbiFIPVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 11:21:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34818 "EHLO
+        id S243798AbiFIPXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 11:23:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344403AbiFIPVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:21:19 -0400
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E305F4A3D6;
-        Thu,  9 Jun 2022 08:21:18 -0700 (PDT)
-Received: by mail-il1-f172.google.com with SMTP id u2so18055667iln.2;
-        Thu, 09 Jun 2022 08:21:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aA/410L+9p0xbmxpZ2Mn80L61ojuTJuT5kn/KAJbX/4=;
-        b=Ttz/Fk1bveFFH689hqjJKzWS9KQ5KhTf2yeTwqyAGY5h+IvB2MQjGz5lJGwWpYfmBH
-         2zplGkITJqNgSrRlFuQebaG9bfVYmPzjEHyurO3oGPTIEFP4ov1HEA5wgkjzxD9n4S4s
-         lnex3oyqTDpIHyH2dJ8Y+hexVtZBt8XFZSv1W49437hp2hJq578EAE2aHKqMH7YWKWPO
-         TaAwor9oCWKxAjMImGYrPzpkKg5RLA6yWtkoT0aoexB7ojicV7O2NRezADcdXJCdOlH/
-         gFCXRiSP5gi1JCLZ2b1svcT/h5eOGrMZNeFx79r/gbDLbsImkg4ABuZP9a52phVhoqfx
-         IxNQ==
-X-Gm-Message-State: AOAM532jBydMJ6uiqUcubJUKQR6LbLAlKa0x8lB4NjnEGFBnkpLBKjjd
-        JT7wzTkypPaXSZinres20dR/y2Y0Uw==
-X-Google-Smtp-Source: ABdhPJwS4Z8Uz7/L6+/4oTICgHYgwtFPW/adzsCrE/yk1RazKDvfUEOiTFSooJZLeC437CADIxrnJA==
-X-Received: by 2002:a05:6e02:1bae:b0:2d3:a66b:7432 with SMTP id n14-20020a056e021bae00b002d3a66b7432mr21846994ili.185.1654788078227;
-        Thu, 09 Jun 2022 08:21:18 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id g23-20020a02bb97000000b0032e1e0ac289sm9687144jan.8.2022.06.09.08.21.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 08:21:17 -0700 (PDT)
-Received: (nullmailer pid 3817707 invoked by uid 1000);
-        Thu, 09 Jun 2022 15:21:16 -0000
-Date:   Thu, 9 Jun 2022 09:21:15 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Olof Johansson <olof@lixom.net>, arm@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-input@vger.kernel.org, soc@kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Subject: Re: [PATCH v2 03/48] dt-bindings: input: gpio-keys: accept also
- interrupt-extended
-Message-ID: <20220609152115.GA3815878-robh@kernel.org>
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
- <20220609113911.380368-2-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S1344489AbiFIPXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:23:30 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 869F5B18;
+        Thu,  9 Jun 2022 08:23:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654788208; x=1686324208;
+  h=message-id:date:mime-version:subject:to:references:from:
+   in-reply-to:content-transfer-encoding;
+  bh=OqFF6qDwLOh06Q07Wxi7YuzZhtAUWXJ5RHWWW3Dj/IY=;
+  b=VeUiBiKw+Eaxyb83yq9NpxMX1jKSB5jl+LTcZSlT4+U7fnss6cr7aivv
+   DxG0fUpDg0Zs9sRb+ZGdLVnJgr1VRWxbr4lLkuoQHMVaL8AIRnSx3Sz7d
+   BYpfM+phMKhY3gTldLAmsTJIl+f2vaz96NiI6GZhwlgNm8ME9rYn+/HAA
+   DiEcdKNJZpACESyJWmvVbBPd5qn47oGHP2iojYvZAuoU5Ibg3dB91m3ZC
+   WeYBSLh/2Azl+RNXcZbezgpRRIg8He7Rm1tQUYqyIS25jz1QZaLMSuXE4
+   u+EbH3Vv7Jm9GZQHgpr6/1vq4BiUBWi1K0f0iZCId9vv8BVPEXNrfTsXW
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="257747930"
+X-IronPort-AV: E=Sophos;i="5.91,287,1647327600"; 
+   d="scan'208";a="257747930"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2022 08:23:28 -0700
+X-IronPort-AV: E=Sophos;i="5.91,287,1647327600"; 
+   d="scan'208";a="585630710"
+Received: from jeremywe-mobl3.amr.corp.intel.com (HELO [10.209.173.145]) ([10.209.173.145])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2022 08:23:26 -0700
+Message-ID: <97757ee1-2525-4e97-855e-da6fb66f01ae@linux.intel.com>
+Date:   Thu, 9 Jun 2022 10:22:35 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220609113911.380368-2-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.9.1
+Subject: Re: [PATCH v4 1/2] soundwire: qcom: Add flag for software clock
+ gating check
+Content-Language: en-US
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
+        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org, vkoul@kernel.org
+References: <1654785023-1667-1-git-send-email-quic_srivasam@quicinc.com>
+ <1654785023-1667-2-git-send-email-quic_srivasam@quicinc.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <1654785023-1667-2-git-send-email-quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 09 Jun 2022 13:39:05 +0200, Krzysztof Kozlowski wrote:
-> Each key device node might have interrupts-extended instead of
-> interrupts property:
+
+
+On 6/9/22 09:30, Srinivasa Rao Mandadapu wrote:
+> Validate software clock gating required or not and do software
+> clock gating on hclk if soundwire is operational and keep it
+> running by adding flag in private data structure.
+> This is to avoid conflict between older architectures,
+> where software clock gating is not required and on latest
+> architectues, where software clock gating is mandatory.
+
+architectures.
+
 > 
->   fsl-ls1028a-kontron-sl28-var1.dtb: buttons0: power-button: 'anyOf' conditional failed, one must be fixed:
->     'interrupts' is a required property
->     'gpios' is a required property
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  Documentation/devicetree/bindings/input/gpio-keys.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/soundwire/qcom.c | 14 ++++++++++----
+>  1 file changed, 10 insertions(+), 4 deletions(-)
 > 
+> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+> index a3fccf0..8e163da 100644
+> --- a/drivers/soundwire/qcom.c
+> +++ b/drivers/soundwire/qcom.c
+> @@ -181,6 +181,7 @@ struct qcom_swrm_ctrl {
+>  struct qcom_swrm_data {
+>  	u32 default_cols;
+>  	u32 default_rows;
+> +	bool sw_clk_gate_required;
+>  };
+>  
+>  static const struct qcom_swrm_data swrm_v1_3_data = {
+> @@ -1311,6 +1312,15 @@ static int qcom_swrm_probe(struct platform_device *pdev)
+>  			return PTR_ERR(ctrl->mmio);
+>  	}
+>  
+> +	if (data->sw_clk_gate_required) {
+> +		ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
+> +		if (IS_ERR(ctrl->audio_cgcr)) {
 
-The tooling is supposed to take care of this, but it's complicated 
-enough that we don't find it. So easier to handle in the schema.
+You need to handle the NULL case, devm_reset_control_get_exclusive() can
+return ERR_OR_NULL
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+https://elixir.bootlin.com/linux/latest/source/drivers/reset/core.c#L1045
+
+> +			dev_err(dev, "Failed to get cgcr reset ctrl required for SW gating\n");
+> +			ret = PTR_ERR(ctrl->audio_cgcr);
+> +			goto err_init;
+> +		}
+> +	}
+> +
+>  	ctrl->irq = of_irq_get(dev->of_node, 0);
+>  	if (ctrl->irq < 0) {
+>  		ret = ctrl->irq;
+> @@ -1336,10 +1346,6 @@ static int qcom_swrm_probe(struct platform_device *pdev)
+>  	ctrl->bus.compute_params = &qcom_swrm_compute_params;
+>  	ctrl->bus.clk_stop_timeout = 300;
+>  
+> -	ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
+> -	if (IS_ERR(ctrl->audio_cgcr))
+> -		dev_err(dev, "Failed to get audio_cgcr reset required for soundwire-v1.6.0\n");
+> -
+>  	ret = qcom_swrm_get_port_config(ctrl);
+>  	if (ret)
+>  		goto err_clk;
