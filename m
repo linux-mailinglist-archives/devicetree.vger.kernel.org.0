@@ -2,70 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9197E544C5D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 14:44:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB899544C65
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 14:45:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244899AbiFIMog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 08:44:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45054 "EHLO
+        id S1343753AbiFIMo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 08:44:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343708AbiFIMoS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 08:44:18 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C0A50070;
-        Thu,  9 Jun 2022 05:44:16 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 2A9C31BF213;
-        Thu,  9 Jun 2022 12:44:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1654778655;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=fpphnyK7b9ecDg9PuHfvurWOcMuG1P88E9vjHqCoLrI=;
-        b=O5rUK0/7QdJ8mcqUhI8ZENgYNQURVW8+InTVJyOMjBEq7YSZhwdxFQxXiBs/HxuyNc1JOA
-        cVdLaOV1A1bXu0dcKdY44/5/fLGxU0l1487TkWw4//9OnkVYLI2Fny70T1JZkrCBpM+RYZ
-        rDLy8SStl/o/p0wJ77Hzbxh3dpRaa6nWujG+4v/so1pQMh5YqWIOczjRYoBUjjxHdLWT4U
-        TCf+2Fk7OxT7J3BTAoWl/xUEWRWNxlepQAjbnAy4/Fx0wEkLDODRGcRnYEw3koXUM4cYsW
-        6jw0ESR24ss1CPBGXxZP4gpWIfnjhLT8hPYJykHdy3vnW33W79c2vZzqVc9a9Q==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?utf-8?q?Uwe_Klei?= =?utf-8?q?ne-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: mxc-nand: Drop undocumented properties from example
-Date:   Thu,  9 Jun 2022 14:44:13 +0200
-Message-Id: <20220609124413.209204-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220525205947.2487165-1-robh@kernel.org>
-References: 
+        with ESMTP id S244113AbiFIMou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 08:44:50 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0A1166D5C
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 05:44:49 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id bg6so27432507ejb.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 05:44:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lJk716YMYQiC9XdFOVA3hLNWPHrzbYIFzsjHZ4lXqXw=;
+        b=jV749h/yzGdD7UVInBT9kRK0Jme4OUSWL30CvqTehv0OIPHZlrLh6yxz+uV4nlmaTT
+         hyp845TnOHon/x7gEdAOK/HuLHltS6oC9HxWnNMR5S8ogJ9Z7JEZoA2UBxE3wlBo5DRH
+         7PwNnpKT0SDKX59RxX4l7Sa1MuuIhZ6ouMthRqlJAVN574gK+mQ5h+J3z57z+Dj70Ltm
+         tRTKF4wUesxloNjYbv7eM7BGrn0Rdd/4KR94SamXC+bL3AEBmrzZyrm4e5jcd6U7pFjD
+         2J+x+a9wGbBFbhmkjFSqJ+L7wHho2UKB/rTNWO+LrGnjtVC3Sx2xCzYeMN3tH9lc4k4E
+         o6yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lJk716YMYQiC9XdFOVA3hLNWPHrzbYIFzsjHZ4lXqXw=;
+        b=RukqOQddOI2xLvSqZLFTJjypf5b79uAcLpLEaKFeB/duAYELXp8relVazLypQUyEfx
+         rAH4OqEy1ROaAU+atwSTEaTrtM/5rqpGkGWnBZdYkt0OScKtSUiPbQ4ZU2KxFRWhZhgR
+         oqqMkKM3wh15564b2I3OHogJ++nhOFzgfJOlW0MUcPciTO2JpJN9eq2P4E2KMfqSOUMv
+         PSNKnTQiQ9KltbUuarCw0MkU1UWxfz6HJeSMW9SKfwr1f1rahHuqk2jXReJjl4GFCO6+
+         njnTlMb5Yov8bzoEAFtRzqiWLbZYX6Hx2/xLYhHL7uZDjdf2GFerwRGVD+obQjxjFx8C
+         RVHQ==
+X-Gm-Message-State: AOAM531fmGnFCSjanoDsBJdYTXnY2Rh86ZaOdVQZ/SthjEt1aZJ9UH08
+        Gd7qfspuD8VlsRmGjtIVrrSnzpGpWmtvipBMLAHSwg==
+X-Google-Smtp-Source: ABdhPJy6NNm52gjoT01K7OZnUFOxRXn6NtlR60/k5jcSePS1DE8jJ2xxM+kEnefp7nXZd72DEpx4T6QluDGZOm4xKoo=
+X-Received: by 2002:a17:907:6ea4:b0:711:d106:b93a with SMTP id
+ sh36-20020a1709076ea400b00711d106b93amr18861166ejc.189.1654778687717; Thu, 09
+ Jun 2022 05:44:47 -0700 (PDT)
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'99c1734f318c97492083c16910cbda2583830eb1'
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220523090822.3035189-1-tzungbi@kernel.org> <20220523090822.3035189-3-tzungbi@kernel.org>
+In-Reply-To: <20220523090822.3035189-3-tzungbi@kernel.org>
+From:   Guenter Roeck <groeck@google.com>
+Date:   Thu, 9 Jun 2022 05:44:36 -0700
+Message-ID: <CABXOdTeXB8V7ma9W6ZEQJeedvDg2xQOtJ5TduDmND-=BeDJpRA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/5] platform/chrome: cros_kbd_led_backlight: separate
+ ACPI backend
+To:     Tzung-Bi Shih <tzungbi@kernel.org>
+Cc:     Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:CHROME HARDWARE PLATFORM SUPPORT" 
+        <chrome-platform@lists.linux.dev>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-05-25 at 20:59:46 UTC, Rob Herring wrote:
-> With unevaluatedProperties issues fixed, 'nand-bus-width' and
-> 'nand-ecc-mode' are flagged as undocumented. Removing them from the example
-> is the easiest solution to silence the warnings.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Mon, May 23, 2022 at 2:08 AM Tzung-Bi Shih <tzungbi@kernel.org> wrote:
+>
+> cros_kbd_led_backlight uses ACPI_KEYBOARD_BACKLIGHT_WRITE and
+> ACPI_KEYBOARD_BACKLIGHT_READ for setting and getting the brightness
+> respectively.
+>
+> Separate ACPI operations for preparing the driver to support other
+> backends.
+>
+> Signed-off-by: Tzung-Bi Shih <tzungbi@kernel.org>
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+Reviewed-by: Guenter Roeck <groeck@chromium.org>
 
-Miquel
+> ---
+> Changes from v3:
+> - Remove CROS_KBD_LED_BACKLIGHT_ACPI Kconfig.
+> - Remove stub function.
+>
+> Changes from v2:
+> - Use #ifdef for boolean CONFIG_CROS_KBD_LED_BACKLIGHT_ACPI.
+>
+> Changes from v1:
+> - Update email address accordingly.
+> - Use CONFIG_ACPI guard per "kernel test robot <lkp@intel.com>" reported an
+>   unused variable issue.
+>
+>  .../platform/chrome/cros_kbd_led_backlight.c  | 82 ++++++++++++++++---
+>  1 file changed, 69 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/platform/chrome/cros_kbd_led_backlight.c b/drivers/platform/chrome/cros_kbd_led_backlight.c
+> index f9587a562bb7..a86d664854ae 100644
+> --- a/drivers/platform/chrome/cros_kbd_led_backlight.c
+> +++ b/drivers/platform/chrome/cros_kbd_led_backlight.c
+> @@ -13,6 +13,33 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/slab.h>
+>
+> +/**
+> + * struct keyboard_led_drvdata - keyboard LED driver data.
+> + * @init:                      Init function.
+> + * @brightness_get:            Get LED brightness level.
+> + * @brightness_set:            Set LED brightness level.  Must not sleep.
+> + * @brightness_set_blocking:   Set LED brightness level.  It can block the
+> + *                             caller for the time required for accessing a
+> + *                             LED device register
+> + * @max_brightness:            Maximum brightness.
+> + *
+> + * See struct led_classdev in include/linux/leds.h for more details.
+> + */
+> +struct keyboard_led_drvdata {
+> +       int (*init)(struct platform_device *pdev);
+> +
+> +       enum led_brightness (*brightness_get)(struct led_classdev *led_cdev);
+> +
+> +       void (*brightness_set)(struct led_classdev *led_cdev,
+> +                              enum led_brightness brightness);
+> +       int (*brightness_set_blocking)(struct led_classdev *led_cdev,
+> +                                      enum led_brightness brightness);
+> +
+> +       enum led_brightness max_brightness;
+> +};
+> +
+> +#ifdef CONFIG_ACPI
+> +
+>  /* Keyboard LED ACPI Device must be defined in firmware */
+>  #define ACPI_KEYBOARD_BACKLIGHT_DEVICE "\\_SB.KBLT"
+>  #define ACPI_KEYBOARD_BACKLIGHT_READ   ACPI_KEYBOARD_BACKLIGHT_DEVICE ".KBQC"
+> @@ -20,8 +47,8 @@
+>
+>  #define ACPI_KEYBOARD_BACKLIGHT_MAX            100
+>
+> -static void keyboard_led_set_brightness(struct led_classdev *cdev,
+> -                                       enum led_brightness brightness)
+> +static void keyboard_led_set_brightness_acpi(struct led_classdev *cdev,
+> +                                            enum led_brightness brightness)
+>  {
+>         union acpi_object param;
+>         struct acpi_object_list input;
+> @@ -40,7 +67,7 @@ static void keyboard_led_set_brightness(struct led_classdev *cdev,
+>  }
+>
+>  static enum led_brightness
+> -keyboard_led_get_brightness(struct led_classdev *cdev)
+> +keyboard_led_get_brightness_acpi(struct led_classdev *cdev)
+>  {
+>         unsigned long long brightness;
+>         acpi_status status;
+> @@ -56,12 +83,10 @@ keyboard_led_get_brightness(struct led_classdev *cdev)
+>         return brightness;
+>  }
+>
+> -static int keyboard_led_probe(struct platform_device *pdev)
+> +static int keyboard_led_init_acpi(struct platform_device *pdev)
+>  {
+> -       struct led_classdev *cdev;
+>         acpi_handle handle;
+>         acpi_status status;
+> -       int error;
+>
+>         /* Look for the keyboard LED ACPI Device */
+>         status = acpi_get_handle(ACPI_ROOT_OBJECT,
+> @@ -73,15 +98,44 @@ static int keyboard_led_probe(struct platform_device *pdev)
+>                 return -ENXIO;
+>         }
+>
+> +       return 0;
+> +}
+> +
+> +static const struct keyboard_led_drvdata keyboard_led_drvdata_acpi = {
+> +       .init = keyboard_led_init_acpi,
+> +       .brightness_set = keyboard_led_set_brightness_acpi,
+> +       .brightness_get = keyboard_led_get_brightness_acpi,
+> +       .max_brightness = ACPI_KEYBOARD_BACKLIGHT_MAX,
+> +};
+> +
+> +#endif /* CONFIG_ACPI */
+> +
+> +static int keyboard_led_probe(struct platform_device *pdev)
+> +{
+> +       struct led_classdev *cdev;
+> +       const struct keyboard_led_drvdata *drvdata;
+> +       int error;
+> +
+> +       drvdata = acpi_device_get_match_data(&pdev->dev);
+> +       if (!drvdata)
+> +               return -EINVAL;
+> +
+> +       if (drvdata->init) {
+> +               error = drvdata->init(pdev);
+> +               if (error)
+> +                       return error;
+> +       }
+> +
+>         cdev = devm_kzalloc(&pdev->dev, sizeof(*cdev), GFP_KERNEL);
+>         if (!cdev)
+>                 return -ENOMEM;
+>
+>         cdev->name = "chromeos::kbd_backlight";
+> -       cdev->max_brightness = ACPI_KEYBOARD_BACKLIGHT_MAX;
+>         cdev->flags |= LED_CORE_SUSPENDRESUME;
+> -       cdev->brightness_set = keyboard_led_set_brightness;
+> -       cdev->brightness_get = keyboard_led_get_brightness;
+> +       cdev->max_brightness = drvdata->max_brightness;
+> +       cdev->brightness_set = drvdata->brightness_set;
+> +       cdev->brightness_set_blocking = drvdata->brightness_set_blocking;
+> +       cdev->brightness_get = drvdata->brightness_get;
+>
+>         error = devm_led_classdev_register(&pdev->dev, cdev);
+>         if (error)
+> @@ -90,16 +144,18 @@ static int keyboard_led_probe(struct platform_device *pdev)
+>         return 0;
+>  }
+>
+> -static const struct acpi_device_id keyboard_led_id[] = {
+> -       { "GOOG0002", 0 },
+> +#ifdef CONFIG_ACPI
+> +static const struct acpi_device_id keyboard_led_acpi_match[] = {
+> +       { "GOOG0002", (kernel_ulong_t)&keyboard_led_drvdata_acpi },
+>         { }
+>  };
+> -MODULE_DEVICE_TABLE(acpi, keyboard_led_id);
+> +MODULE_DEVICE_TABLE(acpi, keyboard_led_acpi_match);
+> +#endif
+>
+>  static struct platform_driver keyboard_led_driver = {
+>         .driver         = {
+>                 .name   = "chromeos-keyboard-leds",
+> -               .acpi_match_table = ACPI_PTR(keyboard_led_id),
+> +               .acpi_match_table = ACPI_PTR(keyboard_led_acpi_match),
+>         },
+>         .probe          = keyboard_led_probe,
+>  };
+> --
+> 2.36.1.124.g0e6072fb45-goog
+>
