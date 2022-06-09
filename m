@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C83D544BBE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 14:24:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B720544BBC
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 14:24:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234524AbiFIMYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 08:24:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39070 "EHLO
+        id S245385AbiFIMYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 08:24:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243041AbiFIMX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 08:23:57 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45A4E2F3B3
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 05:23:56 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id t25so37684745lfg.7
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 05:23:56 -0700 (PDT)
+        with ESMTP id S245362AbiFIMX7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 08:23:59 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8202A245AB
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 05:23:57 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id a2so31594720lfg.5
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 05:23:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=EY69blhAfLwlzhpt3ykQvo28dBBPjots5a/LOCelKuM=;
-        b=IjpDkqE/seTW6CIHsQ7Hfj04A0JuPKLtjnMjErJkpXYhl3WM7UKcxD0rkphldo8FZC
-         Mt4ewdaEMkw0E16QV2L9dZFqPbtQA33ZlEvTfYhrCm9TuHTYZjC6A9Rwby1HFvcu2Q31
-         OBEQkbqwpslCgU5lAnkn/2YDYmtsefhglKT72IebkRpVx9KaHI2rGrRIFYginXZUm8ET
-         1L170gjwFR5mP4d5WCrlSlsuPeCLhPtT/3RF/E/oK1/wndCGVc5TLkKNS1FsNWvZJh70
-         jmZey/NNpZY0X/F4Bmbc7/vjsTjnbiHMzqcX7YXKU78liLB6/BOcSFOprVkZeQiOYJjo
-         bKbQ==
+        bh=lCTRhbt4okJRARx9L2zabx0wSnnKkG9VZWoKlVnWoCI=;
+        b=FxBHFuNNV6g2mDYqLVI8qNabQ5bAOYPreZrHx9tNp+QakZlANSFHu59alRdTlo+g/H
+         XrwNOWLPsgitI8krbzF0RsDzSOXPKEIDap96kF1MImZpCmIhnpQJghOGivhTxUcCSr+7
+         v3/R20+yMbPsSZl4FyEcQqqeYNSZXGzZht07KXmGDPPketkf3COzVgxwHiAiEUAL8lnS
+         ARDhM2yNhjOpUqs0z2vzssgCP6QdiTBDTiaxLFsajOX4bR5JP7bi9Hwt/IpCwuVqm7me
+         ohZ9Nnbg4C/csUUmokNVdGOCVhKouab2ktRAEFLozXQtryfHglgE1Sx3tgySz8Son8W9
+         C7iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=EY69blhAfLwlzhpt3ykQvo28dBBPjots5a/LOCelKuM=;
-        b=hbx+6/drgRaG1nav4aeCtRkfmV4pmVfoa9jhmhGnlnoMA/iZZFrWHNo0NHtEpgvRJD
-         z98yUZJRI6rup0bL7kAMHXywqWy5CS8ccUDs0zHZuOJG5uFvCAdNxfd4cwkAiq1ksq4L
-         Eu6rJRNPL4Nxy0dodpk4e1wdy9gLV6MjJCqFr+g39TZLtvdOaTQiJj9dkio/FpVYWKMZ
-         wH5nwMbXmwJYpO4MSxkx2E8xelldMTUqJobL0m4EbH0MFN8Xdeq/nYHSW1nrLmegVyIg
-         ReR9CrgXk6JKteT5gtGmz3LVO8Ds/wGcTFl1/wpyWRXHZKk5vySFP6FKP09k9sH1bCrw
-         kRTw==
-X-Gm-Message-State: AOAM533Fhj7PtVgndhcwLd+KvdHaJU2bT/FsS1jGinsDcQoQKx5/WDQZ
-        N8wGwJdmxSq1CmqPOBAGlPii0Q==
-X-Google-Smtp-Source: ABdhPJzyp0Hfr5XdSnJVDwteMfnRMn7T+LClAtbpwVJRURvWT0U8/5q5O/b5BG1sUgsG0uwrLVVaUA==
-X-Received: by 2002:ac2:5bdd:0:b0:47c:bea8:f254 with SMTP id u29-20020ac25bdd000000b0047cbea8f254mr1682585lfn.407.1654777434599;
-        Thu, 09 Jun 2022 05:23:54 -0700 (PDT)
+        bh=lCTRhbt4okJRARx9L2zabx0wSnnKkG9VZWoKlVnWoCI=;
+        b=aKXWfJhSSCKu0F6HyEtrcmK5qPwY47W5/1cZ/TMe+19/PIyWwZrEinkqFsabUXBSdk
+         951d77Wyx2eKxKMJoIJHavTLn/Vy/I5vLXCVW9a5RBNaf8bAgrfQjyyT/VgZIJM8PjR5
+         /pWMu8V61en1usseoIXlHuVF5+AftgtZbutkeddvB+xmF5pQRRnaadgZGUZfdVTfUKwC
+         rveMzOA9Jc8FbJ6HuK4qJ9wwar+qLqI9x1eOY42aNsUHqYpTJoi5xokksnAsMiZkpYiH
+         33Xm/me42ltmhtLwQEDNEtae2rrcPXM7QA4URqXS24bMVSTYkAPz6BAq2VIKC3pmRg1I
+         Ey4w==
+X-Gm-Message-State: AOAM533r3LzaGHWcJbFnKuiLihFLWJ/j4YyNOTbQ+6c8HWZ/ssVcTNVD
+        9imPTz6dhJVDgZU8W3nOset0Vw==
+X-Google-Smtp-Source: ABdhPJwa9xE9mTnD2qCTO5hii7wZiGfDsJYgAE7WCXsQJ9ks73Rt75W2ZMDJfEiduInDO+yL59QUKg==
+X-Received: by 2002:a19:7708:0:b0:47a:bff:509c with SMTP id s8-20020a197708000000b0047a0bff509cmr3995533lfc.299.1654777435530;
+        Thu, 09 Jun 2022 05:23:55 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id f11-20020a056512360b00b0047daa133decsm32421lfs.166.2022.06.09.05.23.53
+        by smtp.gmail.com with ESMTPSA id f11-20020a056512360b00b0047daa133decsm32421lfs.166.2022.06.09.05.23.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 05:23:54 -0700 (PDT)
+        Thu, 09 Jun 2022 05:23:55 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -58,11 +58,10 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 03/14] dt-bindings: display/msm: hdmi: mark hdmi-mux-supply as deprecated
-Date:   Thu,  9 Jun 2022 15:23:39 +0300
-Message-Id: <20220609122350.3157529-4-dmitry.baryshkov@linaro.org>
+        freedreno@lists.freedesktop.org
+Subject: [PATCH v3 04/14] ARM: dts: qcom: apq8064-ifc6410: drop hdmi-mux-supply
+Date:   Thu,  9 Jun 2022 15:23:40 +0300
+Message-Id: <20220609122350.3157529-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220609122350.3157529-1-dmitry.baryshkov@linaro.org>
 References: <20220609122350.3157529-1-dmitry.baryshkov@linaro.org>
@@ -71,37 +70,34 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hdmi-mux-supply is not used by the SoC's HDMI block, it is thought to
-power up the external logic. Thus it should not be a part of HDMI
-bindings, but it should be declared at some other device in the DT (like
-HDMI mux, bridge, etc). Mark it as deprecated.
+The HDMI circuitry on the IFC6410 is not powered by the 3v3. Drop the
+hdmi-mux-supply property.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- Documentation/devicetree/bindings/display/msm/hdmi.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/qcom-apq8064-ifc6410.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/hdmi.yaml b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-index 99b07abcd960..47e97669821c 100644
---- a/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/hdmi.yaml
-@@ -56,6 +56,7 @@ properties:
+diff --git a/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts b/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts
+index 2638b380be20..eb6b1a1ff117 100644
+--- a/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts
++++ b/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts
+@@ -341,7 +341,6 @@ hdmi-tx@4a00000 {
+ 			status = "okay";
  
-   hdmi-mux-supply:
-     description: phandle to mux regulator
-+    deprecated: true
+ 			core-vdda-supply = <&pm8921_hdmi_switch>;
+-			hdmi-mux-supply = <&ext_3p3v>;
  
-   core-vcc-supply:
-     description: phandle to VCC supply regulator
+ 			hpd-gpios = <&tlmm_pinmux 72 GPIO_ACTIVE_HIGH>;
+ 
 -- 
 2.35.1
 
