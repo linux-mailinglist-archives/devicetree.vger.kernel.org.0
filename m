@@ -2,84 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85CA35441B3
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 04:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22D3D5441B7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 04:58:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236745AbiFIC5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 22:57:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57556 "EHLO
+        id S237349AbiFIC6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 22:58:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232220AbiFIC5I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 22:57:08 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8ADE1A40B1;
-        Wed,  8 Jun 2022 19:57:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654743426; x=1686279426;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=DWdTmomDdHvDa03AdXAl+EdQlsJVgcEVxjeDSDWI6GE=;
-  b=KEHhg83gXUFPRx1+U1+LYTkm5bC5SCIcYgPzV7t0NJFFCxswh+f9BpSI
-   3DGeQc1qFEbRLMt4TFKapP0cojzT6crqhj2XBwCkbPRJQCZO1fvA9QTjH
-   Z3xkxwBpeAOzPKcm//wHSfaxpTPr4W7Y/34zS3tV15VrdjJ5qXYjd+GYW
-   k6W1MDfPkk8cv9JM63Rdz+ALbTdVDuCprrWldsLDHppQJ6dWfwL9IoX9R
-   jNRXs3d+f+X7GbKUsOfOu5EMEVF36ciaeuqWKbsU1OFOrFO5YNaPdQwb5
-   BdiEEbMpzSbxks5EdHZnIQAfe1t/OUild8mL9tuLBK9RiNbiUN43g6DgM
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10372"; a="278284863"
-X-IronPort-AV: E=Sophos;i="5.91,287,1647327600"; 
-   d="scan'208";a="278284863"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2022 19:57:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,287,1647327600"; 
-   d="scan'208";a="566189797"
-Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
-  by orsmga002.jf.intel.com with ESMTP; 08 Jun 2022 19:57:04 -0700
-From:   wen.ping.teh@intel.com
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Teh Wen Ping <wen.ping.teh@intel.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: altera: document Stratix 10 SWVP compatibles
-Date:   Thu,  9 Jun 2022 10:56:47 +0800
-Message-Id: <20220609025647.400998-1-wen.ping.teh@intel.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S232220AbiFIC6t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 22:58:49 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED526E8EB;
+        Wed,  8 Jun 2022 19:58:48 -0700 (PDT)
+X-UUID: bf200434209c47ecbb24c360cc0a5148-20220609
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:8fb325ca-de2d-40f8-9c4c-80a2f91854e9,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:a8552ee5-2ba2-4dc1-b6c5-11feb6c769e0,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:0,BEC:nil
+X-UUID: bf200434209c47ecbb24c360cc0a5148-20220609
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 615797572; Thu, 09 Jun 2022 10:58:44 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 9 Jun 2022 10:58:43 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 9 Jun 2022 10:58:42 +0800
+Message-ID: <b3ab001a4a28767cf4f8a5b330b11ead80c5d48e.camel@mediatek.com>
+Subject: Re: [PATCH v6 2/8] ASoC: mediatek: mt8186: add platform driver
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     <robh+dt@kernel.org>, <angelogioacchino.delregno@collabora.com>,
+        <aaronyu@google.com>, <matthias.bgg@gmail.com>,
+        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
+        <julianbraha@gmail.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 9 Jun 2022 10:58:42 +0800
+In-Reply-To: <YqCG+9YkuXsDeh/I@sirena.org.uk>
+References: <20220607142046.28060-1-jiaxin.yu@mediatek.com>
+         <20220607142046.28060-3-jiaxin.yu@mediatek.com>
+         <YqCG+9YkuXsDeh/I@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Teh Wen Ping <wen.ping.teh@intel.com>
+On Wed, 2022-06-08 at 12:24 +0100, Mark Brown wrote:
+> On Tue, Jun 07, 2022 at 10:20:40PM +0800, Jiaxin Yu wrote:
+> 
+> > +obj-$(CONFIG_SND_SOC_MT8186) += snd-soc-mt8186-afe.o
+> > +obj-$(CONFIG_SND_SOC_MT8186_MT6366_DA7219_MAX98357) += mt8186-
+> > mt6366-da7219-max98357.o
+> > +obj-$(CONFIG_SND_SOC_MT8186_MT6366_RT1019_RT5682S) += mt8186-
+> > mt6366-rt1019-rt5682s.o
+> 
+> This breaks bisection - these drivers are being added to the build
+> here
+> but the relevant source files aren't added until later on in the
+> series
+> so the commits in between won't build when the relevant Kconfig
+> options
+> are selected.  The Makefile and Kconfig updates should be moved into
+> the
+> driver patches.
 
-Add compatible strings for Stratix 10 Software Virtual Platform
+I see, this is to ensure the independence of each patch. I will move
+the Kconfig and Makefile changes related to the machine driver to the
+corresponding patch.
 
-Signed-off-by: Teh Wen Ping <wen.ping.teh@intel.com>
----
- Documentation/devicetree/bindings/arm/altera.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/altera.yaml b/Documentation/devicetree/bindings/arm/altera.yaml
-index 5e2017c0a051..d9037e4bbf73 100644
---- a/Documentation/devicetree/bindings/arm/altera.yaml
-+++ b/Documentation/devicetree/bindings/arm/altera.yaml
-@@ -47,6 +47,7 @@ properties:
-         items:
-           - enum:
-               - altr,socfpga-stratix10-socdk
-+              - altr,socfpga-stratix10-swvp
-           - const: altr,socfpga-stratix10
- 
-       - description: SoCFPGA VT
--- 
-2.25.1
+Thanks,
+Jiaxin.Yu
 
