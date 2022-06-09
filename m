@@ -2,220 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A77D85446A1
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 10:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17B1954468D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 10:56:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242672AbiFIIwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 04:52:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35698 "EHLO
+        id S242290AbiFIIwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 04:52:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242273AbiFIIv6 (ORCPT
+        with ESMTP id S242683AbiFIIv6 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 04:51:58 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF63E48887;
-        Thu,  9 Jun 2022 01:51:28 -0700 (PDT)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 5369A1C0014;
-        Thu,  9 Jun 2022 08:51:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1654764686;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=AGAoCbJ4PnmE24cZUZISnYlS07hy6YazH5G/uIXRRic=;
-        b=Qjp86WVnTKo1thidhbUOr0nDlG6oGL1CQsMi20safYxb3vqF+sGwAHufD1f2YqEzlgHfP3
-        9prCXrSTZt6Msfq9WQ9YMhIIKANs8DbMqTw5xmPolWE1UfMHd6CDHsf3UUvV3dgVOrQO6b
-        /UwONL+Hv/OgmPMekzap6m1ExNbmsLHOtTp4h67mjs6ZY9W0zt9mieKtiUYqwUKIQXLEAr
-        /eJwaSkGp96sMCAnvMQ68ZN7EutTVURigaXgHz9t7++OvUbmyHnRfHC9CG8IK/kRY4m/Nw
-        SOIb318E0xBMkhiyE/Kzz+gfyio1uNuGoAAywcRVIYep/F9o7D+46jjZmCPmlg==
-Date:   Thu, 9 Jun 2022 10:51:22 +0200
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     quentin.schulz@theobroma-systems.com
-Cc:     devicetree@vger.kernel.org, airlied@linux.ie,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Quentin Schulz <foss+kernel@0leil.net>, robh+dt@kernel.org,
-        thierry.reding@gmail.com,
-        Klaus Goger <klaus.goger@theobroma-systems.com>,
-        sam@ravnborg.org
-Subject: Re: [PATCH 2/3] drm/panel: ltk050h3146w: add support for Leadtek
- LTK050H3148W-CTA6 variant
-Message-ID: <YqG0igbIyfXBX4aa@aptenodytes>
-References: <20220131164723.714836-1-quentin.schulz@theobroma-systems.com>
- <20220131164723.714836-2-quentin.schulz@theobroma-systems.com>
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 422CD48E70
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 01:51:30 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id h23so35033738ejj.12
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 01:51:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=M8e5RnC6BDCalWH7A1w4Wai2umRpd61YtQBBpmHxCTg=;
+        b=G94I6/e5+zMW3WjmA5mkIh/BZbIwi9fHMwAlv8zSiWQW5mYtBS9tiT+96zVrv6l8Gj
+         bczYIYNi28cSQF6doso2XWgT5IRxnHPky1hBo5YI7rFRDNTdh33dPQJNNboe7HvTytWf
+         wHCo7eYL4MXhFSivL2FYB5eV3VoamvJ6+4H0K4xPSAO2SeknD32ErVAKfbN1EdjeSdhO
+         a/o5BrU4f37Mm8jBgggs8aedhv5lIEDeOXti8dpEu0Yu6QvgP279D2PRsGwmftOE5rVT
+         wj2LFK6kD+2bjBX95997d2PGMlIH0/TUeWNmAnuewbmoPVcU2p+3HFqkgNaACSPGuyq1
+         070Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=M8e5RnC6BDCalWH7A1w4Wai2umRpd61YtQBBpmHxCTg=;
+        b=AQOEvYk2fDA2orSfXWewDDgpN34R1Ou64QN5syIDj+CJNHkVX3O+ie4HIGW8iwg+I/
+         QMzjxyzb530k6jzULumZ1OP3/kDZtCuFOOnRMi56Zb5C6UucR8pWDSleksKnYZG5Yt1e
+         vvPrmWV9MNHwEtMv1Y243JGuhZu7G0nbCOG2PHFdOgqjtyM+53gjI2NMe3UGVfoAoKGY
+         6T8ZaUlLT4JtQ6mtaNI6eDvxEdOVny4u6YO5iD6Z8VUBCmSKqycygtVKn+w2ejnpa357
+         rxghYAeHVkvGZ5LOVImt5doDpXRYACkY/A8MPJ8V9Xc3EDtq7eylY4f6dTUNdHuYCBeS
+         NX0w==
+X-Gm-Message-State: AOAM533thvu11SKrUa3kFl1irWuf9vzNwJwHRnL+cl6bCKCFFAKn8iru
+        1oqWcHhunvQ3GZtiz1uL5Is/RA==
+X-Google-Smtp-Source: ABdhPJxOe2ebPCCRukL/3pwCqqRVEGK7F4P3I838X2J4i641HLJD2ermkGhgGkY2/WjmEMN7KYWLNw==
+X-Received: by 2002:a17:907:3e91:b0:711:ea5e:2d4 with SMTP id hs17-20020a1709073e9100b00711ea5e02d4mr9199454ejc.52.1654764688817;
+        Thu, 09 Jun 2022 01:51:28 -0700 (PDT)
+Received: from [192.168.0.195] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id e1-20020a1709062c0100b0070bdc059ab2sm8916366ejh.138.2022.06.09.01.51.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Jun 2022 01:51:27 -0700 (PDT)
+Message-ID: <6ade0286-bdd4-c55c-ff02-8e8e7fe5bdce@linaro.org>
+Date:   Thu, 9 Jun 2022 10:51:26 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="OTiA3IFaAUn6WzOQ"
-Content-Disposition: inline
-In-Reply-To: <20220131164723.714836-2-quentin.schulz@theobroma-systems.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/9] dt-bindings: arm: qcom: fix Alcatel OneTouch Idol 3
+ compatibles
+Content-Language: en-US
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>
+References: <20220520123252.365762-1-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220520123252.365762-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 20/05/2022 14:32, Krzysztof Kozlowski wrote:
+> The MSM8916 Alcatel OneTouch Idol 3 does not use MTP fallbacks in
+> compatibles:
+> 
+>   msm8916-alcatel-idol347.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
+>     ['alcatel,idol347', 'qcom,msm8916'] is too short
+> 
+> Reported-by: Rob Herring <robh@kernel.org>
+> Fixes: e9dd2f7204ed ("dt-bindings: arm: qcom: Document alcatel,idol347 board")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
---OTiA3IFaAUn6WzOQ
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Bjorn,
 
-Hi,
+Any comments on these?
 
-On Mon 31 Jan 22, 17:47, quentin.schulz@theobroma-systems.com wrote:
-> From: Klaus Goger <klaus.goger@theobroma-systems.com>
->=20
-> The LTK050H3148W-CTA6 is a 5.0" 720x1280 DSI display, whose driving
-> controller is a Himax HX8394-F, slightly different from LTK050H3146W by
-> its init sequence, mode details and mode flags.
->=20
-> Cc: Quentin Schulz <foss+kernel@0leil.net>
-> Signed-off-by: Klaus Goger <klaus.goger@theobroma-systems.com>
-> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-
-Reviewed-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-
-Cheers,
-
-Paul
-
-> ---
->  .../drm/panel/panel-leadtek-ltk050h3146w.c    | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/panel/panel-leadtek-ltk050h3146w.c b/drivers=
-/gpu/drm/panel/panel-leadtek-ltk050h3146w.c
-> index 67eb474e28c6..3be815c3be68 100644
-> --- a/drivers/gpu/drm/panel/panel-leadtek-ltk050h3146w.c
-> +++ b/drivers/gpu/drm/panel/panel-leadtek-ltk050h3146w.c
-> @@ -253,6 +253,89 @@ struct ltk050h3146w *panel_to_ltk050h3146w(struct dr=
-m_panel *panel)
->  			return ret;					\
->  	} while (0)
-> =20
-> +static int ltk050h3148w_init_sequence(struct ltk050h3146w *ctx)
-> +{
-> +	struct mipi_dsi_device *dsi =3D to_mipi_dsi_device(ctx->dev);
-> +	int ret;
-> +
-> +	/*
-> +	 * Init sequence was supplied by the panel vendor without much
-> +	 * documentation.
-> +	 */
-> +	dsi_dcs_write_seq(dsi, 0xb9, 0xff, 0x83, 0x94);
-> +	dsi_dcs_write_seq(dsi, 0xb1, 0x50, 0x15, 0x75, 0x09, 0x32, 0x44, 0x71,
-> +			  0x31, 0x55, 0x2f);
-> +	dsi_dcs_write_seq(dsi, 0xba, 0x63, 0x03, 0x68, 0x6b, 0xb2, 0xc0);
-> +	dsi_dcs_write_seq(dsi, 0xd2, 0x88);
-> +	dsi_dcs_write_seq(dsi, 0xb2, 0x00, 0x80, 0x64, 0x10, 0x07);
-> +	dsi_dcs_write_seq(dsi, 0xb4, 0x05, 0x70, 0x05, 0x70, 0x01, 0x70, 0x01,
-> +			  0x0c, 0x86, 0x75, 0x00, 0x3f, 0x01, 0x74, 0x01, 0x74,
-> +			  0x01, 0x74, 0x01, 0x0c, 0x86);
-> +	dsi_dcs_write_seq(dsi, 0xd3, 0x00, 0x00, 0x07, 0x07, 0x40, 0x1e, 0x08,
-> +			  0x00, 0x32, 0x10, 0x08, 0x00, 0x08, 0x54, 0x15, 0x10,
-> +			  0x05, 0x04, 0x02, 0x12, 0x10, 0x05, 0x07, 0x33, 0x34,
-> +			  0x0c, 0x0c, 0x37, 0x10, 0x07, 0x17, 0x11, 0x40);
-> +	dsi_dcs_write_seq(dsi, 0xd5, 0x19, 0x19, 0x18, 0x18, 0x1b, 0x1b, 0x1a,
-> +			  0x1a, 0x04, 0x05, 0x06, 0x07, 0x00, 0x01, 0x02, 0x03,
-> +			  0x20, 0x21, 0x18, 0x18, 0x22, 0x23, 0x18, 0x18, 0x18,
-> +			  0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18,
-> +			  0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18,
-> +			  0x18);
-> +	 dsi_dcs_write_seq(dsi, 0xd6, 0x18, 0x18, 0x19, 0x19, 0x1b, 0x1b, 0x1a,
-> +			   0x1a, 0x03, 0x02, 0x01, 0x00, 0x07, 0x06, 0x05, 0x04,
-> +			   0x23, 0x22, 0x18, 0x18, 0x21, 0x20, 0x18, 0x18, 0x18,
-> +			   0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18,
-> +			   0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18,
-> +			   0x18);
-> +	dsi_dcs_write_seq(dsi, 0xe0, 0x00, 0x03, 0x09, 0x11, 0x11, 0x14, 0x18,
-> +			  0x16, 0x2e, 0x3d, 0x4d, 0x4d, 0x58, 0x6c, 0x72, 0x78,
-> +			  0x88, 0x8b, 0x86, 0xa4, 0xb2, 0x58, 0x55, 0x59, 0x5b,
-> +			  0x5d, 0x60, 0x64, 0x7f, 0x00, 0x03, 0x09, 0x0f, 0x11,
-> +			  0x14, 0x18, 0x16, 0x2e, 0x3d, 0x4d, 0x4d, 0x58, 0x6d,
-> +			  0x73, 0x78, 0x88, 0x8b, 0x87, 0xa5, 0xb2, 0x58, 0x55,
-> +			  0x58, 0x5b, 0x5d, 0x61, 0x65, 0x7f);
-> +	dsi_dcs_write_seq(dsi, 0xcc, 0x0b);
-> +	dsi_dcs_write_seq(dsi, 0xc0, 0x1f, 0x31);
-> +	dsi_dcs_write_seq(dsi, 0xb6, 0xc4, 0xc4);
-> +	dsi_dcs_write_seq(dsi, 0xbd, 0x01);
-> +	dsi_dcs_write_seq(dsi, 0xb1, 0x00);
-> +	dsi_dcs_write_seq(dsi, 0xbd, 0x00);
-> +	dsi_dcs_write_seq(dsi, 0xc6, 0xef);
-> +	dsi_dcs_write_seq(dsi, 0xd4, 0x02);
-> +	dsi_dcs_write_seq(dsi, 0x11);
-> +	dsi_dcs_write_seq(dsi, 0x29);
-> +
-> +	ret =3D mipi_dsi_dcs_set_tear_on(dsi, 1);
-> +	if (ret < 0) {
-> +		dev_err(ctx->dev, "failed to set tear on: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	msleep(60);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct drm_display_mode ltk050h3148w_mode =3D {
-> +	.hdisplay	=3D 720,
-> +	.hsync_start	=3D 720 + 12,
-> +	.hsync_end	=3D 720 + 12 + 6,
-> +	.htotal		=3D 720 + 12 + 6 + 24,
-> +	.vdisplay	=3D 1280,
-> +	.vsync_start	=3D 1280 + 9,
-> +	.vsync_end	=3D 1280 + 9 + 2,
-> +	.vtotal		=3D 1280 + 9 + 2 + 16,
-> +	.clock		=3D 59756,
-> +	.width_mm	=3D 62,
-> +	.height_mm	=3D 110,
-> +};
-> +
-> +static const struct ltk050h3146w_desc ltk050h3148w_data =3D {
-> +	.mode =3D &ltk050h3148w_mode,
-> +	.init =3D ltk050h3148w_init_sequence,
-> +	.mode_flags =3D MIPI_DSI_MODE_VIDEO_SYNC_PULSE,
-> +};
-> +
->  static int ltk050h3146w_init_sequence(struct ltk050h3146w *ctx)
->  {
->  	struct mipi_dsi_device *dsi =3D to_mipi_dsi_device(ctx->dev);
-> @@ -657,6 +740,10 @@ static const struct of_device_id ltk050h3146w_of_mat=
-ch[] =3D {
->  		.compatible =3D "leadtek,ltk050h3146w-a2",
->  		.data =3D &ltk050h3146w_a2_data,
->  	},
-> +	{
-> +		.compatible =3D "leadtek,ltk050h3148w",
-> +		.data =3D &ltk050h3148w_data,
-> +	},
->  	{ /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, ltk050h3146w_of_match);
-> --=20
-> 2.34.1
->=20
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---OTiA3IFaAUn6WzOQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmKhtIoACgkQ3cLmz3+f
-v9Gx7QgAlaGFmBwB+ZLCmWi0R/kG5uQ7wj3COrZJFXl7/B+F3Y4Vo7JQtDB9Gcze
-qNRkW6SjmXQakCiMXPaEDvjepj45YmF7pAl01Q2y8zhAJLhiDEC9F89zv+D4+9Tz
-IgrwtZhj/nrbWcu+Jra87cb4PgSu96xxMfGF3pKtPCFl8PAU3+HQNlRhtngS8+pQ
-2pd0PB0tX2osaqnosfqk5dfE2Cz0e/1IKtPL1larvBYUffbVsjZ1TI5VAPqeOgu4
-zlIx5x4Hwn/Jk45MRHLWc9L1gipWIDr8jvrP2rWOYr7WZtqQmaDQWGBPfhVbQDeS
-i6sqZ/EmBxlu3cPwP5MQpMD/mxqK+A==
-=0zYL
------END PGP SIGNATURE-----
-
---OTiA3IFaAUn6WzOQ--
+Best regards,
+Krzysztof
