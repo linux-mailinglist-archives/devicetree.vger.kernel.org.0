@@ -2,64 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57E72544FF6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 16:56:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 029E6544FFD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 16:57:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343961AbiFIO4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 10:56:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36980 "EHLO
+        id S1344099AbiFIO5X convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Jun 2022 10:57:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343903AbiFIO4T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 10:56:19 -0400
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1855938ACAA;
-        Thu,  9 Jun 2022 07:56:16 -0700 (PDT)
-Received: by mail-il1-f180.google.com with SMTP id f7so18931849ilr.5;
-        Thu, 09 Jun 2022 07:56:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iQZHh4HZrb6UztaIZM6VI0Jf69XnT1r33At+ff78LYo=;
-        b=oSkzThKrZjHXD+pj/MitsccacFqFTyHjZXhBA0ALSG9lH/zIQXOOUDjBw+6Ie5JIVx
-         txk/D+jJvpWL2b1WUBDJaOKhZAHnVl6r4n0Ck8L+CpQrF6n2QRj+iPOD8q6jrZb4w7eP
-         sTPIEpzEHYsrWk896iDfYt/HwUUXhhY/T2stZn/GIr6D6jXJccu0MBtga7u2SwAFTM9n
-         RNRUbmH8C7g1ckrWxAkjom8aD1yIWoGCr3BQzjL66LK7Nevp16vqUPFM3cvX4uFmGwTc
-         RbWdoyxnndJzegGirGhu8dtoMrjbPlr8lpbsghUXLwQqvRoaOtCCq3Pqg51J7Zs9V3Ou
-         v9cQ==
-X-Gm-Message-State: AOAM531ZA4Yic5nfrfZNcfv2YSJry9bvwt3UowhYvrFyf6AaoZ+9UG6W
-        3yxHk34BRyBhl4BwjwlcdW5LybKZiQ==
-X-Google-Smtp-Source: ABdhPJwCIDMYT0AOMlBbbLg6xi3Pq6uRQbAraq0DNrtDKX8HWA6rmSYdetAX+C/X7jiHDNTHkaxrhg==
-X-Received: by 2002:a92:3609:0:b0:2c6:3595:2a25 with SMTP id d9-20020a923609000000b002c635952a25mr22682156ila.233.1654786575297;
-        Thu, 09 Jun 2022 07:56:15 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id y38-20020a029529000000b0032e583132e4sm9569353jah.123.2022.06.09.07.56.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 07:56:14 -0700 (PDT)
-Received: (nullmailer pid 3783357 invoked by uid 1000);
-        Thu, 09 Jun 2022 14:56:13 -0000
-Date:   Thu, 9 Jun 2022 08:56:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Taniya Das <quic_tdas@quicinc.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, linux-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: clock: Add resets for LPASS audio
- clock controller for SC7280
-Message-ID: <20220609145613.GA3783291-robh@kernel.org>
-References: <20220604062137.14584-1-quic_tdas@quicinc.com>
- <20220604062137.14584-2-quic_tdas@quicinc.com>
+        with ESMTP id S1344135AbiFIO5L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 10:57:11 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7077C3A79E3;
+        Thu,  9 Jun 2022 07:57:05 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1nzJad-0006x1-AP; Thu, 09 Jun 2022 16:56:51 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 32/48] arm64: dts: rockchip: align gpio-key node names with dtschema
+Date:   Thu, 09 Jun 2022 16:56:50 +0200
+Message-ID: <2126178.C4sosBPzcN@diego>
+In-Reply-To: <e0f7146d-3ccc-a194-bb1e-c3475ca8c29e@linaro.org>
+References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org> <CAO_MupKxvaXRQvMyEUZMThBZ9033OeJec+BtBndjs5oZ3etTEQ@mail.gmail.com> <e0f7146d-3ccc-a194-bb1e-c3475ca8c29e@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220604062137.14584-2-quic_tdas@quicinc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,16 +46,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 04 Jun 2022 11:51:35 +0530, Taniya Das wrote:
-> Add support for LPASS audio clock gating for RX/TX/SWA core bus clocks
-> for SC7280. Update reg property min/max items in YAML schema.
+Am Donnerstag, 9. Juni 2022, 16:15:25 CEST schrieb Krzysztof Kozlowski:
+> On 09/06/2022 15:57, Maya Matuszczyk wrote:
+> > czw., 9 cze 2022 o 13:56 Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> napisał(a):
+> >>
+> >> The node names should be generic and DT schema expects certain pattern
+> >> (e.g. with key/button/switch).
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> ---
+> >>  arch/arm64/boot/dts/rockchip/rk3308-evb.dts   |  2 +-
+> >>  .../boot/dts/rockchip/rk3326-odroid-go2.dts   | 32 +++++++++----------
+> >>  .../boot/dts/rockchip/rk3328-nanopi-r2s.dts   |  2 +-
+> >>  arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi  |  2 +-
+> >>  .../boot/dts/rockchip/rk3368-geekbox.dts      |  2 +-
+> >>  .../dts/rockchip/rk3368-orion-r68-meta.dts    |  2 +-
+> >>  .../boot/dts/rockchip/rk3368-px5-evb.dts      |  2 +-
+> >>  arch/arm64/boot/dts/rockchip/rk3368-r88.dts   |  2 +-
+> >>  .../boot/dts/rockchip/rk3399-firefly.dts      |  2 +-
+> >>  .../dts/rockchip/rk3399-gru-chromebook.dtsi   |  2 +-
+> >>  .../boot/dts/rockchip/rk3399-gru-kevin.dts    |  2 +-
+> >>  .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi |  2 +-
+> >>  .../boot/dts/rockchip/rk3399-khadas-edge.dtsi |  2 +-
+> >>  .../boot/dts/rockchip/rk3399-nanopi-r4s.dts   |  4 +--
+> >>  .../boot/dts/rockchip/rk3399-nanopi4.dtsi     |  2 +-
+> >>  .../boot/dts/rockchip/rk3399-orangepi.dts     |  2 +-
+> >>  .../boot/dts/rockchip/rk3399-pinebook-pro.dts |  4 +--
+> >>  .../boot/dts/rockchip/rk3399-roc-pc.dtsi      |  2 +-
+> >>  .../boot/dts/rockchip/rk3399-rockpro64.dtsi   |  2 +-
+> >>  .../boot/dts/rockchip/rk3399-sapphire.dtsi    |  2 +-
+> >>  .../boot/dts/rockchip/rk3566-pinenote.dtsi    |  2 +-
+> >>  21 files changed, 38 insertions(+), 38 deletions(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
+> >> index 9b4f855ea5d4..4b5413b12bfa 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
+> >> @@ -75,7 +75,7 @@ gpio-keys {
+> >>                 pinctrl-names = "default";
+> >>                 pinctrl-0 = <&pwr_key>;
+> >>
+> >> -               power {
+> >> +               power-key {
+
+hmm, it looks like all the others below are named key-power, while
+only this uses power-key ?
+
+
+> >>                         gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_LOW>;
+> >>                         linux,code = <KEY_POWER>;
+> >>                         label = "GPIO Key Power";
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+> >> index ea0695b51ecd..72328dd993ee 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+> >> @@ -71,82 +71,82 @@ gpio-keys {
+> >>                  * |------------------------------------------------|
+> >>                  */
+> >>
+> >> -               sw1 {
+> >> +               switch-1 {
+> > Wouldn't it make more sense to rename this and all other
+> > renamed nodes in this dts into "button-dpad-up" or "button-1",
+> > as on the physical device those are buttons and the naming
+> > scheme of "sw" + number seems to be a carryover from
+> > downstream sources.
+
+The naming actually carries over from the device itself.
+In the schematics the relevant keys are also named sw1, sw2, etc.
+
+And I do believe it is way nicer when devicetree names correspond to the
+things you find in device schematics and not be named "arbitarily" to
+only conform to some schema ;-)
+
+So personally I'd actually prefer going with switch-sw1 (or button-sw1 if
+you prefer) as being able to just use the search function in schematic pdfs
+is a helpful tool.
+
+
+Heiko
+
+> Can be buttons. I assumed SW comes from some kind of switch.
+> I assume you mean only this Odroid Go2 DTS, because some other DTSes
+> (like EVB above) explicitly call it "Key Power".
 > 
-> Fixes: 4185b27b3bef ("dt-bindings: clock: Add YAML schemas for LPASS clocks on SC7280").
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  .../clock/qcom,sc7280-lpasscorecc.yaml        | 19 ++++++++++++++++---
->  .../clock/qcom,lpassaudiocc-sc7280.h          |  5 +++++
->  2 files changed, 21 insertions(+), 3 deletions(-)
+> 
+> Best regards,
+> Krzysztof
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+
+
+
