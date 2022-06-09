@@ -2,215 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DA1B544726
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 11:17:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AEC1544739
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 11:20:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233025AbiFIJRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 05:17:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46898 "EHLO
+        id S232782AbiFIJTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 05:19:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239865AbiFIJRQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 05:17:16 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B87E81CFEE
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 02:17:10 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id x5so25261269edi.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 02:17:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=boCzqqT5TJ09DQSvElsZCM76ABJa0T7dS+o6/tDOxwM=;
-        b=mpmOOFscyMqw+GwY/eg9JNVWN0vUrPX1093FaoVHwxm3++EvRefqZZsBheBiJU4sHR
-         SlhVD1fL1TcijeTNLor0ZibOo0nGxIZn0w+lsFt7j68sty1XLV/inCbcpuwFFDH6+kot
-         YJRk/slSTDijoKiYWMGmPt3nKS/Thx3sLbCVI=
+        with ESMTP id S231754AbiFIJTQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 05:19:16 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B84441F2FE;
+        Thu,  9 Jun 2022 02:19:15 -0700 (PDT)
+Received: by mail-qt1-f175.google.com with SMTP id y15so16714975qtx.4;
+        Thu, 09 Jun 2022 02:19:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=boCzqqT5TJ09DQSvElsZCM76ABJa0T7dS+o6/tDOxwM=;
-        b=oD1FYR0jHp6D3QbZlKvd5CTwo8QYa95UD7rDpYeHfDzebGyGZo8oXKmUrMGZE+RjVG
-         UFX/tYhyIUkow44NoUMkcMCkg/fzWO9bqXw6Ns+bn4QL0ysxHn/WvPF2+E5dBD9rmuCD
-         Qzc2ldQz01IlimiTozvAUYbszOu3fE7O0ovQFjRB66LI7j296LDbcnCAZUQZdJetjOwm
-         gqUgKooCd4nirwrLkchGTq3MLRGUNiQWzIgqWf+YjQIK5UWAWAutjKaURhB5S9wbCRFk
-         uIQcb6WpztJWBdegKOo0+BEHEh1raFo6JAnkB1OZWYJDDZeUBgeqDICxu2Ihuc3pz90h
-         YMew==
-X-Gm-Message-State: AOAM533MiqZUITxZkXNdpdIZqO6QUwQdNfm3JTQ7f4I4UU04KWieSaEu
-        3yDifHevD9+j/BkFerXGDhYxTdym+dPaHA==
-X-Google-Smtp-Source: ABdhPJz/EiF4HAeY1NUbSgiJMvqjfEhWawkjuaMtjj1l9TkUrpWQvgVpkpmdPUrxosqUmGapdvYkNw==
-X-Received: by 2002:a05:6402:1907:b0:42d:e90e:337 with SMTP id e7-20020a056402190700b0042de90e0337mr44745227edz.405.1654766229219;
-        Thu, 09 Jun 2022 02:17:09 -0700 (PDT)
-Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-55-105.cust.vodafonedsl.it. [188.217.55.105])
-        by smtp.gmail.com with ESMTPSA id r18-20020aa7cfd2000000b0042dc8dd59c7sm14090609edy.51.2022.06.09.02.17.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 02:17:08 -0700 (PDT)
-Date:   Thu, 9 Jun 2022 11:17:06 +0200
-From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-To:     Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Cc:     Jacopo Mondi <jacopo@jmondi.org>,
-        Quentin Schulz <foss+kernel@0leil.net>, shawnx.tu@intel.com,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 4/4] media: i2c: ov5675: add .get_selection supporty
-Message-ID: <20220609091706.GA1950409@tom-ThinkPad-T14s-Gen-2i>
-References: <20220607153335.875956-1-foss+kernel@0leil.net>
- <20220607153335.875956-4-foss+kernel@0leil.net>
- <20220607165136.bmriu2n7yorc7fx6@uno.localdomain>
- <20220607220405.GB821506@tom-ThinkPad-T14s-Gen-2i>
- <20220608064209.roub7uk7kx4k4muf@uno.localdomain>
- <941c3300-05e9-18b3-999a-1885585cf972@theobroma-systems.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zLBQ/1iNltaWLswe/a2+FpHCpp5bwmu+I0N93NCsVa0=;
+        b=hCB5P60uwqvEHwrii49UW2qAEnxCznKQZYaKAC5atg3eZGOj7aCsy7e5F2J8/wj1DE
+         8SihwBMe2O4b8lMmdhnfyU054iGEacy6LaF8cPTXdXuIIB4cXKnPnlKAQghSpXhhsBRi
+         e7SAHj0dKpgDXstUMJjRI3lkUBL5jkj+9iRMZkoyoV2g8exNba7ZnP249GDukIWBK5g2
+         ODsXvLjQmJcek8VLcWlYHUiyXC8XuUtyn62YFArX3axWqnjbZCs1WVuV6YAOxWwOJEHQ
+         IeIc6lGx1/2OC1OsP2fQkhrWqvKP5RFaLuvjQinhdXJPqw7xGx0st/51+mQGQA+bnpqn
+         ZYeA==
+X-Gm-Message-State: AOAM532kec0vIS4mHnSP6xSK0GGyex41Je+pKoeRruyzOKWcefGIDEDu
+        GOcHxmq2Rz1pVHZbQWFcp2Uhg8NxOyAiFg==
+X-Google-Smtp-Source: ABdhPJzVlRlMeNTwj9AbZz1pk5P/M1Lu4925n9bpgOJldmE9C3W66Jz0edLrEPK48kT0Y/Iyxw4LXg==
+X-Received: by 2002:ac8:5f12:0:b0:305:c3d:c1da with SMTP id x18-20020ac85f12000000b003050c3dc1damr1888749qta.492.1654766354685;
+        Thu, 09 Jun 2022 02:19:14 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id hh8-20020a05622a618800b00304f3e320f2sm5731766qtb.4.2022.06.09.02.19.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Jun 2022 02:19:14 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id g201so12917358ybf.12;
+        Thu, 09 Jun 2022 02:19:14 -0700 (PDT)
+X-Received: by 2002:a05:6902:120e:b0:634:6f29:6b84 with SMTP id
+ s14-20020a056902120e00b006346f296b84mr39923091ybu.604.1654766354021; Thu, 09
+ Jun 2022 02:19:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <941c3300-05e9-18b3-999a-1885585cf972@theobroma-systems.com>
-X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,PDS_OTHER_BAD_TLD,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+References: <20220525151355.24175-1-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20220525151355.24175-1-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 9 Jun 2022 11:19:02 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVhteUVZ0+kaSggEntrwSYtrNEB-CNopPCmdJsRrqkYRg@mail.gmail.com>
+Message-ID: <CAMuHMdVhteUVZ0+kaSggEntrwSYtrNEB-CNopPCmdJsRrqkYRg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r8a779f0: Add thermal support
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linh Phung <linh.phung.jy@renesas.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, May 25, 2022 at 5:14 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> From: Linh Phung <linh.phung.jy@renesas.com>
+>
+> Add support for 3 TSC nodes of thermal. The 4th node is for the control
+> domain and not for Linux.
+>
+> Signed-off-by: Linh Phung <linh.phung.jy@renesas.com>
+> [wsa: rebased, fixed resource size, removed unused 4th node breaking probe]
+> Signed-off-by: Wolfram Sang <wsa@kernel.org>
 
-On Wed, Jun 08, 2022 at 03:05:29PM +0200, Quentin Schulz wrote:
-> Jacopo, Tommaso,
-> 
-> On 6/8/22 08:42, Jacopo Mondi wrote:
-> > Hi
-> > 
-> > On Wed, Jun 08, 2022 at 12:04:05AM +0200, Tommaso Merciai wrote:
-> > > Hi Quentin/Jacopo,
-> > > 
-> > > On Tue, Jun 07, 2022 at 06:51:36PM +0200, Jacopo Mondi wrote:
-> > > > Hi Quentin,
-> > > > 
-> > > > On Tue, Jun 07, 2022 at 05:33:35PM +0200, Quentin Schulz wrote:
-> > > > > From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-> > > > > 
-> > > > > The sensor has 2592*1944 active pixels, surrounded by 16 active dummy
-> > > > > pixels and there are an additional 24 black rows "at the bottom".
-> > > > > 
-> > > > >                       [2624]
-> > > > >          +-----+------------------+-----+
-> > > > >          |     |     16 dummy     |     |
-> > > > >          +-----+------------------+-----+
-> > > > >          |     |                  |     |
-> > > > >          |     |     [2592]       |     |
-> > > > >          |     |                  |     |
-> > > > >          |16   |      valid       | 16  |[2000]
-> > > > >          |dummy|                  |dummy|
-> > > > >          |     |            [1944]|     |
-> > > > >          |     |                  |     |
-> > > > >          +-----+------------------+-----+
-> > > > >          |     |     16 dummy     |     |
-> > > > >          +-----+------------------+-----+
-> > > > >          |     |  24 black lines  |     |
-> > > > >          +-----+------------------+-----+
-> > > > > 
-> > > > > The top-left coordinate is gotten from the registers specified in the
-> > > > > modes which are identical for both currently supported modes.
-> > > > > 
-> > > > > There are currently two modes supported by this driver: 2592*1944 and
-> > > > > 1296*972. The second mode is obtained thanks to subsampling while
-> > > > > keeping the same field of view (FoV). No cropping involved, hence the
-> > > > > harcoded values.
-> > > > > 
-> > > > > Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-> > > > > ---
-> > > > > 
-> > > > > v6:
-> > > > >   - explicit a bit more the commit log around subsampling for lower
-> > > > >   resolution modes,
-> > > > >   - (again) fixed reporting for V4L2_SEL_TGT_CROP_* thanks to Jacopo's help,
-> > > > > 
-> > > > > v4:
-> > > > >   - explicit a bit more the commit log,
-> > > > >   - added drawing in the commit log,
-> > > > >   - fixed reporting for V4L2_SEL_TGT_CROP_* thanks to Jacopo's help,
-> > > > > 
-> > > > > added in v3
-> > > > > 
-> > > > >   drivers/media/i2c/ov5675.c | 21 +++++++++++++++++++++
-> > > > >   1 file changed, 21 insertions(+)
-> > > > > 
-> > > > > diff --git a/drivers/media/i2c/ov5675.c b/drivers/media/i2c/ov5675.c
-> > > > > index 80840ad7bbb0..2230ff47ef49 100644
-> > > > > --- a/drivers/media/i2c/ov5675.c
-> > > > > +++ b/drivers/media/i2c/ov5675.c
-> > > > > @@ -1121,6 +1121,26 @@ static int ov5675_get_format(struct v4l2_subdev *sd,
-> > > > >   	return 0;
-> > > > >   }
-> > > > > 
-> > > > > +static int ov5675_get_selection(struct v4l2_subdev *sd,
-> > > > > +				struct v4l2_subdev_state *state,
-> > > > > +				struct v4l2_subdev_selection *sel)
-> > > > > +{
-> > > > > +	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
-> > > > > +		return -EINVAL;
-> > > > > +
-> > > > > +	switch (sel->target) {
-> > > > > +	case V4L2_SEL_TGT_CROP:
-> > > > > +	case V4L2_SEL_TGT_CROP_BOUNDS:
-> > > > 
-> > > > Seem like we have trouble understanding each other, or better, I have
-> > > > troubles explaining myself most probably :)
-> > > > 
-> > > > If the dummy/black area is readable, this should just be (0, 0, 2624,
-> > > > 2000) like it was in your previous version. What has changed that I
-> > > > have missed ?
-> > > 
-> 
-> I wouldn't say there's some misunderstanding, it's just super hard to figure
-> out how to match what the datasheet says to what the kernel wants. Yay to
-> obscure/confusing datasheets \o/
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-I know your feels :)
+Gr{oetje,eeting}s,
 
-> 
-> I just did things too quickly, nothing changed. Sorry, will send a v7.
-> 
-> > > Taking as reference drivers/media/i2c/ov5693.c and others,
-> > > seems ok what Quentin have done from my side.
-> > > 
-> > > Just one thing: maybe is better to avoid magic numbers with more
-> > > explicit defines like:
-> > > 
-> > >   + case V4L2_SEL_TGT_CROP_DEFAULT:
-> > >   +           sel->r.top = OV5675_ACTIVE_START_TOP;
-> > >   +           sel->r.left = OV5693_ACTIVE_START_LEFT;
-> > >   +           sel->r.width = OV5693_ACTIVE_WIDTH;
-> > >   +           sel->r.height = OV5693_ACTIVE_HEIGHT;
-> > > 
-> 
-> They are hardcoded today but actually depend on what;s set in the registers
-> too, which might differ if we add more modes in the future? It's anyway
-> auto-magic and it's the only place it's used, so not sure it brings much
-> especially since the variable names on the left hand side of the operator
-> are pretty self-explanatory (not talking about V4L2_SEL_TGT_CROP_* :p)? Not
-> that I'm against it.
+                        Geert
 
-Thanks for the explaination.
-You are right.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Regards,
-Tommaso
-
-> 
-> Cheers,
-> Quentin
-
--- 
-Tommaso Merciai
-Embedded Linux Engineer
-tommaso.merciai@amarulasolutions.com
-__________________________________
-
-Amarula Solutions SRL
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-T. +39 042 243 5310
-info@amarulasolutions.com
-www.amarulasolutions.com
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
