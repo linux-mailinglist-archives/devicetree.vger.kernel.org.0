@@ -2,60 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60639545419
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 20:26:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D10854542C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 20:33:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239388AbiFIS0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 14:26:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42314 "EHLO
+        id S232460AbiFISc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 14:32:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231627AbiFIS0L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 14:26:11 -0400
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 820B929C9E;
-        Thu,  9 Jun 2022 11:26:10 -0700 (PDT)
-Received: by mail-il1-f176.google.com with SMTP id z11so536574ilq.6;
-        Thu, 09 Jun 2022 11:26:10 -0700 (PDT)
+        with ESMTP id S232018AbiFISc6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 14:32:58 -0400
+Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2F6F32EF6;
+        Thu,  9 Jun 2022 11:32:55 -0700 (PDT)
+Received: by mail-il1-f174.google.com with SMTP id f7so19372620ilr.5;
+        Thu, 09 Jun 2022 11:32:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=cLDZQJzvsDyJ7h1hdWbqNlQ6ycdzzAeH1ZyNfeeZj5w=;
-        b=JvREQPrh5CiWz/7Vx5u7gyi/QNOn+Rd8L1EqQkD0sf9h8fR5UoJ4jgREFjBvsPNxif
-         78HPdaQE+vux1Mc5OA8D5Ui8F7n1e4BIkJgbiBbCKq/cvs4fXtUL60EnVE1AbaJQAQPK
-         D7Y4KirqCb/hHO1IOzeIcl3rSTLP91YIzTflIj/oFMQHsC2ztGWfo/Tm8wJXiLqBSmNt
-         XAYESOEd+wNNcyXT1WRjVuor5Enxxn3qeZmJZwvcnioAuSiPiQTfWS3vxejY8lVyO2rY
-         ETNwPkLXHtaDfivP2VOi9JKB/lisZbsL5l3liFx+dfb10s9HV3TzYF5EVeIPwCDWJiOw
-         Oirg==
-X-Gm-Message-State: AOAM532e2nFPP7Takj/DgkJ5AvMaIvSNiyzDvQTSeihpefn7NymYad5B
-        X1uEofeVLslARR/U7mRusQ==
-X-Google-Smtp-Source: ABdhPJyPAu/3NduG0na4VoyumB38tDz2ZNatdC2Ocl+vXixAxmw3qxr/QGPsvo5KIxlV4ZGOwDdRNw==
-X-Received: by 2002:a92:dc88:0:b0:2d5:118c:a3f6 with SMTP id c8-20020a92dc88000000b002d5118ca3f6mr16497974iln.204.1654799169714;
-        Thu, 09 Jun 2022 11:26:09 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=2fGJOOmf3MnqCqr0U0Gv08/FTGB7aMws3g7bnxXyMQU=;
+        b=elocRYq61JkRmlsVLvm6jWbJcDnqr7zGB1OaWLCBFFmYRZIAs84HWjvKnJF8WUN3vx
+         C4TPqQfOXie7alxSWczFvJpZ6aPUXHcKBG9ypLtSSzLcMlN6wu4Wo2eMlViLVTMqkTEH
+         X0a4eWawanZMLJJirTfVatKg9pMKIyWdlM1FoydqYC/3lJD68FQxrFM+gBoqwJIdcUSY
+         OTp+H+hVX696Dd8Je15xdw8vwRq9iOV4ub1tkTWlPsGdTzRpoUfiXM9M3k7Cxu7uu65S
+         QvP2hZt+6X3AcueeqvhyH56BE9kVmJRQCG45mRL2KX+T48ylmWrRqBMofuNxxYqvbGeP
+         LaqQ==
+X-Gm-Message-State: AOAM5309OFGDkHnIXmN+PSr2wtBI7KrL/oFfgnRZFEaXOvyCc15DpuZv
+        iJ/APz/TAyJACdSogHkb6npnnA5dmA==
+X-Google-Smtp-Source: ABdhPJx31++5ELqY9QeEp0vYvJBKv3sPIqcp+1xkOs3vD1KYC4Dzpfv4vFl3Og62AYuhKQ9LpohUWQ==
+X-Received: by 2002:a92:dc42:0:b0:2d5:4875:1c6f with SMTP id x2-20020a92dc42000000b002d548751c6fmr10194139ilq.65.1654799575238;
+        Thu, 09 Jun 2022 11:32:55 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id a2-20020a029102000000b0033202bb9829sm1013998jag.49.2022.06.09.11.26.07
+        by smtp.gmail.com with ESMTPSA id e16-20020a056638021000b0033195fabca4sm6237137jaq.175.2022.06.09.11.32.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 11:26:09 -0700 (PDT)
-Received: (nullmailer pid 4072745 invoked by uid 1000);
-        Thu, 09 Jun 2022 18:26:06 -0000
-Date:   Thu, 9 Jun 2022 12:26:06 -0600
+        Thu, 09 Jun 2022 11:32:54 -0700 (PDT)
+Received: (nullmailer pid 4081859 invoked by uid 1000);
+        Thu, 09 Jun 2022 18:32:52 -0000
+Date:   Thu, 9 Jun 2022 12:32:52 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
-        linux@armlinux.org.uk, vladimir.oltean@nxp.com,
-        grygorii.strashko@ti.com, vigneshr@ti.com, nsekhar@ti.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kishon@ti.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: ti: k3-am654-cpsw-nuss: Update
- bindings for J7200 CPSW5G
-Message-ID: <20220609182606.GA4024580-robh@kernel.org>
-References: <20220606110443.30362-1-s-vadapalli@ti.com>
- <20220606110443.30362-2-s-vadapalli@ti.com>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jens Axboe <axboe@kernel.dk>,
+        =?utf-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: mtd: partitions: Support label only
+ partition
+Message-ID: <20220609183252.GA4072951-robh@kernel.org>
+References: <20220606151417.19227-1-ansuelsmth@gmail.com>
+ <20220606151417.19227-2-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220606110443.30362-2-s-vadapalli@ti.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220606151417.19227-2-ansuelsmth@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,65 +73,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 06, 2022 at 04:34:41PM +0530, Siddharth Vadapalli wrote:
-> Update bindings for TI K3 J7200 SoC which contains 5 ports (4 external
-> ports) CPSW5G module and add compatible for it.
+On Mon, Jun 06, 2022 at 05:14:15PM +0200, Ansuel Smith wrote:
+> Document new partition nodes that declare only the label instead of the
+> reg used to provide an OF node for partition registred at runtime by
+> parsers. This is required for nvmem system to declare and detect
+> nvmem-cells.
 > 
-> Changes made:
->     - Add new compatible ti,j7200-cpswxg-nuss for CPSW5G.
->     - Extend pattern properties for new compatible.
->     - Change maximum number of CPSW ports to 4 for new compatible.
+> With these special partitions, the reg / offset is not required.
+> The label binding is used to match the partition allocated by the
+> parser at runtime and the parser will provide reg and offset of the mtd.
 > 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> NVMEM will use the data from the parser and provide the NVMEM cells
+> declared in the DTS, "connecting" the dynamic partition with a
+> static declaration of cells in them.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 > ---
->  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 135 ++++++++++++------
->  1 file changed, 93 insertions(+), 42 deletions(-)
+>  .../bindings/mtd/partitions/partition.yaml       | 16 ++++++++++++++--
+>  1 file changed, 14 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> index b8281d8be940..49f63aaf5a08 100644
-> --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
-> @@ -57,6 +57,7 @@ properties:
->        - ti,am654-cpsw-nuss
->        - ti,j721e-cpsw-nuss
->        - ti,am642-cpsw-nuss
-> +      - ti,j7200-cpswxg-nuss
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+> index e1ac08064425..bff6fb980e6b 100644
+> --- a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+> @@ -11,6 +11,13 @@ description: |
+>    relative offset and size specified. Depending on partition function extra
+>    properties can be used.
 >  
->    reg:
->      maxItems: 1
-> @@ -108,48 +109,98 @@ properties:
->          const: 1
->        '#size-cells':
->          const: 0
-> -
-> -    patternProperties:
-> -      port@[1-2]:
+> +  A partition may be dynamically allocated by a specific parser at runtime.
+> +  In this specific case, the label is required instead of the reg.
+> +  This is used to assign an OF node to the dynamiccally allocated partition
+> +  so that subsystem like NVMEM can provide an OF node and declare NVMEM cells.
+> +  The OF node will be assigned only if the partition label declared match the
+> +  one assigned by the parser at runtime.
+> +
+>  maintainers:
+>    - Rafał Miłecki <rafal@milecki.pl>
+>  
+> @@ -22,6 +29,8 @@ properties:
+>    label:
+>      description: The label / name for this partition. If omitted, the label
+>        is taken from the node name (excluding the unit address).
+> +      With dynamically allocated partition the label is required and won't
+> +      fallback to the node name.
 
-Just change this to 'port@[1-4]'.
+Generally, label is never required being something for humans rather 
+than the s/w to consume. I don't see any reason why we can't still use 
+the node name (with 'partition-' stripped off).
 
-> -        type: object
-> -        description: CPSWxG NUSS external ports
-> -
-> -        $ref: ethernet-controller.yaml#
-> -
-> -        properties:
-> -          reg:
-> -            minimum: 1
-> -            maximum: 2
+If the purpose is to define what the partition contains, then 
+'compatible' is the right thing for that.
 
-And this to 4.
-
-Then, you just need this to disallow the additional ports:
-
-if:
-  not:
-    properties:
-      compatible:
-        contains:
-          const: ti,j7200-cpswxg-nuss
-then:
-  patternProperties:
-    '^port@[3-4]$': false
-
-
-Rob
+>  
+>    read-only:
+>      description: This parameter, if present, is a hint that this partition
+> @@ -41,7 +50,10 @@ properties:
+>        immune to paired-pages corruptions
+>      type: boolean
+>  
+> -required:
+> -  - reg
+> +if:
+> +  not:
+> +    required: [ reg ]
+> +then:
+> +  required: [ label ]
+>  
+>  additionalProperties: true
+> -- 
+> 2.36.1
+> 
+> 
