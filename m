@@ -2,142 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46B3B544445
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 08:52:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B53605444A0
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 09:20:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237739AbiFIGwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 02:52:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53214 "EHLO
+        id S235876AbiFIHT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 03:19:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232831AbiFIGwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 02:52:49 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA9AA53C52
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 23:52:47 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id o10so29880722edi.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 23:52:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7w6u3Xd33wxktNKaceti1epk3OamWWDXisMnmnBnY5c=;
-        b=hp6x9MrKPi02oXdemNYzs9JUekFDdY3lqPBElqUTf0SYEKHOgLuvljrlVLIo6X0ozC
-         1DSBRkztNFfmURzW4e7VFzsfNZIQTBVr0WxTYv8U8/wSM50sOuVHCuRv3Ama7yFLKYBv
-         Wybmeps43ARY+4ROqhQak1jtE7ljsfY52cKHylZbZVxTsNrsxKBhN6RUL1KJYg1+Ym5R
-         bMVhCeb9D1CXkBZZY8+LOuSVdocXyc4eimrL20iv7Ap2aP9YxGqNARlzUmBvxUvTsuNv
-         iD075DpyIvuLVp73DB5wbUjxOhFOOZodobJHY93NpGFuIa4CC18mECNZQtpl+DGbAtcw
-         hS9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=7w6u3Xd33wxktNKaceti1epk3OamWWDXisMnmnBnY5c=;
-        b=JxhDrcxq9UQes5EDJPs269soeX3RWyesxGntkGK1l1NCa2CMBQjZDkk+/DOVrB2uQ4
-         T3p/5ShO2C2hfkKydOjL2sQqw0oY26GW6S8CUEYw9psh6qcLNMkuYzkc6xje9bVe3Zy8
-         ZQ3PrW8BQHuP7mCdMh4IxkiDbA+8xIYD+2d2sNxuMPCILLQ5m2uFbjPXg202dgNktdjd
-         xzep1T8u7HOoo6wxDzdiJodbouI/N/drWPE9XjeiOT6RClGKnAQwGVg5LtEr1Aw/rBCB
-         44QPKOXW1rNk1dvitQvph3acadkry/5h6Gp52TW+5uuMqJmgFioEGuDTdWUvkOaKhC//
-         2Oxw==
-X-Gm-Message-State: AOAM532TwkqHwU2hOPcJdmF47YI6F644P3eVg0wDxq71CMDOYPPbYyu+
-        4vKidd26tV9HqZmeGJ4LajT4rw==
-X-Google-Smtp-Source: ABdhPJyHtXQ14Br4hcGLA30u2+zhNuN3OqNmOEZdKiZvzq4pGAaLT8XvVotmXlcEFsSxxrH7JYRZqQ==
-X-Received: by 2002:a05:6402:1d4a:b0:42e:93de:17f4 with SMTP id dz10-20020a0564021d4a00b0042e93de17f4mr35271968edb.8.1654757566520;
-        Wed, 08 Jun 2022 23:52:46 -0700 (PDT)
-Received: from [192.168.0.194] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id f8-20020a170906494800b0070c4abe4706sm8630850ejt.158.2022.06.08.23.52.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 23:52:45 -0700 (PDT)
-Message-ID: <7f8269fc-f2cb-e0b6-8c81-cc7950b325e5@linaro.org>
-Date:   Thu, 9 Jun 2022 08:52:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [RFC PATCH 2/2] dt-bindings: input: gpio-keys: document label and
- autorepeat properties
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        with ESMTP id S238571AbiFIHT1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 03:19:27 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 132612432FD;
+        Thu,  9 Jun 2022 00:19:25 -0700 (PDT)
+X-UUID: 89c5cc1d5e284946acc21aa84de72ca1-20220609
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:5edffd8c-77a7-4991-bb69-badb40d81d77,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:f59d38e5-2ba2-4dc1-b6c5-11feb6c769e0,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 89c5cc1d5e284946acc21aa84de72ca1-20220609
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 931788558; Thu, 09 Jun 2022 15:19:21 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Thu, 9 Jun 2022 15:18:50 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Thu, 9 Jun 2022 15:18:49 +0800
+Message-ID: <dda245fbb0dd0d98dff4a332c311db5f588594a2.camel@mediatek.com>
+Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
+ driver
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>,
+        Guillaume Ranquet <granquet@baylibre.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux Input <linux-input@vger.kernel.org>,
-        devicetree@vger.kernel.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun =?UTF-8?Q?=28=E4=BA=91=E6=98=A5=E5=B3=B0=29?= 
+        <Chunfeng.Yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Helge Deller <deller@gmx.de>,
+        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
+        <jitao.shi@mediatek.com>
+CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stefan Hansson <newbie13xd@gmail.com>,
-        Andreas Kemnade <andreas@kemnade.info>
-References: <20220603101601.542054-1-krzysztof.kozlowski@linaro.org>
- <20220603101601.542054-3-krzysztof.kozlowski@linaro.org>
- <Ypo6Q8/SuPGxp/ac@google.com>
- <ca93699e-f905-c0ee-8ddb-1be2491fc8cc@linaro.org>
- <CAL_JsqLQSBV9_An2=2euSQcesRjvEqE0kQ7bQh86P+BaEzvN1A@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAL_JsqLQSBV9_An2=2euSQcesRjvEqE0kQ7bQh86P+BaEzvN1A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>
+Date:   Thu, 9 Jun 2022 15:18:49 +0800
+In-Reply-To: <387fc4f9a65b87467fbff3878ad371bee4552e6e.camel@mediatek.com>
+References: <20220523104758.29531-1-granquet@baylibre.com>
+         <20220523104758.29531-19-granquet@baylibre.com>
+         <387fc4f9a65b87467fbff3878ad371bee4552e6e.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2022 23:20, Rob Herring wrote:
-> On Sun, Jun 5, 2022 at 9:15 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 03/06/2022 18:43, Dmitry Torokhov wrote:
->>> On Fri, Jun 03, 2022 at 12:16:01PM +0200, Krzysztof Kozlowski wrote:
->>>> The original text bindings documented "autorepeat" and "label"
->>>> properties (in the device node, beside the nodes with keys).
->>>>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> ---
->>>>  Documentation/devicetree/bindings/input/gpio-keys.yaml | 8 ++++++++
->>>>  1 file changed, 8 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/input/gpio-keys.yaml b/Documentation/devicetree/bindings/input/gpio-keys.yaml
->>>> index 49d388dc8d78..b1c910a5e233 100644
->>>> --- a/Documentation/devicetree/bindings/input/gpio-keys.yaml
->>>> +++ b/Documentation/devicetree/bindings/input/gpio-keys.yaml
->>>> @@ -15,6 +15,14 @@ properties:
->>>>        - gpio-keys
->>>>        - gpio-keys-polled
->>>>
->>>> +  autorepeat:
->>>> +    type: boolean
->>>> +    description:
->>>> +      Enable operating system (not hardware) key auto repeat feature.
->>>
->>> Should we refer to the generic input device property here instead (one
->>> on described in input.yaml)?
->>
->> You mean copy the description from input.yaml or say something like:
->> "see input.yaml"?
+On Tue, 2022-06-07 at 16:01 +0800, CK Hu wrote:
+> Hi, Rex:
 > 
-> No, just:
+> On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > 
+> > This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
+> > 
+> > It supports the mt8195, the embedded DisplayPort units. It offers
+> > DisplayPort 1.4 with up to 4 lanes.
+> > 
+> > The driver creates a child device for the phy. The child device
+> > will
+> > never exist without the parent being active. As they are sharing a
+> > register range, the parent passes a regmap pointer to the child so
+> > that
+> > both can work with the same register range. The phy driver sets
+> > device
+> > data that is read by the parent to get the phy device that can be
+> > used
+> > to control the phy properties.
+> > 
+> > This driver is based on an initial version by
+> > Jason-JH.Lin <jason-jh.lin@mediatek.com>.
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > ---
 > 
-> $ref: input.yaml#
-> properties:
->   autorepeat: true
+> [snip]
 > 
-> And 'poll-interval' needs its definition removed.
+> > +
+> > +static void mtk_dp_state_handler(struct mtk_dp *mtk_dp)
+> > +{
+> > +	switch (mtk_dp->state) {
 > 
-> It's a bit strange for input.yaml to be referenced in both the parent
-> and child nodes, but that's the nature of the input bindings. Maybe
-> input.yaml could be split? Doesn't really look like it to me. The main
-> issue with one file is the users need to list out which properties
-> they use (not a bad thing).
+> Does mtk_dp->state has any relation with mtk_dp->train_state. If yes,
+> mix mtk_dp->state and mtk_dp->train_state into one state. If no, move
+> calling mtk_dp_state_handler() out of mtk_dp_train_handler().
 > 
-> Note that this series (patch 1) is going to conflict with what I just
-> sent out[1].
+> Regards,
+> CK
+> 
 
-I can rebase on top of it.
+Hello CK,
 
-I understand that idea of the series looks good, so I will work on DTSes
-and v2 of this.
+OK, I will refine this flow.
+About the state machine of traning flow, we can review in v11.
 
+BRs,
+Bo-Chen
 
-Best regards,
-Krzysztof
+> > +	case MTK_DP_STATE_INITIAL:
+> > +		mtk_dp_video_mute(mtk_dp, true);
+> > +		mtk_dp->state = MTK_DP_STATE_IDLE;
+> > +		break;
+> > +
+> > +	case MTK_DP_STATE_IDLE:
+> > +		if (mtk_dp->train_state == MTK_DP_TRAIN_STATE_NORMAL)
+> > +			mtk_dp->state = MTK_DP_STATE_PREPARE;
+> > +		break;
+> > +
+> > +	case MTK_DP_STATE_PREPARE:
+> > +		mtk_dp_video_config(mtk_dp);
+> > +		mtk_dp_video_enable(mtk_dp, true);
+> > +
+> > +		mtk_dp->state = MTK_DP_STATE_NORMAL;
+> > +		break;
+> > +
+> > +	case MTK_DP_STATE_NORMAL:
+> > +		if (mtk_dp->train_state != MTK_DP_TRAIN_STATE_NORMAL) {
+> > +			mtk_dp_video_mute(mtk_dp, true);
+> > +			mtk_dp->state = MTK_DP_STATE_IDLE;
+> > +		}
+> > +		break;
+> > +
+> > +	default:
+> > +		break;
+> > +	}
+> > +}
+> 
+> 
+
