@@ -2,84 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC2015444BC
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 09:25:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8FDB54450C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 09:45:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239974AbiFIHYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 03:24:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59014 "EHLO
+        id S232236AbiFIHpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 03:45:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232296AbiFIHYn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 03:24:43 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4F7E35E36A;
-        Thu,  9 Jun 2022 00:24:40 -0700 (PDT)
-X-UUID: ca9b03a3d11d4a2c9f714498a8aebbea-20220609
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:64c21d66-609b-40f5-8f40-e3069bad7da0,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:5cdc38e5-2ba2-4dc1-b6c5-11feb6c769e0,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: ca9b03a3d11d4a2c9f714498a8aebbea-20220609
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1223699442; Thu, 09 Jun 2022 15:24:33 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 9 Jun 2022 15:24:33 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 9 Jun 2022 15:24:33 +0800
-Message-ID: <dba8cf8aac439fdecd9eba7009845d76ebca6666.camel@mediatek.com>
-Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
- driver
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>,
-        Guillaume Ranquet <granquet@baylibre.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun =?UTF-8?Q?=28=E4=BA=91=E6=98=A5=E5=B3=B0=29?= 
-        <Chunfeng.Yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>
-CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>
-Date:   Thu, 9 Jun 2022 15:24:33 +0800
-In-Reply-To: <49f4f8732eb1df31b0c8a82761e1c4dad9aef106.camel@mediatek.com>
-References: <20220523104758.29531-1-granquet@baylibre.com>
-         <20220523104758.29531-19-granquet@baylibre.com>
-         <f791f46c6307a18818574cb7fb8653bcc84aa9ad.camel@mediatek.com>
-         <75c00caca74b8366ca2c4594a8229b6de95c5f47.camel@mediatek.com>
-         <49f4f8732eb1df31b0c8a82761e1c4dad9aef106.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S233114AbiFIHpO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 03:45:14 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC2AA1A398;
+        Thu,  9 Jun 2022 00:45:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 546E2B82C1F;
+        Thu,  9 Jun 2022 07:45:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8DA6C34114;
+        Thu,  9 Jun 2022 07:45:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654760711;
+        bh=2LL7+wgynfXqSoybroZDLmD28F35k05LG/4YKWxg6ig=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=U3acwFCjdjQ6OEXtnuqNMjF45pE4qMIt3/k1ZOYvk9Jkw07UrLmsGmqlQc1SjPtiL
+         UL0bOGGad0zLb8TcLC72qe6E1jiHs33vcrilaAofu96KN+mR74SNFsAyp7VfDfoQn/
+         JE939YUHMOIyM0GlaCxHywQli/BaXd5x5i+c/cdzglJSugiADlaIOm049KAiTi7Ezi
+         QeZexJdKXMuPio77uB6vjicQIS+ODyTguK0WsbnJxNARn8POAqfrNB9/nkFtG55zYN
+         8Zi4p2KrfvEx+C6mc9ICdJjniTC1a27cJeqmdoOERkFMgvDQ8VUHpXBvMYCFEoWis6
+         713CYN6SH5nlg==
+Date:   Thu, 9 Jun 2022 07:45:07 +0000
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org
+Cc:     chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
+        mka@chromium.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/5] platform/chrome: cros_kbd_led_backlight: separate
+ ACPI backend
+Message-ID: <YqGlA/5CK4lX95ge@google.com>
+References: <20220523090822.3035189-1-tzungbi@kernel.org>
+ <20220523090822.3035189-3-tzungbi@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220523090822.3035189-3-tzungbi@kernel.org>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,160 +55,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-06-09 at 10:30 +0800, CK Hu wrote:
-> Hi, Rex:
+On Mon, May 23, 2022 at 05:08:19PM +0800, Tzung-Bi Shih wrote:
+> cros_kbd_led_backlight uses ACPI_KEYBOARD_BACKLIGHT_WRITE and
+> ACPI_KEYBOARD_BACKLIGHT_READ for setting and getting the brightness
+> respectively.
 > 
-> On Wed, 2022-06-08 at 18:26 +0800, Rex-BC Chen wrote:
-> > On Tue, 2022-06-07 at 15:47 +0800, CK Hu wrote:
-> > > Hi, Rex:
-> > > 
-> > > On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
-> > > > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > > 
-> > > > This patch adds a DisplayPort driver for the Mediatek mt8195
-> > > > SoC.
-> > > > 
-> > > > It supports the mt8195, the embedded DisplayPort units. It
-> > > > offers
-> > > > DisplayPort 1.4 with up to 4 lanes.
-> > > > 
-> > > > The driver creates a child device for the phy. The child device
-> > > > will
-> > > > never exist without the parent being active. As they are
-> > > > sharing
-> > > > a
-> > > > register range, the parent passes a regmap pointer to the child
-> > > > so
-> > > > that
-> > > > both can work with the same register range. The phy driver sets
-> > > > device
-> > > > data that is read by the parent to get the phy device that can
-> > > > be
-> > > > used
-> > > > to control the phy properties.
-> > > > 
-> > > > This driver is based on an initial version by
-> > > > Jason-JH.Lin <jason-jh.lin@mediatek.com>.
-> > > > 
-> > > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > > > ---
-> > > 
-> > > [snip]
-> > > 
-> > > > +
-> > > > +static int mtk_dp_hpd_sink_event(struct mtk_dp *mtk_dp)
-> > > > +{
-> > > > +	ssize_t ret;
-> > > > +	u8 sink_count;
-> > > > +	bool locked;
-> > > > +	u8 link_status[DP_LINK_STATUS_SIZE] = {};
-> > > > +	u32 sink_count_reg = DP_SINK_COUNT_ESI;
-> > > > +	u32 link_status_reg = DP_LANE0_1_STATUS;
-> > > > +
-> > > > +	ret = drm_dp_dpcd_readb(&mtk_dp->aux, sink_count_reg,
-> > > > &sink_count);
-> > > > +	if (ret < 0) {
-> > > > +		drm_err(mtk_dp->drm_dev, "Read sink count
-> > > > failed:
-> > > > %ld\n", ret);
-> > > > +		return ret;
-> > > > +	}
-> > > > +
-> > > > +	ret = drm_dp_dpcd_read(&mtk_dp->aux, link_status_reg,
-> > > > link_status,
-> > > > +			       sizeof(link_status));
-> > > > +	if (!ret) {
-> > > > +		drm_err(mtk_dp->drm_dev, "Read link status
-> > > > failed:
-> > > > %ld\n",
-> > > > +			ret);
-> > > > +		return ret;
-> > > > +	}
-> > > > +
-> > > > +	locked = drm_dp_channel_eq_ok(link_status,
-> > > > +				      mtk_dp-
-> > > > >train_info.lane_count);
-> > > > +	if (!locked && mtk_dp->train_state >
-> > > > MTK_DP_TRAIN_STATE_TRAINING_PRE)
-> > > 
-> > > Before enter this function, mtk_dp->train_state is set to
-> > > MTK_DP_TRAIN_STATE_STARTUP, so this never happen, drop this.
-> > > 
-> > 
-> > The interrupt from sink device could come any time. Why it's
-> > impossible?
-> 
-> I still ask this question: "For eDP, when does disconnect happened?"
-> If
-> it indeed happen, I still do not like to change state here. When
-> disconnect, the training flow would result in fail finally and need
-> not
-> to change state here, but the training flow would block for a while
-> when disconnect. You could add some check point to check train_info-
-> > cable_plugged_in to quickly break out the training flow.
-> 
-> Regards,
-> CK
-> 
+> Separate ACPI operations for preparing the driver to support other
+> backends.
 
-Hello CK,
+The patch is the last one in the series that hasn't got a R-b tag.
 
-This function is to handle "sink interrupt" and we need to read the
-status from sink device via aux channel.
-edp spec is just add some extension rule from dp spec, this is define
-in dp spec.
-
-The basic spec is still "dp", and these are all define in dp spec.
-Therefore, I think we should keep this.
-
-BRs,
-Bo-Chen
-
-> > 
-> > > > +		mtk_dp->train_state =
-> > > > MTK_DP_TRAIN_STATE_TRAINING_PRE;
-> > > > +
-> > > > +	if (link_status[1] & DP_REMOTE_CONTROL_COMMAND_PENDING)
-> > > > +		drm_dp_dpcd_writeb(&mtk_dp->aux,
-> > > > DP_DEVICE_SERVICE_IRQ_VECTOR,
-> > > > +				   DP_REMOTE_CONTROL_COMMAND_PE
-> > > > NDING);
-> > > > +
-> > > > +	if (DP_GET_SINK_COUNT(sink_count) &&
-> > > > +	    (link_status[2] &
-> > > > DP_DOWNSTREAM_PORT_STATUS_CHANGED)) {
-> > > > +		mtk_dp->train_info.check_cap_count = 0;
-> > > > +		mtk_dp->train_state =
-> > > > MTK_DP_TRAIN_STATE_CHECKEDID;
-> > > 
-> > > Why change state from MTK_DP_TRAIN_STATE_STARTUP to
-> > > MTK_DP_TRAIN_STATE_CHECKEDID? In mtk_dp_train_handler(),
-> > > mtk_dp_parse_capabilities() is true then change to
-> > > MTK_DP_TRAIN_STATE_CHECKEDID. Give a reason why these two are
-> > > different.
-> > > 
-> > > Regards,
-> > > CK
-> > > 
-> > 
-> > I will drop this and drop state of MTK_DP_TRAIN_STATE_CHECKEDID.
-> > MTK_DP_TRAIN_STATE_CHECKEDID is only used for audio.
-> > We can check enable status in another place.
-> > 
-> > BRs,
-> > Bo-Chen
-> > 
-> > > > +		msleep(20);
-> > > > +	}
-> > > > +
-> > > > +	return 0;
-> > > > +}
-> > > > +
-> > > 
-> > > 
-> > 
-> > 
-> 
-> 
-
+I have tested the patch on an ADL-P-based chromebook and the keyboard
+backlight works.  Could anyone on the list help to review the patch?
