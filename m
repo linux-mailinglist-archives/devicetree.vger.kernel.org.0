@@ -2,96 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FE955448C8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 12:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F8FE54484C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 12:08:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241938AbiFIK0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 06:26:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45132 "EHLO
+        id S233314AbiFIKIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 06:08:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240953AbiFIK0H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 06:26:07 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8F8412D1E2;
-        Thu,  9 Jun 2022 03:26:05 -0700 (PDT)
-X-UUID: 5490d9d88e814c79b77be23d510b35d6-20220609
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:7e8bbe36-5f2e-4f60-9d2d-e216b4102277,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,A
-        CTION:release,TS:95
-X-CID-INFO: VERSION:1.1.5,REQID:7e8bbe36-5f2e-4f60-9d2d-e216b4102277,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,A
-        CTION:quarantine,TS:95
-X-CID-META: VersionHash:2a19b09,CLOUDID:77b2ca7e-c8dc-403a-96e8-6237210dceee,C
-        OID:5d077bd318a7,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:0,BEC:nil
-X-UUID: 5490d9d88e814c79b77be23d510b35d6-20220609
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <xiangsheng.hou@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1453483066; Thu, 09 Jun 2022 18:26:02 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id 15.2.792.3;
- Thu, 9 Jun 2022 10:25:13 +0000
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 9 Jun 2022 17:00:07 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 9 Jun 2022 17:00:06 +0800
-From:   Xiangsheng Hou <xiangsheng.hou@mediatek.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <bin.zhang@mediatek.com>,
-        <benliang.zhao@mediatek.com>,
-        Xiangsheng Hou <xiangsheng.hou@mediatek.com>
-Subject: arm64: dts: mt8173: Fix nor_flash node
-Date:   Thu, 9 Jun 2022 16:59:34 +0800
-Message-ID: <20220609085933.17398-1-xiangsheng.hou@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229887AbiFIKIO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 06:08:14 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2887960FA;
+        Thu,  9 Jun 2022 03:08:09 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 755C866017C5;
+        Thu,  9 Jun 2022 11:08:07 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1654769288;
+        bh=9HpIBYF19N1SAtOw4Vv+gzm2DQkV6yJwK5auxdSwGCU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=IObVT78jMPoK6EO7srMFDYkY4A8z+8NHyvGo+CD+w6MNqE0lktcPvIvmiORFpjIx4
+         OFWsZDSKP4auG7YOlUNLUConqzkINbyls+H33jGpr+lWhAuWDZgEwGPtqKktOsH/eb
+         o0037R7x9hSb00M+NpMJg/p09lGbi/FocpmbNPlPB+wqi+6jBGe3UUol0Nd8gtJ4YK
+         pWqRQeQiIw7olf+HKlriLbDV16QyP+Lp67tjaI+b76sO1KajYYJk+k28yaRCWtG2l7
+         FGBWYcBubtvDw6+q4Cg0d6htZOLq/CTooDa027LaTE+bP4/Jb9+KxlPB0GFgfTLAUQ
+         lTPt+SU9Qi11Q==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     yong.wu@mediatek.com
+Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski@linaro.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v3 0/6] mtk_iommu: Specify phandles to infracfg and pericfg
+Date:   Thu,  9 Jun 2022 12:07:56 +0200
+Message-Id: <20220609100802.54513-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add axi clock since the driver change to DMA mode which need
-to enable axi clock. And change spi clock to 26MHz as default.
+The IOMMU has registers in the infracfg and/or pericfg iospaces: as
+for the currently supported SoCs, MT2712 and MT8173 need a phandle to
+infracfg, while MT8195 needs one to pericfg.
 
-Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8173.dtsi | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+Before this change, the driver was checking for a SoC-specific infra/peri
+compatible but, sooner or later, these lists are going to grow a lot...
+...and this is why it was chosen to add phandles (as it was done with
+some other drivers already - look at mtk-pm-domains, mt8192-afe
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-index 40d7b47fc52e..e603170100af 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-@@ -790,9 +790,12 @@ thermal: thermal@1100b000 {
- 		nor_flash: spi@1100d000 {
- 			compatible = "mediatek,mt8173-nor";
- 			reg = <0 0x1100d000 0 0xe0>;
-+			assigned-clocks = <&topckgen CLK_TOP_SPI_SEL>;
-+			assigned-clock-parents = <&clk26m>;
- 			clocks = <&pericfg CLK_PERI_SPI>,
--				 <&topckgen CLK_TOP_SPINFI_IFR_SEL>;
--			clock-names = "spi", "sf";
-+				 <&topckgen CLK_TOP_SPINFI_IFR_SEL>,
-+				 <&pericfg CLK_PERI_NFI>;
-+			clock-names = "spi", "sf", "axi";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			status = "disabled";
+Please note that, while it was necessary to update the devicetrees for
+MT8173 and MT2712e, there was no update for MT8195 because there is no
+IOMMU node in there yet.
+
+Changes in v3:
+ - Different squashing of dt-bindings patches (sorry for misunderstanding!)
+ - Removed legacy devicetree print
+
+Changes in v2:
+ - Squashed dt-bindings patches as suggested by Matthias
+ - Removed quotes from infra/peri phandle refs
+ - Changed dev_warn to dev_info in patches [2/7], [3/7]
+
+AngeloGioacchino Del Regno (6):
+  dt-bindings: iommu: mediatek: Add mediatek,infracfg phandle
+  iommu: mtk_iommu: Lookup phandle to retrieve syscon to infracfg
+  arm64: dts: mediatek: mt8173: Add mediatek,infracfg phandle for IOMMU
+  arm64: dts: mediatek: mt2712e: Add mediatek,infracfg phandle for IOMMU
+  dt-bindings: iommu: mediatek: Add mediatek,pericfg phandle
+  iommu: mtk_iommu: Lookup phandle to retrieve syscon to pericfg
+
+ .../bindings/iommu/mediatek,iommu.yaml        | 30 +++++++++
+ arch/arm64/boot/dts/mediatek/mt2712e.dtsi     |  2 +
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi      |  1 +
+ drivers/iommu/mtk_iommu.c                     | 61 +++++++++++--------
+ 4 files changed, 70 insertions(+), 24 deletions(-)
+
 -- 
-2.25.1
+2.35.1
 
