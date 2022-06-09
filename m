@@ -2,43 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 029E6544FFD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 16:57:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89B1C545008
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:00:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344099AbiFIO5X convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Jun 2022 10:57:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42192 "EHLO
+        id S241615AbiFIO77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 10:59:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344135AbiFIO5L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 10:57:11 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7077C3A79E3;
-        Thu,  9 Jun 2022 07:57:05 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1nzJad-0006x1-AP; Thu, 09 Jun 2022 16:56:51 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 32/48] arm64: dts: rockchip: align gpio-key node names with dtschema
-Date:   Thu, 09 Jun 2022 16:56:50 +0200
-Message-ID: <2126178.C4sosBPzcN@diego>
-In-Reply-To: <e0f7146d-3ccc-a194-bb1e-c3475ca8c29e@linaro.org>
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org> <CAO_MupKxvaXRQvMyEUZMThBZ9033OeJec+BtBndjs5oZ3etTEQ@mail.gmail.com> <e0f7146d-3ccc-a194-bb1e-c3475ca8c29e@linaro.org>
+        with ESMTP id S241569AbiFIO7w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 10:59:52 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC8A1F8993;
+        Thu,  9 Jun 2022 07:59:50 -0700 (PDT)
+Received: (Authenticated sender: peter@korsgaard.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id C09A3C000D;
+        Thu,  9 Jun 2022 14:59:46 +0000 (UTC)
+Received: from peko by dell.be.48ers.dk with local (Exim 4.94.2)
+        (envelope-from <peter@korsgaard.com>)
+        id 1nzJdR-0029HW-SW; Thu, 09 Jun 2022 16:59:45 +0200
+From:   Peter Korsgaard <peter@korsgaard.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Srinivas Neeli <srinivas.neeli@xilinx.com>, a.zummo@towertech.it,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        michal.simek@xilinx.com, sgoud@xilinx.com, shubhraj@xilinx.com,
+        srinivas.neeli@amd.com, neelisrinivas18@gmail.com,
+        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        git@xilinx.com
+Subject: Re: [PATCH V6 2/2] rtc: zynqmp: Add calibration set and get support
+References: <20220609140833.1784738-1-srinivas.neeli@xilinx.com>
+        <20220609140833.1784738-2-srinivas.neeli@xilinx.com>
+        <87r13x28o4.fsf@dell.be.48ers.dk> <YqIJektBvAwOqNkA@mail.local>
+Date:   Thu, 09 Jun 2022 16:59:45 +0200
+In-Reply-To: <YqIJektBvAwOqNkA@mail.local> (Alexandre Belloni's message of
+        "Thu, 9 Jun 2022 16:53:46 +0200")
+Message-ID: <87mtel287y.fsf@dell.be.48ers.dk>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,96 +49,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, 9. Juni 2022, 16:15:25 CEST schrieb Krzysztof Kozlowski:
-> On 09/06/2022 15:57, Maya Matuszczyk wrote:
-> > czw., 9 cze 2022 o 13:56 Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> napisał(a):
-> >>
-> >> The node names should be generic and DT schema expects certain pattern
-> >> (e.g. with key/button/switch).
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >> ---
-> >>  arch/arm64/boot/dts/rockchip/rk3308-evb.dts   |  2 +-
-> >>  .../boot/dts/rockchip/rk3326-odroid-go2.dts   | 32 +++++++++----------
-> >>  .../boot/dts/rockchip/rk3328-nanopi-r2s.dts   |  2 +-
-> >>  arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi  |  2 +-
-> >>  .../boot/dts/rockchip/rk3368-geekbox.dts      |  2 +-
-> >>  .../dts/rockchip/rk3368-orion-r68-meta.dts    |  2 +-
-> >>  .../boot/dts/rockchip/rk3368-px5-evb.dts      |  2 +-
-> >>  arch/arm64/boot/dts/rockchip/rk3368-r88.dts   |  2 +-
-> >>  .../boot/dts/rockchip/rk3399-firefly.dts      |  2 +-
-> >>  .../dts/rockchip/rk3399-gru-chromebook.dtsi   |  2 +-
-> >>  .../boot/dts/rockchip/rk3399-gru-kevin.dts    |  2 +-
-> >>  .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi |  2 +-
-> >>  .../boot/dts/rockchip/rk3399-khadas-edge.dtsi |  2 +-
-> >>  .../boot/dts/rockchip/rk3399-nanopi-r4s.dts   |  4 +--
-> >>  .../boot/dts/rockchip/rk3399-nanopi4.dtsi     |  2 +-
-> >>  .../boot/dts/rockchip/rk3399-orangepi.dts     |  2 +-
-> >>  .../boot/dts/rockchip/rk3399-pinebook-pro.dts |  4 +--
-> >>  .../boot/dts/rockchip/rk3399-roc-pc.dtsi      |  2 +-
-> >>  .../boot/dts/rockchip/rk3399-rockpro64.dtsi   |  2 +-
-> >>  .../boot/dts/rockchip/rk3399-sapphire.dtsi    |  2 +-
-> >>  .../boot/dts/rockchip/rk3566-pinenote.dtsi    |  2 +-
-> >>  21 files changed, 38 insertions(+), 38 deletions(-)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
-> >> index 9b4f855ea5d4..4b5413b12bfa 100644
-> >> --- a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
-> >> +++ b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
-> >> @@ -75,7 +75,7 @@ gpio-keys {
-> >>                 pinctrl-names = "default";
-> >>                 pinctrl-0 = <&pwr_key>;
-> >>
-> >> -               power {
-> >> +               power-key {
+>>>>> "Alexandre" == Alexandre Belloni <alexandre.belloni@bootlin.com> writes:
 
-hmm, it looks like all the others below are named key-power, while
-only this uses power-key ?
+ > On 09/06/2022 16:50:03+0200, Peter Korsgaard wrote:
+ >> >>>>> "Srinivas" == Srinivas Neeli <srinivas.neeli@xilinx.com> writes:
+ >> 
+ >> > Zynqmp RTC controller has a calibration feature to compensate
+ >> > time deviation due to input clock inaccuracy.
+ >> > Set and get calibration API's are used for setting and getting
+ >> > calibration value from the controller calibration register.
+ >> > As per RTC spec default calibration value is 0x7FFF.
+ >> 
+ >> Where do you see that? ug1085 rev2.2 still lists:
+ >> 
+ >> Programming Sequences
+ >> init rtc
+ >> 1. Write the value 0019_8231h into the calibration register, CALIB_WRITE.
+ >> 
 
+ > This is a very weird value. Last time I had a look, I couldn't find an
+ > explanation for it.
 
-> >>                         gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_LOW>;
-> >>                         linux,code = <KEY_POWER>;
-> >>                         label = "GPIO Key Power";
-> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-> >> index ea0695b51ecd..72328dd993ee 100644
-> >> --- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-> >> +++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-> >> @@ -71,82 +71,82 @@ gpio-keys {
-> >>                  * |------------------------------------------------|
-> >>                  */
-> >>
-> >> -               sw1 {
-> >> +               switch-1 {
-> > Wouldn't it make more sense to rename this and all other
-> > renamed nodes in this dts into "button-dpad-up" or "button-1",
-> > as on the physical device those are buttons and the naming
-> > scheme of "sw" + number seems to be a carryover from
-> > downstream sources.
+Agreed. I am not arguing that it is sensible, I just wondered where this
+new value comes from?
 
-The naming actually carries over from the device itself.
-In the schematics the relevant keys are also named sw1, sw2, etc.
-
-And I do believe it is way nicer when devicetree names correspond to the
-things you find in device schematics and not be named "arbitarily" to
-only conform to some schema ;-)
-
-So personally I'd actually prefer going with switch-sw1 (or button-sw1 if
-you prefer) as being able to just use the search function in schematic pdfs
-is a helpful tool.
-
-
-Heiko
-
-> Can be buttons. I assumed SW comes from some kind of switch.
-> I assume you mean only this Odroid Go2 DTS, because some other DTSes
-> (like EVB above) explicitly call it "Key Power".
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-
-
-
-
+-- 
+Bye, Peter Korsgaard
