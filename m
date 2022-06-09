@@ -2,166 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 558B5544D47
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 15:16:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9425C544D4F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 15:18:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234782AbiFINQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 09:16:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39212 "EHLO
+        id S1343647AbiFINSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 09:18:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233763AbiFINQM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 09:16:12 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A00973BB299;
-        Thu,  9 Jun 2022 06:16:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3E6EA61CE3;
-        Thu,  9 Jun 2022 13:16:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08F2FC34114;
-        Thu,  9 Jun 2022 13:16:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654780570;
-        bh=adIY73cUSCNwOEj4s+9TfwrvjgCT5vabHNIojXe/1uY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WYPI/dFW/4u4zTXC/IoaW+gqiph/U3f8dUrIV74OlJs0SAnkbFcVND+snhWDy+MYh
-         6ioLbFofSxMV7wfxsQubzFcp7eTHg3LR3D+RM3LC975VPbwms9sD1u0fzMbkuK+7aZ
-         Hq6J0DhKtzTC3IsvGKX9eswrN40xD110OJDrNfNDsCNKB94cTJL53JgZBEcnqbkddT
-         lLTbP/uNM2VCh5PIs/E4J25prK2pS1ggzPizFluCG2fNfVAlxsCvzIncZN5RMqgVXo
-         sxWPPRxk2eVKbDsvcyXmElZHZvHsWOE8mcZOC/F3x32x/sWUjeGTGdnynKF84hiXFL
-         9k55FZrg5hBdg==
-Date:   Thu, 9 Jun 2022 14:16:04 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>, asahi@lists.linux.dev
-Subject: Re: [RFC PATCH v2 5/5] ASoC: apple: Add macaudio machine driver
-Message-ID: <YqHylN3xba9XFrF8@sirena.org.uk>
-References: <20220606191910.16580-1-povik+lin@cutebit.org>
- <20220606191910.16580-6-povik+lin@cutebit.org>
+        with ESMTP id S245534AbiFINSC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 09:18:02 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50FCF3CBE2A;
+        Thu,  9 Jun 2022 06:18:00 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id a2so31821507lfg.5;
+        Thu, 09 Jun 2022 06:18:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9H4dOb7IaIcY52Tw6WWiljInSfJiOJbeD3ghXohKUWk=;
+        b=bxQvhZiJyJvGenAgd1C3qiVyZH4ml/Vnom25DFpoC731mCeBREubO4jUNTENKxajXI
+         MR7U3ddjUCoMlr94nBmzEpBeJvuDXEB4HnnaYJ4xnZrR2sPFuLgxOuqrN4kkfkES6Iiw
+         ti9BmmUPpa3hFl3+Zc/z/bPGNz3VCCT15NGOCugqxHdTW/AkKBAfV76k9CiaScYOKqHP
+         KbgKcr377DEMvYCj0FOCu+WyDp6YuJOl1YptRleIGyBJJMESsuQX3KcpfOkmYJ/lzpku
+         emeAUmFuDjlnZfTYGGf7DPIXv1uMZqHlgj1QLdeFtC+2zieBgGMkxqJejaLhPLJi/Efl
+         q5qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9H4dOb7IaIcY52Tw6WWiljInSfJiOJbeD3ghXohKUWk=;
+        b=IsI8jgiNFNrkpBfZYaIq8P1FRHzm6EihbzZjOeOfIF+khwvJ1ppeumno3LLujJZevU
+         IuFD256g9pFeoNxc2YitZm0O9pNVHNeV9t673TrDQVIQvZq9DJf5mi0/7rQAH2FScHoE
+         /WQuUQgbfks+yMhHkivYaq9LGXX1oyy14gvYsv6IfmYESlAJkIyeeiro6/+Mz6Qs07Fq
+         cxUnenC11rtDvIUlCm6aBMvIx3EeS2RK17bNCCIVCoz9j7YvQHClGurQ4GvHkUpvyeTg
+         9Q91ZszDCYM4lAZ+8RL5uj4evZUkkIHN2tBecn/l3ydTeCpI5OV1nG7ZZmqPUMrwIwcp
+         U6jQ==
+X-Gm-Message-State: AOAM531DHiiK68nmwC5t8bX2ipXFMeVsFWi1b3UYuqFbVbWM/NSXZ8lL
+        fbUv0e6JGGiOxAUVKGi/aQ8t3NXgkKGE9glmijo=
+X-Google-Smtp-Source: ABdhPJxz9i9pVE0BdHMV70Vwi186ROVaHboigU3uL+CKro67Q69etkqlQSJOajfipTkSsc8z60rVUCQteSPARaV4mpI=
+X-Received: by 2002:a05:6512:703:b0:479:157a:c18d with SMTP id
+ b3-20020a056512070300b00479157ac18dmr21665529lfs.639.1654780678706; Thu, 09
+ Jun 2022 06:17:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zP4ArPesiXfS095U"
-Content-Disposition: inline
-In-Reply-To: <20220606191910.16580-6-povik+lin@cutebit.org>
-X-Cookie: Space is limited.
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220608095623.22327-1-tmaimon77@gmail.com> <20220608095623.22327-7-tmaimon77@gmail.com>
+ <f4899b6d-fec3-5940-709a-f5fbc7ae6233@linaro.org>
+In-Reply-To: <f4899b6d-fec3-5940-709a-f5fbc7ae6233@linaro.org>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Thu, 9 Jun 2022 16:17:47 +0300
+Message-ID: <CAP6Zq1geJyaDrP2CBY3FHe5y-L=bCptX1pzAkNypY+TS5vXzMA@mail.gmail.com>
+Subject: Re: [PATCH v2 06/20] dt-binding: clk: npcm845: Add binding for
+ Nuvoton NPCM8XX Clock
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Robert Hancock <robert.hancock@calian.com>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
---zP4ArPesiXfS095U
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for your comments.
 
-On Mon, Jun 06, 2022 at 09:19:10PM +0200, Martin Povi=C5=A1er wrote:
+On Wed, 8 Jun 2022 at 13:03, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 08/06/2022 11:56, Tomer Maimon wrote:
+> > Add binding for the Arbel BMC NPCM8XX Clock controller.
+> >
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > ---
+> >  .../bindings/clock/nuvoton,npcm845-clk.yaml   | 63 +++++++++++++++++++
+> >  .../dt-bindings/clock/nuvoton,npcm8xx-clock.h | 50 +++++++++++++++
+> >  2 files changed, 113 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
+> >  create mode 100644 include/dt-bindings/clock/nuvoton,npcm8xx-clock.h
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
+> > new file mode 100644
+> > index 000000000000..e1f375716bc5
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
+> > @@ -0,0 +1,63 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/nuvoton,npcm845-clk.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Nuvoton NPCM8XX Clock Controller Binding
+> > +
+> > +maintainers:
+> > +  - Tomer Maimon <tmaimon77@gmail.com>
+> > +
+> > +description: |
+> > +  Nuvoton Arbel BMC NPCM8XX contains an integrated clock controller, which
+> > +  generates and supplies clocks to all modules within the BMC.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - nuvoton,npcm845-clk
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: 25M reference clock
+> > +      - description: CPU reference clock
+> > +      - description: MC reference clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: refclk
+> > +      - const: sysbypck
+> > +      - const: mcbypck
+> > +
+>
+> I asked what is the suffix about and you replied "ck"... ok, so let's
+> make clear. This should be:
+>
+>     items:
+>       - const: ref
+>       - const: sysbyp
+>       - const: mcbyp
+>
+> or something similar, without the same suffix all over.
+The clock names are the same clock name in our spec, this why we
+prefer to leave the clock names as is.
+>
+> > diff --git a/include/dt-bindings/clock/nuvoton,npcm8xx-clock.h b/include/dt-bindings/clock/nuvoton,npcm8xx-clock.h
+> > new file mode 100644
+> > index 000000000000..229915a254a5
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/nuvoton,npcm8xx-clock.h
+>
+> Same comment as before. No changes here...
+>
+about the comments from V1::
+- Krzysztof: Filename - same as bindings, so nuvoton,npcm845-clk.h
+In NPCM7XX we use the same include file and clock source
+dt-binding
+https://elixir.bootlin.com/linux/v5.19-rc1/source/Documentation/devicetree/bindings/clock/nuvoton,npcm750-clk.txt
+dt-binding include
+https://elixir.bootlin.com/linux/v5.19-rc1/source/include/dt-bindings/clock/nuvoton,npcm7xx-clock.h
+we prefer to be align with our older BMC version
 
-> + *  =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90       =E2=94=8C=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BA =E2=94=8C=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =E2=94=8C=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=90
-> + *  =E2=94=82 Primary  =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=A4                 =E2=94=82 Mux =E2=94=82 =
-=E2=94=80=E2=94=80=E2=96=BA =E2=94=82 Speakers =E2=94=82
-> + *  =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98       =E2=94=82    =E2=94=8C=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=96=BA =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=98     =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
-> + *                =E2=94=8C=E2=94=80=E2=94=80=E2=94=80 =E2=94=82 =E2=94=
-=80=E2=94=80=E2=94=80=E2=94=98             =E2=96=B2
-> + *  =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90  =E2=94=82    =E2=94=82         =
-         =E2=94=82
-> + *  =E2=94=82Secondary =E2=94=9C=E2=94=80=E2=94=80=E2=94=98    =E2=94=82=
-     =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=B4=E2=94=90
-> + *  =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98       =E2=94=9C=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=96=BA=E2=94=82Plug-in Demux=E2=94=82
-> + *                     =E2=94=82     =E2=94=94=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=AC=E2=94=98
-> + *                     =E2=94=82                  =E2=94=82
-> + *                     =E2=94=82                  =E2=96=BC
-> + *                     =E2=94=82                 =E2=94=8C=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =E2=94=8C=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=90
-> + *                     =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=96=BA =E2=94=82 Mux =E2=94=82 =E2=94=80=E2=94=80=
-=E2=96=BA =E2=94=82Headphones=E2=94=82
-> + *                                       =E2=94=94=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=98     =E2=94=94=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
+- Krzysztof: Dual license, same as bindings.
+modified in the file * SPDX-License-Identifier: (GPL-2.0-only OR
+BSD-2-Clause) */
+the same license approved in en7523-clk include file and pushed to
+Linux kernel 5.19 :
+https://elixir.bootlin.com/linux/v5.19-rc1/source/include/dt-bindings/clock/en7523-clk.h
 
-As far as I can tell this demux is entirely software based - why not
-just expose the routing control to userspace and let it handle
-switching (which I suspect may be more featureful than what's
-implemented here)?
+>
+>
+> Best regards,
+> Krzysztof
 
-> +static int macaudio_jack_event(struct notifier_block *nb, unsigned long =
-event,
-> +                               void *data)
-> +{
-> +       struct snd_soc_jack *jack =3D data;
-> +       struct macaudio_snd_data *ma =3D snd_soc_card_get_drvdata(jack->c=
-ard);
-> +
-> +       ma->jack_plugin_state =3D !!event;
-> +
-> +       if (!ma->plugin_demux_kcontrol)
-> +               return 0;
-> +
-> +       snd_soc_dapm_mux_update_power(&ma->card.dapm, ma->plugin_demux_kc=
-ontrol,
-> +                                     ma->jack_plugin_state,
-> +                                     (struct soc_enum *) &macaudio_plugi=
-n_demux_enum, NULL);
-> +
-> +       return 0;
-> +}
+Best regards,
 
-This should be integrated with the core jack detection stuff in
-soc-jack.c and/or the core stuff that's wrapping - that way you'll
-ensure that events are generated and status readable via all the
-interfaces userspace might be looking for.  The ASoC stuff also has some
-DAPM integration for turning on/off outputs which might DTRT for you if
-you do need it in kernel.
-
---zP4ArPesiXfS095U
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKh8pQACgkQJNaLcl1U
-h9A35AgAhc/b4LJ2GElO9+hrXTNIF0hkl2AmactD2FfUXkE/CAfoLDtaK/5RtjeR
-4ybKT5miFOnvG5bzMVTQV8BtLKiT9AI3ABDsuj2QMvaTZ95Y3tgqZh738EQAYB5l
-Qrie4m9HHqjp1dLdqvNcgVTg1QWzIddKaMB7bI0FHITUZVqgcq5qZiAtAZ3GGBeP
-ZIdkYMVLhyEIUpjXpYOlHjgxo2wKs+ixIyN9BonMvX6aSOLNXmI/vuqVPYp8uuvn
-u+WXjidw0QlG2gU2kgnncbugvKNMKm4YcCd+CcQ7q4wrwQbH12DT7uD0X2m1/kVE
-py9WhKEDlJiKgkRkR7GjmWGf2OmarA==
-=P1Mm
------END PGP SIGNATURE-----
-
---zP4ArPesiXfS095U--
+Tomer
