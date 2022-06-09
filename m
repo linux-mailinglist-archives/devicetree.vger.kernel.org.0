@@ -2,149 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69FE8544ADF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:46:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19C17544AD2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244718AbiFILp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 07:45:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40064 "EHLO
+        id S244916AbiFILof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 07:44:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244581AbiFILmt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:42:49 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE021E049A
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:41:06 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 25so30540190edw.8
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:41:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Gpn7JqseIm0vh0gpd7q4DWQubHQ0jsw35Hsu6S6dEzI=;
-        b=kvsnHK++hy6P9FYjJCDS6+qQamnfahcYExnWCuyC3uJTv7PIfm4usqubs3Z8YqvHRO
-         DjLsDfaGEhenp9FVqtuELGC9oN7/OhU81DfGMTLH3Wkt65j1a2GLXT0kLncsekghlUsc
-         mqLUxv6QfnPxnt8de6j6E/zCndCQnsHF1Mnq+VAHL0oR9fNlaP01f19WZTOFMBshCjiK
-         ZjEfStRZnBVsbKiFN9PneFYtPKzFS2poQDeuqz+DHnnud5wkVaGpRu4NZe4W4YF5pACf
-         shC5I/G6K8a7Hnomk+Ac93rPRhGfOr6zfc+nslmdB+/lyZxDCNX20n1wi6BHfjcjEhVi
-         /xmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Gpn7JqseIm0vh0gpd7q4DWQubHQ0jsw35Hsu6S6dEzI=;
-        b=Y5M2M8YwryXF9pTCEroEt1lUm18kq3Q0FiznFTzuBBAuzQH2WboOYZ2MsaPmP6pqfu
-         CdWnHz1G9j1msb5Q/1HgR0IMOvKAhHzzclgT86PQoM4kA8BZMl6Gi32ugT3WGrQcEFtN
-         W8AgZLLa3gChxNn+HFTGzNjpeEBPTYnGSFNsdTgpWeg8Jc8zeS55WpZvH04XzmkZMDqf
-         nOygNgEfPmZXLE0PGrjSCYCb3mQNUOR972RHwkwdHtaRjI8CA0kvVSZqMMzh6hNvGc1o
-         pySwiXEORa1QyCvBSFkUsSlg9ZI7whOLJ2jT+qlHNJQFZ1b/+ufpHOeCgTx4DLlwaWHd
-         hkzw==
-X-Gm-Message-State: AOAM530kNDc1Z7ulqMqrU/cR4EOgYnDkq7A2zp65dGeW3gmo6zIOpxbe
-        7IfTQbt5xTvg9apdRKDhpnQdXvxK8jpaSg==
-X-Google-Smtp-Source: ABdhPJwT+7kUr2sta77J0wJZy0BuCltCldWfJaTcXTeAdRDkcGZS4UKZb7000TCkaLQnVJ+A6ZoBEQ==
-X-Received: by 2002:a05:6402:3906:b0:42a:ad43:6477 with SMTP id fe6-20020a056402390600b0042aad436477mr44503045edb.20.1654774864945;
-        Thu, 09 Jun 2022 04:41:04 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id bk2-20020a170906b0c200b006fef557bb7asm10498662ejb.80.2022.06.09.04.41.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 04:41:04 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 48/48] ARM: dts: s5pv210: align gpio-key node names with dtschema
-Date:   Thu,  9 Jun 2022 13:40:47 +0200
-Message-Id: <20220609114047.380793-9-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S244888AbiFILoR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:44:17 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC7081E7BC9;
+        Thu,  9 Jun 2022 04:42:23 -0700 (PDT)
+X-UUID: 7f6f43f7a082417d8a1b1c694b8197f2-20220609
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:e8428e10-6ea1-42b1-8629-b202e1015edb,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:100
+X-CID-INFO: VERSION:1.1.5,REQID:e8428e10-6ea1-42b1-8629-b202e1015edb,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:100
+X-CID-META: VersionHash:2a19b09,CLOUDID:1bb2cc7e-c8dc-403a-96e8-6237210dceee,C
+        OID:0f09b0c3098d,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:0,BEC:nil
+X-UUID: 7f6f43f7a082417d8a1b1c694b8197f2-20220609
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 750883400; Thu, 09 Jun 2022 19:41:54 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 9 Jun 2022 19:41:54 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 9 Jun 2022 19:41:53 +0800
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Tomasz Figa <tfiga@chromium.org>, <xia.jiang@mediatek.com>,
+        <maoguang.meng@mediatek.com>, kyrie wu <kyrie.wu@mediatek.com>,
+        <srv_heupstream@mediatek.com>
+Subject: [RESEND,V2,0/2] Enable hardware jpeg encoder for MT8186
+Date:   Thu, 9 Jun 2022 19:41:49 +0800
+Message-ID: <20220609114151.19509-1-irui.wang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The node names should be generic and DT schema expects certain pattern
-(e.g. with key/button/switch).
+From: kyrie wu <kyrie.wu@mediatek.com>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/s5pv210-fascinate4g.dts | 6 +++---
- arch/arm/boot/dts/s5pv210-galaxys.dts     | 8 ++++----
- 2 files changed, 7 insertions(+), 7 deletions(-)
+This series adds support for MT8186 hardware jpeg encoding.
 
-diff --git a/arch/arm/boot/dts/s5pv210-fascinate4g.dts b/arch/arm/boot/dts/s5pv210-fascinate4g.dts
-index eae51b197ee9..eaa7c4f0e257 100644
---- a/arch/arm/boot/dts/s5pv210-fascinate4g.dts
-+++ b/arch/arm/boot/dts/s5pv210-fascinate4g.dts
-@@ -17,20 +17,20 @@ chosen {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		power {
-+		key-power {
- 			label = "power";
- 			gpios = <&gph2 6 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_POWER>;
- 			wakeup-source;
- 		};
- 
--		vol-down {
-+		key-vol-down {
- 			label = "volume_down";
- 			gpios = <&gph3 2 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_VOLUMEDOWN>;
- 		};
- 
--		vol-up {
-+		key-vol-up {
- 			label = "volume_up";
- 			gpios = <&gph3 1 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_VOLUMEUP>;
-diff --git a/arch/arm/boot/dts/s5pv210-galaxys.dts b/arch/arm/boot/dts/s5pv210-galaxys.dts
-index aaf880792f36..cdd3653d487f 100644
---- a/arch/arm/boot/dts/s5pv210-galaxys.dts
-+++ b/arch/arm/boot/dts/s5pv210-galaxys.dts
-@@ -24,26 +24,26 @@ nand_pwrseq: nand-pwrseq {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		power {
-+		key-power {
- 			label = "power";
- 			gpios = <&gph2 6 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_POWER>;
- 			wakeup-source;
- 		};
- 
--		vol-down {
-+		key-vol-down {
- 			label = "volume_down";
- 			gpios = <&gph3 1 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_VOLUMEDOWN>;
- 		};
- 
--		vol-up {
-+		key-vol-up {
- 			label = "volume_up";
- 			gpios = <&gph3 2 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_VOLUMEUP>;
- 		};
- 
--		home {
-+		key-home {
- 			label = "home";
- 			gpios = <&gph3 5 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_HOME>;
+This series has been tested with both MT8186.
+Encoding worked for this chip.
+
+Patches 1 Adds jpeg encoder dt-bindings for mt8186
+
+Patches 2 set bit mask for jpegenc to support 34bits iova space,
+	which means iova rangement from 0 to 16GB.
+
+Changes compared with v1:
+--rebase on latest media_stage tree
+
+kyrie wu (2):
+  media: media: jpegenc: add mediatek,mt8186-jpgenc compatible
+  media: media: jpegenc: set bit mask for jpegenc
+
+ .../devicetree/bindings/media/mediatek-jpeg-encoder.yaml    | 6 ++++++
+ drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c        | 3 +++
+ 2 files changed, 9 insertions(+)
+
 -- 
-2.34.1
+2.18.0
 
