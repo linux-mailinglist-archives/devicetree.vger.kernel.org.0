@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7B81544BC9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 14:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9227544BD2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 14:24:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245389AbiFIMYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 08:24:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40388 "EHLO
+        id S230242AbiFIMYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 08:24:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245392AbiFIMYG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 08:24:06 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD4F7E0E8
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 05:24:02 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id i29so20968606lfp.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 05:24:02 -0700 (PDT)
+        with ESMTP id S245363AbiFIMYH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 08:24:07 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7BBE140F8
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 05:24:04 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id s10so1545555ljh.12
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 05:24:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=LlIXTf2F2ii+ucioBKsec482WVV2meunhjHcnfknaDs=;
-        b=RkwzmsJJyeMawMcZY9tReDxYlj/RH9iKVAMkXnL2y/BBu5GlIL6/go3B9S2ib6jFos
-         hwzr8z4xFv36ufdYOWfQwJJjB12jGhQgzFWJtHQ43w2+53apgCcdBlQNLsHaVEhDtfLI
-         /ugcDIwL5xvZVF4cA+3LQSsDfTdMvF1lXIVGknsnv7qIzwoSV16n67Wy7V/UnaECyRJO
-         t62tELkTF6vav+twBSsQnM1TamHThkBqoJrG5rxGz7rjWH6Sgk8evTfMOPuGd4oIZpkF
-         0qD16n5tHKQWp/8+3759UOFQWVlxsWL6jfHfa0jbo6qyxnUHTYby4WN0yp5t6b3yM6SS
-         Albg==
+        bh=ui0unneZE7BMiOaLERLPySBQhcdhLuTjLknA7+UsfE0=;
+        b=HPByxhGaDalzJm58MrIWMB9jh++xSbzG0pze660M++vV7YBptqiyHE7Kv8DvdHYyKC
+         D5i1QxFWzRN/reF17ukqawcCVmgoYxwNACV4DFhOxKEmX42sg2jg/cv3BTfaBcP6ytIW
+         kgJLm3HLqv/BUpW+AnzAxg+NZLLHNLF/2MgNHjlyQ18Ty32UoKgM9TdfX1AGi4OXIKYg
+         jgt1aCqItL16U4xdprVkJ8QPBH2UdQESCLcUpqjuYgIu0LiKgEY1ay49HZdhQAcM05I2
+         idO4vQoiOwh5PVwcvGTcdRlWmg8wIpur40xd9Hpoz+SzyFjXsjo9lzEHyAUaVat/9J43
+         HgZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=LlIXTf2F2ii+ucioBKsec482WVV2meunhjHcnfknaDs=;
-        b=Ftxgw6T896i+TY2vMUWmwmq/fXk6n8P92o/ggQHA0ntuke9Mv7Xha+uI+yxyrQyeFu
-         jMw8yzXoP4aOk9YJjAnsFJU7gue3GNfTvCFl8WO8kDCCjEYu+BDHpd7OrgJUlXsNh+YT
-         PHopyyaOj6oQVbXnrF0tLgj14WQzSJUE6tIzQInDw8QVwtRoLjfnIV/4VZOTUPBu6ZdC
-         WMC1YiTEZXe7NQtIao2VvOBgsnauUhoVeKximUUIfBZmJr2Q2KrYcwre7op9LTfzyQuZ
-         QsZJt6ueNHTsI8IF/DTjjLTdZBa4gPp805OeaSc83Ila8nYvQmdTPs/0eVWsQK1OFlQe
-         C0Kw==
-X-Gm-Message-State: AOAM532+/A/QowcaaVm6WSQqlORjxr7iOddDulZXKlRS+/D2TwRSMTVn
-        DRhEsD3uu53VxlIosatz0ipEuQ==
-X-Google-Smtp-Source: ABdhPJxFfghF/YuyzBqtZUnSULRM5kai+ywDpIduSCW85UwnBiwOzJdeUG7DT3nLSHG4XbAHIsfn6A==
-X-Received: by 2002:ac2:5f5c:0:b0:478:f5dc:f1c4 with SMTP id 28-20020ac25f5c000000b00478f5dcf1c4mr31721006lfz.317.1654777441830;
-        Thu, 09 Jun 2022 05:24:01 -0700 (PDT)
+        bh=ui0unneZE7BMiOaLERLPySBQhcdhLuTjLknA7+UsfE0=;
+        b=b6nerbtj/uzyzbznC4LbXF1/DUBnnbIEHxXRcNgPyOZRp3Yzh90ozrmdd8SF6jlPZZ
+         UlUqNakZZAZJAc4XcSljdrXqQCXt7zHXz7jPHVCI9yENeKfRSAzSIFSYeXzO5GRvLo8g
+         KkrIWZGHpkI+UBx/dFi4lk5FMKgBITMnHuJu8TTu1impOb4UTBn224ybLQIGErj4b8fO
+         HUInJSUafzv8STGAajiHhwWnFapsx/NCKPMr3NrIAXvPtiRlVcokqMnNME/wA4MQElgR
+         vNWd670jiwqdJrSHv3bLFGIqrbVx74ogNv3FR64UH+7K/1iX/Y4Bn6fH1aSLX+LC9r3q
+         xNWw==
+X-Gm-Message-State: AOAM530aO5HeJ9PG+84W1mNU/sNL1yo/uUbGICKRMCeCj6wCAcy37KIE
+        AdXpQQrnI5669Vs1nUAfG+c+yw==
+X-Google-Smtp-Source: ABdhPJy5DBd7PT4mmZ37b4F3q+VMB9zFcQ/NWR65+MFjedI07n2lBGt5XNmj4fYaLMAyx3QzJb8kOA==
+X-Received: by 2002:a2e:151d:0:b0:255:6b9e:98ec with SMTP id s29-20020a2e151d000000b002556b9e98ecmr22885480ljd.444.1654777442607;
+        Thu, 09 Jun 2022 05:24:02 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id f11-20020a056512360b00b0047daa133decsm32421lfs.166.2022.06.09.05.24.01
+        by smtp.gmail.com with ESMTPSA id f11-20020a056512360b00b0047daa133decsm32421lfs.166.2022.06.09.05.24.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 05:24:01 -0700 (PDT)
+        Thu, 09 Jun 2022 05:24:02 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org
-Subject: [PATCH v3 11/14] drm/msm/hdmi: reuse MSM8960's config for MSM8660
-Date:   Thu,  9 Jun 2022 15:23:47 +0300
-Message-Id: <20220609122350.3157529-12-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 12/14] drm/msm/hdmi-phy: populate 8x60 HDMI PHY requirements
+Date:   Thu,  9 Jun 2022 15:23:48 +0300
+Message-Id: <20220609122350.3157529-13-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220609122350.3157529-1-dmitry.baryshkov@linaro.org>
 References: <20220609122350.3157529-1-dmitry.baryshkov@linaro.org>
@@ -70,44 +70,47 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MSM8660 requires the same set of clocks and regulators as MSM8960. Reuse
-MSM8960's config for the MSM8660 (8x60).
+Declare that 8x60 HDMI PHY uses the core-vdda regulator and slave_iface
+clock (this is the same config as is used by the 8960).
 
 Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/gpu/drm/msm/hdmi/hdmi.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/msm/hdmi/hdmi_phy_8x60.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c b/drivers/gpu/drm/msm/hdmi/hdmi.c
-index 0f1c63f68569..6acc17e0efc1 100644
---- a/drivers/gpu/drm/msm/hdmi/hdmi.c
-+++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
-@@ -370,8 +370,6 @@ int msm_hdmi_modeset_init(struct hdmi *hdmi,
- 	.item ## _names = item ##_names_ ## entry, \
- 	.item ## _cnt   = ARRAY_SIZE(item ## _names_ ## entry)
+diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_phy_8x60.c b/drivers/gpu/drm/msm/hdmi/hdmi_phy_8x60.c
+index 95f2928cb2cb..1d97640d8c24 100644
+--- a/drivers/gpu/drm/msm/hdmi/hdmi_phy_8x60.c
++++ b/drivers/gpu/drm/msm/hdmi/hdmi_phy_8x60.c
+@@ -122,8 +122,20 @@ static void hdmi_phy_8x60_powerdown(struct hdmi_phy *phy)
+ 		       HDMI_8x60_PHY_REG2_PD_DESER);
+ }
  
--static struct hdmi_platform_config hdmi_tx_8660_config;
--
- static const char *hpd_reg_names_8960[] = {"core-vdda"};
- static const char *hpd_clk_names_8960[] = {"core", "master_iface", "slave_iface"};
- 
-@@ -567,7 +565,7 @@ static const struct of_device_id msm_hdmi_dt_match[] = {
- 	{ .compatible = "qcom,hdmi-tx-8084", .data = &hdmi_tx_8974_config },
- 	{ .compatible = "qcom,hdmi-tx-8974", .data = &hdmi_tx_8974_config },
- 	{ .compatible = "qcom,hdmi-tx-8960", .data = &hdmi_tx_8960_config },
--	{ .compatible = "qcom,hdmi-tx-8660", .data = &hdmi_tx_8660_config },
-+	{ .compatible = "qcom,hdmi-tx-8660", .data = &hdmi_tx_8960_config },
- 	{}
++static const char * const hdmi_phy_8x60_reg_names[] = {
++	"core-vdda",
++};
++
++static const char * const hdmi_phy_8x60_clk_names[] = {
++	"slave_iface",
++};
++
+ const struct hdmi_phy_cfg msm_hdmi_phy_8x60_cfg = {
+ 	.type = MSM_HDMI_PHY_8x60,
+ 	.powerup = hdmi_phy_8x60_powerup,
+ 	.powerdown = hdmi_phy_8x60_powerdown,
++	.reg_names = hdmi_phy_8x60_reg_names,
++	.num_regs = ARRAY_SIZE(hdmi_phy_8x60_reg_names),
++	.clk_names = hdmi_phy_8x60_clk_names,
++	.num_clks = ARRAY_SIZE(hdmi_phy_8x60_clk_names),
  };
- 
 -- 
 2.35.1
 
