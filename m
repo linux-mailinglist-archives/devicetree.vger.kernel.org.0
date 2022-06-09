@@ -2,133 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E40E15450AE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:23:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28D4E5450B5
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:24:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243798AbiFIPXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 11:23:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45340 "EHLO
+        id S1344462AbiFIPXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 11:23:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344489AbiFIPXa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:23:30 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 869F5B18;
-        Thu,  9 Jun 2022 08:23:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654788208; x=1686324208;
-  h=message-id:date:mime-version:subject:to:references:from:
-   in-reply-to:content-transfer-encoding;
-  bh=OqFF6qDwLOh06Q07Wxi7YuzZhtAUWXJ5RHWWW3Dj/IY=;
-  b=VeUiBiKw+Eaxyb83yq9NpxMX1jKSB5jl+LTcZSlT4+U7fnss6cr7aivv
-   DxG0fUpDg0Zs9sRb+ZGdLVnJgr1VRWxbr4lLkuoQHMVaL8AIRnSx3Sz7d
-   BYpfM+phMKhY3gTldLAmsTJIl+f2vaz96NiI6GZhwlgNm8ME9rYn+/HAA
-   DiEcdKNJZpACESyJWmvVbBPd5qn47oGHP2iojYvZAuoU5Ibg3dB91m3ZC
-   WeYBSLh/2Azl+RNXcZbezgpRRIg8He7Rm1tQUYqyIS25jz1QZaLMSuXE4
-   u+EbH3Vv7Jm9GZQHgpr6/1vq4BiUBWi1K0f0iZCId9vv8BVPEXNrfTsXW
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="257747930"
-X-IronPort-AV: E=Sophos;i="5.91,287,1647327600"; 
-   d="scan'208";a="257747930"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2022 08:23:28 -0700
-X-IronPort-AV: E=Sophos;i="5.91,287,1647327600"; 
-   d="scan'208";a="585630710"
-Received: from jeremywe-mobl3.amr.corp.intel.com (HELO [10.209.173.145]) ([10.209.173.145])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2022 08:23:26 -0700
-Message-ID: <97757ee1-2525-4e97-855e-da6fb66f01ae@linux.intel.com>
-Date:   Thu, 9 Jun 2022 10:22:35 -0500
+        with ESMTP id S1344459AbiFIPXv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:23:51 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86DFD4A90E;
+        Thu,  9 Jun 2022 08:23:50 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id y12so22467522ior.7;
+        Thu, 09 Jun 2022 08:23:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=299eswKa0mqgY89iLNdNeNTHrmqc81eysaCt7mMgwl4=;
+        b=Fr4DgBCj7JF8VchWptUZkZjtfouklK3q1ZrgETFak+V2GX7ar9ZG089MqgidsJm2R/
+         M11hDBy3STx6aS2/1ti3ZyvjegQWzexL0z4rpMbomVxK5U7c/8eeEn8Jr3k4XcWs/Cb/
+         uSGZ3BWXil/eS0Adsw8w67j60B3tMRR9FXk5vjv4BxZYIC2HEYFLb+nOXtUN+hyAJpK5
+         UzwkDDtDBde42P4P2Uv9z4oPTpB6DGXcFOcVU0FKj/oPPwNQqCTNkYApGczb9P1BET2a
+         WJ9SJjIROf/cmtdxYlazRmk0+ieoBKLM45u7SGl9RJ5veyse7giTNfeiNMQZtoHtM3oB
+         QB6w==
+X-Gm-Message-State: AOAM532I1sVjm4BwB6QgmG/pT32wsYrXsOJjwjP/ougVjf0hhvERv04n
+        zSoxX7xyoQNiZqk/urG/Ng==
+X-Google-Smtp-Source: ABdhPJxR1sQ+xMuX17YD4idTrOjOgFbxdnCi8dxeDujaZEfF4hOYNX5amM4P1hmcO4KrqLUgcC/Z/g==
+X-Received: by 2002:a05:6602:2c41:b0:669:8bcf:c6a6 with SMTP id x1-20020a0566022c4100b006698bcfc6a6mr4956029iov.15.1654788229795;
+        Thu, 09 Jun 2022 08:23:49 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id b12-20020a5edc0c000000b00669a3f60e99sm1774533iok.31.2022.06.09.08.23.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jun 2022 08:23:49 -0700 (PDT)
+Received: (nullmailer pid 3821183 invoked by uid 1000);
+        Thu, 09 Jun 2022 15:23:47 -0000
+Date:   Thu, 9 Jun 2022 09:23:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: imx_rproc: add
+ fsl,startup-delay-ms
+Message-ID: <20220609152347.GA3817946-robh@kernel.org>
+References: <20220609123500.3492475-1-peng.fan@oss.nxp.com>
+ <20220609123500.3492475-2-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.9.1
-Subject: Re: [PATCH v4 1/2] soundwire: qcom: Add flag for software clock
- gating check
-Content-Language: en-US
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
-        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org, vkoul@kernel.org
-References: <1654785023-1667-1-git-send-email-quic_srivasam@quicinc.com>
- <1654785023-1667-2-git-send-email-quic_srivasam@quicinc.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <1654785023-1667-2-git-send-email-quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220609123500.3492475-2-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6/9/22 09:30, Srinivasa Rao Mandadapu wrote:
-> Validate software clock gating required or not and do software
-> clock gating on hclk if soundwire is operational and keep it
-> running by adding flag in private data structure.
-> This is to avoid conflict between older architectures,
-> where software clock gating is not required and on latest
-> architectues, where software clock gating is mandatory.
-
-architectures.
-
+On Thu, Jun 09, 2022 at 08:34:59PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> add fsl,startup-delay-ms property indicating delay some time after just
+> kicks remote processor.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  drivers/soundwire/qcom.c | 14 ++++++++++----
->  1 file changed, 10 insertions(+), 4 deletions(-)
+>  .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml         | 4 ++++
+>  1 file changed, 4 insertions(+)
+
+What's the base? Doesn't apply to v5.19-rc1 for me.
+
 > 
-> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-> index a3fccf0..8e163da 100644
-> --- a/drivers/soundwire/qcom.c
-> +++ b/drivers/soundwire/qcom.c
-> @@ -181,6 +181,7 @@ struct qcom_swrm_ctrl {
->  struct qcom_swrm_data {
->  	u32 default_cols;
->  	u32 default_rows;
-> +	bool sw_clk_gate_required;
->  };
+> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> index 64e783234e38..56f3ed18c28c 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> @@ -76,6 +76,10 @@ properties:
+>        This property is to specify the resource id of the remote processor in SoC
+>        which supports SCFW
 >  
->  static const struct qcom_swrm_data swrm_v1_3_data = {
-> @@ -1311,6 +1312,15 @@ static int qcom_swrm_probe(struct platform_device *pdev)
->  			return PTR_ERR(ctrl->mmio);
->  	}
->  
-> +	if (data->sw_clk_gate_required) {
-> +		ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
-> +		if (IS_ERR(ctrl->audio_cgcr)) {
+> +  fsl,startup-delay-ms:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
 
-You need to handle the NULL case, devm_reset_control_get_exclusive() can
-return ERR_OR_NULL
+Standard unit types don't need a type. 'make dt_binding_check' should 
+have told you this.
 
-https://elixir.bootlin.com/linux/latest/source/drivers/reset/core.c#L1045
-
-> +			dev_err(dev, "Failed to get cgcr reset ctrl required for SW gating\n");
-> +			ret = PTR_ERR(ctrl->audio_cgcr);
-> +			goto err_init;
-> +		}
-> +	}
+> +    description: Startup time that remote processor ready for communication
 > +
->  	ctrl->irq = of_irq_get(dev->of_node, 0);
->  	if (ctrl->irq < 0) {
->  		ret = ctrl->irq;
-> @@ -1336,10 +1346,6 @@ static int qcom_swrm_probe(struct platform_device *pdev)
->  	ctrl->bus.compute_params = &qcom_swrm_compute_params;
->  	ctrl->bus.clk_stop_timeout = 300;
+>  required:
+>    - compatible
 >  
-> -	ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
-> -	if (IS_ERR(ctrl->audio_cgcr))
-> -		dev_err(dev, "Failed to get audio_cgcr reset required for soundwire-v1.6.0\n");
-> -
->  	ret = qcom_swrm_get_port_config(ctrl);
->  	if (ret)
->  		goto err_clk;
+> -- 
+> 2.25.1
+> 
+> 
