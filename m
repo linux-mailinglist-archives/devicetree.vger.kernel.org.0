@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B328544A87
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:41:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34C9E544A8C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:41:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243976AbiFILl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 07:41:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39400 "EHLO
+        id S243928AbiFILlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 07:41:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244167AbiFILlD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:41:03 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C86CC1DB1DC
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:40:23 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id fu3so45395237ejc.7
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:40:23 -0700 (PDT)
+        with ESMTP id S244138AbiFILlC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:41:02 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC10F1DBD48
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:40:24 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id z7so30791207edm.13
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:40:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=AlVYTGpdyD/4RoZufqMfUAtnxIkgzdNZQq9JlVcPm2M=;
-        b=wxAnFTfE1Q7Zm30aGELUytykVCqN/6lym2KHsshodGZw3e48MttI3JYTH7ksP24w8w
-         gcoL7/WWYNmHaEvCxhL3dAmr7RIZx+isUKVQi6gPSIgNPGC0CbhfUleJ6cXnmU7Ds+tn
-         DQCVs6sPeMmv45MX0KDbWaUmWY7F/9f/7kDDT+rgcTkrYYYVvYjBMssDIH2oUfEzVhcx
-         gIHHZQOtgCaRQ0tNwyKRlEzV59IgotSL7Qk7p/XPauflIGqpZz0/YgAjP3YtWy0MGGOQ
-         ZyMlSNochSnGZ9zMqzXnSwQu+wKdzUe0IMi1/1P1GU8EDmiVndIClthhcWN1WimzuU1V
-         gTYw==
+        bh=8KUiL3np2ygfecmy1I7ARIj+Q5w0zv0RhTyVvk3vWH4=;
+        b=ZfKVGFlwB0drMUpClH6ongnfbVocJ0aqGHXDS1dsMV50ImoeWbAyRxLd/rHuTeXR/T
+         AJwBFWLIJtbVf9dNdY7wpfGDOFdrfspUlyU2+AU7m4YhuhcWezFGQGA4s/SkHBf7xihy
+         LHBsvGnEUhPmiLPWiGMVeBGXQSZi1eORQEj9fNDnPskVHaJtQ4aa7Mvt9LUzAJD/UpLg
+         vFBwTXazpJwJOWp/63jYbRprEyF9akD8QtIPCgh2PgUF98CksArZKHjoTxyTcSE6CrLH
+         hldtJEqSIW+bIYkShF4H5En8f+ReUjh0DAQwEzwigzMtSH/Fkq12OiZ3L0nH/++Yr804
+         22KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=AlVYTGpdyD/4RoZufqMfUAtnxIkgzdNZQq9JlVcPm2M=;
-        b=RLyMeAbm6E9wogjAHZoz22dcf53FOIEW//19ha3K7dk6NUQkrhFIesRt+5SAN/yZ6S
-         /0OlOLZrN4SgHBxxq2YPKSmkoxna5hxOMmY0mz0XQIqT18LO/x720aJrdTN5zU9mEONZ
-         miNDdYFt7hHN3q1PZCVZU/gojW3xUxWV9xDGwhSkqkQgXBzDs73WwWgQuxqw8nK0pP8o
-         Ht5wcsaCoAecDHmmnPoGsJaN0eHEl2zgEm9S98kBBC3OnZ/vD7fSOvQSKC/u0s6q/cY9
-         E2ycKu9rpr4jcXc0QiR+fscWX2a7sUVKGLOTHSmpDveclcb7knW23tefW1oKPn9hTUsG
-         UAbA==
-X-Gm-Message-State: AOAM533hHC6OaqBzkjo4f8pl+6YxW6qYgSx8s0s+6YONOduDzeV+9S7s
-        zqdePJMDk4uQEPNP2q6w0WT9CQ==
-X-Google-Smtp-Source: ABdhPJxXw+ZR2TDeopukgwrEhWfDrwekxalrADX8jDFEbvAO1nHqPBv7LyBnA7aVusYcHtGEg6A/Qg==
-X-Received: by 2002:a17:907:86ac:b0:708:9c4a:c6e9 with SMTP id qa44-20020a17090786ac00b007089c4ac6e9mr36074394ejc.297.1654774821875;
-        Thu, 09 Jun 2022 04:40:21 -0700 (PDT)
+        bh=8KUiL3np2ygfecmy1I7ARIj+Q5w0zv0RhTyVvk3vWH4=;
+        b=L/iWjh633NdE0S3T93MLK9KJOMtBk3PPiN3nNW+0MQzutIcMK5RYJLdatnQZkF4ZTj
+         XWwRlhFZumv13p+8S1CdqT9C8RrFIT85xGzBTzDAj74Pz9DaPbcSl0meL6YziOqjx+kH
+         D6QtTuMUsJH4tDFT9ImCooMCVgm1GePzmuARh0selJZkELTLJFxpkjb+rTtTPIZIAbKD
+         0WNVhTlnN0Hh27FkynjcLzOV8q0rmLXqEA5ir81J5DdtewBJl5d3XAbYWCNPS22bmAPJ
+         aP3e8oDwuEuxH5+Zxis9WGAhz52fyKgi+yqybtYq9i5c2UyaOWX8fDa0FZnpr0uJ7/65
+         3JYA==
+X-Gm-Message-State: AOAM530T1pIuL49noZjNir6gUpQJaXwI00hujKTcvo5fTQkygwvpn7Fg
+        cDxWQSE5OVCwUXTWEHI3vghhpiPpyKlx8g==
+X-Google-Smtp-Source: ABdhPJxWyUWnpnMAnMIiVKwloAstsGYLRows2ba9PpTywVn/DLl1wCQGuTV0zQouD8RF+lfJ+Mtqvg==
+X-Received: by 2002:a05:6402:17c8:b0:42d:dc6f:f17c with SMTP id s8-20020a05640217c800b0042ddc6ff17cmr45215591edy.17.1654774823223;
+        Thu, 09 Jun 2022 04:40:23 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id q1-20020a170906360100b006ff59151e34sm10638441ejb.39.2022.06.09.04.40.20
+        by smtp.gmail.com with ESMTPSA id q1-20020a170906360100b006ff59151e34sm10638441ejb.39.2022.06.09.04.40.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 04:40:21 -0700 (PDT)
+        Thu, 09 Jun 2022 04:40:22 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         arm@kernel.org, soc@kernel.org, Andy Gross <agross@kernel.org>,
@@ -56,9 +56,9 @@ To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 28/48] arm64: dts: qcom: correct gpio-keys properties
-Date:   Thu,  9 Jun 2022 13:40:01 +0200
-Message-Id: <20220609114002.380563-9-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 29/48] arm64: dts: qcom: sdm630-sony-xperia-nile: drop unneeded status from gpio-keys
+Date:   Thu,  9 Jun 2022 13:40:02 +0200
+Message-Id: <20220609114002.380563-10-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
 References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
@@ -67,166 +67,32 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-gpio-keys children do not use unit addresses.
+Nodes do not need explicit status=okay.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/apq8016-sbc.dts               |  4 +---
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts            |  4 +---
- arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts      |  4 +---
- .../boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi    | 10 ++++------
- arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts        |  2 --
- arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi  |  2 --
- .../boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts  |  2 --
- 7 files changed, 7 insertions(+), 21 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-index 7c1eab605c15..21242919fe18 100644
---- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-@@ -92,14 +92,12 @@ hdmi_con: endpoint {
- 
- 	gpio-keys {
- 		compatible = "gpio-keys";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		autorepeat;
- 
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&msm_key_volp_n_default>;
- 
--		button@0 {
-+		button {
- 			label = "Volume Up";
- 			linux,code = <KEY_VOLUMEUP>;
- 			gpios = <&msmgpio 107 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-index 1dbfedd5711c..ba76d4620224 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-@@ -84,14 +84,12 @@ div1_mclk: divclk1 {
- 
- 	gpio-keys {
- 		compatible = "gpio-keys";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		autorepeat;
- 
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&volume_up_gpio>;
- 
--		button@0 {
-+		button {
- 			label = "Volume Up";
- 			linux,code = <KEY_VOLUMEUP>;
- 			gpios = <&pm8994_gpios 2 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts b/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
-index cdb2dfe02e56..04887182bca3 100644
---- a/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
-@@ -53,11 +53,9 @@ framebuffer0: framebuffer@3400000 {
- 
- 	gpio-keys {
- 		compatible = "gpio-keys";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		autorepeat;
- 
--		button@0 {
-+		button {
- 			label = "Volume Up";
- 			gpios = <&pm8994_gpios 3 GPIO_ACTIVE_LOW>;
- 			linux,input-type = <1>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
-index 0fb12db47d6e..f430d797196f 100644
---- a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
-@@ -29,11 +29,9 @@ / {
- 
- 	gpio-keys {
- 		compatible = "gpio-keys";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		autorepeat;
- 
--		button@0 {
-+		button-0 {
- 			label = "Volume Down";
- 			gpios = <&pm8994_gpios 2 GPIO_ACTIVE_LOW>;
- 			linux,input-type = <1>;
-@@ -42,7 +40,7 @@ button@0 {
- 			debounce-interval = <15>;
- 		};
- 
--		button@1 {
-+		button-1 {
- 			label = "Volume Up";
- 			gpios = <&pm8994_gpios 3 GPIO_ACTIVE_LOW>;
- 			linux,input-type = <1>;
-@@ -51,7 +49,7 @@ button@1 {
- 			debounce-interval = <15>;
- 		};
- 
--		button@2 {
-+		button-2 {
- 			label = "Camera Snapshot";
- 			gpios = <&pm8994_gpios 4 GPIO_ACTIVE_LOW>;
- 			linux,input-type = <1>;
-@@ -60,7 +58,7 @@ button@2 {
- 			debounce-interval = <15>;
- 		};
- 
--		button@3 {
-+		button-3 {
- 			label = "Camera Focus";
- 			gpios = <&pm8994_gpios 5 GPIO_ACTIVE_LOW>;
- 			linux,input-type = <1>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
-index 1ffe72b47f67..6a200f37c035 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
-@@ -101,8 +101,6 @@ key-alt {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		label = "Side buttons";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&vol_up_pin_a>, <&cam_focus_pin_a>,
- 			    <&cam_snapshot_pin_a>;
 diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-index bc06b485897c..42e89f41eb7d 100644
+index 42e89f41eb7d..48720026423d 100644
 --- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-@@ -90,8 +90,6 @@ cam_vana_rear_vreg: cam_vana_rear_vreg {
+@@ -88,7 +88,6 @@ cam_vana_rear_vreg: cam_vana_rear_vreg {
+ 	};
+ 
  	gpio-keys {
- 		status = "okay";
+-		status = "okay";
  		compatible = "gpio-keys";
--		#address-cells = <1>;
--		#size-cells = <0>;
  
  		key-camera-focus {
- 			label = "Camera Focus";
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-index f933b6c4f763..c9f195649954 100644
---- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-@@ -42,8 +42,6 @@ extcon_usb: extcon-usb {
- 	gpio-keys {
- 		status = "okay";
- 		compatible = "gpio-keys";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		autorepeat;
- 
- 		key-vol-dn {
 -- 
 2.34.1
 
