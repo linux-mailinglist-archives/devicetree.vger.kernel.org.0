@@ -2,97 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30ACA5446B4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 10:57:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 502D45446D7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 11:01:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242709AbiFII5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 04:57:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37172 "EHLO
+        id S242133AbiFIJAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 05:00:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242907AbiFII4a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 04:56:30 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A26F1E8123
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 01:56:12 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id y19so46116574ejq.6
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 01:56:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=23ND4rIp28maicnbuFOnjfrniSOk7N5VAPPY+gIY+W4=;
-        b=rUKxy/Yy93wPG79xU9wyskibQe9IRoiZzJ2GgV7Rc+CT3nUoOk7M8yUvMIv1gGrLer
-         /FfOvsdp+vLpnspqkhm6sLxbl0Ulatox3je4BBcVUO+0SIHldW3ckm9KSFRutkz5bqPu
-         OgVhwwpirghDtgGAb9b5ks2MEM/mHCyZqys9tQNCs++Iq6Rrpx8WBoPMyeIzwKxI3U1G
-         pw0gHt2ffA7CyDg55fNSVtYsi/G7HbsuxYPirs8qqhF8zf3+2Gg58RXIH1v3T+H9UsB8
-         Y+GsCd22zC7QtvqDoBDwAJdWw9avWFaaXtI1Cv4CJ91rVTCviq5goUyebvXSaLosSzRa
-         9U2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=23ND4rIp28maicnbuFOnjfrniSOk7N5VAPPY+gIY+W4=;
-        b=AG7//R5tQe8UaEfESZYqocNaSkMQyaeQQ6zV4egKyPonYNeoGqovD2P3cQS+BMASUF
-         5//gNtqnQLrninDqpp1SaG4dYTuwWIQEMgrzs40ysG5LIS0xAlk0GBPJs3WEPeprWKdm
-         lV+Nynk0G9El2y+OtYPHeE74w4UNJ3gDIqvKs9tudVjLw5VGcrvV44F9biI0VeG9ebOC
-         Rzk83Gm9EmZ0tTH90BeMNybhTiceCbwBXkVj6myBNj1g+4Fx9mGEExGXbCkAESmt7MvQ
-         eAEFju2AFsXNsvkdlFhJ2jKrSKIsM2lJ/eF9uPV+HbSg3PgXm/6CSWzOLgTBD14X1Mt2
-         F5rA==
-X-Gm-Message-State: AOAM532ClYBaWYx81NgOd/zKUA4fb/NgkxHe5eqbrmPNTpoZ2qTmwQBy
-        lLUTeUi6m3Eup9j+Ftg+fQ7QgA==
-X-Google-Smtp-Source: ABdhPJxT89yjhtXwg4++i7ECOHiVXc4PmOb6nuBXh9T0b6PTr4L1lJYk6J2tR702atACd/Yq//8x/w==
-X-Received: by 2002:a17:907:1c8f:b0:6e8:f898:63bb with SMTP id nb15-20020a1709071c8f00b006e8f89863bbmr36423455ejc.721.1654764970676;
-        Thu, 09 Jun 2022 01:56:10 -0700 (PDT)
-Received: from [192.168.0.195] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id q6-20020a1709060f8600b00711edab7622sm2819210ejj.40.2022.06.09.01.56.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 01:56:09 -0700 (PDT)
-Message-ID: <67079e6f-52f4-6e0d-bf53-f9feb63e28f6@linaro.org>
-Date:   Thu, 9 Jun 2022 10:56:08 +0200
+        with ESMTP id S241944AbiFIJAP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 05:00:15 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B5323BDC;
+        Thu,  9 Jun 2022 02:00:14 -0700 (PDT)
+X-UUID: b023b536d4014739bb43a28b23e64d49-20220609
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:36ec617f-03ed-4d1b-bb2f-cc6468efce13,OB:10,L
+        OB:10,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham
+        ,ACTION:release,TS:95
+X-CID-INFO: VERSION:1.1.5,REQID:36ec617f-03ed-4d1b-bb2f-cc6468efce13,OB:10,LOB
+        :10,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D
+        ,ACTION:quarantine,TS:95
+X-CID-META: VersionHash:2a19b09,CLOUDID:8d1e3de5-2ba2-4dc1-b6c5-11feb6c769e0,C
+        OID:77d54d65d1c5,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:0,BEC:nil
+X-UUID: b023b536d4014739bb43a28b23e64d49-20220609
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <xiangsheng.hou@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 950824023; Thu, 09 Jun 2022 17:00:08 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Thu, 9 Jun 2022 17:00:07 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Thu, 9 Jun 2022 17:00:06 +0800
+From:   Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <bin.zhang@mediatek.com>,
+        <benliang.zhao@mediatek.com>,
+        Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+Subject: arm64: dts: mt8173: Fix nor_flash node
+Date:   Thu, 9 Jun 2022 16:59:34 +0800
+Message-ID: <20220609085933.17398-1-xiangsheng.hou@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 00/11] dt-bindings/pinctrl/arm: qcom: minor cleanups of
- QCOM PMIC pinctrl
-Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Luca Weiss <luca@z3ntu.xyz>, David Heidelberg <david@ixit.cz>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20220507194913.261121-1-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220507194913.261121-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/05/2022 21:49, Krzysztof Kozlowski wrote:
-> Hi,
-> 
-> The patches are independent, so they can be picked up as is.
-> 
-> Not really tested on hardware (except SDM845).
-> 
+Add axi clock since the driver change to DMA mode which need
+to enable axi clock. And change spi clock to 26MHz as default.
 
-Hi Bjorn,
-The pinctrl bindings part was applied. The DTS changes are waiting for
-you here.
+Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+index 40d7b47fc52e..e603170100af 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+@@ -790,9 +790,12 @@ thermal: thermal@1100b000 {
+ 		nor_flash: spi@1100d000 {
+ 			compatible = "mediatek,mt8173-nor";
+ 			reg = <0 0x1100d000 0 0xe0>;
++			assigned-clocks = <&topckgen CLK_TOP_SPI_SEL>;
++			assigned-clock-parents = <&clk26m>;
+ 			clocks = <&pericfg CLK_PERI_SPI>,
+-				 <&topckgen CLK_TOP_SPINFI_IFR_SEL>;
+-			clock-names = "spi", "sf";
++				 <&topckgen CLK_TOP_SPINFI_IFR_SEL>,
++				 <&pericfg CLK_PERI_NFI>;
++			clock-names = "spi", "sf", "axi";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			status = "disabled";
+-- 
+2.25.1
+
