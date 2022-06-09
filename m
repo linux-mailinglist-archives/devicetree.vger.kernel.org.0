@@ -2,96 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B44E65455F6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 22:51:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8CCC545607
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 22:53:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234341AbiFIUvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 16:51:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35820 "EHLO
+        id S239191AbiFIUx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 16:53:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232983AbiFIUvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 16:51:17 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C88E193FE;
-        Thu,  9 Jun 2022 13:51:16 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id y12so23401406ior.7;
-        Thu, 09 Jun 2022 13:51:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6UkS4SPS1bXVXetBXdzfxgOMHLZzAndl0YdUye+T98U=;
-        b=AtSPkpqJFBdhC9+dJeSF01DEYbEojYtB8jvxRfKkpK7vHVB5xYjZx6MpLh3A1ACI1S
-         lHqKLU4kZ5miTorQ8X6aZr2LcfNd4E/+zorpC9L7tyWAPtbyAXsuw8NXQxcmPnAQx59w
-         lZbHpPTc1gF1RSYr28wKWX+GtcCUQW5kE9GzZ01JSnx3UtlDGI5VdLmcsJJ3/CwnSOoW
-         m+llVhuTESEUKrUGN5mr2WgzAnYPl/uhc9l1LT7o7jGE2dq0sZ1FC09fe/ZyHF/Xbn3T
-         qKy2QOMLF6kECNv+H6OOgzdrHsH3iACk9iDF342ahalnbM1noJ6vS5sD6e7RoErkybgb
-         Jbpg==
-X-Gm-Message-State: AOAM530/iTzceDRPGg0ol0uU1rfB8/Iy9aJRmF3I9KLfmqG6RoMGPSCD
-        GfWjCXn6+fQQTqcKfrfbw8vANbWZNw==
-X-Google-Smtp-Source: ABdhPJwOVwZeLmYAjjuRwTF1mXzjxf7By9LYuIqGnacWdW2E6Un0R5tJzxy5bnVQ5rBRzs4VUQ+xzA==
-X-Received: by 2002:a5e:c318:0:b0:669:975b:7d06 with SMTP id a24-20020a5ec318000000b00669975b7d06mr4223204iok.199.1654807875963;
-        Thu, 09 Jun 2022 13:51:15 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id b17-20020a026f51000000b0032e71f31487sm9867485jae.31.2022.06.09.13.51.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 13:51:15 -0700 (PDT)
-Received: (nullmailer pid 78588 invoked by uid 1000);
-        Thu, 09 Jun 2022 20:51:13 -0000
-Date:   Thu, 9 Jun 2022 14:51:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Kees Cook <keescook@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        weishunc@google.com,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        linux-kernel@vger.kernel.org,
-        Daisuke Nojiri <dnojiri@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        chrome-platform@lists.linux.dev, linux-remoteproc@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Prashant Malani <pmalani@chromium.org>
-Subject: Re: [PATCH v2 1/9] dt-binding: remoteproc: mediatek: Support
- dual-core SCP
-Message-ID: <20220609205113.GA78534-robh@kernel.org>
-References: <20220608083553.8697-1-tinghan.shen@mediatek.com>
- <20220608083553.8697-2-tinghan.shen@mediatek.com>
+        with ESMTP id S1345356AbiFIUxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 16:53:24 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 126D32E13CA;
+        Thu,  9 Jun 2022 13:53:23 -0700 (PDT)
+Received: from mercury (unknown [185.209.196.172])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 929BB6601649;
+        Thu,  9 Jun 2022 21:53:21 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1654808001;
+        bh=GLewdZGGHjUSe1VII7HyLaIQ1QG/YNTmpuKFRFF1oQw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h+/XxMvhY6SD+QdWkuQ+5WlCbhpFwW2Cs+PXidRlqVtJc+aD1vzXwShA+EBfb2X8Y
+         NF6TXADsHhou+uuot4BE8D2Yv7RoV2BIfJ3loploojFhCtJ0WeGMA0voJQqWXBdYIM
+         j4tufuvKC48U6giNusNys58sQKfGN+NWVQ7IEZDid6a3+7M3ROzYoQIB3xKr9TgKWO
+         du28CaAFMwcKo4WscIREs+jE4z0cao5fM1XS+KYQZI2N12ZIaUWHU3xUfoc03BxSRM
+         uRudyJQh8NDI3QQuoxNV6ye9CKzbVQLTRUM9gXqQ82CEnsZZAmnRYYOTBoyR5w//tS
+         PMLRvjLpSEbCQ==
+Received: by mercury (Postfix, from userid 1000)
+        id 79F9310605B9; Thu,  9 Jun 2022 22:53:19 +0200 (CEST)
+Date:   Thu, 9 Jun 2022 22:53:19 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wens@csie.org, jic23@kernel.org,
+        lee.jones@linaro.org, broonie@kernel.org,
+        gregkh@linuxfoundation.org, lgirdwood@gmail.com, lars@metafoo.de,
+        rafael@kernel.org, quic_gurus@quicinc.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 13/17] power: supply: axp20x_usb_power: Add support
+ for AXP192
+Message-ID: <20220609205319.ws5a74xjyxfrdx6p@mercury.elektranox.org>
+References: <20220607155324.118102-1-aidanmacdonald.0x0@gmail.com>
+ <20220607155324.118102-14-aidanmacdonald.0x0@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5qrqrngzkurwra5x"
 Content-Disposition: inline
-In-Reply-To: <20220608083553.8697-2-tinghan.shen@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220607155324.118102-14-aidanmacdonald.0x0@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Jun 2022 16:35:45 +0800, Tinghan Shen wrote:
-> The MT8195 SCP co-processor is a dual-core RISC-V MCU.
-> 
-> Add a new property to reference the sibling core and to assign
-> core id to SCP nodes. Also add a new compatile for the driver of
-> SCP 2nd core.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->  .../devicetree/bindings/remoteproc/mtk,scp.yaml     | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+--5qrqrngzkurwra5x
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Tue, Jun 07, 2022 at 04:53:20PM +0100, Aidan MacDonald wrote:
+> The AXP192 is mostly the same as the AXP202 but has a different
+> current limit.
+>=20
+> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+> ---
+
+Acked-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+-- Sebastian
+
+>  drivers/power/supply/axp20x_usb_power.c | 80 +++++++++++++++++++++----
+>  1 file changed, 69 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/drivers/power/supply/axp20x_usb_power.c b/drivers/power/supp=
+ly/axp20x_usb_power.c
+> index a1e6d1d44808..03145374ae72 100644
+> --- a/drivers/power/supply/axp20x_usb_power.c
+> +++ b/drivers/power/supply/axp20x_usb_power.c
+> @@ -48,6 +48,9 @@
+>  #define AXP813_VBUS_CLIMIT_2000mA	2
+>  #define AXP813_VBUS_CLIMIT_2500mA	3
+> =20
+> +#define AXP192_VBUS_CLIMIT_EN		BIT(1)
+> +#define AXP192_VBUS_CLIMIT_100mA	BIT(0)
+> +
+>  #define AXP20X_ADC_EN1_VBUS_CURR	BIT(2)
+>  #define AXP20X_ADC_EN1_VBUS_VOLT	BIT(3)
+> =20
+> @@ -121,6 +124,24 @@ static void axp20x_usb_power_poll_vbus(struct work_s=
+truct *work)
+>  		mod_delayed_work(system_power_efficient_wq, &power->vbus_detect, DEBOU=
+NCE_TIME);
+>  }
+> =20
+> +static int axp192_get_current_max(struct axp20x_usb_power *power, int *v=
+al)
+> +{
+> +	unsigned int v;
+> +	int ret =3D regmap_read(power->regmap, AXP20X_VBUS_IPSOUT_MGMT, &v);
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!(v & AXP192_VBUS_CLIMIT_EN))
+> +		*val =3D -1;
+> +	else if (v & AXP192_VBUS_CLIMIT_100mA)
+> +		*val =3D 100000;
+> +	else
+> +		*val =3D 500000;
+> +
+> +	return 0;
+> +}
+> +
+>  static int axp20x_get_current_max(struct axp20x_usb_power *power, int *v=
+al)
+>  {
+>  	unsigned int v;
+> @@ -179,7 +200,7 @@ static int axp20x_usb_power_get_property(struct power=
+_supply *psy,
+>  	enum power_supply_property psp, union power_supply_propval *val)
+>  {
+>  	struct axp20x_usb_power *power =3D power_supply_get_drvdata(psy);
+> -	unsigned int input, v;
+> +	unsigned int input, v, reg;
+>  	int ret;
+> =20
+>  	switch (psp) {
+> @@ -215,6 +236,8 @@ static int axp20x_usb_power_get_property(struct power=
+_supply *psy,
+>  	case POWER_SUPPLY_PROP_CURRENT_MAX:
+>  		if (power->axp20x_id =3D=3D AXP813_ID)
+>  			return axp813_get_current_max(power, &val->intval);
+> +		else if (power->axp20x_id =3D=3D AXP192_ID)
+> +			return axp192_get_current_max(power, &val->intval);
+>  		return axp20x_get_current_max(power, &val->intval);
+>  	case POWER_SUPPLY_PROP_CURRENT_NOW:
+>  		if (IS_ENABLED(CONFIG_AXP20X_ADC)) {
+> @@ -256,16 +279,20 @@ static int axp20x_usb_power_get_property(struct pow=
+er_supply *psy,
+> =20
+>  		val->intval =3D POWER_SUPPLY_HEALTH_GOOD;
+> =20
+> -		if (power->axp20x_id =3D=3D AXP202_ID) {
+> -			ret =3D regmap_read(power->regmap,
+> -					  AXP20X_USB_OTG_STATUS, &v);
+> -			if (ret)
+> -				return ret;
+> +		if (power->axp20x_id =3D=3D AXP192_ID)
+> +			reg =3D AXP192_USB_OTG_STATUS;
+> +		else if (power->axp20x_id =3D=3D AXP202_ID)
+> +			reg =3D AXP20X_USB_OTG_STATUS;
+> +		else
+> +			/* Other chips do not have an OTG status register */
+> +			break;
+> =20
+> -			if (!(v & AXP20X_USB_STATUS_VBUS_VALID))
+> -				val->intval =3D
+> -					POWER_SUPPLY_HEALTH_UNSPEC_FAILURE;
+> -		}
+> +		ret =3D regmap_read(power->regmap, reg, &v);
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (!(v & AXP20X_USB_STATUS_VBUS_VALID))
+> +			val->intval =3D POWER_SUPPLY_HEALTH_UNSPEC_FAILURE;
+>  		break;
+>  	case POWER_SUPPLY_PROP_PRESENT:
+>  		val->intval =3D !!(input & AXP20X_PWR_STATUS_VBUS_PRESENT);
+> @@ -316,6 +343,24 @@ static int axp20x_usb_power_set_voltage_min(struct a=
+xp20x_usb_power *power,
+>  	return -EINVAL;
+>  }
+> =20
+> +static int axp192_usb_power_set_current_max(struct axp20x_usb_power *pow=
+er,
+> +					    int intval)
+> +{
+> +	int val =3D AXP192_VBUS_CLIMIT_EN;
+> +	const int mask =3D AXP192_VBUS_CLIMIT_EN | AXP192_VBUS_CLIMIT_100mA;
+> +
+> +	switch (intval) {
+> +	case 100000:
+> +		val |=3D AXP192_VBUS_CLIMIT_100mA;
+> +		fallthrough;
+> +	case 500000:
+> +		return regmap_update_bits(power->regmap,
+> +					  AXP20X_VBUS_IPSOUT_MGMT, mask, val);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+>  static int axp813_usb_power_set_current_max(struct axp20x_usb_power *pow=
+er,
+>  					    int intval)
+>  {
+> @@ -383,6 +428,9 @@ static int axp20x_usb_power_set_property(struct power=
+_supply *psy,
+>  		if (power->axp20x_id =3D=3D AXP813_ID)
+>  			return axp813_usb_power_set_current_max(power,
+>  								val->intval);
+> +		else if (power->axp20x_id =3D=3D AXP192_ID)
+> +			return axp192_usb_power_set_current_max(power,
+> +								val->intval);
+>  		return axp20x_usb_power_set_current_max(power, val->intval);
+> =20
+>  	default:
+> @@ -468,6 +516,13 @@ struct axp_data {
+>  	enum axp20x_variants		axp20x_id;
+>  };
+> =20
+> +static const struct axp_data axp192_data =3D {
+> +	.power_desc	=3D &axp20x_usb_power_desc,
+> +	.irq_names	=3D axp20x_irq_names,
+> +	.num_irq_names	=3D ARRAY_SIZE(axp20x_irq_names),
+> +	.axp20x_id	=3D AXP192_ID,
+> +};
+> +
+>  static const struct axp_data axp202_data =3D {
+>  	.power_desc	=3D &axp20x_usb_power_desc,
+>  	.irq_names	=3D axp20x_irq_names,
+> @@ -600,7 +655,7 @@ static int axp20x_usb_power_probe(struct platform_dev=
+ice *pdev)
+>  	if (ret)
+>  		return ret;
+> =20
+> -	if (power->axp20x_id =3D=3D AXP202_ID) {
+> +	if (power->axp20x_id =3D=3D AXP192_ID || power->axp20x_id =3D=3D AXP202=
+_ID) {
+>  		/* Enable vbus valid checking */
+>  		ret =3D regmap_update_bits(power->regmap, AXP20X_VBUS_MON,
+>  					 AXP20X_VBUS_MON_VBUS_VALID,
+> @@ -659,6 +714,9 @@ static int axp20x_usb_power_probe(struct platform_dev=
+ice *pdev)
+> =20
+>  static const struct of_device_id axp20x_usb_power_match[] =3D {
+>  	{
+> +		.compatible =3D "x-powers,axp192-usb-power-supply",
+> +		.data =3D &axp192_data,
+> +	}, {
+>  		.compatible =3D "x-powers,axp202-usb-power-supply",
+>  		.data =3D &axp202_data,
+>  	}, {
+> --=20
+> 2.35.1
+>=20
+
+--5qrqrngzkurwra5x
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmKiXb8ACgkQ2O7X88g7
++pqxoQ/8D+GXBnmCcBb/KfGUzljFGpaLbqTNy1CYmFQZqTmVeJz9JPZlWVME/6Fk
++q+SJ3JHWeTQQCZQc2YtDmxWL3qJ0VwOXYrViZWvTm7ZC1YMuTpL8C8JPu3vd0f8
+aS4PM7T4ASzy6uAs8cMYXJnDKA+8DmAuljePBYofU/CdyR19OEyQbTxTk0nUDswI
+Zb1akk4N5XfokCji3r2h1G5Ka0QjnO9oIkQ085od6Bxnusum+orL36VuFJ8yHD28
+sq5GnkhAmIYOt4WPvq09a/oPUneTLoDGxZmV81y0tpNf7D6gEK3XuTJYWPjZ6l7W
+iDe4qAzGLwu5R24T0QUEAvdSbrJUY7VNtb8+r5JuNmxZtHf3YZfvqiXPyxV3XXZf
+Uy0OYEmfBvkcY1MwiM4sIaV+280t3/bmfJip4qa9WuHM+eqH3ymnb8VpU4UByv4c
+Eqs2X2fhjORsayq9IJcJwZVKBslB76igNGIyQP7kCO/uQleUfsOhDAR8rX103uA2
+i1uxgDKcIBezw2gh26MjHUmPA/QAHzRub9vu53PSdVCGo95XM+b1uBnwh+uQp56g
+H7IqS0Pa8xQ003WK3Wp7au09KyghE201xKps7SJcrpcZyOm9LRhmS+++jZ9UnQX3
+7mIbm/2j8D//F+7VuRtpJzOZ4nFD4PNWHMVFmncDUuc+sKEtNmg=
+=8R3Z
+-----END PGP SIGNATURE-----
+
+--5qrqrngzkurwra5x--
