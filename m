@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B454354554A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 22:04:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2623D545554
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 22:10:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240574AbiFIUEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 16:04:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35940 "EHLO
+        id S230359AbiFIUKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 16:10:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235428AbiFIUEs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 16:04:48 -0400
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80E8A5253F;
-        Thu,  9 Jun 2022 13:04:47 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id p69so4492746iod.0;
-        Thu, 09 Jun 2022 13:04:47 -0700 (PDT)
+        with ESMTP id S229950AbiFIUKo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 16:10:44 -0400
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E83D6572;
+        Thu,  9 Jun 2022 13:10:43 -0700 (PDT)
+Received: by mail-il1-f170.google.com with SMTP id r3so19553063ilt.8;
+        Thu, 09 Jun 2022 13:10:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=aYLB3MXMG/zUWxx6YIU5grgpq0m+C2J/TptDhmwSbzU=;
-        b=Duy7Sqd9LkLZ4x1Capr+kGijZeZloVHKmqXp4sEITfSM3o+gT0h5FEK2pB/zhSYHAY
-         1mVQiZ555SyO45bH3vJ5LDM0garygWQ5l+J6rpVxtW8Ea/I6PoIQXO5qieYu1AjCuuXl
-         m0QTbkz6uQxqzW9K6PmljvsecxEUFTgdhCsdKvO63SmD7ygiN7Dpuz318GiNgsgRhEep
-         bdSkZNFpau6eohuI4d/AH6xfkMOXMD+7lFlgvcglmaGBp1p9ssQz95abEnj8TiTsuT5d
-         moS3fI27LdFwlf98zAjTb75Ktu1f4Ww39Yn0+W2yb5j1c48LThej7VEbKd3TJeq3ewDL
-         8kTw==
-X-Gm-Message-State: AOAM531RHYlNzMHEWclQqIOtwYf7V1TAKDpT2NVtOszmB+bdZOFyh/Fo
-        myIxJWx5JGDZgjHo44iBkg==
-X-Google-Smtp-Source: ABdhPJzPzwcZRopSbyq0oyqhcTeySTRI6+hP54iIEiP9HuD2LWBkyBnv3X+aT3kaJHFPyTFS7p3WQg==
-X-Received: by 2002:a5d:9818:0:b0:65b:ae2:863e with SMTP id a24-20020a5d9818000000b0065b0ae2863emr19266534iol.31.1654805086533;
-        Thu, 09 Jun 2022 13:04:46 -0700 (PDT)
+        bh=hu/KmUyRIWRHw+tVp/TRd7thi4SABOMvdE0DmVGk4P8=;
+        b=48zpVDM6ZmbjJWyk+B8ACUALP4eHBKuHE1Xm5bkq0kLt49iFQW3+PsTvPSBOufyoIY
+         AqREguKEYmxDrX2yptsMKglhBRX2i8Va6jiDnXKGJCGC3lYvGFWDiSF0M8YtrFIczgON
+         SgQI3uLWWjxvyOqAlGxDXL922+oWgW4FrPG5MrXfYRXUM9IywU93O+S/0TYvAqwvhg6X
+         Se9DSY5BZULjpY8BlWVZvNZU+LjgIaHjf2TQegvZprKmTwxBIVD1dsD7FqkjGksqdg70
+         nC6A/KRlRzU1y0AApNTyl9NuKzMFam8j659sKv8h5BcOnBY4b0EXGfHpXrYQddG3uX67
+         LEjg==
+X-Gm-Message-State: AOAM533v9CVVYw72pdyYWzunFVAayjyJJW+I94l9VU4C3C0vtrWdSEgW
+        mfwalMqLbUSgA9kC8lISr1wooHitaw==
+X-Google-Smtp-Source: ABdhPJzbnMgq7DhjNPfGJdQUaIAuCLln7Meofq002rllS6dGJZ9peZBk2+yKLhaDUF4T8eLmBdNoZQ==
+X-Received: by 2002:a92:c146:0:b0:2d7:6168:21a0 with SMTP id b6-20020a92c146000000b002d7616821a0mr3515114ilh.120.1654805442533;
+        Thu, 09 Jun 2022 13:10:42 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id s8-20020a92ae08000000b002d149ec2606sm10731012ilh.65.2022.06.09.13.04.45
+        by smtp.gmail.com with ESMTPSA id p3-20020a02c803000000b00331d411da60sm3784259jao.75.2022.06.09.13.10.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 13:04:46 -0700 (PDT)
-Received: (nullmailer pid 14636 invoked by uid 1000);
-        Thu, 09 Jun 2022 20:04:44 -0000
-Date:   Thu, 9 Jun 2022 14:04:44 -0600
+        Thu, 09 Jun 2022 13:10:42 -0700 (PDT)
+Received: (nullmailer pid 22748 invoked by uid 1000);
+        Thu, 09 Jun 2022 20:10:40 -0000
+Date:   Thu, 9 Jun 2022 14:10:40 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>, Dan Murphy <dmurphy@ti.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH net-next 1/3] dt-bindings: dp83867: add binding for
- io_impedance_ctrl nvmem cell
-Message-ID: <20220609200444.GA14557-robh@kernel.org>
-References: <20220606202220.1670714-1-linux@rasmusvillemoes.dk>
- <20220606202220.1670714-2-linux@rasmusvillemoes.dk>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>
+Subject: Re: [PATCH 1/3] dt-bindings: leds: skyworks,aat1290: convert to
+ dtschema
+Message-ID: <20220609201040.GA22636-robh@kernel.org>
+References: <20220607085343.72414-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220606202220.1670714-2-linux@rasmusvillemoes.dk>
+In-Reply-To: <20220607085343.72414-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,22 +68,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Jun 2022 22:22:18 +0200, Rasmus Villemoes wrote:
-> We have a board where measurements indicate that the current three
-> options - leaving IO_IMPEDANCE_CTRL at the (factory calibrated) reset
-> value or using one of the two boolean properties to set it to the
-> min/max value - are too coarse.
+On Tue, 07 Jun 2022 10:53:41 +0200, Krzysztof Kozlowski wrote:
+> Convert the Skyworks Solutions, Inc. AAT1290 Current Regulator bindings
+> to DT Schema.
 > 
-> There is no documented mapping from the 32 possible values of the
-> IO_IMPEDANCE_CTRL field to values in the range 35-70 ohms, and the
-> exact mapping is likely to vary from chip to chip. So add a DT binding
-> for an nvmem cell which can be populated during production with a
-> value suitable for each specific board.
-> 
-> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../devicetree/bindings/net/ti,dp83867.yaml    | 18 +++++++++++++++---
->  1 file changed, 15 insertions(+), 3 deletions(-)
+>  .../devicetree/bindings/leds/leds-aat1290.txt | 77 ---------------
+>  .../bindings/leds/skyworks,aat1290.yaml       | 96 +++++++++++++++++++
+>  2 files changed, 96 insertions(+), 77 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/leds/leds-aat1290.txt
+>  create mode 100644 Documentation/devicetree/bindings/leds/skyworks,aat1290.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
