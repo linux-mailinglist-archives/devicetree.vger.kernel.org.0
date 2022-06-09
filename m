@@ -2,108 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18B79544D67
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 15:22:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97152544D77
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 15:24:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239258AbiFINWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 09:22:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39082 "EHLO
+        id S236324AbiFINYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 09:24:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232953AbiFINWk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 09:22:40 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 655BB25F5
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 06:22:38 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id n28so31188186edb.9
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 06:22:38 -0700 (PDT)
+        with ESMTP id S238780AbiFINYR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 09:24:17 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C13FD1B781;
+        Thu,  9 Jun 2022 06:24:15 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id d14so5638272eda.12;
+        Thu, 09 Jun 2022 06:24:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=nPMBIqsJZwcPYHy4tA1bMGL8vPZI0Il4YAYQQ5QYP70=;
-        b=HcyOqScH0H7f0QBbSZpnZWOuxME9FUTvh0o4cXzuLeQk+NOezh1q7LxxcYFZFNw6zU
-         mZniV6vvuxjuq/HjCk6/69/omoJIFpua/zC/93/JWnALilG9KhAyGa9gcJ4kgLg6R9Vt
-         pZW6nyofEFdiiGFNE+i8EhE9mebe/H8CMU/KCEy/nj87uAZy2ryT/0BvVfwSmRm5kdk3
-         uErkK9ou5SC8ttxhJFbJo4KLQuWVsH4uRg56RWUuqbr/fg1iUbt2ecsdwSxi4HLg6B9b
-         uWNziFNvxq0Mm4Jc3V5lIfdIrksokxD/8ZBurL9kl5GI1zCostGBmEYlaJCm0vtjsMrP
-         QjWA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xOp49jraaiqTwhYF0mD/jVJfnTt8MnTWTGqz+xRTGq0=;
+        b=d4kQYyM0yvnckDXPuCHW9lAxap+AYxbPdjcG00CMIxwFvwa/g8Lxynqud3+wQGqBLU
+         l8a4gAg0NSFJoO6339vafPYusRxUSh6YDbuyRNfn4RVLpOGnfLpbUoik54Z8DTlfZxqi
+         6DZukQ43NvrbT3hKz311Ic9q+3xU7uF/NQOO1ocqqS58t5IGbzguWrhy3We2UUerPuOZ
+         IiHpqMebjgvBXHOYsvnH0Jw0gDcU7RqdY4DXI0vBpS4+b1dbjEaYrx03NiEXLHnCEhvq
+         k8XD2H2ERMGyz2vwABv7WCt1fXyoy/mbnkuxV7lUFTP7pVmvKZagNZY/vpVp7TXCObcf
+         YJXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=nPMBIqsJZwcPYHy4tA1bMGL8vPZI0Il4YAYQQ5QYP70=;
-        b=c+/Ho9zNxk/h3bfzmAkAg2p/3dKlBRlr0nRDNNzD6It+YYz9+GGqz8DH1VYwJf90nl
-         EfrD9tQzfbvyF6QPnDpkrEfGhdK0WZ6YypYew86A4oohZpRyOAAuu5w/PTFDcOszzs8k
-         cdtkaq1Sf1lVPcc1Qz4CAddCS0zJnpnsR8Y+OsAfxPKXqvwbALHZGsRUCT/iAv1bK9Il
-         xr4aKa7r1/4zQjDIFvA3FZVuCS/80jUTfU06V4SnAJv386MoHoInrX3vb3iWuSgPqhQq
-         pCn4qlTGMnetA3JmJN8tjXIzfTyHky6K0CRWnY6YmMDcTX7gEZg+C5Sm902Zhy4AQrSO
-         rfHA==
-X-Gm-Message-State: AOAM531Rno7/9dqoYetKpk1XNWiJcriC0rUZvDNYStn7XyPQSjDqs8jk
-        XMp2ftPytUD8Ng815958ph63SQ==
-X-Google-Smtp-Source: ABdhPJycqxez50LdWJaT0BJ8GA7qrEg33IF52lV1YBM9+fDCeVtIUlfKDd3+doY6QFvG1RpSBUGiyA==
-X-Received: by 2002:a05:6402:27cc:b0:42d:de10:4b6c with SMTP id c12-20020a05640227cc00b0042dde104b6cmr46324557ede.424.1654780956908;
-        Thu, 09 Jun 2022 06:22:36 -0700 (PDT)
-Received: from [192.168.0.198] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s22-20020a1709062ed600b006feb875503fsm2211664eji.78.2022.06.09.06.22.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 06:22:35 -0700 (PDT)
-Message-ID: <082366b0-6811-b492-c68c-12f9a9ee512e@linaro.org>
-Date:   Thu, 9 Jun 2022 15:22:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 06/20] dt-binding: clk: npcm845: Add binding for
- Nuvoton NPCM8XX Clock
-Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
+        bh=xOp49jraaiqTwhYF0mD/jVJfnTt8MnTWTGqz+xRTGq0=;
+        b=CMc3Y4RiJb9nQTFNCE3F1IcTL7JVheMUpQuv5A4Ez3Taw8fCMBgo9H/UIxfCUodAIK
+         4sAfrDSNjyUc+4cOwQ4lu/a/mMr5aaatkCoDiBWF2mtaQxTaw9a9yTRv8OWzbNKUBGaT
+         o9B8mTjd1u+XlVrxfMmsegPDTtv1ZveaB8R/BWBsQg2na4WNw8bQmFegM06FUaj17ueH
+         9G2mkCFFoVw7KIdIVWvLOtXnurUKpZ1HsNcn/9RvCflEMvH723Zt/Wlm1L9yb+yh165V
+         UrwBcIwxDWNP6wIZzxzscj1Lpfsxj81/OR2dZ84a4uNcoTGzI9OmrdZHGUrlgDicRWEe
+         5l2A==
+X-Gm-Message-State: AOAM531L3h3BiqfXat9Nuxic66YjmCAJwJu2eQHdr0HJjNa832QUOWun
+        xCArX95IraQkmJfhkO+nBIN9IDRwBnc=
+X-Google-Smtp-Source: ABdhPJw+G30MAFfNqV3/fVSa6QC3D052TECaWZBqwRPk2jH0eVMb5bWimZSB9eMFpoY8YCgWaAEhiQ==
+X-Received: by 2002:a05:6402:3207:b0:42d:dba6:8ef0 with SMTP id g7-20020a056402320700b0042ddba68ef0mr45929939eda.410.1654781054042;
+        Thu, 09 Jun 2022 06:24:14 -0700 (PDT)
+Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.googlemail.com with ESMTPSA id i2-20020a056402054200b004315050d7dfsm8360263edx.81.2022.06.09.06.24.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jun 2022 06:24:13 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Robert Hancock <robert.hancock@calian.com>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20220608095623.22327-1-tmaimon77@gmail.com>
- <20220608095623.22327-7-tmaimon77@gmail.com>
- <f4899b6d-fec3-5940-709a-f5fbc7ae6233@linaro.org>
- <CAP6Zq1geJyaDrP2CBY3FHe5y-L=bCptX1pzAkNypY+TS5vXzMA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAP6Zq1geJyaDrP2CBY3FHe5y-L=bCptX1pzAkNypY+TS5vXzMA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>
+Subject: [PATCH v6 0/3] Add support for unprotected spare data page
+Date:   Thu,  9 Jun 2022 15:23:41 +0200
+Message-Id: <20220609132344.17548-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -111,116 +75,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/06/2022 15:17, Tomer Maimon wrote:
-> Hi Krzysztof,
-> 
-> Thanks for your comments.
-> 
-> On Wed, 8 Jun 2022 at 13:03, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 08/06/2022 11:56, Tomer Maimon wrote:
->>> Add binding for the Arbel BMC NPCM8XX Clock controller.
->>>
->>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
->>> ---
->>>  .../bindings/clock/nuvoton,npcm845-clk.yaml   | 63 +++++++++++++++++++
->>>  .../dt-bindings/clock/nuvoton,npcm8xx-clock.h | 50 +++++++++++++++
->>>  2 files changed, 113 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
->>>  create mode 100644 include/dt-bindings/clock/nuvoton,npcm8xx-clock.h
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
->>> new file mode 100644
->>> index 000000000000..e1f375716bc5
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
->>> @@ -0,0 +1,63 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/nuvoton,npcm845-clk.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Nuvoton NPCM8XX Clock Controller Binding
->>> +
->>> +maintainers:
->>> +  - Tomer Maimon <tmaimon77@gmail.com>
->>> +
->>> +description: |
->>> +  Nuvoton Arbel BMC NPCM8XX contains an integrated clock controller, which
->>> +  generates and supplies clocks to all modules within the BMC.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - nuvoton,npcm845-clk
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: 25M reference clock
->>> +      - description: CPU reference clock
->>> +      - description: MC reference clock
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: refclk
->>> +      - const: sysbypck
->>> +      - const: mcbypck
->>> +
->>
->> I asked what is the suffix about and you replied "ck"... ok, so let's
->> make clear. This should be:
->>
->>     items:
->>       - const: ref
->>       - const: sysbyp
->>       - const: mcbyp
->>
->> or something similar, without the same suffix all over.
-> The clock names are the same clock name in our spec, this why we
-> prefer to leave the clock names as is.
+Some background about this.
+On original qsdk ipq8064 based firmware there was a big separation from
+boot partition and user partition. With boot partition we refer to
+partition used to init the router (bootloader, spm firmware and other
+internal stuff) With user partition we refer to linux partition and data
+partition not used to init the router.
+When someone had to write to these boot partition a special mode was
+needed, to switch the nand driver to this special configuration.
 
-The naming with useless suffixes does not help. If your spec had
-"refclk_really_clock_this_is_a_clock" you also would insist on that? It
-does not make sense.
+Upstream version of the nandc driver totally dropped this and the result
+is that if someone try to read data from these partition a CRC warning
+is printed and if someone try to write that (if for example someone
+wants to replace the bootloader) result is a broken system as the data
+is badly written.
 
->>
->>> diff --git a/include/dt-bindings/clock/nuvoton,npcm8xx-clock.h b/include/dt-bindings/clock/nuvoton,npcm8xx-clock.h
->>> new file mode 100644
->>> index 000000000000..229915a254a5
->>> --- /dev/null
->>> +++ b/include/dt-bindings/clock/nuvoton,npcm8xx-clock.h
->>
->> Same comment as before. No changes here...
->>
-> about the comments from V1::
-> - Krzysztof: Filename - same as bindings, so nuvoton,npcm845-clk.h
-> In NPCM7XX we use the same include file and clock source
-> dt-binding
-> https://elixir.bootlin.com/linux/v5.19-rc1/source/Documentation/devicetree/bindings/clock/nuvoton,npcm750-clk.txt
-> dt-binding include
-> https://elixir.bootlin.com/linux/v5.19-rc1/source/include/dt-bindings/clock/nuvoton,npcm7xx-clock.h
-> we prefer to be align with our older BMC version
+This series comes to fix this.
 
-Older has incorrect name, so do not align to incorrect one. What is the
-logic behind having header not matching the bindings file? It makes it
-only more difficult to connect these two.
+A user can declare offset and size of these special partition using the
+qcom,boot-pages binding.
 
-> 
-> - Krzysztof: Dual license, same as bindings.
-> modified in the file * SPDX-License-Identifier: (GPL-2.0-only OR
-> BSD-2-Clause) */
-> the same license approved in en7523-clk include file and pushed to
-> Linux kernel 5.19 :
-> https://elixir.bootlin.com/linux/v5.19-rc1/source/include/dt-bindings/clock/en7523-clk.h
+An initial implementation of this assumed that the boot-pages started
+from the start of the nand but we discover that some device have backup
+of these special partition and we can have situation where we have this
+partition scheme
+- APPSBL (require special mode)
+- APPSBLENV (doesn't require special mode)
+- ART
+- APPSBLBK (back of APPSBL require special mode)
+- APPSBLENVBK (back of APPSBLENV doesn't require special mode)
+With this configuration we need to declare sparse boot page and we can't
+assume boot-pages always starts from the start of the nand.
 
-I don't understand this comment at all. I am not commenting about
-en7523-clk.h. I am commenting about the header here - it should have
-dual license. What en7523-clk.h has to do with it?
+A user can use this form to declare sparse boot pages
+qcom,boot-partitions = <0x0 0x0c80000 0x0c80000 0x0500000>;
 
-Best regards,
-Krzysztof
+The driver internally will parse this array, convert it to nand pages
+and check internally on every read/write if this special configuration
+should used for that page or the normal one.
+
+The reason for all of this is that qcom FOR SOME REASON, disable ECC for
+spare data only for these boot partition and we need to reflect this
+special configuration to mute these warning and to permit actually
+writing to these pages.
+
+v6:
+- Add additional comments on boot partition check
+- First reorder struct then make change
+- Add additional changes request from Manivannan
+- Add review tag for dt commit
+v5:
+- Rename boot-pages to boot-partitions
+- Add additional check to parsing function
+- Rename unprotect_spare_data to codeword_fixup
+- Add additional info from Manivannan
+- Add patch to remove holes in qcom_nand_host struct
+v4:
+- Fix wrong compatible set for boot-pages (ipq8074 instead of ipq806x)
+v3:
+- Fix typo in Docmunetation commit desription
+- Add items description for uint32-matrix
+v2:
+- Add fixes from Krzysztof in Documentation
+
+Ansuel Smith (3):
+  mtd: nand: raw: qcom_nandc: reorder qcom_nand_host struct
+  mtd: nand: raw: qcom_nandc: add support for unprotected spare data
+    pages
+  dt-bindings: mtd: qcom_nandc: document qcom,boot-partitions binding
+
+ .../devicetree/bindings/mtd/qcom,nandc.yaml   |  27 +++
+ drivers/mtd/nand/raw/qcom_nandc.c             | 214 +++++++++++++++++-
+ 2 files changed, 232 insertions(+), 9 deletions(-)
+
+-- 
+2.36.1
+
