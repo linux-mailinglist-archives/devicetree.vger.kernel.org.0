@@ -2,499 +2,495 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E61E2544512
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 09:48:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82EFD544524
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 09:54:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240289AbiFIHr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 03:47:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53760 "EHLO
+        id S232868AbiFIHxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 03:53:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240274AbiFIHr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 03:47:56 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A83114BFFC;
-        Thu,  9 Jun 2022 00:47:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1654760872; x=1686296872;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Fsa5EmOiQ2/qJ8yHiEDRmMuiNITD7r+Q103FUs88anw=;
-  b=TcsLegAz7oATkTWm6e1u3spl3O9G2eRdF/M7Gka+Sk0SX4JsHhDQL7oN
-   VXkc/2/aEUoLZShDbRs9wAhm0OVESqX/EI1uEuYfnPUWU68OFtVbfKVF6
-   5QTPyD2J8vH2Dvrmu2p0cR/rol7ifBfYFJpBxmOYn0PpnQ+aFrHGmCWcN
-   F2wazhqs2qVvR6ofpud+4Lq22C58+XmUIrhfAwUJCB3e6kOlsR1PyUZzB
-   6/UQN0nEJE318xDjf99Uex630AjbR97XO7G0+uOMZbols1Tbbu/01QJJn
-   8YXkEbSUA9vk2byXg5Xd4L26pqvLGMtUzSt3sf+9bwIv1OwkqxZ1cNgFF
-   A==;
-X-IronPort-AV: E=Sophos;i="5.91,287,1647298800"; 
-   d="scan'208";a="24347917"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 09 Jun 2022 09:47:46 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 09 Jun 2022 09:47:46 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 09 Jun 2022 09:47:46 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1654760866; x=1686296866;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Fsa5EmOiQ2/qJ8yHiEDRmMuiNITD7r+Q103FUs88anw=;
-  b=eiUf5qa+zvPNseiSzGs6puPAV28lOewCA/i0FmeD6NpgjxxMULpLw/xi
-   EywfgVAsD9FZAZ2h/Eo6GsYbCdyfLtXdyaDOqCrn2iZfBRar4kmhIYJqw
-   6V8YU9EPM5kEy4UyXI+zA8Rd7S4TrQNHwyFc8SiWQTHzI4ctTxqDEzEW2
-   qrQoZZsjmy2Qorti025pLBY3akLDueDu+AO1Gd9/GxBYlsDBpYBMwztEf
-   PmlgEXRuLi0rLwh9SKG+tUHCck3+A/N1aljSDvmB06JfKRKu9zqqvx8x+
-   J3ALBmXrDPF+hVJ/AEMNjjZ5uNdRtHzg282jRvC/wnkZKVHcdfBxI1HLp
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.91,287,1647298800"; 
-   d="scan'208";a="24347916"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 09 Jun 2022 09:47:46 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        with ESMTP id S232357AbiFIHxM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 03:53:12 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 630B61E3028;
+        Thu,  9 Jun 2022 00:53:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 608F6280056;
-        Thu,  9 Jun 2022 09:47:45 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, andrzej.hajda@intel.com,
-        narmstrong@baylibre.com, robert.foss@linaro.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, lee.jones@linaro.org,
-        mchehab@kernel.org, marcel.ziswiler@toradex.com
-Subject: Re: (EXT) [PATCH v8 09/14] drm/bridge: imx: Add LDB driver helper support
-Date:   Thu, 09 Jun 2022 09:47:43 +0200
-Message-ID: <4748166.31r3eYUQgx@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20220609064931.3068601-10-victor.liu@nxp.com>
-References: <20220609064931.3068601-1-victor.liu@nxp.com> <20220609064931.3068601-10-victor.liu@nxp.com>
+        by ams.source.kernel.org (Postfix) with ESMTPS id F2113B82C3D;
+        Thu,  9 Jun 2022 07:53:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C5D4C34114;
+        Thu,  9 Jun 2022 07:53:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654761187;
+        bh=P3FLNlZhGb3NkhkHCxICHx9Dpls3bm2gQnBATFpOF5c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GhgjJQ9I0cybj/OzgI8ZYMTl0Lsr9RRvQ/YBDZuyJTNdw9DPyzNfGsyCx29xiBruO
+         jOymaSYJ57LUxHpOBz/qfP+SJawhMJZP2YLp5pEkieB2cu+4Ysge5HOICBbqxivd56
+         E3JOxpLkNo8quJvYJlqsfcUeAa5cs6usYEXMbdhq+WFAlhmFv8GDnY3rNKiidtZbHF
+         +9cEtD27eLK32vAG/7USmTQtoEKN/Zg2uwK1TolmlCyPyJFICO77SZdubcjSpS4qLv
+         tz/EG+x87joXiVN/CpnwFR+mBIowfJ+6lMWE1pntu8xLXN7AYMQ0wnsSJVmTUXIJPl
+         VQ/PN/XQ9JP2A==
+Date:   Thu, 9 Jun 2022 13:22:54 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] mtd: nand: raw: qcom_nandc: add support for
+ unprotected spare data pages
+Message-ID: <20220609075254.GC2758@thinkpad>
+References: <20220608001030.18813-1-ansuelsmth@gmail.com>
+ <20220608001030.18813-2-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220608001030.18813-2-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, 9. Juni 2022, 08:49:26 CEST schrieb Liu Ying:
-> This patch adds a helper to support LDB drm bridge drivers for
-> i.MX SoCs.  Helper functions supported by this helper should
-> implement common logics for all LDB modules embedded in i.MX SoCs.
+On Wed, Jun 08, 2022 at 02:10:28AM +0200, Ansuel Smith wrote:
+> IPQ8064 nand have special pages where a different layout scheme is used.
+> These special page are used by boot partition and on reading them
+> lots of warning are reported about wrong ECC data and if written to
+> results in broken data and not bootable device.
 > 
-> Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com> # Colibri iMX8X,
-> LT170410-2WHC, LP156WF1 Reviewed-by: Robert Foss <robert.foss@linaro.org>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> The layout scheme used by these special page consist in using 512 bytes
+> as the codeword size (even for the last codeword) while writing to CFG0
+> register. This forces the NAND controller to unprotect the 4 bytes of
+> spare data.
+> 
+> Since the kernel is unaware of this different layout for these special
+> page, it does try to protect the spare data too during read/write and
+> warn about CRC errors.
+> 
+> Add support for this by permitting the user to declare these special
+> pages in dts by declaring offset and size of the partition. The driver
+> internally will convert these value to nand pages.
+> 
+> On user read/write the page is checked and if it's a boot page the
+> correct layout is used.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 > ---
-
-Hi,
-
-reading this I got reminded of fsl-ldb [1], which is accepted already. At a 
-first glance reading the RM the LDB peripheral are similar, although not 
-identical. Is it worth merging them into one driver (at some point)?
-
-Best regards,
-Alexander
-
-[1] https://patchwork.freedesktop.org/patch/msgid/20220426193645.244792-2-marex@denx.de
-
-> Marcel, I add your T-b tag from v6, let me know if you want me to drop it,
-> as the checkpatch fix in v7 and the rebase in v8 are trivial.
+>  drivers/mtd/nand/raw/qcom_nandc.c | 174 +++++++++++++++++++++++++++++-
+>  1 file changed, 169 insertions(+), 5 deletions(-)
 > 
-> v7->v8:
-> * Use devm_drm_of_get_bridge() due to the rebase upon v5.19-rc1.
-> 
-> v6->v7:
-> * Fix below complaints from 'checkpatch.pl --strict'. (Robert)
->    - 'Alignment should match open parenthesis'
->    - 'Prefer using the BIT macro'
-> * Add Marcel's T-b tag.
-> * Add Robert's R-b tag.
-> 
-> v5->v6:
-> * No change.
-> 
-> v4->v5:
-> * Make imx-ldb-helper be a pure object to be linked with i.MX8qxp LDB bridge
-> driver and i.MX8qm LDB bridge driver. (Robert)
-> * Move 'imx_ldb_helper.h' to 'drivers/gpu/drm/bridge/imx/imx-ldb-helper.h'.
->   (Robert)
-> * s/__FSL_IMX_LDB__/__IMX_LDB_HELPER__/  for 'imx-ldb-helper.h'.
-> 
-> v3->v4:
-> * No change.
-> 
-> v2->v3:
-> * Call syscon_node_to_regmap() to get regmap instead of
->   syscon_regmap_lookup_by_phandle().
-> 
-> v1->v2:
-> * No change.
-> 
->  drivers/gpu/drm/bridge/imx/imx-ldb-helper.c | 220 ++++++++++++++++++++
->  drivers/gpu/drm/bridge/imx/imx-ldb-helper.h |  96 +++++++++
->  2 files changed, 316 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
->  create mode 100644 drivers/gpu/drm/bridge/imx/imx-ldb-helper.h
-> 
-> diff --git a/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
-> b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c new file mode 100644
-> index 000000000000..e85eb9ab5947
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
-> @@ -0,0 +1,220 @@
-> +// SPDX-License-Identifier: GPL-2.0+
+> diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
+> index 1a77542c6d67..06ee9a836a3b 100644
+> --- a/drivers/mtd/nand/raw/qcom_nandc.c
+> +++ b/drivers/mtd/nand/raw/qcom_nandc.c
+> @@ -80,8 +80,10 @@
+>  #define	DISABLE_STATUS_AFTER_WRITE	4
+>  #define	CW_PER_PAGE			6
+>  #define	UD_SIZE_BYTES			9
+> +#define	UD_SIZE_BYTES_MASK		GENMASK(18, 9)
+>  #define	ECC_PARITY_SIZE_BYTES_RS	19
+>  #define	SPARE_SIZE_BYTES		23
+> +#define	SPARE_SIZE_BYTES_MASK		GENMASK(26, 23)
+>  #define	NUM_ADDR_CYCLES			27
+>  #define	STATUS_BFR_READ			30
+>  #define	SET_RD_MODE_AFTER_STATUS	31
+> @@ -102,6 +104,7 @@
+>  #define	ECC_MODE			4
+>  #define	ECC_PARITY_SIZE_BYTES_BCH	8
+>  #define	ECC_NUM_DATA_BYTES		16
+> +#define	ECC_NUM_DATA_BYTES_MASK		GENMASK(25, 16)
+>  #define	ECC_FORCE_CLK_OPEN		30
+>  
+>  /* NAND_DEV_CMD1 bits */
+> @@ -418,6 +421,19 @@ struct qcom_nand_controller {
+>  	const struct qcom_nandc_props *props;
+>  };
+>  
 > +/*
-> + * Copyright (C) 2012 Sascha Hauer, Pengutronix
-> + * Copyright 2019,2020,2022 NXP
+> + * NAND special boot partitions
+> + *
+> + * @page_offset:		offset of the partition where spare data is not protected
+> + *				by ECC (value in pages)
+
+s/page_offset/offset
+
+> + * @page_offset:		size of the partition where spare data is not protected
+> + *				by ECC (value in pages)
+
+s/page_offset/size
+
 > + */
+> +struct qcom_nand_boot_partition {
+> +	u32 page_offset;
+> +	u32 page_size;
+
+same here
+
+> +};
 > +
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/of.h>
-> +#include <linux/regmap.h>
+>  /*
+>   * NAND chip structure
+>   *
+> @@ -444,6 +460,13 @@ struct qcom_nand_controller {
+>   * @cfg0, cfg1, cfg0_raw..:	NANDc register configurations needed for
+>   *				ecc/non-ecc mode for the current nand flash
+>   *				device
+> + *
+> + * @codeword_fixup:		keep track of the current layout used by
+> + *				the driver for read/write operation.
+> + * @nr_boot_partitions:		count of the boot partitions where spare data is not
+> + *				protected by ECC
+
+Align the Kdoc comments w.r.t other members.
+
+> + * @boot_pages:			array of boot partitions where offset and size of the
+> + *				boot partitions are stored
+
+s/boot_pages/boot_partitions
+
+>   */
+>  struct qcom_nand_host {
+>  	struct nand_chip chip;
+> @@ -466,6 +489,10 @@ struct qcom_nand_host {
+>  	u32 ecc_bch_cfg;
+>  	u32 clrflashstatus;
+>  	u32 clrreadstatus;
 > +
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_of.h>
-> +#include <drm/drm_print.h>
-> +
-> +#include "imx-ldb-helper.h"
-> +
-> +bool ldb_channel_is_single_link(struct ldb_channel *ldb_ch)
+> +	bool codeword_fixup;
+> +	int nr_boot_partitions;
+> +	struct qcom_nand_boot_partition *boot_partitions;
+>  };
+>  
+>  /*
+> @@ -475,6 +502,7 @@ struct qcom_nand_host {
+>   * @is_bam - whether NAND controller is using BAM
+>   * @is_qpic - whether NAND CTRL is part of qpic IP
+>   * @qpic_v2 - flag to indicate QPIC IP version 2
+> + * @use_codeword_fixup - whether NAND has different layout for boot partitions
+>   * @dev_cmd_reg_start - NAND_DEV_CMD_* registers starting offset
+>   */
+>  struct qcom_nandc_props {
+> @@ -482,6 +510,7 @@ struct qcom_nandc_props {
+>  	bool is_bam;
+>  	bool is_qpic;
+>  	bool qpic_v2;
+> +	bool use_codeword_fixup;
+>  	u32 dev_cmd_reg_start;
+>  };
+>  
+> @@ -1701,7 +1730,7 @@ qcom_nandc_read_cw_raw(struct mtd_info *mtd, struct nand_chip *chip,
+>  	data_size1 = mtd->writesize - host->cw_size * (ecc->steps - 1);
+>  	oob_size1 = host->bbm_size;
+>  
+> -	if (qcom_nandc_is_last_cw(ecc, cw)) {
+> +	if (qcom_nandc_is_last_cw(ecc, cw) && !host->codeword_fixup) {
+>  		data_size2 = ecc->size - data_size1 -
+>  			     ((ecc->steps - 1) * 4);
+>  		oob_size2 = (ecc->steps * 4) + host->ecc_bytes_hw +
+> @@ -1782,7 +1811,7 @@ check_for_erased_page(struct qcom_nand_host *host, u8 *data_buf,
+>  	}
+>  
+>  	for_each_set_bit(cw, &uncorrectable_cws, ecc->steps) {
+> -		if (qcom_nandc_is_last_cw(ecc, cw)) {
+> +		if (qcom_nandc_is_last_cw(ecc, cw) && !host->codeword_fixup) {
+>  			data_size = ecc->size - ((ecc->steps - 1) * 4);
+>  			oob_size = (ecc->steps * 4) + host->ecc_bytes_hw;
+>  		} else {
+> @@ -1940,7 +1969,7 @@ static int read_page_ecc(struct qcom_nand_host *host, u8 *data_buf,
+>  	for (i = 0; i < ecc->steps; i++) {
+>  		int data_size, oob_size;
+>  
+> -		if (qcom_nandc_is_last_cw(ecc, i)) {
+> +		if (qcom_nandc_is_last_cw(ecc, i) && !host->codeword_fixup) {
+>  			data_size = ecc->size - ((ecc->steps - 1) << 2);
+>  			oob_size = (ecc->steps << 2) + host->ecc_bytes_hw +
+>  				   host->spare_bytes;
+> @@ -2037,6 +2066,55 @@ static int copy_last_cw(struct qcom_nand_host *host, int page)
+>  	return ret;
+>  }
+>  
+> +static bool
+> +qcom_nandc_is_boot_page(struct qcom_nand_host *host, int page)
+
+Move function name to previous line. If it exceeds 100 lines then wrap
+arguments.
+
+s/qcom_nandc_is_boot_page/qcom_nandc_is_boot_partition
+
 > +{
-> +	return ldb_ch->link_type == LDB_CH_SINGLE_LINK;
-> +}
+> +	struct qcom_nand_boot_partition *boot_partition;
+> +	u32 start, end;
+> +	int i;
 > +
-> +bool ldb_channel_is_split_link(struct ldb_channel *ldb_ch)
-> +{
-> +	return ldb_ch->link_type == LDB_CH_DUAL_LINK_EVEN_ODD_PIXELS ||
-> +	       ldb_ch->link_type == LDB_CH_DUAL_LINK_ODD_EVEN_PIXELS;
-> +}
+> +	for (i = 0; i < host->nr_boot_partitions; i++) {
+> +		boot_partition = &host->boot_partitions[i];
+> +		start = boot_partition->page_offset;
+> +		end = start + boot_partition->page_size;
 > +
-> +int ldb_bridge_atomic_check_helper(struct drm_bridge *bridge,
-> +				   struct drm_bridge_state 
-*bridge_state,
-> +				   struct drm_crtc_state 
-*crtc_state,
-> +				   struct drm_connector_state 
-*conn_state)
-> +{
-> +	struct ldb_channel *ldb_ch = bridge->driver_private;
-> +
-> +	ldb_ch->in_bus_format = bridge_state->input_bus_cfg.format;
-> +	ldb_ch->out_bus_format = bridge_state->output_bus_cfg.format;
-> +
-> +	return 0;
-> +}
-> +
-> +void ldb_bridge_mode_set_helper(struct drm_bridge *bridge,
-> +				const struct drm_display_mode 
-*mode,
-> +				const struct drm_display_mode 
-*adjusted_mode)
-> +{
-> +	struct ldb_channel *ldb_ch = bridge->driver_private;
-> +	struct ldb *ldb = ldb_ch->ldb;
-> +	bool is_split = ldb_channel_is_split_link(ldb_ch);
-> +
-> +	if (is_split)
-> +		ldb->ldb_ctrl |= LDB_SPLIT_MODE_EN;
-> +
-> +	switch (ldb_ch->out_bus_format) {
-> +	case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
-> +		break;
-> +	case MEDIA_BUS_FMT_RGB888_1X7X4_SPWG:
-> +		if (ldb_ch->chno == 0 || is_split)
-> +			ldb->ldb_ctrl |= LDB_DATA_WIDTH_CH0_24;
-> +		if (ldb_ch->chno == 1 || is_split)
-> +			ldb->ldb_ctrl |= LDB_DATA_WIDTH_CH1_24;
-> +		break;
-> +	case MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA:
-> +		if (ldb_ch->chno == 0 || is_split)
-> +			ldb->ldb_ctrl |= LDB_DATA_WIDTH_CH0_24 |
-> +					 LDB_BIT_MAP_CH0_JEIDA;
-> +		if (ldb_ch->chno == 1 || is_split)
-> +			ldb->ldb_ctrl |= LDB_DATA_WIDTH_CH1_24 |
-> +					 LDB_BIT_MAP_CH1_JEIDA;
-> +		break;
+> +		/* Boot pages are normally at the start of
+
+Block comments should start with:
+
+	/*
+	 * ...
+
+Also, are you sure that only few pages in the partitions have different layout
+and not all pages? If not, then this comment needs to be reworded.
+
+> +		 * the nand in various partition.
+> +		 * Check the page from the boot page end first
+> +		 * to save one extra check and optimize this
+> +		 * in case real no-boot partition are used.
+> +		 */
+> +		if (page < end && page >= start)
+> +			return true;
 > +	}
+> +
+> +	return false;
 > +}
 > +
-> +void ldb_bridge_enable_helper(struct drm_bridge *bridge)
+> +static void
+> +qcom_nandc_codeword_fixup(struct qcom_nand_host *host, int page)
 > +{
-> +	struct ldb_channel *ldb_ch = bridge->driver_private;
-> +	struct ldb *ldb = ldb_ch->ldb;
+> +	bool codeword_fixup = qcom_nandc_is_boot_page(host, page);
 > +
-> +	/*
-> +	 * Platform specific bridge drivers should set ldb_ctrl properly
-> +	 * for the enablement, so just write the ctrl_reg here.
-> +	 */
-> +	regmap_write(ldb->regmap, ldb->ctrl_reg, ldb->ldb_ctrl);
+> +	/* Skip conf write if we are already in the correct mode */
+> +	if (codeword_fixup == host->codeword_fixup)
+> +		return;
+> +
+> +	host->codeword_fixup = codeword_fixup;
+> +
+> +	host->cw_data = codeword_fixup ? 512 : 516;
+> +	host->spare_bytes = host->cw_size - host->ecc_bytes_hw -
+> +			    host->bbm_size - host->cw_data;
+> +
+> +	host->cfg0 &= ~(SPARE_SIZE_BYTES_MASK | UD_SIZE_BYTES_MASK);
+> +	host->cfg0 |= host->spare_bytes << SPARE_SIZE_BYTES |
+> +		      host->cw_data << UD_SIZE_BYTES;
+> +
+> +	host->ecc_bch_cfg &= ~ECC_NUM_DATA_BYTES_MASK;
+> +	host->ecc_bch_cfg |= host->cw_data << ECC_NUM_DATA_BYTES;
+> +	host->ecc_buf_cfg = (codeword_fixup ? 0x1ff : 0x203) << NUM_STEPS;
+
+s/1ff/(512 - 1)
+s/203/(516 - 1)
+
 > +}
 > +
-> +void ldb_bridge_disable_helper(struct drm_bridge *bridge)
+>  /* implements ecc->read_page() */
+>  static int qcom_nandc_read_page(struct nand_chip *chip, uint8_t *buf,
+>  				int oob_required, int page)
+> @@ -2045,6 +2123,9 @@ static int qcom_nandc_read_page(struct nand_chip *chip, uint8_t *buf,
+>  	struct qcom_nand_controller *nandc = get_qcom_nand_controller(chip);
+>  	u8 *data_buf, *oob_buf = NULL;
+>  
+> +	if (host->nr_boot_partitions)
+> +		qcom_nandc_codeword_fixup(host, page);
+> +
+>  	nand_read_page_op(chip, page, 0, NULL, 0);
+>  	data_buf = buf;
+>  	oob_buf = oob_required ? chip->oob_poi : NULL;
+> @@ -2064,6 +2145,9 @@ static int qcom_nandc_read_page_raw(struct nand_chip *chip, uint8_t *buf,
+>  	int cw, ret;
+>  	u8 *data_buf = buf, *oob_buf = chip->oob_poi;
+>  
+> +	if (host->nr_boot_partitions)
+> +		qcom_nandc_codeword_fixup(host, page);
+> +
+>  	for (cw = 0; cw < ecc->steps; cw++) {
+>  		ret = qcom_nandc_read_cw_raw(mtd, chip, data_buf, oob_buf,
+>  					     page, cw);
+> @@ -2084,6 +2168,9 @@ static int qcom_nandc_read_oob(struct nand_chip *chip, int page)
+>  	struct qcom_nand_controller *nandc = get_qcom_nand_controller(chip);
+>  	struct nand_ecc_ctrl *ecc = &chip->ecc;
+>  
+> +	if (host->nr_boot_partitions)
+> +		qcom_nandc_codeword_fixup(host, page);
+> +
+>  	clear_read_regs(nandc);
+>  	clear_bam_transaction(nandc);
+>  
+> @@ -2104,6 +2191,9 @@ static int qcom_nandc_write_page(struct nand_chip *chip, const uint8_t *buf,
+>  	u8 *data_buf, *oob_buf;
+>  	int i, ret;
+>  
+> +	if (host->nr_boot_partitions)
+> +		qcom_nandc_codeword_fixup(host, page);
+> +
+>  	nand_prog_page_begin_op(chip, page, 0, NULL, 0);
+>  
+>  	clear_read_regs(nandc);
+> @@ -2119,7 +2209,7 @@ static int qcom_nandc_write_page(struct nand_chip *chip, const uint8_t *buf,
+>  	for (i = 0; i < ecc->steps; i++) {
+>  		int data_size, oob_size;
+>  
+> -		if (qcom_nandc_is_last_cw(ecc, i)) {
+> +		if (qcom_nandc_is_last_cw(ecc, i) && !host->codeword_fixup) {
+>  			data_size = ecc->size - ((ecc->steps - 1) << 2);
+>  			oob_size = (ecc->steps << 2) + host->ecc_bytes_hw +
+>  				   host->spare_bytes;
+> @@ -2176,6 +2266,9 @@ static int qcom_nandc_write_page_raw(struct nand_chip *chip,
+>  	u8 *data_buf, *oob_buf;
+>  	int i, ret;
+>  
+> +	if (host->nr_boot_partitions)
+> +		qcom_nandc_codeword_fixup(host, page);
+> +
+>  	nand_prog_page_begin_op(chip, page, 0, NULL, 0);
+>  	clear_read_regs(nandc);
+>  	clear_bam_transaction(nandc);
+> @@ -2194,7 +2287,7 @@ static int qcom_nandc_write_page_raw(struct nand_chip *chip,
+>  		data_size1 = mtd->writesize - host->cw_size * (ecc->steps - 1);
+>  		oob_size1 = host->bbm_size;
+>  
+> -		if (qcom_nandc_is_last_cw(ecc, i)) {
+> +		if (qcom_nandc_is_last_cw(ecc, i) && !host->codeword_fixup) {
+>  			data_size2 = ecc->size - data_size1 -
+>  				     ((ecc->steps - 1) << 2);
+>  			oob_size2 = (ecc->steps << 2) + host->ecc_bytes_hw +
+> @@ -2254,6 +2347,9 @@ static int qcom_nandc_write_oob(struct nand_chip *chip, int page)
+>  	int data_size, oob_size;
+>  	int ret;
+>  
+> +	if (host->nr_boot_partitions)
+> +		qcom_nandc_codeword_fixup(host, page);
+> +
+>  	host->use_ecc = true;
+>  	clear_bam_transaction(nandc);
+>  
+> @@ -2902,6 +2998,71 @@ static int qcom_nandc_setup(struct qcom_nand_controller *nandc)
+>  
+>  static const char * const probes[] = { "cmdlinepart", "ofpart", "qcomsmem", NULL };
+>  
+> +static int qcom_nand_host_parse_boot_partitions(struct qcom_nand_controller *nandc,
+> +						struct qcom_nand_host *host,
+> +						struct device_node *dn)
 > +{
-> +	struct ldb_channel *ldb_ch = bridge->driver_private;
-> +	struct ldb *ldb = ldb_ch->ldb;
-> +	bool is_split = ldb_channel_is_split_link(ldb_ch);
+> +	struct nand_chip *chip = &host->chip;
+> +	struct mtd_info *mtd = nand_to_mtd(chip);
+> +	struct qcom_nand_boot_partition *boot_partition;
+> +	struct device *dev = nandc->dev;
+> +	int partitions_count, i, j, ret;
 > +
-> +	if (ldb_ch->chno == 0 || is_split)
-> +		ldb->ldb_ctrl &= ~LDB_CH0_MODE_EN_MASK;
-> +	if (ldb_ch->chno == 1 || is_split)
-> +		ldb->ldb_ctrl &= ~LDB_CH1_MODE_EN_MASK;
+> +	if (!nandc->props->use_codeword_fixup)
+> +		return 0;
+
+Move this check to caller as I suggested previously.
+
 > +
-> +	regmap_write(ldb->regmap, ldb->ctrl_reg, ldb->ldb_ctrl);
-> +}
+> +	if (!of_find_property(dn, "qcom,boot-partitions", NULL))
+> +		return 0;
 > +
-> +int ldb_bridge_attach_helper(struct drm_bridge *bridge,
-> +			     enum drm_bridge_attach_flags flags)
-> +{
-> +	struct ldb_channel *ldb_ch = bridge->driver_private;
-> +	struct ldb *ldb = ldb_ch->ldb;
-> +
-> +	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
-> +		DRM_DEV_ERROR(ldb->dev,
-> +			      "do not support creating a 
-drm_connector\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!bridge->encoder) {
-> +		DRM_DEV_ERROR(ldb->dev, "missing encoder\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	return drm_bridge_attach(bridge->encoder,
-> +				ldb_ch->next_bridge, bridge,
-> +				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-> +}
-> +
-> +int ldb_init_helper(struct ldb *ldb)
-> +{
-> +	struct device *dev = ldb->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct device_node *child;
-> +	int ret;
-> +	u32 i;
-> +
-> +	ldb->regmap = syscon_node_to_regmap(np->parent);
-> +	if (IS_ERR(ldb->regmap)) {
-> +		ret = PTR_ERR(ldb->regmap);
-> +		if (ret != -EPROBE_DEFER)
-> +			DRM_DEV_ERROR(dev, "failed to get regmap: 
-%d\n", ret);
+> +	partitions_count = of_property_count_u32_elems(dn, "qcom,boot-partitions");
+> +	if (partitions_count < 0) {
+
+partitions_count <= 0
+
+> +		dev_err(dev, "Error parsing boot partition.");
+
+Add newline at the end of error message
+
 > +		return ret;
 > +	}
 > +
-> +	for_each_available_child_of_node(np, child) {
-> +		struct ldb_channel *ldb_ch;
+> +	host->nr_boot_partitions = partitions_count / 2;
+> +	host->boot_partitions = devm_kcalloc(dev, host->nr_boot_partitions,
+> +					     sizeof(*host->boot_partitions), GFP_KERNEL);
+> +	if (!host->boot_partitions)
+
+host->nr_boot_partitions = 0;
+
+> +		return -ENOMEM;
 > +
-> +		ret = of_property_read_u32(child, "reg", &i);
-> +		if (ret || i > MAX_LDB_CHAN_NUM - 1) {
-> +			ret = -EINVAL;
-> +			DRM_DEV_ERROR(dev,
-> +				      "invalid channel node 
-address: %u\n", i);
-> +			of_node_put(child);
+> +	for (i = 0, j = 0; i < host->nr_boot_partitions; i++, j += 2) {
+> +		boot_partition = &host->boot_partitions[i];
+> +
+> +		ret = of_property_read_u32_index(dn, "qcom,boot-partitions", j,
+> +						 &boot_partition->page_offset);
+> +		if (ret) {
+> +			dev_err(dev, "Error parsing boot partition offset at index %d", i);
+
+Add newline at the end of error message. Do the same for all error prints.
+
 > +			return ret;
 > +		}
 > +
-> +		ldb_ch = ldb->channel[i];
-> +		ldb_ch->ldb = ldb;
-> +		ldb_ch->chno = i;
-> +		ldb_ch->is_available = true;
-> +		ldb_ch->np = child;
+> +		if (boot_partition->page_offset % mtd->writesize) {
+> +			dev_err(dev, "Boot partition offset not multiple of writesize at index %i",
+> +				i);
+> +			return -EINVAL;
+> +		}
+> +		/* Convert offset to nand pages */
+
+s/pages/partitions
+
+> +		boot_partition->page_offset /= mtd->writesize;
+
+s/page_offset/offset
+
 > +
-> +		ldb->available_ch_cnt++;
+> +		ret = of_property_read_u32_index(dn, "qcom,boot-partitions", j + 1,
+> +						 &boot_partition->page_size);
+> +		if (ret) {
+> +			dev_err(dev, "Error parsing boot partition size at index %d", i);
+> +			return ret;
+> +		}
+> +
+> +		if (boot_partition->page_size % mtd->writesize) {
+
+s/page_size/size here and below
+
+> +			dev_err(dev, "Boot partition size not multiple of writesize at index %i",
+> +				i);
+> +			return -EINVAL;
+> +		}
+> +		/* Convert size to nand pages */
+
+s/pages/partitions
+
+Thanks,
+Mani
+
+> +		boot_partition->page_size /= mtd->writesize;
 > +	}
 > +
 > +	return 0;
 > +}
 > +
-> +int ldb_find_next_bridge_helper(struct ldb *ldb)
-> +{
-> +	struct device *dev = ldb->dev;
-> +	struct ldb_channel *ldb_ch;
-> +	int ret, i;
+>  static int qcom_nand_host_init_and_register(struct qcom_nand_controller *nandc,
+>  					    struct qcom_nand_host *host,
+>  					    struct device_node *dn)
+> @@ -2970,6 +3131,8 @@ static int qcom_nand_host_init_and_register(struct qcom_nand_controller *nandc,
+>  	if (ret)
+>  		nand_cleanup(chip);
+>  
+> +	qcom_nand_host_parse_boot_partitions(nandc, host, dn);
 > +
-> +	for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
-> +		ldb_ch = ldb->channel[i];
-> +
-> +		if (!ldb_ch->is_available)
-> +			continue;
-> +
-> +		ldb_ch->next_bridge = devm_drm_of_get_bridge(dev, 
-ldb_ch->np,
-> +							     
-1, 0);
-> +		if (IS_ERR(ldb_ch->next_bridge)) {
-> +			ret = PTR_ERR(ldb_ch->next_bridge);
-> +			if (ret != -EPROBE_DEFER)
-> +				DRM_DEV_ERROR(dev,
-> +					      "failed to get 
-next bridge: %d\n",
-> +					      ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +void ldb_add_bridge_helper(struct ldb *ldb,
-> +			   const struct drm_bridge_funcs 
-*bridge_funcs)
-> +{
-> +	struct ldb_channel *ldb_ch;
-> +	int i;
-> +
-> +	for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
-> +		ldb_ch = ldb->channel[i];
-> +
-> +		if (!ldb_ch->is_available)
-> +			continue;
-> +
-> +		ldb_ch->bridge.driver_private = ldb_ch;
-> +		ldb_ch->bridge.funcs = bridge_funcs;
-> +		ldb_ch->bridge.of_node = ldb_ch->np;
-> +
-> +		drm_bridge_add(&ldb_ch->bridge);
-> +	}
-> +}
-> +
-> +void ldb_remove_bridge_helper(struct ldb *ldb)
-> +{
-> +	struct ldb_channel *ldb_ch;
-> +	int i;
-> +
-> +	for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
-> +		ldb_ch = ldb->channel[i];
-> +
-> +		if (!ldb_ch->is_available)
-> +			continue;
-> +
-> +		drm_bridge_remove(&ldb_ch->bridge);
-> +	}
-> +}
-> diff --git a/drivers/gpu/drm/bridge/imx/imx-ldb-helper.h
-> b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.h new file mode 100644
-> index 000000000000..a0a5cde27fbc
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.h
-> @@ -0,0 +1,96 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +
-> +/*
-> + * Copyright 2019,2020,2022 NXP
-> + */
-> +
-> +#ifndef __IMX_LDB_HELPER__
-> +#define __IMX_LDB_HELPER__
-> +
-> +#include <linux/device.h>
-> +#include <linux/kernel.h>
-> +#include <linux/of.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <drm/drm_atomic.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_device.h>
-> +#include <drm/drm_encoder.h>
-> +#include <drm/drm_modeset_helper_vtables.h>
-> +
-> +#define LDB_CH0_MODE_EN_TO_DI0		BIT(0)
-> +#define LDB_CH0_MODE_EN_TO_DI1		(3 << 0)
-> +#define LDB_CH0_MODE_EN_MASK		(3 << 0)
-> +#define LDB_CH1_MODE_EN_TO_DI0		BIT(2)
-> +#define LDB_CH1_MODE_EN_TO_DI1		(3 << 2)
-> +#define LDB_CH1_MODE_EN_MASK		(3 << 2)
-> +#define LDB_SPLIT_MODE_EN		BIT(4)
-> +#define LDB_DATA_WIDTH_CH0_24		BIT(5)
-> +#define LDB_BIT_MAP_CH0_JEIDA		BIT(6)
-> +#define LDB_DATA_WIDTH_CH1_24		BIT(7)
-> +#define LDB_BIT_MAP_CH1_JEIDA		BIT(8)
-> +#define LDB_DI0_VS_POL_ACT_LOW		BIT(9)
-> +#define LDB_DI1_VS_POL_ACT_LOW		BIT(10)
-> +
-> +#define MAX_LDB_CHAN_NUM		2
-> +
-> +enum ldb_channel_link_type {
-> +	LDB_CH_SINGLE_LINK,
-> +	LDB_CH_DUAL_LINK_EVEN_ODD_PIXELS,
-> +	LDB_CH_DUAL_LINK_ODD_EVEN_PIXELS,
-> +};
-> +
-> +struct ldb;
-> +
-> +struct ldb_channel {
-> +	struct ldb *ldb;
-> +	struct drm_bridge bridge;
-> +	struct drm_bridge *next_bridge;
-> +	struct device_node *np;
-> +	u32 chno;
-> +	bool is_available;
-> +	u32 in_bus_format;
-> +	u32 out_bus_format;
-> +	enum ldb_channel_link_type link_type;
-> +};
-> +
-> +struct ldb {
-> +	struct regmap *regmap;
-> +	struct device *dev;
-> +	struct ldb_channel *channel[MAX_LDB_CHAN_NUM];
-> +	unsigned int ctrl_reg;
-> +	u32 ldb_ctrl;
-> +	unsigned int available_ch_cnt;
-> +};
-> +
-> +#define bridge_to_ldb_ch(b)	container_of(b, struct ldb_channel, bridge)
-> +
-> +bool ldb_channel_is_single_link(struct ldb_channel *ldb_ch);
-> +bool ldb_channel_is_split_link(struct ldb_channel *ldb_ch);
-> +
-> +int ldb_bridge_atomic_check_helper(struct drm_bridge *bridge,
-> +				   struct drm_bridge_state 
-*bridge_state,
-> +				   struct drm_crtc_state 
-*crtc_state,
-> +				   struct drm_connector_state 
-*conn_state);
-> +
-> +void ldb_bridge_mode_set_helper(struct drm_bridge *bridge,
-> +				const struct drm_display_mode 
-*mode,
-> +				const struct drm_display_mode 
-*adjusted_mode);
-> +
-> +void ldb_bridge_enable_helper(struct drm_bridge *bridge);
-> +
-> +void ldb_bridge_disable_helper(struct drm_bridge *bridge);
-> +
-> +int ldb_bridge_attach_helper(struct drm_bridge *bridge,
-> +			     enum drm_bridge_attach_flags flags);
-> +
-> +int ldb_init_helper(struct ldb *ldb);
-> +
-> +int ldb_find_next_bridge_helper(struct ldb *ldb);
-> +
-> +void ldb_add_bridge_helper(struct ldb *ldb,
-> +			   const struct drm_bridge_funcs 
-*bridge_funcs);
-> +
-> +void ldb_remove_bridge_helper(struct ldb *ldb);
-> +
-> +#endif /* __IMX_LDB_HELPER__ */
+>  	return ret;
+>  }
+>  
+> @@ -3135,6 +3298,7 @@ static int qcom_nandc_remove(struct platform_device *pdev)
+>  static const struct qcom_nandc_props ipq806x_nandc_props = {
+>  	.ecc_modes = (ECC_RS_4BIT | ECC_BCH_8BIT),
+>  	.is_bam = false,
+> +	.use_codeword_fixup = true,
+>  	.dev_cmd_reg_start = 0x0,
+>  };
+>  
+> -- 
+> 2.36.1
+> 
 
-
-
-
+-- 
+மணிவண்ணன் சதாசிவம்
