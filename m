@@ -2,198 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56AAB54454C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 10:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05CF2544572
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 10:15:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240463AbiFIIDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 04:03:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39750 "EHLO
+        id S239845AbiFIIOF convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Jun 2022 04:14:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239848AbiFIIDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 04:03:38 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C51D665B9;
-        Thu,  9 Jun 2022 01:03:36 -0700 (PDT)
-X-UUID: 150e7171e9e144a9bd74da6109522973-20220609
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:f00b110d-b7e7-44d7-aa51-b685a148e3b7,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:b7eec47e-c8dc-403a-96e8-6237210dceee,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 150e7171e9e144a9bd74da6109522973-20220609
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1523568253; Thu, 09 Jun 2022 16:03:32 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 9 Jun 2022 16:03:31 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 9 Jun 2022 16:03:31 +0800
-Message-ID: <49162f7d313478f13472eb0f3b07ffa2a47cbeba.camel@mediatek.com>
-Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
- driver
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>,
-        Guillaume Ranquet <granquet@baylibre.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun =?UTF-8?Q?=28=E4=BA=91=E6=98=A5=E5=B3=B0=29?= 
-        <Chunfeng.Yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>
-CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>
-Date:   Thu, 9 Jun 2022 16:03:30 +0800
-In-Reply-To: <651e6b993562d53c893d0325d33fa137e98ab596.camel@mediatek.com>
-References: <20220523104758.29531-1-granquet@baylibre.com>
-         <20220523104758.29531-19-granquet@baylibre.com>
-         <651e6b993562d53c893d0325d33fa137e98ab596.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S237351AbiFIIOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 04:14:05 -0400
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE7C3880FD;
+        Thu,  9 Jun 2022 01:14:02 -0700 (PDT)
+Received: by mail-qv1-f49.google.com with SMTP id b17so7589218qvz.0;
+        Thu, 09 Jun 2022 01:14:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=+n9hcPgHl38APpRiB3XZt2L6TGQH6SZ4fgFSc8uMlfo=;
+        b=YBisoUVOkSJkF4KRP0HXoHxQYLGxOTrmYDNjdR22vRM4Ye3fRn8fsd63U1EiFg4sIU
+         HQ4GCkzAc7afk6KZtvzF0IVOm4GJ94+yEU5ol76ELkZFOSDmEyweMjzi5fNpC8/bG9ss
+         V14WPcAH54b8lFQl9KnR3TF9kWnpfC9+Ah228/lRDCs8O1aWGE5d+vmt321hjJSIWD0B
+         hUGqUqZP+DiNrHidykJ64dyHfLSXZQ1vCdQ4JiP7hZsz+cLz5G7YtYvKwIjsVTSzuaGm
+         TggaKl5jg0lP34evKxyxwzKahVyOgfLpxzb0+hTgjTSMI5Vb0uWpmLCeWsLTaxOeuYkf
+         KFPA==
+X-Gm-Message-State: AOAM530gxs4ltJJ9dJkarmsJSrvLrqnDlPbG6Q+cdbUGiM1avjOPz+Ip
+        W0iG2xyUKtLrjvGzSzriDH6rwB41KcND8g==
+X-Google-Smtp-Source: ABdhPJxPqLVXT4WsOhlF7STEyxJ+ps40mDqgiLfSZD3WDx3oDgs7enFuJnQMOflRm3DrQJPBKWmVpQ==
+X-Received: by 2002:ad4:596d:0:b0:464:f983:f7bf with SMTP id eq13-20020ad4596d000000b00464f983f7bfmr30847234qvb.88.1654762441828;
+        Thu, 09 Jun 2022 01:14:01 -0700 (PDT)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id u20-20020a05620a0c5400b006a6a774d27bsm13600702qki.134.2022.06.09.01.14.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Jun 2022 01:14:01 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-31336535373so82202337b3.2;
+        Thu, 09 Jun 2022 01:14:00 -0700 (PDT)
+X-Received: by 2002:a81:9b0c:0:b0:2f4:c522:7d3c with SMTP id
+ s12-20020a819b0c000000b002f4c5227d3cmr41602408ywg.316.1654762440675; Thu, 09
+ Jun 2022 01:14:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220608175728.1012550-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20220608175728.1012550-1-niklas.soderlund+renesas@ragnatech.se>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 9 Jun 2022 10:13:49 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV28kUAZjGUwv=hHOFdwCj+OhJDixN+eY_UvPdtPxRmoQ@mail.gmail.com>
+Message-ID: <CAMuHMdV28kUAZjGUwv=hHOFdwCj+OhJDixN+eY_UvPdtPxRmoQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: Add missing space after remote-endpoint
+To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-06-08 at 16:30 +0800, CK Hu wrote:
-> Hi, Rex:
-> 
-> On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > 
-> > This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
-> > 
-> > It supports the mt8195, the embedded DisplayPort units. It offers
-> > DisplayPort 1.4 with up to 4 lanes.
-> > 
-> > The driver creates a child device for the phy. The child device
-> > will
-> > never exist without the parent being active. As they are sharing a
-> > register range, the parent passes a regmap pointer to the child so
-> > that
-> > both can work with the same register range. The phy driver sets
-> > device
-> > data that is read by the parent to get the phy device that can be
-> > used
-> > to control the phy properties.
-> > 
-> > This driver is based on an initial version by
-> > Jason-JH.Lin <jason-jh.lin@mediatek.com>.
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > ---
-> 
-> [snip]
-> 
-> > +
-> > +static bool mtk_dp_parse_capabilities(struct mtk_dp *mtk_dp)
-> > +{
-> > +	u8 buf[DP_RECEIVER_CAP_SIZE] = {};
-> > +	u8 val;
-> > +	struct mtk_dp_train_info *train_info = &mtk_dp->train_info;
-> > +
-> > +	if (!mtk_dp_plug_state(mtk_dp))
-> > +		return false;
-> > +
-> > +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER,
-> > DP_SET_POWER_D0);
-> > +	/* Wait for power on */
-> > +	usleep_range(2000, 5000);
-> > +
-> > +	drm_dp_read_dpcd_caps(&mtk_dp->aux, buf);
-> > +
-> > +	memcpy(mtk_dp->rx_cap, buf, min(sizeof(mtk_dp->rx_cap),
-> > sizeof(buf)));
-> 
-> sizeof(mtk_dp->rx_cap) is identical to sizeof(buf), so
-> 
-> drm_dp_read_dpcd_caps(&mtk_dp->aux, mtk_dp->rx_cap);
-> 
-> 
+Hi Niklas,
 
-Hello CK,
+On Wed, Jun 8, 2022 at 7:58 PM Niklas Söderlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Add the missing space after remote-endpoint in r8a774c0.dtsi and
+> r8a77990.dtsi before the typo spreads to other files.
+>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-I will drop buf[].
+Thanks!
 
-> > +	mtk_dp->rx_cap[DP_TRAINING_AUX_RD_INTERVAL] &=
-> > DP_TRAINING_AUX_RD_MASK;
-> > +
-> > +	train_info->link_rate =
-> > +		min_t(int, mtk_dp->max_linkrate, buf[mtk_dp-
-> > > max_linkrate]);
-> > 
-> > +	train_info->lane_count =
-> > +		min_t(int, mtk_dp->max_lanes,
-> > drm_dp_max_lane_count(buf));
-> > +
-> > +	train_info->tps3 = drm_dp_tps3_supported(buf);
-> > +	train_info->tps4 = drm_dp_tps4_supported(buf);
-> > +
-> > +	train_info->sink_ssc =
-> > +		!!(buf[DP_MAX_DOWNSPREAD] & DP_MAX_DOWNSPREAD_0_5);
-> > +
-> > +	train_info->sink_ssc = false;
-> 
-> What does these two statement do?
-> 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.20.
 
-ssc = Spread spectrum clock.
-it's for both edp and dp.
+Do you plan to fix the other in-tree offenders, too?
 
-BRs,
-Bo-Chen
+Gr{oetje,eeting}s,
 
-> Regards,
-> CK
-> 
-> > +
-> > +	drm_dp_dpcd_readb(&mtk_dp->aux, DP_MSTM_CAP, &val);
-> > +	if (val & DP_MST_CAP) {
-> > +		/* Clear DP_DEVICE_SERVICE_IRQ_VECTOR_ESI0 */
-> > +		drm_dp_dpcd_readb(&mtk_dp->aux,
-> > +				  DP_DEVICE_SERVICE_IRQ_VECTOR_ESI0,
-> > &val);
-> > +		if (val)
-> > +			drm_dp_dpcd_writeb(&mtk_dp->aux,
-> > +					   DP_DEVICE_SERVICE_IRQ_VECTOR
-> > _ESI0,
-> > +					   val);
-> > +	}
-> > +
-> > +	return true;
-> > +}
-> > +
-> 
-> 
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
