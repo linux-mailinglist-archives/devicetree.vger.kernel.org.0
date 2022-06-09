@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34C9E544A8C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC41A544AA6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:43:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243928AbiFILlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 07:41:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36646 "EHLO
+        id S244392AbiFILmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 07:42:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244138AbiFILlC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:41:02 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC10F1DBD48
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:40:24 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id z7so30791207edm.13
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:40:24 -0700 (PDT)
+        with ESMTP id S244064AbiFILlH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:41:07 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D21181D4DDC
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 04:40:31 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id kq6so33864307ejb.11
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 04:40:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=8KUiL3np2ygfecmy1I7ARIj+Q5w0zv0RhTyVvk3vWH4=;
-        b=ZfKVGFlwB0drMUpClH6ongnfbVocJ0aqGHXDS1dsMV50ImoeWbAyRxLd/rHuTeXR/T
-         AJwBFWLIJtbVf9dNdY7wpfGDOFdrfspUlyU2+AU7m4YhuhcWezFGQGA4s/SkHBf7xihy
-         LHBsvGnEUhPmiLPWiGMVeBGXQSZi1eORQEj9fNDnPskVHaJtQ4aa7Mvt9LUzAJD/UpLg
-         vFBwTXazpJwJOWp/63jYbRprEyF9akD8QtIPCgh2PgUF98CksArZKHjoTxyTcSE6CrLH
-         hldtJEqSIW+bIYkShF4H5En8f+ReUjh0DAQwEzwigzMtSH/Fkq12OiZ3L0nH/++Yr804
-         22KQ==
+        bh=XMCBqJLXl1yZV+e3LQN80RorsyQqGZTi99dCXoJkMfc=;
+        b=qk/KaHJFHCh8zCxlBYjxy8QY41cdfTArL+3znQJN/TBpcY+XRFYhIa3pSN1DbdHJAS
+         JE+niEp5QhXkayHgVZzXji2p+WiOv9dvVnaFKM/sfdO4rLPUZLoHuc5QAl7XGuRCTlE4
+         VwirU2W4+XNrX5wUiY4EGD1Oi77DdpS7TUYSzxI6q3PBZET1BfLVLBBp/ijS/38zXFZU
+         VP585XlgQ0My+qMK96iw7j61hKFKew4eL9XUNWaLH4doNxIC3MmRuJILlupANb00T4ez
+         r5Nj6wKiYIi/hjPBUmCcGZcZEKFJxsWnvQJNGAsglybndLadj/hBLcWz9jaNu4t+ELwP
+         7pyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=8KUiL3np2ygfecmy1I7ARIj+Q5w0zv0RhTyVvk3vWH4=;
-        b=L/iWjh633NdE0S3T93MLK9KJOMtBk3PPiN3nNW+0MQzutIcMK5RYJLdatnQZkF4ZTj
-         XWwRlhFZumv13p+8S1CdqT9C8RrFIT85xGzBTzDAj74Pz9DaPbcSl0meL6YziOqjx+kH
-         D6QtTuMUsJH4tDFT9ImCooMCVgm1GePzmuARh0selJZkELTLJFxpkjb+rTtTPIZIAbKD
-         0WNVhTlnN0Hh27FkynjcLzOV8q0rmLXqEA5ir81J5DdtewBJl5d3XAbYWCNPS22bmAPJ
-         aP3e8oDwuEuxH5+Zxis9WGAhz52fyKgi+yqybtYq9i5c2UyaOWX8fDa0FZnpr0uJ7/65
-         3JYA==
-X-Gm-Message-State: AOAM530T1pIuL49noZjNir6gUpQJaXwI00hujKTcvo5fTQkygwvpn7Fg
-        cDxWQSE5OVCwUXTWEHI3vghhpiPpyKlx8g==
-X-Google-Smtp-Source: ABdhPJxWyUWnpnMAnMIiVKwloAstsGYLRows2ba9PpTywVn/DLl1wCQGuTV0zQouD8RF+lfJ+Mtqvg==
-X-Received: by 2002:a05:6402:17c8:b0:42d:dc6f:f17c with SMTP id s8-20020a05640217c800b0042ddc6ff17cmr45215591edy.17.1654774823223;
-        Thu, 09 Jun 2022 04:40:23 -0700 (PDT)
+        bh=XMCBqJLXl1yZV+e3LQN80RorsyQqGZTi99dCXoJkMfc=;
+        b=SjjgXjGKOO2nxzg36oGQRe88+Kv878+bPL6pqwREU3iRslzlXvybNTvPDJzDXrlJTK
+         0mW/QrKHMu1WHMlpMAv2qDVyAeir6/9qjw8RZRTWl2+jv68mb8tJ+qgW/UgfXkhf86WO
+         5vYnNj2Y0mFOnDyvDk1l1wCydR4zWwW6J34XEzygTh23Ydy129ZHDnCCEjzX7gUt5AyM
+         NrF+RE0WV/YzdkmA5SUSrpJfAV9QjU3KblH3XBIb6HIbZd0UXrS1CpwBg8Zi/8iZnSmv
+         uc6nwYA1QqhlprGt0hkY6wHNhZZSHYxA3XfEpx5W54LM4e2j36wwbuV/R++v3VN5ws9o
+         aBZg==
+X-Gm-Message-State: AOAM530wGcIQXn/jToXgG/7knzrIl7xjRsxtFyOE61e1OM3KDyoB2oyu
+        aWVDVsrRsEIVXEvKT1cz7YwQxQ==
+X-Google-Smtp-Source: ABdhPJxbd78BBuGPzfZgPbl7ytPLqMtFXPkhThO5phsGGLXyk/qipWs1Qn0F5ngNlRDlUT0xX8BSzg==
+X-Received: by 2002:a17:907:2b05:b0:710:dabf:fde2 with SMTP id gc5-20020a1709072b0500b00710dabffde2mr23714513ejc.114.1654774831427;
+        Thu, 09 Jun 2022 04:40:31 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id q1-20020a170906360100b006ff59151e34sm10638441ejb.39.2022.06.09.04.40.22
+        by smtp.gmail.com with ESMTPSA id 10-20020a170906058a00b007101f6f0720sm7760844ejn.120.2022.06.09.04.40.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 04:40:22 -0700 (PDT)
+        Thu, 09 Jun 2022 04:40:31 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         arm@kernel.org, soc@kernel.org, Andy Gross <agross@kernel.org>,
@@ -56,9 +56,9 @@ To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 29/48] arm64: dts: qcom: sdm630-sony-xperia-nile: drop unneeded status from gpio-keys
-Date:   Thu,  9 Jun 2022 13:40:02 +0200
-Message-Id: <20220609114002.380563-10-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 30/48] arm64: dts: qcom: align led node names with dtschema
+Date:   Thu,  9 Jun 2022 13:40:17 +0200
+Message-Id: <20220609114026.380682-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
 References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
@@ -74,25 +74,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nodes do not need explicit status=okay.
+The node names should be generic and DT schema expects certain pattern
+with 'led'.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts | 4 ++--
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts      | 6 +++---
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-index 42e89f41eb7d..48720026423d 100644
---- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-@@ -88,7 +88,6 @@ cam_vana_rear_vreg: cam_vana_rear_vreg {
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
+index 6a200f37c035..0a5b4617a8e6 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
++++ b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
+@@ -133,7 +133,7 @@ button-camera-focus {
+ 	keyboard-leds {
+ 		compatible = "gpio-leds";
  
- 	gpio-keys {
--		status = "okay";
- 		compatible = "gpio-keys";
+-		backlight {
++		led-0 {
+ 			color = <LED_COLOR_ID_WHITE>;
+ 			default-state = "off";
+ 			function = LED_FUNCTION_KBD_BACKLIGHT;
+@@ -142,7 +142,7 @@ backlight {
+ 			retain-state-suspended;
+ 		};
  
- 		key-camera-focus {
+-		caps-lock {
++		led-1 {
+ 			color = <LED_COLOR_ID_YELLOW>;
+ 			default-state = "off";
+ 			function = LED_FUNCTION_CAPSLOCK;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index a6986f95a80a..72b234ad9fab 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -60,21 +60,21 @@ key-vol-up {
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+-		user4 {
++		led-0 {
+ 			label = "green:user4";
+ 			gpios = <&pm8998_gpio 13 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "panic-indicator";
+ 			default-state = "off";
+ 		};
+ 
+-		wlan {
++		led-1 {
+ 			label = "yellow:wlan";
+ 			gpios = <&pm8998_gpio 9 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "phy0tx";
+ 			default-state = "off";
+ 		};
+ 
+-		bt {
++		led-2 {
+ 			label = "blue:bt";
+ 			gpios = <&pm8998_gpio 5 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "bluetooth-power";
 -- 
 2.34.1
 
