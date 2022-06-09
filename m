@@ -2,211 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A947545280
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 18:54:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AF6754528A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 18:58:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242030AbiFIQyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 12:54:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37856 "EHLO
+        id S244677AbiFIQ6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 12:58:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244387AbiFIQyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 12:54:20 -0400
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2070.outbound.protection.outlook.com [40.107.101.70])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30585583A7;
-        Thu,  9 Jun 2022 09:54:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TuRJshWeThNpPQeFnS5vpEz0tSznNOSeTMbq1Pj0QqMJE634i/wcTkaV5xXCmGbsFdVJQuLwKHDxCQsG4AeDRIwm6VznfxorRiV66QknSMjE8Y4j/2PFtQH6sJzdgeBvRVOsFhF/BNfA9khc2vnktuSnqCbe6sBLB5MI88Y0RMfXQVtFgT6unXWlHJYfSWkhoi4I5cqgnWj++OyJAIWR5PZZD+hPRtrupX3hyfXSj6lh+vsn/XGcBpkqoK8qC6+5/V5qwUVkhN4THrkJN2pJKfgj/k0fXfL4n2a/bdgOH4zjNOurBy5INbnalvale5aUUSITXUjJJ8HKnP7i5MGbGA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gIEoztxhPArcJ85fWSUy6xel7/OS3ir7tY0wPrcbbw8=;
- b=D6zBhr6prJauoEtKFwU4BkU5/cpiEpiZPysEanym6DvWvB2y9TJdcDOVfDjpsOJVT6k7JL+H2I3uujIqE775APcLWlWW/QWBRaxYKR7plGMjlLpbj1yxxh8FkHlL1Us1aerGUKp9x605c2D3Z023aoEubUUQsEmbflWuaJGJtOv1wdOD/fqTtFPVzyx5pDTGAvFwE+JU/aoaOHA62+9zi4FGLysyZE1iowzey7onAjKBmxbaFh2j0VnGn+H2W6OgZzTDQAru4tul2WJkmzgoa/RgTkdBYq79/a+GAoVlH5yp48E82uugh6yDrF+CEQOh/dV0F8ReKpDgRxp9hJwuwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=amd.com smtp.mailfrom=xilinx.com;
- dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=amd.com; dkim=none (message not signed); arc=none
+        with ESMTP id S238833AbiFIQ6D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 12:58:03 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A65E9BE176;
+        Thu,  9 Jun 2022 09:58:01 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id s12so41485578ejx.3;
+        Thu, 09 Jun 2022 09:58:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gIEoztxhPArcJ85fWSUy6xel7/OS3ir7tY0wPrcbbw8=;
- b=Zt7IhL5bqjzolbpY51y6xhGT+omp2qx4Mb/DC2cdqdgJF170YpcqFmpJLt9LJLnSVGs8kkFWpsRG+de/rwXQbx5lWqVyD2F57HZWsnD1uXDfegCjFisEkpz6JVOSDY0IyG9Z0gaO1ZxzeajOaoCCzi5K5X5tU1qHI47rqmENPHI=
-Received: from SN6PR08CA0019.namprd08.prod.outlook.com (2603:10b6:805:66::32)
- by BYAPR02MB5525.namprd02.prod.outlook.com (2603:10b6:a03:a0::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.17; Thu, 9 Jun
- 2022 16:54:17 +0000
-Received: from SN1NAM02FT0028.eop-nam02.prod.protection.outlook.com
- (2603:10b6:805:66:cafe::9b) by SN6PR08CA0019.outlook.office365.com
- (2603:10b6:805:66::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.13 via Frontend
- Transport; Thu, 9 Jun 2022 16:54:16 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com; pr=C
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT0028.mail.protection.outlook.com (10.97.4.206) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5332.12 via Frontend Transport; Thu, 9 Jun 2022 16:54:16 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 9 Jun 2022 09:54:14 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Thu, 9 Jun 2022 09:54:14 -0700
-Envelope-to: git@amd.com,
- harini.katakam@amd.com,
- radhey.shyam.pandey@amd.com,
- davem@davemloft.net,
- edumazet@google.com,
- kuba@kernel.org,
- robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org,
- pabeni@redhat.com,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-Received: from [172.23.64.3] (port=39938 helo=xhdvnc103.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <radhey.shyam.pandey@xilinx.com>)
-        id 1nzLQD-0007yV-UW; Thu, 09 Jun 2022 09:54:14 -0700
-Received: by xhdvnc103.xilinx.com (Postfix, from userid 13245)
-        id 299F51054B2; Thu,  9 Jun 2022 22:24:13 +0530 (IST)
-From:   Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <harini.katakam@amd.com>
-CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <git@amd.com>,
-        Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-Subject: [PATCH v2 net-next] dt-bindings: net: xilinx: document xilinx emaclite driver binding
-Date:   Thu, 9 Jun 2022 22:23:35 +0530
-Message-ID: <1654793615-21290-1-git-send-email-radhey.shyam.pandey@amd.com>
-X-Mailer: git-send-email 2.1.1
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VeJH2GjgTNv55jeCpCfZ1ujKSjcX5p8lHDW19F4+qv0=;
+        b=eU51bgefzD4BjSWwpiGbcxgEQEXO5kaPih1MD0/kJ8dKtUTbxN1L+VPH8x71j31XaQ
+         215GBGMNb8eotwEdhZpA0DuYQud1RfSg2bN1RSAONgW4D/x21ylx2sAoouEVuqH5kBG5
+         uCfISMSgZMxlya10bCwA1qOrBD5OxxBHgVqocUc/pQLAeo4as0p9eq6JKTl7y0GnBmyq
+         NCDQl7i7pNzhR7yIIh8sddZilQChCu4q568RtEoo46P+w+xhJTHTcBSN9mSP89ZP7X8W
+         EkbW9sMwsxhAQW6q8zgEqLtlqlZ+9hEBsjW7l4pBijYq8hnVZqhpBfsCJN3buf3UsTpt
+         Pq8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VeJH2GjgTNv55jeCpCfZ1ujKSjcX5p8lHDW19F4+qv0=;
+        b=rd4rPCQot3aAtdTQhIp2vhlxOz/8nFeRgPgtmvf++rSNTFN1txdh+OA95kdJffN3eP
+         bIACF6kd+ulEB0svU3nXT91T1WrQJVaj7QMpwGrLThz33KFEYCA4pn141+f+W5IcyXB+
+         xQCmejK8Mvwt46n+4P8xyEXTMqJUYnpJZsmvwc8PBTTVyZwMEeKTVpKRAU+eakINt2pl
+         65SlrHSDQQUJ5n0QLym3YjcSq80hwvRFf/EyeKPnuIIletRDLLWO2on933ZX/Xm5kLpm
+         zsOKJ2jgg6e37Sowqr7C07wOUTGGu6OdWTytr8H9msUAB5SQx+vXvXElvN9DRlipMyMu
+         nnBg==
+X-Gm-Message-State: AOAM532HLOV2gI3hqt4pyShwtoqt/8JmYp8os2T+lyu7X1EaoFMDhReZ
+        c0snWnMu47+6fsWOIQVMqS0gZmDTPzFojCEcisw=
+X-Google-Smtp-Source: ABdhPJz/bLVGa94IUhnQGtuYBTuAjqeCnsYqrJUHvGlOch8tOQQBrYNlJ4iNmC+EQIqmuResN1kzJ7b4XtO4YLokwhs=
+X-Received: by 2002:a17:906:1193:b0:70d:cf39:a4db with SMTP id
+ n19-20020a170906119300b0070dcf39a4dbmr31577671eja.44.1654793880193; Thu, 09
+ Jun 2022 09:58:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9c682bf5-f878-4293-ad6b-08da4a38b07c
-X-MS-TrafficTypeDiagnostic: BYAPR02MB5525:EE_
-X-Microsoft-Antispam-PRVS: <BYAPR02MB55259E6B099934A7DBC32152C7A79@BYAPR02MB5525.namprd02.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 0
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Sz3+evSfwxz5kXz8HJQJmzjSPju1b+dTj3HybgohObM0pLouBQ2xCa38pVwYFCYOMiPPAkahv8bbwlp3jE8HloRFAcIci745jNGFtUxyV9YldhTT/LD227KcnUFp8KGovZ/x/ux8zdSaIFwzZEFMgxUARCxskkxF0LFIOGlSHWT7V4++NHWsy0+yXeqIXAnC5V4jTZZaeZIwiPKGfRW+Hg7+OGBkHcwBuNQ61UIUoRu0pi8mftXykRR5Plx1dX+eK9Cm4jtQEjFRCAolTnExVwceIjvEWz0bX4MPTU2i0ifXzjp/LsR1PNCYiu41qm7qUpkrvxejsUuMpyDmvqau/dxEeW0ISzLz9hLGTDsSzz4pJtFQ9TZv2sNqfNtyW2yH1k1hoEVYeQwZGVwzuO/S/0NNW+kq8z3DyGw0ROWA3bkOp9Ms1cxRFFS45UtKgd3UYjkTCzwuITX5NIUa32WMnz1LS+F0Y7PoeYVEBv2vXe9NOICnUMOEF2gBmpAqf6yBt/19Ve4eAcf4hpjEPtxuc/y37QA/7zA3JFvI1ATkcSawyjejhCwAbYJpsdGyMHRGH+X4zOoQsX0ZP0Lm6lgmbdWoVTr725eZnFk/ipGKqihvkwrFPPSgPbHymrbS5W0pc3gBJ6imuWHK9GR0l8Xb8vlpb/qrpBrXUEgIqzXeX+7TO44ITliItwCemiIIK20V9ZoJTHchKWBoSFOaS+7/ynvvMscbS4V24C6C+iV7XNMcn5/r81vFfeIsV6GpZL+639Q/KiBOO+efHNFTwsF14PAXpeODCFrME6u0ewlSkH0jo4V+SLn+vtHNLicqayc/o06jyJ3uvkxciQNs7GstyQ==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(83170400001)(42882007)(47076005)(336012)(8936002)(7416002)(8676002)(70206006)(4326008)(26005)(6266002)(2616005)(186003)(6636002)(82310400005)(40460700003)(36756003)(70586007)(54906003)(110136005)(36860700001)(2906002)(966005)(6666004)(42186006)(316002)(356005)(7636003)(508600001)(5660300002)(102446001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2022 16:54:16.5150
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c682bf5-f878-4293-ad6b-08da4a38b07c
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0028.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5525
-X-Spam-Status: No, score=1.3 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: *
+References: <20220609162734.1462625-1-jjhiblot@traphandler.com> <20220609162734.1462625-3-jjhiblot@traphandler.com>
+In-Reply-To: <20220609162734.1462625-3-jjhiblot@traphandler.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 9 Jun 2022 18:57:24 +0200
+Message-ID: <CAHp75Veurvhxi0Pg1Sjxav+3XpDTVOdan8WFFmZmdhJbZJiCaQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] leds: Add driver for the TLC5925 LED controller
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, krzk+dt@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic description for the xilinx emaclite driver DT bindings.
+On Thu, Jun 9, 2022 at 6:30 PM Jean-Jacques Hiblot
+<jjhiblot@traphandler.com> wrote:
+>
+> The TLC5925 is a 16-channels constant-current LED sink driver.
+> It is controlled via SPI but doesn't offer a register-based interface.
+> Instead it contains a shift register and latches that convert the
+> serial input into a parallel output.
 
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
----
-Changes since v1:
-- Move ethernet-controller.yaml reference after maintainers.
-- Drop interrupt second cell in example node.
-- Set local-mac-address to all 0s in example node.
-- Put the reg after compatible in DTS code.
+Can you add Datasheet: tag here with the corresponding URL? Rationale
+is to get a link to the datasheet by just browsing Git log without
+browsing the source code, which will benefit via Web UIs.
+> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
 
-Changes since RFC:
-- Add ethernet-controller yaml reference.
-- 4 space indent for DTS example.
----
- .../bindings/net/xlnx,emaclite.yaml           | 63 +++++++++++++++++++
- 1 file changed, 63 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
+...
 
-diff --git a/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml b/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
-new file mode 100644
-index 000000000000..92d8ade988f6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/xlnx,emaclite.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx Emaclite Ethernet controller
-+
-+maintainers:
-+  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-+  - Harini Katakam <harini.katakam@amd.com>
-+
-+allOf:
-+  - $ref: ethernet-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - xlnx,opb-ethernetlite-1.01.a
-+      - xlnx,opb-ethernetlite-1.01.b
-+      - xlnx,xps-ethernetlite-1.00.a
-+      - xlnx,xps-ethernetlite-2.00.a
-+      - xlnx,xps-ethernetlite-2.01.a
-+      - xlnx,xps-ethernetlite-3.00.a
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  phy-handle: true
-+
-+  local-mac-address: true
-+
-+  xlnx,tx-ping-pong:
-+    type: boolean
-+    description: hardware supports tx ping pong buffer.
-+
-+  xlnx,rx-ping-pong:
-+    type: boolean
-+    description: hardware supports rx ping pong buffer.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - phy-handle
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    axi_ethernetlite_1: ethernet@40e00000 {
-+        compatible = "xlnx,xps-ethernetlite-3.00.a";
-+        reg = <0x40e00000 0x10000>;
-+        interrupt-parent = <&axi_intc_1>;
-+        interrupts = <1>;
-+        local-mac-address = [00 00 00 00 00 00];
-+        phy-handle = <&phy0>;
-+        xlnx,rx-ping-pong;
-+        xlnx,tx-ping-pong;
-+    };
+> +#include <linux/module.h>
+> +#include <linux/slab.h>
+> +#include <linux/leds.h>
+> +#include <linux/err.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/property.h>
+> +#include <linux/workqueue.h>
+
+Keep it sorted?
+
+...
+
+> +struct single_led_priv {
+> +       int idx;
+> +       struct led_classdev cdev;
+
+For pointer arithmetics it's better to swap these two members.
+
+> +};
+> +
+> +struct tlc5925_leds_priv {
+> +       int max_num_leds;
+> +       u8 *state;
+
+unsigned long? DECLARE_BITMAP() ?
+
+> +       spinlock_t lock;
+> +       struct single_led_priv leds[];
+> +};
+
+...
+
+> +       if (brightness)
+> +               priv->state[index / 8] |= (1 << (index % 8));
+> +       else
+> +               priv->state[index / 8] &= ~(1 << (index % 8));
+
+assign_bit()
+
+...
+
+> +       return spi_write(spi, priv->state, priv->max_num_leds / 8);
+
+BITS_TO_BYTES() ?
+
+...
+
+> +       count = device_get_child_node_count(dev);
+> +       if (!count) {
+> +               dev_err(dev, "no led defined.\n");
+> +               return -ENODEV;
+
+  return dev_err_probe(...);
+
+here and everywhere in ->probe() and Co.
+
+> +       }
+
+...
+
+> +       ret = device_property_read_u32_array(dev, "ti,shift-register-length",
+> +                                            &max_num_leds, 1);
+
+Always an array of 1 element? call device_property_read_u32().
+
+...
+
+> +       if (max_num_leds % 8) {
+> +               dev_err(dev, "'ti,shift-register-length' must be a multiple of 8\n");
+> +               return -EINVAL;
+> +       }
+
+Is this really fatal? I would rather issue a warning and go on if it
+has at least 8 there. So the idea is to use a minimum that holds
+multiple of 8.
+
+...
+
+> +       /* Assert all the OE/ lines */
+> +       gpios = devm_gpiod_get_array(dev, "output-enable-b", GPIOD_OUT_LOW);
+> +       if (IS_ERR(gpios)) {
+> +               dev_err(dev, "Unable to get the 'output-enable-b' gpios\n");
+> +               return PTR_ERR(gpios);
+> +       }
+
+You have to use dev_err_probe() here, otherwise it will spam logs a
+lot in case of deferred probe.
+
+...
+
+> +       priv->state = devm_kzalloc(dev, DIV_ROUND_UP(max_num_leds, 8), GFP_KERNEL);
+
+devm_bitmap_zalloc()
+
+...
+
+> +       device_for_each_child_node(dev, child) {
+> +               struct led_init_data init_data = {.fwnode = child};
+
+Missed spaces.
+
+> +               struct led_classdev *cdev;
+> +               u32 idx;
+> +
+> +               ret = fwnode_property_read_u32_array(child, "reg", &idx, 1);
+
+fwnode_property_read_u32()
+
+> +               if (ret || idx >= max_num_leds) {
+> +                       dev_err(dev, "%s: invalid reg value. Ignoring.\n",
+> +                               fwnode_get_name(child));
+> +                       fwnode_handle_put(child);
+> +                       continue;
+
+Either dev_warn + continue, or dev_err + return dev_err_probe().
+
+> +               }
+> +
+> +               count--;
+> +               priv->leds[count].idx = idx;
+> +               cdev = &(priv->leds[count].cdev);
+> +               cdev->brightness = LED_OFF;
+> +               cdev->max_brightness = 1;
+> +               cdev->brightness_set_blocking = tlc5925_brightness_set_blocking;
+> +
+> +               ret = devm_led_classdev_register_ext(dev, cdev, &init_data);
+> +               if (ret) {
+
+Ditto.
+
+> +                       dev_err(dev, "%s: cannot create LED device.\n",
+> +                               fwnode_get_name(child));
+> +                       fwnode_handle_put(child);
+> +                       continue;
+> +               }
+> +       }
+
+...
+
+> +static const struct of_device_id tlc5925_dt_ids[] = {
+> +       { .compatible = "ti,tlc5925", },
+> +       {},
+
+No comma for terminator entry.
+
+> +};
+
+Where is the MODULE_DEVICE_TABLE() for this one?
+
+...
+
+> +
+
+No  need for this blank line.
+
+> +module_spi_driver(tlc5925_driver);
+
 -- 
-2.25.1
-
+With Best Regards,
+Andy Shevchenko
