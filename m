@@ -2,129 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 129295451B8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 18:19:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 809405451D4
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 18:27:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237264AbiFIQTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 12:19:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49786 "EHLO
+        id S234492AbiFIQ1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 12:27:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234034AbiFIQTn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 12:19:43 -0400
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69BED55BE;
-        Thu,  9 Jun 2022 09:19:40 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1654791578; bh=4oG/+gfqOkTh35XvvWAtX5REN3FZwalZARzou9YHdB4=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=kd2Riq/FkSbvoJq2jjAf5MBgfp6q/RYP7eGUCErvWm+Pc0yqe6Br5pbsGU0kyhXou
-         WDPbyTDjTow1Pf4Hs2LDNl7nBheIGLZdcovSs/jTdg8aYrDrO4ZaXPckBS7BU/FGVE
-         A83JrJ3SU+rSCE3/BmHsI4XgoBLjxwceApHMXgZ0=
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [RFC PATCH v2 5/5] ASoC: apple: Add macaudio machine driver
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-In-Reply-To: <YqIWtzphzVGmbIOe@sirena.org.uk>
-Date:   Thu, 9 Jun 2022 18:19:37 +0200
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S1343927AbiFIQ1h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 12:27:37 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5CD2449CB1
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 09:27:36 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D2E0412FC;
+        Thu,  9 Jun 2022 09:27:35 -0700 (PDT)
+Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 157B53F73B;
+        Thu,  9 Jun 2022 09:27:33 -0700 (PDT)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>, asahi@lists.linux.dev
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <4DA6EE04-D23B-437B-8FBA-9223EAA71219@cutebit.org>
-References: <20220606191910.16580-1-povik+lin@cutebit.org>
- <20220606191910.16580-6-povik+lin@cutebit.org>
- <YqHylN3xba9XFrF8@sirena.org.uk>
- <0E611F13-96E3-41FD-9550-F900B2EFB00A@cutebit.org>
- <YqILv21K+tZ00Qhx@sirena.org.uk>
- <2A0422B8-8367-457E-A146-730F7C3DE66B@cutebit.org>
- <YqIWtzphzVGmbIOe@sirena.org.uk>
-To:     Mark Brown <broonie@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Liviu Dudau <Liviu.Dudau@arm.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] dt-bindings: display: arm,malidp: remove bogus RQOS property
+Date:   Thu,  9 Jun 2022 17:27:29 +0100
+Message-Id: <20220609162729.1441760-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+As Liviu pointed out, the arm,malidp-arqos-high-level property
+mentioned in the original .txt binding was a mistake, and
+arm,malidp-arqos-value needs to take its place.
 
-> On 9. 6. 2022, at 17:50, Mark Brown <broonie@kernel.org> wrote:
->=20
-> On Thu, Jun 09, 2022 at 05:24:49PM +0200, Martin Povi=C5=A1er wrote:
->>> On 9. 6. 2022, at 17:03, Mark Brown <broonie@kernel.org> wrote:
->=20
-> Why is this off list?
+The binding commit ce6eb0253cba ("dt/bindings: display: Add optional
+property node define for Mali DP500") mentions the right name in the
+commit message, but has the wrong name in the diff.
+Commit d298e6a27a81 ("drm/arm/mali-dp: Add display QoS interface
+configuration for Mali DP500") uses the property in the driver, but uses
+the shorter name.
 
-By accident, added the CC list back with this reply (hopefully it
-still attaches to the thread when people receive it).
+Remove the wrong property from the binding, and use the proper name in
+the example. The actual property was already documented properly.
 
->>> That's basically no userspaces at this point TBH.  I'm not convinced
->>> it's a good idea to be adding custom code for that use case.
->>=20
->> FWIW I know of at least one user of the WIP audio support on Macs who
->> would welcome this feature. My preference is to keep it in, but in
->> the end I guess it=E2=80=99s your call.
->=20
-> I'd rather not have this open coded in individual drivers, we already
-> have an unfortunate abundance of jack detection interfaces.  If we're
-> going to add anything I'd rather it were in core code and TBH I'm
-> struggling to be enthusiastic.
+Fixes: 2c8b082a3ab1 ("dt-bindings: display: convert Arm Mali-DP to DT schema")
+Link: https://lore.kernel.org/linux-arm-kernel/YnumGEilUblhBx8E@e110455-lin.cambridge.arm.com/
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Reported-by: Liviu Dudau <liviu.dudau@arm.com>
+---
+ Documentation/devicetree/bindings/display/arm,malidp.yaml | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
-Noted.
-
-> Can you say anything more about the use case?
-
-I can restate: The alleged use case is running userspace without sound
-server, but having playback switch transparently between speakers and
-headphones even mid-stream based on jack detection.
-
->>>> I looked at the existing DAPM integration but I couldn=E2=80=99t =
-figure out
->>>> how to switch the demux with it.
->=20
->>> Yes, it won't do that.  If you can't stream the same audio to both =
-then
->>> you'd need something else.
->=20
->> I don=E2=80=99t understand what=E2=80=99s meant by streaming the same =
-audio here.
->=20
-> Playing one audio stream from the host which appears on both speakers
-> and headphones - I don't know what the mixing and muxing capabilities =
-of
-> the hardware are.
->=20
->> Taking a guess: The existing DAPM integration can enable the =
-headphones
->> path based on jack being plugged in, but it can=E2=80=99t disable the =
-speakers
->> path like the demux does?
->=20
-> No, that works perfectly fine - you can enable or disable pins =
-depending
-> on the jack state.
-
-Ah, I peeked into soc-jack.c. What about this then: If I understand what
-pins represent, they would be at the remote end of the DAPM paths. So if
-for the speakers I add something like
-
-   Headphones Codec Out =E2=80=94> Jack pin
-
-                       +--> Always-on pin
-                       |
-   Speaker Amp Out -> Mux
-                       |
-                       +--> Jack inverted pin
-
-and let userspace control the mux, it would in effect support the same
-use cases as what I attempted in the code so far. Sounds somewhat right?
+diff --git a/Documentation/devicetree/bindings/display/arm,malidp.yaml b/Documentation/devicetree/bindings/display/arm,malidp.yaml
+index 795a08ac9f128..2a17ec6fc97c0 100644
+--- a/Documentation/devicetree/bindings/display/arm,malidp.yaml
++++ b/Documentation/devicetree/bindings/display/arm,malidp.yaml
+@@ -71,11 +71,6 @@ properties:
+       - description: number of output lines for the green channel (G)
+       - description: number of output lines for the blue channel (B)
+ 
+-  arm,malidp-arqos-high-level:
+-    $ref: /schemas/types.yaml#/definitions/uint32
+-    description:
+-      integer describing the ARQoS levels of DP500's QoS signaling
+-
+   arm,malidp-arqos-value:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+@@ -113,7 +108,7 @@ examples:
+         clocks = <&oscclk2>, <&fpgaosc0>, <&fpgaosc1>, <&fpgaosc1>;
+         clock-names = "pxlclk", "mclk", "aclk", "pclk";
+         arm,malidp-output-port-lines = /bits/ 8 <8 8 8>;
+-        arm,malidp-arqos-high-level = <0xd000d000>;
++        arm,malidp-arqos-value = <0xd000d000>;
+ 
+         port {
+             dp0_output: endpoint {
+-- 
+2.25.1
 
