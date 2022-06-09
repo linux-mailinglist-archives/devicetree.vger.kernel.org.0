@@ -2,100 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 905FA544D1C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 15:08:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 558B5544D47
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 15:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238023AbiFINIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 09:08:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60992 "EHLO
+        id S234782AbiFINQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 09:16:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343690AbiFINIH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 09:08:07 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 991931AD92;
-        Thu,  9 Jun 2022 06:08:00 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id i39so13653585ybj.9;
-        Thu, 09 Jun 2022 06:08:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=Gfktszpwr3FPrB93OMpoU20SlFs9qNN/2hDsqmlef5k=;
-        b=AvOl4xBJ6PnwNdqiF2CKMUAGTcWvqboIOllVEQ5C9KnjMuMolhKVFOT56tSfI4Lros
-         e5iFVGtxosHS8uzp2SM1qfNWqqvxfH7CG2ROKj5f0X1yL2or3MsbsHjFhn0e9Wlv5/Jf
-         /zbtE2t4beFBLcZxEuFuV/PYmkPLjVtd3Nbt46j4BACWUpws35POMp+bmWZgyo9ShLjr
-         eWtF6eB1mMOMHdyc5f+27IhzVEn/3w8gYU9qJLJ1NAQY6fN0Z58l04GZ+eXFug+LZSX8
-         SiFACc6u5T3ahUq6m03kIUZ7G1w81czG2RkCNhi/dnuB9h+OaN4EKcRL7s9IjO57wcIf
-         r4YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:content-transfer-encoding;
-        bh=Gfktszpwr3FPrB93OMpoU20SlFs9qNN/2hDsqmlef5k=;
-        b=kGjMSMehgP/IQ4iG8/iroudQ23q1ToQn80UhsEU1dY72ZlRv+vGftzkcgL+P6iB3iS
-         LWyzoA9u8d/A2Wj4q1YCpj7ky22f0qTlRy3JCA801oIILtyFbwLZmMfT/elzHKl7Ygte
-         RY20e9G1AY4XQqq1+jjtg4jb2KvsuwJm9tG7BwmWQ8UHRvL94ADyTUk3E9C29ZwPNqTT
-         vQy9nrdcZ5pbiz+D9jueHm3ji6TzDg5oj+htVH3wGRXNBvD09NU7IOzJdxIFOvIbc2xx
-         wuVOfGq2CFIKM9aCfcTP8bo06HYmGvKjwNJpgwM42lbUhXUmv9M5gCugSss/N56U414n
-         7KNw==
-X-Gm-Message-State: AOAM531HnxuzJnEd7RhhJgUPGkvueChSFpOvnUJt/taUbXY27tggTTg+
-        LMRBeE568EDY9/AWoslgdIROXiTpQAXmGa49nw==
-X-Google-Smtp-Source: ABdhPJxKIWoo2Bn5OL7cz4byjE9SyenNt+2UbaGDu6sWH+o+y9J0RqD6ys/c9I1Gax4iquiL4SI9x2tvzNZDOZ5Is+Q=
-X-Received: by 2002:a05:6902:84:b0:63d:4a3d:eb5 with SMTP id
- h4-20020a056902008400b0063d4a3d0eb5mr39339883ybs.145.1654780079760; Thu, 09
- Jun 2022 06:07:59 -0700 (PDT)
+        with ESMTP id S233763AbiFINQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 09:16:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A00973BB299;
+        Thu,  9 Jun 2022 06:16:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3E6EA61CE3;
+        Thu,  9 Jun 2022 13:16:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08F2FC34114;
+        Thu,  9 Jun 2022 13:16:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654780570;
+        bh=adIY73cUSCNwOEj4s+9TfwrvjgCT5vabHNIojXe/1uY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WYPI/dFW/4u4zTXC/IoaW+gqiph/U3f8dUrIV74OlJs0SAnkbFcVND+snhWDy+MYh
+         6ioLbFofSxMV7wfxsQubzFcp7eTHg3LR3D+RM3LC975VPbwms9sD1u0fzMbkuK+7aZ
+         Hq6J0DhKtzTC3IsvGKX9eswrN40xD110OJDrNfNDsCNKB94cTJL53JgZBEcnqbkddT
+         lLTbP/uNM2VCh5PIs/E4J25prK2pS1ggzPizFluCG2fNfVAlxsCvzIncZN5RMqgVXo
+         sxWPPRxk2eVKbDsvcyXmElZHZvHsWOE8mcZOC/F3x32x/sWUjeGTGdnynKF84hiXFL
+         9k55FZrg5hBdg==
+Date:   Thu, 9 Jun 2022 14:16:04 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>, asahi@lists.linux.dev
+Subject: Re: [RFC PATCH v2 5/5] ASoC: apple: Add macaudio machine driver
+Message-ID: <YqHylN3xba9XFrF8@sirena.org.uk>
+References: <20220606191910.16580-1-povik+lin@cutebit.org>
+ <20220606191910.16580-6-povik+lin@cutebit.org>
 MIME-Version: 1.0
-References: <20220525032341.3182-1-warp5tw@gmail.com> <20220525032341.3182-6-warp5tw@gmail.com>
- <YqEArxDJoUoPeiGY@kunai>
-In-Reply-To: <YqEArxDJoUoPeiGY@kunai>
-From:   Tyrone Ting <warp5tw@gmail.com>
-Date:   Thu, 9 Jun 2022 21:07:49 +0800
-Message-ID: <CACD3sJaHwh2uvdrFYwRB84ZM94S7iGW9oFhWb6GrYGkNAU6K9g@mail.gmail.com>
-Subject: Re: [PATCH v6 5/5] i2c: npcm: Capitalize the one-line comment
-To:     Wolfram Sang <wsa@kernel.org>, Tyrone Ting <warp5tw@gmail.com>,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        andriy.shevchenko@linux.intel.com, jarkko.nikula@linux.intel.com,
-        semen.protsenko@linaro.org, jsd@semihalf.com, sven@svenpeter.dev,
-        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
-        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zP4ArPesiXfS095U"
+Content-Disposition: inline
+In-Reply-To: <20220606191910.16580-6-povik+lin@cutebit.org>
+X-Cookie: Space is limited.
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram:
 
-Thank you for your review and comments for this whole patch set.
+--zP4ArPesiXfS095U
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Wolfram Sang <wsa@kernel.org> =E6=96=BC 2022=E5=B9=B46=E6=9C=889=E6=97=A5 =
-=E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=884:04=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Wed, May 25, 2022 at 11:23:41AM +0800, Tyrone Ting wrote:
-> > From: Tyrone Ting <kfting@nuvoton.com>
-> >
-> > Make the one-line comments capital in the driver to get the comment sty=
-le
-> > consistent.
-> >
-> > Fixes: 56a1485b102e ("i2c: npcm7xx: Add Nuvoton NPCM I2C controller dri=
-ver")
-> > Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
->
-> Applied to for-next, thanks!
->
+On Mon, Jun 06, 2022 at 09:19:10PM +0200, Martin Povi=C5=A1er wrote:
 
-Best Regards,
-Tyrone
+> + *  =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90       =E2=94=8C=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BA =E2=94=8C=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =E2=94=8C=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=90
+> + *  =E2=94=82 Primary  =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=A4                 =E2=94=82 Mux =E2=94=82 =
+=E2=94=80=E2=94=80=E2=96=BA =E2=94=82 Speakers =E2=94=82
+> + *  =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98       =E2=94=82    =E2=94=8C=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=96=BA =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=98     =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
+> + *                =E2=94=8C=E2=94=80=E2=94=80=E2=94=80 =E2=94=82 =E2=94=
+=80=E2=94=80=E2=94=80=E2=94=98             =E2=96=B2
+> + *  =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90  =E2=94=82    =E2=94=82         =
+         =E2=94=82
+> + *  =E2=94=82Secondary =E2=94=9C=E2=94=80=E2=94=80=E2=94=98    =E2=94=82=
+     =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=B4=E2=94=90
+> + *  =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98       =E2=94=9C=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=96=BA=E2=94=82Plug-in Demux=E2=94=82
+> + *                     =E2=94=82     =E2=94=94=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=AC=E2=94=98
+> + *                     =E2=94=82                  =E2=94=82
+> + *                     =E2=94=82                  =E2=96=BC
+> + *                     =E2=94=82                 =E2=94=8C=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =E2=94=8C=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=90
+> + *                     =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=96=BA =E2=94=82 Mux =E2=94=82 =E2=94=80=E2=94=80=
+=E2=96=BA =E2=94=82Headphones=E2=94=82
+> + *                                       =E2=94=94=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=98     =E2=94=94=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
+
+As far as I can tell this demux is entirely software based - why not
+just expose the routing control to userspace and let it handle
+switching (which I suspect may be more featureful than what's
+implemented here)?
+
+> +static int macaudio_jack_event(struct notifier_block *nb, unsigned long =
+event,
+> +                               void *data)
+> +{
+> +       struct snd_soc_jack *jack =3D data;
+> +       struct macaudio_snd_data *ma =3D snd_soc_card_get_drvdata(jack->c=
+ard);
+> +
+> +       ma->jack_plugin_state =3D !!event;
+> +
+> +       if (!ma->plugin_demux_kcontrol)
+> +               return 0;
+> +
+> +       snd_soc_dapm_mux_update_power(&ma->card.dapm, ma->plugin_demux_kc=
+ontrol,
+> +                                     ma->jack_plugin_state,
+> +                                     (struct soc_enum *) &macaudio_plugi=
+n_demux_enum, NULL);
+> +
+> +       return 0;
+> +}
+
+This should be integrated with the core jack detection stuff in
+soc-jack.c and/or the core stuff that's wrapping - that way you'll
+ensure that events are generated and status readable via all the
+interfaces userspace might be looking for.  The ASoC stuff also has some
+DAPM integration for turning on/off outputs which might DTRT for you if
+you do need it in kernel.
+
+--zP4ArPesiXfS095U
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKh8pQACgkQJNaLcl1U
+h9A35AgAhc/b4LJ2GElO9+hrXTNIF0hkl2AmactD2FfUXkE/CAfoLDtaK/5RtjeR
+4ybKT5miFOnvG5bzMVTQV8BtLKiT9AI3ABDsuj2QMvaTZ95Y3tgqZh738EQAYB5l
+Qrie4m9HHqjp1dLdqvNcgVTg1QWzIddKaMB7bI0FHITUZVqgcq5qZiAtAZ3GGBeP
+ZIdkYMVLhyEIUpjXpYOlHjgxo2wKs+ixIyN9BonMvX6aSOLNXmI/vuqVPYp8uuvn
+u+WXjidw0QlG2gU2kgnncbugvKNMKm4YcCd+CcQ7q4wrwQbH12DT7uD0X2m1/kVE
+py9WhKEDlJiKgkRkR7GjmWGf2OmarA==
+=P1Mm
+-----END PGP SIGNATURE-----
+
+--zP4ArPesiXfS095U--
