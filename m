@@ -2,128 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31B855452D3
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 19:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 177825452FE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 19:32:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239148AbiFIRTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 13:19:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35918 "EHLO
+        id S241267AbiFIRcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 13:32:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239242AbiFIRTV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 13:19:21 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FCAEA88BA;
-        Thu,  9 Jun 2022 10:19:19 -0700 (PDT)
-Received: from g550jk.localnet (31-151-115-246.dynamic.upc.nl [31.151.115.246])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id B3332CCDF9;
-        Thu,  9 Jun 2022 17:19:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1654795156; bh=2MPN+doYZMUaXvC0iC9GlfoIDwZjXtdp86X30pYRS8s=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=LkphQxXrMOnXuVuC1qZaoqrtpghwAWoxfgVdQoaVnDCtJTtTbZR5CvIYYMCA5O9QB
-         BSPM6RIWIVfdnFljl/Pc4h16y8vvs+3Zsw9v20J5YSr0flQtYf/I+euWkmsUNgHLcy
-         V27ER+iCOi5z9LCcyq68onwPMA6HCGbo++HlZIqc=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Alexander Martinz <amartinz@shiftphones.com>,
-        Dylan Van Assche <me@dylanvanassche.be>,
-        Alexander Martinz <amartinz@shiftphones.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom/sdm845-shift-axolotl: Add audio support
-Date:   Thu, 09 Jun 2022 19:19:15 +0200
-Message-ID: <11993096.O9o76ZdvQC@g550jk>
-In-Reply-To: <20220609095412.211060-2-amartinz@shiftphones.com>
-References: <20220609095412.211060-1-amartinz@shiftphones.com> <20220609095412.211060-2-amartinz@shiftphones.com>
+        with ESMTP id S239149AbiFIRcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 13:32:07 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FD072D89A7;
+        Thu,  9 Jun 2022 10:32:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 250D9B82F33;
+        Thu,  9 Jun 2022 17:32:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99BF4C34114;
+        Thu,  9 Jun 2022 17:32:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654795922;
+        bh=bscKGXyefxC9Ra/Mw3rYDH+nu51bXnKerrvlQ1z3MbU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=nnag0fuKmP9yYi85Af9oiZQ6T0uD0PS8sJ3lzYCGu2MjbbmZStkz3QvTuxBGMHDXT
+         eeScwn/JYyLRJw0Y5s/4dFkaCj/E9Cpn3Mpx4isAHH+CKxtZSDpQtLc/+hE0af1+BT
+         JWhawjyN+2O+CZvBehKfK0zJKyc1e91tyFwHvJbFX4mlT7xmzN1a2+faK2GzRjssp3
+         +lctDuYILJCAfZW8IOLAiWAmHzs2V/8YlK9ytpIimHo5s6aZvrV4BujDO+BsO9gVaj
+         cv/aVbrK2BD6Su8/B2wqFZi4k+OfhE2WEAjY3rXSnJh3fnBYllEC4ZfOQDhFGcuOer
+         g6sYqItYP/60A==
+Date:   Thu, 9 Jun 2022 12:32:01 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com,
+        bhelgaas@google.com, robh@kernel.org
+Subject: Re: [PATCH v4 2/2] PCI: xilinx-cpm: Add support for Versal CPM5 Root
+ Port
+Message-ID: <20220609173201.GA519962@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a403b92d-00f1-885f-7d1b-0fce82b50993@xilinx.com>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
-
-On Donnerstag, 9. Juni 2022 11:54:12 CEST Alexander Martinz wrote:
-> This patch adds audio support for the SHIFT6mq phone.
+On Thu, Jun 09, 2022 at 09:59:08AM +0200, Michal Simek wrote:
+> On 6/8/22 21:14, Bjorn Helgaas wrote:
+> > On Wed, Jun 08, 2022 at 10:10:46PM +0530, Bharat Kumar Gogada wrote:
+> > > Xilinx Versal Premium series has CPM5 block which supports Root Port
+> > > functioning at Gen5 speed.
+> > > 
+> > > Xilinx Versal CPM5 has few changes with existing CPM block.
+> > > - CPM5 has dedicated register space for control and status registers.
+> > > - CPM5 legacy interrupt handling needs additional register bit
+> > >    to enable and handle legacy interrupts.
+> > > 
+> > > Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
+> > > ---
+> > >   drivers/pci/controller/pcie-xilinx-cpm.c | 33 +++++++++++++++++++++++-
+> > >   1 file changed, 32 insertions(+), 1 deletion(-)
+> > 
+> > Per MAINTAINERS, xilinx-cpm lacks a maintainer.  Can we get one?
 > 
-> The primary microphone and headphone jack are handled by the
-> SDM845 sound card and WCD9340 codec.
+> Bharat should become maintainer for this driver.
 > 
-> The primary speaker needs to go through the TFA9890 speaker
-> amplifier.
-> 
-> Signed-off-by: Alexander Martinz <amartinz@shiftphones.com>
-> Tested-by: Dylan Van Assche <me@dylanvanassche.be>
-> ---
->  .../boot/dts/qcom/sdm845-shift-axolotl.dts    | 141 ++++++++++++++++++
->  1 file changed, 141 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts index
-> fa72f23ef0c2..8c4967d6d0e3 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> @@ -8,6 +8,8 @@
-> 
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include <dt-bindings/sound/qcom,q6afe.h>
-> +#include <dt-bindings/sound/qcom,q6asm.h>
->  #include "sdm845.dtsi"
->  #include "pm8998.dtsi"
->  #include "pmi8998.dtsi"
-> @@ -492,6 +494,19 @@ touchscreen@38 {
->  	};
->  };
-> 
-> +&i2c11 {
-> +	status = "okay";
-> +	clock-frequency = <400000>;
-> +
-> +	tfa9890_codec: tfa9890@34 {
-> +		compatible = "nxp,tfa9890";
-> +		reg = <0x34>;
-> +		vddd-supply = <&vreg_s4a_1p8>;
-> +		reset-gpio = <&tlmm 7 0>;
-> +		#sound-dai-cells = <1>;
-> +	};
-> +};
-> +
->  &ipa {
->  	status = "okay";
-> 
-> @@ -530,6 +545,27 @@ volume_down_resin: resin {
->  	};
->  };
-> 
-> +&q6afedai {
-> +	qi2s@22 {
-> +		reg = <22>;
-> +		qcom,sd-lines = <0>;
-> +	};
-> +};
+> My fragment should cover xilinx things in general in case Bharat is
+> not available.
 
-While my patch hasn't been reviewed yet, I have proposed to change the magic 
-number <22> to the constant QUATERNARY_MI2S_RX here in existing dts files which 
-better describes what the reg here is.
+Great!  Can one of you post a patch to show exactly what you have in
+mind?
 
-https://lore.kernel.org/linux-arm-msm/20220603094710.64591-1-luca.weiss@fairphone.com/
-
-Maybe worth doing the same here for v2?
-
-Regards
-Luca
-
-
-
+Thanks,
+  Bjorn
