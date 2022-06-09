@@ -2,217 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AA5A544180
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 04:30:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E4DA5441AC
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 04:55:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232090AbiFICaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 22:30:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50106 "EHLO
+        id S236745AbiFICzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 22:55:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230391AbiFICaS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 22:30:18 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FE6A167D5;
-        Wed,  8 Jun 2022 19:30:16 -0700 (PDT)
-X-UUID: dd1bd8e1630141b0bd212d121e8881e5-20220609
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:e3600c47-fefd-4c44-94cd-3943c328797c,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.5,REQID:e3600c47-fefd-4c44-94cd-3943c328797c,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:2a19b09,CLOUDID:dc49b77e-c8dc-403a-96e8-6237210dceee,C
-        OID:340581f72794,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:0,BEC:nil
-X-UUID: dd1bd8e1630141b0bd212d121e8881e5-20220609
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 646342669; Thu, 09 Jun 2022 10:30:08 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 9 Jun 2022 10:30:07 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 9 Jun 2022 10:30:07 +0800
-Message-ID: <49f4f8732eb1df31b0c8a82761e1c4dad9aef106.camel@mediatek.com>
-Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Guillaume Ranquet <granquet@baylibre.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        "Daniel Vetter" <daniel@ffwll.ch>,
+        with ESMTP id S235723AbiFICzT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 22:55:19 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6441A0AF7;
+        Wed,  8 Jun 2022 19:55:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654743318; x=1686279318;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=5PYMIT/uUsI3RZRwx4CIFw86+8DJBh3cZNahF5UEA5Y=;
+  b=NmPdV5W+GYaeFVUYN+400nJ5IqZBDGhKjHMieUexTCW+AGP4CMpV8Fqc
+   wWZ03j1EyR3VjpJqkFJcOQI9kadJ82KggF2wy8CEabec9woZGlaXf/Jmg
+   e7QVmJYvuaS86LQx8+snULSFhB7Qr2zUaPf2NNa7yDfhCz32UqyrGybwT
+   tyXfIun68JEpwIoOJHqVNcGMa02wA4Rc5776mRxNV+84cEbZQTFZ64tsx
+   B9zqfc3sZBMcChE3ELhujKS47aBDfmJDT2u8r05eyMBG7iYBVqWP3lKei
+   G2C6/qhCT0PERLV5o6lu7UNDriwvJ0AEoejLZM9BTlFT4G1gwqdU/nsIw
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10372"; a="257554451"
+X-IronPort-AV: E=Sophos;i="5.91,287,1647327600"; 
+   d="scan'208";a="257554451"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2022 19:55:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,287,1647327600"; 
+   d="scan'208";a="609963854"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
+  by orsmga008.jf.intel.com with ESMTP; 08 Jun 2022 19:55:15 -0700
+From:   wen.ping.teh@intel.com
+To:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun =?UTF-8?Q?=28=E4=BA=91=E6=98=A5=E5=B3=B0=29?= 
-        <Chunfeng.Yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>
-CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>
-Date:   Thu, 9 Jun 2022 10:30:07 +0800
-In-Reply-To: <75c00caca74b8366ca2c4594a8229b6de95c5f47.camel@mediatek.com>
-References: <20220523104758.29531-1-granquet@baylibre.com>
-         <20220523104758.29531-19-granquet@baylibre.com>
-         <f791f46c6307a18818574cb7fb8653bcc84aa9ad.camel@mediatek.com>
-         <75c00caca74b8366ca2c4594a8229b6de95c5f47.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Teh Wen Ping <wen.ping.teh@intel.com>
+Subject: [PATCH v3] arm64: dts: Add support for Stratix 10 Software Virtual Platform
+Date:   Thu,  9 Jun 2022 10:55:00 +0800
+Message-Id: <20220609025500.400695-1-wen.ping.teh@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rex:
+From: Teh Wen Ping <wen.ping.teh@intel.com>
 
-On Wed, 2022-06-08 at 18:26 +0800, Rex-BC Chen wrote:
-> On Tue, 2022-06-07 at 15:47 +0800, CK Hu wrote:
-> > Hi, Rex:
-> > 
-> > On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
-> > > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > 
-> > > This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
-> > > 
-> > > It supports the mt8195, the embedded DisplayPort units. It offers
-> > > DisplayPort 1.4 with up to 4 lanes.
-> > > 
-> > > The driver creates a child device for the phy. The child device
-> > > will
-> > > never exist without the parent being active. As they are sharing
-> > > a
-> > > register range, the parent passes a regmap pointer to the child
-> > > so
-> > > that
-> > > both can work with the same register range. The phy driver sets
-> > > device
-> > > data that is read by the parent to get the phy device that can be
-> > > used
-> > > to control the phy properties.
-> > > 
-> > > This driver is based on an initial version by
-> > > Jason-JH.Lin <jason-jh.lin@mediatek.com>.
-> > > 
-> > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > > ---
-> > 
-> > [snip]
-> > 
-> > > +
-> > > +static int mtk_dp_hpd_sink_event(struct mtk_dp *mtk_dp)
-> > > +{
-> > > +	ssize_t ret;
-> > > +	u8 sink_count;
-> > > +	bool locked;
-> > > +	u8 link_status[DP_LINK_STATUS_SIZE] = {};
-> > > +	u32 sink_count_reg = DP_SINK_COUNT_ESI;
-> > > +	u32 link_status_reg = DP_LANE0_1_STATUS;
-> > > +
-> > > +	ret = drm_dp_dpcd_readb(&mtk_dp->aux, sink_count_reg,
-> > > &sink_count);
-> > > +	if (ret < 0) {
-> > > +		drm_err(mtk_dp->drm_dev, "Read sink count failed:
-> > > %ld\n", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret = drm_dp_dpcd_read(&mtk_dp->aux, link_status_reg,
-> > > link_status,
-> > > +			       sizeof(link_status));
-> > > +	if (!ret) {
-> > > +		drm_err(mtk_dp->drm_dev, "Read link status failed:
-> > > %ld\n",
-> > > +			ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	locked = drm_dp_channel_eq_ok(link_status,
-> > > +				      mtk_dp->train_info.lane_count);
-> > > +	if (!locked && mtk_dp->train_state >
-> > > MTK_DP_TRAIN_STATE_TRAINING_PRE)
-> > 
-> > Before enter this function, mtk_dp->train_state is set to
-> > MTK_DP_TRAIN_STATE_STARTUP, so this never happen, drop this.
-> > 
-> 
-> The interrupt from sink device could come any time. Why it's
-> impossible?
+Add Stratix 10 Software Virtual Platform device tree
 
-I still ask this question: "For eDP, when does disconnect happened?" If
-it indeed happen, I still do not like to change state here. When
-disconnect, the training flow would result in fail finally and need not
-to change state here, but the training flow would block for a while
-when disconnect. You could add some check point to check train_info-
->cable_plugged_in to quickly break out the training flow.
+Signed-off-by: Teh Wen Ping <wen.ping.teh@intel.com>
+---
 
-Regards,
-CK
+changes in v2:
+-remove indentation before GPL
+-change root compatible to "altr,socfpga-stratix10"
+-remove bootargs
+-move clock-frequency to label
+-remove l2-cache
+-remove no longer exist authors from commit message
 
-> 
-> > > +		mtk_dp->train_state = MTK_DP_TRAIN_STATE_TRAINING_PRE;
-> > > +
-> > > +	if (link_status[1] & DP_REMOTE_CONTROL_COMMAND_PENDING)
-> > > +		drm_dp_dpcd_writeb(&mtk_dp->aux,
-> > > DP_DEVICE_SERVICE_IRQ_VECTOR,
-> > > +				   DP_REMOTE_CONTROL_COMMAND_PENDING);
-> > > +
-> > > +	if (DP_GET_SINK_COUNT(sink_count) &&
-> > > +	    (link_status[2] & DP_DOWNSTREAM_PORT_STATUS_CHANGED)) {
-> > > +		mtk_dp->train_info.check_cap_count = 0;
-> > > +		mtk_dp->train_state = MTK_DP_TRAIN_STATE_CHECKEDID;
-> > 
-> > Why change state from MTK_DP_TRAIN_STATE_STARTUP to
-> > MTK_DP_TRAIN_STATE_CHECKEDID? In mtk_dp_train_handler(),
-> > mtk_dp_parse_capabilities() is true then change to
-> > MTK_DP_TRAIN_STATE_CHECKEDID. Give a reason why these two are
-> > different.
-> > 
-> > Regards,
-> > CK
-> > 
-> 
-> I will drop this and drop state of MTK_DP_TRAIN_STATE_CHECKEDID.
-> MTK_DP_TRAIN_STATE_CHECKEDID is only used for audio.
-> We can check enable status in another place.
-> 
-> BRs,
-> Bo-Chen
-> 
-> > > +		msleep(20);
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > 
-> > 
-> 
-> 
+changes in v3:
+-change root compatible to "altr,socfpga-stratix10-swvp"
+
+ arch/arm64/Kconfig.platforms                  |   3 +-
+ arch/arm64/boot/dts/altera/Makefile           |   3 +-
+ .../dts/altera/socfpga_stratix10_swvp.dts     | 117 ++++++++++++++++++
+ 3 files changed, 121 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index de9a18d3026f..48abe5dafaae 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -249,7 +249,8 @@ config ARCH_INTEL_SOCFPGA
+ 	bool "Intel's SoCFPGA ARMv8 Families"
+ 	help
+ 	  This enables support for Intel's SoCFPGA ARMv8 families:
+-	  Stratix 10 (ex. Altera), Agilex and eASIC N5X.
++	  Stratix 10 (ex. Altera), Stratix10 Software Virtual Platform,
++	  Agilex and eASIC N5X.
+ 
+ config ARCH_SYNQUACER
+ 	bool "Socionext SynQuacer SoC Family"
+diff --git a/arch/arm64/boot/dts/altera/Makefile b/arch/arm64/boot/dts/altera/Makefile
+index 4db83fbeb115..1bf0c472f6b4 100644
+--- a/arch/arm64/boot/dts/altera/Makefile
++++ b/arch/arm64/boot/dts/altera/Makefile
+@@ -1,3 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_stratix10_socdk.dtb \
+-				socfpga_stratix10_socdk_nand.dtb
++				socfpga_stratix10_socdk_nand.dtb \
++				socfpga_stratix10_swvp.dtb
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+new file mode 100644
+index 000000000000..a8db58573954
+--- /dev/null
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+@@ -0,0 +1,117 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2022, Intel Corporation
++ */
++
++#include "socfpga_stratix10.dtsi"
++
++/ {
++	model = "SOCFPGA Stratix 10 SWVP";
++	compatible = "altr,socfpga-stratix10-swvp", "altr,socfpga-stratix10";
++
++	aliases {
++		serial0 = &uart0;
++		serial1 = &uart1;
++
++		timer0 = &timer0;
++		timer1 = &timer1;
++		timer2 = &timer2;
++		timer3 = &timer3;
++
++		ethernet0 = &gmac0;
++		ethernet1 = &gmac1;
++		ethernet2 = &gmac2;
++	};
++
++	chosen {
++		stdout-path = "serial1:115200n8";
++		linux,initrd-start = <0x10000000>;
++		linux,initrd-end = <0x125c8324>;
++	};
++
++	memory {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x80000000>;
++	};
++};
++
++&cpu0 {
++	enable-method = "spin-table";
++	cpu-release-addr = <0x0 0x0000fff8>;
++};
++
++&cpu1 {
++	enable-method = "spin-table";
++	cpu-release-addr = <0x0 0x0000fff8>;
++};
++
++&cpu2 {
++	enable-method = "spin-table";
++	cpu-release-addr = <0x0 0x0000fff8>;
++};
++
++&cpu3 {
++	enable-method = "spin-table";
++	cpu-release-addr = <0x0 0x0000fff8>;
++};
++
++&osc1 {
++	clock-frequency = <25000000>;
++};
++
++&gmac0 {
++	status = "okay";
++	phy-mode = "rgmii";
++	phy-addr = <0xffffffff>;
++	snps,max-mtu = <0x0>;
++};
++
++&gmac1 {
++	status = "okay";
++	phy-mode = "rgmii";
++	phy-addr = <0xffffffff>;
++};
++
++&gmac2 {
++	status = "okay";
++	phy-mode = "rgmii";
++	phy-addr = <0xffffffff>;
++};
++
++&mmc {
++	status = "okay";
++	altr,dw-mshc-ciu-div = <0x3>;
++	altr,dw-mshc-sdr-timing = <0x0 0x3>;
++	cap-sd-highspeed;
++	cap-mmc-highspeed;
++	broken-cd;
++	bus-width = <4>;
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&uart1 {
++	status = "okay";
++};
++
++&usb0 {
++	clocks = <&clkmgr STRATIX10_L4_MP_CLK>;
++	status = "okay";
++};
++
++&usb1 {
++	clocks = <&clkmgr STRATIX10_L4_MP_CLK>;
++	status = "okay";
++};
++
++&rst {
++	altr,modrst-offset = <0x20>;
++};
++
++&sysmgr {
++	reg = <0xffd12000 0x1000>;
++	interrupts = <0x0 0x10 0x4>;
++	cpu1-start-addr = <0xffd06230>;
++};
+-- 
+2.25.1
 
