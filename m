@@ -2,90 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D798544C99
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 14:51:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBCBE544CC2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 14:58:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343518AbiFIMvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 08:51:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49262 "EHLO
+        id S238677AbiFIM6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 08:58:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236658AbiFIMvi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 08:51:38 -0400
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61BC253C5D;
-        Thu,  9 Jun 2022 05:51:33 -0700 (PDT)
-Received: by mail-qk1-f176.google.com with SMTP id k6so14562360qkf.4;
-        Thu, 09 Jun 2022 05:51:33 -0700 (PDT)
+        with ESMTP id S245648AbiFIM60 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 08:58:26 -0400
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A0B72DCF;
+        Thu,  9 Jun 2022 05:58:24 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-3137eb64b67so38556587b3.12;
+        Thu, 09 Jun 2022 05:58:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=iD6McwKwIghg6BHWgeKWaQ5MVkxCurltdSVwKmXM4W0=;
+        b=Ay9wSBt6/1FosjTchjqFRaOXNnxcSgSjhy148/OJkjEi2ezSAJkxy8QBigj35N26KT
+         YrXCPaCXqBdW01cEHCjRZOd3ZrsaVhd9JjOJqXs+3WHog5ILCEewhryknksUqAeLFMzn
+         IGkTdf9foXozaSN0SdrREZd7DLlHGJhC18AFA0nAGhoyZYzASZMHRYOYOmlub34uCcLm
+         qYC7xtX+1SCbhNxTr1NeBDqzT5Is4bzgznpa+KDkJsoG2B8YIgk4etJMkRuazEgV5gYB
+         O8dPFe9/geqE1+3gSInrglUhfwRBjuGNqqakfdZjebuczOFbzlt71nnkCASlYW028yRL
+         Tcww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6PdqGVHMAVaB4sKEYumeG3hD9v+gzNrNJN60nweXGG0=;
-        b=qzkcwZ2p8srFLPqM3Tm5KEewSvvKnqyXjE9ftxQ4wtBOdQ5aZxk41cfmfWKzKKse0s
-         KUT3wBtN4ZcrrsCmoolaxHCMMuwNNzgbTk7uZwvkZ1n/C/tdwekc85XB7Ovt/sfFugxf
-         nbvN5LrWTTSXbgiRS3bHdl/W4isJsLakdC7VGLwH2+7BzOcWCeN0w6M+ZtJZz/7QjWLD
-         EnV7o6GKvuXd2S3w6OnQwBMFPBt4/EBXp3PknUAAkPsilJ0WjNSKkwNSlsvRG98E9/6m
-         ps9O1xO69TFnDoLE6jjIE/vAhd6b9FU+eOAhJQQe5kFxdZabHSQ6GPZlOrJ8XxAgLNBQ
-         /4vA==
-X-Gm-Message-State: AOAM531P5PcB4FvX1owO9HyAYhDM5HB8lZn+TBYIW1XAhgWEjJeT779B
-        Znta3V2ZqPsE2aAr1EzRtkxPRzQevxcETA==
-X-Google-Smtp-Source: ABdhPJwKD8ABvqTjlS2suQJ5JrMvIs24OmH4TnXHrMENcHNsp63GGMzybrVipXIFnllWcKfbMMGDrA==
-X-Received: by 2002:a05:620a:2a16:b0:6a5:9017:d781 with SMTP id o22-20020a05620a2a1600b006a59017d781mr25317322qkp.298.1654779092476;
-        Thu, 09 Jun 2022 05:51:32 -0700 (PDT)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id b9-20020ac87549000000b0030515120916sm345459qtr.44.2022.06.09.05.51.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 05:51:32 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-30fdbe7467cso204688977b3.1;
-        Thu, 09 Jun 2022 05:51:32 -0700 (PDT)
-X-Received: by 2002:a81:1dd2:0:b0:30f:a4fc:315e with SMTP id
- d201-20020a811dd2000000b0030fa4fc315emr44634435ywd.383.1654779091881; Thu, 09
- Jun 2022 05:51:31 -0700 (PDT)
+         :message-id:subject:to:content-transfer-encoding;
+        bh=iD6McwKwIghg6BHWgeKWaQ5MVkxCurltdSVwKmXM4W0=;
+        b=MDs9KiSaLqC20spg0lL+/X3TzrzDD2Bjl2Hi8PfYdqAb1bzQFbRyC2vkGAB+q00Du4
+         QudUb+Au/DdaiOkixyk067kOvNWCaFyxh7fnyhh27vfPVpJhTl/sbVm4Gzh+MRO/HoAE
+         FJLze9tXo97l7GuIxmCybPTE0evvNYNYM+q11eJOW7N3IP8spS2mQ5WzkRUKSCSUdSlv
+         JmUCql/4Rq37XEaTDt5uu9Z+JDb1jLExsW53TOdSRcRJKRsAz5zjZCaT1fK6terc31Sb
+         2f6AWiauwYLHZk9MWzU2ccGZMuTpQ9AKiVP+TUOlhCtBXw4oJL3mIbbDbfMNi236AcML
+         W+Aw==
+X-Gm-Message-State: AOAM5316XX6WXs9FgeQ9nmNp6WWfgjlX1ryQSZqbjJdIrkKiv6oU1eER
+        SKGD/Ar8ZoPmEfG5kycO1NCsQC6CYfRNaaOq6Q==
+X-Google-Smtp-Source: ABdhPJzHr6p91v8bPwlBk8HOqVwk0g7+lCi/t9+Eyex87Yig6dRIrzVd8Xgn/Htk12Bx8Z1hnf1cz8sjT5E846Mh+ic=
+X-Received: by 2002:a05:690c:58c:b0:30c:1fe9:af8 with SMTP id
+ bo12-20020a05690c058c00b0030c1fe90af8mr44909325ywb.403.1654779503515; Thu, 09
+ Jun 2022 05:58:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220608173025.22792-1-biju.das.jz@bp.renesas.com> <20220608173025.22792-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220608173025.22792-3-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 9 Jun 2022 14:51:20 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXvH6S4WTnHOiqmawR5KxqX4DHNL88TaMkuqG2fxXCahA@mail.gmail.com>
-Message-ID: <CAMuHMdXvH6S4WTnHOiqmawR5KxqX4DHNL88TaMkuqG2fxXCahA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: rzg2ul-smarc-som: Enable ADC on
- SMARC platform
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220525032341.3182-1-warp5tw@gmail.com> <20220525032341.3182-2-warp5tw@gmail.com>
+ <YqEAY2jUQC8itp6h@kunai>
+In-Reply-To: <YqEAY2jUQC8itp6h@kunai>
+From:   Tyrone Ting <warp5tw@gmail.com>
+Date:   Thu, 9 Jun 2022 20:58:12 +0800
+Message-ID: <CACD3sJag7h6Xq1Dcy_hZ3XQy2EhKK6DkqADt0__c9X6RqLuy-g@mail.gmail.com>
+Subject: Re: [PATCH v6 1/5] dt-bindings: i2c: npcm: support NPCM845
+To:     Wolfram Sang <wsa@kernel.org>, Tyrone Ting <warp5tw@gmail.com>,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, jarkko.nikula@linux.intel.com,
+        semen.protsenko@linaro.org, jsd@semihalf.com, sven@svenpeter.dev,
+        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
+        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 8, 2022 at 7:30 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable the ADC found on RZ/G2UL SMARC SoM.
+Hi Wolfram:
+
+Thank you for your review and comments.
+
+Wolfram Sang <wsa@kernel.org> =E6=96=BC 2022=E5=B9=B46=E6=9C=889=E6=97=A5 =
+=E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=884:02=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> On Wed, May 25, 2022 at 11:23:37AM +0800, Tyrone Ting wrote:
+> > From: Tyrone Ting <kfting@nuvoton.com>
+> >
+> > Add compatible and nuvoton,sys-mgr description for NPCM i2c module.
+> >
+> > Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+>
+> Applied to for-next, thanks!
+>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.20.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best Regards,
+Tyrone
