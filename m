@@ -2,85 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DDE95449F5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:23:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA3C2544A0A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 13:27:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243613AbiFILXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 07:23:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46084 "EHLO
+        id S236850AbiFIL1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 07:27:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243597AbiFILXU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:23:20 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB40A191420;
-        Thu,  9 Jun 2022 04:23:18 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id EAB4366017DA;
-        Thu,  9 Jun 2022 12:23:16 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1654773797;
-        bh=anrmzD+t/qVGkb+sXMtzx5Tb0qXyjpZIloaFJGDHMDQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=KRjmrjOo76qrWUeoSIFEZ/k+0evvk/sWJUZXzutKJLAnMF/R35VRRPVNpmgHM2Kek
-         HSxDO6ki1/D57i6R5mInVVuOtAI/GSJpnHXPq+ciP8fzp9MyPmBPPj0GieoO5DGOPb
-         CCzFLdklOu9NcatZSPYpFg5hgSZAruVDRPTbj21X6yBsiBHYR88tu4wQ4axVAcdJOM
-         M9WYcRrzxbczJDixAiOsuUjrrkQtsukC38YfcWnJvIDuZnFtP0ViO/hSddIRNfikgR
-         yQA9NYcmTF/hDvpeJFDNUcr1cVxcm8bJrDClWkQRWfiey+V1ZHqlGad3/YGLlJk8bT
-         V2yupPBZjq+Rw==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v2 10/10] arm64: dts: mediatek: mt6795: Specify interrupts for vGIC
-Date:   Thu,  9 Jun 2022 13:23:03 +0200
-Message-Id: <20220609112303.117928-11-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220609112303.117928-1-angelogioacchino.delregno@collabora.com>
-References: <20220609112303.117928-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S232361AbiFIL1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 07:27:45 -0400
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39A5316A520;
+        Thu,  9 Jun 2022 04:27:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1654774064;
+  x=1686310064;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=bhskym4sqQMSOth67vOfsFUFtLxH4cebU75ziJNIKt4=;
+  b=KqH6xDCergcQvqxlnEwkcNL+B4agtQ2M1T8RDtmeiwIsaiDXPpQaV8dh
+   u7m+qIt0W5SawDunUAL+zXyZt5FbMjF0RHJm+nPk61KVJhlWgK87xMHEN
+   /NtK94K/dSgUCd6aBT80Lw5dphkwmJbiP/B4YnQHVsp/TH2pXIdN9roH4
+   XrWlYf3TlJZ5QnVDGGJGarBv3FCNWeDTulG9Od6k43k35FsYNYYMa+Z3E
+   KvmbGeDtX5W+4brEkpbaDSZOEKmRTxrJ1Wc/s37fRte98Hxqc1SLR7qL4
+   WZUb3iLnYULdSkoobidTfCf51YQVYzozL7yTtuJPgWLWBbfZ49xj5JzJz
+   A==;
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     <krzysztof.kozlowski@linaro.org>, <tglx@linutronix.de>,
+        <daniel.lezcano@linaro.org>
+CC:     <kernel@axis.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <alim.akhtar@samsung.com>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: [PATCH v4 0/4] clocksource: Add MCT support for ARTPEC-8
+Date:   Thu, 9 Jun 2022 13:27:34 +0200
+Message-ID: <20220609112738.359385-1-vincent.whitchurch@axis.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the maintenance interrupt for GIC-400.
+This series add supports for the timer block on ARTPEC-8.  The block itself is
+fully compatible with the existing exynos4210-mct driver.  The ARTPEC-8 SoC
+uses this block from two separate processors running Linux (AMP) so it needs
+some extra code to allow this sharing.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt6795.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+v4:
+- Rebase on v5.19-rc1 where all pre-requisites are merged
+- Minor rework of patch 4 as requested, see patch for details
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6795.dtsi b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-index f52800e287ab..d3bce9429e9b 100644
---- a/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6795.dtsi
-@@ -246,6 +246,8 @@ gic: interrupt-controller@10221000 {
- 			      <0 0x10222000 0 0x2000>,
- 			      <0 0x10224000 0 0x2000>,
- 			      <0 0x10226000 0 0x2000>;
-+			interrupts = <GIC_PPI 9
-+				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
- 		};
- 
- 		cci: cci@10390000 {
+v3:
+- Split and rename devicetree properties
+- Add vendor prefix to devicetree properties
+- Change descriptions of properties to hopefully describe hardware
+- Remove addition of more global variables to the driver
+
+v2:
+- The series is now rebased on top of Krzysztof's patch "dt-bindings: timer:
+  exynos4210-mct: describe known hardware and its interrupts".
+- Combine the Kconfig change and the local timer change into one series
+- Use devicetree property rather than module parameter for the local timer handling
+- Add specific compatible with the correct number of interrupts.
+
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+
+Cc: linux-samsung-soc@vger.kernel.org
+Cc: alim.akhtar@samsung.com
+
+Cc: devicetree@vger.kernel.org
+Cc: robh+dt@kernel.org
+
+Vincent Whitchurch (4):
+  dt-bindings: timer: exynos4210-mct: Add ARTPEC-8 MCT support
+  clocksource/drivers/exynos_mct: Support frc-shared property
+  clocksource/drivers/exynos_mct: Support local-timers property
+  clocksource/drivers/exynos_mct: Enable building on ARTPEC
+
+ .../timer/samsung,exynos4210-mct.yaml         | 26 ++++++
+ drivers/clocksource/Kconfig                   |  2 +-
+ drivers/clocksource/exynos_mct.c              | 83 +++++++++++++++++--
+ 3 files changed, 101 insertions(+), 10 deletions(-)
+
+
+base-commit: f2906aa863381afb0015a9eb7fefad885d4e5a56
 -- 
-2.35.1
+2.34.1
 
