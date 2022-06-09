@@ -2,151 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45918544E7F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 16:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47E3F544E96
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 16:20:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237174AbiFIOPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 10:15:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50792 "EHLO
+        id S243984AbiFIOUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 10:20:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238851AbiFIOPa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 10:15:30 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F9F971DB3
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 07:15:28 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id g25so1273035ejh.9
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 07:15:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xMZyHB+w1HZyBtjYMs8VhyGH58NpWoIROf4SCsJgVWE=;
-        b=IHfLfPqINk7QaemV+fnV7fo1ZYEA9/I2MgUtE2RiNbc6CjqAc2dVvhHP6lyYYroDa9
-         Btg7oV8h6m2pfWzlCHGvCcDTcw7pxjsTyjpbIYw6dPKrpXJHHisL2zCA2yuGtrk7QCIp
-         px21nXKdE0RpOq3V6GbPTBVyPpt4hkWmU9JLFuVFSGu4IK7SLMQpP248PfFxY+wx6KLE
-         ZR0cMC6Lic7+BaBSEH6kXcnedohAd5llgl5UciHgNnTKDqeOZZTEPFbg6qmJDqxPguLg
-         VzROxqS2E9P1v+lvmA5yA8oQTUewsPFedXXNZ15QsBxmGxQmreKxQs5MjO7ij0JiBfTg
-         8ywg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xMZyHB+w1HZyBtjYMs8VhyGH58NpWoIROf4SCsJgVWE=;
-        b=Eg2SWD1irnt3jKqoV9EAI3FeCTi9EdIOm2uEBrAKfsZt5MCCPDKmvkHoG74y067tzy
-         lvc1HA+v89Xlev2OXrCLs/TiozFDUFzQh6dCwlVic1z1LL1D3lTQmjBU1fatw0Do+z16
-         v5Ilnai34E1fx8KVZDbhlncgw7m3l4NUITVrRrkZgVlTwmqAKDfPDBmW0Hofo9eUCOrO
-         PihDkICq+cFmnm4q16ZgSpCP08KN2Def7VLT9SaZL+DkBXCyXiNfa2FyX2qOhPt3eCgi
-         12hSvovSVcjF7+T1lpmdU4CpKapmDOao/J+fu9CSFC4gFmCRMKwCPces76gJoN6PzbrN
-         UPFw==
-X-Gm-Message-State: AOAM532/g9VzROBMWb1xef3BAachQjh+Z2touz2qUHTvh51RsAhZZLx9
-        J2k/d5aoLpxZ50KCVQiVVO93wg==
-X-Google-Smtp-Source: ABdhPJwsQpdC8zY3pVgw5zuU9Lvz3PaHrGxutuHe3kM9BTzGZe/6dDFTxGXvB8QTefO1W0gh7jjJeA==
-X-Received: by 2002:a17:907:d24:b0:712:1142:88c7 with SMTP id gn36-20020a1709070d2400b00712114288c7mr1505148ejc.435.1654784126853;
-        Thu, 09 Jun 2022 07:15:26 -0700 (PDT)
-Received: from [192.168.0.198] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id rn13-20020a170906d92d00b006f3ef214df2sm10603243ejb.88.2022.06.09.07.15.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 07:15:26 -0700 (PDT)
-Message-ID: <e0f7146d-3ccc-a194-bb1e-c3475ca8c29e@linaro.org>
-Date:   Thu, 9 Jun 2022 16:15:25 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 32/48] arm64: dts: rockchip: align gpio-key node names
- with dtschema
-Content-Language: en-US
-To:     Maya Matuszczyk <maccraft123mc@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S243588AbiFIOT7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 10:19:59 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2520F24AC9D;
+        Thu,  9 Jun 2022 07:19:58 -0700 (PDT)
+Received: from notapiano (unknown [169.150.201.35])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D51F166017AE;
+        Thu,  9 Jun 2022 15:19:53 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1654784396;
+        bh=IGskQUzMVf3MzyO5y7ZT7G+KdfE9vPrMiktEA7GFgYA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZlRMs5kW5b4iU2ZLeEfP6jBr1LtN1syhRX3o0xPqAdaydhDzhfNl3DGRnSdnbC+AB
+         PRv+LTW1UFUdWBpQ2bsQOSRozNkWdYKVUeC69HiP+6/3izv/iXQ9BWUiNP/9HqJC3Q
+         dzVkodprlPUZHIQyylbAVunC74S64lADKQKupaAIsQ9G0nYl7dN28bvG+EHxDkfE/q
+         2Pp+WPxwiwChBKMq7gImqcsPaNTuTSs4oivcNE5eypIx54bnabZ718cbYMmYbkrZof
+         JGjcPalmCiC5v63bpzpYvOsU7XIGcVui3p+RJKXndNx0TlqVPxaaz90Z3Z9BW+vL2R
+         RxL8vyKohIyJg==
+Date:   Thu, 9 Jun 2022 10:19:49 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Guodong Liu <guodong.liu@mediatek.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel@vger.kernel.org
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
- <20220609114026.380682-3-krzysztof.kozlowski@linaro.org>
- <CAO_MupKxvaXRQvMyEUZMThBZ9033OeJec+BtBndjs5oZ3etTEQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAO_MupKxvaXRQvMyEUZMThBZ9033OeJec+BtBndjs5oZ3etTEQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: mt8192: Switch
+ drive-strength-adv for -microamp
+Message-ID: <20220609141949.j5h6esqjmoal3y2m@notapiano>
+References: <20220531221954.160036-1-nfraprado@collabora.com>
+ <20220531221954.160036-2-nfraprado@collabora.com>
+ <1332454e2733d48fdf2396bcaed37bc3e33616b5.camel@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1332454e2733d48fdf2396bcaed37bc3e33616b5.camel@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/06/2022 15:57, Maya Matuszczyk wrote:
-> czw., 9 cze 2022 o 13:56 Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> napisaÅ‚(a):
->>
->> The node names should be generic and DT schema expects certain pattern
->> (e.g. with key/button/switch).
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3308-evb.dts   |  2 +-
->>  .../boot/dts/rockchip/rk3326-odroid-go2.dts   | 32 +++++++++----------
->>  .../boot/dts/rockchip/rk3328-nanopi-r2s.dts   |  2 +-
->>  arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi  |  2 +-
->>  .../boot/dts/rockchip/rk3368-geekbox.dts      |  2 +-
->>  .../dts/rockchip/rk3368-orion-r68-meta.dts    |  2 +-
->>  .../boot/dts/rockchip/rk3368-px5-evb.dts      |  2 +-
->>  arch/arm64/boot/dts/rockchip/rk3368-r88.dts   |  2 +-
->>  .../boot/dts/rockchip/rk3399-firefly.dts      |  2 +-
->>  .../dts/rockchip/rk3399-gru-chromebook.dtsi   |  2 +-
->>  .../boot/dts/rockchip/rk3399-gru-kevin.dts    |  2 +-
->>  .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi |  2 +-
->>  .../boot/dts/rockchip/rk3399-khadas-edge.dtsi |  2 +-
->>  .../boot/dts/rockchip/rk3399-nanopi-r4s.dts   |  4 +--
->>  .../boot/dts/rockchip/rk3399-nanopi4.dtsi     |  2 +-
->>  .../boot/dts/rockchip/rk3399-orangepi.dts     |  2 +-
->>  .../boot/dts/rockchip/rk3399-pinebook-pro.dts |  4 +--
->>  .../boot/dts/rockchip/rk3399-roc-pc.dtsi      |  2 +-
->>  .../boot/dts/rockchip/rk3399-rockpro64.dtsi   |  2 +-
->>  .../boot/dts/rockchip/rk3399-sapphire.dtsi    |  2 +-
->>  .../boot/dts/rockchip/rk3566-pinenote.dtsi    |  2 +-
->>  21 files changed, 38 insertions(+), 38 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
->> index 9b4f855ea5d4..4b5413b12bfa 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
->> @@ -75,7 +75,7 @@ gpio-keys {
->>                 pinctrl-names = "default";
->>                 pinctrl-0 = <&pwr_key>;
->>
->> -               power {
->> +               power-key {
->>                         gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_LOW>;
->>                         linux,code = <KEY_POWER>;
->>                         label = "GPIO Key Power";
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
->> index ea0695b51ecd..72328dd993ee 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
->> @@ -71,82 +71,82 @@ gpio-keys {
->>                  * |------------------------------------------------|
->>                  */
->>
->> -               sw1 {
->> +               switch-1 {
-> Wouldn't it make more sense to rename this and all other
-> renamed nodes in this dts into "button-dpad-up" or "button-1",
-> as on the physical device those are buttons and the naming
-> scheme of "sw" + number seems to be a carryover from
-> downstream sources.
+Hi Guodong,
 
-Can be buttons. I assumed SW comes from some kind of switch.
-I assume you mean only this Odroid Go2 DTS, because some other DTSes
-(like EVB above) explicitly call it "Key Power".
+On Wed, Jun 08, 2022 at 04:08:13PM +0800, Guodong Liu wrote:
+> -----Original Message-----
+> From: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> To: Linus Walleij <linus.walleij@linaro.org>
+> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com
+> >, kernel@collabora.com, Nícolas F. R. A. Prado <
+> nfraprado@collabora.com>, Krzysztof Kozlowski <
+> krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger <
+> matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>, Sean Wang <
+> sean.wang@mediatek.com>, devicetree@vger.kernel.org, 
+> linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+> linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+> Subject: [PATCH v2 1/2] dt-bindings: pinctrl: mt8192: Switch drive-
+> strength-adv for -microamp
+> Date: Tue, 31 May 2022 18:19:53 -0400
+> 
+> Commit e5fabbe43f3f ("pinctrl: mediatek: paris: Support generic
+> PIN_CONFIG_DRIVE_STRENGTH_UA") added support for using
+> drive-strength-microamp instead of mediatek,drive-strength-adv.
+> 
+> Since there aren't any users of mediatek,drive-strength-adv on mt8192
+> yet, remove this property and add drive-strength-microamp in its place,
+> which has a clearer meaning.
+> 
+> While at it, add a new 'if' block to validate that drive-strength and
+> drive-strength-microamp aren't used together, since they're mutually
+> exclusive.
+> 
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: AngeloGioacchino Del Regno <
+> angelogiocchino.delregno@collabora.com>
+> ---
+> 
+> Changes in v2:
+> - Added 'if' block to make drive-strength and drive-strength-microamp
+>   mutually exclusive
+> - Changed commit title to be more precise
+> - Dropped Fixes tag
+> 
+>  .../bindings/pinctrl/pinctrl-mt8192.yaml      | 35 ++++++-------------
+>  1 file changed, 10 insertions(+), 25 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-
+> mt8192.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-
+> mt8192.yaml
+> index c90a132fbc79..c8092b218f2f 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
+> @@ -80,31 +80,8 @@ patternProperties:
+>                dt-bindings/pinctrl/mt65xx.h. It can only support
+> 2/4/6/8/10/12/14/16mA in mt8192.
+>              enum: [2, 4, 6, 8, 10, 12, 14, 16]
+>  
+> -          mediatek,drive-strength-adv:
+> -            description: |
+> -              Describe the specific driving setup property.
+> -              For I2C pins, the existing generic driving setup can
+> only support
+> -              2/4/6/8/10/12/14/16mA driving. But in specific driving
+> setup, they
+> -              can support 0.125/0.25/0.5/1mA adjustment. If we enable
+> specific
+> -              driving setup, the existing generic setup will be
+> disabled.
+> -              The specific driving setup is controlled by E1E0EN.
+> -              When E1=0/E0=0, the strength is 0.125mA.
+> -              When E1=0/E0=1, the strength is 0.25mA.
+> -              When E1=1/E0=0, the strength is 0.5mA.
+> -              When E1=1/E0=1, the strength is 1mA.
+> -              EN is used to enable or disable the specific driving
+> setup.
+> -              Valid arguments are described as below:
+> -              0: (E1, E0, EN) = (0, 0, 0)
+> -              1: (E1, E0, EN) = (0, 0, 1)
+> -              2: (E1, E0, EN) = (0, 1, 0)
+> -              3: (E1, E0, EN) = (0, 1, 1)
+> -              4: (E1, E0, EN) = (1, 0, 0)
+> -              5: (E1, E0, EN) = (1, 0, 1)
+> -              6: (E1, E0, EN) = (1, 1, 0)
+> -              7: (E1, E0, EN) = (1, 1, 1)
+> -              So the valid arguments are from 0 to 7.
+> -            $ref: /schemas/types.yaml#/definitions/uint32
+> -            enum: [0, 1, 2, 3, 4, 5, 6, 7]
+> 
+> Can't remove mediatek,drive-strength-adv property, I2C pins will ofter
+> use this property
 
+Yes, the point is that they should use drive-strength-microamp instead, which
+does the exact same thing while also having a clearer meaning.
 
-Best regards,
-Krzysztof
+> 
+> +          drive-strength-microamp:
+> +            enum: [125, 250, 500, 1000]
+>  
+>            mediatek,pull-up-adv:
+>              description: |
+> @@ -138,6 +115,14 @@ patternProperties:
+>          required:
+>            - pinmux
+>  
+> +        allOf:
+> +          - if:
+> +              required:
+> +                - drive-strength-microamp
+> +            then:
+> +              properties:
+> +                drive-strength: false
+> +
+>          additionalProperties: false
+>  
+> Property drive-strength-microamp and drive-strength aren't exclusive,
+> just i2c pins support drive-strength-microamp property .
+
+They are exclusive in the sense that both drive-strength-microamp and
+drive-strength shouldn't be used on the same pin configuration. The fact that
+only i2c pins use drive-strength-microamp doesn't have to do with this, and is
+perfectly fine.
+
+Thanks,
+Nícolas
