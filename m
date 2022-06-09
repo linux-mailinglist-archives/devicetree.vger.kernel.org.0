@@ -2,120 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05E8E5451A9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 18:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 129295451B8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 18:19:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236702AbiFIQMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 12:12:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44844 "EHLO
+        id S237264AbiFIQTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 12:19:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240651AbiFIQMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 12:12:41 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C55C3167F0
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 09:12:40 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id s1so9962702wra.9
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 09:12:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ChRG0KIYJMedQ4f2yC6bVNs8GdwBtDapUrzg7nKkys0=;
-        b=CKmrwiUrOU9h70UP2P7kjzM9gYsPPlap/tfoIFKC4YLIKDPUcdy6FrZfRNxmtRhHF9
-         rjWpQSJbVXpwnHLlHB66DK0zxkohNjpoHKB0MgKQdcVyFUwDclHUFH3uHgVy8H/rm0NV
-         9SklHSST56yPstDrNS7fR98++/43tpAZHdA5nOuuqAjGwiiUsYZqvfNgsmpyXxc89BfL
-         TROcQk9KRgq1kuEBNmIK0tzum9TJSdfoNaAkkWOhxHmhJlNp/ux0SPoYbuZx6lGrYPB9
-         r9u0bu+kVxn/zUtd8ETpXDkrfzmf0BHiqjiQ3yook620V2wUNPkUSwvZdV4/v8vsi0uW
-         +cjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ChRG0KIYJMedQ4f2yC6bVNs8GdwBtDapUrzg7nKkys0=;
-        b=QOwj0IbmaCuxePn1Xs4QEcZposqZuUlHd3JiWPNAe2tGZ1VNlEZehr+bY8HfJDRKOO
-         +pNkjpMIWEflxO4UBppn/d+8XK6Ep8ehiEJTW1FwspbGTsCZoHuW1qd5rsLfTkRqpFFK
-         +QpMEBv5UCaNXMIIDWUCaoI73SKOCIYgguG1Ac6YebioL/Vmak09WsG0JYU9GQdhm5BA
-         9ETpjikSaZsjj9i0jfTjOkyiO0Pmaqnp6xVTSMr1pVpqj4qYQRUFOcqWKLpToK93TQqC
-         0RUDZY72RdXCUNdNDi/Wo4bf8kH4vtxHdu5y/dkJYElgRKjoYdXCxPhLS6CxnKLXy6CR
-         9/6w==
-X-Gm-Message-State: AOAM532jrEbxXpu/IidCthiaFmnpZ5di9NfFxQRHzE2KrqEd0zzZwlPk
-        fkPmPUUA+jNINA/8Ha4PVnhdKw==
-X-Google-Smtp-Source: ABdhPJyN0EMGgDYiCDR0QuKsfGPudsUAuMjjiZvGNSnBJHONwJ3trgJHUZ2xULhavI+BcDBHI9HhqA==
-X-Received: by 2002:adf:d1c4:0:b0:210:1935:3dd8 with SMTP id b4-20020adfd1c4000000b0021019353dd8mr39406969wrd.229.1654791158912;
-        Thu, 09 Jun 2022 09:12:38 -0700 (PDT)
-Received: from blmsp (dynamic-046-114-004-246.46.114.pool.telefonica.de. [46.114.4.246])
-        by smtp.gmail.com with ESMTPSA id j3-20020a5d4643000000b002103a7c5c91sm24014567wrs.43.2022.06.09.09.12.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 09:12:38 -0700 (PDT)
-Date:   Thu, 9 Jun 2022 18:12:36 +0200
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        Matthias Brugger <mbrugger@suse.com>,
+        with ESMTP id S234034AbiFIQTn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 12:19:43 -0400
+Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69BED55BE;
+        Thu,  9 Jun 2022 09:19:40 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1654791578; bh=4oG/+gfqOkTh35XvvWAtX5REN3FZwalZARzou9YHdB4=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=kd2Riq/FkSbvoJq2jjAf5MBgfp6q/RYP7eGUCErvWm+Pc0yqe6Br5pbsGU0kyhXou
+         WDPbyTDjTow1Pf4Hs2LDNl7nBheIGLZdcovSs/jTdg8aYrDrO4ZaXPckBS7BU/FGVE
+         A83JrJ3SU+rSCE3/BmHsI4XgoBLjxwceApHMXgZ0=
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
+Subject: Re: [RFC PATCH v2 5/5] ASoC: apple: Add macaudio machine driver
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
+In-Reply-To: <YqIWtzphzVGmbIOe@sirena.org.uk>
+Date:   Thu, 9 Jun 2022 18:19:37 +0200
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/4] dt-bindings: power: Add MT8365 power domains
-Message-ID: <20220609161236.b72x5hkvd5do6o2d@blmsp>
-References: <20220530204214.913251-1-fparent@baylibre.com>
- <20220605212200.GA3539140-robh@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220605212200.GA3539140-robh@kernel.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>, asahi@lists.linux.dev
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <4DA6EE04-D23B-437B-8FBA-9223EAA71219@cutebit.org>
+References: <20220606191910.16580-1-povik+lin@cutebit.org>
+ <20220606191910.16580-6-povik+lin@cutebit.org>
+ <YqHylN3xba9XFrF8@sirena.org.uk>
+ <0E611F13-96E3-41FD-9550-F900B2EFB00A@cutebit.org>
+ <YqILv21K+tZ00Qhx@sirena.org.uk>
+ <2A0422B8-8367-457E-A146-730F7C3DE66B@cutebit.org>
+ <YqIWtzphzVGmbIOe@sirena.org.uk>
+To:     Mark Brown <broonie@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 05, 2022 at 04:22:00PM -0500, Rob Herring wrote:
-> On Mon, May 30, 2022 at 10:42:11PM +0200, Fabien Parent wrote:
-> > Add power domains dt-bindings for MT8365.
-> > 
-> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > ---
-> >  .../power/mediatek,power-controller.yaml      |  2 ++
-> >  include/dt-bindings/power/mt8365-power.h      | 19 +++++++++++++++++++
-> >  2 files changed, 21 insertions(+)
-> >  create mode 100644 include/dt-bindings/power/mt8365-power.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> > index 135c6f722091..2c6d3e4246b2 100644
-> > --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> > +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> > @@ -29,6 +29,7 @@ properties:
-> >        - mediatek,mt8186-power-controller
-> >        - mediatek,mt8192-power-controller
-> >        - mediatek,mt8195-power-controller
-> > +      - mediatek,mt8365-power-controller
-> >  
-> >    '#power-domain-cells':
-> >      const: 1
-> > @@ -67,6 +68,7 @@ patternProperties:
-> >                "include/dt-bindings/power/mt8183-power.h" - for MT8183 type power domain.
-> >                "include/dt-bindings/power/mt8192-power.h" - for MT8192 type power domain.
-> >                "include/dt-bindings/power/mt8195-power.h" - for MT8195 type power domain.
-> > +              "include/dt-bindings/power/mt8365-power.h" - for MT8365 type power domain.
-> >          maxItems: 1
-> >  
-> >        clocks:
-> > diff --git a/include/dt-bindings/power/mt8365-power.h b/include/dt-bindings/power/mt8365-power.h
-> > new file mode 100644
-> > index 000000000000..4f50997a13b4
-> > --- /dev/null
-> > +++ b/include/dt-bindings/power/mt8365-power.h
-> > @@ -0,0 +1,19 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> 
-> Dual license please.
 
-Thanks Rob, fixed for v2.
-> 
-> Rob
+> On 9. 6. 2022, at 17:50, Mark Brown <broonie@kernel.org> wrote:
+>=20
+> On Thu, Jun 09, 2022 at 05:24:49PM +0200, Martin Povi=C5=A1er wrote:
+>>> On 9. 6. 2022, at 17:03, Mark Brown <broonie@kernel.org> wrote:
+>=20
+> Why is this off list?
+
+By accident, added the CC list back with this reply (hopefully it
+still attaches to the thread when people receive it).
+
+>>> That's basically no userspaces at this point TBH.  I'm not convinced
+>>> it's a good idea to be adding custom code for that use case.
+>>=20
+>> FWIW I know of at least one user of the WIP audio support on Macs who
+>> would welcome this feature. My preference is to keep it in, but in
+>> the end I guess it=E2=80=99s your call.
+>=20
+> I'd rather not have this open coded in individual drivers, we already
+> have an unfortunate abundance of jack detection interfaces.  If we're
+> going to add anything I'd rather it were in core code and TBH I'm
+> struggling to be enthusiastic.
+
+Noted.
+
+> Can you say anything more about the use case?
+
+I can restate: The alleged use case is running userspace without sound
+server, but having playback switch transparently between speakers and
+headphones even mid-stream based on jack detection.
+
+>>>> I looked at the existing DAPM integration but I couldn=E2=80=99t =
+figure out
+>>>> how to switch the demux with it.
+>=20
+>>> Yes, it won't do that.  If you can't stream the same audio to both =
+then
+>>> you'd need something else.
+>=20
+>> I don=E2=80=99t understand what=E2=80=99s meant by streaming the same =
+audio here.
+>=20
+> Playing one audio stream from the host which appears on both speakers
+> and headphones - I don't know what the mixing and muxing capabilities =
+of
+> the hardware are.
+>=20
+>> Taking a guess: The existing DAPM integration can enable the =
+headphones
+>> path based on jack being plugged in, but it can=E2=80=99t disable the =
+speakers
+>> path like the demux does?
+>=20
+> No, that works perfectly fine - you can enable or disable pins =
+depending
+> on the jack state.
+
+Ah, I peeked into soc-jack.c. What about this then: If I understand what
+pins represent, they would be at the remote end of the DAPM paths. So if
+for the speakers I add something like
+
+   Headphones Codec Out =E2=80=94> Jack pin
+
+                       +--> Always-on pin
+                       |
+   Speaker Amp Out -> Mux
+                       |
+                       +--> Jack inverted pin
+
+and let userspace control the mux, it would in effect support the same
+use cases as what I attempted in the code so far. Sounds somewhat right?
+
