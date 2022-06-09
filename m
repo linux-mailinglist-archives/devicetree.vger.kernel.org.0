@@ -2,113 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F3A8544951
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 12:41:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 889AD544972
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 12:48:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243081AbiFIKlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 06:41:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34062 "EHLO
+        id S243201AbiFIKsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 06:48:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243395AbiFIKkp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 06:40:45 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4859435E366;
-        Thu,  9 Jun 2022 03:40:13 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S243033AbiFIKse (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 06:48:34 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B71D14015;
+        Thu,  9 Jun 2022 03:48:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3453666017C8;
-        Thu,  9 Jun 2022 11:40:11 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1654771212;
-        bh=E20Et6g8b02x7QxpsDbNVAddOo4xzLy9bfmWWuk7HMY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZcFyQMwCI9c79wLqIw1SRdX+qlMwWHQKqEEqNjw750BS5bdEsBQKkNTMzw+GiLUdJ
-         9K/XRosMfc49DN/FJTX0QGDeAd3u6D4YbXaZSg1pLwDcjdrRrluX7vpW6fA9mkR5Oz
-         W955AXX5s5A26e6j4OdyDl8Ko2zvjdjQyBsetqFEi+i73ztXB9mdTk+8/bc5cGa6xW
-         3Fx9y3elMWs2LdP7Urf290Y6/u/IVXEZGvmnr4iEu6Yle0lD3PhPQPtpPJXB3NDF8d
-         AOWK8Y+X5KQ85fYN/EtMBdaYq7yaBEMcsYYrSJdYV8ndQtdFhECDn+Tz/0rcAIliLP
-         hFHW+i7TB1Y9Q==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     yong.wu@mediatek.com
-Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v3 3/3] iommu: mtk_iommu: Add support for MT6795 Helio X10 M4Us
-Date:   Thu,  9 Jun 2022 12:40:01 +0200
-Message-Id: <20220609104001.97753-4-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220609104001.97753-1-angelogioacchino.delregno@collabora.com>
-References: <20220609104001.97753-1-angelogioacchino.delregno@collabora.com>
+        by ams.source.kernel.org (Postfix) with ESMTPS id 39D0DB82C04;
+        Thu,  9 Jun 2022 10:48:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FD59C34114;
+        Thu,  9 Jun 2022 10:48:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654771710;
+        bh=fzrWexAskT7761OX6YVLpBV0uk5ZpeEoL980M4D3UYo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=T4tHsGIzjTjEj6emD016kI2+9negOY8WK6XJwW/Czy9mjKVCilf0dspL6QLJFZWMe
+         m/CXhgKNyia+kNN0KG6CRloxkv7yPn49QagcfAqgIyRDAf24xpG/aXzFzZ1i78HO7y
+         AYVe/KlZWI8JRsW2V9sjLlbXWu6RqSdy4uLMHQpAnWg5uuH00l8FwYEd4suhPZkSU6
+         boPl/mJpnbPGuJDl0zt1eGK25+lf73zfFT1bJR3f0nfcGAufXq9qGYHuxiUywTFBsN
+         7wM8DR015BDwak8YJkABHrI2Yqjkvpri32Rh8KX/rXAkY2rJm1sQ/cr+RkeiAo/id0
+         aJOkyEuolb2YA==
+Date:   Thu, 9 Jun 2022 16:18:18 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] mtd: nand: raw: qcom_nandc: reorder
+ qcom_nand_host struct
+Message-ID: <20220609104818.GE2758@thinkpad>
+References: <20220608001030.18813-1-ansuelsmth@gmail.com>
+ <20220608001030.18813-4-ansuelsmth@gmail.com>
+ <20220609072240.GB2758@thinkpad>
+ <62a1caf0.1c69fb81.a67af.bdf8@mx.google.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <62a1caf0.1c69fb81.a67af.bdf8@mx.google.com>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the M4Us found in the MT6795 Helio X10 SoC.
+On Thu, Jun 09, 2022 at 12:26:53PM +0200, Ansuel Smith wrote:
+> On Thu, Jun 09, 2022 at 12:52:40PM +0530, Manivannan Sadhasivam wrote:
+> > On Wed, Jun 08, 2022 at 02:10:30AM +0200, Ansuel Smith wrote:
+> > > Reorder qcom_nand_host to save holes in the struct.
+> > > 
+> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > 
+> > If this patch gets moved to 2/3, you could save few changes. Also, do the same
+> > for other structs as well.
+> > 
+> > Thanks,
+> > Mani
+> >
+> 
+> Since 2/3 already had lots of changes didn't want to put a struct
+> reorder in it since it does touch also other values. Tell me if I should
+> squash the 2 commit.
+> 
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/iommu/mtk_iommu.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Not squashing but I mean to move this patch before the driver change (1/3), so
+that "codeword_fixup" can be added in the correct place.
 
-diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-index 8611cf8e4bd5..beca1c5a6c10 100644
---- a/drivers/iommu/mtk_iommu.c
-+++ b/drivers/iommu/mtk_iommu.c
-@@ -160,6 +160,7 @@
- enum mtk_iommu_plat {
- 	M4U_MT2712,
- 	M4U_MT6779,
-+	M4U_MT6795,
- 	M4U_MT8167,
- 	M4U_MT8173,
- 	M4U_MT8183,
-@@ -1424,6 +1425,19 @@ static const struct mtk_iommu_plat_data mt6779_data = {
- 	.larbid_remap  = {{0}, {1}, {2}, {3}, {5}, {7, 8}, {10}, {9}},
- };
- 
-+static const struct mtk_iommu_plat_data mt6795_data = {
-+	.m4u_plat     = M4U_MT6795,
-+	.flags	      = HAS_4GB_MODE | HAS_BCLK | RESET_AXI |
-+			HAS_LEGACY_IVRP_PADDR | MTK_IOMMU_TYPE_MM |
-+			TF_PORT_TO_ADDR_MT8173,
-+	.inv_sel_reg  = REG_MMU_INV_SEL_GEN1,
-+	.banks_num    = 1,
-+	.banks_enable = {true},
-+	.iova_region  = single_domain,
-+	.iova_region_nr = ARRAY_SIZE(single_domain),
-+	.larbid_remap = {{0}, {1}, {2}, {3}, {4}}, /* Linear mapping. */
-+};
-+
- static const struct mtk_iommu_plat_data mt8167_data = {
- 	.m4u_plat     = M4U_MT8167,
- 	.flags        = RESET_AXI | HAS_LEGACY_IVRP_PADDR | MTK_IOMMU_TYPE_MM,
-@@ -1536,6 +1550,7 @@ static const struct mtk_iommu_plat_data mt8195_data_vpp = {
- static const struct of_device_id mtk_iommu_of_ids[] = {
- 	{ .compatible = "mediatek,mt2712-m4u", .data = &mt2712_data},
- 	{ .compatible = "mediatek,mt6779-m4u", .data = &mt6779_data},
-+	{ .compatible = "mediatek,mt6795-m4u", .data = &mt6795_data},
- 	{ .compatible = "mediatek,mt8167-m4u", .data = &mt8167_data},
- 	{ .compatible = "mediatek,mt8173-m4u", .data = &mt8173_data},
- 	{ .compatible = "mediatek,mt8183-m4u", .data = &mt8183_data},
+Also move the respective Kdoc comments.
+
+Thanks,
+Mani
+
+> > > ---
+> > >  drivers/mtd/nand/raw/qcom_nandc.c | 7 ++++---
+> > >  1 file changed, 4 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
+> > > index 06ee9a836a3b..110f839c9e51 100644
+> > > --- a/drivers/mtd/nand/raw/qcom_nandc.c
+> > > +++ b/drivers/mtd/nand/raw/qcom_nandc.c
+> > > @@ -475,11 +475,13 @@ struct qcom_nand_host {
+> > >  	int cs;
+> > >  	int cw_size;
+> > >  	int cw_data;
+> > > -	bool use_ecc;
+> > > -	bool bch_enabled;
+> > >  	int ecc_bytes_hw;
+> > >  	int spare_bytes;
+> > >  	int bbm_size;
+> > > +
+> > > +	bool codeword_fixup;
+> > > +	bool use_ecc;
+> > > +	bool bch_enabled;
+> > >  	u8 status;
+> > >  	int last_command;
+> > >  
+> > > @@ -490,7 +492,6 @@ struct qcom_nand_host {
+> > >  	u32 clrflashstatus;
+> > >  	u32 clrreadstatus;
+> > >  
+> > > -	bool codeword_fixup;
+> > >  	int nr_boot_partitions;
+> > >  	struct qcom_nand_boot_partition *boot_partitions;
+> > >  };
+> > > -- 
+> > > 2.36.1
+> > > 
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
+> 
+> -- 
+> 	Ansuel
+
 -- 
-2.35.1
-
+மணிவண்ணன் சதாசிவம்
