@@ -2,141 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A90A5448DA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 12:27:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2BE25448E9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 12:31:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230425AbiFIK1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 06:27:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50196 "EHLO
+        id S234347AbiFIKbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 06:31:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242762AbiFIK1L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 06:27:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64E0E202D2F;
-        Thu,  9 Jun 2022 03:27:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ECEF661D3A;
-        Thu,  9 Jun 2022 10:27:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EABAC34114;
-        Thu,  9 Jun 2022 10:27:07 +0000 (UTC)
-Message-ID: <ca006530-b20b-f97c-af68-5f0191478f96@xs4all.nl>
-Date:   Thu, 9 Jun 2022 12:27:05 +0200
+        with ESMTP id S229887AbiFIKbt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 06:31:49 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7293020E174
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 03:31:46 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id x62so30580409ede.10
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 03:31:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ufnscmxQX0AEbzv5PDtE4okgkONgzlvCJEgtYxQypeY=;
+        b=PvTB125tZx08/hSvZa0syMVCHbKXmlH9QhWjjk13m1U4RJs0l+5sC2JJ3fHV+Nb1/u
+         ep/DvZG+xBu13nOf1ivLWhHz8VBNxtgqz/kf/AQdhwfxjiQQ5wRBIWfNyI5qhHtm8/YN
+         a5pbig0h3m4TSnO4UgWGOHYITPP7Ye9e2st1LR8xlyuBjbzWObAXC6FE0A33sPe13JGW
+         uGu5S5TVz1Z8TtvQu9FkHT0EUsxkpHx5/c9mZvZJkPPE2RCcy3/lJxsBVT2LdUcRpy80
+         PF1ArDfyrRwbGp1zKwVwTbv0kpmI9vo+/YeU+llZcojlFMT7uinD924FB2KFN2yeD0J6
+         Kn3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ufnscmxQX0AEbzv5PDtE4okgkONgzlvCJEgtYxQypeY=;
+        b=cl9f5maXjiIkQD/sG/hnD0Dm5TBCQZqqkNpuTWwXer5B1bQhCpsSJU7NOAx2U3WeHL
+         XInKRkMUDNKmIpvyP4AZeBQtow12T5jtE/Q0ZqTJ9Ap3Xa09zOI0y7ZR5Ap8d51VjyAh
+         fB2KslqzBb5qd8JaqBlF2flDT7zvvvUgvgReRTGHDyMQn7UX95iIN7LU1oA+kpyKdlpe
+         AhoOOXtME4se7F5bheFYIDgzyg8UgcmtNFaKP2B6KHvVst/OnKEkKvsJOt1NRE5kK1vL
+         Rk8f+adJDqdhOxuPGmOEMZFTXJU02PnWPHDuS3/fVA0BwxgcgEyhildyS9UWFKrhhrM1
+         8D0g==
+X-Gm-Message-State: AOAM532O6lowbH7u8L6qRfDdb7S3/AKo/JPZzbUOtb8tTqQrlu0ox1Kj
+        IOdcz+DHP7EgBuVwWK38D9ERhQ==
+X-Google-Smtp-Source: ABdhPJw5ncZiCRvmHdPWyeUur4wU6OHfZmwNQw3+Rny6dLpgU8K5SbVI4FBkZ6nYipWKlORRD78xpg==
+X-Received: by 2002:a05:6402:270a:b0:431:43f6:1e02 with SMTP id y10-20020a056402270a00b0043143f61e02mr27435767edd.317.1654770705027;
+        Thu, 09 Jun 2022 03:31:45 -0700 (PDT)
+Received: from [192.168.0.196] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id p23-20020a170906499700b0070f36b8cb39sm8066737eju.103.2022.06.09.03.31.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Jun 2022 03:31:44 -0700 (PDT)
+Message-ID: <7b8653c1-355d-b390-042d-e02085a3910a@linaro.org>
+Date:   Thu, 9 Jun 2022 12:31:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH] media: imx-jpeg: Disable slot interrupt when frame done
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: backlight: rt4831: Add the new ocp
+ level property
 Content-Language: en-US
-To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
-        mirela.rabulea@oss.nxp.com
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220607072315.23209-1-ming.qian@nxp.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20220607072315.23209-1-ming.qian@nxp.com>
+To:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
+        daniel.thompson@linaro.org, jingoohan1@gmail.com
+Cc:     pavel@ucw.cz, deller@gmx.de, cy_huang@richtek.com,
+        lucas_tsai@richtek.com, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1654741339-12756-1-git-send-email-u0084500@gmail.com>
+ <1654741339-12756-2-git-send-email-u0084500@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1654741339-12756-2-git-send-email-u0084500@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.9 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ming Qian,
-
-On 6/7/22 09:23, Ming Qian wrote:
-> The interrupt STMBUF_HALF may be triggered after frame done.
-> It may led to system hang if driver try to access the register after
-> power off.
+On 09/06/2022 04:22, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Disable the slot interrupt when frame done.
+> Add 'richtek,bled-ocp-microamp' property to make it chooseable.
 > 
-> Fixes: 2db16c6ed72ce ("media: imx-jpeg: Add V4L2 driver for i.MX8 JPEG Encoder/Decoder")
-> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> The wrong backlight ocp level may affect the backlight channel output
+> current smaller than configured.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 > ---
->  drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c |  5 +++++
->  drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h |  1 +
->  drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c    | 11 ++---------
->  3 files changed, 8 insertions(+), 9 deletions(-)
+> Since v3:
+> - Refine the description for backlight ocp property.
+> - Use the enum to list the supported value.
 > 
-> diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
-> index c482228262a3..9418fcf740a8 100644
-> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
-> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
-> @@ -79,6 +79,11 @@ void mxc_jpeg_enable_irq(void __iomem *reg, int slot)
->  	writel(0xFFFFFFFF, reg + MXC_SLOT_OFFSET(slot, SLOT_IRQ_EN));
->  }
->  
-> +void mxc_jpeg_disable_irq(void __iomem *reg, int slot)
-> +{
-> +	writel(0x0, reg + MXC_SLOT_OFFSET(slot, SLOT_IRQ_EN));
-> +}
-> +
->  void mxc_jpeg_sw_reset(void __iomem *reg)
->  {
->  	/*
-> diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h
-> index 07655502f4bd..ecf3b6562ba2 100644
-> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h
-> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.h
-> @@ -126,6 +126,7 @@ u32 mxc_jpeg_get_offset(void __iomem *reg, int slot);
->  void mxc_jpeg_enable_slot(void __iomem *reg, int slot);
->  void mxc_jpeg_set_l_endian(void __iomem *reg, int le);
->  void mxc_jpeg_enable_irq(void __iomem *reg, int slot);
-> +void mxc_jpeg_disable_irq(void __iomem *reg, int slot);
->  int mxc_jpeg_set_input(void __iomem *reg, u32 in_buf, u32 bufsize);
->  int mxc_jpeg_set_output(void __iomem *reg, u16 out_pitch, u32 out_buf,
->  			u16 w, u16 h);
-> diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-> index 965021d3c7ef..b1f48835398e 100644
-> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-> @@ -592,15 +592,7 @@ static irqreturn_t mxc_jpeg_dec_irq(int irq, void *priv)
->  	dev_dbg(dev, "Irq %d on slot %d.\n", irq, slot);
->  
->  	ctx = v4l2_m2m_get_curr_priv(jpeg->m2m_dev);
-> -	if (!ctx) {
-> -		dev_err(dev,
-> -			"Instance released before the end of transaction.\n");
-> -		/* soft reset only resets internal state, not registers */
-> -		mxc_jpeg_sw_reset(reg);
-> -		/* clear all interrupts */
-> -		writel(0xFFFFFFFF, reg + MXC_SLOT_OFFSET(slot, SLOT_STATUS));
-> -		goto job_unlock;
-> -	}
-> +	WARN_ON(!ctx);
+> Since v2:
+> - Change the property name from 'richtek,bled-ocp-sel' to 'richtek,bled-ocp-microamp'.
+> 
 
-This looks very scary, since if this happens,
 
->  
->  	if (slot != ctx->slot) {
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-then it will crash here when it attempts to access ctx.
-
-Shouldn't this be better?
-
-	if (WARN_ON(!ctx))
-		goto job_unlock;
-
-It's certainly a lot more robust.
-
-Regards,
-
-	Hans
-
->  		/* TODO investigate when adding multi-instance support */
-> @@ -673,6 +665,7 @@ static irqreturn_t mxc_jpeg_dec_irq(int irq, void *priv)
->  	buf_state = VB2_BUF_STATE_DONE;
->  
->  buffers_done:
-> +	mxc_jpeg_disable_irq(reg, ctx->slot);
->  	jpeg->slot_data[slot].used = false; /* unused, but don't free */
->  	mxc_jpeg_check_and_set_last_buffer(ctx, src_buf, dst_buf);
->  	v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
+Best regards,
+Krzysztof
