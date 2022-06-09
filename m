@@ -2,98 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AF1454474B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 11:24:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E794B544762
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 11:26:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230105AbiFIJYC convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Jun 2022 05:24:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50526 "EHLO
+        id S239331AbiFIJ0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 05:26:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbiFIJYC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 05:24:02 -0400
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B3B928998;
-        Thu,  9 Jun 2022 02:24:01 -0700 (PDT)
-Received: by mail-qv1-f42.google.com with SMTP id b17so7674830qvz.0;
-        Thu, 09 Jun 2022 02:24:01 -0700 (PDT)
+        with ESMTP id S233243AbiFIJ0m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 05:26:42 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84F153A186
+        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 02:26:39 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id u8so27214812wrm.13
+        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 02:26:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=doJDwgeNCCpGAVqsr1zYgJtRpwsMml2sELB5t/MLY5M=;
+        b=VPq3f0ZdO06SkOgMTlkS3D7YZmul+nXO/J0BjMk+stYpad6L9H5cOp2IBGHQEJn+Sl
+         1DMRophNR04WNcXUHOqrs6OdfQB6HANh/JIw0MbdRNMPdyNkUr80U6L24XxRCD+MDAjQ
+         b8uHt8YM3EAoR9QEqHA6AWl3jKoB4Qv35ji2cAwqZiUJ19jKK2galnmED0gVBj+49+66
+         /qGVkju5ZMhYZOrCdmwHdn/4FpDWyJv/LT9amthGPdsenZoaAJkV3WM4pcG5dhO2/6AC
+         O8TCD9uWN5YA+b2+xx6Tzxnp/uPXS1CUQ9z2beYU40E9pslWPHdTUZeMIWzAmccv0CRG
+         zrng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Hnmd3IRDd62Da3L6ZDV2N5MF/jRn6ZQWlE7WGBHbxwM=;
-        b=XKqiqGs5YzC9aXoQhg7I+jD5sgcHd53BkO5xiX2yrTJYqonhfnzqRBDdPo+jGVgyKP
-         tM2cwM3AjixDnqAJ5c5LXri+AAJXXNko/oHC5L5BJvnY/e13mbJ51GJXwcdzASk9Z+iL
-         icqxmoBPWyxx6nTCAtEm+WUjSMa6XVD0ZXqm0VS22dhP7SSXILk1OUyihD6rX25XaCIb
-         zMtLnKD97YQUltGgk8rz6B4LgCK6D2JjXwJb8aqJw68voe8lFyAgcNwL3YSauYMIp2pO
-         jIcJx8bbk6jyuU8mzEmAqiNQJZ4wesbhaHe+AFdozWEqtTKOMWz09QBf9/E5V3uC0vH3
-         z7xw==
-X-Gm-Message-State: AOAM5333NtkryolECRUhYLfpkNjhFcRZ4xzbYjcemGqjol6ldTfPwYii
-        HzhYKz+eyIlImdO58aEInXsRiC3xE1bi7A==
-X-Google-Smtp-Source: ABdhPJzv3D9+ZSrNb9+1W4D+qFm60OdswW15nt7RK2AlqAVgqUU/6UHHT6MU7nOUCBFjQyPI/w+rng==
-X-Received: by 2002:ad4:49ac:0:b0:46a:effd:fbd0 with SMTP id u12-20020ad449ac000000b0046aeffdfbd0mr18866414qvx.13.1654766640364;
-        Thu, 09 Jun 2022 02:24:00 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id g16-20020ac85810000000b002f906fc8530sm8066784qtg.46.2022.06.09.02.23.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 02:24:00 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id g201so12934572ybf.12;
-        Thu, 09 Jun 2022 02:23:59 -0700 (PDT)
-X-Received: by 2002:a25:7307:0:b0:65c:b98a:f592 with SMTP id
- o7-20020a257307000000b0065cb98af592mr38482388ybc.380.1654766639717; Thu, 09
- Jun 2022 02:23:59 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=doJDwgeNCCpGAVqsr1zYgJtRpwsMml2sELB5t/MLY5M=;
+        b=x5uZejqFHmN7QHhQ+3h/+zINvPaQ6Ay9IBLGN5d9X6q3K6qEia7b0rQ7cC8zTfPr8i
+         5WIY56AGn0HkhatWy42gFdC5oQb/U1V/vGZQhgEdeS1eq8wp3KBfCGZq2z7N0TRvlEDV
+         9dz5X5WDSQ3ZTM277Hzukk2h0yaNB2t4qH2y7pxc+Yy0x3lzon/KvN8m5syt6UVTqQvN
+         BCTcavbUBjzpvHEhkaHYTrkF29uKi84pYwsO7pFBDQMDTM9hT2SN4KxnanAFXjqeScVQ
+         /JDO8qBfwkMlEYJr1ygUGHyUINM2F3CzY9GRhfjaEG0UJF+1sQYskH7WEkgwLUDSxdzl
+         LPGQ==
+X-Gm-Message-State: AOAM530oGP99gbicbz2vTgoloCzb6B6Rsbw/VA5iSASIctTeo1wxuqo+
+        4/LMU0obVqKUuzG8HAUd//WPpg==
+X-Google-Smtp-Source: ABdhPJwHbfMoTUujhvRpFZUQSGO8P5QHWho99EELCVbHKvomYjfYHQdY9sivEWq9/Zf7ddPDSfJWtA==
+X-Received: by 2002:adf:f750:0:b0:210:2ef5:7c5c with SMTP id z16-20020adff750000000b002102ef57c5cmr36424281wrp.416.1654766797986;
+        Thu, 09 Jun 2022 02:26:37 -0700 (PDT)
+Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id b15-20020adfde0f000000b002103136623esm24819171wrm.85.2022.06.09.02.26.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jun 2022 02:26:37 -0700 (PDT)
+Date:   Thu, 9 Jun 2022 10:26:35 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee.jones@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
+        deller@gmx.de, cy_huang@richtek.com, lucas_tsai@richtek.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: backlight: rt4831: Add the new ocp
+ level property
+Message-ID: <20220609092635.ew3wqfi2uv6d3smj@maple.lan>
+References: <1654741339-12756-1-git-send-email-u0084500@gmail.com>
+ <1654741339-12756-2-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
-References: <20220608175728.1012550-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdV28kUAZjGUwv=hHOFdwCj+OhJDixN+eY_UvPdtPxRmoQ@mail.gmail.com> <YqGyCtmLM9vl4voC@oden.dyn.berto.se>
-In-Reply-To: <YqGyCtmLM9vl4voC@oden.dyn.berto.se>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 9 Jun 2022 11:23:48 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVr1h1gPAJneJOQ5qPDFeRA_6hRt1ijUNa0nOtYRjLm1w@mail.gmail.com>
-Message-ID: <CAMuHMdVr1h1gPAJneJOQ5qPDFeRA_6hRt1ijUNa0nOtYRjLm1w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: Add missing space after remote-endpoint
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1654741339-12756-2-git-send-email-u0084500@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Niklas,
+On Thu, Jun 09, 2022 at 10:22:18AM +0800, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
+> 
+> Add 'richtek,bled-ocp-microamp' property to make it chooseable.
+> 
+> The wrong backlight ocp level may affect the backlight channel output
+> current smaller than configured.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 
-On Thu, Jun 9, 2022 at 10:40 AM Niklas Söderlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> On 2022-06-09 10:13:49 +0200, Geert Uytterhoeven wrote:
-> > On Wed, Jun 8, 2022 at 7:58 PM Niklas Söderlund
-> > <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > > Add the missing space after remote-endpoint in r8a774c0.dtsi and
-> > > r8a77990.dtsi before the typo spreads to other files.
-> > >
-> > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
 
-> > Do you plan to fix the other in-tree offenders, too?
->
-> I was plain too, seems like a perfect opportunity to force myself to try
-> and learn Coccinelle :-)
 
-Very smart!
-I would chicken-out, saying the number of offenders is too small ;-)
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Daniel.
