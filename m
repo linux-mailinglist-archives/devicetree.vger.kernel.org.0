@@ -2,86 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 543FC545224
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 18:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18EE4545235
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 18:43:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344805AbiFIQjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 12:39:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52134 "EHLO
+        id S238237AbiFIQnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 12:43:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244751AbiFIQjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 12:39:25 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF03261808;
-        Thu,  9 Jun 2022 09:39:24 -0700 (PDT)
+        with ESMTP id S238146AbiFIQnp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 12:43:45 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68188A8;
+        Thu,  9 Jun 2022 09:43:43 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id s12so41411744ejx.3;
+        Thu, 09 Jun 2022 09:43:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654792764; x=1686328764;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=p8iFJ3QnHLXyV0XBD0xEpbKqckLKd6ENyKoogA15bwk=;
-  b=ZE0zH0AwoD051GX3JFHfAyt7gRcGwpbN2F/vf+pEctcvY26kpAKFDfAr
-   KE8EVJTygEjxbiYsukuFc/3U1HgYWaxt8adrLpjj+hJZvWmzqJXWwCmXe
-   UUnMAukd6BIihnd8aNicpf5kDMU2zgWQPpeQnJYeqd1ma0/tsVuM2uvmg
-   s=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 09 Jun 2022 09:39:24 -0700
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2022 09:39:22 -0700
-Received: from quicinc.com (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 9 Jun 2022
- 09:39:22 -0700
-Date:   Thu, 9 Jun 2022 09:39:20 -0700
-From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-CC:     <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <wens@csie.org>,
-        <jic23@kernel.org>, <lee.jones@linaro.org>, <sre@kernel.org>,
-        <broonie@kernel.org>, <gregkh@linuxfoundation.org>,
-        <lgirdwood@gmail.com>, <lars@metafoo.de>, <rafael@kernel.org>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH v2 01/17] regmap-irq: Use sub_irq_reg() to calculate
- unmask register address
-Message-ID: <20220609163920.GA7420@quicinc.com>
-References: <20220607155324.118102-1-aidanmacdonald.0x0@gmail.com>
- <20220607155324.118102-2-aidanmacdonald.0x0@gmail.com>
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=iBiZ6SznVvXATC1SUBdZ68AkCh7t6mlC0hhaQj4/WrA=;
+        b=OIAtE1zuERdBCetQexFckqbqrgl8T8B+lM+/UK2in1cW48d3d841F68oZ8vjXCGWGm
+         l/R8nApT1yg8gtniEWhvesAmqQJhKJqJ+ex9O+mkWozilSiCasF9+MXZVF7ZJEv7FQJp
+         ZgMMHUOMz7N9tjwfeHYq5xJbpvoq2ct4pxtBKIk2O0KlqVOjVSo6xobJoThYAi8ysBou
+         zeshNvfD7He6Vfam19bdu7Ho9KrQ1ifa2UHnWl+mJKHMOBgFJeKh01TIqMLtT/y5yiWS
+         CKZ7S9x8GG7/DWVAEpWnHbhPDJNTYGDj+JcGKfm3cm/DU7VuJ+B2zvjZyKRqJQU0LEpL
+         RU5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iBiZ6SznVvXATC1SUBdZ68AkCh7t6mlC0hhaQj4/WrA=;
+        b=FlW5Z30s31cLV1Cr4IOeDoAfjFCbRS4Mmq2SrUzp/HGabVgYFrpXVhFz/e7HReeCMd
+         xwebQJ1NTdwS086OZ/OSw6xu/2Jr1Q38kqca8EKvRfyP8SNtRHEOZv5sxQaJP3TXaWNY
+         RgV4cQrpulqjGS8J+PljaLqLJADKwRKooeXweDOBDKoXQ7cUMiWzpfexLlmoNC8z8Z+0
+         hEqlgwx4kyDgs+FHEM/6XINxBhlxU3hCE8cMwfVTEy5dgG6ELonkqVydPyKB26Z/sS6I
+         W5686+As0SSd9YQNn8qA43g5GpFoujKRuPgHZ8NGa9rgggCTUKWwDwNdnjZPqCgDupDP
+         BMJA==
+X-Gm-Message-State: AOAM532JpoS33z4by2HlL6BfLO29js1tOl69bJaFKXlES+QNVuL+6g8l
+        idJVbTlb8GhJNFVeh4CcLxzAaJpsCQg6MRIgvLmQTJCTEpXecQ==
+X-Google-Smtp-Source: ABdhPJz2/M0DGbWsj8CASHzOZAB+znTCBKOVfhi/GLCIRO6n1OofksuugGla4O2xS5kBmoRnaG30pqW2Ub50V5gD7o0=
+X-Received: by 2002:a17:906:434f:b0:711:eb76:c320 with SMTP id
+ z15-20020a170906434f00b00711eb76c320mr11280199ejm.636.1654793021839; Thu, 09
+ Jun 2022 09:43:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220607155324.118102-2-aidanmacdonald.0x0@gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220609162734.1462625-1-jjhiblot@traphandler.com> <20220609162734.1462625-4-jjhiblot@traphandler.com>
+In-Reply-To: <20220609162734.1462625-4-jjhiblot@traphandler.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 9 Jun 2022 18:43:04 +0200
+Message-ID: <CAHp75VftbVOwPFra83T-k5d1qu3NnD_sDHYxiiSEDDrW3NObNQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] leds: tlc5925: Add support for non blocking operations
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, krzk+dt@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 07, 2022 at 04:53:08PM +0100, Aidan MacDonald wrote:
-> Call sub_irq_reg() instead of calculating the offset of the register
-> to avoid relying on the fact that sub_irq_reg() is a linear function.
+On Thu, Jun 9, 2022 at 6:29 PM Jean-Jacques Hiblot
+<jjhiblot@traphandler.com> wrote:
+>
+> Settings multiple LEDs in a row can be a slow operation because of the
+> time required to acquire the bus and prepare the transfer.
+> And, in most cases, it is not required that the operation is synchronous.
+>
+> Implementing the non-blocking brightness_set() for such cases.
+> A work queue is used to perform the actual SPI transfer.
+>
+> The blocking method is still available in case someone needs to perform
+> this operation synchronously (ie by calling led_set_brightness_sync()).
 
-Seems like unmask_reg is the only register whose address is not calculated
-using sub_irq_reg(). Switching to using sub_irq_reg() will bring it in line
-with the other calculations.
+i.e.
 
-Could you please incorporate this info in your commit message as well? This
-should be the rationale for this change; that it allows for the get_irq_reg()
-patch should be secondary.
+> +#define BITS_PER_ATOMIC (sizeof(atomic_t) * 8)
 
-The change seems okay to me, but I'd ideally like someone to pick this up and
-test it out just to make sure it doesn't break existing behaviour for them.
+We have BITS_PER_TYPE(). Use it directly in the code, no need for a
+whole new macro.
 
-Thank you.
+...
 
-Guru Das.
+> +static int xmit(struct tlc5925_leds_priv *priv)
+> +{
+> +       int i;
+> +
+> +       spin_lock(&priv->lock);
+
+This can't be called during IRQ?
+
+> +       for (i = 0; i < priv->max_state / (sizeof(atomic_t) * 8) ; i++)
+
+BITS_PER_TYPE() ?
+
+> +               priv->spi_buffer[i] = atomic_read(&priv->state[i]);
+> +       spin_unlock(&priv->lock);
+> +
+> +       return spi_write(priv->spi, priv->spi_buffer, priv->max_num_leds / 8);
+> +}
+
+...
+
+> +static void xmit_work(struct work_struct *ws)
+> +{
+> +       struct tlc5925_leds_priv *priv =
+> +               container_of(ws, struct tlc5925_leds_priv, xmit_work);
+
+One line?
+
+Missed blank line here.
+
+> +       xmit(priv);
+> +};
+
+...
+
+>         if (brightness)
+> -               priv->state[index / 8] |= (1 << (index % 8));
+> +               atomic_or(1 << (index % BITS_PER_ATOMIC),
+> +                         &priv->state[index / BITS_PER_ATOMIC]);
+>         else
+> -               priv->state[index / 8] &= ~(1 << (index % 8));
+> -       spin_unlock(&priv->lock);
+> +               atomic_and(~(1 << (index % BITS_PER_ATOMIC)),
+> +                          &priv->state[index / BITS_PER_ATOMIC]);
+
+The whole bunch looks like reinventing the bitmap / bitops.
+Use unsigned long (or DECLARE_BITMAP() if it can be higher than 32)
+for state and set_bit() / clear_bit() / assign_bit() that are atomic.
+
+...
+
+> +       if (brightness)
+> +               atomic_or(1 << (index % BITS_PER_ATOMIC),
+> +                         &priv->state[index / BITS_PER_ATOMIC]);
+> +       else
+> +               atomic_and(~(1 << (index % BITS_PER_ATOMIC)),
+> +                          &priv->state[index / BITS_PER_ATOMIC]);
+
+assign_bit()
+
+...
+
+> +       // Allocate the buffer used to hold the state of each LED
+> +       priv->max_state = round_up(max_num_leds, BITS_PER_ATOMIC);
+> +       priv->state = devm_kzalloc(dev,
+> +                                  priv->max_state / 8,
+> +                                  GFP_KERNEL);
+>         if (!priv->state)
+>                 return -ENOMEM;
+
+devm_bitmap_zalloc() ?
+
+...
+
+> +       // Allocate a second buffer for the communication on the SPI bus
+> +       priv->spi_buffer = devm_kzalloc(dev,
+> +                                  priv->max_state / 8,
+> +                                  GFP_KERNEL);
+
+Not sure I understand the output, but perhaps here the BITS_TO_BYTES()
+should be used.
+
+-- 
+With Best Regards,
+Andy Shevchenko
