@@ -2,177 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5CAC54501D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:06:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2124754502C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbiFIPF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 11:05:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49784 "EHLO
+        id S237654AbiFIPId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 11:08:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237089AbiFIPFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:05:54 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CBB2050CC
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 08:05:52 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id bg6so28265312ejb.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 08:05:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=lPZqyysbfO+3buaJKul7mEmadI+ROjg8n1gq6FC8MZk=;
-        b=GUuTlPoRfZMUwhoNlPqshTBdDwigWGKdXr6k1ybuLUMRk2PTHVOD3lsSAoLIulEL6C
-         oe92M3x9VO4xZ2QTeXagALdpleC5i3UaH0EGMg+hUItb/yl5a/qhN0SZ78mE4C5N2//2
-         r97Sa/VVq2NbaU9VlkkW2e+vHsw97ZoXL0UovybFrboNLb9FSj5sD96Kp4dj+9eF1vJD
-         wnrEe/U2wRXuJ0XISAg0QTdXxbGl4SRWXhEn5qu/D4FDBJ7RQDvT4PCju9fo0a0NOyLk
-         YKz0nPjUA32KKVwKU4lAYVyVzSCLj/X3PrmqGOVVwHVN3j7gAGhbod8t86XY6CKh8Ob3
-         D8fQ==
+        with ESMTP id S1344133AbiFIPI3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:08:29 -0400
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADF527CDE9;
+        Thu,  9 Jun 2022 08:08:28 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id a10so22392298ioe.9;
+        Thu, 09 Jun 2022 08:08:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=lPZqyysbfO+3buaJKul7mEmadI+ROjg8n1gq6FC8MZk=;
-        b=6Y/41jAqsRtmvJeqVPE1c9UkmNFWROiXh0hgRQS+EL9me9D9GMFCr7V8ZZnDF71qhG
-         xCXDZM4l6NEUO2B4w7ToRoB+74y8WwtzQ+2DL0cBzRaNMUpzjXo8eVY6vgDqFUhwGn7P
-         RKDyXE/VOcVg0ZAZbZlH11DsnIedC+XHoMIlvrgd9gScJ9RgUcrUkxUKBeXSJmjw6C/8
-         cOMLhQfv320E86lQ+mqVx7h2FBrhf3a99qmrRsFp5rOr/2EA3poS1s+sNXrrfA2vsDca
-         +lZw0DGizyRJwtAmbxQUpdP5oKB+SoIlxzkIIDMZbNtAC7lDBjrQhijgoKtocS4IkSZ9
-         QwoQ==
-X-Gm-Message-State: AOAM53230twy/o8Klzivmi0kLAb6eFwL26g7q+AVicwVhFmEC1VB5tta
-        X95+9fsb1xbU0/6LhzJXOmrppA==
-X-Google-Smtp-Source: ABdhPJwkyyWsIEB6RI1cOVWGgt6CQYMSQhhBa+63/Q1yQVUN9GDh93/YoJ+vTNkZewfJ+r2RpRKqAA==
-X-Received: by 2002:a17:906:d550:b0:704:7ba6:9854 with SMTP id cr16-20020a170906d55000b007047ba69854mr35879652ejc.579.1654787151224;
-        Thu, 09 Jun 2022 08:05:51 -0700 (PDT)
-Received: from [192.168.0.198] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l1-20020a1709060e0100b006fec4ee28d0sm9305486eji.189.2022.06.09.08.05.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 08:05:50 -0700 (PDT)
-Message-ID: <e6406956-07b7-d217-f8f4-ef6168647cc2@linaro.org>
-Date:   Thu, 9 Jun 2022 17:05:49 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=nAv69gpcPWI9Low0xHefIateOKeB8tVbI9fswYi40nM=;
+        b=lVEklPxlARZDppoKII0ezz70Kk3EQSAj0alX2JyJzIqS3K68ztm5Ysx5h0923+/YU0
+         JvoRIwNchBMtPh5AwuJFGvIonQu9JQ2j6gXAFt/SxI6wjvdcY8fjoVkZMmhX1um80Zjo
+         U9DxcehEE8lzs/HJAmyYG7yg48ptnJn73XVGe/BuRl9QuXtxRN1P/N2fgIG2FiMHJPP0
+         0bkhlW8uWgfhxAUehZaoiiQSwv0QeFhHe1dRmDHwacZPWO6xLOTM7y88hP27yZN1b/qJ
+         t3xe3bv6+ubEkdGVD/PbxkUtfoXxB2Z4S6WCIr/UmvDzVJBv7rB0L2wd8InVCVynJjDB
+         Gqsw==
+X-Gm-Message-State: AOAM5318/MNVqBf13nUY8wV2ThAehXDj6IqzamHu+1NR7OKh9a3GXi5I
+        F5oJN3c0LcnEsPx7SrJVw/J0oCkULg==
+X-Google-Smtp-Source: ABdhPJw/GiO2Y1Nfl+vdnO3TJaRJzKOYQd9vP5AIMiesXHagezYV5WnL5NCT3JUuEpT4Qe4UHq/VPA==
+X-Received: by 2002:a05:6638:16cf:b0:332:2bc:b7d5 with SMTP id g15-20020a05663816cf00b0033202bcb7d5mr1401791jat.172.1654787307750;
+        Thu, 09 Jun 2022 08:08:27 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id y10-20020a02354a000000b00331f48289easm2031970jae.136.2022.06.09.08.08.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jun 2022 08:08:27 -0700 (PDT)
+Received: (nullmailer pid 3800045 invoked by uid 1000);
+        Thu, 09 Jun 2022 15:08:25 -0000
+Date:   Thu, 9 Jun 2022 09:08:25 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Atul Khare <atulkhare@rivosinc.com>
+Cc:     Palmer Dabbelt <palmer@rivosinc.com>,
+        Conor Dooley <Conor.Dooley@microchip.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: sifive: add cache-set value of 2048
+Message-ID: <20220609150825.GA3783956-robh@kernel.org>
+References: <CABMhjYq8WbHcA=8dRxHVy=-NhL3+GaRKsBb3X2bG2-6Azd2S1g@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 32/48] arm64: dts: rockchip: align gpio-key node names
- with dtschema
-Content-Language: en-US
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel@vger.kernel.org
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
- <CAO_MupKxvaXRQvMyEUZMThBZ9033OeJec+BtBndjs5oZ3etTEQ@mail.gmail.com>
- <e0f7146d-3ccc-a194-bb1e-c3475ca8c29e@linaro.org> <2126178.C4sosBPzcN@diego>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2126178.C4sosBPzcN@diego>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CABMhjYq8WbHcA=8dRxHVy=-NhL3+GaRKsBb3X2bG2-6Azd2S1g@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/06/2022 16:56, Heiko Stübner wrote:
-> Am Donnerstag, 9. Juni 2022, 16:15:25 CEST schrieb Krzysztof Kozlowski:
->> On 09/06/2022 15:57, Maya Matuszczyk wrote:
->>> czw., 9 cze 2022 o 13:56 Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> napisał(a):
->>>>
->>>> The node names should be generic and DT schema expects certain pattern
->>>> (e.g. with key/button/switch).
->>>>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> ---
->>>>  arch/arm64/boot/dts/rockchip/rk3308-evb.dts   |  2 +-
->>>>  .../boot/dts/rockchip/rk3326-odroid-go2.dts   | 32 +++++++++----------
->>>>  .../boot/dts/rockchip/rk3328-nanopi-r2s.dts   |  2 +-
->>>>  arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi  |  2 +-
->>>>  .../boot/dts/rockchip/rk3368-geekbox.dts      |  2 +-
->>>>  .../dts/rockchip/rk3368-orion-r68-meta.dts    |  2 +-
->>>>  .../boot/dts/rockchip/rk3368-px5-evb.dts      |  2 +-
->>>>  arch/arm64/boot/dts/rockchip/rk3368-r88.dts   |  2 +-
->>>>  .../boot/dts/rockchip/rk3399-firefly.dts      |  2 +-
->>>>  .../dts/rockchip/rk3399-gru-chromebook.dtsi   |  2 +-
->>>>  .../boot/dts/rockchip/rk3399-gru-kevin.dts    |  2 +-
->>>>  .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi |  2 +-
->>>>  .../boot/dts/rockchip/rk3399-khadas-edge.dtsi |  2 +-
->>>>  .../boot/dts/rockchip/rk3399-nanopi-r4s.dts   |  4 +--
->>>>  .../boot/dts/rockchip/rk3399-nanopi4.dtsi     |  2 +-
->>>>  .../boot/dts/rockchip/rk3399-orangepi.dts     |  2 +-
->>>>  .../boot/dts/rockchip/rk3399-pinebook-pro.dts |  4 +--
->>>>  .../boot/dts/rockchip/rk3399-roc-pc.dtsi      |  2 +-
->>>>  .../boot/dts/rockchip/rk3399-rockpro64.dtsi   |  2 +-
->>>>  .../boot/dts/rockchip/rk3399-sapphire.dtsi    |  2 +-
->>>>  .../boot/dts/rockchip/rk3566-pinenote.dtsi    |  2 +-
->>>>  21 files changed, 38 insertions(+), 38 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
->>>> index 9b4f855ea5d4..4b5413b12bfa 100644
->>>> --- a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
->>>> +++ b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
->>>> @@ -75,7 +75,7 @@ gpio-keys {
->>>>                 pinctrl-names = "default";
->>>>                 pinctrl-0 = <&pwr_key>;
->>>>
->>>> -               power {
->>>> +               power-key {
+On Wed, Jun 08, 2022 at 04:39:31PM -0700, Atul Khare wrote:
+> Fixes Running device tree schema validation error messages like
+> '... cache-sets:0:0: 1024 was expected'.
 > 
-> hmm, it looks like all the others below are named key-power, while
-> only this uses power-key ?
-> 
+> The existing bindings had a single enumerated value of 1024, which
+> trips up the dt-schema checks. The ISA permits any arbitrary power
+> of two for the cache-sets value, but we decided to add the single
+> additional value of 2048 because we couldn't spot an obvious way
+> to express the constraint in the schema.
 
-Because a bit earlier in DTS, there are two adc-keys nodes with "key"
-suffix, so I kept that approach to be consistent within one DTS. If you
-prefer, I can change it to key-power.
+There is not any way to express power of 2, so you have to list values. 
+Rather than just adding 1 more value, I would add at least a few more so 
+we're not adding these one by one. This is for a specific cache 
+implementation, so it can't really be *any* power of 2. Designs have 
+some limits or physics does.
 
 > 
->>>>                         gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_LOW>;
->>>>                         linux,code = <KEY_POWER>;
->>>>                         label = "GPIO Key Power";
->>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
->>>> index ea0695b51ecd..72328dd993ee 100644
->>>> --- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
->>>> +++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
->>>> @@ -71,82 +71,82 @@ gpio-keys {
->>>>                  * |------------------------------------------------|
->>>>                  */
->>>>
->>>> -               sw1 {
->>>> +               switch-1 {
->>> Wouldn't it make more sense to rename this and all other
->>> renamed nodes in this dts into "button-dpad-up" or "button-1",
->>> as on the physical device those are buttons and the naming
->>> scheme of "sw" + number seems to be a carryover from
->>> downstream sources.
+> Signed-off-by: Atul Khare <atulkhare@rivosinc.com>
+> ---
+> Changes since v1 [1]: Rebased on latest version
+
+What version is that because this did not apply to v5.19-rc1 for some 
+reason.
+
+> [1]: https://tinyurl.com/yvdvmsjd
+> ---
+> ---
+>  Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> The naming actually carries over from the device itself.
-> In the schematics the relevant keys are also named sw1, sw2, etc.
+> diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> index e2d330bd4608..309517b78e84 100644
+> --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> @@ -46,7 +46,9 @@ properties:
+>      const: 2
 > 
-> And I do believe it is way nicer when devicetree names correspond to the
-> things you find in device schematics and not be named "arbitarily" to
-> only conform to some schema ;-)
-
-Then you are entirely depending on hardware engineers which might start
-calling their buttons "cute-pony-xxx" :)
-
+>    cache-sets:
+> -    const: 1024
+> +    # Note: Technically this can be any power of 2, but we didn't see
+> an obvious way
+> +    # to express the constraint in Yaml
+> +    enum: [1024, 2048]
 > 
-> So personally I'd actually prefer going with switch-sw1 (or button-sw1 if
-> you prefer) as being able to just use the search function in schematic pdfs
-> is a helpful tool.
+>    cache-size:
+>      const: 2097152
 
-Both are fine with me, let's just pick one - switch-sw1 or button-sw1.
-Since these are physically buttons, I propose the latter.
+Surely this is not fixed either?
 
-
-Best regards,
-Krzysztof
+> --
+> 2.34.1
+> 
