@@ -2,64 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C819546732
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 15:14:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3F35546747
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 15:23:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347183AbiFJNM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 09:12:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48002 "EHLO
+        id S239746AbiFJNXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 09:23:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343655AbiFJNMt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 09:12:49 -0400
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3CFB5BE6C;
-        Fri, 10 Jun 2022 06:12:44 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id d123so6259590iof.10;
-        Fri, 10 Jun 2022 06:12:44 -0700 (PDT)
+        with ESMTP id S241258AbiFJNXO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 09:23:14 -0400
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A560B655F;
+        Fri, 10 Jun 2022 06:23:11 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id s23so25255949iog.13;
+        Fri, 10 Jun 2022 06:23:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=IkgD32JQQv4iXIcEl6HeM9jrQJQd0Tq+F8d36Y5X2zg=;
-        b=tzoazb7HJ57+oOqoUkqJQ1EV0aftXD5PAp3h4oVpz2Zxyn3q6P6STcF+S1mJYqvWma
-         TSQsM5tqxl4/dOGW3rcg/LC4yUN0HZCFULVt88c2wKyaJf6fO+wFOAeG4CdUSOofmhph
-         EkaDhc3gqWfb/Oikk9IuuShFCnEgTHtyvtav9ygKGkM/cCWaQn08uSI0g0j8Gw2QVJVh
-         ECdag3quSfioBdJrbIxfaOgI12jexeBlnwbPr+7XKeowzEU3RDsJU0RbANLU/jfdX7F/
-         xEJ03oJY83bJPCL9iiY0zLHL4GcMYF7Km0KBC6E5Jcct0koXp8zlGf5WH4WD/NKQ2X0r
-         PPrw==
-X-Gm-Message-State: AOAM532Ho6QCezIA06wV89ubcVSipHF5Fz1cAFVQy+N7ZpbZtSkbq4lk
-        wQTtkRTt3IcsQWcljZs33A==
-X-Google-Smtp-Source: ABdhPJw7sfj49a/XqcZX4iEyYBeVBikgyBwiHnh2QxO3rAv60pfY7q66XAD3rxdzNX0bgAVsDTmVOw==
-X-Received: by 2002:a5d:9a13:0:b0:668:94ba:46ab with SMTP id s19-20020a5d9a13000000b0066894ba46abmr20425276iol.155.1654866764099;
-        Fri, 10 Jun 2022 06:12:44 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Zk41DWxqcCrUcOmNAlHBuuam8bwwgCEDw3C2FONqZ6o=;
+        b=Setkl3N9Xjl/AfanTZ4CFVjmjKeRuD/NMTNf2/GrppJvt/a4lTAszm9xmmec42bCr6
+         KLW483pIKkG/gjJUCuMnSMgg7fApHs3MjBG972vk1eoB33atZ23ac/tATRE2KhPSrf2t
+         iabLeEYQDHn9eR1FKeLb7Uc+VkTgBCjoPzMfTYUkXpdpg+MpDY2R00l3LDsw/WrEet1B
+         PbZHvIarykTU06FydWqOZHTRS+zFXB3BcUnzmUT87+U/qWqZu6Ar3ZOvaqdS48TzXRd4
+         /lavJbMsFCoPMXiIAcIQKyeeidp5xhA2U7DfSr+ib0wrh9U0iGlrV9nVqVePYZilgCKJ
+         fnPg==
+X-Gm-Message-State: AOAM530ghHfLEKoavNIJIxSnsbLEzd/a5uH7rBJJG1S3Ju0j7AwVYk0K
+        E19SfadCGKcFd/F/eBo0Kw==
+X-Google-Smtp-Source: ABdhPJzC53GXbmd10pkreXql55ziRoJcxSWV0N2cgm8S98ToBfVY+dx9HOYXlaXmtxcJVSgoOfsa2w==
+X-Received: by 2002:a05:6638:348d:b0:331:d8f0:fd9d with SMTP id t13-20020a056638348d00b00331d8f0fd9dmr8577668jal.165.1654867390891;
+        Fri, 10 Jun 2022 06:23:10 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id z12-20020a02344c000000b003318ba8386bsm7885984jaz.81.2022.06.10.06.12.42
+        by smtp.gmail.com with ESMTPSA id x13-20020a92300d000000b002d3a3f4685dsm11733602ile.21.2022.06.10.06.23.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jun 2022 06:12:43 -0700 (PDT)
-Received: (nullmailer pid 1529407 invoked by uid 1000);
-        Fri, 10 Jun 2022 13:12:35 -0000
+        Fri, 10 Jun 2022 06:23:10 -0700 (PDT)
+Received: (nullmailer pid 1543585 invoked by uid 1000);
+        Fri, 10 Jun 2022 13:23:08 -0000
+Date:   Fri, 10 Jun 2022 07:23:08 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>
-Cc:     wenst@chromium.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        robh+dt@kernel.org, angelogioacchino.delregno@collabora.com,
-        chunkuang.hu@kernel.org, daniel@ffwll.ch, matthias.bgg@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        granquet@baylibre.com, airlied@linux.ie, p.zabel@pengutronix.de,
-        linux-fbdev@vger.kernel.org, ck.hu@mediatek.com,
-        tzimmermann@suse.de, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, mripard@kernel.org,
-        dri-devel@lists.freedesktop.org, deller@gmx.de, msp@baylibre.com,
-        jitao.shi@mediatek.com
-In-Reply-To: <20220610105522.13449-2-rex-bc.chen@mediatek.com>
-References: <20220610105522.13449-1-rex-bc.chen@mediatek.com> <20220610105522.13449-2-rex-bc.chen@mediatek.com>
-Subject: Re: [PATCH v11 01/10] dt-bindings: mediatek,dp: Add Display Port binding
-Date:   Fri, 10 Jun 2022 07:12:35 -0600
-Message-Id: <1654866755.768151.1529406.nullmailer@robh.at.kernel.org>
+To:     Heinrich Schuchardt <xypron.glpk@gmx.de>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Artur Rojek <contact@artur-rojek.eu>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: input: Increase maximum keycode
+ value to 0x2ff
+Message-ID: <20220610132308.GA1530409-robh@kernel.org>
+References: <20220608211207.2058487-1-robh@kernel.org>
+ <20220608211207.2058487-2-robh@kernel.org>
+ <dbd56518-e688-3b3b-08ae-63f66004e62a@gmx.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dbd56518-e688-3b3b-08ae-63f66004e62a@gmx.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,49 +74,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Jun 2022 18:55:13 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
+On Thu, Jun 09, 2022 at 07:46:51AM +0200, Heinrich Schuchardt wrote:
+> On 6/8/22 23:12, Rob Herring wrote:
+> > The maximum keycode value for Linux is 0x2ff, not 0xff. There's already
+> > users and examples with values greater than 0xff, but the schema is not
+> > yet applied in those cases.
+> > 
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >   Documentation/devicetree/bindings/input/input.yaml | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/input/input.yaml b/Documentation/devicetree/bindings/input/input.yaml
+> > index d41d8743aad4..43d2f299c332 100644
+> > --- a/Documentation/devicetree/bindings/input/input.yaml
+> > +++ b/Documentation/devicetree/bindings/input/input.yaml
+> > @@ -21,7 +21,7 @@ properties:
+> >       $ref: /schemas/types.yaml#/definitions/uint32-array
+> >       items:
+> >         minimum: 0
+> > -      maximum: 0xff
+> > +      maximum: 0x2ff
 > 
-> This controller is present on several mediatek hardware. Currently
-> mt8195 and mt8395 have this controller without a functional difference,
-> so only one compatible field is added.
-> 
-> The controller can have two forms, as a normal display port and as an
-> embedded display port.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> [Bo-Chen: Fix reviewers' comment]
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
->  .../display/mediatek/mediatek,dp.yaml         | 101 ++++++++++++++++++
->  1 file changed, 101 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-> 
+> Can this value of 0x2ff be make exportable such that we can use it as a
+> reference in devicetree/bindings/input/adc-keys.yaml. E.g. define a type
+> that only take values in the 0-0x2ff range?
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+There's no need. The $ref to input.yaml in does that effectively 
+already. That's why 'linux,code' doesn't need any schema constraints 
+unless it has additional constraints. max77650-onkey.yaml in patch 2 has 
+an example of that. If you wanted to add a new, custom property with 
+those constraints, then we could do something like this:
 
-yamllint warnings/errors:
+$defs:
+  input-codes:
+    minimum: 0
+    maximum: 0x2ff
+    ...
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.example.dtb: dp_tx@1c600000: max-lanes: b'\x04' is not of type 'object', 'array', 'boolean', 'null'
-	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.example.dtb: dp_tx@1c600000: max-linkrate: b'\x1f\xa4' is not of type 'object', 'array', 'boolean', 'null'
-	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
+And then have: $ref: input.yaml#/$defs/input-codes
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
