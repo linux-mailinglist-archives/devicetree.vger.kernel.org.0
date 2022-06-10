@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF4ED5462DC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 11:53:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2E9D5462E0
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 11:56:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347895AbiFJJxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 05:53:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46458 "EHLO
+        id S1344642AbiFJJ4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 05:56:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346334AbiFJJxx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 05:53:53 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E631AF327
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 02:53:52 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id w27so34491280edl.7
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 02:53:52 -0700 (PDT)
+        with ESMTP id S1344854AbiFJJ4A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 05:56:00 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26C5F36E16
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 02:55:58 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id v1so41760253ejg.13
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 02:55:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zKEy3pvm/pZJfBDk6QzX0XhSCgP4GJCuIuAN1XuMp8Y=;
-        b=Dk8nh5ItfXVaDGkTMVMrgJtXWV7hhEYlNnF/DG3Vjli8AWb6Plu9bDZcd4LQ5DfPhB
-         VW/TLF+gEFlW4nYdXFMqQfQhpwawvfWuvwF6+k3tH9mDFg29qBcFSaISOWxtWWPJ8tRM
-         Kqd2NDHm2l90HH6RuWsmYaqPI4nQnd7vCkJyKwWcYMgQsaV8XcSI9QaHxw+bRYFxW+t6
-         MWGfKROqUUTYEJ3cinAj62e4n0WQXIbemTYPvHnlMwXyEl7c6+PcsN9kJshykSA/XTaW
-         CKOkayCgxjPOO3cGnpqIIAI8euu9cNatMwDDSMjwHcOStdxGffPBGbREVe44BfUJW703
-         30Wg==
+        bh=fYLaThkrJ3eihxzDkJJoKJeN/ruDQRHwWXWApkInkkA=;
+        b=eZMqUcnQvs+mvcIh4RmsXSM85Xjm0GxOtCVFq5r1QIgnOUj23JAk0RZ5CYM8+YSH9k
+         f7ybIkD+/HHywul6k2FzvEWj8SR1iNcawcxRgqCp0cNbU4FrnUEmDmQcF8mIN1ez667E
+         Aq4VD6nD8UwxBRV1fjIp8o7Egebu8P+xxQbiBQVNMKHTSONgGjZXbTqn0H7tbZTVNHxh
+         MKwzQOOe029LUFO69vjUIO1dhmMlLvtTbthq4qRZJLpmHPIDVsqIuKB7U89mdaZ2XW+M
+         057kmVyPGLomjrI5VMUYNgMnHZu1WjHD/iavKMoSQ2Qa0UscSO6I4dJ3+/XBVFuWPtUf
+         Yk5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=zKEy3pvm/pZJfBDk6QzX0XhSCgP4GJCuIuAN1XuMp8Y=;
-        b=YENYFB0oBmFX8Wh3FNX1ALUliozDDNfZtutPVMzzcpjAoF7XHqWdLrqTAFRKOr8P5J
-         oGlndDEZst4+DdfWhYsUO0ts4MumhuQTO0UTks+7N7hz7LyWfLou34gwD8UzxcAgSGwt
-         cu6Ym0+h7+KA3FKPitxdtNrjODf4+uv2exCT3i2I0dMrSVSfAmL/V9GMCQa7NcqsFAPJ
-         R9JQJPNoabittnFCV17FkTkgtFtCKvj27i/BICUOIEPQ1n50m/zV1oQPuDLhmuHypwmY
-         u4sy7XsieBoepA1LPj4BTdsic/ajvf+R/p+05RV5QrhhyxQk2Leay5y2VvOPcJTG8fLh
-         hg3A==
-X-Gm-Message-State: AOAM532rCXLmVRrciyeO2c1DS7neFZ+jy6EhyxxeskixDWavxSbB94BS
-        XpZpNc1gzPLCc+wLCDUsyHVdMA==
-X-Google-Smtp-Source: ABdhPJxHSpa5HKTZBSli/12ysLX0DJEMxvYMgmsT2QEBLzerIrZdBBwZC8Mv3rH2J8Vn0jsupErFoQ==
-X-Received: by 2002:a05:6402:2706:b0:430:6238:78d5 with SMTP id y6-20020a056402270600b00430623878d5mr37918961edd.413.1654854830713;
-        Fri, 10 Jun 2022 02:53:50 -0700 (PDT)
+        bh=fYLaThkrJ3eihxzDkJJoKJeN/ruDQRHwWXWApkInkkA=;
+        b=OAUzlgtmzPVoxzorGvSoBDtn27xEem2BYHxc0RdferwkSGJyytCUfc4uGvyTGWrop9
+         efLodGXEli8BKFJdpwh/F862f9kdRmaTmZ+5mTpBngGM7rg4VrQ+5SKb7NclEKeFEW5Z
+         QQLi61YWJb4TN6zkOrLi87BlwB+esHII4GbrqY4QVPBQT1Zcd2Njclfgs3MFQLaghIiM
+         oseV+iHgETwooaAE1kGh0954UNxFijI6zBe9rkjHvYFYwbVKJXktuloNYp2mdFQHOy5f
+         wJan449YuXjMiUw6+RjJfEP1m1ZxOvowaGyH1y46as8Seoup/qb7VAtuTEwcMNYnUn69
+         vP8g==
+X-Gm-Message-State: AOAM533YKNCXLKOsCoGZDeMwnGEqFtiWW1rQRH//dtTMG0fSN/EWNWcS
+        FNjXsoTotE67ajfF+0citk0p3g==
+X-Google-Smtp-Source: ABdhPJx+Nk5zqg4CzsaQGTYi5O5u5pqYvXJFs635gcflemvPBdHWm+Lqwl+EZSP0zP++5Ct8WUneEQ==
+X-Received: by 2002:a17:906:a06:b0:711:4f17:4391 with SMTP id w6-20020a1709060a0600b007114f174391mr28161039ejf.288.1654854956040;
+        Fri, 10 Jun 2022 02:55:56 -0700 (PDT)
 Received: from [192.168.0.201] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g9-20020aa7c849000000b0042a2d9af0f8sm15876033edt.79.2022.06.10.02.53.49
+        by smtp.gmail.com with ESMTPSA id zc10-20020a170906988a00b006fef0c7072esm12179646ejb.144.2022.06.10.02.55.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Jun 2022 02:53:50 -0700 (PDT)
-Message-ID: <8e02ad54-5dad-aee7-6fa8-70c72f93bf5e@linaro.org>
-Date:   Fri, 10 Jun 2022 11:53:48 +0200
+        Fri, 10 Jun 2022 02:55:55 -0700 (PDT)
+Message-ID: <381ff739-e898-8812-d549-df7101f0eaa2@linaro.org>
+Date:   Fri, 10 Jun 2022 11:55:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 11/20] reset: npcm: using syscon instead of device data
+Subject: Re: [PATCH v2 12/20] dt-bindings: reset: npcm: Add support for
+ NPCM8XX
 Content-Language: en-US
 To:     Tomer Maimon <tmaimon77@gmail.com>
 Cc:     Avi Fishman <avifishman70@gmail.com>,
@@ -93,11 +94,11 @@ Cc:     Avi Fishman <avifishman70@gmail.com>,
         LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>
 References: <20220608095623.22327-1-tmaimon77@gmail.com>
- <20220608095623.22327-12-tmaimon77@gmail.com>
- <91549b70-08fc-ed6f-c48e-5bcb70ea63d0@linaro.org>
- <CAP6Zq1j2VZno4w4w0QCYwHnRaVqiM=DnNSmND1vOGDs_wfi2zw@mail.gmail.com>
+ <20220608095623.22327-13-tmaimon77@gmail.com>
+ <add025b6-c622-b204-d39e-67b31878d37f@linaro.org>
+ <CAP6Zq1iDbB+X5QPE4Nsqk4nV41bZiVzQZExS1pQTuKEBz-iYew@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAP6Zq1j2VZno4w4w0QCYwHnRaVqiM=DnNSmND1vOGDs_wfi2zw@mail.gmail.com>
+In-Reply-To: <CAP6Zq1iDbB+X5QPE4Nsqk4nV41bZiVzQZExS1pQTuKEBz-iYew@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -110,25 +111,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/06/2022 23:37, Tomer Maimon wrote:
-> Hi Krzysztof
+On 10/06/2022 00:05, Tomer Maimon wrote:
+> Hi Krzysztof,
 > 
-> Sorry but I didn't ignore your comment.
+> Sorry, but I thought the fix is only to add an explanation to the
+> dt-binding file as was done in V2.
 > 
-> For not breaking exciting boards I add the following patch in V2
-> https://lore.kernel.org/linux-arm-kernel/20220608095623.22327-11-tmaimon77@gmail.com/
+> The NPCM8XX binding is done in the same way as the NPCM7XX and both
+> use the same reset driver and use the same reset method in upstreamed
+> NPCM reset driver.
+> 
+> Can you please explain again what you suggest to do?
 
-No, it does not solve it.
-1. Patchset goes via separate trees (DTS are always separate), so it is
-not bisectable. One of the branches/trees will have broken DTS.
+If you want abstract IDs, they must be abstract, so not representing
+hardware registers. Then they start at 1 and are incremented by 1.
 
-2. All out of tree DTSes are broken. This is expressed as ABI and - with
-some reasonable exceptions - you should not break it.
-https://elixir.bootlin.com/linux/v5.19-rc1/source/Documentation/devicetree/bindings/ABI.rst
+Other option is to skip such IDs entirely and use register
+offsets/addresses directly, like Arnd suggested in linked documents. I
+think he expressed it clearly, so please read his answers which I linked
+in previous discussion.
 
-You have to keep backwards compatibility, so parse/handle both versions
-of DTS.
-
+There is no single reason to store register addresses/values/offsets as
+binding headers. These are not bindings.
 
 Best regards,
 Krzysztof
