@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5106546FDB
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 01:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4118E546FE4
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 01:19:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343938AbiFJXJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 19:09:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53588 "EHLO
+        id S1345993AbiFJXTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 19:19:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343526AbiFJXJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 19:09:58 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5D6101DA;
-        Fri, 10 Jun 2022 16:09:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5E1EBB8368D;
-        Fri, 10 Jun 2022 23:09:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 247F5C34114;
-        Fri, 10 Jun 2022 23:09:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654902593;
-        bh=6gWP0ORNgmh/fnFbCfeBYRD93PXSrr2UERHIs2D9YiA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=OohojePok6cqA1Pbdr/IDb7No1miIkaxIxh62sTYejrVAdw91ZA8fv3NJz0A+dYMl
-         P/2WeOp+BFs9EhbcJ1wFB2hkrFiRkyL9l071FK6WOq0e5L0B82WK5mx2IrTE3QWOGT
-         Z/I5IjuilPpi4mxhYh3hB+ogqSNlvP9UeEY6vprlDWHxudzvEUN3UYQsuikcXFRQDQ
-         nVFsYklyF91zA/ZNkavPJ9guIYMHfwMsfdMxsj7Aeo3tyUMUiVTh7AGHw/V2t/0fnC
-         xAIbjWeHap188aqrgyAu81MSUIHRxa1CsfQqYL7vprmDGGUUiAQYYa71m2AjCvD8NR
-         Udfsq9gpLO4TA==
-Received: by mail-ua1-f42.google.com with SMTP id z20so145800ual.3;
-        Fri, 10 Jun 2022 16:09:53 -0700 (PDT)
-X-Gm-Message-State: AOAM533GUOjEOc/PlRekKeMa56gRc7+Ql9EzLHlLjfEobJSHxpYOW7rP
-        y36aRm9NKjq0hi0/ogUr9lcRPcgepaiIQndbkA==
-X-Google-Smtp-Source: ABdhPJxwkEXRiry4ldAqEcoQWlDmyv7yXcBRNZxy7rlvOsoJOURcmxD8m76xhbZnU2IoKz3PTjJJRmHt/EBhyx9Vxjg=
-X-Received: by 2002:ab0:5a95:0:b0:369:1a3f:358c with SMTP id
- w21-20020ab05a95000000b003691a3f358cmr33468467uae.63.1654902592121; Fri, 10
- Jun 2022 16:09:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211217170311.2796798-1-thierry.reding@gmail.com>
-In-Reply-To: <20211217170311.2796798-1-thierry.reding@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 10 Jun 2022 17:09:41 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLSJS_AThMfDOiZ2txC4K=9WCYEKw2TVzEM+tSD2W2qGA@mail.gmail.com>
-Message-ID: <CAL_JsqLSJS_AThMfDOiZ2txC4K=9WCYEKw2TVzEM+tSD2W2qGA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: rtc: ds1307: Convert to json-schema
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S1343526AbiFJXTM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 19:19:12 -0400
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EEC8659D;
+        Fri, 10 Jun 2022 16:19:10 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id s23so516630iog.13;
+        Fri, 10 Jun 2022 16:19:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=I85nzJQvpanBbnKRqJtMLn+dRbMroiljIODt3AC3sUA=;
+        b=d1V9VTvOTdB5PSzJQEQAfX0wnk/OEf5LT+s+vwUFh5DhoAToEtec3va884DEiaUnAN
+         hy4sCgVbGOslJKfdlcMCN29/vYWGZXh0X79zANDDJbtpu+mCW1qoyhUHvvo2FnQYcRFc
+         cV58KrDg6r93skqeLnaDRqOXbB/dNIqMu6d/+6wCW+k3Pl4CdH77hzeUPu3VO2W6XVqn
+         hxJSizLZ9YBOr/+NWQKw3jj9B6rER7gJYxLDlGKR5ye7zqr4hKPwmljcVQ04MFtPMpXM
+         lxR7GcO5kxP9R+RRhdtBZQUwKgvSDcCgzVl6XrRP2knDofjU50BAtNaZGyXGOi6depc6
+         RyJQ==
+X-Gm-Message-State: AOAM531MaITuOvpt25T/qzmMZf7C7XduXpdR0F0MhNwtFOO8ReNj4CwK
+        KvZJ2T72RlGr6r5exkwTXw==
+X-Google-Smtp-Source: ABdhPJyek+/IffazigJpKri07/SwvYOlBtivddM8UGvJatPh3EPESw3a8N+6KkBOSBAS1qj4+6zFxg==
+X-Received: by 2002:a6b:2c87:0:b0:669:c37b:342b with SMTP id s129-20020a6b2c87000000b00669c37b342bmr1736787ios.158.1654903149861;
+        Fri, 10 Jun 2022 16:19:09 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id y21-20020a027315000000b00331c06bf620sm176633jab.154.2022.06.10.16.19.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jun 2022 16:19:09 -0700 (PDT)
+Received: (nullmailer pid 2450359 invoked by uid 1000);
+        Fri, 10 Jun 2022 23:19:06 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>
+In-Reply-To: <20220610203746.2191518-1-robh@kernel.org>
+References: <20220610203746.2191518-1-robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: mtd/partitions: Convert arm-firmware-suite to DT schema
+Date:   Fri, 10 Jun 2022 17:19:06 -0600
+Message-Id: <1654903146.326838.2450358.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,22 +63,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 10:03 AM Thierry Reding
-<thierry.reding@gmail.com> wrote:
->
-> From: Thierry Reding <treding@nvidia.com>
->
-> Convert the DS1307 (and compatible) RTC bindings from the free-form text
-> format to json-schema.
->
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+On Fri, 10 Jun 2022 14:37:44 -0600, Rob Herring wrote:
+> Convert the arm,arm-firmware-suite partition binding to DT schema
+> format. Simple conversion as there's only a compatible property.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  .../devicetree/bindings/rtc/rtc-ds1307.txt    |  52 ---------
->  .../devicetree/bindings/rtc/rtc-ds1307.yaml   | 104 ++++++++++++++++++
->  2 files changed, 104 insertions(+), 52 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.txt
->  create mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+>  .../mtd/partitions/arm,arm-firmware-suite.txt | 17 -----------
+>  .../partitions/arm,arm-firmware-suite.yaml    | 30 +++++++++++++++++++
+>  2 files changed, 30 insertions(+), 17 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.txt
+>  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.yaml
+> 
 
-Was about to convert this one, too. Are you going to respin it?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Rob
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.example.dts:18.17-22.11: Warning (unit_address_vs_reg): /example-0/flash@0: node has a unit name, but no reg or ranges property
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
