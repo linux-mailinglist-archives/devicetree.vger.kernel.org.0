@@ -2,333 +2,519 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAD6A545D9E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 09:35:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AA5A545DCD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 09:51:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245406AbiFJHfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 03:35:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59780 "EHLO
+        id S245322AbiFJHvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 03:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346825AbiFJHfG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 03:35:06 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0BAA12D16F;
-        Fri, 10 Jun 2022 00:35:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1654846503; x=1686382503;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=eLiUs35GCMLgi8j4nG7R0TDCfqmcs9GlkCx3Id896xg=;
-  b=HLMPB1MkeD5loTmCaczJmqPO+rJQcME4E8FOKzgDEdz1wJFyrRSO6Z3r
-   kM9OyHf/GxJTEV30UY2pYexK4mV65ac902FZYQGWmat+a/kJqDoStR/9p
-   xwLzTCU35tRLSj8NCpIns5OKPvVwP9p96RjB2VMHGv7KFtQbOOgh27ZWO
-   ILRBzOjZYawdJlj3K2AzPeVDqPxS45RRIQ3URZTpbdan92+BY0mQBgUkE
-   1OadJ+3s0n3KsJoEJzy+9NyiO73DFPkRkMogIrZjD6vIo0pznpfBiav5h
-   DOpFS7SHdyUAJ/vNxkChUq+XiYqjyFafg9yEUWxenaQTvxAIiik6F3ARs
-   A==;
+        with ESMTP id S245164AbiFJHvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 03:51:17 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED6DA2E4362;
+        Fri, 10 Jun 2022 00:51:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654847474; x=1686383474;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=X52U5H/3g78v/lDOCRGU6VMETY7DF6sJutStjqWpP6M=;
+  b=O/GvjFD6j3I+8ldBEukvwdnFxRnpGnta89Qkf8eJpQ/T9VjN/o8H+CY7
+   We5qvoH3E32bJFA/INVGHajOO/+YgQNKDrLC+nRhiTUibfXy0mkIyXwJq
+   nF9e/jDMBC8osE65ZbBcv9Orhxv0hopzKsHrAAJ2H7DRCkptOyU0Z6bhn
+   K9DZ+7y2kTn74BZrsvPLRxHuia1JvEYdS3lL5WxmN0Oq/0rJShflYCSkB
+   uU9xi/hmlGCZIiBIAyfVqT5RxspkOfsuN6LqG8KI740LYRdBhgQngD03q
+   swACOt30XyfDhjmfdsuBeiKiKmDxXDXANcAsBY6B8e9eehEy7QaWWDN/q
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="266319616"
 X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; 
-   d="scan'208";a="99428666"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Jun 2022 00:35:02 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 10 Jun 2022 00:35:02 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
- Transport; Fri, 10 Jun 2022 00:35:01 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EQb+fSnfafBnzxiyGzFiaUIjguG9xY4t5ByUk8iufFnX/RSJEl9To1nERVH2toFTOtybBzoXUZM485eTOJcf8KnRmBHAmBAcOHsGMma4SdirHw4W1k3xV8bPo1Iuiy/NRGVuW9scfhQfkJ6hy9A28TKyxSAA7Dr5TuKSTJ6VYuqVvscxx2AgKNwVKnwX0nUTnbUyUE//uj/XKJNu6e8/zWOsKzu5aeM6diLb1bpUhzyxYj21rrNW+w15AhhDCWGQ27aQq3ndbUJueSwzmIgR57B8pdgEsz4eIH7L7SO/GHqk8EbUYlddICwEjV91ZXrHEtSCzWrfjwmxh6K60tkpwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eLiUs35GCMLgi8j4nG7R0TDCfqmcs9GlkCx3Id896xg=;
- b=H9HTYTYnyfSWs1Ch88A4kDVjNRMXl1/9WeBUONxrNK1+q8YAKF4bVzwpTNbW5XDlePBvjNAR0uUoZ3uhthuXBVNRTkrvtB5PB+6AwCSth2PpIqwUpOr4uP5vyX9sBkPWvgc5r8+B2gpMY2D5M9/2baL/td8BdMvM+g6vKhI4j+MK5dT1zdPpccP8nJV8+3UeZDi6c8+xbsKGBsKHEmpXeAv5O8JdkiDXXuSOEAs+9DxWMcKeakDVWRZhrufsOLavhUCDaKpt578MTgILpgKN8dxuESNo0+Bi2cVatkbIkUZDxpvDIMRnt6p6smiFVKJDHOPkBDvnfarlhL5pq7zcsA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eLiUs35GCMLgi8j4nG7R0TDCfqmcs9GlkCx3Id896xg=;
- b=UKXIXfUnTMBidBnm6lMDFTeElMNtPAsag3GXmHJY8slaSW1P5eMmtH/itXqO3WK4p//J2AV9vOmaJ86d5iD2sOb1yPmch74pb6G7eEXEqENemeQl4YOCvIKmKtyX8PMVqNp4t4QCC9Rmg939En4Hb2kZKi29zrqC6+XZ8Af9k/s=
-Received: from MW4PR11MB5936.namprd11.prod.outlook.com (2603:10b6:303:16b::11)
- by SJ1PR11MB6083.namprd11.prod.outlook.com (2603:10b6:a03:48a::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.19; Fri, 10 Jun
- 2022 07:35:00 +0000
-Received: from MW4PR11MB5936.namprd11.prod.outlook.com
- ([fe80::ddf6:11cc:3391:d4e9]) by MW4PR11MB5936.namprd11.prod.outlook.com
- ([fe80::ddf6:11cc:3391:d4e9%6]) with mapi id 15.20.5314.019; Fri, 10 Jun 2022
- 07:35:00 +0000
-From:   <Codrin.Ciubotariu@microchip.com>
-To:     <peda@axentia.se>, <linux-i2c@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <Ludovic.Desroches@microchip.com>, <Nicolas.Ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <robh+dt@kernel.org>,
-        <wsa@kernel.org>, <kamel.bouhara@bootlin.com>
-Subject: Re: Regression: at24 eeprom writing times out on sama5d3
-Thread-Topic: Regression: at24 eeprom writing times out on sama5d3
-Thread-Index: AQHYfA01c45T/mrWhU2n/5J6R8aiEq1IQRKA
-Date:   Fri, 10 Jun 2022 07:35:00 +0000
-Message-ID: <2bb4868b-90ab-887e-bf13-9de8b79231bd@microchip.com>
-References: <074b39c5-55fc-2bc1-072d-aef1070e284d@axentia.se>
-In-Reply-To: <074b39c5-55fc-2bc1-072d-aef1070e284d@axentia.se>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9b801f8c-9891-4482-3013-08da4ab3b9bc
-x-ms-traffictypediagnostic: SJ1PR11MB6083:EE_
-x-microsoft-antispam-prvs: <SJ1PR11MB608306E1766A4B3B760E6F34E7A69@SJ1PR11MB6083.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: tPKjEwISqR06Mdzjur9MV0afddzF7MjtfOmVEnbr01nP9yh8WLJQoO7LWphM0JvBR/wyduYo0b901OUlpvS48IdQ9WAPFu8Z7KK7GP93+T8cyq9aLlhYiF+1oM5IkMWvNDyzFZFViXqwmiaDwY58u/NCb4E7M78mCJ4pc4MVJ0weYt165Hi8ueb5MAkx0r/wlbJNQnM//G3a23EhOsd5vtgrq+UFtADIucVLBoHg5XfkN8HYHOyvCXQgFaCvPZvX9HRkoCx5eUbk9qNtAwwVVjHcGvqCJPTC7P9Ocg8apBaZkbB4ccENTtgd8+Z5cCwUuzpa948dp7I+sTSVPIqaANcc8G34+YtHPGdEx4yuvlni+RG+23j9jXnpE/AHDwtFxHP/1BcvnZhtKTUXnT2ZIXQcu4KClvG8FEPWGoo/nULuxlrWpT4Yd38E5IBnzQWNr0DOoyWHRi//KxFZbdeJIinI4aaab/KkwsKzLtwlWk+3EfvW7/kDSXvpIsuyz+ovVNXsUPmQWiqLfw4aiW5vXWV5wzwC244FT9QgL1UjOKVFQ0dJPKMbpV1KEhwi9iQz/IjPq4dzswKz8vaFCJ+HsYvkuTOgwjXM8r1FXCjzRrw2wDYfLwRgqnql2qk3WqzBvD/Hlt/AfQilsPv9ezoAcbwZZgq9f/jAC776Q5D4ZDyzcf/wllt0vqClXI3dvZ9zC4dP0LaIMrJx28ykFiaUYS0Dp0IaztdcQgMxbvsLkylNGMZ17W62oJdniQNAk6COMve5YtvL0AFEMsKqS/OiSzChu672jykWxY1oy+2ZdbCPk8s/1CdpwWFwgNgDKD83xkPk10IW7WGpNEOQR8dMKhgGPHQlOV/mfoDuryu1ZIg=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR11MB5936.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(66556008)(508600001)(66476007)(966005)(6486002)(66446008)(64756008)(66946007)(5660300002)(6512007)(54906003)(316002)(83380400001)(31696002)(110136005)(86362001)(8676002)(76116006)(2616005)(122000001)(186003)(6506007)(8936002)(38070700005)(71200400001)(4326008)(31686004)(91956017)(38100700002)(36756003)(2906002)(53546011)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RlR0RmxUV1Q5cVk5anFUNXRqUmVYL3Z1TnUvNlpHNTdPRUtHVUlJSFFteEtG?=
- =?utf-8?B?NGIzcWRSOSs3OFJjM3FjOWdGcWV6MytRRUMwNkozdi92V0tXWGVldzlMb1NZ?=
- =?utf-8?B?MWxUNmtWUXhJMlJjMmJWNnA4UmV1cFdnYVNDTkVFNFQyWGo5KzU2ODV1MStX?=
- =?utf-8?B?b1Z2Sk5tSlpVc3NzSVhHbXF2cG50NTNFZzVvSjJaSTc5cWFldC9kelVtalh5?=
- =?utf-8?B?eDJNeUxqMkpZM25MakVxeEUzRWhhSWtHSytFaHpRZ1h1ZU5MQUxpR2xDS1di?=
- =?utf-8?B?SE5TMVUvYlNEZWhuVmRDQkVyYW8rdy9RRjJDT3Z2T00rTEV1eG5peGg2WWVV?=
- =?utf-8?B?dHhjMjlSZXhTWDlDTnNFdXBEcU1yMzJ4ZlhiTzQweWh3azBkbDM0VDBtU01I?=
- =?utf-8?B?V001cmR1MG8xMFowMll1L2dBTU8yNkhFUVZCcjZIY083VEpwVmdSYlgvcThF?=
- =?utf-8?B?aHlSMGtqZmdJa2VKVG41QUx6amc5NFRhSmlIQjc3OVlFZTNWTmx4N3RBNlhi?=
- =?utf-8?B?QTliYnlPTGtQMFE5SHVoK3UwdDQzQjNCYjI2RW1mVi91QUlka1dwNmRhNVk2?=
- =?utf-8?B?OUNETS9HSzA4YnkrTHRydGtlZ2NCRnFGY3JBY25MMVBmL0dnc0hIblRqcXgz?=
- =?utf-8?B?S1RRdGxtS2pIK1c1UEpEUktFN2crUWw4NW03N2w4ckRiTU1xTC9ia1B1QTlR?=
- =?utf-8?B?czREL3F6eGF5d2lzOThkZXRnMnRkdzlrV2tuM1NVeFJ3czIwYWlSNjEwZjBI?=
- =?utf-8?B?U1I1RWNQNXQzU294ZXVSVU55QlIyc1Z3RkpocEF4bEJvQkNGVVBFcm5iMDJs?=
- =?utf-8?B?WHpOVEFWcGVQendKcitkbWlmYk92aEh3NnErd3JXd2VET3J6UWJoK3p1a2tP?=
- =?utf-8?B?NzhwS3YrVFJDbHJod1VIeEkvK0UyN0NqeFdEKzZDc01zeUJwTDhVeWpFakl5?=
- =?utf-8?B?SXgybUpYWENXbjFxdEtXcVY0aHNhVUZhZXBPcFBjQWU2Q3BwSjl4ZHpWQ1Ji?=
- =?utf-8?B?d3RFL0s0dHIxNzI5djgyUGRXSUlaaWlaK1g5bklIbDd3ZVU4M1dkZU1aWXNV?=
- =?utf-8?B?K1RDVUFsYjNHMDlxRXNZeTNpa0JBQUJKMnJXeGxqYWhZbHdFTEJ6MndWMG0z?=
- =?utf-8?B?WUpWWUdzWmpiZEtZdmdsNVhoUzdLY3loN1N6ZkdSa25YVHFSUDhjMFFJb1NB?=
- =?utf-8?B?OVNZOEVyRkZQOXdRMkNvcEZFZllZN0lqOTA1bDJlWUREaU5ETFBVbHRhVlU3?=
- =?utf-8?B?c0IzMnVYNW9aaWtrZ01pUjZpRjkvWlhMcjh6bFJiUjYvdU5Ib2JkRURqSWxZ?=
- =?utf-8?B?RFJLTGtTQzBPc2k1aUU4RjlaM1NqczVpRWd3bzBYcklIQUpHYlFpYm5uN3lI?=
- =?utf-8?B?dStXOU94TkY1cDJvY3dPN2JHdlBjNU16SnBtTGg0cmExWW8wMUNZejBaRWhQ?=
- =?utf-8?B?UU5pempxeDNmdW9VK0tBK3RsdWlXbmJtUEp2VGNod2p1dzFsTHdDZ2RwbEFC?=
- =?utf-8?B?VmRxaGsvcHBrejhTOCtTb1I2M0dyUVJZN0ZvaVlySFdVMVFlb3pPak9WVmU5?=
- =?utf-8?B?RmcvL2JvL0h6UE5TbUNPcG9BT2xJdnlsVHpCS05CdTE4b2tWWFpnaE8yWDN1?=
- =?utf-8?B?TDJ2TEtsSTNGcmtCOEpIaVV5YzV0aTArNkx1VEpldjBWb3JCVEZ4L3B3QzFW?=
- =?utf-8?B?a2lOZUNldWlpbm1QZ1lEYWVHTDFJTEMrbE5vc3pySFk4Z2VJZm5hSmhlc1Jy?=
- =?utf-8?B?cmNZQnhqQ21uWlgzNi9OS1psODNvTTA3NWJoU0I0OXp5MjdtUHhZdWoyaEhO?=
- =?utf-8?B?OTUyc3Fla1JnSU5JWGo0QTg3bytsOXA4SjZkMCtNWU8xdmpTZm5QNVVJcVZk?=
- =?utf-8?B?YkE4U2tBdWlUMkIyZVVhTVBkOU03cTRqU3drM0N1SzBCTXVETVgyWVhwZnIx?=
- =?utf-8?B?Y0dsOEx5NEVJUnEyNE9naWtzS1JwbVgwV1VhWW9SUVVQdk8wZzRpV0l5bXQr?=
- =?utf-8?B?QUhVYWxXcGkzYzlaQ2Z0d2c2V25SalI3Q3FVNUtTdmIyWDR4OVhMaDB2V3Jx?=
- =?utf-8?B?TlNNL3dGNDJrM0VZQVd5NllOQU1zcmhubkQvNUF5bmJ4YitVMS9aazlueEky?=
- =?utf-8?B?UGZpR21vcUNyUG9BM0sybUJRYXFERmdieXBJUjVYT1RmcFdaV2VWL0Q2dU9X?=
- =?utf-8?B?dWprK1BzRFhuSVNDcTVSVTVXQXhNSmExK2ZtNVQvTE9Ebk96QjFsMElpeHBO?=
- =?utf-8?B?LzZtOVFhUGFJRDZGZWhQNVYzaHVVM0JzSldSWHYwNkRpdnlvcWo1a2FSVzZ0?=
- =?utf-8?B?RkFueGcvZEd3Y1pkeHB2MmIyRktjMUE5UnpOaTdxS0ZHbElUZUV4NHRKbG5s?=
- =?utf-8?Q?KLU+vnjZttfstF4lD4sGX3/RuMjF3d2fKf4y+6WwgJubo?=
-x-ms-exchange-antispam-messagedata-1: zxa+M3gwUWOYUZXpG2tMvufkqrla7VhbNLY=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6EED6F81C9C6BF44B98DAA8EF2063D93@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+   d="scan'208";a="266319616"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 00:51:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; 
+   d="scan'208";a="586084129"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmsmga007.fm.intel.com with ESMTP; 10 Jun 2022 00:51:08 -0700
+Date:   Fri, 10 Jun 2022 15:43:11 +0800
+From:   Xu Yilun <yilun.xu@intel.com>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     mdf@kernel.org, hao.wu@intel.com, trix@redhat.com, corbet@lwn.net,
+        Ivan Bornyakov <brnkv.i1@gmail.com>,
+        Conor.Dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, system@metrotek.ru
+Subject: Re: [PATCH v17 1/4] fpga: fpga-mgr: support bitstream offset in
+ image buffer
+Message-ID: <20220610074311.GA693376@yilunxu-OptiPlex-7050>
+References: <20220609154752.20781-1-i.bornyakov@metrotek.ru>
+ <20220609154752.20781-2-i.bornyakov@metrotek.ru>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB5936.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9b801f8c-9891-4482-3013-08da4ab3b9bc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jun 2022 07:35:00.1597
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sA+CxzLeXrNl6iqScYTMvWoaqjq/xfqbYCj1tI/l5yIyVM6ZKEYqyKG3dlxk4Lj/loMyFuuQ7t9xqXs49Am+AzJ+KdUGBoYhkAZB9UmSPQg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6083
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220609154752.20781-2-i.bornyakov@metrotek.ru>
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMDkuMDYuMjAyMiAxNzoyOCwgUGV0ZXIgUm9zaW4gd3JvdGU6DQo+IEhpIQ0KDQpIaSBQZXRl
-ciwNCg0KPiANCj4gSSBoYXZlIG5vdCBhY3R1YWxseSBiaXNlY3RlZCB0aGlzIGlzc3VlIGJ1dCBy
-ZXZlcnRpbmcgdGhlIGVmZmVjdHMgb2YNCj4gcGF0Y2ggYTRiZDhkYTg5M2EzICgiQVJNOiBkdHM6
-IGF0OTE6IHNhbWE1ZDM6IGFkZCBpMmMgZ3BpbyBwaW5jdHJsIikNCj4gbWFrZXMgdGhlIHByb2Js
-ZW0gZ28gYXdheS4NCj4gDQo+IEkuZS4gSSBuZWVkIHNvbWV0aGluZyBsaWtlIHRoaXMgaW4gbXkg
-ZHRzDQo+IA0KPiAmaTJjMiB7DQo+ICAgICAgICAgIHN0YXR1cyA9ICJva2F5IjsNCj4gDQo+ICAg
-ICAgICAgIHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+ICAgICAgICAgIC9kZWxldGUtcHJv
-cGVydHkvIHBpbmN0cmwtMTsNCj4gICAgICAgICAgL2RlbGV0ZS1wcm9wZXJ0eS8gc2RhLWdwaW9z
-Ow0KPiAgICAgICAgICAvZGVsZXRlLXByb3BlcnR5LyBzY2wtZ3Bpb3M7DQo+IA0KPiAgICAgICAg
-ICBlZXByb21ANTAgew0KPiAgICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAic3QsMjRjNjQi
-LCAiYXRtZWwsMjRjNjQiOw0KPiAgICAgICAgICAgICAgICAgIHJlZyA9IDwweDUwPjsNCj4gICAg
-ICAgICAgICAgICAgICB3cC1ncGlvcyA9IDwmZmlsdGVyX2dwaW8gNyBHUElPX0FDVElWRV9ISUdI
-PjsNCj4gICAgICAgICAgfTsNCj4gfTsNCj4gDQo+IGZvciBtdWx0aS1wYWdlIGVlcHJvbSB3cml0
-ZXMgdG8gbm90IHRpbWUgb3V0IChhIHBhZ2UgaXMgMzIgYnl0ZXMgb24gdGhpcw0KPiBlZXByb20p
-Lg0KPiANCj4gRm9yIHJlZmVyZW5jZSwgdGhlIGN1cnJlbnQgZGVmYXVsdHMgZm9yIHRoaXMgU29D
-L0kyQy1idXMsIHRoYXQgSSBtb2RpZnksDQo+IGFyZToNCj4gDQo+ICAgICAgICAgIHBpbmN0cmwt
-bmFtZXMgPSAiZGVmYXVsdCIsICJncGlvIjsNCj4gICAgICAgICAgcGluY3RybC0wID0gPCZwaW5j
-dHJsX2kyYzI+Ow0KPiAgICAgICAgICBwaW5jdHJsLTEgPSA8JnBpbmN0cmxfaTJjMl9ncGlvPjsN
-Cj4gICAgICAgICAgc2RhLWdwaW9zID0gPCZwaW9BIDE4IEdQSU9fQUNUSVZFX0hJR0g+Ow0KPiAg
-ICAgICAgICBzY2wtZ3Bpb3MgPSA8JnBpb0EgMTkgKEdQSU9fQUNUSVZFX0hJR0ggfCBHUElPX09Q
-RU5fRFJBSU4pPjsNCj4gDQo+IEkgc3VzcGVjdCB0aGF0IHRoZSB1bmRlcmx5aW5nIHJlYXNvbiBp
-cyB0aGF0IHRoZSBidXMgcmVjb3ZlcnkgdGFrZXMNCj4gdG9vIGxvbmcgYW5kIHRoYXQgdGhlIGF0
-MjQgZWVwcm9tIGRyaXZlciBnaXZlcyB1cCBwcmVtYXR1cmVseS4gSSBkb3VidA0KPiB0aGF0IHRo
-aXMgaXMgY2hpcCBzcGVjaWZpYywgYnV0IEkgZG9uJ3Qga25vdyB0aGF0Lg0KPiANCj4gSSBjYW4g
-d29yayBhcm91bmQgdGhlIGlzc3VlIGluIHVzZXIgc3BhY2Ugd2l0aCBieSB3cml0aW5nIGluIDQg
-Ynl0ZQ0KPiBjaHVua3MsIGxpa2Ugc28NCj4gDQo+IGRkIGlmPXNvdXJjZS5maWxlIG9mPS9zeXMv
-YnVzL2kyYy9kZXZpY2VzLzItMDA1MC9lZXByb20gb2JzPTQNCj4gDQo+IGJ1dCB0aGF0IGlzIHJl
-YWxseSB1Z2x5IGFuZCBnZXRzIHNsb3cgdG9vLCBhYm91dCAyMCBzZWNvbmRzIHRvIHByb2dyYW0N
-Cj4gdGhlIGZ1bGwgOGtCIGVlcHJvbS4gV2l0aCB0aGUgYWJvdmUgaW4gbXkgZHRzIGl0IHRha2Vz
-IGEgc2Vjb25kIG9yDQo+IHNvIChhIGJpdCBtb3JlIHdpdGggZHluYW1pYyBkZWJ1ZyBhY3RpdmUp
-Lg0KPiANCj4gDQo+IElmIEkgcnVuDQo+IA0KPiBkZCBpZj1zb3VyY2UuZmlsZSBvZj0vc3lzL2J1
-cy9pMmMvZGV2aWNlcy8yLTAwNTAvZWVwcm9tDQo+IA0KPiB3aXRoIGEgc291cmNlLmZpbGUgb2Yg
-OGtCIGFuZCB0aGUgdXBzdHJlYW0gZHRzIHByb3BlcnRpZXMgaW4gcGxhY2UsIEkgY2FuDQo+IGNv
-bGxlY3QgdGhlIGZvbGxvd2luZyBkZWJ1ZyBvdXRwdXQgZnJvbSBhdDI0LCBpMmMtY29yZSBhbmQg
-aTJjLWF0OTE6DQo+IA0KPiBKdW4gIDkgMTU6NTY6MzQgbWUyMCBrZXJuZWw6IGkyYyBpMmMtMjog
-YXQ5MV94ZmVyOiBwcm9jZXNzaW5nIDEgbWVzc2FnZXM6DQo+IEp1biAgOSAxNTo1NjozNCBtZTIw
-IGtlcm5lbDogYXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiB0cmFuc2Zlcjogd3JpdGUgMzQgYnl0ZXMu
-DQo+IEp1biAgOSAxNTo1NjozNCBtZTIwIGtlcm5lbDogYXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiB0
-cmFuc2ZlciBjb21wbGV0ZQ0KPiBKdW4gIDkgMTU6NTY6MzQgbWUyMCBrZXJuZWw6IGF0MjQgMi0w
-MDUwOiB3cml0ZSAzMkAwIC0tPiAwICgtMjMxNzApDQo+IEp1biAgOSAxNTo1NjozNCBtZTIwIGtl
-cm5lbDogaTJjIGkyYy0yOiBhdDkxX3hmZXI6IHByb2Nlc3NpbmcgMSBtZXNzYWdlczoNCj4gSnVu
-ICA5IDE1OjU2OjM0IG1lMjAga2VybmVsOiBhdDkxX2kyYyBmODAxYzAwMC5pMmM6IHRyYW5zZmVy
-OiB3cml0ZSAzNCBieXRlcy4NCj4gSnVuICA5IDE1OjU2OjM0IG1lMjAga2VybmVsOiBhdDkxX2ky
-YyBmODAxYzAwMC5pMmM6IHJlY2VpdmVkIG5hY2sNCj4gSnVuICA5IDE1OjU2OjM0IG1lMjAga2Vy
-bmVsOiBpMmMgaTJjLTI6IFRyeWluZyBpMmMgYnVzIHJlY292ZXJ5DQo+IEp1biAgOSAxNTo1Njoz
-NCBtZTIwIGtlcm5lbDogYXQyNCAyLTAwNTA6IHdyaXRlIDMyQDMyIC0tPiAtMTIxICgtMjMxNjkp
-DQo+IEp1biAgOSAxNTo1NjozNCBtZTIwIGtlcm5lbDogaTJjIGkyYy0yOiBhdDkxX3hmZXI6IHBy
-b2Nlc3NpbmcgMSBtZXNzYWdlczoNCj4gSnVuICA5IDE1OjU2OjM0IG1lMjAga2VybmVsOiBhdDkx
-X2kyYyBmODAxYzAwMC5pMmM6IHRyYW5zZmVyOiB3cml0ZSAzNCBieXRlcy4NCj4gSnVuICA5IDE1
-OjU2OjM0IG1lMjAga2VybmVsOiBhdDkxX2kyYyBmODAxYzAwMC5pMmM6IHRyYW5zZmVyIGNvbXBs
-ZXRlDQo+IEp1biAgOSAxNTo1NjozNCBtZTIwIGtlcm5lbDogYXQyNCAyLTAwNTA6IHdyaXRlIDMy
-QDMyIC0tPiAwICgtMjMxNjgpDQo+IEp1biAgOSAxNTo1NjozNCBtZTIwIGtlcm5lbDogaTJjIGky
-Yy0yOiBhdDkxX3hmZXI6IHByb2Nlc3NpbmcgMSBtZXNzYWdlczoNCj4gSnVuICA5IDE1OjU2OjM0
-IG1lMjAga2VybmVsOiBhdDkxX2kyYyBmODAxYzAwMC5pMmM6IHRyYW5zZmVyOiB3cml0ZSAzNCBi
-eXRlcy4NCj4gSnVuICA5IDE1OjU2OjM0IG1lMjAga2VybmVsOiBhdDkxX2kyYyBmODAxYzAwMC5p
-MmM6IHJlY2VpdmVkIG5hY2sNCj4gSnVuICA5IDE1OjU2OjM0IG1lMjAga2VybmVsOiBpMmMgaTJj
-LTI6IFRyeWluZyBpMmMgYnVzIHJlY292ZXJ5DQo+IEp1biAgOSAxNTo1NjozNCBtZTIwIGtlcm5l
-bDogYXQyNCAyLTAwNTA6IHdyaXRlIDMyQDY0IC0tPiAtMTIxICgtMjMxNjgpDQo+IEp1biAgOSAx
-NTo1NjozNCBtZTIwIGtlcm5lbDogaTJjIGkyYy0yOiBhdDkxX3hmZXI6IHByb2Nlc3NpbmcgMSBt
-ZXNzYWdlczoNCj4gSnVuICA5IDE1OjU2OjM0IG1lMjAga2VybmVsOiBhdDkxX2kyYyBmODAxYzAw
-MC5pMmM6IHRyYW5zZmVyOiB3cml0ZSAzNCBieXRlcy4NCj4gSnVuICA5IDE1OjU2OjM0IG1lMjAg
-a2VybmVsOiBhdDkxX2kyYyBmODAxYzAwMC5pMmM6IHRyYW5zZmVyIGNvbXBsZXRlDQo+IEp1biAg
-OSAxNTo1NjozNCBtZTIwIGtlcm5lbDogYXQyNCAyLTAwNTA6IHdyaXRlIDMyQDY0IC0tPiAwICgt
-MjMxNjcpDQo+IEp1biAgOSAxNTo1NjozNCBtZTIwIGtlcm5lbDogaTJjIGkyYy0yOiBhdDkxX3hm
-ZXI6IHByb2Nlc3NpbmcgMSBtZXNzYWdlczoNCj4gSnVuICA5IDE1OjU2OjM0IG1lMjAga2VybmVs
-OiBhdDkxX2kyYyBmODAxYzAwMC5pMmM6IHRyYW5zZmVyOiB3cml0ZSAzNCBieXRlcy4NCj4gSnVu
-ICA5IDE1OjU2OjM0IG1lMjAga2VybmVsOiBhdDkxX2kyYyBmODAxYzAwMC5pMmM6IHJlY2VpdmVk
-IG5hY2sNCj4gSnVuICA5IDE1OjU2OjM0IG1lMjAga2VybmVsOiBpMmMgaTJjLTI6IFRyeWluZyBp
-MmMgYnVzIHJlY292ZXJ5DQo+IEp1biAgOSAxNTo1NjozNCBtZTIwIGtlcm5lbDogYXQyNCAyLTAw
-NTA6IHdyaXRlIDMyQDk2IC0tPiAtMTIxICgtMjMxNjcpDQo+IEp1biAgOSAxNTo1NjozNCBtZTIw
-IGtlcm5lbDogaTJjIGkyYy0yOiBhdDkxX3hmZXI6IHByb2Nlc3NpbmcgMSBtZXNzYWdlczoNCj4g
-SnVuICA5IDE1OjU2OjM0IG1lMjAga2VybmVsOiBhdDkxX2kyYyBmODAxYzAwMC5pMmM6IHRyYW5z
-ZmVyOiB3cml0ZSAzNCBieXRlcy4NCj4gSnVuICA5IDE1OjU2OjM0IG1lMjAga2VybmVsOiBhdDkx
-X2kyYyBmODAxYzAwMC5pMmM6IGNvbnRyb2xsZXIgdGltZWQgb3V0DQo+IEp1biAgOSAxNTo1Njoz
-NCBtZTIwIGtlcm5lbDogaTJjIGkyYy0yOiBUcnlpbmcgaTJjIGJ1cyByZWNvdmVyeQ0KPiBKdW4g
-IDkgMTU6NTY6MzQgbWUyMCBrZXJuZWw6IGF0MjQgMi0wMDUwOiB3cml0ZSAzMkA5NiAtLT4gLTEx
-MCAoLTIzMTU1KQ0KPiBKdW4gIDkgMTU6NTY6MzQgbWUyMCBrZXJuZWw6IGkyYyBpMmMtMjogYXQ5
-MV94ZmVyOiBwcm9jZXNzaW5nIDEgbWVzc2FnZXM6DQo+IEp1biAgOSAxNTo1NjozNCBtZTIwIGtl
-cm5lbDogYXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiB0cmFuc2Zlcjogd3JpdGUgMzQgYnl0ZXMuDQo+
-IEp1biAgOSAxNTo1NjozNCBtZTIwIGtlcm5lbDogYXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiBjb250
-cm9sbGVyIHRpbWVkIG91dA0KPiBKdW4gIDkgMTU6NTY6MzQgbWUyMCBrZXJuZWw6IGkyYyBpMmMt
-MjogVHJ5aW5nIGkyYyBidXMgcmVjb3ZlcnkNCj4gSnVuICA5IDE1OjU2OjM0IG1lMjAga2VybmVs
-OiBhdDI0IDItMDA1MDogd3JpdGUgMzJAOTYgLS0+IC0xMTAgKC0yMzE0MykNCj4gDQo+IEFuZCB0
-aGVuIHRoZXJlIGlzIG5vIG1vcmUgYWN0aW9uLiBJLmUuIG9ubHkgYSBjb3VwbGUgb2YgMzIgYnl0
-ZSBwYWdlcw0KPiBhcmUgd3JpdHRlbi4NCj4gDQo+IFdpdGggdGhlIGFib3ZlIG1lbnRpb25lZCBk
-dHMgb3ZlcnJpZGUgaW4gcGxhY2UgSSBpbnN0ZWFkIGdldCB0aGlzLCB3aGljaCBpcw0KPiBhIGxv
-dCBtb3JlIHNlbnNpYmxlOg0KPiANCj4gSnVuICA5IDE1OjQ4OjUzIG1lMjAga2VybmVsOiBpMmMg
-aTJjLTI6IGF0OTFfeGZlcjogcHJvY2Vzc2luZyAxIG1lc3NhZ2VzOg0KPiBKdW4gIDkgMTU6NDg6
-NTMgbWUyMCBrZXJuZWw6IGF0OTFfaTJjIGY4MDFjMDAwLmkyYzogdHJhbnNmZXI6IHdyaXRlIDM0
-IGJ5dGVzLg0KPiBKdW4gIDkgMTU6NDg6NTMgbWUyMCBrZXJuZWw6IGF0OTFfaTJjIGY4MDFjMDAw
-LmkyYzogdHJhbnNmZXIgY29tcGxldGUNCj4gSnVuICA5IDE1OjQ4OjUzIG1lMjAga2VybmVsOiBh
-dDI0IDItMDA1MDogd3JpdGUgMzJAMCAtLT4gMCAoNzUzNjI5KQ0KPiBKdW4gIDkgMTU6NDg6NTMg
-bWUyMCBrZXJuZWw6IGkyYyBpMmMtMjogYXQ5MV94ZmVyOiBwcm9jZXNzaW5nIDEgbWVzc2FnZXM6
-DQo+IEp1biAgOSAxNTo0ODo1MyBtZTIwIGtlcm5lbDogYXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiB0
-cmFuc2Zlcjogd3JpdGUgMzQgYnl0ZXMuDQo+IEp1biAgOSAxNTo0ODo1MyBtZTIwIGtlcm5lbDog
-YXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiByZWNlaXZlZCBuYWNrDQo+IEp1biAgOSAxNTo0ODo1MyBt
-ZTIwIGtlcm5lbDogYXQyNCAyLTAwNTA6IHdyaXRlIDMyQDMyIC0tPiAtMTIxICg3NTM2MjkpDQo+
-IEp1biAgOSAxNTo0ODo1MyBtZTIwIGtlcm5lbDogaTJjIGkyYy0yOiBhdDkxX3hmZXI6IHByb2Nl
-c3NpbmcgMSBtZXNzYWdlczoNCj4gSnVuICA5IDE1OjQ4OjUzIG1lMjAga2VybmVsOiBhdDkxX2ky
-YyBmODAxYzAwMC5pMmM6IHRyYW5zZmVyOiB3cml0ZSAzNCBieXRlcy4NCj4gSnVuICA5IDE1OjQ4
-OjUzIG1lMjAga2VybmVsOiBhdDkxX2kyYyBmODAxYzAwMC5pMmM6IHRyYW5zZmVyIGNvbXBsZXRl
-DQo+IEp1biAgOSAxNTo0ODo1MyBtZTIwIGtlcm5lbDogYXQyNCAyLTAwNTA6IHdyaXRlIDMyQDMy
-IC0tPiAwICg3NTM2MzApDQo+IEp1biAgOSAxNTo0ODo1MyBtZTIwIGtlcm5lbDogaTJjIGkyYy0y
-OiBhdDkxX3hmZXI6IHByb2Nlc3NpbmcgMSBtZXNzYWdlczoNCj4gSnVuICA5IDE1OjQ4OjUzIG1l
-MjAga2VybmVsOiBhdDkxX2kyYyBmODAxYzAwMC5pMmM6IHRyYW5zZmVyOiB3cml0ZSAzNCBieXRl
-cy4NCj4gSnVuICA5IDE1OjQ4OjUzIG1lMjAga2VybmVsOiBhdDkxX2kyYyBmODAxYzAwMC5pMmM6
-IHJlY2VpdmVkIG5hY2sNCj4gSnVuICA5IDE1OjQ4OjUzIG1lMjAga2VybmVsOiBhdDI0IDItMDA1
-MDogd3JpdGUgMzJANjQgLS0+IC0xMjEgKDc1MzYzMCkNCj4gSnVuICA5IDE1OjQ4OjUzIG1lMjAg
-a2VybmVsOiBpMmMgaTJjLTI6IGF0OTFfeGZlcjogcHJvY2Vzc2luZyAxIG1lc3NhZ2VzOg0KPiBK
-dW4gIDkgMTU6NDg6NTMgbWUyMCBrZXJuZWw6IGF0OTFfaTJjIGY4MDFjMDAwLmkyYzogdHJhbnNm
-ZXI6IHdyaXRlIDM0IGJ5dGVzLg0KPiBKdW4gIDkgMTU6NDg6NTMgbWUyMCBrZXJuZWw6IGF0OTFf
-aTJjIGY4MDFjMDAwLmkyYzogdHJhbnNmZXIgY29tcGxldGUNCj4gSnVuICA5IDE1OjQ4OjUzIG1l
-MjAga2VybmVsOiBhdDI0IDItMDA1MDogd3JpdGUgMzJANjQgLS0+IDAgKDc1MzYzMSkNCj4gSnVu
-ICA5IDE1OjQ4OjUzIG1lMjAga2VybmVsOiBpMmMgaTJjLTI6IGF0OTFfeGZlcjogcHJvY2Vzc2lu
-ZyAxIG1lc3NhZ2VzOg0KPiBKdW4gIDkgMTU6NDg6NTMgbWUyMCBrZXJuZWw6IGF0OTFfaTJjIGY4
-MDFjMDAwLmkyYzogdHJhbnNmZXI6IHdyaXRlIDM0IGJ5dGVzLg0KPiBKdW4gIDkgMTU6NDg6NTMg
-bWUyMCBrZXJuZWw6IGF0OTFfaTJjIGY4MDFjMDAwLmkyYzogcmVjZWl2ZWQgbmFjaw0KPiBKdW4g
-IDkgMTU6NDg6NTMgbWUyMCBrZXJuZWw6IGF0MjQgMi0wMDUwOiB3cml0ZSAzMkA5NiAtLT4gLTEy
-MSAoNzUzNjMxKQ0KPiBKdW4gIDkgMTU6NDg6NTMgbWUyMCBrZXJuZWw6IGkyYyBpMmMtMjogYXQ5
-MV94ZmVyOiBwcm9jZXNzaW5nIDEgbWVzc2FnZXM6DQo+IEp1biAgOSAxNTo0ODo1MyBtZTIwIGtl
-cm5lbDogYXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiB0cmFuc2Zlcjogd3JpdGUgMzQgYnl0ZXMuDQo+
-IEp1biAgOSAxNTo0ODo1MyBtZTIwIGtlcm5lbDogYXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiB0cmFu
-c2ZlciBjb21wbGV0ZQ0KPiBKdW4gIDkgMTU6NDg6NTMgbWUyMCBrZXJuZWw6IGF0MjQgMi0wMDUw
-OiB3cml0ZSAzMkA5NiAtLT4gMCAoNzUzNjMyKQ0KPiBKdW4gIDkgMTU6NDg6NTMgbWUyMCBrZXJu
-ZWw6IGkyYyBpMmMtMjogYXQ5MV94ZmVyOiBwcm9jZXNzaW5nIDEgbWVzc2FnZXM6DQo+IEp1biAg
-OSAxNTo0ODo1MyBtZTIwIGtlcm5lbDogYXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiB0cmFuc2Zlcjog
-d3JpdGUgMzQgYnl0ZXMuDQo+IEp1biAgOSAxNTo0ODo1MyBtZTIwIGtlcm5lbDogYXQ5MV9pMmMg
-ZjgwMWMwMDAuaTJjOiByZWNlaXZlZCBuYWNrDQo+IEp1biAgOSAxNTo0ODo1MyBtZTIwIGtlcm5l
-bDogYXQyNCAyLTAwNTA6IHdyaXRlIDMyQDEyOCAtLT4gLTEyMSAoNzUzNjMyKQ0KPiBKdW4gIDkg
-MTU6NDg6NTMgbWUyMCBrZXJuZWw6IGkyYyBpMmMtMjogYXQ5MV94ZmVyOiBwcm9jZXNzaW5nIDEg
-bWVzc2FnZXM6DQo+IEp1biAgOSAxNTo0ODo1MyBtZTIwIGtlcm5lbDogYXQ5MV9pMmMgZjgwMWMw
-MDAuaTJjOiB0cmFuc2Zlcjogd3JpdGUgMzQgYnl0ZXMuDQo+IEp1biAgOSAxNTo0ODo1MyBtZTIw
-IGtlcm5lbDogYXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiB0cmFuc2ZlciBjb21wbGV0ZQ0KPiBKdW4g
-IDkgMTU6NDg6NTMgbWUyMCBrZXJuZWw6IGF0MjQgMi0wMDUwOiB3cml0ZSAzMkAxMjggLS0+IDAg
-KDc1MzYzMykNCj4gSnVuICA5IDE1OjQ4OjUzIG1lMjAga2VybmVsOiBpMmMgaTJjLTI6IGF0OTFf
-eGZlcjogcHJvY2Vzc2luZyAxIG1lc3NhZ2VzOg0KPiBKdW4gIDkgMTU6NDg6NTMgbWUyMCBrZXJu
-ZWw6IGF0OTFfaTJjIGY4MDFjMDAwLmkyYzogdHJhbnNmZXI6IHdyaXRlIDM0IGJ5dGVzLg0KPiBK
-dW4gIDkgMTU6NDg6NTMgbWUyMCBrZXJuZWw6IGF0OTFfaTJjIGY4MDFjMDAwLmkyYzogcmVjZWl2
-ZWQgbmFjaw0KPiBKdW4gIDkgMTU6NDg6NTMgbWUyMCBrZXJuZWw6IGF0MjQgMi0wMDUwOiB3cml0
-ZSAzMkAxNjAgLS0+IC0xMjEgKDc1MzYzMykNCj4gSnVuICA5IDE1OjQ4OjUzIG1lMjAga2VybmVs
-OiBpMmMgaTJjLTI6IGF0OTFfeGZlcjogcHJvY2Vzc2luZyAxIG1lc3NhZ2VzOg0KPiBKdW4gIDkg
-MTU6NDg6NTMgbWUyMCBrZXJuZWw6IGF0OTFfaTJjIGY4MDFjMDAwLmkyYzogdHJhbnNmZXI6IHdy
-aXRlIDM0IGJ5dGVzLg0KPiBKdW4gIDkgMTU6NDg6NTMgbWUyMCBrZXJuZWw6IGF0OTFfaTJjIGY4
-MDFjMDAwLmkyYzogdHJhbnNmZXIgY29tcGxldGUNCj4gSnVuICA5IDE1OjQ4OjUzIG1lMjAga2Vy
-bmVsOiBhdDI0IDItMDA1MDogd3JpdGUgMzJAMTYwIC0tPiAwICg3NTM2MzQpDQo+IC4uLiBzbmlw
-IC4uLg0KPiBKdW4gIDkgMTU6NDg6NTUgbWUyMCBrZXJuZWw6IGkyYyBpMmMtMjogYXQ5MV94ZmVy
-OiBwcm9jZXNzaW5nIDEgbWVzc2FnZXM6DQo+IEp1biAgOSAxNTo0ODo1NSBtZTIwIGtlcm5lbDog
-YXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiB0cmFuc2Zlcjogd3JpdGUgMzQgYnl0ZXMuDQo+IEp1biAg
-OSAxNTo0ODo1NSBtZTIwIGtlcm5lbDogYXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiByZWNlaXZlZCBu
-YWNrDQo+IEp1biAgOSAxNTo0ODo1NSBtZTIwIGtlcm5lbDogYXQyNCAyLTAwNTA6IHdyaXRlIDMy
-QDgxMjggLS0+IC0xMjEgKDc1Mzg4MykNCj4gSnVuICA5IDE1OjQ4OjU1IG1lMjAga2VybmVsOiBp
-MmMgaTJjLTI6IGF0OTFfeGZlcjogcHJvY2Vzc2luZyAxIG1lc3NhZ2VzOg0KPiBKdW4gIDkgMTU6
-NDg6NTUgbWUyMCBrZXJuZWw6IGF0OTFfaTJjIGY4MDFjMDAwLmkyYzogdHJhbnNmZXI6IHdyaXRl
-IDM0IGJ5dGVzLg0KPiBKdW4gIDkgMTU6NDg6NTUgbWUyMCBrZXJuZWw6IGF0OTFfaTJjIGY4MDFj
-MDAwLmkyYzogdHJhbnNmZXIgY29tcGxldGUNCj4gSnVuICA5IDE1OjQ4OjU1IG1lMjAga2VybmVs
-OiBhdDI0IDItMDA1MDogd3JpdGUgMzJAODEyOCAtLT4gMCAoNzUzODg0KQ0KPiBKdW4gIDkgMTU6
-NDg6NTUgbWUyMCBrZXJuZWw6IGkyYyBpMmMtMjogYXQ5MV94ZmVyOiBwcm9jZXNzaW5nIDEgbWVz
-c2FnZXM6DQo+IEp1biAgOSAxNTo0ODo1NSBtZTIwIGtlcm5lbDogYXQ5MV9pMmMgZjgwMWMwMDAu
-aTJjOiB0cmFuc2Zlcjogd3JpdGUgMzQgYnl0ZXMuDQo+IEp1biAgOSAxNTo0ODo1NSBtZTIwIGtl
-cm5lbDogYXQ5MV9pMmMgZjgwMWMwMDAuaTJjOiByZWNlaXZlZCBuYWNrDQo+IEp1biAgOSAxNTo0
-ODo1NSBtZTIwIGtlcm5lbDogYXQyNCAyLTAwNTA6IHdyaXRlIDMyQDgxNjAgLS0+IC0xMjEgKDc1
-Mzg4NCkNCj4gSnVuICA5IDE1OjQ4OjU1IG1lMjAga2VybmVsOiBpMmMgaTJjLTI6IGF0OTFfeGZl
-cjogcHJvY2Vzc2luZyAxIG1lc3NhZ2VzOg0KPiBKdW4gIDkgMTU6NDg6NTUgbWUyMCBrZXJuZWw6
-IGF0OTFfaTJjIGY4MDFjMDAwLmkyYzogdHJhbnNmZXI6IHdyaXRlIDM0IGJ5dGVzLg0KPiBKdW4g
-IDkgMTU6NDg6NTUgbWUyMCBrZXJuZWw6IGF0OTFfaTJjIGY4MDFjMDAwLmkyYzogdHJhbnNmZXIg
-Y29tcGxldGUNCj4gSnVuICA5IDE1OjQ4OjU1IG1lMjAga2VybmVsOiBhdDI0IDItMDA1MDogd3Jp
-dGUgMzJAODE2MCAtLT4gMCAoNzUzODg1KQ0KDQpjb3VsZCB5b3UgcGxlYXNlIGFwcGx5IHRoaXMg
-cGF0Y2gtc2V0IFsxXSBhbmQgbGV0IHVzIGtub3cgaWYgaXQgDQphZGRyZXNzZXMgeW91ciBpc3N1
-ZT8NCg0KVGhhbmtzIGFuZCBiZXN0IHJlZ2FyZHMsDQpDb2RyaW4NCg0KaHR0cHM6Ly9wYXRjaHdv
-cmsub3psYWJzLm9yZy9wcm9qZWN0L2xpbnV4LWkyYy9saXN0Lz9zZXJpZXM9MjU1NDA4DQo=
+On Thu, Jun 09, 2022 at 06:47:49PM +0300, Ivan Bornyakov wrote:
+> At the moment FPGA manager core loads to the device entire image
+> provided to fpga_mgr_load(). But it is not always whole FPGA image
+> buffer meant to be written to the device. In particular, .dat formatted
+> image for Microchip MPF contains meta info in the header that is not
+> meant to be written to the device. This is issue for those low level
+> drivers that loads data to the device with write() fpga_manager_ops
+> callback, since write() can be called in iterator over scatter-gather
+> table, not only linear image buffer. On the other hand, write_sg()
+> callback is provided with whole image in scatter-gather form and can
+> decide itself which part should be sent to the device.
+> 
+> Add header_size and data_size to the fpga_image_info struct and adjust
+> fpga_mgr_write() callers with respect to them.
+> 
+>   * info->header_size indicates part at the beginning of image buffer
+>     that is *not* meant to be written to the device. It is optional and
+>     can be 0.
+> 
+>   * info->data_size is the size of actual bitstream data that *is* meant
+>     to be written to the device, starting at info->header_size from the
+>     beginning of image buffer. It is also optional and can be 0, which
+>     means bitstream data is up to the end of image buffer.
+> 
+> Also add parse_header() callback to fpga_manager_ops, which purpose is
+> to set info->header_size and info->data_size. At least
+> initial_header_size bytes of image buffer will be passed into
+> parse_header() first time. If it is not enough, parse_header() should
+> set desired size into info->header_size and return -EAGAIN, then it will
+> be called again with greater part of image buffer on the input.
+> 
+> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> ---
+>  drivers/fpga/fpga-mgr.c       | 243 +++++++++++++++++++++++++++++-----
+>  include/linux/fpga/fpga-mgr.h |  17 ++-
+>  2 files changed, 229 insertions(+), 31 deletions(-)
+> 
+> diff --git a/drivers/fpga/fpga-mgr.c b/drivers/fpga/fpga-mgr.c
+> index 08dc85fcd511..0854fbc8f11e 100644
+> --- a/drivers/fpga/fpga-mgr.c
+> +++ b/drivers/fpga/fpga-mgr.c
+
+Should we check in fpga_mgr_create, that initial_header_size must not be
+0 if parse_header() is defined. If we pass no data to parse_header(),
+does it make any sense?
+
+> @@ -74,6 +74,15 @@ static inline int fpga_mgr_write_complete(struct fpga_manager *mgr,
+>  	return 0;
+>  }
+>  
+> +static inline int fpga_mgr_parse_header(struct fpga_manager *mgr,
+> +					struct fpga_image_info *info,
+> +					const char *buf, size_t count)
+> +{
+> +	if (mgr->mops->parse_header)
+> +		return mgr->mops->parse_header(mgr, info, buf, count);
+> +	return 0;
+> +}
+> +
+>  static inline int fpga_mgr_write_init(struct fpga_manager *mgr,
+>  				      struct fpga_image_info *info,
+>  				      const char *buf, size_t count)
+> @@ -136,24 +145,145 @@ void fpga_image_info_free(struct fpga_image_info *info)
+>  EXPORT_SYMBOL_GPL(fpga_image_info_free);
+>  
+>  /*
+> - * Call the low level driver's write_init function.  This will do the
+> + * Call the low level driver's parse_header function with entire FPGA image
+> + * buffer on the input. This will set info->header_size and info->data_size.
+> + */
+> +static int fpga_mgr_parse_header_mapped(struct fpga_manager *mgr,
+> +					struct fpga_image_info *info,
+> +					const char *buf, size_t count)
+> +{
+> +	int ret;
+> +
+> +	mgr->state = FPGA_MGR_STATE_PARSE_HEADER;
+> +	ret = fpga_mgr_parse_header(mgr, info, buf, count);
+> +
+> +	if (info->header_size + info->data_size > count) {
+> +		dev_err(&mgr->dev, "Bitsream data outruns FPGA image\n");
+> +		ret = -EINVAL;
+> +	}
+> +
+> +	if (ret) {
+> +		dev_err(&mgr->dev, "Error while parsing FPGA image header\n");
+> +		mgr->state = FPGA_MGR_STATE_PARSE_HEADER_ERR;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +/*
+> + * Call the low level driver's parse_header function with first fragment of
+> + * scattered FPGA image on the input. If header fits first fragment,
+> + * parse_header will set info->header_size and info->data_size. If it is not,
+> + * parse_header will set desired size to info->header_size and -EAGAIN will be
+> + * returned.
+> + */
+> +static int fpga_mgr_parse_header_sg_first(struct fpga_manager *mgr,
+> +					  struct fpga_image_info *info,
+> +					  struct sg_table *sgt)
+> +{
+> +	size_t header_size = mgr->mops->initial_header_size;
+> +	struct sg_mapping_iter miter;
+> +	int ret;
+> +
+> +	mgr->state = FPGA_MGR_STATE_PARSE_HEADER;
+> +
+> +	sg_miter_start(&miter, sgt->sgl, sgt->nents, SG_MITER_FROM_SG);
+> +	if (sg_miter_next(&miter) &&
+> +	    miter.length >= header_size)
+> +		ret = fpga_mgr_parse_header(mgr, info, miter.addr, miter.length);
+> +	else
+> +		ret = -EAGAIN;
+> +	sg_miter_stop(&miter);
+> +
+> +	if (ret && ret != -EAGAIN) {
+> +		dev_err(&mgr->dev, "Error while parsing FPGA image header\n");
+> +		mgr->state = FPGA_MGR_STATE_PARSE_HEADER_ERR;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +/*
+> + * Copy scattered FPGA image fragments to temporary buffer and call the
+> + * low level driver's parse_header function. This should be called after
+> + * fpga_mgr_parse_header_sg_first() returned -EAGAIN. In case of success,
+> + * pointer to the newly allocated image header copy will be set into *ret_buf
+> + * and its size will be returned. *ret_buf needs to be freed by caller.
+> + */
+> +static ssize_t fpga_mgr_parse_header_sg(struct fpga_manager *mgr,
+> +					struct fpga_image_info *info,
+> +					struct sg_table *sgt, char **ret_buf)
+
+Since the function allocs buffer for the user, I suggest it still returns
+the buffer pointer. The buffer size could be an output parameter.
+
+> +{
+> +	size_t len, header_size = mgr->mops->initial_header_size;
+> +	char *buf = NULL;
+> +	int ret;
+> +
+> +	do {
+> +		if (info->header_size)
+> +			header_size = info->header_size;
+> +
+> +		buf = krealloc(buf, header_size, GFP_KERNEL);
+> +		if (!buf) {
+> +			ret = -ENOMEM;
+
+If you need to return ERROR value, ERR_PTR() could be used.
+
+
+BTW: Have you tried to test your FPGA programming using sg buffers? I want
+to ensure these changes are actually tested?
+
+Thanks,
+Yilun
+
+> +			break;
+> +		}
+> +
+> +		len = sg_copy_to_buffer(sgt->sgl, sgt->nents, buf, header_size);
+> +		if (len != header_size) {
+> +			ret = -EFAULT;
+> +			break;
+> +		}
+> +
+> +		ret = fpga_mgr_parse_header(mgr, info, buf, header_size);
+> +		if (ret == -EAGAIN && info->header_size <= header_size) {
+> +			dev_err(&mgr->dev, "Requested invalid header size\n");
+> +			ret = -EFAULT;
+> +		}
+> +	} while (ret == -EAGAIN);
+> +
+> +	if (ret) {
+> +		dev_err(&mgr->dev, "Error while parsing FPGA image header\n");
+> +		mgr->state = FPGA_MGR_STATE_PARSE_HEADER_ERR;
+> +		kfree(buf);
+> +		buf = NULL;
+> +	} else {
+> +		ret = header_size;
+> +	}
+> +
+> +	*ret_buf = buf;
+> +
+> +	return ret;
+> +}
+> +
+> +/*
+> + * Call the low level driver's write_init function. This will do the
+>   * device-specific things to get the FPGA into the state where it is ready to
+> - * receive an FPGA image. The low level driver only gets to see the first
+> - * initial_header_size bytes in the buffer.
+> + * receive an FPGA image. If info->header_size is defined, the low level
+> + * driver gets to see at least first info->header_size bytes in the buffer,
+> + * mgr->mops->initial_header_size otherwise. If neither initial_header_size
+> + * nor header_size are not set, write_init will not get any bytes of image
+> + * buffer.
+>   */
+>  static int fpga_mgr_write_init_buf(struct fpga_manager *mgr,
+>  				   struct fpga_image_info *info,
+>  				   const char *buf, size_t count)
+>  {
+> +	size_t header_size;
+>  	int ret;
+>  
+>  	mgr->state = FPGA_MGR_STATE_WRITE_INIT;
+> -	if (!mgr->mops->initial_header_size) {
+> +
+> +	if (info->header_size)
+> +		header_size = info->header_size;
+> +	else
+> +		header_size = mgr->mops->initial_header_size;
+> +
+> +	if (header_size > count)
+> +		ret = -EINVAL;
+> +	else if (!header_size)
+>  		ret = fpga_mgr_write_init(mgr, info, NULL, 0);
+> -	} else {
+> -		count = min(mgr->mops->initial_header_size, count);
+> +	else
+>  		ret = fpga_mgr_write_init(mgr, info, buf, count);
+> -	}
+>  
+>  	if (ret) {
+>  		dev_err(&mgr->dev, "Error preparing FPGA for writing\n");
+> @@ -164,13 +294,13 @@ static int fpga_mgr_write_init_buf(struct fpga_manager *mgr,
+>  	return 0;
+>  }
+>  
+> -static int fpga_mgr_write_init_sg(struct fpga_manager *mgr,
+> -				  struct fpga_image_info *info,
+> -				  struct sg_table *sgt)
+> +static int fpga_mgr_prepare_sg(struct fpga_manager *mgr,
+> +			       struct fpga_image_info *info,
+> +			       struct sg_table *sgt)
+>  {
+>  	struct sg_mapping_iter miter;
+> -	size_t len;
+> -	char *buf;
+> +	ssize_t header_size;
+> +	char *header_buf;
+>  	int ret;
+>  
+>  	if (!mgr->mops->initial_header_size)
+> @@ -180,26 +310,35 @@ static int fpga_mgr_write_init_sg(struct fpga_manager *mgr,
+>  	 * First try to use miter to map the first fragment to access the
+>  	 * header, this is the typical path.
+>  	 */
+> -	sg_miter_start(&miter, sgt->sgl, sgt->nents, SG_MITER_FROM_SG);
+> -	if (sg_miter_next(&miter) &&
+> -	    miter.length >= mgr->mops->initial_header_size) {
+> -		ret = fpga_mgr_write_init_buf(mgr, info, miter.addr,
+> -					      miter.length);
+> +	ret = fpga_mgr_parse_header_sg_first(mgr, info, sgt);
+> +	/* If 0, header fits first fragment, call write_init on it */
+> +	if (!ret) {
+> +		sg_miter_start(&miter, sgt->sgl, sgt->nents, SG_MITER_FROM_SG);
+> +		if (sg_miter_next(&miter)) {
+> +			ret = fpga_mgr_write_init_buf(mgr, info, miter.addr,
+> +						      miter.length);
+> +			sg_miter_stop(&miter);
+> +			return ret;
+> +		}
+>  		sg_miter_stop(&miter);
+> +	/*
+> +	 * If -EAGAIN, more sg buffer is needed,
+> +	 * otherwise an error has occurred.
+> +	 */
+> +	} else if (ret != -EAGAIN)
+>  		return ret;
+> -	}
+> -	sg_miter_stop(&miter);
+>  
+> -	/* Otherwise copy the fragments into temporary memory. */
+> -	buf = kmalloc(mgr->mops->initial_header_size, GFP_KERNEL);
+> -	if (!buf)
+> -		return -ENOMEM;
+> +	/*
+> +	 * Otherwise copy the fragments into temporary memory.
+> +	 * Copying is done inside fpga_mgr_parse_header_sg()
+> +	 */
+> +	header_size = fpga_mgr_parse_header_sg(mgr, info, sgt, &header_buf);
+> +	if (header_size < 0)
+> +		return header_size;
+>  
+> -	len = sg_copy_to_buffer(sgt->sgl, sgt->nents, buf,
+> -				mgr->mops->initial_header_size);
+> -	ret = fpga_mgr_write_init_buf(mgr, info, buf, len);
+> +	ret = fpga_mgr_write_init_buf(mgr, info, header_buf, header_size);
+>  
+> -	kfree(buf);
+> +	kfree(header_buf);
+>  
+>  	return ret;
+>  }
+> @@ -227,7 +366,7 @@ static int fpga_mgr_buf_load_sg(struct fpga_manager *mgr,
+>  {
+>  	int ret;
+>  
+> -	ret = fpga_mgr_write_init_sg(mgr, info, sgt);
+> +	ret = fpga_mgr_prepare_sg(mgr, info, sgt);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -237,11 +376,40 @@ static int fpga_mgr_buf_load_sg(struct fpga_manager *mgr,
+>  		ret = fpga_mgr_write_sg(mgr, sgt);
+>  	} else {
+>  		struct sg_mapping_iter miter;
+> +		size_t length, data_size;
+> +		bool last = false;
+> +		ssize_t count;
+> +		char *addr;
+> +
+> +		data_size = info->data_size;
+> +		count = -info->header_size;
+>  
+>  		sg_miter_start(&miter, sgt->sgl, sgt->nents, SG_MITER_FROM_SG);
+>  		while (sg_miter_next(&miter)) {
+> -			ret = fpga_mgr_write(mgr, miter.addr, miter.length);
+> -			if (ret)
+> +			count += miter.length;
+> +
+> +			/* sg block contains only header, no data */
+> +			if (count <= 0)
+> +				continue;
+> +
+> +			if (count < miter.length) {
+> +				/* sg block contains both header and data */
+> +				addr = miter.addr + miter.length - count;
+> +				length = count;
+> +			} else {
+> +				/* sg block contains pure data */
+> +				addr = miter.addr;
+> +				length = miter.length;
+> +			}
+> +
+> +			/* truncate last block to data_size, if needed */
+> +			if (data_size && count > data_size) {
+> +				length -= count - data_size;
+> +				last = true;
+> +			}
+> +
+> +			ret = fpga_mgr_write(mgr, addr, length);
+> +			if (ret || last)
+>  				break;
+>  		}
+>  		sg_miter_stop(&miter);
+> @@ -262,10 +430,21 @@ static int fpga_mgr_buf_load_mapped(struct fpga_manager *mgr,
+>  {
+>  	int ret;
+>  
+> +	ret = fpga_mgr_parse_header_mapped(mgr, info, buf, count);
+> +	if (ret)
+> +		return ret;
+> +
+>  	ret = fpga_mgr_write_init_buf(mgr, info, buf, count);
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (info->data_size)
+> +		count = info->data_size;
+> +	else
+> +		count -= info->header_size;
+> +
+> +	buf += info->header_size;
+> +
+>  	/*
+>  	 * Write the FPGA image to the FPGA.
+>  	 */
+> @@ -424,6 +603,10 @@ static const char * const state_str[] = {
+>  	[FPGA_MGR_STATE_FIRMWARE_REQ] =		"firmware request",
+>  	[FPGA_MGR_STATE_FIRMWARE_REQ_ERR] =	"firmware request error",
+>  
+> +	/* Parse FPGA image header */
+> +	[FPGA_MGR_STATE_PARSE_HEADER] =		"parse header",
+> +	[FPGA_MGR_STATE_PARSE_HEADER_ERR] =	"parse header error",
+> +
+>  	/* Preparing FPGA to receive image */
+>  	[FPGA_MGR_STATE_WRITE_INIT] =		"write init",
+>  	[FPGA_MGR_STATE_WRITE_INIT_ERR] =	"write init error",
+> diff --git a/include/linux/fpga/fpga-mgr.h b/include/linux/fpga/fpga-mgr.h
+> index 0f9468771bb9..cba8bb7827a5 100644
+> --- a/include/linux/fpga/fpga-mgr.h
+> +++ b/include/linux/fpga/fpga-mgr.h
+> @@ -22,6 +22,8 @@ struct sg_table;
+>   * @FPGA_MGR_STATE_RESET: FPGA in reset state
+>   * @FPGA_MGR_STATE_FIRMWARE_REQ: firmware request in progress
+>   * @FPGA_MGR_STATE_FIRMWARE_REQ_ERR: firmware request failed
+> + * @FPGA_MGR_STATE_PARSE_HEADER: parse FPGA image header
+> + * @FPGA_MGR_STATE_PARSE_HEADER_ERR: Error during PARSE_HEADER stage
+>   * @FPGA_MGR_STATE_WRITE_INIT: preparing FPGA for programming
+>   * @FPGA_MGR_STATE_WRITE_INIT_ERR: Error during WRITE_INIT stage
+>   * @FPGA_MGR_STATE_WRITE: writing image to FPGA
+> @@ -42,6 +44,8 @@ enum fpga_mgr_states {
+>  	FPGA_MGR_STATE_FIRMWARE_REQ_ERR,
+>  
+>  	/* write sequence: init, write, complete */
+> +	FPGA_MGR_STATE_PARSE_HEADER,
+> +	FPGA_MGR_STATE_PARSE_HEADER_ERR,
+>  	FPGA_MGR_STATE_WRITE_INIT,
+>  	FPGA_MGR_STATE_WRITE_INIT_ERR,
+>  	FPGA_MGR_STATE_WRITE,
+> @@ -85,6 +89,8 @@ enum fpga_mgr_states {
+>   * @sgt: scatter/gather table containing FPGA image
+>   * @buf: contiguous buffer containing FPGA image
+>   * @count: size of buf
+> + * @header_size: offset in image buffer where bitstream data starts
+> + * @data_size: size of bitstream. If 0, (count - header_size) will be used.
+>   * @region_id: id of target region
+>   * @dev: device that owns this
+>   * @overlay: Device Tree overlay
+> @@ -98,6 +104,8 @@ struct fpga_image_info {
+>  	struct sg_table *sgt;
+>  	const char *buf;
+>  	size_t count;
+> +	size_t header_size;
+> +	size_t data_size;
+>  	int region_id;
+>  	struct device *dev;
+>  #ifdef CONFIG_OF
+> @@ -137,9 +145,13 @@ struct fpga_manager_info {
+>  
+>  /**
+>   * struct fpga_manager_ops - ops for low level fpga manager drivers
+> - * @initial_header_size: Maximum number of bytes that should be passed into write_init
+> + * @initial_header_size: minimum number of bytes that should be passed into
+> + *	parse_header and write_init.
+>   * @state: returns an enum value of the FPGA's state
+>   * @status: returns status of the FPGA, including reconfiguration error code
+> + * @parse_header: parse FPGA image header to set info->header_size and
+> + *	info->data_size. In case the input buffer is not large enough, set
+> + *	required size to info->header_size and return -EAGAIN.
+>   * @write_init: prepare the FPGA to receive configuration data
+>   * @write: write count bytes of configuration data to the FPGA
+>   * @write_sg: write the scatter list of configuration data to the FPGA
+> @@ -155,6 +167,9 @@ struct fpga_manager_ops {
+>  	size_t initial_header_size;
+>  	enum fpga_mgr_states (*state)(struct fpga_manager *mgr);
+>  	u64 (*status)(struct fpga_manager *mgr);
+> +	int (*parse_header)(struct fpga_manager *mgr,
+> +			    struct fpga_image_info *info,
+> +			    const char *buf, size_t count);
+>  	int (*write_init)(struct fpga_manager *mgr,
+>  			  struct fpga_image_info *info,
+>  			  const char *buf, size_t count);
+> -- 
+> 2.35.1
+> 
