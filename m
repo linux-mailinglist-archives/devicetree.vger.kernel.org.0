@@ -2,228 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27E3254596D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 03:05:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B031A545991
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 03:31:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233224AbiFJBFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jun 2022 21:05:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56704 "EHLO
+        id S240907AbiFJBbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 21:31:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240541AbiFJBFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 21:05:10 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32856121CD3;
-        Thu,  9 Jun 2022 18:05:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2AE80B830E0;
-        Fri, 10 Jun 2022 01:05:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0DB3C341C8;
-        Fri, 10 Jun 2022 01:05:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654823103;
-        bh=/JC6vRMK2ZMUmpDTejrqQFKw3KBDFhYrGRZvxyI3Gnc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Hl6g5cuDd5GW2SWS7IJlWE/4OxwP82iGTAgNEKahvpfDguRObw6Zi+lH4HAGzDIVA
-         VsZEwc406nlehGbxXOVjPZP1Nk24B2gjo5GgKiLruSlwoBcVkTsEiV0aOox0dqIz2Q
-         1TZgKqt3C8OFBYCs7ddqyxjyRrbJwYz3azwsv2oWPvkCQvOi2PkKrJPPADWtBKbuce
-         iUpvk6pjzc0JoGSbsPlbE8XxCseAgCFCOo9DmVeCYb//DDcOXckRVtgzV67R7LHc3m
-         Cs/GIeuBAUpGTupgWu3Sk+aMPBDr/ehTUDEXRh+iZw6zUUjbOwaSAVuLn0pPOlGSFy
-         cm0I4vMQQDjVg==
-Received: by mail-vk1-f171.google.com with SMTP id b81so11057280vkf.1;
-        Thu, 09 Jun 2022 18:05:03 -0700 (PDT)
-X-Gm-Message-State: AOAM530nuW3XKBYxDpH+qPvG+iSZBGTDTh7Fv3WAy/5HTwrVRRWYVVHC
-        +nkrH6SuKKgSk7dUn1TUQT2XxXb1A0hNZ6RwQbI=
-X-Google-Smtp-Source: ABdhPJzu6lV9dlwNZCZNDB6Y3nGPVvQw9XuVm1a5UwCEqrbJuwP69IoQknN4yGrF/guPUdzhyz0XjabRgd278Q/YBqM=
-X-Received: by 2002:ac5:c1c9:0:b0:35c:bd7c:2deb with SMTP id
- g9-20020ac5c1c9000000b0035cbd7c2debmr17712241vkk.2.1654823102633; Thu, 09 Jun
- 2022 18:05:02 -0700 (PDT)
+        with ESMTP id S231586AbiFJBbU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 21:31:20 -0400
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 737832DCB04;
+        Thu,  9 Jun 2022 18:31:18 -0700 (PDT)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-30fdbe7467cso223460067b3.1;
+        Thu, 09 Jun 2022 18:31:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=QtM5I079oW92Wgwg2Tl/xBD0OwEKunidPrcwXyQHhz0=;
+        b=pTG4LteeKP1/PBqRYc/0OrHp/+6z9/Focvu1XE6w++W31L5ENHzIYzxZQkcUt5LLoT
+         K6hrplmC5oEgFNunnzhHPmWQkwCSaKccOf7gsYJwbGTo2IylbU5s7UUzPlpvMsOJ32fF
+         vjUK1oGKX+mYGWM/BCgkRyPIDIpSV4dxZymgRkoxwiQYgOkmBnXTSD8XUdV5zWros6D9
+         MxFNHA+V4sC2kP3gleCevNcBrqc54h2NKyMbVFKmsd35Fp+AHOrlP9nAMnIQx0qN3Pkf
+         VtM4E1xDzGd+j3+vKLsRyqYRPdKAtLqAEkm1/ve2bysIuZgh4r3imqciikBfnOP/bCfp
+         pDbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=QtM5I079oW92Wgwg2Tl/xBD0OwEKunidPrcwXyQHhz0=;
+        b=2NSDWBDjKTXPSP9uUGqu1Jl1HcK+AakP5AZYVJF7lMbNEMS6GN8zS0Vv1e8y7JfkAL
+         meskmj1sT4T4KpM86J1jZH1YDB7/g79xBmAy3dwYpVx20YrjYwSSXQZ+bAYl6yLeYIx/
+         x7penNrQS4M3rdXvdZqKk90oSQLfP+6mrKtO/Zc+uDzpHmod6udzRYS/G1UnguNQml6m
+         lhkZfFzxlgoBkvjsUXSlMllob2yScf94OZ0lPj6vw0/YQEVCwT7uz6bS0aQLw1RHvKxO
+         axaBxD0cohaCbttL3AFh1vGD356wb9bHfRbzQ1XRt0SpERHq3lmt6YprUBStW3aInrWt
+         gzRA==
+X-Gm-Message-State: AOAM533Qt1blrkYjjltgjdTGn9XOH0inH5THD4d7wGJ5+hUSnepFAL8f
+        hN6RhpfYu6FdnrDXoMGYijD0uplHXi4fNjG8VBs=
+X-Google-Smtp-Source: ABdhPJxEWipJhuX68SSstCa/rK40Potsjddrc5tBFBanGDfrouOVkBLxjgT9g6KVhGT6uRMMsFd4eDipt4s9SswVaAM=
+X-Received: by 2002:a81:4104:0:b0:2f1:b59f:22a2 with SMTP id
+ o4-20020a814104000000b002f1b59f22a2mr47507275ywa.328.1654824677609; Thu, 09
+ Jun 2022 18:31:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220610004308.1903626-1-heiko@sntech.de> <20220610004308.1903626-4-heiko@sntech.de>
-In-Reply-To: <20220610004308.1903626-4-heiko@sntech.de>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Fri, 10 Jun 2022 09:04:51 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTQGwa_-sN0gm_Kt01b_4j12AYustAGVKmrSsfpSDYfL_Q@mail.gmail.com>
-Message-ID: <CAJF2gTQGwa_-sN0gm_Kt01b_4j12AYustAGVKmrSsfpSDYfL_Q@mail.gmail.com>
-Subject: Re: [PATCH 3/3] riscv: implement cache-management errata for T-Head SoCs
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Wei Fu <wefu@redhat.com>,
-        Christoph Muellner <cmuellner@linux.com>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        Christoph Hellwig <hch@lst.de>,
-        Samuel Holland <samuel@sholland.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Drew Fustini <drew@beagleboard.org>
+From:   =?UTF-8?B?6YOt5Yqb6LGq?= <lhjeff911@gmail.com>
+Date:   Fri, 10 Jun 2022 09:32:13 +0800
+Message-ID: <CAGcXWkz6UhpG9Eire3NkXSr436UHDWVh10_ScWQtHLoJavdezg@mail.gmail.com>
+Subject: [PATCH v9 0/2] Add thermal control driver for Sunplus SoC
+To:     krzk@kernel.org, rafael@kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>, amitk@kernel.org,
+        rui.zhang@intel.com, robh+dt@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     "lh.kuo" <lh.kuo@sunplus.com>,
+        =?UTF-8?B?5ZGC6Iqz6aiwTHVXZWxscw==?= <wells.lu@sunplus.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: Guo Ren <guoren@kernel.org>
+This is a patch series for thermal driver for Sunplus SoC.
 
-On Fri, Jun 10, 2022 at 8:43 AM Heiko Stuebner <heiko@sntech.de> wrote:
->
-> The T-Head C906 and C910 implement a scheme for handling
-> cache operations different from the generic Zicbom extension.
->
-> Add an errata for it next to the generic dma coherency ops.
->
-> Tested-by: Samuel Holland <samuel@sholland.org>
-> Reviewed-by: Anup Patel <anup@brainfault.org>
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->  arch/riscv/Kconfig.erratas           | 10 ++++++
->  arch/riscv/errata/thead/errata.c     | 15 +++++++++
->  arch/riscv/include/asm/errata_list.h | 48 +++++++++++++++++++++++++---
->  3 files changed, 68 insertions(+), 5 deletions(-)
->
-> diff --git a/arch/riscv/Kconfig.erratas b/arch/riscv/Kconfig.erratas
-> index 457ac72c9b36..4a390035abc7 100644
-> --- a/arch/riscv/Kconfig.erratas
-> +++ b/arch/riscv/Kconfig.erratas
-> @@ -55,4 +55,14 @@ config ERRATA_THEAD_PBMT
->
->           If you don't know what to do here, say "Y".
->
-> +config ERRATA_THEAD_CMO
-> +       bool "Apply T-Head cache management errata"
-> +       depends on ERRATA_THEAD && RISCV_ISA_ZICBOM
-> +       default y
-> +       help
-> +         This will apply the cache management errata to handle the
-> +         non-standard handling on non-coherent operations on T-Head SoCs.
-> +
-> +         If you don't know what to do here, say "Y".
-> +
->  endmenu
-> diff --git a/arch/riscv/errata/thead/errata.c b/arch/riscv/errata/thead/errata.c
-> index b37b6fedd53b..a3b3612d19df 100644
-> --- a/arch/riscv/errata/thead/errata.c
-> +++ b/arch/riscv/errata/thead/errata.c
-> @@ -27,6 +27,18 @@ static bool errata_probe_pbmt(unsigned int stage,
->         return false;
->  }
->
-> +static bool errata_probe_cmo(unsigned int stage,
-> +                            unsigned long arch_id, unsigned long impid)
-> +{
-> +       if (arch_id != 0 || impid != 0)
-> +               return false;
-> +
-> +       if (stage == RISCV_ALTERNATIVES_EARLY_BOOT)
-> +               return false;
-> +
-> +       return true;
-> +}
-> +
->  static u32 thead_errata_probe(unsigned int stage,
->                               unsigned long archid, unsigned long impid)
->  {
-> @@ -35,6 +47,9 @@ static u32 thead_errata_probe(unsigned int stage,
->         if (errata_probe_pbmt(stage, archid, impid))
->                 cpu_req_errata |= (1U << ERRATA_THEAD_PBMT);
->
-> +       if (errata_probe_cmo(stage, archid, impid))
-> +                cpu_req_errata |= (1U << ERRATA_THEAD_CMO);
-> +
->         return cpu_req_errata;
->  }
->
-> diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/asm/errata_list.h
-> index 2e80a75b5241..a48605d55c3c 100644
-> --- a/arch/riscv/include/asm/errata_list.h
-> +++ b/arch/riscv/include/asm/errata_list.h
-> @@ -16,7 +16,8 @@
->
->  #ifdef CONFIG_ERRATA_THEAD
->  #define        ERRATA_THEAD_PBMT 0
-> -#define        ERRATA_THEAD_NUMBER 1
-> +#define        ERRATA_THEAD_CMO 1
-> +#define        ERRATA_THEAD_NUMBER 2
->  #endif
->
->  #define        CPUFEATURE_SVPBMT 0
-> @@ -105,17 +106,54 @@ asm volatile(ALTERNATIVE(                                         \
->  #define CBO_CLEAN_A0   ".long 0x25200F"
->  #define CBO_FLUSH_A0   ".long 0x05200F"
->
-> +/*
-> + * dcache.ipa rs1 (invalidate, physical address)
-> + * | 31 - 25 | 24 - 20 | 19 - 15 | 14 - 12 | 11 - 7 | 6 - 0 |
-> + *   0000001    01010      rs1       000      00000  0001011
-> + * dache.iva rs1 (invalida, virtual address)
-> + *   0000001    00110      rs1       000      00000  0001011
-> + *
-> + * dcache.cpa rs1 (clean, physical address)
-> + * | 31 - 25 | 24 - 20 | 19 - 15 | 14 - 12 | 11 - 7 | 6 - 0 |
-> + *   0000001    01001      rs1       000      00000  0001011
-> + * dcache.cva rs1 (clean, virtual address)
-> + *   0000001    00100      rs1       000      00000  0001011
-> + *
-> + * dcache.cipa rs1 (clean then invalidate, physical address)
-> + * | 31 - 25 | 24 - 20 | 19 - 15 | 14 - 12 | 11 - 7 | 6 - 0 |
-> + *   0000001    01011      rs1       000      00000  0001011
-> + * dcache.civa rs1 (... virtual address)
-> + *   0000001    00111      rs1       000      00000  0001011
-> + *
-> + * sync.s (make sure all cache operations finished)
-> + * | 31 - 25 | 24 - 20 | 19 - 15 | 14 - 12 | 11 - 7 | 6 - 0 |
-> + *   0000000    11001     00000      000      00000  0001011
-> + */
-> +#define THEAD_INVAL_A0 ".long 0x0265000b"
-> +#define THEAD_CLEAN_A0 ".long 0x0245000b"
-> +#define THEAD_FLUSH_A0 ".long 0x0275000b"
-> +#define THEAD_SYNC_S   ".long 0x0190000b"
-> +
->  #define ALT_CMO_OP(_op, _start, _size, _cachesize)                     \
-> -asm volatile(ALTERNATIVE(                                              \
-> -       __nops(5),                                                      \
-> +asm volatile(ALTERNATIVE_2(                                            \
-> +       __nops(6),                                                      \
->         "mv a0, %1\n\t"                                                 \
->         "j 2f\n\t"                                                      \
->         "3:\n\t"                                                        \
->         CBO_##_op##_A0 "\n\t"                                           \
->         "add a0, a0, %0\n\t"                                            \
->         "2:\n\t"                                                        \
-> -       "bltu a0, %2, 3b\n\t", 0,                                       \
-> -               CPUFEATURE_CMO, CONFIG_RISCV_ISA_ZICBOM)                \
-> +       "bltu a0, %2, 3b\n\t"                                           \
-> +       "nop", 0, CPUFEATURE_CMO, CONFIG_RISCV_ISA_ZICBOM,              \
-> +       "mv a0, %1\n\t"                                                 \
-> +       "j 2f\n\t"                                                      \
-> +       "3:\n\t"                                                        \
-> +       THEAD_##_op##_A0 "\n\t"                                         \
-> +       "add a0, a0, %0\n\t"                                            \
-> +       "2:\n\t"                                                        \
-> +       "bltu a0, %2, 3b\n\t"                                           \
-> +       THEAD_SYNC_S, THEAD_VENDOR_ID,                                  \
-> +                       ERRATA_THEAD_CMO, CONFIG_ERRATA_THEAD_CMO)      \
->         : : "r"(_cachesize),                                            \
->             "r"(ALIGN((_start), (_cachesize))),                         \
->             "r"(ALIGN((_start) + (_size), (_cachesize)))                \
-> --
-> 2.35.1
->
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
+
+Li-hao Kuo (2):
+  thermal: Add thermal driver for Sunplus
+  dt-bindings:thermal: Add Sunplus schema
+
+ .../bindings/thermal/sunplus,thermal.yaml          |  43 +++++++
+ MAINTAINERS                                        |   7 ++
+ drivers/thermal/Kconfig                            |  10 ++
+ drivers/thermal/Makefile                           |   1 +
+ drivers/thermal/sunplus_thermal.c                  | 139 +++++++++++++++++++++
+ 5 files changed, 200 insertions(+)
+ create mode 100644
+Documentation/devicetree/bindings/thermal/sunplus,thermal.yaml
+ create mode 100644 drivers/thermal/sunplus_thermal.c
 
 -- 
-Best Regards
- Guo Ren
-
-ML: https://lore.kernel.org/linux-csky/
+2.7.4
