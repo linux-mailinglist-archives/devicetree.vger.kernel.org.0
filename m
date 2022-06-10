@@ -2,112 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F24A5463A0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 12:30:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C418546432
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 12:44:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244316AbiFJKaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 06:30:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60426 "EHLO
+        id S1345260AbiFJKnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 06:43:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347791AbiFJKaO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 06:30:14 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5AF5419A9
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 03:30:12 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id n10so52647041ejk.5
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 03:30:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Q1gr3NrnB39CoRuCt8vX807hgcXw9Mek2bCnOsXpGQo=;
-        b=QSvTbaU77/wWFvrHNSjvh11fTizVqERqxJuaRgPrXbIgYWkB3CNmRbgVdVuKjtHqg3
-         EhSrgR3EDatDWGn50GSs7FLRqgSt7xMwyUPawjSnOhbxJydoSzj+Z5VWNx0tqz85MBMo
-         Vk1XUUH3JEvlwH6cKqlREF9eU8xDoGFMNMu5Nl/jmUm64Flgc2ocZwbJyXi3drtRY6Ce
-         OtC/dRTh7/xtSe2jqd0/wVwIMillp/6cVXMKcDPCOT+jHNM5BWJhsKtk2KgZCrb75QJt
-         eb/XTr0mcr6gpXFDyxvAmk7j805M3kAuK/PDlIPjgsoRIylJTb3LlTJmGIUjbAD05Lm2
-         PkjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Q1gr3NrnB39CoRuCt8vX807hgcXw9Mek2bCnOsXpGQo=;
-        b=Ce6nkI6QLXOzLIHkFcTgHQH8/v3c2ZS4MR3vCBbUdNhK+DbkQZzFjqqW5ohxXBoQ6V
-         Kw6tLf7WE0ON+dyxPJa21MtuT1NJx6iZENsTN+rwkSY1PDR9d+bolmKzWUu0fJtkC0hG
-         U1bLxmqlyzIIY7w7BGdReZFPyZV9lgYFjPhIBIRYkdwVe+GEbdhiJCyPn1RLwTBHFNJZ
-         q9kZBja5a4o+g4zMOnSKbalgZc568iqpzycGwRYue6bkzp6RvybhOmK9G/eIK7THdUMJ
-         0YmtMydeJ0WqnaUQ9iCTuRozNu5729j5W+GEj8xXAYiAmbl6HvkNNJZlqbBuxeh4xGuB
-         Rhxw==
-X-Gm-Message-State: AOAM533WcVWcj889/KieoTJvDJMT2Si0CBnwMT3hfNaoGRvIDcHbzhae
-        EgL/BbLS11DGtNIjwpdfx9+OnXW2e3MTgw==
-X-Google-Smtp-Source: ABdhPJw7PvzVwnAjoaC8oJ5ApDXIoYkN0OCc5cmycobzyGZiBOEgvGwNWQ7HGD/AvnfFZNoUw76PJQ==
-X-Received: by 2002:a17:907:8195:b0:710:b40:95d2 with SMTP id iy21-20020a170907819500b007100b4095d2mr31029973ejc.604.1654857011476;
-        Fri, 10 Jun 2022 03:30:11 -0700 (PDT)
-Received: from [192.168.0.202] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id e20-20020a056402149400b0042bd75c53casm16186593edv.83.2022.06.10.03.30.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Jun 2022 03:30:11 -0700 (PDT)
-Message-ID: <e68724b0-4a9f-f564-c833-befd6c3515fb@linaro.org>
-Date:   Fri, 10 Jun 2022 12:30:09 +0200
+        with ESMTP id S1346972AbiFJKnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 06:43:18 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C0BE228F6E;
+        Fri, 10 Jun 2022 03:38:54 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 0CBB224000C;
+        Fri, 10 Jun 2022 10:38:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1654857533;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=VFcJt6G45VW6M658YMdMpk7DZjSkVKRRYkgRv/yLpF8=;
+        b=M9JTXt2LoFEIneLTgNYAb34ROjsaf5zPj5oLUCpQsbbB1oBI5J3fBI7wRF1On3uDOHvFKJ
+        wvVeeGTO3hSMmp3NJQb4JJblEKpzKCLph+P55RR2jdKA35k0G4ZMhUe2bH0rQSad6tzy6d
+        BhjRBxoQCDOhJ5xhwjTQe974K3FabEBbq+l7F/S4h5sESpOavZvsAUYfMDEtKIFN1dKv+t
+        0s2QBDv+oi+DRgRBhNzSH8COwuN28ushqKuuNTNpSFSxNxJlMwoOeKGO/Ebh8hfQZCGfBd
+        2Wmmv1IzmfdREIwUSoh51sSnvyU/8IYOLsWD1g+10KYhMbwdZXWt/9q5I+X/+g==
+From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>
+Cc:     =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?q?Miqu=C3=A8l=20Raynal?= <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: [PATCH RESEND net-next v7 00/16] add support for Renesas RZ/N1 ethernet subsystem devices
+Date:   Fri, 10 Jun 2022 12:36:56 +0200
+Message-Id: <20220610103712.550644-1-clement.leger@bootlin.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v9 1/2] thermal: Add thermal driver for Sunplus
-Content-Language: en-US
-To:     Randy Dunlap <rdunlap@infradead.org>,
-        =?UTF-8?B?6YOt5Yqb6LGq?= <lhjeff911@gmail.com>,
-        rafael@kernel.org, Daniel Lezcano <daniel.lezcano@linaro.org>,
-        amitk@kernel.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     "lh.kuo" <lh.kuo@sunplus.com>,
-        =?UTF-8?B?5ZGC6Iqz6aiwTHVXZWxscw==?= <wells.lu@sunplus.com>
-References: <CAGcXWkzJwOPXfE6ESAtwBbe7W-UkApKosKUy=UBRh0kmi-Bc2Q@mail.gmail.com>
- <395072af-3349-cead-fe07-62d3d758d635@infradead.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <395072af-3349-cead-fe07-62d3d758d635@infradead.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/06/2022 05:19, Randy Dunlap wrote:
-> Hi--
-> 
-> On 6/9/22 18:32, 郭力豪 wrote:
->> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
->> index 0e5cc94..c85e668 100644
->> --- a/drivers/thermal/Kconfig
->> +++ b/drivers/thermal/Kconfig
->> @@ -504,4 +504,14 @@ config KHADAS_MCU_FAN_THERMAL
->>     If you say yes here you get support for the FAN controlled
->>     by the Microcontroller found on the Khadas VIM boards.
->>
->> +config SUNPLUS_THERMAL
->> + tristate "Sunplus thermal drivers"
->> + depends on SOC_SP7021 || COMPILE_TEST
->> + help
->> +   This enable the Sunplus SP7021 thermal driver, which supports the primitive
->> +   temperature sensor embedded in Sunplus SP7021 SoC.
->> +
->> +   If you have a Sunplus SP7021 platform say Y here and enable this option
->> +   to have support for thermal management
-> 
-> End the sentence above with a period ('.').
-> 
-> And the indentation here is all messed up.
-> See Documentation/process/coding-style.rst:
-> 
+The Renesas RZ/N1 SoCs features an ethernet subsystem which contains
+(most notably) a switch, two GMACs, and a MII converter [1]. This
+series adds support for the switch and the MII converter.
 
-It's not only this one. Entire file has wrong indentation.
+The MII converter present on this SoC has been represented as a PCS
+which sit between the MACs and the PHY. This PCS driver is probed from
+the device-tree since it requires to be configured. Indeed the MII
+converter also contains the registers that are handling the muxing of
+ports (Switch, MAC, HSR, RTOS, etc) internally to the SoC.
 
-Best regards,
-Krzysztof
+The switch driver is based on DSA and exposes 4 ports + 1 CPU
+management port. It include basic bridging support as well as FDB and
+statistics support.
+
+This series needs commits 14f11da778ff6421 ("soc: renesas: rzn1: Select
+PM and PM_GENERIC_DOMAINS configs") and ed66b37f916ee23b ("ARM: dts:
+r9a06g032: Add missing '#power-domain-cells'") which are available on
+the renesas-devel tree in order to enable generic power domain on
+RZ/N1.
+
+Link: [1] https://www.renesas.com/us/en/document/mah/rzn1d-group-rzn1s-group-rzn1l-group-users-manual-r-engine-and-ethernet-peripherals
+
+-----
+Resent V7 due to messed up cover letter.
+
+Changes in V7:
+- Commits:
+  - Add Rob Herring Acked-by for commit "dt-bindings: net: snps,dwmac: add
+    "power-domains" property"
+  - Rebased on net-next/master
+- MAINTAINERS:
+  - Add renesas-soc and netdev mailing lists
+
+Changes in V6:
+- Commits:
+  - Add commit which enable ethernet switch on RZ/N1D-DB board
+  - Add commit which adds "renesas,rzn1-gmac" compatible t
+    "snps,dwmac" bindings
+  - Fix mutex change being done in FDB feature commit
+  - Add commit which  adds"power-domains" to "snps,dwmac" bindings
+- Bindings and DT
+  - Add clock-names to MII converter and make it required
+  - Added Reviewed-by Geert on MII converter binding
+  - Added "power-domains" to switch bindings and to switch description
+  - Use new compatible "renesas,rzn1-gmac" for GMAC2
+  - Describe all switch ports in ethernet switch node
+  - Add phy-mode = "internal" to cpu port
+- PCS:
+  - use phy_interface_mode_is_rgmii() instead of open coded check
+  - Add device_link_add() call in miic_create()
+- Switch:
+  - Fix missing of_node_put(port) in case of loop break.
+  - Fix comment alignment for statistics defines
+  - Move lk_lock mutex locking outside of the fdb_dump loop
+
+Changes in V5:
+- MAINTAINERS:
+  - Add Florian Fainelli Reviewed-by
+- Switch:
+  - Switch Lookup table lock to a mutex instead of a spinlock
+  - Only handle "ethernet-ports" property for switch ports
+  - Handle RGMII_ID/RXID/TXID
+  - Add check for pdata to be non null in remove
+  - Add missing of_node_put() for mdio and ports
+  - Applied Florian Fainelli patch which makes stats description
+    shorter
+  - Add Kconfig dependency on ARCH_RZN1 to avoid Kconfig "unmet direct
+    dependency"
+- PCS:
+  - Handle RGMII_ID/RXID/TXID
+  - Use value instead of BIT() for speed/mode
+- Tag driver:
+  - Add Florian Fainelli Reviewed-by
+
+Changes in V4:
+- Add ETH_P_DSA_A5PSW in uapi/linux/if_ether.h
+- PCS:
+  - Use devm_pm_runtime_enable() instead of pm_runtime_enable()
+- Switch:
+  - Return -EOPNOTSUPP and set extack when multiple bridges are created
+  - Remove error messages in fdb_del if entry does not exists
+  - Add compatibility with "ethernet-ports" device-tree property
+- Tag driver:
+  - Use ETH_ZLEN as padding len
+
+Changes in V3:
+- PCS:
+  - Fixed reverse christmas tree declaration
+  - Remove spurious pr_err
+  - Use pm_runtime functions
+- Tag driver:
+  - Remove packed attribute from the tag struct
+- Switch:
+  - Fix missing spin_unlock in fdb_dump in case of error
+  - Add static qualifier to dsa_switch_ops
+  - Add missing documentation for hclk and clk members of struct a5psw
+  - Changed types of fdb_entry to u16 to discard GCC note on char
+    packed bitfields and add reserved field
+- Added Reviewed-by tag from Florian Fainelli
+
+Changes in V2:
+- PCS:
+  - Fix Reverse Christmas tree declaration
+  - Removed stray newline
+  - Add PCS remove function and disable clocks in them
+  - Fix miic_validate function to return correct values
+  - Split PCS CONV_MODE definition
+  - Reordered phylink_pcs_ops in definition order
+  - Remove interface setting in miic_link_up
+  - Remove useless checks for invalid interface/speed and error prints
+  - Replace phylink_pcs_to_miic_port macro by a static function
+  - Add comment in miic_probe about platform_set_drvdata
+- Bindings:
+ - Fix wrong path for mdio.yaml $ref
+ - Fix yamllint errors
+- Tag driver:
+  - Squashed commit that added tag value with tag driver
+  - Add BUILD_BUG_ON for tag size
+  - Split control_data2 in 2 16bits values
+- Switch:
+  - Use .phylink_get_caps instead of .phylink_validate and fill
+    supported_interface correctly
+  - Use fixed size (ETH_GSTRING_LEN) string for stats and use memcpy
+  - Remove stats access locking since RTNL lock is used in upper layers
+  - Check for non C45 addresses in mdio_read/write and return
+    -EOPNOTSUPP
+  - Add get_eth_mac_stats, get_eth_mac_ctrl_stat, get_rmon_stats
+  - Fix a few indentation problems
+  - Remove reset callback from MDIO bus operation
+  - Add phy/mac/rmon stats
+- Add get_rmon_stat to dsa_ops
+
+Clément Léger (16):
+  net: dsa: allow port_bridge_join() to override extack message
+  net: dsa: add support for ethtool get_rmon_stats()
+  net: dsa: add Renesas RZ/N1 switch tag driver
+  dt-bindings: net: pcs: add bindings for Renesas RZ/N1 MII converter
+  net: pcs: add Renesas MII converter driver
+  dt-bindings: net: dsa: add bindings for Renesas RZ/N1 Advanced 5 port
+    switch
+  net: dsa: rzn1-a5psw: add Renesas RZ/N1 advanced 5 port switch driver
+  net: dsa: rzn1-a5psw: add statistics support
+  net: dsa: rzn1-a5psw: add FDB support
+  dt-bindings: net: snps,dwmac: add "power-domains" property
+  dt-bindings: net: snps,dwmac: add "renesas,rzn1" compatible
+  ARM: dts: r9a06g032: describe MII converter
+  ARM: dts: r9a06g032: describe GMAC2
+  ARM: dts: r9a06g032: describe switch
+  ARM: dts: r9a06g032-rzn1d400-db: add switch description
+  MAINTAINERS: add Renesas RZ/N1 switch related driver entry
+
+ .../bindings/net/dsa/renesas,rzn1-a5psw.yaml  |  134 +++
+ .../bindings/net/pcs/renesas,rzn1-miic.yaml   |  171 +++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |    5 +
+ MAINTAINERS                                   |   13 +
+ arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts   |  117 ++
+ arch/arm/boot/dts/r9a06g032.dtsi              |  108 ++
+ drivers/net/dsa/Kconfig                       |    9 +
+ drivers/net/dsa/Makefile                      |    1 +
+ drivers/net/dsa/rzn1_a5psw.c                  | 1062 +++++++++++++++++
+ drivers/net/dsa/rzn1_a5psw.h                  |  259 ++++
+ drivers/net/pcs/Kconfig                       |    8 +
+ drivers/net/pcs/Makefile                      |    1 +
+ drivers/net/pcs/pcs-rzn1-miic.c               |  519 ++++++++
+ include/dt-bindings/net/pcs-rzn1-miic.h       |   33 +
+ include/linux/pcs-rzn1-miic.h                 |   18 +
+ include/net/dsa.h                             |    5 +
+ include/uapi/linux/if_ether.h                 |    1 +
+ net/dsa/Kconfig                               |    7 +
+ net/dsa/Makefile                              |    1 +
+ net/dsa/slave.c                               |   18 +-
+ net/dsa/tag_rzn1_a5psw.c                      |  113 ++
+ 21 files changed, 2601 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
+ create mode 100644 drivers/net/dsa/rzn1_a5psw.c
+ create mode 100644 drivers/net/dsa/rzn1_a5psw.h
+ create mode 100644 drivers/net/pcs/pcs-rzn1-miic.c
+ create mode 100644 include/dt-bindings/net/pcs-rzn1-miic.h
+ create mode 100644 include/linux/pcs-rzn1-miic.h
+ create mode 100644 net/dsa/tag_rzn1_a5psw.c
+
+-- 
+2.36.1
+
