@@ -2,196 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 011295464D6
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 12:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48CC1546502
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 13:03:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345363AbiFJK6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 06:58:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48296 "EHLO
+        id S244605AbiFJLDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 07:03:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345195AbiFJK5s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 06:57:48 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D0E1228493;
-        Fri, 10 Jun 2022 03:55:34 -0700 (PDT)
-X-UUID: 60cc67710e1d4d6bb4060d3b5884e553-20220610
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:da89de79-f5c6-400f-b7ce-2efd1424d309,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:90
-X-CID-INFO: VERSION:1.1.5,REQID:da89de79-f5c6-400f-b7ce-2efd1424d309,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,AC
-        TION:quarantine,TS:90
-X-CID-META: VersionHash:2a19b09,CLOUDID:56d767e5-2ba2-4dc1-b6c5-11feb6c769e0,C
-        OID:6d508ab9e773,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:0,BEC:nil
-X-UUID: 60cc67710e1d4d6bb4060d3b5884e553-20220610
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 769038928; Fri, 10 Jun 2022 18:55:26 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Fri, 10 Jun 2022 18:55:24 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Fri, 10 Jun 2022 18:55:24 +0800
-From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>, <ck.hu@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Bo-Chen Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH v11 10/10] drm/mediatek: fix no audio when resolution change
-Date:   Fri, 10 Jun 2022 18:55:22 +0800
-Message-ID: <20220610105522.13449-11-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
-References: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
+        with ESMTP id S245306AbiFJLDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 07:03:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C58150B76;
+        Fri, 10 Jun 2022 04:03:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 762AA620B0;
+        Fri, 10 Jun 2022 11:03:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAF01C34114;
+        Fri, 10 Jun 2022 11:03:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654859026;
+        bh=d3teMe1GHQS7aV22K7pnFmgNykOeozpCHzcj+b1esUw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=J6rwH1pI5WnoAJBikK/Gkfp0iy/f681q40OO+ZCdaFWTpZJNPmiY1HJ2rR8l+SH7J
+         O3HQQ7tHRL/e5habe3Az5C+V4dDGg64woxqedw8uo76RFXdmxkLHWw9G7vCrJ00spa
+         EsUBStRaWENyWf+GPPLa6Hjwf50uimZsAtu95vElovjO2uhaoHXx8h7FxCnI1ocTLK
+         s4I9/NfViIr5DkHGEvncBm0L+xiaiECtrQLvGgzIrgxWnmYkH7XidaL/US20nja5pW
+         ZOjCsfBGhSR6Cg1rQjQwd4sdaxhQlRVV7BMmOgnBVMQetPBiHJNeIqRubLE92rq7tc
+         3NOWBgFdKDlHA==
+Date:   Fri, 10 Jun 2022 12:03:41 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     ChiYuan Huang <u0084500@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>, dmitry.torokhov@gmail.com,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        linux-input@vger.kernel.org
+Subject: Re: [PATCH 3/4] regulator: rt5120: Add PMIC regulator support
+Message-ID: <YqMlDVMlukNAns5S@sirena.org.uk>
+References: <1654581161-12349-1-git-send-email-u0084500@gmail.com>
+ <1654581161-12349-4-git-send-email-u0084500@gmail.com>
+ <Yp+gS6r5Kpi33Ags@sirena.org.uk>
+ <CADiBU38+0vp3Dv6i7uYzCwR431PKBr-HNQnY0Qe7fvvRYGEJmw@mail.gmail.com>
+ <YqB19O/HYvEAxdiM@sirena.org.uk>
+ <CADiBU390XRXZ2yx5CT2NxhN3aROHXcxs7w2d-xhB6+EYn+uTfA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="9eWHlLQ5aB+zBDiA"
+Content-Disposition: inline
+In-Reply-To: <CADiBU390XRXZ2yx5CT2NxhN3aROHXcxs7w2d-xhB6+EYn+uTfA@mail.gmail.com>
+X-Cookie: Teachers have class.
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When switching resolutions, config the audio setting with the
-previous audio parameters.
 
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_dp.c | 51 ++++++++++---------------------
- 1 file changed, 16 insertions(+), 35 deletions(-)
+--9eWHlLQ5aB+zBDiA
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-index 35712ee6a04e..d4e4ceab7b2f 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-@@ -119,7 +119,7 @@ struct mtk_dp_audio_cfg {
- struct mtk_dp_info {
- 	u32 depth;
- 	enum dp_pixelformat format;
--	struct mtk_dp_audio_cfg audio_caps;
-+	struct mtk_dp_audio_cfg audio_cur_cfg;
- 	struct mtk_dp_timings timings;
- };
- 
-@@ -1966,8 +1966,6 @@ static bool mtk_dp_edid_parse_audio_capabilities(struct mtk_dp *mtk_dp,
- 						 struct mtk_dp_audio_cfg *cfg)
- {
- 	struct cea_sad *sads;
--	int sad_count;
--	int i;
- 	bool ret = false;
- 
- 	if (mtk_dp_is_edp(mtk_dp))
-@@ -1979,33 +1977,13 @@ static bool mtk_dp_edid_parse_audio_capabilities(struct mtk_dp *mtk_dp,
- 		dev_err(mtk_dp->dev, "EDID not found!\n");
- 		return false;
- 	}
--	sad_count = drm_edid_to_sad(mtk_dp->edid, &sads);
--	mutex_unlock(&mtk_dp->edid_lock);
- 
--	if (sad_count <= 0) {
-+	ret = drm_edid_to_sad(mtk_dp->edid, &sads);
-+	mutex_unlock(&mtk_dp->edid_lock);
-+	if (ret <= 0) {
- 		drm_info(mtk_dp->drm_dev, "The SADs is NULL\n");
- 		return false;
- 	}
--
--	for (i = 0; i < sad_count; i++) {
--		int sample_rate, word_length;
--
--		/* Only PCM supported at the moment */
--		if (sads[i].format != HDMI_AUDIO_CODING_TYPE_PCM)
--			continue;
--
--		sample_rate = drm_cea_sad_get_sample_rate(&sads[i]);
--		word_length =
--			drm_cea_sad_get_uncompressed_word_length(&sads[i]);
--		if (sample_rate <= 0 || word_length <= 0)
--			continue;
--
--		cfg->channels = sads[i].channels;
--		cfg->word_length_bits = word_length;
--		cfg->sample_rate = sample_rate;
--		ret = true;
--		break;
--	}
- 	kfree(sads);
- 
- 	return ret;
-@@ -2175,14 +2153,15 @@ static int mtk_dp_training(struct mtk_dp *mtk_dp)
- 
- 			mtk_dp->audio_enable =
- 				mtk_dp_edid_parse_audio_capabilities(mtk_dp,
--								     &mtk_dp->info.audio_caps);
-+								     &mtk_dp->info.audio_cur_cfg);
- 
- 			if (mtk_dp->audio_enable) {
--				mtk_dp_audio_setup(mtk_dp, &mtk_dp->info.audio_caps);
-+				mtk_dp_audio_setup(mtk_dp,
-+						   &mtk_dp->info.audio_cur_cfg);
- 				mtk_dp_audio_mute(mtk_dp, false);
- 			} else {
--				memset(&mtk_dp->info.audio_caps, 0,
--				       sizeof(mtk_dp->info.audio_caps));
-+				memset(&mtk_dp->info.audio_cur_cfg, 0,
-+				       sizeof(mtk_dp->info.audio_cur_cfg));
- 			}
- 
- 			training_done = true;
-@@ -2624,6 +2603,9 @@ static void mtk_dp_bridge_atomic_disable(struct drm_bridge *bridge,
- 	if (mtk_dp_plug_state(mtk_dp)) {
- 		drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER, DP_SET_POWER_D3);
- 		usleep_range(2000, 3000);
-+	} else {
-+		memset(&mtk_dp->info.audio_cur_cfg, 0,
-+		       sizeof(mtk_dp->info.audio_cur_cfg));
- 	}
- 
- 	mtk_dp_video_mute(mtk_dp, true);
-@@ -2834,18 +2816,17 @@ static int mtk_dp_audio_hw_params(struct device *dev, void *data,
- 				  struct hdmi_codec_params *params)
- {
- 	struct mtk_dp *mtk_dp = dev_get_drvdata(dev);
--	struct mtk_dp_audio_cfg cfg;
- 
- 	if (!mtk_dp->enabled) {
- 		pr_err("%s, DP is not ready!\n", __func__);
- 		return -ENODEV;
- 	}
- 
--	cfg.channels = params->cea.channels;
--	cfg.sample_rate = params->sample_rate;
--	cfg.word_length_bits = 24;
-+	mtk_dp->info.audio_cur_cfg.channels = params->cea.channels;
-+	mtk_dp->info.audio_cur_cfg.sample_rate = params->sample_rate;
-+	mtk_dp->info.audio_cur_cfg.word_length_bits = 24;
- 
--	mtk_dp_audio_setup(mtk_dp, &cfg);
-+	mtk_dp_audio_setup(mtk_dp, &mtk_dp->info.audio_cur_cfg);
- 
- 	return 0;
- }
--- 
-2.18.0
+On Thu, Jun 09, 2022 at 02:35:07PM +0800, ChiYuan Huang wrote:
+> Mark Brown <broonie@kernel.org> =E6=96=BC 2022=E5=B9=B46=E6=9C=888=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=886:12=E5=AF=AB=E9=81=93=EF=BC=9A
+> > On Wed, Jun 08, 2022 at 11:15:56AM +0800, ChiYuan Huang wrote:
 
+> > > My excuse. let me explain it.
+> > > buck1 voltage range from 600mV to 1393.75mV.
+> > > buck2~4/ldo/exten is the fixed regulator.
+> > > buck3 and buck4 is fixed by the IC efuse default.
+> > > buck2 and ldo is fixed by the external resistor chosen.
+> > > exten is designed to connected to the external power.
+
+> > > That's why I cannot directly declared it as the static regulator_desc.
+
+> > So buck 2-4 need some dynamic handling then but the rest can be static -
+> > that would be a lot clearer.  You could also have a template for the
+> > ones with some dynamic values and just override the few fields that need
+> > it.
+
+> Not just buck2/3, buck2/3/4/ldo/exten all need the dynamic handling.
+
+Why do the others need it?
+
+> > > > Drivers should never override constraints passed in by machine driv=
+ers,
+> > > > if there's validation needed let the core do it.  The same probably
+> > > > applies to providing a voltage range for a fixed regulator though t=
+hat's
+> > > > not modifying everything so not such a problem.
+
+> > > Please check the above explanation about each power rails.
+
+> > I'm not sure what you're referencing here?
+
+> Sorry. Let me explain it.
+
+> You mean 'of_parse_cb' must not override constraint.
+> But if the regulator is fixed and dynamic, after
+> 'of_get_regulation_constraint', apply_uV will be true.
+> The is referring to 'fixed.c'
+
+fixed.c is a special case due to legacy issues and being generic, for
+normal fixed voltage regulators in a device where we know what they're
+fixed to they can just have their voltage hard coded in the driver.  If
+there's issues with the machine providing invalid or nonsensical
+constraints the driver should just let the core deal with them.
+
+> > > > This is all open coding stuff that's in the core - just provde an
+> > > > of_parse_cb() operation and let the core take care of calling it.
+
+> > > Ditto
+
+> > Or here.
+
+> If I put 'of_parce_cb' to make core handling it, the input parameter
+> 'init_data' is declared as const.
+> I cannot override the 'apply_uV'.
+> Right?
+
+Yes, that's by design.
+
+--9eWHlLQ5aB+zBDiA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKjJQwACgkQJNaLcl1U
+h9BwbQf8CDon0DOTyygjzDQP19A8QQ9eIkDydN4RwUztGzO1oZZqgyPddsborEnm
+enToWNLNXMvBEUM6ybjKDOi4Ac5UxHfxPW5tci2AOWfX6/LREJFiQR/ekmLPhgj9
+Cizn5N/0HstZFFm5g/lfsEYtxyCtVdd6StaeLXsGI2LD282RMqLhuyuq+1gmmv4v
+AOVc1KfT3CWAsiA1yYGY8TOugdKahJmuNAmAE9kH/JduhtPJMSG0jwhrlY9zHr46
+m/9ePyvPYkStQ28gQEgogcC6kUGHL/gZ9aEy/wCpKAUNtXw49bFDgImT1bmiVE3O
+vtsKqJOL7LmZ2pIyfeIKDPPiBJAUAQ==
+=xKE/
+-----END PGP SIGNATURE-----
+
+--9eWHlLQ5aB+zBDiA--
