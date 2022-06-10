@@ -2,94 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC2B9545EAC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 10:19:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEB6C545EDA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 10:26:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347525AbiFJITY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 04:19:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37540 "EHLO
+        id S1346701AbiFJI0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 04:26:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347471AbiFJIS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 04:18:59 -0400
-Received: from mail.baikalelectronics.com (mail.baikalelectronics.com [87.245.175.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D066B258B59;
-        Fri, 10 Jun 2022 01:18:45 -0700 (PDT)
-Received: from mail (mail.baikal.int [192.168.51.25])
-        by mail.baikalelectronics.com (Postfix) with ESMTP id EA4A216C7;
-        Fri, 10 Jun 2022 11:19:13 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.com EA4A216C7
+        with ESMTP id S1347698AbiFJI0h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 04:26:37 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A51AF7C17A
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 01:22:34 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id d13so6568061plh.13
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 01:22:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baikalelectronics.ru; s=mail; t=1654849153;
-        bh=3u4VMOP9WP/bUX2nLZCHP7NA6dt1Cj7fmiCuhFVAUp0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References:From;
-        b=IwkKn1NZfotqjwJdydo5F7xNKjhu9XCx3G36A3DmfG02+dWP2QcUJELMBBAxdRKT2
-         oNS/GIP/MvmrXPqurUJq4pDvWN+odO0ptQTL+U7miV/fy2F8i1JoDuSlaCyVUW2jTR
-         y67rHp24np3Eq30PpiXUu8FG1cw8AsFv7dOQnLF8=
-Received: from localhost (192.168.53.207) by mail (192.168.51.25) with
- Microsoft SMTP Server (TLS) id 15.0.1395.4; Fri, 10 Jun 2022 11:18:21 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, <linux-ide@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v4 23/23] MAINTAINERS: Add maintainers for DWC AHCI SATA driver
-Date:   Fri, 10 Jun 2022 11:18:01 +0300
-Message-ID: <20220610081801.11854-24-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
-References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=3CtnHIzyhGEYhzx3WNgUS+gaxi+Uj76buOwhyxDW9JA=;
+        b=P+icoPLQ8Nk+Gmp8FoNBjVlU1AFx37XNMv9ixnzv9UeVE6iuCIsRY6I1D1wzejPsVd
+         IhKlmYVqH7LgrgIqcvUlSSlV84NKzulcBXdxxK0r3OX9mQhcc7HQr5Ip/IjMQKQiijfn
+         GPYGNvBp4sT1+cCpTOgcdc29yGw8TYXHNgKldrOv4PoxSLJTTfLYzRVzYIKYh6UdIvZe
+         YYSne0wQ8MdBiVavj6nUDLym7VZBhGOUC60J1lP7rXVrXb8K+ExNSAG0lDvM3PqoLVh2
+         O/FmFuFtYp/TOonqdBt+3t3HGTDlNbHnDdOL7MmF4b7YimLZbgwR1QNIngCaK6XY364s
+         E7uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=3CtnHIzyhGEYhzx3WNgUS+gaxi+Uj76buOwhyxDW9JA=;
+        b=aqVmRHx0z13B9reEKKGu1+HHJ62IR3kIHO09aBT1UffJNePNKDgYxYkYrnnPobRqbE
+         terGRFvq4ncV4phjIxvHOnKQ+9Xq/3e9tY7ErvQssgJp5o6+NfiDi4jX3pG+rZRDrMDT
+         0MsIpcUHRLLC49I2gF+DcQV0qKRUcJmQi2GsucPj+I/FCIZu2/nklyQA9+Oh1gXP+cu/
+         Tr6fv0aOpYh4fZaAdATPM7YFz9w7ea0AwGESc7AiWDKrN4gGgUw8WZQdyVHp7Aa/M7Ry
+         jAPkcE2s5rWkHC9xE0drynXDnCcMGptzwLtHQR6JjN+J77KYLxkxIZZ3mOIkYsclJvYW
+         cnwA==
+X-Gm-Message-State: AOAM5335TzLtVwbSw7wq35YIbxNfntMkZ1oZdPisVVy0XoLjTwMnNgtt
+        04X845TSrmb0T0/ZdRFAmYdoeQ==
+X-Google-Smtp-Source: ABdhPJzfwsXTu9tAeQ+ghYeLVfc5S9wlWaBhaOGYpPwAKkcSzkaa8cG2JwnafTcUroGpeaE9qHkq+Q==
+X-Received: by 2002:a17:90b:3a8b:b0:1e8:3056:10fc with SMTP id om11-20020a17090b3a8b00b001e8305610fcmr7694914pjb.145.1654849354195;
+        Fri, 10 Jun 2022 01:22:34 -0700 (PDT)
+Received: from localhost ([122.162.234.2])
+        by smtp.gmail.com with ESMTPSA id o21-20020a170903211500b0015e8d4eb26esm17970929ple.184.2022.06.10.01.22.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jun 2022 01:22:33 -0700 (PDT)
+Date:   Fri, 10 Jun 2022 13:52:31 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [RFC PATCH v2 4/6] PM: opp: allow control of multiple clocks
+Message-ID: <20220610082231.nyywda5j6c5tr7tv@vireshk-i7>
+References: <20220411154347.491396-5-krzysztof.kozlowski@linaro.org>
+ <20220425072710.v6gwo4gu3aouezg4@vireshk-i7>
+ <dea39b1f-0091-2690-7f07-108d07ef9f3c@linaro.org>
+ <20220510044053.ykn6ygnbeokhzrsa@vireshk-i7>
+ <1e533194-7047-8342-b426-f607fddbfaa3@linaro.org>
+ <20220511050643.hd5tcrojb3wkbg7t@vireshk-i7>
+ <20220518235708.1A04CC385A9@smtp.kernel.org>
+ <65a4c28d-6702-3a9f-f837-1ea69a428777@linaro.org>
+ <20220531103029.ntoypaafnd6447ag@vireshk-i7>
+ <7a66f2e2-1a2a-a262-138c-f535499984ae@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7a66f2e2-1a2a-a262-138c-f535499984ae@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as a maintainer of the new DWC AHCI SATA driver and
-its DT-bindings schema.
+On 01-06-22, 13:23, Krzysztof Kozlowski wrote:
+> In general this looks reasonable and matches how the UFS gears should be
+> modeled. It does not match how UFS drivers implemented the clock
+> scaling, but that's the internal problem of UFS drivers. They scale the
+> clocks only max or min, even though there are multiple gears in between.
+> The new approach looks therefore appropriate.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Hi,
 
----
+I have finally finished working on this and sent the last patchset and
+cc'd you. You can also directly use opp/linux-next branch for the
+same, which will land in linux-next as well.
 
-Changelog v2:
-- Use dlemoal/libata.git git tree for the LIBATA SATA AHCI SYNOPSYS
-  DWC driver (@Damien).
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Thanks.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f468864fd268..fee2e1c8dde5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11137,6 +11137,15 @@ F:	drivers/ata/ahci_platform.c
- F:	drivers/ata/libahci_platform.c
- F:	include/linux/ahci_platform.h
- 
-+LIBATA SATA AHCI SYNOPSYS DWC CONTROLLER DRIVER
-+M:	Serge Semin <fancer.lancer@gmail.com>
-+L:	linux-ide@vger.kernel.org
-+S:	Maintained
-+T:	git git://git.kernel.org/pub/scm/linux/kernel/git/dlemoal/libata.git
-+F:	Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
-+F:	Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml
-+F:	drivers/ata/ahci_dwc.c
-+
- LIBATA SATA PROMISE TX2/TX4 CONTROLLER DRIVER
- M:	Mikael Pettersson <mikpelinux@gmail.com>
- L:	linux-ide@vger.kernel.org
 -- 
-2.35.1
-
+viresh
