@@ -2,170 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EC4E546B58
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 19:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9403546B57
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 19:08:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350069AbiFJRET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 13:04:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60700 "EHLO
+        id S1345071AbiFJRCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 13:02:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350072AbiFJREL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 13:04:11 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E3F737010;
-        Fri, 10 Jun 2022 10:04:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654880647; x=1686416647;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=cedDuWJ1o5WzrQ7/mFOQkYqmkZRy7tIGsqftIplAouU=;
-  b=VpcUxeLQ5LpYj62E60WzafhOsHpdVhP1SBOU7eEAR1hhS64I+eTE8KY+
-   DOU/4Nbp5dn5l5t1kQ5PKlKPADs0pMmFeBVJzHivo2MakAYeAqUZ+0pTJ
-   P3KIuuFCedeXlTNgVz418QO/qhHMzUZ3tt14Mns4BC6UuZZm65YBXrt3s
-   37KaN9geptjbbtRP/DCd9iQ2B36tF3TVkv2k3VI0hOvjVBJGiAfcV/ytn
-   Cru+gDYkPqFXJPR5ApGqD0EiScb0QulEUybapVA7G+fRlA3DcBmuQ4HsF
-   +xNaKlA5T0w1XoO47zXMzf+D7W2koQD9+BuzuPmcdrVmRzcYgLna5wpNi
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10374"; a="266452815"
-X-IronPort-AV: E=Sophos;i="5.91,290,1647327600"; 
-   d="scan'208";a="266452815"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 10:04:07 -0700
-X-IronPort-AV: E=Sophos;i="5.91,290,1647327600"; 
-   d="scan'208";a="638218818"
-Received: from unknown (HELO jiaqingz-server.sh.intel.com) ([10.239.48.171])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 10:04:05 -0700
-From:   Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
-To:     Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Cc:     Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
-Subject: [PATCH v2 6/6] net/ncsi: Support VLAN mode configuration
-Date:   Sat, 11 Jun 2022 00:59:40 +0800
-Message-Id: <20220610165940.2326777-7-jiaqing.zhao@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220610165940.2326777-1-jiaqing.zhao@linux.intel.com>
-References: <20220610165940.2326777-1-jiaqing.zhao@linux.intel.com>
+        with ESMTP id S240898AbiFJRCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 13:02:08 -0400
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC2B935878;
+        Fri, 10 Jun 2022 10:02:07 -0700 (PDT)
+Received: by mail-il1-f169.google.com with SMTP id p1so21356222ilj.9;
+        Fri, 10 Jun 2022 10:02:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=y6f2xzPn3BL2e4yPTDV44UTfpV1wb6g7eo8omcTZKD4=;
+        b=Btw+FJUdM0mT8+jOVIf6FDyWPz9MwFA8BQ6uP/WvTnajg/lyfH39Kj+l9XYlo9EJYc
+         dlT1P6FVCYpP0Ms3vDAX9nLQ9QstvEZr6x3LT7jp03C+d64YsiEHlCqyFnZgS1yW4L92
+         UQsgV79MDlS6pKdvYVgIoWWCzZ+cTCkFr39kvXfe2AJtQjbaWD6QhW5ENVIOUu6UdakA
+         VWo6T5lJc6IRlrvAnBl8P49CQ8XrFjLl2ZL/S0YtU5XPAIYsbdqynUJjoFPuYZbrORnU
+         mAmxE/LmwJbyS3zdG/Re12tQcp2YYgtelRPLA1LmGs6BCK0Pin7IUKcTEni9/UgVc3GV
+         QWnw==
+X-Gm-Message-State: AOAM531r/Ob/S7ellntZV6odNh0T8XiQfaYeyMN7b3CS2ECV5PqfLy7b
+        Ay0HHteYUtUSNhAd612w2Q==
+X-Google-Smtp-Source: ABdhPJw+XPd0bd3oGjagUw5zF7qz6ZKYI7Ie8iQMRFZvqZmV3pOmg6DZH+nBZJ9xjqp+OawbOcdh9A==
+X-Received: by 2002:a05:6e02:158a:b0:2d3:f198:9f39 with SMTP id m10-20020a056e02158a00b002d3f1989f39mr21493390ilu.206.1654880527064;
+        Fri, 10 Jun 2022 10:02:07 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id y14-20020a927d0e000000b002d53be43069sm6885624ilc.64.2022.06.10.10.02.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jun 2022 10:02:06 -0700 (PDT)
+Received: (nullmailer pid 1832170 invoked by uid 1000);
+        Fri, 10 Jun 2022 17:02:05 -0000
+Date:   Fri, 10 Jun 2022 11:02:05 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jens Axboe <axboe@kernel.dk>,
+        =?utf-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: mtd: partitions: Support label only
+ partition
+Message-ID: <20220610170205.GD1787330-robh@kernel.org>
+References: <20220606151417.19227-1-ansuelsmth@gmail.com>
+ <20220606151417.19227-2-ansuelsmth@gmail.com>
+ <20220609183252.GA4072951-robh@kernel.org>
+ <62a250c4.1c69fb81.addd2.0eae@mx.google.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <62a250c4.1c69fb81.addd2.0eae@mx.google.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-NCSI specification defines 4 VLAN modes, currently kernel NCSI driver
-only supports the "VLAN + non-VLAN" mode (Mode #2), and there is no
-way to detect which modes are supported by the device. This patch adds
-support for configuring VLAN mode via the "ncsi,vlan-mode" devicetree
-node.
+On Thu, Jun 09, 2022 at 09:57:52PM +0200, Ansuel Smith wrote:
+> On Thu, Jun 09, 2022 at 12:32:52PM -0600, Rob Herring wrote:
+> > On Mon, Jun 06, 2022 at 05:14:15PM +0200, Ansuel Smith wrote:
+> > > Document new partition nodes that declare only the label instead of the
+> > > reg used to provide an OF node for partition registred at runtime by
+> > > parsers. This is required for nvmem system to declare and detect
+> > > nvmem-cells.
+> > > 
+> > > With these special partitions, the reg / offset is not required.
+> > > The label binding is used to match the partition allocated by the
+> > > parser at runtime and the parser will provide reg and offset of the mtd.
+> > > 
+> > > NVMEM will use the data from the parser and provide the NVMEM cells
+> > > declared in the DTS, "connecting" the dynamic partition with a
+> > > static declaration of cells in them.
+> > > 
+> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > > ---
+> > >  .../bindings/mtd/partitions/partition.yaml       | 16 ++++++++++++++--
+> > >  1 file changed, 14 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+> > > index e1ac08064425..bff6fb980e6b 100644
+> > > --- a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+> > > +++ b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+> > > @@ -11,6 +11,13 @@ description: |
+> > >    relative offset and size specified. Depending on partition function extra
+> > >    properties can be used.
+> > >  
+> > > +  A partition may be dynamically allocated by a specific parser at runtime.
+> > > +  In this specific case, the label is required instead of the reg.
+> > > +  This is used to assign an OF node to the dynamiccally allocated partition
+> > > +  so that subsystem like NVMEM can provide an OF node and declare NVMEM cells.
+> > > +  The OF node will be assigned only if the partition label declared match the
+> > > +  one assigned by the parser at runtime.
+> > > +
+> > >  maintainers:
+> > >    - Rafał Miłecki <rafal@milecki.pl>
+> > >  
+> > > @@ -22,6 +29,8 @@ properties:
+> > >    label:
+> > >      description: The label / name for this partition. If omitted, the label
+> > >        is taken from the node name (excluding the unit address).
+> > > +      With dynamically allocated partition the label is required and won't
+> > > +      fallback to the node name.
+> > 
+> > Generally, label is never required being something for humans rather 
+> > than the s/w to consume. I don't see any reason why we can't still use 
+> > the node name (with 'partition-' stripped off).
+> > 
+> 
+> How to enforce the use of 'partition-'? Should the driver then check the
+> node name and reject any wrong node name (and return error)?
 
-Signed-off-by: Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
----
- net/ncsi/internal.h    |  1 +
- net/ncsi/ncsi-manage.c | 41 ++++++++++++++++++++++++++++++++++-------
- 2 files changed, 35 insertions(+), 7 deletions(-)
+The schema can do it either in the parent (of partition nodes) schema or 
+with $nodename 'property'.
 
-diff --git a/net/ncsi/internal.h b/net/ncsi/internal.h
-index 7f384f841019..6a988c898a8d 100644
---- a/net/ncsi/internal.h
-+++ b/net/ncsi/internal.h
-@@ -334,6 +334,7 @@ struct ncsi_dev_priv {
- 	struct work_struct  work;            /* For channel management     */
- 	struct packet_type  ptype;           /* NCSI packet Rx handler     */
- 	struct list_head    node;            /* Form NCSI device list      */
-+	u32                 vlan_mode;       /* VLAN mode                  */
- #define NCSI_MAX_VLAN_VIDS	15
- 	struct list_head    vlan_vids;       /* List of active VLAN IDs */
- 
-diff --git a/net/ncsi/ncsi-manage.c b/net/ncsi/ncsi-manage.c
-index 3fb95f29e3e2..a398b0eb72b2 100644
---- a/net/ncsi/ncsi-manage.c
-+++ b/net/ncsi/ncsi-manage.c
-@@ -10,6 +10,7 @@
- #include <linux/skbuff.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <dt-bindings/net/ncsi.h>
- 
- #include <net/ncsi.h>
- #include <net/net_namespace.h>
-@@ -1042,7 +1043,11 @@ static void ncsi_configure_channel(struct ncsi_dev_priv *ndp)
- 		nd->state = ncsi_dev_state_config_oem_gma;
- 		break;
- 	case ncsi_dev_state_config_oem_gma:
--		nd->state = ncsi_dev_state_config_clear_vids;
-+		/* Only set up hardware VLAN filters in filtered mode */
-+		if (ndp->vlan_mode == NCSI_VLAN_MODE_FILTERED)
-+			nd->state = ncsi_dev_state_config_clear_vids;
-+		else
-+			nd->state = ncsi_dev_state_config_ev;
- 		ret = -1;
- 
- #if IS_ENABLED(CONFIG_NCSI_OEM_CMD_GET_MAC)
-@@ -1094,11 +1099,15 @@ static void ncsi_configure_channel(struct ncsi_dev_priv *ndp)
- 			nd->state = ncsi_dev_state_config_svf;
- 		/* Enable/Disable the VLAN filter */
- 		} else if (nd->state == ncsi_dev_state_config_ev) {
--			if (list_empty(&ndp->vlan_vids)) {
--				nca.type = NCSI_PKT_CMD_DV;
--			} else {
-+			if (ndp->vlan_mode == NCSI_VLAN_MODE_FILTERED &&
-+			    !list_empty(&ndp->vlan_vids)) {
- 				nca.type = NCSI_PKT_CMD_EV;
- 				nca.bytes[3] = NCSI_CAP_VLAN_FILTERED;
-+			} else if (ndp->vlan_mode == NCSI_VLAN_MODE_ANY) {
-+				nca.type = NCSI_PKT_CMD_EV;
-+				nca.bytes[3] = NCSI_CAP_VLAN_ANY;
-+			} else {
-+				nca.type = NCSI_PKT_CMD_DV;
- 			}
- 			nd->state = ncsi_dev_state_config_sma;
- 		} else if (nd->state == ncsi_dev_state_config_sma) {
-@@ -1800,15 +1809,33 @@ struct ncsi_dev *ncsi_register_dev(struct net_device *dev,
- 	ndp->ptype.dev = dev;
- 	dev_add_pack(&ndp->ptype);
- 
-+	/* Set default VLAN mode (filtered) */
-+	ndp->vlan_mode = NCSI_VLAN_MODE_FILTERED;
-+
- 	pdev = to_platform_device(dev->dev.parent);
- 	if (pdev) {
- 		np = pdev->dev.of_node;
--		if (np && of_get_property(np, "mlx,multi-host", NULL))
--			ndp->mlx_multi_host = true;
-+		if (np) {
-+			u32 vlan_mode;
-+
-+			if (!of_property_read_u32(np, "ncsi,vlan-mode", &vlan_mode)) {
-+				if (vlan_mode > NCSI_VLAN_MODE_ANY ||
-+				    vlan_mode == NCSI_VLAN_MODE_ONLY)
-+					dev_warn(&pdev->dev, "NCSI: Unsupported VLAN mode %u",
-+						 vlan_mode);
-+				else
-+					ndp->vlan_mode = vlan_mode;
-+				dev_info(&pdev->dev, "NCSI: Configured VLAN mode %u",
-+					 ndp->vlan_mode);
-+			}
-+			if (of_get_property(np, "mlx,multi-host", NULL))
-+				ndp->mlx_multi_host = true;
-+		}
- 	}
- 
- 	/* Enable hardware VLAN filtering */
--	if (dev->netdev_ops->ndo_vlan_rx_add_vid == ncsi_vlan_rx_add_vid &&
-+	if (ndp->vlan_mode == NCSI_VLAN_MODE_FILTERED &&
-+	    dev->netdev_ops->ndo_vlan_rx_add_vid == ncsi_vlan_rx_add_vid &&
- 	    dev->netdev_ops->ndo_vlan_rx_kill_vid == ncsi_vlan_rx_kill_vid)
- 		dev->hw_features |= NETIF_F_HW_VLAN_CTAG_FILTER;
- 
--- 
-2.34.1
+$nodename:
+  oneOf:
+    - pattern: '^.*@.*$'
+    - pattern: '^partition-.*$'
 
+or:
+
+if:
+  not:
+    required:
+      - reg
+then:
+  properties:
+    $nodename:
+      pattern: '^partition-.*$'
+
+
+The latter is a bit clearer on the intent I think.
+
+> > If the purpose is to define what the partition contains, then 
+> > 'compatible' is the right thing for that.
+> >
+> 
+> Introducing a compatible means creating another scheme I think or we can
+> add that special compatible in the partition scheme?
+
+It would be another schema. You could make 'compatible' required here 
+perhaps, but maybe there's a use for an empty node?
+
+Rob
