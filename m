@@ -2,92 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83937546C61
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 20:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9683546C9B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 20:39:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232547AbiFJScQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 14:32:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60096 "EHLO
+        id S1346894AbiFJSjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 14:39:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233646AbiFJScP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 14:32:15 -0400
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC1C638790
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 11:32:11 -0700 (PDT)
-Received: by mail-io1-f47.google.com with SMTP id e80so4670798iof.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 11:32:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OVMxoy3v8YN9vjfenOL8+Mzp5/ikdw6ycfv3Coyc0HQ=;
-        b=jP2lwMcSpdlZc3mo+dhlE+aVp/3V7hMy1yl57VBGBAOyCDYDwHle2z12JXrjO7HtDA
-         eY27BANX6FS/O6KtST2HNK9hqgFdmU2mGq8BZuBniGCBHCttYayCYTtsVlApa/1kmsso
-         PQoeAB7iJ3MEkYJLF+fROHc/k2r7JUPtcI5vdZa6/UYpCyUlP9iDZHjh47H5QGakRtQS
-         R/op3RO0VhbyEvyB6oy7HxrOXWAlbcHIA1ESIp/1W45Iq/hqvgGZzxVR1b50gyr5dHr2
-         DQTTG/lRRWK/2ywq77MMfzVDjSMYfKXqyyXe4k6jrTMrGN3BoBpG2IXWq2WN15rRADtP
-         KNNQ==
-X-Gm-Message-State: AOAM531WLo1n/w48he/R38Lbc5Sb32TA8bifXqj1Wq2WsJ0eml6oIX+V
-        kWCeufQm+ar+dAOn+soRLg==
-X-Google-Smtp-Source: ABdhPJzrk+TFZQ8ye0z+1Q6GVMf6xVa4Vaq1QD2t1xc6NjS6VEHT9PgXPmwREY6KXZs17bPRjqebmg==
-X-Received: by 2002:a6b:c801:0:b0:669:c93c:5a69 with SMTP id y1-20020a6bc801000000b00669c93c5a69mr147764iof.167.1654885930991;
-        Fri, 10 Jun 2022 11:32:10 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id l9-20020a023909000000b0033207c2cebesm2142424jaa.48.2022.06.10.11.32.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jun 2022 11:32:10 -0700 (PDT)
-Received: (nullmailer pid 1952880 invoked by uid 1000);
-        Fri, 10 Jun 2022 18:32:08 -0000
-Date:   Fri, 10 Jun 2022 12:32:08 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Liviu Dudau <Liviu.Dudau@arm.com>, devicetree@vger.kernel.org,
+        with ESMTP id S1347303AbiFJSjp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 14:39:45 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3E0034BBF
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 11:39:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=UU5YjojlQCeCu9qlG2U4gDtMpva3
+        cln2VaeHsGNEyGs=; b=CQbK9ijqe4r2UR1IviVxCEjgV8Zkq+S0aZIbbUPhO1mo
+        rJSVajB1cDtUtJBuiTHDpV9iRHvNUKeQYAWLx/RXNp4ix870jRwybTJ5O+hBecPM
+        3F2wMESvrrDFKBTjFKfgVNeV3kcwrPMg3DGsw4zgAQ0D+CjjTQK0/s2fZMMuFGA=
+Received: (qmail 344059 invoked from network); 10 Jun 2022 20:39:36 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 10 Jun 2022 20:39:36 +0200
+X-UD-Smtp-Session: l3s3148p1@tXaWQhzhzGxZD+3R
+Date:   Fri, 10 Jun 2022 20:39:35 +0200
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: display: arm,malidp: remove bogus RQOS
- property
-Message-ID: <20220610183208.GA1952788-robh@kernel.org>
-References: <20220609162729.1441760-1-andre.przywara@arm.com>
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: thermal: rcar-gen3-thermal: Add r8a779f0
+ support
+Message-ID: <YqOP51pNPTtXQTMQ@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220609194154.12829-1-wsa+renesas@sang-engineering.com>
+ <CAMuHMdXg3rC++RBp+aZM1Q_EkYyTxot-9LZnMfJFRz7cp0NLoQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="CN9TMHG+L/SSyQsL"
 Content-Disposition: inline
-In-Reply-To: <20220609162729.1441760-1-andre.przywara@arm.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <CAMuHMdXg3rC++RBp+aZM1Q_EkYyTxot-9LZnMfJFRz7cp0NLoQ@mail.gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 09 Jun 2022 17:27:29 +0100, Andre Przywara wrote:
-> As Liviu pointed out, the arm,malidp-arqos-high-level property
-> mentioned in the original .txt binding was a mistake, and
-> arm,malidp-arqos-value needs to take its place.
-> 
-> The binding commit ce6eb0253cba ("dt/bindings: display: Add optional
-> property node define for Mali DP500") mentions the right name in the
-> commit message, but has the wrong name in the diff.
-> Commit d298e6a27a81 ("drm/arm/mali-dp: Add display QoS interface
-> configuration for Mali DP500") uses the property in the driver, but uses
-> the shorter name.
-> 
-> Remove the wrong property from the binding, and use the proper name in
-> the example. The actual property was already documented properly.
-> 
-> Fixes: 2c8b082a3ab1 ("dt-bindings: display: convert Arm Mali-DP to DT schema")
-> Link: https://lore.kernel.org/linux-arm-kernel/YnumGEilUblhBx8E@e110455-lin.cambridge.arm.com/
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> Reported-by: Liviu Dudau <liviu.dudau@arm.com>
-> ---
->  Documentation/devicetree/bindings/display/arm,malidp.yaml | 7 +------
->  1 file changed, 1 insertion(+), 6 deletions(-)
-> 
 
-Applied, thanks!
+--CN9TMHG+L/SSyQsL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+> Unfortunately not:
+>=20
+> arch/arm64/boot/dts/renesas/r8a779f0-spider.dtb: thermal@e6198000:
+> reg: [[0, 3860430848, 0, 512], [0, 3860463616, 0, 512], [0,
+> 3860496384, 0, 512]] is too short
+
+Okay, I managed to find the missing dependency to finally update my
+dtschema. I'll send a new version which I then tested myself.
+
+
+--CN9TMHG+L/SSyQsL
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKjj+MACgkQFA3kzBSg
+Kbb3CRAAjhxA1Oulpxyo+WFjBsKSfz1oGJ+Y/Scd3X0Q9obSO7qA2aMyYoi/gCSa
+bjvhdz68XgfJQi96qu4v/dWUL2Z+5OhE4tFcfFx1aoxKD8Ovgnc3e/sJtpb+qEER
+IYO20H5V9GHLxL9daX6Jvgr7YXo+Nk7Q2HAv8v9NTuj1rorksto2TiUriAWhOFqo
+BdTae1Vaa/3uL+EXfqH5sKmGM9QNdkV+vh17VIifVMxQpuzXRVqZpetv66fP/uRK
+olWyAQ9anMTkazCqW854YoQFt9+CNOrOu8nXrP5lD3ypUfIgfGkanqOBrOG0KR7N
+yazpd7v6aO+ql00ek4QkzZS4GnOfXQVOxJZWA33hH+a4c4q5RZgXx4MqxT5b+IO3
+i9G7EBu735qxkmY/HQW+p0GFNQ+Wel6mzqVOhEymCqxldmVqoe3EZWtJD7q8JlXV
+v+hjLyjh6YsQqdFp4hfhgcLBNiTgzuAxeVEsJyRedvGMIqPR6Hwrcf9VT0SVBEBS
+3p+Ct5qS/JyQxLfxbTePwbwvnz2fi23KflkvQ17a9+5MM3Zth70kQFmiC2t0zmnU
+AOHcnik0WkmlbGSlpdmWf+yKZQluwWwkPs3EpVBJcC0P9xtCuk0Y4EhNrt+AInQm
+gkcqsYNJAmkGVD6OrY5wJU8oMh3FYgjxbizi/tmbihIojPTefcY=
+=h7HU
+-----END PGP SIGNATURE-----
+
+--CN9TMHG+L/SSyQsL--
