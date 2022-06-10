@@ -2,59 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C11B546EA1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 22:46:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA5B9546EA5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 22:48:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348645AbiFJUqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 16:46:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58246 "EHLO
+        id S1347296AbiFJUr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 16:47:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348598AbiFJUqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 16:46:37 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8665A387AB
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 13:46:36 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id k11so594736oia.12
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 13:46:36 -0700 (PDT)
+        with ESMTP id S1347010AbiFJUr6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 16:47:58 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3747613CC1
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 13:47:55 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id a15so262748lfb.9
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 13:47:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=WXP/dnK0YDlK5/E1i9cz7pX4wz3nrSJNyTUfLHkhr9I=;
-        b=ZJj1KqgR1rdW1l/uVn+xdn9Uy5h5YJC3oGspYfLYmJCRSQeLZEWnQpZdwnMnSyrtoo
-         8GPARFoFuqYRU69ZPicw7P8yJiycawGkEBlmAzh5nxQCxcta+6eTUuJCHwqUjjHaLALT
-         6bZi2BmlRX6cZTvVBfVuh1+9L384gU+pRXglw=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=8KwPXLp0XOa90G9moFXqn+YK8bv+iSnrOMIWn8R44VQ=;
+        b=xPKDjHkdR6DyCfEtwgkAI9p1egmcpidgHgRAETIYUaYNWDTftQ10fVeR9XpKUOyx0W
+         hmv+ZDivua7J/iHC9pJjch+MuKkPKwRtNZikeb2xyA2cwmtYhQwmfXL50wsBtHU7Nmq3
+         vpLe3SrZeYxCwIn/p9X377ItMLHC4sWZwOEmEkaHxw3qmMZRB9p3ajbXgnkV4FqjKGqj
+         bl5cG5lWfe/+gMMVJmd5JkFOkeWtWi4ntC/q3+jwv1L3PdYRzs7n7118Z3K2ukzRed9h
+         U2j5qhnN33hu3uTXYF0BFfMDWetDcTeTSbB2ZuVV2wflkOmQ/CL5w6+wAIvX6MJ8kKvJ
+         bJMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=WXP/dnK0YDlK5/E1i9cz7pX4wz3nrSJNyTUfLHkhr9I=;
-        b=nvs6L+cof8Xm2D4gjZCx17Oyh92UyQzU8MFFzSwLrSBMqsZ6+S5xG0+7DDTEl0wBx+
-         3dfpw20uN+s09/TJ+eYd9KIJzIZptITe8ab8IXi7bugjS1/fWg0T/S8jabFHLFTLxVje
-         65UMFPOV/N9Nu2G04Vkd3Vkc8akg8/PzuymJu93IyqilxYzbwLAMbvDO4kliWFXVOGyY
-         NkHIhxIWejHvP8p3bLoLzzNIBpGkJqqaYwXy5qYbTXEjMcSpmumwwpEYNz+nh4J6ons2
-         7X+VFdG03W4amHdlkDvMSfda0gK6EsOqr+PDeOk0I643Ex234OYjfFgoLCPGNBcf7Htc
-         Jp5g==
-X-Gm-Message-State: AOAM531SI5OKNs2lAIMW+lqYC5x5sz/e/ZawdtZqf+Tre9SWLlgbf0nc
-        dK2L4qwrwE2RDvNdueOVmYtj+QTzzpHS5nCPvtVX/g==
-X-Google-Smtp-Source: ABdhPJz6T8iyP5MXE+PWGWDiJ+4fCVtVAbI+1HHpHDGwLRZ4/RlvOsKQRvifEGJuMz7pt9TYFPJ0sL5BhGArjtPw9lY=
-X-Received: by 2002:a05:6808:1703:b0:32e:851e:7f81 with SMTP id
- bc3-20020a056808170300b0032e851e7f81mr891625oib.63.1654893995898; Fri, 10 Jun
- 2022 13:46:35 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 10 Jun 2022 13:46:35 -0700
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=8KwPXLp0XOa90G9moFXqn+YK8bv+iSnrOMIWn8R44VQ=;
+        b=dqsyLyXiMy9ji9ngwdOyCpMIqzrdEVO+rYiTzxuSJUephE5rmw9Jcm9L0a2xNvY0qF
+         QM+aNBJJzMMT2XhcUCHZxUrmX3sx9/8jLY896JunwRidLNOUoSprYAf1mmH88tukjwPU
+         RCCfh4G/6nmwrO0T1XlfpODAX6O8x6crIIQd4PRzjO5wliS7ZeFjLnfxaWxOocIZcei7
+         ttfqKPC5nZYg0BfuWU7bz8haqb4vselCQkRit4WBymJHkK3AvZNoeZbdGbDuukj9sGNR
+         7qdJShEsrsS0cq/rotBifNFb7MkiiapSP3E/rNadrnIOjcEZZ2vu00x8S5KkFQJqliMx
+         mwRw==
+X-Gm-Message-State: AOAM530B3MONwTIp9JBTntmtj09LuXV5VLY8MA4uVRQZDzkZwTL97Go8
+        CTyKfBYzRfS1A2nw4LQy/142iA==
+X-Google-Smtp-Source: ABdhPJyOLAZ0DtqDYs7mIgFCiYwqsPd9FGnhF38NRQy2k3tH+rhfLOxamV0FdLf2aYVUy+utRDdMxg==
+X-Received: by 2002:a05:6512:32b2:b0:479:b04:c0af with SMTP id q18-20020a05651232b200b004790b04c0afmr28576044lfe.384.1654894073576;
+        Fri, 10 Jun 2022 13:47:53 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id p26-20020a2ea41a000000b002557c48cc4csm62393ljn.95.2022.06.10.13.47.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Jun 2022 13:47:52 -0700 (PDT)
+Message-ID: <492bbe98-e395-3adb-34e3-eadccd59d849@linaro.org>
+Date:   Fri, 10 Jun 2022 23:47:51 +0300
 MIME-Version: 1.0
-In-Reply-To: <20220609122350.3157529-7-dmitry.baryshkov@linaro.org>
-References: <20220609122350.3157529-1-dmitry.baryshkov@linaro.org> <20220609122350.3157529-7-dmitry.baryshkov@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 10 Jun 2022 13:46:35 -0700
-Message-ID: <CAE-0n51vKmQ683TTnYm8VxSquqYqL2_3=Ku750r--0GV4JcW8Q@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
 Subject: Re: [PATCH v3 06/14] drm/msm/hdmi: drop unused GPIO support
-To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+Content-Language: en-GB
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Clark <robdclark@gmail.com>,
         Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
@@ -62,9 +66,15 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <20220609122350.3157529-1-dmitry.baryshkov@linaro.org>
+ <20220609122350.3157529-7-dmitry.baryshkov@linaro.org>
+ <CAE-0n51vKmQ683TTnYm8VxSquqYqL2_3=Ku750r--0GV4JcW8Q@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <CAE-0n51vKmQ683TTnYm8VxSquqYqL2_3=Ku750r--0GV4JcW8Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,45 +83,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dmitry Baryshkov (2022-06-09 05:23:42)
-> The HDMI driver has code to configure extra GPIOs, which predates
-> pinctrl support. Nowadays all platforms should use pinctrl instead.
-> Neither of upstreamed Qualcomm platforms uses these properties, so it's
-> safe to drop them.
->
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+On 10/06/2022 23:46, Stephen Boyd wrote:
+> Quoting Dmitry Baryshkov (2022-06-09 05:23:42)
+>> The HDMI driver has code to configure extra GPIOs, which predates
+>> pinctrl support. Nowadays all platforms should use pinctrl instead.
+>> Neither of upstreamed Qualcomm platforms uses these properties, so it's
+>> safe to drop them.
+>>
+>> Reported-by: kernel test robot <lkp@intel.com>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+> 
+> One question
+> 
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> 
+>> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c b/drivers/gpu/drm/msm/hdmi/hdmi.c
+>> index 7267167d5ef1..6d79f1b910a5 100644
+>> --- a/drivers/gpu/drm/msm/hdmi/hdmi.c
+>> +++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
+>> @@ -233,6 +233,20 @@ static struct hdmi *msm_hdmi_init(struct platform_device *pdev)
+>>                  hdmi->pwr_clks[i] = clk;
+>>          }
+>>
+>> +       hdmi->hpd_gpiod = devm_gpiod_get_optional(&pdev->dev, "hpd", GPIOD_IN);
+>> +       /* This will catch e.g. -EPROBE_DEFER */
+>> +       if (IS_ERR(hdmi->hpd_gpiod)) {
+>> +               ret = PTR_ERR(hdmi->hpd_gpiod);
+>> +               DRM_DEV_ERROR(&pdev->dev, "failed to get hpd gpio: (%d)\n", ret);
+> 
+> Did you want to print an error with eprobe defer in it?
 
-One question
+True. We should use dev_err_probe here. I'll fix it in the next revision.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> 
+>> +               goto fail;
+>> +       }
+>> +
+>> +       if (!hdmi->hpd_gpiod)
+>> +               DBG("failed to get HPD gpio");
+>> +
+>> +       if (hdmi->hpd_gpiod)
+>> +               gpiod_set_consumer_name(hdmi->hpd_gpiod, "HDMI_HPD");
+>> +
+>>          pm_runtime_enable(&pdev->dev);
+>>
+>>          hdmi->workq = alloc_ordered_workqueue("msm_hdmi", 0);
 
-> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c b/drivers/gpu/drm/msm/hdmi/hdmi.c
-> index 7267167d5ef1..6d79f1b910a5 100644
-> --- a/drivers/gpu/drm/msm/hdmi/hdmi.c
-> +++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
-> @@ -233,6 +233,20 @@ static struct hdmi *msm_hdmi_init(struct platform_device *pdev)
->                 hdmi->pwr_clks[i] = clk;
->         }
->
-> +       hdmi->hpd_gpiod = devm_gpiod_get_optional(&pdev->dev, "hpd", GPIOD_IN);
-> +       /* This will catch e.g. -EPROBE_DEFER */
-> +       if (IS_ERR(hdmi->hpd_gpiod)) {
-> +               ret = PTR_ERR(hdmi->hpd_gpiod);
-> +               DRM_DEV_ERROR(&pdev->dev, "failed to get hpd gpio: (%d)\n", ret);
 
-Did you want to print an error with eprobe defer in it?
-
-> +               goto fail;
-> +       }
-> +
-> +       if (!hdmi->hpd_gpiod)
-> +               DBG("failed to get HPD gpio");
-> +
-> +       if (hdmi->hpd_gpiod)
-> +               gpiod_set_consumer_name(hdmi->hpd_gpiod, "HDMI_HPD");
-> +
->         pm_runtime_enable(&pdev->dev);
->
->         hdmi->workq = alloc_ordered_workqueue("msm_hdmi", 0);
+-- 
+With best wishes
+Dmitry
