@@ -2,57 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CFBD546CC4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 20:55:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8883546CD8
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 21:00:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346510AbiFJSzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 14:55:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51562 "EHLO
+        id S239072AbiFJTAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 15:00:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344236AbiFJSzB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 14:55:01 -0400
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AF6916BE1B;
-        Fri, 10 Jun 2022 11:54:59 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id y79so7638135iof.2;
-        Fri, 10 Jun 2022 11:54:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=XFJP0W9P3nmZgmGzrDbKIpL7gl4ZLTzQ3iGuT9QJtWA=;
-        b=62dS8Gu1WJCcIatyG++69nlil8ErH/FZxqF6E4qUq92h7oo0hm5keZyTJeWrxIlBAg
-         krXhAf5Is0/Hy9OpojU/wqUDcF/X5fB64L+MPJUBr5gPOZAI93f7GhYpF55DWAFjS0Qw
-         HyqaMRI67Hb4jmuq3AsViJ6eMm21NBX9guOk+RWP3oHbIrCeYzfN1jI4Pew3LTNGljCb
-         MvZ+acVWYKPY+5d3wbho+OE/40zNKZrinESb+CCwhaNEKo8D0biY1RGAQyQ6NX66S4d7
-         Z9Qp2QmOVYoatATxN7ysX3Q5iju1X6O4k4cdv1Woa2S/JnMpRum9mO1QOIsN+UL9wvYk
-         ZZLw==
-X-Gm-Message-State: AOAM5330Q7oG16o2eYzDnFyRWBjINarJbyfFQSaljqbW3tRGaXs5YRgw
-        aX/5A9/hxZq94OXwj27jI/ZNn6q1LQ==
-X-Google-Smtp-Source: ABdhPJycdS9Xlkx3gUE8xOYM2P+AgPPnDiky0gjKvJoX4y6MgwpZC1cmopv30zy8I7c+nKJyImgwYA==
-X-Received: by 2002:a02:94c5:0:b0:331:7154:9823 with SMTP id x63-20020a0294c5000000b0033171549823mr22941811jah.232.1654887298740;
-        Fri, 10 Jun 2022 11:54:58 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id g12-20020a02b70c000000b0032e36d3843fsm11207380jam.19.2022.06.10.11.54.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jun 2022 11:54:58 -0700 (PDT)
-Received: (nullmailer pid 2009226 invoked by uid 1000);
-        Fri, 10 Jun 2022 18:54:57 -0000
-Date:   Fri, 10 Jun 2022 12:54:57 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
+        with ESMTP id S1347008AbiFJTAj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 15:00:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCBBC2C27BD;
+        Fri, 10 Jun 2022 12:00:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1185E61EA7;
+        Fri, 10 Jun 2022 19:00:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 68FF6C34114;
+        Fri, 10 Jun 2022 19:00:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654887636;
+        bh=F4a7BtqRfxfc2nXQbMRSKR8Ni/VWaZ2oAhg+75yLm8Q=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=rmVEJTU5d1kYAK9EYz2amBkRRA682V6ufo0fgeAgAyp60UCo9ZLqO8ABHYMSwAssk
+         BRH1ITq90PEmOBRxbLSJbHeWYY0PWZEIbt52iFhN3PgFlL3JbTT7M0/XItA64OeVYi
+         ScyvfAi2u09aemv95UKjGY7X/3IrSPL1Jdsg7gqRnbQY6VEJ7jQRCyRk+39lAeptFD
+         nMuVTJ4VK07EVWD6Z5We4XYxHF4Ae9QjoqlnyG7zNVnIiuNnku8M1K5i7a1vov79BZ
+         BvfwLtVp2I6neh86J7ulOM3FSSPq4MUK7bkcF3lnAw1Z2txCh+MPGIeMHhFuDsPpXM
+         ymRRC4oFH4BqQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 5512BE737EA;
+        Fri, 10 Jun 2022 19:00:36 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for v5.19, part 2
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20220610185457.GA2005396-robh@kernel.org>
+References: <20220610185457.GA2005396-robh@kernel.org>
+X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20220610185457.GA2005396-robh@kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.19-2
+X-PR-Tracked-Commit-Id: 0b9431c8221cfe73d06f6b9cd37b813fa52be8ce
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: aa3398fb4b3f67d89688976098ad93721b6d7852
+Message-Id: <165488763633.19537.9517015664730364180.pr-tracker-bot@kernel.org>
+Date:   Fri, 10 Jun 2022 19:00:36 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v5.19, part 2
-Message-ID: <20220610185457.GA2005396-robh@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,105 +62,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+The pull request you sent on Fri, 10 Jun 2022 12:54:57 -0600:
 
-Please pull another batch of DT fixes.
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.19-2
 
-Rob
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/aa3398fb4b3f67d89688976098ad93721b6d7852
 
+Thank you!
 
-The following changes since commit f2906aa863381afb0015a9eb7fefad885d4e5a56:
-
-  Linux 5.19-rc1 (2022-06-05 17:18:54 -0700)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.19-2
-
-for you to fetch changes up to 0b9431c8221cfe73d06f6b9cd37b813fa52be8ce:
-
-  dt-bindings: display: arm,malidp: remove bogus RQOS property (2022-06-10 12:32:05 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for 5.19, part 2:
-
-- More DT meta-schema check fixes from new bindings in merge window
-
-- Fix stale DT binding references from Mauro
-
-- Update various binding maintainers
-
-- Fix in arm,malidp properties to match reality
-
-- Add deprecated 'atheros' vendor prefix
-
-----------------------------------------------------------------
-Andre Przywara (1):
-      dt-bindings: display: arm,malidp: remove bogus RQOS property
-
-Krishna Manikandan (1):
-      dt-bindings: msm: update maintainers list with proper id
-
-Krzysztof Kozlowski (1):
-      dt-bindings: vendor-prefixes: document deprecated Atheros
-
-Luca Ceresoli (1):
-      dt-bindings: update Luca Ceresoli's e-mail address
-
-Lukas Bulwahn (1):
-      MAINTAINERS: rectify entries for ARM DRM DRIVERS after dt conversion
-
-Mauro Carvalho Chehab (8):
-      dt-bindings: mfd: bd9571mwv: update rohm,bd9571mwv.yaml reference
-      dt-bindings: interrupt-controller: update brcm,l2-intc.yaml reference
-      dt-bindings: arm: update vexpress-config.yaml references
-      dt-bindings: reset: update st,stih407-powerdown.yaml references
-      dt-bindings: mfd: rk808: update rockchip,rk808.yaml reference
-      MAINTAINERS: update cortina,gemini-ethernet.yaml reference
-      MAINTAINERS: update dongwoon,dw9807-vcm.yaml reference
-      MAINTAINERS: update snps,axs10x-reset.yaml reference
-
-Rob Herring (3):
-      dt-bindings: nvme: apple,nvme-ans: Drop 'maxItems' from 'apple,sart'
-      dt-bindings: Drop more redundant 'maxItems/minItems' in if/then schemas
-      dt-bindings: pinctrl: ralink: Fix 'enum' lists with duplicate entries
-
-Wesley Cheng (1):
-      dt-bindings: Update QCOM USB subsystem maintainer information
-
- .../ABI/testing/sysfs-driver-bd9571mwv-regulator   |  2 +-
- .../devicetree/bindings/clock/idt,versaclock5.yaml |  2 +-
- .../bindings/cpufreq/brcm,stb-avs-cpu-freq.txt     |  2 +-
- .../devicetree/bindings/display/arm,malidp.yaml    |  7 +-----
- .../bindings/display/msm/dpu-sc7180.yaml           |  2 +-
- .../bindings/display/msm/dpu-sc7280.yaml           |  2 +-
- .../bindings/display/msm/dpu-sdm845.yaml           |  2 +-
- .../bindings/display/msm/dsi-controller-main.yaml  |  2 +-
- .../bindings/display/msm/dsi-phy-10nm.yaml         |  2 +-
- .../bindings/display/msm/dsi-phy-14nm.yaml         |  2 +-
- .../bindings/display/msm/dsi-phy-20nm.yaml         |  2 +-
- .../bindings/display/msm/dsi-phy-28nm.yaml         |  2 +-
- .../bindings/display/msm/dsi-phy-common.yaml       |  2 +-
- .../devicetree/bindings/hwmon/vexpress.txt         |  2 +-
- .../memory-controllers/nvidia,tegra186-mc.yaml     |  3 ---
- .../devicetree/bindings/mfd/maxim,max77714.yaml    |  2 +-
- .../bindings/mmc/marvell,xenon-sdhci.yaml          |  1 -
- .../devicetree/bindings/nvme/apple,nvme-ans.yaml   |  1 -
- .../devicetree/bindings/phy/phy-stih407-usb.txt    |  2 +-
- .../bindings/phy/qcom,qmp-usb3-dp-phy.yaml         |  2 +-
- .../devicetree/bindings/phy/qcom,qusb2-phy.yaml    |  2 +-
- .../bindings/phy/qcom,usb-snps-femto-v2.yaml       |  2 +-
- .../devicetree/bindings/pinctrl/pinctrl-rk805.txt  |  2 +-
- .../bindings/pinctrl/ralink,mt7620-pinctrl.yaml    | 26 +++++++++++++--------
- .../bindings/pinctrl/ralink,rt305x-pinctrl.yaml    | 27 ++++++++++------------
- .../bindings/power/supply/maxim,max77976.yaml      |  2 +-
- .../regulator/qcom,usb-vbus-regulator.yaml         |  2 +-
- .../devicetree/bindings/regulator/vexpress.txt     |  2 +-
- Documentation/devicetree/bindings/usb/dwc3-st.txt  |  2 +-
- Documentation/devicetree/bindings/usb/ehci-st.txt  |  2 +-
- Documentation/devicetree/bindings/usb/ohci-st.txt  |  2 +-
- .../devicetree/bindings/usb/qcom,dwc3.yaml         |  2 +-
- .../devicetree/bindings/vendor-prefixes.yaml       |  3 +++
- .../bindings/watchdog/allwinner,sun4i-a10-wdt.yaml |  1 -
- MAINTAINERS                                        | 12 +++++-----
- 35 files changed, 64 insertions(+), 69 deletions(-)
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
