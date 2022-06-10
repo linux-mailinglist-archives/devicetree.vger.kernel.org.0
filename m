@@ -2,175 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 675EA546320
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 12:06:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44C0D546330
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 12:08:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348512AbiFJKF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 06:05:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37890 "EHLO
+        id S1347960AbiFJKIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 06:08:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347388AbiFJKF4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 06:05:56 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 373A8B57B3
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 03:05:55 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id b8so17912789edj.11
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 03:05:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=Q5vsmxWtwaYG8oW1AvQlgwQ8iE5Q0pMcGpxfbWiaZG0=;
-        b=mAwnc2FFbtLQIpZr3EhYJcGHEjUDTrbX5Jx0lJTRxxZ0qBjgwzPJoDo1t/rjo0CWE3
-         yerDl7ktV0DQWz4+QGdECsB949KbT+RbfG3jjSbSDHNcLk/Qq32eONfK5Y+syiadgwxc
-         ksxL5klIEiyxCxjJvC8ufzFhxN2Xdp4ryDJ2tg7eEFag1jBlUpf70OVlutNMCQvvFixk
-         895brrs4P/H1ae1l2GIH/45CaIzX/PQ3r60ns2tsqGQzOzuj0bVlcbrTvxO6/D2WULPH
-         VqEwY5ydtSucv3FLVw+nIzGu2j0Jn0IuF9KeJQMxm25MK3JNOoeX21Lku7r4L+7+wnEq
-         em5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Q5vsmxWtwaYG8oW1AvQlgwQ8iE5Q0pMcGpxfbWiaZG0=;
-        b=15MlTU1mWEvRwMiMMldrs3bK1Qp8YxN3CGsXXXTWydo4+csmSRxwhWRVfyTtJ4y5ld
-         itCi7rM56ljYoi/appntRJskNyvoBtGCVVJdoOANB3x39rQEJg7wDc3hX77hNxKWccH+
-         3Cu4/G/PM+59qXh6ATuoFnIkWdwyqNr9feNDKlKdDpC7HY3zI4Uq4cYKM6qndGYGk+22
-         glWeuSNnazN7SvL0kVqRO8LV1h2KiT1+HvGla6ZDn9lXfwIE6qGOoaaYgu8zHdVDBP+E
-         9Xz/U/Te38zTkWdWs4gvOlFTvfyTNJU1n8AeegW41HADL1IFTrhq03+t07Knjv3otmg3
-         6dOA==
-X-Gm-Message-State: AOAM532vhQJbG5EPECj8gwo/paAYp9CC2ElVD0LXNAO19L2e4nKBINww
-        ekVM4hm+1U0VwHi2KTIGuA0STw==
-X-Google-Smtp-Source: ABdhPJw+10Yv7YpKYQWS1YFaBYbE6qXvaEMzJNgXTJK+zRmZH81nGhz+1LAX3otPNb4lPpztjPphrw==
-X-Received: by 2002:a05:6402:50:b0:431:69fc:eff4 with SMTP id f16-20020a056402005000b0043169fceff4mr26419944edu.243.1654855553741;
-        Fri, 10 Jun 2022 03:05:53 -0700 (PDT)
-Received: from [192.168.0.202] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i7-20020a170906444700b0070e238ff66fsm9834067ejp.96.2022.06.10.03.05.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Jun 2022 03:05:53 -0700 (PDT)
-Message-ID: <537986d4-376e-d787-1581-cf0b0d525daa@linaro.org>
-Date:   Fri, 10 Jun 2022 12:05:52 +0200
+        with ESMTP id S1348750AbiFJKI2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 06:08:28 -0400
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3A6812DBD1
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 03:08:27 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed30:6907:80d7:a5b:48f8])
+        by baptiste.telenet-ops.be with bizsmtp
+        id hN8R2700S35NJNs01N8RB2; Fri, 10 Jun 2022 12:08:26 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1nzbZ3-003RMB-Bl; Fri, 10 Jun 2022 12:08:25 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1nzbZ2-00BJqO-Fo; Fri, 10 Jun 2022 12:08:24 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: [PATCH v2] dt-bindings: gpio: renesas,rcar-gpio: R-Car V3U is R-Car Gen4
+Date:   Fri, 10 Jun 2022 12:08:22 +0200
+Message-Id: <e7468aa236403ed6a8f2809002fb3546d683f1fc.1654855611.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 44/48] ARM: dts: at91: align gpio-key node names with
- dtschema
-Content-Language: en-US
-To:     Claudiu.Beznea@microchip.com, arnd@arndb.de, olof@lixom.net,
-        arm@kernel.org, soc@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, peda@axentia.se,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org>
- <20220609114047.380793-5-krzysztof.kozlowski@linaro.org>
- <42e8f573-cfc2-dfa4-1740-b0a29521628e@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <42e8f573-cfc2-dfa4-1740-b0a29521628e@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/06/2022 09:12, Claudiu.Beznea@microchip.com wrote:
+Despite the name, R-Car V3U is the first member of the R-Car Gen4
+family.  Hence move its compatible value to the R-Car Gen4 section.
 
->>                 compatible = "gpio-keys";
->>                 pinctrl-names = "default";
->>                 pinctrl-0 = <&pinctrl_key_gpio_default>;
->>                 status = "okay";
->>
->> -               sw1 {
->> +               switch-1 {
-> 
-> This is acutally a button labeled on board as SW1. It has been wrongly
-> carried over from older DTSes. Maybe it would worth to have it now here as
-> button instead of switch.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
+---
+v2:
+  - Add Acked-by, Reviewed-by.
+---
+ Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-Sure, I'll name it "button-1". Could be also "button-sw1" if ou prefer.
+diff --git a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
+index 0681a4790cd62e23..75e5da6a7cc04bbd 100644
+--- a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
+@@ -48,11 +48,9 @@ properties:
+               - renesas,gpio-r8a77995     # R-Car D3
+           - const: renesas,rcar-gen3-gpio # R-Car Gen3 or RZ/G2
+ 
+-      - items:
+-          - const: renesas,gpio-r8a779a0  # R-Car V3U
+-
+       - items:
+           - enum:
++              - renesas,gpio-r8a779a0     # R-Car V3U
+               - renesas,gpio-r8a779f0     # R-Car S4-8
+           - const: renesas,rcar-gen4-gpio # R-Car Gen4
+ 
+-- 
+2.25.1
 
-> 
->>                         label = "SW1";
->>                         gpios = <&pioD 18 GPIO_ACTIVE_LOW>;
->>                         linux,code=<KEY_PROG1>;
->> diff --git a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
->> index 08f0d4b995ff..96c9290007a8 100644
->> --- a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
->> +++ b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
->> @@ -478,13 +478,13 @@ can1: can@fc050000 {
->>                 };
->>         };
->>
->> -       gpio_keys {
->> +       gpio-keys {
->>                 compatible = "gpio-keys";
->>
->>                 pinctrl-names = "default";
->>                 pinctrl-0 = <&pinctrl_key_gpio_default>;
->>
->> -               pb4 {
->> +               button {
->>                         label = "USER";
->>                         gpios = <&pioA PIN_PA29 GPIO_ACTIVE_LOW>;
->>                         linux,code = <KEY_PROG1>;
->> diff --git a/arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dts b/arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dts
->> index 5e8755f22784..d5652c974748 100644
->> --- a/arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dts
->> +++ b/arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dts
->> @@ -26,14 +26,14 @@ chosen {
->>                 stdout-path = "serial0:115200n8";
->>         };
->>
->> -       gpio_keys {
->> +       gpio-keys {
->>                 compatible = "gpio-keys";
->>
->>                 pinctrl-names = "default";
->>                 pinctrl-0 = <&pinctrl_key_gpio_default>;
->>                 status = "okay";
->>
->> -               sw4 {
->> +               switch-4 {
-> 
-> Same here, this is a button not a switch.
-
-Sure, then button-1 or button-sw4
-
-> 
->>                         label = "USER BUTTON";
->>                         gpios = <&pioA PIN_PB2 GPIO_ACTIVE_LOW>;
->>                         linux,code = <KEY_PROG1>;
->> diff --git a/arch/arm/boot/dts/at91-sama5d2_icp.dts b/arch/arm/boot/dts/at91-sama5d2_icp.dts
->> index 806eb1d911d7..d7b59e16a081 100644
->> --- a/arch/arm/boot/dts/at91-sama5d2_icp.dts
->> +++ b/arch/arm/boot/dts/at91-sama5d2_icp.dts
->> @@ -42,14 +42,14 @@ main_xtal {
->>                 };
->>         };
->>
->> -       gpio_keys {
->> +       gpio-keys {
->>                 compatible = "gpio-keys";
->>
->>                 pinctrl-names = "default";
->>                 pinctrl-0 = <&pinctrl_key_gpio_default>;
->>                 status = "okay";
->>
->> -               sw4 {
->> +               switch-4 {
-> 
-> Same here, button not switch.
-> 
-> Other than this, looks good to me.
-
-Thanks for checking
-
-
-Best regards,
-Krzysztof
