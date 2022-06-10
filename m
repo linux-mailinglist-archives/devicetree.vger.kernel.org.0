@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D88A546DFB
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 22:04:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9B42546E06
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 22:07:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349029AbiFJUEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 16:04:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48092 "EHLO
+        id S1347418AbiFJUH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 16:07:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349048AbiFJUEc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 16:04:32 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C13F7419A1
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 13:04:30 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id s8so501775oib.6
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 13:04:30 -0700 (PDT)
+        with ESMTP id S243403AbiFJUHz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 16:07:55 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ADD423D5E0
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 13:07:54 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id q1-20020a056830018100b0060c2bfb668eso10425ota.8
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 13:07:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to;
-        bh=W6khq/CJ/jK9xDdyCa3D6opio63P/2KRxReDZd/cxiU=;
-        b=L2f6GdlZB9hiNU8S/GkGCil7hfYiQF4xIu0hJbUyR36m4jSLP7Jz9XQMVdA+Bq0rgD
-         JtKfbtpayzVcDX3CtE2Gzr5jVUkCmBFzZJG5rH0xB8/hbZbsAli8Zm9flefmXwV4kxc8
-         9uH40PA3iZzLPO2GepIiin0N8bXwZJIvC1meE=
+        bh=c4MmH10o4nxyvNb+yLQx/gfjamZc60fdBQ6fL0rTVzI=;
+        b=lc3Jw2kYMP3blVRs5hUBawz3Z348qfuHGhD4gAfTjY60kprFN86B288vsV0RzUZPx1
+         L4vpiCkCaYKglDEWWttA+6QB56lkIvgoEWqjghhhgYk5Dw2nrJHkvcYYzn7Exz22MlEN
+         w2i6N0ecijCkk2h7RfYLniM5gpudUcyROSG2g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to;
-        bh=W6khq/CJ/jK9xDdyCa3D6opio63P/2KRxReDZd/cxiU=;
-        b=arMFSMlAl34U/BHKsA638ZdGLgg+c2fj63DlqSiEnXeEoq13lPtfafHwwO4srZU6JX
-         JttYN9qI7KLzPcPUrJxePs6QNJU3BLNox7LdiTQ9Ns1dBE0ag/0HAkJp1sQKNW8P37Rc
-         MD+HTCqJgwIDlodExUN2pKGWIzIMts7Zc43TJdxB1GqnTuPo0XM6m9fiwxzq6CG6EbDv
-         qZB7cmkw59IpxWwF8WoirPi+t/xddsfHWl/lGE1tI2eRFaLBnAREBEhI/17zaTC1g5nW
-         PFMDZ9MTuQIY3VaW0K46VqWVhc98oiBJW7eWXB5GPgz7fK5Tu47/ScdfV8H8RzIlryQW
-         B+GQ==
-X-Gm-Message-State: AOAM533YceS5i28gJTaz/nAT9h/VRNohnch7Aev98Bbq9t8VLIss8K3n
-        b1BQojjYA947su3K2zDYhImNTaxJBK/Nm+DnL45nSw==
-X-Google-Smtp-Source: ABdhPJwSTDK+pBxm//5P5qx/CDLFe4k+ZU2smS4RLMyknqIy9EX3kH8/LMzqdWgLhly1FkW9ePNj8azaOd9duk3Y/ZE=
-X-Received: by 2002:a05:6808:e87:b0:32e:4789:d2c with SMTP id
- k7-20020a0568080e8700b0032e47890d2cmr743744oil.193.1654891470062; Fri, 10 Jun
- 2022 13:04:30 -0700 (PDT)
+        bh=c4MmH10o4nxyvNb+yLQx/gfjamZc60fdBQ6fL0rTVzI=;
+        b=Z31ebv+Z0Gi9iDpwFq57kBfH0PxmxP9aExVi7Le87r3cuyt5gK05qK1+9bDbHFBV3Y
+         guKeVwyJgnIdti+Gt7zi0HETALENtV3LpfBFpMBvCLqZ3H1x7O2XuMjzJmgYsD4lz8mE
+         PoGlUI1IGgQiTuGCDOXAMfRLPytubmM088TwlsZruYRqeRVen+8mfSDN4Llxk/x6r/GB
+         mcWfNKTknE8h/uIShir4YQWSp7gZv+udGxlM0z9fJDzB/zU5Yf0g+230eBCj+stYNbfF
+         TFCbLUQscLSNHG9GCq4B/qJiuykL7MSsmwDb1CPOVcGBkutZlQJdy2eyVPu1cnyotn+w
+         wAcw==
+X-Gm-Message-State: AOAM532BUzVypeGjPUDrlz0LWTYESlMS6zW/IcgR7iXkNawtifXGq8Ky
+        LjygQdRL+ptJGdYcdrdDsA9zyEgT4Xv6qPUullXcXQ==
+X-Google-Smtp-Source: ABdhPJyQAhZjEcGLUr7co7U+cTdLJgv/8YL3LyUOYF93ir9ueFXa+ObQ+C+qbbjUI7BPoKwZJxHDMEdSN2VBIEC2EGs=
+X-Received: by 2002:a9d:6484:0:b0:60b:eb0b:4054 with SMTP id
+ g4-20020a9d6484000000b0060beb0b4054mr73615otl.159.1654891673442; Fri, 10 Jun
+ 2022 13:07:53 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 10 Jun 2022 13:04:29 -0700
+ HTTPREST; Fri, 10 Jun 2022 13:07:53 -0700
 MIME-Version: 1.0
-In-Reply-To: <1654872335-4993-2-git-send-email-quic_srivasam@quicinc.com>
-References: <1654872335-4993-1-git-send-email-quic_srivasam@quicinc.com> <1654872335-4993-2-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1654872335-4993-3-git-send-email-quic_srivasam@quicinc.com>
+References: <1654872335-4993-1-git-send-email-quic_srivasam@quicinc.com> <1654872335-4993-3-git-send-email-quic_srivasam@quicinc.com>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Fri, 10 Jun 2022 13:04:29 -0700
-Message-ID: <CAE-0n53NdTwAO4DY0x7Fy9h4eRVR-3iKnGfqfZ-ggyghfsC9UA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: sc7280: Add boolean
- param for ADSP bypass platforms
+Date:   Fri, 10 Jun 2022 13:07:52 -0700
+Message-ID: <CAE-0n53TTyQ9FOcYCT-51wJZd2HP-VfAgTkGBk4gV3jawRPi1w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] pinctrl: qcom: sc7280: Add clock optional check
+ for ADSP bypass targets
 To:     Linus Walleij <linus.walleij@linaro.org>,
         Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         agross@kernel.org, alsa-devel@alsa-project.org,
@@ -73,34 +73,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-06-10 07:45:34)
-> Add boolean param qcom,adsp-bypass-mode to support adsp bypassed sc7280
-> platforms. Which is required to make clock voting as optional for ADSP
-> bypass platforms.
+Quoting Srinivasa Rao Mandadapu (2022-06-10 07:45:35)
+> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+> index 74810ec..6e03529 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+> @@ -388,6 +388,9 @@ int lpi_pinctrl_probe(struct platform_device *pdev)
+>         pctrl->data = data;
+>         pctrl->dev = &pdev->dev;
 >
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> ---
->  .../bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml          | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
-> index d32ee32..ea9920c 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
-> @@ -17,7 +17,14 @@ description: |
->
->  properties:
->    compatible:
-> -    const: qcom,sc7280-lpass-lpi-pinctrl
-> +    enum:
-> +      - qcom,sc7280-lpass-lpi-pinctrl
-
-Drop this part.
-
+> +       if (of_property_read_bool(np, "qcom,adsp-bypass-mode"))
+> +               data->is_clk_optional = true;
 > +
-> +  qcom,adsp-bypass-mode:
-> +    description:
-> +      Tells pin controllers want to make clocks optional for ADSP bypass
-> +      targets.
 
-How about "ADSP is in bypass mode"?
+Or just
+
+	data->is_clk_optional = of_property_read_bool(np, "qcom,adsp-bypass-mode");
+
+>         pctrl->clks[0].id = "core";
+>         pctrl->clks[1].id = "audio";
+>
+> diff --git a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+> index 2add9a4..3fc7de1 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+> @@ -141,7 +141,7 @@ static const struct lpi_pinctrl_variant_data sc7280_lpi_data = {
+>         .ngroups = ARRAY_SIZE(sc7280_groups),
+>         .functions = sc7280_functions,
+>         .nfunctions = ARRAY_SIZE(sc7280_functions),
+> -       .is_clk_optional = true,
+> +       .is_clk_optional = false,
+
+Just drop it as 'false' is the default.
+
+Otherwise
+
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
