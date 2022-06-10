@@ -2,75 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8883546CD8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 21:00:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E86DE546DA1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 21:52:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239072AbiFJTAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 15:00:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48660 "EHLO
+        id S1348855AbiFJTv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 15:51:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347008AbiFJTAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 15:00:39 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCBBC2C27BD;
-        Fri, 10 Jun 2022 12:00:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1185E61EA7;
-        Fri, 10 Jun 2022 19:00:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 68FF6C34114;
-        Fri, 10 Jun 2022 19:00:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654887636;
-        bh=F4a7BtqRfxfc2nXQbMRSKR8Ni/VWaZ2oAhg+75yLm8Q=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=rmVEJTU5d1kYAK9EYz2amBkRRA682V6ufo0fgeAgAyp60UCo9ZLqO8ABHYMSwAssk
-         BRH1ITq90PEmOBRxbLSJbHeWYY0PWZEIbt52iFhN3PgFlL3JbTT7M0/XItA64OeVYi
-         ScyvfAi2u09aemv95UKjGY7X/3IrSPL1Jdsg7gqRnbQY6VEJ7jQRCyRk+39lAeptFD
-         nMuVTJ4VK07EVWD6Z5We4XYxHF4Ae9QjoqlnyG7zNVnIiuNnku8M1K5i7a1vov79BZ
-         BvfwLtVp2I6neh86J7ulOM3FSSPq4MUK7bkcF3lnAw1Z2txCh+MPGIeMHhFuDsPpXM
-         ymRRC4oFH4BqQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 5512BE737EA;
-        Fri, 10 Jun 2022 19:00:36 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v5.19, part 2
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <20220610185457.GA2005396-robh@kernel.org>
-References: <20220610185457.GA2005396-robh@kernel.org>
-X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20220610185457.GA2005396-robh@kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.19-2
-X-PR-Tracked-Commit-Id: 0b9431c8221cfe73d06f6b9cd37b813fa52be8ce
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: aa3398fb4b3f67d89688976098ad93721b6d7852
-Message-Id: <165488763633.19537.9517015664730364180.pr-tracker-bot@kernel.org>
-Date:   Fri, 10 Jun 2022 19:00:36 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1348190AbiFJTv5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 15:51:57 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB8C207EE2;
+        Fri, 10 Jun 2022 12:51:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654890716; x=1686426716;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=D95rmZyOn6FJr0xwZXFlkslFyxEjbwH6lMFM0MSberU=;
+  b=m01hox7GjOLOLv+G4dKCO8kq4PHW3ABr3gQ9F/ddsqonTX7t3wZJYKD0
+   HXrlCJpYwwBo4J5IFq42ErZqUZ0/AfUKx5C/5u/NiYKPfNUkrGZSwQ5Au
+   eMWANQwd2ByT/ErMAyK36h9T4lrz5wn+0mFpXaffcS0XQ1/qDbN3B7Yhg
+   W7wXCy3oQRGuvGA94l6TQKf986QaQIdv8dAtIpfWvZSEaRvTww6mOIamC
+   gCmSUSWwjcCnh0RyKOVth0s0lEJUnD9i+iAhRK3Sl+fPSLpcxePb7GEwc
+   zxt+mo4+AKjU9qPCJPYF9S+018VxpBoyAUUJgodw95kErkxNcedTV28wi
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10374"; a="258164393"
+X-IronPort-AV: E=Sophos;i="5.91,291,1647327600"; 
+   d="scan'208";a="258164393"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 12:51:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,291,1647327600"; 
+   d="scan'208";a="760646311"
+Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 10 Jun 2022 12:51:50 -0700
+Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nzkfe-000IEe-2x;
+        Fri, 10 Jun 2022 19:51:50 +0000
+Date:   Sat, 11 Jun 2022 03:51:26 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Colin Foster <colin.foster@in-advantage.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Wolfram Sang <wsa-dev@sang-engineering.com>,
+        Terry Bowman <terry.bowman@amd.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: Re: [PATCH v9 net-next 7/7] mfd: ocelot: add support for the vsc7512
+ chip via spi
+Message-ID: <202206110358.2hO4gzbU-lkp@intel.com>
+References: <20220610175655.776153-8-colin.foster@in-advantage.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220610175655.776153-8-colin.foster@in-advantage.com>
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Fri, 10 Jun 2022 12:54:57 -0600:
+Hi Colin,
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.19-2
+I love your patch! Perhaps something to improve:
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/aa3398fb4b3f67d89688976098ad93721b6d7852
+[auto build test WARNING on net-next/master]
 
-Thank you!
+url:    https://github.com/intel-lab-lkp/linux/commits/Colin-Foster/add-support-for-VSC7512-control-over-SPI/20220611-015854
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git 7defbc9aed2b1fdf21586b78e085c468fd95a2d1
+config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220611/202206110358.2hO4gzbU-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/be13bccb3f0b376d8d189aa8d14e5b461701f4db
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Colin-Foster/add-support-for-VSC7512-control-over-SPI/20220611-015854
+        git checkout be13bccb3f0b376d8d189aa8d14e5b461701f4db
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash drivers/mfd/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/mfd/ocelot-core.c:81:16: warning: no previous prototype for 'ocelot_init_regmap_from_resource' [-Wmissing-prototypes]
+      81 | struct regmap *ocelot_init_regmap_from_resource(struct device *child,
+         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/ocelot_init_regmap_from_resource +81 drivers/mfd/ocelot-core.c
+
+    80	
+  > 81	struct regmap *ocelot_init_regmap_from_resource(struct device *child,
+    82							const struct resource *res)
+    83	{
+    84		struct device *dev = child->parent;
+    85	
+    86		return ocelot_spi_init_regmap(dev, child, res);
+    87	}
+    88	EXPORT_SYMBOL_NS(ocelot_init_regmap_from_resource, MFD_OCELOT);
+    89	
 
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+0-DAY CI Kernel Test Service
+https://01.org/lkp
