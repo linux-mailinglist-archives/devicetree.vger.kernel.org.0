@@ -2,124 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28865546F78
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 23:59:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83146546FA6
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 00:31:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344417AbiFJV7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 17:59:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59992 "EHLO
+        id S1347057AbiFJWbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 18:31:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243046AbiFJV7A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 17:59:00 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E6811468E;
-        Fri, 10 Jun 2022 14:58:55 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id p18so522503lfr.1;
-        Fri, 10 Jun 2022 14:58:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=afNBlLkJJKTEMkCxvJSwBmNG9UxwUmzxSaYdEqHx/mg=;
-        b=iC/k1aIYIg3UfAPHfN83ZCN8Vv7OVjkgaCJ7igf76EbJmKJzmLvUv6cIgWM906nkka
-         +JQsyiKSvDsrTN/xVMuzGPqDnioz5sHBADEjBiIjvzfc8iw0rrgifi3Eumanu93Y3Dij
-         LWk2dlB4IdKrjkK5/6TujdOVFuKzVyFd9U4luteJU3M+PEQyKFa+oNUje1/PGW2Qc1/6
-         PW4CObkmQvHroauXTYf0dcVauZlmeVenisNXGdf0cSF44M1S2NXHxMLtuR7PtrrpJUQK
-         TQcHZ8XxUANwIOWtzhqI9+G5ygiBicyTEQ7fAhp6SZDSvHjLRyU/HhJ6I+shUqLM9rNV
-         /JZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=afNBlLkJJKTEMkCxvJSwBmNG9UxwUmzxSaYdEqHx/mg=;
-        b=UiZvb3hfy9NmRJPP0l7x8FSJ3J+meLRuBvVZwLaM7W4mHpw//TknySZfcCWUXOz+5d
-         GFzsaMK/k7lBDd40ORTFuXNJCVhePXkp84FDGjozjhzRinDripM1L6EmGkUkm3ryncbV
-         yFU//WfAV+pIRp3xejaKbaxE6Ms5syfRSUiuTfizbQUqlEoyCHulTF5c8sBWXUIfYhCr
-         HansXmNte3x/4gTxYXyYkBGK0McRicXJps3GU/SgLQ3T3SzNdg5qDEIzDCPd5hifkhvh
-         Fk4ZgKMVUYVLgBCqgI5YrRI0uAZhSA/WtVJrM9Kt81cPdag1ANJ5fSlwQFhMHipIk0Aa
-         K5Jg==
-X-Gm-Message-State: AOAM533Wmu5+eNjZ47vQ0NDbbpF4vYpOcGF7wGWoUTT7cGQ/VrcfBgFX
-        gxkF1pNiPU9rPuVjrJDGX4Y=
-X-Google-Smtp-Source: ABdhPJwQU2SdbrIVdUoU8xDwmoFclJutuNXd1GFV6/YPgIR9v/fa0ikFUPMFQ3tJl2PLcZWWcaXxYg==
-X-Received: by 2002:a05:6512:15a2:b0:478:ffaa:89 with SMTP id bp34-20020a05651215a200b00478ffaa0089mr28877624lfb.658.1654898333169;
-        Fri, 10 Jun 2022 14:58:53 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id w26-20020a2e999a000000b00258e71c643asm97069lji.64.2022.06.10.14.58.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jun 2022 14:58:52 -0700 (PDT)
-Date:   Sat, 11 Jun 2022 00:58:50 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Randy Dunlap <rdunlap@infradead.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 19/23] ata: ahci: Add DWC AHCI SATA controller support
-Message-ID: <20220610215850.ju76kxjquwef6kd3@mobilestation>
-References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
- <20220610081801.11854-20-Sergey.Semin@baikalelectronics.ru>
- <6c02f8ef-8aea-8f80-590d-343f67a96f8d@infradead.org>
+        with ESMTP id S245351AbiFJWbe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 18:31:34 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB23E0AD;
+        Fri, 10 Jun 2022 15:31:31 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6D13861DE0;
+        Fri, 10 Jun 2022 22:31:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C64D5C3411F;
+        Fri, 10 Jun 2022 22:31:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654900290;
+        bh=AVfCC1fETxPTgXCRwrza1gBNxP00l26r7VULa0HXKGQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=g5Gjy3Sf7Clm90OoqDorPxtXtST43OI2tVXPJ+r7EaNqD+bhOYdZTE8oBRFj8LJ01
+         KKYBTm4JgqXuwVYuViZnct8LDUi5euGhvhIqTVmSkvrnRL4Y4kq9Q3Ti5CIa7FsxCA
+         B+qDYAuBjegcGaYSsAE8DI99UiQ+TztPAXqzxB+yqL9vYdr4u8IiDwUBGzPUXQv3yV
+         e5RVv46GproAAtFqhR49Q193CkPKgoz+Gz5cW1JHnjnrlmJj/8lhafS1dC08fxt3SY
+         kZw8RTyzPsPlLXA6KzwNDwGO/AyEa/WRTp2JwbtlO5/SoZrSwlRXg6r34vA1aoiw1U
+         k3CJRx58ITkrA==
+Received: by mail-ua1-f47.google.com with SMTP id 63so109354uaw.10;
+        Fri, 10 Jun 2022 15:31:30 -0700 (PDT)
+X-Gm-Message-State: AOAM53380tadOB10fpRWyT8qcjiQIkFjc7ZNYkHVGTifA9CFmLPuWPU5
+        GXVbP+j+C3PXxFxSkcpzqLxPXZ/YUT0SJEKeIA==
+X-Google-Smtp-Source: ABdhPJx3xQ8ITVyyWAJdAJwirIobVRExZF94y1CEM3afCD1tLwr7d4qzVRC8E6iM9JYc3WVITj9nOAXj0yWWHpoRKqE=
+X-Received: by 2002:ab0:7546:0:b0:374:ac43:ba1a with SMTP id
+ k6-20020ab07546000000b00374ac43ba1amr19128032uaq.86.1654900289749; Fri, 10
+ Jun 2022 15:31:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6c02f8ef-8aea-8f80-590d-343f67a96f8d@infradead.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220315123315.233963-1-ioana.ciornei@nxp.com>
+In-Reply-To: <20220315123315.233963-1-ioana.ciornei@nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 10 Jun 2022 16:31:18 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLtXJ7HaRuDNGs9rfGWrTBb3dkc2hesduA0Gvs0e1OvFQ@mail.gmail.com>
+Message-ID: <CAL_JsqLtXJ7HaRuDNGs9rfGWrTBb3dkc2hesduA0Gvs0e1OvFQ@mail.gmail.com>
+Subject: Re: [PATCH net-next] dt-bindings: net: convert sff,sfp to dtschema
+To:     Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc:     David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 10, 2022 at 09:34:46AM -0700, Randy Dunlap wrote:
-> Hi--
+On Tue, Mar 15, 2022 at 6:33 AM Ioana Ciornei <ioana.ciornei@nxp.com> wrote:
+>
+> Convert the sff,sfp.txt bindings to the DT schema format.
+>
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> ---
+>  .../devicetree/bindings/net/sff,sfp.txt       |  85 ------------
+>  .../devicetree/bindings/net/sff,sfp.yaml      | 130 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 131 insertions(+), 85 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/sff,sfp.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/sff,sfp.yaml
 
-Hi Randy
+Going to respin this patch? I don't normally care too much, but this
+one is high (86 occurrences on arm64 dtbs) on my list of compatibles
+without schemas and is generic.
 
-> 
-> On 6/10/22 01:17, Serge Semin wrote:
-> > diff --git a/drivers/ata/Kconfig b/drivers/ata/Kconfig
-> > index bb45a9c00514..95e0e022b5bb 100644
-> > --- a/drivers/ata/Kconfig
-> > +++ b/drivers/ata/Kconfig
-> > @@ -176,6 +176,16 @@ config AHCI_DM816
-> >  
-> >  	  If unsure, say N.
-> >  
-> > +config AHCI_DWC
-> > +	tristate "Synopsys DWC AHCI SATA support"
-> > +	select SATA_HOST
-> > +	default SATA_AHCI_PLATFORM
-> 
-
-> I don't think this needs to default to SATA_AHCI_PLATFORM.
-> It might build a driver that isn't needed.
-> And it's incompatible with "If unsure, say N."
-
-Basically you are right, but this particular setting is connected with
-the modification I've done in the drivers/ata/ahci_platform.c driver
-in the framework of this commit. I've moved the "snps,spear-ahci" and
-"snps,dwc-ahci" compatible devices support to the new driver. Thus
-should I omit the SATA_AHCI_PLATFORM dependency their default kernel
-configs will lack the corresponding controllers support. If it's not a
-problem and we can rely on the kernel build system ability to ask
-whether the new config needs to be set/cleared, then I would be very
-happy to drop the default setting. What do you think?
-
--Sergey
-
-> 
-> > +	help
-> > +	  This option enables support for the Synopsys DWC AHCI SATA
-> > +	  controller implementation.
-> > +
-> > +	  If unsure, say N.
-> 
-> -- 
-> ~Randy
+Rob
