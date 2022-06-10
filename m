@@ -2,97 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 104E9546334
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 12:10:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5CB754633D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 12:12:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245415AbiFJKKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 06:10:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57860 "EHLO
+        id S245171AbiFJKMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 06:12:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236920AbiFJKKL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 06:10:11 -0400
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9CDE3EFE86
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 03:10:09 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed30:6907:80d7:a5b:48f8])
-        by xavier.telenet-ops.be with bizsmtp
-        id hNA52700Z35NJNs01NA5zX; Fri, 10 Jun 2022 12:10:08 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nzbaf-003RO3-4G; Fri, 10 Jun 2022 12:10:05 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nzbae-00BJvU-J6; Fri, 10 Jun 2022 12:10:04 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Joerg Roedel <jroedel@suse.de>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: [PATCH v2] dt-bindings: iommu: renesas,ipmmu-vmsa: R-Car V3U is R-Car Gen4
-Date:   Fri, 10 Jun 2022 12:10:03 +0200
-Message-Id: <36400fe2cc6b6dcc0d6984fb77338d4d163e84dc.1654855711.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S244063AbiFJKMV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 06:12:21 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5611EC1EEA;
+        Fri, 10 Jun 2022 03:12:19 -0700 (PDT)
+Received: (Authenticated sender: peter@korsgaard.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 791571BF205;
+        Fri, 10 Jun 2022 10:12:12 +0000 (UTC)
+Received: from peko by dell.be.48ers.dk with local (Exim 4.94.2)
+        (envelope-from <peter@korsgaard.com>)
+        id 1nzbch-002yue-5W; Fri, 10 Jun 2022 12:12:11 +0200
+From:   Peter Korsgaard <peter@korsgaard.com>
+To:     "Neeli, Srinivas" <srinivas.neeli@amd.com>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "sgoud@xilinx.com" <sgoud@xilinx.com>,
+        "shubhraj@xilinx.com" <shubhraj@xilinx.com>,
+        "neelisrinivas18@gmail.com" <neelisrinivas18@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "git@xilinx.com" <git@xilinx.com>
+Subject: Re: [PATCH V6 2/2] rtc: zynqmp: Add calibration set and get support
+References: <20220609140833.1784738-1-srinivas.neeli@xilinx.com>
+        <20220609140833.1784738-2-srinivas.neeli@xilinx.com>
+        <87r13x28o4.fsf@dell.be.48ers.dk> <YqIJektBvAwOqNkA@mail.local>
+        <87mtel287y.fsf@dell.be.48ers.dk>
+        <BY5PR12MB40335583AD9D0527DEEFC4E093A69@BY5PR12MB4033.namprd12.prod.outlook.com>
+Date:   Fri, 10 Jun 2022 12:12:11 +0200
+In-Reply-To: <BY5PR12MB40335583AD9D0527DEEFC4E093A69@BY5PR12MB4033.namprd12.prod.outlook.com>
+        (Srinivas Neeli's message of "Fri, 10 Jun 2022 10:02:47 +0000")
+Message-ID: <87pmjgyghw.fsf@dell.be.48ers.dk>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Despite the name, R-Car V3U is the first member of the R-Car Gen4
-family.  Hence move its compatible value to the R-Car Gen4 section.
+>>>>> "Neeli," == Neeli, Srinivas <srinivas.neeli@amd.com> writes:
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Joerg Roedel <jroedel@suse.de>
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
-v2:
-  - Add Acked-by, Reviewed-by,
-  - Add blank lines to improve readability.
----
- .../devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml       | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Hi,
 
-diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-index 8854569ca3a6c949..26d0a5121f02a153 100644
---- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-+++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-@@ -29,6 +29,7 @@ properties:
-               - renesas,ipmmu-r8a7793  # R-Car M2-N
-               - renesas,ipmmu-r8a7794  # R-Car E2
-           - const: renesas,ipmmu-vmsa  # R-Mobile APE6 or R-Car Gen2 or RZ/G1
-+
-       - items:
-           - enum:
-               - renesas,ipmmu-r8a774a1 # RZ/G2M
-@@ -43,10 +44,11 @@ properties:
-               - renesas,ipmmu-r8a77980 # R-Car V3H
-               - renesas,ipmmu-r8a77990 # R-Car E3
-               - renesas,ipmmu-r8a77995 # R-Car D3
--              - renesas,ipmmu-r8a779a0 # R-Car V3U
-+
-       - items:
-           - enum:
--              - renesas,ipmmu-r8a779f0 # R-Car S4-8
-+              - renesas,ipmmu-r8a779a0           # R-Car V3U
-+              - renesas,ipmmu-r8a779f0           # R-Car S4-8
-           - const: renesas,rcar-gen4-ipmmu-vmsa  # R-Car Gen4
- 
-   reg:
+ >> >> Where do you see that? ug1085 rev2.2 still lists:
+ >> >>
+ >> >> Programming Sequences
+ >> >> init rtc
+ >> >> 1. Write the value 0019_8231h into the calibration register, CALIB_WRITE.
+ >> >>
+ >> 
+ >> > This is a very weird value. Last time I had a look, I couldn't find an  >
+ >> explanation for it.
+ >> 
+ >> Agreed. I am not arguing that it is sensible, I just wondered where this new
+ >> value comes from?
+ >> 
+ > This information is missing in our TRM, as per the internal RTC IP
+ > design specification document, the calibration value should be crystal
+ > clock frequency minus one.
+ > For a crystal oscillator of 32.768KHz(0x8000) frequency, the calibration value will be 0x7FFF.
+
+ > Will update TRM with the required information.
+
+Ok, great!
+
+Please put this change in a separate commit from the get/set logic.
+
 -- 
-2.25.1
-
+Bye, Peter Korsgaard
