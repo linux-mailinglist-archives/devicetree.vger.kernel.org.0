@@ -2,49 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D20B25466CA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 14:48:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6718A546681
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 14:24:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234166AbiFJMrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 08:47:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33410 "EHLO
+        id S245330AbiFJMYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 08:24:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235886AbiFJMrj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 08:47:39 -0400
-X-Greylist: delayed 1657 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 10 Jun 2022 05:47:37 PDT
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BABA81EECB
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 05:47:36 -0700 (PDT)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.94.2)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1nzdbt-000793-Ry; Fri, 10 Jun 2022 14:19:30 +0200
-Date:   Fri, 10 Jun 2022 13:19:24 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Tom Rini <trini@konsulko.com>,
-        Ricardo Salveti <ricardo@foundries.io>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Jorge Ramirez-Ortiz <jorge@foundries.io>,
-        Sean Anderson <seanga2@gmail.com>, u-boot@lists.denx.de,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH] dt-bindings: mtd: partitions: add UBI binding
-Message-ID: <YqM2zPcJAqFM8SA8@makrotopia.org>
-References: <20220217102448.27586-1-zajec5@gmail.com>
+        with ESMTP id S234938AbiFJMYK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 08:24:10 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DEC7B7E;
+        Fri, 10 Jun 2022 05:24:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1654863849; x=1686399849;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=xjSpnrPTS8bq+KeyyNcNYj6DYCgzCY8egMAx56m3R04=;
+  b=GddL6lxS7bIeMQBqqsAexwbnSBUUwqmA/hQljHSSkrfuuD3ZAEv2eP8R
+   EQcMlPbeoW0rwks6WgKR5tbmiQtnwFQlhUU1m6qHspsgB4o9b2Y5NGciO
+   aKAu8IfhOqXAHNg4DSMQ4rHK8UE8FgUYlUhmVXIVQkcDkADGGkxQ2Nv2V
+   Q=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 10 Jun 2022 05:24:09 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 05:24:08 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 10 Jun 2022 05:24:08 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 10 Jun 2022 05:24:02 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <vkoul@kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v5 0/2] Add software clock gating requirement check
+Date:   Fri, 10 Jun 2022 17:53:33 +0530
+Message-ID: <1654863815-3970-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220217102448.27586-1-zajec5@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,103 +65,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 17, 2022 at 11:24:48AM +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> UBI is often used on embedded devices to store UBI volumes with device
-> configuration / calibration data. Such volumes may need to be documented
-> and referenced for proper boot & setup.
-> 
-> Some examples:
-> 1. U-Boot environment variables
-> 2. Device calibration data
-> 3. Default setup (e.g. initial password)
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+This patch set is to add software clock gating requirement check
 
-This is very useful and can replace the downstream hacks we are
-currently using for this purpose in OpenWrt.
+Changes Since V4:
+	-- Fix error check, after a reset control get api return
+	-- Fix typo in commit message
+Changes Since V3:
+	-- Remove redundant check before reset control call
+	-- Reorganiaze patches.
+	-- Fix typos.
+Changes Since V2:
+	-- Fix if check before reset control call	
+Changes Since V1:
+	-- Use boolean flag for bool variable initialization
+	   instead of hard coding.
 
-Reviewed-by: Daniel Golle <daniel@makrotopia.org>
+	
+Srinivasa Rao Mandadapu (2):
+  soundwire: qcom: Add flag for software clock gating check
+  ASoC: qcom: soundwire: Enable software clock gating requirement flag
 
-> ---
->  .../bindings/mtd/partitions/ubi.yaml          | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml b/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
-> new file mode 100644
-> index 000000000000..cd081f06d4cb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/partitions/ubi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: UBI (Unsorted Block Images) device
-> +
-> +description: |
-> +  UBI is a layer providing logical volumes (consisting of logical blocks) on top
-> +  of raw flash devices. It deals with low-level flash issues (bit-flips, bad
-> +  physical eraseblocks, wearing) providing a reliable data storage.
-> +
-> +  UBI device is built and stored in a single flash partition.
-> +
-> +  Some (usually embedded) devices use UBI volumes of specific names or indexes
-> +  to store setup / configuration data. This binding allows describing such
-> +  volumes so they can be identified and referenced by consumers.
-> +
-> +maintainers:
-> +  - Rafał Miłecki <rafal@milecki.pl>
-> +
-> +allOf:
-> +  - $ref: partition.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ubi
-> +
-> +patternProperties:
-> +  "^volume-[0-9a-f]+$":
-> +    type: object
-> +    description: UBI volume
-> +    properties:
-> +      volume-name:
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +      volume-id:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +    anyOf:
-> +      - required:
-> +          - volume-name
-> +      - required:
-> +          - volume-id
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    partitions {
-> +        compatible = "fixed-partitions";
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        partition@0 {
-> +            compatible = "ubi";
-> +            reg = <0x0000000 0x1000000>;
-> +            label = "filesystem";
-> +
-> +            env: volume-0 {
-> +                volume-name = "u-boot-env";
-> +            };
-> +
-> +            calibration: volume-1 {
-> +                volume-id = <99>;
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.34.1
-> 
+ drivers/soundwire/qcom.c | 22 +++++++++++++++++-----
+ 1 file changed, 17 insertions(+), 5 deletions(-)
+
+-- 
+2.7.4
+
