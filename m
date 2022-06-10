@@ -2,42 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44C0D546330
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 12:08:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 104E9546334
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 12:10:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347960AbiFJKIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 06:08:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49596 "EHLO
+        id S245415AbiFJKKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 06:10:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348750AbiFJKI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 06:08:28 -0400
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3A6812DBD1
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 03:08:27 -0700 (PDT)
+        with ESMTP id S236920AbiFJKKL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 06:10:11 -0400
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9CDE3EFE86
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 03:10:09 -0700 (PDT)
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed30:6907:80d7:a5b:48f8])
-        by baptiste.telenet-ops.be with bizsmtp
-        id hN8R2700S35NJNs01N8RB2; Fri, 10 Jun 2022 12:08:26 +0200
+        by xavier.telenet-ops.be with bizsmtp
+        id hNA52700Z35NJNs01NA5zX; Fri, 10 Jun 2022 12:10:08 +0200
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1nzbZ3-003RMB-Bl; Fri, 10 Jun 2022 12:08:25 +0200
+        id 1nzbaf-003RO3-4G; Fri, 10 Jun 2022 12:10:05 +0200
 Received: from geert by rox.of.borg with local (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1nzbZ2-00BJqO-Fo; Fri, 10 Jun 2022 12:08:24 +0200
+        id 1nzbae-00BJvU-J6; Fri, 10 Jun 2022 12:10:04 +0200
 From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
         linux-renesas-soc@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Joerg Roedel <jroedel@suse.de>,
         Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: [PATCH v2] dt-bindings: gpio: renesas,rcar-gpio: R-Car V3U is R-Car Gen4
-Date:   Fri, 10 Jun 2022 12:08:22 +0200
-Message-Id: <e7468aa236403ed6a8f2809002fb3546d683f1fc.1654855611.git.geert+renesas@glider.be>
+Subject: [PATCH v2] dt-bindings: iommu: renesas,ipmmu-vmsa: R-Car V3U is R-Car Gen4
+Date:   Fri, 10 Jun 2022 12:10:03 +0200
+Message-Id: <36400fe2cc6b6dcc0d6984fb77338d4d163e84dc.1654855711.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -56,32 +57,42 @@ family.  Hence move its compatible value to the R-Car Gen4 section.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Joerg Roedel <jroedel@suse.de>
 Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
 ---
 v2:
-  - Add Acked-by, Reviewed-by.
+  - Add Acked-by, Reviewed-by,
+  - Add blank lines to improve readability.
 ---
- Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ .../devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml       | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-index 0681a4790cd62e23..75e5da6a7cc04bbd 100644
---- a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-@@ -48,11 +48,9 @@ properties:
-               - renesas,gpio-r8a77995     # R-Car D3
-           - const: renesas,rcar-gen3-gpio # R-Car Gen3 or RZ/G2
- 
--      - items:
--          - const: renesas,gpio-r8a779a0  # R-Car V3U
--
+diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+index 8854569ca3a6c949..26d0a5121f02a153 100644
+--- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
++++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+@@ -29,6 +29,7 @@ properties:
+               - renesas,ipmmu-r8a7793  # R-Car M2-N
+               - renesas,ipmmu-r8a7794  # R-Car E2
+           - const: renesas,ipmmu-vmsa  # R-Mobile APE6 or R-Car Gen2 or RZ/G1
++
        - items:
            - enum:
-+              - renesas,gpio-r8a779a0     # R-Car V3U
-               - renesas,gpio-r8a779f0     # R-Car S4-8
-           - const: renesas,rcar-gen4-gpio # R-Car Gen4
+               - renesas,ipmmu-r8a774a1 # RZ/G2M
+@@ -43,10 +44,11 @@ properties:
+               - renesas,ipmmu-r8a77980 # R-Car V3H
+               - renesas,ipmmu-r8a77990 # R-Car E3
+               - renesas,ipmmu-r8a77995 # R-Car D3
+-              - renesas,ipmmu-r8a779a0 # R-Car V3U
++
+       - items:
+           - enum:
+-              - renesas,ipmmu-r8a779f0 # R-Car S4-8
++              - renesas,ipmmu-r8a779a0           # R-Car V3U
++              - renesas,ipmmu-r8a779f0           # R-Car S4-8
+           - const: renesas,rcar-gen4-ipmmu-vmsa  # R-Car Gen4
  
+   reg:
 -- 
 2.25.1
 
