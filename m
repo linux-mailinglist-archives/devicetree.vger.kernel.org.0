@@ -2,85 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7290546F4C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 23:34:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28865546F78
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 23:59:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349148AbiFJVen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 17:34:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37196 "EHLO
+        id S1344417AbiFJV7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 17:59:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349954AbiFJVen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 17:34:43 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39C09289A2;
-        Fri, 10 Jun 2022 14:34:36 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id i16so347356ioa.6;
-        Fri, 10 Jun 2022 14:34:36 -0700 (PDT)
+        with ESMTP id S243046AbiFJV7A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 17:59:00 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E6811468E;
+        Fri, 10 Jun 2022 14:58:55 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id p18so522503lfr.1;
+        Fri, 10 Jun 2022 14:58:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=afNBlLkJJKTEMkCxvJSwBmNG9UxwUmzxSaYdEqHx/mg=;
+        b=iC/k1aIYIg3UfAPHfN83ZCN8Vv7OVjkgaCJ7igf76EbJmKJzmLvUv6cIgWM906nkka
+         +JQsyiKSvDsrTN/xVMuzGPqDnioz5sHBADEjBiIjvzfc8iw0rrgifi3Eumanu93Y3Dij
+         LWk2dlB4IdKrjkK5/6TujdOVFuKzVyFd9U4luteJU3M+PEQyKFa+oNUje1/PGW2Qc1/6
+         PW4CObkmQvHroauXTYf0dcVauZlmeVenisNXGdf0cSF44M1S2NXHxMLtuR7PtrrpJUQK
+         TQcHZ8XxUANwIOWtzhqI9+G5ygiBicyTEQ7fAhp6SZDSvHjLRyU/HhJ6I+shUqLM9rNV
+         /JZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+Q8zSIChJx7LG2al/fQn8LasZmwY8w3RdpQIxdEMIJ8=;
-        b=Qtw+sVfNWKW3HkJ9t2hwE7A9rkoq8H1oA0CW5QJO2Kxfi/LaHLNIS4InRVzEL4D3Wj
-         CgllqpjtrO1MboVfmG2jomb8bY7i5VjEYMwbrIURhI4xCgCnlDI9AkQhID8/o5ETKAAa
-         REMK3eVmjpaE/DuSR289cr63o8Ws2lShqYypn4c9LOgKRYDIWHQ43TGcxsNan69QM7OP
-         63kt/MIImsykkzx7rZRBd6ln9HnjRTwvyVGj8roi6gDe40yf3I1yk46OucUNisNlPLai
-         nd2D8KKOfAmjtLNhG84enoFKpGFBc0yPH3kfIoo522RS7rgxSSeFQvtgJIe9HArW1vRZ
-         FE6Q==
-X-Gm-Message-State: AOAM530DpMgkEvhANH9wLIzqK/tM6nztMVq8jHdLu1/oSzdRILuhq9io
-        Mr9qJOuMjAEhbljbqgMLWAKXeZZ0EQ==
-X-Google-Smtp-Source: ABdhPJwkkQVxue9edvzvtGaVE+mJGQceYKq3+VMtv7e8Qzhq4xKR/Aqe1DDaqI0g3b2TYz6wslDAOA==
-X-Received: by 2002:a05:6638:2711:b0:332:1030:d6c2 with SMTP id m17-20020a056638271100b003321030d6c2mr3528986jav.263.1654896876000;
-        Fri, 10 Jun 2022 14:34:36 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.251])
-        by smtp.googlemail.com with ESMTPSA id y17-20020a056e02129100b002d191911e59sm38631ilq.52.2022.06.10.14.34.35
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=afNBlLkJJKTEMkCxvJSwBmNG9UxwUmzxSaYdEqHx/mg=;
+        b=UiZvb3hfy9NmRJPP0l7x8FSJ3J+meLRuBvVZwLaM7W4mHpw//TknySZfcCWUXOz+5d
+         GFzsaMK/k7lBDd40ORTFuXNJCVhePXkp84FDGjozjhzRinDripM1L6EmGkUkm3ryncbV
+         yFU//WfAV+pIRp3xejaKbaxE6Ms5syfRSUiuTfizbQUqlEoyCHulTF5c8sBWXUIfYhCr
+         HansXmNte3x/4gTxYXyYkBGK0McRicXJps3GU/SgLQ3T3SzNdg5qDEIzDCPd5hifkhvh
+         Fk4ZgKMVUYVLgBCqgI5YrRI0uAZhSA/WtVJrM9Kt81cPdag1ANJ5fSlwQFhMHipIk0Aa
+         K5Jg==
+X-Gm-Message-State: AOAM533Wmu5+eNjZ47vQ0NDbbpF4vYpOcGF7wGWoUTT7cGQ/VrcfBgFX
+        gxkF1pNiPU9rPuVjrJDGX4Y=
+X-Google-Smtp-Source: ABdhPJwQU2SdbrIVdUoU8xDwmoFclJutuNXd1GFV6/YPgIR9v/fa0ikFUPMFQ3tJl2PLcZWWcaXxYg==
+X-Received: by 2002:a05:6512:15a2:b0:478:ffaa:89 with SMTP id bp34-20020a05651215a200b00478ffaa0089mr28877624lfb.658.1654898333169;
+        Fri, 10 Jun 2022 14:58:53 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id w26-20020a2e999a000000b00258e71c643asm97069lji.64.2022.06.10.14.58.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jun 2022 14:34:35 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: arm/juno: Drop erroneous 'mbox-name' property
-Date:   Fri, 10 Jun 2022 15:33:07 -0600
-Message-Id: <20220610213308.2288094-1-robh@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        Fri, 10 Jun 2022 14:58:52 -0700 (PDT)
+Date:   Sat, 11 Jun 2022 00:58:50 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 19/23] ata: ahci: Add DWC AHCI SATA controller support
+Message-ID: <20220610215850.ju76kxjquwef6kd3@mobilestation>
+References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
+ <20220610081801.11854-20-Sergey.Semin@baikalelectronics.ru>
+ <6c02f8ef-8aea-8f80-590d-343f67a96f8d@infradead.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6c02f8ef-8aea-8f80-590d-343f67a96f8d@infradead.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 'mbox-name' property in the Juno mailbox node is undocumented and
-unused. It's the consumer side of the mailbox binding that have
-'mbox-names' properties.
+On Fri, Jun 10, 2022 at 09:34:46AM -0700, Randy Dunlap wrote:
+> Hi--
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- arch/arm64/boot/dts/arm/juno-scmi.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Hi Randy
 
-diff --git a/arch/arm64/boot/dts/arm/juno-scmi.dtsi b/arch/arm64/boot/dts/arm/juno-scmi.dtsi
-index 4135d62e44a2..ec85cd2c733c 100644
---- a/arch/arm64/boot/dts/arm/juno-scmi.dtsi
-+++ b/arch/arm64/boot/dts/arm/juno-scmi.dtsi
-@@ -187,7 +187,6 @@ &gpu {
- &mailbox {
- 	compatible = "arm,mhu-doorbell", "arm,primecell";
- 	#mbox-cells = <2>;
--	mbox-name = "ARM-MHU";
- };
- 
- &smmu_etr {
--- 
-2.34.1
+> 
+> On 6/10/22 01:17, Serge Semin wrote:
+> > diff --git a/drivers/ata/Kconfig b/drivers/ata/Kconfig
+> > index bb45a9c00514..95e0e022b5bb 100644
+> > --- a/drivers/ata/Kconfig
+> > +++ b/drivers/ata/Kconfig
+> > @@ -176,6 +176,16 @@ config AHCI_DM816
+> >  
+> >  	  If unsure, say N.
+> >  
+> > +config AHCI_DWC
+> > +	tristate "Synopsys DWC AHCI SATA support"
+> > +	select SATA_HOST
+> > +	default SATA_AHCI_PLATFORM
+> 
 
+> I don't think this needs to default to SATA_AHCI_PLATFORM.
+> It might build a driver that isn't needed.
+> And it's incompatible with "If unsure, say N."
+
+Basically you are right, but this particular setting is connected with
+the modification I've done in the drivers/ata/ahci_platform.c driver
+in the framework of this commit. I've moved the "snps,spear-ahci" and
+"snps,dwc-ahci" compatible devices support to the new driver. Thus
+should I omit the SATA_AHCI_PLATFORM dependency their default kernel
+configs will lack the corresponding controllers support. If it's not a
+problem and we can rely on the kernel build system ability to ask
+whether the new config needs to be set/cleared, then I would be very
+happy to drop the default setting. What do you think?
+
+-Sergey
+
+> 
+> > +	help
+> > +	  This option enables support for the Synopsys DWC AHCI SATA
+> > +	  controller implementation.
+> > +
+> > +	  If unsure, say N.
+> 
+> -- 
+> ~Randy
