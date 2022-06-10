@@ -2,118 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 891C3545E45
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 10:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E97FA545E36
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 10:10:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347183AbiFJIMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 04:12:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37366 "EHLO
+        id S235819AbiFJIKE convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 10 Jun 2022 04:10:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236674AbiFJIMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 04:12:38 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20857A0D13;
-        Fri, 10 Jun 2022 01:12:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654848758; x=1686384758;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ebnKv878WSMZ5HcFOwZsfEn/i/Ra3ih4STyQ85qlVN0=;
-  b=Cj6eQJPufU8Bc2sIxhnW9fIojAfBShlY7UkNJUVnw5uzGvMk15nAnue1
-   d+SQ4I6VYDtxbceHsaYUKnuHod4ElG1i8BFDsM1PFMHSdiAqAgY/ti8j7
-   qhv47S07YrFXmV+eWd1wHIWOY3SEYrErcUgyVZSaqSUul9Eb86l/Gj8R0
-   eWa9VfjsqHHSWEeQmhdLm61ezD7OKprsiy8lU8Ff56gExALpxtyWxqNRx
-   SUYDVl+O9rD9zN9JNg/4FXhl/Sxx/e0UKUKkMUESM3wBiGZZ+NXemg7jV
-   HWCIsEEq4QCkeaXAqTXbmxDmJ/2q2faEwS+tYp8iXkmTsteg5DJLlUU+z
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10373"; a="276330380"
-X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; 
-   d="scan'208";a="276330380"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 01:12:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,288,1647327600"; 
-   d="scan'208";a="684424712"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmsmga002.fm.intel.com with ESMTP; 10 Jun 2022 01:12:34 -0700
-Date:   Fri, 10 Jun 2022 16:04:38 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     mdf@kernel.org, hao.wu@intel.com, trix@redhat.com, corbet@lwn.net,
-        Ivan Bornyakov <brnkv.i1@gmail.com>,
-        Conor.Dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, system@metrotek.ru
-Subject: Re: [PATCH v17 1/4] fpga: fpga-mgr: support bitstream offset in
-  image buffer
-Message-ID: <20220610080438.GB713676@yilunxu-OptiPlex-7050>
-References: <20220609154752.20781-1-i.bornyakov@metrotek.ru>
- <20220609154752.20781-2-i.bornyakov@metrotek.ru>
- <20220610074311.GA693376@yilunxu-OptiPlex-7050>
+        with ESMTP id S1347141AbiFJIJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 04:09:59 -0400
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947B259BB3;
+        Fri, 10 Jun 2022 01:09:57 -0700 (PDT)
+Received: by mail-qk1-f173.google.com with SMTP id a184so15838197qkg.5;
+        Fri, 10 Jun 2022 01:09:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=pMvWBoJ3lf0+yvRO7v5FIYeENQCaUYUcamzcDsgiV+A=;
+        b=tT9SiF60nx5E66OKnYPm8d+ZECZCZq2AM3hDNGCpCPdkz2C3lkoRMS8PbyKXQdfNDR
+         U6GI9Ua7HLflzBr4raS1o+oNjR/MAaqlnmXVDX/hK3OHwgje0ZMGc94YKyFFDe1ccTBl
+         1VOHo2pUrNo1M29aQD/kouE5Lp23Q4d/mQyTQZceNXBwt+LTfp1kNPSq2BorFr3Fflsa
+         Vr9DJ3N3dp8y4p31j3AImqhIISz17pzeTWaM7PVlIsUt7oUQoD4upadc9vLnnWItUkdu
+         UkXISOpAnnBoHdbuEOS9M9MmElaS+1XMV2BH2WEhM+92YNa5J2fs68WkyRY90HtqVO0p
+         93xQ==
+X-Gm-Message-State: AOAM531wG+pLdRDqxrm5Wo7gbjxKJ2OWtbkPjI1xXTdbEHcJ/zRjL6AN
+        FQOjy2n9NugxJWpGTM6h95olZfQms+m9gQ==
+X-Google-Smtp-Source: ABdhPJx5TLebrySpOgXAMezPm3AuyOEPQSSGbYRLGo5/TYZehTlxuyu5fVTo+DJKG3R5bDT1+9H2nA==
+X-Received: by 2002:a05:620a:d83:b0:6a6:5fde:2325 with SMTP id q3-20020a05620a0d8300b006a65fde2325mr29603452qkl.407.1654848596579;
+        Fri, 10 Jun 2022 01:09:56 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id u4-20020a05622a17c400b003051ba1f8bcsm939371qtk.15.2022.06.10.01.09.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Jun 2022 01:09:56 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-30c143c41e5so264767647b3.3;
+        Fri, 10 Jun 2022 01:09:55 -0700 (PDT)
+X-Received: by 2002:a81:4811:0:b0:30c:8021:4690 with SMTP id
+ v17-20020a814811000000b0030c80214690mr47131061ywa.47.1654848595616; Fri, 10
+ Jun 2022 01:09:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220610074311.GA693376@yilunxu-OptiPlex-7050>
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220609194154.12829-1-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20220609194154.12829-1-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 10 Jun 2022 10:09:44 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXg3rC++RBp+aZM1Q_EkYyTxot-9LZnMfJFRz7cp0NLoQ@mail.gmail.com>
+Message-ID: <CAMuHMdXg3rC++RBp+aZM1Q_EkYyTxot-9LZnMfJFRz7cp0NLoQ@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: thermal: rcar-gen3-thermal: Add r8a779f0 support
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 10, 2022 at 03:43:11PM +0800, Xu Yilun wrote:
-> On Thu, Jun 09, 2022 at 06:47:49PM +0300, Ivan Bornyakov wrote:
-> > At the moment FPGA manager core loads to the device entire image
-> > provided to fpga_mgr_load(). But it is not always whole FPGA image
-> > buffer meant to be written to the device. In particular, .dat formatted
-> > image for Microchip MPF contains meta info in the header that is not
-> > meant to be written to the device. This is issue for those low level
-> > drivers that loads data to the device with write() fpga_manager_ops
-> > callback, since write() can be called in iterator over scatter-gather
-> > table, not only linear image buffer. On the other hand, write_sg()
-> > callback is provided with whole image in scatter-gather form and can
-> > decide itself which part should be sent to the device.
-> > 
-> > Add header_size and data_size to the fpga_image_info struct and adjust
-> > fpga_mgr_write() callers with respect to them.
-> > 
-> >   * info->header_size indicates part at the beginning of image buffer
-> >     that is *not* meant to be written to the device. It is optional and
-> >     can be 0.
-> > 
-> >   * info->data_size is the size of actual bitstream data that *is* meant
-> >     to be written to the device, starting at info->header_size from the
-> >     beginning of image buffer. It is also optional and can be 0, which
-> >     means bitstream data is up to the end of image buffer.
-> > 
-> > Also add parse_header() callback to fpga_manager_ops, which purpose is
-> > to set info->header_size and info->data_size. At least
-> > initial_header_size bytes of image buffer will be passed into
-> > parse_header() first time. If it is not enough, parse_header() should
-> > set desired size into info->header_size and return -EAGAIN, then it will
-> > be called again with greater part of image buffer on the input.
-> > 
-> > Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
-> > ---
-> >  drivers/fpga/fpga-mgr.c       | 243 +++++++++++++++++++++++++++++-----
-> >  include/linux/fpga/fpga-mgr.h |  17 ++-
-> >  2 files changed, 229 insertions(+), 31 deletions(-)
-> > 
-> > diff --git a/drivers/fpga/fpga-mgr.c b/drivers/fpga/fpga-mgr.c
-> > index 08dc85fcd511..0854fbc8f11e 100644
-> > --- a/drivers/fpga/fpga-mgr.c
-> > +++ b/drivers/fpga/fpga-mgr.c
-> 
-> Should we check in fpga_mgr_create, that initial_header_size must not be
-> 0 if parse_header() is defined. If we pass no data to parse_header(),
-> does it make any sense?
+Hi Wolfram,
 
-Sorry, there is no fpga_mgr_create now, should be fpga_mgr_register_full
+On Thu, Jun 9, 2022 at 10:04 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Add support for R-Car S4. The S4 IP differs a bit from its siblings in
+> such way that it has 3 out of 4 TSC nodes for Linux and the interrupts
+> are not routed to the INTC-AP but to the ECM.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>
+> Change since v1:
+>
+> * Describe that this SoC does not require interrupts (Thanks, Geert!)
+>
+> I hope dtbs_check is happy now. I can't test it because I get tons of
+> python install errors when trying to update my dtschema :(
 
-Thanks,
-Yilun
+Unfortunately not:
+
+arch/arm64/boot/dts/renesas/r8a779f0-spider.dtb: thermal@e6198000:
+reg: [[0, 3860430848, 0, 512], [0, 3860463616, 0, 512], [0,
+3860496384, 0, 512]] is too short
+
+> --- a/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
+> @@ -8,9 +8,10 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Renesas R-Car Gen3 Thermal Sensor
+>
+>  description:
+> -  On R-Car Gen3 SoCs, the thermal sensor controllers (TSC) control the thermal
+> -  sensors (THS) which are the analog circuits for measuring temperature (Tj)
+> -  inside the LSI.
+> +
+> +  On most R-Car Gen3 and later SoCs, the thermal sensor controllers (TSC)
+> +  control the thermal sensors (THS) which are the analog circuits for
+> +  measuring temperature (Tj) inside the LSI.
+>
+>  maintainers:
+>    - Niklas Söderlund <niklas.soderlund@ragnatech.se>
+> @@ -27,6 +28,7 @@ properties:
+>        - renesas,r8a77965-thermal # R-Car M3-N
+>        - renesas,r8a77980-thermal # R-Car V3H
+>        - renesas,r8a779a0-thermal # R-Car V3U
+> +      - renesas,r8a779f0-thermal # R-Car S4
+>
+>    reg: true
+>
+> @@ -63,6 +65,7 @@ if:
+>          contains:
+>            enum:
+>              - renesas,r8a779a0-thermal
+> +            - renesas,r8a779f0-thermal
+
+As this controls both the presence of interrupts and the number of regs.
+
+>  then:
+>    properties:
+>      reg:
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
