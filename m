@@ -2,169 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2E87545D27
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 09:23:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23EA5545D83
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 09:32:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346741AbiFJHWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 03:22:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37058 "EHLO
+        id S1346867AbiFJHcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 03:32:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346456AbiFJHWm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 03:22:42 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C60CE0B;
-        Fri, 10 Jun 2022 00:22:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1654845738;
-        bh=6We94l3lbFtVURMV4QMSE5PpvIk0qqwAzLwUr6CCrCw=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=NL+S91NdZDtjFCi8UAx+8CdEsO/P3xL+aRxK8SCTk6/qo5Hc2DLa/4/1WIf8XgZnb
-         n2H+q38MKZRAIw2OSxvUd6+3BMqKCU9CgbUXBZlT4hCoCmBkUtcVvPUF8cPB7YvlN6
-         Q4fFPNbuwbaAeekoxkPVbCMrHWNalXFQeab0TLf8=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([5.146.195.3]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MG9kC-1nyQNB3YWC-00GWNP; Fri, 10
- Jun 2022 09:22:17 +0200
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org
-Cc:     linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH v4 6/6] ARM: dts: wpcm450: Switch clocks to clock controller
-Date:   Fri, 10 Jun 2022 09:21:41 +0200
-Message-Id: <20220610072141.347795-7-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220610072141.347795-1-j.neuschaefer@gmx.net>
-References: <20220610072141.347795-1-j.neuschaefer@gmx.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:a+f+h0WVs/fv4wcts19D+GINBFdJUog3YzlAfih/ywvkXDMuV6O
- J03O9XTJW0v348QMAv+oxGA4CgZP2NVhaLr58/c+oaGf2aY079XyF7dycZEj5F9uEY8WuSS
- WGvzILZLGTMf6ea4C2OtAqe0n4vdZuhABnmzln0Ice39p7lrFGIt/lYUmjQQJk5bFHoWD0z
- MrO7bfY2wWt+gbIbCNoaw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:0XrQDZfgnAw=:fii0JarWt4mr8rSUZPxTiR
- 03W/bonVOGBCZFyYYvjkQ32o4n6VHB9a30AonqPpRe9QftC/YyoM8f3+W4aIgN5UG2qOeFRJ1
- yqLGnK8HDFW3S4QlBBBbynOAau/eh9MVnd7cwTkXryd/jSTtqX34Lnt7BtV/ZkxKinJtYD+Cn
- PVljnCCEbR2Ar+6Oh9ah62IRHcDC/yJ1HS8+geCHuUeWk15UXgpz+aQlXqMtHJZsGAGuxGiNc
- FVIFTd7rlYcpVF6d9UwJoDEvIuPPmCjbYdlolwoM+7fpO2WKoxvA65GH6OBfeEc0j7Fk8YOFZ
- 9BCC5r74Ioofwb3OWiDsqA2Mk81/njHm1t9ddSNGlI/t/3nyXC0Gg3zhF7v8264x1kVYuowbU
- kaySeHk9OBme5uznoP+VdaZLE1U6Gzb+jC3VMoN+JPPkAsqfmM7ssLYrX6G762xMVz/sRwKfz
- mc8WRFSYi03owDqUdHd/LLcBzIg6Bk+N6xRM+0/HSprq4DenVgCaEHtFt0ujafAtZW0SQ8FPR
- nNY42B8wTSKYx9ox2dxQt6v2J7yyvHdo7yR4kvO2P3vkU7mqEtIvKegI/hZws3bWA+TLQiOcX
- yk5MnrvRPoixjbSRT1Pc02lLddhMSJ8jLTZarPMiZlhGEOfzhuPz+vKdCLKJk46+6fhula5Kn
- 8cWq3nNNLIIb+ijp3HdHkl8tcF3wnwuSVBWY8VYWDnfUM8dTx2E6Yz+VkHQRhKa/glUocq7O6
- kBiyT6H040wPWyY9xyzvAh2+4dM4EJSnL4SXnU+vubEq4vIEk/Y5NIoEVtedaQo1ZzFcU3Kq3
- ODYFPz7CLbk2ks5h9mmUeDn9l/sdNWS6QDEHgwXyGM5mdT3AWLoE7M6CElA3TqHseahKN7L1E
- ib63guKn6o42VIGa2gJlPbkMVtTqOsyz5TOXcIEqlFxfs0dcznPzOAe27ClFr8EZ6Bgc6KlfO
- UioZpvAFA0FObzAKDPVAQG4qkhz3T+b6RHq7CtBCOnC58eOexgEM3vpvdHBZjozhRr/cvsL0t
- BchZ/5UPaj46VNC+MNQVqqsCmUkHh2H9sxZ1N9Mk6KkHGuiEjDoqbA4etqZpa4YuSkXuIwV+j
- 0jxkV60KpSw0iVgSx5kgKLIzotYwnodTYFGYTNYpsg0TubSsKeTVu3hNw==
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1346831AbiFJHcO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 03:32:14 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF6D82F64B
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 00:32:05 -0700 (PDT)
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220610073203epoutp04098f981c5c16595029c0094e596f58bb~3MfbDa1va2580025800epoutp04w
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 07:32:03 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220610073203epoutp04098f981c5c16595029c0094e596f58bb~3MfbDa1va2580025800epoutp04w
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1654846324;
+        bh=txhypdCSGxcpzunLj6FnsUocQ8uwPEWPghvi9lfqylE=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=SbV0HBuDphZSeJJlgk9PcIscy0qTaM87R0B2XZPyd6TS7jXu8Kn+MWzGPOOch5S3C
+         zL780ezhttF3+qVMNjJ5y3JlVObPZSEHyfrrKmHg7zAW2heNMS6Gf9KpLremPQptAU
+         cbDpw3BxHjW6j1U1F+TAs365fv4vv76tICZL6iN8=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+        20220610073203epcas5p48b1d21de23860ce0d8c420bb1c5b7244~3MfaaZ9Vs0315403154epcas5p4-;
+        Fri, 10 Jun 2022 07:32:03 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.183]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4LKCMf3nWFz4x9QK; Fri, 10 Jun
+        2022 07:31:58 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        FC.C4.09762.C63F2A26; Fri, 10 Jun 2022 16:31:56 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+        20220610073155epcas5p397e45ae128b29d3f99942fddf9afc0a3~3MfThxQSA2825728257epcas5p37;
+        Fri, 10 Jun 2022 07:31:55 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220610073155epsmtrp29ff30484576b9233b60e71ee34d1ab6f~3MfTglCet1438114381epsmtrp2c;
+        Fri, 10 Jun 2022 07:31:55 +0000 (GMT)
+X-AuditID: b6c32a4b-1fdff70000002622-c4-62a2f36c7a6c
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        3A.3E.08924.B63F2A26; Fri, 10 Jun 2022 16:31:55 +0900 (KST)
+Received: from Jaguar.sa.corp.samsungelectronics.net (unknown
+        [107.108.73.139]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20220610073153epsmtip132666b6b611e3139683920ed3d69e244~3MfRrOSR92477624776epsmtip1a;
+        Fri, 10 Jun 2022 07:31:53 +0000 (GMT)
+From:   Alim Akhtar <alim.akhtar@samsung.com>
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        avri.altman@wdc.com, bvanassche@acm.org,
+        martin.petersen@oracle.com, chanho61.park@samsung.com,
+        pankaj.dubey@samsung.com, Alim Akhtar <alim.akhtar@samsung.com>
+Subject: [PATCH v3 0/6] Add support for UFS controller found in FSD SoC
+Date:   Fri, 10 Jun 2022 12:59:18 +0530
+Message-Id: <20220610072924.12362-1-alim.akhtar@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOKsWRmVeSWpSXmKPExsWy7bCmum7O50VJBh/nKVg8mLeNzeLlz6ts
+        FtM+/GS2uLxf22L+kXOsFn0vHjJbbHp8jdXi8q45bBYTVn1jsei+voPNYvnxf0wWi7Z+Ybdo
+        3XuE3WLnnRPMDnwel694e2xa1cnmcefaHjaPzUvqPT4+vcXi0bdlFaPH501yHu0HupkCOKKy
+        bTJSE1NSixRS85LzUzLz0m2VvIPjneNNzQwMdQ0tLcyVFPISc1NtlVx8AnTdMnOArlZSKEvM
+        KQUKBSQWFyvp29kU5ZeWpCpk5BeX2CqlFqTkFJgU6BUn5haX5qXr5aWWWBkaGBiZAhUmZGc8
+        vtrCXnCRp+LR7J1sDYzXObsYOTkkBEwkju9dwtLFyMUhJLCbUeLP3gOsEM4nRonnx9vZIZzP
+        jBKbtn1hhGmZvbuBCSKxi1Hi5J6TbBBOC5PE7c0PwarYBLQl7k7fAlYlItDMKHGwYxeYwyzQ
+        xySx5PZtVpAqYQF3iWPte8A6WARUJVp7trGB2LwCNhIT5hxggtgnL7F6wwFmkGYJga/sEidb
+        7rFBJFwk9hx+zwJhC0u8Or6FHcKWkvj8bi9QDQeQ7SGx6I8URDhD4u3y9VA/2EscuDKHBaSE
+        WUBTYv0ufZAwswCfRO/vJ0wQnbwSHW1CENWqEs3vrkItkpaY2N3NCmF7SKzq2Qx2pZBArMSJ
+        uY3sExhlZiEMXcDIuIpRMrWgODc9tdi0wDgvtRweO8n5uZsYwSlQy3sH46MHH/QOMTJxMB5i
+        lOBgVhLhDbi9KEmINyWxsiq1KD++qDQntfgQoykwlCYyS4km5wOTcF5JvKGJpYGJmZmZiaWx
+        maGSOK/A/8YkIYH0xJLU7NTUgtQimD4mDk6pBibeck4ttrNZf60e21kt33xeQk7/k3pQybOU
+        TynZ6hqG4n90/yn+snq38vCjXidpAekOkR3pb5++ij1Q6DrD7x5Tm5zt1EJ/bY8fu5XWHv1Z
+        djauwMYwSXzH04cbH73jOF5mGmfud65Q7iVjyPPdAV/kU82ZTK6vW95p93tqwazGPv5DAZpf
+        0yPPHG8Wm6yiFn4pUGnmmtJMTaMm0SkHBfhPuvn4V0nPsmv44zvZ9eiPO5M1TEQPcfPXiv6T
+        +ar5tyNuafe6qL+xpwN6eTymTCh+e/s0N6fGp+icMxIefC3TmlbO/HJTiY9v91URzcirH2Mf
+        HNp+oUWPc/fTyZapG099uDFzX6wRT031QqV9B5RYijMSDbWYi4oTAZvAZ64KBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrHLMWRmVeSWpSXmKPExsWy7bCSnG7250VJBgsuGls8mLeNzeLlz6ts
+        FtM+/GS2uLxf22L+kXOsFn0vHjJbbHp8jdXi8q45bBYTVn1jsei+voPNYvnxf0wWi7Z+Ybdo
+        3XuE3WLnnRPMDnwel694e2xa1cnmcefaHjaPzUvqPT4+vcXi0bdlFaPH501yHu0HupkCOKK4
+        bFJSczLLUov07RK4Mh5fbWEvuMhT8Wj2TrYGxuucXYycHBICJhKzdzcwdTFycQgJ7GCUaP0/
+        kxkiIS1xfeMEdghbWGLlv+dgtpBAE5PEzPu5IDabgLbE3elbmEBsEYF2Ron729lABjELzGKS
+        eD/pCSNIQljAXeJY+x4wm0VAVaK1ZxsbiM0rYCMxYc4BJogF8hKrNxxgnsDIs4CRYRWjZGpB
+        cW56brFhgVFearlecWJucWleul5yfu4mRnCQamntYNyz6oPeIUYmDsZDjBIczEoivAG3FyUJ
+        8aYkVlalFuXHF5XmpBYfYpTmYFES573QdTJeSCA9sSQ1OzW1ILUIJsvEwSnVwNQySVMxNrBI
+        PODvnG8tP9yS8nsLe4sSchkNDn14sc/qRf2n35sn24of4leaxXXz96+zvg/uqUntD18aJD1z
+        Wlpwe7k8v19JhSFHS67nPzELVkEmIbsnm484Fe+OSPY/7sKY+Hnafr778x9PfeEy6xD/Nm+R
+        1NJtZ1Q9bBY+FdhkHKJy7H+r+JsDNUYNrNNYOqLv3WwQT2Bl6Nz8ZsvLW8XZt8UexPM+O/Q4
+        dH1y2iwLmVLJqqOB97lSrhfOSd37rND1R2u5jN/3ZY/Wn+hy01GaL7rYapJ42haW5sSZezcZ
+        mXtUeS+yDFuq2PnrueGaU3N7iqclXihRdrsj5q99sWmKhpH9w7quTU23TQ7WKrEUZyQaajEX
+        FScCAGPXBtnBAgAA
+X-CMS-MailID: 20220610073155epcas5p397e45ae128b29d3f99942fddf9afc0a3
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220610073155epcas5p397e45ae128b29d3f99942fddf9afc0a3
+References: <CGME20220610073155epcas5p397e45ae128b29d3f99942fddf9afc0a3@epcas5p3.samsung.com>
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change is incompatible with older kernels because it requires the
-clock controller driver, but I think that's acceptable because WPCM450
-support is generally still in an early phase.
+This series adds support for UFS controller found in FSD SoC.
+The HCI is almost same as found on other Exynos SoCs with minor
+differences. This also adds the required UFS-PHY driver changes.
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
+Patch 2/7: common change to handle different CDR offsets
 
-v2-v4:
-- no changes
-=2D--
- arch/arm/boot/dts/nuvoton-wpcm450.dtsi | 20 +++++++++-----------
- 1 file changed, 9 insertions(+), 11 deletions(-)
+*Changes since v2:
+- Addressed review comments from Chanho
+- collected reviewed-by, tested-by tags
+- rebased on next-20220609
 
-diff --git a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi b/arch/arm/boot/dts/nu=
-voton-wpcm450.dtsi
-index 332cc222c7dc5..439f9047ad651 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
-+++ b/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
-@@ -2,6 +2,7 @@
- // Copyright 2021 Jonathan Neusch=C3=A4fer
+*Changes since v1:
+- Addressed review comments from Bart, Krzysztof, Chanho
+- collected Ack-by tags
+- rebased on next-20220602
 
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/clock/nuvoton,wpcm450-clk.h>
 
- / {
- 	compatible =3D "nuvoton,wpcm450";
-@@ -30,13 +31,6 @@ cpu@0 {
- 		};
- 	};
+Alim Akhtar (6):
+  dt-bindings: phy: Add FSD UFS PHY bindings
+  phy: samsung-ufs: move cdr offset to drvdata
+  phy: samsung-ufs: add support for FSD ufs phy driver
+  dt-bindings: ufs: exynos-ufs: add fsd compatible
+  ufs: host: ufs-exynos: add mphy apb clock mask
+  ufs: host: ufs-exynos: add support for fsd ufs hci
 
--	clk24m: clock-24mhz {
--		/* 24 MHz dummy clock */
--		compatible =3D "fixed-clock";
--		clock-frequency =3D <24000000>;
--		#clock-cells =3D <0>;
--	};
--
- 	refclk: clock-48mhz {
- 		/* 48 MHz reference oscillator */
- 		compatible =3D "fixed-clock";
-@@ -71,7 +65,7 @@ serial0: serial@b8000000 {
- 			reg =3D <0xb8000000 0x20>;
- 			reg-shift =3D <2>;
- 			interrupts =3D <7 IRQ_TYPE_LEVEL_HIGH>;
--			clocks =3D <&clk24m>;
-+			clocks =3D <&clk WPCM450_CLK_UART0>;
- 			pinctrl-names =3D "default";
- 			pinctrl-0 =3D <&bsp_pins>;
- 			status =3D "disabled";
-@@ -82,7 +76,7 @@ serial1: serial@b8000100 {
- 			reg =3D <0xb8000100 0x20>;
- 			reg-shift =3D <2>;
- 			interrupts =3D <8 IRQ_TYPE_LEVEL_HIGH>;
--			clocks =3D <&clk24m>;
-+			clocks =3D <&clk WPCM450_CLK_UART1>;
- 			status =3D "disabled";
- 		};
+ .../bindings/phy/samsung,ufs-phy.yaml         |   1 +
+ .../bindings/ufs/samsung,exynos-ufs.yaml      |   1 +
+ drivers/phy/samsung/Makefile                  |   1 +
+ drivers/phy/samsung/phy-exynos7-ufs.c         |   3 +
+ drivers/phy/samsung/phy-exynosautov9-ufs.c    |   2 +
+ drivers/phy/samsung/phy-fsd-ufs.c             |  58 +++++++
+ drivers/phy/samsung/phy-samsung-ufs.c         |   6 +-
+ drivers/phy/samsung/phy-samsung-ufs.h         |   3 +-
+ drivers/ufs/host/ufs-exynos.c                 | 143 +++++++++++++++++-
+ drivers/ufs/host/ufs-exynos.h                 |   1 +
+ 10 files changed, 216 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/phy/samsung/phy-fsd-ufs.c
 
-@@ -90,14 +84,18 @@ timer0: timer@b8001000 {
- 			compatible =3D "nuvoton,wpcm450-timer";
- 			interrupts =3D <12 IRQ_TYPE_LEVEL_HIGH>;
- 			reg =3D <0xb8001000 0x1c>;
--			clocks =3D <&clk24m>;
-+			clocks =3D <&clk WPCM450_CLK_TIMER0>,
-+				 <&clk WPCM450_CLK_TIMER1>,
-+				 <&clk WPCM450_CLK_TIMER2>,
-+				 <&clk WPCM450_CLK_TIMER3>,
-+				 <&clk WPCM450_CLK_TIMER4>;
- 		};
 
- 		watchdog0: watchdog@b800101c {
- 			compatible =3D "nuvoton,wpcm450-wdt";
- 			interrupts =3D <1 IRQ_TYPE_LEVEL_HIGH>;
- 			reg =3D <0xb800101c 0x4>;
--			clocks =3D <&clk24m>;
-+			clocks =3D <&clk WPCM450_CLK_WDT>;
- 		};
-
- 		aic: interrupt-controller@b8002000 {
-=2D-
-2.35.1
+base-commit: ff539ac73ea559a8c146d99ab14bfcaddd30547a
+-- 
+2.25.1
 
