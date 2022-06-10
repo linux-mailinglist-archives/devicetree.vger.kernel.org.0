@@ -2,64 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48CC1546502
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 13:03:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 272EB546507
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 13:06:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244605AbiFJLDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 07:03:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42734 "EHLO
+        id S242403AbiFJLGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 07:06:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245306AbiFJLDv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 07:03:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C58150B76;
-        Fri, 10 Jun 2022 04:03:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 762AA620B0;
-        Fri, 10 Jun 2022 11:03:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAF01C34114;
-        Fri, 10 Jun 2022 11:03:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654859026;
-        bh=d3teMe1GHQS7aV22K7pnFmgNykOeozpCHzcj+b1esUw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=J6rwH1pI5WnoAJBikK/Gkfp0iy/f681q40OO+ZCdaFWTpZJNPmiY1HJ2rR8l+SH7J
-         O3HQQ7tHRL/e5habe3Az5C+V4dDGg64woxqedw8uo76RFXdmxkLHWw9G7vCrJ00spa
-         EsUBStRaWENyWf+GPPLa6Hjwf50uimZsAtu95vElovjO2uhaoHXx8h7FxCnI1ocTLK
-         s4I9/NfViIr5DkHGEvncBm0L+xiaiECtrQLvGgzIrgxWnmYkH7XidaL/US20nja5pW
-         ZOjCsfBGhSR6Cg1rQjQwd4sdaxhQlRVV7BMmOgnBVMQetPBiHJNeIqRubLE92rq7tc
-         3NOWBgFdKDlHA==
-Date:   Fri, 10 Jun 2022 12:03:41 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     ChiYuan Huang <u0084500@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>, dmitry.torokhov@gmail.com,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        cy_huang <cy_huang@richtek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        linux-input@vger.kernel.org
-Subject: Re: [PATCH 3/4] regulator: rt5120: Add PMIC regulator support
-Message-ID: <YqMlDVMlukNAns5S@sirena.org.uk>
-References: <1654581161-12349-1-git-send-email-u0084500@gmail.com>
- <1654581161-12349-4-git-send-email-u0084500@gmail.com>
- <Yp+gS6r5Kpi33Ags@sirena.org.uk>
- <CADiBU38+0vp3Dv6i7uYzCwR431PKBr-HNQnY0Qe7fvvRYGEJmw@mail.gmail.com>
- <YqB19O/HYvEAxdiM@sirena.org.uk>
- <CADiBU390XRXZ2yx5CT2NxhN3aROHXcxs7w2d-xhB6+EYn+uTfA@mail.gmail.com>
+        with ESMTP id S243365AbiFJLGY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 07:06:24 -0400
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79BA0142A93
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 04:06:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+        s=20170329; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=hUj5o1DqAnHiMLID1jpTTw5PR6O+o4eTCGW3sI8ghOc=; b=r3Pw474NT7PlTt0K4Qiog96V0d
+        0V7BVACQ/PCdQkDR1YZVcaH9KQmB6bdQiLyK29jmm+Ny1CwYOXL6hOrs2/zsAtaPdetkO2zE7fkrv
+        P690Uh81ark1/7Q2Mgfvd2gN/Z7jWsWYb3BvCrvRb12mgZL/iNQbz3KBEbKsI6Jkm66L1+x7ssDc7
+        muEhzOaA1BN6jpjGzliZSBCE27PVD5xDi452DjjtT/yzKMcJTwjRm9Ea3182lJrzcuiNJGDDr0lR6
+        0efVJ4y3B03b4K7gZ7xxr2a85MV5EvahnKUPMAzxyotp5GqNCbHFhzojRV0gL/Ix9igQAfx6tixmA
+        877FlZ7w==;
+Received: from [165.90.126.25] (helo=mail.igalia.com)
+        by fanzine2.igalia.com with esmtpsa 
+        (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+        id 1nzcSv-00FyEU-BJ; Fri, 10 Jun 2022 13:06:09 +0200
+Date:   Fri, 10 Jun 2022 10:05:56 -0100
+From:   Melissa Wen <mwen@igalia.com>
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Subject: Re: [PATCH v6 0/6] Raspberry PI 4 V3D enablement
+Message-ID: <20220610110556.63mddbye7vxq6mzb@mail.igalia.com>
+References: <20220603092610.1909675-1-pbrobinson@gmail.com>
+ <cadecbfd-e174-eadb-276c-577bb2bf70f2@gmail.com>
+ <9aaaaa29-11c0-d494-11dd-0bbf5d384364@redhat.com>
+ <20220608155130.w4piz2g3obp7qnx7@mail.igalia.com>
+ <40f27e32-720a-2f51-2164-5e152f53443a@redhat.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="9eWHlLQ5aB+zBDiA"
+        protocol="application/pgp-signature"; boundary="jmztf5qy6qwyt4jv"
 Content-Disposition: inline
-In-Reply-To: <CADiBU390XRXZ2yx5CT2NxhN3aROHXcxs7w2d-xhB6+EYn+uTfA@mail.gmail.com>
-X-Cookie: Teachers have class.
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <40f27e32-720a-2f51-2164-5e152f53443a@redhat.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -67,85 +70,102 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---9eWHlLQ5aB+zBDiA
-Content-Type: text/plain; charset=utf-8
+--jmztf5qy6qwyt4jv
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 09, 2022 at 02:35:07PM +0800, ChiYuan Huang wrote:
-> Mark Brown <broonie@kernel.org> =E6=96=BC 2022=E5=B9=B46=E6=9C=888=E6=97=
-=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=886:12=E5=AF=AB=E9=81=93=EF=BC=9A
-> > On Wed, Jun 08, 2022 at 11:15:56AM +0800, ChiYuan Huang wrote:
+On 06/08, Javier Martinez Canillas wrote:
+> Hello Melissa,
+>=20
+> On 6/8/22 17:51, Melissa Wen wrote:
+>=20
+> [snip]
+>=20
+> >>>
+> >>> I can take the last 3 patches through the Broadcom ARM SoC pull reque=
+st,=20
+> >>> but the first three should probably go via the DRM tree unless you wa=
+nt=20
+> >>> me to merge them all?
+> >>
+> >> I can merge the first 3 patches through the drm-misc tree. Can I get
+> >> an ack from you for those ?
+> >>
+> >> The changes are independent so there's no need for an immutable branch
+> >> or any kind of cross tree coordination.
+> >=20
+> > Hi Javier,
+> >=20
+> > I'm not sure if you're suggesting here to apply the entire series as it
+> > is now.
+> >
+>=20
+> No. I suggested that could just apply the first 3 patches that were relat=
+ed
+> to DRM, not the last 3 three since Florian will pick those.
+> =20
+> > I'm not able to have a functional kernel from arm defconfig, only for
+> > arm64. I'd like to have this issue clarified before merge this serie. I
+> > tried multi_v7_defconfig on raspbian 32-bits and got a kernel panic.
+> > Things work better when using downstream bcm2711_defconfig.
+> >=20
+> > If you have an idea of what is going on, please, let me know. I can try
+>=20
+> Can you please share for info? For example your boot log when it panics,
+> maybe that could shed some light on what's going on.
+>=20
+> > again and I'll be okay on merging it. Otherwise, let's wait for more
+> > inputs to have a better picture of the situation.
+> >
+>=20
+> Of course I don't plan to push patches that are known to cause issues.
+>=20
+> I mentioned that could help merging the DRM changes if needed before
+> you sent your bug report.
 
-> > > My excuse. let me explain it.
-> > > buck1 voltage range from 600mV to 1393.75mV.
-> > > buck2~4/ldo/exten is the fixed regulator.
-> > > buck3 and buck4 is fixed by the IC efuse default.
-> > > buck2 and ldo is fixed by the external resistor chosen.
-> > > exten is designed to connected to the external power.
+Hi Javier,
 
-> > > That's why I cannot directly declared it as the static regulator_desc.
+Thanks for waiting a little.
 
-> > So buck 2-4 need some dynamic handling then but the rest can be static -
-> > that would be a lot clearer.  You could also have a template for the
-> > ones with some dynamic values and just override the few fields that need
-> > it.
+Stefan guided me to the missing part and I'm okay on this serie.
 
-> Not just buck2/3, buck2/3/4/ldo/exten all need the dynamic handling.
+If there's any r-b missing for drm/v3d, you can add mine:
+Reviewed-by: Melissa Wen <mwen@igalia.com>
 
-Why do the others need it?
+But if you prefer that I applied them, just let me know.
 
-> > > > Drivers should never override constraints passed in by machine driv=
-ers,
-> > > > if there's validation needed let the core do it.  The same probably
-> > > > applies to providing a voltage range for a fixed regulator though t=
-hat's
-> > > > not modifying everything so not such a problem.
+Best Regards,
 
-> > > Please check the above explanation about each power rails.
+Melissa
 
-> > I'm not sure what you're referencing here?
+>=20
+> --=20
+> Best regards,
+>=20
+> Javier Martinez Canillas
+> Linux Engineering
+> Red Hat
+>=20
 
-> Sorry. Let me explain it.
-
-> You mean 'of_parse_cb' must not override constraint.
-> But if the regulator is fixed and dynamic, after
-> 'of_get_regulation_constraint', apply_uV will be true.
-> The is referring to 'fixed.c'
-
-fixed.c is a special case due to legacy issues and being generic, for
-normal fixed voltage regulators in a device where we know what they're
-fixed to they can just have their voltage hard coded in the driver.  If
-there's issues with the machine providing invalid or nonsensical
-constraints the driver should just let the core deal with them.
-
-> > > > This is all open coding stuff that's in the core - just provde an
-> > > > of_parse_cb() operation and let the core take care of calling it.
-
-> > > Ditto
-
-> > Or here.
-
-> If I put 'of_parce_cb' to make core handling it, the input parameter
-> 'init_data' is declared as const.
-> I cannot override the 'apply_uV'.
-> Right?
-
-Yes, that's by design.
-
---9eWHlLQ5aB+zBDiA
+--jmztf5qy6qwyt4jv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKjJQwACgkQJNaLcl1U
-h9BwbQf8CDon0DOTyygjzDQP19A8QQ9eIkDydN4RwUztGzO1oZZqgyPddsborEnm
-enToWNLNXMvBEUM6ybjKDOi4Ac5UxHfxPW5tci2AOWfX6/LREJFiQR/ekmLPhgj9
-Cizn5N/0HstZFFm5g/lfsEYtxyCtVdd6StaeLXsGI2LD282RMqLhuyuq+1gmmv4v
-AOVc1KfT3CWAsiA1yYGY8TOugdKahJmuNAmAE9kH/JduhtPJMSG0jwhrlY9zHr46
-m/9ePyvPYkStQ28gQEgogcC6kUGHL/gZ9aEy/wCpKAUNtXw49bFDgImT1bmiVE3O
-vtsKqJOL7LmZ2pIyfeIKDPPiBJAUAQ==
-=xKE/
+iQIzBAABCgAdFiEEd8WOo/JViG+Tu+XIwqF3j0dLehwFAmKjJYEACgkQwqF3j0dL
+ehy+gQ//b3B4voe4RrFb3jzsMa3i0vuZFO4MLSdjDnuHJO7tNTtldAFpOXIZKbeB
+Qr+uVGdDA/dXaedWWa2HR80Q4gic6DYOPS1RIlT6wymiwoJJ0ztMVscIpzZuUuiM
+ZnckfISjj7TG55jmqopgv/FLmThuRLyrTZ+j8GgCO+oxQBz0US8rnX0NJieuEIr4
+IXLYJfteOQRov2Y+ClEAzgUmjS2dMl7y1P8wSftVf3nTrcuvEBayeIHJ0/Dwiokn
+BmwWAZpM4bdY3ugiE30Xq4yB0XQWqamLOXBrwcJmJ7ixUplHBBwAxxaIfu7lRfQk
+p65LT+Meu+TBhAP/2tOp4Y1gmORTvm3NFPKRruIm92HCy/NVzeYCUwcmu33V9L0+
+8xh1IC5CNNy/nn4YPIEaXOAJRtbhr2IAFBiyqDyN0J5Sj+huJFHWS8TXZjdDbjOn
+uDgiuNM47yuBl+cHikXWq62DlM9jLKx92OPpo+PW+ZUoRbFkDlJBS+fUEA9A2crj
+OIWl5/AWKHn+0LHZi+mnw9XvdtBg+/uDylgYmixAXHAzYpOeVWheJR/tOLhbzM/g
+k4p34LWmw9/MekHPLrpiIXlEGGZqoEe67LZmKEgNgt9TzU7q1BXBp2wujgtK9LrQ
+M5jx2ftRdxo+9I8GUff/k4zqS+rLMfkLOJCj5MB3y8ovZ9QBIkM=
+=BuaU
 -----END PGP SIGNATURE-----
 
---9eWHlLQ5aB+zBDiA--
+--jmztf5qy6qwyt4jv--
