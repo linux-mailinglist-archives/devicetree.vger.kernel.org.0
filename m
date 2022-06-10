@@ -2,110 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9683546C9B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 20:39:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE0D7546CA1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 20:42:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346894AbiFJSjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 14:39:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38746 "EHLO
+        id S1347017AbiFJSmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 14:42:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347303AbiFJSjp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 14:39:45 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3E0034BBF
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 11:39:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=UU5YjojlQCeCu9qlG2U4gDtMpva3
-        cln2VaeHsGNEyGs=; b=CQbK9ijqe4r2UR1IviVxCEjgV8Zkq+S0aZIbbUPhO1mo
-        rJSVajB1cDtUtJBuiTHDpV9iRHvNUKeQYAWLx/RXNp4ix870jRwybTJ5O+hBecPM
-        3F2wMESvrrDFKBTjFKfgVNeV3kcwrPMg3DGsw4zgAQ0D+CjjTQK0/s2fZMMuFGA=
-Received: (qmail 344059 invoked from network); 10 Jun 2022 20:39:36 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 10 Jun 2022 20:39:36 +0200
-X-UD-Smtp-Session: l3s3148p1@tXaWQhzhzGxZD+3R
-Date:   Fri, 10 Jun 2022 20:39:35 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: thermal: rcar-gen3-thermal: Add r8a779f0
- support
-Message-ID: <YqOP51pNPTtXQTMQ@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220609194154.12829-1-wsa+renesas@sang-engineering.com>
- <CAMuHMdXg3rC++RBp+aZM1Q_EkYyTxot-9LZnMfJFRz7cp0NLoQ@mail.gmail.com>
+        with ESMTP id S1346639AbiFJSmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 14:42:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B40AC113B49;
+        Fri, 10 Jun 2022 11:42:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4E08B621AC;
+        Fri, 10 Jun 2022 18:42:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B840C34114;
+        Fri, 10 Jun 2022 18:42:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654886525;
+        bh=NENNkFJr9jYYklV27x0XlIpa/LcG4dbeezdHX97GwK4=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=fUta4A84kEUtsm7ddSAblIqlL87cgvTZ4a8HrNwr4C23BrM0Hey1illCxSLfYX7jy
+         U8IIID6gR1v4OuRxOPj+ryIcsZeFWKV0yaZnx8hhJpoPrCox5uZxQm0fa74igHG5BU
+         1ayTYILzpVZ0P+wsvrjqBCS+ivrcFhM/ko1a7voHMYVpcK7yyRSJSAxs1prG7lVtYi
+         Rsi9RCe4VlGpUvcV4fR/5fTLzj3rtZzcEe7iB3alYjKW8UroIisOyKa03tNwCWjWnK
+         0CTT71TyzZdEk1vCuSzLUchCUIfXhCVchPtP7GP44NNkGP4vSgRM9iwnDMQ0fL5pva
+         PmygosvWNjeag==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="CN9TMHG+L/SSyQsL"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdXg3rC++RBp+aZM1Q_EkYyTxot-9LZnMfJFRz7cp0NLoQ@mail.gmail.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220523102339.21927-2-matthias.bgg@kernel.org>
+References: <20220523102339.21927-1-matthias.bgg@kernel.org> <20220523102339.21927-2-matthias.bgg@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: ARM: Mediatek: Remove msdc binding of MT8192 clock
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     allen-kh.cheng@mediatek.com, weiyi.lu@mediatek.com,
+        chun-jie.chen@mediatek.com, linux-kernel@vger.kernel.org,
+        ikjn@chromium.org, miles.chen@mediatek.com, robh+dt@kernel.org,
+        linux-mediatek@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        angelogioacchino.delregno@collabora.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org
+To:     matthias.bgg@kernel.org, mturquette@baylibre.com
+Date:   Fri, 10 Jun 2022 11:42:03 -0700
+User-Agent: alot/0.10
+Message-Id: <20220610184205.9B840C34114@smtp.kernel.org>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---CN9TMHG+L/SSyQsL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-
-> Unfortunately not:
+Quoting matthias.bgg@kernel.org (2022-05-23 03:23:38)
+> From: Matthias Brugger <matthias.bgg@gmail.com>
 >=20
-> arch/arm64/boot/dts/renesas/r8a779f0-spider.dtb: thermal@e6198000:
-> reg: [[0, 3860430848, 0, 512], [0, 3860463616, 0, 512], [0,
-> 3860496384, 0, 512]] is too short
+> The code controlling msdc clock gate was moved inthe the consumer, the MMC
+> driver. This node did never represent a working implementation of any
+> peripheral. It was just a lonely clock gate that wasn't used. Delete the
+> binding description of this node.
+>=20
+> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Reviewed-by: Miles Chen <miles.chen@mediatek.com>
+>=20
+> ---
 
-Okay, I managed to find the missing dependency to finally update my
-dtschema. I'll send a new version which I then tested myself.
-
-
---CN9TMHG+L/SSyQsL
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKjj+MACgkQFA3kzBSg
-Kbb3CRAAjhxA1Oulpxyo+WFjBsKSfz1oGJ+Y/Scd3X0Q9obSO7qA2aMyYoi/gCSa
-bjvhdz68XgfJQi96qu4v/dWUL2Z+5OhE4tFcfFx1aoxKD8Ovgnc3e/sJtpb+qEER
-IYO20H5V9GHLxL9daX6Jvgr7YXo+Nk7Q2HAv8v9NTuj1rorksto2TiUriAWhOFqo
-BdTae1Vaa/3uL+EXfqH5sKmGM9QNdkV+vh17VIifVMxQpuzXRVqZpetv66fP/uRK
-olWyAQ9anMTkazCqW854YoQFt9+CNOrOu8nXrP5lD3ypUfIgfGkanqOBrOG0KR7N
-yazpd7v6aO+ql00ek4QkzZS4GnOfXQVOxJZWA33hH+a4c4q5RZgXx4MqxT5b+IO3
-i9G7EBu735qxkmY/HQW+p0GFNQ+Wel6mzqVOhEymCqxldmVqoe3EZWtJD7q8JlXV
-v+hjLyjh6YsQqdFp4hfhgcLBNiTgzuAxeVEsJyRedvGMIqPR6Hwrcf9VT0SVBEBS
-3p+Ct5qS/JyQxLfxbTePwbwvnz2fi23KflkvQ17a9+5MM3Zth70kQFmiC2t0zmnU
-AOHcnik0WkmlbGSlpdmWf+yKZQluwWwkPs3EpVBJcC0P9xtCuk0Y4EhNrt+AInQm
-gkcqsYNJAmkGVD6OrY5wJU8oMh3FYgjxbizi/tmbihIojPTefcY=
-=h7HU
------END PGP SIGNATURE-----
-
---CN9TMHG+L/SSyQsL--
+Applied to clk-next
