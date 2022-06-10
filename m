@@ -2,116 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3F35546747
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 15:23:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B24A54674C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 15:25:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239746AbiFJNXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 09:23:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60786 "EHLO
+        id S229516AbiFJNZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 09:25:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241258AbiFJNXO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 09:23:14 -0400
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A560B655F;
-        Fri, 10 Jun 2022 06:23:11 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id s23so25255949iog.13;
-        Fri, 10 Jun 2022 06:23:11 -0700 (PDT)
+        with ESMTP id S229906AbiFJNZz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 09:25:55 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73788D69D;
+        Fri, 10 Jun 2022 06:25:54 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id p63so2681436qkd.10;
+        Fri, 10 Jun 2022 06:25:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8sukDbyEo5xcdDaL583IQTHCCE/whgVyUt9NY9aiWLE=;
+        b=UCfkLISXPPSYeSjgGZqDfO+y4Neo+B81CIy6P9OkISnZ5tfbMX1tV5EYKqdjTLq6Ok
+         RjXUQnH/Skkm6QY1FK/5Latq0i0AeCYBRql+WgmofSHUA7/ffM4qzOktdTG8PEac04YD
+         csjJBUciYDdQ4UqKHkWFXNm7Z8N/Prng/BFNo+iTJ8teVXsHvCqPr5JrP0bqlfbne+ZB
+         KQW8Zp0G2x+lK3HPi2ISQv31gP9SF8DO1vadvsYZF2h8rXxO1c7lzAGV389I1YjzB0DR
+         i1p3vRetcWlWZOqRu8Yb4Yj+fPbYwkwbsPmqivBBQEDtPG04PQF5M8ub+ZBPgYphWYLI
+         Nc9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Zk41DWxqcCrUcOmNAlHBuuam8bwwgCEDw3C2FONqZ6o=;
-        b=Setkl3N9Xjl/AfanTZ4CFVjmjKeRuD/NMTNf2/GrppJvt/a4lTAszm9xmmec42bCr6
-         KLW483pIKkG/gjJUCuMnSMgg7fApHs3MjBG972vk1eoB33atZ23ac/tATRE2KhPSrf2t
-         iabLeEYQDHn9eR1FKeLb7Uc+VkTgBCjoPzMfTYUkXpdpg+MpDY2R00l3LDsw/WrEet1B
-         PbZHvIarykTU06FydWqOZHTRS+zFXB3BcUnzmUT87+U/qWqZu6Ar3ZOvaqdS48TzXRd4
-         /lavJbMsFCoPMXiIAcIQKyeeidp5xhA2U7DfSr+ib0wrh9U0iGlrV9nVqVePYZilgCKJ
-         fnPg==
-X-Gm-Message-State: AOAM530ghHfLEKoavNIJIxSnsbLEzd/a5uH7rBJJG1S3Ju0j7AwVYk0K
-        E19SfadCGKcFd/F/eBo0Kw==
-X-Google-Smtp-Source: ABdhPJzC53GXbmd10pkreXql55ziRoJcxSWV0N2cgm8S98ToBfVY+dx9HOYXlaXmtxcJVSgoOfsa2w==
-X-Received: by 2002:a05:6638:348d:b0:331:d8f0:fd9d with SMTP id t13-20020a056638348d00b00331d8f0fd9dmr8577668jal.165.1654867390891;
-        Fri, 10 Jun 2022 06:23:10 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id x13-20020a92300d000000b002d3a3f4685dsm11733602ile.21.2022.06.10.06.23.09
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8sukDbyEo5xcdDaL583IQTHCCE/whgVyUt9NY9aiWLE=;
+        b=zYBD2aEQ623RnZP+x4c9WNAvS9FEgek9sRQosrm0tb2eo+gqnt6Kr3yN1PEtMG567t
+         kQov228AiD8wV0TW+dHskmh4bQLEEQgIT9yHwJtbVtrZdP3qwD2Sp9pVi+i6n+MLO4VI
+         sPTBH45jkENMfxgbznKJ3e2s/w9Xi5m3Uz3dBM4fRJEsmaqVpIcca1dYL8qrxAojyDxb
+         pKKGnNLK2SN2YMZijY224KzbRw3DUT6LFhkLjJsOX/e7WnGVUqOXJBC2TRCRAV4WlnlV
+         deIYseXN/NYJu5+BpDQv9D7wSt7w9CN8BNSM/8Rf2rqkPlirATJrdtyerw52Ux8EJNoX
+         6NOA==
+X-Gm-Message-State: AOAM530JfVu2GWO23z2fGkZg3/CAMoIv350ibq938h2oSw9EfqsZ35FG
+        ubrOkV6Xg7uSpjg8htEPUbQ=
+X-Google-Smtp-Source: ABdhPJwtF6VIFbozwGhPH9J0MR6+fnBYBm7qIbwqC1jbHL9ckpuXbik1TffFWtfH1rLe1Upf4pRhyQ==
+X-Received: by 2002:a05:620a:4107:b0:6a6:deea:ebb2 with SMTP id j7-20020a05620a410700b006a6deeaebb2mr12362586qko.245.1654867553832;
+        Fri, 10 Jun 2022 06:25:53 -0700 (PDT)
+Received: from master-x64.sparksnet ([2601:153:980:85b1::10])
+        by smtp.gmail.com with ESMTPSA id ay7-20020a05620a178700b006a73cb957dasm2886594qkb.20.2022.06.10.06.25.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jun 2022 06:23:10 -0700 (PDT)
-Received: (nullmailer pid 1543585 invoked by uid 1000);
-        Fri, 10 Jun 2022 13:23:08 -0000
-Date:   Fri, 10 Jun 2022 07:23:08 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Heinrich Schuchardt <xypron.glpk@gmx.de>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Fri, 10 Jun 2022 06:25:53 -0700 (PDT)
+From:   Peter Geis <pgwipeout@gmail.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Artur Rojek <contact@artur-rojek.eu>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: input: Increase maximum keycode
- value to 0x2ff
-Message-ID: <20220610132308.GA1530409-robh@kernel.org>
-References: <20220608211207.2058487-1-robh@kernel.org>
- <20220608211207.2058487-2-robh@kernel.org>
- <dbd56518-e688-3b3b-08ae-63f66004e62a@gmx.de>
+        Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Fix Quartz64-A dwc3 otg port behavior
+Date:   Fri, 10 Jun 2022 09:25:42 -0400
+Message-Id: <20220610132542.159978-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dbd56518-e688-3b3b-08ae-63f66004e62a@gmx.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 09, 2022 at 07:46:51AM +0200, Heinrich Schuchardt wrote:
-> On 6/8/22 23:12, Rob Herring wrote:
-> > The maximum keycode value for Linux is 0x2ff, not 0xff. There's already
-> > users and examples with values greater than 0xff, but the schema is not
-> > yet applied in those cases.
-> > 
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >   Documentation/devicetree/bindings/input/input.yaml | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/input/input.yaml b/Documentation/devicetree/bindings/input/input.yaml
-> > index d41d8743aad4..43d2f299c332 100644
-> > --- a/Documentation/devicetree/bindings/input/input.yaml
-> > +++ b/Documentation/devicetree/bindings/input/input.yaml
-> > @@ -21,7 +21,7 @@ properties:
-> >       $ref: /schemas/types.yaml#/definitions/uint32-array
-> >       items:
-> >         minimum: 0
-> > -      maximum: 0xff
-> > +      maximum: 0x2ff
-> 
-> Can this value of 0x2ff be make exportable such that we can use it as a
-> reference in devicetree/bindings/input/adc-keys.yaml. E.g. define a type
-> that only take values in the 0-0x2ff range?
+The otg_id line on the Quartz64 Model A is not connected to anything.
+This prevents automatic selection of the dual role usb port. In otg mode
+it defaults to device mode. Force it to host mode to retain previous
+behavior.
 
-There's no need. The $ref to input.yaml in does that effectively 
-already. That's why 'linux,code' doesn't need any schema constraints 
-unless it has additional constraints. max77650-onkey.yaml in patch 2 has 
-an example of that. If you wanted to add a new, custom property with 
-those constraints, then we could do something like this:
+Fixes: bc405bb3eeee ("arm64: dts: rockchip: enable otg/drd operation of usb_host0_xhci in rk356x")
 
-$defs:
-  input-codes:
-    minimum: 0
-    maximum: 0x2ff
-    ...
+Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-And then have: $ref: input.yaml#/$defs/input-codes
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+index 1534e11a9ad1..fa953b736642 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+@@ -687,6 +687,7 @@ &usb_host1_ohci {
+ };
+ 
+ &usb_host0_xhci {
++	dr_mode = "host";
+ 	status = "okay";
+ };
+ 
+-- 
+2.25.1
 
-Rob
