@@ -2,57 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EE78546AFD
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 18:55:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DCB2546AF5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 18:55:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349904AbiFJQuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 12:50:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44118 "EHLO
+        id S1349453AbiFJQtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 12:49:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245061AbiFJQuI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 12:50:08 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47DF512ACB;
-        Fri, 10 Jun 2022 09:50:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654879807; x=1686415807;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=dTbJGn1wT4KOCMCBcHh3vCtqTv4ul5foDXW+RuzFICU=;
-  b=NdXo4Jyz8BdWeQcfi9AOURVO89nkXL9jKJcsoUmgK8Dw7hVhu2oXSsfP
-   VLRYjq3ctmhiyeWO4p+tquEdp8hx2QV8FUtchG63ASMGA1Y2EPEPazcG4
-   kXuyHHahd35yH+gupa3wz+Q4FLJbSoQ9PFOfykhWeufCg0dhgg4B6mNGI
-   cA9MRL8DVsmXrjF0uuSJYvaIz5X18ghQmFR6/BoRe3dInvXVUgtx9UHsw
-   p2u1pXSbH+B7yq2EovrSnerieYudsAevGyiLGQ5Y6HhvanMBGcIBVbRpP
-   ANH98as4S6XYBPYdye8ogRkSAMQb5L2sKtK5hmacEUkV9wQ+O6sDbcNeX
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10374"; a="339432581"
-X-IronPort-AV: E=Sophos;i="5.91,290,1647327600"; 
-   d="scan'208";a="339432581"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 09:50:03 -0700
-X-IronPort-AV: E=Sophos;i="5.91,290,1647327600"; 
-   d="scan'208";a="760587756"
-Received: from unknown (HELO jiaqingz-server.sh.intel.com) ([10.239.48.171])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 09:50:01 -0700
-From:   Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
-To:     Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Cc:     Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
-Subject: [PATCH 6/6] net/ncsi: Support VLAN mode configuration
-Date:   Sat, 11 Jun 2022 00:48:08 +0800
-Message-Id: <20220610164808.2323340-7-jiaqing.zhao@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220610164808.2323340-1-jiaqing.zhao@linux.intel.com>
-References: <20220610164808.2323340-1-jiaqing.zhao@linux.intel.com>
+        with ESMTP id S240589AbiFJQtJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 12:49:09 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D0E1B9FBD
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 09:49:06 -0700 (PDT)
+Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1nzhof-0002E6-4x; Fri, 10 Jun 2022 18:48:57 +0200
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sungbo Eo <mans0n@gorani.run>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, patchwork-lst@pengutronix.de
+Subject: [PATCH] gpio: pca9570: add pca9571 support
+Date:   Fri, 10 Jun 2022 18:48:55 +0200
+Message-Id: <20220610164855.242563-1-l.stach@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,111 +45,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-NCSI specification defines 4 VLAN modes, currently kernel NCSI driver
-only supports the "VLAN + non-VLAN" mode (Mode #2), and there is no
-way to detect which modes are supported by the device. This patch adds
-support for configuring VLAN mode via the "ncsi,vlan-mode" devicetree
-node.
+The PCA9571 very similar to the PCA9570, it only differs in the
+number of GPIOs.
 
-Signed-off-by: Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
+Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 ---
- net/ncsi/internal.h    |  1 +
- net/ncsi/ncsi-manage.c | 41 ++++++++++++++++++++++++++++++++++-------
- 2 files changed, 35 insertions(+), 7 deletions(-)
+ Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml | 1 +
+ drivers/gpio/gpio-pca9570.c                              | 2 ++
+ 2 files changed, 3 insertions(+)
 
-diff --git a/net/ncsi/internal.h b/net/ncsi/internal.h
-index 7f384f841019..b868e07f7ffd 100644
---- a/net/ncsi/internal.h
-+++ b/net/ncsi/internal.h
-@@ -334,6 +334,7 @@ struct ncsi_dev_priv {
- 	struct work_struct  work;            /* For channel management     */
- 	struct packet_type  ptype;           /* NCSI packet Rx handler     */
- 	struct list_head    node;            /* Form NCSI device list      */
-+	u32                  vlan_mode;      /* VLAN mode                  */
- #define NCSI_MAX_VLAN_VIDS	15
- 	struct list_head    vlan_vids;       /* List of active VLAN IDs */
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml
+index 338c5312a106..1acaa0a3d35a 100644
+--- a/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml
++++ b/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml
+@@ -13,6 +13,7 @@ properties:
+   compatible:
+     enum:
+       - nxp,pca9570
++      - nxp,pca9571
  
-diff --git a/net/ncsi/ncsi-manage.c b/net/ncsi/ncsi-manage.c
-index 3fb95f29e3e2..a398b0eb72b2 100644
---- a/net/ncsi/ncsi-manage.c
-+++ b/net/ncsi/ncsi-manage.c
-@@ -10,6 +10,7 @@
- #include <linux/skbuff.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <dt-bindings/net/ncsi.h>
+   reg:
+     maxItems: 1
+diff --git a/drivers/gpio/gpio-pca9570.c b/drivers/gpio/gpio-pca9570.c
+index cb2b2f735c15..ab2a652964ec 100644
+--- a/drivers/gpio/gpio-pca9570.c
++++ b/drivers/gpio/gpio-pca9570.c
+@@ -121,12 +121,14 @@ static int pca9570_probe(struct i2c_client *client)
  
- #include <net/ncsi.h>
- #include <net/net_namespace.h>
-@@ -1042,7 +1043,11 @@ static void ncsi_configure_channel(struct ncsi_dev_priv *ndp)
- 		nd->state = ncsi_dev_state_config_oem_gma;
- 		break;
- 	case ncsi_dev_state_config_oem_gma:
--		nd->state = ncsi_dev_state_config_clear_vids;
-+		/* Only set up hardware VLAN filters in filtered mode */
-+		if (ndp->vlan_mode == NCSI_VLAN_MODE_FILTERED)
-+			nd->state = ncsi_dev_state_config_clear_vids;
-+		else
-+			nd->state = ncsi_dev_state_config_ev;
- 		ret = -1;
+ static const struct i2c_device_id pca9570_id_table[] = {
+ 	{ "pca9570", 4 },
++	{ "pca9571", 8 },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(i2c, pca9570_id_table);
  
- #if IS_ENABLED(CONFIG_NCSI_OEM_CMD_GET_MAC)
-@@ -1094,11 +1099,15 @@ static void ncsi_configure_channel(struct ncsi_dev_priv *ndp)
- 			nd->state = ncsi_dev_state_config_svf;
- 		/* Enable/Disable the VLAN filter */
- 		} else if (nd->state == ncsi_dev_state_config_ev) {
--			if (list_empty(&ndp->vlan_vids)) {
--				nca.type = NCSI_PKT_CMD_DV;
--			} else {
-+			if (ndp->vlan_mode == NCSI_VLAN_MODE_FILTERED &&
-+			    !list_empty(&ndp->vlan_vids)) {
- 				nca.type = NCSI_PKT_CMD_EV;
- 				nca.bytes[3] = NCSI_CAP_VLAN_FILTERED;
-+			} else if (ndp->vlan_mode == NCSI_VLAN_MODE_ANY) {
-+				nca.type = NCSI_PKT_CMD_EV;
-+				nca.bytes[3] = NCSI_CAP_VLAN_ANY;
-+			} else {
-+				nca.type = NCSI_PKT_CMD_DV;
- 			}
- 			nd->state = ncsi_dev_state_config_sma;
- 		} else if (nd->state == ncsi_dev_state_config_sma) {
-@@ -1800,15 +1809,33 @@ struct ncsi_dev *ncsi_register_dev(struct net_device *dev,
- 	ndp->ptype.dev = dev;
- 	dev_add_pack(&ndp->ptype);
- 
-+	/* Set default VLAN mode (filtered) */
-+	ndp->vlan_mode = NCSI_VLAN_MODE_FILTERED;
-+
- 	pdev = to_platform_device(dev->dev.parent);
- 	if (pdev) {
- 		np = pdev->dev.of_node;
--		if (np && of_get_property(np, "mlx,multi-host", NULL))
--			ndp->mlx_multi_host = true;
-+		if (np) {
-+			u32 vlan_mode;
-+
-+			if (!of_property_read_u32(np, "ncsi,vlan-mode", &vlan_mode)) {
-+				if (vlan_mode > NCSI_VLAN_MODE_ANY ||
-+				    vlan_mode == NCSI_VLAN_MODE_ONLY)
-+					dev_warn(&pdev->dev, "NCSI: Unsupported VLAN mode %u",
-+						 vlan_mode);
-+				else
-+					ndp->vlan_mode = vlan_mode;
-+				dev_info(&pdev->dev, "NCSI: Configured VLAN mode %u",
-+					 ndp->vlan_mode);
-+			}
-+			if (of_get_property(np, "mlx,multi-host", NULL))
-+				ndp->mlx_multi_host = true;
-+		}
- 	}
- 
- 	/* Enable hardware VLAN filtering */
--	if (dev->netdev_ops->ndo_vlan_rx_add_vid == ncsi_vlan_rx_add_vid &&
-+	if (ndp->vlan_mode == NCSI_VLAN_MODE_FILTERED &&
-+	    dev->netdev_ops->ndo_vlan_rx_add_vid == ncsi_vlan_rx_add_vid &&
- 	    dev->netdev_ops->ndo_vlan_rx_kill_vid == ncsi_vlan_rx_kill_vid)
- 		dev->hw_features |= NETIF_F_HW_VLAN_CTAG_FILTER;
- 
+ static const struct of_device_id pca9570_of_match_table[] = {
+ 	{ .compatible = "nxp,pca9570", .data = (void *)4 },
++	{ .compatible = "nxp,pca9571", .data = (void *)8 },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, pca9570_of_match_table);
 -- 
-2.34.1
+2.30.2
 
