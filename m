@@ -2,208 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40D4954699F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 17:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ECB05469F4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 17:58:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345594AbiFJPmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 11:42:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45738 "EHLO
+        id S241014AbiFJP6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 11:58:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229974AbiFJPm0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 11:42:26 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84E172B8C44;
-        Fri, 10 Jun 2022 08:40:40 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id h5so37091476wrb.0;
-        Fri, 10 Jun 2022 08:40:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=references:from:to:cc:subject:date:in-reply-to:message-id
-         :mime-version;
-        bh=ZBVhhNStPSoyhVUwxJV9zLRHhJ+2JlPizwbUhGKDIOQ=;
-        b=AsGsyHTjVXO0amvnzMxuzrEw372KvctB5ZyrT3QR/ajpJvFTQ43R4ScmYBBlGU6/my
-         4TvWJkuzAToBfmJIDzFi+4nKoGk7aC6VMPCjZgRMzhfj8ul8EyydGYOd7QtXi+ssDhoP
-         +h6Qj6F0diFY06SECj4KmP0owES/EgOM4wi7hogNPxAu9GrjZnQVsa+amfIVK35QpSOs
-         vnV09zFT/VWG/3/zhMDs5TFOD+vE/vh9a/EDmXmYxNEOEShVP4brMVt0xA+ZB6wBGwTg
-         tMdEukE74FUkqAmQL5PjNwhaxWfR3dfPVXblV+MO+4hsXlptQIuIlM2MmVQZQfP/sKTa
-         JFIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:references:from:to:cc:subject:date:in-reply-to
-         :message-id:mime-version;
-        bh=ZBVhhNStPSoyhVUwxJV9zLRHhJ+2JlPizwbUhGKDIOQ=;
-        b=MWNtgKWhVu9DSSLF9d+GisesfxbbSqu1QNzDqqdnFH4X/bKcsXU6RtGehdCFVoBS8u
-         CwlNd2pd80CromuFwgYrS1k2eEAhxMCRFrzPpaPuAOmGXJpbUXzB24XdUNXjyfCo4w+S
-         GSzjZ39so/Hb89r7RqM4GL/zyKGkpfqVA6700VXUOvajuM9d9pmpgqAdCMFFG8ewC0Wj
-         MutYZSSyJa7f0WRNueWQWtlw3NwuijS6hXIZ5Ie1ACdFpkJ7+SHv66z4wfk1l5O66/cM
-         SDDRWhyp6wuI3R043/SgOxeqrdZC/N7xM+EdzuWvPBWluwfz1oRqFmoOmzo+DuM/Dpjh
-         buLQ==
-X-Gm-Message-State: AOAM531vWJEaTn4zDEm5gzfzZq0qOpyxiWUz8AyXjPOTkVDyMGWdn9hd
-        BMOzJnf/rQPJSocav6f9u9A=
-X-Google-Smtp-Source: ABdhPJyA9EyiLFlTgMRd7WyXq1TrET+N2zkA9ji2fWBhr0WiOoDz8Jm8IkFyneqwUaYiXrAWRUiwjA==
-X-Received: by 2002:adf:dc87:0:b0:216:cfca:65d with SMTP id r7-20020adfdc87000000b00216cfca065dmr32710829wrj.316.1654875635010;
-        Fri, 10 Jun 2022 08:40:35 -0700 (PDT)
-Received: from localhost (92.40.202.174.threembb.co.uk. [92.40.202.174])
-        by smtp.gmail.com with ESMTPSA id m5-20020adffe45000000b00219e8d28fb1sm2011791wrs.57.2022.06.10.08.40.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jun 2022 08:40:34 -0700 (PDT)
-References: <20220607155324.118102-1-aidanmacdonald.0x0@gmail.com>
- <20220607155324.118102-16-aidanmacdonald.0x0@gmail.com>
- <20220609211128.5knoptfwhongwrtq@mercury.elektranox.org>
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org, jic23@kernel.org,
-        lee.jones@linaro.org, broonie@kernel.org,
-        gregkh@linuxfoundation.org, lgirdwood@gmail.com, lars@metafoo.de,
-        rafael@kernel.org, quic_gurus@quicinc.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 15/17] power: axp20x_battery: Add constant charge
- current table
-Date:   Fri, 10 Jun 2022 16:40:42 +0100
-In-reply-to: <20220609211128.5knoptfwhongwrtq@mercury.elektranox.org>
-Message-ID: <gKpfihJrKPqPrh3VA3orlvQrkllR4TMW@localhost>
+        with ESMTP id S236196AbiFJP6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 11:58:51 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82EBE1DF84D;
+        Fri, 10 Jun 2022 08:58:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 30A9DB8362F;
+        Fri, 10 Jun 2022 15:58:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43C84C34114;
+        Fri, 10 Jun 2022 15:58:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654876727;
+        bh=GDubMMqKX5ziyi7uxi0ZmYERIwl7N131vwqlSO+EgJc=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=Cb6qvF2W0lCY6kSjtH0jA0xSmnhSAnMUWMGvz0HpazJEipNdgIwQoPd1Vmhd+h8sO
+         wI3dGE9CUlMBN0Jb14yHn5QCv/KulBspetBlFXgVXFN/SsQH9RWPXYFvnaEaQlwlXj
+         wyJI2H6JQ2V/1uBzya4Powx00zSivPq6dzrXgfjN33X7MXmfgBN1QyyOn6+1gg9Ktt
+         2Rs498gkau1LilfMgFJ0AFGnMQHFXq2dIKT3vrddswIE3yToaEyvhReKUGB1m+r6Vi
+         T8U9mpNUNj/SEMj1qnA2hteO2bJP8HBfKetqriBByXUTsH/Zd6QvQ9dbp28i39VOZP
+         VJXQTCj8z8csw==
+From:   Mark Brown <broonie@kernel.org>
+To:     krzk+dt@kernel.org, povik+lin@cutebit.org, tiwai@suse.com,
+        lgirdwood@gmail.com, perex@perex.cz, robh+dt@kernel.org
+Cc:     sven@svenpeter.dev, asahi@lists.linux.dev, kettenis@openbsd.org,
+        marcan@marcan.st, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20220606191910.16580-1-povik+lin@cutebit.org>
+References: <20220606191910.16580-1-povik+lin@cutebit.org>
+Subject: Re: (subset) [RFC PATCH v2 0/5] Apple Macs machine/platform ASoC driver
+Message-Id: <165487672494.1755957.15170830453341675210.b4-ty@kernel.org>
+Date:   Fri, 10 Jun 2022 16:58:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 6 Jun 2022 21:19:05 +0200, Martin Povišer wrote:
+> This is again RFC with a machine-level ASoC driver for recent Apple Macs
+> with the M1 line of chips. This time I attached the platform driver too
+> for good measure. What I am interested in the most is checking the overall
+> approach, especially on two points (both in some ways already discussed
+> in previous RFC [0]):
+> 
+>  - The way the platform/machine driver handles the fact that multiple I2S
+>    ports (now backend DAIs) can be driven by/connected to the same SERDES
+>    unit (now in effect a frontend DAI). After previous discussion I have
+>    transitioned to DPCM to model this. I took the opportunity of dynamic
+>    backend/frontend routing to support speakers/headphones runtime
+>    switching. More on this in comments at top of the machine and platform
+>    driver.
+> 
+> [...]
 
-Sebastian Reichel <sebastian.reichel@collabora.com> writes:
+Applied to
 
-> Hi,
->
-> On Tue, Jun 07, 2022 at 04:53:22PM +0100, Aidan MacDonald wrote:
->> Add a table-based lookup method for constant charge current,
->> which is necessary when the setting cannot be represented as
->> a linear range.
->> 
->> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
->> ---
->>  drivers/power/supply/axp20x_battery.c | 53 +++++++++++++++++++++------
->>  1 file changed, 41 insertions(+), 12 deletions(-)
->> 
->> diff --git a/drivers/power/supply/axp20x_battery.c b/drivers/power/supply/axp20x_battery.c
->> index 9106077c0dbb..87fb958f2224 100644
->> --- a/drivers/power/supply/axp20x_battery.c
->> +++ b/drivers/power/supply/axp20x_battery.c
->> @@ -61,6 +61,7 @@ struct axp20x_batt_ps;
->>  struct axp_data {
->>  	int	ccc_scale;
->>  	int	ccc_offset;
->> +	const int *ccc_table;
->
-> Please document the struct; especially the fact that ccc_table must
-> have a size of AXP20X_CHRG_CTRL1_TGT_CURR + 1.
->
-> -- Sebastian
->
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Thanks, I'll make sure to do that in v3.
+Thanks!
 
-Regards,
-Aidan
+[4/5] ASoC: Introduce 'fixup_controls' card method
+      commit: df4d27b19b892f464685ea45fa6132dd1a2b6864
 
->>  	bool	has_fg_valid;
->>  	int	(*get_max_voltage)(struct axp20x_batt_ps *batt, int *val);
->>  	int	(*set_max_voltage)(struct axp20x_batt_ps *batt, int val);
->> @@ -176,7 +177,10 @@ static int axp20x_get_constant_charge_current(struct axp20x_batt_ps *axp,
->>  
->>  	*val &= AXP20X_CHRG_CTRL1_TGT_CURR;
->>  
->> -	*val = *val * axp->data->ccc_scale + axp->data->ccc_offset;
->> +	if (axp->data->ccc_table)
->> +		*val = axp->data->ccc_table[*val];
->> +	else
->> +		*val = *val * axp->data->ccc_scale + axp->data->ccc_offset;
->>  
->>  	return 0;
->>  }
->> @@ -389,16 +393,36 @@ static int axp20x_battery_set_max_voltage(struct axp20x_batt_ps *axp20x_batt,
->>  				  AXP20X_CHRG_CTRL1_TGT_VOLT, val);
->>  }
->>  
->> +static int axp20x_get_constant_charge_current_sel(struct axp20x_batt_ps *axp_batt,
->> +						  int charge_current)
->> +{
->> +	int i;
->> +
->> +	if (axp_batt->data->ccc_table) {
->> +		for (i = AXP20X_CHRG_CTRL1_TGT_CURR; i >= 0; --i) {
->> +			if (axp_batt->data->ccc_table[i] <= charge_current)
->> +				return i;
->> +		}
->> +
->> +		return -EINVAL;
->> +	}
->> +
->> +	i = (charge_current - axp_batt->data->ccc_offset) / axp_batt->data->ccc_scale;
->> +
->> +	if (i > AXP20X_CHRG_CTRL1_TGT_CURR || i < 0)
->> +		return -EINVAL;
->> +
->> +	return i;
->> +}
->> +
->>  static int axp20x_set_constant_charge_current(struct axp20x_batt_ps *axp_batt,
->>  					      int charge_current)
->>  {
->>  	if (charge_current > axp_batt->max_ccc)
->>  		return -EINVAL;
->>  
->> -	charge_current = (charge_current - axp_batt->data->ccc_offset) /
->> -		axp_batt->data->ccc_scale;
->> -
->> -	if (charge_current > AXP20X_CHRG_CTRL1_TGT_CURR || charge_current < 0)
->> +	charge_current = axp20x_get_constant_charge_current_sel(axp_batt, charge_current);
->> +	if (charge_current < 0)
->>  		return -EINVAL;
->>  
->>  	return regmap_update_bits(axp_batt->regmap, AXP20X_CHRG_CTRL1,
->> @@ -410,14 +434,14 @@ static int axp20x_set_max_constant_charge_current(struct axp20x_batt_ps *axp,
->>  {
->>  	bool lower_max = false;
->>  
->> -	charge_current = (charge_current - axp->data->ccc_offset) /
->> -		axp->data->ccc_scale;
->> -
->> -	if (charge_current > AXP20X_CHRG_CTRL1_TGT_CURR || charge_current < 0)
->> +	charge_current = axp20x_get_constant_charge_current_sel(axp, charge_current);
->> +	if (charge_current < 0)
->>  		return -EINVAL;
->>  
->> -	charge_current = charge_current * axp->data->ccc_scale +
->> -		axp->data->ccc_offset;
->> +	if (axp->data->ccc_table)
->> +		charge_current = axp->data->ccc_table[charge_current];
->> +	else
->> +		charge_current = charge_current * axp->data->ccc_scale + axp->data->ccc_offset;
->>  
->>  	if (charge_current > axp->max_ccc)
->>  		dev_warn(axp->dev,
->> @@ -629,7 +653,12 @@ static int axp20x_power_probe(struct platform_device *pdev)
->>  								   ccc)) {
->>  			dev_err(&pdev->dev,
->>  				"couldn't set constant charge current from DT: fallback to minimum value\n");
->> -			ccc = 300000;
->> +
->> +			if (axp20x_batt->data->ccc_table)
->> +				ccc = axp20x_batt->data->ccc_table[0];
->> +			else
->> +				ccc = axp20x_batt->data->ccc_offset;
->> +
->>  			axp20x_batt->max_ccc = ccc;
->>  			axp20x_set_constant_charge_current(axp20x_batt, ccc);
->>  		}
->> -- 
->> 2.35.1
->> 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
