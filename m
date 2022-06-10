@@ -2,127 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A82FE545BC7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 07:44:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6D1F545BD4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 07:50:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240043AbiFJFoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 01:44:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44422 "EHLO
+        id S237456AbiFJFuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 01:50:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234935AbiFJFop (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 01:44:45 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CEEB633A1A
-        for <devicetree@vger.kernel.org>; Thu,  9 Jun 2022 22:44:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1654839884;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=ShE1FlsmSfqxYvr7PfIooFDqvA9+xWO6036Ml2D5cEU=;
-        b=KpXroa9o+vUYkImFKMftHiAkcN9FCj7BVs7d4V5yM9f4I8L/Ko+Kt6pS5lkkBDyI5ly2fQ
-        q3i4/WLoOEJC6JmoOGt7VjFpMhfYeYlFsrRL4wh5cwSFWeW9RMschlvNfona2bmGwgSTf5
-        2iuzxBduB0Cx1gHfkjU1jWQDwkJik/o=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-328-W_HU--imMVijM-JNMYlpRQ-1; Fri, 10 Jun 2022 01:44:42 -0400
-X-MC-Unique: W_HU--imMVijM-JNMYlpRQ-1
-Received: by mail-wm1-f72.google.com with SMTP id az7-20020a05600c600700b0039c3ed7fa89so758224wmb.8
-        for <devicetree@vger.kernel.org>; Thu, 09 Jun 2022 22:44:42 -0700 (PDT)
+        with ESMTP id S231197AbiFJFuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 01:50:11 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE48FDF;
+        Thu,  9 Jun 2022 22:50:07 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id i1so21975750plg.7;
+        Thu, 09 Jun 2022 22:50:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=CyWSAedHHH8WOxnS1FteZqFj5RO4XNsT/w2yY6pNZrc=;
+        b=jHR51n/rBZXorS4PRtas+KNzJoLw6JfmAVpo03Uz8XvakGqSmLngXbqd9fTuRdA9Mr
+         SUJiTBmkgQqspCzny5lDbppvFmIb4xmVCwdwq4KaC4L8VKtAHugPVxQVarHYSjtI2h7A
+         4zPxthNNKz5glgSA0Wv3fIbM3s1VdBIoWclgU+TE9GX1SYQ+PF1Psu/S0FetKS5t47zH
+         RccexJgGc1JV5kSPLo1qn9xb1M+u21KSVNu6OiwNN4z3twy3whbFGeX5SEo568BRRVnZ
+         yRNqshxv8YKAsFL1nKnoUsDOh58GMLwJ1edKiLjpMXlXvsxUJMM337c29gyT52dlRehf
+         T1kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ShE1FlsmSfqxYvr7PfIooFDqvA9+xWO6036Ml2D5cEU=;
-        b=aSrHuwSnygtSNvTByfgZuPiCAGN1WCOempV4lgdIodIyGYvXQMhhYPAAG/Xv/L6sC5
-         gFI1YNOwFPmjMIBM+WL1A5K+BdEsbtuteXvg6R4yXiu7c58gHmLbcUmTXLACng595AKH
-         TqDKwhXy6Af5XKlifggH+wf5322MlGYeByZTn83OSTN/i52+xZWrXzcmZFJEDX7db56S
-         gLB4X2hJBbsYAOhn1oETJp4PdtRMJNT6cTO+1xOC91yirlfNkdzW/VQQnYmqT/cvSHgw
-         maa55tU80OYkPUTzK/R8y1DrA8OiS9/mn0jsOYSVaKweMYkpA02rsiVdoJkGntN4Sjf3
-         P5ig==
-X-Gm-Message-State: AOAM531IA2/EIU4iw0+4V1buu8TRJNigKWMig26XHTRbvJ1aabTEkdIH
-        5l2S3Mi3hLFkR1saMEHlRUcUSRUy1lakYk+9lowHWICYsEr8UZJRt81701RzE0ztJwjBAukZrtt
-        NSjBImHcZCJH/CJwoA8esng==
-X-Received: by 2002:a5d:4d01:0:b0:219:e782:786e with SMTP id z1-20020a5d4d01000000b00219e782786emr1109607wrt.29.1654839881184;
-        Thu, 09 Jun 2022 22:44:41 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxEmWQHVgI7mLEv3SkzwqsG0Oxbqj8p8QyhoSd4ME6IUhU+HW5jSNN0aKke5wjImdfMPeuohQ==
-X-Received: by 2002:a5d:4d01:0:b0:219:e782:786e with SMTP id z1-20020a5d4d01000000b00219e782786emr1109594wrt.29.1654839880990;
-        Thu, 09 Jun 2022 22:44:40 -0700 (PDT)
-Received: from redhat.com ([212.116.178.142])
-        by smtp.gmail.com with ESMTPSA id q9-20020a5d6589000000b00219e758ff4fsm666864wru.59.2022.06.09.22.44.38
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=CyWSAedHHH8WOxnS1FteZqFj5RO4XNsT/w2yY6pNZrc=;
+        b=KJG6epJY+G1jScKIjfO3HslaSk+4BJ+rH2WZyOII32AsIOLwA8QWGi1bXg2ZQa6/R5
+         UB287lYgfCar+yELrl+7XrG8AG4HR2/VkhDk+VKEvz6W6luSrrlYghdUXqU3AMm0SBYc
+         Q9TJoO6zmOW8giDr0rcZCFOX49mwYelAXyDKpIeAPHnTE65NTtK19N0/CDKl6HqtiXFc
+         HBDGXFLxY2calAOT0CCDvQhbOCfe4EamxhlUSjV7DzrPHpo2Ike+8VpQKF+0FPDirob0
+         nwcYEhvZk9Iin6Mfk1jQC8aiUJjWD5exvB5lN69bguAeae6NclKHyrxpCu6BAxgP02Po
+         ypyQ==
+X-Gm-Message-State: AOAM5302xwvX2nUdsx3pRholrh3J7CgmFeFEG1Fngt9jGjCnAYKjUdrm
+        OzpvQaNy7tPpVUfRcVfi2Vw=
+X-Google-Smtp-Source: ABdhPJxVzUr7NUgjQryDfxWm2iEgiYJMjWQvXvaoZfjKjxdgdkHJ5HjzaHdIlY3E5Izq5281au1t4w==
+X-Received: by 2002:a17:90b:4b0a:b0:1e8:6ff0:7ec1 with SMTP id lx10-20020a17090b4b0a00b001e86ff07ec1mr7096038pjb.212.1654840207358;
+        Thu, 09 Jun 2022 22:50:07 -0700 (PDT)
+Received: from potin-quanta.dhcpserver.local (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
+        by smtp.gmail.com with ESMTPSA id f11-20020aa7968b000000b0051b90ac6c15sm18553977pfk.125.2022.06.09.22.50.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jun 2022 22:44:39 -0700 (PDT)
-Date:   Fri, 10 Jun 2022 01:44:36 -0400
-From:   "Michael S. Tsirkin" <mst@redhat.com>
-To:     Minghao Xue <quic_mingxue@quicinc.com>
-Cc:     krzysztof.kozlowski@linaro.org, jasowang@redhat.com,
-        robh+dt@kernel.org, jean-philippe@linaro.org,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_ztu@quicinc.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: virtio: mmio: add optional
- wakeup-source property
-Message-ID: <20220610014330-mutt-send-email-mst@kernel.org>
-References: <20220325015945.GA17578@mingxue-gv.qualcomm.com>
- <20220328164228-mutt-send-email-mst@kernel.org>
- <20220329074610.GA20342@mingxue-gv.qualcomm.com>
- <a35529be-d9cb-9913-76aa-653faed87b54@linaro.org>
- <20220519071958.GA24236@mingxue-gv.qualcomm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220519071958.GA24236@mingxue-gv.qualcomm.com>
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Thu, 09 Jun 2022 22:50:07 -0700 (PDT)
+From:   Potin Lai <potin.lai.pt@gmail.com>
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rayn Chen <rayn_chen@aspeedtech.com>
+Cc:     Patrick Williams <patrick@stwcx.xyz>,
+        Potin Lai <potin.lai@quantatw.com>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH v4 0/2] Add a property for setting minimum persentage of i2c clock high
+Date:   Fri, 10 Jun 2022 13:47:20 +0800
+Message-Id: <20220610054722.32229-1-potin.lai.pt@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 19, 2022 at 03:23:02PM +0800, Minghao Xue wrote:
-> On Tue, Mar 29, 2022 at 09:59:31AM +0200, Krzysztof Kozlowski wrote:
-> > On 29/03/2022 09:46, Minghao Xue wrote:
-> > > On Mon, Mar 28, 2022 at 04:42:59PM -0400, Michael S. Tsirkin wrote:
-> > >> On Fri, Mar 25, 2022 at 09:59:45AM +0800, Minghao Xue wrote:
-> > >>> Some systems want to set the interrupt of virtio_mmio device
-> > >>> as a wakeup source. On such systems, we'll use the existence
-> > >>> of the "wakeup-source" property as a signal of requirement.
-> > >>>
-> > >>> Signed-off-by: Minghao Xue <quic_mingxue@quicinc.com>
-> > >>
-> > >> I don't have enough of a clue about dt to review this.
-> > >> Pls get some acks from people with DT expertise.
-> > >>
-> > > Hi Michael,
-> > > I had a discussion with Krzysztof on the first version of patch. And we've
-> > > got aligned. 
-> > > 
-> > 
-> > I thought I reviewed this and provided an ack, but apparently I did not.
-> > Sorry for late response.
-> > 
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > 
-> > Best regards,
-> > Krzysztof
-> 
-> Hi Michael and Jason,
-> As this patch has been reviewed by Krzysztof. Would you help upstream
-> these two patches? And is there any progress on it?
-> 
-> Regards,
-> Minghao
+Introducing i2c-clk-high-min-percent property for setting minimum
+persentage of clock high.
 
-Hi!
-Sorry about the delay - the issue with the patchset is it was not
-threaded correctly and so can not get handled properly by
-automated scripts. Can you please repost threading properly,
-preferably with a cover letter?
+This driver will go through base clock divisor and calculate a set of
+high/low clock with duty cycle applied. if driver could not find a suit
+high/low clock set, then it will use default duty cycle (50%) recalculate.
+
+LINK: [v1] https://lore.kernel.org/all/20220530114056.8722-1-potin.lai.pt@gmail.com/
+LINK: [v2] https://lore.kernel.org/all/20220601041512.21484-1-potin.lai.pt@gmail.com/
+LINK: [v3] https://lore.kernel.org/all/20220607163703.26355-1-potin.lai.pt@gmail.com/
+
+changes v3 --> v4:
+* rename property to i2c-clk-high-min-percent
+
+changes v2 --> v3:
+* discard the properties for manual setting, use duty cycle to calculate
+  high/low clock.
+
+changes v1 --> v2:
+* update bt-bindings documentation
+* use meaningful values for properties instead of acture value in register
+
+Potin Lai (2):
+  aspeed: i2c: add clock duty cycle property
+  dt-bindings: aspeed-i2c: add properties for setting i2c clock duty
+    cycle
+
+ .../devicetree/bindings/i2c/aspeed,i2c.yaml   |  7 +++
+ drivers/i2c/busses/i2c-aspeed.c               | 56 +++++++++++++++----
+ 2 files changed, 52 insertions(+), 11 deletions(-)
 
 -- 
-MST
+2.17.1
 
