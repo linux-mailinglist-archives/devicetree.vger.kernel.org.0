@@ -2,68 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22776546E9A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 22:45:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C11B546EA1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 22:46:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348091AbiFJUpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 16:45:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51162 "EHLO
+        id S1348645AbiFJUqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 16:46:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347428AbiFJUpE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 16:45:04 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6610E387AB
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 13:45:03 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id l9-20020a056830268900b006054381dd35so84630otu.4
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 13:45:03 -0700 (PDT)
+        with ESMTP id S1348598AbiFJUqh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 16:46:37 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8665A387AB
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 13:46:36 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id k11so594736oia.12
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 13:46:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc:content-transfer-encoding;
-        bh=JmSm7RdG81p3jLk6y5qdqPkBOS3Ze//O1dXyGVO1Nbg=;
-        b=hx7EhdeCKh6inM6hkWhAKuFdb0vq/lRb382k+PleprdIMQ2uGBzzviUYDM3WQ7YATs
-         RY0827T+hJF7MsDFblzWBgl6zkXdUOV1uN6SYI9ZFGIhQQC12KR9jg2XH7slDyAwWQqd
-         FfdOVfhD2WBsU8VqRmUiwCp+OQnmGKtvGKYN4=
+         :subject:to:cc;
+        bh=WXP/dnK0YDlK5/E1i9cz7pX4wz3nrSJNyTUfLHkhr9I=;
+        b=ZJj1KqgR1rdW1l/uVn+xdn9Uy5h5YJC3oGspYfLYmJCRSQeLZEWnQpZdwnMnSyrtoo
+         8GPARFoFuqYRU69ZPicw7P8yJiycawGkEBlmAzh5nxQCxcta+6eTUuJCHwqUjjHaLALT
+         6bZi2BmlRX6cZTvVBfVuh1+9L384gU+pRXglw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc:content-transfer-encoding;
-        bh=JmSm7RdG81p3jLk6y5qdqPkBOS3Ze//O1dXyGVO1Nbg=;
-        b=imza/mFY3OWTKZqYAo9MLYZvA8vX3E1XPDdU5bJZJU9NLo66hBMGzDxd/Q+w4x1MYV
-         gHXMfzFE2XsB7KCH4xHLgkdaoMz+eNefcjQjuXEB6nMEabRUFfJhI20Vspl1h8gGXYDF
-         R1Z967fQU2WamOMrzhPD6VICe7k3Wp2nXR/T8coTh17Pa3qW5BNaAalT0Sz7BP+5JyiE
-         AykaVMn5eEqJ7Rxi92WOzHGNyn8El+KeFog/SBg5E7V1T6Ff2ak9ZW9a9lAalYYgH6pw
-         Sxa7r8OV9OPNjOcLlxd8Wrd7viDKf2I2a3dNmyjWoVLwAXhun96E5BiU2BJCZfsUDgJK
-         RJVQ==
-X-Gm-Message-State: AOAM530kPLmruiB95686ZiQDq891ClTvvsd3w/RtovAu7dH8o/msmYRx
-        L+1NsCqYWbpxXzLH1N6NqOxaeDNvpgOZt1wAU04hIA==
-X-Google-Smtp-Source: ABdhPJyVwgqwzgCOH7YHHYBukvLs7hN/oJj2R+vCwTuhCUpXh/chu/SlAzFUgiXK7m9UfZ68NJT8jD1/SJSmMWm1T78=
-X-Received: by 2002:a9d:6484:0:b0:60b:eb0b:4054 with SMTP id
- g4-20020a9d6484000000b0060beb0b4054mr114803otl.159.1654893902756; Fri, 10 Jun
- 2022 13:45:02 -0700 (PDT)
+         :user-agent:date:message-id:subject:to:cc;
+        bh=WXP/dnK0YDlK5/E1i9cz7pX4wz3nrSJNyTUfLHkhr9I=;
+        b=nvs6L+cof8Xm2D4gjZCx17Oyh92UyQzU8MFFzSwLrSBMqsZ6+S5xG0+7DDTEl0wBx+
+         3dfpw20uN+s09/TJ+eYd9KIJzIZptITe8ab8IXi7bugjS1/fWg0T/S8jabFHLFTLxVje
+         65UMFPOV/N9Nu2G04Vkd3Vkc8akg8/PzuymJu93IyqilxYzbwLAMbvDO4kliWFXVOGyY
+         NkHIhxIWejHvP8p3bLoLzzNIBpGkJqqaYwXy5qYbTXEjMcSpmumwwpEYNz+nh4J6ons2
+         7X+VFdG03W4amHdlkDvMSfda0gK6EsOqr+PDeOk0I643Ex234OYjfFgoLCPGNBcf7Htc
+         Jp5g==
+X-Gm-Message-State: AOAM531SI5OKNs2lAIMW+lqYC5x5sz/e/ZawdtZqf+Tre9SWLlgbf0nc
+        dK2L4qwrwE2RDvNdueOVmYtj+QTzzpHS5nCPvtVX/g==
+X-Google-Smtp-Source: ABdhPJz6T8iyP5MXE+PWGWDiJ+4fCVtVAbI+1HHpHDGwLRZ4/RlvOsKQRvifEGJuMz7pt9TYFPJ0sL5BhGArjtPw9lY=
+X-Received: by 2002:a05:6808:1703:b0:32e:851e:7f81 with SMTP id
+ bc3-20020a056808170300b0032e851e7f81mr891625oib.63.1654893995898; Fri, 10 Jun
+ 2022 13:46:35 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 10 Jun 2022 13:45:02 -0700
+ HTTPREST; Fri, 10 Jun 2022 13:46:35 -0700
 MIME-Version: 1.0
-In-Reply-To: <e8637fc1-804a-4ec5-80dd-4afa2dfd40bb@quicinc.com>
-References: <1654602615-28849-1-git-send-email-quic_c_skakit@quicinc.com>
- <1654602615-28849-8-git-send-email-quic_c_skakit@quicinc.com>
- <CAE-0n53iZk3U3ZWHj8VBUn2gi1KzFz0ZdxABiZvTPzK=cKu1Ng@mail.gmail.com> <e8637fc1-804a-4ec5-80dd-4afa2dfd40bb@quicinc.com>
+In-Reply-To: <20220609122350.3157529-7-dmitry.baryshkov@linaro.org>
+References: <20220609122350.3157529-1-dmitry.baryshkov@linaro.org> <20220609122350.3157529-7-dmitry.baryshkov@linaro.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Fri, 10 Jun 2022 13:45:02 -0700
-Message-ID: <CAE-0n50Xqdy0sCpw449CgxT5rz79tBNGFAF7xgAYZDP4E5r1BA@mail.gmail.com>
-Subject: Re: [PATCH V14 7/9] regulator: Add a regulator driver for the PM8008 PMIC
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
-        quic_jprakash@quicinc.com
+Date:   Fri, 10 Jun 2022 13:46:35 -0700
+Message-ID: <CAE-0n51vKmQ683TTnYm8VxSquqYqL2_3=Ku750r--0GV4JcW8Q@mail.gmail.com>
+Subject: Re: [PATCH v3 06/14] drm/msm/hdmi: drop unused GPIO support
+To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        kernel test robot <lkp@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -74,16 +73,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya Kakitapalli (Temp) (2022-06-08 22:20:27)
+Quoting Dmitry Baryshkov (2022-06-09 05:23:42)
+> The HDMI driver has code to configure extra GPIOs, which predates
+> pinctrl support. Nowadays all platforms should use pinctrl instead.
+> Neither of upstreamed Qualcomm platforms uses these properties, so it's
+> safe to drop them.
 >
-> If I place it here below error is seen
->
-> error: ISO C90 forbids mixing declarations and code
-> [-Werror,-Wdeclaration-after-statement]
->
-> It could be placed at the beginning=C2=A0 of this function near the
-> declarations though. I see that many of the drivers add it below the
-> array itself.
->
+> Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-Ah, use BUILD_BUG_ON() then.
+One question
+
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+
+> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c b/drivers/gpu/drm/msm/hdmi/hdmi.c
+> index 7267167d5ef1..6d79f1b910a5 100644
+> --- a/drivers/gpu/drm/msm/hdmi/hdmi.c
+> +++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
+> @@ -233,6 +233,20 @@ static struct hdmi *msm_hdmi_init(struct platform_device *pdev)
+>                 hdmi->pwr_clks[i] = clk;
+>         }
+>
+> +       hdmi->hpd_gpiod = devm_gpiod_get_optional(&pdev->dev, "hpd", GPIOD_IN);
+> +       /* This will catch e.g. -EPROBE_DEFER */
+> +       if (IS_ERR(hdmi->hpd_gpiod)) {
+> +               ret = PTR_ERR(hdmi->hpd_gpiod);
+> +               DRM_DEV_ERROR(&pdev->dev, "failed to get hpd gpio: (%d)\n", ret);
+
+Did you want to print an error with eprobe defer in it?
+
+> +               goto fail;
+> +       }
+> +
+> +       if (!hdmi->hpd_gpiod)
+> +               DBG("failed to get HPD gpio");
+> +
+> +       if (hdmi->hpd_gpiod)
+> +               gpiod_set_consumer_name(hdmi->hpd_gpiod, "HDMI_HPD");
+> +
+>         pm_runtime_enable(&pdev->dev);
+>
+>         hdmi->workq = alloc_ordered_workqueue("msm_hdmi", 0);
