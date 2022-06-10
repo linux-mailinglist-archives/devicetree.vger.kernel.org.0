@@ -2,105 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D2165468A2
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 16:44:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD7CC5468AC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 16:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234213AbiFJOol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 10:44:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42572 "EHLO
+        id S1343743AbiFJOqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 10:46:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245285AbiFJOoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 10:44:39 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92BD51F1296;
-        Fri, 10 Jun 2022 07:44:38 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-3137c877092so74398897b3.13;
-        Fri, 10 Jun 2022 07:44:38 -0700 (PDT)
+        with ESMTP id S1344565AbiFJOqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 10:46:01 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FEE21D08B4;
+        Fri, 10 Jun 2022 07:45:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Qb0dJUAgFFXX4Dg6+w1YYRuiD/eZfRK5F9qQcEX45xM=;
-        b=k4qvTyrZGhV7+NAh4OXu5yRhfp0e+S3P5nlRXt21GAvFBHxtH29hcS0MxO1WYwYQ41
-         Gf573kp9Q5jy/nxGCb+nfMJgYapk42mSetkiwbKtFM18qIwq0kjFwvwIxhrhjOmk7s/8
-         FC6NLu5VAjXR++7FsPlJ3av2bQu/c75Tkc2RDrx0LDz5FtAXY9nv+zIAyMJxn16/7yFv
-         IkSFcEHecg81Oc9CIF0zbBA0IUz6CXW16dA/coIne0+OggQkpHjgPd/uoff9lH/+FdtI
-         duZUtd+pKk4/opzrrpQppLdl9YlLWnbiqDH9NjMVKkOMKNmQ/UmecphkToa946HCHB4a
-         7eKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Qb0dJUAgFFXX4Dg6+w1YYRuiD/eZfRK5F9qQcEX45xM=;
-        b=w+BBW0VEGin6CIB1hpjwlkAQjYgeIMpA23+XFi/G6QCjg+PX7FjwZBAlHYjCmfYdhd
-         P0FcbSesesVNNIu11aec7Rt/pD1O4fcNWimQ9eKxhBHzAD1XVC+7kf4LikVwyvOYdo/2
-         x8IBOdaXDQ3rwN3ug1XOX/8whAk5t5IjmOUjXYFvJXrQEDchO0f+CL1elSDDWNoSe5TE
-         QAdHbSJCe+J8AGgL6v2E4PTNzvhtB5n1CYNv7iftSgjchmASoqGecrTaOSAZ4gt6IVWz
-         kjivYNZ9gNrv4rcS3sBs2qwanm1N/OntYFHgBRCExfefVnZa1hsH1cZqDwEpM2QkyE0Z
-         JF7w==
-X-Gm-Message-State: AOAM531eAfGMPbH90mhCCoGXQS0eZeIbkagm4ixW9LBfm33BNWSJ70Mo
-        W+kUaXv69jItLOkPKL2qxfaH6OywIyscGUPGsCg=
-X-Google-Smtp-Source: ABdhPJyustZFV7Nw6780j32l4lEe73oN8XdNN/IxZJ73iS3S7npKgY1mfGpredBDvi5ka701E9cDxLYZFVb4jz4QJqs=
-X-Received: by 2002:a81:5294:0:b0:30c:7780:d0e2 with SMTP id
- g142-20020a815294000000b0030c7780d0e2mr49875426ywb.241.1654872277737; Fri, 10
- Jun 2022 07:44:37 -0700 (PDT)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1654872360; x=1686408360;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=G5Mq1zGVGfkkmMwTmuaJBFCVa7RrGwT6IWEMgxihHzk=;
+  b=nx07sDHLroTP2/L9xPEpm+RThp4+DvdJgbQ7LwQbQ/DIhEaCjTFD4xZk
+   rAtIOLgl/SwfP6VQodR9g6Z1t7l8rWzF9DKENnugLpGnq86khpjg/8ee6
+   +GdpoIb9goP5IQ0nx4MbQCIUacnVpD1Hx6J4S5X+P+Ot3HE70CR+GzGBB
+   8=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 10 Jun 2022 07:45:59 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 07:45:58 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 10 Jun 2022 07:45:58 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 10 Jun 2022 07:45:51 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, Linus Walleij <linus.walleij@linaro.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v3 0/2] [PATCH v3 0/2] Add pinctrl support adsp bypass platforms
+Date:   Fri, 10 Jun 2022 20:15:33 +0530
+Message-ID: <1654872335-4993-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20220610132601.160088-1-pgwipeout@gmail.com>
-In-Reply-To: <20220610132601.160088-1-pgwipeout@gmail.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Fri, 10 Jun 2022 10:44:23 -0400
-Message-ID: <CAMdYzYqJ2S8K2NCH1uQ2xDjTfLmePPv5TzgeXZa0EG6XdGQzBQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix SoQuartz CM4IO usb
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 10, 2022 at 9:26 AM Peter Geis <pgwipeout@gmail.com> wrote:
->
-> The SoQuartz CM4-IO should support otg mode, however it currently
-> defaults to device mode when otg is enabled. Force it to host mode to
-> retain the previous behavior.
+This patch set is to make clock voting optinal for adsp bypass 
+sc7280 platforms.
 
-It would seem the role-switch issue is more widespread than originally
-thought, affecting other boards where automatic control should work.
-Please hold this patch while I investigate further.
+Changes Since V2:
+    -- Remove redundant lpi pincontrol variant data structure and 
+       compatible entry.
+    -- Add adsp bypass mode boolean param check.
+    -- Remove compatible name in dt bindings.
+    -- Update dt binding bypass mode boolean param.
+Changes Since V1:
+    -- Update commit message.
+ 
+Srinivasa Rao Mandadapu (2):
+  dt-bindings: pinctrl: qcom: sc7280: Add boolean param for ADSP bypass
+    platforms
+  pinctrl: qcom: sc7280: Add clock optional check for ADSP bypass
+    targets
 
-Thanks!
+ .../bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml          | 9 ++++++++-
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.c                         | 3 +++
+ drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c                  | 2 +-
+ 3 files changed, 12 insertions(+), 2 deletions(-)
 
->
-> Fixes: bc405bb3eeee ("arm64: dts: rockchip: enable otg/drd operation of usb_host0_xhci in rk356x")
->
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-> index e00568a6be5c..56764fae9f9d 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-> @@ -169,6 +169,7 @@ &usb2phy0_otg {
->  };
->
->  &usb_host0_xhci {
-> +       dr_mode = "host";
->         status = "okay";
->  };
->
-> --
-> 2.25.1
->
+-- 
+2.7.4
+
