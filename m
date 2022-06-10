@@ -2,69 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06C50546E7C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 22:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32D61546E84
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jun 2022 22:38:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348154AbiFJUeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 16:34:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59000 "EHLO
+        id S1346538AbiFJUiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 16:38:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347934AbiFJUeS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 16:34:18 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CD1F4EDC6;
-        Fri, 10 Jun 2022 13:34:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id EE2FFB83779;
-        Fri, 10 Jun 2022 20:34:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04F3FC34114;
-        Fri, 10 Jun 2022 20:34:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654893254;
-        bh=EILQd+YWkr1rPaW8ldUePcDfeY9c8mbJR99AZrSm2Ig=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=tRJxW2CgJlRYQKru9IQVWPEQ8ciuLvcEp92RphQNQzTMqjeTikbb2boPaglcjC0U2
-         WqjuxlZ9jSXCGvzDPUtE9luEsBC/26WF8D9jbu8eOVsSIf+doY2456z/p+O1lGkG3p
-         ziPVG2p0bw+AAZcWADO0Wv5BHNHU6ovnoGSve6BzyoGcsmefGhJnSVUi/pyWk0I1ph
-         UqSOeu+k00MmuBgBuRrC4jMnCzydJCQtqxbeVrPKxR4B4v5bEErJgIT9rAfs6CZqVa
-         2u1eyr0uCMJ+y0UJeBDgV+JelhOaPQz/oz1Z1E9rBtXC1h/J1iSbl7Wi8FwoRYL3Np
-         e7C2mBTBbLKJg==
-Date:   Fri, 10 Jun 2022 13:34:13 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1346497AbiFJUiP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 16:38:15 -0400
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ED68EC30C;
+        Fri, 10 Jun 2022 13:38:13 -0700 (PDT)
+Received: by mail-il1-f171.google.com with SMTP id u2so190201iln.2;
+        Fri, 10 Jun 2022 13:38:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4m3Bo0gVkhfyIGU9xra6MloozgwWOG3t7N6ZclZnQ/I=;
+        b=L4sGfIYPckBMlF7ZP3tzeiTkUORZIRsYWnGQVDe3QhQsz6CCxigihhbkFiWLDQcvoj
+         Ar+pJniGyzEGFKwNKW0DHNNTnHSm7wPsJrgc5pclEL/JkGVyFyvmBHXX5j+7VdtO3laO
+         B8jSs8KwNPJKRwMQJOjYEGZ+rarwHvzJjrI2owijXqD+yLq2x6+xlZYrCcEyWVnFaN6B
+         1tYa6NWzll4LyltauiTOKMvfu0XZY8smOsHpR84sNTMpWvGX8ulqLcvzKTeIpjWhv/sL
+         GOJN+a2HvNfV+aINx0YV20s3dQVoihlWFMkw8nmRcPl/EITO2uVJZ+NM8kvrx5a63jhm
+         UUHg==
+X-Gm-Message-State: AOAM531i8VcqDbvTszamjaOk+HJNipnfp58Xf4Y2KzrxH+qq4/b8E6qH
+        LGj9wdUYOTvJcgT/7PL4KQ==
+X-Google-Smtp-Source: ABdhPJyVB3wPO8qibfrXXcaLUISXcn2Swhm7rrrKY18ybttaAXPFa7pxNWCllTPtZVYk3Nc3HqhWMw==
+X-Received: by 2002:a92:cbcd:0:b0:2d1:ba4f:2f4f with SMTP id s13-20020a92cbcd000000b002d1ba4f2f4fmr25692107ilq.181.1654893492813;
+        Fri, 10 Jun 2022 13:38:12 -0700 (PDT)
+Received: from xps15.herring.priv ([64.188.179.251])
+        by smtp.googlemail.com with ESMTPSA id z20-20020a056638001400b003316f4b9b26sm16014jao.131.2022.06.10.13.38.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jun 2022 13:38:12 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Terry Bowman <terry.bowman@amd.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: Re: [PATCH v10 net-next 0/7] add support for VSC7512 control over
- SPI
-Message-ID: <20220610133413.39ba9170@kernel.org>
-In-Reply-To: <20220610202330.799510-1-colin.foster@in-advantage.com>
-References: <20220610202330.799510-1-colin.foster@in-advantage.com>
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: mtd/partitions: Convert arm-firmware-suite to DT schema
+Date:   Fri, 10 Jun 2022 14:37:44 -0600
+Message-Id: <20220610203746.2191518-1-robh@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,14 +61,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Jun 2022 13:23:23 -0700 Colin Foster wrote:
-> v10
->     * Fix warming by removing unused function
+Convert the arm,arm-firmware-suite partition binding to DT schema
+format. Simple conversion as there's only a compatible property.
 
-I've had it today with people bombarding the list with multiple
-versions of the same patchset.
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../mtd/partitions/arm,arm-firmware-suite.txt | 17 -----------
+ .../partitions/arm,arm-firmware-suite.yaml    | 30 +++++++++++++++++++
+ 2 files changed, 30 insertions(+), 17 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.yaml
 
-https://www.kernel.org/doc/html/latest/process/maintainer-netdev.html#i-have-received-review-feedback-when-should-i-post-a-revised-version-of-the-patches
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.txt b/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.txt
+deleted file mode 100644
+index d5c5616f6db5..000000000000
+--- a/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-ARM AFS - ARM Firmware Suite Partitions
+-=======================================
+-
+-The ARM Firmware Suite is a flash partitioning system found on the
+-ARM reference designs: Integrator AP, Integrator CP, Versatile AB,
+-Versatile PB, the RealView family, Versatile Express and Juno.
+-
+-Required properties:
+-- compatible : (required) must be "arm,arm-firmware-suite"
+-
+-Example:
+-
+-flash@0 {
+-	partitions {
+-		compatible = "arm,arm-firmware-suite";
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.yaml b/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.yaml
+new file mode 100644
+index 000000000000..baf19ac0ea1f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.yaml
+@@ -0,0 +1,30 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/partitions/arm,arm-firmware-suite.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ARM Firmware Suite (AFS) Partitions
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  The ARM Firmware Suite is a flash partitioning system found on the
++  ARM reference designs: Integrator AP, Integrator CP, Versatile AB,
++  Versatile PB, the RealView family, Versatile Express and Juno.
++
++properties:
++  compatible:
++    const: arm,arm-firmware-suite
++
++additionalProperties: false
++
++examples:
++  - |
++    flash@0 {
++        partitions {
++            compatible = "arm,arm-firmware-suite";
++        };
++    };
++...
+-- 
+2.34.1
 
-If you can't find a compiler before sending the set you're gonna
-have to wait. I'm tossing this, come back after the weekend, bye.
