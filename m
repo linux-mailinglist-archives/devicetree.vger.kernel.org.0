@@ -2,66 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE028547277
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 08:55:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E3DF5472BC
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 10:01:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229929AbiFKGxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 02:53:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40030 "EHLO
+        id S231279AbiFKIBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 04:01:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230004AbiFKGxx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 02:53:53 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E58EA4ECCD;
-        Fri, 10 Jun 2022 23:53:50 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id x5so1391533edi.2;
-        Fri, 10 Jun 2022 23:53:50 -0700 (PDT)
+        with ESMTP id S229661AbiFKIBl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 04:01:41 -0400
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B718410F9;
+        Sat, 11 Jun 2022 01:01:36 -0700 (PDT)
+Received: by mail-yb1-xb35.google.com with SMTP id r3so2169976ybr.6;
+        Sat, 11 Jun 2022 01:01:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ICXO/DGJ5boB7mlSd4xiwerKyKmA2ZX08XZZ4pcrKPM=;
-        b=b/4pAamShqovIyBl8iI9ztI/LhenZJL57ow6DajHUQpr3t0AucBi/h7muZw96HeOFp
-         2t7PkARM1BNVc8+Y4VvVNq+fSBa3XUF+EtEpjh3fu9+ERHFzn3o1Fv6kB7UpzDOZzS22
-         965pxi8mqfSrL8XRJz1PqsBoDOrAUoRS67UwiyQz//jPMdKHoUpAtvM5tlwY+jT23VBy
-         +3l+FWJN7hB9lw0FuLx+FfqKwhAWBhJbnOx67vP4EWn26XgiLGAH4K3m0pKNF5xjot1d
-         NeCuen2wKJ6IwpoZAKKj5sdxSHMC1VB1I/CTsoqblrUkkMdbjQfMgTirQfRi3Qjibbbr
-         o6Bw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=J6tjynxzIVHRb16JzapzgQcaIfTmSbsb2/a0kmRZXfE=;
+        b=gT95eMHWJT2+APQPM5Sb/zlwU3qLLfVhm8RS4IDEDOluySu+nfAwnG2wdCQUs2etxG
+         a3qWJPqoGqxviVQvgou6M4KXoavBKCVsbpnlsSCN4VFzC9aBVXn3u8SSvfu6sYMEwVHc
+         +RakSf4zwpF6JZqIiVgEtpFuZsgu0PjppeRnv9Z9bRkUh6nzTdldxO2aF/L/U40L01lw
+         m1q9Yms8CVfw3qII7OfPkKUqyOu0y99VMc7Hrm7zL3jXSTpfkDkXB5V2HCGEOLhSn/a8
+         RKdvTc7/GHhYqTmz6dHOyaa30NhHFrframySZURj255Jx28thKDTa9smn0AFHcl2Sn8u
+         j8EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ICXO/DGJ5boB7mlSd4xiwerKyKmA2ZX08XZZ4pcrKPM=;
-        b=xNaABUH3W2ICjG+HO6cwLI1YU2igxfEDoc2cGKo1MopNHJKs04qqvsfvHkjaR029RN
-         zJWw4SKfqkj/l50KpU3IafmxEmgT+OHClsCPPhT3iNtZHhzirM9G3gv2xUhr6r7XglMc
-         nz1iUoYORDP6Tnz+No0rOeaWLQhrJdmH9O0tEQZ43WaDiYiYUbGqcOxWEsgjuz6C+7MB
-         kQRwR98mnODqZrHOyObvxPg9Dn886YIbznu+xnvvML8aVvPolSu3fzRJWx37ZrngR3Qq
-         QoezZlKckKCGupUFt4Jvej8UItFdnpFmh0ISmx4s6bwfGlTUh5T3rlaMFPRke8Jk5hIH
-         8Psw==
-X-Gm-Message-State: AOAM533yRf/iww8vDn1jWfdb9mJQJlKS86Bpvvu31KoXldPT57/qTUDE
-        Gff2dJR910/8XA4XQp8mgWo=
-X-Google-Smtp-Source: ABdhPJzX3VjXieTTER669Yy2w3Q2bZlH8GkmHVjM5Re4odhwdth/2IlxLL9pZkieW72w00pl5GAbgw==
-X-Received: by 2002:a50:c407:0:b0:431:39ed:1c5e with SMTP id v7-20020a50c407000000b0043139ed1c5emr38811155edf.402.1654930429342;
-        Fri, 10 Jun 2022 23:53:49 -0700 (PDT)
-Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id v14-20020a056402348e00b0042dc25fdf5bsm874261edc.29.2022.06.10.23.53.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jun 2022 23:53:48 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] arm64: dts: rockchip: Enable HDMI audio on Quartz64 A
-Date:   Sat, 11 Jun 2022 08:53:00 +0200
-Message-Id: <20220611065300.885212-3-frattaroli.nicolas@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220611065300.885212-1-frattaroli.nicolas@gmail.com>
-References: <20220611065300.885212-1-frattaroli.nicolas@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=J6tjynxzIVHRb16JzapzgQcaIfTmSbsb2/a0kmRZXfE=;
+        b=YaLokb8Nmy3QFnXsjlLNm5EYSGdPfL66DozqWjxQUlX9/trHuVIiPKfUiAdwNtRvTk
+         r5G1YinVLdCns8XoY14WqoI3vHvP5YThBqDAlyr2HFDs0SwfxTEK5v0PeqSRWfny53vb
+         bqox4Y1WVuPPN39IOivFqCk8tr5TkwWMJXC97Wp1jfFA2M6L0PcOHxT5U1ZR2CiFVrtn
+         PfNtyn/Tl6o5E7h7dCGDUHDnqFWJFiJTu5LpZTOxL85klV29Kv/d2TzX3XHSnj9yRsYl
+         zDon2GTtsrb/jcp6cXNVlpijbXp4CMiVsh/b05a3WhQjvzHoShLnCrlMNJF4tCMrx7y2
+         EGgQ==
+X-Gm-Message-State: AOAM530YkOraUvVW1dlJn0SL7NhZ0XWKJEeHUxyEXSOed2weFoSN2a1O
+        LhnQuzApC5hM4jthAK/PtUgkD5wO+X/rRaMo8rN+Vt85QDpdsQ==
+X-Google-Smtp-Source: ABdhPJy5kYyqrX/lptw1Ap7SKHtGXneDN+CrtV2GFrbq/7UNmNiXQaPRJbhG2lL6+ozyK78i/oXBtkBJo6JQI9dWEhk=
+X-Received: by 2002:a25:1c04:0:b0:660:1ffc:fb9 with SMTP id
+ c4-20020a251c04000000b006601ffc0fb9mr47542871ybc.431.1654934495957; Sat, 11
+ Jun 2022 01:01:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220316200633.28974-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMSo37US03pKhPR=a1sJnWMF6L+WDvhWz469G=+0XY2WX-p=bg@mail.gmail.com>
+In-Reply-To: <CAMSo37US03pKhPR=a1sJnWMF6L+WDvhWz469G=+0XY2WX-p=bg@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Sat, 11 Jun 2022 09:01:09 +0100
+Message-ID: <CA+V-a8t2w14bJVCiiHQq8bwgetw5za1-t_OSfyr6Cwo4eZOt2Q@mail.gmail.com>
+Subject: Re: [RFC PATCH] of/platform: Drop static setup of IRQ resource from
+ DT core
+To:     Yongqin Liu <yongqin.liu@linaro.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -72,40 +72,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables the i2s0 controller and the hdmi-sound node on
-the PINE64 Quartz64 Model A single-board computer.
+Hi Yongqin,
 
-Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Sat, Jun 11, 2022 at 6:28 AM Yongqin Liu <yongqin.liu@linaro.org> wrote:
+>
+> Hi, Lad
+>
+> # sorry for the confusion if you have received it before with the
+> non-plain-text mode
+>
+> In this change you said "all the DT drivers have switched to
+> platform_get_irq()",
+> could you please help share with me one example about the above change
+> as reference?
+The change is we just switch to using platform_get_irq() [0] for
+fetching IRQ numbers.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-index 59e364b724cc..981c4aeea814 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-@@ -310,6 +310,10 @@ hdmi_out_con: endpoint {
- 	};
- };
- 
-+&hdmi_sound {
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	status = "okay";
- 
-@@ -540,6 +544,10 @@ &i2c3 {
- 	status = "okay";
- };
- 
-+&i2s0_8ch {
-+	status = "okay";
-+};
-+
- &i2s1_8ch {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2s1m0_sclktx
--- 
-2.36.1
+> We have one hikey960 android build with some out of tree changes,
+> which could not boot
+> successfully with some errors on surfaceflinger(I am not sure it's a
+> problem with the gpu or display),
+> but could boot if I have this change reverted.
+>
+> I guess it needs some changes on the gpu/display dts or driver side to
+> have it work
+Just the changes to the driver is needed.
 
+> with this change, not sure if you could give some suggestions on the fix.
+>
+> And here are two out of tree changes might be related listed here just
+> for reference in case:
+> https://android-review.linaro.org/c/kernel/common/+/21680
+> https://android-review.linaro.org/c/kernel/common/+/21682
+>
+
+[0] https://lore.kernel.org/lkml/20211221213547.1553-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
