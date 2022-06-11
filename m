@@ -2,66 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE0FC547238
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 07:28:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED51E547240
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 07:44:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347980AbiFKF2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 01:28:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40478 "EHLO
+        id S1345226AbiFKFoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 01:44:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348597AbiFKF2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 01:28:01 -0400
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D6B91839E
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 22:28:00 -0700 (PDT)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-30ce6492a60so9263687b3.8
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 22:28:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KtaWcoAGVUWpa8COeQVX5nOZg3KfNhRwqB48xxrgvYY=;
-        b=lTjzkKBXOx0+KKjlsLj+QplfboxQxEe3XZQuDoi5tV/FpHjCUrIbJSBO8l9PkmHhiG
-         u9cFmCHQsKGXLtS0MxtR1WthkdKnqIH5mrkLCbadThYDrAQeruLTyqmvpM/ynjwH4GAr
-         0TBgR/NHdatZOB2WU5iD+zkGEKMS5E333yjsEPkTQ8Bcow5TiKB+XkEob1o49e9yDpc0
-         3r3aRwglLopYhREBMoJKbQkYjgg6MQlue5kZUZE3K492FrWyuI8Avq7yD3u6xWa7tzqZ
-         /rL24lAWwC0mdxIvmcF9wbCVlJOr/BJyp+y1tWhL0o4KZ9viG9R3s8Ty0sn5puFhwdQb
-         jWSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KtaWcoAGVUWpa8COeQVX5nOZg3KfNhRwqB48xxrgvYY=;
-        b=6vB/yFACoHO8+yhsbtkPmkKzIdKloBR9BSuoclbe52dcUYQIl1wmaYeczjKRMGRJYI
-         VrZtDGoTLZfDo4yXVlUUqYoYSSaKyrMYPQO2R0JMkIURo4+gASOyujQpXDV5BSoxLHgH
-         N+tt4UyxlL44gCMvYLav+vDEjxXJuz7rJjS1iJ2mE4pJ5G0UuzfuzPjqJ+/23H0Ranga
-         jeIf96GgpitFU0EZZuGly4nljnapBNImSN4ESZ9Xu72X07v1qN3IoXZiHA8CyqWHOG+A
-         5LAgHQXQDI6zgxq3OLh2z2RIfy0VpWari/J+w+2euMslmTvh+TWN55zoDSWXvR7ULzLj
-         VnUg==
-X-Gm-Message-State: AOAM532uMafcMchFUNBV0mIKlStM0z0xXceib/n3wgOPVAPhL3QLz5m2
-        UIfceZ4N/iNGq/3OEl4wZOtwKYLUhN+QFyYUnSmJ1w==
-X-Google-Smtp-Source: ABdhPJwLTZP6Fi253xeMCxYftfDPlNh/MGW5n7fQpLNMCzv2G/kL2ZcE78GOBiNU6b72I/yYsP+YG47yBoeUFjxJHtE=
-X-Received: by 2002:a81:9b0c:0:b0:2f4:c522:7d3c with SMTP id
- s12-20020a819b0c000000b002f4c5227d3cmr52513063ywg.316.1654925279564; Fri, 10
- Jun 2022 22:27:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220316200633.28974-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220316200633.28974-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Yongqin Liu <yongqin.liu@linaro.org>
-Date:   Sat, 11 Jun 2022 13:27:48 +0800
-Message-ID: <CAMSo37US03pKhPR=a1sJnWMF6L+WDvhWz469G=+0XY2WX-p=bg@mail.gmail.com>
-Subject: Re: [RFC PATCH] of/platform: Drop static setup of IRQ resource from
- DT core
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+        with ESMTP id S229650AbiFKFoN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 01:44:13 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6533110E;
+        Fri, 10 Jun 2022 22:44:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 6E3ADCE39A2;
+        Sat, 11 Jun 2022 05:44:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 516A0C34116;
+        Sat, 11 Jun 2022 05:44:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654926248;
+        bh=bNJ/EL0jamyP3ajtQm3Cp8mZ0bWZwskKQfExHfBnmMU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=B2yosn8uvfbrKAOZHzdoOpCDU8RmlYKVMSplAT7FxaoouqYZBeX72btIDo8UKNNSu
+         wNxSWs6XantGFr2v7xV58Um8FlKs3pL0GIyHua2DdhDGAwBKFR4bE3DlCf2XqsGsPL
+         64AC++OcwLstXPPY3y/IrCheS1L7XD1/u8r/41JNz04b/jR1n/YTbPXlCWLDDLtJRU
+         Q2vjGZuFZkyVB5+sV53NwK3L7xYdp1fznIr7h0zxYyVFTnhCMRl5gF9IgBZNP9NOQZ
+         2Z2/qCMTFs2lSiMYLf2Plt5j6ojSdSuEVcc/2yyw8FyKH9Kf9uQ/7NeI1yJyCQma53
+         hMmSQTtRMon2g==
+Date:   Fri, 10 Jun 2022 22:44:07 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
+Cc:     Samuel Mendoza-Jonas <sam@mendozajonas.com>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v2 0/6] Configurable VLAN mode for NCSI driver
+Message-ID: <20220610224407.4e58dc5a@kernel.org>
+In-Reply-To: <6f067302-74a8-702f-bf38-4477a805a528@linux.intel.com>
+References: <20220610165940.2326777-1-jiaqing.zhao@linux.intel.com>
+        <20220610130903.0386c0d9@kernel.org>
+        <3c9fa928-f416-3526-be23-12644d18db3b@linux.intel.com>
+        <20220610214506.74c3f89c@kernel.org>
+        <6f067302-74a8-702f-bf38-4477a805a528@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,110 +59,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Lad
+On Sat, 11 Jun 2022 13:18:51 +0800 Jiaqing Zhao wrote:
+> All ncsi devices uses the same driver as they uses same command set,
+> so the driver doesn't know what modes are supported. And in current
+> driver, the vlan related parameters are configured when registering
+> the device, adding an ncsi-netlink command to do so seems to be
+> unsuitable.
 
-# sorry for the confusion if you have received it before with the
-non-plain-text mode
+Maybe you could draw a diagram? NC-SI is a bit confusing.
 
-In this change you said "all the DT drivers have switched to
-platform_get_irq()",
-could you please help share with me one example about the above change
-as reference?
-We have one hikey960 android build with some out of tree changes,
-which could not boot
-successfully with some errors on surfaceflinger(I am not sure it's a
-problem with the gpu or display),
-but could boot if I have this change reverted.
+> And adding a netlink command requires extra application in userspace
+> to switch the mode. In my opinion, it would be more user-friendly to
+> make it usable on boot.
 
-I guess it needs some changes on the gpu/display dts or driver side to
-have it work
-with this change, not sure if you could give some suggestions on the fix.
+Unfortunately convenience is not reason to start adding system config
+into DT.
 
-And here are two out of tree changes might be related listed here just
-for reference in case:
-https://android-review.linaro.org/c/kernel/common/+/21680
-https://android-review.linaro.org/c/kernel/common/+/21682
+> Netdev also does not work as the ncsi device itself does not have
+> its own netdev, the netdev comes from the mac device. For different
+> vlan modes, the netdev feature set of its parent mac device are the
+> same.
 
-Thanks in advance!
+You say that, yet the command handling already takes into account the
+VLAN list:
 
-On Thu, 17 Mar 2022 at 04:07, Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
->
-> Now that all the DT drivers have switched to platform_get_irq() we can now
-> safely drop the static setup of IRQ resource from DT core code.
->
-> With the above change hierarchical setup of irq domains is no longer
-> bypassed and thus allowing hierarchical interrupt domains to describe
-> interrupts using "interrupts" DT property.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> Hi All,
->
-> Sending this as RFC as couple of more drivers need to hit -rc yet with
-> the platform_get_irq() change while that is in progress I wanted to get
-> some feedback on this patch.
->
-> Cheers,
-> Prabhakar
-> ---
->  drivers/of/platform.c | 14 +++++---------
->  1 file changed, 5 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 793350028906..6890f7fe556f 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -114,35 +114,31 @@ struct platform_device *of_device_alloc(struct device_node *np,
->                                   struct device *parent)
->  {
->         struct platform_device *dev;
-> -       int rc, i, num_reg = 0, num_irq;
-> +       int rc, i, num_reg = 0;
->         struct resource *res, temp_res;
->
->         dev = platform_device_alloc("", PLATFORM_DEVID_NONE);
->         if (!dev)
->                 return NULL;
->
-> -       /* count the io and irq resources */
-> +       /* count the io resources */
->         while (of_address_to_resource(np, num_reg, &temp_res) == 0)
->                 num_reg++;
-> -       num_irq = of_irq_count(np);
->
->         /* Populate the resource table */
-> -       if (num_irq || num_reg) {
-> -               res = kcalloc(num_irq + num_reg, sizeof(*res), GFP_KERNEL);
-> +       if (num_reg) {
-> +               res = kcalloc(num_reg, sizeof(*res), GFP_KERNEL);
->                 if (!res) {
->                         platform_device_put(dev);
->                         return NULL;
->                 }
->
-> -               dev->num_resources = num_reg + num_irq;
-> +               dev->num_resources = num_reg;
->                 dev->resource = res;
->                 for (i = 0; i < num_reg; i++, res++) {
->                         rc = of_address_to_resource(np, i, res);
->                         WARN_ON(rc);
->                 }
-> -               if (of_irq_to_resource_table(np, res, num_irq) != num_irq)
-> -                       pr_debug("not all legacy IRQ resources mapped for %pOFn\n",
-> -                                np);
->         }
->
->         dev->dev.of_node = of_node_get(np);
-> --
-> 2.17.1
->
+	if (list_empty(&ndp->vlan_vids)) {
 
-
--- 
-Best Regards,
-Yongqin Liu
----------------------------------------------------------------
-#mailing list
-linaro-android@lists.linaro.org
-http://lists.linaro.org/mailman/listinfo/linaro-android
+which come from the MAC netdev. What's wrong with setting the filtering
+mode based on NETIF_F_HW_VLAN_CTAG_FILTER ?
