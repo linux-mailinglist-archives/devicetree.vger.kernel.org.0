@@ -2,398 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 301AC54778E
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 22:47:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61A635477AC
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 23:19:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231990AbiFKUr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 16:47:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40084 "EHLO
+        id S231786AbiFKVTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 17:19:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231890AbiFKUrY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 16:47:24 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B217CD6;
-        Sat, 11 Jun 2022 13:47:12 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id m20so4108188ejj.10;
-        Sat, 11 Jun 2022 13:47:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=pPGokfyfSUs/WTSM4zIFDX4BDdVMjvsS1wW+kXKgMVY=;
-        b=fTdCyj5sKkyo5gZl9XuSnBt6drXY+MIoleIJ/Qkr9ddIiQ05qtqFTyOnrapd0QZ1ac
-         apv0FIMWMS/LZyfB47w7iih7ypugBr6cUL8HUB/ipmdLg2WS9A7uFQ1BOWG+wXKhIy+F
-         jF9FTGNVwKqdUYYzU4YOliGeOstfXgEIvjtP5o4w4H7YVQJ55mun6qNNNBheHJ41Rulb
-         k5PlER238rl+8V7wmcBDEG8kI9xyoYOWgynn35QlrxoCxc/5Y6yV5b1Xwj7QZ8cagMHv
-         uJDuKJVTztQTcBcfgM+mJ1reBkosq6gAu8ZaNdYjHv4vLxuvQSm7P5UUiTFiuEHLwK7p
-         F8Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=pPGokfyfSUs/WTSM4zIFDX4BDdVMjvsS1wW+kXKgMVY=;
-        b=pSm8qDd3/y3qeRmMchV/OsJHvyR23yl7bIBit1vIUMOgduCA4DUm3lhZYIp9/QAygr
-         g3dmno5KjQaPNLGKW6nPQ4G0vi8HuEinNI4YQuZxm5x/hxnVtqVFgArHOx39IOT7vC0z
-         XfmrfI3d+Q/KpSOMeQ4BHSeGOY2lDd31qG4Q0qlerq9/8GTZZ/4TEbEcwZn2pddZtGJ/
-         ghuXRSzaqsvUPwbFVtlxa8hSKhq0qX6lzvuxyF9yoUcVXbN3TZ69AwPqp35pK8Hz6C/r
-         wSqn8HlGGGTTvpaim1ebp+ezRB5BfJLoegaveAah48RdFDX74J7hvKxBSyaylmg0ClM7
-         xx3Q==
-X-Gm-Message-State: AOAM5311LkqBaUd6i29DbEBB9OyVzjoVMp0atVyIqz66PkaY4ok6jiM6
-        CRF/8g8qIDdVfpUy7moWHpw=
-X-Google-Smtp-Source: ABdhPJx7p/cGZivP+olSItsthDuwBJ/mAJsBXdvGeqVO/BYZhJAdnS+vc4xqnr3HiuxA2uqhAJmm7Q==
-X-Received: by 2002:a17:906:64d6:b0:712:1022:492b with SMTP id p22-20020a17090664d600b007121022492bmr11715611ejn.264.1654980431147;
-        Sat, 11 Jun 2022 13:47:11 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id 22-20020a170906301600b006f52dbc192bsm1490672ejz.37.2022.06.11.13.47.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Jun 2022 13:47:10 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     Tom Rini <trini@konsulko.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, u-boot@lists.denx.de,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V3 2/2] nvmem: add driver handling U-Boot environment variables
-Date:   Sat, 11 Jun 2022 22:46:51 +0200
-Message-Id: <20220611204651.19947-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220611204651.19947-1-zajec5@gmail.com>
-References: <20220611204651.19947-1-zajec5@gmail.com>
+        with ESMTP id S230171AbiFKVTl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 17:19:41 -0400
+Received: from sonic310-11.consmr.mail.ir2.yahoo.com (sonic310-11.consmr.mail.ir2.yahoo.com [77.238.177.32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0776156391
+        for <devicetree@vger.kernel.org>; Sat, 11 Jun 2022 14:19:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1654982378; bh=88/mIeI7cjZXJiQxnupSL+lAMglf4mE/oS/Wtk2GnyM=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=k+lyvOzZ+wIUOBQZbaFRdIaWvtTB6QFppo0TkiaKfglNMfu2ggVR01A9jOXHQZIA2to8xRWLbKIfhoL7HWMjqU1UKHJuQXdSqOF8GSSNdCCMKxIALkcTz5Kgb5T94AB9S0JWJ3J8R2oXbTvCs2iJ1K/pGk1smKPTXUkxHSt1purMMPkf29eqzg3DPip1A50OBGd6UmEI72pp6Bi8ZYAS2yDzoQHC+mOsJW4u9AdYYSzQL2mDcYlQ7m642swQfGwow9YeZE8iV62q10NJxrA3eh5KvM8n/zTpAlziuedlFsjcZLcuB0cwmb3+G2k7PPkv735B2AwsCBo3s4MWk+Gjzw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1654982378; bh=3eoRNJ6XEq7IcFeJLzFzwHNkIYjKMUWMjfT8IcAjNN7=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=BKdsGGugw4LAQ5xkT3N3viHD2Nav/tJ/TpMD2LQMUo1CI36Ym57Qnr9acwvMnYE1w+E5zIbe4YeT7BOEuLxqYOHVZKyHrNJ1W9Uiz04k6qNBDGfqugGGepH1vB0RUP2+f2cdGziv53CU9qt/NsbVdeYjKqeC21zcp+E5LLGvvzXCdI50+V3DYjJPC0rxmwlEtw/C733PEd27eT3gkG1/1D+mgHDfwwsF/7960r216x7ZMnuBA3wFo3RoA9zUHvmcoU8QeAi3B2VAOxyFJV4gYzjvNA5222QhOzG1oAvh134MeQ0EiD+Bp+mc7/FjpirWrgQZsG3ZNwz17CT8EVMbsA==
+X-YMail-OSG: WEBwJ3MVM1lAhonfPYXxZDmzLwPQVWNxBsAa_Xe_EfLcljmpILR0z6NZuIC1XWD
+ hFCqpArry3zppZCjFUmxypzPsi8xzt2pmRX7XPG8qI2n2qjBr_qLxyRwhPC7A.dvZicqHvyiCe4r
+ QNk7L80IxxVwbFQFq.6_rrd3nXDilKmOeiTxvD3cE0Ms6PTw3Crk6Ihb5OUTthP1BisFXnurTWtR
+ ModCWU1yK4wyRPQXuP3wTxwesSO1nYr3UTHkcpRuUdagC.g8ERB0DgNToiy7c6CfYu5.IircEAIP
+ NW_oPH5asn1Ns_8Dk4pIannjjFLCs3SXhD5zqWaix41W0zWuYW.sop488zmEk3R.NsyPncfYAQfe
+ IxYtlNmBcJQeh4764OSj8DHkPnpTQJvnUOt0WKOEaTkeor_uccbnqq_e0W.O2QtmTh3SeEMsQWAe
+ UGkTMssjVdx9Csf3iBY4rvmjv87JyIp_Miw_8EGu4bA6V.uca_bWriAc9KhKaWMKN7F_C_EvQfKS
+ 0DcSzzbgBLI3q1fU0YMbM_2Z.VUmH2TtdFoldSPY8dI4CpElwkA0Bg.lZGKQZwRE.f4DZ71S71N0
+ vLXzSP4y29d56GawzjmKjwMyIDlhZ7oK51Za3Z.kFs.064_cBRT1J_s0q8rKHKomDc4TM.1AyICt
+ TMB5xeQIK_iWsAJH4F7Ct5Dp6A95PKMH1nDIjLdxGPaGaDxBACvXy91Y8cxx8yreW9YzS88Vcoc7
+ 0PzXGrnT.w_DGpzgegVfT3GCc02ShsPso091JsI.9bh7.ZbigEJzenleQyd6zNtg_TmZ1ge7yT8A
+ MhPbi4pmqHTJuFiI9bWE1xbmje_KqiOZYfY_gX5nvZrsmJepJK7u1Y2eq4WmYE1vGiCwEgjt_2pr
+ yhst0NcRNhmw7fkQS0ua2VorzoaeSvZGsIxWtxmav8209pQLzdkadNL2oU.m1PpmCRNShn4Jh.z0
+ xaM._AGUV6kAfpabrgsanhPVY7pFa9sqymfAPm4KpkLUxfFbd.KroIJpgNKtvROTTWdTueVKwqMi
+ 5MmMCdplawQYdhNYfQ16H0s.d2KXGxWIqjWEJFK7GCxJbgjEUpwQOyq8Yqu_PcNX.5dtHpX.z.xq
+ A8a_W8CNJEHXfkWK5g7dgTmmmzUirXi1iW0CraJLFSW2BXe7RFniUiJ3VzX9CNpTSSbTc3Cf0giE
+ u8Lt96jFCEW8n4fY8Y7h3AvQ1.wlt_ehWuUow8qp6FkMnM.4800PB8kN1DEjetQB2lpcvzU_emtA
+ iQy8xXgtAehRzAZil03VEl5T8Pmn5KhV0uF3W1E0.rqb4KlPVpSH_JHJNqrpgaw_yb_e8S2NJ1.Q
+ .PFUQZ_7Qy5U7xXZ34WKbcK776tflCHYZzcH7n3_VcRsa8V2.dw.SKrA22WkCjwamUV5oPOOWCTf
+ 3y2dTqPfbh2MPmzE84OUz7w4CMIWzvp7z98W5c54oSrCLQWwwNouplkBu4hEnT89mHlWVIrEv1Cs
+ 1LFDvngGi4tEyT30hJYK65be2he80C232u6xX.5RJHsLD2c2ZCJWlCegJfiWuwK5WPad7m7yKq9p
+ VhB.8.ThNXr6qtjCiVjRCeFM9MzQZUQCHIW.iz_5ELmHVUb16AGHDS.gKWHuVtSTgceWoGIp8FDX
+ 2dfA0atgBM3npl8RZ6.Th3ekLsEfH4wVNQRjkrn_wk1hpx0UWh2Vk8TKCGM4djCHfppNmmrPXK69
+ PmaH_eu_1Y_KES9QoxGpEbmFDPq5Bihi2RU5tqk3xc9Z3kXcWGMxtNefS0p4IGRdxfiI0Ozr5adI
+ ajnEooz9KBXrwO3SKB.6raCUnZzzEH8lL87MhNyTWQvVY_8pWQSj9dmxgb7bjye95pIeGyMk12Fk
+ gA4gbVPJt9dYZkV8s4HYS.th7FW4ys9eyKeVEh7ptTym4Iu1DWv3px0QUcYgPTsgcWYAiiCJHvZF
+ 4qMyu2i.w6_jZzxsPjc25eoRBEqdtLs6Zf4uSM4.lmqTafewnLjeFEPqVnbW50ezcE2kWEaQVInX
+ BkNJnqwy3x2zFfhjWDUF_.2hg0sVa9mf8k3utxlIUwT91.0x7TwFxGOOB.BW0Oi_Wq5L4VJADAsB
+ kLYRXK47GeP7tDpEeUwrcxaTkHA.evZAUgGQEbG7_fjLq8yjKO5oOQRgqTfSuGlLYUa5KTPjdw8Z
+ TWGMKlqMgA91lkpYiSPQeFc411nuRmmNUXfWJCdzAaYnF7lcC7uUnWAf84xgIdcK1czebplFB4n1
+ B0jyD37hyJ9EGjNmUuuAcbiQBn3ghYoy.3FZ7JZa53Y4j1OB25Xs3fv5XtogMCwowh_0PuhsAE9q
+ siy00n3A0wifdMqz7lNpGvfeUfkyr5MQMO1PC.44ZBTkPOCulkv9o5Ys0PJz3VEC6JqQhtqA5rDA
+ 5PmmVtnYwmoWufTXKbP4e0BRgbsz.Jffa8ZHCzq0JCKt_4F479MUh
+X-Sonic-MF: <jahau@rocketmail.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.ir2.yahoo.com with HTTP; Sat, 11 Jun 2022 21:19:38 +0000
+Received: by hermes--canary-production-ir2-6c7595c778-pmqqk (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 380c144581fc6a504b05c1fb6a9bfbc3;
+          Sat, 11 Jun 2022 21:19:34 +0000 (UTC)
+Message-ID: <9215e460-9655-dd70-8fdd-8572efddb40b@rocketmail.com>
+Date:   Sat, 11 Jun 2022 23:19:33 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 7/7] iio: magnetometer: yas530: Add YAS537 variant
+Content-Language: en-US
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        phone-devel@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <cover.1654727058.git.jahau@rocketmail.com>
+ <a914ca0ea6f0149cd2941d60ae6fa2f49927f66a.1654727058.git.jahau@rocketmail.com>
+ <CAHp75Vdg2i8NjrFn5gtKBKNbYrWd49nq31Exy=4K2RsxHeQ1hw@mail.gmail.com>
+ <6ac31983-698c-5333-da4b-4f562c47afc7@rocketmail.com>
+ <CAHp75VeprMCdP_HqcVUhQow_OStKDMF4c2k5s1gs7RwOTzO=FQ@mail.gmail.com>
+ <7265c507-b32d-c2e3-d9ca-876d9382a8e8@rocketmail.com>
+ <CAHp75VfV1E1WaLVDG3V9460AsVxahb9Epod-63T35eDV+h8Ubg@mail.gmail.com>
+From:   Jakob Hauser <jahau@rocketmail.com>
+In-Reply-To: <CAHp75VfV1E1WaLVDG3V9460AsVxahb9Epod-63T35eDV+h8Ubg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Mailer: WebService/1.1.20280 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi Andy,
 
-U-Boot stores its setup as environment variables. It's a list of
-key-value pairs stored on flash device with a custom header.
+On 11.06.22 22:22, Andy Shevchenko wrote:
+>
+> On Sat, Jun 11, 2022 at 4:00 PM Jakob Hauser <jahau@rocketmail.com> wrote:
+>>
+>> (Side note: There is something wrong with the Cc list in your e-mail,
+>> the list of addresses isn't handled correctly.)
+> 
+> The list is the same as in your mail. Dunno what exactly is the
+> problem you are referring to?
 
-This commit adds an NVMEM driver that:
-1. Provides NVMEM access to environment vars binary data
-2. Extracts variables as NVMEM cells
+It somehow got confused by the colon after "open list" and the tilde
+before "postmarketos". Everything in between got interpreted as the
+name/description of the postmarketos mailing list. Your first reply at
+2022-06-10 14:31 didn't make it to the devicetree list and likely not to
+Hans. Since then, these addresses show up twice in the thread, once for
+real and once still interpreted as name/description of the postmarketos
+mailing list.
 
-Current Linux's NVMEM sysfs API allows reading whole NVMEM data block.
-It can be used by user-space tools for reading U-Boot env vars block
-without the hassle of finding its location. Parsing will still need to
-be re-done there.
+The thread in the devicetree list:
+https://lore.kernel.org/linux-devicetree/CAHp75VfV1E1WaLVDG3V9460AsVxahb9Epod-63T35eDV+h8Ubg@mail.gmail.com/T/#t
 
-Kernel-parsed NVMEM cells can be read however by Linux drivers. This may
-be uesful for Ethernet drivers for reading device MAC address which is
-often stored as U-Boot env variable.
+On the patchset, I'll send v2 probably at Sunday or Monday.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V3: Use of_get_mtd_device_by_node() (thanks Ahmad) & update description
-V2: Drop ARCH_BCM4908 dependency as there are plenty architectures using
-    U-Boot bootloader. Thanks Srinivas.
-
-As noticed by Ahmad a missing NVMEM subsystem feature is user-space
-access to parsed NVMEM cells. That is something I started working on
-some time ago and I'm planning to get back to at some point, please
-check:
-[PATCH 2/2] nvmem: expose NVMEM cells in sysfs
-https://lore.kernel.org/lkml/20211220064730.28806-2-zajec5@gmail.com/
----
- MAINTAINERS                |   1 +
- drivers/nvmem/Kconfig      |  11 ++
- drivers/nvmem/Makefile     |   2 +
- drivers/nvmem/u-boot-env.c | 231 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 245 insertions(+)
- create mode 100644 drivers/nvmem/u-boot-env.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 475e28365385..43b427fa76b0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20411,6 +20411,7 @@ U-BOOT ENVIRONMENT VARIABLES
- M:	Rafał Miłecki <rafal@milecki.pl>
- S:	Maintained
- F:	Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-+F:	drivers/nvmem/u-boot-env.c
- 
- UACCE ACCELERATOR FRAMEWORK
- M:	Zhangfei Gao <zhangfei.gao@linaro.org>
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index d72d879a6d34..5f1b32b953b9 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -344,4 +344,15 @@ config NVMEM_APPLE_EFUSES
- 	  This driver can also be built as a module. If so, the module will
- 	  be called nvmem-apple-efuses.
- 
-+config NVMEM_U_BOOT_ENV
-+	tristate "U-Boot environment variables support"
-+	depends on OF && MTD
-+	select CRC32
-+	help
-+	  U-Boot stores its setup as environment variables. This driver adds
-+	  support for verifying & exporting such data. It also exposes variables
-+	  as NVMEM cells so they can be referenced by other drivers.
-+
-+	  If compiled as module it will be called nvmem_u-boot-env.
-+
- endif
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index c710b64f9fe4..399f9972d45b 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -69,3 +69,5 @@ obj-$(CONFIG_NVMEM_APPLE_EFUSES)	+= nvmem-apple-efuses.o
- nvmem-apple-efuses-y 		:= apple-efuses.o
- obj-$(CONFIG_MICROCHIP_OTPC)	+= nvmem-microchip-otpc.o
- nvmem-microchip-otpc-y		:= microchip-otpc.o
-+obj-$(CONFIG_NVMEM_U_BOOT_ENV)	+= nvmem_u-boot-env.o
-+nvmem_u-boot-env-y		:= u-boot-env.o
-diff --git a/drivers/nvmem/u-boot-env.c b/drivers/nvmem/u-boot-env.c
-new file mode 100644
-index 000000000000..92c2dd11d99f
---- /dev/null
-+++ b/drivers/nvmem/u-boot-env.c
-@@ -0,0 +1,231 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2022 Rafał Miłecki <rafal@milecki.pl>
-+ */
-+
-+#include <linux/crc32.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/mtd/mtd.h>
-+#include <linux/nvmem-consumer.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+enum u_boot_env_format {
-+	U_BOOT_FORMAT_SINGLE,
-+	U_BOOT_FORMAT_REDUNDANT,
-+};
-+
-+struct u_boot_env {
-+	struct device *dev;
-+	enum u_boot_env_format format;
-+
-+	/* Parent device */
-+	struct mtd_info *mtd;
-+	size_t offset;
-+	size_t size;
-+
-+	/* Cells */
-+	struct nvmem_cell_info *cells;
-+	int ncells;
-+};
-+
-+struct u_boot_env_image_single {
-+	__le32 crc32;
-+	uint8_t data[0];
-+} __packed;
-+
-+struct u_boot_env_image_redundant {
-+	__le32 crc32;
-+	u8 mark;
-+	uint8_t data[0];
-+} __packed;
-+
-+static int u_boot_env_read(void *context, unsigned int offset, void *val,
-+			   size_t bytes)
-+{
-+	struct u_boot_env *priv = context;
-+	struct device *dev = priv->dev;
-+	size_t bytes_read;
-+	int err;
-+
-+	err = mtd_read(priv->mtd, priv->offset + offset, bytes, &bytes_read, val);
-+	if (err && !mtd_is_bitflip(err)) {
-+		dev_err(dev, "Failed to read from mtd: %d\n", err);
-+		return err;
-+	}
-+
-+	if (bytes_read != bytes) {
-+		dev_err(dev, "Failed to read %zd bytes\n", bytes);
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
-+
-+static int u_boot_env_add_cells(struct u_boot_env *priv, uint8_t *buf,
-+				size_t data_offset, size_t data_len)
-+{
-+	struct device *dev = priv->dev;
-+	char *data = buf + data_offset;
-+	char *var, *value, *eq;
-+	int idx;
-+
-+	priv->ncells = 0;
-+	for (var = data; var < data + data_len && *var; var += strlen(var) + 1)
-+		priv->ncells++;
-+
-+	priv->cells = devm_kcalloc(dev, priv->ncells, sizeof(*priv->cells), GFP_KERNEL);
-+	if (!priv->cells)
-+		return -ENOMEM;
-+
-+	for (var = data, idx = 0;
-+	     var < data + data_len && *var;
-+	     var = value + strlen(value) + 1, idx++) {
-+		eq = strchr(var, '=');
-+		if (!eq)
-+			break;
-+		*eq = '\0';
-+		value = eq + 1;
-+
-+		priv->cells[idx].name = devm_kstrdup(dev, var, GFP_KERNEL);
-+		if (!priv->cells[idx].name)
-+			return -ENOMEM;
-+		priv->cells[idx].offset = data_offset + value - data;
-+		priv->cells[idx].bytes = strlen(value);
-+	}
-+
-+	if (WARN_ON(idx != priv->ncells))
-+		priv->ncells = idx;
-+
-+	return 0;
-+}
-+
-+static int u_boot_env_parse(struct u_boot_env *priv)
-+{
-+	struct device *dev = priv->dev;
-+	size_t crc32_data_offset;
-+	size_t crc32_data_len;
-+	size_t crc32_offset;
-+	size_t data_offset;
-+	size_t data_len;
-+	uint32_t crc32;
-+	uint32_t calc;
-+	size_t bytes;
-+	uint8_t *buf;
-+	int err;
-+
-+	buf = kcalloc(1, priv->size, GFP_KERNEL);
-+	if (!buf) {
-+		err = -ENOMEM;
-+		goto err_out;
-+	}
-+
-+	err = mtd_read(priv->mtd, priv->offset, priv->size, &bytes, buf);
-+	if ((err && !mtd_is_bitflip(err)) || bytes != priv->size) {
-+		dev_err(dev, "Failed to read from mtd: %d\n", err);
-+		goto err_kfree;
-+	}
-+
-+	switch (priv->format) {
-+	case U_BOOT_FORMAT_SINGLE:
-+		crc32_offset = offsetof(struct u_boot_env_image_single, crc32);
-+		crc32_data_offset = offsetof(struct u_boot_env_image_single, data);
-+		data_offset = offsetof(struct u_boot_env_image_single, data);
-+		break;
-+	case U_BOOT_FORMAT_REDUNDANT:
-+		crc32_offset = offsetof(struct u_boot_env_image_redundant, crc32);
-+		crc32_data_offset = offsetof(struct u_boot_env_image_redundant, mark);
-+		data_offset = offsetof(struct u_boot_env_image_redundant, data);
-+		break;
-+	}
-+	crc32 = le32_to_cpu(*(uint32_t *)(buf + crc32_offset));
-+	crc32_data_len = priv->size - crc32_data_offset;
-+	data_len = priv->size - data_offset;
-+
-+	calc = crc32(~0, buf + crc32_data_offset, crc32_data_len) ^ ~0L;
-+	if (calc != crc32) {
-+		dev_err(dev, "Invalid calculated CRC32: 0x%08x (expected: 0x%08x)\n", calc, crc32);
-+		err = -EINVAL;
-+		goto err_kfree;
-+	}
-+
-+	buf[priv->size - 1] = '\0';
-+	err = u_boot_env_add_cells(priv, buf, data_offset, data_len);
-+	if (err)
-+		dev_err(dev, "Failed to add cells: %d\n", err);
-+
-+err_kfree:
-+	kfree(buf);
-+err_out:
-+	return err;
-+}
-+
-+static const struct of_device_id u_boot_env_of_match_table[] = {
-+	{ .compatible = "u-boot,env", .data = (void *)U_BOOT_FORMAT_SINGLE, },
-+	{ .compatible = "u-boot,env-redundant-bool", .data = (void *)U_BOOT_FORMAT_REDUNDANT, },
-+	{ .compatible = "u-boot,env-redundant-count", .data = (void *)U_BOOT_FORMAT_REDUNDANT, },
-+	{},
-+};
-+
-+static int u_boot_env_probe(struct platform_device *pdev)
-+{
-+	struct nvmem_config config = {
-+		.name = "u-boot-env",
-+		.reg_read = u_boot_env_read,
-+	};
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	const struct of_device_id *of_id;
-+	struct u_boot_env *priv;
-+	int err;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+	priv->dev = dev;
-+
-+	of_id = of_match_device(u_boot_env_of_match_table, dev);
-+	if (!of_id)
-+		return -EINVAL;
-+	priv->format = (uintptr_t)of_id->data;
-+
-+	if (of_property_read_u32(np, "reg", (u32 *)&priv->offset) ||
-+	    of_property_read_u32_index(np, "reg", 1, (u32 *)&priv->size)) {
-+		dev_err(dev, "Failed to read \"reg\" property\n");
-+		return -EINVAL;
-+	}
-+
-+	priv->mtd = of_get_mtd_device_by_node(np->parent);
-+	if (IS_ERR(priv->mtd)) {
-+		dev_err(dev, "Failed to get %pOF MTD: %ld\n", np->parent, PTR_ERR(priv->mtd));
-+		return PTR_ERR(priv->mtd);
-+	}
-+
-+	err = u_boot_env_parse(priv);
-+	if (err)
-+		return err;
-+
-+	config.dev = dev;
-+	config.cells = priv->cells;
-+	config.ncells = priv->ncells;
-+	config.priv = priv;
-+	config.size = priv->size;
-+
-+	return PTR_ERR_OR_ZERO(devm_nvmem_register(dev, &config));
-+}
-+
-+static struct platform_driver u_boot_env_driver = {
-+	.probe = u_boot_env_probe,
-+	.driver = {
-+		.name = "u_boot_env",
-+		.of_match_table = u_boot_env_of_match_table,
-+	},
-+};
-+module_platform_driver(u_boot_env_driver);
-+
-+MODULE_AUTHOR("Rafał Miłecki");
-+MODULE_LICENSE("GPL");
-+MODULE_DEVICE_TABLE(of, u_boot_env_of_match_table);
--- 
-2.34.1
-
+Kind regards,
+Jakob
