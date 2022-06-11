@@ -2,182 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEE2754758A
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 16:16:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 135AC5475A1
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 16:30:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230379AbiFKOPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 10:15:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54594 "EHLO
+        id S233291AbiFKOar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 10:30:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232469AbiFKOOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 10:14:34 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80082.outbound.protection.outlook.com [40.107.8.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E598663CC;
-        Sat, 11 Jun 2022 07:14:23 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=naVHLAktfHOPpAhN1GnkMOu1vm7FNqau9XlYTjUbn0Llj3NacfRiG1b12kqkh8RQ+CDJVTAJ+LthPNj139sukUGvPhjaKl2Wt8uwttBheII/r62DO/G0rWTiSoRicfbc8JfxTOnYqkuBEnOtwvEVnxaiHlSiMaIB94Ddth1SckOQ8bFjNog0EioaaE0/SBsJkMkSdl0kZ9K2YtF/r7lkzKf0Uf/fbZ71qvrLjo4vWmHlWc6gVNCdXwfu++LedkPsvPcMAAFRkWEBleVhoioHSbpIp+Yhx5BlYEyMeJ9SNoP4/AjAf/Ge1Rh1ib+oPyKOwiqjv0+kflnAQc5p0v1hFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WtV/1O09gmCo6ebdaVoHXJHDZNvjIeOZqOMnUc4yXwU=;
- b=Fienni41feQGtzdQ2/EdceX+vqXfLnNdpk3vVHz0l7UQtmqoKOhO7M54OhS1tmwz1gHifcddQUZCR1Ux5L0Fv8zu7awFIzKvttJ2R4xRzsKBOO1tZ8DoMyXUs+Hmmbs7uxj0LO7fZpQjiMsXTNX7Ez62cGcyrY+H81vO6NWw9b7ZkLYqFym5GDMZz54wkeBhYhf3gK6ByeZwSX2rzUGPiEiRHGiimV3nyUm6SgE5MisEHwSWNZSiRXCTebSi/pkcjGGlDUC3AGvp5OoQYYfhH6dy62vIIUCgFcNzX8pgCJuY8cn55h/WogFyHHvYzyidsaYryajGCqBFJHrplJwhKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WtV/1O09gmCo6ebdaVoHXJHDZNvjIeOZqOMnUc4yXwU=;
- b=NGz4iNR3qZmFUDaLSjdzZeW/xXYeEfQ+W6VRxAiUdWDAR5FLLdC9us46HMNoSz4/mZtrOtVBLydhgftQPWTTeJF9PrecC1VoIxwvqxBEaeW1fetoWXD4B+lJSk3qPJwG6OCT+J896eE8BTRQmFTEkwr5ZRnfYaX3M6MQXSDDF5A=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by DB9PR04MB8249.eurprd04.prod.outlook.com (2603:10a6:10:25c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.16; Sat, 11 Jun
- 2022 14:14:21 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::3c82:f63b:711a:502]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::3c82:f63b:711a:502%7]) with mapi id 15.20.5332.016; Sat, 11 Jun 2022
- 14:14:21 +0000
-From:   Liu Ying <victor.liu@nxp.com>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, lee.jones@linaro.org, mchehab@kernel.org,
-        marcel.ziswiler@toradex.com
-Subject: [PATCH v9 14/14] MAINTAINERS: add maintainer for DRM bridge drivers for i.MX SoCs
-Date:   Sat, 11 Jun 2022 22:14:21 +0800
-Message-Id: <20220611141421.718743-15-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220611141421.718743-1-victor.liu@nxp.com>
-References: <20220611141421.718743-1-victor.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR03CA0118.apcprd03.prod.outlook.com
- (2603:1096:4:91::22) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+        with ESMTP id S230379AbiFKOar (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 10:30:47 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5A570921;
+        Sat, 11 Jun 2022 07:30:46 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id v14so1931322wra.5;
+        Sat, 11 Jun 2022 07:30:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=references:from:to:cc:subject:date:in-reply-to:message-id
+         :mime-version;
+        bh=sD6DZtzCxz1XGT4WP0KYWyA1V0wDI+6N4mhrYaf6wNc=;
+        b=gvnIOjt4Yjh2RWXfj+r3iQqN9qQzZO9jZpNw7iJIHm91kYhMWKpONFiQTuAQvAOEa9
+         xj0ctN5tFYk4q/kwtDS0XATZ4INKq21QyU6qFaxs6T6scR6NmA7obRyBBfhKZYP7xqZo
+         3r2SgAtYkpfE5Fsdf0Ny8Pn3+ISy3mEkEjUC79EdrKSdOaBRg+tpddnimAI7hwq/sUqD
+         gr0HkaG38EEiPAC49r48WgO2dAHX9iBqGWQau3VLaUUC7rF9f8WUuOmn2ksr6s0pfyG/
+         7+iFC5adxxx70Aa74xmp0D9+JirD5g1T/FdytE4AtUg8gm+D7GF606CbHASxiXA2UVxI
+         h8hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:references:from:to:cc:subject:date:in-reply-to
+         :message-id:mime-version;
+        bh=sD6DZtzCxz1XGT4WP0KYWyA1V0wDI+6N4mhrYaf6wNc=;
+        b=EjuDij0Ho1Tr3q8YvbisHHsJKyVvWA2aBbkV4z8+3V5tktoSEVgO8BLJnEmb4JlEpc
+         9QeZRJZfCB2Z8/uP93uwNOxspMkBDl7ER8iTS1ZhI9EH2VucTfHmqYcVVbllfIn8L5xx
+         uskn5koERzm0bTbS8T4+2gqtmf1hSYLjoa5lto0Wjk4xSWHZxQMEDD+M0wPi4rKtPSdQ
+         9EOKrDcqISpXk6T5Bq5hH5ULJY8QCeSh98UfyrSFuzxQpVqNo+RzDvFt6S1WMV99jwj5
+         P9jEYcmjHeApvKzCQTD76kPjjNlPoNctMTdBRnh1isZuehoKcWPG09W9cIN1L+gJ1WUN
+         quPQ==
+X-Gm-Message-State: AOAM530o7psdCxWcPp6+oa+RB2TLZQ8quNaFv99yLR9yzb0C6BFdy6Yb
+        ckb/K2OoThCCyiDssMPVcoc=
+X-Google-Smtp-Source: ABdhPJzBEpGcZhzolH3y0re0vAoAh7rSVG7272hENxhaAsPczjmKCuMzU2JQfTQY0ee/wUwmBvQHuQ==
+X-Received: by 2002:a5d:5885:0:b0:218:3d12:e0eb with SMTP id n5-20020a5d5885000000b002183d12e0ebmr32847579wrf.510.1654957844444;
+        Sat, 11 Jun 2022 07:30:44 -0700 (PDT)
+Received: from localhost (92.40.203.182.threembb.co.uk. [92.40.203.182])
+        by smtp.gmail.com with ESMTPSA id h12-20020a05600c2cac00b003942a244f40sm7233181wmc.25.2022.06.11.07.30.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Jun 2022 07:30:43 -0700 (PDT)
+References: <20220607155324.118102-1-aidanmacdonald.0x0@gmail.com>
+ <20220607155324.118102-3-aidanmacdonald.0x0@gmail.com>
+ <YqDLflKTsYaupArl@sirena.org.uk>
+ <6YJcC5wyOg6x6Ny4Os8ujFbK2qB4alkU@localhost>
+ <YqN1iTyyiRx4/CMf@sirena.org.uk>
+From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wens@csie.org, jic23@kernel.org,
+        lee.jones@linaro.org, sre@kernel.org, gregkh@linuxfoundation.org,
+        lgirdwood@gmail.com, lars@metafoo.de, rafael@kernel.org,
+        quic_gurus@quicinc.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 02/17] regmap-irq: Add get_irq_reg to support unusual
+ register layouts
+Date:   Sat, 11 Jun 2022 15:22:30 +0100
+In-reply-to: <YqN1iTyyiRx4/CMf@sirena.org.uk>
+Message-ID: <xU4ZOVJZM7e2sDSZJ2mAJIBPI1teACp7@localhost>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d9150547-4bcb-47fe-2102-08da4bb4ae26
-X-MS-TrafficTypeDiagnostic: DB9PR04MB8249:EE_
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-Microsoft-Antispam-PRVS: <DB9PR04MB8249E3B91E0EF04B623BC51A98A99@DB9PR04MB8249.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CF50Ud+phQMNjHnTn0+8ylRsIdzzR5Fj1QJf5KZ6t74qSgZnLH4fpjvAtquHZ9VSR7Rc62TZDuw7HCFm0FpLnwfokW6N3VXpHvUKVSqLEFdB/kYD9NK4su/kZTo4LUUXHsw/yHxQa3AnhdI27ARBQZNtzT7q0Upw8PupgEK4z0COsNOymmtgiA90Pk1mmCdQdiu0BBPb25aSn/OVguIfwIVgFuhhOdZebMOELDoK4BEFvir1raSvRLtDJTtea1e8u9WhbhWoVFUiY+NKgUorATe2hWrPL81WzP3IYcFZgxvw/F1jfufB6NZiX3bl55oTaYFVgBIbrUxTKz4tLURorRfeRqCBC1+MBVZYikgO0UXU+1ENYWvZHU9sRPK8AlFV9uD3DBFIA7/Qgb0gxhb5eAP+klHqkxTPwAWGSp6uf9D5a+iqbfKBqg6ZmuZl/JP2xv3DUDNwN6Y4CfLr6nkejEIvmkr+LuF2Tdcog9xjn7eBS0S5K0qwpCHf8oqA6Ufk+s1EQdOwEzfX9duZDw6qHatBTXslxxnuBzkCXQkGyPoiDXcBV8JuLyk+/I/Gaw4PfbblFChIZB8w9+ZCXypIa/XcZRMIAbc8TdwCPblKBq0WxaCK9vypCs6CrrvVGyJonN5xI+Q4qPuOl/41jHORM1wRCCnzAOT19/Ho9m7EGhLRMPe8ZsR8KbZA9Z8HC7nkUmf0eQm1XS0K707z1cfvxQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(6029001)(4636009)(366004)(26005)(6512007)(38100700002)(38350700002)(86362001)(186003)(1076003)(2616005)(8936002)(316002)(5660300002)(66946007)(66556008)(66476007)(4326008)(8676002)(36756003)(7416002)(2906002)(508600001)(6486002)(6506007)(52116002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KftyKW1QiwHh75Lv4fu/vW5Ny6eRT6AWPnZom9EjAR/pgWPXbfhZBmySdz7y?=
- =?us-ascii?Q?lo0PclYxB0MYprYn257UghmL5Wp2FKnvNE1rnzsmHJBHBTpLQRpi3LpwVsj9?=
- =?us-ascii?Q?OzcWMVCcSbmAxBlfunZlkdCrsi5vVfMnkQ/729VOIRGJx+D4qYUbrsx6R978?=
- =?us-ascii?Q?F72IOF5jE9ZfP+HOjKmwWGGP12CXUBa/aqGmPou3Ra0Jl9rApcfpLtpsRt7I?=
- =?us-ascii?Q?680V7Tuu8lQTydlo/cqZxqRCbfmwCnJ/wY8Hm8innlmkXkvVSe4RWeatO2A3?=
- =?us-ascii?Q?aAcs+3E18UDsEr/XGwpwe4Hr9ZZaQv+6AA1I69s7EWr2lcPC4WQuvCe0MNye?=
- =?us-ascii?Q?U7uJTXYf6UqqHmlJlpeQfnBoiLCCYBcWmJDYzUOmv+I7BhCMu8Z6kOp1MjR0?=
- =?us-ascii?Q?xV21GqOScCRl3rPrc9bXW1PNOn1TBhRtNwqh2KT0wj9X/Rmgj7ddEvQIx45W?=
- =?us-ascii?Q?KFsrigkn2v8pfTfwu65HOQd1C+kImkA0i9e9bK/VN2JqaeUlY1W9gehgKhZQ?=
- =?us-ascii?Q?0NehuBF09iiamdq/UrmuOuhfK7GQIWC+Jci9aO37ZQhe5xFfPYk9p0jXITli?=
- =?us-ascii?Q?LgY5G/WITPCd8Q1QU5AZmatz0VPkUYlB42g86JrVEJI/KYUGMTFnytfwvPYJ?=
- =?us-ascii?Q?42rLYBIEbrT0/xtHGdZpCi9WMTFD+z9j4KXknLnCTpZWTEOQFiMxemgRZITU?=
- =?us-ascii?Q?QfU9/LaNes+ZnPRE3DZxjC+LqQUlp+riDENoV5y6fl9TfOL8qCJ4aoMPX4We?=
- =?us-ascii?Q?xZJRm0+fQjagMiDxbSajTe5OLTcg5gSfPzF7vvaMQpu7xfHHCJ/Y6Wd1jf+O?=
- =?us-ascii?Q?r2suOxP3PZFxSMU5SFV7NXZQ9q6TzzddVYVcTr/oXzbbdFz3huBtR73L6Sa1?=
- =?us-ascii?Q?lGVXAsC72MbEcol9d/RBGkL5qeMuFjGvqSmgPJMXFjJX1L55GESD0z1KPcjC?=
- =?us-ascii?Q?XUcH+Tz50z46wIGrJ3AVrGgpgR9QwVnMbEUuYtb8SxoX6QwRkRq7P4BHYc1E?=
- =?us-ascii?Q?9sqjl/38K5qelpSh6daFfTxMvXRuR+gDEVAICLAIKMYDD2+Oql69oAUHAY0Y?=
- =?us-ascii?Q?twFz/JUGG2oYmrzaZNMYS4ZM4EmmH2/+3VJzw/rtaUI2QX3I7rnW/xlnm5Du?=
- =?us-ascii?Q?tJe3SQw1oFRTXH1YsrVehglwOPehRT3LVNp6l7NpT/bkSjzyhePg+pS1uIEl?=
- =?us-ascii?Q?T/hE7IiL2goTzTidMgBvgZavdjbjRhqSo7j53oB7O/4oiosvZ5r8Ag/gpFvX?=
- =?us-ascii?Q?qk1trZdCjWCQaQKdyBdMuh9L9HKbprtXWnWgVOF8UB5XLfXiy+iPmCgjupfI?=
- =?us-ascii?Q?WU6D1XIcDx9sOI3Wskhu3jvIX2l2iwf99dokYY631eonEa18aMGnXlf5NGYE?=
- =?us-ascii?Q?KZ/wU0uP0dSuV4QtUdAGzVNSD2xExu1Sn/HgilWxuIcFjbZJz0gwqkje2BAK?=
- =?us-ascii?Q?p3nMqdwmQ845xdaMs2RKyZC9DJvmL4K9K7ImQD9bKhrJy8nj9DKLsuPrkP/L?=
- =?us-ascii?Q?wcs+NnO1nTqGlNizwlXck90spFIuMwc64GSybXxSM/XWVuQcWJkF/kHUrhSX?=
- =?us-ascii?Q?xIgG0RezHqGXFQQzDq/b1O0Z3VfehrI/fBS7dSSd057A//B99uB7y+mw1+aH?=
- =?us-ascii?Q?SI1FhVa9kAmQsLTjew0pJUMigprrtLP036Ioeh9+Um9YFTXeG5Als2WcNVbl?=
- =?us-ascii?Q?dyKdO4jnfj4z/Ir9m7MoRHa4ryH2Pyu4VDypsyseO1Jrimm37s3iqDdu0cEU?=
- =?us-ascii?Q?FmH75LsuzQ=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9150547-4bcb-47fe-2102-08da4bb4ae26
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2022 14:14:21.6933
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: y5copZBv9C1EP+LY8IAN8mCuZlcHTvENtFz+htUatX1WmB5Au5BgnrIMWRtRiuXfXDzaN9hOYTxW5uoiWLJ8FA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8249
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as the maintainer of DRM bridge drivers for i.MX SoCs.
 
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
-v8->v9:
-* No change.
+Mark Brown <broonie@kernel.org> writes:
 
-v7->v8:
-* No change.
+> On Fri, Jun 10, 2022 at 04:40:20PM +0100, Aidan MacDonald wrote:
+>> Mark Brown <broonie@kernel.org> writes:
+>> > On Tue, Jun 07, 2022 at 04:53:09PM +0100, Aidan MacDonald wrote:
+>
+>> >> -	if (!chip->sub_reg_offsets || !chip->not_fixed_stride) {
+>> >> +	if (chip->get_irq_reg) {
+>> >> +		reg = chip->get_irq_reg(base_reg, i);
+>> >> +	} else if (!chip->sub_reg_offsets || !chip->not_fixed_stride) {
+>
+>> > It seems like it would be cleaner and clearer to refactor things so that
+>> > we always have a get_irq_reg() with standard chips getting given a
+>> > default implementation which implements the current behaviour.
+>
+>> I don't think that is a good way to clean things up. I only intended
+>> get_irq_reg() to be a quick hack to solve a problem; in my opinion it
+>> would be a poor abstraction to base the API around.
+>
+> I'm not sure why you are proposing this change if you are so convinced
+> it's a bad idea.  If you want to propose a different rework go ahead,
+> but adding the new operation without any form of factoring out is an
+> issue.  At first glance your suggestion looked plausible.
 
-v6->v7:
-* Add Robert's R-b tag.
+This patch isn't a refactor and I don't think it's a bad idea when
+viewed as minimal solution to a problem, which was my intention.
+I just think it wouldn't be a good abstraction to refactor around.
+Thanks for your input anyhow.
 
-v5->v6:
-* No change.
-
-v4->v5:
-* No change.
-
-v3->v4:
-* No change.
-
-v2->v3:
-* No change.
-
-v1->v2:
-* No change.
-
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a6d3bd9d2a8d..033d4e8b838b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6654,6 +6654,16 @@ F:	Documentation/devicetree/bindings/display/imx/
- F:	drivers/gpu/drm/imx/
- F:	drivers/gpu/ipu-v3/
- 
-+DRM DRIVERS FOR FREESCALE IMX BRIDGE
-+M:	Liu Ying <victor.liu@nxp.com>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-ldb.yaml
-+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-combiner.yaml
-+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pixel-link.yaml
-+F:	Documentation/devicetree/bindings/display/bridge/fsl,imx8qxp-pxl2dpi.yaml
-+F:	drivers/gpu/drm/bridge/imx/
-+
- DRM DRIVERS FOR GMA500 (Poulsbo, Moorestown and derivative chipsets)
- M:	Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
- L:	dri-devel@lists.freedesktop.org
--- 
-2.25.1
-
+Just as a heads up, I'll be resending these regmap-irq patches in v3
+so the series stays self-contained while I work on refactoring. Feel
+free to ignore them if you don't want to take them.
