@@ -2,125 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 120F9547065
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 02:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B19675470A9
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 02:49:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344017AbiFJX5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 19:57:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44194 "EHLO
+        id S1349139AbiFKAoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 20:44:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235486AbiFJX5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 19:57:46 -0400
-Received: from sonic313-21.consmr.mail.ir2.yahoo.com (sonic313-21.consmr.mail.ir2.yahoo.com [77.238.179.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8041915FC
-        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 16:57:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1654905461; bh=jCSiTkteS74dgbk0AXaRNqgIGulLOepyzxTVr+DcRg0=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=a88z3pwaCD3ajFid7ocafw/OnN0H2lCUIt5UBCV/ErEj/SsAxbBZHiqHDI6IRYKLO8R2UXosRkdmAMPPQws0Im5ysosDKOW241HPbukgpYlLf0/vc/ZZ/4E9tWzQeu7xWx8j62LUuNg4WCE7IQrACT0KRfrKe1GWqL8CbRYKROsIR/QMcjCIl2TS/IxpLlyF2o7inSQ6VawWuCCQPvWXKVAteMu/DwNZLMeh3zKNucDJtvElNMHuQjxDOX5t+7LaYKG2GykEw5B54dMxmorG0SuosRGh4e31fwaPsPbfT4I6eNamuU1b9Mwc02aCPq/MEpkan0B1XXUXkGYLX3oVzg==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1654905461; bh=hKeqn3Loq9Ygb16ecHr2nQ7HIzLyLrIwCG6E/v1AJUK=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=IW5sOm27NMuuV/H1xJvQY1oV0rsBZ2d0GC/sS3etxhd0ppJ0veRGSPJRkfQYZHM4MflaTQZSSOPFHmsZUWaWqgQ8QKG4ihtfeTVAIBX6Sfj6hd+wchzx+Js2PkzaBqMlOn+7oMKXfIaCjnf4wfnBbVqAE8qOn5r/kBp/MR4DpEOfv18I8bUjF8wHbGqr3+qvGdPSvxY/ZpHEIjOSP4FDi/IkSN3dmV8rjbGoqBW/ZeVrM7gIUaIB5V7DDjh7h9bnO1R+T1ma2qkoTx7b8IARP3vHzbWywg93qRv8R7yMLbqXqWgF9jVqi85gsEO502/3Eh1coZZlKBTRpDluJBAq0Q==
-X-YMail-OSG: RvnHKIMVM1mpV7QeNMEkO9sapo1pi9N.XdH1hnUHFwHnBjP4cA3CejeLmBOLUJX
- xgib.1D23Bm.1Ua6HxvtOOeWFobNRSxfzoJKfisGa2U7bhdNNePqd.opB1KV7f_bs1inweVd5xaX
- AYYDjGU429ijhizjnRmC6c_LxcidWgLbDAgBYT3RmV6_QsnR6YNtQcC3Hi.f6vQrb4p9eOQw.ceL
- kAO4CGF7ic1CgIwYp8NUtxIPLcFib_iL0OIpREGa3ux_EAToOUfNF08TTUKKg9p2Q4g0D4fuNwcm
- oJpEDLVEAochxawEyWebueM_52mtli4ND3iGlvqv90si1Wz2rYVDRYxLDFalqy8i5wd5vt2BnNlu
- qTWlk3krv_4Bdgl9T5cvd9IYYaiZymBwPJwJqbjG_FPaijJkoHtY7RvUqM_z1wVfOejM30rq477q
- ockUlKerdtUhPwxGxTvS8p9Da3X9GkASucDy86NFH2.vsIIeZhH1RmxTOOsWx0aPaOBkmswuG2J2
- J5nLD13qdYp0JbomL09xJnOX9_kvP3JmJQ7UxWkxKnT1JcRxnFFulWvQ3YY_RQlocmwTYb1QGMxH
- nMd.RFLI7g.VBdZvG75_0WwTjPvMneWvY8z2crR_dtRA8i8hQeZRFxmK0HqdmZDDXBwRLljQyhcy
- hVgZk5juYLDCpCZtjL87Riuk5icuX7uqFW4wb9XnbKr0AdFoYHIi6abUqSUBi7Vx7jqRaNcNvlck
- DCopTHPPp3voJGCHPzYwx3MFf00hiAqPs4jft.WjaaDFgCHZTKff.4JEThNLfvligzCb.FAtmQKs
- podWpkGI7AL4zFG6kYbc3VuAaezDvXmmlH0IL2o8IoSkE7ye5.U0KG4zp6WT4cTbzZDqt.7delp0
- 8g3ZTVT2.0EvNcZnuuk3vfEqRVex6peWftjWu5CkWn56GvGV4gPXNSgC4q_.iGsrk1VetMC.fxPJ
- 8t9TaGoKPP7FTXiCypiuARpFcDQVqDi0CEeOZb0BIAYXXRV0NJyaZhMkctiOrWDZj0Og6o778aYq
- 3gJ0KuzhagNHSEEPysD5rgsWFhnIIPX02HdPXdovrdST1Ykw18Vh6PBgdEMSw3Na5BWYj1RqiPhG
- vVPHLPE5Fw10ejt.Ep.ARnx9Q2xZLBAdIfirx02aC7vtaHsE9H93n5aeF8vmbwzg8R2slbvxLx8R
- GBMeqHAAz8on8T4z4WfcwI3UmqcCiqSlg2wlRcpPWTHoEBogK__Ejs4Jaz2zFI24MyCSQu4ZjsNd
- EtLiw_Fh3GLPrxKEP7VTmrfm1zD2P9LdFBBnnXJulNHS87kEUh7dS0iM5zkE7H8YuEkFBk8xnJ45
- xQdr_vvhqPPsiSPjY.bpSxxOMAbtSFV65hyBwig8N4iMIhfSknZzxLvsyOArbfCEN7P3LBpsMj0T
- O2CgZRa5sOAIM1QA.LRKBUligsrShfT6v.coWKZ4goSXtFvqa_zbvLr3QHehmlCMrMUHTUvt2BHz
- pmeMJQ_G50wppoWIydzBLNIuA.mEImjRTUJ5qPu8kk09MyknJjxXjt6WGa30Cc_8mb2ZYii_eOqP
- iOfzxv6WJPHkp4sqKAGlLpscsMnXrlHGWUTeBUMhv3..3aYF0Z0HR6e6fKfY6wQ0SMai3qolN7S6
- Am2rA1HJ4xnvAPWgVNmK8oBUGlbw0MIvCirURz_oq9zEOiex40.ij4HT3012ZL4k9zxpIb1HE.Wd
- Cp_FKBfKH6rN74kf7PN2M1553oM.7lcijeSjQ66xXX9psZ2DrkhhllUrqWoiH3hiHN9pQTIDjsWy
- AqdbNIUspCjdcwNF3YfWlae9rsQWNbxf_Th85Dd8eAUswKXaSB.H2F51rdbNGfNscIn0iTZtCbvg
- hRO4AkfwwQLBKmlhZGSPCqsxHNj1T4ZyVWhHwrKSzwkR_lLSNYnY9_ujcVdsjJk_X5FQ8e6pTrhD
- Vc._4Ii9CUSzHdLK8NtH8eu_PAxESRudT5e1gA.YcpwKVLAA7cIO9El343l0fnG0Cqw0sLJhz_P4
- g8u_htAyXrqFZ7PlxExX6JHJd8RLjjw64wXKLrj0rDV_ciWHP1sbgx4ekuA2U04RbQuyihtyD1YI
- K0ToxR1aCoESlpnbH5fwzxSGfrUo3hs0AS.EZ8cHKuzB0JOYnuwU3GLEnHhQQt5uGXrXlp5o9VrY
- UUFhI217wWbtBaU4ZrgWKsEltcdcVKCh0o9hfmO._opBOF4aBEDWzDAUPTqlQs_K_my3DQL6gBDD
- puA00hv1V4hJXNCqSKN5PX_W2qoGwYwWljbJ6i9v3TsDL444v20pq46_dCJEJVBwUV579XIwSX2g
- PeGaabb22
-X-Sonic-MF: <jahau@rocketmail.com>
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.ir2.yahoo.com with HTTP; Fri, 10 Jun 2022 23:57:41 +0000
-Received: by hermes--canary-production-ir2-6c7595c778-tbh7g (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 3e776e23ce8b870e9d67beb9592e399d;
-          Fri, 10 Jun 2022 23:57:39 +0000 (UTC)
-Message-ID: <6ac31983-698c-5333-da4b-4f562c47afc7@rocketmail.com>
-Date:   Sat, 11 Jun 2022 01:57:38 +0200
+        with ESMTP id S1348466AbiFKAoL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 20:44:11 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79BFB159041;
+        Fri, 10 Jun 2022 17:44:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1654908245; x=1686444245;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version;
+  bh=GB3rD0cS1dhesN9NzNvYVMtweKSpBXnL0eX3OEeypHk=;
+  b=na6DZ7dB/RHFa3j43upfixrSLoU64prJvzkrsBGy5anij2FKKfMEaC1H
+   fYDHZeVUFMy2652G3894acLIMt/5cV8oVm4SD/Zm7I7Ym66uRKxy5HpVv
+   Uej43zaxlujdSZwBf66eaQU8eX+AGGHPRKRLGtjWV/ky/2gITgj5JYJUd
+   Y=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 10 Jun 2022 17:44:05 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 17:44:04 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 10 Jun 2022 17:44:03 -0700
+Received: from jinlmao-gv.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 10 Jun 2022 17:43:58 -0700
+From:   Mao Jinlong <quic_jinlmao@quicinc.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Mao Jinlong <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        "Tao Zhang" <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Hao Zhang" <quic_hazha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>
+Subject: [PATCH v10 03/10] dt-bindings: arm: Adds CoreSight TPDM hardware definitions
+Date:   Sat, 11 Jun 2022 08:43:24 +0800
+Message-ID: <20220611004331.7343-4-quic_jinlmao@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220611004331.7343-1-quic_jinlmao@quicinc.com>
+References: <20220611004331.7343-1-quic_jinlmao@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 7/7] iio: magnetometer: yas530: Add YAS537 variant
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        phone-devel@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1654727058.git.jahau@rocketmail.com>
- <a914ca0ea6f0149cd2941d60ae6fa2f49927f66a.1654727058.git.jahau@rocketmail.com>
- <CAHp75Vdg2i8NjrFn5gtKBKNbYrWd49nq31Exy=4K2RsxHeQ1hw@mail.gmail.com>
-From:   Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <CAHp75Vdg2i8NjrFn5gtKBKNbYrWd49nq31Exy=4K2RsxHeQ1hw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.20280 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Adds new coresight-tpdm.yaml file describing the bindings required
+to define tpdm in the device trees.
 
-On 10.06.22 16:31, Andy Shevchenko wrote:
-> I understand that Linus knows well this code and may review this, but
-> can you please split register renaming (at least, maybe something else
-> can be split as well as preparatory change) to the separate patch?
+Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+Reviewed-by: Mike Leach <mike.leach@linaro.org>
+Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+---
+ .../bindings/arm/qcom,coresight-tpdm.yaml     | 93 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 94 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
 
-That makes sense, I'll move the renaming into a separate patch.
+diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+new file mode 100644
+index 000000000000..5881cb41da70
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/qcom,coresight-tpdm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Trace, Profiling and Diagnostics Monitor - TPDM
++
++description: |
++  The TPDM or Monitor serves as data collection component for various dataset
++  types specified in the QPMDA spec. It covers Implementation defined ((ImplDef),
++  Basic Counts (BC), Tenure Counts (TC), Continuous Multi-Bit (CMB), and Discrete
++  Single Bit (DSB). It performs data collection in the data producing clock
++  domain and transfers it to the data collection time domain, generally ATB
++  clock domain.
++
++  The primary use case of the TPDM is to collect data from different data
++  sources and send it to a TPDA for packetization, timestamping, and funneling.
++
++maintainers:
++  - Mao Jinlong <quic_jinlmao@quicinc.com>
++  - Tao Zhang <quic_taozha@quicinc.com>
++
++# Need a custom select here or 'arm,primecell' will match on lots of nodes
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - qcom,coresight-tpdm
++  required:
++    - compatible
++
++properties:
++  $nodename:
++    pattern: "^tpdm(@[0-9a-f]+)$"
++  compatible:
++    items:
++      - const: qcom,coresight-tpdm
++      - const: arm,primecell
++
++  reg:
++    minItems: 1
++    maxItems: 2
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: apb_pclk
++
++  out-ports:
++    description: |
++      Output connections from the TPDM to coresight funnel/TPDA.
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port:
++        description: Output connection from the TPDM to coresight
++            funnel/TPDA.
++        $ref: /schemas/graph.yaml#/properties/port
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  # minimum TPDM definition. TPDM connect to coresight TPDA.
++  - |
++    tpdm@684c000 {
++      compatible = "qcom,coresight-tpdm", "arm,primecell";
++      reg = <0x0684c000 0x1000>;
++
++      clocks = <&aoss_qmp>;
++      clock-names = "apb_pclk";
++
++      out-ports {
++        port {
++          tpdm_prng_out_tpda_qdss: endpoint {
++            remote-endpoint =
++              <&tpda_qdss_in_tpdm_prng>;
++          };
++        };
++      };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index b85ee59e808b..e6a8dc714af7 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1979,6 +1979,7 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/coresight/linux.git
+ F:	Documentation/ABI/testing/sysfs-bus-coresight-devices-*
+ F:	Documentation/devicetree/bindings/arm/coresight-cpu-debug.txt
+ F:	Documentation/devicetree/bindings/arm/coresight-cti.yaml
++F:	Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+ F:	Documentation/devicetree/bindings/arm/coresight.txt
+ F:	Documentation/devicetree/bindings/arm/ete.yaml
+ F:	Documentation/devicetree/bindings/arm/trbe.yaml
+-- 
+2.17.1
 
->> +                               regmap_read(yas5xx->map, i, &val);
->> +                               dev_dbg(yas5xx->dev, "register 0x%02x: %u\n",
->> +                                       i, val);
-> 
-> Please, drop all these value reads/writes debug messages, they are
-> quite expensive (by resource consuming), noisy (may spam logs), and
-> most important duplicative. regmap API has tracepoints, use them!
-> 
-> Perhaps it would require an additional patch to clean this up, if
-> anything like this is present in the current code base..
-
-Ok, I'll remove those direct regmap reads in yas537_dump_calibration().
-
-However, I'd like to keep the others. The calibration data is dumped
-before [1] and after [2] being processed by the driver. This is helpful
-to check if it was processed correctly. Dumping the data is done only
-once at probing.
-
-In yas537_dump_calibration(), I'd also like to keep dumping the
-"hard_offsets". Currently there is no linearization formula known for
-YAS537. Providing the "hard_offsets" may help to find a way.
-
-[1]
-https://github.com/torvalds/linux/blob/v5.18/drivers/iio/magnetometer/yamaha-yas530.c#L592
-[2]
-https://github.com/torvalds/linux/blob/v5.18/drivers/iio/magnetometer/yamaha-yas530.c#L678-L699
-
-Kind regards,
-Jakob
