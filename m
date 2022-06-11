@@ -2,55 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED51E547240
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 07:44:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F31554724E
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 08:16:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345226AbiFKFoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 01:44:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45664 "EHLO
+        id S229497AbiFKGPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 02:15:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbiFKFoN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 01:44:13 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6533110E;
-        Fri, 10 Jun 2022 22:44:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 6E3ADCE39A2;
-        Sat, 11 Jun 2022 05:44:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 516A0C34116;
-        Sat, 11 Jun 2022 05:44:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654926248;
-        bh=bNJ/EL0jamyP3ajtQm3Cp8mZ0bWZwskKQfExHfBnmMU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=B2yosn8uvfbrKAOZHzdoOpCDU8RmlYKVMSplAT7FxaoouqYZBeX72btIDo8UKNNSu
-         wNxSWs6XantGFr2v7xV58Um8FlKs3pL0GIyHua2DdhDGAwBKFR4bE3DlCf2XqsGsPL
-         64AC++OcwLstXPPY3y/IrCheS1L7XD1/u8r/41JNz04b/jR1n/YTbPXlCWLDDLtJRU
-         Q2vjGZuFZkyVB5+sV53NwK3L7xYdp1fznIr7h0zxYyVFTnhCMRl5gF9IgBZNP9NOQZ
-         2Z2/qCMTFs2lSiMYLf2Plt5j6ojSdSuEVcc/2yyw8FyKH9Kf9uQ/7NeI1yJyCQma53
-         hMmSQTtRMon2g==
-Date:   Fri, 10 Jun 2022 22:44:07 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
-Cc:     Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v2 0/6] Configurable VLAN mode for NCSI driver
-Message-ID: <20220610224407.4e58dc5a@kernel.org>
-In-Reply-To: <6f067302-74a8-702f-bf38-4477a805a528@linux.intel.com>
-References: <20220610165940.2326777-1-jiaqing.zhao@linux.intel.com>
-        <20220610130903.0386c0d9@kernel.org>
-        <3c9fa928-f416-3526-be23-12644d18db3b@linux.intel.com>
-        <20220610214506.74c3f89c@kernel.org>
-        <6f067302-74a8-702f-bf38-4477a805a528@linux.intel.com>
+        with ESMTP id S229566AbiFKGPy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 02:15:54 -0400
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2559B2F
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 23:15:52 -0700 (PDT)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-fb6b4da1dfso1869344fac.4
+        for <devicetree@vger.kernel.org>; Fri, 10 Jun 2022 23:15:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to;
+        bh=VTKjR9J4dzoae+YBRke5SnGRPApYN87UxusBPdbF2KE=;
+        b=AnUXfulXmU8MEv3PEde7hHyZIHBZMs7O2D5TI9BR3ZytKSqULoVY2tB2B/G/cSaRuh
+         d25qEB69gWtDjyWLoPWKupuqsX9GEuT26cLSqiZS+nATU15Yy6mfK3bzUK5DkFoDlKTV
+         GWWsHUpvRkIK6WxmiZiTF07JFDFKQxcmxOqlk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to;
+        bh=VTKjR9J4dzoae+YBRke5SnGRPApYN87UxusBPdbF2KE=;
+        b=bn4Gaf4iPgHyFxJPNuoPdxv5P5oSKSrYtHay5kKha7fk/ObbG1Lo31PhCMP5XPRaKe
+         qsoM2jhvMCgBpmmMEUDgKZvHKU1IQ5V9CiH4UYmv1iueIB3leoqASZBZP2XiAv5AYR7e
+         RwJBYgAl2TI8dcLd/0d5UhXWUS4OqA0nLRAhB76Z4sMM2keV/jDnDvp6wQK6egfK2CX1
+         3ghjBO2nMQ1wtZq10FxWZc+NOJNZEI6zCOF6fhZNRQVLci5lMiykegGbQoANmIxjB5XQ
+         HHLWMI5SIOm6q8XNb7TuVTtL3x1WmjKC5Zyj26hGvK3u9YJt6PiCqvPnnhjLx+A1334i
+         h0fw==
+X-Gm-Message-State: AOAM531TiRV5F4dEe1NK21zR5SyISDjibgXe3SZwWytVad41rIE5iUr8
+        fU7zmMZRw4vIR/bQyPd8b1CtOzNzTU5rksBPja3Dng==
+X-Google-Smtp-Source: ABdhPJzbNfqQrErnPRd5zH8RtCVRU6bbLe/df5ml8E2KvzxEVk7l2sxNN9+pKPB5imCFCS9iZUpgVfe3ss32nRzIhGo=
+X-Received: by 2002:a05:6870:b381:b0:fe:2004:b3b5 with SMTP id
+ w1-20020a056870b38100b000fe2004b3b5mr1882765oap.63.1654928151857; Fri, 10 Jun
+ 2022 23:15:51 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 10 Jun 2022 23:15:51 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <1654921357-16400-2-git-send-email-quic_srivasam@quicinc.com>
+References: <1654921357-16400-1-git-send-email-quic_srivasam@quicinc.com> <1654921357-16400-2-git-send-email-quic_srivasam@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Fri, 10 Jun 2022 23:15:51 -0700
+Message-ID: <CAE-0n50k1TeE_JaZ7jT7n3QzHsF9f+pE57mRC9PeBgsNPtOtbw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: sc7280: Add boolean
+ param for ADSP bypass platforms
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@quicinc.com, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, lgirdwood@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz,
+        quic_plai@quicinc.com, quic_rohkumar@quicinc.com,
+        robh+dt@kernel.org, srinivas.kandagatla@linaro.org, tiwai@suse.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,31 +73,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 11 Jun 2022 13:18:51 +0800 Jiaqing Zhao wrote:
-> All ncsi devices uses the same driver as they uses same command set,
-> so the driver doesn't know what modes are supported. And in current
-> driver, the vlan related parameters are configured when registering
-> the device, adding an ncsi-netlink command to do so seems to be
-> unsuitable.
+Quoting Srinivasa Rao Mandadapu (2022-06-10 21:22:36)
+> Add boolean param qcom,adsp-bypass-mode to support adsp bypassed sc7280
+> platforms. Which is required to make clock voting as optional for ADSP
+> bypass platforms.
+>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> ---
 
-Maybe you could draw a diagram? NC-SI is a bit confusing.
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-> And adding a netlink command requires extra application in userspace
-> to switch the mode. In my opinion, it would be more user-friendly to
-> make it usable on boot.
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+> index d32ee32..33d1d37 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+> @@ -19,6 +19,11 @@ properties:
+>    compatible:
+>      const: qcom,sc7280-lpass-lpi-pinctrl
+>
+> +  qcom,adsp-bypass-mode:
+> +    description:
+> +      Tells ADSP is in bypass mode.
 
-Unfortunately convenience is not reason to start adding system config
-into DT.
-
-> Netdev also does not work as the ncsi device itself does not have
-> its own netdev, the netdev comes from the mac device. For different
-> vlan modes, the netdev feature set of its parent mac device are the
-> same.
-
-You say that, yet the command handling already takes into account the
-VLAN list:
-
-	if (list_empty(&ndp->vlan_vids)) {
-
-which come from the MAC netdev. What's wrong with setting the filtering
-mode based on NETIF_F_HW_VLAN_CTAG_FILTER ?
+Doubt "Tells" is required, but OK.
