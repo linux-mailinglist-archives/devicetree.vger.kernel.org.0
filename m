@@ -2,62 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DE135474EF
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 15:51:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D19CC5474FF
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 15:53:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233072AbiFKNvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 09:51:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44342 "EHLO
+        id S232129AbiFKNx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 09:53:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231378AbiFKNvH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 09:51:07 -0400
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B882E1A38B;
-        Sat, 11 Jun 2022 06:51:05 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-3137316bb69so14734767b3.10;
-        Sat, 11 Jun 2022 06:51:05 -0700 (PDT)
+        with ESMTP id S231467AbiFKNxy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 09:53:54 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 299643FBEA;
+        Sat, 11 Jun 2022 06:53:53 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id u99so2987851ybi.11;
+        Sat, 11 Jun 2022 06:53:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=CIi/KR48LCf1Hz2Cz/+6pDezxkIjhX95zYaLpybh09Y=;
-        b=gKtsdoiImvMAjdt8jolYmLjjoL5nKmt7wFj2Hy/7Fo6Wc75aFcSpIfm9DWYwGvXN+u
-         gL7J63+aKiOgihEp6oFVgF5v9kIRxtOhj0zIGZYm7JqPBEgM4ZVhPumey4YVoJk6g1fN
-         Hlznvz3xCAOZJMHsbChoZprnCfXCpaHliMZDHOgcb1VkCW5zKMjGFfUC84cnjPwUWxYy
-         uSf4B6baXr5rBXWliYbL5Lngau/PiG+I4p3md9XiGcy6o8HOtxD4XPUmyrJcZEuZI/ux
-         n3nWCQ/qp8hmoG7R8FCkoH5U2Y4GXNXwK9jxif3RHqV7IOOwPlmNULU16p9iSAmvvvV6
-         9HsA==
+        bh=0XBD4QmluSTtyUUhL2fAA/t1LEvKNRF+9JYNqJ8wiI8=;
+        b=j7JU1GcRirXqAqhBo6OeURWiAC3D74b53mGfYrSAzXlaIm3zFbgt1F6+o01xvhyXZ1
+         C94ZDbBD0jmHdorQ8P9msuQBesAMwvJ21VoS1OMbd3SGH4Sk1ro5pfSmNOwXJl2B6VC/
+         peAifHJDHYiB8K1SPWFGJcworCOPsk5ScLudTy4b/gNRG1otBPKX0Wdk49XLT6LhVXLX
+         iQgVX0rwqMMYu3Qr6H+DmLmjcFunDj0f5xOWF7QNmFm0ngDYd0H6j/JCZbqUXseuT1fJ
+         ekwdD76N833+cNm6z8qZTqCPCTjKJUsV4LrRf0ATrP9/fKXTblDxnHnjiXNnayKDB9Gl
+         +kAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=CIi/KR48LCf1Hz2Cz/+6pDezxkIjhX95zYaLpybh09Y=;
-        b=5cRZqJ7yoRo8dTWNV0XAwMMpX6zgkgV5txqKW2Ym0BA9ZHCEobrwE2cnXiUerNxYle
-         0i5kD9WRpdq60QPCcT1joJBEhJFieTosampqOIode61P6nuOmkbG9nZBsOAPrQKAwWd6
-         b4UnYWcAqFZ2F0kTRJgvHPeiG5iqlDKEoENihZFG0PIwL0GtkLh6cA1ar5PhqmUhbvz2
-         rD0a42e8m8R1/HtVtKPQ58i97ZJt0c/TZkXMVyveFaiA42aXe/kU+6vWHqxgq2rHXZEB
-         TaYzlStfyTjvVqfSm4ZFlFX6dQP3+Nw1j4xy0yOT5YeQEtgSH2gD+nhO/8ivINNQQQAx
-         YNnw==
-X-Gm-Message-State: AOAM532t0yhwus5Aad0hLOixkVKIObEffxxas9x4xLNcmPc0TePAwsH6
-        ZiHjtocdCENE86puRKvY2JY03TmDHVbvh2df5n8=
-X-Google-Smtp-Source: ABdhPJyw0mX4zwcIWAZ5xfazDHvtqgj48NkNv3sycBKJaZXGBlQWdOiHMHgR1FUorl6uAIo6XP9y9mOeIj8U7uM5WvE=
-X-Received: by 2002:a81:5c5:0:b0:313:e5c5:53d5 with SMTP id
- 188-20020a8105c5000000b00313e5c553d5mr3625440ywf.281.1654955464947; Sat, 11
- Jun 2022 06:51:04 -0700 (PDT)
+        bh=0XBD4QmluSTtyUUhL2fAA/t1LEvKNRF+9JYNqJ8wiI8=;
+        b=Yz7mQYlegwziBOZTE/11fKvTB8UvVFXkmNJHSc8pIfRiRsX6NE6ZbQyqg5hFjQlaIf
+         idmHOD3DvSdq4flSqe26s80E+CVqdqXE9kzrQiQTDjOXb30pajyAKL9tI8MTvQW5f3jE
+         zw1UmgiXsqCHaa+eUZ8CGGarhPWfj2e95qlVFaH5kmNkfYYaNd/FkjB3R8P91bz114a4
+         LqRcvUgs3T/Dx40QtLyW76g698gFGntgnQ0fADY1ghPGuWz5Igtgmc8Q2BiDnAanDRsy
+         IYgzdIqmm4zlysZQJld1ruqD3j8O/VNCN8aMw8x3cn3R/HGq8w+7OGR5O0yMW68jlwpZ
+         kwiA==
+X-Gm-Message-State: AOAM532VXCiN7H736sCqVIQAVnOZBafl/60gzT8PzzAoWw501m2sVL58
+        5ICsIScZv7R70C6GSTjucbHfYWAQQh2+tkJ0EGY=
+X-Google-Smtp-Source: ABdhPJy6keycdZ2r43RjmcTwfJS0G4z+XhBO91RI5+nLiwpkdMfl+es9fjkSmAYV7Tv7HFAfPn6RP3634VPHNg2Kg/8=
+X-Received: by 2002:a25:b29d:0:b0:664:49bb:6a60 with SMTP id
+ k29-20020a25b29d000000b0066449bb6a60mr11334808ybj.173.1654955632361; Sat, 11
+ Jun 2022 06:53:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220611065300.885212-1-frattaroli.nicolas@gmail.com>
-In-Reply-To: <20220611065300.885212-1-frattaroli.nicolas@gmail.com>
+References: <20220610132601.160088-1-pgwipeout@gmail.com> <CAMdYzYqJ2S8K2NCH1uQ2xDjTfLmePPv5TzgeXZa0EG6XdGQzBQ@mail.gmail.com>
+ <4178848.3VsfAaAtOV@phil>
+In-Reply-To: <4178848.3VsfAaAtOV@phil>
 From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Sat, 11 Jun 2022 09:50:54 -0400
-Message-ID: <CAMdYzYpvtZf8q+7Fon-nj=XbjZ-XQdD-bnY0mdaBxELVad2Cgg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] HDMI Audio on RK356x/Quartz64 Model A
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Date:   Sat, 11 Jun 2022 09:53:41 -0400
+Message-ID: <CAMdYzYqRcrawKc-GsTgwnPuJBJoKTn9Arfpj_Vjnt+3DeT7k9w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix SoQuartz CM4IO usb
+To:     Heiko Stuebner <heiko@sntech.de>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
         Michael Riesch <michael.riesch@wolfvision.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Liang Chen <cl@rock-chips.com>,
         devicetree <devicetree@vger.kernel.org>,
         arm-mail-list <linux-arm-kernel@lists.infradead.org>,
         "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
@@ -73,40 +71,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 11, 2022 at 2:53 AM Nicolas Frattaroli
-<frattaroli.nicolas@gmail.com> wrote:
+On Sat, Jun 11, 2022 at 9:50 AM Heiko Stuebner <heiko@sntech.de> wrote:
 >
-> This enables HDMI audio on Quartz64 Model A, and the RK356x SoC in
-> general.
+> Am Freitag, 10. Juni 2022, 16:44:23 CEST schrieb Peter Geis:
+> > On Fri, Jun 10, 2022 at 9:26 AM Peter Geis <pgwipeout@gmail.com> wrote:
+> > >
+> > > The SoQuartz CM4-IO should support otg mode, however it currently
+> > > defaults to device mode when otg is enabled. Force it to host mode to
+> > > retain the previous behavior.
+> >
+> > It would seem the role-switch issue is more widespread than originally
+> > thought, affecting other boards where automatic control should work.
+> > Please hold this patch while I investigate further.
 >
-> i2s0 on the RK356x is connected to HDMI, and only has one DMA. I've
-> confirmed this with the TRM.
+> ok!
 >
-> To test this, one needs a video clock, i.e. there is no audio if your
-> screen is off. The framebuffer console or something else needs to be
-> running to get audio output.
+> I guess this also applies to
+>         "arm64: dts: rockchip: Fix Quartz64-A dwc3 otg port behavior"?
 
-Excellent work!
-Tested on Quartz64 Model A.
-Tested-by: Peter Geis <pgwipeout@gmail.com>
+No, on Quartz64 Model A it can't work, the requisite pin isn't connected.
+I think I've found the problem, I've requested a few people to test a fix.
+Do you have a Model B or SoQuartz to test against (or any other rk356x
+board that has the id pin hooked up)?
+
+Thanks,
+Peter
 
 >
-> Changes in v3:
->  - rebased onto next-20220610
 >
-> Changes in v2:
->  - reordered nodes in rk356x.dtsi to conform
->  - reordered properties in rk356x.dtsi to conform
->  - add Michael Riesch's Tested-by to rk356x.dtsi
+> Heiko
 >
-> Nicolas Frattaroli (2):
->   arm64: dts: rockchip: rk356x: Add HDMI audio nodes
->   arm64: dts: rockchip: Enable HDMI audio on Quartz64 A
 >
->  .../boot/dts/rockchip/rk3566-quartz64-a.dts   |  8 +++++
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi      | 33 +++++++++++++++++++
->  2 files changed, 41 insertions(+)
+> > >
+> > > Fixes: bc405bb3eeee ("arm64: dts: rockchip: enable otg/drd operation of usb_host0_xhci in rk356x")
+> > >
+> > > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> > > ---
+> > >  arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
+> > > index e00568a6be5c..56764fae9f9d 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
+> > > @@ -169,6 +169,7 @@ &usb2phy0_otg {
+> > >  };
+> > >
+> > >  &usb_host0_xhci {
+> > > +       dr_mode = "host";
+> > >         status = "okay";
+> > >  };
+> > >
+> > > --
+> > > 2.25.1
+> > >
+> >
 >
-> --
-> 2.36.1
+>
+>
 >
