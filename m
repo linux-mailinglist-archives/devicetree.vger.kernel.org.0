@@ -2,111 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E3DF5472BC
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 10:01:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAA8D547307
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 10:52:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231279AbiFKIBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 04:01:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51536 "EHLO
+        id S231693AbiFKIv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 04:51:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbiFKIBl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 04:01:41 -0400
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B718410F9;
-        Sat, 11 Jun 2022 01:01:36 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id r3so2169976ybr.6;
-        Sat, 11 Jun 2022 01:01:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=J6tjynxzIVHRb16JzapzgQcaIfTmSbsb2/a0kmRZXfE=;
-        b=gT95eMHWJT2+APQPM5Sb/zlwU3qLLfVhm8RS4IDEDOluySu+nfAwnG2wdCQUs2etxG
-         a3qWJPqoGqxviVQvgou6M4KXoavBKCVsbpnlsSCN4VFzC9aBVXn3u8SSvfu6sYMEwVHc
-         +RakSf4zwpF6JZqIiVgEtpFuZsgu0PjppeRnv9Z9bRkUh6nzTdldxO2aF/L/U40L01lw
-         m1q9Yms8CVfw3qII7OfPkKUqyOu0y99VMc7Hrm7zL3jXSTpfkDkXB5V2HCGEOLhSn/a8
-         RKdvTc7/GHhYqTmz6dHOyaa30NhHFrframySZURj255Jx28thKDTa9smn0AFHcl2Sn8u
-         j8EA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=J6tjynxzIVHRb16JzapzgQcaIfTmSbsb2/a0kmRZXfE=;
-        b=YaLokb8Nmy3QFnXsjlLNm5EYSGdPfL66DozqWjxQUlX9/trHuVIiPKfUiAdwNtRvTk
-         r5G1YinVLdCns8XoY14WqoI3vHvP5YThBqDAlyr2HFDs0SwfxTEK5v0PeqSRWfny53vb
-         bqox4Y1WVuPPN39IOivFqCk8tr5TkwWMJXC97Wp1jfFA2M6L0PcOHxT5U1ZR2CiFVrtn
-         PfNtyn/Tl6o5E7h7dCGDUHDnqFWJFiJTu5LpZTOxL85klV29Kv/d2TzX3XHSnj9yRsYl
-         zDon2GTtsrb/jcp6cXNVlpijbXp4CMiVsh/b05a3WhQjvzHoShLnCrlMNJF4tCMrx7y2
-         EGgQ==
-X-Gm-Message-State: AOAM530YkOraUvVW1dlJn0SL7NhZ0XWKJEeHUxyEXSOed2weFoSN2a1O
-        LhnQuzApC5hM4jthAK/PtUgkD5wO+X/rRaMo8rN+Vt85QDpdsQ==
-X-Google-Smtp-Source: ABdhPJy5kYyqrX/lptw1Ap7SKHtGXneDN+CrtV2GFrbq/7UNmNiXQaPRJbhG2lL6+ozyK78i/oXBtkBJo6JQI9dWEhk=
-X-Received: by 2002:a25:1c04:0:b0:660:1ffc:fb9 with SMTP id
- c4-20020a251c04000000b006601ffc0fb9mr47542871ybc.431.1654934495957; Sat, 11
- Jun 2022 01:01:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220316200633.28974-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMSo37US03pKhPR=a1sJnWMF6L+WDvhWz469G=+0XY2WX-p=bg@mail.gmail.com>
-In-Reply-To: <CAMSo37US03pKhPR=a1sJnWMF6L+WDvhWz469G=+0XY2WX-p=bg@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Sat, 11 Jun 2022 09:01:09 +0100
-Message-ID: <CA+V-a8t2w14bJVCiiHQq8bwgetw5za1-t_OSfyr6Cwo4eZOt2Q@mail.gmail.com>
-Subject: Re: [RFC PATCH] of/platform: Drop static setup of IRQ resource from
- DT core
-To:     Yongqin Liu <yongqin.liu@linaro.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        with ESMTP id S230158AbiFKIv4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 04:51:56 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFFB1120B1;
+        Sat, 11 Jun 2022 01:51:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 68B5EB80189;
+        Sat, 11 Jun 2022 08:51:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D7A9C34116;
+        Sat, 11 Jun 2022 08:51:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654937511;
+        bh=6cVnM3jL3+Wjh7umIggE5qH5P/NfQTWKA57hAMxeO2A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ErYuLnYpV3iLO1kJU621y2ZZQ3MoHBJlOoJBp9NFDx6Cltj7T5QBxXm6rlQla3CI5
+         0vjpeN4Je/11Egp1kNIIvA2Mx6rEzyL20jT7poDFfEsBafUlp5cK6V3U6PHPgp0gc5
+         j6WLXYc4yU2P3pLiYesYS+PvS3DL5rAPl289iZsKVL0yjM3vve+BBiardujfF1dmA2
+         2IlwCFjkYAXUt033y5GCFrRZwGhLKLEU7tQkIfWCmFWaRWj2GEJpWU16b5m47WNHUF
+         MNBHVn+v9rztqW/42R+DPQSdVuLIqPSwfBxrGKAXCXZCsVJ6sHZhRvNZMlHNuPRFEb
+         KP6jD1bNkBpaQ==
+Date:   Sat, 11 Jun 2022 16:51:45 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Max Krummenacher <max.oss.09@gmail.com>
+Cc:     max.krummenacher@toradex.com, Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/4] ARM: dts: imx6dl-colibri: Unify with changes to
+ Apalis iMX6 device trees.
+Message-ID: <20220611085145.GF254723@dragon>
+References: <20220513102616.48040-1-max.oss.09@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220513102616.48040-1-max.oss.09@gmail.com>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yongqin,
+On Fri, May 13, 2022 at 12:26:11PM +0200, Max Krummenacher wrote:
+> From: Max Krummenacher <max.krummenacher@toradex.com>
+> 
+> 
+> - Follows a change to the SGTL5000 MCLK handling fixed for Apalis iMX6 by
+>   Fabio.
+> - Simplify handling of inverted PWM backlight
+> - Fixes a regression for the capacitive touch introduced with
+>   https://lore.kernel.org/all/20220411152234.12678-1-max.oss.09@gmail.com/
+> 
+> 
+> Changes in v3:
+> - add reviewed-by tags
+> - Extend commit comment of "ARM: dts: imx6qdl-colibri: backlight pwm: Simplify inverted backlight"
+> 
+> Changes in v2:
+> - add reviewed-by tags
+> - Split the Backlight PWM patch into two patches, a) #pwm-cells 3, b) adapt brightness steps
+> 
+> Max Krummenacher (4):
+>   ARM: dts: imx6qdl-colibri: Fix capacitive touch reset polarity
+>   ARM: dts: imx6qdl-colibri: Mux mclk for sgtl5000 with the codec node
+>   ARM: dts: imx6qdl-colibri: backlight pwm: Simplify inverted backlight
+>   ARM: dts: imx6qdl-colibri: backlight pwm: Adapt brightness steps
 
-On Sat, Jun 11, 2022 at 6:28 AM Yongqin Liu <yongqin.liu@linaro.org> wrote:
->
-> Hi, Lad
->
-> # sorry for the confusion if you have received it before with the
-> non-plain-text mode
->
-> In this change you said "all the DT drivers have switched to
-> platform_get_irq()",
-> could you please help share with me one example about the above change
-> as reference?
-The change is we just switch to using platform_get_irq() [0] for
-fetching IRQ numbers.
-
-> We have one hikey960 android build with some out of tree changes,
-> which could not boot
-> successfully with some errors on surfaceflinger(I am not sure it's a
-> problem with the gpu or display),
-> but could boot if I have this change reverted.
->
-> I guess it needs some changes on the gpu/display dts or driver side to
-> have it work
-Just the changes to the driver is needed.
-
-> with this change, not sure if you could give some suggestions on the fix.
->
-> And here are two out of tree changes might be related listed here just
-> for reference in case:
-> https://android-review.linaro.org/c/kernel/common/+/21680
-> https://android-review.linaro.org/c/kernel/common/+/21682
->
-
-[0] https://lore.kernel.org/lkml/20211221213547.1553-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-
-Cheers,
-Prabhakar
+Applied, thanks!
