@@ -2,128 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 913BE547378
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 11:59:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B43545473B8
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 12:27:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbiFKJ6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 05:58:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56260 "EHLO
+        id S231563AbiFKK1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 06:27:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230255AbiFKJ6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 05:58:53 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FF2AB845;
-        Sat, 11 Jun 2022 02:58:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654941531; x=1686477531;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=LoUQFEJVS8iKP4KHv45pEyco3cBp3wRIOlEANLpEqfM=;
-  b=bgqfdzNy1BveqUBhjYb6qcGV+ohpGMNQ46SREXJwgR9RUHpNzE2Ow7hG
-   URzohwV8QilFj0qNop1kR2MKQB/6VW2ZeeIOyDhXp8dTGWp1Jhs3Au2X3
-   m0ok7U9ptNXNrs/AaxrKA8xH5Oy86aeXbLXxN7qBsCLMu2yUyymDPufrE
-   JnbmCd1ySdNk9tvJX7YkQHvrv5e50aa+dwnSPz3AwrtbL/dP+PA8L9Da7
-   8+thFf7xqYYz1Q9tgCAnmwN67ZuBEtHDy2JzZh76mWTNWSrksEX3pRc+s
-   R4GIO4QpKT5vh3UEgeCW5KemWxH96VDQBeaiBlei1S+0QAG93VJ0fOhE9
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10374"; a="257694015"
-X-IronPort-AV: E=Sophos;i="5.91,293,1647327600"; 
-   d="scan'208";a="257694015"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2022 02:58:51 -0700
-X-IronPort-AV: E=Sophos;i="5.91,293,1647327600"; 
-   d="scan'208";a="638638184"
-Received: from jiaqingz-mobl.ccr.corp.intel.com (HELO [10.255.31.17]) ([10.255.31.17])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2022 02:58:49 -0700
-Message-ID: <bf66a840-594a-d90a-2ca6-595e95c09514@linux.intel.com>
-Date:   Sat, 11 Jun 2022 17:58:46 +0800
+        with ESMTP id S229877AbiFKK1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 06:27:10 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8D117E32;
+        Sat, 11 Jun 2022 03:27:09 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id gl15so2384521ejb.4;
+        Sat, 11 Jun 2022 03:27:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KIxsSmffb8RfNqJlYqJ6d8OJHZPkWprEKP9BjZRzvY4=;
+        b=DmYimP8x9+fBNO5W9V+LPablLcvvdeYRzWgAyGF0whEQX/wYY7V7xjcwFUKEmTPA4c
+         mpZwcvHCTA94+Rc/oh9sohMYfnkdY/QD/+ajvNzddutXAIRnHGaHfEdUiT7A6kIGR8VB
+         3hxsumzh0hOJO2uOzb5Kf5O7TuaeHjmPiTjMisReEAEHaIb5TQzgYdsUZ05rGi1KmXYk
+         nvOvAaw+8EeVsJq8dqk6STcfHJxHMJn9cAwO+rqpoTQe4fhw6pMIwMxLREhi74AbadqK
+         GO5nNxLEUnaDjjnuSKthP4JbD0kjff9Fpuox0s56DCAGKppd1bJ7+lCMRw3hpOEQK3jb
+         +7zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KIxsSmffb8RfNqJlYqJ6d8OJHZPkWprEKP9BjZRzvY4=;
+        b=sQqS6KWTdhhFzPntIjnW+GkqH8ANaINxKWyBoJkNK46iNYExtB2NtwVPZchB/17Q9R
+         Z93MFEFGkh83j5s9pNI18bVOp1wZ6po9qNx3ruMNnwxVAEVTfs35sV6xVfKG2aYIP8Qi
+         2HX5+wk0GrrQVp2Skj02UHbihxLeJ6wpOhIlC9bsVCICLD/xlOsoNCFjBPP5O4yC5/tT
+         emhhNt27xaU4JPEXrxiJpnO1NEoI2p8UES51KaRjnzJsBgorxzuVahptZk6+/xrh6WHo
+         IEDVoXtfRZcF6uojR0gncKf93AnCNWMsXtsPMvfJhQMzUpy3sPyQu136i8Y2NaBGPmm3
+         WFpw==
+X-Gm-Message-State: AOAM533VzGJkYhSARxADkSJJB8S6DWM76kZV2AENWoGoy+8A4Eo9TuV5
+        l99jtGebKfPcUf7bSdS59botTmL+xImYH7lm7pg=
+X-Google-Smtp-Source: ABdhPJxGPAH3/4MNl4wJEhbi2aKPLJTgIIWnYOFq1wyqCO3Loa4a3ZXM4nLfZG8DtQD+7/hhnXIHdoiPxgckHoYpOaE=
+X-Received: by 2002:a17:906:1193:b0:70d:cf39:a4db with SMTP id
+ n19-20020a170906119300b0070dcf39a4dbmr38814493eja.44.1654943227473; Sat, 11
+ Jun 2022 03:27:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 0/6] Configurable VLAN mode for NCSI driver
-Content-Language: en-US
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-References: <20220610165940.2326777-1-jiaqing.zhao@linux.intel.com>
- <20220610130903.0386c0d9@kernel.org>
- <3c9fa928-f416-3526-be23-12644d18db3b@linux.intel.com>
- <20220610214506.74c3f89c@kernel.org>
- <6f067302-74a8-702f-bf38-4477a805a528@linux.intel.com>
- <20220610224407.4e58dc5a@kernel.org>
-From:   Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
-In-Reply-To: <20220610224407.4e58dc5a@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220610175655.776153-1-colin.foster@in-advantage.com> <20220610175655.776153-2-colin.foster@in-advantage.com>
+In-Reply-To: <20220610175655.776153-2-colin.foster@in-advantage.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sat, 11 Jun 2022 12:26:31 +0200
+Message-ID: <CAHp75VfHG7pqvTLcBu=vqx9PzXVrJhxyu6XHr9xaiMmhqke-Tg@mail.gmail.com>
+Subject: Re: [PATCH v9 net-next 1/7] mfd: ocelot: add helper to get regmap
+ from a resource
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Terry Bowman <terry.bowman@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jun 10, 2022 at 7:57 PM Colin Foster
+<colin.foster@in-advantage.com> wrote:
+>
+> Several ocelot-related modules are designed for MMIO / regmaps. As such,
+> they often use a combination of devm_platform_get_and_ioremap_resource and
+> devm_regmap_init_mmio.
+>
+> Operating in an MFD might be different, in that it could be memory mapped,
+> or it could be SPI, I2C... In these cases a fallback to use IORESOURCE_REG
+> instead of IORESOURCE_MEM becomes necessary.
+>
+> When this happens, there's redundant logic that needs to be implemented in
+> every driver. In order to avoid this redundancy, utilize a single function
+> that, if the MFD scenario is enabled, will perform this fallback logic.
 
-On 2022-06-11 13:44, Jakub Kicinski wrote:
-> On Sat, 11 Jun 2022 13:18:51 +0800 Jiaqing Zhao wrote:
->> All ncsi devices uses the same driver as they uses same command set,
->> so the driver doesn't know what modes are supported. And in current
->> driver, the vlan related parameters are configured when registering
->> the device, adding an ncsi-netlink command to do so seems to be
->> unsuitable.
-> 
-> Maybe you could draw a diagram? NC-SI is a bit confusing.
+...
 
-Yes I admit NC-SI is confusing as its design is not as straightforward
-as the MAC-PHY structure. In NC-SI, there are two macs like below.
+> +#include <linux/err.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
 
-        Packets + NCSI commands                        Packets
-    MAC-------------------------External controller MAC---------PHY
+Since it's header the rule of thumb is to include headers this one is
+a direct user of. Here I see missed
+types.h
 
-The NCSI commands are used to set the behavior of the External controller
-MAC, like it's MAC address filter, VLAN filters. Those filtered packets
-will be transferred back to the MAC.
+Also missed forward declarations
 
-Unlike PHY has standard registers to determine its model and capabilities,
-NC-SI seems does not have such way.
->> And adding a netlink command requires extra application in userspace
->> to switch the mode. In my opinion, it would be more user-friendly to
->> make it usable on boot.
-> 
-> Unfortunately convenience is not reason to start adding system config
-> into DT.
+struct resource;
 
-Currently there is already a DT config "use-ncsi" is used to choose using
-MDIO PHY or NCSI stack in the MAC driver with NCSI support like ftgmac100.
-That's why I choose adding another DT option here.
+...
 
->> Netdev also does not work as the ncsi device itself does not have
->> its own netdev, the netdev comes from the mac device. For different
->> vlan modes, the netdev feature set of its parent mac device are the
->> same.
-> 
-> You say that, yet the command handling already takes into account the
-> VLAN list:
-> 
-> 	if (list_empty(&ndp->vlan_vids)) {
-> 
-> which come from the MAC netdev. What's wrong with setting the filtering
-> mode based on NETIF_F_HW_VLAN_CTAG_FILTER ?
+> +       if (!IS_ERR(regs))
 
-When configuring the mac driver, there might be two net_device_ops sets
-for MDIO or NC-SI. When using NC-SI, some features need to be delegated
-to the external controller MAC, like VLAN hardware filtering, different
-ndo_vlan_rx_{add,kill}_vid callbacks need to be assigned.
+Why not positive conditional?
 
-The filtering mode is an optional mode defined in NC-SI spec, some
-devices does not support it. In this case, to support VLAN, I would
-personally in favor of using the "Any VLAN" mode to let the external
-MAC pass all packets to the internal one, and let the internal MAC
-handle it either with its own hardware filter or software filter. In
-this case, the VLAN list in NC-SI driver (used for setting the external
-MAC filter) is not used.
+> +               *map = devm_regmap_init_mmio(&pdev->dev, regs, config);
+> +       else
+> +               *map = ERR_PTR(ENODEV);
+
+Missed -.
+
+-- 
+With Best Regards,
+Andy Shevchenko
