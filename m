@@ -2,61 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE18754719A
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 05:25:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD58654719E
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 05:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349965AbiFKDZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jun 2022 23:25:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54832 "EHLO
+        id S239737AbiFKD0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jun 2022 23:26:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346923AbiFKDZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 23:25:11 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 752B69AE40;
-        Fri, 10 Jun 2022 20:25:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654917908; x=1686453908;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=UsYYyX+/SHIT1MvBl8yridNdLkGTwE+InRQzJyWqVk8=;
-  b=AVX8ED7s85qa5f4tvTzCQ+T0FxbcvD3W9XM8qIprcoZazns8it69WeGm
-   vJyU80oPagd3K/RioSrZKRMONCNEsK+lzR26S016Zw+PFBtXzkJAH/vwh
-   kLNw4qahVFxo4u512Bqb1CH3ohQMw1ecHO2UxiG45h2bo5NupPJwbRxBs
-   qJ7NyL/WEO9n/04YxmLzyl2qZYbQ9f7F2MRte43dWvesSc6PO31KZHlsO
-   blCJBIa3kWA1rMMZhxwByxFky7Hgn7+M4ctBFTbGkFCjeCmn9fUKerc0v
-   9KguYzpNj4VdheGLFk7ppfx/yw/lO4n/+/bKZ6C+AhLIzZkQTC8DQ60Me
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10374"; a="364144661"
-X-IronPort-AV: E=Sophos;i="5.91,292,1647327600"; 
-   d="scan'208";a="364144661"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 20:25:07 -0700
-X-IronPort-AV: E=Sophos;i="5.91,292,1647327600"; 
-   d="scan'208";a="638503297"
-Received: from jiaqingz-mobl.ccr.corp.intel.com (HELO [10.255.31.17]) ([10.255.31.17])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 20:25:06 -0700
-Message-ID: <3c9fa928-f416-3526-be23-12644d18db3b@linux.intel.com>
-Date:   Sat, 11 Jun 2022 11:25:03 +0800
+        with ESMTP id S1347238AbiFKD0Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jun 2022 23:26:16 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A75EA0D32;
+        Fri, 10 Jun 2022 20:26:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1654917975; x=1686453975;
+  h=message-id:date:mime-version:subject:to:references:from:
+   in-reply-to:content-transfer-encoding;
+  bh=HVSSV8LGOw92Phwdzd7AfIW3E8dYU6iGxh+I+4+CoQc=;
+  b=xB1Tp52CkFVKJifT8LI8lxzYJdPPUPXhQm5Me0xEnfnKLrrSUTlsuXPO
+   geK/AfePyyRFZhoO2joTjshrFJwR99mYE+7OBjZ7/ZkdWpgvMapciu2Cc
+   oAOiwPh6J07dQ3Vd5LF6o2zM05N85fLMHlGFLrLu77Y67qh+XJ/M9m6Na
+   s=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 10 Jun 2022 20:26:14 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2022 20:26:14 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 10 Jun 2022 20:26:13 -0700
+Received: from [10.216.8.205] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 10 Jun
+ 2022 20:26:06 -0700
+Message-ID: <ae46345f-cb39-bfc2-16d9-70b5729eee6c@quicinc.com>
+Date:   Sat, 11 Jun 2022 08:56:03 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 0/6] Configurable VLAN mode for NCSI driver
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: sc7280: Add boolean
+ param for ADSP bypass platforms
 Content-Language: en-US
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-References: <20220610165940.2326777-1-jiaqing.zhao@linux.intel.com>
- <20220610130903.0386c0d9@kernel.org>
-From:   Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
-In-Reply-To: <20220610130903.0386c0d9@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Linus Walleij <linus.walleij@linaro.org>, <agross@kernel.org>,
+        <alsa-devel@alsa-project.org>, <bgoswami@quicinc.com>,
+        <bjorn.andersson@linaro.org>, <broonie@kernel.org>,
+        <devicetree@vger.kernel.org>, <judyhsiao@chromium.org>,
+        <lgirdwood@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <perex@perex.cz>, <quic_plai@quicinc.com>,
+        <quic_rohkumar@quicinc.com>, <robh+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>, <tiwai@suse.com>
+References: <1654872335-4993-1-git-send-email-quic_srivasam@quicinc.com>
+ <1654872335-4993-2-git-send-email-quic_srivasam@quicinc.com>
+ <CAE-0n53NdTwAO4DY0x7Fy9h4eRVR-3iKnGfqfZ-ggyghfsC9UA@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <CAE-0n53NdTwAO4DY0x7Fy9h4eRVR-3iKnGfqfZ-ggyghfsC9UA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,32 +76,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-06-11 04:09, Jakub Kicinski wrote:
-> On Sat, 11 Jun 2022 00:59:34 +0800 Jiaqing Zhao wrote:
->> Currently kernel NCSI driver only supports the "VLAN + non-VLAN" mode
->> (Mode #2), but this mode is an optional mode [1] defined in NCSI spec
->> and some NCSI devices like Intel E810 Network Adapter [2] does not
->> support that mode. This patchset adds a new "ncsi,vlan-mode" device
->> tree property for configuring the VLAN mode of NCSI device.
+
+On 6/11/2022 1:34 AM, Stephen Boyd wrote:
+Thanks for Your time Stephen!!!
+> Quoting Srinivasa Rao Mandadapu (2022-06-10 07:45:34)
+>> Add boolean param qcom,adsp-bypass-mode to support adsp bypassed sc7280
+>> platforms. Which is required to make clock voting as optional for ADSP
+>> bypass platforms.
 >>
->> [1] Table 58 - VLAN Enable Modes
->>     https://www.dmtf.org/sites/default/files/standards/documents/DSP0222_1.0.0.pdf
->> [2] 12.6.5.4.3 VLAN
->>     https://cdrdv2.intel.com/v1/dl/getContent/613875
-> 
-> Please don't post the same patches more than once a day. You posted the
-> same patches 3 times within 15 minutes with no major difference :/
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> ---
+>>   .../bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml          | 9 ++++++++-
+>>   1 file changed, 8 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+>> index d32ee32..ea9920c 100644
+>> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+>> @@ -17,7 +17,14 @@ description: |
+>>
+>>   properties:
+>>     compatible:
+>> -    const: qcom,sc7280-lpass-lpi-pinctrl
+>> +    enum:
+>> +      - qcom,sc7280-lpass-lpi-pinctrl
+> Drop this part.
+Okay. Will revert this change.
+>
+>> +
+>> +  qcom,adsp-bypass-mode:
+>> +    description:
+>> +      Tells pin controllers want to make clocks optional for ADSP bypass
+>> +      targets.
+> How about "ADSP is in bypass mode"?
 
-Got it, sorry for misusing the mailing list. 
+You mean, description like below?
 
-> Why is "ncsi,vlan-mode" set via the device tree? Looks like something
-> that can be configured at runtime. 
+qcom,adsp-bypass-mode:
+     description:
+	ADSP is in bypass mode.
 
-Actually this cannot be configured at runtime, the NCSI spec defines no
-command or register to determine which mode is supported by the device.
-If kernel want to enable VLAN on the NCSI device, either "Filtered tagged
-+ Untagged" (current default) or "Any tagged + untagged" mode should be
-enabled, but unfortunately both of these two modes are documented to be
-optionally supported in the spec. And in real cases, there are devices
-that only supports one of them, or neither of them. So I added the device
-tree property to configure which mode to use.
