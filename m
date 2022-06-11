@@ -2,37 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1310E547601
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 17:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D50C554760E
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 17:20:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238168AbiFKPP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 11:15:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38548 "EHLO
+        id S233291AbiFKPUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 11:20:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233583AbiFKPP5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 11:15:57 -0400
+        with ESMTP id S232807AbiFKPUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 11:20:35 -0400
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5722446CB5;
-        Sat, 11 Jun 2022 08:15:56 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FBF25DD14;
+        Sat, 11 Jun 2022 08:20:32 -0700 (PDT)
 Received: from p508fd9f0.dip0.t-ipconnect.de ([80.143.217.240] helo=phil.fritz.box)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1o02q6-0004vU-QD; Sat, 11 Jun 2022 17:15:50 +0200
+        id 1o02ua-00050J-Qd; Sat, 11 Jun 2022 17:20:28 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Peter Geis <pgwipeout@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>
+To:     Brian Norris <briannorris@chromium.org>
 Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix Quartz64-A dwc3 otg port behavior
-Date:   Sat, 11 Jun 2022 17:15:47 +0200
-Message-Id: <165496044123.1951281.9328507276918622323.b4-ty@sntech.de>
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Sebastian Fricke <sebastian.fricke@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Subject: Re: [PATCH] arm64: dts: rockchip: Assign RK3399 VDU clock rate
+Date:   Sat, 11 Jun 2022 17:20:27 +0200
+Message-Id: <165496080836.1951920.11378861622467603485.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220610132542.159978-1-pgwipeout@gmail.com>
-References: <20220610132542.159978-1-pgwipeout@gmail.com>
+In-Reply-To: <20220607141535.1.Idafe043ffc94756a69426ec68872db0645c5d6e2@changeid>
+References: <20220607141535.1.Idafe043ffc94756a69426ec68872db0645c5d6e2@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -45,18 +47,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Jun 2022 09:25:42 -0400, Peter Geis wrote:
-> The otg_id line on the Quartz64 Model A is not connected to anything.
-> This prevents automatic selection of the dual role usb port. In otg mode
-> it defaults to device mode. Force it to host mode to retain previous
-> behavior.
+On Tue, 7 Jun 2022 14:15:36 -0700, Brian Norris wrote:
+> Before commit 9998943f6dfc ("media: rkvdec: Stop overclocking the
+> decoder"), the rkvdec driver was forcing the VDU clock rate. After that
+> commit, we rely on the default clock rate. That rate works OK on many
+> boards, with the default PLL settings (CPLL is 800MHz, VDU dividers
+> leave it at 400MHz); but some boards change PLL settings.
 > 
-> Fixes: bc405bb3eeee ("arm64: dts: rockchip: enable otg/drd operation of usb_host0_xhci in rk356x")
+> Assign the expected default clock rate explicitly, so that the rate is
+> consistent, regardless of PLL configuration.
+> 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: Fix Quartz64-A dwc3 otg port behavior
-      commit: 2881a4ab319918e775ec9c084da3d6cc15ad77ab
+[1/1] arm64: dts: rockchip: Assign RK3399 VDU clock rate
+      commit: 2d56af33d4df94d2b76446ffc3e3654c42232f4b
+
+      as fix for 5.19
 
 Best regards,
 -- 
