@@ -2,73 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AB295475A8
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 16:37:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13B775475C5
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 16:48:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235471AbiFKOhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 10:37:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51566 "EHLO
+        id S236040AbiFKOsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 10:48:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235441AbiFKOhl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 10:37:41 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE9B5F38;
-        Sat, 11 Jun 2022 07:37:40 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id x17so1940419wrg.6;
-        Sat, 11 Jun 2022 07:37:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=references:from:to:cc:subject:date:in-reply-to:message-id
-         :mime-version;
-        bh=U+7z+8/xgg10xWxRPhbi3WGpQiB60QSiW36x8QTx7jE=;
-        b=WIV7Zq0uf/A7eE0Z5CJ/uTQdRV0m1t1HeFitWTM1hz7Y/hA8sCH/R/cR2SbSMaKij4
-         Hn7SyX7OJTnJdM7NQtWP0PgSEVikgB5HtGrjKSruHFvBIkSnxllC4ixWWvzQ9w4k6JjP
-         ZlFSfTebRCHmRSTBJlcQeqgsDoiZj64HuTJXv/GEVoIk8rVwkcF80659MTv//v4kR96g
-         IxRJ8JOYa1GFFXGSE2ivD3DhKupKCbnGKjkXJF1dwqiY8EswO7aafUL2viuFO1q/L1A7
-         GxFlqCwnWBB7MZ6PkqDLUbXcnriweJ/AY+SrM/MPU/XOUop30u5IrnDyprM21Vs9mkgH
-         fekw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:references:from:to:cc:subject:date:in-reply-to
-         :message-id:mime-version;
-        bh=U+7z+8/xgg10xWxRPhbi3WGpQiB60QSiW36x8QTx7jE=;
-        b=VvsrSPjtzUATceH8ekJPEh1VAUBkwob6stfItc8T3UtI1b0aEcOaOrArrrpU7MhlKW
-         PyUhZ3jdnSmEXZ87v1EWk01DTV9RXExClLXILSi4ElVK6XwvdnPSD7id97Fy2hutBsk5
-         NYXUCpIiGuYjm7RYr1noD3HeBzkEcLnQtg5Y53DMOJ8tXyBmdSwFbXSrQeppnYn++p39
-         tnpcmQjPD+A2S+WIFjbQQwM7tcPvKExnBBwY/NElv3nrPsFSWq9NvEQuzdKtteXmvLCU
-         oVRzAYuxV69TphTakbeR0e68GbKMM+om2bpdccnz/90WmqyJKlx157fs0Nw7YG+ohx1E
-         mcUg==
-X-Gm-Message-State: AOAM533apizcBndAPlm0MBPeF3WAHSwZuPuDwj7ggdLDTE8eEpYjvwfP
-        UrDvxjekWKGFFLjyGy5UXZw=
-X-Google-Smtp-Source: ABdhPJzkFiboyg49EPAhvRTWwUCyjNTM/CCfAb5+uvxv+KgZjk60A8KIOfJE79iRGqtzv4et9jAU6Q==
-X-Received: by 2002:a05:6000:1acf:b0:218:5a30:9067 with SMTP id i15-20020a0560001acf00b002185a309067mr21253301wry.48.1654958259463;
-        Sat, 11 Jun 2022 07:37:39 -0700 (PDT)
-Received: from localhost (92.40.203.210.threembb.co.uk. [92.40.203.210])
-        by smtp.gmail.com with ESMTPSA id 10-20020a05600c228a00b00397342bcfb7sm2628648wmf.46.2022.06.11.07.37.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Jun 2022 07:37:38 -0700 (PDT)
-References: <20220607155324.118102-1-aidanmacdonald.0x0@gmail.com>
- <20220607155324.118102-2-aidanmacdonald.0x0@gmail.com>
- <20220609163920.GA7420@quicinc.com>
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     Guru Das Srinagesh <quic_gurus@quicinc.com>
-Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org, jic23@kernel.org,
-        lee.jones@linaro.org, sre@kernel.org, broonie@kernel.org,
-        gregkh@linuxfoundation.org, lgirdwood@gmail.com, lars@metafoo.de,
-        rafael@kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 01/17] regmap-irq: Use sub_irq_reg() to calculate
- unmask register address
-Date:   Sat, 11 Jun 2022 15:32:22 +0100
-In-reply-to: <20220609163920.GA7420@quicinc.com>
-Message-ID: <V6MQEsBelMvjoBF1C6KDbaHcQIWzvqhC@localhost>
+        with ESMTP id S231649AbiFKOsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 10:48:41 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A051F22B14;
+        Sat, 11 Jun 2022 07:48:39 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id AE55E20003;
+        Sat, 11 Jun 2022 14:48:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1654958918;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=I8VR4ymqkJ5K3C4CihtuWX5UmLAF7ogIHNe6DBY0KA0=;
+        b=BL/jeWKrSHxkcIKpUp2Vg+dVcMhHN5ckuWf415X7yA3gTo/5vUJpz3kQuA8qk7YbJz0mjF
+        QMBdcBNrtM9lNgf6aE6nMXNxk0XlKyyxBAYQcd0UNeQMQSrDRbWlm7JTByoaUs++wTtNdj
+        s1BG16xDGduS2MzfHCABnguNOmYkMtKrruCP/woalx5hjKL6WhC6a3qdN5OwRRRl+5Rh7y
+        wMR6egEXS2RQGhAr+3AkKwxaJNSCVgVt+zjFjJ8R7D3UNfTZMCclVIvphFwLJYTgnOsHGX
+        KRUwRFWIiFgG6muyNySalKcWhYzJTYlmHBkZNpJT0Ribgai2PP3I8FIZA07UHQ==
+Date:   Sat, 11 Jun 2022 16:48:35 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     "Neeli, Srinivas" <srinivas.neeli@amd.com>
+Cc:     Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "sgoud@xilinx.com" <sgoud@xilinx.com>,
+        "shubhraj@xilinx.com" <shubhraj@xilinx.com>,
+        "neelisrinivas18@gmail.com" <neelisrinivas18@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "git@xilinx.com" <git@xilinx.com>
+Subject: Re: [PATCH V7 3/3] rtc: zynqmp: Updated calibration value
+Message-ID: <YqShO5B+pMbIB7CH@mail.local>
+References: <20220610113709.2646118-1-srinivas.neeli@xilinx.com>
+ <20220610113709.2646118-3-srinivas.neeli@xilinx.com>
+ <YqMzK50DbPAm1+dl@mail.local>
+ <BY5PR12MB4033DC535FF8B1230D5E860493A69@BY5PR12MB4033.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BY5PR12MB4033DC535FF8B1230D5E860493A69@BY5PR12MB4033.namprd12.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,27 +65,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/06/2022 15:04:31+0000, Neeli, Srinivas wrote:
+> [AMD Official Use Only - General]
+> 
+> Hi,
+> 
+> > -----Original Message-----
+> > From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > Sent: Friday, June 10, 2022 5:34 PM
+> > To: Srinivas Neeli <srinivas.neeli@xilinx.com>
+> > Cc: a.zummo@towertech.it; robh+dt@kernel.org;
+> > krzysztof.kozlowski+dt@linaro.org; michal.simek@xilinx.com;
+> > sgoud@xilinx.com; shubhraj@xilinx.com; Neeli, Srinivas
+> > <srinivas.neeli@amd.com>; neelisrinivas18@gmail.com;
+> > devicetree@vger.kernel.org; linux-rtc@vger.kernel.org; linux-arm-
+> > kernel@lists.infradead.org; linux-kernel@vger.kernel.org; git@xilinx.com
+> > Subject: Re: [PATCH V7 3/3] rtc: zynqmp: Updated calibration value
+> >
+> > On 10/06/2022 17:07:09+0530, Srinivas Neeli wrote:
+> > > As per RTC spec default calibration value is 0x7FFF.
+> > >
+> >
+> > Having that as a second patch breaks the calculation in your previous patch,
+> > really, this should just be a single patch.
+> 
+> Can I swap 3/3 and 2/3, Will that be fine ?.
 
-Guru Das Srinagesh <quic_gurus@quicinc.com> writes:
+That would be better, yes
 
-> On Tue, Jun 07, 2022 at 04:53:08PM +0100, Aidan MacDonald wrote:
->> Call sub_irq_reg() instead of calculating the offset of the register
->> to avoid relying on the fact that sub_irq_reg() is a linear function.
->
-> Seems like unmask_reg is the only register whose address is not calculated
-> using sub_irq_reg(). Switching to using sub_irq_reg() will bring it in line
-> with the other calculations.
->
-> Could you please incorporate this info in your commit message as well? This
-> should be the rationale for this change; that it allows for the get_irq_reg()
-> patch should be secondary.
+> 
+> >
+> > > Signed-off-by: Srinivas Neeli <srinivas.neeli@xilinx.com>
+> > > ---
+> > > Changes in V7:
+> > > -New patch
+> > > -TRM not updated yet, Internal design document contains 0x7FFF as
+> > > default value. TRM Will update in next release.
+> > > ---
+> > >  drivers/rtc/rtc-zynqmp.c | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/rtc/rtc-zynqmp.c b/drivers/rtc/rtc-zynqmp.c index
+> > > 39b23f88ee26..1dd389b891fe 100644
+> > > --- a/drivers/rtc/rtc-zynqmp.c
+> > > +++ b/drivers/rtc/rtc-zynqmp.c
+> > > @@ -37,7 +37,7 @@
+> > >  #define RTC_OSC_EN         BIT(24)
+> > >  #define RTC_BATT_EN                BIT(31)
+> > >
+> > > -#define RTC_CALIB_DEF              0x198233
+> > > +#define RTC_CALIB_DEF              0x7FFF
+> > >  #define RTC_CALIB_MASK             0x1FFFFF
+> > >  #define RTC_ALRM_MASK          BIT(1)
+> > >  #define RTC_MSEC               1000
+> > > --
+> > > 2.25.1
+> > >
+> >
+> > --
+> > Alexandre Belloni, co-owner and COO, Bootlin
+> > Embedded Linux and Kernel engineering
+> > https://bootlin.com
 
-I'll note that in v3, thanks.
-
->
-> The change seems okay to me, but I'd ideally like someone to pick this up and
-> test it out just to make sure it doesn't break existing behaviour for them.
->
-> Thank you.
->
-> Guru Das.
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
