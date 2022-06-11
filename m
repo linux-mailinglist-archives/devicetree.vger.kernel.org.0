@@ -2,40 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45F855475DD
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 17:00:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 768045475FE
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 17:16:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236853AbiFKPAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 11:00:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50988 "EHLO
+        id S238192AbiFKPP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 11:15:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236868AbiFKPAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 11:00:04 -0400
+        with ESMTP id S230056AbiFKPP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 11:15:57 -0400
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A7A4F1C4;
-        Sat, 11 Jun 2022 08:00:00 -0700 (PDT)
-Received: from p508fd9f0.dip0.t-ipconnect.de ([80.143.217.240] helo=phil.localnet)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5743146CB6;
+        Sat, 11 Jun 2022 08:15:56 -0700 (PDT)
+Received: from p508fd9f0.dip0.t-ipconnect.de ([80.143.217.240] helo=phil.fritz.box)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1o02ag-0004qO-5R; Sat, 11 Jun 2022 16:59:54 +0200
+        id 1o02q5-0004vU-GH; Sat, 11 Jun 2022 17:15:49 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Peter Geis <pgwipeout@gmail.com>,
+        Liang Chen <cl@rock-chips.com>, linux-kernel@vger.kernel.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org,
         Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix SoQuartz CM4IO usb
-Date:   Sat, 11 Jun 2022 16:59:53 +0200
-Message-ID: <8819229.G0QQBjFxQf@phil>
-In-Reply-To: <CAMdYzYqRcrawKc-GsTgwnPuJBJoKTn9Arfpj_Vjnt+3DeT7k9w@mail.gmail.com>
-References: <20220610132601.160088-1-pgwipeout@gmail.com> <4178848.3VsfAaAtOV@phil> <CAMdYzYqRcrawKc-GsTgwnPuJBJoKTn9Arfpj_Vjnt+3DeT7k9w@mail.gmail.com>
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3 0/2] HDMI Audio on RK356x/Quartz64 Model A
+Date:   Sat, 11 Jun 2022 17:15:44 +0200
+Message-Id: <165496044123.1951281.17858284746435155251.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220611065300.885212-1-frattaroli.nicolas@gmail.com>
+References: <20220611065300.885212-1-frattaroli.nicolas@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
@@ -45,83 +49,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Samstag, 11. Juni 2022, 15:53:41 CEST schrieb Peter Geis:
-> On Sat, Jun 11, 2022 at 9:50 AM Heiko Stuebner <heiko@sntech.de> wrote:
-> >
-> > Am Freitag, 10. Juni 2022, 16:44:23 CEST schrieb Peter Geis:
-> > > On Fri, Jun 10, 2022 at 9:26 AM Peter Geis <pgwipeout@gmail.com> wrote:
-> > > >
-> > > > The SoQuartz CM4-IO should support otg mode, however it currently
-> > > > defaults to device mode when otg is enabled. Force it to host mode to
-> > > > retain the previous behavior.
-> > >
-> > > It would seem the role-switch issue is more widespread than originally
-> > > thought, affecting other boards where automatic control should work.
-> > > Please hold this patch while I investigate further.
-> >
-> > ok!
-> >
-> > I guess this also applies to
-> >         "arm64: dts: rockchip: Fix Quartz64-A dwc3 otg port behavior"?
+On Sat, 11 Jun 2022 08:52:58 +0200, Nicolas Frattaroli wrote:
+> This enables HDMI audio on Quartz64 Model A, and the RK356x SoC in
+> general.
 > 
-> No, on Quartz64 Model A it can't work, the requisite pin isn't connected.
-
-ok, so I can pick that other patch up :-) .
-
-> I think I've found the problem, I've requested a few people to test a fix.
-> Do you have a Model B or SoQuartz to test against (or any other rk356x
-> board that has the id pin hooked up)?
-
-The rk356x in my boardfarm is a Quartz-B ... though an very early model,
-so hopefully nothing changed on the board since then.
-
-Although there is nothing connected to usb right now and I only have
-remote access this weekend, so any usb tests would need to wait till next
-week on my end.
-
-
-Heiko
-
-
+> i2s0 on the RK356x is connected to HDMI, and only has one DMA. I've
+> confirmed this with the TRM.
 > 
-> Thanks,
-> Peter
+> To test this, one needs a video clock, i.e. there is no audio if your
+> screen is off. The framebuffer console or something else needs to be
+> running to get audio output.
 > 
-> >
-> >
-> > Heiko
-> >
-> >
-> > > >
-> > > > Fixes: bc405bb3eeee ("arm64: dts: rockchip: enable otg/drd operation of usb_host0_xhci in rk356x")
-> > > >
-> > > > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> > > > ---
-> > > >  arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-> > > > index e00568a6be5c..56764fae9f9d 100644
-> > > > --- a/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-> > > > +++ b/arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts
-> > > > @@ -169,6 +169,7 @@ &usb2phy0_otg {
-> > > >  };
-> > > >
-> > > >  &usb_host0_xhci {
-> > > > +       dr_mode = "host";
-> > > >         status = "okay";
-> > > >  };
-> > > >
-> > > > --
-> > > > 2.25.1
-> > > >
-> > >
-> >
-> >
-> >
-> >
-> 
+> [...]
 
+Applied, thanks!
 
+[1/2] arm64: dts: rockchip: rk356x: Add HDMI audio nodes
+      commit: 697ee8546e241bd5fc175c0cfd5d8b0c8ce39697
+[2/2] arm64: dts: rockchip: Enable HDMI audio on Quartz64 A
+      commit: 4188962d993ef3633a61f66ba5afe9e43088f3c5
 
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
