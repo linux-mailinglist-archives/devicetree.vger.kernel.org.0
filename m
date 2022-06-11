@@ -2,82 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA4FA5474CF
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 15:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A42B5474DF
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 15:42:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233638AbiFKNWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 09:22:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47260 "EHLO
+        id S233665AbiFKNls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 09:41:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233576AbiFKNWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 09:22:18 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8038F1B7AB
-        for <devicetree@vger.kernel.org>; Sat, 11 Jun 2022 06:22:15 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id y19so2874145ejq.6
-        for <devicetree@vger.kernel.org>; Sat, 11 Jun 2022 06:22:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=pfX78KqgOSduBpoy4Zu2aWB7lpgcjxt2pBzkk7CLZdQ=;
-        b=tvbQJ0I8Bv63cHerDMVZK2FqbDLX/nFl80ZyCGt42ELtzf5fYOs7UMDRslpkSrWJhP
-         UiFx7xwGtkL8svqk4/qqYGgqtVHURnelAHHKDsOhIIpli0DUz8M5qUOeBk7PUS6CNSFK
-         PlsDkJ4Imt5abdMtlj9CV33sM51mTVl64a+KkbVVb75jCR8X3mlpGhDBkzqIMWUI5M9v
-         v4WT99zMGgB4IIIC5W4nK3x2jnEFvf8akvoFIBYLOLHRit6knjbH1grQ468eDIA2b1zo
-         sMD5GojOwP5mq7WVG/1IYuEzBCvs4JxSpH6BwmiYzmJbhrD2zL2D9sWOI/kuPkJcW3NM
-         nx8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=pfX78KqgOSduBpoy4Zu2aWB7lpgcjxt2pBzkk7CLZdQ=;
-        b=yrpzF7+TMItDhuEsqLNYgROEudrO8PqDk4ZWh6PyRdAZt/vmQtvo+Kgi4kXCPtBvq8
-         3YSypomC+kvwjOp2/XCpE7y7TdVCJKzYCNVWRQ97zTdmn6ea54N60gz1wWSq3UA68w6v
-         ezPX2gXO7dHArSHnepID/to9/Y+uck9ZslvxJqYcEBkc4Kb9nwP7TfuDE5ql0zBhTRov
-         JzhjRl1/viBw+rp+6e93Fe8+BRKzX47tRtPgM3sjDzXjwlufPbaKiVwsYeWOZiTBznQx
-         h85wGeflYfIGbE5WBkocGPNKASj3Zn5lIiG2Yf5nqyNvME/avDT2+JzUXvCVv32nxX3E
-         37kw==
-X-Gm-Message-State: AOAM533IWBYZ1UcmDWxkpE775w0SU8+QSJRMlORRCdbO8NJJxqjrR+iJ
-        +ke+BXjMzNn2OGM9AI1B0CNzhdSi9fLbMA==
-X-Google-Smtp-Source: ABdhPJzfw/FFOwgsoIlsrs20Xnf1cUR6OnO79Bsn0q6KUMW2dsLYRbaM5a6SKi2Gm82CsS738vk+vQ==
-X-Received: by 2002:a17:907:c20e:b0:710:7a7a:fd85 with SMTP id ti14-20020a170907c20e00b007107a7afd85mr34116414ejc.346.1654953734067;
-        Sat, 11 Jun 2022 06:22:14 -0700 (PDT)
-Received: from [192.168.0.203] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id q8-20020a056402040800b0042dd4f9c464sm1382146edv.84.2022.06.11.06.22.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Jun 2022 06:22:13 -0700 (PDT)
-Message-ID: <94f03fed-73f5-ce1e-7bbd-2f53f461816d@linaro.org>
-Date:   Sat, 11 Jun 2022 15:22:12 +0200
+        with ESMTP id S231393AbiFKNlr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 09:41:47 -0400
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [IPv6:2a01:488:42:1000:50ed:8234::])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43DBDB2F;
+        Sat, 11 Jun 2022 06:41:46 -0700 (PDT)
+Received: from [2a02:8108:963f:de38:eca4:7d19:f9a2:22c5]; authenticated
+        by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        id 1o01Mz-0003Hv-Qn; Sat, 11 Jun 2022 15:41:41 +0200
+Message-ID: <a32f84e1-33d1-08ea-8912-cf2311532df8@leemhuis.info>
+Date:   Sat, 11 Jun 2022 15:41:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: renesas,wdt: Add r9a09g011
- (RZ/V2M) support
+Subject: Re: Regression: at24 eeprom writing times out on sama5d3
 Content-Language: en-US
-To:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20220607135619.174110-1-phil.edworthy@renesas.com>
- <20220607135619.174110-2-phil.edworthy@renesas.com>
- <83a8fb86-3311-87fe-c4ca-ab8e6d0cf784@linaro.org>
- <TYYPR01MB7086EFE64F1DF8C6141E8719F5A69@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TYYPR01MB7086EFE64F1DF8C6141E8719F5A69@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+To:     linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        "regressions@lists.linux.dev" <regressions@lists.linux.dev>
+References: <074b39c5-55fc-2bc1-072d-aef1070e284d@axentia.se>
+From:   Thorsten Leemhuis <regressions@leemhuis.info>
+In-Reply-To: <074b39c5-55fc-2bc1-072d-aef1070e284d@axentia.se>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1654954906;31ae75de;
+X-HE-SMSGID: 1o01Mz-0003Hv-Qn
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,84 +43,205 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/06/2022 16:38, Phil Edworthy wrote:
-> Hi Krzysztof,
+[TLDR: I'm adding this regression report to the list of tracked
+regressions; all text from me you find below is based on a few templates
+paragraphs you might have encountered already already in similar form.]
+
+Hi, this is your Linux kernel regression tracker.
+
+On 09.06.22 16:28, Peter Rosin wrote:
+> Hi!
 > 
-> Thanks for your review.
+> I have not actually bisected this issue but reverting the effects of
+> patch a4bd8da893a3 ("ARM: dts: at91: sama5d3: add i2c gpio pinctrl")
+> makes the problem go away.
+
+To be sure below issue doesn't fall through the cracks unnoticed, I'm
+adding it to regzbot, my Linux kernel regression tracking bot:
+
+#regzbot ^introduced a4bd8da893a3
+#regzbot title i2c: at24 eeprom writing times out on sama5d3
+#regzbot ignore-activity
+#regzbot monitor:
+https://lore.kernel.org/all/20210727111554.1338832-1-codrin.ciubotariu@microchip.com/
+
+This isn't a regression? This issue or a fix for it are already
+discussed somewhere else? It was fixed already? You want to clarify when
+the regression started to happen? Or point out I got the title or
+something else totally wrong? Then just reply -- ideally with also
+telling regzbot about it, as explained here:
+https://linux-regtracking.leemhuis.info/tracked-regression/
+
+Reminder for developers: When fixing the issue, add 'Link:' tags
+pointing to the report (the mail this one replied to), as the kernel's
+documentation call for; above page explains why this is important for
+tracked regressions.
+
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+
+P.S.: As the Linux kernel's regression tracker I deal with a lot of
+reports and sometimes miss something important when writing mails like
+this. If that's the case here, don't hesitate to tell me in a public
+reply, it's in everyone's interest to set the public record straight.
+
+
+
+> I.e. I need something like this in my dts
 > 
-> On 08 June 2022 11:52 Krzysztof Kozlowski wrote:
->> On 07/06/2022 15:56, Phil Edworthy wrote:
->>> Add the documentation for the r9a09g011 SoC, but in doing so also
->>> reorganise the doc to make it easier to read.
->>> Additionally, make the binding require an interrupt to be specified.
->>> Whilst the driver does not need an interrupt, all of the SoCs that use
->>> this binding actually provide one.
->>>
->>> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
->>> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
->>> ---
->>>  .../bindings/watchdog/renesas,wdt.yaml        | 63 ++++++++++++-------
->>>  1 file changed, 42 insertions(+), 21 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
->> b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
->>> index a8d7dde5271b..6473734921e3 100644
->>> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
->>> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
->>> @@ -31,6 +31,11 @@ properties:
->>>                - renesas,r9a07g054-wdt    # RZ/V2L
->>>            - const: renesas,rzg2l-wdt
->>>
->>> +      - items:
->>> +          - enum:
->>> +              - renesas,r9a09g011-wdt    # RZ/V2M
->>> +          - const: renesas,rzv2m-wdt     # RZ/V2M
->>> +
->>>        - items:
->>>            - enum:
->>>                - renesas,r8a7742-wdt      # RZ/G1H
->>> @@ -70,13 +75,27 @@ properties:
->>>    reg:
->>>      maxItems: 1
->>>
->>> -  interrupts: true
->>> +  interrupts:
->>> +    minItems: 1
->>> +    items:
->>> +      - description: Timeout
->>> +      - description: Parity error
->>>
->>> -  interrupt-names: true
->>> +  interrupt-names:
->>
->> This also needs minItems
-> I left minItems off for interrupt-names and clock-names on the basis that
-> they are only needed if you have more than one interrupt or clock.
-
-True, but now you disallow them for one clock/interrupt cases in other
-variants. Although after looking at existing bindings - it's even
-messier there. For certain variants it is just ":true" which is not correct.
-
-In general, the properties in "properties:" section should have
-constraints - the most wide. These are narrowed for specific variants or
-even disallowed for some. Old bindings allowed anything for some
-variants, like 20 interrupt names so clearly wrong.
-
+> &i2c2 {
+> 	status = "okay";
 > 
-> After adding the lines you suggested (minItems: 1), I find that
-> 'make dtbs_check' passes even if there are no interrupt-names or
-> clock-names specified. Is this expected?
-
-These are not required, aren't they? If they are not required, they can
-be missing...
-
+> 	pinctrl-names = "default";
+> 	/delete-property/ pinctrl-1;
+> 	/delete-property/ sda-gpios;
+> 	/delete-property/ scl-gpios;
 > 
-> minItems: 0 makes more sense to me, but it is required to be greater than
-> or equal 1
+> 	eeprom@50 {
+> 		compatible = "st,24c64", "atmel,24c64";
+> 		reg = <0x50>;
+> 		wp-gpios = <&filter_gpio 7 GPIO_ACTIVE_HIGH>;
+> 	};
+> };
 > 
-> Thanks
-> Phil
+> for multi-page eeprom writes to not time out (a page is 32 bytes on this
+> eeprom).
+> 
+> For reference, the current defaults for this SoC/I2C-bus, that I modify,
+> are:
+> 
+> 	pinctrl-names = "default", "gpio";
+> 	pinctrl-0 = <&pinctrl_i2c2>;
+> 	pinctrl-1 = <&pinctrl_i2c2_gpio>;
+> 	sda-gpios = <&pioA 18 GPIO_ACTIVE_HIGH>;
+> 	scl-gpios = <&pioA 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> 
+> I suspect that the underlying reason is that the bus recovery takes
+> too long and that the at24 eeprom driver gives up prematurely. I doubt
+> that this is chip specific, but I don't know that.
+> 
+> I can work around the issue in user space with by writing in 4 byte
+> chunks, like so
+> 
+> dd if=source.file of=/sys/bus/i2c/devices/2-0050/eeprom obs=4
+> 
+> but that is really ugly and gets slow too, about 20 seconds to program
+> the full 8kB eeprom. With the above in my dts it takes a second or
+> so (a bit more with dynamic debug active).
+> 
+> 
+> If I run
+> 
+> dd if=source.file of=/sys/bus/i2c/devices/2-0050/eeprom
+> 
+> with a source.file of 8kB and the upstream dts properties in place, I can
+> collect the following debug output from at24, i2c-core and i2c-at91:
+> 
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@0 --> 0 (-23170)
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: received nack
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
+> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@32 --> -121 (-23169)
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@32 --> 0 (-23168)
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: received nack
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
+> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@64 --> -121 (-23168)
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@64 --> 0 (-23167)
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: received nack
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
+> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@96 --> -121 (-23167)
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: controller timed out
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
+> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@96 --> -110 (-23155)
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:56:34 me20 kernel: at91_i2c f801c000.i2c: controller timed out
+> Jun  9 15:56:34 me20 kernel: i2c i2c-2: Trying i2c bus recovery
+> Jun  9 15:56:34 me20 kernel: at24 2-0050: write 32@96 --> -110 (-23143)
+> 
+> And then there is no more action. I.e. only a couple of 32 byte pages
+> are written.
+> 
+> With the above mentioned dts override in place I instead get this, which is
+> a lot more sensible:
+> 
+> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@0 --> 0 (753629)
+> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
+> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@32 --> -121 (753629)
+> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@32 --> 0 (753630)
+> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
+> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@64 --> -121 (753630)
+> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@64 --> 0 (753631)
+> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
+> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@96 --> -121 (753631)
+> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@96 --> 0 (753632)
+> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
+> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@128 --> -121 (753632)
+> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@128 --> 0 (753633)
+> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: received nack
+> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@160 --> -121 (753633)
+> Jun  9 15:48:53 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:53 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+> Jun  9 15:48:53 me20 kernel: at24 2-0050: write 32@160 --> 0 (753634)
+> ... snip ...
+> Jun  9 15:48:55 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: received nack
+> Jun  9 15:48:55 me20 kernel: at24 2-0050: write 32@8128 --> -121 (753883)
+> Jun  9 15:48:55 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+> Jun  9 15:48:55 me20 kernel: at24 2-0050: write 32@8128 --> 0 (753884)
+> Jun  9 15:48:55 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: received nack
+> Jun  9 15:48:55 me20 kernel: at24 2-0050: write 32@8160 --> -121 (753884)
+> Jun  9 15:48:55 me20 kernel: i2c i2c-2: at91_xfer: processing 1 messages:
+> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer: write 34 bytes.
+> Jun  9 15:48:55 me20 kernel: at91_i2c f801c000.i2c: transfer complete
+> Jun  9 15:48:55 me20 kernel: at24 2-0050: write 32@8160 --> 0 (753885)
+> 
+> Cheers,
+> Peter
 
-
-Best regards,
-Krzysztof
