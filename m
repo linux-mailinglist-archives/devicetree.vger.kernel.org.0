@@ -2,124 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9A7D547338
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 11:29:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D66BA547346
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jun 2022 11:31:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232555AbiFKJ25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Jun 2022 05:28:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52412 "EHLO
+        id S231825AbiFKJbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jun 2022 05:31:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232611AbiFKJ2f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 05:28:35 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1914C6AA7F;
-        Sat, 11 Jun 2022 02:28:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=PYcsBoWzdiCutgNRzhzdQblCHgmrM9wgVrOHPOZNCxQ=;
-        b=JLqWpjeH2J+X618K/Ffz5XF5Lrju0erOV6XfNw2VU1hU+JPtcKN4q1WLCfhKnXQ4z6pdBfiEF905J
-         9b8zEN+3udxVOufKfmt1tw9u8yC3QmqDdIH6Wm4O+tcwBDqxp1/hnRSjBguCRly97vL1Hsr78u4a1o
-         Oa4NJU1+Gfn1QF0DZLb11YS53ccNx6yrPLXT7JQps9mVlqq44foqqE+IuXSy5VjP1E/Mi6L3/mXye8
-         l+9+iaPnbqJInFoxKnlx9Gk4g49rQ5vqyU0I8s8TSM0kiZrHXniqLM/UMEHBPgkv/AiAwnq+vQDdUQ
-         kJ1W+iuvQpnsSfjBdMiQjvGZncP9ilQ==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000009,0.008435)], BW: [Enabled, t: (0.000021,0.000001)], RTDA: [Enabled, t: (0.176922), Hit: No, Details: v2.40.0; Id: 15.52k719.1g591fe6d.390v; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from localhost.localdomain ([178.70.36.174])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Sat, 11 Jun 2022 12:28:13 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, corbet@lwn.net
-Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        Conor.Dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, system@metrotek.ru,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v18 4/4] dt-bindings: fpga: add binding doc for microchip-spi fpga mgr
-Date:   Sat, 11 Jun 2022 12:05:31 +0300
-Message-Id: <20220611090531.9663-5-i.bornyakov@metrotek.ru>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220611090531.9663-1-i.bornyakov@metrotek.ru>
-References: <20220611090531.9663-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S229745AbiFKJbM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jun 2022 05:31:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2596326D0;
+        Sat, 11 Jun 2022 02:31:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 38F8B60B15;
+        Sat, 11 Jun 2022 09:31:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D251BC34116;
+        Sat, 11 Jun 2022 09:31:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654939870;
+        bh=JEHB2+yb07hk08YAU9SCnhBZyTJpoJajIXfHmENt1Z0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=W2/NspDpexJKGkKbkeNkX+chUN9NG/XpSSb54CsMxzviqb+n4LdMJi0V3YoW/8cbE
+         OZdUPecVv2z2pqAhccX5dBjSqwHE3++fUnbxNzA4F6//JvZ5qwiVYmV2UGt/k0KMpx
+         REKJeRtRRIeH+CKClrIq0AuFF06/IG4XXyw8RNPS5FKnSfGowBKTT7kKWtci+zNqcd
+         GNNvYpEuKKmH5MsCwbLFJ5ohPKW2YBLMSWO94m4pUpRUAzXtfghP2JMGh9WlPAt3C3
+         0oA7GSO7sC7eEW+xhRJ/SliclBQrETHBWQNcvncHhs8xbU66VpgJ8STk3QIDt/X0xa
+         Kdl6ovF7BhPiw==
+Date:   Sat, 11 Jun 2022 17:31:03 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Ulrich =?iso-8859-1?Q?=D6lmann?= <u.oelmann@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        Juergen Borleis <jbe@pengutronix.de>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        =?iso-8859-1?Q?S=F8ren?= Andersen <san@skov.dk>,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH] ARM: dts: imx6: skov: add pwm-regulator to control the
+ panel's VCOM
+Message-ID: <20220611093103.GI254723@dragon>
+References: <20220517071814.3626702-1-u.oelmann@pengutronix.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220517071814.3626702-1-u.oelmann@pengutronix.de>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Tree Binding doc for Microchip Polarfire FPGA Manager using
-slave SPI to load .dat formatted bitstream image.
+On Tue, May 17, 2022 at 09:18:14AM +0200, Ulrich Ölmann wrote:
+> Skov's i.MX6 based boards come in different flavors which have different panels
+> attached. For optimal contrast experience each panel type needs an individual
+> common voltage (VCOM) to drive its TFT backplane. The latter is generated by an
+> LCD bias supply IC controlled by a pwm as input signal. Introduce a pwm-
+> regulator to describe this hardware property and parameterize it appropriately
+> for the different boards.
+> 
+> Signed-off-by: Ulrich Ölmann <u.oelmann@pengutronix.de>
+> ---
+>  arch/arm/boot/dts/imx6q-skov-reve-mi1010ait-1cp1.dts |  6 ++++++
+>  arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi              | 10 ++++++++++
+>  2 files changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/imx6q-skov-reve-mi1010ait-1cp1.dts b/arch/arm/boot/dts/imx6q-skov-reve-mi1010ait-1cp1.dts
+> index 7f1f19b74bfa..a3f247c722b4 100644
+> --- a/arch/arm/boot/dts/imx6q-skov-reve-mi1010ait-1cp1.dts
+> +++ b/arch/arm/boot/dts/imx6q-skov-reve-mi1010ait-1cp1.dts
+> @@ -125,3 +125,9 @@ MX6QDL_PAD_EIM_D23__GPIO3_IO23		0x1b0b0
+>  		>;
+>  	};
+>  };
+> +
+> +&reg_tft_vcom {
+> +	regulator-min-microvolt = <3160000>;
+> +	regulator-max-microvolt = <3160000>;
+> +	voltage-table = <3160000 73>;
+> +};
+> diff --git a/arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi b/arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi
+> index 77a91a97e6cf..3def1b621c8e 100644
+> --- a/arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi
+> @@ -149,6 +149,16 @@ reg_can2_stby: regulator-can2-stby {
+>  		gpio = <&gpio4 11 GPIO_ACTIVE_LOW>;
+>  	};
+>  
+> +	reg_tft_vcom: regulator-tft-vcom {
+> +		compatible = "pwm-regulator";
+> +		pwms = <&pwm3 0 20000 0>;
+> +		regulator-name = "tft_vcom";
+> +		regulator-min-microvolt = <3600000>;
+> +		regulator-max-microvolt = <3600000>;
+> +		regulator-always-on;
 
-Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Xu Yilun <yilun.xu@intel.com>
----
- .../fpga/microchip,mpf-spi-fpga-mgr.yaml      | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+You want it to be unmanaged and always-on?
 
-diff --git a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-new file mode 100644
-index 000000000000..aee45cb15592
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fpga/microchip,mpf-spi-fpga-mgr.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip Polarfire FPGA manager.
-+
-+maintainers:
-+  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+
-+description:
-+  Device Tree Bindings for Microchip Polarfire FPGA Manager using slave SPI to
-+  load the bitstream in .dat format.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,mpf-spi-fpga-mgr
-+
-+  reg:
-+    description: SPI chip select
-+    maxItems: 1
-+
-+  spi-max-frequency: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            fpga_mgr@0 {
-+                    compatible = "microchip,mpf-spi-fpga-mgr";
-+                    spi-max-frequency = <20000000>;
-+                    reg = <0>;
-+            };
-+    };
--- 
-2.35.1
+Shawn
 
-
+> +		voltage-table = <3600000 26>;
+> +	};
+> +
+>  	reg_vcc_mmc: regulator-vcc-mmc {
+>  		compatible = "regulator-fixed";
+>  		pinctrl-names = "default";
+> -- 
+> 2.30.2
+> 
