@@ -2,131 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 910C2547AA8
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 17:09:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B57B6547ABF
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 17:26:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237474AbiFLPJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jun 2022 11:09:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53992 "EHLO
+        id S231864AbiFLP0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jun 2022 11:26:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237475AbiFLPJx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 11:09:53 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71A525EDD8;
-        Sun, 12 Jun 2022 08:09:51 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id g25so3831168ljm.2;
-        Sun, 12 Jun 2022 08:09:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=kR1FFXBNuVcnI+XFY+UkNzwK+20t6KACUWQ6sh+8W7w=;
-        b=WfraHZESA0Ns7l45yKXsRgqhPj9UEGMkb4W3PHOlB5YUfLBdjEXyXoQWqAyC5NrrKG
-         UlHC0uTDbvzVcGAJsGuVa7FEcCfd95CKX77qu1foVsL3VnAUbf76XGPp8r4VHmRpL7Az
-         lJcG7P5Xdm1PcJFhlUoZPr/q2345HtFzIOXXtmMkXUH00EiSksXaqt/ivRkuk/gu9AEg
-         SDdKZrYfttipfh/chG8wOEhamYi2mNghpO9Y+Idku5yHoYiUazlqR09NlPw4YEf/jJXX
-         eX1qcPeq4ZUL0nEBOlOelXFfMYkfo3ZzTFoT0q4+uTVB/kLkQ+1ZXWzmW/XSw1imA9aH
-         dhSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kR1FFXBNuVcnI+XFY+UkNzwK+20t6KACUWQ6sh+8W7w=;
-        b=uVo7hC4U1WGWK5tmqT9fXtEcXdYC76kMN7XMzuwQ9x6EkZEeIbtNLERQcr6rbrpHIG
-         SRtwxygV0w4Nbatp1/hoycYAS3J8jK9EDyQOcQ8qhiJnn5dYgUORnT8w1ud8CaTv/Mbu
-         uljekD+sTgYSK2qf/EeBlnAI3zNlEePLzedtkXZ/1gI4ErcEQy7gTNCyAVmsSn5JPS89
-         1dpe6IbYZP9uO+FSDJ2t9e+WHc64Qb7whrO1h3ELg2xxVUr6BQ3SL1uTd+nd+0o5Uf33
-         oH9iUOIWQ3D43epy1v48BRfzrzCnGqvO1ARYTaQC1fi7Sgpmw9/E1DUSI4nbHIDNzi/y
-         RJ5w==
-X-Gm-Message-State: AOAM5304SYfaiA1LuwCjiqdVD5Nq0z0Otv6fJoIw+sTOkqhL9LbMEdwN
-        P34Gn6lyhtzwRhk9ou/YZYg=
-X-Google-Smtp-Source: ABdhPJwUeaIP09kg///zZLbr4I7t7Kkm58sR3kj+eU1oSGhbUcursPA4tzEXpO1EP0GCLBmzgRzo9w==
-X-Received: by 2002:a2e:8501:0:b0:249:17a0:ebf8 with SMTP id j1-20020a2e8501000000b0024917a0ebf8mr67356763lji.125.1655046589721;
-        Sun, 12 Jun 2022 08:09:49 -0700 (PDT)
-Received: from [192.168.0.131] ([194.183.54.57])
-        by smtp.gmail.com with ESMTPSA id q11-20020ac2510b000000b00478f739f1fdsm640278lfb.103.2022.06.12.08.09.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Jun 2022 08:09:49 -0700 (PDT)
-Message-ID: <f1402a1d-a74d-f7b9-b9e2-fc3991781e64@gmail.com>
-Date:   Sun, 12 Jun 2022 17:09:47 +0200
+        with ESMTP id S231373AbiFLP0M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 11:26:12 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82CF5E0C8;
+        Sun, 12 Jun 2022 08:26:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1655047571; x=1686583571;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=Q0onuyl5eTrkYqFlMMv+/M78rN5v5VPQYnAPHZB5rCM=;
+  b=hNhS8io2Jt1g6wJG0d0Df4uOYMkEgpquUUWMD22X+rHtx3ytuvkJjg+n
+   PKe0oYCBkydT4EbKyqnCdYNFU43M0AZA/yJtOw0oWTYn/hqF0htBXPVAd
+   ldYaGD57PdFbpBuyk6cxGd/mEDzYuWxaRuG6S6T3nS5g72yctPungppT0
+   vqDLWVfzfaZrzqe6b6p1rHopVIvyVhaoZEmIifDLeBk7zK7boN+yetjEm
+   5cyvKVLLY9ZtLwa68LgeRVlEsbdLXZVddGxKa02OQDa7GlscGmjmy/OLa
+   TQpFKfpxcCN5P0WApuGiHjsSIP5uQlLRgxUnoayEawrO/e1Swx0p5qu7u
+   g==;
+X-IronPort-AV: E=Sophos;i="5.91,294,1647327600"; 
+   d="scan'208";a="99654529"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Jun 2022 08:26:10 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Sun, 12 Jun 2022 08:26:10 -0700
+Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Sun, 12 Jun 2022 08:26:06 -0700
+From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <claudiu.beznea@microchip.com>, <UNGLinuxDriver@microchip.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <Kavyasree.Kotagiri@microchip.com>
+Subject: [PATCH v3 0/3] Add support for lan966x flexcom chip-select configuration
+Date:   Sun, 12 Jun 2022 20:56:01 +0530
+Message-ID: <20220612152604.24280-1-kavyasree.kotagiri@microchip.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 3/3] ARM: dts: exynos: add function and color to aat1290
- flash LED node in Galaxy S3
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20220607085343.72414-1-krzysztof.kozlowski@linaro.org>
- <20220607085343.72414-3-krzysztof.kozlowski@linaro.org>
- <4a7f8ab6-c061-3861-5790-b6c0fbd7cad1@gmail.com>
- <ef62a7bb-2217-2947-17dd-fc4a51acdea5@linaro.org>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-In-Reply-To: <ef62a7bb-2217-2947-17dd-fc4a51acdea5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/10/22 12:14, Krzysztof Kozlowski wrote:
-> On 09/06/2022 22:31, Jacek Anaszewski wrote:
->> Hi Krzysztof,
->>
->> On 6/7/22 10:53, Krzysztof Kozlowski wrote:
->>> Add common LED properties - the function and color - to aat1290 flash
->>> LED node in Galaxy S3.
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>    arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi | 3 +++
->>>    1 file changed, 3 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi b/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
->>> index 72901772fcad..d76f3678dcab 100644
->>> --- a/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
->>> +++ b/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
->>> @@ -7,6 +7,7 @@
->>>     */
->>>    
->>>    /dts-v1/;
->>> +#include <dt-bindings/leds/common.h>
->>>    #include "exynos4412-midas.dtsi"
->>>    
->>>    / {
->>> @@ -27,6 +28,8 @@ led-controller {
->>>    
->>>    		led {
->>>    			label = "flash";
->>> +			function = LED_FUNCTION_FLASH;
->>> +			color = <LED_COLOR_ID_WHITE>;
->>
->> Addition of these two properties will not change anything because
->> the label has precedence. It is deprecated, but if you introduce
->> function and color to the binding instead of the label, the resulting
->> LED class device name will change.
-> 
-> Which is not necessarily what we want, right? Adding these properties is
-> a proper description of hardware, regardless whether current Linux
-> implementation uses them or not.
+This patch series converts atmel-flexcom bindings into json-schema format.
+Adds support for lan966x flexcom chip-select configurations and its
+DT bindings.
 
-Actually I'd just drop label in addition to your change.
-I don't think it would break anybody seriously - not expecting it has
-any larger group of users and having uniformly constructed DTS files
-in the mainline has greater value.
+v2 -> v3:
+ - changed IRQ flag in dt-bindings example.
+ - added reg property specific to lan66x which is missed in v2.
+ - used goto label for clk_disable in error cases.
+
+v1 -> v2:
+ - minor fix in title of dt-bindings.
+ - Modified new dt properties usage in atmel,flexcom.yaml.
+ - Used GENMASK and macros for maximum allowed values.
+ - Use u32 values for flexcom chipselects instead of strings.
+ - disable clock in case of errors.
+
+Kavyasree Kotagiri (3):
+  dt-bindings: mfd: atmel,flexcom: Convert to json-schema
+  dt-bindings: mfd: atmel,flexcom: Add new compatible string for lan966x
+  mfd: atmel-flexcom: Add support for lan966x flexcom chip-select
+    configuration
+
+ .../bindings/mfd/atmel,flexcom.yaml           | 174 ++++++++++++++++++
+ .../devicetree/bindings/mfd/atmel-flexcom.txt |  63 -------
+ drivers/mfd/atmel-flexcom.c                   |  94 +++++++++-
+ 3 files changed, 267 insertions(+), 64 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-flexcom.txt
 
 -- 
-Best regards,
-Jacek Anaszewski
+2.17.1
+
