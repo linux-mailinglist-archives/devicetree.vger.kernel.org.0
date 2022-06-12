@@ -2,120 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A6C8547C25
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 23:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1DC1547CB4
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 00:17:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235147AbiFLVJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jun 2022 17:09:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33560 "EHLO
+        id S236815AbiFLWRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jun 2022 18:17:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231676AbiFLVJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 17:09:11 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAE22D75;
-        Sun, 12 Jun 2022 14:09:10 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id s12so7635409ejx.3;
-        Sun, 12 Jun 2022 14:09:10 -0700 (PDT)
+        with ESMTP id S237272AbiFLWQp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 18:16:45 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F1F9522DB
+        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 15:16:43 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id g2so4414200ljk.5
+        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 15:16:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mLPNjDUnvcjmZ4FMqBCTRmEclsWEYRrVtqGZBPO5x7k=;
-        b=SjqL5tWU78T5/Uz9HugJ/z0Tg9BpHS0Tf5P5vvdgWNO9JNa5FcCqu/4DftsHA2r7vx
-         TmnfLfvFeZb064ZzDB8W3dwDL5ZCA9E1R0smXX9Q990NGgZcmT985MKDpMEEtdhJsy9u
-         /7Zhs38nA33vbY8OyKPgvkE5u34Cy1XsQHPfpvlxK5Ejen+40f+VsLJ2GrUeLOShtbcj
-         UtynMWGStxnAJ0GVL/pm+FpzO4bU77yreznnBrv8Cap0X9BQQPTU3GAJGWeHMOoKP6Vl
-         ArmBZkCcwm6+NjwOJm/o9YHwnoiqmxGLqh74msCXz50P4Pdh553PQ3Wl59/apvD007OQ
-         GF9g==
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=sunDVi/ticftrmGFGD0ymqsOh72W45vWbx1D2LbSq4s=;
+        b=asLN9hjKyM34whmshERovu7s3c3BhM+F7MTfEN9BXMNwm1aDR0HpuRBlKYUTUT4uS9
+         egeaexlIXxY7Pgglt35XChh8Q/5MDS6Z3frnxjAHtGBhFJGIF+ZMgGspG/NxBw3mc2HO
+         rEd0Jafy0ABL8PJYkhUXHSy+IpekdZIb+DwejUuxiW6DfKyvC/iJUT/5kKtZImgYn3G1
+         uCJ2nhmt8p6buatbjH+gbDaDx2h847+C+G7mivFkULwRwatyRMNMMRp0zzhKUhTzIVLc
+         IDZVCiOxGzvDqpNEkmtHc+HcO+F2nK4RcN6XCeAQP4rWHCEvVi8bAprDmngpmZ0M4dmo
+         RB6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mLPNjDUnvcjmZ4FMqBCTRmEclsWEYRrVtqGZBPO5x7k=;
-        b=30KfZPoJFezJIWDBzPLXCpOH+kMVp7Porcg8g28blnQTsDgBqEYsciKmrtnzsEeobd
-         iE6PIsL7sMMwSV69dD0Od7bhvbiUbycliU6CnMta19e66A4SAz231vrL6/x+GCnF6v4J
-         kjFCrd6HdSwt9uOZ5pPHA974amjMqa1/aYdam1Lgt69lJos+230pZNZLhk0EntVOxY5c
-         6eFjflnj96Ma3P6nclJ+5OJEkCU5pbpGHbHmk86xBakqHumuUQjxaXsw9eCu1CvsqbXz
-         Z1ko2BxYtvtFJDZ9r6IkfavS2wzt4XdkcG+vyA+X+F63caxvpWmNPCuN0FDN0TN5xt+n
-         NpcA==
-X-Gm-Message-State: AOAM530N4BOjW5USff//P7sKT1Tzs6GHikMVzS/S6KoodC4m85Xx7581
-        yjf97miKLrMHPn+K2los4n0=
-X-Google-Smtp-Source: ABdhPJxf8a6zY47Y+E83LFTn8PcaN6GpEYohhYO0tp4yZMZaCK/233usfpgdu80Pfd1WtXcyhDOJ5Q==
-X-Received: by 2002:a17:906:3693:b0:718:4125:f08d with SMTP id a19-20020a170906369300b007184125f08dmr2447118ejc.146.1655068149494;
-        Sun, 12 Jun 2022 14:09:09 -0700 (PDT)
-Received: from kista.localnet (213-161-3-76.dynamic.telemach.net. [213.161.3.76])
-        by smtp.gmail.com with ESMTPSA id io11-20020a17090780cb00b00715c322bda1sm1243661ejc.69.2022.06.12.14.09.08
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=sunDVi/ticftrmGFGD0ymqsOh72W45vWbx1D2LbSq4s=;
+        b=cPT/w46YgerkG1hI2vbUIZ5S5/dkWV5fdAfASB1+TYDsjjpiscuf5gUUPbOBJ25oyE
+         lWmm6zudExPgZboDuI8VZauuYbAHzslS0/0ONAsDadtAnPFdrQwsbWkpf1YQFXyAhF50
+         RsA3LOILu0xAMNovXtrPyTCM+Z2gLc5lKOkRe7HsId7q/t4JaCpflVgmI5IvJ5Vlx+sW
+         sNQcQw6WsDOsJDqIuW1vqxxnTO6lxMiTA/Z5ouVdLMkWGSMyWpAJaIq37E33s5iTQUS/
+         BHisXmf+QUs0QIWSziTJLelajwQ52BIxE0oltWIlz4trKbzgPx06cCTC7JuScubNJ3h2
+         DbAw==
+X-Gm-Message-State: AOAM531t4L/CnVJQPKuSX2hgAdPybQ6Q6NrSqjAMfgmKcQG7T8puFCJm
+        u5HZInjLd0YIMKscJ27xb+4G2g==
+X-Google-Smtp-Source: ABdhPJyiW858OSRKNb3DyVbWavm4PLqO5MZ0BncdZxJ3DWEye/I3ZGfWCBKVqmVWhgfOznBLaDYK2w==
+X-Received: by 2002:a2e:6a0d:0:b0:255:7341:145 with SMTP id f13-20020a2e6a0d000000b0025573410145mr28908880ljc.360.1655072201580;
+        Sun, 12 Jun 2022 15:16:41 -0700 (PDT)
+Received: from localhost (h-85-24-188-65.A463.priv.bahnhof.se. [85.24.188.65])
+        by smtp.gmail.com with ESMTPSA id z10-20020a0565120c0a00b00477cc59e376sm741820lfu.161.2022.06.12.15.16.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jun 2022 14:09:09 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Samuel Holland <samuel@sholland.org>,
-        Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Luca Weiss <luca@z3ntu.xyz>, Maxime Ripard <maxime@cerno.tech>,
+        Sun, 12 Jun 2022 15:16:41 -0700 (PDT)
+Date:   Mon, 13 Jun 2022 00:16:40 +0200
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Thierry Reding <treding@nvidia.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 0/3] ARM: sunxi: Remove A31 and A23/A33 platform SMP code
-Date:   Sun, 12 Jun 2022 23:09:07 +0200
-Message-ID: <2833034.e9J7NaK4W3@kista>
-In-Reply-To: <20220531045038.42230-1-samuel@sholland.org>
-References: <20220531045038.42230-1-samuel@sholland.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: thermal: rcar-gen3-thermal: use
+ positive logic
+Message-ID: <YqZlyBH349VIdQDI@oden.dyn.berto.se>
+References: <20220610201701.7946-1-wsa+renesas@sang-engineering.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220610201701.7946-1-wsa+renesas@sang-engineering.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne torek, 31. maj 2022 ob 06:50:35 CEST je Samuel Holland napisal(a):
-> This series is preparation for converting the PRCM MFD and legacy clock
-> drivers to a CCU clock driver. The platform SMP code references the PRCM
-> node to map its MMIO space, which will break when the PRCM node is
-> removed/replaced.
+Hi Wolfram,
 
-Why can't we just leave old platform code? If older dtb file is used, it would 
-still work. Actually, isn't trivial to support new CCU binding too, just by 
-including new CCU compatible string? IIUC new CCU node will have same address 
-as current PRCM node.
+Thanks for your patch.
 
-Best regards,
-Jernej
+On 2022-06-10 22:17:00 +0200, Wolfram Sang wrote:
+> When handling the V3U/r8a779a0 exception, avoid using 'not:' because
+> then its subschemas are far away in the 'else:' branch. Keep them
+> together using positive logic.
+> 
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+
+> ---
 > 
-> Since PSCI has been available for 7+ years, instead of trying to deal
-> with the migration, I think it's safe to just delete this code.
+> Changes since v2:
+> * new patch
 > 
+> Tested with:
+> make dtbs_check DT_SCHEMA_FILES=thermal/rcar-gen3-thermal.yaml
 > 
-> Samuel Holland (3):
->   ARM: sunxi: Remove A31 and A23/A33 platform SMP code
->   ARM: dts: sunxi: Remove obsolete CPU enable methods
->   dt-bindings: arm: Remove obsolete CPU enable methods
+>  .../bindings/thermal/rcar-gen3-thermal.yaml   | 21 +++++++++----------
+>  1 file changed, 10 insertions(+), 11 deletions(-)
 > 
->  .../devicetree/bindings/arm/cpus.yaml         |   2 -
->  arch/arm/boot/dts/sun6i-a31.dtsi              |   1 -
->  arch/arm/boot/dts/sun8i-a23-a33.dtsi          |   1 -
->  arch/arm/mach-sunxi/Makefile                  |   1 -
->  arch/arm/mach-sunxi/platsmp.c                 | 194 ------------------
->  5 files changed, 199 deletions(-)
->  delete mode 100644 arch/arm/mach-sunxi/platsmp.c
-> 
+> diff --git a/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml b/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
+> index 1368d90da0e8..72dc7eb27f8d 100644
+> --- a/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
+> @@ -57,31 +57,30 @@ required:
+>    - "#thermal-sensor-cells"
+>  
+>  if:
+> -  not:
+> -    properties:
+> -      compatible:
+> -        contains:
+> -          enum:
+> -            - renesas,r8a779a0-thermal
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - renesas,r8a779a0-thermal
+>  then:
+>    properties:
+>      reg:
+> -      minItems: 2
+>        items:
+> +        - description: TSC0 registers
+>          - description: TSC1 registers
+>          - description: TSC2 registers
+>          - description: TSC3 registers
+> -  required:
+> -    - interrupts
+> +        - description: TSC4 registers
+>  else:
+>    properties:
+>      reg:
+> +      minItems: 2
+>        items:
+> -        - description: TSC0 registers
+>          - description: TSC1 registers
+>          - description: TSC2 registers
+>          - description: TSC3 registers
+> -        - description: TSC4 registers
+> +  required:
+> +    - interrupts
+>  
+>  additionalProperties: false
+>  
 > -- 
 > 2.35.1
 > 
-> 
 
-
+-- 
+Kind Regards,
+Niklas Söderlund
