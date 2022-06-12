@@ -2,90 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB019547BEB
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 21:58:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E5F9547C00
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 22:38:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234464AbiFLT6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jun 2022 15:58:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55750 "EHLO
+        id S234244AbiFLUiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jun 2022 16:38:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234723AbiFLT6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 15:58:10 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F6D5A59D
-        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 12:58:00 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id m16-20020a7bca50000000b0039c8a224c95so1154932wml.2
-        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 12:58:00 -0700 (PDT)
+        with ESMTP id S231891AbiFLUiO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 16:38:14 -0400
+Received: from mail-vk1-xa32.google.com (mail-vk1-xa32.google.com [IPv6:2607:f8b0:4864:20::a32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEB573AA55;
+        Sun, 12 Jun 2022 13:38:13 -0700 (PDT)
+Received: by mail-vk1-xa32.google.com with SMTP id b13so1830650vko.4;
+        Sun, 12 Jun 2022 13:38:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod.ie; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=HPK8k4gKJZ+wQWjBYJ1REf4HNNl/uXfLF+28+th4jm8=;
-        b=WxS4e3m70DLW1yjIUhnUbrBdeC8hHUVcYuxLS5HhyBfAJgqwPHyGo62VUl1t4TWG78
-         qa0Spt0qrqCK77WFgGnytj+CrUY0uFwa1t0rjiMFRo1x0VIWcrz7L6fh3uxeHawYDRaQ
-         pz56WqD45VRi3cPSZrS693lfJbwHCAaxUAGBuEf61Lb+Je8HLEgo1gMymquk8eSzGsbC
-         ovS/fUm/RDwASKiWAK3qRBaoSq6y3Af0NNm6qTUhNOsHKGDJTORGKjmxWeEVt1bG7fWO
-         fB7pIC2mJ2H9ISdqp0viUSfC8Ib0W+ACLclo+DLNepwN6QZgw5ybyCWA1mx1QYljyb9+
-         VkMg==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DaoD+tAduDQz7Ifk7hiTW7VOyucam8owwPCNchlahPs=;
+        b=BruPf5GslfaNb5lXngwHL+wmoob2r6M4kQC6wy4NVkURSegJpRDvLFHRTT1Ep0wyk9
+         WBosJiYlvugGe575KhJfQugyPrOxVpIAZEOgXhOA2Hd7p0bWlabmfbRxGPstOJj3bbg8
+         H9AbCiP4oyX8limUjaJdBxjrLCYifXzyrdv6dnmFOeVjquoe1b+ioFiIGqM8LTf3Sk/7
+         D145ZWG2lyr1afiv0gFCbVxLqIrHCuhmQ1fej9JsiLq6YAuoyEi07zge5RAbpZgAyZfN
+         Xno1CNIcJrOsGcM76RmlBZqCN3du8W/0Rt20uvMFZLH6pStOSCBd/l7q0zKknrqIqc2s
+         xM/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=HPK8k4gKJZ+wQWjBYJ1REf4HNNl/uXfLF+28+th4jm8=;
-        b=kVAhYrrj5ReqLpLuUi3i/IN4T1j8HYC7EEMJHyW97N9IlURciiyjrZMGGAjUcBS7ED
-         zuZ8yYZp0hLH5tvhM6HNPm+EjXmXwixnqk0zbsaV23SilCNTWqXXNitiD8rD8wHnXGih
-         4u2BkKzDE8eHBwtOKtwflY08dmp64Nv2JcfnIv5Mk0Krn7qEIZ4pF4XEgo+wQFmQ3z6G
-         MQ+yG1fP8m23xAGTcgsBkS3uGaKq4Z8sTk7aQ68rkAcNyqT6v9SYx1IJON5BL1VmtzbL
-         /xnDk8qVyZVGcriabLhJTyHcAdpUon42p+AjE8sFh+vvk+5hwlijnVk/xytOF5XjlF/b
-         F3Fg==
-X-Gm-Message-State: AOAM533FGrKn8yJSQDY6lDI1zYJ4KFAYbSmxcZI1SznrDRhQeTRd1BWu
-        DCpfYwrgUX7OpbbT4qm+W7XuVA==
-X-Google-Smtp-Source: ABdhPJxVD+6uveEwgGG0ZXNpTkwYft114nVu3ghAlq26nsiNc/IJ06GFHoNEAPTGysm8ECJzB0DhxA==
-X-Received: by 2002:a05:600c:3d07:b0:39c:80a8:db07 with SMTP id bh7-20020a05600c3d0700b0039c80a8db07mr10727828wmb.168.1655063879180;
-        Sun, 12 Jun 2022 12:57:59 -0700 (PDT)
-Received: from henark71.. ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id r16-20020a056000015000b0021108003596sm6402404wrx.10.2022.06.12.12.57.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jun 2022 12:57:58 -0700 (PDT)
-From:   Conor Dooley <mail@conchuod.ie>
-To:     krzk+dt@kernel.org, conor.dooley@microchip.com, palmer@dabbelt.com,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        paul.walmsley@sifive.com, zong.li@sifive.com, palmer@rivosinc.com,
-        daire.mcnamara@microchip.com, aou@eecs.berkeley.edu
-Subject: Re: [PATCH] riscv: dts: microchip: re-add pdma to mpfs device tree
-Date:   Sun, 12 Jun 2022 20:57:35 +0100
-Message-Id: <165506374015.3753145.322560637772164805.b4-ty@microchip.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220603083825.1910300-1-conor.dooley@microchip.com>
-References: <20220603083825.1910300-1-conor.dooley@microchip.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DaoD+tAduDQz7Ifk7hiTW7VOyucam8owwPCNchlahPs=;
+        b=4040jIRRW40KzN5fKr8YhL5rfwIIDrCIyosAQHPjLMcGfNA4JN3onnQVInpxU9LpHn
+         +9Ku+xFfvC4Xfk24S/CFxCKlaWqGgjxh+++C6prd2VT9Kl5ySucK/bDAXZRVuR8kAPDi
+         dn1x1gq/+BrQSewqU6yPjclBUqB3AMYfgIrEHlgSMdonia7gHaYupbAIrQD/DkcnGr+M
+         H17t9f++k7LCga61s58wRtV507YaYvUuJyf5irqBhBX+10Y9DEHpdaRzKqGjRVpinS/Q
+         Xenbe5ZSeNvZCX+z7cTHiKcCqLpD+uL/pCdDoDEwVxaSz6DTV0YPvkql8Fm1AaLWvIJ5
+         XB+w==
+X-Gm-Message-State: AOAM5338V+qUKlUTEAISmNluevGfaAtIiF6AevinZ1LL/ULjFSNpH4kF
+        UoYywb342zmCffGJRst6kj5uRAOy1l5G1oaF5TI=
+X-Google-Smtp-Source: ABdhPJy9D5IweQbHJAywJP55Qx/MaUuc/s/biyGeLjfX/VGq9FGLWyQM23uR61YyF2iN32N0bQaK038sM8rPgBElojI=
+X-Received: by 2002:a05:6122:4f4:b0:365:242d:411b with SMTP id
+ s20-20020a05612204f400b00365242d411bmr5756375vkf.32.1655066292799; Sun, 12
+ Jun 2022 13:38:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20220608123233.13439-1-ariel.dalessandro@collabora.com>
+In-Reply-To: <20220608123233.13439-1-ariel.dalessandro@collabora.com>
+From:   Peter Robinson <pbrobinson@gmail.com>
+Date:   Sun, 12 Jun 2022 21:38:02 +0100
+Message-ID: <CALeDE9PR80qS63wwAKB-hENWbEj1xNHj+k81tyWkPPfZ0TS8Pw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: bcm2711-rpi-4-b: Use aliases to set custom MMC
+ device index
+To:     "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        gbcm-kernel-feedback-list@broadcom.com,
+        gkrzysztof.kozlowski+dt@linaro.org, gnsaenz@kernel.org,
+        grobh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Wed, Jun 8, 2022 at 1:35 PM Ariel D'Alessandro
+<ariel.dalessandro@collabora.com> wrote:
+>
+> Add MMC aliases to ensure that the /dev/mmcblk ID for SD card won't
+> change depending on the probe order of the MMC drivers.
 
-On Fri, 3 Jun 2022 09:38:26 +0100, Conor Dooley wrote:
-> PolarFire SoC /does/ have a SiFive pdma, despite what I suggested as a
-> conflict resolution to Zong. Somehow the entry fell through the cracks
-> between versions of my dt patches, so re-add it with Zong's updated
-> compatible & dma-channels property.
-> 
-> 
+Is  the bcm2711-rpi.dtsi a better place for it given there's other
+aliases there and it will be consistent across variations?
 
-Applied to dt-fixes, thanks!
-
-[1/1] riscv: dts: microchip: re-add pdma to mpfs device tree
-      https://git.kernel.org/conor/c/5e757deddd91
-
-Thanks,
-Conor.
+> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+> ---
+>  arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> index 4432412044de..780812542bad 100644
+> --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> @@ -14,6 +14,10 @@ chosen {
+>                 stdout-path = "serial1:115200n8";
+>         };
+>
+> +       aliases {
+> +               mmc0 = &emmc2;  /* mmcblk0 for SD */
+> +       };
+> +
+>         leds {
+>                 led-act {
+>                         gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-rpi-kernel mailing list
+> linux-rpi-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rpi-kernel
