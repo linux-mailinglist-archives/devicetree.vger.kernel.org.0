@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB328547CCE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 00:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B520547CC9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 00:33:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237167AbiFLWd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jun 2022 18:33:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34308 "EHLO
+        id S234577AbiFLWd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jun 2022 18:33:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237326AbiFLWdK (ORCPT
+        with ESMTP id S237179AbiFLWdK (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 18:33:10 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5145F186CE
-        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 15:33:07 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id w27so4975715edl.7
-        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 15:33:07 -0700 (PDT)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99994186DB
+        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 15:33:08 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id b8so4960227edj.11
+        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 15:33:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=5r2jX1NRw8l4yEIr0s6m6XSJvuObgjeUKX1+q07TNao=;
-        b=rdWDY1+hudfr+zgnuNA3+YkHhlagP80qgytD0WEcFkdI5qiqoiDMREH1PoU4BmpSmD
-         M2pLR2k7kKpDGTodghQlNMBrRlJolFT2DiWpbRZbTRpTif9/GN6jRpzM4TS4kJyhwqbR
-         dQRyXpKYI3myDgxqk8V4dzGlV8yTCsnzEwXmicF5L8j5oATPDTNe2StlVCIM+GULF8L7
-         cnQS56adVO6m0pSsGfbhQ7Z4Fr8h/BdpwcOgzQvnPv+DrbKDXDuw0XGdHdVVYosdmqMQ
-         CH+41GZQUbOm8il1A37ygsBYuCHZ4Z6xJVr0LhvoBhO1eqpjaIQPHN92mrk7ftXRjKgJ
-         7NRQ==
+        bh=6hOWm4HNYwizqExKPot6DZ2kdpEPh1LrdUx8jfcJnW4=;
+        b=3A7I1paCBwpUXDLdMWsRFLysHo1EmAJGUKSNsBdyEp2pOkvhABlgXjkC5UP/UFbws8
+         Yox9lnXcjiCD++KIO81jM6YSmxhQ29lFkyTd11cVvl6/xrrvS8kuxpv+giI/ot4sl2GJ
+         6HJvriPA3DISV0sbD4sHHawjJV01fB+zVL2X97JsmvVbEL2V+KZcUtzSAN6q9SUlvty9
+         DZJE0wvvZ5eDO2Lk8/lKEPy2vUpy5S/Ef7doTX/N3akGfhmt4USiSfgCrKn7uhRAg3wP
+         PhSS8kKHAGprUTdftrnqS5fJs+OnrhRFFKfpqAOJQpgdC+KiEn/p0nggY4OWvBPfBzb+
+         qRKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=5r2jX1NRw8l4yEIr0s6m6XSJvuObgjeUKX1+q07TNao=;
-        b=lYXO55Zp8lZX1JoMf8RuApxpR6a+f8+O5Ezd5ieQkTXlC1IT4q8nVDvck//pe/wgH2
-         GMWHkS1TAwzXYrqArLvZOXEi7ocpg6P69UPHO2FFnSppQaAa3zQhMBOyUuBlXXo9W/Xg
-         SZ1gb/PkXYELG2d+Zg0ptkTfr32P67lx4fwUQz62rn3BrGTHl7xcDYcSHv/PMUAZglfG
-         6qtrf9iLFVWu54sHG+mbM+5ygbw4nrvRCpQ4qHSx7fgg1wbYELQU2HFHdq43DrgKfX7E
-         xt+NpPx9rvpirfYwwoKmhfMSKRn+7hbXmL2eci+a3J9HMn2lWhj7v49agOmkhD3ocIbR
-         Yp2g==
-X-Gm-Message-State: AOAM531ggE6NxfyUov9Cj0+JKgUDEGdYXl8S0h9ZOkGJT8qHjNebTtl2
-        QB2wnM00YmEndLsclrmk08KLnw==
-X-Google-Smtp-Source: ABdhPJzGQEYW11h0DqLonLG3Aj17JpIBr8vvqZ3tME1FBmSzAi55bqNIuaTMSnBE98H5U1PpuVmMig==
-X-Received: by 2002:a05:6402:278d:b0:42e:d3d5:922e with SMTP id b13-20020a056402278d00b0042ed3d5922emr53014372ede.154.1655073186130;
-        Sun, 12 Jun 2022 15:33:06 -0700 (PDT)
+        bh=6hOWm4HNYwizqExKPot6DZ2kdpEPh1LrdUx8jfcJnW4=;
+        b=v5zOix4abWN2HIr1LdhQCcEkrrzth2eeBVCJ5Hxp2tHhVMr2S6mE8aitjyle2YqHNx
+         7+tmKJRedjJ8QPsaB8nDa7nqhxSetX3Qtb6MLGu6b/QO7NW7MyYnCawOAxI5SJycsa67
+         +L6vaEJgUqouia5pJsjifOY6l1uQoAaQc2xFfEx3oaOAVnnegaadp7tOH1tfENcsfsfV
+         Zh/AmjS1YUliHNa7AgAuxEXjQUrJGK6YRDL58PtIntnVs0hbUUGv629lKDyQoxVBCZ4R
+         EJSZAiOLJzS6H9cB6bwHMsMQpvf/eJWmSgFMQyj9sDIDMcS1YUAC9mL4bOao/PWPC2DL
+         eHkw==
+X-Gm-Message-State: AOAM533IgxyHmi2+BdMlm3wDnPppxYyb2zpSe8P7CnC0Ix74xU9h+xh6
+        0/T0dubhbHBqCa38CSC4Zz13fA==
+X-Google-Smtp-Source: ABdhPJx8eUy4phHW+qZj/cwYpkeLTe7LCtyDKwnpwHZyQwCu62A7fWns65QZ8iSHnZFsCiFr2MFFag==
+X-Received: by 2002:a05:6402:ea7:b0:433:6141:840e with SMTP id h39-20020a0564020ea700b004336141840emr11453126eda.266.1655073187046;
+        Sun, 12 Jun 2022 15:33:07 -0700 (PDT)
 Received: from bismarck.berto.se (p4fca22cf.dip0.t-ipconnect.de. [79.202.34.207])
-        by smtp.googlemail.com with ESMTPSA id e3-20020a056402104300b0042b5cf75d6esm3766559edu.97.2022.06.12.15.33.05
+        by smtp.googlemail.com with ESMTPSA id e3-20020a056402104300b0042b5cf75d6esm3766559edu.97.2022.06.12.15.33.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jun 2022 15:33:05 -0700 (PDT)
+        Sun, 12 Jun 2022 15:33:06 -0700 (PDT)
 From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
         <niklas.soderlund+renesas@ragnatech.se>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -66,9 +66,9 @@ Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
         linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org,
         =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
         <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH 3/6] arm64: dts: freescale: Add missing space around properties
-Date:   Mon, 13 Jun 2022 00:31:58 +0200
-Message-Id: <20220612223201.2740248-4-niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH 4/6] arm64: dts: hisilicon: Add missing space around properties
+Date:   Mon, 13 Jun 2022 00:31:59 +0200
+Message-Id: <20220612223201.2740248-5-niklas.soderlund+renesas@ragnatech.se>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220612223201.2740248-1-niklas.soderlund+renesas@ragnatech.se>
 References: <20220612223201.2740248-1-niklas.soderlund+renesas@ragnatech.se>
@@ -77,7 +77,8 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -89,239 +90,72 @@ files.
 
 Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi            | 6 +++---
- arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi           | 2 +-
- arch/arm64/boot/dts/freescale/imx8mm.dtsi                 | 8 ++++----
- arch/arm64/boot/dts/freescale/imx8mn.dtsi                 | 8 ++++----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi                 | 8 ++++----
- arch/arm64/boot/dts/freescale/imx8mq.dtsi                 | 2 +-
- .../arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dtsi | 6 +++---
- arch/arm64/boot/dts/freescale/imx8ulp.dtsi                | 6 +++---
- 8 files changed, 23 insertions(+), 23 deletions(-)
+ arch/arm64/boot/dts/hisilicon/hip06.dtsi | 6 +++---
+ arch/arm64/boot/dts/hisilicon/hip07.dtsi | 6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 92465f7776035a14..d4b719c8a0b93faf 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -120,13 +120,13 @@ pmu {
- 	};
+diff --git a/arch/arm64/boot/dts/hisilicon/hip06.dtsi b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
+index 70d7732dd348552d..2f8b03b0d36537ca 100644
+--- a/arch/arm64/boot/dts/hisilicon/hip06.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
+@@ -537,7 +537,7 @@ port@0 {
  
- 	gic: interrupt-controller@6000000 {
--		compatible= "arm,gic-v3";
-+		compatible = "arm,gic-v3";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges;
--		reg= <0x0 0x06000000 0 0x10000>, /* GIC Dist */
-+		reg = <0x0 0x06000000 0 0x10000>, /* GIC Dist */
- 			<0x0 0x06040000 0 0x40000>; /* GIC Redistributor */
--		#interrupt-cells= <3>;
-+		#interrupt-cells = <3>;
- 		interrupt-controller;
- 		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_RAW(0xf) |
- 					 IRQ_TYPE_LEVEL_LOW)>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
-index a79f42a9618ec55f..3e335b4664980189 100644
---- a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
-@@ -54,7 +54,7 @@ usdhc2: mmc@5b020000 {
- 		clock-names = "ipg", "per", "ahb";
- 		power-domains = <&pd IMX_SC_R_SDHC_1>;
- 		fsl,tuning-start-tap = <20>;
--		fsl,tuning-step= <2>;
-+		fsl,tuning-step = <2>;
- 		status = "disabled";
- 	};
+ 			port@1 {
+ 				reg = <1>;
+-				serdes-syscon= <&serdes_ctrl>;
++				serdes-syscon = <&serdes_ctrl>;
+ 				port-rst-offset = <1>;
+ 				port-mode-offset = <1>;
+ 				media-type = "fiber";
+@@ -546,7 +546,7 @@ port@1 {
+ 			port@4 {
+ 				reg = <4>;
+ 				phy-handle = <&phy0>;
+-				serdes-syscon= <&serdes_ctrl>;
++				serdes-syscon = <&serdes_ctrl>;
+ 				port-rst-offset = <4>;
+ 				port-mode-offset = <2>;
+ 				media-type = "copper";
+@@ -555,7 +555,7 @@ port@4 {
+ 			port@5 {
+ 				reg = <5>;
+ 				phy-handle = <&phy1>;
+-				serdes-syscon= <&serdes_ctrl>;
++				serdes-syscon = <&serdes_ctrl>;
+ 				port-rst-offset = <5>;
+ 				port-mode-offset = <3>;
+ 				media-type = "copper";
+diff --git a/arch/arm64/boot/dts/hisilicon/hip07.dtsi b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
+index 6baf6a686450ee28..1a16662f8867ba1e 100644
+--- a/arch/arm64/boot/dts/hisilicon/hip07.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
+@@ -1422,7 +1422,7 @@ port@0 {
  
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 1bf070473829244d..eb02244fa55441be 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -212,7 +212,7 @@ clk_ext3: clock-ext3 {
- 	clk_ext4: clock-ext4 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
--		clock-frequency= <133000000>;
-+		clock-frequency = <133000000>;
- 		clock-output-names = "clk_ext4";
- 	};
- 
-@@ -995,7 +995,7 @@ usdhc1: mmc@30b40000 {
- 					 <&clk IMX8MM_CLK_USDHC1_ROOT>;
- 				clock-names = "ipg", "ahb", "per";
- 				fsl,tuning-start-tap = <20>;
--				fsl,tuning-step= <2>;
-+				fsl,tuning-step = <2>;
- 				bus-width = <4>;
- 				status = "disabled";
- 			};
-@@ -1009,7 +1009,7 @@ usdhc2: mmc@30b50000 {
- 					 <&clk IMX8MM_CLK_USDHC2_ROOT>;
- 				clock-names = "ipg", "ahb", "per";
- 				fsl,tuning-start-tap = <20>;
--				fsl,tuning-step= <2>;
-+				fsl,tuning-step = <2>;
- 				bus-width = <4>;
- 				status = "disabled";
- 			};
-@@ -1023,7 +1023,7 @@ usdhc3: mmc@30b60000 {
- 					 <&clk IMX8MM_CLK_USDHC3_ROOT>;
- 				clock-names = "ipg", "ahb", "per";
- 				fsl,tuning-start-tap = <20>;
--				fsl,tuning-step= <2>;
-+				fsl,tuning-step = <2>;
- 				bus-width = <4>;
- 				status = "disabled";
- 			};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index e41e1d56f980d511..130c6d90dd79bb4d 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -212,7 +212,7 @@ clk_ext3: clock-ext3 {
- 	clk_ext4: clock-ext4 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
--		clock-frequency= <133000000>;
-+		clock-frequency = <133000000>;
- 		clock-output-names = "clk_ext4";
- 	};
- 
-@@ -941,7 +941,7 @@ usdhc1: mmc@30b40000 {
- 					 <&clk IMX8MN_CLK_USDHC1_ROOT>;
- 				clock-names = "ipg", "ahb", "per";
- 				fsl,tuning-start-tap = <20>;
--				fsl,tuning-step= <2>;
-+				fsl,tuning-step = <2>;
- 				bus-width = <4>;
- 				status = "disabled";
- 			};
-@@ -955,7 +955,7 @@ usdhc2: mmc@30b50000 {
- 					 <&clk IMX8MN_CLK_USDHC2_ROOT>;
- 				clock-names = "ipg", "ahb", "per";
- 				fsl,tuning-start-tap = <20>;
--				fsl,tuning-step= <2>;
-+				fsl,tuning-step = <2>;
- 				bus-width = <4>;
- 				status = "disabled";
- 			};
-@@ -969,7 +969,7 @@ usdhc3: mmc@30b60000 {
- 					 <&clk IMX8MN_CLK_USDHC3_ROOT>;
- 				clock-names = "ipg", "ahb", "per";
- 				fsl,tuning-start-tap = <20>;
--				fsl,tuning-step= <2>;
-+				fsl,tuning-step = <2>;
- 				bus-width = <4>;
- 				status = "disabled";
- 			};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index d9542dfff83fba78..b2f4a5f1f73cbe15 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -195,7 +195,7 @@ clk_ext3: clock-ext3 {
- 	clk_ext4: clock-ext4 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
--		clock-frequency= <133000000>;
-+		clock-frequency = <133000000>;
- 		clock-output-names = "clk_ext4";
- 	};
- 
-@@ -903,7 +903,7 @@ usdhc1: mmc@30b40000 {
- 					 <&clk IMX8MP_CLK_USDHC1_ROOT>;
- 				clock-names = "ipg", "ahb", "per";
- 				fsl,tuning-start-tap = <20>;
--				fsl,tuning-step= <2>;
-+				fsl,tuning-step = <2>;
- 				bus-width = <4>;
- 				status = "disabled";
- 			};
-@@ -917,7 +917,7 @@ usdhc2: mmc@30b50000 {
- 					 <&clk IMX8MP_CLK_USDHC2_ROOT>;
- 				clock-names = "ipg", "ahb", "per";
- 				fsl,tuning-start-tap = <20>;
--				fsl,tuning-step= <2>;
-+				fsl,tuning-step = <2>;
- 				bus-width = <4>;
- 				status = "disabled";
- 			};
-@@ -931,7 +931,7 @@ usdhc3: mmc@30b60000 {
- 					 <&clk IMX8MP_CLK_USDHC3_ROOT>;
- 				clock-names = "ipg", "ahb", "per";
- 				fsl,tuning-start-tap = <20>;
--				fsl,tuning-step= <2>;
-+				fsl,tuning-step = <2>;
- 				bus-width = <4>;
- 				status = "disabled";
- 			};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 49eadb081b19860e..0c74c2a4a40f7615 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -94,7 +94,7 @@ clk_ext3: clock-ext3 {
- 	clk_ext4: clock-ext4 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
--		clock-frequency= <133000000>;
-+		clock-frequency = <133000000>;
- 		clock-output-names = "clk_ext4";
- 	};
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dtsi
-index 144fc9e82da751c6..e3f161a10448e007 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dtsi
-@@ -38,17 +38,17 @@ rtc_i2c: rtc@68 {
- 
- /* Colibri UART_B */
- &lpuart0 {
--	status= "okay";
-+	status = "okay";
- };
- 
- /* Colibri UART_C */
- &lpuart2 {
--	status= "okay";
-+	status = "okay";
- };
- 
- /* Colibri UART_A */
- &lpuart3 {
--	status= "okay";
-+	status = "okay";
- };
- 
- /* Colibri FastEthernet */
-diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-index 09f7364dd1d05a11..ba281e689cf6ed26 100644
---- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-@@ -331,7 +331,7 @@ usdhc0: mmc@298d0000 {
- 				clock-names = "ipg", "ahb", "per";
- 				power-domains = <&scmi_devpd IMX8ULP_PD_USDHC0>;
- 				fsl,tuning-start-tap = <20>;
--				fsl,tuning-step= <2>;
-+				fsl,tuning-step = <2>;
- 				bus-width = <4>;
- 				status = "disabled";
- 			};
-@@ -346,7 +346,7 @@ usdhc1: mmc@298e0000 {
- 				clock-names = "ipg", "ahb", "per";
- 				power-domains = <&scmi_devpd IMX8ULP_PD_USDHC1>;
- 				fsl,tuning-start-tap = <20>;
--				fsl,tuning-step= <2>;
-+				fsl,tuning-step = <2>;
- 				bus-width = <4>;
- 				status = "disabled";
- 			};
-@@ -361,7 +361,7 @@ usdhc2: mmc@298f0000 {
- 				clock-names = "ipg", "ahb", "per";
- 				power-domains = <&scmi_devpd IMX8ULP_PD_USDHC2_USB1>;
- 				fsl,tuning-start-tap = <20>;
--				fsl,tuning-step= <2>;
-+				fsl,tuning-step = <2>;
- 				bus-width = <4>;
- 				status = "disabled";
- 			};
+ 			port@1 {
+ 				reg = <1>;
+-				serdes-syscon= <&serdes_ctrl>;
++				serdes-syscon = <&serdes_ctrl>;
+ 				cpld-syscon = <&dsa_cpld 0x4>;
+ 				port-rst-offset = <1>;
+ 				port-mode-offset = <1>;
+@@ -1433,7 +1433,7 @@ port@1 {
+ 			port@4 {
+ 				reg = <4>;
+ 				phy-handle = <&phy0>;
+-				serdes-syscon= <&serdes_ctrl>;
++				serdes-syscon = <&serdes_ctrl>;
+ 				port-rst-offset = <4>;
+ 				port-mode-offset = <2>;
+ 				mc-mac-mask = [ff f0 00 00 00 00];
+@@ -1443,7 +1443,7 @@ port@4 {
+ 			port@5 {
+ 				reg = <5>;
+ 				phy-handle = <&phy1>;
+-				serdes-syscon= <&serdes_ctrl>;
++				serdes-syscon = <&serdes_ctrl>;
+ 				port-rst-offset = <5>;
+ 				port-mode-offset = <3>;
+ 				mc-mac-mask = [ff f0 00 00 00 00];
 -- 
 2.36.1
 
