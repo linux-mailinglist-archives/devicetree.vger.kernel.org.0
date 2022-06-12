@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9497E547BCB
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 21:31:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24DC3547BD0
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 21:31:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234335AbiFLTbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jun 2022 15:31:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41040 "EHLO
+        id S234464AbiFLTbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jun 2022 15:31:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234975AbiFLTaQ (ORCPT
+        with ESMTP id S234986AbiFLTaQ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 15:30:16 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0E4B41FB9
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F421A41FBA
         for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 12:30:15 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id y187so3829484pgd.3
+Received: by mail-pl1-x631.google.com with SMTP id v4so1443151plp.8
         for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 12:30:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=schmorgal.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=jNiHb2zf4hIUtj3fRs5Cp05qIaOZgGR33OERisEw3bQ=;
-        b=Kra1q9GS4FRu7pOyXngoZt0PIXUuGrrSybyjnq9ZWOJYF/IslGrzjkpsV3T0uT9SDY
-         xsLXryJfZQ7DNxBI6YUBIXS9BY/9YtAHy0PQfFbq+mSmi5msHai94Klhyxo4QMq4e5Fb
-         hKhRDAc8kkE4Mcev2jDw+Z8YFaNLrxDTh/X0c=
+        bh=V52v8toWUF8IhJDBBzoO58I9WaMVuk6G80A6C1feD40=;
+        b=FFjAIM+FdoNfCcOYnN7gcV1sob7H24JUnj3kBSo13KgZUkzscXlajzdnDP/ni1WsrR
+         5C/7wvJE33gLEXd/whvP3ocTbuSttIrkdCN5P7WYWB/G8q0VzNIIx4GiJwvl3+PSxDoA
+         7gqBEzay2BDIpK/YfwnoM5Oo2z4PBSM8zrtWE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=jNiHb2zf4hIUtj3fRs5Cp05qIaOZgGR33OERisEw3bQ=;
-        b=aAj9V0rQFB9hoR0WZ7uHxsD4gxNk16w7aeCfLJKCMGBFa6gpnug4P7O8icRuepAYfr
-         CVjM00z8iedefWtjZwGeZWXr5tfSGULij7iiI2S5uXnRgGIN8h4MPcPQVvmquUnxb4sq
-         2q4JkLOdsSXF5NPf2eMt3NtREJmS2zPRFGwk8jLOLZCcujBmcvTnWetKa4lCHy+AUtEz
-         YZYLaaQRXm5LCxaUQRcVaQLIcCXocEYfmVNnAom0PjaPvQZ/DD/cu4WMjSsPTv7XwxdI
-         4jPB5IVoofW0PP+4iEgmAhEJVwViu8Nc9XoU9255Jsk/XScf08e4J/kpZYvPiy7KaKSo
-         8O6w==
-X-Gm-Message-State: AOAM530BgYyZnZhtq3r5AkUwO7lQAHkZyXPKflXAgXSrcPKG1wSql5Ya
-        pAyAjZcSk7Yi1/5YqGLFO4dp4QmCUl+DJSD7ossbng==
-X-Google-Smtp-Source: ABdhPJzVWoPA6NX35buSBu4zo18+BuUgE90Uzf3Dy9SLl8yMhf9+8qVt2b7M0XX2GJ1hZknuE7XhEg==
-X-Received: by 2002:a62:d40c:0:b0:51b:bc02:703b with SMTP id a12-20020a62d40c000000b0051bbc02703bmr56023545pfh.65.1655062214999;
-        Sun, 12 Jun 2022 12:30:14 -0700 (PDT)
+        bh=V52v8toWUF8IhJDBBzoO58I9WaMVuk6G80A6C1feD40=;
+        b=1K2coHA3ipQp2KuE/wDvR2GBG6bCNiZHvCsaDVXMB0Lw6eQ7UrsE8PDS9sGnFOnOhg
+         cE5YZ90W9Jw0mcbhzNoJozzWdubmqtGsoV7lQ4MQ/oyafzfTpeE+MILXBLiiKv1pwWuJ
+         LuwWWXQM4xs12wLmLWat4gKMk1wnQEN0uWr6j+BhkSthidDNDWNST8c06Swq5LBTesKu
+         jERWIqBJz8qM50aTJP32A3uuexs48Tu6ij1tejP9qOuZm4Ip5ZprNHxBFQSEpygM23GY
+         Nx+V/Zd8wm2vHV1klsEPG7To7NoajSQmktZGaUA8WSafC/xGyaEqpv+prAlt+xDjFY5s
+         04lA==
+X-Gm-Message-State: AOAM531cfix7l25YoY/hT4AYaoGU+W7Wpl5314BvYOnmj+nYmvrTAm9P
+        liqXU0ncRK7ewEiP47LQfMTzRw==
+X-Google-Smtp-Source: ABdhPJywp6RXPZb13R+RwhewUreQMN24OqGxGT2cUUfL1rcRH2MBcfSKkXzQbUIfokpEDlVXMRlb9w==
+X-Received: by 2002:a17:90b:240e:b0:1e0:775b:f8fc with SMTP id nr14-20020a17090b240e00b001e0775bf8fcmr11798804pjb.132.1655062215647;
+        Sun, 12 Jun 2022 12:30:15 -0700 (PDT)
 Received: from localhost.localdomain ([50.45.132.243])
-        by smtp.gmail.com with ESMTPSA id i62-20020a628741000000b0050dc76281bdsm3603607pfe.151.2022.06.12.12.30.14
+        by smtp.gmail.com with ESMTPSA id i62-20020a628741000000b0050dc76281bdsm3603607pfe.151.2022.06.12.12.30.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jun 2022 12:30:14 -0700 (PDT)
+        Sun, 12 Jun 2022 12:30:15 -0700 (PDT)
 From:   Doug Brown <doug@schmorgal.com>
 To:     Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
@@ -51,9 +51,9 @@ To:     Michael Turquette <mturquette@baylibre.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
         Doug Brown <doug@schmorgal.com>
-Subject: [PATCH 09/12] dt-bindings: marvell,pxa168: add clock id for SDH3
-Date:   Sun, 12 Jun 2022 12:29:34 -0700
-Message-Id: <20220612192937.162952-10-doug@schmorgal.com>
+Subject: [PATCH 10/12] clk: mmp: pxa168: add clocks for SDH2 and SDH3
+Date:   Sun, 12 Jun 2022 12:29:35 -0700
+Message-Id: <20220612192937.162952-11-doug@schmorgal.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220612192937.162952-1-doug@schmorgal.com>
 References: <20220612192937.162952-1-doug@schmorgal.com>
@@ -61,7 +61,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,26 +69,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are four SDHC peripherals on the PXA168, but only three of them
-were present in the DT bindings. This commit adds the fourth.
+The PXA168 has four SDHC peripherals. This commit adds the last two.
 
 Signed-off-by: Doug Brown <doug@schmorgal.com>
 ---
- include/dt-bindings/clock/marvell,pxa168.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/clk/mmp/clk-of-pxa168.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/include/dt-bindings/clock/marvell,pxa168.h b/include/dt-bindings/clock/marvell,pxa168.h
-index 8686bc7bf7b6..b1cd4f20d175 100644
---- a/include/dt-bindings/clock/marvell,pxa168.h
-+++ b/include/dt-bindings/clock/marvell,pxa168.h
-@@ -59,6 +59,7 @@
- #define PXA168_CLK_CCIC0		107
- #define PXA168_CLK_CCIC0_PHY		108
- #define PXA168_CLK_CCIC0_SPHY		109
-+#define PXA168_CLK_SDH3			110
+diff --git a/drivers/clk/mmp/clk-of-pxa168.c b/drivers/clk/mmp/clk-of-pxa168.c
+index eb6a651d2366..98046019c5c2 100644
+--- a/drivers/clk/mmp/clk-of-pxa168.c
++++ b/drivers/clk/mmp/clk-of-pxa168.c
+@@ -217,6 +217,8 @@ static const char * const dfc_parent_names[] = {"pll1_4", "pll1_8"};
  
- #define PXA168_NR_CLKS			200
- #endif
+ static DEFINE_SPINLOCK(sdh0_lock);
+ static DEFINE_SPINLOCK(sdh1_lock);
++static DEFINE_SPINLOCK(sdh2_lock);
++static DEFINE_SPINLOCK(sdh3_lock);
+ static const char * const sdh_parent_names[] = {"pll1_13", "pll1_12", "pll1_8"};
+ 
+ static DEFINE_SPINLOCK(usb_lock);
+@@ -232,6 +234,8 @@ static struct mmp_param_mux_clk apmu_mux_clks[] = {
+ 	{0, "dfc_mux", dfc_parent_names, ARRAY_SIZE(dfc_parent_names), CLK_SET_RATE_PARENT, APMU_DFC, 6, 1, 0, &dfc_lock},
+ 	{0, "sdh0_mux", sdh_parent_names, ARRAY_SIZE(sdh_parent_names), CLK_SET_RATE_PARENT, APMU_SDH0, 6, 2, 0, &sdh0_lock},
+ 	{0, "sdh1_mux", sdh_parent_names, ARRAY_SIZE(sdh_parent_names), CLK_SET_RATE_PARENT, APMU_SDH1, 6, 2, 0, &sdh1_lock},
++	{0, "sdh2_mux", sdh_parent_names, ARRAY_SIZE(sdh_parent_names), CLK_SET_RATE_PARENT, APMU_SDH2, 6, 2, 0, &sdh2_lock},
++	{0, "sdh3_mux", sdh_parent_names, ARRAY_SIZE(sdh_parent_names), CLK_SET_RATE_PARENT, APMU_SDH3, 6, 2, 0, &sdh3_lock},
+ 	{0, "disp0_mux", disp_parent_names, ARRAY_SIZE(disp_parent_names), CLK_SET_RATE_PARENT, APMU_DISP0, 6, 1, 0, &disp0_lock},
+ 	{0, "ccic0_mux", ccic_parent_names, ARRAY_SIZE(ccic_parent_names), CLK_SET_RATE_PARENT, APMU_CCIC0, 6, 1, 0, &ccic0_lock},
+ 	{0, "ccic0_phy_mux", ccic_phy_parent_names, ARRAY_SIZE(ccic_phy_parent_names), CLK_SET_RATE_PARENT, APMU_CCIC0, 7, 1, 0, &ccic0_lock},
+@@ -247,6 +251,8 @@ static struct mmp_param_gate_clk apmu_gate_clks[] = {
+ 	{PXA168_CLK_SPH, "sph_clk", "usb_pll", 0, APMU_USB, 0x12, 0x12, 0x0, 0, &usb_lock},
+ 	{PXA168_CLK_SDH0, "sdh0_clk", "sdh0_mux", CLK_SET_RATE_PARENT, APMU_SDH0, 0x1b, 0x1b, 0x0, 0, &sdh0_lock},
+ 	{PXA168_CLK_SDH1, "sdh1_clk", "sdh1_mux", CLK_SET_RATE_PARENT, APMU_SDH1, 0x1b, 0x1b, 0x0, 0, &sdh1_lock},
++	{PXA168_CLK_SDH2, "sdh2_clk", "sdh2_mux", CLK_SET_RATE_PARENT, APMU_SDH2, 0x1b, 0x1b, 0x0, 0, &sdh2_lock},
++	{PXA168_CLK_SDH3, "sdh3_clk", "sdh3_mux", CLK_SET_RATE_PARENT, APMU_SDH3, 0x1b, 0x1b, 0x0, 0, &sdh3_lock},
+ 	{PXA168_CLK_DISP0, "disp0_clk", "disp0_mux", CLK_SET_RATE_PARENT, APMU_DISP0, 0x1b, 0x1b, 0x0, 0, &disp0_lock},
+ 	{PXA168_CLK_CCIC0, "ccic0_clk", "ccic0_mux", CLK_SET_RATE_PARENT, APMU_CCIC0, 0x1b, 0x1b, 0x0, 0, &ccic0_lock},
+ 	{PXA168_CLK_CCIC0_PHY, "ccic0_phy_clk", "ccic0_phy_mux", CLK_SET_RATE_PARENT, APMU_CCIC0, 0x24, 0x24, 0x0, 0, &ccic0_lock},
 -- 
 2.25.1
 
