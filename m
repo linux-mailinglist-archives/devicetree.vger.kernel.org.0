@@ -2,333 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61BE1547B03
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 18:17:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD509547B22
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 19:06:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230187AbiFLQRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jun 2022 12:17:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49484 "EHLO
+        id S229864AbiFLRGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jun 2022 13:06:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbiFLQRY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 12:17:24 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84F4D5F6D;
-        Sun, 12 Jun 2022 09:17:20 -0700 (PDT)
-Received: (Authenticated sender: contact@artur-rojek.eu)
-        by mail.gandi.net (Postfix) with ESMTPA id A4B9B20008;
-        Sun, 12 Jun 2022 16:17:15 +0000 (UTC)
+        with ESMTP id S231327AbiFLRGO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 13:06:14 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACC3040A02
+        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 10:06:12 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id g25so6938502ejh.9
+        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 10:06:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=e1j5oNyWe6LjPGibCsOkD4pe/7KGmuvi3WqbEeyX52A=;
+        b=axtd06CitJ9XTEQlj/DgAkzQO7gwwugoWwZY1AE+3Zgrmx9g1bJNWCNMLWlwF3iEl4
+         GhYCjZ1F7rhF6iZMCV3zMH+89SbmhW1HYE2LWqQReDf2b8zTolL4VWga094dShEhTncU
+         rXBUN7y3Juwybt8Udriw5j+nE2KAu+rQwc9it6aEmgN54efusB7QLYAaiLredlUnFdpx
+         o8Zp+1zZeXtNqmAXKQQzRBNOqMx9wixdGTeA+zOfuR7gU+lFX57Rn3kpULfWzeHw4sfP
+         riHzAZNZ4FYDkUtThXbRlJuV1Huhu/47lyl7C8BI7SiPecrv8yOniALBcDn26/A9LB+s
+         c3PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=e1j5oNyWe6LjPGibCsOkD4pe/7KGmuvi3WqbEeyX52A=;
+        b=sWeNlDLNI9fgUhKRkofj2hwfRh+6ceFVZpoFmQrDNgoZAsID/LUbDRcXrJjTnAck2b
+         FcnD2k9BWsGilGnV3rrE+/EpPX6jw0b+DqiacAenpZU2g0C1X8KIuOGgTrli1jdYLsz9
+         zFsOtXJOuttAQCI3mqOVpX71scwr8oMqM0v77JLmMJmil3UD3JQAR+bth7dbwz14+mFt
+         Zq2YBa5Hv1+TwEPM3gcX6wg3l0WmxMo2u3TBEQ4UFlRUsRinPqdk/xb3tinIAW+MBClG
+         myKAeeSPCkE/HuggVWwQ31diGPnavmJY8rg+V4q59w21NTR7RSDdlDts8iFvk60Kp1+i
+         K73w==
+X-Gm-Message-State: AOAM5314CFr4Xe3Bq+vUWA/lmTlNFVw1QSOjKq9ywN2rsmfY6diYg2gi
+        4kmfZ1216Z5Ove+xkN1e3oDQgQ==
+X-Google-Smtp-Source: ABdhPJywtatBoFfH74/PESsNXnL7SJhTfWWSGNB3lg0vls4R1pXgQ7dz3i5/bNXUiIxLtCTPyo5tTQ==
+X-Received: by 2002:a17:906:804a:b0:70c:1dac:9bb8 with SMTP id x10-20020a170906804a00b0070c1dac9bb8mr46957960ejw.92.1655053571275;
+        Sun, 12 Jun 2022 10:06:11 -0700 (PDT)
+Received: from [192.168.0.203] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id pv17-20020a170907209100b00704757b1debsm2675740ejb.9.2022.06.12.10.06.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Jun 2022 10:06:10 -0700 (PDT)
+Message-ID: <f1cc0f5a-12fb-28bc-7345-13ac2bf5b74d@linaro.org>
+Date:   Sun, 12 Jun 2022 19:06:09 +0200
 MIME-Version: 1.0
-Date:   Sun, 12 Jun 2022 18:17:15 +0200
-From:   Artur Rojek <contact@artur-rojek.eu>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 3/3] ARM: dts: exynos: add function and color to aat1290
+ flash LED node in Galaxy S3
+Content-Language: en-US
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: input: Centralize 'linux,code'
- definition
-In-Reply-To: <20220608211207.2058487-3-robh@kernel.org>
-References: <20220608211207.2058487-1-robh@kernel.org>
- <20220608211207.2058487-3-robh@kernel.org>
-Message-ID: <10fb98f1a1e15339402060d9a932a039@artur-rojek.eu>
-X-Sender: contact@artur-rojek.eu
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Simon Shields <simon@lineageos.org>,
+        =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>
+References: <20220607085343.72414-1-krzysztof.kozlowski@linaro.org>
+ <20220607085343.72414-3-krzysztof.kozlowski@linaro.org>
+ <4a7f8ab6-c061-3861-5790-b6c0fbd7cad1@gmail.com>
+ <ef62a7bb-2217-2947-17dd-fc4a51acdea5@linaro.org>
+ <f1402a1d-a74d-f7b9-b9e2-fc3991781e64@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <f1402a1d-a74d-f7b9-b9e2-fc3991781e64@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-06-08 23:12, Rob Herring wrote:
-> Multiple bindings use 'linux,code', but there is not a central
-> definition and type. Add 'linux,code' to input.yaml and update all the
-> users to use it.
+On 12/06/2022 17:09, Jacek Anaszewski wrote:
+> On 6/10/22 12:14, Krzysztof Kozlowski wrote:
+>> On 09/06/2022 22:31, Jacek Anaszewski wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 6/7/22 10:53, Krzysztof Kozlowski wrote:
+>>>> Add common LED properties - the function and color - to aat1290 flash
+>>>> LED node in Galaxy S3.
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> ---
+>>>>    arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi | 3 +++
+>>>>    1 file changed, 3 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi b/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
+>>>> index 72901772fcad..d76f3678dcab 100644
+>>>> --- a/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
+>>>> +++ b/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
+>>>> @@ -7,6 +7,7 @@
+>>>>     */
+>>>>    
+>>>>    /dts-v1/;
+>>>> +#include <dt-bindings/leds/common.h>
+>>>>    #include "exynos4412-midas.dtsi"
+>>>>    
+>>>>    / {
+>>>> @@ -27,6 +28,8 @@ led-controller {
+>>>>    
+>>>>    		led {
+>>>>    			label = "flash";
+>>>> +			function = LED_FUNCTION_FLASH;
+>>>> +			color = <LED_COLOR_ID_WHITE>;
+>>>
+>>> Addition of these two properties will not change anything because
+>>> the label has precedence. It is deprecated, but if you introduce
+>>> function and color to the binding instead of the label, the resulting
+>>> LED class device name will change.
+>>
+>> Which is not necessarily what we want, right? Adding these properties is
+>> a proper description of hardware, regardless whether current Linux
+>> implementation uses them or not.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-For adc-joystick.yaml:
+> Actually I'd just drop label in addition to your change.
+> I don't think it would break anybody seriously - not expecting it has
+> any larger group of users and having uniformly constructed DTS files
+> in the mainline has greater value.
+> 
 
-Acked-by: Artur Rojek <contact@artur-rojek.eu>
+What about some PostmarketOSos, LineageOS and other OSes?
 
-> ---
->  .../devicetree/bindings/input/adc-joystick.yaml   |  2 +-
->  .../input/allwinner,sun4i-a10-lradc-keys.yaml     |  5 ++---
->  .../devicetree/bindings/input/azoteq,iqs7222.yaml |  7 ++-----
->  .../devicetree/bindings/input/gpio-keys.yaml      |  1 -
->  .../devicetree/bindings/input/input.yaml          |  8 ++++++++
->  .../devicetree/bindings/input/iqs269a.yaml        | 15 ++++++---------
->  .../devicetree/bindings/input/iqs626a.yaml        |  5 ++---
->  .../devicetree/bindings/input/iqs62x-keys.yaml    |  5 ++---
->  .../devicetree/bindings/input/max77650-onkey.yaml |  8 ++++----
->  9 files changed, 27 insertions(+), 29 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> index 2ee04e03bc22..64d961458ac7 100644
-> --- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> @@ -45,6 +45,7 @@ additionalProperties: false
->  patternProperties:
->    "^axis@[0-9a-f]+$":
->      type: object
-> +    $ref: input.yaml#
->      description: >
->        Represents a joystick axis bound to the given ADC channel.
->        For each entry in the io-channels list, one axis subnode with a 
-> matching
-> @@ -57,7 +58,6 @@ patternProperties:
->          description: Index of an io-channels list entry bound to this 
-> axis.
-> 
->        linux,code:
-> -        $ref: /schemas/types.yaml#/definitions/uint32
->          description: EV_ABS specific event code generated by the axis.
-> 
->        abs-range:
-> diff --git
-> a/Documentation/devicetree/bindings/input/allwinner,sun4i-a10-lradc-keys.yaml
-> b/Documentation/devicetree/bindings/input/allwinner,sun4i-a10-lradc-keys.yaml
-> index 3399fc288afb..9700dc468b25 100644
-> ---
-> a/Documentation/devicetree/bindings/input/allwinner,sun4i-a10-lradc-keys.yaml
-> +++
-> b/Documentation/devicetree/bindings/input/allwinner,sun4i-a10-lradc-keys.yaml
-> @@ -44,14 +44,13 @@ properties:
->  patternProperties:
->    "^button-[0-9]+$":
->      type: object
-> +    $ref: input.yaml#
->      properties:
->        label:
->          $ref: /schemas/types.yaml#/definitions/string
->          description: Descriptive name of the key
-> 
-> -      linux,code:
-> -        $ref: /schemas/types.yaml#/definitions/uint32
-> -        description: Keycode to emit
-> +      linux,code: true
-> 
->        channel:
->          $ref: /schemas/types.yaml#/definitions/uint32
-> diff --git
-> a/Documentation/devicetree/bindings/input/azoteq,iqs7222.yaml
-> b/Documentation/devicetree/bindings/input/azoteq,iqs7222.yaml
-> index a3a1e5a65306..5ea10fe7ffe9 100644
-> --- a/Documentation/devicetree/bindings/input/azoteq,iqs7222.yaml
-> +++ b/Documentation/devicetree/bindings/input/azoteq,iqs7222.yaml
-> @@ -421,6 +421,7 @@ patternProperties:
->      patternProperties:
->        "^event-(prox|touch)$":
->          type: object
-> +        $ref: input.yaml#
->          description:
->            Represents a proximity or touch event reported by the 
-> channel.
-> 
-> @@ -467,11 +468,7 @@ patternProperties:
->                The IQS7222B does not feature channel-specific
-> timeouts; the time-
->                out specified for any one channel applies to all 
-> channels.
-> 
-> -          linux,code:
-> -            $ref: /schemas/types.yaml#/definitions/uint32
-> -            description:
-> -              Numeric key or switch code associated with the event. 
-> Specify
-> -              KEY_RESERVED (0) to opt out of event reporting.
-> +          linux,code: true
-> 
->            linux,input-type:
->              $ref: /schemas/types.yaml#/definitions/uint32
-> diff --git a/Documentation/devicetree/bindings/input/gpio-keys.yaml
-> b/Documentation/devicetree/bindings/input/gpio-keys.yaml
-> index 7fe1966ea28a..cd07107fd5ed 100644
-> --- a/Documentation/devicetree/bindings/input/gpio-keys.yaml
-> +++ b/Documentation/devicetree/bindings/input/gpio-keys.yaml
-> @@ -34,7 +34,6 @@ patternProperties:
-> 
->          linux,code:
->            description: Key / Axis code to emit.
-> -          $ref: /schemas/types.yaml#/definitions/uint32
-> 
->          linux,input-type:
->            description:
-> diff --git a/Documentation/devicetree/bindings/input/input.yaml
-> b/Documentation/devicetree/bindings/input/input.yaml
-> index 43d2f299c332..e3701a0bc500 100644
-> --- a/Documentation/devicetree/bindings/input/input.yaml
-> +++ b/Documentation/devicetree/bindings/input/input.yaml
-> @@ -23,6 +23,14 @@ properties:
->        minimum: 0
->        maximum: 0x2ff
-> 
-> +  linux,code:
-> +    description:
-> +      Specifies a single numeric keycode value to be used for 
-> reporting
-> +      button/switch events. Specify KEY_RESERVED (0) to opt out of 
-> event
-> +      reporting.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maximum: 0x2ff
-> +
->    poll-interval:
->      description: Poll interval time in milliseconds.
->      $ref: /schemas/types.yaml#/definitions/uint32
-> diff --git a/Documentation/devicetree/bindings/input/iqs269a.yaml
-> b/Documentation/devicetree/bindings/input/iqs269a.yaml
-> index 9c154e5e1a91..c22f8f27913a 100644
-> --- a/Documentation/devicetree/bindings/input/iqs269a.yaml
-> +++ b/Documentation/devicetree/bindings/input/iqs269a.yaml
-> @@ -370,6 +370,7 @@ patternProperties:
->      patternProperties:
->        "^event-prox(-alt)?$":
->          type: object
-> +        $ref: input.yaml#
->          description:
->            Represents a proximity event reported by the channel in 
-> response to
->            a decrease in counts. Node names suffixed with '-alt' 
-> instead corre-
-> @@ -396,14 +397,13 @@ patternProperties:
->              default: 10
->              description: Specifies the threshold for the event.
-> 
-> -          linux,code:
-> -            $ref: /schemas/types.yaml#/definitions/uint32
-> -            description: Numeric key or switch code associated with 
-> the event.
-> +          linux,code: true
-> 
->          additionalProperties: false
-> 
->        "^event-touch(-alt)?$":
->          type: object
-> +        $ref: input.yaml#
->          description: Represents a touch event reported by the channel.
-> 
->          properties:
-> @@ -421,14 +421,13 @@ patternProperties:
->              default: 4
->              description: Specifies the hysteresis for the event.
-> 
-> -          linux,code:
-> -            $ref: /schemas/types.yaml#/definitions/uint32
-> -            description: Numeric key or switch code associated with 
-> the event.
-> +          linux,code: true
-> 
->          additionalProperties: false
-> 
->        "^event-deep(-alt)?$":
->          type: object
-> +        $ref: input.yaml#
->          description: Represents a deep-touch event reported by the 
-> channel.
-> 
->          properties:
-> @@ -446,9 +445,7 @@ patternProperties:
->              default: 0
->              description: Specifies the hysteresis for the event.
-> 
-> -          linux,code:
-> -            $ref: /schemas/types.yaml#/definitions/uint32
-> -            description: Numeric key or switch code associated with 
-> the event.
-> +          linux,code: true
-> 
->          additionalProperties: false
-> 
-> diff --git a/Documentation/devicetree/bindings/input/iqs626a.yaml
-> b/Documentation/devicetree/bindings/input/iqs626a.yaml
-> index 0cb736c541c9..e645521da8ba 100644
-> --- a/Documentation/devicetree/bindings/input/iqs626a.yaml
-> +++ b/Documentation/devicetree/bindings/input/iqs626a.yaml
-> @@ -449,6 +449,7 @@ patternProperties:
->      patternProperties:
->        "^event-(prox|touch|deep)(-alt)?$":
->          type: object
-> +        $ref: input.yaml#
->          description:
->            Represents a proximity, touch or deep-touch event reported 
-> by the
->            channel in response to a decrease in counts. Node names 
-> suffixed with
-> @@ -487,9 +488,7 @@ patternProperties:
->                Specifies the hysteresis for the event (touch and 
-> deep-touch
->                events only).
-> 
-> -          linux,code:
-> -            $ref: /schemas/types.yaml#/definitions/uint32
-> -            description: Numeric key or switch code associated with 
-> the event.
-> +          linux,code: true
-> 
->            linux,input-type:
->              $ref: /schemas/types.yaml#/definitions/uint32
-> diff --git a/Documentation/devicetree/bindings/input/iqs62x-keys.yaml
-> b/Documentation/devicetree/bindings/input/iqs62x-keys.yaml
-> index 77fe3b545b35..e677e31fe8fe 100644
-> --- a/Documentation/devicetree/bindings/input/iqs62x-keys.yaml
-> +++ b/Documentation/devicetree/bindings/input/iqs62x-keys.yaml
-> @@ -89,15 +89,14 @@ properties:
->  patternProperties:
->    "^hall-switch-(north|south)$":
->      type: object
-> +    $ref: input.yaml#
->      description:
->        Represents north/south-field Hall-effect sensor touch or 
-> proximity
->        events. Note that north/south-field orientation is reversed on 
-> the
->        IQS620AXzCSR device due to its flip-chip package.
-> 
->      properties:
-> -      linux,code:
-> -        $ref: /schemas/types.yaml#/definitions/uint32
-> -        description: Numeric switch code associated with the event.
-> +      linux,code: true
-> 
->        azoteq,use-prox:
->          $ref: /schemas/types.yaml#/definitions/flag
-> diff --git
-> a/Documentation/devicetree/bindings/input/max77650-onkey.yaml
-> b/Documentation/devicetree/bindings/input/max77650-onkey.yaml
-> index 3a2ad6ec64db..48edc0c8c1dd 100644
-> --- a/Documentation/devicetree/bindings/input/max77650-onkey.yaml
-> +++ b/Documentation/devicetree/bindings/input/max77650-onkey.yaml
-> @@ -16,15 +16,15 @@ description: |
->    The onkey controller is represented as a sub-node of the PMIC node 
-> on
->    the device tree.
-> 
-> +allOf:
-> +  - $ref: input.yaml#
-> +
->  properties:
->    compatible:
->      const: maxim,max77650-onkey
-> 
->    linux,code:
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> -    description:
-> -      The key-code to be reported when the key is pressed. Defaults
-> -      to KEY_POWER.
-> +    default: 116  # KEY_POWER
-> 
->    maxim,onkey-slide:
->      $ref: /schemas/types.yaml#/definitions/flag
+Let me Cc here some folks - Simon, Martin, is the label in flash LED
+node anyhow important for you? Can it be dropped and replaced with
+function+color?
+
+https://lore.kernel.org/all/20220607085343.72414-3-krzysztof.kozlowski@linaro.org/
+
+Best regards,
+Krzysztof
