@@ -2,62 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2168E547BE0
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 21:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB019547BEB
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 21:58:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235044AbiFLTsg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jun 2022 15:48:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38042 "EHLO
+        id S234464AbiFLT6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jun 2022 15:58:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234887AbiFLTs3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 15:48:29 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB9084B1E0;
-        Sun, 12 Jun 2022 12:48:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 95095B80D07;
-        Sun, 12 Jun 2022 19:48:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F15CC3411C;
-        Sun, 12 Jun 2022 19:48:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655063305;
-        bh=KXksgttXApWUxueI4w47VhussaFvj+nyUo+8Y40qRHY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=o+mnDGryHLzqWNzwf1ovMKskjKN45NObTBD/y0/sxWV6Ripj4Q0tNNONtOJBw4pHN
-         2SmCcqe2sNKRtSoVHytQQCMkbWLesO4C77RUPIGby1dgjM5hITk6RIqf5wefRAHh7u
-         XYA55wyIXSy/gbibkjsVUL2zKmVnS6OXS2hWCt7uwPwE06PVi0XiT2zE64CaEAh3KS
-         5UGAnb3ILjBl8CkolUEmFXb0wSIXFoCh49Ft4AK1NxAnT9ae4AOlCuX8kyh17s+0/J
-         UyuIvyLErK+Er9NJsan6yadiFPN+DdGRcLLx0DTHmlNCyI4rFqA4bWd8RYV19ZnI86
-         9O7VD8OR4uJUw==
-Date:   Sun, 12 Jun 2022 21:48:18 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     Linh Phung <linh.phung.jy@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: renesas: r8a779f0: Add thermal support
-Message-ID: <YqZDAiB/taLwmamr@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        linux-renesas-soc@vger.kernel.org,
-        Linh Phung <linh.phung.jy@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220525151355.24175-1-wsa+renesas@sang-engineering.com>
+        with ESMTP id S234723AbiFLT6K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 15:58:10 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F6D5A59D
+        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 12:58:00 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id m16-20020a7bca50000000b0039c8a224c95so1154932wml.2
+        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 12:58:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod.ie; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=HPK8k4gKJZ+wQWjBYJ1REf4HNNl/uXfLF+28+th4jm8=;
+        b=WxS4e3m70DLW1yjIUhnUbrBdeC8hHUVcYuxLS5HhyBfAJgqwPHyGo62VUl1t4TWG78
+         qa0Spt0qrqCK77WFgGnytj+CrUY0uFwa1t0rjiMFRo1x0VIWcrz7L6fh3uxeHawYDRaQ
+         pz56WqD45VRi3cPSZrS693lfJbwHCAaxUAGBuEf61Lb+Je8HLEgo1gMymquk8eSzGsbC
+         ovS/fUm/RDwASKiWAK3qRBaoSq6y3Af0NNm6qTUhNOsHKGDJTORGKjmxWeEVt1bG7fWO
+         fB7pIC2mJ2H9ISdqp0viUSfC8Ib0W+ACLclo+DLNepwN6QZgw5ybyCWA1mx1QYljyb9+
+         VkMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=HPK8k4gKJZ+wQWjBYJ1REf4HNNl/uXfLF+28+th4jm8=;
+        b=kVAhYrrj5ReqLpLuUi3i/IN4T1j8HYC7EEMJHyW97N9IlURciiyjrZMGGAjUcBS7ED
+         zuZ8yYZp0hLH5tvhM6HNPm+EjXmXwixnqk0zbsaV23SilCNTWqXXNitiD8rD8wHnXGih
+         4u2BkKzDE8eHBwtOKtwflY08dmp64Nv2JcfnIv5Mk0Krn7qEIZ4pF4XEgo+wQFmQ3z6G
+         MQ+yG1fP8m23xAGTcgsBkS3uGaKq4Z8sTk7aQ68rkAcNyqT6v9SYx1IJON5BL1VmtzbL
+         /xnDk8qVyZVGcriabLhJTyHcAdpUon42p+AjE8sFh+vvk+5hwlijnVk/xytOF5XjlF/b
+         F3Fg==
+X-Gm-Message-State: AOAM533FGrKn8yJSQDY6lDI1zYJ4KFAYbSmxcZI1SznrDRhQeTRd1BWu
+        DCpfYwrgUX7OpbbT4qm+W7XuVA==
+X-Google-Smtp-Source: ABdhPJxVD+6uveEwgGG0ZXNpTkwYft114nVu3ghAlq26nsiNc/IJ06GFHoNEAPTGysm8ECJzB0DhxA==
+X-Received: by 2002:a05:600c:3d07:b0:39c:80a8:db07 with SMTP id bh7-20020a05600c3d0700b0039c80a8db07mr10727828wmb.168.1655063879180;
+        Sun, 12 Jun 2022 12:57:59 -0700 (PDT)
+Received: from henark71.. ([51.37.234.167])
+        by smtp.gmail.com with ESMTPSA id r16-20020a056000015000b0021108003596sm6402404wrx.10.2022.06.12.12.57.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Jun 2022 12:57:58 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     krzk+dt@kernel.org, conor.dooley@microchip.com, palmer@dabbelt.com,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        paul.walmsley@sifive.com, zong.li@sifive.com, palmer@rivosinc.com,
+        daire.mcnamara@microchip.com, aou@eecs.berkeley.edu
+Subject: Re: [PATCH] riscv: dts: microchip: re-add pdma to mpfs device tree
+Date:   Sun, 12 Jun 2022 20:57:35 +0100
+Message-Id: <165506374015.3753145.322560637772164805.b4-ty@microchip.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220603083825.1910300-1-conor.dooley@microchip.com>
+References: <20220603083825.1910300-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="9VckkkDUpGs14q6a"
-Content-Disposition: inline
-In-Reply-To: <20220525151355.24175-1-wsa+renesas@sang-engineering.com>
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,48 +72,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
---9VckkkDUpGs14q6a
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, 3 Jun 2022 09:38:26 +0100, Conor Dooley wrote:
+> PolarFire SoC /does/ have a SiFive pdma, despite what I suggested as a
+> conflict resolution to Zong. Somehow the entry fell through the cracks
+> between versions of my dt patches, so re-add it with Zong's updated
+> compatible & dma-channels property.
+> 
+> 
 
-On Wed, May 25, 2022 at 05:13:55PM +0200, Wolfram Sang wrote:
-> From: Linh Phung <linh.phung.jy@renesas.com>
->=20
-> Add support for 3 TSC nodes of thermal. The 4th node is for the control
-> domain and not for Linux.
->=20
-> Signed-off-by: Linh Phung <linh.phung.jy@renesas.com>
-> [wsa: rebased, fixed resource size, removed unused 4th node breaking prob=
-e]
-> Signed-off-by: Wolfram Sang <wsa@kernel.org>
+Applied to dt-fixes, thanks!
 
-Eeks, this should have been:
+[1/1] riscv: dts: microchip: re-add pdma to mpfs device tree
+      https://git.kernel.org/conor/c/5e757deddd91
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-Shall I resend?
-
-
---9VckkkDUpGs14q6a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKmQv0ACgkQFA3kzBSg
-KbbVCg/8Cd8FUd379dFfyawX25rCdr91g4PINDLdrzYMq44Cczpe+WohO/PRdBbY
-dyuYJ8arv9PtuFVpbNCKFB+r54wdKyrJIyiM3ubxAjrT5179COYDvdcruS2UwtEO
-jBArqrX7H1s0p9GaMe0UOrLf754fTe+7sHc3p8jyzlwR+bf62lhsQ+06jKG441Jx
-yEuK5YXj0zYdAVrijo9jj+LLvTTLmF5Kmwcur6adnLcLZ0bd4hSpSB5pPVQ5Grfn
-KGLnXuXWSa3+unSjco4tL4NwAlg44p/vVAKnUKgNbBppsg564Ig3fY4LWILwhacJ
-4/2hkkUFpIvrLK9fOMqBo9UOopGU6QCPjNj1Lz5iCycnfGStzcKUqNMDwSirDxUa
-OEDG5hBZJ8C6ufsXdXtlblVrv2BDHCPttTtd8FExTh1nwt7sj30kFoDGXB9JkKWP
-BRoMzwPhvB6dPa0MW5wXhDuFR6H687ZDO2C5n/Pnr1pDwTwS57K70iutSLoWwfeE
-0okGd1kDIELMu7yWjEa0cVsEQHXq+bQzNbb2M/2TBSJogdp+kTSCaSduSUCcJe45
-LcyMPyIzcTaWupRyQCC99s2tDPlqmRzlqDeA8AmBEVf8kG2ZTxcXErHV/R11f0QB
-4NKAO9Gc2GI+kHpv50N20zgYuTWuxx4CKRaJnGKCpIbuuzIz9xk=
-=OWtV
------END PGP SIGNATURE-----
-
---9VckkkDUpGs14q6a--
+Thanks,
+Conor.
