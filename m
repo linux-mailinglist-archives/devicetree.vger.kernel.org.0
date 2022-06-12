@@ -2,63 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E5F9547C00
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 22:38:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97080547C0C
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 22:45:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234244AbiFLUiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jun 2022 16:38:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37602 "EHLO
+        id S234141AbiFLUpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jun 2022 16:45:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231891AbiFLUiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 16:38:14 -0400
-Received: from mail-vk1-xa32.google.com (mail-vk1-xa32.google.com [IPv6:2607:f8b0:4864:20::a32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEB573AA55;
-        Sun, 12 Jun 2022 13:38:13 -0700 (PDT)
-Received: by mail-vk1-xa32.google.com with SMTP id b13so1830650vko.4;
-        Sun, 12 Jun 2022 13:38:13 -0700 (PDT)
+        with ESMTP id S234720AbiFLUpu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 16:45:50 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 192A73ED0D;
+        Sun, 12 Jun 2022 13:45:50 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id kq6so7519086ejb.11;
+        Sun, 12 Jun 2022 13:45:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DaoD+tAduDQz7Ifk7hiTW7VOyucam8owwPCNchlahPs=;
-        b=BruPf5GslfaNb5lXngwHL+wmoob2r6M4kQC6wy4NVkURSegJpRDvLFHRTT1Ep0wyk9
-         WBosJiYlvugGe575KhJfQugyPrOxVpIAZEOgXhOA2Hd7p0bWlabmfbRxGPstOJj3bbg8
-         H9AbCiP4oyX8limUjaJdBxjrLCYifXzyrdv6dnmFOeVjquoe1b+ioFiIGqM8LTf3Sk/7
-         D145ZWG2lyr1afiv0gFCbVxLqIrHCuhmQ1fej9JsiLq6YAuoyEi07zge5RAbpZgAyZfN
-         Xno1CNIcJrOsGcM76RmlBZqCN3du8W/0Rt20uvMFZLH6pStOSCBd/l7q0zKknrqIqc2s
-         xM/g==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=SRFzNbjk4H9hinoFoNd44twu7qtxWwrffjJnSc0bRew=;
+        b=BZKpQ5ELLmQbihzDjfblTFbGC2I+T9gJ8arG1w0VMdKbXAAnnmiZ+iW+R2L02PTW2M
+         mv90XlufKHVTD3JAk2wYcdFjAm4E3CtGP3ozMzcH0OLSRbVXdsMrpM3bPIskZ4s4xD9L
+         CDRbrSiAYvxTvTUktVRCyl9t3RUZZ6p3DgUNj9NyYzrsbMMmtpB0+66IUPJhy9QwIvmk
+         XMIhDOIU1LFXAA9RGHDAftRrxJ+CtA2vN+RBrw9vhMcwFs/klut9qdhhmTBGOhS0xroS
+         wlM07nP7dOmcsxj7XgonqdpPp/HBI9sn6v3ySEYCmhaMJvFjsyLuETT5dlmAEgpiNW0+
+         7/vA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DaoD+tAduDQz7Ifk7hiTW7VOyucam8owwPCNchlahPs=;
-        b=4040jIRRW40KzN5fKr8YhL5rfwIIDrCIyosAQHPjLMcGfNA4JN3onnQVInpxU9LpHn
-         +9Ku+xFfvC4Xfk24S/CFxCKlaWqGgjxh+++C6prd2VT9Kl5ySucK/bDAXZRVuR8kAPDi
-         dn1x1gq/+BrQSewqU6yPjclBUqB3AMYfgIrEHlgSMdonia7gHaYupbAIrQD/DkcnGr+M
-         H17t9f++k7LCga61s58wRtV507YaYvUuJyf5irqBhBX+10Y9DEHpdaRzKqGjRVpinS/Q
-         Xenbe5ZSeNvZCX+z7cTHiKcCqLpD+uL/pCdDoDEwVxaSz6DTV0YPvkql8Fm1AaLWvIJ5
-         XB+w==
-X-Gm-Message-State: AOAM5338V+qUKlUTEAISmNluevGfaAtIiF6AevinZ1LL/ULjFSNpH4kF
-        UoYywb342zmCffGJRst6kj5uRAOy1l5G1oaF5TI=
-X-Google-Smtp-Source: ABdhPJy9D5IweQbHJAywJP55Qx/MaUuc/s/biyGeLjfX/VGq9FGLWyQM23uR61YyF2iN32N0bQaK038sM8rPgBElojI=
-X-Received: by 2002:a05:6122:4f4:b0:365:242d:411b with SMTP id
- s20-20020a05612204f400b00365242d411bmr5756375vkf.32.1655066292799; Sun, 12
- Jun 2022 13:38:12 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=SRFzNbjk4H9hinoFoNd44twu7qtxWwrffjJnSc0bRew=;
+        b=LvMzfqJKf9m0mIdtgjjGidAIZ1DkgcVkMyoTSlCtuAHIboy43JrmBRd7u9pCx99mMv
+         QN294ORAk/VFZmYbmtuqRrGz6G+UIuz/5MtGXTB6VWJ6CyS+vZ3xAjVsOT0QQAdl5Q2y
+         p5yvYb4NoSkf96VMQMmUSdhvF6UqBRtOrJZHHABmZExQy7k7y8gBlU/5fMQarXWCOCZ0
+         R05O2c7opMxz7KiZI/iKKR8BfgFfy14VRSswK3C5SqQ7018k/ALCSEAZ7Xbekrdxm4sx
+         +/OGkSTaF0//IQALNhoaCFCF4uxCdouABTMrVt+9iTnO9haMrCVyhoIgUzPQzFLx6yCL
+         VrIg==
+X-Gm-Message-State: AOAM533likDBeYKmOlJEwOre2Xuq+QSYb8j5C3wN5onruI19Coea6jxN
+        XXvQpptLlNolXrkReqVMYic=
+X-Google-Smtp-Source: ABdhPJx6y4Mf6UyjG5YD0LqHnRbLlOFbtWpwQxxW3P7Rj517zNQkICgGS1aQFRPvGfRCchZ84/w1cw==
+X-Received: by 2002:a17:907:1b05:b0:6f0:18d8:7be0 with SMTP id mp5-20020a1709071b0500b006f018d87be0mr49697018ejc.561.1655066748399;
+        Sun, 12 Jun 2022 13:45:48 -0700 (PDT)
+Received: from kista.localnet (213-161-3-76.dynamic.telemach.net. [213.161.3.76])
+        by smtp.gmail.com with ESMTPSA id f22-20020a170906139600b006fec3b2e4f3sm2849499ejc.205.2022.06.12.13.45.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Jun 2022 13:45:47 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 1/2] ARM: dts: sunxi: Use constants for RTC clock indexes
+Date:   Sun, 12 Jun 2022 22:45:47 +0200
+Message-ID: <5831557.lOV4Wx5bFT@kista>
+In-Reply-To: <20220607012438.18183-1-samuel@sholland.org>
+References: <20220607012438.18183-1-samuel@sholland.org>
 MIME-Version: 1.0
-References: <20220608123233.13439-1-ariel.dalessandro@collabora.com>
-In-Reply-To: <20220608123233.13439-1-ariel.dalessandro@collabora.com>
-From:   Peter Robinson <pbrobinson@gmail.com>
-Date:   Sun, 12 Jun 2022 21:38:02 +0100
-Message-ID: <CALeDE9PR80qS63wwAKB-hENWbEj1xNHj+k81tyWkPPfZ0TS8Pw@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: bcm2711-rpi-4-b: Use aliases to set custom MMC
- device index
-To:     "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        gbcm-kernel-feedback-list@broadcom.com,
-        gkrzysztof.kozlowski+dt@linaro.org, gnsaenz@kernel.org,
-        grobh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -69,40 +72,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 8, 2022 at 1:35 PM Ariel D'Alessandro
-<ariel.dalessandro@collabora.com> wrote:
->
-> Add MMC aliases to ensure that the /dev/mmcblk ID for SD card won't
-> change depending on the probe order of the MMC drivers.
+Dne torek, 07. junij 2022 ob 03:24:37 CEST je Samuel Holland napisal(a):
+> The binding header provides descriptive names for the RTC clock indexes,
+> since the indexes were arbitrarily chosen by the binding, not by the
+> hardware. Let's use the names, so the meaning is clearer.
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Is  the bcm2711-rpi.dtsi a better place for it given there's other
-aliases there and it will be consistent across variations?
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-> ---
->  arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> index 4432412044de..780812542bad 100644
-> --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> @@ -14,6 +14,10 @@ chosen {
->                 stdout-path = "serial1:115200n8";
->         };
->
-> +       aliases {
-> +               mmc0 = &emmc2;  /* mmcblk0 for SD */
-> +       };
-> +
->         leds {
->                 led-act {
->                         gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
-> --
-> 2.34.1
->
->
-> _______________________________________________
-> linux-rpi-kernel mailing list
-> linux-rpi-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rpi-kernel
+Best regards,
+Jernej
+
+
