@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3302B547BE3
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 21:50:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2168E547BE0
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 21:48:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234642AbiFLTut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jun 2022 15:50:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50704 "EHLO
+        id S235044AbiFLTsg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jun 2022 15:48:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234559AbiFLTus (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 15:50:48 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20034EF74
-        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 12:50:46 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id d13so3438998plh.13
-        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 12:50:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=schmorgal.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+m7njuw0a6ohy2SWyhocTfVc+DZHY7gqsgx6eJfQ0/c=;
-        b=Ew0gtCSoJFrP2+1Wn2uXJAd/8U6V1vPyGey+JZ0GDJlD9kmTno2O6b/R/i5YPE/3fg
-         v7awMJgJkot7sn1eI4H8Dn6v6A9Fh+c/GPBrbZ7tnkYqlp22A3++cSQAwYw4Al/e6Xol
-         +FnZJ+YjgYrpvcR30cJjW1eH3XlTVIjHY37+U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+m7njuw0a6ohy2SWyhocTfVc+DZHY7gqsgx6eJfQ0/c=;
-        b=EeR036s6ZXRf16odv2EZHv7pslD7q8YpHDwxCnue8mo/9akHF8nUW1AYwRPHeRp+nT
-         fsEC0yUx3+gsBsExoLNkcMPdZS2LQ9nUWki6WnNSA5+YmlS2Hq26um8h2qmzPK2HxvKB
-         211mhZ48i19mhlkInlqaw6xFHgG029HuJGCFSZze342sNAjNP3wfHtOHORAm0zfSwWC2
-         rDZ49CV0SKN1R7NfHV4fU7hB/LUqocrnDgIFcPGu7OU9U/4hbZb0tXHjqqV/S3m0hJcT
-         hvK0aVu/mAUMYB/iQZm3/ipsBKRdG8uiph+J7Mdyp0Jg5L3/lBMigIrz/3uZ9AqDZT2R
-         9RgQ==
-X-Gm-Message-State: AOAM5311wYRT/S1KZoIkHjC+n7xsVBVeYKsemTnN4SGMGVzKvp19jop/
-        2j5qSrL1qpB0QLmtsn3rmp0kmA==
-X-Google-Smtp-Source: ABdhPJxYOeIMxC6ytIRWrAkqro7DmQQ7N0mMk319J3WBS0G5cQrzqc9+qNj9VrOfm/mlFs96dZ3kQQ==
-X-Received: by 2002:a17:902:ea0e:b0:164:1a71:beee with SMTP id s14-20020a170902ea0e00b001641a71beeemr55364600plg.10.1655063446187;
-        Sun, 12 Jun 2022 12:50:46 -0700 (PDT)
-Received: from localhost.localdomain ([50.45.132.243])
-        by smtp.gmail.com with ESMTPSA id t3-20020a17090ae50300b001e2fed48f48sm3512826pjy.41.2022.06.12.12.50.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jun 2022 12:50:45 -0700 (PDT)
-From:   Doug Brown <doug@schmorgal.com>
-To:     Lubomir Rintel <lkundrak@v3.sk>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Doug Brown <doug@schmorgal.com>
-Subject: [PATCH] ARM: dts: pxa168: add timer reset and clock
-Date:   Sun, 12 Jun 2022 12:48:12 -0700
-Message-Id: <20220612194811.165874-1-doug@schmorgal.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S234887AbiFLTs3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 15:48:29 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB9084B1E0;
+        Sun, 12 Jun 2022 12:48:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 95095B80D07;
+        Sun, 12 Jun 2022 19:48:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F15CC3411C;
+        Sun, 12 Jun 2022 19:48:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655063305;
+        bh=KXksgttXApWUxueI4w47VhussaFvj+nyUo+8Y40qRHY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=o+mnDGryHLzqWNzwf1ovMKskjKN45NObTBD/y0/sxWV6Ripj4Q0tNNONtOJBw4pHN
+         2SmCcqe2sNKRtSoVHytQQCMkbWLesO4C77RUPIGby1dgjM5hITk6RIqf5wefRAHh7u
+         XYA55wyIXSy/gbibkjsVUL2zKmVnS6OXS2hWCt7uwPwE06PVi0XiT2zE64CaEAh3KS
+         5UGAnb3ILjBl8CkolUEmFXb0wSIXFoCh49Ft4AK1NxAnT9ae4AOlCuX8kyh17s+0/J
+         UyuIvyLErK+Er9NJsan6yadiFPN+DdGRcLLx0DTHmlNCyI4rFqA4bWd8RYV19ZnI86
+         9O7VD8OR4uJUw==
+Date:   Sun, 12 Jun 2022 21:48:18 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     linux-renesas-soc@vger.kernel.org
+Cc:     Linh Phung <linh.phung.jy@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: renesas: r8a779f0: Add thermal support
+Message-ID: <YqZDAiB/taLwmamr@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Linh Phung <linh.phung.jy@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220525151355.24175-1-wsa+renesas@sang-engineering.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="9VckkkDUpGs14q6a"
+Content-Disposition: inline
+In-Reply-To: <20220525151355.24175-1-wsa+renesas@sang-engineering.com>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -65,27 +66,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The timer was missing the clock and reset like the other peripherals
-have assigned. This was causing the timer to stop working during boot.
 
-Signed-off-by: Doug Brown <doug@schmorgal.com>
----
- arch/arm/boot/dts/pxa168.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+--9VckkkDUpGs14q6a
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/pxa168.dtsi b/arch/arm/boot/dts/pxa168.dtsi
-index 4fe7735c7c58..16212b912b94 100644
---- a/arch/arm/boot/dts/pxa168.dtsi
-+++ b/arch/arm/boot/dts/pxa168.dtsi
-@@ -53,6 +53,8 @@ timer0: timer@d4014000 {
- 				compatible = "mrvl,mmp-timer";
- 				reg = <0xd4014000 0x100>;
- 				interrupts = <13>;
-+				clocks = <&soc_clocks PXA168_CLK_TIMER>;
-+				resets = <&soc_clocks PXA168_CLK_TIMER>;
- 			};
- 
- 			uart1: serial@d4017000 {
--- 
-2.25.1
+On Wed, May 25, 2022 at 05:13:55PM +0200, Wolfram Sang wrote:
+> From: Linh Phung <linh.phung.jy@renesas.com>
+>=20
+> Add support for 3 TSC nodes of thermal. The 4th node is for the control
+> domain and not for Linux.
+>=20
+> Signed-off-by: Linh Phung <linh.phung.jy@renesas.com>
+> [wsa: rebased, fixed resource size, removed unused 4th node breaking prob=
+e]
+> Signed-off-by: Wolfram Sang <wsa@kernel.org>
 
+Eeks, this should have been:
+
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+Shall I resend?
+
+
+--9VckkkDUpGs14q6a
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKmQv0ACgkQFA3kzBSg
+KbbVCg/8Cd8FUd379dFfyawX25rCdr91g4PINDLdrzYMq44Cczpe+WohO/PRdBbY
+dyuYJ8arv9PtuFVpbNCKFB+r54wdKyrJIyiM3ubxAjrT5179COYDvdcruS2UwtEO
+jBArqrX7H1s0p9GaMe0UOrLf754fTe+7sHc3p8jyzlwR+bf62lhsQ+06jKG441Jx
+yEuK5YXj0zYdAVrijo9jj+LLvTTLmF5Kmwcur6adnLcLZ0bd4hSpSB5pPVQ5Grfn
+KGLnXuXWSa3+unSjco4tL4NwAlg44p/vVAKnUKgNbBppsg564Ig3fY4LWILwhacJ
+4/2hkkUFpIvrLK9fOMqBo9UOopGU6QCPjNj1Lz5iCycnfGStzcKUqNMDwSirDxUa
+OEDG5hBZJ8C6ufsXdXtlblVrv2BDHCPttTtd8FExTh1nwt7sj30kFoDGXB9JkKWP
+BRoMzwPhvB6dPa0MW5wXhDuFR6H687ZDO2C5n/Pnr1pDwTwS57K70iutSLoWwfeE
+0okGd1kDIELMu7yWjEa0cVsEQHXq+bQzNbb2M/2TBSJogdp+kTSCaSduSUCcJe45
+LcyMPyIzcTaWupRyQCC99s2tDPlqmRzlqDeA8AmBEVf8kG2ZTxcXErHV/R11f0QB
+4NKAO9Gc2GI+kHpv50N20zgYuTWuxx4CKRaJnGKCpIbuuzIz9xk=
+=OWtV
+-----END PGP SIGNATURE-----
+
+--9VckkkDUpGs14q6a--
