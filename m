@@ -2,59 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F18D5479B0
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 12:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BDB35479CF
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jun 2022 12:44:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230349AbiFLKMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jun 2022 06:12:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58130 "EHLO
+        id S236049AbiFLKoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jun 2022 06:44:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235937AbiFLKMs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 06:12:48 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00ACF5047F
-        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 03:12:46 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 899F1842F6;
-        Sun, 12 Jun 2022 12:12:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1655028764;
-        bh=iL5hnSo6wCRqC1y/dBb0cHXOXmRlTqAtgtWWvZC4RqQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=PE0eiEu4oLpWsnWwsk8tkvuX97kxIgEaMhDG3Ds6wNZelIvGvSUBONI1Grn2gZum6
-         a1cs6RMEP5FiH+Qtz1qXUrPGUyzLEp9SBk+j78uEMzeRvJ9F8spyMms7Mb0Op4SXQr
-         I1NcCYs3LpsxwcWYvRT88INFsRl6G5V0BkKVhAX8SexfLG62ux4doOUSa/tk4IxbPA
-         qAUnSOdD9BEZxEqk2axOkmxhYb0TS1jFm54WqacvgsClmg5uRoM2ovkMgccoqrUS2G
-         BOjnKECMyErMz7KOHKT4GtgTkix2azn962FpH0Q4kDVHkBYHsUfIjc40Q3oUiadpFU
-         e9hapucK6P+fQ==
-Message-ID: <d432fd4e-b470-a38c-026e-74b87993caf7@denx.de>
-Date:   Sun, 12 Jun 2022 12:12:42 +0200
+        with ESMTP id S236009AbiFLKoJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jun 2022 06:44:09 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8373E625B;
+        Sun, 12 Jun 2022 03:44:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1655030648; x=1686566648;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oY4m7/TA+RKNO4Qsg0G2e91Q7hQxCUmosIWjYQ/l6PU=;
+  b=PCwsomosCvftuoIGVb6uQs9Se/vjFsVMdYyO/sqQB3K/oLNkjU3EVvO9
+   ixOIJAcAzwGMsWHTs/2V5Wf94RiIHb0LVO6P4M9sAhBs5PvhsUhkLiAZ3
+   IdecYktAm3F0Hckr5X1Mlee2WDkFGf6aTkBw8LolLAwOjv6WDber+uqVX
+   efCiNnkag+XUrlIo08tZ1yrRtk5w8m+iT5lnKCLrafu4pjBREv1l5FIkF
+   7sXizNIfnkFW4D5Y/cniWTWajtb2YMIW1Y91fFAdD7wYtn+y5sON4SSv+
+   X+6/nTINZI3EDPnLtKo1W06IK1i3GkMxOhtv3eTJat4nLsL0/zkZQ6jj9
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10375"; a="279099711"
+X-IronPort-AV: E=Sophos;i="5.91,294,1647327600"; 
+   d="scan'208";a="279099711"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2022 03:44:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,294,1647327600"; 
+   d="scan'208";a="611340376"
+Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 12 Jun 2022 03:44:05 -0700
+Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o0L4e-000Jqt-Dd;
+        Sun, 12 Jun 2022 10:44:04 +0000
+Date:   Sun, 12 Jun 2022 18:43:47 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Qin Jian <qinjian@cqplus1.com>, sboyd@kernel.org
+Cc:     kbuild-all@lists.01.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, mturquette@baylibre.com, linux@armlinux.org.uk,
+        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Qin Jian <qinjian@cqplus1.com>
+Subject: Re: [PATCH v17 05/10] clk: Add Sunplus SP7021 clock driver
+Message-ID: <202206121806.C2ECo2lB-lkp@intel.com>
+References: <65ef2bf7fc393eb373b966fe839852bcd1bacad8.1654565776.git.qinjian@cqplus1.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] arm64: dts: imx8mm: Add SNVS LPGPR on MX8Menlo board
-Content-Language: en-US
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org
-References: <20220521150750.93718-1-marex@denx.de>
- <20220612003041.GK254723@dragon>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20220612003041.GK254723@dragon>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <65ef2bf7fc393eb373b966fe839852bcd1bacad8.1654565776.git.qinjian@cqplus1.com>
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,44 +67,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/12/22 02:30, Shawn Guo wrote:
-> On Sat, May 21, 2022 at 05:07:50PM +0200, Marek Vasut wrote:
->> Add SNVS LPGPR bindings on this system, the LPGPR is used to store
->> boot counter.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> Cc: Fabio Estevam <festevam@denx.de>
->> Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
->> Cc: Peng Fan <peng.fan@nxp.com>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: Shawn Guo <shawnguo@kernel.org>
->> Cc: NXP Linux Team <linux-imx@nxp.com>
->> Cc: devicetree@vger.kernel.org
->> To: linux-arm-kernel@lists.infradead.org
->> ---
->> NOTE: Depends on
->>        https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/commit/?h=for-next&id=fee6de80bdd3df976a43f3092a165cb43c072f20
->> ---
->>   arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts b/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
->> index 92eaf4ef45638..6956c9bb992be 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
->> +++ b/arch/arm64/boot/dts/freescale/imx8mm-mx8menlo.dts
->> @@ -303,6 +303,12 @@ &sai2 {
->>   	status = "disabled";
->>   };
->>   
->> +&snvs {
->> +	snvs-lpgpr {
->> +		compatible = "fsl,imx7d-snvs-lpgpr";
-> 
-> Should we encode imx8mm specific compatible as well, while you added it
-> in the bindings?
-> 
-> Also this is a SoC rather than board device, so we may want to add it in
-> soc.dtsi instead?
+Hi Qin,
 
-Right, this patch is already superseded by
-[PATCH] arm64: dts: imx8mm: Add SNVS LPGPR
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on pza/reset/next]
+[also build test WARNING on robh/for-next clk/clk-next tip/irq/core linus/master v5.19-rc1 next-20220610]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Qin-Jian/Add-Sunplus-SP7021-SoC-Support/20220607-100746
+base:   https://git.pengutronix.de/git/pza/linux reset/next
+config: microblaze-randconfig-c024-20220612 (https://download.01.org/0day-ci/archive/20220612/202206121806.C2ECo2lB-lkp@intel.com/config)
+compiler: microblaze-linux-gcc (GCC) 11.3.0
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+
+cocci warnings: (new ones prefixed by >>)
+>> drivers/clk/clk-sp7021.c:584:2-7: WARNING: invalid free of devm_ allocated data
+
+vim +584 drivers/clk/clk-sp7021.c
+
+   550	
+   551	static struct clk_hw *sp_pll_register(struct device *dev, const char *name,
+   552					      const struct clk_parent_data *parent_data,
+   553					      void __iomem *reg, int pd_bit, int bp_bit,
+   554					      unsigned long brate, int shift, int width,
+   555					      unsigned long flags)
+   556	{
+   557		struct sp_pll *pll;
+   558		struct clk_hw *hw;
+   559		struct clk_init_data initd = {
+   560			.name = name,
+   561			.parent_data = parent_data,
+   562			.ops = (bp_bit >= 0) ? &sp_pll_ops : &sp_pll_sub_ops,
+   563			.num_parents = 1,
+   564			.flags = flags,
+   565		};
+   566		int ret;
+   567	
+   568		pll = devm_kzalloc(dev, sizeof(*pll), GFP_KERNEL);
+   569		if (!pll)
+   570			return ERR_PTR(-ENOMEM);
+   571	
+   572		pll->hw.init = &initd;
+   573		pll->reg = reg;
+   574		pll->pd_bit = pd_bit;
+   575		pll->bp_bit = bp_bit;
+   576		pll->brate = brate;
+   577		pll->div_shift = shift;
+   578		pll->div_width = width;
+   579		spin_lock_init(&pll->lock);
+   580	
+   581		hw = &pll->hw;
+   582		ret = devm_clk_hw_register(dev, hw);
+   583		if (ret) {
+ > 584			kfree(pll);
+   585			return ERR_PTR(ret);
+   586		}
+   587	
+   588		return hw;
+   589	}
+   590	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
