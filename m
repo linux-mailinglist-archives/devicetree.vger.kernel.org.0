@@ -2,143 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3A6A547FEB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 08:57:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DE83547FF1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 08:57:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238133AbiFMGtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 02:49:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59208 "EHLO
+        id S237894AbiFMGyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 02:54:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237803AbiFMGs4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 02:48:56 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91AF215827;
-        Sun, 12 Jun 2022 23:48:54 -0700 (PDT)
-X-UUID: 852b16fdbd084e3fa7b56955cdeaf3a3-20220613
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:e1b1ec7c-91a3-4f45-aac3-02461839e6e2,OB:20,L
-        OB:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,A
-        CTION:release,TS:90
-X-CID-INFO: VERSION:1.1.5,REQID:e1b1ec7c-91a3-4f45-aac3-02461839e6e2,OB:20,LOB
-        :0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,A
-        CTION:quarantine,TS:90
-X-CID-META: VersionHash:2a19b09,CLOUDID:11725ac6-12ba-4305-bfdf-9aefbdc32516,C
-        OID:ef7ad5cd4226,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:0,BEC:nil
-X-UUID: 852b16fdbd084e3fa7b56955cdeaf3a3-20220613
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1925287180; Mon, 13 Jun 2022 14:48:46 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 13 Jun 2022 14:48:44 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 13 Jun 2022 14:48:44 +0800
-From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>, <ck.hu@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        with ESMTP id S233477AbiFMGyg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 02:54:36 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7DAF140D2
+        for <devicetree@vger.kernel.org>; Sun, 12 Jun 2022 23:54:34 -0700 (PDT)
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220613065432epoutp0398c45f301b95ea1cdeff172218c1d046~4G6hTiXMt0074800748epoutp03N
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 06:54:32 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220613065432epoutp0398c45f301b95ea1cdeff172218c1d046~4G6hTiXMt0074800748epoutp03N
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1655103272;
+        bh=2tnnAu4jOqhkj0fxxtPuGPJ2fJuRLGJoMiIlqPlRKnw=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=DVKFj/cZHBJm1lHat5lPSkYxM19ND43aXD2iqJM7UMo1OfHzxpNSFBaU8XgWE3//w
+         TZDvWWZu0od74qKZSTjhusarGoLnzaQVNP38MrKKl1NE5cqWscrLSlhVZHQHlKjiKi
+         FqYZJ2NEyQ1oyqxVVIIe/O3w5TyUkgwll0r7+vLA=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20220613065432epcas2p22b387045c4356e6243296137617fd970~4G6gzJuPS0247802478epcas2p2F;
+        Mon, 13 Jun 2022 06:54:32 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.102]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4LM2P367RLz4x9QD; Mon, 13 Jun
+        2022 06:54:31 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        1D.17.09694.72FD6A26; Mon, 13 Jun 2022 15:54:31 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220613065431epcas2p45b77070a453d3d65704a6ba6f8720f50~4G6fpj64a0187501875epcas2p4D;
+        Mon, 13 Jun 2022 06:54:31 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220613065431epsmtrp17d4aa36f32aa58317b7987c2c4d6dc00~4G6focD4W2153621536epsmtrp1H;
+        Mon, 13 Jun 2022 06:54:31 +0000 (GMT)
+X-AuditID: b6c32a48-47fff700000025de-5d-62a6df2761c4
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        5B.20.08924.62FD6A26; Mon, 13 Jun 2022 15:54:30 +0900 (KST)
+Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220613065430epsmtip1a5afeb0db5342870256a41b410415fd7~4G6fZ3coT1340613406epsmtip1d;
+        Mon, 13 Jun 2022 06:54:30 +0000 (GMT)
+From:   "Chanho Park" <chanho61.park@samsung.com>
+To:     "'Alim Akhtar'" <alim.akhtar@samsung.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Bo-Chen Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH v11 12/12] drm/mediatek: dpi: Add matrix_sel helper
-Date:   Mon, 13 Jun 2022 14:48:41 +0800
-Message-ID: <20220613064841.10481-13-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220613064841.10481-1-rex-bc.chen@mediatek.com>
-References: <20220613064841.10481-1-rex-bc.chen@mediatek.com>
+        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+Cc:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
+        <avri.altman@wdc.com>, <bvanassche@acm.org>,
+        <martin.petersen@oracle.com>, <pankaj.dubey@samsung.com>,
+        "'Bharat Uppal'" <bharat.uppal@samsung.com>
+In-Reply-To: <20220610104119.66401-7-alim.akhtar@samsung.com>
+Subject: RE: [PATCH v4 6/6] ufs: host: ufs-exynos: add support for fsd ufs
+ hci
+Date:   Mon, 13 Jun 2022 15:54:30 +0900
+Message-ID: <000001d87ef2$6e853a40$4b8faec0$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQEGezFsbNu8B074Ncmz/1JauiaDCQMwSXY4AgzYL5auxwUn0A==
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJJsWRmVeSWpSXmKPExsWy7bCmma76/WVJBjvWGlo8mLeNzeLlz6ts
+        FtdeXmC3mPbhJ7PF/CPnWC36Xjxkttj0+BqrxeVdc9gsJqz6xmLRfX0Hm8Xy4/+YLBZt/cJu
+        0br3CLvFzjsnmB34PC5f8fbYtKqTzePOtT1sHpuX1Ht8fHqLxaNvyypGj8+b5DzaD3QzBXBE
+        ZdtkpCampBYppOYl56dk5qXbKnkHxzvHm5oZGOoaWlqYKynkJeam2iq5+AToumXmAJ2tpFCW
+        mFMKFApILC5W0rezKcovLUlVyMgvLrFVSi1IySkwL9ArTswtLs1L18tLLbEyNDAwMgUqTMjO
+        +DTvH2vBZ6aKdZ9WsTYwrmfqYuTkkBAwkThw4Q5LFyMXh5DADkaJm09bWSGcT4wS8z5PYYdw
+        PjNKXJzwmxGmZdKkDqiWXYwSt1+/h6p6wSgx5/9eVpAqNgF9iZcd28BmiYAM/rziE1gLs0An
+        k0T3kQtg6zkFbCVObLnFDGILCwRITFp8B8xmEVCVWHu+D2wfr4ClxOfbk6FsQYmTM5+wgNjM
+        AvIS29/OYYa4SUHi59NlQNs4gLY5SXz5Yg9RIiIxu7ONGWSvhMAdDokTm3ewQtS7SCxZ8R6q
+        V1ji1fEt7BC2lMTL/jYou1hi6axPTBDNDYwSl7f9YoNIGEvMetbOCLKMWUBTYv0ufRBTQkBZ
+        4sgtqNP4JDoO/2WHCPNKdLQJQTSqSxzYPp0FwpaV6J7zmXUCo9IsJI/NQvLYLCQfzELYtYCR
+        ZRWjWGpBcW56arFRgQk8upPzczcxgtO0lscOxtlvP+gdYmTiYDzEKMHBrCTCO/nisiQh3pTE
+        yqrUovz4otKc1OJDjKbAoJ7ILCWanA/MFHkl8YYmlgYmZmaG5kamBuZK4rxeKRsShQTSE0tS
+        s1NTC1KLYPqYODilGpgOfnh1QmVvGM/mpUvllVdecBA7kpbddu7mvaiOrf2TBc0NH9wWuFVv
+        5trNddpxz36vqQK76qoP6LCtFd4zOT7rnu8Mv/C7cQyTXDjMa69Vh1wpLNxquuBje33bmXml
+        XUGvdyfHvf5rJerZxr3z8rdZ54p/bd9svOexn7i3zueLG7ySLwQKGme4GIZeTj+QNmnF96k3
+        z6S/TTJNfyV2Jy+wQz1EKvVxUVKw7xwhBcXTc8KN/M8WGPkJvty6Xew+v8LDrqVZJ5T/rW0s
+        KV/yoWXp0jWKSUt9pXK35YilvRaSzplokiytcr5EyPr6bKa4hF2XjpcbtopfXR5m8WPT/FOf
+        Nbi+ctZd0cxSO10mfFyJpTgj0VCLuag4EQCOcl/gXAQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrKIsWRmVeSWpSXmKPExsWy7bCSnK7a/WVJBmfnW1g8mLeNzeLlz6ts
+        FtdeXmC3mPbhJ7PF/CPnWC36Xjxkttj0+BqrxeVdc9gsJqz6xmLRfX0Hm8Xy4/+YLBZt/cJu
+        0br3CLvFzjsnmB34PC5f8fbYtKqTzePOtT1sHpuX1Ht8fHqLxaNvyypGj8+b5DzaD3QzBXBE
+        cdmkpOZklqUW6dslcGV8mvePteAzU8W6T6tYGxjXM3UxcnJICJhITJrUwdLFyMUhJLCDUeLu
+        wQYWiISsxLN3O9ghbGGJ+y1HWCGKnjFKzOvfyAaSYBPQl3jZsQ0sISKwh1Gibd4pdhCHWWAy
+        k8Skhq9Qc/czSnQ0nGEEaeEUsJU4seUWM4gtLOAn8X3NRrAdLAKqEmvP94HV8ApYSny+PRnK
+        FpQ4OfMJ2E3MAtoST28+hbLlJba/ncMMcZ+CxM+ny4DO4AA6w0niyxd7iBIRidmdbcwTGIVn
+        IZk0C8mkWUgmzULSsoCRZRWjZGpBcW56brFhgVFearlecWJucWleul5yfu4mRnDMamntYNyz
+        6oPeIUYmDsZDjBIczEoivJMvLksS4k1JrKxKLcqPLyrNSS0+xCjNwaIkznuh62S8kEB6Yklq
+        dmpqQWoRTJaJg1OqgWnaTJM+k04tWXm7u1+P3NixgkeFs+7TSrO31ruvaR/J2V3z9cj7Xs5W
+        /ujZB3g56kNSb87dy7XY3Gcdf2Jm2iqm/Iz5Vp0ZM79eevxETCoyJ+jD7L5KH6cDe1pihdjV
+        EuzXKs17lfCK70Jf6pYpp/au+F7KWMErU+a5Zf0trdcr9d75JCrUlFwPX1lrtNnR89qNmeqq
+        RvPjOwRSfm63KzBR6b4Xp8Ks9eHFBLcVT71E7igu2KiZdi8jaMoiRjXFj9bvfQvKt9oaTGeu
+        mXHvoWTu3V88Ew/9kVZes9dxTXDgDrXd62rOv37Lve+tjRdfdF+5V9fG0DNx/NdPFLRkFc6d
+        7sTwf1tFmaEoQ9DVN0osxRmJhlrMRcWJAGcbnpVIAwAA
+X-CMS-MailID: 20220613065431epcas2p45b77070a453d3d65704a6ba6f8720f50
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220610104359epcas5p17a61f0254148bc1bdb15d91ff6b3f12c
+References: <20220610104119.66401-1-alim.akhtar@samsung.com>
+        <CGME20220610104359epcas5p17a61f0254148bc1bdb15d91ff6b3f12c@epcas5p1.samsung.com>
+        <20220610104119.66401-7-alim.akhtar@samsung.com>
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Guillaume Ranquet <granquet@baylibre.com>
+> Subject: [PATCH v4 6/6] ufs: host: ufs-exynos: add support for fsd ufs hci
+> 
+> Adds support of UFS HCI which is found in Tesla Full Self-Driving (FSD)
+> SoC.
+> 
+> Signed-off-by: Bharat Uppal <bharat.uppal@samsung.com>
+> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
 
-Add a mtk_dpi_matrix_sel() helper to update the DPI_MATRIX_SET
-register depending on the color format.
+Reviewed-by: Chanho Park <chanho61.park@samsung.com>
 
-Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_dpi.c      | 21 +++++++++++++++++++++
- drivers/gpu/drm/mediatek/mtk_dpi_regs.h |  3 +++
- 2 files changed, 24 insertions(+)
-
-diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-index 9668bd5dd14a..dc355a512963 100644
---- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-@@ -387,6 +387,25 @@ static void mtk_dpi_config_disable_edge(struct mtk_dpi *dpi)
- 		mtk_dpi_mask(dpi, dpi->conf->reg_h_fre_con, 0, EDGE_SEL_EN);
- }
- 
-+static void mtk_dpi_matrix_sel(struct mtk_dpi *dpi, enum mtk_dpi_out_color_format format)
-+{
-+	u32 matrix_sel = 0;
-+
-+	switch (format) {
-+	case MTK_DPI_COLOR_FORMAT_YCBCR_422:
-+	case MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL:
-+	case MTK_DPI_COLOR_FORMAT_YCBCR_444:
-+	case MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL:
-+	case MTK_DPI_COLOR_FORMAT_XV_YCC:
-+		if (dpi->mode.hdisplay <= 720)
-+			matrix_sel = 0x2;
-+		break;
-+	default:
-+		break;
-+	}
-+	mtk_dpi_mask(dpi, DPI_MATRIX_SET, matrix_sel, INT_MATRIX_SEL_MASK);
-+}
-+
- static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
- 					enum mtk_dpi_out_color_format format)
- {
-@@ -394,6 +413,7 @@ static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
- 	    (format == MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL)) {
- 		mtk_dpi_config_yuv422_enable(dpi, false);
- 		mtk_dpi_config_csc_enable(dpi, true);
-+		mtk_dpi_matrix_sel(dpi, format);
- 		if (dpi->conf->swap_input_support)
- 			mtk_dpi_config_swap_input(dpi, false);
- 		mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP_BGR);
-@@ -401,6 +421,7 @@ static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
- 		   (format == MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL)) {
- 		mtk_dpi_config_yuv422_enable(dpi, true);
- 		mtk_dpi_config_csc_enable(dpi, true);
-+		mtk_dpi_matrix_sel(dpi, format);
- 		if (dpi->conf->swap_input_support)
- 			mtk_dpi_config_swap_input(dpi, true);
- 		mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP_RGB);
-diff --git a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-index f7f0272dbd6a..96c117202d0d 100644
---- a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-+++ b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-@@ -230,4 +230,7 @@
- #define EDGE_SEL_EN			BIT(5)
- #define H_FRE_2N			BIT(25)
- 
-+#define DPI_MATRIX_SET		0xB4
-+#define INT_MATRIX_SEL_MASK	(0x1F << 0)
-+
- #endif /* __MTK_DPI_REGS_H */
--- 
-2.18.0
+Best Regards,
+Chanho Park
 
