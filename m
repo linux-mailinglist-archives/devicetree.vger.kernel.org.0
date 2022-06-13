@@ -2,102 +2,348 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 742C854A01F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 22:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2093154A02A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 22:51:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244080AbiFMUs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 16:48:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59760 "EHLO
+        id S242963AbiFMUvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 16:51:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348989AbiFMUsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 16:48:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AD921038;
-        Mon, 13 Jun 2022 13:06:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 142FC61571;
-        Mon, 13 Jun 2022 20:06:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4B61C34114;
-        Mon, 13 Jun 2022 20:06:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655150772;
-        bh=shKSr/RiV2YcabImw7K3ffFlzf7xs/cPOaAF6/t5ZCY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=H6L7u8jMeuHogNoG/VW04jHZnGwXKCZBPaTJGxSSqpB0MMqThvHKRUfAgUAse7XMi
-         Fq9RKmJsGedh9kVH4+rJBcqEKiGRR+Fe/JTZIWXbpG8slKGaFz4kPODA8XySEx/67p
-         n+0uVqzRAMWG9d4fFJqZA4fGynEycyzh2VFZBrkYZvWf4BgPHVCxm0NKCmOvEXMOlt
-         YcWcJZDR21nkVN1hJdZHNDAUXXpx4sUkMRraL62CEKWXw7PIoK7BL9bxlwjO1/QwN4
-         EkynUGfbS3HuQDo8J0t9AE175CXIA13cUq3ChEUnymiyQDH96C3SjpWgo+FlzTJ+P3
-         o/XGffJtFCgXA==
-Date:   Mon, 13 Jun 2022 22:06:07 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Peter Rosin <peda@axentia.se>
-Cc:     Codrin.Ciubotariu@microchip.com, linux-i2c@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Ludovic.Desroches@microchip.com,
-        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, kamel.bouhara@bootlin.com
-Subject: Re: Regression: at24 eeprom writing times out on sama5d3
-Message-ID: <YqeYr6b2k0rXsvIv@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Peter Rosin <peda@axentia.se>, Codrin.Ciubotariu@microchip.com,
-        linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Ludovic.Desroches@microchip.com, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        kamel.bouhara@bootlin.com
-References: <074b39c5-55fc-2bc1-072d-aef1070e284d@axentia.se>
- <2bb4868b-90ab-887e-bf13-9de8b79231bd@microchip.com>
- <YqdQoJbsgwjQ9PYh@shikoro>
- <0ce8b9d7-8a9e-cded-1762-71e230f4246c@axentia.se>
+        with ESMTP id S1351186AbiFMUtR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 16:49:17 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4472B36172
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 13:08:03 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id q104so5062835qvq.8
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 13:08:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :content-transfer-encoding:user-agent:mime-version;
+        bh=xifdCraHcIxYY3MTfP8K7bOdeapBu8VZQjERub4Anzs=;
+        b=gh+Q42U23TeefnkyOKLrRV86U/g+jPWh07ZDRJUOE0F3bBwPYlZOJ/FqX9+IfUN6do
+         sw0mmi8UZNobznXi61Q4oGCRIhIawAlspkbEEScragHLEBGWh/kdvUGm3fdg/qmWNdX0
+         MEAhWySUgRVw42NcJvJTKfezi2QHUj47Gdrp9ct2KzfMNpcFlNlQ5dYp47IXrcDKZiDO
+         o0C9V2+H/VPfeKmShxPqHosFJ3x8KFF5zhxFRqlA+UuGg+ISCyDRLixEZpPvCqgyg0MK
+         1OvSP/WrDHbglZk7fagp0GTxQwFj8uF/9mnwva+ATrIj60He6mw1uD/che+0Rstjlsmv
+         ZCEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:content-transfer-encoding:user-agent:mime-version;
+        bh=xifdCraHcIxYY3MTfP8K7bOdeapBu8VZQjERub4Anzs=;
+        b=msGLEQ6TL5NQMuk5FIKk6xqK4NMt9YXzzNaXLZ0X6i/TTdoyWriYKybobo/9/8R6Rp
+         /FrFKVKvHjKF3ipd30AlPxDS+D/0AtAJ9Lkg/DT2VuLGmjyr9u0suz/YZLfwpCiJ1Q7F
+         CZaYTUnu2z2AuCXptvQAgF4yn+nD1kWt8kbsgZlOmK4KJBhbLuGqSgXHOz9/OeEweaz1
+         HLMXEdAda7pPKbO+TCvlDXdUQTIVjQQqD2XwFNji8YmKzMI+AMDTOB956m1T6vhANpJN
+         +2XYegiGvXXCfVpBHVNoAYUH4KXIRaely2dxgolXxercvB+S9sV3ZHF2r4nejjYAmmY1
+         GZ3g==
+X-Gm-Message-State: AJIora84zUQw3TJmTDFfbJyXrbMbZKzTt1+04hmxpPeks1DFiYV51tL6
+        ouLTAdZ1LsyhuDwbP76jLhw20Q==
+X-Google-Smtp-Source: AGRyM1u9Ap8wS24rhb3V+Pafk33dKY/7Pd5la6pC2oAyYBumIK0XXUWKRiyMu3xC9PTG0GoZsuGV8A==
+X-Received: by 2002:a05:6214:c45:b0:46b:bd43:6dfe with SMTP id r5-20020a0562140c4500b0046bbd436dfemr722356qvj.93.1655150882330;
+        Mon, 13 Jun 2022 13:08:02 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
+        by smtp.gmail.com with ESMTPSA id br30-20020a05620a461e00b006a726b03ad1sm7530996qkb.52.2022.06.13.13.08.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jun 2022 13:08:01 -0700 (PDT)
+Message-ID: <7c0ab49b01c4e80835000eb1d3fd58db542385f2.camel@ndufresne.ca>
+Subject: Re: [PATCH v4, 3/3] media: mediatek: vcodec: add h264 decoder
+ driver for mt8186
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Date:   Mon, 13 Jun 2022 16:08:00 -0400
+In-Reply-To: <20220512034620.30500-4-yunfei.dong@mediatek.com>
+References: <20220512034620.30500-1-yunfei.dong@mediatek.com>
+         <20220512034620.30500-4-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.1 (3.44.1-1.fc36) 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ogV34CoYxK6HOSzb"
-Content-Disposition: inline
-In-Reply-To: <0ce8b9d7-8a9e-cded-1762-71e230f4246c@axentia.se>
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Le jeudi 12 mai 2022 =C3=A0 11:46 +0800, Yunfei Dong a =C3=A9crit=C2=A0:
+> Add h264 decode driver to support mt8186. For the architecture
+> is single core, need to add new interface to decode.
+>=20
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> ---
+>  .../vcodec/vdec/vdec_h264_req_multi_if.c      | 177 +++++++++++++++++-
+>  1 file changed, 176 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_mu=
+lti_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_=
+if.c
+> index a96f203b5d54..1d9e753cf894 100644
+> --- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.=
+c
+> +++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_h264_req_multi_if.=
+c
+> @@ -140,6 +140,9 @@ struct vdec_h264_slice_share_info {
+>   * @vsi:		vsi used for lat
+>   * @vsi_core:		vsi used for core
+>   *
+> + * @vsi_ctx:		Local VSI data for this decoding context
+> + * @h264_slice_param:	the parameters that hardware use to decode
+> + *
+>   * @resolution_changed:resolution changed
+>   * @realloc_mv_buf:	reallocate mv buffer
+>   * @cap_num_planes:	number of capture queue plane
+> @@ -157,6 +160,9 @@ struct vdec_h264_slice_inst {
+>  	struct vdec_h264_slice_vsi *vsi;
+>  	struct vdec_h264_slice_vsi *vsi_core;
+> =20
+> +	struct vdec_h264_slice_vsi vsi_ctx;
+> +	struct vdec_h264_slice_lat_dec_param h264_slice_param;
+> +
+>  	unsigned int resolution_changed;
+>  	unsigned int realloc_mv_buf;
+>  	unsigned int cap_num_planes;
+> @@ -208,6 +214,61 @@ static int vdec_h264_slice_fill_decode_parameters(st=
+ruct vdec_h264_slice_inst *i
+>  	return 0;
+>  }
+> =20
+> +static int get_vdec_sig_decode_parameters(struct vdec_h264_slice_inst *i=
+nst)
+> +{
+> +	const struct v4l2_ctrl_h264_decode_params *dec_params;
+> +	const struct v4l2_ctrl_h264_sps *sps;
+> +	const struct v4l2_ctrl_h264_pps *pps;
+> +	const struct v4l2_ctrl_h264_scaling_matrix *scaling_matrix;
+> +	struct vdec_h264_slice_lat_dec_param *slice_param =3D &inst->h264_slice=
+_param;
+> +	struct v4l2_h264_reflist_builder reflist_builder;
+> +	u8 *p0_reflist =3D slice_param->decode_params.ref_pic_list_p0;
+> +	u8 *b0_reflist =3D slice_param->decode_params.ref_pic_list_b0;
+> +	u8 *b1_reflist =3D slice_param->decode_params.ref_pic_list_b1;
+> +
+> +	dec_params =3D
+> +		mtk_vdec_h264_get_ctrl_ptr(inst->ctx, V4L2_CID_STATELESS_H264_DECODE_P=
+ARAMS);
+> +	if (IS_ERR(dec_params))
+> +		return PTR_ERR(dec_params);
+> +
+> +	sps =3D mtk_vdec_h264_get_ctrl_ptr(inst->ctx, V4L2_CID_STATELESS_H264_S=
+PS);
+> +	if (IS_ERR(sps))
+> +		return PTR_ERR(sps);
+> +
+> +	pps =3D mtk_vdec_h264_get_ctrl_ptr(inst->ctx, V4L2_CID_STATELESS_H264_P=
+PS);
+> +	if (IS_ERR(pps))
+> +		return PTR_ERR(pps);
+> +
+> +	scaling_matrix =3D
+> +		mtk_vdec_h264_get_ctrl_ptr(inst->ctx, V4L2_CID_STATELESS_H264_SCALING_=
+MATRIX);
+> +	if (IS_ERR(scaling_matrix))
+> +		return PTR_ERR(scaling_matrix);
+> +
+> +	mtk_vdec_h264_update_dpb(dec_params, inst->dpb);
+> +
+> +	mtk_vdec_h264_copy_sps_params(&slice_param->sps, sps);
+> +	mtk_vdec_h264_copy_pps_params(&slice_param->pps, pps);
+> +	mtk_vdec_h264_copy_scaling_matrix(&slice_param->scaling_matrix, scaling=
+_matrix);
+> +
+> +	mtk_vdec_h264_copy_decode_params(&slice_param->decode_params, dec_param=
+s, inst->dpb);
+> +	mtk_vdec_h264_fill_dpb_info(inst->ctx, &slice_param->decode_params,
+> +				    slice_param->h264_dpb_info);
+> +
+> +	/* Build the reference lists */
+> +	v4l2_h264_init_reflist_builder(&reflist_builder, dec_params, sps, inst-=
+>dpb);
+> +	v4l2_h264_build_p_ref_list(&reflist_builder, p0_reflist);
+> +
+> +	v4l2_h264_build_b_ref_lists(&reflist_builder, b0_reflist, b1_reflist);
+> +	/* Adapt the built lists to the firmware's expectations */
+> +	mtk_vdec_h264_fixup_ref_list(p0_reflist, reflist_builder.num_valid);
+> +	mtk_vdec_h264_fixup_ref_list(b0_reflist, reflist_builder.num_valid);
+> +	mtk_vdec_h264_fixup_ref_list(b1_reflist, reflist_builder.num_valid);
+> +	memcpy(&inst->vsi_ctx.h264_slice_params, slice_param,
+> +	       sizeof(inst->vsi_ctx.h264_slice_params));
 
---ogV34CoYxK6HOSzb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This function looks very redundant across multiple variants, could you try =
+and
+make a helper to reduce the duplication ?
 
+> +
+> +	return 0;
+> +}
+> +
+>  static void vdec_h264_slice_fill_decode_reflist(struct vdec_h264_slice_i=
+nst *inst,
+>  						struct vdec_h264_slice_lat_dec_param *slice_param,
+>  						struct vdec_h264_slice_share_info *share_info)
+> @@ -596,6 +657,120 @@ static int vdec_h264_slice_lat_decode(void *h_vdec,=
+ struct mtk_vcodec_mem *bs,
+>  	return err;
+>  }
+> =20
+> +static int vdec_h264_slice_single_decode(void *h_vdec, struct mtk_vcodec=
+_mem *bs,
+> +					 struct vdec_fb *unused, bool *res_chg)
+> +{
+> +	struct vdec_h264_slice_inst *inst =3D h_vdec;
+> +	struct vdec_vpu_inst *vpu =3D &inst->vpu;
+> +	struct mtk_video_dec_buf *src_buf_info, *dst_buf_info;
+> +	struct vdec_fb *fb;
+> +	unsigned char *buf;
+> +	unsigned int data[2], i;
+> +	u64 y_fb_dma, c_fb_dma;
+> +	struct mtk_vcodec_mem *mem;
+> +	int err, nal_start_idx;
+> +
+> +	/* bs NULL means flush decoder */
+> +	if (!bs)
+> +		return vpu_dec_reset(vpu);
+> +
+> +	fb =3D inst->ctx->dev->vdec_pdata->get_cap_buffer(inst->ctx);
+> +	src_buf_info =3D container_of(bs, struct mtk_video_dec_buf, bs_buffer);
+> +	dst_buf_info =3D container_of(fb, struct mtk_video_dec_buf, frame_buffe=
+r);
+> +
+> +	y_fb_dma =3D fb ? (u64)fb->base_y.dma_addr : 0;
+> +	c_fb_dma =3D fb ? (u64)fb->base_c.dma_addr : 0;
+> +	mtk_vcodec_debug(inst, "[h264-dec] [%d] y_dma=3D%llx c_dma=3D%llx",
+> +			 inst->ctx->decoded_frame_cnt, y_fb_dma, c_fb_dma);
+> +
+> +	inst->vsi_ctx.dec.bs_buf_addr =3D (u64)bs->dma_addr;
+> +	inst->vsi_ctx.dec.bs_buf_size =3D bs->size;
+> +	inst->vsi_ctx.dec.y_fb_dma =3D y_fb_dma;
+> +	inst->vsi_ctx.dec.c_fb_dma =3D c_fb_dma;
+> +	inst->vsi_ctx.dec.vdec_fb_va =3D (u64)(uintptr_t)fb;
+> +
+> +	v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb,
+> +				   &dst_buf_info->m2m_buf.vb, true);
+> +	err =3D get_vdec_sig_decode_parameters(inst);
+> +	if (err)
+> +		goto err_free_fb_out;
+> +
+> +	buf =3D (unsigned char *)bs->va;
+> +	nal_start_idx =3D mtk_vdec_h264_find_start_code(buf, bs->size);
+> +	if (nal_start_idx < 0) {
+> +		err =3D -EINVAL;
+> +		goto err_free_fb_out;
+> +	}
+> +	inst->vsi_ctx.dec.nal_info =3D buf[nal_start_idx];
+> +
+> +	*res_chg =3D inst->resolution_changed;
+> +	if (inst->resolution_changed) {
+> +		mtk_vcodec_debug(inst, "- resolution changed -");
+> +		if (inst->realloc_mv_buf) {
+> +			err =3D vdec_h264_slice_alloc_mv_buf(inst, &inst->ctx->picinfo);
+> +			inst->realloc_mv_buf =3D false;
+> +			if (err)
+> +				goto err_free_fb_out;
+> +		}
+> +		inst->resolution_changed =3D false;
+> +
+> +		for (i =3D 0; i < H264_MAX_MV_NUM; i++) {
+> +			mem =3D &inst->mv_buf[i];
+> +			inst->vsi_ctx.mv_buf_dma[i] =3D mem->dma_addr;
+> +		}
+> +	}
+> +
+> +	memcpy(inst->vpu.vsi, &inst->vsi_ctx, sizeof(inst->vsi_ctx));
+> +	err =3D vpu_dec_start(vpu, data, 2);
+> +	if (err)
+> +		goto err_free_fb_out;
+> +
+> +	/* wait decoder done interrupt */
+> +	err =3D mtk_vcodec_wait_for_done_ctx(inst->ctx, MTK_INST_IRQ_RECEIVED,
+> +					   WAIT_INTR_TIMEOUT_MS, MTK_VDEC_CORE);
+> +	if (err)
+> +		mtk_vcodec_err(inst, "decode timeout: pic_%d",
+> +			       inst->ctx->decoded_frame_cnt);
+> +
+> +	inst->vsi->dec.timeout =3D !!err;
+> +	err =3D vpu_dec_end(vpu);
+> +	if (err)
+> +		goto err_free_fb_out;
+> +
+> +	memcpy(&inst->vsi_ctx, inst->vpu.vsi, sizeof(inst->vsi_ctx));
+> +	mtk_vcodec_debug(inst, "pic[%d] crc: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x=
+ 0x%x",
+> +			 inst->ctx->decoded_frame_cnt,
+> +			 inst->vsi_ctx.dec.crc[0], inst->vsi_ctx.dec.crc[1],
+> +			 inst->vsi_ctx.dec.crc[2], inst->vsi_ctx.dec.crc[3],
+> +			 inst->vsi_ctx.dec.crc[4], inst->vsi_ctx.dec.crc[5],
+> +			 inst->vsi_ctx.dec.crc[6], inst->vsi_ctx.dec.crc[7]);
+> +
+> +	inst->ctx->decoded_frame_cnt++;
+> +	return 0;
+> +
+> +err_free_fb_out:
+> +	mtk_vcodec_err(inst, "dec frame number: %d err: %d",
+> +		       inst->ctx->decoded_frame_cnt, err);
+> +	return err;
+> +}
+> +
+> +static int vdec_h264_slice_decode(void *h_vdec, struct mtk_vcodec_mem *b=
+s,
+> +				  struct vdec_fb *unused, bool *res_chg)
+> +{
+> +	struct vdec_h264_slice_inst *inst =3D h_vdec;
+> +	int ret;
+> +
+> +	if (!h_vdec)
+> +		return -EINVAL;
+> +
+> +	if (inst->ctx->dev->vdec_pdata->hw_arch =3D=3D MTK_VDEC_PURE_SINGLE_COR=
+E)
+> +		ret =3D vdec_h264_slice_single_decode(h_vdec, bs, unused, res_chg);
+> +	else
+> +		ret =3D vdec_h264_slice_lat_decode(h_vdec, bs, unused, res_chg);
+> +
+> +	return ret;
+> +}
+> +
+>  static int vdec_h264_slice_get_param(void *h_vdec, enum vdec_get_param_t=
+ype type,
+>  				     void *out)
+>  {
+> @@ -620,7 +795,7 @@ static int vdec_h264_slice_get_param(void *h_vdec, en=
+um vdec_get_param_type type
+> =20
+>  const struct vdec_common_if vdec_h264_slice_multi_if =3D {
+>  	.init		=3D vdec_h264_slice_init,
+> -	.decode		=3D vdec_h264_slice_lat_decode,
+> +	.decode		=3D vdec_h264_slice_decode,
+>  	.get_param	=3D vdec_h264_slice_get_param,
+>  	.deinit		=3D vdec_h264_slice_deinit,
+>  };
 
-> I replied to patch 1/3 and 2/3 but have not seen them on the lists and
-> patchwork also appears to be in the dark.
-> Did the replies make it anywhere? Should I resend?
-
-I didn't get them. Yeah, maybe a resend will help?
-
-
---ogV34CoYxK6HOSzb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKnmK8ACgkQFA3kzBSg
-KbbJWBAAlS8SaQDw0SsR0R3wckRC2LN0TZ1ehFWsm9akX38NgWXfprCt5Y1HcKsu
-DcyHwWdwVKoT6lCPkAKeZsfF+3ipoKBf4CedKk5zYwL/3o/I80S3+sYSw+akUV05
-X3HWMjpCRlWAqGRod4TWafawWqEA1U4GlDmApYl3TB7PWEk27lJp+3BgwBgnSs0l
-9dT7CnfeqkeIVZ8LapGQksqwC/fKMsa4dVNyluCDHHm9DlsDHFgW4fYzWJgg8WlS
-rhTC2QnXYmcRS0uWQR7W+FNnHjRK2ARyP+So2rzbes7/tqBBMAMWlvMzpNHd3ucb
-ZkQWVxRs4cXcpprtyuhA0axvAGfYCc4lvGr8IdRoFyPnDSv8U3hUZ4ZU2bH8C//2
-CbyRTFGBu7C1UV5YwjswBkAmvUeFrnM6gSH+/ZcZcOQlQ23RHG4TFMCe93MPJPv4
-RbKLzX/WhBnzY+b7Vk0Y+lGgM1QX5CsEiL8S82dpxhylypGXv9GX8d0F2sXP/lXT
-hNJ0BqA1Tp7umUUom7ZTM0h8IZnEWn8k0RRr7XMTvKQOA4cIhVccBHRCJHIrfMm0
-qsJp7dJpm6nuCfipS3yW1UXZjhq1NRKRNLQrt+aQPwYZVHvdPBq9di6uqmQdOnHg
-7gB1dExjEtarnUpcMfsABDJ/jz1nL0fZRZLKPoM6HGiisxfQKD8=
-=Rl7P
------END PGP SIGNATURE-----
-
---ogV34CoYxK6HOSzb--
