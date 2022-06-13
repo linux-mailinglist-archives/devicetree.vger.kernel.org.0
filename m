@@ -2,66 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 726A5549DCF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:36:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECF2E549DDC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:41:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242051AbiFMTg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 15:36:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40938 "EHLO
+        id S1343691AbiFMTlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 15:41:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241245AbiFMTgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:36:12 -0400
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 023793FDB3;
-        Mon, 13 Jun 2022 11:03:21 -0700 (PDT)
-Received: by mail-il1-f181.google.com with SMTP id p1so4826308ilj.9;
-        Mon, 13 Jun 2022 11:03:20 -0700 (PDT)
+        with ESMTP id S233744AbiFMTlO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:41:14 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44A4076288
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 11:08:35 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id c196so6449356pfb.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 11:08:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=6RfOO19u1aifVisZByr6WMgdeJkVkBAonCLIE3lhww4=;
+        b=ZayI3pusa6NPPyQZLxoG9kjQSrLh5RNRtXEreB7tn3HaMiEKs1Z81QJIKGnlBiOvT8
+         3ZLMkTlpiBnqjIIlh93/+g4p5UHN4QIWDyTopX3GH7Euacyu8/dnuI4KUls12eDKB465
+         pxLc45h7AyHIaDcwYjMRBCzav/15XOBFQDWOU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=oHzia+bhaBA7DMXVkKIrTmOmhwAsD0Y7KThGYZ8Hdc4=;
-        b=v7TbA+Nz78VTC/4yKG1e+Zp2e1pWPUTnBI/vhWqgJyZokJVUsFuTd2vKuuQ0UlPltx
-         Aw8uGHYpeqza/aRWnX2SD3ZrNuY3zQvbg88HYUdnUQh+Gq5PiT8e2fi8tQMPCz5Dq6ZH
-         JmwFTTF9/S6yxyo1k8uyP8mgZ/Lzeuiby3wwZzf+gG9MFenAyV4cQGZ9HS1i8/rd0qJW
-         o0KJr/Kmit5eUUx2qec34iiyDx4GtL2xlYFduk7IBM9K4Y5DxiZpVWoO+PyfVmq+O9lo
-         2EtP9bddITJUTkg4zIzyRPEQiUPH9DEYyOLWxxAkJHeEeSlp3mXXin556VweUBpSth4e
-         ZAIQ==
-X-Gm-Message-State: AJIora9U4g0AdCuK9grGUhNgeLyV54+n8p7a6ASJjkauUu3JuAxbMBtJ
-        +/kX+UX9P+74eRWanHOMMA==
-X-Google-Smtp-Source: AGRyM1sAK2tNW0/E5Y94TDRjcKisI2L7QGgHIU7/awk1+gkGynbDfPu/INUy24XIlHKadZ/NU5nSIg==
-X-Received: by 2002:a05:6e02:1b0c:b0:2d3:bfdf:e3c5 with SMTP id i12-20020a056e021b0c00b002d3bfdfe3c5mr631830ilv.138.1655143400248;
-        Mon, 13 Jun 2022 11:03:20 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id c2-20020a92c8c2000000b002d11397f4f9sm4191996ilq.74.2022.06.13.11.03.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jun 2022 11:03:19 -0700 (PDT)
-Received: (nullmailer pid 3990444 invoked by uid 1000);
-        Mon, 13 Jun 2022 18:03:18 -0000
-Date:   Mon, 13 Jun 2022 12:03:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     William Zhang <william.zhang@broadcom.com>
-Cc:     anand.gore@broadcom.com, samyon.furman@broadcom.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        bh=6RfOO19u1aifVisZByr6WMgdeJkVkBAonCLIE3lhww4=;
+        b=FSgLjHC3CoGfwkmfuz1hyqjSZoLMK4Qad+2vu4246M8X4qWtuT1ktyYF8PYc340Ydw
+         NLfNNEqg0jHXaFFI2Txr8k6FGpoic0TGEP88KGVd9xkOuS69kXJaCY5XAPY6ayCnXJ5T
+         OMwbVsbHiPAwvILM2w7U8ncEa7V2fDE22i1xt3nBifuKbhfIZN19NbdynEd0bDhTTy7R
+         L0TslucUdEtrKNaMkDQEfLgWOpS9ombV52j9rYki2WeIdScTpjCZmGjivUBbm6wlzqco
+         YXb+UawR1NqDaxHLEOy9qC0g4BUg8HwOBDMQyhQHMH75mpt/m1AOAlApw+gAtGhph5z/
+         Zx0g==
+X-Gm-Message-State: AOAM532qDu8FBbWBGPsvpjoIC4Xb5EHvsuI5FCAgzxEQ/hrvgpEsCAvj
+        VQu2Jh4Yo99/I5VIr+zFkstIjA==
+X-Google-Smtp-Source: ABdhPJzyTBSrgeUuj8ZPrTjLj2otwZf42YS9YWJUq0VMLGjI4RlCZxEMTxCgygHUnY0IX59pPnAQ+w==
+X-Received: by 2002:a05:6a00:1acd:b0:51c:795b:860c with SMTP id f13-20020a056a001acd00b0051c795b860cmr591557pfv.16.1655143714650;
+        Mon, 13 Jun 2022 11:08:34 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:c4fb:a1d8:47ef:f10c])
+        by smtp.gmail.com with UTF8SMTPSA id f12-20020aa782cc000000b0051bd9981cacsm5734717pfn.123.2022.06.13.11.08.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Jun 2022 11:08:34 -0700 (PDT)
+Date:   Mon, 13 Jun 2022 11:08:32 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        f.fainelli@gmail.com, devicetree@vger.kernel.org,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-        kursad.oney@broadcom.com, joel.peshkin@broadcom.com,
-        linux-kernel@vger.kernel.org, philippe.reynes@softathome.com,
-        tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com
-Subject: Re: [PATCH 1/3] dt-bindings: arm: Add BCM63148 SoC
-Message-ID: <20220613180318.GA3990308-robh@kernel.org>
-References: <20220610002113.14483-1-william.zhang@broadcom.com>
- <20220610002113.14483-2-william.zhang@broadcom.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Subject: Re: [PATCH v20 2/5] usb: dwc3: core: Host wake up support from
+ system suspend
+Message-ID: <Yqd9IHQEj3Ex+FcF@google.com>
+References: <1654158277-12921-1-git-send-email-quic_kriskura@quicinc.com>
+ <1654158277-12921-3-git-send-email-quic_kriskura@quicinc.com>
+ <YpkRDi2m7cLaKYEf@google.com>
+ <Yp5nf2w8uVZ38/XZ@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220610002113.14483-2-william.zhang@broadcom.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <Yp5nf2w8uVZ38/XZ@google.com>
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,14 +82,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 09 Jun 2022 17:21:11 -0700, William Zhang wrote:
-> Add BCM63148 SoC device tree description to bcmbca binding document.
+On Mon, Jun 06, 2022 at 01:45:51PM -0700, Matthias Kaehlcke wrote:
+> On Thu, Jun 02, 2022 at 12:35:42PM -0700, Matthias Kaehlcke wrote:
+> > Hi Krishna,
+> > 
+> > with this version I see xHCI errors on my SC7180 based system, like
+> > these:
+> > 
+> > [   65.352605] xhci-hcd xhci-hcd.13.auto: xHC error in resume, USBSTS 0x401, Reinit
+> > 
+> > [  101.307155] xhci-hcd xhci-hcd.13.auto: WARN: xHC CMD_RUN timeout
+> > 
+> > After resume a downstream hub isn't enumerated again.
+> > 
+> > So far I didn't see those with v13, but I aso saw the first error with
+> > v16.
 > 
-> Signed-off-by: William Zhang <william.zhang@broadcom.com>
-> ---
+> It also happens with v13, but only when a wakeup capable vUSB <= 2
+> device is plugged in. Initially I used a wakeup capable USB3 to
+> Ethernet adapter to trigger the wakeup case, however older versions
+> of this series that use usb_wakeup_enabled_descendants() to check
+> for wakeup capable devices didn't actually check for vUSB > 2
+> devices.
 > 
->  Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+> So the case were the controller/PHYs is powered down works, but
+> the controller is unhappy when the runtime PM path is used during
+> system suspend.
 
-Acked-by: Rob Herring <robh@kernel.org>
+The issue isn't seen on all systems using dwc3-qcom and the problem starts
+during probe(). The expected probe sequence is something like this:
+
+dwc3_qcom_probe
+  dwc3_qcom_of_register_core
+    dwc3_probe
+
+  if (device_can_wakeup(&qcom->dwc3->dev))
+    ...
+
+The important part is that device_can_wakeup() is called after dwc3_probe()
+has completed. That's what I see on a QC SC7280 system, where wakeup is
+generally working with these patches.
+
+However on a QC SC7180 system dwc3_probe() is deferred and only executed after
+dwc3_qcom_probe(). As a result the device_can_wakeup() call returns false.
+With that the controller/driver ends up in an unhappy state after system
+suspend.
+
+Probing is deferred on SC7180 because device_links_check_suppliers() finds
+that '88e3000.phy' isn't ready yet.
