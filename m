@@ -2,138 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92DBF549BF1
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:42:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 687ED549C15
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:47:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344563AbiFMSmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 14:42:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48644 "EHLO
+        id S243054AbiFMSrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 14:47:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245724AbiFMSmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:42:16 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D7E6B4F1DB;
-        Mon, 13 Jun 2022 08:01:33 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7E89723A;
-        Mon, 13 Jun 2022 08:01:33 -0700 (PDT)
-Received: from [10.57.82.209] (unknown [10.57.82.209])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8E5CA3F792;
-        Mon, 13 Jun 2022 08:01:31 -0700 (PDT)
-Message-ID: <fe0b1e13-ecea-deb4-d9d2-df2ff1452fb7@arm.com>
-Date:   Mon, 13 Jun 2022 16:01:26 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: perf: Convert Arm CCN to DT schema
-Content-Language: en-GB
-To:     Rob Herring <robh@kernel.org>, Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        with ESMTP id S245317AbiFMSr0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:47:26 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A35B2D8097;
+        Mon, 13 Jun 2022 08:06:00 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.91,297,1647270000"; 
+   d="scan'208";a="122769625"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 14 Jun 2022 00:05:59 +0900
+Received: from localhost.localdomain (unknown [10.226.93.20])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id B4B7D425F851;
+        Tue, 14 Jun 2022 00:05:56 +0900 (JST)
+From:   Phil Edworthy <phil.edworthy@renesas.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220613145554.3727354-1-robh@kernel.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220613145554.3727354-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2 0/2] arm64: renesas: Add RZ/V2M watchdog support
+Date:   Mon, 13 Jun 2022 16:05:48 +0100
+Message-Id: <20220613150550.70334-1-phil.edworthy@renesas.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-06-13 15:55, Rob Herring wrote:
-> Convert the Arm CCN performance monitors binding to DT schema format.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->   .../devicetree/bindings/perf/arm,ccn.yaml     | 40 +++++++++++++++++++
->   .../devicetree/bindings/perf/arm-ccn.txt      | 23 -----------
->   2 files changed, 40 insertions(+), 23 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/perf/arm,ccn.yaml
->   delete mode 100644 Documentation/devicetree/bindings/perf/arm-ccn.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/perf/arm,ccn.yaml b/Documentation/devicetree/bindings/perf/arm,ccn.yaml
-> new file mode 100644
-> index 000000000000..0b0bb2091016
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/perf/arm,ccn.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/perf/arm,ccn.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM CCN (Cache Coherent Network) Performance Monitors
-> +
-> +maintainers:
-> +  - Robin Murphy <robin.murphy@arm.com>
+Hello all,
 
-Oh go on then, why not...
+This patch series adds support for the Watchdog Timer (WDT) in the
+RZ/V2M SoC.
 
-Acked-by: Robin Murphy <robin.murphy@arm.com>
+v2:
+ - dt-bindings: Added minItems for interrupt-names and clock-names
+ - driver: Replace use of parity error registers in restart
+ - driver: Commit msg modified to reflect different contents
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - arm,ccn-502
-> +      - arm,ccn-504
-> +      - arm,ccn-508
-> +      - arm,ccn-512
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    ccn@20000000 {
-> +        compatible = "arm,ccn-504";
-> +        reg = <0x20000000 0x1000000>;
-> +        interrupts = <0 181 4>;
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/perf/arm-ccn.txt b/Documentation/devicetree/bindings/perf/arm-ccn.txt
-> deleted file mode 100644
-> index 1c53b5aa3317..000000000000
-> --- a/Documentation/devicetree/bindings/perf/arm-ccn.txt
-> +++ /dev/null
-> @@ -1,23 +0,0 @@
-> -* ARM CCN (Cache Coherent Network)
-> -
-> -Required properties:
-> -
-> -- compatible: (standard compatible string) should be one of:
-> -	"arm,ccn-502"
-> -	"arm,ccn-504"
-> -	"arm,ccn-508"
-> -	"arm,ccn-512"
-> -
-> -- reg: (standard registers property) physical address and size
-> -	(16MB) of the configuration registers block
-> -
-> -- interrupts: (standard interrupt property) single interrupt
-> -	generated by the control block
-> -
-> -Example:
-> -
-> -	ccn@2000000000 {
-> -		compatible = "arm,ccn-504";
-> -		reg = <0x20 0x00000000 0 0x1000000>;
-> -		interrupts = <0 181 4>;
-> -	};
+Phil Edworthy (2):
+  dt-bindings: watchdog: renesas,wdt: Add r9a09g011 (RZ/V2M) support
+  watchdog: rzg2l_wdt: Add rzv2m support
+
+ .../bindings/watchdog/renesas,wdt.yaml        | 71 ++++++++++++-------
+ drivers/watchdog/rzg2l_wdt.c                  | 37 +++++++---
+ 2 files changed, 76 insertions(+), 32 deletions(-)
+
+-- 
+2.34.1
+
