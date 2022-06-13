@@ -2,122 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A3BC548414
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 12:15:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D04B54874C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 17:58:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240006AbiFMKEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 06:04:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42850 "EHLO
+        id S1345203AbiFMKhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 06:37:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241412AbiFMKEF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 06:04:05 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 346902DD4
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 03:03:46 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id x5so6412559edi.2
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 03:03:46 -0700 (PDT)
+        with ESMTP id S1345609AbiFMKgL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 06:36:11 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82BFFD120;
+        Mon, 13 Jun 2022 03:22:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7op1f5wlpAZi0Hk0xX+UhlY3juEQ52n6kB1nCF/IPqA=;
-        b=OZ2QCByWoTcjEPduqfE4ETZpOdhm2BVVrQ1y2JvmL70/6hUhhXhHzap/9uYs/H+M6s
-         IZ443lsk+1Tz5Ua2p6yyW7V0kC6Z3TWhgTQp6Xg++ESnmmo2FqRxXZ0EOlHrxW7zdcFn
-         ErwpBxYxpycfP6Pdfk0c5pbNil/NA/5wRsQzBCmDm/Y8+StXvONND/rLyiyqEjzvKFSN
-         Sa+8BAvhDz/d/5nrYYiTvK7CZSc4iHQjQoHhLZUrQf/4jOVZkBcPTAkgiyq4DvkNP29f
-         Vb4c7wPWy8C2mdkEaEPY4wg0XExXrPXxFYdp+zy3H9TdTjp0KtSbrwdBjYaGVjYKuWGO
-         Xohg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7op1f5wlpAZi0Hk0xX+UhlY3juEQ52n6kB1nCF/IPqA=;
-        b=olQWcW4aF6bEIE+b1lEhqoEzo0yTSCMDas9AxPdIr993/ddtQAeRVqdylD9Q3/0Dhv
-         wafuBp5RDSdVosKCyKB/fwORDCJofgIIkeKd1Scsso2sG1fpa4JgEFmQ+A/PQMRuH23x
-         7vYJ7dVsu6+zEBddB8ioS2zAFQZrlIPyOi9MVSTnEeicpSkWimPy6b3rwN49NXgM3k2U
-         HxY0iSo6uVElcZrOxAnRctjuaTcLSnRO3MaQ0p+OfbqzGH0ZlVCzIQ6eifHtzaCMflkd
-         MWH2RPGUDoLNG2Fo0hRVC/HUt2K7kNdNNbxzbAkUAaul9rV52TCPdEeAvEj4AY9cR3pF
-         Nn8A==
-X-Gm-Message-State: AOAM532m+QzJg47Vd/+SWjDtfZrEyiFZtiYDoD7zCH1xOo8hYV2Jl2S0
-        dMbblO6QlW6dm4jhxlTbqSsDOKL7KlsyOS0Gant47Q==
-X-Google-Smtp-Source: ABdhPJwbMYJx7GQtIWi6i1WyzoaT7vRVEP9bdUJ9Ivyl5VpP5htoL6Qw8nc7sxpOCl5AFaVs2otmmtn52KOK5OukKlE=
-X-Received: by 2002:a05:6402:5008:b0:42d:c421:48c8 with SMTP id
- p8-20020a056402500800b0042dc42148c8mr64948158eda.422.1655114624746; Mon, 13
- Jun 2022 03:03:44 -0700 (PDT)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1655115759; x=1686651759;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version;
+  bh=P0C/r7CssKx3hxTC9MeZV3WMMnfycujIR/DSLZoMRu0=;
+  b=KF7yZMupSOYh5fZOi/zqLwH4/BN1Lvq3IPhw76WxgsYziqwVJwuwoShM
+   b+nciewxoCWsGKtGXc8a0o9DqrdHEB54cocAeCWump1qnkmrtWJ7pPdvn
+   K2ytvBrt1gfCbTiKi25fHmdkFvKvTWOUVTO0fTS62w4u4YFqP5+wKY6b1
+   A=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 13 Jun 2022 03:22:37 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2022 03:22:37 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 13 Jun 2022 03:22:37 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 13 Jun 2022 03:22:32 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
+Subject: [PATCH v13 01/12] arm64: dts: qcom: sc7280: Add nodes for soundwire and va tx rx digital macro codecs
+Date:   Mon, 13 Jun 2022 15:52:02 +0530
+Message-ID: <1655115733-16309-2-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1655115733-16309-1-git-send-email-quic_srivasam@quicinc.com>
+References: <1655115733-16309-1-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-References: <20220610164855.242563-1-l.stach@pengutronix.de>
-In-Reply-To: <20220610164855.242563-1-l.stach@pengutronix.de>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Mon, 13 Jun 2022 12:03:34 +0200
-Message-ID: <CAMRc=Mebt0xDXGP3X=1HpGe8YhdzhyzyYMtjZtXubMjD2y7xsw@mail.gmail.com>
-Subject: Re: [PATCH] gpio: pca9570: add pca9571 support
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sungbo Eo <mans0n@gorani.run>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        patchwork-lst@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 10, 2022 at 6:48 PM Lucas Stach <l.stach@pengutronix.de> wrote:
->
-> The PCA9571 very similar to the PCA9570, it only differs in the
-> number of GPIOs.
->
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml | 1 +
->  drivers/gpio/gpio-pca9570.c                              | 2 ++
->  2 files changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml
-> index 338c5312a106..1acaa0a3d35a 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml
-> @@ -13,6 +13,7 @@ properties:
->    compatible:
->      enum:
->        - nxp,pca9570
-> +      - nxp,pca9571
->
->    reg:
->      maxItems: 1
-> diff --git a/drivers/gpio/gpio-pca9570.c b/drivers/gpio/gpio-pca9570.c
-> index cb2b2f735c15..ab2a652964ec 100644
-> --- a/drivers/gpio/gpio-pca9570.c
-> +++ b/drivers/gpio/gpio-pca9570.c
-> @@ -121,12 +121,14 @@ static int pca9570_probe(struct i2c_client *client)
->
->  static const struct i2c_device_id pca9570_id_table[] = {
->         { "pca9570", 4 },
-> +       { "pca9571", 8 },
->         { /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(i2c, pca9570_id_table);
->
->  static const struct of_device_id pca9570_of_match_table[] = {
->         { .compatible = "nxp,pca9570", .data = (void *)4 },
-> +       { .compatible = "nxp,pca9571", .data = (void *)8 },
->         { /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, pca9570_of_match_table);
-> --
-> 2.30.2
->
+SC7280 has VA, TX and RX macros with SoundWire Controllers to attach with
+external codecs using soundwire masters. Add these nodes for sc7280 based
+platforms audio use case.
 
-Looks good, just please split it into two separate patches, one for DT
-bindings and one for the driver.
+Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 128 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 128 insertions(+)
 
-Thanks,
-Bart
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index b14134a..e5f6b50 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2176,6 +2176,114 @@
+ 			#clock-cells = <1>;
+ 		};
+ 
++		lpass_rx_macro: codec@3200000 {
++			compatible = "qcom,sc7280-lpass-rx-macro";
++			reg = <0 0x03200000 0 0x1000>;
++
++			pinctrl-names = "default";
++			pinctrl-0 = <&lpass_rx_swr_clk>, <&lpass_rx_swr_data>;
++
++			clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>,
++				 <&lpass_aon LPASS_AON_CC_TX_MCLK_2X_CLK>,
++				 <&lpass_va_macro>;
++			clock-names = "mclk", "npl", "fsgen";
++
++			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>,
++					<&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
++			power-domain-names = "macro", "dcodec";
++
++			#clock-cells = <0>;
++			#sound-dai-cells = <1>;
++
++			status = "disabled";
++		};
++
++		swr0: soundwire@3210000 {
++			compatible = "qcom,soundwire-v1.6.0";
++			reg = <0 0x03210000 0 0x2000>;
++
++			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&lpass_rx_macro>;
++			clock-names = "iface";
++
++			qcom,din-ports = <0>;
++			qcom,dout-ports = <5>;
++
++			resets = <&lpass_audiocc LPASS_AUDIO_SWR_RX_CGCR>;
++			reset-names = "swr_audio_cgcr";
++
++			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff>;
++			qcom,ports-sinterval-low =	/bits/ 8 <0x03 0x3f 0x1f 0x03 0x03>;
++			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x01 0x01>;
++			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00>;
++			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00>;
++			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff>;
++			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff>;
++			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff>;
++			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0x00>;
++
++			#sound-dai-cells = <1>;
++			#address-cells = <2>;
++			#size-cells = <0>;
++
++			status = "disabled";
++		};
++
++		lpass_tx_macro: codec@3220000 {
++			compatible = "qcom,sc7280-lpass-tx-macro";
++			reg = <0 0x03220000 0 0x1000>;
++
++			pinctrl-names = "default";
++			pinctrl-0 = <&lpass_tx_swr_clk>, <&lpass_tx_swr_data>;
++
++			clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>,
++				 <&lpass_aon LPASS_AON_CC_TX_MCLK_2X_CLK>,
++				 <&lpass_va_macro>;
++			clock-names = "mclk", "npl", "fsgen";
++
++			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>,
++					<&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
++			power-domain-names = "macro", "dcodec";
++
++			#clock-cells = <0>;
++			#sound-dai-cells = <1>;
++
++			status = "disabled";
++		};
++
++		swr1: soundwire@3230000 {
++			compatible = "qcom,soundwire-v1.6.0";
++			reg = <0 0x03230000 0 0x2000>;
++
++			interrupts-extended = <&intc GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 130 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&lpass_tx_macro>;
++			clock-names = "iface";
++
++			qcom,din-ports = <3>;
++			qcom,dout-ports = <0>;
++
++			resets = <&lpass_audiocc LPASS_AUDIO_SWR_TX_CGCR>;
++			reset-names = "swr_audio_cgcr";
++
++			qcom,ports-sinterval-low =	/bits/ 8 <0x01 0x03 0x03>;
++			qcom,ports-offset1 =		/bits/ 8 <0x01 0x00 0x02>;
++			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x00>;
++			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff>;
++			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff>;
++			qcom,ports-word-length =	/bits/ 8 <0xff 0x00 0xff>;
++			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0xff>;
++			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff>;
++			qcom,ports-lane-control =	/bits/ 8 <0x00 0x01 0x00>;
++			qcom,port-offset = <1>;
++
++			#sound-dai-cells = <1>;
++			#address-cells = <2>;
++			#size-cells = <0>;
++
++			status = "disabled";
++		};
++
+ 		lpass_audiocc: clock-controller@3300000 {
+ 			compatible = "qcom,sc7280-lpassaudiocc";
+ 			reg = <0 0x03300000 0 0x30000>;
+@@ -2187,6 +2295,26 @@
+ 			#power-domain-cells = <1>;
+ 		};
+ 
++		lpass_va_macro: codec@3370000 {
++			compatible = "qcom,sc7280-lpass-va-macro";
++			reg = <0 0x03370000 0 0x1000>;
++
++			pinctrl-names = "default";
++			pinctrl-0 = <&lpass_dmic01_clk>, <&lpass_dmic01_data>;
++
++			clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>;
++			clock-names = "mclk";
++
++			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>,
++					<&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
++			power-domain-names = "macro", "dcodec";
++
++			#clock-cells = <0>;
++			#sound-dai-cells = <1>;
++
++			status = "disabled";
++		};
++
+ 		lpass_aon: clock-controller@3380000 {
+ 			compatible = "qcom,sc7280-lpassaoncc";
+ 			reg = <0 0x03380000 0 0x30000>;
+-- 
+2.7.4
+
