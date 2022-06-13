@@ -2,79 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECF2E549DDC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53F9E549E30
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:57:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343691AbiFMTlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 15:41:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46264 "EHLO
+        id S234195AbiFMT5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 15:57:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233744AbiFMTlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:41:14 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44A4076288
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 11:08:35 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id c196so6449356pfb.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 11:08:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=6RfOO19u1aifVisZByr6WMgdeJkVkBAonCLIE3lhww4=;
-        b=ZayI3pusa6NPPyQZLxoG9kjQSrLh5RNRtXEreB7tn3HaMiEKs1Z81QJIKGnlBiOvT8
-         3ZLMkTlpiBnqjIIlh93/+g4p5UHN4QIWDyTopX3GH7Euacyu8/dnuI4KUls12eDKB465
-         pxLc45h7AyHIaDcwYjMRBCzav/15XOBFQDWOU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6RfOO19u1aifVisZByr6WMgdeJkVkBAonCLIE3lhww4=;
-        b=FSgLjHC3CoGfwkmfuz1hyqjSZoLMK4Qad+2vu4246M8X4qWtuT1ktyYF8PYc340Ydw
-         NLfNNEqg0jHXaFFI2Txr8k6FGpoic0TGEP88KGVd9xkOuS69kXJaCY5XAPY6ayCnXJ5T
-         OMwbVsbHiPAwvILM2w7U8ncEa7V2fDE22i1xt3nBifuKbhfIZN19NbdynEd0bDhTTy7R
-         L0TslucUdEtrKNaMkDQEfLgWOpS9ombV52j9rYki2WeIdScTpjCZmGjivUBbm6wlzqco
-         YXb+UawR1NqDaxHLEOy9qC0g4BUg8HwOBDMQyhQHMH75mpt/m1AOAlApw+gAtGhph5z/
-         Zx0g==
-X-Gm-Message-State: AOAM532qDu8FBbWBGPsvpjoIC4Xb5EHvsuI5FCAgzxEQ/hrvgpEsCAvj
-        VQu2Jh4Yo99/I5VIr+zFkstIjA==
-X-Google-Smtp-Source: ABdhPJzyTBSrgeUuj8ZPrTjLj2otwZf42YS9YWJUq0VMLGjI4RlCZxEMTxCgygHUnY0IX59pPnAQ+w==
-X-Received: by 2002:a05:6a00:1acd:b0:51c:795b:860c with SMTP id f13-20020a056a001acd00b0051c795b860cmr591557pfv.16.1655143714650;
-        Mon, 13 Jun 2022 11:08:34 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:c4fb:a1d8:47ef:f10c])
-        by smtp.gmail.com with UTF8SMTPSA id f12-20020aa782cc000000b0051bd9981cacsm5734717pfn.123.2022.06.13.11.08.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Jun 2022 11:08:34 -0700 (PDT)
-Date:   Mon, 13 Jun 2022 11:08:32 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Subject: Re: [PATCH v20 2/5] usb: dwc3: core: Host wake up support from
- system suspend
-Message-ID: <Yqd9IHQEj3Ex+FcF@google.com>
-References: <1654158277-12921-1-git-send-email-quic_kriskura@quicinc.com>
- <1654158277-12921-3-git-send-email-quic_kriskura@quicinc.com>
- <YpkRDi2m7cLaKYEf@google.com>
- <Yp5nf2w8uVZ38/XZ@google.com>
+        with ESMTP id S1346056AbiFMT4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:56:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21A25A5015;
+        Mon, 13 Jun 2022 11:27:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5A83F61295;
+        Mon, 13 Jun 2022 18:27:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7195FC34114;
+        Mon, 13 Jun 2022 18:27:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655144873;
+        bh=4acUEF/GtiroxdkX0QUJJTf/NNYdtRPoMippfdF+Tbs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=aEcS3c5PuXqEnaTpZNKg40R3God3d+LK8yPhQQejAGjRW1qBwC32okVmksKg2N2+z
+         yofbKTOOIypSFItFnYzAA1W79a9xS2NBzZLYopWs2Nr4x8FhfqjGrfTXjFKP5hPHPc
+         SAD1t6ahlh9v5DCGkHYm629+mfQETe8iketrGHBBTGoxehe9P2+H/DRZdJsGBGxJ9b
+         /DIXDBa6qIdjJ8jkJ6iNWbzHMGV3fBBub3ItPHhQEAhcnE3kcwKfWRFPCFSvozpIck
+         /Ot+ri4rcFjzH0npaiOlzwZ0zY/ajcIScCJTpHOwdu69UtJeEtA2PpBlOMUrJU66gw
+         SCYoOfOmuqNHQ==
+Message-ID: <d933f30b-4d53-eb97-d029-1c321ba84b62@kernel.org>
+Date:   Mon, 13 Jun 2022 21:27:45 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Yp5nf2w8uVZ38/XZ@google.com>
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Subject: Re: [PATCH 2/8] interconnect: add device managed bulk API
+Content-Language: en-US
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, abel.vesa@nxp.com,
+        abailon@baylibre.com, l.stach@pengutronix.de,
+        laurent.pinchart@ideasonboard.com, marex@denx.de,
+        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
+        aford173@gmail.com
+Cc:     kernel@pengutronix.de, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+References: <20220601094156.3388454-1-peng.fan@oss.nxp.com>
+ <20220601094156.3388454-3-peng.fan@oss.nxp.com>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20220601094156.3388454-3-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,51 +63,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 06, 2022 at 01:45:51PM -0700, Matthias Kaehlcke wrote:
-> On Thu, Jun 02, 2022 at 12:35:42PM -0700, Matthias Kaehlcke wrote:
-> > Hi Krishna,
-> > 
-> > with this version I see xHCI errors on my SC7180 based system, like
-> > these:
-> > 
-> > [   65.352605] xhci-hcd xhci-hcd.13.auto: xHC error in resume, USBSTS 0x401, Reinit
-> > 
-> > [  101.307155] xhci-hcd xhci-hcd.13.auto: WARN: xHC CMD_RUN timeout
-> > 
-> > After resume a downstream hub isn't enumerated again.
-> > 
-> > So far I didn't see those with v13, but I aso saw the first error with
-> > v16.
+Hi Peng,
+
+Thanks for the patches!
+
+On 1.06.22 12:41, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> It also happens with v13, but only when a wakeup capable vUSB <= 2
-> device is plugged in. Initially I used a wakeup capable USB3 to
-> Ethernet adapter to trigger the wakeup case, however older versions
-> of this series that use usb_wakeup_enabled_descendants() to check
-> for wakeup capable devices didn't actually check for vUSB > 2
-> devices.
+> Add device managed bulk API to simplify driver.
 > 
-> So the case were the controller/PHYs is powered down works, but
-> the controller is unhappy when the runtime PM path is used during
-> system suspend.
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>   drivers/interconnect/bulk.c  | 34 ++++++++++++++++++++++++++++++++++
+>   include/linux/interconnect.h |  6 ++++++
+>   2 files changed, 40 insertions(+)
+> 
+> diff --git a/drivers/interconnect/bulk.c b/drivers/interconnect/bulk.c
+> index 448cc536aa79..4918844bfe0d 100644
+> --- a/drivers/interconnect/bulk.c
+> +++ b/drivers/interconnect/bulk.c
+> @@ -115,3 +115,37 @@ void icc_bulk_disable(int num_paths, const struct icc_bulk_data *paths)
+>   		icc_disable(paths[num_paths].path);
+>   }
+>   EXPORT_SYMBOL_GPL(icc_bulk_disable);
+> +
+> +struct icc_bulk_devres {
+> +	struct icc_bulk_data *paths;
+> +	int num_paths;
+> +};
+> +
+> +static void devm_icc_bulk_release(struct device *dev, void *res)
+> +{
+> +	struct icc_bulk_devres *devres = res;
+> +
+> +	icc_bulk_put(devres->num_paths, devres->paths);
+> +}
+> +
+> +int devm_of_icc_bulk_get(struct device *dev, int num_paths, struct icc_bulk_data *paths)
 
-The issue isn't seen on all systems using dwc3-qcom and the problem starts
-during probe(). The expected probe sequence is something like this:
+Adding a kerneldoc would be nice.
 
-dwc3_qcom_probe
-  dwc3_qcom_of_register_core
-    dwc3_probe
+> +{
+> +	struct icc_bulk_devres *devres;
+> +	int ret;
+> +
+> +	devres = devres_alloc(devm_icc_bulk_release, sizeof(*devres), GFP_KERNEL);
+> +	if (!devres)
+> +		return -ENOMEM;
+> +
+> +	ret = of_icc_bulk_get(dev, num_paths, paths);
+> +	if (!ret) {
+> +		devres->paths = paths;
+> +		devres->num_paths = num_paths;
+> +		devres_add(dev, devres);
+> +	} else {
+> +		devres_free(devres);
+> +	}
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(devm_of_icc_bulk_get);
+> diff --git a/include/linux/interconnect.h b/include/linux/interconnect.h
+> index f685777b875e..1a5fdf049edd 100644
+> --- a/include/linux/interconnect.h
+> +++ b/include/linux/interconnect.h
+> @@ -44,6 +44,7 @@ struct icc_path *icc_get(struct device *dev, const int src_id,
+>   			 const int dst_id);
+>   struct icc_path *of_icc_get(struct device *dev, const char *name);
+>   struct icc_path *devm_of_icc_get(struct device *dev, const char *name);
+> +int devm_of_icc_bulk_get(struct device *dev, int num_paths, struct icc_bulk_data *paths);
+>   struct icc_path *of_icc_get_by_index(struct device *dev, int idx);
+>   void icc_put(struct icc_path *path);
+>   int icc_enable(struct icc_path *path);
+> @@ -116,6 +117,11 @@ static inline int of_icc_bulk_get(struct device *dev, int num_paths, struct icc_
+>   	return 0;
+>   }
+>   
+> +int devm_of_icc_bulk_get(struct device *dev, int num_paths, struct icc_bulk_data *paths)
 
-  if (device_can_wakeup(&qcom->dwc3->dev))
-    ...
+Please make this static inline. The rest looks good!
 
-The important part is that device_can_wakeup() is called after dwc3_probe()
-has completed. That's what I see on a QC SC7280 system, where wakeup is
-generally working with these patches.
+Thanks,
+Georgi
 
-However on a QC SC7180 system dwc3_probe() is deferred and only executed after
-dwc3_qcom_probe(). As a result the device_can_wakeup() call returns false.
-With that the controller/driver ends up in an unhappy state after system
-suspend.
+> +{
+> +	return 0;
+> +}
+> +
+>   static inline void icc_bulk_put(int num_paths, struct icc_bulk_data *paths)
+>   {
+>   }
 
-Probing is deferred on SC7180 because device_links_check_suppliers() finds
-that '88e3000.phy' isn't ready yet.
