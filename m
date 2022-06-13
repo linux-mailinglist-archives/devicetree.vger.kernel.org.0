@@ -2,139 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C43AA549029
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 18:25:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7AA7549A42
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 19:41:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240983AbiFMP3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 11:29:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48222 "EHLO
+        id S240848AbiFMRlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 13:41:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346463AbiFMP2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 11:28:49 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE9713FBEE
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 06:01:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1655125313; x=1686661313;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YMnZ33SM5U1abmebXntp6fWIupf9wB2VK1WQbCLSPe0=;
-  b=XkLqx5BsTRQAsA9dWmm9oA+As8XI/i0IUAAMkyCnypwYqXKdRpysQp9i
-   9oSLFoVmE8Y+BnKKV5y/4uqPuyxHgRDdM0R1MaT+lKWIHNBIY77EEKJNQ
-   nE5zWp+7tlNbLGaKxivC7P0RjPoiBCef2Te0ZjOPDRvsfEI8MZ+avbFfr
-   1GKgLCG10t+EbjjZZdTqmQX9oAJoP5jEBJvzo8+CcpAMKro9CNGQAQGbw
-   RyFpsij5s6T1xBzV5H1faeKXL96HsONNwah5Q1+Mr7+7/e/hTE8KusQKz
-   m7Y8nF9aYudCaooX7wYO7Yv9DXUz6prbnZqDAvmXzprZMmiQjpFoaqKg8
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.91,297,1647298800"; 
-   d="scan'208";a="24419856"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 13 Jun 2022 15:01:49 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 13 Jun 2022 15:01:49 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 13 Jun 2022 15:01:49 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1655125309; x=1686661309;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YMnZ33SM5U1abmebXntp6fWIupf9wB2VK1WQbCLSPe0=;
-  b=g4CJah4DMHPkWANvs6hyBOeKhSQzevN3Jd5xdLxYFGkWHuIzGBvb4nRq
-   2I/isJxVJmVukT0L+YuJbK1w1vXnn3T/M+CGEGsOrf45E43uKaCy++AJ1
-   1g3iWELP3zz4HPhOwIoazXZ1F2K7ryauzJ/UALjDRkGsZW2LWRw0Rftkf
-   9DLAvNo9w1YUQ9m/9+0lHZiA114jFplAPIBO4hZ8GCQfusy2WVZEo+XvE
-   ONRc6ZdlZZ0jvlzjokiYiTVYkM+yTESuwZc0ndQY9locIpiWWanF530G8
-   ZkCDGaTBKhJ5/IDTWpegrvAQwWc0uh3k2zXp80TVvgMnPzi0jxD77HGjg
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.91,297,1647298800"; 
-   d="scan'208";a="24419855"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 13 Jun 2022 15:01:49 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        with ESMTP id S242422AbiFMRiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 13:38:18 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BA6A147806;
+        Mon, 13 Jun 2022 06:04:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3DA45280056;
-        Mon, 13 Jun 2022 15:01:49 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: (EXT) Re: [PATCH 4/7] ARM: dts: imx6ul: remove unsupported adc property
-Date:   Mon, 13 Jun 2022 15:01:48 +0200
-Message-ID: <2635944.mvXUDI8C0e@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <87k09kwx26.fsf@tarshish>
-References: <20220613123357.441779-1-alexander.stein@ew.tq-group.com> <20220613123357.441779-4-alexander.stein@ew.tq-group.com> <87k09kwx26.fsf@tarshish>
+        by sin.source.kernel.org (Postfix) with ESMTPS id 7D025CE12AA;
+        Mon, 13 Jun 2022 13:04:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A976FC3411B;
+        Mon, 13 Jun 2022 13:04:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655125463;
+        bh=tmW0UzmHilil9D6WRtZVvd2rIwKzTWLw3Xx3woeOXfk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lst8DXIdPr227QBx0vTZihAbIrVqyBL3NazUG+oAGYXZwApYXtW/A2YMtMh2hs4pw
+         7KFctvuzd2Up7KRd7/WMHg5QU1m0D96g+Q9VOcD8vskYiRvSjCoNI7Bt4xFmUGesXf
+         XWUUO9Jdl9NrQ3n5yU8yfAMrpgr1OtUNKSu6HdTohZR63XZRC+8+WtLtiXq3zc4WB4
+         DWwB5crbHOeEJjMuaoB2S7A0nM+KbcYVNFi3TG0Sb5ebh7Z5Ib3QN2xhqfeQQp22FX
+         ObB4rxnrMH0R2VsmSPU34+yMkYHFMbu38x5enMDNe3pnmaEWMxs+oc6OJzvzkZsT05
+         QHU98r2GypYDA==
+Date:   Mon, 13 Jun 2022 14:04:17 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jerome NEANNE <jneanne@baylibre.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, nm@ti.com,
+        kristo@kernel.org, will@kernel.org, lee.jones@linaro.org,
+        khilman@baylibre.com, narmstrong@baylibre.com, msp@baylibre.com,
+        j-keerthy@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH 3/5] regulator: drivers: Add TI TPS65219 PMIC
+ regulators support
+Message-ID: <Yqc10QuvjQ1e/ivw@sirena.org.uk>
+References: <20220613090604.9975-1-jneanne@baylibre.com>
+ <20220613090604.9975-4-jneanne@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="IopxgiwGnKTD/lJ2"
+Content-Disposition: inline
+In-Reply-To: <20220613090604.9975-4-jneanne@baylibre.com>
+X-Cookie: innovate, v.:
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Baruch,
 
-Am Montag, 13. Juni 2022, 14:44:09 CEST schrieb Baruch Siach:
-> Hi Alexander,
-> 
-> On Mon, Jun 13 2022, Alexander Stein wrote:
-> > 'num-channels' is not supported by binding, nor driver, remove it. Fixes
-> > the dt_binding_check warning:
-> > adc@2198000: 'num-channels' does not match any of the regexes:
-> > 'pinctrl-[0-9]+'
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> 
-> Shawn's imx/dt branch has commit 71b81f1cac29297 that removes
-> num-channels from all imx6ul DT files:
-> 
->  
-> https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git/commit/?
-> h=imx/dt&id=71b81f1cac29297769ec81fe29a3fcc40bc2c31c
+--IopxgiwGnKTD/lJ2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Ah, it's not in next-20220610, so I wasn't aware of it. Thanks for the hint 
-though.
+On Mon, Jun 13, 2022 at 11:06:02AM +0200, Jerome NEANNE wrote:
 
-Best regards,
-Alexander
+> +static int tps65219_pmic_enable(struct regulator_dev *dev)
+> +{
+> +	struct tps65219 *tps = rdev_get_drvdata(dev);
+> +	int rid = rdev_get_id(dev);
+> +	int ret;
+> +
+> +
+> +
 
-> > ---
-> > 
-> >  arch/arm/boot/dts/imx6ul.dtsi | 1 -
-> >  1 file changed, 1 deletion(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-> > index df8b4ad62418..b951bdb793d2 100644
-> > --- a/arch/arm/boot/dts/imx6ul.dtsi
-> > +++ b/arch/arm/boot/dts/imx6ul.dtsi
-> > @@ -924,7 +924,6 @@ adc1: adc@2198000 {
-> > 
-> >  				reg = <0x02198000 0x4000>;
-> >  				interrupts = <GIC_SPI 100 
-IRQ_TYPE_LEVEL_HIGH>;
-> >  				clocks = <&clks IMX6UL_CLK_ADC1>;
-> > 
-> > -				num-channels = <2>;
-> > 
-> >  				clock-names = "adc";
-> >  				fsl,adck-max-frequency = 
-<30000000>, <40000000>,
-> >  				
-> >  							 
-<20000000>;
+Lots of random blank space here.
 
+> +	if (rid < TPS65219_BUCK_1 || rid > TPS65219_LDO_4)
+> +		return -EINVAL;
+> +
 
+If a regulator doesn't support an operation it shouldn't be providing
+it, no need to check here.
 
+> +	ret = tps65219_set_bits(tps, dev->desc->enable_reg,
+> +				 dev->desc->enable_mask, dev->desc->enable_mask);
 
+If you provide the regmap to the child devices then this can use the
+standard regmap helpers for most of the operations, meaning most of
+the operations in the driver can be removed.
+
+> +/* generic regulator_set_bypass_regmap does not match requirements use custom instead */
+
+In what way?  Please also try to keep within 80 columns normally.
+
+> +	if (dev->desc->ops->is_enabled) {
+> +		dev_err(tps->dev, "%s LDO%d is enabled, should be shut down to set bypass ",
+> +					 __func__, rid);
+> +		return -EBUSY;
+> +	}
+
+This is testing if there is an enable operation, not if the regulator is
+enabled.
+
+> +	if (enable) {
+> +		dev_dbg(tps->dev, "%s, LDO%d already in bypass mode", __func__, rid);
+> +		return ret;
+> +	}
+
+This is not a problem, just silently succeed.
+
+> +	/* Allocate memory for strobes */
+> +	tps->strobes = devm_kcalloc(&pdev->dev,
+> +				    TPS65219_NUM_REGULATOR, sizeof(u8),
+> +				    GFP_KERNEL);
+> +	if (!tps->strobes)
+> +		return -ENOMEM;
+
+These are never referenced anywhere else in the driver, no need to
+allocate them.
+
+> +		ret = regmap_read(tps->regmap, regulators[i].bypass_reg, &val);
+> +		if (ret) {
+> +			dev_err(tps->dev, "dev_err failed to map register for %s regulator\n",
+> +				pdev->name);
+> +			return ret;
+> +		}
+
+I'm not clear what this check is intended to do, it at least needs to be
+better documented.
+
+--IopxgiwGnKTD/lJ2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKnNdAACgkQJNaLcl1U
+h9A3Rgf/XIyREPO3yKKsbHdyoXb7PZDaVPf9DpPKX/8m3fwGRc3Ba/JNM7lPLYzN
+vJOIYiyr/rFe/LAZckSMBhJo1d316Bmy0HlAMOHyzMWEjvD7iTLuQ/0G+BjNoK6J
+v1yEvj+bTtQ26oN3/4liVPkJNA4QBJsRR63eb9RUyOw6QESZyn2rUT23VUY2COTY
+SR4555QxcCsz9RnQiREp+reE6ImqQSkkbsaIzC5+9ch7olWmopmYOdJE1C/lpk4G
+z4Cz/BPfEZmxwi5RPS3gAlAjETKuBo4EyR4MlKTKsLLB8/1nvvwZNr1Pb4idKi5v
+tyQHzosfLSFm/jUGZjaTH0XjlNPUFA==
+=GrWr
+-----END PGP SIGNATURE-----
+
+--IopxgiwGnKTD/lJ2--
