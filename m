@@ -2,128 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97DD1549F10
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 22:30:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7654549F6A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 22:35:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232026AbiFMU3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 16:29:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60394 "EHLO
+        id S235832AbiFMUfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 16:35:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350921AbiFMU22 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 16:28:28 -0400
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 471EB193EF;
-        Mon, 13 Jun 2022 12:15:53 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id d123so7114587iof.10;
-        Mon, 13 Jun 2022 12:15:53 -0700 (PDT)
+        with ESMTP id S235573AbiFMUdc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 16:33:32 -0400
+Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15BCF2C0;
+        Mon, 13 Jun 2022 12:24:03 -0700 (PDT)
+Received: by mail-oo1-xc2d.google.com with SMTP id v12-20020a4a314c000000b0041b65c7e100so1354685oog.8;
+        Mon, 13 Jun 2022 12:24:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=soDls7dCcz1ZPpwB8dw+TM3GeqzOJjJq6MJ6fYnP6Ac=;
+        b=gVkDRTgET96s94Fj8AGMYQ7plsLzzIOrkFusvdkw+BE02VoTuo4Dtmp8l6rlbkAWSq
+         3VLuxyouB2xA3n4K50uFEXHhKnEIm/R9iWM020KcfMEUbtk7VtKsUnBccI+5MNAw+MoM
+         4SUG7jhkfrqQBh612YxOBdFP2UYXHNIq9Q6zWsFRVq6wRBRQusJb8TJ/Ec5nGft56KMY
+         xRcH0RrykZX3qUye0dLhmd8pXJUieLSb+Tq0DPlbEt/UKsJwEf8LoJYg5ky2YMX/jUCR
+         OzIhQo+YLtstI3dcF9dXVJhY7bE/sAzi8E3U/2KgaMBa6P/2iXsCs0dFR/zvQsW+on24
+         qZrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=GEjnnN//JiCiI3GuISH4q5FQJvUbVSJXakhhE2GaPqM=;
-        b=X4XZQjcFSwzrT2dTWKMZCYoOzlEd1iBWL7ZmKn+AkxDkLG3zyQrLCa54WfShIIOs/5
-         0xJxk98naeSWwF1UsdMVD6f5k5GxBGNK1MzQHv3bk4E16RyE0TPqT1/I7nU2QMRrbb5q
-         K/j+6ByYESVMZ79+74aiQi6lTn6Os7e2wJ/ZRvCsLW92nMlIggKHSSLgX9ifep52GOoI
-         R7pQSZtBXKvd+6BrpA4FBwPZcJeAfNVhPHx1EDiMFXEertanPV4jnx0qxgdhYXyYB2gb
-         yxPxXN1AydswkoIjlVjXj4YAlvOIfkdD4dlqRLDw0GRHGNp5k3JoB43qNncuNYyzFUcN
-         LWgg==
-X-Gm-Message-State: AOAM53244m6kI/dgT6RHdJZ9h4kyT/U3XSPhlS3YxcF2srPvu0vHr3SY
-        Zu9NnxhBrV+SOar1efNfMw==
-X-Google-Smtp-Source: ABdhPJyN8sGx8YDVJ+QgIaLBk8J2Ux3lzoOGfBNp9bkBBkXjzA5iwt1QoG43IxfbO+ZX/BdUykJ0NA==
-X-Received: by 2002:a02:6619:0:b0:32e:25b7:d9ed with SMTP id k25-20020a026619000000b0032e25b7d9edmr771680jac.30.1655147752566;
-        Mon, 13 Jun 2022 12:15:52 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id d29-20020a023f1d000000b0032e5205f4e7sm678930jaa.4.2022.06.13.12.15.50
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=soDls7dCcz1ZPpwB8dw+TM3GeqzOJjJq6MJ6fYnP6Ac=;
+        b=xpsaLf1j/C5ZeqnBXhQHCpbL51qPSmTly3bRiBx5unf1cNWS8fzu1DxuES5sTfgT2P
+         jelYqtZ8JvS2b8rN0uCOoWF8aaoLBUg3gcMBAwLXoolUD9BLi6IqL4ixmkNLDGv0Mbz+
+         3rs1Bw4N6dhdFNwLeGJLvrOBEZavmcq8/u3u0hH2UYj+IBMWL200F/yuTTUtbs3uDNZV
+         NlDXtp5f8pzSOFpb2WwjbnUcJ7qayaPJ+kHilyXTfcrBoWIu81SJjXlzIMdPB80igqDJ
+         2Pbm36pFwTvUZ9RlP7/jJ4JDZdyBTSSvmZne7dWADUVfKO3QSKowJl37njPqnpZ2FlaQ
+         JYXA==
+X-Gm-Message-State: AOAM532bFS3eoM73fSohCla82FN/d1JZEfOJH97zrhOXxNEMX39X/z5H
+        NKI4e6jAXqaxaF/PzYf2h+kExaBN3LQ=
+X-Google-Smtp-Source: ABdhPJwydrZEwRLKV4EbIEDS5L4amqbACGianDmULDMTy1AqRJk11ANrlIktzehmdzexhBRCY2qwqw==
+X-Received: by 2002:a4a:dd8b:0:b0:41b:92b4:c928 with SMTP id h11-20020a4add8b000000b0041b92b4c928mr531518oov.59.1655148242112;
+        Mon, 13 Jun 2022 12:24:02 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id bf34-20020a056808192200b0032ba1b363d2sm3637274oib.55.2022.06.13.12.24.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jun 2022 12:15:52 -0700 (PDT)
-Received: (nullmailer pid 4108636 invoked by uid 1000);
-        Mon, 13 Jun 2022 19:15:49 -0000
-Date:   Mon, 13 Jun 2022 13:15:49 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Max Krummenacher <max.oss.09@gmail.com>
-Cc:     max.krummenacher@toradex.com, Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-pm@vger.kernel.org,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Mark Brown <broonie@kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain
- provider which controls
-Message-ID: <20220613191549.GA4092455-robh@kernel.org>
-References: <20220609150851.23084-1-max.oss.09@gmail.com>
+        Mon, 13 Jun 2022 12:24:01 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-input@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, contact@artur-rojek.eu,
+        maccraft123mc@gmail.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        dmitry.torokhov@gmail.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH v3 0/3] adc-joystick: Add polled support
+Date:   Mon, 13 Jun 2022 14:23:50 -0500
+Message-Id: <20220613192353.696-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220609150851.23084-1-max.oss.09@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 09, 2022 at 05:08:46PM +0200, Max Krummenacher wrote:
-> From: Max Krummenacher <max.krummenacher@toradex.com>
-> 
-> its power enable by using a regulator.
-> 
-> The currently implemented PM domain providers are all specific to
-> a particular system on chip.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Yes, power domains tend to be specific to an SoC... 'power-domains' is 
-supposed to be power islands in a chip. Linux 'PM domains' can be 
-anything...
+Add support to the existing adc-joystick driver to support polling
+rather than relying on triggered buffers. This is useful for devices
+that do not offer triggered buffers in hardware. Code adapted from
+changes made by Maya Matuszczyk <maccraft123mc@gmail.com>.
 
-> This series adds a PM domain provider driver which enables/disables
-> a regulator to control its power state. Additionally, marked with RFC,
-> it adds two commits which actually make use of the new driver to
-> instantiate a power domain provider and have a number of power
-> domain consumers use the power domain.
-> 
-> The perceived use case is to control a common power domain used by
-> several devices for which not all device drivers nessesarily have
-> a means to control a regulator.
+Changes from V2:
+ - Changed parameter from "adc-joystick,polled" to
+   "adc-joystick,no-hardware-trigger" as it is more representative of
+   what the driver and hardware are doing.
 
-Why wouldn't they have means?
+Changes from V1:
+ - Removed driver compatible string of "adc-joystick-polled".
+ - Added new optional boolean value of "adc-joystick,polled".
+ - Cleaned up if statements regarding polling behavior.
 
-> It also handles the suspend / resume use case for such devices,
-> the generic power domain framework will disable the domain once the
-> last device has been suspend and will enable it again before resuming
-> the first device.
-> The generic power domain code handles a power domain consumer
-> generically outside of the driver's code. (assuming the 'power-domains'
-> property references exactly one power domain).
 
-That's Linux implementation details.
+Chris Morgan (3):
+  dt-bindings: adc-joystick: add adc-joystick,no-hardware-trigger
+  Input: adc-joystick - Add polled input device support
+  arm64: dts: rockchip: Update joystick to polled for Odroid-Go2
 
-> This allows to use the "regulator-pm-pd" driver with an arbitrary
-> device just by adding the 'power-domains' property to the devices
-> device tree node. However the device's dt-bindings schema likely does
-> not allow the property 'power-domains'.
-> One way to solve this would be to allow 'power-domains' globally
-> similarly how 'status' and other common properties are allowed as
-> implicit properties.
+ .../bindings/input/adc-joystick.yaml          |  9 +++-
+ .../boot/dts/rockchip/rk3326-odroid-go2.dts   |  1 +
+ drivers/input/joystick/adc-joystick.c         | 52 +++++++++++++++----
+ 3 files changed, 50 insertions(+), 12 deletions(-)
 
-No. For 'power-domains' bindings have to define how many there are and 
-what each one is.
+-- 
+2.25.1
 
-Rob
