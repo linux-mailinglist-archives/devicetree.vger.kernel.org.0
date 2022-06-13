@@ -2,62 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A94EE549A02
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 19:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E10F1549A1B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 19:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236936AbiFMRbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 13:31:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39854 "EHLO
+        id S231321AbiFMRfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 13:35:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243998AbiFMRat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 13:30:49 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85399A1BB;
-        Mon, 13 Jun 2022 05:53:03 -0700 (PDT)
-Received: from [10.5.50.66] (unknown [103.108.5.209])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S244911AbiFMRbN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 13:31:13 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438B5663D6;
+        Mon, 13 Jun 2022 05:57:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: shreeya)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 630BB6601653;
-        Mon, 13 Jun 2022 13:52:58 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1655124782;
-        bh=wPVPeG0ehxwVBRfqVV1QMdSaUZUBQIBEq78jW56sV4o=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=AHeKSLCh5eGkJ6D/hN2EP4Yw6oO71wW7futn/cYMYl+/EHU1HMYTBq2KWP25QeJYS
-         KpPSlsjloVqRuoWomCv8cOFP3HP8LJeViwFTu6NDLfNqKWnE1eIhGBuiZzShkaEcZI
-         kepTO0cxJCDBB3x2B5WrO0FmQDm9xWdBJxslOluN158viHJUdPxTSAleqQgaR3chE7
-         D4dOU/oDyOS+Rj6dIrW/cEfNkRc+shCKUZIOZYSv/Gr1dbJpm891MeYCKojBgddlw+
-         OKmWCiBA+RINm9Hx9qAQ0J4Hzd1HkIvLWMUCeQB10P31sixFMrjTuy2qbsZtHutRVa
-         oeJn2dn7VnLmA==
-Message-ID: <a4334956-deca-d2cc-7bbd-6e5f305b9e35@collabora.com>
-Date:   Mon, 13 Jun 2022 18:22:53 +0530
+        by ams.source.kernel.org (Postfix) with ESMTPS id C6379B80FCD;
+        Mon, 13 Jun 2022 12:57:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE2BDC3411C;
+        Mon, 13 Jun 2022 12:57:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655125051;
+        bh=KDhPN0EJSPqVJzBkGZYZ/spitiiOUeilcgOvShhrFB0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nMJ5e6gBSI7FEY6Te1788d11iJlulxXuHGGuL9TFl9R5J/Fi1mTnAbFFEwc9sVdqG
+         /gfYi9COCxRzBF4bqk4wOlkpnMT5E1gkLYpSZBE3RIQHpZjkXxkdhtRBvdTPICAKEp
+         j+onTRZedv5xDqdbcECM32Wc5IWYXJeN4XSW9cHtTj9wm7SaZsazli+NlPcyjRsFzE
+         /rsjvMHBqJuoUyXL/GMHOj9800A6o4X66xFIorh/uzTDrf3UxlJlDdXeHyEfErYSVs
+         heThHqdyy3FhrH/ZHx+EWxGDhEFgoXgPXComQNGT9GReuajxWkZ41ikVfXD2hEXEBM
+         b3dsu2DO2eNoA==
+Date:   Mon, 13 Jun 2022 13:57:25 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jerome NEANNE <jneanne@baylibre.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, nm@ti.com,
+        kristo@kernel.org, will@kernel.org, lee.jones@linaro.org,
+        khilman@baylibre.com, narmstrong@baylibre.com, msp@baylibre.com,
+        j-keerthy@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH 2/5] mfd: drivers: Add TI TPS65219 PMIC support
+Message-ID: <Yqc0NQSLO2j2IHI3@sirena.org.uk>
+References: <20220613090604.9975-1-jneanne@baylibre.com>
+ <20220613090604.9975-3-jneanne@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v5 2/2] iio: light: Add support for ltrf216a sensor
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>, Zhigang.Shi@liteon.com,
-        krisman@collabora.com, linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        alvaro.soliverez@collabora.com, Dmitry Osipenko <digetx@gmail.com>
-References: <20220608113553.32083-1-shreeya.patel@collabora.com>
- <20220608113553.32083-3-shreeya.patel@collabora.com>
- <CAHp75VcpHO-_Dghdc0VFjT=us-95h1b03Jmg32odJuuJZRy8aA@mail.gmail.com>
-From:   Shreeya Patel <shreeya.patel@collabora.com>
-In-Reply-To: <CAHp75VcpHO-_Dghdc0VFjT=us-95h1b03Jmg32odJuuJZRy8aA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="U2vy66mGJShhsnPN"
+Content-Disposition: inline
+In-Reply-To: <20220613090604.9975-3-jneanne@baylibre.com>
+X-Cookie: innovate, v.:
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -65,147 +60,78 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 08/06/22 21:46, Andy Shevchenko wrote:
-> On Wed, Jun 8, 2022 at 1:37 PM Shreeya Patel
-> <shreeya.patel@collabora.com> wrote:
->> From: Zhigang Shi <Zhigang.Shi@liteon.com>
->>
->> Add initial support for ltrf216a ambient light sensor.
->>
->> Datasheet: gitlab.steamos.cloud/shreeya/iio/-/blob/main/LTRF216A.pdf
-> https?
->
-> ...
->
->> +#define LTRF216A_ALS_READ_DATA_DELAY   20000
-> What units?
->
-> ...
->
->> +/* Window Factor is needed when device is under Window glass
-> the device
->
->> + * with coated tinted ink. This is to compensate the light loss
-> for the?
->
->> + * due to the lower transmission rate of the window glass.
->> + */
-> /*
->   * Multi-line comments should look
->   * like this very example. Find the difference.
->   */
->
-> ...
->
->> +static int ltrf216a_init(struct iio_dev *indio_dev)
->> +{
->> +       struct ltrf216a_data *data = iio_priv(indio_dev);
->> +       int ret = 0;
-> Useless assignment.
->
->> +
->> +       /* enable sensor */
->> +       ret |= FIELD_PREP(LTRF216A_ALS_ENABLE_MASK, 1);
-> This is bad code. Use another variable with distinguashable name.
->
->> +       ret = i2c_smbus_write_byte_data(data->client, LTRF216A_MAIN_CTRL, ret);
-> Can this driver utilize regmap I2C?
+--U2vy66mGJShhsnPN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks for all your comments and yes we can use the regmap I2C
-but the plan is to get the basic version merged and then I'll be sending
-patches for any enhancements that we'd like to do.
+On Mon, Jun 13, 2022 at 11:06:01AM +0200, Jerome NEANNE wrote:
 
+> +/**
+> + * tps65219_reg_read: Read a single tps65219 register.
+> + *
+> + * @tps: Device to read from.
+> + * @reg: Register to read.
+> + * @val: Contians the value
+> + */
+> +int tps65219_reg_read(struct tps65219 *tps, unsigned int reg,
+> +			unsigned int *val)
+> +{
+> +	return regmap_read(tps->regmap, reg, val);
+> +}
+> +EXPORT_SYMBOL_GPL(tps65219_reg_read);
 
+It is better practice to just expose the regmap and let the function
+drivers use it, that means the function drivers can just use standard
+helper functions.
 
-Thanks,
-Shreeya Patel
+> +static int tps65219_update_bits(struct tps65219 *tps, unsigned int reg,
+> +		unsigned int mask, unsigned int val)
+> +{
+> +	int ret;
+> +	unsigned int data;
+> +
+> +	ret = regmap_read(tps->regmap, reg, &data);
+> +	if (ret) {
+> +		dev_err(tps->dev, "Read from reg 0x%x failed\n", reg);
+> +		return ret;
+> +	}
+> +
+> +	data &= ~mask;
+> +	data |= val & mask;
+> +
+> +	mutex_lock(&tps->tps_lock);
+> +	ret = tps65219_reg_write(tps, reg, data);
+> +	if (ret)
+> +		dev_err(tps->dev, "Write for reg 0x%x failed\n", reg);
+> +	mutex_unlock(&tps->tps_lock);
 
->
->> +       if (ret < 0)
->> +               dev_err(&data->client->dev,
->> +                       "Error writing to LTRF216A_MAIN_CTRL while enabling the sensor: %d\n", ret);
->> +
->> +       return ret;
->> +}
-> ...
->
->> +static int ltrf216a_disable(struct iio_dev *indio_dev)
->> +{
->> +       struct ltrf216a_data *data = iio_priv(indio_dev);
->> +       int ret = 0;
-> Useless assignment.
->
->> +       ret = i2c_smbus_write_byte_data(data->client, LTRF216A_MAIN_CTRL, 0);
->> +       if (ret < 0)
->> +               dev_err(&data->client->dev,
->> +                       "Error writing to LTRF216A_MAIN_CTRL while disabling the sensor: %d\n",
->> +                       ret);
-> With a temporary variable for the device this may be located on one line.
-> Same for the similar cases.
->
->> +       return ret;
->> +}
-> ...
->
->> +#ifdef CONFIG_PM
-> Why? Can't it be hidden by using pm_sleep_ptr() or alike?
->
->> +static int ltrf216a_set_power_state(struct ltrf216a_data *data, bool on)
->> +{
->> +       struct device *dev = &data->client->dev;
->> +       int ret = 0, suspended;
-> Useless assignment. Please, go thru all your code and drop these
-> potentially dangerous assignments.
->
->> +
->> +       if (on) {
->> +               suspended = pm_runtime_suspended(dev);
->> +               ret = pm_runtime_get_sync(dev);
->> +
->> +               /* Allow one integration cycle before allowing a reading */
->> +               if (suspended)
->> +                       msleep(ltrf216a_int_time_reg[0][0]);
->> +       } else {
->> +               pm_runtime_mark_last_busy(dev);
->> +               ret = pm_runtime_put_autosuspend(dev);
->> +       }
->> +
->> +       return ret;
->> +}
->> +#else
->> +static int ltrf216a_set_power_state(struct ltrf216a_data *data, bool on)
->> +{
->> +       return 0;
->> +}
->> +#endif
->> +
->> +int ltrf216a_check_for_data(struct i2c_client *client)
->> +{
->> +       int ret;
->> +
->> +       ret = i2c_smbus_read_byte_data(client, LTRF216A_MAIN_STATUS);
->> +       if (ret < 0) {
->> +               dev_err(&client->dev, "Failed to read LTRF216A_MAIN_STATUS register: %d\n", ret);
->> +               return ret;
-> Dup.
->
->> +       }
->> +
->> +       return ret;
->> +}
-> ...
->
->> +#ifdef CONFIG_PM_SLEEP
-> Oh, please no.
->
->> +#endif
-> ...
->
->> +static const struct dev_pm_ops ltrf216a_pm_ops = {
->> +       SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
->> +                               pm_runtime_force_resume)
->> +       SET_RUNTIME_PM_OPS(ltrf216a_runtime_suspend,
->> +                          ltrf216a_runtime_resume, NULL)
->> +};
-> Use pm_sleep_ptr() and corresponding top-level macros.
->
+It's not clear what this locking is intended to protect.  It looks like
+this should just be using regmap_update_bits().
+
+> +static const struct regmap_range tps65219_yes_ranges[] = {
+> +	regmap_reg_range(TPS65219_REG_INT_SOURCE, TPS65219_REG_POWER_UP_STATUS),
+> +};
+> +
+> +static const struct regmap_access_table tps65219_volatile_table = {
+> +	.yes_ranges = tps65219_yes_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(tps65219_yes_ranges),
+> +};
+
+tps65219_yes_ranges probably needs a clearer name.
+
+--U2vy66mGJShhsnPN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKnNDQACgkQJNaLcl1U
+h9Bqegf/anATfCIwadSoj3K2+Sm8a/mvOi3cqdrwn+9BBtO5fPW8QB0iEMMVyX9W
+5+AhfxMMfQ9icgu5/ciWCWFuhQ5s0jI5xCbkCdKI9z9wXrIahFJLd0p7UN8Qszen
+pGvT/TIF3PTfcQoLt7YNDxLvwNchi9A26stCHUpvZXDInzbeqSvA6JZraL8BE2bw
+1uoRmHRfb28iPl8J6v9Jbhb1GOrjpzZKosWB1Awlet0COCWYSGdnRWepEGt0RCfi
+JB9PmDmt9Hzx+JaDTu1+2pMiLkzCShs3Sd/oOWAiSB9PKHI73tVll1G1tJ26lWFv
+aPxmboun/NkcNpq7jgX0z3UN/AKG7w==
+=Q4Fu
+-----END PGP SIGNATURE-----
+
+--U2vy66mGJShhsnPN--
