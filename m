@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0A6D549EA2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 22:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0C0A549EB4
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 22:15:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347539AbiFMULh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 16:11:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50944 "EHLO
+        id S1350934AbiFMUPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 16:15:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350321AbiFMULO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 16:11:14 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A52CF248C2
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 11:45:27 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id u12so12815210eja.8
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 11:45:27 -0700 (PDT)
+        with ESMTP id S1351018AbiFMUP1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 16:15:27 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 509CD6C578
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 11:50:56 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id bg6so12976538ejb.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 11:50:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:sender:from:date:message-id:subject:to;
         bh=VaLdCxxT6H+yQ21ljsJJCI0JVFTWEh1IT2eBGtm6sxQ=;
-        b=S6NqncN/YXd30wanyiEv+b6a2+ZEMsmeF7R9zzNKWzfk7RIhY7zN78xibXL/hVvPaB
-         avceTYyGLjnY7Vkjsls+vFkjOFQ/T1K9Ut7dtOc4bFM1Tj6grA5Bp2uqrfqPcjkrfIlI
-         7OT2beBKLq4rcY7jmVkrMsSjNN6aVKzDo2xSfMUbyp5eGvlZza28XnYheqbVrkEaiBnX
-         leZRnqHq2395PSYvIE7u6qQ7JT/1+wFWKPOc3J5QJnEs/YNKQ3oUgfvlJGVgp8ugO6zI
-         lvWJ6ACLNAaUa6Uy8S6M9LxI24baxd1BX9S25xzKC1uLXdHZ6QeUJdI6H5VlS2IOPexH
-         TLnQ==
+        b=ZW2CuAc07cKBQ/UMIcaC/1hXU+qlVaWnx2/SD09NEDVCYIWZ5mkDEGa42o+4wVi2VW
+         9KCMUdHrdvDll4aLdmMenlJPeF8kUFp1+NGcbPZjYzXEAKZWNjtevG1+igd7WudI7AwP
+         fjptFMEZQgmCYmKrKqz7ezTGmEJAb1HMFQJ2TEiKq80bZYfsonjd9KXlPOpW7BxhE559
+         YZaQP7jAxofnjqHSaz+PxuS7alQLe+XjSvEBkLB7YkznUr01M0vhyDNolzDGPdT7IA91
+         G3Sl4QSDZFI9Im0qGoQbVHjiA46BxVjzTKp5u+4T2F4yEqRH0HNy3a/AzszaWSgzwmEF
+         IBlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
          :to;
         bh=VaLdCxxT6H+yQ21ljsJJCI0JVFTWEh1IT2eBGtm6sxQ=;
-        b=NEABBIhOhpp2dsfmDmE7WuxeDX7In8scU+PhGabzeceODutax321kPHyaXJxpdawND
-         Yv7ZeD5GOgSvvUnPJyQvalacDp6JDV1yHi9ogmZG++7WIAWEhRjwg+s8jWLNY8HnCKCS
-         IISIuFD4fBk9yRAiKzeBFe1xGCKjJGO+xuMNdObjkHjrGKe7V2M7x2mpeUfnEsusXEZK
-         AtMt0QkD5axNHOEnQavgN4x3VtfhAsTcTGCz/rYNa4di1AjWv00X6UKcoTdzbsxIp0ut
-         YYwe3PJw32xgDzG6rJBh2WbwTWd7NgTYiv543WtBzqOIplmRwP18msS5jsEL5AcJMkvg
-         cNZA==
-X-Gm-Message-State: AOAM533CVI2J6jOQR6M1aycyxmPkXIBznIEVDXICJ9WaE7I55msGI2Jw
-        /dr/u9ibUUkvlyasvdsIzrPwYvQ27/3AsnOmcPc=
-X-Google-Smtp-Source: AGRyM1v1kgalZ4cDqllYMJdEpdCuLfZBjtSIr/ovN0ScA4MUhBOvvQITVRjZX5l1G+B6HUZxPlBo990TBmu6/i2/DCo=
-X-Received: by 2002:a17:907:724c:b0:711:d0bc:2369 with SMTP id
- ds12-20020a170907724c00b00711d0bc2369mr1022379ejc.23.1655145925803; Mon, 13
- Jun 2022 11:45:25 -0700 (PDT)
+        b=DEH4vPJvp9spemT/IR8E04RMlzJJhbtyvpHzE3mWMMUGDL28ciEob9mOsMsCOIgYx1
+         eKMRWl6tq9cDgUwLYKx5jGzJiCQEf1gLI4+UuiAcrb+IfNpOFD5yKa+yrGsJ2YfGVhI/
+         Dy4Gz/tOyFZJwLPvLWPGErVV6ObAJ6g2hlhpW3hZgF7q6MfFzggvjnmseOfs2EhV6NdV
+         H7EfSuFby1dzpmAA3GhEbaXHzqmHVZEHRfFj6i/rmk/UOYYMNBxL4DPFrl2KPZO1oFGG
+         XgKyHyKn31jrddpBTLNSHiHWOUBKvlZOFaMDCJ4hiMRw9jLrdw9PZDLyvo3jAGIdZtTL
+         6pFA==
+X-Gm-Message-State: AOAM533B461gnU+vJnuXZ9Q/dfJjhOKFDSKBYs75LADRxm/EzoU2Py49
+        0xxit4iCEBMd0JVfXTuPIc230gzrHAOeYwIBLx4=
+X-Google-Smtp-Source: ABdhPJyoHnLV+DbCavyF3gz/LuINDGFTjWLlCzq2nP7xv6aRXtC7t3Hk7+Xwhsu9w6kJx4pSSKmF6jhNEQ88M+mroyg=
+X-Received: by 2002:a17:906:8454:b0:711:c970:227a with SMTP id
+ e20-20020a170906845400b00711c970227amr1070335ejy.4.1655146254507; Mon, 13 Jun
+ 2022 11:50:54 -0700 (PDT)
 MIME-Version: 1.0
 Sender: ahaijout@gmail.com
 Received: by 2002:a05:6f02:63a8:b0:1e:3602:3b25 with HTTP; Mon, 13 Jun 2022
- 11:45:24 -0700 (PDT)
+ 11:50:53 -0700 (PDT)
 From:   "Mrs. Aisha Gaddafi" <aishagaddaf95@gmail.com>
-Date:   Mon, 13 Jun 2022 11:45:24 -0700
-X-Google-Sender-Auth: 7OlriW6jI9hx4BBFMKUGCGd6hn8
-Message-ID: <CAOCce-z9VDMEnvKKgOL_btsmcYgvcmDXt7qXk869LwcAFv77EQ@mail.gmail.com>
+Date:   Mon, 13 Jun 2022 11:50:53 -0700
+X-Google-Sender-Auth: S0q9X9e05N2t9RBWeRXnxtU911Y
+Message-ID: <CAOCce-w0VcZj=DX2GUwtNXVb_Y8w5qmuLgsOi=8A6iAhVo+Phg@mail.gmail.com>
 Subject: hi
 To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
