@@ -2,168 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6751454AF8D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 13:53:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5542454B13A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 14:38:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243542AbiFNLxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 07:53:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43818 "EHLO
+        id S233884AbiFNMf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 08:35:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241585AbiFNLxm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 07:53:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E88F366BA;
-        Tue, 14 Jun 2022 04:53:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ED45C6132D;
-        Tue, 14 Jun 2022 11:53:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F399C3411B;
-        Tue, 14 Jun 2022 11:53:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655207620;
-        bh=eEz9C3W3sm9wx9gzJgQmUp0IPoTdYsESOAuzf4ofhV8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=JFLVXF5aq/bM8aDTLAKh6CruDhUXa5m/VL9QBtecheJnhFBgFzE0PJeO4vwRAIoS3
-         Kmg61dAuGQt4VrVpn3mq1JFh17zz9uDUcFN7whvPrwHKtc48a6Uv+uPbNCdODRPnj5
-         VnAA1wHMOPJ5MRo1xrbRNg1C9n50hOwotJgw0io0ssT9YXBeO6UoZDWOXozXrU5Em4
-         M2fFIMnyICMp0RHxgb3GzMjczSkbnJ8Zot0X8aYWRw9Wwvfhtu5Lr/w2gW0lwSkWnU
-         N06iHshmvnSnCkCw5LBetxbmjljGSFDDlrmUEHPjWVopwcTBUy4ZiAagRS2bGr/pHO
-         aqZJ39+TWBG+g==
-Date:   Tue, 14 Jun 2022 13:02:49 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     <Claudiu.Beznea@microchip.com>
-Cc:     <Eugen.Hristev@microchip.com>, <lars@metafoo.de>,
-        <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <ludovic.desroches@atmel.com>, <linux-iio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 11/16] iio: adc: at91-sama5d2_adc: add locking parameter
- to at91_adc_read_info_raw()
-Message-ID: <20220614130249.005ad51a@jic23-huawei>
-In-Reply-To: <2989a8a5-b350-aac1-dcfb-249ac5bb23aa@microchip.com>
-References: <20220609083213.1795019-1-claudiu.beznea@microchip.com>
-        <20220609083213.1795019-12-claudiu.beznea@microchip.com>
-        <20220611185851.4d266d5e@jic23-huawei>
-        <2989a8a5-b350-aac1-dcfb-249ac5bb23aa@microchip.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S236432AbiFNMfN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 08:35:13 -0400
+Received: from es400ra01.iit.it (mx.iit.it [90.147.26.161])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 399014D623;
+        Tue, 14 Jun 2022 05:32:08 -0700 (PDT)
+Received: from es400ra01.iit.it (127.0.0.1) id hl1vse0171sj; Mon, 13 Jun 2022 14:05:49 +0200 (envelope-from <prvs=1163b4114e=Andrea.Merello@iit.it>)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iit.it;
+        s=mx; i=@iit.it; h=Received:Received:From:To:CC:Subject:Date:
+        Message-ID:MIME-Version:Content-Transfer-Encoding:Content-Type;
+        bh=NTMvSP6zDvV0trWDNyA+day7wMpkLP7A8h1uRTS2w0k=; b=BuKmHUFOcRa5F
+        h9KYPrwQ3v1WTmq9UIiRnb50XEp6oFOHDoJjjRC+s1rofcSi5cQPFJnSvJ/g1bFH
+        Qdu/nD8asEJLEG4WHJ28P6JKe0GpYnDmrSGZ2DIrpTxchEqIyOlEPWXHKhcBCK47
+        OKFIE71zG98MDK3vPl2BO06npwtCwc=
+Received: from mail.iit.it ([10.255.8.186])
+        by es400ra01.iit.it ([172.31.0.241]) (SonicWall 10.0.16.7295)
+        with ESMTPS (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256)
+        id o202206131205490155814-11; Mon, 13 Jun 2022 14:05:49 +0200
+Received: from poker.lan (90.147.26.235) by iitmxwge020.iit.local
+ (10.255.8.186) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2375.17; Mon, 13 Jun
+ 2022 14:05:49 +0200
+From:   <andrea.merello@iit.it>
+To:     <jic23@kernel.org>, <mchehab+huawei@kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <lars@metafoo.de>, <robh+dt@kernel.org>,
+        <andy.shevchenko@gmail.com>, <matt.ranostay@konsulko.com>,
+        <ardeleanalex@gmail.com>, <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
+Subject: [v6 00/14] Add support for Bosch BNO055 IMU
+Date:   Mon, 13 Jun 2022 14:05:20 +0200
+Message-ID: <20220613120534.36991-1-andrea.merello@iit.it>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [90.147.26.235]
+X-ClientProxiedBy: IITMXWGE021.iit.local (10.255.8.187) To
+ iitmxwge020.iit.local (10.255.8.186)
+X-Mlf-DSE-Version: 6873
+X-Mlf-Rules-Version: s20220519150137; ds20200715013501;
+        di20220610180234; ri20160318003319; fs20220610211824
+X-Mlf-Smartnet-Version: 20210917223710
+X-Mlf-Envelope-From: Andrea.Merello@iit.it
+X-Mlf-Version: 10.0.16.7295
+X-Mlf-License: BSV_C_AP_T_R
+X-Mlf-UniqueId: o202206131205490155814
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Jun 2022 08:50:14 +0000
-<Claudiu.Beznea@microchip.com> wrote:
+From: Andrea Merello <andrea.merello@iit.it>
 
-> On 11.06.2022 20:58, Jonathan Cameron wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> > On Thu, 9 Jun 2022 11:32:08 +0300
-> > Claudiu Beznea <claudiu.beznea@microchip.com> wrote:
-> >   
-> >> Add a parameter to at91_adc_read_info_raw() to specify if st->lock mutex
-> >> need to be acquired. This prepares for the addition of temperature sensor
-> >> code which will re-use at91_adc_read_info_raw() function to read 2 voltages
-> >> for determining the real temperature.  
-> > 
-> > This looks like a potential lock dependency issue.
-> > iio_device_claim_direct_mode() takes an internal iio lock, and
-> > you then take st->lock.
-> > 
-> > If you are going to invert that locking order in another path
-> > you have a deadlock.
-> > 
-> > So rethink this. If you want to reuse the code you'll need to factor
-> > it out to a separate function that takes none of the locks then
-> > take all locks needed in each call path (in the same order).  
-> 
-> OK, I'll check it.
+This series (tries to) add support for Bosch BNO055 IMU to Linux IIO
+subsystem. It is made up several patches:
 
-Hi Claudia,
+  1/14 to 6/14: add some IIO modifiers, and their documentation, to the IIO
+                core layer, in order to being able to expose the linear
+                acceleration and Euler angles among standard attributes.
+                Also update the IIO event monitor tool
 
-Minor kernel mailing list etiquette thing is that there is no need
-to reply to say you'll check something or that you agree with review
-feedback.  Just generates more emails to read.  Reviewers assume
-anything you don't comment on their feedback will be addressed in
-next version of the code!
+  7/14: fix binary attributes didn't work with IIO
 
-Thanks,
+  8/14 to 11/14: add the core IIO BNO055 driver and documentation for sysfs
+                 attributes and DT bindings
 
-Jonathan
+  12/14: adds serdev BNO055 driver to actually use the IMU via serial line
 
-> 
-> > 
-> > Jonathan
-> > 
-> >   
-> >>
-> >> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> >> ---
-> >>  drivers/iio/adc/at91-sama5d2_adc.c | 15 ++++++++++-----
-> >>  1 file changed, 10 insertions(+), 5 deletions(-)
-> >>
-> >> diff --git a/drivers/iio/adc/at91-sama5d2_adc.c b/drivers/iio/adc/at91-sama5d2_adc.c
-> >> index 1283bcf4e682..8f8fef42de84 100644
-> >> --- a/drivers/iio/adc/at91-sama5d2_adc.c
-> >> +++ b/drivers/iio/adc/at91-sama5d2_adc.c
-> >> @@ -1583,7 +1583,8 @@ static irqreturn_t at91_adc_interrupt(int irq, void *private)
-> >>  }
-> >>
-> >>  static int at91_adc_read_info_raw(struct iio_dev *indio_dev,
-> >> -                               struct iio_chan_spec const *chan, int *val)
-> >> +                               struct iio_chan_spec const *chan, int *val,
-> >> +                               bool lock)
-> >>  {
-> >>       struct at91_adc_state *st = iio_priv(indio_dev);
-> >>       int (*fn)(struct at91_adc_state *, int, u16 *) = NULL;
-> >> @@ -1602,13 +1603,15 @@ static int at91_adc_read_info_raw(struct iio_dev *indio_dev,
-> >>       ret = iio_device_claim_direct_mode(indio_dev);
-> >>       if (ret)
-> >>               return ret;
-> >> -     mutex_lock(&st->lock);
-> >> +     if (lock)
-> >> +             mutex_lock(&st->lock);
-> >>
-> >>       if (fn) {
-> >>               ret = fn(st, chan->channel, &tmp_val);
-> >>               *val = tmp_val;
-> >>               ret = at91_adc_adjust_val_osr(st, val);
-> >> -             mutex_unlock(&st->lock);
-> >> +             if (lock)
-> >> +                     mutex_unlock(&st->lock);
-> >>               iio_device_release_direct_mode(indio_dev);
-> >>
-> >>               return ret;
-> >> @@ -1644,7 +1647,8 @@ static int at91_adc_read_info_raw(struct iio_dev *indio_dev,
-> >>       /* Needed to ACK the DRDY interruption */
-> >>       at91_adc_readl(st, LCDR);
-> >>
-> >> -     mutex_unlock(&st->lock);
-> >> +     if (lock)
-> >> +             mutex_unlock(&st->lock);
-> >>
-> >>       iio_device_release_direct_mode(indio_dev);
-> >>       return ret;
-> >> @@ -1658,7 +1662,8 @@ static int at91_adc_read_raw(struct iio_dev *indio_dev,
-> >>
-> >>       switch (mask) {
-> >>       case IIO_CHAN_INFO_RAW:
-> >> -             return at91_adc_read_info_raw(indio_dev, chan, val);
-> >> +             return at91_adc_read_info_raw(indio_dev, chan, val, true);
-> >> +
-> >>       case IIO_CHAN_INFO_SCALE:
-> >>               *val = st->vref_uv / 1000;
-> >>               if (chan->differential)  
-> >   
-> 
+  13/14: adds I2C BNO055 driver to actually use the IMU via I2C wiring
 
+  14/14: add a documentation file that describe the bno055 driver and
+         specifically the calibration
+
+Differences wrt v5:
+- get rid of few macros
+- add almost-empty trace-related file that slipped off prev series
+- add newlines to dev_warn() and friends
+- some code simplifications
+- take advatage of kstrtobool
+- style fixes
+- comments improvement
+- add missing header
+- rebase
+- fix for some compile errors found by: kernel test robot <lkp@intel.com>
+
+Differences wrt other BNO055 drivers:
+
+  Previously at least another driver for the very same chip has been posted
+  to the Linux ML [0], but it has been never merged, and it seems no one
+  cared of it since quite a long time.
+
+  This driver differs from the above driver on the following aspects:
+
+  - This driver supports also serial access (to be reliable, reset pin is
+    required to be wired)
+
+  - The above driver tried to support all IMU HW modes by allowing to
+    choose one in the DT, and adapting IIO attributes accordingly. This
+    driver does not rely on DT for this, instead settings are done via
+    sysfs attributes.  All IIO attributes are always exposed; more on this
+    later on. This driver however supports only a subset of the
+    HW-supported modes.
+
+  - This driver has some support for managing the IMU calibration
+
+Supported operation modes:
+
+  - AMG (accelerometer, magnetometer and gyroscope) mode, which provides
+    raw (uncalibrated) measurements from the said sensors, and allows for
+    setting some parameters about them (e.g. filter cut-off frequency, max
+    sensor ranges, etc).
+
+  - Fusion mode, which still provides AMG measures, while it also provides
+    other data calculated by the IMU (e.g. rotation angles, linear
+    acceleration, etc). In this mode user has no freedom to set any sensor
+    parameter, since the HW locks them. Autocalibration and correction is
+    performed by the IMU.
+
+  IIO attributes exposing sensors parameters are always present, but in
+  fusion modes the available values are constrained to just the one used by
+  the HW. This is reflected in the '*_available' IIO attributes.
+
+  Trying to set a not-supported value always falls back to the closest
+  supported one, which in this case is just the one in use by the HW.
+
+  IIO attributes for unavailable measurements (e.g. Euler angles in AMG
+  mode) can't be read (return -EBUSY, or refuse to enable buffer).
+
+IMU calibration:
+
+  The IMU supports for two sets of calibration parameters:
+
+  - SIC matrix. user-provided; this driver doesn't currently support it
+
+  - Offset and radius parameters. The IMU automatically finds out them when
+    it is running in fusion mode; supported by this driver.
+
+  The driver provides access to autocalibration flags (i.e. you can known
+  if the IMU has successfully autocalibrated) and to calibration data blob.
+  The user can save this blob in a "firmware" file (i.e. in /lib/firmware)
+  that the driver looks for at probe time. If found, then the IMU is
+  initialized with this calibration data. This saves the user from
+  performing the calibration procedure every time (which consist of moving
+  the IMU in various way).
+
+  The driver looks for calibration data file using two different names:
+  first a file whose name is suffixed with the IMU unique ID is searched
+  for; this is useful when there is more than one IMU instance. If this
+  file is not found, then a "generic" calibration file is searched for
+  (which can be used when only one IMU is present, without struggling with
+  fancy names, that changes on each device).
+
+  In AMG mode the IIO 'offset' attributes provide access to the offsets
+  from calibration data (if any), so that the user can apply them to the
+  accel, angvel and magn IIO attributes. In fusion mode they are not needed
+  and read as zero.
+
+
+Access protocols and serdev module:
+
+  The serial protocol is quite simple, but there are tricks to make it
+  really works. Those tricks and workarounds are documented in the driver
+  source file.
+
+  The core BNO055 driver tries to group readings in burst when appropriate,
+  in order to optimize triggered buffer operation. The threshold for
+  splitting a burst (i.e. max number of unused bytes in the middle of a
+  burst that will be throw away) is provided to the core driver by the
+  lowlevel access driver (either serdev or I2C) at probe time.
+
+[0] https://www.spinics.net/lists/linux-iio/msg25508.html
+
+Andrea Merello (14):
+  iio: add modifiers for linear acceleration
+  iio: document linear acceleration modifiers
+  iio: event_monitor: add linear acceleration modifiers
+  iio: add modifers for pitch, yaw, roll
+  iio: document pitch, yaw, roll modifiers
+  iio: event_monitor: add pitch, yaw and roll modifiers
+  iio: add support for binary attributes
+  iio: imu: add Bosch Sensortec BNO055 core driver
+  iio: document bno055 private sysfs attributes
+  iio: document "serialnumber" sysfs attribute
+  dt-bindings: iio/imu: Add Bosch BNO055
+  iio: imu: add BNO055 serdev driver
+  iio: imu: add BNO055 I2C driver
+  docs: iio: add documentation for BNO055 driver
+
+ Documentation/ABI/testing/sysfs-bus-iio       |   25 +
+ .../ABI/testing/sysfs-bus-iio-bno055          |   81 +
+ .../bindings/iio/imu/bosch,bno055.yaml        |   59 +
+ Documentation/iio/bno055.rst                  |   50 +
+ Documentation/iio/index.rst                   |    2 +
+ drivers/iio/imu/Kconfig                       |    1 +
+ drivers/iio/imu/Makefile                      |    1 +
+ drivers/iio/imu/bno055/Kconfig                |   25 +
+ drivers/iio/imu/bno055/Makefile               |   10 +
+ drivers/iio/imu/bno055/bno055.c               | 1707 +++++++++++++++++
+ drivers/iio/imu/bno055/bno055.h               |   13 +
+ drivers/iio/imu/bno055/bno055_i2c.c           |   57 +
+ drivers/iio/imu/bno055/bno055_ser_core.c      |  560 ++++++
+ drivers/iio/imu/bno055/bno055_ser_trace.c     |   13 +
+ drivers/iio/imu/bno055/bno055_ser_trace.h     |  104 +
+ drivers/iio/industrialio-core.c               |   10 +-
+ include/uapi/linux/iio/types.h                |    7 +-
+ tools/iio/iio_event_monitor.c                 |    6 +
+ 18 files changed, 2729 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-bno055
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/bosch,bno055.yaml
+ create mode 100644 Documentation/iio/bno055.rst
+ create mode 100644 drivers/iio/imu/bno055/Kconfig
+ create mode 100644 drivers/iio/imu/bno055/Makefile
+ create mode 100644 drivers/iio/imu/bno055/bno055.c
+ create mode 100644 drivers/iio/imu/bno055/bno055.h
+ create mode 100644 drivers/iio/imu/bno055/bno055_i2c.c
+ create mode 100644 drivers/iio/imu/bno055/bno055_ser_core.c
+ create mode 100644 drivers/iio/imu/bno055/bno055_ser_trace.c
+ create mode 100644 drivers/iio/imu/bno055/bno055_ser_trace.h
+
+--
+2.17.1
