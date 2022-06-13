@@ -2,182 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60300549942
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 18:46:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6560B549AFB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232573AbiFMQo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 12:44:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39186 "EHLO
+        id S235353AbiFMSDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 14:03:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242085AbiFMQnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 12:43:53 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA0171E44C7;
-        Mon, 13 Jun 2022 07:33:30 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 70B73240012;
-        Mon, 13 Jun 2022 14:33:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1655130805;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=bgOZd2Vfi/HOg/3HSQWoHmC0I40OMrwKOFV6lIb9Er8=;
-        b=hmpaT1nlbdsUsiDbvJJ5b8jKhvR0VWiONZKXcYKwV/z4P2/qqrPITPWpwH0Q6BYB7ZrvyQ
-        dtKjBYlUL0itD3g5yMn5SgZe6KlVJEhDvQpHyiU1dGsqbSoIpgDwUsdIiw7xiO+2e8s+sh
-        8ubboH3yegNVQRlhprAWMI+KeS5osYC9sNH+gG/qfRI9eIJg8zgz5dU8bPW71avfKFkRNv
-        vVmrm5Q/u8FZMx/dPC2GqSa7I1PVw8yI2Kcdr4SiFFr/wkhv7HZKxPEnqo5lBSbq/2o4kI
-        +kvAK5PRFOet6Y8LLfyf7DtGdfaUKozXAsm9sLiYxXS16mbgYU/wSUXi6H1xWA==
-Date:   Mon, 13 Jun 2022 16:33:21 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tom Rini <trini@konsulko.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, u-boot@lists.denx.de,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V3 1/2] mtd: allow getting MTD device associated with a
- specific DT node
-Message-ID: <20220613163321.6c3ccb5e@xps-13>
-In-Reply-To: <ad084c13-55fc-8506-f768-49a0c6ae4f7f@gmail.com>
-References: <20220611204651.19947-1-zajec5@gmail.com>
-        <20220613160411.48b07515@xps-13>
-        <ad084c13-55fc-8506-f768-49a0c6ae4f7f@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S244532AbiFMSCd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:02:33 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13ED5F58F
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 06:45:44 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1o0kNZ-00081i-52; Mon, 13 Jun 2022 15:45:17 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id A615593DBC;
+        Mon, 13 Jun 2022 13:45:12 +0000 (UTC)
+Date:   Mon, 13 Jun 2022 15:45:12 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Conor.Dooley@microchip.com
+Cc:     wg@grandegger.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
+        Daire.McNamara@microchip.com, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH net-next 0/2] Document PolarFire SoC can controller
+Message-ID: <20220613134512.t74de4dytxbdbg7k@pengutronix.de>
+References: <20220607065459.2035746-1-conor.dooley@microchip.com>
+ <20220607071519.6m6swnl55na3vgwm@pengutronix.de>
+ <51e8e297-0171-0c3f-ba86-e61add04830e@microchip.com>
+ <20220607082827.iuonhektfbuqtuqo@pengutronix.de>
+ <0f75a804-a0ca-e470-4a57-a5a3ad9dad11@microchip.com>
+ <4c5b43bd-a255-cbc1-c7a3-9a79e34d2e91@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ofcrvuhmfdcokgre"
+Content-Disposition: inline
+In-Reply-To: <4c5b43bd-a255-cbc1-c7a3-9a79e34d2e91@microchip.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rafa=C5=82,
 
-zajec5@gmail.com wrote on Mon, 13 Jun 2022 16:15:34 +0200:
+--ofcrvuhmfdcokgre
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> On 13.06.2022 16:04, Miquel Raynal wrote:
-> >> @@ -1154,6 +1154,34 @@ int __get_mtd_device(struct mtd_info *mtd)
-> >>   }
-> >>   EXPORT_SYMBOL_GPL(__get_mtd_device); =20
-> >>   >> +/** =20
-> >> + * of_get_mtd_device_by_node - obtain an MTD device associated with a=
- given node
-> >> + *
-> >> + * @np: device tree node
-> >> + */
-> >> +struct mtd_info *of_get_mtd_device_by_node(struct device_node *np) =20
+On 13.06.2022 12:52:00, Conor.Dooley@microchip.com wrote:
+> >> The register map cannot be downloaded directly anymore. For reference:
+> >>
+> >> http://web.archive.org/web/20220403030214/https://www.microsemi.com/do=
+cument-portal/doc_download/1244581-polarfire-soc-register-map
 > >=20
-> > Shall we try to use a more of-agnostic syntax or is it too complex here=
-? =20
+> > Oh that sucks. I know we have had some website issues over the weekend
+> > which might be the problem there. I'll try to bring it up and find out.
+> >=20
 >=20
-> I need some extra hint, please. This is how many similar functions look
-> like:
+> Hey Marc,
+> Doc is still not available but should be getting fixed.
 
-I know most implementation today use of_ functions directly but it
-seems like there is a global move towards fwnodes now, and I was
-wondering if using those instead (which might also apply to other types
-of "nodes" than DT ones) could be possible.
+Thanks.
 
-But looking into existing implementations, I came across the pwm implem
-which features:
-- of_pwm_get()
-- acpi_pwm_get()
+> What do I need to do for this binding? Are you happy to accept it without
+> a driver if I add links to the documentation and a working link to the
+> register map?
 
-And finally a fwnode_pwm_get() which does:
+I'm taking both patches and change the CAN into capital letters while
+applying, I'll also add a link to the datasheets.
 
-	if (is_of_node())
-		of_pwm_get():
-	else if (is_acpi_node())
-		acpi_pwm_get();
+regards,
+Marc
 
-So actually my suggestion is meaningless. I'm fine with the current
-approach.
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
 
-Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
+--ofcrvuhmfdcokgre
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
->=20
-> $ grep -E -r "(get|find).*_by_node" ./include/*
-> ./include/drm/drm_mipi_dsi.h:struct mipi_dsi_host *of_find_mipi_dsi_host_=
-by_node(struct device_node *node);
-> ./include/drm/drm_mipi_dsi.h:struct mipi_dsi_device *of_find_mipi_dsi_dev=
-ice_by_node(struct device_node *np);
-> ./include/linux/usb/phy.h:extern struct usb_phy *devm_usb_get_phy_by_node=
-(struct device *dev,
-> ./include/linux/usb/phy.h:static inline struct usb_phy *devm_usb_get_phy_=
-by_node(struct device *dev,
-> ./include/linux/extcon.h:struct extcon_dev *extcon_find_edev_by_node(stru=
-ct device_node *node);
-> ./include/linux/extcon.h:static inline struct extcon_dev *extcon_find_ede=
-v_by_node(struct device_node *node)
-> ./include/linux/of_net.h:extern struct net_device *of_find_net_device_by_=
-node(struct device_node *np);
-> ./include/linux/of_net.h:static inline struct net_device *of_find_net_dev=
-ice_by_node(struct device_node *np)
-> ./include/linux/devfreq.h:struct devfreq *devfreq_get_devfreq_by_node(str=
-uct device_node *node);
-> ./include/linux/devfreq.h:static inline struct devfreq *devfreq_get_devfr=
-eq_by_node(struct device_node *node)
-> ./include/linux/of_platform.h:extern struct platform_device *of_find_devi=
-ce_by_node(struct device_node *np);
-> ./include/linux/of_platform.h:static inline struct platform_device *of_fi=
-nd_device_by_node(struct device_node *np)
-> ./include/linux/backlight.h:struct backlight_device *of_find_backlight_by=
-_node(struct device_node *node);
-> ./include/linux/backlight.h:of_find_backlight_by_node(struct device_node =
-*node)
-> ./include/linux/i2c.h:struct i2c_client *of_find_i2c_device_by_node(struc=
-t device_node *node);
-> ./include/linux/i2c.h:struct i2c_adapter *of_find_i2c_adapter_by_node(str=
-uct device_node *node);
-> ./include/linux/i2c.h:struct i2c_adapter *of_get_i2c_adapter_by_node(stru=
-ct device_node *node);
-> ./include/linux/i2c.h:static inline struct i2c_client *of_find_i2c_device=
-_by_node(struct device_node *node)
-> ./include/linux/i2c.h:static inline struct i2c_adapter *of_find_i2c_adapt=
-er_by_node(struct device_node *node)
-> ./include/linux/i2c.h:static inline struct i2c_adapter *of_get_i2c_adapte=
-r_by_node(struct device_node *node)
->=20
->=20
-> >> +{
-> >> +	struct mtd_info *mtd =3D NULL;
-> >> +	struct mtd_info *tmp;
-> >> +	int err;
-> >> +
-> >> +	mutex_lock(&mtd_table_mutex);
-> >> +
-> >> +	err =3D -ENODEV;
-> >> +	mtd_for_each_device(tmp) {
-> >> +		if (mtd_get_of_node(tmp) =3D=3D np) {
-> >> +			mtd =3D tmp;
-> >> +			err =3D __get_mtd_device(mtd);
-> >> +			break;
-> >> +		}
-> >> +	}
-> >> +
-> >> +	mutex_unlock(&mtd_table_mutex);
-> >> +
-> >> +	return err ? ERR_PTR(err) : mtd;
-> >> +}
-> >> +EXPORT_SYMBOL_GPL(of_get_mtd_device_by_node);
-> >> +
-> >>   /**
-> >>    *	get_mtd_device_nm - obtain a validated handle for an MTD device by
-> >>    *	device name =20
->=20
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmKnP2UACgkQrX5LkNig
+013f+QgAo0TG9o5JrCA9bcXqT6d4u7VdUwbKtD4+5GEV02lyfojpxd78EtjRNf5U
+DeLVrv4ULFwgdO30NjPch+4P6Vc7Ghs8gP4AQRKMzqduRXB76erdzrjeKFT3f+mR
+4kH81wkCZESZQ2DJD+p2nYFFZrCuwg3Ez2fZvIbJ06qn4C4g3LbkPkXzD7wUVqx9
+bTjHcb9y/E/DNCTaBWpneqN87CNsr2v6PunUNNzb+bJExxQOqXUVtfwnB4FXdoEs
+6UJV3deh47FuvPaCvF4mVOV4eaJ4vIlOAzL09TSt2RHE0m2yZ/HNfwZDYu98LKWa
+vYqLFhjC3Ebqg2lmFtHMTP1KS0GbYg==
+=YYeu
+-----END PGP SIGNATURE-----
 
-
-Thanks,
-Miqu=C3=A8l
+--ofcrvuhmfdcokgre--
