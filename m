@@ -2,573 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9D845497A9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 18:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60300549942
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 18:46:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245057AbiFMQSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 12:18:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55488 "EHLO
+        id S232573AbiFMQo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 12:44:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244513AbiFMQRz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 12:17:55 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18B751BF097;
-        Mon, 13 Jun 2022 07:12:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1655129537; x=1686665537;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=G8oaHtVT5fO69k9f5G2n2ofselguLNoR3qjSZ+lx9Ls=;
-  b=WnrauOo7FDcPygZ5wJgxz/iaJ6/urVxOLn3RcsAxhf+gab0xSy5zvEQd
-   CDdjl294pQfxuoMjdoBgCYSIckSCRA3JDAN7Fl5gqiraku4gpxDee/q3e
-   3Ee+bnLqHmNjg01Jme+dLuJx0+qBnZfjaxZgV1v5oDdWEoQoZDADd24cR
-   Qh6P8Etyxuzpvfr1wYD5FeGeOJcnoPohCrQr7fVB7y9CAzW4dZYEaMoMw
-   EEQreiTGHAXkdFP92PbLbMpL6MmnrJm4ByhsP2hEBWSFGodQZtBCmpj2u
-   BU9FA9442WKMdPXWetd4/UfVbKkq8Al619zz/dQB8P/KwFVk0WcAj/Ia1
-   g==;
-X-IronPort-AV: E=Sophos;i="5.91,297,1647298800"; 
-   d="scan'208";a="24421954"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 13 Jun 2022 16:12:15 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 13 Jun 2022 16:12:15 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 13 Jun 2022 16:12:15 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1655129535; x=1686665535;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=G8oaHtVT5fO69k9f5G2n2ofselguLNoR3qjSZ+lx9Ls=;
-  b=SLeCIFnlwi+SnqWMrLtU+W6NLNRtnLpC3wKA72G6ydY4FCeX8czzAmuj
-   NElmW3ku6pFlvEQV/juvdzMmDj14QRXlCPm8G1TREzD8Zk9ZKN7m6iKQJ
-   RyJR4DY/TpoYoWs1L252Lx8CaPTcebkwaU2qcZnvblh/vl7DEDriGGffB
-   9e6DpLLX2VWcSvT4hdnca9heUUj7aE2NPQE/EJFrd4eznNEkntCjcRWgE
-   datTlkzKi8lCz41gSGirFu4aAiArUgFvRRMBN4kyhmYYHQXmUCJor2Q5X
-   OF38+ii0kFkFrvDNnPPQM37FrOufHRO0knWyZ95xMZ98eyhp9jFykO1zh
-   A==;
-X-IronPort-AV: E=Sophos;i="5.91,297,1647298800"; 
-   d="scan'208";a="24421953"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 13 Jun 2022 16:12:14 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8279D280056;
-        Mon, 13 Jun 2022 16:12:14 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, andrzej.hajda@intel.com,
-        narmstrong@baylibre.com, robert.foss@linaro.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, lee.jones@linaro.org,
-        mchehab@kernel.org, marcel.ziswiler@toradex.com
-Subject: Re: (EXT) Re: (EXT) [PATCH v8 09/14] drm/bridge: imx: Add LDB driver helper support
-Date:   Mon, 13 Jun 2022 16:12:14 +0200
-Message-ID: <5832505.lOV4Wx5bFT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <9f86afed1282a5749f416b0e5b9a39a1f972017a.camel@nxp.com>
-References: <20220609064931.3068601-1-victor.liu@nxp.com> <4748166.31r3eYUQgx@steina-w> <9f86afed1282a5749f416b0e5b9a39a1f972017a.camel@nxp.com>
+        with ESMTP id S242085AbiFMQnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 12:43:53 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA0171E44C7;
+        Mon, 13 Jun 2022 07:33:30 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 70B73240012;
+        Mon, 13 Jun 2022 14:33:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1655130805;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=bgOZd2Vfi/HOg/3HSQWoHmC0I40OMrwKOFV6lIb9Er8=;
+        b=hmpaT1nlbdsUsiDbvJJ5b8jKhvR0VWiONZKXcYKwV/z4P2/qqrPITPWpwH0Q6BYB7ZrvyQ
+        dtKjBYlUL0itD3g5yMn5SgZe6KlVJEhDvQpHyiU1dGsqbSoIpgDwUsdIiw7xiO+2e8s+sh
+        8ubboH3yegNVQRlhprAWMI+KeS5osYC9sNH+gG/qfRI9eIJg8zgz5dU8bPW71avfKFkRNv
+        vVmrm5Q/u8FZMx/dPC2GqSa7I1PVw8yI2Kcdr4SiFFr/wkhv7HZKxPEnqo5lBSbq/2o4kI
+        +kvAK5PRFOet6Y8LLfyf7DtGdfaUKozXAsm9sLiYxXS16mbgYU/wSUXi6H1xWA==
+Date:   Mon, 13 Jun 2022 16:33:21 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tom Rini <trini@konsulko.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, u-boot@lists.denx.de,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V3 1/2] mtd: allow getting MTD device associated with a
+ specific DT node
+Message-ID: <20220613163321.6c3ccb5e@xps-13>
+In-Reply-To: <ad084c13-55fc-8506-f768-49a0c6ae4f7f@gmail.com>
+References: <20220611204651.19947-1-zajec5@gmail.com>
+        <20220613160411.48b07515@xps-13>
+        <ad084c13-55fc-8506-f768-49a0c6ae4f7f@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Rafa=C5=82,
 
-Am Freitag, 10. Juni 2022, 05:01:21 CEST schrieb Liu Ying:
-> > reading this I got reminded of fsl-ldb [1], which is accepted
-> > already. At a
-> > first glance reading the RM the LDB peripheral are similar, although
-> > not
-> > identical. Is it worth merging them into one driver (at some point)?
-> 
-> fsl-ldb is for i.MX8mp LDB. It couples the lvds phy(LVDS_CTRL register)
-> with LDB(LDB_CTRL register) hardly.
-> 
-> Eventually, I think there would be separate LDB bridge drivers for
-> i.MX8mp/qxp/qm LDBs, as they are far or less different(LVDS PHY IPs,
-> clocks, ways of dual link usage...). So, maybe, the question is that
-> can fsl-ldb use this LDB helper driver. AFAICS, the different DT
-> bindings between i.MX8mp LDB and i.MX8qxp/qm LDB make this difficult.
-> This LDB helper takes each LDB child node(channel node) of i.MX8qxp/qm
-> as a bridge, while i.MX8mp LDB bindings put input and output ports in
-> 'ports' node.  Like i.MX8qxp/qm LDB, i.MX6 LDB
-> binding(Documentation/devicetree/bindings/display/imx/ldb.txt) also
-> uses 'channel' nodes, though i.MX6 LDB has a separate encoder driver.
-> I think the 'channel' node better reflects HW design.
-> So, maybe, fsl-ldb for i.MX8mp won't use this LDB helper.
+zajec5@gmail.com wrote on Mon, 13 Jun 2022 16:15:34 +0200:
 
-Apparently the hardware is too different to share much common code. Yes, 
-bindings seem very different as well, so maybe it's ot possible. Thanks for 
-the explanation though.
+> On 13.06.2022 16:04, Miquel Raynal wrote:
+> >> @@ -1154,6 +1154,34 @@ int __get_mtd_device(struct mtd_info *mtd)
+> >>   }
+> >>   EXPORT_SYMBOL_GPL(__get_mtd_device); =20
+> >>   >> +/** =20
+> >> + * of_get_mtd_device_by_node - obtain an MTD device associated with a=
+ given node
+> >> + *
+> >> + * @np: device tree node
+> >> + */
+> >> +struct mtd_info *of_get_mtd_device_by_node(struct device_node *np) =20
+> >=20
+> > Shall we try to use a more of-agnostic syntax or is it too complex here=
+? =20
+>=20
+> I need some extra hint, please. This is how many similar functions look
+> like:
 
-Best regards,
-Alexander
+I know most implementation today use of_ functions directly but it
+seems like there is a global move towards fwnodes now, and I was
+wondering if using those instead (which might also apply to other types
+of "nodes" than DT ones) could be possible.
 
-> Regards,
-> Liu Ying
-> 
-> > Best regards,
-> > Alexander
-> > 
-> > [1]
-> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatchwor
-> > k.freedesktop.org%2Fpatch%2Fmsgid%2F20220426193645.244792-2-marex%40denx.d
-> > e&amp;data=05%7C01%7Cvictor.liu%40nxp.com%7Ca4ee326b3f314cf48a3408da49ec5a
-> > 33%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637903576722519563%7CUnkno
-> > wn%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXV
-> > CI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=yJhovCeB7Dx2eWJqKohZskA7fX3NLwqmW1GxeQ
-> > lDe40%3D&amp;reserved=0> 
-> > > Marcel, I add your T-b tag from v6, let me know if you want me to
-> > > drop it,
-> > > as the checkpatch fix in v7 and the rebase in v8 are trivial.
-> > > 
-> > > v7->v8:
-> > > * Use devm_drm_of_get_bridge() due to the rebase upon v5.19-rc1.
-> > > 
-> > > v6->v7:
-> > > * Fix below complaints from 'checkpatch.pl --strict'. (Robert)
-> > > 
-> > >    - 'Alignment should match open parenthesis'
-> > >    - 'Prefer using the BIT macro'
-> > > 
-> > > * Add Marcel's T-b tag.
-> > > * Add Robert's R-b tag.
-> > > 
-> > > v5->v6:
-> > > * No change.
-> > > 
-> > > v4->v5:
-> > > * Make imx-ldb-helper be a pure object to be linked with i.MX8qxp
-> > > LDB bridge
-> > > driver and i.MX8qm LDB bridge driver. (Robert)
-> > > * Move 'imx_ldb_helper.h' to 'drivers/gpu/drm/bridge/imx/imx-ldb-
-> > > helper.h'.
-> > > 
-> > >   (Robert)
-> > > 
-> > > * s/__FSL_IMX_LDB__/__IMX_LDB_HELPER__/  for 'imx-ldb-helper.h'.
-> > > 
-> > > v3->v4:
-> > > * No change.
-> > > 
-> > > v2->v3:
-> > > * Call syscon_node_to_regmap() to get regmap instead of
-> > > 
-> > >   syscon_regmap_lookup_by_phandle().
-> > > 
-> > > v1->v2:
-> > > * No change.
-> > > 
-> > >  drivers/gpu/drm/bridge/imx/imx-ldb-helper.c | 220
-> > > 
-> > > ++++++++++++++++++++
-> > > 
-> > >  drivers/gpu/drm/bridge/imx/imx-ldb-helper.h |  96 +++++++++
-> > >  2 files changed, 316 insertions(+)
-> > >  create mode 100644 drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
-> > >  create mode 100644 drivers/gpu/drm/bridge/imx/imx-ldb-helper.h
-> > > 
-> > > diff --git a/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
-> > > b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c new file mode 100644
-> > > index 000000000000..e85eb9ab5947
-> > > --- /dev/null
-> > > +++ b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.c
-> > > @@ -0,0 +1,220 @@
-> > > +// SPDX-License-Identifier: GPL-2.0+
-> > > +/*
-> > > + * Copyright (C) 2012 Sascha Hauer, Pengutronix
-> > > + * Copyright 2019,2020,2022 NXP
-> > > + */
-> > > +
-> > > +#include <linux/mfd/syscon.h>
-> > > +#include <linux/of.h>
-> > > +#include <linux/regmap.h>
-> > > +
-> > > +#include <drm/drm_bridge.h>
-> > > +#include <drm/drm_of.h>
-> > > +#include <drm/drm_print.h>
-> > > +
-> > > +#include "imx-ldb-helper.h"
-> > > +
-> > > +bool ldb_channel_is_single_link(struct ldb_channel *ldb_ch)
-> > > +{
-> > > +	return ldb_ch->link_type == LDB_CH_SINGLE_LINK;
-> > > +}
-> > > +
-> > > +bool ldb_channel_is_split_link(struct ldb_channel *ldb_ch)
-> > > +{
-> > > +	return ldb_ch->link_type == LDB_CH_DUAL_LINK_EVEN_ODD_PIXELS ||
-> > > +	       ldb_ch->link_type == LDB_CH_DUAL_LINK_ODD_EVEN_PIXELS;
-> > > +}
-> > > +
-> > > +int ldb_bridge_atomic_check_helper(struct drm_bridge *bridge,
-> > > +				   struct drm_bridge_state
-> > 
-> > *bridge_state,
-> > 
-> > > +				   struct drm_crtc_state
-> > 
-> > *crtc_state,
-> > 
-> > > +				   struct drm_connector_state
-> > 
-> > *conn_state)
-> > 
-> > > +{
-> > > +	struct ldb_channel *ldb_ch = bridge->driver_private;
-> > > +
-> > > +	ldb_ch->in_bus_format = bridge_state->input_bus_cfg.format;
-> > > +	ldb_ch->out_bus_format = bridge_state->output_bus_cfg.format;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +void ldb_bridge_mode_set_helper(struct drm_bridge *bridge,
-> > > +				const struct drm_display_mode
-> > 
-> > *mode,
-> > 
-> > > +				const struct drm_display_mode
-> > 
-> > *adjusted_mode)
-> > 
-> > > +{
-> > > +	struct ldb_channel *ldb_ch = bridge->driver_private;
-> > > +	struct ldb *ldb = ldb_ch->ldb;
-> > > +	bool is_split = ldb_channel_is_split_link(ldb_ch);
-> > > +
-> > > +	if (is_split)
-> > > +		ldb->ldb_ctrl |= LDB_SPLIT_MODE_EN;
-> > > +
-> > > +	switch (ldb_ch->out_bus_format) {
-> > > +	case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
-> > > +		break;
-> > > +	case MEDIA_BUS_FMT_RGB888_1X7X4_SPWG:
-> > > +		if (ldb_ch->chno == 0 || is_split)
-> > > +			ldb->ldb_ctrl |= LDB_DATA_WIDTH_CH0_24;
-> > > +		if (ldb_ch->chno == 1 || is_split)
-> > > +			ldb->ldb_ctrl |= LDB_DATA_WIDTH_CH1_24;
-> > > +		break;
-> > > +	case MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA:
-> > > +		if (ldb_ch->chno == 0 || is_split)
-> > > +			ldb->ldb_ctrl |= LDB_DATA_WIDTH_CH0_24 |
-> > > +					 LDB_BIT_MAP_CH0_JEIDA;
-> > > +		if (ldb_ch->chno == 1 || is_split)
-> > > +			ldb->ldb_ctrl |= LDB_DATA_WIDTH_CH1_24 |
-> > > +					 LDB_BIT_MAP_CH1_JEIDA;
-> > > +		break;
-> > > +	}
-> > > +}
-> > > +
-> > > +void ldb_bridge_enable_helper(struct drm_bridge *bridge)
-> > > +{
-> > > +	struct ldb_channel *ldb_ch = bridge->driver_private;
-> > > +	struct ldb *ldb = ldb_ch->ldb;
-> > > +
-> > > +	/*
-> > > +	 * Platform specific bridge drivers should set ldb_ctrl
-> > > properly
-> > > +	 * for the enablement, so just write the ctrl_reg here.
-> > > +	 */
-> > > +	regmap_write(ldb->regmap, ldb->ctrl_reg, ldb->ldb_ctrl);
-> > > +}
-> > > +
-> > > +void ldb_bridge_disable_helper(struct drm_bridge *bridge)
-> > > +{
-> > > +	struct ldb_channel *ldb_ch = bridge->driver_private;
-> > > +	struct ldb *ldb = ldb_ch->ldb;
-> > > +	bool is_split = ldb_channel_is_split_link(ldb_ch);
-> > > +
-> > > +	if (ldb_ch->chno == 0 || is_split)
-> > > +		ldb->ldb_ctrl &= ~LDB_CH0_MODE_EN_MASK;
-> > > +	if (ldb_ch->chno == 1 || is_split)
-> > > +		ldb->ldb_ctrl &= ~LDB_CH1_MODE_EN_MASK;
-> > > +
-> > > +	regmap_write(ldb->regmap, ldb->ctrl_reg, ldb->ldb_ctrl);
-> > > +}
-> > > +
-> > > +int ldb_bridge_attach_helper(struct drm_bridge *bridge,
-> > > +			     enum drm_bridge_attach_flags flags)
-> > > +{
-> > > +	struct ldb_channel *ldb_ch = bridge->driver_private;
-> > > +	struct ldb *ldb = ldb_ch->ldb;
-> > > +
-> > > +	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
-> > > +		DRM_DEV_ERROR(ldb->dev,
-> > > +			      "do not support creating a
-> > 
-> > drm_connector\n");
-> > 
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	if (!bridge->encoder) {
-> > > +		DRM_DEV_ERROR(ldb->dev, "missing encoder\n");
-> > > +		return -ENODEV;
-> > > +	}
-> > > +
-> > > +	return drm_bridge_attach(bridge->encoder,
-> > > +				ldb_ch->next_bridge, bridge,
-> > > +				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-> > > +}
-> > > +
-> > > +int ldb_init_helper(struct ldb *ldb)
-> > > +{
-> > > +	struct device *dev = ldb->dev;
-> > > +	struct device_node *np = dev->of_node;
-> > > +	struct device_node *child;
-> > > +	int ret;
-> > > +	u32 i;
-> > > +
-> > > +	ldb->regmap = syscon_node_to_regmap(np->parent);
-> > > +	if (IS_ERR(ldb->regmap)) {
-> > > +		ret = PTR_ERR(ldb->regmap);
-> > > +		if (ret != -EPROBE_DEFER)
-> > 
-> > > +			DRM_DEV_ERROR(dev, "failed to get regmap:
-> > %d\n", ret);
-> > 
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	for_each_available_child_of_node(np, child) {
-> > > +		struct ldb_channel *ldb_ch;
-> > > +
-> > > +		ret = of_property_read_u32(child, "reg", &i);
-> > > +		if (ret || i > MAX_LDB_CHAN_NUM - 1) {
-> > > +			ret = -EINVAL;
-> > > +			DRM_DEV_ERROR(dev,
-> > > +				      "invalid channel node
-> > 
-> > address: %u\n", i);
-> > 
-> > > +			of_node_put(child);
-> > > +			return ret;
-> > > +		}
-> > > +
-> > > +		ldb_ch = ldb->channel[i];
-> > > +		ldb_ch->ldb = ldb;
-> > > +		ldb_ch->chno = i;
-> > > +		ldb_ch->is_available = true;
-> > > +		ldb_ch->np = child;
-> > > +
-> > > +		ldb->available_ch_cnt++;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +int ldb_find_next_bridge_helper(struct ldb *ldb)
-> > > +{
-> > > +	struct device *dev = ldb->dev;
-> > > +	struct ldb_channel *ldb_ch;
-> > > +	int ret, i;
-> > > +
-> > > +	for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
-> > > +		ldb_ch = ldb->channel[i];
-> > > +
-> > > +		if (!ldb_ch->is_available)
-> > > +			continue;
-> > > +
-> > > +		ldb_ch->next_bridge = devm_drm_of_get_bridge(dev,
-> > 
-> > ldb_ch->np,
-> > 
-> > > +
-> > 
-> > 1, 0);
-> > 
-> > > +		if (IS_ERR(ldb_ch->next_bridge)) {
-> > > +			ret = PTR_ERR(ldb_ch->next_bridge);
-> > > +			if (ret != -EPROBE_DEFER)
-> > > +				DRM_DEV_ERROR(dev,
-> > > +					      "failed to get
-> > 
-> > next bridge: %d\n",
-> > 
-> > > +					      ret);
-> > > +			return ret;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +void ldb_add_bridge_helper(struct ldb *ldb,
-> > > +			   const struct drm_bridge_funcs
-> > 
-> > *bridge_funcs)
-> > 
-> > > +{
-> > > +	struct ldb_channel *ldb_ch;
-> > > +	int i;
-> > > +
-> > > +	for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
-> > > +		ldb_ch = ldb->channel[i];
-> > > +
-> > > +		if (!ldb_ch->is_available)
-> > > +			continue;
-> > > +
-> > > +		ldb_ch->bridge.driver_private = ldb_ch;
-> > > +		ldb_ch->bridge.funcs = bridge_funcs;
-> > > +		ldb_ch->bridge.of_node = ldb_ch->np;
-> > > +
-> > > +		drm_bridge_add(&ldb_ch->bridge);
-> > > +	}
-> > > +}
-> > > +
-> > > +void ldb_remove_bridge_helper(struct ldb *ldb)
-> > > +{
-> > > +	struct ldb_channel *ldb_ch;
-> > > +	int i;
-> > > +
-> > > +	for (i = 0; i < MAX_LDB_CHAN_NUM; i++) {
-> > > +		ldb_ch = ldb->channel[i];
-> > > +
-> > > +		if (!ldb_ch->is_available)
-> > > +			continue;
-> > > +
-> > > +		drm_bridge_remove(&ldb_ch->bridge);
-> > > +	}
-> > > +}
-> > > diff --git a/drivers/gpu/drm/bridge/imx/imx-ldb-helper.h
-> > > b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.h new file mode 100644
-> > > index 000000000000..a0a5cde27fbc
-> > > --- /dev/null
-> > > +++ b/drivers/gpu/drm/bridge/imx/imx-ldb-helper.h
-> > > @@ -0,0 +1,96 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0+ */
-> > > +
-> > > +/*
-> > > + * Copyright 2019,2020,2022 NXP
-> > > + */
-> > > +
-> > > +#ifndef __IMX_LDB_HELPER__
-> > > +#define __IMX_LDB_HELPER__
-> > > +
-> > > +#include <linux/device.h>
-> > > +#include <linux/kernel.h>
-> > > +#include <linux/of.h>
-> > > +#include <linux/regmap.h>
-> > > +
-> > > +#include <drm/drm_atomic.h>
-> > > +#include <drm/drm_bridge.h>
-> > > +#include <drm/drm_device.h>
-> > > +#include <drm/drm_encoder.h>
-> > > +#include <drm/drm_modeset_helper_vtables.h>
-> > > +
-> > > +#define LDB_CH0_MODE_EN_TO_DI0		BIT(0)
-> > > +#define LDB_CH0_MODE_EN_TO_DI1		(3 << 0)
-> > > +#define LDB_CH0_MODE_EN_MASK		(3 << 0)
-> > > +#define LDB_CH1_MODE_EN_TO_DI0		BIT(2)
-> > > +#define LDB_CH1_MODE_EN_TO_DI1		(3 << 2)
-> > > +#define LDB_CH1_MODE_EN_MASK		(3 << 2)
-> > > +#define LDB_SPLIT_MODE_EN		BIT(4)
-> > > +#define LDB_DATA_WIDTH_CH0_24		BIT(5)
-> > > +#define LDB_BIT_MAP_CH0_JEIDA		BIT(6)
-> > > +#define LDB_DATA_WIDTH_CH1_24		BIT(7)
-> > > +#define LDB_BIT_MAP_CH1_JEIDA		BIT(8)
-> > > +#define LDB_DI0_VS_POL_ACT_LOW		BIT(9)
-> > > +#define LDB_DI1_VS_POL_ACT_LOW		BIT(10)
-> > > +
-> > > +#define MAX_LDB_CHAN_NUM		2
-> > > +
-> > > +enum ldb_channel_link_type {
-> > > +	LDB_CH_SINGLE_LINK,
-> > > +	LDB_CH_DUAL_LINK_EVEN_ODD_PIXELS,
-> > > +	LDB_CH_DUAL_LINK_ODD_EVEN_PIXELS,
-> > > +};
-> > > +
-> > > +struct ldb;
-> > > +
-> > > +struct ldb_channel {
-> > > +	struct ldb *ldb;
-> > > +	struct drm_bridge bridge;
-> > > +	struct drm_bridge *next_bridge;
-> > > +	struct device_node *np;
-> > > +	u32 chno;
-> > > +	bool is_available;
-> > > +	u32 in_bus_format;
-> > > +	u32 out_bus_format;
-> > > +	enum ldb_channel_link_type link_type;
-> > > +};
-> > > +
-> > > +struct ldb {
-> > > +	struct regmap *regmap;
-> > > +	struct device *dev;
-> > > +	struct ldb_channel *channel[MAX_LDB_CHAN_NUM];
-> > > +	unsigned int ctrl_reg;
-> > > +	u32 ldb_ctrl;
-> > > +	unsigned int available_ch_cnt;
-> > > +};
-> > > +
-> > > +#define bridge_to_ldb_ch(b)	container_of(b, struct
-> > > ldb_channel, bridge)
-> > > +
-> > > +bool ldb_channel_is_single_link(struct ldb_channel *ldb_ch);
-> > > +bool ldb_channel_is_split_link(struct ldb_channel *ldb_ch);
-> > > +
-> > > +int ldb_bridge_atomic_check_helper(struct drm_bridge *bridge,
-> > > +				   struct drm_bridge_state
-> > 
-> > *bridge_state,
-> > 
-> > > +				   struct drm_crtc_state
-> > 
-> > *crtc_state,
-> > 
-> > > +				   struct drm_connector_state
-> > 
-> > *conn_state);
-> > 
-> > > +
-> > > +void ldb_bridge_mode_set_helper(struct drm_bridge *bridge,
-> > > +				const struct drm_display_mode
-> > 
-> > *mode,
-> > 
-> > > +				const struct drm_display_mode
-> > 
-> > *adjusted_mode);
-> > 
-> > > +
-> > > +void ldb_bridge_enable_helper(struct drm_bridge *bridge);
-> > > +
-> > > +void ldb_bridge_disable_helper(struct drm_bridge *bridge);
-> > > +
-> > > +int ldb_bridge_attach_helper(struct drm_bridge *bridge,
-> > > +			     enum drm_bridge_attach_flags flags);
-> > > +
-> > > +int ldb_init_helper(struct ldb *ldb);
-> > > +
-> > > +int ldb_find_next_bridge_helper(struct ldb *ldb);
-> > > +
-> > > +void ldb_add_bridge_helper(struct ldb *ldb,
-> > > +			   const struct drm_bridge_funcs
-> > 
-> > *bridge_funcs);
-> > 
-> > > +
-> > > +void ldb_remove_bridge_helper(struct ldb *ldb);
-> > > +
-> > > +#endif /* __IMX_LDB_HELPER__ */
+But looking into existing implementations, I came across the pwm implem
+which features:
+- of_pwm_get()
+- acpi_pwm_get()
+
+And finally a fwnode_pwm_get() which does:
+
+	if (is_of_node())
+		of_pwm_get():
+	else if (is_acpi_node())
+		acpi_pwm_get();
+
+So actually my suggestion is meaningless. I'm fine with the current
+approach.
+
+Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
 
+>=20
+> $ grep -E -r "(get|find).*_by_node" ./include/*
+> ./include/drm/drm_mipi_dsi.h:struct mipi_dsi_host *of_find_mipi_dsi_host_=
+by_node(struct device_node *node);
+> ./include/drm/drm_mipi_dsi.h:struct mipi_dsi_device *of_find_mipi_dsi_dev=
+ice_by_node(struct device_node *np);
+> ./include/linux/usb/phy.h:extern struct usb_phy *devm_usb_get_phy_by_node=
+(struct device *dev,
+> ./include/linux/usb/phy.h:static inline struct usb_phy *devm_usb_get_phy_=
+by_node(struct device *dev,
+> ./include/linux/extcon.h:struct extcon_dev *extcon_find_edev_by_node(stru=
+ct device_node *node);
+> ./include/linux/extcon.h:static inline struct extcon_dev *extcon_find_ede=
+v_by_node(struct device_node *node)
+> ./include/linux/of_net.h:extern struct net_device *of_find_net_device_by_=
+node(struct device_node *np);
+> ./include/linux/of_net.h:static inline struct net_device *of_find_net_dev=
+ice_by_node(struct device_node *np)
+> ./include/linux/devfreq.h:struct devfreq *devfreq_get_devfreq_by_node(str=
+uct device_node *node);
+> ./include/linux/devfreq.h:static inline struct devfreq *devfreq_get_devfr=
+eq_by_node(struct device_node *node)
+> ./include/linux/of_platform.h:extern struct platform_device *of_find_devi=
+ce_by_node(struct device_node *np);
+> ./include/linux/of_platform.h:static inline struct platform_device *of_fi=
+nd_device_by_node(struct device_node *np)
+> ./include/linux/backlight.h:struct backlight_device *of_find_backlight_by=
+_node(struct device_node *node);
+> ./include/linux/backlight.h:of_find_backlight_by_node(struct device_node =
+*node)
+> ./include/linux/i2c.h:struct i2c_client *of_find_i2c_device_by_node(struc=
+t device_node *node);
+> ./include/linux/i2c.h:struct i2c_adapter *of_find_i2c_adapter_by_node(str=
+uct device_node *node);
+> ./include/linux/i2c.h:struct i2c_adapter *of_get_i2c_adapter_by_node(stru=
+ct device_node *node);
+> ./include/linux/i2c.h:static inline struct i2c_client *of_find_i2c_device=
+_by_node(struct device_node *node)
+> ./include/linux/i2c.h:static inline struct i2c_adapter *of_find_i2c_adapt=
+er_by_node(struct device_node *node)
+> ./include/linux/i2c.h:static inline struct i2c_adapter *of_get_i2c_adapte=
+r_by_node(struct device_node *node)
+>=20
+>=20
+> >> +{
+> >> +	struct mtd_info *mtd =3D NULL;
+> >> +	struct mtd_info *tmp;
+> >> +	int err;
+> >> +
+> >> +	mutex_lock(&mtd_table_mutex);
+> >> +
+> >> +	err =3D -ENODEV;
+> >> +	mtd_for_each_device(tmp) {
+> >> +		if (mtd_get_of_node(tmp) =3D=3D np) {
+> >> +			mtd =3D tmp;
+> >> +			err =3D __get_mtd_device(mtd);
+> >> +			break;
+> >> +		}
+> >> +	}
+> >> +
+> >> +	mutex_unlock(&mtd_table_mutex);
+> >> +
+> >> +	return err ? ERR_PTR(err) : mtd;
+> >> +}
+> >> +EXPORT_SYMBOL_GPL(of_get_mtd_device_by_node);
+> >> +
+> >>   /**
+> >>    *	get_mtd_device_nm - obtain a validated handle for an MTD device by
+> >>    *	device name =20
+>=20
 
 
+Thanks,
+Miqu=C3=A8l
