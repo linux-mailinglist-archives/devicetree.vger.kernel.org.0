@@ -2,210 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25C23549DB3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24A3B549DB1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:29:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349714AbiFMT3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 15:29:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54536 "EHLO
+        id S1348989AbiFMT3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 15:29:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351517AbiFMT3S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:29:18 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A51DD579B1;
-        Mon, 13 Jun 2022 10:53:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 632EDB811A9;
-        Mon, 13 Jun 2022 17:53:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10B49C3411F;
-        Mon, 13 Jun 2022 17:53:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655142835;
-        bh=Ktwx9XBB9r85V2qC6XiDsWVveebdN5oRGmm8T5DQj2w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=arwFvXiGWyFV96Jpi7LUf8i3mJFtgaI3cpsXnHiPpFLsNe9h79VUNm5hFnBosyTHY
-         3eoYtTpcec6F6slx41SIaOmJfS6IDUC161Op8/tl6+KPG8iLZzUTzlTRm3WV2tFKE7
-         Ull20bBH08NNn0xD1Pmn2QDl/eerAQyEwt4XqNMI3E3WHPElSdA4Fhhf/NduPcJ81x
-         rVUXKDE8I+FAogtWyawEYiVKjWAomiVzho8MBCzA9Itx2Eoq+IaSjxBFim2UBIww22
-         S1H1l83oWYE7HG5YfjQCtwsGXLs83L/Xhe+nzRaLqG+rExI/NUZWT1EeBQkdK/4P+L
-         wg0hpSnZmzKsw==
-Received: by mail-vs1-f53.google.com with SMTP id x187so6680140vsb.0;
-        Mon, 13 Jun 2022 10:53:54 -0700 (PDT)
-X-Gm-Message-State: AJIora/O8VZVnUnm5B2z31oH7Bm47A0mdBW4lFyjb0HLgLYOutHfzRyh
-        jsFv5zNqKUGXVkFfe36FQSE7+dzdsOFi0hRf/Q==
-X-Google-Smtp-Source: AGRyM1tKd/ZYDEQ9BFFbwDeRHHbnN7ks9nFRlfNc2DWzcyYQ565D/VLADk2i5/ALN76vTg7JR6NKMkFpVrQDGJHk/54=
-X-Received: by 2002:a67:d38c:0:b0:349:d028:c8ea with SMTP id
- b12-20020a67d38c000000b00349d028c8eamr294686vsj.6.1655142833950; Mon, 13 Jun
- 2022 10:53:53 -0700 (PDT)
+        with ESMTP id S1351709AbiFMT3i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:29:38 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C62AE3DA4A;
+        Mon, 13 Jun 2022 10:54:09 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id w13so3578342qts.6;
+        Mon, 13 Jun 2022 10:54:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=MQ6Gm6rEcKWgPoZvxj3NUFNwBirG2CnGEdL2DutlzIQ=;
+        b=joXD2Wtj8NaDaXR+5hJSdoaWOTNyBxtsLmkoFylc/33cizkqdQKRxkzKf0UlQE15bI
+         PRppazDhC0xj+Fe3DTGn8ewe8fG68LGzK+KBD2WymPPh/j3bnBzaIH+U+GGL66l/mYfl
+         KfVassBVNwh6ezplUxVW5IONWCdB1nF3F3ol0d82gdC/VBSEL2ER7AVQcXgYZOnsvAw7
+         rcsUcDX7vEmTBL/Q9Av1o/ma3mLnwZjiRxuueKeOw1xDCp0gN4VluDjxe4+sr7GazoXo
+         Bkir+7pgIgzWMzLymH5/p1naiiJRcJZQWIjygscbj0eDMlS7WFd5EPbZQzvR1IDiY8Y7
+         GnLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=MQ6Gm6rEcKWgPoZvxj3NUFNwBirG2CnGEdL2DutlzIQ=;
+        b=sm4Clh/HYABiCRpFO0G3FXIvqyoaWyPKZ0tQiTGEP+7RuMf7jbBrgMXtPdsU9mkGHy
+         1Qf8XKb0Vu84/JSczfG9dhj9795bXSuzjPzRhVDKb/4SSGICXyyKPEdyBdCSKwlibD0b
+         XsRp5lBVgR1BxVJRs/Z8mAmsGttpoaRVhI6CxPczgRfgJlHShJh8VC0Q5AmNqVfd4AxE
+         /cKDGkuIoJ7hIeR3mtJtFqpH21B1H1JkE/fZ5VFeEa9L2bl4lRE1xjUbh6yUr5unqBnZ
+         HLf+h4FlrCKvw0vviFbV8i8csgTx9ahgM2COJq4smhCcdiVF0GXF1HEZ/A1l8S0EaO+U
+         dZlQ==
+X-Gm-Message-State: AOAM5321o9l4xNui3sna5xGLmAhAGhDPwWFAWw8zqJNMBLNys+aHV0A9
+        7JsPK2F89Idn/w7oAIzB8ffvsOJP04I=
+X-Google-Smtp-Source: ABdhPJx0sAHi+4PMHwNszPdJysQo5Oh8DBgyF1D4IUtP45fNmpWG58yU8cVLYzW6xN4NldgDgnPlkw==
+X-Received: by 2002:a05:622a:287:b0:305:150:a73d with SMTP id z7-20020a05622a028700b003050150a73dmr834462qtw.570.1655142848901;
+        Mon, 13 Jun 2022 10:54:08 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id o18-20020a05620a2a1200b006a370031c3esm7400298qkp.106.2022.06.13.10.54.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jun 2022 10:54:08 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        arm@kernel.org, soc@kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 11/48] ARM: dts: broadcom: align gpio-key node names with dtschema
+Date:   Mon, 13 Jun 2022 10:54:05 -0700
+Message-Id: <20220613175405.244712-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220609113938.380466-2-krzysztof.kozlowski@linaro.org>
+References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org> <20220609113938.380466-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-References: <20220613115712.2831386-1-yoshihiro.shimoda.uh@renesas.com> <20220613115712.2831386-2-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20220613115712.2831386-2-yoshihiro.shimoda.uh@renesas.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 13 Jun 2022 11:53:42 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK71KHCPksJSq+RE2xvP_QDresT8K2mNPMcEpekAjjbyw@mail.gmail.com>
-Message-ID: <CAL_JsqK71KHCPksJSq+RE2xvP_QDresT8K2mNPMcEpekAjjbyw@mail.gmail.com>
-Subject: Re: [PATCH 1/7] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof Wilczynski <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 13, 2022 at 5:57 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
->
-> Document bindings for Renesas R-Car Gen4 and R-Car S4-8 (R8A779F0)
-> PCIe host module.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+On Thu,  9 Jun 2022 13:39:30 +0200, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> The node names should be generic and DT schema expects certain pattern
+> (e.g. with key/button/switch).
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../bindings/pci/rcar-gen4-pci-host.yaml      | 104 ++++++++++++++++++
->  1 file changed, 104 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
->
-> diff --git a/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
-> new file mode 100644
-> index 000000000000..8caa9824d6ca
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
-> @@ -0,0 +1,104 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 Renesas Electronics Corp.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/rcar-gen4-pci-host.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas R-Car Gen4 PCIe Host
-> +
-> +maintainers:
-> +  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> +
-> +allOf:
-> +  - $ref: snps,dw-pcie.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: renesas,r8a779f0-pcie   # R-Car S4-8
-> +      - const: renesas,rcar-gen4-pcie  # R-Car Gen4
-> +      - const: snps,dw-pcie
-> +
-> +  interrupts:
-> +    maxItems: 6
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: msi
-> +      - const: err
-> +      - const: fatal
-> +      - const: nonfatal
-> +      - const: lp
-> +      - const: vndmsg
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pcie
-> +      - const: pcie_bus
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r8a779f0-cpg-mssr.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/r8a779f0-sysc.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie: pcie@e65d0000 {
-> +            compatible = "renesas,r8a779f0-pcie", "renesas,rcar-gen4-pcie",
-> +                         "snps,dw-pcie";
-> +            reg = <0 0xe65d0000 0 0x3000>, <0 0xe65d3000 0 0x2000>,
-> +                  <0 0xe65d6200 0 0x0e00>, <0 0xe65d7000 0 0x1000>,
-> +                  <0 0xfe000000 0 0x10000>;
-> +            reg-names = "dbi", "atu", "app", "phy", "config";
 
-'phy' should probably be a separate node.
-
-> +            #address-cells = <3>;
-> +            #size-cells = <2>;
-> +            bus-range = <0x00 0xff>;
-> +            device_type = "pci";
-> +            ranges =  <0x81000000 0 0x00000000 0 0xfe000000 0 0x00010000
-
-Same address for i/o as your config space?
-
-Each ranges entry should have <>.
-
-> +                       0x82000000 0 0x30000000 0 0x30000000 0 0x10000000>;
-> +            dma-ranges = <0x42000000 0 0x40000000 0 0x40000000 0 0x80000000>;
-> +            interrupts = <GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "msi", "err", "fatal", "nonfatal", "lp", "vndmsg";
-> +            #interrupt-cells = <1>;
-> +            interrupt-map-mask = <0 0 0 7>;
-> +            interrupt-map = <0 0 0 1 &gic GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH
-> +                             0 0 0 2 &gic GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH
-> +                             0 0 0 3 &gic GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH
-> +                             0 0 0 4 &gic GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>;
-
-Bracket each entry.
-
-> +            clocks = <&cpg CPG_MOD 624>, <&pcie_bus_clk>;
-> +            clock-names = "pcie", "pcie_bus";
-
-This doesn't look like clock names that the DW block has. It's kind of
-a mess already, but don't add to it.
-
-> +            power-domains = <&sysc R8A779F0_PD_ALWAYS_ON>;
-> +            resets = <&cpg 624>;
-> +            num-lanes = <2>;
-> +            snps,enable-cdm-check;
-> +            max-link-speed = <2>;
-> +        };
-> +    };
-> --
-> 2.25.1
->
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
