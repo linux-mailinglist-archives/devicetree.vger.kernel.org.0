@@ -2,85 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99351549CBD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73766549CCC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:04:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346201AbiFMTET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 15:04:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50488 "EHLO
+        id S1347476AbiFMTEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 15:04:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348789AbiFMTDu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:03:50 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2AC9106354;
-        Mon, 13 Jun 2022 09:49:26 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id f9so5605352plg.0;
-        Mon, 13 Jun 2022 09:49:26 -0700 (PDT)
+        with ESMTP id S1349615AbiFMTED (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:04:03 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F8B99820;
+        Mon, 13 Jun 2022 09:53:11 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id me5so12363069ejb.2;
+        Mon, 13 Jun 2022 09:53:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=c0HeuJ98I3Y5QZXsYDJume8HkCACCCfAbeGSkszGHn8=;
-        b=NUH+Vt/6Cn5kViDjiu3uNhVu3Z9a4hDpEjVwnCuRGiiIDE0H6LIT0uPzEE2Pv7OqOV
-         vYwk/zjRFYUlaheRj1Wr6Ux4IRmrgjvOLX6j042QB9k5My0pZmLLFldevEliU6ApVEfT
-         9I7mzQGZc+BGj2xJp9PkFD6iJtN1wFJ9p7hBhNV3GoZKUuiC6+bKFnQgxaFrPcVraPya
-         5tnlFPsSqU/s1yVzNoo9ROwN0o7s61r79zrq3ojpapxtuLMQB9noVds5iCDIc0SLzOQx
-         B8px/I6/8jCCoCrfJDxqxNi81IYbuqv+NJhq5Xla1mTEff30ylJMhQbLZLfh/qWxEllc
-         kgLA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=m54fqmNxbrKP+pbsMMfsGU6Rr5ZVtnOFyMTR7r0Kuok=;
+        b=EghSNnVASL4mrlpgZsze3kfxuLWsXPsiFjrA8ZarthHQmlUhB068B1PVcjon3r3bDK
+         6HvmUgSyoSGU2771AEr59ago4joxDJFoj79RLdNGtrrxpRq0+I7tthn/Xop5R2Q/VeP6
+         cOIpeep/KWK6b2G86pYZIPPApVzV7GU6c3S6eIvNeJwWyRcNXhPYLUaOLOKM2VW2MrhS
+         ai7d8T4PyTQgDo0PRxh/nKHSdZQary8ZX851VlC5qOffmpX4JJ8UwRSwOVuGb60W3lqn
+         vGghMBgXKkr1HLRX8azbg76qQg+9TOz77yPwjaS60Yuh4soeUlWmGNQGMIuoR7WVypRO
+         +iMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=c0HeuJ98I3Y5QZXsYDJume8HkCACCCfAbeGSkszGHn8=;
-        b=4Wpr8D+jR0/YsJ7dje304xX/TKCiLZvlj6XfKmRd4yIaww+HoGXL4PoubI5BaXAsv9
-         AwWTg3D5nKMcYhNfEdWfDfhEgf5ypgyGWJ7i8nEv5+Bh1poj60tk6IedvjyazShhNifk
-         MOBtU1BeMorRqLdVSJ4y2gQ3yUR7AFdgMh2mV/5cd5toTtKa6qt/F54VpvJKHYIjfNxv
-         RcCg1txakO/fZToWgWNv+0+Lk4eeFOKVwSQT+9zmp4kJJ73+gebBIu8yPJzXFlDg5PmY
-         byiKhDhKS5zmGenNvz0Kpj/d3e54yfvyZZKptELINEmBfEiYu8ouSXL43uSMI4+rPikN
-         yy1w==
-X-Gm-Message-State: AOAM532NsqarsJL4iy8XzqNNRUDsszeNEAGuG38ccuPCDI0CrvOtQ+VO
-        Nf4sM9UdwTpK6azhsM6/G7s=
-X-Google-Smtp-Source: ABdhPJwH4a0siFP6S/uPa9BISixIKS7A/QejNs/Kv5WE7if7/eH6MSMvtrDL0KlklM7LmjhUfmG+LQ==
-X-Received: by 2002:a17:90b:1bc1:b0:1e6:9a00:5d63 with SMTP id oa1-20020a17090b1bc100b001e69a005d63mr16469024pjb.154.1655138966172;
-        Mon, 13 Jun 2022 09:49:26 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id ij25-20020a170902ab5900b0015e8d4eb1f7sm5334774plb.65.2022.06.13.09.49.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Jun 2022 09:49:25 -0700 (PDT)
-Message-ID: <def298b1-efcc-8c34-52e2-b33c74e3a129@gmail.com>
-Date:   Mon, 13 Jun 2022 09:49:19 -0700
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=m54fqmNxbrKP+pbsMMfsGU6Rr5ZVtnOFyMTR7r0Kuok=;
+        b=29evODtA2p8nz/K1f+/xEc0yzCF9fdp3MTy3EHUJphDQSNVxx+1WWjBiw15/6VGN8H
+         mpuVFDOTh/D0RH82kXyx4q1sR3wzx2MEiohSCRq9VZHOu5raGEf8QagJufLZUJiEbgp8
+         1sceCk2lQB29aa/N6kPVu/vcvomhmAY5qXpY7MGP5xK4cWTAw8NmSERb5+OtKr+Cxhxg
+         Jx4TwOIMxIf1+FuaQlQmXDR1rba7Hw9/0GvAlpY30xFp5xQM18QF6QsxFm4wtik4sDRj
+         dr3Zun/RXSvg3pcp1YGoHd/x+iJrNkipGPAijPk1+zWYDFfyARoagxOm/miaz2UV3KAe
+         +vtg==
+X-Gm-Message-State: AOAM531cI0hrrfqPsAiPDFbPPqrZEbj1ykOvKHCHqNU3cJU/tMPv6xtD
+        osrrDLYiJqdaLcg0+ysPMkcHsIxf602S7ubfrkk=
+X-Google-Smtp-Source: ABdhPJxXdFA8yb3sYRLBzX8f7BYKMkJiPdDsY59o0s2SJp2VixfRBxS6FNX10msWO0RjSMiqaHZxU1CBZCU7x+SLiEE=
+X-Received: by 2002:a17:906:1193:b0:70d:cf39:a4db with SMTP id
+ n19-20020a170906119300b0070dcf39a4dbmr674806eja.44.1655139189796; Mon, 13 Jun
+ 2022 09:53:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/6] arm64: dts: broadcom: Add missing space around status
- property
-Content-Language: en-US
-To:     =?UTF-8?Q?Niklas_S=c3=b6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
+References: <20220613120534.36991-1-andrea.merello@iit.it> <20220613120534.36991-13-andrea.merello@iit.it>
+In-Reply-To: <20220613120534.36991-13-andrea.merello@iit.it>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 13 Jun 2022 18:52:33 +0200
+Message-ID: <CAHp75Ve4ZjOsi_MYru_fDB+dsGie6RxXVSuYPQmW_YHLjgA10A@mail.gmail.com>
+Subject: Re: [v6 12/14] iio: imu: add BNO055 serdev driver
+To:     Andrea Merello <andrea.merello@iit.it>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
-        Wei Xu <xuwei5@hisilicon.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20220612223201.2740248-1-niklas.soderlund+renesas@ragnatech.se>
- <20220612223201.2740248-2-niklas.soderlund+renesas@ragnatech.se>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220612223201.2740248-2-niklas.soderlund+renesas@ragnatech.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        jmondi <jacopo@jmondi.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -89,14 +73,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/12/22 15:31, Niklas Söderlund wrote:
-> Add the missing space around the status property before the typo spreads
-> to other files.
-> 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+On Mon, Jun 13, 2022 at 2:05 PM <andrea.merello@iit.it> wrote:
+>
+> From: Andrea Merello <andrea.merello@iit.it>
+>
+> Add a serdev driver for communicating to a BNO055 IMU via serial bus, and
+> enable the BNO055 core driver to work in this scenario.
 
-Already carrying an identical patch that should land in v4.20:
+...
 
-https://github.com/Broadcom/stblinux/commit/b65b9477d9118e3cd359245f59af556597bc5b71
+> + * This driver is besed on
+
+based
+
+> + *     Plantower PMS7003 particulate matter sensor driver
+> + *     Which is
+> + *     Copyright (c) Tomasz Duszynski <tduszyns@gmail.com>
+
+...
+
+> +/*
+> + * Read operation overhead:
+> + *  4 bytes req + 2byte resp hdr.
+> + *  6 bytes = 60 bit (considering 1start + 1stop bits).
+> + *  60/115200 = ~520uS + about 2500mS dealay -> ~3mS
+
+delay
+
+> + * In 3mS we could read back about 34 bytes that means 17 samples, this means
+> + * that in case of scattered read in which the gap is 17 samples or less it is
+
+reads
+
+> + * still convenient to go for a burst.
+> + * We have to take into account also IMU response time - IMU seems to be often
+> + * reasonably quick to respond, but sometimes it seems to be in some "critical
+> + * section" in which it delays handling of serial protocol. Because of this we
+> + * round-up to 22, which is the max number of samples, always bursting indeed.
+> + */
+
+...
+
+> +/*
+> + * Sends a read or write command.
+
+Send
+
+...
+
+> +/*
+> + * Handler for received data; this is called from the reicever callback whenever
+
+receiver
+
+> + * it got some packet from the serial bus. The status tell us whether the
+
+tells
+
+> + * packet is valid (i.e. header ok && received payload len consistent wrt the
+> + * header). It's now our responsability to check whether this is what we
+
+responsibility
+
+> + * expected, of whether we got some unexpected, yet valid, packet.
+> + */
+
+...
+
+> +               /*
+> +                * New packet.
+> +                * Check for its 1st byte, that identifies the pkt type.
+
+byte that
+
+> +                */
+
 -- 
-Florian
+With Best Regards,
+Andy Shevchenko
