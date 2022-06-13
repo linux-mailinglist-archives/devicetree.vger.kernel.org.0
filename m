@@ -2,243 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7443754A00A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 22:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 742C854A01F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 22:49:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241312AbiFMUrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 16:47:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49356 "EHLO
+        id S244080AbiFMUs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 16:48:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343834AbiFMUqi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 16:46:38 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 715DF3EA97
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 12:57:54 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id 184so6469706pga.12
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 12:57:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=G5AngU4fQLL9tjwfd3M8P7vnWfa9NLIJ0sasw1HKwk0=;
-        b=mu1MQUUbKSIWTjXFuH9p5fRtMkj/uh3ZnxEfSrme86jAyFfjIy8octcKZ3zNAX4x9c
-         wUnkb7Pm31XhRwRRyE6LbmkkeaxcoeBZLDkixXYqfV794DjWNfiz/mGlQTvWSqTEWWtv
-         GqC866XldQ6zuRlUQUd+E5wwXlgg7da2ICjTbSTrIUNFOls4Cp/NjO1QggHYfg77Vqmv
-         IOItahUEcwJuZw6gpYbkDj2XO+1nM5uvTzeN/Dupw9QpUJ/TRJOBFLDZ2IoP3JOosR4g
-         GHdndKKc4nnSC2cdovhjFcFaV5s1rSJBMKihXZMEouUOTHk2CEILhcxWgL9eChYN+kBi
-         bBZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=G5AngU4fQLL9tjwfd3M8P7vnWfa9NLIJ0sasw1HKwk0=;
-        b=d7vjjMWezJ18Nr/FGgZd3ia8tAEzhg5KG3TkYfuTAGCZK1o//nTnqrEyMyjLbRZIHP
-         8NoJTmRzJU1Xz2lLuR8SfLpUC31CskuCg/nnb/ulYzHPbJNCm2sBZBKwXVmNR0tY/rkN
-         IYkN6mm7KEnCxLHj+j+qDkRg1di9XfFOrR/4eKnp4XWnzJirImqIMJPJzL4yMmjPu75I
-         s25OdOALK84n8wxQk0hCcI8BmNk/7abn6Mm9si0GVcc2vumrQQ6Oi3KfMIVulWLVxmuK
-         rUKHM1rlMk5r3gNJtQ7e0rWWuutPlLrA2oomlj17T4DHFHX2Mu3Znt7g3nlsS85ZDWvy
-         Bh1A==
-X-Gm-Message-State: AOAM532oL+wdmdg9TRGV+C54FFcHiVSA1EEesgNb9F3hhcmVErr9SHuZ
-        D4YjL3acCnoubFS+y5LAWW22Ww==
-X-Google-Smtp-Source: ABdhPJxT9PVmJkPQk+jDaeQ8grX7yokwcmvdH5gzlVI7dBpN2UU5iRmzY3Wcu+fC+042xx6yhf2Z3A==
-X-Received: by 2002:a63:2cd7:0:b0:3fe:1c0a:75ce with SMTP id s206-20020a632cd7000000b003fe1c0a75cemr1128278pgs.602.1655150274127;
-        Mon, 13 Jun 2022 12:57:54 -0700 (PDT)
-Received: from platform-dev1.pensando.io ([12.226.153.42])
-        by smtp.gmail.com with ESMTPSA id q21-20020a170902edd500b0016797c33b6csm5509357plk.116.2022.06.13.12.57.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jun 2022 12:57:53 -0700 (PDT)
-From:   Brad Larson <brad@pensando.io>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        adrian.hunter@intel.com, alcooperx@gmail.com,
-        andy.shevchenko@gmail.com, arnd@arndb.de, brad@pensando.io,
-        blarson@amd.com, brijeshkumar.singh@amd.com,
-        catalin.marinas@arm.com, gsomlo@gmail.com, gerg@linux-m68k.org,
-        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee.jones@linaro.org, broonie@kernel.org,
-        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
-        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
-        robh+dt@kernel.org, samuel@sholland.org, fancer.lancer@gmail.com,
-        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
-        ulf.hansson@linaro.org, will@kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v5 15/15] reset: elbasr: Add AMD Pensando Elba SR Reset Controller
-Date:   Mon, 13 Jun 2022 12:56:58 -0700
-Message-Id: <20220613195658.5607-16-brad@pensando.io>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220613195658.5607-1-brad@pensando.io>
-References: <20220613195658.5607-1-brad@pensando.io>
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S1348989AbiFMUsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 16:48:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AD921038;
+        Mon, 13 Jun 2022 13:06:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 142FC61571;
+        Mon, 13 Jun 2022 20:06:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4B61C34114;
+        Mon, 13 Jun 2022 20:06:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655150772;
+        bh=shKSr/RiV2YcabImw7K3ffFlzf7xs/cPOaAF6/t5ZCY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=H6L7u8jMeuHogNoG/VW04jHZnGwXKCZBPaTJGxSSqpB0MMqThvHKRUfAgUAse7XMi
+         Fq9RKmJsGedh9kVH4+rJBcqEKiGRR+Fe/JTZIWXbpG8slKGaFz4kPODA8XySEx/67p
+         n+0uVqzRAMWG9d4fFJqZA4fGynEycyzh2VFZBrkYZvWf4BgPHVCxm0NKCmOvEXMOlt
+         YcWcJZDR21nkVN1hJdZHNDAUXXpx4sUkMRraL62CEKWXw7PIoK7BL9bxlwjO1/QwN4
+         EkynUGfbS3HuQDo8J0t9AE175CXIA13cUq3ChEUnymiyQDH96C3SjpWgo+FlzTJ+P3
+         o/XGffJtFCgXA==
+Date:   Mon, 13 Jun 2022 22:06:07 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Peter Rosin <peda@axentia.se>
+Cc:     Codrin.Ciubotariu@microchip.com, linux-i2c@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Ludovic.Desroches@microchip.com,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, kamel.bouhara@bootlin.com
+Subject: Re: Regression: at24 eeprom writing times out on sama5d3
+Message-ID: <YqeYr6b2k0rXsvIv@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Peter Rosin <peda@axentia.se>, Codrin.Ciubotariu@microchip.com,
+        linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Ludovic.Desroches@microchip.com, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        kamel.bouhara@bootlin.com
+References: <074b39c5-55fc-2bc1-072d-aef1070e284d@axentia.se>
+ <2bb4868b-90ab-887e-bf13-9de8b79231bd@microchip.com>
+ <YqdQoJbsgwjQ9PYh@shikoro>
+ <0ce8b9d7-8a9e-cded-1762-71e230f4246c@axentia.se>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ogV34CoYxK6HOSzb"
+Content-Disposition: inline
+In-Reply-To: <0ce8b9d7-8a9e-cded-1762-71e230f4246c@axentia.se>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Brad Larson <blarson@amd.com>
 
-This patch adds the reset controller functionality for the
-AMD Pensando Elba System Resource Chip.
+--ogV34CoYxK6HOSzb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Brad Larson <blarson@amd.com>
----
- drivers/reset/Kconfig                         |  9 ++
- drivers/reset/Makefile                        |  1 +
- drivers/reset/reset-elbasr.c                  | 94 +++++++++++++++++++
- .../reset/amd,pensando-elba-reset.h           | 11 +++
- 4 files changed, 115 insertions(+)
- create mode 100644 drivers/reset/reset-elbasr.c
- create mode 100644 include/dt-bindings/reset/amd,pensando-elba-reset.h
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 93c8d07ee328..13f5a8ca0f03 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -66,6 +66,15 @@ config RESET_BRCMSTB_RESCAL
- 	  This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 on
- 	  BCM7216.
- 
-+config RESET_ELBASR
-+	tristate "Pensando Elba System Resource reset controller"
-+	depends on MFD_PENSANDO_ELBASR || COMPILE_TEST
-+	help
-+	  This option enables support for the external reset functions
-+	  on the Pensando Elba System Resource Chip.  Reset control
-+	  of peripherals is accessed over SPI to the system resource
-+	  chip device registers using CS0.
-+
- config RESET_HSDK
- 	bool "Synopsys HSDK Reset Driver"
- 	depends on HAS_IOMEM
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index a80a9c4008a7..c0fe12b9950e 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -10,6 +10,7 @@ obj-$(CONFIG_RESET_BCM6345) += reset-bcm6345.o
- obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
- obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
- obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
-+obj-$(CONFIG_RESET_ELBASR) += reset-elbasr.o
- obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
- obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
- obj-$(CONFIG_RESET_INTEL_GW) += reset-intel-gw.o
-diff --git a/drivers/reset/reset-elbasr.c b/drivers/reset/reset-elbasr.c
-new file mode 100644
-index 000000000000..6e429cb11466
---- /dev/null
-+++ b/drivers/reset/reset-elbasr.c
-@@ -0,0 +1,94 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2022 AMD Pensando
-+ */
-+
-+#include <linux/mfd/pensando-elbasr.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset-controller.h>
-+#include <linux/regmap.h>
-+#include <linux/err.h>
-+#include <linux/of.h>
-+
-+#include <dt-bindings/reset/amd,pensando-elba-reset.h>
-+
-+struct elbasr_reset {
-+	struct reset_controller_dev rcdev;
-+	struct regmap *regmap;
-+};
-+
-+static inline struct elbasr_reset *to_elbasr_rst(struct reset_controller_dev *rc)
-+{
-+	return container_of(rc, struct elbasr_reset, rcdev);
-+}
-+
-+static inline int elbasr_reset_shift(unsigned long id)
-+{
-+	switch (id) {
-+	case EMMC_HW_RESET:
-+		return 6;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int elbasr_reset_assert(struct reset_controller_dev *rcdev,
-+			       unsigned long id)
-+{
-+	struct elbasr_reset *elbar = to_elbasr_rst(rcdev);
-+	u32 mask = 1 << elbasr_reset_shift(id);
-+
-+	return regmap_update_bits(elbar->regmap, ELBASR_CTRL0_REG, mask, mask);
-+}
-+
-+static int elbasr_reset_deassert(struct reset_controller_dev *rcdev,
-+				 unsigned long id)
-+{
-+	struct elbasr_reset *elbar = to_elbasr_rst(rcdev);
-+	u32 mask = 1 << elbasr_reset_shift(id);
-+
-+	return regmap_update_bits(elbar->regmap, ELBASR_CTRL0_REG, mask, 0);
-+}
-+
-+static const struct reset_control_ops elbasr_reset_ops = {
-+	.assert	= elbasr_reset_assert,
-+	.deassert = elbasr_reset_deassert,
-+};
-+
-+static int elbasr_reset_probe(struct platform_device *pdev)
-+{
-+	struct elbasr_data *elbasr = dev_get_drvdata(pdev->dev.parent);
-+	struct elbasr_reset *elbar;
-+	int ret;
-+
-+	elbar = devm_kzalloc(&pdev->dev, sizeof(struct elbasr_reset),
-+			     GFP_KERNEL);
-+	if (!elbar)
-+		return -ENOMEM;
-+
-+	elbar->rcdev.owner = THIS_MODULE;
-+	elbar->rcdev.nr_resets = ELBASR_NR_RESETS;
-+	elbar->rcdev.ops = &elbasr_reset_ops;
-+	elbar->rcdev.of_node = pdev->dev.of_node;
-+	elbar->regmap = elbasr->elbasr_regs;
-+
-+	platform_set_drvdata(pdev, elbar);
-+
-+	ret = devm_reset_controller_register(&pdev->dev, &elbar->rcdev);
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id elba_reset_dt_match[] = {
-+	{ .compatible = "amd,pensando-elbasr-reset", },
-+	{ /* sentinel */ },
-+};
-+
-+static struct platform_driver elbasr_reset_driver = {
-+	.probe	= elbasr_reset_probe,
-+	.driver = {
-+		.name = "pensando_elbasr_reset",
-+		.of_match_table	= elba_reset_dt_match,
-+	},
-+};
-+builtin_platform_driver(elbasr_reset_driver);
-diff --git a/include/dt-bindings/reset/amd,pensando-elba-reset.h b/include/dt-bindings/reset/amd,pensando-elba-reset.h
-new file mode 100644
-index 000000000000..68d69a98e750
---- /dev/null
-+++ b/include/dt-bindings/reset/amd,pensando-elba-reset.h
-@@ -0,0 +1,11 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-+/*
-+ * Copyright (c) 2022, AMD Pensando
-+ */
-+
-+#ifndef _DT_BINDINGS_RESET_AMD_PENSANDO_ELBA_RESET_H
-+#define _DT_BINDINGS_RESET_AMD_PENSANDO_ELBA_RESET_H
-+
-+#define EMMC_HW_RESET		0
-+
-+#endif
--- 
-2.17.1
+> I replied to patch 1/3 and 2/3 but have not seen them on the lists and
+> patchwork also appears to be in the dark.
+> Did the replies make it anywhere? Should I resend?
 
+I didn't get them. Yeah, maybe a resend will help?
+
+
+--ogV34CoYxK6HOSzb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKnmK8ACgkQFA3kzBSg
+KbbJWBAAlS8SaQDw0SsR0R3wckRC2LN0TZ1ehFWsm9akX38NgWXfprCt5Y1HcKsu
+DcyHwWdwVKoT6lCPkAKeZsfF+3ipoKBf4CedKk5zYwL/3o/I80S3+sYSw+akUV05
+X3HWMjpCRlWAqGRod4TWafawWqEA1U4GlDmApYl3TB7PWEk27lJp+3BgwBgnSs0l
+9dT7CnfeqkeIVZ8LapGQksqwC/fKMsa4dVNyluCDHHm9DlsDHFgW4fYzWJgg8WlS
+rhTC2QnXYmcRS0uWQR7W+FNnHjRK2ARyP+So2rzbes7/tqBBMAMWlvMzpNHd3ucb
+ZkQWVxRs4cXcpprtyuhA0axvAGfYCc4lvGr8IdRoFyPnDSv8U3hUZ4ZU2bH8C//2
+CbyRTFGBu7C1UV5YwjswBkAmvUeFrnM6gSH+/ZcZcOQlQ23RHG4TFMCe93MPJPv4
+RbKLzX/WhBnzY+b7Vk0Y+lGgM1QX5CsEiL8S82dpxhylypGXv9GX8d0F2sXP/lXT
+hNJ0BqA1Tp7umUUom7ZTM0h8IZnEWn8k0RRr7XMTvKQOA4cIhVccBHRCJHIrfMm0
+qsJp7dJpm6nuCfipS3yW1UXZjhq1NRKRNLQrt+aQPwYZVHvdPBq9di6uqmQdOnHg
+7gB1dExjEtarnUpcMfsABDJ/jz1nL0fZRZLKPoM6HGiisxfQKD8=
+=Rl7P
+-----END PGP SIGNATURE-----
+
+--ogV34CoYxK6HOSzb--
