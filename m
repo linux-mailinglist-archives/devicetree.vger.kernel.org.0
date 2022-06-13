@@ -2,105 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0E05549BB7
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96297549C0A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:45:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241485AbiFMSjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 14:39:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43590 "EHLO
+        id S1344993AbiFMSp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 14:45:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343691AbiFMSiW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:38:22 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AA584EF4B;
-        Mon, 13 Jun 2022 07:58:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D44DBB81058;
-        Mon, 13 Jun 2022 14:58:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFE5EC34114;
-        Mon, 13 Jun 2022 14:58:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655132324;
-        bh=AtniC0eJkDR5/lLb+bWQNBve4k7kz60lS+Lip7itflA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nDFMY9QYfPxcap0I7w9dv1UnAtXFCEkntc8tqkQ+Q7XX615OrKZnE/y2xbFFGmT+m
-         dDMRgrkJrtnBXDBCxnytqfdd/8EjVuFLxl5u0nLulRP8enviTFhN/ZdPw13DL9LDih
-         9Gnp7+t9s/it9oXt/uEOLsYqEawr0pyBufjguQnUPaaZTiSKRWR+GdxHa+oX5r9Z/0
-         aDRvnX2vthNldQ5OqUFFVwiKp80z+k5ZPxaX4VzcUGUyjqtqQon5hNaiZgHc8NVUDR
-         MYgEQIB9sngtbbqGOpavFkJbe2tkDHUK1u4fjyhSE4MU01r07GwbsqpZaYD4uh9v3E
-         WEumYYTd+NwnA==
-Date:   Mon, 13 Jun 2022 16:58:40 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Codrin.Ciubotariu@microchip.com
-Cc:     peda@axentia.se, linux-i2c@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Ludovic.Desroches@microchip.com,
-        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, kamel.bouhara@bootlin.com
-Subject: Re: Regression: at24 eeprom writing times out on sama5d3
-Message-ID: <YqdQoJbsgwjQ9PYh@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Codrin.Ciubotariu@microchip.com, peda@axentia.se,
-        linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Ludovic.Desroches@microchip.com, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        kamel.bouhara@bootlin.com
-References: <074b39c5-55fc-2bc1-072d-aef1070e284d@axentia.se>
- <2bb4868b-90ab-887e-bf13-9de8b79231bd@microchip.com>
+        with ESMTP id S1344062AbiFMSnB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:43:01 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E675B10D;
+        Mon, 13 Jun 2022 08:01:57 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id u12so11701688eja.8;
+        Mon, 13 Jun 2022 08:01:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=aC1QbH3cTFng1BzfntnEn+PULL88pquYCHmXaXqLlCA=;
+        b=Yv7gccA6UP1oUNzigw0pjhJTHhxYmKiOj+fdTBOZYsp82HJoOCTV5/FkMdVw6xlW8d
+         pbe4A0OJbIVlkd4VLD+TlXfyy1ETZEcbf1kNg9oF6BAO9+aXctOsxcXNzAL3+KMrXghE
+         wCSND3Ima44JoRmGxm9FTgZGX/JJjY2SsEY9KWfmLXKhXxvArMubUSeeGlBiKYSxViuB
+         nrRXQ6LJz2M5vF5NDzy5xxx2GszwLIRUxPOv/FbaXEK2PYcVAHPL+2S33X5b44lTY6Ry
+         YGf2x9skXv/YNSsj880I+uLiGArx+zT93PhdhOK+gEJDQGrxX2KppXI4Ji51fuPbT7uk
+         sdDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aC1QbH3cTFng1BzfntnEn+PULL88pquYCHmXaXqLlCA=;
+        b=uC0y/7vIrRbgHBbHnfrn+uQo4ds3UcrlM7FC5VGkM4SNE0e/JVvX20OLkgbK5KaZAc
+         tkgFXv4DXweA5qJNZc9bJDD+eyzDDZYBvq3Kn2m5ORrTSTCWFSTGBqliGmg3duBBv5cI
+         sLExe1W4cgFWW6yAwYS/Yf9UB/VWXjple0yhWSrGoY3b+4NoWboiTwqNXYxPeGwLlVsh
+         RiZZ+7VDKrgAw+XVlTRaFegcbQ5yAiB4tSvQnG9+LS7HZXAMd9n0VcdEUFH9UX8R5fYb
+         KqGueKV+utyQL+5C1DtWijtTwgQGjmqzQtx8NOIzPDBXV49FJ7NPBGesZiJzm9fGanWc
+         +Pwg==
+X-Gm-Message-State: AOAM532+VEQ1ztY+lA8M2FCCr5FI6EbTVqAQTxMOswJ1Dcam6zdfqbXH
+        dI4DaX2CeM765SqxRWq3PVOz6DQtTCQTrbapJ5w=
+X-Google-Smtp-Source: ABdhPJxz0ZuL628j9gnwJEGtcjxDFvahegf3oC4oXMZBZ8/QKQ0YyWTjN5khTBbhoholOWHw348fexjya0Xe9EzFYg4=
+X-Received: by 2002:a17:906:c7c1:b0:711:d2e9:99d0 with SMTP id
+ dc1-20020a170906c7c100b00711d2e999d0mr223768ejb.639.1655132516327; Mon, 13
+ Jun 2022 08:01:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4y9tLbk2+pC88VOo"
-Content-Disposition: inline
-In-Reply-To: <2bb4868b-90ab-887e-bf13-9de8b79231bd@microchip.com>
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <cover.1655081082.git.jahau@rocketmail.com> <2e4622b2c98eda75c262d460533162f74cfb8605.1655081082.git.jahau@rocketmail.com>
+In-Reply-To: <2e4622b2c98eda75c262d460533162f74cfb8605.1655081082.git.jahau@rocketmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 13 Jun 2022 17:01:20 +0200
+Message-ID: <CAHp75VeHJnuSe+2r8LvN4watFt1q5FZefUvsZokz0SA1NZ6nmw@mail.gmail.com>
+Subject: Re: [PATCH v2 4/7] iio: magnetometer: yas530: Correct temperature handling
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        phone-devel@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
+        Shevchenko <andy.shevchenko@gmail.com>," 
+        <~postmarketos/upstreaming@lists.sr.ht>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jun 13, 2022 at 3:17 AM Jakob Hauser <jahau@rocketmail.com> wrote:
+>
+> The raw temperature value is a number of counts from a certain starting
+> point. The resolution of the temperature counts is different for the YAS
+> variants.
+>
+> Temperature compensation for YAS532 version AC seems to be handled differently.
+> It uses the deviation from 20 degree Celsius [1] whereas YAS530 and older
+> versions of YAS532 apply solely the t value as a multiplier [2][3].
+>
+> In funtion yas5xx_read_raw(), add case IIO_CHAN_INFO_PROCESSED. Remove scale
+> of temperature as this isn't applied.
+>
+> Additionally correct sign of temperature channel in iio_chan_spec. It's already
+> defined that way in yas5xx_get_measure() function.
 
---4y9tLbk2+pC88VOo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+in the
 
-Hi Codrin,
+...
 
-> could you please apply this patch-set [1] and let us know if it=20
-> addresses your issue?
+Please add default cases into switches.
 
-Any comments to the comments I gave to [1]? :)
-
-Happy hacking,
-
-   Wolfram
-
-
---4y9tLbk2+pC88VOo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKnUKAACgkQFA3kzBSg
-KbbfLBAAmTZMUsDejonz6ghBqRZNjxQUHOkBjzcun2R358W/QmpabM3JhLWxoYF8
-7d8BQDy28IrRYXgWvAdqZ7X9GzrO4J8+cP7ZnfafKWTlhUJDqFqeJSl0ZnJ0GsZk
-O/+LB0snGoP//zos2d30AdBeTL5OvVIDYNSlrXn0TjQ3SMGibvvaXzbcS/+9oNNS
-MqynO44hsKdeToTxE3PHsRIzCez03PXdhWQ1YiKxxMvuZW+1DRZwlS4/5cygEiKQ
-9AGL/Hq25VGkzVhypCLJBG8YVj8NZ+yZDKsSHe7297XGKURUC3rAmob6diviB7VH
-UX9DDZNpLer+umAE9mFIuL0cXM5QQR6Vj2HVFffpy1oQJqlNA6K7Zu9sxbUFs/jl
-meih4rLEMeSgcV8OKmUhcp3LT9hkd6kTUPWwIWML5xE+x+04gMfuenzebUUI/62H
-VDRapubhMOYCMRIWDs10T7293//q12QAJtiXWfPqMAr1zkNGPGte8y8snMpYs//S
-7FawMiCp/FEr25dT5DgF1YQveg9HALh5SQ+YIlWNVapdRCsJxXERGhCFnsUS6Wja
-kCJqVK2Vyn+Za/uGd4Ejt6vJ8LRrbrS4ZAlrVT7UwGv7S8qvwbTAXz0zYRnTVozj
-pMHJxXSi57O7EV3XSA2uFWrj4qIy7c/3/0sey87hAcGe46BYSqQ=
-=GnAC
------END PGP SIGNATURE-----
-
---4y9tLbk2+pC88VOo--
+-- 
+With Best Regards,
+Andy Shevchenko
