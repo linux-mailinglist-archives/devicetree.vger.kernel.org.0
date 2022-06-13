@@ -2,215 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D3D3549D04
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:10:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79D20549D19
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:13:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348690AbiFMTKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 15:10:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57548 "EHLO
+        id S234270AbiFMTNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 15:13:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351642AbiFMTKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:10:13 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4304630F5B
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 10:08:58 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id t3-20020a17090a510300b001ea87ef9a3dso6552793pjh.4
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 10:08:58 -0700 (PDT)
+        with ESMTP id S1347918AbiFMTK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:10:59 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 667494504C;
+        Mon, 13 Jun 2022 10:10:24 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id h1so5588639plf.11;
+        Mon, 13 Jun 2022 10:10:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=AZWAPWwrm8+A0CgIBwRq++T65dkqg+V1CymCWTXMIwM=;
-        b=LIOySr/baoj4EAyTjKf+aH+Qatb2p3UHDovP+gotSlTiSN1yTcg4GCjyqC3fyUX7wl
-         npmmJtdNhVDNh5XKGkUnpjvg/YJI9/ZyQwGvcnz/SS0pPOuUekmDMJRnmbvEUG9D+H7+
-         BZM1DLAMJ8q+I+4MvG2IfeZzZu5Z2p2pmZvJH76I7ELfeoqXCbnsuzr33o2epyIJ5WeO
-         vlWeMTh3YdX80pJSfJHrPWOfpq4BMQV7PRBFhgbMKMVtr4faZ0ISbwZoAbpm/guz5Lxu
-         3Q1Lh7nmkcWUV2iquou5G8hgE2UlhX7m7htGh4cx10X02rbX81xYSe5d64L24n5jYZOT
-         up1Q==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=+E0qOXmIaYGrgKKOxyXbseCzmUGGWWVHHHzfQyyHi4o=;
+        b=cDomZjTb89wINr+qLZAISKobOH9y0iLu8+lPSo9XbgOKJ4MVHIl/lT2dQIYkZlmIxA
+         qg0OwroWZx/DdS2nJxJJVCBQc4hQ+2+KZquTYii+v6839OayuLQpiy3vJUP8glSexjz6
+         uexyVKw7EV/IHN4IzeNyNWoUyH6WjsGUTpNEvmneKUwyKSupG7CMUzMKuoV5Ys4rjnOV
+         3xQVteThlCIhBYviJNm54arhLENUBBWGlNVY7W2IarsddL63ULIXhr4EINrLh1l5g4+0
+         PS/q5YVb6Ig049TMJZhQ/8HUF2ud36QwNhvpQGUOkTrrEEY2Z69Al1t4yXSsH00osTHy
+         6ZIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AZWAPWwrm8+A0CgIBwRq++T65dkqg+V1CymCWTXMIwM=;
-        b=aAFWw+kTchZuC0w//ELx33jd9GkZ2CYMLH0xHBBysSLZcx+10DwrjynId2qOg1sAZa
-         erMyQPA71YzCPjPtI2VSH/2VVccdQjs+aRTZEYdTy0PSW+BWDSlxU7UBEU0XjsiM0eXt
-         vI/uo0BFxGyjXDoajH9YLDhgNM33CMU/9U3BiaDSF/0jjm3cv38XKq8Xizzmkao6hLoq
-         gAhtcc+/PX+kQ9FVBSv56o2y+PWMm/DKU1F14TwvmQeJhomI8IIFBCxIqOufOjY5WTXI
-         dQe0yw+uV1DXFlw441bBp/B4VR9pV/SiEZgkXo/WYaw5rwPNPWaRxjrzuGhhbrz4Ef7u
-         6RMw==
-X-Gm-Message-State: AJIora8bgLD3Ve04rfq6oCiwo1wmtrRDioScr3GtBCv9iF6ZPMAStUDz
-        ovkKiTmv6QDY9WVVUBx9CALt+w==
-X-Google-Smtp-Source: AGRyM1sELmzXAHQOaDg6BJ3FBShrRSur5yPmIKoRf1jf9G2G72yJQERR+jxqILTIiQmADcP/b1HsAg==
-X-Received: by 2002:a17:902:c94b:b0:166:4f65:cffb with SMTP id i11-20020a170902c94b00b001664f65cffbmr14965pla.103.1655140137656;
-        Mon, 13 Jun 2022 10:08:57 -0700 (PDT)
-Received: from ash.lan ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id 142-20020a621994000000b00518b4cfbbe0sm5632766pfz.203.2022.06.13.10.08.55
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=+E0qOXmIaYGrgKKOxyXbseCzmUGGWWVHHHzfQyyHi4o=;
+        b=PkfxUl9+RPGkvwVfwKpcMqNHt7j3sCKGirzqXF0m2bHZr6yfp4EQtxWqGYCusb/lBR
+         hzwZ8Fw7f4vEKD845ktL7r5Iy3PbpoIcmKemhzqk6mX/VkyOh3Pj5oGi19y0wpktwJSl
+         /KALItoRrdKEXB44P4Wr3T3uRG1UmxXg9J3goosF476IsdVBbids+Gv3gsNmZ1HnLSAO
+         ST20xvzxuISiQIZtYt5ljlilBdNsczanqp6u221tDMBBFGj2wNONBqPSdCxMERpMtxf1
+         f8Qr8GC+01J3a401WW1EP/KfIyJdtmD2SMN6olr5OKNpB+vhiflaNW0jpefcz6OuIvh9
+         NrWA==
+X-Gm-Message-State: AOAM532a9DgAAaiyVVsJ9Eq2fMz7Q5HLPrRFY3Z9NhHScvsagRhoOSbp
+        YXss+yL4OsGxSSoeaFU8WII=
+X-Google-Smtp-Source: ABdhPJz7sM+c99Vg7g5GR9Dl0h78U9tsv/R55WGSbYCXMBmLzwbLN7k6LwX1UuFBpJxcmI3tqmZSLg==
+X-Received: by 2002:a17:90b:4ac8:b0:1e3:4f6a:2d04 with SMTP id mh8-20020a17090b4ac800b001e34f6a2d04mr16988528pjb.233.1655140223871;
+        Mon, 13 Jun 2022 10:10:23 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id n7-20020a63b447000000b00401afc3401esm5650775pgu.35.2022.06.13.10.10.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jun 2022 10:08:56 -0700 (PDT)
-Date:   Mon, 13 Jun 2022 18:08:53 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     jic23@kernel.org, lars@metafoo.de, matthias.bgg@gmail.com,
-        lee.jones@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        szunichen@gmail.com, ChiaEn Wu <chiaen_wu@richtek.com>
-Subject: Re: [PATCH v2 15/15] video: backlight: mt6370: Add Mediatek MT6370
- support
-Message-ID: <20220613170853.bffuwkcmflfgg4gt@ash.lan>
-References: <20220613111146.25221-1-peterwu.pub@gmail.com>
- <20220613111146.25221-16-peterwu.pub@gmail.com>
+        Mon, 13 Jun 2022 10:10:23 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        William Zhang <william.zhang@broadcom.com>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     tomer.yacoby@broadcom.com, anand.gore@broadcom.com,
+        dan.beygelman@broadcom.com, kursad.oney@broadcom.com,
+        philippe.reynes@softathome.com, joel.peshkin@broadcom.com,
+        samyon.furman@broadcom.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: arm: add BCM6855 SoC
+Date:   Mon, 13 Jun 2022 10:10:21 -0700
+Message-Id: <20220613171021.238548-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220607172646.32369-2-william.zhang@broadcom.com>
+References: <20220607172646.32369-1-william.zhang@broadcom.com> <20220607172646.32369-2-william.zhang@broadcom.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220613111146.25221-16-peterwu.pub@gmail.com>
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 13, 2022 at 07:11:46PM +0800, ChiaEn Wu wrote:
-> +static int mt6370_init_backlight_properties(struct mt6370_priv *priv,
-> +					    struct backlight_properties *props)
+On Tue,  7 Jun 2022 10:26:44 -0700, William Zhang <william.zhang@broadcom.com> wrote:
+> Add BCM6855 SoC device tree description to bcmbca binding document.
+> 
+> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> ---
 
-Most of the changes in this version looks good... but it looks the new
-code in this function has a number of problems. See below...
-
-
-> +{
-> +	struct device *dev = priv->dev;
-> +	u8 prop_val;
-> +	u32 brightness;
-> +	unsigned int mask, val;
-> +	int ret;
-> +
-> +	/* Vendor optional properties
-> +	 * if property not exist, keep value in default.
-> +	 */
-
-That's not the right strategy for booleans. Not existing means false
-(e.g. flags should actively be unset).
-
-
-> +	if (device_property_read_bool(dev, "mediatek,bled-pwm-enable")) {
-> +		ret = regmap_update_bits(priv->regmap, MT6370_REG_BL_PWM,
-> +					 MT6370_BL_PWM_EN_MASK,
-> +					 MT6370_BL_PWM_EN_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-
-As above comment... all of the boolean properties are now being read
-incorrectly.
-
-
-> +
-> +	if (device_property_read_bool(dev, "mediatek,bled-pwm-hys-enable")) {
-> +		ret = regmap_update_bits(priv->regmap, MT6370_REG_BL_PWM,
-> +					 MT6370_BL_PWM_HYS_EN_MASK,
-> +					 MT6370_BL_PWM_HYS_EN_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = device_property_read_u8(dev, "mediatek,bled-pwm-hys-input-bit",
-> +				      &prop_val);
-> +	if (!ret) {
-> +		val = min_t(u8, prop_val, 3)
-> +		      << (ffs(MT6370_BL_PWM_HYS_SEL_MASK) - 1);
-> +		ret = regmap_update_bits(priv->regmap, MT6370_REG_BL_PWM,
-> +					 MT6370_BL_PWM_HYS_SEL_MASK, val);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = device_property_read_u8(dev, "mediatek,bled-ovp-microvolt",
-> +				      &prop_val);
-> +	if (!ret) {
-> +		val = min_t(u8, prop_val, 3)
-> +		      << (ffs(MT6370_BL_OVP_SEL_MASK) - 1);
-
-This has been renamed but still seems to the using 0, 1, 2, 3 rather
-than an actual value in microvolts.
-
-
-> +		ret = regmap_update_bits(priv->regmap, MT6370_REG_BL_BSTCTRL,
-> +					 MT6370_BL_OVP_SEL_MASK, val);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (device_property_read_bool(dev, "mediatek,bled-ovp-shutdown")) {
-> +		ret = regmap_update_bits(priv->regmap, MT6370_REG_BL_BSTCTRL,
-> +					 MT6370_BL_OVP_EN_MASK,
-> +					 MT6370_BL_OVP_EN_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = device_property_read_u8(dev, "mediatek,bled-ocp-microamp",
-> +				      &prop_val);
-> +	if (!ret) {
-> +		val = min_t(u8, prop_val, 3)
-> +		      << (ffs(MT6370_BL_OC_SEL_MASK) - 1);
-
-Likewise, should this be accepting a value in microamps?
-
-
-> +		ret = regmap_update_bits(priv->regmap, MT6370_REG_BL_BSTCTRL,
-> +					 MT6370_BL_OC_SEL_MASK, val);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (device_property_read_bool(dev, "mediatek,bled-ocp-shutdown")) {
-> +		ret = regmap_update_bits(priv->regmap, MT6370_REG_BL_BSTCTRL,
-> +					 MT6370_BL_OC_EN_MASK,
-> +					 MT6370_BL_OC_EN_MASK);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	/* Common properties */
-> +	ret = device_property_read_u32(dev, "max-brightness", &brightness);
-> +	if (ret)
-> +		brightness = MT6370_BL_MAX_BRIGHTNESS;
-> +
-> +	props->max_brightness = min_t(u32, brightness,
-> +				      MT6370_BL_MAX_BRIGHTNESS);
-> +
-> +	ret = device_property_read_u32(dev, "default-brightness", &brightness);
-> +	if (ret)
-> +		brightness = props->max_brightness;
-> +
-> +	props->brightness = min_t(u32, brightness, props->max_brightness);
-> +
-> +
-> +	ret = device_property_read_u8(dev, "mediatek,bled-channel-use",
-> +				      &prop_val);
-> +	if (ret) {
-> +		dev_err(dev, "mediatek,bled-channel-use DT property missing\n");
-> +		return ret;
-> +	}
-> +
-> +	if (!prop_val || prop_val > MT6370_BL_MAX_CH) {
-> +		dev_err(dev, "No channel specified (ch_val:%d)\n", prop_val);
-
-Error string has not been updated to match condition that triggers it.
-
-
-> +		return -EINVAL;
-> +	}
-
-
-Daniel.
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
