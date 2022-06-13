@@ -2,127 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 343A95495A8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 18:33:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12DE454921E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 18:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234806AbiFMNAb convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 13 Jun 2022 09:00:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49830 "EHLO
+        id S1359431AbiFMNUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 09:20:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357404AbiFMM6n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 08:58:43 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D4D962BCF;
-        Mon, 13 Jun 2022 04:17:36 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CD648D6E;
-        Mon, 13 Jun 2022 04:17:35 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 332CE3F73B;
-        Mon, 13 Jun 2022 04:17:33 -0700 (PDT)
-Date:   Mon, 13 Jun 2022 12:17:29 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Luca Weiss <luca@z3ntu.xyz>, Maxime Ripard <maxime@cerno.tech>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Thierry Reding <treding@nvidia.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 0/3] ARM: sunxi: Remove A31 and A23/A33 platform SMP
- code
-Message-ID: <20220613121729.46233a75@donnerap.cambridge.arm.com>
-In-Reply-To: <2833034.e9J7NaK4W3@kista>
-References: <20220531045038.42230-1-samuel@sholland.org>
-        <2833034.e9J7NaK4W3@kista>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S1377252AbiFMNUL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 09:20:11 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 990196A068
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 04:23:22 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id u8so6679755wrm.13
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 04:23:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=ftbGLeiB2JlBpoGZ3wbFTZazHN6xRtIZim0EkYzsO0Q=;
+        b=iB04vWC9FzI1WYr9ij3UzK3+YE+EMwP1iTYCLyegFM7Xj3/q8BDDXuMhk4rXl5Rp+C
+         zAv6KAYz9Dgn7zy6gkiH2J6ochM3iiDetyjgfdgkFNb/BZmL/Dq6ntF58L0VTozF7xaJ
+         8Hsh5pgxwtvGmGEksP/HHEiI09wU8YKVzl3SR93sTHHX082nCS5mHDIdoKdAW+7j75My
+         u5d7/nPmOjX+ZgaXHTTV8DTaAuoysO9apmgFo9z/t4MzuSJU7YxeP2t2Es1MZKNdgvse
+         FH6DEOBr+hUsTKYkrLtmZlkrHNOsvduD+Ya9ILeOeTitmQrOpRw0vRN0zXz3js+pRWVC
+         ox9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=ftbGLeiB2JlBpoGZ3wbFTZazHN6xRtIZim0EkYzsO0Q=;
+        b=kiUfrjzhZyYuaAY+VwCYa85GusUeMDBh3nkLAnAc/DTw8w5Y2AJK+GUdm8GtWnTwJm
+         7ZGFQDkLduUlt8GZZdqKfMz3bus0ogItUllDWlpQG3PEmx+3BeJOA2jpNJ9Q8wIS+GT+
+         G1xdd9pL8UQ3zl4jtsV/CNbkNKZOAcq53KAGmgPQU9ERNedovXlG/Nk8bhJo6EII+wWs
+         tPXReO6GVZp4EV0txFSupeKrH8I7RgX2HS1VE2LL1AcesYfGJiJC2G/ZtV0S9xeWOAyR
+         fAh7IQyXCi+iMTi+n8wMeUo4S+AY7PJCfVz1DvARTFkheuclQAa/BgyQFY6YJYVae+hh
+         Xmcw==
+X-Gm-Message-State: AOAM533lOF7QlwNAjTKS9IQmwa+iOLZDdOwMyVaVXhb/P4rwRABBulFi
+        wHvmOwiXx8UlxH0lOKROXJ2/5g==
+X-Google-Smtp-Source: ABdhPJz/XnZLu+IhNH+tzt4F0AQVXRg8Kj57/I/QA3bryB4W9ygJ6qK+EJFE/lcc0ZEZD+zhe66+xQ==
+X-Received: by 2002:adf:ce03:0:b0:210:32ec:50fd with SMTP id p3-20020adfce03000000b0021032ec50fdmr56565196wrn.407.1655119388347;
+        Mon, 13 Jun 2022 04:23:08 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id g15-20020a05600c4ecf00b0039c4945c753sm13769058wmq.39.2022.06.13.04.23.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jun 2022 04:23:07 -0700 (PDT)
+Date:   Mon, 13 Jun 2022 13:23:04 +0200
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     heiko@sntech.de, ardb@kernel.org, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v7 00/33] crypto: rockchip: permit to pass self-tests
+Message-ID: <YqceGFafq7QoT+8w@Red>
+References: <20220508185957.3629088-1-clabbe@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220508185957.3629088-1-clabbe@baylibre.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 12 Jun 2022 23:09:07 +0200
-Jernej Å krabec <jernej.skrabec@gmail.com> wrote:
-
-Hi Samuel,
-
-> Dne torek, 31. maj 2022 ob 06:50:35 CEST je Samuel Holland napisal(a):
-> > This series is preparation for converting the PRCM MFD and legacy clock
-> > drivers to a CCU clock driver.
-
-May I ask what the purpose of this exercise is? So if I understand
-correctly, then it's about to convert the sun8i-a23-prcm MFD driver and
-its children to a single "modern style" CCU clock driver, with its opaque
-DT node?
-If that changes the compatible strings or the references to the clock
-providers (and I guess it would need to?), then this would mean an
-incompatible change. Which also means we would need to keep the old code
-around, to maintain compatibility with "old" DTs? So what is the win then?
-Now we have *two* clock drivers, for the same device, which need
-maintenance and testing.
-
-So can you confirm that this will be a breaking change?
-
-> The platform SMP code references the PRCM
-> > node to map its MMIO space, which will break when the PRCM node is
-> > removed/replaced.  
+Le Sun, May 08, 2022 at 06:59:24PM +0000, Corentin Labbe a écrit :
+> Hello
 > 
-> Why can't we just leave old platform code? If older dtb file is used, it would 
-> still work. Actually, isn't trivial to support new CCU binding too, just by 
-> including new CCU compatible string? IIUC new CCU node will have same address 
-> as current PRCM node.
-
-This aims for a similar direction, though in this case the alternative
-(PSCI) predates the sunxi specific method in the kernel support. Can we
-just deprecate this code, maybe issue a warning, with the hint to update
-the bootloader (which might not be possible for some devices)?
-
-Cheers,
-Andre
-
-> Best regards,
-> Jernej
+> The rockchip crypto driver is broken and do not pass self-tests.
+> This serie's goal is to permit to become usable and pass self-tests.
 > 
-> > 
-> > Since PSCI has been available for 7+ years, instead of trying to deal
-> > with the migration, I think it's safe to just delete this code.
-> > 
-> > 
-> > Samuel Holland (3):
-> >   ARM: sunxi: Remove A31 and A23/A33 platform SMP code
-> >   ARM: dts: sunxi: Remove obsolete CPU enable methods
-> >   dt-bindings: arm: Remove obsolete CPU enable methods
-> > 
-> >  .../devicetree/bindings/arm/cpus.yaml         |   2 -
-> >  arch/arm/boot/dts/sun6i-a31.dtsi              |   1 -
-> >  arch/arm/boot/dts/sun8i-a23-a33.dtsi          |   1 -
-> >  arch/arm/mach-sunxi/Makefile                  |   1 -
-> >  arch/arm/mach-sunxi/platsmp.c                 | 194 ------------------
-> >  5 files changed, 199 deletions(-)
-> >  delete mode 100644 arch/arm/mach-sunxi/platsmp.c
-> > 
-> > -- 
-> > 2.35.1
-> > 
-> >   
+> This whole serie is tested on a rk3328-rock64, rk3288-miqi and
+> rk3399-khadas-edge-v with selftests (with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y)
 > 
-> 
+> Regards
 > 
 
+This is a gentle ping since this serie has now, no comment to address.
+
+Regards
