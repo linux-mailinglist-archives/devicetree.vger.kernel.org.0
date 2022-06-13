@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 010C8549FF2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 22:47:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28F14549FEB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 22:47:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349230AbiFMUq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 16:46:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49532 "EHLO
+        id S1348593AbiFMUq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 16:46:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350986AbiFMUqS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 16:46:18 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B63B6335
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 12:57:35 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id g16-20020a17090a7d1000b001ea9f820449so5166922pjl.5
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 12:57:35 -0700 (PDT)
+        with ESMTP id S1350850AbiFMUqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 16:46:15 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B179C63AB
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 12:57:37 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id i1so5970486plg.7
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 12:57:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=pensando.io; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=CxeTCAcTP8AUI8T+Y1RRaiE90Utk4Y2UEreNjJtF518=;
-        b=K/v2jO5IdTe/h76LE2Jxy/tvRZn9AmCccVf1AkXLWlMIzbkmxYm/ZwgFbNO6+3O/Kt
-         4V9MpxjJroIQakw44BkG+KTieiewz5bO7dRHXDEYbW2tFWdQITQLEFjkVgAgZ++w3zb3
-         yQ+q0XcGD9QYgULfH+JLrJSAajGFvEvYoFa98mhY72p+MamwyB57K4GpYYQK7hqwOIWw
-         GxxplsF/k6yXLLYJLUdbfWE7FYArvAyiFDSlvX3GjiDAqFHAQUD9anUbzfRM7jJ3VuHK
-         rRt50hbqOH9hhJjNwcJWT8Nait8EO2Mt3MiqE6MXiqHbK1X2Lj1c0ICx66Z5Xo82ZRC5
-         ysjA==
+        bh=9XPhK7Tm81pQe79Pw/2MjwDbiQKz3NoZ1HTS8NF7C1c=;
+        b=F2qUogG4H3Jjl3npZp4G8zxj5VwYoGiLao3dgfGymTrX/oAPiQGn3mOFB8Aa+UMNwu
+         v5Z6W9i6W2Ot5rqZv1adfZJvS9wJeIJRXo0fLayHSnF3cdRyizVd1eLWixP1qNIGAgvo
+         9FLcJJNs7V8bAmdG1+/ecJnhty4JBvUL7BpTNgGuOzjg1TjtbBBdwKIC4Ntc2rq7i4wr
+         07z7+uOBedF97bHLPZMM3Cvf3yill2Qqzzw9K4W9d/uMKsboEDcDYKfRx8wBv9a3Zfso
+         rpkToSmUyp7c+W9K4ELOXeHFnqufW+HuupcJ2eCtpXsaP9qXCKdZtijdplpw3jtk3J3V
+         hZIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=CxeTCAcTP8AUI8T+Y1RRaiE90Utk4Y2UEreNjJtF518=;
-        b=7BCK0vzdsh9+A42bPFzWhJhOYbY9GukhV2EShDsqyb3bgtXBUlqezDCGdHZxMNaxqn
-         4BcxtGDRD0UTqkn55YcrB1MmJdBk04ngq3q6NoI4kQr8rqmrOgvt4de1TWIrA+QJMGE3
-         v2tIUQQ6aJWd+9qwj/roKHIE5LHPe5O/co0qTWFUfsY06jeUHc57O49iDPSXked47vy3
-         CV/8bIoO3tfMpGummYQ9rUULCVg2o3N0ULA7nVmvFpaFm6OP2ANDGRwf7J0SsOEgwX3l
-         2Gmz/VG2Mmo88zpYu3ZUUT9MfJ6DByJe2dRFCW21uryJsncR58R58PA5ac/+I+1LYxOv
-         aF7w==
-X-Gm-Message-State: AJIora9F798S9HEGyyXjSDpJffH/7XW7i2APmbiWbj17IdpcfgGIMMIa
-        jtsDPK0ra9/D3X6QFF5271aCYQ==
-X-Google-Smtp-Source: AGRyM1uaxRjzT8MWjnK6bWvdvwkw+v6UKaPUZDECQDILWdwJMIHOst5z4ufQem0zzfJHU5KaXms+Sw==
-X-Received: by 2002:a17:902:a613:b0:168:a216:f3ff with SMTP id u19-20020a170902a61300b00168a216f3ffmr584840plq.21.1655150254961;
-        Mon, 13 Jun 2022 12:57:34 -0700 (PDT)
+        bh=9XPhK7Tm81pQe79Pw/2MjwDbiQKz3NoZ1HTS8NF7C1c=;
+        b=36EW8WbXU8UrwVDECmOZwRtqGGGVaLcbIJ85bBcge0OQkBlonswcP+LH0ckbGtwvCu
+         6BmNjFG4EWFRzGWsnwWry8Jeg2Fvz2CASPv3RFcc+hpceNQWjLy19I1l9A242aB7pZGf
+         UCW3CbdD9iXc3nZF6kJfw+IP3ddu58ZlqmTfdWJxW4MQ2FANhWEL86wb5Mgkn794fl/E
+         tUlE+dXb1n8ZX9a0gTxnLdSr/z1mYnfL4v30MUfBGXM/ZpOlBVdUtbRZn8If339tos4H
+         bA76qyRZ+pN5SRPsxMOkxRjo/JvM5ncVtBzG14SR/NiEQmVhDFbvUyeKe7TPO2xIZrQ4
+         7Zmg==
+X-Gm-Message-State: AJIora/LjEzWYNafmnPdJgfELhN+m6+HcHwtLm+2zCK6O8nqsDiK+VTC
+        saO5JakoEBFdoNjgMfGl62wS2g==
+X-Google-Smtp-Source: ABdhPJw44rPeyDOXLR9BU2JaWMAaNNQFCALOuvD6GgvfqdGFiGEthYrxts1XE7vjVSLg0hMvvDsPQg==
+X-Received: by 2002:a17:902:e54a:b0:166:50b6:a08b with SMTP id n10-20020a170902e54a00b0016650b6a08bmr689960plf.90.1655150257089;
+        Mon, 13 Jun 2022 12:57:37 -0700 (PDT)
 Received: from platform-dev1.pensando.io ([12.226.153.42])
-        by smtp.gmail.com with ESMTPSA id q21-20020a170902edd500b0016797c33b6csm5509357plk.116.2022.06.13.12.57.32
+        by smtp.gmail.com with ESMTPSA id q21-20020a170902edd500b0016797c33b6csm5509357plk.116.2022.06.13.12.57.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jun 2022 12:57:34 -0700 (PDT)
+        Mon, 13 Jun 2022 12:57:36 -0700 (PDT)
 From:   Brad Larson <brad@pensando.io>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
@@ -60,9 +60,9 @@ Cc:     linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
         robh+dt@kernel.org, samuel@sholland.org, fancer.lancer@gmail.com,
         suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
         ulf.hansson@linaro.org, will@kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v5 06/15] dt-bindings: mfd: amd,pensando-elbasr: Add AMD Pensando Elba System Resource chip
-Date:   Mon, 13 Jun 2022 12:56:49 -0700
-Message-Id: <20220613195658.5607-7-brad@pensando.io>
+Subject: [PATCH v5 07/15] dt-bindings: reset: amd,pensando-elbasr-reset: Add AMD Pensando SR Reset Controller bindings
+Date:   Mon, 13 Jun 2022 12:56:50 -0700
+Message-Id: <20220613195658.5607-8-brad@pensando.io>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20220613195658.5607-1-brad@pensando.io>
 References: <20220613195658.5607-1-brad@pensando.io>
@@ -77,113 +77,78 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Brad Larson <blarson@amd.com>
 
-Add support for the AMD Pensando Elba SoC System Resource chip
-using the SPI interface.  The Elba SR is a Multi-function Device
-supporting device register access using CS0, smbus interface for
-FRU and board peripherals using CS1, dual Lattice I2C masters for
-transceiver management using CS2, and CS3 for flash access.
+Document bindings for AMD Pensando Elba SR Reset Controller
 
 Signed-off-by: Brad Larson <blarson@amd.com>
 ---
- .../bindings/mfd/amd,pensando-elbasr.yaml     | 93 +++++++++++++++++++
- 1 file changed, 93 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
+ .../reset/amd,pensando-elbasr-reset.yaml      | 62 +++++++++++++++++++
+ 1 file changed, 62 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/amd,pensando-elbasr-reset.yaml
 
-diff --git a/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
+diff --git a/Documentation/devicetree/bindings/reset/amd,pensando-elbasr-reset.yaml b/Documentation/devicetree/bindings/reset/amd,pensando-elbasr-reset.yaml
 new file mode 100644
-index 000000000000..13356800b1cf
+index 000000000000..03bb86ebcfd3
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
-@@ -0,0 +1,93 @@
++++ b/Documentation/devicetree/bindings/reset/amd,pensando-elbasr-reset.yaml
+@@ -0,0 +1,62 @@
 +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/mfd/amd,pensando-elbasr.yaml#
++$id: http://devicetree.org/schemas/reset/amd,pensando-elbasr-reset.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: AMD Pensando Elba SoC Resource Controller bindings
-+
-+description: |
-+  AMD Pensando Elba SoC Resource Controller bindings attached to a SPI bus.
++title: AMD Pensando Elba SoC Reset Controller Device Tree Bindings
 +
 +maintainers:
 +  - Brad Larson <blarson@amd.com>
 +
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - amd,pensando-elbasr
-+      - const: simple-mfd
++description: |
++  AMD Pensando Elba SoC reset controller driver which supports a resource
++  controller connected to the Elba SoC over a SPI bus.  The Elba reset
++  controller must be defined as a child node of the Elba SPI bus
++  chip-select 0 node.
 +
-+  spi-max-frequency:
-+    description: Maximum SPI frequency of the device in Hz.
++  See also:
++  - dt-bindings/reset/amd,pensando-elba-reset.h
++
++properties:
++  $nodename:
++    pattern: "^reset-controller@[0-9a-f]+$"
++
++  compatible:
++    const: amd,pensando-elbasr-reset
 +
 +  reg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
 +    const: 0
 +
-+  interrupts:
-+    maxItems: 1
++  '#reset-cells':
++    const: 1
 +
 +required:
 +  - compatible
 +  - reg
-+  - spi-max-frequency
-+
-+patternProperties:
-+  '^reset-controller@[a-f0-9]+$':
-+    $ref: ../reset/amd,pensando-elbasr-reset.yaml
++  - '#reset-cells'
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
 +    #include <dt-bindings/reset/amd,pensando-elba-reset.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
 +    spi0 {
 +        #address-cells = <1>;
 +        #size-cells = <0>;
 +        num-cs = <4>;
 +
 +        spi@0 {
-+          compatible = "amd,pensando-elbasr", "simple-mfd";
 +          reg = <0>;
 +          #address-cells = <1>;
 +          #size-cells = <0>;
-+          spi-max-frequency = <12000000>;
 +
 +          rstc: reset-controller@0 {
 +            compatible = "amd,pensando-elbasr-reset";
 +            reg = <0>;
 +            #reset-cells = <1>;
 +          };
-+        };
-+
-+        spi@1 {
-+          compatible = "amd,pensando-elbasr", "simple-mfd";
-+          reg = <1>;
-+          spi-max-frequency = <12000000>;
-+        };
-+
-+        spi@2 {
-+          compatible = "amd,pensando-elbasr", "simple-mfd";
-+          reg = <2>;
-+          spi-max-frequency = <12000000>;
-+          interrupt-parent = <&porta>;
-+          interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+        };
-+
-+        spi@3 {
-+          compatible = "amd,pensando-elbasr", "simple-mfd";
-+          reg = <3>;
-+          spi-max-frequency = <12000000>;
 +        };
 +    };
 +
