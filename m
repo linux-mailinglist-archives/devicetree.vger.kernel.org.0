@@ -2,155 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53F9E549E30
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:57:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0A6D549EA2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 22:11:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234195AbiFMT5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 15:57:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34218 "EHLO
+        id S1347539AbiFMULh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 16:11:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346056AbiFMT4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:56:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21A25A5015;
-        Mon, 13 Jun 2022 11:27:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5A83F61295;
-        Mon, 13 Jun 2022 18:27:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7195FC34114;
-        Mon, 13 Jun 2022 18:27:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655144873;
-        bh=4acUEF/GtiroxdkX0QUJJTf/NNYdtRPoMippfdF+Tbs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=aEcS3c5PuXqEnaTpZNKg40R3God3d+LK8yPhQQejAGjRW1qBwC32okVmksKg2N2+z
-         yofbKTOOIypSFItFnYzAA1W79a9xS2NBzZLYopWs2Nr4x8FhfqjGrfTXjFKP5hPHPc
-         SAD1t6ahlh9v5DCGkHYm629+mfQETe8iketrGHBBTGoxehe9P2+H/DRZdJsGBGxJ9b
-         /DIXDBa6qIdjJ8jkJ6iNWbzHMGV3fBBub3ItPHhQEAhcnE3kcwKfWRFPCFSvozpIck
-         /Ot+ri4rcFjzH0npaiOlzwZ0zY/ajcIScCJTpHOwdu69UtJeEtA2PpBlOMUrJU66gw
-         SCYoOfOmuqNHQ==
-Message-ID: <d933f30b-4d53-eb97-d029-1c321ba84b62@kernel.org>
-Date:   Mon, 13 Jun 2022 21:27:45 +0300
+        with ESMTP id S1350321AbiFMULO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 16:11:14 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A52CF248C2
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 11:45:27 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id u12so12815210eja.8
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 11:45:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=VaLdCxxT6H+yQ21ljsJJCI0JVFTWEh1IT2eBGtm6sxQ=;
+        b=S6NqncN/YXd30wanyiEv+b6a2+ZEMsmeF7R9zzNKWzfk7RIhY7zN78xibXL/hVvPaB
+         avceTYyGLjnY7Vkjsls+vFkjOFQ/T1K9Ut7dtOc4bFM1Tj6grA5Bp2uqrfqPcjkrfIlI
+         7OT2beBKLq4rcY7jmVkrMsSjNN6aVKzDo2xSfMUbyp5eGvlZza28XnYheqbVrkEaiBnX
+         leZRnqHq2395PSYvIE7u6qQ7JT/1+wFWKPOc3J5QJnEs/YNKQ3oUgfvlJGVgp8ugO6zI
+         lvWJ6ACLNAaUa6Uy8S6M9LxI24baxd1BX9S25xzKC1uLXdHZ6QeUJdI6H5VlS2IOPexH
+         TLnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=VaLdCxxT6H+yQ21ljsJJCI0JVFTWEh1IT2eBGtm6sxQ=;
+        b=NEABBIhOhpp2dsfmDmE7WuxeDX7In8scU+PhGabzeceODutax321kPHyaXJxpdawND
+         Yv7ZeD5GOgSvvUnPJyQvalacDp6JDV1yHi9ogmZG++7WIAWEhRjwg+s8jWLNY8HnCKCS
+         IISIuFD4fBk9yRAiKzeBFe1xGCKjJGO+xuMNdObjkHjrGKe7V2M7x2mpeUfnEsusXEZK
+         AtMt0QkD5axNHOEnQavgN4x3VtfhAsTcTGCz/rYNa4di1AjWv00X6UKcoTdzbsxIp0ut
+         YYwe3PJw32xgDzG6rJBh2WbwTWd7NgTYiv543WtBzqOIplmRwP18msS5jsEL5AcJMkvg
+         cNZA==
+X-Gm-Message-State: AOAM533CVI2J6jOQR6M1aycyxmPkXIBznIEVDXICJ9WaE7I55msGI2Jw
+        /dr/u9ibUUkvlyasvdsIzrPwYvQ27/3AsnOmcPc=
+X-Google-Smtp-Source: AGRyM1v1kgalZ4cDqllYMJdEpdCuLfZBjtSIr/ovN0ScA4MUhBOvvQITVRjZX5l1G+B6HUZxPlBo990TBmu6/i2/DCo=
+X-Received: by 2002:a17:907:724c:b0:711:d0bc:2369 with SMTP id
+ ds12-20020a170907724c00b00711d0bc2369mr1022379ejc.23.1655145925803; Mon, 13
+ Jun 2022 11:45:25 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/8] interconnect: add device managed bulk API
-Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, abel.vesa@nxp.com,
-        abailon@baylibre.com, l.stach@pengutronix.de,
-        laurent.pinchart@ideasonboard.com, marex@denx.de,
-        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
-        aford173@gmail.com
-Cc:     kernel@pengutronix.de, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-References: <20220601094156.3388454-1-peng.fan@oss.nxp.com>
- <20220601094156.3388454-3-peng.fan@oss.nxp.com>
-From:   Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <20220601094156.3388454-3-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Sender: ahaijout@gmail.com
+Received: by 2002:a05:6f02:63a8:b0:1e:3602:3b25 with HTTP; Mon, 13 Jun 2022
+ 11:45:24 -0700 (PDT)
+From:   "Mrs. Aisha Gaddafi" <aishagaddaf95@gmail.com>
+Date:   Mon, 13 Jun 2022 11:45:24 -0700
+X-Google-Sender-Auth: 7OlriW6jI9hx4BBFMKUGCGd6hn8
+Message-ID: <CAOCce-z9VDMEnvKKgOL_btsmcYgvcmDXt7qXk869LwcAFv77EQ@mail.gmail.com>
+Subject: hi
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=2.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLY,
+        LOTS_OF_MONEY,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_HK_NAME_FM_MR_MRS,T_SCC_BODY_TEXT_LINE,UNDISC_MONEY autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng,
-
-Thanks for the patches!
-
-On 1.06.22 12:41, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add device managed bulk API to simplify driver.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->   drivers/interconnect/bulk.c  | 34 ++++++++++++++++++++++++++++++++++
->   include/linux/interconnect.h |  6 ++++++
->   2 files changed, 40 insertions(+)
-> 
-> diff --git a/drivers/interconnect/bulk.c b/drivers/interconnect/bulk.c
-> index 448cc536aa79..4918844bfe0d 100644
-> --- a/drivers/interconnect/bulk.c
-> +++ b/drivers/interconnect/bulk.c
-> @@ -115,3 +115,37 @@ void icc_bulk_disable(int num_paths, const struct icc_bulk_data *paths)
->   		icc_disable(paths[num_paths].path);
->   }
->   EXPORT_SYMBOL_GPL(icc_bulk_disable);
-> +
-> +struct icc_bulk_devres {
-> +	struct icc_bulk_data *paths;
-> +	int num_paths;
-> +};
-> +
-> +static void devm_icc_bulk_release(struct device *dev, void *res)
-> +{
-> +	struct icc_bulk_devres *devres = res;
-> +
-> +	icc_bulk_put(devres->num_paths, devres->paths);
-> +}
-> +
-> +int devm_of_icc_bulk_get(struct device *dev, int num_paths, struct icc_bulk_data *paths)
-
-Adding a kerneldoc would be nice.
-
-> +{
-> +	struct icc_bulk_devres *devres;
-> +	int ret;
-> +
-> +	devres = devres_alloc(devm_icc_bulk_release, sizeof(*devres), GFP_KERNEL);
-> +	if (!devres)
-> +		return -ENOMEM;
-> +
-> +	ret = of_icc_bulk_get(dev, num_paths, paths);
-> +	if (!ret) {
-> +		devres->paths = paths;
-> +		devres->num_paths = num_paths;
-> +		devres_add(dev, devres);
-> +	} else {
-> +		devres_free(devres);
-> +	}
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(devm_of_icc_bulk_get);
-> diff --git a/include/linux/interconnect.h b/include/linux/interconnect.h
-> index f685777b875e..1a5fdf049edd 100644
-> --- a/include/linux/interconnect.h
-> +++ b/include/linux/interconnect.h
-> @@ -44,6 +44,7 @@ struct icc_path *icc_get(struct device *dev, const int src_id,
->   			 const int dst_id);
->   struct icc_path *of_icc_get(struct device *dev, const char *name);
->   struct icc_path *devm_of_icc_get(struct device *dev, const char *name);
-> +int devm_of_icc_bulk_get(struct device *dev, int num_paths, struct icc_bulk_data *paths);
->   struct icc_path *of_icc_get_by_index(struct device *dev, int idx);
->   void icc_put(struct icc_path *path);
->   int icc_enable(struct icc_path *path);
-> @@ -116,6 +117,11 @@ static inline int of_icc_bulk_get(struct device *dev, int num_paths, struct icc_
->   	return 0;
->   }
->   
-> +int devm_of_icc_bulk_get(struct device *dev, int num_paths, struct icc_bulk_data *paths)
-
-Please make this static inline. The rest looks good!
-
-Thanks,
-Georgi
-
-> +{
-> +	return 0;
-> +}
-> +
->   static inline void icc_bulk_put(int num_paths, struct icc_bulk_data *paths)
->   {
->   }
-
+-- 
+Please i need your kind Assistance. I will be very glad if you can assist
+me to receive this sum of ( $8.5 Million US dollars.) into your bank
+account, my name is  princess mercy i am 21years,i need who will help
+me save  this fund,
+i lost my father and only brother,
+Please contact me through my private email:(princessmercy68@yahoo.com),
+ for more information
