@@ -2,189 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 859FF549C12
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:47:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B19C549C05
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:44:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244193AbiFMSrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 14:47:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51874 "EHLO
+        id S1344715AbiFMSot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 14:44:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344214AbiFMSr2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:47:28 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4E6D4D9EA6;
-        Mon, 13 Jun 2022 08:06:11 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.91,297,1647270000"; 
-   d="scan'208";a="122769637"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 14 Jun 2022 00:06:10 +0900
-Received: from localhost.localdomain (unknown [10.226.93.20])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 6579642130CE;
-        Tue, 14 Jun 2022 00:06:07 +0900 (JST)
-From:   Phil Edworthy <phil.edworthy@renesas.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S1344877AbiFMSoZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:44:25 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59F0CDE316;
+        Mon, 13 Jun 2022 08:17:54 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id m125-20020a1ca383000000b0039c63fe5f64so3311257wme.0;
+        Mon, 13 Jun 2022 08:17:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:from:to:cc:subject:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=CxEVhulkT4pSVVwXU2sr40U8DsgeEjl1fZ9K8bvOkec=;
+        b=EkqGJhO7UoEpuADq42dtRnnUgh+XctbfGO+G58/gw4a8XBXDu1pbvpzkP2jaapAeQ3
+         YHmDhLDmrNJbm2rtIVjeoctWIilnBWH4rWcpyoYoYekw2GYv1bWM9Dql6BRxyvy65c9o
+         nzNwkfdRxQhV3uAKErZbX6+19lp2/qjfdvsHE36m3dpP72v/3tbx7+WKsg3Ny7sH5Hay
+         QV6f4DDBxWI/N6KP0yrHMN/Li2ghHIcQJLWfkqnEq4acijU4WPChWjRTvBxGsVyYKx8v
+         Ry17rDs4mVWtEsArjMioo9Fw1j7w4of6QtKDzVg5saSEzePQnZ12IC56/BvKEfpG9twO
+         My7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=CxEVhulkT4pSVVwXU2sr40U8DsgeEjl1fZ9K8bvOkec=;
+        b=tk/5S5ATiCcwI5ag0SkirHQ0rArwfr1ZLa1hPBPDcbdee1uLGq9Cvjx1WnbZdTd3rq
+         tO94OO3m33QNzBwd4TGiYVqGGLRhQmMX2DdsnvowQcLN+011I+/0doBJu7BYUG20iLnA
+         3Y1vo3+4ynWkgPOXi0cWOMf7q4O7L/eNXrNDifZO9kzeABM7SEDyfhuaZ+GIU2THXTLX
+         WR2S/dPV56AP+unwfQjxHxpdCkJ0LHJbBIUH/vS9waei++3CtJy+3ttCvApah0FbG/8w
+         yNOIFCS0qghm5RJ3/tqNC9jeAxglq7lWiV/KqTYr2app+M1nQdvYJXqfjHA8mYOw9z2g
+         fz+A==
+X-Gm-Message-State: AOAM530m5otx7DhVjtWV0DQNrrlK028/2vk4rI5qDCrtr71M300xE1fV
+        cY1XUsBpKoSNR752gP528JY=
+X-Google-Smtp-Source: ABdhPJzZYU2kxK4eUimUtj60AQJ4K9MdzwxUjqic6Ph/tmfCfIaqYIL7wGT2YEi+7lwHQXZOX6UcFA==
+X-Received: by 2002:a1c:cc05:0:b0:39c:7477:3f24 with SMTP id h5-20020a1ccc05000000b0039c74773f24mr15369449wmb.190.1655133472561;
+        Mon, 13 Jun 2022 08:17:52 -0700 (PDT)
+Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.gmail.com with ESMTPSA id m4-20020a056000008400b002102cc4d63asm10595788wrx.81.2022.06.13.08.17.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jun 2022 08:17:52 -0700 (PDT)
+Message-ID: <62a75520.1c69fb81.8de59.2dc6@mx.google.com>
+X-Google-Original-Message-ID: <YqdUc1oAxxgRyLzC@Ansuel-xps.>
+Date:   Mon, 13 Jun 2022 17:14:59 +0200
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Manivannan Sadhasivam <mani@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: [PATCH v2 1/2] dt-bindings: watchdog: renesas,wdt: Add r9a09g011 (RZ/V2M) support
-Date:   Mon, 13 Jun 2022 16:05:49 +0100
-Message-Id: <20220613150550.70334-2-phil.edworthy@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220613150550.70334-1-phil.edworthy@renesas.com>
-References: <20220613150550.70334-1-phil.edworthy@renesas.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] mtd: nand: raw: qcom_nandc: reorder
+ qcom_nand_host struct
+References: <20220609132344.17548-1-ansuelsmth@gmail.com>
+ <20220609132344.17548-2-ansuelsmth@gmail.com>
+ <20220609170722.GA5081@thinkpad>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220609170722.GA5081@thinkpad>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the documentation for the r9a09g011 SoC, but in doing so also
-reorganise the doc to make it easier to read.
-Additionally, make the binding require an interrupt to be specified.
-Whilst the driver does not need an interrupt, all of the SoCs that use
-this binding actually provide one.
+On Thu, Jun 09, 2022 at 10:37:22PM +0530, Manivannan Sadhasivam wrote:
+> On Thu, Jun 09, 2022 at 03:23:42PM +0200, Ansuel Smith wrote:
+> > Reorder qcom_nand_host to save holes in the struct.
+> 
+> You forgot to reorder other structs also as I requested :/
+> 
+> Thanks,
+> Mani
+>
 
-Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2:
- - Added minItems for interrupt-names and clock-names
----
- .../bindings/watchdog/renesas,wdt.yaml        | 71 ++++++++++++-------
- 1 file changed, 47 insertions(+), 24 deletions(-)
+Hi, I run this commit with pahole tools and it didn't reorder anything
+else aside from what i already reordered. Am I missing something here?
 
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-index a8d7dde5271b..7bb6ca6af882 100644
---- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-@@ -31,6 +31,11 @@ properties:
-               - renesas,r9a07g054-wdt    # RZ/V2L
-           - const: renesas,rzg2l-wdt
- 
-+      - items:
-+          - enum:
-+              - renesas,r9a09g011-wdt    # RZ/V2M
-+          - const: renesas,rzv2m-wdt     # RZ/V2M
-+
-       - items:
-           - enum:
-               - renesas,r8a7742-wdt      # RZ/G1H
-@@ -70,13 +75,29 @@ properties:
-   reg:
-     maxItems: 1
- 
--  interrupts: true
--
--  interrupt-names: true
--
--  clocks: true
--
--  clock-names: true
-+  interrupts:
-+    minItems: 1
-+    items:
-+      - description: Timeout
-+      - description: Parity error
-+
-+  interrupt-names:
-+    minItems: 1
-+    items:
-+      - const: wdt
-+      - const: perrout
-+
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: Register access clock
-+      - description: Main clock
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: pclk
-+      - const: oscclk
- 
-   power-domains:
-     maxItems: 1
-@@ -89,6 +110,7 @@ properties:
- required:
-   - compatible
-   - reg
-+  - interrupts
-   - clocks
- 
- allOf:
-@@ -113,31 +135,30 @@ allOf:
-           contains:
-             enum:
-               - renesas,rzg2l-wdt
-+              - renesas,rzv2m-wdt
-     then:
-       properties:
--        interrupts:
--          maxItems: 2
--        interrupt-names:
--          items:
--            - const: wdt
--            - const: perrout
-         clocks:
--          items:
--            - description: Register access clock
--            - description: Main clock
-+          minItems: 2
-         clock-names:
--          items:
--            - const: pclk
--            - const: oscclk
-+          minItems: 2
-       required:
-         - clock-names
--        - interrupt-names
--    else:
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rzg2l-wdt
-+    then:
-       properties:
-         interrupts:
--          maxItems: 1
--        clocks:
--          maxItems: 1
-+          minItems: 2
-+        interrupt-names:
-+          minItems: 2
-+      required:
-+        - interrupt-names
- 
- additionalProperties: false
- 
-@@ -145,9 +166,11 @@ examples:
-   - |
-     #include <dt-bindings/clock/r8a7795-cpg-mssr.h>
-     #include <dt-bindings/power/r8a7795-sysc.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-     wdt0: watchdog@e6020000 {
-             compatible = "renesas,r8a7795-wdt", "renesas,rcar-gen3-wdt";
-             reg = <0xe6020000 0x0c>;
-+            interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-             clocks = <&cpg CPG_MOD 402>;
-             power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
-             resets = <&cpg 402>;
+> > 
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > ---
+> >  drivers/mtd/nand/raw/qcom_nandc.c | 10 ++++++----
+> >  1 file changed, 6 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
+> > index 1a77542c6d67..7fbbd3e7784c 100644
+> > --- a/drivers/mtd/nand/raw/qcom_nandc.c
+> > +++ b/drivers/mtd/nand/raw/qcom_nandc.c
+> > @@ -431,11 +431,12 @@ struct qcom_nand_controller {
+> >   *				and reserved bytes
+> >   * @cw_data:			the number of bytes within a codeword protected
+> >   *				by ECC
+> > + * @ecc_bytes_hw:		ECC bytes used by controller hardware for this
+> > + *				chip
+> > + *
+> >   * @use_ecc:			request the controller to use ECC for the
+> >   *				upcoming read/write
+> >   * @bch_enabled:		flag to tell whether BCH ECC mode is used
+> > - * @ecc_bytes_hw:		ECC bytes used by controller hardware for this
+> > - *				chip
+> >   * @status:			value to be returned if NAND_CMD_STATUS command
+> >   *				is executed
+> >   * @last_command:		keeps track of last command on this chip. used
+> > @@ -452,11 +453,12 @@ struct qcom_nand_host {
+> >  	int cs;
+> >  	int cw_size;
+> >  	int cw_data;
+> > -	bool use_ecc;
+> > -	bool bch_enabled;
+> >  	int ecc_bytes_hw;
+> >  	int spare_bytes;
+> >  	int bbm_size;
+> > +
+> > +	bool use_ecc;
+> > +	bool bch_enabled;
+> >  	u8 status;
+> >  	int last_command;
+> >  
+> > -- 
+> > 2.36.1
+> > 
+> 
+> -- 
+> மணிவண்ணன் சதாசிவம்
+
 -- 
-2.34.1
-
+	Ansuel
