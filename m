@@ -2,85 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6066549DC0
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:31:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 726A5549DCF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:36:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350043AbiFMTbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 15:31:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34554 "EHLO
+        id S242051AbiFMTg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 15:36:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349240AbiFMTae (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:30:34 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D4B43AA7B;
-        Mon, 13 Jun 2022 10:55:52 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id g15so3212801qke.4;
-        Mon, 13 Jun 2022 10:55:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=1Pc6hRYC4rxtooxyM7/YSQoCVphSsBsKYzZCiGbgBwo=;
-        b=NHedRiTOluSlKdlkfloHbszUpNhcsUAob4OQWchXPrS15ln7j81SEaRx0j82fIhGS2
-         BB3B7mPS9wILuicHE4AwhdoKIf5TkbEkeStrcQ7JNQ1+eyXeDGqIleGe6N+ShB1/WvpL
-         TxqdkIBcJfkjeajA01l4484kk3K6bxW5bwU+WvQLB1mSX12yKcO7zh8qwG4sQ4G5JGx9
-         hF6hKEroFguQBgV3o4d0BY25fmhHSEVz9JZrL/WfkVfPi0zRdfaeFHb5UC1lkOGteEPu
-         A01+pgg7zzXCyiaUDXTrEbvtIqTrXfxSEoAERt9SO7YUmLMDOYNKcO2iY5yi54tqjxw5
-         aFhw==
+        with ESMTP id S241245AbiFMTgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:36:12 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 023793FDB3;
+        Mon, 13 Jun 2022 11:03:21 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id p1so4826308ilj.9;
+        Mon, 13 Jun 2022 11:03:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1Pc6hRYC4rxtooxyM7/YSQoCVphSsBsKYzZCiGbgBwo=;
-        b=eXoau6I2ZLnYBK8emDez6j99t0SwMJtDvfLdYWiqyP9QLdBA6KLvEtnKTGulcjSVZ8
-         i3z41d4snTbgwlGob1BZiS9osqcO48cyWbwsZb2r4JXMuHGVwO5C+V6pYM3DQEhDcPHX
-         cIqMQGdEGRWEcNZRi80vEsSiZ6JYP5g4ZKmRLiqYgNAn73j0+7Sq+1KUBTANed9Jqj+m
-         /feNyJRHPy5654ovC6ZrunkrpFJRv/WIgVdkYFzFu6rV9dtYZR9bwvZx3FeikYjYArbH
-         5dx77s0t7ggO+UArK9EqNjLBKZyiQYWe6TD5VBuUMZhR0xmCtSNAmhwmLXmQ3UYhx27b
-         HjxA==
-X-Gm-Message-State: AOAM531lBSddPRYjdIhSjP8Q/hsHT/iXB+Xjd5AtnsUaiMaHtYlq+byC
-        IykCi1CsWSEcFTUuhOIW3ek=
-X-Google-Smtp-Source: ABdhPJyQlPebYQo8foZhKRh7sqp7VBuXiVEpt3Q7DGxRzs+fqeIulnUb+A7p+UEUAl9zsgK8dDMq0A==
-X-Received: by 2002:a05:620a:24d4:b0:6a7:1d74:d8e6 with SMTP id m20-20020a05620a24d400b006a71d74d8e6mr915132qkn.379.1655142950966;
-        Mon, 13 Jun 2022 10:55:50 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id u16-20020a05620a0c5000b006a785ba0c25sm4437788qki.77.2022.06.13.10.55.49
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=oHzia+bhaBA7DMXVkKIrTmOmhwAsD0Y7KThGYZ8Hdc4=;
+        b=v7TbA+Nz78VTC/4yKG1e+Zp2e1pWPUTnBI/vhWqgJyZokJVUsFuTd2vKuuQ0UlPltx
+         Aw8uGHYpeqza/aRWnX2SD3ZrNuY3zQvbg88HYUdnUQh+Gq5PiT8e2fi8tQMPCz5Dq6ZH
+         JmwFTTF9/S6yxyo1k8uyP8mgZ/Lzeuiby3wwZzf+gG9MFenAyV4cQGZ9HS1i8/rd0qJW
+         o0KJr/Kmit5eUUx2qec34iiyDx4GtL2xlYFduk7IBM9K4Y5DxiZpVWoO+PyfVmq+O9lo
+         2EtP9bddITJUTkg4zIzyRPEQiUPH9DEYyOLWxxAkJHeEeSlp3mXXin556VweUBpSth4e
+         ZAIQ==
+X-Gm-Message-State: AJIora9U4g0AdCuK9grGUhNgeLyV54+n8p7a6ASJjkauUu3JuAxbMBtJ
+        +/kX+UX9P+74eRWanHOMMA==
+X-Google-Smtp-Source: AGRyM1sAK2tNW0/E5Y94TDRjcKisI2L7QGgHIU7/awk1+gkGynbDfPu/INUy24XIlHKadZ/NU5nSIg==
+X-Received: by 2002:a05:6e02:1b0c:b0:2d3:bfdf:e3c5 with SMTP id i12-20020a056e021b0c00b002d3bfdfe3c5mr631830ilv.138.1655143400248;
+        Mon, 13 Jun 2022 11:03:20 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id c2-20020a92c8c2000000b002d11397f4f9sm4191996ilq.74.2022.06.13.11.03.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jun 2022 10:55:50 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Mon, 13 Jun 2022 11:03:19 -0700 (PDT)
+Received: (nullmailer pid 3990444 invoked by uid 1000);
+        Mon, 13 Jun 2022 18:03:18 -0000
+Date:   Mon, 13 Jun 2022 12:03:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     William Zhang <william.zhang@broadcom.com>
+Cc:     anand.gore@broadcom.com, samyon.furman@broadcom.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 12/48] ARM: dts: broadcom: correct gpio-keys properties
-Date:   Mon, 13 Jun 2022 10:55:47 -0700
-Message-Id: <20220613175547.245095-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220609113938.380466-3-krzysztof.kozlowski@linaro.org>
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org> <20220609113938.380466-3-krzysztof.kozlowski@linaro.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        f.fainelli@gmail.com, devicetree@vger.kernel.org,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        kursad.oney@broadcom.com, joel.peshkin@broadcom.com,
+        linux-kernel@vger.kernel.org, philippe.reynes@softathome.com,
+        tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com
+Subject: Re: [PATCH 1/3] dt-bindings: arm: Add BCM63148 SoC
+Message-ID: <20220613180318.GA3990308-robh@kernel.org>
+References: <20220610002113.14483-1-william.zhang@broadcom.com>
+ <20220610002113.14483-2-william.zhang@broadcom.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220610002113.14483-2-william.zhang@broadcom.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  9 Jun 2022 13:39:31 +0200, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> gpio-keys children do not use unit addresses.
+On Thu, 09 Jun 2022 17:21:11 -0700, William Zhang wrote:
+> Add BCM63148 SoC device tree description to bcmbca binding document.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: William Zhang <william.zhang@broadcom.com>
 > ---
+> 
+>  Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+Acked-by: Rob Herring <robh@kernel.org>
