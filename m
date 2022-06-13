@@ -2,142 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C95B5499EA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 19:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F599548D30
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 18:15:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236555AbiFMRZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 13:25:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37264 "EHLO
+        id S244600AbiFMPVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 11:21:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239269AbiFMRZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 13:25:31 -0400
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D275DA46
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 05:41:33 -0700 (PDT)
-Received: by mail-yb1-xb31.google.com with SMTP id w2so9614611ybi.7
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 05:41:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=24s+okEIr+8frZCp+e+0zEDsJWLbgNN42DapWqRqg/U=;
-        b=wweaNRnfsA2aLMCcUoLybDHhyN8pjk5uBuWZyn3ywy90Ulvdc3wuhOClABcwdlFF0z
-         CW8qwev/jsryJy9m++xp5XgFg4dJbIcACCx2E/dJNseQ9BIKiCfGcBgsXds1S/LvDuVR
-         CjdvyY3jDG7RAnfF62ogRONES21Mr9v3o1pFX8D4DQ7r6kedTRnZJWAoPp/4WsnKSquZ
-         3q9md4Ao0IT/zLgA5YUO+06rCbvAYkwV9fahSeFo+89Sk74cVLdtNJoM97FoT2oXemhR
-         w2ZSsA2SSzZKWVHlp/ZuwBk5E+IGtIqDyda3+PVVO26p+1v8h3edex++teeGtp8fuxZR
-         wSWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=24s+okEIr+8frZCp+e+0zEDsJWLbgNN42DapWqRqg/U=;
-        b=RO4zrrL/EnsNktovMBK+l4l+Et/vQd8W+MgoZlifR4IwpeX+FFfD4bmkPZfk8sdNNX
-         FwCD1VffMxnC37s1sggMQbzCjI2xp2nglvKjEYMr+Q0Yibu8C7oriYYZaLfSJyBE+d4u
-         1xyrlU+izMGTCpVDqHLeb+QnNE0ckxoMJ8puKfsBcGK0FgYNFxA3m9c7xkskNHMdU3Yh
-         BLlKADE6OY5VuEOl+Z3VB6Wj0nZZF+HQh1wF3LUIGvqboKSRLy+/5jsz65QYGiImVoIW
-         nsTbXa6fJGSYInPy1cjWjWxv4wuU2w8HPZvo4NTsu1KCgYV5KgftMUbGugjGqwG81hBr
-         PNAw==
-X-Gm-Message-State: AOAM53033SVuwaEz8XakfipRAZ4ENC+l+9zR+5TomualmMKDjFOmPcmx
-        RNkw61ZVHgTeFz57F3b07PKtuGfCe+st3FEqqT7R/Q==
-X-Google-Smtp-Source: ABdhPJzq8ObTdRvrg3KeDgeBHDlgX67xjddWEjh3SgADP1H43aepYKAtYgXrAh4O45qLJnKn9e/2eKeOF3/+RKb2m9o=
-X-Received: by 2002:a25:cec6:0:b0:65c:98f5:a06a with SMTP id
- x189-20020a25cec6000000b0065c98f5a06amr58114814ybe.355.1655124092193; Mon, 13
- Jun 2022 05:41:32 -0700 (PDT)
+        with ESMTP id S242503AbiFMPVA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 11:21:00 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59B3312F0D2;
+        Mon, 13 Jun 2022 05:47:10 -0700 (PDT)
+Received: from [10.10.0.109] (unknown [186.189.224.65])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: adalessandro)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9A75C66015BE;
+        Mon, 13 Jun 2022 13:47:04 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1655124428;
+        bh=57qBytTfgYArCi7OQkHwm8tHdu4tMguIIFNnrR6lAiA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=CavIbQ/X+EB8IPUuRvUIv/aBeGr+ViCz0T/8yLav8mwNynNt8Lo8syg8VcccGBAaK
+         fWcu7Usu208oAMEnEMO2eVaXjGlyv5q4TskPYS6lgOGxjPfPqB9uSOGNfGNOPLhwkk
+         FVQoOBYTnR1AdfczuWFJAXIiM/xsCTHNJABJbampe4KibeAO6NazI8x32KAI+QuvDF
+         JySMXoCuv05SncucIwhFH1kx2oE69KzW2x0Wop0Taby+RGZgYf9GLHoH7jXdITuqL2
+         +TGxioM5j30FmJteGniLqVzRi2fmnkZ0yUS63oTnyQjIbGZFrUpWbqnw58NoNvykNO
+         j09J+4MdLcnpg==
+Message-ID: <f83690bb-5513-db87-2d97-7cbd981aa0f7@collabora.com>
+Date:   Mon, 13 Jun 2022 09:46:58 -0300
 MIME-Version: 1.0
-References: <20220316200633.28974-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMSo37US03pKhPR=a1sJnWMF6L+WDvhWz469G=+0XY2WX-p=bg@mail.gmail.com> <CA+V-a8t2w14bJVCiiHQq8bwgetw5za1-t_OSfyr6Cwo4eZOt2Q@mail.gmail.com>
-In-Reply-To: <CA+V-a8t2w14bJVCiiHQq8bwgetw5za1-t_OSfyr6Cwo4eZOt2Q@mail.gmail.com>
-From:   Yongqin Liu <yongqin.liu@linaro.org>
-Date:   Mon, 13 Jun 2022 20:41:21 +0800
-Message-ID: <CAMSo37V4ye8wb_ctKQO0QE6QCJXUEaPC1-27911zCcXHN-+C2Q@mail.gmail.com>
-Subject: Re: [RFC PATCH] of/platform: Drop static setup of IRQ resource from
- DT core
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH] ARM: dts: bcm2711-rpi-4-b: Use aliases to set custom MMC
+ device index
+Content-Language: en-US
+To:     Peter Robinson <pbrobinson@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        gbcm-kernel-feedback-list@broadcom.com,
+        gkrzysztof.kozlowski+dt@linaro.org, gnsaenz@kernel.org,
+        grobh+dt@kernel.org, nsaenz@kernel.org, stefan.wahren@i2se.com
+References: <20220608123233.13439-1-ariel.dalessandro@collabora.com>
+ <CALeDE9PR80qS63wwAKB-hENWbEj1xNHj+k81tyWkPPfZ0TS8Pw@mail.gmail.com>
+From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+In-Reply-To: <CALeDE9PR80qS63wwAKB-hENWbEj1xNHj+k81tyWkPPfZ0TS8Pw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Lad
+Hi Peter,
 
-Thanks a lot for the links and suggestions!
-Finally I resolved the problem with the call of
-platform_get_irq_byname and irq_get_trigger_type.
+On 6/12/22 17:38, Peter Robinson wrote:
+> On Wed, Jun 8, 2022 at 1:35 PM Ariel D'Alessandro
+> <ariel.dalessandro@collabora.com> wrote:
+>>
+>> Add MMC aliases to ensure that the /dev/mmcblk ID for SD card won't
+>> change depending on the probe order of the MMC drivers.
+> 
+> Is  the bcm2711-rpi.dtsi a better place for it given there's other
+> aliases there and it will be consistent across variations?
 
-Btw, I just have a question about  the of_irq_to_resource function.
-At the beginning I tried to use platform_get_irq and of_irq_to_resource
-to get the irq name and flags information, but it seems of_irq_to_resource
-does not work as expected, maybe I called incorrectly somewhere,
-here I just want to ask, do you think that if of_irq_to_resource still
-could be used to
-get the resource with the irq returned from platform_get_irq?
+Yes, indeed, it makes sense moving it to bcm2711-rpi.dtsi
 
+The other board what will be affected by this alias is the Raspberry Pi
+Compute Module 4 IO Board, on which emmc2 is the eMMC. However, the
+alias makes sense, to have that as the first mmc device.
 
-Thanks,
-Yongqin Liu
+Maybe we can add the alias as follows?
 
-On Sat, 11 Jun 2022 at 16:01, Lad, Prabhakar <prabhakar.csengg@gmail.com> wrote:
->
-> Hi Yongqin,
->
-> On Sat, Jun 11, 2022 at 6:28 AM Yongqin Liu <yongqin.liu@linaro.org> wrote:
-> >
-> > Hi, Lad
-> >
-> > # sorry for the confusion if you have received it before with the
-> > non-plain-text mode
-> >
-> > In this change you said "all the DT drivers have switched to
-> > platform_get_irq()",
-> > could you please help share with me one example about the above change
-> > as reference?
-> The change is we just switch to using platform_get_irq() [0] for
-> fetching IRQ numbers.
->
-> > We have one hikey960 android build with some out of tree changes,
-> > which could not boot
-> > successfully with some errors on surfaceflinger(I am not sure it's a
-> > problem with the gpu or display),
-> > but could boot if I have this change reverted.
-> >
-> > I guess it needs some changes on the gpu/display dts or driver side to
-> > have it work
-> Just the changes to the driver is needed.
->
-> > with this change, not sure if you could give some suggestions on the fix.
-> >
-> > And here are two out of tree changes might be related listed here just
-> > for reference in case:
-> > https://android-review.linaro.org/c/kernel/common/+/21680
-> > https://android-review.linaro.org/c/kernel/common/+/21682
-> >
->
-> [0] https://lore.kernel.org/lkml/20211221213547.1553-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
->
-> Cheers,
-> Prabhakar
+    mmc0 = &emmc2;  /* mmcblk0 for eMMC/SD */
 
+Regards,
+Ariel
 
-
--- 
-Best Regards,
-Yongqin Liu
----------------------------------------------------------------
-#mailing list
-linaro-android@lists.linaro.org
-http://lists.linaro.org/mailman/listinfo/linaro-android
+> 
+>> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+>> ---
+>>  arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+>> index 4432412044de..780812542bad 100644
+>> --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+>> +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+>> @@ -14,6 +14,10 @@ chosen {
+>>                 stdout-path = "serial1:115200n8";
+>>         };
+>>
+>> +       aliases {
+>> +               mmc0 = &emmc2;  /* mmcblk0 for SD */
+>> +       };
+>> +
+>>         leds {
+>>                 led-act {
+>>                         gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
+>> --
+>> 2.34.1
+>>
+>>
+>> _______________________________________________
+>> linux-rpi-kernel mailing list
+>> linux-rpi-kernel@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-rpi-kernel
