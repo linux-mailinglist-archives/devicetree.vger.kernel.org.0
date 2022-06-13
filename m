@@ -2,91 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA5A154A166
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 23:30:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30E7B54A187
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 23:32:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352283AbiFMVaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 17:30:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58482 "EHLO
+        id S1352317AbiFMVcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 17:32:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235795AbiFMV36 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 17:29:58 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04A4D6409;
-        Mon, 13 Jun 2022 14:28:20 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id h1so6128232plf.11;
-        Mon, 13 Jun 2022 14:28:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gxN/w1qcbqbye494uu3kK3mI9gmlkf76QjHUX/jq0jk=;
-        b=BJ3FNM10ThOwKy5Kn0oFOLHkB770mLO87XRTWBD4hkj/4Xl/E3irXqGu9mORKR8g6/
-         3DoeZCa42weHFaJiPHGkIBiUk5sH/uXqXajDrnpnGWsYxGeoKJTqVzLdJvGkhl/BuaYw
-         bt2KaNj/6IXJUiLFppQYA/50oZ6udp/1YQSLNAyi8ku7IHQ9ERI6abdE4IuZzN0njnA0
-         TtPQBTVKd8xyXCVETzdezlX5b+H+Iq9+SjJvvLF6XhaaS/YZX6/lTcjIPUVQHvLYfROf
-         ol3Vry6HbkPpqogJrm2Ofkg90gCJNQSVPNJFY8KH2pOCRHxzCDLbwOaGiMyte9OYLk8E
-         W0DQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=gxN/w1qcbqbye494uu3kK3mI9gmlkf76QjHUX/jq0jk=;
-        b=az+wKfyBMYcNXtqYve3ahFPzXKdqZOWXStJcyjm9H6mBCEWPaFTM8RMN/NOtM6BfpC
-         yuhESyT0klZ3w9xY3sHK3txi2JuiJyRzwj+hC3WwHi9BWARV66DyYjjWj5wYmQHVi2Ea
-         EvYgf75/MMe0z8CVwgsXebukSt6fEbFuy4717MLTHBLI3gT3LD41r+2+B7tvAD5JOFBj
-         oQ8vG6ju7vK4L4zkUExerxeeUVVmRVO0IOXeH+8gzLPZ7/hKIEKo7tzpRN76+iyp4s/g
-         ZVVCU3+u7QqOOAN6SvEhSYEIZph8Sq9MgELRhoWvbwa7+g7r2vUL6LQ3HsmIviaLQLX6
-         uRKw==
-X-Gm-Message-State: AJIora8apgPWY54jgqnEBQIGV1xXmj4Y8605A0zN2b5pU8JMV+JScFnw
-        3NvQBpV5VEq55Kzlpu2oXtee1tU0DeI=
-X-Google-Smtp-Source: AGRyM1s0FiY95llbjr94fqtXJiJblkRew/GKk/iyo4JZmvI86xxmNwdWHEsptrZb3ykeJmWWx46m2Q==
-X-Received: by 2002:a17:90b:33c4:b0:1e8:6e2f:97a2 with SMTP id lk4-20020a17090b33c400b001e86e2f97a2mr740822pjb.165.1655155700326;
-        Mon, 13 Jun 2022 14:28:20 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id i17-20020a056a00225100b0051c04b1c89dsm5899252pfu.3.2022.06.13.14.28.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Jun 2022 14:28:19 -0700 (PDT)
-Message-ID: <3f59aa12-1859-1833-1742-06c0411be4ef@gmail.com>
-Date:   Mon, 13 Jun 2022 14:28:14 -0700
+        with ESMTP id S1352382AbiFMVcb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 17:32:31 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4C8F60F4
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 14:31:41 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 01ABE842F1;
+        Mon, 13 Jun 2022 23:31:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1655155899;
+        bh=lBqmzYmRPGXuthT5PbDv+cRBI6+Soivrai9vA/697xw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=DRHMxXdxpjTh+gCUivRrNKKw2HBQNOisoCfTeRDITLjGuh9gt+WIY0RcDvqZ+e2cU
+         Su2Hx2CYYCYoyIfn86MvwxvRozlV2ykrElUVn9ZcfUjWxzXvp7oZ6PC0d5gsH37vUA
+         OQUSPPleMyomowQhuc87wlmlyRFtBvvFvAobdQpNgnMpa71vCou6vxEABkzT4/L5OX
+         KlCeVEYsK8wTaw+gM5AIMgtUj0ibeBrON9pJlV+fVnYfw6nSL9nQFEuuLNnWT1HODu
+         2orQcAcV7hL+oCVfraQ8jR81WG3QJ8tW2XN6DjmSeOEBDcnM31PcqhmMfF8KvVu8PZ
+         LOA/eAE+Ga3/Q==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     robert.foss@linaro.org, Marek Vasut <marex@denx.de>,
+        Rob Herring <robh@kernel.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Robby Cai <robby.cai@nxp.com>, Sam Ravnborg <sam@ravnborg.org>,
+        Stefan Agner <stefan@agner.ch>, devicetree@vger.kernel.org
+Subject: [PATCH v5 1/2] dt-bindings: lcdif: Add compatible for i.MX8MP
+Date:   Mon, 13 Jun 2022 23:31:23 +0200
+Message-Id: <20220613213124.617021-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 0/3] arm: bcmbca: Add BCM6856 SoC support
-Content-Language: en-US
-To:     William Zhang <william.zhang@broadcom.com>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     samyon.furman@broadcom.com,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        dan.beygelman@broadcom.com, tomer.yacoby@broadcom.com,
-        philippe.reynes@softathome.com, kursad.oney@broadcom.com,
-        f.fainelli@gmail.com, anand.gore@broadcom.com,
-        joel.peshkin@broadcom.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220608180437.31971-1-william.zhang@broadcom.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220608180437.31971-1-william.zhang@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/8/22 11:04, William Zhang wrote:
-> This change adds the basic support for Broadcom's ARM64 based
-> Broadband SoC BCM6856. The initial support includes a bare-bone DTS
-> for dual core ARM A53 with a Broadcom uart. Linux kernel image can be
-> build with the ARM64 defconfig.
+Add compatible string for i.MX8MP LCDIF variant. This is called LCDIFv3
+and is completely different from the LCDIFv3 found in i.MX23 in that it
+has a completely scrambled register layout compared to all previous LCDIF
+variants. The new LCDIFv3 also supports 36bit address space. However,
+except for the complete bit reshuffling, this is still LCDIF and it still
+works like one.
 
-Series applied, thanks William!
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Robby Cai <robby.cai@nxp.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Stefan Agner <stefan@agner.ch>
+Cc: devicetree@vger.kernel.org
+---
+V2: No change
+V3: No change
+V4: No change
+V5: Add AB from Rob
+---
+ Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+index 900a56cae80e6..876015a44a1e6 100644
+--- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
++++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+@@ -20,6 +20,7 @@ properties:
+           - fsl,imx23-lcdif
+           - fsl,imx28-lcdif
+           - fsl,imx6sx-lcdif
++          - fsl,imx8mp-lcdif
+       - items:
+           - enum:
+               - fsl,imx6sl-lcdif
 -- 
-Florian
+2.35.1
+
