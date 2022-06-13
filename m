@@ -2,49 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EC2E549BA8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3640549BB3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:38:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241922AbiFMShM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 14:37:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34660 "EHLO
+        id S239653AbiFMSiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 14:38:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240410AbiFMSg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:36:56 -0400
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 837FAD19DB;
-        Mon, 13 Jun 2022 07:56:48 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id z11so4428822ilq.6;
-        Mon, 13 Jun 2022 07:56:48 -0700 (PDT)
+        with ESMTP id S244943AbiFMSh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:37:57 -0400
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27AF2D31B2;
+        Mon, 13 Jun 2022 07:57:29 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id a10so6323105ioe.9;
+        Mon, 13 Jun 2022 07:57:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=4w68Oz0WdFsRRgldOeQ5Pjd1X1lKelGqv7XShi7EebQ=;
-        b=tQRQw+ZKC4nLkjqSmYpRe6lrz0kIkHSuUhx6dO0LL6TVAWJ9sp8i3RTs3JDi+3cXKq
-         KdUjvP86041Nw4jQuzDPLlKYWL6prjsOYoXRBvQhPrJXDZkgrCxnVjkTeWimxH6bi2d8
-         MBSrgBApTkEDcph3n6OTukEBXh31t/ZXld9Ip+u2L5rUl1DaA9R+Fb/wQcQD8WCCjx1M
-         1Xp0sESDOnvgfRnWUM0B4d9kJ2c8YqFsBRLbXh/btWbBpV1o7npQQtAGmftJu3/PONU0
-         GPnN1BHy1MNwNI/Zi21db6HFLXShUF7+RFLWeQSPCQx0MaUR3KSZM8Kua9B/sCQh3YdM
-         I5cg==
-X-Gm-Message-State: AJIora+safhQIuaZPIrD36ZaG0VKUL1LFEiSfeBHzAQukbSEOQ19OKkS
-        uiSbxppNGP61cRhSDBl/cQ==
-X-Google-Smtp-Source: AGRyM1tWaOAHYCw0bAjRAC2vQHsWf0/Hg8K6igY8vBjeklRkX102W/LDsyxB1xqMjijSwT+p/hfpyA==
-X-Received: by 2002:a05:6e02:158a:b0:2d3:f1c0:6b68 with SMTP id m10-20020a056e02158a00b002d3f1c06b68mr128574ilu.38.1655132207733;
-        Mon, 13 Jun 2022 07:56:47 -0700 (PDT)
+        bh=Vf+DFErkUOgrAEhjpjh0uyrSpN6w360tMGoM1ti+yys=;
+        b=6CG+ld3pkjACJl2yk7I+NDt4ywuk+L0Br+fzzIe3U4JHoeArs6PUccbBGe05vLXl9x
+         66QtZlwiQaPOyKmBfZc+fJ8ESUkVaJi+vSpZBEFZzI0LyH9k9Voa5A1atb9awoGn4Fha
+         CGk8HdjUnmlzLjf2uCC5AJ+GS2qlD67EcotrhXFzJAR4oyWsMM0py1RXqTHU9BDYixiM
+         YJLH2cCDvS0ZXJS/wX6hvtQyO3SGD31/GhZHVr7WnAzbv6FyWjIHKhdeXURai++7KiBc
+         RvXdw9jTjtL1Azqebzrs8xjYGP2N9Is/OQ0OJDb7zNkOl5GVWWgvbnPahD2ZHxlOGJ+J
+         GDXA==
+X-Gm-Message-State: AOAM532x5GtocEsvwC3GSd4TitUtTXFs+CDhUbJ2G/Oo9tHiRSawCxxi
+        ExYO8k43YXb0cdDBEbKQpg==
+X-Google-Smtp-Source: ABdhPJzNK3lR7+aIWGt4CeK//NM/uOVYLfLtmdaCa2ptBKeLbsW/SJRNSxVYoMpUUqHSdrnJuYru0w==
+X-Received: by 2002:a05:6638:3787:b0:331:aaf5:950c with SMTP id w7-20020a056638378700b00331aaf5950cmr121036jal.118.1655132248369;
+        Mon, 13 Jun 2022 07:57:28 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.251])
-        by smtp.googlemail.com with ESMTPSA id r13-20020a056638044d00b003318c717b59sm3610860jap.39.2022.06.13.07.56.46
+        by smtp.googlemail.com with ESMTPSA id r6-20020a924406000000b002cde6e352f8sm4009929ila.66.2022.06.13.07.57.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jun 2022 07:56:47 -0700 (PDT)
+        Mon, 13 Jun 2022 07:57:28 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-To:     Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Liviu Dudau <Liviu.Dudau@arm.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: perf: Convert Arm CCN to DT schema
-Date:   Mon, 13 Jun 2022 08:55:54 -0600
-Message-Id: <20220613145554.3727354-1-robh@kernel.org>
+Subject: [PATCH v2] dt-bindings: display: Add Arm virtual platforms display
+Date:   Mon, 13 Jun 2022 08:57:09 -0600
+Message-Id: <20220613145709.3729053-1-robh@kernel.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -59,91 +64,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Arm CCN performance monitors binding to DT schema format.
+'arm,rtsm-display' is a panel for Arm, Ltd. virtual platforms (e.g. FVP).
+The binding has been in use for a long time, but was never documented.
 
+Some users and an example have a 'panel-dpi' compatible, but that's not
+needed without a 'panel-timing' node which none of the users have since
+commit 928faf5e3e8d ("arm64: dts: fvp: Remove panel timings"). The
+example does have a 'panel-timing' node, but it should not for the
+same reasons the node was removed in the dts files. So update the
+example in arm,pl11x.yaml to match the schema.
+
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Robin Murphy <robin.murphy@arm.com>
+Cc: Andre Przywara <andre.przywara@arm.com>
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/perf/arm,ccn.yaml     | 40 +++++++++++++++++++
- .../devicetree/bindings/perf/arm-ccn.txt      | 23 -----------
- 2 files changed, 40 insertions(+), 23 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/perf/arm,ccn.yaml
- delete mode 100644 Documentation/devicetree/bindings/perf/arm-ccn.txt
+v2:
+ - Make arm,rtsm-display its own schema file instead of using
+   panel-simple.
+---
+ .../bindings/display/arm,pl11x.yaml           | 15 +----------
+ .../display/panel/arm,rtsm-display.yaml       | 27 +++++++++++++++++++
+ 2 files changed, 28 insertions(+), 14 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/arm,rtsm-display.yaml
 
-diff --git a/Documentation/devicetree/bindings/perf/arm,ccn.yaml b/Documentation/devicetree/bindings/perf/arm,ccn.yaml
+diff --git a/Documentation/devicetree/bindings/display/arm,pl11x.yaml b/Documentation/devicetree/bindings/display/arm,pl11x.yaml
+index b545c6d20325..6cc9045e5c68 100644
+--- a/Documentation/devicetree/bindings/display/arm,pl11x.yaml
++++ b/Documentation/devicetree/bindings/display/arm,pl11x.yaml
+@@ -159,25 +159,12 @@ examples:
+     };
+ 
+     panel {
+-        compatible = "arm,rtsm-display", "panel-dpi";
+-        power-supply = <&vcc_supply>;
++        compatible = "arm,rtsm-display";
+ 
+         port {
+             clcd_panel: endpoint {
+                 remote-endpoint = <&clcd_pads>;
+             };
+         };
+-
+-        panel-timing {
+-            clock-frequency = <25175000>;
+-            hactive = <640>;
+-            hback-porch = <40>;
+-            hfront-porch = <24>;
+-            hsync-len = <96>;
+-            vactive = <480>;
+-            vback-porch = <32>;
+-            vfront-porch = <11>;
+-            vsync-len = <2>;
+-        };
+     };
+ ...
+diff --git a/Documentation/devicetree/bindings/display/panel/arm,rtsm-display.yaml b/Documentation/devicetree/bindings/display/panel/arm,rtsm-display.yaml
 new file mode 100644
-index 000000000000..0b0bb2091016
+index 000000000000..4ad484f09ba3
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/perf/arm,ccn.yaml
-@@ -0,0 +1,40 @@
++++ b/Documentation/devicetree/bindings/display/panel/arm,rtsm-display.yaml
+@@ -0,0 +1,27 @@
 +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/perf/arm,ccn.yaml#
++$id: http://devicetree.org/schemas/display/panel/arm,rtsm-display.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: ARM CCN (Cache Coherent Network) Performance Monitors
++title: Arm RTSM Virtual Platforms Display
 +
 +maintainers:
-+  - Robin Murphy <robin.murphy@arm.com>
++  - Linus Walleij <linus.walleij@linaro.org>
++
++allOf:
++  - $ref: panel-common.yaml#
 +
 +properties:
 +  compatible:
-+    enum:
-+      - arm,ccn-502
-+      - arm,ccn-504
-+      - arm,ccn-508
-+      - arm,ccn-512
++    const: arm,rtsm-display
 +
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
++  port: true
 +
 +required:
 +  - compatible
-+  - reg
-+  - interrupts
++  - port
 +
 +additionalProperties: false
 +
-+examples:
-+  - |
-+    ccn@20000000 {
-+        compatible = "arm,ccn-504";
-+        reg = <0x20000000 0x1000000>;
-+        interrupts = <0 181 4>;
-+    };
 +...
-diff --git a/Documentation/devicetree/bindings/perf/arm-ccn.txt b/Documentation/devicetree/bindings/perf/arm-ccn.txt
-deleted file mode 100644
-index 1c53b5aa3317..000000000000
---- a/Documentation/devicetree/bindings/perf/arm-ccn.txt
-+++ /dev/null
-@@ -1,23 +0,0 @@
--* ARM CCN (Cache Coherent Network)
--
--Required properties:
--
--- compatible: (standard compatible string) should be one of:
--	"arm,ccn-502"
--	"arm,ccn-504"
--	"arm,ccn-508"
--	"arm,ccn-512"
--
--- reg: (standard registers property) physical address and size
--	(16MB) of the configuration registers block
--
--- interrupts: (standard interrupt property) single interrupt
--	generated by the control block
--
--Example:
--
--	ccn@2000000000 {
--		compatible = "arm,ccn-504";
--		reg = <0x20 0x00000000 0 0x1000000>;
--		interrupts = <0 181 4>;
--	};
 -- 
 2.34.1
 
