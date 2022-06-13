@@ -2,76 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B19C549C05
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:44:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4A6A549BF7
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344715AbiFMSot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 14:44:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51422 "EHLO
+        id S229762AbiFMSoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 14:44:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344877AbiFMSoZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:44:25 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59F0CDE316;
-        Mon, 13 Jun 2022 08:17:54 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id m125-20020a1ca383000000b0039c63fe5f64so3311257wme.0;
-        Mon, 13 Jun 2022 08:17:54 -0700 (PDT)
+        with ESMTP id S230183AbiFMSn0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:43:26 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E4943EBB5;
+        Mon, 13 Jun 2022 08:20:58 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id bg6so11943057ejb.0;
+        Mon, 13 Jun 2022 08:20:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=CxEVhulkT4pSVVwXU2sr40U8DsgeEjl1fZ9K8bvOkec=;
-        b=EkqGJhO7UoEpuADq42dtRnnUgh+XctbfGO+G58/gw4a8XBXDu1pbvpzkP2jaapAeQ3
-         YHmDhLDmrNJbm2rtIVjeoctWIilnBWH4rWcpyoYoYekw2GYv1bWM9Dql6BRxyvy65c9o
-         nzNwkfdRxQhV3uAKErZbX6+19lp2/qjfdvsHE36m3dpP72v/3tbx7+WKsg3Ny7sH5Hay
-         QV6f4DDBxWI/N6KP0yrHMN/Li2ghHIcQJLWfkqnEq4acijU4WPChWjRTvBxGsVyYKx8v
-         Ry17rDs4mVWtEsArjMioo9Fw1j7w4of6QtKDzVg5saSEzePQnZ12IC56/BvKEfpG9twO
-         My7w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=H0RbFWd9DrLe0WWxoqcq/mfZ+46Z/yvi2sA+4RrsPZ4=;
+        b=ArMqaNot+i7uNXL0UZW4oEJFT1VOIVQWm/7kvzDqKuUukB4qQtaq7t1Um4uXk6R4jW
+         ArTr27oOcmljvsD/7iIP779coEEGO/I+LCeIoq6xJ95CYD8NapJZGnPEUzu4V+CzmztX
+         DmzakeBchEh4JYIDZzmyn46l8Tq5qDbZ710Puo/s81rsmRG7BPtHXaFA8kiYDHzb8aTd
+         dv1piE07aJng44mi/4rHRr73JLlUeWgIBIDUn3de4Enxh5USKZDiM/Yn0uXKXOReivPf
+         agFKpZboDGdho+UPwiPU9BOc9pdaEtNFNh6ubvP92VUFuZ4AH4NIFtrA/5eYEk4g20lq
+         h4tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=CxEVhulkT4pSVVwXU2sr40U8DsgeEjl1fZ9K8bvOkec=;
-        b=tk/5S5ATiCcwI5ag0SkirHQ0rArwfr1ZLa1hPBPDcbdee1uLGq9Cvjx1WnbZdTd3rq
-         tO94OO3m33QNzBwd4TGiYVqGGLRhQmMX2DdsnvowQcLN+011I+/0doBJu7BYUG20iLnA
-         3Y1vo3+4ynWkgPOXi0cWOMf7q4O7L/eNXrNDifZO9kzeABM7SEDyfhuaZ+GIU2THXTLX
-         WR2S/dPV56AP+unwfQjxHxpdCkJ0LHJbBIUH/vS9waei++3CtJy+3ttCvApah0FbG/8w
-         yNOIFCS0qghm5RJ3/tqNC9jeAxglq7lWiV/KqTYr2app+M1nQdvYJXqfjHA8mYOw9z2g
-         fz+A==
-X-Gm-Message-State: AOAM530m5otx7DhVjtWV0DQNrrlK028/2vk4rI5qDCrtr71M300xE1fV
-        cY1XUsBpKoSNR752gP528JY=
-X-Google-Smtp-Source: ABdhPJzZYU2kxK4eUimUtj60AQJ4K9MdzwxUjqic6Ph/tmfCfIaqYIL7wGT2YEi+7lwHQXZOX6UcFA==
-X-Received: by 2002:a1c:cc05:0:b0:39c:7477:3f24 with SMTP id h5-20020a1ccc05000000b0039c74773f24mr15369449wmb.190.1655133472561;
-        Mon, 13 Jun 2022 08:17:52 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.gmail.com with ESMTPSA id m4-20020a056000008400b002102cc4d63asm10595788wrx.81.2022.06.13.08.17.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jun 2022 08:17:52 -0700 (PDT)
-Message-ID: <62a75520.1c69fb81.8de59.2dc6@mx.google.com>
-X-Google-Original-Message-ID: <YqdUc1oAxxgRyLzC@Ansuel-xps.>
-Date:   Mon, 13 Jun 2022 17:14:59 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/3] mtd: nand: raw: qcom_nandc: reorder
- qcom_nand_host struct
-References: <20220609132344.17548-1-ansuelsmth@gmail.com>
- <20220609132344.17548-2-ansuelsmth@gmail.com>
- <20220609170722.GA5081@thinkpad>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=H0RbFWd9DrLe0WWxoqcq/mfZ+46Z/yvi2sA+4RrsPZ4=;
+        b=XO9vi7/wnxYLK1colQY1fbYZClVh0Ysb0NxjFy3eIF3ZUsrlW93Rv+wAnxwjewtnO4
+         VvfNbf/Z3fDK0NkUftAOngaA+Jj5m+vt/tmheJ7zFrdktc51GZ9/IOlpe5VYTHeHC0yB
+         QuTV1eH69xuuZZlKezJcdKq8K4QuUijbvnONudOijHjX7F0GnfVP5j+buuSHCUyr3CRp
+         QY1aiTgJWQIvvT43C60zhCWyIvATc3f6A+qGIyrVOpwQ9pe+mPl1kU3vrUqUe8gnHaW7
+         TM8kZU7+RWppd7SLiBRFJkXtcHFidRuAZBFTqKi3O5FsZZ90ePtg5PYgRJ4lC1w5mxmP
+         jFDg==
+X-Gm-Message-State: AOAM531c75bmrnRlKkRrqlizrfwPhmZnNm+k6xL3Jhz39d8TA1RbEHpg
+        bJ9HFIqBEOdfzHcByD68Bmk4gru7hQuYDh8+OUo=
+X-Google-Smtp-Source: ABdhPJyLzwQ0rksJvvlcO0XqCHPfzL1ENAyoxMRzcrtgXBeTgJjYLVMBPmnc8+yw7Qz2IrDkf6OixrihbDEVwsLG378=
+X-Received: by 2002:a17:906:1193:b0:70d:cf39:a4db with SMTP id
+ n19-20020a170906119300b0070dcf39a4dbmr358944eja.44.1655133657028; Mon, 13 Jun
+ 2022 08:20:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220609170722.GA5081@thinkpad>
+References: <cover.1655081082.git.jahau@rocketmail.com> <b6e100de37921c22ebf0698f8e0e99794053303a.1655081082.git.jahau@rocketmail.com>
+In-Reply-To: <b6e100de37921c22ebf0698f8e0e99794053303a.1655081082.git.jahau@rocketmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 13 Jun 2022 17:20:20 +0200
+Message-ID: <CAHp75VfFwSQ6bk=TMLiyA1j-AsafjGdVFbTTHJJ67C8zeYfz8Q@mail.gmail.com>
+Subject: Re: [PATCH v2 7/7] iio: magnetometer: yas530: Add YAS537 variant
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        phone-devel@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
+        Shevchenko <andy.shevchenko@gmail.com>," 
+        <~postmarketos/upstreaming@lists.sr.ht>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -82,65 +75,204 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 09, 2022 at 10:37:22PM +0530, Manivannan Sadhasivam wrote:
-> On Thu, Jun 09, 2022 at 03:23:42PM +0200, Ansuel Smith wrote:
-> > Reorder qcom_nand_host to save holes in the struct.
-> 
-> You forgot to reorder other structs also as I requested :/
-> 
-> Thanks,
-> Mani
+On Mon, Jun 13, 2022 at 3:18 AM Jakob Hauser <jahau@rocketmail.com> wrote:
+>
+> This adds support for the magnetometer Yamaha YAS537. The additions are b=
+ased
+> on comparison of Yamaha Android kernel drivers for YAS532 [1] and YAS537 =
+[2].
+>
+> In the Yamaha YAS537 Android driver, there is an overflow/underflow contr=
+ol
+> implemented. For regular usage, this seems not necessary. A similar overf=
+low/
+> underflow control of Yamaha YAS530/532 Android driver isn't integrated in=
+ the
+> mainline driver. It is therefore skipped for YAS537 in mainline too.
+>
+> Also in the Yamaha YAS537 Android driver, at the end of the reset_yas537(=
+)
+> function, a measurement is saved in "last_after_rcoil". Later on, this is
+> compared to current measurements. If the difference gets too big, a new
+> reset is initialized. The difference in measurements needs to be quite bi=
+g,
+> it's hard to say if this is necessary for regular operation. Therefore th=
+is
+> isn't integrated in the mainline driver either.
+
+...
+
+> - * YAS537 MS-3T (2015 Samsung Galaxy S6, Note 5, Xiaomi)
+> + * YAS537 MS-3T (2015 Samsung Galaxy S6, Note 5, Galaxy S7)
+
+Not sure what happened to Xiaomi. There is nothing in the commit
+message about this change.
+
+...
+
+> +#define YAS537_MAG_AVERAGE_32_MASK     GENMASK(6, 4) /* corresponds to 0=
+x70 */
+
+Useless comment.
+
+...
+
+> +#define YAS537_MEASURE_TIME_WORST      1500 /* us */
+> +#define YAS537_DEFAULT_SENSOR_DELAY    50   /* ms */
+> +#define YAS537_MAG_RCOIL_TIME          65   /* us */
+
+Instead of the comments, use unit suffixes, i.e. _US, _MS, _US.
+
+...
+
+> +       /* Read data */
+
+Not sure how useful is this comment.
+
+...
+
+> +       *t =3D ((data[0] << 8) | data[1]);
+
+Looks like get_unaligned_be16().
+
+> +       xy1y2[0] =3D ((FIELD_GET(GENMASK(5, 0), data[2]) << 8) | data[3])=
+;
+> +       xy1y2[1] =3D ((data[4] << 8) | data[5]);
+> +       xy1y2[2] =3D ((data[6] << 8) | data[7]);
+
+Ditto for all above.
+
+...
+
+> +                       if (h[i] < -8192)
+> +                               h[i] =3D -8192;
+
+-BIT(13) ?
+
+> +                       if (h[i] > 8191)
+> +                               h[i] =3D 8191;
+
+Altogether seems like NIH clamp_val() or clamp_t().
+
+...
+
+> +                       xy1y2[i] =3D h[i] + 8192;
+
+BIT(13)
+
+...
+
+> +       /*
+> +        * Raw temperature value t is number of counts. A product descrip=
+tion
+> +        * of YAS537 mentions a temperature resulution of 0.05 =C2=B0C/co=
+unt.
+
+resolution
+
+> +        * A readout of the t value at ca. 20 =C2=B0C returns approx. 812=
+0 counts.
+> +        *
+> +        * 8120 counts x 0.05 =C2=B0C/count corresponds to a range of 406=
+ =C2=B0C.
+> +        * 0 counts would be at theoretical -386 =C2=B0C.
+> +        *
+> +        * The formula used for YAS530/532 needs to be adapted to this
+> +        * theoretical starting temperature, again calculating with 1/10:=
+s
+> +        * of degrees Celsius and finally multiplying by 100 to get milli
+> +        * degrees Celsius.
+> +        */
+
+...
+
+>                         /*
+> -                        * Raw values of YAS532 are in nanotesla. Devide =
+by
+> -                        * 100000 (10^5) to get Gauss.
+> +                        * Raw values of YAS532 and YAS537 are in nanotes=
+la.
+> +                        * Devide by 100000 (10^5) to get Gauss.
+
+Divide (chance to fix a type while at it)
+
+>                          */
+
+...
+
+> @@ -679,6 +887,7 @@ static int yas530_get_calibration_data(struct yas5xx =
+*yas5xx)
+>         c->r[0] =3D sign_extend32(FIELD_GET(GENMASK(28, 23), val), 5);
+>         c->r[1] =3D sign_extend32(FIELD_GET(GENMASK(20, 15), val), 5);
+>         c->r[2] =3D sign_extend32(FIELD_GET(GENMASK(12, 7), val), 5);
+> +
+>         return 0;
+>  }
 >
 
-Hi, I run this commit with pahole tools and it didn't reorder anything
-else aside from what i already reordered. Am I missing something here?
+Not harmful, but a stray change. Ditto for the rest like this. I would
+rather split them to a separate patch.
 
-> > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > ---
-> >  drivers/mtd/nand/raw/qcom_nandc.c | 10 ++++++----
-> >  1 file changed, 6 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
-> > index 1a77542c6d67..7fbbd3e7784c 100644
-> > --- a/drivers/mtd/nand/raw/qcom_nandc.c
-> > +++ b/drivers/mtd/nand/raw/qcom_nandc.c
-> > @@ -431,11 +431,12 @@ struct qcom_nand_controller {
-> >   *				and reserved bytes
-> >   * @cw_data:			the number of bytes within a codeword protected
-> >   *				by ECC
-> > + * @ecc_bytes_hw:		ECC bytes used by controller hardware for this
-> > + *				chip
-> > + *
-> >   * @use_ecc:			request the controller to use ECC for the
-> >   *				upcoming read/write
-> >   * @bch_enabled:		flag to tell whether BCH ECC mode is used
-> > - * @ecc_bytes_hw:		ECC bytes used by controller hardware for this
-> > - *				chip
-> >   * @status:			value to be returned if NAND_CMD_STATUS command
-> >   *				is executed
-> >   * @last_command:		keeps track of last command on this chip. used
-> > @@ -452,11 +453,12 @@ struct qcom_nand_host {
-> >  	int cs;
-> >  	int cw_size;
-> >  	int cw_data;
-> > -	bool use_ecc;
-> > -	bool bch_enabled;
-> >  	int ecc_bytes_hw;
-> >  	int spare_bytes;
-> >  	int bbm_size;
-> > +
-> > +	bool use_ecc;
-> > +	bool bch_enabled;
-> >  	u8 status;
-> >  	int last_command;
-> >  
-> > -- 
-> > 2.36.1
-> > 
-> 
-> -- 
-> மணிவண்ணன் சதாசிவம்
+...
 
--- 
-	Ansuel
+> +       dev_dbg(yas5xx->dev, "calibration data: %*ph\n", 17, data);
+
+Use less stack by "%17ph".
+
+...
+
+> +       /* Sanity check, is this all zeroes? */
+> +       if (memchr_inv(data, 0x00, 16) =3D=3D NULL) {
+
+  if (!memchr_inv(...))
+
+> +               if (FIELD_GET(GENMASK(5, 0), data[16]) =3D=3D 0)
+> +                       dev_warn(yas5xx->dev, "calibration is blank!\n");
+> +       }
+
+...
+
+> +               for (i =3D 0; i < 17; i++) {
+
+16 and 17 seems like a magic that is used a lot, perhaps define?
+
+...
+
+> +               ret =3D regmap_write(yas5xx->map, YAS537_MTC + 3,
+> +                                  ((data[3] & GENMASK(7, 5)) | BIT(4)));
+
+Here...
+
+> +               if (ret)
+> +                       return ret;
+> +               ret =3D regmap_write(yas5xx->map, YAS537_HCK,
+> +                                  (FIELD_GET(GENMASK(7, 4), data[15]) <<=
+ 1));
+
+...and here and in many other places, please drop outer parentheses,
+they are not needed.
+
+> +               if (ret)
+> +                       return ret;
+
+...
+
+> +       usleep_range(YAS537_MAG_RCOIL_TIME, YAS537_MAG_RCOIL_TIME+100);
+
+Please, add a comment explaining why this is needed.
+
+...
+
+> +               dev_info(dev, "detected YAS537 MS-3T");
+> +               /* As the version naming is unknown, provide it for debug=
+ only */
+> +               dev_dbg(yas5xx->dev, "YAS537 version: %s\n",
+> +                       yas5xx->version ? "1" : "0");
+
+No need to have two prints, just add a version to the above one and
+drop the bottom one.
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
