@@ -2,156 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3640549BB3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:38:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 852C4549BC3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 20:39:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239653AbiFMSiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 14:38:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37554 "EHLO
+        id S245319AbiFMSjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 14:39:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244943AbiFMSh5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:37:57 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27AF2D31B2;
-        Mon, 13 Jun 2022 07:57:29 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id a10so6323105ioe.9;
-        Mon, 13 Jun 2022 07:57:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Vf+DFErkUOgrAEhjpjh0uyrSpN6w360tMGoM1ti+yys=;
-        b=6CG+ld3pkjACJl2yk7I+NDt4ywuk+L0Br+fzzIe3U4JHoeArs6PUccbBGe05vLXl9x
-         66QtZlwiQaPOyKmBfZc+fJ8ESUkVaJi+vSpZBEFZzI0LyH9k9Voa5A1atb9awoGn4Fha
-         CGk8HdjUnmlzLjf2uCC5AJ+GS2qlD67EcotrhXFzJAR4oyWsMM0py1RXqTHU9BDYixiM
-         YJLH2cCDvS0ZXJS/wX6hvtQyO3SGD31/GhZHVr7WnAzbv6FyWjIHKhdeXURai++7KiBc
-         RvXdw9jTjtL1Azqebzrs8xjYGP2N9Is/OQ0OJDb7zNkOl5GVWWgvbnPahD2ZHxlOGJ+J
-         GDXA==
-X-Gm-Message-State: AOAM532x5GtocEsvwC3GSd4TitUtTXFs+CDhUbJ2G/Oo9tHiRSawCxxi
-        ExYO8k43YXb0cdDBEbKQpg==
-X-Google-Smtp-Source: ABdhPJzNK3lR7+aIWGt4CeK//NM/uOVYLfLtmdaCa2ptBKeLbsW/SJRNSxVYoMpUUqHSdrnJuYru0w==
-X-Received: by 2002:a05:6638:3787:b0:331:aaf5:950c with SMTP id w7-20020a056638378700b00331aaf5950cmr121036jal.118.1655132248369;
-        Mon, 13 Jun 2022 07:57:28 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.251])
-        by smtp.googlemail.com with ESMTPSA id r6-20020a924406000000b002cde6e352f8sm4009929ila.66.2022.06.13.07.57.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jun 2022 07:57:28 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Liviu Dudau <Liviu.Dudau@arm.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: display: Add Arm virtual platforms display
-Date:   Mon, 13 Jun 2022 08:57:09 -0600
-Message-Id: <20220613145709.3729053-1-robh@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S1343699AbiFMSiX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 14:38:23 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 773CF4EF6A
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 07:58:51 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 36CAF84463;
+        Mon, 13 Jun 2022 16:58:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1655132329;
+        bh=JfyiAT52/1A32gcqLtLco5Eqauy7kLt3UzYpWNqW68o=;
+        h=From:To:Cc:Subject:Date:From;
+        b=OGfZ8zNCiMxo9zwG1neJQykXn4VJCwkRZSfBSxoj2InpcZIVxkha0Fqpynqjyk2a5
+         gy1T3+2rUZ6u1tAjc2AZ5B3mtgc90K0UboGwrVT2yJu389f61DMqy6DZQrPp3neCJN
+         so1RFBBUZSWxkiM8/soiTknuP7oQKPC+vaX7gF+/I2NYEzq2hRQ7WDTmy4+4jK42j/
+         5qMME1OmbFqyZy+H5+bAYmP80b91KhwR98jfZRe0Kcv5bSaAUP8KLSMv54Gw8dqxFv
+         wn7RM38G7S8eFl6p7B1kJF0eZ0ALwD0PUGS43rNOOITVTi4J9UJozvFEt/BBwEKMDv
+         o5NXEphkLowaA==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Rob Herring <robh@kernel.org>,
+        Fabio Estevam <festevam@denx.de>, Peng Fan <peng.fan@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: arm: Add DH electronics i.MX8M Plus DHCOM and PDK2
+Date:   Mon, 13 Jun 2022 16:58:25 +0200
+Message-Id: <20220613145826.231499-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'arm,rtsm-display' is a panel for Arm, Ltd. virtual platforms (e.g. FVP).
-The binding has been in use for a long time, but was never documented.
+Add DT compatible string for DH electronics i.MX8M Plus DHCOM and PDK2
+into YAML DT binding document. This system is a general purpose SoM and
+evaluation board.
 
-Some users and an example have a 'panel-dpi' compatible, but that's not
-needed without a 'panel-timing' node which none of the users have since
-commit 928faf5e3e8d ("arm64: dts: fvp: Remove panel timings"). The
-example does have a 'panel-timing' node, but it should not for the
-same reasons the node was removed in the dts files. So update the
-example in arm,pl11x.yaml to match the schema.
-
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Robin Murphy <robin.murphy@arm.com>
-Cc: Andre Przywara <andre.przywara@arm.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: devicetree@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
 ---
-v2:
- - Make arm,rtsm-display its own schema file instead of using
-   panel-simple.
+V2: Add AB from Rob
 ---
- .../bindings/display/arm,pl11x.yaml           | 15 +----------
- .../display/panel/arm,rtsm-display.yaml       | 27 +++++++++++++++++++
- 2 files changed, 28 insertions(+), 14 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/panel/arm,rtsm-display.yaml
+ Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/arm,pl11x.yaml b/Documentation/devicetree/bindings/display/arm,pl11x.yaml
-index b545c6d20325..6cc9045e5c68 100644
---- a/Documentation/devicetree/bindings/display/arm,pl11x.yaml
-+++ b/Documentation/devicetree/bindings/display/arm,pl11x.yaml
-@@ -159,25 +159,12 @@ examples:
-     };
- 
-     panel {
--        compatible = "arm,rtsm-display", "panel-dpi";
--        power-supply = <&vcc_supply>;
-+        compatible = "arm,rtsm-display";
- 
-         port {
-             clcd_panel: endpoint {
-                 remote-endpoint = <&clcd_pads>;
-             };
-         };
--
--        panel-timing {
--            clock-frequency = <25175000>;
--            hactive = <640>;
--            hback-porch = <40>;
--            hfront-porch = <24>;
--            hsync-len = <96>;
--            vactive = <480>;
--            vback-porch = <32>;
--            vfront-porch = <11>;
--            vsync-len = <2>;
--        };
-     };
- ...
-diff --git a/Documentation/devicetree/bindings/display/panel/arm,rtsm-display.yaml b/Documentation/devicetree/bindings/display/panel/arm,rtsm-display.yaml
-new file mode 100644
-index 000000000000..4ad484f09ba3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/arm,rtsm-display.yaml
-@@ -0,0 +1,27 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/arm,rtsm-display.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Arm RTSM Virtual Platforms Display
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: arm,rtsm-display
-+
-+  port: true
-+
-+required:
-+  - compatible
-+  - port
-+
-+additionalProperties: false
-+
-+...
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index ef524378d449b..adbceceae9726 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -914,6 +914,8 @@ properties:
+       - description: i.MX8MP based Boards
+         items:
+           - enum:
++              - dh,imx8mp-dhcom-som       # i.MX8MP DHCOM SoM
++              - dh,imx8mp-dhcom-pdk2      # i.MX8MP DHCOM SoM on PDK2 board
+               - fsl,imx8mp-evk            # i.MX8MP EVK Board
+               - gateworks,imx8mp-gw74xx   # i.MX8MP Gateworks Board
+               - toradex,verdin-imx8mp     # Verdin iMX8M Plus Modules
 -- 
-2.34.1
+2.35.1
 
