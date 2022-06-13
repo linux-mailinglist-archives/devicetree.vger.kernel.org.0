@@ -2,93 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED14C54840A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 12:15:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0574754841E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 12:15:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239028AbiFMJsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 05:48:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43606 "EHLO
+        id S237385AbiFMJyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 05:54:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240151AbiFMJsU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 05:48:20 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31C851928C;
-        Mon, 13 Jun 2022 02:48:16 -0700 (PDT)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25D7bRpY017595;
-        Mon, 13 Jun 2022 04:47:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=CRTviHcnTGYQGc17bUWtHNOWPL7Dy+tsuuEXIupdrr4=;
- b=AB1boW9dAs+Yf9LKm3cYDlA9u3I06+BGsMJFLbKaexcHZujzQyhBBE0tsMWZHWJ5/pk2
- Yyag1HGoBElpx5OnHF30JfOUa9g36GGrRtvJf8H1/Q9BY+yz/u9t+aL9XqxYrei5xnOs
- giKpcS9xQ70DzbDl2kRUxUopnvLFhKniuHn4fsycKcT7PipsEbs4vt1wJJx5iiSv9F0l
- nyIFrdF/LwwXcQTKm7V6Uzs8RHe+wlqHdVRKEyziQ/2tfUXJHhHmO02NGjhNqwYPGa25
- Q3TAabCTfGg/TVXobLSQVDwCqtFmMjvQA9oYzM0olaJ+nAbQHd7SjQvCcZr2zAy3HGn+ yg== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3gmrf31psy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Mon, 13 Jun 2022 04:47:53 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 13 Jun
- 2022 10:47:51 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Mon, 13 Jun 2022 10:47:51 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 7915B46C;
-        Mon, 13 Jun 2022 09:47:51 +0000 (UTC)
-Date:   Mon, 13 Jun 2022 09:47:51 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>
-CC:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 22/23] ASoC: wm8731: update wlf,wm8731.yaml reference
-Message-ID: <20220613094751.GZ38351@ediswmail.ad.cirrus.com>
-References: <cover.1654529011.git.mchehab@kernel.org>
- <e56e54fe0ebb1b6e8dd2e245c398190016eb0a34.1654529011.git.mchehab@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <e56e54fe0ebb1b6e8dd2e245c398190016eb0a34.1654529011.git.mchehab@kernel.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: xy_jBaiF63BsDcKqeMRnyVUazqatw_C5
-X-Proofpoint-ORIG-GUID: xy_jBaiF63BsDcKqeMRnyVUazqatw_C5
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S235122AbiFMJx7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 05:53:59 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 308AD25EB;
+        Mon, 13 Jun 2022 02:53:59 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id 184so5057864pga.12;
+        Mon, 13 Jun 2022 02:53:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=NgdLA0z7oCb9jXlN+2hfQR8rLO9SjNm0Q9JHfTfVmBA=;
+        b=DRlFSfy8Hek0tYzWJZb9W42tzzbiYnNDjvIA0Uj2Rz4QytQisxbqHjMoXKdM1FlhJn
+         zSK0WHntHZBLtGh3Z+VBv3PVUMjqDVhdT/bDwwRwfyWQO/iikcxAEL+OEx3LK6ZiUvby
+         YkV2GfoCO+QDkdrqeJGWlgRVeJVhHBIrkfkaOE5Y3RoFpxrtF65Iq4lz0IBJTPXc8mm1
+         qXSnWEH61FyK/p6kKp5oPH4fw8osFTZIydPNQWO98IcppabC66bUOiG93VknVRvcdSP1
+         6VzWztFD+xI2guHXOVwnD11xF53WT4e3Bh5HXZMzJicb9bZPsRPUnHeIihjJ6IHr36Jk
+         001Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=NgdLA0z7oCb9jXlN+2hfQR8rLO9SjNm0Q9JHfTfVmBA=;
+        b=SEjNh/eua88HoE6jbW+p5Vdgh+T4DJnCAsMnSzkIXRuX0rRuOOJSB/O90DrAbTF98b
+         rUgzoNRZoxBEP0dS8jPI0XxCAcEy1abyFy9+1YRHakmBz/JD6JuXXrkRhc0ewvxrDt3L
+         UzjSXpMq3Ws/iF1i2ET1slr/hBX4ST8iAL2KuYtuPa54rwuayjmmUm+BCi8ySgpsswOG
+         f8dR5iBtKn2z4nbEPREG7m0I34TCm+usjRfhE8i9mJKbSl35GpuCfE57hpm2WcccK0Ro
+         Ex/tOX2mlVYOhibds7oZrNdjWPN4Eq+KwupyGTsym6gEAt/BGQDsLzitjhetm8ODrnAa
+         ASWw==
+X-Gm-Message-State: AOAM532GvQFMVEJx3cVksnGXzmwCefb+38FKTCXHbz4sPkanKqAHyX/I
+        ijVB14TLg8Nl6rqI02qajEo=
+X-Google-Smtp-Source: ABdhPJyLBj9u1uHxRvsDhkVgV1jeG58opSfKPMejYeSBEVgr/Qwrlkk27SnwbAlfZOpteN0/l0f4JA==
+X-Received: by 2002:a05:6a00:2390:b0:51c:21e1:782 with SMTP id f16-20020a056a00239000b0051c21e10782mr38717687pfc.21.1655114038654;
+        Mon, 13 Jun 2022 02:53:58 -0700 (PDT)
+Received: from potin-quanta.dhcpserver.local (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
+        by smtp.gmail.com with ESMTPSA id 19-20020a170902e9d300b001639f038250sm4639754plk.220.2022.06.13.02.53.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jun 2022 02:53:58 -0700 (PDT)
+From:   Potin Lai <potin.lai.pt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>
+Cc:     Patrick Williams <patrick@stwcx.xyz>,
+        Potin Lai <potin.lai@quantatw.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH 0/4] Update Facebook Bletchley BMC DTS
+Date:   Mon, 13 Jun 2022 17:51:46 +0800
+Message-Id: <20220613095150.21917-1-potin.lai.pt@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 06, 2022 at 04:25:44PM +0100, Mauro Carvalho Chehab wrote:
-> Changeset 0e336eeaf467 ("ASoC: wm8731: Convert DT bindings to YAML format")
-> renamed: Documentation/devicetree/bindings/sound/wm8731.txt
-> to: Documentation/devicetree/bindings/sound/wlf,wm8731.yaml.
-> 
-> Update its cross-reference accordingly.
-> 
-> Fixes: 0e336eeaf467 ("ASoC: wm8731: Convert DT bindings to YAML format")
-> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> ---
+Update below items for Facebook Bletchley BMC devicetree.
 
-Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+Potin Lai (4):
+  ARM: dts: aspeed: bletchley: change LED sys_log_id to active low
+  ARM: dts: aspeed: bletchley: disable GPIOV2 pull-down
+  ARM: dts: aspeed: bletchley: bind presence-sledX pins via gpio-keys
+  ARM: dts: aspeed: bletchley: update fusb302 nodes
 
-Thanks,
-Charles
+ .../dts/aspeed-bmc-facebook-bletchley.dts     | 197 +++++++++++++-----
+ 1 file changed, 148 insertions(+), 49 deletions(-)
+
+-- 
+2.17.1
+
