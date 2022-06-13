@@ -2,53 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31B79549D50
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:19:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 904ED549D1E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 21:14:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346299AbiFMTT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 15:19:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44616 "EHLO
+        id S237408AbiFMTOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 15:14:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351305AbiFMTTd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:19:33 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAA6653727;
-        Mon, 13 Jun 2022 10:24:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 87AEFB81178;
-        Mon, 13 Jun 2022 17:24:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36435C341C4;
-        Mon, 13 Jun 2022 17:24:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655141072;
-        bh=eoHItYWwkT7G17he8Tx1cCRce9KFe+Gp8AbhML0uuyA=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=FW+sYM13exb+1Eb7IAWJwAI3rFNhIOzFT6Tc2Ll69RZ45GOl8TW3hBX4G2xIjBUZ5
-         IIsjNxz9W33I33vfuANCeur8603JIsr0w6ubNoq/jh3hAOfqoUYT/f4hZrgKrxTd5D
-         YHQUMPrkBT4CVNEaaC3ad4KixWSF0Apd2dYcTS/Vd6UisiA1clUbziqEJYAR6chH95
-         vIhcAsGYNZ7n50P8Yqh2K0H2HSNNzj6BruwTktpF67UH5O4eXnaKoByGKpQpZDSdTL
-         Qax7BJdDtxMkvHJz9RGSH5WZIWVc+Jnn8Gn142EXH1cmN5Za/oiqdfbU6oBtfspCBY
-         /tZhxvvn0sdsw==
-From:   Mark Brown <broonie@kernel.org>
-To:     jonathanh@nvidia.com, linux-tegra@vger.kernel.org,
-        ashishsingha@nvidia.com, robh+dt@kernel.org,
-        linux-spi@vger.kernel.org, thierry.reding@gmail.com,
-        kyarlagadda@nvidia.com
-Cc:     skomatineni@nvidia.com, devicetree@vger.kernel.org,
-        ldewangan@nvidia.com, linux-kernel@vger.kernel.org
-In-Reply-To: <20220607114659.54314-1-kyarlagadda@nvidia.com>
-References: <20220607114659.54314-1-kyarlagadda@nvidia.com>
-Subject: Re: [Patch V3 0/3] spi: tegra quad: Add Tegra Grace features
-Message-Id: <165514106994.671611.15197276209820795833.b4-ty@kernel.org>
-Date:   Mon, 13 Jun 2022 18:24:29 +0100
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S1348582AbiFMTNe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 15:13:34 -0400
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9D79DF88;
+        Mon, 13 Jun 2022 10:34:53 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id a10so6826400ioe.9;
+        Mon, 13 Jun 2022 10:34:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=sYLzOTBENP3NfN1PCCoAo3sOc2XW2MIX+0Xhlkpx5s8=;
+        b=lRp7aQ7H0ItVphscOBet8N8Tk/NMXdcjN5E9FT9djLcV1MjKhKtaxZIh3H+dcGDX4V
+         xDvzxUxHOByM0bgAiNSM53HOIrDi6Q0zjgJB1Sq9Fx51B4jX/CY+HK0Xeqn2foVIhpM5
+         eRYEyv60D2P0qKiNyWYiB+Qx8nWJctlzFpEbPUbmZGX4n/iBVPXFChEAzAMJg/dYAfLx
+         ec+C3sFR0GUGcfs9wJBj6X2582k/7tdAD6y0chvTH3T6wmyEDPB6qpUSDl1gvv6yBRoH
+         uGCQuK/fCsTjcgoqtdga5GBni9k+FrAPwJz/ECltls74uB04INtTdZvWeGLmURcp9rcV
+         /XKw==
+X-Gm-Message-State: AOAM533oO92+JtYD9SFoASoqWY6u5GbE1Y7lW6483bPehVqRJAXfYomE
+        m+2LfXf7A4wSDJenN1Dn1g==
+X-Google-Smtp-Source: ABdhPJw+2TkWjSK8sDwc2Kg3/RBjre9zcT932WJZUctc/jDVSiLlJKiYajmI+w514opwwg9K3pIp3w==
+X-Received: by 2002:a05:6638:250b:b0:331:b103:8b2b with SMTP id v11-20020a056638250b00b00331b1038b2bmr552127jat.246.1655141693138;
+        Mon, 13 Jun 2022 10:34:53 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id s5-20020a5e9805000000b006695b8bb8d3sm4129857ioj.12.2022.06.13.10.34.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jun 2022 10:34:52 -0700 (PDT)
+Received: (nullmailer pid 3951190 invoked by uid 1000);
+        Mon, 13 Jun 2022 17:34:46 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-imx@nxp.com, Jonathan Cameron <jic23@kernel.org>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org
+In-Reply-To: <20220613123529.466528-1-alexander.stein@ew.tq-group.com>
+References: <20220613123529.466528-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH] dt-bindings: iio: adc: Add imx6ul & imx6sx compatibles
+Date:   Mon, 13 Jun 2022 11:34:46 -0600
+Message-Id: <1655141687.002668.3951189.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,48 +61,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 Jun 2022 17:16:56 +0530, Krishna Yarlagadda wrote:
-> Add multiple chip select lines supported on Tegra 241
+On Mon, 13 Jun 2022 14:35:29 +0200, Alexander Stein wrote:
+> Both are already using the vf610 compatible.
 > 
-> Changes in v3:
-> Handle review comments.
-> Move controller's properties to "nvidia,tegra210-quad.yaml".
-> Fix style errors in peripheral yaml doc.
-> Changes in v2:
-> Split Wait polling changes to be handled later
-> Change chip name to convention followed (Grace to 241)
-> Add tegra qspi peripherals yaml file
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  .../devicetree/bindings/iio/adc/fsl,vf610-adc.yaml       | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 > 
-> [...]
 
-Applied to
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-Thanks!
+Full log is available here: https://patchwork.ozlabs.org/patch/
 
-[1/3] spi: tegra210-quad: Multi-cs support
-      commit: b76134178168b5104851b3c72d9b1092b7414ff9
-[2/3] spi: dt-bindings: split peripheral prods
-      commit: e23917822d3cb1f5270ab0d327da713cda72f8f2
-[3/3] spi: dt-bindings: Add compatible for Tegra241 QSPI
-      commit: 4f37809f4cdf0cdb8d4431e779f56d1f0dec3fb5
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+adc@2198000: 'num-channels' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/imx6ul-14x14-evk.dtb
+	arch/arm/boot/dts/imx6ul-ccimx6ulsbcexpress.dtb
+	arch/arm/boot/dts/imx6ul-ccimx6ulsbcpro.dtb
+	arch/arm/boot/dts/imx6ul-geam.dtb
+	arch/arm/boot/dts/imx6ul-isiot-emmc.dtb
+	arch/arm/boot/dts/imx6ul-isiot-nand.dtb
+	arch/arm/boot/dts/imx6ul-kontron-n6310-s-43.dtb
+	arch/arm/boot/dts/imx6ul-kontron-n6310-s.dtb
+	arch/arm/boot/dts/imx6ull-14x14-evk.dtb
+	arch/arm/boot/dts/imx6ull-colibri-aster.dtb
+	arch/arm/boot/dts/imx6ull-colibri-emmc-aster.dtb
+	arch/arm/boot/dts/imx6ull-colibri-emmc-eval-v3.dtb
+	arch/arm/boot/dts/imx6ull-colibri-emmc-iris.dtb
+	arch/arm/boot/dts/imx6ull-colibri-emmc-iris-v2.dtb
+	arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtb
+	arch/arm/boot/dts/imx6ull-colibri-iris.dtb
+	arch/arm/boot/dts/imx6ull-colibri-iris-v2.dtb
+	arch/arm/boot/dts/imx6ull-colibri-wifi-aster.dtb
+	arch/arm/boot/dts/imx6ull-colibri-wifi-eval-v3.dtb
+	arch/arm/boot/dts/imx6ull-colibri-wifi-iris.dtb
+	arch/arm/boot/dts/imx6ull-colibri-wifi-iris-v2.dtb
+	arch/arm/boot/dts/imx6ul-liteboard.dtb
+	arch/arm/boot/dts/imx6ull-jozacp.dtb
+	arch/arm/boot/dts/imx6ull-myir-mys-6ulx-eval.dtb
+	arch/arm/boot/dts/imx6ull-opos6uldev.dtb
+	arch/arm/boot/dts/imx6ull-phytec-segin-ff-rdk-emmc.dtb
+	arch/arm/boot/dts/imx6ull-phytec-segin-ff-rdk-nand.dtb
+	arch/arm/boot/dts/imx6ull-phytec-segin-lc-rdk-nand.dtb
+	arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dtb
+	arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dtb
+	arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dtb
+	arch/arm/boot/dts/imx6ull-tqma6ull2-mba6ulx.dtb
+	arch/arm/boot/dts/imx6ul-opos6uldev.dtb
+	arch/arm/boot/dts/imx6ul-phytec-segin-ff-rdk-emmc.dtb
+	arch/arm/boot/dts/imx6ul-phytec-segin-ff-rdk-nand.dtb
+	arch/arm/boot/dts/imx6ul-pico-dwarf.dtb
+	arch/arm/boot/dts/imx6ul-pico-hobbit.dtb
+	arch/arm/boot/dts/imx6ul-pico-pi.dtb
+	arch/arm/boot/dts/imx6ul-prti6g.dtb
+	arch/arm/boot/dts/imx6ul-tqma6ul1-mba6ulx.dtb
+	arch/arm/boot/dts/imx6ul-tqma6ul2l-mba6ulx.dtb
+	arch/arm/boot/dts/imx6ul-tqma6ul2-mba6ulx.dtb
+	arch/arm/boot/dts/imx6ul-tx6ul-0010.dtb
+	arch/arm/boot/dts/imx6ul-tx6ul-0011.dtb
+	arch/arm/boot/dts/imx6ul-tx6ul-mainboard.dtb
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
