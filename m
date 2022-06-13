@@ -2,41 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FCCF5499CC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 19:22:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C81945499ED
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jun 2022 19:26:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241543AbiFMRWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 13:22:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32838 "EHLO
+        id S240928AbiFMR0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 13:26:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241426AbiFMRWc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 13:22:32 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B75FD33352;
-        Mon, 13 Jun 2022 05:37:24 -0700 (PDT)
+        with ESMTP id S238038AbiFMRZ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 13:25:58 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E43F5D5D7;
+        Mon, 13 Jun 2022 05:41:23 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8D92866015D8;
-        Mon, 13 Jun 2022 13:37:22 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1D13166015B3;
+        Mon, 13 Jun 2022 13:41:21 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1655123843;
-        bh=SN+r3+C8txifAec4wsuKPre5ESL3Qr6tJo6VOZZTPok=;
+        s=mail; t=1655124081;
+        bh=Dssxu5juHxniKEwBlOPdCopiQRHAuksbl/SlhCHu2R0=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=QcnCpgdKPGIs5XF/cGQZGajDsXPaLCx4/cUDwJ3hkKxnxba7UOwoo+ZESoepdSREa
-         DHNY065sHf4gj09AlGRWZW/yAW3NiAGGX1zoTAypT7WkGxBgDuF3ubaZgD+uRACUMe
-         u9jun8TWs8F+CEZmmdemRxwibE+NPeNn+OuaseKeGHtCPkW4ws5ExS7+WQqSCgUTas
-         XTnxGHCjEqE9DmbzUWjbOotVtFo+A553TYfNifOMqUiJoHs5OlaYNL5LX/s1siMSwQ
-         T0wqYCXfc8jkOKFFuCBHOHRUxRvCuXwW2nb0WCiXs4wQ1uNHiFzVslzFJwcQzu10Np
-         LhoBxki8cfVkQ==
-Message-ID: <d3f718fa-c773-4bc7-506b-d109bf72aa3b@collabora.com>
-Date:   Mon, 13 Jun 2022 14:37:19 +0200
+        b=cj1Y7XKnAUxZ9AFEebBoxYSFqi2LXEuJRLBk7CcG9RY6lLsqhlFzV+oxNSnRAq35d
+         OCOiKUkuwtSR+9XSJ6bQgiY2tR+/pCYoiPZ2BMm35mXHvziQjWV0gOEj0U9S4GhMOz
+         EYidKT4SRSawFGHUZuKV15dCQfIEuYSlhQyeLmS/mnBTddIv9RX26o1Tj0LdumsVOw
+         ofcXrD15RlCDQA/aerb01D36rVGPuAyr6vv5yADcS/k8QTz+HSblMJutsBpu4fTyhT
+         QDBqCG3Iyw1M52WLJNimNCjmcCzyMeLKnme5b0GdVG3XihAtSttrusNmTabOCzrmOU
+         tJ78YAHvoCNMw==
+Message-ID: <30fcd090-0f31-5a7a-ec14-11098aac8e5c@collabora.com>
+Date:   Mon, 13 Jun 2022 14:41:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 2/3] firmware: mediatek: Use meaningful names for mbox
+Subject: Re: [PATCH v2 1/3] dt-bindings: dsp: mediatek: Use meaningful names
+ for mbox
 Content-Language: en-US
 To:     Tinghan Shen <tinghan.shen@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -50,10 +51,10 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20220609083101.24195-1-tinghan.shen@mediatek.com>
- <20220609083101.24195-3-tinghan.shen@mediatek.com>
+ <20220609083101.24195-2-tinghan.shen@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220609083101.24195-3-tinghan.shen@mediatek.com>
+In-Reply-To: <20220609083101.24195-2-tinghan.shen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -66,51 +67,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 09/06/22 10:31, Tinghan Shen ha scritto:
-> Rename mbox according to action instead of 'mbox0' and 'mbox1'
+Il 09/06/22 10:30, Tinghan Shen ha scritto:
+> Rename mbox according to action instead of 'mbox0' and 'mbox1'.
 > 
 > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
 > ---
->   drivers/firmware/mtk-adsp-ipc.c | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
+>   .../devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml        | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/firmware/mtk-adsp-ipc.c b/drivers/firmware/mtk-adsp-ipc.c
-> index cb255a99170c..3de94765d659 100644
-> --- a/drivers/firmware/mtk-adsp-ipc.c
-> +++ b/drivers/firmware/mtk-adsp-ipc.c
-> @@ -83,7 +83,11 @@ static int mtk_adsp_ipc_probe(struct platform_device *pdev)
->   		return -ENOMEM;
+> diff --git a/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml b/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
+> index b7e68b0dfa13..6cedd6868cc5 100644
+> --- a/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
+> +++ b/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
+> @@ -55,8 +55,8 @@ properties:
 >   
->   	for (i = 0; i < MTK_ADSP_MBOX_NUM; i++) {
-> -		chan_name = kasprintf(GFP_KERNEL, "mbox%d", i);
-> +		if (i < MTK_ADSP_MBOX_NUM / 2)
-> +			chan_name = kasprintf(GFP_KERNEL, "rep");
-> +		else
-> +			chan_name = kasprintf(GFP_KERNEL, "req");
-> +
->   		if (!chan_name) {
->   			ret = -ENOMEM;
->   			goto out;
+>     mbox-names:
+>       items:
+> -      - const: mbox0
+> -      - const: mbox1
+> +      - const: rep
+> +      - const: req
 
-At this point, just call them "reply" and "request", as that simply provides a
-perfectly clear explanation.
+"reply", "request" - as said on patch [2/3]....
 
-Besides, I'm sorry but I really don't like this code, it's really too much
-fragile and will have to be changed entirely if a third mbox is introduced.
+P.S.: Adding context for anyone else reading this patch, mt8195 devicetrees didn't
+       get any dsp node yet.
 
-I can suggest a cooler way:
+>   
+>     memory-region:
+>       items:
+> @@ -100,6 +100,6 @@ examples:
+>          memory-region = <&adsp_dma_mem_reserved>,
+>                          <&adsp_mem_reserved>;
+>          power-domains = <&spm 6>; //MT8195_POWER_DOMAIN_ADSP
+> -       mbox-names = "mbox0", "mbox1";
+> +       mbox-names = "rep", "req";
+>          mboxes = <&adsp_mailbox0>, <&adsp_mailbox1>;
+>       };
 
-static const char * const adsp_mbox_ch_names[MTK_ADSP_MBOX_NUM] = { "rep", "req" };
 
-for (i = 0; i < ARRAY_SIZE(adsp_mbox_ch_names); i++) {
-	/* we can delete chan_name and also avoid a kfree if we do... */
-
-	.... code ....
-
-	adsp_chan->ch = mbox_request_channel_byname(cl, adsp_mbox_ch_names[i]);
-
-	... etc etc ...
-}
-
-Cheers,
-Angelo
