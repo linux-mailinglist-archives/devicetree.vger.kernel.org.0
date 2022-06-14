@@ -2,192 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D88C54BCA4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 23:14:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20F2154BCA8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 23:17:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344150AbiFNVNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 17:13:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39146 "EHLO
+        id S239205AbiFNVRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 17:17:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235143AbiFNVNU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 17:13:20 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D0D74D682;
-        Tue, 14 Jun 2022 14:13:19 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CFF1A268;
-        Tue, 14 Jun 2022 23:13:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1655241198;
-        bh=mAShYV34Fcsv5UqG0oYypCupSmjw7SSvFdoLGEbUP08=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dFdQ3HrzHnvnxPI784QNeSCY0pIgjeVgobAJjcQZ3bbqTM3kMWuZbAsMNEDkIhcEu
-         bVjTVnNT04xfp5QH0h7OrU4F/b/o11vI/RvIjrDkLrBT3p3yl8Ydrr58z6PvJezzPX
-         NJJf1sLZUpSksBpazNa/tQOe97p8Kzfo8yCysmoY=
-Date:   Wed, 15 Jun 2022 00:13:08 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
-        robh+dt@kernel.org, nicolas@ndufresne.ca,
-        alexander.stein@ew.tq-group.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 4/9] media: Documentation: dw100: Add user
- documentation for the DW100 driver
-Message-ID: <Yqj55JoGIF7SWyvX@pendragon.ideasonboard.com>
-References: <20220503093925.876640-1-xavier.roumegue@oss.nxp.com>
- <20220503093925.876640-5-xavier.roumegue@oss.nxp.com>
+        with ESMTP id S229880AbiFNVRB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 17:17:01 -0400
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6635A4F9C7;
+        Tue, 14 Jun 2022 14:16:59 -0700 (PDT)
+Received: by mail-il1-f180.google.com with SMTP id s1so7555076ilj.0;
+        Tue, 14 Jun 2022 14:16:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dZxFnOn/etis5V4OgRvXPWEzaEmDBFSJemPFkXlvs0E=;
+        b=ewKMnTCWIFx153zl6j575TfDMmPvE2U8HxucGyVs7/vcpRp1h3Ur7RM+MRrj9BhS6W
+         pFufeE4q/HX+kwk0y549hkOKbGbvX4yx0ndD46/dBJiAD8pH9Pz1ovl2m/uKvOhI4vd4
+         kPQyU+ycbHGSuGP9ycnbMaDiFA/Tiooht99CplyezmTMH6ODd7Pedvy4K68tmj5PS1Ck
+         hfV/aNk0GMeAm0v8FZWMB/4yImbDGp/Zfy1Hk2rlL7pFjsxcLRuxbCORaQX6zRqms3xq
+         Oh8yjIF67t4/haquZYuoUsXDKh5DFBj96rJMLL67imZwSuWaYT5ErXinJGjXtXNkCVkF
+         ZC3Q==
+X-Gm-Message-State: AJIora+vje8LJ3iFtaVgV+LG25iQoXykQcxkbsKmRsKbAGNOTkFTYw47
+        HfeCBdX5nMWYFc7Op7CNaQ==
+X-Google-Smtp-Source: AGRyM1sEvlPTrV+frVbq2JFD5krZSXbkV7wqDerH3Abq4vk/1Vo7YPBM0wEbQmENv3/g0h0Nlq4uUA==
+X-Received: by 2002:a05:6e02:d01:b0:2d3:bc87:8e19 with SMTP id g1-20020a056e020d0100b002d3bc878e19mr4054538ilj.183.1655241418655;
+        Tue, 14 Jun 2022 14:16:58 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id e15-20020a6b500f000000b00669de60a268sm3818483iob.21.2022.06.14.14.16.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jun 2022 14:16:58 -0700 (PDT)
+Received: (nullmailer pid 2627316 invoked by uid 1000);
+        Tue, 14 Jun 2022 21:16:54 -0000
+Date:   Tue, 14 Jun 2022 15:16:54 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Brad Larson <brad@pensando.io>
+Cc:     devicetree@vger.kernel.org, catalin.marinas@arm.com,
+        krzysztof.kozlowski+dt@linaro.org, arnd@arndb.de, blarson@amd.com,
+        broonie@kernel.org, gsomlo@gmail.com, rdunlap@infradead.org,
+        ulf.hansson@linaro.org, will@kernel.org, alcooperx@gmail.com,
+        fancer.lancer@gmail.com, p.yadav@ti.com,
+        linux-kernel@vger.kernel.org, suravee.suthikulpanit@amd.com,
+        samuel@sholland.org, thomas.lendacky@amd.com,
+        linux-mmc@vger.kernel.org, robh+dt@kernel.org,
+        yamada.masahiro@socionext.com,
+        linux-arm-kernel@lists.infradead.org, piotrs@cadence.com,
+        brijeshkumar.singh@amd.com, krzk@kernel.org, lee.jones@linaro.org,
+        gerg@linux-m68k.org, p.zabel@pengutronix.de,
+        adrian.hunter@intel.com, andy.shevchenko@gmail.com
+Subject: Re: [PATCH v5 01/15] dt-bindings: arm: add AMD Pensando boards
+Message-ID: <20220614211654.GA2627093-robh@kernel.org>
+References: <20220613195658.5607-1-brad@pensando.io>
+ <20220613195658.5607-2-brad@pensando.io>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220503093925.876640-5-xavier.roumegue@oss.nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220613195658.5607-2-brad@pensando.io>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Xavier,
-
-Thank you for the patch.
-
-On Tue, May 03, 2022 at 11:39:20AM +0200, Xavier Roumegue wrote:
-> Add user documentation for the DW100 driver.
+On Mon, 13 Jun 2022 12:56:44 -0700, Brad Larson wrote:
+> From: Brad Larson <blarson@amd.com>
 > 
-> while at it, replace spaces with tab on drivers list.
+> Document the compatible for AMD Pensando Elba SoC boards.
 > 
-> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+> Signed-off-by: Brad Larson <blarson@amd.com>
 > ---
->  .../userspace-api/media/drivers/dw100.rst     | 90 +++++++++++++++++++
->  .../userspace-api/media/drivers/index.rst     |  3 +-
->  2 files changed, 92 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/userspace-api/media/drivers/dw100.rst
+>  .../devicetree/bindings/arm/amd,pensando.yaml | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/amd,pensando.yaml
 > 
-> diff --git a/Documentation/userspace-api/media/drivers/dw100.rst b/Documentation/userspace-api/media/drivers/dw100.rst
-> new file mode 100644
-> index 000000000000..1e606459cf47
-> --- /dev/null
-> +++ b/Documentation/userspace-api/media/drivers/dw100.rst
-> @@ -0,0 +1,90 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +DW100 dewarp driver
-> +===================
-> +
-> +The Vivante DW100 Dewarp Processor IP core found on i.MX8MP SoC applies a
-> +programmable geometrical transformation on input image to correct distortion
 
-s/on input image/on the image image/ (or "on input images")
-
-> +introduced by lenses.
-> +
-> +The transformation function is exposed by the hardware as a grid map with 16x16
-> +pixel macroblocks indexed using X, Y vertex coordinates.
-> +::
-> +
-> +                          Image width
-> +           <--------------------------------------->
-> +
-> +      ^    .-------.-------.-------.-------.-------.
-> +      |    | 16x16 |       |       |       |       |
-> +   I  |    | pixel |       |       |       |       |
-> +   m  |    | block |       |       |       |       |
-> +   a  |    .-------.-------.-------.-------.-------.
-> +   g  |    |       |       |       |       |       |
-> +   e  |    |       |       |       |       |       |
-> +      |    |       |       |       |       |       |
-> +   h  |    .-------.-------.-------.-------.-------.
-> +   e  |    |       |       |       |       |       |
-> +   i  |    |       |       |       |       |       |
-> +   g  |    |       |       |       |       |       |
-> +   h  |    .-------.-------.-------.-------.-------.
-> +   t  |    |       |       |       |       |       |
-> +      |    |       |       |       |       |       |
-> +      |    |       |       |       |       |       |
-> +      v    '-------'-------'-------'-------'-------'
-> +
-> +            Grid of Image Blocks for Dewarping Map
-> +
-> +
-> +Each x, y coordinate register uses 16 bits to record the coordinate address in
-> +an unsigned 12.4 fixed point format (UQ12.4).
-> +::
-> +
-> +    .----------------------.--------..----------------------.--------.
-> +    |         31~20        | 19~16  ||         15~4         |  3~0   |
-> +    |       (integer)      | (frac) ||       (integer)      | (frac) |
-> +    '----------------------'--------''----------------------'--------'
-> +    <-------------------------------><------------------------------->
-> +                Y coordinate                     X coordinate
-> +
-> +                           Remap Register Layout
-> +
-> +The dewarping remap contains two interpolations: coordinate interpolation and
-> +pixel interpolation as shown in the figure below.
-> +::
-> +
-> +                           P1                 P2
-> +                        (x1, y1)           (x2, y2)
-> +                           .-----------------.
-> +                           |                 |
-> +                           |      P          |
-> +                           |   (x, y)        |
-> +                           |      *          |
-> +                           |                 |
-> +                           |                 |
-> +                           '-----------------'
-> +                           P3                P4
-> +                        (x3, y3)          (x4, y4)
-> +
-> +                          Remap with Coordinate
-> +                          and Pixel Interpolation
-
-I don't understand from this figure (and the text above it) how the
-interpolation works, or how it's relevant to the control definition. You
-could either expand the documentation, or drop this part.
-
-With this fixed,
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +The dewarping map is set from applications using the
-> +V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP control. The control contains
-> +an array of u32 values storing (x, y) destination coordinates for each
-> +vertex of the grid. The x coordinate is stored in the 16 LSBs and the y
-> +coordinate in the 16 MSBs.
-> +
-> +The number of elements in the array must match the image size:
-> +
-> +.. code-block:: C
-> +
-> +    elems = (DIV_ROUND_UP(width, 16) + 1) * (DIV_ROUND_UP(height, 16) + 1);
-> +
-> +If the control doesn't contain the correct number of elements, the driver uses
-> +an identity map.
-> +
-> +More details on the DW100 hardware operations can be found in
-> +*chapter 13.15 DeWarp* of IMX8MP_ reference manual.
-> +
-> +.. _IMX8MP: https://www.nxp.com/webapp/Download?colCode=IMX8MPRM
-> diff --git a/Documentation/userspace-api/media/drivers/index.rst b/Documentation/userspace-api/media/drivers/index.rst
-> index 12e3c512d718..0c720ca1a27d 100644
-> --- a/Documentation/userspace-api/media/drivers/index.rst
-> +++ b/Documentation/userspace-api/media/drivers/index.rst
-> @@ -33,7 +33,8 @@ For more details see the file COPYING in the source distribution of Linux.
->  
->  	ccs
->  	cx2341x-uapi
-> -        hantro
-> +	dw100
-> +	hantro
->  	imx-uapi
->  	max2175
->  	meye-uapi
-
--- 
-Regards,
-
-Laurent Pinchart
+Reviewed-by: Rob Herring <robh@kernel.org>
