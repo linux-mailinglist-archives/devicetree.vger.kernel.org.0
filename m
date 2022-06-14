@@ -2,160 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 853F854A344
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 02:50:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3114E54A37D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 03:16:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236420AbiFNAua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 20:50:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37046 "EHLO
+        id S231810AbiFNBQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 21:16:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230099AbiFNAua (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 20:50:30 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79BCA30544
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 17:50:28 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id s37so4528674pfg.11
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 17:50:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ACPm1ucMTOfi6ue/vXhWlbqaubMdDkKHxItbdVtdzEE=;
-        b=iYC0JOhxEj9AINp/vrpMdikzU0oJrpyR1YAiazkp6nK8NrpW3f0uAlfOrYHcimtc35
-         jiBw/PzazQUFDPZ32OuGe1CmP66JTJhZtSKcyXfAQfCez7PoDjHOkozPQPpDZH7ip/6A
-         IH4Nh/Ru2fAg85Aan/uHiiT0PwXc1LstPcudo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ACPm1ucMTOfi6ue/vXhWlbqaubMdDkKHxItbdVtdzEE=;
-        b=JumaiRTQqn8ESQTOwxDd1PTR9AU6jpjgTxkWDqUlZrBx20B0G6tSWU0FG1QaYqB5Bf
-         Y7wcL1CcX8SIaryVbbdXGmwT5j39FjQltlSvRMwRUSJ1EPA8Zotrzf7FfyynaLiHf0Rb
-         SYzjkgydaDvd2stwYwpQA7KnP7Ithtgo17Z01oulb1tliO1kiwWnsTSsQYPmtsP415+D
-         aMZPns09kSxIf2HAQ4PK7xeNK03BC055Xlf0DdFzo/e2yWYOyQUo3t1bfansdExc/xZs
-         5ebUjQkeKFJLlicY4CMXvEgYKa16b0Diuyblg8eApUAYwGDCJr9jpLiRmP0BHph+aLlG
-         vHhQ==
-X-Gm-Message-State: AOAM53206fyAWF/wLHju7PcDZy/BF+hhPDXJioc7RdUdJD6iZ+ZFYtnH
-        qVbEYovDCAjGPrvgHjXvXxANzw==
-X-Google-Smtp-Source: ABdhPJz1vRzxCw2py7mXm3l4Hx3ORSS7vhcYns5Vnoc1vi1vDPLfl40RxweDgBEXhirb4w8MXGVOjA==
-X-Received: by 2002:a63:c046:0:b0:401:abda:a537 with SMTP id z6-20020a63c046000000b00401abdaa537mr2140270pgi.150.1655167827954;
-        Mon, 13 Jun 2022 17:50:27 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:c4fb:a1d8:47ef:f10c])
-        by smtp.gmail.com with UTF8SMTPSA id f4-20020a62db04000000b005184fe6cc99sm6028282pfg.29.2022.06.13.17.50.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Jun 2022 17:50:27 -0700 (PDT)
-Date:   Mon, 13 Jun 2022 17:50:26 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Subject: Re: [v21 4/5] usb: dwc3: qcom: Configure wakeup interrupts during
- suspend
-Message-ID: <YqfbUu/X1joc1rUJ@google.com>
-References: <1655094654-24052-1-git-send-email-quic_kriskura@quicinc.com>
- <1655094654-24052-5-git-send-email-quic_kriskura@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1655094654-24052-5-git-send-email-quic_kriskura@quicinc.com>
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S240197AbiFNBQ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 21:16:26 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C39B2C115
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 18:16:21 -0700 (PDT)
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220614011618epoutp04d43587c00fb444e2842a3e8d987f8bd8~4V8fUaB382532125321epoutp04C
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:16:18 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220614011618epoutp04d43587c00fb444e2842a3e8d987f8bd8~4V8fUaB382532125321epoutp04C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1655169378;
+        bh=fI2J29nRYzvP7/fnA5tJYjNKV6Zfl3ONJubw126AwbY=;
+        h=Subject:Reply-To:From:To:CC:Date:References:From;
+        b=byM5S9V2vT/G1PmZ9thftDS0QR299Mc55HqAVbO16XwT5odB3IDuSv3QrpxIhNS2q
+         EbI/Fvew3EO0vR1syNbdet5F7j77R1+4RYMpsZXlrHr8Yf/BwyPydvMul11sZ5U/DN
+         kQmaIX2Z4Z/rtm1vBMQg9LUyDqqjNdvzfsvF8ICg=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+        20220614011618epcas2p38f4b9291cffac3ce1b24a646ed233038~4V8ewteed0311603116epcas2p3t;
+        Tue, 14 Jun 2022 01:16:18 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.99]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4LMVrK3Qm3z4x9QB; Tue, 14 Jun
+        2022 01:16:17 +0000 (GMT)
+X-AuditID: b6c32a46-79619a8000002624-ac-62a7e161fdf8
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        FB.18.09764.161E7A26; Tue, 14 Jun 2022 10:16:17 +0900 (KST)
+Mime-Version: 1.0
+Subject: [PATCH v3 0/5] Add support for Axis, ARTPEC-8 PCIe driver
+Reply-To: wangseok.lee@samsung.com
+Sender: Wangseok Lee <wangseok.lee@samsung.com>
+From:   Wangseok Lee <wangseok.lee@samsung.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
+        "lars.persson@axis.com" <lars.persson@axis.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "kw@linux.com" <kw@linux.com>,
+        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
+        "kernel@axis.com" <kernel@axis.com>
+CC:     Moon-Ki Jun <moonki.jun@samsung.com>,
+        Sang Min Kim <hypmean.kim@samsung.com>,
+        Dongjin Yang <dj76.yang@samsung.com>,
+        Yeeun Kim <yeeun119.kim@samsung.com>,
+        Wangseok Lee <wangseok.lee@samsung.com>
+X-Priority: 3
+X-Content-Kind-Code: NORMAL
+X-CPGS-Detection: blocking_info_exchange
+X-Drm-Type: N,general
+X-Msg-Generator: Mail
+X-Msg-Type: PERSONAL
+X-Reply-Demand: N
+Message-ID: <20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
+Date:   Tue, 14 Jun 2022 10:16:16 +0900
+X-CMS-MailID: 20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+X-CPGSPASS: Y
+X-CPGSPASS: Y
+CMS-TYPE: 102P
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKJsWRmVeSWpSXmKPExsWy7bCmuW7iw+VJBvdvCVssacqweHlI02L+
+        kXOsFrtnLGeymDn1DLPF80OzmC0+tahaXHjaw2bxctY9NouGnt+sFkfefGS22H98JZPF5V1z
+        2CzOzjvOZjFh1TcWize/X7BbnFucadG69wi7xc47J5gt7hw+y2Lxa+sfJgdRjzXz1jB6XF8X
+        4LFgU6nHplWdbB5Prkxn8ti8pN6jb8sqRo/jN7YzeXzeJBfAGZVtk5GamJJapJCal5yfkpmX
+        bqvkHRzvHG9qZmCoa2hpYa6kkJeYm2qr5OIToOuWmQP0mZJCWWJOKVAoILG4WEnfzqYov7Qk
+        VSEjv7jEVim1ICWnwLxArzgxt7g0L10vL7XEytDAwMgUqDAhO+NdwyzWgktyFd0Tz7A1MO6S
+        6GLk4JAQMJFY313TxcjFISSwg1Fi7cJzTCBxXgFBib87hLsYOTmEBZwkdq18wApiCwkoSexY
+        M48ZIq4vcX1FN1icTUBX4t/il2wgtojAZ1aJ63sEQWYyC5xklFh+eD1YQkKAV2JG+1MWCFta
+        YvvyrYwQtobEj2W9zBC2qMTN1W/ZYez3x+ZD1YhItN47C1UjKPHg526ouJTEgieHWCHsaon9
+        f38zQdgNjBL991MhftSX2HHdGCTMK+ArcXnjVLBzWARUJQ6sncYGUeIicXdiIEiYWUBeYvvb
+        OcwgYWYBTYn1u/QhKpQljtxigfmjYeNvdnQ2swCfRMfhv3DxHfOeQN2iJjFv5U5miDEyEltf
+        +k9gVJqFCOVZSNbOQli7gJF5FaNYakFxbnpqsVGBETxek/NzNzGC07eW2w7GKW8/6B1iZOJg
+        PMQowcGsJMI7+eKyJCHelMTKqtSi/Pii0pzU4kOMpkD/TmSWEk3OB2aQvJJ4QxNLAxMzM0Nz
+        I1MDcyVxXq+UDYlCAumJJanZqakFqUUwfUwcnFINTEneP7bEFx7pc5i1/euP1abLPpY80ebg
+        P7VNueOU41NOw3taL+PubXZR23j3gVbo3nPNwjoXjnhEtaq7d7Iu05ZTFLN9deyC84LchSt8
+        3qZu4das+v+VPUlfICb0Xn3iNEZnFT2PlrP6psn6vbejL62dVnZ9waopMTVPFoRX2ba4sDIF
+        7DC4pXPhUsk8k55Nrd+ttLuCFCaytqbGvFGX0+kxn3ls5rWuDyJ5XnbLwyS/Td2160cvy/G/
+        E5dya/oxPPh45dCP90usKhbmyJY+zyoTl749x6Pj4M2n5dnV876EvJobNNGnwUdjckG4sukc
+        R6F7jDeVZm17vVr5wqyZ9teEoyvFWB+4ucSU3WK+qsRSnJFoqMVcVJwIACU0HzBoBAAA
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7
+References: <CGME20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 13, 2022 at 10:00:53AM +0530, Krishna Kurapati wrote:
-> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> 
-> Configure DP/DM line interrupts based on the USB2 device attached to
-> the root hub port. When HS/FS device is connected, configure the DP line
-> as falling edge to detect both disconnect and remote wakeup scenarios. When
-> LS device is connected, configure DM line as falling edge to detect both
-> disconnect and remote wakeup. When no device is connected, configure both
-> DP and DM lines as rising edge to detect HS/HS/LS device connect scenario.
-> 
-> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> Reviewed-by: Pavankumar Kondeti <quic_pkondeti@quicinc.com>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 72 ++++++++++++++++++++++++++++++++++++++------
->  1 file changed, 62 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index 7352124..1046ea8 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -20,7 +20,8 @@
->  #include <linux/usb/of.h>
->  #include <linux/reset.h>
->  #include <linux/iopoll.h>
-> -
-> +#include <linux/usb/hcd.h>
-> +#include <linux/usb.h>
->  #include "core.h"
->  
->  /* USB QSCRATCH Hardware registers */
-> @@ -76,6 +77,7 @@ struct dwc3_qcom {
->  	int			dp_hs_phy_irq;
->  	int			dm_hs_phy_irq;
->  	int			ss_phy_irq;
-> +	enum usb_device_speed	usb2_speed;
->  
->  	struct extcon_dev	*edev;
->  	struct extcon_dev	*host_edev;
-> @@ -296,11 +298,34 @@ static void dwc3_qcom_interconnect_exit(struct dwc3_qcom *qcom)
->  	icc_put(qcom->icc_path_apps);
->  }
->  
-> -static void dwc3_qcom_enable_wakeup_irq(int irq)
-> +static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom)
-> +{
-> +	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
-> +	struct usb_hcd *hcd = platform_get_drvdata(dwc->xhci);
-> +	struct usb_device *udev;
-> +
-> +	/*
-> +	 * It is possible to query the speed of all children of
-> +	 * USB2.0 root hub via usb_hub_for_each_child(). DWC3 code
-> +	 * currently supports only 1 port per controller. So
-> +	 * this is sufficient.
-> +	 */
+This v3 patchset is improvement several review comments received from patchset v2.
 
-nit: not sure it's really valuable to mention what could be done
-theoretically. Saying that the dwc3 driver currently only
-supports one port per controller should be enough.
+Main changes since v2 [2]:
+dt-bindings: pci: Add ARTPEC-8 PCIe controller
+-modify version history to fit the linux commit rule
+-remove 'Device Tree Bindings' on title
+-remove the interrupt-names, phy-names entries
+-remove '_clk' suffix
+-add the compatible entries on required
+-change node name to soc from artpec8 on examples
 
-No need to respin for this,
+dt-bindings: phy: Add ARTPEC-8 PCIe phy
+-modify version history to fit the linux commit rule
+-remove 'Device Tree Bindings' on title
+-remove clock-names entries
+-change node name to soc from artpec8 on excamples
 
-> +	udev = usb_hub_find_child(hcd->self.root_hub, 1);
-> +
-> +	if (!udev)
-> +		return USB_SPEED_UNKNOWN;
-> +
-> +	return udev->speed;
-> +}
-> +
-> +static void dwc3_qcom_enable_wakeup_irq(int irq, unsigned int polarity)
+ PCI: axis: Add ARTPEC-8 PCIe controller driver
+-add 'COMPILE_TEST' and improvement help on kconfig
+-reorder obj on makefile
+-use clk_bulk_api
+-remove unnecessary comment
+-redefine the ELBI register to distinguish between offset and
+ bit definition
+-improvement order local variable of function
+-remove unnecessary local return variable
 
-'polarity' isn't really accurate, the parameter also encodes whether the IRQ
-is edge or level triggered. 'irq_type' would be clearer.
+phy: Add ARTPEC-8 PCIe PHY driver
+-remove unnecessary indentation
+-redefine local struct to statis const
+-add static const to struct that requires static const definition
+-remove wrappers on writel and readl
 
-Also no need to respin just for this.
+Main changes since v1 [1]:
+-'make dt_binding_check' result improvement
+-Add the missing property list
+-improvement review comment of Krzysztof on driver code
+-change folder name of phy driver to axis from artpec
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+[2] https://lore.kernel.org/lkml/20220613015023epcms2p70e6700a99042d4deb560e40ab5397001@epcms2p7/T/
+[1] https://lore.kernel.org/lkml/20220328014430epcms2p7063834feb0abdf2f38a62723c96c9ff1@epcms2p7/
+
+--------------------------------------------------------------
+This series patches include newly PCIe support for Axis ARTPEC-8 SoC.
+ARTPEC-8 is the SoC platform of Axis Communications.
+PCIe controller driver and phy driver have been newly added.
+There is also a new MAINTAINER in the addition of phy driver.
+PCIe controller is designed based on Design-Ware PCIe controller IP
+and PCIe phy is desinged based on SAMSUNG PHY IP.
+It also includes modifications to the Design-Ware controller driver to 
+run the 64bit-based ARTPEC-8 PCIe controller driver.
+It consists of 6 patches in total.
+
+This series has been tested on AXIS SW bring-up board 
+with ARTPEC-8 chipset.
+--------------------------------------------------------------
+
+Wangseok Lee (5):
+  dt-bindings: pci: Add ARTPEC-8 PCIe controller
+  dt-bindings: phy: Add ARTPEC-8 PCIe phy
+  PCI: axis: Add ARTPEC-8 PCIe controller driver
+  phy: Add ARTPEC-8 PCIe PHY driver
+  MAINTAINERS: Add Axis ARTPEC-8 PCIe PHY maintainers
+
+ .../bindings/pci/axis,artpec8-pcie-ep.yaml         | 109 +++
+ .../devicetree/bindings/pci/axis,artpec8-pcie.yaml | 120 ++++
+ .../bindings/phy/axis,artpec8-pcie-phy.yaml        |  73 ++
+ MAINTAINERS                                        |   2 +
+ drivers/pci/controller/dwc/Kconfig                 |  31 +
+ drivers/pci/controller/dwc/Makefile                |   1 +
+ drivers/pci/controller/dwc/pcie-artpec8.c          | 797 +++++++++++++++++++++
+ drivers/phy/Kconfig                                |   1 +
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/axis/Kconfig                           |   9 +
+ drivers/phy/axis/Makefile                          |   2 +
+ drivers/phy/axis/phy-artpec8-pcie.c                | 776 ++++++++++++++++++++
+ 12 files changed, 1922 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/axis,artpec8-pcie-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/axis,artpec8-pcie.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-artpec8.c
+ create mode 100644 drivers/phy/axis/Kconfig
+ create mode 100644 drivers/phy/axis/Makefile
+ create mode 100644 drivers/phy/axis/phy-artpec8-pcie.c
+
+-- 
+2.9.5
