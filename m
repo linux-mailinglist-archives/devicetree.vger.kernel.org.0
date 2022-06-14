@@ -2,69 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 280A654BC6E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 23:05:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE63A54BC81
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 23:07:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233411AbiFNVDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 17:03:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58362 "EHLO
+        id S1349809AbiFNVHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 17:07:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357780AbiFNVDx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 17:03:53 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC934506CF
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 14:03:48 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id g10-20020a17090a708a00b001ea8aadd42bso191109pjk.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 14:03:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=54uqX4hoxceYxZbvXXXTQIRCQh50Z99ozZMeQkD5dEg=;
-        b=KPGKRgHC5n8hWs2HP0HefSE6DkYDIETw7epRbgNMqeA2V9Lv/O6MTXFZpSwfhZrQSx
-         pPHYr/9NXuMF2wPXKlCtcPkRQmGoW8YTg7ZUFh0VFPchZdwTfzhVCshMqbJG5riAQPLI
-         PDYS8v64XEw8vsdnYaJea9nU/dMobg8aXd1k2lnipdWh0We3aElzh6C9CzlZwQ0UtXbT
-         MJ0dT5ahLlIXRIUOxz9SHanzYNlA3G71tKHRa2If59GERiWa/uSJTf+Ao2aVEv4KVzDi
-         okFAfbBrEPXKHtHBp1hmSlUpbIzsL/v5P4mCeivarjnOxmlGAYh3OUtav88xmr2MRQCf
-         Jksw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=54uqX4hoxceYxZbvXXXTQIRCQh50Z99ozZMeQkD5dEg=;
-        b=mjrS1TCXNrMBaFyT06goBgZfCA9ojZSy2k2hMyiHnhZV0itLlfto9Vx2R5V1WZvdkN
-         BoWtgkc+3KJJPexQGpRENlw2WeLU27DaJQ3QvBaA6u86Mpef0t2jXVUpJfOssOE53u+t
-         F3fKzlLnRj7lBz+D+x6gQHMd5hIUi1lbK2xQuaqbLGewP8hqBgYJSpGrHyPhI+hIGVXP
-         od2s5RASFIUnO18ZDJJA53ta3J5o0txTvxUsbPCg1lvdbHBHBampetYtGdNHYas+BTH5
-         oxY71bdullOJgZC+/owGeAvHLLDVOljPXG2N0Bdyif5E/3TU0I+fmQyBpKgDAEXPe68v
-         8Xug==
-X-Gm-Message-State: AJIora+xvcMKAvlnzSI2q5nfkj6Lo+PvIXC+RZjiwuwWxilEk+2GFk1E
-        9+18yKjylh23EQGhuDJ2UFEWBg==
-X-Google-Smtp-Source: AGRyM1uhtOpnkODqEAnt2BMBBTumHS2aKQXcRkaESL5xgjTuUoibnJg//T9j+N0OhBrTniTj1c+NWw==
-X-Received: by 2002:a17:903:2291:b0:167:59ad:52e8 with SMTP id b17-20020a170903229100b0016759ad52e8mr6373890plh.121.1655240628282;
-        Tue, 14 Jun 2022 14:03:48 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id b7-20020a1709027e0700b001635a8f9dfdsm59307plm.26.2022.06.14.14.03.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jun 2022 14:03:47 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jerome NEANNE <jneanne@baylibre.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, nm@ti.com,
-        kristo@kernel.org, will@kernel.org, lee.jones@linaro.org,
-        jneanne@baylibre.com
-Cc:     narmstrong@baylibre.com, msp@baylibre.com, j-keerthy@ti.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFC PATCH 2/5] mfd: drivers: Add TI TPS65219 PMIC support
-In-Reply-To: <20220613090604.9975-3-jneanne@baylibre.com>
-References: <20220613090604.9975-1-jneanne@baylibre.com>
- <20220613090604.9975-3-jneanne@baylibre.com>
-Date:   Tue, 14 Jun 2022 14:03:46 -0700
-Message-ID: <7hy1xznej1.fsf@baylibre.com>
+        with ESMTP id S241295AbiFNVHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 17:07:15 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5904D506E4;
+        Tue, 14 Jun 2022 14:07:14 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 923E52E4;
+        Tue, 14 Jun 2022 23:07:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1655240832;
+        bh=jCYvsA6z1AYPLyvZ5o1lPYrugwPV+h4sgcgKgzhR7Z8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GVTwmaFJfVfVwB9sPYzJFpC1vvXRWvstXD1bZZowchajQ/tXFFpoELK1VYCJqzquj
+         fU/8h94+yBg6GU2hc3nXm/w3M1Rprax5aQEFG2iaBESgiJ09FDhrZhIhDejy7qK4Vd
+         5NyHWXKI3ssu3r6Lnj3ZGp+RrbXA1AViIGFimf0Q=
+Date:   Wed, 15 Jun 2022 00:07:03 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
+        robh+dt@kernel.org, nicolas@ndufresne.ca,
+        alexander.stein@ew.tq-group.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 6/9] media: uapi: Add a control for DW100 driver
+Message-ID: <Yqj4d+HrR+XV9bb/@pendragon.ideasonboard.com>
+References: <20220503093925.876640-1-xavier.roumegue@oss.nxp.com>
+ <20220503093925.876640-7-xavier.roumegue@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220503093925.876640-7-xavier.roumegue@oss.nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,52 +49,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome NEANNE <jneanne@baylibre.com> writes:
+Hi Xavier,
 
-> The TPS65219 is a power management IC PMIC designed
-> to supply a wide range of SoCs
-> in both portable and stationary applications.
-> Any SoC can control TPS65219 over a standard I2C interface.
->
-> It contains the following components:
-> - Regulators.
-> - Over Temperature warning and Shut down.
-> - GPIOs
-> - Multi Function Pins (MFP)
->
-> This patch adds support for tps65219 mfd device. At this time only
-> the functionalities listed below are made available:
->
-> - Regulators probe and functionalities
-> - warm and cold reset support
-> - SW shutdown support
->
-> Signed-off-by: Jerome NEANNE <jneanne@baylibre.com>
+Thank you for the patch.
 
-[...]
+On Tue, May 03, 2022 at 11:39:22AM +0200, Xavier Roumegue wrote:
+> The DW100 driver gets the dewarping mapping as a binary blob from the
+> userspace application through a custom control.
+> The blob format is hardware specific so create a dedicated control for
+> this purpose.
+> 
+> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
 
-> +/**
-> + * pmic_rst_restart: trig tps65219 reset to SOC.
-> + *
-> + * Trigged via notifier
-> + */
-> +static int pmic_rst_restart(struct notifier_block *this,
-> +			  unsigned long mode, void *cmd)
-> +{
-> +	struct tps65219 *tps;
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> ---
+>  .../userspace-api/media/drivers/dw100.rst          | 13 +++++++++++++
+>  include/uapi/linux/dw100.h                         | 14 ++++++++++++++
+>  2 files changed, 27 insertions(+)
+>  create mode 100644 include/uapi/linux/dw100.h
+> 
+> diff --git a/Documentation/userspace-api/media/drivers/dw100.rst b/Documentation/userspace-api/media/drivers/dw100.rst
+> index 1e606459cf47..1ea727698ea1 100644
+> --- a/Documentation/userspace-api/media/drivers/dw100.rst
+> +++ b/Documentation/userspace-api/media/drivers/dw100.rst
+> @@ -87,4 +87,17 @@ an identity map.
+>  More details on the DW100 hardware operations can be found in
+>  *chapter 13.15 DeWarp* of IMX8MP_ reference manual.
+>  
+> +The Vivante DW100 m2m driver implements the following driver-specific control:
 > +
-> +	tps = container_of(this, struct tps65219, nb);
-> +	if (tps != NULL) {
-> +		if (WARMNCOLD)
+> +``V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP (__u32 array)``
+> +    Specifies to DW100 driver its dewarping map (aka LUT) blob as described in
+> +    *chapter 13.15.2.3 Dewarping Remap* of IMX8MP_ reference manual as an U32
+> +    dynamic array. The image is divided into many small 16x16 blocks. If the
+> +    width/height of the image is not divisible by 16, the size of the
+> +    rightmost/bottommost block is the remainder. The dewarping map only saves
+> +    the vertex coordinates of the block. The dewarping grid map is comprised of
+> +    vertex coordinates for x and y. Each x, y coordinate register uses 16 bits
+> +    (UQ12.4) to record the coordinate address, with the Y coordinate in the
+> +    upper bits and X in the lower bits.
+> +
+>  .. _IMX8MP: https://www.nxp.com/webapp/Download?colCode=IMX8MPRM
+> diff --git a/include/uapi/linux/dw100.h b/include/uapi/linux/dw100.h
+> new file mode 100644
+> index 000000000000..3356496edd6b
+> --- /dev/null
+> +++ b/include/uapi/linux/dw100.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only WITH Linux-syscall-note */
+> +/* Copyright 2022 NXP */
+> +
+> +#ifndef __UAPI_DW100_H__
+> +#define __UAPI_DW100_H__
+> +
+> +#include <linux/v4l2-controls.h>
+> +
+> +/*
+> + * Check Documentation/userspace-api/media/drivers/dw100.rst for control details.
+> + */
+> +#define V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP (V4L2_CID_USER_DW100_BASE + 1)
+> +
+> +#endif
 
-This value is hard-coded to 1 in the header, so war reset will always be
-done.  
+-- 
+Regards,
 
-> +			tps65219_warm_reset(tps);
-> +		else
-> +			tps65219_cold_reset(tps);
-
-Doesn't the reboot_notifier get a value like REBOOT_WARM,
-REBOOT_COLD etc (c.f. enum in linux/reboot.h)  so you could properly select?
-
-Kevin
+Laurent Pinchart
