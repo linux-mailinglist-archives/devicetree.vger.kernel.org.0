@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C047754AC43
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:46:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9F4154AC59
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:49:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356301AbiFNIoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 04:44:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43932 "EHLO
+        id S1354459AbiFNIr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 04:47:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355882AbiFNImz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:42:55 -0400
-Received: from esa6.hgst.iphmx.com (esa6.hgst.iphmx.com [216.71.154.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2396442A01
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:42:41 -0700 (PDT)
+        with ESMTP id S241624AbiFNIpl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:45:41 -0400
+Received: from esa2.hgst.iphmx.com (esa2.hgst.iphmx.com [68.232.143.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEFB12AD4
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:45:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1655196162; x=1686732162;
+  t=1655196340; x=1686732340;
   h=message-id:date:mime-version:subject:to:cc:references:
    from:in-reply-to:content-transfer-encoding;
-  bh=seQXUC2yFSK+xh+rRJdR/W+Fvg3IkeD6jADS01tkxBo=;
-  b=jnnbVbcJiVG3gvGKv62qsNeQjTQmbY0UP8IbukMfCNpdN2ih6fBU4WDH
-   8j7kCPbmy+lZobmfhHZzFdO/jGu+ERwTyCqM6i7YGVcbu43oyF67m+EGc
-   gSOKblvCLkITwHth/QUsZteLjeB4y5IEn62Phcy+l1SMt/juiXrMa+FC9
-   CjePxvfcy8iu9kuABZPkNuEodYL+p+8Q7YHB7Vmp0ruvpVNFAwlVU3bFJ
-   6M5EVomN5rgPCNTR4BrupetGIRFjOG9y8+LUJkde3C5Pyaqf98Mhz22Bh
-   Bc/x35AFn3j5R5Zjz/4PA3RhYs/HI/Gq6bMSoo8xMkRMlc47irMI9wQ/J
+  bh=730WLOxUDl/tCCXOxzEMJE/Etnsc1xvpiRS8SMWclV4=;
+  b=oSWDItf5RFPPk17+Ytd1laEVJe9aChOUYDMUjEhW8VEHTB8YXBGHTbAF
+   YQaM5Gz7wjikDhQ+ZDD1Z4S5KocwFvg3VGPouC3SmqjGm/bD9bGXYcVSC
+   Kr7nQmxFIjDSlU3pe33zMb/M0olZuyvw7VltiP5+LZtRQhEEdeo19ogvn
+   0BRSd18vbpBFakReKUhOv7MMzqtCsrXeaqblyfKO0sTZI49mHHqrU+8nC
+   3oYc7Bb5MlUo0xf2XpRpGS6qUccPg//ntWEhuNRK/xEiI3iuXcZa3Ck35
+   SYKdxaYVxOH0jSaO+BjifgqCagHRAyStH2b4ANuAON+arEugB5r6z0xpg
    A==;
 X-IronPort-AV: E=Sophos;i="5.91,299,1647273600"; 
-   d="scan'208";a="203866926"
-Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 14 Jun 2022 16:42:41 +0800
-IronPort-SDR: v0sDaVTZbcqcUdULSm2N1dsL2yDE74LHtV7AZ69f3bMYqA0bK4eCMFR4YYd3I47yhRP8s8AmRV
- mE7+elFFv+Kcmuw3QurPxE2xkBKBx8yc+jpu2YGKv8qAZhquL8lfTTE8ZmyDGemsdrlUrNijnI
- znjxlBve/oSNla7q8ouhbuobAAe/gWFdUsK90Z8h/l1jiAG+/Xb/QvMjyGo/A5Lh7KJ7JhD+EO
- M5gJitL3YEm3y8Pvq5w2OTTYvWhrcXlmlxTcENiw5PLMCoXfxIUXgM/DnBqHHFUWaPqvMCxm7X
- Ir3O/pxfM6A0Fx8dn3EwYV9u
+   d="scan'208";a="307388534"
+Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 14 Jun 2022 16:45:40 +0800
+IronPort-SDR: a//OlxU8BmmAA7gaALDE8rnvFJbnXL8ljjdsaI3fEn4KVMJ42eBHCY+PghRKX+gVbVm7fZ1LKE
+ R4SuYHRQAzXaChslie+XQDtLzMnRCmZdbje1KgbIdojAS/V71glyNozv3PQQeXDhJ4d+lVR4sW
+ B9a2C0zHvAwMP4zV1DSbsSt2VFzt/Xkpa1KPVq1VOxDbNl6G+WSr3qaCsqyPULIrPVAGJxoiGH
+ 10p5NaLRCLb9EcM14LZxrUrFbg0z4PdwSFpkqhFTj5XiRSu7uJ+stJ2ADplpikW9eN9qCnLeZY
+ ccCcVfLCECHpP4ZUnBs/faOS
 Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Jun 2022 01:01:15 -0700
-IronPort-SDR: BIHrJa+vuv/SzH1ASuNAFlZXQMscn0yDAjXJoY7K/wJ5xL9HLjt6r4usw+QizIvdEi/sHdwcgs
- 0BxmGgPnHTLNit5QhQuFUA9ic/wIswtTcAQ2l/sotZ8nN8kdPhlM6Kc5y9tubBHl/G4fQm6L8l
- ecZVh8uSJr/HQ+MUAHJ+xmMio4d01t1lOUat8UXV3sriVcrPzFWXkzJoKD9QX5dVHRXj02ANhG
- Fo+/GfQ3RiQUht1xLeVx7MHebv9pseSgCNjAcwDZm/vwwJ4FvXl2Etkxy4OE00vvuD0qHq9C+C
- 0RM=
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Jun 2022 01:08:39 -0700
+IronPort-SDR: v6+E6+N+Wh0DfAFuCetXTC5oBeH05fIYUWpZLsgHIAmz2sX3bBYceR8Fxpqtwks/BaDC2V1G93
+ xEGfSZPJC+Vo7/QldNcJrzbhAZlsnpoYqxGBLvIl6g8vLyzr4d4iWKH+rsGehGAZow0KbYqSOC
+ ss4jXgJL4SY/8QrrUVzu8r6KIj+P6og8fIEb6qas/Ql5cMMvnQRkuavR6lzmDhj0v2B3Sqzy0m
+ R8rCRIMvSJVjVGt1tp65H6E/mkUqsTksfyJd0uYMq1tdHbN1620N8MLG8Kp/W6Z9u3/c08Tjv/
+ EAc=
 WDCIronportException: Internal
 Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Jun 2022 01:42:40 -0700
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Jun 2022 01:45:40 -0700
 Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4LMhlM5qkBz1SHwl
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:42:39 -0700 (PDT)
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4LMhpq4VPDz1SHwl
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:45:39 -0700 (PDT)
 Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
         reason="pass (just generated, assumed good)"
         header.d=opensource.wdc.com
@@ -56,28 +56,28 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
         opensource.wdc.com; h=content-transfer-encoding:content-type
         :in-reply-to:organization:from:references:to:content-language
         :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1655196157; x=1657788158; bh=seQXUC2yFSK+xh+rRJdR/W+Fvg3IkeD6jAD
-        S01tkxBo=; b=izUJj0dDUVtMz+bmJiPj7yDufLu5l8x8Vrtlu7G9ldP3AbWNHKr
-        t9d0CfS5ysTIsmvuaZdisnQQ3qZ8/qt+xCWQJ9Ex+wwSu858HtEdVJofGGKo5yaO
-        khazQVPSwScm5dYyBKD6qRuszvNbWW/jF4hcrBS6kvJ1HEc68n1c8EwJv0J5z1kw
-        Qw4fFsq7mH4FxufjGD0eSPOfCachfHNJ0y1ARXwm78SpOMBn6FiE61FavLyiQY4J
-        UN1M9Zs0f/7NMA/j4is7iDHXV6V/uO3xk1Mt5B23oZsMrxQ/NbiXCzMLDWh+gsfs
-        GFZBGn+/fFBMBhzV/MlER5qRAyYKFUJ5KxQ==
+        1655196338; x=1657788339; bh=730WLOxUDl/tCCXOxzEMJE/Etnsc1xvpiRS
+        8SMWclV4=; b=iMAF22D08tLP22EwyW2EGAImbpK8eQcBbDj01cr5hIdTvMvn9pl
+        Z/xRZHFpQs+YVoEdTBqfq0NqDouapToDlh8A9TSpdO9Dp0Bk8kza4wB95o4kOUCh
+        bKBxD34JxEGV1T/fUMszf/o+rIlyL4nCfwxD4dH2MwSnQPm5FH5bRPjMTE2Y3dAz
+        derj6ZqUDHj4Y6mieLfh0do48fDsyz3OA4etLnu5zXg85LW/mwcXOZT/3HKB1QS+
+        O7n1pg/UpQLtzJY5Ikore7lRjNXFehJmKUBmoSYW0mLnHU77J9XxbPrakqxVcf9q
+        vTyT1w9p0RSWdf30ruP4Q40mQQEr7dEcIIQ==
 X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
 Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
         by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 9fijwYd-iVmS for <devicetree@vger.kernel.org>;
-        Tue, 14 Jun 2022 01:42:37 -0700 (PDT)
+        with ESMTP id cD6HGIzztOIv for <devicetree@vger.kernel.org>;
+        Tue, 14 Jun 2022 01:45:38 -0700 (PDT)
 Received: from [10.225.163.77] (unknown [10.225.163.77])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4LMhlJ1qJKz1Rvlc;
-        Tue, 14 Jun 2022 01:42:36 -0700 (PDT)
-Message-ID: <c1fa74f0-28d7-3394-6c43-5063c62db666@opensource.wdc.com>
-Date:   Tue, 14 Jun 2022 17:42:35 +0900
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4LMhpn0mkyz1Rvlc;
+        Tue, 14 Jun 2022 01:45:36 -0700 (PDT)
+Message-ID: <611c8eeb-fa7e-286c-bef2-0e24cc2b6b2e@opensource.wdc.com>
+Date:   Tue, 14 Jun 2022 17:45:35 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v4 16/23] ata: ahci: Introduce firmware-specific caps
- initialization
+Subject: Re: [PATCH v4 18/23] ata: libahci_platform: Add function returning a
+ clock-handle by id
 Content-Language: en-US
 To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Hans de Goede <hdegoede@redhat.com>,
@@ -88,10 +88,10 @@ Cc:     Serge Semin <fancer.lancer@gmail.com>,
         Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
- <20220610081801.11854-17-Sergey.Semin@baikalelectronics.ru>
+ <20220610081801.11854-19-Sergey.Semin@baikalelectronics.ru>
 From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
 Organization: Western Digital Research
-In-Reply-To: <20220610081801.11854-17-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20220610081801.11854-19-Sergey.Semin@baikalelectronics.ru>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -105,285 +105,106 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 6/10/22 17:17, Serge Semin wrote:
-> There are systems with no BIOS or comprehensive embedded firmware which
-> could be able to properly initialize the SATA AHCI controller
-> platform-specific capabilities. In that case a good alternative to having
-> a clever bootloader is to create a device tree node with the properties
-> well describing all the AHCI-related platform specifics. All the settings
-> which are normally detected and marked as available in the HBA and its
-> ports capabilities fields [1] could be defined in the platform DTB by
-> means of a set of the dedicated properties. Such approach perfectly fits
-> to the DTB-philosophy - to provide hardware/platform description.
+> Since all the clocks are retrieved by the method
+> ahci_platform_get_resources() there is no need for the LLD (glue) drivers
+> to be looking for some particular of them in the kernel clocks table
+> again. Instead we suggest to add a simple method returning a
+> device-specific clock with passed connection ID if it is managed to be
+> found. Otherwise the function will return NULL. Thus the glue-drivers
+> won't need to either manually touching the hpriv->clks array or calling
+> clk_get()-friends. The AHCI platform drivers will be able to use the new
+> function right after the ahci_platform_get_resources() method invocation
+> and up to the device removal.
 > 
-> So here we suggest to extend the SATA AHCI device tree bindings with two
-> additional DT-properties:
-> 1) "hba-cap" - HBA platform generic capabilities like:
->    - SSS - Staggered Spin-up support.
->    - SMPS - Mechanical Presence Switch support.
-> 2) "hba-port-cap" - HBA platform port capabilities like:
->    - HPCP - Hot Plug Capable Port.
->    - MPSP - Mechanical Presence Switch Attached to Port.
->    - CPD - Cold Presence Detection.
->    - ESP - External SATA Port.
->    - FBSCP - FIS-based Switching Capable Port.
-> All of these capabilities require to have a corresponding hardware
-> configuration. Thus it's ok to have them defined in DTB.
-> 
-> Even though the driver currently takes into account the state of the ESP
-> and FBSCP flags state only, there is nothing wrong with having all of them
-> supported by the generic AHCI library in order to have a complete OF-based
-> platform-capabilities initialization procedure. These properties will be
-> parsed in the ahci_platform_get_resources() method and their values will
-> be stored in the saved_* fields of the ahci_host_priv structure, which in
-> its turn then will be used to restore the H.CAP, H.PI and P#.CMD
-> capability fields on device init and after HBA reset.
-> 
-> Please note this modification concerns the HW-init HBA and its ports flags
-> only, which are by specification [1] are supposed to be initialized by the
-> BIOS/platform firmware/expansion ROM and which are normally declared in
-> the one-time-writable-after-reset register fields. Even though these flags
-> aren't supposed to be cleared after HBA reset some AHCI instances may
-> violate that rule so we still need to perform the fields resetting after
-> each reset. Luckily the corresponding functionality has already been
-> partly implemented in the framework of the ahci_save_initial_config() and
-> ahci_restore_initial_config() methods.
-> 
-> [1] Serial ATA AHCI 1.3.1 Specification, p. 103
+> Note the method is left unused here, but will be utilized in the framework
+> of the DWC AHCI SATA driver being added in the next commit.
 > 
 > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > 
 > ---
 > 
-> Changelog v4:
-> - Convert the boolean properties to the bitfield DT-properties. (@Rob)
-> ---
->  drivers/ata/ahci.h             |  1 +
->  drivers/ata/libahci.c          | 51 ++++++++++++++++++++++++++++------
->  drivers/ata/libahci_platform.c | 41 +++++++++++++++++++++++++--
->  3 files changed, 82 insertions(+), 11 deletions(-)
+> Changelog v2:
+> - Fix some grammar mistakes in the method description.
 > 
-> diff --git a/drivers/ata/ahci.h b/drivers/ata/ahci.h
-> index 8b9826533ae5..0de221055961 100644
-> --- a/drivers/ata/ahci.h
-> +++ b/drivers/ata/ahci.h
-> @@ -337,6 +337,7 @@ struct ahci_host_priv {
->  	u32			saved_cap;	/* saved initial cap */
->  	u32			saved_cap2;	/* saved initial cap2 */
->  	u32			saved_port_map;	/* saved initial port_map */
-> +	u32			saved_port_cap[AHCI_MAX_PORTS]; /* saved port_cap */
->  	u32 			em_loc; /* enclosure management location */
->  	u32			em_buf_sz;	/* EM buffer size in byte */
->  	u32			em_msg_type;	/* EM message type */
-> diff --git a/drivers/ata/libahci.c b/drivers/ata/libahci.c
-> index 1ffaa5f5f21a..954386a2b500 100644
-> --- a/drivers/ata/libahci.c
-> +++ b/drivers/ata/libahci.c
-> @@ -16,6 +16,7 @@
->   * http://www.intel.com/technology/serialata/pdf/rev1_1.pdf
->   */
->  
-> +#include <linux/bitops.h>
->  #include <linux/kernel.h>
->  #include <linux/gfp.h>
->  #include <linux/module.h>
-> @@ -443,16 +444,28 @@ static ssize_t ahci_show_em_supported(struct device *dev,
->  void ahci_save_initial_config(struct device *dev, struct ahci_host_priv *hpriv)
->  {
->  	void __iomem *mmio = hpriv->mmio;
-> -	u32 cap, cap2, vers, port_map;
-> +	void __iomem *port_mmio;
-> +	unsigned long port_map;
-> +	u32 cap, cap2, vers;
->  	int i;
->  
->  	/* make sure AHCI mode is enabled before accessing CAP */
->  	ahci_enable_ahci(mmio);
->  
-> -	/* Values prefixed with saved_ are written back to host after
-> -	 * reset.  Values without are used for driver operation.
-> +	/*
-> +	 * Values prefixed with saved_ are written back to the HBA and ports
-> +	 * registers after reset. Values without are used for driver operation.
-> +	 */
-> +
-> +	/*
-> +	 * Override HW-init HBA capability fields with the platform-specific
-> +	 * values. The rest of the HBA capabilities are defined as Read-only
-> +	 * and can't be modified in CSR anyway.
->  	 */
-> -	hpriv->saved_cap = cap = readl(mmio + HOST_CAP);
-> +	cap = readl(mmio + HOST_CAP);
-> +	if (hpriv->saved_cap)
-> +		cap = (cap & ~(HOST_CAP_SSS | HOST_CAP_MPS)) | hpriv->saved_cap;
-> +	hpriv->saved_cap = cap;
->  
->  	/* CAP2 register is only defined for AHCI 1.2 and later */
->  	vers = readl(mmio + HOST_VERSION);
-> @@ -519,7 +532,7 @@ void ahci_save_initial_config(struct device *dev, struct ahci_host_priv *hpriv)
->  	/* Override the HBA ports mapping if the platform needs it */
->  	port_map = readl(mmio + HOST_PORTS_IMPL);
->  	if (hpriv->saved_port_map && port_map != hpriv->saved_port_map) {
-> -		dev_info(dev, "forcing port_map 0x%x -> 0x%x\n",
-> +		dev_info(dev, "forcing port_map 0x%lx -> 0x%x\n",
-
-This change is not necessary.
-
->  			 port_map, hpriv->saved_port_map);
->  		port_map = hpriv->saved_port_map;
->  	} else {
-> @@ -527,7 +540,7 @@ void ahci_save_initial_config(struct device *dev, struct ahci_host_priv *hpriv)
->  	}
->  
->  	if (hpriv->mask_port_map) {
-> -		dev_warn(dev, "masking port_map 0x%x -> 0x%x\n",
-> +		dev_warn(dev, "masking port_map 0x%lx -> 0x%lx\n",
-
-Same.
-
->  			port_map,
->  			port_map & hpriv->mask_port_map);
->  		port_map &= hpriv->mask_port_map;
-> @@ -546,7 +559,7 @@ void ahci_save_initial_config(struct device *dev, struct ahci_host_priv *hpriv)
->  		 */
->  		if (map_ports > ahci_nr_ports(cap)) {
->  			dev_warn(dev,
-> -				 "implemented port map (0x%x) contains more ports than nr_ports (%u), using nr_ports\n",
-> +				 "implemented port map (0x%lx) contains more ports than nr_ports (%u), using nr_ports\n",
-
-Same.
-
->  				 port_map, ahci_nr_ports(cap));
->  			port_map = 0;
->  		}
-> @@ -555,12 +568,26 @@ void ahci_save_initial_config(struct device *dev, struct ahci_host_priv *hpriv)
->  	/* fabricate port_map from cap.nr_ports for < AHCI 1.3 */
->  	if (!port_map && vers < 0x10300) {
->  		port_map = (1 << ahci_nr_ports(cap)) - 1;
-> -		dev_warn(dev, "forcing PORTS_IMPL to 0x%x\n", port_map);
-> +		dev_warn(dev, "forcing PORTS_IMPL to 0x%lx\n", port_map);
-
-And again not needed.
-
->  
->  		/* write the fixed up value to the PI register */
->  		hpriv->saved_port_map = port_map;
->  	}
->  
-> +	/*
-> +	 * Preserve the ports capabilities defined by the platform. Note there
-> +	 * is no need in storing the rest of the P#.CMD fields since they are
-> +	 * volatile.
-> +	 */
-> +	for_each_set_bit(i, &port_map, AHCI_MAX_PORTS) {
-> +		if (hpriv->saved_port_cap[i])
-> +			continue;
-> +
-> +		port_mmio = __ahci_port_base(hpriv, i);
-> +		hpriv->saved_port_cap[i] =
-> +			readl(port_mmio + PORT_CMD) & PORT_CMD_CAP;
-> +	}
-> +
->  	/* record values to use during operation */
->  	hpriv->cap = cap;
->  	hpriv->cap2 = cap2;
-> @@ -590,13 +617,21 @@ EXPORT_SYMBOL_GPL(ahci_save_initial_config);
->  static void ahci_restore_initial_config(struct ata_host *host)
->  {
->  	struct ahci_host_priv *hpriv = host->private_data;
-> +	unsigned long port_map = hpriv->port_map;
->  	void __iomem *mmio = hpriv->mmio;
-> +	void __iomem *port_mmio;
-> +	int i;
->  
->  	writel(hpriv->saved_cap, mmio + HOST_CAP);
->  	if (hpriv->saved_cap2)
->  		writel(hpriv->saved_cap2, mmio + HOST_CAP2);
->  	writel(hpriv->saved_port_map, mmio + HOST_PORTS_IMPL);
->  	(void) readl(mmio + HOST_PORTS_IMPL);	/* flush */
-> +
-> +	for_each_set_bit(i, &port_map, AHCI_MAX_PORTS) {
-> +		port_mmio = __ahci_port_base(hpriv, i);
-> +		writel(hpriv->saved_port_cap[i], port_mmio + PORT_CMD);
-> +	}
->  }
->  
->  static unsigned ahci_scr_offset(struct ata_port *ap, unsigned int sc_reg)
+> Changelog v4:
+> - Add a note regarding the new method usage.
+> ---
+>  drivers/ata/libahci_platform.c | 27 +++++++++++++++++++++++++++
+>  include/linux/ahci_platform.h  |  3 +++
+>  2 files changed, 30 insertions(+)
+> 
 > diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
-> index efe640603f3f..8b542a8bc487 100644
+> index 8b542a8bc487..418961f954af 100644
 > --- a/drivers/ata/libahci_platform.c
 > +++ b/drivers/ata/libahci_platform.c
-> @@ -23,6 +23,7 @@
->  #include <linux/pm_runtime.h>
->  #include <linux/of_platform.h>
->  #include <linux/reset.h>
-> +
-
-white line change.
-
->  #include "ahci.h"
->  
->  static void ahci_host_stop(struct ata_host *host);
-> @@ -383,6 +384,34 @@ static int ahci_platform_get_regulator(struct ahci_host_priv *hpriv, u32 port,
->  	return rc;
+> @@ -95,6 +95,33 @@ void ahci_platform_disable_phys(struct ahci_host_priv *hpriv)
 >  }
+>  EXPORT_SYMBOL_GPL(ahci_platform_disable_phys);
 >  
-> +static int ahci_platform_get_firmware(struct ahci_host_priv *hpriv,
-> +				      struct device *dev)
+> +/**
+> + * ahci_platform_find_clk - Find platform clock
+> + * @hpriv: host private area to store config values
+> + * @con_id: clock connection ID
+> + *
+> + * This function returns a pointer to the clock descriptor of the clock with
+> + * the passed ID.
+> + *
+> + * RETURNS:
+> + * Pointer to the clock descriptor on success otherwise NULL
+> + */
+> +struct clk *ahci_platform_find_clk(struct ahci_host_priv *hpriv, const char *con_id)
 > +{
-> +	struct device_node *child;
-> +	u32 port;
+> +	struct clk *clk = NULL;
+> +	int i;
 > +
-> +	if (!of_property_read_u32(dev->of_node, "hba-cap", &hpriv->saved_cap))
-> +		hpriv->saved_cap &= (HOST_CAP_SSS | HOST_CAP_MPS);
-> +
-> +	of_property_read_u32(dev->of_node,
-> +			     "ports-implemented", &hpriv->saved_port_map);
-> +
-> +	for_each_child_of_node(dev->of_node, child) {
-> +		if (!of_device_is_available(child))
-> +			continue;
-> +
-> +		if (of_property_read_u32(child, "reg", &port)) {
-> +			of_node_put(child);
-> +			return -EINVAL;
+> +	for (i = 0; i < hpriv->n_clks; i++) {
+> +		if (!strcmp(hpriv->clks[i].id, con_id)) {
+> +			clk = hpriv->clks[i].clk;
+
+			return hpriv->clks[i].clk;
+
+> +			break;
 > +		}
-> +
-> +		if (!of_property_read_u32(child, "hba-port-cap", &hpriv->saved_port_cap[port]))
-> +			hpriv->saved_port_cap[port] &= PORT_CMD_CAP;
 > +	}
 > +
-> +	return 0;
+> +	return clk;
+
+And then "return NULL;" here and you do not need the clk variable.
+
 > +}
+> +EXPORT_SYMBOL_GPL(ahci_platform_find_clk);
 > +
 >  /**
->   * ahci_platform_get_resources - Get platform resources
->   * @pdev: platform device to get resources for
-> @@ -523,9 +552,6 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
->  		goto err_out;
->  	}
+>   * ahci_platform_enable_clks - Enable platform clocks
+>   * @hpriv: host private area to store config values
+> diff --git a/include/linux/ahci_platform.h b/include/linux/ahci_platform.h
+> index 6d7dd472d370..3418980b0341 100644
+> --- a/include/linux/ahci_platform.h
+> +++ b/include/linux/ahci_platform.h
+> @@ -13,6 +13,7 @@
 >  
-> -	of_property_read_u32(dev->of_node,
-> -			     "ports-implemented", &hpriv->saved_port_map);
-> -
->  	if (child_nodes) {
->  		for_each_child_of_node(dev->of_node, child) {
->  			u32 port;
-> @@ -590,6 +616,15 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
->  		if (rc == -EPROBE_DEFER)
->  			goto err_out;
->  	}
-> +
-> +	/*
-> +	 * Retrieve firmware-specific flags which then will be used to set
-> +	 * the HW-init fields of HBA and its ports
-> +	 */
-> +	rc = ahci_platform_get_firmware(hpriv, dev);
-> +	if (rc)
-> +		goto err_out;
-> +
->  	pm_runtime_enable(dev);
->  	pm_runtime_get_sync(dev);
->  	hpriv->got_runtime_pm = true;
+>  #include <linux/compiler.h>
+>  
+> +struct clk;
+>  struct device;
+>  struct ata_port_info;
+>  struct ahci_host_priv;
+> @@ -21,6 +22,8 @@ struct scsi_host_template;
+>  
+>  int ahci_platform_enable_phys(struct ahci_host_priv *hpriv);
+>  void ahci_platform_disable_phys(struct ahci_host_priv *hpriv);
+> +struct clk *
+> +ahci_platform_find_clk(struct ahci_host_priv *hpriv, const char *con_id);
+
+Please make this:
+
+struct clk *ahci_platform_find_clk(struct ahci_host_priv *hpriv,
+
+                                   const char *con_id);
+
+>  int ahci_platform_enable_clks(struct ahci_host_priv *hpriv);
+>  void ahci_platform_disable_clks(struct ahci_host_priv *hpriv);
+>  int ahci_platform_deassert_rsts(struct ahci_host_priv *hpriv);
 
 
 -- 
