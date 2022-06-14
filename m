@@ -2,112 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E30854B829
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 19:56:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36E5B54B83C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 20:03:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239734AbiFNR4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 13:56:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48800 "EHLO
+        id S239261AbiFNSC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 14:02:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233032AbiFNR4D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 13:56:03 -0400
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E4B6286FA;
-        Tue, 14 Jun 2022 10:56:02 -0700 (PDT)
-Received: by mail-il1-f180.google.com with SMTP id s1so7168576ilj.0;
-        Tue, 14 Jun 2022 10:56:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=SwWDE6cwQQmygMiXif7g/HNKoV630590Lu3na+H4tf8=;
-        b=tOOrTUdfr/CyK2K1jLtyIM8+9borwZqL7JBbvd9z4DKFtEct0MXlFsMThuOZhJVZuZ
-         74XyfS9KJpOy5B63BOowtsPYm0SwmdOjmvDxhlCrTnHMYNPL5x5RB0w4r2Hs0D6H1F+3
-         2xbsjjG0Ug7sBJpTNaNN1+PSlhIXdENyRDQ2yd7wgTEHuD1cX6J7MKszX9VeSjQs9Lg9
-         KykXj/MOxSiuRTZg+COuIaGKX84x3FjHEnV44cyv0rMmKaL9sZnmBO7hBCJUyYNQxtHL
-         PAG/rspUqDbe0Rk1QBWo1Hgc82I2yFZ3Ro7XLEZ86oZm4Gf6EwnDNrhGyzbNGXmdximY
-         gNDQ==
-X-Gm-Message-State: AJIora8ogGpNyV8OvXIbLrX9AHd1ymUPXbLT/yRl/L2OG0ljb8GbPpPx
-        pQTOI+VW1bT5+EbizV2SsA==
-X-Google-Smtp-Source: AGRyM1s4AjNweeXDZMr26t3YCh80q9RGi6qfBYIzE3LD4gndL8OM1f++ViNKTeqwVNIKU6HjXmnQ/A==
-X-Received: by 2002:a05:6e02:f44:b0:2d3:b54f:d83e with SMTP id y4-20020a056e020f4400b002d3b54fd83emr3699031ilj.9.1655229361518;
-        Tue, 14 Jun 2022 10:56:01 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id g18-20020a02c552000000b00332122c106dsm5150944jaj.152.2022.06.14.10.56.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jun 2022 10:56:01 -0700 (PDT)
-Received: (nullmailer pid 1889801 invoked by uid 1000);
-        Tue, 14 Jun 2022 17:55:59 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Piyush Mehta <piyush.mehta@xilinx.com>
-Cc:     devicetree@vger.kernel.org, git@xilinx.com,
-        linux-kernel@vger.kernel.org, michal.simek@xilinx.com,
-        sivadur@xilinx.com, damien.lemoal@opensource.wdc.com,
-        linux-ide@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org
-In-Reply-To: <20220613144651.7300-1-piyush.mehta@xilinx.com>
-References: <20220613144651.7300-1-piyush.mehta@xilinx.com>
-Subject: Re: [PATCH V2] dt-bindings: ata: ahci-ceva: convert to yaml
-Date:   Tue, 14 Jun 2022 11:55:59 -0600
-Message-Id: <1655229359.837256.1889800.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S237953AbiFNSC6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 14:02:58 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07A3044A35;
+        Tue, 14 Jun 2022 11:02:54 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 01252843B5;
+        Tue, 14 Jun 2022 20:02:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1655229772;
+        bh=hN84EkYZ4dRO7ecBfqk7noG9PI1Fh6L3z6WkNM+SIO8=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Qi04wJK7m7eiTuZBt2wvqWb+GzDw4L+3kF3aYgGtkEfnEXuB6bNeWVnORBJSQ7Yz0
+         7Ez2kTPGR7QXGt6tQVQtRXeB2K/GciARfLyKSlhtfKD7XF4yXGne+MRtVCzr9uVefr
+         4jDGKBudf+nCSp9K+EFY7GnID8f3rzeaK6Izja6KSkJ1FRl4h2geMPAdC4e7ATpQvt
+         HNg85rwUMK3RWFxjH69FOmaDzWKcb+0+Kr5Ka2jpfbwBTXoGQgVRQ8J5e5H7vj4TLR
+         yPPyefNlEbQbCTPumZyxjkfKRXNWT72nIlKLsJMyqn/f4uyb1jKVqogkyAUXM1p9xy
+         6XHI+56Xs04Og==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-clk@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>, Abel Vesa <abel.vesa@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com
+Subject: [PATCH v2 2/4] dt-bindings: clock: imx8mp: Add audiomix block control
+Date:   Tue, 14 Jun 2022 20:02:37 +0200
+Message-Id: <20220614180239.778334-2-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220614180239.778334-1-marex@denx.de>
+References: <20220614180239.778334-1-marex@denx.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Jun 2022 20:16:51 +0530, Piyush Mehta wrote:
-> Convert the ahci-ceva doc to yaml.
-> 
-> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
-> ---
-> Changes for V2:
-> - Corrected the patch --prefix V3 to V2.
-> - Added Required properties.
-> ---
->  .../devicetree/bindings/ata/ahci-ceva.txt     |  63 ------
->  .../devicetree/bindings/ata/ahci-ceva.yaml    | 197 ++++++++++++++++++
->  2 files changed, 197 insertions(+), 63 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/ata/ahci-ceva.txt
->  create mode 100644 Documentation/devicetree/bindings/ata/ahci-ceva.yaml
-> 
+Unlike the other block control IPs in i.MX8M, the audiomix is mostly a
+series of clock gates and muxes. Add DT bindings for this IP.
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Abel Vesa <abel.vesa@nxp.com>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Jacky Bai <ping.bai@nxp.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-imx@nxp.com
+To: linux-clk@vger.kernel.org
+---
+V2: No change
+---
+ .../bindings/clock/imx8mp-audiomix.yaml       | 84 +++++++++++++++++++
+ 1 file changed, 84 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
-
-Full log is available here: https://patchwork.ozlabs.org/patch/
-
-
-ahci@fd0c0000: 'iommus' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dtb
-
-ahci@fd0c0000: 'iommus', 'phy-names' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dtb
-	arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dtb
+diff --git a/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
+new file mode 100644
+index 0000000000000..2d132259e0b36
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/imx8mp-audiomix.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP i.MX8MP AudioMIX Block Control Binding
++
++maintainers:
++  - Marek Vasut <marex@denx.de>
++
++description: |
++  NXP i.MX8M Plus AudioMIX is dedicated clock muxing and gating IP
++  used to control Audio related clock on the SoC.
++
++properties:
++  compatible:
++    const: fsl,imx8mp-audio-blk-ctrl
++
++  reg:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  power-domain-names:
++    const: audio
++
++  clocks:
++    minItems: 7
++    maxItems: 7
++
++  clock-names:
++    items:
++      - const: audio_ahb
++      - const: sai1
++      - const: sai2
++      - const: sai3
++      - const: sai5
++      - const: sai6
++      - const: sai7
++
++  '#clock-cells':
++    const: 1
++    description:
++      The clock consumer should specify the desired clock by having the clock
++      ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8mp-clock.h
++      for the full list of i.MX8MP IMX8MP_CLK_AUDIOMIX_ clock IDs.
++
++required:
++  - compatible
++  - reg
++  - power-domains
++  - power-domain-names
++  - clocks
++  - clock-names
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  # Clock Control Module node:
++  - |
++    #include <dt-bindings/clock/imx8mp-clock.h>
++
++    clock-controller@30e20000 {
++        #clock-cells = <1>;
++        compatible = "fsl,imx8mp-audio-blk-ctrl";
++        clocks = <&clk IMX8MP_CLK_AUDIO_ROOT>,
++                 <&clk IMX8MP_CLK_SAI1>,
++                 <&clk IMX8MP_CLK_SAI2>,
++                 <&clk IMX8MP_CLK_SAI3>,
++                 <&clk IMX8MP_CLK_SAI5>,
++                 <&clk IMX8MP_CLK_SAI6>,
++                 <&clk IMX8MP_CLK_SAI7>;
++        clock-names = "audio_ahb",
++                      "sai1", "sai2", "sai3",
++                      "sai5", "sai6", "sai7";
++        power-domains = <&pgc_audio>;
++        power-domain-names = "audio";
++        reg = <0x30e20000 0x10000>;
++    };
++
++...
+-- 
+2.35.1
 
