@@ -2,139 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB74654B0CE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 14:37:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFCD354B06A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 14:21:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242943AbiFNMfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 08:35:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33474 "EHLO
+        id S232988AbiFNMTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 08:19:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244165AbiFNMfN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 08:35:13 -0400
-Received: from es400ra01.iit.it (mx.iit.it [90.147.26.161])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 351D14D61F;
-        Tue, 14 Jun 2022 05:32:08 -0700 (PDT)
-Received: from es400ra01.iit.it (127.0.0.1) id hl1vse0171sj; Tue, 14 Jun 2022 14:15:10 +0200 (envelope-from <prvs=1164ae077f=Andrea.Merello@iit.it>)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iit.it;
-        s=mx; i=@iit.it; h=Received:Received:Received:From:To:CC:Subject:
-        Thread-Topic:Thread-Index:Date:Message-ID:References:In-Reply-To:
-        Accept-Language:Content-Language:Content-Type:
-        Content-Transfer-Encoding:MIME-Version; bh=0EWWMdlNzsJ2xlak3NZEj
-        9Y6KPGOVyOpkKVpSKRJU9Y=; b=AGu5s2UyOQrqtHGA6/cGynNS2PkBXu+HKzC6U
-        L8AOAJfdBllp6tQT4hIIhmQBwXonBEtQ2YYrAy+1MyNBEyVBgiqbHchXlQMhPagb
-        Q/Rg9uQO/Vp749vkg2sgbUYLWShBdAAF4qEShZZejLx93mhypfAl80z1NWtstIxl
-        ifWO3Q=
-Received: from mail.iit.it ([10.255.8.186])
-        by es400ra01.iit.it ([172.31.0.241]) (SonicWall 10.0.16.7295)
-        with ESMTPS (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256)
-        id o202206141215100192806-11; Tue, 14 Jun 2022 14:15:10 +0200
-Received: from iitmxwge020.iit.local (10.255.8.186) by iitmxwge020.iit.local
- (10.255.8.186) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2375.17; Tue, 14 Jun
- 2022 14:15:10 +0200
-Received: from iitmxwge020.iit.local ([fe80::f175:7e44:343:dc1b]) by
- iitmxwge020.iit.local ([fe80::f175:7e44:343:dc1b%4]) with mapi id
- 15.01.2375.017; Tue, 14 Jun 2022 14:15:10 +0200
-From:   Andrea Merello <Andrea.Merello@iit.it>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        jmondi <jacopo@jmondi.org>,
-        "andrea.merello@gmail.com" <andrea.merello@gmail.com>
-Subject: Re: [v6 08/14] iio: imu: add Bosch Sensortec BNO055 core driver
-Thread-Topic: [v6 08/14] iio: imu: add Bosch Sensortec BNO055 core driver
-Thread-Index: AQHYfx3utmV3pJ3K2U+b/YbA0CL4iq1NadiAgAExt3mAAAAAgIAAMcuB
-Date:   Tue, 14 Jun 2022 12:15:09 +0000
-Message-ID: <a41936e4063f4c2c9da7c7e1d915bd62@iit.it>
-References: <20220613120534.36991-1-andrea.merello@iit.it>
- <20220613120534.36991-9-andrea.merello@iit.it>
- <CAHp75Vdh8kAH6540xCwzFh5uf=QMVTHC42a8pOgvkpObzjfD+w@mail.gmail.com>
- <164f663acbba481a8ea8f45f185aaf83@iit.it>,<CAHp75VeYK=oCbbBVp01_b5LK_FqAo4F_bic9Me4Y6PpfFnDU6g@mail.gmail.com>
-In-Reply-To: <CAHp75VeYK=oCbbBVp01_b5LK_FqAo4F_bic9Me4Y6PpfFnDU6g@mail.gmail.com>
-Accept-Language: en-US, it-IT
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [90.147.26.235]
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S1356836AbiFNMQD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 08:16:03 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C362214D13
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 05:16:02 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id 111-20020a9d0378000000b0060c2db66d44so6418055otv.6
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 05:16:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=lBFrwc11MgcaK75qf3EwNhKoIfwLYz4Dn7scEjO7Hwc=;
+        b=E5pPy5OMj7c9lRB3t/wArmPsQFCGfyhQwbPVvUH3cVRFM9CrbldVGLEt6RAZXJsw1E
+         +/iyImeLb6EwzHDoSQRRhklH2582ycE16IVmfMTQcW2tknldNlTOx2Lk7wiPtcf1FtPe
+         F48yc3wQU8iM2d/840KV3pQ5n99au55F9AI6lQ4QBn+Yg72ufuymVfC1SiykVKQ5DVQa
+         BEFxcq6I2z4RdedrJcx1d5Eyjux7A/AMGaQ4DtsflAwGvZkyjiMR16kqXUnzGlVkJNDa
+         /LJeIqwKcC7y0WS0aXBXWVEs7m84xVDmN4e0mF7/1QTN/tdjAnsyTbnhI6j4+URTcFlh
+         ek4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=lBFrwc11MgcaK75qf3EwNhKoIfwLYz4Dn7scEjO7Hwc=;
+        b=aqmtItaK87A+hESIF4DoiAlUoQDaulypxHDZ+7x8+wtcpPwuXrn3Rqq2bWe/IwF0of
+         76Zw59lFegr1bZie/gMULYCNb+fRy0NRKdOZ6/ONdrtO60BYbHHGRMrSieKAX0fLLyjc
+         7ozzWoDDZk/0CCga3wHRw2LFTl5TUaVsH1SyDJoKJBjLx/FjUPG1ek/NGK8z4/lzuua7
+         WUI0e4t0BnY6KvW2GEvriIofMVWDHHBlUNR1vo6ZAkruu5LztmU/6uHSZ0kD4w2weBpN
+         dXIOY/3AY24if3vmGeLtL7rpik35VpK1imSYr18idbl8PMwqDkD1lJOzQwQu1o0mZK/6
+         g1Lg==
+X-Gm-Message-State: AOAM5334mi1qqcz6S9B71TCMuR8/cqUv82UlRH4RVt5gNIvA/XrVNzye
+        VQgIjUeWHkunVTuHZXHlNyK/B6okme4TRrTIcqM=
+X-Google-Smtp-Source: ABdhPJwQ1yANvEq6GRvBP8LeIMw0C56QcDG+/oRSXGLX5e/UQ2xLY9pvZWPNum4r2g+oC29L9Qi9iiYO3BnitEB7CzM=
+X-Received: by 2002:a9d:53cb:0:b0:60c:1f3b:7e9f with SMTP id
+ i11-20020a9d53cb000000b0060c1f3b7e9fmr1926272oth.110.1655208962104; Tue, 14
+ Jun 2022 05:16:02 -0700 (PDT)
 MIME-Version: 1.0
-X-Mlf-DSE-Version: 6874
-X-Mlf-Rules-Version: s20220519150137; ds20200715013501;
-        di20220613172248; ri20160318003319; fs20220613172626
-X-Mlf-Smartnet-Version: 20210917223710
-X-Mlf-Envelope-From: Andrea.Merello@iit.it
-X-Mlf-Version: 10.0.16.7295
-X-Mlf-License: BSV_C_AP_T_R
-X-Mlf-UniqueId: o202206141215100192806
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a8a:c46:0:b0:42d:ab20:ed24 with HTTP; Tue, 14 Jun 2022
+ 05:16:01 -0700 (PDT)
+From:   Daniel Affum <danielaffum05@gmail.com>
+Date:   Tue, 14 Jun 2022 15:16:01 +0300
+Message-ID: <CAPkju_PtKaBbpwvFA=UCuNzKiUMm2YviEVJub46=Ejz1kyyQQw@mail.gmail.com>
+Subject: Confirm Receipt
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=1.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLY,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Dear,
 
-    >
-> ...
->
->> >> +static void bno055_debugfs_init(struct iio_dev *iio_dev)
->> >> +{
->> >> +       struct bno055_priv *priv =3D iio_priv(iio_dev);
->> >> +
->> >> +       priv->debugfs =3D debugfs_create_file("firmware_version", 040=
-0,
->> >> +                                           iio_get_debugfs_dentry(ii=
-o_dev),
->> >> +                                           priv, &bno055_fw_version_=
-ops);
->> >
->> >> +       devm_add_action_or_reset(priv->dev, bno055_debugfs_remove, pr=
-iv->debugfs);
->> >
->> >Shouldn't we report the potential error here? It's not directly
->> >related to debugfs, but something which is not directly related.
->>
->> The error eventually comes out from something that has nothing to do wit=
-h debugs per se (i.e. the devm stuff), but it will only affect debugfs inde=
-ed.
->>
->> Assuming that we don't want to make the whole driver fail in case debugf=
-s stuff fails (see last part of the comment above debugfs_create_file() imp=
-lementation), and given that the devm_add_action_or_reset(), should indeed =
-"reset" in case of failure (i.e.  we should be in a clean situation anyway)=
-, I would say it should be OK not to propagate the error and let things go =
-on.
->
->As I said, it's not directly related to debugfs. Here is the resource
->leak possible or bad things happen if you probe the driver, that fails
->to add this call for removal, remove it, and try to insert again, in
->such case the debugfs will be stale.
+I am Daniel Affum a retired civil servant i have a  business to
+discuss with you from the Eastern part of Africa aimed at agreed
+percentage upon your acceptance of my hand in business and friendship.
+Kindly respond to me if you are interested to partner with me for an
+update.Very important.
 
-Hum, I would say this shouldn't ever happen: AFAICS devm_add_action_or_rese=
-t() is a wrapper around devm_add_action() and it's purpose is exactly to ad=
-d a check for failure; devm_add_action_or_reset() immediately invokes the a=
-ction handler in case devm_add_action() fails. IOW in case of failure to ad=
-d the devm stuff, the debugfs file is removed immediately and it shouldn't =
-cause any mess with next times probe()s; just the driver will go on without=
- the debugfs file being here.
-
-I think this is the point of using devm_add_action_or_reset() instead of de=
-v_add_action()  indeed, or am I missing something?
-
->> However we can add a dev_warn() to report what happened.
->
->Not sure if it would suffice, I leave it to Jonathan.
->
->--=20
->With Best Regards,
->Andy Shevchenko=
+Yours Sincerely,
+Daniel Affum.
+Reply to:danielaffum005@yahoo.com
