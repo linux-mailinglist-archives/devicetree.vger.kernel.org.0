@@ -2,124 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02C9F54BC1D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0BA654BC2C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:50:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233371AbiFNUqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 16:46:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35396 "EHLO
+        id S1357449AbiFNUsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 16:48:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbiFNUqi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:46:38 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F9C42F381;
-        Tue, 14 Jun 2022 13:46:33 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 121C22E4;
-        Tue, 14 Jun 2022 22:46:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1655239590;
-        bh=wX2gQgJTWQQOF5Wrys2HrbI2KH7mSvT/4W+QO54dYbM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sjgpR95qxzLVHR4Ju8xqJeTJl7+/3w+4Wwqg0CD84XpN5TzKdF3nwSZkqg30HD37L
-         8ND6JdLRhzRCx2CTb+LPbJ0dZC8IfbF1FUuUwzVcKjMTuPudJh1FH0wog6eDsZod1L
-         g8nT2xIyAiiVt0Juc4IKw5hu4oQA8PdbTiS/sB+o=
-Date:   Tue, 14 Jun 2022 23:46:20 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
-        robh+dt@kernel.org, nicolas@ndufresne.ca,
-        alexander.stein@ew.tq-group.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 1/9] videodev2.h: add V4L2_CTRL_FLAG_DYNAMIC_ARRAY
-Message-ID: <YqjznJSwPFH4GrhO@pendragon.ideasonboard.com>
-References: <20220503093925.876640-1-xavier.roumegue@oss.nxp.com>
- <20220503093925.876640-2-xavier.roumegue@oss.nxp.com>
+        with ESMTP id S1358310AbiFNUsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:48:21 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D24634F9DA;
+        Tue, 14 Jun 2022 13:48:04 -0700 (PDT)
+Received: from [192.168.1.107] ([37.4.249.155]) by mrelayeu.kundenserver.de
+ (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1M2xjg-1o083W0hxM-003Qxn; Tue, 14 Jun 2022 22:47:50 +0200
+Message-ID: <c3c62929-77ba-6bae-1e0c-4d4ece9c9b32@i2se.com>
+Date:   Tue, 14 Jun 2022 22:47:48 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220503093925.876640-2-xavier.roumegue@oss.nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] ARM: dts: bcm2711-rpi: Use aliases to set custom MMC
+ device index
+Content-Language: en-US
+To:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        krzysztof.kozlowski+dt@linaro.org, nsaenz@kernel.org,
+        robh+dt@kernel.org
+Cc:     bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        pbrobinson@gmail.com, f.fainelli@gmail.com
+References: <20220614141208.15614-1-ariel.dalessandro@collabora.com>
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <20220614141208.15614-1-ariel.dalessandro@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:ev5Y1UAMHhakQEIsXd3jAGQVfh1ZoDVgwBRewrW352KCLaZSHcS
+ RJxybRgGozeHf+gAbneTxFONxw2v/IplM/PWqwdZnKEWD3O/oBGwBGbFrrCSv7PFddalOiD
+ scx8+HE08wfm/6tW1vlxKARvJuFWuQManI+1auvYzS/2s86ymiy6IzYl4JsOzSxM2xnyItF
+ Dp72SIj+RFyMvExKk9Cvw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Xdxch3NdT9c=:/AVSF2Bfvn3CnRhjodBZd7
+ 6bh8cZgTTTpFnUEKlbqWO0n+KL/xAE5PsLmqpw82gDqkoIEN7jDrd5IhX5gvbCFcK9ON8juFn
+ Lt1PiMu8Adbp5mR/W64zWiFx+v/XJ3QPVXwpO+ZmOVYXeQG2xSWmB61xKJKKbfqbY+aZXlQS5
+ BQrUOeAt3H5biUF+30LlDnV0p/2JYRBy4Htnk5CLel29QfdeKF8KAQasr8aJEeyhYTRVmCrj5
+ +oSWejmjaoK45i54g4vEhfdSHf8eR+1AHu2lwxgYasx1XY0YBEd+4JItc2nCRrC7Ifx/JzQnT
+ xfPBgl8wMu6zy2rkCRFVIGCQDdSqHJcM8rOcVrFmMJU/2FavV8B6+NBwc0IHGPxfGb9i/pFsf
+ j3UNlnjzRd9WzeXc8dy/W08r3Fkiqj2V998O+woQzLAu7gb5dfaEeNEhIvMgRUf8t9DBy6ArZ
+ H/L5oMew5SRGV+pmJw62YegUqS7UtirxDXm7/PLLVyn5RHsPVXoKaHijV8/WnQZrPM4Yg4kHK
+ FdLxRO7R1tphl7t8ybzuKwBVGXlc1490BMa+Z5XA2uFDATraVExuxFn7BIaX830YcE4td+1iw
+ Q2KIP/h0CR9U/oVhHFGoUsKUPtQIWH1mTw6X8337ssffSWf5d3TnJPmPmsar23KXzgKRY3bRg
+ 6zOfQ+Ke8B16JUkZcDxsi7p/N83dZFX9qsl6ghugOOw6WfQ6xGeZf3wfhlWXZydTtQEfhCTwA
+ tzSO3JgWpVx1sOyydMvv/Cr4FFLjz9AcOq3XdZsa1PDAEN0EOIlfPZJ5jjg=
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Xavier and Hans,
+Hi Ariel,
 
-Thank you for the patch.
+Am 14.06.22 um 16:12 schrieb Ariel D'Alessandro:
+> Add MMC aliases to ensure that the /dev/mmcblk ID for the first
+> eMMC/SD card won't change depending on the probe order of the MMC
+> drivers.
 
-On Tue, May 03, 2022 at 11:39:17AM +0200, Xavier Roumegue wrote:
-> From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> 
-> Add a new flag that indicates that this control is a dynamically sized
-> array. Also document this flag.
-> 
-> Currently dynamically sized arrays are limited to one dimensional arrays,
-> but that might change in the future if there is a need for it.
-> 
-> The initial use-case of dynamic arrays are stateless codecs. A frame
-> can be divided in many slices, so you want to provide an array containing
-> slice information for each slice. Typically the number of slices is small,
-> but the standard allow for hundreds or thousands of slices. Dynamic arrays
-> are a good solution since sizing the array for the worst case would waste
-> substantial amounts of memory.
-> 
-> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+this changes the emmc2 from mmc1 to mmc0 in my case (RPi 4, 
+multi_v7_defconfig), which i consider as a regression / unexpected 
+change in userspace.
+
+Could you please explain your actual motivation of your patch?
+
+>
+> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 > ---
->  .../userspace-api/media/v4l/vidioc-queryctrl.rst          | 8 ++++++++
->  include/uapi/linux/videodev2.h                            | 1 +
->  2 files changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst b/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
-> index 88f630252d98..a20dfa2a933b 100644
-> --- a/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
-> +++ b/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
-> @@ -625,6 +625,14 @@ See also the examples in :ref:`control`.
->  	``V4L2_CTRL_FLAG_GRABBED`` flag when buffers are allocated or
->  	streaming is in progress since most drivers do not support changing
->  	the format in that case.
-> +    * - ``V4L2_CTRL_FLAG_DYNAMIC_ARRAY``
-> +      - 0x0800
-> +      - This control is a dynamically sized 1-dimensional array. It
-> +        behaves the same as a regular array, except that the number
-> +	of elements as reported by the ``elems`` field is between 1 and
-> +	``dims[0]``. So setting the control with a differently sized
-> +	array will change the ``elems`` field when the control is
-> +	queried afterwards.
-
-Wrong indentation.
-
-Can the dimension be changed by the application only, or by the driver
-too ? In the latter case, is an event generated ?
-
-Considering this in the context of this series, the driver needs to
-change the dimension, as the use case is to size the control based on
-the image size. Do we want to document here that the driver will reset
-the control to a default value when the dimension changes, or is that
-something that should be control-specific ?
-
->  
->  Return Value
->  ============
-> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-> index 3768a0a80830..8df13defde75 100644
-> --- a/include/uapi/linux/videodev2.h
-> +++ b/include/uapi/linux/videodev2.h
-> @@ -1886,6 +1886,7 @@ struct v4l2_querymenu {
->  #define V4L2_CTRL_FLAG_HAS_PAYLOAD	0x0100
->  #define V4L2_CTRL_FLAG_EXECUTE_ON_WRITE	0x0200
->  #define V4L2_CTRL_FLAG_MODIFY_LAYOUT	0x0400
-> +#define V4L2_CTRL_FLAG_DYNAMIC_ARRAY	0x0800
->  
->  /*  Query flags, to be ORed with the control ID */
->  #define V4L2_CTRL_FLAG_NEXT_CTRL	0x80000000
-
--- 
-Regards,
-
-Laurent Pinchart
+>
+> Changes in v2:
+> * Moved alias from bcm2711-rpi-4-b.dts to bcm2711-rpi.dtsi
+>
+>   arch/arm/boot/dts/bcm2711-rpi.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm/boot/dts/bcm2711-rpi.dtsi b/arch/arm/boot/dts/bcm2711-rpi.dtsi
+> index ca266c5d9f9b..a39b2f68e4cc 100644
+> --- a/arch/arm/boot/dts/bcm2711-rpi.dtsi
+> +++ b/arch/arm/boot/dts/bcm2711-rpi.dtsi
+> @@ -13,6 +13,7 @@ memory@0 {
+>   	aliases {
+>   		emmc2bus = &emmc2bus;
+>   		ethernet0 = &genet;
+> +		mmc0 = &emmc2;	/* mmcblk0 for eMMC/SD */
+>   		pcie0 = &pcie0;
+>   		blconfig = &blconfig;
+>   	};
