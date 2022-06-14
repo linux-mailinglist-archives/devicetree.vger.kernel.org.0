@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CAE754B43A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 17:11:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AA7D54B457
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 17:17:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355711AbiFNPLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 11:11:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41846 "EHLO
+        id S1356373AbiFNPPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 11:15:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241398AbiFNPLX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 11:11:23 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5CCF2FE57;
-        Tue, 14 Jun 2022 08:11:22 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id g7so12098739eda.3;
-        Tue, 14 Jun 2022 08:11:22 -0700 (PDT)
+        with ESMTP id S1356355AbiFNPPD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 11:15:03 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A4533C702;
+        Tue, 14 Jun 2022 08:15:02 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id k19so11708681wrd.8;
+        Tue, 14 Jun 2022 08:15:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=z3hgroj28Zs89uEskySDVuV/EGAjFVx+1yzPc51SYbg=;
-        b=IKXA/fv6Qo7hmQrY4ZMw0Jya/LfD9U/Rml8A+2Rg5Xl9Oebdh8vv3VQlqdirE6wR4q
-         5iHXN2Kh468W4DUmRuCvoAzvVA/SVmj7LAjxt//ZE3hz6BSYCfXtG9mAk9GPjtC0MijI
-         rER9KxJH2eEi4dFVZpKeaiS+/Jk8DCCHsw2pueu7CeGDefUZWv2GIakBY4klpQ+PN+u2
-         J+DZt+vVsPb8TMcMAhh2wBLtzn5yay7tmJJE8sppo4P6eUYlnIjGXAEa4xC1soXHHoFW
-         MLD9q6KDCpohqfml8YtGzQZzLf4lvL0F+TISEBISSqvGTEgqCPEa8BZo2K42OsKw6wV/
-         GG5A==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=IXuDe0y1N7g0HQ+gRNGCz3TLBK6SHrrUtGI9qXS70nI=;
+        b=pNE5vPgqmLRxJYRUwLn2HygBM6ytJdDox1fo8PavsqAlLYbvUXKHMA7QW/EKefImgn
+         vCsmD6HVBAt1GjEMoJvYBgbfgyAcZBE9j+BAjgaRHWxosTq/rTgYCpc81ougivQSnSdo
+         MQrnA/hMkYQ0J3u4SGpJxbsKjp0OZpX3yjrZ0xGxhZPOG3Ltop5iqtB9VcRT1Wy3GfK9
+         IEQarUkCk6Or41YYY1+vKUsT2qQLqaMG2LJXsL0baMqYWDGHgxxz1wjVelA8DEq+YcTf
+         0iNIa9bByS4Ue98OyUC31rOtmb+CHhqr3S9W3EGxGkxx/V85oRMN2Mrdp9DUCwhFAhYe
+         MP0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=z3hgroj28Zs89uEskySDVuV/EGAjFVx+1yzPc51SYbg=;
-        b=d6ioIP3mBF+CXDh0A1XlVDn1QvHjHyQ29kqBnWeeS9gq6diUCUGKouJ46XFZjfufNY
-         eSTkkTaI06z6YkQs2LNX4EKzpu2cjwU4nVckZ/Diz2b6lgYAGEGViAgJ3gdZ5MX6mHyM
-         xh7xjbDUoyibv3Ib0U35SHyAbKC0tbo9lCcVGXpKVAhDx3v4FPJgoyVBFD5DSnBzRuHq
-         RxhtdjMphYo3JEleETc+ygCwbnxiGDLecmGqPBk6jpZ2cM0gtSEOU6KEkrQfG8+Empu9
-         SqcZiuraDCLxLCPQ6kFMnyU72YGpeQYZTYK55/HGaBlsBtjItfM6/E427EC6wtgUHJaw
-         6skQ==
-X-Gm-Message-State: AOAM531e32xbCeC3555kYdE9K8PNr9DqjAkOSpB9M8NVqXER1SjKaoVE
-        IhKDBvV5AwsjlVmpsHg8VJr9iKsXWc/PyC29JD3SZtfNMnsx2Q==
-X-Google-Smtp-Source: AGRyM1sb9mKj5CCuJtLS5MIoTIZSWkJQSZvyEbXLvbtJrNfsKT2UeAuAEQpxurmfRMnuHdHBE7HW2BYeu6OJwZ/qOkc=
-X-Received: by 2002:a05:6402:4390:b0:42e:b7e:e9ac with SMTP id
- o16-20020a056402439000b0042e0b7ee9acmr6643257edc.97.1655219481180; Tue, 14
- Jun 2022 08:11:21 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=IXuDe0y1N7g0HQ+gRNGCz3TLBK6SHrrUtGI9qXS70nI=;
+        b=BCRmNnMuvJDOjifWn8Euw3WDVm421XUQJQ+kjFw5TF3CqCFK1vkLn8UiLUIqRH0c77
+         DUCiIYgjiP0Orp6S7cWK6XaIKsy8OUoBXHreI1/B6PE3LgRGeKhKjlYYDGKg2Wjv7SeO
+         KbFMGrobDPgycOGPLY68NxQSa7gujDWUPIpFUmUUL29UwQDGRHxrKVEzZLn5d69qW46H
+         Q1IGCo4I3bVDfEKXUlF3ZDwrWtFfhSaaANgBqnqycQloKdOdTd8PTlTPf/yIkuDD+9Kr
+         373CMzHaT79hnACZuoZCiYcNEe0Cq2v+7OCOaxBkyUKqML+4+vhW1HuLM1smuSM87XoO
+         UOOA==
+X-Gm-Message-State: AJIora+mFAMa00c0SjP4ogHEJYn6cL7WJOcz8FCLMhX0joc9wCBkeur3
+        tGSNTBsG0L8vkzYilvEd/iA=
+X-Google-Smtp-Source: AGRyM1vbq7YuSWWy21Fn37KJrbY6DIxBAJG8TbMUpC1uDPhvtrmHbIIb6r7vg7XBmdrSGnOv4jXjCw==
+X-Received: by 2002:a5d:40c7:0:b0:210:3135:e662 with SMTP id b7-20020a5d40c7000000b002103135e662mr5240739wrq.280.1655219700487;
+        Tue, 14 Jun 2022 08:15:00 -0700 (PDT)
+Received: from [192.168.0.36] ([37.223.143.134])
+        by smtp.gmail.com with ESMTPSA id h206-20020a1c21d7000000b0039746638d6esm13745526wmh.33.2022.06.14.08.14.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Jun 2022 08:14:59 -0700 (PDT)
+Message-ID: <da05a10b-dd4d-6d93-0cd3-e4695d9b767e@gmail.com>
+Date:   Tue, 14 Jun 2022 17:14:58 +0200
 MIME-Version: 1.0
-References: <20220613120534.36991-1-andrea.merello@iit.it> <20220613120534.36991-9-andrea.merello@iit.it>
- <CAHp75Vdh8kAH6540xCwzFh5uf=QMVTHC42a8pOgvkpObzjfD+w@mail.gmail.com>
- <164f663acbba481a8ea8f45f185aaf83@iit.it> <CAHp75VeYK=oCbbBVp01_b5LK_FqAo4F_bic9Me4Y6PpfFnDU6g@mail.gmail.com>
- <a41936e4063f4c2c9da7c7e1d915bd62@iit.it>
-In-Reply-To: <a41936e4063f4c2c9da7c7e1d915bd62@iit.it>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 14 Jun 2022 17:10:43 +0200
-Message-ID: <CAHp75Vd_w1WOp9ntbNqxtuuVXi0kMGbX=OZ7cioNxoh2yUa1ag@mail.gmail.com>
-Subject: Re: [v6 08/14] iio: imu: add Bosch Sensortec BNO055 core driver
-To:     Andrea Merello <Andrea.Merello@iit.it>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        jmondi <jacopo@jmondi.org>,
-        "andrea.merello@gmail.com" <andrea.merello@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 2/6] iommu: mtk_iommu: Lookup phandle to retrieve
+ syscon to infracfg
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, yong.wu@mediatek.com
+Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski@linaro.org
+References: <20220609100802.54513-1-angelogioacchino.delregno@collabora.com>
+ <20220609100802.54513-3-angelogioacchino.delregno@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220609100802.54513-3-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,48 +80,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 14, 2022 at 2:15 PM Andrea Merello <Andrea.Merello@iit.it> wrot=
-e:
 
-...
 
-> >> >> +       devm_add_action_or_reset(priv->dev, bno055_debugfs_remove, =
-priv->debugfs);
-> >> >
-> >> >Shouldn't we report the potential error here? It's not directly
-> >> >related to debugfs, but something which is not directly related.
-> >>
-> >> The error eventually comes out from something that has nothing to do w=
-ith debugs per se (i.e. the devm stuff), but it will only affect debugfs in=
-deed.
-> >>
-> >> Assuming that we don't want to make the whole driver fail in case debu=
-gfs stuff fails (see last part of the comment above debugfs_create_file() i=
-mplementation), and given that the devm_add_action_or_reset(), should indee=
-d "reset" in case of failure (i.e.  we should be in a clean situation anywa=
-y), I would say it should be OK not to propagate the error and let things g=
-o on.
-> >
-> >As I said, it's not directly related to debugfs. Here is the resource
-> >leak possible or bad things happen if you probe the driver, that fails
-> >to add this call for removal, remove it, and try to insert again, in
-> >such case the debugfs will be stale.
->
-> Hum, I would say this shouldn't ever happen: AFAICS devm_add_action_or_re=
-set() is a wrapper around devm_add_action() and it's purpose is exactly to =
-add a check for failure; devm_add_action_or_reset() immediately invokes the=
- action handler in case devm_add_action() fails. IOW in case of failure to =
-add the devm stuff, the debugfs file is removed immediately and it shouldn'=
-t cause any mess with next times probe()s; just the driver will go on witho=
-ut the debugfs file being here.
->
-> I think this is the point of using devm_add_action_or_reset() instead of =
-dev_add_action()  indeed, or am I missing something?
+On 09/06/2022 12:07, AngeloGioacchino Del Regno wrote:
+> This driver will get support for more SoCs and the list of infracfg
+> compatibles is expected to grow: in order to prevent getting this
+> situation out of control and see a long list of compatible strings,
+> add support to retrieve a handle to infracfg's regmap through a
+> new "mediatek,infracfg" phandle.
+> 
+> In order to keep retrocompatibility with older devicetrees, the old
+> way is kept in place.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Reading that code again and I think you are right, so dev_warn() will
-be sufficient to show that we fail. OTOH, what is the point of adding
-a resource for the failed debugfs call?
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
---=20
-With Best Regards,
-Andy Shevchenko
+> ---
+>   drivers/iommu/mtk_iommu.c | 38 ++++++++++++++++++++++++--------------
+>   1 file changed, 24 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index bb9dd92c9898..90685946fcbe 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -1140,22 +1140,32 @@ static int mtk_iommu_probe(struct platform_device *pdev)
+>   	data->protect_base = ALIGN(virt_to_phys(protect), MTK_PROTECT_PA_ALIGN);
+>   
+>   	if (MTK_IOMMU_HAS_FLAG(data->plat_data, HAS_4GB_MODE)) {
+> -		switch (data->plat_data->m4u_plat) {
+> -		case M4U_MT2712:
+> -			p = "mediatek,mt2712-infracfg";
+> -			break;
+> -		case M4U_MT8173:
+> -			p = "mediatek,mt8173-infracfg";
+> -			break;
+> -		default:
+> -			p = NULL;
+> +		infracfg = syscon_regmap_lookup_by_phandle(dev->of_node, "mediatek,infracfg");
+> +		if (IS_ERR(infracfg)) {
+> +			/*
+> +			 * Legacy devicetrees will not specify a phandle to
+> +			 * mediatek,infracfg: in that case, we use the older
+> +			 * way to retrieve a syscon to infra.
+> +			 *
+> +			 * This is for retrocompatibility purposes only, hence
+> +			 * no more compatibles shall be added to this.
+> +			 */
+> +			switch (data->plat_data->m4u_plat) {
+> +			case M4U_MT2712:
+> +				p = "mediatek,mt2712-infracfg";
+> +				break;
+> +			case M4U_MT8173:
+> +				p = "mediatek,mt8173-infracfg";
+> +				break;
+> +			default:
+> +				p = NULL;
+> +			}
+> +
+> +			infracfg = syscon_regmap_lookup_by_compatible(p);
+> +			if (IS_ERR(infracfg))
+> +				return PTR_ERR(infracfg);
+>   		}
+>   
+> -		infracfg = syscon_regmap_lookup_by_compatible(p);
+> -
+> -		if (IS_ERR(infracfg))
+> -			return PTR_ERR(infracfg);
+> -
+>   		ret = regmap_read(infracfg, REG_INFRA_MISC, &val);
+>   		if (ret)
+>   			return ret;
