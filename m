@@ -2,96 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E563654BBFF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02C9F54BC1D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:49:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234798AbiFNUpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 16:45:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34380 "EHLO
+        id S233371AbiFNUqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 16:46:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233371AbiFNUp1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:45:27 -0400
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CF9128E1E;
-        Tue, 14 Jun 2022 13:45:25 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id 19so10659755iou.12;
-        Tue, 14 Jun 2022 13:45:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=GGYmomEIPWiGIqFRCO19qX9ba5T2sMGBWXRgciDZr6c=;
-        b=elbJQhFW5yQSzzYGsa5SRcnUSJTLcDoc3Y5U2Uf9/QcdTEB47dsRxVBmUQ7bwl6/cA
-         MzkdzoHx82CGR9U6yJxq/XZ6HObPdvnUKCkwsjYMp195OfXZdf9+mngagxtUXn8HlI9m
-         T21nveaq+rUQeFUI5BhgbiMWwENkkWN7H7+ZtYBQtW3+rCRyKNDO2NozdTq3WlUT8vxj
-         SyYiB9BJNynmtPgKZuW4ecCFgp3EILdk9NKmwv/35whzn2nKHeZe9l20KRmjEZtX9GVN
-         C2jjLf7YtFZMT2SsEy34K4YLTZSAOmxDSYULlorf6tuzp22fR2EBqawmpZ+lYVcCw119
-         uvuw==
-X-Gm-Message-State: AOAM530pzUG0Avw0j7/Wyp/jN8xGr0gaRGY3d4e38mTmRGQ4GDNEYqED
-        m+THnI7S1pEZ5oy4QI5Ypg==
-X-Google-Smtp-Source: ABdhPJw2AB9ZgFOPWqBNs7nRAT4ePVUiVt0DMGlQhs8AKGXiLV65876+Jq2I8iyns/vOZJW5zMmEng==
-X-Received: by 2002:a05:6638:2242:b0:331:8bfd:c864 with SMTP id m2-20020a056638224200b003318bfdc864mr3989048jas.214.1655239524890;
-        Tue, 14 Jun 2022 13:45:24 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id v2-20020a056602014200b0066a0c0beee7sm1840732iot.44.2022.06.14.13.45.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jun 2022 13:45:24 -0700 (PDT)
-Received: (nullmailer pid 2498361 invoked by uid 1000);
-        Tue, 14 Jun 2022 20:45:22 -0000
-Date:   Tue, 14 Jun 2022 14:45:22 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Mao Jinlong <quic_jinlmao@quicinc.com>
-Cc:     Leo Yan <leo.yan@linaro.org>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        linux-arm-msm@vger.kernel.org,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Subject: Re: [PATCH v10 08/10] dt-bindings: arm: Adds CoreSight TPDA hardware
- definitions
-Message-ID: <20220614204522.GA2497116-robh@kernel.org>
-References: <20220611004331.7343-1-quic_jinlmao@quicinc.com>
- <20220611004331.7343-9-quic_jinlmao@quicinc.com>
+        with ESMTP id S229585AbiFNUqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:46:38 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F9C42F381;
+        Tue, 14 Jun 2022 13:46:33 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 121C22E4;
+        Tue, 14 Jun 2022 22:46:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1655239590;
+        bh=wX2gQgJTWQQOF5Wrys2HrbI2KH7mSvT/4W+QO54dYbM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sjgpR95qxzLVHR4Ju8xqJeTJl7+/3w+4Wwqg0CD84XpN5TzKdF3nwSZkqg30HD37L
+         8ND6JdLRhzRCx2CTb+LPbJ0dZC8IfbF1FUuUwzVcKjMTuPudJh1FH0wog6eDsZod1L
+         g8nT2xIyAiiVt0Juc4IKw5hu4oQA8PdbTiS/sB+o=
+Date:   Tue, 14 Jun 2022 23:46:20 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
+        robh+dt@kernel.org, nicolas@ndufresne.ca,
+        alexander.stein@ew.tq-group.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 1/9] videodev2.h: add V4L2_CTRL_FLAG_DYNAMIC_ARRAY
+Message-ID: <YqjznJSwPFH4GrhO@pendragon.ideasonboard.com>
+References: <20220503093925.876640-1-xavier.roumegue@oss.nxp.com>
+ <20220503093925.876640-2-xavier.roumegue@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220611004331.7343-9-quic_jinlmao@quicinc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220503093925.876640-2-xavier.roumegue@oss.nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 11 Jun 2022 08:43:29 +0800, Mao Jinlong wrote:
-> Adds new coresight-tpda.yaml file describing the bindings required
-> to define tpda in the device trees.
-> 
-> Reviewed-by: Mike Leach <mike.leach@linaro.org>
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
-> ---
->  .../bindings/arm/qcom,coresight-tpda.yaml     | 111 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 112 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-> 
+Hi Xavier and Hans,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thank you for the patch.
+
+On Tue, May 03, 2022 at 11:39:17AM +0200, Xavier Roumegue wrote:
+> From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> 
+> Add a new flag that indicates that this control is a dynamically sized
+> array. Also document this flag.
+> 
+> Currently dynamically sized arrays are limited to one dimensional arrays,
+> but that might change in the future if there is a need for it.
+> 
+> The initial use-case of dynamic arrays are stateless codecs. A frame
+> can be divided in many slices, so you want to provide an array containing
+> slice information for each slice. Typically the number of slices is small,
+> but the standard allow for hundreds or thousands of slices. Dynamic arrays
+> are a good solution since sizing the array for the worst case would waste
+> substantial amounts of memory.
+> 
+> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> ---
+>  .../userspace-api/media/v4l/vidioc-queryctrl.rst          | 8 ++++++++
+>  include/uapi/linux/videodev2.h                            | 1 +
+>  2 files changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst b/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
+> index 88f630252d98..a20dfa2a933b 100644
+> --- a/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
+> +++ b/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
+> @@ -625,6 +625,14 @@ See also the examples in :ref:`control`.
+>  	``V4L2_CTRL_FLAG_GRABBED`` flag when buffers are allocated or
+>  	streaming is in progress since most drivers do not support changing
+>  	the format in that case.
+> +    * - ``V4L2_CTRL_FLAG_DYNAMIC_ARRAY``
+> +      - 0x0800
+> +      - This control is a dynamically sized 1-dimensional array. It
+> +        behaves the same as a regular array, except that the number
+> +	of elements as reported by the ``elems`` field is between 1 and
+> +	``dims[0]``. So setting the control with a differently sized
+> +	array will change the ``elems`` field when the control is
+> +	queried afterwards.
+
+Wrong indentation.
+
+Can the dimension be changed by the application only, or by the driver
+too ? In the latter case, is an event generated ?
+
+Considering this in the context of this series, the driver needs to
+change the dimension, as the use case is to size the control based on
+the image size. Do we want to document here that the driver will reset
+the control to a default value when the dimension changes, or is that
+something that should be control-specific ?
+
+>  
+>  Return Value
+>  ============
+> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+> index 3768a0a80830..8df13defde75 100644
+> --- a/include/uapi/linux/videodev2.h
+> +++ b/include/uapi/linux/videodev2.h
+> @@ -1886,6 +1886,7 @@ struct v4l2_querymenu {
+>  #define V4L2_CTRL_FLAG_HAS_PAYLOAD	0x0100
+>  #define V4L2_CTRL_FLAG_EXECUTE_ON_WRITE	0x0200
+>  #define V4L2_CTRL_FLAG_MODIFY_LAYOUT	0x0400
+> +#define V4L2_CTRL_FLAG_DYNAMIC_ARRAY	0x0800
+>  
+>  /*  Query flags, to be ORed with the control ID */
+>  #define V4L2_CTRL_FLAG_NEXT_CTRL	0x80000000
+
+-- 
+Regards,
+
+Laurent Pinchart
