@@ -2,59 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75F7554AC03
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:41:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC6C054AC29
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353999AbiFNIlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 04:41:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33198 "EHLO
+        id S1355742AbiFNImx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 04:42:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352827AbiFNIkw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:40:52 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0563F427D8;
-        Tue, 14 Jun 2022 01:40:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B48E2B817DB;
-        Tue, 14 Jun 2022 08:40:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FC2FC3411B;
-        Tue, 14 Jun 2022 08:40:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655196011;
-        bh=md/hhacy6Xjty9NLHaPlGwpLO6qKQ3qcDjhq4v/Auk0=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=iq7uZHjZcOJSfxTsPh+UwmlAkkNxiZt0WHrZKXauUcxQqVevfx8eBY/gYW1M8qtof
-         lb2uTGspgRsZ/3BqExC7h3Kq0xOhtWD/U+zvNO3vnSLZMg4DvzWownaUZALTZ1ELFs
-         atbe/al9tkdao6weGW9jvLjQAzSQntezaaQPu9VYYo5lczd9gxhcocCbZBQVYmXA55
-         9iOMVmBe0lcfF1m/NCeYKvRR7m0SVUcn4U/A9hEIHm80fETm2BK0HkMVsgD70Nokxk
-         GeqerXzinCqYOruUxuHi2nYBa4eekLx2hkC++i6FsUqTXoy5usazeZI6uMQWpXX5jL
-         ntRa4PDbJowlw==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220429220904.137297-2-caleb.connolly@linaro.org>
-References: <20220429220904.137297-1-caleb.connolly@linaro.org> <20220429220904.137297-2-caleb.connolly@linaro.org>
-Subject: Re: [PATCH v14 01/10] spmi: add a helper to look up an SPMI device from a device node
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Jami Kettunen <jami.kettunen@somainline.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
+        with ESMTP id S1355813AbiFNImM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:42:12 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 185D742A18
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:42:01 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F34BB15A1
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:42:00 -0700 (PDT)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id A32BD3F66F
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:42:00 -0700 (PDT)
+Date:   Tue, 14 Jun 2022 09:41:49 +0100
+From:   Liviu Dudau <liviu.dudau@arm.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        arm@kernel.org, soc@kernel.org,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, caleb.connolly@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Tue, 14 Jun 2022 01:40:09 -0700
-User-Agent: alot/0.10
-Message-Id: <20220614084011.3FC2FC3411B@smtp.kernel.org>
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: arm: adjust whitespace around '='
+Message-ID: <YqhJzRYdgwn0i/wc@e110455-lin.cambridge.arm.com>
+References: <20220526204350.832361-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220526204350.832361-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,12 +48,166 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Caleb Connolly (2022-04-29 15:08:56)
-> The helper function spmi_device_from_of() takes a device node and
-> returns the SPMI device associated with it.
-> This is like of_find_device_by_node but for SPMI devices.
->=20
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
+On Thu, May 26, 2022 at 10:43:50PM +0200, Krzysztof Kozlowski wrote:
+> Fix whitespace coding style: use single space instead of tabs or
+> multiple spaces around '=' sign in property assignment.  No functional
+> changes (same DTB).
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+Acked-by: Liviu Dudau <liviu.dudau@arm.com>
+
+Thanks for the cleanup!
+
+Sudeep, can you pick this one up in your tree?
+
+Best regards,
+Liviu
+
+> 
+> ---
+> 
+> Output compared with dtx_diff and fdtdump.
+> ---
+>  arch/arm64/boot/dts/arm/juno-base.dtsi    | 44 +++++++++++------------
+>  arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi | 16 ++++-----
+>  2 files changed, 30 insertions(+), 30 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
+> index 065381c1cbf5..8d0d45d168d1 100644
+> --- a/arch/arm64/boot/dts/arm/juno-base.dtsi
+> +++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
+> @@ -581,36 +581,36 @@ cti_sys0: cti@20020000 { /* sys_cti_0 */
+>  
+>  		trig-conns@0 {
+>  			reg = <0>;
+> -			arm,trig-in-sigs=<2 3>;
+> -			arm,trig-in-types=<SNK_FULL SNK_ACQCOMP>;
+> -			arm,trig-out-sigs=<0 1>;
+> -			arm,trig-out-types=<SNK_FLUSHIN SNK_TRIGIN>;
+> +			arm,trig-in-sigs = <2 3>;
+> +			arm,trig-in-types = <SNK_FULL SNK_ACQCOMP>;
+> +			arm,trig-out-sigs = <0 1>;
+> +			arm,trig-out-types = <SNK_FLUSHIN SNK_TRIGIN>;
+>  			arm,cs-dev-assoc = <&etr_sys>;
+>  		};
+>  
+>  		trig-conns@1 {
+>  			reg = <1>;
+> -			arm,trig-in-sigs=<0 1>;
+> -			arm,trig-in-types=<SNK_FULL SNK_ACQCOMP>;
+> -			arm,trig-out-sigs=<7 6>;
+> -			arm,trig-out-types=<SNK_FLUSHIN SNK_TRIGIN>;
+> +			arm,trig-in-sigs = <0 1>;
+> +			arm,trig-in-types = <SNK_FULL SNK_ACQCOMP>;
+> +			arm,trig-out-sigs = <7 6>;
+> +			arm,trig-out-types = <SNK_FLUSHIN SNK_TRIGIN>;
+>  			arm,cs-dev-assoc = <&etf_sys0>;
+>  		};
+>  
+>  		trig-conns@2 {
+>  			reg = <2>;
+> -			arm,trig-in-sigs=<4 5 6 7>;
+> -			arm,trig-in-types=<STM_TOUT_SPTE STM_TOUT_SW
+> +			arm,trig-in-sigs = <4 5 6 7>;
+> +			arm,trig-in-types = <STM_TOUT_SPTE STM_TOUT_SW
+>  					   STM_TOUT_HETE STM_ASYNCOUT>;
+> -			arm,trig-out-sigs=<4 5>;
+> -			arm,trig-out-types=<STM_HWEVENT STM_HWEVENT>;
+> +			arm,trig-out-sigs = <4 5>;
+> +			arm,trig-out-types = <STM_HWEVENT STM_HWEVENT>;
+>  			arm,cs-dev-assoc = <&stm_sys>;
+>  		};
+>  
+>  		trig-conns@3 {
+>  			reg = <3>;
+> -			arm,trig-out-sigs=<2 3>;
+> -			arm,trig-out-types=<SNK_FLUSHIN SNK_TRIGIN>;
+> +			arm,trig-out-sigs = <2 3>;
+> +			arm,trig-out-types = <SNK_FLUSHIN SNK_TRIGIN>;
+>  			arm,cs-dev-assoc = <&tpiu_sys>;
+>  		};
+>  	};
+> @@ -628,24 +628,24 @@ cti_sys1: cti@20110000 { /* sys_cti_1 */
+>  
+>  		trig-conns@0 {
+>  			reg = <0>;
+> -			arm,trig-in-sigs=<0>;
+> -			arm,trig-in-types=<GEN_INTREQ>;
+> -			arm,trig-out-sigs=<0>;
+> -			arm,trig-out-types=<GEN_HALTREQ>;
+> +			arm,trig-in-sigs = <0>;
+> +			arm,trig-in-types = <GEN_INTREQ>;
+> +			arm,trig-out-sigs = <0>;
+> +			arm,trig-out-types = <GEN_HALTREQ>;
+>  			arm,trig-conn-name = "sys_profiler";
+>  		};
+>  
+>  		trig-conns@1 {
+>  			reg = <1>;
+> -			arm,trig-out-sigs=<2 3>;
+> -			arm,trig-out-types=<GEN_HALTREQ GEN_RESTARTREQ>;
+> +			arm,trig-out-sigs = <2 3>;
+> +			arm,trig-out-types = <GEN_HALTREQ GEN_RESTARTREQ>;
+>  			arm,trig-conn-name = "watchdog";
+>  		};
+>  
+>  		trig-conns@2 {
+>  			reg = <2>;
+> -			arm,trig-out-sigs=<1 6>;
+> -			arm,trig-out-types=<GEN_HALTREQ GEN_RESTARTREQ>;
+> +			arm,trig-out-sigs = <1 6>;
+> +			arm,trig-out-types = <GEN_HALTREQ GEN_RESTARTREQ>;
+>  			arm,trig-conn-name = "g_counter";
+>  		};
+>  	};
+> diff --git a/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi b/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi
+> index 2e43f4531308..ba88d1596f6f 100644
+> --- a/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi
+> +++ b/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi
+> @@ -96,24 +96,24 @@ cti_sys2: cti@20160000 { /* sys_cti_2 */
+>  
+>  		trig-conns@0 {
+>  			reg = <0>;
+> -			arm,trig-in-sigs=<0 1>;
+> -			arm,trig-in-types=<SNK_FULL SNK_ACQCOMP>;
+> -			arm,trig-out-sigs=<0 1>;
+> -			arm,trig-out-types=<SNK_FLUSHIN SNK_TRIGIN>;
+> +			arm,trig-in-sigs = <0 1>;
+> +			arm,trig-in-types = <SNK_FULL SNK_ACQCOMP>;
+> +			arm,trig-out-sigs = <0 1>;
+> +			arm,trig-out-types = <SNK_FLUSHIN SNK_TRIGIN>;
+>  			arm,cs-dev-assoc = <&etf_sys1>;
+>  		};
+>  
+>  		trig-conns@1 {
+>  			reg = <1>;
+> -			arm,trig-in-sigs=<2 3 4>;
+> -			arm,trig-in-types=<ELA_DBGREQ ELA_TSTART ELA_TSTOP>;
+> +			arm,trig-in-sigs = <2 3 4>;
+> +			arm,trig-in-types = <ELA_DBGREQ ELA_TSTART ELA_TSTOP>;
+>  			arm,trig-conn-name = "ela_clus_0";
+>  		};
+>  
+>  		trig-conns@2 {
+>  			reg = <2>;
+> -			arm,trig-in-sigs=<5 6 7>;
+> -			arm,trig-in-types=<ELA_DBGREQ ELA_TSTART ELA_TSTOP>;
+> +			arm,trig-in-sigs = <5 6 7>;
+> +			arm,trig-in-types = <ELA_DBGREQ ELA_TSTART ELA_TSTOP>;
+>  			arm,trig-conn-name = "ela_clus_1";
+>  		};
+>  	};
+> -- 
+> 2.34.1
+> 
+
+-- 
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
