@@ -2,132 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B263D54AF76
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 13:47:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E22DA54AF5F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 13:38:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242400AbiFNLrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 07:47:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34094 "EHLO
+        id S232723AbiFNLij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 07:38:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239698AbiFNLrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 07:47:11 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95A844738B;
-        Tue, 14 Jun 2022 04:47:10 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id v1so16563497ejg.13;
-        Tue, 14 Jun 2022 04:47:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4T7FatHUEWyE0/J2q0UksKjdBVt/etQpJFBpvcjCzb4=;
-        b=QT0iuhQDlvN3YyjmWFrFiMQmniIBmhz74YIlNADPWNY8MHBAuCO25eBMOU99FifoU2
-         KaFzd71X7/iAGw3Fv99oyWSjDTapjGl/mJ43ITiGvFNm2HXFj6HhVIY244dU7IL4vZxi
-         xwiYdk2kRWWjOc71NUe/IwKQWFxFbfNRpjU1vwHCS+ZDW1Wguco2iYPXQ1VZp9NIG8iz
-         qDbhDtNliMvlwtIEilwU48VzH04NtffUPwXCj/REb1DAGsmzPV2MsPVbJvbQ7Od0uBpd
-         X54CaI/+F9wMs7K1XTWxxHxPw+numHyls8gHf/6VAplZoBHmnCNXsaZHyoqFu/1gC9nN
-         PXZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4T7FatHUEWyE0/J2q0UksKjdBVt/etQpJFBpvcjCzb4=;
-        b=ODrFb7ItEg0c64XloxJ1v6k5Ok0oMjSpCDV2sr5QYsd0t4GTF1S1nSAZpnxLtlmxzg
-         Fndqpdxw4LJXRpuU+tHSFvtWjAwa1FkEotH4oUWIXUhIi5ofzcAvLi8LUElKcxun361h
-         RArWEMNp+MKKObCon5fk67//slIRC5W/mdm7xhxpi+ectSS2JLPagzG4LsEq39cOlTT4
-         14DPnKRmoKQNm5lgSy3YYTre/T31t7D8+w178EjFfPUp2Wk50N6JtfrfdBkCkwhW531W
-         NB/hb/pOGr2lBPtadd25QlkNb+jRVQpJs8HAnMgoT0zQMu93nUv0Iz1vxMoT3kwmQSTG
-         dHKw==
-X-Gm-Message-State: AOAM533B5H7SRzbBQWHtagR9938J0k+2lve4ny0ZLfhJ+0Cu4soN+HC7
-        xUa/kiE1AWlI35hbavTbdkv/VXKwqAftnmrvruc=
-X-Google-Smtp-Source: ABdhPJxdZq2dsz6vvs1wjp4sOAnVfA7wrRHT0ZPd7X7dMxTLo9BCnoRL6nQ1lL2RjN3jeD3LouiP8vDAmOGoPeBGnB0=
-X-Received: by 2002:a17:906:149:b0:711:fca6:bc2f with SMTP id
- 9-20020a170906014900b00711fca6bc2fmr3973476ejh.497.1655207229182; Tue, 14 Jun
- 2022 04:47:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220613195658.5607-1-brad@pensando.io> <20220613195658.5607-16-brad@pensando.io>
-In-Reply-To: <20220613195658.5607-16-brad@pensando.io>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 14 Jun 2022 13:46:32 +0200
-Message-ID: <CAHp75Vfrgw4sf7itQ-RVjNTNOrO95YeU9ugZc9sbBUYrpda5eg@mail.gmail.com>
-Subject: Re: [PATCH v5 15/15] reset: elbasr: Add AMD Pensando Elba SR Reset Controller
-To:     Brad Larson <brad@pensando.io>
-Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        with ESMTP id S241547AbiFNLi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 07:38:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF1841610;
+        Tue, 14 Jun 2022 04:38:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3805A611E8;
+        Tue, 14 Jun 2022 11:38:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE281C3411E;
+        Tue, 14 Jun 2022 11:38:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655206705;
+        bh=dt/7IRihakfa0z3FSC6b8H9fkTidVQtEjvRx/bxxSvU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=NBdiwjjoUG/a0z6QSAhuQ5VH2blwUuiBYDJ+/PBalF5wXzvY5CFYKt2DY0A/GesNa
+         KKz0FfRDorBtNoLNLvyeFQ1i9JmUU3rh5NismpJLJ7peSIbQeZ3/cFxOyP43DGB2Iu
+         qnavlnXX/y7ZrsWM4qgSWJgEplb1xn78yWHqVltC69a1CWNhREf5wVU5imBVLHAzId
+         rFABMWlHhPVKndbMjHHdN1+rGLMwp8V9ZHSJnA8wPLtiHj+m6H8bJYIMarciFZODk1
+         adhF5SBM7gX4QVBR/D3VYdKueJrSItwtMSIVEj+S/tkccVBYMZMlNIt/SlFdprZs7+
+         h62aeEQm8RWVQ==
+Date:   Tue, 14 Jun 2022 12:47:35 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Al Cooper <alcooperx@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
-        blarson@amd.com, brijeshkumar.singh@amd.com,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Gabriel Somlo <gsomlo@gmail.com>, gerg@linux-m68k.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>, piotrs@cadence.com,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Rob Herring <robh+dt@kernel.org>, samuel@sholland.org,
-        Serge Semin <fancer.lancer@gmail.com>,
-        suravee.suthikulpanit@amd.com,
-        Tom Lendacky <thomas.lendacky@amd.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        devicetree <devicetree@vger.kernel.org>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+Subject: Re: [PATCH v4 2/2] iio: adc: ad4130: add AD4130 driver
+Message-ID: <20220614124735.1d712a4a@jic23-huawei>
+In-Reply-To: <37ac71be-78d6-a266-045b-18164d715e57@gmail.com>
+References: <20220608091238.403897-1-cosmin.tanislav@analog.com>
+        <20220608091238.403897-3-cosmin.tanislav@analog.com>
+        <CAHp75Vdvng-fxt-p2bHJiF8i967eh1o_MUgDFN_odhW0sLu69A@mail.gmail.com>
+        <37ac71be-78d6-a266-045b-18164d715e57@gmail.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 13, 2022 at 9:57 PM Brad Larson <brad@pensando.io> wrote:
->
-> From: Brad Larson <blarson@amd.com>
->
-> This patch adds the reset controller functionality for the
-> AMD Pensando Elba System Resource Chip.
+On Wed, 8 Jun 2022 23:11:51 +0300
+Cosmin Tanislav <demonsingur@gmail.com> wrote:
+
+> On 6/8/22 18:59, Andy Shevchenko wrote:
+> > On Wed, Jun 8, 2022 at 12:19 PM Cosmin Tanislav <demonsingur@gmail.com> wrote:  
+> >>
+> >> AD4130-8 is an ultra-low power, high precision, measurement solution for
+> >> low bandwidth battery operated applications.
+> >>
+> >> The fully integrated AFE (Analog Front-End) includes a multiplexer for up
+> >> to 16 single-ended or 8 differential inputs, PGA (Programmable Gain
+> >> Amplifier), 24-bit Sigma-Delta ADC, on-chip reference and oscillator,
+> >> selectable filter options, smart sequencer, sensor biasing and excitation
+> >> options, diagnostics, and a FIFO buffer.  
+> > 
+> > I believe we may gain a few LoCs by slightly bending the rule of 80.
+> > Also see below.
+> >   
+> 
+> I'll only go over the 80 columns limit if Jonathan agrees to it.
+
+
+Where it helps readability I fine with us going past 80.
+I'm not convinced by every case Andy highlights, but many do
+make things easier to read.
+
+
+> 
+> >> +       *size = ad4130_reg_size[reg];
+> >> +       if (!*size)
+> >> +               return -EINVAL;  
+> > 
+> > Is this check necessary?
+> >   
+> 
+> Yes. I haven't described all registers in the table, and the registers
+> can be accessed by the user via the debugfs_reg_access() method.
+
+For that one, probably worth a comment as not immediately obvious.
+
+> 
 
 ...
 
-> +#include <linux/mfd/pensando-elbasr.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset-controller.h>
-> +#include <linux/regmap.h>
-> +#include <linux/err.h>
+> 
+> >> +       switch (ref_sel) {
+> >> +       case AD4130_REF_REFIN1:
+> >> +               ret = regulator_get_voltage(st->regulators[2].consumer);
+> >> +               break;
+> >> +       case AD4130_REF_REFIN2:
+> >> +               ret = regulator_get_voltage(st->regulators[3].consumer);
+> >> +               break;
+> >> +       case AD4130_REF_AVDD_AVSS:
+> >> +               ret = regulator_get_voltage(st->regulators[0].consumer);
+> >> +               break;
+> >> +       case AD4130_REF_REFOUT_AVSS:
+> >> +               ret = st->int_ref_uv;
+> >> +               break;
+> >> +       default:
+> >> +               ret = -EINVAL;
+> >> +               break;
+> >> +       }  
+> >   
+> >> +       if (ret < 0)
+> >> +               return dev_err_probe(dev, ret, "Cannot use reference %u\n",
+> >> +                                    ref_sel);  
+> > 
+> > Can it be moved to the caller where it would cleaner to use, I think?
+> > As a good side effect the all above will be shortened to just return directly.
+> >   
+> 
+> I'm pretty sure I remember Jonathan suggested moving it inside the
+> function.
 
-> +#include <linux/of.h>
+It's possible, though I don't know what my reasoning would have been...
 
-There is no user of this header. But there are missed ones, such as
-mod_devicetable.h.
-
-Keep them ordered to easily find such issues.
-
-...
-
-> +       ret = devm_reset_controller_register(&pdev->dev, &elbar->rcdev);
-> +
-> +       return ret;
-
-It is simply `return devm_...(...);`. Looking through your patches I
-can tell that you may easily drop LoCs by 10%. Please do so in the
-next version.
-
-...
-
-> +static const struct of_device_id elba_reset_dt_match[] = {
-> +       { .compatible = "amd,pensando-elbasr-reset", },
-> +       { /* sentinel */ },
-
-No comma.
-
-> +};
-
--- 
-With Best Regards,
-Andy Shevchenko
