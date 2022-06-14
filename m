@@ -2,85 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E833D54BC74
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 23:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 280A654BC6E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 23:05:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357627AbiFNVCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 17:02:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56622 "EHLO
+        id S233411AbiFNVDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 17:03:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357780AbiFNVCm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 17:02:42 -0400
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2D4A3120C;
-        Tue, 14 Jun 2022 14:02:40 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id i16so10722893ioa.6;
-        Tue, 14 Jun 2022 14:02:40 -0700 (PDT)
+        with ESMTP id S1357780AbiFNVDx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 17:03:53 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC934506CF
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 14:03:48 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id g10-20020a17090a708a00b001ea8aadd42bso191109pjk.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 14:03:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=54uqX4hoxceYxZbvXXXTQIRCQh50Z99ozZMeQkD5dEg=;
+        b=KPGKRgHC5n8hWs2HP0HefSE6DkYDIETw7epRbgNMqeA2V9Lv/O6MTXFZpSwfhZrQSx
+         pPHYr/9NXuMF2wPXKlCtcPkRQmGoW8YTg7ZUFh0VFPchZdwTfzhVCshMqbJG5riAQPLI
+         PDYS8v64XEw8vsdnYaJea9nU/dMobg8aXd1k2lnipdWh0We3aElzh6C9CzlZwQ0UtXbT
+         MJ0dT5ahLlIXRIUOxz9SHanzYNlA3G71tKHRa2If59GERiWa/uSJTf+Ao2aVEv4KVzDi
+         okFAfbBrEPXKHtHBp1hmSlUpbIzsL/v5P4mCeivarjnOxmlGAYh3OUtav88xmr2MRQCf
+         Jksw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2/cyFUpUGPUplOfOftDnZp7vPwEuiKwsOzYr7Oqpd9c=;
-        b=onBz9JHZIxzRWNHbegpNtm2r0LsDB15nyPjsonqHqclMEHd6g8xmVtqzx7aVggpS8k
-         SjbvgKFnt2Dq4tds/imcdrIrpG65nILrmf0GdPW8BNwx2oht0svJjjl8oxWTY/mcsD1W
-         09er4xjLLZ6MOmN5E80Yqhn+Yuy3s3ZgvLdElwX4fse3InYSQ1779CkJ+D5g0RM6Ygp/
-         oyD74lUaCSh9fiOFOLfap1+ATpiQM8emxoS/QtAtQQRjo87MlQZM99IwLHuyi7Hgr2qV
-         uDdQjGnSlvcCbYSJ+K5ofDlxzdHUG/L4JJ1tq9DnX1k7B+Ld1Guv8ILn00mr4YEdfVAe
-         STbQ==
-X-Gm-Message-State: AOAM533fz0iYrswe9LfbrgCxlXciomx7U3xD2M4sBYyE+3kK9QaZQiiM
-        wsNUySBqsQjBLr5qdAQ8eaLYK3Igew==
-X-Google-Smtp-Source: ABdhPJwArJB183Z3ToeeqDaidsVtxn45dq7qpYio0HGMdk7IzR5wzQxV8JC6SiQfQp3gbJl4lHM0kA==
-X-Received: by 2002:a05:6602:15c5:b0:669:ef95:1cc with SMTP id f5-20020a05660215c500b00669ef9501ccmr3538533iow.140.1655240559745;
-        Tue, 14 Jun 2022 14:02:39 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id y5-20020a92d0c5000000b002d5c572f410sm5885426ila.63.2022.06.14.14.02.38
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=54uqX4hoxceYxZbvXXXTQIRCQh50Z99ozZMeQkD5dEg=;
+        b=mjrS1TCXNrMBaFyT06goBgZfCA9ojZSy2k2hMyiHnhZV0itLlfto9Vx2R5V1WZvdkN
+         BoWtgkc+3KJJPexQGpRENlw2WeLU27DaJQ3QvBaA6u86Mpef0t2jXVUpJfOssOE53u+t
+         F3fKzlLnRj7lBz+D+x6gQHMd5hIUi1lbK2xQuaqbLGewP8hqBgYJSpGrHyPhI+hIGVXP
+         od2s5RASFIUnO18ZDJJA53ta3J5o0txTvxUsbPCg1lvdbHBHBampetYtGdNHYas+BTH5
+         oxY71bdullOJgZC+/owGeAvHLLDVOljPXG2N0Bdyif5E/3TU0I+fmQyBpKgDAEXPe68v
+         8Xug==
+X-Gm-Message-State: AJIora+xvcMKAvlnzSI2q5nfkj6Lo+PvIXC+RZjiwuwWxilEk+2GFk1E
+        9+18yKjylh23EQGhuDJ2UFEWBg==
+X-Google-Smtp-Source: AGRyM1uhtOpnkODqEAnt2BMBBTumHS2aKQXcRkaESL5xgjTuUoibnJg//T9j+N0OhBrTniTj1c+NWw==
+X-Received: by 2002:a17:903:2291:b0:167:59ad:52e8 with SMTP id b17-20020a170903229100b0016759ad52e8mr6373890plh.121.1655240628282;
+        Tue, 14 Jun 2022 14:03:48 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id b7-20020a1709027e0700b001635a8f9dfdsm59307plm.26.2022.06.14.14.03.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jun 2022 14:02:39 -0700 (PDT)
-Received: (nullmailer pid 2566780 invoked by uid 1000);
-        Tue, 14 Jun 2022 21:02:37 -0000
-Date:   Tue, 14 Jun 2022 15:02:37 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rockchip@lists.infradead.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, linux-media@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] media: dt-binding: media: Add rk3568-vepu binding
-Message-ID: <20220614210237.GA2566560-robh@kernel.org>
-References: <20220612155346.16288-1-frattaroli.nicolas@gmail.com>
- <20220612155346.16288-2-frattaroli.nicolas@gmail.com>
+        Tue, 14 Jun 2022 14:03:47 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Jerome NEANNE <jneanne@baylibre.com>, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, nm@ti.com,
+        kristo@kernel.org, will@kernel.org, lee.jones@linaro.org,
+        jneanne@baylibre.com
+Cc:     narmstrong@baylibre.com, msp@baylibre.com, j-keerthy@ti.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH 2/5] mfd: drivers: Add TI TPS65219 PMIC support
+In-Reply-To: <20220613090604.9975-3-jneanne@baylibre.com>
+References: <20220613090604.9975-1-jneanne@baylibre.com>
+ <20220613090604.9975-3-jneanne@baylibre.com>
+Date:   Tue, 14 Jun 2022 14:03:46 -0700
+Message-ID: <7hy1xznej1.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220612155346.16288-2-frattaroli.nicolas@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 12 Jun 2022 17:53:44 +0200, Nicolas Frattaroli wrote:
-> The RK3568 and RK3566 have a Hantro VPU node solely dedicated to
-> encoding. This patch adds a new binding to describe it, as it
-> does not really fit the rockchip-vpu binding, since there is no
-> decoder.
-> 
-> Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> ---
->  .../bindings/media/rockchip,rk3568-vepu.yaml  | 69 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/rockchip,rk3568-vepu.yaml
-> 
+Jerome NEANNE <jneanne@baylibre.com> writes:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> The TPS65219 is a power management IC PMIC designed
+> to supply a wide range of SoCs
+> in both portable and stationary applications.
+> Any SoC can control TPS65219 over a standard I2C interface.
+>
+> It contains the following components:
+> - Regulators.
+> - Over Temperature warning and Shut down.
+> - GPIOs
+> - Multi Function Pins (MFP)
+>
+> This patch adds support for tps65219 mfd device. At this time only
+> the functionalities listed below are made available:
+>
+> - Regulators probe and functionalities
+> - warm and cold reset support
+> - SW shutdown support
+>
+> Signed-off-by: Jerome NEANNE <jneanne@baylibre.com>
+
+[...]
+
+> +/**
+> + * pmic_rst_restart: trig tps65219 reset to SOC.
+> + *
+> + * Trigged via notifier
+> + */
+> +static int pmic_rst_restart(struct notifier_block *this,
+> +			  unsigned long mode, void *cmd)
+> +{
+> +	struct tps65219 *tps;
+> +
+> +	tps = container_of(this, struct tps65219, nb);
+> +	if (tps != NULL) {
+> +		if (WARMNCOLD)
+
+This value is hard-coded to 1 in the header, so war reset will always be
+done.  
+
+> +			tps65219_warm_reset(tps);
+> +		else
+> +			tps65219_cold_reset(tps);
+
+Doesn't the reboot_notifier get a value like REBOOT_WARM,
+REBOOT_COLD etc (c.f. enum in linux/reboot.h)  so you could properly select?
+
+Kevin
