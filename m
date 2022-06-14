@@ -2,48 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4EAA54B32B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 16:27:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38BD554B3B5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 16:47:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343877AbiFNO1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 10:27:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46154 "EHLO
+        id S237898AbiFNOoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 10:44:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343755AbiFNO1d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 10:27:33 -0400
-Received: from smtpout1.mo3004.mail-out.ovh.net (smtpout1.mo3004.mail-out.ovh.net [79.137.123.219])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7548327FC7;
-        Tue, 14 Jun 2022 07:27:23 -0700 (PDT)
-Received: from pro2.mail.ovh.net (unknown [10.108.20.7])
-        by mo3004.mail-out.ovh.net (Postfix) with ESMTPS id 8076E245708;
-        Tue, 14 Jun 2022 14:27:22 +0000 (UTC)
-Received: from localhost.localdomain (88.161.25.233) by DAG1EX2.emp2.local
- (172.16.2.2) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Tue, 14 Jun
- 2022 16:27:21 +0200
-From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-To:     <pavel@ucw.cz>, <krzk+dt@kernel.org>, <andy.shevchenko@gmail.com>
-CC:     <robh+dt@kernel.org>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Subject: [PATCH v4 3/3] leds: tlc5925: Add support for non blocking operations
-Date:   Tue, 14 Jun 2022 16:27:04 +0200
-Message-ID: <20220614142704.155496-4-jjhiblot@traphandler.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220614142704.155496-1-jjhiblot@traphandler.com>
-References: <20220614142704.155496-1-jjhiblot@traphandler.com>
+        with ESMTP id S1356391AbiFNOnr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 10:43:47 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43C71ADB4
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 07:43:45 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id u37so337219pfg.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 07:43:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=4cFnRvgmCgZilg+kua2nS8hJF1hI6XababS0iH20TWo=;
+        b=wBDys1FsoPdSRBO3RkTw5jlPlUveLtj70wIv5jWeDeDLEXnPegBmCF3tkiBJbp6xmr
+         kcnSZ9qvtjIuBe7II3as/t5SoZ1juk65X+SVmJ9SOmJ/DN+edJzpzYzN/UY1U8ydxEy4
+         qNdG/90Ex/j6q6jZ6FPsB+YADxJK5BpFKLhyNaj2ZEinXendLg5kraR7ulE8m0frtNm2
+         /dILb8+Azt2pGcQ4CXh1KORlJIOxo7q47pTt9HYRGfNdcgxZuJZ3IpLrNAYlbreaC/f9
+         jrq1sKedHCX/0IVWRvzdOBW93TTTpD+39TZicokOhiMCldjMxSosTQPQnmgVMVAZ4PEx
+         X8Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=4cFnRvgmCgZilg+kua2nS8hJF1hI6XababS0iH20TWo=;
+        b=RwzfWIM+nb66M1au2qi3wqdacwY80IFK1TwHRWpR5cHmkPx9XSDKIe8tBCA4okvOGy
+         r7xd/on12+Yf8w6IB4ic0xq3lksFmn5ihhz/Q8JoLF6ojDCpGKt0xhsAlbEGubFadhMQ
+         ZIZaA8KE6NSXCCJdKBMiCJj5Gh9yhBYV1o2rT8p4AYxvJtw9Ku3RYpPauYrSDxe7og1f
+         YrmGrTya9RxvUJv62NCSUj1E9ZoRZGvOZbvFAZjHLdQWwB4H8pusaBiJtPYVqHkEwFnG
+         BRZ2Gj6oddwB+QKfEWE44GzReB7vfA+rSUA9nkmFs5YYvwoiO4xfQg//Y/cKrYxbOncQ
+         ciWQ==
+X-Gm-Message-State: AOAM530t+f2rtp33V1B3X/tmFVNuoCzdwJRiDiQa18y3U05ewQxkLq6h
+        iUoeC0/oFvxlbO8Rvf9SvJdGhQ==
+X-Google-Smtp-Source: ABdhPJypR8vjAMFkGvsZC+cplFp5gkSzlPo/jUCX+Nh+gTxI9BNzxBVZce/Kf+3LESVZiCbBz1Stcg==
+X-Received: by 2002:a05:6a00:a21:b0:522:9134:c620 with SMTP id p33-20020a056a000a2100b005229134c620mr4853896pfh.68.1655217824803;
+        Tue, 14 Jun 2022 07:43:44 -0700 (PDT)
+Received: from [172.20.0.51] ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id g7-20020a63ad07000000b003db822e2170sm7866328pgf.23.2022.06.14.07.43.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Jun 2022 07:43:44 -0700 (PDT)
+Message-ID: <26dc329e-b663-e779-a30f-b495206ced48@linaro.org>
+Date:   Tue, 14 Jun 2022 07:43:42 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [88.161.25.233]
-X-ClientProxiedBy: CAS2.emp2.local (172.16.1.2) To DAG1EX2.emp2.local
- (172.16.2.2)
-X-Ovh-Tracer-Id: 11153727430547618267
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudduledgjeehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefhvfevufffkffojghfggfgtghisehtkeertdertddtnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpeduteevleevvefggfdvueffffejhfehheeuiedtgedtjeeghfehueduudegfeefueenucfkpheptddrtddrtddrtddpkeekrdduiedurddvhedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhrohdvrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepjhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmoheftddtge
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 2/2] media: i2c: imx412: Add imx577 compatible string
+Content-Language: en-US
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     jacopo@jmondi.org, paul.j.murphy@intel.com,
+        daniele.alessandrelli@intel.com, mchehab@kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        dmitry.baryshkov@linaro.org, konrad.dybcio@somainline.org,
+        andrey.konovalov@linaro.org
+References: <20220607134057.2427663-1-bryan.odonoghue@linaro.org>
+ <20220607134057.2427663-3-bryan.odonoghue@linaro.org>
+ <Yqh4ewFMP5QcO/ta@valkosipuli.retiisi.eu>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <Yqh4ewFMP5QcO/ta@valkosipuli.retiisi.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,104 +78,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Settings multiple LEDs in a row can be a slow operation because of the
-time required to acquire the bus and prepare the transfer.
-And, in most cases, it is not required that the operation is synchronous.
+On 14/06/2022 05:00, Sakari Ailus wrote:
+> Thanks for the patch.
+> 
+> Surely the sensors still have some differences.
 
-Implementing the non-blocking brightness_set() for such cases.
-A work queue is used to perform the actual SPI transfer.
+They do, they absolutely do, the imx577 has a whole bunch of extra modes.
 
-The blocking method is still available in case someone needs to perform
-this operation synchronously (ie by calling led_set_brightness_sync()).
+We don't have any reference code or access to documentation for those modes.
 
-Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+My reference is the qualcomm camx code for the rb5 board, which includes 
+a imx577 sensor. That stack uses the same init code as for the 412.
+
+So for that baseline mode, the imx412 driver works perfectly.
+
+> Even if the same registers would work as-is (the imx577 might still benefit
+> from different MSRs?), the user should know which sensor it is. I.e. please
+> set the media entity name accordingly. See e.g. the CCS driver for an
+> example.
+
+Agreed, I'll do that.
+
 ---
- drivers/leds/leds-tlc5925.c | 39 +++++++++++++++++++++++++++++++++++--
- 1 file changed, 37 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/leds/leds-tlc5925.c b/drivers/leds/leds-tlc5925.c
-index eeab1138ba2c..2c083b04d7f6 100644
---- a/drivers/leds/leds-tlc5925.c
-+++ b/drivers/leds/leds-tlc5925.c
-@@ -14,6 +14,7 @@
- #include <linux/leds.h>
- #include <linux/module.h>
- #include <linux/property.h>
-+#include <linux/workqueue.h>
- #include <linux/spi/spi.h>
- 
- struct single_led_priv {
-@@ -24,10 +25,24 @@ struct single_led_priv {
- struct tlc5925_leds_priv {
- 	int max_num_leds;
- 	unsigned long *state;
-+	struct spi_device *spi;
-+	struct work_struct xmit_work;
- 	struct single_led_priv leds[];
- };
- 
--static int tlc5925_brightness_set_blocking(struct led_classdev *cdev,
-+static int xmit(struct tlc5925_leds_priv *priv)
-+{
-+	return spi_write(priv->spi, priv->state, BITS_TO_BYTES(priv->max_num_leds));
-+}
-+
-+static void xmit_work(struct work_struct *ws)
-+{
-+	struct tlc5925_leds_priv *priv =
-+		container_of(ws, struct tlc5925_leds_priv, xmit_work);
-+	xmit(priv);
-+};
-+
-+static void tlc5925_brightness_set(struct led_classdev *cdev,
- 					    enum led_brightness brightness)
- {
- 	struct spi_device *spi = to_spi_device(cdev->dev->parent);
-@@ -40,9 +55,25 @@ static int tlc5925_brightness_set_blocking(struct led_classdev *cdev,
- 	// assign_bit() is atomic, no need for lock
- 	assign_bit(index, priv->state, !!brightness);
- 
--	return spi_write(spi, priv->state, BITS_TO_BYTES(priv->max_num_leds));
-+	schedule_work(&priv->xmit_work);
- }
- 
-+static int tlc5925_brightness_set_blocking(struct led_classdev *cdev,
-+					    enum led_brightness brightness)
-+{
-+	struct spi_device *spi = to_spi_device(cdev->dev->parent);
-+	struct tlc5925_leds_priv *priv = spi_get_drvdata(spi);
-+	struct single_led_priv *led = container_of(cdev,
-+						   struct single_led_priv,
-+						   cdev);
-+	int index = led->idx;
-+
-+	// assign_bit() is atomic, no need for lock
-+	assign_bit(index, priv->state, !!brightness);
-+
-+	cancel_work_sync(&priv->xmit_work);
-+	return xmit(priv);
-+}
- 
- static int tlc5925_probe(struct spi_device *spi)
- {
-@@ -92,6 +123,9 @@ static int tlc5925_probe(struct spi_device *spi)
- 	if (!priv->state)
- 		return -ENOMEM;
- 
-+	priv->spi = spi;
-+	INIT_WORK(&priv->xmit_work, xmit_work);
-+
- 	priv->max_num_leds = max_num_leds;
- 
- 	device_for_each_child_node(dev, child) {
-@@ -112,6 +146,7 @@ static int tlc5925_probe(struct spi_device *spi)
- 		cdev = &(priv->leds[count].cdev);
- 		cdev->brightness = LED_OFF;
- 		cdev->max_brightness = 1;
-+		cdev->brightness_set = tlc5925_brightness_set;
- 		cdev->brightness_set_blocking = tlc5925_brightness_set_blocking;
- 
- 		ret = devm_led_classdev_register_ext(dev, cdev, &init_data);
--- 
-2.25.1
-
+bod
