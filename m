@@ -2,45 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6558254AE13
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 12:14:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A30D854AE3E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 12:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242450AbiFNKOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 06:14:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58434 "EHLO
+        id S1353186AbiFNKZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 06:25:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230313AbiFNKOH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 06:14:07 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0C75646157;
-        Tue, 14 Jun 2022 03:14:07 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E6A4323A;
-        Tue, 14 Jun 2022 03:14:06 -0700 (PDT)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 753483F792;
-        Tue, 14 Jun 2022 03:14:05 -0700 (PDT)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: arm/fvp-base-revc: Remove 'panel-dpi' compatible
-Date:   Tue, 14 Jun 2022 11:14:03 +0100
-Message-Id: <165520087950.1030128.13080682792301957052.b4-ty@arm.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220610204057.2203419-1-robh@kernel.org>
-References: <20220610204057.2203419-1-robh@kernel.org>
+        with ESMTP id S232479AbiFNKZL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 06:25:11 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31F2B4757C;
+        Tue, 14 Jun 2022 03:25:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DDCD9B8184C;
+        Tue, 14 Jun 2022 10:25:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8D11C3411B;
+        Tue, 14 Jun 2022 10:25:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655202307;
+        bh=qA9xWVn3AUOfZxfhOprMPBGdr1XvmWBCUKQPSallH0Y=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=DGbRvEExBH84aRP3LsVoe88rb3sKrQrDJjoxsjJUxG+m6/s4Zp1yT0QXwou0ZZVuK
+         57N8LOHwEwXf6uz0O6ZrgPYZ4CPv1Sld/mUjt4GiUELMyBk7E/CTgnfpByvHA2w5UD
+         TUgtNdMlbDKO0UxlVPSD1oqwSHrKk8JP/n5xsaTzJRowVJB6RmK4fZYVIILpyYhGcZ
+         +hJ7KFui/7hcXr6XyVRtoGWsLlyJFNNN1/AVXvVH+koYyKq6TyrXaIkaw5q6Oyd68o
+         KbrIQja2neTtQpk1folFoQbvO3D/ZX0abdGoU57kNE6UE4lxmo9QjNiQ8FhXsQaypE
+         IWVx6FLZPRDRw==
+From:   Mark Brown <broonie@kernel.org>
+To:     robh+dt@kernel.org, shengjiu.wang@nxp.com, tiwai@suse.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        shengjiu.wang@gmail.com, nicoleotsuka@gmail.com,
+        Xiubo.Lee@gmail.com, perex@perex.cz, festevam@gmail.com,
+        krzk+dt@kernel.org, lgirdwood@gmail.com
+Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+In-Reply-To: <1654840042-7069-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1654840042-7069-1-git-send-email-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: fsl,mqs: Add compatible string for i.MX93 platform
+Message-Id: <165520230461.3607327.1182225062255156973.b4-ty@kernel.org>
+Date:   Tue, 14 Jun 2022 11:25:04 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -48,18 +56,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Jun 2022 14:40:57 -0600, Rob Herring wrote:
-> The rtsm-display panel timing node was removed in commit 928faf5e3e8d
-> ("arm64: dts: fvp: Remove panel timings"). Without the node, 'panel-dpi'
-> is not needed either.
->
+On Fri, 10 Jun 2022 13:47:21 +0800, Shengjiu Wang wrote:
+> Add compatible string "fsl,imx93-mqs" for i.MX93 platform
+> 
+> 
 
-Applied to sudeep.holla/linux (for-next/juno), thanks!
+Applied to
 
-[1/1] arm64: dts: arm/fvp-base-revc: Remove 'panel-dpi' compatible
-      https://git.kernel.org/sudeep.holla/c/7fc96d7162
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
---
-Regards,
-Sudeep
+Thanks!
 
+[1/2] ASoC: dt-bindings: fsl,mqs: Add compatible string for i.MX93 platform
+      commit: 81ae0635df7de58496def18b0b9333992630b9af
+[2/2] ASoC: fsl_mqs: Add support for i.MX93 platform
+      commit: 047c69a3a9b19f29e021c77a7e9ce79230a342ed
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
