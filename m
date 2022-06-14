@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F32854AC5C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B7CF54AC71
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241108AbiFNIqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 04:46:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47378 "EHLO
+        id S1355067AbiFNIuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 04:50:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242355AbiFNIq0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:46:26 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB9FD427C9
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:46:21 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id g25so8957533ljm.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:46:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VUSdGLwnJ0Y/lNfZiFkctM/6S+/lIr4cXT4yYV5L0eg=;
-        b=ds3Ls87l3/RTps8cjzbiCoEtfAT/UNTYNbmZ3vxsR0hnyRIM4JISzsT8HkoR+6+4eP
-         3Cqfb+JGxyWAcNqNoxVve8rYObAC8MnNPQ+zdDSbT547/eFDUrPgC4XCC1yhvfm7wVDs
-         gBoQe8fxIVPWmwyvCxK0peaqzLKc2z/XRjO1Y=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VUSdGLwnJ0Y/lNfZiFkctM/6S+/lIr4cXT4yYV5L0eg=;
-        b=4IZJAnkJGZ6NanLvDYBEVNDcZ7TMv9TKljFwd56IY20Dmrr5DY8mwCt9NW0L/YC+rr
-         2AGu15HpIZRd/7vTEmN0vq/HlLY+5ezJOiljEm+8HiUTy+JZswKMfj0Y5K9e8WMggzs9
-         ZOPXU5c/WTwcqikFwlc2eRoJjTNfLbP1caWeglc9XdI4ZRu+Gtx7OXphou5chLRGyCUp
-         0qEBqudH8fvZc/YONpmPHrSkoPuLx6eDUgwQEwTasqmc/s4TFcaWvppTmln/IkVam0+N
-         Qxn39CbqxRgG/LjLVznlmDm+yTTYX7Gv+cyCl9Dojhehd3xo/G4o4iFaTZhdTZCH+hTz
-         naEg==
-X-Gm-Message-State: AJIora/tRTBB4gr67QXQC6St3whofsUQN8DOpx7APDdUWlS1zzv/xAUd
-        EQVSzA5OFJhekT7sNwReSUMu6w==
-X-Google-Smtp-Source: AGRyM1uPQusPCcTNkLDd/2DQXmi8U8XilZO13Hy3ENCammmq5MEL9OxcbgTxh2SVU/vHcJkV+z5GGA==
-X-Received: by 2002:a2e:3a17:0:b0:255:772a:e9e2 with SMTP id h23-20020a2e3a17000000b00255772ae9e2mr1859147lja.440.1655196380110;
-        Tue, 14 Jun 2022 01:46:20 -0700 (PDT)
-Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id g1-20020ac24d81000000b0047255d2118fsm1306116lfe.190.2022.06.14.01.46.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jun 2022 01:46:19 -0700 (PDT)
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-To:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Praneeth Bajjuri <praneeth@ti.com>,
-        linux-kernel@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Subject: [PATCH net-next v2 3/3] net: phy: dp83867: implement support for io_impedance_ctrl nvmem cell
-Date:   Tue, 14 Jun 2022 10:46:12 +0200
-Message-Id: <20220614084612.325229-4-linux@rasmusvillemoes.dk>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220614084612.325229-1-linux@rasmusvillemoes.dk>
-References: <20220606202220.1670714-1-linux@rasmusvillemoes.dk>
- <20220614084612.325229-1-linux@rasmusvillemoes.dk>
+        with ESMTP id S1355895AbiFNItj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:49:39 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 294DF13CF1;
+        Tue, 14 Jun 2022 01:49:34 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25E8mpFE060385;
+        Tue, 14 Jun 2022 03:48:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655196531;
+        bh=CDf43wcE6wSh3PzlVgmbjR8Np/ai78l/H7vjoYFhOkU=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=lH+zrL9aZF6hMI1zQYVIj2+YAy4Re0EqZyoS7NsF2LqIU9ht70kczMRbjJSE8pthm
+         DhgCLWbwKjpURMKaDAoU/ylwKjfHqil5RSj+wwKMHzI7dMxQN8gz3PX79kePwTFMBC
+         HT7btcyrJ8HyjPgyLWxPQP8N9AS2B8O5Hew3Q7kw=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25E8mpXD097757
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 14 Jun 2022 03:48:51 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 14
+ Jun 2022 03:48:50 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 14 Jun 2022 03:48:50 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25E8mnC0016187;
+        Tue, 14 Jun 2022 03:48:50 -0500
+Date:   Tue, 14 Jun 2022 14:18:49 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Brad Larson <brad@pensando.io>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <adrian.hunter@intel.com>, <alcooperx@gmail.com>,
+        <andy.shevchenko@gmail.com>, <arnd@arndb.de>, <blarson@amd.com>,
+        <brijeshkumar.singh@amd.com>, <catalin.marinas@arm.com>,
+        <gsomlo@gmail.com>, <gerg@linux-m68k.org>, <krzk@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <lee.jones@linaro.org>,
+        <broonie@kernel.org>, <yamada.masahiro@socionext.com>,
+        <p.zabel@pengutronix.de>, <piotrs@cadence.com>,
+        <rdunlap@infradead.org>, <robh+dt@kernel.org>,
+        <samuel@sholland.org>, <fancer.lancer@gmail.com>,
+        <suravee.suthikulpanit@amd.com>, <thomas.lendacky@amd.com>,
+        <ulf.hansson@linaro.org>, <will@kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v5 11/15] spi: cadence-quadspi: Add compatible for AMD
+ Pensando Elba SoC
+Message-ID: <20220614084849.oodxh6cthysga5iq@ti.com>
+References: <20220613195658.5607-1-brad@pensando.io>
+ <20220613195658.5607-12-brad@pensando.io>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220613195658.5607-12-brad@pensando.io>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,100 +76,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We have a board where measurements indicate that the current three
-options - leaving IO_IMPEDANCE_CTRL at the (factory calibrated) reset
-value or using one of the two boolean properties to set it to the
-min/max value - are too coarse.
+Hi Brad,
 
-Implement support for the newly added binding allowing device tree to
-specify an nvmem cell containing an appropriate value for this
-specific board.
+On 13/06/22 12:56PM, Brad Larson wrote:
+> From: Brad Larson <blarson@amd.com>
+> 
+> The AMD Pensando Elba SoC has the Cadence QSPI controller integrated.
+> 
+> The quirk CQSPI_NEEDS_APB_AHB_HAZARD_WAR is added and if enabled
+> a dummy readback from the controller is performed to ensure
+> synchronization.
+> 
+> Signed-off-by: Brad Larson <blarson@amd.com>
+> ---
+>  drivers/spi/spi-cadence-quadspi.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/drivers/spi/spi-cadence-quadspi.c b/drivers/spi/spi-cadence-quadspi.c
+> index 72b1a5a2298c..ebb77ea8e6ba 100644
+> --- a/drivers/spi/spi-cadence-quadspi.c
+> +++ b/drivers/spi/spi-cadence-quadspi.c
+> @@ -39,6 +39,7 @@
+>  #define CQSPI_DISABLE_DAC_MODE		BIT(1)
+>  #define CQSPI_SUPPORT_EXTERNAL_DMA	BIT(2)
+>  #define CQSPI_NO_SUPPORT_WR_COMPLETION	BIT(3)
+> +#define CQSPI_NEEDS_APB_AHB_HAZARD_WAR	BIT(4)
+>  
+>  /* Capabilities */
+>  #define CQSPI_SUPPORTS_OCTAL		BIT(0)
+> @@ -87,6 +88,7 @@ struct cqspi_st {
+>  	bool			use_dma_read;
+>  	u32			pd_dev_id;
+>  	bool			wr_completion;
+> +	bool			apb_ahb_hazard;
+>  };
+>  
+>  struct cqspi_driver_platdata {
+> @@ -952,6 +954,13 @@ static int cqspi_indirect_write_execute(struct cqspi_flash_pdata *f_pdata,
+>  	if (cqspi->wr_delay)
+>  		ndelay(cqspi->wr_delay);
+>  
+> +	/*
+> +	 * If a hazard exists between the APB and AHB interfaces, perform a
+> +	 * dummy readback from the controller to ensure synchronization.
+> +	 */
 
-Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
----
- drivers/net/phy/dp83867.c | 55 ++++++++++++++++++++++++++++++++++-----
- 1 file changed, 49 insertions(+), 6 deletions(-)
+This is needed for TI's SoCs as well. APB and AHB accesses are 
+independent of each other on the interconnect and can be racy. I wrote a 
+couple patches [0][1] to fix this on TI's fork. I never got around to 
+sending them upstream. It would be great if you can pick those up. They 
+fix the race in all paths, not just indirect write.
 
-diff --git a/drivers/net/phy/dp83867.c b/drivers/net/phy/dp83867.c
-index 8561f2d4443b..45d8a9298251 100644
---- a/drivers/net/phy/dp83867.c
-+++ b/drivers/net/phy/dp83867.c
-@@ -14,6 +14,7 @@
- #include <linux/netdevice.h>
- #include <linux/etherdevice.h>
- #include <linux/bitfield.h>
-+#include <linux/nvmem-consumer.h>
- 
- #include <dt-bindings/net/ti-dp83867.h>
- 
-@@ -521,6 +522,51 @@ static int dp83867_verify_rgmii_cfg(struct phy_device *phydev)
- }
- 
- #if IS_ENABLED(CONFIG_OF_MDIO)
-+static int dp83867_of_init_io_impedance(struct phy_device *phydev)
-+{
-+	struct dp83867_private *dp83867 = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	struct device_node *of_node = dev->of_node;
-+	struct nvmem_cell *cell;
-+	u8 *buf, val;
-+	int ret;
-+
-+	cell = of_nvmem_cell_get(of_node, "io_impedance_ctrl");
-+	if (IS_ERR(cell)) {
-+		ret = PTR_ERR(cell);
-+		if (ret != -ENOENT)
-+			return phydev_err_probe(phydev, ret,
-+						"failed to get nvmem cell io_impedance_ctrl\n");
-+
-+		/* If no nvmem cell, check for the boolean properties. */
-+		if (of_property_read_bool(of_node, "ti,max-output-impedance"))
-+			dp83867->io_impedance = DP83867_IO_MUX_CFG_IO_IMPEDANCE_MAX;
-+		else if (of_property_read_bool(of_node, "ti,min-output-impedance"))
-+			dp83867->io_impedance = DP83867_IO_MUX_CFG_IO_IMPEDANCE_MIN;
-+		else
-+			dp83867->io_impedance = -1; /* leave at default */
-+
-+		return 0;
-+	}
-+
-+	buf = nvmem_cell_read(cell, NULL);
-+	nvmem_cell_put(cell);
-+
-+	if (IS_ERR(buf))
-+		return PTR_ERR(buf);
-+
-+	val = *buf;
-+	kfree(buf);
-+
-+	if ((val & DP83867_IO_MUX_CFG_IO_IMPEDANCE_MASK) != val) {
-+		phydev_err(phydev, "nvmem cell 'io_impedance_ctrl' contents out of range\n");
-+		return -ERANGE;
-+	}
-+	dp83867->io_impedance = val;
-+
-+	return 0;
-+}
-+
- static int dp83867_of_init(struct phy_device *phydev)
- {
- 	struct dp83867_private *dp83867 = phydev->priv;
-@@ -548,12 +594,9 @@ static int dp83867_of_init(struct phy_device *phydev)
- 		}
- 	}
- 
--	if (of_property_read_bool(of_node, "ti,max-output-impedance"))
--		dp83867->io_impedance = DP83867_IO_MUX_CFG_IO_IMPEDANCE_MAX;
--	else if (of_property_read_bool(of_node, "ti,min-output-impedance"))
--		dp83867->io_impedance = DP83867_IO_MUX_CFG_IO_IMPEDANCE_MIN;
--	else
--		dp83867->io_impedance = -1; /* leave at default */
-+	ret = dp83867_of_init_io_impedance(phydev);
-+	if (ret)
-+		return ret;
- 
- 	dp83867->rxctrl_strap_quirk = of_property_read_bool(of_node,
- 							    "ti,dp83867-rxctrl-strap-quirk");
+I would also prefer if we do this unconditionally. I don't think it has 
+much downside even on platforms that do not strictly need this.
+
+[0] https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/drivers/spi/spi-cadence-quadspi.c?h=ti-linux-5.10.y&id=027f03a8512086e5ef05dc4e4ff53b2628848f95
+[1] https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/drivers/spi/spi-cadence-quadspi.c?h=ti-linux-5.10.y&id=4c367e58bab7d3f9c470c3778441f73546f20398
+
+> +	if (cqspi->apb_ahb_hazard)
+> +		(void)readl(reg_base + CQSPI_REG_INDIRECTWR);
+> +
+>  	while (remaining > 0) {
+>  		size_t write_words, mod_bytes;
+>  
+> @@ -1667,6 +1676,8 @@ static int cqspi_probe(struct platform_device *pdev)
+>  			cqspi->use_dma_read = true;
+>  		if (ddata->quirks & CQSPI_NO_SUPPORT_WR_COMPLETION)
+>  			cqspi->wr_completion = false;
+> +		if (ddata->quirks & CQSPI_NEEDS_APB_AHB_HAZARD_WAR)
+> +			cqspi->apb_ahb_hazard = true;
+>  
+>  		if (of_device_is_compatible(pdev->dev.of_node,
+>  					    "xlnx,versal-ospi-1.0"))
+> @@ -1789,6 +1800,10 @@ static const struct cqspi_driver_platdata versal_ospi = {
+>  	.get_dma_status = cqspi_get_versal_dma_status,
+>  };
+>  
+> +static const struct cqspi_driver_platdata pen_cdns_qspi = {
+> +	.quirks = CQSPI_NEEDS_APB_AHB_HAZARD_WAR | CQSPI_DISABLE_DAC_MODE,
+> +};
+> +
+>  static const struct of_device_id cqspi_dt_ids[] = {
+>  	{
+>  		.compatible = "cdns,qspi-nor",
+> @@ -1814,6 +1829,10 @@ static const struct of_device_id cqspi_dt_ids[] = {
+>  		.compatible = "intel,socfpga-qspi",
+>  		.data = &socfpga_qspi,
+>  	},
+> +	{
+> +		.compatible = "amd,pensando-elba-qspi",
+> +		.data = &pen_cdns_qspi,
+> +	},
+>  	{ /* end of table */ }
+>  };
+>  
+> -- 
+> 2.17.1
+> 
+
 -- 
-2.31.1
-
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
