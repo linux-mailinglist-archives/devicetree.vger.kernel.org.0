@@ -2,151 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DC7A54B4F3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 17:43:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1F0154B51B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 17:50:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346574AbiFNPnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 11:43:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51958 "EHLO
+        id S234683AbiFNPrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 11:47:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345961AbiFNPnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 11:43:00 -0400
-Received: from smtpout1.mo528.mail-out.ovh.net (smtpout1.mo528.mail-out.ovh.net [46.105.34.251])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0942039813;
-        Tue, 14 Jun 2022 08:42:58 -0700 (PDT)
-Received: from pro2.mail.ovh.net (unknown [10.108.16.169])
-        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 4DA7E10C19235;
-        Tue, 14 Jun 2022 17:42:57 +0200 (CEST)
-Received: from localhost.localdomain (88.161.25.233) by DAG1EX2.emp2.local
- (172.16.2.2) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Tue, 14 Jun
- 2022 17:42:56 +0200
-From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-To:     <pavel@ucw.cz>, <krzk+dt@kernel.org>, <andy.shevchenko@gmail.com>
-CC:     <robh+dt@kernel.org>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Subject: [PATCH v5 3/3] leds: tlc5925: Add support for non blocking operations
-Date:   Tue, 14 Jun 2022 17:42:45 +0200
-Message-ID: <20220614154245.354167-4-jjhiblot@traphandler.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220614154245.354167-1-jjhiblot@traphandler.com>
-References: <20220614154245.354167-1-jjhiblot@traphandler.com>
+        with ESMTP id S229490AbiFNPrN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 11:47:13 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F315427C4;
+        Tue, 14 Jun 2022 08:47:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B5663B8198A;
+        Tue, 14 Jun 2022 15:47:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 392BEC3411B;
+        Tue, 14 Jun 2022 15:47:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655221628;
+        bh=b22lZ+UrnJsF1tpdplHnqiydkGHLnNC8hvVtKauyzZA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=q63HgsPDtKd771Qakfg55DRXv9QuQDcbBFKAtabwwr+5ACLM2YwdukCE26JceWJ6+
+         DFE6szJKL0C61c5CZIOHvyTFliIamiivv4Ozt1+JmqGCsVG8YzFUXcPO6tFu2ycBsq
+         erSzEvcBTuCpvr0I20ApwhIB7DBlGBove1g85QJPqoU5Og08irCaLdOJ/I7PGBt2Al
+         b8fXZb5fnzbmYwbtxQqtdejJUAI+c2WxSYMAWHBhVixALvKeStL+NZaNZ9x0WyFKEw
+         Q66gSRtY9owZz2Gy74+Sk2l5J+sUbcph8lxSEbNb3QHyPCBsM+OjFejxDrci/wd+ui
+         zw5vFqs5wY6ZA==
+Message-ID: <dbbcb0a4-e777-db84-b3cd-0a3659dd5092@kernel.org>
+Date:   Tue, 14 Jun 2022 10:47:05 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [88.161.25.233]
-X-ClientProxiedBy: DAG1EX2.emp2.local (172.16.2.2) To DAG1EX2.emp2.local
- (172.16.2.2)
-X-Ovh-Tracer-Id: 12430216448895826395
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudduledgledtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefhvfevufffkffojghfggfgtghisehtkeertdertddtnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpeduteevleevvefggfdvueffffejhfehheeuiedtgedtjeeghfehueduudegfeefueenucfkpheptddrtddrtddrtddpkeekrdduiedurddvhedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhrohdvrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepjhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehvdek
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v4 0/5] Add Chameleon v3 devicetree
+Content-Language: en-US
+To:     =?UTF-8?Q?Pawe=c5=82_Anikiel?= <pan@semihalf.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, amstan@chromium.org,
+        upstream@semihalf.com
+References: <20220603092354.141927-1-pan@semihalf.com>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20220603092354.141927-1-pan@semihalf.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Settings multiple LEDs in a row can be a slow operation because of the
-time required to acquire the bus and prepare the transfer.
-And, in most cases, it is not required that the operation is synchronous.
-Implementing the non-blocking brightness_set() for such cases.
-A work queue is used to perform the actual SPI transfer.
 
-The blocking method is still available in case someone needs to perform
-this operation synchronously (ie by calling led_set_brightness_sync()).
 
-Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
----
- drivers/leds/leds-tlc5925.c | 38 +++++++++++++++++++++++++++++++++++--
- 1 file changed, 36 insertions(+), 2 deletions(-)
+On 6/3/22 04:23, Paweł Anikiel wrote:
+> The Google Chameleon v3 is a board made for testing both video and audio
+> interfaces of external devices. It acts as a base board for the
+> Mercury+ AA1 module.
+> 
+> socfpga_arria10_mercury_aa1.dtsi and socfpga_arria10_chameleonv3.dts
+> have also been sent to u-boot:
+> https://lists.denx.de/pipermail/u-boot/2022-May/485107.html
+> https://lists.denx.de/pipermail/u-boot/2022-May/485111.html
+> 
+> v4 changes:
+>   - remove enclustra,mercury-aa1 from Arria 10 boards in dt-bindings
+> 
+> v3 changes:
+>   - make seperate group for Chameleon v3 in dt-bindings
+>   - add blank line after copyright header
+> 
+> v2 changes:
+>   - split first patch into three
+>   - move sdmmc-ecc node to socfpga_arria10.dtsi (instead of removing it entirely)
+>   - use generic names for dts node names
+>   - keep the enclustra,mercury-aa1 compatible
+> 
+> Paweł Anikiel (5):
+>    ARM: dts: socfpga: Change Mercury+ AA1 dts to dtsi
+>    ARM: dts: socfpga: Move sdmmc-ecc node to Arria 10 dts
+>    ARM: dts: socfpga: Add atsha204a node to Mercury+ AA1 dts
+>    ARM: dts: socfpga: Add Google Chameleon v3 devicetree
+>    dt-bindings: altera: Add Chameleon v3 board
+> 
+>   .../devicetree/bindings/arm/altera.yaml       |  9 +-
+>   arch/arm/boot/dts/Makefile                    |  2 +-
+>   arch/arm/boot/dts/socfpga_arria10.dtsi        | 10 +++
+>   .../boot/dts/socfpga_arria10_chameleonv3.dts  | 90 +++++++++++++++++++
+>   ...1.dts => socfpga_arria10_mercury_aa1.dtsi} | 48 ++--------
+>   5 files changed, 117 insertions(+), 42 deletions(-)
+>   create mode 100644 arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
+>   rename arch/arm/boot/dts/{socfpga_arria10_mercury_aa1.dts => socfpga_arria10_mercury_aa1.dtsi} (70%)
+> 
 
-diff --git a/drivers/leds/leds-tlc5925.c b/drivers/leds/leds-tlc5925.c
-index 2fb91d9767aa..786497c84ca4 100644
---- a/drivers/leds/leds-tlc5925.c
-+++ b/drivers/leds/leds-tlc5925.c
-@@ -16,6 +16,7 @@
- #include <linux/module.h>
- #include <linux/property.h>
- #include <linux/types.h>
-+#include <linux/workqueue.h>
- #include <linux/spi/spi.h>
- #include <linux/gpio/consumer.h>
- 
-@@ -27,10 +28,25 @@ struct single_led_priv {
- struct tlc5925_leds_priv {
- 	int max_num_leds;
- 	unsigned long *state;
-+	struct spi_device *spi;
-+	struct work_struct xmit_work;
- 	struct single_led_priv leds[];
- };
- 
--static int tlc5925_brightness_set_blocking(struct led_classdev *cdev,
-+static int xmit(struct tlc5925_leds_priv *priv)
-+{
-+	return spi_write(priv->spi, priv->state, BITS_TO_BYTES(priv->max_num_leds));
-+}
-+
-+static void xmit_work(struct work_struct *ws)
-+{
-+	struct tlc5925_leds_priv *priv =
-+		container_of(ws, struct tlc5925_leds_priv, xmit_work);
-+
-+	xmit(priv);
-+};
-+
-+static void tlc5925_brightness_set(struct led_classdev *cdev,
- 					    enum led_brightness brightness)
- {
- 	struct spi_device *spi = to_spi_device(cdev->dev->parent);
-@@ -41,9 +57,23 @@ static int tlc5925_brightness_set_blocking(struct led_classdev *cdev,
- 
- 	assign_bit(index, priv->state, !!brightness);
- 
--	return spi_write(spi, priv->state, BITS_TO_BYTES(priv->max_num_leds));
-+	schedule_work(&priv->xmit_work);
- }
- 
-+static int tlc5925_brightness_set_blocking(struct led_classdev *cdev,
-+					    enum led_brightness brightness)
-+{
-+	struct spi_device *spi = to_spi_device(cdev->dev->parent);
-+	struct tlc5925_leds_priv *priv = spi_get_drvdata(spi);
-+	struct single_led_priv *led =
-+		container_of(cdev, struct single_led_priv, cdev);
-+	int index = led->idx;
-+
-+	assign_bit(index, priv->state, !!brightness);
-+
-+	cancel_work_sync(&priv->xmit_work);
-+	return xmit(priv);
-+}
- static int tlc5925_probe(struct spi_device *spi)
- {
- 	struct device *dev = &spi->dev;
-@@ -83,6 +113,9 @@ static int tlc5925_probe(struct spi_device *spi)
- 	if (!priv->state)
- 		return -ENOMEM;
- 
-+	priv->spi = spi;
-+	INIT_WORK(&priv->xmit_work, xmit_work);
-+
- 	priv->max_num_leds = max_num_leds;
- 
- 	device_for_each_child_node(dev, child) {
-@@ -103,6 +136,7 @@ static int tlc5925_probe(struct spi_device *spi)
- 		cdev = &(priv->leds[count].cdev);
- 		cdev->brightness = LED_OFF;
- 		cdev->max_brightness = 1;
-+		cdev->brightness_set = tlc5925_brightness_set;
- 		cdev->brightness_set_blocking = tlc5925_brightness_set_blocking;
- 
- 		ret = devm_led_classdev_register_ext(dev, cdev, &init_data);
--- 
-2.25.1
+Whole series applied!
 
+Thanks,
+Dinh
