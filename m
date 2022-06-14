@@ -2,105 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1F0154B51B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 17:50:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB33E54B518
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 17:50:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234683AbiFNPrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 11:47:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55658 "EHLO
+        id S244359AbiFNPtM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 11:49:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbiFNPrN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 11:47:13 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F315427C4;
-        Tue, 14 Jun 2022 08:47:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B5663B8198A;
-        Tue, 14 Jun 2022 15:47:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 392BEC3411B;
-        Tue, 14 Jun 2022 15:47:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655221628;
-        bh=b22lZ+UrnJsF1tpdplHnqiydkGHLnNC8hvVtKauyzZA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=q63HgsPDtKd771Qakfg55DRXv9QuQDcbBFKAtabwwr+5ACLM2YwdukCE26JceWJ6+
-         DFE6szJKL0C61c5CZIOHvyTFliIamiivv4Ozt1+JmqGCsVG8YzFUXcPO6tFu2ycBsq
-         erSzEvcBTuCpvr0I20ApwhIB7DBlGBove1g85QJPqoU5Og08irCaLdOJ/I7PGBt2Al
-         b8fXZb5fnzbmYwbtxQqtdejJUAI+c2WxSYMAWHBhVixALvKeStL+NZaNZ9x0WyFKEw
-         Q66gSRtY9owZz2Gy74+Sk2l5J+sUbcph8lxSEbNb3QHyPCBsM+OjFejxDrci/wd+ui
-         zw5vFqs5wY6ZA==
-Message-ID: <dbbcb0a4-e777-db84-b3cd-0a3659dd5092@kernel.org>
-Date:   Tue, 14 Jun 2022 10:47:05 -0500
+        with ESMTP id S237623AbiFNPtK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 11:49:10 -0400
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95F512E08F;
+        Tue, 14 Jun 2022 08:49:09 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id hf10so6371872qtb.7;
+        Tue, 14 Jun 2022 08:49:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2Lz2xm2OeZO7pMrkyEsrx4M6KP6BHP9ACsFmmAuNdJE=;
+        b=xVvu73MHUUEUj5+r+6n9WWuTseX4F2sccRHYu+YldWfqvA8mMn6/pXcQtD+jFJL1ui
+         6cPQSeHEl9HSuqZq42zDFsnQI9Fwk4sM6/S6FIRj8sR1P/WwcRMXUN0V4jRNaJUYi/2k
+         A0V2YLT7kEyM4jyCyIWI0PzCi6MHaxRRbDH2jcnpnMJwLL1JGsKI3S9fxcKqh1Q8F0Sq
+         HsbmwP6eChRfVZgjXn9nKC0WYd+p2mhZAiPLnp2YjaMJ/urXbxbHNxA5vgDXSMrQCo37
+         eaQj492q3ujuUSq3CKiWp0gZ00FDdIWQsFtcBI1KRuJ/+2+c4TRvBihUaeH6oM5U9AsM
+         29dg==
+X-Gm-Message-State: AOAM530gjNvijQSxjvAoVgb/zu0JptURiE9v2CWanc7F5vasq+S72d4C
+        P7g2VIbRKacHhU75/GDpKHi6zv/JC9kF8A==
+X-Google-Smtp-Source: ABdhPJyjZcL86ZtgiGvwCCHzMJs3/IaCrGdoWU8qbUZEZINAZox7I51VQVdQ2FJypRfyrO20F7QkBQ==
+X-Received: by 2002:a05:622a:1393:b0:304:b6c8:bca2 with SMTP id o19-20020a05622a139300b00304b6c8bca2mr4637798qtk.642.1655221748403;
+        Tue, 14 Jun 2022 08:49:08 -0700 (PDT)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id j9-20020ae9c209000000b006a377a015d4sm9466708qkg.39.2022.06.14.08.49.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Jun 2022 08:49:08 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id v81so15942249ybe.0;
+        Tue, 14 Jun 2022 08:49:08 -0700 (PDT)
+X-Received: by 2002:a05:6902:905:b0:64a:2089:f487 with SMTP id
+ bu5-20020a056902090500b0064a2089f487mr5874556ybb.202.1655221747725; Tue, 14
+ Jun 2022 08:49:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v4 0/5] Add Chameleon v3 devicetree
-Content-Language: en-US
-To:     =?UTF-8?Q?Pawe=c5=82_Anikiel?= <pan@semihalf.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, amstan@chromium.org,
-        upstream@semihalf.com
-References: <20220603092354.141927-1-pan@semihalf.com>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20220603092354.141927-1-pan@semihalf.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220613134914.18655-1-wsa+renesas@sang-engineering.com> <20220613134914.18655-3-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20220613134914.18655-3-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 14 Jun 2022 17:48:56 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWJ9N1=X0O0LtpPrjH-uSbupKAVr+J3KwStL7xYgMxfWw@mail.gmail.com>
+Message-ID: <CAMuHMdWJ9N1=X0O0LtpPrjH-uSbupKAVr+J3KwStL7xYgMxfWw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: renesas: spider-cpu: Enable SCIF0 on
+ second connector
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Wolfram,
 
+On Mon, Jun 13, 2022 at 3:49 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> The schematics label it as SCIF0 debug port.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-On 6/3/22 04:23, Paweł Anikiel wrote:
-> The Google Chameleon v3 is a board made for testing both video and audio
-> interfaces of external devices. It acts as a base board for the
-> Mercury+ AA1 module.
-> 
-> socfpga_arria10_mercury_aa1.dtsi and socfpga_arria10_chameleonv3.dts
-> have also been sent to u-boot:
-> https://lists.denx.de/pipermail/u-boot/2022-May/485107.html
-> https://lists.denx.de/pipermail/u-boot/2022-May/485111.html
-> 
-> v4 changes:
->   - remove enclustra,mercury-aa1 from Arria 10 boards in dt-bindings
-> 
-> v3 changes:
->   - make seperate group for Chameleon v3 in dt-bindings
->   - add blank line after copyright header
-> 
-> v2 changes:
->   - split first patch into three
->   - move sdmmc-ecc node to socfpga_arria10.dtsi (instead of removing it entirely)
->   - use generic names for dts node names
->   - keep the enclustra,mercury-aa1 compatible
-> 
-> Paweł Anikiel (5):
->    ARM: dts: socfpga: Change Mercury+ AA1 dts to dtsi
->    ARM: dts: socfpga: Move sdmmc-ecc node to Arria 10 dts
->    ARM: dts: socfpga: Add atsha204a node to Mercury+ AA1 dts
->    ARM: dts: socfpga: Add Google Chameleon v3 devicetree
->    dt-bindings: altera: Add Chameleon v3 board
-> 
->   .../devicetree/bindings/arm/altera.yaml       |  9 +-
->   arch/arm/boot/dts/Makefile                    |  2 +-
->   arch/arm/boot/dts/socfpga_arria10.dtsi        | 10 +++
->   .../boot/dts/socfpga_arria10_chameleonv3.dts  | 90 +++++++++++++++++++
->   ...1.dts => socfpga_arria10_mercury_aa1.dtsi} | 48 ++--------
->   5 files changed, 117 insertions(+), 42 deletions(-)
->   create mode 100644 arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
->   rename arch/arm/boot/dts/{socfpga_arria10_mercury_aa1.dts => socfpga_arria10_mercury_aa1.dtsi} (70%)
-> 
+Thanks for your patch!
 
-Whole series applied!
+> --- a/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
+> @@ -68,6 +68,11 @@ i2c4_pins: i2c4 {
+>                 function = "i2c4";
+>         };
+>
+> +       scif0_pins: scif0 {
+> +               groups = "scif0_data", "scif0_ctrl";
+> +               function = "scif0";
+> +       };
+> +
+>         scif_clk_pins: scif_clk {
+>                 groups = "scif_clk";
+>                 function = "scif_clk";
+> @@ -79,6 +84,14 @@ &rwdt {
+>         status = "okay";
+>  };
+>
+> +&scif0 {
+> +       pinctrl-0 = <&scif0_pins>;
+> +       pinctrl-names = "default";
+> +
+> +       uart-has-rtscts;
+> +       status = "okay";
+> +};
+> +
+>  &scif_clk {
+>         clock-frequency = <24000000>;
+>  };
 
-Thanks,
-Dinh
+This needs a new serial alias under /aliases.
+Mixing dynamic and static serial IDs may cause conflicts, cfr. commit
+7678f4c20fa7670f ("serial: sh-sci: Add support for dynamic instances").
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
