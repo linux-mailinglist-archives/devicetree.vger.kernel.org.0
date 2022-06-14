@@ -2,114 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 281EE54AB69
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:06:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 532B554AB72
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:11:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355548AbiFNIGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 04:06:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56702 "EHLO
+        id S1352468AbiFNIKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 04:10:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355344AbiFNIGc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:06:32 -0400
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5ACD38DA7;
-        Tue, 14 Jun 2022 01:06:30 -0700 (PDT)
-Received: by mail-qv1-f51.google.com with SMTP id p31so4809192qvp.5;
-        Tue, 14 Jun 2022 01:06:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nM18gvUSvYfy4DDyIOtyYW8MzMYh3/ri7inx/AlLLP4=;
-        b=s4EvGhfyUExslsn09i+wq5QbHnnIRTT2xeR8cx64KkiYTVZZ+go2k0AjoD38fyfSR1
-         Mh8D8feZE8npN0/Q5zgEijBMKUQ7rzAxW3eJs2/PvwDA338H4EXmuMMVfxldoNv4PesZ
-         y61sNaKAnsyM6YHsrWaZOGpWEEROY3iQK4FL305NVzoRWcybPml/QC0auZ8sCNDFpO6p
-         HA5UuKGpFh515UhTDQGDr3kkibhfLDKtMJR9tJGJE1yzDvKOhzZX+r4BPdqgWLBuvkF+
-         UEDb4fnmI0Sl5LeEo4lf0bMD+8+4h+jx7Oy4A5c0KCa6IplTQFgD03li9LUuPpazKDQE
-         QF+A==
-X-Gm-Message-State: AJIora+t1I5YS0nDhjVQfi2MStIYY7xzzvvzchB8cM7Pqcsyicvl15xc
-        80dV5aaTzFMx45V3rEvms36wbC/rGgfS+Q==
-X-Google-Smtp-Source: AGRyM1s1I+MLIjMwTPItgh5PW89IsD9JXZAmcCiwjuF54C7OshqLqMkQxROljnvmBEH3b2XN6bHi0A==
-X-Received: by 2002:a05:6214:a0c:b0:467:d578:4934 with SMTP id dw12-20020a0562140a0c00b00467d5784934mr2456725qvb.50.1655193989917;
-        Tue, 14 Jun 2022 01:06:29 -0700 (PDT)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id h127-20020a37b785000000b006a3325fd985sm8569754qkf.13.2022.06.14.01.06.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jun 2022 01:06:29 -0700 (PDT)
-Received: by mail-yb1-f172.google.com with SMTP id r3so13883605ybr.6;
-        Tue, 14 Jun 2022 01:06:28 -0700 (PDT)
-X-Received: by 2002:a25:7307:0:b0:65c:b98a:f592 with SMTP id
- o7-20020a257307000000b0065cb98af592mr3584597ybc.380.1655193988430; Tue, 14
- Jun 2022 01:06:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220603110524.1997825-1-yoshihiro.shimoda.uh@renesas.com> <20220603110524.1997825-8-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20220603110524.1997825-8-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 14 Jun 2022 10:06:16 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXiVds4Yd+p=6WfUDX6VGr4nrLiZeN=atQ7NqeFoTFEsA@mail.gmail.com>
-Message-ID: <CAMuHMdXiVds4Yd+p=6WfUDX6VGr4nrLiZeN=atQ7NqeFoTFEsA@mail.gmail.com>
-Subject: Re: [PATCH v6 7/7] arm64: dts: renesas: r8a779f0: spider-cpu: Enable
- UFS device
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>, avri.altman@wdc.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        scsi <linux-scsi@vger.kernel.org>,
+        with ESMTP id S236315AbiFNIKL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:10:11 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D523B396B1;
+        Tue, 14 Jun 2022 01:10:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1655194209; x=1686730209;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zv1KKzmF6zXtKfqHFutKI0fiY58cScPq9J52k7YOFMU=;
+  b=eN1hKDq3fGMNKKqv2fIyECvqDjA9otw7muewl9cQllYlNGUhQ4rCiqPc
+   52klE795k8uippoOsO9sDxsuUvMpVg2p4AErfO18BfXWN1TLoVaTvTZ5p
+   1JtmP3kWa2h7+g+2bELdV8x3S8hA7t60eQyOY7A2vs6dQmhhe2S5tBsfO
+   qi2k7XWb/1hdSYRcvqGTkh4YPSFmzrI8b6HtSLnYV6/Go9JPYcRhDsp+g
+   yCbXUiq3P6hWgqhpgIBGsTNdzwVeVQcDTcCQhqAQVVO8eoMICq1fNH36u
+   HKbWqnJcDncRKrLWBF8OpFGP8FNKAKdLFKSFubD4ACAaRnYx795S39qUV
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10377"; a="258379471"
+X-IronPort-AV: E=Sophos;i="5.91,299,1647327600"; 
+   d="scan'208";a="258379471"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2022 01:10:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,299,1647327600"; 
+   d="scan'208";a="726704202"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 14 Jun 2022 01:10:02 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 14 Jun 2022 11:10:01 +0300
+Date:   Tue, 14 Jun 2022 11:10:01 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Prashant Malani <pmalani@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        bleung@chromium.org, swboyd@chromium.org,
+        kernel test robot <lkp@intel.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?iso-8859-1?Q?Jos=E9_Exp=F3sito?= <jose.exposito89@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>, Pin-Yen Lin <treapking@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Tzung-Bi Shih <tzungbi@google.com>,
+        Xin Ji <xji@analogixsemi.com>
+Subject: Re: [PATCH v2 2/7] usb: typec: mux: Add CONFIG guards for functions
+Message-ID: <YqhCWXOpuOjxwpwp@kuha.fi.intel.com>
+References: <20220609181106.3695103-1-pmalani@chromium.org>
+ <20220609181106.3695103-3-pmalani@chromium.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220609181106.3695103-3-pmalani@chromium.org>
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+Hi,
 
-On Fri, Jun 3, 2022 at 1:05 PM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Enable UFS device for R-Car S4-8 Spider CPU board.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-> --- a/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
-> @@ -82,3 +82,11 @@ &scif3 {
->  &scif_clk {
->         clock-frequency = <24000000>;
+On Thu, Jun 09, 2022 at 06:09:41PM +0000, Prashant Malani wrote:
+> There are some drivers that can use the Type C mux API, but don't have
+> to. Introduce CONFIG guards for the mux functions so that drivers can
+> include the header file and not run into compilation errors on systems
+> which don't have CONFIG_TYPEC enabled. When CONFIG_TYPEC is not enabled,
+> the Type C mux functions will be stub versions of the original calls.
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Prashant Malani <pmalani@chromium.org>
+> ---
+> 
+> Changes since v1:
+> - Added static inline to stub functions.
+> - Updated function signature of stub functions from "struct typec_mux"
+>   to "struct typec_mux_dev" in accordance with updates from commit
+>   713fd49b430c ("usb: typec: mux: Introduce indirection")
+> 
+>  include/linux/usb/typec_mux.h | 38 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+> 
+> diff --git a/include/linux/usb/typec_mux.h b/include/linux/usb/typec_mux.h
+> index ee57781dcf28..9eda6146fd26 100644
+> --- a/include/linux/usb/typec_mux.h
+> +++ b/include/linux/usb/typec_mux.h
+> @@ -58,6 +58,8 @@ struct typec_mux_desc {
+>  	void *drvdata;
 >  };
+>  
+> +#if IS_ENABLED(CONFIG_TYPEC) || IS_MODULE(CONFIG_TYPEC)
 > +
-> +&ufs {
-> +       status = "okay";
-> +};
+>  struct typec_mux *fwnode_typec_mux_get(struct fwnode_handle *fwnode,
+>  				       const struct typec_altmode_desc *desc);
+>  void typec_mux_put(struct typec_mux *mux);
+> @@ -76,4 +78,40 @@ void typec_mux_unregister(struct typec_mux_dev *mux);
+>  void typec_mux_set_drvdata(struct typec_mux_dev *mux, void *data);
+>  void *typec_mux_get_drvdata(struct typec_mux_dev *mux);
+>  
+> +#else
 > +
-> +&ufs30_clk {
-> +       clock-frequency = <38400000>;
-> +};
+> +static inline struct typec_mux *fwnode_typec_mux_get(struct fwnode_handle *fwnode,
+> +				       const struct typec_altmode_desc *desc)
+> +{
+> +	return ERR_PTR(-EOPNOTSUPP);
+> +}
 
-Given this relies on either the boot loader setting up ufs30_clk,
-like is usually done for the PCIe bus clock, or on adding a proper
-clock driver to Linux, I think this patch should be postponed.
+The mux is optional resource for the drivers - fwnode_typec_mux_get()
+returns NULL if there is no mux for the caller - so it's better to
+just return NULL from this stub.
 
-Or perhaps the latest firmware stack has fixed the issue?
-Thanks!
+> +static inline void typec_mux_put(struct typec_mux *mux) {}
+> +
+> +static inline int typec_mux_set(struct typec_mux *mux, struct typec_mux_state *state)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
 
-Gr{oetje,eeting}s,
+Return 0 in this case. That way this stub matches the function
+behaviour:
 
-                        Geert
+        ...
+        if (IS_ERR_OR_NULL(mux))
+                return 0;
+        ...
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +static inline struct typec_mux *
+> +typec_mux_get(struct device *dev, const struct typec_altmode_desc *desc)
+> +{
+> +	return ERR_PTR(-EOPNOTSUPP);
+> +}
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+You don't need this one. Just leave the original outside of the ifdef.
+It's already an inline wrapper function.
+
+> +static inline struct typec_mux_dev *
+> +typec_mux_register(struct device *parent, const struct typec_mux_desc *desc)
+> +{
+> +	return ERR_PTR(-EOPNOTSUPP);
+> +}
+> +static inline void typec_mux_unregister(struct typec_mux_dev *mux) {}
+> +
+> +static inline void typec_mux_set_drvdata(struct typec_mux_dev *mux, void *data) {}
+> +static inline void *typec_mux_get_drvdata(struct typec_mux_dev *mux)
+> +{
+> +	return ERR_PTR(-EOPNOTSUPP);
+> +}
+> +
+> +#endif /* CONFIG_TYPEC */
+> +
+>  #endif /* __USB_TYPEC_MUX */
+
+thanks,
+
+-- 
+heikki
