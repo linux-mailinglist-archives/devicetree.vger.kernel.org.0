@@ -2,130 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E819E54BC5D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C36354BC6C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 23:05:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345162AbiFNU7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 16:59:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52390 "EHLO
+        id S236212AbiFNVAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 17:00:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358426AbiFNU6i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:58:38 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCBFA4FC49
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 13:58:37 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id hv24-20020a17090ae41800b001e33eebdb5dso2218356pjb.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 13:58:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=VhtgMIE5/Wg9DeNfIoD/7ofySaH7LKxXNeBi1f7nprg=;
-        b=nd9cPW0Zt54xwKXnf3Iqq+3nbNSv9YnSZqD18K5ZuoLb8FxShWIrEG2PJLN12gxioC
-         SvF0ZC7HvhioxdS7XgKyqhgphK0f03ZJgBJ/2/vqZ5LS1rCq7g9JvviehoIMBw7OQAuk
-         Fp8Xy4w/Odlbk6L8hBSLbi1toPO4qyq1vH8niXdNJ0z2x9zPwimFl3qNMjizcBuyz7km
-         Nrn1aQMFT3vL1JHRYf7s5Vz2FnCUCTswJG4hlYOOvlf05zTAJgU2W00aGEzIzGT/ZULf
-         DgYK1Ic6IM5x2+R8rkG41yxT4rzGrjL79XZaleoWPXFK2McSlg+ftzEIAf2EUYcLciA8
-         Y1Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=VhtgMIE5/Wg9DeNfIoD/7ofySaH7LKxXNeBi1f7nprg=;
-        b=XYgNTtRwNtU6UU8FnpDiSD/MupEu5ZzIWcI3eKLFdhJL8DOMhPXbaBIiCja7YZqNNp
-         YJ209WwRbUZSPTmukcJXL7KYsOii/9EXNzPJdB946OqgFHP/igKC4xtP04xNJJwfegYD
-         ZpPgCFjj2JPSUdpGvaVAkEcgHmSfjxljJ+veVAekMnuoNIsCAgpKetXIBr5XIaRqUdFn
-         a4G91jX8dtvu6FnAKCPxeFxGFjQGYxPn00tHygzuoVc8rjJRIibg5Suv69POaft2x5E8
-         YqTRBWaEinV2ku7sjkCIyz1qPEgXRwbYMrH770c4ycQExhLF8yzIO6QHqclFa9F07PwW
-         u6sg==
-X-Gm-Message-State: AJIora/QM63s9X5dhbPCBRBfvWSgcDGMJUjTDT2tVEZ02BVapV2+Qgjo
-        qgdBhtogufBuhHHorcz2CMu69g==
-X-Google-Smtp-Source: AGRyM1swttS5otb7Ake3x9Zuf+nymu832Shm/TyGc9J+pv3ZSyf2ABU3qHozSWtHj3WAswhxf3kIZg==
-X-Received: by 2002:a17:902:f68b:b0:163:f358:d4ad with SMTP id l11-20020a170902f68b00b00163f358d4admr6103713plg.23.1655240317182;
-        Tue, 14 Jun 2022 13:58:37 -0700 (PDT)
-Received: from [172.22.33.138] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id a15-20020a62d40f000000b0051f2b9f9b05sm8120090pfh.76.2022.06.14.13.58.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jun 2022 13:58:36 -0700 (PDT)
-Message-ID: <57d11a55-beba-c91b-e168-989417e3910d@linaro.org>
-Date:   Tue, 14 Jun 2022 13:58:35 -0700
+        with ESMTP id S1353110AbiFNVAQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 17:00:16 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F2CB50076;
+        Tue, 14 Jun 2022 14:00:12 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DEF822E4;
+        Tue, 14 Jun 2022 23:00:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1655240410;
+        bh=vq7W3LM3Q8tusI6NcOOaLPQi6HWdPmkVmI+E3atWtkk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=c1rr8WHS7C/QDJ/0iy5Cf8OPF+IOa4Iq2bJJba0lilrOsg2nxGaM9ZwagIqCcH1R9
+         c4Qui9E4vriCzWwA7rJ1sHrqR/l3BUH9EaiYTu9vRzlkDHkUAqqykW825GMMp6ja/y
+         6N3wzJ6xM6xxB823DxK3Yt2wSt1HRYmCXAYLpSSw=
+Date:   Wed, 15 Jun 2022 00:00:00 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
+        robh+dt@kernel.org, nicolas@ndufresne.ca,
+        alexander.stein@ew.tq-group.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/9] vivid: add dynamic array test control
+Message-ID: <Yqj20J9QaAV6ZNes@pendragon.ideasonboard.com>
+References: <20220503093925.876640-1-xavier.roumegue@oss.nxp.com>
+ <20220503093925.876640-4-xavier.roumegue@oss.nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v9 1/3] dt-bindings: marvell: Document the AC5/AC5X
- compatibles
-Content-Language: en-US
-To:     Vadym Kochan <vadym.kochan@plvision.eu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Konstantin Porotchkin <kostap@marvell.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Robert Marko <robert.marko@sartura.hr>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220613225338.393-1-vadym.kochan@plvision.eu>
- <20220613225338.393-2-vadym.kochan@plvision.eu>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220613225338.393-2-vadym.kochan@plvision.eu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220503093925.876640-4-xavier.roumegue@oss.nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2022 15:53, Vadym Kochan wrote:
-> From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Hi Xavier and Hans,
+
+Thank you for the patch.
+
+On Tue, May 03, 2022 at 11:39:19AM +0200, Xavier Roumegue wrote:
+> From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
 > 
-> Describe the compatible properties for the Marvell Alleycat5/5X switches
-> with integrated CPUs.
+> Add a dynamic array test control to help test support for this
+> feature.
 > 
-> Alleycat5:
-> * 98DX2538: 24x1G + 2x10G + 2x10G Stack
-> * 98DX2535: 24x1G + 4x1G Stack
-> * 98DX2532: 8x1G + 2x10G + 2x1G Stack
-> * 98DX2531: 8x1G + 4x1G Stack
-> * 98DX2528: 24x1G + 2x10G + 2x10G Stack
-> * 98DX2525: 24x1G + 4x1G Stack
-> * 98DX2522: 8x1G + 2x10G + 2x1G Stack
-> * 98DX2521: 8x1G + 4x1G Stack
-> * 98DX2518: 24x1G + 2x10G + 2x10G Stack
-> * 98DX2515: 24x1G + 4x1G Stack
-> * 98DX2512: 8x1G + 2x10G + 2x1G Stack
-> * 98DX2511: 8x1G + 4x1G Stack
-> 
-> Alleycat5X:
-> * 98DX3500: 24x1G + 6x25G
-> * 98DX3501: 16x1G + 6x10G
-> * 98DX3510: 48x1G + 6x25G
-> * 98DX3520: 24x2.5G + 6x25G
-> * 98DX3530: 48x2.5G + 6x25G
-> * 98DX3540: 12x5G/6x10G + 6x25G
-> * 98DX3550: 24x5G/12x10G + 6x25G
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
+> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
 > ---
+>  drivers/media/test-drivers/vivid/vivid-ctrls.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> Notes:
->     Changes in v9:
->     - Renamed $id with "ac5" prefix
+> diff --git a/drivers/media/test-drivers/vivid/vivid-ctrls.c b/drivers/media/test-drivers/vivid/vivid-ctrls.c
+> index e7516dc1227b..7267892dc18a 100644
+> --- a/drivers/media/test-drivers/vivid/vivid-ctrls.c
+> +++ b/drivers/media/test-drivers/vivid/vivid-ctrls.c
+> @@ -34,6 +34,7 @@
+>  #define VIVID_CID_U8_4D_ARRAY		(VIVID_CID_CUSTOM_BASE + 10)
+>  #define VIVID_CID_AREA			(VIVID_CID_CUSTOM_BASE + 11)
+>  #define VIVID_CID_RO_INTEGER		(VIVID_CID_CUSTOM_BASE + 12)
+> +#define VIVID_CID_U32_DYN_ARRAY		(VIVID_CID_CUSTOM_BASE + 13)
+>  
+>  #define VIVID_CID_VIVID_BASE		(0x00f00000 | 0xf000)
+>  #define VIVID_CID_VIVID_CLASS		(0x00f00000 | 1)
+> @@ -189,6 +190,19 @@ static const struct v4l2_ctrl_config vivid_ctrl_u32_array = {
+>  	.dims = { 1 },
+>  };
+>  
+> +static const struct v4l2_ctrl_config vivid_ctrl_u32_dyn_array = {
+> +	.ops = &vivid_user_gen_ctrl_ops,
+> +	.id = VIVID_CID_U32_DYN_ARRAY,
+> +	.name = "U32 Dynamic Array",
+> +	.type = V4L2_CTRL_TYPE_U32,
+> +	.flags = V4L2_CTRL_FLAG_DYNAMIC_ARRAY,
+> +	.def = 50,
+> +	.min = 10,
+> +	.max = 90,
+> +	.step = 1,
+> +	.dims = { 100 },
+> +};
 
-I guess this was the reason to drop review? Anyway this is unexpected
-change considering the name does not appear in compatibles.
+To meaningfully test this, don't we need the vivid driver to change the
+dimension ? Or is it meant to only test changes made by the application
+?
 
->     Changes in v8:
->     - Add review from Krzysztof
+> +
+>  static const struct v4l2_ctrl_config vivid_ctrl_u16_matrix = {
+>  	.ops = &vivid_user_gen_ctrl_ops,
+>  	.id = VIVID_CID_U16_MATRIX,
+> @@ -1612,6 +1626,7 @@ int vivid_create_controls(struct vivid_dev *dev, bool show_ccs_cap,
+>  	dev->ro_int32 = v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_ro_int32, NULL);
+>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_area, NULL);
+>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u32_array, NULL);
+> +	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u32_dyn_array, NULL);
+>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u16_matrix, NULL);
+>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u8_4d_array, NULL);
+>  
 
-Best regards,
-Krzysztof
+-- 
+Regards,
+
+Laurent Pinchart
