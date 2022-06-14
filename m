@@ -2,130 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D15454BAB7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 21:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D60654BABD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 21:42:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245396AbiFNTmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 15:42:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49294 "EHLO
+        id S244338AbiFNTmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 15:42:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243571AbiFNTmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 15:42:06 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D93442899E;
-        Tue, 14 Jun 2022 12:42:04 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id p128so10530393iof.1;
-        Tue, 14 Jun 2022 12:42:04 -0700 (PDT)
+        with ESMTP id S231372AbiFNTme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 15:42:34 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB02F11C3D;
+        Tue, 14 Jun 2022 12:42:32 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id bg6so19277863ejb.0;
+        Tue, 14 Jun 2022 12:42:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K/Bb9QNZS4KUSJsXgLquKvLX7xOgHLYAfEYnI8Rwogk=;
+        b=mG/eHEL8IHiiXX3lwQqj1ByYG2yfyG2p/ABwKfFepjbu51p8bk72vj3vwigthhvUZd
+         OmNkAzGH8WChgCCGbskRfmp8fwYA7Yo07SDKpKTTYQfIXkbX9BD+VnQ/LueokRpxC3xF
+         m+6ezwYpOdOekV2qf82AZR4FwDlPsvn8+R+Hndet0eCEzwchA9XtatzIIxObArp8HNvW
+         b1tueDp0Gzq52gv0NFv2+rSL7HPYE5Lu4GEjhwynfW4JlKp9OxVm0IoLxUGzyCEQI+yk
+         opWsH0HZsJCwcU0SO/KucZSVFDfQp9wVezyINtUiUh/hoA1h+3MUXDgCojU+F/K3yJEW
+         QDdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2jLRHj6azgOympWSUCJ+nKb7b1xZ7biLjgEasSl3aCI=;
-        b=yVpBlXyTts4+Xy+IhhMLVMKDNYDzZUotfWk5dbjL/1WMaMRlYzsodPIBoYFF/gWJXU
-         IrYT9oUKZkMxKPcRHsoRyulIMnb10DO8x3j1EAIvm3CeHLR5gHnxnQxnAGKbqeuQmuLc
-         VHEhcvyxH6mLhT9WxDdM4B9CCgTda0Tpm2BKfeW89k3mc78/zIaNPj7QkH23EKYKH1+R
-         ydvHsfALaKMw2tFIXGIdRYOUVrMlMawYNROBgrjCYDaYQEN2XxZcVuLFTXKkThc29+Ui
-         DNVp2u2AmL6PutYnTPhfisAPk0cFKjNq/0kWzPVW5Y7J8yzQRx/ex7xWxuiJJ1zRURsf
-         w3CA==
-X-Gm-Message-State: AOAM530vbPA/PItvocLBP+u97LPr+kQ9K9unhA6pbMzBMLHhLOWO4Rp+
-        STb/8dCkyAqVDZdiQZlGEw==
-X-Google-Smtp-Source: ABdhPJz0AU7sUgMn5H2uebJW9hSTaCZaCz+pm4D6P6oSsm4HKOCKTgvByJQXqwASGo5hoNITZfJWQg==
-X-Received: by 2002:a05:6638:1691:b0:333:f345:ef6c with SMTP id f17-20020a056638169100b00333f345ef6cmr3689545jat.7.1655235724134;
-        Tue, 14 Jun 2022 12:42:04 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id b13-20020a02380d000000b0033167715cf9sm5204583jaa.27.2022.06.14.12.42.03
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K/Bb9QNZS4KUSJsXgLquKvLX7xOgHLYAfEYnI8Rwogk=;
+        b=dVBMlxfETJWZWksptHylSgEBVLC0/tK2L4d8p5MRIgMRgQOGHh+KvUgrsyH9Hp1ZVn
+         VO0DwjIQ6TFZkOINsQ39UUU/g+J2GoN6W+sx0ZjhhfLxhLEtKVFmnN2Y7TUgCwKjQHZV
+         rzTrezlSekwyQ6RQ0EIVBZdqmk8aWsq4hWK69sZjWScSM1Z5fKXw/+cxeiJ2unpO8tgx
+         bOc5RugNbr3eAIFhH8kPh4bojkn4+JvCY06vSHmbThX4lwLGnzoAmybZaEiAhU4YlKwn
+         QMwgFKsxcJiJduyO0llC/zUYWIS1g2DG/C/aLvm9lqbsn+degrHIvs/OQIPHmCemA3yx
+         0tNg==
+X-Gm-Message-State: AOAM532xffy2gIpStvQmOcphIRL+S2ywo0uMmoeMP7Pl9+qX7n4FRMU8
+        JNQFIKDSqvs6M4aYfI4gu0I=
+X-Google-Smtp-Source: AGRyM1sholsx+b9UD9l3BsHE6Sq67aqZchS39iu04cYO0cmXVVcj+06mgjn4CLJP/bgGew8Xtt2NPw==
+X-Received: by 2002:a17:906:2086:b0:717:4e91:f1db with SMTP id 6-20020a170906208600b007174e91f1dbmr5633590ejq.345.1655235751260;
+        Tue, 14 Jun 2022 12:42:31 -0700 (PDT)
+Received: from localhost.localdomain (p5b3f7f9c.dip0.t-ipconnect.de. [91.63.127.156])
+        by smtp.gmail.com with ESMTPSA id vw5-20020a170907058500b00712057b037fsm5306699ejb.167.2022.06.14.12.42.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jun 2022 12:42:03 -0700 (PDT)
-Received: (nullmailer pid 2275774 invoked by uid 1000);
-        Tue, 14 Jun 2022 19:42:02 -0000
-Date:   Tue, 14 Jun 2022 13:42:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>,
-        "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH 4/7] PCI: renesas: Add R-Car Gen4 PCIe Endpoint support
-Message-ID: <20220614194202.GA2209956-robh@kernel.org>
-References: <20220613115712.2831386-1-yoshihiro.shimoda.uh@renesas.com>
- <20220613115712.2831386-5-yoshihiro.shimoda.uh@renesas.com>
- <20220613215043.GB87830-robh@kernel.org>
- <TYBPR01MB5341FFE04E29E43772683A90D8AA9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+        Tue, 14 Jun 2022 12:42:29 -0700 (PDT)
+From:   Saravanan Sekar <sravanhome@gmail.com>
+To:     sre@kernel.org, lee.jones@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
+        lars@metafoo.de, andy.shevchenko@gmail.com
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, Saravanan Sekar <sravanhome@gmail.com>
+Subject: [PATCH v2 1/6] iio: adc: mp2629: fix wrong comparison of channel
+Date:   Tue, 14 Jun 2022 21:42:20 +0200
+Message-Id: <20220614194225.2226447-1-sravanhome@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TYBPR01MB5341FFE04E29E43772683A90D8AA9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 14, 2022 at 11:58:46AM +0000, Yoshihiro Shimoda wrote:
-> Hi Rob,
-> 
-> Thank you for your review!
-> 
-> > From: Rob Herring, Sent: Tuesday, June 14, 2022 6:51 AM
-> > 
-> > On Mon, Jun 13, 2022 at 08:57:09PM +0900, Yoshihiro Shimoda wrote:
-> > > Add R-Car Gen4 PCIe Endpoint support. This controller is based on
-> > > Synopsys Designware PCIe.
-> > >
-> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > > ---
+Input voltage channel enum is compared against iio address instead
+of channel.
 
-[...]
+Fixes: 7abd9fb64682 ("iio: adc: mp2629: Add support for mp2629 ADC driver")
+Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
+---
+ drivers/iio/adc/mp2629_adc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> > > +	u32			num_lanes;
-> > 
-> > What's wrong with dw_pcie.num_lanes?
-> 
-> The dw_pcie.num_lanes is set after dw_pcie_ep_init() succeeded.
-> However, this driver would like to refer the num_lanes before dw_pcie_ep_init()
-> to initialize vendor-specific registers. In other words, this value is only
-> needed at that timing. So, we can remove this from struct rcar_gen4_pcie_ep,
-> and just get the num_lanes as a local variable.
-
-AFAICT, you are just using it to set PCI_EXP_LNKCAP_MLW. That's a common 
-register, so it should be able to set in the common code.
-
-
-[...]
-
-> > > +static struct platform_driver rcar_gen4_pcie_ep_driver = {
-> > > +	.driver = {
-> > > +		.name = "pcie-rcar-gen4-ep",
-> > > +		.of_match_table = rcar_gen4_pcie_of_match,
-> > > +	},
-> > > +	.probe = rcar_gen4_pcie_ep_probe,
-> > > +	.remove = rcar_gen4_pcie_ep_remove,
-> > > +};
-> > > +builtin_platform_driver(rcar_gen4_pcie_ep_driver);
-> > 
-> > Not a module or...
-> > 
-> > > +
-> > > +MODULE_DESCRIPTION("Renesas R-Car Gen4 PCIe endpoint controller driver");
-> > > +MODULE_LICENSE("GPL v2");
-> > 
-> > A module? Should be a module if possible.
-> 
-> Oops. I'll drop these MODULE_*.
-
-No, is there some reason it can't be a module?
-
-Rob
+diff --git a/drivers/iio/adc/mp2629_adc.c b/drivers/iio/adc/mp2629_adc.c
+index aca084f1e78a..e7fbfe92e884 100644
+--- a/drivers/iio/adc/mp2629_adc.c
++++ b/drivers/iio/adc/mp2629_adc.c
+@@ -73,7 +73,7 @@ static int mp2629_read_raw(struct iio_dev *indio_dev,
+ 		if (ret)
+ 			return ret;
+ 
+-		if (chan->address == MP2629_INPUT_VOLT)
++		if (chan->channel == MP2629_INPUT_VOLT)
+ 			rval &= GENMASK(6, 0);
+ 		*val = rval;
+ 		return IIO_VAL_INT;
+-- 
+2.25.1
 
