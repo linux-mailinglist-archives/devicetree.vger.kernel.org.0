@@ -2,131 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9363054B28E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 15:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 730CD54B2A4
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 15:58:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237699AbiFNNyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 09:54:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39276 "EHLO
+        id S233764AbiFNN6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 09:58:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235174AbiFNNyS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 09:54:18 -0400
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50BF538BF5;
-        Tue, 14 Jun 2022 06:54:17 -0700 (PDT)
-Received: by mail-qk1-f171.google.com with SMTP id l192so4234453qke.13;
-        Tue, 14 Jun 2022 06:54:17 -0700 (PDT)
+        with ESMTP id S229654AbiFNN6V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 09:58:21 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 106AA32057
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 06:58:17 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id l2-20020a05600c4f0200b0039c55c50482so6301573wmq.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 06:58:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=DCTAW+jxn8EwW1x6OBizHmeUgodcWGmb8Wij2is3rxU=;
+        b=oXxCGb5fLaBb6wycfCYYsp8SIpPadW/szVIiKcLasIVeEVOxwtqQA1kKyq3QRGZWz+
+         Xm24H1bdQXEhU7+IbrfsGo6GvjZpHTZnGo/MNEvdHms9iCIo38ftM9M89pzAE4se4hMN
+         lHoqrSYsKtA1oiN4iyY5CI49UVVq9yMqkb7I9xm9P1SY9CNZjWdNI/Gf8lf5nq+X+4gQ
+         bpv3+mDYnWoQmIVozkjOMuhhFdoKaTPsjPY4BYzcfvIMXP3bGk1l614/gSaRRwUPNg+Q
+         lc6Jj7xVXopZSVp+gwE3Dw0mwVzCQwmUIJIMpYZS/7OP2/+VW+D/AVWfstSjqGcoxTDl
+         PAaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Xff5oMuYjLIbpEy0I37sAZKgq+SJdneKw8SbYhPEF5I=;
-        b=nRDD3I8h1/FTTPcU8qL+oryXac8KYjQ0f2dJyQsmIFBur17FRVx4EUqW6Xv3ijZXj9
-         nV9c9L6VSXuu6cgIGr6PVsxS7BjTT4VWDkhO4bpTj9feQIylpqZr90YN+dpWzL/IKw8A
-         +j6Ib4LUjWhPXj2cuC3KYXBAVhJwe1kFBfy5niamAAPIzkPic4h4y+8PpuTw+IPkFZ9o
-         r2O+nlZnt7llr/VEDk7qix0dtYrBH6QVfrz8pnLEuYyTfZbJcdFMku7aCs/u3ZaS80FI
-         +PhaZ2dKd08xmWCzuV7erO9w0mxdnhGFqiAa4PooheEanY7Tn3zbscD6iusLZUVHXlac
-         EcWA==
-X-Gm-Message-State: AOAM5316auRire1S1S1uIYW1AMucYqHWMznkL6Qb8ucQhK238APHcgbl
-        zQjxgQAAxZl4DKV7k7XxaFXzLHzEBIXcpg==
-X-Google-Smtp-Source: ABdhPJwEzp+nvoYhRugOLlCy39LiBYye9UwFah536hRdaTLvWjIcYfu2nJccJn5kXOVn+KcL2t1Q8Q==
-X-Received: by 2002:a05:620a:917:b0:6a6:b76b:d6b4 with SMTP id v23-20020a05620a091700b006a6b76bd6b4mr3890055qkv.279.1655214856091;
-        Tue, 14 Jun 2022 06:54:16 -0700 (PDT)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
-        by smtp.gmail.com with ESMTPSA id j1-20020a05620a410100b006a65c58db99sm9813084qko.64.2022.06.14.06.54.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jun 2022 06:54:15 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-3137316bb69so30076547b3.10;
-        Tue, 14 Jun 2022 06:54:15 -0700 (PDT)
-X-Received: by 2002:a81:1dd2:0:b0:30f:a4fc:315e with SMTP id
- d201-20020a811dd2000000b0030fa4fc315emr5910787ywd.383.1655214855297; Tue, 14
- Jun 2022 06:54:15 -0700 (PDT)
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=DCTAW+jxn8EwW1x6OBizHmeUgodcWGmb8Wij2is3rxU=;
+        b=OtOns+4u8vbuZwopekYxttd6iScdxJeXvnSaezuv+3vswJZdB1hFQiq9MMLNGxNpE8
+         +67Cw2PuUr1XL/ONZ30DKCqTO78Jsu9E9R1rxu8rwSKBTepNb1OXVS4GezxrI2RaPPE8
+         z0ibVYeA51JLvcGYPqsOO2xCrMo6s1Y0+vvOyoyp6+F0VmYalJ0/6yWz0xqHWN/Ibfzu
+         PfYTUSzNA5BO1NJssksYAnA1ZzIln7GJgPIE2gKaw2tn9y519LLByo9tAbJAnwNtEmMS
+         0wrmMmdu9lJTQSEvE48xnUQ3KB7dhYtJDm2Vd2sG8QoeRMKmb84FHuGw1f4X0zrq74bP
+         rCGw==
+X-Gm-Message-State: AOAM532eF+94y4iTa8ARCwmUv6qaSXK7sM60YMIYA83LKpcvlVm9Uyhf
+        LkDPyuAhYBOGb66TWol8/ukXQddchzfm3JpRPnQ=
+X-Google-Smtp-Source: ABdhPJxl7ucuLJQhKe/EtAW39u2ISb75+nRWVw4k37kUXOInchW1+a576qscdgH0G1GWFDIWN1dapBNf1oUJAOPeKkc=
+X-Received: by 2002:a05:600c:35cd:b0:397:7493:5efb with SMTP id
+ r13-20020a05600c35cd00b0039774935efbmr4315229wmq.95.1655215095674; Tue, 14
+ Jun 2022 06:58:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220610201701.7946-1-wsa+renesas@sang-engineering.com> <20220610201701.7946-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20220610201701.7946-2-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 14 Jun 2022 15:54:03 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW3uxQHk6SBX5MqnZsYqwY8p+0wmD6gHwS3ESUrkmpWkQ@mail.gmail.com>
-Message-ID: <CAMuHMdW3uxQHk6SBX5MqnZsYqwY8p+0wmD6gHwS3ESUrkmpWkQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: thermal: rcar-gen3-thermal: Add
- r8a779f0 support
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Sender: gogohezou@gmail.com
+Received: by 2002:adf:dc82:0:0:0:0:0 with HTTP; Tue, 14 Jun 2022 06:58:15
+ -0700 (PDT)
+From:   Kayla Manthey <sgt.kaylamantthey@gmail.com>
+Date:   Tue, 14 Jun 2022 13:58:15 +0000
+X-Google-Sender-Auth: Zl1JbC_0cVUwK6EjK2ByXH-iMPw
+Message-ID: <CAEG5Zth7ADqUWwa0RiCkp6_rTRF7rwy92AYZOiFLz1pA0SiLxw@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_20,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
-
-On Fri, Jun 10, 2022 at 10:17 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Add support for R-Car S4. The S4 IP differs a bit from its siblings in
-> such way that it has 3 out of 4 TSC nodes for Linux and the interrupts
-> are not routed to the INTC-AP but to the ECM.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
->
-> Change since V2:
-> * make interrupts not required for this SoC
-
-Thanks for the update!
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-> --- a/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml
-
-> @@ -79,8 +80,16 @@ else:
->          - description: TSC1 registers
->          - description: TSC2 registers
->          - description: TSC3 registers
-> -  required:
-> -    - interrupts
-> +  if:
-> +    not:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,r8a779f0-thermal
-> +  then:
-> +    required:
-> +      - interrupts
-
-While correct, IMHO adding this check here loses again the improvement
-made by "[PATCH v3 1/2] dt-bindings: thermal: rcar-gen3-thermal: use
-positive logic".
-
-What about splitting this in two separate checks at the top level:
-  - one for regs (R-Car V3U vs. the world), and
-  - a second for interrupts (R-Car V3U+S4-8 vs. the world)?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Hi  dear, please  i  want  to  know  if  you  received  my  previous message.
