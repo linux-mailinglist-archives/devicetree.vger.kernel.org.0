@@ -2,129 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6A4454AB96
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:18:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19E5B54AB97
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:18:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232927AbiFNIQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 04:16:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36624 "EHLO
+        id S237973AbiFNISw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 04:18:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231989AbiFNIQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:16:41 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70101.outbound.protection.outlook.com [40.107.7.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86183F8B1;
-        Tue, 14 Jun 2022 01:16:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FS7QwWLzfEbNWCkCU1iVmigMVYbIhHR1kAo1Ow70AmH87cXvxt8aYzpQVaOu3ua6AfJwbzj/Zu+pIIgblWqIJ8xP+DIhnk5fbPrVYEV3Gi9mchAQHJrQNHO1hU1xP3gHWHxKB9/Nl01ZKKCv81HqDL7kwROMyqj7hmvWK5lyAvTNz7IHRtZ0ujXPU3GHOX3A0VwQsjJKJy0EfDR1K9cXld3hNRnFHMy1MY7tQMJcITPm5EAHA4QlkEifCyJLe6if/2DFK0IMOP9amVDndHE08rLL0vAvlc5r63QUdroE3uTn+JCnV6wmvWpf6gQWtd5loCvHYJR+U27XH+1oNaF5Kg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HHAeW8QVknK1Ok3LpnXzd73XIk1dyA7juxqMhJgyfNI=;
- b=Se9nM1iZvIeKmjzSMW1Id8JFl7JnK1tW1RciVY2ozETWRXvTO3MWatU3oaii6rjqILJf8jtBaC7egMUNOqBqZCCbLuyMTdAlzRTHLWnuVER0kxklCjrQD66QIJEqiHoJB/5QgztUnkdRRqqDvVLCF88YplLxB4vpw/Qm1A5Mr5HngJ/NIar5OTOtjmB3nTiVJFY2nQESa9yZzhWGqcf2BdfKMEv7KaD9JiB+WkRfk5hpoKKvJGb80J8nS4la3c8tVvtg6zvaHE+CpvPikhyqbKda47EFyuvhhvNKLQicIgxmTJwZWEhpatIdMpztNNVHS1NW6GKdKmmGVHBhOkzAng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=plvision.eu; dmarc=pass action=none header.from=plvision.eu;
- dkim=pass header.d=plvision.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plvision.eu;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HHAeW8QVknK1Ok3LpnXzd73XIk1dyA7juxqMhJgyfNI=;
- b=gXWthSX9bGcmYJOKGncEGR2RtlQBYGEvhv1uD3z8w6OC40oWap6lJzP/vFugeloC6YzPRnNzKIY92ckZhGo6RbJ6w/HDfaWDyRRQEVWzwZjZGizU/a+yl7zuoOuzbGepAhGXxZFvBHEA0EXlZmAIK8cOwfbnnjYJD68g2cwBi3w=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=plvision.eu;
-Received: from VI1P190MB0317.EURP190.PROD.OUTLOOK.COM (2603:10a6:802:38::26)
- by PAXP190MB1693.EURP190.PROD.OUTLOOK.COM (2603:10a6:102:1cd::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.12; Tue, 14 Jun
- 2022 08:16:36 +0000
-Received: from VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
- ([fe80::2c45:bc33:2584:959a]) by VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
- ([fe80::2c45:bc33:2584:959a%7]) with mapi id 15.20.5332.017; Tue, 14 Jun 2022
- 08:16:35 +0000
-Date:   Tue, 14 Jun 2022 11:16:33 +0300
-From:   Vadym Kochan <vadym.kochan@plvision.eu>
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Konstantin Porotchkin <kostap@marvell.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v9 2/3] arm64: dts: marvell: Add Armada 98DX2530 SoC and
- RD-AC5X board
-Message-ID: <20220614081633.GA14160@plvision.eu>
-References: <20220613225338.393-1-vadym.kochan@plvision.eu>
- <20220613225338.393-3-vadym.kochan@plvision.eu>
- <4670aab9-b7fa-f2c7-567a-12ca24535b0c@alliedtelesis.co.nz>
- <37d7b4f1-fd39-dc05-374a-764070c56cc6@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <37d7b4f1-fd39-dc05-374a-764070c56cc6@alliedtelesis.co.nz>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-ClientProxiedBy: BE0P281CA0027.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:14::14) To VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:802:38::26)
+        with ESMTP id S238376AbiFNISk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:18:40 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD7431909;
+        Tue, 14 Jun 2022 01:18:36 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4CE6466016A3;
+        Tue, 14 Jun 2022 09:18:34 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1655194715;
+        bh=Cw/na1mc/n4ulkCkHxjhk4ohR9mOorae6t4vSBiOhsc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=SaW2qunPUtIE3pre/BJlEaiLfJBoXlsjXGbXeHG6DHQT6vlbHnmTgNUEfDPKR0uKg
+         7E8ynPbBNQn3bxNbMz4pcL/89NaPSJAgp0hbYYusyaXh8uBT8q2kIFI9IdK9By8QYw
+         qPEG+lVxyXFfwoJke+KHCJ9zrCldJmkYdja84j6K4p1c/ZlzR/HfQAGgtiK3YmTMN3
+         2H1JaNF9FlJniI09O+nBLjXKqUezAs0taiOWxCT6Zp7Xsq//cEwuS+jBM9WHWFo1qz
+         3sUb9rv7WWOiQWFGhw3yKn8q+W/3EMKsEvBlYOLYatcJkMsEarD2Gt3oIHFJpLlWsy
+         ROrzLf1FDPWAA==
+Message-ID: <b3b9768d-e0d0-7132-5f50-dd6aa53a68ee@collabora.com>
+Date:   Tue, 14 Jun 2022 10:18:31 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 99954d9e-3764-4e9a-ad61-08da4dde32c0
-X-MS-TrafficTypeDiagnostic: PAXP190MB1693:EE_
-X-Microsoft-Antispam-PRVS: <PAXP190MB1693DD69F11DEA42C665420895AA9@PAXP190MB1693.EURP190.PROD.OUTLOOK.COM>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: U7wOaqJL8ZX8WSY2x+8Rn48iESiag/jPSad1E0tlgsChHHbNYK9zu6KJi/sBfW/Objp4vmwxZwsky6cWlzqRvPpr/jbsXUwpZa9ICfxwkfZQBEu4hYblTWQgX/khkuFlpL6kXCpO6wxmWdT6MlANFzLzKOE25RXdjfoucsv+ffKbIseJB8D1mR5wbXd693u9AMX+myFQKtCRJflmkx7gZHC7mdjlJIsKmzt5kyw3eyV2XcQ9+FEi5FX2qZaVMkFrsu4pikOLSOjNCbK+2DbBk15Z0w/ugO/XK460qz1I52by9U9mH+waIdYouWfnBpfteGaPvNiwG4vqsYtN3EK4SbiSMH/93r8mX2BxlplDh3am+B/tK2Wn3B5WYlFu60kVdzgCllRLc3wZghUCfKcphuYLIjsC9z4+k6az3OYzpMi1o0tXserJHPbsa9N6tDUZm8JLUymH/ORBT0IKLO8BpEiEuTovJRtqvlG46bTSm8KQzq9F4hUNrnM/I2QqoDFDcQk8mUH8L2bpBfwsug/yNUTGIuyLWXeHbEDqJ1TpPKKxbfbiecBvzWnbvxS3mklm5XB++4Bt+wz22Y2hDDqe6VuFPEgJRc/0C29Zlqm/UgCgogUpK1JtmV1kIuz05EW4o1mr5pOK771Lw65P4qX0MznYDaKMSdU6Rc+8Kc6Q1goJAnSFUDOov+J4/ykMM/CEPc51CM8Fun575MyQKGfv2w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1P190MB0317.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(136003)(39830400003)(396003)(366004)(2906002)(44832011)(5660300002)(33656002)(36756003)(7416002)(6506007)(86362001)(38100700002)(54906003)(6512007)(53546011)(26005)(6916009)(2616005)(316002)(186003)(52116002)(38350700002)(6486002)(66556008)(66476007)(41300700001)(508600001)(4326008)(8936002)(1076003)(8676002)(66946007)(83380400001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?zywKrFYZ3hrPwjc8KBYCxPs4/0WVTaG+m7ocJuTcHbyOgwngcncCzfx25q?=
- =?iso-8859-1?Q?IuY2Jm2WBFWKMkybN0y9hR7aQUrgJrYtuK0KMIom7T+qSTgm5doe5q1k0t?=
- =?iso-8859-1?Q?HGHGZxhLby31+wKDvz6qoV/nmo3WFSTrT4U1LK3WxgOZr1+UVtUx2oJwjk?=
- =?iso-8859-1?Q?YW/oszrSZvGXiWbNtr4AIMOsbIA/W1YSlXvTHpWFox2WKU0hQ5kIcjCBhj?=
- =?iso-8859-1?Q?/Vzlfm3WkxBZ9csUJQ188VRrqxCkqMl6jyhX+8B8mNSQtb6XF8YHMsPrLk?=
- =?iso-8859-1?Q?CGy4jnqOdtOJMifdNMo41vahfwFxB5i02+sBObmWYRPdMNQRc1eL+u0qIs?=
- =?iso-8859-1?Q?DTzoa3LVGGlrOei7uFd3f4lTp1NP1nek9yiPRRPeCmCBJSjcW+3vymtn6G?=
- =?iso-8859-1?Q?MXGoAxw7//FZ06WDDOsNKQEzhjZ5FsmXiuQQ/UMkDHBsBRX8590TZJ1J4L?=
- =?iso-8859-1?Q?hSyeaUU32e4TIy3yISmLOLX7foa4cXhQt4fv7VIAhMX+lRUnCVjSWhlPji?=
- =?iso-8859-1?Q?WvfSY4L+fduXyPGRJmWemhVTj13K+ReopyM2+cwYXk/caPOcyn3ZC947wH?=
- =?iso-8859-1?Q?NmBIxczWs7Rblsnikyh4/jPVI1eErQ3ceYZENOq2isxjcFNarSDFAFRRdS?=
- =?iso-8859-1?Q?91oafnXRb/MVM5EK+rTwlmBcIw+Eqrem9ppsO6vkNMELB5SHNboWNGbW+W?=
- =?iso-8859-1?Q?WsQQCpeEKt4iA7e0u1dHfcaLVs4eDGS9rBpgLxFjFT6HIykmLCtk/yka52?=
- =?iso-8859-1?Q?OF2G9+w+tbX/nBWd/TI/SNgV1FxJ3GC9sA+Dx4+OAs8NYGBdCRov9GlHLX?=
- =?iso-8859-1?Q?tmjeIzFsnVNGu5xaMcNiq900LMR4wFopN8HtiOCHSxsHS48f3sg4eQuHEh?=
- =?iso-8859-1?Q?VslOCdLKaFcZc8U/+OnbW4zGftclCtZccOi07GAkf3WxGwK7BkjWRmtMjf?=
- =?iso-8859-1?Q?AnNNTk5I51m70T9JqSCRovV98OLhQLxBlJgt3NCE5yOxp3GJCZTf/4/XfM?=
- =?iso-8859-1?Q?Tnee2MKR+bW/pZ2u4CuoFaWdEcl0WeKO1C+AN6Swas4ngeoEoSDYwusV6K?=
- =?iso-8859-1?Q?pXB//VQNmY+8EFywI8jtuaq0pd/mWtNCAJwta3CN/MhRaDicljNJT72uJE?=
- =?iso-8859-1?Q?Bz2sQqtASOi11Rn3bC1npS6DMWbMqJ3CJIOZmmpbVYMB6cmxPMaEGUN9qa?=
- =?iso-8859-1?Q?7iGji5BFvSGDrvwLwLm2Pz55ccujmqRXHXEsq1w1MLOFc5IaF7vZHSfPd/?=
- =?iso-8859-1?Q?Pb1F4UQ9cGq4nx5T9k6tp/j4vclbw9BXljj5beJDqTx4a9kduOWI8YLJAA?=
- =?iso-8859-1?Q?QynNblb0+MJ1rCuSxqPwPUDMAWH1NYu3a7MQAElVVjv/POElFklYEoxl7u?=
- =?iso-8859-1?Q?It1uP0PWVwK/1zEJI9cLIntJEk92xrvdA8Yjaai1tHfJaKPiIrzP/Bh8VQ?=
- =?iso-8859-1?Q?Va6XXuis1hhB8desvMofep2QZJLqw6HzcylHM7k7qg5hBJCMe5Gkl7dXtp?=
- =?iso-8859-1?Q?Nf3DZa630o50HU0CH9n83qnlDphoeMYJBaE/JBCdUJ4pTbqjzWOTF8y16s?=
- =?iso-8859-1?Q?Q01iTatJQD0GTqf/nQcuoQ2vpNx99AAul0b50X9o7hz36nF+Gxd7PyjY7v?=
- =?iso-8859-1?Q?lCpOaZdWMMtA3QmEAe4u/M0napdTlt9Qrz74MbN8zqhsY2dMJj30MmrVg2?=
- =?iso-8859-1?Q?u+1cbnEz5LykD1Tr9zzprke+nkUuf557g0eCuAHAARQyiH3076b9jCGlif?=
- =?iso-8859-1?Q?/z1P7hE8B8e3E0ThIE/2ebn35kHL4b47hNcQr+2cVnP5IN+5k9t5ZW+ccr?=
- =?iso-8859-1?Q?YdBiub/QKXA8UqMEeFyWJ78cCchDnR8=3D?=
-X-OriginatorOrg: plvision.eu
-X-MS-Exchange-CrossTenant-Network-Message-Id: 99954d9e-3764-4e9a-ad61-08da4dde32c0
-X-MS-Exchange-CrossTenant-AuthSource: VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2022 08:16:35.7006
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 03707b74-30f3-46b6-a0e0-ff0a7438c9c4
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gnLfff3T2ZJwC14lAWmAkOxw0yFMP1F0ef/104/KR0JZtnKLhVZ7I3mICwY4osxqPRGcvV98qkDzUxdninlOXLj6ucRI8EYFHodJvdeG7u4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXP190MB1693
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 6/7] drm/bridge: anx7625: Register Type-C mode switches
+Content-Language: en-US
+To:     Prashant Malani <pmalani@chromium.org>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Cc:     heikki.krogerus@linux.intel.com,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Jonas Karlman <jonas@kwiboo.se>,
+        swboyd@chromium.org, Pin-Yen Lin <treapking@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Xin Ji <xji@analogixsemi.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>
+References: <20220609181106.3695103-1-pmalani@chromium.org>
+ <20220609181106.3695103-7-pmalani@chromium.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220609181106.3695103-7-pmalani@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -132,155 +79,167 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
-
-On Tue, Jun 14, 2022 at 05:26:39AM +0000, Chris Packham wrote:
+Il 09/06/22 20:09, Prashant Malani ha scritto:
+> When the DT node has "switches" available, register a Type-C mode-switch
+> for each listed "switch". This allows the driver to receive state
+> information about what operating mode a Type-C port and its connected
+> peripherals are in, as well as status information (like VDOs) related to
+> that state.
 > 
-> On 14/06/22 17:11, Chris Packham wrote:
-> >
-> > On 14/06/22 10:53, Vadym Kochan wrote:
-> >> From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> >>
-> >> The 98DX2530 SoC is the Control and Management CPU integrated into
-> >> the Marvell 98DX25xx and 98DX35xx series of switch chip (internally
-> >> referred to as AlleyCat5 and AlleyCat5X).
-> >>
-> >> These files have been taken from the Marvell SDK and lightly cleaned
-> >> up with the License and copyright retained.
-> >>
-> >> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> >> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
-> >> ---
-> >>
-> >> Notes:
-> >>      The Marvell SDK has a number of new compatible strings. I've 
-> >> brought
-> >>      through some of the drivers or where possible used an in-tree
-> >>      alternative (e.g. there is SDK code for a ac5-gpio but two 
-> >> instances of
-> >>      the existing marvell,orion-gpio seems to cover what is needed if 
-> >> you use
-> >>      an appropriate binding). I expect that there will a new series of
-> >>      patches when I get some different hardware (or additions to this 
-> >> series
-> >>      depending on if/when it lands).
-> >>           Changes in v9 (proposed by Marvell):
-> >>        It was discussed with Chris that Marvell will add some changes:
-> >>
-> >>           1) Rename "armada-" prefix in dts(i) file names to ac5, 
-> >> because
-> >>              Armada has not much common with AC5 SoC.
-> >>
-> >>           2) Add clock fixes:
-> >>              - rename core_clock to cnm_clock
-> >>              - remove axi_clock
-> >>              - change cnm_clock to 325MHZ
-> >>              - use cnm_clock for the UART
-> >>
-> >>      Changes in v8:
-> >>      - Remove unnecessary clock-frequency property on armv8-timer
-> >>      - Remove unnecessary redistributor-stride property on gic
-> >>      - Add GIC_SPI interrupts for gpios
-> >>      Changes in v7:
-> >>      - Add missing compatible on usb1
-> >>      - Add "rd-ac5x" compatible for board
-> >>      - Move aliases to board dts
-> >>      - Move board specific usb info to board dts
-> >>      - Consolidate usb1 board settings and remove unnecessary compatible
-> >>      - Add Allied Telesis copyright
-> >>      - Rename files after mailng-list discussion
-> >>      Changes in v6:
-> >>      - Move CPU nodes above the SoC (Krzysztof)
-> >>      - Minor formatting clean ups (Krzysztof)
-> >>      - Run through `make dtbs_check`
-> >>      - Move gic nodes inside SoC
-> >>      - Group clocks under a clock node
-> >>      Changes in v5:
-> >>      - add #{address,size}-cells property to i2c nodes
-> >>      - make i2c nodes disabled in the SoC and enable them in the board
-> >>      - add interrupt controller attributes to gpio nodes
-> >>      - Move fixed-clock nodes up a level and remove unnecessary @0
-> >>      Changes in v4:
-> >>      - use 'phy-handle' instead of 'phy'
-> >>      - move status="okay" on usb nodes to board dts
-> >>      - Add review from Andrew
-> >>      Changes in v3:
-> >>      - Move memory node to board
-> >>      - Use single digit reg value for phy address
-> >>      - Remove MMC node (driver needs work)
-> >>      - Remove syscon & simple-mfd for pinctrl
-> >>      Changes in v2:
-> >>      - Make pinctrl a child node of a syscon node
-> >>      - Use marvell,armada-8k-gpio instead of orion-gpio
-> >>      - Remove nand peripheral. The Marvell SDK does have some changes 
-> >> for the
-> >>        ac5-nand-controller but I currently lack hardware with NAND 
-> >> fitted so
-> >>        I can't test it right now. I've therefore chosen to omit the 
-> >> node and
-> >>        not attempted to bring in the driver or binding.
-> >>      - Remove pcie peripheral. Again there are changes in the SDK and 
-> >> I have
-> >>        no way of testing them.
-> >>      - Remove prestera node.
-> >>      - Remove "marvell,ac5-ehci" compatible from USB node as
-> >>        "marvell,orion-ehci" is sufficient
-> >>      - Remove watchdog node. There is a buggy driver for the ac5 
-> >> watchdog in
-> >>        the SDK but it needs some work so I've dropped the node for now.
-> >>
-> >>   arch/arm64/boot/dts/marvell/Makefile          |   1 +
-> >>   arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi | 291 ++++++++++++++++++
-> >>   .../boot/dts/marvell/ac5-98dx35xx-rd.dts      | 101 ++++++
-> >>   arch/arm64/boot/dts/marvell/ac5-98dx35xx.dtsi |  13 +
-> >>   4 files changed, 406 insertions(+)
-> >>   create mode 100644 arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-> >>   create mode 100644 arch/arm64/boot/dts/marvell/ac5-98dx35xx-rd.dts
-> >>   create mode 100644 arch/arm64/boot/dts/marvell/ac5-98dx35xx.dtsi
-> >>
+> The callback function is currently a stub, but subsequent patches will
+> implement the required functionality.
+> 
+> Signed-off-by: Prashant Malani <pmalani@chromium.org>
+> ---
+> 
+> Changes since v2:
+> - No changes.
+> 
+>   drivers/gpu/drm/bridge/analogix/anx7625.c | 73 +++++++++++++++++++++++
+>   drivers/gpu/drm/bridge/analogix/anx7625.h |  6 ++
+>   2 files changed, 79 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> index 07ed44c6b839..d41a21103bd3 100644
+> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
+> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> @@ -15,6 +15,7 @@
+>   #include <linux/regulator/consumer.h>
+>   #include <linux/slab.h>
+>   #include <linux/types.h>
+> +#include <linux/usb/typec_mux.h>
+>   #include <linux/workqueue.h>
+>   
+>   #include <linux/of_gpio.h>
+> @@ -2581,9 +2582,59 @@ static void anx7625_runtime_disable(void *data)
+>   	pm_runtime_disable(data);
+>   }
+>   
+> +static int anx7625_typec_mux_set(struct typec_mux_dev *mux,
+> +				 struct typec_mux_state *state)
+> +{
+> +	return 0;
+> +}
+> +
+> +static int anx7625_register_mode_switch(struct device *dev, struct device_node *node,
+> +					struct anx7625_data *ctx)
+> +{
+> +	struct anx7625_port_data *port_data;
+> +	struct typec_mux_desc mux_desc = {};
+> +	char name[32];
+> +	u32 port_num;
+> +	int ret;
+> +
+> +	ret = of_property_read_u32(node, "reg", &port_num);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (port_num >= ctx->num_typec_switches) {
+> +		dev_err(dev, "Invalid port number specified: %d\n", port_num);
+> +		return -EINVAL;
+> +	}
+> +
+> +	port_data = &ctx->typec_ports[port_num];
+> +	port_data->ctx = ctx;
+> +	mux_desc.fwnode = &node->fwnode;
+> +	mux_desc.drvdata = port_data;
+> +	snprintf(name, sizeof(name), "%s-%u", node->name, port_num);
+> +	mux_desc.name = name;
+> +	mux_desc.set = anx7625_typec_mux_set;
+> +
+> +	port_data->typec_mux = typec_mux_register(dev, &mux_desc);
+> +	if (IS_ERR(port_data->typec_mux)) {
+> +		ret = PTR_ERR(port_data->typec_mux);
+> +		dev_err(dev, "Mode switch register for port %d failed: %d", port_num, ret);
+> +	}
 
-[snip]
+Please return 0 at the end of this function.
 
-> >> +
-> >> +            uart0: serial@12000 {
-> >> +                compatible = "snps,dw-apb-uart";
-> >> +                reg = <0x12000 0x100>;
-> >> +                reg-shift = <2>;
-> >> +                interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-> >> +                reg-io-width = <1>;
-> >> +                clocks = <&cnm_clock>;
-> >
-> > With this change I see some garbled output when the "Serial: AMBA 
-> > PL011 UART" driver starts.
-> >
-> > It could be that my bootloader has the same wrong clock value as the 
-> > earlier iteration of this device tree.
-> Fixing u-boot doesn't help but there are also references to 328000000 in 
-> mv-ddr and ATF so I'll look to see if updating them fixes the issue 
-> tomorrow.
-> >
+	if (IS_ERR(....)) {
+		......code......
+		return ret;
+	}
 
-Interesting, because Marvell suggested to use cnm_clock with 328MHz for AC5, and 325MHz
-for AC5X.
+	return 0;
+}
 
-[snip]
+> +
+> +	return ret;
+> +}
+> +
+> +static void anx7625_unregister_typec_switches(struct anx7625_data *ctx)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < ctx->num_typec_switches; i++)
+> +		typec_mux_unregister(ctx->typec_ports[i].typec_mux);
+> +}
+> +
+>   static int anx7625_register_typec_switches(struct device *device, struct anx7625_data *ctx)
+>   {
+>   	struct device_node *of = NULL;
+> +	struct device_node *sw;
+>   	int ret = 0;
+>   
+>   	of = of_get_child_by_name(device->of_node, "switches");
+> @@ -2594,6 +2645,26 @@ static int anx7625_register_typec_switches(struct device *device, struct anx7625
+>   	if (ctx->num_typec_switches <= 0)
+>   		return -ENODEV;
+>   
+> +	ctx->typec_ports = devm_kzalloc(device,
+> +					ctx->num_typec_switches * sizeof(struct anx7625_port_data),
+> +					GFP_KERNEL);
+> +	if (!ctx->typec_ports)
+> +		return -ENOMEM;
+> +
+> +	/* Register switches for each connector. */
+> +	for_each_available_child_of_node(of, sw) {
+> +		if (!of_property_read_bool(sw, "mode-switch"))
+> +			continue;
+> +		ret = anx7625_register_mode_switch(device, sw, ctx);
+> +		if (ret) {
+> +			dev_err(device, "Failed to register mode switch: %d\n", ret);
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (ret)
+> +		anx7625_unregister_typec_switches(ctx);
+> +
+>   	return ret;
+>   }
+>   
+> @@ -2759,6 +2830,8 @@ static int anx7625_i2c_remove(struct i2c_client *client)
+>   
+>   	drm_bridge_remove(&platform->bridge);
+>   
+> +	anx7625_unregister_typec_switches(platform);
+> +
+>   	if (platform->pdata.intp_irq)
+>   		destroy_workqueue(platform->workqueue);
+>   
+> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.h b/drivers/gpu/drm/bridge/analogix/anx7625.h
+> index d5cbca708842..76cfc64f7574 100644
+> --- a/drivers/gpu/drm/bridge/analogix/anx7625.h
+> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.h
+> @@ -443,6 +443,11 @@ struct anx7625_i2c_client {
+>   	struct i2c_client *tcpc_client;
+>   };
+>   
+> +struct anx7625_port_data {
+> +	struct typec_mux_dev *typec_mux;
+> +	struct anx7625_data *ctx;
+> +};
+> +
+>   struct anx7625_data {
+>   	struct anx7625_platform_data pdata;
+>   	struct platform_device *audio_pdev;
+> @@ -474,6 +479,7 @@ struct anx7625_data {
+>   	struct mipi_dsi_device *dsi;
+>   	struct drm_dp_aux aux;
+>   	int num_typec_switches;
+> +	struct anx7625_port_data *typec_ports;
+>   };
+>   
+>   #endif  /* __ANX7625_H__ */
 
-> >> +
-> >> +    clocks {
-> >> +        cnm_clock: core-clock {
-> >> +            compatible = "fixed-clock";
-> >> +            #clock-cells = <0>;
-> >> +            clock-frequency = <325000000>;
-> >> +        };
-> >> +
-> >> +        spi_clock: spi-clock {
-> >> +            compatible = "fixed-clock";
-> >> +            #clock-cells = <0>;
-> >> +            clock-frequency = <200000000>;
-> >> +        };
-> >> +    };
-> >> +};
-
-[snip]
-
-Regards,
