@@ -2,163 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B09F54ABA1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:21:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F19D354ABB4
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:23:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239353AbiFNIUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 04:20:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43258 "EHLO
+        id S240393AbiFNIWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 04:22:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238570AbiFNIUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:20:46 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B067841301;
-        Tue, 14 Jun 2022 01:20:45 -0700 (PDT)
+        with ESMTP id S240308AbiFNIWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:22:13 -0400
+Received: from esa4.hgst.iphmx.com (esa4.hgst.iphmx.com [216.71.154.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3409B419B6
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:22:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1655194845; x=1686730845;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=yMYCPcgT5R7hEH86M7JeeXomvt2c7Ek5+H+vvQk/Woo=;
-  b=eoA9PodcQZ4oIyqB7MfsFFHzi+gG0RHyekp0/66R1tKq/lUeiKO5wrdZ
-   5BVkt0pJ1b2hyO/jCS5k746IAkUP7745n/HlIIenSYsw3bzcOugEXBcTp
-   MbUjKh0umMF4PdkHnBPwqigPPEg4jNW4s68OyI9PjjvYII5adp7tKK/3i
-   UBysrf7NrLziVXGrs/0cHm7DZ1WZHuYMwkOAdmRes/M3p11Ej28+AKRvH
-   Icsber/Y5SPxRbUjRTTy3qLxmSRe5RyCNif7yosacHBtSjK9aHCrGB2xp
-   mKI8gwvEmHm715hn/ft4pCzjrN0kpPzz9xnCtSmnf2X11Vv0pgjxgZ8od
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.91,299,1647327600"; 
-   d="scan'208";a="99913866"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Jun 2022 01:20:45 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 14 Jun 2022 01:20:42 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17 via Frontend Transport; Tue, 14 Jun 2022 01:20:42 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YZRmAcOMQjSRMT+cT7wji4uugoeDYpadAgr5CG+rVHL6sIMLT8o0lpQ7VV0FmDm1q5ws5TuYLrbK99q7F9AKKZOASHY8DzdlJeSu54Yvx0o5EsIYI2ZoajfDQhYlMu3um0Obt/rJhxlq8gfOuICMIPlhPIBZGm80Yfis+4Fh7vEixe7pq+2RexaLPyYc3NOVcoXo3y6UN/E0aHbAJvXNishYRX0zUaiCnEBs87IR8Z8p/VEZ29MpUheKOrhl/D+EJQAHE19IahVogT/0cGztHKyID4QdhzDGqdG09pZ+laJXlMjNPc6wuqqA4TymhEBkVCz0URabbdqKfiI+KXdEXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yMYCPcgT5R7hEH86M7JeeXomvt2c7Ek5+H+vvQk/Woo=;
- b=B/Nc24Si5WNxHA1MdUEyLmXCpzXobULT8oJGoiWg+64gv89dCnDjitTeS1bg80wuIQNj9WFaTNyJxBxIbzqAA+7J9kESjnbbuCKTbYCXvj4JXQ6JU3RPBePg4ActNZHDkaJjoTygEaCEjaYHqi6NFETMyCOtF2C43ZHswHQzpumAD+N9X9xdUf8gR3LKpbRINBsBNRyuBixDmDOBkc2EcnuMYeqEsOBA427u9XiH6o/zOLVui3END3weMsd7OgmDREt1KX15UMrv5xtOyBsL9RVreCrIZzTQ5MHsDaRMJ+h9B8xkLdge+uJDmY5CetNZnQmnzjEsmoiqM04hHEgOCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yMYCPcgT5R7hEH86M7JeeXomvt2c7Ek5+H+vvQk/Woo=;
- b=dYSN/3pS38qDFK36rhHOpYJ5ueYnmeK5HDu6H0SIVDeaL4vNjDo7onN3BelksoJyXBjrI4Yt8HgCVQxhbTMFzoC1w87v1Y3fLnW+rh0RX9dDgj0O1Us4h8igBA4MIDq167CHwO5/ctl5YGmtI6OVMb05E9XWJOnvJTRLqrcQvRo=
-Received: from BN6PR11MB1953.namprd11.prod.outlook.com (2603:10b6:404:105::14)
- by BN6PR11MB1698.namprd11.prod.outlook.com (2603:10b6:404:42::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.12; Tue, 14 Jun
- 2022 08:20:37 +0000
-Received: from BN6PR11MB1953.namprd11.prod.outlook.com
- ([fe80::5cfe:8088:aa93:fce8]) by BN6PR11MB1953.namprd11.prod.outlook.com
- ([fe80::5cfe:8088:aa93:fce8%3]) with mapi id 15.20.5332.022; Tue, 14 Jun 2022
- 08:20:37 +0000
-From:   <Claudiu.Beznea@microchip.com>
-To:     <jic23@kernel.org>
-CC:     <Eugen.Hristev@microchip.com>, <lars@metafoo.de>,
-        <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <ludovic.desroches@atmel.com>, <linux-iio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 04/16] iio: adc: at91-sama5d2_adc: handle different
- EMR.OSR for different hw versions
-Thread-Topic: [PATCH 04/16] iio: adc: at91-sama5d2_adc: handle different
- EMR.OSR for different hw versions
-Thread-Index: AQHYf8eggjXDLJBdtEyvB1T6zRW5fQ==
-Date:   Tue, 14 Jun 2022 08:20:37 +0000
-Message-ID: <82e90e6a-06e8-b414-b71b-646a97dae212@microchip.com>
-References: <20220609083213.1795019-1-claudiu.beznea@microchip.com>
- <20220609083213.1795019-5-claudiu.beznea@microchip.com>
- <20220611184617.0aa9eb85@jic23-huawei>
-In-Reply-To: <20220611184617.0aa9eb85@jic23-huawei>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 538d9025-a2cf-4966-cb3c-08da4ddec31c
-x-ms-traffictypediagnostic: BN6PR11MB1698:EE_
-x-microsoft-antispam-prvs: <BN6PR11MB1698E279DB05D86CFC5B4AB987AA9@BN6PR11MB1698.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: wiQg2cswHuQhL98lxJQZ+YaRQ9lwgvWerWf5kTSTzXjJXg0pNP9X3NSDAMwNHOhDdfIgMmxmbyLvjNQiLdOPLAwJQBDTj1vFo9aVd6sT9eYBW6FT6vQiAGBSRE2xdR6R2hiCrqkN3QeWdSIdFrA3q5iGD+YS1nea7hB+VzK2fmGdPAdUSlhwd2YrfUXjWbQw1espasINAvMZPGy936SQC7t90yznXUYnl0tj5UrSNtfLsZmhkrZ46Rppq5oxvIXWSd9Vq2IcRKEMXirGrcQBL1WLoK+I0gtNWjg1zfS+QFV781kz/oN29/yBA9gYkslM/yWq85gaZdHQOyhYD+kkdGkU3VbaWhAu96jcACtOdbIawaPbzw/z9WiMTMal3WpeGJn5SRVGphUJZfU+BF6Uk4+FqvDD40u7TSxmX3DCtGxMsAQq2UrxHs+L4b44G7SYHnSr5K1m+660Cn6MqqdPXST7Bh5FN3i0VtejtKYpC7RH6iLvCkmB0JEPFj9AHMpf9DzdwLdomIasUPqxbMStHKKVpg+87Gbe61QGbyIWIQSqyoQ49q5U+D28qXjLmB/ETxUMAsFPsf4pVn4Qdnz45e72N7IfNqfOPpb8uB0Ztzs8ktYAj9hTEoGMx2GmCw5SMUHlQ0rvHZg6IZxpk4P51hKYTJnQTDbg/42GNZrvkpwxFcRCjBIHYRRMo953q5EThHMuwoQTIz6v+Cq3kV1Y6u10Km+2hnZMh3nRjbVe4oUJu8rKgCyBu09mYD5AlBfiNxZaVoGw82FD6mgXN/qAUA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR11MB1953.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(66946007)(316002)(508600001)(6486002)(53546011)(91956017)(54906003)(6512007)(71200400001)(36756003)(86362001)(6916009)(5660300002)(8676002)(26005)(2616005)(2906002)(64756008)(4326008)(66446008)(66476007)(66556008)(31686004)(76116006)(7416002)(8936002)(31696002)(186003)(83380400001)(6506007)(38100700002)(122000001)(38070700005)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?a1pBR2FoMFNSR0tCL0tEd2FFU29wcFh3WnRuUEhBRCttTXI0QzZVQnBXazRM?=
- =?utf-8?B?elJPYVNRWjRpOUx4SWRaRjlQNlBPRTF2M1hSR3RZK0tET1g4dmlyY2w1UUlP?=
- =?utf-8?B?R1FYYVdHdHliTkZnL2hhWDZ5SEx3U1BxQ3pTcjhhanJKLzVOc3NYVXp0MHhz?=
- =?utf-8?B?WVA1eW5uRzZyeUQrZytFUGJMclFiMTNpNU1PM1I4NGQxMFMra3hSSUNaNTln?=
- =?utf-8?B?eFdHYWdnUEUwUWVYUVcxcGFMZjkvYitQbVU1OVFnTG9BdDNPN0JqYWJoRmdt?=
- =?utf-8?B?L2E1c096RnBCVVd1WXFhQVVXZDNNUzBEMzRYUDNvbDg5RGhIem10dUhONXN2?=
- =?utf-8?B?NDc3SVdNTXdUV2w3aW9jNHlEemI3Yk5zam1Pa2U2Sk1mL0p0NWJEa1p0NlZt?=
- =?utf-8?B?aG0wckNNcmZjcXJuVlVUeUREYmt6N3NLTnVnK2tuR0RiWnUySnQraUxvbytQ?=
- =?utf-8?B?R3BpV0FNdHM2WXZRMVlvTk1rc21JSUdRU012SGlXUXF4bGZ5Uk81UGl0dm94?=
- =?utf-8?B?SGtFR2h5dXhLMUtFaE13RXFRS2tmalB4NEJVYnYzK1UvL1hycnJMTEdkSTZT?=
- =?utf-8?B?SUhiNjZVWHB1QkM1VjkvNy9qR05PdnllbDY0UWJiWVd2aGNXT1UydDRoL0RV?=
- =?utf-8?B?NmJmbmtzZE9meHRubmJXbUliUEZNQjh6T0tqMzM5TThPZ0kwMGQxRGZ6Y0dY?=
- =?utf-8?B?Nmxpb1MyYmxBODBtUUVjWktQdjhhd2l5WndTZXNjcTRENDRNMTVGbTY4bHBD?=
- =?utf-8?B?SU4rWFpTbzNJWkMwbzdiYXRwd04zQkNwdzJJS2NsNXcxWUNuOGVwRk9nV21o?=
- =?utf-8?B?MGZVY3RHWEx4RjBkRHpVNTFrVWRUamFWVk95bk5PN3BUUnBGaHFyWmlVQkM3?=
- =?utf-8?B?SGtHK2F3ZVd3VDNXUStEN2JhTStCTGlTWVhSck1RdmNOQ0RKdWliZ2VPWTh2?=
- =?utf-8?B?alFqd251UTdjSFQ3bitMajJNNFJueDhmZWw5Tmt0eEtaWHh3SHphb00vZ1lC?=
- =?utf-8?B?QmFIRHdJQUNCczhZMHVPNzhCbGNrWmZHNm9TSnZUZmdjaVljWG9BQVFLcDV6?=
- =?utf-8?B?Yk01V2xLTkczT0preVBxZzFOd01ITWtmaFByV2U4djV3bUg0V1pKbytyWlFZ?=
- =?utf-8?B?Wi9jY2NvckFqTU1CUWk3SXdVZ1lscWh1RWtZSUdVaFlmUGxiK3I5cjA5NzVr?=
- =?utf-8?B?Sml3UDRieG0vazFrMmxKTlVCTWFEcHV2RUpMc0JHQlN4ZDRRaGxWZ2IraDlE?=
- =?utf-8?B?ZkNJeTRaSGsvL1RvSUFxbDJ4Z3lmVTZnK1FLSmNCYWU1eWt2SXBKMmNVVUNO?=
- =?utf-8?B?L3NEbjZ0Ym9RdGY2QjFBczQ3UjFWZVNrT0hWVXdaMFg0cWVmZUM4dTJCVk9X?=
- =?utf-8?B?dWtscitJd2pHWm5iM2F0Q0ZzR0FaZXRXUlJxN0VLVWQwMTE3MWdOaDNSVzQ0?=
- =?utf-8?B?c2cyUGI1YWdYKytCRzRvOVNjNGVSMjF3eVI1TWpNblFPWVhqc1VqYm9pOWs3?=
- =?utf-8?B?RURPR291T0pDYTJ3QW5rVmlPZW55cTlXVWh0L2FMZWZlVHRaOWtiRFBoTWVr?=
- =?utf-8?B?Q3E3ZjBkN1pxTDZGZWZMZkFNR0c4OVFEakNEelJTTnFHUEdmMEFvMTRFV1Vn?=
- =?utf-8?B?MmJZTWtPcnU3MmRteFFuaDZrcFF3S3I2Zkwzc3QwQ2p1OEppK3l5cVlmTHpX?=
- =?utf-8?B?SGdnVHVvOWQ1Q2N5TS9LYytGZ1E1WFF0THUyL0doTE1DcUtNTjZocWhJMllm?=
- =?utf-8?B?VWkxNWpQUE9YZU1aL0oyT1Zyb2hVV051aWttang5VFhTS1FDWS94MXlaS2dG?=
- =?utf-8?B?YllMOEdYQ3BDeTdvOW5QUUN4Z3IyQmNLNmtkNVJRL3dEVmY1dEVTRXhzVGtT?=
- =?utf-8?B?Qm9IWnRWaXRhL245R1JQTU1BdEMwS3dyZEkrT0gvWTlERFJvMzdFU1pGOEhU?=
- =?utf-8?B?em9MWW1POHZ5TkNubWx1TEgwNGFXclpmRHlzVWkrUEJQdEIrRElJRGFyT0Mx?=
- =?utf-8?B?SXdlK011dHpQUkt4NEJodmp2OC9KbytYUVJ2N1lUUzRwVGdRL2krRTlkVGtO?=
- =?utf-8?B?UE9ZWTNDV09vdm9iK3JFYzB4QVVEd253RzlCQVU0QnJtRVV3cUtTNHhLRnlj?=
- =?utf-8?B?blovMmN6RVUvYmRiaU5YcnJJY2p3UmhUYW1KK2FuclluaTg5eEljZGJEb1Rl?=
- =?utf-8?B?b1UzVHV1RG5VdGhBZ0xWSEdLRDJkK0N4TVlaUDE1bnZQcWR0RUtuUlJkRXlB?=
- =?utf-8?B?Qnd0djZLNjhqaEh5MHlCUWs4d0EvdGU2TlMvVVdPVDRjUjBTMUJKM1RNTFo3?=
- =?utf-8?B?TTFORHJqK3JMbXp4aEhaVVRIbUFaYzVaTjIvUXQrZjh3TDYwU2NwZTVGY3NB?=
- =?utf-8?Q?n8Fv7SXfaQoS46EY=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <814A4994F40AB54C99345D9E5D21DC8D@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1655194932; x=1686730932;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=AaMT0IGd7k5gzjqCn0qpz01EgHi4ZkJG3tpDWeFzWJk=;
+  b=RJejSUWAndZY3EfU3dUpRLqTOjtqlHH+VEjDhZ7aZAJ5DQB1sGfjpAMf
+   P1ftTkMmsIk29MmVTKn8+bhrGMt8D6Dyu9uA3cor7D2GdrYmkOBYgj+oI
+   6ehu/ZlLFLQhsUFhK7lk8g8OEKW/Unnw9qPAfHbjdRCeIRePjVa5PTgTf
+   dm0W6/i5429dNkkbp3ipxo2zrHnh75eIQwC1wUXe+0l96dSCmCgrPC1VF
+   lYozVIKWbZSaPHw/g9sTxoSEvd4Z2QGtJRa9oyz+qCuRN1Aa0ibyY7GyC
+   y6v4GrE6zdy/kPI5bCUInT3ru+Vjdn26n9FZULVQ2D8nn8HawUFL6UTKE
+   g==;
+X-IronPort-AV: E=Sophos;i="5.91,299,1647273600"; 
+   d="scan'208";a="201810708"
+Received: from h199-255-45-15.hgst.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 14 Jun 2022 16:22:09 +0800
+IronPort-SDR: ED3EEDvy//ECf/bybdag4NKi6VZckimWfXbXNuz0r9B9XJohdpZ4sKQiD0Yd82z99XVcENvM2w
+ VaZ01iDMa3cIkWWuODTPYFbTwRkaRzH9BYN6y/mB2hTvV0acRAJuqa7h8QS2UdC9bDnsTShOoT
+ hw5o9wsL+QKlYXHSOZX4Tt4tVBsh3EuvZ43VwsPzvrrGjI7l3FnXtEOhbdReNyU/YER2xA1FnY
+ AD0uf1KHZpe3D07BfcwSSgn8XJCftUBTWCLNalWTPjuYGwF8Ddsm6GBJ5YkIYj2OSnM28oE1VX
+ gYDDr0CfpI3juOzQLWXkWRFb
+Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Jun 2022 00:40:44 -0700
+IronPort-SDR: wNW47onMTnfdeqWWq5Edaq3PN5+S6SOZlC86FJjP/JNwzYRhc/OydYiFVjoPkFpr2UDivWVIxN
+ S3KFR8aSfWJIlHqeLFIAUb9GcJUBgxjqveqN8KFjhacbfstbhqbvJSlRnO0HvNHKYCy6OYInNk
+ fis0CRdTBe5BhV6qgcgiiMrZIhjtV+lH0y/GbKPhrLNAGyseO8FL2brbBK3mOFlkYY6qJePG6U
+ ihzpyccgiIoq4uvslMjGI7QqPK2C/g7o4jICK3qQwPBcbqY6uqXX6czb3D8OgUNr1rOXD+FRqU
+ Naw=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Jun 2022 01:22:09 -0700
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4LMhHh46hMz1SVp1
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:22:08 -0700 (PDT)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1655194926; x=1657786927; bh=AaMT0IGd7k5gzjqCn0qpz01EgHi4ZkJG3tp
+        DWeFzWJk=; b=LoMhA/ga+XExP07R0kpt+GcAYVZb/LT0oQXer45OGt/tMEdOkLU
+        sYwHxf3gcu81RNxlmvgK2EQ40f9iocie2R0eSR3xyrmjg0FJpchadV9jHos8nkuj
+        8rMksvwOsWQqQmdcFvEUNQ2oJUQTOSSSeNoXOnNSvu2YWyczMnFYtJ075aOVd/L+
+        C1GinbGuMqN8Fdfl/zgieNP6r1d9MINaTwLxEdMGruVIzg7lCItHGzD61uvUcCRe
+        bEvxegGhi1ghXaKmN7jIhx2TkSpJxXNvO6rPlXrs/q1EPASPWQLlF1UMyfITyYqm
+        GfVBwCOiP+TRe4J5n+3vbsQfvaTQ6zStocw==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id bHYqF5J1xbYk for <devicetree@vger.kernel.org>;
+        Tue, 14 Jun 2022 01:22:06 -0700 (PDT)
+Received: from [10.225.163.77] (unknown [10.225.163.77])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4LMhHc126Gz1Rvlc;
+        Tue, 14 Jun 2022 01:22:03 -0700 (PDT)
+Message-ID: <3bf20887-6e2f-41f4-e4ec-5c2278f6cb18@opensource.wdc.com>
+Date:   Tue, 14 Jun 2022 17:22:02 +0900
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN6PR11MB1953.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 538d9025-a2cf-4966-cb3c-08da4ddec31c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2022 08:20:37.7400
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ya68e2pXLEVN/YNmKDIcFHpKR0+3c6GolGN5sK1lesudO+MmXycNa8D8YjxAc9qWAgT2qUgVBiE64TWSWdiZXhTIJz3x62fOd3cpAJg56M8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1698
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v4 07/23] ata: libahci_platform: Convert to using devm
+ bulk clocks API
+Content-Language: en-US
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
+ <20220610081801.11854-8-Sergey.Semin@baikalelectronics.ru>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <20220610081801.11854-8-Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -166,141 +104,240 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMTEuMDYuMjAyMiAyMDo0NiwgSm9uYXRoYW4gQ2FtZXJvbiB3cm90ZToNCj4gRVhURVJOQUwg
-RU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3Ug
-a25vdyB0aGUgY29udGVudCBpcyBzYWZlDQo+IA0KPiBPbiBUaHUsIDkgSnVuIDIwMjIgMTE6MzI6
-MDEgKzAzMDANCj4gQ2xhdWRpdSBCZXpuZWEgPGNsYXVkaXUuYmV6bmVhQG1pY3JvY2hpcC5jb20+
-IHdyb3RlOg0KPiANCj4+IFNBTUE3RzUgaW50cm9kdWNlcyA2NCBhbmQgMjU2IG92ZXJzYW1wbGlu
-ZyByYXRlcy4gRHVlIHRvIHRoaXMgRU1SLk9TUiBpcyAzDQo+PiBiaXRzIGxvbmcuIENoYW5nZSB0
-aGUgY29kZSB0byByZWZsZWN0IHRoaXMuIENvbW1pdCBwcmVwYXJlcyB0aGUgY29kZQ0KPj4gZm9y
-IHRoZSBhZGRpdGlvbiBvZiA2NCBhbmQgMjU2IG92ZXJzYW1wbGluZyByYXRlcy4NCj4+DQo+PiBT
-aWduZWQtb2ZmLWJ5OiBDbGF1ZGl1IEJlem5lYSA8Y2xhdWRpdS5iZXpuZWFAbWljcm9jaGlwLmNv
-bT4NCj4+IC0tLQ0KPj4gIGRyaXZlcnMvaWlvL2FkYy9hdDkxLXNhbWE1ZDJfYWRjLmMgfCA1NSAr
-KysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0NCj4+ICAxIGZpbGUgY2hhbmdlZCwgNDAgaW5z
-ZXJ0aW9ucygrKSwgMTUgZGVsZXRpb25zKC0pDQo+Pg0KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-aWlvL2FkYy9hdDkxLXNhbWE1ZDJfYWRjLmMgYi9kcml2ZXJzL2lpby9hZGMvYXQ5MS1zYW1hNWQy
-X2FkYy5jDQo+PiBpbmRleCBiNzYzMjhkYTBjYjIuLjFjZWFiMDk3MzM1YyAxMDA2NDQNCj4+IC0t
-LSBhL2RyaXZlcnMvaWlvL2FkYy9hdDkxLXNhbWE1ZDJfYWRjLmMNCj4+ICsrKyBiL2RyaXZlcnMv
-aWlvL2FkYy9hdDkxLXNhbWE1ZDJfYWRjLmMNCj4+IEBAIC0xMzgsOCArMTM4LDcgQEAgc3RydWN0
-IGF0OTFfYWRjX3JlZ19sYXlvdXQgew0KPj4gIC8qIEV4dGVuZGVkIE1vZGUgUmVnaXN0ZXIgKi8N
-Cj4+ICAgICAgIHUxNiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRU1SOw0KPj4gIC8qIEV4
-dGVuZGVkIE1vZGUgUmVnaXN0ZXIgLSBPdmVyc2FtcGxpbmcgcmF0ZSAqLw0KPj4gLSNkZWZpbmUg
-QVQ5MV9TQU1BNUQyX0VNUl9PU1IoVikgICAgICAgICAgICAgICAgICAgICAgKChWKSA8PCAxNikN
-Cj4+IC0jZGVmaW5lIEFUOTFfU0FNQTVEMl9FTVJfT1NSX01BU0sgICAgICAgICAgICBHRU5NQVNL
-KDE3LCAxNikNCj4+ICsjZGVmaW5lIEFUOTFfU0FNQTVEMl9FTVJfT1NSKFYsIE0pICAgICAgICAg
-ICAoKChWKSA8PCAxNikgJiAoTSkpDQo+PiAgI2RlZmluZSBBVDkxX1NBTUE1RDJfRU1SX09TUl8x
-U0FNUExFUyAgICAgICAgICAgICAgICAwDQo+PiAgI2RlZmluZSBBVDkxX1NBTUE1RDJfRU1SX09T
-Ul80U0FNUExFUyAgICAgICAgICAgICAgICAxDQo+PiAgI2RlZmluZSBBVDkxX1NBTUE1RDJfRU1S
-X09TUl8xNlNBTVBMRVMgICAgICAgICAgICAgICAyDQo+PiBAQCAtNDAzLDYgKzQwMiw4IEBAIHN0
-YXRpYyBjb25zdCBzdHJ1Y3QgYXQ5MV9hZGNfcmVnX2xheW91dCBzYW1hN2c1X2xheW91dCA9IHsN
-Cj4+ICAgKiBAbWF4X2luZGV4OiAgICAgICAgICAgICAgIGhpZ2hlc3QgY2hhbm5lbCBpbmRleCAo
-aGlnaGVzdCBpbmRleCBtYXkgYmUgaGlnaGVyDQo+PiAgICogICAgICAgICAgICAgICAgICAgdGhh
-biB0aGUgdG90YWwgY2hhbm5lbCBudW1iZXIpDQo+PiAgICogQGh3X3RyaWdfY250OiAgICAgbnVt
-YmVyIG9mIHBvc3NpYmxlIGhhcmR3YXJlIHRyaWdnZXJzDQo+PiArICogQG9zcl9tYXNrOiAgICAg
-ICAgICAgICAgICBvdmVyc2FtcGxpbmcgcmF0aW8gYml0bWFzayBvbiBFTVIgcmVnaXN0ZXINCj4+
-ICsgKiBAb3NyX3ZhbHM6ICAgICAgICAgICAgICAgIGF2YWlsYWJsZSBvdmVyc2FtcGxpbmcgcmF0
-ZXMNCj4+ICAgKi8NCj4+ICBzdHJ1Y3QgYXQ5MV9hZGNfcGxhdGZvcm0gew0KPj4gICAgICAgY29u
-c3Qgc3RydWN0IGF0OTFfYWRjX3JlZ19sYXlvdXQgICAgICAgICpsYXlvdXQ7DQo+PiBAQCAtNDE0
-LDYgKzQxNSw4IEBAIHN0cnVjdCBhdDkxX2FkY19wbGF0Zm9ybSB7DQo+PiAgICAgICB1bnNpZ25l
-ZCBpbnQgICAgICAgICAgICAgICAgICAgICAgICAgICAgbWF4X2NoYW5uZWxzOw0KPj4gICAgICAg
-dW5zaWduZWQgaW50ICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1heF9pbmRleDsNCj4+ICAg
-ICAgIHVuc2lnbmVkIGludCAgICAgICAgICAgICAgICAgICAgICAgICAgICBod190cmlnX2NudDsN
-Cj4+ICsgICAgIHVuc2lnbmVkIGludCAgICAgICAgICAgICAgICAgICAgICAgICAgICBvc3JfbWFz
-azsNCj4+ICsgICAgIHVuc2lnbmVkIGludCAgICAgICAgICAgICAgICAgICAgICAgICAgICBvc3Jf
-dmFsczsNCj4+ICB9Ow0KPj4NCj4+ICAvKioNCj4+IEBAIC02MTIsNiArNjE1LDEwIEBAIHN0YXRp
-YyBjb25zdCBzdHJ1Y3QgYXQ5MV9hZGNfcGxhdGZvcm0gc2FtYTVkMl9wbGF0Zm9ybSA9IHsNCj4+
-ICAgICAgIC5tYXhfaW5kZXggPSBBVDkxX1NBTUE1RDJfTUFYX0NIQU5fSURYLA0KPj4gICNkZWZp
-bmUgQVQ5MV9TQU1BNUQyX0hXX1RSSUdfQ05UICAgICAzDQo+PiAgICAgICAuaHdfdHJpZ19jbnQg
-PSBBVDkxX1NBTUE1RDJfSFdfVFJJR19DTlQsDQo+PiArICAgICAub3NyX21hc2sgPSBHRU5NQVNL
-KDE3LCAxNiksDQo+PiArICAgICAub3NyX3ZhbHMgPSBCSVQoQVQ5MV9TQU1BNUQyX0VNUl9PU1Jf
-MVNBTVBMRVMpIHwNCj4+ICsgICAgICAgICAgICAgICAgIEJJVChBVDkxX1NBTUE1RDJfRU1SX09T
-Ul80U0FNUExFUykgfA0KPj4gKyAgICAgICAgICAgICAgICAgQklUKEFUOTFfU0FNQTVEMl9FTVJf
-T1NSXzE2U0FNUExFUyksDQo+PiAgfTsNCj4+DQo+PiAgc3RhdGljIGNvbnN0IHN0cnVjdCBhdDkx
-X2FkY19wbGF0Zm9ybSBzYW1hN2c1X3BsYXRmb3JtID0gew0KPj4gQEAgLTYyNyw2ICs2MzQsMTAg
-QEAgc3RhdGljIGNvbnN0IHN0cnVjdCBhdDkxX2FkY19wbGF0Zm9ybSBzYW1hN2c1X3BsYXRmb3Jt
-ID0gew0KPj4gICAgICAgLm1heF9pbmRleCA9IEFUOTFfU0FNQTdHNV9NQVhfQ0hBTl9JRFgsDQo+
-PiAgI2RlZmluZSBBVDkxX1NBTUE3RzVfSFdfVFJJR19DTlQgICAgIDMNCj4+ICAgICAgIC5od190
-cmlnX2NudCA9IEFUOTFfU0FNQTdHNV9IV19UUklHX0NOVCwNCj4+ICsgICAgIC5vc3JfbWFzayA9
-IEdFTk1BU0soMTgsIDE2KSwNCj4+ICsgICAgIC5vc3JfdmFscyA9IEJJVChBVDkxX1NBTUE1RDJf
-RU1SX09TUl8xU0FNUExFUykgfA0KPj4gKyAgICAgICAgICAgICAgICAgQklUKEFUOTFfU0FNQTVE
-Ml9FTVJfT1NSXzRTQU1QTEVTKSB8DQo+PiArICAgICAgICAgICAgICAgICBCSVQoQVQ5MV9TQU1B
-NUQyX0VNUl9PU1JfMTZTQU1QTEVTKSwNCj4+ICB9Ow0KPj4NCj4+ICBzdGF0aWMgaW50IGF0OTFf
-YWRjX2NoYW5feGxhdGUoc3RydWN0IGlpb19kZXYgKmluZGlvX2RldiwgaW50IGNoYW4pDQo+PiBA
-QCAtNzI1LDM0ICs3MzYsNDUgQEAgc3RhdGljIHZvaWQgYXQ5MV9hZGNfZW9jX2VuYShzdHJ1Y3Qg
-YXQ5MV9hZGNfc3RhdGUgKnN0LCB1bnNpZ25lZCBpbnQgY2hhbm5lbCkNCj4+ICAgICAgICAgICAg
-ICAgYXQ5MV9hZGNfd3JpdGVsKHN0LCBFT0NfSUVSLCBCSVQoY2hhbm5lbCkpOw0KPj4gIH0NCj4+
-DQo+PiAtc3RhdGljIHZvaWQgYXQ5MV9hZGNfY29uZmlnX2VtcihzdHJ1Y3QgYXQ5MV9hZGNfc3Rh
-dGUgKnN0KQ0KPj4gK3N0YXRpYyBpbnQgYXQ5MV9hZGNfY29uZmlnX2VtcihzdHJ1Y3QgYXQ5MV9h
-ZGNfc3RhdGUgKnN0LA0KPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICB1MzIgb3ZlcnNh
-bXBsaW5nX3JhdGlvKQ0KPj4gIHsNCj4+ICAgICAgIC8qIGNvbmZpZ3VyZSB0aGUgZXh0ZW5kZWQg
-bW9kZSByZWdpc3RlciAqLw0KPj4gICAgICAgdW5zaWduZWQgaW50IGVtciA9IGF0OTFfYWRjX3Jl
-YWRsKHN0LCBFTVIpOw0KPj4gKyAgICAgdW5zaWduZWQgaW50IG9zcl9tYXNrID0gc3QtPnNvY19p
-bmZvLnBsYXRmb3JtLT5vc3JfbWFzazsNCj4+ICsgICAgIHVuc2lnbmVkIGludCBvc3JfdmFscyA9
-IHN0LT5zb2NfaW5mby5wbGF0Zm9ybS0+b3NyX3ZhbHM7DQo+Pg0KPj4gICAgICAgLyogc2VsZWN0
-IG92ZXJzYW1wbGluZyBwZXIgc2luZ2xlIHRyaWdnZXIgZXZlbnQgKi8NCj4+ICAgICAgIGVtciB8
-PSBBVDkxX1NBTUE1RDJfRU1SX0FTVEUoMSk7DQo+Pg0KPj4gICAgICAgLyogZGVsZXRlIGxlZnRv
-dmVyIGNvbnRlbnQgaWYgaXQncyB0aGUgY2FzZSAqLw0KPj4gLSAgICAgZW1yICY9IH5BVDkxX1NB
-TUE1RDJfRU1SX09TUl9NQVNLOw0KPj4gKyAgICAgZW1yICY9IH5vc3JfbWFzazsNCj4+DQo+PiAg
-ICAgICAvKiBzZWxlY3Qgb3ZlcnNhbXBsaW5nIHJhdGlvIGZyb20gY29uZmlndXJhdGlvbiAqLw0K
-Pj4gLSAgICAgc3dpdGNoIChzdC0+b3ZlcnNhbXBsaW5nX3JhdGlvKSB7DQo+PiArICAgICBzd2l0
-Y2ggKG92ZXJzYW1wbGluZ19yYXRpbykgew0KPj4gICAgICAgY2FzZSBBVDkxX09TUl8xU0FNUExF
-UzoNCj4+IC0gICAgICAgICAgICAgZW1yIHw9IEFUOTFfU0FNQTVEMl9FTVJfT1NSKEFUOTFfU0FN
-QTVEMl9FTVJfT1NSXzFTQU1QTEVTKSAmDQo+PiAtICAgICAgICAgICAgICAgICAgICBBVDkxX1NB
-TUE1RDJfRU1SX09TUl9NQVNLOw0KPj4gKyAgICAgICAgICAgICBpZiAoIShvc3JfdmFscyAmIEJJ
-VChBVDkxX1NBTUE1RDJfRU1SX09TUl8xU0FNUExFUykpKQ0KPj4gKyAgICAgICAgICAgICAgICAg
-ICAgIHJldHVybiAtRUlOVkFMOw0KPj4gKyAgICAgICAgICAgICBlbXIgfD0gQVQ5MV9TQU1BNUQy
-X0VNUl9PU1IoQVQ5MV9TQU1BNUQyX0VNUl9PU1JfMVNBTVBMRVMsDQo+PiArICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBvc3JfbWFzayk7DQo+PiAgICAgICAgICAgICAg
-IGJyZWFrOw0KPj4gICAgICAgY2FzZSBBVDkxX09TUl80U0FNUExFUzoNCj4+IC0gICAgICAgICAg
-ICAgZW1yIHw9IEFUOTFfU0FNQTVEMl9FTVJfT1NSKEFUOTFfU0FNQTVEMl9FTVJfT1NSXzRTQU1Q
-TEVTKSAmDQo+PiAtICAgICAgICAgICAgICAgICAgICBBVDkxX1NBTUE1RDJfRU1SX09TUl9NQVNL
-Ow0KPj4gKyAgICAgICAgICAgICBpZiAoIShvc3JfdmFscyAmIEJJVChBVDkxX1NBTUE1RDJfRU1S
-X09TUl80U0FNUExFUykpKQ0KPj4gKyAgICAgICAgICAgICAgICAgICAgIHJldHVybiAtRUlOVkFM
-Ow0KPj4gKyAgICAgICAgICAgICBlbXIgfD0gQVQ5MV9TQU1BNUQyX0VNUl9PU1IoQVQ5MV9TQU1B
-NUQyX0VNUl9PU1JfNFNBTVBMRVMsDQo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICBvc3JfbWFzayk7DQo+PiAgICAgICAgICAgICAgIGJyZWFrOw0KPj4gICAgICAg
-Y2FzZSBBVDkxX09TUl8xNlNBTVBMRVM6DQo+PiAtICAgICAgICAgICAgIGVtciB8PSBBVDkxX1NB
-TUE1RDJfRU1SX09TUihBVDkxX1NBTUE1RDJfRU1SX09TUl8xNlNBTVBMRVMpICYNCj4+IC0gICAg
-ICAgICAgICAgICAgICAgIEFUOTFfU0FNQTVEMl9FTVJfT1NSX01BU0s7DQo+PiArICAgICAgICAg
-ICAgIGlmICghKG9zcl92YWxzICYgQklUKEFUOTFfU0FNQTVEMl9FTVJfT1NSXzE2U0FNUExFUykp
-KQ0KPj4gKyAgICAgICAgICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOw0KPj4gKyAgICAgICAg
-ICAgICBlbXIgfD0gQVQ5MV9TQU1BNUQyX0VNUl9PU1IoQVQ5MV9TQU1BNUQyX0VNUl9PU1JfMTZT
-QU1QTEVTLA0KPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgb3Ny
-X21hc2spOw0KPj4gICAgICAgICAgICAgICBicmVhazsNCj4+ICAgICAgIH0NCj4+DQo+PiAgICAg
-ICBhdDkxX2FkY193cml0ZWwoc3QsIEVNUiwgZW1yKTsNCj4+ICsNCj4+ICsgICAgIHJldHVybiAw
-Ow0KPj4gIH0NCj4+DQo+PiAgc3RhdGljIGludCBhdDkxX2FkY19hZGp1c3RfdmFsX29zcihzdHJ1
-Y3QgYXQ5MV9hZGNfc3RhdGUgKnN0LCBpbnQgKnZhbCkNCj4+IEBAIC0xNjQzLDYgKzE2NjUsNyBA
-QCBzdGF0aWMgaW50IGF0OTFfYWRjX3dyaXRlX3JhdyhzdHJ1Y3QgaWlvX2RldiAqaW5kaW9fZGV2
-LA0KPj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIGludCB2YWwsIGludCB2YWwyLCBsb25n
-IG1hc2spDQo+PiAgew0KPj4gICAgICAgc3RydWN0IGF0OTFfYWRjX3N0YXRlICpzdCA9IGlpb19w
-cml2KGluZGlvX2Rldik7DQo+PiArICAgICBpbnQgcmV0ID0gMDsNCj4+DQo+PiAgICAgICBpZiAo
-aWlvX2J1ZmZlcl9lbmFibGVkKGluZGlvX2RldikpDQo+PiAgICAgICAgICAgICAgIHJldHVybiAt
-RUJVU1k7DQo+PiBAQCAtMTY1NiwxMiArMTY3OSwxNCBAQCBzdGF0aWMgaW50IGF0OTFfYWRjX3dy
-aXRlX3JhdyhzdHJ1Y3QgaWlvX2RldiAqaW5kaW9fZGV2LA0KPj4gICAgICAgICAgICAgICBtdXRl
-eF9sb2NrKCZzdC0+bG9jayk7DQo+PiAgICAgICAgICAgICAgIGlmICh2YWwgPT0gc3QtPm92ZXJz
-YW1wbGluZ19yYXRpbykNCj4+ICAgICAgICAgICAgICAgICAgICAgICBnb3RvIHVubG9jazsNCj4+
-IC0gICAgICAgICAgICAgc3QtPm92ZXJzYW1wbGluZ19yYXRpbyA9IHZhbDsNCj4+ICAgICAgICAg
-ICAgICAgLyogdXBkYXRlIHJhdGlvICovDQo+PiAtICAgICAgICAgICAgIGF0OTFfYWRjX2NvbmZp
-Z19lbXIoc3QpOw0KPj4gKyAgICAgICAgICAgICByZXQgPSBhdDkxX2FkY19jb25maWdfZW1yKHN0
-LCB2YWwpOw0KPj4gKyAgICAgICAgICAgICBpZiAocmV0KQ0KPj4gKyAgICAgICAgICAgICAgICAg
-ICAgIGdvdG8gdW5sb2NrOw0KPj4gKyAgICAgICAgICAgICBzdC0+b3ZlcnNhbXBsaW5nX3JhdGlv
-ID0gdmFsOw0KPiANCj4gR29vZC4gSSBsb29rZWQgYXQgdGhlIG9sZCBvcmRlcmluZyB3aGVuIHJl
-dmlld2luZyBlYXJsaWVyIHBhdGNoIGFuZCB0aG91Z2h0DQo+IHRoYXQgZG9lc24ndCBsb29rIGdv
-b2QgOikNCj4gDQo+IEhvd2V2ZXIsIG5vdyB5b3UgaGFlIHRoZSB2YWx1ZSBwYXNzZWQgdG8gYXQ5
-MV9hZGNfY29uZmlnX2VtcigpIHBlcmhhcHMNCj4geW91IGNhbiBkcm9wIHRoZSBjaGVja2luZyB0
-aGF0IGl0IGlzIGEgcG9zc2libGUgdmFsdWUgZnJvbSBhYm92ZSB0aGlzIGNhbGwNCj4gYW5kIG1v
-dmUgaXQgdG8gdGhlIGRlZmF1bHQgY2FzZSBvbiB0aGUgc3dpdGNoIHN0YXRlbWVudCBpbiB0aGVy
-ZT8NCj4gKG5vdGljZWQgb24gbGF0ZXIgcGF0Y2gsIHdoZXJlIHRoYXQgY29udGV4dCBpcyB2aXNp
-YmxlKS4NCg0KSSdsbCBjaGVjayBpdCBhbmQgYWRhcHQgaXQgaW4gbmV4dCB2ZXJzaW9uLg0KDQo+
-IA0KPj4gIHVubG9jazoNCj4+ICAgICAgICAgICAgICAgbXV0ZXhfdW5sb2NrKCZzdC0+bG9jayk7
-DQo+PiAtICAgICAgICAgICAgIHJldHVybiAwOw0KPj4gKyAgICAgICAgICAgICByZXR1cm4gcmV0
-Ow0KPj4gICAgICAgY2FzZSBJSU9fQ0hBTl9JTkZPX1NBTVBfRlJFUToNCj4+ICAgICAgICAgICAg
-ICAgaWYgKHZhbCA8IHN0LT5zb2NfaW5mby5taW5fc2FtcGxlX3JhdGUgfHwNCj4+ICAgICAgICAg
-ICAgICAgICAgIHZhbCA+IHN0LT5zb2NfaW5mby5tYXhfc2FtcGxlX3JhdGUpDQo+PiBAQCAtMTgz
-NCw3ICsxODU5LDcgQEAgc3RhdGljIHZvaWQgYXQ5MV9hZGNfaHdfaW5pdChzdHJ1Y3QgaWlvX2Rl
-diAqaW5kaW9fZGV2KQ0KPj4gICAgICAgYXQ5MV9hZGNfc2V0dXBfc2FtcF9mcmVxKGluZGlvX2Rl
-diwgc3QtPnNvY19pbmZvLm1pbl9zYW1wbGVfcmF0ZSk7DQo+Pg0KPj4gICAgICAgLyogY29uZmln
-dXJlIGV4dGVuZGVkIG1vZGUgcmVnaXN0ZXIgKi8NCj4+IC0gICAgIGF0OTFfYWRjX2NvbmZpZ19l
-bXIoc3QpOw0KPj4gKyAgICAgYXQ5MV9hZGNfY29uZmlnX2VtcihzdCwgc3QtPm92ZXJzYW1wbGlu
-Z19yYXRpbyk7DQo+PiAgfQ0KPj4NCj4+ICBzdGF0aWMgc3NpemVfdCBhdDkxX2FkY19nZXRfZmlm
-b19zdGF0ZShzdHJ1Y3QgZGV2aWNlICpkZXYsDQo+IA0KDQo=
+On 6/10/22 17:17, Serge Semin wrote:
+> In order to simplify the clock-related code there is a way to convert the
+> current fixed clocks array into using the common bulk clocks kernel API
+> with dynamic set of the clock handlers and device-managed clock-resource
+> tracking. It's a bit tricky due to the complication coming from the
+> requirement to support the platforms (da850, spear13xx) with the
+> non-OF-based clock source, but still doable.
+> 
+> Before this modification there are two methods have been used to get the
+> clocks connected to an AHCI device: clk_get() - to get the very first
+> clock in the list and of_clk_get() - to get the rest of them. Basically
+> the platforms with non-OF-based clocks definition could specify only a
+> single reference clock source. The platforms with OF-hw clocks have been
+> luckier and could setup up to AHCI_MAX_CLKS clocks. Such semantic can be
+> retained with using devm_clk_bulk_get_all() to retrieve the clocks defined
+> via the DT firmware and devm_clk_get_optional() otherwise. In both cases
+> using the device-managed version of the methods will cause the automatic
+> resources deallocation on the AHCI device removal event. The only
+> complicated part in the suggested approach is the explicit allocation and
+> initialization of the clk_bulk_data structure instance for the non-OF
+> reference clocks. It's required in order to use the Bulk Clocks API for
+> the both denoted cases of the clocks definition.
+> 
+> Note aside with the clock-related code reduction and natural
+> simplification, there are several bonuses the suggested modification
+> provides. First of all the limitation of having no greater than
+> AHCI_MAX_CLKS clocks is now removed, since the devm_clk_bulk_get_all()
+> method will allocate as many reference clocks data descriptors as there
+> are clocks specified for the device. Secondly the clock names are
+> auto-detected. So the LLDD (glue) drivers can make sure that the required
+> clocks are specified just by checking the clock IDs in the clk_bulk_data
+> array.  Thirdly using the handy Bulk Clocks kernel API improves the
+> clocks-handling code readability. And the last but not least this
+> modification implements a true optional clocks support to the
+> ahci_platform_get_resources() method. Indeed the previous clocks getting
+> procedure just stopped getting the clocks on any errors (aside from
+> non-critical -EPROBE_DEFER) in a way so the callee wasn't even informed
+> about abnormal loop termination. The new implementation lacks of such
+> problem. The ahci_platform_get_resources() will return an error code if
+> the corresponding clocks getting method ends execution abnormally.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Reviewed-by: Hannes Reinecke <hare@suse.de>
+> 
+> ---
+> 
+> Changelog v2:
+> - Convert to checking the error-case first in the devm_clk_bulk_get_all()
+>   method invocation. (@Damien)
+> - Fix some grammar mistakes in the comments.
+> ---
+>  drivers/ata/ahci.h             |  4 +-
+>  drivers/ata/libahci_platform.c | 84 ++++++++++++++++------------------
+>  2 files changed, 41 insertions(+), 47 deletions(-)
+> 
+> diff --git a/drivers/ata/ahci.h b/drivers/ata/ahci.h
+> index ad11a4c52fbe..c3770a19781b 100644
+> --- a/drivers/ata/ahci.h
+> +++ b/drivers/ata/ahci.h
+> @@ -38,7 +38,6 @@
+>  
+>  enum {
+>  	AHCI_MAX_PORTS		= 32,
+> -	AHCI_MAX_CLKS		= 5,
+>  	AHCI_MAX_SG		= 168, /* hardware max is 64K */
+>  	AHCI_DMA_BOUNDARY	= 0xffffffff,
+>  	AHCI_MAX_CMDS		= 32,
+> @@ -339,7 +338,8 @@ struct ahci_host_priv {
+>  	u32			em_msg_type;	/* EM message type */
+>  	u32			remapped_nvme;	/* NVMe remapped device count */
+>  	bool			got_runtime_pm; /* Did we do pm_runtime_get? */
+> -	struct clk		*clks[AHCI_MAX_CLKS]; /* Optional */
+> +	unsigned int		n_clks;
+> +	struct clk_bulk_data	*clks;		/* Optional */
+>  	struct reset_control	*rsts;		/* Optional */
+>  	struct regulator	**target_pwrs;	/* Optional */
+>  	struct regulator	*ahci_regulator;/* Optional */
+> diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
+> index 1e9e825d6cc5..814804582d1d 100644
+> --- a/drivers/ata/libahci_platform.c
+> +++ b/drivers/ata/libahci_platform.c
+> @@ -8,6 +8,7 @@
+>   *   Anton Vorontsov <avorontsov@ru.mvista.com>
+>   */
+>  
+> +#include <linux/clk-provider.h>
+>  #include <linux/clk.h>
+>  #include <linux/kernel.h>
+>  #include <linux/gfp.h>
+> @@ -97,28 +98,14 @@ EXPORT_SYMBOL_GPL(ahci_platform_disable_phys);
+>   * ahci_platform_enable_clks - Enable platform clocks
+>   * @hpriv: host private area to store config values
+>   *
+> - * This function enables all the clks found in hpriv->clks, starting at
+> - * index 0. If any clk fails to enable it disables all the clks already
+> - * enabled in reverse order, and then returns an error.
+> + * This function enables all the clks found for the AHCI device.
+>   *
+>   * RETURNS:
+>   * 0 on success otherwise a negative error code
+>   */
+>  int ahci_platform_enable_clks(struct ahci_host_priv *hpriv)
+>  {
+> -	int c, rc;
+> -
+> -	for (c = 0; c < AHCI_MAX_CLKS && hpriv->clks[c]; c++) {
+> -		rc = clk_prepare_enable(hpriv->clks[c]);
+> -		if (rc)
+> -			goto disable_unprepare_clk;
+> -	}
+> -	return 0;
+> -
+> -disable_unprepare_clk:
+> -	while (--c >= 0)
+> -		clk_disable_unprepare(hpriv->clks[c]);
+> -	return rc;
+> +	return clk_bulk_prepare_enable(hpriv->n_clks, hpriv->clks);
+>  }
+>  EXPORT_SYMBOL_GPL(ahci_platform_enable_clks);
+>  
+> @@ -126,16 +113,13 @@ EXPORT_SYMBOL_GPL(ahci_platform_enable_clks);
+>   * ahci_platform_disable_clks - Disable platform clocks
+>   * @hpriv: host private area to store config values
+>   *
+> - * This function disables all the clks found in hpriv->clks, in reverse
+> - * order of ahci_platform_enable_clks (starting at the end of the array).
+> + * This function disables all the clocks enabled before
+> + * (bulk-clocks-disable function is supposed to do that in reverse
+> + * from the enabling procedure order).
+>   */
+>  void ahci_platform_disable_clks(struct ahci_host_priv *hpriv)
+>  {
+> -	int c;
+> -
+> -	for (c = AHCI_MAX_CLKS - 1; c >= 0; c--)
+> -		if (hpriv->clks[c])
+> -			clk_disable_unprepare(hpriv->clks[c]);
+> +	clk_bulk_disable_unprepare(hpriv->n_clks, hpriv->clks);
+>  }
+>  EXPORT_SYMBOL_GPL(ahci_platform_disable_clks);
+>  
+> @@ -292,8 +276,6 @@ static void ahci_platform_put_resources(struct device *dev, void *res)
+>  		pm_runtime_disable(dev);
+>  	}
+>  
+> -	for (c = 0; c < AHCI_MAX_CLKS && hpriv->clks[c]; c++)
+> -		clk_put(hpriv->clks[c]);
+>  	/*
+>  	 * The regulators are tied to child node device and not to the
+>  	 * SATA device itself. So we can't use devm for automatically
+> @@ -374,8 +356,8 @@ static int ahci_platform_get_regulator(struct ahci_host_priv *hpriv, u32 port,
+>   * 1) mmio registers (IORESOURCE_MEM 0, mandatory)
+>   * 2) regulator for controlling the targets power (optional)
+>   *    regulator for controlling the AHCI controller (optional)
+> - * 3) 0 - AHCI_MAX_CLKS clocks, as specified in the devs devicetree node,
+> - *    or for non devicetree enabled platforms a single clock
+> + * 3) all clocks specified in the devicetree node, or a single
+> + *    clock for non-OF platforms (optional)
+>   * 4) resets, if flags has AHCI_PLATFORM_GET_RESETS (optional)
+>   * 5) phys (optional)
+>   *
+> @@ -385,11 +367,10 @@ static int ahci_platform_get_regulator(struct ahci_host_priv *hpriv, u32 port,
+>  struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
+>  						   unsigned int flags)
+>  {
+> +	int child_nodes, rc = -ENOMEM, enabled_ports = 0;
+>  	struct device *dev = &pdev->dev;
+>  	struct ahci_host_priv *hpriv;
+> -	struct clk *clk;
+>  	struct device_node *child;
+> -	int i, enabled_ports = 0, rc = -ENOMEM, child_nodes;
+>  	u32 mask_port_map = 0;
+>  
+>  	if (!devres_open_group(dev, NULL, GFP_KERNEL))
+> @@ -415,25 +396,38 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
+>  		goto err_out;
+>  	}
+>  
+> -	for (i = 0; i < AHCI_MAX_CLKS; i++) {
+> +	/*
+> +	 * Bulk clocks getting procedure can fail to find any clock due to
+> +	 * running on a non-OF platform or due to the clocks being defined in
+> +	 * bypass of the DT firmware (like da850, spear13xx). In that case we
+> +	 * fallback to getting a single clock source right from the dev clocks
+> +	 * list.
+> +	 */
+> +	rc = devm_clk_bulk_get_all(dev, &hpriv->clks);
+> +	if (rc < 0)
+> +		goto err_out;
+> +
+> +	if (rc > 0) {
+> +		/* Got clocks in bulk */
+> +		hpriv->n_clks = rc;
+> +	} else {
+>  		/*
+> -		 * For now we must use clk_get(dev, NULL) for the first clock,
+> -		 * because some platforms (da850, spear13xx) are not yet
+> -		 * converted to use devicetree for clocks.  For new platforms
+> -		 * this is equivalent to of_clk_get(dev->of_node, 0).
+> +		 * No clock bulk found: fallback to manually getting
+> +		 * the optional clock.
+>  		 */
+> -		if (i == 0)
+> -			clk = clk_get(dev, NULL);
+> -		else
+> -			clk = of_clk_get(dev->of_node, i);
+> -
+> -		if (IS_ERR(clk)) {
+> -			rc = PTR_ERR(clk);
+> -			if (rc == -EPROBE_DEFER)
+> -				goto err_out;
+> -			break;
+> +		hpriv->clks = devm_kzalloc(dev, sizeof(*hpriv->clks), GFP_KERNEL);
+> +		if (!hpriv->clks) {
+> +			rc = -ENOMEM;
+> +			goto err_out;
+> +		}
+> +		hpriv->clks->clk = devm_clk_get_optional(dev, NULL);
+> +		if (IS_ERR(hpriv->clks->clk)) {
+> +			rc = PTR_ERR(hpriv->clks->clk);
+> +			goto err_out;
+> +		} else if (hpriv->clks->clk) {
+
+Nit: the else is not needed here.
+
+> +			hpriv->clks->id = __clk_get_name(hpriv->clks->clk);
+> +			hpriv->n_clks = 1;
+>  		}
+> -		hpriv->clks[i] = clk;
+>  	}
+>  
+>  	hpriv->ahci_regulator = devm_regulator_get(dev, "ahci");
+
+
+-- 
+Damien Le Moal
+Western Digital Research
