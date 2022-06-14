@@ -2,101 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E534854ABAE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:23:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AF0554ABBE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 10:25:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240415AbiFNIXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 04:23:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48304 "EHLO
+        id S1352611AbiFNIZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 04:25:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240620AbiFNIXl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:23:41 -0400
-Received: from esa2.hgst.iphmx.com (esa2.hgst.iphmx.com [68.232.143.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18A5D369D9
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:23:40 -0700 (PDT)
+        with ESMTP id S231969AbiFNIZt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 04:25:49 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 449AE39BB7;
+        Tue, 14 Jun 2022 01:25:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1655195020; x=1686731020;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=MmvF2pvUPJk+l0G2cFMgXO+laIHLHX4qzgsWbZlC+FM=;
-  b=QCIItuFAQcpJ1jQdKdCedubREQk3Uf0YxXoD+NxcSPhTsdcQK28xcDWC
-   fG/iRDU2OikBjLbRAo+xvIEDiRpIIBVDuXfjTrMcB4hK+SVfCzj6ccRC+
-   PZQ5SNQ0nZ82Gi20HuLhXXkjCIS9Mm0gUs0f0gONfsWMmT+l2cFkS1lIF
-   v/O3BHzfhLWI5ycYYeIquIcY9xnAgtxaUPr6nw1EKqXroacPRtaVF7G+D
-   oWKf+yVo1rfFeO5WJfQU/dPGBjPMt5CfgCzlMMl0zaNPcHkn4JIW60Mx9
-   tTyexjWhpdoxGA8hWvkW2ceuyjct5pAENelFwYoI6TVFloRW5YgAXMZSJ
-   w==;
-X-IronPort-AV: E=Sophos;i="5.91,299,1647273600"; 
-   d="scan'208";a="307384171"
-Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 14 Jun 2022 16:23:38 +0800
-IronPort-SDR: aNX7qgxVsHCPKLSdZkM28I9V+IllRDmiSvrQyyV6ewaoifFocacZlySAvsjhbtVYCa0uD+xUCo
- yi5k9CrYxBF5Q1/Lom3uLJTpRMc307Ba+SrwzIe3N+8xnTOZz93UfLgEBJ7b8mdqGElXTK9lZZ
- erUhlOxrvUdXTJXrUnhH3pNsAl0eaNnLr20YdYpc73kKUfwJHJOXmgUHWil3k/IaAYxUXkV6gS
- NkWp997+KiXRo2dZ/enxq+WhGsx1+Y0tRJt+E1LmTPWuUQecfHce2Qy3ipxAUG6gEEOH7lvbQE
- /f/YJi3sD6LIiIOj+C08CtBv
-Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Jun 2022 00:46:36 -0700
-IronPort-SDR: MRCGTegQEn79MVAM+Nn95J/Ik7CpM3j2F7+pTRmGW2OKOhGZAeOkv7hHkG7DtCvqcue9FiszII
- A5obibDS5PDkQlwa5geEVOng6B5LvKUmtDaB/JJOkEzR93ZM5Ff7oW3+f2VDJvexzHrwjtJn6s
- qnLwz6a/uc0ad1GOEq0OnN6ks1ZMBri+Ixm8ET4lBQqtaqdP2llVY3P79c27aD47w72/oYlpLb
- QFjMO7S8CYwMdIzblcupzjucmE7zmsmQKMrkV9KEZn6CAUCFGwGa9HV2ipcibwfiwe9sMTGcD0
- o2Y=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Jun 2022 01:23:38 -0700
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4LMhKP4MDqz1SVp2
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:23:37 -0700 (PDT)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1655195016; x=1657787017; bh=MmvF2pvUPJk+l0G2cFMgXO+laIHLHX4qzgs
-        WbZlC+FM=; b=cZgBSiPGopdTy3/f3GexXyiQJGRLQCM5ePdjjqM+Mw5uensNmg5
-        02s/0vZmih6XWX3v/F4UyynmVBuVpMJ2CVW7sEVuq8T7d/YwePnO7JHp8VfZ+w+d
-        JSNT7ngTk1d/PUJ8YQ40msTkvWOXYLjJdvPXV+7PuO2TLoVRNiMbnLgpLSZnHyv7
-        A6BHlclzYoVKYxydhG30lwNfoZiVED4rP/waEx06tT1RuVq+FDfldH2bsjCGpntQ
-        Bwwu1aIOQ3ZgrRiHm5hSpQEhLTjh1okSo1jCfDt5uC9ujFkmQMc9zxFNcNlFT0N6
-        aEZ0ufp9l94E4+baq7rH9HpKd+88a+Era9g==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id yAPJ74jGc9d9 for <devicetree@vger.kernel.org>;
-        Tue, 14 Jun 2022 01:23:36 -0700 (PDT)
-Received: from [10.225.163.77] (unknown [10.225.163.77])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4LMhKM12P2z1Rvlc;
-        Tue, 14 Jun 2022 01:23:34 -0700 (PDT)
-Message-ID: <c388835e-3bc1-a69c-82a7-6036c7adec1b@opensource.wdc.com>
-Date:   Tue, 14 Jun 2022 17:23:33 +0900
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v4 08/23] ata: libahci_platform: Sanity check the DT child
- nodes number
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1655195148; x=1686731148;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-id:content-transfer-encoding:mime-version;
+  bh=+gZ1o/6G0JfWwF8nApVTBve7SVqOrzcYs5inxXopF10=;
+  b=FkKioztnIsom4SwsTt4fd8bNB2fqdnuINPleGf2ptfuuZklbmzo6mFLF
+   lfoW14zPVr0AGQqhF1X13nGB/Dv1DWRlbBP1zSrOayXBGeQtLEGtAPKqe
+   3SVwENdLUVofzNe4UyMRNq5ppKB6P9dX4iIHFoC/Zdh3j7zYBr577kQFF
+   nYuZcbOEtseD3nKon04Me8jiPznz9rciVbqUacaKBLjS3gTJbLh22efX7
+   /UIRg+v+3M3Lw/qjzgN5UeqEyCYbwHG3oldzMb7AJpPHlG2DYVe/FSZnQ
+   4YmgOntLvPwqZEvear0b503u59QWXSujmHgUAGUyRuqG3c7lnYP7xZqe6
+   g==;
+X-IronPort-AV: E=Sophos;i="5.91,299,1647327600"; 
+   d="scan'208";a="99914483"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Jun 2022 01:25:47 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 14 Jun 2022 01:25:47 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
+ Transport; Tue, 14 Jun 2022 01:25:47 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Po/oQbPggplAqP35MS8cS3vafEMDr4WPTa441xEz+2OiiisEIn31Ux2tvDDhMVl/4Q2cfjX9koIRTYPYkp8ewyLAvvu38Fo+uzCoF3PzdHSP5EjM8/RzEg230eBCrp00RDQQTkwmFozKd8dNnw0LhPt8Ibn3p8zUAA7+E+gfjN7n6Tt4NNufdpFV8XxYgHL7KqqjhbHIfOo22l2WCkT5bTzORUlMCVifyO08tOd1JvYIUYFcp1zOa1/q6N2GbBytBRwHsSamxAwXosX8j5frdMCHnIGzsGG/DMM0YQOhcIn18emQpM2muREdO0lxc+MbilHnKE2HP9m7IBGa3K60ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+gZ1o/6G0JfWwF8nApVTBve7SVqOrzcYs5inxXopF10=;
+ b=CzYEc1dnckFahcDkU2gZ5GR0i5LvObqrGI6nL0BVPoLi1aOiwgiN63Kp9VE9hYW2B8M537bkSo/4yFxGuT44b8baFEVszNo4SPe6rXdXSyDv1VaVHoedyW46WVQ8iL1xePDcDvTe7fHl5x2MlU0bKQ2M1AK4Xxf/FwnGTkm1keBHZXVnCerDfNukBfCTYyOGXQOhRVrIFtYoLz0b8CfW7cc+6N9ELYITybYzxFWxu/T9Octu9KZ6osfD2cl1IbmYqFVrD8gJQo/2dq8foAtW/4CDbzhskZIFDgQBz/toayVPbZuRH+QfBZI+zQTF4JE3leURS3qhslFqgWmjFYNtLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+gZ1o/6G0JfWwF8nApVTBve7SVqOrzcYs5inxXopF10=;
+ b=O33crtR7+mqkzE6DIGCUG+kbU1ZKdv0eFCzl+xslLA1b0NjlB5YGkECRBdazu49aLrrFd/QT/mWbZGaMZz+2eSZHOTlSm3Fj7Ot6ZkXOTnBjpUbfrTfJg9oaSrTHzlk6RWVBjjyN47mipN7v+ITm5RRRRy7WGp8fhw3nyK/3Guw=
+Received: from MW4PR11MB5936.namprd11.prod.outlook.com (2603:10b6:303:16b::11)
+ by DM6PR11MB2955.namprd11.prod.outlook.com (2603:10b6:5:65::31) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.20; Tue, 14 Jun
+ 2022 08:25:41 +0000
+Received: from MW4PR11MB5936.namprd11.prod.outlook.com
+ ([fe80::ddf6:11cc:3391:d4e9]) by MW4PR11MB5936.namprd11.prod.outlook.com
+ ([fe80::ddf6:11cc:3391:d4e9%6]) with mapi id 15.20.5332.020; Tue, 14 Jun 2022
+ 08:25:41 +0000
+From:   <Codrin.Ciubotariu@microchip.com>
+To:     <peda@axentia.se>, <wsa@kernel.org>, <linux-i2c@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <Ludovic.Desroches@microchip.com>, <Nicolas.Ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <robh+dt@kernel.org>,
+        <kamel.bouhara@bootlin.com>
+Subject: Re: Regression: at24 eeprom writing times out on sama5d3
+Thread-Topic: Regression: at24 eeprom writing times out on sama5d3
+Thread-Index: AQHYfA01c45T/mrWhU2n/5J6R8aiEq1IQRKAgAUy9QCAAAyngIABF+EA
+Date:   Tue, 14 Jun 2022 08:25:41 +0000
+Message-ID: <ebadf90a-066d-1cbe-b15a-3a99e3ab2bd5@microchip.com>
+References: <074b39c5-55fc-2bc1-072d-aef1070e284d@axentia.se>
+ <2bb4868b-90ab-887e-bf13-9de8b79231bd@microchip.com>
+ <YqdQoJbsgwjQ9PYh@shikoro> <0ce8b9d7-8a9e-cded-1762-71e230f4246c@axentia.se>
+In-Reply-To: <0ce8b9d7-8a9e-cded-1762-71e230f4246c@axentia.se>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
- <20220610081801.11854-9-Sergey.Semin@baikalelectronics.ru>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <20220610081801.11854-9-Sergey.Semin@baikalelectronics.ru>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ccdd4da8-31b7-4277-e7fc-08da4ddf7835
+x-ms-traffictypediagnostic: DM6PR11MB2955:EE_
+x-microsoft-antispam-prvs: <DM6PR11MB2955B07918D1279E788C78A8E7AA9@DM6PR11MB2955.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kbCDqVGfJux64vmZqj5KQHbdZ7hdPngWcOjIdnTwq0zU/Xf4/1bd1vL1YgMbXqcgihfWcS9wJcbA4gAFhb51hf3G0q1jg9ewKlBt1cQ7ebefHTuZsdM3KT+0HQQjU9UwkN+WXCN9kqjhJhsPnwKnQgJYrrbfRiqtfM7D9fJCTBA60C2SO97eHGMDuiBl3sf2HnadiT49WnVbjU9AELfHlp46F87DKQp1SGXq2JtwXClIa2VNWh4L+8BBScn75gxXfwJvieOXGU2q38+9DxDSOJEJgHudGvGTkx3uXkeatOkkkOCuDqfuFH4xRVIOYTi4K415tjTWv4PZyw0a9UjC4PwhK3jJpbRmYyHp9Rr39nt3E7DWRDNUuDyFvcJHJXip9AnzDE00zQUGBHAKrYqZTaQ2AI9xug6kiOWRafNmkYIz3oCGHqxt6NsWHY1vG0SgZjEXAZuWsbQMMogWol13u8UpcTO9l5skUiXw2/vfIEDxc5tvqBV5LK4Fw+/vLlGOQWx0r9gtv9NxZ2rCjo0CcV+3DAyCdzJaVZQZI2eajKhs/bFeePTEywzXe0eSJ81Hag7m651gg3V3PJDIwSF9F9v1PDKam3/Y9rFsfiUSnY4SVBAiQOIx/mfVCSwKDDHDVv7RsthW/FgGZJLdqhvIJCdZrjEwon62MxXBJRIzmLgrII+lztk2gMHOZqFlBYfKp/0eZPbWUJWuMLQwZgcEWzyf0jYPSf9JQv99HGr/DOv7MfBPTLaXUUOQQxBwyHWpxG0RnHBT5JE3WJRVKV1aKwnWAP8Ps6gH9Ya6BahQPfk=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR11MB5936.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(2616005)(186003)(38100700002)(36756003)(31696002)(8936002)(921005)(122000001)(4744005)(316002)(5660300002)(38070700005)(66476007)(66556008)(64756008)(8676002)(2906002)(508600001)(66946007)(6486002)(6512007)(6506007)(91956017)(76116006)(26005)(66446008)(110136005)(53546011)(71200400001)(31686004)(86362001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?M0R2dllSWTBDMmpmWUxZVGlFQlFGTGtGZmw4ZkVZTUJHOWpqVWRpUzExa1Rs?=
+ =?utf-8?B?TERlaVFSV0ROL1NlRjRvNWZDa0JybnEySTMrRW1VRWdJcDQrdzJsczJHNVls?=
+ =?utf-8?B?VUpFNzdqUWZiSDdyVnE0NW9SRXhSK05DZDBXQS9yUWZGODBzbEMwYUowU3NO?=
+ =?utf-8?B?REFmaWdCYzZ3d3g3VXVqYkYzWi9OYVlyQTBWWWZPQmloNmJ5UUZYdWtrckhM?=
+ =?utf-8?B?T1NyRE9qNEpuUy9JZVgrTjF6MC9veWVPMjNNWUhOMENNYXhkeVpFbmtwdlJn?=
+ =?utf-8?B?bzRNbCtEMnFNbStyTklpN0FZckxXUXkzc3JQRzlXOE9nREY1TlFpK0k5N3Yw?=
+ =?utf-8?B?RFgrWUc5eHVLZVZuOHp4emFzbGc3S2xyM3VReDVFY1NNMFFvMVIxNlAwdE5x?=
+ =?utf-8?B?OUJMSmJtdFBaRGVXcTBqUXNBdUJzUUNSbzFncnNBVFpPV2lLZnNCTllURzFv?=
+ =?utf-8?B?L0ZOalgvdHNRdXFxUVRPQ0xLZ2N5L0t1aEM1dEs2UkhTcWtCd3pudld6T0Ex?=
+ =?utf-8?B?amFtU3RFdDV4NU9HRXR1V1dCTDEyaFg5b3hYQjN0a3cxRjlxQ2JpY2VFRXlo?=
+ =?utf-8?B?U3VVVTVKdnBTYXM0T0RSZmRseUlGeUJWQ0hTcStDdStnOWxzcDhKcDl5S3VD?=
+ =?utf-8?B?bFJIcXdHdWtxRC9Kdy9QajVOdnZWYmRNTHp2cmtPK3JoQUU1WXJNQUFoQlJq?=
+ =?utf-8?B?REpGREdST2lDM1Jqc3crQjBoR1M3d0pUY2NqUjdjc3pEckUyQ0o5NGFDV1hM?=
+ =?utf-8?B?eG1KL2lNTVJ5WTU5Q0lrVHBxbzNKSVR4eVVWayt0UUZXYmxEaWM1WVBvbys0?=
+ =?utf-8?B?N1Ayc1ErZnc0UTNrU2RYZENZbmU1cGczbHpqRHpYNHRYV0tkQ2JPZXJubXJy?=
+ =?utf-8?B?ekJJY3BBbUhxY1dLV29ncGlKUmFodnN3eDUzSGRKZnVUVWVLQVR5VXRQS1c0?=
+ =?utf-8?B?Um1ERDROSU9wUFVEaURQK3FOTCtWSWtKdXBJWjZweDAydXBrOHVBSEpMWmht?=
+ =?utf-8?B?V01UWmxGWGU0U29rSXVLTXlVcTNUU1hnb25BWTl5SW03RVpNRVM1ZVZEN09Y?=
+ =?utf-8?B?ZHdaREYxVjdBQ1JoeFY1Y3FmOTU0K0ZmQXU3a0txYnJBZ2RXWTVjbGl0Ulpp?=
+ =?utf-8?B?RkltYWV6V0s3UUxPOEJ5VkFUbjlkTW91TzhITm9yc2taUlE2b1I5ck1GUWpJ?=
+ =?utf-8?B?WWZab2Q0UlQvWC84TDhtdDlWckx3UVk1Ykh4aUlLZXByZkZuYytabzZBM2FK?=
+ =?utf-8?B?R0lscHhtQ3VPQjNIdm1zOVQwOE5ISXZJMlFBUVArNFZWWCtlRno5ZEx3R1Ey?=
+ =?utf-8?B?dU5BT2Iwbm0wcVBwSjYvVzJuWGFSZXluNnYzTkY2NHhHaTB2Ulpyei85UnRp?=
+ =?utf-8?B?SXFSMkkvYjl1V2xwY0RQaExuYnpSajlSckYwVHE0ZEl3VUl2eWVKOHQwcVdM?=
+ =?utf-8?B?MEdOU252R2laVUdITzFwNlcwV1VpSTByVk9wdlF0UUsvM0gzWis1Uk0wVElG?=
+ =?utf-8?B?bGVld2Y4RVQ3MkcwdHF6TGdyZTVWb0lqUm9XVzR2bXZvR3ZORk50T2N0dTNi?=
+ =?utf-8?B?UnFSUGFKRmZDQTRQNEd3TVZyd0R0UENnODVudGRMN21UVWthWm0wR2ppZTR1?=
+ =?utf-8?B?aDJkY2xraWZpSTdpSjA0bUNUTWFHZWdPRWpHM3JYQW5vbXUvM0JoMjlqUHlN?=
+ =?utf-8?B?TTZONlVQUThOMVpPN0RYaU5hNmlIMW5hQVZLS215d2wrV3JkdzJQL0E5NkhX?=
+ =?utf-8?B?a3FjVVlwdEtCUHlvUEw2UkZRU3JQNEhIazAzK1Qra2FXRzBhcE1ZYWlFbTYy?=
+ =?utf-8?B?Z2FPcVFXdTVDSVFBakhySituVDVVb0VXRnYrZHRQbWNxK0pEVFhSbGZ6d3Rs?=
+ =?utf-8?B?M0QwanNuQnlQOXB0MzZXNmR4amZBaFI4TnZtYnR0UGQ0SHlZT2gvTHQzYU5E?=
+ =?utf-8?B?dFBwMmlDNlN5WGU4L3A5WFYrSVplK090QjVZWGZvNHBSUUpQRWhNT251bFhI?=
+ =?utf-8?B?MjdDOUQ4c01vMktGOUxvWVdlM3BtNXRkeVM4bEZWMEVrTTl6RkNiZ3MzTnpm?=
+ =?utf-8?B?ckhJcHhKWmtrd1JxeXhFaVowWkRYVXRaY2ZKVnk0SzlvRi9ZZWVsRW5HYUt5?=
+ =?utf-8?B?a3l6SnR1azZqL1RCMGEzWWpTNSt6bFdTRER6UkNEeVhtdWtMZFQvbE9naXI5?=
+ =?utf-8?B?N2M2OVRRYktZTlRTMUNQVi8xa0dDdHFJVTZadWdxVlh2Rmg3Ly8xL2Jhalpm?=
+ =?utf-8?B?b01kV2lqMEZ3cjV4NEROVloycGRKM0Jmc3ZoSTRQVitqWG1iL09VeFpGLy9v?=
+ =?utf-8?B?ZUFMa2ZNNEZ2THpsNFV4eVNWelVSbEo2QzNBUVlTYWh2TjBUQTF4SVVQRHYr?=
+ =?utf-8?Q?WsLcLpqgOCdwOhww=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3B8A55632084864E9D08A0E4A3FDE1BD@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB5936.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ccdd4da8-31b7-4277-e7fc-08da4ddf7835
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2022 08:25:41.5554
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PyVfb+Fr3RKkq06rGh2EuNI/nRTb8otGSYSz2X5KeaWp3HKX/TuYdA3NVL+pBgY17LHgkIoB9axL7gNW3FRjKscKqKkeh+1rj+9rddG3VWE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2955
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -104,74 +162,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/10/22 17:17, Serge Semin wrote:
-> Having greater than AHCI_MAX_PORTS (32) ports detected isn't that critical
-> from the further AHCI-platform initialization point of view since
-> exceeding the ports upper limit will cause allocating more resources than
-> will be used afterwards. But detecting too many child DT-nodes doesn't
-> seem right since it's very unlikely to have it on an ordinary platform. In
-> accordance with the AHCI specification there can't be more than 32 ports
-> implemented at least due to having the CAP.NP field of 5 bits wide and the
-> PI register of dword size. Thus if such situation is found the DTB must
-> have been corrupted and the data read from it shouldn't be reliable. Let's
-> consider that as an erroneous situation and halt further resources
-> allocation.
-> 
-> Note it's logically more correct to have the nports set only after the
-> initialization value is checked for being sane. So while at it let's make
-> sure nports is assigned with a correct value.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Reviewed-by: Hannes Reinecke <hare@suse.de>
-> 
-> ---
-> 
-> Changelog v2:
-> - Drop the else word from the child_nodes value checking if-else-if
->   statement (@Damien) and convert the after-else part into the ternary
->   operator-based statement.
-> 
-> Changelog v4:
-> - Fix some logical mistakes in the patch log. (@Sergei Shtylyov)
-> ---
->  drivers/ata/libahci_platform.c | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
-> index 814804582d1d..8aed7b29c7ab 100644
-> --- a/drivers/ata/libahci_platform.c
-> +++ b/drivers/ata/libahci_platform.c
-> @@ -451,15 +451,22 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
->  		}
->  	}
->  
-> -	hpriv->nports = child_nodes = of_get_child_count(dev->of_node);
-> +	/*
-> +	 * Too many sub-nodes most likely means having something wrong with
-> +	 * the firmware.
-> +	 */
-> +	child_nodes = of_get_child_count(dev->of_node);
-> +	if (child_nodes > AHCI_MAX_PORTS) {
-> +		rc = -EINVAL;
-> +		goto err_out;
-> +	}
->  
->  	/*
->  	 * If no sub-node was found, we still need to set nports to
->  	 * one in order to be able to use the
->  	 * ahci_platform_[en|dis]able_[phys|regulators] functions.
->  	 */
-> -	if (!child_nodes)
-> -		hpriv->nports = 1;
-> +	hpriv->nports = child_nodes ?: 1;
-
-This change is not necessary and makes the code far less easy to read.
-
->  
->  	hpriv->phys = devm_kcalloc(dev, hpriv->nports, sizeof(*hpriv->phys), GFP_KERNEL);
->  	if (!hpriv->phys) {
-
-
--- 
-Damien Le Moal
-Western Digital Research
+T24gMTMuMDYuMjAyMiAxODo0MywgUGV0ZXIgUm9zaW4gd3JvdGU6DQo+IEVYVEVSTkFMIEVNQUlM
+OiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91IGtub3cg
+dGhlIGNvbnRlbnQgaXMgc2FmZQ0KPiANCj4gSGkhDQo+IA0KPiAyMDIyLTA2LTEzIGF0IDE2OjU4
+LCBXb2xmcmFtIFNhbmcgd3JvdGU6DQo+PiBIaSBDb2RyaW4sDQo+Pg0KPj4+IGNvdWxkIHlvdSBw
+bGVhc2UgYXBwbHkgdGhpcyBwYXRjaC1zZXQgWzFdIGFuZCBsZXQgdXMga25vdyBpZiBpdA0KPj4+
+IGFkZHJlc3NlcyB5b3VyIGlzc3VlPw0KPj4NCj4+IEFueSBjb21tZW50cyB0byB0aGUgY29tbWVu
+dHMgSSBnYXZlIHRvIFsxXT8gOikNCg0KSSByZXBsaWVkIHR3byB0aW1lcywgYnV0IGl0IGxvb2tz
+IGxpa2UgbXkgZS1tYWlscyBhbHNvIGRvbid0IHJlYWNoIHRoZSANCmxpc3QuDQoNCj4gDQo+IEkg
+cmVwbGllZCB0byBwYXRjaCAxLzMgYW5kIDIvMyBidXQgaGF2ZSBub3Qgc2VlbiB0aGVtIG9uIHRo
+ZSBsaXN0cyBhbmQNCj4gcGF0Y2h3b3JrIGFsc28gYXBwZWFycyB0byBiZSBpbiB0aGUgZGFyay4N
+Cj4gRGlkIHRoZSByZXBsaWVzIG1ha2UgaXQgYW55d2hlcmU/IFNob3VsZCBJIHJlc2VuZD8NCg0K
+U2FtZSBpbiBteSBjYXNlLiBJIHRob3VnaCBpdCBoYXMgc29tZXRoaW5nIHRvIGRvIHdpdGggbXkg
+c2V0dXAgb3IgDQpNaWNyb2NoaXAncyBJVCwgYnV0IGl0IGxvb2tzIGxpa2UgaXQncyBub3QgdGhl
+IGNhc2UuDQoNCkkgY2FuIHJlc2VuZCB0aGUgcGF0Y2hlcy4gSG9wZWZ1bGx5IGl0IHdpbGwgaGVs
+cC4NCg0KQmVzdCByZWdhcmRzLA0KQ29kcmluDQo=
