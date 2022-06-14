@@ -2,160 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05D0F54A9CA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 08:50:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEC6154A9C5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 08:50:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352454AbiFNGtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 02:49:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52320 "EHLO
+        id S1352603AbiFNGt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 02:49:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352435AbiFNGtE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 02:49:04 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23435393E0;
-        Mon, 13 Jun 2022 23:49:04 -0700 (PDT)
-Received: from beast.luon.net (unknown [IPv6:2a10:3781:2531::8])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sjoerd)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D33A866016AA;
-        Tue, 14 Jun 2022 07:49:02 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1655189342;
-        bh=HEY57/+pQCdqZeUqLYJAbru4ZTJec0xYbZTMVXt16Ag=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=cByx7Kv+Nf87SMgS2jkmXOjVVEQa88yPCjeTDa2PD53e4clOraP6sQykPydDm7lMH
-         nAaXYjBHe7Tr+L55Fhe2KammIahnevC35qY+CE8lyY3qBREhQHqvs4/S1u7i0aQIHv
-         6DNBzZI9JLZptUlOWy/3yqWR+RDbmqfV44ABqW8qG7yBI1qo5ctFx6l8rHPZxnXqjm
-         +Bb7Ee8WCEn6Hd3L47Oo8iAn0HRl5IwZJjw9sgMEvnOFNXA760MxojE7vK7a9Ryjt9
-         D2quFLXZeB4OqVsXJfLpRU2YisGtN9fJBzj4JpMPwVcipuBnizCNQ68BomwrAY0Mv0
-         tHj53OTP4AgKg==
-Received: by beast.luon.net (Postfix, from userid 1000)
-        id 1E97D4179E46; Tue, 14 Jun 2022 08:49:00 +0200 (CEST)
-From:   Sjoerd Simons <sjoerd@collabora.com>
-To:     linux-rockchip@lists.infradead.org
-Cc:     kernel@collabora.com, Akash Gajjar <akash@openedev.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: rock-pi-s add more peripherals
-Date:   Tue, 14 Jun 2022 08:48:57 +0200
-Message-Id: <20220614064858.1445817-4-sjoerd@collabora.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220614064858.1445817-1-sjoerd@collabora.com>
-References: <20220614064858.1445817-1-sjoerd@collabora.com>
+        with ESMTP id S1352602AbiFNGtR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 02:49:17 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86E78393E8
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 23:49:16 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1o10MR-00064H-N2; Tue, 14 Jun 2022 08:49:11 +0200
+Message-ID: <22ce9497-563f-0855-bec2-c56d4ddcfffa@pengutronix.de>
+Date:   Tue, 14 Jun 2022 08:49:09 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH V3 1/2] mtd: allow getting MTD device associated with a
+ specific DT node
+Content-Language: en-US
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Tom Rini <trini@konsulko.com>,
+        linux-arm-kernel@lists.infradead.org, u-boot@lists.denx.de,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20220611204651.19947-1-zajec5@gmail.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20220611204651.19947-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables the following peripherals:
-* Onboard ethernet support
-* Bluetooth
-* USB 2 port
-* OTG port via type-c connector
-* Hardware watchog
+Hello Rafał,
 
-Also add aliases for the mmc devices and the ethernet interface
+On 11.06.22 22:46, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> MTD subsystem API allows interacting with MTD devices (e.g. reading,
+> writing, handling bad blocks). So far a random driver could get MTD
+> device only by its name (get_mtd_device_nm()). This change allows
+> getting them also by a DT node.
+> 
+> This API is required for drivers handling DT defined MTD partitions in a
+> specific way (e.g. U-Boot (sub)partition with environment variables).
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+> V3: First introduction of of_get_mtd_device_by_node()
+> 
+> mtd maintainers: please let know how would you like this patch
+> processed. Would that be OK for you to Review/Ack it and let it go
+> through NVMEM tree?
+> ---
+>  drivers/mtd/mtdcore.c   | 28 ++++++++++++++++++++++++++++
+>  include/linux/mtd/mtd.h |  1 +
+>  2 files changed, 29 insertions(+)
+> 
+> diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
+> index 9eb0680db312..7dc214271c85 100644
+> --- a/drivers/mtd/mtdcore.c
+> +++ b/drivers/mtd/mtdcore.c
+> @@ -1154,6 +1154,34 @@ int __get_mtd_device(struct mtd_info *mtd)
+>  }
+>  EXPORT_SYMBOL_GPL(__get_mtd_device);
+>  
+> +/**
+> + * of_get_mtd_device_by_node - obtain an MTD device associated with a given node
+> + *
+> + * @np: device tree node
+> + */
+> +struct mtd_info *of_get_mtd_device_by_node(struct device_node *np)
+> +{
+> +	struct mtd_info *mtd = NULL;
+> +	struct mtd_info *tmp;
+> +	int err;
+> +
+> +	mutex_lock(&mtd_table_mutex);
+> +
+> +	err = -ENODEV;
 
-Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
+Shouldn't this be -EPROBE_DEFER? That way drivers making
+use of this function can defer probe until the device
+is probed.
 
----
+> +	mtd_for_each_device(tmp) {
+> +		if (mtd_get_of_node(tmp) == np) {
+> +			mtd = tmp;
+> +			err = __get_mtd_device(mtd);
+> +			break;
+> +		}
+> +	}
+> +
+> +	mutex_unlock(&mtd_table_mutex);
+> +
+> +	return err ? ERR_PTR(err) : mtd;
+> +}
+> +EXPORT_SYMBOL_GPL(of_get_mtd_device_by_node);
+> +
+>  /**
+>   *	get_mtd_device_nm - obtain a validated handle for an MTD device by
+>   *	device name
+> diff --git a/include/linux/mtd/mtd.h b/include/linux/mtd/mtd.h
+> index 955aee14b0f7..6fc841ceef31 100644
+> --- a/include/linux/mtd/mtd.h
+> +++ b/include/linux/mtd/mtd.h
+> @@ -677,6 +677,7 @@ extern int mtd_device_unregister(struct mtd_info *master);
+>  extern struct mtd_info *get_mtd_device(struct mtd_info *mtd, int num);
+>  extern int __get_mtd_device(struct mtd_info *mtd);
+>  extern void __put_mtd_device(struct mtd_info *mtd);
+> +extern struct mtd_info *of_get_mtd_device_by_node(struct device_node *np);
+>  extern struct mtd_info *get_mtd_device_nm(const char *name);
+>  extern void put_mtd_device(struct mtd_info *mtd);
+>  
 
-(no changes since v1)
 
- .../boot/dts/rockchip/rk3308-rock-pi-s.dts    | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
-index 9095efe25ccd..46ba48b843c5 100644
---- a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
-@@ -11,6 +11,12 @@ / {
- 	model = "Radxa ROCK Pi S";
- 	compatible = "radxa,rockpis", "rockchip,rk3308";
- 
-+	aliases {
-+		ethernet0 = &gmac;
-+		mmc0 = &emmc;
-+		mmc1 = &sdmmc;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:1500000n8";
- 	};
-@@ -132,6 +138,15 @@ &emmc {
- 	status = "okay";
- };
- 
-+&gmac {
-+	clock_in_out = "output";
-+	phy-supply = <&vcc_io>;
-+	snps,reset-gpio = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
-+	snps,reset-active-low;
-+	snps,reset-delays-us = <0 50000 50000>;
-+	status = "okay";
-+};
-+
- &i2c1 {
- 	status = "okay";
- };
-@@ -195,10 +210,47 @@ &sdmmc {
- 	status = "okay";
- };
- 
-+&u2phy {
-+	status = "okay";
-+
-+	u2phy_host: host-port {
-+		phy-supply = <&vcc5v0_otg>;
-+		status = "okay";
-+	};
-+
-+	u2phy_otg: otg-port {
-+		phy-supply = <&vcc5v0_otg>;
-+		status = "okay";
-+	};
-+};
-+
- &uart0 {
- 	status = "okay";
- };
- 
- &uart4 {
- 	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8723bs-bt";
-+		device-wake-gpios = <&gpio4 RK_PB3 GPIO_ACTIVE_HIGH>;
-+		host-wake-gpios = <&gpio4 RK_PB4 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&usb_host_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host_ohci {
-+	status = "okay";
-+};
-+
-+&usb20_otg {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&wdt {
-+	status = "okay";
- };
 -- 
-2.36.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
