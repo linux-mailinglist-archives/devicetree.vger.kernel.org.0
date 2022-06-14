@@ -2,164 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C70C254B85B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 20:14:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51C9154B89B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 20:29:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229946AbiFNSN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 14:13:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36508 "EHLO
+        id S229686AbiFNS3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 14:29:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbiFNSN6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 14:13:58 -0400
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4408019F80
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 11:13:57 -0700 (PDT)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-30ec2aa3b6cso37947597b3.11
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 11:13:57 -0700 (PDT)
+        with ESMTP id S243033AbiFNS3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 14:29:37 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19E7E49247;
+        Tue, 14 Jun 2022 11:29:35 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id z7so12818991edm.13;
+        Tue, 14 Jun 2022 11:29:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZsjTA9iJIzTxX4ygR8FdKM9wnHJIUgreAx1BZ2osk+k=;
-        b=elkEMMAy3wPQwGf1ROmnn/4Isu60xOrk5kwhUf9POtxNbXra9m+VOIyaYdDcP+3CU3
-         2JT5ARrP4xwLtPX0Ds74mSJUDU0WpEwRhBDquEnA4hNv+/G/6Q6UFzYcWShmefjq8AjX
-         gz+FlbByjs1p+vyfBLAp58Tc0jFjVzOn1TINg=
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=2hbagPy9DfCZIv7VzDsALXlfqRYHeR8658DIeJPqY1I=;
+        b=Zcx+NxgKFFS0rz5/5ceFaZC0nRDR8x0TrYoQT1b4YSoye7qmTi+ZtWLJE5i+XFSBIy
+         KBJXKqJsYGLrT+l2jghrDiaYNBEznL28L21Af9X4Paz+Yhd4lVyrH9AX5NsHWKLJwsbn
+         MAuF9NDaFbg8iTBtVaS0XRs8jAhzjJDVoCCHgvZDA3k7T8PZn6WlEnSPbVgN4D8ky1yQ
+         OgRY5rUrYzoWKeKkv/m+0FCpKIStZ56StzGpYgvCqvwFOq+PRRdMo9Wh6NE7GcmbY3Q4
+         2aHGT4rJn+W1Y7z/eswomKzHUj/mWpAJj6fqSq7e3iX6cHVL1R33NIELJdUGEyQ+lCAi
+         Lysg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZsjTA9iJIzTxX4ygR8FdKM9wnHJIUgreAx1BZ2osk+k=;
-        b=JarGW13G+jfcC5se9+2FoadAKl+z2tcyM+0eL9cIR+KWM1yGBOJKs9aMHf/n+ZUvrb
-         DUNmSxhjgI7ScwzbctAzDwQkmRn0TCtswQpVXOQpDZxlLV/LwtanXOhnHD9WQJzxlJpU
-         /dkHhc1as1uagp3fGhLGxqurEib/h1sNS5drdGU3OlOYPjuJQO5s5/J6gelpuC6CsJXi
-         Oa7dGjwzVesb0d3Gg4WtmhVsbkRc/KcmRZlvmVsCw+b+Kj7wsQOQI43aKOlDSzRlRtz4
-         kkw2NQLdJCT1fln+wXA/N32+hf3Y/mc32xWAh95psPQ4OEsuP+sBOcTnFVTAEJAWANuw
-         CL+g==
-X-Gm-Message-State: AJIora+4yIsem1vjLXx+y3FgB32AuAskW8Fp29ngT3GRFipF1X7pU6HD
-        BT0JLKbx66P3gteKy8u5a7brzkbH8ZVfFcGjN1srnQ==
-X-Google-Smtp-Source: AGRyM1uE67Atomlar3nLQdgT+jy4zLDSFTPt4ERa1X/kLBHMBihOauBraRP729dfHSV8ag/nSgM1IEdsAe/aMtNwTF8=
-X-Received: by 2002:a81:fd1:0:b0:30f:f98b:4957 with SMTP id
- 200-20020a810fd1000000b0030ff98b4957mr7329858ywp.350.1655230436484; Tue, 14
- Jun 2022 11:13:56 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=2hbagPy9DfCZIv7VzDsALXlfqRYHeR8658DIeJPqY1I=;
+        b=WfuOBWIl/j39mBlaKmHcLOtxpGAQaLLF+LjU58McOGpXLEkX4EC9SlanX0TqFnHkAX
+         aQb3oIuMVI4jL2VNQSgYVdHtv/2YApKeB1eUKdeWG34paBrXoXEfnSl65b+AM59bbw4Z
+         QooJDb+njvKASqxWBCrkagSp0R8ayCm+QYafeOpPglbCwt8Cl8kBilGh9ob51uEbLa+z
+         wK2dKEX+qIvuT8/72WnxTzfeQDxACoFt3G7CrYePZGeplWjS+aKGBKX16l7AvgO5h9o2
+         eecJAxMcG15SuaiOb132a9H/9ZnCHjq+Cg2k48ODFpTr1nYImp6kU8UseDWMuX8D54W/
+         s9Ig==
+X-Gm-Message-State: AOAM532PTJgH8u+pMz8ewc/CWB+zWpQAft/u91armto3vs9VujqeaFCk
+        FhVfwPYls9UHopnAbvM13RM=
+X-Google-Smtp-Source: ABdhPJz+dWkxfnadgXrn6xX3lRffeVZwFY/donfPDomsyNzbT80reRO86qqnwzJKVSKcxi1X5krB2g==
+X-Received: by 2002:a05:6402:1cb5:b0:42d:ddda:7459 with SMTP id cz21-20020a0564021cb500b0042dddda7459mr7827087edb.16.1655231374220;
+        Tue, 14 Jun 2022 11:29:34 -0700 (PDT)
+Received: from [192.168.0.104] (p5b3f7f9c.dip0.t-ipconnect.de. [91.63.127.156])
+        by smtp.gmail.com with ESMTPSA id cf15-20020a170906b2cf00b007072dc80e06sm5235207ejb.190.2022.06.14.11.29.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Jun 2022 11:29:33 -0700 (PDT)
+Message-ID: <5efcbaef-2ab9-9507-b3ab-d173ed350979@gmail.com>
+Date:   Tue, 14 Jun 2022 20:29:32 +0200
 MIME-Version: 1.0
-References: <20220609181106.3695103-1-pmalani@chromium.org>
- <20220609181106.3695103-6-pmalani@chromium.org> <ef3933a8-88c2-f19f-97df-3498f54b9a4f@collabora.com>
-In-Reply-To: <ef3933a8-88c2-f19f-97df-3498f54b9a4f@collabora.com>
-From:   Prashant Malani <pmalani@chromium.org>
-Date:   Tue, 14 Jun 2022 11:13:45 -0700
-Message-ID: <CACeCKaegCzKZdnbZFkE0WWb=99jCfQDA60kTVhOS1TGvdHgpDg@mail.gmail.com>
-Subject: Re: [PATCH v2 5/7] drm/bridge: anx7625: Register number of Type C switches
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        heikki.krogerus@linux.intel.com,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Tzung-Bi Shih <tzungbi@google.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Jonas Karlman <jonas@kwiboo.se>,
-        swboyd@chromium.org, Pin-Yen Lin <treapking@chromium.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 3/6] mfd: mp2629: Add support for mps mp2733 battery
+ charger
+Content-Language: en-US
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Xin Ji <xji@analogixsemi.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>
+References: <20220614151722.2194936-1-sravanhome@gmail.com>
+ <20220614151722.2194936-3-sravanhome@gmail.com>
+ <CAHp75VcaU-KkCGZ0tczM6JKaVdGC6icGt0pbpC5sTf+0+ePamQ@mail.gmail.com>
+From:   saravanan sekar <sravanhome@gmail.com>
+In-Reply-To: <CAHp75VcaU-KkCGZ0tczM6JKaVdGC6icGt0pbpC5sTf+0+ePamQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 14, 2022 at 1:22 AM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 09/06/22 20:09, Prashant Malani ha scritto:
-> > Parse the "switches" node, if available, and count and store the number
-> > of Type-C switches within it. Since we currently don't do anything with
-> > this info, no functional changes are expected from this change.
-> >
-> > This patch sets a foundation for the actual registering of Type-C
-> > switches with the Type-C connector class framework.
-> >
-> > Signed-off-by: Prashant Malani <pmalani@chromium.org>
-> > ---
-> >
-> > Changes since v1:
-> > - No changes.
-> >
-> >   drivers/gpu/drm/bridge/analogix/anx7625.c | 20 ++++++++++++++++++++
-> >   drivers/gpu/drm/bridge/analogix/anx7625.h |  1 +
-> >   2 files changed, 21 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > index 53a5da6c49dd..07ed44c6b839 100644
-> > --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > @@ -2581,6 +2581,22 @@ static void anx7625_runtime_disable(void *data)
-> >       pm_runtime_disable(data);
-> >   }
-> >
-> > +static int anx7625_register_typec_switches(struct device *device, struct anx7625_data *ctx)
-> > +{
-> > +     struct device_node *of = NULL;
-> > +     int ret = 0;
-> > +
-> > +     of = of_get_child_by_name(device->of_node, "switches");
-> > +     if (!of)
-> > +             return -ENODEV;
-> > +
-> > +     ctx->num_typec_switches = of_get_child_count(of);
-> > +     if (ctx->num_typec_switches <= 0)
-> > +             return -ENODEV;
-> > +
-> > +     return ret;
->
-> You aren't using the `ret` variable for anything other than returning zero:
-> remove it and simply return 0 here.
-The very next patch does use it, but sure I'll remove it from here and
-introduce it in v6.
->
-> > +}
-> > +
-> >   static int anx7625_i2c_probe(struct i2c_client *client,
-> >                            const struct i2c_device_id *id)
-> >   {
-> > @@ -2686,6 +2702,10 @@ static int anx7625_i2c_probe(struct i2c_client *client,
-> >       if (platform->pdata.intp_irq)
-> >               queue_work(platform->workqueue, &platform->work);
-> >
-> > +     ret = anx7625_register_typec_switches(dev, platform);
-> > +     if (ret)
-> > +             dev_info(dev, "Didn't register Type C switches, err: %d\n", ret);
->
-> Type-C switches are optional for this driver and this will print a sort of error
-> on boards that are *not* declaring any switches on purpose (because perhaps they
-> don't have any, or for any other reason).
->
-> Even though this is a dev_info and not a dev_err, it's still printing an alarming
-> (and useless, in the aforementioned case) message.
-I'll go ahead and convert this to dev_warn, but only trigger if there
-is an error other than ENODEV.
+Hello Andy,
+Thanks for your time to review, I try fix all the review comments
 
->
-> Please fix this.
->
-> Regards,
-> Angelo
->
+On 14/06/22 18:05, Andy Shevchenko wrote:
+> On Tue, Jun 14, 2022 at 5:17 PM Saravanan Sekar <sravanhome@gmail.com> wrote:
+>>
+>> mp2733 is updated version of mp2629 battery charge management
+>> device for single-cell Li-ion or Li-polymer battery. Additionally
+>> supports usb fast-charge and higher range of input voltage.
+> 
+> ...
+> 
+>> +#include <linux/of_device.h>
+> 
+> What the original code misses is the mod_devicetable.h, and also see below.
+> 
+> ...
+> 
+>> +static const struct of_device_id mp2629_of_match[] = {
+>> +       { .compatible = "mps,mp2629", .data = (void *)CHIP_ID_MP2629 },
+>> +       { .compatible = "mps,mp2733", .data = (void *)CHIP_ID_MP2733 },
+>> +       { }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, mp2629_of_match);
+> 
+> No need to move, see below.
+> 
+> ...
+> 
+>> +static int mp2629_probe(struct i2c_client *client,
+>> +                       const struct i2c_device_id *id)
+> 
+> Why out of a sudden you moved from ->probe_new() to ->probe()?
+> 
+I was experiment to pass i2c_device_id table to differentiate, the used 
+compatible. I will switch back to probe_new.
+
+>> +       enum mp2xx_chip_id chip_id;
+>> +       const struct of_device_id *of_id;
+>>          int ret;
+>>
+>> +       if (client->dev.of_node) {
+>> +               of_id = of_match_device(mp2629_of_match, &client->dev);
+>> +               if (!of_id) {
+>> +                       dev_err(&client->dev, "Failed to match device\n");
+>> +                       return -ENODEV;
+>> +               }
+>> +               chip_id = (enum mp2xx_chip_id)of_id->data;
+>> +       }
+> 
+> This all is a single LoC only + property.h:
+> 
+> #include <linux/property.h>
+> 
+>       enum mp2xx_chip_id chip_id;
+> 
+>       chip_id = (uintptr_t)device_get_match_data(&client->dev);
+> 
+sure.
+
+
+Thanks,
+Saravanan
