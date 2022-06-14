@@ -2,148 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBEC454A3B9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 03:37:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04BB954A711
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 04:53:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241423AbiFNBhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 21:37:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46314 "EHLO
+        id S237175AbiFNCxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 22:53:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348199AbiFNBhE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 21:37:04 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929CA33A21
-        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 18:37:02 -0700 (PDT)
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220614013657epoutp041aa544a90e960a175cc4c3861b9fd17e~4WOgoVJg71042610426epoutp04e
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 01:36:57 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220614013657epoutp041aa544a90e960a175cc4c3861b9fd17e~4WOgoVJg71042610426epoutp04e
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1655170617;
-        bh=jA5LhY2FU1o8vJngFMJ1TU1lJY0CuOKBbhd2Dp2tDos=;
-        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
-        b=Vjjx2N65kgRDYZY7Sp7dLCTBcfIHE+HxMbLG2WRiOhywO9ILdIKEZVJ0sCeLQbDDB
-         Wd1wUmbFe+pNaK54Ti0byFI59+6NOUnufrJRfY0O8SAn8l29ZZve6+r8Qmcy/hhrHi
-         YUS0FdzkqYhZbwh9t+b74aToy58/NIRvd6cpLnsk=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-        20220614013656epcas2p2256307430c211ec0bd8ea70dcb1445dd~4WOgFFOWx0196001960epcas2p2m;
-        Tue, 14 Jun 2022 01:36:56 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.99]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4LMWJ72XPhz4x9Q1; Tue, 14 Jun
-        2022 01:36:55 +0000 (GMT)
-X-AuditID: b6c32a46-f8bff70000002624-07-62a7e637a250
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        9D.B7.09764.736E7A26; Tue, 14 Jun 2022 10:36:55 +0900 (KST)
-Mime-Version: 1.0
-Subject: [PATCH v3 5/5] MAINTAINERS: Add Axis ARTPEC-8 PCIe PHY maintainers
-Reply-To: wangseok.lee@samsung.com
-Sender: Wangseok Lee <wangseok.lee@samsung.com>
-From:   Wangseok Lee <wangseok.lee@samsung.com>
-To:     Wangseok Lee <wangseok.lee@samsung.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>
-CC:     Moon-Ki Jun <moonki.jun@samsung.com>,
-        Sang Min Kim <hypmean.kim@samsung.com>,
-        Dongjin Yang <dj76.yang@samsung.com>,
-        Yeeun Kim <yeeun119.kim@samsung.com>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-In-Reply-To: <20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20220614013654epcms2p6b8f11dd03c42b1dfcd908ed3e59c13d8@epcms2p6>
-Date:   Tue, 14 Jun 2022 10:36:54 +0900
-X-CMS-MailID: 20220614013654epcms2p6b8f11dd03c42b1dfcd908ed3e59c13d8
+        with ESMTP id S1354684AbiFNCxJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 22:53:09 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EAD96004C;
+        Mon, 13 Jun 2022 19:34:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1655174056; x=1686710056;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=47svbfWKkXZf9LfactisOBeorwmkIQeKErqvocVmXSE=;
+  b=X8cQ9/9l/tBYD/m4vcJnkUopw5yGZiLGp6PONiClPC7F07WvflplSJ1V
+   2+1pw9Nj9P7fscwgjKq1jTZe5zGE9KWBhW7ZPCBD+jDdHdp2H5zo39csV
+   sYb4repuMECE2EBgawRq12EYLsgxLV7SznmNtYON4XHGCNTPajZ578EUq
+   t8o3KcWy8kW/RRQ+1FkAdbgpPiiAvSzPPCYhK57y9++SWyf8a/303QdiW
+   zd2rFkyXk+7KwBKL1Aje9iyu+t6bZ9ZYkRX1sPhkn8IMh4b0lEE2boy88
+   63zMehR3gVuyQMG3jb+JC7Tai9KS4R1LMQN0W3XqzJCRw2jx3dzFNGnN7
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10377"; a="267169272"
+X-IronPort-AV: E=Sophos;i="5.91,298,1647327600"; 
+   d="scan'208";a="267169272"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2022 19:33:14 -0700
+X-IronPort-AV: E=Sophos;i="5.91,298,1647327600"; 
+   d="scan'208";a="588157874"
+Received: from jiaqingz-mobl.ccr.corp.intel.com (HELO [10.238.1.239]) ([10.238.1.239])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2022 19:33:12 -0700
+Message-ID: <aff542a3-ac98-c33d-9612-63ebca180e17@linux.intel.com>
+Date:   Tue, 14 Jun 2022 10:33:10 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 5/6] dt-bindings: net: Add NCSI bindings
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220610165940.2326777-1-jiaqing.zhao@linux.intel.com>
+ <20220610165940.2326777-6-jiaqing.zhao@linux.intel.com>
+ <1654903146.313095.2450355.nullmailer@robh.at.kernel.org>
+ <21c9ba6b-e84e-4545-44d2-5ffe5fea9581@linux.intel.com>
+ <CAL_Jsq+y3tkfLV8UpUe6jw7Fq7YDrzwoq3FKK4jeeZEBOxhM4g@mail.gmail.com>
+From:   Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
+In-Reply-To: <CAL_Jsq+y3tkfLV8UpUe6jw7Fq7YDrzwoq3FKK4jeeZEBOxhM4g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-X-CPGSPASS: Y
-X-CPGSPASS: Y
-CMS-TYPE: 102P
-X-Brightmail-Tracker: H4sIAAAAAAAAA12Tf1CTZQDHe/ZuLy9205cJ9RzeAb2kgAT7IbBnCV0BZwu0W8dV1h/RC3sF
-        ZGxz71ZWGitEiaaQkiBwYyWB8qsCgSEJ3piuuxphWfw4IPQw4GBSiYkiFWNDu/77PN/7Pt/n
-        +T4/CEwwiAcSOWo9o1PTKgpfx+3oi5BGSX+rzxD9cIxEtR9moxlbBKqx9/NQd0U9B5369HsM
-        TdkqMfTnoc1o4IYJRzOV4zgympZ4yD73B4Z6HWc56Kfz1Thymh04Km34i4vmlqZ9UP/pHFR4
-        we6Duka/xdBon5OL7rXf5zwbIG8yNwH5YItCbmk1yFsbPsLlk1fLOfK22nz5sXMNQO4Y6uTI
-        b7UGKXxfz43PZmglowth1JkaZY46K4FKTUtPSo+NE4mjxDIkpULUdB6TQCXvVETtyFGtNKNC
-        3qJVhhVJQbMsJXwmXqcx6JmQbA2rT6AYrVKllWqjWTqPNaizotWM/mmxSCSJXTG+mZs901cO
-        tFXE/oqxMmAE/+DFgCAgGQMb+6XFYB0hIK0AftM9Bdw6n/SDy9aNxcCX2EimwsISM+5mAUlB
-        a5MZ8+hCOHjmY56bcTIK/n16Bnfn+JPVODw+PcVzDzDSAmDvUg9wuyDJhxVHbnA9vAl21rev
-        6r7ki/CzS8c5Hj0cLtYdxTwcAIcbXT5rPH+5xpvjDwvHnV6PH5y42+3VA6Fl0sbz8Huwd3nJ
-        m2kEsORXxlNYCK2D2zwdd8HFxp1uB5fcDE+M2r0pybC21rmagpHBsNNVjbntGBkBvzwv9ISE
-        QvsId62T8esln/8zRq6HRX3LD3SredK7ly3QfLYLKwWhlQ/PufI/a1U+XMsCsAbwGKNl87IY
-        VqKVPLjZTE1eK1h94Vt3WEGZ6/doG+AQwAYggVH+/BNX6jIEfCX9zruMTpOuM6gY1gZiV1p+
-        ggUGZGpWvohany6OkYli4uLEUkmsSEo9zk9RfkULyCxaz+QyjJbRrc3jEL6BRk7ekGx24Lv5
-        t9eLtldbHLNP3LK30YfuHih/rqYv+M4G18EFouWl+eGRR95gk2ypBa5IWXg4NWfUXpg49wKP
-        u1yOhDVXU3rCUu6pILpk+qDUEmmexMb2XR9OIhNfuZb4xfNpE84Cv1O/MLe35A/oS5Kvtz06
-        rRq54jhD7xbkKNISQy+2zRJHXjbN7+kK24uP1b7qnG9vv+wqDLsjG9sk3H4gruPgyfH6ize3
-        3WTj9hRNcVomgyRBEz2NzVWRsR2v1eWnHw1+H/AX4nWHwX4Fb99ijcFUJTOWgcMJ4gKryA9k
-        DN8vesrB1CU0N//YruSES/SfXyvcbbr989DeyO4F+skNFJfNpsVbMR1L/wuB9p+sagQAAA==
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7
-References: <20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
-        <CGME20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p6>
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainer for Axis ARTPEC-8 PCIe PHY.
+On 2022-06-13 23:28, Rob Herring wrote:
+> On Fri, Jun 10, 2022 at 9:09 PM Jiaqing Zhao
+> <jiaqing.zhao@linux.intel.com> wrote:
+>>
+>> On 2022-06-11 07:19, Rob Herring wrote:
+>>> On Sat, 11 Jun 2022 00:59:39 +0800, Jiaqing Zhao wrote:
+>>>> Add devicetree bindings for NCSI VLAN modes. This allows VLAN mode to
+>>>> be configured in devicetree.
+>>>>
+>>>> Signed-off-by: Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
+>>>> ---
+>>>>  .../devicetree/bindings/net/ncsi.yaml         | 34 +++++++++++++++++++
+>>>>  MAINTAINERS                                   |  2 ++
+>>>>  include/dt-bindings/net/ncsi.h                | 15 ++++++++
+>>>>  3 files changed, 51 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/net/ncsi.yaml
+>>>>  create mode 100644 include/dt-bindings/net/ncsi.h
+>>>>
+>>>
+>>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>>
+>>> yamllint warnings/errors:
+>>>
+>>> dtschema/dtc warnings/errors:
+>>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/ncsi.yaml: 'oneOf' conditional failed, one must be fixed:
+>>>       'unevaluatedProperties' is a required property
+>>>       'additionalProperties' is a required property
+>>>       hint: Either unevaluatedProperties or additionalProperties must be present
+>>>       from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+>>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/ncsi.yaml: ignoring, error in schema:
+>>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/ncsi.example.dtb: ethernet@1e660000: 'ncsi,vlan-mode' does not match any of the regexes
+>>>       From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>
+>> I saw vendor-prefix.yaml says do not add non-vendor prefixes to the list. Since "ncsi" is not a vendor, may I ask what is the suggested replacement for 'ncsi,vlan-mode'? Will 'ncsi-vlan-mode' be fine?
+> 
+> I don't know. What is NCSI? Is it specific to certain MACs? Why do you
+> need to set this up in DT? Network configuration is typically done in
+> userspace, so putting VLAN config in DT doesn't seem right. All
+> questions your commit message should answer.
 
-Add Jesper Nilsson <jesper.nilsson@axis.com> and
-Lars Persson <lars.persson@axis.com> as maintainer for these files.
+NCSI is a protocol that uses an external MAC+PHY like a PHY, the
+topology looks like:
 
-ARTPEC-8 is the SoC platform of Axis Communications and PCIe PHY is designe
-d based on Samsung PHY.
+         Packets + NCSI commands              Packets
+     MAC-------------------------External MAC---------PHY
 
-Signed-off-by: Wangseok Lee <wangseok.lee@samsung.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+Some MACs like ftgmac100 driver supports using NCSI instead of PHY,
+the operation mode is configured by a DT option "use-ncsi". The NCSI
+external MAC has its own configuration, like VLAN filter mode of it,
+and all NCSI devices uses a generic driver. So I these external mac
+configurations to DT as they are device properties to kernel. Userspace
+is only able to configure the "internal" MAC.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 475e2836..5ad377f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1876,12 +1876,14 @@ M:	Jesper Nilsson <jesper.nilsson@axis.com>
- M:	Lars Persson <lars.persson@axis.com>
- L:	linux-arm-kernel@axis.com
- S:	Maintained
-+F:	Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml
- F:	Documentation/devicetree/bindings/pinctrl/axis,artpec6-pinctrl.txt
- F:	arch/arm/boot/dts/artpec6*
- F:	arch/arm/mach-artpec
- F:	drivers/clk/axis
- F:	drivers/crypto/axis
- F:	drivers/mmc/host/usdhi6rol0.c
-+F:	drivers/phy/artpec/phy-artpec*
- F:	drivers/pinctrl/pinctrl-artpec*
- 
- ARM/ASPEED I2C DRIVER
--- 
-2.9.5
+>>> Documentation/devicetree/bindings/net/ncsi.example.dtb:0:0: /example-0/ethernet@1e660000: failed to match any schema with compatible: ['aspeed,ast2600-mac', 'faraday,ftgmac100']
+>>> Documentation/devicetree/bindings/net/ncsi.example.dtb:0:0: /example-0/ethernet@1e660000: failed to match any schema with compatible: ['aspeed,ast2600-mac', 'faraday,ftgmac100']
+>>
+>> The ftgmac100 it depends on uses a txt document instead of an yaml schema. And I see there is other schemas having the same error, can this be ignored?
+> 
+> No. Don't add to the list. Once all the existing warnings (~40) are
+> fixed, then this will be turned on by default.
+
+Sure, I'll put this to ftgmac100.txt instead of separate yaml file.
+
+>>
+>> And I've got one more question. The ncsi driver does not has its own compatible field, instead, it is enabled by setting the "use-ncsi" property of some specific mac drivers. Though currently only ftgmac100 supports ncsi in upstream kernel, it may be used by other mac drivers in the future. What do you think is a proper way for defining the ncsi schema? Having it in a separate yaml like this patch or add the properties to all the mac yamls that supports yaml? If the former way is preferred, how should the schema be defined without "compatible"?
+> 
+> If it is a function of driver support or not, then it doesn't belong in DT.
+> 
+> Rob
+
+It's a hardware operation mode of the external MAC, I think it's
+reasonable to put it in DT.
+
+There is also a previous patch adding NCSI MAC config "mlx,multi-host"
+in DT at https://lore.kernel.org/netdev/20200108234341.2590674-1-vijaykhemka@fb.com/T/
+I referred this for my implementation, though it is undocumented.
+
+Jiaqing
