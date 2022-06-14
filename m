@@ -2,66 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE58C54BDCE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 00:41:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A935454BDD1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 00:42:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237280AbiFNWll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 18:41:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38676 "EHLO
+        id S1353692AbiFNWlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 18:41:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234404AbiFNWll (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 18:41:41 -0400
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A04A506DE
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 15:41:40 -0700 (PDT)
-Received: by mail-io1-xd2c.google.com with SMTP id n11so10942147iod.4
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 15:41:40 -0700 (PDT)
+        with ESMTP id S1353684AbiFNWly (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 18:41:54 -0400
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B7B527DA
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 15:41:53 -0700 (PDT)
+Received: by mail-io1-xd2f.google.com with SMTP id e80so10946458iof.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 15:41:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=hvehCBfUTvgEUWe65S6hBli1BzVjPsVtPnt86add/kI=;
-        b=A611+FifO5/wxtRT2yw4vt9ZxdMZMO1YdFrBzWAQZ+h2wb9x3Hm3GO3as3VS4HtzOD
-         lKFKKkG+nF5VPBDTsFylpJVr5eMnvLGvlpZ2mG+grr6OXUAQwYkoo299LvMG7dVq35g4
-         WjtxSCbzIgGtSimJ4tYsqPGIi5f61C2w9oVCo=
+        bh=9+kyzNbwL34JPEo3iqbzLbGd9UuckbxCXwZqzQQStRo=;
+        b=kxZU4O5oWw0x6pDNeXPLnBAGs3Pgu48222c3blJk4xg8T3aZUo/tY4zJCYU8/9SHJc
+         eqFiPRvDdjVxZPzHJ4Yr1mmtdWKKKeoKPFWWqMd1kR8Gw7kAq7NIgJhcIPmbG1qZz4OM
+         yE/QC1aP/kCMscfKbNeK6lvJBePdJir4T9S6g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=hvehCBfUTvgEUWe65S6hBli1BzVjPsVtPnt86add/kI=;
-        b=e+4sdSkooZvtks8PO+05TtKR5UjBNJPPnKDo9i56Se/VsvyC3zvshnrfXAWp5Tmg6w
-         i85qBtEs1KojQV8EfkGygIISZ5yU+OquH6veu2ms+hjy1BbJLQBvgi1ekrRuj86bWhlD
-         jwmNCEfi71//5wA5KzeB/0f37DQhHYFCYTqkLFa6062huF7EmPAPxfOZ2b18osTsqMcG
-         SM0/4aULUkxs1AI4dNszmF8ieuIhiutJYC50PFT61eacSv6OCgm4/YBU0OGxiEpn6uBO
-         mfHVzlkE2b+G46SkjiaxQY9Zc88OwvG58F3yLaj6zHF8IcKzg6PxNiSJDRTt6N6PDllx
-         c2NA==
-X-Gm-Message-State: AOAM5300hAmcAavqFv3HbdsVd8WEy+Y/DTmuZpiQiIg6AkRkMHzkTAaC
-        CpMdA++wojl4KN5n/xFum5H/u3/ULMJmuLrk
-X-Google-Smtp-Source: ABdhPJyrf27R4H2T8Dm0D/bV+9D6ZZhl+n8E8C0EK+xzhFh+2GuzNCWV4cf2TLUc7yJIzve8KLUCYg==
-X-Received: by 2002:a6b:2b53:0:b0:669:bc8a:a5c8 with SMTP id r80-20020a6b2b53000000b00669bc8aa5c8mr3678998ior.39.1655246499259;
-        Tue, 14 Jun 2022 15:41:39 -0700 (PDT)
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com. [209.85.166.181])
-        by smtp.gmail.com with ESMTPSA id d26-20020a02605a000000b003312a99c443sm5403723jaf.134.2022.06.14.15.41.38
+        bh=9+kyzNbwL34JPEo3iqbzLbGd9UuckbxCXwZqzQQStRo=;
+        b=clKprSZhvrv2BtdYbYZCSUsD8qFyuq3HYCMSW9NCc5Lsh3WTt3Yk0gnFHF978iA0ZJ
+         vOK+iU0M3Ovr7EWr44lo/+WPNfM7VBp6GxjTwiA4+7QuVq+o90QfPGRovO+Ppi9phl8C
+         5MosJVEOORIH8+YroeIIInl9xa2OWBKYBeE1wGdhNfHpIDYJanY2cKTzmYuGE5375ZR9
+         GELMtCxiPpk/+5B57ZkjvUVGziHC42j8u0LXClX7hFYV90Hkl5WQzYE6zyLJELK+vC1k
+         A69/+mYd2Sxv9cPJEAQvCON7OT6Laxsl2l7pJKBHAPw3KgI1Xd0uf1B1K1kdYylCFr34
+         n4pg==
+X-Gm-Message-State: AOAM531qvA+zirNrcpU0tPuZSP32AVFxknrLFWrf6ismePvcHEgyW0Q2
+        BkoKJx+SEW+yJzLIP2YIJClDOYD891AvCB0W
+X-Google-Smtp-Source: ABdhPJxQsIgZlSjjojJDbS/vgPJzBhPScLDI726/jvAEmPAVYuOI+nUKSgeLxQQMMIIgB5GdA+hCUg==
+X-Received: by 2002:a05:6638:d8c:b0:332:15ef:657f with SMTP id l12-20020a0566380d8c00b0033215ef657fmr4056591jaj.146.1655246513160;
+        Tue, 14 Jun 2022 15:41:53 -0700 (PDT)
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com. [209.85.166.49])
+        by smtp.gmail.com with ESMTPSA id v10-20020a02384a000000b0033188e8cabesm5370020jae.74.2022.06.14.15.41.52
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jun 2022 15:41:38 -0700 (PDT)
-Received: by mail-il1-f181.google.com with SMTP id a15so7618195ilq.12
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 15:41:38 -0700 (PDT)
-X-Received: by 2002:a05:6e02:20e9:b0:2d1:d151:3c53 with SMTP id
- q9-20020a056e0220e900b002d1d1513c53mr4443271ilv.220.1655246498060; Tue, 14
- Jun 2022 15:41:38 -0700 (PDT)
+        Tue, 14 Jun 2022 15:41:52 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id h8so10920447iof.11
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 15:41:52 -0700 (PDT)
+X-Received: by 2002:a02:c6c4:0:b0:333:ecb2:fc7f with SMTP id
+ r4-20020a02c6c4000000b00333ecb2fc7fmr3785042jan.184.1655246512053; Tue, 14
+ Jun 2022 15:41:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220614195144.2794796-1-swboyd@chromium.org> <20220614195144.2794796-3-swboyd@chromium.org>
-In-Reply-To: <20220614195144.2794796-3-swboyd@chromium.org>
+References: <20220614195144.2794796-1-swboyd@chromium.org> <20220614195144.2794796-2-swboyd@chromium.org>
+In-Reply-To: <20220614195144.2794796-2-swboyd@chromium.org>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 14 Jun 2022 15:41:25 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UU-AENyChCvVAKH709E4hFtgo4Txa8zFDY=JM1UifA0g@mail.gmail.com>
-Message-ID: <CAD=FV=UU-AENyChCvVAKH709E4hFtgo4Txa8zFDY=JM1UifA0g@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] dt-bindings: cros-ec: Add ChromeOS fingerprint binding
+Date:   Tue, 14 Jun 2022 15:41:38 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WUnMCj2GmMy2xRG8WOba1O4jzkXeUrrUic71eEA0aZrw@mail.gmail.com>
+Message-ID: <CAD=FV=WUnMCj2GmMy2xRG8WOba1O4jzkXeUrrUic71eEA0aZrw@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: cros-ec: Reorganize property availability
 To:     Stephen Boyd <swboyd@chromium.org>
 Cc:     Benson Leung <bleung@chromium.org>,
         LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>, chrome-platform@lists.linux.dev,
@@ -87,12 +87,13 @@ Hi,
 
 On Tue, Jun 14, 2022 at 12:51 PM Stephen Boyd <swboyd@chromium.org> wrote:
 >
-> Add a binding to describe the fingerprint processor found on Chromebooks
-> with a fingerprint sensor. Previously we've been describing this with
-> the google,cros-ec-spi binding but it lacks gpio and regulator control
-> used during firmware flashing.
+> Various properties in the cros-ec binding only apply to different
+> compatible strings. For example, the interrupts and reg property are
+> required for all cros-ec devices except for the rpmsg version. Add some
+> conditions to update the availability of properties so that they can't
+> be used with compatibles that don't support them.
 >
-> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
 > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 > Cc: <devicetree@vger.kernel.org>
 > Cc: <chrome-platform@lists.linux.dev>
@@ -107,74 +108,53 @@ On Tue, Jun 14, 2022 at 12:51 PM Stephen Boyd <swboyd@chromium.org> wrote:
 > Cc: Lee Jones <lee.jones@linaro.org>
 > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 > ---
->  .../bindings/chrome/google,cros-ec-fp.yaml    | 97 +++++++++++++++++++
->  .../bindings/mfd/google,cros-ec.yaml          |  9 ++
->  2 files changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
+>  .../bindings/chrome/google,cros-ec-typec.yaml |  1 +
+>  .../bindings/extcon/extcon-usbc-cros-ec.yaml  |  1 +
+>  .../i2c/google,cros-ec-i2c-tunnel.yaml        |  1 +
+>  .../bindings/mfd/google,cros-ec.yaml          | 29 +++++++++++++------
+>  .../bindings/pwm/google,cros-ec-pwm.yaml      |  1 +
+>  .../regulator/google,cros-ec-regulator.yaml   |  1 +
+>  .../bindings/sound/google,cros-ec-codec.yaml  |  1 +
+>  7 files changed, 26 insertions(+), 9 deletions(-)
+
+slight nit that from reading the subject of this patch I'd expect that
+it was a no-op. Just a reorganization / cleanup. In fact, it actually
+is more than a no-op. It enforces restrictions that should probably
+have always been enforced. I think it'd be better if the subject was
+something like "tighten property requirements" or something like that.
+
+
+> @@ -158,12 +154,27 @@ allOf:
+>                - google,cros-ec-rpmsg
+>      then:
+>        properties:
+> +        controller-data: false
+>          google,cros-ec-spi-pre-delay: false
+>          google,cros-ec-spi-msg-delay: false
+>          spi-max-frequency: false
+>      else:
+>        $ref: /schemas/spi/spi-peripheral-props.yaml
 >
-> diff --git a/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-> new file mode 100644
-> index 000000000000..48c02bd4585c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/chrome/google,cros-ec-fp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              const: google,cros-ec-rpmsg
+> +    then:
+> +      properties:
+> +        mediatek,rpmsg-name: false
 > +
-> +title: ChromeOS Embedded Fingerprint Controller
-> +
-> +description:
-> +  Google's ChromeOS embedded fingerprint controller is a device which
-> +  implements fingerprint functionality such as unlocking a Chromebook
-> +  without typing a password.
-> +
-> +maintainers:
-> +  - Tom Hughes <tomhughes@chromium.org>
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: google,cros-ec-spi
-> +  required:
-> +    - compatible
-> +    - boot0-gpios
+> +      required:
+> +        - reg
+> +        - interrupts
 
-I've never personally used "select" before and I'm not sure where it's
-documented. Without knowing anything, it seems weird to me that in
-this file we're matching against a compatible that's not
-google,cros-ec-fp. Randomly grabbing some other example that's similar
-(panel-lvds.yaml) looks more like what I would have expected. AKA in
-this file:
+slight nit that think it would be easier to understand this bottom
+section if you made the "SPI" and "RPMSG" sections more symmetric to
+each other. I think it would be easy to just change the SPI one to say
+"not SPI" instead of explicitly listing "i2c" and "rpmsg".
 
-select:
-  properties:
-    compatible:
-      contains:
-        const: google,cros-ec-fp
-  required:
-    - compatible
+In any case, this overall looks pretty nice to me. My two requests are
+both pretty small nits, so either with or without fixing them:
 
-...and then in the other file:
-
-select:
-  properties:
-    compatible:
-      contains:
-        const: google,cros-ec-spi
-  not:
-    properties:
-      compatible:
-        contains:
-          const: google,cros-ec-fp
-  required:
-    - compatible
-
-
-Of course, if one of the dt maintainers gives different advice then
-listen to them. ;-)
-
--Doug
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
