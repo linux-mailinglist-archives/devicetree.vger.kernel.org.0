@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9EDA54BC46
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DCD354BC4A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:59:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234900AbiFNUz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 16:55:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49600 "EHLO
+        id S1345290AbiFNU6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 16:58:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234754AbiFNUz4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:55:56 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85C092F64F;
-        Tue, 14 Jun 2022 13:55:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4518CB81B79;
-        Tue, 14 Jun 2022 20:55:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6449AC3411B;
-        Tue, 14 Jun 2022 20:55:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655240151;
-        bh=XzEAK2y5Iei2R8rsITjcjNvlSr4PiUjEUS7DNftkwGA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=p+477iWvi8LLsQiEZY2hhhQ40qc7phf5EbKKe1GuDHgRJXxTt+MG2/rD8GTYsOqBl
-         CasgghvFA/MX721GElqHLUbboFEUU0y/kgk6k5wzD7+RD3Tc+rsXH+AocbYtU4BZJG
-         ezxk4R1JY8hSnTtTLoheIaI/EoQvvBLajGpcce/Lzilh+3lnUONfUJRJGjEvqatiqD
-         v8ZAVP2JJ8JiohhAmQo10X1wGXF5UjICvydhJnBg7SJ/U1WwaVUo46gLXOC/qYjDiu
-         oXZ/waiR/Is4B/W7vcOgNNVd5DfMzisbrhLptJpzEZ8nR1vluxOKojCE46Q4dR3grm
-         g/qVgaaQ1ojqw==
-Date:   Wed, 15 Jun 2022 02:25:50 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/3] mtd: nand: raw: qcom_nandc: reorder
- qcom_nand_host struct
-Message-ID: <20220614205550.GA5596@thinkpad>
-References: <20220609132344.17548-1-ansuelsmth@gmail.com>
- <20220609132344.17548-2-ansuelsmth@gmail.com>
- <20220609170722.GA5081@thinkpad>
- <62a2298c.1c69fb81.bc909.d2d0@mx.google.com>
+        with ESMTP id S236064AbiFNU6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:58:15 -0400
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690384FC49;
+        Tue, 14 Jun 2022 13:58:14 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id h8so10687125iof.11;
+        Tue, 14 Jun 2022 13:58:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7iMjdZBJ4KMw63aFHTKRe1N4L60iJ+6XfVwG5ZwbGng=;
+        b=sXdsKkp9lAHFN3EkCoj374ZvZ3mvKZu/eewmPqSzISPoQc0+pUDt86jAd2Zs07t5hA
+         kEZ1x56iivspspbYIkdMkJ73Tx87QRUt/O6359mO7rY5aTobFQwsp/E5/8UVVXHGc62V
+         yQ/3WUPXwdq1yYchICb+l8/JFEsT8eo5rWFJJrM0gsWIyBtf55bWogB8O0LmUN72yMRk
+         RB1+9+pX/O5zMj9e4zynf649xeiTgy60QJEH2b9kMd5/0XAYUaiG70Ades407ME9ZHeF
+         J+SS5GsZzbfNNIBB25Jm8DLtAsM2zAPD5LI3d2bR55hsjnmRMaM1a3ylaUtb3wczB0iQ
+         wc+w==
+X-Gm-Message-State: AOAM530W6lsQ+hgrsr8J67urH76oYIHrW2+xIRlyZPDVHUCMDPhTwNL5
+        nre62456N5sXhmrkPvWnZaxxzV1Y+A==
+X-Google-Smtp-Source: ABdhPJzaPjeU08pGK0MfSUVKPEZ9N1AbAOfvFkcbi6Q+ONd4MUogkiyMtEdcQTGGoAmBarcytqPQ4g==
+X-Received: by 2002:a05:6638:1509:b0:331:baca:d2bc with SMTP id b9-20020a056638150900b00331bacad2bcmr3901729jat.299.1655240293668;
+        Tue, 14 Jun 2022 13:58:13 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id x24-20020a026f18000000b00331f48289easm5307203jab.136.2022.06.14.13.58.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jun 2022 13:58:13 -0700 (PDT)
+Received: (nullmailer pid 2547452 invoked by uid 1000);
+        Tue, 14 Jun 2022 20:58:11 -0000
+Date:   Tue, 14 Jun 2022 14:58:11 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Alexander Steffen <Alexander.Steffen@infineon.com>
+Cc:     jarkko@kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, devicetree@vger.kernel.org,
+        peterhuewe@gmx.de, jgg@ziepe.ca, krzysztof.kozlowski+dt@linaro.org,
+        Johannes Holland <johannes.holland@infineon.com>,
+        Amir Mizinski <amirmizi6@gmail.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: trivial-devices: Add Infineon
+ SLB9673 TPM
+Message-ID: <20220614205811.GA2528404-robh@kernel.org>
+References: <20220608173113.9232-1-Alexander.Steffen@infineon.com>
+ <20220608173113.9232-2-Alexander.Steffen@infineon.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <62a2298c.1c69fb81.bc909.d2d0@mx.google.com>
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220608173113.9232-2-Alexander.Steffen@infineon.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,86 +66,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 09, 2022 at 07:10:33PM +0200, Ansuel Smith wrote:
-> On Thu, Jun 09, 2022 at 10:37:22PM +0530, Manivannan Sadhasivam wrote:
-> > On Thu, Jun 09, 2022 at 03:23:42PM +0200, Ansuel Smith wrote:
-> > > Reorder qcom_nand_host to save holes in the struct.
-> > 
-> > You forgot to reorder other structs also as I requested :/
-> > 
-> > Thanks,
-> > Mani
-> >
+On Wed, Jun 08, 2022 at 07:31:11PM +0200, Alexander Steffen wrote:
+> Initial device to be supported by the upcoming tpm_tis_i2c driver. More
+> to be added later.
 > 
-> Mhhh I didn't find obvius hole in other struct.
-> Think I will pass this with dwarf to better check them. Sorry!
-> Feel free to point them if you notice obvius hole that I didn't notice.
+> Signed-off-by: Alexander Steffen <Alexander.Steffen@infineon.com>
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 6aafa71806a3..47a88e891a06 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -139,6 +139,8 @@ properties:
+>            - infineon,slb9635tt
+>              # Infineon SLB9645 I2C TPM (new protocol, max 400khz)
+>            - infineon,slb9645tt
+> +            # Infineon SLB9673 I2C TPM 2.0
+> +          - infineon,slb9673
 
-Sorry, I should be explicit. Please rearrange the members in other structs such
-that we could avoid holes (in future also). For instance, in
-"struct bam_transaction" u32's and bool are mixed in the middle. You could
-organize them like,
+I suspect these will need to move to here (don't you need to support 
+linux,sml-base?):
+ 
+Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
 
-struct pointer
-struct
-u32
-bool
+But for now,
 
-And this goes same for all other structs as well.
+Acked-by: Rob Herring <robh@kernel.org>
 
-Thanks,
-Mani
-
-> > > 
-> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > > ---
-> > >  drivers/mtd/nand/raw/qcom_nandc.c | 10 ++++++----
-> > >  1 file changed, 6 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
-> > > index 1a77542c6d67..7fbbd3e7784c 100644
-> > > --- a/drivers/mtd/nand/raw/qcom_nandc.c
-> > > +++ b/drivers/mtd/nand/raw/qcom_nandc.c
-> > > @@ -431,11 +431,12 @@ struct qcom_nand_controller {
-> > >   *				and reserved bytes
-> > >   * @cw_data:			the number of bytes within a codeword protected
-> > >   *				by ECC
-> > > + * @ecc_bytes_hw:		ECC bytes used by controller hardware for this
-> > > + *				chip
-> > > + *
-> > >   * @use_ecc:			request the controller to use ECC for the
-> > >   *				upcoming read/write
-> > >   * @bch_enabled:		flag to tell whether BCH ECC mode is used
-> > > - * @ecc_bytes_hw:		ECC bytes used by controller hardware for this
-> > > - *				chip
-> > >   * @status:			value to be returned if NAND_CMD_STATUS command
-> > >   *				is executed
-> > >   * @last_command:		keeps track of last command on this chip. used
-> > > @@ -452,11 +453,12 @@ struct qcom_nand_host {
-> > >  	int cs;
-> > >  	int cw_size;
-> > >  	int cw_data;
-> > > -	bool use_ecc;
-> > > -	bool bch_enabled;
-> > >  	int ecc_bytes_hw;
-> > >  	int spare_bytes;
-> > >  	int bbm_size;
-> > > +
-> > > +	bool use_ecc;
-> > > +	bool bch_enabled;
-> > >  	u8 status;
-> > >  	int last_command;
-> > >  
-> > > -- 
-> > > 2.36.1
-> > > 
-> > 
-> > -- 
-> > மணிவண்ணன் சதாசிவம்
-> 
+>              # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+>            - infineon,tlv493d-a1b6
+>              # Infineon Multi-phase Digital VR Controller xdpe11280
 > -- 
-> 	Ansuel
-
--- 
-மணிவண்ணன் சதாசிவம்
+> 2.25.1
+> 
+> 
