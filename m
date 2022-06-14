@@ -2,95 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 223AB54B488
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 17:27:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3597354B4AF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 17:30:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356753AbiFNPZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 11:25:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57370 "EHLO
+        id S243579AbiFNP2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 11:28:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356666AbiFNPZW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 11:25:22 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F179022532;
-        Tue, 14 Jun 2022 08:25:21 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id r5so9747969iod.5;
-        Tue, 14 Jun 2022 08:25:21 -0700 (PDT)
+        with ESMTP id S236270AbiFNP1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 11:27:46 -0400
+Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0F9C27B04;
+        Tue, 14 Jun 2022 08:27:43 -0700 (PDT)
+Received: by mail-vs1-xe34.google.com with SMTP id x187so9354259vsb.0;
+        Tue, 14 Jun 2022 08:27:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc:content-transfer-encoding;
+        bh=R6gek+7k8btaKHOjjow80I4o5y14I8XjWpXPB6g1/2Y=;
+        b=B62h3QGdOCNz+CIyxl++5a3MAeWGpBpIqvE1LuIDxAiBT2KOwgQsKXMm+yXioIVHPB
+         jjt0HWzkzU+KazGRGAzDxWR3PT8e2YZfMNNwZRjTISDAHYPOACZJXiWVcdlbj62O1iTH
+         CRwo8tLU+5BPwTR0mx4PSFMKmNeaQFH128VbyZEXS80sLFMqOfLmOOzA8IxoLLnm8R1v
+         HQXqYY7yI1kW48SwVZlyiRMCGRsWx44m6OPWTednk9+irfXrEil3L5JuvbC+KIUjgb7s
+         Sv7mQHB3kSWGK1UJfXJjtiXsZawUtOKESqwxCQqrOQ56ByyQX/Ug9G+RZ1xaZgpJwVSc
+         sYEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=mjT5wGmHJgG0eNHLr4sx2SWsu7TpquOvBLbiZspfnLQ=;
-        b=srfn9jObIM3MtrT/qS9s59A0H1fyY3CuREhlcHr0ObC++u4LmQWNV40eWOCTpDyHg6
-         x5n7Bs8en1mTOCphzcr1L3iv3MBQ/JE6mIi5lho4WZA4Hi1B5uU2Uco1c+7l+jgLnFse
-         lnCftZ3ympQdZNv1c7fJ5ZnVuTcJk65mWs8UdodiiDovOZwGRDsjdZXrFYdl3EGx97kg
-         OgIhYjarBq0139iE+cY8ZbRHr/6zpqNtYyn5OyP+yQ7PSF35Vrgy1bZGrR3Ey4zw5bqG
-         bHGT87xrGatqoJwPc4y5x3yxNjnur4Y//C3i9KkMSEDigLyfwfpymcO/dNju/fdvbYR/
-         121A==
-X-Gm-Message-State: AOAM530edXfq052V5BW7bXEkOdBQ4Xf5uROgdfnCM4sTh32m+Z8e0M8Z
-        3+bsF/WEHped6n/uQKTO6DQ26sREpQ==
-X-Google-Smtp-Source: ABdhPJw/DPeqW+0POs50/HnxbvLUIDrEmh4RkEsS8T5HKrNb19A1r7LyOf/9fn00kIqqkBVOBaRgiA==
-X-Received: by 2002:a05:6638:2ac:b0:331:84fd:c630 with SMTP id d12-20020a05663802ac00b0033184fdc630mr3167135jaq.113.1655220321262;
-        Tue, 14 Jun 2022 08:25:21 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.251])
-        by smtp.googlemail.com with ESMTPSA id l44-20020a02666c000000b0032b3a781767sm4957033jaf.43.2022.06.14.08.25.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jun 2022 08:25:20 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: dma: apple,admac: Fix example interrupt parsing
-Date:   Tue, 14 Jun 2022 09:25:03 -0600
-Message-Id: <20220614152503.1410755-1-robh@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc:content-transfer-encoding;
+        bh=R6gek+7k8btaKHOjjow80I4o5y14I8XjWpXPB6g1/2Y=;
+        b=EDhfSB7+NoOj7pKwu+KhQIx41dVAgqRQUZWIspAmJXXlxpVuS51qFrlkUYFWFJ7CHP
+         60RdPHIWtqQn6qf1AnaWu45PM2p4yD6lIK1siZhOQWU8klegAGAOMuz0tjzz5QJtXSHs
+         ufcxtde/eXaorrfU16JkkqKTjM89Fw3wDQQi3tv8B25USD4JRb8dP/iqIqHIk3LwE2+S
+         7qQKPP+XbrA3yb3CRu/SZ6tYjoLqIhcOti5zRsvVXP59sY8cX25+lgo5IQzbWes5IvRD
+         RoLtRVYVJWwmj1hSbLaBOKSmyIEDXt3bK8aeLgxpsQ4jXa25UMTTug5oUjDcXeuH/WxY
+         VgNg==
+X-Gm-Message-State: AJIora8OxFStUU0P+VLaJpjmXpnPILPnFl8fyJMnccVj85gYMMvzXyxm
+        ErVHzKK0N4YgdBYYY3ZQcNBBuYlgSXttrNgL1dw15x0q
+X-Google-Smtp-Source: AGRyM1sNY6Hgb1s6xJAYTUwIny72g5FhpKwdFq/0wKPM/o6VQY94iQFJ/lrdOaOTlJH1unL8KMyBHGsAJprHhcfb+js=
+X-Received: by 2002:a67:eecb:0:b0:34b:f863:ce1b with SMTP id
+ o11-20020a67eecb000000b0034bf863ce1bmr2411704vsp.55.1655220463027; Tue, 14
+ Jun 2022 08:27:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220613120534.36991-1-andrea.merello@iit.it> <20220613120534.36991-9-andrea.merello@iit.it>
+ <CAHp75Vdh8kAH6540xCwzFh5uf=QMVTHC42a8pOgvkpObzjfD+w@mail.gmail.com>
+ <164f663acbba481a8ea8f45f185aaf83@iit.it> <CAHp75VeYK=oCbbBVp01_b5LK_FqAo4F_bic9Me4Y6PpfFnDU6g@mail.gmail.com>
+ <a41936e4063f4c2c9da7c7e1d915bd62@iit.it> <CAHp75Vd_w1WOp9ntbNqxtuuVXi0kMGbX=OZ7cioNxoh2yUa1ag@mail.gmail.com>
+In-Reply-To: <CAHp75Vd_w1WOp9ntbNqxtuuVXi0kMGbX=OZ7cioNxoh2yUa1ag@mail.gmail.com>
+Reply-To: andrea.merello@gmail.com
+From:   Andrea Merello <andrea.merello@gmail.com>
+Date:   Tue, 14 Jun 2022 17:27:32 +0200
+Message-ID: <CAN8YU5PDoAaFcp83NMBZLcMJ99FWOxDc9DXLJthE9uNkK-izHg@mail.gmail.com>
+Subject: Re: [v6 08/14] iio: imu: add Bosch Sensortec BNO055 core driver
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Andrea Merello <Andrea.Merello@iit.it>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        jmondi <jacopo@jmondi.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 873971f8fb08 ("dt-bindings: dma: Add Apple ADMAC") has a warning
-in its example:
+Il giorno mar 14 giu 2022 alle ore 17:11 Andy Shevchenko
+<andy.shevchenko@gmail.com> ha scritto:
+>
+> On Tue, Jun 14, 2022 at 2:15 PM Andrea Merello <Andrea.Merello@iit.it> wr=
+ote:
+>
+> ...
+>
+> > >> >> +       devm_add_action_or_reset(priv->dev, bno055_debugfs_remove=
+, priv->debugfs);
+> > >> >
+> > >> >Shouldn't we report the potential error here? It's not directly
+> > >> >related to debugfs, but something which is not directly related.
+> > >>
+> > >> The error eventually comes out from something that has nothing to do=
+ with debugs per se (i.e. the devm stuff), but it will only affect debugfs =
+indeed.
+> > >>
+> > >> Assuming that we don't want to make the whole driver fail in case de=
+bugfs stuff fails (see last part of the comment above debugfs_create_file()=
+ implementation), and given that the devm_add_action_or_reset(), should ind=
+eed "reset" in case of failure (i.e.  we should be in a clean situation any=
+way), I would say it should be OK not to propagate the error and let things=
+ go on.
+> > >
+> > >As I said, it's not directly related to debugfs. Here is the resource
+> > >leak possible or bad things happen if you probe the driver, that fails
+> > >to add this call for removal, remove it, and try to insert again, in
+> > >such case the debugfs will be stale.
+> >
+> > Hum, I would say this shouldn't ever happen: AFAICS devm_add_action_or_=
+reset() is a wrapper around devm_add_action() and it's purpose is exactly t=
+o add a check for failure; devm_add_action_or_reset() immediately invokes t=
+he action handler in case devm_add_action() fails. IOW in case of failure t=
+o add the devm stuff, the debugfs file is removed immediately and it should=
+n't cause any mess with next times probe()s; just the driver will go on wit=
+hout the debugfs file being here.
+> >
+> > I think this is the point of using devm_add_action_or_reset() instead o=
+f dev_add_action()  indeed, or am I missing something?
+>
+> Reading that code again and I think you are right, so dev_warn() will
+> be sufficient to show that we fail. OTOH, what is the point of adding
+> a resource for the failed debugfs call?
 
-Documentation/devicetree/bindings/dma/apple,admac.example.dtb: dma-controller@238200000: interrupts-extended: [[0], [4294967295, 0, 626, 4, 0, 0]] is too short
-	From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/dma/apple,admac.yaml
+Ah, you are right here: I'll make the call to
+devm_add_action_or_reset() conditional to success of
+debugfs_create_file(). In case any of the two fails we can also warn
+the user.
 
-The problem is the number of interrupt cells can't be guessed when
-there are empty '0' entries. So the example must have a valid interrupt
-controller defining the number of interrupt cells.
-
-Fixes: 873971f8fb08 ("dt-bindings: dma: Add Apple ADMAC")
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/dma/apple,admac.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/dma/apple,admac.yaml b/Documentation/devicetree/bindings/dma/apple,admac.yaml
-index ab8a4ec7779f..bdc8c129c4f5 100644
---- a/Documentation/devicetree/bindings/dma/apple,admac.yaml
-+++ b/Documentation/devicetree/bindings/dma/apple,admac.yaml
-@@ -63,6 +63,11 @@ examples:
-     #include <dt-bindings/interrupt-controller/apple-aic.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
- 
-+    aic: interrupt-controller {
-+      interrupt-controller;
-+      #interrupt-cells = <3>;
-+    };
-+
-     admac: dma-controller@238200000 {
-       compatible = "apple,t8103-admac", "apple,admac";
-       reg = <0x38200000 0x34000>;
--- 
-2.34.1
-
+> --
+> With Best Regards,
+> Andy Shevchenko
