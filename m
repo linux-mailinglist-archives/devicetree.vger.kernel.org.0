@@ -2,113 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C25054BD0D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 23:53:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1A2B54BD37
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 00:02:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235518AbiFNVvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 17:51:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46236 "EHLO
+        id S229880AbiFNWCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 18:02:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355115AbiFNVvh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 17:51:37 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49AAE522F1;
-        Tue, 14 Jun 2022 14:51:37 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id 123so9688700pgb.5;
-        Tue, 14 Jun 2022 14:51:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VuUbr9hQqzKaVq9n4+d7s4wZFCfkEeiNzclq7d1jnbg=;
-        b=C0LAzHrCJ9U68PI3/LjggUfXQz94N12msgIGu9Zrj2dwdH6p64ic/iMtbLiqJ12Uf4
-         KKaileOZxLpd5Q2H8eSkE6ka3W08KLjRb+c5JQh1KafZDNGFUCaqB4/BEY9WFFJdzA+/
-         4HkGFK5i9Q4+Iq26SlYTexgylYxp/gZL0DqYScn7vBTcHL3AJeLylO32Q2jFLPerSk/j
-         TVNH3ZgwYPXDcBX52JM6fjpcC2SYtMGd7j7LU+acI33xT4Zp3F8SHmQt+vt5FpA/VaUz
-         9doMnn8UpGTa4unwWzQ4v8en5IzgIDLPQCtaVwp4OKZCZVDbtOBEq1S4CUyRv6z71lFB
-         u6Iw==
+        with ESMTP id S234714AbiFNWCh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 18:02:37 -0400
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8FAD5581;
+        Tue, 14 Jun 2022 15:02:34 -0700 (PDT)
+Received: by mail-il1-f182.google.com with SMTP id p1so7569355ilj.9;
+        Tue, 14 Jun 2022 15:02:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=VuUbr9hQqzKaVq9n4+d7s4wZFCfkEeiNzclq7d1jnbg=;
-        b=cG/CPhftL4u7IHIBTZyfXodDzhZZt3KaI5BPA/6C5xL+ivR/n2JMigno9l+hNuiZtG
-         chKkyl7ntPM/hRFI72C/ZSk2BmB4J6ONxQfSDdF9qP0h7YZdP1w/sU/q81Ngf/oRnK2R
-         Xa82MtoIEvuFOj8WBnrl+bJJ+9GCbAl6b1z9YS7KciR5yym2VIBcQhqiK/3gePXJZcKh
-         Sl+y0HjJ+tGJHSoXwoA672sbEBMPTRGteNA0njPbRZYBnJdOMX4okWjiy8JurHYrG4XZ
-         aJZN4nqp70ixKHA/iBx9b+XrNJ15nmcVBEnv/hmHMnKKniC31YgKYgL4dMcMwKyE0BtR
-         Z28g==
-X-Gm-Message-State: AOAM5330xD6Q9PvMxv5xCuk5PPk7aO/xgbRZ6m36Z6h69QiWMT4vwQBT
-        0IpEzz319FqxgvbQuFxuPPY=
-X-Google-Smtp-Source: AGRyM1s4IOseFf+0LQA8Wc97A2HgVlIfB+FfEdgkM+g8MX2D0/VjMQZVHyJZc1d+1JC4tM+hQ3Phjg==
-X-Received: by 2002:a05:6a00:b51:b0:51b:f772:40c5 with SMTP id p17-20020a056a000b5100b0051bf77240c5mr6343737pfo.22.1655243496705;
-        Tue, 14 Jun 2022 14:51:36 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id h13-20020a17090a3d0d00b001ea5d9ae7d9sm67289pjc.40.2022.06.14.14.51.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jun 2022 14:51:36 -0700 (PDT)
-Message-ID: <06bc97ae-f16b-72c1-b4f9-8306a4bbad9b@gmail.com>
-Date:   Tue, 14 Jun 2022 14:51:31 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH RESEND net-next v7 06/16] dt-bindings: net: dsa: add
- bindings for Renesas RZ/N1 Advanced 5 port switch
-Content-Language: en-US
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0nxRd9AE8Oe6xN5njg7BT1Z7XjTAG7bzfY/YVaHWxW0=;
+        b=RoUuMFnliUzMEiYKVdMgoyitIDiWLkRlrYluMKR9M8VNsLvstw9m0hA4EsMJTbElb7
+         EAAaZx+1asi1aI5E/pIv7UNlMuLZ2dz/81cW+dskI8x5a2j7lyiB5E+GIq8RH3FJ1YTC
+         pjUHsTxiS8Hdf5ddCFZ/3X6GYjPKA72URnU8DEef3lpF81Gg+eYzi5sfLJMXEjP6Yztn
+         ovLYPNvq3Vyl0mdlXOiUbtgu55J3J1SKeTubyl0DLmS1SMcsHDF7z/gUuYdZog21adSj
+         yrIFXcuFAYUo6fyoAbm2pY/5MGw5V7+H2RSSs/rHBIRZtCNaqeERjd2z3cw28/cxefRY
+         nEvQ==
+X-Gm-Message-State: AJIora8oYwcfRB34mcKuv4hICNvfbSzVMXt0cZ8MDvbbZPvB7sfQ9TWs
+        J/YZ4/8NQDhcxzsAidBInG9D1quCjw==
+X-Google-Smtp-Source: AGRyM1s5JXgBzROW2REr1JyDPeUi7FdtaT5Ia8u5KZ46ee7E98SZvgRNcVp8ywM58DLAA4k2gAbIpw==
+X-Received: by 2002:a92:c567:0:b0:2d1:c3df:eff8 with SMTP id b7-20020a92c567000000b002d1c3dfeff8mr4160022ilj.84.1655244153238;
+        Tue, 14 Jun 2022 15:02:33 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id g17-20020a022711000000b00331fdc68ccesm5320943jaa.140.2022.06.14.15.02.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jun 2022 15:02:32 -0700 (PDT)
+Received: (nullmailer pid 2793685 invoked by uid 1000);
+        Tue, 14 Jun 2022 22:02:30 -0000
+Date:   Tue, 14 Jun 2022 16:02:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Jens Axboe <axboe@kernel.dk>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Hannes Reinecke <hare@suse.de>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        linux-kernel@vger.kernel.org, linux-ide@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?Q?Miqu=c3=a8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-References: <20220610103712.550644-1-clement.leger@bootlin.com>
- <20220610103712.550644-7-clement.leger@bootlin.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220610103712.550644-7-clement.leger@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, Hans de Goede <hdegoede@redhat.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v4 01/23] dt-bindings: ata: ahci-platform: Move
+ dma-coherent to sata-common.yaml
+Message-ID: <20220614220230.GA2793572-robh@kernel.org>
+References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
+ <20220610081801.11854-2-Sergey.Semin@baikalelectronics.ru>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220610081801.11854-2-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/10/22 03:37, Clément Léger wrote:
-> Add bindings for Renesas RZ/N1 Advanced 5 port switch. This switch is
-> present on Renesas RZ/N1 SoC and was probably provided by MoreThanIP.
-> This company does not exists anymore and has been bought by Synopsys.
-> Since this IP can't be find anymore in the Synospsy portfolio, lets use
-> Renesas as the vendor compatible for this IP.
+On Fri, 10 Jun 2022 11:17:39 +0300, Serge Semin wrote:
+> Seeing doubtfully any SATA device working without embedded DMA engine
+> let's permit the device nodes being equipped with the dma-coherent
+> property in case if the platform is capable of cache-coherent DMAs.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> As a side-effect we can drop the explicit dma-coherent property definition
+> from the particular device schemas. Currently it concerns the Broadcom
+> SATA AHCI controller only.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> ---
+> 
+> Changelog v2:
+> - This is a new patch created after rebasing v1 onto the 5.18-rc3 kernel.
+> 
+> Changelog v4:
+> - Move the dma-coherent property to the sata-common.yaml schema instead
+>   of removing it.
+> - Remove the Hannes' rb tag.
+> ---
+>  Documentation/devicetree/bindings/ata/ahci-platform.yaml  | 2 --
+>  Documentation/devicetree/bindings/ata/brcm,sata-brcm.yaml | 2 --
+>  Documentation/devicetree/bindings/ata/sata-common.yaml    | 2 ++
+>  3 files changed, 2 insertions(+), 4 deletions(-)
+> 
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+Reviewed-by: Rob Herring <robh@kernel.org>
