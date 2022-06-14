@@ -2,158 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2117154B7D7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 19:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A79B754B7E6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 19:46:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344838AbiFNRj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 13:39:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59644 "EHLO
+        id S236048AbiFNRqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 13:46:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344702AbiFNRjy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 13:39:54 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A2592F675
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 10:39:51 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1o1AVr-0005KQ-66; Tue, 14 Jun 2022 19:39:35 +0200
-Message-ID: <c2034c030333f89e0ac7d86c906dd222cc151d52.camel@pengutronix.de>
-Subject: Re: [PATCH 0/8] interconnect: support i.MX8MP
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "djakov@kernel.org" <djakov@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>, Abel Vesa <abel.vesa@nxp.com>,
-        "abailon@baylibre.com" <abailon@baylibre.com>,
-        "laurent.pinchart@ideasonboard.com" 
-        <laurent.pinchart@ideasonboard.com>,
-        "marex@denx.de" <marex@denx.de>,
-        "paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>,
-        "Markus.Niebel@ew.tq-group.com" <Markus.Niebel@ew.tq-group.com>,
-        "aford173@gmail.com" <aford173@gmail.com>
-Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Date:   Tue, 14 Jun 2022 19:39:33 +0200
-In-Reply-To: <DU0PR04MB941799547BD863444C6F268D88AB9@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20220601094156.3388454-1-peng.fan@oss.nxp.com>
-         <DU0PR04MB941799547BD863444C6F268D88AB9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+        with ESMTP id S234580AbiFNRqL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 13:46:11 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 505A340E6B
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 10:46:09 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id k4so6633990qth.8
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 10:46:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :content-transfer-encoding:user-agent:mime-version;
+        bh=Xn5U6yTCivKcEB2CQHYVzvugp+BfiT1C9G92C8VTcFE=;
+        b=613RfUCkNkGQMLtU7V2MbO04fhnH0mtvC5dKJO2n7m5TCcstyJMNMqLu5YY/jKx85W
+         WqQMLAi27pfXea2pgAxcenjo+QPeoTl9CYin1epFcZK/vTqiQCqBD1EYkVVK5uDXlJOk
+         /REj65VNDa+2mfoDGydpq55FH9UXhemjGynB7O4/KvsjpjTKj3iXzE5se/WNWb3HwcDQ
+         Qm8tyvsIiyWLkoQC0YSKGsXgM6jbVZQWXTcSfHhc7xpqFpsgqnP3lP5KbJsA0tnl+2AB
+         IlaRWg/QdubW8ftDo3KKzJL3UuG4GA8jNRl6v8rVtjb0Mt6ik6HtmbEE25xxiVEQixz1
+         wZZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:content-transfer-encoding:user-agent:mime-version;
+        bh=Xn5U6yTCivKcEB2CQHYVzvugp+BfiT1C9G92C8VTcFE=;
+        b=yYA3o0GSUUc17h86QGoLlfDQXVkJ8D0Wwv66zjuPZIRvyAP6RIzC5xp985qfyXRCc2
+         TdJSalmmAuIPu2s2PZvN4+jEewHrS2I80Rk41heh9b2tOqKZM+9FX2//ypVb368SMkA7
+         C0WeCSVc5Bs3vrrFBhk+ZImzNRnU4x5Ilv688NHZ1yFanY5MtUC5nnsuAlTMAyH2ohUu
+         cIbOz5cdwrT1icNyCjPUgMsEnG6jzhwq9naJ7KFE3gciFIMou/rqj09uFE44XKf0WcVO
+         05Fh1hOZN+BJ5DMZ/oINReyqMSDLT89V0zO32lVxJ22MXyLET53CqZGZJ5/p1IB/nIGe
+         O6kw==
+X-Gm-Message-State: AOAM531zfBMj2REgMVFC7ZnVKP35hlMtqMhLwsxUpmIjBsTLsIsrN5HH
+        dA9NvVM3nSO+AscMlU91W1fX9Q==
+X-Google-Smtp-Source: ABdhPJyz6Dah76Tro/nBusft/e8MUMRJGJMekMTnnVzKmUelFUurRZI3FxaqFWMN0HWssy5n6ZNO1g==
+X-Received: by 2002:ac8:5a42:0:b0:305:222b:8ec9 with SMTP id o2-20020ac85a42000000b00305222b8ec9mr5296612qta.214.1655228768303;
+        Tue, 14 Jun 2022 10:46:08 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
+        by smtp.gmail.com with ESMTPSA id q12-20020a05622a030c00b00304dd83a9b1sm8255216qtw.82.2022.06.14.10.46.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jun 2022 10:46:07 -0700 (PDT)
+Message-ID: <5316234cef174e49110f949991ef71c578a3478e.camel@ndufresne.ca>
+Subject: Re: [PATCH v4, 0/3] add h264 decoder driver for mt8186
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Date:   Tue, 14 Jun 2022 13:46:06 -0400
+In-Reply-To: <edbb4605c9e30329d2f5a4ff738571acb6b91f1f.camel@ndufresne.ca>
+References: <20220512034620.30500-1-yunfei.dong@mediatek.com>
+         <edbb4605c9e30329d2f5a4ff738571acb6b91f1f.camel@ndufresne.ca>
 Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.1 (3.44.1-1.fc36) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng,
+Le lundi 13 juin 2022 =C3=A0 16:10 -0400, Nicolas Dufresne a =C3=A9crit=C2=
+=A0:
+> Le jeudi 12 mai 2022 =C3=A0 11:46 +0800, Yunfei Dong a =C3=A9crit=C2=A0:
+> > Firstly, add mt8186 compatible and private data, then add document for
+> > compatible "mediatek,mt8186-vcodec-dec". For mt8186 is single core
+> > architecture, need to add new interface for h264 hardware decoder.
+>=20
+> Would be nice to take the habit of sharing fluster score for this new HW,=
+ I
+> would expect no less then what the numbers you'd get from running over MT=
+8195 or
+> 92, remains nice to demonstrate that this was tested and document any oop=
+s along
+> the way.
+> >=20
+> > Patche 1 add mt8186 compatible and private data.
+> > Patche 2 add mt8186 compatible document.
+> > Patche 3 add h264 single core driver.
+> > ---
+> > This patch depends on "support for MT8192 decoder"[1]
+> >=20
+> > [1]  https://patchwork.kernel.org/project/linux-mediatek/cover/20220512=
+021950.29087-1-yunfei.dong@mediatek.com/
 
-Am Montag, dem 13.06.2022 um 01:23 +0000 schrieb Peng Fan:
-> All,
-> 
-> > Subject: [PATCH 0/8] interconnect: support i.MX8MP
-> 
-> I am going to send out V2 this week to address the comments until now.
-> But before that I would like to see if any one has any comments on the
-> design here.
-> 
-> Georgi, do you have comments on Patch 2 " interconnect: add device
-> managed bulk API"
-> 
-> Lucas, since you had comments when I first use syscon to configure NoC,
-> are you ok with the design to use interconnect in this patchset?
-> 
-I'm still not 100% convinced that the blk-ctrl is the right consumer
-for the interconnect, since it doesn't do any busmastering. However,
-the design looks much better than the syscon based one.
+I forgot earlier, but I suppose this will also depends on an scp.img firmwa=
+re ?
+If so, any linux-firmware submission to link to ?
 
-I mostly worry about being able to extend this to do more than the
-current static configuration if/when NXP decides to release more
-information about the NoC configuration options or someone reverse
-engineers this part of the SoC. I still hope that we could optimize NoC
-usage by setting real bandwidth and latency limits for the devices
-connected to the NoC. As the blk-ctrl doesn't have any clue about this
-right now, we can't really set any more specific requests than the
-current INT_MAX ones.
-I guess we could extend things in this way by making the blk-ctrl not
-only be a simple consumer of the interconnect, but aggregate requests
-from the devices in the blk-ctrl domain and forward them to the NOC
-provider, right?
-
-Regards,
-Lucas
-
-> Thanks,
-> Peng.
-> 
-> > 
-> > From: Peng Fan <peng.fan@nxp.com>
-> > 
-> > This patchset is to support i.MX8MP NoC settings, i.MX8MP NoC initial value
-> > after power up is invalid, need set a valid value after related power domain up.
-> > 
-> > This patchset also includes two patch[1,2] during my development to enable the
-> > ICC feature for i.MX8MP.
-> > 
-> > I not include ddrc DVFS in this patchset, ths patchset is only to support NoC
-> > value mode/priority/ext_control being set to a valid value that suggested by
-> > i.MX Chip Design Team. The value is same as NXP downstream one inside Arm
-> > Trusted Firmware:
-> > https://source.codeaurora.org/external/imx/imx-atf/tree/plat/imx/imx8m/imx
-> > 8mp/gpc.c?h=lf_v2.4#n97
-> > 
-> > A repo created here:
-> > https://github.com/MrVan/linux/tree/imx8mp-interconnect
-> > 
-> > Peng Fan (8):
-> >   dt-bindings: interconnect: imx8m: Add bindings for imx8mp noc
-> >   interconnect: add device managed bulk API
-> >   interconnect: imx: fix max_node_id
-> >   interconnect: imx: set src node
-> >   interconnect: imx: introduce imx_icc_provider
-> >   interconnect: imx: set of_node for interconnect provider
-> >   interconnect: imx: configure NoC mode/prioriry/ext_control
-> >   interconnect: imx: Add platform driver for imx8mp
-> > 
-> >  .../bindings/interconnect/fsl,imx8m-noc.yaml  |   6 +
-> >  drivers/interconnect/bulk.c                   |  34 +++
-> >  drivers/interconnect/imx/Kconfig              |   4 +
-> >  drivers/interconnect/imx/Makefile             |   2 +
-> >  drivers/interconnect/imx/imx.c                |  68 +++--
-> >  drivers/interconnect/imx/imx.h                |  25 +-
-> >  drivers/interconnect/imx/imx8mm.c             |   2 +-
-> >  drivers/interconnect/imx/imx8mn.c             |   2 +-
-> >  drivers/interconnect/imx/imx8mp.c             | 232
-> > ++++++++++++++++++
-> >  drivers/interconnect/imx/imx8mq.c             |   2 +-
-> >  include/dt-bindings/interconnect/fsl,imx8mp.h |  59 +++++
-> >  include/linux/interconnect.h                  |   6 +
-> >  12 files changed, 424 insertions(+), 18 deletions(-)  create mode 100644
-> > drivers/interconnect/imx/imx8mp.c  create mode 100644
-> > include/dt-bindings/interconnect/fsl,imx8mp.h
-> > 
-> > --
-> > 2.25.1
-> 
-
+> > ---
+> > changed with v3:
+> > - fix __iomem not reasonable, align share memory to dram.
+> > changed with v2:
+> > - fix sparse and smatch check fail for patch 3
+> > changed with v1:
+> > - rebase driver to the latest media_stage.
+> > ---
+> > Yunfei Dong (3):
+> >   dt-bindings: media: mediatek: vcodec: Adds decoder dt-bindings for
+> >     mt8186
+> >   media: mediatek: vcodec: Support MT8186
+> >   media: mediatek: vcodec: add h264 decoder driver for mt8186
+> >=20
+> >  .../media/mediatek,vcodec-subdev-decoder.yaml |   4 +-
+> >  .../platform/mediatek/vcodec/mtk_vcodec_dec.h |   1 +
+> >  .../mediatek/vcodec/mtk_vcodec_dec_drv.c      |   4 +
+> >  .../vcodec/mtk_vcodec_dec_stateless.c         |  19 ++
+> >  .../vcodec/vdec/vdec_h264_req_multi_if.c      | 177 +++++++++++++++++-
+> >  5 files changed, 203 insertions(+), 2 deletions(-)
+> >=20
+>=20
 
