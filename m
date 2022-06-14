@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC21854BC17
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D65754BC4D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:59:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358384AbiFNUtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 16:49:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38658 "EHLO
+        id S1358279AbiFNUwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 16:52:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358482AbiFNUs3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:48:29 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF7D4FC7E
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 13:48:19 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id i15so8742595plr.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 13:48:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=FKttehnRyWHLRCbEVc8BEN7Nq8NEnIEZrjC6GBkel28=;
-        b=um790NINW6SPz/mn/uCi4IfD5Ys9JPSY1K1aZrlnkbmUzqLYmwHi3LhqMrH1CMne2Z
-         KC1GQbI50hWzHdQGINwuocWoXQUznEf697nu/aC+ApZ3J4X1VedJ0djtz/LhhowKnLOs
-         C298Np/0bxtkPr8F3A7e11bNdcDOHhNbzSOAFTw3XCv0UbrmoHwScsx0zG1zRlIHWgmk
-         qyw2RN91dcC22l91sRTVUW3IfsUPvqqpl2i6d2vhiQlOdljYQrhAfQHTzlveycqdQGFU
-         Mgux9dPpSS+r01oenXwo8Z4f4ICtbPLhZvNkmi7rQz1RbjarT1pkM0EKFs/rTA8oQep6
-         ZTpA==
+        with ESMTP id S1356850AbiFNUwK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:52:10 -0400
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE2CD5000C;
+        Tue, 14 Jun 2022 13:51:06 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id n11so10691151iod.4;
+        Tue, 14 Jun 2022 13:51:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=FKttehnRyWHLRCbEVc8BEN7Nq8NEnIEZrjC6GBkel28=;
-        b=ZzH6UJ4lmA7xFW12G/sVB7O+FNusSEzZ8kCMTEFHeO2+m1DFTUH65EecdXVuGGt3l4
-         08tquZkJGrbgBs6dAy/c8jtc4ApO9BujdSNPPzP1GHBNrdOma2IKf83AM5is/0tA7RBT
-         w+JJVIiK+cC00svSTey7Fy9DGcXHXuUnvCfUokQSIpvuLUBSbROSkildmNDPMJNt06eg
-         AdaW+EhA2u2kAlq+76brgAbTMME+eCXWgKbMzPlzVOEEsWsVij+aOIqPBznp2FtbLkWl
-         cce50UhFP7gTaNKtWA53KXkf2d8dyCtGJW1ybGECaGksA1qUugKgmKh5PXm5g6RgIyfW
-         tCrA==
-X-Gm-Message-State: AJIora+BXl16549aEp79T6SvvIcymjKCV+x1Q3leUlNPgFy8JFCP5vs3
-        +bxMK+/UFAtBzI9D4bN40+AJww==
-X-Google-Smtp-Source: AGRyM1uKnwL63QW7PW0eVtBoAjWN/m9SVuVEQ0O8Xlh8MD9grvwUrzxnRs6wLGish3Lq35jg0oPYfA==
-X-Received: by 2002:a17:90b:3591:b0:1e3:25d3:e78e with SMTP id mm17-20020a17090b359100b001e325d3e78emr6345411pjb.29.1655239686545;
-        Tue, 14 Jun 2022 13:48:06 -0700 (PDT)
-Received: from [172.22.33.138] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id h12-20020a170902eecc00b001641670d1adsm7684389plb.131.2022.06.14.13.48.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jun 2022 13:48:06 -0700 (PDT)
-Message-ID: <425477c2-7515-1402-f2db-66f15f09cbf4@linaro.org>
-Date:   Tue, 14 Jun 2022 13:48:05 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=35SehlekaFMujAJb5y7haSRllb1c8CzqMTDElwkUekU=;
+        b=zfTLYAMo1uIo3yw8NSSVQNuAHeFWEa6V9dK0CtkQz3QvS445BuzvXbU2UXJS+I2FCu
+         xbAalLxIPkYRETLsn7XV/CPV7xLxAM4A8IfEseHCoWknAqMo0KyhXSn9e7GqryuzBbop
+         GSwqSh5b/ukAx51pc86FkIlu65TptcBacxS5Suw5IHfsDw5lWAqb93aFXtI6v8PnsPWA
+         nfvzdfU3wJsS4I9d/H5dzBCPgQAeavZ/xJJzCT0Medg76pJnfy1gEtVeo2khZR4/OM+G
+         c37XaCYoPqBdzsrgiZPEQhPhvt8bZQUs4B0DgnH/pQS6NfpD2zoNDFNhfo6qzhw5GRJs
+         tjrA==
+X-Gm-Message-State: AOAM531HTPhFJ/xrnFbG4z+Vse6QpiAhqypTh0SoYW+RKh1TfkrMKXq9
+        PGFqTuasMw1oyUEQSvYd4A==
+X-Google-Smtp-Source: ABdhPJwQk3+Na6eiyW27LMs4rmj6x3r5jGBNW89VVR1Mx7rCYkFFcTtfL4NnAHqR6nhY326D1Gl9xA==
+X-Received: by 2002:a05:6638:430e:b0:332:586:5182 with SMTP id bt14-20020a056638430e00b0033205865182mr3913906jab.225.1655239853581;
+        Tue, 14 Jun 2022 13:50:53 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id w10-20020a6bf00a000000b0066a3140e986sm322597ioc.6.2022.06.14.13.50.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jun 2022 13:50:53 -0700 (PDT)
+Received: (nullmailer pid 2521413 invoked by uid 1000);
+        Tue, 14 Jun 2022 20:50:51 -0000
+Date:   Tue, 14 Jun 2022 14:50:51 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Vadym Kochan <vadym.kochan@plvision.eu>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Konstantin Porotchkin <kostap@marvell.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Robert Marko <robert.marko@sartura.hr>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v9 1/3] dt-bindings: marvell: Document the AC5/AC5X
+ compatibles
+Message-ID: <20220614205051.GA2499840-robh@kernel.org>
+References: <20220613225338.393-1-vadym.kochan@plvision.eu>
+ <20220613225338.393-2-vadym.kochan@plvision.eu>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 2/6] dt-bindings: mfd: Add mp2733 compatible
-Content-Language: en-US
-To:     Saravanan Sekar <sravanhome@gmail.com>, sre@kernel.org,
-        lee.jones@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
-        lars@metafoo.de, andy.shevchenko@gmail.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-References: <20220614194225.2226447-1-sravanhome@gmail.com>
- <20220614194225.2226447-2-sravanhome@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220614194225.2226447-2-sravanhome@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220613225338.393-2-vadym.kochan@plvision.eu>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,27 +71,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2022 12:42, Saravanan Sekar wrote:
-> Add new compatible for mp2733 mfd driver.
+On Tue, Jun 14, 2022 at 01:53:22AM +0300, Vadym Kochan wrote:
+> From: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > 
-> Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
+> Describe the compatible properties for the Marvell Alleycat5/5X switches
+> with integrated CPUs.
+> 
+> Alleycat5:
+> * 98DX2538: 24x1G + 2x10G + 2x10G Stack
+> * 98DX2535: 24x1G + 4x1G Stack
+> * 98DX2532: 8x1G + 2x10G + 2x1G Stack
+> * 98DX2531: 8x1G + 4x1G Stack
+> * 98DX2528: 24x1G + 2x10G + 2x10G Stack
+> * 98DX2525: 24x1G + 4x1G Stack
+> * 98DX2522: 8x1G + 2x10G + 2x1G Stack
+> * 98DX2521: 8x1G + 4x1G Stack
+> * 98DX2518: 24x1G + 2x10G + 2x10G Stack
+> * 98DX2515: 24x1G + 4x1G Stack
+> * 98DX2512: 8x1G + 2x10G + 2x1G Stack
+> * 98DX2511: 8x1G + 4x1G Stack
+> 
+> Alleycat5X:
+> * 98DX3500: 24x1G + 6x25G
+> * 98DX3501: 16x1G + 6x10G
+> * 98DX3510: 48x1G + 6x25G
+> * 98DX3520: 24x2.5G + 6x25G
+> * 98DX3530: 48x2.5G + 6x25G
+> * 98DX3540: 12x5G/6x10G + 6x25G
+> * 98DX3550: 24x5G/12x10G + 6x25G
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
 > ---
->  Documentation/devicetree/bindings/mfd/mps,mp2629.yaml | 1 +
->  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/mps,mp2629.yaml b/Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
-> index f91acc42d652..fe13869e2c58 100644
-> --- a/Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/mps,mp2629.yaml
-> @@ -19,6 +19,7 @@ description: |
->  properties:
->    compatible:
->      const: mps,mp2629
-> +    const: mps,mp2733
+> Notes:
+>     Changes in v9:
+>     - Renamed $id with "ac5" prefix
+>     Changes in v8:
+>     - Add review from Krzysztof
+>     Changes in v7:
+>     - Add rd-ac5 and rd-ac5x boards to binding.
+>     - Rename to armada-98dx25xx.yaml
+>     Changes in v6:
+>     - New
+> 
+>  .../bindings/arm/marvell/ac5-98dx25xx.yaml    | 32 +++++++++++++++++++
 
-This does not look like proper syntax. Please run `make
-dt_binding_check` (see instructions in bindings directory) to validate it.
+Use compatible string for filename:
 
+marvell,ac5.yaml
 
-Best regards,
-Krzysztof
+>  1 file changed, 32 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/marvell/ac5-98dx25xx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/ac5-98dx25xx.yaml b/Documentation/devicetree/bindings/arm/marvell/ac5-98dx25xx.yaml
+> new file mode 100644
+> index 000000000000..1d8dd7c00c1a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/marvell/ac5-98dx25xx.yaml
+> @@ -0,0 +1,32 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/marvell/ac5-98dx25xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell Alleycat5/5X Platforms
+> +
+> +maintainers:
+> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - description: Alleycat5 (98DX25xx) Reference Design
+> +        items:
+> +          - enum:
+> +              - marvell,rd-ac5
+> +          - const: marvell,ac5
+> +
+> +      - description: Alleycat5X (98DX35xx) Reference Design
+> +        items:
+> +          - enum:
+> +              - marvell,rd-ac5x
+> +          - const: marvell,ac5x
+> +          - const: marvell,ac5
+> +
+> +additionalProperties: true
+> +
+> +...
+> -- 
+> 2.17.1
+> 
+> 
