@@ -2,108 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96E3354A2C0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 01:34:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 853F854A344
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 02:50:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240197AbiFMXeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 19:34:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39142 "EHLO
+        id S236420AbiFNAua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 20:50:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236672AbiFMXeR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 19:34:17 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E23326C8;
-        Mon, 13 Jun 2022 16:34:16 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id gd1so7024286pjb.2;
-        Mon, 13 Jun 2022 16:34:16 -0700 (PDT)
+        with ESMTP id S230099AbiFNAua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 20:50:30 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79BCA30544
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 17:50:28 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id s37so4528674pfg.11
+        for <devicetree@vger.kernel.org>; Mon, 13 Jun 2022 17:50:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=3qAuC1Xx5DZSiCFURmRIjG5OoOgJLKkn2IidFANv/0A=;
-        b=Bicphq+Rx/9WWO89rnGH1fubGsFp9bvxKEvZZ97NxPWFwgMhW/fF9eEDYa4og0uxd/
-         fIHQ9k6CImFVxuokD/oR6AB9uocXJscd2JfB65UVeJUmLElAflX/fiMmRgWfOj9A/Qqx
-         KA9eaPDto/ZaC5v1kKfG5tMsfytyCpEhoMs75aBvF41S7RRh4CBmtcXY8xDeaVZLrP6x
-         j5fGxmlmG2hxyfWZ8YIgYwspMKeUaaEdse0WcSrvhI6vyas532OL9PiheSDzsBvCWEao
-         mqaQv6iwb/xeXs5/E0JcSwVbwmslLcceM0RLHTGDslbZZgU7jcTE26IWKVEx/CxoKDdD
-         zPxA==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ACPm1ucMTOfi6ue/vXhWlbqaubMdDkKHxItbdVtdzEE=;
+        b=iYC0JOhxEj9AINp/vrpMdikzU0oJrpyR1YAiazkp6nK8NrpW3f0uAlfOrYHcimtc35
+         jiBw/PzazQUFDPZ32OuGe1CmP66JTJhZtSKcyXfAQfCez7PoDjHOkozPQPpDZH7ip/6A
+         IH4Nh/Ru2fAg85Aan/uHiiT0PwXc1LstPcudo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=3qAuC1Xx5DZSiCFURmRIjG5OoOgJLKkn2IidFANv/0A=;
-        b=wr6IVUYtW8WuGpdvRpShG3Frn8aT0Z4Sj/yRO9iAQgbmqAY+JP7bK5DckQIw4KjL9Q
-         k1WprRSbFvE+4GR8jOV1yIQN6zkm7+B0DGWbZy2wBs+Pd6M35uj1LMYbFfYJgQAKUbvu
-         NPcKMddM6QbIoKb5mxHulzUpgkNxYhUxtpj6ThDL/4VbJFH5206MZ4ewkbgiLPH3+6zx
-         ip6SN2jzN6gQPBo0kgGeYaCLROpo1TeYffURFcgDJrdVQA8jFSEhFUmr2yMsI5QbICDL
-         qD0oGTrgno+YEEBx1J0JuQaBHJ9SrbIVOD99OjiZaGZlG2L3c2jxTNW1dxq4w/FkRjmf
-         uuxQ==
-X-Gm-Message-State: AJIora8L4lQkcjlOUtr0loU+jcB1q67EIhRsxhS5oKO4LBQDZf4E7k08
-        xDNKWnBuRS32+UHxb7rJ5qw=
-X-Google-Smtp-Source: AGRyM1sLL3r1ikyRi4lWU26wXr4ebFo6aJAaPnp6FdoB4QXln7VTpaXoaDBQK+JbVVW42+xaLAmlkQ==
-X-Received: by 2002:a17:902:e88e:b0:163:ee82:ffb with SMTP id w14-20020a170902e88e00b00163ee820ffbmr1741929plg.142.1655163255790;
-        Mon, 13 Jun 2022 16:34:15 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id q2-20020a170902f78200b00164ade949adsm5721247pln.79.2022.06.13.16.34.13
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ACPm1ucMTOfi6ue/vXhWlbqaubMdDkKHxItbdVtdzEE=;
+        b=JumaiRTQqn8ESQTOwxDd1PTR9AU6jpjgTxkWDqUlZrBx20B0G6tSWU0FG1QaYqB5Bf
+         Y7wcL1CcX8SIaryVbbdXGmwT5j39FjQltlSvRMwRUSJ1EPA8Zotrzf7FfyynaLiHf0Rb
+         SYzjkgydaDvd2stwYwpQA7KnP7Ithtgo17Z01oulb1tliO1kiwWnsTSsQYPmtsP415+D
+         aMZPns09kSxIf2HAQ4PK7xeNK03BC055Xlf0DdFzo/e2yWYOyQUo3t1bfansdExc/xZs
+         5ebUjQkeKFJLlicY4CMXvEgYKa16b0Diuyblg8eApUAYwGDCJr9jpLiRmP0BHph+aLlG
+         vHhQ==
+X-Gm-Message-State: AOAM53206fyAWF/wLHju7PcDZy/BF+hhPDXJioc7RdUdJD6iZ+ZFYtnH
+        qVbEYovDCAjGPrvgHjXvXxANzw==
+X-Google-Smtp-Source: ABdhPJz1vRzxCw2py7mXm3l4Hx3ORSS7vhcYns5Vnoc1vi1vDPLfl40RxweDgBEXhirb4w8MXGVOjA==
+X-Received: by 2002:a63:c046:0:b0:401:abda:a537 with SMTP id z6-20020a63c046000000b00401abdaa537mr2140270pgi.150.1655167827954;
+        Mon, 13 Jun 2022 17:50:27 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:c4fb:a1d8:47ef:f10c])
+        by smtp.gmail.com with UTF8SMTPSA id f4-20020a62db04000000b005184fe6cc99sm6028282pfg.29.2022.06.13.17.50.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Jun 2022 16:34:15 -0700 (PDT)
-Message-ID: <d18e93a0-f2d7-81c6-56e8-9dfbc6f14383@gmail.com>
-Date:   Mon, 13 Jun 2022 16:34:12 -0700
+        Mon, 13 Jun 2022 17:50:27 -0700 (PDT)
+Date:   Mon, 13 Jun 2022 17:50:26 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Subject: Re: [v21 4/5] usb: dwc3: qcom: Configure wakeup interrupts during
+ suspend
+Message-ID: <YqfbUu/X1joc1rUJ@google.com>
+References: <1655094654-24052-1-git-send-email-quic_kriskura@quicinc.com>
+ <1655094654-24052-5-git-send-email-quic_kriskura@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] ARM: dts: bcm2711-rpi-4-b: Use aliases to set custom MMC
- device index
-Content-Language: en-US
-To:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
-        Peter Robinson <pbrobinson@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        gkrzysztof.kozlowski+dt@linaro.org, gnsaenz@kernel.org,
-        grobh+dt@kernel.org, nsaenz@kernel.org, stefan.wahren@i2se.com
-References: <20220608123233.13439-1-ariel.dalessandro@collabora.com>
- <CALeDE9PR80qS63wwAKB-hENWbEj1xNHj+k81tyWkPPfZ0TS8Pw@mail.gmail.com>
- <f83690bb-5513-db87-2d97-7cbd981aa0f7@collabora.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <f83690bb-5513-db87-2d97-7cbd981aa0f7@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1655094654-24052-5-git-send-email-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/13/22 05:46, Ariel D'Alessandro wrote:
-> Hi Peter,
+On Mon, Jun 13, 2022 at 10:00:53AM +0530, Krishna Kurapati wrote:
+> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
 > 
-> On 6/12/22 17:38, Peter Robinson wrote:
->> On Wed, Jun 8, 2022 at 1:35 PM Ariel D'Alessandro
->> <ariel.dalessandro@collabora.com> wrote:
->>>
->>> Add MMC aliases to ensure that the /dev/mmcblk ID for SD card won't
->>> change depending on the probe order of the MMC drivers.
->>
->> Is  the bcm2711-rpi.dtsi a better place for it given there's other
->> aliases there and it will be consistent across variations?
+> Configure DP/DM line interrupts based on the USB2 device attached to
+> the root hub port. When HS/FS device is connected, configure the DP line
+> as falling edge to detect both disconnect and remote wakeup scenarios. When
+> LS device is connected, configure DM line as falling edge to detect both
+> disconnect and remote wakeup. When no device is connected, configure both
+> DP and DM lines as rising edge to detect HS/HS/LS device connect scenario.
 > 
-> Yes, indeed, it makes sense moving it to bcm2711-rpi.dtsi
+> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> Reviewed-by: Pavankumar Kondeti <quic_pkondeti@quicinc.com>
+> ---
+>  drivers/usb/dwc3/dwc3-qcom.c | 72 ++++++++++++++++++++++++++++++++++++++------
+>  1 file changed, 62 insertions(+), 10 deletions(-)
 > 
-> The other board what will be affected by this alias is the Raspberry Pi
-> Compute Module 4 IO Board, on which emmc2 is the eMMC. However, the
-> alias makes sense, to have that as the first mmc device.
-> 
-> Maybe we can add the alias as follows?
-> 
->      mmc0 = &emmc2;  /* mmcblk0 for eMMC/SD */
+> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+> index 7352124..1046ea8 100644
+> --- a/drivers/usb/dwc3/dwc3-qcom.c
+> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+> @@ -20,7 +20,8 @@
+>  #include <linux/usb/of.h>
+>  #include <linux/reset.h>
+>  #include <linux/iopoll.h>
+> -
+> +#include <linux/usb/hcd.h>
+> +#include <linux/usb.h>
+>  #include "core.h"
+>  
+>  /* USB QSCRATCH Hardware registers */
+> @@ -76,6 +77,7 @@ struct dwc3_qcom {
+>  	int			dp_hs_phy_irq;
+>  	int			dm_hs_phy_irq;
+>  	int			ss_phy_irq;
+> +	enum usb_device_speed	usb2_speed;
+>  
+>  	struct extcon_dev	*edev;
+>  	struct extcon_dev	*host_edev;
+> @@ -296,11 +298,34 @@ static void dwc3_qcom_interconnect_exit(struct dwc3_qcom *qcom)
+>  	icc_put(qcom->icc_path_apps);
+>  }
+>  
+> -static void dwc3_qcom_enable_wakeup_irq(int irq)
+> +static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom)
+> +{
+> +	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
+> +	struct usb_hcd *hcd = platform_get_drvdata(dwc->xhci);
+> +	struct usb_device *udev;
+> +
+> +	/*
+> +	 * It is possible to query the speed of all children of
+> +	 * USB2.0 root hub via usb_hub_for_each_child(). DWC3 code
+> +	 * currently supports only 1 port per controller. So
+> +	 * this is sufficient.
+> +	 */
 
-You have made a typo on the bcm-kernel-feedback-list meaning that this 
-won't reach the patchwork instance I use to manage and apply patches, 
-can you please fix that up for your v2? Thanks!
--- 
-Florian
+nit: not sure it's really valuable to mention what could be done
+theoretically. Saying that the dwc3 driver currently only
+supports one port per controller should be enough.
+
+No need to respin for this,
+
+> +	udev = usb_hub_find_child(hcd->self.root_hub, 1);
+> +
+> +	if (!udev)
+> +		return USB_SPEED_UNKNOWN;
+> +
+> +	return udev->speed;
+> +}
+> +
+> +static void dwc3_qcom_enable_wakeup_irq(int irq, unsigned int polarity)
+
+'polarity' isn't really accurate, the parameter also encodes whether the IRQ
+is edge or level triggered. 'irq_type' would be clearer.
+
+Also no need to respin just for this.
+
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
