@@ -2,94 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EC2954BBAD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:32:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55EA654BBDE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:36:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245390AbiFNU3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 16:29:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48890 "EHLO
+        id S239258AbiFNUgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 16:36:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231262AbiFNU3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:29:12 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25B912A733;
-        Tue, 14 Jun 2022 13:29:12 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id d14so13211236eda.12;
-        Tue, 14 Jun 2022 13:29:12 -0700 (PDT)
+        with ESMTP id S234269AbiFNUgF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:36:05 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E447D25EAD
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 13:36:04 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id w16so13076760oie.5
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 13:36:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=aRjb3jd1aQaLkq/z5sj77GhYqe2JvAPzVwwOMMfP38E=;
-        b=K2N4aGCv4zNeMOd2yGAV7ZteJENWlMQgdsiYFaolNK+bkH7DEmbuYt/AslWT/HocXR
-         mjkp9xGKv7oGtT+u2defmr8V9/RJSsYBuPdA+LTb9VMZ9oSVHcUSHgX/LZ4H1tHMPsA7
-         0FSvpeIvmwqUYrrzc4IBXExEwWdEjH/RCWvjXmgWBiJX8fri2mtQ/fj1cFcBqs5WnBnz
-         +HjCzkVYGrA+b6clPD9Uwi0qGmHWjoXgnbDNEvQOvovTeZVkTiA2e39bKmSeLatM1x6c
-         ONzaCqcyXiLjYOdrqRQ0ruIfl1eGvxCbooXQaKR6/FSl0Cqh9hVx4S+9GFIeyImTXP3W
-         gy9Q==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=Hx4m2cPli7Yxo9eAFRYxPiAMxd1txrBCTKUV9CpN2r0=;
+        b=GBkzGhubW+m1NdLCNrCltl11TXe5LOM0BQ/SfuKRQoe7iCB6ZeYKTyUe8EfDcNgcPt
+         MVsktVdkmvdEUBuXPzFN20lpnSoyXhqi0brF2GSV1d8yS02hFbk//x4c/x6wOxpUKxBr
+         1DK78eRRMiDbYAfitFipkmlpQTGpSTh86IolI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=aRjb3jd1aQaLkq/z5sj77GhYqe2JvAPzVwwOMMfP38E=;
-        b=drgu4BlyOPy7fkEYFGC5WBF3ru8SrokHI/JR+jXArUmId1XnZzxf10dIAj+GJ52p/+
-         fVK84Bh2n6fHDlP6DLibJVwVGvZyd5sTZ7OWy2tyj9apd+Hhmecz2ymm6DCKeLEbmz7F
-         JQ8qeC/s9vlSRG2W4EVP4AUinovDqVWXTEMNfJm2AV7h9ToisnzBczxcPU7VANQQ2FJr
-         9PYZMOBoAQsH26Mw/fNAyiZOw8U7mP4dSfVCH60oi+ZFkgQj1BL7ahtTBkZFEmWxRDeL
-         +KpQZ7xqKCAv46eKagKAazdCRGbzfeVsolvJVFw07okwn56aZ3AI/+nEK7s5RWT0HOOh
-         Ktyw==
-X-Gm-Message-State: AOAM531z4MHAOPn6eXf+N0vLS/1wfemRXkc9AwAkwkNvh5ifvbqozy4I
-        f6MKmExqc4SEBEGTDFQBPNI=
-X-Google-Smtp-Source: ABdhPJwkmm9/r74/oo/mg4CEbzb7CSnzzm/yuMLEXu/YYGuNTmplbjVAPd146zBa1fc16wAv5FKfUw==
-X-Received: by 2002:a05:6402:1914:b0:430:b941:2c44 with SMTP id e20-20020a056402191400b00430b9412c44mr8400109edz.77.1655238550743;
-        Tue, 14 Jun 2022 13:29:10 -0700 (PDT)
-Received: from kista.localnet (213-161-3-76.dynamic.telemach.net. [213.161.3.76])
-        by smtp.gmail.com with ESMTPSA id oq13-20020a170906cc8d00b006feb047502bsm5394863ejb.151.2022.06.14.13.29.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jun 2022 13:29:10 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: Re: [PATCH v2 05/48] arm64: dts: allwinner: align gpio-key node names with dtschema
-Date:   Tue, 14 Jun 2022 22:29:09 +0200
-Message-ID: <21497739.EfDdHjke4D@kista>
-In-Reply-To: <5574044.DvuYhMxLoT@kista>
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org> <20220609113911.380368-4-krzysztof.kozlowski@linaro.org> <5574044.DvuYhMxLoT@kista>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=Hx4m2cPli7Yxo9eAFRYxPiAMxd1txrBCTKUV9CpN2r0=;
+        b=60/eTZFRjaNfA9dp7W+N8bsIgGvjtPPHexPyQzfra6KuMxHCDYjMdSy75z/KJwUPWK
+         LibDZDMTKPgSBGfFGscth5spI65AU9BsC9ufCQr78R1z+RhEuwPx2gXJOJqKAzvzS2Qe
+         7dI8TnILV8MMRwmOP2CB8+U5JXCtLFpNLmzpy1q7SkM2PxT9rMok02dSahilY+3WVFCB
+         am/ENMIdIYowCiaRKJEUer5gHdLUoyxZ5uPog8xBjJUxRytRwqZQkiaH++kUhBxJqf2K
+         PejjSYdhCZMcF8TszNm9+7Fyd7ZmS6afLDTYrZ7wqJtREv2oN9VkMTzbMDxpydN3x+Bj
+         VV2g==
+X-Gm-Message-State: AOAM533oTN+lS6Al03/2x8FitzwtZiVq6Wp6hLUSrUtlEqaL4wCL4hfF
+        mLUmPA/ndVNdhBr0X4buIPqq4nr7Xp53YmsUwneJhQ==
+X-Google-Smtp-Source: ABdhPJyUxXUDBEQ+OOoBRc+71eAnqcx8CzEK1l5uYJcSQkppiAlnoMLs2N5eXAGmpqdYgivUkN3FA0x6g0zkUB1oerA=
+X-Received: by 2002:a05:6808:e87:b0:32e:4789:d2c with SMTP id
+ k7-20020a0568080e8700b0032e47890d2cmr2999011oil.193.1655238964235; Tue, 14
+ Jun 2022 13:36:04 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 14 Jun 2022 13:36:03 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1655200111-18357-8-git-send-email-quic_c_skakit@quicinc.com>
+References: <1655200111-18357-1-git-send-email-quic_c_skakit@quicinc.com> <1655200111-18357-8-git-send-email-quic_c_skakit@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 14 Jun 2022 13:36:03 -0700
+Message-ID: <CAE-0n53JOXHrVOMaBBhYFfMymee5qOpCBvM6=s+9YTNt51B9TA@mail.gmail.com>
+Subject: Re: [PATCH V15 7/9] regulator: Add a regulator driver for the PM8008 PMIC
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
+        quic_jprakash@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 13. junij 2022 ob 23:00:02 CEST je Jernej =C5=A0krabec napi=
-sal(a):
-> Dne =C4=8Detrtek, 09. junij 2022 ob 13:39:07 CEST je Krzysztof Kozlowski=
-=20
-> napisal(a):
-> > The node names should be generic and DT schema expects certain pattern
-> > (e.g. with key/button/switch).
-> >=20
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->=20
-> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Quoting Satya Priya (2022-06-14 02:48:29)
+> Qualcomm Technologies, Inc. PM8008 is an I2C controlled PMIC
+> containing 7 LDO regulators.  Add a PM8008 regulator driver to
+> support PMIC regulator management via the regulator framework.
+>
+> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+> ---
 
-Applied, thanks!
-=20
-Best regards,
-Jernej
-
-
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
