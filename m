@@ -2,80 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A935454BDD1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 00:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4D7054BDD5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 00:45:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353692AbiFNWlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 18:41:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38936 "EHLO
+        id S242240AbiFNWo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 18:44:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353684AbiFNWly (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 18:41:54 -0400
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B7B527DA
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 15:41:53 -0700 (PDT)
-Received: by mail-io1-xd2f.google.com with SMTP id e80so10946458iof.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 15:41:53 -0700 (PDT)
+        with ESMTP id S237368AbiFNWoZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 18:44:25 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B179350E27
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 15:44:23 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id 31so8137215pgv.11
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 15:44:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9+kyzNbwL34JPEo3iqbzLbGd9UuckbxCXwZqzQQStRo=;
-        b=kxZU4O5oWw0x6pDNeXPLnBAGs3Pgu48222c3blJk4xg8T3aZUo/tY4zJCYU8/9SHJc
-         eqFiPRvDdjVxZPzHJ4Yr1mmtdWKKKeoKPFWWqMd1kR8Gw7kAq7NIgJhcIPmbG1qZz4OM
-         yE/QC1aP/kCMscfKbNeK6lvJBePdJir4T9S6g=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=tEKPEohOKii6C8FoFw3OQBM5b+J4Se99Td+zgDjIemk=;
+        b=ZTuKG2Fcgea7PbObrnWQU9iarLLlAl0A3+317ktLgMDaPR83JypuyFNwk5IEhWeF5z
+         aUbwZKdEEhBtB/+uY9xN1DmpESlWOKMXVSi6GXFb0QE24SH+uGoGCTLELNITuEURJ+Je
+         GYUglFfOuvGTeVuO12m05G195vaE9hRJdxedwMVzmySSryorit3Re0wFMKzdyV08DHGC
+         n+LfhDjZatZjN10J7znq6vtnMUsrTyfRYPFZnXAKN+5FZ397/PAPu5MPSCaJ4zmtfpXg
+         WLEDiEpiSAKgZJxjDOig8wqWmgw3QL4wbxJ17NWXeuNKDT/GDMD9FLXYlx0rz/MnAOO9
+         PU/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9+kyzNbwL34JPEo3iqbzLbGd9UuckbxCXwZqzQQStRo=;
-        b=clKprSZhvrv2BtdYbYZCSUsD8qFyuq3HYCMSW9NCc5Lsh3WTt3Yk0gnFHF978iA0ZJ
-         vOK+iU0M3Ovr7EWr44lo/+WPNfM7VBp6GxjTwiA4+7QuVq+o90QfPGRovO+Ppi9phl8C
-         5MosJVEOORIH8+YroeIIInl9xa2OWBKYBeE1wGdhNfHpIDYJanY2cKTzmYuGE5375ZR9
-         GELMtCxiPpk/+5B57ZkjvUVGziHC42j8u0LXClX7hFYV90Hkl5WQzYE6zyLJELK+vC1k
-         A69/+mYd2Sxv9cPJEAQvCON7OT6Laxsl2l7pJKBHAPw3KgI1Xd0uf1B1K1kdYylCFr34
-         n4pg==
-X-Gm-Message-State: AOAM531qvA+zirNrcpU0tPuZSP32AVFxknrLFWrf6ismePvcHEgyW0Q2
-        BkoKJx+SEW+yJzLIP2YIJClDOYD891AvCB0W
-X-Google-Smtp-Source: ABdhPJxQsIgZlSjjojJDbS/vgPJzBhPScLDI726/jvAEmPAVYuOI+nUKSgeLxQQMMIIgB5GdA+hCUg==
-X-Received: by 2002:a05:6638:d8c:b0:332:15ef:657f with SMTP id l12-20020a0566380d8c00b0033215ef657fmr4056591jaj.146.1655246513160;
-        Tue, 14 Jun 2022 15:41:53 -0700 (PDT)
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com. [209.85.166.49])
-        by smtp.gmail.com with ESMTPSA id v10-20020a02384a000000b0033188e8cabesm5370020jae.74.2022.06.14.15.41.52
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=tEKPEohOKii6C8FoFw3OQBM5b+J4Se99Td+zgDjIemk=;
+        b=Y30wFZb5wSU0QzhRHKqBPvND30CjwoxuG/n5AB88LuXzwE00Wd3kku7xSTxrNLF4by
+         pGz+rqPHok9ajKvdwT8H/lBrFadUAylqVh34wZ4l9nCk1mSEf0rHx9oCR9nhkRfAZ3Zd
+         fgZOJYwitTCQMUiQ8vEawuQjCYeWNNX0BtfmjAJS+F79tZWGPj3cgherLwlU0RJFSZm3
+         tG1HmpCoSYfAmzJlX3+zSuuxu47m2FNp6y1d/JPynNTU9+Cf4Fyd+oCi3wITxaDMCbHG
+         /mOpBw7UCOzGAEmOzGZuxMJ6cakCJ1Q1SQ43PdjameKXlgh6LW4bFQEZj0zHBxxLr58A
+         t0cQ==
+X-Gm-Message-State: AOAM533lP5aI0l1qMl0+7G2mGel8JoLNLvr8/ZuCva77Ccf2JTqLeZXR
+        U6MgXvgs/HH23dRbdy26xwQm6g==
+X-Google-Smtp-Source: ABdhPJxXRVyhCovuWMWCtUI4jcVJQFhXzB9PpxsEI2Vao7fIUhQ51iYgdX/g9ne2SL7h97qTH3E1Jw==
+X-Received: by 2002:a63:90c8:0:b0:3fd:157f:3f6f with SMTP id a191-20020a6390c8000000b003fd157f3f6fmr6365006pge.316.1655246663184;
+        Tue, 14 Jun 2022 15:44:23 -0700 (PDT)
+Received: from [172.22.33.138] ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id bg11-20020a1709028e8b00b0016782c55790sm7734784plb.232.2022.06.14.15.44.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jun 2022 15:41:52 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id h8so10920447iof.11
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 15:41:52 -0700 (PDT)
-X-Received: by 2002:a02:c6c4:0:b0:333:ecb2:fc7f with SMTP id
- r4-20020a02c6c4000000b00333ecb2fc7fmr3785042jan.184.1655246512053; Tue, 14
- Jun 2022 15:41:52 -0700 (PDT)
+        Tue, 14 Jun 2022 15:44:22 -0700 (PDT)
+Message-ID: <c9d90fdf-41fa-a363-fdc0-097c3d0dd547@linaro.org>
+Date:   Tue, 14 Jun 2022 15:44:20 -0700
 MIME-Version: 1.0
-References: <20220614195144.2794796-1-swboyd@chromium.org> <20220614195144.2794796-2-swboyd@chromium.org>
-In-Reply-To: <20220614195144.2794796-2-swboyd@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 14 Jun 2022 15:41:38 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WUnMCj2GmMy2xRG8WOba1O4jzkXeUrrUic71eEA0aZrw@mail.gmail.com>
-Message-ID: <CAD=FV=WUnMCj2GmMy2xRG8WOba1O4jzkXeUrrUic71eEA0aZrw@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: cros-ec: Reorganize property availability
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Benson Leung <bleung@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, chrome-platform@lists.linux.dev,
-        Guenter Roeck <groeck@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Tzung-Bi Shih <tzungbi@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Lee Jones <lee.jones@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v5 10/15] arm64: dts: Add AMD Pensando Elba SoC support
+Content-Language: en-US
+To:     Brad Larson <brad@pensando.io>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        adrian.hunter@intel.com, alcooperx@gmail.com,
+        andy.shevchenko@gmail.com, arnd@arndb.de, blarson@amd.com,
+        brijeshkumar.singh@amd.com, catalin.marinas@arm.com,
+        gsomlo@gmail.com, gerg@linux-m68k.org, krzk@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
+        broonie@kernel.org, yamada.masahiro@socionext.com,
+        p.zabel@pengutronix.de, piotrs@cadence.com, p.yadav@ti.com,
+        rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org,
+        fancer.lancer@gmail.com, suravee.suthikulpanit@amd.com,
+        thomas.lendacky@amd.com, ulf.hansson@linaro.org, will@kernel.org,
+        devicetree@vger.kernel.org
+References: <20220613195658.5607-1-brad@pensando.io>
+ <20220613195658.5607-11-brad@pensando.io>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220613195658.5607-11-brad@pensando.io>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,78 +85,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 13/06/2022 12:56, Brad Larson wrote:
+> From: Brad Larson <blarson@amd.com>
+> 
+> Add AMD Pensando common and Elba SoC specific device nodes
+> 
+> Signed-off-by: Brad Larson <blarson@amd.com>
 
-On Tue, Jun 14, 2022 at 12:51 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Various properties in the cros-ec binding only apply to different
-> compatible strings. For example, the interrupts and reg property are
-> required for all cros-ec devices except for the rpmsg version. Add some
-> conditions to update the availability of properties so that they can't
-> be used with compatibles that don't support them.
->
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: <devicetree@vger.kernel.org>
-> Cc: <chrome-platform@lists.linux.dev>
-> Cc: Guenter Roeck <groeck@chromium.org>
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Cc: Craig Hesling <hesling@chromium.org>
-> Cc: Tom Hughes <tomhughes@chromium.org>
-> Cc: Alexandru M Stan <amstan@chromium.org>
-> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
-> Cc: Matthias Kaehlcke <mka@chromium.org>
-> Cc: Benson Leung <bleung@chromium.org>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+Thank you for your patch. There is something to discuss/improve.
+
 > ---
->  .../bindings/chrome/google,cros-ec-typec.yaml |  1 +
->  .../bindings/extcon/extcon-usbc-cros-ec.yaml  |  1 +
->  .../i2c/google,cros-ec-i2c-tunnel.yaml        |  1 +
->  .../bindings/mfd/google,cros-ec.yaml          | 29 +++++++++++++------
->  .../bindings/pwm/google,cros-ec-pwm.yaml      |  1 +
->  .../regulator/google,cros-ec-regulator.yaml   |  1 +
->  .../bindings/sound/google,cros-ec-codec.yaml  |  1 +
->  7 files changed, 26 insertions(+), 9 deletions(-)
+>  arch/arm64/boot/dts/amd/Makefile              |   1 +
+>  arch/arm64/boot/dts/amd/elba-16core.dtsi      | 189 +++++++++++++++++
+>  arch/arm64/boot/dts/amd/elba-asic-common.dtsi | 103 ++++++++++
+>  arch/arm64/boot/dts/amd/elba-asic.dts         |  28 +++
+>  arch/arm64/boot/dts/amd/elba-flash-parts.dtsi | 106 ++++++++++
+>  arch/arm64/boot/dts/amd/elba.dtsi             | 191 ++++++++++++++++++
+>  6 files changed, 618 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amd/elba-16core.dtsi
+>  create mode 100644 arch/arm64/boot/dts/amd/elba-asic-common.dtsi
+>  create mode 100644 arch/arm64/boot/dts/amd/elba-asic.dts
+>  create mode 100644 arch/arm64/boot/dts/amd/elba-flash-parts.dtsi
+>  create mode 100644 arch/arm64/boot/dts/amd/elba.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/amd/Makefile b/arch/arm64/boot/dts/amd/Makefile
+> index 68103a8b0ef5..9bba020fa880 100644
+> --- a/arch/arm64/boot/dts/amd/Makefile
+> +++ b/arch/arm64/boot/dts/amd/Makefile
+> @@ -1,2 +1,3 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  dtb-$(CONFIG_ARCH_SEATTLE) += amd-overdrive-rev-b0.dtb amd-overdrive-rev-b1.dtb
+> +dtb-$(CONFIG_ARCH_PENSANDO) += elba-asic.dtb
 
-slight nit that from reading the subject of this patch I'd expect that
-it was a no-op. Just a reorganization / cleanup. In fact, it actually
-is more than a no-op. It enforces restrictions that should probably
-have always been enforced. I think it'd be better if the subject was
-something like "tighten property requirements" or something like that.
+Put it in alphabetical order, so not at the end of file.
 
+(...)
 
-> @@ -158,12 +154,27 @@ allOf:
->                - google,cros-ec-rpmsg
->      then:
->        properties:
-> +        controller-data: false
->          google,cros-ec-spi-pre-delay: false
->          google,cros-ec-spi-msg-delay: false
->          spi-max-frequency: false
->      else:
->        $ref: /schemas/spi/spi-peripheral-props.yaml
->
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              const: google,cros-ec-rpmsg
-> +    then:
-> +      properties:
-> +        mediatek,rpmsg-name: false
 > +
-> +      required:
-> +        - reg
-> +        - interrupts
+> +&i2c0 {
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +	rtc@51 {
+> +		compatible = "nxp,pcf85263";
+> +		reg = <0x51>;
+> +	};
+> +};
+> +
+> +&spi0 {
+> +	num-cs = <4>;
+> +	cs-gpios = <0>, <0>, <&porta 1 GPIO_ACTIVE_LOW>,
+> +		   <&porta 7 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
+> +	spi@0 {
 
-slight nit that think it would be easier to understand this bottom
-section if you made the "SPI" and "RPMSG" sections more symmetric to
-each other. I think it would be easy to just change the SPI one to say
-"not SPI" instead of explicitly listing "i2c" and "rpmsg".
+Rob's  comment about bindings applies here as well, so please fix both.
+This has to be sorted out - either it is SPI controller or MFD.
 
-In any case, this overall looks pretty nice to me. My two requests are
-both pretty small nits, so either with or without fixing them:
+Rest looks okay for me.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> +		compatible = "amd,pensando-elbasr", "simple-mfd";
+> +		reg = <0>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		spi-max-frequency = <12000000>;
+> +
+
+
+Best regards,
+Krzysztof
