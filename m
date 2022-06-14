@@ -2,102 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38BD554B3B5
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 16:47:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEFDA54B3C9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 16:50:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237898AbiFNOoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 10:44:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40164 "EHLO
+        id S240585AbiFNOt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 10:49:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356391AbiFNOnr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 10:43:47 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43C71ADB4
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 07:43:45 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id u37so337219pfg.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 07:43:45 -0700 (PDT)
+        with ESMTP id S235039AbiFNOt5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 10:49:57 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BEF91EEDB;
+        Tue, 14 Jun 2022 07:49:56 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id u12so17637492eja.8;
+        Tue, 14 Jun 2022 07:49:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4cFnRvgmCgZilg+kua2nS8hJF1hI6XababS0iH20TWo=;
-        b=wBDys1FsoPdSRBO3RkTw5jlPlUveLtj70wIv5jWeDeDLEXnPegBmCF3tkiBJbp6xmr
-         kcnSZ9qvtjIuBe7II3as/t5SoZ1juk65X+SVmJ9SOmJ/DN+edJzpzYzN/UY1U8ydxEy4
-         qNdG/90Ex/j6q6jZ6FPsB+YADxJK5BpFKLhyNaj2ZEinXendLg5kraR7ulE8m0frtNm2
-         /dILb8+Azt2pGcQ4CXh1KORlJIOxo7q47pTt9HYRGfNdcgxZuJZ3IpLrNAYlbreaC/f9
-         jrq1sKedHCX/0IVWRvzdOBW93TTTpD+39TZicokOhiMCldjMxSosTQPQnmgVMVAZ4PEx
-         X8Hg==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9qHhTGxxY9/waiBpfU6mqYtlay9MtThobDAeZOTJkHQ=;
+        b=fiNUu/SiNf33k6dJaZ95un7DWP2Yv+shAdb6ZksmWhtZDwHnC1BMu7T0xWkn4OuqOQ
+         X8vMKc7WNB9H83uqjV2aYPfLzniZmqsHRgljLiyxXBgOVblJUN9EOlIZJLes941Jh1+I
+         7qdhMuxy4eRi1VAj2ttGP3MatHBgada6EUAhrycVnCJSxHu/wIV/iUdvQlglzhLIoVpX
+         N02iJ4d85ICFofTyXu3SKW0M/jixATZbrzpdwh/QcdrN2OoXD97YAamPIE2pT+ANVCib
+         RzZdCGdvoCQb1NLCuU0ftoW8xMaMaDmf+/0+4MW6k0ImoMOgBg/wp8CGFGnyXZ+PI9JS
+         EHTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=4cFnRvgmCgZilg+kua2nS8hJF1hI6XababS0iH20TWo=;
-        b=RwzfWIM+nb66M1au2qi3wqdacwY80IFK1TwHRWpR5cHmkPx9XSDKIe8tBCA4okvOGy
-         r7xd/on12+Yf8w6IB4ic0xq3lksFmn5ihhz/Q8JoLF6ojDCpGKt0xhsAlbEGubFadhMQ
-         ZIZaA8KE6NSXCCJdKBMiCJj5Gh9yhBYV1o2rT8p4AYxvJtw9Ku3RYpPauYrSDxe7og1f
-         YrmGrTya9RxvUJv62NCSUj1E9ZoRZGvOZbvFAZjHLdQWwB4H8pusaBiJtPYVqHkEwFnG
-         BRZ2Gj6oddwB+QKfEWE44GzReB7vfA+rSUA9nkmFs5YYvwoiO4xfQg//Y/cKrYxbOncQ
-         ciWQ==
-X-Gm-Message-State: AOAM530t+f2rtp33V1B3X/tmFVNuoCzdwJRiDiQa18y3U05ewQxkLq6h
-        iUoeC0/oFvxlbO8Rvf9SvJdGhQ==
-X-Google-Smtp-Source: ABdhPJypR8vjAMFkGvsZC+cplFp5gkSzlPo/jUCX+Nh+gTxI9BNzxBVZce/Kf+3LESVZiCbBz1Stcg==
-X-Received: by 2002:a05:6a00:a21:b0:522:9134:c620 with SMTP id p33-20020a056a000a2100b005229134c620mr4853896pfh.68.1655217824803;
-        Tue, 14 Jun 2022 07:43:44 -0700 (PDT)
-Received: from [172.20.0.51] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id g7-20020a63ad07000000b003db822e2170sm7866328pgf.23.2022.06.14.07.43.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jun 2022 07:43:44 -0700 (PDT)
-Message-ID: <26dc329e-b663-e779-a30f-b495206ced48@linaro.org>
-Date:   Tue, 14 Jun 2022 07:43:42 -0700
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9qHhTGxxY9/waiBpfU6mqYtlay9MtThobDAeZOTJkHQ=;
+        b=Dt4ybsnn2cfzbGqFcrmvATMWx824DSpR4LJvG+nNehsMoXx94CHKnhLJaj7RSXfUL5
+         CN9FHd6iNOvEjlVBxQ9xSjSRTSZCyyuQBwy+M1ZDqWXHEPb5vaJd0id7vdSGiweAPlbo
+         inEHnJxnliBRTDw0agI22S1Kjn3WNFqEFVyNqrDolxirRt9VeQsRWQdZ7Z8/vbUhmWhx
+         JFDp0bU+GhqyxivYCJ3WrAOk+CBw+sYEB60CQaijtb9tdSeFXpcipfPKp2MOdGXi3Jg5
+         hEuW7+RVx3i8OlenCGhDNlBeClWUulWGb6LiM5RVhKznyv1Tczn1mgkYfsNghljGkyV+
+         J7pw==
+X-Gm-Message-State: AOAM533DBUHfsKswlUH1AX98sD+YVGirrs/DeBB4kSlj80+IMz3ilw02
+        c1RJqOGIMz7A7fbEYYPHQdAlwq6PTEcq95bmgMTcg00XtH3phA==
+X-Google-Smtp-Source: ABdhPJykAc4fFrO2Ai+35/pU6BtImZMf+AWI71ybB0/OdOr3BkqeJxAkOP/SXOpcaHNU5Q0y3C5hAET/hbdgSlfXFsQ=
+X-Received: by 2002:a17:906:c7c1:b0:711:d2e9:99d0 with SMTP id
+ dc1-20020a170906c7c100b00711d2e999d0mr4636129ejb.639.1655218195050; Tue, 14
+ Jun 2022 07:49:55 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 2/2] media: i2c: imx412: Add imx577 compatible string
-Content-Language: en-US
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     jacopo@jmondi.org, paul.j.murphy@intel.com,
-        daniele.alessandrelli@intel.com, mchehab@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        dmitry.baryshkov@linaro.org, konrad.dybcio@somainline.org,
-        andrey.konovalov@linaro.org
-References: <20220607134057.2427663-1-bryan.odonoghue@linaro.org>
- <20220607134057.2427663-3-bryan.odonoghue@linaro.org>
- <Yqh4ewFMP5QcO/ta@valkosipuli.retiisi.eu>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <Yqh4ewFMP5QcO/ta@valkosipuli.retiisi.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220614142704.155496-1-jjhiblot@traphandler.com> <20220614142704.155496-3-jjhiblot@traphandler.com>
+In-Reply-To: <20220614142704.155496-3-jjhiblot@traphandler.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 14 Jun 2022 16:49:13 +0200
+Message-ID: <CAHp75Vc1=hNzrVeA9J_TbVEWFO4b-8+VjdsyJVMRTRkX5yhNhQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] leds: Add driver for the TLC5925 LED controller
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, krzk+dt@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2022 05:00, Sakari Ailus wrote:
-> Thanks for the patch.
-> 
-> Surely the sensors still have some differences.
+On Tue, Jun 14, 2022 at 4:27 PM Jean-Jacques Hiblot
+<jjhiblot@traphandler.com> wrote:
+>
+> The TLC5925 is a 16-channels constant-current LED sink driver.
+> It is controlled via SPI but doesn't offer a register-based interface.
+> Instead it contains a shift register and latches that convert the
+> serial input into a parallel output.
+>
+> Datasheet: https://www.ti.com/lit/ds/symlink/tlc5925.pdf
 
-They do, they absolutely do, the imx577 has a whole bunch of extra modes.
+>
 
-We don't have any reference code or access to documentation for those modes.
+No blank lines are allowed in the tag block.
 
-My reference is the qualcomm camx code for the rb5 board, which includes 
-a imx577 sensor. That stack uses the same init code as for the 412.
+> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
 
-So for that baseline mode, the imx412 driver works perfectly.
+...
 
-> Even if the same registers would work as-is (the imx577 might still benefit
-> from different MSRs?), the user should know which sensor it is. I.e. please
-> set the media entity name accordingly. See e.g. the CCS driver for an
-> example.
+> +#include <linux/err.h>
+> +#include <linux/leds.h>
+> +#include <linux/module.h>
+> +#include <linux/property.h>
+> +#include <linux/spi/spi.h>
 
-Agreed, I'll do that.
+This misses a few headers that this code is direct user of:
+container_of.h
+gpio/consumer.h
+types.h
 
----
-bod
+...
+
+> +       // assign_bit() is atomic, no need for lock
+
+Comment is useless, since it's a pattern that is used in the kernel:
+__op is non-atomic, op is atomic.
+
+...
+
+> +
+> +
+
+One blank line is enough
+
+...
+
+> +
+> +
+
+Ditto.
+
+...
+
+> +       gpios = devm_gpiod_get_array(dev, "output-enable-b", GPIOD_OUT_LOW);
+> +       if (IS_ERR(gpios)) {
+> +               return dev_err_probe(dev, PTR_ERR(gpios),
+> +                             "Unable to get the 'output-enable-b' gpios\n");
+> +       }
+
+{} are not needed, and you may put the return on one line.
+
+...
+
+> +       count = device_get_child_node_count(dev);
+> +       if (!count) {
+> +               dev_err(dev, "no led defined.\n");
+> +               return -ENODEV;
+> +       }
+
+It's fine to use return dev_err_probe() in such cases like above, it's
+written in the documentation.
+
+...
+
+> +               ret = fwnode_property_read_u32(child, "reg", &idx);
+> +               if (ret || idx >= max_num_leds) {
+> +                       dev_warn(dev, "%s: invalid reg value. Ignoring.\n",
+> +                               fwnode_get_name(child));
+
+%pfw / %pfwP ?
+
+> +                       fwnode_handle_put(child);
+> +                       continue;
+> +               }
+
+...
+
+> +               ret = devm_led_classdev_register_ext(dev, cdev, &init_data);
+> +               if (ret) {
+> +                       dev_warn(dev, "%s: cannot create LED device.\n",
+> +                               fwnode_get_name(child));
+
+Ditto.
+
+> +                       fwnode_handle_put(child);
+> +                       continue;
+> +               }
+
+-- 
+With Best Regards,
+Andy Shevchenko
