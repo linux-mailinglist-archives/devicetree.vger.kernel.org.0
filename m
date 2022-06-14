@@ -2,148 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04BB954A711
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 04:53:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6F2254A71E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 04:55:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237175AbiFNCxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 22:53:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50948 "EHLO
+        id S236968AbiFNCzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 22:55:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354684AbiFNCxJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 22:53:09 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EAD96004C;
-        Mon, 13 Jun 2022 19:34:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1655174056; x=1686710056;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=47svbfWKkXZf9LfactisOBeorwmkIQeKErqvocVmXSE=;
-  b=X8cQ9/9l/tBYD/m4vcJnkUopw5yGZiLGp6PONiClPC7F07WvflplSJ1V
-   2+1pw9Nj9P7fscwgjKq1jTZe5zGE9KWBhW7ZPCBD+jDdHdp2H5zo39csV
-   sYb4repuMECE2EBgawRq12EYLsgxLV7SznmNtYON4XHGCNTPajZ578EUq
-   t8o3KcWy8kW/RRQ+1FkAdbgpPiiAvSzPPCYhK57y9++SWyf8a/303QdiW
-   zd2rFkyXk+7KwBKL1Aje9iyu+t6bZ9ZYkRX1sPhkn8IMh4b0lEE2boy88
-   63zMehR3gVuyQMG3jb+JC7Tai9KS4R1LMQN0W3XqzJCRw2jx3dzFNGnN7
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10377"; a="267169272"
-X-IronPort-AV: E=Sophos;i="5.91,298,1647327600"; 
-   d="scan'208";a="267169272"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2022 19:33:14 -0700
-X-IronPort-AV: E=Sophos;i="5.91,298,1647327600"; 
-   d="scan'208";a="588157874"
-Received: from jiaqingz-mobl.ccr.corp.intel.com (HELO [10.238.1.239]) ([10.238.1.239])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jun 2022 19:33:12 -0700
-Message-ID: <aff542a3-ac98-c33d-9612-63ebca180e17@linux.intel.com>
-Date:   Tue, 14 Jun 2022 10:33:10 +0800
+        with ESMTP id S234040AbiFNCzk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 22:55:40 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15EAB2EE;
+        Mon, 13 Jun 2022 19:39:07 -0700 (PDT)
+X-UUID: 8ad4d25951214249a2f90ce7a65301cb-20220614
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:449a824b-3c8a-486b-984d-8e362b0aa023,OB:0,LO
+        B:10,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,A
+        CTION:release,TS:40
+X-CID-INFO: VERSION:1.1.6,REQID:449a824b-3c8a-486b-984d-8e362b0aa023,OB:0,LOB:
+        10,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:40
+X-CID-META: VersionHash:b14ad71,CLOUDID:306453c5-c67b-4a73-9b18-726dd8f2eb58,C
+        OID:c6a8985aa87f,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 8ad4d25951214249a2f90ce7a65301cb-20220614
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 411665334; Tue, 14 Jun 2022 10:39:01 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 14 Jun 2022 10:39:00 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 14 Jun 2022 10:38:59 +0800
+Message-ID: <bcc98dbbf737e4d98c25c839a390a0d9782cde3e.camel@mediatek.com>
+Subject: Re: [PATCH v9 0/2] phy: mediatek: Add PCIe PHY driver
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Wei-Shun Chang <weishunc@google.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <rex-bc.chen@mediatek.com>,
+        <randy.wu@mediatek.com>, <jieyy.yang@mediatek.com>,
+        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
+        <jian.yang@mediatek.com>
+Date:   Tue, 14 Jun 2022 10:38:59 +0800
+In-Reply-To: <Ypb6AS6oj2en/Roi@matsya>
+References: <20220520064920.27313-1-jianjun.wang@mediatek.com>
+         <96f7cc90171bb6e088ce0ed88e10ad14f06a98bb.camel@mediatek.com>
+         <Ypb6AS6oj2en/Roi@matsya>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 5/6] dt-bindings: net: Add NCSI bindings
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220610165940.2326777-1-jiaqing.zhao@linux.intel.com>
- <20220610165940.2326777-6-jiaqing.zhao@linux.intel.com>
- <1654903146.313095.2450355.nullmailer@robh.at.kernel.org>
- <21c9ba6b-e84e-4545-44d2-5ffe5fea9581@linux.intel.com>
- <CAL_Jsq+y3tkfLV8UpUe6jw7Fq7YDrzwoq3FKK4jeeZEBOxhM4g@mail.gmail.com>
-From:   Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
-In-Reply-To: <CAL_Jsq+y3tkfLV8UpUe6jw7Fq7YDrzwoq3FKK4jeeZEBOxhM4g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-06-13 23:28, Rob Herring wrote:
-> On Fri, Jun 10, 2022 at 9:09 PM Jiaqing Zhao
-> <jiaqing.zhao@linux.intel.com> wrote:
->>
->> On 2022-06-11 07:19, Rob Herring wrote:
->>> On Sat, 11 Jun 2022 00:59:39 +0800, Jiaqing Zhao wrote:
->>>> Add devicetree bindings for NCSI VLAN modes. This allows VLAN mode to
->>>> be configured in devicetree.
->>>>
->>>> Signed-off-by: Jiaqing Zhao <jiaqing.zhao@linux.intel.com>
->>>> ---
->>>>  .../devicetree/bindings/net/ncsi.yaml         | 34 +++++++++++++++++++
->>>>  MAINTAINERS                                   |  2 ++
->>>>  include/dt-bindings/net/ncsi.h                | 15 ++++++++
->>>>  3 files changed, 51 insertions(+)
->>>>  create mode 100644 Documentation/devicetree/bindings/net/ncsi.yaml
->>>>  create mode 100644 include/dt-bindings/net/ncsi.h
->>>>
->>>
->>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>>
->>> yamllint warnings/errors:
->>>
->>> dtschema/dtc warnings/errors:
->>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/ncsi.yaml: 'oneOf' conditional failed, one must be fixed:
->>>       'unevaluatedProperties' is a required property
->>>       'additionalProperties' is a required property
->>>       hint: Either unevaluatedProperties or additionalProperties must be present
->>>       from schema $id: http://devicetree.org/meta-schemas/core.yaml#
->>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/ncsi.yaml: ignoring, error in schema:
->>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/ncsi.example.dtb: ethernet@1e660000: 'ncsi,vlan-mode' does not match any of the regexes
->>>       From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>
->> I saw vendor-prefix.yaml says do not add non-vendor prefixes to the list. Since "ncsi" is not a vendor, may I ask what is the suggested replacement for 'ncsi,vlan-mode'? Will 'ncsi-vlan-mode' be fine?
+Hi Vinod,
+
+Sorry to disturb you, would you mind taking a look at this patch?
+
+Thanks.
+
+On Wed, 2022-06-01 at 11:02 +0530, Vinod Koul wrote:
+> On 01-06-22, 10:21, Jianjun Wang wrote:
+> > Hello Maintainers,
+> > 
+> > Gentle ping for this patch series, if there is anything I can do to
+> > get
+> > these patches merged, please let me know.
 > 
-> I don't know. What is NCSI? Is it specific to certain MACs? Why do you
-> need to set this up in DT? Network configuration is typically done in
-> userspace, so putting VLAN config in DT doesn't seem right. All
-> questions your commit message should answer.
-
-NCSI is a protocol that uses an external MAC+PHY like a PHY, the
-topology looks like:
-
-         Packets + NCSI commands              Packets
-     MAC-------------------------External MAC---------PHY
-
-Some MACs like ftgmac100 driver supports using NCSI instead of PHY,
-the operation mode is configured by a DT option "use-ncsi". The NCSI
-external MAC has its own configuration, like VLAN filter mode of it,
-and all NCSI devices uses a generic driver. So I these external mac
-configurations to DT as they are device properties to kernel. Userspace
-is only able to configure the "internal" MAC.
-
->>> Documentation/devicetree/bindings/net/ncsi.example.dtb:0:0: /example-0/ethernet@1e660000: failed to match any schema with compatible: ['aspeed,ast2600-mac', 'faraday,ftgmac100']
->>> Documentation/devicetree/bindings/net/ncsi.example.dtb:0:0: /example-0/ethernet@1e660000: failed to match any schema with compatible: ['aspeed,ast2600-mac', 'faraday,ftgmac100']
->>
->> The ftgmac100 it depends on uses a txt document instead of an yaml schema. And I see there is other schemas having the same error, can this be ignored?
+> Patience my friend patience. This was received very late in cycle and
+> I
+> will review after merge window closes..
 > 
-> No. Don't add to the list. Once all the existing warnings (~40) are
-> fixed, then this will be turned on by default.
-
-Sure, I'll put this to ftgmac100.txt instead of separate yaml file.
-
->>
->> And I've got one more question. The ncsi driver does not has its own compatible field, instead, it is enabled by setting the "use-ncsi" property of some specific mac drivers. Though currently only ftgmac100 supports ncsi in upstream kernel, it may be used by other mac drivers in the future. What do you think is a proper way for defining the ncsi schema? Having it in a separate yaml like this patch or add the properties to all the mac yamls that supports yaml? If the former way is preferred, how should the schema be defined without "compatible"?
 > 
-> If it is a function of driver support or not, then it doesn't belong in DT.
+> > 
+> > Thanks.
+> > 
+> > On Fri, 2022-05-20 at 14:49 +0800, Jianjun Wang wrote:
+> > > These series patches add support for PCIe PHY driver on MediaTek
+> > > chipsets.
+> > > 
+> > > Changes in v9:
+> > > 1. Check if the return value is -ENOMEM when reading efuse data
+> > > fails.
+> > > 
+> > > Changes in v8:
+> > > 1. Use "device_property_present()" to increase human readability;
+> > > 2. Use "GPL" as recommended in commit bf7fbeeae6db ("module: Cure
+> > >    the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity").
+> > > 
+> > > Changes in v7:
+> > > 1. Add bitfield.h header to fix the build error on non-arm64
+> > > platforms.
+> > > 
+> > > Changes in v6:
+> > > 1. Remove unnecessary header files;
+> > > 2. Use FILELD_PREP in bitfield.h to set value.
+> > > 
+> > > Changes in v5:
+> > > 1. Fix typo in kerneldoc: "eFues" => "eFuse".
+> > > 
+> > > Changes in v4:
+> > > 1. Fix no return when calling dev_err_probe.
+> > > 
+> > > Changes in v3:
+> > > 1. Add introductions for structure members;
+> > > 2. Add SoC dependent data;
+> > > 3. Dynamically allocate efuse data;
+> > > 4. Check return value if it's an -EPROBE_DEFER.
+> > > 
+> > > Changes in v2:
+> > > 1. Add specific compatible name;
+> > > 2. Read NVMEM data at probe time;
+> > > 3. Fix typos.
+> > > 
+> > > Jianjun Wang (2):
+> > >   dt-bindings: phy: mediatek: Add YAML schema for PCIe PHY
+> > >   phy: mediatek: Add PCIe PHY driver
+> > > 
+> > >  .../bindings/phy/mediatek,pcie-phy.yaml       |  75 +++++
+> > >  drivers/phy/mediatek/Kconfig                  |  11 +
+> > >  drivers/phy/mediatek/Makefile                 |   1 +
+> > >  drivers/phy/mediatek/phy-mtk-pcie.c           | 267
+> > > ++++++++++++++++++
+> > >  4 files changed, 354 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+> > >  create mode 100644 drivers/phy/mediatek/phy-mtk-pcie.c
+> > > 
 > 
-> Rob
+> 
 
-It's a hardware operation mode of the external MAC, I think it's
-reasonable to put it in DT.
-
-There is also a previous patch adding NCSI MAC config "mlx,multi-host"
-in DT at https://lore.kernel.org/netdev/20200108234341.2590674-1-vijaykhemka@fb.com/T/
-I referred this for my implementation, though it is undocumented.
-
-Jiaqing
