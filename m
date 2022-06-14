@@ -2,114 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DC2054A95F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 08:24:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E28D954A98E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 08:36:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348084AbiFNGYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 02:24:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57046 "EHLO
+        id S1352176AbiFNGfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 02:35:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237532AbiFNGYh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 02:24:37 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8046725C6B;
-        Mon, 13 Jun 2022 23:24:36 -0700 (PDT)
-X-UUID: c6ebceac8f7c40a1bf7afad08944afe9-20220614
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:e089cde7-5d95-4aee-a8e9-a09a01500cce,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:b14ad71,CLOUDID:29958407-b57a-4a25-a071-bc7b4972bc68,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: c6ebceac8f7c40a1bf7afad08944afe9-20220614
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1866991260; Tue, 14 Jun 2022 14:24:30 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Tue, 14 Jun 2022 14:24:29 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 14 Jun 2022 14:24:29 +0800
-Message-ID: <9adfb4b98e505c10469395bf3038010024ab86fd.camel@mediatek.com>
-Subject: Re: [PATCH v11 11/12] drm/mediatek: dpi: Only enable dpi after the
- bridge is enabled
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 14 Jun 2022 14:24:29 +0800
-In-Reply-To: <20220613064841.10481-12-rex-bc.chen@mediatek.com>
-References: <20220613064841.10481-1-rex-bc.chen@mediatek.com>
-         <20220613064841.10481-12-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S238289AbiFNGfL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 02:35:11 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86FD637A25;
+        Mon, 13 Jun 2022 23:35:10 -0700 (PDT)
+Received: from [192.168.1.107] ([37.4.249.155]) by mrelayeu.kundenserver.de
+ (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MMWgb-1oKap12dmR-00JeZt; Tue, 14 Jun 2022 08:34:52 +0200
+Message-ID: <ed07ffc9-a6a9-7f7e-a34a-51c1a94ffe88@i2se.com>
+Date:   Tue, 14 Jun 2022 08:34:51 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] ARM: dts: bcm2711-rpi-4-b: Use aliases to set custom MMC
+ device index
+Content-Language: en-US
+To:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        Peter Robinson <pbrobinson@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        gkrzysztof.kozlowski+dt@linaro.org, gnsaenz@kernel.org,
+        grobh+dt@kernel.org, nsaenz@kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>
+References: <20220608123233.13439-1-ariel.dalessandro@collabora.com>
+ <CALeDE9PR80qS63wwAKB-hENWbEj1xNHj+k81tyWkPPfZ0TS8Pw@mail.gmail.com>
+ <f83690bb-5513-db87-2d97-7cbd981aa0f7@collabora.com>
+ <d18e93a0-f2d7-81c6-56e8-9dfbc6f14383@gmail.com>
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <d18e93a0-f2d7-81c6-56e8-9dfbc6f14383@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:UbHWjvDAnm4TlXK+jOtZlK+fEY96IEagfLHq8aiDgCaKUUnrdsG
+ ruElF8BE8itRPHeu8eERO/tRmj+/moSlFcH0/35aqVgxV4lm0mjUqK+YMO16q2K1UHxGr2M
+ EO4MrDkMSI4yXLX3EQLns1cQpqqjxJ/9laiws/SA5IjcDQ9bvYqHCuHVlFj0/p7mSo+m0JS
+ XZDzcLoR38ruvYmStsn/g==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:UlzaYFfiUz8=:UJS1QEZbIzY5mFOaoNaB2C
+ Wo0Cmr9BNrT//vROqS86bhD9rFHA72tUEzXLLDgX3LjEx9nRX3VOQjNOpyO7om/DPDW66VQ9s
+ T3LARFxFQP4Q9bI+zH8U+ywHHOf6QVCPqFv1oHnFe42VBAp0c7PzH6EPcVins72gepA2PtSs1
+ 4YOcw2iPrK2gotQVX0doxE/3my3AIkP2nhzmefIN65C3rylFKdkaUf/oEQDMIgUfHHC4BromX
+ Hv9IIG2tmLAMrbAx298oy2BhLLCchPw32S/LjRKXw+t/d8xjz0MyCHxOozNF1rVZvwxHsAisW
+ G311OHfEQJAn3qKdxV7SWVqoP6f0jU4icOhdRg96IpJIGnph+lhwTM4ylMmqjvMG0Vp+W++AB
+ JTyMvXhWy9vS6t92L9usls5X2iBol0LqOuQpwEL6vMIxEL2TY9qGwLxAPTs/zWPzTr2miF8KT
+ 6mwHPsqT9N3+wnfgl6o0pmKiBVpqg+22DOSj9Zcl63tat910v3MN170EVay/wKQyDMu9jcqxl
+ 5RKKl8Ifd94Mycb0GLfh3VGQUYEMTewjvFE/Ah+D7HoGTwb/HPH67UQPCfSyFmJLjSzLnyKil
+ G90tlCm6+2i51XdNj8fpzbu2z9aTo5zEUh802QEb+Z3SYXFZmUzLjE5GQ6IQU2IS9+q71ffwX
+ 7aDlxN+Yd4qPhcEBX1Cq3shxJjaf6W9yFYLRpO9P88Z3b8VtU7EUlT0vACpvkrx08ByURgZ2b
+ +RADuItKzWlgo0NVkSs9nsPS5PQHnGdJRtgLlWbFN0co8te38QomTbe/OI0=
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
-
-On Mon, 2022-06-13 at 14:48 +0800, Bo-Chen Chen wrote:
-> From: Guillaume Ranquet <granquet@baylibre.com>
-> 
-> Enabling the dpi too early causes glitches on screen.
-> 
-> Move the call to mtk_dpi_enable() at the end of the bridge_enable
-> callback to ensure everything is setup properly before enabling dpi.
-
-This seems a bug fix, so add Fixes tag on this patch.
-
-Regards,
-CK
-
-> 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> index 08c8f21b4421..9668bd5dd14a 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -480,7 +480,6 @@ static int mtk_dpi_power_on(struct mtk_dpi *dpi)
->  	if (dpi->pinctrl && dpi->pins_dpi)
->  		pinctrl_select_state(dpi->pinctrl, dpi->pins_dpi);
->  
-> -	mtk_dpi_enable(dpi);
->  	return 0;
->  
->  err_pixel:
-> @@ -726,6 +725,7 @@ static void mtk_dpi_bridge_enable(struct
-> drm_bridge *bridge)
->  
->  	mtk_dpi_power_on(dpi);
->  	mtk_dpi_set_display_mode(dpi, &dpi->mode);
-> +	mtk_dpi_enable(dpi);
->  }
->  
->  static enum drm_mode_status
-
+Am 14.06.22 um 01:34 schrieb Florian Fainelli:
+> On 6/13/22 05:46, Ariel D'Alessandro wrote:
+>> Hi Peter,
+>>
+>> On 6/12/22 17:38, Peter Robinson wrote:
+>>> On Wed, Jun 8, 2022 at 1:35 PM Ariel D'Alessandro
+>>> <ariel.dalessandro@collabora.com> wrote:
+>>>>
+>>>> Add MMC aliases to ensure that the /dev/mmcblk ID for SD card won't
+>>>> change depending on the probe order of the MMC drivers.
+>>>
+>>> Is  the bcm2711-rpi.dtsi a better place for it given there's other
+>>> aliases there and it will be consistent across variations?
+>>
+>> Yes, indeed, it makes sense moving it to bcm2711-rpi.dtsi
+>>
+>> The other board what will be affected by this alias is the Raspberry Pi
+>> Compute Module 4 IO Board, on which emmc2 is the eMMC. However, the
+>> alias makes sense, to have that as the first mmc device.
+>>
+>> Maybe we can add the alias as follows?
+>>
+>>      mmc0 = &emmc2;  /* mmcblk0 for eMMC/SD */
+>
+> You have made a typo on the bcm-kernel-feedback-list meaning that this 
+> won't reach the patchwork instance I use to manage and apply patches, 
+> can you please fix that up for your v2? Thanks!
+Not just the bcm-kernel-feedback-list is affected, also the address of 
+Krzysztof, Rob and Nicolas has a g prepended.
