@@ -2,69 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E505C54BB7F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD34454BB52
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 22:21:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232263AbiFNUTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 16:19:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37392 "EHLO
+        id S1357550AbiFNUUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 16:20:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352734AbiFNUST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:18:19 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28E0D38B7
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 13:18:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=Kr/UeB9oM281vcck974XwJ6BZeKE
-        XSbV2DPYhGfC0DM=; b=old13mZqsudOfh92apttnUaWMOqDo2YNpVaSuIEkDDTH
-        26ZV4zId3oQ74jOEeYu8FKj1heZB8bn258l6tHgQELGF1oblrptMY63jMmm5q7zC
-        MqOYkC9NPIunSOFvvnEro78caWdUiXRRAG+Dal3iMhfHs30a1ViLGK2ugEuo7fs=
-Received: (qmail 1848877 invoked from network); 14 Jun 2022 22:18:13 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Jun 2022 22:18:13 +0200
-X-UD-Smtp-Session: l3s3148p1@yLqhGm7h9psgAwDtxwyXAGMY7IbT6g6m
-Date:   Tue, 14 Jun 2022 22:18:13 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+        with ESMTP id S1358064AbiFNUUe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 16:20:34 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5D7BB485;
+        Tue, 14 Jun 2022 13:20:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 46B3761560;
+        Tue, 14 Jun 2022 20:20:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA9B1C3411E;
+        Tue, 14 Jun 2022 20:20:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655238031;
+        bh=/YZ/vfdY+LpkLwFedw1kInlGS37UJrgkhllxkJRhf6Y=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=c72bZ+oCNYTvdU0AwQSmlyiTkpM10TAEYMAsZ3JElFrOEGXaMiEWfqn/XXVHWRX9B
+         YiEkV1PUhV8d1tOvMOXuBtfqR78WZH5HWVIP38H13X52lc8LJzFI8nyYd0bv4ZKyw8
+         E0ReS0tedlRIKuTWEHcbnQpXhMhOms9jwRWHDNUXkYrBMez5+akYdBkmrdj0zTbeVm
+         5IeMUNZKH19mqoaRSPVCDm46iUlL7+/SiZMl9Gc5DaOhxs+QKvFgj5HX9FczzshjKg
+         D0HKkHk6FZIA29okuu+DtStfoWifXSKs56G26KXH4aqU4PHWJvBKFS3l6muGeWHt58
+         T+Xe7OO7Rxa7A==
+Date:   Tue, 14 Jun 2022 22:20:27 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] dt-bindings: thermal: rcar-gen3-thermal: Add
- r8a779f0 support
-Message-ID: <YqjtBQdzexzCRrmq@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+        Todor Tomov <todor.too@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        matti.lehtimaki@gmail.com
+Subject: Re: [RFC PATCH 10/14] i2c: qcom-cci: add msm8974 compatible
+Message-ID: <Yqjti8s06LIfTE52@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220610201701.7946-1-wsa+renesas@sang-engineering.com>
- <20220610201701.7946-2-wsa+renesas@sang-engineering.com>
- <CAMuHMdW3uxQHk6SBX5MqnZsYqwY8p+0wmD6gHwS3ESUrkmpWkQ@mail.gmail.com>
+        Todor Tomov <todor.too@gmail.com>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        matti.lehtimaki@gmail.com
+References: <20220522162802.208275-1-luca@z3ntu.xyz>
+ <20220522162802.208275-11-luca@z3ntu.xyz>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uOF+LnROtUk/ylo3"
+        protocol="application/pgp-signature"; boundary="QLG4RjiqBen7yn3N"
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdW3uxQHk6SBX5MqnZsYqwY8p+0wmD6gHwS3ESUrkmpWkQ@mail.gmail.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220522162802.208275-11-luca@z3ntu.xyz>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -72,37 +80,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---uOF+LnROtUk/ylo3
-Content-Type: text/plain; charset=us-ascii
+--QLG4RjiqBen7yn3N
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, May 22, 2022 at 06:27:58PM +0200, Luca Weiss wrote:
+> From: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
+>=20
+> MSM8974 CCI is the same as MSM8916 except it has two masters.
+>=20
+> Signed-off-by: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+> To note, the cci_v1_5_data variable name is just a bit arbitrary and
+> isn't meant to reflect IP version "1.5". I'd be happy to change the
+> variable name to something else.
+
+Loic, Robert: I know this series is marked RFC, but the I2C patches
+adding a new SoC to the driver are maybe interesting already?
 
 
-> What about splitting this in two separate checks at the top level:
->   - one for regs (R-Car V3U vs. the world), and
->   - a second for interrupts (R-Car V3U+S4-8 vs. the world)?
-
-This task seems too much for my YAML-foo :( I couldn't get it to work.
-Can we leave it as-is for now?
-
-
---uOF+LnROtUk/ylo3
+--QLG4RjiqBen7yn3N
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKo7QAACgkQFA3kzBSg
-Kbao4Q//WYdbnQJ+s0sI1UFm7IC6XM44Mtao3slqtfqPV0sWpqWXsoHT4QO/rkee
-OQrCTYGWJW5SR91kRoQVyaOdsDVx69m5QOW3OJn/m3MP8QptfirX+AYPAp+1EN4l
-ylHwOca+mQwVUspzttGM/nswNa0SIfTfz8kKWuvi8qFSoalMR4Ec6m0kR1pucof2
-Er3Kc7/Prg+lMVMZr4I9Ddw01Bku71RLBjOnkWYMnFLAvnUmwc/FPIKVdz78SVOQ
-p97K6c0xqwWF/NefGRQ2tIASErbSXYTWbpz5Plr+aiHWDmGQUd+ZjDVamC2y4oWE
-HOjHeNMUGVWH1otstnAUiSUtpgaY21mpUbyw2nHeHdm+FSlpSymAt9PLTLDc6G8G
-nFweTobJ5nou73nAEnN/pqxbCfY4zJxcw27C3HFBiALbEDODCQzmenIKbqBHq1I1
-jUCAFd86eMwjsBNojdRCELeXMEcDkrIQnljC/GJXO8bACWlS/rEgy1mmZ3WdbDmM
-MTAci4u/q29eZUJ1TBdQWFnJavzdGgGiRQ/bXO1cZkh8ytAWcug77eamdXpZ6hyG
-lfo2oBDyLb5wlPsLLs9Ol9/nvCwabA/oJ5Iz0Qnk/13WsK4/R79+w8u69KT0s/FL
-ZbUjxH3ydmYu9JvB4HnCf6uH7uhjyTbJf7QhFlb77r+6yx5WYxY=
-=HtGH
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKo7YsACgkQFA3kzBSg
+KbbqbRAAoyyAxbFsgQBm8I5Vx+0UoHw0pUnptb52g5CjmSpFUz3rhcc7nFtAGTRq
+4c++op/pMcUHuN53keum60Y0530+cM25HAhvvVY9ggDXuK8Mn2bSHEmC23dHCAX/
+whRjzsH9W2BlOukKhiJyg/EGZgGfeDC2HTcddnzr5WSlZksOcxItocYO4d6rl3xf
+uQLT6cAzCaNtLP1C5KBd2dQb39kdXrrRcNNeWETL8krJHBQjkCWg2guXJDvPnLjE
+b9MvaiZUZ6EMIR+KezE4PFYw6BtlLhH/AeCEgLruK6KlV4muzOIvstnAGGfRgm3u
++EcGebvT3FgFHlqrNF7exFG3ACWJolAaM8ZyehkOKoyA+J+7AINmoKDrpwa33qIE
+YygWfUbH1tUBxMfxJ4tU/ranCmr5ZnJCCoVY2Pt64M/yOCldnkN55BUKiL1Gg/Uq
+po7+6rbLpWJIlSWeyQWRi9RYDGhA1tc0NI+ptSvrA9e7ewyj9ggVIY7KnnYjXrhE
+7YMDeWyowe925c8BW5+E8vsMfgRA6NyHavPiGr0B+aa5eGYjPvBpCxs95F5Tppom
+MONwVTNhmCxEqVWQTQt3Zil8AikUFUa5dYVSFt2pUuXMfmYU6kkvZ8kSH7tL7ASQ
+uWjlcz4x/fjQZ2Oova/E8UOLv/3eOCu6Zxj/grCDPITArk5ftJA=
+=9e2S
 -----END PGP SIGNATURE-----
 
---uOF+LnROtUk/ylo3--
+--QLG4RjiqBen7yn3N--
