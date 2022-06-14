@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4EB954BCF8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 23:50:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C234654BD0F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 23:53:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354808AbiFNVtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 17:49:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43806 "EHLO
+        id S1344888AbiFNVuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 17:50:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230493AbiFNVtM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 17:49:12 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10CBA515BA;
-        Tue, 14 Jun 2022 14:49:12 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id e9so9579406pju.5;
-        Tue, 14 Jun 2022 14:49:12 -0700 (PDT)
+        with ESMTP id S244679AbiFNVuu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 17:50:50 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5627E51E6E;
+        Tue, 14 Jun 2022 14:50:49 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id 3-20020a17090a174300b001e426a02ac5so289931pjm.2;
+        Tue, 14 Jun 2022 14:50:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=JnppAby++umsNjCD3pKbHZyzqXGEc4aNf76TasCL78M=;
-        b=KjGXcBr75g9HUX7cG89maVM9ywrCv//4TXxYWvp4lKhtr8/3p2xpjyAyVnH6XI6Oht
-         lCyS5kn8GOk82mhDzYQT3WuUgH4BuzDDpzvUC6sfX5BDUJ308ekG0To+ft5ylZmVvrsn
-         gBS2nwMahrdxz5vdpKvHVDvOHOGkvSMPCw7UyLt8AIpzVYDO3OgT03wSRtbz3FkPJooC
-         Y0deKide8ELVkkJ2i+oJ423Q/FImS3RgYsZpU1kInRzu3zEqegtr719bzV2TPBUW9qgU
-         yKEbWS5Z8cJM0U5Ez8IE1hePLigqPEuk/0KB23HqOGZq4ixkpCau/RGBCbzTMWcbnCXV
-         qjAQ==
+        bh=534jnMyjXJDH5tPiIXsvqj1wFYhLOPR/YzW0AR/zg9s=;
+        b=Q5Ydc4v2Vwx66cKkGuC1yT3NCR/kREYjujI/wunEaT5V6vVKi3ndzh12gxALB0biRV
+         qTwZ3JdJkaMisj/xDmm0by5duv6+sMTfTmr/rT+0bT02WwwZCMxsik69zJYRV6jXwgxT
+         nmy/Z5wbvCgMeThQP2wtPYy7aZN2hmTlfrMJrjbUK+Dya93TReAT8bNg+iq3r9f8ch+l
+         D8eBMqZTdFv3UQ+TjKX5AwxiIkPXutG9E1rQyOHVqIlI13NoNoUc7FOtYR7G9oV8eSe1
+         D1MAouCbMh27wrPqEDlpW9N6ej1/ujFnugAuLgH/QVqjNhoMBHFLcsmElMkV8d59Nkv7
+         GGNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=JnppAby++umsNjCD3pKbHZyzqXGEc4aNf76TasCL78M=;
-        b=yyumlHXMKngqX+5MouWOBmNXuIAlDP2vEYdFb7W1qmG9Q9dbjz1mQKLrTvkVdpzjgc
-         uMwjkRvoU2USDY2JJHnDxn3UjaUPGOt7hFxSnklXDyK6AipAsP7F2OI/ZAEemQ3uVaSk
-         lWqsUbumBW2x3L7NgUW+GHxdeFtRQ10f/LRvufjQOL4h9dUm6thqHGBIIhKMFsXL4+Cq
-         f6NODRENkR4PkKTGhIXsHKN65ctS2FTQYGQjAj7unXr/M8yLlH0Beg4iAY7Ritk+2PG7
-         DmlyhIMqI7IBtj+qtYqOBukqekGwZavzwJDtkH9yMdOz5jt1F0rCDQrOLGRK9/tCdGrc
-         B3vg==
-X-Gm-Message-State: AJIora8laPhatgIsHkFaritAJTQs8JB1KBUnknzO1MTX7cJOZWc0BpRz
-        ONHL4e+DdN7urUNRfhzo+kY=
-X-Google-Smtp-Source: AGRyM1ssR15ccU5hlqg/aCbI1LIPgD89tj8zm0nZAf8OG5gpOcorkn3Gl/QUpvgWtODgQetKM7iJyA==
-X-Received: by 2002:a17:902:f70a:b0:153:88c7:774 with SMTP id h10-20020a170902f70a00b0015388c70774mr6140678plo.166.1655243351473;
-        Tue, 14 Jun 2022 14:49:11 -0700 (PDT)
+        bh=534jnMyjXJDH5tPiIXsvqj1wFYhLOPR/YzW0AR/zg9s=;
+        b=tcGEFq2Mf4vMRRga++u70o+Bt6R+fhbDa/clcogUQoSbpRWlapXfgeDDZeLk5HY1Y5
+         Bjs9pBOsi0LeBgtE55Lqcyvz4zBeQNNlb//juDKtD45DvvsE67s4S8CUztEegUwAmnSo
+         Tghlu3aYJIB7IpviBIiHIki7rybB379AjoOTLkKcPgSsyuSbY96qQqTkHxgDzQkfdgls
+         EwhZsckGp0juL/re1hXCG5ziya2UHDr1dYRmuJI3MdKw9QpK1f9LWz7sBy0WP6jykjrE
+         QHI6vkurP/9rBuPeYVCSYtk06FpbHyZUy3MLrgDUtvxV9bOh1w9MZolvEsltRSsCK7HA
+         K8Nw==
+X-Gm-Message-State: AJIora/Pu18ju30CF6dP0bN6qfLY/f7AjwTZwodmpVELZOdWwEeJ1wzF
+        oNM2Ac44Jl5DQo/9lSC77+Q=
+X-Google-Smtp-Source: AGRyM1ticwDyN2sU2z5tvM3A3l7+/Y2FVdTBc/IbhqMWkuEjyWy0emkjO9z7U6RLRnuz2aLJEoh6rQ==
+X-Received: by 2002:a17:903:2483:b0:168:c4c3:e895 with SMTP id p3-20020a170903248300b00168c4c3e895mr6115763plw.0.1655243448813;
+        Tue, 14 Jun 2022 14:50:48 -0700 (PDT)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id k132-20020a633d8a000000b003fd9e4911f9sm8404374pga.31.2022.06.14.14.49.08
+        by smtp.googlemail.com with ESMTPSA id jc14-20020a17090325ce00b00163d76696e1sm7718805plb.102.2022.06.14.14.50.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jun 2022 14:49:10 -0700 (PDT)
-Message-ID: <670a18b1-e1f2-0c18-8543-b9ca4b0838bd@gmail.com>
-Date:   Tue, 14 Jun 2022 14:49:07 -0700
+        Tue, 14 Jun 2022 14:50:48 -0700 (PDT)
+Message-ID: <46c9e73a-500e-66ed-9879-f41ad6e00ecd@gmail.com>
+Date:   Tue, 14 Jun 2022 14:50:42 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH RESEND net-next v7 01/16] net: dsa: allow
- port_bridge_join() to override extack message
+Subject: Re: [PATCH RESEND net-next v7 11/16] dt-bindings: net: snps,dwmac:
+ add "renesas,rzn1" compatible
 Content-Language: en-US
 To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
         Andrew Lunn <andrew@lunn.ch>,
@@ -82,9 +82,9 @@ Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
 References: <20220610103712.550644-1-clement.leger@bootlin.com>
- <20220610103712.550644-2-clement.leger@bootlin.com>
+ <20220610103712.550644-12-clement.leger@bootlin.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220610103712.550644-2-clement.leger@bootlin.com>
+In-Reply-To: <20220610103712.550644-12-clement.leger@bootlin.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -97,14 +97,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/10/22 03:36, Clément Léger wrote:
-> Some drivers might report that they are unable to bridge ports by
-> returning -EOPNOTSUPP, but still wants to override extack message.
-> In order to do so, in dsa_slave_changeupper(), if port_bridge_join()
-> returns -EOPNOTSUPP, check if extack message is set and if so, do not
-> override it.
+On 6/10/22 03:37, Clément Léger wrote:
+> Add "renesas,rzn1-gmac" and "renesas,r9a06g032-gmac" compatible strings.
 > 
-> Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
 > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
 
 Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
