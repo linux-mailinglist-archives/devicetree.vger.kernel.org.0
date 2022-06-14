@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5262A54A788
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 05:22:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9446B54A791
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 05:36:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234653AbiFNDWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jun 2022 23:22:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51364 "EHLO
+        id S231636AbiFNDgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jun 2022 23:36:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351130AbiFNDWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 23:22:02 -0400
+        with ESMTP id S230431AbiFNDgs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jun 2022 23:36:48 -0400
 Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9B62E9D9;
-        Mon, 13 Jun 2022 20:22:00 -0700 (PDT)
-X-UUID: 00ae773d371b4c90877fe6ba9b8ad11f-20220614
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723892F3B7;
+        Mon, 13 Jun 2022 20:36:45 -0700 (PDT)
+X-UUID: 9641f831290e412d88bcf70ded63c16c-20220614
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:28bf6a16-0c56-4a6e-b709-236cc33a6ce4,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:-5
-X-CID-META: VersionHash:b14ad71,CLOUDID:0ab17d07-b57a-4a25-a071-bc7b4972bc68,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+X-CID-O-INFO: VERSION:1.1.6,REQID:08f4366a-c047-4c48-b5e1-3c7fb7ec91e3,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:5
+X-CID-META: VersionHash:b14ad71,CLOUDID:544456c5-c67b-4a73-9b18-726dd8f2eb58,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
         ,QS:nil,BEC:nil,COL:0
-X-UUID: 00ae773d371b4c90877fe6ba9b8ad11f-20220614
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+X-UUID: 9641f831290e412d88bcf70ded63c16c-20220614
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
         (envelope-from <ck.hu@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 466834257; Tue, 14 Jun 2022 11:21:54 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 14 Jun 2022 11:21:53 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 14 Jun 2022 11:21:53 +0800
-Message-ID: <5de2752a1d496290ea5c2c2d7840ba984b2e7e4d.camel@mediatek.com>
-Subject: Re: [PATCH v11 02/12] drm/mediatek: dpi: move dpi limits to SoC
- config
+        with ESMTP id 1687265981; Tue, 14 Jun 2022 11:36:38 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 14 Jun 2022 11:36:37 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 14 Jun 2022 11:36:37 +0800
+Message-ID: <f0746d3e0f1c998872840b63e94cd767061e77e7.camel@mediatek.com>
+Subject: Re: [PATCH v11 03/12] drm/mediatek: dpi: implement a CK/DE pol
+ toggle in SoC config
 From:   CK Hu <ck.hu@mediatek.com>
 To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
         <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
@@ -50,10 +50,10 @@ CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
         <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 14 Jun 2022 11:21:46 +0800
-In-Reply-To: <20220613064841.10481-3-rex-bc.chen@mediatek.com>
+Date:   Tue, 14 Jun 2022 11:36:36 +0800
+In-Reply-To: <20220613064841.10481-4-rex-bc.chen@mediatek.com>
 References: <20220613064841.10481-1-rex-bc.chen@mediatek.com>
-         <20220613064841.10481-3-rex-bc.chen@mediatek.com>
+         <20220613064841.10481-4-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
@@ -73,130 +73,101 @@ Hi, Bo-Chen:
 On Mon, 2022-06-13 at 14:48 +0800, Bo-Chen Chen wrote:
 > From: Guillaume Ranquet <granquet@baylibre.com>
 > 
-> Add flexibility by moving the dpi limits to the SoC specific config.
+> Dp_intf does not support CK/DE polarity because the polarity
+> information
+> is not used for eDP and DP while dp_intf is only for eDP and DP.
+> Therefore, we add a bit of flexibility to support SoCs without CK/DE
+> pol
+> support.
 
-What does this 'limit' mean? Why it's different in DPI vs DP_INTF?
-
-The hardware design is so weird. If the limit is fixed for DPI and
-DP_INTF, why the hardware export register for software to assign any
-value which may be wrong.
-
-Regards,
-CK
+Reviewed-by: CK Hu <ck.hu@mediatek.com>
 
 > 
 > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> [Bo-Chen: Add modification reason in commit message.]
 > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
 > Reviewed-by: AngeloGioacchino Del Regno <
 > angelogioacchino.delregno@collabora.com>
 > Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 > ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 25 ++++++++++++++++---------
->  1 file changed, 16 insertions(+), 9 deletions(-)
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 22 +++++++++++++++++-----
+>  1 file changed, 17 insertions(+), 5 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
 > b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> index e61cd67b978f..ce8c5eefe5f1 100644
+> index ce8c5eefe5f1..15218c1e8c11 100644
 > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
 > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
 > @@ -125,6 +125,7 @@ struct mtk_dpi_conf {
 >  	bool edge_sel_en;
 >  	const u32 *output_fmts;
 >  	u32 num_output_fmts;
-> +	const struct mtk_dpi_yc_limit *limit;
+> +	bool is_ck_de_pol;
+>  	const struct mtk_dpi_yc_limit *limit;
 >  };
 >  
->  static void mtk_dpi_mask(struct mtk_dpi *dpi, u32 offset, u32 val,
-> u32 mask)
-> @@ -235,9 +236,10 @@ static void mtk_dpi_config_fb_size(struct
-> mtk_dpi *dpi, u32 width, u32 height)
->  	mtk_dpi_mask(dpi, DPI_SIZE, height << VSIZE, VSIZE_MASK);
+> @@ -211,13 +212,20 @@ static void mtk_dpi_config_pol(struct mtk_dpi
+> *dpi,
+>  			       struct mtk_dpi_polarities *dpi_pol)
+>  {
+>  	unsigned int pol;
+> +	unsigned int mask;
+>  
+> -	pol = (dpi_pol->ck_pol == MTK_DPI_POLARITY_RISING ? 0 : CK_POL)
+> |
+> -	      (dpi_pol->de_pol == MTK_DPI_POLARITY_RISING ? 0 : DE_POL)
+> |
+> -	      (dpi_pol->hsync_pol == MTK_DPI_POLARITY_RISING ? 0 :
+> HSYNC_POL) |
+> +	mask = HSYNC_POL | VSYNC_POL;
+> +	pol = (dpi_pol->hsync_pol == MTK_DPI_POLARITY_RISING ? 0 :
+> HSYNC_POL) |
+>  	      (dpi_pol->vsync_pol == MTK_DPI_POLARITY_RISING ? 0 :
+> VSYNC_POL);
+> -	mtk_dpi_mask(dpi, DPI_OUTPUT_SETTING, pol,
+> -		     CK_POL | DE_POL | HSYNC_POL | VSYNC_POL);
+> +	if (dpi->conf->is_ck_de_pol) {
+> +		mask |= CK_POL | DE_POL;
+> +		pol |= (dpi_pol->ck_pol == MTK_DPI_POLARITY_RISING ?
+> +			0 : CK_POL) |
+> +		       (dpi_pol->de_pol == MTK_DPI_POLARITY_RISING ?
+> +			0 : DE_POL);
+> +	}
+> +
+> +	mtk_dpi_mask(dpi, DPI_OUTPUT_SETTING, pol, mask);
 >  }
 >  
-> -static void mtk_dpi_config_channel_limit(struct mtk_dpi *dpi,
-> -					 struct mtk_dpi_yc_limit
-> *limit)
-> +static void mtk_dpi_config_channel_limit(struct mtk_dpi *dpi)
->  {
-> +	const struct mtk_dpi_yc_limit *limit = dpi->conf->limit;
-> +
->  	mtk_dpi_mask(dpi, DPI_Y_LIMIT, limit->y_bottom << Y_LIMINT_BOT,
->  		     Y_LIMINT_BOT_MASK);
->  	mtk_dpi_mask(dpi, DPI_Y_LIMIT, limit->y_top << Y_LIMINT_TOP,
-> @@ -449,7 +451,6 @@ static int mtk_dpi_power_on(struct mtk_dpi *dpi)
->  static int mtk_dpi_set_display_mode(struct mtk_dpi *dpi,
->  				    struct drm_display_mode *mode)
->  {
-> -	struct mtk_dpi_yc_limit limit;
->  	struct mtk_dpi_polarities dpi_pol;
->  	struct mtk_dpi_sync_param hsync;
->  	struct mtk_dpi_sync_param vsync_lodd = { 0 };
-> @@ -484,11 +485,6 @@ static int mtk_dpi_set_display_mode(struct
-> mtk_dpi *dpi,
->  	dev_dbg(dpi->dev, "Got  PLL %lu Hz, pixel clock %lu Hz\n",
->  		pll_rate, vm.pixelclock);
->  
-> -	limit.c_bottom = 0x0010;
-> -	limit.c_top = 0x0FE0;
-> -	limit.y_bottom = 0x0010;
-> -	limit.y_top = 0x0FE0;
-> -
->  	dpi_pol.ck_pol = MTK_DPI_POLARITY_FALLING;
->  	dpi_pol.de_pol = MTK_DPI_POLARITY_RISING;
->  	dpi_pol.hsync_pol = vm.flags & DISPLAY_FLAGS_HSYNC_HIGH ?
-> @@ -536,7 +532,7 @@ static int mtk_dpi_set_display_mode(struct
-> mtk_dpi *dpi,
->  	else
->  		mtk_dpi_config_fb_size(dpi, vm.hactive, vm.vactive);
->  
-> -	mtk_dpi_config_channel_limit(dpi, &limit);
-> +	mtk_dpi_config_channel_limit(dpi);
->  	mtk_dpi_config_bit_num(dpi, dpi->bit_num);
->  	mtk_dpi_config_channel_swap(dpi, dpi->channel_swap);
->  	mtk_dpi_config_yc_map(dpi, dpi->yc_map);
-> @@ -790,12 +786,20 @@ static const u32 mt8183_output_fmts[] = {
->  	MEDIA_BUS_FMT_RGB888_2X12_BE,
->  };
->  
-> +static const struct mtk_dpi_yc_limit mtk_dpi_limit = {
-> +	.c_bottom = 0x0010,
-> +	.c_top = 0x0FE0,
-> +	.y_bottom = 0x0010,
-> +	.y_top = 0x0FE0,
-> +};
-> +
->  static const struct mtk_dpi_conf mt8173_conf = {
->  	.cal_factor = mt8173_calculate_factor,
->  	.reg_h_fre_con = 0xe0,
+>  static void mtk_dpi_config_3d(struct mtk_dpi *dpi, bool en_3d)
+> @@ -799,6 +807,7 @@ static const struct mtk_dpi_conf mt8173_conf = {
 >  	.max_clock_khz = 300000,
 >  	.output_fmts = mt8173_output_fmts,
 >  	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
-> +	.limit = &mtk_dpi_limit,
+> +	.is_ck_de_pol = true,
+>  	.limit = &mtk_dpi_limit,
 >  };
 >  
->  static const struct mtk_dpi_conf mt2701_conf = {
-> @@ -805,6 +809,7 @@ static const struct mtk_dpi_conf mt2701_conf = {
+> @@ -809,6 +818,7 @@ static const struct mtk_dpi_conf mt2701_conf = {
 >  	.max_clock_khz = 150000,
 >  	.output_fmts = mt8173_output_fmts,
 >  	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
-> +	.limit = &mtk_dpi_limit,
+> +	.is_ck_de_pol = true,
+>  	.limit = &mtk_dpi_limit,
 >  };
 >  
->  static const struct mtk_dpi_conf mt8183_conf = {
-> @@ -813,6 +818,7 @@ static const struct mtk_dpi_conf mt8183_conf = {
+> @@ -818,6 +828,7 @@ static const struct mtk_dpi_conf mt8183_conf = {
 >  	.max_clock_khz = 100000,
 >  	.output_fmts = mt8183_output_fmts,
 >  	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
-> +	.limit = &mtk_dpi_limit,
+> +	.is_ck_de_pol = true,
+>  	.limit = &mtk_dpi_limit,
 >  };
 >  
->  static const struct mtk_dpi_conf mt8192_conf = {
-> @@ -821,6 +827,7 @@ static const struct mtk_dpi_conf mt8192_conf = {
+> @@ -827,6 +838,7 @@ static const struct mtk_dpi_conf mt8192_conf = {
 >  	.max_clock_khz = 150000,
 >  	.output_fmts = mt8183_output_fmts,
 >  	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
-> +	.limit = &mtk_dpi_limit,
+> +	.is_ck_de_pol = true,
+>  	.limit = &mtk_dpi_limit,
 >  };
 >  
->  static int mtk_dpi_probe(struct platform_device *pdev)
 
