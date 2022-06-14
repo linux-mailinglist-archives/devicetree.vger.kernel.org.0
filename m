@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4437C54BC6B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 23:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E833D54BC74
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 23:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245736AbiFNVCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 17:02:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55322 "EHLO
+        id S1357627AbiFNVCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 17:02:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239539AbiFNVB7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 17:01:59 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D667B50440;
-        Tue, 14 Jun 2022 14:01:58 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id r5so10744606iod.5;
-        Tue, 14 Jun 2022 14:01:58 -0700 (PDT)
+        with ESMTP id S1357780AbiFNVCm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 17:02:42 -0400
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2D4A3120C;
+        Tue, 14 Jun 2022 14:02:40 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id i16so10722893ioa.6;
+        Tue, 14 Jun 2022 14:02:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=TL1WTuBKTa7cKzECeYRrXncjAWiPzLakQFszrf4wMsQ=;
-        b=sF3qEfIPj/cU5Uyl4lSEVWoH7hI1MeO8ozYDAHNMn2ybJZJ9K0KuxukTQv3/70AO+1
-         6RFP1IXtdnP+1R6Y54DmFVzZ7IApCddKe3caPvkhmHSh/hhRlaym6BKaEUteix+pX5rk
-         xd2F+LHEt7+Zd5Ejug0GkSA5SzeLNuOy7b61UAMVKMQoe/VjKdI8hd4lk/SAE9Vu86Bd
-         hyTqQBLVeVauZeaFGuNA80oq0vfNdi3ihMZb/NM/+CxDp2LBUMlRadR0TWuQwOBv5bnR
-         1jpkciBGxuJX7dJfF0ybRl0FmAGY5BruVC1E8qM67z56OKw16G2aDPsevetm/vofV5N1
-         iCXQ==
-X-Gm-Message-State: AOAM533QZWu9e7WaMig0IerfWwILiGAUNAm/oBe/tCEuHjGbnNRboz9k
-        U3J7S88m5qhWKzQwcLz8ZEUcSG0/aw==
-X-Google-Smtp-Source: ABdhPJz3ckJeS9cJKzeQ/ZlqP/pJ3ZtN4q5nNLKM8HZwAHwD3kcckohHKsoPRuyQF8ZBO/8ggipJeQ==
-X-Received: by 2002:a05:6638:240a:b0:332:783:156b with SMTP id z10-20020a056638240a00b003320783156bmr3706950jat.306.1655240517981;
-        Tue, 14 Jun 2022 14:01:57 -0700 (PDT)
+        bh=2/cyFUpUGPUplOfOftDnZp7vPwEuiKwsOzYr7Oqpd9c=;
+        b=onBz9JHZIxzRWNHbegpNtm2r0LsDB15nyPjsonqHqclMEHd6g8xmVtqzx7aVggpS8k
+         SjbvgKFnt2Dq4tds/imcdrIrpG65nILrmf0GdPW8BNwx2oht0svJjjl8oxWTY/mcsD1W
+         09er4xjLLZ6MOmN5E80Yqhn+Yuy3s3ZgvLdElwX4fse3InYSQ1779CkJ+D5g0RM6Ygp/
+         oyD74lUaCSh9fiOFOLfap1+ATpiQM8emxoS/QtAtQQRjo87MlQZM99IwLHuyi7Hgr2qV
+         uDdQjGnSlvcCbYSJ+K5ofDlxzdHUG/L4JJ1tq9DnX1k7B+Ld1Guv8ILn00mr4YEdfVAe
+         STbQ==
+X-Gm-Message-State: AOAM533fz0iYrswe9LfbrgCxlXciomx7U3xD2M4sBYyE+3kK9QaZQiiM
+        wsNUySBqsQjBLr5qdAQ8eaLYK3Igew==
+X-Google-Smtp-Source: ABdhPJwArJB183Z3ToeeqDaidsVtxn45dq7qpYio0HGMdk7IzR5wzQxV8JC6SiQfQp3gbJl4lHM0kA==
+X-Received: by 2002:a05:6602:15c5:b0:669:ef95:1cc with SMTP id f5-20020a05660215c500b00669ef9501ccmr3538533iow.140.1655240559745;
+        Tue, 14 Jun 2022 14:02:39 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id cb12-20020a0566381b0c00b00331cf064215sm5271294jab.65.2022.06.14.14.01.56
+        by smtp.gmail.com with ESMTPSA id y5-20020a92d0c5000000b002d5c572f410sm5885426ila.63.2022.06.14.14.02.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jun 2022 14:01:57 -0700 (PDT)
-Received: (nullmailer pid 2562716 invoked by uid 1000);
-        Tue, 14 Jun 2022 21:01:56 -0000
-Date:   Tue, 14 Jun 2022 15:01:56 -0600
+        Tue, 14 Jun 2022 14:02:39 -0700 (PDT)
+Received: (nullmailer pid 2566780 invoked by uid 1000);
+        Tue, 14 Jun 2022 21:02:37 -0000
+Date:   Tue, 14 Jun 2022 15:02:37 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, agross@kernel.org, sboyd@kernel.org,
-        robh+dt@kernel.org, jonathan@marek.ca,
-        Dmitry Baryshkov <dmityr.baryshkov@linaro.org>,
-        devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, krzk+dt@kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        mturquette@baylibre.com,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 3/6] dt-bindings: clock: Add Qcom SM8350 GPUCC bindings
-Message-ID: <20220614210156.GA2562380-robh@kernel.org>
-References: <20220609092940.304740-1-robert.foss@linaro.org>
- <20220609092940.304740-4-robert.foss@linaro.org>
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-rockchip@lists.infradead.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>, linux-media@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] media: dt-binding: media: Add rk3568-vepu binding
+Message-ID: <20220614210237.GA2566560-robh@kernel.org>
+References: <20220612155346.16288-1-frattaroli.nicolas@gmail.com>
+ <20220612155346.16288-2-frattaroli.nicolas@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220609092940.304740-4-robert.foss@linaro.org>
+In-Reply-To: <20220612155346.16288-2-frattaroli.nicolas@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -69,27 +69,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 09 Jun 2022 11:29:37 +0200, Robert Foss wrote:
-> Add device tree bindings for graphics clock controller for
-> Qualcomm Technology Inc's SM8350 SoCs.
+On Sun, 12 Jun 2022 17:53:44 +0200, Nicolas Frattaroli wrote:
+> The RK3568 and RK3566 have a Hantro VPU node solely dedicated to
+> encoding. This patch adds a new binding to describe it, as it
+> does not really fit the rockchip-vpu binding, since there is no
+> decoder.
 > 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> Reviewed-by: Dmitry Baryshkov <dmityr.baryshkov@linaro.org>
+> Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
 > ---
-> 
-> Changes since v3
->  - Separate from qcom,gpucc
->  - Remove clock-names
->  - Make example sm8350 based
->  - Changed author to me due to size of changes
-> 
-> 
-> 
->  .../bindings/clock/qcom,gpucc-sm8350.yaml     | 72 +++++++++++++++++++
->  include/dt-bindings/clock/qcom,gpucc-sm8350.h | 52 ++++++++++++++
->  2 files changed, 124 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gpucc-sm8350.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,gpucc-sm8350.h
+>  .../bindings/media/rockchip,rk3568-vepu.yaml  | 69 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/rockchip,rk3568-vepu.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
