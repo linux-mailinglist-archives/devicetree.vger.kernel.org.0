@@ -2,108 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 681A454B46B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 17:18:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 223AB54B488
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jun 2022 17:27:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356485AbiFNPRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 11:17:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48636 "EHLO
+        id S1356753AbiFNPZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 11:25:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343645AbiFNPRq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 11:17:46 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49D2B614B;
-        Tue, 14 Jun 2022 08:17:44 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id v1so17769568ejg.13;
-        Tue, 14 Jun 2022 08:17:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2W1wCeUkrJFdZgVUbL1ARvVnvMUdCeqcmW2xMidDUMw=;
-        b=ksfRLZiEEqqqPT9ugF93LrfXd+48fpeQ+2CqwR2liioi5OvFf8ogwo9yxuJwJ1s31C
-         bkM+H/vysA3efjajHEUfhkkZcUKgZsd9/8hxpJMgozvzrikGlPCAFI19cXNYoXRDAQ+o
-         uDYh15tWIRnKMkZUqz3mM565GR4gpaPTKKjLvrLhpx4iPoAkJwhewM4QG6XPUyK6k9/S
-         7A6fH/T/6b/cw7HXrJDu8qum6mvCU/xWEdl/i+5Y9MUK/yIIVv9NKStLgckgEs5uelLF
-         gzIMryAUDK0L2swAggGi7XFzqVTq5Hmw2Wcv9tEfmkcKFhl+D8CVaJQe6Q4YhLMLMznS
-         Sasw==
+        with ESMTP id S1356666AbiFNPZW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 11:25:22 -0400
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F179022532;
+        Tue, 14 Jun 2022 08:25:21 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id r5so9747969iod.5;
+        Tue, 14 Jun 2022 08:25:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2W1wCeUkrJFdZgVUbL1ARvVnvMUdCeqcmW2xMidDUMw=;
-        b=7Jaa27jXQjFg5M0lNb7kAdTsqMjSo/ffUi9iyMI+uBAMS+pChPsaIgnt7K6wrbpXna
-         G+ocxBgHOBRuYkulI8vHF4ruUaaa98zPUx6XMeu+JSE2agAjh4AuzMlOV/bTY9BwojWW
-         sSeNpWnKgEQC3KFfMBVecq8qwyIFbwnoHq1CKnBR4bOCi2ub9z/rYgVDUrrjcDaWJKNb
-         pcSSPaG1mmNU8eKV2JOB5QeMDSYXEWJ5m+jOo6jJQsXXzxx7XnKL8TZP7eUs9KqmVR+t
-         DuOflFMzELfSmx1nRRAiOoU6cX53CqjvAk2YHenfWzkSBsn2sB3L4mC1cIqYnUtjW7Ro
-         MdCA==
-X-Gm-Message-State: AJIora9Tqa8U/7o73ooRE6UI/UZZDd06i9WbeDYOzNvfQMO+uTvjSE/P
-        CHOmdzZgjJJ6Uc+r4BEeRLA=
-X-Google-Smtp-Source: ABdhPJy1mWhyep+XKrfVSwjeDQnhUleoXiuLknBv9l0tW/sYCIz0d5YBMgJ96+24pyLgKyUNmsKEcA==
-X-Received: by 2002:a17:906:1c9:b0:712:1115:42a5 with SMTP id 9-20020a17090601c900b00712111542a5mr4654969ejj.662.1655219863821;
-        Tue, 14 Jun 2022 08:17:43 -0700 (PDT)
-Received: from localhost.localdomain (p5b3f7f9c.dip0.t-ipconnect.de. [91.63.127.156])
-        by smtp.gmail.com with ESMTPSA id f1-20020a50d541000000b0042dd7e13391sm7198180edj.45.2022.06.14.08.17.42
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mjT5wGmHJgG0eNHLr4sx2SWsu7TpquOvBLbiZspfnLQ=;
+        b=srfn9jObIM3MtrT/qS9s59A0H1fyY3CuREhlcHr0ObC++u4LmQWNV40eWOCTpDyHg6
+         x5n7Bs8en1mTOCphzcr1L3iv3MBQ/JE6mIi5lho4WZA4Hi1B5uU2Uco1c+7l+jgLnFse
+         lnCftZ3ympQdZNv1c7fJ5ZnVuTcJk65mWs8UdodiiDovOZwGRDsjdZXrFYdl3EGx97kg
+         OgIhYjarBq0139iE+cY8ZbRHr/6zpqNtYyn5OyP+yQ7PSF35Vrgy1bZGrR3Ey4zw5bqG
+         bHGT87xrGatqoJwPc4y5x3yxNjnur4Y//C3i9KkMSEDigLyfwfpymcO/dNju/fdvbYR/
+         121A==
+X-Gm-Message-State: AOAM530edXfq052V5BW7bXEkOdBQ4Xf5uROgdfnCM4sTh32m+Z8e0M8Z
+        3+bsF/WEHped6n/uQKTO6DQ26sREpQ==
+X-Google-Smtp-Source: ABdhPJw/DPeqW+0POs50/HnxbvLUIDrEmh4RkEsS8T5HKrNb19A1r7LyOf/9fn00kIqqkBVOBaRgiA==
+X-Received: by 2002:a05:6638:2ac:b0:331:84fd:c630 with SMTP id d12-20020a05663802ac00b0033184fdc630mr3167135jaq.113.1655220321262;
+        Tue, 14 Jun 2022 08:25:21 -0700 (PDT)
+Received: from xps15.herring.priv ([64.188.179.251])
+        by smtp.googlemail.com with ESMTPSA id l44-20020a02666c000000b0032b3a781767sm4957033jaf.43.2022.06.14.08.25.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jun 2022 08:17:42 -0700 (PDT)
-From:   Saravanan Sekar <sravanhome@gmail.com>
-To:     sre@kernel.org, lee.jones@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
-        lars@metafoo.de, andy.shevchenko@gmail.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, Saravanan Sekar <sravanhome@gmail.com>
-Subject: [PATCH 6/6] power: supply: mp2629: Add usb fast charge settings
-Date:   Tue, 14 Jun 2022 17:17:22 +0200
-Message-Id: <20220614151722.2194936-6-sravanhome@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220614151722.2194936-1-sravanhome@gmail.com>
-References: <20220614151722.2194936-1-sravanhome@gmail.com>
+        Tue, 14 Jun 2022 08:25:20 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: dma: apple,admac: Fix example interrupt parsing
+Date:   Tue, 14 Jun 2022 09:25:03 -0600
+Message-Id: <20220614152503.1410755-1-robh@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allows the user to change the usb device fast charge setting to advertise
-host on enumeration helps to accelerate the charging cycle. Altering this
-value resets usb existing connection.
+Commit 873971f8fb08 ("dt-bindings: dma: Add Apple ADMAC") has a warning
+in its example:
 
-Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
+Documentation/devicetree/bindings/dma/apple,admac.example.dtb: dma-controller@238200000: interrupts-extended: [[0], [4294967295, 0, 626, 4, 0, 0]] is too short
+	From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/dma/apple,admac.yaml
+
+The problem is the number of interrupt cells can't be guessed when
+there are empty '0' entries. So the example must have a valid interrupt
+controller defining the number of interrupt cells.
+
+Fixes: 873971f8fb08 ("dt-bindings: dma: Add Apple ADMAC")
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../ABI/testing/sysfs-class-power-mp2629         | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ Documentation/devicetree/bindings/dma/apple,admac.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/ABI/testing/sysfs-class-power-mp2629 b/Documentation/ABI/testing/sysfs-class-power-mp2629
-index 914d67caac0d..42f37675aa0e 100644
---- a/Documentation/ABI/testing/sysfs-class-power-mp2629
-+++ b/Documentation/ABI/testing/sysfs-class-power-mp2629
-@@ -1,3 +1,19 @@
-+What:		/sys/class/power_supply/mp2629_battery/usb_fast_charge
-+Date:		April 2020
-+KernelVersion:	5.19
-+Description:
-+		Represents a usb device fast charge settings.Altering this
-+		value resets usb existing connection
-+		USB DP:DM[0:0] 0.6V : Hi-Z
-+		USB DP:DM[0:1] 3.3V : 0.6V
-+		USB DP:DM[1:0] 0.6V : 0.6V
-+		USB DP:DM[1:1] 0.6V : 3.3V
+diff --git a/Documentation/devicetree/bindings/dma/apple,admac.yaml b/Documentation/devicetree/bindings/dma/apple,admac.yaml
+index ab8a4ec7779f..bdc8c129c4f5 100644
+--- a/Documentation/devicetree/bindings/dma/apple,admac.yaml
++++ b/Documentation/devicetree/bindings/dma/apple,admac.yaml
+@@ -63,6 +63,11 @@ examples:
+     #include <dt-bindings/interrupt-controller/apple-aic.h>
+     #include <dt-bindings/interrupt-controller/irq.h>
+ 
++    aic: interrupt-controller {
++      interrupt-controller;
++      #interrupt-cells = <3>;
++    };
 +
-+                Access: Read, Write
-+
-+                Valid values: Represented in bit DP & DM setting. Valid
-+			      range is [0, 3].
-+
- What:		/sys/class/power_supply/mp2629_battery/batt_impedance_compen
- Date:		April 2020
- KernelVersion:	5.7
+     admac: dma-controller@238200000 {
+       compatible = "apple,t8103-admac", "apple,admac";
+       reg = <0x38200000 0x34000>;
 -- 
-2.25.1
+2.34.1
 
