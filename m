@@ -2,71 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62F8054D4E8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 01:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78ABB54D52E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 01:22:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350797AbiFOW7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 18:59:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45710 "EHLO
+        id S245609AbiFOXWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 19:22:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350800AbiFOW7q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 18:59:46 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E6B0220FF
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 15:59:44 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id v17-20020a17090a899100b001ead067eaf9so190709pjn.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 15:59:44 -0700 (PDT)
+        with ESMTP id S1347077AbiFOXWl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 19:22:41 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DDACC78
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 16:22:33 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id o17so11668536pla.6
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 16:22:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=W7KtWBS50ekoMEzPWCbHw+o6fFZol8BiRTA9sLfON20=;
-        b=rrNz7B18ZF9JtDD2wcmFJPIkp6Nbmr161/Ck/5m9KX2u3lc5AYqpH8dQ6kRFP2mjuG
-         UxkjYpDbLXong34yLPvr1PzyabO81SVHSyM/+KoxeLTJv3a49TtlxWUiY2JmtKm+Nbkb
-         A2v7gURlx/Yca4+O5RZ6/ougoSfgQ24rH37CE/YLQc5tALsyn2inq/Ppiz2PilQvh1LO
-         AhPlQBBu9hrbW8oWxhm1gAe00RfuULVRzc1iKdYhwKZDJKDBfDJ8gqIb8cU7Gmhd8XxM
-         0jwtSYHOu/vsu/26L2jhWchLtnS7pkpua5c5WAkufWssi1mlJacMltq0kxRWq9EHLVRm
-         uYpw==
+         :content-disposition:in-reply-to;
+        bh=kKgcATlotasIlfDoEE4GaADueihF7oAvsbAbuWsLV+I=;
+        b=dl2bFEl7QiTxf5UiajZyTkczzJ5etN3Au+wvti8M6/02D5soc0cUrXFWglb9TwEmbV
+         2nkDcWvLC5+BCkRKxleuBJEusp+G/5rmPaNKkYfeHUvXuNzrN4ZznY2v12puJRDK2ufq
+         TftXl18G63Om9JajfB3AfQy7MFlXDO6aK3D24=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=W7KtWBS50ekoMEzPWCbHw+o6fFZol8BiRTA9sLfON20=;
-        b=ODJjVxg8hcS64LV1vBPBxiM6bigV/tON553xx5wvRNZlP3AcoqK6H1ClQmccT4QukK
-         ilFWeWBpPhk6o3yX1XTHGlcdD4TwxJ3x94DcJCuJYQqmQZUdWBUCoKIAxnEmMyMDn1Si
-         8HYDmikpoJ0sxJELBtPaNQj0JunudDu222NNlEHac69VmK7mxzTNAM62Igw1Zag8rSO9
-         LLe30u+CzxwMRI6qFNbhmmec9H1OQKqQc+dRUrnO3Vb0fRnyo15ZfNybBROV4XhqYtj2
-         Fk2lo+H/hUnOTH2cTxedmXFIZ5Lu5i7tXAsqw8NkTtFYQDTtN/fDxJvjeQ+gJtoqhdOs
-         y8pg==
-X-Gm-Message-State: AJIora86hbYDt0LUIASyolp286tTg03e/6WgnDtWurcRCgt9W1i4A4LG
-        MiPjYHsMmfdgwy+WCm5adJI5WA==
-X-Google-Smtp-Source: AGRyM1t5bkEgdmg9PKAPOtpCEZ34quxBEH2zKI7LVwx49lsf3kAgAf4e30EJ2r6E6+OA5RTGQOdKLg==
-X-Received: by 2002:a17:90a:e601:b0:1e8:ad01:1eaa with SMTP id j1-20020a17090ae60100b001e8ad011eaamr12736765pjy.81.1655333983733;
-        Wed, 15 Jun 2022 15:59:43 -0700 (PDT)
-Received: from google.com ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id g10-20020a170902934a00b0015e8d4eb2easm122977plp.308.2022.06.15.15.59.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 15:59:43 -0700 (PDT)
-Date:   Wed, 15 Jun 2022 23:59:41 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Saravanan Sekar <sravanhome@gmail.com>
-Cc:     sre@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
-        lars@metafoo.de, andy.shevchenko@gmail.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH 2/6] dt-bindings: mfd: Add mp2733 compatible
-Message-ID: <YqpkXYAtXtvzX44J@google.com>
-References: <20220614151722.2194936-1-sravanhome@gmail.com>
- <20220614151722.2194936-2-sravanhome@gmail.com>
+         :mime-version:content-disposition:in-reply-to;
+        bh=kKgcATlotasIlfDoEE4GaADueihF7oAvsbAbuWsLV+I=;
+        b=30IeQDfsLgRZWFl4fWaMXUTjOhgPh0iE+hBztb44NBUOCE0WgQEUXo8RQN4+YLPLDg
+         reXNNo4ZJLbYFJxJfPQ3dpr2uL5W+KYfX0X6qvt55Vo/Q5ijXQbFW0abYMrJb7j682UE
+         XrN5SUEhdhErstzkEMNvDYhONEY2XYr/e3w57pZabrUx2l8Y9SlczVVxsKcyr754BBz/
+         lMNdvFVaHxk0uibQnmfWBZBIETvRNInmw+aR6muVo5pR5xLWW2T9mOfmVLBvBer/e5rG
+         5voLk2K9UPXVDYaEILmBwPvm+GG4Um3gv0PwLyI3GDGrFEOYK1+VIrr9Os9fIqGfhSxU
+         GeDA==
+X-Gm-Message-State: AJIora/M+AxGAS6lxIfJlrBtRB+PTDv9JqVGRjkuLMawg99dylYzrw+d
+        J5Z9ZRvtEG4lnKCaZFxPcM+CmQ==
+X-Google-Smtp-Source: AGRyM1uzV4pGgVgdvUkLB9seYtAeFhHJEicUYl/4Iz512ptPwn8c0JBJ0OEi2NFH8ig3n0SWr2vBGg==
+X-Received: by 2002:a17:903:1cd:b0:168:e97b:54be with SMTP id e13-20020a17090301cd00b00168e97b54bemr2011709plh.163.1655335352461;
+        Wed, 15 Jun 2022 16:22:32 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:c2dd:1130:d31f:3b25])
+        by smtp.gmail.com with UTF8SMTPSA id p127-20020a62d085000000b0051b9a2d639dsm195416pfg.43.2022.06.15.16.22.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 16:22:31 -0700 (PDT)
+Date:   Wed, 15 Jun 2022 16:22:22 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Bastien Nocera <hadess@hadess.net>,
+        Peter Chen <peter.chen@kernel.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Subject: Re: [PATCH v22 2/3] usb: misc: Add onboard_usb_hub driver
+Message-ID: <YqpprpUHmlD62YzI@google.com>
+References: <20220609192000.990763-1-mka@chromium.org>
+ <20220609121838.v22.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <CAD=FV=W6erE8ByabmYSL_OWJPKYGqysDMGYQX6j7_PSEYGZ4YQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220614151722.2194936-2-sravanhome@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <CAD=FV=W6erE8ByabmYSL_OWJPKYGqysDMGYQX6j7_PSEYGZ4YQ@mail.gmail.com>
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,19 +84,221 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Jun 2022, Saravanan Sekar wrote:
+Hi Doug,
 
-> Add new compatible for mp2733 mfd driver.
+Thanks for the review!
+
+On Wed, Jun 15, 2022 at 02:09:43PM -0700, Doug Anderson wrote:
+> Hi,
 > 
-> Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
-> ---
->  Documentation/devicetree/bindings/mfd/mps,mp2629.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> On Thu, Jun 9, 2022 at 12:20 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > @@ -11,6 +11,7 @@ usbcore-y += phy.o port.o
+> >  usbcore-$(CONFIG_OF)           += of.o
+> >  usbcore-$(CONFIG_USB_PCI)              += hcd-pci.o
+> >  usbcore-$(CONFIG_ACPI)         += usb-acpi.o
+> > +usbcore-$(CONFIG_USB_ONBOARD_HUB)      += ../misc/onboard_usb_hub_pdevs.o
+> 
+> I'm OK with this solution of just linking the code into the "usbcore"
+> if USB folks are. Thinking about it, I guess another way to solve the
+> circular dependency is to somehow create some type of generic
+> notification scheme where the USB hub driver subscribes to "a hub has
+> appeared" notification. ...but I don't personally have any intuition
+> about whether people would like that better than your solution.
 
-Applied, thanks.
+Not sure if it would be better (if feasible). In any case it would require
+the hub to be powered (to be enumerated) which is precisely what the
+onboard_usb_hub driver intends to do.
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> > +config USB_ONBOARD_HUB
+> > +       bool "Onboard USB hub support"
+> > +       depends on OF || COMPILE_TEST
+> > +       help
+> > +         Say Y here if you want to support discrete onboard USB hubs that
+> > +         don't require an additional control bus for initialization, but
+> > +         need some non-trivial form of initialization, such as enabling a
+> > +         power regulator. An example for such a hub is the Realtek
+> > +         RTS5411.
+> > +
+> > +         This driver can be used as a module but its state (module vs
+> > +         builtin) must match the state of the USB subsystem. Enabling
+> > +         this config will enable the driver and it will automatically
+> > +         match the state of the USB subsystem. If this driver is a
+> > +         module it will be called onboard_usb_hub.
+> > +
+> > +if USB_ONBOARD_HUB
+> > +config USB_ONBOARD_HUB_ACTUAL
+> > +       tristate
+> > +       default m if USB=m
+> > +       default y if USB=y
+> > +endif
+> 
+> Do you still need to play the games with "_ACTUAL"? The USB core no
+> longer calls the hub directly. I think that means you can just "depend
+> on USB" and be done with the mess. That allows USB to be builtin and
+> USB_ONBOARD_HUB can be a module, right?
+
+Good point, with the pdev creation inside the USB core it shouldn't be
+needed anymore.
+
+> > +static int onboard_hub_probe(struct platform_device *pdev)
+> > +{
+> > +       struct device *dev = &pdev->dev;
+> > +       struct onboard_hub *hub;
+> > +       int err;
+> > +
+> > +       hub = devm_kzalloc(dev, sizeof(*hub), GFP_KERNEL);
+> > +       if (!hub)
+> > +               return -ENOMEM;
+> > +
+> > +       hub->vdd = devm_regulator_get(dev, "vdd");
+> > +       if (IS_ERR(hub->vdd))
+> > +               return PTR_ERR(hub->vdd);
+> > +
+> > +       hub->dev = dev;
+> > +       mutex_init(&hub->lock);
+> > +       INIT_LIST_HEAD(&hub->udev_list);
+> > +
+> > +       dev_set_drvdata(dev, hub);
+> > +
+> > +       err = onboard_hub_power_on(hub);
+> > +       if (err)
+> > +               return err;
+> > +
+> > +       /*
+> > +        * The USB driver might have been detached from the USB devices by
+> > +        * onboard_hub_remove(), make sure to re-attach it if needed.
+> > +        *
+> > +        * This needs to be done deferred to avoid self-deadlocks on systems
+> > +        * with nested onboard hubs.
+> > +        */
+> > +       INIT_WORK(&hub->attach_usb_driver_work, onboard_hub_attach_usb_driver);
+> > +       schedule_work(&hub->attach_usb_driver_work);
+> 
+> I'm sure that the above is totally necessary but it's been long enough
+> since I looked at this code last that I've totally forgotten why. Any
+> chance you could add comments to say under what situation
+> onboard_hub_remove() would have detached the USB driver? Is this
+> something where you unbind the platform driver and then bind it again?
+
+Yes, that's the scenario in which I encountered that the hub USB
+devices wouldn't be bound to the onboard_hub_driver again.
+
+> ...and why does that cause the driver to be detached?
+
+We call device_release_driver(udev) in onboard_hub_remove() to
+make sure the USB devices don't keep a reference to the platform
+device after it is removed.
+
+> > +/**
+> > + * onboard_hub_create_pdevs -- create platform devices for onboard USB hubs
+> > + * @parent_hub : parent hub to scan for connected onboard hubs
+> > + * @pdev_list  : list of onboard hub platform devices owned by the parent hub
+> > + *
+> > + * Creates a platform device for each supported onboard hub that is connected to
+> > + * the given parent hub. To keep track of the platform devices they are added to
+> > + * a list that is owned by the parent hub.
+> 
+> I'm ashamed to admit how long it took me to remember why exactly we
+> needed a platform device to begin with and why the normal USB devices
+> weren't enough (it's because we won't enumerate the USB devices until
+> we're powered and so the platform device is in charge of powering
+> things up). Finally I re-read the commit message and then it made
+> sense, but someone looking at the code later might not think to look
+> at the commit message for a while. Maybe remind people in the comments
+> for this function? Even if it's somewhere else in the code and I
+> missed it, I wouldn't mind a tiny blurb here.
+
+Ok, I can add a short note.
+
+> > +void onboard_hub_create_pdevs(struct usb_device *parent_hub, struct list_head *pdev_list)
+> > +{
+> > +       int i;
+> > +       struct usb_hcd *hcd = bus_to_hcd(parent_hub->bus);
+> > +       struct device_node *np, *npc;
+> > +       struct platform_device *pdev = NULL;
+> > +       struct pdev_list_entry *pdle;
+> > +
+> > +       if (!parent_hub->dev.of_node)
+> > +               return;
+> > +
+> > +       for (i = 1; i <= parent_hub->maxchild; i++) {
+> > +               np = usb_of_get_device_node(parent_hub, i);
+> > +               if (!np)
+> > +                       continue;
+> > +
+> > +               if (!of_is_onboard_usb_hub(np))
+> > +                       goto node_put;
+> > +
+> > +               npc = of_parse_phandle(np, "companion-hub", 0);
+> > +               if (npc) {
+> > +                       /*
+> > +                        * Hubs with companions share the same platform device.
+> > +                        * Create the plaform device only for the hub that is
+> > +                        * connected to the primary HCD (directly or through
+> > +                        * other hubs).
+> > +                        */
+> > +                       if (!usb_hcd_is_primary_hcd(hcd)) {
+> > +                               of_node_put(npc);
+> > +                               goto node_put;
+> > +                       }
+> > +
+> > +                       pdev = of_find_device_by_node(npc);
+> > +                       of_node_put(npc);
+> > +               } else {
+> > +                       /*
+> > +                        * For root hubs this function can be called multiple times
+> > +                        * for the same root hub node (the HCD node). Make sure only
+> > +                        * one platform device is created for this hub.
+> > +                        */
+> > +                       if (!parent_hub->parent && !usb_hcd_is_primary_hcd(hcd))
+> > +                               goto node_put;
+> 
+> I don't understand the "else" case above. What case exactly are we
+> handling again? This is when:
+> * the hub is presumably just a 2.0 hub since there is no companion.
+> * our parent is the root hub and the USB 2.0 hub we're looking at is
+> not the primary
+
+The 'else' case can be entered for hubs connected to a root hub or to another
+hub further down in the tree, but we bail out only for first level hubs.
+
+> ...but that doesn't make a lot of sense to me? I must have missed something...
+
+It's not super-obvious, this bit is important: "this function can be called
+multiple times for the same root hub node". For any first level hub we only
+create a pdev if this function is called on behalf of the primary HCD. That
+is also true of a hub connected to the secondary HCD. We only want to create
+one pdev and there is supposedly always a primary HCD.
+
+Maybe it would be slightly clearer if the function returned before the loop
+if this condition is met. Unfortunately we can't just always ignore the
+secondary HCD because:
+
+> In general though, do we even need to look at the "companion-hub"
+> property? If this node matches an onboard USB hub and it's the primary
+> HCD then we want a platform dev. Otherwise we don't, right?
+
+This wouldn't work for some topologies like:
+
+3.x root hub
+  <nothing connected>
+
+2.x root hub
+  2.x-only hub
+
+no platform device would be created for the 2.x-only hub since it isn't
+connected to the primary HCD
+
+or
+
+3.x root hub
+  3.x hub
+
+2.x root hub
+  2.x hub
+    2.x-only hub
+
+The first level hub would have a platform device for being a companion hub
+of the 3.x hub, however no pdev would be created for the second level hub
+since the 2.x root hub isn't primary.
