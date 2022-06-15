@@ -2,51 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D741554D47D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 00:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B9C954D480
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 00:24:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241580AbiFOWWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 18:22:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42032 "EHLO
+        id S1345418AbiFOWY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 18:24:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236639AbiFOWWN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 18:22:13 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE1423EA9F;
-        Wed, 15 Jun 2022 15:22:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AA4EFB81FDF;
-        Wed, 15 Jun 2022 22:22:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D7F6C3411A;
-        Wed, 15 Jun 2022 22:22:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655331730;
-        bh=1nC5jIN044WTHCeNMJqPjFmb8cMtWmx3+OQYJ6joA5M=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=RvfWMUIYTyFTog+jdb8K+kedvgRguVogSH4e5gXhz5mK56Q/WuRv1MrmMtYk9okN4
-         JlSila7xJod3hLbVaxW7Ef+MnRdtYkx1nEP7JpgR2xIfRgghE1VpaWMQIc4IhR/iiS
-         oDDAUOXaqq4Wl4TVF6zcMFDePV9SDtS04TsID6Mw8BItmDOhAq0TbYHvNrKohs3cn8
-         YR61igA0iz0k9ZOpG2QV4MdoaJi62Oa669EUV/pUBVpOkilhlZg7+aZeRJuLc/tz5y
-         WrczKB//BnAdl5zZ3l6ptnnCB+T0pdzOIOLRfnWmcUcDPuJK3aNmMPyCznGcDNy4ng
-         No9mwRmb5u8fw==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S1345108AbiFOWY2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 18:24:28 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AC312E9CE
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 15:24:28 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id k7so2214856plg.7
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 15:24:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=uLEDL+G7aX3Y4fRU26LLhNvvGtvMvsrcMGTR1rtP7yw=;
+        b=DTJF3smWA3fB95jgkWeMgAeL3z2fFHk8fPHUNEallNDdQff3BPuIcBZS65ZbGBPUXE
+         K6BOf3/c2HA+EFOtIuA+4DajkWGkAzMQmZeFz2jKNsM4hfaGAPiXCWlPadUXuzDTRnoI
+         5Jt7riLi+7en25sCaSe8ZlYJ4cSXRdC1Vyxf7RUHS8uGg2SzfkxnsOr9+1jAnQEIk7TL
+         1pkdH0HOOKTr1NWiSFW3u7QG+uol9RhSdTluUF1Cj6vP5+yL/pDTlqwaBjjoyWk5zd8u
+         evUfILLDx8rbTd29hitOx5f87S0CYWd3ZPpYWIVzsTuXC34ir4vWVGv0pfGro8jz7KmU
+         XOJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=uLEDL+G7aX3Y4fRU26LLhNvvGtvMvsrcMGTR1rtP7yw=;
+        b=mWPsK6F6xbUxDMysf9OsYqEtsryB6QcECoF0C399qPIOKNkHo7fNpMMVpgzArGKAaa
+         iL5E6g7VTwTmHPX4IoiEdiwMxa5iZE/pATwb/ETDbGSO7WPz60p3ucHr7O+ulS/AXk5z
+         Yr0Wo3vrKIQVHPl4ylIGkk5KSg3TCX6GYXFW+0mPZlkAYeoSH6EmTdXZiojnvqjRTfv+
+         LUFLgHrG+3/oW42B0IFB6JyVhnkhExY5mRA6XL/I2TOHnq6PTj0vLj9IDzOs1Vr0Uki5
+         B6w96nQBO1aMKqhSUU12X3GzKlFk1V5/Rv45v4YBsNrrcFO2YF4rCVxCLihvllFAAgv/
+         YWxg==
+X-Gm-Message-State: AJIora+PzyLNeLP500aIIfk2jLslm4P0s8wEi9eFD6r3srR41nv3IHiW
+        0anf2hBRYQC6Yaoxz/HcmTxn3g==
+X-Google-Smtp-Source: AGRyM1twcw/WY5Xe4Nnxhw4M0Mco1frKQyTuE637zz53WB/TZIzLMkuT2IwpfthyharuE1mZ8MJLtg==
+X-Received: by 2002:a17:90b:11c5:b0:1ea:9747:28ba with SMTP id gv5-20020a17090b11c500b001ea974728bamr12696060pjb.22.1655331867581;
+        Wed, 15 Jun 2022 15:24:27 -0700 (PDT)
+Received: from google.com ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id p9-20020a62b809000000b0051c79bd5047sm128311pfe.139.2022.06.15.15.24.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jun 2022 15:24:27 -0700 (PDT)
+Date:   Wed, 15 Jun 2022 23:24:24 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/7] dt-bindings: mfd: mt6397: add binding for MT6357
+Message-ID: <YqpcGLIhD2FsPLdi@google.com>
+References: <20220531124959.202787-1-fparent@baylibre.com>
+ <20220531124959.202787-2-fparent@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <edbfccf3-0723-b570-1315-a0951b530a66@denx.de>
-References: <20220517235919.200375-1-marex@denx.de> <20220615201027.DFCC3C3411A@smtp.kernel.org> <edbfccf3-0723-b570-1315-a0951b530a66@denx.de>
-Subject: Re: [PATCH v3 1/2] dt-bindings: clk: Introduce 'critical-clocks' property
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-To:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org
-Date:   Wed, 15 Jun 2022 15:22:08 -0700
-User-Agent: alot/0.10
-Message-Id: <20220615222210.3D7F6C3411A@smtp.kernel.org>
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220531124959.202787-2-fparent@baylibre.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -55,57 +75,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Marek Vasut (2022-06-15 14:55:17)
-> On 6/15/22 22:10, Stephen Boyd wrote:
-> > Quoting Marek Vasut (2022-05-17 16:59:18)
-> >> diff --git a/Documentation/devicetree/bindings/clock/clock-bindings.tx=
-t b/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> >> index f2ea53832ac63..d7f7afe2cbd0c 100644
-> >> --- a/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> >> +++ b/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> >> @@ -169,6 +169,22 @@ a shared clock is forbidden.
-> >>   Configuration of common clocks, which affect multiple consumer devic=
-es can
-> >>   be similarly specified in the clock provider node.
-> >>  =20
-> >> +=3D=3DCritical clocks=3D=3D
-> >> +
-> >> +Some platforms require some clocks to be always running, e.g. because=
- those
-> >> +clock supply devices which are not otherwise attached to the system. =
-One
-> >> +example is a system where the SoC serves as a crystal oscillator repl=
-acement
-> >> +for a programmable logic device. The critical-clocks property of a cl=
-ock
-> >> +controller allows listing clock which must never be turned off.
-> >> +
-> >> +   clock-controller@a000f000 {
-> >> +        compatible =3D "vendor,clk95;
-> >> +        reg =3D <0xa000f000 0x1000>
-> >> +        #clocks-cells =3D <1>;
-> >> +        ...
-> >> +        critical-clocks =3D <UART3_CLK>, <SPI5_CLK>;
-> >=20
-> > Historically "critical" is overloaded in the clk framework. We should
-> > avoid using that name. What does "critical" even mean?
->=20
-> It means those clock must not be turned off, but there is no consumer=20
-> described in DT.
+On Tue, 31 May 2022, Fabien Parent wrote:
 
-So it means "always on".
+> Add binding documentation for the MT6357 PMIC.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/mt6397.txt | 1 +
+>  1 file changed, 1 insertion(+)
 
->=20
-> > Instead I'd prefer "always-on-clocks" here, so we can indicate that
-> > these clks should always be on. It would also parallel the property in
-> > the regulator framework.
->=20
-> This property name is derived from protected-clock which you introduced. =
+Doesn't seem to apply.
 
-> I think it would be better to stay consistent within the clock framework =
-
-> property names ?
-
-protected-clocks is based on assigned-clocks. There isn't a
-CLK_IS_PROTECTED flag. I'm not following your argument at all here,
-sorry.
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
