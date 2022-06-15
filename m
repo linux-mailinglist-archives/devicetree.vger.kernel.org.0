@@ -2,131 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 778F554C61D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 12:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D14054C5BA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 12:19:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242154AbiFOK3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 06:29:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49618 "EHLO
+        id S1344596AbiFOKTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 06:19:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346519AbiFOK3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 06:29:39 -0400
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23FF8419B5;
-        Wed, 15 Jun 2022 03:29:38 -0700 (PDT)
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7C34B1A2991;
-        Wed, 15 Jun 2022 12:29:37 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 453C41A28B0;
-        Wed, 15 Jun 2022 12:29:37 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id D5E601802205;
-        Wed, 15 Jun 2022 18:29:35 +0800 (+08)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     shengjiu.wang@gmail.com
-Subject: [PATCH 3/3] arm64: dts: imx8mn-evk: add bt-sco sound card support
-Date:   Wed, 15 Jun 2022 18:15:34 +0800
-Message-Id: <1655288134-14083-4-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1655288134-14083-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1655288134-14083-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229590AbiFOKTB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 06:19:01 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A0266429;
+        Wed, 15 Jun 2022 03:19:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1655288340; x=1686824340;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Fh8trV0hdIp/yCRR7UrJ8pnXnHW7iI9bN7gg83pe9U8=;
+  b=cYoUYy3OwisdCEkIBAMOIeuP/bJAhwT/9HPzu17lEaq1jQLqc/1gX9NT
+   VgirEe6RuWsYXWuSJu4b5TIQFio1SYZYFmrChOlsUxMk/sSSlJModWsXC
+   Q2/ZsjMDLimkx4JWuTnjL2BOeCHwMzUIjMa0akEx9xzlTRuO76BKgrzAK
+   qgBTYGhi8LO8TcLel7lRmN3AjvDguEZo20fO+mOY5Yy97rXpzXUQVUGMZ
+   i5v6Ig5kdIs0zDNAeZrDatqAApA/HGim9QXfDnK/qTeL6BlGfRZuZcYgS
+   9zGbK8bXVYO+2PKkfP2bP4yEhXfQaWZ8xaGFu3AZhb/x09vwwsepsIZo4
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="258760542"
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; 
+   d="scan'208";a="258760542"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2022 03:19:00 -0700
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; 
+   d="scan'208";a="589036179"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2022 03:18:57 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1o1Q6x-000dI9-Cf;
+        Wed, 15 Jun 2022 13:18:55 +0300
+Date:   Wed, 15 Jun 2022 13:18:55 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Dinh Nguyen <dinguyen@kernel.org>
+Cc:     jarkko.nikula@linux.intel.com, mika.westerberg@linux.intel.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCHv3 1/2] i2c: designware: introduce a custom scl recovery
+ for SoCFPGA platforms
+Message-ID: <YqmyD2w5iriUYpQf@smile.fi.intel.com>
+References: <20220613210032.773826-1-dinguyen@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220613210032.773826-1-dinguyen@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bt-sco sound card, which supports wb profile as default
+On Mon, Jun 13, 2022 at 04:00:31PM -0500, Dinh Nguyen wrote:
+> The I2C pins on the SoCFPGA platforms do not go through a GPIO module,
+> thus cannot be recovered by the default method of by doing a GPIO access.
+> Only a reset of the I2C IP block can a recovery be successful.
+> 
+> The assignment of the recover_bus needs to get done before the call to
+> devm_gpiod_get_optional(), otherwise, the assignment is not taking place
+> because of an error after returning from devm_gpiod_get_optional().
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi | 43 +++++++++++++++++++
- 1 file changed, 43 insertions(+)
+Thanks for an update!
+My comments below.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-index d1f6cccfa00d..f0d6a3daca95 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-@@ -47,6 +47,11 @@
- 		linux,autosuspend-period = <125>;
- 	};
- 
-+	bt_sco_codec: bt_sco_codec {
-+		#sound-dai-cells = <1>;
-+		compatible = "linux,bt-sco";
-+	};
-+
- 	wm8524: audio-codec {
- 		#sound-dai-cells = <0>;
- 		compatible = "wlf,wm8524";
-@@ -57,6 +62,25 @@
- 		clock-names = "mclk";
- 	};
- 
-+	sound-bt-sco {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "bt-sco-audio";
-+		simple-audio-card,format = "dsp_a";
-+		simple-audio-card,bitclock-inversion;
-+		simple-audio-card,frame-master = <&btcpu>;
-+		simple-audio-card,bitclock-master = <&btcpu>;
-+
-+		btcpu: simple-audio-card,cpu {
-+			sound-dai = <&sai2>;
-+			dai-tdm-slot-num = <2>;
-+			dai-tdm-slot-width = <16>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&bt_sco_codec 1>;
-+		};
-+	};
-+
- 	sound-wm8524 {
- 		compatible = "fsl,imx-audio-wm8524";
- 		model = "wm8524-audio";
-@@ -183,6 +207,16 @@
- 	};
- };
- 
-+&sai2 {
-+	#sound-dai-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai2>;
-+	assigned-clocks = <&clk IMX8MN_CLK_SAI2>;
-+	assigned-clock-parents = <&clk IMX8MN_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <24576000>;
-+	status = "okay";
-+};
-+
- &sai3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sai3>;
-@@ -354,6 +388,15 @@
- 		>;
- 	};
- 
-+	pinctrl_sai2: sai2grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SAI2_TXC_SAI2_TX_BCLK      0xd6
-+			MX8MN_IOMUXC_SAI2_TXFS_SAI2_TX_SYNC     0xd6
-+			MX8MN_IOMUXC_SAI2_TXD0_SAI2_TX_DATA0    0xd6
-+			MX8MN_IOMUXC_SAI2_RXD0_SAI2_RX_DATA0    0xd6
-+		>;
-+	};
-+
- 	pinctrl_sai3: sai3grp {
- 		fsl,pins = <
- 			MX8MN_IOMUXC_SAI3_TXFS_SAI3_TX_SYNC     0xd6
+...
+
+> +static int i2c_socfpga_scl_recovery(struct i2c_adapter *adap)
+> +{
+> +	i2c_dw_prepare_recovery(adap);
+> +	i2c_dw_unprepare_recovery(adap);
+
+Can we use
+
+	struct i2c_bus_recovery_info *bri = adap->bus_recovery_info;
+
+	bri->prepare_recovery(adap);
+	bri->unprepare_recovery(adap);
+
+> +	return 0;
+> +}
+
+instead and...
+
+...
+
+>  static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
+>  {
+>  	struct i2c_bus_recovery_info *rinfo = &dev->rinfo;
+>  	struct i2c_adapter *adap = &dev->adapter;
+>  	struct gpio_desc *gpio;
+>  
+> +	if ((dev->flags & MODEL_MASK) == MODEL_SOCFPGA) {
+> +		rinfo->recover_bus = i2c_socfpga_scl_recovery;
+> +		adap->bus_recovery_info = rinfo;
+> +	}
+> +
+>  	gpio = devm_gpiod_get_optional(dev->dev, "scl", GPIOD_OUT_HIGH);
+>  	if (IS_ERR_OR_NULL(gpio))
+>  		return PTR_ERR_OR_ZERO(gpio);
+
+...this one to be transformed like (in a preparatory patch and in this one):
+
+static int i2c_dw_init_socfpga_recovery_info(struct dw_i2c_dev *dev,
+					     struct i2c_bus_recovery_info *rinfo)
+{
+	rinfo->recover_bus = i2c_socfpga_scl_recovery;
+	return 0;
+}
+
+static int i2c_dw_init_generic_recovery_info(struct dw_i2c_dev *dev,
+					     struct i2c_bus_recovery_info *rinfo)
+{
+	struct i2c_adapter *adap = &dev->adapter;
+	struct gpio_desc *gpio;
+
+	gpio = devm_gpiod_get_optional(dev->dev, "scl", GPIOD_OUT_HIGH);
+	if (IS_ERR_OR_NULL(gpio))
+		return PTR_ERR_OR_ZERO(gpio);
+
+	rinfo->scl_gpiod = gpio;
+
+	gpio = devm_gpiod_get_optional(dev->dev, "sda", GPIOD_IN);
+	if (IS_ERR(gpio))
+		return PTR_ERR(gpio);
+	rinfo->sda_gpiod = gpio;
+
+	rinfo->recover_bus = i2c_generic_scl_recovery;
+
+	dev_info(dev->dev, "running with gpio recovery mode! scl%s",
+		 rinfo->sda_gpiod ? ",sda" : "");
+
+	return 0;
+}
+
+static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
+{
+	struct i2c_bus_recovery_info *rinfo = &dev->rinfo;
+	struct i2c_adapter *adap = &dev->adapter;
+	int ret;
+
+	switch (dev->flags & MODEL_MASK) {
+	case MODEL_SOCFPGA:
+		ret = i2c_dw_init_socfpga_recovery_info(dev, rinfo);
+		break;
+	default:
+		ret = i2c_dw_init_generic_recovery_info(dev, rinfo);
+		break;
+	}
+	if (ret)
+		return ret;
+
+	rinfo->prepare_recovery = i2c_dw_prepare_recovery;
+	rinfo->unprepare_recovery = i2c_dw_unprepare_recovery;
+	adap->bus_recovery_info = rinfo;
+
+	return 0;
+}
+
 -- 
-2.17.1
+With Best Regards,
+Andy Shevchenko
+
 
