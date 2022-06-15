@@ -2,58 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A11B54C992
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 15:16:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8D2F54C9A4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 15:21:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348623AbiFONQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 09:16:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52592 "EHLO
+        id S245383AbiFONVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 09:21:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348856AbiFONQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 09:16:07 -0400
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB78B2E096;
-        Wed, 15 Jun 2022 06:16:04 -0700 (PDT)
-Received: by mail-il1-f178.google.com with SMTP id d6so8728417ilm.4;
-        Wed, 15 Jun 2022 06:16:04 -0700 (PDT)
+        with ESMTP id S236365AbiFONVJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 09:21:09 -0400
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84F7938BC7
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 06:21:08 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-313a8a8b95aso60842087b3.5
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 06:21:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=lLnEeD4HScX3wYTfaLfMTcXpGRNYwxAv7p4Jh61bcKg=;
+        b=FAuYV82HbMz5SF8Z7r8LjZLY8Js1QZM8S6JoU4BP+yJW+/cPQITzEEsuzeuUPSFqbj
+         cknm9RkZLDfM8pCMnBfGKMOBmpD2wRin39gPIaa4Wc0vF7A53qjSrsZNQYrQW2+63eHX
+         /j64PsFHZlvSTFVpZgAvXiKd1MwQG2DwDHeYDWj9MJChIz4j4yj0G4AnzHd5R2/bXDGI
+         p9AsvC5FJauhwdgFjUWfPZQWEKVUmpu7mcN/qvaaFutjh4y7Rfut/oK46cqLoiFv8Y3b
+         PN6bs6TaE7EVVLE5vSJ1YBHMildxFf+0mCBB9DOccscXnPGY9tgcod5a+h/I5WzQVjNF
+         NHuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=8C80sIX/zds/z0xyweVsBMgV7P8Pift98ShjLgz5ZwQ=;
-        b=0iO9xBfkS60awmBiiU63PXTb86zX0eTAEBWBPpXsTeofnnaYPumY1x+xyl78Nr2pBT
-         e12mYeRqVfnOYtWh1YtuwYtckIObiEk2zZWrOFNF1RKjj7kviTn5ee5dqgzgi7YvELup
-         6SdCemA2W6PANsAJ2E8egUoXFl1yNOoa9a0k2pJvNrIijRbCrVR5jDhInUWWY5tCEzIV
-         fIXJhNOH/HnpOegF+Wvp2Fg4byBPVDUubeaFisEjEGZXuCtNsod6t3ipVJgi//rradiz
-         yvsMi10lSrlVkL9L4FVDDivXNVZw1T/WqFKquONI63DVhwJlniAQTXw56chHZ55KJA+F
-         jsLA==
-X-Gm-Message-State: AJIora9CWAD4r7Hpaww1Ri1rWcbVwg+s4Vj5cACdpui5cIqI9DviJkw1
-        EWDtLq6+w7YiussBYtNcCv22ufCmuA==
-X-Google-Smtp-Source: AGRyM1uZ9utNL5h2kFhjalsMtkLLXkoWdL+p72Vo2Z4lpjk/ny0uIeL/R8e97UqCCB1L4EDdFORe3A==
-X-Received: by 2002:a05:6e02:1c02:b0:2d3:ccfe:6551 with SMTP id l2-20020a056e021c0200b002d3ccfe6551mr6203007ilh.134.1655298964054;
-        Wed, 15 Jun 2022 06:16:04 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id z6-20020a023446000000b0033214fb0061sm6121054jaz.23.2022.06.15.06.16.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 06:16:03 -0700 (PDT)
-Received: (nullmailer pid 662450 invoked by uid 1000);
-        Wed, 15 Jun 2022 13:16:02 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        linux-pwm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org,
-        Daniel Palmer <daniel@0x0f.com>
-In-Reply-To: <20220615070813.7720-2-romain.perier@gmail.com>
-References: <20220615070813.7720-1-romain.perier@gmail.com> <20220615070813.7720-2-romain.perier@gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: pwm: Add Mstar MSC313e PWM devicetree bindings documentation
-Date:   Wed, 15 Jun 2022 07:16:02 -0600
-Message-Id: <1655298962.395709.662448.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=lLnEeD4HScX3wYTfaLfMTcXpGRNYwxAv7p4Jh61bcKg=;
+        b=UuXDK2T+oKgNrNEasFum7pIBRsDWs//0CPtLGktwcI0LBrCaJPEOIKzslL3TksB6eM
+         MuzxZ9h5ZMuzOvZdJc83NEWX8RTRrnSpa/klSUQHUKTMiaKUpVf5DFfgDPHPpbwWFJLa
+         nxss9qbO3lxrguXL8LvW5TBtjy2+rg2RIi93w866v/CLqJ3mHse9X0uaKf0whk2pCLm8
+         dYZFM+vK2pfbwxtndfNIUrD1Dtnb0aKybWylZKfwXnN5PFx7BzI8VibJPLT+blQ7rvTp
+         jWxCi+nikkklb4L62aE+Z8szlXnWbPr8iKt6QO9A/sMqPdVROq8ALE8zjBtU40TZuoUn
+         50NQ==
+X-Gm-Message-State: AJIora/0IT3Hb9og1c1uGXtUaqwjywWrB4Doq2cLj7hLQ4NLWJFvtOJ3
+        zkeeECFOZVoYLhZnJ4uLnmfD/Aww8/m+9w8p9X+ugw==
+X-Google-Smtp-Source: AGRyM1sWoBtACZMnUE5e9euq2R2bCswy4VmCdrOftup15FaJJZ5F8vphDQM3yFswuCusR6wCSWVBJAXvAZQH0EVE5QA=
+X-Received: by 2002:a81:a00b:0:b0:30c:5c1a:19f with SMTP id
+ x11-20020a81a00b000000b0030c5c1a019fmr11566849ywg.437.1655299267750; Wed, 15
+ Jun 2022 06:21:07 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220525155714.1837360-1-nfraprado@collabora.com> <20220525155714.1837360-3-nfraprado@collabora.com>
+In-Reply-To: <20220525155714.1837360-3-nfraprado@collabora.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 15 Jun 2022 15:20:56 +0200
+Message-ID: <CACRpkdZL6SAHWgOjcJ=D-fjTwYL4ctgo4Tbre3QwPKSTpzPs4g@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] dt-bindings: pinctrl: mt8192: Use generic bias
+ instead of pull-*-adv
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,38 +75,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Jun 2022 09:08:09 +0200, Romain Perier wrote:
-> This adds the documentation for the devicetree bindings of the Mstar
-> MSC313e RTC driver, it includes MSC313e SoCs and SSD20xd.
-> 
-> Signed-off-by: Romain Perier <romain.perier@gmail.com>
-> ---
->  .../bindings/pwm/mstar,msc313e-pwm.yaml       | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/mstar,msc313e-pwm.yaml
-> 
+On Wed, May 25, 2022 at 5:57 PM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> Commit cafe19db7751 ("pinctrl: mediatek: Backward compatible to previous
+> Mediatek's bias-pull usage") allowed the bias-pull-up and bias-pull-down
+> properties to be used for setting PUPD/R1/R0 type bias on mtk-paris
+> based SoC's, which was previously only supported by the custom
+> mediatek,pull-up-adv and mediatek,pull-down-adv properties.
+>
+> Since the bias-pull-{up,down} properties already have defines associated
+> thus being more descriptive and is more universal on MediaTek platforms,
+> and given that there are no mediatek,pull-{up,down}-adv users on mt8192
+> yet, remove the custom adv properties in favor of the generic ones.
+>
+> Note that only mediatek,pull-up-adv was merged in the binding, but not
+> its down counterpart.
+>
+> Fixes: edbacb36ea50 ("dt-bindings: pinctrl: mt8192: Add mediatek,pull-up-=
+adv property")
+> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pwm/mstar,msc313e-pwm.yaml:20:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/pwm/mstar,msc313e-pwm.yaml:21:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
+Patch applied.
 
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Yours,
+Linus Walleij
