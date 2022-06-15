@@ -2,78 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61F4454D05C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:50:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3936454D064
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:51:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357984AbiFORuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 13:50:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34768 "EHLO
+        id S1358009AbiFORvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 13:51:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349729AbiFORuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:50:20 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E092B53E29
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:50:18 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id e66so12022919pgc.8
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:50:18 -0700 (PDT)
+        with ESMTP id S1344040AbiFORvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:51:31 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 071E2541BE
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:51:30 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id z14so7131051pjb.4
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:51:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=1jMu+lGlLUwxIWSFxtxOqoxXa/O8y+ZJH6Jya8QmVS4=;
-        b=i9YjTi5IhhH6B1eVTcD7vZp7dzPi7c05gv6//PZkCoCOEIvpGuYvj3dEghm9izJvC2
-         8OUWFh2YvuBTdcjTU372xEWxRV1lUYPQRcXz7SxgYhN+Ab1txjF7N3MRHK3Lh45OjTSL
-         Ase4zsKsalkoKI4I9LHqh9NuddjJSdL/HSR1GdOBTcmILZPrSYoqf45z2INpMZ5ZIdwh
-         zr8ZK/Nz1w06bwVKiH7sR9I2YBfmO/BCf6mJ7fpFJC12BwKVkRGmpUBYwWac/qSjd+lo
-         WNCfJFIN339BbeVXAngEtr2RGmA5EM0UIYG+lR0iO8WMBILzOElXhZBOd23GfmSBvHDG
-         M4hw==
+        bh=XGLjS63dUzAW1Zo2zi7t3U1pShICtS96lOWIeEhU5mo=;
+        b=lpQYopi0CgQAcKG+v+jImrlkuTJE1F5WMT7t0KYH0fvucudjwtBJJjq6vtnyd3Ec8p
+         9pXQkLNI8Oc9J61ZgUslVUtfIMNiyLJ8felTz/mXvGKZUZ3m9+x8ulV6z3UEMExuMSiB
+         2NzDllVXpV8Rl7njT/x3rihrMaWf8btUvJ8zcF3TvQzHeCBnnMMBR1Mhdt+RGunBnogV
+         aUdQSgsE9RDZAb6azyJgO5ibHmcMJW+85U8gNqfAv5peDiNg6DX/pAa6oha9oTH063+S
+         3MdYzebMRwyMlyFaSEuaorfkbp0lLUxjseOk46+6sDQP5R+8882mhkqO0tgNpzIJwUPX
+         hnYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=1jMu+lGlLUwxIWSFxtxOqoxXa/O8y+ZJH6Jya8QmVS4=;
-        b=0WoygbCmqpsvknW6FHF52/2bN43Un9NGUjh49rBLF2MMMIQoZTdO7pZuEuRw01tzMc
-         G24gapyg+ne3gwviX0zEKh+9h9+5iEoCtZw4HykPBWtb04TgzKy941gyYlpwsf+B//cO
-         Wp1WjzIHIHYlX3Eh0+HjsxbtMAoaCNUHMOhb4TmQsodk/yXOCxdcBHWa8QzJ9qsHz25c
-         iSOI7dXWGCdFXtrG8mrarBNmCHW1T1RRZhGBR2B/qKLB4x1cWnWcgh9Bnx6OY7BWUWst
-         nwNJP5c0JI2seTUWVxYflcGc6mYoQnuA1b2CeEJooS0H7fRoXvuMLrCfETk5ndexfNYe
-         FLAA==
-X-Gm-Message-State: AJIora/sDA8sLkgE1ujJ451Jet7zxrNYovvcbBjSSP+wJE91Ztit4WEW
-        Yn7SXa/Y0fHrpeRN+QzuFps5ZA==
-X-Google-Smtp-Source: AGRyM1tgx5wd//aRy3L6R0T8NZ35VS+4Jjjtdj74hI5yzt3PaMKVofPzTq+GGVbzPuXw0Vby1azuDw==
-X-Received: by 2002:a65:6b8a:0:b0:3db:7dc5:fec2 with SMTP id d10-20020a656b8a000000b003db7dc5fec2mr788601pgw.223.1655315418377;
-        Wed, 15 Jun 2022 10:50:18 -0700 (PDT)
+        bh=XGLjS63dUzAW1Zo2zi7t3U1pShICtS96lOWIeEhU5mo=;
+        b=3pn+lsgkwdWQUs84Jae/S3hKQUS8nL7wc3KIfsp/1215piJ9hWenAKfXRPOtpAckSt
+         M9gBvGnOU497CJvrhaqO58wEcFU5DDY7++wZ2rom+O8LvM7yYw4BS7OkbpNf6XJygdeD
+         316L8slxhl1AwHAszFlbv+F7hJ8hc8CnuOps8ipOYsHbUWukMu4egAYV/s8aBqwUKAkz
+         veUc+tZ+9AX8TFg0Z2DcHOR+x+whZf86Zn6Vx3uXlGc1bPHCWWeOJkNt6ksbFy/FevqQ
+         dqGiHtxFTReDChWGJe4+nrrvko/SZopY1oDW2LaAbBP96qu3VggvTzgpF/mJTyz4E0zW
+         6JfQ==
+X-Gm-Message-State: AJIora9PO1Epc6FutFAakolIBrZVkYCWLa607GOdeFQV8ELhBul+L8Mv
+        9sxnTPofrZfabRFzp6zVpAXr+w==
+X-Google-Smtp-Source: AGRyM1utGKyiREa4WVXSvBtvrEyoGENTUB491xhdN0Jo6qHBF7XUH5VzUDiIIM4B3tzwCaRcE420qg==
+X-Received: by 2002:a17:902:8343:b0:167:8899:2f92 with SMTP id z3-20020a170902834300b0016788992f92mr878435pln.117.1655315489664;
+        Wed, 15 Jun 2022 10:51:29 -0700 (PDT)
 Received: from [172.22.33.138] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id br8-20020a056a00440800b00518a473265csm10034338pfb.217.2022.06.15.10.50.17
+        by smtp.gmail.com with ESMTPSA id m12-20020a1709026bcc00b00162037fbacdsm9544311plt.187.2022.06.15.10.51.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jun 2022 10:50:17 -0700 (PDT)
-Message-ID: <717ad899-31ad-5e70-b299-ffb8ca287071@linaro.org>
-Date:   Wed, 15 Jun 2022 10:50:17 -0700
+        Wed, 15 Jun 2022 10:51:29 -0700 (PDT)
+Message-ID: <ff25e7ed-1074-3d90-75c0-d62f03825e3e@linaro.org>
+Date:   Wed, 15 Jun 2022 10:51:28 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 1/3] dt-bindings: clock: add pcm reset for ipq806x lcc
+Subject: Re: [PATCH v4 4/7] dt-bindings: drm/bridge: anx7625: Add mode-switch
+ support
 Content-Language: en-US
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Prashant Malani <pmalani@chromium.org>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Cc:     bleung@chromium.org, swboyd@chromium.org,
+        heikki.krogerus@linux.intel.com,
+        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220615163408.30154-1-ansuelsmth@gmail.com>
- <a92fe431-a995-4c7f-b90b-8e80298bc71a@linaro.org>
- <62aa1b41.1c69fb81.95632.5b71@mx.google.com>
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Pin-Yen Lin <treapking@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Xin Ji <xji@analogixsemi.com>
+References: <20220615172129.1314056-1-pmalani@chromium.org>
+ <20220615172129.1314056-5-pmalani@chromium.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <62aa1b41.1c69fb81.95632.5b71@mx.google.com>
+In-Reply-To: <20220615172129.1314056-5-pmalani@chromium.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,29 +98,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2022 09:53, Ansuel Smith wrote:
-> On Wed, Jun 15, 2022 at 10:43:10AM -0700, Krzysztof Kozlowski wrote:
->> On 15/06/2022 09:34, Christian 'Ansuel' Marangi wrote:
->>> Add pcm reset define for ipq806x lcc.
->>>
->>> Signed-off-by: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
->> To prevent any confusion about identities (we have strict rules about
->> these), I need to ask - who uses this email address?
->>
->> https://lore.kernel.org/all/?q=ansuelsmth%40gmail.com
->>
->> Best regards,
->> Krzysztof
+On 15/06/2022 10:20, Prashant Malani wrote:
+> Analogix 7625 can be used in systems to switch USB Type-C DisplayPort
+> alternate mode lane traffic between 2 Type-C ports.
 > 
-> Same person. Started using extended name, wanted to do this change from
-> a long time but all the patch were already pushed so I couldn't change
-> it since they were already proposed and on the various mailing list.
+> Update the binding to accommodate this usage by introducing a switch
+> property.
+> 
+> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> Signed-off-by: Prashant Malani <pmalani@chromium.org>
+> ---
+> 
+> Changes since v3:
+> - Fix unevaluatedProperties usage.
+> - Add additionalProperties to top level "switches" nodes.
+> - Make quotes consistent.
+> - Add '^..$' to regex.
+> (All suggested by Krzysztof Kozlowski)
 
-Previously "Ansuel Smith" was used entirely, without any parts of this
-name. Here 'Ansuel' appears in quotes, which usually is used for nicknames.
+Looks good to me.
 
-Is "Ansuel Smith" your real name or a nickname? What do you mean by
-"extended name"?
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
