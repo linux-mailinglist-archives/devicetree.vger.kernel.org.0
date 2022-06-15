@@ -2,103 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DF8054D36F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 23:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5369B54D371
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 23:15:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348663AbiFOVOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 17:14:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39890 "EHLO
+        id S1349711AbiFOVPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 17:15:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346733AbiFOVOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 17:14:23 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15BA955346;
-        Wed, 15 Jun 2022 14:14:23 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id g25so25635285ejh.9;
-        Wed, 15 Jun 2022 14:14:23 -0700 (PDT)
+        with ESMTP id S1345188AbiFOVPG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 17:15:06 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 418E95536A
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 14:15:05 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id w20so20776142lfa.11
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 14:15:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=lFiJWZyjgj7yLljlIGD+CfiM/7XdC+qPawIPNYD0GPw=;
-        b=FhT4sJzoPFZC/gYPr+fV/OwAoFJCcU91LCb5J+fhV9zZlOOv7biXpxCIe1PUzQTlmO
-         4UNfwQPimmXpFtSunprG/mBRju8bs8vkgE2FFK3VHnDsdM+VDYLeytThIY8FQLJcSkNt
-         ae8FjaQMO7u5YgYDtS4/8kVri7Wgi+MiJaESPRQh6n3I3+5WS9rqDNQuwfdgM97Vt6fb
-         0yGOJirmsbrvABuvSOStTjzaBc+5nKyms06ziSUTBpEI6tVHyKk4Tz//NY8gfBcWMSqq
-         FOHUDzsrW2uBCmF1qlHeYD1sOdDbJWo/McN8jX/qZxn9aCI019kVVUhXoUSoXeHu44Na
-         zk5w==
+        bh=U4zrudTfpKSMt98XR2iufEyV1+uGBR6wStGeT3BqOFk=;
+        b=iSjexz3mLcG79lRlUUZPUPkq8OBBprdOmNRAGkZEcmvAa4eQvTfbPk9WmCpbFPVpE/
+         5IjIW1VvqnyWQIMo4gprntm+LphtyDdc7pa9pxQhRyYNbQ3sPypQpGvpVm2goTEqjXnD
+         ZWIHzr9ALIdL8uSDepi8JGqdaUGJ9KO81GTDeglZtZzld+OdfsO6ivUoTALFkKTPaPle
+         EBAdyCHjtkfqlSTu21w/CG11XS8bx7jqZO9mTphBt3RNJEys+Eq0Az+zPC92rLlqpnL4
+         piH0IU2/m0Nc8T/9Edrwj9ROFMNSzW+SSvqduVjOVc0ysz3DV4UTT7udJAo7v4Z2HhU6
+         Ud3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=lFiJWZyjgj7yLljlIGD+CfiM/7XdC+qPawIPNYD0GPw=;
-        b=wQrV42kJU8rrpWGWQaV5scXw4rBG6Cc+vez/7bocObAfsN2aoYkT/qhfgcUKyXdezE
-         w8qg31jQx4mpQ5Tta7DNMO9Wuz0vowkLnBIWVcj34pcJCioFBHTji9VsWwxlLuwbCgWD
-         wzbVWWiapK0miV/7p+ON0WBwEozlDBJOG/e7He2A+72xnUni+AHEpKcTHx63v+cY6Xzg
-         vu/bv6kB+aJC88xwxzuqy6ns/HENYAH0OGH9eHRMQ9Ew5c5HNQCaJf5JRpUmn7jOHX9H
-         Ku8DGKSGeUiEmU8lrjEnkrPy509cpn9OrFiuwdFW0mu8HcyLhE+Kl9EoX6QbLJh1GUSS
-         cZyQ==
-X-Gm-Message-State: AJIora/6kGT9Khe2ATmBzN+QG0wDtGjU5PN9V09kPVX73KmRNCJ7N0XH
-        nrddyNRXQ5BSbhPGBKv8M/ZzqgRGxqS+az37aeY=
-X-Google-Smtp-Source: AGRyM1u9REE1osB08QHKj6YyZqbLsn8iF32qND5beRcZGcbuwGm/p10Bur0itHl5couuX0nOvASp1vpkL8WS+iqthX0=
-X-Received: by 2002:a17:907:9721:b0:70c:65e7:2aa5 with SMTP id
- jg33-20020a170907972100b0070c65e72aa5mr1639766ejc.132.1655327661439; Wed, 15
- Jun 2022 14:14:21 -0700 (PDT)
+        bh=U4zrudTfpKSMt98XR2iufEyV1+uGBR6wStGeT3BqOFk=;
+        b=TsZolgP0Q+GnCb2kQX/ASUZ371gOAgi4amxEZGVyn3jwTfbGU+dKyXTgftIAjrWYXG
+         dP6hgacSB4XjFZ8rIShVH9ztNUIHjLYaruoCEILpjZv8dY4GcH6uwD9REge4kgfXevAS
+         qNAuTmDQtcTHtY9q33uCBa0Wyl4jlZR2n0Q0mG5UTA2nQ8W2XGbAL1eQB3EES1o3I9D0
+         Odu8asChFzQy+u2KuEL6A+NAdd9pRBg9n7f+QquM4hsWBzKI/zhYwZaL8+ATs9tkLW3z
+         MrPz5CP1Ntz+5zv+wLxGctiYwMACvqZW6SnjYOl/EdRLeWH5n/pz1BiAWwPlW5RK8CzS
+         LWyg==
+X-Gm-Message-State: AJIora/bHdoXJpBspYylrKMQyeKBUhmAKVjLTPVpEGhN892ubeB+/ksi
+        Wff4goxmNHLQEEzK8LDIZMGvWWtOZIllI8jxhn+Y8A==
+X-Google-Smtp-Source: AGRyM1t5MyamwiCz7PoSdPQ8gjW8OM+EpbSRQMqDHUOoS9LUKaLFPkP4lLu+GObfpyOlL4mcqFgvi/WGO0uAYN5JDkg=
+X-Received: by 2002:a05:6512:3085:b0:479:3986:1d23 with SMTP id
+ z5-20020a056512308500b0047939861d23mr799565lfd.373.1655327703359; Wed, 15 Jun
+ 2022 14:15:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220613120534.36991-13-andrea.merello@iit.it> <202206160409.GTDk9b3k-lkp@intel.com>
-In-Reply-To: <202206160409.GTDk9b3k-lkp@intel.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 15 Jun 2022 23:13:42 +0200
-Message-ID: <CAHp75Vd7zF=rC7VYAnqc7cz52HfcLdVWwE6kuifwv3L8JiFBxg@mail.gmail.com>
-Subject: Re: [v6 12/14] iio: imu: add BNO055 serdev driver
-To:     kernel test robot <lkp@intel.com>
-Cc:     Andrea Merello <andrea.merello@iit.it>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>, kbuild-all@lists.01.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
+References: <20220609150851.23084-1-max.oss.09@gmail.com>
+In-Reply-To: <20220609150851.23084-1-max.oss.09@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 15 Jun 2022 14:14:27 -0700
+Message-ID: <CAPDyKFow5yxgCa-PTpNsiHzr3kCPCcOn-FVWdHCG9dx54cS=pA@mail.gmail.com>
+Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
+ which controls
+To:     Max Krummenacher <max.oss.09@gmail.com>
+Cc:     max.krummenacher@toradex.com, linux-pm@vger.kernel.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Mark Brown <broonie@kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        jmondi <jacopo@jmondi.org>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 15, 2022 at 10:57 PM kernel test robot <lkp@intel.com> wrote:
+On Thu, 9 Jun 2022 at 08:09, Max Krummenacher <max.oss.09@gmail.com> wrote:
+>
+> From: Max Krummenacher <max.krummenacher@toradex.com>
+>
+> its power enable by using a regulator.
+>
+> The currently implemented PM domain providers are all specific to
+> a particular system on chip.
+>
+> This series adds a PM domain provider driver which enables/disables
+> a regulator to control its power state. Additionally, marked with RFC,
+> it adds two commits which actually make use of the new driver to
+> instantiate a power domain provider and have a number of power
+> domain consumers use the power domain.
+>
+> The perceived use case is to control a common power domain used by
+> several devices for which not all device drivers nessesarily have
+> a means to control a regulator.
+>
+> It also handles the suspend / resume use case for such devices,
+> the generic power domain framework will disable the domain once the
+> last device has been suspend and will enable it again before resuming
+> the first device.
+>
+> The generic power domain code handles a power domain consumer
+> generically outside of the driver's code. (assuming the 'power-domains'
+> property references exactly one power domain).
+> This allows to use the "regulator-pm-pd" driver with an arbitrary
+> device just by adding the 'power-domains' property to the devices
+> device tree node. However the device's dt-bindings schema likely does
+> not allow the property 'power-domains'.
+> One way to solve this would be to allow 'power-domains' globally
+> similarly how 'status' and other common properties are allowed as
+> implicit properties.
 
-...
+I don't want to interrupt the discussion, but I still wanted to share
+my overall thoughts around the suggested approach.
 
-> >> drivers/iio/imu/bno055/./bno055_ser_trace.h:91:23: warning: format '%d' expects argument of type 'int', but argument 3 has type 'size_t' {aka 'long unsigned int'} [-Wformat=]
+Rather than adding some new DT bindings and a new generic DT
+compatible, I think the current power-domains bindings are sufficient
+to describe these types of HWs.
 
->     80              TP_PROTO(size_t len, const unsigned char *buf),
->     81              TP_ARGS(len, buf),
->     82              TP_STRUCT__entry(
->     83                      __field(size_t, len)
->     84                      __dynamic_array(unsigned char, buf, len)
->     85              ),
->     86              TP_fast_assign(
->     87                      __entry->len = len;
->     88                      memcpy(__get_dynamic_array(buf),
->     89                             buf, __entry->len);
->     90              ),
->   > 91              TP_printk("len: %d, data: = %*ph",
+To me, it looks rather like you are striving towards avoiding open
+coding for power domain providers that make use of a regulator. Right?
 
-Obviously it must be %zu
+To address that problem, I think a better option is to consider
+introducing a helper library with a set of functions that can be used
+by these types of power domain providers, in a way to simplify the
+code.
 
->     92                        __entry->len, __entry->len, __get_dynamic_array(buf)
->     93              )
+[...]
 
-
--- 
-With Best Regards,
-Andy Shevchenko
+Kind regards
+Uffe
