@@ -2,125 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8553554CC8D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 17:19:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DC0454CD02
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 17:33:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349140AbiFOPTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 11:19:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42784 "EHLO
+        id S234139AbiFOPby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 11:31:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349227AbiFOPTX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 11:19:23 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23B6C24956;
-        Wed, 15 Jun 2022 08:19:22 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id e4so13681698ljl.1;
-        Wed, 15 Jun 2022 08:19:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jtDLXWranri9SO0ungbK/rfZfrPvocRl+VfvQBvGjo8=;
-        b=f0HQ1vv+o5fTCQrso/rD+FdM1EuNryosCq4xi7a9dblyGF8itOuVz/ArZ2rBPrReQi
-         QRhKSEYCSaKboZzrI+WtJayBbQSMgjtMBUY07ud/MZv9f20xWM9YBOMDGNpmJPGnVfZn
-         209azDbGMveKEJsAAVbxLirdJBZkLvA7r0SeKTECZwNIhOsNeB9wXNJcIS5PQTRxObbC
-         lboCdrIwtKAz+hwRVHeKGX60bbi2aqKw7L+H1b0OJ2V4yTLxgUAtjCexprm0GQtmMybV
-         2IAahrCiVwtuRg95F/zWS8qMTAuCJspW/+smwGj3Z9mDHdDRJ5C1lrqdwI2JQFYkTKV3
-         ciWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jtDLXWranri9SO0ungbK/rfZfrPvocRl+VfvQBvGjo8=;
-        b=xyG4fWuy7Q9rh4nOn+cnzm9lleplXk1aZ9ZF11cGLsSxbAoxOkEjQQq28/PedDRu5y
-         OxlVGA7KiMXztUj3Cpm/7obIOOgP8rOIy4WfLAbmQvtHFm6C9Bkn+uIVHEZAcXKxZcrb
-         Bl85SriGczwwzt2oa769rpj5BBy9Hv0TJpNsKxuVXpYqdilWGdEHXSNUPcS1whhXQ+az
-         PA5b8D4v/6+yo8HhXbHB1FAA42Y/S0gGnNosD3iC5SUNAPDDULh4yu3wSzouQOlWxSwH
-         hNBw+BjV+d+Vs5qV/UY9qt1B8b3y2uFlzbIAz+0VULm88G076fmYns5mj9gIF0KvKHAf
-         KpEw==
-X-Gm-Message-State: AJIora+mw5oCyHepgNLO1RvIsMljk4cAOvbWrKlQyAMfMKfp8pq7PXOq
-        RHX3pQSHClUg0dxtS/0/xM6/DZHXMjHSD4nUso4=
-X-Google-Smtp-Source: AGRyM1s3Wkd6PJq3so/0xApmm+/Ezzsnk7JGMgg9Ouusxj+OYaPM8DZ979+vYb4QeZlGOTCPIUZcr+weDB4mqcGTDxQ=
-X-Received: by 2002:a05:651c:54f:b0:255:9ea4:ae79 with SMTP id
- q15-20020a05651c054f00b002559ea4ae79mr146008ljp.122.1655306360512; Wed, 15
- Jun 2022 08:19:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220609150851.23084-1-max.oss.09@gmail.com> <20220609150851.23084-2-max.oss.09@gmail.com>
- <1654829855.220248.560616.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1654829855.220248.560616.nullmailer@robh.at.kernel.org>
-From:   Max Krummenacher <max.oss.09@gmail.com>
-Date:   Wed, 15 Jun 2022 17:19:09 +0200
-Message-ID: <CAEHkU3W0wRDWvEVwgjoeAQaTSr-V=0J2L-FtwJA78EHkaED4YA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/5] dt-bindings: power: Add bindings for a power
- domain controlled by a regulator
-To:     Rob Herring <robh@kernel.org>
-Cc:     Kevin Hilman <khilman@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        with ESMTP id S1354552AbiFOPb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 11:31:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 755F62632;
+        Wed, 15 Jun 2022 08:31:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 04405616B5;
+        Wed, 15 Jun 2022 15:31:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20695C34115;
+        Wed, 15 Jun 2022 15:31:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655307081;
+        bh=r+yRrxHClzv1P38azR8w13O3Oa7kVO4IL+igkr/tjqg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=NsRoNoq8fE3qubujywO1GcEOTOQeZqx6h1IKN9ZdyW1BfyjX8+3S9GHfirXsE52Zk
+         poqn+5/PPTm0kG4HgW0EbqyJssvgQUfkjUdfoVoQYmO5jrET8HQHq20D9vqx404hZs
+         eyztWGEjNJ7EZYyLa2Dr3JY2xNe1O3Zaw5UbDHAzEczTRMa1u1rUiqDCySwh4Ow6tL
+         RcQy/emi+IQy9h2d5B4kZD2vGXPxcfGbmQBtwvgN1p86y4nd1ZYkhVSMVrnIuvjvqv
+         nRFYEy2X4GTfz0CI0GmNS8PPBycVtoYixfiKfThx8DlVuim19gfzF6lmKFZWZkPPiN
+         xbw7eQaRXz9Pw==
+Date:   Wed, 15 Jun 2022 10:31:19 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Felix Fietkau <nbd@nbd.name>
+Cc:     Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-pm@vger.kernel.org,
-        Max Krummenacher <max.krummenacher@toradex.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        John Crispin <john@phrozen.org>, Rob Herring <robh@kernel.org>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RESEND v10 1/3] dt-bindings: PCI: Add support for Airoha
+ EN7532
+Message-ID: <20220615153119.GA940910@bhelgaas>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220615125335.96089-1-nbd@nbd.name>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On Wed, Jun 15, 2022 at 02:53:33PM +0200, Felix Fietkau wrote:
+> From: John Crispin <john@phrozen.org>
+> 
+> EN7532 is an ARM based platform SoC integrating the same PCIe IP as
+> MT7622, add a binding for it.
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: John Crispin <john@phrozen.org>
+> Signed-off-by: Felix Fietkau <nbd@nbd.name>
 
-On Fri, Jun 10, 2022 at 4:57 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, 09 Jun 2022 17:08:47 +0200, Max Krummenacher wrote:
-> > From: Max Krummenacher <max.krummenacher@toradex.com>
-> >
-> > Adds binding for a power domain provider which uses a regulator to control
-> > the power domain.
-> >
-> > Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-> > ---
-> >
-> >  .../power/regulator-power-domain.yaml         | 58 +++++++++++++++++++
-> >  1 file changed, 58 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/power/regulator-power-domain.yaml
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/regulator-power-domain.example.dtb: power-sleep-moci: $nodename:0: 'power-sleep-moci' does not match '^(power-controller|power-domain)([@-].*)?$'
->         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/regulator-power-domain.yaml
+Applied patches 1 & 2 to pci/ctrl/mediatek for v5.20, thanks!
 
-Will change to 'power-domain-sleep-moci' in V2.
+I assume patch 3 for:
 
-Regards
-Max
+  arch/arm/boot/dts/en7523-evb.dts
+  arch/arm/boot/dts/en7523.dtsi
 
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/patch/
->
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
->
+needs to go through an ARM tree, right?
+
+> ---
+>  Documentation/devicetree/bindings/pci/mediatek-pcie.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie.txt b/Documentation/devicetree/bindings/pci/mediatek-pcie.txt
+> index 57ae73462272..684227522267 100644
+> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie.txt
+> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie.txt
+> @@ -7,6 +7,7 @@ Required properties:
+>  	"mediatek,mt7622-pcie"
+>  	"mediatek,mt7623-pcie"
+>  	"mediatek,mt7629-pcie"
+> +	"airoha,en7523-pcie"
+>  - device_type: Must be "pci"
+>  - reg: Base addresses and lengths of the root ports.
+>  - reg-names: Names of the above areas to use during resource lookup.
+> -- 
+> 2.36.1
+> 
