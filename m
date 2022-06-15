@@ -2,174 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B803854C886
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 14:28:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E90F454C8B9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 14:39:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345746AbiFOM2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 08:28:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33272 "EHLO
+        id S239202AbiFOMjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 08:39:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242459AbiFOM22 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 08:28:28 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8BA3393FE;
-        Wed, 15 Jun 2022 05:28:26 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C559266016CB;
-        Wed, 15 Jun 2022 13:28:24 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1655296105;
-        bh=4nU9NX8b9cZ1xmaDRmhjERV+Ti0iFHjk5ZJ4I5OHFKg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=e5N5JyBggQ4zs0Fz6xkG5P2lTO0eO/wPkxz+z/OFofBarb38HNedfhq9yqtAGVf9l
-         0PUw9XO54LL0vF86XTinY+iAdtn0vk4Cog3WIh1GyrpJhL0kBf4f/JrH+vE8vJMuri
-         pL/55G3lZaHGC1ajx5gZtMmsLmHpwR2on5Znu0b6mjMQfw8tJamf5lPTj/n2ixxjGk
-         hVpxxfdyYxchxSCViNHYe/Kqhx1sSLwsAkfZyrJXGAGPpd5IG6TM/0O7yeZPiVNgvA
-         ms0JorOxWEy7yJA9A1FBIPkfTl/hfpPIPWev17eGOBt0zC3COek5AMRUVVVWrKGXb3
-         W0fO4VBtVmmyA==
-Message-ID: <e4a2c56e-8e38-b44c-04b4-fd792fbf2f74@collabora.com>
-Date:   Wed, 15 Jun 2022 14:28:22 +0200
+        with ESMTP id S239404AbiFOMjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 08:39:41 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F9DB3F8AF;
+        Wed, 15 Jun 2022 05:39:40 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CF5FE749;
+        Wed, 15 Jun 2022 14:39:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1655296779;
+        bh=+4sibv0NLKCmgUSdkhcZhIkW4rY3rE29NjOjsS2gX0Y=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DZM2O5rht2zSW/iRez43ZSkkE4DEtaQP1sh5BPTKJ65PI4/sY+oqddva8833Y9lx0
+         gUvTguRugnKCrmNqwhC2Tdik36aYBk3nSOmPEXk9MH50yRPbA1RNH1TYqKtYYafCH+
+         X24GSbmmQF8rqdreTykHdIl8WA//OMNBtIGqdNBc=
+Date:   Wed, 15 Jun 2022 15:39:28 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>, mchehab@kernel.org,
+        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
+        robh+dt@kernel.org, nicolas@ndufresne.ca,
+        alexander.stein@ew.tq-group.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/9] vivid: add dynamic array test control
+Message-ID: <YqnTAE7dzhIJm8gL@pendragon.ideasonboard.com>
+References: <20220503093925.876640-1-xavier.roumegue@oss.nxp.com>
+ <20220503093925.876640-4-xavier.roumegue@oss.nxp.com>
+ <Yqj20J9QaAV6ZNes@pendragon.ideasonboard.com>
+ <b508597d-3da5-5e1f-66a5-a9f7d6a2c352@xs4all.nl>
+ <YqnIRWtyjtyz4gzj@pendragon.ideasonboard.com>
+ <3afb8643-9e4d-bded-e788-ef024895dcb2@xs4all.nl>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 6/6] iommu: mtk_iommu: Lookup phandle to retrieve
- syscon to pericfg
-Content-Language: en-US
-To:     Matthias Brugger <matthias.bgg@gmail.com>, yong.wu@mediatek.com
-Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski@linaro.org
-References: <20220609100802.54513-1-angelogioacchino.delregno@collabora.com>
- <20220609100802.54513-7-angelogioacchino.delregno@collabora.com>
- <8b31b1d2-4ed7-11a1-2124-4641c8f3abcd@gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <8b31b1d2-4ed7-11a1-2124-4641c8f3abcd@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <3afb8643-9e4d-bded-e788-ef024895dcb2@xs4all.nl>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/06/22 14:09, Matthias Brugger ha scritto:
+Hi Hans,
+
+On Wed, Jun 15, 2022 at 02:27:57PM +0200, Hans Verkuil wrote:
+> On 6/15/22 13:53, Laurent Pinchart wrote:
+> > On Wed, Jun 15, 2022 at 11:14:43AM +0200, Hans Verkuil wrote:
+> >> Hi Laurent, Xavier,
+> >>
+> >> Ignore what I wrote before, I read it with the HEVC patch series in mind, not the dw100
+> >> series.
+> >>
+> >> So let me try again :-)
+> >>
+> >> On 6/14/22 23:00, Laurent Pinchart wrote:
+> >>> Hi Xavier and Hans,
+> >>>
+> >>> Thank you for the patch.
+> >>>
+> >>> On Tue, May 03, 2022 at 11:39:19AM +0200, Xavier Roumegue wrote:
+> >>>> From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> >>>>
+> >>>> Add a dynamic array test control to help test support for this
+> >>>> feature.
+> >>>>
+> >>>> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> >>>> ---
+> >>>>  drivers/media/test-drivers/vivid/vivid-ctrls.c | 15 +++++++++++++++
+> >>>>  1 file changed, 15 insertions(+)
+> >>>>
+> >>>> diff --git a/drivers/media/test-drivers/vivid/vivid-ctrls.c b/drivers/media/test-drivers/vivid/vivid-ctrls.c
+> >>>> index e7516dc1227b..7267892dc18a 100644
+> >>>> --- a/drivers/media/test-drivers/vivid/vivid-ctrls.c
+> >>>> +++ b/drivers/media/test-drivers/vivid/vivid-ctrls.c
+> >>>> @@ -34,6 +34,7 @@
+> >>>>  #define VIVID_CID_U8_4D_ARRAY		(VIVID_CID_CUSTOM_BASE + 10)
+> >>>>  #define VIVID_CID_AREA			(VIVID_CID_CUSTOM_BASE + 11)
+> >>>>  #define VIVID_CID_RO_INTEGER		(VIVID_CID_CUSTOM_BASE + 12)
+> >>>> +#define VIVID_CID_U32_DYN_ARRAY		(VIVID_CID_CUSTOM_BASE + 13)
+> >>>>  
+> >>>>  #define VIVID_CID_VIVID_BASE		(0x00f00000 | 0xf000)
+> >>>>  #define VIVID_CID_VIVID_CLASS		(0x00f00000 | 1)
+> >>>> @@ -189,6 +190,19 @@ static const struct v4l2_ctrl_config vivid_ctrl_u32_array = {
+> >>>>  	.dims = { 1 },
+> >>>>  };
+> >>>>  
+> >>>> +static const struct v4l2_ctrl_config vivid_ctrl_u32_dyn_array = {
+> >>>> +	.ops = &vivid_user_gen_ctrl_ops,
+> >>>> +	.id = VIVID_CID_U32_DYN_ARRAY,
+> >>>> +	.name = "U32 Dynamic Array",
+> >>>> +	.type = V4L2_CTRL_TYPE_U32,
+> >>>> +	.flags = V4L2_CTRL_FLAG_DYNAMIC_ARRAY,
+> >>>> +	.def = 50,
+> >>>> +	.min = 10,
+> >>>> +	.max = 90,
+> >>>> +	.step = 1,
+> >>>> +	.dims = { 100 },
+> >>>> +};
+> >>>
+> >>> To meaningfully test this, don't we need the vivid driver to change the
+> >>> dimension ? Or is it meant to only test changes made by the application
+> >>> ?
+> >>
+> >> As I understand it the dw100 driver needs a 2 dimensional array control.
+> >> The size is fixed for each resolution, but if the resolution changes, then
+> >> this control changes size as well, and it makes sense that when that happens
+> >> it is also reset to default values.
+> >>
+> >> So this isn't a dynamic array at all. It is a standard 2 dimensional array.
+> >>
+> >> What is missing in the control framework is a function similar to
+> >> v4l2_ctrl_modify_range() that can resize an array.
+> >>
+> >> v4l2_ctrl_modify_dimensions() would be a good name.
+> >>
+> >> I can make something for that if you both agree with this proposal.
+> > 
+> > From a userspace point of view, we only need to be able to set the
+> > control after setting the format. There's no need for control change
+> > events (but I don't mind if they're there of course, even if I think
+> > they won't be very usable in practice).
+> > 
+> > From an API point of view, I'd like a clear and documented behaviour for
+> > what happens to the control value when the format is changed. It can be
+> > a global behaviour, or a control-specific behaviour, I don't mind much.
 > 
-> 
-> On 09/06/2022 12:08, AngeloGioacchino Del Regno wrote:
->> On some SoCs (of which only MT8195 is supported at the time of writing),
->> the "R" and "W" (I/O) enable bits for the IOMMUs are in the pericfg_ao
->> register space and not in the IOMMU space: as it happened already with
->> infracfg, it is expected that this list will grow.
->>
->> Instead of specifying pericfg compatibles on a per-SoC basis, following
->> what was done with infracfg, let's lookup the syscon by phandle instead.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/iommu/mtk_iommu.c | 23 +++++++++++++----------
->>   1 file changed, 13 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
->> index 90685946fcbe..0ea0848581e9 100644
->> --- a/drivers/iommu/mtk_iommu.c
->> +++ b/drivers/iommu/mtk_iommu.c
->> @@ -138,6 +138,8 @@
->>   /* PM and clock always on. e.g. infra iommu */
->>   #define PM_CLK_AO            BIT(15)
->>   #define IFA_IOMMU_PCIE_SUPPORT        BIT(16)
->> +/* IOMMU I/O (r/w) is enabled using PERICFG_IOMMU_1 register */
->> +#define HAS_PERI_IOMMU1_REG        BIT(17)
-> 
->  From what I can see MTK_IOMMU_TYPE_INFRA is only set in MT8195 which uses pericfg. 
-> So we don't need a new flag here. For me the flag name MTK_IOMMU_TYPE_INFRA was 
-> confusing as it has nothing to do with the use of infracfg. I'll hijack this patch 
-> to provide some feedback on the actual code, please see below.
-> 
->>   #define MTK_IOMMU_HAS_FLAG_MASK(pdata, _x, mask)    \
->>                   ((((pdata)->flags) & (mask)) == (_x))
->> @@ -187,7 +189,6 @@ struct mtk_iommu_plat_data {
->>       u32            flags;
->>       u32            inv_sel_reg;
->> -    char            *pericfg_comp_str;
->>       struct list_head    *hw_list;
->>       unsigned int        iova_region_nr;
->>       const struct mtk_iommu_iova_region    *iova_region;
->> @@ -1218,14 +1219,16 @@ static int mtk_iommu_probe(struct platform_device *pdev)
->>               goto out_runtime_disable;
->>           }
->>       } else if (MTK_IOMMU_IS_TYPE(data->plat_data, MTK_IOMMU_TYPE_INFRA) &&
->> -           data->plat_data->pericfg_comp_str) {
-> 
-> Check for pericfg_comp_str is not needed, we only have one platform that uses 
-> MTK_IOMMU_TYPE_INFRA.
-> 
+> I'd say it is control specific. In this case you would reset the contents
+> to default values (presumably values that don't do any warping in this
+> case).
 
-Fair enough. I agree.
+Works for me. Let's then note in the core API that any control whose
+dimensions can change need to document how its value is affected.
 
->> -        infracfg = 
->> syscon_regmap_lookup_by_compatible(data->plat_data->pericfg_comp_str);
-> 
-> We can do something like this to make the code clearer:
-> data->pericfg = syscon_regmap_lookup_by_compatible(data->plat_data->pericfg_comp_str);
->          if (IS_ERR(data->pericfg)) {
-> 
-> Using infracfg variable here is confusing as it has nothing to do with infracfg 
-> used with HAS_4GB_MODE flag.
+> >>>> +
+> >>>>  static const struct v4l2_ctrl_config vivid_ctrl_u16_matrix = {
+> >>>>  	.ops = &vivid_user_gen_ctrl_ops,
+> >>>>  	.id = VIVID_CID_U16_MATRIX,
+> >>>> @@ -1612,6 +1626,7 @@ int vivid_create_controls(struct vivid_dev *dev, bool show_ccs_cap,
+> >>>>  	dev->ro_int32 = v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_ro_int32, NULL);
+> >>>>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_area, NULL);
+> >>>>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u32_array, NULL);
+> >>>> +	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u32_dyn_array, NULL);
+> >>>>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u16_matrix, NULL);
+> >>>>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u8_4d_array, NULL);
+> >>>>  
 
-Yes Matthias, using the infracfg variable is confusing - that's why I changed that
-already....
+-- 
+Regards,
 
-> 
-> Regards,
-> Matthias
-> 
->> -        if (IS_ERR(infracfg)) {
->> -            ret = PTR_ERR(infracfg);
->> -            goto out_runtime_disable;
->> +           MTK_IOMMU_HAS_FLAG(data->plat_data, HAS_PERI_IOMMU1_REG)) {
-
-
-
->> +        data->pericfg = syscon_regmap_lookup_by_phandle(dev->of_node, 
->> "mediatek,pericfg");
-
-....Here, where I'm assigning directly to data->pericfg :-P
-
-By the way, since it was only about one platform, my intention was to remove the
-pericfg_comp_str from struct iommu_plat_data (as you can see), but then, with the
-current code, I had to assign .....
-
-
->> +        if (IS_ERR(data->pericfg)) {
->> +            p = "mediatek,mt8195-pericfg_ao";
-
-...the string to 'p', because otherwise it would go over 100 columns.
-
-In any case, I just checked and, apparently, MT8195 is really the one and only SoC
-that needs this pericfg register to be managed by Linux... even the latest and
-greatest smartphone chip (Dimensity 9000, MT6983) doesn't need this (at least,
-from what I can read on a downstream kernel).
-
-On an afterthought, perhaps the best idea is to just leave this as it is and, as
-you proposed, avoid using that confusing infracfg variable, without adding the
-pericfg handle at all.
-
-After all, it's just one single SoC.
-
-I'll send a new version soon!
-
-Cheers,
-Angelo
-
+Laurent Pinchart
