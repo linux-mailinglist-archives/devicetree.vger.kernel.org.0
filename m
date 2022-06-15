@@ -2,227 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A30C54D403
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 23:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24BBF54D418
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 00:00:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235490AbiFOV4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 17:56:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47290 "EHLO
+        id S1349828AbiFOWAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 18:00:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346441AbiFOV4g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 17:56:36 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 755A244A3A;
-        Wed, 15 Jun 2022 14:56:32 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id h23so14780985ljl.3;
-        Wed, 15 Jun 2022 14:56:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=fj3idR9ITxtyBkLb8C2yMHLKLG7IMAyqge6auz8Xoso=;
-        b=geZQgQBfPs0gt1EhAThZmGnVf/B3qlss07EEfs+bWEivxL+jVVax1x5tGlhx01mFYw
-         DbKXjki82pi2wpCiZI+fzhyvX/0mfO7O01D1Qo0d30opmIYIiyRlN3lD4YEz/2wKN4N2
-         g6nCcz1iKJXIMmgAazAi8u7IQZaZi3Fd8hbp8n0C2QnAcdXxPHdVpd4+Tw3P1HCyN8NK
-         4hgwx6/fkgc3JYyTW6RuaxBsZET5mbscooRHtEIfkEuLppcEdcSRcaJ9OeKoW8kkAW3v
-         3xhbgd39xeFzTnlX5YN5eonge/RAqdoy4ToKN+fiJfs06Hi+kAhg84bFRnHnuE2zwfW1
-         4J6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fj3idR9ITxtyBkLb8C2yMHLKLG7IMAyqge6auz8Xoso=;
-        b=eXSn6lx13dW59tiWuYkqg1GB5Wzq2msQj5GU0fATLfyHIuqOIYpb21BjqAtEbWg6w3
-         zv94r64VxEPoK+DZPcVdEsbrjEMSSxwC1bgkGq5Ilf2KrxXIS+m+rerwm5BCGfTXcnuX
-         dCTg450gLrxNmUM5XQT82NfLtCXz1cJXz5yJgyyrCVEb6IbNM+DM2Jsa3A8RCD1a7BPa
-         wCHXoGcUIfhLcN6QeFF8uaoeZ0kdaPfGZp59yDryzXDLhdN+Rlr1qxARyAdTJ8///3sG
-         0pK+bgQZTZGn5tDO1hu2GMX0cR3IU0zoMIZ1Bb7iUK/gDI/LUyZtnfvYrSbvPCJi7/mZ
-         cQCQ==
-X-Gm-Message-State: AJIora8bpLUVNoOlqB678vRcA7l9wn7QcWEQRsaKVimoVZb68gxJp4v3
-        jOyvuQABxz2oejKfzeUs2fQ=
-X-Google-Smtp-Source: AGRyM1ssSQMkRSYZ0vv7iOqWHBgvY/2JNmKnl/GQF59+6dI9uvS6E33ao5FwJXCzISRaT6udDukahg==
-X-Received: by 2002:a2e:508:0:b0:255:66fb:9fce with SMTP id 8-20020a2e0508000000b0025566fb9fcemr950322ljf.171.1655330190775;
-        Wed, 15 Jun 2022 14:56:30 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id b13-20020a2eb90d000000b0025587b872cesm2516ljb.70.2022.06.15.14.56.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 14:56:30 -0700 (PDT)
-Date:   Thu, 16 Jun 2022 00:56:28 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 11/23] dt-bindings: ata: ahci: Add platform capability
- properties
-Message-ID: <20220615215628.m5pgnys7acmkhslg@mobilestation>
-References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
- <20220610081801.11854-12-Sergey.Semin@baikalelectronics.ru>
- <20220614221917.GA2824584-robh@kernel.org>
+        with ESMTP id S1348747AbiFOWAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 18:00:20 -0400
+Received: from sonic305-21.consmr.mail.ir2.yahoo.com (sonic305-21.consmr.mail.ir2.yahoo.com [77.238.177.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62F0754BFA
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 15:00:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1655330417; bh=9BHO/vEJQwspdOBU725pBTSFGjwJmz7DBY+o68qDYnU=; h=Date:Subject:From:To:Cc:References:In-Reply-To:From:Subject:Reply-To; b=fwTA4VWZOWS7WJusp9uR51uXBmIEuZPjz6fbbPmIuUt/3DJroY9DPCtR2rz1tusyhohtOH9XgW3Gvso5Z/EPuOco03gouahcXkODZQN9sAqnp1H6GybVoJ78GdIyrAEBhjd8CV7GL/FpykKX8jYPyydz7QFTHVA5/5LpjIxIK/uQ6D/qZAdeSeHi6H+CP1Q8mdl6H+OJJGQZYiQLjAKtYoTCu0JeEuTYsJkkTxWbHssUxawPE0iWeuHfdqyHpcL9gMPxHGI9adI9FOK8lHDw3BW4+ks6EZINSG1/5ZOfAYru+6ccfc0ZM0A7Hcq6KxS24ikoDbDeCa505lODWFjeqw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1655330417; bh=yA3neS3B9Xf3zw+ZQbxMSUUSwgGz33cOJojjHXjv/cW=; h=X-Sonic-MF:Date:Subject:From:To:From:Subject; b=EHYzxAlzPFhzdFYIDyD5tBD4uIPrMlqlNS8c3UvyhLlGV1wOvh3kpVri/qjWPXQkL/iXBs/70HTADiUXzo5/1X3uHUuU7KRF2Daui5Iz0/Noa/gGJL4PpMC4nqS96HL5TAmWdqgVi5BpwDeF+sBz8Psxj9kTmv5WKoVG75LZZLNQS0XXAvBPRLh7Qn8MdMDo/ny9u091D0lC4mQ8kJ+LCW9xYWoAIdXQLiVv7/5CU4T4swYuwWt6FHNjlqu+8Tp8z4aKcG8SyKVz5ZxcnSdJOAWsmNUBpKYUg6b+7QeYkaGEemalskm0dNFAH4nhryNlw+ISxnh+JjzaYmT84Ku0fQ==
+X-YMail-OSG: 4KuY4F0VM1nP5AyFwdexSy9aW.eJen6AHj3jkqFOChcZnUPhDPpxi_1hRxC3kEz
+ sQcdAx4nK60HjW66yDnsvAahkvO97kq93kTR2Jo1x9xmOv.QKaaWWOVWf_x9Xn1W22VmTju1Asti
+ aLkOB0ecM14GIm.zO5bFxjMCTzdkcNd38xBkqcChCnR6_B0_kZjJN0mzcnJt2rlDQiuM92pOWGGO
+ bbnpxqLFi2sY0eRYEPotogQ87PLvelt2CaRXvwgyS3Ii99hUFo.3beLxIGb2RGP4.k3nRO4zQPWZ
+ jqEtT3iC4VwfzxQYFvBE1TFtqheloDJwK_sGj_Iz5agrl.73lJyegPkralSRt1RtHLMfIcCrerXd
+ 9BB63f4u9VlJPythMWbzuZap_jJh8RIn_xQDvwW.TF1ngTh6WyqS4qT2HPePpOVwQMi8u7ZNpLTh
+ MbldGBomLq4VrB9H6BYZung00KxVcE9zby4r.bffteKiLVR2eC.duKzey3Fm48QYVHhiQH9XpmM4
+ iHMC0ZeAjDxjuWbLNCQ2Exldk16JRRPb5F7vUinx6dNU_misx60XL8qJVNN27a9gyc1J1QcyPZjA
+ y180NVIf_aNciCV6u7tRd5GasJV_API6TqZMkVBUQxAQFf.vA9D5Db8lNex86L9VeU9vUhBSHZkL
+ SjJwRgV5tVlRhulscOCk1dU3ufNi25dvzht3UHEomrmW15VoZbqxk2ncofhtuDDKIvepGScEKcnu
+ _qkRfz7E7yvo9aSlygnh14otD2Zr9m.EgWRPMYsZObcxIMF_4x1svgKt1T0zAnyw_p0ayAE6pE6.
+ s4UgcTYMDEDwKmY72kFbyqdPKDnq_Ff1RWuVHxDc3mCtdFUcTVxyGeGPuRV9eELSJVOWN6YWyyNN
+ ST2aCDENM4y4MM0AVcxIUQD3RfXN4hkzamXosiozFdxn9zuR0Y_HRojuwKUe.wp8IsKuuxBYqYRQ
+ 989xzxrw1wO6hPvlQSF0ASfgIFG8K69bo5jc9mhJphUwYBm14TeFJDGh2wXr1J4us0MznPR6UQp2
+ B7OwACqHEjxurxvNQ9ZSTrMow5bKT1jlPb6DuzVJfKxybZ58HXKsnToxeDm3UVf6YZTkalMIqlHD
+ x_tmQFmGkhp_7jmGV7.PfrPuR6IQZILbaLa2yfbc3cwi5dgQ5o8xfC7m5G4arPK5a5nyKT2z6F42
+ hvhigoVy5yZB5u8FkVfZ8H5IBAfcwRl.XeQWKNOiStzC5j1IHpSR3vl26w_sfmQOHeosFkDuS_Lz
+ 25AE4tncnp_PdKq.g_7sqD4CLRH1uiRfI65PBMd8MJEQsQtm.PkD80ElT2BvQW6YmsRPFm48MOst
+ L_SVKSxQJ8wgWx6axy6n32HZLVrv8E1AdfhNRV_j0u8fTLrQ87oiek0TxQv90pSrWZKxd0uY3o9K
+ YlhZaekqDb6Y6SAMeght6dT5Sb02GOKWJXr5GgKywB7gsDu3174B6NYEpB0Vi5GBGj5Spovox.GU
+ fdEhOvFkDWc3NlGZnuAzmuZE5w09Yd_0wQFy3mq9rbQSPi9fWnOA90EFQeT4IE2G7DzHkcVVn1N9
+ aw1dkrKS_iQ0RQuBMip0oYMg7Y7DApLQ52vyPkAp12RqwoD5HO3TAk0rDj_2hs72p6I.4LZh0UPj
+ o7r_13NPnAB3HMuBxhZfeZZ5hC0BarVox1yZ7rTNyET2HhaQe2t5oTf.I6imFTvrhtzrUUry89l3
+ BYE90sDuXT3aPU7rzSMETdxvAxQ80X71Z4m.gyB30ytd57klcv.Yplwm_JZw9VaNZIYQ6VunmGfg
+ OJc6ZSEi1DjKV7eYl1dxK6j8m1xrwnrfGMkzAJV49DXbtxH1JWdEOtVY1aPfLus3IQKf8.fZJw3B
+ 602LSOLYmXn3g87FBWxwrIbNMV8Lx7H7C2AIsBziB_RIaxlrCJjjuiviMwSlbh66aiLTwgAlcxkk
+ yRW.o3we4avup2_fXj.tohOFo7sdksLOhEWOmMkQ4pxwbtGryQW6ik9o_rBHLIzHhrKW2yrs5ODS
+ L6YPamQuhU7OrvEANOaIcdKMggo9WJ5NLgQMaeAg3ht7EUwLFOVjeWzekay.kkkDspSD2f7Y9Tx6
+ bTN0PADZ_WjK598ZJiC9A1B1ToI6d4TlkwJgxCoUp.MeHF1em1.xQ.gIG3Ch09bEnUKvUAI9AU4j
+ UsVK9PMwofKptyS0vpy518ze8ybwC7xTwLJZl_lA6exxx8q_EzR83EQcS4J8wQGJTO5bC8Nvk.PX
+ 8A81_VoaSqGO.jjOBba22P7i3uhWYsr1vikazl6hW_1SU4FjvnGsasYN27IZu4WHOvBiqbL_je4i
+ hyRQ4694-
+X-Sonic-MF: <jahau@rocketmail.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic305.consmr.mail.ir2.yahoo.com with HTTP; Wed, 15 Jun 2022 22:00:17 +0000
+Received: by hermes--canary-production-ir2-c9bf9d9bc-74fwm (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 8ace1dad76e9ec93841826844d70561c;
+          Wed, 15 Jun 2022 22:00:16 +0000 (UTC)
+Message-ID: <5361e0d1-1a2f-e185-e5f4-b4c8e90d6215@rocketmail.com>
+Date:   Thu, 16 Jun 2022 00:00:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220614221917.GA2824584-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 7/7] iio: magnetometer: yas530: Add YAS537 variant
+Content-Language: en-US
+From:   Jakob Hauser <jahau@rocketmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <cover.1655081082.git.jahau@rocketmail.com>
+ <b6e100de37921c22ebf0698f8e0e99794053303a.1655081082.git.jahau@rocketmail.com>
+ <CAHp75VfFwSQ6bk=TMLiyA1j-AsafjGdVFbTTHJJ67C8zeYfz8Q@mail.gmail.com>
+ <033f64ea-4ba7-eb89-3259-688008e29989@rocketmail.com>
+In-Reply-To: <033f64ea-4ba7-eb89-3259-688008e29989@rocketmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: WebService/1.1.20280 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 14, 2022 at 04:19:17PM -0600, Rob Herring wrote:
-> On Fri, Jun 10, 2022 at 11:17:49AM +0300, Serge Semin wrote:
-> > In case if the platform doesn't have BIOS or a comprehensive firmware
-> > installed then the HBA capability flags will be left uninitialized. As a
-> > good alternative we suggest to define the DT-properties with the AHCI
-> > platform capabilities describing all the HW-init flags of the
-> > corresponding capability register. Luckily there aren't too many of them.
-> > SSS - Staggered Spin-up support and MPS - Mechanical Presence Switch
-> > support determine the corresponding feature availability for the whole HBA
-> > by means of the "hba-cap" property. Each port can have the "hba-port-cap"
-> > property initialized indicating that the port supports some of the next
-> > functionalities: HPCP - HotPlug capable port, MPSP - Mechanical Presence
-> > Switch attached to a port, CPD - Cold Plug detection, ESP - External SATA
-> > Port (eSATA), FBSCP - FIS-based switching capable port.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > ---
-> > 
-> > Changelog v4:
-> > - Fix some misspelling in the patch log.
-> > - Convert the boolean properties to the bitfield properties. (@Rob)
-> > - Remove Hannes' rb tag due to the patch content change.
-> > ---
-> >  .../devicetree/bindings/ata/ahci-common.yaml  | 16 +++++++++++++++
-> >  .../bindings/ata/ahci-platform.yaml           | 10 ++++++++++
-> >  include/dt-bindings/ata/ahci.h                | 20 +++++++++++++++++++
-> >  3 files changed, 46 insertions(+)
-> >  create mode 100644 include/dt-bindings/ata/ahci.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/ata/ahci-common.yaml b/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> > index 12a97b56226f..94d72aeaad0f 100644
-> > --- a/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> > +++ b/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> > @@ -58,6 +58,14 @@ properties:
-> >    phy-names:
-> >      const: sata-phy
-> >  
-> > +  hba-cap:
-> > +    $ref: '/schemas/types.yaml#/definitions/uint32'
-> > +    description:
-> > +      Bitfield of the HBA generic platform capabilities like Staggered
-> > +      Spin-up or Mechanical Presence Switch support. It can be used to
-> > +      appropriately initialize the HWinit fields of the HBA CAP register
-> > +      in case if the system firmware hasn't done it.
-> > +
-> >    ports-implemented:
-> >      $ref: '/schemas/types.yaml#/definitions/uint32'
-> >      description:
-> > @@ -101,6 +109,14 @@ $defs:
-> >        target-supply:
-> >          description: Power regulator for SATA port target device
-> >  
-> > +      hba-port-cap:
-> > +        $ref: '/schemas/types.yaml#/definitions/uint32'
-> > +        description:
-> > +          Bitfield of the HBA port-specific platform capabilities like Hot
-> > +          plugging, eSATA, FIS-based Switching, etc (see AHCI specification
-> > +          for details). It can be used to initialize the HWinit fields of
-> > +          the PxCMD register in case if the system firmware hasn't done it.
-> > +
-> >      required:
-> >        - reg
-> >  
-> > diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> > index 15be98e0385b..e19cf9828e68 100644
-> > --- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> > +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> > @@ -111,6 +111,8 @@ examples:
-> >    - |
-> >      #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >      #include <dt-bindings/clock/berlin2q.h>
-> > +    #include <dt-bindings/ata/ahci.h>
-> > +
-> >      sata@f7e90000 {
-> >          compatible = "marvell,berlin2q-ahci", "generic-ahci";
-> >          reg = <0xf7e90000 0x1000>;
-> > @@ -119,15 +121,23 @@ examples:
-> >          #address-cells = <1>;
-> >          #size-cells = <0>;
-> >  
-> > +        hba-cap = <HBA_SMPS>;
-> > +
-> >          sata0: sata-port@0 {
-> >              reg = <0>;
-> > +
-> >              phys = <&sata_phy 0>;
-> >              target-supply = <&reg_sata0>;
-> > +
-> > +            hba-port-cap = <(HBA_PORT_FBSCP | HBA_PORT_ESP)>;
-> >          };
-> >  
-> >          sata1: sata-port@1 {
-> >              reg = <1>;
-> > +
-> >              phys = <&sata_phy 1>;
-> >              target-supply = <&reg_sata1>;
-> > +
-> > +            hba-port-cap = <(HBA_PORT_HPCP | HBA_PORT_MPSP | HBA_PORT_FBSCP)>;
-> >          };
-> >      };
-> > diff --git a/include/dt-bindings/ata/ahci.h b/include/dt-bindings/ata/ahci.h
-> > new file mode 100644
-> > index 000000000000..6841caebcedf
-> > --- /dev/null
-> > +++ b/include/dt-bindings/ata/ahci.h
-> > @@ -0,0 +1,20 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
+On 15.06.22 23:43, Jakob Hauser wrote:
 > 
-
-> Dual license.
-
-Ok.
-
+> On 13.06.22 17:20, Andy Shevchenko wrote:
+>>
+>> On Mon, Jun 13, 2022 at 3:18 AM Jakob Hauser <jahau@rocketmail.com> wrote:
+>>>
+>>> - * YAS537 MS-3T (2015 Samsung Galaxy S6, Note 5, Xiaomi)
+>>> + * YAS537 MS-3T (2015 Samsung Galaxy S6, Note 5, Galaxy S7)
+>>
+>> Not sure what happened to Xiaomi. There is nothing in the commit
+>> message about this change.
 > 
-> With that,
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> "Xiaomi" is too generic, specific devices should be listed here. E.g.
+> Xiaomi Redmi 2 seems to have YAS537 but I'm fully sure this applies to
+> all its variants [1]. Samsung Galaxy S7 (and S7 edge) is often quoted in
+> conjunction with YAS537, so I took this.
 
-Thanks.
+I forgot a "not" here:
 
--Sergey
-
-> 
-> > +/*
-> > + * This header provides constants for most AHCI bindings.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_ATA_AHCI_H
-> > +#define _DT_BINDINGS_ATA_AHCI_H
-> > +
-> > +/* Host Bus Adapter generic platform capabilities */
-> > +#define HBA_SSS		(1 << 27)
-> > +#define HBA_SMPS	(1 << 28)
-> > +
-> > +/* Host Bus Adapter port-specific platform capabilities */
-> > +#define HBA_PORT_HPCP	(1 << 18)
-> > +#define HBA_PORT_MPSP	(1 << 19)
-> > +#define HBA_PORT_CPD	(1 << 20)
-> > +#define HBA_PORT_ESP	(1 << 21)
-> > +#define HBA_PORT_FBSCP	(1 << 22)
-> > +
-> > +#endif
-> > -- 
-> > 2.35.1
-> > 
-> > 
+"[...] but I'm *not* fully sure this applies to all its variants [...]"
