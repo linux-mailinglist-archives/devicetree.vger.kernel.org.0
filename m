@@ -2,94 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECDA754D53A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 01:30:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D48E54D564
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 01:37:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346690AbiFOXYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 19:24:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40320 "EHLO
+        id S1350445AbiFOXeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 19:34:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346367AbiFOXYp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 19:24:45 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF26210FEE
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 16:24:44 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id m16-20020a7bca50000000b0039c8a224c95so1881866wml.2
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 16:24:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Oh0CzsBK6XYUSBqF1cQtOHLaqbDSnG4wCRRP0RL1GWY=;
-        b=fwryWYy1j3kluVUxxG5tFQ3vYHpbqs9hgx4Jdj1WImsyQmO4FTGFa4hM1VabxWcMms
-         WojO6BK3Hsd5ZpJMYnTmbFv4nRhloIV5aNQRFeEz0P1QQaZ3IO8tgbpGhzb7hee9RpiY
-         76/9VoY0DBWkGkLyYJ7Ja5vJIarHTKlwS1eUY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Oh0CzsBK6XYUSBqF1cQtOHLaqbDSnG4wCRRP0RL1GWY=;
-        b=Adh7PpSfR3CeuOoGNuOc+lCsK+0u3yC5aJqZD1SfzFsmoZ6MzplPdkh21yBFkfmcNq
-         DQypfMiv9KiD836te8GqV+w7pWBU1CY/EOCD1XnzHXyBm1OKhACpyqkkqAUx/eIVcwhn
-         wjhx7nNj50ai2YWZ2K+KilD+Kve4UfO7SUd2WE9Y6Y8yfjXET5+Cc2QLyeBFaOXCJxA1
-         X24QwLPnG8izo+Gd0hjYJHhU+QBoYGlFtwKivSMEeoW1xzV3Luir9EA4Pn4vFg/Q6wEp
-         bBdeEFMfd4dGzGOwWi4aW0WMYhgTzCKIcCQhGRkrpiIXAfb2yrbShrUGBzl904u2NEb5
-         JiRQ==
-X-Gm-Message-State: AJIora82+GEuC/Ovv6dR0QocIdp9IEO3K+EnbKenAMQlz+zyh4msFjKU
-        eYzuhM3+hR6FBz3OgTp09s4auQqu5Q2mvnjghC0o/A==
-X-Google-Smtp-Source: AGRyM1uj+gBu25gwQLFPBOZ5+Eln6z2RnmnhA3J7SVFKR/uvc0t7ylrZdMgeetRsu5LbUjgJ+JRDWKcrmpPXtYwXnNw=
-X-Received: by 2002:a05:600c:3792:b0:39c:6667:202 with SMTP id
- o18-20020a05600c379200b0039c66670202mr1876308wmr.104.1655335483162; Wed, 15
- Jun 2022 16:24:43 -0700 (PDT)
+        with ESMTP id S1348711AbiFOXeS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 19:34:18 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E404819028;
+        Wed, 15 Jun 2022 16:34:16 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 37B5C81E79;
+        Thu, 16 Jun 2022 01:34:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1655336054;
+        bh=eQwhtZdEgXrxVgj+pvKbmaSJLyk3a8se7w6o4IqaPEE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=u2Chqc7JyP98w9aWx5ZCBZJTS4KwaH6IKhNS21xws4kAFheHlHWzSe5eHmPg1yqvf
+         owlxDybDKCYMA+xAFOwJ0QlcWXwpAhbBfJL6mRwhdJc4oe6plrPv7dr2kEwvXEaSVc
+         6f+rz0Xs3MnnbC7ekwvfXqp6gokFI8SPC7P7Izc1P66zHpewylNnikFDSptkhKBjwG
+         rWq6FIGdlUNcYUx0PvfdOwv23V7LwScQinh/eqAhdmwKe3rjn6HxM7igEc7dd9WybE
+         EElY6la7K2msUBUSr+etNbf86pgh5zq/TgBWlzzAOSeEycWDvp6PHbO2T5tOPOB4VI
+         m9TAvU4S42RwQ==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-iio@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <michael.hennerich@analog.com>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: iio/accel: Fix adi,adxl345/6 example I2C address
+Date:   Thu, 16 Jun 2022 01:34:11 +0200
+Message-Id: <20220615233411.90621-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <CAODwPW9E8wWwxbYKyf4_-JFb4F-JSmLR3qOF_iudjX0f9ndF0A@mail.gmail.com>
- <CAODwPW8fiFSNehZbZDdR9kjHxohLGiyE7edU=Opy0xV_P8JbEQ@mail.gmail.com>
- <CAD=FV=XAYUx9OKLxThQxYr02ZE+7Rjw0VnSsxg7kfPCBG38FZw@mail.gmail.com>
- <CAODwPW_6A3kcmTLHVnH19bdYKpVBadAcDk5g-qxuju04uPRcMg@mail.gmail.com> <CAD=FV=UzsbwSbTc7LtsTj=wxj8A1MqmkVFt0XBrTdQ8pEhde=A@mail.gmail.com>
-In-Reply-To: <CAD=FV=UzsbwSbTc7LtsTj=wxj8A1MqmkVFt0XBrTdQ8pEhde=A@mail.gmail.com>
-From:   Julius Werner <jwerner@chromium.org>
-Date:   Wed, 15 Jun 2022 16:24:29 -0700
-Message-ID: <CAODwPW9DiWF2ffwBnw2rNhcV8rre=BzO9deEY_qXGvkWCPwe4A@mail.gmail.com>
-Subject: Re: [RFC] Correct memory layout reporting for "jedec,lpddr2" and
- related bindings
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Julius Werner <jwerner@chromium.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Jian-Jia Su <jjsu@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Nikola Milosavljevic <mnidza@outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-10.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> OK, then what you have seems OK. Personally I guess I'd find it a
-> little less confusing if we described it as "num-chips" or something
-> like that.
+Align the example node address and reg content to be 0x2a for both.
 
-Yeah, we can do that too if people prefer that, that just means the
-firmware writing the entry needs to do that math. But while it makes
-the chips thing more obvious, it makes it less obvious what the actual
-memory channel width for the memory controller is, so I think it's
-sort of a trade-off either way (I feel like reporting the channel
-width would be closer to describing the raw topography as seen by
-memory training firmware, and leaving interpretations up to the
-kernel/userspace).
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc: Hartmut Knaack <knaack.h@gmx.de>
+Cc: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Cc: Michael Hennerich <michael.hennerich@analog.com>
+Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+---
+ Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> They do have different sets of values valid for each property. The
-> properties are annoyingly not sorted consistently with each other, but
-> I think there are also different sets of properties aren't there? Like
-> I only see tRASmin-min-tck in the LPDDR2 one and not LPDDR3.
+diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+index 11d32a2885352..9bb039e2f5331 100644
+--- a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
++++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+@@ -55,7 +55,7 @@ examples:
+         /* Example for a I2C device node */
+         accelerometer@2a {
+             compatible = "adi,adxl345";
+-            reg = <0x53>;
++            reg = <0x2a>;
+             interrupt-parent = <&gpio0>;
+             interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+         };
+-- 
+2.35.1
 
-Okay, I haven't looked closely into the timing part. If there are
-notable differences, let's keep that separate.
