@@ -2,194 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1824554C236
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 08:52:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A424754C25D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 09:08:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240094AbiFOGwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 02:52:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39664 "EHLO
+        id S1346225AbiFOHIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 03:08:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234071AbiFOGwg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 02:52:36 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 724D7E019;
-        Tue, 14 Jun 2022 23:52:30 -0700 (PDT)
-X-UUID: d3299b6dc23f4adc9f40f3122bea368d-20220615
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:a7a5cc91-7725-45fc-890a-77bc8eab09f0,OB:0,LO
-        B:10,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:45
-X-CID-INFO: VERSION:1.1.6,REQID:a7a5cc91-7725-45fc-890a-77bc8eab09f0,OB:0,LOB:
-        10,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:45
-X-CID-META: VersionHash:b14ad71,CLOUDID:7d398d48-4c92-421c-ad91-b806c0f58b2a,C
-        OID:2235acb4fbb3,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: d3299b6dc23f4adc9f40f3122bea368d-20220615
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 930044266; Wed, 15 Jun 2022 14:52:27 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 15 Jun 2022 14:52:25 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Wed, 15 Jun 2022 14:52:25 +0800
-Message-ID: <f8fbd1b522c3ecfbdacc290f028126045d9c0dc8.camel@mediatek.com>
-Subject: Re: [PATCH v11 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 15 Jun 2022 14:52:25 +0800
-In-Reply-To: <20220610105522.13449-6-rex-bc.chen@mediatek.com>
-References: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
-         <20220610105522.13449-6-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1343619AbiFOHId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 03:08:33 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F5A5286D2;
+        Wed, 15 Jun 2022 00:08:32 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id r123-20020a1c2b81000000b0039c1439c33cso585327wmr.5;
+        Wed, 15 Jun 2022 00:08:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xLemtYN4NjZkALXs/YgJEqQjUNQmyKqkJvuZKJ4dSUA=;
+        b=TPvS/VbcNq+6Ypae95gBaHJ4vzgFNq9zVh1oqgug4WGPkNezDU71whbmowt+brLCQD
+         gBEOaPbE030U+bmS+tEvLrSPkT3QMhAHAEASiu/LciN7x3KdX9JsiZXGgurBxxuMe/DE
+         90/kuxnFrVy2K4reY3E0U5uC2f1U+jTOY6YcOCPrkVzCaFI1IicfRahkp+ca4jsEzBmY
+         g35v8qmnAm2BXeGxeWOHqPDbOpJGob11qV24Wk1pNX1Bkug+Pn28nbHMnZQ/riHesrh8
+         QjbUGgsK7Sws76W9+ZzQeSfiX7C8o0dczUKITjvKKd5gIsRQA7ActBYJQI4iaUWstWKj
+         mx9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xLemtYN4NjZkALXs/YgJEqQjUNQmyKqkJvuZKJ4dSUA=;
+        b=vXrsPhLimTf4hIC6t5SToBn769mJn/Nih/XVXorEyYVwHNY3fd9PHklP2Ft4au8Csf
+         XxyXHaUwNBJFi83DmLLSMvXyRlprp1iNzCsHPvRqHt0gtkd+z82sJ7GU86XgxZ6H9TcC
+         MM7PEL4FYlr8YiB3JbtEWr45wdx6xExrWmDfieym+vq9xuoJCHymSl3yPPtJOx4STWPz
+         /9G6zs95Nb9FJ6F3E8c7fkLeCCw8/4XGwSQVDLQASZbIj7zfeh3N1419sB6RMAzxUPxG
+         s9A7QiO6it3pgsOgC+3vNuBtnO8/Tf6MTL7Hqm0X9Tckfi7Qij654MdcXM9xN9OkXZTY
+         gc1Q==
+X-Gm-Message-State: AOAM531NI5S/wSvJgWUfiU77NFehipN4ydrxSycrHI/EgssNBXWLiNNT
+        gK5S35/Fk1I8q8IozCM3BWgQbMrSVGM=
+X-Google-Smtp-Source: ABdhPJwNiuycHQju8APe07AfqZFN0zr3QM0A1FSN64O19b05aJ62C/MzuRo6CLKYkDw4Bd4pey9ofg==
+X-Received: by 2002:a7b:c7c3:0:b0:398:934f:a415 with SMTP id z3-20020a7bc7c3000000b00398934fa415mr8371171wmk.27.1655276910397;
+        Wed, 15 Jun 2022 00:08:30 -0700 (PDT)
+Received: from debby ([2a01:e0a:a6d:a8d0:7ff4:8f61:5574:9f95])
+        by smtp.gmail.com with ESMTPSA id e12-20020adfa44c000000b0020fee88d0f2sm17160103wra.0.2022.06.15.00.08.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jun 2022 00:08:29 -0700 (PDT)
+From:   Romain Perier <romain.perier@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Romain Perier <romain.perier@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] Add PWM for MStar SoCs
+Date:   Wed, 15 Jun 2022 09:08:08 +0200
+Message-Id: <20220615070813.7720-1-romain.perier@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+This patches series adds a new driver for the PWM found in the Mstar
+MSC313e SoCs and newer. It adds a basic pwm driver, the corresponding
+devicetree bindings and its documentation.
 
-On Fri, 2022-06-10 at 18:55 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
-> 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
+Daniel Palmer (1):
+  pwm: Add support for the MSTAR MSC313 PWM
 
-[snip]
+Romain Perier (4):
+  dt-bindings: pwm: Add Mstar MSC313e PWM devicetree bindings
+    documentation
+  ARM: dts: mstar: Add pwm device node to infinity
+  ARM: dts: mstar: Add pwm device node to infinity3
+  ARM: dts: mstar: Add pwm device node to infinity2m
 
-> +
-> +static int mtk_dp_train_start(struct mtk_dp *mtk_dp)
-> +{
-> +	int ret = 0;
-> +	u8 lane_count;
-> +	u8 link_rate;
-> +	u8 train_limit;
-> +	u8 max_link_rate;
-> +
-> +	link_rate = mtk_dp->rx_cap[1];
-> +	lane_count = mtk_dp->rx_cap[2] & 0x1F;
-> +
-> +	mtk_dp->train_info.link_rate = min(mtk_dp->max_linkrate,
-> link_rate);
-> +	mtk_dp->train_info.lane_count = min(mtk_dp->max_lanes,
-> lane_count);
-> +	link_rate = mtk_dp->train_info.link_rate;
-> +	lane_count = mtk_dp->train_info.lane_count;
-> +
-> +	switch (link_rate) {
-> +	case MTK_DP_LINKRATE_RBR:
-> +	case MTK_DP_LINKRATE_HBR:
-> +	case MTK_DP_LINKRATE_HBR2:
-> +	case MTK_DP_LINKRATE_HBR25:
-> +	case MTK_DP_LINKRATE_HBR3:
-> +		break;
-> +	default:
-> +		mtk_dp->train_info.link_rate = MTK_DP_LINKRATE_HBR3;
-> +		break;
-> +	};
-> +
-> +	max_link_rate = link_rate;
-> +	for (train_limit = 6; train_limit > 0; train_limit--) {
-> +		mtk_dp->train_info.cr_done = false;
-> +		mtk_dp->train_info.eq_done = false;
-> +
-> +		mtk_dp_train_change_mode(mtk_dp);
-> +		ret = mtk_dp_train_flow(mtk_dp, link_rate, lane_count);
-> +		if (ret)
-> +			return ret;
-> +
-> +		if (!mtk_dp->train_info.cr_done) {
+ .../bindings/pwm/mstar,msc313e-pwm.yaml       |  47 ++++
+ MAINTAINERS                                   |   1 +
+ arch/arm/boot/dts/mstar-infinity.dtsi         |  10 +
+ arch/arm/boot/dts/mstar-infinity2m.dtsi       |   8 +
+ arch/arm/boot/dts/mstar-infinity3.dtsi        |  10 +
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-msc313e.c                     | 242 ++++++++++++++++++
+ 8 files changed, 329 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/mstar,msc313e-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-msc313e.c
 
-When mtk_dp_train_flow() return 0, it imply train_info.cr_done is true,
-isn't it?
-
-> +			switch (link_rate) {
-> +			case MTK_DP_LINKRATE_RBR:
-> +				lane_count = lane_count / 2;
-> +				link_rate = max_link_rate;
-> +				if (lane_count == 0)
-> +					return -EIO;
-> +				break;
-> +			case MTK_DP_LINKRATE_HBR:
-> +				link_rate = MTK_DP_LINKRATE_RBR;
-> +				break;
-> +			case MTK_DP_LINKRATE_HBR2:
-> +				link_rate = MTK_DP_LINKRATE_HBR;
-> +				break;
-> +			case MTK_DP_LINKRATE_HBR3:
-> +				link_rate = MTK_DP_LINKRATE_HBR2;
-> +				break;
-> +			default:
-> +				return -EINVAL;
-> +			};
-> +		} else if (!mtk_dp->train_info.eq_done) {
-
-When mtk_dp_train_flow() return 0, it imply train_info.eq_done is true,
-isn't it?
-
-Regards,
-CK
-
-> +			if (lane_count == 0)
-> +				return -EIO;
-> +
-> +			lane_count /= 2;
-> +		} else {
-> +			break;
-> +		}
-> +	}
-> +
-> +	if (train_limit == 0)
-> +		return -ETIMEDOUT;
-> +
-> +	return 0;
-> +}
+-- 
+2.35.1
 
