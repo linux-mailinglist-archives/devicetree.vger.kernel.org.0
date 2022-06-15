@@ -2,63 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3340F54D059
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:49:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61F4454D05C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:50:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346928AbiFORtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 13:49:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34092 "EHLO
+        id S1357984AbiFORuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 13:50:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242061AbiFORtQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:49:16 -0400
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B27347060;
-        Wed, 15 Jun 2022 10:49:15 -0700 (PDT)
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id F33DE68AFE; Wed, 15 Jun 2022 19:49:10 +0200 (CEST)
-Date:   Wed, 15 Jun 2022 19:49:10 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc:     Christoph Hellwig <hch@lst.de>, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, wefu@redhat.com, guoren@kernel.org,
-        cmuellner@linux.com, philipp.tomsich@vrull.eu, samuel@sholland.org,
-        atishp@atishpatra.org, anup@brainfault.org, mick@ics.forth.gr,
-        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
-        drew@beagleboard.org, Atish Patra <atish.patra@wdc.com>
-Subject: Re: [PATCH 2/3] riscv: Implement Zicbom-based cache management
- operations
-Message-ID: <20220615174910.GA26607@lst.de>
-References: <20220610004308.1903626-1-heiko@sntech.de> <20220610004308.1903626-3-heiko@sntech.de> <20220610055608.GA24221@lst.de> <110361853.nniJfEyVGO@diego>
+        with ESMTP id S1349729AbiFORuU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:50:20 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E092B53E29
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:50:18 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id e66so12022919pgc.8
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:50:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=1jMu+lGlLUwxIWSFxtxOqoxXa/O8y+ZJH6Jya8QmVS4=;
+        b=i9YjTi5IhhH6B1eVTcD7vZp7dzPi7c05gv6//PZkCoCOEIvpGuYvj3dEghm9izJvC2
+         8OUWFh2YvuBTdcjTU372xEWxRV1lUYPQRcXz7SxgYhN+Ab1txjF7N3MRHK3Lh45OjTSL
+         Ase4zsKsalkoKI4I9LHqh9NuddjJSdL/HSR1GdOBTcmILZPrSYoqf45z2INpMZ5ZIdwh
+         zr8ZK/Nz1w06bwVKiH7sR9I2YBfmO/BCf6mJ7fpFJC12BwKVkRGmpUBYwWac/qSjd+lo
+         WNCfJFIN339BbeVXAngEtr2RGmA5EM0UIYG+lR0iO8WMBILzOElXhZBOd23GfmSBvHDG
+         M4hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=1jMu+lGlLUwxIWSFxtxOqoxXa/O8y+ZJH6Jya8QmVS4=;
+        b=0WoygbCmqpsvknW6FHF52/2bN43Un9NGUjh49rBLF2MMMIQoZTdO7pZuEuRw01tzMc
+         G24gapyg+ne3gwviX0zEKh+9h9+5iEoCtZw4HykPBWtb04TgzKy941gyYlpwsf+B//cO
+         Wp1WjzIHIHYlX3Eh0+HjsxbtMAoaCNUHMOhb4TmQsodk/yXOCxdcBHWa8QzJ9qsHz25c
+         iSOI7dXWGCdFXtrG8mrarBNmCHW1T1RRZhGBR2B/qKLB4x1cWnWcgh9Bnx6OY7BWUWst
+         nwNJP5c0JI2seTUWVxYflcGc6mYoQnuA1b2CeEJooS0H7fRoXvuMLrCfETk5ndexfNYe
+         FLAA==
+X-Gm-Message-State: AJIora/sDA8sLkgE1ujJ451Jet7zxrNYovvcbBjSSP+wJE91Ztit4WEW
+        Yn7SXa/Y0fHrpeRN+QzuFps5ZA==
+X-Google-Smtp-Source: AGRyM1tgx5wd//aRy3L6R0T8NZ35VS+4Jjjtdj74hI5yzt3PaMKVofPzTq+GGVbzPuXw0Vby1azuDw==
+X-Received: by 2002:a65:6b8a:0:b0:3db:7dc5:fec2 with SMTP id d10-20020a656b8a000000b003db7dc5fec2mr788601pgw.223.1655315418377;
+        Wed, 15 Jun 2022 10:50:18 -0700 (PDT)
+Received: from [172.22.33.138] ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id br8-20020a056a00440800b00518a473265csm10034338pfb.217.2022.06.15.10.50.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 10:50:17 -0700 (PDT)
+Message-ID: <717ad899-31ad-5e70-b299-ffb8ca287071@linaro.org>
+Date:   Wed, 15 Jun 2022 10:50:17 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <110361853.nniJfEyVGO@diego>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/3] dt-bindings: clock: add pcm reset for ipq806x lcc
+Content-Language: en-US
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220615163408.30154-1-ansuelsmth@gmail.com>
+ <a92fe431-a995-4c7f-b90b-8e80298bc71a@linaro.org>
+ <62aa1b41.1c69fb81.95632.5b71@mx.google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <62aa1b41.1c69fb81.95632.5b71@mx.google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 15, 2022 at 06:56:40PM +0200, Heiko Stübner wrote:
-> If I'm reading things correctly [0], the default for those functions
-> is for those to be empty - but defined in the coherent case.
+On 15/06/2022 09:53, Ansuel Smith wrote:
+> On Wed, Jun 15, 2022 at 10:43:10AM -0700, Krzysztof Kozlowski wrote:
+>> On 15/06/2022 09:34, Christian 'Ansuel' Marangi wrote:
+>>> Add pcm reset define for ipq806x lcc.
+>>>
+>>> Signed-off-by: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
+>> To prevent any confusion about identities (we have strict rules about
+>> these), I need to ask - who uses this email address?
+>>
+>> https://lore.kernel.org/all/?q=ansuelsmth%40gmail.com
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> Same person. Started using extended name, wanted to do this change from
+> a long time but all the patch were already pushed so I couldn't change
+> it since they were already proposed and on the various mailing list.
 
-That's not the point.
+Previously "Ansuel Smith" was used entirely, without any parts of this
+name. Here 'Ansuel' appears in quotes, which usually is used for nicknames.
 
-Zicbom is just an extension that allows the CPU to support managing
-cache state.  Non-coherent DMA is just one of the use cases there
-are others like persistent memory.  And when a CPU core supports
-Zicbom it might or might not have any non-coherent periphals.  Or
-even some coherent and some non-coherent ones, something that
-is pretty common in arm/arm64 CPUs, where PCIe is usually cache
-coherent, but some other cheap periphals might not be.
+Is "Ansuel Smith" your real name or a nickname? What do you mean by
+"extended name"?
 
-That is why Linux ports require the plaform (usually through
-DT or ACPI) to mark which devices are coherent and which ones
-are not.
+
+Best regards,
+Krzysztof
