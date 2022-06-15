@@ -2,63 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D36154C9E2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 15:33:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C9E754C9FD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 15:39:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351565AbiFONdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 09:33:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41770 "EHLO
+        id S1354237AbiFONjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 09:39:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351648AbiFONdu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 09:33:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D61AD36326;
-        Wed, 15 Jun 2022 06:33:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 44C0461A88;
-        Wed, 15 Jun 2022 13:33:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A97C5C3411C;
-        Wed, 15 Jun 2022 13:33:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655300028;
-        bh=GS3xnpuX97rLUj8LjHZuszylSXQMHB8JheJV7wdxaEA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rsTfFz33tQEQiFCWsk+brsU8JETQeKOuqDYdhaqxsKFO5Z6TUOv7tKJTcqHPLck3l
-         SHQZj1cASBnSPeAc455Suy7V8dAafEvj9jC4P5vpgeRhfeRUCHGDUvjXmuamc78MbK
-         tuj2aQhArDpeH7lTVGj5CjaaffmfqxwXj/25Bb9yBq+zirO+rwkGJ9WGLlWylko7T2
-         EUtoF1nFceGrKxMW9wMjkQwm7si+P+xEuQn4+rkST0Atb50vlo4oXHhAhxgXOGKzqU
-         W7jDla0U9yTzmd1g/N5VkKEICs+KxWnYHnuYpmgAMqlrcCvgA9Gi2rrNG9iPCfQS1F
-         7gSLRWBOYBe5Q==
-Received: by mail-ua1-f45.google.com with SMTP id m10so4366191uao.11;
-        Wed, 15 Jun 2022 06:33:48 -0700 (PDT)
-X-Gm-Message-State: AJIora/lJvyVlw04hTl229w20iO5ZkW/scIp2kziuXDH+y9LjYkEXVpP
-        A0VvXnOtgRXUFt7Aq36ma4Ul5J8nRjim+F+IYA==
-X-Google-Smtp-Source: AGRyM1vl3rEMhCWrfabx4G8UW4agh58YWTqSIPnh7S7BgbjlFbw06IsA0c518VcVDpVFsYVBWjK1QQBn9lCsfe9pDjc=
-X-Received: by 2002:ab0:3407:0:b0:379:65f3:a39b with SMTP id
- z7-20020ab03407000000b0037965f3a39bmr4898428uap.63.1655300027658; Wed, 15 Jun
- 2022 06:33:47 -0700 (PDT)
+        with ESMTP id S1354223AbiFONjp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 09:39:45 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4C143700D
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 06:39:44 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id r82so20494276ybc.13
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 06:39:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Hd2Q7z9uWW7dB0gy7lxuAP2GK3dj82/CD4CwzUHIa4U=;
+        b=rPkstlrZwE646fy1fdO0Vu8lKssadxnY/cq1nHk/4Drjaed9Hyl/FzAV97Qw6CvIOZ
+         ukuClPhw1cqKIxSdjV+m1grXdgBQgi+gLNnMZ7HqXd0JJeUPu6JXC1gVuTwBjilsC25M
+         046vbKX3N0sgQ1TA9dwRUme8KeoU1PUtU8IECplVwcTFYaJIgO/VSyyVD4xWFk4Afnl8
+         7o7tzI6DEzz4TuN43YTXQPTuXTvo1omNKgiz4HSoz26G4MBgCF0gubbzX3NnlnAvpfqL
+         cKHyVg2yoBW8qKIxE+KQiKn3UdKz47hR2QBV3lkKhJTUCVPlbM/fFn9AGhFZh6f1wIyx
+         o+7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Hd2Q7z9uWW7dB0gy7lxuAP2GK3dj82/CD4CwzUHIa4U=;
+        b=Vm1RDkNaZ0HgD78f5XPptEa5agotezbrlHnqDHKrrHtjZIomPWeqzt8DxYLTb/ZcK/
+         Xi2XX3vFqmpw4cVuLYi0q2/668iROgU9nWEn/T1QP6DtEmTUqOgt56vWQ6sq+m5h9YzO
+         DA/tKOJ2PjaptCX6mhJhBWinBTPOID3uV7xV78v+1jsPTBcs5qzDbwcKAqAaJbLeubH/
+         0dNo8iVf37lf9BUwC3bFFUTlVnQFmt/LIWF4aHAWSv225TWAYGn3AzS1KSKI1NBTiyQZ
+         zcVuO5FfXbNyJzt95Z0FqKIqAC+KHAkMfTZx7ndsQbuPM2apLkThu1aOfVWz/lgFhTdB
+         sbjw==
+X-Gm-Message-State: AJIora9Z1XwpTmclyTgsIEtjZ0BkxahDZOaFIwaLQ29ZubGrDDf7lHNg
+        pQzybShnkxS6Mu1ooADE6/NbYHRnARLsR2obTJlv2w==
+X-Google-Smtp-Source: AGRyM1tmMuIlqeQp7nqh2Mjy2GzaCsjE7hVrrxP2n3u/EC5oobfK92wjpSUNebv+96g3JYgFgZ/eKGfNefJpR0XngmY=
+X-Received: by 2002:a25:1256:0:b0:65d:6433:7993 with SMTP id
+ 83-20020a251256000000b0065d64337993mr10062220ybs.626.1655300383762; Wed, 15
+ Jun 2022 06:39:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220615071410.12499-1-piyush.mehta@xilinx.com>
-In-Reply-To: <20220615071410.12499-1-piyush.mehta@xilinx.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 15 Jun 2022 07:33:36 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+3oS=SB-TVH3JA7Jb8KDgQ8ek_KPJSQhL0mgiq4sjmyQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+3oS=SB-TVH3JA7Jb8KDgQ8ek_KPJSQhL0mgiq4sjmyQ@mail.gmail.com>
-Subject: Re: [PATCH V4] dt-bindings: ata: ahci-ceva: convert to yaml
-To:     Piyush Mehta <piyush.mehta@xilinx.com>
-Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
-        <linux-ide@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>, git <git@xilinx.com>,
-        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+References: <1654079415-26217-1-git-send-email-quic_srivasam@quicinc.com>
+ <1654079415-26217-3-git-send-email-quic_srivasam@quicinc.com>
+ <CACRpkdYQW7WByaGoSFKT91OwRao_jJdCAbL0pUuj3vdS6TdkQg@mail.gmail.com> <a2b7de25-55a4-7d31-2787-be6d0ccf9500@quicinc.com>
+In-Reply-To: <a2b7de25-55a4-7d31-2787-be6d0ccf9500@quicinc.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 15 Jun 2022 15:39:32 +0200
+Message-ID: <CACRpkdayb3Rx=jxdxW4rZxg6efEyf_Nzv1rgL0t8pLLJd-NsiA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] pinctrl: qcom: sc7280: Add lpi pinctrl variant
+ data for adsp based targets
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
+        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        linux-gpio@vger.kernel.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,41 +75,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 15, 2022 at 1:14 AM Piyush Mehta <piyush.mehta@xilinx.com> wrote:
+On Fri, Jun 3, 2022 at 1:03 PM Srinivasa Rao Mandadapu
+<quic_srivasam@quicinc.com> wrote:
+
+> >> @@ -149,6 +159,10 @@ static const struct of_device_id lpi_pinctrl_of_match[] = {
+> >>                 .compatible = "qcom,sc7280-lpass-lpi-pinctrl",
+> >>                 .data = &sc7280_lpi_data,
+> >>          },
+> >> +       {
+> >> +               .compatible = "qcom,sc7280-lpass-adsp-lpi-pinctrl",
+> >> +               .data = &sc7280_adsp_lpi_data,
+> >> +       },
+> > Drop this and instead add some code in the probe()
+> > in drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+> > lines:
+> >
+> > if (of_device_is_compatible(np, "qcom,sc7280-lpass-lpi-pinctrl") &&
+> > of_property_read_bool(np, "qcom,adsp-mode))
+> >       data = &sc7280_adsp_lpi_data;
 >
-> Convert the ahci-ceva doc to yaml.
+> Here, only diff between ADSP and ADSP bypass variant dats is
+> "is_clk_optional" field.
 >
-> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
-> ---
-> Changes for V2:
-> - Corrected the patch --prefix V3 to V2.
-> - Added Required properties.
+> So we can keep something like this. Kindly suggest, if it's not making
+> sense.
 >
-> Changes for V3:
-> - Skip patch --prefix [PATCH V3] as already sent.
->
-> Changes for V4:
-> - Addressed Rob review comments:-
->  - Update params description
->  - Removed description from common properties.
->  - Deleted deprecated property.
-> - Warning generated from: 'make dtbs_check'
->  - Thanks Rob: We are aware of these warnings,
->    but they are unrelated to this patch.
+> if (of_device_is_compatible(np, "qcom,sc7280-lpass-lpi-pinctrl") &&
+> of_property_read_bool(np, "qcom,adsp-mode))
+>       data->is_clk_optional = false;
 
-Huh? You are saying the dts files are wrong and should not have
-'iommus' or 'phy-names' properties? That doesn't seem likely for
-'iommus'. If the old binding was wrong, it is fine to add the
-properties in the conversion. Just note that in the commit message.
+Looks good to me!
 
-
-> ---
->  .../devicetree/bindings/ata/ahci-ceva.txt     |  63 ------
->  .../devicetree/bindings/ata/ahci-ceva.yaml    | 182 ++++++++++++++++++
->  2 files changed, 182 insertions(+), 63 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/ata/ahci-ceva.txt
->  create mode 100644 Documentation/devicetree/bindings/ata/ahci-ceva.yaml
-
-Also, rename to ceva,ahci-1v84.yaml for the filename.
-
-Rob
+Yours,
+Linus Walleij
