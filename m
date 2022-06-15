@@ -2,69 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8D2F54C9A4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 15:21:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45A3A54C9B7
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 15:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245383AbiFONVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 09:21:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56990 "EHLO
+        id S239827AbiFON0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 09:26:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236365AbiFONVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 09:21:09 -0400
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84F7938BC7
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 06:21:08 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-313a8a8b95aso60842087b3.5
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 06:21:08 -0700 (PDT)
+        with ESMTP id S236625AbiFON0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 09:26:49 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 292AE3F324
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 06:26:48 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id r82so20429633ybc.13
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 06:26:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=lLnEeD4HScX3wYTfaLfMTcXpGRNYwxAv7p4Jh61bcKg=;
-        b=FAuYV82HbMz5SF8Z7r8LjZLY8Js1QZM8S6JoU4BP+yJW+/cPQITzEEsuzeuUPSFqbj
-         cknm9RkZLDfM8pCMnBfGKMOBmpD2wRin39gPIaa4Wc0vF7A53qjSrsZNQYrQW2+63eHX
-         /j64PsFHZlvSTFVpZgAvXiKd1MwQG2DwDHeYDWj9MJChIz4j4yj0G4AnzHd5R2/bXDGI
-         p9AsvC5FJauhwdgFjUWfPZQWEKVUmpu7mcN/qvaaFutjh4y7Rfut/oK46cqLoiFv8Y3b
-         PN6bs6TaE7EVVLE5vSJ1YBHMildxFf+0mCBB9DOccscXnPGY9tgcod5a+h/I5WzQVjNF
-         NHuw==
+         :cc;
+        bh=2uJBdNrvWnRJEqnKZPpIHQmnT1CIlbB2x7GUHZk371o=;
+        b=svkVmIzhK2OAHpVq1j7D5Y0BMlGsbs/r5txjoPVTRQ3mxbX2q+KeDYS5dFr9SedA1U
+         G+CX/SEC2YDtM171HS1vYVFypF4406i/Gp4cjq9VGt2NKyJlaxFACzAjfml3uTZ3ABTT
+         Bpawy4OLBnfnplZabQ57yj1fBScfFeEBlM3hbYQJ1dXlZHVmZbcgjKyDREq5hVzRnN+b
+         IB5WjZRUVCHQXSGfEW/U8kRnKjCVfywJVT3+PMNySB+DKE/v2s/UUYLBD+K0l8Krw2UF
+         0xuRAJLoVyxOH6swQ4Jjbke53RsOiIGZp5lG8ZzAG07mAFtniFJIWDPlglXPq7A4itVN
+         wRow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=lLnEeD4HScX3wYTfaLfMTcXpGRNYwxAv7p4Jh61bcKg=;
-        b=UuXDK2T+oKgNrNEasFum7pIBRsDWs//0CPtLGktwcI0LBrCaJPEOIKzslL3TksB6eM
-         MuzxZ9h5ZMuzOvZdJc83NEWX8RTRrnSpa/klSUQHUKTMiaKUpVf5DFfgDPHPpbwWFJLa
-         nxss9qbO3lxrguXL8LvW5TBtjy2+rg2RIi93w866v/CLqJ3mHse9X0uaKf0whk2pCLm8
-         dYZFM+vK2pfbwxtndfNIUrD1Dtnb0aKybWylZKfwXnN5PFx7BzI8VibJPLT+blQ7rvTp
-         jWxCi+nikkklb4L62aE+Z8szlXnWbPr8iKt6QO9A/sMqPdVROq8ALE8zjBtU40TZuoUn
-         50NQ==
-X-Gm-Message-State: AJIora/0IT3Hb9og1c1uGXtUaqwjywWrB4Doq2cLj7hLQ4NLWJFvtOJ3
-        zkeeECFOZVoYLhZnJ4uLnmfD/Aww8/m+9w8p9X+ugw==
-X-Google-Smtp-Source: AGRyM1sWoBtACZMnUE5e9euq2R2bCswy4VmCdrOftup15FaJJZ5F8vphDQM3yFswuCusR6wCSWVBJAXvAZQH0EVE5QA=
-X-Received: by 2002:a81:a00b:0:b0:30c:5c1a:19f with SMTP id
- x11-20020a81a00b000000b0030c5c1a019fmr11566849ywg.437.1655299267750; Wed, 15
- Jun 2022 06:21:07 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=2uJBdNrvWnRJEqnKZPpIHQmnT1CIlbB2x7GUHZk371o=;
+        b=azW2n5qOCGwfQWJLwDbi5llIOF7CU/pQCl3cgd6P3ywmZ6R3uwP/++uZ0k+8mlqy/2
+         KHXyh8YYLAluOXDXS+iuCR+gLq0FfRrhvIzC4TRcNZ8dAk5KszJCIQAzxuU7TNQFxAzI
+         taAQA+NL2eyZ0zBB8ND6ktGaXlmwhO+sVvUjjjjz5e5HqyxTgaL3zV8GcPYNyLX6t71H
+         Fcks3u+iPMMHkG/Oi5WXz/O7SdzCfXDYJfL39vnd+Jcn5nifMhJlYEmlWAhYzBKQQffN
+         qhah9AtyeDY/s9kBarLZVUfYJyQTTstAIXwYMJVKfcE7m+jq3yN7HHNj/XQgC9CJUb95
+         iLag==
+X-Gm-Message-State: AJIora8tBgeFDy1B5hL+JdFZU1GJVoAZvciYDBDSgrbTo7blPhZLe+Qx
+        hLVHpOCsxaxRJECqe8kBPuHcC21S1XxMyMVnoX2e/w==
+X-Google-Smtp-Source: AGRyM1uXbFdzJy6wHZ8d8kshG4hHCgicMvgdaZy4F6zLHljayPXpaH/KNqKvp55V9OEMRLWm5czLWFtEK5L8lLi/+pU=
+X-Received: by 2002:a25:dc0b:0:b0:65d:e5d:a87a with SMTP id
+ y11-20020a25dc0b000000b0065d0e5da87amr10584832ybe.295.1655299607356; Wed, 15
+ Jun 2022 06:26:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220525155714.1837360-1-nfraprado@collabora.com> <20220525155714.1837360-3-nfraprado@collabora.com>
-In-Reply-To: <20220525155714.1837360-3-nfraprado@collabora.com>
+References: <20220531053623.43851-1-samuel@sholland.org>
+In-Reply-To: <20220531053623.43851-1-samuel@sholland.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 15 Jun 2022 15:20:56 +0200
-Message-ID: <CACRpkdZL6SAHWgOjcJ=D-fjTwYL4ctgo4Tbre3QwPKSTpzPs4g@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] dt-bindings: pinctrl: mt8192: Use generic bias
- instead of pull-*-adv
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
+Date:   Wed, 15 Jun 2022 15:26:36 +0200
+Message-ID: <CACRpkdas0MEu5ShkdJr-5rrM2i5LkrwARmC6J=X_UQGkRrc7EA@mail.gmail.com>
+Subject: Re: [PATCH 0/3] pinctrl: sunxi: Remove non-existent reset line references
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -75,28 +72,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 25, 2022 at 5:57 PM N=C3=ADcolas F. R. A. Prado
-<nfraprado@collabora.com> wrote:
+On Tue, May 31, 2022 at 7:36 AM Samuel Holland <samuel@sholland.org> wrote:
 
-> Commit cafe19db7751 ("pinctrl: mediatek: Backward compatible to previous
-> Mediatek's bias-pull usage") allowed the bias-pull-up and bias-pull-down
-> properties to be used for setting PUPD/R1/R0 type bias on mtk-paris
-> based SoC's, which was previously only supported by the custom
-> mediatek,pull-up-adv and mediatek,pull-down-adv properties.
+> I assume these properties came from a lack of documentation, and the
+> very reasonable assumption that where there's a clock gate bit in the
+> CCU, there's a reset bit. But the pin controllers are special and don't
+> have a module reset line. The only way to reset the pin controller is to
+> reset the whole VDD_SYS power domain.
 >
-> Since the bias-pull-{up,down} properties already have defines associated
-> thus being more descriptive and is more universal on MediaTek platforms,
-> and given that there are no mediatek,pull-{up,down}-adv users on mt8192
-> yet, remove the custom adv properties in favor of the generic ones.
+> This series is preparation for converting the PRCM MFD and legacy clock
+> drivers to a CCU clock/reset driver like all of the other Allwinner
+> SoCs. I don't plan to add reset lines that don't actually exist to the
+> new CCU driver. So we might as well get rid of the references now.
+> Technically this breaks devicetree compatibility, since the old drivers
+> expect the reset. But the CCU conversion will be a compatibility break
+> anyway, so it's a bit of a moot point.
 >
-> Note that only mediatek,pull-up-adv was merged in the binding, but not
-> its down counterpart.
 >
-> Fixes: edbacb36ea50 ("dt-bindings: pinctrl: mt8192: Add mediatek,pull-up-=
-adv property")
-> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> Samuel Holland (3):
+>   pinctrl: sunxi: Remove reset controller consumers
+>   ARM: dts: sunxi: Drop resets from r_pio nodes
+>   dt-bindings: pinctrl: sunxi: Disallow the resets property
 
-Patch applied.
+Patches applied for v5.20!
 
 Yours,
 Linus Walleij
