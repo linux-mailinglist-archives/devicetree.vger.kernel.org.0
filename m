@@ -2,182 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ED6D54C3E5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 10:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B413854C3F4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 10:49:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243967AbiFOIpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 04:45:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49050 "EHLO
+        id S1346423AbiFOItH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 04:49:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345598AbiFOIpi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 04:45:38 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7958F4F1C9;
-        Wed, 15 Jun 2022 01:45:37 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5FFF966016CE;
-        Wed, 15 Jun 2022 09:45:34 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1655282735;
-        bh=ig8964Pis3U0xmrv25bzOpvQC450sNHC3GS2vgea2vE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=NSbZ9O2mvG+kvEwG/FE6u4dUr1wC35qYVWum6oK8RGl+oxZr81kxh2GENXiCCbPPa
-         rYIozjo+Edc8uLzJV6bg1PgSSezGBeBbjxMdlH4Q4zUAHE/U2ifUKrx0rXwpBGnjDL
-         UuK05auuOUhn+ZHUvRoySp/oBkYlt26K4g5W/vt3BUuZTIkwW2h1eHi2bhPSBRZHRE
-         Wo8gFy3YQIKAgsfecFk5dPHM7y5ii6iVMwaU1ARBcLAcBu8kgw2h9NWlSKm5En8kSo
-         FfIiq6UPzpDNiu6PKfRKrqy5npwwAk053WfXFyB7K47/r28yCFZ2tMI5I5D13dviod
-         K69g7f+e/HXvw==
-Message-ID: <28135a2f-bf02-fd0b-e881-0ce9d68bd764@collabora.com>
-Date:   Wed, 15 Jun 2022 10:45:31 +0200
+        with ESMTP id S1346716AbiFOItG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 04:49:06 -0400
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5637D39160;
+        Wed, 15 Jun 2022 01:49:04 -0700 (PDT)
+Received: by mail-qk1-f179.google.com with SMTP id d23so8276325qke.0;
+        Wed, 15 Jun 2022 01:49:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tGIGzc6S7Qj6fmbIVxM1msyTK1VdOrvEVUr+Yr4R/NY=;
+        b=WVEZO/Oe6aGNgDXf7qwOSqd+Ba1waRnq0a/G89mmr3WLHf8P8+YHXEGX3wEQ56t/n+
+         UXXlTqCDHUl5H4qe30MGt1OqkgGkjDVYWsz9A9u/+w+w8dp3I1KFE2ZT0uaGNAEmFRa6
+         jB/oKuGOTsk8X6LPjjNfnpaTF5dIzlcZ95FLcSa/Mwt+nA1LQLF3qPP80ItGip6U72uP
+         XC6mEmcNvfK3pzO2kbYYxbxhCY4haPPO1W+2z5GwBdKkU4HF3jJMDKPiLV2iYJDlRozC
+         1WN+EQzB7iJsIjcM9lsW3O0g65Nmu+B8UTGDhhnFEZ/dWib6gG36e/dwwadVP819xwAd
+         tJ3A==
+X-Gm-Message-State: AOAM531vHqesP9dYUKB9q4lUMYdBQ/VNfT5TMcwFQH6HNZYoxbVc+UR5
+        mBewV59Pd8i5hkOSci7tAnp9HDkIhGbRHw==
+X-Google-Smtp-Source: ABdhPJyL1TV6O7XIcdX57OVQ49tyD4nmnjYLiV2zoRo1yrZsx3EwaVa9UICv5K+kz6fRRqTwQfriww==
+X-Received: by 2002:a37:6614:0:b0:6a6:9639:77f3 with SMTP id a20-20020a376614000000b006a6963977f3mr7169874qkc.516.1655282943296;
+        Wed, 15 Jun 2022 01:49:03 -0700 (PDT)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
+        by smtp.gmail.com with ESMTPSA id bp6-20020a05620a458600b0069fc13ce1fesm11537006qkb.47.2022.06.15.01.49.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 01:49:02 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-30ec2aa3b6cso53704247b3.11;
+        Wed, 15 Jun 2022 01:49:02 -0700 (PDT)
+X-Received: by 2002:a0d:e657:0:b0:314:7e4d:30a9 with SMTP id
+ p84-20020a0de657000000b003147e4d30a9mr6032904ywe.316.1655282942201; Wed, 15
+ Jun 2022 01:49:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 6/7] drm/bridge: anx7625: Register Type-C mode switches
-Content-Language: en-US
-To:     Prashant Malani <pmalani@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        heikki.krogerus@linux.intel.com,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+References: <20220613115712.2831386-1-yoshihiro.shimoda.uh@renesas.com> <20220613115712.2831386-2-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220613115712.2831386-2-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 15 Jun 2022 10:48:50 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVTq4P33P3MOim1USzQ7MFn_bGAkzf13CHN=VyMPsn3pA@mail.gmail.com>
+Message-ID: <CAMuHMdVTq4P33P3MOim1USzQ7MFn_bGAkzf13CHN=VyMPsn3pA@mail.gmail.com>
+Subject: Re: [PATCH 1/7] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     lpieralisi@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        linux-pci <linux-pci@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Jonas Karlman <jonas@kwiboo.se>,
-        swboyd@chromium.org, Pin-Yen Lin <treapking@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Xin Ji <xji@analogixsemi.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>
-References: <20220609181106.3695103-1-pmalani@chromium.org>
- <20220609181106.3695103-7-pmalani@chromium.org>
- <b3b9768d-e0d0-7132-5f50-dd6aa53a68ee@collabora.com>
- <CACeCKaexczFCja_ndndb_A58yZYQ98rTtgY4vHMknENTLxBPPA@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CACeCKaexczFCja_ndndb_A58yZYQ98rTtgY4vHMknENTLxBPPA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/06/22 18:57, Prashant Malani ha scritto:
-> On Tue, Jun 14, 2022 at 1:18 AM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 09/06/22 20:09, Prashant Malani ha scritto:
->>> When the DT node has "switches" available, register a Type-C mode-switch
->>> for each listed "switch". This allows the driver to receive state
->>> information about what operating mode a Type-C port and its connected
->>> peripherals are in, as well as status information (like VDOs) related to
->>> that state.
->>>
->>> The callback function is currently a stub, but subsequent patches will
->>> implement the required functionality.
->>>
->>> Signed-off-by: Prashant Malani <pmalani@chromium.org>
->>> ---
->>>
->>> Changes since v2:
->>> - No changes.
->>>
->>>    drivers/gpu/drm/bridge/analogix/anx7625.c | 73 +++++++++++++++++++++++
->>>    drivers/gpu/drm/bridge/analogix/anx7625.h |  6 ++
->>>    2 files changed, 79 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
->>> index 07ed44c6b839..d41a21103bd3 100644
->>> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
->>> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
->>> @@ -15,6 +15,7 @@
->>>    #include <linux/regulator/consumer.h>
->>>    #include <linux/slab.h>
->>>    #include <linux/types.h>
->>> +#include <linux/usb/typec_mux.h>
->>>    #include <linux/workqueue.h>
->>>
->>>    #include <linux/of_gpio.h>
->>> @@ -2581,9 +2582,59 @@ static void anx7625_runtime_disable(void *data)
->>>        pm_runtime_disable(data);
->>>    }
->>>
->>> +static int anx7625_typec_mux_set(struct typec_mux_dev *mux,
->>> +                              struct typec_mux_state *state)
->>> +{
->>> +     return 0;
->>> +}
->>> +
->>> +static int anx7625_register_mode_switch(struct device *dev, struct device_node *node,
->>> +                                     struct anx7625_data *ctx)
->>> +{
->>> +     struct anx7625_port_data *port_data;
->>> +     struct typec_mux_desc mux_desc = {};
->>> +     char name[32];
->>> +     u32 port_num;
->>> +     int ret;
->>> +
->>> +     ret = of_property_read_u32(node, "reg", &port_num);
->>> +     if (ret)
->>> +             return ret;
->>> +
->>> +     if (port_num >= ctx->num_typec_switches) {
->>> +             dev_err(dev, "Invalid port number specified: %d\n", port_num);
->>> +             return -EINVAL;
->>> +     }
->>> +
->>> +     port_data = &ctx->typec_ports[port_num];
->>> +     port_data->ctx = ctx;
->>> +     mux_desc.fwnode = &node->fwnode;
->>> +     mux_desc.drvdata = port_data;
->>> +     snprintf(name, sizeof(name), "%s-%u", node->name, port_num);
->>> +     mux_desc.name = name;
->>> +     mux_desc.set = anx7625_typec_mux_set;
->>> +
->>> +     port_data->typec_mux = typec_mux_register(dev, &mux_desc);
->>> +     if (IS_ERR(port_data->typec_mux)) {
->>> +             ret = PTR_ERR(port_data->typec_mux);
->>> +             dev_err(dev, "Mode switch register for port %d failed: %d", port_num, ret);
->>> +     }
->>
->> Please return 0 at the end of this function.
->>
->>          if (IS_ERR(....)) {
->>                  ......code......
->>                  return ret;
->>          }
->>
->>          return 0;
->> }
-> 
-> May I ask why? We're not missing any return paths. I would rather we
-> keep it as is (which has the valid return value).
-> 
+Hi Shimoda-san,
 
-I know that you're not missing any return paths.
+On Mon, Jun 13, 2022 at 1:57 PM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Document bindings for Renesas R-Car Gen4 and R-Car S4-8 (R8A779F0)
+> PCIe host module.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-That's only because the proposed one is a common pattern in the kernel
-and it's only for consistency.
+Thanks for your patch!
 
-Regards,
-Angelo
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
+> @@ -0,0 +1,104 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 Renesas Electronics Corp.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/rcar-gen4-pci-host.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas R-Car Gen4 PCIe Host
+> +
+> +maintainers:
+> +  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> +
+> +allOf:
+> +  - $ref: snps,dw-pcie.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: renesas,r8a779f0-pcie   # R-Car S4-8
+> +      - const: renesas,rcar-gen4-pcie  # R-Car Gen4
+> +      - const: snps,dw-pcie
+> +
+> +  interrupts:
+> +    maxItems: 6
 
+The R-Car S4 INTC Interrupt Mapping spreadsheet says there are 7.
+
+    items:
+      - description: Other Errors
+      - description: DMA Event
+      - description: Correctable Error
+      - description: Fatal Error
+      - description: Non-Fatal Error
+      - description: Reception of a ERR message from link partner
+      - description: Reception of Vendor
+
+> +  interrupt-names:
+> +    items:
+> +      - const: msi
+
+Missing:
+
+      - const: dma
+
+> +      - const: err
+
+correctable?
+
+> +      - const: fatal
+> +      - const: nonfatal
+> +      - const: lp
+> +      - const: vndmsg
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
