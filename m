@@ -2,82 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E575054CF42
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:02:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9170C54CF51
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:03:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356571AbiFORB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 13:01:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36484 "EHLO
+        id S1345256AbiFORDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 13:03:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357189AbiFORBB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:01:01 -0400
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FF3E4FC5E
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:01:00 -0700 (PDT)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-30c143c41e5so67803597b3.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:01:00 -0700 (PDT)
+        with ESMTP id S1349525AbiFORDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:03:51 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C684B420
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:03:49 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id 31so10274304pgv.11
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:03:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/r7XkSh5TUFeVMIe3mikVGP0QRjTftc0VpzQNshFaLA=;
-        b=YEY/aa02EjDu6Gde1XwVcHQ2DxuVZ2OBrNiKoejQ6TtQOhFwmhY/+9cbq0+Zp16lgL
-         kD0eDwPqS+oBorSD1W7GoPu2sDRE+nxUfCEwkCsccSZERq+ao/DOWBL9pvFtSCfC1EpI
-         87llx6q+yjmXGkCBE1CGNto4D1wXfUoFpyPr4=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=jm8MXeLlqii/5FydlD1v6Lz5nQdsR6MGCoUfpwdjuNk=;
+        b=nJ7IBklLOjSLfSLdY4vTZXUDIYuZj/tb2ZQ6grZIWomT9q+Y0cfAHg8MuwR1zW66Di
+         9sWtqG8qOKOpNHtF5fFCqEgdehoqdQYcjEkuoMRk28hhxdGcVk5NTSTlTpiPwsubMzE3
+         xJuHLjAtQXc+MP/UEBzdS+0u18cszg5Q2NIrTUxm+2JSckbgTGvyCxGgW55/s+NObRcf
+         +gg2jvj8mdR1Kjm+kitaTa2wqMrstENtJ3xcAR8eBEe4/TwfI57AtUzWFKtQDRATq3KS
+         PGfLU9F8i/ygnIIluwOQjLi88kopb048g6yzFYgSMrqw8tl/lsfUu/CV8jp3Jrj7vjH9
+         p7xA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/r7XkSh5TUFeVMIe3mikVGP0QRjTftc0VpzQNshFaLA=;
-        b=2DPyIkvfccHthJk9/90gchnkF1fSnMgxc6OpSPu98oj19L5X3gtem1SOwbIWW8hdE5
-         /zZ7NFz0MhePx4XNuwYaXPNgF+2OhINDIhpc40jTqfKo+hWV06RFZ/gK/NUvwGI8ivbp
-         irSm7Faz0Nlg0LURFFzYQXeUe9eE/EM33KgF1r2EwOdOyUol97sJz3gOlqU/ZN9H4cXG
-         np4F7jpq/gPaTuF03WWaYE2MokzLlaDGQ/kqvMSpwJFy3a76YcbmOn+mqJfscvpTnQix
-         EUDm5E0oSrLuUpywDs1BK05A8KPb4eCz84IJ+GM4+fesogRheeewovO4jGK55Q+NGiRP
-         xZlQ==
-X-Gm-Message-State: AJIora8sd9Fsd5ppOArY7VjJ7Xn7Y4bgVFK9gpP007v/11f9LWTfPK0w
-        QuFRlU+YcB3/Q5o7XcQX87hIMqFrqeIydMM/Ls5E5Q==
-X-Google-Smtp-Source: AGRyM1vwSIJrbZk5hnWNUg96C0Ni2qFhhTib83BhjFCpBSWqIWSHHXOiLELU1pSyNWuERIOYn4A4WUHEnANs0z8CtuA=
-X-Received: by 2002:a0d:f882:0:b0:2f4:d830:6fd with SMTP id
- i124-20020a0df882000000b002f4d83006fdmr656389ywf.387.1655312459179; Wed, 15
- Jun 2022 10:00:59 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=jm8MXeLlqii/5FydlD1v6Lz5nQdsR6MGCoUfpwdjuNk=;
+        b=uQMpPmI/67QEgSoPObS57hrwL5/HXYd7TXwgUglfDDoRdRIVBoUld58PhM5WwjlSR8
+         7HLzTNkoUHawS9SW6K0AVK4yV14lSAMP9bcvTj0c2foCk0bP5eCeGYrSNrfffNeaTum+
+         LaQWG0PNsZ/qF4bVsE4UWkhi933Cbpz5sDdb6SlgqSsn63D2KzgBe7LlEuiECzFQq27t
+         H2h6d1sd42IOGVSENn2R2GlrJbwN+BWxnJELdmQvMJdi3bhqX01TCP7QqcQ7LsCR8kHq
+         ia8NIIeVtD9zwLlrLp5aB36jZmn+aVCAdt4u1/1/kzCdV3oLV63tHLnJ5Lix9DOj06X5
+         93xw==
+X-Gm-Message-State: AJIora/dzSgnqn3uFTX94YD3/dK3OI72xgnaz2o5U0ZWvsovK43xqqZH
+        Lx6MsxTCLK9vr5Axk1QFMOowVA==
+X-Google-Smtp-Source: AGRyM1seg5navj/ZgOXJ4HUS+Haip8l+eCz7SNp77yxaZukUbdDEw7wI4SvjvZRO87I5ID1vQOtNQA==
+X-Received: by 2002:a05:6a00:1344:b0:51b:e3b5:54e2 with SMTP id k4-20020a056a00134400b0051be3b554e2mr588044pfu.6.1655312628981;
+        Wed, 15 Jun 2022 10:03:48 -0700 (PDT)
+Received: from [172.22.33.138] ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id v8-20020a17090a778800b001eab0a27d92sm2002742pjk.51.2022.06.15.10.03.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 10:03:48 -0700 (PDT)
+Message-ID: <e6e478a5-9080-fb2f-9ccd-2490cdfab4c7@linaro.org>
+Date:   Wed, 15 Jun 2022 10:03:46 -0700
 MIME-Version: 1.0
-References: <20220609181106.3695103-1-pmalani@chromium.org>
- <20220609181106.3695103-7-pmalani@chromium.org> <b3b9768d-e0d0-7132-5f50-dd6aa53a68ee@collabora.com>
- <CACeCKaexczFCja_ndndb_A58yZYQ98rTtgY4vHMknENTLxBPPA@mail.gmail.com> <28135a2f-bf02-fd0b-e881-0ce9d68bd764@collabora.com>
-In-Reply-To: <28135a2f-bf02-fd0b-e881-0ce9d68bd764@collabora.com>
-From:   Prashant Malani <pmalani@chromium.org>
-Date:   Wed, 15 Jun 2022 10:00:48 -0700
-Message-ID: <CACeCKadK0A4YD6+Nu=j9dw-dkhkj4ShkpEpSqH_bODjn8wniMg@mail.gmail.com>
-Subject: Re: [PATCH v2 6/7] drm/bridge: anx7625: Register Type-C mode switches
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        heikki.krogerus@linux.intel.com,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Jonas Karlman <jonas@kwiboo.se>,
-        swboyd@chromium.org, Pin-Yen Lin <treapking@chromium.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 12/20] dt-bindings: reset: npcm: Add support for
+ NPCM8XX
+Content-Language: en-US
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Xin Ji <xji@analogixsemi.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Robert Hancock <robert.hancock@calian.com>,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20220608095623.22327-1-tmaimon77@gmail.com>
+ <20220608095623.22327-13-tmaimon77@gmail.com>
+ <add025b6-c622-b204-d39e-67b31878d37f@linaro.org>
+ <CAP6Zq1iDbB+X5QPE4Nsqk4nV41bZiVzQZExS1pQTuKEBz-iYew@mail.gmail.com>
+ <381ff739-e898-8812-d549-df7101f0eaa2@linaro.org>
+ <CAP6Zq1j=x3OcOPSOjJJmOcze7ziM=oWcKdbYzoHhGnvZipu_UQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAP6Zq1j=x3OcOPSOjJJmOcze7ziM=oWcKdbYzoHhGnvZipu_UQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,115 +113,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 15, 2022 at 1:45 AM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 14/06/22 18:57, Prashant Malani ha scritto:
-> > On Tue, Jun 14, 2022 at 1:18 AM AngeloGioacchino Del Regno
-> > <angelogioacchino.delregno@collabora.com> wrote:
-> >>
-> >> Il 09/06/22 20:09, Prashant Malani ha scritto:
-> >>> When the DT node has "switches" available, register a Type-C mode-switch
-> >>> for each listed "switch". This allows the driver to receive state
-> >>> information about what operating mode a Type-C port and its connected
-> >>> peripherals are in, as well as status information (like VDOs) related to
-> >>> that state.
-> >>>
-> >>> The callback function is currently a stub, but subsequent patches will
-> >>> implement the required functionality.
-> >>>
-> >>> Signed-off-by: Prashant Malani <pmalani@chromium.org>
-> >>> ---
-> >>>
-> >>> Changes since v2:
-> >>> - No changes.
-> >>>
-> >>>    drivers/gpu/drm/bridge/analogix/anx7625.c | 73 +++++++++++++++++++++++
-> >>>    drivers/gpu/drm/bridge/analogix/anx7625.h |  6 ++
-> >>>    2 files changed, 79 insertions(+)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> >>> index 07ed44c6b839..d41a21103bd3 100644
-> >>> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> >>> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> >>> @@ -15,6 +15,7 @@
-> >>>    #include <linux/regulator/consumer.h>
-> >>>    #include <linux/slab.h>
-> >>>    #include <linux/types.h>
-> >>> +#include <linux/usb/typec_mux.h>
-> >>>    #include <linux/workqueue.h>
-> >>>
-> >>>    #include <linux/of_gpio.h>
-> >>> @@ -2581,9 +2582,59 @@ static void anx7625_runtime_disable(void *data)
-> >>>        pm_runtime_disable(data);
-> >>>    }
-> >>>
-> >>> +static int anx7625_typec_mux_set(struct typec_mux_dev *mux,
-> >>> +                              struct typec_mux_state *state)
-> >>> +{
-> >>> +     return 0;
-> >>> +}
-> >>> +
-> >>> +static int anx7625_register_mode_switch(struct device *dev, struct device_node *node,
-> >>> +                                     struct anx7625_data *ctx)
-> >>> +{
-> >>> +     struct anx7625_port_data *port_data;
-> >>> +     struct typec_mux_desc mux_desc = {};
-> >>> +     char name[32];
-> >>> +     u32 port_num;
-> >>> +     int ret;
-> >>> +
-> >>> +     ret = of_property_read_u32(node, "reg", &port_num);
-> >>> +     if (ret)
-> >>> +             return ret;
-> >>> +
-> >>> +     if (port_num >= ctx->num_typec_switches) {
-> >>> +             dev_err(dev, "Invalid port number specified: %d\n", port_num);
-> >>> +             return -EINVAL;
-> >>> +     }
-> >>> +
-> >>> +     port_data = &ctx->typec_ports[port_num];
-> >>> +     port_data->ctx = ctx;
-> >>> +     mux_desc.fwnode = &node->fwnode;
-> >>> +     mux_desc.drvdata = port_data;
-> >>> +     snprintf(name, sizeof(name), "%s-%u", node->name, port_num);
-> >>> +     mux_desc.name = name;
-> >>> +     mux_desc.set = anx7625_typec_mux_set;
-> >>> +
-> >>> +     port_data->typec_mux = typec_mux_register(dev, &mux_desc);
-> >>> +     if (IS_ERR(port_data->typec_mux)) {
-> >>> +             ret = PTR_ERR(port_data->typec_mux);
-> >>> +             dev_err(dev, "Mode switch register for port %d failed: %d", port_num, ret);
-> >>> +     }
-> >>
-> >> Please return 0 at the end of this function.
-> >>
-> >>          if (IS_ERR(....)) {
-> >>                  ......code......
-> >>                  return ret;
-> >>          }
-> >>
-> >>          return 0;
-> >> }
-> >
-> > May I ask why? We're not missing any return paths. I would rather we
-> > keep it as is (which has the valid return value).
-> >
->
-> I know that you're not missing any return paths.
->
-> That's only because the proposed one is a common pattern in the kernel
-> and it's only for consistency.
+On 13/06/2022 02:25, Tomer Maimon wrote:
+> Hi Krzysztof,
+> 
+> Thanks for your clarification.
+> 
+> We can remove the dt-binding file and use numbers in the DTS,
+> appreciate if you can answer few additional questions:
+> 1. Do you suggest adding all NPCM reset values to the NPCM reset
+> document or the reset values should describe in the module
+> documentation that uses it?
 
-Thanks for the additional details. Since this isn't addressing any
-specific bug, and I
-notice varied usages of "return ret" in this file itself [1][2], I'd
-prefer keeping it as is.
+What is "NPCM reset document"? Are these reset values anyhow different
+than interrupts or pins?
 
-[1]: https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/bridge/analogix/anx7625.c#L296
-[2]: https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/bridge/analogix/anx7625.c#L436
+> 2. Some of the NPCM7XX document modules describe the reset value they
+> use from the dt-binding for example:
+> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/iio/adc/nuvoton%2Cnpcm750-adc.yaml#L61
 
->
-> Regards,
-> Angelo
->
+This is NPCM750
+
+> If we remove the NPCM8XX dt-binding file should we describe the
+> NPCM8XX values in the NPCM-ADC document file?
+
+What is NPCM-ADC document file? What do you want to describe there?
+Again - how is it different than interrupts?
+
+
+
+Best regards,
+Krzysztof
