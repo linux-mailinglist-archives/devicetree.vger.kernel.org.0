@@ -2,334 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45EC654D2D0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 22:45:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0460354D2DD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 22:48:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347363AbiFOUpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 16:45:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39394 "EHLO
+        id S1344323AbiFOUs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 16:48:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238164AbiFOUpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 16:45:15 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC1D12CE2D;
-        Wed, 15 Jun 2022 13:45:13 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id h23so14615074ljl.3;
-        Wed, 15 Jun 2022 13:45:13 -0700 (PDT)
+        with ESMTP id S1346321AbiFOUs1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 16:48:27 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCAEE54F80
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 13:48:23 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id d129so12430594pgc.9
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 13:48:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=5h3h0ojea/V/Vb6J1m80YjDBkY9SwNaJhzgK7nDN9jc=;
-        b=EGSzFePXgCLDQMMmYU+A/8xzThfId/dsct6PuUYk4QIJwVUpkJdcGAUbq5XhsDaXVR
-         EZ5sh557OCbcMF00RxvZ9fr+l2uas+UJP7uKacB3XVuu65QcI4nipVPcT7TLfK+ng6Md
-         SjR3j/fXXY/AKKTPVASUqoFlZa9UH4FCRR/lzi2SLrG4ct4X0sLSTvMSkf3mqb5ak+6a
-         o820jU8Z+77oxmPxC1dtt1qhjMN4mbutJBDX+B4kFiwNsI7d2qLj4CKICBwGYBPKnTG0
-         +VGxFTpUecBmPWgLYO7EbKO7qyUAJLQrPx6WKg+2rwjaNevjFIny0+Erjas67Xz8H/gr
-         ofGw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=c6+/MuYjgyn2udQAyYO1pcnAtH6vCX68BZVqdL6DnAM=;
+        b=cJX06OPiClEPKrxTiXas7HB6WtJRm9cySIHWVKh7Ki7j3H9kK2AFdp8Q1FguyRd58x
+         PaH1GoWdRDWmWvYK9aq02GYuLKlyPzPCiC/A0hNAHqw7XoGK2cbIiqa5oZeG98GmK33G
+         UvBGwf064e/kjFJVo8x/gssDvQGs6OtC4xZmpdY5EjSujvGQnLOhOe75SGsnbn6onlRZ
+         vCGCrcmmmIxGQ9v42+lPxCFsATzzGwavFuWZ2Q82aqm5WNb790TbSc1A6Y9wo3QK/QYf
+         19tRPPJ/Ai6gLmB9FsTwmcKiy6kaFR+c7wJs2RyhK8Ehe2mSkB/wRHeqe5IOAr3jotKW
+         fPMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5h3h0ojea/V/Vb6J1m80YjDBkY9SwNaJhzgK7nDN9jc=;
-        b=H2kF7vP1yoD/KjM3BXEZt7z7n4t5vVTqc4bb22JnT7CgI20yET1jw5UsJC89XPty99
-         AanGfr8RXaYihYhbO/MKNV8vxoHNnuHg9Te6lrxq1nUfic6kJ+Ls/QneOdQIzpXtgl/d
-         jnNzeBuWHVuux3g46cUvJ0bkes82nCIdl8ZcIZ54pdV7HHPbn3MILeNS/pIP5y7QCnlG
-         fDvFyefCLe78bvLCio0V5+DF55mCH8ShynrEjzh8JqloShWkIHa/PTBeSEHbdi5cpZq2
-         WSkWPcceraSkmkfPrrvF8URZBuikVvlXBBcp0pb2iam4ZEjAz7Wxe7JNMvKiiZuWKqGP
-         IBmw==
-X-Gm-Message-State: AJIora/pzek4VS6+aRlZlu+uRxzi11ZN4E99JtMIR+sLlqk9/5Eo8EpG
-        FZDiLkihHIVDY5a8zbhsRIUcSKCKkzPjgg==
-X-Google-Smtp-Source: AGRyM1v1T86xfgb4p/zngTUo4+PBpPqyKtcso2mDUygEhBID8S035JaN09cLtJMtzt6xwHAMBFjkAA==
-X-Received: by 2002:a2e:98d9:0:b0:255:85f4:14b5 with SMTP id s25-20020a2e98d9000000b0025585f414b5mr798284ljj.399.1655325911961;
-        Wed, 15 Jun 2022 13:45:11 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id br21-20020a056512401500b0047255d2114asm1906795lfb.121.2022.06.15.13.45.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 13:45:11 -0700 (PDT)
-Date:   Wed, 15 Jun 2022 23:45:09 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 07/23] ata: libahci_platform: Convert to using devm
- bulk clocks API
-Message-ID: <20220615204509.siz54h4vbgvb3zkm@mobilestation>
-References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
- <20220610081801.11854-8-Sergey.Semin@baikalelectronics.ru>
- <3bf20887-6e2f-41f4-e4ec-5c2278f6cb18@opensource.wdc.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=c6+/MuYjgyn2udQAyYO1pcnAtH6vCX68BZVqdL6DnAM=;
+        b=Zh4DPKgM/DHcF026StLQk50bb0rlhtOA+2y9SIbFc0rjyWslBSQ/jI1amXmD088tuY
+         ebCy9S/uTRgNNg+zOzU3eOecxRe7/1pyZrEt70N/M8Q62E0mC0+iiCJxWSt3+1FkIyx0
+         ntyyj/m/FTR0hpWJ3fvGaQTpTBalsDZvdHAfzsatOF9MO5AGOVztF5ra77IIZmjfPaIP
+         sIt+hGcZ35gdZHKvnlo0CFdsSsQ8Qhf34CilynA0akdHsxQKFMJ+28IKS8Zqg165A027
+         vsADeUM+4iBOSLJWa1BX8BR5HwQlMll2N3WlE8mdibrHyiNBzsIPtpFHWWVZ34/dHmEV
+         6pwg==
+X-Gm-Message-State: AJIora9c4YP035kX3jKiCH5fje+ABnQmp4nVFuUi94lizVUjj2InsAT2
+        SD4tWkyIdM0lID9ABxS27LriHQ==
+X-Google-Smtp-Source: AGRyM1vxUFh649IvXZavkwFGw+qBXaVL9n4KDXt80qmiBlcu4flgIbvfKkajNW5wqADIULcUT58ZmA==
+X-Received: by 2002:a05:6a00:26cf:b0:4f6:fc52:7b6a with SMTP id p15-20020a056a0026cf00b004f6fc527b6amr1389852pfw.39.1655326103240;
+        Wed, 15 Jun 2022 13:48:23 -0700 (PDT)
+Received: from [172.22.33.138] ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id p18-20020a17090a931200b001e8875e3326sm2225563pjo.47.2022.06.15.13.48.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 13:48:22 -0700 (PDT)
+Message-ID: <b21dab64-1e5b-eaab-2e74-e95a22ca6e82@linaro.org>
+Date:   Wed, 15 Jun 2022 13:48:20 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3bf20887-6e2f-41f4-e4ec-5c2278f6cb18@opensource.wdc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
+ which controls
+Content-Language: en-US
+To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        "max.oss.09@gmail.com" <max.oss.09@gmail.com>,
+        "geert@linux-m68k.org" <geert@linux-m68k.org>
+Cc:     "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "biju.das.jz@bp.renesas.com" <biju.das.jz@bp.renesas.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "geert+renesas@glider.be" <geert+renesas@glider.be>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "khilman@kernel.org" <khilman@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Max Krummenacher <max.krummenacher@toradex.com>
+References: <20220609150851.23084-1-max.oss.09@gmail.com>
+ <20220613191549.GA4092455-robh@kernel.org>
+ <CAMuHMdU+aOw_D3SR6714U_i5WhE8S-FCLdPJaf_+Fncz4aH8VA@mail.gmail.com>
+ <CAEHkU3VVM0zUsaKMUGeSzfbLmVJW6rqXGLv7TqaLTEQeXEVkUA@mail.gmail.com>
+ <12e3bb72-af2d-653f-b342-c6b4d6a1f292@linaro.org>
+ <ddbeba186bf662348e8594f322f750cf89326a66.camel@toradex.com>
+ <df432e88-8688-c229-5ef0-8ba001b72908@linaro.org>
+ <8decc5b6d1f0bc028d60d444d939da4408e756d3.camel@toradex.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8decc5b6d1f0bc028d60d444d939da4408e756d3.camel@toradex.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 14, 2022 at 05:22:02PM +0900, Damien Le Moal wrote:
-> On 6/10/22 17:17, Serge Semin wrote:
-> > In order to simplify the clock-related code there is a way to convert the
-> > current fixed clocks array into using the common bulk clocks kernel API
-> > with dynamic set of the clock handlers and device-managed clock-resource
-> > tracking. It's a bit tricky due to the complication coming from the
-> > requirement to support the platforms (da850, spear13xx) with the
-> > non-OF-based clock source, but still doable.
-> > 
-> > Before this modification there are two methods have been used to get the
-> > clocks connected to an AHCI device: clk_get() - to get the very first
-> > clock in the list and of_clk_get() - to get the rest of them. Basically
-> > the platforms with non-OF-based clocks definition could specify only a
-> > single reference clock source. The platforms with OF-hw clocks have been
-> > luckier and could setup up to AHCI_MAX_CLKS clocks. Such semantic can be
-> > retained with using devm_clk_bulk_get_all() to retrieve the clocks defined
-> > via the DT firmware and devm_clk_get_optional() otherwise. In both cases
-> > using the device-managed version of the methods will cause the automatic
-> > resources deallocation on the AHCI device removal event. The only
-> > complicated part in the suggested approach is the explicit allocation and
-> > initialization of the clk_bulk_data structure instance for the non-OF
-> > reference clocks. It's required in order to use the Bulk Clocks API for
-> > the both denoted cases of the clocks definition.
-> > 
-> > Note aside with the clock-related code reduction and natural
-> > simplification, there are several bonuses the suggested modification
-> > provides. First of all the limitation of having no greater than
-> > AHCI_MAX_CLKS clocks is now removed, since the devm_clk_bulk_get_all()
-> > method will allocate as many reference clocks data descriptors as there
-> > are clocks specified for the device. Secondly the clock names are
-> > auto-detected. So the LLDD (glue) drivers can make sure that the required
-> > clocks are specified just by checking the clock IDs in the clk_bulk_data
-> > array.  Thirdly using the handy Bulk Clocks kernel API improves the
-> > clocks-handling code readability. And the last but not least this
-> > modification implements a true optional clocks support to the
-> > ahci_platform_get_resources() method. Indeed the previous clocks getting
-> > procedure just stopped getting the clocks on any errors (aside from
-> > non-critical -EPROBE_DEFER) in a way so the callee wasn't even informed
-> > about abnormal loop termination. The new implementation lacks of such
-> > problem. The ahci_platform_get_resources() will return an error code if
-> > the corresponding clocks getting method ends execution abnormally.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > Reviewed-by: Hannes Reinecke <hare@suse.de>
-> > 
-> > ---
-> > 
-> > Changelog v2:
-> > - Convert to checking the error-case first in the devm_clk_bulk_get_all()
-> >   method invocation. (@Damien)
-> > - Fix some grammar mistakes in the comments.
-> > ---
-> >  drivers/ata/ahci.h             |  4 +-
-> >  drivers/ata/libahci_platform.c | 84 ++++++++++++++++------------------
-> >  2 files changed, 41 insertions(+), 47 deletions(-)
-> > 
-> > diff --git a/drivers/ata/ahci.h b/drivers/ata/ahci.h
-> > index ad11a4c52fbe..c3770a19781b 100644
-> > --- a/drivers/ata/ahci.h
-> > +++ b/drivers/ata/ahci.h
-> > @@ -38,7 +38,6 @@
-> >  
-> >  enum {
-> >  	AHCI_MAX_PORTS		= 32,
-> > -	AHCI_MAX_CLKS		= 5,
-> >  	AHCI_MAX_SG		= 168, /* hardware max is 64K */
-> >  	AHCI_DMA_BOUNDARY	= 0xffffffff,
-> >  	AHCI_MAX_CMDS		= 32,
-> > @@ -339,7 +338,8 @@ struct ahci_host_priv {
-> >  	u32			em_msg_type;	/* EM message type */
-> >  	u32			remapped_nvme;	/* NVMe remapped device count */
-> >  	bool			got_runtime_pm; /* Did we do pm_runtime_get? */
-> > -	struct clk		*clks[AHCI_MAX_CLKS]; /* Optional */
-> > +	unsigned int		n_clks;
-> > +	struct clk_bulk_data	*clks;		/* Optional */
-> >  	struct reset_control	*rsts;		/* Optional */
-> >  	struct regulator	**target_pwrs;	/* Optional */
-> >  	struct regulator	*ahci_regulator;/* Optional */
-> > diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
-> > index 1e9e825d6cc5..814804582d1d 100644
-> > --- a/drivers/ata/libahci_platform.c
-> > +++ b/drivers/ata/libahci_platform.c
-> > @@ -8,6 +8,7 @@
-> >   *   Anton Vorontsov <avorontsov@ru.mvista.com>
-> >   */
-> >  
-> > +#include <linux/clk-provider.h>
-> >  #include <linux/clk.h>
-> >  #include <linux/kernel.h>
-> >  #include <linux/gfp.h>
-> > @@ -97,28 +98,14 @@ EXPORT_SYMBOL_GPL(ahci_platform_disable_phys);
-> >   * ahci_platform_enable_clks - Enable platform clocks
-> >   * @hpriv: host private area to store config values
-> >   *
-> > - * This function enables all the clks found in hpriv->clks, starting at
-> > - * index 0. If any clk fails to enable it disables all the clks already
-> > - * enabled in reverse order, and then returns an error.
-> > + * This function enables all the clks found for the AHCI device.
-> >   *
-> >   * RETURNS:
-> >   * 0 on success otherwise a negative error code
-> >   */
-> >  int ahci_platform_enable_clks(struct ahci_host_priv *hpriv)
-> >  {
-> > -	int c, rc;
-> > -
-> > -	for (c = 0; c < AHCI_MAX_CLKS && hpriv->clks[c]; c++) {
-> > -		rc = clk_prepare_enable(hpriv->clks[c]);
-> > -		if (rc)
-> > -			goto disable_unprepare_clk;
-> > -	}
-> > -	return 0;
-> > -
-> > -disable_unprepare_clk:
-> > -	while (--c >= 0)
-> > -		clk_disable_unprepare(hpriv->clks[c]);
-> > -	return rc;
-> > +	return clk_bulk_prepare_enable(hpriv->n_clks, hpriv->clks);
-> >  }
-> >  EXPORT_SYMBOL_GPL(ahci_platform_enable_clks);
-> >  
-> > @@ -126,16 +113,13 @@ EXPORT_SYMBOL_GPL(ahci_platform_enable_clks);
-> >   * ahci_platform_disable_clks - Disable platform clocks
-> >   * @hpriv: host private area to store config values
-> >   *
-> > - * This function disables all the clks found in hpriv->clks, in reverse
-> > - * order of ahci_platform_enable_clks (starting at the end of the array).
-> > + * This function disables all the clocks enabled before
-> > + * (bulk-clocks-disable function is supposed to do that in reverse
-> > + * from the enabling procedure order).
-> >   */
-> >  void ahci_platform_disable_clks(struct ahci_host_priv *hpriv)
-> >  {
-> > -	int c;
-> > -
-> > -	for (c = AHCI_MAX_CLKS - 1; c >= 0; c--)
-> > -		if (hpriv->clks[c])
-> > -			clk_disable_unprepare(hpriv->clks[c]);
-> > +	clk_bulk_disable_unprepare(hpriv->n_clks, hpriv->clks);
-> >  }
-> >  EXPORT_SYMBOL_GPL(ahci_platform_disable_clks);
-> >  
-> > @@ -292,8 +276,6 @@ static void ahci_platform_put_resources(struct device *dev, void *res)
-> >  		pm_runtime_disable(dev);
-> >  	}
-> >  
-> > -	for (c = 0; c < AHCI_MAX_CLKS && hpriv->clks[c]; c++)
-> > -		clk_put(hpriv->clks[c]);
-> >  	/*
-> >  	 * The regulators are tied to child node device and not to the
-> >  	 * SATA device itself. So we can't use devm for automatically
-> > @@ -374,8 +356,8 @@ static int ahci_platform_get_regulator(struct ahci_host_priv *hpriv, u32 port,
-> >   * 1) mmio registers (IORESOURCE_MEM 0, mandatory)
-> >   * 2) regulator for controlling the targets power (optional)
-> >   *    regulator for controlling the AHCI controller (optional)
-> > - * 3) 0 - AHCI_MAX_CLKS clocks, as specified in the devs devicetree node,
-> > - *    or for non devicetree enabled platforms a single clock
-> > + * 3) all clocks specified in the devicetree node, or a single
-> > + *    clock for non-OF platforms (optional)
-> >   * 4) resets, if flags has AHCI_PLATFORM_GET_RESETS (optional)
-> >   * 5) phys (optional)
-> >   *
-> > @@ -385,11 +367,10 @@ static int ahci_platform_get_regulator(struct ahci_host_priv *hpriv, u32 port,
-> >  struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
-> >  						   unsigned int flags)
-> >  {
-> > +	int child_nodes, rc = -ENOMEM, enabled_ports = 0;
-> >  	struct device *dev = &pdev->dev;
-> >  	struct ahci_host_priv *hpriv;
-> > -	struct clk *clk;
-> >  	struct device_node *child;
-> > -	int i, enabled_ports = 0, rc = -ENOMEM, child_nodes;
-> >  	u32 mask_port_map = 0;
-> >  
-> >  	if (!devres_open_group(dev, NULL, GFP_KERNEL))
-> > @@ -415,25 +396,38 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
-> >  		goto err_out;
-> >  	}
-> >  
-> > -	for (i = 0; i < AHCI_MAX_CLKS; i++) {
-> > +	/*
-> > +	 * Bulk clocks getting procedure can fail to find any clock due to
-> > +	 * running on a non-OF platform or due to the clocks being defined in
-> > +	 * bypass of the DT firmware (like da850, spear13xx). In that case we
-> > +	 * fallback to getting a single clock source right from the dev clocks
-> > +	 * list.
-> > +	 */
-> > +	rc = devm_clk_bulk_get_all(dev, &hpriv->clks);
-> > +	if (rc < 0)
-> > +		goto err_out;
-> > +
-> > +	if (rc > 0) {
-> > +		/* Got clocks in bulk */
-> > +		hpriv->n_clks = rc;
-> > +	} else {
-> >  		/*
-> > -		 * For now we must use clk_get(dev, NULL) for the first clock,
-> > -		 * because some platforms (da850, spear13xx) are not yet
-> > -		 * converted to use devicetree for clocks.  For new platforms
-> > -		 * this is equivalent to of_clk_get(dev->of_node, 0).
-> > +		 * No clock bulk found: fallback to manually getting
-> > +		 * the optional clock.
-> >  		 */
-> > -		if (i == 0)
-> > -			clk = clk_get(dev, NULL);
-> > -		else
-> > -			clk = of_clk_get(dev->of_node, i);
-> > -
-> > -		if (IS_ERR(clk)) {
-> > -			rc = PTR_ERR(clk);
-> > -			if (rc == -EPROBE_DEFER)
-> > -				goto err_out;
-> > -			break;
-> > +		hpriv->clks = devm_kzalloc(dev, sizeof(*hpriv->clks), GFP_KERNEL);
-> > +		if (!hpriv->clks) {
-> > +			rc = -ENOMEM;
-> > +			goto err_out;
-> > +		}
-> > +		hpriv->clks->clk = devm_clk_get_optional(dev, NULL);
-
-> > +		if (IS_ERR(hpriv->clks->clk)) {
-> > +			rc = PTR_ERR(hpriv->clks->clk);
-> > +			goto err_out;
-> > +		} else if (hpriv->clks->clk) {
+On 15/06/2022 11:13, Marcel Ziswiler wrote:
+> On Wed, 2022-06-15 at 10:37 -0700, Krzysztof Kozlowski wrote:
+>> On 15/06/2022 10:31, Marcel Ziswiler wrote:
+>>> Hi
+>>>
+>>> On Wed, 2022-06-15 at 10:15 -0700, Krzysztof Kozlowski wrote:
+>>>> On 15/06/2022 09:10, Max Krummenacher wrote:
+>>>>> Hi
+>>>>>
+>>>>> On Tue, Jun 14, 2022 at 9:22 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>>>>>>
+>>>>>> Hi Rob,
+>>>>>>
+>>>>>> On Mon, Jun 13, 2022 at 9:15 PM Rob Herring <robh@kernel.org> wrote:
+>>>>>>> On Thu, Jun 09, 2022 at 05:08:46PM +0200, Max Krummenacher wrote:
+>>>>>>>> From: Max Krummenacher <max.krummenacher@toradex.com>
+>>>>>>>>
+>>>>>>>> its power enable by using a regulator.
+>>>>>>>>
+>>>>>>>> The currently implemented PM domain providers are all specific to
+>>>>>>>> a particular system on chip.
+>>>>>>>
+>>>>>>> Yes, power domains tend to be specific to an SoC... 'power-domains' is
+>>>>>>> supposed to be power islands in a chip. Linux 'PM domains' can be
+>>>>>>> anything...
+>>>>>
+>>>>> I don't see why such power islands should be restricted to a SoC. You can
+>>>>> build the exact same idea on a PCB or even more modular designs.
+>>>>
+>>>> In the SoC these power islands are more-or-less defined. These are real
+>>>> regions gated by some control knob.
+>>>>
+>>>> Calling few devices on a board "power domain" does not make it a power
+>>>> domain. There is no grouping, there is no control knob.
+>>>>
+>>>> Aren't you now re-implementing regulator supplies? How is this different
+>>>> than existing supplies?
+>>>
+>>> I believe the biggest difference between power-domains and regulator-supplies lays in the former being
+>>> driver
+>>> agnostic while the later is driver specific. 
+>>
+>> That's one way to look, but the other way (matching the bindings
+>> purpose) is to look at hardware. You have physical wire / voltage rail
+>> supply - use regulator supply. In the terms of the hardware - what is
+>> that power domain? It's a concept, not a physical object.
 > 
-> Nit: the else is not needed here.
+> Well, but how can that concept then exist within the SoC but not outside? I don't get it. Isn't it just the
+> exact same physical power gating thingy whether inside the SoC or on a PCB?
+> 
+>>> Meaning with power-domains one can just add such arbitrary
+>>> structure to the device tree without any further driver specific changes/handling required. While with
+>>> regulator-supplies each and every driver actually needs to have driver specific handling thereof added. Or
+>>> do I
+>>> miss anything?
+>>
+>> Thanks for clarification but I am not sure if it matches the purpose of
+>> bindings and DTS. You can change the implementation as well to have
+>> implicit regulators. No need for new bindings for that.
+> 
+> Okay, maybe that would also work, of course. So basically add a new binding 
 
-Well, it depends on what you see behind it. I see many reasons to keep
-it and only one tiny reason to drop it. Keeping it will improve the
-code readability and maintainability like having a more natural
-execution flow representation, thus clearer read-flow (else part as
-exception to the if part), less modifications should the goto part is
-changed/removed, a more exact program flow representation can be used
-by the compiler for some internal optimizations, it's one line shorter
-than the case we no 'else' here. On the other hand indeed we can drop
-it since if the conditional statement is true, the code afterwards
-won't be executed due to the goto operator. But as I see it dropping
-the else operator won't improve anything, but vise-versa will worsen
-the code instead. So if I get to miss something please justify why you
-want it being dropped, otherwise I would rather preserve it.
+That I did not propose. :) We have a binding for regulator supplies so
+you do no need a new one.
 
--Sergey
+> which allows adding regulators to
+> arbitrary nodes which then will be generically handled by e.g. runtime PM. Almost something like assigned-
+> clocks [1] you mean? I guess that could work. Remember that's why Max posted it as an RFC to get such feedback.
+> Thanks for further refining those ideas.
+
+DTS and bindings describe here the hardware, so focus on that. Device is
+supplied by some regulator which I assume can be controlled by GPIO. I
+don't think you need new bindings for that.
+
+Implementation of bindings, so Linux driver, is different thing.
 
 > 
-> > +			hpriv->clks->id = __clk_get_name(hpriv->clks->clk);
-> > +			hpriv->n_clks = 1;
-> >  		}
-> > -		hpriv->clks[i] = clk;
-> >  	}
-> >  
-> >  	hpriv->ahci_regulator = devm_regulator_get(dev, "ahci");
+>>> We are really trying to model something where a single GPIO pin (via a GPIO regulator or whatever) can
+>>> control
+>>> power to a variety of on-board peripherals. And, of course, we envision runtime PM actually making use of
+>>> it
+>>> e.g. when doing suspend/resume.
+>>
+>> And this GPIO pin controls what? Some power switch which cuts the power
+>> of one regulator or many?
 > 
+> Well, that doesn't really matter. Resp. this part one should be able to sufficiently model using whatever
+> available regulator lore we already have (e.g. whatever delays/times).
 > 
-> -- 
-> Damien Le Moal
-> Western Digital Research
+>> If many different regulators, how do you
+>> handle small differences in ramp up time?
+> 
+> Well, I don't think this is any different to any other regulator(s), not? Them HW folks will just need to tell
+> us some reasonable numbers for those delays/times.
+
+Probably... I just wonder how that would work in practice.
+
+
+Best regards,
+Krzysztof
