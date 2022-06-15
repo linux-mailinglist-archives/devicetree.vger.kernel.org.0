@@ -2,151 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A141654D3A3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 23:25:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A913054D3AD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 23:27:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239852AbiFOVZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 17:25:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49328 "EHLO
+        id S1343803AbiFOV11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 17:27:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236639AbiFOVZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 17:25:36 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B115156200;
-        Wed, 15 Jun 2022 14:25:35 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id c4so20803913lfj.12;
-        Wed, 15 Jun 2022 14:25:35 -0700 (PDT)
+        with ESMTP id S1343819AbiFOV11 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 17:27:27 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88CA356200
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 14:27:25 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id g4so379639wrh.11
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 14:27:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=pyTQQlNbGPEuJO15lTuPZ7DQfEn06e9frSoizvFwKWw=;
-        b=oTZQqk2F8TVXVFGVypiZ5kqvrzYjclRj/aSnxyTIM6hQJnbMveHh8CN5NSKdEjXmrT
-         xnw04YfUTHUA41scTdZ/ihwYtqlZNJ9sUR0uy9FJ1xPpQgOZvvs4lW4nToN3lIemtsoJ
-         kxboW1x3I1bnf4Kq6p6QHgo6/qu6mbpOjgHIQPMjvOS77A6H3dVySOFH9pN377hOv0zY
-         ue1Cr1ZBlam4ytR7Ko6On/O1zB9BOiLb+JehNpP6MKeyhGYMYY+GsyW+/StTuZPDXhQK
-         20RA9vj8+odsXy1OjpAVHocdS9L+G9ETirfDVa8V52HKPFVLpnzz0eGA5ueD8WlYeHD8
-         TcGA==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BPF4o7sLOFsJSmN4SPO/juaDAdyVg3hHUH3VwC4Ah5A=;
+        b=As3v3yyTP4c1H2WamQXtagSPpLm/T0AQiRpx/sXZPbAFz4c8+7Itm/3B5JI9Wot1Jk
+         atgSKcsRE61zeiY2qhpUF7E9U68/F02Be2/SobaFyjxRdddBOS+Im3Ddofr7E+WLpB3O
+         ucpqHRbcGc7QPWlQKqZzbKrxQymh4Qfq9kOPY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pyTQQlNbGPEuJO15lTuPZ7DQfEn06e9frSoizvFwKWw=;
-        b=i5SIFNeaLxI/O95l+vVoTP4agizPWv3URQEJL4a7D/u/BnNU10AKaot9WybfYeVzAO
-         jYqfa2UDLRfFok7ilkhdV9eWeZRB32Ger7030uCCkYCY1rAA/kAr5h/UF5vIbgzNmMa1
-         /d9i6ImW2vM8B+gxXG0pjiNcBgn4neIwdoIFGRXcXQ48UGehx8EndZBCyiDiz2HVNb6A
-         4StRP2FPzoEiiMRmXs9orUcY0Kr8CobFUR4F/2BgbQ1ajQmZUlrOBKVpaIyCNCQn7Kb5
-         9lXIOQ6hII3fw3+1gDVabHCyqxKYFI4DHFmnGd4f1hcLhiXt7MU64luyJHNKCh9Atk94
-         e7lQ==
-X-Gm-Message-State: AJIora/phkDpkeekJR6hLUtKV9Hp8O/jCmJ+4agx0AaICwpo0xZgagwA
-        U9rCb4qCFAq4lV8EUu+CeoQ=
-X-Google-Smtp-Source: AGRyM1tNfm48SgxJ6bhN8fJEPsmy+wX9TOkullLnS11iK/m9CjlKWH6IosEJU9UKnbB9kyNUpONeSg==
-X-Received: by 2002:a05:6512:6c1:b0:478:e288:1c39 with SMTP id u1-20020a05651206c100b00478e2881c39mr840800lff.58.1655328334096;
-        Wed, 15 Jun 2022 14:25:34 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id r30-20020ac25c1e000000b004791f9ea46esm1924017lfp.231.2022.06.15.14.25.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 14:25:33 -0700 (PDT)
-Date:   Thu, 16 Jun 2022 00:25:31 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 15/23] ata: ahci: Convert __ahci_port_base to
- accepting hpriv as arguments
-Message-ID: <20220615212531.gmyfxjwdmeukmnzz@mobilestation>
-References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
- <20220610081801.11854-16-Sergey.Semin@baikalelectronics.ru>
- <707c18cb-d499-a499-db9a-db5d73f0f3b4@opensource.wdc.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BPF4o7sLOFsJSmN4SPO/juaDAdyVg3hHUH3VwC4Ah5A=;
+        b=ftH3tF2XfkJ/I3wXm3rEwyCVUPewd+H7/pUv9h5zlPPSBCLgvswWl4IV4Ie718MHF4
+         LBn9mvNRzum/N3YPDVpqmwkZp2aip1MkPK6s0zSfp3H7EP/AIDUMXrnmdX4rFyM1+dK6
+         OEAaQs1LeVE7v7aCumlvmuRCdgCy0a5mUAQyNSp9Rxzy4mH0OVJhiO8a0cFsXUa+wHOj
+         y45OshQ4G2uPUolXxqZIYRS5m9D8CBhdrDDqoEIzLVq9gtjDHuBK2BYoEP/r1bxeQh1d
+         vFCjQnPoQYGQj09HrGkK52zjO99fjKSE+q3C5hs4CQCcw1Am1v9LLKRECz4DGp2PeRl8
+         DczQ==
+X-Gm-Message-State: AJIora/Co0SeAa+5hu9gDVU+iIk0XMrAMjnIcz1hcoMBllthi716ZybI
+        WXZ5aUDgHip+tCoUeIyk3K4EF74aEOFJcoJzLU9blg==
+X-Google-Smtp-Source: AGRyM1v4ANlH7LhwVu51I3oLbGKooh3SiqVw+IV+zQM6Y1o8c0uh0vN8qrZnqVKOlQmoljFG+KZvCPvNV1gfuyTpoPk=
+X-Received: by 2002:adf:d1c2:0:b0:218:5736:63d9 with SMTP id
+ b2-20020adfd1c2000000b00218573663d9mr1544472wrd.667.1655328443819; Wed, 15
+ Jun 2022 14:27:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <707c18cb-d499-a499-db9a-db5d73f0f3b4@opensource.wdc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <CAODwPW9E8wWwxbYKyf4_-JFb4F-JSmLR3qOF_iudjX0f9ndF0A@mail.gmail.com>
+ <CAODwPW8fiFSNehZbZDdR9kjHxohLGiyE7edU=Opy0xV_P8JbEQ@mail.gmail.com> <CAD=FV=XAYUx9OKLxThQxYr02ZE+7Rjw0VnSsxg7kfPCBG38FZw@mail.gmail.com>
+In-Reply-To: <CAD=FV=XAYUx9OKLxThQxYr02ZE+7Rjw0VnSsxg7kfPCBG38FZw@mail.gmail.com>
+From:   Julius Werner <jwerner@chromium.org>
+Date:   Wed, 15 Jun 2022 14:27:12 -0700
+Message-ID: <CAODwPW_6A3kcmTLHVnH19bdYKpVBadAcDk5g-qxuju04uPRcMg@mail.gmail.com>
+Subject: Re: [RFC] Correct memory layout reporting for "jedec,lpddr2" and
+ related bindings
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Julius Werner <jwerner@chromium.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Jian-Jia Su <jjsu@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Nikola Milosavljevic <mnidza@outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-10.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 14, 2022 at 05:38:14PM +0900, Damien Le Moal wrote:
-> On 6/10/22 17:17, Serge Semin wrote:
-> > It may get required to retrieve the port-base address even before the
-> 
-> The port base address may be required even before the...
-> 
-> > ata_host instance is initialized and activated, for instance in the
-> > ahci_save_initial_config() method which we about to update (consider this
-> 
-> s/we/we are
+> Two comments about the above:
+>
+> 1. It seems like the top-level node should have a compatible of some
+> type. Without that I guess you're just relying on people to find it
+> based on the name of the node?
+>
+> 2. Why not put the `channel-io-width` property in the channel? Then
+> you don't need to repeat it for each rank that's under the channel?
 
-Got it. will be fixed in v5.
+Yes, we could do it that way. That seemed a bit more complicated to
+me, but if there's precedent for that in other devices it's probably
+the right thing.
 
--Sergey
+> 1. In the above the two ranks are in series, right? ...with a chip
+> select to select rank0 vs rank1? From how SPI works I'd expect that to
+> be represented using "reg", AKA:
 
-> 
-> > modification as a preparation for that one). Seeing the __ahci_port_base()
-> > function isn't used much it's the best candidate to provide the required
-> > functionality. So let's convert it to accepting the ahci_host_priv
-> > structure pointer.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > Reviewed-by: Hannes Reinecke <hare@suse.de>
-> > ---
-> >  drivers/ata/ahci.c | 2 +-
-> >  drivers/ata/ahci.h | 7 ++++---
-> >  2 files changed, 5 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/ata/ahci.c b/drivers/ata/ahci.c
-> > index 9bc8fa77e92f..d14d74649e0e 100644
-> > --- a/drivers/ata/ahci.c
-> > +++ b/drivers/ata/ahci.c
-> > @@ -689,7 +689,7 @@ static void ahci_pci_init_controller(struct ata_host *host)
-> >  			mv = 2;
-> >  		else
-> >  			mv = 4;
-> > -		port_mmio = __ahci_port_base(host, mv);
-> > +		port_mmio = __ahci_port_base(hpriv, mv);
-> >  
-> >  		writel(0, port_mmio + PORT_IRQ_MASK);
-> >  
-> > diff --git a/drivers/ata/ahci.h b/drivers/ata/ahci.h
-> > index 0e66446a5883..8b9826533ae5 100644
-> > --- a/drivers/ata/ahci.h
-> > +++ b/drivers/ata/ahci.h
-> > @@ -431,10 +431,9 @@ int ahci_host_activate(struct ata_host *host, struct scsi_host_template *sht);
-> >  void ahci_error_handler(struct ata_port *ap);
-> >  u32 ahci_handle_port_intr(struct ata_host *host, u32 irq_masked);
-> >  
-> > -static inline void __iomem *__ahci_port_base(struct ata_host *host,
-> > +static inline void __iomem *__ahci_port_base(struct ahci_host_priv *hpriv,
-> >  					     unsigned int port_no)
-> >  {
-> > -	struct ahci_host_priv *hpriv = host->private_data;
-> >  	void __iomem *mmio = hpriv->mmio;
-> >  
-> >  	return mmio + 0x100 + (port_no * 0x80);
-> > @@ -442,7 +441,9 @@ static inline void __iomem *__ahci_port_base(struct ata_host *host,
-> >  
-> >  static inline void __iomem *ahci_port_base(struct ata_port *ap)
-> >  {
-> > -	return __ahci_port_base(ap->host, ap->port_no);
-> > +	struct ahci_host_priv *hpriv = ap->host->private_data;
-> > +
-> > +	return __ahci_port_base(hpriv, ap->port_no);
-> >  }
-> >  
-> >  static inline int ahci_nr_ports(u32 cap)
-> 
-> 
-> -- 
-> Damien Le Moal
-> Western Digital Research
+I wouldn't call it "in series" (rank is just a separate dimension of
+its own, in my mental model) but yes, if you think they should also be
+named with a property inside the node (and not just distinguished by
+node name), we can do that. Using "reg" for this feels a bit odd to
+me, but if that's common device tree practice we can do it that way.
+
+> 2. I guess if you had two things in parallel you'd want to know how?
+> Maybe if you had 4 8-bit chips connected to a 32-bit channel maybe
+> it'd look like this: [...]
+
+I think the channel-io-width mechanism is sufficient to distinguish
+this (by dividing by io-width), so I don't think there's anything to
+gain from listing each of these parallel chips separately. This also
+more closely reflects the way the memory training firmware that's
+writing these entries actually sees the system. The way I understand
+it, from the memory controller's perspective there's actually no
+difference between talking to a single 32-bit chip or two 16-bit chips
+in parallel -- there's no difference in register settings or anything,
+both software and hardware are totally unaware of this. This is all
+just implemented by wiring the respective components together
+correctly in the board layout (split the DQ pins between the two
+chips, and short all the other pins like clock and chip select
+together). When reading the mode register value, the controller only
+reads the first chip's register (which is connected to DQ[0:7]). When
+writing a mode register, the one Write Mode Register cycle will write
+all chips at once (because the written value is transferred through
+the column address pins which are shorted together between all chips).
+So if we were to pretend in the FDT that we had separate density and
+io-width values for each chip, that's kinda disingenuous, because the
+firmware can only read one of them and just assumes that it applies to
+all chips in parallel on that channel. The only way the firmware could
+know how many chips there are in parallel would also be by dividing
+the width of its channel by the io-width reported by the chip -- so I
+think it would be more honest there to just report those two "original
+source" values to the kernel / userspace and let them make that
+deduction themselves if they care to.
+
+> ...and I guess you could have things that include serial and parallel hookups...
+
+Sorry, just to avoid having more confusion here: there is no "serial"
+dimension to this as far as I'm aware (in my original email I called
+the "several chips per channel" thing "in series", but you are right
+that it would really be more accurate to call it "in parallel").
+There's only three dimensions: a) multiple channels (totally separate
+sets of pins coming out of the controller), b) multiple chips per
+channel (splitting e.g. 32 pins from the controller onto two 16-pin
+parts), and c) multiple ranks within each chip (which chip select pin
+is asserted in each access cycle).
+
+> > > This would be describing a dual-channel, dual-rank layout where each
+> > > 32-bit channel is connected to two 16-bit LPDDR chips in series. The
+> > > total capacity would be (2048 Mbits * (32/16) chips + 1024 Mbits *
+> > > (32/16) chips) * 2 channels = 12Gbits.
+>
+> Just to make sure I'm understanding things: in your hypothetical
+> example we're effectively wasting half of the SDRAM bandwidth of the
+> controller, right? So while what you describe is legal you'd get a
+> much more performant system by hooking the two big chips in parallel
+> on one channel and the two small chips in parallel on the other
+> channel. That would effectively give you a 64-bit wide bus as opposed
+> to the 32-bit wide bus that you describe.
+
+No, I don't think you're wasting bandwidth. In my example the
+controller has two 32-bit channels, so it always uses 64 bits of
+bandwidth in total. There's no asymmetry in the "chips per channel"
+dimension in my example (maybe that was a misunderstanding due to our
+different use of "in series" vs "in parallel") -- in fact, there can
+never be asymmetry in that dimension, when you split a channel onto
+more than one chip then those chips always must be exactly equal in
+geometry and timings (because, as mentioned above, they all get
+initialized the same way with parallel Write Mode Register commands).
+Asymmetry can only come in at the rank or channel dimension.
+(Asymmetry there may have a minor performance penalty since you'd be
+limiting the amount of rank or channel interleaving the controller can
+do, but it would be an indirect penalty that depends on the access
+pattern and not be anywhere near as bad as "half the bandwidth".)
+
+Anyway, whether it's a good idea or not, these parts definitely do
+exist and get sold that way. I can't find an example with a public
+datasheet right now, but e.g. the MT53E1536M32DDNQ-046 WT:A part
+offers two 16-bit channels that have two ranks each, where rank 0 is 8
+Gbits and rank 1 is 16 Gbits for each channel (6 GB part in total).
+
+> I'm happy to let others chime in, but one way to do this would be to
+> put the super common properties (density, width, etc) in a common file
+> and have it "included" by everyone else. See
+> `bindings/spi/spi-controller.yaml` and then see how all the SPI
+> controllers "reference" that.
+
+Okay, that should work. I don't think there would be any differences
+other than the compatible strings right now (and maybe which values
+are valid for each property... not sure if that can be distinguished
+while still including shared definitions?), but I can write them as
+three dummy binding files that contain nothing but a compatible string
+and an include.
