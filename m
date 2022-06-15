@@ -2,74 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AB0C54D41D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 00:01:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED51A54D425
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 00:02:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345493AbiFOWBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 18:01:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51806 "EHLO
+        id S1350285AbiFOWCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 18:02:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235490AbiFOWBn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 18:01:43 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 194B356217
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 15:01:41 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id h1so11503814plf.11
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 15:01:41 -0700 (PDT)
+        with ESMTP id S1350303AbiFOWCT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 18:02:19 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A67B7562E4
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 15:02:18 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id 31so10952865pgv.11
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 15:02:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=kJzZPwhMKjOWBCIigpbSF9J8bajdVzfVoc3uDXQW95Q=;
-        b=Cj08PqxuzpVVhXXh9YrJ4jX+ng1DznIaTS8jjwd8bJDdUt+McGQf9d60X+SFrohetr
-         xQPXCAn3LLqD4bAo8U2YhlKsIoCrDwme576BY+Tw0ixfkHRXey2jKP2TXWrw1TXjBO6Y
-         NZYkNEZyZa7dT3QgDHHqT2k5gsNjsb7dVnkRwcGrKBcGY7G3dlsvqAU8yonj0Zae8qS1
-         gftbfrFL+3WB9gd39pJsJS9bBrharUYJGEWA4lkuDtIM01pO2ryKr6fWuCvK5fk+47Ce
-         gTt+LOZiHhHKHx2P9Hs+xjTFaTUwo2ykiSy1xz72/yUPL0Y2n0YQONASgzfTtcPyX1TS
-         iVZQ==
+        bh=kcScYJXACf2T9Sa4dGBrpIUizywJV+NB+pNeD+jGRj0=;
+        b=vZg0V5XGviYMk89uA9Wp1MtlDzkq1rdkPCbOnn1cHvci3xZ0es4PnSo0dWmB+M1xFz
+         AJ1mlX9EhMwHmEvQkbmTRdhdPofzKyV4kCsB8Vp9xmz0tp6EKzMze8LKFwNXVWS98J9R
+         88hOcBSRLHEQY4JNTD9ugK9VeZfTCiLLBIzx2jnOn4aNioJOhEqLs405WbeKDN44TsJ0
+         8tsh6G61OeovlN3mYKiOpiCEOTCHwSADGEyWuPTRZ3wIY+OI6Pj/4A7B+ZLX0pSwO4D+
+         e4fY6e0DzRVikaE0hjnTbh7jgt7cjUBxZtnrOvXH4EkTrIKfKOW9IkvroRX6YuG367eI
+         Xdxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=kJzZPwhMKjOWBCIigpbSF9J8bajdVzfVoc3uDXQW95Q=;
-        b=RzaJ7utmM2z9GUQWRuImazPxZDg0JWSWKA50Ra4Kc9CmnTaW8Pw2z9Te9fhmHsBqVT
-         ykLoAHPf1YrtmFhUKX8/x/T/aiZg2JIIWCb9ZuwgTueeEZPGxFPhxP0aWa+QqwVnYF2x
-         X1rLoR2CqDeXUQOVedjgbtTu9Y8yCe9TXu5jTml8QNSjkHE2FELvEHuA4dx1T7elQsu3
-         4YG1rESGVOaAr/0aDdJM578usZF7+2PRLQBG7+Zazc1K017xOdJ5sY5njF4dv+GlxwW9
-         dWD/1AS0liMc4Uf3VtxWam3gTZvTrcY3+nerlVSkSfbaMpiSjf5MhyzV7tx+G2IvvLut
-         QM5A==
-X-Gm-Message-State: AJIora8cRio7gO9rixg81sc5WdHtmg+bRc2tSvpxE4o8A1VhgACeWY6k
-        HG8XLdBDhpqHccbNUokrNJfljg==
-X-Google-Smtp-Source: AGRyM1tB/7rxj1PsrZbLttdzJ6N39++gXEeBXcuBdRQ9WFZYl1LBho6PCNK+K4HVQ1fuZnvJNAs8qw==
-X-Received: by 2002:a17:903:2645:b0:167:92f1:15c0 with SMTP id je5-20020a170903264500b0016792f115c0mr1589014plb.100.1655330500612;
-        Wed, 15 Jun 2022 15:01:40 -0700 (PDT)
+        bh=kcScYJXACf2T9Sa4dGBrpIUizywJV+NB+pNeD+jGRj0=;
+        b=eCXbKXxVhoIcH9R8YUigKxKIA5e+vfOijvDCb+xFzC4qxN6snqn84PjzlDzn0Fqv8a
+         h5Xz0luSHH4UfDFiZb3vaipZTmdDQ1CMGL5vGS9TYdX8xIvz+j06DhtcSucEVFtXFa/U
+         cT6P9Gvm91wsB38CNmWd34pkibtNOH0BbHJAQfBvComrnZZQnqFCkS8Ljm4Gaw6HJYBN
+         TEZ914uuTR1qQ1npLto8l3ThPTy6qxi/+MVuWKO0hve7ELEMRFntcAzWS5EPvc9liGE0
+         gycvz98k2QZthZooMZFqUIzJOjpIchoYVNStyIsbqLqWHsEhQmtLhZ3LAhhpTWvt54kJ
+         vLzg==
+X-Gm-Message-State: AJIora83Oebzah7udjCm6l+WV7/ecVu8LWzmhxlopqnEt6sQXeCWwWm4
+        Vn0yOzExPg46GBpLwcSsTuvvw7FBRpGQnNDu
+X-Google-Smtp-Source: AGRyM1vAu+j0mmpvKehwZsnqXWna7Wp2yP3aY01hL+X0jvE+4s7/feJd4/rbNQjAAV4okSJFwzqbpw==
+X-Received: by 2002:a65:6a05:0:b0:3db:27cb:9123 with SMTP id m5-20020a656a05000000b003db27cb9123mr1603825pgu.497.1655330538113;
+        Wed, 15 Jun 2022 15:02:18 -0700 (PDT)
 Received: from google.com ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id q22-20020a17090a431600b001eae86cf683sm63878pjg.42.2022.06.15.15.01.39
+        by smtp.gmail.com with ESMTPSA id p11-20020a170903248b00b00161ac982b52sm121873plw.95.2022.06.15.15.02.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 15:01:40 -0700 (PDT)
-Date:   Wed, 15 Jun 2022 23:01:38 +0100
+        Wed, 15 Jun 2022 15:02:17 -0700 (PDT)
+Date:   Wed, 15 Jun 2022 23:02:15 +0100
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: mfd: stm32-timers: Document how to
- specify interrupts
-Message-ID: <YqpWwqNBgfK5nHr0@google.com>
-References: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, zhiyong.tao@mediatek.com,
+        henryc.chen@mediatek.com, johnson.wang@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/7] dt-bindings: mfd: Add compatible for MT6331 PMIC
+Message-ID: <YqpW56+bntMonulO@google.com>
+References: <20220520124039.228314-1-angelogioacchino.delregno@collabora.com>
+ <20220520124039.228314-5-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20220520124039.228314-5-angelogioacchino.delregno@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,20 +76,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 May 2022, Uwe Kleine-König wrote:
+On Fri, 20 May 2022, AngeloGioacchino Del Regno wrote:
 
-> The timer units in the stm32mp1 CPUs have interrupts, depending on the
-> timer flavour either one "global" or four dedicated ones. Document how
-> to formalize these in a device tree.
+> Add a compatible for the MT6331 PMIC MFD device.
 > 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
-> Changes since v3:
->   - Do the things Rob suggested in reqly to v1 which I didn't notice
->     until Fabrice told me in reply to v3.
-> 
->  .../devicetree/bindings/mfd/st,stm32-timers.yaml  | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+>  Documentation/devicetree/bindings/mfd/mt6397.txt | 1 +
+>  1 file changed, 1 insertion(+)
 
 Applied, thanks.
 
