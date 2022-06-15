@@ -2,57 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D816854D352
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 23:07:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D8C754D35B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 23:10:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346410AbiFOVH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 17:07:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33912 "EHLO
+        id S1345188AbiFOVKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 17:10:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345108AbiFOVH5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 17:07:57 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4D011154;
-        Wed, 15 Jun 2022 14:07:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B6B96B82186;
-        Wed, 15 Jun 2022 21:07:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79088C3411E;
-        Wed, 15 Jun 2022 21:07:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655327273;
-        bh=afcLwBL4IqyBLp17UkuvL96DCi1aq3MSXhliCFj/RJw=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Xt2ChoaFaXUxOv/BkARH9jsEPnjGXn8sRjjjeerEn5jW5JIzUUEPDt3iwjog6LGrM
-         mGE3MS/2SIcp34Op8JlAAYWN7HZ/wd0M6/e2/PtCMQjpnc3AMurKG6jC8yKeWfd/PG
-         LCc+OF2E9L608Szq78edATbDy0a0lskwavXppglsN4iSOcYdv3OUNLrpbzsoKtv3ep
-         aEWOYOJgaP+p5gK9fLThsvgNQZBplObbHqQqmoy1UTrIXvrurF9GYxEqAa5zhQlNti
-         3qa0M3rWonCdENbKXAE8/PeQvU9tgZiP6tlrLzVVBbm1nuJ4rWXeTxln2Yc2hiO4/k
-         fw3vvcL1QoE3w==
-From:   Wolfram Sang <wsa@kernel.org>
-To:     linux-doc@vger.kernel.org
-Cc:     =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Wolfram Sang <wsa@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-spi@vger.kernel.org
-Subject: [PATCH] dt-bindings: efm32: remove bindings for deleted platform
-Date:   Wed, 15 Jun 2022 23:07:19 +0200
-Message-Id: <20220615210720.6363-1-wsa@kernel.org>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S1348865AbiFOVKC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 17:10:02 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5FEA4924D
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 14:10:01 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id m20so25582590ejj.10
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 14:10:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gezakuSGfe/XtV5ImoouyA0+Isu2QUrY2kAucW174PM=;
+        b=Rm2lvt38Xuzf4wdJoH+2Ghqc7vQuNI+phzV7EWVPUFQ6EUC1aZU5QETBEBTssdR0bo
+         VE9iyxg1hiw80yeOYUGb9PDJwy+lSSy/uQQas/hFNHo0PnMZaWHR0ndR1t7ZFEAcFQ0a
+         F5XbeIviI1uJCmGgq0Yn0m+Q/FXmhKXxr/1hc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gezakuSGfe/XtV5ImoouyA0+Isu2QUrY2kAucW174PM=;
+        b=GVh9zp02uwp3nXDPlhJSPvF5wI6sMzLXVCXBiqMcUfhK1mafY7NU4BXYqu1RBtoBBV
+         TeBTywydw5lcNXkHXvzVIZ61VgqSfG1PbM4F8y2i7qV7Hyxy0vtm76XavFk6PgCLR9+x
+         3EVvGTXsTk5Gi9tKjHl5efnObK64u/7HU4/lRkP/HEVfcFARJOZt9RoTtpRmD9RXFuXh
+         R2ptN+hqM7d7S56eXY0WmoYfcN/gF2pQIK7ArnF1f1K979Z42CyG9s6/n0LF1UypCrFw
+         cXMlm8qrSWQOJuSSc1DtGH8+hBG9S1PYABPMJUKrq+U9/8Bci1yMumEQRVImjg5X+4Nf
+         M1Rg==
+X-Gm-Message-State: AJIora83p6z3j7gQU9y7XDbqbPJiovG7K5Ur9EQcLc45sgw0cvFBpWal
+        MQMCt/1I775BLGXCLvob4o360I8j4LX/7ehxs4w=
+X-Google-Smtp-Source: AGRyM1t1Gpw/enWbkyBDiB1YHCuY0CuKN89QNp+m/ugJvKWybc4M7ZJAcpI/2PiuUL/+J/SlAttyWA==
+X-Received: by 2002:a17:906:8513:b0:711:c67f:62b6 with SMTP id i19-20020a170906851300b00711c67f62b6mr1539873ejx.657.1655327399703;
+        Wed, 15 Jun 2022 14:09:59 -0700 (PDT)
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com. [209.85.221.42])
+        by smtp.gmail.com with ESMTPSA id v18-20020a170906489200b00703671ebe65sm6659113ejq.198.2022.06.15.14.09.56
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 14:09:58 -0700 (PDT)
+Received: by mail-wr1-f42.google.com with SMTP id x17so16935799wrg.6
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 14:09:56 -0700 (PDT)
+X-Received: by 2002:a5d:6483:0:b0:20f:d046:6382 with SMTP id
+ o3-20020a5d6483000000b0020fd0466382mr1626823wri.342.1655327396288; Wed, 15
+ Jun 2022 14:09:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220609192000.990763-1-mka@chromium.org> <20220609121838.v22.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+In-Reply-To: <20220609121838.v22.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 15 Jun 2022 14:09:43 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W6erE8ByabmYSL_OWJPKYGqysDMGYQX6j7_PSEYGZ4YQ@mail.gmail.com>
+Message-ID: <CAD=FV=W6erE8ByabmYSL_OWJPKYGqysDMGYQX6j7_PSEYGZ4YQ@mail.gmail.com>
+Subject: Re: [PATCH v22 2/3] usb: misc: Add onboard_usb_hub driver
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Bastien Nocera <hadess@hadess.net>,
+        Peter Chen <peter.chen@kernel.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,199 +88,168 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit cc6111375cec ("ARM: drop efm32 platform") removed the platform,
-so no need to still carry the bindings.
+Hi,
 
-Signed-off-by: Wolfram Sang <wsa@kernel.org>
----
- .../devicetree/bindings/clock/efm32-clock.txt | 11 -----
- .../devicetree/bindings/i2c/i2c-efm32.txt     | 33 --------------
- .../devicetree/bindings/serial/efm32-uart.txt | 20 ---------
- .../devicetree/bindings/spi/efm32-spi.txt     | 39 -----------------
- include/dt-bindings/clock/efm32-cmu.h         | 43 -------------------
- 5 files changed, 146 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/efm32-clock.txt
- delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-efm32.txt
- delete mode 100644 Documentation/devicetree/bindings/serial/efm32-uart.txt
- delete mode 100644 Documentation/devicetree/bindings/spi/efm32-spi.txt
- delete mode 100644 include/dt-bindings/clock/efm32-cmu.h
+On Thu, Jun 9, 2022 at 12:20 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> @@ -11,6 +11,7 @@ usbcore-y += phy.o port.o
+>  usbcore-$(CONFIG_OF)           += of.o
+>  usbcore-$(CONFIG_USB_PCI)              += hcd-pci.o
+>  usbcore-$(CONFIG_ACPI)         += usb-acpi.o
+> +usbcore-$(CONFIG_USB_ONBOARD_HUB)      += ../misc/onboard_usb_hub_pdevs.o
 
-diff --git a/Documentation/devicetree/bindings/clock/efm32-clock.txt b/Documentation/devicetree/bindings/clock/efm32-clock.txt
-deleted file mode 100644
-index 263d293f6a10..000000000000
---- a/Documentation/devicetree/bindings/clock/efm32-clock.txt
-+++ /dev/null
-@@ -1,11 +0,0 @@
--* Clock bindings for Energy Micro efm32 Giant Gecko's Clock Management Unit
--
--Required properties:
--- compatible: Should be "efm32gg,cmu"
--- reg: Base address and length of the register set
--- interrupts: Interrupt used by the CMU
--- #clock-cells: Should be <1>
--
--The clock consumer should specify the desired clock by having the clock ID in
--its "clocks" phandle cell. The header efm32-clk.h contains a list of available
--IDs.
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-efm32.txt b/Documentation/devicetree/bindings/i2c/i2c-efm32.txt
-deleted file mode 100644
-index 3b30e54ae3c7..000000000000
---- a/Documentation/devicetree/bindings/i2c/i2c-efm32.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--* Energymicro efm32 i2c controller
--
--Required properties :
--
-- - reg : Offset and length of the register set for the device
-- - compatible : should be "energymicro,efm32-i2c"
-- - interrupts : the interrupt number
-- - clocks : reference to the module clock
--
--Recommended properties :
--
-- - clock-frequency : maximal I2C bus clock frequency in Hz.
-- - energymicro,location : Decides the location of the USART I/O pins.
--   Allowed range : [0 .. 6]
--
--Example:
--	i2c0: i2c@4000a000 {
--		#address-cells = <1>;
--		#size-cells = <0>;
--		compatible = "energymicro,efm32-i2c";
--		reg = <0x4000a000 0x400>;
--		interrupts = <9>;
--		clocks = <&cmu clk_HFPERCLKI2C0>;
--		clock-frequency = <100000>;
--		energymicro,location = <3>;
--
--		eeprom@50 {
--			compatible = "microchip,24c02";
--			reg = <0x50>;
--			pagesize = <16>;
--		};
--	};
--
-diff --git a/Documentation/devicetree/bindings/serial/efm32-uart.txt b/Documentation/devicetree/bindings/serial/efm32-uart.txt
-deleted file mode 100644
-index 4f8d8fde0c1c..000000000000
---- a/Documentation/devicetree/bindings/serial/efm32-uart.txt
-+++ /dev/null
-@@ -1,20 +0,0 @@
--* Energymicro efm32 UART
--
--Required properties:
--- compatible : Should be "energymicro,efm32-uart"
--- reg : Address and length of the register set
--- interrupts : Should contain uart interrupt
--
--Optional properties:
--- energymicro,location : Decides the location of the USART I/O pins.
--  Allowed range : [0 .. 5]
--  Default: 0
--
--Example:
--
--uart@4000c400 {
--	compatible = "energymicro,efm32-uart";
--	reg = <0x4000c400 0x400>;
--	interrupts = <15>;
--	energymicro,location = <0>;
--};
-diff --git a/Documentation/devicetree/bindings/spi/efm32-spi.txt b/Documentation/devicetree/bindings/spi/efm32-spi.txt
-deleted file mode 100644
-index e0fa61a1be0c..000000000000
---- a/Documentation/devicetree/bindings/spi/efm32-spi.txt
-+++ /dev/null
-@@ -1,39 +0,0 @@
--* Energy Micro EFM32 SPI
--
--Required properties:
--- #address-cells: see spi-bus.txt
--- #size-cells: see spi-bus.txt
--- compatible: should be "energymicro,efm32-spi"
--- reg: Offset and length of the register set for the controller
--- interrupts: pair specifying rx and tx irq
--- clocks: phandle to the spi clock
--- cs-gpios: see spi-bus.txt
--
--Recommended properties :
--- energymicro,location: Value to write to the ROUTE register's LOCATION
--                        bitfield to configure the pinmux for the device, see
--                        datasheet for values.
--                        If this property is not provided, keeping what is
--                        already configured in the hardware, so its either the
--                        reset default 0 or whatever the bootloader did.
--
--Example:
--
--spi1: spi@4000c400 { /* USART1 */
--	#address-cells = <1>;
--	#size-cells = <0>;
--	compatible = "energymicro,efm32-spi";
--	reg = <0x4000c400 0x400>;
--	interrupts = <15 16>;
--	clocks = <&cmu 20>;
--	cs-gpios = <&gpio 51 1>; // D3
--	energymicro,location = <1>;
--
--	ks8851@0 {
--		compatible = "ks8851";
--		spi-max-frequency = <6000000>;
--		reg = <0>;
--		interrupt-parent = <&boardfpga>;
--		interrupts = <4>;
--	};
--};
-diff --git a/include/dt-bindings/clock/efm32-cmu.h b/include/dt-bindings/clock/efm32-cmu.h
-deleted file mode 100644
-index 4b48d15fe194..000000000000
---- a/include/dt-bindings/clock/efm32-cmu.h
-+++ /dev/null
-@@ -1,43 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0 */
--#ifndef __DT_BINDINGS_CLOCK_EFM32_CMU_H
--#define __DT_BINDINGS_CLOCK_EFM32_CMU_H
--
--#define clk_HFXO		0
--#define clk_HFRCO		1
--#define clk_LFXO		2
--#define clk_LFRCO		3
--#define clk_ULFRCO		4
--#define clk_AUXHFRCO		5
--#define clk_HFCLKNODIV		6
--#define clk_HFCLK		7
--#define clk_HFPERCLK		8
--#define clk_HFCORECLK		9
--#define clk_LFACLK		10
--#define clk_LFBCLK		11
--#define clk_WDOGCLK		12
--#define clk_HFCORECLKDMA	13
--#define clk_HFCORECLKAES	14
--#define clk_HFCORECLKUSBC	15
--#define clk_HFCORECLKUSB	16
--#define clk_HFCORECLKLE		17
--#define clk_HFCORECLKEBI	18
--#define clk_HFPERCLKUSART0	19
--#define clk_HFPERCLKUSART1	20
--#define clk_HFPERCLKUSART2	21
--#define clk_HFPERCLKUART0	22
--#define clk_HFPERCLKUART1	23
--#define clk_HFPERCLKTIMER0	24
--#define clk_HFPERCLKTIMER1	25
--#define clk_HFPERCLKTIMER2	26
--#define clk_HFPERCLKTIMER3	27
--#define clk_HFPERCLKACMP0	28
--#define clk_HFPERCLKACMP1	29
--#define clk_HFPERCLKI2C0	30
--#define clk_HFPERCLKI2C1	31
--#define clk_HFPERCLKGPIO	32
--#define clk_HFPERCLKVCMP	33
--#define clk_HFPERCLKPRS		34
--#define clk_HFPERCLKADC0	35
--#define clk_HFPERCLKDAC0	36
--
--#endif /* __DT_BINDINGS_CLOCK_EFM32_CMU_H */
--- 
-2.35.1
+I'm OK with this solution of just linking the code into the "usbcore"
+if USB folks are. Thinking about it, I guess another way to solve the
+circular dependency is to somehow create some type of generic
+notification scheme where the USB hub driver subscribes to "a hub has
+appeared" notification. ...but I don't personally have any intuition
+about whether people would like that better than your solution.
 
+
+> +config USB_ONBOARD_HUB
+> +       bool "Onboard USB hub support"
+> +       depends on OF || COMPILE_TEST
+> +       help
+> +         Say Y here if you want to support discrete onboard USB hubs that
+> +         don't require an additional control bus for initialization, but
+> +         need some non-trivial form of initialization, such as enabling a
+> +         power regulator. An example for such a hub is the Realtek
+> +         RTS5411.
+> +
+> +         This driver can be used as a module but its state (module vs
+> +         builtin) must match the state of the USB subsystem. Enabling
+> +         this config will enable the driver and it will automatically
+> +         match the state of the USB subsystem. If this driver is a
+> +         module it will be called onboard_usb_hub.
+> +
+> +if USB_ONBOARD_HUB
+> +config USB_ONBOARD_HUB_ACTUAL
+> +       tristate
+> +       default m if USB=m
+> +       default y if USB=y
+> +endif
+
+Do you still need to play the games with "_ACTUAL"? The USB core no
+longer calls the hub directly. I think that means you can just "depend
+on USB" and be done with the mess. That allows USB to be builtin and
+USB_ONBOARD_HUB can be a module, right?
+
+
+> +static int onboard_hub_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct onboard_hub *hub;
+> +       int err;
+> +
+> +       hub = devm_kzalloc(dev, sizeof(*hub), GFP_KERNEL);
+> +       if (!hub)
+> +               return -ENOMEM;
+> +
+> +       hub->vdd = devm_regulator_get(dev, "vdd");
+> +       if (IS_ERR(hub->vdd))
+> +               return PTR_ERR(hub->vdd);
+> +
+> +       hub->dev = dev;
+> +       mutex_init(&hub->lock);
+> +       INIT_LIST_HEAD(&hub->udev_list);
+> +
+> +       dev_set_drvdata(dev, hub);
+> +
+> +       err = onboard_hub_power_on(hub);
+> +       if (err)
+> +               return err;
+> +
+> +       /*
+> +        * The USB driver might have been detached from the USB devices by
+> +        * onboard_hub_remove(), make sure to re-attach it if needed.
+> +        *
+> +        * This needs to be done deferred to avoid self-deadlocks on systems
+> +        * with nested onboard hubs.
+> +        */
+> +       INIT_WORK(&hub->attach_usb_driver_work, onboard_hub_attach_usb_driver);
+> +       schedule_work(&hub->attach_usb_driver_work);
+
+I'm sure that the above is totally necessary but it's been long enough
+since I looked at this code last that I've totally forgotten why. Any
+chance you could add comments to say under what situation
+onboard_hub_remove() would have detached the USB driver? Is this
+something where you unbind the platform driver and then bind it again?
+...and why does that cause the driver to be detached?
+
+
+> +/**
+> + * onboard_hub_create_pdevs -- create platform devices for onboard USB hubs
+> + * @parent_hub : parent hub to scan for connected onboard hubs
+> + * @pdev_list  : list of onboard hub platform devices owned by the parent hub
+> + *
+> + * Creates a platform device for each supported onboard hub that is connected to
+> + * the given parent hub. To keep track of the platform devices they are added to
+> + * a list that is owned by the parent hub.
+
+I'm ashamed to admit how long it took me to remember why exactly we
+needed a platform device to begin with and why the normal USB devices
+weren't enough (it's because we won't enumerate the USB devices until
+we're powered and so the platform device is in charge of powering
+things up). Finally I re-read the commit message and then it made
+sense, but someone looking at the code later might not think to look
+at the commit message for a while. Maybe remind people in the comments
+for this function? Even if it's somewhere else in the code and I
+missed it, I wouldn't mind a tiny blurb here.
+
+
+> +void onboard_hub_create_pdevs(struct usb_device *parent_hub, struct list_head *pdev_list)
+> +{
+> +       int i;
+> +       struct usb_hcd *hcd = bus_to_hcd(parent_hub->bus);
+> +       struct device_node *np, *npc;
+> +       struct platform_device *pdev = NULL;
+> +       struct pdev_list_entry *pdle;
+> +
+> +       if (!parent_hub->dev.of_node)
+> +               return;
+> +
+> +       for (i = 1; i <= parent_hub->maxchild; i++) {
+> +               np = usb_of_get_device_node(parent_hub, i);
+> +               if (!np)
+> +                       continue;
+> +
+> +               if (!of_is_onboard_usb_hub(np))
+> +                       goto node_put;
+> +
+> +               npc = of_parse_phandle(np, "companion-hub", 0);
+> +               if (npc) {
+> +                       /*
+> +                        * Hubs with companions share the same platform device.
+> +                        * Create the plaform device only for the hub that is
+> +                        * connected to the primary HCD (directly or through
+> +                        * other hubs).
+> +                        */
+> +                       if (!usb_hcd_is_primary_hcd(hcd)) {
+> +                               of_node_put(npc);
+> +                               goto node_put;
+> +                       }
+> +
+> +                       pdev = of_find_device_by_node(npc);
+> +                       of_node_put(npc);
+> +               } else {
+> +                       /*
+> +                        * For root hubs this function can be called multiple times
+> +                        * for the same root hub node (the HCD node). Make sure only
+> +                        * one platform device is created for this hub.
+> +                        */
+> +                       if (!parent_hub->parent && !usb_hcd_is_primary_hcd(hcd))
+> +                               goto node_put;
+
+I don't understand the "else" case above. What case exactly are we
+handling again? This is when:
+* the hub is presumably just a 2.0 hub since there is no companion.
+* our parent is the root hub and the USB 2.0 hub we're looking at is
+not the primary
+
+...but that doesn't make a lot of sense to me? I must have missed something...
+
+In general though, do we even need to look at the "companion-hub"
+property? If this node matches an onboard USB hub and it's the primary
+HCD then we want a platform dev. Otherwise we don't, right?
+
+-Doug
