@@ -2,166 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA0AD54CAC5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 16:03:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23A6954CAC8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 16:03:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355903AbiFOODB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 10:03:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47400 "EHLO
+        id S1355278AbiFOODk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 10:03:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355945AbiFOOCq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 10:02:46 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA045101D;
-        Wed, 15 Jun 2022 07:02:38 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net [192.222.136.102])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: nicolas)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id DF66B6601701;
-        Wed, 15 Jun 2022 15:02:15 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1655301738;
-        bh=A/jvOxm1ICij5K0mIG7oqF5iy6HOnMoo/iFg2qWHY+o=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=Xp91NeW7/5pDED1maKh/hv/BrO3shNGUFb2jaEdMzphcwtcjlNybZ+ct8f3IwhDac
-         ZI/OWfjBpJZKrBoklAeASR8Tu7mCBjc99sYoSIPJ0Urj/ds4at6R0RGAq8X/YdOc9q
-         l8yW8bym5tB5LXyiaqIv4I/Cs1Ws8rhasaPXmj4yTo0/cc2I73wnpxAeUhobtyvtLD
-         jbRIWok6C3Y3BMSDsNsenU06cBgVOzTqVuBEsv0HUmYc2S++fOMctZZZKa+JFWCIpr
-         6zUxp6Q2kTv52QxFTODST5w3r1d0nHz3uRuPUXCICLdGey89ewVi2W6DwOfbxVW3VS
-         no6sEAK760B8w==
-Message-ID: <a64aa50e843967d691300af3cda27b85b8353f96.camel@collabora.com>
-Subject: Re: [V9,4/7] mtk-jpegenc: add jpegenc timeout func interface
-From:   Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To:     Irui Wang <irui.wang@mediatek.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        angelogioacchino.delregno@collabora.com, wenst@chromium.org
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
-        maoguang.meng@mediatek.com, kyrie wu <kyrie.wu@mediatek.com>,
-        srv_heupstream@mediatek.com
-Date:   Wed, 15 Jun 2022 10:02:07 -0400
-In-Reply-To: <20220613032306.23237-5-irui.wang@mediatek.com>
-References: <20220613032306.23237-1-irui.wang@mediatek.com>
-         <20220613032306.23237-5-irui.wang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.1 (3.44.1-1.fc36) 
+        with ESMTP id S233811AbiFOODH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 10:03:07 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18D061145B
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 07:02:59 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id r5so4755836pgr.3
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 07:02:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=M66DAB+19p6w4Na1SDbCKZUUw5Zn5mhELOHN0rTlLtM=;
+        b=UDjUEJIiRoVktXJeykSYszQEk/7Fo9qKyvSGWv6zm3yB6tuZvYVMddV+i8fQajPkE2
+         aAaZE2cW8WfJiV9Bl+ja/qocfZ84YXu66CvwLgyWfYpBuRUjIAVQEVjMuyhiy55sy0gE
+         YOvQWptxx1hqEzX37f8EcQieP+Vbu9XWAZq5akpeLLmyBJFhwQ9UhvZYcBtFuhISrnOI
+         FfbJhNxSShwSO+3+Rz9AZhWy9ZSyMi/6umtFS4lMPcttPWLIfe2s52GsUErh6DBdP0Kg
+         Z2qNqFD+vvD2WozRI6qLTIw42MhWmb8/TfULi1FUTchhKTMP2R5yRC8BhddQzPIyQxHd
+         +i8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=M66DAB+19p6w4Na1SDbCKZUUw5Zn5mhELOHN0rTlLtM=;
+        b=JgjuNzveo4anOijsDXhNA+p1meknsUoAKWC4Wbev9+7StsS03BVjsiI5Flje1QqgFs
+         IzcALPsntoPlSDNXJPpUHSx8trx4jlGCWmI/i+5A9Wu5J3Hn7yyeK9N5ETfxGjRpzo7n
+         OuorPblX7baFVbTgPy6brHrHG6EtqKth2QDqBBGyo1NvD97BPx2TP/71sCNZUVjn7Au7
+         swL1otGsdzQvfKk3Uf8K/kNpcgMupi6Dw2hFqfXdaXK/EU+YjXQHNex+tSxqsWhCMvZZ
+         x+eZS/fGQndUGpBljBXyQpnwBzwVyo38ZTm8RKgFn8RqFoUjkwkNGilGvXSBbTE9Fz/a
+         076w==
+X-Gm-Message-State: AJIora8THOxn7h2a+mL4bB/V1CSJFVlV2PRdidSFvYgUBq6PyVmFhaqh
+        U2TTYdA/UILOl6tb86hr7EOBeg==
+X-Google-Smtp-Source: ABdhPJx3UrcgrUWHd4kpkHv8SdYGvKistJLOVKNX4XSrYpzd92CUkt0EJ89uNYlWk0nQnhp3+4adig==
+X-Received: by 2002:a05:6a00:421a:b0:522:8b4c:69a9 with SMTP id cd26-20020a056a00421a00b005228b4c69a9mr9997626pfb.60.1655301778548;
+        Wed, 15 Jun 2022 07:02:58 -0700 (PDT)
+Received: from [172.20.0.255] ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id x3-20020a1709029a4300b001663165eb16sm9358196plv.7.2022.06.15.07.02.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 07:02:58 -0700 (PDT)
+Message-ID: <53d94169-d724-7763-1b34-30f219c9963c@linaro.org>
+Date:   Wed, 15 Jun 2022 07:02:50 -0700
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v18 10/10] ARM: dts: Add Sunplus SP7021-Demo-V3 board
+ device tree
+Content-Language: en-US
+To:     Qin Jian <qinjian@cqplus1.com>, sboyd@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, linux@armlinux.org.uk, arnd@arndb.de,
+        olof@lixom.net, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <cover.1655194858.git.qinjian@cqplus1.com>
+ <0574ed0ad1e9ec4c12645fe2d2dde8f701d285e5.1655194858.git.qinjian@cqplus1.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <0574ed0ad1e9ec4c12645fe2d2dde8f701d285e5.1655194858.git.qinjian@cqplus1.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le lundi 13 juin 2022 =C3=A0 11:23 +0800, Irui Wang a =C3=A9crit=C2=A0:
-> From: kyrie wu <kyrie.wu@mediatek.com>
->=20
-> Generalizes jpegenc timeout func interfaces to handle HW timeout.
->=20
-> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
+On 14/06/2022 01:31, Qin Jian wrote:
+> Add the basic support for Sunplus SP7021-Demo-V3 board.
+> 
+> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
 > ---
->  .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  8 ++++++
->  .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  | 25 +++++++++++++++++++
->  2 files changed, 33 insertions(+)
->=20
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h b/drive=
-rs/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-> index f6e980fde4ef..0683d80fcea5 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-> @@ -76,6 +76,12 @@ struct mtk_jpeg_variant {
->  	u32 cap_q_default_fourcc;
->  };
-> =20
-> +struct mtk_jpeg_hw_param {
-> +	struct vb2_v4l2_buffer *src_buffer;
-> +	struct vb2_v4l2_buffer *dst_buffer;
-> +	struct mtk_jpeg_ctx *curr_ctx;
-> +};
-> +
->  enum mtk_jpegenc_hw_id {
->  	MTK_JPEGENC_HW0,
->  	MTK_JPEGENC_HW1,
-> @@ -107,6 +113,8 @@ struct mtk_jpegenc_comp_dev {
->  	struct mtk_jpegenc_clk venc_clk;
->  	int jpegenc_irq;
->  	int hw_id;
-> +	struct delayed_work job_timeout_work;
-> +	struct mtk_jpeg_hw_param hw_param;
->  };
-> =20
->  /**
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c b/dri=
-vers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-> index 8ac6b031dcd4..99f3db2a393a 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-> @@ -185,6 +185,26 @@ void mtk_jpeg_set_enc_params(struct mtk_jpeg_ctx *ct=
-x,  void __iomem *base)
->  }
->  EXPORT_SYMBOL_GPL(mtk_jpeg_set_enc_params);
-> =20
-> +static void mtk_jpegenc_timeout_work(struct work_struct *work)
-> +{
-> +	struct delayed_work *dly_work =3D to_delayed_work(work);
-> +	struct mtk_jpegenc_comp_dev *cjpeg =3D
-> +		container_of(dly_work,
-> +			     struct mtk_jpegenc_comp_dev,
-> +			     job_timeout_work);
-> +	enum vb2_buffer_state buf_state =3D VB2_BUF_STATE_ERROR;
-> +	struct vb2_v4l2_buffer *src_buf, *dst_buf;
-> +
-> +	src_buf =3D cjpeg->hw_param.src_buffer;
-> +	dst_buf =3D cjpeg->hw_param.dst_buffer;
-> +	dst_buf->vb2_buf.timestamp =3D src_buf->vb2_buf.timestamp;
+> Fix the comments from Krzysztof.
+> ---
+>  MAINTAINERS                                  |   1 +
+>  arch/arm/boot/dts/Makefile                   |   2 +
+>  arch/arm/boot/dts/sunplus-sp7021-achip.dtsi  |  84 +++++
+>  arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts |  26 ++
+>  arch/arm/boot/dts/sunplus-sp7021.dtsi        | 318 +++++++++++++++++++
+>  5 files changed, 431 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/sunplus-sp7021-achip.dtsi
+>  create mode 100644 arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts
+>  create mode 100644 arch/arm/boot/dts/sunplus-sp7021.dtsi
+> 
 
-Another case for v4l2_m2m_buf_copy_metadata? As you know early the dst_buf,=
- you
-could do that once before you start the encoding, this could possibly remov=
-e the
-duplication.
 
-> +
-> +	mtk_jpeg_enc_reset(cjpeg->reg_base);
-> +	clk_disable_unprepare(cjpeg->venc_clk.clks->clk);
-> +	pm_runtime_put(cjpeg->dev);
-> +	v4l2_m2m_buf_done(src_buf, buf_state);
-> +}
-> +
->  static irqreturn_t mtk_jpegenc_hw_irq_handler(int irq, void *priv)
->  {
->  	struct vb2_v4l2_buffer *src_buf, *dst_buf;
-> @@ -196,6 +216,8 @@ static irqreturn_t mtk_jpegenc_hw_irq_handler(int irq=
-, void *priv)
->  	struct mtk_jpegenc_comp_dev *jpeg =3D priv;
->  	struct mtk_jpeg_dev *master_jpeg =3D jpeg->master_dev;
-> =20
-> +	cancel_delayed_work(&jpeg->job_timeout_work);
-> +
->  	irq_status =3D readl(jpeg->reg_base + JPEG_ENC_INT_STS) &
->  		JPEG_ENC_INT_STATUS_MASK_ALLIRQ;
->  	if (irq_status)
-> @@ -272,6 +294,9 @@ static int mtk_jpegenc_hw_probe(struct platform_devic=
-e *pdev)
->  	dev->plat_dev =3D pdev;
->  	dev->dev =3D &pdev->dev;
-> =20
-> +	INIT_DELAYED_WORK(&dev->job_timeout_work,
-> +			  mtk_jpegenc_timeout_work);
-> +
->  	jpegenc_clk =3D &dev->venc_clk;
-> =20
->  	jpegenc_clk->clk_num =3D devm_clk_bulk_get_all(&pdev->dev,
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
