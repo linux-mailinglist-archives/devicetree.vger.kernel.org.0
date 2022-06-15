@@ -2,75 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71E2854CF82
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:14:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAA4A54CF89
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:15:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354874AbiFOROG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 13:14:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51288 "EHLO
+        id S1350965AbiFORPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 13:15:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357678AbiFORNr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:13:47 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3307525595
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:13:46 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id i64so12007908pfc.8
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:13:46 -0700 (PDT)
+        with ESMTP id S1344049AbiFORPS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:15:18 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC50338B9
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:15:17 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id w21so12067945pfc.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:15:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=2hy2Qkd4xSuW4p+5Dl7PR+SUIjoj02p8RkTpyxOOHqo=;
-        b=MIBH7WuXuo8XsYajlXRYGYomRcjkj6nPW/WNdlCyCciKwmkvzYPIwiUtu3Qe629RgZ
-         cuZ+zyqFYzWMeEFMfJdGt0BHvJjKgqniKy+bjOBj6jDlMyWtrs3W0Kv7ICDIf+bPGVQu
-         YKSqWlun8uCo52RezaVUDBTIzQJ0dRW3jXZr/cRhhFeI3XTfNXAi5Fm4tPE/WNES69zR
-         z81w78Yli3gGEzD34bUQx0paNeHz/lAx8+6t53Y0vstuIrX5MZl1i1yT+KyK+JNu2m9q
-         JCaaGDzWFoBHOjvizAqml7ahRmwIaspthWws+j4MfxDyF8u7+zgD9rKYNV1mLWk2GK6i
-         xkmw==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=nPsbkcbBeqbASqCJC2zl/rCrhRNAADIrDvak/nQhe9I=;
+        b=zuUSSOBt4Ggjo0c6W+e3LgU4K8RLCr5F6HVZo7DVgpVZYW7riUD3FxWdyShRtnpMAd
+         gD+qtluAXQsN8laYT3xeuEGuv0DrHBfYrgnttvxnqepG3/xslpnx+osllE93T4ST88+O
+         dIe7oLe58IH8oAe+ScDXmlcmYTfJ9RDysO8JM7xTGO60AeiL7d/EEKC6DfZrssuCns49
+         mItlwhRGLv2lcbNJNAVRzp+SeGobY19ZlGiy7IT/Ey3N4z2nBpIGc7xwYJBLLEnr4DyG
+         FGroZZaSzoHw6OS3i0d2hE3+1Y6EdBwec+ShpWaU5IDziPGTWyEAk97HswqN9AILr/8u
+         xaSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:content-transfer-encoding;
-        bh=2hy2Qkd4xSuW4p+5Dl7PR+SUIjoj02p8RkTpyxOOHqo=;
-        b=tPSmQnoeELgNQzMT71Ya9/jzUqQpOFT1UFRngY0bKNlKfxweCrjbsNIuPdadInjaTv
-         bvK/m4c/0/4K8ColcUTT0SPIP3i0QOs3V/lcFQiBEBpLd44bnCtdWxmQSLKzN+yJVtSZ
-         JlwDy2TCGFYp7EeVpL8+pCIkmLA+dO5kdy2m7SvIOQhBPQrPcDQiTsZ9O0i8cZLlw6tX
-         7BQTcxhUAmX7c93jpi4oaI6YqaT+/2/V11bprczSeBaj/mXx6sJ53atfgQquLedJ7SDJ
-         NVkKcSM1wpxxu4fJ4NLF/aAKL1gHlmxIVfrTbGewQh5DOvUq7qxkduENh4DnzYRZyvrG
-         Adlw==
-X-Gm-Message-State: AJIora9nJ5Y4AWvcuUmnIwh0nubQ/FrSJRmZMczmwSp78qV2SsX8+tBm
-        bR2C0/foj0nnVuzMgqk4dGftb6Lr81iJtW9GWz3wkw==
-X-Google-Smtp-Source: AGRyM1uDSl1WVzfzUp2fssJ9HirywV+QKxtYdrezojo5TjTmtib/dvB0jLtBLE0xMnYmMStriT3vSKgQ4Fy4j6rlNt0=
-X-Received: by 2002:a62:7c14:0:b0:51b:9d03:a4c7 with SMTP id
- x20-20020a627c14000000b0051b9d03a4c7mr395031pfc.74.1655313225618; Wed, 15 Jun
- 2022 10:13:45 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=nPsbkcbBeqbASqCJC2zl/rCrhRNAADIrDvak/nQhe9I=;
+        b=hQMSs0PEDuWvkA9+cp3NXjyFexSvfLVkszxqxlNMUqwhjLpiVOhm/L28owrh9fs6Qw
+         T2L/B9uKVF+sKweyhsjk26jFTfxX9lpi58r9M8VVsRbqtB8uCKy1kloyBsxp1RHf5fYJ
+         01JwUXM3tf4RzDn6G3Fc76kBwWg3cS1KbfHsMtc62cDlQJQIiBPAKrxR+seh4uHNkCZs
+         t7weSjy2znxD0YkbHMibSlbW6RBBK66ZXxX+DPCSs06wMqZZIV0OTm8fGWJY2bUnKsor
+         XrypFKnnRbdvA36bWGQFzwNaJ6Hnoj4Zijmzm+kARJ+Ke7+D2j+kTIo3m+4shRJ40ppk
+         d3EA==
+X-Gm-Message-State: AJIora+LJ4pJpjnASPO0MqEAlZ2lmc+I/w7SLBn9pJj30UWyBlxohYOS
+        Mkn9Nr4pX9gc1ev64AigE/9Arw==
+X-Google-Smtp-Source: AGRyM1tYcSNkOShX6GUjY540L3XsgD4qhnoZ7s0AKq1KR4hZIS/RVxyoI7gWFkGA1LbJjPUi1Gog6w==
+X-Received: by 2002:a63:e517:0:b0:3fe:4273:1063 with SMTP id r23-20020a63e517000000b003fe42731063mr672021pgh.371.1655313317162;
+        Wed, 15 Jun 2022 10:15:17 -0700 (PDT)
+Received: from [172.22.33.138] ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id h30-20020aa79f5e000000b00519cfca8e30sm10153151pfr.209.2022.06.15.10.15.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 10:15:16 -0700 (PDT)
+Message-ID: <12e3bb72-af2d-653f-b342-c6b4d6a1f292@linaro.org>
+Date:   Wed, 15 Jun 2022 10:15:15 -0700
 MIME-Version: 1.0
-References: <20220522162802.208275-1-luca@z3ntu.xyz> <20220522162802.208275-11-luca@z3ntu.xyz>
- <Yqjti8s06LIfTE52@shikoro>
-In-Reply-To: <Yqjti8s06LIfTE52@shikoro>
-From:   Loic Poulain <loic.poulain@linaro.org>
-Date:   Wed, 15 Jun 2022 19:13:09 +0200
-Message-ID: <CAMZdPi_c931ejPA2Nkim1cwBS9sdcTNnfUEvUOvFSsfrdN18AQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 10/14] i2c: qcom-cci: add msm8974 compatible
-To:     Wolfram Sang <wsa@kernel.org>, Luca Weiss <luca@z3ntu.xyz>,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Andy Gross <agross@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
+ which controls
+Content-Language: en-US
+To:     Max Krummenacher <max.oss.09@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Mark Brown <broonie@kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        matti.lehtimaki@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220609150851.23084-1-max.oss.09@gmail.com>
+ <20220613191549.GA4092455-robh@kernel.org>
+ <CAMuHMdU+aOw_D3SR6714U_i5WhE8S-FCLdPJaf_+Fncz4aH8VA@mail.gmail.com>
+ <CAEHkU3VVM0zUsaKMUGeSzfbLmVJW6rqXGLv7TqaLTEQeXEVkUA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAEHkU3VVM0zUsaKMUGeSzfbLmVJW6rqXGLv7TqaLTEQeXEVkUA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,24 +102,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Jun 2022 at 22:20, Wolfram Sang <wsa@kernel.org> wrote:
->
-> On Sun, May 22, 2022 at 06:27:58PM +0200, Luca Weiss wrote:
-> > From: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
-> >
-> > MSM8974 CCI is the same as MSM8916 except it has two masters.
-> >
-> > Signed-off-by: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
-> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > ---
-> > To note, the cci_v1_5_data variable name is just a bit arbitrary and
-> > isn't meant to reflect IP version "1.5". I'd be happy to change the
-> > variable name to something else.
->
-> Loic, Robert: I know this series is marked RFC, but the I2C patches
-> adding a new SoC to the driver are maybe interesting already?
+On 15/06/2022 09:10, Max Krummenacher wrote:
+> Hi
+> 
+> On Tue, Jun 14, 2022 at 9:22 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>>
+>> Hi Rob,
+>>
+>> On Mon, Jun 13, 2022 at 9:15 PM Rob Herring <robh@kernel.org> wrote:
+>>> On Thu, Jun 09, 2022 at 05:08:46PM +0200, Max Krummenacher wrote:
+>>>> From: Max Krummenacher <max.krummenacher@toradex.com>
+>>>>
+>>>> its power enable by using a regulator.
+>>>>
+>>>> The currently implemented PM domain providers are all specific to
+>>>> a particular system on chip.
+>>>
+>>> Yes, power domains tend to be specific to an SoC... 'power-domains' is
+>>> supposed to be power islands in a chip. Linux 'PM domains' can be
+>>> anything...
+> 
+> I don't see why such power islands should be restricted to a SoC. You can
+> build the exact same idea on a PCB or even more modular designs.
 
-Yes I agree, no objection to get them.
+In the SoC these power islands are more-or-less defined. These are real
+regions gated by some control knob.
 
-Regards,
-Loic
+Calling few devices on a board "power domain" does not make it a power
+domain. There is no grouping, there is no control knob.
+
+Aren't you now re-implementing regulator supplies? How is this different
+than existing supplies?
+
+Best regards,
+Krzysztof
