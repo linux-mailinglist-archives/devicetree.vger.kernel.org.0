@@ -2,151 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15CA554CDDC
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 18:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E13D054CEA4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 18:30:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348201AbiFOQLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 12:11:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37602 "EHLO
+        id S236601AbiFOQaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 12:30:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230236AbiFOQLD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 12:11:03 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D237534B91;
-        Wed, 15 Jun 2022 09:11:01 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id a29so19702439lfk.2;
-        Wed, 15 Jun 2022 09:11:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wvgXMUe19+tnC/niWqva2BYC9twBwMOusfC9xJToLc0=;
-        b=cACKFlgk0vAjggeOqDqPolXWI9jqe1mUvzJqF/4ZKnk8BJWFIT/PaEHnCC0SYy56Ap
-         nvSqh2iOZTc0A0gC7AATZVDIRIHTKX90DiHuGuJcrkq51uUmoVRmelpSD5ERp+tg+zxP
-         yMwlSu9O5T/7K4zw4TYs54hMoUDNTtjlJ88BPrZIbJajlzAp16Ygw/+iLgySCp4+Glro
-         48pFhIqHYpTN53/PcYy4/Qs5Ns3OfzD/D7QbKTYakwKoOP2wBFR/Q9zoLnISoKaaPtpN
-         fMXmgFvuKcfhW5akq2llkc7KM2jHRsKoFWu9VQxqOckQ+8flI2EV/K6DwpLg2qoDFZaB
-         4NxQ==
+        with ESMTP id S234917AbiFOQaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 12:30:07 -0400
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 970373CA73;
+        Wed, 15 Jun 2022 09:30:06 -0700 (PDT)
+Received: by mail-il1-f173.google.com with SMTP id s1so9185098ilj.0;
+        Wed, 15 Jun 2022 09:30:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wvgXMUe19+tnC/niWqva2BYC9twBwMOusfC9xJToLc0=;
-        b=FU/b/LfBB0AyqZBy4XfcAss+F8YrFt02qUmfwxAu+rTz8H33aW5Ij5W68x7bvuw4ys
-         Bj5W3kQkV/362etbONFhrrxzLH+WgE2SHlWZVtW9F9E79dmk9qERezwzJgp2fusWlaOS
-         rxRuYm0eWJdIqAUtWIFW+M9X0bp5lGM4h5f9NSgPj1bXjbnWzjn8FUp1AVvRqtBJg7pt
-         QVneKshm0LG3+Wu8U9o0ikoAXCcAiw1iHIX9crZQNpjdA0FKhob3dEaTx4477PmrB4kK
-         KKE8mh0ooyO8AlZYmdgizhw4ONgwILgYJgBeTian5MZy0Idesufhder0K/kGBQ5ICF/A
-         ndBQ==
-X-Gm-Message-State: AJIora/5Dn0kVPaVqlZm9T8rEaVEyzFnl3cm20+L/0VyHCXyj5MV9EYQ
-        aOSJ7O92UWpljFiduNz2YZ0ku0eebKr6155FiOk=
-X-Google-Smtp-Source: AGRyM1toftMNLI+bMk64j8iSZzr0cxrrxwAj4tiO2+SyjcwnLTdWx7aNT3elpx26GbmD++Ti33aZvgxhE2LTFoe48Ts=
-X-Received: by 2002:a19:9117:0:b0:47a:300:7506 with SMTP id
- t23-20020a199117000000b0047a03007506mr138552lfd.235.1655309460230; Wed, 15
- Jun 2022 09:11:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220609150851.23084-1-max.oss.09@gmail.com> <20220613191549.GA4092455-robh@kernel.org>
- <CAMuHMdU+aOw_D3SR6714U_i5WhE8S-FCLdPJaf_+Fncz4aH8VA@mail.gmail.com>
-In-Reply-To: <CAMuHMdU+aOw_D3SR6714U_i5WhE8S-FCLdPJaf_+Fncz4aH8VA@mail.gmail.com>
-From:   Max Krummenacher <max.oss.09@gmail.com>
-Date:   Wed, 15 Jun 2022 18:10:48 +0200
-Message-ID: <CAEHkU3VVM0zUsaKMUGeSzfbLmVJW6rqXGLv7TqaLTEQeXEVkUA@mail.gmail.com>
-Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
- which controls
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Mark Brown <broonie@kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Yjh1+r7kQKkklBAX8yt4ws0m3hqB7N6WBb2gIQuSFOk=;
+        b=Pk/RCFm1tYc85Xx1TpHMfBLo6a4Kl7vUnokDRgpLWXJ8k+xfXc4i31TJ0jXCaztjR6
+         yS7NIEt8gwHBds/qOc5NGq0z2x9PiEV8P4rFmz3g6lhUEYQ2fFM4TskZskODQkgmQc2b
+         YQelQhcS1F1PXwi4Dyty/5kOn7P9X1knyjRgJ07f4ZGEcORqfRTqKNIQIzX2gxpa1YlP
+         qEzokWYUS2YAl3VHRQr5LMVjd0ah+VwA4Gvp03zaoNdhmNkC2oi7f+Du7sBcWEyxhAdr
+         v5U3UYw0bp6BZrHxvmGqN1PoRiY2lO9YGoUT/0bWnvOjKuE4kWGJacNQfD4taKHm9q7A
+         pqPA==
+X-Gm-Message-State: AJIora/Kad33BxqGgh2m5YF9TptCI6JW9zH5kvAm9IhVB+69cqXOql0/
+        dbcYht0518Pq8V1n4f4oLA==
+X-Google-Smtp-Source: AGRyM1tU2NMW3KY2z9dvAu+gMiHcE3NGahsP0X2Zu86k3z+l6tTjVbND7nRlT6zHhpafdmi8QTCg3A==
+X-Received: by 2002:a92:cd41:0:b0:2d6:6553:db13 with SMTP id v1-20020a92cd41000000b002d66553db13mr355984ilq.307.1655310605859;
+        Wed, 15 Jun 2022 09:30:05 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id c26-20020a02c9da000000b0032e2dce10aesm6296145jap.160.2022.06.15.09.30.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jun 2022 09:30:05 -0700 (PDT)
+Received: (nullmailer pid 1393969 invoked by uid 1000);
+        Wed, 15 Jun 2022 16:30:03 -0000
+Date:   Wed, 15 Jun 2022 10:30:03 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Frank Li <Frank.Li@nxp.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-kernel@vger.kernel.org,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Serge Semin <fancer.lancer@gmail.com>
+Subject: Re: [PATCH v3 02/17] dt-bindings: PCI: dwc: Remove bus node from the
+ examples
+Message-ID: <20220615163003.GA1393851-robh@kernel.org>
+References: <20220610085706.15741-1-Sergey.Semin@baikalelectronics.ru>
+ <20220610085706.15741-3-Sergey.Semin@baikalelectronics.ru>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220610085706.15741-3-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On Fri, 10 Jun 2022 11:56:50 +0300, Serge Semin wrote:
+> It's absolutely redundant seeing by default each node is embedded into its
+> own example-X node with address and size cells set to 1.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> ---
+> 
+> Changelog v3:
+> - This is a new patch unpinned from the next one:
+>   https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
+>   by the Rob' request. (@Rob)
+> ---
+>  .../bindings/pci/snps,dw-pcie-ep.yaml         | 16 ++++-----
+>  .../devicetree/bindings/pci/snps,dw-pcie.yaml | 35 ++++++++++---------
+>  2 files changed, 24 insertions(+), 27 deletions(-)
+> 
 
-On Tue, Jun 14, 2022 at 9:22 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Rob,
->
-> On Mon, Jun 13, 2022 at 9:15 PM Rob Herring <robh@kernel.org> wrote:
-> > On Thu, Jun 09, 2022 at 05:08:46PM +0200, Max Krummenacher wrote:
-> > > From: Max Krummenacher <max.krummenacher@toradex.com>
-> > >
-> > > its power enable by using a regulator.
-> > >
-> > > The currently implemented PM domain providers are all specific to
-> > > a particular system on chip.
-> >
-> > Yes, power domains tend to be specific to an SoC... 'power-domains' is
-> > supposed to be power islands in a chip. Linux 'PM domains' can be
-> > anything...
-
-I don't see why such power islands should be restricted to a SoC. You can
-build the exact same idea on a PCB or even more modular designs.
-
->
-> > > This allows to use the "regulator-pm-pd" driver with an arbitrary
-> > > device just by adding the 'power-domains' property to the devices
-> > > device tree node. However the device's dt-bindings schema likely does
-> > > not allow the property 'power-domains'.
-> > > One way to solve this would be to allow 'power-domains' globally
-> > > similarly how 'status' and other common properties are allowed as
-> > > implicit properties.
-> >
-> > No. For 'power-domains' bindings have to define how many there are and
-> > what each one is.
->
-> IMO "power-domains" are an integration feature, i.e. orthogonal to the
-> actual device that is part of the domain.  Hence the "power-domains"
-> property may appear everywhere.
->
-> It is actually the same for on-chip devices, as an IP core may be
-> reused on a new SoC that does have power or clock domains.  For
-> these, we managed to handle that fine because most devices do have
-> some form of family- or SoC-specific compatible values to control if
-> the power-domains property can be present/is required or not.
->
-> But for off-chip devices, the integrator (board designed) can do
-> whatever he wants.  Off-chip devices do have the advantage that it
-> is usually well documented which power supply (if there are multiple)
-> serves which purpose, which is not always clear for on-chip devices.
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+Reviewed-by: Rob Herring <robh@kernel.org>
