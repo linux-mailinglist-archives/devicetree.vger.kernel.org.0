@@ -2,84 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B95354CF8B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:16:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 040AE54CF98
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:20:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344717AbiFORQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 13:16:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53734 "EHLO
+        id S1349861AbiFORUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 13:20:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234573AbiFORQi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:16:38 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95473338B9
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:16:37 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id r5so5246701pgr.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:16:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YwPLgDxyuMvpvopE1a1vSveFD87H5x3EsFEOC1y1D1Y=;
-        b=yhUOBJCl0gMsKi78C0bvK1VKV92CvJzw9G1Aa8dLPXkAhzE7+Dip8lE9H+jS+DgG/O
-         UkRMk/BkAWgSy6FNWN8RZDjcb6D6HMEYz22HlRsNzZbZAB6602FBLHRW+TBY/W4wWFOz
-         2qMthuvAP4OUT6XiZiffWmSZ/CBxPeNR0Fj9LKkC658TyVJoC5QoBG+QsXR5YMeF8Ere
-         Shxh/v+IUUWVyipyknblyOeeqpt+DFubv9/D4Nn16feGBg0lvtBCwjLZ7QF3XIzx7Xy/
-         1SJbsDgI9SHAeDeQLY/kiTbGWNSUX4NPAFIkRCqRbqgPX8FlUuFt+MSo27DveDTHTUFH
-         yujw==
+        with ESMTP id S1349694AbiFORUI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:20:08 -0400
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67FD23172;
+        Wed, 15 Jun 2022 10:20:06 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id r5so13394909iod.5;
+        Wed, 15 Jun 2022 10:20:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YwPLgDxyuMvpvopE1a1vSveFD87H5x3EsFEOC1y1D1Y=;
-        b=f83jVXap6m76QtkM756VjJLH9utHte9vA2nuPrWkeYATfv0QQnAuBH3Zet1IzYWiKk
-         gFVEB2kculR+E+JDdbbgBYnOuAYT6YjfF5pGQ6xfnfVgfGgQj0vUxOnU09PQo9qeLiZY
-         2rZEkraF08STx5FLmGB+zvj2ucrRnmWt0fY0p61BZyb8aNKaoRxlsN1qtJr5E/ZmTg4m
-         svf563nmtpWqNApLmnskgtcQXsZ4hRDiv8MI3plleEAS7v9BFZ5WGDsRcoDlMjn99+pd
-         gjGELf2rtP92iRiwCdCNweB4UYhMyrGM6BvSNE9geW2cp7vB/wwMHjiiLhEgQGIK3GRb
-         shkw==
-X-Gm-Message-State: AJIora/GSV9Vh+0z1+t0XjJasjIm4CPqIU4NuexKDRfCxpiyLHEdFTJz
-        YrJMtiiDJcORDNAuwv1OvIGzXg==
-X-Google-Smtp-Source: AGRyM1vea1pCIzgALGoWtdku0ZEN02bZLY/l1PjIFJWbemwEUCX2a88E6hLPWZFoab+LFbh2HUUvSA==
-X-Received: by 2002:a05:6a00:b8c:b0:51c:2d3d:4595 with SMTP id g12-20020a056a000b8c00b0051c2d3d4595mr611855pfj.80.1655313397004;
-        Wed, 15 Jun 2022 10:16:37 -0700 (PDT)
-Received: from [172.22.33.138] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id q138-20020a632a90000000b003c6a71b2ab7sm10319655pgq.46.2022.06.15.10.16.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jun 2022 10:16:36 -0700 (PDT)
-Message-ID: <8857a3dc-1a11-6364-ed32-552a3a459de1@linaro.org>
-Date:   Wed, 15 Jun 2022 10:16:35 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v1 1/5] dt-bindings: power: Add bindings for a power
- domain controlled by a regulator
-Content-Language: en-US
-To:     Max Krummenacher <max.oss.09@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Kevin Hilman <khilman@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-pm@vger.kernel.org,
-        Max Krummenacher <max.krummenacher@toradex.com>
-References: <20220609150851.23084-1-max.oss.09@gmail.com>
- <20220609150851.23084-2-max.oss.09@gmail.com>
- <1654829855.220248.560616.nullmailer@robh.at.kernel.org>
- <CAEHkU3W0wRDWvEVwgjoeAQaTSr-V=0J2L-FtwJA78EHkaED4YA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAEHkU3W0wRDWvEVwgjoeAQaTSr-V=0J2L-FtwJA78EHkaED4YA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=sTGa151t/trhczGlfaIhFF1i0SVtoSLocgRhlGdaZgA=;
+        b=BLAycBVIcpla2nICRxF5jHexDyuYvqsu2vCm4j8Zh8FASQd6KmTM8OGWVJUiY+P5GA
+         c9bigCxuyJGMidGwDExTb6FRccOwXr7LWlf2GuJQnJTsM+LGzX+RWwatzdNgo6ZwmZ60
+         DovxVq3fUOeg8kM7bYqAS4PhkpRek09rCcfJ2dcppw//gB7b4Dgw0Q1QPikPcv9Al5nx
+         qd0gMBZr6bTFUJwvhssik1tDn/PyFlhaxqRB9hVezgblRaVpf2yyRsL6meVZfk7Gsx68
+         CbEF+ifN2pvAkynOe+2Uvmi1SUQsyHGbvkPNuYWaaLgQ8wXJcDJ6FkeczioUChxD0iiD
+         zmUQ==
+X-Gm-Message-State: AJIora/wW+KypZmun2XIT45B9q9UzWqkzR/6b/HqZ10XsaXJvrA5TsSX
+        jTQjwkjO1edV5uuMOha+SQ==
+X-Google-Smtp-Source: AGRyM1sTi5PIIcsQSq4HRK5RYwDCF35wSPHxr52ZB9lddA1mfsnKOMGnhVqSy2h9XTYEz+EVUAfR+Q==
+X-Received: by 2002:a05:6638:1409:b0:332:221d:1136 with SMTP id k9-20020a056638140900b00332221d1136mr439272jad.3.1655313606060;
+        Wed, 15 Jun 2022 10:20:06 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id b127-20020a021985000000b0032e7456da06sm6465171jab.15.2022.06.15.10.20.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jun 2022 10:20:05 -0700 (PDT)
+Received: (nullmailer pid 1478916 invoked by uid 1000);
+        Wed, 15 Jun 2022 17:20:03 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Shreeya Patel <shreeya.patel@collabora.com>
+Cc:     kernel@collabora.com, krisman@collabora.com,
+        Zhigang.Shi@liteon.com, jic23@kernel.org,
+        andy.shevchenko@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, digetx@gmail.com, lars@metafoo.de,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        alvaro.soliverez@collabora.com
+In-Reply-To: <20220615135130.227236-2-shreeya.patel@collabora.com>
+References: <20220615135130.227236-1-shreeya.patel@collabora.com> <20220615135130.227236-2-shreeya.patel@collabora.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: Document ltrf216a light sensor bindings
+Date:   Wed, 15 Jun 2022 11:20:03 -0600
+Message-Id: <1655313603.936120.1478915.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,40 +62,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2022 08:19, Max Krummenacher wrote:
-> Hi
+On Wed, 15 Jun 2022 19:21:29 +0530, Shreeya Patel wrote:
+> Add devicetree bindings for ltrf216a ambient light sensor.
 > 
-> On Fri, Jun 10, 2022 at 4:57 AM Rob Herring <robh@kernel.org> wrote:
->>
->> On Thu, 09 Jun 2022 17:08:47 +0200, Max Krummenacher wrote:
->>> From: Max Krummenacher <max.krummenacher@toradex.com>
->>>
->>> Adds binding for a power domain provider which uses a regulator to control
->>> the power domain.
->>>
->>> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
->>> ---
->>>
->>>  .../power/regulator-power-domain.yaml         | 58 +++++++++++++++++++
->>>  1 file changed, 58 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/power/regulator-power-domain.yaml
->>>
->>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/regulator-power-domain.example.dtb: power-sleep-moci: $nodename:0: 'power-sleep-moci' does not match '^(power-controller|power-domain)([@-].*)?$'
->>         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/regulator-power-domain.yaml
+> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+> ---
+> Changes in v5
+>   - Remove deprecated string 'ltr' from the bindings.
 > 
-> Will change to 'power-domain-sleep-moci' in V2.
+> Changes in v3
+>   - Fix indentation in the example section
+> 
+> Changes in v2
+>   - Take over the maintainership for the bindings
+>   - Add interrupt and power supply property in DT bindings
+> 
+>  .../bindings/iio/light/liteon,ltrf216a.yaml   | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/liteon,ltrf216a.yaml
 > 
 
-Instead: power-domain
-(names should be generic)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
+yamllint warnings/errors:
 
-Best regards,
-Krzysztof
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/light/liteon,ltrf216a.yaml: properties:compatible:const: ['liteon,ltrf216a'] is not of type 'string'
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/light/liteon,ltrf216a.yaml: ignoring, error in schema: properties: compatible: const
+Documentation/devicetree/bindings/iio/light/liteon,ltrf216a.example.dtb:0:0: /example-0/i2c/light-sensor@53: failed to match any schema with compatible: ['liteon,ltrf216a']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
