@@ -2,143 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7173F54C2DA
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 09:47:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE50154C316
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 10:06:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236361AbiFOHrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 03:47:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53270 "EHLO
+        id S239848AbiFOIGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 04:06:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230318AbiFOHrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 03:47:02 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B730A4093D;
-        Wed, 15 Jun 2022 00:47:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 54F38B81C6F;
-        Wed, 15 Jun 2022 07:46:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AE14C34115;
-        Wed, 15 Jun 2022 07:46:56 +0000 (UTC)
-Message-ID: <f6c168a9-8202-670a-4dbf-14280e372f68@xs4all.nl>
-Date:   Wed, 15 Jun 2022 09:46:54 +0200
+        with ESMTP id S237955AbiFOIGI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 04:06:08 -0400
+Received: from mail.greatagencyonline.pl (mail.greatagencyonline.pl [89.40.125.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8381D483AE
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 01:06:05 -0700 (PDT)
+Received: by mail.greatagencyonline.pl (Postfix, from userid 1001)
+        id 71BFDA9AB9; Wed, 15 Jun 2022 09:00:54 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=greatagencyonline.pl;
+        s=mail; t=1655280058;
+        bh=ksvwLPFdjL017OLwir5xHXy3Vmrj/5fhZ5DwBI62qzc=;
+        h=Date:From:To:Subject:From;
+        b=LiXmHs3fKV1t2XVSZzFfrESJmP7UDRH0tO4XHq3NmmCfNO9xw4+cFYczyL4lh5Wn8
+         zROu6tUQl4jrovxHt034V6GHEd7c0JJgV2RRKbjl7uzmAbsjZn/ENPjl+Tvu6kZUK8
+         4uXmvuDjPWZ82t+D/0DOxs02m1YOS/aMhS/ydeVH+CQHCzuGAOllooWEGFLAfksm9f
+         QNfyMVI23Dy36DMa5D2NjH7dg6QXl+0vpr4X0GOM3uSZEucoeHhnTMk+nNCLIP6zKF
+         zw2VPZhgNNfrQZ9JbHE8MuaK7Ggo6vN2/GZ8+EQrN6xVVYUDct0lvBEjks6wUOBy97
+         TOCIuSYV5+uRA==
+Received: by mail.greatagencyonline.pl for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 08:00:41 GMT
+Message-ID: <20220615074502-0.1.4i.19loj.0.b0eyahpcze@greatagencyonline.pl>
+Date:   Wed, 15 Jun 2022 08:00:41 GMT
+From:   =?UTF-8?Q? "Miko=C5=82aj_Rudzik" ?= 
+        <mikolaj.rudzik@greatagencyonline.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: =?UTF-8?Q?Nap=C5=82yw_Klient=C3=B3w_ze_strony?=
+X-Mailer: mail.greatagencyonline.pl
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v5 3/9] vivid: add dynamic array test control
-Content-Language: en-US
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-Cc:     mchehab@kernel.org, stanimir.varbanov@linaro.org,
-        tomi.valkeinen@ideasonboard.com, robh+dt@kernel.org,
-        nicolas@ndufresne.ca, alexander.stein@ew.tq-group.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220503093925.876640-1-xavier.roumegue@oss.nxp.com>
- <20220503093925.876640-4-xavier.roumegue@oss.nxp.com>
- <Yqj20J9QaAV6ZNes@pendragon.ideasonboard.com>
- <be0db6d8-b205-f8a9-8674-8c1e01c3a3a0@xs4all.nl>
-In-Reply-To: <be0db6d8-b205-f8a9-8674-8c1e01c3a3a0@xs4all.nl>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.9 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dzie=C5=84 dobry,
+
+chcia=C5=82bym poinformowa=C4=87 Pa=C5=84stwa o mo=C5=BCliwo=C5=9Bci pozy=
+skania nowych zlece=C5=84 ze strony www.
+
+Widzimy zainteresowanie potencjalnych Klient=C3=B3w Pa=C5=84stwa firm=C4=85=
+, dlatego ch=C4=99tnie pomo=C5=BCemy Pa=C5=84stwu dotrze=C4=87 z ofert=C4=
+=85 do wi=C4=99kszego grona odbiorc=C3=B3w poprzez efektywne metody pozyc=
+jonowania strony w Google.
+
+Czy m=C3=B3g=C5=82bym liczy=C4=87 na kontakt zwrotny?
 
 
-On 6/15/22 09:39, Hans Verkuil wrote:
-> 
-> 
-> On 6/14/22 23:00, Laurent Pinchart wrote:
->> Hi Xavier and Hans,
->>
->> Thank you for the patch.
->>
->> On Tue, May 03, 2022 at 11:39:19AM +0200, Xavier Roumegue wrote:
->>> From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
->>>
->>> Add a dynamic array test control to help test support for this
->>> feature.
->>>
->>> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
->>> ---
->>>  drivers/media/test-drivers/vivid/vivid-ctrls.c | 15 +++++++++++++++
->>>  1 file changed, 15 insertions(+)
->>>
->>> diff --git a/drivers/media/test-drivers/vivid/vivid-ctrls.c b/drivers/media/test-drivers/vivid/vivid-ctrls.c
->>> index e7516dc1227b..7267892dc18a 100644
->>> --- a/drivers/media/test-drivers/vivid/vivid-ctrls.c
->>> +++ b/drivers/media/test-drivers/vivid/vivid-ctrls.c
->>> @@ -34,6 +34,7 @@
->>>  #define VIVID_CID_U8_4D_ARRAY		(VIVID_CID_CUSTOM_BASE + 10)
->>>  #define VIVID_CID_AREA			(VIVID_CID_CUSTOM_BASE + 11)
->>>  #define VIVID_CID_RO_INTEGER		(VIVID_CID_CUSTOM_BASE + 12)
->>> +#define VIVID_CID_U32_DYN_ARRAY		(VIVID_CID_CUSTOM_BASE + 13)
->>>  
->>>  #define VIVID_CID_VIVID_BASE		(0x00f00000 | 0xf000)
->>>  #define VIVID_CID_VIVID_CLASS		(0x00f00000 | 1)
->>> @@ -189,6 +190,19 @@ static const struct v4l2_ctrl_config vivid_ctrl_u32_array = {
->>>  	.dims = { 1 },
->>>  };
->>>  
->>> +static const struct v4l2_ctrl_config vivid_ctrl_u32_dyn_array = {
->>> +	.ops = &vivid_user_gen_ctrl_ops,
->>> +	.id = VIVID_CID_U32_DYN_ARRAY,
->>> +	.name = "U32 Dynamic Array",
->>> +	.type = V4L2_CTRL_TYPE_U32,
->>> +	.flags = V4L2_CTRL_FLAG_DYNAMIC_ARRAY,
->>> +	.def = 50,
->>> +	.min = 10,
->>> +	.max = 90,
->>> +	.step = 1,
->>> +	.dims = { 100 },
->>> +};
->>
->> To meaningfully test this, don't we need the vivid driver to change the
->> dimension ? Or is it meant to only test changes made by the application
->> ?
-> 
-> dims[0] is the maximum number of elements allowed, it is not the actual
-> size of the control. The application sets the control to a size between
-> 1 and dims[0] (100 in this case) elements.
-> 
-> When the control is created it will have just 1 element containing the
-> default control value.
-
-There is actually one thing that I would like to improve: allow dynamic arrays
-to be empty (0 elements). Such a control should probably be empty in the
-beginning as well.
-
-I'll take a stab at this.
-
-Regards,
-
-	Hans
-
-> 
-> Regards,
-> 
-> 	Hans
-> 
->>
->>> +
->>>  static const struct v4l2_ctrl_config vivid_ctrl_u16_matrix = {
->>>  	.ops = &vivid_user_gen_ctrl_ops,
->>>  	.id = VIVID_CID_U16_MATRIX,
->>> @@ -1612,6 +1626,7 @@ int vivid_create_controls(struct vivid_dev *dev, bool show_ccs_cap,
->>>  	dev->ro_int32 = v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_ro_int32, NULL);
->>>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_area, NULL);
->>>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u32_array, NULL);
->>> +	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u32_dyn_array, NULL);
->>>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u16_matrix, NULL);
->>>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u8_4d_array, NULL);
->>>  
->>
+Pozdrawiam,
+Miko=C5=82aj Rudzik
