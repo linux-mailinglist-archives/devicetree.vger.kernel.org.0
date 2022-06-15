@@ -2,52 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0544154D2A3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 22:34:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FB1F54D2CC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 22:44:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346230AbiFOUd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 16:33:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57018 "EHLO
+        id S1346928AbiFOUo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 16:44:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347017AbiFOUdc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 16:33:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB432AE22;
-        Wed, 15 Jun 2022 13:33:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BAC41615FA;
-        Wed, 15 Jun 2022 20:33:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E4C3C3411A;
-        Wed, 15 Jun 2022 20:33:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655325211;
-        bh=dZSh/1EPxFzyVUoIKdcYesKaX0mdqi8N1p0fMT7k7hI=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=UNkgnuxGm+fwXNgLv/MQ2bTSd+HJ+1VURAL1vwRCKqqJs8qibd5WTFEtYsZMrlZd5
-         oZ/bw08aZ0tqFJJUQUFVotdtFlLFmeGkICY4KKW2RFARHPoQVftWBjeNIMgBmqZr6l
-         3nkFPsuHAQv0V+VMMsdlJu2euzlxMFjcmFmlhma1QETimNSLofqoIPCVssMyNXIEF8
-         6kNy6uaeE2hZr/QjpA40vTzz0gzx50DcqF+nv9WSAWtKFcxYuomDorAoxZjwlInLjC
-         FY/JVkEZ7CpFKYNcues//I0OrXVSE0YsSxvEq/Ox+5GamCdqqoEf6vzNaigHi60N0R
-         VyNErqTrNB03Q==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S1346801AbiFOUo5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 16:44:57 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F53F29349
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 13:44:56 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id o33-20020a17090a0a2400b001ea806e48c6so3112006pjo.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 13:44:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=kUDf/u910LysDJrcuyN3NJQ4Y4LOo/h3/JlYMs8xcZ0=;
+        b=BYtnYUDPQJ6Ixf9avcgIP+uzYG2NSxrzhfAlFyFdBGU7HSA+GgX4kkNkROqTmtTsBL
+         2ukaFFvDBNzmeSiR6n0FADy/sMIgVhPu2yVwy6vXtvUIQv956luWNaJfQbFsQDBVprN1
+         YircoRmAjfAqEQJDmuYwqWOPs5VwhzCYfBKnxcy+5J5SSoVx7rHvGsY6c1bxUpStiJz1
+         idvIcPfmHg3XUaK9RI0UUlJUuodU9MkQkDAC1DWc/B7maRpZCErn/NDM3TawV5n5ilqv
+         4DYY1ZslF/Cpgd/qjXBEV0jh1HIOwvtmclCb5nd9+OczNvDKZzXq5riP8/F6DqANEndR
+         D9Gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kUDf/u910LysDJrcuyN3NJQ4Y4LOo/h3/JlYMs8xcZ0=;
+        b=kUEiCS5IY2TT7qbzWv+CcoBGO5cR22l4xQDFWJmC63Anb9lits0Bz5Rk9rpfc6BEfl
+         kjVgiPmKSqIRu5y2miLFB/kVYgxYp7yngDl8DS3L7BqSS/w/8gcRFT61E8JEo91J1TI4
+         eq8KSMsCeChmLs0WIAOMenhWok/KreMzD1TFfnBauhXGMSTQ9a10jH42XCE9tY2yEFps
+         7Hqc5KTuh2U5DxW3/tILN/OIdcA2iMGmasOhG800ZiKaZjj2mYPx0MiLhYBXi2u0BNvh
+         FfSa2VS4Z50r/GUgeFN9w+z5UuF4L//rhN6qbIMr0egqxIch0r9VJomfEE5sh1rdEKgb
+         aM5Q==
+X-Gm-Message-State: AJIora+5yZodiKXBBKkU0TK0pxwkKO6NklCgUJBn4xd/ukNQmm6tk6c/
+        dYFZ8eUMl+7ba0/nBP/T8zLNuQ==
+X-Google-Smtp-Source: AGRyM1uNSTnvyeg3GEiWLHsF6PC5peshAuHFTefZHQqF/RDMTJXk0VYlwYjbhT6liUB6gFJmFKAgCQ==
+X-Received: by 2002:a17:902:aa0c:b0:168:faa0:50a1 with SMTP id be12-20020a170902aa0c00b00168faa050a1mr1513563plb.57.1655325895802;
+        Wed, 15 Jun 2022 13:44:55 -0700 (PDT)
+Received: from p14s ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id c11-20020a17090a1d0b00b001e6a230c2f5sm2259207pjd.34.2022.06.15.13.44.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jun 2022 13:44:54 -0700 (PDT)
+Date:   Wed, 15 Jun 2022 14:44:50 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH V3 0/6] remoteproc: imx_rproc: support i.MX8QM/QXP
+Message-ID: <20220615204450.GA1257609@p14s>
+References: <20220517064937.4033441-1-peng.fan@oss.nxp.com>
+ <DU0PR04MB941740BC9C2C5B205985CAB588AD9@DU0PR04MB9417.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220517235919.200375-2-marex@denx.de>
-References: <20220517235919.200375-1-marex@denx.de> <20220517235919.200375-2-marex@denx.de>
-Subject: Re: [PATCH v3 2/2] clk: Introduce 'critical-clocks' property
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Marek Vasut <marex@denx.de>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-To:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org
-Date:   Wed, 15 Jun 2022 13:33:29 -0700
-User-Agent: alot/0.10
-Message-Id: <20220615203331.1E4C3C3411A@smtp.kernel.org>
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DU0PR04MB941740BC9C2C5B205985CAB588AD9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -56,49 +82,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Marek Vasut (2022-05-17 16:59:19)
-> Some platforms require select clock to be always running, e.g. because
-> those clock supply vital devices which are not otherwise attached to
-> the system and thus do not have a matching DT node and clock consumer.
->=20
-> An example is a system where the SoC serves as a crystal oscillator
-> replacement for a programmable logic device. The "critical-clocks"
-> property of a clock controller allows listing clock which must never
-> be turned off.
->=20
-> Clock listed in the "critical-clocks" property may have other consumers
-> in DT, listing the clock in "critical-clocks" only assures those clock
-> are never turned off, and none of these optional additional consumers
-> can turn the clock off either. This is achieved by adding CLK_IS_CRITICAL
-> flag to these critical clock.
->=20
-> This flag has thus far been added to select clock by hard-coding it in
-> various clock drivers, this patch provides generic DT interface to add
-> the flag to arbitrary clock that may be critical.
->=20
-> The implementation is modeled after "protected-clocks", except the protec=
-ted
-> clock property is currently driver specific. This patch attempts to provi=
-de
-> a generic implementation of "critical-clocks" instead.
->=20
-> Unlike "assigned-clocks", the "critical-clocks" must be parsed much earli=
-er
-> in __clk_register() to assign CLK_IS_CRITICAL flag to clk_init_data .flags
-> field.
+On Wed, Jun 15, 2022 at 03:24:03AM +0000, Peng Fan wrote:
+> Bjorn, Mathieu
+> 
+> > Subject: [PATCH V3 0/6] remoteproc: imx_rproc: support i.MX8QM/QXP
+> 
+> Please give a look on this patchset if possible.
 
-Why? Instead of using the CLK_IS_CRITICAL flag to enable at registration
-time for this, why can't we parse the property when a clk provider is
-registered and enable those clks manually and then set the
-CLK_IS_CRITICAL flag? Ideally we don't implement another clk_op for
-this.
+Your pathset is currently 3rd from the top in my queue.  As such I will likely
+get to it in the next couple of weeks but as usual, I can't make any guarantees
+on that front.
 
->=20
-> The new match_clkspec() callback is used to determine whether struct clk_=
-hw
-> that is currently being registered matches the clock specifier in the DT
-> "critical-clocks" property, and if so, then the CLK_IS_CRITICAL is added =
-to
-> these newly registered clock. This callback can only be driver specific.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
+Thanks,
+Mathieu
+
+> 
+> Thanks,
+> Peng.
+> 
+> > 
+> > From: Peng Fan <peng.fan@nxp.com>
+> > 
+> > V3:
+> >  Drop the dependency in V2.
+> >  Tested on i.MX8QM/8MM
+> >  Use 'fsl,resource-id' and 'fsl,entry-address' Per dt maintainer  Drop 'reg'
+> > property Per remoteproc maintainer  Drop mcore self recovery, until we land
+> > in common framework support.
+> > 
+> > V2:
+> > 
+> > https://patchwork.kernel.org/project/linux-remoteproc/cover/202203091021
+> > 18.8131-1-peng.fan@oss.nxp.com/
+> >  Depends on
+> > https://patchwork.kernel.org/project/linux-remoteproc/list/?series=621311
+> >  Tested on i.MX8QXP/QM/8MP
+> >  Addressed Mathieu's comments
+> >  Drop V1 patch 5/9, patch 3/9 is replaced with upper dependency patchset
+> > Move V1 patch 4/9 out to
+> > https://patchwork.kernel.org/project/linux-remoteproc/patch/202203080657
+> > 54.3355-1-peng.fan@oss.nxp.com/
+> >  Update commit log
+> >  Drop magic number to get entry address from device tree in patch 4/6
+> > 
+> > The V1 patchset:
+> > https://patchwork.kernel.org/project/linux-remoteproc/patch/202201110333
+> > 33.403448-4-peng.fan@oss.nxp.com/
+> > 
+> > Peng Fan (6):
+> >   dt-bindings: remoteproc: imx_rproc: support i.MX8QXP
+> >   dt-bindings: remoteproc: imx_rproc: support i.MX8QM
+> >   remoteproc: imx_rproc: support attaching to i.MX8QXP M4
+> >   remoteproc: imx_rproc: support kicking Mcore from Linux for i.MX8QXP
+> >   remoteproc: imx_rproc: support i.MX8QM
+> >   remoteproc: imx_rproc: request mbox channel later
+> > 
+> >  .../bindings/remoteproc/fsl,imx-rproc.yaml    |  16 ++
+> >  drivers/remoteproc/imx_rproc.c                | 222
+> > +++++++++++++++++-
+> >  2 files changed, 231 insertions(+), 7 deletions(-)
+> > 
+> > --
+> > 2.25.1
+> 
