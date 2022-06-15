@@ -2,155 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49EB854D184
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 21:25:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 691D354D18B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 21:26:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344980AbiFOTZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 15:25:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56446 "EHLO
+        id S1345686AbiFOT0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 15:26:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232127AbiFOTZd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 15:25:33 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CFE138780;
-        Wed, 15 Jun 2022 12:25:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1655321132; x=1686857132;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=905LNegFOW2Um8P9BhrIgjmYf09bgpnjZEvFsBQqfkM=;
-  b=gwusj9sZpsIpz+tNBp32Qu3Ncx3DhvzXEFSfLeVDlk+/SALsm4pTlFr3
-   /Gf3raRXrxJJu+x4fvg40siFTVDdsMAkZiQLcbPFTa9tnQn3lTugqA3fr
-   snb+vMSsCI9xRWd81KcX1Oim0+Barxe5J+gcSlefCGXs7wvWKQSdxE52X
-   fxd7NOkssGYoqFi8mZkTXMAUUbWucCPDmunt6N/oOePBsIdz/iamPoeS0
-   OTAhy8+SevWZSzELiJJ5qtAjRCoRJ+ysf1sFZrfxM7eApdzng9A61ozmQ
-   +29hdFcJ0Ek6563z1sfm0NvHmHAHU3SrsoqXaeXFikL59h7FBR1EgK89w
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="262104554"
-X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; 
-   d="scan'208";a="262104554"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2022 12:25:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; 
-   d="scan'208";a="727566773"
-Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 15 Jun 2022 12:25:27 -0700
-Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1o1Ydq-000N85-W6;
-        Wed, 15 Jun 2022 19:25:26 +0000
-Date:   Thu, 16 Jun 2022 03:24:31 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Anson Huang <Anson.Huang@nxp.com>
-Cc:     kbuild-all@lists.01.org,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 2/9] thermal: thermal: Export OF trip helper function
-Message-ID: <202206160331.en1dbvYm-lkp@intel.com>
-References: <20220615094804.388280-3-francesco.dolcini@toradex.com>
+        with ESMTP id S1345912AbiFOT0Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 15:26:24 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2B2B39801;
+        Wed, 15 Jun 2022 12:26:23 -0700 (PDT)
+Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B07CB5A9;
+        Wed, 15 Jun 2022 21:26:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1655321181;
+        bh=dAyHwVNRR8uyNJA5GWvgJo1y3duV9FG9Vv/dBs/cbfs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=fIbhjwJOFSkJMEetcr6ZmkuU9JteR/aKWsC8upZ5uFZcQrVugP5FPLn0W3HVuezbe
+         rWpvpJw/xZSj4vgK4x2Z7Oq43WKcvDNs9oExl9c1EPFopT70bYDredxQp8YJhj9uC4
+         REC0sFPhpDoJ+1QSO9s98dRArVzZCim6yl3RI+Tc=
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     linux-media@vger.kernel.org
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        Paul Elder <paul.elder@ideasonboard.com>,
+        Rui Miguel Silva <rmfrfs@gmail.com>, kernel@pengutronix.de,
+        linux-imx@nxp.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/4] media: imx: imx-mipi-csis: Add i.MX8MP support
+Date:   Wed, 15 Jun 2022 22:25:58 +0300
+Message-Id: <20220615192602.25472-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220615094804.388280-3-francesco.dolcini@toradex.com>
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Francesco,
+Hello,
 
-Thank you for the patch! Yet something to improve:
+This small patch series is a collection of independent patches that
+collectively enable i.MX8MP support for the imx-mipi-csis CSI-2
+receiver.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on rafael-pm/thermal krzk/for-next krzk-mem-ctrl/for-next v5.19-rc2 next-20220615]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Technically speaking, only patch 4/4 is needed to get the driver working
+on the i.MX8MP SoC. However, patch 1/4 fixes a related kernel log
+warning, and patch 3/4 is required for integration with the ISP found in
+that SoC. Patch 2/4 is the only one that is not strictly required, but
+I've thrown it in the series as it has been developed as part of i.MX8MP
+enablement.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Francesco-Dolcini/imx-thermal-Allow-trip-point-configuration-from-DT/20220615-175857
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: x86_64-kexec (https://download.01.org/0day-ci/archive/20220616/202206160331.en1dbvYm-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-3) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/e68c5a0d2b91a47a9df63a6309c0ed9e905fc20a
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Francesco-Dolcini/imx-thermal-Allow-trip-point-configuration-from-DT/20220615-175857
-        git checkout e68c5a0d2b91a47a9df63a6309c0ed9e905fc20a
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/
+Laurent Pinchart (4):
+  media: imx: imx-mipi-csis: Set the subdev fwnode for endpoint matching
+  media: imx: imx-mipi-csis: Add version register
+  media: imx: imx-mipi-csis: Implement the .get_frame_desc() operation
+  dt-bindings: media: nxp,imx-mipi-csi2: i.MX8MP support
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/thermal/thermal_core.c:27:
-   drivers/thermal/thermal_core.h: In function 'thermal_of_populate_trip':
->> drivers/thermal/thermal_core.h:179:17: error: 'ENOTSUP' undeclared (first use in this function); did you mean 'ENOTSUPP'?
-     179 |         return -ENOTSUP;
-         |                 ^~~~~~~
-         |                 ENOTSUPP
-   drivers/thermal/thermal_core.h:179:17: note: each undeclared identifier is reported only once for each function it appears in
+ .../bindings/media/nxp,imx-mipi-csi2.yaml     | 11 +++--
+ drivers/media/platform/nxp/imx-mipi-csis.c    | 41 +++++++++++++++++++
+ 2 files changed, 49 insertions(+), 3 deletions(-)
 
 
-vim +179 drivers/thermal/thermal_core.h
-
-   150	
-   151	/* device tree support */
-   152	#ifdef CONFIG_THERMAL_OF
-   153	int of_parse_thermal_zones(void);
-   154	int of_thermal_get_ntrips(struct thermal_zone_device *);
-   155	bool of_thermal_is_trip_valid(struct thermal_zone_device *, int);
-   156	const struct thermal_trip *
-   157	of_thermal_get_trip_points(struct thermal_zone_device *);
-   158	int thermal_of_populate_trip(struct device_node *np,
-   159				     struct thermal_trip *trip);
-   160	#else
-   161	static inline int of_parse_thermal_zones(void) { return 0; }
-   162	static inline int of_thermal_get_ntrips(struct thermal_zone_device *tz)
-   163	{
-   164		return 0;
-   165	}
-   166	static inline bool of_thermal_is_trip_valid(struct thermal_zone_device *tz,
-   167						    int trip)
-   168	{
-   169		return false;
-   170	}
-   171	static inline const struct thermal_trip *
-   172	of_thermal_get_trip_points(struct thermal_zone_device *tz)
-   173	{
-   174		return NULL;
-   175	}
-   176	static inline int thermal_of_populate_trip(struct device_node *np,
-   177						   struct thermal_trip *trip)
-   178	{
- > 179		return -ENOTSUP;
-   180	}
-   181	#endif
-   182	
-
+base-commit: f2906aa863381afb0015a9eb7fefad885d4e5a56
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Regards,
+
+Laurent Pinchart
+
