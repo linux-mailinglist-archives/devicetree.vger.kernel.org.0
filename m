@@ -2,58 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3743254C666
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 12:42:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 715F754C67D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 12:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237172AbiFOKmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 06:42:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36622 "EHLO
+        id S1345876AbiFOKus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 06:50:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbiFOKmp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 06:42:45 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9373C15710
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 03:42:44 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1o1QTp-0001hu-Pd; Wed, 15 Jun 2022 12:42:33 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1o1QTp-0004OZ-3o; Wed, 15 Jun 2022 12:42:33 +0200
-Date:   Wed, 15 Jun 2022 12:42:33 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 0/9] imx: thermal: Allow trip point configuration from
- DT
-Message-ID: <20220615104233.gxwsi3bhzyj2rry7@pengutronix.de>
-References: <20220615094804.388280-1-francesco.dolcini@toradex.com>
+        with ESMTP id S1344786AbiFOKuq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 06:50:46 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 862A537A20
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 03:50:45 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id b8so15487363edj.11
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 03:50:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HbCRVWIg4yL03ydTTeDTrw0h6dDwfLEEv0WldNRrBJ0=;
+        b=TVggHuvr//aXDNq+7VKamTSVvqhHY9sfUq+r/SbSvc2QBQRcNFlBkxURmbGz223Bzr
+         LmnQgN4H6WIJc1CmOmVavZSBuXp+FzNOpGUhVG5IAz5VRyL0JZ90AnvCKDBPZh1VNsV0
+         VZFBAG/Tmf/Qltcm7iTocSof/MXJo5EqIlLF/Qq8BXlh54fOS8XM5RafTz6XkzehoeXw
+         //zDQFeEbwfLIXciG0hhDYwX4LP1Lsp48VxCMRtZe7FiXBW8LhFvbuafbUrh6ClmDgsK
+         mnQuMD3JhKUw+Li29Mi1p26ztKwjP+bwglh/+FSKxJK1YTNo8D29/BJBR+c031tp3TB2
+         ZtSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HbCRVWIg4yL03ydTTeDTrw0h6dDwfLEEv0WldNRrBJ0=;
+        b=TgQp8tGq8efREJAaVe7hzXNxAM9vPexHZd7skraTvmr5xEQs20MwsjlaUOYSUPY+uM
+         b//V4a2UTqYN/IH1fVjvATpp6/ZwiCi2BOjJ24TOPbCwjROWlfILZEfu/qxE4VeI11w/
+         Q4flc4YgRV5oK4Cm5XWZYSAKEDDontLBUM5VXH93mIx8wLZSLp6lqhEYgDkCax2NbGjW
+         EkJq0flXuWtsy07TkANCfytKeDW8C6KiP9A+W1XE6x10GOWFO176OA6ZitEY6PtOMf/E
+         l8B7bx6GTHwVrAtHSJ1dQb7QpR2ug9USvt+UL70fEIgok0DJ4C41OhQl/WlQs9A3NiEj
+         jOaA==
+X-Gm-Message-State: AJIora84RTy+P33Yb5P0Ig4+KsNIqiSbhIcZXy07gwm4OpjYlPNmSUvf
+        FiKp1MTvZTXxwju/txraI60y2A==
+X-Google-Smtp-Source: AGRyM1v4osd2jLFu0NBoRQ8Z2FPYoXw0b0vPMIyCD/IsDFsa9svxPp1gNAHB9OPT0w7HvcgiovglRA==
+X-Received: by 2002:a05:6402:4241:b0:431:574a:d74b with SMTP id g1-20020a056402424100b00431574ad74bmr11789245edb.374.1655290244091;
+        Wed, 15 Jun 2022 03:50:44 -0700 (PDT)
+Received: from fedora.sec.9e.network (ip-088-153-019-247.um27.pools.vodafone-ip.de. [88.153.19.247])
+        by smtp.gmail.com with ESMTPSA id t27-20020a1709060c5b00b006fec2097d53sm6098237ejf.118.2022.06.15.03.50.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jun 2022 03:50:43 -0700 (PDT)
+From:   Patrick Rudolph <patrick.rudolph@9elements.com>
+To:     Patrick Rudolph <patrick.rudolph@9elements.com>,
+        linux-gpio@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] pinctrl: Add Cypress cy8c95x0
+Date:   Wed, 15 Jun 2022 12:49:18 +0200
+Message-Id: <20220615104921.1390138-1-patrick.rudolph@9elements.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220615094804.388280-1-francesco.dolcini@toradex.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,75 +67,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Francesco,
+Add Cypress cy8c95x0 pinctrl support.
 
-nice work :)
+v2:
+ - Update DT binding
+ - Support output pincfg through DT
+ - Always expose all GPIOs and ignore ngpios property
 
-On 22-06-15, Francesco Dolcini wrote:
-> This series allows to specify the imx thermal drivers trip point from the device tree,
-> without this change the threshold are hard-coded and this might not be correct given the
-> thermal design of the final system.
-> 
-> This change is backward compatible with the existing device tree, and even
-> with this change in by default the thresholds are the same as before.
-> 
-> Toradex board are also updated to use a system-specific thresholds.
-> 
-> Discussion on the current design is here:
-> https://lore.kernel.org/all/4ba1d7d2-3e8c-ba60-37fd-9598f415c076@linaro.org/
+Patrick Rudolph (2):
+  dt-binding: Add cypress,cy8c95x0 binding
+  pinctrl: Add Cypress cy8c95x0 support
 
-Thanks for thanking our abbroaches and forming this patchset. I added
-only a few comments.
+ .../bindings/pinctrl/cypress,cy8c95x0.yaml    |  131 ++
+ MAINTAINERS                                   |    6 +
+ drivers/pinctrl/Kconfig                       |   14 +
+ drivers/pinctrl/Makefile                      |    1 +
+ drivers/pinctrl/pinctrl-cy8c95x0.c            | 1380 +++++++++++++++++
+ 5 files changed, 1532 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
+ create mode 100644 drivers/pinctrl/pinctrl-cy8c95x0.c
 
-Regards,
-  Marco
+-- 
+2.35.3
 
-> 
-> One side note, after this change the dtbs checker starts complaining with this message
-> 
-> ```
-> linux/arch/arm/boot/dts/imx6dl-alti6p.dtb: tempmon: '#thermal-sensor-cells' does not match any of the regexes: '^(automotive|commercial|extended-commercial|industrial)-thermal$', 'pinctrl-[0-9]+'
-> 	From schema: linux/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
-> ```
-> 
-> to my understanding this is just a side effect, '#thermal-sensor-cells' is not changed in
-> any way by this series. I can fix that, I wonder if I should remove the property from the
-> imx dtsi files or add it to the binding yaml definition, not sure about it.
-> Anybody can advise?
-> 
-> 
-> Francesco Dolcini (9):
->   dt-bindings: thermal: Define trips node in $defs
->   thermal: thermal: Export OF trip helper function
->   dt-bindings: thermal: imx: Add trips point
->   imx: thermal: Configure trip point from DT
->   ARM: dts: imx[67]: Add trips points
->   ARM: dts: imx6qdl-apalis: Set CPU critical trip point
->   ARM: dts: imx7-colibri: Set CPU critical trip point
->   ARM: dts: imx6ull-colibri: Set CPU critical trip point
->   ARM: dts: imx6qdl-colibri: Set CPU critical trip point
-> 
->  .../bindings/thermal/imx-thermal.yaml         |  27 ++++
->  .../bindings/thermal/thermal-zones.yaml       | 130 +++++++++---------
->  arch/arm/boot/dts/imx-thermal.dtsi            |  61 ++++++++
->  arch/arm/boot/dts/imx6qdl-apalis.dtsi         |  12 ++
->  arch/arm/boot/dts/imx6qdl-colibri.dtsi        |  12 ++
->  arch/arm/boot/dts/imx6qdl.dtsi                |   2 +
->  arch/arm/boot/dts/imx6sl.dtsi                 |   2 +
->  arch/arm/boot/dts/imx6sll.dtsi                |   2 +
->  arch/arm/boot/dts/imx6sx.dtsi                 |   2 +
->  arch/arm/boot/dts/imx6ul.dtsi                 |   2 +
->  arch/arm/boot/dts/imx6ull-colibri.dtsi        |  12 ++
->  arch/arm/boot/dts/imx7-colibri.dtsi           |  12 ++
->  arch/arm/boot/dts/imx7s.dtsi                  |   2 +
->  drivers/thermal/imx_thermal.c                 |  49 +++++++
->  drivers/thermal/thermal_core.h                |   7 +
->  drivers/thermal/thermal_of.c                  |   5 +-
->  16 files changed, 274 insertions(+), 65 deletions(-)
->  create mode 100644 arch/arm/boot/dts/imx-thermal.dtsi
-> 
-> -- 
-> 2.25.1
-> 
-> 
-> 
