@@ -2,51 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F38154C108
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 07:21:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA2F254C124
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 07:33:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245179AbiFOFNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 01:13:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37010 "EHLO
+        id S229595AbiFOFbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 01:31:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233958AbiFOFNH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 01:13:07 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF4C225EA9;
-        Tue, 14 Jun 2022 22:13:06 -0700 (PDT)
+        with ESMTP id S234510AbiFOFbP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 01:31:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2992E49C99;
+        Tue, 14 Jun 2022 22:31:14 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5B5DD61690;
-        Wed, 15 Jun 2022 05:13:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35617C341C4;
-        Wed, 15 Jun 2022 05:13:04 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C0BDAB81C36;
+        Wed, 15 Jun 2022 05:31:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 645AFC34115;
+        Wed, 15 Jun 2022 05:31:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655269984;
-        bh=tOUHCnRD2qpFsF/6tTi/ZdtHNkm1pbLqUvuCuMU2AxM=;
+        s=k20201202; t=1655271071;
+        bh=UP9/PPlSi1ds0ci9Dk+oUiyvyIrwws3/Ir1Z5PIAGWQ=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Y8yxhcDfSUPamWsXkqOweap8OdyfaPcJqsiUwE33JM4ttlcD2I2Arv4cmbnghs3f9
-         8k006K7xi0K03LE5Z3XCN39sNA4z6OjPy6p0pktpvJWgo05h6BiLs9UEg/SE6rA2vh
-         iVRIupriW3Cv24H+K+gJ1RSD+cTUC0OPomVLzC6VP2qtlZEvIaJaU6N4Eu1HDuWgq+
-         iTK0V2S5F1vF3sfLaFOZgUtkoppODAqsrhP4WLel/9l1fQNgb1AGxUgdxa18oCwsoI
-         nVBNtb73zlZcfu2FV1Ll5h/x57E+fRTmy/7lrnOu2tm9qoYeYhCOdOsN//i2IEfbfW
-         4NnHNPs/iVdVA==
-Date:   Tue, 14 Jun 2022 22:13:03 -0700
+        b=epqJaVYUaaMbXOx6dxJme+50GCKJAN4hmd5ydrTMcFCZlBo2stNqNuemRouFNq3tJ
+         seV6Df3/hG0OxFbINgCBRbEDAuzC3sWMlmPDjEeyVH8yspGMNrkD9vnGZ3jGo1aMdF
+         WPUbnybKGsI8+bJg3BFaEW/lSvXsGWzvfnlI61Dxpc4f0VybKTBeXPVJdTf65SKRpt
+         p0LIdJp9HYocDl3zqK+Yd0rP3JjxQAxUb3CBzTMsCwF73VFwWfOmp0OCtGaz+mDUpa
+         D449yXNvobGB3j6Hqqmtc819Xed4vlDnRsPemlzYBkfTVjg7TJFCs6EeHz7+aXAxxC
+         Oivda28Tyf4Bw==
+Date:   Tue, 14 Jun 2022 22:31:09 -0700
 From:   Jakub Kicinski <kuba@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Arun Ramadoss <arun.ramadoss@microchip.com>,
-        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1] ARM: dts: at91: ksz9477_evb: fix port/phy validation
-Message-ID: <20220614221303.37b0700b@kernel.org>
-In-Reply-To: <20220610081621.584393-1-o.rempel@pengutronix.de>
-References: <20220610081621.584393-1-o.rempel@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH RESEND net-next v7 05/16] net: pcs: add Renesas MII
+ converter driver
+Message-ID: <20220614223109.603935fb@kernel.org>
+In-Reply-To: <20220610103712.550644-6-clement.leger@bootlin.com>
+References: <20220610103712.550644-1-clement.leger@bootlin.com>
+        <20220610103712.550644-6-clement.leger@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
@@ -60,14 +77,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Jun 2022 10:16:21 +0200 Oleksij Rempel wrote:
-> Latest drivers version requires phy-mode to be set. Otherwise we will
-> use "NA" mode and the switch driver will invalidate this port mode.
+On Fri, 10 Jun 2022 12:37:01 +0200 Cl=C3=A9ment L=C3=A9ger wrote:
+> Subject: [PATCH RESEND net-next v7 05/16] net: pcs: add Renesas MII conve=
+rter driver
 >=20
-> Fixes: 65ac79e18120 ("net: dsa: microchip: add the phylink get_caps")
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Add a PCS driver for the MII converter that is present on the Renesas
+> RZ/N1 SoC. This MII converter is reponsible for converting MII to
+> RMII/RGMII or act as a MII pass-trough. Exposing it as a PCS allows to
+> reuse it in both the switch driver and the stmmac driver. Currently,
+> this driver only allows the PCS to be used by the dual Cortex-A7
+> subsystem since the register locking system is not used.
 
-This got an Awaiting Upstream in patchwork along the way, but based on
-Krzysztof's comment I think net is right here. So it's commit
-56315b6bf7fc ("ARM: dts: at91: ksz9477_evb: fix port/phy validation")
-in net now =F0=9F=A4=B7
+Could someone with MII &| PCS knowledge cast an eye over this code?
+All I can do is point out error path issues...
+
+> +struct phylink_pcs *miic_create(struct device *dev, struct device_node *=
+np)
+> +{
+> +	struct platform_device *pdev;
+> +	struct miic_port *miic_port;
+> +	struct device_node *pcs_np;
+> +	struct miic *miic;
+> +	u32 port;
+> +
+> +	if (!of_device_is_available(np))
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	if (of_property_read_u32(np, "reg", &port))
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	if (port > MIIC_MAX_NR_PORTS || port < 1)
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	/* The PCS pdev is attached to the parent node */
+> +	pcs_np =3D of_get_parent(np);
+
+of_get_parent()? ..
+
+> +	if (!pcs_np)
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	if (!of_device_is_available(pcs_np))
+> +		return ERR_PTR(-ENODEV);
+
+.. more like of_leak_parent()
+
+> +	pdev =3D of_find_device_by_node(pcs_np);
+> +	if (!pdev || !platform_get_drvdata(pdev))
+> +		return ERR_PTR(-EPROBE_DEFER);
+> +
+> +	miic_port =3D kzalloc(sizeof(*miic_port), GFP_KERNEL);
+> +	if (!miic_port)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	miic =3D platform_get_drvdata(pdev);
+> +	device_link_add(dev, miic->dev, DL_FLAG_AUTOREMOVE_CONSUMER);
+> +
+> +	miic_port->miic =3D miic;
+> +	miic_port->port =3D port - 1;
+> +	miic_port->pcs.ops =3D &miic_phylink_ops;
+> +
+> +	return &miic_port->pcs;
+> +}
+> +EXPORT_SYMBOL(miic_create);
+
+> +static int miic_parse_dt(struct device *dev, u32 *mode_cfg)
+> +{
+> +	s8 dt_val[MIIC_MODCTRL_CONF_CONV_NUM];
+> +	struct device_node *np =3D dev->of_node;
+> +	struct device_node *conv;
+> +	u32 conf;
+> +	int port;
+> +
+> +	memset(dt_val, MIIC_MODCTRL_CONF_NONE, sizeof(dt_val));
+> +
+> +	of_property_read_u32(np, "renesas,miic-switch-portin", &conf);
+> +	dt_val[0] =3D conf;
+> +
+> +	for_each_child_of_node(np, conv) {
+> +		if (of_property_read_u32(conv, "reg", &port))
+> +			continue;
+> +
+> +		if (!of_device_is_available(conv))
+> +			continue;
+> +
+> +		if (of_property_read_u32(conv, "renesas,miic-input", &conf) =3D=3D 0)
+> +			dt_val[port] =3D conf;
+> +
+> +		of_node_put(conv);
+
+Don't these iteration functions put() the current before taking the
+next one all by themselves? Or is there supposed to be a "break" here?
+
+> +	}
+> +
+> +	return miic_match_dt_conf(dev, dt_val, mode_cfg);
+> +}
