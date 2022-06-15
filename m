@@ -2,120 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6721154D571
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 01:42:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FC7754D58F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 01:54:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344835AbiFOXm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 19:42:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55050 "EHLO
+        id S1346333AbiFOXyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 19:54:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230172AbiFOXm3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 19:42:29 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C4701142;
-        Wed, 15 Jun 2022 16:42:27 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id DEFCE83020;
-        Thu, 16 Jun 2022 01:42:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1655336546;
-        bh=5CwPslvDyAXb6/YTrODUKY3RQjcZ0mb5JVP86q6JIp0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=oRcEzThbJWumH476iJ4WxEhDIlqlVL/uqKIbOo7/MXh2u9e2KMEPnQovp3pfo4hwb
-         otbZx3Xp7qRMr3jWqzJREHZ4kiwRP/jagJDxD1IrCDvdw0dL1ewNTY8TaUlmCu7IuV
-         XbrMea9f1NiSERXY9+4kv3AsmtyaANThQelVgg9R+bQjk/XL/ZfNehO+HYTkquvmQR
-         7MXGSxbds/IZs9bZM67AVGOxovSTxE10HNnLUQ0E221pL/1dlyCJRCbnENEQOI6UR+
-         OsPpB/8JfDw3QldLTowy0Vb+PkTjh3fpDhTEnz/Uh1zERfjqUaoFwb+9AU7x2BNX3A
-         CsNxk0FxmKhPA==
-Message-ID: <c9a04a45-d2df-5596-571e-08502fbb3709@denx.de>
-Date:   Thu, 16 Jun 2022 01:42:25 +0200
+        with ESMTP id S233984AbiFOXyF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 19:54:05 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 149B23DA4C;
+        Wed, 15 Jun 2022 16:54:04 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id q9so52977wrd.8;
+        Wed, 15 Jun 2022 16:54:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cEyb0MCcln4/+tJlggVbn7/rat/Zppm0BDFZFg8DfUQ=;
+        b=APPzjAGIC9jMqrLXLawLPcKEQQgeSUcq56kbUCQ4GasDxWBWmdoXMB/YGnM7QjKZu+
+         vYbqu7IE018GUI5aznn+lYzQGIM7rVkyzDzRTv00y71QShHpO98HMu2DAwmOfQrnkSt+
+         dYBAQMhrNe7koPrVO/NkW7O6NRPqr5lENxy2SK7B+tmG2sPkRZqYZc4VxhMvM01CsaxR
+         IsLJcXGj0RMlCu69CYq83hbZpG0A4fkHa6Ut/onfkmOlEn9As75nu0AICD/4CfNfiSP9
+         sc987ZT/Q2Hq5no0b0DDNOlEidm3xPRQ6238VGiybttu8bYGIndeuRYMDYHpDzTVfZiq
+         fv5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cEyb0MCcln4/+tJlggVbn7/rat/Zppm0BDFZFg8DfUQ=;
+        b=FcNpw6tBxHSbpGte8Nak9X3EbJ0p2ixj0wF0iFHWrLUYsvfCae79Td+9AUTR201mn7
+         IyenZ1DK9B+4UMsd3/TwdSHrWAhrGx+WkwOUYN/N4WAl2cjb87Rks6yJqtHWU3eXR2M2
+         RgRXt1rKEqWfAwZR5xfXOeAwy+yT4wL8rj9AwOcbPE0+tH1FKNOtFm3tQuEFAb8Dc2iw
+         rPJ1NnD2icm6qN/X760vw6vs2pQfdbN3JBq7J2R8y7BWDZyQFWqq513sa/BLyXMMUbwq
+         +Tnk6JkSOkzylIsbzOYZQDWWUYQyb71KKyFupYG41dlKkIloWvH4CnA1gBNAcqFap5ku
+         ZGQw==
+X-Gm-Message-State: AJIora/MgAaT+dQ1KVBwzC5Jv9iiAdOnhGxqWvcVa8IgeNZP4SHoPZbv
+        c1Q41QJdseYYFUezBu42IeA=
+X-Google-Smtp-Source: AGRyM1uhwQ3S8E2baOqZmAHNM9kzk7+kk49TzmqyqzwrVzL6jCCTBWy00QO29euSnLdNvcKnrJjWEA==
+X-Received: by 2002:adf:b358:0:b0:216:508c:e0bf with SMTP id k24-20020adfb358000000b00216508ce0bfmr2095552wrd.204.1655337242384;
+        Wed, 15 Jun 2022 16:54:02 -0700 (PDT)
+Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.googlemail.com with ESMTPSA id x1-20020adff0c1000000b002103cfd2fbasm268116wro.65.2022.06.15.16.54.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jun 2022 16:54:01 -0700 (PDT)
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: dma: rework qcom,adm Documentation to yaml schema
+Date:   Thu, 16 Jun 2022 01:54:03 +0200
+Message-Id: <20220615235404.3457-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: clk: Introduce 'critical-clocks'
- property
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20220517235919.200375-1-marex@denx.de>
- <20220615201027.DFCC3C3411A@smtp.kernel.org>
- <edbfccf3-0723-b570-1315-a0951b530a66@denx.de>
- <20220615222210.3D7F6C3411A@smtp.kernel.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20220615222210.3D7F6C3411A@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/16/22 00:22, Stephen Boyd wrote:
-> Quoting Marek Vasut (2022-06-15 14:55:17)
->> On 6/15/22 22:10, Stephen Boyd wrote:
->>> Quoting Marek Vasut (2022-05-17 16:59:18)
->>>> diff --git a/Documentation/devicetree/bindings/clock/clock-bindings.txt b/Documentation/devicetree/bindings/clock/clock-bindings.txt
->>>> index f2ea53832ac63..d7f7afe2cbd0c 100644
->>>> --- a/Documentation/devicetree/bindings/clock/clock-bindings.txt
->>>> +++ b/Documentation/devicetree/bindings/clock/clock-bindings.txt
->>>> @@ -169,6 +169,22 @@ a shared clock is forbidden.
->>>>    Configuration of common clocks, which affect multiple consumer devices can
->>>>    be similarly specified in the clock provider node.
->>>>    
->>>> +==Critical clocks==
->>>> +
->>>> +Some platforms require some clocks to be always running, e.g. because those
->>>> +clock supply devices which are not otherwise attached to the system. One
->>>> +example is a system where the SoC serves as a crystal oscillator replacement
->>>> +for a programmable logic device. The critical-clocks property of a clock
->>>> +controller allows listing clock which must never be turned off.
->>>> +
->>>> +   clock-controller@a000f000 {
->>>> +        compatible = "vendor,clk95;
->>>> +        reg = <0xa000f000 0x1000>
->>>> +        #clocks-cells = <1>;
->>>> +        ...
->>>> +        critical-clocks = <UART3_CLK>, <SPI5_CLK>;
->>>
->>> Historically "critical" is overloaded in the clk framework. We should
->>> avoid using that name. What does "critical" even mean?
->>
->> It means those clock must not be turned off, but there is no consumer
->> described in DT.
-> 
-> So it means "always on".
-> 
->>
->>> Instead I'd prefer "always-on-clocks" here, so we can indicate that
->>> these clks should always be on. It would also parallel the property in
->>> the regulator framework.
->>
->> This property name is derived from protected-clock which you introduced.
->> I think it would be better to stay consistent within the clock framework
->> property names ?
-> 
-> protected-clocks is based on assigned-clocks. There isn't a
-> CLK_IS_PROTECTED flag. I'm not following your argument at all here,
-> sorry.
+Rework the qcom,adm Documentation to yaml schema.
+This is not a pure conversion since originally the driver has changed
+implementation for the #dma-cells and was wrong from the start.
+Also the driver now handles the common DMA clients implementation with
+the first cell that denotes the channel number and nothing else since
+the client will have to provide the crci information via other means.
 
-critical-clock property name is based on protected-clock property name.
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+v2:
+- Change Sob to Christian Marangi
+- Add Bjorn in the maintainers list
 
-There is also no CLK_IS_ALWAYS_ON flag , but there is CLK_IS_CRITICAL 
-flag . Sure, there is no CLK_IS_PROTECTED flag because the protected 
-clock is implemented only by a single driver (qualcomm).
+ .../devicetree/bindings/dma/qcom,adm.yaml     | 96 +++++++++++++++++++
+ .../devicetree/bindings/dma/qcom_adm.txt      | 61 ------------
+ 2 files changed, 96 insertions(+), 61 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/qcom,adm.yaml
+ delete mode 100644 Documentation/devicetree/bindings/dma/qcom_adm.txt
 
-I think it makes sense to align the DT property name and the flag name, 
-and the critical-clock is aligned with both other DT property names in 
-the clock framework and the flag name.
+diff --git a/Documentation/devicetree/bindings/dma/qcom,adm.yaml b/Documentation/devicetree/bindings/dma/qcom,adm.yaml
+new file mode 100644
+index 000000000000..6c08245bf5d5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dma/qcom,adm.yaml
+@@ -0,0 +1,96 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/qcom,adm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm ADM DMA Controller
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
++
++description: |
++  QCOM ADM DMA controller provides DMA capabilities for
++  peripheral buses such as NAND and SPI.
++
++properties:
++  compatible:
++    const: qcom,adm
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#dma-cells":
++    const: 1
++
++  clocks:
++    items:
++      - description: phandle to the core clock
++      - description: phandle to the iface clock
++
++  clock-names:
++    items:
++      - const: core
++      - const: iface
++
++  resets:
++    items:
++      - description: phandle to the clk reset
++      - description: phandle to the c0 reset
++      - description: phandle to the c1 reset
++      - description: phandle to the c2 reset
++
++  reset-names:
++    items:
++      - const: clk
++      - const: c0
++      - const: c1
++      - const: c2
++
++  qcom,ee:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: indicates the security domain identifier used in the secure world.
++    minimum: 0
++    maximum: 255
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#dma-cells"
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - qcom,ee
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-ipq806x.h>
++    #include <dt-bindings/reset/qcom,gcc-ipq806x.h>
++
++    adm_dma: dma-controller@18300000 {
++        compatible = "qcom,adm";
++        reg = <0x18300000 0x100000>;
++        interrupts = <0 170 0>;
++        #dma-cells = <1>;
++
++        clocks = <&gcc ADM0_CLK>,
++                  <&gcc ADM0_PBUS_CLK>;
++        clock-names = "core", "iface";
++
++        resets = <&gcc ADM0_RESET>,
++                  <&gcc ADM0_C0_RESET>,
++                  <&gcc ADM0_C1_RESET>,
++                  <&gcc ADM0_C2_RESET>;
++        reset-names = "clk", "c0", "c1", "c2";
++        qcom,ee = <0>;
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/dma/qcom_adm.txt b/Documentation/devicetree/bindings/dma/qcom_adm.txt
+deleted file mode 100644
+index 9d3b2f917b7b..000000000000
+--- a/Documentation/devicetree/bindings/dma/qcom_adm.txt
++++ /dev/null
+@@ -1,61 +0,0 @@
+-QCOM ADM DMA Controller
+-
+-Required properties:
+-- compatible: must contain "qcom,adm" for IPQ/APQ8064 and MSM8960
+-- reg: Address range for DMA registers
+-- interrupts: Should contain one interrupt shared by all channels
+-- #dma-cells: must be <2>.  First cell denotes the channel number.  Second cell
+-  denotes CRCI (client rate control interface) flow control assignment.
+-- clocks: Should contain the core clock and interface clock.
+-- clock-names: Must contain "core" for the core clock and "iface" for the
+-  interface clock.
+-- resets: Must contain an entry for each entry in reset names.
+-- reset-names: Must include the following entries:
+-  - clk
+-  - c0
+-  - c1
+-  - c2
+-- qcom,ee: indicates the security domain identifier used in the secure world.
+-
+-Example:
+-		adm_dma: dma@18300000 {
+-			compatible = "qcom,adm";
+-			reg = <0x18300000 0x100000>;
+-			interrupts = <0 170 0>;
+-			#dma-cells = <2>;
+-
+-			clocks = <&gcc ADM0_CLK>, <&gcc ADM0_PBUS_CLK>;
+-			clock-names = "core", "iface";
+-
+-			resets = <&gcc ADM0_RESET>,
+-				<&gcc ADM0_C0_RESET>,
+-				<&gcc ADM0_C1_RESET>,
+-				<&gcc ADM0_C2_RESET>;
+-			reset-names = "clk", "c0", "c1", "c2";
+-			qcom,ee = <0>;
+-		};
+-
+-DMA clients must use the format descripted in the dma.txt file, using a three
+-cell specifier for each channel.
+-
+-Each dmas request consists of 3 cells:
+- 1. phandle pointing to the DMA controller
+- 2. channel number
+- 3. CRCI assignment, if applicable.  If no CRCI flow control is required, use 0.
+-    The CRCI is used for flow control.  It identifies the peripheral device that
+-    is the source/destination for the transferred data.
+-
+-Example:
+-
+-	spi4: spi@1a280000 {
+-		spi-max-frequency = <50000000>;
+-
+-		pinctrl-0 = <&spi_pins>;
+-		pinctrl-names = "default";
+-
+-		cs-gpios = <&qcom_pinmux 20 0>;
+-
+-		dmas = <&adm_dma 6 9>,
+-			<&adm_dma 5 10>;
+-		dma-names = "rx", "tx";
+-	};
+-- 
+2.36.1
+
