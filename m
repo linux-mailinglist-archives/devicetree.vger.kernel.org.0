@@ -2,186 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A57ED54D1C0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 21:38:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B93A354D1D0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 21:43:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349681AbiFOTi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 15:38:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41662 "EHLO
+        id S237516AbiFOTnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 15:43:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244636AbiFOTiz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 15:38:55 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04DB13BBE6;
-        Wed, 15 Jun 2022 12:38:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A7BFFB81F00;
-        Wed, 15 Jun 2022 19:38:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0171C3411E;
-        Wed, 15 Jun 2022 19:38:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655321932;
-        bh=8r4cD4LYkuropBC5jhH9yIfHJXDhGCTZ6tTZPJiVzmY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=AG5O5ndr4bq6IRx1S/TbkW5g7CAx9ZeCS2dbafIRidLMw/X2lCtA7wcW0MD+6mkGM
-         ok3LJ8OuUlxbO4rP+eHtohbeKSIQeOSo4VtH8p2jVjcer6vg2fl3TyZ+HdI+JeW7YM
-         7En4ewQILS0yE9Dq3LD2SeumP5IZyjqDoRWKQ+g3F9ytWuXZ3Ghds08ATjP2MH7o3e
-         efZTbxuBSbvSyocvX1BQB9XnzmkdeNHcRuWMPYwWRACqqfENO4NT/c9BJW2LJuDDu7
-         XuccQmp5pX1DKDltz7Xvp4yFhtJoI1Uy5gJiWKfxCa7w9xY1Bfgh/o8tPWmEfwPDjL
-         7r3xb3SEbfhHw==
-Message-ID: <4fd5ed33-a92e-71ed-b02c-da6f7c482c0a@kernel.org>
-Date:   Wed, 15 Jun 2022 14:38:47 -0500
+        with ESMTP id S232127AbiFOTnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 15:43:13 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B157C2BB22;
+        Wed, 15 Jun 2022 12:43:12 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id v1so25184569ejg.13;
+        Wed, 15 Jun 2022 12:43:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NeAaQxHNgpvGGApabF2dZ5cx3n1PATnxM0M/iIuIjaA=;
+        b=k14tMQCVOVeOrgEvHimQMUqpKcCa52Ahn9gpZ0rCs6UBPmduwGS/RyEeSxGl32iBsa
+         6sdJ2TwTf6gszE58GZjCVQJGrDA8gpYriykjwER+3ZPpzBx0LofuIzLo3P27yLoq7fgW
+         7Rt6xQ+cd9bin8kCAxVf9OAmEkf0xoPvJLzAq1UnhUnZXXHDizAgllKcQfoCJgc78lH8
+         f21xjPvnjHZJTTHcF5sfaryaMZuoSMBC9rM7poPFB2MPk1aJEBojUV7SB2CYo3Di4L+B
+         +NVJ/3Qlpw2Fql50DHr+uEEqIoYmTRaMWDB+tUmgCak9rIhAlxwXqizC2JzH6fYVEb/l
+         H8aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NeAaQxHNgpvGGApabF2dZ5cx3n1PATnxM0M/iIuIjaA=;
+        b=sWHJISgtiap00yCxFljoeqYtyqS97W9cmeon1t7c7mgT9HhBEHoIQ9+zEQTPuwiNlt
+         uZs9f1R002sQ+WZE2UsHuXwHMDOCUmwMERy9/vuqcYCpeJZoA9paicyKKUirad4mTovp
+         EQDgHuwSoa6ly9ZoiYcoYUfOG+6c5dgebgVMkd8ncmB0Fb5ub6obsT40bsvsrNTBO0RU
+         8o0is8p3htu/2e9ZusWTacb35mBNllldDRtfTHC7l+dd3OlgIuNocXDz/KdbtOXnIwO0
+         ipCbQxy43aquftOWzKKGQGppHgS9s5vG6V0/7nNRWFIEXuGxDpbBA14thmk7sW3o2edZ
+         Vftg==
+X-Gm-Message-State: AJIora/leGycxIUwYn9pY6ZMjQZMdyiitGM5AOUkYsv0CAIsspkl6Ooa
+        9Fe9Zl/az1GkQhRzS9BGrhQ=
+X-Google-Smtp-Source: AGRyM1sAO6s8WrkND9IqSLFNkOoSsbBsyq8tmeli3+/6WTSIMEkds8HRFI63vvFEhffvyAQFIfxN2g==
+X-Received: by 2002:a17:906:9244:b0:70c:f626:944d with SMTP id c4-20020a170906924400b0070cf626944dmr1300802ejx.496.1655322191129;
+        Wed, 15 Jun 2022 12:43:11 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id a16-20020aa7d750000000b0042bd6f745fasm18096eds.92.2022.06.15.12.43.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jun 2022 12:43:10 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Tom Rini <trini@konsulko.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, u-boot@lists.denx.de,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V4 1/2] mtd: allow getting MTD device associated with a specific DT node
+Date:   Wed, 15 Jun 2022 21:42:59 +0200
+Message-Id: <20220615194300.13358-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCHv4 1/2] i2c: designware: introduce a custom scl recovery
- for SoCFPGA platforms
-Content-Language: en-US
-To:     jarkko.nikula@linux.intel.com
-Cc:     andriy.shevchenko@linux.intel.com, mika.westerberg@linux.intel.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220615191214.826879-1-dinguyen@kernel.org>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20220615191214.826879-1-dinguyen@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
+MTD subsystem API allows interacting with MTD devices (e.g. reading,
+writing, handling bad blocks). So far a random driver could get MTD
+device only by its name (get_mtd_device_nm()). This change allows
+getting them also by a DT node.
 
-On 6/15/22 14:12, Dinh Nguyen wrote:
-> The I2C pins on the SoCFPGA platforms do not go through a GPIO module,
-> thus cannot be recovered by the default method of by doing a GPIO access.
-> Only a reset of the I2C IP block can a recovery be successful.
-> 
-> The assignment of the recover_bus needs to get done before the call to
-> devm_gpiod_get_optional(), otherwise, the assignment is not taking place
-> because of an error after returning from devm_gpiod_get_optional().
-> 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> ---
-> v4: re-arrange code per Andy Shevchenko's recommendation
-> v3: simplify the function
->      update commit message
-> v2: remove change to MODEL_MASK
->      s/i2c_custom_scl_recovery/i2c_socfpga_scl_recovery
-> ---
->   drivers/i2c/busses/i2c-designware-core.h    |  1 +
->   drivers/i2c/busses/i2c-designware-master.c  | 50 ++++++++++++++++++---
->   drivers/i2c/busses/i2c-designware-platdrv.c |  1 +
->   3 files changed, 46 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/i2c/busses/i2c-designware-core.h b/drivers/i2c/busses/i2c-designware-core.h
-> index 70b80e710990..7b22ec1d6a96 100644
-> --- a/drivers/i2c/busses/i2c-designware-core.h
-> +++ b/drivers/i2c/busses/i2c-designware-core.h
-> @@ -303,6 +303,7 @@ struct dw_i2c_dev {
->   #define MODEL_MSCC_OCELOT	BIT(8)
->   #define MODEL_BAIKAL_BT1	BIT(9)
->   #define MODEL_AMD_NAVI_GPU	BIT(10)
-> +#define MODEL_SOCFPGA		BIT(11)
->   #define MODEL_MASK		GENMASK(11, 8)
->   
->   /*
-> diff --git a/drivers/i2c/busses/i2c-designware-master.c b/drivers/i2c/busses/i2c-designware-master.c
-> index 44a94b225ed8..6b75a08a1c1f 100644
-> --- a/drivers/i2c/busses/i2c-designware-master.c
-> +++ b/drivers/i2c/busses/i2c-designware-master.c
-> @@ -813,10 +813,26 @@ static void i2c_dw_unprepare_recovery(struct i2c_adapter *adap)
->   	i2c_dw_init_master(dev);
->   }
->   
-> -static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
-> +static int i2c_socfpga_scl_recovery(struct i2c_adapter *adap)
-> +{
-> +	struct i2c_bus_recovery_info *bri = adap->bus_recovery_info;
-> +
-> +	bri->prepare_recovery(adap);
-> +	bri->unprepare_recovery(adap);
-> +
-> +	return 0;
-> +}
-> +
-> +static int i2c_dw_init_socfpga_recovery_info(struct dw_i2c_dev *dev,
-> +					     struct i2c_bus_recovery_info *rinfo)
-> +{
-> +	rinfo->recover_bus = i2c_socfpga_scl_recovery;
-> +	return 1;
-> +}
-> +
-> +static int i2c_dw_init_generic_recovery_info(struct dw_i2c_dev *dev,
-> +					     struct i2c_bus_recovery_info *rinfo)
->   {
-> -	struct i2c_bus_recovery_info *rinfo = &dev->rinfo;
-> -	struct i2c_adapter *adap = &dev->adapter;
->   	struct gpio_desc *gpio;
->   
->   	gpio = devm_gpiod_get_optional(dev->dev, "scl", GPIOD_OUT_HIGH);
-> @@ -831,16 +847,38 @@ static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
->   	rinfo->sda_gpiod = gpio;
->   
->   	rinfo->recover_bus = i2c_generic_scl_recovery;
-> -	rinfo->prepare_recovery = i2c_dw_prepare_recovery;
-> -	rinfo->unprepare_recovery = i2c_dw_unprepare_recovery;
-> -	adap->bus_recovery_info = rinfo;
->   
->   	dev_info(dev->dev, "running with gpio recovery mode! scl%s",
->   		 rinfo->sda_gpiod ? ",sda" : "");
->   
-> +	return 1;
-> +}
-> +
-> +static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
-> +{
-> +	struct i2c_bus_recovery_info *rinfo = &dev->rinfo;
-> +	struct i2c_adapter *adap = &dev->adapter;
-> +	int ret;
-> +
-> +	switch (dev->flags & MODEL_MASK) {
-> +	case MODEL_SOCFPGA:
-> +		ret = i2c_dw_init_socfpga_recovery_info(dev, rinfo);
-> +		break;
-> +	default:
-> +		ret = i2c_dw_init_generic_recovery_info(dev, rinfo);
-> +		break;
-> +	}
-> +	if (ret <= 0)
-> +		return ret;
-> +
-> +	rinfo->prepare_recovery = i2c_dw_prepare_recovery;
-> +	rinfo->unprepare_recovery = i2c_dw_unprepare_recovery;
-> +	adap->bus_recovery_info = rinfo;
-> +
->   	return 0;
->   }
->   
-> +
+This API is required for drivers handling DT defined MTD partitions in a
+specific way (e.g. U-Boot (sub)partition with environment variables).
 
-Sorry for this stray newline, let me if you need me to send a v5?
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
+---
+V3: First introduction of of_get_mtd_device_by_node()
+V4: Use EPROBE_DEFER
 
->   static int amd_i2c_adap_quirk(struct dw_i2c_dev *dev)
->   {
->   	struct i2c_adapter *adap = &dev->adapter;
-> diff --git a/drivers/i2c/busses/i2c-designware-platdrv.c b/drivers/i2c/busses/i2c-designware-platdrv.c
-> index 70ade5306e45..b33e015e6732 100644
-> --- a/drivers/i2c/busses/i2c-designware-platdrv.c
-> +++ b/drivers/i2c/busses/i2c-designware-platdrv.c
-> @@ -153,6 +153,7 @@ static const struct of_device_id dw_i2c_of_match[] = {
->   	{ .compatible = "snps,designware-i2c", },
->   	{ .compatible = "mscc,ocelot-i2c", .data = (void *)MODEL_MSCC_OCELOT },
->   	{ .compatible = "baikal,bt1-sys-i2c", .data = (void *)MODEL_BAIKAL_BT1 },
-> +	{ .compatible = "intel,socfpga-i2c", .data = (void *)MODEL_SOCFPGA },
->   	{},
->   };
->   MODULE_DEVICE_TABLE(of, dw_i2c_of_match);
+Srinivas: in V3 Miquel said it's OK to push this patch through NVMEM 
+---
+ drivers/mtd/mtdcore.c   | 28 ++++++++++++++++++++++++++++
+ include/linux/mtd/mtd.h |  1 +
+ 2 files changed, 29 insertions(+)
+
+diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
+index 9eb0680db312..3613cc142f25 100644
+--- a/drivers/mtd/mtdcore.c
++++ b/drivers/mtd/mtdcore.c
+@@ -1154,6 +1154,34 @@ int __get_mtd_device(struct mtd_info *mtd)
+ }
+ EXPORT_SYMBOL_GPL(__get_mtd_device);
+ 
++/**
++ * of_get_mtd_device_by_node - obtain an MTD device associated with a given node
++ *
++ * @np: device tree node
++ */
++struct mtd_info *of_get_mtd_device_by_node(struct device_node *np)
++{
++	struct mtd_info *mtd = NULL;
++	struct mtd_info *tmp;
++	int err;
++
++	mutex_lock(&mtd_table_mutex);
++
++	err = -EPROBE_DEFER;
++	mtd_for_each_device(tmp) {
++		if (mtd_get_of_node(tmp) == np) {
++			mtd = tmp;
++			err = __get_mtd_device(mtd);
++			break;
++		}
++	}
++
++	mutex_unlock(&mtd_table_mutex);
++
++	return err ? ERR_PTR(err) : mtd;
++}
++EXPORT_SYMBOL_GPL(of_get_mtd_device_by_node);
++
+ /**
+  *	get_mtd_device_nm - obtain a validated handle for an MTD device by
+  *	device name
+diff --git a/include/linux/mtd/mtd.h b/include/linux/mtd/mtd.h
+index 955aee14b0f7..6fc841ceef31 100644
+--- a/include/linux/mtd/mtd.h
++++ b/include/linux/mtd/mtd.h
+@@ -677,6 +677,7 @@ extern int mtd_device_unregister(struct mtd_info *master);
+ extern struct mtd_info *get_mtd_device(struct mtd_info *mtd, int num);
+ extern int __get_mtd_device(struct mtd_info *mtd);
+ extern void __put_mtd_device(struct mtd_info *mtd);
++extern struct mtd_info *of_get_mtd_device_by_node(struct device_node *np);
+ extern struct mtd_info *get_mtd_device_nm(const char *name);
+ extern void put_mtd_device(struct mtd_info *mtd);
+ 
+-- 
+2.34.1
+
