@@ -2,73 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FC7B54C862
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 14:23:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75EE654C882
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 14:28:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348663AbiFOMXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 08:23:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55570 "EHLO
+        id S242577AbiFOM2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 08:28:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240567AbiFOMXs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 08:23:48 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95F3C3A19D
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 05:23:47 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id y32so18641464lfa.6
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 05:23:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8rUU1v4caE1AGNF+lS60izJAnVf3yfLugaHg1ivJmQQ=;
-        b=G0WaETsHyn+zH1jan5g5fdKXYSbLSIGLfgZCngWeHK8SNc6nQaDLhLivMVUXnvlOTv
-         j4gPVfyfvAz+71QqSBN+y91lg+zLaTokZAhllYwPwsCK7/ml459ODxQJCMOfUsXTuX3t
-         24phzz2A2cO/wqpy9Cfq7Uyvzpd30CBu0tJ6U/ma4Ol39pEUANFas0cu+qBJR9+vtJym
-         DPopdyECdgnP8WHtBZLiwlyRDDKcirwwmxibKWqcycj8pkqYLWrqfWLtV5jbnrMQkwlv
-         2uY4eH6XkhHaUimOqIEBGDesWnkEPYdELMPnKw04x6Ab55rDraTSah6vX2q/VZog+RMX
-         zM5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=8rUU1v4caE1AGNF+lS60izJAnVf3yfLugaHg1ivJmQQ=;
-        b=cTpX+Gda51Tigs1DiRjvG6XenVCfLEVbaErVWPf9wnOrc/VaH1zSR9UMgzJ4jwVl9I
-         wV89n0IHWlwQTUI8/9OAWIE4P4+jKR6k/pXuysXc5ckuvytRxNT7oFgayiastvu/qhRw
-         7dl8BFm8j+Rx0bx09EFDjyQ1HSJFAN+KrJeGBJ00DE0IaTYU8Zp2PknZT9oBGHv1/19O
-         8mhTfZR5dqWZoW3D2gF/Jk2Pxf6LzNgkuWY5AToZgbrx9udq37/jSCypFXNJmZInQIKr
-         Nsvs+nbDy3kMALqynZWfnn55aLYEMZPyy9hyPJa40jmfRF2MLe7Gx2oQfD0qbPNDOJMz
-         QISw==
-X-Gm-Message-State: AJIora8/hAOSbt8PJLd+xP1e76sIZjS1DtGWx4hYGjiIFvjXaL7hf2fE
-        va5Wi1Uen9EB67Txa6QDEohKSg==
-X-Google-Smtp-Source: AGRyM1sxaiDNiyNPJgYfTRi01S0KUZbw4hqUs7vxcFmh4deHfpD4rJBiVYuquo3bmE4kDP6en8Kvxw==
-X-Received: by 2002:a05:6512:3a84:b0:479:209a:578a with SMTP id q4-20020a0565123a8400b00479209a578amr5931900lfu.292.1655295825901;
-        Wed, 15 Jun 2022 05:23:45 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id v6-20020a2e87c6000000b00255ac185029sm1672893ljj.30.2022.06.15.05.23.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jun 2022 05:23:45 -0700 (PDT)
-Message-ID: <29ae886c-b2b2-2387-87cb-e4a885080418@linaro.org>
-Date:   Wed, 15 Jun 2022 15:23:44 +0300
+        with ESMTP id S1348537AbiFOM2J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 08:28:09 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7150939827;
+        Wed, 15 Jun 2022 05:28:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 0E6ECCE1CE0;
+        Wed, 15 Jun 2022 12:28:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 115C3C34115;
+        Wed, 15 Jun 2022 12:27:58 +0000 (UTC)
+Message-ID: <3afb8643-9e4d-bded-e788-ef024895dcb2@xs4all.nl>
+Date:   Wed, 15 Jun 2022 14:27:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [v2] drm/msm: add null checks for drm device to avoid crash
- during probe defer
-Content-Language: en-GB
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, vpolimer@quicinc.com, swboyd@chromium.org,
-        kalyant@quicinc.com
-References: <1654249343-24959-1-git-send-email-quic_vpolimer@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1654249343-24959-1-git-send-email-quic_vpolimer@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v5 3/9] vivid: add dynamic array test control
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>, mchehab@kernel.org,
+        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
+        robh+dt@kernel.org, nicolas@ndufresne.ca,
+        alexander.stein@ew.tq-group.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220503093925.876640-1-xavier.roumegue@oss.nxp.com>
+ <20220503093925.876640-4-xavier.roumegue@oss.nxp.com>
+ <Yqj20J9QaAV6ZNes@pendragon.ideasonboard.com>
+ <b508597d-3da5-5e1f-66a5-a9f7d6a2c352@xs4all.nl>
+ <YqnIRWtyjtyz4gzj@pendragon.ideasonboard.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <YqnIRWtyjtyz4gzj@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-7.9 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,78 +53,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/2022 12:42, Vinod Polimera wrote:
-> During probe defer, drm device is not initialized and an external
-> trigger to shutdown is trying to clean up drm device leading to crash.
-> Add checks to avoid drm device cleanup in such cases.
-> 
-> BUG: unable to handle kernel NULL pointer dereference at virtual
-> address 00000000000000b8
-> 
-> Call trace:
-> 
-> drm_atomic_helper_shutdown+0x44/0x144
-> msm_pdev_shutdown+0x2c/0x38
-> platform_shutdown+0x2c/0x38
-> device_shutdown+0x158/0x210
-> kernel_restart_prepare+0x40/0x4c
-> kernel_restart+0x20/0x6c
-> __arm64_sys_reboot+0x194/0x23c
-> invoke_syscall+0x50/0x13c
-> el0_svc_common+0xa0/0x17c
-> do_el0_svc_compat+0x28/0x34
-> el0_svc_compat+0x20/0x70
-> el0t_32_sync_handler+0xa8/0xcc
-> el0t_32_sync+0x1a8/0x1ac
-> 
-> Changes in v2:
-> - Add fixes tag.
-> 
-> Fixes: 623f279c778 ("drm/msm: fix shutdown hook in case GPU components failed to bind")
-> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-> ---
->   drivers/gpu/drm/msm/msm_drv.c | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
-> index 4448536..d62ac66 100644
-> --- a/drivers/gpu/drm/msm/msm_drv.c
-> +++ b/drivers/gpu/drm/msm/msm_drv.c
-> @@ -142,6 +142,9 @@ static void msm_irq_uninstall(struct drm_device *dev)
->   	struct msm_drm_private *priv = dev->dev_private;
->   	struct msm_kms *kms = priv->kms;
->   
-> +	if (!irq_has_action(kms->irq))
-> +		return;
-
-As a second thought I'd still prefer a variable here. irq_has_action 
-would check that there is _any_ IRQ handler for this IRQ. While we do 
-not have anybody sharing this IRQ, I'd prefer to be clear here, that we 
-do not want to uninstall our IRQ handler rather than any IRQ handler.
-
-> +
->   	kms->funcs->irq_uninstall(kms);
->   	if (kms->irq_requested)
->   		free_irq(kms->irq, dev);
-> @@ -259,6 +262,7 @@ static int msm_drm_uninit(struct device *dev)
->   
->   	ddev->dev_private = NULL;
->   	drm_dev_put(ddev);
-> +	priv->dev = NULL;
->   
->   	destroy_workqueue(priv->wq);
->   
-> @@ -1167,7 +1171,7 @@ void msm_drv_shutdown(struct platform_device *pdev)
->   	struct msm_drm_private *priv = platform_get_drvdata(pdev);
->   	struct drm_device *drm = priv ? priv->dev : NULL;
->   
-> -	if (!priv || !priv->kms)
-> +	if (!priv || !priv->kms || !drm)
->   		return;
->   
->   	drm_atomic_helper_shutdown(drm);
 
 
--- 
-With best wishes
-Dmitry
+On 6/15/22 13:53, Laurent Pinchart wrote:
+> Hi Hans,
+> 
+> On Wed, Jun 15, 2022 at 11:14:43AM +0200, Hans Verkuil wrote:
+>> Hi Laurent, Xavier,
+>>
+>> Ignore what I wrote before, I read it with the HEVC patch series in mind, not the dw100
+>> series.
+>>
+>> So let me try again :-)
+>>
+>> On 6/14/22 23:00, Laurent Pinchart wrote:
+>>> Hi Xavier and Hans,
+>>>
+>>> Thank you for the patch.
+>>>
+>>> On Tue, May 03, 2022 at 11:39:19AM +0200, Xavier Roumegue wrote:
+>>>> From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+>>>>
+>>>> Add a dynamic array test control to help test support for this
+>>>> feature.
+>>>>
+>>>> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+>>>> ---
+>>>>  drivers/media/test-drivers/vivid/vivid-ctrls.c | 15 +++++++++++++++
+>>>>  1 file changed, 15 insertions(+)
+>>>>
+>>>> diff --git a/drivers/media/test-drivers/vivid/vivid-ctrls.c b/drivers/media/test-drivers/vivid/vivid-ctrls.c
+>>>> index e7516dc1227b..7267892dc18a 100644
+>>>> --- a/drivers/media/test-drivers/vivid/vivid-ctrls.c
+>>>> +++ b/drivers/media/test-drivers/vivid/vivid-ctrls.c
+>>>> @@ -34,6 +34,7 @@
+>>>>  #define VIVID_CID_U8_4D_ARRAY		(VIVID_CID_CUSTOM_BASE + 10)
+>>>>  #define VIVID_CID_AREA			(VIVID_CID_CUSTOM_BASE + 11)
+>>>>  #define VIVID_CID_RO_INTEGER		(VIVID_CID_CUSTOM_BASE + 12)
+>>>> +#define VIVID_CID_U32_DYN_ARRAY		(VIVID_CID_CUSTOM_BASE + 13)
+>>>>  
+>>>>  #define VIVID_CID_VIVID_BASE		(0x00f00000 | 0xf000)
+>>>>  #define VIVID_CID_VIVID_CLASS		(0x00f00000 | 1)
+>>>> @@ -189,6 +190,19 @@ static const struct v4l2_ctrl_config vivid_ctrl_u32_array = {
+>>>>  	.dims = { 1 },
+>>>>  };
+>>>>  
+>>>> +static const struct v4l2_ctrl_config vivid_ctrl_u32_dyn_array = {
+>>>> +	.ops = &vivid_user_gen_ctrl_ops,
+>>>> +	.id = VIVID_CID_U32_DYN_ARRAY,
+>>>> +	.name = "U32 Dynamic Array",
+>>>> +	.type = V4L2_CTRL_TYPE_U32,
+>>>> +	.flags = V4L2_CTRL_FLAG_DYNAMIC_ARRAY,
+>>>> +	.def = 50,
+>>>> +	.min = 10,
+>>>> +	.max = 90,
+>>>> +	.step = 1,
+>>>> +	.dims = { 100 },
+>>>> +};
+>>>
+>>> To meaningfully test this, don't we need the vivid driver to change the
+>>> dimension ? Or is it meant to only test changes made by the application
+>>> ?
+>>
+>> As I understand it the dw100 driver needs a 2 dimensional array control.
+>> The size is fixed for each resolution, but if the resolution changes, then
+>> this control changes size as well, and it makes sense that when that happens
+>> it is also reset to default values.
+>>
+>> So this isn't a dynamic array at all. It is a standard 2 dimensional array.
+>>
+>> What is missing in the control framework is a function similar to
+>> v4l2_ctrl_modify_range() that can resize an array.
+>>
+>> v4l2_ctrl_modify_dimensions() would be a good name.
+>>
+>> I can make something for that if you both agree with this proposal.
+> 
+> From a userspace point of view, we only need to be able to set the
+> control after setting the format. There's no need for control change
+> events (but I don't mind if they're there of course, even if I think
+> they won't be very usable in practice).
+> 
+> From an API point of view, I'd like a clear and documented behaviour for
+> what happens to the control value when the format is changed. It can be
+> a global behaviour, or a control-specific behaviour, I don't mind much.
+
+I'd say it is control specific. In this case you would reset the contents
+to default values (presumably values that don't do any warping in this
+case).
+
+Regards,
+
+	Hans
+
+> 
+>>>> +
+>>>>  static const struct v4l2_ctrl_config vivid_ctrl_u16_matrix = {
+>>>>  	.ops = &vivid_user_gen_ctrl_ops,
+>>>>  	.id = VIVID_CID_U16_MATRIX,
+>>>> @@ -1612,6 +1626,7 @@ int vivid_create_controls(struct vivid_dev *dev, bool show_ccs_cap,
+>>>>  	dev->ro_int32 = v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_ro_int32, NULL);
+>>>>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_area, NULL);
+>>>>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u32_array, NULL);
+>>>> +	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u32_dyn_array, NULL);
+>>>>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u16_matrix, NULL);
+>>>>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u8_4d_array, NULL);
+>>>>  
+> 
