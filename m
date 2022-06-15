@@ -2,148 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63F3C54D0DC
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 20:25:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D79E454D0F0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 20:30:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243318AbiFOSZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 14:25:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36948 "EHLO
+        id S1353626AbiFOSaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 14:30:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241899AbiFOSZB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 14:25:01 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 88A4725588;
-        Wed, 15 Jun 2022 11:25:00 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6638D153B;
-        Wed, 15 Jun 2022 11:25:00 -0700 (PDT)
-Received: from [10.57.82.209] (unknown [10.57.82.209])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D9B243F73B;
-        Wed, 15 Jun 2022 11:24:55 -0700 (PDT)
-Message-ID: <dacd4a2d-a2b9-d2c2-4d47-f030dd01ee25@arm.com>
-Date:   Wed, 15 Jun 2022 19:24:50 +0100
+        with ESMTP id S1346527AbiFOSaS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 14:30:18 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0D0949252;
+        Wed, 15 Jun 2022 11:30:16 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id fu3so24889690ejc.7;
+        Wed, 15 Jun 2022 11:30:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=0tVyV2MItMC7Xp0ChiF5DdKmNUp2ewZ5lqSMGrWKASc=;
+        b=gxocVnjFbqdfBUTdrVKam+IQDV5GQh5/vy8ZoEFNIr3dW1TgmwXHMGt1O/02WiD8g2
+         rP91nRYckz7bNxVqzjY+uzKfWAxCUvIGlTimiIZyr973U67kM6RQJbjkuBYEU6ItaRTO
+         a6Nkf4XIURXKD63XwumNXuR2G9e7pxBmVGERbTcqFxc9WBktPlCqnWu9j270IhPmz3SO
+         Ul+bdCduITEeYFAmHvvEluaSNUzwC3X8yAvg6VA+Tq9SGy2HadhTrqK0BywnZVzMNiZt
+         DgJQUc/MhKNTRMk86f/PrDNp9NtcU+w04j7WHxc7Egq9l/9ZJJ6Z/lbMMNoIFELUD6qh
+         9L1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=0tVyV2MItMC7Xp0ChiF5DdKmNUp2ewZ5lqSMGrWKASc=;
+        b=2PWtNBzd2g8WvVkZ58rxebHkG93RxNVBt8I4Ya/9nQNiDwPD0wIL/X2J/+jBUOLWjU
+         oxuoDsGS39rPqj02naFQ1MsID8PUq03a56M5zU9XiJV2RlWW/Zws2QOEVzVs9L59lM+u
+         XLdSSEfFy2BNz9VrN2/hcFmMH4NNArv++0mr/BsfBJF5NUso5dUshPc41iMDII7UQl9x
+         VlVZNKbgY6vFA6YLt9A1C3syYlX1WPv1REFw/4lxUaxXf+cKIhbEwq7TjMkVJM58L8dI
+         XL/14A+qMdHNge0sDcXJhH/ZcJYAcuA/49ERkn4eokCR+sSFXht0dP017KPspu7ZQ038
+         Yw9A==
+X-Gm-Message-State: AJIora+SsLyPShwqnXobrBMee+j/5fH8iejc/2DbI/eJgFBh7J9NrePr
+        pEIH3H1YR+Dv6U4fPbbxWa66rVQhFLw=
+X-Google-Smtp-Source: AGRyM1uM41ebjYsi0V8Q6io3lK1TJ3cHgdXH58BCSObJYShmcsB7lz5YVOLlsr7DzxhCAEvYvfp42g==
+X-Received: by 2002:a17:906:b208:b0:70e:c7f1:f8bf with SMTP id p8-20020a170906b20800b0070ec7f1f8bfmr997939ejz.143.1655317815135;
+        Wed, 15 Jun 2022 11:30:15 -0700 (PDT)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id fw37-20020a170907502500b0071579abcf3csm5425587ejc.111.2022.06.15.11.30.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 11:30:14 -0700 (PDT)
+Message-ID: <c67b209c-4237-4c9f-3150-23a3ef99bc34@gmail.com>
+Date:   Wed, 15 Jun 2022 20:30:12 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
- which controls
-Content-Language: en-GB
-To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "max.oss.09@gmail.com" <max.oss.09@gmail.com>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "geert@linux-m68k.org" <geert@linux-m68k.org>
-Cc:     "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        "biju.das.jz@bp.renesas.com" <biju.das.jz@bp.renesas.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "khilman@kernel.org" <khilman@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        "broonie@kernel.org" <broonie@kernel.org>
-References: <20220609150851.23084-1-max.oss.09@gmail.com>
- <20220613191549.GA4092455-robh@kernel.org>
- <CAMuHMdU+aOw_D3SR6714U_i5WhE8S-FCLdPJaf_+Fncz4aH8VA@mail.gmail.com>
- <CAEHkU3VVM0zUsaKMUGeSzfbLmVJW6rqXGLv7TqaLTEQeXEVkUA@mail.gmail.com>
- <12e3bb72-af2d-653f-b342-c6b4d6a1f292@linaro.org>
- <ddbeba186bf662348e8594f322f750cf89326a66.camel@toradex.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <ddbeba186bf662348e8594f322f750cf89326a66.camel@toradex.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH V3 2/2] nvmem: add driver handling U-Boot environment
+ variables
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Tom Rini <trini@konsulko.com>,
+        linux-arm-kernel@lists.infradead.org, u-boot@lists.denx.de,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20220611204651.19947-1-zajec5@gmail.com>
+ <20220611204651.19947-2-zajec5@gmail.com>
+ <1ecbb1af-53d6-1ac1-fd9f-b780a7c50fd9@pengutronix.de>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <1ecbb1af-53d6-1ac1-fd9f-b780a7c50fd9@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-06-15 18:31, Marcel Ziswiler wrote:
-> Hi
+On 14.06.2022 08:45, Ahmad Fatoum wrote:
+>> +	if (err && !mtd_is_bitflip(err)) {
+>> +		dev_err(dev, "Failed to read from mtd: %d\n", err);
 > 
-> On Wed, 2022-06-15 at 10:15 -0700, Krzysztof Kozlowski wrote:
->> On 15/06/2022 09:10, Max Krummenacher wrote:
->>> Hi
->>>
->>> On Tue, Jun 14, 2022 at 9:22 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->>>>
->>>> Hi Rob,
->>>>
->>>> On Mon, Jun 13, 2022 at 9:15 PM Rob Herring <robh@kernel.org> wrote:
->>>>> On Thu, Jun 09, 2022 at 05:08:46PM +0200, Max Krummenacher wrote:
->>>>>> From: Max Krummenacher <max.krummenacher@toradex.com>
->>>>>>
->>>>>> its power enable by using a regulator.
->>>>>>
->>>>>> The currently implemented PM domain providers are all specific to
->>>>>> a particular system on chip.
->>>>>
->>>>> Yes, power domains tend to be specific to an SoC... 'power-domains' is
->>>>> supposed to be power islands in a chip. Linux 'PM domains' can be
->>>>> anything...
->>>
->>> I don't see why such power islands should be restricted to a SoC. You can
->>> build the exact same idea on a PCB or even more modular designs.
->>
->> In the SoC these power islands are more-or-less defined. These are real
->> regions gated by some control knob.
->>
->> Calling few devices on a board "power domain" does not make it a power
->> domain. There is no grouping, there is no control knob.
->>
->> Aren't you now re-implementing regulator supplies? How is this different
->> than existing supplies?
+> Nitpick: %pe
+
+My "err" variable in int, not a pointer (I don't use PTR_ERR()).
+
+
+>> +static int u_boot_env_add_cells(struct u_boot_env *priv, uint8_t *buf,
+>> +				size_t data_offset, size_t data_len)
+>> +{
+>> +	struct device *dev = priv->dev;
+>> +	char *data = buf + data_offset;
+>> +	char *var, *value, *eq;
+>> +	int idx;
+>> +
+>> +	priv->ncells = 0;
+>> +	for (var = data; var < data + data_len && *var; var += strlen(var) + 1)
+>> +		priv->ncells++;
+>> +
+>> +	priv->cells = devm_kcalloc(dev, priv->ncells, sizeof(*priv->cells), GFP_KERNEL);
+>> +	if (!priv->cells)
+>> +		return -ENOMEM;
+>> +
+>> +	for (var = data, idx = 0;
+>> +	     var < data + data_len && *var;
+>> +	     var = value + strlen(value) + 1, idx++) {
+>> +		eq = strchr(var, '=');
+>> +		if (!eq)
+>> +			break;
+>> +		*eq = '\0';
+>> +		value = eq + 1;
+>> +
+>> +		priv->cells[idx].name = devm_kstrdup(dev, var, GFP_KERNEL);
+>> +		if (!priv->cells[idx].name)
+>> +			return -ENOMEM;
+>> +		priv->cells[idx].offset = data_offset + value - data;
+>> +		priv->cells[idx].bytes = strlen(value);
 > 
-> I believe the biggest difference between power-domains and regulator-supplies lays in the former being driver
-> agnostic while the later is driver specific. Meaning with power-domains one can just add such arbitrary
-> structure to the device tree without any further driver specific changes/handling required. While with
-> regulator-supplies each and every driver actually needs to have driver specific handling thereof added. Or do I
-> miss anything?
-> 
-> We are really trying to model something where a single GPIO pin (via a GPIO regulator or whatever) can control
-> power to a variety of on-board peripherals. And, of course, we envision runtime PM actually making use of it
-> e.g. when doing suspend/resume.
+> U-Boot environment can't hold binary values?
 
-FWIW, this really seems to beg the question of PM support in the drivers 
-for those peripherals. If they'll need to be modified to add 
-suspend/resume routines anyway, then adding a handful more lines to 
-control a supply regulator at the same time shouldn't be too big a deal. 
-Conversely, I'd be surprised if they *did* have PM support if there 
-wasn't already some way to make use of it.
+I believe it can't. In any case \0 is a always a separator.
 
-Multiple consumers sharing a voltage rail provided by a single regulator 
-is so standard and well-supported that it barely seems worth pointing 
-out, but for the avoidance of doubt I shall. Adding a new non-standard 
-way to hide a specific subset of regulator functionality behind behind a 
-magic driver because it seems like slightly less work than handling it 
-the well-known established way sounds like a great recipe for technical 
-debt and future compatibility headaches. What if down the line you end 
-up with a situation where if device A is suspended, devices B and C are 
-happy to save some power by running the "domain" at a lower voltage? Do 
-we stubbornly start duplicating more of the regulator framework in the 
-magic power domain driver, or is that the point where we have to switch 
-all the consumers to explicit supplies, and get to regret having "saved" 
-that effort in the first place...
 
-Cheers,
-Robin.
+>> +	}
+>> +
+>> +	if (WARN_ON(idx != priv->ncells))
+>> +		priv->ncells = idx;
+>> +
+>> +	return 0;
+>> +}
+
