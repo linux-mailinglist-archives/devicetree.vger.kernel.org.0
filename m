@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A01854D052
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:47:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48F4154CF14
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 18:54:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354455AbiFORrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 13:47:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60770 "EHLO
+        id S235833AbiFOQy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 12:54:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349899AbiFORrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:47:48 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C442F1147F;
-        Wed, 15 Jun 2022 10:47:47 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id m24so16323263wrb.10;
-        Wed, 15 Jun 2022 10:47:47 -0700 (PDT)
+        with ESMTP id S230236AbiFOQy4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 12:54:56 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B24A549F92;
+        Wed, 15 Jun 2022 09:54:55 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id m24so16151286wrb.10;
+        Wed, 15 Jun 2022 09:54:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=UEplRBRe8Not6/N/87KHMRBTXuTr13tJIbM6hc9f8sQ=;
-        b=Px0sxprY8EaTIf37otn4bHLOMuOiouEYqETuqdXAoedA3jFIrkkKeHZvQZcfi6IDQd
-         +gPo6UtC+5oE4EUy+jA8XQ7k3lqlL722vCj/oANcJfB4eG3pUwsqRPv0uGe/HecIqW06
-         cSNnPJbGMJNoz1TcKBBRCF+5+Gy+Cravzkx4VbGZqli8BcwNbigqDx4TMiTrEehL3wXu
-         /D+jaAoPIZIEEgXk+EJBQxt2H4K1b7kI15klNggExGmPBJhVD7tPrtpUq9FphpwM1H+2
-         rWMXGX3cud6Dblde43mQIlZpBjDyX+LwEaufSxZUdSU0FK7uOYBP2vVcdz9tV4MoyFOx
-         aIxA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=O0ZNCzaGbIN6vYx92G4OUm186Sl4b3mFGrPcQiPkGOk=;
+        b=FWFfE/TrOsOqhKNBqDjPUw1E7PsUxALBEn9s+nTsX2df5Hx2wbVhzfUT/DUXRnQpnS
+         y1WJqF+s3WJHsn1DPXWQOQtlbNRQuDyptNEM4nr6MeSafsU1dPtHIULXL+MQ3fGzaqYM
+         NgASYW/jRkv6l0ZagU9DLznhoJ+G23wWKjS9X/eSpnNdUWMKuepQg/hFM8aVnvJVD1i7
+         58rvgMp5z0X4w/AZZn031OrSvk9Vo3t4oNimvCl2flH1cQxaoO9l5kVRc6IYg6tRnlDV
+         x3SSlYjYWZyFy79oPP8KftfTu34PQzBwjm1YJ8iuURHu1VsErk2pjiDI/K1c6Sr4M1Ce
+         n+JA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UEplRBRe8Not6/N/87KHMRBTXuTr13tJIbM6hc9f8sQ=;
-        b=XmkHLc8sQbZFr9+YfpUvC5ZH2Hs730EVQDCJXfaC4BlUx8++x44X979WJ4s0TAJEcf
-         czsDR6qCe9wnUxjxiDdhLWrNGMjlqo679z46Oa7fM9UHwFa3gTww8JQVgm1G6Itwr+M/
-         mdTBlLpMXq8xiCb5BwGgki6EZD1qqzSJhM7JK8V3HrWmZE9H2YLM2bvW/sORDZoc0oig
-         lzq1RJLQB3x87/qwijIk/z2JDOltq8t/LJNm2v6yj9rhMpd4wy4efYQAmjhUJgZ20oxo
-         pQctcnY0ZKJHdJHqVxWy6nI7KqBOCPVe7ddVTtomtBiFWsRmRgbnQ/aP+IO1APnnsscC
-         zddA==
-X-Gm-Message-State: AJIora9mYJz6gINCGfT/pH7z/3rHTopUqOAVwAyowjn4IwH/4UHSDIr8
-        V/LicxDMldimP+JMyy4OCeFowHQaquU=
-X-Google-Smtp-Source: AGRyM1sdCdaiNcC0qqAatgAXTIR/dGxEV0s1FBUtTraV7r7iycMccsJTIVFL8TKmFtDbKNmYjUCrwg==
-X-Received: by 2002:a05:6000:1548:b0:217:6480:e65 with SMTP id 8-20020a056000154800b0021764800e65mr934830wry.381.1655315266192;
-        Wed, 15 Jun 2022 10:47:46 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.gmail.com with ESMTPSA id l125-20020a1c2583000000b0039c4d9737f3sm3158157wml.34.2022.06.15.10.47.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 10:47:45 -0700 (PDT)
-Message-ID: <62aa1b41.1c69fb81.95632.5b71@mx.google.com>
-X-Google-Original-Message-ID: <YqoOmlGklknRj8Yf@Ansuel-xps.>
-Date:   Wed, 15 Jun 2022 18:53:46 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: clock: add pcm reset for ipq806x lcc
-References: <20220615163408.30154-1-ansuelsmth@gmail.com>
- <a92fe431-a995-4c7f-b90b-8e80298bc71a@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=O0ZNCzaGbIN6vYx92G4OUm186Sl4b3mFGrPcQiPkGOk=;
+        b=bOLt1jHa9uV/hYBJmdxIIRIXU5qXO0verrYv98jIxBMkT655GTQRBSbhxiF/Fr+Hgz
+         XmzKw10umJv/ZqMACSegUizRWfuWP2GAYBLZzroQClSn0+Z841WUBSaieRCfg+EwHnq2
+         41en80xQFk0Q/bAZ6MRFwQDVGm1wcvbgFJP3+hD+RKQ7aPMlMwdR7jr4V0jEsxJiKUNB
+         we9uEdfgCDKQhaSuRurfOuh/9OMjJcONtsI9syBkc7azmzW3TZjiwWUl9TJOlHFq5dAQ
+         nSj2oeTqqXcc8FCjEd9TMvCn2SVYQNGpCYPdK7bTn6fsE+yVUA7D/OPWt1y3jGJUjlBq
+         uGzw==
+X-Gm-Message-State: AJIora/U9SH/j3BwctqCmaiNJ7zzVQkPbOKF7Y6qTHUiIKlYNuqlJ4Fe
+        lB1wPbsxj9IjLCAOSMzdKvY=
+X-Google-Smtp-Source: AGRyM1upL28UfLmiDNOCmxFWdPZt1LH1eRzJbtxF7HVF5ZDTc2UCPQgDR6kt2epkDohPh0R41Pw3Xg==
+X-Received: by 2002:adf:e2cb:0:b0:20c:c1bb:9fcb with SMTP id d11-20020adfe2cb000000b0020cc1bb9fcbmr704620wrj.35.1655312094114;
+        Wed, 15 Jun 2022 09:54:54 -0700 (PDT)
+Received: from [192.168.0.36] ([37.223.143.134])
+        by smtp.gmail.com with ESMTPSA id p22-20020a1c7416000000b0039c5a765388sm2890998wmc.28.2022.06.15.09.54.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 09:54:52 -0700 (PDT)
+Message-ID: <bd788f00-0328-e57d-d56f-7e975996a9d0@gmail.com>
+Date:   Wed, 15 Jun 2022 18:54:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a92fe431-a995-4c7f-b90b-8e80298bc71a@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH RESEND v10 3/3] ARM: dts: Add PCIe support for Airoha
+ EN7523
+Content-Language: en-US
+To:     Felix Fietkau <nbd@nbd.name>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220615125335.96089-1-nbd@nbd.name>
+ <20220615125335.96089-3-nbd@nbd.name>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220615125335.96089-3-nbd@nbd.name>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,22 +77,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 15, 2022 at 10:43:10AM -0700, Krzysztof Kozlowski wrote:
-> On 15/06/2022 09:34, Christian 'Ansuel' Marangi wrote:
-> > Add pcm reset define for ipq806x lcc.
-> > 
-> > Signed-off-by: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
-> To prevent any confusion about identities (we have strict rules about
-> these), I need to ask - who uses this email address?
-> 
-> https://lore.kernel.org/all/?q=ansuelsmth%40gmail.com
-> 
-> Best regards,
-> Krzysztof
 
-Same person. Started using extended name, wanted to do this change from
-a long time but all the patch were already pushed so I couldn't change
-it since they were already proposed and on the various mailing list.
 
--- 
-	Ansuel
+On 15/06/2022 14:53, Felix Fietkau wrote:
+> This uses the MediaTek MT7622 PCIe driver, since the PCIe IP block is nearly
+> identical to the one in MT7622
+> 
+> Signed-off-by: Felix Fietkau <nbd@nbd.name>
+
+applied to v5.19-next/dts32
+
+Thanks!
+
+> ---
+>   arch/arm/boot/dts/en7523-evb.dts |  8 +++++
+>   arch/arm/boot/dts/en7523.dtsi    | 58 ++++++++++++++++++++++++++++++++
+>   2 files changed, 66 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/en7523-evb.dts b/arch/arm/boot/dts/en7523-evb.dts
+> index a8d8bb0419a0..f23a25cce119 100644
+> --- a/arch/arm/boot/dts/en7523-evb.dts
+> +++ b/arch/arm/boot/dts/en7523-evb.dts
+> @@ -33,3 +33,11 @@ &gpio0 {
+>   &gpio1 {
+>   	status = "okay";
+>   };
+> +
+> +&pcie0 {
+> +	status = "okay";
+> +};
+> +
+> +&pcie1 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm/boot/dts/en7523.dtsi b/arch/arm/boot/dts/en7523.dtsi
+> index 2e705b87b6c1..7f839331a777 100644
+> --- a/arch/arm/boot/dts/en7523.dtsi
+> +++ b/arch/arm/boot/dts/en7523.dtsi
+> @@ -143,4 +143,62 @@ gpio1: gpio@1fbf0270 {
+>   		gpio-controller;
+>   		#gpio-cells = <2>;
+>   	};
+> +
+> +	pcie0: pcie@1fa91000 {
+> +		compatible = "airoha,en7523-pcie", "mediatek,mt7622-pcie";
+> +		device_type = "pci";
+> +		reg = <0x1fa91000 0x1000>;
+> +		reg-names = "port0";
+> +		linux,pci-domain = <0>;
+> +		#address-cells = <3>;
+> +		#size-cells = <2>;
+> +		interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "pcie_irq";
+> +		clocks = <&scu EN7523_CLK_PCIE>;
+> +		clock-names = "sys_ck0";
+> +		bus-range = <0x00 0xff>;
+> +		ranges = <0x82000000 0 0x20000000  0x20000000  0 0x8000000>;
+> +		status = "disabled";
+> +
+> +		#interrupt-cells = <1>;
+> +		interrupt-map-mask = <0 0 0 7>;
+> +		interrupt-map = <0 0 0 1 &pcie_intc0 0>,
+> +				<0 0 0 2 &pcie_intc0 1>,
+> +				<0 0 0 3 &pcie_intc0 2>,
+> +				<0 0 0 4 &pcie_intc0 3>;
+> +		pcie_intc0: interrupt-controller {
+> +			interrupt-controller;
+> +			#address-cells = <0>;
+> +			#interrupt-cells = <1>;
+> +		};
+> +	};
+> +
+> +	pcie1: pcie@1fa92000 {
+> +		compatible = "airoha,en7523-pcie", "mediatek,mt7622-pcie";
+> +		device_type = "pci";
+> +		reg = <0x1fa92000 0x1000>;
+> +		reg-names = "port1";
+> +		linux,pci-domain = <1>;
+> +		#address-cells = <3>;
+> +		#size-cells = <2>;
+> +		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "pcie_irq";
+> +		clocks = <&scu EN7523_CLK_PCIE>;
+> +		clock-names = "sys_ck1";
+> +		bus-range = <0x00 0xff>;
+> +		ranges = <0x82000000 0 0x28000000  0x28000000  0 0x8000000>;
+> +		status = "disabled";
+> +
+> +		#interrupt-cells = <1>;
+> +		interrupt-map-mask = <0 0 0 7>;
+> +		interrupt-map = <0 0 0 1 &pcie_intc1 0>,
+> +				<0 0 0 2 &pcie_intc1 1>,
+> +				<0 0 0 3 &pcie_intc1 2>,
+> +				<0 0 0 4 &pcie_intc1 3>;
+> +		pcie_intc1: interrupt-controller {
+> +			interrupt-controller;
+> +			#address-cells = <0>;
+> +			#interrupt-cells = <1>;
+> +		};
+> +	};
+>   };
