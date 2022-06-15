@@ -2,151 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85E5E54C7EB
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 13:54:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AF0F54C827
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 14:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241474AbiFOLyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 07:54:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50686 "EHLO
+        id S242260AbiFOMJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 08:09:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347706AbiFOLyD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 07:54:03 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A17115400B;
-        Wed, 15 Jun 2022 04:53:53 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5EDB2749;
-        Wed, 15 Jun 2022 13:53:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1655294031;
-        bh=BJeReJ5HzZqJ14zQWwHkPYHAYRMPtPin5nHacf0z5X4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=czQ3Wb3cqdVjZkqXuG8OmD2U9qQoAsaEaWSa9GARjAYV15jiqLME8AuS5RcjScqzi
-         j3V+8N9YTdGlwDBEk238WnjBFPOUFhp0iogrWsYvNqvQGSu/5RtkwLFbBV7aL/4Jwv
-         V4nf55UubPqVUnHGjwGqy8QpS3ZkrSDwfcRAfNI8=
-Date:   Wed, 15 Jun 2022 14:53:41 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>, mchehab@kernel.org,
-        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
-        robh+dt@kernel.org, nicolas@ndufresne.ca,
-        alexander.stein@ew.tq-group.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 3/9] vivid: add dynamic array test control
-Message-ID: <YqnIRWtyjtyz4gzj@pendragon.ideasonboard.com>
-References: <20220503093925.876640-1-xavier.roumegue@oss.nxp.com>
- <20220503093925.876640-4-xavier.roumegue@oss.nxp.com>
- <Yqj20J9QaAV6ZNes@pendragon.ideasonboard.com>
- <b508597d-3da5-5e1f-66a5-a9f7d6a2c352@xs4all.nl>
+        with ESMTP id S235822AbiFOMJz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 08:09:55 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95DA4ECC7;
+        Wed, 15 Jun 2022 05:09:54 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id u8so15051136wrm.13;
+        Wed, 15 Jun 2022 05:09:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:content-language:to:cc
+         :references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=ufqEIhQJLn0a1lP22CtHnxpKmABhqIWqQFeboCEBeR8=;
+        b=NNQJ/jGhKFi3TLolVvv6p5vDCUgaeZ2UDfX5QF22P23d0rNi2IA+3xgJlttCAlAbei
+         rk6ebUX23qsziqFBje19orA87/iwUKsvIIxT1/tuq/V/zfiyuLMDGAhmMekYevaKip0L
+         VFsqyo2qSHzhQaaVho66mGEdQ0v3EV+MXT2CiOUY0RceDlRJUVuTteYygqy1hEhOnhDy
+         bDFcEuM9bSkckbpuY7bJcxBHX7aiGwNDqqmpKOCokXagegSOK3ZOIf+WH/TR6GhgAGAE
+         JXb9yVmULvi4y4ygg6OY6k3egdNzz9CQUgXR20nHtdlWgf58B33lpzamh5904JHegno4
+         8d3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=ufqEIhQJLn0a1lP22CtHnxpKmABhqIWqQFeboCEBeR8=;
+        b=PXcXzBJ8TsSyuTA5qHSrU42ASQ+T405gpVZ9gVRUU0xkpnJGU02er0RcTVY+ohYH9A
+         65mxtzrj/BmSLGzQA8ZLblA0CqCmblO+NL5BoHX9Lo/b717dJmtCIuCZGlgLyVmHFp6U
+         wJ625mKbUr4qIjUB7OZ2ea6MkxdFo2qT79OYlpCUBvh4uESZjaiUTOsdunsY8uUrCmze
+         ZqBlE+dKZYXmkRi1XdCTTF9mSnsTUEvFRpT2eFKyIp7MTXbzIwyxLXWkv2fERVqt3Nti
+         k1srIrf9hXONkf0zZejcFzGY0Lh8tYfFkIo0X4A0XT33TsYy8dp7ox9Tfp6eT52FMpBP
+         WVWw==
+X-Gm-Message-State: AJIora+e6jwdVJ8bCxRBWgBMlYWAOadZvFJRI18gTGLekKfck+wLEEWW
+        5c5REELFJWfqogomAXYBgAJpOtpKZ5wW8g==
+X-Google-Smtp-Source: AGRyM1spOOsJofsOCL+iHFbSiA5IRU/CCTL1EBYYpqTyOZwOes1IVw6CJtdit0i26miabw44PN2cEg==
+X-Received: by 2002:a05:6000:1542:b0:218:549a:2a8e with SMTP id 2-20020a056000154200b00218549a2a8emr9738727wry.314.1655294992184;
+        Wed, 15 Jun 2022 05:09:52 -0700 (PDT)
+Received: from [192.168.0.36] ([37.223.143.134])
+        by smtp.gmail.com with ESMTPSA id 64-20020a1c1943000000b0039c6390730bsm2249993wmz.29.2022.06.15.05.09.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 05:09:51 -0700 (PDT)
+Message-ID: <8b31b1d2-4ed7-11a1-2124-4641c8f3abcd@gmail.com>
+Date:   Wed, 15 Jun 2022 14:09:49 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <b508597d-3da5-5e1f-66a5-a9f7d6a2c352@xs4all.nl>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, yong.wu@mediatek.com
+Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski@linaro.org
+References: <20220609100802.54513-1-angelogioacchino.delregno@collabora.com>
+ <20220609100802.54513-7-angelogioacchino.delregno@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH v3 6/6] iommu: mtk_iommu: Lookup phandle to retrieve
+ syscon to pericfg
+In-Reply-To: <20220609100802.54513-7-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
 
-On Wed, Jun 15, 2022 at 11:14:43AM +0200, Hans Verkuil wrote:
-> Hi Laurent, Xavier,
-> 
-> Ignore what I wrote before, I read it with the HEVC patch series in mind, not the dw100
-> series.
-> 
-> So let me try again :-)
-> 
-> On 6/14/22 23:00, Laurent Pinchart wrote:
-> > Hi Xavier and Hans,
-> > 
-> > Thank you for the patch.
-> > 
-> > On Tue, May 03, 2022 at 11:39:19AM +0200, Xavier Roumegue wrote:
-> >> From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> >>
-> >> Add a dynamic array test control to help test support for this
-> >> feature.
-> >>
-> >> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> >> ---
-> >>  drivers/media/test-drivers/vivid/vivid-ctrls.c | 15 +++++++++++++++
-> >>  1 file changed, 15 insertions(+)
-> >>
-> >> diff --git a/drivers/media/test-drivers/vivid/vivid-ctrls.c b/drivers/media/test-drivers/vivid/vivid-ctrls.c
-> >> index e7516dc1227b..7267892dc18a 100644
-> >> --- a/drivers/media/test-drivers/vivid/vivid-ctrls.c
-> >> +++ b/drivers/media/test-drivers/vivid/vivid-ctrls.c
-> >> @@ -34,6 +34,7 @@
-> >>  #define VIVID_CID_U8_4D_ARRAY		(VIVID_CID_CUSTOM_BASE + 10)
-> >>  #define VIVID_CID_AREA			(VIVID_CID_CUSTOM_BASE + 11)
-> >>  #define VIVID_CID_RO_INTEGER		(VIVID_CID_CUSTOM_BASE + 12)
-> >> +#define VIVID_CID_U32_DYN_ARRAY		(VIVID_CID_CUSTOM_BASE + 13)
-> >>  
-> >>  #define VIVID_CID_VIVID_BASE		(0x00f00000 | 0xf000)
-> >>  #define VIVID_CID_VIVID_CLASS		(0x00f00000 | 1)
-> >> @@ -189,6 +190,19 @@ static const struct v4l2_ctrl_config vivid_ctrl_u32_array = {
-> >>  	.dims = { 1 },
-> >>  };
-> >>  
-> >> +static const struct v4l2_ctrl_config vivid_ctrl_u32_dyn_array = {
-> >> +	.ops = &vivid_user_gen_ctrl_ops,
-> >> +	.id = VIVID_CID_U32_DYN_ARRAY,
-> >> +	.name = "U32 Dynamic Array",
-> >> +	.type = V4L2_CTRL_TYPE_U32,
-> >> +	.flags = V4L2_CTRL_FLAG_DYNAMIC_ARRAY,
-> >> +	.def = 50,
-> >> +	.min = 10,
-> >> +	.max = 90,
-> >> +	.step = 1,
-> >> +	.dims = { 100 },
-> >> +};
-> > 
-> > To meaningfully test this, don't we need the vivid driver to change the
-> > dimension ? Or is it meant to only test changes made by the application
-> > ?
-> 
-> As I understand it the dw100 driver needs a 2 dimensional array control.
-> The size is fixed for each resolution, but if the resolution changes, then
-> this control changes size as well, and it makes sense that when that happens
-> it is also reset to default values.
-> 
-> So this isn't a dynamic array at all. It is a standard 2 dimensional array.
-> 
-> What is missing in the control framework is a function similar to
-> v4l2_ctrl_modify_range() that can resize an array.
-> 
-> v4l2_ctrl_modify_dimensions() would be a good name.
-> 
-> I can make something for that if you both agree with this proposal.
 
-From a userspace point of view, we only need to be able to set the
-control after setting the format. There's no need for control change
-events (but I don't mind if they're there of course, even if I think
-they won't be very usable in practice).
+On 09/06/2022 12:08, AngeloGioacchino Del Regno wrote:
+> On some SoCs (of which only MT8195 is supported at the time of writing),
+> the "R" and "W" (I/O) enable bits for the IOMMUs are in the pericfg_ao
+> register space and not in the IOMMU space: as it happened already with
+> infracfg, it is expected that this list will grow.
+> 
+> Instead of specifying pericfg compatibles on a per-SoC basis, following
+> what was done with infracfg, let's lookup the syscon by phandle instead.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>   drivers/iommu/mtk_iommu.c | 23 +++++++++++++----------
+>   1 file changed, 13 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index 90685946fcbe..0ea0848581e9 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -138,6 +138,8 @@
+>   /* PM and clock always on. e.g. infra iommu */
+>   #define PM_CLK_AO			BIT(15)
+>   #define IFA_IOMMU_PCIE_SUPPORT		BIT(16)
+> +/* IOMMU I/O (r/w) is enabled using PERICFG_IOMMU_1 register */
+> +#define HAS_PERI_IOMMU1_REG		BIT(17)
 
-From an API point of view, I'd like a clear and documented behaviour for
-what happens to the control value when the format is changed. It can be
-a global behaviour, or a control-specific behaviour, I don't mind much.
+ From what I can see MTK_IOMMU_TYPE_INFRA is only set in MT8195 which uses 
+pericfg. So we don't need a new flag here. For me the flag name 
+MTK_IOMMU_TYPE_INFRA was confusing as it has nothing to do with the use of 
+infracfg. I'll hijack this patch to provide some feedback on the actual code, 
+please see below.
 
-> >> +
-> >>  static const struct v4l2_ctrl_config vivid_ctrl_u16_matrix = {
-> >>  	.ops = &vivid_user_gen_ctrl_ops,
-> >>  	.id = VIVID_CID_U16_MATRIX,
-> >> @@ -1612,6 +1626,7 @@ int vivid_create_controls(struct vivid_dev *dev, bool show_ccs_cap,
-> >>  	dev->ro_int32 = v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_ro_int32, NULL);
-> >>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_area, NULL);
-> >>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u32_array, NULL);
-> >> +	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u32_dyn_array, NULL);
-> >>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u16_matrix, NULL);
-> >>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u8_4d_array, NULL);
-> >>  
+>   
+>   #define MTK_IOMMU_HAS_FLAG_MASK(pdata, _x, mask)	\
+>   				((((pdata)->flags) & (mask)) == (_x))
+> @@ -187,7 +189,6 @@ struct mtk_iommu_plat_data {
+>   	u32			flags;
+>   	u32			inv_sel_reg;
+>   
+> -	char			*pericfg_comp_str;
+>   	struct list_head	*hw_list;
+>   	unsigned int		iova_region_nr;
+>   	const struct mtk_iommu_iova_region	*iova_region;
+> @@ -1218,14 +1219,16 @@ static int mtk_iommu_probe(struct platform_device *pdev)
+>   			goto out_runtime_disable;
+>   		}
+>   	} else if (MTK_IOMMU_IS_TYPE(data->plat_data, MTK_IOMMU_TYPE_INFRA) &&
+> -		   data->plat_data->pericfg_comp_str) {
 
--- 
+Check for pericfg_comp_str is not needed, we only have one platform that uses 
+MTK_IOMMU_TYPE_INFRA.
+
+> -		infracfg = syscon_regmap_lookup_by_compatible(data->plat_data->pericfg_comp_str);
+
+We can do something like this to make the code clearer:
+data->pericfg = 
+syscon_regmap_lookup_by_compatible(data->plat_data->pericfg_comp_str);
+		if (IS_ERR(data->pericfg)) {
+
+Using infracfg variable here is confusing as it has nothing to do with infracfg 
+used with HAS_4GB_MODE flag.
+
 Regards,
+Matthias
 
-Laurent Pinchart
+> -		if (IS_ERR(infracfg)) {
+> -			ret = PTR_ERR(infracfg);
+> -			goto out_runtime_disable;
+> +		   MTK_IOMMU_HAS_FLAG(data->plat_data, HAS_PERI_IOMMU1_REG)) {
+> +		data->pericfg = syscon_regmap_lookup_by_phandle(dev->of_node, "mediatek,pericfg");
+> +		if (IS_ERR(data->pericfg)) {
+> +			p = "mediatek,mt8195-pericfg_ao";
+> +			data->pericfg = syscon_regmap_lookup_by_compatible(p);
+> +			if (IS_ERR(data->pericfg)) {
+> +				ret = PTR_ERR(data->pericfg);
+> +				goto out_runtime_disable;
+> +			}
+>   		}
+> -
+> -		data->pericfg = infracfg;
+>   	}
+>   
+>   	platform_set_drvdata(pdev, data);
+> @@ -1484,8 +1487,8 @@ static const struct mtk_iommu_plat_data mt8192_data = {
+>   static const struct mtk_iommu_plat_data mt8195_data_infra = {
+>   	.m4u_plat	  = M4U_MT8195,
+>   	.flags            = WR_THROT_EN | DCM_DISABLE | STD_AXI_MODE | PM_CLK_AO |
+> -			    MTK_IOMMU_TYPE_INFRA | IFA_IOMMU_PCIE_SUPPORT,
+> -	.pericfg_comp_str = "mediatek,mt8195-pericfg_ao",
+> +			    HAS_PERI_IOMMU1_REG | MTK_IOMMU_TYPE_INFRA |
+> +			    IFA_IOMMU_PCIE_SUPPORT,
+>   	.inv_sel_reg      = REG_MMU_INV_SEL_GEN2,
+>   	.banks_num	  = 5,
+>   	.banks_enable     = {true, false, false, false, true},
