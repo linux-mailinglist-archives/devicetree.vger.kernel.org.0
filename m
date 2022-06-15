@@ -2,94 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B967754D1B3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 21:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A57ED54D1C0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 21:38:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237461AbiFOTf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 15:35:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38284 "EHLO
+        id S1349681AbiFOTi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 15:38:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348398AbiFOTf4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 15:35:56 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C03345511
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 12:35:54 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id k7so1894692plg.7
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 12:35:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=/PMdbO94F+BOcABvS3JHoU7ACrUEqtckvCco1cnBf7g=;
-        b=j0cI7jN56r6MPQUqDJHVArfSuYNuReM5G0nvTMnvCAzHhJC5J6X+ZFHYZHyk1w7Y3V
-         CtC8I9wFXaLh3LAq8D+HG5tPc48IgMlZ2KFeNbLm/UI6CpGFRau31n8aQxT8sF395f1I
-         WI9HpKtiWeekM/tdyz91/X0A7KGDq5PG7lOy3fsi1RNQuSub2tXq8SjQBsgRMSv+5s+O
-         aAM51wtAg/hwviU2Ho0SV9Ep2UQeWjbhYyYdHU3BGIrr1xgjKJXJAj0fV2N/vhD8RI14
-         HQ8gbxuE/feMiiJwtIdjXo0ICsJypDC1/mNrU0S63YP18nbmE2ZGpiW3Nb7EPR+nI8H4
-         gnkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=/PMdbO94F+BOcABvS3JHoU7ACrUEqtckvCco1cnBf7g=;
-        b=3gOsU3TztB8Czptuo/Wva0m4Pau+Uwj7nSZx1bVnTUfgLjj8180flDY/BzCp/6yM6G
-         xWQFuBwxEReC6YFvIHLIiX/IEDzVflpWJjM0/3IPwskWiChwnfFooEGVu3wOOLh+b012
-         tmZkX4iHZoPF1OUXzFuMAOQKKIZ9+PaxaZtQOi/MZ69brTFYnHGBgq3EfR7drtZzBgiL
-         07vNNn91wOsgI0Huuatql057+IGDemjy8m1hu9DvCyw6i1g5JILw/QZ9P+TTIM4m0bMK
-         horKPjVxbzEE2k62b3NXfwPN/1UDYLY5Ccb6WAfB/S7EOGVgIEFxpLW3y0N68SXxNoKm
-         3s7g==
-X-Gm-Message-State: AJIora+nRK6u/r7aZsMpglMAuI0qxpCc1ilf3+rR8s8yeykxIIL78wBJ
-        /QB7jW8fr0XbGjGG4N538duUBg==
-X-Google-Smtp-Source: AGRyM1s4dOTFMu9AD0Y9keD+388tiwLW1mLTHdurnbjHeWFtQgmBn8S9pS0/PvofaG/ow/eDwQHiMw==
-X-Received: by 2002:a17:902:d4d0:b0:163:d4dc:bff8 with SMTP id o16-20020a170902d4d000b00163d4dcbff8mr1185362plg.129.1655321753941;
-        Wed, 15 Jun 2022 12:35:53 -0700 (PDT)
-Received: from google.com ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id i9-20020a63b309000000b003fadfd7be5asm10257407pgf.18.2022.06.15.12.35.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 12:35:53 -0700 (PDT)
-Date:   Wed, 15 Jun 2022 20:35:50 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rahul T R <r-ravikumar@ti.com>
-Cc:     robh+dt@kernel.org, nm@ti.com, vigneshr@ti.com, kishon@ti.com,
-        krzysztof.kozlowski+dt@linaro.org, rogerq@kernel.org,
-        devicetree@vger.kernel.org, kristo@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        s-anna@ti.com
-Subject: Re: [PATCH v4 1/3] dt-bindings: mfd: ti,j721e-system-controller: Add
- clock property
-Message-ID: <Yqo0lq2GipkXg8HG@google.com>
-References: <20220530101031.11357-1-r-ravikumar@ti.com>
- <20220530101031.11357-2-r-ravikumar@ti.com>
+        with ESMTP id S244636AbiFOTiz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 15:38:55 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04DB13BBE6;
+        Wed, 15 Jun 2022 12:38:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A7BFFB81F00;
+        Wed, 15 Jun 2022 19:38:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0171C3411E;
+        Wed, 15 Jun 2022 19:38:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655321932;
+        bh=8r4cD4LYkuropBC5jhH9yIfHJXDhGCTZ6tTZPJiVzmY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=AG5O5ndr4bq6IRx1S/TbkW5g7CAx9ZeCS2dbafIRidLMw/X2lCtA7wcW0MD+6mkGM
+         ok3LJ8OuUlxbO4rP+eHtohbeKSIQeOSo4VtH8p2jVjcer6vg2fl3TyZ+HdI+JeW7YM
+         7En4ewQILS0yE9Dq3LD2SeumP5IZyjqDoRWKQ+g3F9ytWuXZ3Ghds08ATjP2MH7o3e
+         efZTbxuBSbvSyocvX1BQB9XnzmkdeNHcRuWMPYwWRACqqfENO4NT/c9BJW2LJuDDu7
+         XuccQmp5pX1DKDltz7Xvp4yFhtJoI1Uy5gJiWKfxCa7w9xY1Bfgh/o8tPWmEfwPDjL
+         7r3xb3SEbfhHw==
+Message-ID: <4fd5ed33-a92e-71ed-b02c-da6f7c482c0a@kernel.org>
+Date:   Wed, 15 Jun 2022 14:38:47 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220530101031.11357-2-r-ravikumar@ti.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCHv4 1/2] i2c: designware: introduce a custom scl recovery
+ for SoCFPGA platforms
+Content-Language: en-US
+To:     jarkko.nikula@linux.intel.com
+Cc:     andriy.shevchenko@linux.intel.com, mika.westerberg@linux.intel.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220615191214.826879-1-dinguyen@kernel.org>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20220615191214.826879-1-dinguyen@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 30 May 2022, Rahul T R wrote:
 
-> Add a pattern property for clock-controller, also update the example
-> with a clock-controller node
+
+On 6/15/22 14:12, Dinh Nguyen wrote:
+> The I2C pins on the SoCFPGA platforms do not go through a GPIO module,
+> thus cannot be recovered by the default method of by doing a GPIO access.
+> Only a reset of the I2C IP block can a recovery be successful.
 > 
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> The assignment of the recover_bus needs to get done before the call to
+> devm_gpiod_get_optional(), otherwise, the assignment is not taking place
+> because of an error after returning from devm_gpiod_get_optional().
+> 
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 > ---
->  .../bindings/mfd/ti,j721e-system-controller.yaml     | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> v4: re-arrange code per Andy Shevchenko's recommendation
+> v3: simplify the function
+>      update commit message
+> v2: remove change to MODEL_MASK
+>      s/i2c_custom_scl_recovery/i2c_socfpga_scl_recovery
+> ---
+>   drivers/i2c/busses/i2c-designware-core.h    |  1 +
+>   drivers/i2c/busses/i2c-designware-master.c  | 50 ++++++++++++++++++---
+>   drivers/i2c/busses/i2c-designware-platdrv.c |  1 +
+>   3 files changed, 46 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/i2c/busses/i2c-designware-core.h b/drivers/i2c/busses/i2c-designware-core.h
+> index 70b80e710990..7b22ec1d6a96 100644
+> --- a/drivers/i2c/busses/i2c-designware-core.h
+> +++ b/drivers/i2c/busses/i2c-designware-core.h
+> @@ -303,6 +303,7 @@ struct dw_i2c_dev {
+>   #define MODEL_MSCC_OCELOT	BIT(8)
+>   #define MODEL_BAIKAL_BT1	BIT(9)
+>   #define MODEL_AMD_NAVI_GPU	BIT(10)
+> +#define MODEL_SOCFPGA		BIT(11)
+>   #define MODEL_MASK		GENMASK(11, 8)
+>   
+>   /*
+> diff --git a/drivers/i2c/busses/i2c-designware-master.c b/drivers/i2c/busses/i2c-designware-master.c
+> index 44a94b225ed8..6b75a08a1c1f 100644
+> --- a/drivers/i2c/busses/i2c-designware-master.c
+> +++ b/drivers/i2c/busses/i2c-designware-master.c
+> @@ -813,10 +813,26 @@ static void i2c_dw_unprepare_recovery(struct i2c_adapter *adap)
+>   	i2c_dw_init_master(dev);
+>   }
+>   
+> -static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
+> +static int i2c_socfpga_scl_recovery(struct i2c_adapter *adap)
+> +{
+> +	struct i2c_bus_recovery_info *bri = adap->bus_recovery_info;
+> +
+> +	bri->prepare_recovery(adap);
+> +	bri->unprepare_recovery(adap);
+> +
+> +	return 0;
+> +}
+> +
+> +static int i2c_dw_init_socfpga_recovery_info(struct dw_i2c_dev *dev,
+> +					     struct i2c_bus_recovery_info *rinfo)
+> +{
+> +	rinfo->recover_bus = i2c_socfpga_scl_recovery;
+> +	return 1;
+> +}
+> +
+> +static int i2c_dw_init_generic_recovery_info(struct dw_i2c_dev *dev,
+> +					     struct i2c_bus_recovery_info *rinfo)
+>   {
+> -	struct i2c_bus_recovery_info *rinfo = &dev->rinfo;
+> -	struct i2c_adapter *adap = &dev->adapter;
+>   	struct gpio_desc *gpio;
+>   
+>   	gpio = devm_gpiod_get_optional(dev->dev, "scl", GPIOD_OUT_HIGH);
+> @@ -831,16 +847,38 @@ static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
+>   	rinfo->sda_gpiod = gpio;
+>   
+>   	rinfo->recover_bus = i2c_generic_scl_recovery;
+> -	rinfo->prepare_recovery = i2c_dw_prepare_recovery;
+> -	rinfo->unprepare_recovery = i2c_dw_unprepare_recovery;
+> -	adap->bus_recovery_info = rinfo;
+>   
+>   	dev_info(dev->dev, "running with gpio recovery mode! scl%s",
+>   		 rinfo->sda_gpiod ? ",sda" : "");
+>   
+> +	return 1;
+> +}
+> +
+> +static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
+> +{
+> +	struct i2c_bus_recovery_info *rinfo = &dev->rinfo;
+> +	struct i2c_adapter *adap = &dev->adapter;
+> +	int ret;
+> +
+> +	switch (dev->flags & MODEL_MASK) {
+> +	case MODEL_SOCFPGA:
+> +		ret = i2c_dw_init_socfpga_recovery_info(dev, rinfo);
+> +		break;
+> +	default:
+> +		ret = i2c_dw_init_generic_recovery_info(dev, rinfo);
+> +		break;
+> +	}
+> +	if (ret <= 0)
+> +		return ret;
+> +
+> +	rinfo->prepare_recovery = i2c_dw_prepare_recovery;
+> +	rinfo->unprepare_recovery = i2c_dw_unprepare_recovery;
+> +	adap->bus_recovery_info = rinfo;
+> +
+>   	return 0;
+>   }
+>   
+> +
 
-Applied, thanks.
+Sorry for this stray newline, let me if you need me to send a v5?
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+>   static int amd_i2c_adap_quirk(struct dw_i2c_dev *dev)
+>   {
+>   	struct i2c_adapter *adap = &dev->adapter;
+> diff --git a/drivers/i2c/busses/i2c-designware-platdrv.c b/drivers/i2c/busses/i2c-designware-platdrv.c
+> index 70ade5306e45..b33e015e6732 100644
+> --- a/drivers/i2c/busses/i2c-designware-platdrv.c
+> +++ b/drivers/i2c/busses/i2c-designware-platdrv.c
+> @@ -153,6 +153,7 @@ static const struct of_device_id dw_i2c_of_match[] = {
+>   	{ .compatible = "snps,designware-i2c", },
+>   	{ .compatible = "mscc,ocelot-i2c", .data = (void *)MODEL_MSCC_OCELOT },
+>   	{ .compatible = "baikal,bt1-sys-i2c", .data = (void *)MODEL_BAIKAL_BT1 },
+> +	{ .compatible = "intel,socfpga-i2c", .data = (void *)MODEL_SOCFPGA },
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, dw_i2c_of_match);
