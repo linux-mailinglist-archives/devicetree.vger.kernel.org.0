@@ -2,145 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6052354D3F7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 23:51:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0017B54D3F8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 23:52:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231439AbiFOVv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 17:51:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42706 "EHLO
+        id S243817AbiFOVw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 17:52:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239060AbiFOVv4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 17:51:56 -0400
-Received: from sonic313-21.consmr.mail.ir2.yahoo.com (sonic313-21.consmr.mail.ir2.yahoo.com [77.238.179.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95CBA3A183
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 14:51:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1655329913; bh=OvKII6Uk0re5YY5y2WnJ1yZwdpm0drUoa+3WGs3hoVY=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=cHj2+rEiusGbH4F84GUO6xM0T/2xZtcVKQT7TFo6FOfaXqV0f4hrmF9jQmMm2TiI2Ghq3v79eiD7ZPSwjAhi737nACaBrD6lKT4Azkji0V0XT2Xww7ErMbUWKa5HDGc4+7PEv4BJlspJR0LgpSY5mZwDvZjXyuj47pc99hfejQkj+BTsdaAGUpwQVJDqXKKCZZUf1P2GwXKT2SPOGSDDV+Mw+NPwfSP6uQdqOofVWRIxmWBxM17+eafstrJylnn1vf22IN1Jr/8V/YejQjQOaf33oid1C4dp/nJ8m4NGGN61mR70D2eQYOhKSRR9gwzR5w13l83i95d/RFa3ZxVcNQ==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1655329913; bh=xiI4JJGK5+gZhXPvwMX3QFIq1Ry5+B4U0XbPWtllEAf=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=bPqtFzgmu7tj8dtbr9LFyU9MsecyvOM4VzfNtn6GQDhsHVhjSVx+StTneDmKjOqBcIEnao3gxjoVh2XYYC6MBgixOP4AO4rNHQZiY6lCBpUU4wvlh2GWioq25vubRnZAvnCtfTPtHvClEKURxtqEtuoyHZqiCwEDOMTAon28JEYk+m9RVMuhSILsk2BtoRpzixWTMZDgTsj6GTjo2uCLX1qjhWoxubNjZGzJuoUErXmKEnQxzjjSToVHIsjxjZuf2+kmJ13rfzEDF2c8ttI5DKZWIIoZyXPO+NRGBRbHsD42XJQvxMP2L0x9a6idOArgsP2QWu87/C3Pb8BFxWnNmQ==
-X-YMail-OSG: zQ4qT1wVM1lz9zY3HXkrrbBwt3PdWS578FjW5WkBqAvAL4e_EbryNqJEI94q9Vu
- AGSRk90MI9qTnL1PiK5yW7guXHCWOXsFlvCMgDC.skg1DnxeUbBpfvtJ_g3AxpMz54XqfzrBfkzG
- 7w_d6HJ7Tv.0ePvBcbmBXsFLsWSJUQeKyckax0tHBY9dZPzlTiU05u8kBfWePiX55CqxPWrv0B_I
- z1eiI0odKNh5y1OG2.4SSPh4O7e89b8xdf2kvXxfGhg3Nsrh6HvHk1YZrVsP.Ev28YmlTAmBGXwL
- L1LGqE19N9dpZ8MgtyTZSHnx907vKktOqJ7MDsxgbZEbfOSZvoXd5Swr7kIdxqemfAEV4WpKFK5a
- r9m2Y6OeY.KS.5aGuqSHe.Yxn.Us1ovAo6Hi9ud0_aJr0s0JkD6RhgXfXUiXry_kgLCewey8kmvR
- e5iuO4atO3zZylLXhcuDHS5G7Z.BYa1NQH0XqqmxA6C5ITpAGoBCrHIqhBGAfe62rcGqRzuWXctt
- m4J5j1vvzqP9Pbkfcqpbo6cfBWN_epEix2YRXV_dSRQ8V97Hatwe.cSNTgHiDBJ2z8CPBjRdUwYC
- 1LlLHty3cY1oNwq8nUHADaYvrNlR5tSN0mqhnSLSkLsTjekzTLII4x5PBPbfZl8xjE7qBZEH9IWG
- 15y3Pphi8a3r112Ht9ao891cEkywGMfV5MuFrEdz5QeoJxA0.GoMrJf_9t4.2i0P_G2p51IEW669
- yZgDLmfkGHA4IIljIseiI4ahiDqeSZFnFxCqWvQ5f7XrAzIaD75lqx0LITf6T9zEG6j2mKm0r0N_
- UX3WRu4JNKkNEZqnjMRe2Hzdu_8eruyhvaXa5hYpqr.NWfZstJC0UhCkYSm7v6Cs7auL1XkALctt
- CEv7Job1ZGlLnxyVPDMoQY6Pa6__Gw.H22D96xQ_ySNxK.XEi2wbUygmGHafgrByNRoQBIxJvlij
- tIxcuoyU7dXGsgfC2sb19XCwpvylkSWS2oVuEC6qlrhMNrGCrsuRFl7Xisi.ZVw_EPVALVZPBgMo
- MMgM0bPj2GwwG5AAlTqCCqMZ_6rlD4_btD6SoR9cbCP8NicMrsQb_F30HzT6to7d3Ri_0GfYnhAi
- uSBkapwoKjX3Sec9qxf7fZRSPC98DemBSZ4V9lvGbVHBEYXotwPidCnA0kV5rX0.ntNHWpR5C_dm
- jov_p4GaNm46az554z0zuIh1X01xmrKgwaH.zUfNZs7VP47FxnQVPSFbz2EpKm9cgxGkmaQZsvPn
- SI.x3t07Ez.YueJIhmR_kw9I5eUUQp6j.TtC4BT0EDdS3A_kPbUmx9I5osIlhlSZjTAA42NkjJTZ
- YYujArJWVBDnp6lemEpAFU5Xsaq1o9pAKrO9Hg_hFKDzovnVRyHYZ4eO72XY8Oe24qgJQEB6326x
- GKW_hglq5fT9qPs06kINDJndfBKmG.pmav1q7lBcyaDcE8ktitJooACECtRnzEmsl5x173C4kUkC
- iTRYVSJjGgGNt1fxTBQnai_qYvE1JlNqrIn63vKAurhIaIwt9t9O7Zm7ltSL1DwRp7KyTiIvrPjL
- jVhGyMwnFKaZeBQkkJTJ.6qGxuB9DZl83K6747Ue4YLS0PtM04H.4oXIC35oSMXJGODDABxZeYym
- hsboq7cmq1jsF.22sqWYaH.DZYjOYycFoiqI2Gw6X_wuRtLnljEJPYvhXtSVKvXXJ4JiNdvpYBUI
- Wiqg0yrVQXTp0Jd32pnuUZr2P9Ua1KUK63dF7mEv2tSZ72XF3jfMoibugUWaQGoDRBRTNPERHFaf
- kExZxx7k8leQk.fpKWQOIAu3Todlsq0zLAzHenvxg8jLC8Fh_hPwRXChMIqFXTlQt6yZmYq0mQg7
- _JJzA05MGYUQIGez7JT83wU.cfX47YvkiBpKzwlCoPIlimFCqhW4PnLKRtRiEqEe1OCLX9mp2ZQK
- AOc7Ft3jwNShMVxmu9umvqq0HGAtmCjydfT2.2LUBtu2UtxBYSWKuATmBATWIW4AhYr6wheJ3etu
- EBccrEJYWyHzDonMRAm1R1kfjC0q0bvPmLgWvwBYixxXLrKrGTFVeZO5JRKNIhkxe15.JakIsgBQ
- QPJCCivEVNUztU8U5CvKOdhy1Smhor_0Z.QKlK9w39as98wgU0f84xF0v0oQ2TNjLgb7Hhttum5s
- u9Xn3DB4OWKQv.M4cr1tkNT2zPjwvvw_3f6Jp3YOb5kH3IFOnpE.mf.o6nb7y9QcDi9fcnheu0Es
- z9eoOPKX2xlB3i5vbsPq3tmpuOJsMd2Bly7nSCq2_WyfwIsBGTPMf4V7opfnVqdYYUHB38qe8RlA
- 49nNBSvo-
-X-Sonic-MF: <jahau@rocketmail.com>
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.ir2.yahoo.com with HTTP; Wed, 15 Jun 2022 21:51:53 +0000
-Received: by hermes--canary-production-ir2-c9bf9d9bc-bp5rh (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID fd5a26b29e75a180b9849f9eb58f58f2;
-          Wed, 15 Jun 2022 21:51:50 +0000 (UTC)
-Message-ID: <1c2405ac-98bf-f094-a015-76a7badab101@rocketmail.com>
-Date:   Wed, 15 Jun 2022 23:51:49 +0200
+        with ESMTP id S237675AbiFOVw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 17:52:29 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE9E53B8
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 14:52:27 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id u2so12621735pfc.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 14:52:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=0ty1RxSdadl9+9NVwFX4A9nsRzhPnvvUrH+LaNBwqcY=;
+        b=mOTOZ38DU8s4FzE5wLrQa/baN9X5EK/Chdacc1xywG2axFJn81QfX1V4bPIuELWZ54
+         7ly9GjZPTmsy8LCK2YJVT9ahruaGGsA2w3Zvbyr6hDXHlKeWsVdpye1RcJcaaV7/gYy4
+         zYRhDLUPdYD6j6CXrK8RPHMOD27iyCam7fboYjf4YCDK2c0LCwQiuu3Xf79EyySoH67N
+         k9fVd2obk+DQ0Y9R6YIQ4/0NwDe6+48zjG7vN29CnhD91xx7oCaGTDWIhl3U8HpsAeFQ
+         QN0b8/UEA0VimsxVYO49LMh1ahxH7QpdwwzX4e2i/0Oq0Sr9XqixhVARtkXJMWmw25ps
+         TsAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=0ty1RxSdadl9+9NVwFX4A9nsRzhPnvvUrH+LaNBwqcY=;
+        b=lRU8/aVC6XGuNIqN/tkKbT9LPHfHoaTRJ87HsWXIOMEotoaN9xV1cO7fZ9fO1tjeEw
+         KY42nSiVeupsKaIqQJMMBpD65uBW0UVTfkd4JROObFNc/AEM1o++ul+IlfC9d0shw3YL
+         7lbCnxFdZj9plL7B/HXahQ3PZh0SO0cI+9hm/cdsLEpcK789lf6JUfcA0XQArQhv5hcm
+         JNV3UMdF+jpMJywcLWqvOucGuU71QMeI0S5nlWaHdzXnsbR7KLV5imu4I6oRCit3Aj7J
+         RYtWJfZ/QtTSYcsRGkwCxlsmj9a17NSOkViIhwIhYQMtLJPMXkkfjYl5RKIXT/eP1A83
+         FMtw==
+X-Gm-Message-State: AJIora/xTFOE+PeQQS350hGzP1dKbCRorJhaaEWsYy712/FhJ3ASE/Cv
+        LGiRWdLh3QUzoyf5XzNVPk1Cyw==
+X-Google-Smtp-Source: AGRyM1uI1Sje76zEXKJGG1p78/HpCUSQaVRb3IjIorpckoBM3clSfQzXUTyCe6Ie40563QpO7eiN+g==
+X-Received: by 2002:a63:8941:0:b0:3fc:7efa:119d with SMTP id v62-20020a638941000000b003fc7efa119dmr1644975pgd.340.1655329947256;
+        Wed, 15 Jun 2022 14:52:27 -0700 (PDT)
+Received: from google.com ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id f10-20020aa782ca000000b0051bd9981cacsm110643pfn.123.2022.06.15.14.52.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jun 2022 14:52:26 -0700 (PDT)
+Date:   Wed, 15 Jun 2022 22:52:24 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, johnson.wang@mediatek.com,
+        hsin-hsiung.wang@mediatek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] mfd: mt6397: Add basic support for MT6331+MT6332 PMIC
+Message-ID: <YqpUmE5+Kmq9rxwB@google.com>
+References: <20220520124617.228808-1-angelogioacchino.delregno@collabora.com>
+ <20220520124617.228808-3-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 7/7] iio: magnetometer: yas530: Add YAS537 variant
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1655081082.git.jahau@rocketmail.com>
- <b6e100de37921c22ebf0698f8e0e99794053303a.1655081082.git.jahau@rocketmail.com>
- <CAHp75VfFwSQ6bk=TMLiyA1j-AsafjGdVFbTTHJJ67C8zeYfz8Q@mail.gmail.com>
- <CAHp75Ve3ydACAQnHR0rgPHEU9kSLYj-t6dU96gxDLPWKfnmP0g@mail.gmail.com>
-From:   Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <CAHp75Ve3ydACAQnHR0rgPHEU9kSLYj-t6dU96gxDLPWKfnmP0g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.20280 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220520124617.228808-3-angelogioacchino.delregno@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On Fri, 20 May 2022, AngeloGioacchino Del Regno wrote:
 
-On 13.06.22 17:22, Andy Shevchenko wrote:
->
-> Forgot to add that please try to split even more preparatory patches.
-> For example, you may convert existing code to stubs / switch-cases /
-> etc and in the last patch just add the new case or new function /
-> branch.
+> Add support for the MT6331 PMIC with MT6332 Companion PMIC, found
+> in MT6795 Helio X10 smartphone platforms.
+> 
+> This combo has support for multiple devices but, for a start,
+> only the following have been implemented:
+> - Regulators (two instances, one in MT6331, one in MT6332)
+> - RTC (MT6331)
+> - Keys (MT6331)
+> - Interrupts (MT6331 also dispatches MT6332's interrupts)
+> 
+> There's more to be implemented, especially for MT6332, which
+> will come at a later stage.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  drivers/mfd/mt6397-core.c            |  47 ++
+>  drivers/mfd/mt6397-irq.c             |   9 +-
+>  include/linux/mfd/mt6331/core.h      |  53 +++
+>  include/linux/mfd/mt6331/registers.h | 584 ++++++++++++++++++++++++
+>  include/linux/mfd/mt6332/core.h      |  53 +++
+>  include/linux/mfd/mt6332/registers.h | 642 +++++++++++++++++++++++++++
+>  include/linux/mfd/mt6397/core.h      |   2 +
+>  7 files changed, 1389 insertions(+), 1 deletion(-)
+>  create mode 100644 include/linux/mfd/mt6331/core.h
+>  create mode 100644 include/linux/mfd/mt6331/registers.h
+>  create mode 100644 include/linux/mfd/mt6332/core.h
+>  create mode 100644 include/linux/mfd/mt6332/registers.h
 
-That's a good idea. I had a closer look. But I can't spot something that
-could be beneficial.
+[...]
 
-The new functions for YAS537 are similar in structure like their
-counterparts of YAS530/YAS532. However, in detail they differ too much,
-which hinders merging them into each other.
+> +#endif /* __MFD_MT6332_REGISTERS_H__ */
+> diff --git a/include/linux/mfd/mt6397/core.h b/include/linux/mfd/mt6397/core.h
+> index 1cf78726503b..4d2b80319db3 100644
+> --- a/include/linux/mfd/mt6397/core.h
+> +++ b/include/linux/mfd/mt6397/core.h
+> @@ -12,6 +12,8 @@
+>  
+>  enum chip_id {
+>  	MT6323_CHIP_ID = 0x23,
 
-yas537_measure() being different to yas530_532_measure():
- - regmap_write() has an additional bit YAS5XX_MEASURE_CONT
- - regmap_read_poll_timeout() differs in the read location
- - calculating the values t, x, y1 and y2 are different
+> +	MT6331_CHIP_ID = 0x20,
+> +	MT6332_CHIP_ID = 0x20,
 
-yas537_get_measure() being different to yas530_532_get_measure():
- - no linearization
- - no temperature compensation
- - different way of calculating x, y, z from x, y1, y2
+Are these meant to be the same?
 
-yas537_get_calibration_data() being different to
-yas530.../yas532_get_calibration_data():
- - one regmap_bulk_read() only
- - different way of getting or extracting the calibration data
+>  	MT6358_CHIP_ID = 0x58,
+>  	MT6359_CHIP_ID = 0x59,
+>  	MT6366_CHIP_ID = 0x66,
 
-yas537_power_on()
- - different procedure and registers
-
-The function yas537_dump_calibration() shares a notable part with
-yas530_532_dump_calibration() after the changes applied in patchset v2.
-Although merging them together would need some "if" or "switch"
-statements because YAS537 version 0 needs to be excluded from that
-function and YAS537 version 1 would need to be excluded from the first
-and last part of that function. I would leave it like it is, it's easier
-readable.
-
-Another approach could be to outsource some parts, which are used by all
-variants, into separate functions. But again I don't see much beneficial
-pars here.
-
-In yas537_measure() and yas530_532_measure() it could be:
- - regmap_bulk_read()
-
-In yas537_get_calibration_data() and
-yas530.../yas532_get_calibration_data() it could be:
- - add_device_randomness()
-
-I think that's it. Both are too small for being worth outsourcing into a
-separate function.
-
-Kind regards,
-Jakob
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
