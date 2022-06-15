@@ -2,65 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0547A54BEF1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 02:55:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A07FC54BF3B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 03:28:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241827AbiFOAzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 20:55:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33752 "EHLO
+        id S232394AbiFOB21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 21:28:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239536AbiFOAzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 20:55:00 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FAA94D26E
-        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 17:54:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1655254499; x=1686790499;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xcnNFG/zqM4/ixpw6inku9EczznlEWvUdxlz+0w+WCA=;
-  b=dCn3Olg+5hN78xKdlzY25lHlBA248A9/G1e8m4M99DYQoCWj6IgaTVlM
-   lob/jtEzaOlolRR7IjmLjsdnDKhca1w/Lu8XRW+uRrBfCqWxJNLiYwJGB
-   n9uzADMjry/iUbK/GAdUBh8YEXx6cOyYrMCwX9oxD2OqULO7XMY9aMKe0
-   SKOf+aGZpzB8LgmR/loVQVsJULKMWttFv7Mw4HzchJlv71AmdNnuKfr0N
-   52Gy1wYfDlVXY3I3OroGMd55xI721tzbnYSmj1QgK4A7ivtI6Cl6s95tY
-   Ci075U3E0ijFjoapGPHgu6kF8irf5ECzAmOcqnBO393t9TmRPaMME2qiI
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="258638015"
-X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; 
-   d="scan'208";a="258638015"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2022 17:54:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; 
-   d="scan'208";a="570696311"
-Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 14 Jun 2022 17:54:56 -0700
-Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1o1HJ9-000MRP-Sx;
-        Wed, 15 Jun 2022 00:54:55 +0000
-Date:   Wed, 15 Jun 2022 08:54:02 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Stefan Berger <stefanb@linux.ibm.com>, kexec@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, nayna@linux.ibm.com, nasastry@in.ibm.com,
-        Stefan Berger <stefanb@linux.ibm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Eric Biederman <ebiederm@xmission.com>
-Subject: Re: [PATCH 2/3] tpm/kexec: Duplicate TPM measurement log in of-tree
- for kexec
-Message-ID: <202206150856.h2psJLGs-lkp@intel.com>
-References: <20220614161258.1741427-3-stefanb@linux.ibm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220614161258.1741427-3-stefanb@linux.ibm.com>
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S231237AbiFOB21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 21:28:27 -0400
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C12482CE07;
+        Tue, 14 Jun 2022 18:28:25 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id q11so11202584iod.8;
+        Tue, 14 Jun 2022 18:28:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=suAYcRsiFSTodJkKkMZwNSVlbn0Z7Celw9TQj2rqfTk=;
+        b=Ykg8MzBnSwtI7prchez0bfErHDzfWIqArxqJaX0qyFEHLcQTVQOmRzEtL3s4dktBGg
+         PEs0yBbGvIcC6V2h4r2MK1gP9ryGrAgkr7qVb384qcJT8vGYQdp3c/mrdzBO2kmA+noN
+         AfyfvZQ0iUdMgjzH8nEYkLMljMtPIzq0d1JOOy0mUjBQZ0KXP0yn//eVxDTbbPNsEqsw
+         1YRny99CMDsMvpARuXpiJfIz827KefOwhx1EvKiiZ/SskfWxf7SM23NJNUiHPO0X2lvK
+         1eim6uR2cgrCDp9g7/T0Mw54zkda7+mtMGXZavWl9xSYMzBlbzFYMAeOwPFC6HTNBtlE
+         c/ug==
+X-Gm-Message-State: AOAM531s9bkiCJvom6+13y6z59GoV4b4CG6XQD6WuzML8nHHi9q6JWph
+        +JE3Xz4R7aBogFez0FAlAA==
+X-Google-Smtp-Source: ABdhPJxqIl9Zm9z8IKtqnt37oI4/tjqMhg+8+yDWQMkG9w2ChU6LsAVhGgh7YMYx5rXIIyt05hrUfg==
+X-Received: by 2002:a05:6638:15cc:b0:331:f70f:635e with SMTP id i12-20020a05663815cc00b00331f70f635emr4223164jat.29.1655256504947;
+        Tue, 14 Jun 2022 18:28:24 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id c1-20020a056638028100b0032e802256a9sm5531696jaq.163.2022.06.14.18.28.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jun 2022 18:28:24 -0700 (PDT)
+Received: (nullmailer pid 3407444 invoked by uid 1000);
+        Wed, 15 Jun 2022 01:28:22 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Saravanan Sekar <sravanhome@gmail.com>
+Cc:     lee.jones@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        jic23@kernel.org, lars@metafoo.de, andy.shevchenko@gmail.com,
+        linux-pm@vger.kernel.org, sre@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+In-Reply-To: <20220614194225.2226447-2-sravanhome@gmail.com>
+References: <20220614194225.2226447-1-sravanhome@gmail.com> <20220614194225.2226447-2-sravanhome@gmail.com>
+Subject: Re: [PATCH v2 2/6] dt-bindings: mfd: Add mp2733 compatible
+Date:   Tue, 14 Jun 2022 19:28:22 -0600
+Message-Id: <1655256502.732671.3407443.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,56 +60,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefan,
+On Tue, 14 Jun 2022 21:42:21 +0200, Saravanan Sekar wrote:
+> Add new compatible for mp2733 mfd driver.
+> 
+> Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/mps,mp2629.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Thank you for the patch! Perhaps something to improve:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[auto build test WARNING on char-misc/char-misc-testing]
-[also build test WARNING on linus/master v5.19-rc2 next-20220614]
-[cannot apply to robh/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/mfd/mps,mp2629.yaml:22:5: [error] duplication of key "const" in mapping (key-duplicates)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Stefan-Berger/tpm-Preserve-TPM-measurement-log-across-kexec/20220615-001510
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git 0a35780c755ccec097d15c6b4ff8b246a89f1689
-config: x86_64-randconfig-r022-20220613 (https://download.01.org/0day-ci/archive/20220615/202206150856.h2psJLGs-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-3) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/c42b5be1ad82e8a991a3d35417c9e495e7eb4c93
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Stefan-Berger/tpm-Preserve-TPM-measurement-log-across-kexec/20220615-001510
-        git checkout c42b5be1ad82e8a991a3d35417c9e495e7eb4c93
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/of/
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/mfd/mps,mp2629.example.dts'
+Documentation/devicetree/bindings/mfd/mps,mp2629.yaml:22:5: found duplicate key "const" with value "mps,mp2733" (original value: "mps,mp2629")
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/mfd/mps,mp2629.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/mfd/mps,mp2629.yaml:22:5: found duplicate key "const" with value "mps,mp2733" (original value: "mps,mp2629")
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/mps,mp2629.yaml: ignoring, error parsing file
+make: *** [Makefile:1404: dt_binding_check] Error 2
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+doc reference errors (make refcheckdocs):
 
-All warnings (new ones prefixed by >>):
+See https://patchwork.ozlabs.org/patch/
 
->> drivers/of/kexec.c:306: warning: expecting prototype for tpm_free_kexec_buffer(). Prototype was for tpm_of_remove_kexec_buffer() instead
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-vim +306 drivers/of/kexec.c
+pip3 install dtschema --upgrade
 
-   301	
-   302	/**
-   303	 * tpm_free_kexec_buffer - free memory used by the IMA buffer
-   304	 */
-   305	static int tpm_of_remove_kexec_buffer(void)
- > 306	{
-   307		struct property *prop;
-   308	
-   309		prop = of_find_property(of_chosen, "linux,tpm-kexec-buffer", NULL);
-   310		if (!prop)
-   311			return -ENOENT;
-   312	
-   313		return of_remove_property(of_chosen, prop);
-   314	}
-   315	
+Please check and re-submit.
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
