@@ -2,109 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DC3A54CBE1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 16:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 747DD54CBF3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 16:56:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245156AbiFOOyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 10:54:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42112 "EHLO
+        id S241888AbiFOOzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 10:55:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344116AbiFOOyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 10:54:10 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CEDA2A713;
-        Wed, 15 Jun 2022 07:54:09 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id z7so16509457edm.13;
-        Wed, 15 Jun 2022 07:54:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=6Clv+JrvN5xAcPquJt0P4YgFaBe3M0B8HPlEXIs7o5U=;
-        b=HrtHARPp1Xww8CBJG9O4NBrrfnhmef+9FXRkvUyzllK9op+K9cZGY1fehxk9grKgHY
-         GXG8hbFJmnK1xu6+2TrgrSAG+cB24FJfiAfYcRiwqWkj93oaOlOQqXuMVjpVunw42Eh9
-         Ic01ViH0sn0OgIrXBmb8MLUd+fSF/U+W/2yweKyF/YHyYD4tqXI5TqM2RNiaSZ7HyAGE
-         LhvJfMTrdPlcViZc1fR8Vog7zFnv1USEDDM/EHuikEP0KxjT28VAOXnok/WMudsIIFPe
-         okjTVnGvKusxFqBBd8C8vPywNotJLvPbxzNfUfkack9T4AHjFsmz+LTgoOBacXGwC5dc
-         QzxA==
+        with ESMTP id S237373AbiFOOzx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 10:55:53 -0400
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47EFB34B97;
+        Wed, 15 Jun 2022 07:55:53 -0700 (PDT)
+Received: by mail-il1-f175.google.com with SMTP id u2so8956898iln.2;
+        Wed, 15 Jun 2022 07:55:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6Clv+JrvN5xAcPquJt0P4YgFaBe3M0B8HPlEXIs7o5U=;
-        b=rESDyNqitKt9DVc3tJQHg08ZM2pQCR13Znn4XzQSAUXoy3Zv3ZWl78v25nVzvLaj/W
-         JqI+Tvy8SY0AcYcewMN1eDnxu8UpuD5ARZuONwe5R8sCwbEHfiSg7jklqYTrHoMgIW+M
-         V2EBW7NY67MUtqHPY1Ay/KvTHrTfQX5y/NyrSRXC++dsOepgPozrvPKgF1HZUZy38ilb
-         jKztQAbv8k/JmUXYhMcJ1tI4cAgifFJt/dDD9gGpx+7oVOhV32xk2/NuWFJ1rWjVC4al
-         X69apCMDuNt1JDoi+ydKn2JtHnp70LBQgoKRV3+O1lo8inBKeQEjU4ZQQlfWH1l8pz0U
-         BGIw==
-X-Gm-Message-State: AJIora+SoCENK6tjuysj1qCh2ASUih1+7zCp9TGoq98d7SKNdQKXxP7C
-        p5x60LuWc6eYjymcP484TwI=
-X-Google-Smtp-Source: AGRyM1ujs1HeXOasq6DHF83w4PPcRH7kW5sgTud79flC34uP4Hx/vJhKCSdoYRUWd1SFHAiZyCK7Fw==
-X-Received: by 2002:a05:6402:51d4:b0:42f:b38d:dbb9 with SMTP id r20-20020a05640251d400b0042fb38ddbb9mr100501edd.255.1655304848997;
-        Wed, 15 Jun 2022 07:54:08 -0700 (PDT)
-Received: from localhost.localdomain (p5dcfe5fe.dip0.t-ipconnect.de. [93.207.229.254])
-        by smtp.gmail.com with ESMTPSA id y2-20020a1709063a8200b00706287ba061sm6341665ejd.180.2022.06.15.07.54.08
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6pQnGfDjQoVp1rvU8e66nOIjBm74uZi19jZ+eXE+30s=;
+        b=hx0f080zKcMVwRqLouxWGSBra8ogU2IRzWSq2FiGKaQcfKt2n3ojnEV7piiUY6F2e5
+         dm3cmLr/GoBRkaWiFbY7+OS1uF+wYPPZcMum3pYnN+jf/WgBonp8Cjj3V5HIAfq39I+h
+         gNE+tLiaNNohHSxfyusl0hDXnHXP2BPUynpWF5owhBq8GWJoT788Ij++Q4wwzC90Tyus
+         mVrSMYS3LOAcPqhO95c6s0e+EssVIZCxokrPCNWgCiBtd0KUSrHFNLpkOMAgCFcn5xo/
+         CXxiph8ybZU4r6YPdX+QlyiPDyPmTs36FprFRqBYV9dz3pNLdRgA+uE0adnNcqa8oxWf
+         SJ4Q==
+X-Gm-Message-State: AJIora8qzWTbJkc0k7NNtdR0mT2siblX85F2V6d6gvry88hNnTjXFFs2
+        Ngt3I30QHg64YPn+YZGd3ps5kvL2Sw==
+X-Google-Smtp-Source: AGRyM1v9D2xwxPLO3fWw6MLNBK1h8w8DrYTqErV5QnXKIatPBOp5wzKqusY55yPT3X8yHzscU6+Q/A==
+X-Received: by 2002:a92:c54a:0:b0:2d3:b2ac:eb with SMTP id a10-20020a92c54a000000b002d3b2ac00ebmr113927ilj.323.1655304952460;
+        Wed, 15 Jun 2022 07:55:52 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id 126-20020a6b1484000000b00665714766a2sm6882497iou.47.2022.06.15.07.55.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 07:54:08 -0700 (PDT)
-From:   Saravanan Sekar <sravanhome@gmail.com>
-To:     sre@kernel.org, lee.jones@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
-        lars@metafoo.de, andy.shevchenko@gmail.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, Saravanan Sekar <sravanhome@gmail.com>
-Subject: [PATCH v3 6/6] power: supply: mp2629: Add USB fast charge settings
-Date:   Wed, 15 Jun 2022 16:53:57 +0200
-Message-Id: <20220615145357.2370044-7-sravanhome@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220615145357.2370044-1-sravanhome@gmail.com>
-References: <20220615145357.2370044-1-sravanhome@gmail.com>
+        Wed, 15 Jun 2022 07:55:52 -0700 (PDT)
+Received: (nullmailer pid 1139633 invoked by uid 1000);
+        Wed, 15 Jun 2022 14:55:50 -0000
+Date:   Wed, 15 Jun 2022 08:55:50 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 04/17] dt-bindings: PCI: dwc: Add max-link-speed
+ common property
+Message-ID: <20220615145550.GA1069883-robh@kernel.org>
+References: <20220610085706.15741-1-Sergey.Semin@baikalelectronics.ru>
+ <20220610085706.15741-5-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220610085706.15741-5-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allows the user to change the USB device fast charge setting to advertise
-host on enumeration helps to accelerate the charging cycle. Altering this
-value resets USB existing connection.
+On Fri, Jun 10, 2022 at 11:56:52AM +0300, Serge Semin wrote:
+> In accordance with [1] DW PCIe controllers support up to Gen5 link speed.
+> Let's add the max-link-speed property upper bound to 5 then. The DT
+> bindings of the particular devices are expected to setup more strict
+> constraint on that parameter.
+> 
+> [1] Synopsys DesignWare Cores PCI Express Controller Databook, Version
+> 5.40a, March 2019, p. 27
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> 
+> ---
+> 
+> Changelog v3:
+> - This is a new patch unpinned from the next one:
+>   https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
+>   by the Rob' request. (@Rob)
+> ---
+>  Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml | 3 +++
+>  Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml     | 2 ++
+>  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml        | 1 +
+>  3 files changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> index 627a5d6625ba..b2fbe886981b 100644
+> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+> @@ -45,6 +45,9 @@ properties:
+>        the peripheral devices available on the PCIe bus.
+>      maxItems: 1
+>  
+> +  max-link-speed:
+> +    maximum: 5
 
-Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
----
- .../ABI/testing/sysfs-class-power-mp2629         | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Unless the default is less than the max, shouldn't the max here be 1 
+less than the h/w max?
 
-diff --git a/Documentation/ABI/testing/sysfs-class-power-mp2629 b/Documentation/ABI/testing/sysfs-class-power-mp2629
-index 914d67caac0d..b386d02cb010 100644
---- a/Documentation/ABI/testing/sysfs-class-power-mp2629
-+++ b/Documentation/ABI/testing/sysfs-class-power-mp2629
-@@ -1,3 +1,19 @@
-+What:		/sys/class/power_supply/mp2629_battery/usb_fast_charge
-+Date:		June 2022
-+KernelVersion:	5.20
-+Description:
-+		Represents a USB device fast charge settings.Altering this
-+		value resets USB existing connection
-+		USB DP:DM[0:0] 0.6V : Hi-Z
-+		USB DP:DM[0:1] 3.3V : 0.6V
-+		USB DP:DM[1:0] 0.6V : 0.6V
-+		USB DP:DM[1:1] 0.6V : 3.3V
-+
-+                Access: Read, Write
-+
-+                Valid values: Represented in bit DP & DM setting. Valid
-+			      range is [0, 3].
-+
- What:		/sys/class/power_supply/mp2629_battery/batt_impedance_compen
- Date:		April 2020
- KernelVersion:	5.7
--- 
-2.25.1
+> +
+>    num-lanes:
+>      description:
+>        Number of PCIe link lanes to use. Can be omitted should the already
+> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
+> index dcd521aed213..fc3b5d4ac245 100644
+> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
+> @@ -55,4 +55,6 @@ examples:
+>  
+>        phys = <&pcie_phy0>, <&pcie_phy1>, <&pcie_phy2>, <&pcie_phy3>;
+>        phy-names = "pcie0", "pcie1", "pcie2", "pcie3";
+> +
+> +      max-link-speed = <3>;
+>      };
+> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> index 4a5c8b933b52..01cedf51e0f8 100644
+> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> @@ -74,4 +74,5 @@ examples:
+>        phy-names = "pcie";
+>  
+>        num-lanes = <1>;
+> +      max-link-speed = <3>;
 
+This should give you an error because pci-bus.yaml only goes up to 4. 
+
+I'm not really sure that limiting it in the common schema is too useful. 
+We're going to be updating it one step at a time. Limiting it is really 
+only helpful for specific implementations.
+
+Patch 1 didn't apply for me, so none of the checks ran.
+
+Rob
