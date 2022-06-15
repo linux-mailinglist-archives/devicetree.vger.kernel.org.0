@@ -2,76 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AFFF54C296
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 09:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E17CD54C2B7
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 09:37:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242088AbiFOHZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 03:25:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35344 "EHLO
+        id S242647AbiFOHhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 03:37:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237445AbiFOHZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 03:25:11 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 163A74705E
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 00:25:10 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id z9so5806415wmf.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 00:25:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod.ie; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=NGo4rRV+VZvdT0hcJzW6pnymtoNuY20VyL3BfwK+vsQ=;
-        b=PPDREC5zr0fQXQ7G6MaJZgrNi8eSCMpiZLg0TLXmzGOZkcQ5lnGffm023x8RCrxWnm
-         0RHnRsCqEQzwRyNVN+EB6znWpMbNwxPeK4kIENpN1ToeaJOJtChy43E4gtApGwIt1YuI
-         xISMw3GYeul6bBNJp0m8wvNTxY8bjsBTz6OHqjPv0UGy1Y/r/Xzp1XCeOuE8k5LlY2XI
-         GBC3UFDN9aI+z1txwK0jrMlSQnOLOJUJqbTHRgybPZKzFfSI/ygaSlIhzbi4y4+NLHfV
-         YxvcwyVon3TauHB+J6R0ejkDHVM7UNHoeQR1Jat8mgf7qHjLK5BzGB4rs9X4dkDbQZm+
-         bK5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=NGo4rRV+VZvdT0hcJzW6pnymtoNuY20VyL3BfwK+vsQ=;
-        b=ORCYsCiCQvQKCq6PoySrwunGAycj7naw4FiXjkfTjiuosOUuENwb4uV2nsDRcksOvX
-         PYbhV1Psjcn7ycQh9jRv7BAUelc5glWFjaMe1SADeWMEeux6dqvj/VyKpLxDNFkleh7T
-         2NCLyClZYbMpk8bwU6MmKQgmmhjbzah+X9HKO7TYfwD2QdDqHdm8tT+DJbOep97uVkJl
-         u8NAL3U2ublCuh0LoYxwA/N5BY5dhWpovu80Ufi+h+J6+pKyF8/P0dkNDS5gFyTpptTL
-         GHzvnCEneT02LAO7q1bZXzo7eXtvpXa8Zx3ufB/61QsKXfMwxj93urC1O3ea9YTihiD6
-         W2eA==
-X-Gm-Message-State: AOAM532bg7ZE87X/SaIo5UlSvGCccv2YQZuh7wr6wI91rvkEBvJjw/Zn
-        yntqxJYnXi70wq/zcELhozKFgg==
-X-Google-Smtp-Source: ABdhPJwYNKUeEBAZ4RUybATyRa6XP/R3ueVtMBVOx8BZh7j60wFKsSS2DRvlG4SBSF0xBFk6Exup1A==
-X-Received: by 2002:a7b:ce85:0:b0:39c:4b2e:fd26 with SMTP id q5-20020a7bce85000000b0039c4b2efd26mr8388758wmj.114.1655277908515;
-        Wed, 15 Jun 2022 00:25:08 -0700 (PDT)
-Received: from [10.205.160.53] ([95.83.233.54])
-        by smtp.gmail.com with ESMTPSA id k11-20020a056000004b00b0020d02262664sm13919956wrx.25.2022.06.15.00.25.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jun 2022 00:25:07 -0700 (PDT)
-Message-ID: <8293b455-1150-edb5-9005-fda4f2d2971b@conchuod.ie>
-Date:   Wed, 15 Jun 2022 08:23:34 +0100
+        with ESMTP id S234267AbiFOHhZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 03:37:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81D4C483A4;
+        Wed, 15 Jun 2022 00:37:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0BCF7618E6;
+        Wed, 15 Jun 2022 07:37:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 986A3C34115;
+        Wed, 15 Jun 2022 07:37:19 +0000 (UTC)
+Message-ID: <3e5e2531-00b7-a8d5-4199-9f59fc35ed39@xs4all.nl>
+Date:   Wed, 15 Jun 2022 09:37:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/5] dt-bindings: pwm: Add Mstar MSC313e PWM devicetree
- bindings documentation
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v5 1/9] videodev2.h: add V4L2_CTRL_FLAG_DYNAMIC_ARRAY
 Content-Language: en-US
-To:     Romain Perier <romain.perier@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220615070813.7720-1-romain.perier@gmail.com>
- <20220615070813.7720-2-romain.perier@gmail.com>
-From:   Conor Dooley <mail@conchuod.ie>
-In-Reply-To: <20220615070813.7720-2-romain.perier@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+Cc:     mchehab@kernel.org, stanimir.varbanov@linaro.org,
+        tomi.valkeinen@ideasonboard.com, robh+dt@kernel.org,
+        nicolas@ndufresne.ca, alexander.stein@ew.tq-group.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220503093925.876640-1-xavier.roumegue@oss.nxp.com>
+ <20220503093925.876640-2-xavier.roumegue@oss.nxp.com>
+ <YqjznJSwPFH4GrhO@pendragon.ideasonboard.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <YqjznJSwPFH4GrhO@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-7.9 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,69 +51,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2022 08:08, Romain Perier wrote:
-> This adds the documentation for the devicetree bindings of the Mstar
-> MSC313e RTC driver, it includes MSC313e SoCs and SSD20xd.
 
-I figure the RTC is a copy paste error?
+
+On 6/14/22 22:46, Laurent Pinchart wrote:
+> Hi Xavier and Hans,
+> 
+> Thank you for the patch.
+> 
+> On Tue, May 03, 2022 at 11:39:17AM +0200, Xavier Roumegue wrote:
+>> From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+>>
+>> Add a new flag that indicates that this control is a dynamically sized
+>> array. Also document this flag.
+>>
+>> Currently dynamically sized arrays are limited to one dimensional arrays,
+>> but that might change in the future if there is a need for it.
+>>
+>> The initial use-case of dynamic arrays are stateless codecs. A frame
+>> can be divided in many slices, so you want to provide an array containing
+>> slice information for each slice. Typically the number of slices is small,
+>> but the standard allow for hundreds or thousands of slices. Dynamic arrays
+>> are a good solution since sizing the array for the worst case would waste
+>> substantial amounts of memory.
+>>
+>> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+>> ---
+>>  .../userspace-api/media/v4l/vidioc-queryctrl.rst          | 8 ++++++++
+>>  include/uapi/linux/videodev2.h                            | 1 +
+>>  2 files changed, 9 insertions(+)
+>>
+>> diff --git a/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst b/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
+>> index 88f630252d98..a20dfa2a933b 100644
+>> --- a/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
+>> +++ b/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
+>> @@ -625,6 +625,14 @@ See also the examples in :ref:`control`.
+>>  	``V4L2_CTRL_FLAG_GRABBED`` flag when buffers are allocated or
+>>  	streaming is in progress since most drivers do not support changing
+>>  	the format in that case.
+>> +    * - ``V4L2_CTRL_FLAG_DYNAMIC_ARRAY``
+>> +      - 0x0800
+>> +      - This control is a dynamically sized 1-dimensional array. It
+>> +        behaves the same as a regular array, except that the number
+>> +	of elements as reported by the ``elems`` field is between 1 and
+>> +	``dims[0]``. So setting the control with a differently sized
+>> +	array will change the ``elems`` field when the control is
+>> +	queried afterwards.
+> 
+> Wrong indentation.
+
+No, it's just that the tab in front makes it look a bit weird.
 
 > 
-> Signed-off-by: Romain Perier <romain.perier@gmail.com>
-> ---
->   .../bindings/pwm/mstar,msc313e-pwm.yaml       | 47 +++++++++++++++++++
->   1 file changed, 47 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/pwm/mstar,msc313e-pwm.yaml
+> Can the dimension be changed by the application only, or by the driver
+> too ? In the latter case, is an event generated ?
+
+Interesting question. 'dims[0]' is the maximum number of elements allowed
+by the driver for this dynamic array. Applications can set the control to
+any number of elements up to that maximum. For the current use case I expect
+that this maximum reflects what the hardware supports, and is not really
+related to the video resolution. Currently the code expects the maximum
+number of elements (dims[0]) to remain constant.
+
+Technically a driver can increase dims[0] as needed. Should that be needed,
+then we probably need an event to signal that.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/mstar,msc313e-pwm.yaml b/Documentation/devicetree/bindings/pwm/mstar,msc313e-pwm.yaml
-> new file mode 100644
-> index 000000000000..82f2357db085
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/mstar,msc313e-pwm.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/mstar,msc313e-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mstar MSC313e PWM controller
-> +
-> +allOf:
-> +  - $ref: "pwm.yaml#"
-> +
-> +maintainers:
-> +  - Daniel Palmer <daniel@0x0f.com>
-> +  - Romain Perier <romain.perier@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +        - enum:
-> +          - mstar,msc313e-pwm
-> +          - mstar,ssd20xd-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pwm: pwm@3400 {
-> +      compatible = "mstar,msc313e-pwm";
-> +      reg = <0x3400 0x400>;
-> +      #pwm-cells = <2>;
-> +      clocks = <&xtal_div2>;
-> +    };
+> Considering this in the context of this series, the driver needs to
+> change the dimension, as the use case is to size the control based on
+> the image size. Do we want to document here that the driver will reset
+> the control to a default value when the dimension changes, or is that
+> something that should be control-specific ?
+
+As mentioned above, in the current context the maximum number of allowed
+elements in a dynamic array is fixed, so this issue does not occur.
+
+Regards,
+
+	Hans
+
+> 
+>>  
+>>  Return Value
+>>  ============
+>> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+>> index 3768a0a80830..8df13defde75 100644
+>> --- a/include/uapi/linux/videodev2.h
+>> +++ b/include/uapi/linux/videodev2.h
+>> @@ -1886,6 +1886,7 @@ struct v4l2_querymenu {
+>>  #define V4L2_CTRL_FLAG_HAS_PAYLOAD	0x0100
+>>  #define V4L2_CTRL_FLAG_EXECUTE_ON_WRITE	0x0200
+>>  #define V4L2_CTRL_FLAG_MODIFY_LAYOUT	0x0400
+>> +#define V4L2_CTRL_FLAG_DYNAMIC_ARRAY	0x0800
+>>  
+>>  /*  Query flags, to be ORed with the control ID */
+>>  #define V4L2_CTRL_FLAG_NEXT_CTRL	0x80000000
+> 
