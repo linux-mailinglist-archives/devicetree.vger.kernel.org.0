@@ -2,214 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACC7554CA7E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 15:59:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0125C54CA7F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 15:59:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355176AbiFON65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 09:58:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41448 "EHLO
+        id S235206AbiFON7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 09:59:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353817AbiFON6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 09:58:16 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A867E017;
-        Wed, 15 Jun 2022 06:58:00 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id DFD566601701;
-        Wed, 15 Jun 2022 14:57:57 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1655301479;
-        bh=FFs8T8AY3TkghM9Ue1wO41/Alt1IIwwAZGlkReIRBMA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=MufCONJCJaFd78/i7BkklmNqEafwzy0hYnARqR2ChECDqeyog4T+oxPDSqRyieQKo
-         05baBqalwxSZ9L6EhVJCHlbtZv664NpgTzpSVHwaVjoADtRJAsorkC17Gt325I87XR
-         5GDI1F5Neg6PUHdVhXAd6GO+BSiBn086Bz8weN1ZPym8jtoDctGGZ0PZOtN4yV38a4
-         yyYNhH3ia3tst8Fi0Onl+a7mW2hhArWZk4T+ZT+NlwtaO4CRb89KoG9oHrpahotXgH
-         E2Xw/O5EAjUIkIac/gV6Gec8gUgkU2jYJMwidYG4DSHYhLkq+m0dQBe06SyMANAeuK
-         dMKpdGoXbB6qA==
-Message-ID: <77302f99-cda5-00a2-ab00-07716b0dc470@collabora.com>
-Date:   Wed, 15 Jun 2022 15:57:55 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 7/7] drm/bridge: anx7625: Add typec_mux_set callback
- function
-Content-Language: en-US
-To:     Prashant Malani <pmalani@chromium.org>,
-        Pin-yen Lin <treapking@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        heikki.krogerus@linux.intel.com,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        with ESMTP id S1354831AbiFON6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 09:58:45 -0400
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5890620BD9
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 06:58:44 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed30:5439:2bcc:4a70:48e8])
+        by albert.telenet-ops.be with bizsmtp
+        id jRyi2700e4lJ8fu06RyiNU; Wed, 15 Jun 2022 15:58:42 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1o1TXe-0044oV-8j; Wed, 15 Jun 2022 15:58:42 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1o1TXd-006xmH-QU; Wed, 15 Jun 2022 15:58:41 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Tzung-Bi Shih <tzungbi@google.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Jonas Karlman <jonas@kwiboo.se>,
-        swboyd@chromium.org, Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Xin Ji <xji@analogixsemi.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>
-References: <20220609181106.3695103-1-pmalani@chromium.org>
- <20220609181106.3695103-8-pmalani@chromium.org>
- <1191703c-efa5-7fe6-7dd0-e3e786b58411@collabora.com>
- <CAEXTbpfh3aKS8DZ9T0KPNLfWJ4EsLxcJpP8aLYU-iQYC1N4sRQ@mail.gmail.com>
- <CACeCKafeJ40y2LYsEm4Z2pRMxzM6W+VcC1F95oFqNq+xokPWUQ@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CACeCKafeJ40y2LYsEm4Z2pRMxzM6W+VcC1F95oFqNq+xokPWUQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: pinctrl: renesas: Remove spaces before #define
+Date:   Wed, 15 Jun 2022 15:58:40 +0200
+Message-Id: <5188ef93a911ce3781b16530fdebbf0f0af462b6.1655301264.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/06/22 18:58, Prashant Malani ha scritto:
-> On Tue, Jun 14, 2022 at 2:08 AM Pin-yen Lin <treapking@chromium.org> wrote:
->>
->> Hi AngeloGioacchino,
->>
->>
->> On Tue, Jun 14, 2022 at 4:15 PM AngeloGioacchino Del Regno
->> <angelogioacchino.delregno@collabora.com> wrote:
->>>
->>> Il 09/06/22 20:09, Prashant Malani ha scritto:
->>>> From: Pin-Yen Lin <treapking@chromium.org>
->>>>
->>>> Add the callback function when the driver receives state
->>>> changes of the Type-C port. The callback function configures the
->>>> crosspoint switch of the anx7625 bridge chip, which can change the
->>>> output pins of the signals according to the port state.
->>>>
->>>> Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
->>>> Signed-off-by: Prashant Malani <pmalani@chromium.org>
->>>> ---
->>>>
->>>> Changes since v2:
->>>> - No changes.
->>>>
->>>>    drivers/gpu/drm/bridge/analogix/anx7625.c | 58 +++++++++++++++++++++++
->>>>    drivers/gpu/drm/bridge/analogix/anx7625.h | 13 +++++
->>>>    2 files changed, 71 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
->>>> index d41a21103bd3..2c308d12fab2 100644
->>>> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
->>>> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
->>>> @@ -15,6 +15,7 @@
->>>>    #include <linux/regulator/consumer.h>
->>>>    #include <linux/slab.h>
->>>>    #include <linux/types.h>
->>>> +#include <linux/usb/typec_dp.h>
->>>>    #include <linux/usb/typec_mux.h>
->>>>    #include <linux/workqueue.h>
->>>>
->>>> @@ -2582,9 +2583,66 @@ static void anx7625_runtime_disable(void *data)
->>>>        pm_runtime_disable(data);
->>>>    }
->>>>
->>>> +static void anx7625_set_crosspoint_switch(struct anx7625_data *ctx,
->>>> +                                       enum typec_orientation orientation)
->>>> +{
->>>> +     if (orientation == TYPEC_ORIENTATION_NORMAL) {
->>>> +             anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_0,
->>>> +                               SW_SEL1_SSRX_RX1 | SW_SEL1_DPTX0_RX2);
->>>> +             anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_1,
->>>> +                               SW_SEL2_SSTX_TX1 | SW_SEL2_DPTX1_TX2);
->>>> +     } else if (orientation == TYPEC_ORIENTATION_REVERSE) {
->>>> +             anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_0,
->>>> +                               SW_SEL1_SSRX_RX2 | SW_SEL1_DPTX0_RX1);
->>>> +             anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_1,
->>>> +                               SW_SEL2_SSTX_TX2 | SW_SEL2_DPTX1_TX1);
->>>> +     }
->>>> +}
->>>> +
->>>> +static void anx7625_typec_two_ports_update(struct anx7625_data *ctx)
->>>> +{
->>>> +     if (ctx->typec_ports[0].dp_connected && ctx->typec_ports[1].dp_connected)
->>>> +             /* Both ports available, do nothing to retain the current one. */
->>>> +             return;
->>>> +     else if (ctx->typec_ports[0].dp_connected)
->>>> +             anx7625_set_crosspoint_switch(ctx, TYPEC_ORIENTATION_NORMAL);
->>>> +     else if (ctx->typec_ports[1].dp_connected)
->>>> +             anx7625_set_crosspoint_switch(ctx, TYPEC_ORIENTATION_REVERSE);
->>>> +}
->>>> +
->>>>    static int anx7625_typec_mux_set(struct typec_mux_dev *mux,
->>>>                                 struct typec_mux_state *state)
->>>>    {
->>>> +     struct anx7625_port_data *data = typec_mux_get_drvdata(mux);
->>>> +     struct anx7625_data *ctx = data->ctx;
->>>> +     struct device *dev = &ctx->client->dev;
->>>> +
->>>> +     bool old_dp_connected = (ctx->typec_ports[0].dp_connected ||
->>>> +                              ctx->typec_ports[1].dp_connected);
->>>
->>> So the old connection state is "either port0 or port1 are currently connected"...
->>>
->>>> +     bool new_dp_connected;
->>>> +
->>>> +     if (ctx->num_typec_switches == 1)
->>>> +             return 0;
->>>> +
->>>> +     dev_dbg(dev, "mux_set dp_connected: c0=%d, c1=%d\n",
->>>> +             ctx->typec_ports[0].dp_connected, ctx->typec_ports[1].dp_connected);
->>>> +
->>>> +     data->dp_connected = (state->alt && state->alt->svid == USB_TYPEC_DP_SID &&
->>>> +                           state->alt->mode == USB_TYPEC_DP_MODE);
->>>> + > + new_dp_connected = (ctx->typec_ports[0].dp_connected ||
->>>> +                         ctx->typec_ports[1].dp_connected);
->>>
->>> ...and the new connection state is the same as the old one, because I don't see
->>> anything that could ever modify it in this function's flow, until reaching this
->>> assignment.
->>
->> The typec mux driver data (`struct anx7625_port_data *data =
->> typec_mux_get_drvdata(mux)`) is set to one of the
->> `ctx->typec_ports[*]` in `anx7625_register_mode_switch` (see patch 6
->> of this series).
->>
->> So, the `data->dp_connected = ...` assignment may change the new
->> connection state.
-> 
-> Angelo, I think your interpretation of this logic is not accurate..
-> |old_dp_connected| represents *whether* port1 or port0 has a DP
-> partner connected, not that *either* of them has it.
-> 
-> So, this logic looks OK to me.
-> 
+Remove spaces at the beginning of lines with #defines.
 
-Hello Prashant,
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+To be queued in renesas-pinctrl for v5.20.
 
-You're completely right: I've finally seen where this is happening, so yes
-we don't know, nor care at that moment, whether data->dp_connected is port0
-or port1, we assign and check 'em both again, which is actually smart.
+ include/dt-bindings/pinctrl/r7s9210-pinctrl.h | 2 +-
+ include/dt-bindings/pinctrl/rzg2l-pinctrl.h   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-I'm sorry for the misunderstandment - and thank you for your reply.
+diff --git a/include/dt-bindings/pinctrl/r7s9210-pinctrl.h b/include/dt-bindings/pinctrl/r7s9210-pinctrl.h
+index 2d0c23e5d3a7f149..8736ce038ecab772 100644
+--- a/include/dt-bindings/pinctrl/r7s9210-pinctrl.h
++++ b/include/dt-bindings/pinctrl/r7s9210-pinctrl.h
+@@ -42,6 +42,6 @@
+ /*
+  * Convert a port and pin label to its global pin index
+  */
+- #define RZA2_PIN(port, pin)	((port) * RZA2_PINS_PER_PORT + (pin))
++#define RZA2_PIN(port, pin)	((port) * RZA2_PINS_PER_PORT + (pin))
+ 
+ #endif /* __DT_BINDINGS_PINCTRL_RENESAS_RZA2_H */
+diff --git a/include/dt-bindings/pinctrl/rzg2l-pinctrl.h b/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
+index b48f8c7a55566ff4..c78ed5e5efb78a5c 100644
+--- a/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
++++ b/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
+@@ -18,6 +18,6 @@
+ #define RZG2L_PORT_PINMUX(b, p, f)	((b) * RZG2L_PINS_PER_PORT + (p) | ((f) << 16))
+ 
+ /* Convert a port and pin label to its global pin index */
+- #define RZG2L_GPIO(port, pin)	((port) * RZG2L_PINS_PER_PORT + (pin))
++#define RZG2L_GPIO(port, pin)	((port) * RZG2L_PINS_PER_PORT + (pin))
+ 
+ #endif /* __DT_BINDINGS_RZG2L_PINCTRL_H */
+-- 
+2.25.1
 
-Feel free to add my
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Regards,
-Angelo
