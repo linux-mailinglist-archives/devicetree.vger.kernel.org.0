@@ -2,209 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C60C154C324
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 10:10:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E7E154C372
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 10:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238580AbiFOIKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 04:10:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46826 "EHLO
+        id S1344817AbiFOI3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 04:29:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236288AbiFOIKr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 04:10:47 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2095.outbound.protection.outlook.com [40.107.114.95])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D08C1BEB9;
-        Wed, 15 Jun 2022 01:10:45 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T9fxxMG+WGfiVWu9DREB3CA8FYacOf3ox7kIYCgRp1wI3bPvHdIeeuNFprFKfeUzkN6jajLjCDkmegiDTFNZxgJS9h7xS1x3osrsvHpFbrgF3zwDu4oGwbqRScWNwb1l2JMtAqE9U8N9GzhiWZYYBpwH+ivPGFYEGYc9ak0BI5qiKCvApKV8ptsKhM4ZRiXN1pz3ygr1XC5uFA6BOecX8YWwlid87bVVtDBjdBagL5qP5fxqum+lG4uIzapRSua5yED5lF9ggWZlw3FPNMO5dANoJ4PM+jk7MRyEfLxV9oUbb0GXl1Vz04wsjxg5AnAwM7thkIirUcZrTw4RsCXY4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c8HVTZT1CelOjtzgVzBMH7nOCDfENaEM3uQyUXw8LxU=;
- b=NZhSZkJZcdqknE6n0hbtW1YLzo/0cvLbpxmd4bGBk2hhymDSnmUuTXzbC0ZjjJT4MvgtE078bhMa9CJVAHw9pxWrZzRQ53vkWm9jP/AvphmUGY58RaiHgKSLHXB6bHFVK0WuDERudEIzRm0w7jQnr+06wHlY8MVDSo81bPyKKusOpOKwTDZ6AMtCCT9rDUAvF3W4Q5fniCw4cLjXSjSX+gTpRGfLq6UQ+Kmrg7x96s+iMZUhLzj+rZwjPPCwjBwWcQ83Krt9zZ3tzgAC//05epKHEtJefPcbtflr99S41HTFmCskGwd59oaDFppw8rete0el3CokjZXANpCYHbS07A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c8HVTZT1CelOjtzgVzBMH7nOCDfENaEM3uQyUXw8LxU=;
- b=okUDwZXflJs42ruhw9B/4VJ4TLyO4LNivgifSNk3QhOaQEbrYGFOnba/4Bk1R/wCpHiWEd+jB4eWSfRfbCd0hkGlfCMDZyhGjvb2mOgwFIMfhuBnkp0bKQpgTLAtQH+sZF6ITdP3UvbmUefSbJBNrTkKrcynX6knotyDFauL8kI=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by TYCPR01MB7727.jpnprd01.prod.outlook.com
- (2603:1096:400:180::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.13; Wed, 15 Jun
- 2022 08:10:42 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::b596:754d:e595:bb2d]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::b596:754d:e595:bb2d%6]) with mapi id 15.20.5353.013; Wed, 15 Jun 2022
- 08:10:41 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>,
-        "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 4/7] PCI: renesas: Add R-Car Gen4 PCIe Endpoint support
-Thread-Topic: [PATCH 4/7] PCI: renesas: Add R-Car Gen4 PCIe Endpoint support
-Thread-Index: AQHYfxy+kAG60IrpCEyuzD/Dk9T4Fa1N4QiAgADjo1CAAIq+AIAAzvyw
-Date:   Wed, 15 Jun 2022 08:10:41 +0000
-Message-ID: <TYBPR01MB53419A943086159AB91565CCD8AD9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20220613115712.2831386-1-yoshihiro.shimoda.uh@renesas.com>
- <20220613115712.2831386-5-yoshihiro.shimoda.uh@renesas.com>
- <20220613215043.GB87830-robh@kernel.org>
- <TYBPR01MB5341FFE04E29E43772683A90D8AA9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
- <20220614194202.GA2209956-robh@kernel.org>
-In-Reply-To: <20220614194202.GA2209956-robh@kernel.org>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d271e63b-e48c-4da2-4f4a-08da4ea68a63
-x-ms-traffictypediagnostic: TYCPR01MB7727:EE_
-x-microsoft-antispam-prvs: <TYCPR01MB77272F60CB59693E8A5C6B22D8AD9@TYCPR01MB7727.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kxbxfJnCh2VNZKQaa2LrdVyJ1upCIY73g0RZccLW7D7ulKUyB/1gusT0CAI1lfIrueu+ivTgXBsAzQus2Ikryon0/E2ln4XPPwJLVk/7BvB8GRcFsKL5Cdfid3T4vUXt6Zpl/J7YqIekQDfjtQobZNbhcziV+EYWGI/5yW76IoR9h1h7R+1Z+1LJ0syzan0d0x1EGlt4a3YAeusEcMt0XvJPw3Zy359TFzLkW2mTlKVKbMozRbJePsHkjDmW3m8CCE9FXSYXx4yxFprdztNOkxXgZGL51K3nWRMls51ZA8Xtyr+CUe0lRCRU4zVvojB0tp+g4+pHDROk5q/02T5x0QitWbxe/IRo/48bjPe4Luhl1g1zCelQLzQE0rb+vLzDHf8yQkb5jQfbnPxSWrSCWK98H5L5m9LHw0R3rZyQq+MD7j8V3sypcFKS2IYQHC491BYZhmpHuYFrssVHGmTwV3qSyrfhyFiN3JiWZO5GLzJQjewc+sFFklSuWVwkzV/5ibAA+7zMCYNLN09TpMoJWbCgqd6FdhEzUngzH4OOrY8ifmWnmIGM3+VTF6YYIeW+Zk0QrHuUq7dv7EnvgBZDfdJp71lg/tMhffZkXfZ1AC+xgZ61WUUgRQP3ID/52ejg6m2DvXlryiycti/SCiGszX4nYKQZggZOZJKp9vlbjDBS3x5TzebxJbLuXkP0duOc4sXLhmRrxsarl+8TyJzocQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(66556008)(8676002)(4326008)(66476007)(316002)(38070700005)(6916009)(66946007)(9686003)(71200400001)(2906002)(64756008)(76116006)(54906003)(55016003)(33656002)(5660300002)(186003)(66446008)(8936002)(508600001)(7416002)(122000001)(38100700002)(52536014)(86362001)(6506007)(7696005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?VuvFowTFZMrsedghAZ+2WFZwNGbvwPyWZ02ukhWEFurTxZfhz6wIhtuEl6Oi?=
- =?us-ascii?Q?pj0FH4VGjVgONITUHM48V3lvoCGo3hx5fyWuZEaDhf3dEPJBdj01Qo2MzkDc?=
- =?us-ascii?Q?iNN1W3heHIfoyE2tlr41P71Qn3iPwz2k4nnBXOeZ7TKrx2GP6WghbhHPRO8e?=
- =?us-ascii?Q?RWvA37fmlfOCOqhX33oghUhQAcGJeUFGVbHkSq266lqxKphli/F5GtaLqPAt?=
- =?us-ascii?Q?Cix3jt+xH+ir1sTYgAE70pW1Uyuny4ETaD9SG1LrqxtAi+cwWBvg56CC+jWS?=
- =?us-ascii?Q?vq8lehvmv1JLv8PgkJDWjBlSvYGrnsGffRNKffRQm8N4xCCI79EibTmUtcZF?=
- =?us-ascii?Q?kmUiAFb2XTff4YB5QhkN+p2KhqtLVBI/Rj9ixck8u1cnS07FGnc89JjqNu9p?=
- =?us-ascii?Q?H1InPhQBZ9V7XJ5bpBKbOFfa6gjeJP1S9xXFfchgK+u+b5MHyq0DM7/Zx1nM?=
- =?us-ascii?Q?zHRkJ2sGVmrfffNatJMZUbDNVcZXwKfXiMz+ysBfpSZk9zNSlENP/GIlS6Ez?=
- =?us-ascii?Q?AFlnXQXJuyupy+7o4QYwPqDHpaFzlHRmF8At80bDO54uIfBUc4yj6E80VMgx?=
- =?us-ascii?Q?d0VBgkMvyqRmSmKNPmweNhk7qal83qLX2j432n0ljhtj/fvEbQnbaU1qobh1?=
- =?us-ascii?Q?UWeybhPk6qUeh3OrVNMNLR+lM/Plx/iqUVcBfTj7mLn1JZyuS3FB7nyTQ4QM?=
- =?us-ascii?Q?t4+uP8RIA5zw4y6eMMdnOd3+KnZ3+pt3RCryupdaYf9eEl4qWnc6Kj6tUK4S?=
- =?us-ascii?Q?qny70L0J1D2LMUNDY+g/zPaoGj4u3thW16y38O/qzpL740/1+8s5i51k/4hQ?=
- =?us-ascii?Q?0xMAHtxtlIixXjfTubpTCEwfNbVvgsLxs8/YST5QM9gl43ybmpikQnzSbkCH?=
- =?us-ascii?Q?hsFvP3E80+obNRALaCF45/YJotStUjCEfXbQpBrUfyj9qmWF3xkmlbFY6dBk?=
- =?us-ascii?Q?UfSwX9pVOpx8roI30EjebARNehYgO40ZC+SUSH/77wcFVDdjzfyWcivYoYDb?=
- =?us-ascii?Q?mdMmhvfuI/N33AQI34vD8k2SDHo/SPeoMRONP8Ugv30Kv9YZNA4bmjKJeaqr?=
- =?us-ascii?Q?M3RrdcQ6805AUVP/scYiVoJ0Wi/8/B5zMrGSgaHplLKj115+AEO7sSZ8L0oO?=
- =?us-ascii?Q?NjMSYLbgM+vTd6xLxLy0FSTCd3RwSMvtCQ1618k8dvT7zbLdy/mx80W2JikH?=
- =?us-ascii?Q?YlWAfC0lEOWRk2kUPZM9oArsnrGEH7JVE4SShINI436/6lVJN6P75xR+m6zE?=
- =?us-ascii?Q?wUyXk0RAPlO/TF9kYT6sqwLdWjYHcw0yVG83j+MprWdgBQT5trUjEuw28eWR?=
- =?us-ascii?Q?kM3oVChQ/jJx6BiqPufesmA/6GI1SYeSB5ig9pI5V2g5WFZyYDDrc6FmSaNX?=
- =?us-ascii?Q?flQZJaPbkQKHWf1ro5XrTmD/Rv4ASn8OCcd36N0Z5Nf3MFCjsJpZhH6jmFIw?=
- =?us-ascii?Q?Dv9JkT8FMLuOeaS6wJF+xuePHI9tMpN8G7VpklKIuNdGoMjWvJGi+vSh/Qd/?=
- =?us-ascii?Q?J/gk4q1rwsn8H25UDF7qlab2au9NknGgV3/mkwkNwpRJN2e28UKS4jO1Sh5o?=
- =?us-ascii?Q?QhLLswFe1nhwrSUCjSa80x1FMi0eV94HU4R7ISHRABU0bKRgQZBOtTUeWVtx?=
- =?us-ascii?Q?gBgSgonqxk+Ofs1UcaM1gtpCM34pvbvvNfdWyp6hduRe7zacqSgezU3F29ij?=
- =?us-ascii?Q?a85b0M4+SpL3hJrpWbS4X8pCHfo36Es/zMSuA8rRXE3pfPfS+YVnEL6qS7qy?=
- =?us-ascii?Q?r2ZTnRodlXfaVPYkwOeIs0xBK+syWuK4gH/8Jf1Iy+3aCphu5Q6RvTVrEiZp?=
-x-ms-exchange-antispam-messagedata-1: QnCcYt/Ic86GjIKKisHx4CD9j2qb5UVJt2Q=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S1344486AbiFOI3J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 04:29:09 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAF333EA5
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 01:29:09 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1o1OOf-0006I8-Ry; Wed, 15 Jun 2022 10:29:05 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1o1OOY-0005jK-G6; Wed, 15 Jun 2022 10:28:58 +0200
+Date:   Wed, 15 Jun 2022 10:28:58 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Gireesh.Hiremath@in.bosch.com
+Cc:     krzysztof.kozlowski+dt@linaro.org, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org, bcousson@baylibre.com,
+        tony@atomide.com, robh+dt@kernel.org, dmitry.torokhov@gmail.com,
+        mkorpershoek@baylibre.com, davidgow@google.com,
+        swboyd@chromium.org, fengping.yu@mediatek.com,
+        y.oudjana@protonmail.com, rdunlap@infradead.org,
+        colin.king@intel.com, sjoerd.simons@collabora.co.uk,
+        VinayKumar.Shettar@in.bosch.com,
+        Govindaraji.Sivanantham@in.bosch.com, anaclaudia.dias@de.bosch.com
+Subject: Re: [v2,2/4] Input: mt-matrix-keypad: Add Bosch mt matrix keypad
+ driver
+Message-ID: <20220615082858.vmdhzhkwsv6kdnak@pengutronix.de>
+References: <20220506072737.1590-2-Gireesh.Hiremath@in.bosch.com>
+ <20220613080638.1339-1-Gireesh.Hiremath@in.bosch.com>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d271e63b-e48c-4da2-4f4a-08da4ea68a63
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jun 2022 08:10:41.9492
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3M6qlrEyTUhNmWECJhG9IplXeZMY3Bf5lTkCZLTBHRTqVxrgCj3TUzNs4FHhjL/r2qmNtGqaPdLmwzpM2HdSj8U3nox2BCSuLHIj+l87wkJVEYFbE/CbfJZLfnPusT7H
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB7727
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220613080638.1339-1-Gireesh.Hiremath@in.bosch.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi,
 
-> From: Rob Herring, Sent: Wednesday, June 15, 2022 4:42 AM
->=20
-> On Tue, Jun 14, 2022 at 11:58:46AM +0000, Yoshihiro Shimoda wrote:
-> > Hi Rob,
+sry. for jumping in again.
+
+On 22-06-13, Gireesh.Hiremath@in.bosch.com wrote:
+> From: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
+> 
+> Hi Krzysztof,
+> 
+> >You wrote pretty long message explaining how the device works, but I
+> >still do not see the answer to questions - why it cannot be part of
+> >matrix keypad?
+> 
+> Following are the difference between matrix keypad and Bosch keypad
+> make us to add another keypad driver.
+> 
+> matrix keypad:
+> 	- By hardware schematic, a column GPIO line will intersect only
+> 	  with row GPIO lines, not with the other column GPIO lines
+> 	- so, row and column GPIO property are fixed, because of this
+> 	- key scanning work based on interrupt mode
+> 	- and key press is determined based on setting column as output,
+> 	  row GPIO as input and set interrupt to monitor the changes in state,
+> 	  serve the key pressed in ISR
+> 
+> Bosch keypad:
+>     - By hardware schematic column GPIO line can intersect with row GPIO line
+> 	  as well as other column GPIO lines
+> 	- so, all GPIO act as row as well as column, because of this
+> 	- key scanning based on polling mode
+> 	- a key pressed is determined by setting one of GPIO line as output and
+> 	  other as input and poll for change in the state of input GPIO lines.
+> 	  Setting one of a GPIO line as output and remaining GPIO lines as input is on
+> 	  round robin bases.
+
+Thanks again for listing this here but please get our point, that this
+seems like just another 'mode' for the matrix keypad driver which can be
+selected by the system integrator.
+
+> >"It looks like this driver has smaller number of features than
+> >matrix-keypad, so it should be integrated into the matrix-keypad.
+> >matrix-keypad features are superset to this one."
 > >
-> > Thank you for your review!
-> >
-> > > From: Rob Herring, Sent: Tuesday, June 14, 2022 6:51 AM
-> > >
-> > > On Mon, Jun 13, 2022 at 08:57:09PM +0900, Yoshihiro Shimoda wrote:
-> > > > Add R-Car Gen4 PCIe Endpoint support. This controller is based on
-> > > > Synopsys Designware PCIe.
-> > > >
-> > > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > > > ---
->=20
-> [...]
->=20
-> > > > +	u32			num_lanes;
-> > >
-> > > What's wrong with dw_pcie.num_lanes?
-> >
-> > The dw_pcie.num_lanes is set after dw_pcie_ep_init() succeeded.
-> > However, this driver would like to refer the num_lanes before dw_pcie_e=
-p_init()
-> > to initialize vendor-specific registers. In other words, this value is =
-only
-> > needed at that timing. So, we can remove this from struct rcar_gen4_pci=
-e_ep,
-> > and just get the num_lanes as a local variable.
->=20
-> AFAICT, you are just using it to set PCI_EXP_LNKCAP_MLW. That's a common
-> register, so it should be able to set in the common code.
+> >"But anyway this should be just merged into matrix-keypad. It's a
+> >simpler set of that binding."
+> 
+> This keypad driver specific to Bosch measuring tool or similar devices.
 
-I see.
-So, I'll add such a code into the DWC common code because dw_pcie_dbi_ro_wr=
-_en()
-is required to set PCI_EXP_LNKCAP_MLW.
+Once it lands in mainline, it can be used by everyone.
 
-> [...]
->=20
-> > > > +static struct platform_driver rcar_gen4_pcie_ep_driver =3D {
-> > > > +	.driver =3D {
-> > > > +		.name =3D "pcie-rcar-gen4-ep",
-> > > > +		.of_match_table =3D rcar_gen4_pcie_of_match,
-> > > > +	},
-> > > > +	.probe =3D rcar_gen4_pcie_ep_probe,
-> > > > +	.remove =3D rcar_gen4_pcie_ep_remove,
-> > > > +};
-> > > > +builtin_platform_driver(rcar_gen4_pcie_ep_driver);
-> > >
-> > > Not a module or...
-> > >
-> > > > +
-> > > > +MODULE_DESCRIPTION("Renesas R-Car Gen4 PCIe endpoint controller dr=
-iver");
-> > > > +MODULE_LICENSE("GPL v2");
-> > >
-> > > A module? Should be a module if possible.
-> >
-> > Oops. I'll drop these MODULE_*.
->=20
-> No, is there some reason it can't be a module?
+> Please let me know to send latest patch which resolves build warning
+> and gpiod API support.
 
-Thank you. Now I understood your comment.
-I think it's possible to be a module.
-So, I'll use module_platform_driver() instead if possible.
+I would really appreciate if you could integrate your work into matrix
+keypad driver.
 
-Best regards,
-Yoshihiro Shimoda
-
-> Rob
-
+Regards,
+  Marco
