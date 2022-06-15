@@ -2,55 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E7E154C372
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 10:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47E3E54C37C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 10:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344817AbiFOI3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 04:29:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32938 "EHLO
+        id S239154AbiFOIah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 04:30:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344486AbiFOI3J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 04:29:09 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAF333EA5
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 01:29:09 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1o1OOf-0006I8-Ry; Wed, 15 Jun 2022 10:29:05 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1o1OOY-0005jK-G6; Wed, 15 Jun 2022 10:28:58 +0200
-Date:   Wed, 15 Jun 2022 10:28:58 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Gireesh.Hiremath@in.bosch.com
-Cc:     krzysztof.kozlowski+dt@linaro.org, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org, bcousson@baylibre.com,
-        tony@atomide.com, robh+dt@kernel.org, dmitry.torokhov@gmail.com,
-        mkorpershoek@baylibre.com, davidgow@google.com,
-        swboyd@chromium.org, fengping.yu@mediatek.com,
-        y.oudjana@protonmail.com, rdunlap@infradead.org,
-        colin.king@intel.com, sjoerd.simons@collabora.co.uk,
-        VinayKumar.Shettar@in.bosch.com,
-        Govindaraji.Sivanantham@in.bosch.com, anaclaudia.dias@de.bosch.com
-Subject: Re: [v2,2/4] Input: mt-matrix-keypad: Add Bosch mt matrix keypad
- driver
-Message-ID: <20220615082858.vmdhzhkwsv6kdnak@pengutronix.de>
-References: <20220506072737.1590-2-Gireesh.Hiremath@in.bosch.com>
- <20220613080638.1339-1-Gireesh.Hiremath@in.bosch.com>
+        with ESMTP id S245032AbiFOIaR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 04:30:17 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5BE2483AE;
+        Wed, 15 Jun 2022 01:30:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 25FD9B81D01;
+        Wed, 15 Jun 2022 08:30:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D4059C34115;
+        Wed, 15 Jun 2022 08:30:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655281813;
+        bh=VarZDe74tJMa0gsjZ1yjdjB3qf69EUu2gu/+DbmOY/g=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=LRJfcLbtvfXGMf9gF1TC10SGZjbdnVfoQsgfr5ME+4LqWzVbw+15PJwhqs5ldt7Xj
+         DBZf3EpZhl4CjgA4xmGTGdAyQgSKlzxjEloMMZhW4xzXshMUz9PiQgZC042E/KRJ/W
+         fY9qwo/wWqiBi/b1w7cgRxjjzEV3+PMOp+wFcTuKAdO7f13/83I0CnK567F5FLWbQ5
+         /0yAUQfCzlkb9JhKYSSuRUI82yMv2wSkgtl8YSZlXC6z32tuxp3WBvO/TErfe8DOko
+         UUqemnDto9zV4WNh+a/DypBWmFlpfL/RByGMTCDHBIo+R93GHm38QOl66CvhJXfugu
+         +6IvShYbIt8sA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id BA63EE6D466;
+        Wed, 15 Jun 2022 08:30:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220613080638.1339-1-Gireesh.Hiremath@in.bosch.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 net-next] dt-bindings: net: xilinx: document xilinx
+ emaclite driver binding
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165528181375.16320.16353044588211056289.git-patchwork-notify@kernel.org>
+Date:   Wed, 15 Jun 2022 08:30:13 +0000
+References: <1654793615-21290-1-git-send-email-radhey.shyam.pandey@amd.com>
+In-Reply-To: <1654793615-21290-1-git-send-email-radhey.shyam.pandey@amd.com>
+To:     Pandey@ci.codeaurora.org,
+        Radhey Shyam <radhey.shyam.pandey@amd.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, harini.katakam@amd.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, git@amd.com
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,61 +61,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello:
 
-sry. for jumping in again.
+This patch was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
-On 22-06-13, Gireesh.Hiremath@in.bosch.com wrote:
-> From: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
+On Thu, 9 Jun 2022 22:23:35 +0530 you wrote:
+> Add basic description for the xilinx emaclite driver DT bindings.
 > 
-> Hi Krzysztof,
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> ---
+> Changes since v1:
+> - Move ethernet-controller.yaml reference after maintainers.
+> - Drop interrupt second cell in example node.
+> - Set local-mac-address to all 0s in example node.
+> - Put the reg after compatible in DTS code.
 > 
-> >You wrote pretty long message explaining how the device works, but I
-> >still do not see the answer to questions - why it cannot be part of
-> >matrix keypad?
-> 
-> Following are the difference between matrix keypad and Bosch keypad
-> make us to add another keypad driver.
-> 
-> matrix keypad:
-> 	- By hardware schematic, a column GPIO line will intersect only
-> 	  with row GPIO lines, not with the other column GPIO lines
-> 	- so, row and column GPIO property are fixed, because of this
-> 	- key scanning work based on interrupt mode
-> 	- and key press is determined based on setting column as output,
-> 	  row GPIO as input and set interrupt to monitor the changes in state,
-> 	  serve the key pressed in ISR
-> 
-> Bosch keypad:
->     - By hardware schematic column GPIO line can intersect with row GPIO line
-> 	  as well as other column GPIO lines
-> 	- so, all GPIO act as row as well as column, because of this
-> 	- key scanning based on polling mode
-> 	- a key pressed is determined by setting one of GPIO line as output and
-> 	  other as input and poll for change in the state of input GPIO lines.
-> 	  Setting one of a GPIO line as output and remaining GPIO lines as input is on
-> 	  round robin bases.
+> [...]
 
-Thanks again for listing this here but please get our point, that this
-seems like just another 'mode' for the matrix keypad driver which can be
-selected by the system integrator.
+Here is the summary with links:
+  - [v2,net-next] dt-bindings: net: xilinx: document xilinx emaclite driver binding
+    https://git.kernel.org/netdev/net-next/c/3a51e969fa90
 
-> >"It looks like this driver has smaller number of features than
-> >matrix-keypad, so it should be integrated into the matrix-keypad.
-> >matrix-keypad features are superset to this one."
-> >
-> >"But anyway this should be just merged into matrix-keypad. It's a
-> >simpler set of that binding."
-> 
-> This keypad driver specific to Bosch measuring tool or similar devices.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-Once it lands in mainline, it can be used by everyone.
 
-> Please let me know to send latest patch which resolves build warning
-> and gpiod API support.
-
-I would really appreciate if you could integrate your work into matrix
-keypad driver.
-
-Regards,
-  Marco
