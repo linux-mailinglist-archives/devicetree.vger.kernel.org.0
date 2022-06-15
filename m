@@ -2,176 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AF0F54C827
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 14:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00C0B54C855
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 14:20:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242260AbiFOMJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 08:09:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41382 "EHLO
+        id S1348031AbiFOMU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 08:20:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235822AbiFOMJz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 08:09:55 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95DA4ECC7;
-        Wed, 15 Jun 2022 05:09:54 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id u8so15051136wrm.13;
-        Wed, 15 Jun 2022 05:09:54 -0700 (PDT)
+        with ESMTP id S1346889AbiFOMU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 08:20:57 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01AF937A09
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 05:20:55 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id b7so13044573ljr.6
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 05:20:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to:cc
-         :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=ufqEIhQJLn0a1lP22CtHnxpKmABhqIWqQFeboCEBeR8=;
-        b=NNQJ/jGhKFi3TLolVvv6p5vDCUgaeZ2UDfX5QF22P23d0rNi2IA+3xgJlttCAlAbei
-         rk6ebUX23qsziqFBje19orA87/iwUKsvIIxT1/tuq/V/zfiyuLMDGAhmMekYevaKip0L
-         VFsqyo2qSHzhQaaVho66mGEdQ0v3EV+MXT2CiOUY0RceDlRJUVuTteYygqy1hEhOnhDy
-         bDFcEuM9bSkckbpuY7bJcxBHX7aiGwNDqqmpKOCokXagegSOK3ZOIf+WH/TR6GhgAGAE
-         JXb9yVmULvi4y4ygg6OY6k3egdNzz9CQUgXR20nHtdlWgf58B33lpzamh5904JHegno4
-         8d3Q==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=tzCBDGq5tGP2jW5rnyj4CLiseepU/qiH2K3m08j9gZQ=;
+        b=K/iR/Jes4UImRpP9oPymqXSfBpOXxjBX/klSVMZxUQX0B3jmYTwpMevJVw9Bnm221j
+         hnDovWtI96/30CVVsP8nOIgC04xORFFFdRaXazvIr16nw2ktjTJM9kqbmX6qxOUHbdYN
+         flAiZIc9tn41EVx3SMnwQl+aS+ZW8fQIyVC61ZRxhzFKegIXXCtqpoHrNPjRqDdPb//V
+         BcgAjnAiDKwsRvQSCpLnC5WXailqtBcceD0aJNOAU51RICuYtvzzrcV5f3ERlist4Btf
+         sqixFsrqDMQwhOTWen74dmJLfvTH47zQFQCJbt80BhhyjwCvLkJkcz35nUBSWz7TNsoY
+         btlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ufqEIhQJLn0a1lP22CtHnxpKmABhqIWqQFeboCEBeR8=;
-        b=PXcXzBJ8TsSyuTA5qHSrU42ASQ+T405gpVZ9gVRUU0xkpnJGU02er0RcTVY+ohYH9A
-         65mxtzrj/BmSLGzQA8ZLblA0CqCmblO+NL5BoHX9Lo/b717dJmtCIuCZGlgLyVmHFp6U
-         wJ625mKbUr4qIjUB7OZ2ea6MkxdFo2qT79OYlpCUBvh4uESZjaiUTOsdunsY8uUrCmze
-         ZqBlE+dKZYXmkRi1XdCTTF9mSnsTUEvFRpT2eFKyIp7MTXbzIwyxLXWkv2fERVqt3Nti
-         k1srIrf9hXONkf0zZejcFzGY0Lh8tYfFkIo0X4A0XT33TsYy8dp7ox9Tfp6eT52FMpBP
-         WVWw==
-X-Gm-Message-State: AJIora+e6jwdVJ8bCxRBWgBMlYWAOadZvFJRI18gTGLekKfck+wLEEWW
-        5c5REELFJWfqogomAXYBgAJpOtpKZ5wW8g==
-X-Google-Smtp-Source: AGRyM1spOOsJofsOCL+iHFbSiA5IRU/CCTL1EBYYpqTyOZwOes1IVw6CJtdit0i26miabw44PN2cEg==
-X-Received: by 2002:a05:6000:1542:b0:218:549a:2a8e with SMTP id 2-20020a056000154200b00218549a2a8emr9738727wry.314.1655294992184;
-        Wed, 15 Jun 2022 05:09:52 -0700 (PDT)
-Received: from [192.168.0.36] ([37.223.143.134])
-        by smtp.gmail.com with ESMTPSA id 64-20020a1c1943000000b0039c6390730bsm2249993wmz.29.2022.06.15.05.09.50
+        bh=tzCBDGq5tGP2jW5rnyj4CLiseepU/qiH2K3m08j9gZQ=;
+        b=falSzUQyzEJZ+Kneu9FBghTDIb6kmFeOaJQhYZVir2OaEV19QybdWa1NAdoR0PiK15
+         Rr7cXU0j1u7vWitXBrZrNuVietY9UGZeIG8Ddjnd1hIaOMbt7GW+kUu2pCcrNvUzv6KS
+         wddjLLctsQEQFq9/oEXiYa+YcZh5NjLNYEU9pbq6sj4vOVC18vkHPqkIE8vSUs13rHf5
+         GmavZ+WvTcCJjGdvXsXuuM7Frzw2jUJkaiGvhfSt6Vca11vEnM6XgZMue6lfm8tEi/7V
+         ITmDUqbKVwkNAXaNBQwS1hYVR81Ud3qu4rsi+eZidPI7PF7oLZ+JKC1qDpiGy0zZGOzI
+         AJmw==
+X-Gm-Message-State: AJIora/R/KnKg94g8r3OqMe6zAZPtMr6CDG4xXYPr9F/YX+Pxt32Fa3u
+        l3UACMmiDJrWz4xRv8Zj4s9ZpA==
+X-Google-Smtp-Source: AGRyM1tXizTF3DMpBDe2HwCwP04IOR9oCCKUA7x0NKnvosFst6z4y8wzPyxa9IaqrtXKhCjtZtRGaQ==
+X-Received: by 2002:a2e:3315:0:b0:258:dfff:e252 with SMTP id d21-20020a2e3315000000b00258dfffe252mr5229345ljc.141.1655295654031;
+        Wed, 15 Jun 2022 05:20:54 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id f18-20020a19dc52000000b0047255d21128sm1786085lfj.87.2022.06.15.05.20.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jun 2022 05:09:51 -0700 (PDT)
-Message-ID: <8b31b1d2-4ed7-11a1-2124-4641c8f3abcd@gmail.com>
-Date:   Wed, 15 Jun 2022 14:09:49 +0200
+        Wed, 15 Jun 2022 05:20:53 -0700 (PDT)
+Message-ID: <e78fb0d3-a7ea-9f0b-ae42-fac76e54aa6a@linaro.org>
+Date:   Wed, 15 Jun 2022 15:20:52 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, yong.wu@mediatek.com
-Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski@linaro.org
-References: <20220609100802.54513-1-angelogioacchino.delregno@collabora.com>
- <20220609100802.54513-7-angelogioacchino.delregno@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v3 6/6] iommu: mtk_iommu: Lookup phandle to retrieve
- syscon to pericfg
-In-Reply-To: <20220609100802.54513-7-angelogioacchino.delregno@collabora.com>
+ Thunderbird/91.9.0
+Subject: Re: [v2] drm/msm: add null checks for drm device to avoid crash
+ during probe defer
+Content-Language: en-GB
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, vpolimer@quicinc.com, swboyd@chromium.org,
+        kalyant@quicinc.com
+References: <1654249343-24959-1-git-send-email-quic_vpolimer@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <1654249343-24959-1-git-send-email-quic_vpolimer@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 03/06/2022 12:42, Vinod Polimera wrote:
+> During probe defer, drm device is not initialized and an external
+> trigger to shutdown is trying to clean up drm device leading to crash.
+> Add checks to avoid drm device cleanup in such cases.
+> 
+> BUG: unable to handle kernel NULL pointer dereference at virtual
+> address 00000000000000b8
+> 
+> Call trace:
+> 
+> drm_atomic_helper_shutdown+0x44/0x144
+> msm_pdev_shutdown+0x2c/0x38
+> platform_shutdown+0x2c/0x38
+> device_shutdown+0x158/0x210
+> kernel_restart_prepare+0x40/0x4c
+> kernel_restart+0x20/0x6c
+> __arm64_sys_reboot+0x194/0x23c
+> invoke_syscall+0x50/0x13c
+> el0_svc_common+0xa0/0x17c
+> do_el0_svc_compat+0x28/0x34
+> el0_svc_compat+0x20/0x70
+> el0t_32_sync_handler+0xa8/0xcc
+> el0t_32_sync+0x1a8/0x1ac
+> 
+> Changes in v2:
+> - Add fixes tag.
+> 
+> Fixes: 623f279c778 ("drm/msm: fix shutdown hook in case GPU components failed to bind")
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
-On 09/06/2022 12:08, AngeloGioacchino Del Regno wrote:
-> On some SoCs (of which only MT8195 is supported at the time of writing),
-> the "R" and "W" (I/O) enable bits for the IOMMUs are in the pericfg_ao
-> register space and not in the IOMMU space: as it happened already with
-> infracfg, it is expected that this list will grow.
-> 
-> Instead of specifying pericfg compatibles on a per-SoC basis, following
-> what was done with infracfg, let's lookup the syscon by phandle instead.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->   drivers/iommu/mtk_iommu.c | 23 +++++++++++++----------
->   1 file changed, 13 insertions(+), 10 deletions(-)
+>   drivers/gpu/drm/msm/msm_drv.c | 6 +++++-
+>   1 file changed, 5 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index 90685946fcbe..0ea0848581e9 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -138,6 +138,8 @@
->   /* PM and clock always on. e.g. infra iommu */
->   #define PM_CLK_AO			BIT(15)
->   #define IFA_IOMMU_PCIE_SUPPORT		BIT(16)
-> +/* IOMMU I/O (r/w) is enabled using PERICFG_IOMMU_1 register */
-> +#define HAS_PERI_IOMMU1_REG		BIT(17)
-
- From what I can see MTK_IOMMU_TYPE_INFRA is only set in MT8195 which uses 
-pericfg. So we don't need a new flag here. For me the flag name 
-MTK_IOMMU_TYPE_INFRA was confusing as it has nothing to do with the use of 
-infracfg. I'll hijack this patch to provide some feedback on the actual code, 
-please see below.
-
+> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+> index 4448536..d62ac66 100644
+> --- a/drivers/gpu/drm/msm/msm_drv.c
+> +++ b/drivers/gpu/drm/msm/msm_drv.c
+> @@ -142,6 +142,9 @@ static void msm_irq_uninstall(struct drm_device *dev)
+>   	struct msm_drm_private *priv = dev->dev_private;
+>   	struct msm_kms *kms = priv->kms;
 >   
->   #define MTK_IOMMU_HAS_FLAG_MASK(pdata, _x, mask)	\
->   				((((pdata)->flags) & (mask)) == (_x))
-> @@ -187,7 +189,6 @@ struct mtk_iommu_plat_data {
->   	u32			flags;
->   	u32			inv_sel_reg;
+> +	if (!irq_has_action(kms->irq))
+> +		return;
+> +
+>   	kms->funcs->irq_uninstall(kms);
+>   	if (kms->irq_requested)
+>   		free_irq(kms->irq, dev);
+> @@ -259,6 +262,7 @@ static int msm_drm_uninit(struct device *dev)
 >   
-> -	char			*pericfg_comp_str;
->   	struct list_head	*hw_list;
->   	unsigned int		iova_region_nr;
->   	const struct mtk_iommu_iova_region	*iova_region;
-> @@ -1218,14 +1219,16 @@ static int mtk_iommu_probe(struct platform_device *pdev)
->   			goto out_runtime_disable;
->   		}
->   	} else if (MTK_IOMMU_IS_TYPE(data->plat_data, MTK_IOMMU_TYPE_INFRA) &&
-> -		   data->plat_data->pericfg_comp_str) {
-
-Check for pericfg_comp_str is not needed, we only have one platform that uses 
-MTK_IOMMU_TYPE_INFRA.
-
-> -		infracfg = syscon_regmap_lookup_by_compatible(data->plat_data->pericfg_comp_str);
-
-We can do something like this to make the code clearer:
-data->pericfg = 
-syscon_regmap_lookup_by_compatible(data->plat_data->pericfg_comp_str);
-		if (IS_ERR(data->pericfg)) {
-
-Using infracfg variable here is confusing as it has nothing to do with infracfg 
-used with HAS_4GB_MODE flag.
-
-Regards,
-Matthias
-
-> -		if (IS_ERR(infracfg)) {
-> -			ret = PTR_ERR(infracfg);
-> -			goto out_runtime_disable;
-> +		   MTK_IOMMU_HAS_FLAG(data->plat_data, HAS_PERI_IOMMU1_REG)) {
-> +		data->pericfg = syscon_regmap_lookup_by_phandle(dev->of_node, "mediatek,pericfg");
-> +		if (IS_ERR(data->pericfg)) {
-> +			p = "mediatek,mt8195-pericfg_ao";
-> +			data->pericfg = syscon_regmap_lookup_by_compatible(p);
-> +			if (IS_ERR(data->pericfg)) {
-> +				ret = PTR_ERR(data->pericfg);
-> +				goto out_runtime_disable;
-> +			}
->   		}
-> -
-> -		data->pericfg = infracfg;
->   	}
+>   	ddev->dev_private = NULL;
+>   	drm_dev_put(ddev);
+> +	priv->dev = NULL;
 >   
->   	platform_set_drvdata(pdev, data);
-> @@ -1484,8 +1487,8 @@ static const struct mtk_iommu_plat_data mt8192_data = {
->   static const struct mtk_iommu_plat_data mt8195_data_infra = {
->   	.m4u_plat	  = M4U_MT8195,
->   	.flags            = WR_THROT_EN | DCM_DISABLE | STD_AXI_MODE | PM_CLK_AO |
-> -			    MTK_IOMMU_TYPE_INFRA | IFA_IOMMU_PCIE_SUPPORT,
-> -	.pericfg_comp_str = "mediatek,mt8195-pericfg_ao",
-> +			    HAS_PERI_IOMMU1_REG | MTK_IOMMU_TYPE_INFRA |
-> +			    IFA_IOMMU_PCIE_SUPPORT,
->   	.inv_sel_reg      = REG_MMU_INV_SEL_GEN2,
->   	.banks_num	  = 5,
->   	.banks_enable     = {true, false, false, false, true},
+>   	destroy_workqueue(priv->wq);
+>   
+> @@ -1167,7 +1171,7 @@ void msm_drv_shutdown(struct platform_device *pdev)
+>   	struct msm_drm_private *priv = platform_get_drvdata(pdev);
+>   	struct drm_device *drm = priv ? priv->dev : NULL;
+>   
+> -	if (!priv || !priv->kms)
+> +	if (!priv || !priv->kms || !drm)
+>   		return;
+>   
+>   	drm_atomic_helper_shutdown(drm);
+
+
+-- 
+With best wishes
+Dmitry
