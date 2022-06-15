@@ -2,236 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 593EB54CFDD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0079354CED5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 18:37:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347829AbiFOR3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 13:29:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40372 "EHLO
+        id S236558AbiFOQhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 12:37:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352759AbiFOR3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:29:30 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5512434BB3;
-        Wed, 15 Jun 2022 10:29:28 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id l126-20020a1c2584000000b0039c1a10507fso1502450wml.1;
-        Wed, 15 Jun 2022 10:29:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=0mmtAiGES9hy6GbZr6mj1I/9d7FHTjal/1dcnEoMib4=;
-        b=d/ZM+qkibzc1FPpQIVKOPEDkTrF02xlafmgh2XMchXaJDbGefaV7FPRiq9MMt1jujY
-         6nuFUGuuXLbLBgp76pCx/O2r4cIN+CtcNgwKZwpVdzekFdRFqDd7O32A7p8UVj/A62n2
-         Xs6cMKvcbN5gyfoMnqEqagWnM3EnMXZvedk5xE7YpROhUtP/QqXRbL8czsAjvcFJvXuX
-         QANMtQIxUbMg9ZIuPF5DMRMVZ1WQzcr+DX0meZ2TE8KHPIMPWE1d0RQxcFL/aheiGAh7
-         jGGq9WheLGjRcC8FMRMWntkV4+X+jwEX9ITHj/a+kk694HVt/sU0fLCfSXmpuPfrVLhf
-         7FLg==
+        with ESMTP id S230116AbiFOQhQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 12:37:16 -0400
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BCF736B51;
+        Wed, 15 Jun 2022 09:37:15 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id h8so13222202iof.11;
+        Wed, 15 Jun 2022 09:37:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=0mmtAiGES9hy6GbZr6mj1I/9d7FHTjal/1dcnEoMib4=;
-        b=nwHdYC9/mIhD8FirHKHPj4c4nnd0+B559Q/4QxUD3ssj3nZnA31QB02jbujUemqvcD
-         ULfVZYORrLdeXf2C+VHDGOOCd8Ga18XNPMlct5u8yU9I62v5hDNTyHNe8U5KTPT/64aH
-         +TcrLCq1AQXiKKm+eXA+O1Pa6RPiQiyJdb0srQJxWLEX5a0/fB9CFbS0u6Y3chnIJBFJ
-         wzElidQzFGwDxuAOAX1+AM1/qfFZFeCl87cknVMT1g1lQTTkD2UdlMZG73HnT5UyYnU6
-         mQ31hiH0hXpN2fIwyknlGSQjBDHaPxp1nkw9k5HRTJYZ2AZM8eYOxO3MZXsaVjZdL4L5
-         qLTw==
-X-Gm-Message-State: AJIora81U/mcQVvemJKY+BrB54JzsIMGORzf1zzRALDsi/bxQfNlCOhJ
-        9cqlXgbhuOwEMg9OCXuXfEa44yix9yk=
-X-Google-Smtp-Source: AGRyM1u6SrzeH7qCFw4qlFWwaZs3p9N6OsL/H2wxtO516NhvYU71hXSl0/p2IYSj34r7su/3P5K8qA==
-X-Received: by 2002:a05:600c:4e51:b0:39c:4f18:4c29 with SMTP id e17-20020a05600c4e5100b0039c4f184c29mr537734wmq.101.1655314166756;
-        Wed, 15 Jun 2022 10:29:26 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.gmail.com with ESMTPSA id t1-20020a5d6a41000000b00218468314d7sm15298550wrw.62.2022.06.15.10.29.25
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=GdPTGF0Yowm0M6DZNo/ArXuy4fB60vvdtK+22e9Yyr0=;
+        b=HW9CYGRDDnY9Rh/SoUCddTEYHYXdABGmyRF9QvxPc3mkhWaks1/zb/qlNJtNWzSM5i
+         sOoK8B2mKTR2papdYWIo1gNYKmYOWErtlDN4altMgMbv+HkcsXuRjTz1oVKpXbRLVB1+
+         vNnlaPwFdeuEaPmV+YoNYsRV8vBVIm074sK+9ouDabmnAdQmrPFRVEOhV9sqgAUK4MEL
+         TLx/AnWqguUkTQdsIpArA2ESb1y80AGYZiDtLWH+Wqf/vUjDhw7xdH8qhUGO3HunmTTW
+         7GItqc7+kKce25xpLwk+X39Vo/y42MMe8XQPU9U9e67Btf/BS3sFcB1vncjLHcyr2Wxa
+         CcBg==
+X-Gm-Message-State: AJIora/KRTHDRshpH1mcA0g1oR4XSLWKtICP7gHUD/pQeBh+Hbpef4Rq
+        sqMvPwBr+bwpkoTZAHaq/A==
+X-Google-Smtp-Source: AGRyM1vs+GCU2Pfz40cGxikf8/dmSx3FpIjYSVm2rgPu73t00o5WvCMXGV2ehmhF5cQsAeDYJhMaHg==
+X-Received: by 2002:a6b:ba43:0:b0:669:a9b2:48fb with SMTP id k64-20020a6bba43000000b00669a9b248fbmr277664iof.125.1655311034285;
+        Wed, 15 Jun 2022 09:37:14 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id v7-20020a92c6c7000000b002d3ecb1a58esm7124392ilm.15.2022.06.15.09.37.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 10:29:26 -0700 (PDT)
-Message-ID: <62aa16f6.1c69fb81.816fc.be7a@mx.google.com>
-X-Google-Original-Message-ID: <YqoKTt3G5+hXj2ET@Ansuel-xps.>
-Date:   Wed, 15 Jun 2022 18:35:26 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Wed, 15 Jun 2022 09:37:13 -0700 (PDT)
+Received: (nullmailer pid 1406658 invoked by uid 1000);
+        Wed, 15 Jun 2022 16:37:12 -0000
+Date:   Wed, 15 Jun 2022 10:37:12 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/3] mtd: nand: raw: qcom_nandc: add support for
- unprotected spare data pages
-References: <20220615000612.3119-1-ansuelsmth@gmail.com>
- <20220615000612.3119-3-ansuelsmth@gmail.com>
- <20220615172802.GB3606@thinkpad>
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 12/17] dt-bindings: PCI: dwc: Add Baikal-T1 PCIe Root
+ Port bindings
+Message-ID: <20220615163712.GA1400328-robh@kernel.org>
+References: <20220610085706.15741-1-Sergey.Semin@baikalelectronics.ru>
+ <20220610085706.15741-13-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220615172802.GB3606@thinkpad>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220610085706.15741-13-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 15, 2022 at 10:58:02PM +0530, Manivannan Sadhasivam wrote:
-> On Wed, Jun 15, 2022 at 02:06:11AM +0200, Ansuel Smith wrote:
-> > IPQ8064 nand have special pages where a different layout scheme is used.
-> > These special page are used by boot partition and on reading them
-> > lots of warning are reported about wrong ECC data and if written to
-> > results in broken data and not bootable device.
-> > 
-> > The layout scheme used by these special page consist in using 512 bytes
-> > as the codeword size (even for the last codeword) while writing to CFG0
-> > register. This forces the NAND controller to unprotect the 4 bytes of
-> > spare data.
-> > 
-> > Since the kernel is unaware of this different layout for these special
-> > page, it does try to protect the spare data too during read/write and
-> > warn about CRC errors.
-> > 
-> > Add support for this by permitting the user to declare these special
-> > pages in dts by declaring offset and size of the partition. The driver
-> > internally will convert these value to nand pages.
-> > 
-> > On user read/write the page is checked and if it's a boot page the
-> > correct layout is used.
-> > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+On Fri, Jun 10, 2022 at 11:57:00AM +0300, Serge Semin wrote:
+> Baikal-T1 SoC is equipped with DWC PCIe v4.60a Root Port controller, which
+> link can be trained to work on up to Gen.3 speed over up to x4 lanes. The
+> controller is supposed to be fed up with four clock sources: DBI
+> peripheral clock, AXI application Tx/Rx clocks and external PHY/core
+> reference clock generating the 100MHz signal. In addition to that the
+> platform provide a way to reset each part of the controller:
+> sticky/non-sticky bits, host controller core, PIPE interface, PCS/PHY and
+> Hot/Power reset signal. The Root Port controller is equipped with multiple
+> IRQ lines like MSI, system AER, PME, HP, Bandwidth change, Link
+> equalization request and eDMA ones. The registers space is accessed over
+> the DBI interface. There can be no more than four inbound or outbound iATU
+> windows configured.
 > 
-> Just a few nitpicks below. With those fixed,
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > 
-> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+> ---
 > 
-> Thanks,
-> Mani
->
+> Changelog v2:
+> - Rename 'syscon' property to 'baikal,bt1-syscon'.
+> - Fix the 'compatible' property definition to being more specific about
+>   what strings are supposed to be used. Due to that we had to add the
+>   select property to evaluate the schema against the Baikal-T1 PCIe DT
+>   nodes only.
+> ---
+>  .../bindings/pci/baikal,bt1-pcie.yaml         | 154 ++++++++++++++++++
+>  1 file changed, 154 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/baikal,bt1-pcie.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/baikal,bt1-pcie.yaml b/Documentation/devicetree/bindings/pci/baikal,bt1-pcie.yaml
+> new file mode 100644
+> index 000000000000..23bd1d0aa5c5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/baikal,bt1-pcie.yaml
+> @@ -0,0 +1,154 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/baikal,bt1-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Baikal-T1 PCIe Root Port Controller
+> +
+> +maintainers:
+> +  - Serge Semin <fancer.lancer@gmail.com>
+> +
+> +description:
+> +  Embedded into Baikal-T1 SoC Root Complex controller. It's based on the
+> +  DWC RC PCIe v4.60a IP-core, which is configured to have just a single Root
+> +  Port function and is capable of establishing the link up to Gen.3 speed
+> +  on x4 lanes. It doesn't have embedded clock and reset control module, so
+> +  the proper interface initialization is supposed to be performed by software.
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: baikal,bt1-pcie
+> +
+> +  required:
+> +    - compatible
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: baikal,bt1-pcie
+> +      - const: snps,dw-pcie-4.60a
 
-Sure! Thanks a lot for the various review. Will send v8 that should be
-the final version.
+Pointless, you can read the version.
 
-> > ---
-> >  drivers/mtd/nand/raw/qcom_nandc.c | 203 +++++++++++++++++++++++++++++-
-> >  1 file changed, 198 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
-> > index f2990d721733..0dbfe32888ff 100644
-> > --- a/drivers/mtd/nand/raw/qcom_nandc.c
-> > +++ b/drivers/mtd/nand/raw/qcom_nandc.c
-> 
-> [...]
-> 
-> > +static bool qcom_nandc_is_boot_partition(struct qcom_nand_host *host, int page)
-> > +{
-> > +	struct qcom_nand_boot_partition *boot_partition;
-> > +	u32 start, end;
-> > +	int i;
-> > +
-> > +	/*
-> > +	 * Since the frequent access will be to the non-boot partitions like rootfs,
-> > +	 * optimize the page check by:
-> > +
-> 
-> Missing "*"
-> 
-> > +	 * 1. Checking if the page lies after the last boot partition.
-> > +	 * 2. Checking from the boot partition end.
-> > +	 */
-> > +
-> > +	/* First check the last boot partition */
-> > +	boot_partition = &host->boot_partitions[host->nr_boot_partitions - 1];
-> > +	start = boot_partition->page_offset;
-> > +	end = start + boot_partition->page_size;
-> > +
-> > +	/* Page is after the last boot partition end. This is NOT a boot partition */
-> > +	if (page > end)
-> > +		return false;
-> > +
-> > +	/* Actually check if it's a boot partition */
-> > +	if (page < end && page >= start)
-> > +		return true;
-> > +
-> > +	/* Check the other boot partition starting from the second-last partition */
-> 
-> s/boot partition/boot partitions
-> 
-> > +	for (i = host->nr_boot_partitions - 2; i >= 0; i--) {
-> > +		boot_partition = &host->boot_partitions[i];
-> > +		start = boot_partition->page_offset;
-> > +		end = start + boot_partition->page_size;
-> > +
-> > +		if (page < end && page >= start)
-> > +			return true;
-> > +	}
-> > +
-> > +	return false;
-> > +}
-> > +
-> > +static void
-> > +qcom_nandc_codeword_fixup(struct qcom_nand_host *host, int page)
-> 
-> As like other functions, please align the function on the same line
-> 
-> > +{
-> > +	bool codeword_fixup = qcom_nandc_is_boot_partition(host, page);
-> > +
-> > +	/* Skip conf write if we are already in the correct mode */
-> > +	if (codeword_fixup == host->codeword_fixup)
-> > +		return;
-> > +
-> > +	host->codeword_fixup = codeword_fixup;
-> > +
-> > +	host->cw_data = codeword_fixup ? 512 : 516;
-> > +	host->spare_bytes = host->cw_size - host->ecc_bytes_hw -
-> > +			    host->bbm_size - host->cw_data;
-> > +
-> > +	host->cfg0 &= ~(SPARE_SIZE_BYTES_MASK | UD_SIZE_BYTES_MASK);
-> > +	host->cfg0 |= host->spare_bytes << SPARE_SIZE_BYTES |
-> > +		      host->cw_data << UD_SIZE_BYTES;
-> > +
-> > +	host->ecc_bch_cfg &= ~ECC_NUM_DATA_BYTES_MASK;
-> > +	host->ecc_bch_cfg |= host->cw_data << ECC_NUM_DATA_BYTES;
-> > +	host->ecc_buf_cfg = (host->cw_data - 1) << NUM_STEPS;
-> > +}
-> 
-> [...]
-> 
-> > +static int qcom_nand_host_parse_boot_partitions(struct qcom_nand_controller *nandc,
-> > +						struct qcom_nand_host *host,
-> > +						struct device_node *dn)
-> > +{
-> > +	struct nand_chip *chip = &host->chip;
-> > +	struct mtd_info *mtd = nand_to_mtd(chip);
-> > +	struct qcom_nand_boot_partition *boot_partition;
-> > +	struct device *dev = nandc->dev;
-> > +	int partitions_count, i, j, ret;
-> > +
-> > +	if (!of_find_property(dn, "qcom,boot-partitions", NULL))
-> > +		return 0;
-> > +
-> > +	partitions_count = of_property_count_u32_elems(dn, "qcom,boot-partitions");
-> > +	if (partitions_count <= 0) {
-> > +		dev_err(dev, "Error parsing boot partition\n");
-> > +		if (partitions_count == 0)
-> > +			return -EINVAL;
-> > +		else
-> > +			return partitions_count;
-> 
-> 		return partitions_count ? partitions_count : -EINVAL;
-> 
-> Thanks,
-> Mani
-> 
+> +      - const: snps,dw-pcie
+
+Pointless, because what can you do with this by itself?
+
+> +
+> +  reg:
+> +    description:
+> +      DBI, DBI2 and at least 4KB outbound iATU-capable region.
+> +    maxItems: 3
+> +
+> +  reg-names:
+> +    minItems: 3
+> +    maxItems: 3
+> +    items:
+> +      enum: [ dbi, dbi2, config ]
+
+This should define the order.
+
+> +
+> +  interrupts:
+> +    description:
+> +      MSI, AER, PME, Hot-plug, Link Bandwidth Management, Link Equalization
+> +      request and eight Read/Write eDMA IRQ lines are available.
+> +    maxItems: 14
+> +
+> +  interrupt-names:
+> +    minItems: 14
+> +    maxItems: 14
+> +    items:
+> +      oneOf:
+> +        - pattern: '^dma[0-7]$'
+> +        - enum: [ msi, aer, pme, hp, bw_mg, l_eq ]
+
+Define the order.
+
+> +
+> +  clocks:
+> +    description:
+> +      DBI (attached to the APB bus), AXI-bus master and slave interfaces
+> +      are fed up by the dedicated application clocks. A common reference
+> +      clock signal is supposed to be attached to the corresponding Ref-pad
+> +      of the SoC. It will be redistributed amongst the controller core
+> +      sub-modules (pipe, core, aux, etc).
+> +    minItems: 4
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    minItems: 4
+> +    maxItems: 4
+> +    items:
+> +      enum: [ dbi, mstr, slv, ref ]
+> +
+> +  resets:
+> +    description:
+> +      A comprehensive controller reset logic is supposed to be implemented
+> +      by software, so almost all the possible application and core reset
+> +      signals are exposed via the system CCU module.
+> +    minItems: 9
+> +    maxItems: 9
+> +
+> +  reset-names:
+> +    minItems: 9
+> +    maxItems: 9
+> +    items:
+> +      enum: [ mstr, slv, pwr, hot, phy, core, pipe, sticky, non-sticky ]
+> +
+> +  baikal,bt1-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the Baikal-T1 System Controller DT node. It's required to
+> +      access some additional PM, Reset-related and LTSSM signals.
+> +
+> +  num-lanes:
+> +    maximum: 4
+> +
+> +  max-link-speed:
+> +    maximum: 3
+> +
+
+> +  num-ob-windows:
+> +    const: 4
+> +
+> +  num-ib-windows:
+> +    const: 4
+
+Remove these. They are deprecated and shouldn't be in new bindings.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - interrupt-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    pcie@1f052000 {
+> +      compatible = "baikal,bt1-pcie", "snps,dw-pcie-4.60a", "snps,dw-pcie";
+> +      device_type = "pci";
+> +      reg = <0x1f052000 0x1000>, <0x1f053000 0x1000>, <0x1bdbf000 0x1000>;
+> +      reg-names = "dbi", "dbi2", "config";
+> +      #address-cells = <3>;
+> +      #size-cells = <2>;
+> +      ranges = <0x81000000 0 0x00000000 0x1bdb0000 0 0x00008000>,
+> +               <0x82000000 0 0x20000000 0x08000000 0 0x13db0000>;
+> +      bus-range = <0x0 0xff>;
+> +
+> +      interrupts = <0 80 4>, <0 81 4>, <0 82 4>, <0 83 4>,
+> +                   <0 84 4>, <0 85 4>, <0 86 4>, <0 87 4>,
+> +                   <0 88 4>, <0 89 4>, <0 90 4>, <0 91 4>,
+> +                   <0 92 4>, <0 93 4>;
+> +      interrupt-names = "dma0", "dma1", "dma2", "dma3", "dma4", "dma5", "dma6",
+> +                        "dma7", "msi", "aer", "pme", "hp", "bw_mg", "l_eq";
+> +
+> +      clocks = <&ccu_sys 1>, <&ccu_axi 6>, <&ccu_axi 7>, <&clk_pcie>;
+> +      clock-names = "dbi", "mstr", "slv", "ref";
+> +
+> +      resets = <&ccu_axi 6>, <&ccu_axi 7>, <&ccu_sys 7>, <&ccu_sys 10>,
+> +               <&ccu_sys 4>, <&ccu_sys 6>, <&ccu_sys 5>, <&ccu_sys 8>,
+> +               <&ccu_sys 9>;
+> +      reset-names = "mstr", "slv", "pwr", "hot", "phy", "core", "pipe",
+> +                    "sticky", "non-sticky";
+> +
+> +      reset-gpios = <&port0 0 1>;
+> +
+> +      num-lanes = <4>;
+> +      max-link-speed = <3>;
+> +    };
+> +...
 > -- 
-> மணிவண்ணன் சதாசிவம்
-
--- 
-	Ansuel
+> 2.35.1
+> 
+> 
