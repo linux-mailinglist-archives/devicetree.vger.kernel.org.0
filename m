@@ -2,143 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C4A354C7C9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 13:51:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85E5E54C7EB
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 13:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242580AbiFOLvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 07:51:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49680 "EHLO
+        id S241474AbiFOLyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 07:54:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347242AbiFOLvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 07:51:08 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9102C4F1E9
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 04:51:00 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id a2so18503216lfg.5
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 04:51:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=WO0nwIuovSMeFOh147VxfsRiP5jPmKwXeiabGncRUA4=;
-        b=uCL41/ysCSOyXoQAz1ufqI209ZJM4qxeQjipG4DG7UySSHPWw0AsYR4vrWSlngpCB2
-         dz5L61Ar4irJAUus4KHWAT7uZWuRv1WpsVHybi2/yefeHrORC6pi0+QMdGjyo7je/+ax
-         LnpzkTi399ciawKc2eMYFSZt45O9u5vKQVjBqJcXCp4y0Z3ljAQPK8qGXBc301lMNVB1
-         mX6UzLrW6X7dTWPx16KvcchRUnr+38U/jcnaIjgh6DNGkM5yEq8d8wPFMz6aQtxGjAAm
-         ShTLjb3hUSkNaU7l+CuYvIJfKAlPYlwy+ezUiPC3cWYZ2neZfzx6uyglFfSWgQM78xvd
-         p3IQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=WO0nwIuovSMeFOh147VxfsRiP5jPmKwXeiabGncRUA4=;
-        b=TNMQUdoj/eO2xIQWCOR68VYxk7NFhGDczXqtq+NC4+Ba98jSwXL9KdWiovJpeiDf3/
-         Il+n7LE5fUCCYulaAEvy9hhwksOXcjwJHDmgxJ5DXC0OB6ms6PAKJfDEoJdLS1mP9BDr
-         6OoqioC36sQZNw7SxfLV7AyFl4ZmsXmJjYs4662vHDJaGgCchQxwmFqQbldOnKZlaaOS
-         cMv6Ks77tyvIzKF4Jj88Hn7+Gi3gFMKoLYUXFVhrSWCD4POQaA1IiSftxiTmpQTTdqev
-         WeiDhxqDh5CsrJ+ph5WVgkViDSOlEIWAD+SzMTY9IaBn2UQfST2+Zikc4Ji1/kR2F3uz
-         8Gqg==
-X-Gm-Message-State: AJIora9layFEgxSkK7Wr1qEsgw6/XxQNjYjye5SXc629Y0bxrY7CO3ml
-        b7UaVhg6cnXOjsRmy63HO55+FQ==
-X-Google-Smtp-Source: AGRyM1swwvjJTFIH/fHV1BdTuQ04yWwfcyDf1MvWtGNhk/I3H1OLQsh1eJj6aqcsEoVFyStGWhM5Vg==
-X-Received: by 2002:ac2:48ab:0:b0:47d:af82:65e9 with SMTP id u11-20020ac248ab000000b0047daf8265e9mr5660443lfg.673.1655293858825;
-        Wed, 15 Jun 2022 04:50:58 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 27-20020ac24d5b000000b00478ee191091sm1767031lfp.153.2022.06.15.04.50.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jun 2022 04:50:58 -0700 (PDT)
-Message-ID: <576379dd-e5b0-3363-07a1-c623aeea6fee@linaro.org>
-Date:   Wed, 15 Jun 2022 14:50:56 +0300
+        with ESMTP id S1347706AbiFOLyD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 07:54:03 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A17115400B;
+        Wed, 15 Jun 2022 04:53:53 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5EDB2749;
+        Wed, 15 Jun 2022 13:53:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1655294031;
+        bh=BJeReJ5HzZqJ14zQWwHkPYHAYRMPtPin5nHacf0z5X4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=czQ3Wb3cqdVjZkqXuG8OmD2U9qQoAsaEaWSa9GARjAYV15jiqLME8AuS5RcjScqzi
+         j3V+8N9YTdGlwDBEk238WnjBFPOUFhp0iogrWsYvNqvQGSu/5RtkwLFbBV7aL/4Jwv
+         V4nf55UubPqVUnHGjwGqy8QpS3ZkrSDwfcRAfNI8=
+Date:   Wed, 15 Jun 2022 14:53:41 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>, mchehab@kernel.org,
+        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
+        robh+dt@kernel.org, nicolas@ndufresne.ca,
+        alexander.stein@ew.tq-group.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/9] vivid: add dynamic array test control
+Message-ID: <YqnIRWtyjtyz4gzj@pendragon.ideasonboard.com>
+References: <20220503093925.876640-1-xavier.roumegue@oss.nxp.com>
+ <20220503093925.876640-4-xavier.roumegue@oss.nxp.com>
+ <Yqj20J9QaAV6ZNes@pendragon.ideasonboard.com>
+ <b508597d-3da5-5e1f-66a5-a9f7d6a2c352@xs4all.nl>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 3/4] drm/msm/disp/dpu1: use atomic enable/disable
- callbacks for encoder functions
-Content-Language: en-GB
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        robdclark@gmail.com, seanpaul@chromium.org, swboyd@chromium.org,
-        dianders@chromium.org, krzysztof.kozlowski@canonical.com,
-        thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch
-Cc:     quic_kalyant@quicinc.com, quic_sbillaka@quicinc.com,
-        quic_vproddut@quicinc.com
-References: <1645455086-9359-1-git-send-email-quic_vpolimer@quicinc.com>
- <1645455086-9359-4-git-send-email-quic_vpolimer@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1645455086-9359-4-git-send-email-quic_vpolimer@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <b508597d-3da5-5e1f-66a5-a9f7d6a2c352@xs4all.nl>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2022 17:51, Vinod Polimera wrote:
-> Use atomic variants for encoder callback functions such that
-> certain states like self-refresh can be accessed as part of
-> enable/disable sequence.
+Hi Hans,
+
+On Wed, Jun 15, 2022 at 11:14:43AM +0200, Hans Verkuil wrote:
+> Hi Laurent, Xavier,
 > 
-> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
-> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> Ignore what I wrote before, I read it with the HEVC patch series in mind, not the dw100
+> series.
 > 
-> Changes in v2:
-> - As per review suggestion by Dmitry.
-> ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 10 ++++++----
->   1 file changed, 6 insertions(+), 4 deletions(-)
+> So let me try again :-)
 > 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> index 1e648db..6eac417 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> @@ -1138,7 +1138,8 @@ void dpu_encoder_virt_runtime_resume(struct drm_encoder *drm_enc)
->   	mutex_unlock(&dpu_enc->enc_lock);
->   }
->   
-> -static void dpu_encoder_virt_enable(struct drm_encoder *drm_enc)
-> +static void dpu_encoder_virt_enable(struct drm_encoder *drm_enc,
-> +				struct drm_atomic_state *state)
->   {
->   	struct dpu_encoder_virt *dpu_enc = NULL;
->   	int ret = 0;
-> @@ -1176,7 +1177,8 @@ static void dpu_encoder_virt_enable(struct drm_encoder *drm_enc)
->   	mutex_unlock(&dpu_enc->enc_lock);
->   }
->   
-> -static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc)
-> +static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc,
-> +				struct drm_atomic_state *state)
->   {
->   	struct dpu_encoder_virt *dpu_enc = NULL;
->   	struct msm_drm_private *priv;
-> @@ -2094,8 +2096,8 @@ static void dpu_encoder_frame_done_timeout(struct timer_list *t)
->   
->   static const struct drm_encoder_helper_funcs dpu_encoder_helper_funcs = {
->   	.mode_set = dpu_encoder_virt_mode_set,
-> -	.disable = dpu_encoder_virt_disable,
-> -	.enable = dpu_encoder_virt_enable,
-> +	.atomic_disable = dpu_encoder_virt_disable,
-> +	.atomic_enable = dpu_encoder_virt_enable,
+> On 6/14/22 23:00, Laurent Pinchart wrote:
+> > Hi Xavier and Hans,
+> > 
+> > Thank you for the patch.
+> > 
+> > On Tue, May 03, 2022 at 11:39:19AM +0200, Xavier Roumegue wrote:
+> >> From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> >>
+> >> Add a dynamic array test control to help test support for this
+> >> feature.
+> >>
+> >> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> >> ---
+> >>  drivers/media/test-drivers/vivid/vivid-ctrls.c | 15 +++++++++++++++
+> >>  1 file changed, 15 insertions(+)
+> >>
+> >> diff --git a/drivers/media/test-drivers/vivid/vivid-ctrls.c b/drivers/media/test-drivers/vivid/vivid-ctrls.c
+> >> index e7516dc1227b..7267892dc18a 100644
+> >> --- a/drivers/media/test-drivers/vivid/vivid-ctrls.c
+> >> +++ b/drivers/media/test-drivers/vivid/vivid-ctrls.c
+> >> @@ -34,6 +34,7 @@
+> >>  #define VIVID_CID_U8_4D_ARRAY		(VIVID_CID_CUSTOM_BASE + 10)
+> >>  #define VIVID_CID_AREA			(VIVID_CID_CUSTOM_BASE + 11)
+> >>  #define VIVID_CID_RO_INTEGER		(VIVID_CID_CUSTOM_BASE + 12)
+> >> +#define VIVID_CID_U32_DYN_ARRAY		(VIVID_CID_CUSTOM_BASE + 13)
+> >>  
+> >>  #define VIVID_CID_VIVID_BASE		(0x00f00000 | 0xf000)
+> >>  #define VIVID_CID_VIVID_CLASS		(0x00f00000 | 1)
+> >> @@ -189,6 +190,19 @@ static const struct v4l2_ctrl_config vivid_ctrl_u32_array = {
+> >>  	.dims = { 1 },
+> >>  };
+> >>  
+> >> +static const struct v4l2_ctrl_config vivid_ctrl_u32_dyn_array = {
+> >> +	.ops = &vivid_user_gen_ctrl_ops,
+> >> +	.id = VIVID_CID_U32_DYN_ARRAY,
+> >> +	.name = "U32 Dynamic Array",
+> >> +	.type = V4L2_CTRL_TYPE_U32,
+> >> +	.flags = V4L2_CTRL_FLAG_DYNAMIC_ARRAY,
+> >> +	.def = 50,
+> >> +	.min = 10,
+> >> +	.max = 90,
+> >> +	.step = 1,
+> >> +	.dims = { 100 },
+> >> +};
+> > 
+> > To meaningfully test this, don't we need the vivid driver to change the
+> > dimension ? Or is it meant to only test changes made by the application
+> > ?
+> 
+> As I understand it the dw100 driver needs a 2 dimensional array control.
+> The size is fixed for each resolution, but if the resolution changes, then
+> this control changes size as well, and it makes sense that when that happens
+> it is also reset to default values.
+> 
+> So this isn't a dynamic array at all. It is a standard 2 dimensional array.
+> 
+> What is missing in the control framework is a function similar to
+> v4l2_ctrl_modify_range() that can resize an array.
+> 
+> v4l2_ctrl_modify_dimensions() would be a good name.
+> 
+> I can make something for that if you both agree with this proposal.
 
-A small nit before you post the next iteration of PSR:
+From a userspace point of view, we only need to be able to set the
+control after setting the format. There's no need for control change
+events (but I don't mind if they're there of course, even if I think
+they won't be very usable in practice).
 
-Please rename these functions to follow atomic_enable/atomic_disable names.
+From an API point of view, I'd like a clear and documented behaviour for
+what happens to the control value when the format is changed. It can be
+a global behaviour, or a control-specific behaviour, I don't mind much.
 
->   	.atomic_check = dpu_encoder_virt_atomic_check,
->   };
->   
-
+> >> +
+> >>  static const struct v4l2_ctrl_config vivid_ctrl_u16_matrix = {
+> >>  	.ops = &vivid_user_gen_ctrl_ops,
+> >>  	.id = VIVID_CID_U16_MATRIX,
+> >> @@ -1612,6 +1626,7 @@ int vivid_create_controls(struct vivid_dev *dev, bool show_ccs_cap,
+> >>  	dev->ro_int32 = v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_ro_int32, NULL);
+> >>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_area, NULL);
+> >>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u32_array, NULL);
+> >> +	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u32_dyn_array, NULL);
+> >>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u16_matrix, NULL);
+> >>  	v4l2_ctrl_new_custom(hdl_user_gen, &vivid_ctrl_u8_4d_array, NULL);
+> >>  
 
 -- 
-With best wishes
-Dmitry
+Regards,
+
+Laurent Pinchart
