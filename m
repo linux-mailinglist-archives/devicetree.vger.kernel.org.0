@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B2DD54CFA4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:22:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04CCE54CFAA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:24:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350091AbiFORWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 13:22:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60690 "EHLO
+        id S1357490AbiFORYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 13:24:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350092AbiFORWy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:22:54 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FDFC2AC70
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:22:51 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id g8so5769783plt.8
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:22:51 -0700 (PDT)
+        with ESMTP id S1357484AbiFORYM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:24:12 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C66637A91
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:24:11 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id g16-20020a17090a7d1000b001ea9f820449so2742377pjl.5
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 10:24:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=2W8ZiDCOiI2bSKlNFhYrholIlbWHA9JNdcBup3bW7Yo=;
-        b=Hpp3AncTQoSOnV7UdHW2TvyOhTzBZiIH0LBgD/t5tp0ITB9U3aOqAo7WF6v6e8UoHc
-         fy+xPhaHHN0pBCYm3iDpjYgr3ApnSfCrnFnteSX1XQQw2d7eOXGWyoYf0VitILM0XChL
-         19KtVerTsiYctQ0HQr3Ozthgj4KmrtiAJ0ptw=
+        bh=fd+38h/ZuXO4QEJ1wGS9J1AZQKshnBpf5+thNgq+mvo=;
+        b=fOBgTZqs3hQWvC0l3F/p+i0TivYNq1gtt4eW8E5d/3EHeKhewOjTxbqwIFFM0Lbu/+
+         GerPeMoFwy6Z4NemLuydPC6RvG7vpFvFGMyg+AVSadlJ5a+5TyQ5+Fa6xMfwhJ89GRj5
+         61ppCfkk/HUEn6FzNFZYKJ5NkQdUVDIEWg3jE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=2W8ZiDCOiI2bSKlNFhYrholIlbWHA9JNdcBup3bW7Yo=;
-        b=4IVmPch5XxZUsAfjvFipcheDMkcQ8rBZHB/d4xld1jmELL2lKs+iMyDVGb+gEgR3zL
-         90oFnJEoCS5aodHR+cQQQwfVim9QCCwew5CaTWAdFPWXDpl2oSxKo60rZVlpGmdgNagF
-         QgCyqXKBMgyAO0qhe90gl/b/aubh4Mq2Z+AznOccecdTzSNs+OJHbrTM/+s0Gkx2OZ7U
-         QeZ0bCkbI3gr2FgoiHJOGLWQ4puz1tVQYfJ1Zs2zjrm2LVFnzjMHlfjs9phKfaFt5WUH
-         48GXR70sTtvO/f9PN62KfjGlNc8l1bJ7LBdkEuCb6txT8ZczCXTNcDNfww1JWCVnK63w
-         iIHQ==
-X-Gm-Message-State: AJIora+1QhtOYhexcX/FELfKQdVyKsXwiLYktC4sc8qy5oP6m3ySZG4Y
-        E4ZJ3y9oGklbHW5vTcH+zkuNbZromCgQeQ==
-X-Google-Smtp-Source: AGRyM1tVcBDAyxkz3btNQE+y26IairXVXjxbk4noExnU1pNBJVc+tpf6h4bkXr5F9i8LHqZ7aBd3jg==
-X-Received: by 2002:a17:90b:380b:b0:1e6:67f6:c5b4 with SMTP id mq11-20020a17090b380b00b001e667f6c5b4mr11445610pjb.48.1655313771456;
-        Wed, 15 Jun 2022 10:22:51 -0700 (PDT)
+        bh=fd+38h/ZuXO4QEJ1wGS9J1AZQKshnBpf5+thNgq+mvo=;
+        b=09cCdplonnTmEELpPsxfb/JJyMQpGO//6vwYSO5bunvRyDf2lwb8akQI/dBHeVncu1
+         jvJRDBjAL1xKo2dMllUUtXwx20LNz/gd6J+T3ahoZd8oLur7Pimq/wPMLm75xXrze/8u
+         ssf66OcV6w2kNwlMavF1FSNtOV3Fs9Id58lDiH2hxWMMX4k1P5XnJ+oWQuxXLflLg3Qj
+         CsRi7GqE8sqBXqiNuD90qXA/x58BMts9BnTFoYtdvJQCEOtguF+s3QpfZaU5b/gBA8Vj
+         PVVR1coLsnWSGgaryWA+sMT30zL1X+adAkz2qiwaMTpfvGzs4rpyk5YbA+RZDN60VSRj
+         85iA==
+X-Gm-Message-State: AJIora+rcVdqRq6pvpS6KKpcP93ZQFI6LUXfnf8f1KfuwlfYuKtKi/10
+        ctQRQv7cS3Ek5foshnvAjqXMFg==
+X-Google-Smtp-Source: AGRyM1u814zjEMHfZtf5sU7v86toFZpanB4vAxQLXrCLt1xth/wAXbRon/BiyEIZtPgjcFL0ZTmeDw==
+X-Received: by 2002:a17:902:ca0b:b0:167:4c4d:7320 with SMTP id w11-20020a170902ca0b00b001674c4d7320mr390478pld.113.1655313851115;
+        Wed, 15 Jun 2022 10:24:11 -0700 (PDT)
 Received: from pmalani.c.googlers.com.com (157.214.185.35.bc.googleusercontent.com. [35.185.214.157])
-        by smtp.gmail.com with ESMTPSA id d10-20020aa7814a000000b005103abd2fdbsm10147433pfn.206.2022.06.15.10.22.51
+        by smtp.gmail.com with ESMTPSA id d10-20020aa7814a000000b005103abd2fdbsm10147433pfn.206.2022.06.15.10.24.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 10:22:51 -0700 (PDT)
+        Wed, 15 Jun 2022 10:24:10 -0700 (PDT)
 From:   Prashant Malani <pmalani@chromium.org>
 To:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
 Cc:     bleung@chromium.org, swboyd@chromium.org,
         heikki.krogerus@linux.intel.com,
         Prashant Malani <pmalani@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
+        kernel test robot <lkp@intel.com>,
         =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
         <nfraprado@collabora.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
         Daniel Vetter <daniel@ffwll.ch>,
@@ -73,9 +72,9 @@ Cc:     bleung@chromium.org, swboyd@chromium.org,
         Sam Ravnborg <sam@ravnborg.org>,
         Thomas Zimmermann <tzimmermann@suse.de>,
         Xin Ji <xji@analogixsemi.com>
-Subject: [PATCH v4 1/7] usb: typec: mux: Allow muxes to specify mode-switch
-Date:   Wed, 15 Jun 2022 17:20:17 +0000
-Message-Id: <20220615172129.1314056-2-pmalani@chromium.org>
+Subject: [PATCH v4 2/7] usb: typec: mux: Add CONFIG guards for functions
+Date:   Wed, 15 Jun 2022 17:20:18 +0000
+Message-Id: <20220615172129.1314056-3-pmalani@chromium.org>
 X-Mailer: git-send-email 2.36.1.476.g0c4daa206d-goog
 In-Reply-To: <20220615172129.1314056-1-pmalani@chromium.org>
 References: <20220615172129.1314056-1-pmalani@chromium.org>
@@ -92,53 +91,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Loosen the typec_mux_match() requirements so that searches where an
-alt mode is not specified, but the target mux device lists the
-"mode-switch" property, return a success.
+There are some drivers that can use the Type C mux API, but don't have
+to. Introduce CONFIG guards for the mux functions so that drivers can
+include the header file and not run into compilation errors on systems
+which don't have CONFIG_TYPEC enabled. When CONFIG_TYPEC is not enabled,
+the Type C mux functions will be stub versions of the original calls.
 
-This is helpful in Type C port drivers which would like to get a pointer
-to the mux switch associated with a Type C port, but don't want to
-specify a particular alt mode.
-
-Signed-off-by: Prashant Malani <pmalani@chromium.org>
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Reported-by: kernel test robot <lkp@intel.com>
 Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Signed-off-by: Prashant Malani <pmalani@chromium.org>
 ---
 
 Changes since v3:
 - No changes.
 
 Changes since v2:
-- Included Reviewed-by and Tested-by tags from v2.
+- Fix up return types for some of the stubs. Remove 1 unnecessary stub
+  in the else condition.
+- Remove unnecessary IS_MODULE config guard.
+- Added Reviewed-by and Tested-by tags.
 
 Changes since v1:
-- No changes.
+- Added static inline to stub functions.
+- Updated function signature of stub functions from "struct typec_mux"
+  to "struct typec_mux_dev" in accordance with updates from commit
+  713fd49b430c ("usb: typec: mux: Introduce indirection")
 
- drivers/usb/typec/mux.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ include/linux/usb/typec_mux.h | 44 ++++++++++++++++++++++++++++++-----
+ 1 file changed, 38 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/usb/typec/mux.c b/drivers/usb/typec/mux.c
-index fd55c2c516a5..464330776cd6 100644
---- a/drivers/usb/typec/mux.c
-+++ b/drivers/usb/typec/mux.c
-@@ -281,9 +281,13 @@ static void *typec_mux_match(struct fwnode_handle *fwnode, const char *id,
- 	if (match)
- 		goto find_mux;
+diff --git a/include/linux/usb/typec_mux.h b/include/linux/usb/typec_mux.h
+index ee57781dcf28..9292f0e07846 100644
+--- a/include/linux/usb/typec_mux.h
++++ b/include/linux/usb/typec_mux.h
+@@ -58,17 +58,13 @@ struct typec_mux_desc {
+ 	void *drvdata;
+ };
  
--	/* Accessory Mode muxes */
- 	if (!desc) {
--		match = fwnode_property_present(fwnode, "accessory");
-+		/*
-+		 * Accessory Mode muxes & muxes which explicitly specify
-+		 * the required identifier can avoid SVID matching.
-+		 */
-+		match = fwnode_property_present(fwnode, "accessory") ||
-+			fwnode_property_present(fwnode, id);
- 		if (match)
- 			goto find_mux;
- 		return NULL;
++#if IS_ENABLED(CONFIG_TYPEC)
++
+ struct typec_mux *fwnode_typec_mux_get(struct fwnode_handle *fwnode,
+ 				       const struct typec_altmode_desc *desc);
+ void typec_mux_put(struct typec_mux *mux);
+ int typec_mux_set(struct typec_mux *mux, struct typec_mux_state *state);
+ 
+-static inline struct typec_mux *
+-typec_mux_get(struct device *dev, const struct typec_altmode_desc *desc)
+-{
+-	return fwnode_typec_mux_get(dev_fwnode(dev), desc);
+-}
+-
+ struct typec_mux_dev *
+ typec_mux_register(struct device *parent, const struct typec_mux_desc *desc);
+ void typec_mux_unregister(struct typec_mux_dev *mux);
+@@ -76,4 +72,40 @@ void typec_mux_unregister(struct typec_mux_dev *mux);
+ void typec_mux_set_drvdata(struct typec_mux_dev *mux, void *data);
+ void *typec_mux_get_drvdata(struct typec_mux_dev *mux);
+ 
++#else
++
++static inline struct typec_mux *fwnode_typec_mux_get(struct fwnode_handle *fwnode,
++				       const struct typec_altmode_desc *desc)
++{
++	return NULL;
++}
++
++static inline void typec_mux_put(struct typec_mux *mux) {}
++
++static inline int typec_mux_set(struct typec_mux *mux, struct typec_mux_state *state)
++{
++	return 0;
++}
++
++static inline struct typec_mux_dev *
++typec_mux_register(struct device *parent, const struct typec_mux_desc *desc)
++{
++	return ERR_PTR(-EOPNOTSUPP);
++}
++static inline void typec_mux_unregister(struct typec_mux_dev *mux) {}
++
++static inline void typec_mux_set_drvdata(struct typec_mux_dev *mux, void *data) {}
++static inline void *typec_mux_get_drvdata(struct typec_mux_dev *mux)
++{
++	return ERR_PTR(-EOPNOTSUPP);
++}
++
++#endif /* CONFIG_TYPEC */
++
++static inline struct typec_mux *
++typec_mux_get(struct device *dev, const struct typec_altmode_desc *desc)
++{
++	return fwnode_typec_mux_get(dev_fwnode(dev), desc);
++}
++
+ #endif /* __USB_TYPEC_MUX */
 -- 
 2.36.1.476.g0c4daa206d-goog
 
