@@ -2,140 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FB9D54BF02
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 03:00:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0547A54BEF1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 02:55:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244589AbiFOBA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jun 2022 21:00:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37922 "EHLO
+        id S241827AbiFOAzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jun 2022 20:55:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244633AbiFOBA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 21:00:26 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA64F34B89;
-        Tue, 14 Jun 2022 18:00:19 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id k19so13283090wrd.8;
-        Tue, 14 Jun 2022 18:00:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WkTfkEtdvoDFhLpzjBZDOf9aoOpbPYXE7T/CHrXeHMg=;
-        b=IGxma2NKikLDsbYCdhTSaETNNjbqTomFUuGFHKt1wFmj6T+VLPgokRIY87z4s/a1FO
-         TG6MFCvgRXODC6bJa+55TLNfqooWkAN3CCFFYbNhCfH4ST4TcfDeupYU9hyrMemqZYPB
-         og10GrfehnJXbj/Ru5OTYIeb0gOSXJXpYVSrrG8p1XDf6bYv0MOsVeUIwp1s8HlSo5mB
-         UIVFNlhJY5/7d5b4uCEY8eu7rZ7ASHJ3NHYD9l5xOtDoR9ApPgefaFg70rmaFuBZuZRX
-         OsqQvYBP7UzmsA80JSjcKP4DLEZqArOjlEw+Yv/r2vWU5Xr/N7EO/252fgom4dTuXsuP
-         80fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WkTfkEtdvoDFhLpzjBZDOf9aoOpbPYXE7T/CHrXeHMg=;
-        b=ipw8BVaWYvNJk1cirl1ug3nk04GNaxkORh5sy4haoAROy+kWE1mzlDKUSYplp1Z1ot
-         2Qf8Vuj0c/bUnCLrjUqigSGsGNdK3dkmwhyx91ybSf0QABuWWPCd3vAs7tJ7Xq0UclyV
-         sNsEy3/bJPeH2JL0n4OlJMAf9i88ZjUSxnYlrsodbRHE3tIRskX87zzg1FmHu/mzDhhR
-         x91bwdZJgid0igrDLM775Kv/xuAu6Da1KqthuAe72eY5rd1VtPEUkN7zp1C0umiDExZ6
-         PMs+J4Pi7S+xctrRr5WjPp/MfXtNp8cvBXfn4L4+7u6gsMbQhrvhElpFHNXBBeCjB6UM
-         aBVQ==
-X-Gm-Message-State: AJIora8PPrD5spofCE2OQrnPll0+7hVe5KBghqaxpckmMVWcxrCNKd3m
-        fYIcuKiuWyQscQ9Sr5H7nFw=
-X-Google-Smtp-Source: AGRyM1u8w9uNDVwTTjicqnuRA4u5EELuTRh3kWuA+S9ngbbi41XTiT5CMhb2JGf4b9wfYfqxhEX7Pg==
-X-Received: by 2002:adf:f252:0:b0:210:2a67:2d9 with SMTP id b18-20020adff252000000b002102a6702d9mr6953243wrp.17.1655254818201;
-        Tue, 14 Jun 2022 18:00:18 -0700 (PDT)
-Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.googlemail.com with ESMTPSA id g10-20020a5d698a000000b0021020517639sm12890265wru.102.2022.06.14.18.00.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jun 2022 18:00:15 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S239536AbiFOAzA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jun 2022 20:55:00 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FAA94D26E
+        for <devicetree@vger.kernel.org>; Tue, 14 Jun 2022 17:54:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1655254499; x=1686790499;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xcnNFG/zqM4/ixpw6inku9EczznlEWvUdxlz+0w+WCA=;
+  b=dCn3Olg+5hN78xKdlzY25lHlBA248A9/G1e8m4M99DYQoCWj6IgaTVlM
+   lob/jtEzaOlolRR7IjmLjsdnDKhca1w/Lu8XRW+uRrBfCqWxJNLiYwJGB
+   n9uzADMjry/iUbK/GAdUBh8YEXx6cOyYrMCwX9oxD2OqULO7XMY9aMKe0
+   SKOf+aGZpzB8LgmR/loVQVsJULKMWttFv7Mw4HzchJlv71AmdNnuKfr0N
+   52Gy1wYfDlVXY3I3OroGMd55xI721tzbnYSmj1QgK4A7ivtI6Cl6s95tY
+   Ci075U3E0ijFjoapGPHgu6kF8irf5ECzAmOcqnBO393t9TmRPaMME2qiI
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10378"; a="258638015"
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; 
+   d="scan'208";a="258638015"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jun 2022 17:54:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; 
+   d="scan'208";a="570696311"
+Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 14 Jun 2022 17:54:56 -0700
+Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o1HJ9-000MRP-Sx;
+        Wed, 15 Jun 2022 00:54:55 +0000
+Date:   Wed, 15 Jun 2022 08:54:02 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Stefan Berger <stefanb@linux.ibm.com>, kexec@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, nayna@linux.ibm.com, nasastry@in.ibm.com,
+        Stefan Berger <stefanb@linux.ibm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>
-Subject: [PATCH v7 3/3] dt-bindings: mtd: qcom_nandc: document qcom,boot-partitions binding
-Date:   Wed, 15 Jun 2022 02:06:12 +0200
-Message-Id: <20220615000612.3119-4-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220615000612.3119-1-ansuelsmth@gmail.com>
-References: <20220615000612.3119-1-ansuelsmth@gmail.com>
+        Frank Rowand <frowand.list@gmail.com>,
+        Eric Biederman <ebiederm@xmission.com>
+Subject: Re: [PATCH 2/3] tpm/kexec: Duplicate TPM measurement log in of-tree
+ for kexec
+Message-ID: <202206150856.h2psJLGs-lkp@intel.com>
+References: <20220614161258.1741427-3-stefanb@linux.ibm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220614161258.1741427-3-stefanb@linux.ibm.com>
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document new qcom,boot-partition binding used to apply special
-read/write layout to boot partitions.
+Hi Stefan,
 
-QCOM apply a special layout where spare data is not protected
-by ECC for some special pages (used for boot partition). Add
-Documentation on how to declare these special pages.
+Thank you for the patch! Perhaps something to improve:
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/mtd/qcom,nandc.yaml   | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+[auto build test WARNING on char-misc/char-misc-testing]
+[also build test WARNING on linus/master v5.19-rc2 next-20220614]
+[cannot apply to robh/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-index 84ad7ff30121..482a2c068740 100644
---- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-+++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-@@ -102,6 +102,31 @@ allOf:
-             - const: rx
-             - const: cmd
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,ipq806x-nand
-+
-+    then:
-+      properties:
-+        qcom,boot-partitions:
-+          $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+          items:
-+            items:
-+              - description: offset
-+              - description: size
-+          description:
-+            Boot partition use a different layout where the 4 bytes of spare
-+            data are not protected by ECC. Use this to declare these special
-+            partitions by defining first the offset and then the size.
-+
-+            It's in the form of <offset1 size1 offset2 size2 offset3 ...>
-+            and should be declared in ascending order.
-+
-+            Refer to the ipq8064 example on how to use this special binding.
-+
- required:
-   - compatible
-   - reg
-@@ -135,6 +160,8 @@ examples:
-         nand-ecc-strength = <4>;
-         nand-bus-width = <8>;
- 
-+        qcom,boot-partitions = <0x0 0x58a0000>;
-+
-         partitions {
-           compatible = "fixed-partitions";
-           #address-cells = <1>;
+url:    https://github.com/intel-lab-lkp/linux/commits/Stefan-Berger/tpm-Preserve-TPM-measurement-log-across-kexec/20220615-001510
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git 0a35780c755ccec097d15c6b4ff8b246a89f1689
+config: x86_64-randconfig-r022-20220613 (https://download.01.org/0day-ci/archive/20220615/202206150856.h2psJLGs-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-3) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/c42b5be1ad82e8a991a3d35417c9e495e7eb4c93
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Stefan-Berger/tpm-Preserve-TPM-measurement-log-across-kexec/20220615-001510
+        git checkout c42b5be1ad82e8a991a3d35417c9e495e7eb4c93
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/of/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/of/kexec.c:306: warning: expecting prototype for tpm_free_kexec_buffer(). Prototype was for tpm_of_remove_kexec_buffer() instead
+
+
+vim +306 drivers/of/kexec.c
+
+   301	
+   302	/**
+   303	 * tpm_free_kexec_buffer - free memory used by the IMA buffer
+   304	 */
+   305	static int tpm_of_remove_kexec_buffer(void)
+ > 306	{
+   307		struct property *prop;
+   308	
+   309		prop = of_find_property(of_chosen, "linux,tpm-kexec-buffer", NULL);
+   310		if (!prop)
+   311			return -ENOENT;
+   312	
+   313		return of_remove_property(of_chosen, prop);
+   314	}
+   315	
+
 -- 
-2.36.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
