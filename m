@@ -2,62 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE50154C316
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 10:06:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CBAB54C30B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 10:04:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239848AbiFOIGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 04:06:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43228 "EHLO
+        id S239848AbiFOIEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 04:04:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237955AbiFOIGI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 04:06:08 -0400
-Received: from mail.greatagencyonline.pl (mail.greatagencyonline.pl [89.40.125.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8381D483AE
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 01:06:05 -0700 (PDT)
-Received: by mail.greatagencyonline.pl (Postfix, from userid 1001)
-        id 71BFDA9AB9; Wed, 15 Jun 2022 09:00:54 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=greatagencyonline.pl;
-        s=mail; t=1655280058;
-        bh=ksvwLPFdjL017OLwir5xHXy3Vmrj/5fhZ5DwBI62qzc=;
-        h=Date:From:To:Subject:From;
-        b=LiXmHs3fKV1t2XVSZzFfrESJmP7UDRH0tO4XHq3NmmCfNO9xw4+cFYczyL4lh5Wn8
-         zROu6tUQl4jrovxHt034V6GHEd7c0JJgV2RRKbjl7uzmAbsjZn/ENPjl+Tvu6kZUK8
-         4uXmvuDjPWZ82t+D/0DOxs02m1YOS/aMhS/ydeVH+CQHCzuGAOllooWEGFLAfksm9f
-         QNfyMVI23Dy36DMa5D2NjH7dg6QXl+0vpr4X0GOM3uSZEucoeHhnTMk+nNCLIP6zKF
-         zw2VPZhgNNfrQZ9JbHE8MuaK7Ggo6vN2/GZ8+EQrN6xVVYUDct0lvBEjks6wUOBy97
-         TOCIuSYV5+uRA==
-Received: by mail.greatagencyonline.pl for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 08:00:41 GMT
-Message-ID: <20220615074502-0.1.4i.19loj.0.b0eyahpcze@greatagencyonline.pl>
-Date:   Wed, 15 Jun 2022 08:00:41 GMT
-From:   =?UTF-8?Q? "Miko=C5=82aj_Rudzik" ?= 
-        <mikolaj.rudzik@greatagencyonline.pl>
-To:     <devicetree@vger.kernel.org>
-Subject: =?UTF-8?Q?Nap=C5=82yw_Klient=C3=B3w_ze_strony?=
-X-Mailer: mail.greatagencyonline.pl
+        with ESMTP id S237955AbiFOIEJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 04:04:09 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7E324161F;
+        Wed, 15 Jun 2022 01:04:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1655280248; x=1686816248;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ekMFSDApn8f/L2DLduY6YJpgD+dLG401qisoT15FBo4=;
+  b=MvaM0xjxGFLxcC0i0Go9siqmNArf+EqMFQumEh0bYxBIVK8DceYZoxO2
+   bvoEZj3aebJDgBtedblAzWRJ4DlKuMaMbObvhrns1HMaWbLTpYF0b8Z4p
+   j7MYGjS15vxDHtMv2yaAwodfa92uVE2VKGaaaBhO9s2Vt0ffuuSjDX6dg
+   kQiY1yBKKEpqgAmVy4ln7gTSbKTLdBaya5fLVYmBHR4k0RdXubV6x6E0W
+   HjMA6EUTlwYcv9kA/74bMosnT028koHFpictXtjdrK1ugJ1GpP0jnhyQc
+   BEO88D1QrR4530VvwU0P5soKeBb+S/4jXc/KN0yOCqJwAvyTPSyhrLtpX
+   g==;
+X-IronPort-AV: E=Sophos;i="5.91,300,1647327600"; 
+   d="scan'208";a="168484480"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Jun 2022 01:04:07 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 15 Jun 2022 01:04:07 -0700
+Received: from localhost.localdomain (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Wed, 15 Jun 2022 01:04:05 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH 1/2] ARM: dts: at91: sama5d2: fix compilation warning
+Date:   Wed, 15 Jun 2022 11:06:32 +0300
+Message-ID: <20220615080633.1881196-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry,
+Fix the following compilation warning:
+Warning (simple_bus_reg): /ahb/apb/resistive-touch: missing or empty reg/ranges property
 
-chcia=C5=82bym poinformowa=C4=87 Pa=C5=84stwa o mo=C5=BCliwo=C5=9Bci pozy=
-skania nowych zlece=C5=84 ze strony www.
+Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+---
+ arch/arm/boot/dts/sama5d2.dtsi | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-Widzimy zainteresowanie potencjalnych Klient=C3=B3w Pa=C5=84stwa firm=C4=85=
-, dlatego ch=C4=99tnie pomo=C5=BCemy Pa=C5=84stwu dotrze=C4=87 z ofert=C4=
-=85 do wi=C4=99kszego grona odbiorc=C3=B3w poprzez efektywne metody pozyc=
-jonowania strony w Google.
+diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
+index 89c71d419f82..b147db8b973f 100644
+--- a/arch/arm/boot/dts/sama5d2.dtsi
++++ b/arch/arm/boot/dts/sama5d2.dtsi
+@@ -99,6 +99,16 @@ ns_sram: sram@200000 {
+ 		ranges = <0 0x00200000 0x20000>;
+ 	};
+ 
++	resistive_touch: resistive-touch {
++		compatible = "resistive-adc-touch";
++		io-channels = <&adc AT91_SAMA5D2_ADC_X_CHANNEL>,
++			      <&adc AT91_SAMA5D2_ADC_Y_CHANNEL>,
++			      <&adc AT91_SAMA5D2_ADC_P_CHANNEL>;
++		io-channel-names = "x", "y", "pressure";
++		touchscreen-min-pressure = <50000>;
++		status = "disabled";
++	};
++
+ 	ahb {
+ 		compatible = "simple-bus";
+ 		#address-cells = <1>;
+@@ -1050,16 +1060,6 @@ adc: adc@fc030000 {
+ 				status = "disabled";
+ 			};
+ 
+-			resistive_touch: resistive-touch {
+-				compatible = "resistive-adc-touch";
+-				io-channels = <&adc AT91_SAMA5D2_ADC_X_CHANNEL>,
+-					      <&adc AT91_SAMA5D2_ADC_Y_CHANNEL>,
+-					      <&adc AT91_SAMA5D2_ADC_P_CHANNEL>;
+-				io-channel-names = "x", "y", "pressure";
+-				touchscreen-min-pressure = <50000>;
+-				status = "disabled";
+-			};
+-
+ 			pioA: pinctrl@fc038000 {
+ 				compatible = "atmel,sama5d2-pinctrl";
+ 				reg = <0xfc038000 0x600>;
+-- 
+2.34.1
 
-Czy m=C3=B3g=C5=82bym liczy=C4=87 na kontakt zwrotny?
-
-
-Pozdrawiam,
-Miko=C5=82aj Rudzik
