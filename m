@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00C0B54C855
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 14:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FC7B54C862
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 14:23:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348031AbiFOMU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 08:20:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52522 "EHLO
+        id S1348663AbiFOMXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 08:23:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346889AbiFOMU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 08:20:57 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01AF937A09
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 05:20:55 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id b7so13044573ljr.6
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 05:20:55 -0700 (PDT)
+        with ESMTP id S240567AbiFOMXs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 08:23:48 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95F3C3A19D
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 05:23:47 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id y32so18641464lfa.6
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 05:23:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=tzCBDGq5tGP2jW5rnyj4CLiseepU/qiH2K3m08j9gZQ=;
-        b=K/iR/Jes4UImRpP9oPymqXSfBpOXxjBX/klSVMZxUQX0B3jmYTwpMevJVw9Bnm221j
-         hnDovWtI96/30CVVsP8nOIgC04xORFFFdRaXazvIr16nw2ktjTJM9kqbmX6qxOUHbdYN
-         flAiZIc9tn41EVx3SMnwQl+aS+ZW8fQIyVC61ZRxhzFKegIXXCtqpoHrNPjRqDdPb//V
-         BcgAjnAiDKwsRvQSCpLnC5WXailqtBcceD0aJNOAU51RICuYtvzzrcV5f3ERlist4Btf
-         sqixFsrqDMQwhOTWen74dmJLfvTH47zQFQCJbt80BhhyjwCvLkJkcz35nUBSWz7TNsoY
-         btlg==
+        bh=8rUU1v4caE1AGNF+lS60izJAnVf3yfLugaHg1ivJmQQ=;
+        b=G0WaETsHyn+zH1jan5g5fdKXYSbLSIGLfgZCngWeHK8SNc6nQaDLhLivMVUXnvlOTv
+         j4gPVfyfvAz+71QqSBN+y91lg+zLaTokZAhllYwPwsCK7/ml459ODxQJCMOfUsXTuX3t
+         24phzz2A2cO/wqpy9Cfq7Uyvzpd30CBu0tJ6U/ma4Ol39pEUANFas0cu+qBJR9+vtJym
+         DPopdyECdgnP8WHtBZLiwlyRDDKcirwwmxibKWqcycj8pkqYLWrqfWLtV5jbnrMQkwlv
+         2uY4eH6XkhHaUimOqIEBGDesWnkEPYdELMPnKw04x6Ab55rDraTSah6vX2q/VZog+RMX
+         zM5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=tzCBDGq5tGP2jW5rnyj4CLiseepU/qiH2K3m08j9gZQ=;
-        b=falSzUQyzEJZ+Kneu9FBghTDIb6kmFeOaJQhYZVir2OaEV19QybdWa1NAdoR0PiK15
-         Rr7cXU0j1u7vWitXBrZrNuVietY9UGZeIG8Ddjnd1hIaOMbt7GW+kUu2pCcrNvUzv6KS
-         wddjLLctsQEQFq9/oEXiYa+YcZh5NjLNYEU9pbq6sj4vOVC18vkHPqkIE8vSUs13rHf5
-         GmavZ+WvTcCJjGdvXsXuuM7Frzw2jUJkaiGvhfSt6Vca11vEnM6XgZMue6lfm8tEi/7V
-         ITmDUqbKVwkNAXaNBQwS1hYVR81Ud3qu4rsi+eZidPI7PF7oLZ+JKC1qDpiGy0zZGOzI
-         AJmw==
-X-Gm-Message-State: AJIora/R/KnKg94g8r3OqMe6zAZPtMr6CDG4xXYPr9F/YX+Pxt32Fa3u
-        l3UACMmiDJrWz4xRv8Zj4s9ZpA==
-X-Google-Smtp-Source: AGRyM1tXizTF3DMpBDe2HwCwP04IOR9oCCKUA7x0NKnvosFst6z4y8wzPyxa9IaqrtXKhCjtZtRGaQ==
-X-Received: by 2002:a2e:3315:0:b0:258:dfff:e252 with SMTP id d21-20020a2e3315000000b00258dfffe252mr5229345ljc.141.1655295654031;
-        Wed, 15 Jun 2022 05:20:54 -0700 (PDT)
+        bh=8rUU1v4caE1AGNF+lS60izJAnVf3yfLugaHg1ivJmQQ=;
+        b=cTpX+Gda51Tigs1DiRjvG6XenVCfLEVbaErVWPf9wnOrc/VaH1zSR9UMgzJ4jwVl9I
+         wV89n0IHWlwQTUI8/9OAWIE4P4+jKR6k/pXuysXc5ckuvytRxNT7oFgayiastvu/qhRw
+         7dl8BFm8j+Rx0bx09EFDjyQ1HSJFAN+KrJeGBJ00DE0IaTYU8Zp2PknZT9oBGHv1/19O
+         8mhTfZR5dqWZoW3D2gF/Jk2Pxf6LzNgkuWY5AToZgbrx9udq37/jSCypFXNJmZInQIKr
+         Nsvs+nbDy3kMALqynZWfnn55aLYEMZPyy9hyPJa40jmfRF2MLe7Gx2oQfD0qbPNDOJMz
+         QISw==
+X-Gm-Message-State: AJIora8/hAOSbt8PJLd+xP1e76sIZjS1DtGWx4hYGjiIFvjXaL7hf2fE
+        va5Wi1Uen9EB67Txa6QDEohKSg==
+X-Google-Smtp-Source: AGRyM1sxaiDNiyNPJgYfTRi01S0KUZbw4hqUs7vxcFmh4deHfpD4rJBiVYuquo3bmE4kDP6en8Kvxw==
+X-Received: by 2002:a05:6512:3a84:b0:479:209a:578a with SMTP id q4-20020a0565123a8400b00479209a578amr5931900lfu.292.1655295825901;
+        Wed, 15 Jun 2022 05:23:45 -0700 (PDT)
 Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id f18-20020a19dc52000000b0047255d21128sm1786085lfj.87.2022.06.15.05.20.52
+        by smtp.gmail.com with ESMTPSA id v6-20020a2e87c6000000b00255ac185029sm1672893ljj.30.2022.06.15.05.23.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jun 2022 05:20:53 -0700 (PDT)
-Message-ID: <e78fb0d3-a7ea-9f0b-ae42-fac76e54aa6a@linaro.org>
-Date:   Wed, 15 Jun 2022 15:20:52 +0300
+        Wed, 15 Jun 2022 05:23:45 -0700 (PDT)
+Message-ID: <29ae886c-b2b2-2387-87cb-e4a885080418@linaro.org>
+Date:   Wed, 15 Jun 2022 15:23:44 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.0
@@ -106,10 +106,6 @@ On 03/06/2022 12:42, Vinod Polimera wrote:
 > 
 > Fixes: 623f279c778 ("drm/msm: fix shutdown hook in case GPU components failed to bind")
 > Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-
 > ---
 >   drivers/gpu/drm/msm/msm_drv.c | 6 +++++-
 >   1 file changed, 5 insertions(+), 1 deletion(-)
@@ -124,6 +120,12 @@ Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 >   
 > +	if (!irq_has_action(kms->irq))
 > +		return;
+
+As a second thought I'd still prefer a variable here. irq_has_action 
+would check that there is _any_ IRQ handler for this IRQ. While we do 
+not have anybody sharing this IRQ, I'd prefer to be clear here, that we 
+do not want to uninstall our IRQ handler rather than any IRQ handler.
+
 > +
 >   	kms->funcs->irq_uninstall(kms);
 >   	if (kms->irq_requested)
