@@ -2,247 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB80954CB23
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 16:21:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3949F54CB2D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 16:23:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243443AbiFOOVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 10:21:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36780 "EHLO
+        id S1343591AbiFOOWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 10:22:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349268AbiFOOVA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 10:21:00 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C87D4A906
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 07:20:50 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id e24so11431126pjt.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 07:20:50 -0700 (PDT)
+        with ESMTP id S242702AbiFOOWt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 10:22:49 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52C7A19032;
+        Wed, 15 Jun 2022 07:22:48 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id v1so23505165ejg.13;
+        Wed, 15 Jun 2022 07:22:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zyV3GEz0EDSQFb2UbQd5dyhvw8xF/tMChAgYEabTTbo=;
-        b=n0YaiQJC8aGaiZl0GQHQ+sC2arcn1ObpcgX4aiAez63DDiXoukajfmYN558+0OHm60
-         I3uwpTVlDR8vwKUj/P9CUU3KAJPQwFHIVdJNJgT1J6izIIYvwJfX5iopYsrTMf0/ygOl
-         7Bsr64IwTNyZXqKH4aIGDJTFPQXTWdqqKeKB1KvTLx8LuaqwOgPTenWTfE4z9JS7wcUH
-         96lYF/sI9BYSW+VCMsZalq43c9ts2lN1amGqzZ7G83I67rScqO1MbQj10Gc/zg/ctiEJ
-         SKLiroNFCXPaITpgiGlMkk8ZJzQr3xpJaLhMYCGmxZUbqarD7BMoInsCl/EilEfMDBdO
-         JgWA==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+cDSM19XhnVItQmXe2GXVbX8IiIZwrvghbIjLeWagA4=;
+        b=T/uAnd4NRj5HaHVJL/NGW4xzIHjJ88SjHm1ylY4aca+8D6wfooiNh1pXFcmjxgVI5z
+         oxoPES4Ga1RtHrg8cGHFuHkSH2f+OhwSwGTCIdhsCCYLUsxNmdilDkXJBny9cRAXwPZM
+         bj8r9HZgGjAb5+5ooOWAC5V7AY+rgW6aZYN3JDn47Ts9R2AcZjZ3lDBwe9qmz0FuX73b
+         Jfcp3Lz9OOReArTRl64Lor4pK9Gl2b8EG10faardk619owy9Pnf2EMV3tb3R3xjJeKiM
+         R/q+Fh8c24KmtesrDZVl0JNopM0eMSrF15SULsMSyCvI4x6xfOthaOBHNdHq8n4QMJq9
+         RjNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=zyV3GEz0EDSQFb2UbQd5dyhvw8xF/tMChAgYEabTTbo=;
-        b=vbP88ofRO4O9zoOit1m9tP3JEy514WHKMATlEz21rtVwJGXXywEAkhnBV1qRxFKlZM
-         iQhg/bGEaIhlhUj3bSBlUYP4kX2K0TVvp3I1ntFMn8EPtrfhT/qvifBVPfxTKYd/ekEc
-         TSOBrLY3lpLpBuojCCzZHvvvtetbWeLS0KteLmgpjxJ+/k8uEU4Ki+r+ispRRr/HgOvb
-         7Xb+Nt69XiFXCyZW2+KxOFovBadm11tPpivibs7axr2XmJQS2yijx4XklOahWgzm+tZ7
-         bLIfpKLC8t/Zr8xzGyXucSOsbMXRrrpYWdQYg/esqWC9flmEZPbMQFlRJpgRuSJ932eG
-         arXA==
-X-Gm-Message-State: AJIora805G5cOOy1eoCPXqzY4puGmeusvFxRZbrMAvfO1nMicqGXl3Nx
-        jggMJTVySnYBIxWaIYopR5XNVA==
-X-Google-Smtp-Source: AGRyM1ugZW2UggxybZ/ns7cX9//TMM/zGfmzxhxYGXoT10YOgiB7O7NlzLzk4m/Ap3LxaooPVfF2oQ==
-X-Received: by 2002:a17:902:7884:b0:167:4d5b:7a2f with SMTP id q4-20020a170902788400b001674d5b7a2fmr97475pll.18.1655302849484;
-        Wed, 15 Jun 2022 07:20:49 -0700 (PDT)
-Received: from [172.20.0.255] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id e6-20020a63ae46000000b003f65560a1a7sm9954841pgp.53.2022.06.15.07.20.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jun 2022 07:20:49 -0700 (PDT)
-Message-ID: <df30578f-3760-a595-963c-35a90f373272@linaro.org>
-Date:   Wed, 15 Jun 2022 07:20:45 -0700
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+cDSM19XhnVItQmXe2GXVbX8IiIZwrvghbIjLeWagA4=;
+        b=iR9HA6qDl5ORUUI5komj3rPxPDhC2uDdggll+bqqT3fIJ//PwTVqG9L4w785s86W62
+         GvWoBG4Ut8pfatPbVkwx0oXNSTgcMuM/WC8mnXXekoq1D2nQACHbQgnpNpy8xRTf0DvS
+         B7KSjrNRRLRD2mPd6LL3gjqo+DBpfwwnPyiYR6KAuDmbyyZysnOHWywP4S0l3LmKu7M0
+         tMPrixn/0Bpy989+s8WBiyr1H3ip/phKqx17DkkPt8ZiLU1Oz9jBVdeKcC7WTIZmt1Mz
+         IGmU6V7Ag1P94L8DO9FEM37Nt1ofeLINWyTvF/FYw/iTnfJ0Y1gaZXY0f2pRjCkjdr8M
+         eqvQ==
+X-Gm-Message-State: AJIora+vjnWdyEw2stzALAror+DUUFiV6Y6HqSGWOCjFAHeN8NrPZQwc
+        W/bHwPmKYkdH5wy8qoSbIDdAbkK9FOO60dU+kCA=
+X-Google-Smtp-Source: AGRyM1tK+gakBdNkEl/BCl5Wp6p+/qyTwlR5zO3bm+xtxartwOdF0AEvujrW1NR3rivDizKoWarT6AlmcqwpahefijQ=
+X-Received: by 2002:a17:907:2d8d:b0:711:d1bd:d738 with SMTP id
+ gt13-20020a1709072d8d00b00711d1bdd738mr70128ejc.658.1655302966907; Wed, 15
+ Jun 2022 07:22:46 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 1/2] dt-binding: Add cypress,cy8c95x0 binding
-Content-Language: en-US
-To:     Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220615104921.1390138-1-patrick.rudolph@9elements.com>
- <20220615104921.1390138-2-patrick.rudolph@9elements.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220615104921.1390138-2-patrick.rudolph@9elements.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <1655179884-12278-1-git-send-email-shengjiu.wang@nxp.com> <1655179884-12278-6-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <1655179884-12278-6-git-send-email-shengjiu.wang@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 15 Jun 2022 11:22:38 -0300
+Message-ID: <CAOMZO5BRVBawK2PRvTazkQf-wExOuni9qD76Ha3FYmZZQyPRsg@mail.gmail.com>
+Subject: Re: [PATCH 5/7] ASoC: fsl_sai: Move res variable to be global
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     Nicolin Chen <nicoleotsuka@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2022 03:49, Patrick Rudolph wrote:
-> Added device tree binding documentation for
-> Cypress CY8C95x0 I2C pin-controller.
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Hi Shengjiu,
 
-The subject is still wrong. You need subsystem prefix (pinctrl) and you
-can skip final "binding" word, as it is implied by dt-bindings.
+On Tue, Jun 14, 2022 at 1:25 AM Shengjiu Wang <shengjiu.wang@nxp.com> wrote:
+>
+> The resource info need to be accessed by hw_params()
+> function for multi fifo case, the start address may
+> be not the FIFO0. So move it to be global first.
 
-> ---
->  .../bindings/pinctrl/cypress,cy8c95x0.yaml    | 131 ++++++++++++++++++
->  1 file changed, 131 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml b/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
-> new file mode 100644
-> index 000000000000..765e8834d9dd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
-> @@ -0,0 +1,131 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/cypress,cy8c95x0.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cypress CY8C95X0 I2C GPIO expander
-> +
-> +maintainers:
-> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
-> +
-> +description: |
-> +  This supports the 20/40/60 pin Cypress CYC95x0 GPIO I2C expanders.
-> +  Pin function configuration is performed on a per-pin basis.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - cypress,cy8c9520
-> +      - cypress,cy8c9540
-> +      - cypress,cy8c9560
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    description:
-> +      The first cell is the GPIO number and the second cell specifies GPIO
-> +      flags, as defined in <dt-bindings/gpio/gpio.h>.
-> +    const: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 2
-> +
-> +  gpio-line-names: true
-> +
-> +  gpio-ranges:
-> +    maxItems: 1
-> +
-> +  gpio-reserved-ranges:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description:
-> +      Optional power supply.
-> +
-> +patternProperties:
-> +  '-pins$':
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: "/schemas/pinctrl/pincfg-node.yaml"
+Actually, it is not global. It is being added as a member of struct fsl_sai.
 
-Skip quotes.
+Please rephrase the Subject to:
 
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this
-> +          subnode.
-> +        items:
-> +          - pattern: "^gp([0-7][0-7])$"
+ASoC: fsl_sai: Make res a member of struct fsl_sai
 
-Use the same type of quotes everywhere - either ' or ". Does it actually
-work? It looks like you allow here only one pin but the description
-suggests it is a list of pins. I think you wanted here just "pattern:
-..." without leading minus. Then you need also min and maxItems.
+and then in the commit log:
 
-Why blank line here disappeared? My comment was in different place.
-
-> +      function:
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins.
-> +        enum: [ gpio, pwm ]
-> +
-> +      bias-pull-down: true
-> +
-> +      bias-pull-up: true
-> +
-> +      bias-disable: true
-> +
-> +      output-high: true
-> +
-> +      output-low: true
-> +
-> +      drive-push-pull: true
-> +
-> +      drive-open-drain: true
-> +
-> +      drive-open-source: true
-> +
-> +    required:
-> +      - pins
-> +      - function
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +
-> +additionalProperties: false
-> +
-> +allOf:
-> +  - $ref: "pinctrl.yaml#"
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c0 {
-
-Just "i2c".
-
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      pinctrl@20 {
-> +        compatible = "cypress,cy8c9520";
-> +        reg = <0x20>;
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +        #interrupt-cells = <2>;
-> +        interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-controller;
-> +        vdd-supply = <&p3v3>;
-> +        gpio-reserved-ranges = <5 1>;
-> +      };
-> +    };
-
-
-Best regards,
-Krzysztof
+"So move it to be a member of struct fsl_sai."
