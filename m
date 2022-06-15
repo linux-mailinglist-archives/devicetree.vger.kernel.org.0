@@ -2,64 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93FD554D322
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 22:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 221DC54D32A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 22:58:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348862AbiFOU5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 16:57:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51086 "EHLO
+        id S238600AbiFOU6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 16:58:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349526AbiFOU53 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 16:57:29 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 864CCEE;
-        Wed, 15 Jun 2022 13:57:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1655326647; x=1686862647;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=j32A2ln2a4HIS+edUjMgD5y4tolWGujNBMVnjAN23m0=;
-  b=m2TtIfmUfHgZg8ZnlVdlfBLMpE29eLE+QVNkFhnWxhzTHnDLEpDM/vk2
-   u8xT476Dx4vYLtXHQBbDZ7AxxLhYIGYgmXdTQQbLbcE8L1aWxYgHbAR8w
-   2XUnUjqScYA9JVei74KESTddtZBbFJil/5+t6T1Y1Onfrg6FyvsRyByPu
-   w1G3Q1mzHEgNwH5n5eskVgAz1xQj1iHVtNYKdgCFRki/qGbblBA8f6fEX
-   mvOAYVVU27/i4ueYvKAVT6trf+xBxrUEJixqpncqauugRNXbAyLbzl4Kn
-   dxoiBGsM4SVGQB04OWsvbM3YKsfj3DDhZzxr2gH+wr5mRhrKxDiPxvuuu
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="258954051"
-X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; 
-   d="scan'208";a="258954051"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2022 13:57:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,302,1647327600"; 
-   d="scan'208";a="652859560"
-Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
-  by fmsmga004.fm.intel.com with ESMTP; 15 Jun 2022 13:57:24 -0700
-Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1o1a4p-000NNP-E7;
-        Wed, 15 Jun 2022 20:57:23 +0000
-Date:   Thu, 16 Jun 2022 04:57:13 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     andrea.merello@iit.it, jic23@kernel.org, mchehab+huawei@kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, lars@metafoo.de, robh+dt@kernel.org,
-        andy.shevchenko@gmail.com, matt.ranostay@konsulko.com,
-        ardeleanalex@gmail.com, jacopo@jmondi.org,
-        Andrea Merello <andrea.merello@iit.it>
-Subject: Re: [v6 12/14] iio: imu: add BNO055 serdev driver
-Message-ID: <202206160409.GTDk9b3k-lkp@intel.com>
-References: <20220613120534.36991-13-andrea.merello@iit.it>
+        with ESMTP id S1349747AbiFOU6O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 16:58:14 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E03610555
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 13:58:09 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id z17so12488924pff.7
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 13:58:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=3DBLU8nISIrYTBK8k6DcAIb8oRhQQh+dzHePuisDgWw=;
+        b=K24g/lp0GAYbpVQo8ffvCiVoK+NofOFqwuVsXiGGu5CBJ4sNRZ8/bce7zFuzF54uu/
+         0i2IjAF0NYQK4gdnJmXxrZi38QR9r8Y86zP27hydPWeIOKd3NFUvqJXA6RpF0O08RRv5
+         nea7yOhOu8VrTW6W+jFQWsMJ9IdLTsIFZFvQ+Y1cnH0KFnarEq4IwnzxG98KdoIkOmp+
+         2xL4pc1WfSSw5NflXAB7KxcGUn+0F/d3P9HS7ttjRi4wr/UERRi1Tb7kFPyGOEYDgLkD
+         yRf8y8q7QGnDz5qxromfsCTalsHFoia4QiMizrBPmLxfyBJubSVyoeXOcC3+dVK7n1p5
+         kIGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3DBLU8nISIrYTBK8k6DcAIb8oRhQQh+dzHePuisDgWw=;
+        b=3M0sAMo7sQxAPpBSPsrt7mgdCy0Wn33Lj13WaFVD020SiabQ+Re8mfqG8ig0kkqjQC
+         9mALaNrKepxWmInah6DrkixqfGirTMvogTfHmvMYhVtpy4TinoVZdskpQPW4RTka3dOY
+         MjnDdvNV8oXiwnDLNLo3c7j+Bovv+GKwx1aZA3Mbe48UXdbA7+fINQh9IGrKwJT+XHS4
+         Ww7GFmtLGCauC29q1gFIc4mo1J/+uaLedNEPZbMJbOWjU6s33/tghp/QvJBXVyJcfSJo
+         S1jAj2X3jrnA/E4AodGP/FnXxiDZgqTAP2l3CbF31BWzzVS1enDNo8U/8fD4isKVAYBG
+         ocEA==
+X-Gm-Message-State: AJIora/dQ/cCEXIag/u04XxLqwI2rI0HBeX8hbmKK6s+Iy+OodsPFyG/
+        xh6oMoXA5+rjnAsKARKlgOi/Og==
+X-Google-Smtp-Source: AGRyM1sURT8l4Y+xwDaCXscmfLCsHvqJ63+ufGKTkBJlmbmd+0N7utxS/KDWcHHPQYICiTqtfN5cgg==
+X-Received: by 2002:aa7:82ca:0:b0:51b:cf43:d00a with SMTP id f10-20020aa782ca000000b0051bcf43d00amr1348872pfn.58.1655326688844;
+        Wed, 15 Jun 2022 13:58:08 -0700 (PDT)
+Received: from [172.22.33.138] ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id z9-20020a1709027e8900b0015e8d4eb209sm74146pla.83.2022.06.15.13.58.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 13:58:08 -0700 (PDT)
+Message-ID: <add7aa29-d49d-8d3b-06d1-2275660fc7e7@linaro.org>
+Date:   Wed, 15 Jun 2022 13:58:06 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220613120534.36991-13-andrea.merello@iit.it>
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [v2,2/4] Input: mt-matrix-keypad: Add Bosch mt matrix keypad
+ driver
+Content-Language: en-US
+To:     Gireesh.Hiremath@in.bosch.com, krzysztof.kozlowski+dt@linaro.org
+Cc:     m.felsch@pengutronix.de, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org, bcousson@baylibre.com,
+        tony@atomide.com, robh+dt@kernel.org, dmitry.torokhov@gmail.com,
+        mkorpershoek@baylibre.com, davidgow@google.com,
+        swboyd@chromium.org, fengping.yu@mediatek.com,
+        y.oudjana@protonmail.com, rdunlap@infradead.org,
+        colin.king@intel.com, sjoerd.simons@collabora.co.uk,
+        VinayKumar.Shettar@in.bosch.com,
+        Govindaraji.Sivanantham@in.bosch.com, anaclaudia.dias@de.bosch.com
+References: <20220506072737.1590-2-Gireesh.Hiremath@in.bosch.com>
+ <20220613080638.1339-1-Gireesh.Hiremath@in.bosch.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220613080638.1339-1-Gireesh.Hiremath@in.bosch.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,115 +83,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 13/06/2022 01:06, Gireesh.Hiremath@in.bosch.com wrote:
+> From: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
+> 
+> Hi Krzysztof,
+> 
+>> You wrote pretty long message explaining how the device works, but I
+>> still do not see the answer to questions - why it cannot be part of
+>> matrix keypad?
+> 
+> Following are the difference between matrix keypad and Bosch keypad
+> make us to add another keypad driver.
+> 
+> matrix keypad:
+> 	- By hardware schematic, a column GPIO line will intersect only
+> 	  with row GPIO lines, not with the other column GPIO lines
+> 	- so, row and column GPIO property are fixed, because of this
+> 	- key scanning work based on interrupt mode
+> 	- and key press is determined based on setting column as output,
+> 	  row GPIO as input and set interrupt to monitor the changes in state,
+> 	  serve the key pressed in ISR
+> 
+> Bosch keypad:
+>     - By hardware schematic column GPIO line can intersect with row GPIO line
+> 	  as well as other column GPIO lines
+> 	- so, all GPIO act as row as well as column, because of this
+> 	- key scanning based on polling mode
+> 	- a key pressed is determined by setting one of GPIO line as output and
+> 	  other as input and poll for change in the state of input GPIO lines.
+> 	  Setting one of a GPIO line as output and remaining GPIO lines as input is on
+> 	  round robin bases.
 
-Thank you for the patch! Perhaps something to improve:
+Which is still not the answer "why it cannot be part of matrix keypad?".
+To me looks similar enough, although maybe not exactly superset of the
+other.
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v5.19-rc2 next-20220615]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+>>
+>> "It looks like this driver has smaller number of features than
+>> matrix-keypad, so it should be integrated into the matrix-keypad.
+>> matrix-keypad features are superset to this one."
+>>
+>> "But anyway this should be just merged into matrix-keypad. It's a
+>> simpler set of that binding."
+> 
+> This keypad driver specific to Bosch measuring tool or similar devices.
+> Please let me know to send latest patch which resolves build warning
+> and gpiod API support.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/andrea-merello-iit-it/Add-support-for-Bosch-BNO055-IMU/20220614-203754
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20220616/202206160409.GTDk9b3k-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/f37504a206ca4b342e184a1fc137f6c47f3960e9
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review andrea-merello-iit-it/Add-support-for-Bosch-BNO055-IMU/20220614-203754
-        git checkout f37504a206ca4b342e184a1fc137f6c47f3960e9
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=sparc SHELL=/bin/bash drivers/gpu/ drivers/iio/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   In file included from include/trace/define_trace.h:102,
-                    from drivers/iio/imu/bno055/bno055_ser_trace.h:104,
-                    from drivers/iio/imu/bno055/bno055_ser_trace.c:13:
-   drivers/iio/imu/bno055/./bno055_ser_trace.h: In function 'trace_raw_output_recv':
->> drivers/iio/imu/bno055/./bno055_ser_trace.h:91:23: warning: format '%d' expects argument of type 'int', but argument 3 has type 'size_t' {aka 'long unsigned int'} [-Wformat=]
-      91 |             TP_printk("len: %d, data: = %*ph",
-         |                       ^~~~~~~~~~~~~~~~~~~~~~~
-   include/trace/trace_events.h:203:34: note: in definition of macro 'DECLARE_EVENT_CLASS'
-     203 |         trace_event_printf(iter, print);                                \
-         |                                  ^~~~~
-   include/trace/trace_events.h:45:30: note: in expansion of macro 'PARAMS'
-      45 |                              PARAMS(print));                   \
-         |                              ^~~~~~
-   drivers/iio/imu/bno055/./bno055_ser_trace.h:79:1: note: in expansion of macro 'TRACE_EVENT'
-      79 | TRACE_EVENT(recv,
-         | ^~~~~~~~~~~
-   drivers/iio/imu/bno055/./bno055_ser_trace.h:91:13: note: in expansion of macro 'TP_printk'
-      91 |             TP_printk("len: %d, data: = %*ph",
-         |             ^~~~~~~~~
-   In file included from include/trace/trace_events.h:237,
-                    from include/trace/define_trace.h:102,
-                    from drivers/iio/imu/bno055/bno055_ser_trace.h:104,
-                    from drivers/iio/imu/bno055/bno055_ser_trace.c:13:
-   drivers/iio/imu/bno055/./bno055_ser_trace.h:91:30: note: format string is defined here
-      91 |             TP_printk("len: %d, data: = %*ph",
-         |                             ~^
-         |                              |
-         |                              int
-         |                             %ld
-   In file included from include/trace/define_trace.h:102,
-                    from drivers/iio/imu/bno055/bno055_ser_trace.h:104,
-                    from drivers/iio/imu/bno055/bno055_ser_trace.c:13:
->> drivers/iio/imu/bno055/./bno055_ser_trace.h:91:23: warning: field width specifier '*' expects argument of type 'int', but argument 4 has type 'size_t' {aka 'long unsigned int'} [-Wformat=]
-      91 |             TP_printk("len: %d, data: = %*ph",
-         |                       ^~~~~~~~~~~~~~~~~~~~~~~
-   include/trace/trace_events.h:203:34: note: in definition of macro 'DECLARE_EVENT_CLASS'
-     203 |         trace_event_printf(iter, print);                                \
-         |                                  ^~~~~
-   include/trace/trace_events.h:45:30: note: in expansion of macro 'PARAMS'
-      45 |                              PARAMS(print));                   \
-         |                              ^~~~~~
-   drivers/iio/imu/bno055/./bno055_ser_trace.h:79:1: note: in expansion of macro 'TRACE_EVENT'
-      79 | TRACE_EVENT(recv,
-         | ^~~~~~~~~~~
-   drivers/iio/imu/bno055/./bno055_ser_trace.h:91:13: note: in expansion of macro 'TP_printk'
-      91 |             TP_printk("len: %d, data: = %*ph",
-         |             ^~~~~~~~~
-   In file included from include/trace/trace_events.h:237,
-                    from include/trace/define_trace.h:102,
-                    from drivers/iio/imu/bno055/bno055_ser_trace.h:104,
-                    from drivers/iio/imu/bno055/bno055_ser_trace.c:13:
-   drivers/iio/imu/bno055/./bno055_ser_trace.h:91:42: note: format string is defined here
-      91 |             TP_printk("len: %d, data: = %*ph",
-         |                                         ~^~
-         |                                          |
-         |                                          int
+That's a poor reason not to merge into existing driver... I am sorry,
+but our entire Linux kernel concept is to integrate, not duplicate. If
+each of vendors wanted their own feature, we would have unmanageable
+monstrosity with millions of drivers doing almost the same...
 
 
-vim +91 drivers/iio/imu/bno055/./bno055_ser_trace.h
-
-    78	
-    79	TRACE_EVENT(recv,
-    80		    TP_PROTO(size_t len, const unsigned char *buf),
-    81		    TP_ARGS(len, buf),
-    82		    TP_STRUCT__entry(
-    83			    __field(size_t, len)
-    84			    __dynamic_array(unsigned char, buf, len)
-    85		    ),
-    86		    TP_fast_assign(
-    87			    __entry->len = len;
-    88			    memcpy(__get_dynamic_array(buf),
-    89				   buf, __entry->len);
-    90		    ),
-  > 91		    TP_printk("len: %d, data: = %*ph",
-    92			      __entry->len, __entry->len, __get_dynamic_array(buf)
-    93		    )
-    94	);
-    95	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Best regards,
+Krzysztof
