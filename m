@@ -2,66 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12F9454CEB8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 18:33:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3491454CFC7
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jun 2022 19:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235843AbiFOQde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 12:33:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36938 "EHLO
+        id S1346142AbiFOR2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 13:28:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356130AbiFOQdQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 12:33:16 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8162457B1;
-        Wed, 15 Jun 2022 09:33:11 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id u12so24297182eja.8;
-        Wed, 15 Jun 2022 09:33:11 -0700 (PDT)
+        with ESMTP id S1349653AbiFOR2O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 13:28:14 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 931C3959D;
+        Wed, 15 Jun 2022 10:28:13 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id a15so16313082wrh.2;
+        Wed, 15 Jun 2022 10:28:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=37sI1USoy+xRQH8QbGSjnzweIUNwAt0HoK9F/1KuOZ4=;
-        b=VDL9QmcQj8yIgSj4LMJxd1bT9DSNCD5IK1lckPMPlBcMaksnq3xla7UTUsu/fXVPbs
-         eT80MVA5NJwXjMR37UiwDMwDqpi2s+9bWp5Ui56I6O8BYZaU1n/VLeEA6p4oVX7sH/6U
-         onyymzSLt9QM5kO823hLqwx4KbcOy5RiCYi9FXemWzCshZMK+xuL60lzOKeHI1temeIt
-         nh5KNquRW7ySATd2l6Iw5nd6GHt6Kw0kbFkNa/ZAQJUVEVG5b4BKnCCNBHrQDJbZiWLi
-         SPWGk1vS6YRhsxjQCwT8pzpgxFJtPqIfXgvHJVfoB55Was/cQda3Fw5+cDYgFJkSFmjZ
-         zbSA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zPJh0+5QxVl9IcfIvjsxlZmZC8UvoEwLLOJqypTZHXc=;
+        b=Qbx/WYWJfRWvXbO5/QYUstaVAaNakVAkD1orizUvn5sG9T4r/X03Reo8/rpPxcrAyx
+         HAE0zYdcvw/0AliGuzyAUDHkr+MscMeJ0x7oLhQ/IKgbpQbhUDdFeIOSg2BDi8ipMk4k
+         Nxk2lWYs5MkzL8wOKY9tQsCaAz+KvM4sFXXgCkSBo+m/UJWJUZ0DZD9n40tuNB8mbL06
+         DzNwVGfk0CAytBpJCbf75vndA+8RFz76ekoKAE3r9jBN31I/M04u+ZTdzTHu6Kgpdv0x
+         7MhmgUdAJcIXDK2/MKjHAEeIKk/to+UZNRZa/Mrcwq+0rkNzhh+xJAL6ns+UWn+HVmHg
+         ZlaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=37sI1USoy+xRQH8QbGSjnzweIUNwAt0HoK9F/1KuOZ4=;
-        b=Pa2wwPYfKx+XZC4S/02tIct7LDBbnrOT0ib2rVqtOu/O0JOdqFo6uesLg3DwQIlMSK
-         wAe9imRwgzijrFuQjNl3i2FgRKqBF3C4xvaPgOYFdMhTpWKagMllI4O7U4HGG5eL8ave
-         8lVM/XYVYYb9Z+Ugwn8eDeJC7OGRCbM1BwXWcZCy0ZbrgIhcp2V1Mjk3evQzqEx5KbCL
-         Vlno57sdj8QlkszYJAnMNjzvAUoppM68aIY8j5M7Ij1OET4+OQczP5ghLFXfSLnW4tK8
-         HsnXeY85wp6TdjXG/FblFnLHefkhD+iCbUbXjQmv9sDpxspT2NpVo+JjMADCu94EKmAb
-         9IyA==
-X-Gm-Message-State: AJIora/P1NxyfcytZkZF7yKLBPK3rdZCeOdhObFtvw3o3dfVh3c0GDZB
-        XWAUSFHXcbsNZ2ANjKBDNplpF6uYJEw2fuCqehg=
-X-Google-Smtp-Source: AGRyM1vDmI64JtK+fXsJKnvDR2X1TpTWuCM7Z6iVIxs6wzLIMn4UVuyNvp9Mlkskq/lhEKHq6diUGBe2SKNN4/Jfg5E=
-X-Received: by 2002:a17:906:434f:b0:711:eb76:c320 with SMTP id
- z15-20020a170906434f00b00711eb76c320mr602613ejm.636.1655310790302; Wed, 15
- Jun 2022 09:33:10 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zPJh0+5QxVl9IcfIvjsxlZmZC8UvoEwLLOJqypTZHXc=;
+        b=1IlB8UJFpyf7eRGoyGUucW8LClCh2hCkgiSNGE4rFX1aI/3YqhhiIZvdo0llo/x/td
+         B7LLLfS8SFIBRxaLOqd+9WxIwj5N8QKA+A/2JiLyjie1BJ/nhc5YsAR65IwBHqJ18EKW
+         kbG6qha1ihdGWVvAHFd0Fdow2nh+04KiLR8aygMvhShgubnp/XTt+lu1NNB9sVHPiRXZ
+         RawFG7Ghrz/mcyHc/DY6LauTSuUnIs5S1/du+FdvUtATOGhufsPqviFHSCp/TwfIF4pG
+         mAv8+IdkBkcvmN/QdJLHFDDvqin+8zCu/9Ajbbtiz5/5AJKyvvjkjUqrV22c2qi/WE0h
+         NGSg==
+X-Gm-Message-State: AJIora9jxQLZxTYQYvlGbImodMCYtbAvAMgB+6sWdqpuzIZ/zuHtahKV
+        2ocyT/xECj1WjkCmhJ87vbg=
+X-Google-Smtp-Source: AGRyM1uiE7j+UMgU29QN0t5gfsp+6EyQLQ4EmGOgoJfFhX57n4p9IxIHkwjyLW2f9A2DvLre7XJmqg==
+X-Received: by 2002:a05:6000:1c02:b0:218:42ab:281f with SMTP id ba2-20020a0560001c0200b0021842ab281fmr810768wrb.607.1655314091949;
+        Wed, 15 Jun 2022 10:28:11 -0700 (PDT)
+Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.googlemail.com with ESMTPSA id w3-20020a7bc103000000b003976fbfbf00sm3023792wmi.30.2022.06.15.10.28.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jun 2022 10:28:11 -0700 (PDT)
+From:   Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
+Subject: [PATCH 1/3] dt-bindings: clock: add pcm reset for ipq806x lcc
+Date:   Wed, 15 Jun 2022 18:34:06 +0200
+Message-Id: <20220615163408.30154-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-References: <20220615135130.227236-1-shreeya.patel@collabora.com> <20220615135130.227236-3-shreeya.patel@collabora.com>
-In-Reply-To: <20220615135130.227236-3-shreeya.patel@collabora.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 15 Jun 2022 18:32:33 +0200
-Message-ID: <CAHp75VeU9oSJmMdyT_0BZDuG5WMiuJiCPv5So4DWG05EEDKrhw@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] iio: light: Add support for ltrf216a sensor
-To:     Shreeya Patel <shreeya.patel@collabora.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>, Zhigang.Shi@liteon.com,
-        krisman@collabora.com, linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        alvaro.soliverez@collabora.com, Dmitry Osipenko <digetx@gmail.com>,
-        kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -72,171 +73,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 15, 2022 at 3:52 PM Shreeya Patel
-<shreeya.patel@collabora.com> wrote:
->
-> From: Zhigang Shi <Zhigang.Shi@liteon.com>
->
-> Add initial support for ltrf216a ambient light sensor.
+Add pcm reset define for ipq806x lcc.
 
-This doesn't clarify why regmap API for SMBus can't be used.
+Signed-off-by: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
+---
+ include/dt-bindings/clock/qcom,lcc-ipq806x.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-...
-
-> Datasheet: https://bit.ly/3MRTYwY
-
-These kinds of links tend to disappear, please use the real link.
-
-...
-
-> Reported-by: kernel test robot <lkp@intel.com>
-
-No, the new feature may not be reported.
-
-...
-
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/delay.h>
-> +#include <linux/i2c.h>
-> +#include <linux/init.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/pm.h>
-> +#include <linux/pm_runtime.h>
-
-+ blank line
-
-> +#include <linux/iio/iio.h>
-
-+ blank line
-
-> +#include <asm/unaligned.h>
-
-...
-
-> +/*
-> + * Window Factor is needed when the device is under Window glass
-> + * with coated tinted ink. This is to compensate the light loss
-
-compensate for the
-
-> + * due to the lower transmission rate of the window glass and helps
-> + * in calculating lux.
-> + */
-
-...
-
-> +static int ltrf216a_set_power_state(struct ltrf216a_data *data, bool on)
-> +{
-> +       struct device *dev = &data->client->dev;
-> +       int ret, suspended;
-> +
-> +       if (on) {
-> +               suspended = pm_runtime_suspended(dev);
-> +               ret = pm_runtime_get_sync(dev);
-
-> +               /* Allow one integration cycle before allowing a reading */
-> +               if (suspended)
-> +                       msleep(ltrf216a_int_time_reg[0][0]);
-
-Even if the get_sync() failed?
-
-Also, how do you take care about reference count in the case of failed
-get_sync90?
-
-> +       } else {
-> +               pm_runtime_mark_last_busy(dev);
-> +               ret = pm_runtime_put_autosuspend(dev);
-> +       }
-> +
-> +       return ret;
-> +}
-
-...
-
-> +static int ltrf216a_read_raw(struct iio_dev *indio_dev,
-> +                            struct iio_chan_spec const *chan, int *val,
-> +                            int *val2, long mask)
-> +{
-> +       struct ltrf216a_data *data = iio_priv(indio_dev);
-> +       int ret;
-> +
-> +       mutex_lock(&data->lock);
-> +
-> +       switch (mask) {
-> +       case IIO_CHAN_INFO_PROCESSED:
-> +               ret = ltrf216a_get_lux(data);
-> +               if (ret < 0)
-> +                       break;
-> +               *val = ret;
-> +               ret = IIO_VAL_INT;
-> +               break;
-> +       case IIO_CHAN_INFO_INT_TIME:
-> +               ret = ltrf216a_get_int_time(data, val, val2);
-> +               break;
-> +       default:
-> +               ret = -EINVAL;
-> +               break;
-> +       }
-> +
-> +       mutex_unlock(&data->lock);
-> +
-> +       return ret;
-> +}
-
-You can refactor this function to call mutex lock/unlock as many times
-as cases you have and return directly.
-
-...
-
-> +       /* reset sensor, chip fails to respond to this, so ignore any errors */
-> +       ltrf216a_reset(indio_dev);
-> +
-> +       ret = pm_runtime_set_active(&client->dev);
-> +       if (ret)
-> +               goto error_power_down;
-
-Why do you need to power down here?
-
-> +       pm_runtime_enable(&client->dev);
-> +       pm_runtime_set_autosuspend_delay(&client->dev, 5000);
-> +       pm_runtime_use_autosuspend(&client->dev);
-> +
-> +       ltrf216a_set_power_state(data, true);
-
-The below code suggests that you are mixing badly devm_ with non-devm_
-APIs, don't do this. You have to group devm_ first followed by
-non-devm_ calls.
-
-...
-
-> +static int ltrf216a_remove(struct i2c_client *client)
-> +{
-> +       struct iio_dev *indio_dev = i2c_get_clientdata(client);
-> +
-> +       iio_device_unregister(indio_dev);
-> +       pm_runtime_disable(&client->dev);
-> +       pm_runtime_set_suspended(&client->dev);
-> +       ltrf216a_disable(indio_dev);
-> +
-> +       return 0;
-
-I believe the ordering of freeing resources and reverting state is not
-in reverse. See above why.
-
-> +}
-
-...
-
-> +static DEFINE_SIMPLE_DEV_PM_OPS(ltrf216a_pm_ops, ltrf216a_runtime_suspend,
-> +                               ltrf216a_runtime_resume);
-
-Are you sure you are using proper macro? SIMPLE is for system sleep,
-while the function names suggest that this is about runtime PM.
-
+diff --git a/include/dt-bindings/clock/qcom,lcc-ipq806x.h b/include/dt-bindings/clock/qcom,lcc-ipq806x.h
+index 25b92bbf0ab4..e0fb4acf4ba8 100644
+--- a/include/dt-bindings/clock/qcom,lcc-ipq806x.h
++++ b/include/dt-bindings/clock/qcom,lcc-ipq806x.h
+@@ -19,4 +19,6 @@
+ #define SPDIF_CLK			10
+ #define AHBIX_CLK			11
+ 
++#define LCC_PCM_RESET			0
++
+ #endif
 -- 
-With Best Regards,
-Andy Shevchenko
+2.36.1
+
