@@ -2,145 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8686754E0C8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 14:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EC2454E0F6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 14:44:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229702AbiFPMaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 08:30:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40318 "EHLO
+        id S230177AbiFPMon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 08:44:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376864AbiFPMaJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 08:30:09 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFF894D68E;
-        Thu, 16 Jun 2022 05:30:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4A5F9B823A6;
-        Thu, 16 Jun 2022 12:30:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC804C34114;
-        Thu, 16 Jun 2022 12:30:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655382604;
-        bh=7Znl3b92aroi5ubP2QPuFHtUeB1lmREHe3yTZnLMKio=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KMYhbB4MGHuQC7Z7rXOsc2FXhm6jOgJDQRBz44Z8dcYeoscvlfWLHXSfXfOu68EQu
-         BoSKD2hDsNQOQK6jicDyREOSlXJrg6n8CXz79Vc7dXdOtFAU2eRbyR5GbKzsyHxzNi
-         t/Zlz3LGMch7uZaMNxdmHjingGmKLyS9M2YxTemFZBuK4E1zwzbxxiYUWHjcf4liR6
-         3A2ifUFhYkleDyAuQaW685HxWajaIcJ1Vaie+QK/2f68+TECqshItMI7aXiwRlgZTd
-         gl8Sm2UnRnBdg2Q3S5rUd0xAEC37GnKbcZdZRiFXXiRPepFplJ/duGh0Argx9ybpb5
-         L3VcbWVU3R6rQ==
-Date:   Thu, 16 Jun 2022 14:29:57 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Corey Minyard <minyard@acm.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: Re: [PATCH v7 3/3] i2c: aspeed: Assert NAK when slave is busy
-Message-ID: <YqsiRW78NAL9rX9S@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Quan Nguyen <quan@os.amperecomputing.com>,
-        Corey Minyard <minyard@acm.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-References: <20220422040803.2524940-1-quan@os.amperecomputing.com>
- <20220422040803.2524940-4-quan@os.amperecomputing.com>
- <Yn+9QBoPdH8fMm/m@shikoro>
- <fc422a06-c035-f6e5-231b-74ea6afe8467@os.amperecomputing.com>
- <YqpB8A2uBi+4epHM@shikoro>
- <bf001ece-e981-3a06-53fe-6a8b637d69fe@os.amperecomputing.com>
+        with ESMTP id S229666AbiFPMom (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 08:44:42 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2081.outbound.protection.outlook.com [40.107.237.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4A6DFC4;
+        Thu, 16 Jun 2022 05:44:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=K8GwtpKPpCUpBno9Cj1arWMVZCv143LC5VdKG18DKlMWL0Q3jLEsRpk/KBjKnymgosHRXib2O02PMAPYgIDfAwWuz3H6oXnqEeXNjdGXUT54G8aw0CMpYOiQZTFQRAmEDV5I3IKq0F/EnlGBRnnrEVGyi07zdjoqk4qluiin9XZcPQOtir9nx+O0T1Qra9oKuz4DQvUjKO6Kv9T5OLn1MJWirqHKOvZ6YXuf4dJXDxvD79a85NY5tSiFLDE+ni3GOopDxAHW8mrT+T0Ud8ftQb34z31SfVh7/Hy6JwNhmEoWkUAwfnFc96oI0viVruhSiwHwK2QaPZHKNSn7HnTC+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZNenaDrZYEkFAQHcjYIh7L2D9Wouh6uO2jzRMK+XK/A=;
+ b=dgSDGMfj3i0tbu5SLtWsI3iBVxaRazE87bsNtS+CJPZFtBTrftVKUqCHCqieQf9b3EGr5wtP83DDGpRxcjoit1Zxul0AMVUcdoDjJNxM0jgIuKQNesuDCaspggrbn0U+x/52Vho7OqvZ8v17nicY3r7wcbZynzTBD8uUnU7UT40PbwdQOfnwYv2pyGi55akNkjuQp8TCZxh/dINhN+vlcv03YQuhkFYtlCtM+qoLrgTjjLwoJ+PKDGbpJQEtnBwk/byLRsXY5OaiB0KJuY/n5nIjFvgAIZN9H6XdBbg/QICBD52+A6aNgEyo8USBBoUJhgMqjZzcKs0VLcDCvLEBhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZNenaDrZYEkFAQHcjYIh7L2D9Wouh6uO2jzRMK+XK/A=;
+ b=h6VHhzbfaigqNUiPGqaYbtulBIf+dEcpcoNKQrLXY5AisV21HuIzXcy8NpTkACtOesrCHT+BFNxERLAq1UfiSrNWtBJOhb7P5yB16hwZOEGFFAy74zC0BsUyl9XaveM3xNVfnWSr29HW8bMOy2uf5l73/r2FDnW8hXii3c3/r4w=
+Received: from DS7PR05CA0102.namprd05.prod.outlook.com (2603:10b6:8:56::22) by
+ SN1PR02MB3904.namprd02.prod.outlook.com (2603:10b6:802:27::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5332.13; Thu, 16 Jun 2022 12:44:35 +0000
+Received: from DM3NAM02FT013.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:8:56:cafe::65) by DS7PR05CA0102.outlook.office365.com
+ (2603:10b6:8:56::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.9 via Frontend
+ Transport; Thu, 16 Jun 2022 12:44:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com; pr=C
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ DM3NAM02FT013.mail.protection.outlook.com (10.13.5.126) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5353.14 via Frontend Transport; Thu, 16 Jun 2022 12:44:35 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 16 Jun 2022 05:44:34 -0700
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Thu, 16 Jun 2022 05:44:34 -0700
+Envelope-to: linux-pci@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ lorenzo.pieralisi@arm.com,
+ bhelgaas@google.com,
+ robh@kernel.org
+Received: from [10.140.9.2] (port=44392 helo=xhdbharatku40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <bharat.kumar.gogada@xilinx.com>)
+        id 1o1orS-000Aiu-1j; Thu, 16 Jun 2022 05:44:34 -0700
+From:   Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
+To:     <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <michals@xilinx.com>, <robh@kernel.org>,
+        Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
+Subject: [PATCH v5 0/2] Add support for Xilinx Versal CPM5 Root Port
+Date:   Thu, 16 Jun 2022 18:14:27 +0530
+Message-ID: <20220616124429.12917-1-bharat.kumar.gogada@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="XXmZpPF7iOB6E+2/"
-Content-Disposition: inline
-In-Reply-To: <bf001ece-e981-3a06-53fe-6a8b637d69fe@os.amperecomputing.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a2f98e52-57e9-4aad-2618-08da4f95f7ba
+X-MS-TrafficTypeDiagnostic: SN1PR02MB3904:EE_
+X-Microsoft-Antispam-PRVS: <SN1PR02MB390402E3D96751A41788E884A5AC9@SN1PR02MB3904.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vQ2MI3qjSL7LBKZyUO5Cw2IloMq6WBOT6jvHRcDYoLMXPI+COx0Mttjpx7p/N9wqL3mIZ5rj98Zj4j2xwzO+NZ5BWOOIlt/DttBsRhMojuRdB8sUCoeUEYmFeP4mtFHmcuWeE14xtedOi3Cd4AwxaMnxDxb4WOoO+Jwi2/ow8xOhiQWWjL2LrAfXduJC4iE6O8VjZl36IXHpJ4JGZODjAyTDf5p74j04gStNcdeLPRca6nhCbVus1oer2o0MG0lXNDvtm6rRzlg+TQpIuzoc04Dk+rJV647P8ScusqexDe6PK1y+4kBOR8x1ddIvSZX/XN+ete7RjxjnOC8JMMvUGah3dnEiBTYPxJoMJg7vZYLdQZ3MvJ6KO+21LiEbsY1HA61yJ5vTiVHZ/EsbvNvfOB4hJubo7boQlHHUWSDwXAR/Njjt0VP5MPpZrLrLOGtXjPP3Cv799nDH4PMOnXaSQICeqDTwrnXu/Uu0fkm26BiKzExJ3Ts76PZeHIe70yhPrx+WD1ZWCf6CLHzk0GX3LGLtB1EIjOqep51VTi0b4CG6kvcDVtnBWdp8f9wFXUql91zlQ0HB7ynqMbiqCbwT0KoS1d7NvaC/GpAkwESF/+x6OB0VLAcEPgsSWoVKteqrHTHQx/wFsXU2ss14ScXZ12A2FBnIsOg9L+uqKM4JO6wRlpJGBqmPpPoNzXzWwOh7EDil6lOppbDLQZlQ6QclMw==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230016)(4636009)(36840700001)(46966006)(40470700004)(110136005)(2616005)(70206006)(83380400001)(7696005)(356005)(8676002)(4326008)(316002)(70586007)(82310400005)(107886003)(426003)(9786002)(1076003)(5660300002)(336012)(8936002)(26005)(186003)(47076005)(7636003)(508600001)(2906002)(6666004)(36756003)(36860700001)(103116003)(54906003)(4744005)(40460700003)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2022 12:44:35.0302
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a2f98e52-57e9-4aad-2618-08da4f95f7ba
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT013.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR02MB3904
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Xilinx Versal Premium series has CPM5 block which supports Root Port
+functioning at Gen5 speed.
 
---XXmZpPF7iOB6E+2/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Xilinx Versal CPM5 has few changes with existing CPM block.
+- CPM5 has dedicated register space for control and status registers.
+- CPM5 legacy interrupt handling needs additonal register bit
+  to enable and handle legacy interrupts.
 
-Hi Quan,
-
-> On the first occurrence of I2C_SLAVE_WRITE_REQUESTED, the address is alre=
-ady
-> received with ACK. So if slave return -EBUSY, the NAK will occur on the n=
-ext
-> Rx byte (on I2C_SLAVE_WRITE_RECEIVED event).
-
-This is exactly why I2C_SLAVE_WRITE_RECEIVED allows for an error code.
-=46rom the docs:
-
-=3D=3D=3D
-
-* I2C_SLAVE_WRITE_RECEIVED (mandatory)
-
-  'val': bus driver delivers received byte
-
-  'ret': 0 if the byte should be acked, some errno if the byte should be na=
-cked
-
-Another I2C master has sent a byte to us which needs to be set in 'val'. If=
- 'ret'
-is zero, the bus driver should ack this byte. If 'ret' is an errno, then th=
-e byte
-should be nacked.
-
-=3D=3D=3D
-
-'ret' is used to ACK/NACK the current byte in 'val'. That's exactly what
-you need, or? Does the aspeed driver not support acking the current
-byte?
+Changes in v5:
+- Added of_device_get_match_data to identify CPM version.
 
 
---XXmZpPF7iOB6E+2/
-Content-Type: application/pgp-signature; name="signature.asc"
+Bharat Kumar Gogada (2):
+  dt-bindings: PCI: xilinx-cpm: Add Versal CPM5 Root Port
+  PCI: xilinx-cpm: Add support for Versal CPM5 Root Port
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/pci/xilinx-versal-cpm.yaml       | 48 ++++++++++++--
+ drivers/pci/controller/pcie-xilinx-cpm.c      | 62 ++++++++++++++++++-
+ 2 files changed, 103 insertions(+), 7 deletions(-)
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKrIkEACgkQFA3kzBSg
-KbasSRAAnlwPKEfQRtRslfq95yxrYXbK6A2BATY1x3Thu50cFfbarxu+e7KMBRtt
-GXFMJrp6wZaXio1xyqtc34OmNOFnZXpPUN6jClpYG04GMaJ4kZCC9F2gNmiTEE0y
-RrL7ujffpI6IP4TGFP8SRuxHCJiNRN8KdGdGepah5J6r+y3AnMoaOFwmD9ha/ItQ
-nhVcPtEPTF/JKbP0st9jr4EIvjLGEi3f+HWuzUwio/MaC/OFRjmzgw9Zwbu0qY1X
-YoqHBh9SmbNwPcI/Enp54kjyWScxnWhtY3SEOY7bsdguBLGL4MWlsYGQOIeDxlen
-Io/4k5V4Iw5S7oBAcN7YLin2knRiTgyY/IHGlA4G+UbDhH7VbCRVgJ+EE9HsaEHy
-iBN/o3YtN6QmmM1DLYrZY3S4JlLFARhNNdCb6Im4+HGMWAP+3t0vBOJEYBH+/0or
-v1Xv3/bzlHkniG0EtOKfVWLCmSLpFA97p2T98KPBFx5K3NTV42+G9hao529crYtD
-JtLUDJYXKYxs5CdmX4tvpQzBET+GB/NbyzMiFOUJzkydVuOBOpMMRN80GTdbJTOc
-9legjiqnXk797FKiB5zhApNH6UQ8HSmsja5Mr+Jhyi5lr52zZCj0bUJD+rP5Nz2c
-SlNDdUkpNr6Pxkklt/bLg8R0L/Y75gQ2PWPWjOJSaK6JM3tdArg=
-=B2+q
------END PGP SIGNATURE-----
+-- 
+2.17.1
 
---XXmZpPF7iOB6E+2/--
