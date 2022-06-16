@@ -2,206 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F35854E809
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 18:48:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1263254E848
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 19:02:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377539AbiFPQs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 12:48:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47538 "EHLO
+        id S1346366AbiFPRCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 13:02:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378477AbiFPQsb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 12:48:31 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70077.outbound.protection.outlook.com [40.107.7.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0FC3483AC;
-        Thu, 16 Jun 2022 09:48:28 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X3pF1nFsL73cCnCNLKVqKC+FfUaS+7Dc1BQg9vVC9ufHN4Ha/zNNpsSujCldRwS99fNlxdOCXmFPQcdxEey2EViNT74Y5RelkFEeIxyCJsxlGVUNbZRWBUHZAQzEY9twChZqTTmGhO4uYmtIfZe+yQ3StdvmpDVneVzq9Mp4nYIM3bE8X6TBkq0ZMebn1EysudlQehz7CQSFZldL5Z7IRxZP/H/jSlo6LXNDKNrDhkmoZwDIaAEINw4aADBZGaVdX9diZ4q7kHVLrny44lYURYt3rimpyMykGvc48NeE5qCZzyscEiI0XQkkSAini0mYZF+vB/VxSYHFfz20SNQevw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X8GLwX1DMh9D0ebaKutVwV0uBbWg3yNF1zumBUrTZ2Y=;
- b=UtZR6VuONtouOR4r/bY2xOYxOBod20ZfaGnFlcMs5APuFb3NlFcASCDvspouKn0wEj72fAAJnzZPDhNuClG3VolfebxHp6i5GX9N73AdRZFm0bn9uKhmwRALwAGFh9aewvbf85eSQI9Z1KhFHAh40bzXhm8fXVzMePnyF0UOSvih+ASj8E6T1tcITHD/Ql8UgfhKR9+bpg6/BxEynmM4gSZ/s7cJD0AtpAgOGu78ppc+cbtT8n9P2y8dZjIVEHLT/xrDi2Zl3GktfMnTb7sGvyIVjTwzOz2x9dzr2rrmlgDs5/5pwLgMOGkrYeuztLvLPEDrynAoyIOsPN3cmIzRIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X8GLwX1DMh9D0ebaKutVwV0uBbWg3yNF1zumBUrTZ2Y=;
- b=CY3XOD3nBQYJQ30SmVKNz+NlsStYfM4t170NKPZ8JYgE5YjwR9UUZowWFZGbyWBbWs1HEmDqYjRKby5PVFGyxOwg7ASJLqobMhq8YPq8OORX2dbhiEJGV3rMWwlaeEoJGbBvEzizm1qeaYFjQSoYUavNOSwi16OILVvTd3ZsxqQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB5005.eurprd04.prod.outlook.com (2603:10a6:803:57::30)
- by AM8PR04MB7939.eurprd04.prod.outlook.com (2603:10a6:20b:241::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.22; Thu, 16 Jun
- 2022 16:48:25 +0000
-Received: from VI1PR04MB5005.eurprd04.prod.outlook.com
- ([fe80::7505:2581:368f:5619]) by VI1PR04MB5005.eurprd04.prod.outlook.com
- ([fe80::7505:2581:368f:5619%5]) with mapi id 15.20.5353.015; Thu, 16 Jun 2022
- 16:48:25 +0000
-Date:   Thu, 16 Jun 2022 19:48:13 +0300
-From:   Viorel Suman <viorel.suman@nxp.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Liu Ying <victor.liu@nxp.com>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        Peng Fan <peng.fan@nxp.com>, Shijie Qin <shijie.qin@nxp.com>,
-        Ming Qian <ming.qian@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     LnxNXP@nxp.com
-Subject: Re: [PATCH v4 00/14] dt-bindings: arm: freescale: Switch fsl,scu
- from txt to yaml
-Message-ID: <20220616164813.jf6og7d4wf25xx4w@fsr-ub1664-116>
-References: <20220615105834.743045-1-viorel.suman@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220615105834.743045-1-viorel.suman@nxp.com>
-X-ClientProxiedBy: AM0PR03CA0098.eurprd03.prod.outlook.com
- (2603:10a6:208:69::39) To VI1PR04MB5005.eurprd04.prod.outlook.com
- (2603:10a6:803:57::30)
+        with ESMTP id S1348065AbiFPRCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 13:02:34 -0400
+Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F218F4924C;
+        Thu, 16 Jun 2022 10:02:26 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mail.sberdevices.ru (Postfix) with ESMTP id D1E4E5FD03;
+        Thu, 16 Jun 2022 20:02:23 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1655398943;
+        bh=c8nGHSoCYKivIqQ2DHZGOgnkq8MRyBYS9rcB3G6l1og=;
+        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
+        b=lraNj3hbANOZtyyp9vN1jcz9gbXumsTAbW7rdcBSZ0rU3BWwT6DZO+4StTQ6Xxyq4
+         sP19lwbFtAIblYisGpjBYYNFxNK9DTw31cKH+RlrWGQrNDuYCtuqw/45DN2bYRzPJ4
+         uScEJEZ2ICBPrPaoIsYAIjNZhyGXN7i0cXvqeFErDRSMjQq6wDisfrotcDEHOmcN3E
+         l9saVFO1jiXpzG27CcsMi4f88lHAL4bM5/awLnRe7pM145mZzOozjbG8elrHm/DmAc
+         Mg3z2/4j0Gdjl9TiAbJvgknDrqmxqOxMijOIxJ5jB+HDzV16+S+pXp+BcQbj8XcO4y
+         +8uXu9LBCjldw==
+Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
+        by mail.sberdevices.ru (Postfix) with ESMTP;
+        Thu, 16 Jun 2022 20:02:23 +0300 (MSK)
+From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "stephan@gerhold.net" <stephan@gerhold.net>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
+ driver
+Thread-Topic: [PATCH v3 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
+ driver
+Thread-Index: AQHYgW2+up0uMWdZgUWEAW/5cCPkBq1RwVQAgABPMQA=
+Date:   Thu, 16 Jun 2022 17:02:08 +0000
+Message-ID: <20220616170218.dihjli46spimozeg@CAB-WSD-L081021.sigma.sbrf.ru>
+References: <20220616104211.9257-1-ddrokosov@sberdevices.ru>
+ <20220616104211.9257-3-ddrokosov@sberdevices.ru>
+ <CAHp75Vc0+ckNnm2tzLMPrjeFRjwoj3zy0C4koNShFRG3kP8b6w@mail.gmail.com>
+In-Reply-To: <CAHp75Vc0+ckNnm2tzLMPrjeFRjwoj3zy0C4koNShFRG3kP8b6w@mail.gmail.com>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.1.12]
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <F15C7B2110EABF4AB31F523C4E5315CF@sberdevices.ru>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cd4a935e-9266-4210-f257-08da4fb807ca
-X-MS-TrafficTypeDiagnostic: AM8PR04MB7939:EE_
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-Microsoft-Antispam-PRVS: <AM8PR04MB793934D2FEDE7F3DD89A3BCD92AC9@AM8PR04MB7939.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iZhMPZyWJlyqkWiASHjXLA0cfVnaseDcGiafRe8C7RMoR+VODqWrdAZ4qNZAXFIZ4p9BIy1lg0wxUYeY0HKQhS3pMWRyLPFrxd/B8sxpKhjoQNkMktKdhi3CtrDWluMWW/dt1jq78IwxizYkLQXAy/yD8FjMk6XZl6nzog4IO1Yrob/tEOvDiSW6BGTsI1KCgznDIoOAHoCaGkK4hSzMCh57Bu33/72ylT+5AOLAEl9XQXW7tatdzwlLAoMr7pmu2xAD3d9IBN2CfCGvJj0odGkFwcICelLtfc7IJf0YNsTefQTZCWAdgbHVKKVgWgvgNW60dZtDR+66udBrRVQ1cdHwl/KA+E4qZcVUTU/TUgjmx91kI+V70jogUFTaCUogGlXjO4xO5x9sVbT1cusDvaqN9CjG0dHyi4mL5Oiax75ujW9rPJjENrbJ/bEg89akvVCHheJsutkxdMUv+EmLKxN797iYbpoPjJA0mi+3LDGsjbt6ZRBW08kyLevRD01/fPH4OfbZsqLx9wfZXSMomEY8HUGBrdAnfV0IFWvl26C0KLjrqosPuKUgroi0U7hZpptQ8TmGDIZXqbKxjcHGRAoBCphgCCKdqSyKRBeI89TbSe+wzbylR/3dYBecGYSGfRwOUGNJsOrfB8Uxr/zGuO18Uox+J3nHRVw6fBXTNKjvzFXYzViO7U3pVx1ii1GuAuksSTelUtwDGUIawmCDgaKLYXZcWDFEkfpRw1Tf355P2EYtF5g/gcyUJ+gYJT88BzfbipTBGkVYEJarXrwLUmie2n60DLj0iraF7ebBUvs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5005.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(7916004)(366004)(38100700002)(186003)(38350700002)(1076003)(921005)(86362001)(33716001)(83380400001)(8936002)(316002)(8676002)(110136005)(66946007)(4326008)(66476007)(66556008)(26005)(6486002)(966005)(5660300002)(52116002)(6506007)(53546011)(6512007)(44832011)(508600001)(6666004)(9686003)(2906002)(7406005)(7416002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?AzkXtBI48EgDzpE/JJvxYCzZM4sjGdzdBQ8hsgAbFfHYnIJEooLjqOle0xja?=
- =?us-ascii?Q?+OI/FLb3lUvB338I22+gq5LYZlLZBCUf1Hk2oorsXafGJZqhyopVKWjP0bET?=
- =?us-ascii?Q?WCOQHMzoh+1qmGU/dOPB+0VszgXqD1NJpibuctU3lVslS35EOJOFNwduRIgG?=
- =?us-ascii?Q?SRHVGX9mMnLVW30IHOz3MuUQ6s/S5zAFBtHjDouJ9/ZUqWU+vSw9wxtq0D+q?=
- =?us-ascii?Q?GIFJvCm4OaE7AB5tLiu2Smu9vu+Cg2ulQ7BQcQrjXw6gxFj1Y6tMic70WLzi?=
- =?us-ascii?Q?Dw90u6Zkc5Wf3aNOFVgGWGS9P/OUE8mB4NzywYHAjX6CS4jIv3YB82vsTgmS?=
- =?us-ascii?Q?ohbAtg9hDInm8z696/EILwky6IVQ/zKedVZUoKI8e03dqj5ZcvjT6dwrlVTL?=
- =?us-ascii?Q?d+enNyowkr1PEzZQntN4O/UX9X1CFLEfXNxgRolC1bqfMUEcanLv1kMCA7DV?=
- =?us-ascii?Q?WEYJ0dxpyvcoDa+4GBsnQoK+fibxh0afhSHIYPY+ydZTerhiaW6Tlo+v7R1i?=
- =?us-ascii?Q?HBFx7/BlzjlAe7H5x5qBat8SktNBJJjBlbs8mPAT958vqIugOOim+J1eYLwk?=
- =?us-ascii?Q?XX3VQ5eeJ79XIc6k8l1QDF5u8nKkZrWhRd5J6jZcFxLdlzzg2YYaKcj6bg3h?=
- =?us-ascii?Q?w5XY1C19OhcCTi3lMp3IgibJyfdGgOVaK+kmat11zJgzzRo7v+chU8PxdUTN?=
- =?us-ascii?Q?blOsWOsiVWV1TNKVOEDSUWBJjhmp4C8zZrNtGGg2YONlQuKy9YHeX4FziFeJ?=
- =?us-ascii?Q?c0nNv7NcksD0imi1bp5tpHqekKwMql85GCVZ3mbSK5YVcZU4VrJ9dez7GRn5?=
- =?us-ascii?Q?lnAKH353VxUcyf1gHa34++p0hQSEdPnzJQ2Nul+fM2gzQX+erYhmFvGeuGIy?=
- =?us-ascii?Q?h9MFQjX73Lz8DEGkreJSvb2Hxt2JN8sBHoLkTAzLz9/gTFgEIACg+wLcRbN+?=
- =?us-ascii?Q?kkIB7kkEZOccXtI/2uY1ok01VF8Nfnh+7Dzn+3jptpylWO26bLn04VGi+HWJ?=
- =?us-ascii?Q?LCEqD9x6CHT1quSSJwZOIOiuLVPouOA9kmQl5muC7WORMnrnKe3Fu8LmuTvU?=
- =?us-ascii?Q?/epKc3iWH/9+QI4JJv+eQwQANk7KJap5S6Vp6nkmYTLP5muV/dFnV8p4Tiit?=
- =?us-ascii?Q?Ux3weJ913JLG352FX9NnKYgV+taSyUMntx24PgD8OwHfXZ+uWWvplI4uTn1Z?=
- =?us-ascii?Q?NzRje0/IDkrOPlWcAmwuMCPkqf4TdB2/yfKzfBzt7FfTofgzDzl5BJKK2r3w?=
- =?us-ascii?Q?selfy+W1xQkLI0gvxJbVSy8BaUMF3LPUPpFl2lqSnfWWKAmw19INVhkmOh4C?=
- =?us-ascii?Q?wIUz19x2TxlRKeemHFvtrrQTgyvyKJyZlgaKs1nEYCV+WqEdhGV8Gou1Gtr/?=
- =?us-ascii?Q?DccPyqrmBI+Q89zFPXDqB5M3UkAl1Jtgv253K6XxkukbzVfW2iWr3yha9avB?=
- =?us-ascii?Q?I4RvF2M3PX5UzY6ph+ZO9Gwz4a2p7yRZ8LQrEI7fD7gJlCiu8i402r4dZy6o?=
- =?us-ascii?Q?9lkRWKpXAKusHrA4r41J4HInLFQA5lhD+V9Y9OdhSP4o/FG2ATF07ohnFlhf?=
- =?us-ascii?Q?3aWVxPgqXM0xMio+emf0obk842NtfArz0JQBvpaiPu6ssbzgOWTxhnPRA3no?=
- =?us-ascii?Q?s5hjO98OfGVGL38omcHd2IEDcHp8Xm517CrJY8U22eVXNOOnHFhrgx9cXyzt?=
- =?us-ascii?Q?zeGVpGpQvKuJGeKraqzdxpz9D7ZoQLPUs15kFL6ENUEM4/vo4ua8J4lArfbN?=
- =?us-ascii?Q?kue2f5uIRw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd4a935e-9266-4210-f257-08da4fb807ca
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5005.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2022 16:48:25.2632
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: N6F8yQ9XSRHwbhApbCcRQ0p63k+fGOW8o/EKFbSIQ/HPEIEK6G7fz6rvCATbo2TF9Y+tDjRm77hgpryIi9+v2w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7939
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/06/16 07:44:00 #19785775
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All, please ignore this patchset. Sent V5 for review.
+Hello Andy,
 
-Thanks,
-Viorel
+Thank you for the quick review. Please find my comments below.
 
-On 22-06-15 13:58:20, Viorel Suman wrote:
-> Here is the v3:
->   https://lore.kernel.org/lkml/20220609143423.2839186-1-abel.vesa@nxp.com/
-> 
-> Changes since v3:
->   * Examples included
->   * Included Abel's patches fixing thermal zone, keys and power controller names.
-> 
-> Abel Vesa (14):
->   arm64: dts: freescale: imx8qxp: Fix thermal zone name for cpu0
->   dt-bindings: clk: imx: Add fsl,scu-clk yaml file
->   dt-bindings: pinctrl: imx: Add fsl,scu-iomux yaml file
->   dt-bindings: input: Add fsl,scu-key yaml file
->   dt-bindings: nvmem: Add fsl,scu-ocotp yaml file
->   dt-bindings: power: Add fsl,scu-pd yaml file
->   dt-bindings: rtc: Add fsl,scu-rtc yaml file
->   dt-bindings: thermal: Add fsl,scu-thermal yaml file
->   dt-bindings: watchdog: Add fsl,scu-wdt yaml file
->   dt-bindings: firmware: Add fsl,scu yaml file
->   arm64: dts: freescale: imx8: Fix power controller name
->   arm64: dts: freescale: imx8qxp: Add fallback compatible for clock
->     controller
->   arm64: dts: freescale: imx8qxp: Fix the keys node name
->   dt-bindings: arm: freescale: Remove fsl,scu txt file
-> 
->  .../bindings/arm/freescale/fsl,scu.txt        | 271 ------------------
->  .../bindings/clock/fsl,scu-clk.yaml           |  58 ++++
->  .../devicetree/bindings/firmware/fsl,scu.yaml | 170 +++++++++++
->  .../bindings/input/fsl,scu-key.yaml           |  39 +++
->  .../bindings/nvmem/fsl,scu-ocotp.yaml         |  49 ++++
->  .../bindings/pinctrl/fsl,scu-pinctrl.yaml     |  47 +++
->  .../devicetree/bindings/power/fsl,scu-pd.yaml |  41 +++
->  .../devicetree/bindings/rtc/fsl,scu-rtc.yaml  |  28 ++
->  .../bindings/thermal/fsl,scu-thermal.yaml     |  38 +++
->  .../bindings/watchdog/fsl,scu-wdt.yaml        |  35 +++
->  arch/arm64/boot/dts/freescale/imx8qm.dtsi     |   2 +-
->  arch/arm64/boot/dts/freescale/imx8qxp.dtsi    |   8 +-
->  12 files changed, 510 insertions(+), 276 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/fsl,scu-clk.yaml
->  create mode 100644 Documentation/devicetree/bindings/firmware/fsl,scu.yaml
->  create mode 100644 Documentation/devicetree/bindings/input/fsl,scu-key.yaml
->  create mode 100644 Documentation/devicetree/bindings/nvmem/fsl,scu-ocotp.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml
->  create mode 100644 Documentation/devicetree/bindings/power/fsl,scu-pd.yaml
->  create mode 100644 Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml
->  create mode 100644 Documentation/devicetree/bindings/thermal/fsl,scu-thermal.yaml
->  create mode 100644 Documentation/devicetree/bindings/watchdog/fsl,scu-wdt.yaml
-> 
-> -- 
-> 2.25.1
-> 
+On Thu, Jun 16, 2022 at 02:18:52PM +0200, Andy Shevchenko wrote:
+> On Thu, Jun 16, 2022 at 12:42 PM Dmitry Rokosov
+> <DDRokosov@sberdevices.ru> wrote:
+
+...
+
+> > +enum msa311_fields {
+> > +       F_SOFT_RESET_I2C, F_SOFT_RESET_SPI,
+> > +
+> > +       F_ORIENT_INT, F_S_TAP_INT, F_D_TAP_INT, F_ACTIVE_INT, F_FREEFAL=
+L_INT,
+> > +
+> > +       F_NEW_DATA_INT,
+> > +
+> > +       F_TAP_SIGN, F_TAP_FIRST_X, F_TAP_FIRST_Y, F_TAP_FIRST_Z, F_ACTV=
+_SIGN,
+> > +       F_ACTV_FIRST_X, F_ACTV_FIRST_Y, F_ACTV_FIRST_Z,
+> > +
+> > +       F_ORIENT_Z, F_ORIENT_X_Y,
+> > +
+> > +       F_FS,
+> > +
+> > +       F_X_AXIS_DIS, F_Y_AXIS_DIS, F_Z_AXIS_DIS, F_ODR,
+> > +
+> > +       F_PWR_MODE, F_LOW_POWER_BW,
+> > +
+> > +       F_X_POLARITY, F_Y_POLARITY, F_Z_POLARITY, F_X_Y_SWAP,
+> > +
+> > +       F_ORIENT_INT_EN, F_S_TAP_INT_EN, F_D_TAP_INT_EN, F_ACTIVE_INT_E=
+N_Z,
+> > +       F_ACTIVE_INT_EN_Y, F_ACTIVE_INT_EN_X,
+> > +
+> > +       F_NEW_DATA_INT_EN, F_FREEFALL_INT_EN,
+> > +
+> > +       F_INT1_ORIENT, F_INT1_S_TAP, F_INT1_D_TAP, F_INT1_ACTIVE,
+> > +       F_INT1_FREEFALL,
+> > +
+> > +       F_INT1_NEW_DATA,
+> > +
+> > +       F_INT1_OD, F_INT1_LVL,
+> > +
+> > +       F_RESET_INT, F_LATCH_INT,
+> > +
+> > +       F_FREEFALL_MODE, F_FREEFALL_HY,
+> > +
+> > +       F_ACTIVE_DUR,
+> > +
+> > +       F_TAP_QUIET, F_TAP_SHOCK, F_TAP_DUR,
+> > +
+> > +       F_TAP_TH,
+> > +
+> > +       F_ORIENT_HYST, F_ORIENT_BLOCKING, F_ORIENT_MODE,
+> > +
+> > +       F_Z_BLOCKING,
+> > +
+> > +       F_MAX_FIELDS,
+>=20
+> Not sure why you put those blank lines herey, it makes code not compact.
+>=20
+
+Here I use blank lines to split fields from different registers.
+In other words, in the msa311_fields enum one line contains fields from one
+register. But for some heavy registers (like TAP_ACTIVE_STS) we have so man=
+y
+fields and their declaration doesn't fit to 80 symbols.
+So I've made a decision to split registers using blank lines.
+
+...
+
+> > +struct msa311_priv {
+>=20
+> > +       struct i2c_client *i2c;
+>=20
+> Not sure you need this. Dropping i2c dependency from this structure
+> allows much easier to add, e.g. SPI support of the same hardware.
+>=20
+
+Mainly I use i2c pointer in the probe() path, and you are right, we can
+change i2c pointer to dev and generalize msa311_priv struct from bus
+perspective.
+
+> > +       struct mutex lock; /* state guard */
+> > +
+> > +       struct iio_trigger *new_data_trig;
+> > +
+> > +       struct regmap *regs;
+>=20
+> I believe this is used most, so making this a first member in the
+> structure saves  some instructions (check with bloat-o-meter).
+>=20
+
+Are you talking about archs where offset calculation adds more bytes to
+instruction? And when offset equals to 0, we can save some space.
+
+...
+
+> > +       struct regmap_field *fields[F_MAX_FIELDS];
+> > +};
+>=20
+> ...
+>=20
+> > +       wait_ms =3D (USEC_PER_SEC * MSEC_PER_SEC) / freq_uhz;
+>=20
+> This looks very odd from a physics perspective: sec * sec * sec =3D=3D se=
+c ?!
+>=20
+> Perhaps you meant some HZ* macros from units.h?
+>=20
+
+I suppose because of UHZ calculation I have to use NANO instead of
+USEC_PER_SEC in the following line:
+
+	freq_uhz =3D msa311_odr_table[odr].val * USEC_PER_SEC +
+		   msa311_odr_table[odr].val2;
+
+But below line is right from physics perspective. 1sec =3D 1/Hz, so
+msec =3D (USEC_PER_SEC / freq_uhz) * MSEC_PER_SEC:
+
+	wait_ms =3D (USEC_PER_SEC * MSEC_PER_SEC) / freq_uhz;
+
+Or do you mean that I should change MSEC_PER_SEC to just MILLI?
+
+> > +       err =3D -EINVAL;
+> > +       mutex_lock(&msa311->lock);
+> > +       for (odr =3D 0; odr < ARRAY_SIZE(msa311_odr_table); ++odr)
+> > +               if (val =3D=3D msa311_odr_table[odr].val &&
+> > +                   val2 =3D=3D msa311_odr_table[odr].val2) {
+> > +                       err =3D msa311_set_odr(msa311, odr);
+>=20
+> > +                       if (err) {
+> > +                               dev_err(dev, "cannot update freq (%d)\n=
+", err);
+> > +                               goto failed;
+> > +                       }
+>=20
+> Why is this inside the loop and more important under lock? Also you
+> may cover the initial error code by this message when moving it out of
+> the loop and lock.
+>=20
+> Ditto for other code snippets in other function(s) where applicable.
+>=20
+
+Yes, I can move dev_err() outside of loop. But all ODR search loop
+should be under lock fully, because other msa311 operations should not
+be executed when we search proper ODR place.
+
+...
+
+> > +       mutex_lock(&msa311->lock);
+> > +       err =3D regmap_field_write(msa311->fields[F_NEW_DATA_INT_EN], s=
+tate);
+> > +       mutex_unlock(&msa311->lock);
+>=20
+> > +
+>=20
+> No need.
+>=20
+
+Sorry, I don't understand. We do not need to call it under lock, right?
+I think we have to wrap it by msa311 lock, because other msa311
+operations should not be executed when we enable or disable new data
+interrupt (for example ODR value changing or something else).
+
+> > +       if (err)
+> > +               dev_err(dev,
+> > +                       "cannot %s buffer due to new_data_int failure (=
+%d)\n",
+> > +                       state ? "enable" : "disable", err);
+>=20
+> str_enable_disable()
+>=20
+> ...
+>=20
+
+Kernel has solutions on all occasions :-)
+
+...
+
+> > +       /* TODO: send motion events if needed */
+>=20
+> Are you going to address all TODOs? If no, drop ones that you are not
+> going to address in the future, better to put into the top of the file
+> comment what is supported and what's not.
+>=20
+> ...
+>=20
+
+Yes, I plan to maintain this driver and implement all motion event,
+that's why I've placed TODO throughout the code.
+
+> > +       indio_dev->modes =3D INDIO_DIRECT_MODE; /* setup buffered mode =
+later */
+>=20
+> Leaving it 0 is probably better, it's a pity that we don't have
+> INDIO_NO_MODE_SET 0 there. However, I haven't checked if it's possible
+> to leave it unset like this.
+>=20
+> ...
+>=20
+
+I set INDIO_DIRECT_MODE by default, because this driver support noirq
+mode, when device tree doesn't have irq setup.
+
+...
+
+> > +       mutex_lock(&msa311->lock);
+> > +       err =3D msa311_set_pwr_mode(msa311, MSA311_PWR_MODE_NORMAL);
+> > +       mutex_unlock(&msa311->lock);
+>=20
+> > +
+>=20
+> No need.
+>=20
+
+Again I don't understand why, sorry. We do not want to get sporadic
+MSA311 attributes changing during power mode transition from another
+userspace process.
+
+--=20
+Thank you,
+Dmitry=
