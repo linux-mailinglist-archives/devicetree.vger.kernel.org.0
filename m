@@ -2,53 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9408054DEB6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 12:10:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 860F354DF26
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 12:32:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376366AbiFPKKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 06:10:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58294 "EHLO
+        id S1359661AbiFPKb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 06:31:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376384AbiFPKKJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 06:10:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DCB35D64F;
-        Thu, 16 Jun 2022 03:10:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D3D5F614E7;
-        Thu, 16 Jun 2022 10:10:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BED15C34114;
-        Thu, 16 Jun 2022 10:10:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1655374205;
-        bh=5Dv9JP3bXTE2uRf8zpfYaCIFCVrfFMzOlE7ggr6awAo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IYDHKbGAj2H3C7abExcrGg3XeVyxWJFBwZbj+e7U25ljTeS1lgsku/UdBOrtJb0y4
-         el7qE6m5ZwuK/cF75cI2QylFcHrU1bkD32jUColuY5DHgWdKitem53ILh90Fd6FQrZ
-         u2XniIJ0R5Pa4N5Be3F3keALqflYTtaOh7lV9u+k=
-Date:   Thu, 16 Jun 2022 12:10:02 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Sebastian Ene <sebastianene@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
-        Guenter Roeck <linux@roeck-us.net>,
-        kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v6 2/2] misc: Add a mechanism to detect stalls on guest
- vCPUs
-Message-ID: <YqsBeme1Vnzj5k7+@kroah.com>
-References: <20220616092737.1713667-1-sebastianene@google.com>
- <20220616092737.1713667-3-sebastianene@google.com>
+        with ESMTP id S229479AbiFPKbs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 06:31:48 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB2E5DBDB;
+        Thu, 16 Jun 2022 03:31:40 -0700 (PDT)
+X-UUID: f86f6d208259408db24098e161addd45-20220616
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:a9c58cc1-131c-476c-921a-9e04cf1d6f19,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:b14ad71,CLOUDID:7ec57bf6-e099-41ba-a32c-13b8bfe63214,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: f86f6d208259408db24098e161addd45-20220616
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 473049511; Thu, 16 Jun 2022 18:31:35 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Thu, 16 Jun 2022 18:31:34 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Thu, 16 Jun 2022 18:31:34 +0800
+Message-ID: <941ba5399e3cc9b25474d76d15d2bb5bafaa14b1.camel@mediatek.com>
+Subject: Re: [PATCH v11 02/12] drm/mediatek: dpi: move dpi limits to SoC
+ config
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 16 Jun 2022 18:31:34 +0800
+In-Reply-To: <5de2752a1d496290ea5c2c2d7840ba984b2e7e4d.camel@mediatek.com>
+References: <20220613064841.10481-1-rex-bc.chen@mediatek.com>
+         <20220613064841.10481-3-rex-bc.chen@mediatek.com>
+         <5de2752a1d496290ea5c2c2d7840ba984b2e7e4d.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220616092737.1713667-3-sebastianene@google.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_SCC_BODY_TEXT_LINE,
+        T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,52 +69,154 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 16, 2022 at 09:27:39AM +0000, Sebastian Ene wrote:
-> This driver creates per-cpu hrtimers which are required to do the
-> periodic 'pet' operation. On a conventional watchdog-core driver, the
-> userspace is responsible for delivering the 'pet' events by writing to
-> the particular /dev/watchdogN node. In this case we require a strong
-> thread affinity to be able to account for lost time on a per vCPU.
+On Tue, 2022-06-14 at 11:21 +0800, CK Hu wrote:
+> Hi, Bo-Chen:
 > 
-> This part of the driver is the 'frontend' which is reponsible for
-> delivering the periodic 'pet' events, configuring the virtual peripheral
-> and listening for cpu hotplug events. The other part of the driver
-> handles the peripheral emulation and this part accounts for lost time by
-> looking at the /proc/{}/task/{}/stat entries and is located here:
-> https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
+> On Mon, 2022-06-13 at 14:48 +0800, Bo-Chen Chen wrote:
+> > From: Guillaume Ranquet <granquet@baylibre.com>
+> > 
+> > Add flexibility by moving the dpi limits to the SoC specific
+> > config.
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Sebastian Ene <sebastianene@google.com>
-> ---
->  drivers/misc/Kconfig               |  12 ++
->  drivers/misc/Makefile              |   1 +
->  drivers/misc/vcpu_stall_detector.c | 222 +++++++++++++++++++++++++++++
->  3 files changed, 235 insertions(+)
->  create mode 100644 drivers/misc/vcpu_stall_detector.c
+> What does this 'limit' mean? Why it's different in DPI vs DP_INTF?
 > 
-> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> index 41d2bb0ae23a..9b3cb5dfd5a7 100644
-> --- a/drivers/misc/Kconfig
-> +++ b/drivers/misc/Kconfig
-> @@ -483,6 +483,18 @@ config OPEN_DICE
->  
->  	  If unsure, say N.
->  
-> +config VCPU_STALL_DETECTOR
-> +	tristate "VCPU stall detector"
-> +	select LOCKUP_DETECTOR
-> +	help
-> +	  Detect CPU locks on the virtual machine. This driver relies on the
-> +	  hrtimers which are CPU-binded to do the 'pet' operation. When a vCPU
-> +	  has to do a 'pet', it exits the guest through MMIO write and the
-> +	  backend driver takes into account the lost ticks for this particular
-> +	  CPU.
+> The hardware design is so weird. If the limit is fixed for DPI and
+> DP_INTF, why the hardware export register for software to assign any
+> value which may be wrong.
+> 
+> Regards,
+> CK
+> 
 
-which virtual machine framework is this for?  kvm?  xen?  hyperv?
-vmware?  something else?
+Hello CK,
 
-Specifics please...
+For RGB colorimetry, CTA-861 support both limited and full range data
+when receiving video with RGB color space.
 
-thanks,
+I will use drm_default_rgb_quant_range() to determine this and drop
+const struct mtk_dpi_yc_limit *limit;
 
-greg k-h
+BRs,
+Bo-Chen
+> > 
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > Reviewed-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
+> > Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> > ---
+> >  drivers/gpu/drm/mediatek/mtk_dpi.c | 25 ++++++++++++++++---------
+> >  1 file changed, 16 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > index e61cd67b978f..ce8c5eefe5f1 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > @@ -125,6 +125,7 @@ struct mtk_dpi_conf {
+> >  	bool edge_sel_en;
+> >  	const u32 *output_fmts;
+> >  	u32 num_output_fmts;
+> > +	const struct mtk_dpi_yc_limit *limit;
+> >  };
+> >  
+> >  static void mtk_dpi_mask(struct mtk_dpi *dpi, u32 offset, u32 val,
+> > u32 mask)
+> > @@ -235,9 +236,10 @@ static void mtk_dpi_config_fb_size(struct
+> > mtk_dpi *dpi, u32 width, u32 height)
+> >  	mtk_dpi_mask(dpi, DPI_SIZE, height << VSIZE, VSIZE_MASK);
+> >  }
+> >  
+> > -static void mtk_dpi_config_channel_limit(struct mtk_dpi *dpi,
+> > -					 struct mtk_dpi_yc_limit
+> > *limit)
+> > +static void mtk_dpi_config_channel_limit(struct mtk_dpi *dpi)
+> >  {
+> > +	const struct mtk_dpi_yc_limit *limit = dpi->conf->limit;
+> > +
+> >  	mtk_dpi_mask(dpi, DPI_Y_LIMIT, limit->y_bottom << Y_LIMINT_BOT,
+> >  		     Y_LIMINT_BOT_MASK);
+> >  	mtk_dpi_mask(dpi, DPI_Y_LIMIT, limit->y_top << Y_LIMINT_TOP,
+> > @@ -449,7 +451,6 @@ static int mtk_dpi_power_on(struct mtk_dpi
+> > *dpi)
+> >  static int mtk_dpi_set_display_mode(struct mtk_dpi *dpi,
+> >  				    struct drm_display_mode *mode)
+> >  {
+> > -	struct mtk_dpi_yc_limit limit;
+> >  	struct mtk_dpi_polarities dpi_pol;
+> >  	struct mtk_dpi_sync_param hsync;
+> >  	struct mtk_dpi_sync_param vsync_lodd = { 0 };
+> > @@ -484,11 +485,6 @@ static int mtk_dpi_set_display_mode(struct
+> > mtk_dpi *dpi,
+> >  	dev_dbg(dpi->dev, "Got  PLL %lu Hz, pixel clock %lu Hz\n",
+> >  		pll_rate, vm.pixelclock);
+> >  
+> > -	limit.c_bottom = 0x0010;
+> > -	limit.c_top = 0x0FE0;
+> > -	limit.y_bottom = 0x0010;
+> > -	limit.y_top = 0x0FE0;
+> > -
+> >  	dpi_pol.ck_pol = MTK_DPI_POLARITY_FALLING;
+> >  	dpi_pol.de_pol = MTK_DPI_POLARITY_RISING;
+> >  	dpi_pol.hsync_pol = vm.flags & DISPLAY_FLAGS_HSYNC_HIGH ?
+> > @@ -536,7 +532,7 @@ static int mtk_dpi_set_display_mode(struct
+> > mtk_dpi *dpi,
+> >  	else
+> >  		mtk_dpi_config_fb_size(dpi, vm.hactive, vm.vactive);
+> >  
+> > -	mtk_dpi_config_channel_limit(dpi, &limit);
+> > +	mtk_dpi_config_channel_limit(dpi);
+> >  	mtk_dpi_config_bit_num(dpi, dpi->bit_num);
+> >  	mtk_dpi_config_channel_swap(dpi, dpi->channel_swap);
+> >  	mtk_dpi_config_yc_map(dpi, dpi->yc_map);
+> > @@ -790,12 +786,20 @@ static const u32 mt8183_output_fmts[] = {
+> >  	MEDIA_BUS_FMT_RGB888_2X12_BE,
+> >  };
+> >  
+> > +static const struct mtk_dpi_yc_limit mtk_dpi_limit = {
+> > +	.c_bottom = 0x0010,
+> > +	.c_top = 0x0FE0,
+> > +	.y_bottom = 0x0010,
+> > +	.y_top = 0x0FE0,
+> > +};
+> > +
+> >  static const struct mtk_dpi_conf mt8173_conf = {
+> >  	.cal_factor = mt8173_calculate_factor,
+> >  	.reg_h_fre_con = 0xe0,
+> >  	.max_clock_khz = 300000,
+> >  	.output_fmts = mt8173_output_fmts,
+> >  	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
+> > +	.limit = &mtk_dpi_limit,
+> >  };
+> >  
+> >  static const struct mtk_dpi_conf mt2701_conf = {
+> > @@ -805,6 +809,7 @@ static const struct mtk_dpi_conf mt2701_conf =
+> > {
+> >  	.max_clock_khz = 150000,
+> >  	.output_fmts = mt8173_output_fmts,
+> >  	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
+> > +	.limit = &mtk_dpi_limit,
+> >  };
+> >  
+> >  static const struct mtk_dpi_conf mt8183_conf = {
+> > @@ -813,6 +818,7 @@ static const struct mtk_dpi_conf mt8183_conf =
+> > {
+> >  	.max_clock_khz = 100000,
+> >  	.output_fmts = mt8183_output_fmts,
+> >  	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
+> > +	.limit = &mtk_dpi_limit,
+> >  };
+> >  
+> >  static const struct mtk_dpi_conf mt8192_conf = {
+> > @@ -821,6 +827,7 @@ static const struct mtk_dpi_conf mt8192_conf =
+> > {
+> >  	.max_clock_khz = 150000,
+> >  	.output_fmts = mt8183_output_fmts,
+> >  	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
+> > +	.limit = &mtk_dpi_limit,
+> >  };
+> >  
+> >  static int mtk_dpi_probe(struct platform_device *pdev)
+> 
+> 
+
