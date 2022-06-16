@@ -2,66 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD46854DF75
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 12:49:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FFC454DF85
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 12:51:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231901AbiFPKtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 06:49:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36558 "EHLO
+        id S1376562AbiFPKvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 06:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229821AbiFPKtP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 06:49:15 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A2755DD00;
-        Thu, 16 Jun 2022 03:49:14 -0700 (PDT)
-X-UUID: 01466ab16e38484b9dc94e16ca5bd337-20220616
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:3d75f028-80d6-40a2-9770-74c0522d4ef7,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:b14ad71,CLOUDID:f4417cf6-e099-41ba-a32c-13b8bfe63214,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 01466ab16e38484b9dc94e16ca5bd337-20220616
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 107020473; Thu, 16 Jun 2022 18:49:08 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 16 Jun 2022 18:49:07 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 16 Jun 2022 18:49:07 +0800
-Message-ID: <b8a421b7f467ed8b9e08a778957e99544485fd4e.camel@mediatek.com>
-Subject: Re: [PATCH v11 11/12] drm/mediatek: dpi: Only enable dpi after the
- bridge is enabled
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 16 Jun 2022 18:49:07 +0800
-In-Reply-To: <9adfb4b98e505c10469395bf3038010024ab86fd.camel@mediatek.com>
-References: <20220613064841.10481-1-rex-bc.chen@mediatek.com>
-         <20220613064841.10481-12-rex-bc.chen@mediatek.com>
-         <9adfb4b98e505c10469395bf3038010024ab86fd.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1376484AbiFPKvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 06:51:44 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4337D5DE48;
+        Thu, 16 Jun 2022 03:51:43 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25GApV0d091863;
+        Thu, 16 Jun 2022 05:51:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655376691;
+        bh=AplBO2dgFdhgppnaG/hf43xYN+u1cgW5+n0ebc5nfVE=;
+        h=From:To:CC:Subject:Date;
+        b=kOEJ1RS3CrrLucyBb2DVRA8xRZHOrfUyNP6A3oEmzvifQsSdVJaBHcUcECoTqASQs
+         Omh3yNa7mxSOQDlEiwz747BBNU+M6z8xenBboo75itnCtJaxLDKazKKYF1Uji/NzM4
+         Fi8W0RAv513oGJp39FXzAtiGikrng4daNgdY4TOc=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25GApV3A010184
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 16 Jun 2022 05:51:31 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 16
+ Jun 2022 05:51:31 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 16 Jun 2022 05:51:31 -0500
+Received: from ubuntu.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25GApOXS018038;
+        Thu, 16 Jun 2022 05:51:26 -0500
+From:   Matt Ranostay <mranostay@ti.com>
+To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Matt Ranostay <mranostay@ti.com>, Marc Zyngier <maz@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j721s2: fix overlapping GICD memory region
+Date:   Thu, 16 Jun 2022 03:51:12 -0700
+Message-ID: <20220616105112.289719-1-mranostay@ti.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,57 +61,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-06-14 at 14:24 +0800, CK Hu wrote:
-> Hi, Bo-Chen:
-> 
-> On Mon, 2022-06-13 at 14:48 +0800, Bo-Chen Chen wrote:
-> > From: Guillaume Ranquet <granquet@baylibre.com>
-> > 
-> > Enabling the dpi too early causes glitches on screen.
-> > 
-> > Move the call to mtk_dpi_enable() at the end of the bridge_enable
-> > callback to ensure everything is setup properly before enabling
-> > dpi.
-> 
-> This seems a bug fix, so add Fixes tag on this patch.
-> 
-> Regards,
-> CK
-> 
+GICD region was overlapping with GICR causing the latter to not map
+successfully, and in turn the gic-v3 driver would fail to initialize.
 
-ok, I will do this using this patch:
-f89c696e7f635487481eee0d196ab49730ce8664
+This issue was hidden till commit 2b2cd74a06c3 ("irqchip/gic-v3: Claim iomem resources")
+replaced of_iomap() calls with of_io_request_and_map() that internally
+called request_mem_region().
 
-> > 
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >  drivers/gpu/drm/mediatek/mtk_dpi.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > index 08c8f21b4421..9668bd5dd14a 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > @@ -480,7 +480,6 @@ static int mtk_dpi_power_on(struct mtk_dpi
-> > *dpi)
-> >  	if (dpi->pinctrl && dpi->pins_dpi)
-> >  		pinctrl_select_state(dpi->pinctrl, dpi->pins_dpi);
-> >  
-> > -	mtk_dpi_enable(dpi);
-> >  	return 0;
-> >  
-> >  err_pixel:
-> > @@ -726,6 +725,7 @@ static void mtk_dpi_bridge_enable(struct
-> > drm_bridge *bridge)
-> >  
-> >  	mtk_dpi_power_on(dpi);
-> >  	mtk_dpi_set_display_mode(dpi, &dpi->mode);
-> > +	mtk_dpi_enable(dpi);
-> >  }
-> >  
-> >  static enum drm_mode_status
-> 
-> 
+Respective console output before this patchset:
+
+[    0.000000] GICv3: /bus@100000/interrupt-controller@1800000: couldn't map region 0
+
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: Robin Murphy <robin.murphy@arm.com>
+Cc: Nishanth Menon <nm@ti.com>
+Signed-off-by: Matt Ranostay <mranostay@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+index be7f39299894..19966f72c5b3 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+@@ -33,7 +33,7 @@ gic500: interrupt-controller@1800000 {
+ 		ranges;
+ 		#interrupt-cells = <3>;
+ 		interrupt-controller;
+-		reg = <0x00 0x01800000 0x00 0x200000>, /* GICD */
++		reg = <0x00 0x01800000 0x00 0x100000>, /* GICD */
+ 		      <0x00 0x01900000 0x00 0x100000>, /* GICR */
+ 		      <0x00 0x6f000000 0x00 0x2000>,   /* GICC */
+ 		      <0x00 0x6f010000 0x00 0x1000>,   /* GICH */
+-- 
+2.36.1
 
