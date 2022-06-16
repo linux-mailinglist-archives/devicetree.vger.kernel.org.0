@@ -2,115 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76CFF54DC29
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 09:53:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B82C54DC3D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 09:55:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359234AbiFPHxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 03:53:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42248 "EHLO
+        id S1359308AbiFPHzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 03:55:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbiFPHxK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 03:53:10 -0400
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF4AC15812;
-        Thu, 16 Jun 2022 00:53:06 -0700 (PDT)
-Received: by mail-qk1-f173.google.com with SMTP id g15so472357qke.4;
-        Thu, 16 Jun 2022 00:53:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qoDONOlMnc9LStw1JRWOE6LutyWOeAc3QbYws5EB78g=;
-        b=53p04d+shJmdQcNI+REjU03Dg/W9kT7KcHCHiRQ+o0xU6IdY6rdEbR/SVwqFdUxxrA
-         H2sv/77Nk+OP9xmd3JRIe57JmL+l19UJggMkEj33/yZKNxWWLw/v7A0GOkY95Nx1m+a4
-         Ex6wvKOHODBc+rwCjrw1lK3gDMTHhanZUr9rIJbr+IhPXjPud0g6Yz3CxSDHuwk8IeIl
-         Kd4ZkXHa/p2iKmUVnNkWIfXChFQmlWvjzyOUZ5TD+wXgNY9Bkx+Mj0XJtW41OcZwlyRx
-         jfNt63gb/ryHPjmrJ99FtIywLk0LHyRvLAGj4Fx3TIOZSBrG8YUAP3qEg78p/hSiPdoV
-         eRjw==
-X-Gm-Message-State: AJIora9jwQC3bALRGV8V0c3F9/cFY2+TYj4Di9kDyTsXgqyqlGyi9zPL
-        3XMKkKnIE90jmW80RzeHMIkscDJpP8ZLuw==
-X-Google-Smtp-Source: AGRyM1u1CHz+y3fX6LvDSDVaJqgaEwOBOOlQpVHvzVZZvpkxa0NUHC+fvTOQ/Yt477nQxfjIVgFb3A==
-X-Received: by 2002:a37:ab02:0:b0:6a6:b111:61a8 with SMTP id u2-20020a37ab02000000b006a6b11161a8mr2629851qke.260.1655365985748;
-        Thu, 16 Jun 2022 00:53:05 -0700 (PDT)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id t3-20020a05622a01c300b003026a08257fsm1483260qtw.21.2022.06.16.00.53.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Jun 2022 00:53:05 -0700 (PDT)
-Received: by mail-yb1-f171.google.com with SMTP id w2so839787ybi.7;
-        Thu, 16 Jun 2022 00:53:05 -0700 (PDT)
-X-Received: by 2002:a05:6902:a:b0:65c:b38e:6d9f with SMTP id
- l10-20020a056902000a00b0065cb38e6d9fmr3997226ybh.36.1655365985159; Thu, 16
- Jun 2022 00:53:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <c5d19e2f9714f43effd90208798fc1936098078f.1655301043.git.geert+renesas@glider.be>
- <CAL_JsqJbmdJd6+D9zog6NwF_LPO5QC_HsODg4FHLJOnMmPP-mg@mail.gmail.com>
-In-Reply-To: <CAL_JsqJbmdJd6+D9zog6NwF_LPO5QC_HsODg4FHLJOnMmPP-mg@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 16 Jun 2022 09:52:53 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU3PnY6yZf70kB9wme7_WTjcPJwmzo--Ua3vJ45w7mD8w@mail.gmail.com>
-Message-ID: <CAMuHMdU3PnY6yZf70kB9wme7_WTjcPJwmzo--Ua3vJ45w7mD8w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: usb: ehci: Increase the number of PHYs
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
+        with ESMTP id S229535AbiFPHz1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 03:55:27 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38DCE5D5EE;
+        Thu, 16 Jun 2022 00:55:21 -0700 (PDT)
+X-UUID: e67a4176bfc347868cdedd6f42d8d9c5-20220616
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:6f1f3cac-79b5-4396-ab20-ffa9c79d57b5,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:5
+X-CID-META: VersionHash:b14ad71,CLOUDID:2ba2b848-4c92-421c-ad91-b806c0f58b2a,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: e67a4176bfc347868cdedd6f42d8d9c5-20220616
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2139800384; Thu, 16 Jun 2022 15:55:14 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Thu, 16 Jun 2022 15:55:13 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Thu, 16 Jun 2022 15:55:13 +0800
+Message-ID: <90c2468228499acc88967aa48d9442abb63b5336.camel@mediatek.com>
+Subject: Re: [PATCH v11 01/12] dt-bindings: mediatek,dpi: Add DP_INTF
+ compatible
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <daniel@ffwll.ch>, <krzysztof.kozlowski+dt@linaro.org>,
+        <matthias.bgg@gmail.com>, <airlied@linux.ie>, <msp@baylibre.com>,
+        <granquet@baylibre.com>, <jitao.shi@mediatek.com>,
+        <wenst@chromium.org>, <angelogioacchino.delregno@collabora.com>,
+        <ck.hu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 16 Jun 2022 15:55:13 +0800
+In-Reply-To: <20220614202455.GA2415891-robh@kernel.org>
+References: <20220613064841.10481-1-rex-bc.chen@mediatek.com>
+         <20220613064841.10481-2-rex-bc.chen@mediatek.com>
+         <20220614202455.GA2415891-robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Tue, 2022-06-14 at 14:24 -0600, Rob Herring wrote:
+> On Mon, Jun 13, 2022 at 02:48:30PM +0800, Bo-Chen Chen wrote:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > 
+> > DP_INTF is similar to DPI but does not have the exact same feature
+> > set
+> > or register layouts.
+> > 
+> > DP_INTF is the sink of the display pipeline that is connected to
+> > the
+> > DisplayPort controller and encoder unit. It takes the same clocks
+> > as
+> > DPI.
+> > 
+> > In this patch, we also do these string replacement:
+> > - s/mediatek/MediaTek/ in title.
+> > - s/Mediatek/MediaTek/ in description.
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > ---
+> >  .../bindings/display/mediatek/mediatek,dpi.yaml     | 13 ++++++++-
+> > ----
+> >  1 file changed, 8 insertions(+), 5 deletions(-)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > aml
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > aml
+> > index 77ee1b923991..ca1b48e78581 100644
+> > ---
+> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > aml
+> > +++
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > aml
+> > @@ -4,16 +4,16 @@
+> >  $id: 
+> > https://urldefense.com/v3/__http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml*__;Iw!!CTRNKA9wMg0ARbw!0wzvKisC8j2vSMbYtNhgV1niXflyQgVHmgSPCVo94UQV-GiFqhMtdoowjpgIYMXH8wDn$
+> >  
+> >  $schema: 
+> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!0wzvKisC8j2vSMbYtNhgV1niXflyQgVHmgSPCVo94UQV-GiFqhMtdoowjpgIYEfMUrSk$
+> >  
+> >  
+> > -title: mediatek DPI Controller Device Tree Bindings
+> > +title: MediaTek DPI and DP_INTF Controller
+> >  
+> >  maintainers:
+> >    - CK Hu <ck.hu@mediatek.com>
+> >    - Jitao shi <jitao.shi@mediatek.com>
+> >  
+> >  description: |
+> > -  The Mediatek DPI function block is a sink of the display
+> > subsystem and
+> > -  provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a
+> > parallel
+> > -  output bus.
+> > +  The MediaTek DPI and DP_INTF function blocks are a sink of the
+> > display
+> > +  subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422
+> > pixel data on a
+> > +  parallel output bus.
+> >  
+> >  properties:
+> >    compatible:
+> > @@ -24,6 +24,7 @@ properties:
+> >        - mediatek,mt8183-dpi
+> >        - mediatek,mt8186-dpi
+> >        - mediatek,mt8192-dpi
+> > +      - mediatek,mt8195-dp_intf
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -36,12 +37,14 @@ properties:
+> >        - description: Pixel Clock
+> >        - description: Engine Clock
+> >        - description: DPI PLL
+> > +      - description: Clock gate for PLL
+> >  
+> >    clock-names:
+> >      items:
+> >        - const: pixel
+> >        - const: engine
+> >        - const: pll
+> > +      - const: pll_gate
+> 
+> You just added a new required clock for everyone.
+> 
 
-On Wed, Jun 15, 2022 at 7:24 PM Rob Herring <robh+dt@kernel.org> wrote:
-> On Wed, Jun 15, 2022 at 7:53 AM Geert Uytterhoeven
-> <geert+renesas@glider.be> wrote:
-> >
-> > "make dtbs_check":
-> >
-> >     arch/arm/boot/dts/r8a77470-iwg23s-sbc.dtb: usb@ee080100: phys: [[17, 0], [31]] is too long
-> >             From schema: Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> >     arch/arm/boot/dts/r8a77470-iwg23s-sbc.dtb: usb@ee0c0100: phys: [[17, 1], [33], [21, 0]] is too long
-> >             From schema: Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> >
-> > Some USB EHCI controllers (e.g. on the Renesas RZ/G1C SoC) have multiple
-> > PHYs.  Increase the maximum number of PHYs to 3, which is sufficient for
-> > now.
->
-> Maybe not so 'generic'. Why are there 3? I understand USB3 HCI having
-> 2 for SS and HS. Is it for multiple ports? There's a thread about that
-> currently (Mediatek IIRC) and how to handle multiple phys.
+Hello Rob,
 
-TBH, I don't know for sure. I've never been much into USB, and the
-RZ/G1C USB architecture differs from other Renesas SoCs in the
-same family.
+We can remove this clock and using clock framework to enable this pll
+gate, so I will remove this in next version.
 
-This is USB2, not USB3.  There are two channels of OHCI/EHCI, and
-two channels of USB OTG, all with corresponding PHYs (4 in total).
-The first OHCI/EHCI combo is linked to one of the host PHYs, and one
-of the OTG PHYs, so that makes 2 PHYs.
-The second OHCI/EHCI combo is linked to the other host PHY, and to
-both OTG PHYs, so that makes 3 PHYs. IIRC the third link was due to
-some dependency between the 2 OTG PHYs.
+BRs,
+Bo-Chen
 
-Gr{oetje,eeting}s,
+> >  
+> >    pinctrl-0: true
+> >    pinctrl-1: true
+> > @@ -55,7 +58,7 @@ properties:
+> >      $ref: /schemas/graph.yaml#/properties/port
+> >      description:
+> >        Output port node. This port should be connected to the input
+> > port of an
+> > -      attached HDMI or LVDS encoder chip.
+> > +      attached HDMI, LVDS or DisplayPort encoder chip.
+> >  
+> >  required:
+> >    - compatible
+> > -- 
+> > 2.18.0
+> > 
+> > 
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
