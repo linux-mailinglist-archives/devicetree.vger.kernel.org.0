@@ -2,74 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE01F54D63F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 02:48:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE40A54D643
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 02:50:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345128AbiFPAs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 20:48:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50668 "EHLO
+        id S245322AbiFPAuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 20:50:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348242AbiFPAs1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 20:48:27 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4672956B31
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:48:26 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id h192so12910015pgc.4
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:48:26 -0700 (PDT)
+        with ESMTP id S234162AbiFPAuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 20:50:11 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61DA65711F
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:50:10 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id a21-20020a9d4715000000b0060bfaac6899so10052052otf.12
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:50:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=qp3edhQcRtMcVJoA9hlhbeV2zjC7yml5vSoU96PZRCs=;
-        b=L+UOgh6JQRaNTE/JReN21PZAoB/6nnToA8fEWd5A+dV/kER0XwItK85xWljunHAbTj
-         gOaYlkoLs9AiT21Vx1wjmuduTErEd1/98fh87mBOcBvIwRDs7OMQg+T9OkjjR38w5sga
-         LmpXul/uvGcZVf+0MZIjD0IOMj5eNX1KXKh9uEOiRQP1MphFTgqUEf/wocXBm9tkhGOs
-         3oVI5BeEmbGRlqhvnxG5msKYLs4O6Y39pClLn2jaUo+RbTZoTSNpakdN7Wus8OCgGfgP
-         /RTmsCBnKxT9chsIAsIQHwGGdaZs/ySBEqpyKS8SMvKvTZZUxNMPQI63L5K188AIDF2J
-         i1GA==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=2n+TFof2POThL99hyq/41irwfqDc3AvWFjRglyLstd8=;
+        b=kkakXjBt/V6u5jkZ8lAGtuG5THuUQOXAXhQ5t7xxQ1bZ867DsPsh6EImLphuq5fs9m
+         dHRWyw92ps+4aK9S0iOh5TyCmBMusc0rU7T4dyZ0VTB+re06qoqjCAQlmmn6Bhtq/gEV
+         GPzw26VRwLnqQDp/o+uv6K1dgu9zqduUnfe38=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=qp3edhQcRtMcVJoA9hlhbeV2zjC7yml5vSoU96PZRCs=;
-        b=Pqi4OfWBBTSwxfY+lBwKMa+Fp785t+cSh/VaZ7FVGzHwE0nnat4FboBISJR32Fh5hn
-         uclVA3jwpPJfMXeA3k3Hj9pGcc6GlqQFEqkSLGDo3lxZxMVFhMfyY73W7X1Y8N1NSJiP
-         jbiDC+8ZEL/7eitkmhkWqYRcTCLNB1BsOp1alRTTuOASDwkREVyvLv0w23MOjeoqclcB
-         ZcU9OD78zyd1ZjnIWNX89TjoB+lTWptWL6Q9qI09bzkvVM41gmM7wHXPovqgEjfC2YNz
-         B347xBzS9mRluRBrErYQHIpAUAxs7MnxT1cH5OOCE4Lih/bRgT0aa/TVKvi+PbgDzhvC
-         lkbA==
-X-Gm-Message-State: AJIora8CzahEycsbYqe300qLiSyVeLcE/F8MHlY+a6jkR/r6SJE1xXk4
-        MCW7pLUMwBScE8e4ddzD0GH8GXDF1GRXBQ==
-X-Google-Smtp-Source: AGRyM1ueSK+tw3uFtmBZQL6kWbqp7RpDDRh7PzZWAcZOgdQZukfyMUyAAaRPhzF5ukPOnTqzdqLexw==
-X-Received: by 2002:a63:6f0b:0:b0:408:b8d9:f491 with SMTP id k11-20020a636f0b000000b00408b8d9f491mr2152776pgc.496.1655340505789;
-        Wed, 15 Jun 2022 17:48:25 -0700 (PDT)
-Received: from krzk-bin.. ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id f11-20020a170902684b00b001635c9e7f77sm253518pln.57.2022.06.15.17.48.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 17:48:25 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        arm@kernel.org, Olof Johansson <olof@lixom.net>,
-        linux-arm-kernel@lists.infradead.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        linux-samsung-soc@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        soc@kernel.org
-Subject: Re: (subset) [PATCH v2 48/48] ARM: dts: s5pv210: align gpio-key node names with dtschema
-Date:   Wed, 15 Jun 2022 17:48:22 -0700
-Message-Id: <165534049853.17040.18012306290229997818.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220609114047.380793-9-krzysztof.kozlowski@linaro.org>
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org> <20220609114047.380793-9-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=2n+TFof2POThL99hyq/41irwfqDc3AvWFjRglyLstd8=;
+        b=DK+AKsnJMGMAIMXCed0/KWbzI3vzMmqXingM9CQyIan5RsmbRYgD3Q4uKtSvj81yMP
+         qHg8fRHdoV7mEsU9jyW9SzPMn55OnR/2L2oxoQNnzhuKNsnWCbFdJv6dfNglQAC0Frk4
+         MgmZzRzyk9Sslg2/D9gzGd5CxdQNyiHhyHImPtBhFEBJ1tNSobkzFwGwQuJxYM8I13M2
+         8gtEcHmmz+PkbLRfShlbFsbx3/AcvTnqj9oJBXP9aYiohTrzDTffmvIkRmFZWUunUab2
+         g489jOO/4pm34MO+xS0t8CajdrtZBW7ASg+oHwBFCzMfp7bGowExABUmYoY7Czuhavii
+         6qKg==
+X-Gm-Message-State: AJIora9eMk2Fpm9S7tubepMybP3Ned+pM9lT97cVN8qDJOpaeJs0Wucg
+        GRH1FL9ozhK013ObBXLNe6zzv6hQXa3W4qFX9Wm0yQ==
+X-Google-Smtp-Source: AGRyM1sFQjWy7A0wLfGZw6Rskgi/CnY4DvjLwxEzj4DpBc8R4s8j8PtToCS9MtRb3a/yZKR0osG6MihBhJdqDZBQNVI=
+X-Received: by 2002:a9d:6484:0:b0:60b:eb0b:4054 with SMTP id
+ g4-20020a9d6484000000b0060beb0b4054mr1106041otl.159.1655340609475; Wed, 15
+ Jun 2022 17:50:09 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 15 Jun 2022 17:50:09 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <CAD=FV=UU-AENyChCvVAKH709E4hFtgo4Txa8zFDY=JM1UifA0g@mail.gmail.com>
+References: <20220614195144.2794796-1-swboyd@chromium.org> <20220614195144.2794796-3-swboyd@chromium.org>
+ <CAD=FV=UU-AENyChCvVAKH709E4hFtgo4Txa8zFDY=JM1UifA0g@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Wed, 15 Jun 2022 17:50:09 -0700
+Message-ID: <CAE-0n53v4Ts0D=FUZwCHa-q0gkQnujPWvvq+_8zZmYaAozcVAw@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] dt-bindings: cros-ec: Add ChromeOS fingerprint binding
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Benson Leung <bleung@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
+        Guenter Roeck <groeck@chromium.org>,
+        Craig Hesling <hesling@chromium.org>,
+        Tom Hughes <tomhughes@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Tzung-Bi Shih <tzungbi@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Lee Jones <lee.jones@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,17 +76,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 9 Jun 2022 13:40:47 +0200, Krzysztof Kozlowski wrote:
-> The node names should be generic and DT schema expects certain pattern
-> (e.g. with key/button/switch).
-> 
-> 
+Quoting Doug Anderson (2022-06-14 15:41:25)
+> On Tue, Jun 14, 2022 at 12:51 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> > +
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        const: google,cros-ec-spi
+> > +  required:
+> > +    - compatible
+> > +    - boot0-gpios
+>
+> I've never personally used "select" before and I'm not sure where it's
+> documented. Without knowing anything, it seems weird to me that in
+> this file we're matching against a compatible that's not
+> google,cros-ec-fp. Randomly grabbing some other example that's similar
+> (panel-lvds.yaml) looks more like what I would have expected. AKA in
+> this file:
+>
+> select:
+>   properties:
+>     compatible:
+>       contains:
+>         const: google,cros-ec-fp
+>   required:
+>     - compatible
+>
+> ...and then in the other file:
+>
+> select:
+>   properties:
+>     compatible:
+>       contains:
+>         const: google,cros-ec-spi
+>   not:
+>     properties:
+>       compatible:
+>         contains:
+>           const: google,cros-ec-fp
+>   required:
+>     - compatible
+>
+>
+> Of course, if one of the dt maintainers gives different advice then
+> listen to them. ;-)
+>
 
-Applied, thanks!
-
-[48/48] ARM: dts: s5pv210: align gpio-key node names with dtschema
-        https://git.kernel.org/krzk/linux/c/8b86f733c0e512f92e43a9db1559498ef64d244e
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I followed a pwm example, see renesas,tpu-pwm.yaml, but I suspect this
+works just as well. I don't really care either way so I'll defer to DT
+maintainers here.
