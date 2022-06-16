@@ -2,79 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B01AA54EC3C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 23:10:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CF1954EC45
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 23:12:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378850AbiFPVKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 17:10:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32846 "EHLO
+        id S1378866AbiFPVMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 17:12:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379038AbiFPVKS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 17:10:18 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3D0C60B9A
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 14:10:14 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id gd1so2397407pjb.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 14:10:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=1NvKVp9EY1lQLLZ0Uj/3ziHPWB5PBfQnDPktmmL6XEk=;
-        b=Q6kggNEwsYy473XSBdvlOd5aXGi14mWaUXKCRel2oNoa9ukMQEm6VLZ36BSmEzjUw8
-         xVjg+yj2Cf7WYniqQWa061j05YQBrlt3J8sWSdxuzyoIGAnHdsSZK0OPY2rgLYkZCGdz
-         RGHvnW9PyQpZtnrKN3TNt9/AMOmKe76T+/caN0MOE3lbxICjjK5bFR+Qhp/bDFV7LEnZ
-         ygPkdnsJl4x4bJeL8fdqMJEOMIyvVNtRqEeXO2BdN/B+P+LbfjtD4WyGc67vqWXugVv3
-         iNbUjj0Z+ZhCSCUDlVRSwcvWTlaYCTp/0ixXT9BwdhOZGpaNiy9JJrytROI9rct/lCCR
-         7ykQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=1NvKVp9EY1lQLLZ0Uj/3ziHPWB5PBfQnDPktmmL6XEk=;
-        b=v2rtq0GDHQjMHcvtaVITorrprI7MZ67RnWSTXdx8qbjJyVDRosmfG5wWAjIbsGRXos
-         gP5JTqhDYX+rxFgh1bcwf9yjQxVjzHTsbTaYAwu8uc0S26GUF+t+q6G2oQPPkUUWRpNd
-         YwfM5bhBdMPDSL98fohGwK7p3c1E22wYYuZXvmXiYn9/FPWitR97oN8Hp7BvsemiFx7+
-         HAUAmrzFy9XRII5sI7SqutDDhB0XIFwjmzx4747AmUTxeIgXhLsrBKRmydZrj21yDmdj
-         k0nU6GdKMj6ohTaIXiq5m3VU1FUvb7zh0zsf2ocYlhxMDCitim6LesAtTLeeOKeN09b4
-         v3ZQ==
-X-Gm-Message-State: AJIora88JHGbwqfiiGo/D5yiL5unNuduzjQNVvzIB1VIYP+iDEkYSxhh
-        3VL1V8Us877yiRMTI17xcxvx/g==
-X-Google-Smtp-Source: AGRyM1tx14RVi2zqlwVdwcg3qpvX916m1pZt9IXn7u8YC0Z2HVZLOyuzbvgSYCSqY81bOJn+l9i+nw==
-X-Received: by 2002:a17:90b:4c8f:b0:1e6:9bf9:1ab8 with SMTP id my15-20020a17090b4c8f00b001e69bf91ab8mr6904606pjb.215.1655413814235;
-        Thu, 16 Jun 2022 14:10:14 -0700 (PDT)
-Received: from [172.22.33.138] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id n46-20020a056a000d6e00b0051868418b06sm2167316pfv.35.2022.06.16.14.10.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Jun 2022 14:10:13 -0700 (PDT)
-Message-ID: <f230c9b0-6e23-7409-62e8-58f849925e2e@linaro.org>
-Date:   Thu, 16 Jun 2022 14:10:11 -0700
+        with ESMTP id S229518AbiFPVMY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 17:12:24 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF70A60BB4;
+        Thu, 16 Jun 2022 14:12:23 -0700 (PDT)
+Received: from mail-ot1-f51.google.com ([209.85.210.51]) by
+ mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1N7Qt9-1neVfk3JaH-017mEH; Thu, 16 Jun 2022 23:12:22 +0200
+Received: by mail-ot1-f51.google.com with SMTP id a21-20020a9d4715000000b0060bfaac6899so1823021otf.12;
+        Thu, 16 Jun 2022 14:12:21 -0700 (PDT)
+X-Gm-Message-State: AJIora9TjP0a00PBsQURWsgXb12WAwMMa6UXwrIP5I9R8OXtoZqSBBre
+        ADDz3gCl6bvUvzLaH5L5C1dJ3NolVWe2KQxeYQY=
+X-Google-Smtp-Source: AGRyM1vsIgc89v9FEfZY2hXw+qDDKYDoyj4lZ95Az7j+neXL1rj/frpwyBwmT3KawTqhGlZqV+2aaoMOxNa7NrGaWtQ=
+X-Received: by 2002:a0d:d84d:0:b0:314:2bfd:ddf3 with SMTP id
+ a74-20020a0dd84d000000b003142bfdddf3mr8091696ywe.347.1655413929938; Thu, 16
+ Jun 2022 14:12:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 04/15] dt-bindings: leds: Add Mediatek MT6370
- flashlight
-Content-Language: en-US
-To:     ChiaEn Wu <peterwu.pub@gmail.com>, jic23@kernel.org,
-        lars@metafoo.de, matthias.bgg@gmail.com, lee.jones@linaro.org,
-        daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        szunichen@gmail.com, Alice Chen <alice_chen@richtek.com>
-References: <20220613111146.25221-1-peterwu.pub@gmail.com>
- <20220613111146.25221-5-peterwu.pub@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220613111146.25221-5-peterwu.pub@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20220608095623.22327-1-tmaimon77@gmail.com> <20220608095623.22327-6-tmaimon77@gmail.com>
+ <CAK8P3a2CNxijmy0AO6NEfg=hxQZn5WxgQij4JgkTjDTfZZSScA@mail.gmail.com> <CAP6Zq1h+PzkD1vjx787F_tbk30rAZHEkZp9uNUOmrFSd4gLO=g@mail.gmail.com>
+In-Reply-To: <CAP6Zq1h+PzkD1vjx787F_tbk30rAZHEkZp9uNUOmrFSd4gLO=g@mail.gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 16 Jun 2022 23:11:53 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1=n7QNaJRw6Wru13Lso6EApTqhsuGmgdkh2B3AdrE+_g@mail.gmail.com>
+Message-ID: <CAK8P3a1=n7QNaJRw6Wru13Lso6EApTqhsuGmgdkh2B3AdrE+_g@mail.gmail.com>
+Subject: Re: [PATCH v2 05/20] watchdog: npcm_wdt: Add NPCM845 watchdog support
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        gregkh <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Robert Hancock <robert.hancock@calian.com>,
+        "nathan=20Neusch=C3=A4fer?=" <j.neuschaefer@gmx.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:NIjOik/WJEzdDxdYA1cJmP0wxFsRS3ajAia3aOO7OgSIB0ygYQ0
+ EKA0iUea43JU5UwzuViKob61gfqb+ZTia2qBLKj4a3ceIIy7HlTb7mqd2NRJhpCLFCLrS8r
+ QDnI0+MG9S3sSQWTx580s8yOg2E91P7IN1wfOorAoDa3b7MHA+QIu1yqLxCRoMNx3JXIs8S
+ fB2CyQgYL+qqLVtvI3OeA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:FRVmnoww0WI=:JvhulhdaAtfqBK+kp3KQQy
+ ZGBzlxBcvBUMmthv716CpSZFRt6fpexpKRNe5t4CRIppnp601zerXls+ubvRUjOdrgeRS4+81
+ rYYa8kTJqo4DQEQvHIbqy3S1gCUH2uLupswIOG5lSt8YYcdGuIgwBwvHtctRu/h5UaCy9txlG
+ 3h4An05j9vzHXBsRjDDnbeCG6zIr/W5FfJU7FgKe/OYPv+3+H5NKWmD8nW7zlWhlSOOiqTRBt
+ E4yYAtgaFBh2bqbaKJfOy45x8TB6SHx5TyzyRFJYVtFoK2zN8AkS0kJA1Qbg07EwgVwI1pg5Q
+ hd9LrlWPuIGEYJavC01DR5oRoG6pP4lnF0pwOiGfgJGK8LVkltWu7nXrmVJaAHhyC+D0ijaMY
+ iiIT+O+VCmLYA7jqeVTuJcOFiWmJhChFf05j9tD4JISeQbdrjH3RYoi50uveWQvpwnZeTNE2y
+ 9hBc+2HO6MW0dd0Dz/wScZOo+SuDUSFZVG5o47zFwoDrxruQQ2Np8Tjjl+QasAE33wNXTIKOk
+ Pn8ISlIam8q9pfmD/yAuTReV884uektVjgBKLuJfRiDaV6eAOyR4mDwjKtMgDQNpKPliNRo4U
+ mUgPUzp+4Q3mDC5mtSN6WPrCu1eEZVpCWFDkxvi+AYjkZ5+fBhzSXRpuAJj9EMsYf62L7/d/c
+ mmbNB1U/Ruo/nSQVuNmuw3Z8o34L/+9o15mg3gcYZHEyr8i/+wUorRcFRPfpNiFvx4wrtXwiX
+ iPuJ5/JviM73u00WCTbOW0b+euu3VfTWCu/zQekEiQ+wMcslis9ofdO8kM7GaKz5RJpsQZszJ
+ 4vU+cvQehud+sMYA9IHJLkKuGmXJ/JWvAvDkbKaZdO6h+2AiX1TGkTXAP8olIUZ6acGDgoIwW
+ wf3aWuSmAV03eWG8PHchQ1bf2nQbgl8tR6s/WGG61+iIKle4kKqLIHd5J5O23EL7aIrENRRiH
+ waq7GV4w9bMRgSYxlteJU/ko25Tte7InBd/Pf4xYPqngL5zN+cnkb
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,73 +100,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2022 04:11, ChiaEn Wu wrote:
-> From: Alice Chen <alice_chen@richtek.com>
-> 
-> Add Mediatek MT6370 flashlight binding documentation.
-> 
-> Signed-off-by: Alice Chen <alice_chen@richtek.com>
-> ---
->  .../leds/mediatek,mt6370-flashlight.yaml      | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/mediatek,mt6370-flashlight.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/mediatek,mt6370-flashlight.yaml b/Documentation/devicetree/bindings/leds/mediatek,mt6370-flashlight.yaml
-> new file mode 100644
-> index 000000000000..13610bc23d0e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/mediatek,mt6370-flashlight.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/mediatek,mt6370-flashlight.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Flash LED driver for MT6370 PMIC from MediaTek Integrated.
-> +
-> +maintainers:
-> +  - Alice Chen <alice_chen@richtek.com>
-> +
-> +description: |
-> +  This module is part of the MT6370 MFD device.
-> +  Add MT6370 flash LED driver include 2-channel flash LED support Torch/Strobe Mode.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt6370-flashlight
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^led@[0-1]$":
-> +    type: object
-> +    $ref: common.yaml#
-> +
-> +    properties:
-> +      reg:
-> +        enum:
-> +          - 0 # Address of LED1
-> +          - 1 # Address of LED2
+On Thu, Jun 16, 2022 at 11:06 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
+> On Wed, 8 Jun 2022 at 16:05, Arnd Bergmann <arnd@arndb.de> wrote:
+> >
+> > On Wed, Jun 8, 2022 at 11:56 AM Tomer Maimon <tmaimon77@gmail.com> wrote:
+> > >
+> > > Add Nuvoton BMC NPCM845 watchdog support.
+> > > The NPCM845 uses the same watchdog as the NPCM750.
+> > >
+> > > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> >
+> > This one should no longer be needed if the timers are compatible with the
+> > old ones and correctly described in the DT.
+> by timers do you mean clocks?
 
-Just: enum: [0, 1]
-No need for description.
+Sorry, I mis-copied my comment. I meant the watchdog being compatible
+with the old
+version.
 
-
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +additionalProperties: false
-
-
-Best regards,
-Krzysztof
+        Arnd
