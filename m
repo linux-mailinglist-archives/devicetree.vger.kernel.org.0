@@ -2,89 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4EEF54EDA3
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 00:51:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9480D54ED92
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 00:48:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378497AbiFPWvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 18:51:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57148 "EHLO
+        id S1379091AbiFPWsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 18:48:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229575AbiFPWvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 18:51:51 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 131CB62215
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 15:51:50 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id s12so5447514ejx.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 15:51:50 -0700 (PDT)
+        with ESMTP id S1379128AbiFPWsF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 18:48:05 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA86F3D490
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 15:48:03 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id r1so2393332plo.10
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 15:48:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BIl5tFNLrP4Cjm2iajc389o0ARniB73n3TO6sYm0FgA=;
-        b=TqQacxtrbpgXOSC1CChdq++aBuQ+pOIi3HzWd51RZpLixwbWLPQ3cBbVnkf5zIL8Mn
-         N8qZF8wJHDf/B8K8/4TjVeTMtcEqNZEiIMvMQV1NGcvnaePtQzc+USsdIcg7MIA06eWY
-         hJrMAU37V7sG/wTHz8RRNNEy9JyafTk+tdF9g=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=D4wYNhCrugPOLx6NQzh5DQYpCR2JYLvdgRSxgN/KnFY=;
+        b=NAJ2unUhWosiXfMkbjIrpO0dDiluf91z8///fATeLpwgILwfiE+kM5YBdFpaUIGq17
+         5Um6HU+xdw4baxlCIWd0jms6yo85llzLBx9PA94P4f+5xbogFjqL+R9fGYtsmx9TavHG
+         4U6P+fkeo1BWzuHlFczZV7V9vLQXom6j4Dgm+ZcAssevg5Lvhzh1Jq3LzX84t3yl6lTX
+         fhSPUkSh9H+GQ3sCWePzR9BGpoUAiFh3rDz9jUbV49abC41Pf0U9T9eCCaS3QXXs+/iM
+         uRcaJnnBxkLPV6yOfXH1DDlEvA2wCJe5KDfvvp4hgl8Lumv5/dZCJKD28YBg1Ad9RtBr
+         sPpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BIl5tFNLrP4Cjm2iajc389o0ARniB73n3TO6sYm0FgA=;
-        b=x3y85HYYO9MmvjkR9t40ezTgJq+lxkdnNGFur1LStBGS17ZRaxdNjmBsKD//uY7zVJ
-         HqmO/lyYNe7wyVhUp2K0VqkvPBW9hQi9jobolzur/UhJ9Br4hzAMw9Cj1KndXkmGlVRl
-         5YrlYG3iex3SK+cqkeK2s4+1KZuU/HSKFm+CbW/4qM2+cXUnFrVOFWm8UIxBDDN4anWu
-         VG2CqCKe339aNb5TFAKrzQzzivB5kWUUlEXN1WXMQO3fZrNeX5/5sFa/1i273KQDOTcX
-         IG1U0FDsKIF2Cv01xPDhnXXIZKkZQ/1od2N+7lnHoA9LEoN4x/ZAFkrZA7h4Hxh5qoJG
-         NqJw==
-X-Gm-Message-State: AJIora99gvcy3ayhzAQtyJmhwJqkli/k4RyWTSBf9wc1Sqrv5mUSn8Ju
-        KQ4sScZAb6tlYIx2fifv7YSdi3drsDIxYHd6NlI=
-X-Google-Smtp-Source: AGRyM1vh9L8lzmLwesDxEf3rcAdyEw+xrUcH/ZkvA3Py3YJlotvTJlyXhTf3sFsIzVd6hkJRKIj41g==
-X-Received: by 2002:a17:907:6d15:b0:711:d2d8:4818 with SMTP id sa21-20020a1709076d1500b00711d2d84818mr6558525ejc.336.1655419908376;
-        Thu, 16 Jun 2022 15:51:48 -0700 (PDT)
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com. [209.85.128.43])
-        by smtp.gmail.com with ESMTPSA id u20-20020aa7d554000000b0042a2d9af0f8sm2546439edr.79.2022.06.16.15.51.48
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=D4wYNhCrugPOLx6NQzh5DQYpCR2JYLvdgRSxgN/KnFY=;
+        b=kRlyb8OMrPcK+Q9fWzhJ6g4hRSyIC5jyh1Fx/y1xiCU7ustVxjaXKHg5JM2zZkG+xO
+         Bje2w5Is83eyCV4lyyUvaLsCncOiaEvexXLj86z7rpj/V1Pu0t5F4hWf7fMgBtVMOivY
+         r0lJC+2n3hfYJbSPKcT3wS52Lr7pF4BgGzrqtwUPQ2dyJD90/iWFp0QEt10Vm/VzBHGg
+         Lhy4ZwubXX7R4CJPygLsVc9gVHrkTo2BHZAKZUY0WbmkDhEOArG+8dgmTcmzyr6HRqG6
+         nhFN7u0wTARRgl/M7BSUruSYg5feXL6q9k5iVowAAsajSu5fbSEWaIhokJRRn3DI56ia
+         pEGA==
+X-Gm-Message-State: AJIora/cX3EYs5S+N0cImxQOCqlV+TLG9qsMFHiucO7esOhN3iciY0i+
+        SlQRysyakwudwhntvhmTJ2CQHQ==
+X-Google-Smtp-Source: AGRyM1vc+vcRuQ2TZeqUJaBdLXB66+ueezXpaJBqAh1uNNDMle811gM+06V92iS2MmAk6l2OcEBXJQ==
+X-Received: by 2002:a17:902:8e86:b0:168:d6d6:660f with SMTP id bg6-20020a1709028e8600b00168d6d6660fmr6404813plb.35.1655419683436;
+        Thu, 16 Jun 2022 15:48:03 -0700 (PDT)
+Received: from [172.22.33.138] ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id c18-20020a170902b69200b0015ee24acf38sm2096401pls.212.2022.06.16.15.48.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Jun 2022 15:51:48 -0700 (PDT)
-Received: by mail-wm1-f43.google.com with SMTP id z9so1464529wmf.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 15:51:48 -0700 (PDT)
-X-Received: by 2002:a1c:25c4:0:b0:39c:9a08:452f with SMTP id
- l187-20020a1c25c4000000b0039c9a08452fmr7069794wml.199.1655419588107; Thu, 16
- Jun 2022 15:46:28 -0700 (PDT)
+        Thu, 16 Jun 2022 15:48:03 -0700 (PDT)
+Message-ID: <ddbaa8fa-dff5-671d-c476-fe8fd616587f@linaro.org>
+Date:   Thu, 16 Jun 2022 15:48:02 -0700
 MIME-Version: 1.0
-References: <20220609192000.990763-1-mka@chromium.org> <20220609121838.v22.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <CAD=FV=W6erE8ByabmYSL_OWJPKYGqysDMGYQX6j7_PSEYGZ4YQ@mail.gmail.com>
- <YqpprpUHmlD62YzI@google.com> <CAD=FV=VNDamV4+j07TrnX3cUs2-D5ySbeQ-zfU=Eef8+WagGig@mail.gmail.com>
- <Yqub17iT4O7aqFMi@google.com> <CAD=FV=VEztPLhsrJecZUdyHCW7ZfFTVvxyqY5CqRVv2mWyrLog@mail.gmail.com>
- <YquoSMiQS+RG8rOM@google.com>
-In-Reply-To: <YquoSMiQS+RG8rOM@google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 16 Jun 2022 15:46:15 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=W81pSEUbzw2ZQgs_TJ9MLnHQHiDopZXZ6bHdS7QMzAyA@mail.gmail.com>
-Message-ID: <CAD=FV=W81pSEUbzw2ZQgs_TJ9MLnHQHiDopZXZ6bHdS7QMzAyA@mail.gmail.com>
-Subject: Re: [PATCH v22 2/3] usb: misc: Add onboard_usb_hub driver
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Bastien Nocera <hadess@hadess.net>,
-        Peter Chen <peter.chen@kernel.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v3 2/3] dt-bindings: mfd: atmel,flexcom: Add new
+ compatible string for lan966x
+Content-Language: en-US
+To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, UNGLinuxDriver@microchip.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220612152604.24280-1-kavyasree.kotagiri@microchip.com>
+ <20220612152604.24280-3-kavyasree.kotagiri@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220612152604.24280-3-kavyasree.kotagiri@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,160 +78,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 12/06/2022 08:26, Kavyasree Kotagiri wrote:
+> LAN966x SoC flexcoms has two optional I/O lines. Namely, CS0 and CS1
+> in flexcom SPI mode. CTS and RTS in flexcom USART mode. These pins
+> can be mapped to lan966x FLEXCOM_SHARED[0-20] pins and usage depends on
+> functions being configured.
+> 
+> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> ---
+> v2 -> v3:
+>  - Add reg property of lan966x missed in v2.
+> 
+> v1 -> v2:
+>  - Use allOf:if:then for lan966x dt properties
+> 
+>  .../bindings/mfd/atmel,flexcom.yaml           | 75 ++++++++++++++++++-
+>  1 file changed, 73 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+> index cee9c93ce4b9..d9b0fe2b0211 100644
+> --- a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+> @@ -16,10 +16,13 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    enum: atmel,sama5d2-flexcom
+> +    enum:
+> +      - atmel,sama5d2-flexcom
+> +      - microchip,lan966x-flexcom
 
-On Thu, Jun 16, 2022 at 3:01 PM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> On Thu, Jun 16, 2022 at 02:28:38PM -0700, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Thu, Jun 16, 2022 at 2:08 PM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > >
-> > > On Thu, Jun 16, 2022 at 01:12:32PM -0700, Doug Anderson wrote:
-> > > > Hi,
-> > > >
-> > > > On Wed, Jun 15, 2022 at 4:22 PM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > > > >
-> > > > > > > +void onboard_hub_create_pdevs(struct usb_device *parent_hub, struct list_head *pdev_list)
-> > > > > > > +{
-> > > > > > > +       int i;
-> > > > > > > +       struct usb_hcd *hcd = bus_to_hcd(parent_hub->bus);
-> > > > > > > +       struct device_node *np, *npc;
-> > > > > > > +       struct platform_device *pdev = NULL;
-> > > > > > > +       struct pdev_list_entry *pdle;
-> > > > > > > +
-> > > > > > > +       if (!parent_hub->dev.of_node)
-> > > > > > > +               return;
-> > > > > > > +
-> > > > > > > +       for (i = 1; i <= parent_hub->maxchild; i++) {
-> > > > > > > +               np = usb_of_get_device_node(parent_hub, i);
-> > > > > > > +               if (!np)
-> > > > > > > +                       continue;
-> > > > > > > +
-> > > > > > > +               if (!of_is_onboard_usb_hub(np))
-> > > > > > > +                       goto node_put;
-> > > > > > > +
-> > > > > > > +               npc = of_parse_phandle(np, "companion-hub", 0);
-> > > > > > > +               if (npc) {
-> > > > > > > +                       /*
-> > > > > > > +                        * Hubs with companions share the same platform device.
-> > > > > > > +                        * Create the plaform device only for the hub that is
-> > > > > > > +                        * connected to the primary HCD (directly or through
-> > > > > > > +                        * other hubs).
-> > > > > > > +                        */
-> > > > > > > +                       if (!usb_hcd_is_primary_hcd(hcd)) {
-> > > > > > > +                               of_node_put(npc);
-> > > > > > > +                               goto node_put;
-> > > > > > > +                       }
-> > > > > > > +
-> > > > > > > +                       pdev = of_find_device_by_node(npc);
-> > > > > > > +                       of_node_put(npc);
-> > > > > > > +               } else {
-> > > > > > > +                       /*
-> > > > > > > +                        * For root hubs this function can be called multiple times
-> > > > > > > +                        * for the same root hub node (the HCD node). Make sure only
-> > > > > > > +                        * one platform device is created for this hub.
-> > > > > > > +                        */
-> > > > > > > +                       if (!parent_hub->parent && !usb_hcd_is_primary_hcd(hcd))
-> > > > > > > +                               goto node_put;
-> > > > > >
-> > > > > > I don't understand the "else" case above. What case exactly are we
-> > > > > > handling again? This is when:
-> > > > > > * the hub is presumably just a 2.0 hub since there is no companion.
-> > > > > > * our parent is the root hub and the USB 2.0 hub we're looking at is
-> > > > > > not the primary
-> > > > >
-> > > > > The 'else' case can be entered for hubs connected to a root hub or to another
-> > > > > hub further down in the tree, but we bail out only for first level hubs.
-> > > > >
-> > > > > > ...but that doesn't make a lot of sense to me? I must have missed something...
-> > > > >
-> > > > > It's not super-obvious, this bit is important: "this function can be called
-> > > > > multiple times for the same root hub node". For any first level hub we only
-> > > > > create a pdev if this function is called on behalf of the primary HCD. That
-> > > > > is also true of a hub connected to the secondary HCD. We only want to create
-> > > > > one pdev and there is supposedly always a primary HCD.
-> > > > >
-> > > > > Maybe it would be slightly clearer if the function returned before the loop
-> > > > > if this condition is met.
-> > > >
-> > > > I guess I'm still pretty confused. You say "For root hubs this
-> > > > function can be called multiple times for the same root hub node".
-> > > > Does that mean that the function will be called multiple times with
-> > > > the same "parent_hub", or something else.
-> > >
-> > > It is called with a different "parent_hub", however for root hubs the
-> > > DT node is the same for both root hubs (it's the DT node of the
-> > > controller since there are no dedicated nodes for the root hubs).
-> > >
-> > > Just to make sure this isn't the source of the confusion: the root hubs
-> > > are part of the USB controller, not 'external' hubs which are directly
-> > > connected to the controller. I call the latter 'first level hubs'.
-> > >
-> > > > Unless it's called with the same "parent_hub" then it seems like if
-> > > > the USB device has a device tree node and that device tree node is for
-> > > > a onboard_usb_hub and there's no companion node then we _always_ want
-> > > > to create the platform device, don't we? If it is called with the same
-> > > > "parent_hub" then I'm confused how your test does something different
-> > > > the first time the function is called vs. the 2nd.
-> > >
-> > > Let's use an adapted trogdor DT with only a USB 2.x hub as an example:
-> > >
-> > > usb_1_dwc3 {
-> > >          dr_mode = "host";
-> > >          #address-cells = <1>;
-> > >          #size-cells = <0>;
-> > >
-> > >          /* 2.x hub on port 1 */
-> > >          usb_hub_2_x: hub@1 {
-> > >                  compatible = "usbbda,5411";
-> > >                  reg = <1>;
-> > >                  vdd-supply = <&pp3300_hub>;
-> > >          };
-> > > };
-> > >
-> > > 1st call: the 'parent_hub' corresponds to the USB 3.x root hub of
-> > > usb_1_dwc3, the DT node of the hub is 'usb_1_dwc3'. The function
-> > > iterates over the ports, finds usb_hub_2_x, enters the else branch
-> > > (no companion hub), checks that the function was called on behalf
-> > > of the primary controller and creates the pdev.
-> > >
-> > > 2nd call: the 'parent_hub' corresponds to the USB 2.x root hub of
-> > > usb_1_dwc3, the DT node of the hub is also 'usb_1_dwc3'. The function
-> > > iterates over the ports, finds usb_hub_2_x, enters the else branch
-> > > (no companion hub), sees that it is not called on behalf of the
-> > > primary controller and does not create a second (unnecessary) pdev.
-> > >
-> > > Is it clearer now?
-> >
-> > Ah, I get it now! Sorry for being so dense...
->
-> No worries, it's certainly not obvious and probably my commentary could
-> have been clearer.
->
-> > So like this:
-> >
-> > Root hubs (those hubs with no parent) are all created with the same
-> > device_node, the one for the controller itself. We don't want to
-> > iterate through the same children multiple times, so we bail right
-> > away if we're detect that `parent_hub` is a root hub and we're not on
-> > the primary HCD.
->
-> yep
->
-> > For all other cases the primary and secondary controllers have distinct
-> > device_nodes.
->
-> You probably mean that all non-root hubs have distinct nodes, so for these
-> the function is only called once.
->
-> > I guess in theory that test could go before the "companion-hub" test,
-> > though I don't see any case where it truly matters...
->
-> Yeah, I'm still wondering whether it would be slightly less confusing to
-> bail before the loop (besides saving a few cycles), it would eliminate
-> the conflation with the 'companion-hub' check.
+And here you have correct syntax...
 
-I'm not sure how that would work, though? You'd essentially need two loops then?
+>  
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+>  
+>    clocks:
+>      maxItems: 1
+> @@ -46,6 +49,27 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      enum: [1, 2, 3]
+>  
+> +  microchip,flx-shrd-pins:
+> +    description: Specify the Flexcom shared pins to be used for flexcom
+> +      chip-selects.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      minimum: 0
+> +      maximum: 20
+> +
+> +  microchip,flx-cs:
+> +    description: Flexcom chip selects. Here, value of '0' represents "cts" line
+> +      of flexcom USART or "cs0" line of flexcom SPI and value of '1' represents
+> +      "rts" line of flexcom USART or "cs1" line of flexcom SPI.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      minimum: 0
+> +      maximum: 1
+> +
+>  patternProperties:
+>    "^serial@[0-9a-f]+$":
+>      description: See atmel-usart.txt for details of USART bindings.
+> @@ -72,6 +96,25 @@ required:
+>    - ranges
+>    - atmel,flexcom-mode
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: microchip,lan966x-flexcom
+> +
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 2
+> +          maxItems: 2
 
--Doug
+maxItems are not needed here.
+
+> +          items:
+> +            - description: Flexcom base regsiters map
+> +            - description: Flexcom shared registers map
+> +      required:
+> +        - microchip,flx-shrd-pins
+> +        - microchip,flx-cs
+
+You need "else:" setting reg to maxItems:1 and disallowing the
+properties (microchip,flx-cs:false). See for example:
+https://elixir.bootlin.com/linux/v5.17-rc2/source/Documentation/devicetree/bindings/media/renesas,vsp1.yaml#L53
+
+
+
+Best regards,
+Krzysztof
