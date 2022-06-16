@@ -2,171 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A6C654DF82
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 12:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11F8B54DFA5
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 13:04:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229748AbiFPKvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 06:51:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38196 "EHLO
+        id S231866AbiFPLEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 07:04:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376529AbiFPKvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 06:51:40 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C4B85DE65;
-        Thu, 16 Jun 2022 03:51:39 -0700 (PDT)
-X-UUID: 9b50985884a84c46adb1bdf62b903f58-20220616
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:d6659d84-6966-4c58-b866-1cd65f7fccde,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.6,REQID:d6659d84-6966-4c58-b866-1cd65f7fccde,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:b14ad71,CLOUDID:4e537cf6-e099-41ba-a32c-13b8bfe63214,C
-        OID:37c0074fa499,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 9b50985884a84c46adb1bdf62b903f58-20220616
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 244618540; Thu, 16 Jun 2022 18:51:32 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 16 Jun 2022 18:51:31 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 16 Jun 2022 18:51:31 +0800
-Message-ID: <bd0183b088c4c2849837f49b4b35b26d9079ac5f.camel@mediatek.com>
-Subject: Re: [PATCH v11 12/12] drm/mediatek: dpi: Add matrix_sel helper
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 16 Jun 2022 18:51:31 +0800
-In-Reply-To: <de65caa980c270e4dedcf134d45185d41cd4c0ae.camel@mediatek.com>
-References: <20220613064841.10481-1-rex-bc.chen@mediatek.com>
-         <20220613064841.10481-13-rex-bc.chen@mediatek.com>
-         <de65caa980c270e4dedcf134d45185d41cd4c0ae.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229663AbiFPLEb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 07:04:31 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10D925AEC0;
+        Thu, 16 Jun 2022 04:04:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1655377470; x=1686913470;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=FcU4UT3bPxh/t4Ktq9/FrPyMu3tmK0XhE8wqjm27hhQ=;
+  b=MT3VqzeFwsPY+ZrVToNHcg4O2YwpXr1OK7bXUYEfZvIZAOSvEVkxIZkW
+   xdrlcW5a0rk5B3qY9CGTxYl8y3ChFECy/nT6wZmn14q3sKBw7m2Ysaxj5
+   9ekOk6v0s+sj7wFlki9AAmbnjMsqQTDIfPluR6iZa/QoLZ7hIUAotr7LP
+   BOPdtYhJgGnVRvDGhGQVF23DkUjK8FLDn/wqDgomhGv5JhCrT2rOk8Gch
+   5FJkTsfVgv5CX97o4TeYNEqNye7Lr0i0NVekx074/bY4oQsJVZMKZHVkH
+   K2N0Sloydi0AmeCAGVzvM/rdKsuj/A4PYvkhf6qQF6ZpgPehvI3wtKIgi
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="262243264"
+X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; 
+   d="scan'208";a="262243264"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2022 04:04:29 -0700
+X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; 
+   d="scan'208";a="653115477"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2022 04:04:27 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1o1nGQ-000eDK-1J;
+        Thu, 16 Jun 2022 14:02:14 +0300
+Date:   Thu, 16 Jun 2022 14:02:13 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Dinh Nguyen <dinguyen@kernel.org>
+Cc:     jarkko.nikula@linux.intel.com, mika.westerberg@linux.intel.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCHv4 1/2] i2c: designware: introduce a custom scl recovery
+ for SoCFPGA platforms
+Message-ID: <YqsNtWhPNCvnFM1D@smile.fi.intel.com>
+References: <20220615191214.826879-1-dinguyen@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220615191214.826879-1-dinguyen@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-06-14 at 14:20 +0800, CK Hu wrote:
-> Hi, Bo-Chen:
+On Wed, Jun 15, 2022 at 02:12:13PM -0500, Dinh Nguyen wrote:
+> The I2C pins on the SoCFPGA platforms do not go through a GPIO module,
+> thus cannot be recovered by the default method of by doing a GPIO access.
+> Only a reset of the I2C IP block can a recovery be successful.
 > 
-> On Mon, 2022-06-13 at 14:48 +0800, Bo-Chen Chen wrote:
-> > From: Guillaume Ranquet <granquet@baylibre.com>
-> > 
-> > Add a mtk_dpi_matrix_sel() helper to update the DPI_MATRIX_SET
-> > register depending on the color format.
+> The assignment of the recover_bus needs to get done before the call to
+> devm_gpiod_get_optional(), otherwise, the assignment is not taking place
+> because of an error after returning from devm_gpiod_get_optional().
+
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+
+(yes, assuming stray change goes away)
+
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> ---
+> v4: re-arrange code per Andy Shevchenko's recommendation
+> v3: simplify the function
+>     update commit message
+> v2: remove change to MODEL_MASK
+>     s/i2c_custom_scl_recovery/i2c_socfpga_scl_recovery
+> ---
+>  drivers/i2c/busses/i2c-designware-core.h    |  1 +
+>  drivers/i2c/busses/i2c-designware-master.c  | 50 ++++++++++++++++++---
+>  drivers/i2c/busses/i2c-designware-platdrv.c |  1 +
+>  3 files changed, 46 insertions(+), 6 deletions(-)
 > 
-> Why set DPI_MATRIX_SET? New feature or bug fix? What does this matrix
-> work for?
-> 
-> Regards,
-> CK
+> diff --git a/drivers/i2c/busses/i2c-designware-core.h b/drivers/i2c/busses/i2c-designware-core.h
+> index 70b80e710990..7b22ec1d6a96 100644
+> --- a/drivers/i2c/busses/i2c-designware-core.h
+> +++ b/drivers/i2c/busses/i2c-designware-core.h
+> @@ -303,6 +303,7 @@ struct dw_i2c_dev {
+>  #define MODEL_MSCC_OCELOT	BIT(8)
+>  #define MODEL_BAIKAL_BT1	BIT(9)
+>  #define MODEL_AMD_NAVI_GPU	BIT(10)
+> +#define MODEL_SOCFPGA		BIT(11)
+>  #define MODEL_MASK		GENMASK(11, 8)
+>  
+>  /*
+> diff --git a/drivers/i2c/busses/i2c-designware-master.c b/drivers/i2c/busses/i2c-designware-master.c
+> index 44a94b225ed8..6b75a08a1c1f 100644
+> --- a/drivers/i2c/busses/i2c-designware-master.c
+> +++ b/drivers/i2c/busses/i2c-designware-master.c
+> @@ -813,10 +813,26 @@ static void i2c_dw_unprepare_recovery(struct i2c_adapter *adap)
+>  	i2c_dw_init_master(dev);
+>  }
+>  
+> -static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
+> +static int i2c_socfpga_scl_recovery(struct i2c_adapter *adap)
+> +{
+> +	struct i2c_bus_recovery_info *bri = adap->bus_recovery_info;
+> +
+> +	bri->prepare_recovery(adap);
+> +	bri->unprepare_recovery(adap);
+> +
+> +	return 0;
+> +}
+> +
+> +static int i2c_dw_init_socfpga_recovery_info(struct dw_i2c_dev *dev,
+> +					     struct i2c_bus_recovery_info *rinfo)
+> +{
+> +	rinfo->recover_bus = i2c_socfpga_scl_recovery;
+> +	return 1;
+> +}
+> +
+> +static int i2c_dw_init_generic_recovery_info(struct dw_i2c_dev *dev,
+> +					     struct i2c_bus_recovery_info *rinfo)
+>  {
+> -	struct i2c_bus_recovery_info *rinfo = &dev->rinfo;
+> -	struct i2c_adapter *adap = &dev->adapter;
+>  	struct gpio_desc *gpio;
+>  
+>  	gpio = devm_gpiod_get_optional(dev->dev, "scl", GPIOD_OUT_HIGH);
+> @@ -831,16 +847,38 @@ static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
+>  	rinfo->sda_gpiod = gpio;
+>  
+>  	rinfo->recover_bus = i2c_generic_scl_recovery;
+> -	rinfo->prepare_recovery = i2c_dw_prepare_recovery;
+> -	rinfo->unprepare_recovery = i2c_dw_unprepare_recovery;
+> -	adap->bus_recovery_info = rinfo;
+>  
+>  	dev_info(dev->dev, "running with gpio recovery mode! scl%s",
+>  		 rinfo->sda_gpiod ? ",sda" : "");
+>  
+> +	return 1;
+> +}
+> +
+> +static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
+> +{
+> +	struct i2c_bus_recovery_info *rinfo = &dev->rinfo;
+> +	struct i2c_adapter *adap = &dev->adapter;
+> +	int ret;
+> +
+> +	switch (dev->flags & MODEL_MASK) {
+> +	case MODEL_SOCFPGA:
+> +		ret = i2c_dw_init_socfpga_recovery_info(dev, rinfo);
+> +		break;
+> +	default:
+> +		ret = i2c_dw_init_generic_recovery_info(dev, rinfo);
+> +		break;
+> +	}
+> +	if (ret <= 0)
+> +		return ret;
+> +
+> +	rinfo->prepare_recovery = i2c_dw_prepare_recovery;
+> +	rinfo->unprepare_recovery = i2c_dw_unprepare_recovery;
+> +	adap->bus_recovery_info = rinfo;
+> +
+>  	return 0;
+>  }
+>  
+> +
+>  static int amd_i2c_adap_quirk(struct dw_i2c_dev *dev)
+>  {
+>  	struct i2c_adapter *adap = &dev->adapter;
+> diff --git a/drivers/i2c/busses/i2c-designware-platdrv.c b/drivers/i2c/busses/i2c-designware-platdrv.c
+> index 70ade5306e45..b33e015e6732 100644
+> --- a/drivers/i2c/busses/i2c-designware-platdrv.c
+> +++ b/drivers/i2c/busses/i2c-designware-platdrv.c
+> @@ -153,6 +153,7 @@ static const struct of_device_id dw_i2c_of_match[] = {
+>  	{ .compatible = "snps,designware-i2c", },
+>  	{ .compatible = "mscc,ocelot-i2c", .data = (void *)MODEL_MSCC_OCELOT },
+>  	{ .compatible = "baikal,bt1-sys-i2c", .data = (void *)MODEL_BAIKAL_BT1 },
+> +	{ .compatible = "intel,socfpga-i2c", .data = (void *)MODEL_SOCFPGA },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, dw_i2c_of_match);
+> -- 
+> 2.25.1
 > 
 
-Matrix selection is a new feature for both dpi and dpintf of MT8195.
-I will add this in next version.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> > 
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >  drivers/gpu/drm/mediatek/mtk_dpi.c      | 21 +++++++++++++++++++++
-> >  drivers/gpu/drm/mediatek/mtk_dpi_regs.h |  3 +++
-> >  2 files changed, 24 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > index 9668bd5dd14a..dc355a512963 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > @@ -387,6 +387,25 @@ static void mtk_dpi_config_disable_edge(struct
-> > mtk_dpi *dpi)
-> >  		mtk_dpi_mask(dpi, dpi->conf->reg_h_fre_con, 0,
-> > EDGE_SEL_EN);
-> >  }
-> >  
-> > +static void mtk_dpi_matrix_sel(struct mtk_dpi *dpi, enum
-> > mtk_dpi_out_color_format format)
-> > +{
-> > +	u32 matrix_sel = 0;
-> > +
-> > +	switch (format) {
-> > +	case MTK_DPI_COLOR_FORMAT_YCBCR_422:
-> > +	case MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL:
-> > +	case MTK_DPI_COLOR_FORMAT_YCBCR_444:
-> > +	case MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL:
-> > +	case MTK_DPI_COLOR_FORMAT_XV_YCC:
-> > +		if (dpi->mode.hdisplay <= 720)
-> > +			matrix_sel = 0x2;
-> > +		break;
-> > +	default:
-> > +		break;
-> > +	}
-> > +	mtk_dpi_mask(dpi, DPI_MATRIX_SET, matrix_sel,
-> > INT_MATRIX_SEL_MASK);
-> > +}
-> > +
-> >  static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
-> >  					enum mtk_dpi_out_color_format
-> > format)
-> >  {
-> > @@ -394,6 +413,7 @@ static void mtk_dpi_config_color_format(struct
-> > mtk_dpi *dpi,
-> >  	    (format == MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL)) {
-> >  		mtk_dpi_config_yuv422_enable(dpi, false);
-> >  		mtk_dpi_config_csc_enable(dpi, true);
-> > +		mtk_dpi_matrix_sel(dpi, format);
-> >  		if (dpi->conf->swap_input_support)
-> >  			mtk_dpi_config_swap_input(dpi, false);
-> >  		mtk_dpi_config_channel_swap(dpi,
-> > MTK_DPI_OUT_CHANNEL_SWAP_BGR);
-> > @@ -401,6 +421,7 @@ static void mtk_dpi_config_color_format(struct
-> > mtk_dpi *dpi,
-> >  		   (format == MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL)) {
-> >  		mtk_dpi_config_yuv422_enable(dpi, true);
-> >  		mtk_dpi_config_csc_enable(dpi, true);
-> > +		mtk_dpi_matrix_sel(dpi, format);
-> >  		if (dpi->conf->swap_input_support)
-> >  			mtk_dpi_config_swap_input(dpi, true);
-> >  		mtk_dpi_config_channel_swap(dpi,
-> > MTK_DPI_OUT_CHANNEL_SWAP_RGB);
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-> > b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-> > index f7f0272dbd6a..96c117202d0d 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-> > @@ -230,4 +230,7 @@
-> >  #define EDGE_SEL_EN			BIT(5)
-> >  #define H_FRE_2N			BIT(25)
-> >  
-> > +#define DPI_MATRIX_SET		0xB4
-> > +#define INT_MATRIX_SEL_MASK	(0x1F << 0)
-> > +
-> >  #endif /* __MTK_DPI_REGS_H */
-> 
-> 
 
