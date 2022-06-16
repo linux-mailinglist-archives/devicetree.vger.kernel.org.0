@@ -2,89 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDAB654E296
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:55:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9DA154E2A5
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377326AbiFPNzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 09:55:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60920 "EHLO
+        id S1377368AbiFPN5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 09:57:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233364AbiFPNzy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:55:54 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 859F3457BA
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:55:53 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id 123so1317006pgb.5
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:55:53 -0700 (PDT)
+        with ESMTP id S1376717AbiFPN5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:57:04 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C3494704B
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:57:03 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id z14so1348934pgh.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:57:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=p++bIs2HneM4Mmo2YjeBS7JYAqLzkFDGH55M3o+NIxg=;
-        b=BehuJv74CLjkgQwQW2YTJI7GYHpWAyt46Adp9YWqP2Ino810KUqBU3m1LAkJP2RoeF
-         +eA+u8d7kVSzDosz5vq7VxcNcZTX5YfEAdbw3WwaqZk6zp6IGjSa69Y0nIzpcs7oQ7T1
-         5P9k5mgEtdwx7+92E2Hd+8E/s1CExYyHRLZ7rC2g7YdASXXLLCb/7P762HZgHrjLA75R
-         xG5TtUiW3VtMrQd6uFAmQG8Y4p1sUGlhBWUz7hIEqmjYZkezA6cSjVo4NTIG9NzxS6uo
-         9KvtSOoyXEs4n5UZOYuuYOrIE0Y0joFHJlTY2q8mQG0IgbCAF5+0MpkutS140mIBOqqJ
-         kXZQ==
+        bh=WF4lAn49sjJB9tDcffvKOR2ZsYx014rUPjpNYWe2CH4=;
+        b=n1wLv515CJx4S59bI6gUm/jJzYE1Jd4ZyAEjXYZY41fVhqp0NKiqt1/QkpPk1D8t82
+         iuMkt6sHeax+j1qVZLhL8P9r910GR29TsPcyG7zghs7Ifd1tgKZ16/3DDAi4smkoKOxP
+         Esri746E8NxIhzUMoDZT/xDm89MVNCHpLxf2Wiu0m+w3vUNUhaaPneZg/8bqliICfZkp
+         t6YRYoINqDoA2xIX7/ZqzCzF2N8+cH7NITpfqyKhEclO+zJ2HNeXjaXOobyxPW3J/UT/
+         RIWVO8F9JCy+oiYbnClKxhyepZU6oLJPWlUTAymbkx5n3TGn2CG+1g09mtAmsUrK1k5A
+         GpxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=p++bIs2HneM4Mmo2YjeBS7JYAqLzkFDGH55M3o+NIxg=;
-        b=iQ6ANyuJ9SeCL0Bv+xsUOu9KWirC6E3J9XmxbBo9ull7+KpkjUoNhEOSabWGWgPyVf
-         IOfgMuwpsTNTkF3lU/vpDhC5VA+8MIeIPSlwpgtmUOOsXyu0tw8Ij1KDJ/daBvoCb+P4
-         9bKeU1qa+hDFjfC+bYv565nXu6hu7BvsaXzjCLji1i3nVA0lStgZBFcOEgYVarNEn9RC
-         dAtplSk1lcii/rhVjtCjdkFr0xttP8BoiExy5UagWnYdnCXfktq1NE33O6id/46DdLf7
-         5p4Z0+RxyQb2I8SbkkxLDZcrs9G9EF/hRCon+6kKZWmPN9H3lf7bAxR4T3fCBPYvZcXt
-         1QnQ==
-X-Gm-Message-State: AJIora+toDbX8vqU2duFc0D+3kKp6yrbAfMsrd6PvcuIJpPA4cp9wjgA
-        0vqoICb+AJHDN4UQU+cha8C+pQ==
-X-Google-Smtp-Source: AGRyM1vXMhY+ZrUKaR7yePLi9tk4x6RLg+QaJ2jT5cqYNFanziG3iv5eJoN4umJFjqajEOEp+YtBpQ==
-X-Received: by 2002:a63:356:0:b0:3fd:7477:63f0 with SMTP id 83-20020a630356000000b003fd747763f0mr4613366pgd.601.1655387752971;
-        Thu, 16 Jun 2022 06:55:52 -0700 (PDT)
+        bh=WF4lAn49sjJB9tDcffvKOR2ZsYx014rUPjpNYWe2CH4=;
+        b=NWhaBJwjx2VKstJGl+TbsYkzKlD0ftkgRW9lgIwmK9S4TbL1axNGspEllqh9sjo7ar
+         c6z7dSy4XKVqu8pCWf28yM+dUz/3nyMNiqZ/W/+kHHpGBDG0s8St+lk1zDmiqxFR+5XW
+         y9JV1gkK1CDbJ9V0o+JuVjVO45FMooSgfs8KC/sD/LD40jaRJOTMx6KP9aYKVDZJxtGU
+         vQR9Z1b1j3gdzYYloUGEgbWLamtDxYY3CAPY2XeBnG8h6++z8QG0QGAS6AFreJAJO1/L
+         AZQgeC1CdF9gae2jWjDusuYBWVFtdMIapUQU/LqsuZFI6KjdAz1BYgTJYu+CCcpbcEva
+         37Vg==
+X-Gm-Message-State: AJIora/NIvUtWavR0VDGzI8UyQIdJBtK+rQZ1jsmdt4yuTFE9s9Sldsn
+        yQImpKc4tZPhXwj5L58wzISlbg==
+X-Google-Smtp-Source: AGRyM1sHbtQQLESsZ+61Z/D9ovq2bt4L/GoaAb4iwdCOR9MeEktPEh/7EQdFda5Tek+t1qulAbQlmQ==
+X-Received: by 2002:a05:6a00:a16:b0:518:ffe0:7229 with SMTP id p22-20020a056a000a1600b00518ffe07229mr5022001pfh.49.1655387822594;
+        Thu, 16 Jun 2022 06:57:02 -0700 (PDT)
 Received: from [172.20.0.255] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id d2-20020a056a00198200b0051b9ecb53e6sm1773063pfl.105.2022.06.16.06.55.51
+        by smtp.gmail.com with ESMTPSA id jd12-20020a170903260c00b0015e8d4eb1dbsm1693992plb.37.2022.06.16.06.57.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Jun 2022 06:55:52 -0700 (PDT)
-Message-ID: <ea767ff8-9fa0-7a2f-af52-e0d05adafb03@linaro.org>
-Date:   Thu, 16 Jun 2022 06:55:51 -0700
+        Thu, 16 Jun 2022 06:57:02 -0700 (PDT)
+Message-ID: <b12be0e9-4fbe-ff92-6a75-ab65dbaf5160@linaro.org>
+Date:   Thu, 16 Jun 2022 06:57:01 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v3 3/4] dt-bindings: dsp: mediatek: Add mt8186 dsp
- document
+Subject: Re: [PATCH 1/4] dt-bindings: gpio: Add AXP221/AXP223/AXP809
+ compatibles
 Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, YC Hung <yc.hung@mediatek.com>,
-        Curtis Malainey <cujomalainey@chromium.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        sound-open-firmware@alsa-project.org, alsa-devel@alsa-project.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220616073042.13229-1-tinghan.shen@mediatek.com>
- <20220616073042.13229-4-tinghan.shen@mediatek.com>
+To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        linux-kernel@vger.kernel.org
+References: <20220616060915.48325-1-samuel@sholland.org>
+ <20220616060915.48325-2-samuel@sholland.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220616073042.13229-4-tinghan.shen@mediatek.com>
+In-Reply-To: <20220616060915.48325-2-samuel@sholland.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,15 +80,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2022 00:30, Tinghan Shen wrote:
-> This patch adds mt8186 dsp document. The dsp is used for Sound Open
-> Firmware driver node. It includes registers, clocks, memory regions,
-> and mailbox for dsp.
+On 15/06/2022 23:09, Samuel Holland wrote:
+> These PMICs each have 2 GPIOs with the same register layout as AXP813,
+> but without an ADC function.
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+> 
+>  .../devicetree/bindings/gpio/x-powers,axp209-gpio.yaml     | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml b/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
+> index 0f628b088cec..6faa3ef28960 100644
+> --- a/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
+> @@ -19,7 +19,14 @@ properties:
+>      oneOf:
+>        - enum:
+>            - x-powers,axp209-gpio
+> +          - x-powers,axp221-gpio
+>            - x-powers,axp813-gpio
+> +      - items:
+> +          - const: x-powers,axp223-gpio
+> +          - const: x-powers,axp221-gpio
+> +      - items:
+> +          - const: x-powers,axp809-gpio
 
+This is just an enum with 223 and 809. No need for two separate entries
+here.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +          - const: x-powers,axp221-gpio
+>        - items:
+>            - const: x-powers,axp803-gpio
+>            - const: x-powers,axp813-gpio
 
 
 Best regards,
