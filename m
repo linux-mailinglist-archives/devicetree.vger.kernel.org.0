@@ -2,84 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 572FE54E20A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:34:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 840AB54E21E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:38:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377022AbiFPNe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 09:34:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39024 "EHLO
+        id S1376928AbiFPNid (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 09:38:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376878AbiFPNe5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:34:57 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62CED20BD0
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:34:56 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id x38so2204084ybd.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:34:56 -0700 (PDT)
+        with ESMTP id S1377127AbiFPNiX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:38:23 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83E0F2182B
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:38:21 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id p6-20020a05600c1d8600b0039c630b8d96so3322719wms.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:38:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=E4oRD4fpeOcIe9J3CDXeLQW7t2RI1ucb4W5YyAxRXTc=;
-        b=i+aNtOa0+P+UbHlJ+UN0VZmv+j16VlraJF77uRCdHFS9DDTc2ta8XYvSfxc1rbXh52
-         C9Hwy4bHsghReeEsAOr5frAUR0h/6yvnL98uuM/BV5p6LF6ip1BxtdTvaIJRzEoCoJy7
-         HA80uJ9DSen54oYDsfLIsIyXI8ieNXW53l/JP7kirV0mPi57XiWfohaX1D1/TOvEvTg/
-         mTMITFgeJolEY5F43ftAl1AFapXqkYT57sFcHPxuWR/BDsZNk/fViXrCbaIOdIWGRapw
-         Ef4Vs2gqSuHK2KLCX2E/zi9ktMQtWwZS2eAYxgKkkO8lJ6Wtt4oRt1hPRH4iksDjaemh
-         +Gbw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=PxD5eSuoVNmuy9uK+8ImVic/9oJqQQRTmLdQoVDSq7Y=;
+        b=KUiIidYubKIQhmnPtrgcqWcZFytwUm9hJxPJTs/iRO0+H51/6/n1Xd/98LXtsAUToW
+         DSycfm5OK+VF5Aw54NXyUhKkia6/lS63d8eVYhUiqo8opHX3+jl7rAM/1NYDeJA2Apb6
+         vP3T6unqET61xpxyXVK6Wn11V9+x+kRab3KMpVF4PSz5cANkm5TBzLGt9QHcyTU9PZkH
+         HIS0CBP/4eOD5uv6gBTn6kDHVMXBFeCsgVaIxAtndx9CBM2vjwI7L3rt59SRZXILAKlW
+         54oA0+OZ6itH/HyVQ2d3DxcXnIrj0VxfSPMfLnN822oL790a8DpzHIOB0TJhHspehk5D
+         4B1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=E4oRD4fpeOcIe9J3CDXeLQW7t2RI1ucb4W5YyAxRXTc=;
-        b=YL4TdoKyOXia0bwwxOJO6P2RgTKrPrSTcZ8EsZth/JSzWER1pTd7WjzFZ71zXRggxm
-         1t6b53W14tiPufGlmX3+/ESO6S69ksGwCmo4AVmSNNhXKLx5r1Bl5cyx11vh0rmR5/yE
-         FWOTOLKeKAxjqD9CXvkE74dldmp27s/KBrMMmi0XbQy9ynapehMM0bvWpFNbnLqHWSv+
-         TQDhLYz6TlU81iV/5i1hlHgEwQjQKR52AqjsvOQgmEzVyrWOsCj7e4LNM3+eUUtBOSPg
-         F8KynBjDFrl0/Tef32Wqu/OKEDGIGWro/youASB80Y8dLIfXgFa++4POOiEeAgjfKk9n
-         kUyQ==
-X-Gm-Message-State: AJIora9saX9RRR6nycEFtBYllJ+WqXWaPlhUMV+xgf9l8EGACi5XEei0
-        6PWW6mrM+pDBHLyT3I/s/W+5ToGZYd6J0Vwv7pb/VA==
-X-Google-Smtp-Source: AGRyM1tOESzLLHsKWOfNIxiAJfDhdbEqfPn3s2ZPVjXgSzXCZ24IEI92hnqOwbzdBIKkU7b9sRdugwSZhPXLa08JRCI=
-X-Received: by 2002:a25:3417:0:b0:664:aab3:7c44 with SMTP id
- b23-20020a253417000000b00664aab37c44mr5233002yba.533.1655386495611; Thu, 16
- Jun 2022 06:34:55 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=PxD5eSuoVNmuy9uK+8ImVic/9oJqQQRTmLdQoVDSq7Y=;
+        b=2K34b+bYF3UNkdAeSXV8rSUlz2YlcM0sJ63UQUHhMDvF3CCSY+TMPEkwaNh8BnVFQL
+         9jTuwZzA8nfGbiekj1zdygW/6OyE32abGVAen4HqNSi5gfLhXgNZ+QvO6l8PGJbjeJf0
+         rEMGcedb3xlh7h+68Yslr82Xr/jFNDx1um7dsfV8jdn75SLVbjsYbWSRy1rBgeFVOev3
+         W+bxGkbEMCpagodgSG+NwixGSZXx03pk/OGAuR+cUTGxNeOW2oUkbUckHSxs74qc/ylL
+         j94VjAeEK6kiVKh1giSw89WHYZIPHrzGP4uQsB4B0P+b6jSFzO12EjeEX4Ro6QBoxqna
+         ZiOQ==
+X-Gm-Message-State: AJIora+FC3GafN98rTAKdltZlJ95i2YZjdKRQNq/FEpN25UzbagS6iQi
+        EHNxxtFUIUY7sB3D7bGbCsNB2g==
+X-Google-Smtp-Source: AGRyM1tWwdUCxZ5lku8fS/JAqMfPYZ1pVuLz3qlRsQKA25sJXVvPekovAHC6E/LUsIRHdr7iSUur7w==
+X-Received: by 2002:a7b:c1d1:0:b0:39c:605c:1530 with SMTP id a17-20020a7bc1d1000000b0039c605c1530mr5150562wmj.80.1655386699992;
+        Thu, 16 Jun 2022 06:38:19 -0700 (PDT)
+Received: from localhost.localdomain ([2a0d:e487:34f:da80:9c48:d9f8:5c33:3dd5])
+        by smtp.gmail.com with ESMTPSA id v12-20020a5d678c000000b0020c5253d90asm1935423wru.86.2022.06.16.06.38.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jun 2022 06:38:19 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     kishon@ti.com, vkoul@kernel.org, devicetree@vger.kernel.org
+Cc:     linux-phy@lists.infradead.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH v4 1/2] dt-bindings: phy: add Amlogic G12A Analog MIPI D-PHY bindings
+Date:   Thu, 16 Jun 2022 15:38:10 +0200
+Message-Id: <20220616133811.1674777-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220616133811.1674777-1-narmstrong@baylibre.com>
+References: <20220616133811.1674777-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-References: <20220610203746.2191518-1-robh@kernel.org>
-In-Reply-To: <20220610203746.2191518-1-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 16 Jun 2022 15:34:44 +0200
-Message-ID: <CACRpkdaayHZaeC4X1+d_jC0nCvAtw=w2t2m1txj4OtV_LqcnoA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mtd/partitions: Convert arm-firmware-suite
- to DT schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 10, 2022 at 10:38 PM Rob Herring <robh@kernel.org> wrote:
+The Amlogic G12A SoCs embeds an Analog MIPI D-PHY to communicate with DSI
+panels, this adds the bindings.
 
-> Convert the arm,arm-firmware-suite partition binding to DT schema
-> format. Simple conversion as there's only a compatible property.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+This Analog D-PHY works with a separate Digital MIPI D-PHY.
 
-I see your own robot bit you about the unit name but with
-that fixed:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../phy/amlogic,g12a-mipi-dphy-analog.yaml    | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
 
-Yours,
-Linus Walleij
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+new file mode 100644
+index 000000000000..7aa0c05d6ce4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/amlogic,g12a-mipi-dphy-analog.yaml
+@@ -0,0 +1,35 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/phy/amlogic,g12a-mipi-dphy-analog.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic G12A MIPI analog PHY
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++properties:
++  compatible:
++    const: amlogic,g12a-mipi-dphy-analog
++
++  "#phy-cells":
++    const: 0
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - "#phy-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    phy@0 {
++          compatible = "amlogic,g12a-mipi-dphy-analog";
++          reg = <0x0 0xc>;
++          #phy-cells = <0>;
++    };
+-- 
+2.25.1
+
