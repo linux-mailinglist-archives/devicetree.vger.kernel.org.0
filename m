@@ -2,64 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15B1A54DAAF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 08:31:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0996254DACA
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 08:37:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359133AbiFPGbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 02:31:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51104 "EHLO
+        id S1358707AbiFPGhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 02:37:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233903AbiFPGbK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 02:31:10 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA2E05677B;
-        Wed, 15 Jun 2022 23:31:09 -0700 (PDT)
-X-UUID: e2f21dbf73474e5f9da3f5ed59914ac8-20220616
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:88c4ec7a-a239-46ba-bf62-aefc6af4ef11,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:b14ad71,CLOUDID:9b7d71f6-e099-41ba-a32c-13b8bfe63214,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: e2f21dbf73474e5f9da3f5ed59914ac8-20220616
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1300391025; Thu, 16 Jun 2022 14:31:03 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 16 Jun 2022 14:31:02 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 16 Jun 2022 14:31:00 +0800
-Message-ID: <2d0f49294a8bac34dd5dd1ce4201f009a207b7a7.camel@mediatek.com>
-Subject: Re: [PATCH v3 6/6] iommu: mtk_iommu: Lookup phandle to retrieve
- syscon to pericfg
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     <joro@8bytes.org>, <will@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <iommu@lists.linux-foundation.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski@linaro.org>
-Date:   Thu, 16 Jun 2022 14:30:57 +0800
-In-Reply-To: <80c7fa61-e25a-fc45-bdcb-60ac3796b96e@collabora.com>
-References: <20220609100802.54513-1-angelogioacchino.delregno@collabora.com>
-         <20220609100802.54513-7-angelogioacchino.delregno@collabora.com>
-         <db422fe4d0b5391ee2aacae989d7e48209e1095f.camel@mediatek.com>
-         <80c7fa61-e25a-fc45-bdcb-60ac3796b96e@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1359203AbiFPGhY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 02:37:24 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DA6456F81
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 23:37:22 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id s10so424947ljh.12
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 23:37:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=Fj5okI0OHrTUL7u0PrVtz/qzUyxfkepK38a37myhwyc=;
+        b=aTyyr4VKiJKH9w58xGNjupT0b/Lpr30fhhgRJH9+kUuKwIiMjjQeOSG6AYnJveLS7f
+         oDF0edb6MfIs5YoC2CWDX01cWww6laAge4ohmVCqzvQbwthKVfFEf15eNTiYBSB+fMPs
+         Ya16w31vG9XIYFo0QZhmFeUzyg8TbrnTbezcOJgBWzvAqqZ4DEWqwjsN6rrhdTZG/sdc
+         lsn62CtbqfbbPKMtTj1rqlAoN8ybv4wq0tBkPfSIKGBm7wdCRW+TF5nwEx6BFSTpKVrm
+         biCfSElD/javNfglf2DV2nur026xsEJnAPa+xvhXHllcR6E6/pjuMuBnMbc/jyXjcDUG
+         BCPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=Fj5okI0OHrTUL7u0PrVtz/qzUyxfkepK38a37myhwyc=;
+        b=gwleW83sKE3ZwTKYhGH2eKhhQUXyYWx7wWwUSUg92VshW2xQkHdi+q9FSFv7bE2e37
+         qum5SkU1VyL2LvUqtAoDyesE38KyYP8NaFiNrpWJwJBFDvikE0HexEu1NtjGekfOYwc/
+         I/ohfWytgJbsorWonviA32l5CeUPN83hwESME7BeKlaH4QcITxfsvQKGkiMx6iFbsEZd
+         hyxNIfyYZbSu52hXKE035SIcnON3UgP864sM1oteK8BYyPJJl8lfcCy1XZJElDpTfPoz
+         17cnPsl1u9Bw5il9kyyLa3sf4YqDpNdne6Gw+/om+HFjawEr6t5FsK5IiIEE+Tdsbbzp
+         HuPQ==
+X-Gm-Message-State: AJIora8ilFXbtoEoNFoFJrSam9r3z/QPSie1vx0cjvR0RG4hWi6DYOff
+        s6tphjczne+Z6sQcKPRsXoLwJQ==
+X-Google-Smtp-Source: AGRyM1soQk1JX8qiRdMNy0XE89vDn++uDALWeQbt+IbFR4FqlwAjVbSPM5Vxp4wAzGxwiCkBe0EAKw==
+X-Received: by 2002:a2e:8404:0:b0:250:cde7:e9e3 with SMTP id z4-20020a2e8404000000b00250cde7e9e3mr1759936ljg.289.1655361440862;
+        Wed, 15 Jun 2022 23:37:20 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id y9-20020a199149000000b0047db8b30670sm110207lfj.136.2022.06.15.23.37.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jun 2022 23:37:20 -0700 (PDT)
+Message-ID: <532dcb6a-db67-947b-3260-ac801b07f349@linaro.org>
+Date:   Thu, 16 Jun 2022 09:37:19 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v3 06/14] drm/msm/hdmi: drop unused GPIO support
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        kernel test robot <lkp@intel.com>
+References: <20220609122350.3157529-1-dmitry.baryshkov@linaro.org>
+ <20220609122350.3157529-7-dmitry.baryshkov@linaro.org>
+ <CAE-0n51vKmQ683TTnYm8VxSquqYqL2_3=Ku750r--0GV4JcW8Q@mail.gmail.com>
+ <492bbe98-e395-3adb-34e3-eadccd59d849@linaro.org>
+In-Reply-To: <492bbe98-e395-3adb-34e3-eadccd59d849@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,41 +84,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-06-13 at 10:13 +0200, AngeloGioacchino Del Regno wrote:
-> Il 13/06/22 07:32, Yong Wu ha scritto:
-> > On Thu, 2022-06-09 at 12:08 +0200, AngeloGioacchino Del Regno
-> > wrote:
-> > > On some SoCs (of which only MT8195 is supported at the time of
-> > > writing),
-> > > the "R" and "W" (I/O) enable bits for the IOMMUs are in the
-> > > pericfg_ao
-> > > register space and not in the IOMMU space: as it happened already
-> > > with
-> > > infracfg, it is expected that this list will grow.
-> > 
-> > Currently I don't see the list will grow. As commented before, In
-> > the
-> > lastest SoC, The IOMMU enable bits for IOMMU will be in ATF, rather
-> > than in this pericfg register region. In this case, Is this patch
-> > unnecessary? or we could add this patch when there are 2 SoCs use
-> > this
-> > setting at least?  what's your opinion?
-> > 
+On 10/06/2022 23:47, Dmitry Baryshkov wrote:
+> On 10/06/2022 23:46, Stephen Boyd wrote:
+>> Quoting Dmitry Baryshkov (2022-06-09 05:23:42)
+>>> The HDMI driver has code to configure extra GPIOs, which predates
+>>> pinctrl support. Nowadays all platforms should use pinctrl instead.
+>>> Neither of upstreamed Qualcomm platforms uses these properties, so it's
+>>> safe to drop them.
+>>>
+>>> Reported-by: kernel test robot <lkp@intel.com>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>
+>> One question
+>>
+>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>>
+>>> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c 
+>>> b/drivers/gpu/drm/msm/hdmi/hdmi.c
+>>> index 7267167d5ef1..6d79f1b910a5 100644
+>>> --- a/drivers/gpu/drm/msm/hdmi/hdmi.c
+>>> +++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
+>>> @@ -233,6 +233,20 @@ static struct hdmi *msm_hdmi_init(struct 
+>>> platform_device *pdev)
+>>>                  hdmi->pwr_clks[i] = clk;
+>>>          }
+>>>
+>>> +       hdmi->hpd_gpiod = devm_gpiod_get_optional(&pdev->dev, "hpd", 
+>>> GPIOD_IN);
+>>> +       /* This will catch e.g. -EPROBE_DEFER */
+>>> +       if (IS_ERR(hdmi->hpd_gpiod)) {
+>>> +               ret = PTR_ERR(hdmi->hpd_gpiod);
+>>> +               DRM_DEV_ERROR(&pdev->dev, "failed to get hpd gpio: 
+>>> (%d)\n", ret);
+>>
+>> Did you want to print an error with eprobe defer in it?
 > 
-> Perhaps I've misunderstood... besides, can you please check if
-> there's any
-> other SoC (not just chromebooks, also smartphone SoCs) that need this
-> logic?
+> True. We should use dev_err_probe here. I'll fix it in the next revision.
 
-As far as I know, SmartPhone SoCs don't enable the infra iommu until
-now. they don't have this logic. I don't object this patch, I think we
-could add it when at least 2 SoCs need this.
-
-Thanks very much for help improving here.
+As a second thought, I think I'll merge it as is for now and fix all 
+error messages while moving the resource allocation to the _probe() 
+function. There are few other places where we are printing the 
+EPROBE_DEFER error code.
 
 > 
-> Thanks,
-> Angelo
+>>
+>>> +               goto fail;
+>>> +       }
+>>> +
+>>> +       if (!hdmi->hpd_gpiod)
+>>> +               DBG("failed to get HPD gpio");
+>>> +
+>>> +       if (hdmi->hpd_gpiod)
+>>> +               gpiod_set_consumer_name(hdmi->hpd_gpiod, "HDMI_HPD");
+>>> +
+>>>          pm_runtime_enable(&pdev->dev);
+>>>
+>>>          hdmi->workq = alloc_ordered_workqueue("msm_hdmi", 0);
 > 
 > 
 
+
+-- 
+With best wishes
+Dmitry
