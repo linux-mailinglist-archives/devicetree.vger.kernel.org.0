@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A58B54D69B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 02:58:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A31F54D694
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 02:58:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354038AbiFPAz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 20:55:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56600 "EHLO
+        id S1350658AbiFPAz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 20:55:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350754AbiFPAzV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 20:55:21 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4927E5839D
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:54:44 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id w21so138162pfc.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:54:44 -0700 (PDT)
+        with ESMTP id S1350707AbiFPAz0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 20:55:26 -0400
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55535583AB
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:54:45 -0700 (PDT)
+Received: by mail-pg1-x536.google.com with SMTP id 123so12908639pgb.5
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:54:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ouHToTpfN91IdC1bQjCsmRZ9s0XMaKvgoUPDfBZdkoE=;
-        b=eTXdnaUwhzo9kXPhguu9D3DUUGikVbQltlkxpd3bNBqjlbVPE9rDJuWopEEQFOIKQQ
-         FAJ/nG7vLIJX0i/BzyWGtp4988gGMYzs760xhCChCb7FZZrfmfdZFSmW4UhBm68uucQd
-         kgCuGxThR/vdsfYnV9vbUTQO38EooKHKBHhLGS1M0XujGGlRqPEwJ6kgZtBEzRdxGEXp
-         1Lb//lM9H4gukp8g0JO7H/NvBlHzU6Iu31u36d7+/hXQdWEO0wZHTiEL+oM9OZaSYSYm
-         Di9RAg90nYEQhrRP/ilX8lp85wYUHKClYZYxwttPQw4X7txhbrfC9rBWpw/ZMjWtAQxw
-         yweg==
+        bh=kjxoc+L6eqxwMNT3+yJrollfGrhiqYTPiC+5llKZhTw=;
+        b=yw7fTFrBXvWvrvsb5WkegfMEW/6IhL1KT9/hAYo8dWOs2GGKYjkucklo/1t1qezcEc
+         36/DUzR/HVQ825/6vqnL6eYxLMj9Eql7/LVFx3+V99KJp0liIri67BryhRUZDTnB10N2
+         pSrGwGvl1QOmOOV3y67xfjcdFYTEjLb8lGp0k6OtSBxmUtCL6Cj6YPI2f+Co22OPUKmI
+         Xe4ZkuZipAQRt655H0W4wuauqWhZGkX0gjVqusAmaOyHnn5U7e1/mzs7L1HcJVv4Nceg
+         6pp44m0mzlGuZ46j+eWe3s+J5AdaeJqqTONXHX3A47HjMuA6xrbzLdGxkDkGWq/Wlvq5
+         y8Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ouHToTpfN91IdC1bQjCsmRZ9s0XMaKvgoUPDfBZdkoE=;
-        b=5vcgG240q5vnqAkg12T6BgvA/vJdFnEdfjflw/YloNthlfEH95MSYkh13ME7IhlHgd
-         SFaY1R3AfAVxEe1hhQNToO/pADHzWiTX77FNbXA7qqnBdw4VswP/+FORNYjK3fUalZC+
-         VXvP+ljuXbfKasIy/RCXB9GgbsQ8zDLvZmbIbQ43JryHLj+MVuEpt9YvZkaWGMQltECW
-         gFOCm6uPyPJAilj9yEuxYiZWWwloS101XwtfxDFTt86ATbR+dXrvIvOCop2loyitPMzI
-         2dJEFiMbGPYDBbhDvh8+eWtGodarcAjKdszlydxCuSDygZIWWdbQ9/OOUpoZZ7arACWd
-         gQ9Q==
-X-Gm-Message-State: AJIora+p4usJYTkyLYIYFLo7r+P/2fvFUQ9E0zskL83fprhxvIO8jJkb
-        Dw8NhpjAMep9L2c7SMhT5Yg26A==
-X-Google-Smtp-Source: AGRyM1shJqjBNqPwm8ZmASifevUrtaqHedZ6chas4eh4BAG7FBncurDDJ/aqtyLhutQ4EiRtLcE3tQ==
-X-Received: by 2002:a65:668b:0:b0:3f6:4026:97cd with SMTP id b11-20020a65668b000000b003f6402697cdmr2146963pgw.420.1655340884020;
-        Wed, 15 Jun 2022 17:54:44 -0700 (PDT)
+        bh=kjxoc+L6eqxwMNT3+yJrollfGrhiqYTPiC+5llKZhTw=;
+        b=Mpk5z5Kj8YGuAjGI+Dur2Oesd71YqUC6MgDiOFNH5NoTF4cCsfFD/GX8kYfoQdzWHK
+         9GYPZom0jjszrGEdqdkOHVxRN4QkaAdm2Z7HXxRjuXPWovSshIdeaLukQ3KvnPGDQF+F
+         +hqE5q8hfF15jztB54+26EjSnbLjQbGIe7eMjGq+AXkHcvC5pPaHM1RhoZ/arL70Ci30
+         v3Rust8aIDOlxyNIegFbQw/pc1G8gqb0wLRcOG0oFpc/TSTj9okoiBBOhxKNy5+COZNP
+         Y7vj88bO9Y+DBA5ucy6UfYkBEGZWLrR6TP+CYDZVWldpVqrwpcX7C9veOtspJm4yW8Ct
+         ewkA==
+X-Gm-Message-State: AJIora/30fRTqVyUSEmFpQeWv08VpXB85CnpBOsNRvBVhyivhnclsN49
+        3Vzab1LMWDa7o9RXUr1At1TArg==
+X-Google-Smtp-Source: AGRyM1swqFLCvRDEgjzbq+By9bni7CFAlZXUZ04FXfBNf/bNoRe54RXWN+qNVPTzbe2p1Q8ydbs30Q==
+X-Received: by 2002:a63:170b:0:b0:401:a7b6:a9d4 with SMTP id x11-20020a63170b000000b00401a7b6a9d4mr2185789pgl.107.1655340885064;
+        Wed, 15 Jun 2022 17:54:45 -0700 (PDT)
 Received: from krzk-bin.. ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id p4-20020a170902780400b0016760c06b76sm233660pll.194.2022.06.15.17.54.43
+        by smtp.gmail.com with ESMTPSA id p4-20020a170902780400b0016760c06b76sm233660pll.194.2022.06.15.17.54.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 17:54:43 -0700 (PDT)
+        Wed, 15 Jun 2022 17:54:44 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
         Olof Johansson <olof@lixom.net>,
@@ -54,9 +54,9 @@ To:     arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 34/40] ARM: dts: animeo: align gpio-key node names with dtschema
-Date:   Wed, 15 Jun 2022 17:53:27 -0700
-Message-Id: <20220616005333.18491-34-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 35/40] ARM: dts: animeo: correct gpio-keys properties
+Date:   Wed, 15 Jun 2022 17:53:28 -0700
+Message-Id: <20220616005333.18491-35-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
 References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
@@ -72,49 +72,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The node names should be generic and DT schema expects certain pattern
-(e.g. with key/button/switch).
+gpio-keys children do not use unit addresses.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/animeo_ip.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm/boot/dts/animeo_ip.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/arch/arm/boot/dts/animeo_ip.dts b/arch/arm/boot/dts/animeo_ip.dts
-index 7da718abbd85..3fa3db2d9d02 100644
+index 3fa3db2d9d02..29936bfbeeb7 100644
 --- a/arch/arm/boot/dts/animeo_ip.dts
 +++ b/arch/arm/boot/dts/animeo_ip.dts
-@@ -168,26 +168,26 @@ tx_red {
- 		};
- 	};
+@@ -170,8 +170,6 @@ tx_red {
  
--	gpio_keys {
-+	gpio-keys {
+ 	gpio-keys {
  		compatible = "gpio-keys";
- 		#address-cells = <1>;
- 		#size-cells = <0>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
  
--		keyswitch_in {
-+		key-switch-in {
+ 		key-switch-in {
  			label = "keyswitch_in";
- 			gpios = <&pioB 1 GPIO_ACTIVE_HIGH>;
- 			linux,code = <28>;
- 			wakeup-source;
- 		};
- 
--		error_in {
-+		key-error-in {
- 			label = "error_in";
- 			gpios = <&pioB 2 GPIO_ACTIVE_HIGH>;
- 			linux,code = <29>;
- 			wakeup-source;
- 		};
- 
--		btn {
-+		key-s {
- 			label = "btn";
- 			gpios = <&pioC 23 GPIO_ACTIVE_HIGH>;
- 			linux,code = <31>;
 -- 
 2.34.1
 
