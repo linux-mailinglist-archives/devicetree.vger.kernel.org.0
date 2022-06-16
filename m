@@ -2,40 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 567E054DE88
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 12:00:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CAD654DEAA
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 12:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230038AbiFPKAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 06:00:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50552 "EHLO
+        id S1376287AbiFPKJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 06:09:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbiFPKAf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 06:00:35 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95775C86E
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 03:00:34 -0700 (PDT)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id EAEE81BF215;
-        Thu, 16 Jun 2022 10:00:30 +0000 (UTC)
-From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andrea Merello <andrea.merello@gmail.com>,
-        Magnus Damm <magnus.damm@gmail.com>, linux-iio@vger.kernel.org,
-        linux-staging@lists.linux.dev, Jacopo Mondi <jacopo@jmondi.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: staging: iio: imu: Document CEVA BNO08x
-Date:   Thu, 16 Jun 2022 12:00:05 +0200
-Message-Id: <20220616100006.22045-2-jacopo+renesas@jmondi.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220616100006.22045-1-jacopo+renesas@jmondi.org>
-References: <20220616100006.22045-1-jacopo+renesas@jmondi.org>
+        with ESMTP id S1358706AbiFPKJD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 06:09:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B49A25C86E;
+        Thu, 16 Jun 2022 03:08:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 504B86158A;
+        Thu, 16 Jun 2022 10:08:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22189C3411C;
+        Thu, 16 Jun 2022 10:08:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1655374138;
+        bh=WjhFuQTsGkEU13jyp5Zn8zUadcjOo0hy77oeeLB3pVk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OWHHpY0wHTx4xPaCBbGLPIgqVPi5VJdPF8I/heqgzifPvhe5gwjGy3GTpWDQZfW2C
+         AVsoCPlKIIY9/7NhM1yW3tjJWRkbSQhv7TERBwmRGNEF/VdbWMna8xaE9R2yEqHrDN
+         SqgOzPCA1HNw1z2ipA6GXN8dm0QhIireNoYmiYkI=
+Date:   Thu, 16 Jun 2022 12:08:55 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Sebastian Ene <sebastianene@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
+        Guenter Roeck <linux@roeck-us.net>,
+        kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v6 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <YqsBN2qtjCkNtVM0@kroah.com>
+References: <20220616092737.1713667-1-sebastianene@google.com>
+ <20220616092737.1713667-3-sebastianene@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220616092737.1713667-3-sebastianene@google.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -43,93 +56,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jacopo Mondi <jacopo@jmondi.org>
+On Thu, Jun 16, 2022 at 09:27:39AM +0000, Sebastian Ene wrote:
+> This driver creates per-cpu hrtimers which are required to do the
+> periodic 'pet' operation. On a conventional watchdog-core driver, the
+> userspace is responsible for delivering the 'pet' events by writing to
+> the particular /dev/watchdogN node. In this case we require a strong
+> thread affinity to be able to account for lost time on a per vCPU.
+> 
+> This part of the driver is the 'frontend' which is reponsible for
+> delivering the periodic 'pet' events, configuring the virtual peripheral
+> and listening for cpu hotplug events. The other part of the driver
+> handles the peripheral emulation and this part accounts for lost time by
+> looking at the /proc/{}/task/{}/stat entries and is located here:
+> https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
 
-Document CEVA BNO08x (080, 085 and 086) Sensor Hub.
+The robot reported stalls on vcpus?
 
-The BNO08X family (BNO080/85/86) is a System in Package (SiP) that
-integrates a triaxial accelerometer, triaxial gyroscope, magnetometer
-and a 32-bit ARM Cortex-M0+ microcontroller running CEVA's SH-2
-firmware.
+I think you need to fix this up...
 
-Datasheet:
-https://www.ceva-dsp.com/wp-content/uploads/2019/10/BNO080_085-Datasheet.pdf
-
-Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
----
- .../bindings/staging/iio/imu/ceva,bno08x.yaml | 63 +++++++++++++++++++
- 1 file changed, 63 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/staging/iio/imu/ceva,bno08x.yaml
-
-diff --git a/Documentation/devicetree/bindings/staging/iio/imu/ceva,bno08x.yaml b/Documentation/devicetree/bindings/staging/iio/imu/ceva,bno08x.yaml
-new file mode 100644
-index 000000000000..f7d6ea6d9147
---- /dev/null
-+++ b/Documentation/devicetree/bindings/staging/iio/imu/ceva,bno08x.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/staging/iio/imu/ceva,bno08x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: CEVA BNO080/85/86
-+
-+maintainers:
-+  - Jacopo Mondi <jacopo@jmondi.org>
-+
-+description: |
-+  CEVA BNO08x is a System in Package (SiP) that integrates a triaxial
-+  accelerometer, triaxial gyroscope, magnetometer and a 32-bit ARM Cortex-M0+
-+  microcontroller running CEVA's SH-2 firmware.
-+
-+  The BNO08x family is documented at
-+  https://www.ceva-dsp.com/product/bno080-085/
-+  https://www.ceva-dsp.com/wp-content/uploads/2019/10/BNO080_085-Datasheet.pdf
-+
-+  The SH-2 firmware reference is available at
-+  https://cdn.sparkfun.com/assets/4/d/9/3/8/SH-2-Reference-Manual-v1.2.pdf
-+  https://cdn.sparkfun.com/assets/7/6/9/3/c/Sensor-Hub-Transport-Protocol-v1.7.pdf
-+
-+properties:
-+  compatible:
-+    const: ceva,bno08x
-+
-+  reg:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Phandle to the GPIO connected to the chip H_INTN (Host Interrupt) pin.
-+      The interrupt type shall be IRQ_TYPE_EDGE_FALLING.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        bno080: imu@4b {
-+            compatible = "ceva,bno08x";
-+            interrupt-parent = <&gpio5>;
-+            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
-+            reg = <0x4b>;
-+        };
-+    };
-+
---
-2.35.1
-
+greg k-h
