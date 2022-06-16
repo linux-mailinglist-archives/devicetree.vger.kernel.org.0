@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0F1A54E291
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDAB654E296
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:55:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377263AbiFPNzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 09:55:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60366 "EHLO
+        id S1377326AbiFPNzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 09:55:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377317AbiFPNzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:55:10 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D69C3A71C
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:55:09 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id h34-20020a17090a29a500b001eb01527d9eso709461pjd.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:55:09 -0700 (PDT)
+        with ESMTP id S233364AbiFPNzy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:55:54 -0400
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 859F3457BA
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:55:53 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id 123so1317006pgb.5
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:55:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=AqCBBKJhjvVRevpKirub+RjdcNJhrbWsjFdQsoZidsM=;
-        b=MLMlzJpHqLk2NTSkk+4CI6/9tDS/CcuAuC6dpww7mHmyJkrttmtnJO/CzsKVctLzxk
-         uSWmtfHFtdcmmtcODHtKBEZjJDTXUKdKe+WmLecqFOF6zJKiqunDohh3PU0vQalFwjKA
-         d7uiDUPkWwPHlwOvs19l2d58ZAWsYV0fw7sePeBQIPrYPZsiYO5IJW3+TGPBkwJCdCpZ
-         TUBQgm+PUj2fx8W3A7arprSw311qJKS2AT37ChtVeYVsgIJHCEUXmpBrOLlt79rnM7iI
-         clLazAQA26Ptz+LYSgDLQKTFIA8N4Iutdz2ZSrAPnlzZqxBBCdvCpomjVI7MWbyu93Wf
-         ZrzQ==
+        bh=p++bIs2HneM4Mmo2YjeBS7JYAqLzkFDGH55M3o+NIxg=;
+        b=BehuJv74CLjkgQwQW2YTJI7GYHpWAyt46Adp9YWqP2Ino810KUqBU3m1LAkJP2RoeF
+         +eA+u8d7kVSzDosz5vq7VxcNcZTX5YfEAdbw3WwaqZk6zp6IGjSa69Y0nIzpcs7oQ7T1
+         5P9k5mgEtdwx7+92E2Hd+8E/s1CExYyHRLZ7rC2g7YdASXXLLCb/7P762HZgHrjLA75R
+         xG5TtUiW3VtMrQd6uFAmQG8Y4p1sUGlhBWUz7hIEqmjYZkezA6cSjVo4NTIG9NzxS6uo
+         9KvtSOoyXEs4n5UZOYuuYOrIE0Y0joFHJlTY2q8mQG0IgbCAF5+0MpkutS140mIBOqqJ
+         kXZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=AqCBBKJhjvVRevpKirub+RjdcNJhrbWsjFdQsoZidsM=;
-        b=Qh9Fi3ASE4Zv2moBMV92J1ULQsKOjs9lWH2mnyPiHTZDJqgZQv0twGA5pcLu3KpMrb
-         3t8tDoHilbLYfg0Uwe99D1qTL3dSQVOLCAR//k+o3kN9ImjXtYAZy4SgFrgAahcRrSyB
-         F8AruPsTjqhOQqiUcz5HYIjRjYAFuLH17Ksrmr1QxT4RL6GrpUusGcZ8q0efmjUhrojj
-         8izBY40ggpMocDe6Rhw7E6zB7LjWaV1cLN89mF2Z7rAzmYz6CBbL61yET2+N1sr9AaiG
-         qLZmxmj/yCiF/KE9arsVZXWt6ukZ0zyxW0uN301ulF3JQV2HhbjM01jZFaUQJcOOvRce
-         6nWQ==
-X-Gm-Message-State: AJIora/rugxQqyHNN7vbpmZM3IJBDVbHCe0xH9n2tHWlBBkOBPT0tnDL
-        x7AWtrPxcyXDRCpNPW/VwgbbWQ==
-X-Google-Smtp-Source: AGRyM1vD8xThX01mXSwdjH5o86512U3eYCtOXz7Tt7aA/zrrnyjP12qDLwKDYDuqb3ZyVxcfG86VdA==
-X-Received: by 2002:a17:902:c94b:b0:168:fb7a:e5a0 with SMTP id i11-20020a170902c94b00b00168fb7ae5a0mr4755533pla.56.1655387708715;
-        Thu, 16 Jun 2022 06:55:08 -0700 (PDT)
+        bh=p++bIs2HneM4Mmo2YjeBS7JYAqLzkFDGH55M3o+NIxg=;
+        b=iQ6ANyuJ9SeCL0Bv+xsUOu9KWirC6E3J9XmxbBo9ull7+KpkjUoNhEOSabWGWgPyVf
+         IOfgMuwpsTNTkF3lU/vpDhC5VA+8MIeIPSlwpgtmUOOsXyu0tw8Ij1KDJ/daBvoCb+P4
+         9bKeU1qa+hDFjfC+bYv565nXu6hu7BvsaXzjCLji1i3nVA0lStgZBFcOEgYVarNEn9RC
+         dAtplSk1lcii/rhVjtCjdkFr0xttP8BoiExy5UagWnYdnCXfktq1NE33O6id/46DdLf7
+         5p4Z0+RxyQb2I8SbkkxLDZcrs9G9EF/hRCon+6kKZWmPN9H3lf7bAxR4T3fCBPYvZcXt
+         1QnQ==
+X-Gm-Message-State: AJIora+toDbX8vqU2duFc0D+3kKp6yrbAfMsrd6PvcuIJpPA4cp9wjgA
+        0vqoICb+AJHDN4UQU+cha8C+pQ==
+X-Google-Smtp-Source: AGRyM1vXMhY+ZrUKaR7yePLi9tk4x6RLg+QaJ2jT5cqYNFanziG3iv5eJoN4umJFjqajEOEp+YtBpQ==
+X-Received: by 2002:a63:356:0:b0:3fd:7477:63f0 with SMTP id 83-20020a630356000000b003fd747763f0mr4613366pgd.601.1655387752971;
+        Thu, 16 Jun 2022 06:55:52 -0700 (PDT)
 Received: from [172.20.0.255] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id p2-20020a62b802000000b0051bc3f9a1f6sm1823305pfe.55.2022.06.16.06.55.07
+        by smtp.gmail.com with ESMTPSA id d2-20020a056a00198200b0051b9ecb53e6sm1773063pfl.105.2022.06.16.06.55.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Jun 2022 06:55:08 -0700 (PDT)
-Message-ID: <629e761b-e3ad-0861-1937-ad660a8a900b@linaro.org>
-Date:   Thu, 16 Jun 2022 06:55:06 -0700
+        Thu, 16 Jun 2022 06:55:52 -0700 (PDT)
+Message-ID: <ea767ff8-9fa0-7a2f-af52-e0d05adafb03@linaro.org>
+Date:   Thu, 16 Jun 2022 06:55:51 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v3 1/4] dt-bindings: dsp: mediatek: Use meaningful names
- for mbox
+Subject: Re: [PATCH v3 3/4] dt-bindings: dsp: mediatek: Add mt8186 dsp
+ document
 Content-Language: en-US
 To:     Tinghan Shen <tinghan.shen@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -77,9 +77,9 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         sound-open-firmware@alsa-project.org, alsa-devel@alsa-project.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20220616073042.13229-1-tinghan.shen@mediatek.com>
- <20220616073042.13229-2-tinghan.shen@mediatek.com>
+ <20220616073042.13229-4-tinghan.shen@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220616073042.13229-2-tinghan.shen@mediatek.com>
+In-Reply-To: <20220616073042.13229-4-tinghan.shen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,36 +93,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 16/06/2022 00:30, Tinghan Shen wrote:
-> Rename mbox according to actions instead of 'mbox0' and 'mbox1'.
+> This patch adds mt8186 dsp document. The dsp is used for Sound Open
+> Firmware driver node. It includes registers, clocks, memory regions,
+> and mailbox for dsp.
 > 
 > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->  .../devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml   | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml b/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
-> index b7e68b0dfa13..ca8d8661f872 100644
-> --- a/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
-> +++ b/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
-> @@ -50,13 +50,13 @@ properties:
->  
->    mboxes:
->      items:
-> -      - description: ipc reply between host and audio DSP.
-> -      - description: ipc request between host and audio DSP.
-> +      - description: mailbox for receiving audio DSP requests.
-> +      - description: mailbox for transmitting requests to audio DSP.
->  
->    mbox-names:
->      items:
-> -      - const: mbox0
-> -      - const: mbox1
-> +      - const: rx
-> +      - const: tx
->  
 
-Commit msg lacks important piece - do you break any users with this? Do
-you have any users of this binding?
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
