@@ -2,78 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81E7454E25D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:47:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E3E554E27C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:51:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377162AbiFPNrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 09:47:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52504 "EHLO
+        id S233364AbiFPNvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 09:51:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377246AbiFPNrk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:47:40 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B6CA1758D
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:47:38 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id y6so1349066plg.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:47:38 -0700 (PDT)
+        with ESMTP id S1377210AbiFPNvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:51:41 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5758B434BF
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:51:40 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id x4so1563713pfj.10
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:51:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=EdDkRKKho92MrNIWNxsUiDkrk0oeSOr07WjZUBmDl0E=;
-        b=Ej1lcIf2+oWupNOuU41TZHeE8OVVyKOdu8eW31o30OeCSGUx/sgBffvdj9xLw9bmFW
-         vO9mlgfdpKRM6CWVcacgXPdVH4wOWEw3Ca3wBkToQsplv/N8z1naa6uU+XsPd+bMNbcW
-         YuBhF8MDwOGr49zU+7zafiR3+AxMLjHyLMjBzBRD62pQFHUD0wD9KlY+7lG61+NZ6OL/
-         JrHKwmGFqABYPlFzBptrspn7StsrfwAQ4qfJFJzn/Ak3WE96CMoGDh8mnkhvo0dpD0vo
-         Qdp6+YL51cT07iA5VlphrevzEgyhHZlBZ/z2UoPc9gprtoI9Goc1M9SSZ12AWwgRoEXo
-         S8ew==
+        bh=ftHZyHw/wNXSXOb7JE7tzZIShYwLppug3sKDdxarxV0=;
+        b=MSTj0O1uiObYq3RmWcwpgd2XlA+q3StSV+EY7/gO0RfsvbeHdumMIDv3rtsYW0etPl
+         lXNHPJmMeve8eyJUs1tMPqPX4dzBhFL1AlZvo46UvFavAZtHNGszAxdIKEf5RvmEJn7y
+         xSNmT9oxEzfl9hSXSqPGwB9bBLO5m9fIaskr5TdovjEkO6DIygXDriPM4p5otH6bcWuC
+         QcOw0i+vyeVSwxWvFIULjpA7WtaeQGCifwWtkjJgkJ62mvof5qP68nJR+2zEO2mCgbtp
+         Pt0B3nuvnaGFcLhtCwxhF8lwd80dr1EpnGkToOoo+amBn/o0S12mYk2AktizYvhrIHCo
+         c/SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=EdDkRKKho92MrNIWNxsUiDkrk0oeSOr07WjZUBmDl0E=;
-        b=jFSQDpHAQKoylBU2y2JsmLyjScgilpjPDrWNGODQWC7Xq/ZJO7NmWTCBMsC3vNoosV
-         4FFuUOHJ98V0H+vZrEHS+zLs1gtHy/dSia9ogXFHJQ9bZvOGt3xUHDUCzggP7guIQJGf
-         d9AvAc6fWzNsGVXz4Mu7ivKPnWkZnFbqkoaBqxe2Ap8ovA0WRX5825ph9R0izusDZ7nD
-         eDHgI7XHRdQDBIlmTuc6BY1XBx0UPa4vuJQeQ2tl8JA/V93gV9B+6O5IvQh7ErOQC1ES
-         g2JVMZWP0/DvVFcxOKSyUxJgw45vFE3heKY6DtMfrYg6rU5ctPM2103BNdErzMXd5NYl
-         XkjA==
-X-Gm-Message-State: AJIora9qk2m9kLFQY3r0ONWxelKdehT1/sUrOgI0x5v/mKPSkRQRVPA2
-        oEODJm6ng3mgK3Qqmz/VQDh/jQ==
-X-Google-Smtp-Source: AGRyM1t0Rr/VQcaapCXMr3kff4RkmVv6r41Lq3jurOo5i5Ni90ka0/whLxrdmOfhOmK+QybdIIM6qA==
-X-Received: by 2002:a17:90b:1192:b0:1e2:da25:4095 with SMTP id gk18-20020a17090b119200b001e2da254095mr15893626pjb.240.1655387257894;
-        Thu, 16 Jun 2022 06:47:37 -0700 (PDT)
+        bh=ftHZyHw/wNXSXOb7JE7tzZIShYwLppug3sKDdxarxV0=;
+        b=GCV4Yri88Q+R/iemTIkx3qqSh1K8q7/Ogw9jqVaLxOpcGph9ULWIE0G8dlL3KWU8Gh
+         DME63UH/J/bjoe51GPe8hgqveWiMNZXNOcTYq8AztNWu0Y/qDJD+ppZ98+4lS687qHYI
+         4CxeX+yGEqrk+GVzMWbmZa2zIwJC2MTiXjl0n5l1FpNGKcRmNTB5iaLQ1IoguXDhzOne
+         ZtUhJuTCcEluTuXUh5Tj57TTlP5HsHpi7/xW3cj0R+JpHzOxvBOtl/B7lGUCE+98RrDD
+         tLjpriPH8zZQmKjAhg/qrxv0Qulu5PnB3FKTTvSaBUMp4TVc/S4WoAXfsUWcFCKCw9aq
+         aAoQ==
+X-Gm-Message-State: AJIora8FQju8Sa5mKbsFIObqXaaS0nXpL59V6avvymDqtLZ8LoQcVuDS
+        ctCjBU6hOC2FT3Xx78j2zrJgvg==
+X-Google-Smtp-Source: AGRyM1tjArtHfSvBr9dHM79YJP+gIsvNtTxmzvobAhS9iAdqa601s5ctpq9flyl1E+ympHGNh6ORjQ==
+X-Received: by 2002:a05:6a00:10d3:b0:4fe:5d:75c8 with SMTP id d19-20020a056a0010d300b004fe005d75c8mr4874387pfu.6.1655387499862;
+        Thu, 16 Jun 2022 06:51:39 -0700 (PDT)
 Received: from [172.20.0.255] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id f5-20020aa79685000000b0050dc7628196sm1763759pfk.112.2022.06.16.06.47.36
+        by smtp.gmail.com with ESMTPSA id 9-20020aa79149000000b00518424f8922sm1799565pfi.77.2022.06.16.06.51.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Jun 2022 06:47:37 -0700 (PDT)
-Message-ID: <5abc998e-fea1-791b-3068-334d927af63d@linaro.org>
-Date:   Thu, 16 Jun 2022 06:47:36 -0700
+        Thu, 16 Jun 2022 06:51:39 -0700 (PDT)
+Message-ID: <e1a9b1b4-19ab-38dc-3343-017d05655922@linaro.org>
+Date:   Thu, 16 Jun 2022 06:51:38 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: atmel,flexcom: Convert to
- json-schema
+Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: mt6397: Add compatibles for
+ MT6331 RTC and keys
 Content-Language: en-US
-To:     Kavyasree.Kotagiri@microchip.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
-        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com
-References: <20220607144740.14937-1-kavyasree.kotagiri@microchip.com>
- <20220607144740.14937-2-kavyasree.kotagiri@microchip.com>
- <1345050e-b6a4-64be-1359-8d31d88769ab@linaro.org>
- <CO1PR11MB4865738B0AFB2F74CD184C5592A49@CO1PR11MB4865.namprd11.prod.outlook.com>
- <18c84400-2fb1-e802-d43a-766c7dcb80aa@linaro.org>
- <CO1PR11MB4865A1D77AAD30410D8A815792AC9@CO1PR11MB4865.namprd11.prod.outlook.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, lee.jones@linaro.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, johnson.wang@mediatek.com,
+        hsin-hsiung.wang@mediatek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220616091531.12646-1-angelogioacchino.delregno@collabora.com>
+ <20220616091531.12646-2-angelogioacchino.delregno@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CO1PR11MB4865A1D77AAD30410D8A815792AC9@CO1PR11MB4865.namprd11.prod.outlook.com>
+In-Reply-To: <20220616091531.12646-2-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,16 +79,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2022 02:20, Kavyasree.Kotagiri@microchip.com wrote:
->>
->> Yes. This is how you did it in previous patchsets.
->>
-> I did so in v3 series, but below errors are reported on 1/3 patch:
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml: properties:compatible:enum: 'atmel,sama5d2-flexcom' is not of type 'array'
+On 16/06/2022 02:15, AngeloGioacchino Del Regno wrote:
+> The MT6331 PMIC provides many sub modules: regulators, audio
+> codec, LED controller, keys, RTC and some GPIOs.
+> It is always paired with a MT6332 Companion PMIC, which provides
+> thermistors, WLEDs (display LED backlight), secondary AP cluster
+> regulators, modem clocks, battery charger and fuel gauge.
+> 
+> Add the necessary compatibles to start implementing the basics.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-I don't remember it but it's a simple fix of syntax.
-Documentation/devicetree/bindings/arm/arm,cci-400.yaml
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
