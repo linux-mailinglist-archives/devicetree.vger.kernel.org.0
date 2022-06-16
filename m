@@ -2,360 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49C4354DE28
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 11:28:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A72654DE5F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 11:47:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229631AbiFPJ2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 05:28:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51370 "EHLO
+        id S230464AbiFPJrK convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Jun 2022 05:47:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232185AbiFPJ2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 05:28:09 -0400
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CAA212A8A
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 02:28:05 -0700 (PDT)
-Received: by mail-yb1-xb49.google.com with SMTP id j2-20020a2597c2000000b0064b3e54191aso591803ybo.20
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 02:28:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=NQnwQSvwb7NdseNmySN9QdeFEDDFwFKxk+b3Dnot5BA=;
-        b=MGmIXHBfIi+fxx0MT+7aJuQaTaUkGeyGw9qcec4HJgEXa3u/oXtstbWaCafXAa7BcF
-         kqEHZawiRDbnX0+3euUo4o8iN3Zg7S0KQMA249ZRk9YuEz2KcImUozOKAGcHEuvi8Z2r
-         SvN9WeMwUwMeedyejqWzw2wwuY7NkCrUPmqUZWgGOdbYzEmbp43kItbiehEhUr3XmMIQ
-         NN5uapHzYw+LSZzpFzo0BjJhx4IYMLYg7bLUCj79KJcyv62GJMRNArE5YpOXym1WiW5b
-         Q5k0cEKumom+yDXxUlfF2hOc6s2L+EPZ1SpuHY7pDf7WJErhdcuZfmKsqHBAfp5DJf7g
-         sHTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=NQnwQSvwb7NdseNmySN9QdeFEDDFwFKxk+b3Dnot5BA=;
-        b=h4dbiQ3k1tRDRLnVsPOraRT4f3dvuZEj6CZ4S7qrFT4zbCWwSR+nz243hOJIuFjTAG
-         wfDuDcrh4mNTJ4CBfWZVgerXPcVmp6hW01ITElcNI1C21bQkSzjyGKXEic+bg5j0E4yC
-         W4a6EZCnLKi3FZq82iLe9jH+O3WLHBNqWiRgm5GXMra8++gMqCLLZmbxo9ShZ6fg/Z64
-         8eLL61qv0pI9yKCKG4twkMn9zc6+KxIphsT3osEP6V1wipQetiUU0bNT2Ln6+IFTH9QW
-         oRDZUbOlNM7qGB2dg9W8R/KBIxfuN15TfSL3R3OiNBmPmmhuFUT772t/k+E1NN3h90ZC
-         KXNw==
-X-Gm-Message-State: AJIora/bOPYmrhwq8U78k4u6tUfq9YzoqCtirFUPY3ewOBPZy9A/bdOf
-        REfkCLTd3G8EoA2dXvCRkS0EIWHHhnssB9Ki9CU=
-X-Google-Smtp-Source: AGRyM1tasORmk5TtoLDYVmZuymc7yszknBZR4DwQYfi0WJN4Ot9tX6pCRNSvvDrKXipkBvy9yAGrC//sKMjbQ2SN0/c=
-X-Received: from sene.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:27c4])
- (user=sebastianene job=sendgmr) by 2002:a81:9102:0:b0:317:4e12:7a5b with SMTP
- id i2-20020a819102000000b003174e127a5bmr4506816ywg.262.1655371684399; Thu, 16
- Jun 2022 02:28:04 -0700 (PDT)
-Date:   Thu, 16 Jun 2022 09:27:39 +0000
-In-Reply-To: <20220616092737.1713667-1-sebastianene@google.com>
-Message-Id: <20220616092737.1713667-3-sebastianene@google.com>
-Mime-Version: 1.0
-References: <20220616092737.1713667-1-sebastianene@google.com>
-X-Mailer: git-send-email 2.36.1.476.g0c4daa206d-goog
-Subject: [PATCH v6 2/2] misc: Add a mechanism to detect stalls on guest vCPUs
-From:   Sebastian Ene <sebastianene@google.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sebastian Ene <sebastianene@google.com>,
-        kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231479AbiFPJrI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 05:47:08 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9295A2C8;
+        Thu, 16 Jun 2022 02:47:03 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1o1m5O-0004rx-Ut; Thu, 16 Jun 2022 11:46:46 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     Christoph Hellwig <hch@lst.de>, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, wefu@redhat.com, guoren@kernel.org,
+        cmuellner@linux.com, philipp.tomsich@vrull.eu, samuel@sholland.org,
+        atishp@atishpatra.org, anup@brainfault.org, mick@ics.forth.gr,
+        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        drew@beagleboard.org, Atish Patra <atish.patra@wdc.com>
+Subject: Re: [PATCH 2/3] riscv: Implement Zicbom-based cache management operations
+Date:   Thu, 16 Jun 2022 11:46:45 +0200
+Message-ID: <1752040.TLkxdtWsSY@diego>
+In-Reply-To: <20220615174910.GA26607@lst.de>
+References: <20220610004308.1903626-1-heiko@sntech.de> <110361853.nniJfEyVGO@diego> <20220615174910.GA26607@lst.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This driver creates per-cpu hrtimers which are required to do the
-periodic 'pet' operation. On a conventional watchdog-core driver, the
-userspace is responsible for delivering the 'pet' events by writing to
-the particular /dev/watchdogN node. In this case we require a strong
-thread affinity to be able to account for lost time on a per vCPU.
+Hi,
 
-This part of the driver is the 'frontend' which is reponsible for
-delivering the periodic 'pet' events, configuring the virtual peripheral
-and listening for cpu hotplug events. The other part of the driver
-handles the peripheral emulation and this part accounts for lost time by
-looking at the /proc/{}/task/{}/stat entries and is located here:
-https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
+Am Mittwoch, 15. Juni 2022, 19:49:10 CEST schrieb Christoph Hellwig:
+> On Wed, Jun 15, 2022 at 06:56:40PM +0200, Heiko Stübner wrote:
+> > If I'm reading things correctly [0], the default for those functions
+> > is for those to be empty - but defined in the coherent case.
+> 
+> That's not the point.
+> 
+> Zicbom is just an extension that allows the CPU to support managing
+> cache state.  Non-coherent DMA is just one of the use cases there
+> are others like persistent memory.  And when a CPU core supports
+> Zicbom it might or might not have any non-coherent periphals.  Or
+> even some coherent and some non-coherent ones, something that
+> is pretty common in arm/arm64 CPUs, where PCIe is usually cache
+> coherent, but some other cheap periphals might not be.
+> 
+> That is why Linux ports require the plaform (usually through
+> DT or ACPI) to mark which devices are coherent and which ones
+> are not.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Signed-off-by: Sebastian Ene <sebastianene@google.com>
----
- drivers/misc/Kconfig               |  12 ++
- drivers/misc/Makefile              |   1 +
- drivers/misc/vcpu_stall_detector.c | 222 +++++++++++++++++++++++++++++
- 3 files changed, 235 insertions(+)
- create mode 100644 drivers/misc/vcpu_stall_detector.c
+I "get" it now I think. I was somewhat struggling what you were aiming
+at, but that was something of not seeing "the forest for the trees" on
+my part. And of course you were right in recognizing that issue :-) .
 
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index 41d2bb0ae23a..9b3cb5dfd5a7 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -483,6 +483,18 @@ config OPEN_DICE
- 
- 	  If unsure, say N.
- 
-+config VCPU_STALL_DETECTOR
-+	tristate "VCPU stall detector"
-+	select LOCKUP_DETECTOR
-+	help
-+	  Detect CPU locks on the virtual machine. This driver relies on the
-+	  hrtimers which are CPU-binded to do the 'pet' operation. When a vCPU
-+	  has to do a 'pet', it exits the guest through MMIO write and the
-+	  backend driver takes into account the lost ticks for this particular
-+	  CPU.
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called vcpu_stall_detector.
-+
- source "drivers/misc/c2port/Kconfig"
- source "drivers/misc/eeprom/Kconfig"
- source "drivers/misc/cb710/Kconfig"
-diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index 70e800e9127f..2be8542616dd 100644
---- a/drivers/misc/Makefile
-+++ b/drivers/misc/Makefile
-@@ -60,3 +60,4 @@ obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
- obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
- obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
- obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
-+obj-$(CONFIG_VCPU_STALL_DETECTOR)	+= vcpu_stall_detector.o
-\ No newline at end of file
-diff --git a/drivers/misc/vcpu_stall_detector.c b/drivers/misc/vcpu_stall_detector.c
-new file mode 100644
-index 000000000000..8b33f04a9719
---- /dev/null
-+++ b/drivers/misc/vcpu_stall_detector.c
-@@ -0,0 +1,222 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// VCPU stall detector.
-+//  Copyright (C) Google, 2022
-+
-+#include <linux/cpu.h>
-+#include <linux/init.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+
-+#include <linux/device.h>
-+#include <linux/interrupt.h>
-+#include <linux/module.h>
-+#include <linux/nmi.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/param.h>
-+#include <linux/percpu.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+#define REG_STATUS		(0x00)
-+#define REG_LOAD_CNT		(0x04)
-+#define REG_CURRENT_CNT		(0x08)
-+#define REG_CLOCK_FREQ_HZ	(0x0C)
-+#define REG_LEN			(0x10)
-+
-+#define DEFAULT_CLOCK_HZ	(10)
-+#define DEFAULT_TIMEOT_SEC	(8)
-+
-+struct vm_stall_detect_s {
-+	void __iomem *membase;
-+	u32 clock_freq;
-+	u32 expiration_sec;
-+	u32 ping_timeout_ms;
-+	struct hrtimer per_cpu_hrtimer;
-+	struct platform_device *dev;
-+};
-+
-+#define vcpu_stall_detect_reg_write(stall_detect, reg, value)	\
-+	iowrite32((value), (stall_detect)->membase + (reg))
-+#define vcpu_stall_detect_reg_read(stall_detect, reg)		\
-+	io32read((stall_detect)->membase + (reg))
-+
-+static struct platform_device *virt_dev;
-+
-+static enum hrtimer_restart
-+vcpu_stall_detect_timer_fn(struct hrtimer *hrtimer)
-+{
-+	struct vm_stall_detect_s *cpu_stall_detect;
-+	u32 ticks;
-+
-+	cpu_stall_detect = container_of(hrtimer, struct vm_stall_detect_s,
-+					per_cpu_hrtimer);
-+	ticks = cpu_stall_detect->clock_freq *
-+		cpu_stall_detect->expiration_sec;
-+	vcpu_stall_detect_reg_write(cpu_stall_detect, REG_LOAD_CNT, ticks);
-+	hrtimer_forward_now(hrtimer,
-+			    ms_to_ktime(cpu_stall_detect->ping_timeout_ms));
-+
-+	return HRTIMER_RESTART;
-+}
-+
-+static void vcpu_stall_detect_start(void *arg)
-+{
-+	u32 ticks;
-+	struct vm_stall_detect_s *cpu_stall_detect = arg;
-+	struct hrtimer *hrtimer = &cpu_stall_detect->per_cpu_hrtimer;
-+
-+	vcpu_stall_detect_reg_write(cpu_stall_detect, REG_CLOCK_FREQ_HZ,
-+			cpu_stall_detect->clock_freq);
-+
-+	/* Compute the number of ticks required for the stall detector counter
-+	 * register based on the internal clock frequency and the timeout
-+	 * value given from the device tree.
-+	 */
-+	ticks = cpu_stall_detect->clock_freq *
-+		cpu_stall_detect->expiration_sec;
-+	vcpu_stall_detect_reg_write(cpu_stall_detect, REG_LOAD_CNT, ticks);
-+
-+	/* Enable the internal clock and start the stall detector */
-+	vcpu_stall_detect_reg_write(cpu_stall_detect, REG_STATUS, 1);
-+
-+	hrtimer_init(hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-+	hrtimer->function = vcpu_stall_detect_timer_fn;
-+	hrtimer_start(hrtimer, ms_to_ktime(cpu_stall_detect->ping_timeout_ms),
-+		      HRTIMER_MODE_REL_PINNED);
-+}
-+
-+static void vcpu_stall_detect_stop(void *arg)
-+{
-+	struct vm_stall_detect_s *cpu_stall_detect = arg;
-+	struct hrtimer *hrtimer = &cpu_stall_detect->per_cpu_hrtimer;
-+
-+	hrtimer_cancel(hrtimer);
-+
-+	/* Disable the stall detector */
-+	vcpu_stall_detect_reg_write(cpu_stall_detect, REG_STATUS, 0);
-+}
-+
-+static int start_stall_detector_on_cpu(unsigned int cpu)
-+{
-+	struct vm_stall_detect_s __percpu *vm_stall_detect;
-+
-+	vm_stall_detect = (struct vm_stall_detect_s __percpu *)
-+		platform_get_drvdata(virt_dev);
-+	vcpu_stall_detect_start(this_cpu_ptr(vm_stall_detect));
-+	return 0;
-+}
-+
-+static int stop_stall_detector_on_cpu(unsigned int cpu)
-+{
-+	struct vm_stall_detect_s __percpu *vm_stall_detect;
-+
-+	vm_stall_detect = (struct vm_stall_detect_s __percpu *)
-+		platform_get_drvdata(virt_dev);
-+	vcpu_stall_detect_stop(this_cpu_ptr(vm_stall_detect));
-+	return 0;
-+}
-+
-+static int vcpu_stall_detect_probe(struct platform_device *dev)
-+{
-+	int cpu, ret, err;
-+	void __iomem *membase;
-+	struct resource *r;
-+	struct vm_stall_detect_s __percpu *vm_stall_detect;
-+	u32 stall_detect_clock, stall_detect_timeout_sec = 0;
-+
-+	r = platform_get_resource(dev, IORESOURCE_MEM, 0);
-+	if (r == NULL)
-+		return -ENOENT;
-+
-+	vm_stall_detect = alloc_percpu(typeof(struct vm_stall_detect_s));
-+	if (!vm_stall_detect)
-+		return -ENOMEM;
-+
-+	membase = ioremap(r->start, resource_size(r));
-+	if (!membase) {
-+		ret = -ENXIO;
-+		goto err_withmem;
-+	}
-+
-+	virt_dev = dev;
-+	platform_set_drvdata(dev, vm_stall_detect);
-+	if (of_property_read_u32(dev->dev.of_node, "clock-frequency",
-+				 &stall_detect_clock))
-+		stall_detect_clock = DEFAULT_CLOCK_HZ;
-+
-+	if (of_property_read_u32(dev->dev.of_node, "timeout-sec",
-+				 &stall_detect_timeout_sec))
-+		stall_detect_timeout_sec = DEFAULT_TIMEOT_SEC;
-+
-+	for_each_cpu_and(cpu, cpu_online_mask, &watchdog_cpumask) {
-+		struct vm_stall_detect_s *cpu_stall_detect;
-+
-+		cpu_stall_detect = per_cpu_ptr(vm_stall_detect, cpu);
-+		cpu_stall_detect->membase = membase + cpu * REG_LEN;
-+		cpu_stall_detect->clock_freq = stall_detect_clock;
-+		cpu_stall_detect->expiration_sec = stall_detect_timeout_sec;
-+		cpu_stall_detect->ping_timeout_ms = stall_detect_timeout_sec *
-+			MSEC_PER_SEC / 2;
-+		smp_call_function_single(cpu, vcpu_stall_detect_start,
-+					 cpu_stall_detect, true);
-+	}
-+
-+	err = cpuhp_setup_state_nocalls(CPUHP_AP_ONLINE_DYN,
-+					"virt/vcpu_stall_detector:online",
-+					start_stall_detector_on_cpu,
-+					stop_stall_detector_on_cpu);
-+	if (err < 0) {
-+		dev_warn(&dev->dev, "failed to install cpu hotplug");
-+		ret = err;
-+		goto err_withmem;
-+	}
-+
-+	return 0;
-+
-+err_withmem:
-+	free_percpu(vm_stall_detect);
-+	return ret;
-+}
-+
-+static int vcpu_stall_detect_remove(struct platform_device *dev)
-+{
-+	int cpu;
-+	struct vm_stall_detect_s __percpu *vm_stall_detect;
-+
-+	vm_stall_detect = (struct vm_stall_detect_s __percpu *)
-+		platform_get_drvdata(dev);
-+	for_each_cpu_and(cpu, cpu_online_mask, &watchdog_cpumask) {
-+		struct vm_stall_detect_s *cpu_stall_detect;
-+
-+		cpu_stall_detect = per_cpu_ptr(vm_stall_detect, cpu);
-+		smp_call_function_single(cpu, vcpu_stall_detect_stop,
-+					 cpu_stall_detect, true);
-+	}
-+
-+	free_percpu(vm_stall_detect);
-+	return 0;
-+}
-+
-+static const struct of_device_id vcpu_stall_detect_of_match[] = {
-+	{ .compatible = "qemu,vcpu-stall-detector", },
-+	{}
-+};
-+
-+MODULE_DEVICE_TABLE(of, vcpu_stall_detect_of_match);
-+
-+static struct platform_driver vcpu_stall_detect_driver = {
-+	.probe  = vcpu_stall_detect_probe,
-+	.remove = vcpu_stall_detect_remove,
-+	.driver = {
-+		.name           = KBUILD_MODNAME,
-+		.of_match_table = vcpu_stall_detect_of_match,
-+	},
-+};
-+
-+module_platform_driver(vcpu_stall_detect_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Sebastian Ene <sebastianene@google.com>");
-+MODULE_DESCRIPTION("VCPU stall detector");
--- 
-2.36.1.476.g0c4daa206d-goog
+Without CONFIG_ARCH_HAS_SYNC_DMA_FOR_DEVICE and friends
+dev_is_dma_coherent() will always return true otherwise the dma_coherent
+attribute. Hence the "coherent" value for every system not managing things
+will suddenly show as non-coherent where it showed as coherent before.
+
+
+As we already have detection-points for non-coherent systems (zicbom
+detection, t-head errata detection) I guess just also switching some boolean
+might solve that, so that arch_setup_dma_ops() will set the dma_coherent
+attribute to true always except when some non-coherent system is detected.
+
+
+void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+                const struct iommu_ops *iommu, bool coherent)
+{
+        /* only track coherent attributes, if cache-management is available */
+        if (enable_noncoherency)
+                dev->dma_coherent = coherent;
+        else
+                dev->dma_coherent = true;
+}
+
+
+Heiko
+
 
