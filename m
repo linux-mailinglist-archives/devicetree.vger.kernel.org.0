@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C1A54D6A1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 02:58:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1335954D663
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 02:58:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349102AbiFPAyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 20:54:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55136 "EHLO
+        id S1349332AbiFPAyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 20:54:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349081AbiFPAyC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 20:54:02 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D95C37A15
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:54:02 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id 123so12908639pgb.5
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:54:02 -0700 (PDT)
+        with ESMTP id S1349105AbiFPAyE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 20:54:04 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B6F357157
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:54:03 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id r1so3708plo.10
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:54:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=/8m6MhDbOK9+V515hZszn9vJkAN/TqZqKv8XaJa+cRs=;
-        b=CdFncK695RkHcbTK1Pgb3G1/LJP+K0xyx4djSr60w3isPqxCBAtlt5Bpurr+PSknUQ
-         cxtMeCi62MyyybzWNvZuhmwpiyLOFlQjCsQxdvzp3u7cW2K39pAueoJKekX5l20j5/2R
-         haARQupkGopxcDxbwUhDDQj1+ghfXhOzOtLX62hgt4TpwdYRjozKMqzrSZ+MFeOfCuiK
-         yRlhJehTp6hJ90/y1X4gpG1dM9lOLncTbblW+WtR5DpIoSe7s16ukBTXratFvXfoXDeh
-         gtWgna+LKcT1ABGMjcuHSauU5QbSFFfootcUx/R16oucPcObhIxWEZT2R+mUO6//LZRI
-         PcSQ==
+        bh=5cSlP87HZIroMFQjz/vmfO1yXb2dVVbYI7ALNnjKsu4=;
+        b=j2v/OHNCeMaCuM3Z6TS0vO+Y15ypfjzf3Yic+AQ9NC8CXymLIse1JfBNJ3wm6MxOPc
+         9tJW9CzFoJa11L+y1tF1NJ+WHcxB8XWnXyf/T1afCco2sLMPg5E3um5oThiSgVbqh53b
+         +yPJOLKCoeVcy/ZHcd3km23RWoN3tlJZtYCvdZm3L4V9aBus7qzS6DYVt7EpEVZ+2iog
+         q3lsz4Ee7gYzw8vHi7HXC5cJgaB9CG2VRzWoS0MbR37n4mJrrIbGE3tiOGhNF1/obvAc
+         RyOrRnwal/bicTHRydW25PDLHx42VBzKqKuXmHx7qEy1RefsAYZyt7qK+m86klBB1k9I
+         hMeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=/8m6MhDbOK9+V515hZszn9vJkAN/TqZqKv8XaJa+cRs=;
-        b=1kf/PqK0d7xkOVQzU48EqIfLys70KZeTgQPtDLYIjIoUDmbFMaELcN0FCVtwh/9Njd
-         bMAJqBPGumTC9DM4UbWxS5uTjflA+GXPzsdo1kE+df79jBV56jo3kL2mrHwX4VZcnApn
-         5kRYQLvRo2TkQX4SzJGHuWcoXu9F1WdyYJnsgnB9IeR8DVySZcI0T3ASafla55Sw/daK
-         WTFfEVOXyC82y8OtDYf+T8MKayCJKh5ORBfpZhNilqSVHaST0kb8YJ7tYh+b4PpW/roA
-         mGi4UHhoMVrXodeyrzGoYywPuJscL/dCkz6mYXxHu6nBGXsE6xXU4zUXp08Q2buOiHlB
-         w53g==
-X-Gm-Message-State: AJIora/YZGrg18UmA7Wmv5dqxp9vrEeKbohOpSQiCFn/jvwn0pISRXmn
-        IaVdHsqKgyrflDQRhUpd1RA9/w==
-X-Google-Smtp-Source: AGRyM1t6yfuLylrv3e4vYfkN0h1NUNBGLQps1pD5oFMNcHJ/nnCL14mq2T5En49fwPDsRha7e3GmzQ==
-X-Received: by 2002:a05:6a00:1da5:b0:522:cb12:549b with SMTP id z37-20020a056a001da500b00522cb12549bmr2135800pfw.81.1655340841637;
-        Wed, 15 Jun 2022 17:54:01 -0700 (PDT)
+        bh=5cSlP87HZIroMFQjz/vmfO1yXb2dVVbYI7ALNnjKsu4=;
+        b=OUNezMGNbFFWqO1vV5nTu36jGVh/Y+yP0Qy4I07JboNFuqGf9LXY9YmkqlgYsr7uNh
+         Ne/GiWHBc5rmn/E84PRi+9ZpVEQ3PC/iuhIocpStnlF3/3nVCDfgIKrV0JRD8OjBeImw
+         Efted4Ajo3ley4ZnpS0Ox5mtcUGsSTCEgA8NyilMrSEWx27EjgiGxy8mI1YpdpSrIwV2
+         Y30q1vvg0L89b3i3JriqwEE/XAgH0epscMVek+qQGI/7wsmpI7w8EtVFle4ciub7TDFj
+         MHmO9H3ea0BP8aUNWIstchIoJ+sLnN61NXfX9AdfjmLpNSYV2HBBwKrsbL/bImdsbo6n
+         l3JA==
+X-Gm-Message-State: AJIora+tW6OvQSWWgKEv7ekBpf1bsTtv+ytxTHO47XkeMATqKOR9EoKn
+        dBauSPGDBTTuqld4YWjqYZL4gA==
+X-Google-Smtp-Source: AGRyM1uFb5RnzDIdY3RB2VGlMJ0Tc18lyHj2Yzjra33pWjOdILaCiCY4mALTtc08arePdmn3U/rfQg==
+X-Received: by 2002:a17:902:e80b:b0:168:b645:849e with SMTP id u11-20020a170902e80b00b00168b645849emr2018732plg.26.1655340842807;
+        Wed, 15 Jun 2022 17:54:02 -0700 (PDT)
 Received: from krzk-bin.. ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id p4-20020a170902780400b0016760c06b76sm233660pll.194.2022.06.15.17.54.00
+        by smtp.gmail.com with ESMTPSA id p4-20020a170902780400b0016760c06b76sm233660pll.194.2022.06.15.17.54.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jun 2022 17:54:01 -0700 (PDT)
+        Wed, 15 Jun 2022 17:54:02 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
         Olof Johansson <olof@lixom.net>,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 05/40] arm64: dts: apm: correct gpio-keys properties
-Date:   Wed, 15 Jun 2022 17:52:58 -0700
-Message-Id: <20220616005333.18491-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 06/40] arm64: dts: broadcom: align gpio-key node names with dtschema
+Date:   Wed, 15 Jun 2022 17:52:59 -0700
+Message-Id: <20220616005333.18491-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
 References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
@@ -65,7 +64,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,40 +72,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-gpio-keys children do not use unit addresses.
+The node names should be generic and DT schema expects certain pattern
+(e.g. with key/button/switch).
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/apm/apm-merlin.dts  | 2 +-
- arch/arm64/boot/dts/apm/apm-mustang.dts | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ .../broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts   | 8 ++++----
+ .../boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts  | 8 ++++----
+ 2 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/apm/apm-merlin.dts b/arch/arm64/boot/dts/apm/apm-merlin.dts
-index 217d7728b63a..049e7a5edca7 100644
---- a/arch/arm64/boot/dts/apm/apm-merlin.dts
-+++ b/arch/arm64/boot/dts/apm/apm-merlin.dts
-@@ -22,7 +22,7 @@ memory {
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
+index b63eefab48bd..064f7f549665 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
+@@ -83,25 +83,25 @@ gpio-keys-polled {
+ 		compatible = "gpio-keys-polled";
+ 		poll-interval = <100>;
  
- 	gpio-keys {
- 		compatible = "gpio-keys";
--		button@1 {
-+		button {
- 			label = "POWER";
- 			linux,code = <116>;
- 			linux,input-type = <0x1>;
-diff --git a/arch/arm64/boot/dts/apm/apm-mustang.dts b/arch/arm64/boot/dts/apm/apm-mustang.dts
-index e927811ade28..efac50aeca64 100644
---- a/arch/arm64/boot/dts/apm/apm-mustang.dts
-+++ b/arch/arm64/boot/dts/apm/apm-mustang.dts
-@@ -22,7 +22,7 @@ memory {
+-		brightness {
++		key-brightness {
+ 			label = "LEDs";
+ 			linux,code = <KEY_BRIGHTNESS_ZERO>;
+ 			gpios = <&gpio0 18 GPIO_ACTIVE_LOW>;
+ 		};
  
- 	gpio-keys {
- 		compatible = "gpio-keys";
--		button@1 {
-+		button {
- 			label = "POWER";
- 			linux,code = <116>;
- 			linux,input-type = <0x1>;
+-		wps {
++		key-wps {
+ 			label = "WPS";
+ 			linux,code = <KEY_WPS_BUTTON>;
+ 			gpios = <&gpio0 21 GPIO_ACTIVE_LOW>;
+ 		};
+ 
+-		wifi {
++		key-wifi {
+ 			label = "WiFi";
+ 			linux,code = <KEY_RFKILL>;
+ 			gpios = <&gpio0 22 GPIO_ACTIVE_LOW>;
+ 		};
+ 
+-		restart {
++		key-restart {
+ 			label = "Reset";
+ 			linux,code = <KEY_RESTART>;
+ 			gpios = <&gpio0 23 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
+index 169fbb7cfd34..04f8524b5335 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
+@@ -18,25 +18,25 @@ gpio-keys-polled {
+ 		compatible = "gpio-keys-polled";
+ 		poll-interval = <100>;
+ 
+-		wifi {
++		key-wifi {
+ 			label = "WiFi";
+ 			linux,code = <KEY_RFKILL>;
+ 			gpios = <&gpio0 28 GPIO_ACTIVE_LOW>;
+ 		};
+ 
+-		wps {
++		key-wps {
+ 			label = "WPS";
+ 			linux,code = <KEY_WPS_BUTTON>;
+ 			gpios = <&gpio0 29 GPIO_ACTIVE_LOW>;
+ 		};
+ 
+-		restart {
++		key-restart {
+ 			label = "Reset";
+ 			linux,code = <KEY_RESTART>;
+ 			gpios = <&gpio0 30 GPIO_ACTIVE_LOW>;
+ 		};
+ 
+-		brightness {
++		key-brightness {
+ 			label = "LEDs";
+ 			linux,code = <KEY_BRIGHTNESS_ZERO>;
+ 			gpios = <&gpio0 31 GPIO_ACTIVE_LOW>;
 -- 
 2.34.1
 
