@@ -2,78 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C81DA54EC59
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 23:16:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D39A954EC83
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 23:27:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379121AbiFPVPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 17:15:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37486 "EHLO
+        id S1378308AbiFPV1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 17:27:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378993AbiFPVPs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 17:15:48 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E623760A97
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 14:15:46 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id e63so833903pgc.5
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 14:15:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=tml1AzLWRr4YzF3sAdjGFBXOgQpNGM4CdcoqHXy6fq8=;
-        b=jqIsk7Q+m6EcCuXgHO5qdrSbk9XCkK4QrELg4P/y5TFyxvqpcMjqJNM+E8zK9d5Q7c
-         FcDjUcLBJ/8XBeegZ7WhoXEoQ9Rms8fcCrmoVVla5DeUWH6FcdNUr90bcpBiNfd+0yX0
-         QUgEc7zEmcPW4VNgURMMFv7Yf6dnaMW3BF2L0DpMkLVllk6pUf88SARfSTB/OlxSXWd/
-         S/ngORpZ2XySJVG+qWCpq4u1c45IieRfdipQCz36HZit/QPrMn0O9wYhQRmtnisyxeFf
-         qptBWeOlEWksEUDXOIzm9lezHFrXuazZFiYdP96fsDiKS/P1FjazmQAqxUHu6o5SMaQW
-         SbNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=tml1AzLWRr4YzF3sAdjGFBXOgQpNGM4CdcoqHXy6fq8=;
-        b=MxDWv21o28nCUuMues9T49ddxkGqcwkFg30Wh7YqI1avhaFtm/CwFBUTm3lgA7VccH
-         fylwPiSK2asDeEIbkFhTQ1g3b0NWn8VgG/iFHoWQ8xVB2LXIZnCqx8II0ZMpdB1rJu5P
-         8XI1/bKHWDFrLXlmh/CGXCEu3LSBtUwVonL1I8ran6D+9oMZkvMCQtsLlLthabdxAXEB
-         lT5MeGFkYxSX/EKScOht3TtD2ipKf3MgQ3t63iDZr22/Dp/dRaZIoMDmF+ERnhQ+78nK
-         rbIWwfXk0vx1SzDUuWHwvFFsaalETxqo/NceB5EC6W50YyrxqThFgTukauQkd5MBZC1A
-         ncdQ==
-X-Gm-Message-State: AJIora9ftKC4WbJkpWULVeOSrqEB18W4RwvsRH/kNvokNxoIS8mTWPK9
-        ZVOCkkF0Rtarvcn/jcTQE5tyPg==
-X-Google-Smtp-Source: AGRyM1sh6e+GuWnqSFtrhbHqrmFWx8Qa99sAGwZCXTtI91IuORU3SI44Gi/lqC6ObXbqOvNYusLNiw==
-X-Received: by 2002:a63:3ec7:0:b0:408:d3ac:9c0c with SMTP id l190-20020a633ec7000000b00408d3ac9c0cmr6200985pga.176.1655414146402;
-        Thu, 16 Jun 2022 14:15:46 -0700 (PDT)
-Received: from [172.22.33.138] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id b13-20020a170902d88d00b0016196bcf743sm2052571plz.275.2022.06.16.14.15.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Jun 2022 14:15:46 -0700 (PDT)
-Message-ID: <28b73da7-d97c-5ea5-0b22-724fa971aeb0@linaro.org>
-Date:   Thu, 16 Jun 2022 14:15:44 -0700
+        with ESMTP id S230060AbiFPV1Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 17:27:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 530EE60D97;
+        Thu, 16 Jun 2022 14:27:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E246861DF6;
+        Thu, 16 Jun 2022 21:27:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2A43C34114;
+        Thu, 16 Jun 2022 21:27:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655414843;
+        bh=MDQjp5WMGZSOfSbLFcG9B/11ruGs/FqwL7Riz8wGMLE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VPmYysL9DniOlN+7Uj5VaibWCEj0i76aLzyEp5MgHggzEsUCU+atcN+zJVKM1LnPm
+         tIJ7qw/N34h0YC5JPZH/Gn1riRbLPp3wfih8vcsu1/SOwb+i0ExVtdoa0xOdsNnwb1
+         xAac20M1UEpD+IYRgKzLmLx9g9eSteRc3826EBLFJVnl1+TpMQBkQy6SZQy/yl4cOs
+         +VW17ModtPkpTVgT9tDJLKs7Z02D2/yEW9fVlISHgx89ryAL3Vd+kMRqfQvWd6xAXj
+         gzNFvBPYWCK0B3NeQH8lthae2s5G8yjQRhGzwyFr4L1vHI3RzAiLYigbDZ4rmT0Dfw
+         K3ZQJ5aGAFXpg==
+Date:   Fri, 17 Jun 2022 02:57:22 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 1/3] mtd: nand: raw: qcom_nandc: reorder
+ qcom_nand_host struct
+Message-ID: <20220616212722.GI2889@thinkpad>
+References: <20220615000612.3119-1-ansuelsmth@gmail.com>
+ <20220615000612.3119-2-ansuelsmth@gmail.com>
+ <20220615171132.GA3606@thinkpad>
+ <62aa76ad.1c69fb81.7e2d3.0c8e@mx.google.com>
+ <20220616163751.2b5962df@xps-13>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 06/15] dt-bindings: mfd: Add Mediatek MT6370
-Content-Language: en-US
-To:     ChiaEn Wu <peterwu.pub@gmail.com>, jic23@kernel.org,
-        lars@metafoo.de, matthias.bgg@gmail.com, lee.jones@linaro.org,
-        daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        szunichen@gmail.com, ChiYuan Huang <cy_huang@richtek.com>
-References: <20220613111146.25221-1-peterwu.pub@gmail.com>
- <20220613111146.25221-7-peterwu.pub@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220613111146.25221-7-peterwu.pub@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220616163751.2b5962df@xps-13>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,81 +66,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2022 04:11, ChiaEn Wu wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
+On Thu, Jun 16, 2022 at 04:37:51PM +0200, Miquel Raynal wrote:
+> Hi Ansuel/Christian,
 > 
-> Add Mediatek MT6370 binding documentation.
+> ansuelsmth@gmail.com wrote on Thu, 16 Jun 2022 02:18:08 +0200:
 > 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
->  .../bindings/mfd/mediatek,mt6370.yaml         | 279 ++++++++++++++++++
->  .../dt-bindings/iio/adc/mediatek,mt6370_adc.h |  18 ++
->  2 files changed, 297 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
->  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6370_adc.h
+> > On Wed, Jun 15, 2022 at 10:41:32PM +0530, Manivannan Sadhasivam wrote:
+> > > On Wed, Jun 15, 2022 at 02:06:10AM +0200, Ansuel Smith wrote:  
+> > > > Reorder structs in nandc driver to save holes.
+> > > > 
+> > > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>  
+> > > 
+> > > Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+> > > 
+> > > Thanks,
+> > > Mani
+> > >  
+> > 
+> > I'm sending v8 with a different Sob so I'm not adding the review tag (in
+> > v8).
+> > In short the new Sob is what I will use onwards, wanted to keep the
+> > Ansuel reference but it was suggested to use Christian Marangi and
+> > nothing more. It's just a name change and we are the same person and
+> > nobody is stealing ownership of the patch.
+> > Sorry for the mess.
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
-> new file mode 100644
-> index 000000000000..6c2639e81e50
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
-> @@ -0,0 +1,279 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/mediatek,mt6370.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek MT6370 SubPMIC
-> +
-> +maintainers:
-> +  - ChiYuan Huang <cy_huang@richtek.com>
-> +
-> +description: |
-> +  MT6370 is a highly-integrated smart power management IC, which includes a
-> +  single cell Li-Ion/Li-Polymer switching battery charger, a USB Type-C &
-> +  Power Delivery (PD) controller, dual flash LED current sources, a RGB LED
-> +  driver, a backlight WLED driver, a display bias driver and a general LDO for
-> +  portable devices.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt6370
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  wakeup-source: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  adc:
-> +    type: object
-> +    description: |
-> +      Provides 9 channels for system monitoring, including vbusdiv5, vbusdiv2,
-> +      vbat, vsys, chg_vddp, ts_bat, ibus, ibat, and temp_jc.
-> +
-> +    properties:
-> +      compatible:
-> +        const: mediatek,mt6370-adc
-> +
-> +      "#io-channel-cells":
-> +        const: 1
-> +
-> +    required:
-> +      - compatible
-> +      - '#io-channel-cells'
+> Mmmh strange, but okay. You are supposed to contribute with your real
+> identity, not under pseudonym anyway.
+> 
+> Also, you could have kept Mani's R-by in v8 but anyway. Mani, can
+> you resend them?
+> 
 
-Decide in your entire patchset whether you use ' or ". Don't mix.
+Done!
 
-Since you did not test your bindings, I am not reviewing it. First, test
-them. No need for me to do the job of a automated tool, right?
+Thanks,
+Mani
 
-Best regards,
-Krzysztof
+> Thanks,
+> Miquèl
+
+-- 
+மணிவண்ணன் சதாசிவம்
