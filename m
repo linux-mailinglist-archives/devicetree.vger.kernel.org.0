@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACE9454E5C9
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 17:15:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 185F554E5D6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 17:17:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237737AbiFPPPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 11:15:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52678 "EHLO
+        id S1377345AbiFPPRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 11:17:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233390AbiFPPPB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 11:15:01 -0400
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F25FF1FCC5;
-        Thu, 16 Jun 2022 08:15:00 -0700 (PDT)
-Received: by mail-il1-f172.google.com with SMTP id h7so1122442ila.10;
-        Thu, 16 Jun 2022 08:15:00 -0700 (PDT)
+        with ESMTP id S1376732AbiFPPRp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 11:17:45 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 335F011468
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 08:17:42 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id c130-20020a1c3588000000b0039c6fd897b4so2997543wma.4
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 08:17:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod.ie; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=oI88Qu4qiMkSjs5momI9WAT894CnS3fhP5J1kHBA0Xw=;
+        b=dvH6AD5BOgP7SSTByX9sqdfXDqv0OAOSj6yDH69SlzCgeOMMJ5RggvfLElOU/1QXhq
+         jYCoS4+pJ+UoOD+Lc0st87cKPaVMPrifpGWvfdHMjDcxCTaXRalKzy9yr+iVAXSqiqr+
+         aG2A6PGYZKOu7X87JiidBlHZRmUpgKqBFxJiXbJ/4siOMyHpspZEp0ToVO0ncipcNHGc
+         aX3XRSi6kg50O2HCZvy6xYLEXZSAJpBf/v9MQchyhTE0sFvYza9elswswpa7Korf2ZXc
+         K/syg11U9WT7hJ+DHV++210vXWPLaVHF9xyMxRisHNcCdvj3PEJts3hJF3cnEmRdhejl
+         EvZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=biXCDQT90ObJ6hyRTS7k12rAG7yzeSvs6GnS6eorWy4=;
-        b=4KFni0JUHy/RXePEgug3lRYdrB/T3gWGyRUi1151sGPri6b+rvBu7RKG5zvX4vpsmi
-         9sSVxq4Hvty5mYp86O74xKyaDYf4MGlc/eGkxDKU8fYsbMlw7SkBHI5M19ky3VmTRlwy
-         sC/oUJN5LHxjuhM7fSODk8XO2v+jE4bl9nsDLhuKF/P0svMZ24NxMKCYOm4mzgTWtrtL
-         rvZzNyiYvHXEptWdmrQNYRe6MYGdb66IuMDSE4EstVUA+z0+xLxFP8UQHFQGoC3pt5ta
-         wvN0a89/DVWXp/IaA7v/ID8edocSguDB6RI/DvNrtPQMb6bp3zR9XJrO8cjmIOD+zjS6
-         znYg==
-X-Gm-Message-State: AJIora8tIyfcBdLh+7YDVFFnYGXKqYwqqcbqMOFSHuhoeyMSCYyv7d2Z
-        tI9RnXJ8U177ZX4qaBgu5A==
-X-Google-Smtp-Source: AGRyM1vyI6gtpeykTILPZnbma0073Cvcndgl+qd/LTGfH3eUbekQPxJg89MwT/qdbvfooBY3nSXjMQ==
-X-Received: by 2002:a92:cdac:0:b0:2d3:bf8e:8389 with SMTP id g12-20020a92cdac000000b002d3bf8e8389mr3153113ild.56.1655392500209;
-        Thu, 16 Jun 2022 08:15:00 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id z4-20020a926504000000b002d11c598e12sm1103936ilb.61.2022.06.16.08.14.59
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=oI88Qu4qiMkSjs5momI9WAT894CnS3fhP5J1kHBA0Xw=;
+        b=6+hLErpPQJ9Kj42KjFBDGSXCQ1T8hPHNzQCNwg2esWOuwob4/X+fWCYW7NpMthP+Gt
+         /JWLuAzb/mR0ZwovyzegdBfDYR2xp7Vb8p4iLwkZvwtsYYQRoJIg/9JL1slFY3AiQgcP
+         UionkThiwPdJIH3RzCpjGHT4uVB7B4rwsyiKVurF4o0gonr+8BSKSh5gXTgbHH25aCdF
+         PhMtfVJ4qhIbxtjWoqJOXIpaKmQnmmFYa2g27ubvra5S5X8O03Yq0O13Fw29vsrim7rb
+         m3lZJDLdbhcIswWrjUYKk6VuFRoxkEMzYFZxPkDguZ2XSbuj5feaKsFgMfv0expPe9JF
+         T4Tw==
+X-Gm-Message-State: AJIora9SDjr5jK0jUvqDBAdM51RCM1cCRCTkF8VB3i/5GuAhmIjSGWf+
+        5popJNffIksO2PAJlmCgUsxKhg==
+X-Google-Smtp-Source: AGRyM1t7s8sG7knah9RyDCtIy/zQzva/JpPwmUWGpQaRjdRRkx4tAVGSo4OZULRC2k5nQVmwxr3X/A==
+X-Received: by 2002:a05:600c:2244:b0:39c:4060:1ec9 with SMTP id a4-20020a05600c224400b0039c40601ec9mr5421401wmm.147.1655392660737;
+        Thu, 16 Jun 2022 08:17:40 -0700 (PDT)
+Received: from henark71.. ([51.37.234.167])
+        by smtp.gmail.com with ESMTPSA id j18-20020a5d6052000000b0021a35730281sm1929534wrt.91.2022.06.16.08.17.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jun 2022 08:14:59 -0700 (PDT)
-Received: (nullmailer pid 3488523 invoked by uid 1000);
-        Thu, 16 Jun 2022 15:14:58 -0000
-Date:   Thu, 16 Jun 2022 09:14:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        linux-kernel@vger.kernel.org,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        kernel-janitors@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        patches@opensource.cirrus.com, linux-clk@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, Joe Perches <joe@perches.com>
-Subject: Re: [PATCH 2/2] dt-bindings: clock: Move versaclock.h to
- dt-bindings/clock
-Message-ID: <20220616151458.GA3488452-robh@kernel.org>
-References: <20220613081632.2159-1-lukas.bulwahn@gmail.com>
- <20220613081632.2159-3-lukas.bulwahn@gmail.com>
+        Thu, 16 Jun 2022 08:17:40 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     nagasuresh.relli@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        linux-riscv@lists.infradead.org, robh@kernel.org,
+        paul.walmsley@sifive.com, linux-kernel@vger.kernel.org,
+        aou@eecs.berkeley.edu, daire.mcnamara@microchip.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: microchip: remove spi-max-frequency property
+Date:   Thu, 16 Jun 2022 16:17:12 +0100
+Message-Id: <165539261570.229722.8766263484989186462.b4-ty@microchip.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220616064251.586263-1-nagasuresh.relli@microchip.com>
+References: <20220616064251.586263-1-nagasuresh.relli@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220613081632.2159-3-lukas.bulwahn@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,27 +74,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Jun 2022 10:16:32 +0200, Lukas Bulwahn wrote:
-> Most of the clock related dt-binding header files are located in
-> dt-bindings/clock folder. It would be good to keep all the similar
-> header files at a single location.
+From: Conor Dooley <conor.dooley@microchip.com>
+
+On Thu, 16 Jun 2022 12:12:51 +0530, Nagasuresh Relli wrote:
+> Remove the spi-max-frequency property from the spi0 controller
+> node as it is supposed to be a per SPI peripheral device property.
 > 
-> This was discovered while investigating the state of ownership of the
-> files in include/dt-bindings/ according to the MAINTAINERS file.
-> 
-> This change here is similar to commit 8e28918a85a0 ("dt-bindings: clock:
-> Move ti-dra7-atl.h to dt-bindings/clock") and commit 35d35aae8177
-> ("dt-bindings: clock: Move at91.h to dt-bindigs/clock").
-> 
-> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
-> ---
->  Documentation/devicetree/bindings/clock/idt,versaclock5.yaml | 4 ++--
->  arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi    | 2 +-
->  arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi          | 2 +-
->  drivers/clk/clk-versaclock5.c                                | 2 +-
->  include/dt-bindings/{clk => clock}/versaclock.h              | 0
->  5 files changed, 5 insertions(+), 5 deletions(-)
->  rename include/dt-bindings/{clk => clock}/versaclock.h (100%)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied to dt-for-next, thanks!
+
+[1/1] riscv: dts: microchip: remove spi-max-frequency property
+      https://git.kernel.org/conor/c/3f8ccf5f1a8c
+
+Thanks,
+Conor.
