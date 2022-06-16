@@ -2,159 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A8FB54DA4A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 08:10:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7431854DA79
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 08:23:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359008AbiFPGJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 02:09:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58420 "EHLO
+        id S1347238AbiFPGXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 02:23:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359016AbiFPGJd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 02:09:33 -0400
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C708C2E9DD;
-        Wed, 15 Jun 2022 23:09:29 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id 41B063200A57;
-        Thu, 16 Jun 2022 02:09:28 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Thu, 16 Jun 2022 02:09:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1655359767; x=1655446167; bh=Q6
-        7Ot5tdbFGVjczMQOtyiP3EgCUjO/QaLYKLX+IzOvo=; b=eyFK0Vy99b3mJB/2NK
-        fT1vC3q0wpxdZxR6Egmp65PmMxB08X14az1d72oN3D9SyD11p8w28Gi5cULbrz18
-        cihax6t8H4fq5SOlqf6N3PqUb5dGlEoWO/12aduSmB8irN/MJzxMAdZQVrjo5k1/
-        RbLLX7l4hUqb7gKwXo1Q7GxjElFbfaPh3oIAlLyVDGaVvR9lOCOGlz6E0tA3saJZ
-        CMzZgXE/53s3R8iH6+0ZWlZcYyJNkpAa7UmdYchCoXlFY6Z6/dXUkeOyIerxJ3VI
-        s47VuwRUz289oCS5s5pV4qA5Fs+7cFDH/lmECUIZfhXaBKG4jF0N+glOxx3cqYd2
-        Bj+g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1655359767; x=1655446167; bh=Q67Ot5tdbFGVj
-        czMQOtyiP3EgCUjO/QaLYKLX+IzOvo=; b=UwcL5PYe3LP6t/voujdgO89tALhl+
-        7iojztLB1Yr50yWzUBUjx+Wrx2KDX5V+AiM6ChCk4aqPyCLPnihQeb/3FFajFRIa
-        P02ZG3eHJRf82mbxO1V2/F6LFE2OBj9E7721uMQ4kkKGCOPUyKiIMsuQWLbdfPx4
-        80vQn/JUJ9I+Fb1Sb9VxBKX88HmGT9VtmakSDzyOdOtEypSIaFLOM3xaeSEHFoKe
-        txyp3lSGRruLU5Q8xXd5WOOMjhREMKK7avfyREWz6s0QfcVtIFyLFt95WbscrOd3
-        0QB81t/7QMevEFoUY8rOZYcEzVnUphIyyNIlv5qAYIpBkyUMflYQTpyMg==
-X-ME-Sender: <xms:F8mqYt6n9ZrB2dtrePeZSJpDyjXBkF5hkbY7Abzu9eNnO7Zr1YnDbg>
-    <xme:F8mqYq4JCDwuKV2ZUTyIbDFL4giJ99JuF11K5g4j9hu6tMKZ4akB0ndx7Imsb7W_3
-    N5lAexFIYB9O1Ymkw>
-X-ME-Received: <xmr:F8mqYkfL5o_f2mZXAthD1Zi1guGVofk8XiFcDPHq91aacmxvE-to7OtpxmPZVoCqtVWN7ZyZVoxE-Ik6yvtluhFGX_16fr5ZCtYwJABienOroDt5oykGU0Uele1MzRjneYfUZA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedruddvvddguddtfecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpedukeetueduhedtleetvefguddvvdejhfefudelgfduveeggeeh
-    gfdufeeitdevteenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:F8mqYmLDPdwWV-JYxHn0iIGEfglpct-1D4sEX7lNDPzvc_ss_4iqNw>
-    <xmx:F8mqYhIBcpohnLBz-vbe_Z0hw4XPPMk_OEQgODSIeUMJTDvAgt1QSQ>
-    <xmx:F8mqYvw8_0j6HE0hYwTiKHzF7SShcwbkYJ4lsoTdrqXFqp6pJeTSDA>
-    <xmx:F8mqYo8TC0uGegXBmx8_S-WMF16UvJaLjL6j75Dd6yoKGxZ214akIA>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 16 Jun 2022 02:09:27 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Chen-Yu Tsai <wens@csie.org>, Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] ARM: dts: axp22x/axp809: Add GPIO controller nodes
-Date:   Thu, 16 Jun 2022 01:09:15 -0500
-Message-Id: <20220616060915.48325-5-samuel@sholland.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220616060915.48325-1-samuel@sholland.org>
-References: <20220616060915.48325-1-samuel@sholland.org>
+        with ESMTP id S237285AbiFPGXH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 02:23:07 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2026E0DF;
+        Wed, 15 Jun 2022 23:23:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1655360586; x=1686896586;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=C64wXT8o8e3dnYRSkDU43FZmaurq/w0MSIoJ52kgk9M=;
+  b=SGPkQkX3XTI83cig+G/BLE16BN9DkkIDI/e5eKBHXcR3Vmt/Uku34EmC
+   Jd8Pt7FuioYAucBcjjSB6jLuVKxa5T/+O7g93GUz1WYSn5hez9mwEazmi
+   nUZrAMzwlrupG6/EelP2kgEUOj/0MAA/7FKpIygjvUva+DQj9HT5NwPsY
+   QGKJe7PJtC2JrsgET/AJOgypoobyqwmS99qyBvbjW5JC2rHvBosHj2mtn
+   TsEjdvEcUbJPOvRFyWb4Z09lpNWuhjbfCKsiE3R72IkDkCVZMx/4KR1uA
+   xrmHvyxgAEgC7PKwmHLt6+vXHKxJBoTLANM1CxLjVJ55mdT3VYjhkAQeb
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10379"; a="267866655"
+X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; 
+   d="scan'208";a="267866655"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2022 23:23:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,304,1647327600"; 
+   d="scan'208";a="727759979"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 15 Jun 2022 23:22:58 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 16 Jun 2022 09:22:58 +0300
+Date:   Thu, 16 Jun 2022 09:22:58 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Prashant Malani <pmalani@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        bleung@chromium.org, swboyd@chromium.org,
+        kernel test robot <lkp@intel.com>,
+        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
+        <nfraprado@collabora.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?iso-8859-1?Q?Jos=E9_Exp=F3sito?= <jose.exposito89@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Pin-Yen Lin <treapking@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Xin Ji <xji@analogixsemi.com>
+Subject: Re: [PATCH v4 2/7] usb: typec: mux: Add CONFIG guards for functions
+Message-ID: <YqrMQhb2BKtSCIdx@kuha.fi.intel.com>
+References: <20220615172129.1314056-1-pmalani@chromium.org>
+ <20220615172129.1314056-3-pmalani@chromium.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220615172129.1314056-3-pmalani@chromium.org>
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These PMICs all contain a GPIO controller. Now that the binding is
-documented, wire up the controller in the device tree.
+On Wed, Jun 15, 2022 at 05:20:18PM +0000, Prashant Malani wrote:
+> There are some drivers that can use the Type C mux API, but don't have
+> to. Introduce CONFIG guards for the mux functions so that drivers can
+> include the header file and not run into compilation errors on systems
+> which don't have CONFIG_TYPEC enabled. When CONFIG_TYPEC is not enabled,
+> the Type C mux functions will be stub versions of the original calls.
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> Signed-off-by: Prashant Malani <pmalani@chromium.org>
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
- arch/arm/boot/dts/axp22x.dtsi | 18 ++++++++++++++++++
- arch/arm/boot/dts/axp809.dtsi | 19 +++++++++++++++++++
- 2 files changed, 37 insertions(+)
+> ---
+> 
+> Changes since v3:
+> - No changes.
+> 
+> Changes since v2:
+> - Fix up return types for some of the stubs. Remove 1 unnecessary stub
+>   in the else condition.
+> - Remove unnecessary IS_MODULE config guard.
+> - Added Reviewed-by and Tested-by tags.
+> 
+> Changes since v1:
+> - Added static inline to stub functions.
+> - Updated function signature of stub functions from "struct typec_mux"
+>   to "struct typec_mux_dev" in accordance with updates from commit
+>   713fd49b430c ("usb: typec: mux: Introduce indirection")
+> 
+>  include/linux/usb/typec_mux.h | 44 ++++++++++++++++++++++++++++++-----
+>  1 file changed, 38 insertions(+), 6 deletions(-)
+> 
+> diff --git a/include/linux/usb/typec_mux.h b/include/linux/usb/typec_mux.h
+> index ee57781dcf28..9292f0e07846 100644
+> --- a/include/linux/usb/typec_mux.h
+> +++ b/include/linux/usb/typec_mux.h
+> @@ -58,17 +58,13 @@ struct typec_mux_desc {
+>  	void *drvdata;
+>  };
+>  
+> +#if IS_ENABLED(CONFIG_TYPEC)
+> +
+>  struct typec_mux *fwnode_typec_mux_get(struct fwnode_handle *fwnode,
+>  				       const struct typec_altmode_desc *desc);
+>  void typec_mux_put(struct typec_mux *mux);
+>  int typec_mux_set(struct typec_mux *mux, struct typec_mux_state *state);
+>  
+> -static inline struct typec_mux *
+> -typec_mux_get(struct device *dev, const struct typec_altmode_desc *desc)
+> -{
+> -	return fwnode_typec_mux_get(dev_fwnode(dev), desc);
+> -}
+> -
+>  struct typec_mux_dev *
+>  typec_mux_register(struct device *parent, const struct typec_mux_desc *desc);
+>  void typec_mux_unregister(struct typec_mux_dev *mux);
+> @@ -76,4 +72,40 @@ void typec_mux_unregister(struct typec_mux_dev *mux);
+>  void typec_mux_set_drvdata(struct typec_mux_dev *mux, void *data);
+>  void *typec_mux_get_drvdata(struct typec_mux_dev *mux);
+>  
+> +#else
+> +
+> +static inline struct typec_mux *fwnode_typec_mux_get(struct fwnode_handle *fwnode,
+> +				       const struct typec_altmode_desc *desc)
+> +{
+> +	return NULL;
+> +}
+> +
+> +static inline void typec_mux_put(struct typec_mux *mux) {}
+> +
+> +static inline int typec_mux_set(struct typec_mux *mux, struct typec_mux_state *state)
+> +{
+> +	return 0;
+> +}
+> +
+> +static inline struct typec_mux_dev *
+> +typec_mux_register(struct device *parent, const struct typec_mux_desc *desc)
+> +{
+> +	return ERR_PTR(-EOPNOTSUPP);
+> +}
+> +static inline void typec_mux_unregister(struct typec_mux_dev *mux) {}
+> +
+> +static inline void typec_mux_set_drvdata(struct typec_mux_dev *mux, void *data) {}
+> +static inline void *typec_mux_get_drvdata(struct typec_mux_dev *mux)
+> +{
+> +	return ERR_PTR(-EOPNOTSUPP);
+> +}
+> +
+> +#endif /* CONFIG_TYPEC */
+> +
+> +static inline struct typec_mux *
+> +typec_mux_get(struct device *dev, const struct typec_altmode_desc *desc)
+> +{
+> +	return fwnode_typec_mux_get(dev_fwnode(dev), desc);
+> +}
+> +
+>  #endif /* __USB_TYPEC_MUX */
+> -- 
+> 2.36.1.476.g0c4daa206d-goog
 
-diff --git a/arch/arm/boot/dts/axp22x.dtsi b/arch/arm/boot/dts/axp22x.dtsi
-index a020c12b2884..5c233c84be92 100644
---- a/arch/arm/boot/dts/axp22x.dtsi
-+++ b/arch/arm/boot/dts/axp22x.dtsi
-@@ -67,6 +67,24 @@ battery_power_supply: battery-power {
- 		status = "disabled";
- 	};
- 
-+	axp_gpio: gpio {
-+		compatible = "x-powers,axp221-gpio";
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		/omit-if-no-ref/
-+		gpio0_ldo: gpio0-ldo-pin {
-+			pins = "GPIO0";
-+			function = "ldo";
-+		};
-+
-+		/omit-if-no-ref/
-+		gpio1_ldo: gpio1-ldo-pin {
-+			pins = "GPIO1";
-+			function = "ldo";
-+		};
-+	};
-+
- 	regulators {
- 		/* Default work frequency for buck regulators */
- 		x-powers,dcdc-freq = <3000>;
-diff --git a/arch/arm/boot/dts/axp809.dtsi b/arch/arm/boot/dts/axp809.dtsi
-index ab8e5f2d9246..da92b105f3b0 100644
---- a/arch/arm/boot/dts/axp809.dtsi
-+++ b/arch/arm/boot/dts/axp809.dtsi
-@@ -50,4 +50,23 @@ &axp809 {
- 	compatible = "x-powers,axp809";
- 	interrupt-controller;
- 	#interrupt-cells = <1>;
-+
-+	axp_gpio: gpio {
-+		compatible = "x-powers,axp809-gpio",
-+			     "x-powers,axp221-gpio";
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		/omit-if-no-ref/
-+		gpio0_ldo: gpio0-ldo-pin {
-+			pins = "GPIO0";
-+			function = "ldo";
-+		};
-+
-+		/omit-if-no-ref/
-+		gpio1_ldo: gpio1-ldo-pin {
-+			pins = "GPIO1";
-+			function = "ldo";
-+		};
-+	};
- };
 -- 
-2.35.1
-
+heikki
