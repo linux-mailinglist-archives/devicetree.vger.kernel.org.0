@@ -2,202 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82C9B54E1D2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2986154E1DE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:25:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376906AbiFPNWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 09:22:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56306 "EHLO
+        id S233426AbiFPNZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 09:25:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232862AbiFPNWc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:22:32 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17F2A43486;
-        Thu, 16 Jun 2022 06:22:23 -0700 (PDT)
-X-UUID: 62ab30d1a28548cfb45cbc62c6664582-20220616
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:3280e293-eeb6-4f0c-8046-fba97e2c6688,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:5
-X-CID-META: VersionHash:b14ad71,CLOUDID:488fc348-4c92-421c-ad91-b806c0f58b2a,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 62ab30d1a28548cfb45cbc62c6664582-20220616
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1138178916; Thu, 16 Jun 2022 21:22:17 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 16 Jun 2022 21:22:16 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 16 Jun 2022 21:22:16 +0800
-Message-ID: <aeebb6879d62865f8baf037e541c568eb9310f23.camel@mediatek.com>
-Subject: Re: [PATCH v11 01/10] dt-bindings: mediatek,dp: Add Display Port
- binding
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <daniel@ffwll.ch>, <krzysztof.kozlowski+dt@linaro.org>,
-        <mripard@kernel.org>, <tzimmermann@suse.de>,
-        <matthias.bgg@gmail.com>, <deller@gmx.de>, <airlied@linux.ie>,
-        <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>, <ck.hu@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 16 Jun 2022 21:22:16 +0800
-In-Reply-To: <20220614202336.GA2400714-robh@kernel.org>
-References: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
-         <20220610105522.13449-2-rex-bc.chen@mediatek.com>
-         <20220614202336.GA2400714-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S233148AbiFPNZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:25:05 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A9BA3BBF9;
+        Thu, 16 Jun 2022 06:25:04 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id l20so1525984lji.0;
+        Thu, 16 Jun 2022 06:25:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IVAdZ2cu7L3Nr+75vrL+6JqYK3CgcW1j0SYA+lfIJLQ=;
+        b=qc5RA3CqMtq7kity/XbtWctiL0VY0iVEy8yUIvYPUfxdQNePbUsmntBMMVFiGci3++
+         BW4fxPxP9Vf1Cai8MSQEfWoqAuFjQHrFrPAtdrscmRGdZLloFzTZ9ka2ZOh6scvRIY6k
+         tcdmh/6avsxXWIWtxpOsltIW5QjQAElzto8X6biQtuTX3wgpBh9/m2OVHME2+9H4EiVE
+         VnXmDAudrQMAooZ9J4gfl2D205JnNZlUq2bEdkcVbdFseye2DjqVz8iW17cp1IW4/zdW
+         ZNTKd6BlXwAzMAuSLm9NxKlNNvcEEvNCEAAfnyzBOmuANPws5zTOzdlqm10tXZ69Tl7r
+         wwjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IVAdZ2cu7L3Nr+75vrL+6JqYK3CgcW1j0SYA+lfIJLQ=;
+        b=Cp4w/ljNWfqN7CEUtCTkef49j8qUTUYQ9VVQnEUjAFcQAEva4mqa/NUZNodKPw4Jnw
+         Zg0p4S0AQ+v9zI9lucV4aROX8acdtZPDwQHKNCBN5Md0OQHzBI0Jw4ilKI7XJjmShJNM
+         thsI3Fpyq0i7gIUEJsel/2W3ezFLNvQP6z9fN+2Ny+GZoTKFDLzuW47XZYuePQOwxwz2
+         AEhi6L9gH4vNsFxNCH+/yyKvGYgmMYlXHUF8xY+smGq4U89GwWSr8/7fOi+oeAts5Uwh
+         esfO5BTXyoMUmcaRnrVwud9k62d+INEBmDmJM5Z0krVpgqNDn/hiNpV5C2T/rJOBBFNl
+         FLRw==
+X-Gm-Message-State: AJIora/EGZ7DwEU0C/CMs3T/3rr8ebid/dR/VJ+PPgXepeGtEzo9Sns6
+        Uwgl0xWcKM6zf7pHiETdrnDh99OUx9il/RjSxWY=
+X-Google-Smtp-Source: AGRyM1sMIqhxO0a1eovqh9hUTJBdq4SnBO6X8MSu1qVhrgr5+6Viw7wFZSIoHnhV7Ij/CuwAW4lkNFj5d8MDUPe9o4I=
+X-Received: by 2002:a2e:6817:0:b0:258:b235:7812 with SMTP id
+ c23-20020a2e6817000000b00258b2357812mr2526199lja.83.1655385902856; Thu, 16
+ Jun 2022 06:25:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220608095623.22327-1-tmaimon77@gmail.com> <20220608095623.22327-13-tmaimon77@gmail.com>
+ <add025b6-c622-b204-d39e-67b31878d37f@linaro.org> <CAP6Zq1iDbB+X5QPE4Nsqk4nV41bZiVzQZExS1pQTuKEBz-iYew@mail.gmail.com>
+ <381ff739-e898-8812-d549-df7101f0eaa2@linaro.org> <CAP6Zq1j=x3OcOPSOjJJmOcze7ziM=oWcKdbYzoHhGnvZipu_UQ@mail.gmail.com>
+ <e6e478a5-9080-fb2f-9ccd-2490cdfab4c7@linaro.org>
+In-Reply-To: <e6e478a5-9080-fb2f-9ccd-2490cdfab4c7@linaro.org>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Thu, 16 Jun 2022 16:24:51 +0300
+Message-ID: <CAP6Zq1gy=rj-wyqqNQF+Pt1dtHsf+90AnTGTqt-v9madj8tfGA@mail.gmail.com>
+Subject: Re: [PATCH v2 12/20] dt-bindings: reset: npcm: Add support for NPCM8XX
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Robert Hancock <robert.hancock@calian.com>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-06-14 at 14:23 -0600, Rob Herring wrote:
-> On Fri, Jun 10, 2022 at 06:55:13PM +0800, Bo-Chen Chen wrote:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > 
-> > This controller is present on several mediatek hardware. Currently
-> > mt8195 and mt8395 have this controller without a functional
-> > difference,
-> > so only one compatible field is added.
-> > 
-> > The controller can have two forms, as a normal display port and as
-> > an
-> > embedded display port.
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > [Bo-Chen: Fix reviewers' comment]
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >  .../display/mediatek/mediatek,dp.yaml         | 101
-> > ++++++++++++++++++
-> >  1 file changed, 101 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.ya
-> > ml
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.ya
-> > ml
-> > new file mode 100644
-> > index 000000000000..10f50a0dcf49
-> > --- /dev/null
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.ya
-> > ml
-> > @@ -0,0 +1,101 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: 
-> > https://urldefense.com/v3/__http://devicetree.org/schemas/display/mediatek/mediatek,dp.yaml*__;Iw!!CTRNKA9wMg0ARbw!yqAl1KhfbHqHN7-5aeqhzqeOVhPU_Z5beko5q-y-s5pcfp1WL5oVGvY5UF4EfWm4PWjc5mjBwyBUMsr_RI45ipbhsw$
-> >  
-> > +$schema: 
-> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!yqAl1KhfbHqHN7-5aeqhzqeOVhPU_Z5beko5q-y-s5pcfp1WL5oVGvY5UF4EfWm4PWjc5mjBwyBUMsr_RI5WzYKENQ$
-> >  
-> > +
-> > +title: MediaTek Display Port Controller
-> > +
-> > +maintainers:
-> > +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> > +  - Jitao shi <jitao.shi@mediatek.com>
-> > +
-> > +description: |
-> > +  Device tree bindings for the MediaTek display port and
-> > +  embedded display port controller present on some MediaTek SoCs.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - mediatek,mt8195-dp-tx
-> > +      - mediatek,mt8195-edp-tx
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  nvmem-cells:
-> > +    maxItems: 1
-> > +    description: efuse data for display port calibration
-> > +
-> > +  nvmem-cell-names:
-> > +    const: dp_calibration_data
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Input endpoint of the controller, usually
-> > dp_intf
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Output endpoint of the controller
-> > +
-> > +    required:
-> > +      - port@0
-> > +      - port@1
-> > +
-> > +  max-lanes:
-> > +    maxItems: 1
-> > +    description: maximum number of lanes supported by the
-> > hardware.
-> 
-> We already have a 'data-lanes' property defined in 
-> 'video-interfaces.yaml' that can serve this purpose.
-> 
+Hi Krzysztof,
 
-Hello Rob,
+On Wed, 15 Jun 2022 at 20:03, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 13/06/2022 02:25, Tomer Maimon wrote:
+> > Hi Krzysztof,
+> >
+> > Thanks for your clarification.
+> >
+> > We can remove the dt-binding file and use numbers in the DTS,
+> > appreciate if you can answer few additional questions:
+> > 1. Do you suggest adding all NPCM reset values to the NPCM reset
+> > document or the reset values should describe in the module
+> > documentation that uses it?
+>
+> What is "NPCM reset document"? Are these reset values anyhow different
+> than interrupts or pins?
+No, they represent the same values.
+>
+> > 2. Some of the NPCM7XX document modules describe the reset value they
+> > use from the dt-binding for example:
+> > https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/iio/adc/nuvoton%2Cnpcm750-adc.yaml#L61
+>
+> This is NPCM750
+>
+> > If we remove the NPCM8XX dt-binding file should we describe the
+> > NPCM8XX values in the NPCM-ADC document file?
+>
+> What is NPCM-ADC document file? What do you want to describe there?
+> Again - how is it different than interrupts?
+It is not different from the interrupts.
+I will remove the dt-binding reset include file, the reset property
+will use numbers and not macro's.
+>
+>
+>
+> Best regards,
+> Krzysztof
 
-Thanks for review.
-From the description of video-interfaces.yaml, I think it's not quite
-match what we need. We only need this value be one of "1,2,4".
+Best regards,
 
-Any other suggestion?
-
-> > +
-> > +  max-linkrate:
-> > +    maxItems: 1
-> > +    description: maximum link rate supported by the hardware and
-> > unit is MHz.
-> 
-> Then use '-mhz' suffix on the property name. Then you don't need a
-> type 
-> (or maxItems).
-
-OK, I will write like this:
-
-  max-linkrate-mhz:
-    enum: [ 1620, 2700, 5400, 8100 ]
-    description: maximum link rate supported by the hardware.
-
-BRs,
-Bo-Chen
-
+Tomer
