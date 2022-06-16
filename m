@@ -2,204 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3281054E990
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 20:39:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C02E154E998
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 20:40:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377987AbiFPSjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 14:39:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40036 "EHLO
+        id S1378092AbiFPSke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 14:40:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378008AbiFPSj2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 14:39:28 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE47754194;
-        Thu, 16 Jun 2022 11:39:24 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id hj18so3757055ejb.0;
-        Thu, 16 Jun 2022 11:39:24 -0700 (PDT)
+        with ESMTP id S1378051AbiFPSkd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 14:40:33 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98C73544C3
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 11:40:32 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id r5so2012155pgr.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 11:40:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hTMAYNOtiXLbIpfBfX/ZjoF2j1Xgqm6lvqAWKAijSCw=;
-        b=nyIQTTIZFGabt6h84OUe/BFnlLSq7adaVeP4z1n5ObblUDxDNNljfgsiz3VCvV9ZkC
-         U7xuxJiYskOlhs1ud2X1DPGZvY0xjIFn0sVTd0BZq35jlitXDUvG6OIh7QdQxEUbgMl/
-         yF/djqpmpb4Y2V61qa4hNsSem8fawETTnv347nn+Xsl6BJEDc1HROOx7Zy0VgWMHlvPT
-         6MpuGT7JqBe8jYSmhMsdkF8QOAqzUVq4WuLg6Zd5thSLGxOZfw0eOlXaAt6tw/RCB0NT
-         aVuJY2k1FZN5T0U5k1LuvX8Vn3vXZLMKWU8pKp5GZ3Mie1f1VSRCyeRSRvnZMTM/NbRC
-         koMQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=HU/S2rDRdJXSvF2HJYT5MX/Baf9+5cy35uV5UBnDVAE=;
+        b=UgAioPDwOol1mtX0moiIbUq+7g/dIGZTQMDu5AExU6sV7xVip/EnXbsCYhrh+WNSuv
+         3h3bc+N4mJWEnpIVGGN5FXzozf+7YN/8zTSAkAwZfnleROINqUyL24D1QrqvXWGRhx+K
+         OCqAZBEhp4X769KOpgSkUT89EKd/ve/Di6LiAM2REFFYHDOxtaTwUFQoTBWzPX71QHsm
+         Yl6jlmv1I6C+WmgoUV0wwSo/7SeDGhP5hOb9SNMtF7Uop4RTkdB7KdgIWoftWnCBY70s
+         /Wkm+ijxr+jah2XQshzjkHeeKoAAOWtzKrVhnik94cYstOcvMlmgSuELVNle2JqCOVUh
+         Hi2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hTMAYNOtiXLbIpfBfX/ZjoF2j1Xgqm6lvqAWKAijSCw=;
-        b=UIDO3QUz9J1zukEaiBMJD+2wOskT4cOaxEhnbaIRN+g3aY3almRligZ+kQ4tj+Hgsf
-         CUqZV64nTy/qaSvlp4jGFCgNuIaW+l1K7+Jvd76ErC/16RHfugSe7PPKBTIRFiaW1UrI
-         +VSvm/Y4qRmHwCYeD6FE1pFCxT9SNCNxiMhSR0LHkRsI+GwhkM18y2hoGfA0T6eYUdh9
-         FkXaSVgxmtnvwAdXJoKmlLKTNYd+q9CT6UBOlu3wbbzg54smDglCRUzjOiej3i/yqnmj
-         FhOlcXzUWbTCeGa31AFg2MtQXaQDQcKC3LzrsojZXZSgDyxb8p65zPOYQX3+cIRX5iAh
-         neoA==
-X-Gm-Message-State: AJIora/T2j8qxKU9XywDDx7lw4E6WT0RF4TV5R18QpMigysBmjbYSkEQ
-        kTlnr5IGt3pftLVY5kBq2DGmEZOC1ASx1U0pwk8=
-X-Google-Smtp-Source: AGRyM1tVRlc/Efjknp2j0mwetaeHSRuuZt3+3lupYLxOIvdx4bOnZ8iDWPyj+gzzwfQlpMTvdeDuFyByDBNdSk7oxOI=
-X-Received: by 2002:a17:906:434f:b0:711:eb76:c320 with SMTP id
- z15-20020a170906434f00b00711eb76c320mr5744542ejm.636.1655404763382; Thu, 16
- Jun 2022 11:39:23 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=HU/S2rDRdJXSvF2HJYT5MX/Baf9+5cy35uV5UBnDVAE=;
+        b=Q/MdUPIHLAZjxlBMqBH6TCIdmInApZyzc6TjZu0LArO+4CUdISDRYCbzKwmSqrdgQl
+         oGcygIYiSBK0wRAEd9s5pf44wF7Lmaecvy/CYvkFp53KCU8J3sFsidgQEWkTjZCkR+n8
+         CHYTO0F5sqiArgd7x18/lkfi2LaZeDwRjpcPrMCHNkYEbEf5TIKHbM8Y45VbbsoQPDEc
+         /8Su0Tw3KxRmSLEnZmVmjpciM2NNC6eumCkuwXEtuwervDTBRovuu5M9pInHt7K9MZgY
+         f6629SZqM71bpz5Idfs04DrL9zNPe9IjXEGaxy2OAHZ8RoRTlIlv+mOFofWX+5R3kcdQ
+         6cNg==
+X-Gm-Message-State: AJIora/m3g1h25/DAGbIr3pEPOuaaYtfae4FLdVuNFe5D0O28NTMy10D
+        Fz0IZIU2rMfC9vmQHkudHpyk1g==
+X-Google-Smtp-Source: AGRyM1uTOQPUU6gJIf2RfGvYLof4xidypQqv0TIVUTH6ipWOrME4pI+sniIJ6KwXyC6IjQxxeU2/2g==
+X-Received: by 2002:a63:441f:0:b0:3fc:8bd2:f828 with SMTP id r31-20020a63441f000000b003fc8bd2f828mr5506549pga.579.1655404832093;
+        Thu, 16 Jun 2022 11:40:32 -0700 (PDT)
+Received: from google.com ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id o11-20020a63730b000000b003fadfd7be5asm2148272pgc.18.2022.06.16.11.40.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jun 2022 11:40:31 -0700 (PDT)
+Date:   Thu, 16 Jun 2022 19:40:28 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, johnson.wang@mediatek.com,
+        hsin-hsiung.wang@mediatek.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] mfd: mt6397: Add basic support for MT6331+MT6332 PMIC
+Message-ID: <Yqt5HPIXbOab6ik5@google.com>
+References: <20220520124617.228808-1-angelogioacchino.delregno@collabora.com>
+ <20220520124617.228808-3-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-References: <20220616104211.9257-1-ddrokosov@sberdevices.ru>
- <20220616104211.9257-3-ddrokosov@sberdevices.ru> <CAHp75Vc0+ckNnm2tzLMPrjeFRjwoj3zy0C4koNShFRG3kP8b6w@mail.gmail.com>
- <20220616170218.dihjli46spimozeg@CAB-WSD-L081021.sigma.sbrf.ru>
-In-Reply-To: <20220616170218.dihjli46spimozeg@CAB-WSD-L081021.sigma.sbrf.ru>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 16 Jun 2022 20:38:46 +0200
-Message-ID: <CAHp75VdEY9z_0=sAkKOico9JKYPOX6yqnoetiW49oFHm+SeUoQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] iio: add MEMSensing MSA311 3-axis accelerometer driver
-To:     Dmitry Rokosov <DDRokosov@sberdevices.ru>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220520124617.228808-3-angelogioacchino.delregno@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 16, 2022 at 7:02 PM Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
-> On Thu, Jun 16, 2022 at 02:18:52PM +0200, Andy Shevchenko wrote:
-> > On Thu, Jun 16, 2022 at 12:42 PM Dmitry Rokosov
-> > <DDRokosov@sberdevices.ru> wrote:
+On Fri, 20 May 2022, AngeloGioacchino Del Regno wrote:
+65;6800;1c
+> Add support for the MT6331 PMIC with MT6332 Companion PMIC, found
+> in MT6795 Helio X10 smartphone platforms.
+> 
+> This combo has support for multiple devices but, for a start,
+> only the following have been implemented:
+> - Regulators (two instances, one in MT6331, one in MT6332)
+> - RTC (MT6331)
+> - Keys (MT6331)
+> - Interrupts (MT6331 also dispatches MT6332's interrupts)
+> 
+> There's more to be implemented, especially for MT6332, which
+> will come at a later stage.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  drivers/mfd/mt6397-core.c            |  47 ++
+>  drivers/mfd/mt6397-irq.c             |   9 +-
+>  include/linux/mfd/mt6331/core.h      |  53 +++
+>  include/linux/mfd/mt6331/registers.h | 584 ++++++++++++++++++++++++
+>  include/linux/mfd/mt6332/core.h      |  53 +++
+>  include/linux/mfd/mt6332/registers.h | 642 +++++++++++++++++++++++++++
+>  include/linux/mfd/mt6397/core.h      |   2 +
+>  7 files changed, 1389 insertions(+), 1 deletion(-)
+>  create mode 100644 include/linux/mfd/mt6331/core.h
+>  create mode 100644 include/linux/mfd/mt6331/registers.h
+>  create mode 100644 include/linux/mfd/mt6332/core.h
+>  create mode 100644 include/linux/mfd/mt6332/registers.h
 
-...
+For my own reference (apply this as-is to your sign-off block):
 
-> > Not sure why you put those blank lines herey, it makes code not compact.
->
-> Here I use blank lines to split fields from different registers.
-> In other words, in the msa311_fields enum one line contains fields from one
-> register. But for some heavy registers (like TAP_ACTIVE_STS) we have so many
-> fields and their declaration doesn't fit to 80 symbols.
-> So I've made a decision to split registers using blank lines.
-
-Better is to add a comment explaining what register is described
-below, and not just a blank line.
-
-...
-
-> > Not sure you need this. Dropping i2c dependency from this structure
-> > allows much easier to add, e.g. SPI support of the same hardware.
->
-> Mainly I use i2c pointer in the probe() path, and you are right, we can
-> change i2c pointer to dev and generalize msa311_priv struct from bus
-> perspective.
-
-Yep, note that you may easily retrieve i2c_client from struct device
-pointer if you need to do that in some (I believe rare to none) cases.
-
-...
-
-> > > +       struct regmap *regs;
-> >
-> > I believe this is used most, so making this a first member in the
-> > structure saves  some instructions (check with bloat-o-meter).
-> >
->
-> Are you talking about archs where offset calculation adds more bytes to
-> instruction? And when offset equals to 0, we can save some space.
-
-It doesn't have anything to do with arches, simply compiler
-optimization, otherwise yes, that's what I meant.
-
-...
-
-> > > +       wait_ms = (USEC_PER_SEC * MSEC_PER_SEC) / freq_uhz;
-> >
-> > This looks very odd from a physics perspective: sec * sec * sec == sec ?!
-> >
-> > Perhaps you meant some HZ* macros from units.h?
-> >
->
-> I suppose because of UHZ calculation I have to use NANO instead of
-> USEC_PER_SEC in the following line:
->
->         freq_uhz = msa311_odr_table[odr].val * USEC_PER_SEC +
->                    msa311_odr_table[odr].val2;
->
-> But below line is right from physics perspective. 1sec = 1/Hz, so
-> msec = (USEC_PER_SEC / freq_uhz) * MSEC_PER_SEC:
->
->         wait_ms = (USEC_PER_SEC * MSEC_PER_SEC) / freq_uhz;
->
-> Or do you mean that I should change MSEC_PER_SEC to just MILLI?
-
-1 / Hz = 1 sec. That's how physics defines it. Try to figure out what
-you meant by above multiplications / divisions and come up with the
-best that fits your purposes.
-
-...
-
-> > > +                       if (err) {
-> > > +                               dev_err(dev, "cannot update freq (%d)\n", err);
-> > > +                               goto failed;
-> > > +                       }
-> >
-> > Why is this inside the loop and more important under lock? Also you
-> > may cover the initial error code by this message when moving it out of
-> > the loop and lock.
-> >
-> > Ditto for other code snippets in other function(s) where applicable.
->
-> Yes, I can move dev_err() outside of loop. But all ODR search loop
-> should be under lock fully, because other msa311 operations should not
-> be executed when we search proper ODR place.
-
-I didn't suggest getting rid of the lock.
-
-...
-
-> > > +       mutex_lock(&msa311->lock);
-> > > +       err = regmap_field_write(msa311->fields[F_NEW_DATA_INT_EN], state);
-> > > +       mutex_unlock(&msa311->lock);
-> >
-> > > +
-> >
-> > No need.
->
-> Sorry, I don't understand. We do not need to call it under lock, right?
-> I think we have to wrap it by msa311 lock, because other msa311
-> operations should not be executed when we enable or disable new data
-> interrupt (for example ODR value changing or something else).
-
-The blank line is not needed, I specifically commented on the
-emphasized paragraph (by delimiting it with blank lines and leaving
-the rest for the better context for you to understand, it seems it did
-the opposite...).
-
-...
-
-> > > +       mutex_lock(&msa311->lock);
-> > > +       err = msa311_set_pwr_mode(msa311, MSA311_PWR_MODE_NORMAL);
-> > > +       mutex_unlock(&msa311->lock);
-> >
-> > > +
-> >
-> > No need.
->
-> Again I don't understand why, sorry. We do not want to get sporadic
-> MSA311 attributes changing during power mode transition from another
-> userspace process.
-
-As per above.
+  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
