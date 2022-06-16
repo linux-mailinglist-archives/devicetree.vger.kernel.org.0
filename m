@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 102F154ED78
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 00:43:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BC9954ED7B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 00:45:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379018AbiFPWnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 18:43:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48352 "EHLO
+        id S1378926AbiFPWpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 18:45:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378300AbiFPWnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 18:43:00 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB2E26558
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 15:42:53 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id i15so2408147plr.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 15:42:53 -0700 (PDT)
+        with ESMTP id S1378315AbiFPWpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 18:45:09 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 691396212E
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 15:45:08 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id q140so2487697pgq.6
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 15:45:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/3qjT8aePQAQgwBRNKBGi2cq5E72d9qFVFPteV2QzGY=;
-        b=AHSQthb4NfiDtKyPdXYFi7qZOIDch82VkZNR+p7WRZ0184oxLk1MnLBd4hAfJMMPJ0
-         m1gmMU1yv1wiB5P2eC9yzi88KjZR7Fe95QMtVs7wjymbrb0k8XQy2me3mmCNkxQoLQ0C
-         m+NDXG8FeYr1OZc/oFCpbBFJ1Bnwg65hkpIXO9IWYopCi9FtSj5Y+xnH24qiz6vhtTSk
-         fWR9Y/z7BJ3FOzP0Rq8CTNVGD+/e1/pyl5ftb6Q1rs1pRkDBwmD+OMiuIheK7IO2xzlV
-         5cQAZmx4HyvNkd/iMMZAIelq5LZ9i6vByJr079ceet32W0d60r4AgOR+W07mH7f7gqHJ
-         cb1w==
+        bh=L3HdybHGUtNACL7l/Pk8oMmY4aoVEX/SxxB7u2X+yMM=;
+        b=IxehsYAyj3S6S9LPLwFh3RZTGkD3A8CJr0/4sQIlV0K6bW5S8wMRKfY1J0/3Oo8hMt
+         TPnNyVeFt6I3DWs6ouz5XkMlxWmwY6MKffRmIfFTenG4344Sq7nolpkFdT8t1UJ28XER
+         egpJAMNhPLtXYhQuTluRQwSapOh6LYKG2Q0xfEz8hpPvPoeDKNN7WQYADpholuOIQMoD
+         LdBbY+QumHJBban2LuEHz28MhqqnzKDirFuV9/L55Z1zwHfm/kvTAXxWTXz+w543ZfFL
+         0tZ99oDPkKEI5xKbHsXbB9e8n4gGz4JIUHWZeDK1/7AgB9YrmtZDZCyIdNhfZUDwK2fY
+         rlcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=/3qjT8aePQAQgwBRNKBGi2cq5E72d9qFVFPteV2QzGY=;
-        b=De8oLRjGYHYNZdff5XQXwiCsVGHJktDkeh8/o7nrEyWXgb3rvQMKw8w3qIa92z2GyX
-         z2qV+Qqp69p5hBQv0XlZ54ikJXFgVxGW02bVCZhPd5lpWkjIiiB6ObpuQIRliZhlTMBL
-         ytxVbMHDDZcCj5s9oaFE1T9LYZaPwjEAL5im5xBbX30wo6TSf5IONUqQ9WGwpYyFlFfP
-         +tg1YaHa33VT0G2uk4i7312NKKkDUD/FlsjP5gwyv3akrDHhEIi0fRMjvt7rcEScC1A/
-         o1rkbfMnli2BJSEkPRVWdCmn7Z8O2aVR+h9t23U9FoBoX3pLqgSEHEkyj3MYtgRn8jcq
-         wMZA==
-X-Gm-Message-State: AJIora/sjBgarYyNKebnUe74WJKFgLRNswSvYYanNrgKmz+AcM8X8LM3
-        bMD+Vc3rHINd1Qt7pl8VMFbBAw==
-X-Google-Smtp-Source: AGRyM1unG6anfDF5um1BBec5kbCQAd7sP4RtFPT/SJ5FgWquU5j3Xlr563J59TgbcwpkvyR6kIC2cQ==
-X-Received: by 2002:a17:902:d143:b0:168:d336:9de6 with SMTP id t3-20020a170902d14300b00168d3369de6mr6646970plt.124.1655419373440;
-        Thu, 16 Jun 2022 15:42:53 -0700 (PDT)
+        bh=L3HdybHGUtNACL7l/Pk8oMmY4aoVEX/SxxB7u2X+yMM=;
+        b=WE9PJpv8sbUIrxmAIwQ0vOjapCysbGhwQVAdfQvHOwMJFRmuzF2SGC3qVdy7msmftf
+         lsYKSavu0QH2TpLQTk3l6XF/XX18kY6I6n1LCBtnpYCwC7T/KUm7LuT+v0mboOl6ABDM
+         njtE0sFCONv3Be33MCO8qaZqMgGTeGj4BHOn2TKqDReTuUyAQ3THvsSyRNpf6zBgHgnQ
+         u5aaRVlvu6FPrtr6v1S+r1XwFAHWbZ/bszLM8PGF/C69HxxKOtLm3/a+E4O7BI29Id1e
+         vqvtpI3vgNFFC67MAzWpNlG3/nJXFFeF0iQ3ZYvQ0taIThPpKCjOy2E+poqN8t6uxY+D
+         g5Yw==
+X-Gm-Message-State: AJIora8amEPqefzveMj4A/dMbU0UjGU2NYPThP5ytuySMSU8bZVuV9oF
+        KhIflFtDa3Bhq0PbtCmwhbEddw==
+X-Google-Smtp-Source: AGRyM1vQLIwZzEZ5T+MW897jGjrH5RpIeWnJX/eon8DHTxeHY8/I1G1vCX/YcGBLONlhCCz3eVZ6qg==
+X-Received: by 2002:a05:6a00:179e:b0:518:9e1d:1cbd with SMTP id s30-20020a056a00179e00b005189e1d1cbdmr6983483pfg.12.1655419507895;
+        Thu, 16 Jun 2022 15:45:07 -0700 (PDT)
 Received: from [172.22.33.138] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id f128-20020a62db86000000b0050dc7628158sm2279270pfg.50.2022.06.16.15.42.52
+        by smtp.gmail.com with ESMTPSA id e23-20020a170902ed9700b001678dcb4c5asm2152309plj.100.2022.06.16.15.45.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Jun 2022 15:42:53 -0700 (PDT)
-Message-ID: <e15168ac-b5a1-0c15-cfb3-34fb518e737f@linaro.org>
-Date:   Thu, 16 Jun 2022 15:42:51 -0700
+        Thu, 16 Jun 2022 15:45:07 -0700 (PDT)
+Message-ID: <3cf1540f-7185-96dc-7691-fb9ce6bfc566@linaro.org>
+Date:   Thu, 16 Jun 2022 15:45:06 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 1/2] dt-bindings: usb: snps,dwc3: Add
- 'snps,enable_guctl1_resume_quirk' quirk
+Subject: Re: [PATCH v3 1/3] dt-bindings: mfd: atmel,flexcom: Convert to
+ json-schema
 Content-Language: en-US
-To:     Piyush Mehta <piyush.mehta@xilinx.com>, gregkh@linuxfoundation.org,
+To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        balbi@kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        michal.simek@xilinx.com
-Cc:     git@xilinx.com, sivadur@xilinx.com
-References: <20220613124703.4493-1-piyush.mehta@xilinx.com>
- <20220613124703.4493-2-piyush.mehta@xilinx.com>
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, UNGLinuxDriver@microchip.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220612152604.24280-1-kavyasree.kotagiri@microchip.com>
+ <20220612152604.24280-2-kavyasree.kotagiri@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220613124703.4493-2-piyush.mehta@xilinx.com>
+In-Reply-To: <20220612152604.24280-2-kavyasree.kotagiri@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,40 +78,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2022 05:47, Piyush Mehta wrote:
-> Add a new DT quirk to dwc3 core to resolved issue of CRC failed error.
-> On the resume path, U3/U2 exit controller fails to send proper CRC
-> checksum in CRC5 field. As result Transaction Error is generated.
-> Enabling bit 10 of GUCTL1 will correct this problem.
+On 12/06/2022 08:26, Kavyasree Kotagiri wrote:
+> Convert the Atmel flexcom device tree bindings to json schema.
 > 
-> When this bit is set to '1', the UTMI/ULPI opmode will be changed to
-> "normal" along with HS terminations after EOR.
-> This option is to support certain legacy UTMI/ULPI PHYs.
-> 
-> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
+> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
 > ---
->  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> v2 -> v3:
+>  - used enum for compatible string.
+>  - changed irq flag to IRQ_TYPE_LEVEL_HIGH in example.
+>  - fixed dtschema errors.
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> index d41265ba8ce2..36fa87df57a9 100644
-> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> @@ -234,6 +234,12 @@ properties:
->        avoid -EPROTO errors with usbhid on some devices (Hikey 970).
->      type: boolean
->  
-> +  snps,enable_guctl1_resume_quirk:
+> v1 -> v2:
+>  - Fix title.
+> 
+>  .../bindings/mfd/atmel,flexcom.yaml           | 103 ++++++++++++++++++
+>  .../devicetree/bindings/mfd/atmel-flexcom.txt |  63 -----------
+>  2 files changed, 103 insertions(+), 63 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-flexcom.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+> new file mode 100644
+> index 000000000000..cee9c93ce4b9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/atmel,flexcom.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel Flexcom (Flexible Serial Communication Unit)
+> +
+> +maintainers:
+> +  - Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> +
+> +description:
+> +  The Atmel Flexcom is just a wrapper which embeds a SPI controller,
+> +  an I2C controller and an USART. Only one function can be used at a
+> +  time and is chosen at boot time according to the device tree.
+> +
+> +properties:
+> +  compatible:
+> +    enum: atmel,sama5d2-flexcom
 
-No underscores in properties, use hyphens.
+This is not correct syntax. Use `git grep -C` to find nice examples.
 
-> +    description:
-> +      Set if we enable quirk for fixing improper crc generation after resume
-> +      from suspend.
-
-Please describe actual issue, hardware property, not driver behavior. In
-the description and property name. This could be something like
-"snps,missing-src-after-resume" (or anything better).
 
 Best regards,
 Krzysztof
