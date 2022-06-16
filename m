@@ -2,42 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A72654DE5F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 11:47:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 567E054DE88
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 12:00:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230464AbiFPJrK convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Jun 2022 05:47:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39170 "EHLO
+        id S230038AbiFPKAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 06:00:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231479AbiFPJrI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 05:47:08 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9295A2C8;
-        Thu, 16 Jun 2022 02:47:03 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1o1m5O-0004rx-Ut; Thu, 16 Jun 2022 11:46:46 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     Christoph Hellwig <hch@lst.de>, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, wefu@redhat.com, guoren@kernel.org,
-        cmuellner@linux.com, philipp.tomsich@vrull.eu, samuel@sholland.org,
-        atishp@atishpatra.org, anup@brainfault.org, mick@ics.forth.gr,
-        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
-        drew@beagleboard.org, Atish Patra <atish.patra@wdc.com>
-Subject: Re: [PATCH 2/3] riscv: Implement Zicbom-based cache management operations
-Date:   Thu, 16 Jun 2022 11:46:45 +0200
-Message-ID: <1752040.TLkxdtWsSY@diego>
-In-Reply-To: <20220615174910.GA26607@lst.de>
-References: <20220610004308.1903626-1-heiko@sntech.de> <110361853.nniJfEyVGO@diego> <20220615174910.GA26607@lst.de>
+        with ESMTP id S229923AbiFPKAf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 06:00:35 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95775C86E
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 03:00:34 -0700 (PDT)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id EAEE81BF215;
+        Thu, 16 Jun 2022 10:00:30 +0000 (UTC)
+From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andrea Merello <andrea.merello@gmail.com>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-iio@vger.kernel.org,
+        linux-staging@lists.linux.dev, Jacopo Mondi <jacopo@jmondi.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: staging: iio: imu: Document CEVA BNO08x
+Date:   Thu, 16 Jun 2022 12:00:05 +0200
+Message-Id: <20220616100006.22045-2-jacopo+renesas@jmondi.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220616100006.22045-1-jacopo+renesas@jmondi.org>
+References: <20220616100006.22045-1-jacopo+renesas@jmondi.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -45,54 +43,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Jacopo Mondi <jacopo@jmondi.org>
 
-Am Mittwoch, 15. Juni 2022, 19:49:10 CEST schrieb Christoph Hellwig:
-> On Wed, Jun 15, 2022 at 06:56:40PM +0200, Heiko Stübner wrote:
-> > If I'm reading things correctly [0], the default for those functions
-> > is for those to be empty - but defined in the coherent case.
-> 
-> That's not the point.
-> 
-> Zicbom is just an extension that allows the CPU to support managing
-> cache state.  Non-coherent DMA is just one of the use cases there
-> are others like persistent memory.  And when a CPU core supports
-> Zicbom it might or might not have any non-coherent periphals.  Or
-> even some coherent and some non-coherent ones, something that
-> is pretty common in arm/arm64 CPUs, where PCIe is usually cache
-> coherent, but some other cheap periphals might not be.
-> 
-> That is why Linux ports require the plaform (usually through
-> DT or ACPI) to mark which devices are coherent and which ones
-> are not.
+Document CEVA BNO08x (080, 085 and 086) Sensor Hub.
 
-I "get" it now I think. I was somewhat struggling what you were aiming
-at, but that was something of not seeing "the forest for the trees" on
-my part. And of course you were right in recognizing that issue :-) .
+The BNO08X family (BNO080/85/86) is a System in Package (SiP) that
+integrates a triaxial accelerometer, triaxial gyroscope, magnetometer
+and a 32-bit ARM Cortex-M0+ microcontroller running CEVA's SH-2
+firmware.
 
-Without CONFIG_ARCH_HAS_SYNC_DMA_FOR_DEVICE and friends
-dev_is_dma_coherent() will always return true otherwise the dma_coherent
-attribute. Hence the "coherent" value for every system not managing things
-will suddenly show as non-coherent where it showed as coherent before.
+Datasheet:
+https://www.ceva-dsp.com/wp-content/uploads/2019/10/BNO080_085-Datasheet.pdf
 
+Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+---
+ .../bindings/staging/iio/imu/ceva,bno08x.yaml | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/staging/iio/imu/ceva,bno08x.yaml
 
-As we already have detection-points for non-coherent systems (zicbom
-detection, t-head errata detection) I guess just also switching some boolean
-might solve that, so that arch_setup_dma_ops() will set the dma_coherent
-attribute to true always except when some non-coherent system is detected.
-
-
-void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
-                const struct iommu_ops *iommu, bool coherent)
-{
-        /* only track coherent attributes, if cache-management is available */
-        if (enable_noncoherency)
-                dev->dma_coherent = coherent;
-        else
-                dev->dma_coherent = true;
-}
-
-
-Heiko
-
+diff --git a/Documentation/devicetree/bindings/staging/iio/imu/ceva,bno08x.yaml b/Documentation/devicetree/bindings/staging/iio/imu/ceva,bno08x.yaml
+new file mode 100644
+index 000000000000..f7d6ea6d9147
+--- /dev/null
++++ b/Documentation/devicetree/bindings/staging/iio/imu/ceva,bno08x.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/staging/iio/imu/ceva,bno08x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: CEVA BNO080/85/86
++
++maintainers:
++  - Jacopo Mondi <jacopo@jmondi.org>
++
++description: |
++  CEVA BNO08x is a System in Package (SiP) that integrates a triaxial
++  accelerometer, triaxial gyroscope, magnetometer and a 32-bit ARM Cortex-M0+
++  microcontroller running CEVA's SH-2 firmware.
++
++  The BNO08x family is documented at
++  https://www.ceva-dsp.com/product/bno080-085/
++  https://www.ceva-dsp.com/wp-content/uploads/2019/10/BNO080_085-Datasheet.pdf
++
++  The SH-2 firmware reference is available at
++  https://cdn.sparkfun.com/assets/4/d/9/3/8/SH-2-Reference-Manual-v1.2.pdf
++  https://cdn.sparkfun.com/assets/7/6/9/3/c/Sensor-Hub-Transport-Protocol-v1.7.pdf
++
++properties:
++  compatible:
++    const: ceva,bno08x
++
++  reg:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description:
++      Phandle to the GPIO connected to the chip H_INTN (Host Interrupt) pin.
++      The interrupt type shall be IRQ_TYPE_EDGE_FALLING.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        bno080: imu@4b {
++            compatible = "ceva,bno08x";
++            interrupt-parent = <&gpio5>;
++            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
++            reg = <0x4b>;
++        };
++    };
++
+--
+2.35.1
 
