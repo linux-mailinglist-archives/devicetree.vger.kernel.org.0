@@ -2,63 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D608F54E8A7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 19:31:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB3A954E8C4
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 19:47:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233708AbiFPRbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 13:31:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40658 "EHLO
+        id S229592AbiFPRq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 13:46:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233698AbiFPRbC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 13:31:02 -0400
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 010152CCA4
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 10:31:00 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id b138so2158091iof.13
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 10:31:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8a7QwMXh0WvhKBovKjAxawErQjPq4EtS9dlKozf7SOc=;
-        b=irpj6nAKusgXfDPaxRI89k3ngXZ47O1hb1wC3igEE6E53l9wEvIYet3F35MdvosKIz
-         0i/vEgE+16ZluAkqK5MtNIlPcDATWB/OiszJmBOsOZgKp1op/grrFZHRb0EGjUerLhb+
-         tuVttP5qRdY2VWf2+/UkK2nEs0YtJwt/A6bgKRBWfz05//A8aa/rS4ILikNRk3JSKVdW
-         KPrmB3p9Cql/9nl1yMZYnHvJDrd8YhKV2mnuZjfU6DJPcwLIltc9RngYk9xSUz9p3Kz1
-         ERLvtZ2Webo6rdRsbn0Laq4SFtkF7KqsVIib7MollKKmqjfXxwyUUcRk0HHYRPwmnGDj
-         JH4w==
-X-Gm-Message-State: AJIora8xyq+g6vUxfojCrQzaG4Pz/axtVMQ6H/r4xo15rgHRS4DRf2cR
-        xYtDAqhNbXITIvooB/hUA3WXPXgRpQ==
-X-Google-Smtp-Source: AGRyM1tilafp3/g2JlXcLwpfxJbUDzbriaMFtxnfXYVjSbiES+p4NE9LW66nFvZUqtE+Pka7ETq6oQ==
-X-Received: by 2002:a5e:8404:0:b0:66a:13cc:f2bc with SMTP id h4-20020a5e8404000000b0066a13ccf2bcmr3005364ioj.95.1655400660264;
-        Thu, 16 Jun 2022 10:31:00 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id a92-20020a029465000000b0032e1e0ac289sm1138393jai.8.2022.06.16.10.30.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jun 2022 10:30:59 -0700 (PDT)
-Received: (nullmailer pid 3687346 invoked by uid 1000);
-        Thu, 16 Jun 2022 17:30:56 -0000
-Date:   Thu, 16 Jun 2022 11:30:56 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: ARM: add bindings for the Meraki MR26
-Message-ID: <20220616173056.GA3687255-robh@kernel.org>
-References: <20220611165948.410308-1-chunkeey@gmail.com>
+        with ESMTP id S229455AbiFPRq6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 13:46:58 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89DD242489;
+        Thu, 16 Jun 2022 10:46:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 35D54B824F8;
+        Thu, 16 Jun 2022 17:46:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCCE8C341C4;
+        Thu, 16 Jun 2022 17:46:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655401614;
+        bh=a3Z5yeH3jen1/5E0ibGP8X9xUa5ldCFEjepDQx1NRsY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=d0kdz0DzHwhcGptroXeLu+3qcuAfPo/3Rzhf+RDVWqfzk9wL3r7PSedONUhdaY29n
+         /nhab28u086NtFzQLMiLNQKT9iToUwMPCTJ7uN1URhP6lQfWrQSqRIT/bHh9LnBH+L
+         /LzAzGTbtQQjAFB4gUYhmdq8g5AUJGvO6TA60GqjT4qeJJo97pi6YQceAJrZDEuTEZ
+         vXdTjLjR8RISzkbHuEXn4dfvaUpPP+kIQHaIYHhmsLrqly8MFmM1O+L/nYJ0szcLyX
+         veNECykkqaoNxyudT03b+jc3dvpDg83YFBGpucM9owWuShDBdKG7EnlPYftfFDs48+
+         cJszjRzqyIZew==
+Received: by mail-vs1-f47.google.com with SMTP id e20so1917515vso.4;
+        Thu, 16 Jun 2022 10:46:54 -0700 (PDT)
+X-Gm-Message-State: AJIora/P9vwCQ6EstqexlIm2+tBKm2n7oxMM36iFuPo9dSKHO9TJJr5T
+        8PumwXWhxSU10F/dqh8XTj1iZMHxj4ID9ezVNg==
+X-Google-Smtp-Source: AGRyM1vGAqdzOalUBqekYDSJugHvCocjWd/glXnsxxGXG96fj+Wiea2ZNDAp6I7ij/DVFmUPO/pfYWyNZ3oXE7Owq1w=
+X-Received: by 2002:a05:6102:3d0f:b0:34b:bdd0:baef with SMTP id
+ i15-20020a0561023d0f00b0034bbdd0baefmr2813780vsv.85.1655401613705; Thu, 16
+ Jun 2022 10:46:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220611165948.410308-1-chunkeey@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <1654793615-21290-1-git-send-email-radhey.shyam.pandey@amd.com>
+ <5e5580c4d3f84b9e9ae43e1e4ae43ac0a2162a75.camel@redhat.com>
+ <MN0PR12MB5953590F8098E46C02943AFEB7AA9@MN0PR12MB5953.namprd12.prod.outlook.com>
+ <1ae6dce1-0c5c-64f0-c6a4-b0f11a82f315@linaro.org> <20220614185454.7479405c@kernel.org>
+In-Reply-To: <20220614185454.7479405c@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 16 Jun 2022 11:46:42 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+32b6GcoX4+d7bnu512-FFaFgb3AEn=iEM_54Mp59RHQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+32b6GcoX4+d7bnu512-FFaFgb3AEn=iEM_54Mp59RHQ@mail.gmail.com>
+Subject: Re: [PATCH v2 net-next] dt-bindings: net: xilinx: document xilinx
+ emaclite driver binding
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "Katakam, Harini" <harini.katakam@amd.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,20 +75,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 11 Jun 2022 18:59:47 +0200, Christian Lamparter wrote:
-> mark the Meraki MR26 and its SoC (BCM53015) as supported
-> in the bindings documentation file.
-> 
-> <https://jp.broadcom.com/products/embedded-and-networking-processors/communications/bcm5301x>
-> 
-> "BCM53011 and BCM53015 with dual-core Cortex-A9 CPU at 800 MHz,
-> 256KB L2 cache, 16-bit DDR2 interface, USB3, integrated switch,
-> GPHYs and packet accelerator"
-> 
-> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
-> ---
->  .../devicetree/bindings/arm/bcm/brcm,bcm4708.yaml          | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+On Tue, Jun 14, 2022 at 7:54 PM Jakub Kicinski <kuba@kernel.org> wrote:
+>
+> On Tue, 14 Jun 2022 15:48:43 -0700 Krzysztof Kozlowski wrote:
+> > > I have seen a mixed set of the convention for dts patches. They are following
+> > > both routes i.e device tree or subsystem repos provided acked from device
+> > > tree maintainer.  If there is preference for device tree repo then I can drop
+> > > net-next from subject prefix and resend it for the dt repo.
+> >
+> > If you got Ack from Devicetree bindings maintainer (Rob Herring or me),
+> > then feel free to take it via net-next. I think, it is actually
+> > preferred, unless this is some fix which needs to go via DT (Rob's) tree.
+> >
+> > If you don't have these acks, then better don't take it :) unless it's
+> > really waiting too long on the lists. I hope it's not that case.
+>
+> GTK, thanks. I'm also often confused by the correct tree for DT patches.
 
-Acked-by: Rob Herring <robh@kernel.org>
+It is documented in
+Documentation/devicetree/bindings/submitting-patches.rst, section II.
+
+The default is bindings should go thru subsystem trees. Given netdev's
+tendency to apply bindings before DT review and even semi-automated
+checks, but skipping standalone patches, I haven't minded picking them
+up.
+
+Rob
