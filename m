@@ -2,89 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6417A54E317
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 16:12:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63DCD54E348
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 16:22:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377577AbiFPOMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 10:12:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50398 "EHLO
+        id S1377598AbiFPOWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 10:22:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377573AbiFPOMm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 10:12:42 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC76ED75;
-        Thu, 16 Jun 2022 07:12:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S232449AbiFPOW3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 10:22:29 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B935A3B3EF
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 07:22:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1655389347; x=1686925347;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=0M2aYWtXdJahPcQgjUapByMBxLuM0Ad7WifDEdN45xA=;
+  b=eVpXog3XI59fdgyxz0LRPtNuK0+UYYK7/RXdRgcoAcNaHdzNNNq/J29v
+   F+BVyH95WNPpIjHHCd8jX954et7xWwOrrSidimkK/bAcCKMr8Vp4v82Mb
+   Fs/ejmseQ+yKhZSCWLqJc0DD/gn8cV9Fxwac8UP7wdfwyBbRKnVjRKCY+
+   Vw3lM8Ll1hxt60Wv29+LwJ/Tq1PGaqtHgv/S4WKvtGEG5iFppn+4+JDA5
+   9xh4ojwdQOnCHj7nCpBJc2o2wUg8Fgts5mYSCo3RBlo8YbKvQetl45mYZ
+   bLUXg9sOMxDKVJjwCJ4h1yhKbU1Ye0jgyE5Z0u7mDwRvn/TowKxZSxl+s
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.92,305,1650924000"; 
+   d="scan'208";a="24497078"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 16 Jun 2022 16:22:26 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 16 Jun 2022 16:22:26 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 16 Jun 2022 16:22:26 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1655389346; x=1686925346;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=0M2aYWtXdJahPcQgjUapByMBxLuM0Ad7WifDEdN45xA=;
+  b=cTIHRyCb9ztXNdttV9rjg+nQoMxiSa7ZZ6R7VpNPLgZlByq/l1Q/vgmN
+   5ipWHnDDWBLZb4WLCCqLcHIv0epJDNiDKz4AObCiErofRel4BGsVoLOjw
+   v7tkRitMPOpiVhYK6FY3jzoGNZLXTG6yoKXieynyL7Cce1bzpdnnDSkxi
+   eDSPfYOLh3J7QBJ6AjDVbXcAhfcgjNeRWph1Iw0xF98jvdzgEBNUbKsna
+   LLss0jo6XpC8Pzgk8HfqrMQsKnMuUTbxIaDfrsxJc8HWCVKuH33+UGR89
+   BS6ZsD/hbIgZs4XTTeISBH9DeiN2AFqlDVdmIxusIx6hYGZZxPQTKKU3G
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.92,305,1650924000"; 
+   d="scan'208";a="24497077"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 16 Jun 2022 16:22:25 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 83707B82420;
-        Thu, 16 Jun 2022 14:12:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAACBC341C0;
-        Thu, 16 Jun 2022 14:12:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655388757;
-        bh=KyWpgwiYpy/W6PcREOKBihbI3o7XaGXPymsdhkj3UXE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=REwyjw64HGmycqMaTGcFdGV2G7Dq+zWe5Q1CSWplBtTbIi5skeNffldwUnqby7I3H
-         5Eo7Y8tyoL7sO0ADjljAFExzmVRxoGn9ISttvrmQsf1zv+qJ3xvEZFKSN3NyvfNiUW
-         /ajzwmkwlygXioKD6pbSIzreVw3J/NSytGRkUgQJLE/AbeTUwThc1guSYUR5rc4tl/
-         prcsZHQGXTQ7uHDQWjnNvU6KJFZ5Cuk9x3HYMURzUjMsDcw991FQb8C+pzRrV0sUDX
-         tMpJDmWX5FeJt5PEB4HXUPYHBckoXh84as6Ky66qQtTtywDaCAxSu+useAIul0W3Dr
-         xEOs+p55dPpRA==
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     jarkko.nikula@linux.intel.com
-Cc:     dinguyen@kernel.org, andriy.shevchenko@linux.intel.com,
-        mika.westerberg@linux.intel.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCHv5 2/2] dt-bindings: i2c: dw: Add Intel's SoCFPGA I2C controller
-Date:   Thu, 16 Jun 2022 09:12:30 -0500
-Message-Id: <20220616141230.858409-2-dinguyen@kernel.org>
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id BAA90280056;
+        Thu, 16 Jun 2022 16:22:25 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Markus Niebel <Markus.Niebel@tq-group.com>
+Subject: [PATCH 0/2] TQMa8MPxL + MBa8MPxL support
+Date:   Thu, 16 Jun 2022 16:22:19 +0200
+Message-Id: <20220616142221.3986670-1-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220616141230.858409-1-dinguyen@kernel.org>
-References: <20220616141230.858409-1-dinguyen@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The I2C pins on Intel's SoCFPGA platform are not connected to GPIOs and
-thus cannot be recovered by the standard GPIO method.
+Hello,
 
-Document the "intel,socfpga-i2c" binding.
+this patch set adds suport for TQMa8MPxL on mainboard MBa8MPxL. This already
+includes some pinctrl and/or peripheral configurations which are not yet in use,
+e.g. PWM for PWM fan, backlight for LVDS panel, etc.
+Also note. this only supports MBa8MPxL Rev.2xx, Revision 1xx is not supported!
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
-v5: no changes
-v4: no changes
-v3: no changes
-v2: Added Acked-by
----
- Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Best regards,
+Alexander
 
-diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-index d9293c57f573..a130059e97ab 100644
---- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-@@ -33,6 +33,8 @@ properties:
-           - const: snps,designware-i2c
-       - description: Baikal-T1 SoC System I2C controller
-         const: baikal,bt1-sys-i2c
-+      - description: Intel's SoCFPGA I2C controller
-+        const: intel,socfpga-i2c
- 
-   reg:
-     minItems: 1
+Alexander Stein (1):
+  arm64: dts: freescale: add initial device tree for TQMa8MPQL with
+    i.MX8MP
+
+Markus Niebel (1):
+  dt-bindings: arm: add TQMa8MPxL board
+
+ .../devicetree/bindings/arm/fsl.yaml          |  12 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 689 ++++++++++++++++++
+ .../boot/dts/freescale/imx8mp-tqma8mpql.dtsi  | 284 ++++++++
+ 4 files changed, 986 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
+
 -- 
 2.25.1
 
