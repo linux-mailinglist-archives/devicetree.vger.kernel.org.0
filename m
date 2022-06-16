@@ -2,126 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA59E54E651
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 17:44:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 312AF54E689
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 18:00:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235974AbiFPPo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 11:44:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52360 "EHLO
+        id S1378025AbiFPP7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 11:59:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377192AbiFPPoy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 11:44:54 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC643915A;
-        Thu, 16 Jun 2022 08:44:53 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id z9so995156wmf.3;
-        Thu, 16 Jun 2022 08:44:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=LdO1jA+kjIuCFDgF/lBd3rE/LAuQRiZrmhG2Rh/eH+s=;
-        b=I9C1B62CdmVZO2FqBSt636A7hAfIAhhxQpQwCV6SKj/Ou9BSzMN9XCpV7c0+e0uxSp
-         Und5+6q/0f2a/rGb0KsFCF0JhGCwliRp/w1IjEEoS/yDFzCuRYADi7aeKxcfciCACBvN
-         QNIEwfzb1zNevjuB3NOXBtQNOFtUitodTQ7saKXKFwYJONh6WS/iW0WZdU83py1mo0M4
-         zDXpkECmTt7qpU4CnSfOFM0xKzZXTWufL/Gd+dBRAovUsqNm21SbjU8BbV67QE+hotds
-         Tae7oQrru/bKr1EZ4PkCFZnpKSUBJWi29gich/7BBK5IIM+bG/0nqmiaAGXLLdxgr4Y7
-         LxLQ==
+        with ESMTP id S1378137AbiFPP7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 11:59:41 -0400
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EC30483B7;
+        Thu, 16 Jun 2022 08:59:37 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id h18so1218136ilj.7;
+        Thu, 16 Jun 2022 08:59:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=LdO1jA+kjIuCFDgF/lBd3rE/LAuQRiZrmhG2Rh/eH+s=;
-        b=KIhrkFcTxVz4zThWckdnT6nNRuhi2rfW/Rp8e4YTBqZm0JnJrLBt+Zdg7zVLZZF64F
-         NrwRJ2XtZO2iNqXDZAWj4wk7C0+Kd1x4XkuhxqrmZo5wUox39BfEnrBpw+miocHgLAhX
-         YhJ3ZOLxV51JZqGDwUMGg+wL2F/0eQ/rKHue7tmbpJ+wyRfm8s2ilYhBPf1WOKE1ripD
-         NcRXfp+YRzO9vjGqgWVoMdz8XxLgh+rjmAftNQQrQkINXTbQ/CpXXzuaR7ppRCZgtYo4
-         qSN5VYlDIgF+WzpwAhBM+F99HXSIKBhFtvVlEhko+wxVaw5FozDu3zlytYUq0Erx9RHa
-         axsQ==
-X-Gm-Message-State: AOAM532Wz91QOv7wpeuj5eDeh1yGusc83Ib3nYsUB5ikuyDIc9QHFIgj
-        WupYgESBOtcqVcEjbqOtlS45rGZtj7Q=
-X-Google-Smtp-Source: ABdhPJzlHjaTzbZeifLXGqKa4uypDsJ5eQjTPda7O5Az28YJoiue39hy3vvQ1xx1OSt274FEtSK+/A==
-X-Received: by 2002:a7b:c777:0:b0:39c:4e1d:fd27 with SMTP id x23-20020a7bc777000000b0039c4e1dfd27mr15976172wmk.1.1655394292170;
-        Thu, 16 Jun 2022 08:44:52 -0700 (PDT)
-Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id bv5-20020a0560001f0500b0020c5253d8casm2151977wrb.22.2022.06.16.08.44.50
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=9X8XVpxanme0vyK5ZysC7xWSiXXF1IS6YVmw346xm58=;
+        b=Z/VZnJGIkG6Sv8DlgjipBe5M7vQB0ToiQABgQYt4/p+9VceGqZWGftamREt/WOQiL8
+         u5f4ztIWbCqh+DJGkjNeOJQeUmUASopDACVQvD3n/S5moe8Qbm9boHXba6HqvRga+tq0
+         /9R7dnJsN73/LmiOghbcqqYjlGFWTgtjkAIExn/iQFK2Fu6GPOfGbHHHiK63PuY5kzOo
+         6mZTJlMroulkWwRor2YhjxBxXDJM6C+QnZKwcBtwpKKgVdvFnozYeymVCPV/au9CetBc
+         dKWYbZ2nb/57EdR592j24s6/gfY58RZC1t652vqKj92duCIJkyYN82HDRhudx6VGzzSs
+         eREw==
+X-Gm-Message-State: AJIora8Ad7zZ/3Gt0aWxf/RiL8RXB/4rnV8OM8FiSfycoVwe1gtL8LZ/
+        fE0xXqCC46EvM3bLICJcg3vJJEutoA==
+X-Google-Smtp-Source: AGRyM1tsF2fjNAC99BuE4yG5HgXIsLOoQnQ86Je1QQ5KdittiSk3qv10mDZg/0Ysw1DP6C4MAwPFUQ==
+X-Received: by 2002:a05:6e02:1521:b0:2d1:5e40:b94b with SMTP id i1-20020a056e02152100b002d15e40b94bmr3152904ilu.182.1655395176743;
+        Thu, 16 Jun 2022 08:59:36 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id c9-20020a6bb309000000b00669ae49f762sm1311642iof.19.2022.06.16.08.59.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jun 2022 08:44:51 -0700 (PDT)
-Date:   Thu, 16 Jun 2022 17:44:49 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: rtc: ds1307: Convert to json-schema
-Message-ID: <YqtP8fxV7w/o261y@orome>
-References: <20211217170311.2796798-1-thierry.reding@gmail.com>
- <CAL_JsqLSJS_AThMfDOiZ2txC4K=9WCYEKw2TVzEM+tSD2W2qGA@mail.gmail.com>
+        Thu, 16 Jun 2022 08:59:36 -0700 (PDT)
+Received: (nullmailer pid 3554362 invoked by uid 1000);
+        Thu, 16 Jun 2022 15:59:34 -0000
+Date:   Thu, 16 Jun 2022 09:59:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Icenowy Zheng <uwu@icenowy.me>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bin Liu <b-liu@ti.com>, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH 2/7] dt-bindings: phy: add binding document for Allwinner
+ F1C100s USB PHY
+Message-ID: <20220616155934.GA3543984-robh@kernel.org>
+References: <20220608070452.338006-1-uwu@icenowy.me>
+ <20220608070452.338006-3-uwu@icenowy.me>
+ <20220608144939.GA1366879-robh@kernel.org>
+ <3628fbc2eb9a8c21dc0742b929ee14da76f9adf5.camel@icenowy.me>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Bx0DaXeyyhlubXwl"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqLSJS_AThMfDOiZ2txC4K=9WCYEKw2TVzEM+tSD2W2qGA@mail.gmail.com>
-User-Agent: Mutt/2.2.4 (c3baa83e) (2022-04-30)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3628fbc2eb9a8c21dc0742b929ee14da76f9adf5.camel@icenowy.me>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jun 08, 2022 at 10:52:52PM +0800, Icenowy Zheng wrote:
+> 在 2022-06-08星期三的 08:49 -0600，Rob Herring写道：
+> > On Wed, Jun 08, 2022 at 03:04:47PM +0800, Icenowy Zheng wrote:
+> > > Allwinner F1C100s has the most simple USB PHY among all Allwinner
+> > > SoCs,
+> > > because it has only one OTG USB controller, no host-only OHCI/EHCI
+> > > controllers.
+> > > 
+> > > Add a binding document for it.
+> > > 
+> > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > ---
+> > >  .../phy/allwinner,suniv-f1c100s-usb-phy.yaml  | 83
+> > > +++++++++++++++++++
+> > >  1 file changed, 83 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/phy/allwinner,suniv-f1c100s-usb-
+> > > phy.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/phy/allwinner,suniv-
+> > > f1c100s-usb-phy.yaml
+> > > b/Documentation/devicetree/bindings/phy/allwinner,suniv-f1c100s-
+> > > usb-phy.yaml
+> > > new file mode 100644
+> > > index 000000000000..180fa8840bf7
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/phy/allwinner,suniv-
+> > > f1c100s-usb-phy.yaml
+> > > @@ -0,0 +1,83 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> > 
+> > Dual license please.
+> 
+> I am based on another Allwinner USB PHY binding file in the same
+> directory, and that file is single licensed. I created a new file
+> because each variant of the PHY has a single file now.
 
---Bx0DaXeyyhlubXwl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Okay, describing the source and the differences in the commit message 
+would be helpful.
 
-On Fri, Jun 10, 2022 at 05:09:41PM -0600, Rob Herring wrote:
-> On Fri, Dec 17, 2021 at 10:03 AM Thierry Reding
-> <thierry.reding@gmail.com> wrote:
-> >
-> > From: Thierry Reding <treding@nvidia.com>
-> >
-> > Convert the DS1307 (and compatible) RTC bindings from the free-form text
-> > format to json-schema.
-> >
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >  .../devicetree/bindings/rtc/rtc-ds1307.txt    |  52 ---------
-> >  .../devicetree/bindings/rtc/rtc-ds1307.yaml   | 104 ++++++++++++++++++
-> >  2 files changed, 104 insertions(+), 52 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.txt
-> >  create mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.ya=
-ml
->=20
-> Was about to convert this one, too. Are you going to respin it?
+> 
+> > 
+> > > +%YAML 1.2
+> > > +---
+> > > +$id:
+> > > http://devicetree.org/schemas/phy/allwinner,suniv-f1c100s-usb-phy.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Allwinner F1C100s USB PHY Device Tree Bindings
+> > > +
+> > > +maintainers:
+> > > +  - Chen-Yu Tsai <wens@csie.org>
+> > > +  - Maxime Ripard <mripard@kernel.org>
+> > > +
+> > > +properties:
+> > > +  "#phy-cells":
+> > > +    const: 1
+> > > +
+> > > +  compatible:
+> > > +    const: allwinner,suniv-f1c100s-usb-phy
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +    description: PHY Control registers
+> > > +
+> > > +  reg-names:
+> > > +    const: phy_ctrl
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +    description: USB OTG PHY bus clock
+> > > +
+> > > +  clock-names:
+> > > +    const: usb0_phy
+> > 
+> > *-names is not needed with only one entry. Plus, just using the
+> > module 
+> > name is not a great choice.
+> 
+> However the driver expects it...
+> 
+> Should I patch the driver to use no name on F1C100s?
+> 
+> > 
+> > > +
+> > > +  resets:
+> > > +    maxItems: 1
+> > > +    description: USB OTG reset
+> > > +
+> > > +  reset-names:
+> > > +    const: usb0_reset
+> > 
+> > Same here.
+> > 
+> > > +  usb0_id_det-gpios:
+> > > +    maxItems: 1
+> > > +    description: GPIO to the USB OTG ID pin
+> > > +
+> > > +  usb0_vbus_det-gpios:
+> > > +    maxItems: 1
+> > > +    description: GPIO to the USB OTG VBUS detect pin
+> > > +
+> > > +  usb0_vbus_power-supply:
+> > > +    description: Power supply to detect the USB OTG VBUS
+> > > +
+> > > +  usb0_vbus-supply:
+> > > +    description: Regulator controlling USB OTG VBUS
+> > 
+> > Why the 'usb0_' prefix?
+> > 
+> > Are these GPIOs and Vbus supply connected to the phy? If not, these
+> > all 
+> > belong in a connector node (as that is where they are connected to in
+> > h/w).
+> 
+> Well these are historical things of phy-sun4i-usb driver too.
 
-Yeah, I can do that.
+Okay, there should perhaps be a common schema so this sharing is clear. 
+Though longer term there should be a move to the common way of handling 
+these for new platforms.
 
-Thierry
+So I guess in summary:
 
---Bx0DaXeyyhlubXwl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmKrT/EACgkQ3SOs138+
-s6FE4Q/9E6j+7I1CLR5kmGZixZRQ/mKVdJel9uf/ZNvpYY7xmZyH0T0z4M81nn3j
-x8hXVKPxNyEISfkYNlXHwwZA1+bqgJhCO4U8HUpc0q04qk3Uvp5IKjEqwE8froiM
-HRsvaldSD53pRMzqNMyF85GogbyR8Sp8YG4qbu/PGB6NTbPDuzxc3r4czC8DmThS
-vTOyAAK5lsUJdbMqaTXgt0V+kvfjev6kVj0J3F7ppsdjeGCzCsOsUmBnclZEpsZD
-733hWQnly+V2Lv43lc3Pi5oefEVAZaF4PCaD1XSeHovQjg4np+RQGquVIWBANkqq
-Sbu6qXc6M0+D9JVvRyGNZ2/aBK3GS8r1yrrJzJVyaJkwUqqYr8x1v/RgHajyeB0I
-5Q6dY60YBS4UgjxUREDG+Tx4dAswd5W+kionAnKPMrJPB5kQU1AvsTmv2PPz5CWm
-oXnsfrTFh0ay5E/8RFV9a6JtHC4PhZx9wdFMuCiGSoPw4uw8C5QQdcF4rKp/ZEUx
-Bn0QJjSXNNyjafySGRXlv6Q6owJxHlyGXtZPMlYrG2mxEq3XeXN7qi68J9O5MrG1
-fTeQ0o7A0cksKdBmC+wggfhZL6UuoNynEIwl4eGJkcOCq42VCGOCjpYs8KDrB5Lf
-wJnECdiqU52PlUmn6MAcGTQE7FEVZOvfl2oRI4Agj3ebEsmlgdo=
-=5a3H
------END PGP SIGNATURE-----
-
---Bx0DaXeyyhlubXwl--
+Reviewed-by: Rob Herring <robh@kernel.org>
