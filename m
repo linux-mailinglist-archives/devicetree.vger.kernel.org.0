@@ -2,65 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BC2054E593
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 17:03:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD60554E5BA
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 17:10:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377502AbiFPPDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 11:03:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42102 "EHLO
+        id S1377795AbiFPPKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 11:10:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236304AbiFPPDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 11:03:11 -0400
-Received: from desiato.infradead.org (desiato.infradead.org [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82686B4A1;
-        Thu, 16 Jun 2022 08:03:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-        :In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-        Sender:Reply-To:Content-ID:Content-Description;
-        bh=eXP8JImYusYVmz1XFgz6F/idOIpZUqokxeO9uXWtnWI=; b=KRUEUBUyuLXtfTp3+c4njGOSw9
-        vEDot6VYfqIJ01TjLkccAS9FePTHekgVapd/ZzYWPmXEXA+RSFIUCXgcE4i50W6m4fCnG86csGQyX
-        2fPfw/RqUdF4HEmx4JlxDoLwTB0EWagiVnntZpQaqWknDkJxM4E1QP0tjaadRQit0B1awN3dL+OZu
-        ZsZePFuAxZdy2RY5zt1kIpOlK2HQCMVQRqiaBTPCUQZRHL01dW8Ib9Xq+0BcfW1mwxgzWyFa88QqN
-        FSAPYfcU9mx5op4/SWDy3jKI0BU4lwAqlSxpSWdiQOCvm8mzCemKd14GlH1PVzlSGikdp93WSV3Ok
-        ZbnXZCJA==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by desiato.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1o1r0x-008RS8-4P; Thu, 16 Jun 2022 15:02:32 +0000
-Message-ID: <fb8e7e35-7f26-15bc-9fbb-2949fc80a18b@infradead.org>
-Date:   Thu, 16 Jun 2022 08:02:22 -0700
+        with ESMTP id S1377829AbiFPPKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 11:10:04 -0400
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3911340A1D;
+        Thu, 16 Jun 2022 08:10:03 -0700 (PDT)
+Received: by mail-il1-f173.google.com with SMTP id y16so1106247ili.13;
+        Thu, 16 Jun 2022 08:10:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=btvdQWJruzSQ4SG6KduVfz8ERNeLHefw3tus6NppLs4=;
+        b=XD/Z3FcErfY4lIspt8qzvm/DBuzzXN6lDngdftTh7t8fVCVBWO5XeG+ta9cFdHV1s4
+         XZIL2XkfH/9Ez2V1fPZ41gD56lJ+dV0cMyfwN0KWj78u4Mpe/e7Qgs30LryOQ+yOA67B
+         kWjaCTEmu1srQup3lpyCiZ1VGV7Rw6gVeVwZ4ooY9m9+c5ujB4c18KdVUGueG67FHVjN
+         xdC3jBD8iDR+RedXDab5Nna4u3JmArg9rW1zJn0At2l9NvsMnIu+VppQ6gdIqrgNAG80
+         3atAnOs71abJ3deEX1nPuXestrvsWNV/YyOIuq4/oX2kbLXlhegpJ2SIS2+JFNNNWsq4
+         +Y1Q==
+X-Gm-Message-State: AJIora/Gd4pOAmWgb/OBL3xmKQcFbacy1vhhAAUcE8xqoL9MUpY8Kf2Y
+        h3QX2sNykiK2QJKyRkE1rg==
+X-Google-Smtp-Source: AGRyM1shC8pxCNBIR87vQUT1+q/CqjpLhoPfpsVViRbDmismLWe5fFC8frTyEEMb9cOOdYAo2qu4jw==
+X-Received: by 2002:a05:6e02:d4b:b0:2d3:b2a6:e94b with SMTP id h11-20020a056e020d4b00b002d3b2a6e94bmr2942283ilj.135.1655392202408;
+        Thu, 16 Jun 2022 08:10:02 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id z2-20020a923202000000b002d191911e59sm1094076ile.52.2022.06.16.08.10.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jun 2022 08:10:02 -0700 (PDT)
+Received: (nullmailer pid 3481830 invoked by uid 1000);
+        Thu, 16 Jun 2022 15:10:00 -0000
+Date:   Thu, 16 Jun 2022 09:10:00 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Johnson Wang <johnson.wang@mediatek.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Edward-JW Yang <edward-jw.yang@mediatek.com>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: arm: mediatek: Add new bindings of
+ MediaTek frequency hopping
+Message-ID: <20220616151000.GA3469769-robh@kernel.org>
+References: <20220612135414.3003-1-johnson.wang@mediatek.com>
+ <20220612135414.3003-2-johnson.wang@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v8 1/3] ipmi: ssif_bmc: Add SSIF BMC driver
-Content-Language: en-US
-To:     Quan Nguyen <quan@os.amperecomputing.com>,
-        Corey Minyard <minyard@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Wolfram Sang <wsa@kernel.org>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
-Cc:     Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-References: <20220615090259.1121405-1-quan@os.amperecomputing.com>
- <20220615090259.1121405-2-quan@os.amperecomputing.com>
- <8b7841a9-9313-b1d5-8a80-a65cfa8e7b4d@infradead.org>
- <74f94464-a095-f539-746a-853b8f1d52ca@os.amperecomputing.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <74f94464-a095-f539-746a-853b8f1d52ca@os.amperecomputing.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220612135414.3003-2-johnson.wang@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,46 +68,199 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6/16/22 00:25, Quan Nguyen wrote:
-> On 15/06/2022 23:06, Randy Dunlap wrote:
->>
->>
->> On 6/15/22 02:02, Quan Nguyen wrote:
->>> diff --git a/drivers/char/ipmi/Kconfig b/drivers/char/ipmi/Kconfig
->>> index b061e6b513ed..18a89093d64e 100644
->>> --- a/drivers/char/ipmi/Kconfig
->>> +++ b/drivers/char/ipmi/Kconfig
->>> @@ -169,6 +169,17 @@ config ASPEED_BT_IPMI_BMC
->>>         found on Aspeed SOCs (AST2400 and AST2500). The driver
->>>         implements the BMC side of the BT interface.
->>>   +config SSIF_IPMI_BMC
->>> +    tristate "SSIF IPMI BMC driver"
->>> +    select I2C
->>
->> No. That should be:
->>     depends on I2C
->>
->> We don't select an entire subsystem just to satisfy one driver.
->>
->>> +    select I2C_SLAVE
->>> +    help
->>> +      This enables the IPMI SMBus system interface (SSIF) at the
->>> +      management (BMC) side.
->>> +
->>> +      The driver implements the BMC side of the SMBus system
->>> +      interface (SSIF).
->>> +
->>
->> Thanks.
+On Sun, Jun 12, 2022 at 09:54:13PM +0800, Johnson Wang wrote:
+> This patch adds the new binding documentation for frequency hopping
+> and spread spectrum clocking control on MT8186.
 > 
-> Thanks Randy,
-> it should be change to "depends on I2C && I2C_SLAVE"
+> Signed-off-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
+> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+> ---
+>  .../bindings/arm/mediatek/mediatek,fhctl.yaml | 149 ++++++++++++++++++
+>  1 file changed, 149 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
+> new file mode 100644
+> index 000000000000..9cb04bed9e86
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
+> @@ -0,0 +1,149 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,fhctl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek frequency hopping and spread spectrum clocking control
+> +
+> +maintainers:
+> +  - Edward-JW Yang <edward-jw.yang@mediatek.com>
+> +
+> +description: |
+> +  Frequency hopping control (FHCTL) is a piece of hardware that control
+> +  some PLLs to adopt "hopping" mechanism to adjust their frequency.
+> +  Spread spectrum clocking (SSC) is another function provided by this hardware.
+> +
 
-Either way is OK for I2C_SLAVE AFAIK.
+Are all these settings per board? 
 
-thanks.
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8186-fhctl
+> +
+> +  reg:
+> +    maxItems: 2
 
--- 
-~Randy
+Need to define what each entry is.
+
+> +
+> +patternProperties:
+> +  "^map[0-9]$":
+> +    type: object
+
+       additionalProperties: false
+
+> +    description:
+> +      Represents a group of PLLs controlled by the same domain and method.
+> +
+> +    properties:
+> +      domain:
+
+Custom properties need a vendor prefix.
+
+'domain' is a pretty generic term. 
+
+> +        description: The position of this hardware block in the chip.
+> +        $ref: /schemas/types.yaml#/definitions/string-array
+
+You have to define possible values.
+
+> +
+> +      method:
+> +        description: Determine which method to control this FHCTL hardware.
+> +        $ref: /schemas/types.yaml#/definitions/string-array
+> +
+> +    patternProperties:
+> +      "^armpll_(ll|bl)|(cci|main|mm|tvd|m|adsp|mfg|nna|nna2|msdc)pll$":
+> +        type: object
+
+           additionalProperties: false
+
+> +        description:
+> +          A subnode represents one PLL clock. The properties it contains are
+> +          used to determine whether this PLL enable frequency hopping mechanism           and spread spectrum clocking (SSC) control.
+> +
+> +        properties:
+> +          fh-id:
+> +            description: The index of the PLL clocks.
+
+index is based on what?
+
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +          perms:
+> +            description:
+> +              This is a bit field used to manage the permission of frequency
+> +              hopping function and spread spectrum clocking control.
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +          ssc-rate:
+> +            description: The percentage of the spectrum spreading.
+
+Use '-percent' suffix then.
+
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            minimum: 0
+> +            maximum: 8
+> +
+> +        required:
+> +          - fh-id
+> +          - perms
+> +
+> +    required:
+> +      - domain
+> +      - method
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt8186-clk.h>
+> +    fhctl: fhctl@1000ce00 {
+> +        compatible = "mediatek,mt8186-fhctl";
+> +        reg = <0x1000ce00 0x200>,
+> +              <0x1000c000 0xe00>;
+> +        map0 {
+> +            domain = "top";
+> +            method = "fhctl-ap";
+> +
+> +            armpll_ll {
+> +                fh-id = <0>;
+> +                perms = <0x10>;
+> +            };
+> +
+> +            armpll_bl {
+> +                fh-id = <1>;
+> +                perms = <0x10>;
+> +            };
+> +
+> +            ccipll {
+> +                fh-id = <2>;
+> +                perms = <0x10>;
+> +            };
+> +
+> +            mainpll {
+> +                fh-id = <3>;
+> +                perms = <0x1c>;
+> +            };
+> +
+> +            mmpll {
+> +                fh-id = <4>;
+> +                perms = <0x1c>;
+> +            };
+> +
+> +            tvdpll {
+> +                fh-id = <5>;
+> +                perms = <0x1c>;
+> +            };
+> +
+> +            mpll {
+> +                fh-id = <6>;
+> +                perms = <0x10>;
+> +            };
+> +
+> +            adsppll {
+> +                fh-id = <7>;
+> +                perms = <0x1c>;
+> +            };
+> +
+> +            mfgpll {
+> +                fh-id = <8>;
+> +                perms = <0x1c>;
+> +            };
+> +
+> +            nnapll {
+> +                fh-id = <9>;
+> +                perms = <0x1c>;
+> +            };
+> +
+> +            nna2pll {
+> +                fh-id = <10>;
+> +                perms = <0x1c>;
+> +            };
+> +
+> +            msdcpll {
+> +                fh-id = <11>;
+> +                perms = <0x1c>;
+> +                ssc-rate = <3>;
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.18.0
+> 
+> 
