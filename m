@@ -2,54 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98DC354DFBA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 13:09:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C053154DFDF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 13:18:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376666AbiFPLIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 07:08:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54898 "EHLO
+        id S242354AbiFPLSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 07:18:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376717AbiFPLIp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 07:08:45 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99B065E159;
-        Thu, 16 Jun 2022 04:08:44 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        with ESMTP id S229566AbiFPLSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 07:18:16 -0400
+X-Greylist: delayed 170231 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 16 Jun 2022 04:18:14 PDT
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 653BC2AE3E;
+        Thu, 16 Jun 2022 04:18:14 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (dkwl20tj04snw15cjtflt-3.rev.dnainternet.fi [IPv6:2001:14ba:4493:6f40:fec3:d72a:e447:8113])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BB0C66601756;
-        Thu, 16 Jun 2022 12:08:42 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1655377723;
-        bh=Ym8V4C7cqusZmnKUp44mYzfUNnjhU5hnhfnX8Zm9pqA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NmtPN0WvcM9Ve1t1pov1LUxFbiFgFsHXn7r1U0/dBzpD2ev+nNt/AsBREsxoLTnvg
-         1MXrkjTKKJ2o3BdglJrC/B/r0wtT7q/Bd1JOTv4SG0kt9axG22fWfGU61cHQUDFq8G
-         sGjjCszu4KJdE/J7JzQ5U7AP45Msq8+2TkLltrtmxCq2CPMnRIMMDCGxZZhvAIbgFL
-         wusIWrO6ZpaBFJOSF6Du39eqV3BaWwFAPhGtE3zlRKZHppx0Qy2rh6BvZ+aXB+DvyO
-         0NXS43OHcFjvEcxekxmHDZwzuA/EpVcnhbEyBSPSDcEnjVvkMn9TpG8mtQelh9vn0T
-         svphRSs2SqIIg==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     yong.wu@mediatek.com
-Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski@linaro.org, miles.chen@mediatek.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v4 5/5] iommu/mediatek: Cleanup pericfg lookup flow
-Date:   Thu, 16 Jun 2022 13:08:30 +0200
-Message-Id: <20220616110830.26037-6-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220616110830.26037-1-angelogioacchino.delregno@collabora.com>
-References: <20220616110830.26037-1-angelogioacchino.delregno@collabora.com>
+        (Authenticated sender: sailus)
+        by meesny.iki.fi (Postfix) with ESMTPSA id 3DD3A20223;
+        Thu, 16 Jun 2022 14:18:10 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+        t=1655378290;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=UUep/sgKumAUsqr6plkU9Uit353tpr6e7VY52A43bZ0=;
+        b=YiAxJPvvV+VFDy2XSr6BR5cdbKzD76jQII3SIj5C6MB9vm2znMEgKDIWYzacLLMmF22BCa
+        2P4Fj4GcyFRd30U/MQKTPEhLpkqnHCaHQNhkFkSDyk922sVXWm3s5eQ+0goo4GUSvksfwL
+        vEOXB5MlTAnJd6t5jVutTxtM1GHdNHg=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 9E3FB634C91;
+        Thu, 16 Jun 2022 14:18:09 +0300 (EEST)
+Date:   Thu, 16 Jun 2022 14:18:09 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, andrzej.hajda@intel.com,
+        narmstrong@baylibre.com, robert.foss@linaro.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, lee.jones@linaro.org,
+        mchehab@kernel.org, marcel.ziswiler@toradex.com
+Subject: Re: [PATCH v9 00/14] Add some DRM bridge drivers support for
+ i.MX8qm/qxp SoCs
+Message-ID: <YqsRcUsdZzcwqplJ@valkosipuli.retiisi.eu>
+References: <20220611141421.718743-1-victor.liu@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220611141421.718743-1-victor.liu@nxp.com>
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=meesny; t=1655378290;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=UUep/sgKumAUsqr6plkU9Uit353tpr6e7VY52A43bZ0=;
+        b=e6Al/EFgjGfUA3ffYQXqQ+pB8jfciIVCkr/eD+HwQH6a28iLeoT9qnBnxvDrWlGDC1G4bC
+        TAL1Q6kVagX5RYOxNDpFWm5GRKyYpoyH/lbRI8lnU0IaxOt0UEHvsehRrdGh2jDjrCmlbF
+        dWaPE0w3Suw0AqxzNlPev6mdneTk4Fk=
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1655378290; a=rsa-sha256; cv=none;
+        b=Ii1gQgxWnUvB0ovIO8owoWaYk7l8CClPi05NutKtp2BooN+OCcp1h+SO8xtvKtUi3AwY6S
+        JuYhzUIkO+r5g+PKmvZ96rYRNc2Rb5XPPu0FpKN5LohB6Xz3q40dZPfhsguz748iYkogqc
+        KmCsgUVajSzP3ZwLBJ46j70A4siyNrM=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -59,41 +83,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since only the INFRA type IOMMU needs to modify register(s) in the
-pericfg iospace, it's safe to drop the pericfg_comp_str NULL check;
-also, directly assign the regmap handle to data->pericfg instead of
-to the infracfg variable to improve code readability.
+On Sat, Jun 11, 2022 at 10:14:07PM +0800, Liu Ying wrote:
+> Patch 1/14 and 2/14 add bus formats used by pixel combiner.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/iommu/mtk_iommu.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+Thanks!
 
-diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-index 90685946fcbe..b2ae84046249 100644
---- a/drivers/iommu/mtk_iommu.c
-+++ b/drivers/iommu/mtk_iommu.c
-@@ -1217,15 +1217,13 @@ static int mtk_iommu_probe(struct platform_device *pdev)
- 			dev_err(dev, "mm dts parse fail(%d).", ret);
- 			goto out_runtime_disable;
- 		}
--	} else if (MTK_IOMMU_IS_TYPE(data->plat_data, MTK_IOMMU_TYPE_INFRA) &&
--		   data->plat_data->pericfg_comp_str) {
--		infracfg = syscon_regmap_lookup_by_compatible(data->plat_data->pericfg_comp_str);
--		if (IS_ERR(infracfg)) {
--			ret = PTR_ERR(infracfg);
-+	} else if (MTK_IOMMU_IS_TYPE(data->plat_data, MTK_IOMMU_TYPE_INFRA)) {
-+		p = data->plat_data->pericfg_comp_str;
-+		data->pericfg = syscon_regmap_lookup_by_compatible(p);
-+		if (IS_ERR(data->pericfg)) {
-+			ret = PTR_ERR(data->pericfg);
- 			goto out_runtime_disable;
- 		}
--
--		data->pericfg = infracfg;
- 	}
- 
- 	platform_set_drvdata(pdev, data);
+For these:
+
+Acked-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+
 -- 
-2.35.1
-
+Sakari Ailus
