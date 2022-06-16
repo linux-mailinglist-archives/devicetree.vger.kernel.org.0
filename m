@@ -2,138 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61BDB54DA89
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 08:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15B1A54DAAF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 08:31:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359150AbiFPG0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 02:26:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45378 "EHLO
+        id S1359133AbiFPGbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 02:31:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359157AbiFPG0M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 02:26:12 -0400
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD62253B53;
-        Wed, 15 Jun 2022 23:26:08 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id EFAC73200B43;
-        Thu, 16 Jun 2022 02:26:06 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Thu, 16 Jun 2022 02:26:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1655360766; x=1655447166; bh=B6
-        6Ha6BawNI5v7cRXHK0sJIXUS4GnPz6lQgVNJ1yryI=; b=IVlm4kT+eA+Eu/+rpc
-        Pq8+7roAl6iskpML1mlrdCp56hkrO1E2t/S/7jFYZQw3vxvt0bC5wrt2IETkT5+i
-        6U4Rli4s9hE/t2ehUm+MgyN5rTrrwKL/Cn29KvMM4uM9n638tPSeMzOj0ccfmp1y
-        VIbn53tRmExR8qIQ2BRWmravSraaQTqw7wh0QwfsWPw5DXIff2cxgATsqKn9THTD
-        EYBOe/4LS9X3bVn6qdHeFdBO3w6AtbiE4czasBrcEXh9CUewGkKmuyTWIQsEW/9l
-        tM5DG8ViNI4flI/9VHhqSqjnjLo3VdLxKkysRBGMZAqU7o1eKD+aAH2v3QqrCAZk
-        pujw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1655360766; x=1655447166; bh=B66Ha6BawNI5v
-        7cRXHK0sJIXUS4GnPz6lQgVNJ1yryI=; b=vvXG2UPbKQsU/5BAOEja64obwY9m9
-        /yltaHtzF1nubRwdvr4i3kzJlOwydcZY3eZmuhuAyNAGSphGIFqHIxdHB71f3jdL
-        gg40cEyOyry0RAHmMr3sCD645T4Fw0HzjVqQDPCZ3LB7vO+z9A5+7N04yvXoNNhB
-        hYQEkdnzDVZfaRVwh92ztoqiX3X9YHgfyLclsS8KUrRCzXwUlSsRsD8v65miPeRB
-        dDofx07wLQ+R5+K/jaFl2irP4kBlwmcChv+ikvdY4d44eurrjJuLmWh5K7QHwwhA
-        htK2pKOEQT06Kk5bwMHWID5hx9uqmcxMrK+Oeh3WaIzuriR+5WVANHwyg==
-X-ME-Sender: <xms:_cyqYs-9zC4vzVwAdmFbBS8PEO7UHAIbqQnTwR3Y-u5mkXj51k9wkw>
-    <xme:_cyqYkvnfqRH4tyGxHZpZFwTe_9GrTfnAVI54lLzTYqDPHUp7SnLo1laS9n1tHqK_
-    -vrq6a3HtrK4K4NPA>
-X-ME-Received: <xmr:_cyqYiA1WkjhdrDKVZqi9SSZZ7dk41topdAy8cE_NbAo4vvxVvcg8bBUt1cEdRwHGmtb8xWAvNeh_whm16oMcHzym3p_0VR7XXDRsq9ANzh6m8qrgkAFYy2jcfkXiGV5lr_Vww>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedruddvvddguddthecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpedukeetueduhedtleetvefguddvvdejhfefudelgfduveeggeeh
-    gfdufeeitdevteenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:_syqYsfKhthcAxyPzjKZK106WNh3xL1sidzLtxt63E7d6m-egTAErA>
-    <xmx:_syqYhPlSglZP4Z2pwuSIETtq6GD1mCglkkIf_ltjAU5GPrnLv3HMg>
-    <xmx:_syqYmk3HWeak4GaVts3SvYkIlLvcpSjUtlayDHmiHPSkZBfwYLGVQ>
-    <xmx:_syqYonmp-6xj7X4vInCLZnDlNl-CcUaVF3ZPI2SlfmR7GvIsrtSCw>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 16 Jun 2022 02:26:05 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Arnaud Ferraris <arnaud.ferraris@collabora.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: [PATCH 3/3] arm64: dts: allwinner: pinephone: Enable internal HMIC bias
-Date:   Thu, 16 Jun 2022 01:25:54 -0500
-Message-Id: <20220616062554.57266-4-samuel@sholland.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220616062554.57266-1-samuel@sholland.org>
-References: <20220616062554.57266-1-samuel@sholland.org>
+        with ESMTP id S233903AbiFPGbK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 02:31:10 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA2E05677B;
+        Wed, 15 Jun 2022 23:31:09 -0700 (PDT)
+X-UUID: e2f21dbf73474e5f9da3f5ed59914ac8-20220616
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:88c4ec7a-a239-46ba-bf62-aefc6af4ef11,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:b14ad71,CLOUDID:9b7d71f6-e099-41ba-a32c-13b8bfe63214,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: e2f21dbf73474e5f9da3f5ed59914ac8-20220616
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1300391025; Thu, 16 Jun 2022 14:31:03 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Thu, 16 Jun 2022 14:31:02 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Thu, 16 Jun 2022 14:31:00 +0800
+Message-ID: <2d0f49294a8bac34dd5dd1ce4201f009a207b7a7.camel@mediatek.com>
+Subject: Re: [PATCH v3 6/6] iommu: mtk_iommu: Lookup phandle to retrieve
+ syscon to pericfg
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     <joro@8bytes.org>, <will@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <iommu@lists.linux-foundation.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski@linaro.org>
+Date:   Thu, 16 Jun 2022 14:30:57 +0800
+In-Reply-To: <80c7fa61-e25a-fc45-bdcb-60ac3796b96e@collabora.com>
+References: <20220609100802.54513-1-angelogioacchino.delregno@collabora.com>
+         <20220609100802.54513-7-angelogioacchino.delregno@collabora.com>
+         <db422fe4d0b5391ee2aacae989d7e48209e1095f.camel@mediatek.com>
+         <80c7fa61-e25a-fc45-bdcb-60ac3796b96e@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Revisions 1.0 and 1.1 of the PinePhone mainboard do not have an external
-resistor connecting HBIAS to MIC2P. Enable the internal resistor to
-provide the necessary headeset microphone bias.
+On Mon, 2022-06-13 at 10:13 +0200, AngeloGioacchino Del Regno wrote:
+> Il 13/06/22 07:32, Yong Wu ha scritto:
+> > On Thu, 2022-06-09 at 12:08 +0200, AngeloGioacchino Del Regno
+> > wrote:
+> > > On some SoCs (of which only MT8195 is supported at the time of
+> > > writing),
+> > > the "R" and "W" (I/O) enable bits for the IOMMUs are in the
+> > > pericfg_ao
+> > > register space and not in the IOMMU space: as it happened already
+> > > with
+> > > infracfg, it is expected that this list will grow.
+> > 
+> > Currently I don't see the list will grow. As commented before, In
+> > the
+> > lastest SoC, The IOMMU enable bits for IOMMU will be in ATF, rather
+> > than in this pericfg register region. In this case, Is this patch
+> > unnecessary? or we could add this patch when there are 2 SoCs use
+> > this
+> > setting at least?  what's your opinion?
+> > 
+> 
+> Perhaps I've misunderstood... besides, can you please check if
+> there's any
+> other SoC (not just chromebooks, also smartphone SoCs) that need this
+> logic?
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+As far as I know, SmartPhone SoCs don't enable the infra iommu until
+now. they don't have this logic. I don't object this patch, I think we
+could add it when at least 2 SoCs need this.
 
- arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.0.dts | 4 ++++
- arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts | 4 ++++
- 2 files changed, 8 insertions(+)
+Thanks very much for help improving here.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.0.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.0.dts
-index fb65319a3bd3..219f720b8b7d 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.0.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.0.dts
-@@ -10,6 +10,10 @@ / {
- 	compatible = "pine64,pinephone-1.0", "pine64,pinephone", "allwinner,sun50i-a64";
- };
- 
-+&codec_analog {
-+	allwinner,internal-bias-resistor;
-+};
-+
- &sgm3140 {
- 	enable-gpios = <&pio 2 3 GPIO_ACTIVE_HIGH>; /* PC3 */
- 	flash-gpios = <&pio 3 24 GPIO_ACTIVE_HIGH>; /* PD24 */
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts
-index 5e59d3752178..723af64a9cee 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.1.dts
-@@ -29,6 +29,10 @@ &backlight {
- 	default-brightness-level = <400>;
- };
- 
-+&codec_analog {
-+	allwinner,internal-bias-resistor;
-+};
-+
- &sgm3140 {
- 	enable-gpios = <&pio 3 24 GPIO_ACTIVE_HIGH>; /* PD24 */
- 	flash-gpios = <&pio 2 3 GPIO_ACTIVE_HIGH>; /* PC3 */
--- 
-2.35.1
+> 
+> Thanks,
+> Angelo
+> 
+> 
 
