@@ -2,213 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AAAF54EB72
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 22:47:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42F9A54EBAE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 22:57:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378389AbiFPUrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 16:47:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60236 "EHLO
+        id S1377297AbiFPU5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 16:57:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233530AbiFPUrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 16:47:48 -0400
-Received: from smtp.smtpout.orange.fr (smtp04.smtpout.orange.fr [80.12.242.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6FFE13E98
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 13:47:46 -0700 (PDT)
-Received: from [192.168.1.18] ([90.11.190.129])
-        by smtp.orange.fr with ESMTPA
-        id 1wOxofIO0IaWO1wOxo5r6G; Thu, 16 Jun 2022 22:47:44 +0200
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
-X-ME-Date: Thu, 16 Jun 2022 22:47:44 +0200
-X-ME-IP: 90.11.190.129
-Message-ID: <7b9923c0-50f0-556a-657c-9cf0ef9af5aa@wanadoo.fr>
-Date:   Thu, 16 Jun 2022 22:47:39 +0200
+        with ESMTP id S230118AbiFPU5s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 16:57:48 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3304317E18
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 13:57:47 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id o6so2215733plg.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 13:57:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=uN2MkJ4nUIty1Sor4XqPwun1hGLUtXm8GHd5WHbkewo=;
+        b=zmokaMcV6kyTpb28Gi8AD+sXGgk4clAe1LHnxikamybHWfRzKloNw5d4MWaKqb4XbY
+         jlGKGQGnK1+nTTbvlabT9aHoYZuc505lAG259+1EmeINJXzmI4JBxUAmP44mQN90TIq4
+         gizXW/SlGVlxdozS8yAGTFUxL1LuxTds/q4S45sRsTv0u5XF8po7XTE4AmauyBnlJhi+
+         SJRPwyFqQ1fXzVhySp7YU3Ga7bWRWiFHzr8g5ViteJbC1zKTEvDx0i61atSLq1PcAj05
+         K1r6xkTydF05AiQ0iOCv0Wtb7L2iTl6KkXKH9k7vNro8CApVaLUZq0UFouNGx5ght+p5
+         oJqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=uN2MkJ4nUIty1Sor4XqPwun1hGLUtXm8GHd5WHbkewo=;
+        b=did8IHiWiQh0B6SOlztmuUHeAteIUdG5tc31wawK+v5yZeB37Z7vM75jcDyT1cJpRQ
+         ZLthUamzfQBEGJ6SUYB2TyuTabyAv38f6tZ5/0DGunwVVMNqoRpokOW2NIXliHm2H5Ku
+         m3MXHUyYGn56EcmkrzQSigz9dd/eqPg3dwsQyssXti0vEr8jynMGyYf2jU9XrNJEZebS
+         EPcUHtFTUNZW4zXViUsIfyqXx2HPBy8Qd2W99o7+ihJMAG/jm8eZKNDFNk/L4x1+Bklg
+         xxC0iBwPKfAtwG/9LdZnxN+aQYtEg46qfYmIxckru9uhoVGlnHCcJbXfyanR7fTwfAdZ
+         QK6A==
+X-Gm-Message-State: AJIora9eQJ2F+8Kk4xx1LSmE3uHr9NyNoJ5I7GvBUevEafK57C/fBkre
+        0BILVHcD2E0Xfjvp528rlx7HfA==
+X-Google-Smtp-Source: AGRyM1szMaJdSd7SItitiXJ+irqerxl/VV72VGGcecE6fpqRMun7pj6i2ii9M2C6slr8LD0+Sn2s0Q==
+X-Received: by 2002:a17:90a:aa96:b0:1ea:3780:c3dc with SMTP id l22-20020a17090aaa9600b001ea3780c3dcmr17901042pjq.241.1655413066683;
+        Thu, 16 Jun 2022 13:57:46 -0700 (PDT)
+Received: from google.com ([192.77.111.2])
+        by smtp.gmail.com with ESMTPSA id h10-20020a170902f7ca00b001621ce92196sm2046829plw.86.2022.06.16.13.57.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jun 2022 13:57:45 -0700 (PDT)
+Date:   Thu, 16 Jun 2022 21:57:41 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Satya Priya <quic_c_skakit@quicinc.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
+Message-ID: <YquZRcuRCrdF+Q1z@google.com>
+References: <1655200111-18357-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1655200111-18357-7-git-send-email-quic_c_skakit@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v8 1/3] ipmi: ssif_bmc: Add SSIF BMC driver
-Content-Language: fr
-To:     quan@os.amperecomputing.com
-Cc:     andrew@aj.id.au, benh@kernel.crashing.org,
-        brendanhiggins@google.com, devicetree@vger.kernel.org,
-        joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, minyard@acm.org,
-        openbmc@lists.ozlabs.org, openipmi-developer@lists.sourceforge.net,
-        patches@amperecomputing.com, phong@os.amperecomputing.com,
-        robh+dt@kernel.org, thang@os.amperecomputing.com, wsa@kernel.org
-References: <20220615090259.1121405-1-quan@os.amperecomputing.com>
- <20220615090259.1121405-2-quan@os.amperecomputing.com>
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20220615090259.1121405-2-quan@os.amperecomputing.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1655200111-18357-7-git-send-email-quic_c_skakit@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 15/06/2022 à 11:02, Quan Nguyen a écrit :
-> The SMBus system interface (SSIF) IPMI BMC driver can be used to perform
-> in-band IPMI communication with their host in management (BMC) side.
+On Tue, 14 Jun 2022, Satya Priya wrote:
+
+> Use i2c_new_dummy_device() to register pm8008-regulator
+> client present at a different address space, instead of
+> defining a separate DT node. This avoids calling the probe
+> twice for the same chip, once for each client pm8008-infra
+> and pm8008-regulator.
 > 
-> Thanks Dan for the copy_from_user() fix in the link below.
+> As a part of this define pm8008_regmap_init() to do regmap
+> init for both the clients and define pm8008_get_regmap() to
+> pass the regmap to the regulator driver.
 > 
-> Link: https://lore.kernel.org/linux-arm-kernel/20220310114119.13736-4-quan-shex6MNQR2J/SfDzf78azzKzEDxYleXD@public.gmane.org/
-> Signed-off-by: Quan Nguyen <quan-shex6MNQR2J/SfDzf78azzKzEDxYleXD@public.gmane.org>
+> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 > ---
-
-Hi,
-
-a few nitpick below
-
-[...]
-
-> diff --git a/drivers/char/ipmi/ssif_bmc.c b/drivers/char/ipmi/ssif_bmc.c
-> new file mode 100644
-> index 000000000000..0bfd4b9bbaf1
-> --- /dev/null
-> +++ b/drivers/char/ipmi/ssif_bmc.c
-> @@ -0,0 +1,880 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * The driver for BMC side of SSIF interface
-> + *
-> + * Copyright (c) 2022, Ampere Computing LLC
-> + *
-> + */
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/miscdevice.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/poll.h>
-> +#include <linux/sched.h>
-> +#include <linux/mutex.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/timer.h>
-> +#include <linux/jiffies.h>
-> +#include <linux/ipmi_ssif_bmc.h>
-> +
-> +#define DEVICE_NAME                             "ipmi-ssif-host"
-> +
-> +#define GET_8BIT_ADDR(addr_7bit)                (((addr_7bit) << 1) & 0xff)
-> +
-> +/* A standard SMBus Transaction is limited to 32 data bytes */
-> +#define MAX_PAYLOAD_PER_TRANSACTION             32
-> +/* Transaction includes the address, the command, the length and the PEC byte */
-> +#define MAX_TRANSACTION                         (MAX_PAYLOAD_PER_TRANSACTION + 4)
-> +
-> +#define MAX_IPMI_DATA_PER_START_TRANSACTION     30
-> +#define MAX_IPMI_DATA_PER_MIDDLE_TRANSACTION    31
-> +
-> +#define SSIF_IPMI_SINGLEPART_WRITE              0x2
-> +#define SSIF_IPMI_SINGLEPART_READ               0x3
-> +#define SSIF_IPMI_MULTIPART_WRITE_START         0x6
-> +#define SSIF_IPMI_MULTIPART_WRITE_MIDDLE        0x7
-> +#define SSIF_IPMI_MULTIPART_WRITE_END           0x8
-> +#define SSIF_IPMI_MULTIPART_READ_START          0x3
-> +#define SSIF_IPMI_MULTIPART_READ_MIDDLE         0x9
-> +
-> +/*
-> + * IPMI 2.0 Spec, section 12.7 SSIF Timing,
-> + * Request-to-Response Time is T6max(250ms) - T1max(20ms) - 3ms = 227ms
-> + * Recover ssif_bmc from busy state if it takes up to 500ms
-> + */
-> +#define RESPONSE_TIMEOUT                        500 /* ms */
-> +
-> +struct ssif_part_buffer {
-> +	u8 address;
-> +	u8 smbus_cmd;
-> +	u8 length;
-> +	u8 payload[MAX_PAYLOAD_PER_TRANSACTION];
-> +	u8 pec;
-> +	u8 index;
-> +};
-> +
-> +/*
-> + * SSIF internal states:
-> + *   SSIF_READY         0x00 : Ready state
-> + *   SSIF_START         0x01 : Start smbus transaction
-> + *   SSIF_SMBUS_CMD     0x02 : Received SMBus command
-> + *   SSIF_REQ_RECVING   0x03 : Receiving request
-> + *   SSIF_RES_SENDING   0x04 : Sending response
-> + *   SSIF_BAD_SMBUS     0x05 : Bad SMbus transaction
-
-If these states are related to the enum just below, 
-s/SSIF_BAD_SMBUS/SSIF_ABORTING/ + description update?
-
-> + */
-> +enum ssif_state {
-> +	SSIF_READY,
-> +	SSIF_START,
-> +	SSIF_SMBUS_CMD,
-> +	SSIF_REQ_RECVING,
-> +	SSIF_RES_SENDING,
-> +	SSIF_ABORTING,
-> +	SSIF_STATE_MAX
-> +};
-> +
-
-[...]
-
-> +static int ssif_bmc_probe(struct i2c_client *client, const struct i2c_device_id *id)
+> Changes in V15:
+>  - None.
+> 
+> Changes in V14:
+>  - None.
+> 
+> Changes in V13:
+>  - None.
+> 
+>  drivers/mfd/qcom-pm8008.c       | 34 ++++++++++++++++++++++++++++++++--
+>  include/linux/mfd/qcom_pm8008.h |  9 +++++++++
+>  2 files changed, 41 insertions(+), 2 deletions(-)
+>  create mode 100644 include/linux/mfd/qcom_pm8008.h
+> 
+> diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
+> index 569ffd50..55e2a8e 100644
+> --- a/drivers/mfd/qcom-pm8008.c
+> +++ b/drivers/mfd/qcom-pm8008.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/irq.h>
+>  #include <linux/irqdomain.h>
+> +#include <linux/mfd/qcom_pm8008.h>
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+>  #include <linux/of_platform.h>
+> @@ -57,6 +58,7 @@ enum {
+>  
+>  struct pm8008_data {
+>  	struct device *dev;
+> +	struct regmap *regulators_regmap;
+>  	int irq;
+>  	struct regmap_irq_chip_data *irq_data;
+>  };
+> @@ -150,6 +152,12 @@ static struct regmap_config qcom_mfd_regmap_cfg = {
+>  	.max_register	= 0xFFFF,
+>  };
+>  
+> +struct regmap *pm8008_get_regmap(const struct pm8008_data *chip)
 > +{
-> +	struct ssif_bmc_ctx *ssif_bmc;
-> +	int ret;
-> +
-> +	ssif_bmc = devm_kzalloc(&client->dev, sizeof(*ssif_bmc), GFP_KERNEL);
-> +	if (!ssif_bmc)
-> +		return -ENOMEM;
-> +
-> +	spin_lock_init(&ssif_bmc->lock);
-> +
-> +	init_waitqueue_head(&ssif_bmc->wait_queue);
-> +	ssif_bmc->request_available = false;
-> +	ssif_bmc->response_in_progress = false;
-> +	ssif_bmc->busy = false;
-> +	ssif_bmc->response_timer_inited = false;
-> +
-> +	/* Register misc device interface */
-> +	ssif_bmc->miscdev.minor = MISC_DYNAMIC_MINOR;
-> +	ssif_bmc->miscdev.name = DEVICE_NAME;
-> +	ssif_bmc->miscdev.fops = &ssif_bmc_fops;
-> +	ssif_bmc->miscdev.parent = &client->dev;
-> +	ret = misc_register(&ssif_bmc->miscdev);
-> +	if (ret)
-> +		goto out;
+> +	return chip->regulators_regmap;
+> +}
+> +EXPORT_SYMBOL_GPL(pm8008_get_regmap);
 
-Could be "return ret;"
-(see below)
+Seems like abstraction for the sake of abstraction.
 
+Why not do the dereference inside the regulator driver?
+
+>  static int pm8008_init(struct regmap *regmap)
+>  {
+>  	int rc;
+> @@ -217,11 +225,25 @@ static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+>  	return 0;
+>  }
+>  
+> +static struct regmap *pm8008_regmap_init(struct i2c_client *client,
+> +							struct pm8008_data *chip)
+> +{
+> +	struct regmap *regmap;
 > +
-> +	ssif_bmc->client = client;
-> +	ssif_bmc->client->flags |= I2C_CLIENT_SLAVE;
+> +	regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg);
+> +	if (!regmap)
+> +		return NULL;
 > +
-> +	/* Register I2C slave */
-> +	i2c_set_clientdata(client, ssif_bmc);
-> +	ret = i2c_slave_register(client, ssif_bmc_cb);
-> +	if (ret) {
-> +		misc_deregister(&ssif_bmc->miscdev);
-> +		goto out;
-> +	}
-> +
-> +	return 0;
-> +out:
-> +	devm_kfree(&client->dev, ssif_bmc);
-
-This looks useless to me. The whole error handling path could be 
-removed, or updated to only have the "misc_deregister()" above.
-
-CJ
-
-> +	return ret;
+> +	i2c_set_clientdata(client, chip);
+> +	return regmap;
 > +}
 
+This function seems superfluous.
 
+It's only called once and it contains a single call.
+
+Just pop the call directly into probe.
+
+>  static int pm8008_probe(struct i2c_client *client)
+>  {
+>  	int rc;
+>  	struct pm8008_data *chip;
+>  	struct gpio_desc *reset_gpio;
+> +	struct i2c_client *regulators_client;
+>  	struct regmap *regmap;
+>  
+>  	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
+> @@ -229,11 +251,19 @@ static int pm8008_probe(struct i2c_client *client)
+>  		return -ENOMEM;
+>  
+>  	chip->dev = &client->dev;
+> -	regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg);
+> +	regmap = pm8008_regmap_init(client, chip);
+>  	if (!regmap)
+>  		return -ENODEV;
+>  
+> -	i2c_set_clientdata(client, chip);
+> +	regulators_client = i2c_new_dummy_device(client->adapter, client->addr + 1);
+> +	if (IS_ERR(regulators_client)) {
+> +		dev_err(&client->dev, "can't attach client\n");
+> +		return PTR_ERR(regulators_client);
+> +	}
+> +
+> +	chip->regulators_regmap = pm8008_regmap_init(regulators_client, chip);
+> +	if (!chip->regulators_regmap)
+> +		return -ENODEV;
+>  
+>  	reset_gpio = devm_gpiod_get(chip->dev, "reset", GPIOD_OUT_LOW);
+>  	if (IS_ERR(reset_gpio))
+> diff --git a/include/linux/mfd/qcom_pm8008.h b/include/linux/mfd/qcom_pm8008.h
+> new file mode 100644
+> index 0000000..3814bff
+> --- /dev/null
+> +++ b/include/linux/mfd/qcom_pm8008.h
+> @@ -0,0 +1,9 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +// Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> +#ifndef __QCOM_PM8008_H__
+> +#define __QCOM_PM8008_H__
+> +
+> +struct pm8008_data;
+> +struct regmap *pm8008_get_regmap(const struct pm8008_data *chip);
+> +
+> +#endif
+
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
