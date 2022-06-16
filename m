@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD2BF54EB7D
+	by mail.lfdr.de (Postfix) with ESMTP id 4D64154EB7A
 	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 22:48:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378735AbiFPUsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 16:48:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60780 "EHLO
+        id S1378720AbiFPUsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 16:48:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378720AbiFPUsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 16:48:00 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19DDA18341
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 13:47:56 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id e24so2374099pjt.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 13:47:56 -0700 (PDT)
+        with ESMTP id S1378730AbiFPUsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 16:48:01 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 288E719FBC
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 13:47:57 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id bo5so2473176pfb.4
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 13:47:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=jnD99uencGMjTPpflykxZNYOUgUN3LUgOaJGkyuBq30=;
-        b=pWd2gWMcVtb2dxWnVHPatHbAB2Xdpt96Ys9iB5jXphQh5KSnWbOKCf7wGVj3VIPjeL
-         4gRZHPFC43xJmqWfyQHjLHWCncnzd5JqZ+Au/+PUJOh8jxcULCy/+l7wVIuK5r6KppnM
-         yNwaGMX/YFZ8/+98md5wb9xZCHdN/v8z7ZSmjcCbQDzV+SQyE4BsrPVbzKT4G4pWxsGN
-         2IrP1t5qdpac6hKOV/VtQ/S9l4yvVOTdMlDmPBRCoPnOuVOG1eWxMPgKMfRwfYYX6VOQ
-         ZThqHRYkagUArmWKYbdvTb2tYuFUfzUjsBbFGIerC/l1G4wywVX5ew22gst8QM2wQ4mv
-         CfNg==
+        bh=/pVzaOY9CFepK+i9q4fsrNHrN+dhMEmS2oDBirnD9FA=;
+        b=sXCLsno8ay84b56C2dm5p3bQETg7M9Pas9KYTGjIuX9Me6fAlskGNeysmgVYem/U3i
+         fd2u5FMpZOWmSr3AxUgDn4E17fAmxLCzduV5BPUXsrj60EL91BCWCj+oZAOM8DtC9OKe
+         YWkvX2NyTg713VbdFv/pYFYPb07S4dkqq20gLnMKVCzZruwaStST6V1lOI+oqXEitTaj
+         AzEAdZII/WPh0SHoBbu5ql8S4STvvXR9xQZzAHrTRy8Qveis6a7jOQ2D+QPEe6QTAa//
+         9XIic3Cow9mjPfXICxFLRDGL0XJ1aOP4XFyL7QvzQMocbW0ydzKHgUmReA4HVaOhhQpY
+         UUTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=jnD99uencGMjTPpflykxZNYOUgUN3LUgOaJGkyuBq30=;
-        b=ivU7An5iqcvGUXb2tIZ1uNV/AI5JauLDrIVBIFJcCgGoPE0VrtS4fsR7EM4SSQiNLG
-         vce0W3uyYzQsSJ5TUiUUFV4BuVw4Izzuwvza2YXYusxnJOHJwUCTbH2qr0b8qoa7ehUA
-         wWPn9BR/IX9W4hRvXRhCXKa0/hf3OB+JMUWQFW9w9vr/SK5tf3AhC9cPMqgCTsLHTGs0
-         qS/Ju39/YE5Pr0OtjCLTLFC5bZ0xE2WNjsY7cjw+Xquy5Fgw2v/X0p+DjNQ67nMtFAup
-         d4kfaYb+mIYRCrPn/L2qdM63BjaoNIyRO9+MQ8F5aheI09BwfVUzujerWYmr7O/hD+Fc
-         97wQ==
-X-Gm-Message-State: AJIora/JUhTxd6FeOyXdQSDS1eWFmqeoM1Kuj3We0yTpzGuOYmYV4d2G
-        DC5T0+gqYdaTDZc6MQ/xbaA/OA==
-X-Google-Smtp-Source: AGRyM1srUf92ldxiVI8QIWyED6HakwtuZcKqfwr84IMozkgc4DIwT4ycq14eV6FtmSctJTFDsTwcog==
-X-Received: by 2002:a17:902:ebcb:b0:168:e3ba:4b5a with SMTP id p11-20020a170902ebcb00b00168e3ba4b5amr6308144plg.11.1655412475720;
-        Thu, 16 Jun 2022 13:47:55 -0700 (PDT)
+        bh=/pVzaOY9CFepK+i9q4fsrNHrN+dhMEmS2oDBirnD9FA=;
+        b=QaDqOR+tNAMCRqA+T0YmM7jirrYu/1O3hIsuYnSHm76SfCbyjbAWbl+hT7Blvrfj2u
+         nHlzRGcATsq1WWEjAirSK6qlP4Oqy+YAXZNuoaBEOkEo+ZhXSltlJV/J1+7y+lNWloJk
+         +13+o25eTnW6n3le+AqzIwpC2044R9VUQufDRA5R3WAiyBiTmbiw0i1xo8JNJvueU8B0
+         iQLsKPw6w8PWvANJr5xgjH0EeY9tDNv1Bv2oII6D8Nk3hhqFyID9lcPJJzep8Pd722pa
+         9YmH0ikQ25ZaAfiE34lGRARqVHAI1dxbyt6wNmDUi5vqFqd57tTQV0CQkBa85BgbXsFN
+         ZTVg==
+X-Gm-Message-State: AJIora9/QL5lLB/+mp20pxo//lF7kfLP7fIN2kF7XTTEs9bGBZBX0Uzp
+        VnAMlC/buyTJyzKvCsWdDbK3ww==
+X-Google-Smtp-Source: AGRyM1ubZjKzAx27pQvmAgugnf7CvSnECablkLbpEMOEjewVkaUyTg3qtr0IuXESsdpX0H6W/VhONg==
+X-Received: by 2002:a05:6a00:c88:b0:51c:1001:65f9 with SMTP id a8-20020a056a000c8800b0051c100165f9mr6463419pfv.66.1655412476609;
+        Thu, 16 Jun 2022 13:47:56 -0700 (PDT)
 Received: from krzk-bin.. ([192.77.111.2])
         by smtp.gmail.com with ESMTPSA id 203-20020a6218d4000000b0051ba0ee30cbsm2165453pfy.128.2022.06.16.13.47.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jun 2022 13:47:55 -0700 (PDT)
+        Thu, 16 Jun 2022 13:47:56 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-aspeed@lists.ozlabs.org, soc@kernel.org,
-        Olof Johansson <olof@lixom.net>, arm@kernel.org,
+To:     Olof Johansson <olof@lixom.net>, arm@kernel.org, soc@kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, Arnd Bergmann <arnd@arndb.de>,
+        Arnd Bergmann <arnd@arndb.de>,
         Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Andrew Jeffery <andrew@aj.id.au>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: aspeed: adjust whitespace around '='
-Date:   Thu, 16 Jun 2022 13:47:16 -0700
-Message-Id: <165541242280.9040.12820468454884340112.b4-ty@linaro.org>
+Subject: Re: [PATCH] ARM: dts: axm: adjust whitespace around '='
+Date:   Thu, 16 Jun 2022 13:47:17 -0700
+Message-Id: <165541242280.9040.11932013052748741725.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220526204127.831853-1-krzysztof.kozlowski@linaro.org>
-References: <20220526204127.831853-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220526204100.831742-1-krzysztof.kozlowski@linaro.org>
+References: <20220526204100.831742-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -76,7 +73,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 May 2022 22:41:27 +0200, Krzysztof Kozlowski wrote:
+On Thu, 26 May 2022 22:41:00 +0200, Krzysztof Kozlowski wrote:
 > Fix whitespace coding style: use single space instead of tabs or
 > multiple spaces around '=' sign in property assignment.  No functional
 > changes (same DTB).
@@ -85,8 +82,8 @@ On Thu, 26 May 2022 22:41:27 +0200, Krzysztof Kozlowski wrote:
 
 Applied, thanks!
 
-[1/1] ARM: dts: aspeed: adjust whitespace around '='
-      https://git.kernel.org/krzk/linux/c/94d0a03297615cad2d40b0f02ceab902a7339062
+[1/1] ARM: dts: axm: adjust whitespace around '='
+      https://git.kernel.org/krzk/linux/c/06e00a512d0a09760bef10621d4cdefc26777fad
 
 Best regards,
 -- 
