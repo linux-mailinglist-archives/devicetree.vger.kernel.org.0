@@ -2,81 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0996254DACA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 08:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BB8754DAFF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 08:53:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358707AbiFPGhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 02:37:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55638 "EHLO
+        id S229562AbiFPGxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 02:53:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359203AbiFPGhY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 02:37:24 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DA6456F81
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 23:37:22 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id s10so424947ljh.12
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 23:37:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=Fj5okI0OHrTUL7u0PrVtz/qzUyxfkepK38a37myhwyc=;
-        b=aTyyr4VKiJKH9w58xGNjupT0b/Lpr30fhhgRJH9+kUuKwIiMjjQeOSG6AYnJveLS7f
-         oDF0edb6MfIs5YoC2CWDX01cWww6laAge4ohmVCqzvQbwthKVfFEf15eNTiYBSB+fMPs
-         Ya16w31vG9XIYFo0QZhmFeUzyg8TbrnTbezcOJgBWzvAqqZ4DEWqwjsN6rrhdTZG/sdc
-         lsn62CtbqfbbPKMtTj1rqlAoN8ybv4wq0tBkPfSIKGBm7wdCRW+TF5nwEx6BFSTpKVrm
-         biCfSElD/javNfglf2DV2nur026xsEJnAPa+xvhXHllcR6E6/pjuMuBnMbc/jyXjcDUG
-         BCPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=Fj5okI0OHrTUL7u0PrVtz/qzUyxfkepK38a37myhwyc=;
-        b=gwleW83sKE3ZwTKYhGH2eKhhQUXyYWx7wWwUSUg92VshW2xQkHdi+q9FSFv7bE2e37
-         qum5SkU1VyL2LvUqtAoDyesE38KyYP8NaFiNrpWJwJBFDvikE0HexEu1NtjGekfOYwc/
-         I/ohfWytgJbsorWonviA32l5CeUPN83hwESME7BeKlaH4QcITxfsvQKGkiMx6iFbsEZd
-         hyxNIfyYZbSu52hXKE035SIcnON3UgP864sM1oteK8BYyPJJl8lfcCy1XZJElDpTfPoz
-         17cnPsl1u9Bw5il9kyyLa3sf4YqDpNdne6Gw+/om+HFjawEr6t5FsK5IiIEE+Tdsbbzp
-         HuPQ==
-X-Gm-Message-State: AJIora8ilFXbtoEoNFoFJrSam9r3z/QPSie1vx0cjvR0RG4hWi6DYOff
-        s6tphjczne+Z6sQcKPRsXoLwJQ==
-X-Google-Smtp-Source: AGRyM1soQk1JX8qiRdMNy0XE89vDn++uDALWeQbt+IbFR4FqlwAjVbSPM5Vxp4wAzGxwiCkBe0EAKw==
-X-Received: by 2002:a2e:8404:0:b0:250:cde7:e9e3 with SMTP id z4-20020a2e8404000000b00250cde7e9e3mr1759936ljg.289.1655361440862;
-        Wed, 15 Jun 2022 23:37:20 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id y9-20020a199149000000b0047db8b30670sm110207lfj.136.2022.06.15.23.37.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jun 2022 23:37:20 -0700 (PDT)
-Message-ID: <532dcb6a-db67-947b-3260-ac801b07f349@linaro.org>
-Date:   Thu, 16 Jun 2022 09:37:19 +0300
+        with ESMTP id S236834AbiFPGxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 02:53:23 -0400
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6636F58E6E
+        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 23:53:12 -0700 (PDT)
+X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
+        LIVER,40,3)
+Received: from 172.28.114.216
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(23338:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Thu, 16 Jun 2022 14:42:34 +0800 (CST)
+From:   Qin Jian <qinjian@cqplus1.com>
+To:     sboyd@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, linux@armlinux.org.uk, arnd@arndb.de,
+        olof@lixom.net, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Qin Jian <qinjian@cqplus1.com>
+Subject: [PATCH v19 00/11] Add Sunplus SP7021 SoC Support
+Date:   Thu, 16 Jun 2022 14:42:16 +0800
+Message-Id: <cover.1655360818.git.qinjian@cqplus1.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 06/14] drm/msm/hdmi: drop unused GPIO support
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        kernel test robot <lkp@intel.com>
-References: <20220609122350.3157529-1-dmitry.baryshkov@linaro.org>
- <20220609122350.3157529-7-dmitry.baryshkov@linaro.org>
- <CAE-0n51vKmQ683TTnYm8VxSquqYqL2_3=Ku750r--0GV4JcW8Q@mail.gmail.com>
- <492bbe98-e395-3adb-34e3-eadccd59d849@linaro.org>
-In-Reply-To: <492bbe98-e395-3adb-34e3-eadccd59d849@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,67 +42,185 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/06/2022 23:47, Dmitry Baryshkov wrote:
-> On 10/06/2022 23:46, Stephen Boyd wrote:
->> Quoting Dmitry Baryshkov (2022-06-09 05:23:42)
->>> The HDMI driver has code to configure extra GPIOs, which predates
->>> pinctrl support. Nowadays all platforms should use pinctrl instead.
->>> Neither of upstreamed Qualcomm platforms uses these properties, so it's
->>> safe to drop them.
->>>
->>> Reported-by: kernel test robot <lkp@intel.com>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>
->> One question
->>
->> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
->>
->>> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c 
->>> b/drivers/gpu/drm/msm/hdmi/hdmi.c
->>> index 7267167d5ef1..6d79f1b910a5 100644
->>> --- a/drivers/gpu/drm/msm/hdmi/hdmi.c
->>> +++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
->>> @@ -233,6 +233,20 @@ static struct hdmi *msm_hdmi_init(struct 
->>> platform_device *pdev)
->>>                  hdmi->pwr_clks[i] = clk;
->>>          }
->>>
->>> +       hdmi->hpd_gpiod = devm_gpiod_get_optional(&pdev->dev, "hpd", 
->>> GPIOD_IN);
->>> +       /* This will catch e.g. -EPROBE_DEFER */
->>> +       if (IS_ERR(hdmi->hpd_gpiod)) {
->>> +               ret = PTR_ERR(hdmi->hpd_gpiod);
->>> +               DRM_DEV_ERROR(&pdev->dev, "failed to get hpd gpio: 
->>> (%d)\n", ret);
->>
->> Did you want to print an error with eprobe defer in it?
-> 
-> True. We should use dev_err_probe here. I'll fix it in the next revision.
+This patch series add Sunplus SP7021 SoC support.
 
-As a second thought, I think I'll merge it as is for now and fix all 
-error messages while moving the resource allocation to the _probe() 
-function. There are few other places where we are printing the 
-EPROBE_DEFER error code.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates many
+peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and etc.) into a
+single chip. It is designed for industrial control.
 
-> 
->>
->>> +               goto fail;
->>> +       }
->>> +
->>> +       if (!hdmi->hpd_gpiod)
->>> +               DBG("failed to get HPD gpio");
->>> +
->>> +       if (hdmi->hpd_gpiod)
->>> +               gpiod_set_consumer_name(hdmi->hpd_gpiod, "HDMI_HPD");
->>> +
->>>          pm_runtime_enable(&pdev->dev);
->>>
->>>          hdmi->workq = alloc_ordered_workqueue("msm_hdmi", 0);
-> 
-> 
+SP7021 consists of two chips (dies) in a package. One is called C-chip
+(computing chip). It is a 4-core ARM Cortex A7 CPU. It adopts high-level
+process (22 nm) for high performance computing. The other is called P-
+chip (peripheral chip). It has many peripherals and an ARM A926 added
+especially for real-time control. P-chip is made for customers. It adopts
+low-level process (ex: 0.11 um) to reduce cost.
 
+Refer to (for documentations):
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+
+Refer to (applications):
+https://tibbo.com/store/plus1.html
+
+Refer to (applications):
+http://www.sinovoip.com.cn/ecp_view.asp?id=586
+
+Changes in v19:
+- clk-provider.h: Add devm_clk_hw_register_gate_parent_data()
+- clk-sp7021.c: Addressed Stephen's comments
+- board dts: Addressed Arnd's comments
+
+Changes in v18:
+- Fixed the tags
+- board dts: Fix the comments from Krzysztof
+
+Changes in v17:
+- Based on 5.18.1 & resend
+
+Changes in v16:
+- clk-sp7021.c: Fix the comments from Stephen Boyd
+- board dts: Fix the comments from Krzysztof
+
+Changes in v15:
+- Add Sunplus SP7021-demo-v3 board dts
+- Refine yaml title
+- Rename dt-binding header filename to match compatible string
+
+Changes in v14:
+- clock/sp-sp7021.h: Fix the comments from Krzysztof
+- sunplus,sp7021-clkc.yaml: Fix the comments from Rob
+
+Changes in v13:
+- reset/sp-sp7021.h: Move HW mapping from dt-binding header to driver
+- reset-sunplus.c: Move HW mapping from dt-binding header to driver
+- clock/sp-sp7021.h: Move HW mapping from dt-binding header to driver
+- clk-sp7021.c: Fix the comments from Arnd
+- irq-sp7021-intc.c: Remove empty set_affinity callback function
+- sp7021_defconfig: Fix the comments from Arnd
+
+Changes in v12:
+- sunplus,sp7021-clkc.yaml: Move 'reg' after 'compatible'
+- sunplus,sp7021-intc.yaml: Move 'reg' after 'compatible'
+- sunplus,reset.yaml: Move 'reg' after 'compatible'
+- Remove wrong reviewed-tags
+
+Changes in v11:
+- clk-sp7021.c: Remove the dead code
+
+Changes in v10:
+- arm/sunplus,sp7021.yaml: Add SoC compatible: "sunplus,sp7021"
+- clock/sunplus,sp7021-clkc.yaml: Remove the internal clock parent from DTS
+- clk-sp7021.c: Refine the macro DBG_CLK
+- clk-sp7021.c: Refine the clock_parent_data
+
+Changes in v9:
+- clk/Kconfig: fix the comments form Stephen Boyd
+- clk-sp7021.c: fix the comments form Stephen Boyd
+
+Changes in v8:
+- clk-sp7021.c: fix the comments form Stephen Boyd
+
+Changes in v7:
+- sunplus,sp7021-clkc.yaml: Add clocks & clock-names
+- clk-sp7021.c: fix the comments form Stephen Boyd
+- irq-sp7021-intc.c: fix the comments from Marc
+
+Changes in v6:
+- reset-sunplus.c: fix the comments from Philipp
+- irq-sp7021-intc.c: fix the comments from Marc
+- mach-sunplus: fix the comments from Arnd
+
+Changes in v5:
+- reset-sunplus.c: fix strict checks
+- clk/Kconfig: fix spell
+- clk-sp7021.c: using bitfield ops, fix strict checks
+- irqchip/Kconfig: fix spell
+- irq-sp7021-intc.c: cleanup error path in probe, fix strict checks
+- arm/Kconfig: fix spell & typo, remove CONFIG_SERIAL_SUNPLUS
+- mach-sunplus/Kconfig: fix typo
+- sp7021_defconfig: add CONFIG_SERIAL_SUNPLUS
+
+Changes in v4:
+- mach-sunplus: add initial support for SP7021
+- sp7021_defconfig: add generic SP7021 defconfig
+- reset-sunplus: remove Q645 support
+- reset-sunplus.c: refine code based on Philipp's review
+- clk-sp7021: clock defines add prefix, more clean up
+
+Changes in v3:
+- sp7021-intc: remove primary controller mode due to P-chip running Linux
+  not supported any more.
+- sp7021-intc.h: removed, not set ext through the DT but sp_intc_set_ext()
+- sunplus,sp7021-intc.yaml: update descriptions for above changes
+- irq-sp7021-intc.c: more cleanup based on Marc's review
+- all driver's Kconfig removed default, it's selected by platform config
+
+Changes in v2:
+- sunplus,sp7021-intc.yaml: add descrption for "#interrupt-cells", interrupts
+- sunplus,sp7021-intc.yaml: drop "ext0-mask"/"ext1-mask" from DT
+- sunplus,sp7021-intc.yaml: fix example.dt too long error
+- irq-sp7021-intc.c: major rewrite
+- all files with dual license
+
+Qin Jian (11):
+  dt-bindings: arm: sunplus: Add bindings for Sunplus SP7021 SoC boards
+  dt-bindings: reset: Add bindings for SP7021 reset driver
+  reset: Add Sunplus SP7021 reset driver
+  dt-bindings: clock: Add bindings for SP7021 clock driver
+  clk: gate: Add devm_clk_hw_register_gate_parent_data()
+  clk: Add Sunplus SP7021 clock driver
+  dt-bindings: interrupt-controller: Add bindings for SP7021 interrupt
+    controller
+  irqchip: Add Sunplus SP7021 interrupt controller driver
+  ARM: sunplus: Add initial support for Sunplus SP7021 SoC
+  ARM: sp7021_defconfig: Add Sunplus SP7021 defconfig
+  ARM: dts: Add Sunplus SP7021-Demo-V3 board device tree
+
+ .../bindings/arm/sunplus,sp7021.yaml          |  29 +
+ .../bindings/clock/sunplus,sp7021-clkc.yaml   |  52 ++
+ .../sunplus,sp7021-intc.yaml                  |  62 ++
+ .../bindings/reset/sunplus,reset.yaml         |  38 +
+ MAINTAINERS                                   |  18 +
+ arch/arm/Kconfig                              |   2 +
+ arch/arm/Makefile                             |   1 +
+ arch/arm/boot/dts/Makefile                    |   2 +
+ arch/arm/boot/dts/sunplus-sp7021-achip.dtsi   |  84 +++
+ arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts  |  30 +
+ arch/arm/boot/dts/sunplus-sp7021.dtsi         | 310 ++++++++
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ arch/arm/configs/sp7021_defconfig             |  59 ++
+ arch/arm/mach-sunplus/Kconfig                 |  27 +
+ arch/arm/mach-sunplus/Makefile                |   8 +
+ arch/arm/mach-sunplus/sp7021.c                |  16 +
+ drivers/clk/Kconfig                           |  10 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-sp7021.c                      | 713 ++++++++++++++++++
+ drivers/irqchip/Kconfig                       |   9 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-sp7021-intc.c             | 278 +++++++
+ drivers/reset/Kconfig                         |   9 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-sunplus.c                 | 212 ++++++
+ .../dt-bindings/clock/sunplus,sp7021-clkc.h   |  88 +++
+ .../dt-bindings/reset/sunplus,sp7021-reset.h  |  87 +++
+ include/linux/clk-provider.h                  |  17 +
+ 28 files changed, 2165 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sunplus,sp7021-intc.yaml
+ create mode 100644 Documentation/devicetree/bindings/reset/sunplus,reset.yaml
+ create mode 100644 arch/arm/boot/dts/sunplus-sp7021-achip.dtsi
+ create mode 100644 arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts
+ create mode 100644 arch/arm/boot/dts/sunplus-sp7021.dtsi
+ create mode 100644 arch/arm/configs/sp7021_defconfig
+ create mode 100644 arch/arm/mach-sunplus/Kconfig
+ create mode 100644 arch/arm/mach-sunplus/Makefile
+ create mode 100644 arch/arm/mach-sunplus/sp7021.c
+ create mode 100644 drivers/clk/clk-sp7021.c
+ create mode 100644 drivers/irqchip/irq-sp7021-intc.c
+ create mode 100644 drivers/reset/reset-sunplus.c
+ create mode 100644 include/dt-bindings/clock/sunplus,sp7021-clkc.h
+ create mode 100644 include/dt-bindings/reset/sunplus,sp7021-reset.h
 
 -- 
-With best wishes
-Dmitry
+2.33.1
+
