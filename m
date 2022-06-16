@@ -2,109 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FF3054E23E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:42:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81E7454E25D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:47:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377174AbiFPNm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 09:42:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46992 "EHLO
+        id S1377162AbiFPNrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 09:47:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376631AbiFPNmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:42:55 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6280815812
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:42:52 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id z14so1457089pjb.4
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:42:52 -0700 (PDT)
+        with ESMTP id S1377246AbiFPNrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:47:40 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B6CA1758D
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:47:38 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id y6so1349066plg.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 06:47:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=aNEeKuprTbTs5LWWfeMDjy1KZmrz1EiAxXm6JSqXnbU=;
-        b=AtLPdduL5q5b2YWCXSxu/s0KWycSnUha2yes+KuNgoj+MI0badVhC6uG83O5867Yqq
-         3Yf/wqsNPawZn2q34DI9FdzVHmnUMppElAyOKygqRFaNM4vpt3gvNjCdIesBdQb9lLWP
-         OOjzODwWOx7k1tBExXpcJzf+ZULGERqNptgKw3xKFCKun6tEEsZQqErgxy+y9fbwRk+c
-         Q1pLGwXF2mVxiuLfEbGgHQM68raYem8K8h8T9PhsWwOUB3qKn56p7Wafz0+YaQ48qL8U
-         u9hcjHSRkMcRKB88ZXLfN1B4GkTDNCC689K8WcTHOLnr3S6ML111WPyr5DI31g2t/D2W
-         5HUg==
+        bh=EdDkRKKho92MrNIWNxsUiDkrk0oeSOr07WjZUBmDl0E=;
+        b=Ej1lcIf2+oWupNOuU41TZHeE8OVVyKOdu8eW31o30OeCSGUx/sgBffvdj9xLw9bmFW
+         vO9mlgfdpKRM6CWVcacgXPdVH4wOWEw3Ca3wBkToQsplv/N8z1naa6uU+XsPd+bMNbcW
+         YuBhF8MDwOGr49zU+7zafiR3+AxMLjHyLMjBzBRD62pQFHUD0wD9KlY+7lG61+NZ6OL/
+         JrHKwmGFqABYPlFzBptrspn7StsrfwAQ4qfJFJzn/Ak3WE96CMoGDh8mnkhvo0dpD0vo
+         Qdp6+YL51cT07iA5VlphrevzEgyhHZlBZ/z2UoPc9gprtoI9Goc1M9SSZ12AWwgRoEXo
+         S8ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=aNEeKuprTbTs5LWWfeMDjy1KZmrz1EiAxXm6JSqXnbU=;
-        b=6nAxkmYl5gdg4vZpoBgFUOJzHfhkVKBUXkb+b51IXq5HECXbKfl/x0JxLObVMqpVga
-         G2j05lY+bsurSl1LroPNMnjANh1A0xvPFrP516bLhRqgYK+KXKMzSq/KWvqY7Ydx/3Q8
-         iLGoOmsvd7raR5JovYCpkkdJ8g4P5MvQsmWBHP7higD5kv5gY91Fs7JmXl4aWdwfpkKg
-         0lVKvIWOYk1riYrXNRk+Yz1ICIYw19hbiIU6g9A2exUSkKbiQTRqlpyKw347elN+Madl
-         vTcpoyV2PFJWGN5S/+EkZtoGYtijVuKoB/uFg3N813LuqVFzGx72mrW3oPHXs2AHcyoH
-         VA2Q==
-X-Gm-Message-State: AJIora96Cscmm0jTvEDDWtBXv0P/uzf59SBNuM1szmmjj8PyAd4mocfu
-        IkHkJu70wc+a6vpOcoOv0xHYCA==
-X-Google-Smtp-Source: AGRyM1uOiNZH9+Db6fJogZkx01+5krAEqlx/kpcj5J7iOOcLUTZi02KkxtOsyTtdg6Sg5lx9L6FqFw==
-X-Received: by 2002:a17:90b:4c4e:b0:1e3:368b:c09c with SMTP id np14-20020a17090b4c4e00b001e3368bc09cmr5181474pjb.140.1655386971761;
-        Thu, 16 Jun 2022 06:42:51 -0700 (PDT)
+        bh=EdDkRKKho92MrNIWNxsUiDkrk0oeSOr07WjZUBmDl0E=;
+        b=jFSQDpHAQKoylBU2y2JsmLyjScgilpjPDrWNGODQWC7Xq/ZJO7NmWTCBMsC3vNoosV
+         4FFuUOHJ98V0H+vZrEHS+zLs1gtHy/dSia9ogXFHJQ9bZvOGt3xUHDUCzggP7guIQJGf
+         d9AvAc6fWzNsGVXz4Mu7ivKPnWkZnFbqkoaBqxe2Ap8ovA0WRX5825ph9R0izusDZ7nD
+         eDHgI7XHRdQDBIlmTuc6BY1XBx0UPa4vuJQeQ2tl8JA/V93gV9B+6O5IvQh7ErOQC1ES
+         g2JVMZWP0/DvVFcxOKSyUxJgw45vFE3heKY6DtMfrYg6rU5ctPM2103BNdErzMXd5NYl
+         XkjA==
+X-Gm-Message-State: AJIora9qk2m9kLFQY3r0ONWxelKdehT1/sUrOgI0x5v/mKPSkRQRVPA2
+        oEODJm6ng3mgK3Qqmz/VQDh/jQ==
+X-Google-Smtp-Source: AGRyM1t0Rr/VQcaapCXMr3kff4RkmVv6r41Lq3jurOo5i5Ni90ka0/whLxrdmOfhOmK+QybdIIM6qA==
+X-Received: by 2002:a17:90b:1192:b0:1e2:da25:4095 with SMTP id gk18-20020a17090b119200b001e2da254095mr15893626pjb.240.1655387257894;
+        Thu, 16 Jun 2022 06:47:37 -0700 (PDT)
 Received: from [172.20.0.255] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id c2-20020a639602000000b003fb098151c9sm1775868pge.64.2022.06.16.06.42.49
+        by smtp.gmail.com with ESMTPSA id f5-20020aa79685000000b0050dc7628196sm1763759pfk.112.2022.06.16.06.47.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Jun 2022 06:42:51 -0700 (PDT)
-Message-ID: <ff933448-433c-30a5-765b-4a86069c239c@linaro.org>
-Date:   Thu, 16 Jun 2022 06:42:49 -0700
+        Thu, 16 Jun 2022 06:47:37 -0700 (PDT)
+Message-ID: <5abc998e-fea1-791b-3068-334d927af63d@linaro.org>
+Date:   Thu, 16 Jun 2022 06:47:36 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 12/20] dt-bindings: reset: npcm: Add support for
- NPCM8XX
+Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: atmel,flexcom: Convert to
+ json-schema
 Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Robert Hancock <robert.hancock@calian.com>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20220608095623.22327-1-tmaimon77@gmail.com>
- <20220608095623.22327-13-tmaimon77@gmail.com>
- <add025b6-c622-b204-d39e-67b31878d37f@linaro.org>
- <CAP6Zq1iDbB+X5QPE4Nsqk4nV41bZiVzQZExS1pQTuKEBz-iYew@mail.gmail.com>
- <381ff739-e898-8812-d549-df7101f0eaa2@linaro.org>
- <CAP6Zq1j=x3OcOPSOjJJmOcze7ziM=oWcKdbYzoHhGnvZipu_UQ@mail.gmail.com>
- <e6e478a5-9080-fb2f-9ccd-2490cdfab4c7@linaro.org>
- <CAP6Zq1gy=rj-wyqqNQF+Pt1dtHsf+90AnTGTqt-v9madj8tfGA@mail.gmail.com>
- <d3432cce-079e-3d6d-91df-6da10bd69d08@linaro.org>
- <CAP6Zq1jdMN_vB1Uoi6rb_E1DydS7+-A0sWMRNUhDPF4pzkr2kA@mail.gmail.com>
+To:     Kavyasree.Kotagiri@microchip.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
+        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com
+References: <20220607144740.14937-1-kavyasree.kotagiri@microchip.com>
+ <20220607144740.14937-2-kavyasree.kotagiri@microchip.com>
+ <1345050e-b6a4-64be-1359-8d31d88769ab@linaro.org>
+ <CO1PR11MB4865738B0AFB2F74CD184C5592A49@CO1PR11MB4865.namprd11.prod.outlook.com>
+ <18c84400-2fb1-e802-d43a-766c7dcb80aa@linaro.org>
+ <CO1PR11MB4865A1D77AAD30410D8A815792AC9@CO1PR11MB4865.namprd11.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAP6Zq1jdMN_vB1Uoi6rb_E1DydS7+-A0sWMRNUhDPF4pzkr2kA@mail.gmail.com>
+In-Reply-To: <CO1PR11MB4865A1D77AAD30410D8A815792AC9@CO1PR11MB4865.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -117,20 +81,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2022 06:41, Tomer Maimon wrote:
-
->>>> What is NPCM-ADC document file? What do you want to describe there?
->>>> Again - how is it different than interrupts?
->>> It is not different from the interrupts.
->>> I will remove the dt-binding reset include file, the reset property
->>> will use numbers and not macro's.
+On 16/06/2022 02:20, Kavyasree.Kotagiri@microchip.com wrote:
 >>
->> I have no clue what are you referring now... This is NPCM8xx and it has
->> no binding header with reset values. What to remove then?
-> I refer nuvoton,npcm8xx-reset.h file, we don't need it.
+>> Yes. This is how you did it in previous patchsets.
+>>
+> I did so in v3 series, but below errors are reported on 1/3 patch:
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml: properties:compatible:enum: 'atmel,sama5d2-flexcom' is not of type 'array'
 
-There is no such file in kernel, I believe. If you refer to the patchset
-here, then of course it should not be sent.
+I don't remember it but it's a simple fix of syntax.
+Documentation/devicetree/bindings/arm/arm,cci-400.yaml
 
 
 Best regards,
