@@ -2,83 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0303D54D5DF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 02:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF65A54D5E2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 02:15:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239840AbiFPAO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jun 2022 20:14:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52440 "EHLO
+        id S235486AbiFPAPe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jun 2022 20:15:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346771AbiFPAOV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 20:14:21 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3E5E34656
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:14:15 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id d13so11719025plh.13
-        for <devicetree@vger.kernel.org>; Wed, 15 Jun 2022 17:14:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LwNIyVGl6P4q0gd7chMhSD65ZMv4OXZcE0ZHZHBWVBg=;
-        b=fLjfQ6g9D6t7DbLzhTEj8+KIW6cx6uH3ZXhKouWQK1Q+B6ieJXymTthUGW5ECpB8ZC
-         5TJ79PUaWJ3LBhLI3cEJZKCPaZl+JTuti21cALWrdbOUC0Iy0HKxKijGiW+M6qLAddqz
-         Tt8soxYtqFYboG5mCYJWA6yHHzToezDon/P2XsKv/VOPEaoPw3jIJdFVMIta7pqfr8BE
-         3YE46EzaPwe+lCa8Z4GgRNDOkixePTjPd1VLt2O/ECtRPRVytcS1x+ALIMd5K2EBwPlY
-         fCKhQXHwxvrlX5Gw1AaMHrEAtVJckd+mh/SJEOskOKrtHZIMIgtqpOefkbaibthwXvmy
-         5dPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=LwNIyVGl6P4q0gd7chMhSD65ZMv4OXZcE0ZHZHBWVBg=;
-        b=JQTZk7lsHzNQek0WY/1m11SqMQvd4eEr1gGLMCtf7UNwcbbD1Dc2mmKQMMBvY7gnh8
-         bzSJy3ZmY4pJgy0vnUYEmuY2M7gOCZiC4LhL/CcgdKHtyDrIaaWFT5gCPR+cYYdUrVRG
-         NVfQJJ/5izY6qZxDD7BBuvuDpW89baG+nbbbd0QmhFuM1wK3BjdfDC0yvPbSkObH9iSU
-         3p+utWMHOJjmJmCSiUNqDHXXchhPMJQVL4Ck31ZuMd1xs82vnfDMGEdSthIrrruFfbX+
-         knp5/oXmfIXEpp+7gHLNnkz88dL1SW5IYkLp2xkg9beuEMZqFWxsUSwz9DR8fFwQXZFY
-         gOAw==
-X-Gm-Message-State: AJIora/1+9haZ+t/xuHZOg9kkvkpel+FGecBjHwGPsXpR656WiY8I6rA
-        4I0CWNAJO2j9Xh2FY1dD9t+4GQ==
-X-Google-Smtp-Source: AGRyM1sQOb+rad8pqIV9YhewcZC4WPd7DgSUhozcuO72HEHuc2mD+EjlwkpfXKkIGoK/O26/OL83kg==
-X-Received: by 2002:a17:903:18f:b0:167:47f3:4a with SMTP id z15-20020a170903018f00b0016747f3004amr1818855plg.70.1655338455266;
-        Wed, 15 Jun 2022 17:14:15 -0700 (PDT)
-Received: from [172.22.33.138] ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id m22-20020a638c16000000b003fa95b940bdsm169537pgd.88.2022.06.15.17.14.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jun 2022 17:14:14 -0700 (PDT)
-Message-ID: <394e551d-c81f-5c06-3291-748a18713772@linaro.org>
-Date:   Wed, 15 Jun 2022 17:14:13 -0700
+        with ESMTP id S1350374AbiFPAOf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jun 2022 20:14:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 150F034B8A;
+        Wed, 15 Jun 2022 17:14:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7091061A60;
+        Thu, 16 Jun 2022 00:14:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF7CDC3411A;
+        Thu, 16 Jun 2022 00:14:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655338470;
+        bh=esxWYZlmQhdH3UEuDHTLCzWsFz2Uy80vJoG1CuwO9K0=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=CDpMupSyXLAC5cM7I1huEjCW9V/v344pPLtwW8ROL0nvJmaBnzNGxce8yi8XxcJjb
+         SXwZK/S8g3jCbblOztQZxGdwQqpQ2PaEed1uAD+YfSUY2TVzaDiZhy4bGetvGS2Yho
+         7Oc1ZxE/px4iN3fEnpFeeooeHkNEkc31ZjRYVoIVK5KoVastv8pRWejkswn+FA/hPS
+         YCDAOWnKjysYP32Mp3tQ8OR05XkQUzOCETahlmBhRT1ova4CP8qeiJ+/LuGuyJZfeK
+         +Koes5dBODW9wH9KDUKtQmqbBqKt77oookeVR2aL/PDtLaJU+6/3cy1Ts2nl7swK+e
+         lXdtKIMQy4Shg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 0/6] arm64: dts: Add missing space around properties
-Content-Language: en-US
-To:     =?UTF-8?Q?Niklas_S=c3=b6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
-        Wei Xu <xuwei5@hisilicon.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20220612223201.2740248-1-niklas.soderlund+renesas@ragnatech.se>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220612223201.2740248-1-niklas.soderlund+renesas@ragnatech.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <c9a04a45-d2df-5596-571e-08502fbb3709@denx.de>
+References: <20220517235919.200375-1-marex@denx.de> <20220615201027.DFCC3C3411A@smtp.kernel.org> <edbfccf3-0723-b570-1315-a0951b530a66@denx.de> <20220615222210.3D7F6C3411A@smtp.kernel.org> <c9a04a45-d2df-5596-571e-08502fbb3709@denx.de>
+Subject: Re: [PATCH v3 1/2] dt-bindings: clk: Introduce 'critical-clocks' property
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Andrew Morton <akpm@linux-foundation.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+To:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org
+Date:   Wed, 15 Jun 2022 17:14:28 -0700
+User-Agent: alot/0.10
+Message-Id: <20220616001430.BF7CDC3411A@smtp.kernel.org>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,28 +55,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/06/2022 15:31, Niklas Söderlund wrote:
-> Hello,
-> 
-> While debugging an issue on a Renesas board I found a typo with missing 
-> spaces around properties that had been copied around [1]. This extends 
-> this fix for all arm64 files.
-> 
-> 1. https://lore.kernel.org/linux-renesas-soc/20220608175728.1012550-1-niklas.soderlund+renesas@ragnatech.se/
-> 
-> Niklas Söderlund (6):
->   arm64: dts: broadcom: Add missing space around status property
->   arm64: dts: rockchip: Add missing space around regulator-name property
->   arm64: dts: freescale: Add missing space around properties
->   arm64: dts: hisilicon: Add missing space around properties
->   arm64: dts: qcom: Add missing space around properties
->   arm64: dts: ti: Add missing space around properties
+Quoting Marek Vasut (2022-06-15 16:42:25)
+> On 6/16/22 00:22, Stephen Boyd wrote:
+> > Quoting Marek Vasut (2022-06-15 14:55:17)
+> >>
+> >> It means those clock must not be turned off, but there is no consumer
+> >> described in DT.
+> >=20
+> > So it means "always on".
+> >=20
+> >>
+> >>> Instead I'd prefer "always-on-clocks" here, so we can indicate that
+> >>> these clks should always be on. It would also parallel the property in
+> >>> the regulator framework.
+> >>
+> >> This property name is derived from protected-clock which you introduce=
+d.
+> >> I think it would be better to stay consistent within the clock framewo=
+rk
+> >> property names ?
+> >=20
+> > protected-clocks is based on assigned-clocks. There isn't a
+> > CLK_IS_PROTECTED flag. I'm not following your argument at all here,
+> > sorry.
+>=20
+> critical-clock property name is based on protected-clock property name.
 
+Got that.
 
-I think you just did quite the same work already posted:
+>=20
+> There is also no CLK_IS_ALWAYS_ON flag , but there is CLK_IS_CRITICAL=20
+> flag . Sure, there is no CLK_IS_PROTECTED flag because the protected=20
+> clock is implemented only by a single driver (qualcomm).
 
-https://lore.kernel.org/all/?q=f%3Akrzysztof+%22adjust+whitespace+around%22
+Alright, thanks for clarifying the argument.
 
+>=20
+> I think it makes sense to align the DT property name and the flag name,=20
+> and the critical-clock is aligned with both other DT property names in=20
+> the clock framework and the flag name.
 
-Best regards,
-Krzysztof
+No, it does not make sense to align the CLK_IS_CRITICAL flag with the DT
+property name. The property should be named what it is, i.e. always on.
+The internal clk framework details could be changed at any time whereas
+the DT binding is essentially forever. I agree using a similar name may
+help connect the code and the DT, but that is nowhere near as important
+as choosing a name that expresses what is happening in a binding that we
+need to maintain for the foreseeable future.
