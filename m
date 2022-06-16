@@ -2,599 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5613C54DDE6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 11:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2C5D54DDF3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 11:11:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359472AbiFPJJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 05:09:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36202 "EHLO
+        id S1359853AbiFPJLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 05:11:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359426AbiFPJJs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 05:09:48 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC647517DD;
-        Thu, 16 Jun 2022 02:09:38 -0700 (PDT)
-X-UUID: d1e01f270c5848f795c4c5adf1eb9a37-20220616
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:d223c1aa-4be2-4d93-aa0e-e60dea8e925b,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:b14ad71,CLOUDID:4e15bc48-4c92-421c-ad91-b806c0f58b2a,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: d1e01f270c5848f795c4c5adf1eb9a37-20220616
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1679619966; Thu, 16 Jun 2022 17:09:29 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 16 Jun 2022 17:09:28 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 16 Jun 2022 17:09:28 +0800
-Message-ID: <14a51b4dcebb363fc7fb5ad77795cacbd4150dd4.camel@mediatek.com>
-Subject: Re: [PATCH v11 10/12] drm/mediatek: dpi: Add dpintf support
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 16 Jun 2022 17:09:27 +0800
-In-Reply-To: <0421bc6a054f0fd8ab8cbf0b5bc29e17c1752fa0.camel@mediatek.com>
-References: <20220613064841.10481-1-rex-bc.chen@mediatek.com>
-         <20220613064841.10481-11-rex-bc.chen@mediatek.com>
-         <0421bc6a054f0fd8ab8cbf0b5bc29e17c1752fa0.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1358507AbiFPJLY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 05:11:24 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AC725537E;
+        Thu, 16 Jun 2022 02:11:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1655370682; x=1686906682;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=RAIhqL2xeDknD95cNLZqPbz62ihnEMqznkDfqUykBmo=;
+  b=nXxCyTE8/3lbaqdCmB8/BhVuvZNTnA1d533K8fHP60oPPKEvW2cxm5lj
+   JrQnA99JFBXzrISSCVj362kN+qGXVqnIC/x2pOZTfQWlKTlOwaTgShHKx
+   tskdjFerqty+Ue94ivZsBW/VAuiLzcdH7DNyGGbwHMUzJ9H5QI6BRcgGT
+   4=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 16 Jun 2022 02:11:21 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2022 02:11:21 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 16 Jun 2022 02:11:21 -0700
+Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 16 Jun 2022 02:11:14 -0700
+Date:   Thu, 16 Jun 2022 14:41:10 +0530
+From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
+To:     Matthias Kaehlcke <mka@chromium.org>
+CC:     Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Andy Gross" <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>
+Subject: Re: [PATCH v20 2/5] usb: dwc3: core: Host wake up support from
+ system suspend
+Message-ID: <20220616091110.GA24114@hu-pkondeti-hyd.qualcomm.com>
+References: <1654158277-12921-1-git-send-email-quic_kriskura@quicinc.com>
+ <1654158277-12921-3-git-send-email-quic_kriskura@quicinc.com>
+ <YpkRDi2m7cLaKYEf@google.com>
+ <Yp5nf2w8uVZ38/XZ@google.com>
+ <Yqd9IHQEj3Ex+FcF@google.com>
+ <YqjLHyUVEjf7I3MI@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_SCC_BODY_TEXT_LINE,
-        T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YqjLHyUVEjf7I3MI@google.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-06-14 at 14:04 +0800, CK Hu wrote:
-> Hi, Bo-Chen:
-> 
-> On Mon, 2022-06-13 at 14:48 +0800, Bo-Chen Chen wrote:
-> > From: Guillaume Ranquet <granquet@baylibre.com>
+Hi Matthias/Krishna,
+
+On Tue, Jun 14, 2022 at 10:53:35AM -0700, Matthias Kaehlcke wrote:
+> On Mon, Jun 13, 2022 at 11:08:32AM -0700, Matthias Kaehlcke wrote:
+> > On Mon, Jun 06, 2022 at 01:45:51PM -0700, Matthias Kaehlcke wrote:
+> > > On Thu, Jun 02, 2022 at 12:35:42PM -0700, Matthias Kaehlcke wrote:
+> > > > Hi Krishna,
+> > > > 
+> > > > with this version I see xHCI errors on my SC7180 based system, like
+> > > > these:
+> > > > 
+> > > > [   65.352605] xhci-hcd xhci-hcd.13.auto: xHC error in resume, USBSTS 0x401, Reinit
+> > > > 
+> > > > [  101.307155] xhci-hcd xhci-hcd.13.auto: WARN: xHC CMD_RUN timeout
+> > > > 
+> > > > After resume a downstream hub isn't enumerated again.
+> > > > 
+> > > > So far I didn't see those with v13, but I aso saw the first error with
+> > > > v16.
+> > > 
+> > > It also happens with v13, but only when a wakeup capable vUSB <= 2
+> > > device is plugged in. Initially I used a wakeup capable USB3 to
+> > > Ethernet adapter to trigger the wakeup case, however older versions
+> > > of this series that use usb_wakeup_enabled_descendants() to check
+> > > for wakeup capable devices didn't actually check for vUSB > 2
+> > > devices.
+> > > 
+> > > So the case were the controller/PHYs is powered down works, but
+> > > the controller is unhappy when the runtime PM path is used during
+> > > system suspend.
 > > 
-> > dpintf is the displayport interface hardware unit. This unit is
-> > similar
-> > to dpi and can reuse most of the code.
+> > The issue isn't seen on all systems using dwc3-qcom and the problem starts
+> > during probe(). The expected probe sequence is something like this:
 > > 
-> > This patch adds support for mt8195-dpintf to this dpi driver. Main
-> > differences are:
-> >  - Some features/functional components are not available for dpintf
-> >    which are now excluded from code execution once is_dpintf is set
-> >  - dpintf can and needs to choose between different clockdividers
-> > based
-> >    on the clockspeed. This is done by choosing a different clock
-> > parent.
-> >  - There are two additional clocks that need to be managed. These
-> > are
-> >    only set for dpintf and will be set to NULL if not supplied. The
-> >    clk_* calls handle these as normal clocks then.
-> >  - Some register contents differ slightly between the two
-> > components.
-> > To
-> >    work around this I added register bits/masks with a DPINTF_
-> > prefix
-> >    and use them where different.
+> > dwc3_qcom_probe
+> >   dwc3_qcom_of_register_core
+> >     dwc3_probe
 > > 
-> > Based on a separate driver for dpintf created by
-> > Jitao shi <jitao.shi@mediatek.com>.
+> >   if (device_can_wakeup(&qcom->dwc3->dev))
+> >     ...
 > > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > [Bo-Chen: Modify reviewers' comments.]
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >  drivers/gpu/drm/mediatek/mtk_dpi.c          | 115
-> > ++++++++++++++++++--
-> >  drivers/gpu/drm/mediatek/mtk_dpi_regs.h     |  13 +++
-> >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |   4 +
-> >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   1 +
-> >  drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   3 +
-> >  5 files changed, 126 insertions(+), 10 deletions(-)
+> > The important part is that device_can_wakeup() is called after dwc3_probe()
+> > has completed. That's what I see on a QC SC7280 system, where wakeup is
+> > generally working with these patches.
 > > 
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > index 6b8cf648a5b5..08c8f21b4421 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > @@ -71,6 +71,7 @@ struct mtk_dpi {
-> >  	void __iomem *regs;
-> >  	struct device *dev;
-> >  	struct clk *engine_clk;
-> > +	struct clk *pll_gate_clk;
+> > However on a QC SC7180 system dwc3_probe() is deferred and only executed after
+> > dwc3_qcom_probe(). As a result the device_can_wakeup() call returns false.
+> > With that the controller/driver ends up in an unhappy state after system
+> > suspend.
+> > 
+> > Probing is deferred on SC7180 because device_links_check_suppliers() finds
+> > that '88e3000.phy' isn't ready yet.
 > 
-> Separate clock part to an independent patch.
+> It seems device links could be used to make sure the dwc3 core is present:
 > 
-
-Hello CK,
-
-as previous reply, I will drop this clock.
-
-> >  	struct clk *pixel_clk;
-> >  	struct clk *tvd_clk;
-> >  	int irq;
-> > @@ -126,6 +127,7 @@ struct mtk_dpi_conf {
-> >  	const u32 *output_fmts;
-> >  	u32 num_output_fmts;
-> >  	bool is_ck_de_pol;
-> > +	bool is_dpintf;
-> >  	bool swap_input_support;
-> >  	/* Mask used for HWIDTH, HPORCH, VSYNC_WIDTH and VSYNC_PORCH
-> > (no shift) */
-> >  	u32 dimension_mask;
-> > @@ -439,6 +441,8 @@ static void mtk_dpi_power_off(struct mtk_dpi
-> > *dpi)
-> >  	mtk_dpi_disable(dpi);
-> >  	clk_disable_unprepare(dpi->pixel_clk);
-> >  	clk_disable_unprepare(dpi->engine_clk);
-> > +	clk_disable_unprepare(dpi->pll_gate_clk);
-> > +	clk_disable_unprepare(dpi->tvd_clk);
-> >  }
-> >  
-> >  static int mtk_dpi_power_on(struct mtk_dpi *dpi)
-> > @@ -448,10 +452,23 @@ static int mtk_dpi_power_on(struct mtk_dpi
-> > *dpi)
-> >  	if (++dpi->refcount != 1)
-> >  		return 0;
-> >  
-> > +	ret = clk_prepare_enable(dpi->tvd_clk);
-> > +	if (ret) {
-> > +		dev_err(dpi->dev, "Failed to enable tvd pll: %d\n",
-> > ret);
-> > +		goto err_refcount;
-> > +	}
-> > +
-> >  	ret = clk_prepare_enable(dpi->engine_clk);
-> >  	if (ret) {
-> >  		dev_err(dpi->dev, "Failed to enable engine clock:
-> > %d\n", ret);
-> > -		goto err_refcount;
-> > +		goto err_engine;
-> > +	}
-> > +
-> > +	ret = clk_prepare_enable(dpi->pll_gate_clk);
-> > +	if (ret) {
-> > +		dev_err(dpi->dev,
-> > +			"Failed to enable pll_gate_clk clock: %d\n",
-> > ret);
-> > +		goto err_ck_cg;
-> >  	}
-> >  
-> >  	ret = clk_prepare_enable(dpi->pixel_clk);
-> > @@ -467,7 +484,11 @@ static int mtk_dpi_power_on(struct mtk_dpi
-> > *dpi)
-> >  	return 0;
-> >  
-> >  err_pixel:
-> > +	clk_disable_unprepare(dpi->pll_gate_clk);
-> > +err_ck_cg:
-> >  	clk_disable_unprepare(dpi->engine_clk);
-> > +err_engine:
-> > +	clk_disable_unprepare(dpi->tvd_clk);
-> >  err_refcount:
-> >  	dpi->refcount--;
-> >  	return ret;
-> > @@ -498,12 +519,16 @@ static int mtk_dpi_set_display_mode(struct
-> > mtk_dpi *dpi,
-> >  	pll_rate = clk_get_rate(dpi->tvd_clk);
-> >  
-> >  	vm.pixelclock = pll_rate / factor;
-> > +
-> > +	if (dpi->conf->is_dpintf)
-> > +		vm.pixelclock /= 4;
+>   Another example for an inconsistent state would be a device link that
+>   represents a driver presence dependency, yet is added from the consumer’s
+>   ->probe callback while the supplier hasn’t probed yet: Had the driver core
+>   known about the device link earlier, it wouldn’t have probed the consumer
+>   in the first place. The onus is thus on the consumer to check presence of
+>   the supplier after adding the link, and defer probing on non-presence.
 > 
-> Separate this to an independent patch and explain why do this.
-> 
-
-This patch is for support dpintf, It think it should be placed in this
-patch. I will add comment for this.
-/*
- * For dp_intf, we need to divide clock by 4 because it's
- * 4 pixels for one round while dpi is 1 pixel for one round.
- */
-
-> > +
-> >  	if ((dpi->output_fmt == MEDIA_BUS_FMT_RGB888_2X12_LE) ||
-> > -	    (dpi->output_fmt == MEDIA_BUS_FMT_RGB888_2X12_BE))
-> > +	    (dpi->output_fmt == MEDIA_BUS_FMT_RGB888_2X12_BE)) {
-> >  		clk_set_rate(dpi->pixel_clk, vm.pixelclock * 2);
-> > -	else
-> > +	} else {
-> 
-> This modification is not necessary.
-> 
-
-ok.
-
-> >  		clk_set_rate(dpi->pixel_clk, vm.pixelclock);
-> > -
-> > +	}
-> >  
-> >  	vm.pixelclock = clk_get_rate(dpi->pixel_clk);
-> >  
-> > @@ -516,9 +541,21 @@ static int mtk_dpi_set_display_mode(struct
-> > mtk_dpi *dpi,
-> >  			    MTK_DPI_POLARITY_FALLING :
-> > MTK_DPI_POLARITY_RISING;
-> >  	dpi_pol.vsync_pol = vm.flags & DISPLAY_FLAGS_VSYNC_HIGH ?
-> >  			    MTK_DPI_POLARITY_FALLING :
-> > MTK_DPI_POLARITY_RISING;
-> > +
-> 
-> This modification is not necessary.
-> 
-
-ok.
-
-> >  	hsync.sync_width = vm.hsync_len;
-> >  	hsync.back_porch = vm.hback_porch;
-> >  	hsync.front_porch = vm.hfront_porch;
-> > +
-> > +	/*
-> > +	 * For dp_intf, we need to divide everything by 4 because it's
-> > +	 * 4 pixels for one round while dpi is 1 pixel for one round.
-> > +	 */
-> > +	if (dpi->conf->is_dpintf) {
-> 
-> I this this should define dpi->conf->round_pixels rather than dpi-
-> > conf->is_dpintf.
-> > +		hsync.sync_width = vm.hsync_len / 4;
-> > +		hsync.back_porch = vm.hback_porch / 4;
-> > +		hsync.front_porch = vm.hfront_porch / 4;
-> > +	}
-> > +
-
-I think is_dpintf is ok, it just for dpintf.
-
-> >  	hsync.shift_half_line = false;
-> >  	vsync_lodd.sync_width = vm.vsync_len;
-> >  	vsync_lodd.back_porch = vm.vback_porch;
-> > @@ -560,13 +597,20 @@ static int mtk_dpi_set_display_mode(struct
-> > mtk_dpi *dpi,
-> >  	mtk_dpi_config_channel_limit(dpi);
-> >  	mtk_dpi_config_bit_num(dpi, dpi->bit_num);
-> >  	mtk_dpi_config_channel_swap(dpi, dpi->channel_swap);
-> > -	mtk_dpi_config_yc_map(dpi, dpi->yc_map);
-> >  	mtk_dpi_config_color_format(dpi, dpi->color_format);
-> > -	mtk_dpi_config_2n_h_fre(dpi);
-> > -	mtk_dpi_dual_edge(dpi);
-> > -	mtk_dpi_config_disable_edge(dpi);
-> > +	if (dpi->conf->is_dpintf) {
-> 
-> Separate this to an independent patch and give a better config name
-> rather than dpi->conf->is_dpintf.
-> 
-
-This patch is for dpintf. I think it's better to remain in this patch.
-
-> > +		mtk_dpi_mask(dpi, DPI_CON, DPINTF_INPUT_2P_EN,
-> > +			     DPINTF_INPUT_2P_EN);
-> > +	} else {
-> > +		mtk_dpi_config_yc_map(dpi, dpi->yc_map);
-> > +		mtk_dpi_config_2n_h_fre(dpi);
-> > +		mtk_dpi_dual_edge(dpi);
-> > +		mtk_dpi_config_disable_edge(dpi);
-> > +	}
-> >  	mtk_dpi_sw_reset(dpi, false);
-> >  
-> > +	mtk_dpi_enable(dpi);
-> 
-> Why do this? If this is necessary, separate this to an independent
-> patch.
-> 
-
-Yes, no need to do this.
-I will drop this.
-
-> > +
-> >  	return 0;
-> >  }
-> >  
-> > @@ -643,7 +687,10 @@ static int mtk_dpi_bridge_atomic_check(struct
-> > drm_bridge *bridge,
-> >  	dpi->bit_num = MTK_DPI_OUT_BIT_NUM_8BITS;
-> >  	dpi->channel_swap = MTK_DPI_OUT_CHANNEL_SWAP_RGB;
-> >  	dpi->yc_map = MTK_DPI_OUT_YC_MAP_RGB;
-> > -	dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
-> > +	if (out_bus_format == MEDIA_BUS_FMT_YUYV8_1X16)
-> > +		dpi->color_format =
-> > MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL;
-> 
-> Separate this to an independent patch.
-> 
-
-ok
-
-> > +	else
-> > +		dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
-> >  
-> >  	return 0;
-> >  }
-> > @@ -688,7 +735,7 @@ mtk_dpi_bridge_mode_valid(struct drm_bridge
-> > *bridge,
-> >  {
-> >  	struct mtk_dpi *dpi = bridge_to_dpi(bridge);
-> >  
-> > -	if (mode->clock > dpi->conf->max_clock_khz)
-> > +	if (dpi->conf->max_clock_khz && mode->clock > dpi->conf-
-> > > max_clock_khz)
-> 
-> Why dp_intf has no max_clock_khz?
-> 
-
-I will add max_clock_khz to 600MHz for dpintf
-
-> Regards,
-> CK
-> 
-> >  		return MODE_CLOCK_HIGH;
-> >  
-> >  	return MODE_OK;
-> > @@ -802,6 +849,16 @@ static unsigned int
-> > mt8183_calculate_factor(int
-> > clock)
-> >  		return 2;
-> >  }
-> >  
-> > +static unsigned int mt8195_dpintf_calculate_factor(int clock)
-> > +{
-> > +	if (clock < 70000)
-> > +		return 4;
-> > +	else if (clock < 200000)
-> > +		return 2;
-> > +	else
-> > +		return 1;
-> > +}
-> > +
-> >  static const u32 mt8173_output_fmts[] = {
-> >  	MEDIA_BUS_FMT_RGB888_1X24,
-> >  };
-> > @@ -811,6 +868,12 @@ static const u32 mt8183_output_fmts[] = {
-> >  	MEDIA_BUS_FMT_RGB888_2X12_BE,
-> >  };
-> >  
-> > +static const u32 mt8195_output_fmts[] = {
-> > +	MEDIA_BUS_FMT_RGB888_1X24,
-> > +	MEDIA_BUS_FMT_YUV8_1X24,
-> > +	MEDIA_BUS_FMT_YUYV8_1X16,
-> > +};
-> > +
-> >  static const struct mtk_dpi_yc_limit mtk_dpi_limit = {
-> >  	.c_bottom = 0x0010,
-> >  	.c_top = 0x0FE0,
-> > @@ -818,6 +881,13 @@ static const struct mtk_dpi_yc_limit
-> > mtk_dpi_limit = {
-> >  	.y_top = 0x0FE0,
-> >  };
-> >  
-> > +static const struct mtk_dpi_yc_limit mtk_dpintf_limit = {
-> > +	.c_bottom = 0x0000,
-> > +	.c_top = 0xFFF,
-> > +	.y_bottom = 0x0000,
-> > +	.y_top = 0xFFF,
-> > +};
-> > +
-> >  static const struct mtk_dpi_conf mt8173_conf = {
-> >  	.cal_factor = mt8173_calculate_factor,
-> >  	.reg_h_fre_con = 0xe0,
-> > @@ -883,6 +953,19 @@ static const struct mtk_dpi_conf mt8192_conf =
-> > {
-> >  	.limit = &mtk_dpi_limit,
-> >  };
-> >  
-> > +static const struct mtk_dpi_conf mt8195_dpintf_conf = {
-> > +	.cal_factor = mt8195_dpintf_calculate_factor,
-> > +	.output_fmts = mt8195_output_fmts,
-> > +	.num_output_fmts = ARRAY_SIZE(mt8195_output_fmts),
-> > +	.is_dpintf = true,
-> > +	.dimension_mask = DPINTF_HPW_MASK,
-> > +	.hvsize_mask = DPINTF_HSIZE_MASK,
-> > +	.channel_swap_shift = DPINTF_CH_SWAP,
-> > +	.yuv422_en_bit = DPINTF_YUV422_EN,
-> > +	.csc_enable_bit = DPINTF_CSC_ENABLE,
-> > +	.limit = &mtk_dpintf_limit,
-> > +};
-> > +
-> >  static int mtk_dpi_probe(struct platform_device *pdev)
-> >  {
-> >  	struct device *dev = &pdev->dev;
-> > @@ -935,6 +1018,15 @@ static int mtk_dpi_probe(struct
-> > platform_device
-> > *pdev)
-> >  		return ret;
-> >  	}
-> >  
-> > +	dpi->pll_gate_clk = devm_clk_get_optional(dev, "pll_gate");
-> > +	if (IS_ERR(dpi->pll_gate_clk)) {
-> > +		ret = PTR_ERR(dpi->pll_gate_clk);
-> > +		if (ret != -EPROBE_DEFER)
-> > +			dev_err(dev, "Failed to get dpi ck cg clock:
-> > %d\n", ret);
-> > +
-> > +		return ret;
-> > +	}
-> > +
-> >  	dpi->pixel_clk = devm_clk_get(dev, "pixel");
-> >  	if (IS_ERR(dpi->pixel_clk)) {
-> >  		ret = PTR_ERR(dpi->pixel_clk);
-> > @@ -1005,6 +1097,9 @@ static const struct of_device_id
-> > mtk_dpi_of_ids[] = {
-> >  	{ .compatible = "mediatek,mt8192-dpi",
-> >  	  .data = &mt8192_conf,
-> >  	},
-> > +	{ .compatible = "mediatek,mt8195-dp_intf",
-> > +	  .data = &mt8195_dpintf_conf,
-> > +	},
-> >  	{ },
-> >  };
-> >  MODULE_DEVICE_TABLE(of, mtk_dpi_of_ids);
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-> > b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-> > index 3a02fabe1662..f7f0272dbd6a 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
-> > @@ -40,9 +40,13 @@
-> >  #define FAKE_DE_LEVEN			BIT(21)
-> >  #define FAKE_DE_RODD			BIT(22)
-> >  #define FAKE_DE_REVEN			BIT(23)
-> > +#define DPINTF_YUV422_EN		BIT(24)
-> > +#define DPINTF_CSC_ENABLE		BIT(26)
-> > +#define DPINTF_INPUT_2P_EN		BIT(29)
-> >  
-> >  #define DPI_OUTPUT_SETTING	0x14
-> >  #define CH_SWAP				0
-> > +#define DPINTF_CH_SWAP			1
-> >  #define CH_SWAP_MASK			(0x7 << 0)
-> >  #define SWAP_RGB			0x00
-> >  #define SWAP_GBR			0x01
-> > @@ -80,8 +84,10 @@
-> >  #define DPI_SIZE		0x18
-> >  #define HSIZE				0
-> >  #define HSIZE_MASK			(0x1FFF << 0)
-> > +#define DPINTF_HSIZE_MASK		(0xFFFF << 0)
-> >  #define VSIZE				16
-> >  #define VSIZE_MASK			(0x1FFF << 16)
-> > +#define DPINTF_VSIZE_MASK		(0xFFFF << 16)
-> >  
-> >  #define DPI_DDR_SETTING		0x1C
-> >  #define DDR_EN				BIT(0)
-> > @@ -93,24 +99,30 @@
-> >  #define DPI_TGEN_HWIDTH		0x20
-> >  #define HPW				0
-> >  #define HPW_MASK			(0xFFF << 0)
-> > +#define DPINTF_HPW_MASK			(0xFFFF << 0)
-> >  
-> >  #define DPI_TGEN_HPORCH		0x24
-> >  #define HBP				0
-> >  #define HBP_MASK			(0xFFF << 0)
-> > +#define DPINTF_HBP_MASK			(0xFFFF << 0)
-> >  #define HFP				16
-> >  #define HFP_MASK			(0xFFF << 16)
-> > +#define DPINTF_HFP_MASK			(0xFFFF << 16)
-> >  
-> >  #define DPI_TGEN_VWIDTH		0x28
-> >  #define DPI_TGEN_VPORCH		0x2C
-> >  
-> >  #define VSYNC_WIDTH_SHIFT		0
-> >  #define VSYNC_WIDTH_MASK		(0xFFF << 0)
-> > +#define DPINTF_VSYNC_WIDTH_MASK		(0xFFFF << 0)
-> >  #define VSYNC_HALF_LINE_SHIFT		16
-> >  #define VSYNC_HALF_LINE_MASK		BIT(16)
-> >  #define VSYNC_BACK_PORCH_SHIFT		0
-> >  #define VSYNC_BACK_PORCH_MASK		(0xFFF << 0)
-> > +#define DPINTF_VSYNC_BACK_PORCH_MASK	(0xFFFF << 0)
-> >  #define VSYNC_FRONT_PORCH_SHIFT		16
-> >  #define VSYNC_FRONT_PORCH_MASK		(0xFFF << 16)
-> > +#define DPINTF_VSYNC_FRONT_PORCH_MASK	(0xFFFF << 16)
-> >  
-> >  #define DPI_BG_HCNTL		0x30
-> >  #define BG_RIGHT			(0x1FFF << 0)
-> > @@ -217,4 +229,5 @@
-> >  
-> >  #define EDGE_SEL_EN			BIT(5)
-> >  #define H_FRE_2N			BIT(25)
-> > +
-> >  #endif /* __MTK_DPI_REGS_H */
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> > b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> > index 2aab1e1eda36..5bef085714a1 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> > @@ -427,6 +427,7 @@ static const char * const
-> > mtk_ddp_comp_stem[MTK_DDP_COMP_TYPE_MAX] = {
-> >  	[MTK_DISP_RDMA] = "rdma",
-> >  	[MTK_DISP_UFOE] = "ufoe",
-> >  	[MTK_DISP_WDMA] = "wdma",
-> > +	[MTK_DP_INTF] = "dp-intf",
-> >  	[MTK_DPI] = "dpi",
-> >  	[MTK_DSI] = "dsi",
-> >  };
-> > @@ -450,6 +451,8 @@ static const struct mtk_ddp_comp_match
-> > mtk_ddp_matches[DDP_COMPONENT_DRM_ID_MAX]
-> >  	[DDP_COMPONENT_DRM_OVL_ADAPTOR]	= { MTK_DISP_OVL_ADAPTOR,	
-> > 0, &ddp_ovl_adaptor },
-> >  	[DDP_COMPONENT_DSC0]		= { MTK_DISP_DSC,		
-> > 0, &ddp_dsc },
-> >  	[DDP_COMPONENT_DSC1]		= { MTK_DISP_DSC,		
-> > 1, &ddp_dsc },
-> > +	[DDP_COMPONENT_DP_INTF0]	= { MTK_DP_INTF,		0,
-> > &ddp_dpi },
-> > +	[DDP_COMPONENT_DP_INTF1]	= { MTK_DP_INTF,		1,
-> > &ddp_dpi },
-> >  	[DDP_COMPONENT_DSI0]		= { MTK_DSI,			
-> > 0, &ddp_dsi },
-> >  	[DDP_COMPONENT_DSI1]		= { MTK_DSI,			
-> > 1, &ddp_dsi },
-> >  	[DDP_COMPONENT_DSI2]		= { MTK_DSI,			
-> > 2, &ddp_dsi },
-> > @@ -575,6 +578,7 @@ int mtk_ddp_comp_init(struct device_node *node,
-> > struct mtk_ddp_comp *comp,
-> >  	    type == MTK_DISP_PWM ||
-> >  	    type == MTK_DISP_RDMA ||
-> >  	    type == MTK_DPI ||
-> > +	    type == MTK_DP_INTF ||
-> >  	    type == MTK_DSI)
-> >  		return 0;
-> >  
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-> > b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-> > index af9a6671f9c4..3084cc4e2830 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
-> > @@ -38,6 +38,7 @@ enum mtk_ddp_comp_type {
-> >  	MTK_DISP_UFOE,
-> >  	MTK_DISP_WDMA,
-> >  	MTK_DPI,
-> > +	MTK_DP_INTF,
-> >  	MTK_DSI,
-> >  	MTK_DDP_COMP_TYPE_MAX,
-> >  };
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> > b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> > index 78e79c8449c8..3b885ad61ac3 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> > @@ -788,6 +788,8 @@ static const struct of_device_id
-> > mtk_ddp_comp_dt_ids[] = {
-> >  	  .data = (void *)MTK_DPI },
-> >  	{ .compatible = "mediatek,mt8192-dpi",
-> >  	  .data = (void *)MTK_DPI },
-> > +	{ .compatible = "mediatek,mt8195-dp_intf",
-> > +	  .data = (void *)MTK_DP_INTF },
-> >  	{ .compatible = "mediatek,mt2701-dsi",
-> >  	  .data = (void *)MTK_DSI },
-> >  	{ .compatible = "mediatek,mt8173-dsi",
-> > @@ -931,6 +933,7 @@ static int mtk_drm_probe(struct platform_device
-> > *pdev)
-> >  		    comp_type == MTK_DISP_OVL_2L ||
-> >  		    comp_type == MTK_DISP_OVL_ADAPTOR ||
-> >  		    comp_type == MTK_DISP_RDMA ||
-> > +		    comp_type == MTK_DP_INTF ||
-> >  		    comp_type == MTK_DPI ||
-> >  		    comp_type == MTK_DSI) {
-> >  			dev_info(dev, "Adding component match for
-> > %pOF\n",
+>   https://www.kernel.org/doc/html/v5.18/driver-api/device_link.html#usage
 > 
 > 
+> You could add something like this to dwc3_qcom_of_register_core():
+> 
+> 
+>   device_link_add(dev, &qcom->dwc3->dev,
+>   		  DL_FLAG_AUTOREMOVE_CONSUMER | DL_FLAG_AUTOPROBE_CONSUMER);
+> 
+>   if (qcom->dwc3->dev.links.status != DL_DEV_DRIVER_BOUND)
+>       ret = -EPROBE_DEFER;
+> 
+> 
+I am not very sure how the device_link_add() API works. we are the parent and
+creating a depdency on child probe. That does not sound correct to me. Any
+ways, I have another question.
 
+When dwc3_qcom_of_register_core() returns error back to dwc3_qcom_probe(), we
+goto depopulate label which calls of_platform_depopulate() which destroy the
+child devices that are populated. how does that ensure that child probe is
+completed by the time, our probe is called again. The child device it self is
+gone. Is this working because when our probe is called next time, the child
+probe depenencies are resolved?
+
+Thanks,
+Pavan
