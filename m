@@ -2,64 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 889EC54E614
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 17:30:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A80854E628
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 17:36:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377162AbiFPPa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 11:30:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39374 "EHLO
+        id S233616AbiFPPgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 11:36:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377915AbiFPPaV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 11:30:21 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9292DAAE;
-        Thu, 16 Jun 2022 08:30:20 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id q11so1823520iod.8;
-        Thu, 16 Jun 2022 08:30:20 -0700 (PDT)
+        with ESMTP id S1377809AbiFPPgL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 11:36:11 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81DF02FE5A
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 08:36:10 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id m20so3466910ejj.10
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 08:36:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5dVDuCM8VRK665zH/HV+gDuurZlzqRaw3AF4f+4QEQY=;
+        b=YpSpNH3K+KjKkXCuVKrFBcVrP5SWlYv3RWSSUdRdHJUnj+BZbndMy/7IyaCo4ZQ5rb
+         d5YerNu+HSuaHbXK9sCxIH2I4yswgUI5cbWPgvOV+jsqmpGVVOzFPK8wchjbBtnuyFNC
+         yiHYfw8thWjslkqgb7sZ31mB5KIv7561wqhQw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2sf5mUaKrviwp13TGF8u3f+HZJ1MhfMWStrlSi0a7lE=;
-        b=siJ8kY+phpx603+zObdKU5P9G9boFmUfXNnoEMbtp8KZMvxh4m12KF9TLfdIV7edkS
-         kHfiQhoQIY3zCdFUm2DJ9oAnL6UFnh4TMYnEwWLKnGn4xurVkRP/evVHKGy9h7qHz2P4
-         Pb0smF4uzGIz9u8frTtFl5u8HkEvdSwnzwTK3x7NL59dhDNMG+ZtLZbgrRJyCtBy5l5U
-         pT3xLE5gYM9K48pBbIwMB8O2BXUp/ZeeajqgQeR2YiGpmQN5H+JAFPnA7LM1YsXhcdsa
-         wcuhAx7OYJ4vovcVSTPM4Y3eM+SKzIQfDwt2zHw42xlBdAxZwEsF+hnS7UWz93ezTs/c
-         0fpw==
-X-Gm-Message-State: AJIora+DjjX2FH3tdQptumFVOK39fhcjnpSolse+E6iiX1aJ2ugQR0j0
-        8/N0V+QoQR6iprR4RzIzNQ==
-X-Google-Smtp-Source: AGRyM1vvg+GE8jDNHocB+G2TLYD4tIOMcVSsqFkB8s77NHYxFHcjaOt00sxR+0MRCDR0eoPwFZR11A==
-X-Received: by 2002:a05:6602:13c7:b0:669:dcc5:4687 with SMTP id o7-20020a05660213c700b00669dcc54687mr2782285iov.63.1655393419921;
-        Thu, 16 Jun 2022 08:30:19 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id b8-20020a92a048000000b002cde6e35302sm1102011ilm.76.2022.06.16.08.30.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jun 2022 08:30:19 -0700 (PDT)
-Received: (nullmailer pid 3507680 invoked by uid 1000);
-        Thu, 16 Jun 2022 15:30:17 -0000
-Date:   Thu, 16 Jun 2022 09:30:17 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sebastian Ene <sebastianene@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v6 1/2] dt-bindings: vcpu_stall_detector: Add
- qemu,vcpu-stall-detector compatible
-Message-ID: <20220616153017.GA3503416-robh@kernel.org>
-References: <20220616092737.1713667-1-sebastianene@google.com>
- <20220616092737.1713667-2-sebastianene@google.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5dVDuCM8VRK665zH/HV+gDuurZlzqRaw3AF4f+4QEQY=;
+        b=QKGGjKbmsrgXg6tRLqpFm4tlozD5vEXAUUih3DN0uKhfNrBc+uDqcak0UG+gsG5zl3
+         URGBECB03zuIw+2fuy/FVhWdfhWoAPNvMncv8Ucu/TxxVgWRYE7pNONl49lvn/Rs4mpd
+         QW4Neh7VnvmtSqFrG6NsB8MyqnhL6Y1dtKZi+WjzkHxjSIaL+yubltKvKFiaHpIk8/uZ
+         yDKM5IsQSJEC2L3ESM+0UR1W7nIVuIgP/odfntQPonLOS7aJvViis9JPJPpaIvFU6s0r
+         Kpz3l82enmyCcwj6+iID4MKh8nRtH+I36iLM8mkKTsVQcDWxfUPDNHBupWeERhH96fDt
+         5MSA==
+X-Gm-Message-State: AJIora8tPNxqECbLW4fHE8p1VTHYbLM4jDXoaRVMl0EuSf70lRXeqANT
+        SWXusnWXxzaSDCZEAoAy/zC9PlOTzGNP1I0Ks6s=
+X-Google-Smtp-Source: AGRyM1sZGkYGguHAYWbvyYkAvF2dBHAYIUyadntHkxFTH9colnIxqoETl8sZCUYQnWa2by1Lq0ggig==
+X-Received: by 2002:a17:906:74ca:b0:712:585:751c with SMTP id z10-20020a17090674ca00b007120585751cmr4888247ejl.739.1655393768784;
+        Thu, 16 Jun 2022 08:36:08 -0700 (PDT)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com. [209.85.221.48])
+        by smtp.gmail.com with ESMTPSA id f17-20020a0564021e9100b0042e17781fc5sm2143560edf.49.2022.06.16.08.36.06
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Jun 2022 08:36:07 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id o8so2380920wro.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 08:36:06 -0700 (PDT)
+X-Received: by 2002:a5d:68d2:0:b0:210:31cc:64a6 with SMTP id
+ p18-20020a5d68d2000000b0021031cc64a6mr5183133wrw.679.1655393766098; Thu, 16
+ Jun 2022 08:36:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220616092737.1713667-2-sebastianene@google.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <20220425210643.2420919-1-dianders@chromium.org> <20220425140619.2.Iae013f0ff4599294189f3a6e91376fad137bbabf@changeid>
+In-Reply-To: <20220425140619.2.Iae013f0ff4599294189f3a6e91376fad137bbabf@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 16 Jun 2022 08:35:53 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Wbi=CXhPpOUJj=1PdgB8i6Lf1Sfr=T7wrQsgBx790S_w@mail.gmail.com>
+Message-ID: <CAD=FV=Wbi=CXhPpOUJj=1PdgB8i6Lf1Sfr=T7wrQsgBx790S_w@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: phy: List supplies for qcom,edp-phy
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        linux-phy@lists.infradead.org, Stephen Boyd <swboyd@chromium.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,93 +87,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 16, 2022 at 09:27:38AM +0000, Sebastian Ene wrote:
-> The VCPU stall detection mechanism allows to configure the expiration
-> duration and the internal counter clock frequency measured in Hz.
-> Add these properties in the schema.
-> 
-> While this is a memory mapped virtual device, it is expected to be loaded
-> when the DT contains the compatible: "qemu,vcpu-stall-detector" node.
-> In a protected VM we trust the generated DT nodes and we don't rely on
-> the host to present the hardware peripherals.
-> 
-> Signed-off-by: Sebastian Ene <sebastianene@google.com>
+Hi,
+
+On Mon, Apr 25, 2022 at 2:07 PM Douglas Anderson <dianders@chromium.org> wrote:
+>
+> We're supposed to list the supplies in the dt bindings but there are
+> none in the eDP PHY bindings.
+>
+> Looking at the driver in Linux, I can see that there seem to be two
+> relevant supplies: "vdda-phy" and "vdda-pll". Let's add those to the
+> bindings.
+>
+> NOTE: from looking at the Qualcomm datasheet for sc7280, it's not
+> immediately clear how to figure out how to fill in these supplies. The
+> only two eDP related supplies are simply described as "power for eDP
+> 0.9V circuits" and "power for eDP 1.2V circuits". From guessing and
+> from comparing how a similar PHY is hooked up on other similar
+> Qualcomm boards, I'll make the educated guess that the 1.2V supply
+> goes to "vdda-phy" and the 0.9V supply goes to "vdda-pll" and I'll use
+> that in the example here.
+>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->  .../bindings/misc/vcpu_stall_detector.yaml    | 49 +++++++++++++++++++
+>
+>  Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-qemu,vcpu-stall-detector.yaml
+Even though patch #1 in this series should be dropped, this patch
+(patch #2) is still valid. Vinod: I assume this would land in your
+tree along with the first two patches in Kuogee's series [1], which
+are related. Please let me know if you need me to re-send or anything.
+Thanks!
 
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/vcpu_stall_detector.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/misc/vcpu_stall_detector.yaml b/Documentation/devicetree/bindings/misc/vcpu_stall_detector.yaml
-> new file mode 100644
-> index 000000000000..55323676194b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/vcpu_stall_detector.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/vcpu_stall_detector.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: VCPU stall detector
-> +
-> +description: |
+[1] https://lore.kernel.org/r/1653507433-22585-1-git-send-email-quic_khsieh@quicinc.com/
 
-Don't need '|' if no formatting.
-
-> +  This binding describes a CPU stall detector mechanism for virtual cpus
-
-s/cpus/CPUs/
-
-> +  which is accessed through MMIO.
-> +
-> +maintainers:
-> +  - Sebastian Ene <sebastianene@google.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qemu,vcpu-stall-detector
-> +
-> +  clock-frequency:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      The internal clock of the stall detector peripheral measure in Hz used
-> +      to decrement its internal counter register on each tick.
-> +      Defaults to 10 if unset.
-
-       default: 10
-
-> +
-> +  timeout-sec:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      The stall detector expiration timeout measured in seconds.
-> +      Defaults to 8 if unset. Please note that it also takes into account the
-> +      time spent while the VCPU is not running.
-
-       default: 8
-
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    vmwdt@9030000 {
-> +      compatible = "qemu,vcpu-stall-detector";
-> +      clock-frequency = <10>;
-> +      timeout-sec = <8>;
-> +      reg = <0x0 0x9030000 0x0 0x10000>;
-> +    };
-> +
-> +...
-> -- 
-> 2.36.1.476.g0c4daa206d-goog
-> 
-> 
+-Doug
