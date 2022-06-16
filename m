@@ -2,80 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 986C454E0A9
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 14:19:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8686754E0C8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 14:30:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230399AbiFPMTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 08:19:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33498 "EHLO
+        id S229702AbiFPMaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 08:30:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbiFPMTQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 08:19:16 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2A2DA49929;
-        Thu, 16 Jun 2022 05:19:15 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1144011FB;
-        Thu, 16 Jun 2022 05:19:15 -0700 (PDT)
-Received: from [10.57.82.209] (unknown [10.57.82.209])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 20B063F73B;
-        Thu, 16 Jun 2022 05:19:14 -0700 (PDT)
-Message-ID: <582e4c0b-5cd3-7fac-cba7-7250a458a60d@arm.com>
-Date:   Thu, 16 Jun 2022 13:19:08 +0100
+        with ESMTP id S1376864AbiFPMaJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 08:30:09 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFF894D68E;
+        Thu, 16 Jun 2022 05:30:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4A5F9B823A6;
+        Thu, 16 Jun 2022 12:30:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC804C34114;
+        Thu, 16 Jun 2022 12:30:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655382604;
+        bh=7Znl3b92aroi5ubP2QPuFHtUeB1lmREHe3yTZnLMKio=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KMYhbB4MGHuQC7Z7rXOsc2FXhm6jOgJDQRBz44Z8dcYeoscvlfWLHXSfXfOu68EQu
+         BoSKD2hDsNQOQK6jicDyREOSlXJrg6n8CXz79Vc7dXdOtFAU2eRbyR5GbKzsyHxzNi
+         t/Zlz3LGMch7uZaMNxdmHjingGmKLyS9M2YxTemFZBuK4E1zwzbxxiYUWHjcf4liR6
+         3A2ifUFhYkleDyAuQaW685HxWajaIcJ1Vaie+QK/2f68+TECqshItMI7aXiwRlgZTd
+         gl8Sm2UnRnBdg2Q3S5rUd0xAEC37GnKbcZdZRiFXXiRPepFplJ/duGh0Argx9ybpb5
+         L3VcbWVU3R6rQ==
+Date:   Thu, 16 Jun 2022 14:29:57 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Quan Nguyen <quan@os.amperecomputing.com>
+Cc:     Corey Minyard <minyard@acm.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+Subject: Re: [PATCH v7 3/3] i2c: aspeed: Assert NAK when slave is busy
+Message-ID: <YqsiRW78NAL9rX9S@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Quan Nguyen <quan@os.amperecomputing.com>,
+        Corey Minyard <minyard@acm.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20220422040803.2524940-1-quan@os.amperecomputing.com>
+ <20220422040803.2524940-4-quan@os.amperecomputing.com>
+ <Yn+9QBoPdH8fMm/m@shikoro>
+ <fc422a06-c035-f6e5-231b-74ea6afe8467@os.amperecomputing.com>
+ <YqpB8A2uBi+4epHM@shikoro>
+ <bf001ece-e981-3a06-53fe-6a8b637d69fe@os.amperecomputing.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] arm64: dts: ti: k3-j721s2: fix overlapping GICD memory
- region
-Content-Language: en-GB
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Matt Ranostay <mranostay@ti.com>, Nishanth Menon <nm@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220616105112.289719-1-mranostay@ti.com>
- <9b005c7d-e434-c215-288d-3926f483b07a@arm.com> <87y1xw3iy9.wl-maz@kernel.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <87y1xw3iy9.wl-maz@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="XXmZpPF7iOB6E+2/"
+Content-Disposition: inline
+In-Reply-To: <bf001ece-e981-3a06-53fe-6a8b637d69fe@os.amperecomputing.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-06-16 13:13, Marc Zyngier wrote:
-> On Thu, 16 Jun 2022 13:07:23 +0100,
-> Robin Murphy <robin.murphy@arm.com> wrote:
->>
->> On 2022-06-16 11:51, Matt Ranostay wrote:
->>> GICD region was overlapping with GICR causing the latter to not map
->>> successfully, and in turn the gic-v3 driver would fail to initialize.
->>>
->>> This issue was hidden till commit 2b2cd74a06c3 ("irqchip/gic-v3: Claim iomem resources")
->>> replaced of_iomap() calls with of_io_request_and_map() that internally
->>> called request_mem_region().
->>>
->>> Respective console output before this patchset:
->>>
->>> [    0.000000] GICv3: /bus@100000/interrupt-controller@1800000: couldn't map region 0
->>
->> Oh, it's nice that this finds bugs, but it seems I hadn't fully
->> considered that making the simple easy change in the DT paths results
->> in different behaviour from ACPI.
->>
->> Marc, would you like a fix for this to remain non-fatal even in the
->> face of a dodgy DT, or are you happy with being a bit stricter now?
-> 
-> I'd rather we work around it. I shout at people for breaking existing
-> DTs, so this should apply to the GIC as well. A nice WARN_ON_ONCE()
-> should do, if you don't mind writing the patch.
 
-Indeed, I think that would be my default preference as well - apologies 
-for the oversight! I'll spin the patch shortly (and make the warning 
-consistent for the ACPI side too).
+--XXmZpPF7iOB6E+2/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Cheers,
-Robin.
+Hi Quan,
+
+> On the first occurrence of I2C_SLAVE_WRITE_REQUESTED, the address is alre=
+ady
+> received with ACK. So if slave return -EBUSY, the NAK will occur on the n=
+ext
+> Rx byte (on I2C_SLAVE_WRITE_RECEIVED event).
+
+This is exactly why I2C_SLAVE_WRITE_RECEIVED allows for an error code.
+=46rom the docs:
+
+=3D=3D=3D
+
+* I2C_SLAVE_WRITE_RECEIVED (mandatory)
+
+  'val': bus driver delivers received byte
+
+  'ret': 0 if the byte should be acked, some errno if the byte should be na=
+cked
+
+Another I2C master has sent a byte to us which needs to be set in 'val'. If=
+ 'ret'
+is zero, the bus driver should ack this byte. If 'ret' is an errno, then th=
+e byte
+should be nacked.
+
+=3D=3D=3D
+
+'ret' is used to ACK/NACK the current byte in 'val'. That's exactly what
+you need, or? Does the aspeed driver not support acking the current
+byte?
+
+
+--XXmZpPF7iOB6E+2/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKrIkEACgkQFA3kzBSg
+KbasSRAAnlwPKEfQRtRslfq95yxrYXbK6A2BATY1x3Thu50cFfbarxu+e7KMBRtt
+GXFMJrp6wZaXio1xyqtc34OmNOFnZXpPUN6jClpYG04GMaJ4kZCC9F2gNmiTEE0y
+RrL7ujffpI6IP4TGFP8SRuxHCJiNRN8KdGdGepah5J6r+y3AnMoaOFwmD9ha/ItQ
+nhVcPtEPTF/JKbP0st9jr4EIvjLGEi3f+HWuzUwio/MaC/OFRjmzgw9Zwbu0qY1X
+YoqHBh9SmbNwPcI/Enp54kjyWScxnWhtY3SEOY7bsdguBLGL4MWlsYGQOIeDxlen
+Io/4k5V4Iw5S7oBAcN7YLin2knRiTgyY/IHGlA4G+UbDhH7VbCRVgJ+EE9HsaEHy
+iBN/o3YtN6QmmM1DLYrZY3S4JlLFARhNNdCb6Im4+HGMWAP+3t0vBOJEYBH+/0or
+v1Xv3/bzlHkniG0EtOKfVWLCmSLpFA97p2T98KPBFx5K3NTV42+G9hao529crYtD
+JtLUDJYXKYxs5CdmX4tvpQzBET+GB/NbyzMiFOUJzkydVuOBOpMMRN80GTdbJTOc
+9legjiqnXk797FKiB5zhApNH6UQ8HSmsja5Mr+Jhyi5lr52zZCj0bUJD+rP5Nz2c
+SlNDdUkpNr6Pxkklt/bLg8R0L/Y75gQ2PWPWjOJSaK6JM3tdArg=
+=B2+q
+-----END PGP SIGNATURE-----
+
+--XXmZpPF7iOB6E+2/--
