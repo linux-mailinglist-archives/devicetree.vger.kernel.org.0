@@ -2,56 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E283254E560
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 16:51:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 858DA54E564
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 16:53:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232898AbiFPOvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 10:51:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59214 "EHLO
+        id S241568AbiFPOxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 10:53:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377036AbiFPOvx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 10:51:53 -0400
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08BF943EFB
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 07:51:52 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id u2so1091515iln.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 07:51:51 -0700 (PDT)
+        with ESMTP id S233993AbiFPOxj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 10:53:39 -0400
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C825220BF0;
+        Thu, 16 Jun 2022 07:53:36 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id p69so1759394iod.0;
+        Thu, 16 Jun 2022 07:53:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=PR2+j0XKc7kxq9qUw/LZ08UDsXjVm34iPJ7eBAlPrKs=;
-        b=O1XCbbHU1ck0V1xipMMuG+6f0NT8T/fRQL2/e12nkKhCm2GCtdtkXJ+voFmTnKGSoV
-         sltBQdiS4ec2kDON0n2MLSW+dzFC7mXtWK8jj9nI4IkIvXXVlTuHPifWEzF6SSSOZlpx
-         92YUerB6AuLJRqthziyhvf5HR2gLG3eq1v7pWIgkjSOjMo/eJZbKzaQZdML080SBnF83
-         KiE0fUvFUsJVO87ipFpmPBrs7T82dM6JgrGZt/qej0B9nD3IwLaCVu+djZSH0dherP5K
-         +T2awMx5AyZzDBasDPHQsgz3Csq02/y4Dm8oFoKKn8pD3bN8GTKgNRNU2fJ7NPbeCdO0
-         BNfg==
-X-Gm-Message-State: AJIora9WY9c5yj9xxt3iYGXuPU5WDaAbXtOjV+u+gYZMrNEkXRkpjNr0
-        wcmtDFRj7Rpt3p1Qu9SifQ==
-X-Google-Smtp-Source: AGRyM1uK68+yUUZNrbnY/BvPr0lHr19GdrOEhSpiLbVtDFniEjDcAo8F6LcmQL0hF/lsqkxi+1c3AQ==
-X-Received: by 2002:a05:6e02:1583:b0:2d7:a75d:888f with SMTP id m3-20020a056e02158300b002d7a75d888fmr3194366ilu.13.1655391111210;
-        Thu, 16 Jun 2022 07:51:51 -0700 (PDT)
+        bh=noJzuG2EgYsSXIT61u1YIsPaCEjRt5ye3SQVTsSN4U8=;
+        b=CIZ8a77SDwweUBOGNgII2b8y5/WfszC4zHsGvXE+zftomD+nN0gq1qFR2HzWFRYN5K
+         hpEhbGBopNmx3GlEh+glZLRXJhwIx2SwESaYp/7c+H2+x3MzsIKty7bImMbRMF0YGCVU
+         1z2PqX5O9AXmPnmNjgtHV+aWq+wFLluDGmmhi1+Jz3ENEavDVQ0CtNTzm0FJHR4i4kmd
+         atBUlGU2CMspcvvacCVvdsGjTNV8klc5bzSEOKuZPXH65L3o11x3SvSYMjXpebTbL4fH
+         0CIFIjl4J8623xiCo87jPzcp2eMQvYi42rfVp3Iotoy4uj0kVgKAcnFkkVXFnFJdJUfM
+         TyYg==
+X-Gm-Message-State: AJIora+9uXk2JQmNy0lexMmXsK1v/xndKTvgaXHL0rYRA5gKZ9I8QfbP
+        OlBqmRynoRuRZ6sPt8yzckIoCfYc7g==
+X-Google-Smtp-Source: AGRyM1u4nGZS+8jkLQspL8OqMilFtD1URp8KZikaKmVKIUBkw4uX4MYV01kHev1qyBWkrdJm6b53vw==
+X-Received: by 2002:a05:6602:2f0d:b0:669:e058:9a18 with SMTP id q13-20020a0566022f0d00b00669e0589a18mr2721297iow.26.1655391216014;
+        Thu, 16 Jun 2022 07:53:36 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id d141-20020a6bb493000000b00669d92868dasm1249925iof.11.2022.06.16.07.51.50
+        by smtp.gmail.com with ESMTPSA id y8-20020a056e020f4800b002d658a34081sm1052037ilj.86.2022.06.16.07.53.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jun 2022 07:51:50 -0700 (PDT)
-Received: (nullmailer pid 3456627 invoked by uid 1000);
-        Thu, 16 Jun 2022 14:51:49 -0000
-Date:   Thu, 16 Jun 2022 08:51:49 -0600
+        Thu, 16 Jun 2022 07:53:35 -0700 (PDT)
+Received: (nullmailer pid 3459426 invoked by uid 1000);
+        Thu, 16 Jun 2022 14:53:34 -0000
+Date:   Thu, 16 Jun 2022 08:53:34 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     shawnguo@kernel.org, marcel.ziswiler@toradex.com,
-        francesco.dolcini@toradex.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] dt-bindings: arm: fsl: Decrease the line length
-Message-ID: <20220616145149.GA3451750-robh@kernel.org>
-References: <20220614173206.2885817-1-festevam@gmail.com>
+To:     Wolfram Sang <wsa@kernel.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-i2c@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: hwmon: move ibm,p8-occ bindings to proper
+ folder
+Message-ID: <20220616145334.GA3458950-robh@kernel.org>
+References: <20220615211619.6742-1-wsa@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220614173206.2885817-1-festevam@gmail.com>
+In-Reply-To: <20220615211619.6742-1-wsa@kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -63,52 +66,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 14, 2022 at 02:32:06PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On Wed, 15 Jun 2022 23:16:19 +0200, Wolfram Sang wrote:
+> It accidently ended up in i2c, but it should be in the hwmon folder.
 > 
-> Decrease the line length of the toradex,colibri-imx6ull-emmc boards
-> to fix the following build warning:
-> 
-> ./Documentation/devicetree/bindings/arm/fsl.yaml:684:111: [warning]
-> line too long (111 > 110 characters) (line-length)
-
-110 is not really the goal, but 80 with some 100 exceptions. Same as 
-kernel. It's set to 110 because there were more than I cared to fixed.
-
-> 
-> Fixes: bb0fa1533715 ("dt-bindings: arm: fsl: correct 1g vs. 1gb in toradex,colibri-imx6ull-*")
-> Reported-by: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Wolfram Sang <wsa@kernel.org>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
+>  .../devicetree/bindings/{i2c => hwmon}/ibm,p8-occ-hwmon.txt       | 0
+>  1 file changed, 0 insertions(+), 0 deletions(-)
+>  rename Documentation/devicetree/bindings/{i2c => hwmon}/ibm,p8-occ-hwmon.txt (100%)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 7e5cd4fe5809..1d757af4d05c 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -680,11 +680,11 @@ properties:
->        - description: i.MX6ULL Boards with Toradex Colibri iMX6ULL 1GB (eMMC) Module
->          items:
->            - enum:
-> -              - toradex,colibri-imx6ull-emmc-aster     # Colibri iMX6ULL 1GB (eMMC) on Aster Carrier Board
-> -              - toradex,colibri-imx6ull-emmc-eval      # Colibri iMX6ULL 1GB (eMMC) on Colibri Evaluation B. V3
-> -              - toradex,colibri-imx6ull-emmc-iris      # Colibri iMX6ULL 1GB (eMMC) on Iris Carrier Board
-> -              - toradex,colibri-imx6ull-emmc-iris-v2   # Colibri iMX6ULL 1GB (eMMC) on Iris V2 Carrier Board
-> -          - const: toradex,colibri-imx6ull-emmc        # Colibri iMX6ULL 1GB (eMMC) Module
-> +              - toradex,colibri-imx6ull-emmc-aster    # Colibri iMX6ULL 1GB (eMMC) on Aster Carrier Board
-> +              - toradex,colibri-imx6ull-emmc-eval     # Colibri iMX6ULL 1GB (eMMC) on Colibri Evaluation B. V3
-> +              - toradex,colibri-imx6ull-emmc-iris     # Colibri iMX6ULL 1GB (eMMC) on Iris Carrier Board
-> +              - toradex,colibri-imx6ull-emmc-iris-v2  # Colibri iMX6ULL 1GB (eMMC) on Iris V2 Carrier Board
-> +          - const: toradex,colibri-imx6ull-emmc       # Colibri iMX6ULL 1GB (eMMC) Module
 
-The description already says 'Colibri iMX6ULL 1GB (eMMC)'. Why repeat 
-that everywhere?
-
->            - const: fsl,imx6ull
->  
->        - description: i.MX6ULL Boards with Toradex Colibri iMX6ULL Wi-Fi / BT Modules
-> -- 
-> 2.25.1
-> 
-> 
+Applied, thanks!
