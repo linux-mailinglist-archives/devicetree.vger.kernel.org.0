@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E94F54E5F7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 17:25:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 889EC54E614
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 17:30:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376382AbiFPPZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 11:25:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33698 "EHLO
+        id S1377162AbiFPPa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 11:30:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376858AbiFPPZQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 11:25:16 -0400
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A0036179;
-        Thu, 16 Jun 2022 08:25:15 -0700 (PDT)
-Received: by mail-il1-f171.google.com with SMTP id s1so1175084ilj.0;
-        Thu, 16 Jun 2022 08:25:15 -0700 (PDT)
+        with ESMTP id S1377915AbiFPPaV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 11:30:21 -0400
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9292DAAE;
+        Thu, 16 Jun 2022 08:30:20 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id q11so1823520iod.8;
+        Thu, 16 Jun 2022 08:30:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=y1YrCLGCWgqcE9VSgcEP/DpmziXDe/63yV+d7p5oWSI=;
-        b=OfDVgf2mVx1RnrIFHlKyVwmZKQ0pNGntCxe75/r0nGR3lukfNGeqJRxIVx82DX/rJO
-         PgbUjV3nOV6935bI5Kd9wBtNHt7uL81efd71PXQQTJyYgbVX0ZnmWO2tkD3dSEFZYU3T
-         UjA87boKIBgnHEYvld2Smenu2+6i0j27NzHkDXOCXItyAbauAN/KD0tR9xthIhCISqUB
-         vMSqMmeqY5ZsYuSj11gQd3B49ITKucM8MlHwthE21RQRU/gOH1QGgqk1K+q7JADbEA9G
-         M5+5nluXgmaDz2PYli41DUDXZ6xWRU+HGl82i9lSQI0n29vUUdd1isGPefIU7gyDrLJg
-         OkzQ==
-X-Gm-Message-State: AJIora94x0N3H6grVmbeziZUR7PcLKhhNNy9u5VBOC3fZSRCvFJSM5uO
-        VqbaZEe1WXJIP/C8V4bhFQ==
-X-Google-Smtp-Source: AGRyM1uHshZPKfDOFM0JkV7l1XiWpFbQYKRVOip7hYFIDYiZPdJ+6MQyWW98n+bTLuelOCUKeiTKKw==
-X-Received: by 2002:a92:d786:0:b0:2d5:3707:e446 with SMTP id d6-20020a92d786000000b002d53707e446mr3011076iln.244.1655393114712;
-        Thu, 16 Jun 2022 08:25:14 -0700 (PDT)
+        bh=2sf5mUaKrviwp13TGF8u3f+HZJ1MhfMWStrlSi0a7lE=;
+        b=siJ8kY+phpx603+zObdKU5P9G9boFmUfXNnoEMbtp8KZMvxh4m12KF9TLfdIV7edkS
+         kHfiQhoQIY3zCdFUm2DJ9oAnL6UFnh4TMYnEwWLKnGn4xurVkRP/evVHKGy9h7qHz2P4
+         Pb0smF4uzGIz9u8frTtFl5u8HkEvdSwnzwTK3x7NL59dhDNMG+ZtLZbgrRJyCtBy5l5U
+         pT3xLE5gYM9K48pBbIwMB8O2BXUp/ZeeajqgQeR2YiGpmQN5H+JAFPnA7LM1YsXhcdsa
+         wcuhAx7OYJ4vovcVSTPM4Y3eM+SKzIQfDwt2zHw42xlBdAxZwEsF+hnS7UWz93ezTs/c
+         0fpw==
+X-Gm-Message-State: AJIora+DjjX2FH3tdQptumFVOK39fhcjnpSolse+E6iiX1aJ2ugQR0j0
+        8/N0V+QoQR6iprR4RzIzNQ==
+X-Google-Smtp-Source: AGRyM1vvg+GE8jDNHocB+G2TLYD4tIOMcVSsqFkB8s77NHYxFHcjaOt00sxR+0MRCDR0eoPwFZR11A==
+X-Received: by 2002:a05:6602:13c7:b0:669:dcc5:4687 with SMTP id o7-20020a05660213c700b00669dcc54687mr2782285iov.63.1655393419921;
+        Thu, 16 Jun 2022 08:30:19 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id d19-20020a056e020bf300b002d18e3dcb67sm1099580ilu.46.2022.06.16.08.25.13
+        by smtp.gmail.com with ESMTPSA id b8-20020a92a048000000b002cde6e35302sm1102011ilm.76.2022.06.16.08.30.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jun 2022 08:25:14 -0700 (PDT)
-Received: (nullmailer pid 3501441 invoked by uid 1000);
-        Thu, 16 Jun 2022 15:25:12 -0000
-Date:   Thu, 16 Jun 2022 09:25:12 -0600
+        Thu, 16 Jun 2022 08:30:19 -0700 (PDT)
+Received: (nullmailer pid 3507680 invoked by uid 1000);
+        Thu, 16 Jun 2022 15:30:17 -0000
+Date:   Thu, 16 Jun 2022 09:30:17 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Palmer <daniel@0x0f.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: pwm: Add Mstar MSC313e PWM devicetree
- bindings documentation
-Message-ID: <20220616152512.GA3499420-robh@kernel.org>
-References: <20220615070813.7720-1-romain.perier@gmail.com>
- <20220615070813.7720-2-romain.perier@gmail.com>
+To:     Sebastian Ene <sebastianene@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v6 1/2] dt-bindings: vcpu_stall_detector: Add
+ qemu,vcpu-stall-detector compatible
+Message-ID: <20220616153017.GA3503416-robh@kernel.org>
+References: <20220616092737.1713667-1-sebastianene@google.com>
+ <20220616092737.1713667-2-sebastianene@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220615070813.7720-2-romain.perier@gmail.com>
+In-Reply-To: <20220616092737.1713667-2-sebastianene@google.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,73 +67,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 15, 2022 at 09:08:09AM +0200, Romain Perier wrote:
-> This adds the documentation for the devicetree bindings of the Mstar
-> MSC313e RTC driver, it includes MSC313e SoCs and SSD20xd.
+On Thu, Jun 16, 2022 at 09:27:38AM +0000, Sebastian Ene wrote:
+> The VCPU stall detection mechanism allows to configure the expiration
+> duration and the internal counter clock frequency measured in Hz.
+> Add these properties in the schema.
 > 
-> Signed-off-by: Romain Perier <romain.perier@gmail.com>
+> While this is a memory mapped virtual device, it is expected to be loaded
+> when the DT contains the compatible: "qemu,vcpu-stall-detector" node.
+> In a protected VM we trust the generated DT nodes and we don't rely on
+> the host to present the hardware peripherals.
+> 
+> Signed-off-by: Sebastian Ene <sebastianene@google.com>
 > ---
->  .../bindings/pwm/mstar,msc313e-pwm.yaml       | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/mstar,msc313e-pwm.yaml
+>  .../bindings/misc/vcpu_stall_detector.yaml    | 49 +++++++++++++++++++
+
+qemu,vcpu-stall-detector.yaml
+
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/vcpu_stall_detector.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/mstar,msc313e-pwm.yaml b/Documentation/devicetree/bindings/pwm/mstar,msc313e-pwm.yaml
+> diff --git a/Documentation/devicetree/bindings/misc/vcpu_stall_detector.yaml b/Documentation/devicetree/bindings/misc/vcpu_stall_detector.yaml
 > new file mode 100644
-> index 000000000000..82f2357db085
+> index 000000000000..55323676194b
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/mstar,msc313e-pwm.yaml
-> @@ -0,0 +1,47 @@
+> +++ b/Documentation/devicetree/bindings/misc/vcpu_stall_detector.yaml
+> @@ -0,0 +1,49 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/pwm/mstar,msc313e-pwm.yaml#
+> +$id: http://devicetree.org/schemas/misc/vcpu_stall_detector.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Mstar MSC313e PWM controller
+> +title: VCPU stall detector
 > +
-> +allOf:
-> +  - $ref: "pwm.yaml#"
+> +description: |
+
+Don't need '|' if no formatting.
+
+> +  This binding describes a CPU stall detector mechanism for virtual cpus
+
+s/cpus/CPUs/
+
+> +  which is accessed through MMIO.
 > +
 > +maintainers:
-> +  - Daniel Palmer <daniel@0x0f.com>
-> +  - Romain Perier <romain.perier@gmail.com>
+> +  - Sebastian Ene <sebastianene@google.com>
 > +
 > +properties:
 > +  compatible:
-> +    oneOf:
+> +    enum:
+> +      - qemu,vcpu-stall-detector
+> +
+> +  clock-frequency:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      The internal clock of the stall detector peripheral measure in Hz used
+> +      to decrement its internal counter register on each tick.
+> +      Defaults to 10 if unset.
 
-Don't need oneOf with only 1 entry.
+       default: 10
 
-> +      - items:
-> +        - enum:
-> +          - mstar,msc313e-pwm
-> +          - mstar,ssd20xd-pwm
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 2
+> +  timeout-sec:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      The stall detector expiration timeout measured in seconds.
+> +      Defaults to 8 if unset. Please note that it also takes into account the
+> +      time spent while the VCPU is not running.
+
+       default: 8
+
 > +
 > +required:
 > +  - compatible
-> +  - reg
-> +  - clocks
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    pwm: pwm@3400 {
-> +      compatible = "mstar,msc313e-pwm";
-> +      reg = <0x3400 0x400>;
-> +      #pwm-cells = <2>;
-> +      clocks = <&xtal_div2>;
+> +    vmwdt@9030000 {
+> +      compatible = "qemu,vcpu-stall-detector";
+> +      clock-frequency = <10>;
+> +      timeout-sec = <8>;
+> +      reg = <0x0 0x9030000 0x0 0x10000>;
 > +    };
+> +
+> +...
 > -- 
-> 2.35.1
+> 2.36.1.476.g0c4daa206d-goog
 > 
 > 
