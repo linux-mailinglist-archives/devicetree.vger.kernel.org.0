@@ -2,220 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DFFC54E941
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 20:24:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1820854E962
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 20:31:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235967AbiFPSYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 14:24:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54188 "EHLO
+        id S233414AbiFPSbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 14:31:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232468AbiFPSYN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 14:24:13 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22E844B1EF
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 11:24:12 -0700 (PDT)
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F35B5DBF;
-        Thu, 16 Jun 2022 20:24:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1655403850;
-        bh=6zhorOMHMcApn1JCVBnoz1jaHDN+7f/JdyrBu4DYqwk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=IzrHQr2Lo8z1eo+AiH6zpLqtkmmhD6axP+JKJBG4rZSBao/9VY+BGhtCm7I9gxQMq
-         XSsRv0HAhybzNJWxpVcGwgyhIqGvxffwn5nAlxsDXyBo7jbZdA8iuabWntN5KcyrYZ
-         He+8T9QGwsWrEAFD8a3q+VE4HwuuXYPA4nzORhq8=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     libcamera-devel@lists.libcamera.org
-Cc:     Sakari Ailus <sakari.ailus@iki.fi>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH 6/7] dt-bindings: media: Add i.MX8 ISI DT bindings
-Date:   Thu, 16 Jun 2022 21:23:49 +0300
-Message-Id: <20220616182350.17352-7-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220616182350.17352-1-laurent.pinchart@ideasonboard.com>
-References: <20220616182350.17352-1-laurent.pinchart@ideasonboard.com>
+        with ESMTP id S230021AbiFPSbO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 14:31:14 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EEA452B08;
+        Thu, 16 Jun 2022 11:31:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id BEF14CE26D1;
+        Thu, 16 Jun 2022 18:31:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4A60C34114;
+        Thu, 16 Jun 2022 18:31:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655404270;
+        bh=XQsdJm3k+6wDxXzjrjj+NnC+pOIZEuifFDCXmluDnxE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=aHJbRHYlC2yiScqm1hmKzjftQzUvUhSk3jqGP/wAPOn/d6cj5uHr/RXh5Y+T3siP0
+         IMeYGA4ciOKkMxQjjDKBHiWRNVPrsToh9W5c1taLWRaJLT4zOHi05prwUSktSRtYU3
+         1iU/+vDBIL9mVOeLNnOO9rHzyvB00PcxhjhzwTluwx3itxq1tfwkRO2arQdWrHF6+I
+         JcajpHL9y5P/ggs5wxZxuOG2mTh1DgW22jHFfVbBoq7g5gymxO9AtlKB+z1zgJTJIO
+         pqx6cCQYBcqzCyhHisws64+Et3Pop4k9ontkf1FRq40mjLqJQR85x5sx7OWZznJ87N
+         ffJ8QFKsxZQYA==
+Date:   Thu, 16 Jun 2022 13:31:08 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
+Cc:     linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com,
+        bhelgaas@google.com, michals@xilinx.com, robh@kernel.org
+Subject: Re: [PATCH v5 0/2] Add support for Xilinx Versal CPM5 Root Port
+Message-ID: <20220616183108.GA1101056@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220616124429.12917-1-bharat.kumar.gogada@xilinx.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Image Sensing Interface (ISI) combines image processing pipelines
-with DMA engines to process and capture frames originating from a
-variety of sources. The inputs to the ISI go through Pixel Link
-interfaces, and their number and nature is SoC-dependent. They cover
-both capture interfaces (MIPI CSI-2 RX, HDMI RX) and memory inputs.
+On Thu, Jun 16, 2022 at 06:14:27PM +0530, Bharat Kumar Gogada wrote:
+> Xilinx Versal Premium series has CPM5 block which supports Root Port
+> functioning at Gen5 speed.
+> 
+> Xilinx Versal CPM5 has few changes with existing CPM block.
+> - CPM5 has dedicated register space for control and status registers.
+> - CPM5 legacy interrupt handling needs additonal register bit
+>   to enable and handle legacy interrupts.
+> 
+> Changes in v5:
+> - Added of_device_get_match_data to identify CPM version.
+> 
+> 
+> Bharat Kumar Gogada (2):
+>   dt-bindings: PCI: xilinx-cpm: Add Versal CPM5 Root Port
+>   PCI: xilinx-cpm: Add support for Versal CPM5 Root Port
+> 
+>  .../bindings/pci/xilinx-versal-cpm.yaml       | 48 ++++++++++++--
+>  drivers/pci/controller/pcie-xilinx-cpm.c      | 62 ++++++++++++++++++-
+>  2 files changed, 103 insertions(+), 7 deletions(-)
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- .../bindings/media/nxp,imx8-isi.yaml          | 146 ++++++++++++++++++
- 1 file changed, 146 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+Weren't you going to include a MAINTAINERS update here?
 
-diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-new file mode 100644
-index 000000000000..6812c66fa49d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-@@ -0,0 +1,146 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/nxp,imx8-isi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: i.MX8 Image Sensing Interface
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+
-+description: |
-+  The Image Sensing Interface (ISI) combines image processing pipelines with
-+  DMA engines to process and capture frames originating from a variety of
-+  sources. The inputs to the ISI go through Pixel Link interfaces, and their
-+  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
-+  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,imx8mn-isi
-+      - fsl,imx8mp-isi
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: The AXI clock
-+      - description: The APB clock
-+      # TODO: Check if the per-channel ipg_proc_clk clocks need to be specified
-+      # as well, in case some SoCs have the ability to control them separately.
-+      # This may be the case of the i.MX8[DQ]X(P)
-+
-+  clock-names:
-+    items:
-+      - const: axi
-+      - const: apb
-+
-+  fsl,blk-ctrl:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      A phandle referencing the block control that contains the CSIS to ISI
-+      gasket.
-+
-+  power-domains: true
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    description: |
-+      Ports represent the Pixel Link inputs to the ISI. Their number and
-+      assignment are model-dependent. Each port shall have a single endpoint.
-+
-+    patternProperties:
-+      "^port@[0-9]$":
-+        $ref: /schemas/graph.yaml#/properties/port
-+        unevaluatedProperties: false
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - fsl,blk-ctrl
-+  - ports
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: nxp,imx8mn-isi
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+        ports:
-+          properties:
-+            port@0:
-+              description: MIPI CSI-2 RX
-+          required:
-+            - port@0
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: nxp,imx8mp-isi
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 2
-+        ports:
-+          properties:
-+            port@0:
-+              description: MIPI CSI-2 RX 0
-+            port@1:
-+              description: MIPI CSI-2 RX 1
-+          required:
-+            - port@0
-+            - port@1
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/imx8mp-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    isi@32e00000 {
-+        compatible = "fsl,imx8mp-isi";
-+        reg = <0x32e00000 0x4000>;
-+        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-+                 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-+        clock-names = "axi", "apb";
-+        fsl,blk-ctrl = <&media_blk_ctrl>;
-+        power-domains = <&mediamix_pd>;
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+                isi_in_0: endpoint {
-+                    remote-endpoint = <&mipi_csi_0_out>;
-+                };
-+            };
-+
-+            port@1 {
-+                reg = <1>;
-+                isi_in_1: endpoint {
-+                    remote-endpoint = <&mipi_csi_1_out>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
--- 
-Regards,
+https://lore.kernel.org/r/BY5PR02MB6947C5B34801AD5F289127ABA5A69@BY5PR02MB6947.namprd02.prod.outlook.com
 
-Laurent Pinchart
+Maybe I missed it?
 
+Thanks,
+  Bjorn
