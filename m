@@ -2,64 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5396C54E8CF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 19:48:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC78754E8D2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 19:48:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233796AbiFPRsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 13:48:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53276 "EHLO
+        id S235443AbiFPRsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 13:48:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233749AbiFPRs3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 13:48:29 -0400
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80FD54C419;
-        Thu, 16 Jun 2022 10:48:28 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id r5so2222342iod.5;
-        Thu, 16 Jun 2022 10:48:28 -0700 (PDT)
+        with ESMTP id S229592AbiFPRst (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 13:48:49 -0400
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 786C94CD57;
+        Thu, 16 Jun 2022 10:48:48 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id h8so2206937iof.11;
+        Thu, 16 Jun 2022 10:48:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8PRZvVfxrwvO+Gtg+me/nbumG0ROGVptfpPPQu8bk/g=;
-        b=dMpQe/5Ov6vsTU9FcfCd/bSnE3i1XWveGUu8MOzi3gPHu1/xjvG0CoQjI70/pvsHmZ
-         QbXutu+yfXyMUfPmdt84uDCFGvEMXN66HG80WH+aBZfMR6waSch3ToWU0UIYAN64t6tb
-         gELAFIYvSEHd4kEYRQYvw6b2qBdhoY1RYfc+LzH8ILLGmvmGqnnf+emhpzPTqT+949CP
-         sZTZsIvx/WksaOZkuLmTTwrPkC6GWDmH4KERLjTaFwY6nQHswFdj4AibGDfwlA8xlTtS
-         HtR0qoGxsAYwCJaYQbEJCRhvGNJU3ZY7G0oD5q8YEjg7chuCXEOFPangjtTPMi5MXZo2
-         nkXg==
-X-Gm-Message-State: AJIora+4H52yT6BpZ5Bc6t6q/IWi2ABQ20PqRcl7lrw+X+0ptXJNMGBs
-        lZYrsSpwM9defA8RJMF7GQ==
-X-Google-Smtp-Source: AGRyM1uStzsNCcUCj1nK3GKFUp81TU3fcKgTNQUHLYhagMD1LobI/qIqbi5gYRYzXNdJb3ar1mUyPQ==
-X-Received: by 2002:a05:6602:2d44:b0:669:ef11:523a with SMTP id d4-20020a0566022d4400b00669ef11523amr3141947iow.44.1655401707803;
-        Thu, 16 Jun 2022 10:48:27 -0700 (PDT)
+        bh=ZGfyDUZ51H0L6jBKN7/RqQt3gQLeatTRqTVJbJgQXuo=;
+        b=fPB7qQclNDL2yLkXUdrzX7tI/Sw20IXOzjP6l0HmC9XgEKtkZ8F0MYw4fmdXzqqGJv
+         wlYlYKox0lU1RNbQp5CzmlGoyZ2TKJ4o5N2os518Qy1iI9CfbGLs+Ve4Gbey/Imv4w1/
+         gheTG8zHMwK02el5wwzFE8+RcO2TabAUUNJMbPqpBsaQ4mUoQQ1mcyr6BfVZZBdIpsng
+         PzbfXmZ+pMnkDDsUeGQuSQ/xBddlD4Ur6WATQ4xy09NXqGifVTfI8gYdlkkXZQD0Zc48
+         XueAfVd1jSxtLOszHAiEX5OHy/4j9G39LzPfmevEd+rwFNzVrMuY1lHr6EjhudCIo57j
+         CQWA==
+X-Gm-Message-State: AJIora/AWLtdc+odEP4ZEATdDw8/LEgpw3eUPITOijPdtOuQ7EZBwU9t
+        3MTguMbLvgB42ubg7+S4/mhG12EdJQ==
+X-Google-Smtp-Source: AGRyM1t6iiuL0t37j5/IcYANnN3gbXj+i/OLVTy/7BPlBK+Kg0aP8+ztPZZ+4fMRaR4G2sN2CLgwsg==
+X-Received: by 2002:a05:6638:3f16:b0:331:6f62:f903 with SMTP id ck22-20020a0566383f1600b003316f62f903mr3399109jab.123.1655401727727;
+        Thu, 16 Jun 2022 10:48:47 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id y1-20020a927d01000000b002d3aff5d8b0sm1250089ilc.14.2022.06.16.10.48.26
+        by smtp.gmail.com with ESMTPSA id a3-20020a924443000000b002d3b759dc7fsm1228571ilm.77.2022.06.16.10.48.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jun 2022 10:48:27 -0700 (PDT)
-Received: (nullmailer pid 3710861 invoked by uid 1000);
-        Thu, 16 Jun 2022 17:48:25 -0000
-Date:   Thu, 16 Jun 2022 11:48:25 -0600
+        Thu, 16 Jun 2022 10:48:47 -0700 (PDT)
+Received: (nullmailer pid 3711502 invoked by uid 1000);
+        Thu, 16 Jun 2022 17:48:46 -0000
+Date:   Thu, 16 Jun 2022 11:48:46 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     Joerg Roedel <joro@8bytes.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        iommu@lists.linux-foundation.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+To:     Doug Brown <doug@schmorgal.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>, phone-devel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: qcom-iommu: Add Qualcomm MSM8953
- compatible
-Message-ID: <20220616174825.GA3710771-robh@kernel.org>
-References: <20220612092218.424809-1-luca@z3ntu.xyz>
- <20220612092218.424809-2-luca@z3ntu.xyz>
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 03/12] dt-bindings: marvell,pxa168: add clock ids for
+ additional dividers
+Message-ID: <20220616174846.GA3711396-robh@kernel.org>
+References: <20220612192937.162952-1-doug@schmorgal.com>
+ <20220612192937.162952-4-doug@schmorgal.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220612092218.424809-2-luca@z3ntu.xyz>
+In-Reply-To: <20220612192937.162952-4-doug@schmorgal.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -71,16 +66,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 12 Jun 2022 11:22:13 +0200, Luca Weiss wrote:
-> Document the compatible used for IOMMU on the msm8953 SoC.
+On Sun, 12 Jun 2022 12:29:28 -0700, Doug Brown wrote:
+> This adds a few new clocks divided from PLL1 and CLK32 that are
+> potentially used by a few peripherals with muxed clocks.
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Signed-off-by: Doug Brown <doug@schmorgal.com>
 > ---
-> Changes from v1:
-> - new patch
-> 
->  Documentation/devicetree/bindings/iommu/qcom,iommu.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  include/dt-bindings/clock/marvell,pxa168.h | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
