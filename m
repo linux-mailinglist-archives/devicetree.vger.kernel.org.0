@@ -2,71 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B2654EC89
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 23:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B717054ECB0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 23:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379136AbiFPV2U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 17:28:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47346 "EHLO
+        id S1378308AbiFPVfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 17:35:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379114AbiFPV2S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 17:28:18 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C84BC21820;
-        Thu, 16 Jun 2022 14:28:16 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id a15so1774160ilq.12;
-        Thu, 16 Jun 2022 14:28:16 -0700 (PDT)
+        with ESMTP id S230194AbiFPVfY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 17:35:24 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B257D612B4
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 14:35:23 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id cn20so3869955edb.6
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 14:35:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IdQSsPTy/npiMN+kP7xM6M91iZgNJ1HG4vru+cyqafM=;
+        b=JQV/B7XStu3Sn3CJI55miuA669SXUNDQC9J9evHDVgAaTlt6xwr62WBWUsDF5vh5wG
+         kiATBr6kUO9xH7HFSrXW5o3UAdyXIabtD5tW5Asc0gh4Xcjx6fVjQIWgjfnrkeF9OfKv
+         Gk5j0dB4EGFCKF69pnZt4uK0jfrrVVaVbo7uc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=p2fPALb1JPQ4AHcfCxgMf5Jxk8npv4hWtBM7JpKyakw=;
-        b=xXBw8olggW/EFG3gxIajH9Cyw3KXzKU2WDukiTr4xdXjOVT3nI1brjXLefTc1cUg3m
-         BXiMqQKDlCHk7Q3KvIdd9y27NkLm9Ch8AEGjcN0PBzKvBC06bFiail1SXoZhOft0g+I2
-         uALKqYXn3YOnCx4RH7jXA9zLBh6SlowvIOmkqKYhpyasBYUpBPDOCptQpQ6Mi8ospTIm
-         AvghNzUSga4Y9gyLc2Hlns6XR8bJsDccPxZ9qS3fpSi2jBt8VlrqP4Pmv/e2N/bNsjfM
-         IwOVp1GakJYPBAtqhkF8qfIUd4rtD+Map7cOjLFbegNQHYpCMmUQQ8+4WsoEsoslbIA5
-         /KpQ==
-X-Gm-Message-State: AJIora8OvREZqWa+VJ51BAvoXn72DOblqvetfILd55EPI5znZeZMAp4j
-        RjC4vMIw6vh24TqsMYtuMw==
-X-Google-Smtp-Source: AGRyM1vXz8zr1qepnCDtLqZTRG9xKb9gNBJydHo8HDS0dVqWruV80818zrXGU2iTTEoR7y/TLi/J4w==
-X-Received: by 2002:a05:6e02:1bc8:b0:2d4:342:9c68 with SMTP id x8-20020a056e021bc800b002d403429c68mr4075981ilv.254.1655414896016;
-        Thu, 16 Jun 2022 14:28:16 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id j8-20020a02a688000000b003314f874ac8sm1357939jam.36.2022.06.16.14.28.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jun 2022 14:28:15 -0700 (PDT)
-Received: (nullmailer pid 4024739 invoked by uid 1000);
-        Thu, 16 Jun 2022 21:28:13 -0000
-Date:   Thu, 16 Jun 2022 15:28:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
-Cc:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de, daniel@ffwll.ch,
-        krzysztof.kozlowski+dt@linaro.org, mripard@kernel.org,
-        tzimmermann@suse.de, matthias.bgg@gmail.com, deller@gmx.de,
-        airlied@linux.ie, msp@baylibre.com, granquet@baylibre.com,
-        jitao.shi@mediatek.com, wenst@chromium.org,
-        angelogioacchino.delregno@collabora.com, ck.hu@mediatek.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-fbdev@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v11 01/10] dt-bindings: mediatek,dp: Add Display Port
- binding
-Message-ID: <20220616212813.GA3991754-robh@kernel.org>
-References: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
- <20220610105522.13449-2-rex-bc.chen@mediatek.com>
- <20220614202336.GA2400714-robh@kernel.org>
- <aeebb6879d62865f8baf037e541c568eb9310f23.camel@mediatek.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IdQSsPTy/npiMN+kP7xM6M91iZgNJ1HG4vru+cyqafM=;
+        b=S0HYHxgJ2Xl7YENF3V5tAZNdOZ641Ik/dhZLs9yp5mPPxnL0weQhHDxKgKCTYCxZny
+         YD5us5Qvg3PCMkQPAdaSWZIxWTwbAKQUeDGZ9iOy8TKa+E8jQC64ZnYOegPEb2OfRRil
+         TT6cikHC754dnAOQ0SIYHzd7KfPXANo0YzJGd/OIzIgubVB2Y6cd0UaVDMCPn7Tqjkqo
+         zzGAkgwPGAzhmDwd/tUzUPD0gRt+FJDI69FpIJoqORajvPNC3zV6Nz4gN3QXuuj3KQmU
+         7fy1azp6G4P/RSCTo9VHxWtxibOJOwJaW3X6ZcZROAaN21qm+NPJqqhaCbkVff+yf/O2
+         cgcg==
+X-Gm-Message-State: AJIora9gzTxb6faAL8kStuMq1NZaMcVrzKKGIfddAdi709hM6ja6LX2W
+        KMTsQG0Tp7Kfe6ZYy4N4r6BCmqGwPjYvEuLHF8Q=
+X-Google-Smtp-Source: AGRyM1vtfO48032w0Fyor9Zv5R0GOG8IWncZJ2yR0O2MckoORodARJD/RImk35C5yOkWW0BcvapPzA==
+X-Received: by 2002:a05:6402:190b:b0:431:3231:fce6 with SMTP id e11-20020a056402190b00b004313231fce6mr8900429edz.127.1655415322063;
+        Thu, 16 Jun 2022 14:35:22 -0700 (PDT)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com. [209.85.128.46])
+        by smtp.gmail.com with ESMTPSA id a23-20020a1709063a5700b0070efa110afcsm1230709ejf.83.2022.06.16.14.35.21
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Jun 2022 14:35:21 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id x6-20020a1c7c06000000b003972dfca96cso1482751wmc.4
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 14:35:21 -0700 (PDT)
+X-Received: by 2002:a05:600c:202:b0:39c:40de:ec19 with SMTP id
+ 2-20020a05600c020200b0039c40deec19mr17409779wmi.29.1655414930918; Thu, 16 Jun
+ 2022 14:28:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aeebb6879d62865f8baf037e541c568eb9310f23.camel@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <20220609192000.990763-1-mka@chromium.org> <20220609121838.v22.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <CAD=FV=W6erE8ByabmYSL_OWJPKYGqysDMGYQX6j7_PSEYGZ4YQ@mail.gmail.com>
+ <YqpprpUHmlD62YzI@google.com> <CAD=FV=VNDamV4+j07TrnX3cUs2-D5ySbeQ-zfU=Eef8+WagGig@mail.gmail.com>
+ <Yqub17iT4O7aqFMi@google.com>
+In-Reply-To: <Yqub17iT4O7aqFMi@google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 16 Jun 2022 14:28:38 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VEztPLhsrJecZUdyHCW7ZfFTVvxyqY5CqRVv2mWyrLog@mail.gmail.com>
+Message-ID: <CAD=FV=VEztPLhsrJecZUdyHCW7ZfFTVvxyqY5CqRVv2mWyrLog@mail.gmail.com>
+Subject: Re: [PATCH v22 2/3] usb: misc: Add onboard_usb_hub driver
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Bastien Nocera <hadess@hadess.net>,
+        Peter Chen <peter.chen@kernel.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,122 +91,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 16, 2022 at 09:22:16PM +0800, Rex-BC Chen wrote:
-> On Tue, 2022-06-14 at 14:23 -0600, Rob Herring wrote:
-> > On Fri, Jun 10, 2022 at 06:55:13PM +0800, Bo-Chen Chen wrote:
-> > > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > 
-> > > This controller is present on several mediatek hardware. Currently
-> > > mt8195 and mt8395 have this controller without a functional
-> > > difference,
-> > > so only one compatible field is added.
-> > > 
-> > > The controller can have two forms, as a normal display port and as
-> > > an
-> > > embedded display port.
-> > > 
-> > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > > [Bo-Chen: Fix reviewers' comment]
-> > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > > ---
-> > >  .../display/mediatek/mediatek,dp.yaml         | 101
-> > > ++++++++++++++++++
-> > >  1 file changed, 101 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-> > > 
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.ya
-> > > ml
-> > > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.ya
-> > > ml
-> > > new file mode 100644
-> > > index 000000000000..10f50a0dcf49
-> > > --- /dev/null
-> > > +++
-> > > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.ya
-> > > ml
-> > > @@ -0,0 +1,101 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: 
-> > > https://urldefense.com/v3/__http://devicetree.org/schemas/display/mediatek/mediatek,dp.yaml*__;Iw!!CTRNKA9wMg0ARbw!yqAl1KhfbHqHN7-5aeqhzqeOVhPU_Z5beko5q-y-s5pcfp1WL5oVGvY5UF4EfWm4PWjc5mjBwyBUMsr_RI45ipbhsw$
-> > >  
-> > > +$schema: 
-> > > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!yqAl1KhfbHqHN7-5aeqhzqeOVhPU_Z5beko5q-y-s5pcfp1WL5oVGvY5UF4EfWm4PWjc5mjBwyBUMsr_RI5WzYKENQ$
-> > >  
-> > > +
-> > > +title: MediaTek Display Port Controller
-> > > +
-> > > +maintainers:
-> > > +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> > > +  - Jitao shi <jitao.shi@mediatek.com>
-> > > +
-> > > +description: |
-> > > +  Device tree bindings for the MediaTek display port and
-> > > +  embedded display port controller present on some MediaTek SoCs.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - mediatek,mt8195-dp-tx
-> > > +      - mediatek,mt8195-edp-tx
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  nvmem-cells:
-> > > +    maxItems: 1
-> > > +    description: efuse data for display port calibration
-> > > +
-> > > +  nvmem-cell-names:
-> > > +    const: dp_calibration_data
-> > > +
-> > > +  power-domains:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +    properties:
-> > > +      port@0:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: Input endpoint of the controller, usually
-> > > dp_intf
-> > > +
-> > > +      port@1:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: Output endpoint of the controller
-> > > +
-> > > +    required:
-> > > +      - port@0
-> > > +      - port@1
-> > > +
-> > > +  max-lanes:
-> > > +    maxItems: 1
-> > > +    description: maximum number of lanes supported by the
-> > > hardware.
-> > 
-> > We already have a 'data-lanes' property defined in 
-> > 'video-interfaces.yaml' that can serve this purpose.
-> > 
-> 
-> Hello Rob,
-> 
-> Thanks for review.
-> From the description of video-interfaces.yaml, I think it's not quite
-> match what we need. We only need this value be one of "1,2,4".
+Hi,
 
-data-lanes = <0>;
-data-lanes = <0 1>;
-data-lanes = <0 1 2 3>;
+On Thu, Jun 16, 2022 at 2:08 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> On Thu, Jun 16, 2022 at 01:12:32PM -0700, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Wed, Jun 15, 2022 at 4:22 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+> > >
+> > > > > +void onboard_hub_create_pdevs(struct usb_device *parent_hub, struct list_head *pdev_list)
+> > > > > +{
+> > > > > +       int i;
+> > > > > +       struct usb_hcd *hcd = bus_to_hcd(parent_hub->bus);
+> > > > > +       struct device_node *np, *npc;
+> > > > > +       struct platform_device *pdev = NULL;
+> > > > > +       struct pdev_list_entry *pdle;
+> > > > > +
+> > > > > +       if (!parent_hub->dev.of_node)
+> > > > > +               return;
+> > > > > +
+> > > > > +       for (i = 1; i <= parent_hub->maxchild; i++) {
+> > > > > +               np = usb_of_get_device_node(parent_hub, i);
+> > > > > +               if (!np)
+> > > > > +                       continue;
+> > > > > +
+> > > > > +               if (!of_is_onboard_usb_hub(np))
+> > > > > +                       goto node_put;
+> > > > > +
+> > > > > +               npc = of_parse_phandle(np, "companion-hub", 0);
+> > > > > +               if (npc) {
+> > > > > +                       /*
+> > > > > +                        * Hubs with companions share the same platform device.
+> > > > > +                        * Create the plaform device only for the hub that is
+> > > > > +                        * connected to the primary HCD (directly or through
+> > > > > +                        * other hubs).
+> > > > > +                        */
+> > > > > +                       if (!usb_hcd_is_primary_hcd(hcd)) {
+> > > > > +                               of_node_put(npc);
+> > > > > +                               goto node_put;
+> > > > > +                       }
+> > > > > +
+> > > > > +                       pdev = of_find_device_by_node(npc);
+> > > > > +                       of_node_put(npc);
+> > > > > +               } else {
+> > > > > +                       /*
+> > > > > +                        * For root hubs this function can be called multiple times
+> > > > > +                        * for the same root hub node (the HCD node). Make sure only
+> > > > > +                        * one platform device is created for this hub.
+> > > > > +                        */
+> > > > > +                       if (!parent_hub->parent && !usb_hcd_is_primary_hcd(hcd))
+> > > > > +                               goto node_put;
+> > > >
+> > > > I don't understand the "else" case above. What case exactly are we
+> > > > handling again? This is when:
+> > > > * the hub is presumably just a 2.0 hub since there is no companion.
+> > > > * our parent is the root hub and the USB 2.0 hub we're looking at is
+> > > > not the primary
+> > >
+> > > The 'else' case can be entered for hubs connected to a root hub or to another
+> > > hub further down in the tree, but we bail out only for first level hubs.
+> > >
+> > > > ...but that doesn't make a lot of sense to me? I must have missed something...
+> > >
+> > > It's not super-obvious, this bit is important: "this function can be called
+> > > multiple times for the same root hub node". For any first level hub we only
+> > > create a pdev if this function is called on behalf of the primary HCD. That
+> > > is also true of a hub connected to the secondary HCD. We only want to create
+> > > one pdev and there is supposedly always a primary HCD.
+> > >
+> > > Maybe it would be slightly clearer if the function returned before the loop
+> > > if this condition is met.
+> >
+> > I guess I'm still pretty confused. You say "For root hubs this
+> > function can be called multiple times for the same root hub node".
+> > Does that mean that the function will be called multiple times with
+> > the same "parent_hub", or something else.
+>
+> It is called with a different "parent_hub", however for root hubs the
+> DT node is the same for both root hubs (it's the DT node of the
+> controller since there are no dedicated nodes for the root hubs).
+>
+> Just to make sure this isn't the source of the confusion: the root hubs
+> are part of the USB controller, not 'external' hubs which are directly
+> connected to the controller. I call the latter 'first level hubs'.
+>
+> > Unless it's called with the same "parent_hub" then it seems like if
+> > the USB device has a device tree node and that device tree node is for
+> > a onboard_usb_hub and there's no companion node then we _always_ want
+> > to create the platform device, don't we? If it is called with the same
+> > "parent_hub" then I'm confused how your test does something different
+> > the first time the function is called vs. the 2nd.
+>
+> Let's use an adapted trogdor DT with only a USB 2.x hub as an example:
+>
+> usb_1_dwc3 {
+>          dr_mode = "host";
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>
+>          /* 2.x hub on port 1 */
+>          usb_hub_2_x: hub@1 {
+>                  compatible = "usbbda,5411";
+>                  reg = <1>;
+>                  vdd-supply = <&pp3300_hub>;
+>          };
+> };
+>
+> 1st call: the 'parent_hub' corresponds to the USB 3.x root hub of
+> usb_1_dwc3, the DT node of the hub is 'usb_1_dwc3'. The function
+> iterates over the ports, finds usb_hub_2_x, enters the else branch
+> (no companion hub), checks that the function was called on behalf
+> of the primary controller and creates the pdev.
+>
+> 2nd call: the 'parent_hub' corresponds to the USB 2.x root hub of
+> usb_1_dwc3, the DT node of the hub is also 'usb_1_dwc3'. The function
+> iterates over the ports, finds usb_hub_2_x, enters the else branch
+> (no companion hub), sees that it is not called on behalf of the
+> primary controller and does not create a second (unnecessary) pdev.
+>
+> Is it clearer now?
 
-Limiting the number of lanes to something less than the max is exactly 
-how this property is used in addition to being able to show the mapping 
-of lanes.
+Ah, I get it now! Sorry for being so dense... So like this:
 
-Rob
+Root hubs (those hubs with no parent) are all created with the same
+device_node, the one for the controller itself. We don't want to
+iterate through the same children multiple times, so we bail right
+away if we're detect that `parent_hub` is a root hub and we're not on
+the primary HCD. For all other cases the primary and secondary
+controllers have distinct device_nodes.
+
+I guess in theory that test could go before the "companion-hub" test,
+though I don't see any case where it truly matters...
+
+-Doug
