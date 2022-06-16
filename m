@@ -2,220 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7800854E97B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 20:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3281054E990
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 20:39:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351929AbiFPShZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 14:37:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37394 "EHLO
+        id S1377987AbiFPSjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 14:39:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347806AbiFPShY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 14:37:24 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29D0D53E2F;
-        Thu, 16 Jun 2022 11:37:23 -0700 (PDT)
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D09F3BC0;
-        Thu, 16 Jun 2022 20:37:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1655404636;
-        bh=6zhorOMHMcApn1JCVBnoz1jaHDN+7f/JdyrBu4DYqwk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NO8oPlRMQNSNGRdWmSlx5vb1Dawh9CRALtrGySRAQTJSdcrQaXMwGsc7Ffx3eu7ex
-         JT4ctUJrQ66xftEOGK9afBp90RMIfuXHig7WBcUa9wscR6JwOAi9eMG/lGId2ZMF7O
-         kbjxc7/zp+YlJZfDtlIt91Bi0Oxe+L7UVo+Sxz8Y=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     linux-media@vger.kernel.org
-Cc:     Sakari Ailus <sakari.ailus@iki.fi>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH 6/7] dt-bindings: media: Add i.MX8 ISI DT bindings
-Date:   Thu, 16 Jun 2022 21:36:55 +0300
-Message-Id: <20220616183656.19089-7-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220616183656.19089-1-laurent.pinchart@ideasonboard.com>
-References: <20220616183656.19089-1-laurent.pinchart@ideasonboard.com>
+        with ESMTP id S1378008AbiFPSj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 14:39:28 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE47754194;
+        Thu, 16 Jun 2022 11:39:24 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id hj18so3757055ejb.0;
+        Thu, 16 Jun 2022 11:39:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hTMAYNOtiXLbIpfBfX/ZjoF2j1Xgqm6lvqAWKAijSCw=;
+        b=nyIQTTIZFGabt6h84OUe/BFnlLSq7adaVeP4z1n5ObblUDxDNNljfgsiz3VCvV9ZkC
+         U7xuxJiYskOlhs1ud2X1DPGZvY0xjIFn0sVTd0BZq35jlitXDUvG6OIh7QdQxEUbgMl/
+         yF/djqpmpb4Y2V61qa4hNsSem8fawETTnv347nn+Xsl6BJEDc1HROOx7Zy0VgWMHlvPT
+         6MpuGT7JqBe8jYSmhMsdkF8QOAqzUVq4WuLg6Zd5thSLGxOZfw0eOlXaAt6tw/RCB0NT
+         aVuJY2k1FZN5T0U5k1LuvX8Vn3vXZLMKWU8pKp5GZ3Mie1f1VSRCyeRSRvnZMTM/NbRC
+         koMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hTMAYNOtiXLbIpfBfX/ZjoF2j1Xgqm6lvqAWKAijSCw=;
+        b=UIDO3QUz9J1zukEaiBMJD+2wOskT4cOaxEhnbaIRN+g3aY3almRligZ+kQ4tj+Hgsf
+         CUqZV64nTy/qaSvlp4jGFCgNuIaW+l1K7+Jvd76ErC/16RHfugSe7PPKBTIRFiaW1UrI
+         +VSvm/Y4qRmHwCYeD6FE1pFCxT9SNCNxiMhSR0LHkRsI+GwhkM18y2hoGfA0T6eYUdh9
+         FkXaSVgxmtnvwAdXJoKmlLKTNYd+q9CT6UBOlu3wbbzg54smDglCRUzjOiej3i/yqnmj
+         FhOlcXzUWbTCeGa31AFg2MtQXaQDQcKC3LzrsojZXZSgDyxb8p65zPOYQX3+cIRX5iAh
+         neoA==
+X-Gm-Message-State: AJIora/T2j8qxKU9XywDDx7lw4E6WT0RF4TV5R18QpMigysBmjbYSkEQ
+        kTlnr5IGt3pftLVY5kBq2DGmEZOC1ASx1U0pwk8=
+X-Google-Smtp-Source: AGRyM1tVRlc/Efjknp2j0mwetaeHSRuuZt3+3lupYLxOIvdx4bOnZ8iDWPyj+gzzwfQlpMTvdeDuFyByDBNdSk7oxOI=
+X-Received: by 2002:a17:906:434f:b0:711:eb76:c320 with SMTP id
+ z15-20020a170906434f00b00711eb76c320mr5744542ejm.636.1655404763382; Thu, 16
+ Jun 2022 11:39:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220616104211.9257-1-ddrokosov@sberdevices.ru>
+ <20220616104211.9257-3-ddrokosov@sberdevices.ru> <CAHp75Vc0+ckNnm2tzLMPrjeFRjwoj3zy0C4koNShFRG3kP8b6w@mail.gmail.com>
+ <20220616170218.dihjli46spimozeg@CAB-WSD-L081021.sigma.sbrf.ru>
+In-Reply-To: <20220616170218.dihjli46spimozeg@CAB-WSD-L081021.sigma.sbrf.ru>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 16 Jun 2022 20:38:46 +0200
+Message-ID: <CAHp75VdEY9z_0=sAkKOico9JKYPOX6yqnoetiW49oFHm+SeUoQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] iio: add MEMSensing MSA311 3-axis accelerometer driver
+To:     Dmitry Rokosov <DDRokosov@sberdevices.ru>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "stephan@gerhold.net" <stephan@gerhold.net>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Image Sensing Interface (ISI) combines image processing pipelines
-with DMA engines to process and capture frames originating from a
-variety of sources. The inputs to the ISI go through Pixel Link
-interfaces, and their number and nature is SoC-dependent. They cover
-both capture interfaces (MIPI CSI-2 RX, HDMI RX) and memory inputs.
+On Thu, Jun 16, 2022 at 7:02 PM Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
+> On Thu, Jun 16, 2022 at 02:18:52PM +0200, Andy Shevchenko wrote:
+> > On Thu, Jun 16, 2022 at 12:42 PM Dmitry Rokosov
+> > <DDRokosov@sberdevices.ru> wrote:
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- .../bindings/media/nxp,imx8-isi.yaml          | 146 ++++++++++++++++++
- 1 file changed, 146 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+...
 
-diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-new file mode 100644
-index 000000000000..6812c66fa49d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
-@@ -0,0 +1,146 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/nxp,imx8-isi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: i.MX8 Image Sensing Interface
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+
-+description: |
-+  The Image Sensing Interface (ISI) combines image processing pipelines with
-+  DMA engines to process and capture frames originating from a variety of
-+  sources. The inputs to the ISI go through Pixel Link interfaces, and their
-+  number and nature is SoC-dependent. They cover both capture interfaces (MIPI
-+  CSI-2 RX, HDMI RX, ...) and display engine outputs for writeback support.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,imx8mn-isi
-+      - fsl,imx8mp-isi
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: The AXI clock
-+      - description: The APB clock
-+      # TODO: Check if the per-channel ipg_proc_clk clocks need to be specified
-+      # as well, in case some SoCs have the ability to control them separately.
-+      # This may be the case of the i.MX8[DQ]X(P)
-+
-+  clock-names:
-+    items:
-+      - const: axi
-+      - const: apb
-+
-+  fsl,blk-ctrl:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      A phandle referencing the block control that contains the CSIS to ISI
-+      gasket.
-+
-+  power-domains: true
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    description: |
-+      Ports represent the Pixel Link inputs to the ISI. Their number and
-+      assignment are model-dependent. Each port shall have a single endpoint.
-+
-+    patternProperties:
-+      "^port@[0-9]$":
-+        $ref: /schemas/graph.yaml#/properties/port
-+        unevaluatedProperties: false
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - fsl,blk-ctrl
-+  - ports
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: nxp,imx8mn-isi
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+        ports:
-+          properties:
-+            port@0:
-+              description: MIPI CSI-2 RX
-+          required:
-+            - port@0
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: nxp,imx8mp-isi
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 2
-+        ports:
-+          properties:
-+            port@0:
-+              description: MIPI CSI-2 RX 0
-+            port@1:
-+              description: MIPI CSI-2 RX 1
-+          required:
-+            - port@0
-+            - port@1
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/imx8mp-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    isi@32e00000 {
-+        compatible = "fsl,imx8mp-isi";
-+        reg = <0x32e00000 0x4000>;
-+        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-+                 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-+        clock-names = "axi", "apb";
-+        fsl,blk-ctrl = <&media_blk_ctrl>;
-+        power-domains = <&mediamix_pd>;
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+                isi_in_0: endpoint {
-+                    remote-endpoint = <&mipi_csi_0_out>;
-+                };
-+            };
-+
-+            port@1 {
-+                reg = <1>;
-+                isi_in_1: endpoint {
-+                    remote-endpoint = <&mipi_csi_1_out>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
+> > Not sure why you put those blank lines herey, it makes code not compact.
+>
+> Here I use blank lines to split fields from different registers.
+> In other words, in the msa311_fields enum one line contains fields from one
+> register. But for some heavy registers (like TAP_ACTIVE_STS) we have so many
+> fields and their declaration doesn't fit to 80 symbols.
+> So I've made a decision to split registers using blank lines.
+
+Better is to add a comment explaining what register is described
+below, and not just a blank line.
+
+...
+
+> > Not sure you need this. Dropping i2c dependency from this structure
+> > allows much easier to add, e.g. SPI support of the same hardware.
+>
+> Mainly I use i2c pointer in the probe() path, and you are right, we can
+> change i2c pointer to dev and generalize msa311_priv struct from bus
+> perspective.
+
+Yep, note that you may easily retrieve i2c_client from struct device
+pointer if you need to do that in some (I believe rare to none) cases.
+
+...
+
+> > > +       struct regmap *regs;
+> >
+> > I believe this is used most, so making this a first member in the
+> > structure saves  some instructions (check with bloat-o-meter).
+> >
+>
+> Are you talking about archs where offset calculation adds more bytes to
+> instruction? And when offset equals to 0, we can save some space.
+
+It doesn't have anything to do with arches, simply compiler
+optimization, otherwise yes, that's what I meant.
+
+...
+
+> > > +       wait_ms = (USEC_PER_SEC * MSEC_PER_SEC) / freq_uhz;
+> >
+> > This looks very odd from a physics perspective: sec * sec * sec == sec ?!
+> >
+> > Perhaps you meant some HZ* macros from units.h?
+> >
+>
+> I suppose because of UHZ calculation I have to use NANO instead of
+> USEC_PER_SEC in the following line:
+>
+>         freq_uhz = msa311_odr_table[odr].val * USEC_PER_SEC +
+>                    msa311_odr_table[odr].val2;
+>
+> But below line is right from physics perspective. 1sec = 1/Hz, so
+> msec = (USEC_PER_SEC / freq_uhz) * MSEC_PER_SEC:
+>
+>         wait_ms = (USEC_PER_SEC * MSEC_PER_SEC) / freq_uhz;
+>
+> Or do you mean that I should change MSEC_PER_SEC to just MILLI?
+
+1 / Hz = 1 sec. That's how physics defines it. Try to figure out what
+you meant by above multiplications / divisions and come up with the
+best that fits your purposes.
+
+...
+
+> > > +                       if (err) {
+> > > +                               dev_err(dev, "cannot update freq (%d)\n", err);
+> > > +                               goto failed;
+> > > +                       }
+> >
+> > Why is this inside the loop and more important under lock? Also you
+> > may cover the initial error code by this message when moving it out of
+> > the loop and lock.
+> >
+> > Ditto for other code snippets in other function(s) where applicable.
+>
+> Yes, I can move dev_err() outside of loop. But all ODR search loop
+> should be under lock fully, because other msa311 operations should not
+> be executed when we search proper ODR place.
+
+I didn't suggest getting rid of the lock.
+
+...
+
+> > > +       mutex_lock(&msa311->lock);
+> > > +       err = regmap_field_write(msa311->fields[F_NEW_DATA_INT_EN], state);
+> > > +       mutex_unlock(&msa311->lock);
+> >
+> > > +
+> >
+> > No need.
+>
+> Sorry, I don't understand. We do not need to call it under lock, right?
+> I think we have to wrap it by msa311 lock, because other msa311
+> operations should not be executed when we enable or disable new data
+> interrupt (for example ODR value changing or something else).
+
+The blank line is not needed, I specifically commented on the
+emphasized paragraph (by delimiting it with blank lines and leaving
+the rest for the better context for you to understand, it seems it did
+the opposite...).
+
+...
+
+> > > +       mutex_lock(&msa311->lock);
+> > > +       err = msa311_set_pwr_mode(msa311, MSA311_PWR_MODE_NORMAL);
+> > > +       mutex_unlock(&msa311->lock);
+> >
+> > > +
+> >
+> > No need.
+>
+> Again I don't understand why, sorry. We do not want to get sporadic
+> MSA311 attributes changing during power mode transition from another
+> userspace process.
+
+As per above.
+
 -- 
-Regards,
-
-Laurent Pinchart
-
+With Best Regards,
+Andy Shevchenko
