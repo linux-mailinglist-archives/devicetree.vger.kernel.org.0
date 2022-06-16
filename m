@@ -2,72 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FEA954E2AC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 15:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25FC054E2EA
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 16:06:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377396AbiFPN5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 09:57:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34736 "EHLO
+        id S1377542AbiFPOGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 10:06:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377352AbiFPN5h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 09:57:37 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF01CD0;
-        Thu, 16 Jun 2022 06:57:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 48E8EB823C4;
-        Thu, 16 Jun 2022 13:57:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5616C34114;
-        Thu, 16 Jun 2022 13:57:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655387847;
-        bh=7OGNMTwV/KFRHTVu5XLpdbkyVzZASMOM/AiJOgjfH0k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ADTKtU0M4BMysZHUWVTX6MILWsaoSnp2ganp0Mdr2spIMzSfITiAbGnHuQ5QTpzAY
-         WxADUUDkxr2aywRH8sPIdjcNYhO3FvCxvfkr8HKMhQCtz4AfqCs4cLGcvO+QkDlMX9
-         9RVePZuXTELG5kx0Ln/BROb2FEhItNzc2CKDF8yp2c/NUNtpiQWBLVALnTXCq0mGWD
-         VzY86WCRoNKbY2IRMjC4QNOlBmXBBRVi+kr/lD+yzaTBKOWuJSc7IhHoxz/vD6LlEa
-         x0SqzrPZUL1Ug6cAwfgAMJ4s/9i6bTPSivAVeohwjQCzEFmeLa5cv9E20Bu6SYBR5R
-         /cAmJ8zDISJzQ==
-Date:   Thu, 16 Jun 2022 06:57:27 -0700
-From:   Vinod Koul <vkoul@kernel.org>
+        with ESMTP id S1377544AbiFPOGt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 10:06:49 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 582BE49FB0;
+        Thu, 16 Jun 2022 07:06:47 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id n10so3012836ejk.5;
+        Thu, 16 Jun 2022 07:06:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:from:to:cc:subject:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ld37J2VuQn8PPhwE47ARtw0waR2/HuJQhsucGvvTMtA=;
+        b=P1l0MNTTA01XHISNTKWCqpoCKZVy3VRBbiKjUMYFH65SWbEA+sXDzta7ZjrxNsfX0R
+         6cwnvTOUSSEGSzKhUbmMo33u77oF/MEB5Yhbxcxq2vz0l6vioq7RllXKZ9A/VUWuqYvc
+         sQHWHHwhD/Esbwhc66UtDCyse6FDfUbI2FS1Ak8TMdfnKw6UqyOrhRRei0ssYzVfg+Gt
+         U59OmFAZM20lzyARr1bkG2JZzmlY7Pdnswnk802RLmCB5f0Ak3Am64oUGdlzVGLCiyxp
+         0uPCmM9X/+tWEaPVgFsrBbx0ZaqF0DWNpD9bxViE43uSb34BzpcOzQyZppEdk5/gbmJP
+         aQPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ld37J2VuQn8PPhwE47ARtw0waR2/HuJQhsucGvvTMtA=;
+        b=Xiy6/4Oq4vz8YoDaRjmWpYMCYv+c11toMElaggpqw4dlczcuscTNkuej+EOwTtU5wg
+         j57zwdvnjOR5QNHUwYx6LI1s9ziTLq6mgpMWCyC6lxtc9mnuHr7+YtPDk/NUVqujoNsr
+         fvQyV9qUmHrEbErtFACMpAGFGiWNqumyFOT+2OCBqvo9oPqWRY8uIZBZcu5w2zLA1GBD
+         1dF5RSIE2eqghgrqiioEh1XmEFM/3L9dFC1yBi6agoRyD5qxa1Bq1/tbn3PYSALe+1QE
+         dFE5BcDG2HYkASEG+XYEjmN298QVEhznyE0+08W7k/FsJ6jAlevLMK32K3gPb0BmKqIF
+         WSAw==
+X-Gm-Message-State: AJIora8fWmrCfL1UoJ7BgX5uM3rgvzRjPVpsJ41J/OuB+q/YYGTOoPMU
+        hVgVHaFTuybQvnIKiOL3yis=
+X-Google-Smtp-Source: AGRyM1u3umsK6xlqHwPnz5O2TeypBw4QaXQtA/xI3l39ercIbY2HybfED7MyFbauNWPsGryguzh7jQ==
+X-Received: by 2002:a17:907:9813:b0:711:d5ac:b9ef with SMTP id ji19-20020a170907981300b00711d5acb9efmr4650798ejc.95.1655388405685;
+        Thu, 16 Jun 2022 07:06:45 -0700 (PDT)
+Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.gmail.com with ESMTPSA id j4-20020a50ed04000000b004318ba244dcsm1845428eds.10.2022.06.16.07.06.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jun 2022 07:06:45 -0700 (PDT)
+Message-ID: <62ab38f5.1c69fb81.303fc.3bc8@mx.google.com>
+X-Google-Original-Message-ID: <Yqs3+kqSfW62ieoK@Ansuel-xps.>
+Date:   Thu, 16 Jun 2022 16:02:34 +0200
+From:   Christian Marangi <ansuelsmth@gmail.com>
 To:     Rob Herring <robh@kernel.org>
-Cc:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: dma: apple,admac: Fix example interrupt
- parsing
-Message-ID: <Yqs2x+BPbCxJvI6I@matsya>
-References: <20220614152503.1410755-1-robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dmaengine@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: dma: rework qcom,adm Documentation
+ to yaml schema
+References: <20220615235404.3457-1-ansuelsmth@gmail.com>
+ <1655388301.055791.3391580.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220614152503.1410755-1-robh@kernel.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <1655388301.055791.3391580.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14-06-22, 09:25, Rob Herring wrote:
-> Commit 873971f8fb08 ("dt-bindings: dma: Add Apple ADMAC") has a warning
-> in its example:
+On Thu, Jun 16, 2022 at 08:05:01AM -0600, Rob Herring wrote:
+> On Thu, 16 Jun 2022 01:54:03 +0200, Christian Marangi wrote:
+> > Rework the qcom,adm Documentation to yaml schema.
+> > This is not a pure conversion since originally the driver has changed
+> > implementation for the #dma-cells and was wrong from the start.
+> > Also the driver now handles the common DMA clients implementation with
+> > the first cell that denotes the channel number and nothing else since
+> > the client will have to provide the crci information via other means.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> > v2:
+> > - Change Sob to Christian Marangi
+> > - Add Bjorn in the maintainers list
+> > 
+> >  .../devicetree/bindings/dma/qcom,adm.yaml     | 96 +++++++++++++++++++
+> >  .../devicetree/bindings/dma/qcom_adm.txt      | 61 ------------
+> >  2 files changed, 96 insertions(+), 61 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/dma/qcom,adm.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/dma/qcom_adm.txt
+> > 
 > 
-> Documentation/devicetree/bindings/dma/apple,admac.example.dtb: dma-controller@238200000: interrupts-extended: [[0], [4294967295, 0, 626, 4, 0, 0]] is too short
-> 	From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/dma/apple,admac.yaml
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
 > 
-> The problem is the number of interrupt cells can't be guessed when
-> there are empty '0' entries. So the example must have a valid interrupt
-> controller defining the number of interrupt cells.
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/
+> 
+> 
+> dma-controller@18300000: reset-names:1: 'c0' was expected
+> 	arch/arm/boot/dts/qcom-ipq8064-ap148.dtb
+> 	arch/arm/boot/dts/qcom-ipq8064-rb3011.dtb
+> 
+> dma-controller@18300000: reset-names:2: 'c1' was expected
+> 	arch/arm/boot/dts/qcom-ipq8064-ap148.dtb
+> 	arch/arm/boot/dts/qcom-ipq8064-rb3011.dtb
+> 
+> dma-controller@18300000: reset-names:3: 'c2' was expected
+> 	arch/arm/boot/dts/qcom-ipq8064-ap148.dtb
+> 	arch/arm/boot/dts/qcom-ipq8064-rb3011.dtb
+> 
+> dma-controller@18300000: reset-names: ['clk', 'pbus', 'c0', 'c1', 'c2'] is too long
+> 	arch/arm/boot/dts/qcom-ipq8064-ap148.dtb
+> 	arch/arm/boot/dts/qcom-ipq8064-rb3011.dtb
+> 
+> dma-controller@18300000: resets: [[11, 13], [11, 12], [11, 11], [11, 10], [11, 9]] is too long
+> 	arch/arm/boot/dts/qcom-ipq8064-ap148.dtb
+> 	arch/arm/boot/dts/qcom-ipq8064-rb3011.dtb
+>
 
-Applied, thanks
+I should have fixed this with the other patch. Should the conversion fix
+this directly?
 
 -- 
-~Vinod
+	Ansuel
