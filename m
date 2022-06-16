@@ -2,366 +2,599 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B674754DDCF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 11:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5613C54DDE6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jun 2022 11:09:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359495AbiFPJEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 05:04:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59564 "EHLO
+        id S1359472AbiFPJJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 05:09:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231732AbiFPJD7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 05:03:59 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80077.outbound.protection.outlook.com [40.107.8.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A62F92F66B;
-        Thu, 16 Jun 2022 02:03:57 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C7pElUNfEK0gpuViC+UwmgXTAh9AapDqRrw3CQOI6fUrMEPPUqx1grrtyD7A3omMesnNsTfIJlCPY+kF/VdXcJZVNCfNwTDB/7v6Jdig/YvqV+W3bHJMJYqDOsNT6QeMOOIy+THD3fjc6h74M39LdRl1JXpJNcuUHNJhYsSWB7vbzOTj2CEbz7FMqeaXmQijpyiv/pOiFUqL/mDmU2c71Ik4q4YDnHXRGCYU6XtnYhNoQfR0W56sWVZ1iRL7564zqcPoxdvMG2L0bpGdFebNlELdsIBuM/yY5RzKHopSa9JRwJEq0FgqU6F8dN7OJu0Xs6Sk+z2ZO4XimNzjnYhInA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yAUpcWTzK+8jarkmb53VHFQWhO0xgPt3z0YqIxFBjwU=;
- b=f3USsVbTHgqerIKQj0LRlrEGkauYG7oxOfKR2gBy2wIYoKtCQXoj2IuTg6DhtyyrW1PjN9lebPan24G7ad+WxDnH0vZi/VbpzuAgZqNoeQdKmToKpI1k3bmO2y+X3m0ZE061UZDsYFvOmy6SPZxfqt3F4JamMn3whcxrAbLLtE4t+EG8smdUJZ/La9NaeK7eZR5elys7+NNA91YbrZhn/fWPOvj1AKevM3mBCM5rCJhP6oRGAlsUreJ2XK4z4iID3bHZeClwt0NHrKWNdPlG5sfbA+/whU94dIW4hfqYylvXwsiEa40FrRgrn1u8Vmxy7JjbwAJHUgcV1FeBiLAvQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yAUpcWTzK+8jarkmb53VHFQWhO0xgPt3z0YqIxFBjwU=;
- b=bB47llYi2L77uyLIYubgJ9U1XJF0mdi88uR/1/Ew3vwFuPoDGFSfdSovyifEO1uwVOhJdMhsamSRiUNcMgKCyjQmk6fICATnD2VIjrPokJDrQhI2q540TLKc9tv9dFSxMueUGxdF9odiuzlFctUbBbUO7W0xKohbnhqNFfQp2yA=
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by GV1PR04MB9087.eurprd04.prod.outlook.com (2603:10a6:150:22::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.12; Thu, 16 Jun
- 2022 09:03:54 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::bc48:7565:c619:62c3]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::bc48:7565:c619:62c3%7]) with mapi id 15.20.5353.015; Thu, 16 Jun 2022
- 09:03:53 +0000
-From:   Ming Qian <ming.qian@nxp.com>
-To:     "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>
-CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v2] media: imx-jpeg: Align upwards buffer size
-Thread-Topic: [PATCH v2] media: imx-jpeg: Align upwards buffer size
-Thread-Index: AQHYc/nOn3DtxOq6BkO9MuIzxfpBj61MdysAgABnnACABN80gIAAF8SQ
-Date:   Thu, 16 Jun 2022 09:03:53 +0000
-Message-ID: <AM6PR04MB63412D6327CF6BE4B84A9268E7AC9@AM6PR04MB6341.eurprd04.prod.outlook.com>
-References: <20220530074919.14982-1-ming.qian@nxp.com>
- <0859ab90-4cb4-a2d0-c3af-84a372742634@oss.nxp.com>
- <AM6PR04MB634199B1F0F3C09B8F3FFA16E7AB9@AM6PR04MB6341.eurprd04.prod.outlook.com>
- <c1e5fb3e-bd87-5a04-3fa5-95fab7c11026@oss.nxp.com>
-In-Reply-To: <c1e5fb3e-bd87-5a04-3fa5-95fab7c11026@oss.nxp.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f6cc9abc-4ee4-4ab4-c52e-08da4f7722df
-x-ms-traffictypediagnostic: GV1PR04MB9087:EE_
-x-microsoft-antispam-prvs: <GV1PR04MB90870AFB849DBEB563D37EF2E7AC9@GV1PR04MB9087.eurprd04.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: uTO41P3LmX3tJ5/agNDReHgLR7dPp3Fxr2U0Pqr1klgpPLasIpNXmywBGDd5cc4C1klYZOXLueYjYqxmJSkX3YkMchU4u1hKO4W+bL5YKVGLOU3DeZNHfD7J+oX+SsCk/dHZZine/hCyP5fhhYsMEz9Eejm5nBHGgTnJraw+HNQ3WuLUTmAPKLAHLMeWQrjhi7sEps1XNtufVUcpGqyyEIDGZXWgW8S/WkbLMEwUQYc08r824j3bTfog0xwSlaR14DjJJxD+il6Bqmhui5FwPiCW/zmhfm1od/tOXRsEAgLQzqpO10tlx4DmK1mLyuCuT1eZCS8FCYKZFuleSBuKN5eGI+UpXf3lc3Nj16IXq/qTTgRf4rIRwqmoDpI/Q/uSC9/xdaV2c2HvFtMI5jA2594KjgEhKcKwAeywl7mQ5WPUHYz7dMulmz1ro18SR4WIKrDPDNZc7c2vb0QXurTSUtaDodELSagHaM7v7scPQKENKjQeQAGrYVD8Hp6coPGQY4EBoJCc2CTmDLrTqOkfgWM+MfYXP8QyM8MuJ/u/g0ap6WU37NsuPBEQWjo4gHYWwiumV1F/5lQaoqm11h+sNWRalAmxsK26s7axxImHX2kxzEacZGRPnB11MKFUJpNdog2XWYgSlUoCUvr3dvtkDEYp9Fquu3WvE8F5u84VRmwPP3Vz03Qti+djgH3qt0Hwlf/EhrHPHZ3h9gQ5YCjuTnfB/+RdTk9N5VHI8LSOSh5C5E2sGovbYaaL4u6v+yClIQn80ZgeJFgRwCtQ0dYbmbkhKXgX5/B5cpegxizauKl9IMkx7Un06h1Ie6B0vF79
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(7696005)(508600001)(6506007)(966005)(71200400001)(5660300002)(83380400001)(26005)(30864003)(33656002)(66556008)(53546011)(66476007)(8936002)(110136005)(66946007)(66446008)(64756008)(86362001)(4326008)(8676002)(316002)(2906002)(7416002)(186003)(52536014)(54906003)(38070700005)(38100700002)(55016003)(44832011)(9686003)(122000001)(76116006)(460985005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?a3A4QUF5SGtiM0p3Rk1MaldqM3M0anNtY2FacmhlbGR1UmhUVzZtMWkyQ05C?=
- =?utf-8?B?aG14RkxtLzlMZ2pDQ0ZMZE9tUXgyY2ZBWHVaeDc0RTNaeC9xYm5NZzJiR1Ux?=
- =?utf-8?B?blRyNGhJcGx1T2M1UnBBN3IrU2VqK2RzTTZrakZGWTdaZTVLeFZQQXVBSHM0?=
- =?utf-8?B?L0dGQ2wzL013OGZWS0xVc1RXcFAvbitQTjVCN0JFbUR6OHNGTG1Bakx4ODJl?=
- =?utf-8?B?VW1iS29yY2FrQ2QrdDd4cWVFcURRVDA4Y3pqL3ltWjdQcE1CMmpxQlVvaWg0?=
- =?utf-8?B?Q3pmWi9XZm5KaXU2NW9xd1gxZU12cG15b1BLT0ozSHZoOXIvSXI3aktPY2Jo?=
- =?utf-8?B?V3phVHJoQi9nNnlrRS96ZmszZ1NFTHY1RkdpdHNWQnJXWmZnR29sb1hpam1v?=
- =?utf-8?B?cnVZeWVOOWFaT0FIcExFaHlVaCtYMmZGbG5VU2tJQXR4ZWlxRVd4V1FHQXJS?=
- =?utf-8?B?V3hiVjJNUVAyRHBqc2VlVkUzeWhYTmI4STIvbVhONWZNN25nZXU0Qk9BMkVh?=
- =?utf-8?B?S0N6L1ErdXpsdUdUNkxKaktUSWRKNlZqUldTbENXMzNQWDdidU9ZUnMzUlpw?=
- =?utf-8?B?eFFXR1ROZU1xaTJQZjZtVFJSVjJ6WjFKV2syWDJkWmJzb0xFTTh0SXdiV1Fr?=
- =?utf-8?B?NjU1WGN3QTNPRGlDcVlqdHBuTzM3emdvTVNwa1dJTExDT0xudDNTa0gvTVFj?=
- =?utf-8?B?dmtMYjl4Q1pEWDZrQW94TW16aHNXMVd2YkF2ZmgrT0VxaEl5bzJOVDYzRGdE?=
- =?utf-8?B?U1VBbzdIMGdvTEpuWU4rRUtOeUhDVHdlUkh1OEswRCt3K3RCQ3pUOWpETXAr?=
- =?utf-8?B?RGFLSjhDSGo3R0l2aUlqSEJzYmVvY0U4Ni9leDdNR0RVNWFQN1I1c0o0NXZ2?=
- =?utf-8?B?Zk12SEdRaVVBRmVRaTM5eHR2UUEvRjljZjBCNC9qUHo5OVV4anVLNEkzV2ly?=
- =?utf-8?B?ckx3RXVUUzE0c25lOS9rU0I5S3U1NlZPYzZFNTJFYjcwTVk3Kys1UlczRTlR?=
- =?utf-8?B?OHFvRUVxSkZrSGsrelViWVNsbXNmY0UvVVVMYUYyMDYzamZIc2hUL0p2WERD?=
- =?utf-8?B?YzkwVFR4RElYdlYxT2U4dVdJQ09leTVvTDM0aEw1NnI5cForZzBObGdZcUNy?=
- =?utf-8?B?b0UxajZ0ZUtuUjBJRTlrUUJqcVJRV3J4ZCtMMkpZUWdRc0ZhRFpoUUpGaGtv?=
- =?utf-8?B?OGV4NnVaYkd4VUJrV1o5Z2xxci9vaU16Nm9WVVgzQkZZNkJaYUt3NnlFc1M3?=
- =?utf-8?B?eDZtdmt4cnBFTUVHK3FLZ1NpV1RrbERRWTY3TUlVSVBXakdXVWFtYjZFU1N0?=
- =?utf-8?B?NkVid05VNmNhdmJOVWxqb2EvZnZmL016c3lrV0NjemVGcjQrSjE3RllSYkl4?=
- =?utf-8?B?VDByRmY2M3NRMVFaT1g0c3RKRVAwS1crcTQwOTdWMzJJaVc0SXcwSTFVeFdM?=
- =?utf-8?B?NHpKVkNQZlVobHBjUnVoWlVqMlA4em1zVkhMZ0ZqMVNFMEhTV0kxNTRWU0dQ?=
- =?utf-8?B?RlNyZVlwbktaNERzcHZ0aUd6c3liQVdVUjFVdkFkeXVObTJKbDJTWUZlZFE0?=
- =?utf-8?B?ZTNEelBxdzhwRnpxU0lRejNITk9MZDR0WkR2OUFkQ1FBM0dRNmV5T09iekda?=
- =?utf-8?B?K3pSYkJUV29hQ21RaXgybitNeml6ZG9kZS9KVEdSUUtuSlVWamFmVzF2eUFY?=
- =?utf-8?B?TEYxMkE1UHJoNzhqa1BBRUNvckxwVTVjQ3JZYXR6MEVLenhCby9OVEpMNEZY?=
- =?utf-8?B?RGdXYU9vMDVkY0d6TVhPVGQyNVZrQ0FpRGdhMlVQZm56bFJxc2xGKzhOUGZx?=
- =?utf-8?B?RnZyOXJ5dEY3MStrRjNROFh1S2JsL3Y1VlFLaGl6dG1GOXlsdVQxUk1SMjlz?=
- =?utf-8?B?dXkwNThjT3R3V2JsTGdSdmkwQ1BmTVJ1QW5WVHFoYU1TQXNkRmZHVmZPMFVJ?=
- =?utf-8?B?b1ZGdkdXZ01TYlhXQWN0RVJWMnh6ZENKZEM4L2g5K05jNW9rODczbnFlSnRh?=
- =?utf-8?B?Q1RTVU9MdHlza2NNb1FUcnp5WWdUSnJPMUtWbXRBZDA0RkE5WUxocmR0Y1J2?=
- =?utf-8?B?SXpLOFM0Qk1GSHRtQzZQU21jTU5qbTVYQ2I2QzdrNWJLOGNlWXJSN3dyZEVx?=
- =?utf-8?B?dWtkblRDYlFOUUprSWxEM1FWeG1EUk54YzZpcDcxYkt6YldwNEFmWUllc3Vq?=
- =?utf-8?B?MnNHZFNLLzRORlZ3aWI3YitLZHpSUEsrWHJPTkR3ZmJaRGM3QUkvcHI3TzB2?=
- =?utf-8?B?Tm1ReUhhUFlVRlNiRXUvMk5xNlVDNGFpVFUwblJ1bFlyRkZMcjdRNjNwenYw?=
- =?utf-8?B?ekpERVlZb2hHMytnWWpXdWNEbVZ1U2lVRUtuYlVGN1FCU3VlNGlTZz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S1359426AbiFPJJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 05:09:48 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC647517DD;
+        Thu, 16 Jun 2022 02:09:38 -0700 (PDT)
+X-UUID: d1e01f270c5848f795c4c5adf1eb9a37-20220616
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:d223c1aa-4be2-4d93-aa0e-e60dea8e925b,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:b14ad71,CLOUDID:4e15bc48-4c92-421c-ad91-b806c0f58b2a,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: d1e01f270c5848f795c4c5adf1eb9a37-20220616
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1679619966; Thu, 16 Jun 2022 17:09:29 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Thu, 16 Jun 2022 17:09:28 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Thu, 16 Jun 2022 17:09:28 +0800
+Message-ID: <14a51b4dcebb363fc7fb5ad77795cacbd4150dd4.camel@mediatek.com>
+Subject: Re: [PATCH v11 10/12] drm/mediatek: dpi: Add dpintf support
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 16 Jun 2022 17:09:27 +0800
+In-Reply-To: <0421bc6a054f0fd8ab8cbf0b5bc29e17c1752fa0.camel@mediatek.com>
+References: <20220613064841.10481-1-rex-bc.chen@mediatek.com>
+         <20220613064841.10481-11-rex-bc.chen@mediatek.com>
+         <0421bc6a054f0fd8ab8cbf0b5bc29e17c1752fa0.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f6cc9abc-4ee4-4ab4-c52e-08da4f7722df
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2022 09:03:53.0514
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: IM/FgJwDU7qKuO3INZJI7Icvlxm7KZzGxA7yO38kDNVoQnj/5xK6MmiEOfWv52FPUnPzEFY3bW5HW8fwWkxNRg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9087
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_SCC_BODY_TEXT_LINE,
+        T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBGcm9tOiBNaXJlbGEgUmFidWxlYSAoT1NTKSA8bWlyZWxhLnJhYnVsZWFAb3NzLm54cC5jb20+
-DQo+IFNlbnQ6IDIwMjLlubQ25pyIMTbml6UgMTU6MzENCj4gVG86IE1pbmcgUWlhbiA8bWluZy5x
-aWFuQG54cC5jb20+OyBtY2hlaGFiQGtlcm5lbC5vcmc7DQo+IGh2ZXJrdWlsLWNpc2NvQHhzNGFs
-bC5ubA0KPiBDYzogc2hhd25ndW9Aa2VybmVsLm9yZzsgcy5oYXVlckBwZW5ndXRyb25peC5kZTsg
-a2VybmVsQHBlbmd1dHJvbml4LmRlOw0KPiBmZXN0ZXZhbUBnbWFpbC5jb207IGRsLWxpbnV4LWlt
-eCA8bGludXgtaW14QG54cC5jb20+Ow0KPiBsaW51eC1tZWRpYUB2Z2VyLmtlcm5lbC5vcmc7IGxp
-bnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7DQo+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3Jn
-OyBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmcNCj4gU3ViamVjdDogUmU6IFtQ
-QVRDSCB2Ml0gbWVkaWE6IGlteC1qcGVnOiBBbGlnbiB1cHdhcmRzIGJ1ZmZlciBzaXplDQo+IA0K
-PiBIaSBNaW5nLA0KPiANCj4gT24gMTMuMDYuMjAyMiAwODoyNSwgTWluZyBRaWFuIHdyb3RlOg0K
-PiA+PiBGcm9tOiBNaXJlbGEgUmFidWxlYSAoT1NTKSA8bWlyZWxhLnJhYnVsZWFAb3NzLm54cC5j
-b20+DQo+ID4+IFNlbnQ6IDIwMjLlubQ25pyIMTPml6UgNjo1Ng0KPiA+PiBUbzogTWluZyBRaWFu
-IDxtaW5nLnFpYW5AbnhwLmNvbT47IG1jaGVoYWJAa2VybmVsLm9yZzsNCj4gPj4gaHZlcmt1aWwt
-Y2lzY29AeHM0YWxsLm5sDQo+ID4+IENjOiBzaGF3bmd1b0BrZXJuZWwub3JnOyBzLmhhdWVyQHBl
-bmd1dHJvbml4LmRlOw0KPiA+PiBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7IGZlc3RldmFtQGdtYWls
-LmNvbTsgZGwtbGludXgtaW14DQo+ID4+IDxsaW51eC1pbXhAbnhwLmNvbT47IGxpbnV4LW1lZGlh
-QHZnZXIua2VybmVsLm9yZzsNCj4gPj4gbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgZGV2
-aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+ID4+IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5m
-cmFkZWFkLm9yZw0KPiA+PiBTdWJqZWN0OiBSZTogW1BBVENIIHYyXSBtZWRpYTogaW14LWpwZWc6
-IEFsaWduIHVwd2FyZHMgYnVmZmVyIHNpemUNCj4gPj4NCj4gPj4gSGkgTWluZywNCj4gPj4NCj4g
-Pj4gT24gMzAuMDUuMjAyMiAxMDo0OSwgTWluZyBRaWFuIHdyb3RlOg0KPiA+Pj4gVGhlIGhhcmR3
-YXJlIGNhbiBzdXBwb3J0IGFueSBpbWFnZSBzaXplIFd4SCwgd2l0aCBhcmJpdHJhcnkgVyAoaW1h
-Z2UNCj4gPj4+IHdpZHRoKSBhbmQgSCAoaW1hZ2UgaGVpZ2h0KSBkaW1lbnNpb25zLg0KPiA+Pj4N
-Cj4gPj4+IEFsaWduIHVwd2FyZHMgYnVmZmVyIHNpemUgZm9yIGJvdGggZW5jb2RlciBhbmQgZGVj
-b2Rlci4NCj4gPj4+IGFuZCBsZWF2ZSB0aGUgcGljdHVyZSByZXNvbHV0aW9uIHVuY2hhbmdlZC4N
-Cj4gPj4+DQo+ID4+PiBGb3IgZGVjb2RlciwgdGhlIHJpc2sgb2YgbWVtb3J5IG91dCBvZiBib3Vu
-ZHMgY2FuIGJlIGF2b2lkZWQuDQo+ID4+PiBGb3IgYm90aCBlbmNvZGVyIGFuZCBkZWNvZGVyLCB0
-aGUgZHJpdmVyIHdpbGwgbGlmdCB0aGUgbGltaXRhdGlvbiBvZg0KPiA+Pj4gcmVzb2x1dGlvbiBh
-bGlnbm1lbnQuDQo+ID4+Pg0KPiA+Pj4gRm9yIGV4YW1wbGUsIHRoZSBkZWNvZGVyIGNhbiBzdXBw
-b3J0IGpwZWcgd2hvc2UgcmVzb2x1dGlvbiBpcw0KPiA+Pj4gMjI3eDE0OQ0KPiA+Pg0KPiA+PiBJ
-IGRvdWJ0IDIyN3gxNDkgaXMgd29ya2luZy4gSSBoYXZlIHRyaWVkIDEyN3gxMjcsIHdpdGggeW91
-ciBwYXRjaA0KPiA+PiBhcHBsaWVkLCBib3RoIG9uIGVuY29kZXIgYW5kIGRlY29kZXIsIHRoZSBp
-bWFnZSBkb2VzIG5vdCBsb29rIG9rLiBUaGUNCj4gPj4gMTI2eDEyNyBzZWVtcyB0byB3b3JrLiBI
-YXZpbmcgYW4gb2RkIHJlc29sdXRpb24gc2VlbXMgc3RyYW5nZSwgSSBzZWUNCj4gPj4gbm90IGV2
-ZW4gZ3N0cmVhbWVyIHN1cHBvcnRzIGl0ICh0cmllZCB2aWRlb3Rlc3RzcmMgJiBmaWxlc2luayB3
-aXRoDQo+ID4+IEJHUiwNCj4gPj4gMTI3eDEyOCBwcm9kdWNlcyBhIDEyOHgxMjggc2l6ZSkuDQo+
-ID4+DQo+ID4+IFdlIG5lZWQgdG8gZ2FpbiBtb3JlIGNsYXJpdHkgb24gdGhpcyBvbmUuDQo+ID4+
-IEFuZCB3aGVuIHdlIGRvLCBpZiB3ZSByZWFsbHkgY2FuIHN1cHBvcnQgYW55IGFyYml0cmFyeSBy
-ZXNvbHV0aW9uLA0KPiA+PiBmcm9tIGJvdGggdGhlIGpwZWcgY29yZSBhbmQgd3JhcHBlciBwb2lu
-dCBvZiB2aWV3LCB3ZSBoYXZlIHN0dWZmIHRvIGNsZWFuDQo+IHVwLg0KPiA+PiBUaGUgYXNzdW1w
-dGlvbiB0aGF0IEkgc3RhcnRlZCB3aXRoIHdhcywgYXMgc3RhdGVkIGluIHRoZSBjb21tZW50czoN
-Cj4gPj4gICAgKiBUaGUgYWxpZ25tZW50IHJlcXVpcmVtZW50cyBmb3IgdGhlIHJlc29sdXRpb24g
-ZGVwZW5kIG9uIHRoZSBmb3JtYXQsDQo+ID4+ICAgICogbXVsdGlwbGUgb2YgMTYgcmVzb2x1dGlv
-bnMgc2hvdWxkIHdvcmsgZm9yIGFsbCBmb3JtYXRzLg0KPiA+PiAgICAqIFNwZWNpYWwgd29ya2Fy
-b3VuZHMgYXJlIG1hZGUgaW4gdGhlIGRyaXZlciB0byBzdXBwb3J0IE5WMTIgMTA4MHAuDQo+ID4+
-IFdpdGggaF9hbGlnbi92X2FsaWduIGRlZmluZWQgaW4gbXhjX2Zvcm1hdHNbXS4NCj4gPj4NCj4g
-Pj4gUmVnYXJkcywNCj4gPj4gTWlyZWxhDQo+ID4NCj4gPiBIaSBNaXJlbGEsDQo+ID4gICAgICBJ
-IHRoaW5rIHlvdSBhcmUgY29uZnVzaW5nIHBpY3R1cmUgc2l6ZSBhbmQgYnVmZmVyIHNpemUuDQo+
-ID4gICAgICBJbiB0aGlzIHBhdGNoLCBkcml2ZXIgd2lsbCBlbmxhcmdlIHRoZSBidWZmZXIgc2l6
-ZSB0byBhbGlnbiAxNngxNi4gQnV0IGxldA0KPiB0aGUgcGljdHVyZSBzaXplIHVuY2hhbmdlZC4N
-Cj4gPiAgICAgIEFuZCBpZiB5b3UgZGlzcGxheSB0aGUgZGVjb2RlZCAyMjd4MTQ5IHBpY3R1cmUg
-ZGlyZWN0bHkgb24gaW14OHEsDQo+ID4geW91IG1heSBtZWV0IHNvbWUgZHJtIGVycm9yLCBhbmQg
-dGhlIGRpc3BsYXkgbG9va3MgYWJub3JtYWwsIFRoZSBlcnJvcg0KPiBtZXNzYWdlIGxpa2UgYmVs
-b3c6DQo+ID4gWyAgIDM2LjM4MTAxNV0gW2RybV0gW0NSVEM6Mzg6Y3J0Yy0wXSBkcHVfY3J0Y19h
-dG9taWNfZmx1c2g6IHdhaXQgZm9yDQo+IGNvbnRlbnQgc2hkbGQgZG9uZSB0aW1lb3V0DQo+ID4g
-WyAgIDM2LjM4OTYzMF0gW2RybV0gW0NSVEM6Mzg6Y3J0Yy0wXSBkcHVfY3J0Y19hdG9taWNfZmx1
-c2g6IEZyYW1lR2VuDQo+IHJlcXVlc3RzIHRvIHJlYWQgZW1wdHkgRklGTw0KPiA+IFsgICA0OS40
-NjkwMjJdIFtkcm1dIFtDUlRDOjM4OmNydGMtMF0gZHB1X2NydGNfYXRvbWljX2ZsdXNoOiB3YWl0
-IGZvcg0KPiBjb250ZW50IHNoZGxkIGRvbmUgdGltZW91dA0KPiA+DQo+ID4gQnV0IGlmIHlvdSBz
-YXZlIHRoZSBkZWNvZGVkIHBpY3R1cmUgZGF0YSBpbiB0byBhIGZpbGUsIHRoZW4gY2hlY2sgdGhl
-IGRhdGEsIHlvdQ0KPiB3aWxsIGZpbmQgaXQncyBjb3JyZWN0Lg0KPiA+IEFuZCBpZiB5b3UgdHJl
-YXQgdGhlIGRlY29kZWQgYnVmZmVyIGFzIGEgcGljdHVyZSB3aXRoIHJlc29sdXRpb24gMjQweDE2
-MCwgYW5kDQo+IHdpdGggc29tZSBwYWRkaW5nIGNvbnRlbnQsIGl0J3MgYWxzbyBjb3JyZWN0Lg0K
-PiA+DQo+ID4gU28gaW4gbXkgZmlyc3QgcGF0Y2gsIEkgbGV0IHRoZSBkcml2ZXIgcmVwb3J0IHRo
-ZSBhbGlnbmVkIHJlc29sdXRpb24NCj4gPiBpbiBnX2ZtdCwgYW5kIGltcGxlbWVudCBhIGdfc2Vs
-ZWN0aW9uIHRvIHJlcG9ydCB0aGUgYWN0dWFsIHJlc29sdXRpb24NCj4gdGhyb3VnaCB0aGUgY3Jv
-cCBpbmZvLg0KPiA+IGJ1dCB0aGlzIHNvbHV0aW9uIHdpbGwgZmFpbCB5b3VyIGxhYmdyaWQganBl
-ZyB0ZXN0Lg0KPiA+DQo+ID4gU28gSSBjaG9vc2UgdGhlIGN1cnJlbnQgc29sdXRpb24gdGhhdCBr
-ZWVwIHRoZSBhY3R1YWwgcGljdHVyZSBzaXplLCBhbmQgYWxpZ24NCj4gdXB3YXJkcyB0aGUgYnVm
-ZmVyIHNpemUuDQo+ID4NCj4gPiBUaGUgZGlzcGxheSBvZiAyMjd4MTQ5IGlzIGFibm9ybWFsLCBJ
-IHRoaW5rIGl0J3Mgbm90IHRoZSBqcGVnIGNvZGVjJ3MNCj4gbGltaXRhdGlvbiwgYnV0IHRoZSBp
-bXg4cSBkcm0ncyBsaW1pdGF0aW9uLg0KPiANCj4gSSBkaWQgbm90IHRyeSB0byBkaXNwbGF5IHdp
-dGggZ3N0cmVhbWVyLiBJIGp1c3QgdHJpZWQgdG8gZ2VuZXJhdGUgc29tZSB0ZXN0IGZpbGVzLg0K
-PiBGb3IgZXhhbXBsZSwgdGhpcyBvbmU6DQo+IGdzdC1sYXVuY2gtMS4wIHZpZGVvdGVzdHNyYyBw
-YXR0ZXJuPXNtcHRlNzUgbnVtLWJ1ZmZlcnM9MSAhDQo+IHZpZGVvL3gtcmF3LHdpZHRoPTIyNyxo
-ZWlnaHQ9MTQ5LGZvcm1hdD1CR1IgISBmaWxlc2luaw0KPiBsb2NhdGlvbj1iZ3JfMjI3eDE0OS5y
-YXcgZ2VuZXJhdGVzIGEgMjI4eDE0OSBmaWxlLCBub3QgMjI3eDE0OSwgd2l0aCB0aGUNCj4gMjI4
-IGNvbHVtbiBibGFjayAocGFkZGluZz8pLiBGb3IgdmlzdWFsaXppbmcsIEkgdXNlZCB2b295YSwg
-b24gaG9zdCBtYWNoaW5lLg0KPiANCj4gSSB0aGVuIHRyaWVkIHRoZSBwYXR0ZXJuIGdlbmVyYXRv
-cjogaHR0cHM6Ly9naXRodWIuY29tL05YUG1pY3JvL254cC1wYXRnZW4NCj4gLi9wYXRnZW4uZXhl
-IC1waXhfZm10IHl1djQ0NCAtcCBjb2xvcmJhciAtdnNpemUgMjI3eDE0OQ0KPiANCj4gVGhpcyBn
-ZW5lcmF0ZXMgYSByYXcgeXV2NDQ0IDIyN3gxNDksIHdpdGhvdXQgcGFkZGluZy4NCj4gSSB1c2Vk
-IHRoZSB1bml0IHRlc3QgYXBwbGljYXRpb24gdG8gZW5jb2RlIGl0Lg0KPiBUaGUgcmVzdWx0aW5n
-IGpwZWcgaXMgcmVwb3J0ZWQgYnkgSlBFR1Nub29wIHRvIGhhdmUgSW1hZ2UgU2l6ZSA9IDIyN3gx
-NDksDQo+IGFuZCBpdCBsb29rcyBiYWQsIGV2ZXJ5IGxpbmUgaXMgc2hpZnRlZCwgYXMgaWYgaXQg
-d291bGQgaGF2ZQ0KPiAyMjggd2lkdGguDQo+IEkgZGlkIG5vdCBjaGVjayB5ZXQgdG8gc2VlIGlm
-IGFueSBhZGp1c3RtZW50cyBhcmUgbmVlZGVkIGluIHRoZSB1bml0IHRlc3QuDQo+IA0KPiBJJ2xs
-IHNlbmQgeW91IG15IHRlc3QgZmlsZXMuDQo+IA0KPiBSZWdhcmRzLA0KPiBNaXJlbGENCj4gDQoN
-CkhpIE1pcmVsYSwNCiAgICBJIHRlc3RlZCB5b3VyIHRlc3QgZmlsZSBwYXRnZW4tY29sb3JiYXIt
-MjI3eDE0OS15dXY0NDQueXV2LCBhbmQgZW5jb2RlIGl0IHRvIGpwZWcuDQogVGhlIGVuY29kZWQg
-anBlZyBoYXMgaW1hZ2Ugc2l6ZSAyMjd4MTQ5LCBhbmQgaXQgbG9va3MgZ29vZC4gSSBoYXZlIHNl
-bnQgaXQgdG8geW91LCB5b3UgY2FuIGRvdWJsZSBjaGVjay4NCg0KICAgIE5vdGUgd2hlbiBlbmNv
-ZGluZyB0aGUgMjI3eDE0OSB5dXY0NDQgaW1hZ2UsIHRoZSBidWZmZXIgc2l6ZSBpcyBhbGlnbmVk
-IHVwd2FyZHMgdG8gNjk2IHggMTUyLg0KU28gd2hlbiB5b3Ugd3JpdGUgdGhlIHl1diBkYXRlIGlu
-dG8gdGhlIGJ1ZmZlciwgeW91IHNob3VsZCB3cml0ZSBsaW5lIGJ5IGxpbmUuIFRoZSBieXRlc3Bl
-cmxpbmUgb2YgdGhlIGJ1ZmZlciBpcyBub3QgNjgxKDIyN3gzKSwgYnV0IDY5Ni4NCg0KTWluZw0K
-IA0KDQoNCj4gPg0KPiA+IEFuZCBpbiBteSBvcGluaW9uLCBJIHByZWZlciB0aGUgZmlyc3Qgc29s
-dXRpb24gdGhhdCBpbXBsZW1lbnRpbmcgYSBnX3NlbGVjdGlvbg0KPiB0byByZXBvcnQgdGhlIGFj
-dHVhbCBwaWN0dXJlIHNpemUuDQo+ID4gSWYgeW91IGNhbiBhY2NlcHQgdGhhdCBjaGFuZ2luZyB5
-b3VyIGxhYmdyaWQganBlZyB0ZXN0Y2FzZSwgSSBjYW4gcHJlcGFyZSBhIHYzDQo+IHBhdGNoIHRv
-IHN3aXRjaCB0byB0aGlzIHNvbHV0aW9uLg0KPiA+DQo+ID4gTWluZw0KPiA+DQo+ID4+DQo+ID4+
-PiB0aGUgZW5jb2RlciBjYW4gc3VwcG9ydCBudjEyIDEwODBQLCB3b24ndCBjaGFuZ2UgaXQgdG8g
-MTkyMHgxMDcyLg0KPiA+Pj4NCj4gPj4+IEZpeGVzOiAyZGIxNmM2ZWQ3MmNlICgibWVkaWE6IGlt
-eC1qcGVnOiBBZGQgVjRMMiBkcml2ZXIgZm9yIGkuTVg4DQo+ID4+PiBKUEVHDQo+ID4+PiBFbmNv
-ZGVyL0RlY29kZXIiKQ0KPiA+Pj4gU2lnbmVkLW9mZi1ieTogTWluZyBRaWFuIDxtaW5nLnFpYW5A
-bnhwLmNvbT4NCj4gPj4+IC0tLQ0KPiA+Pj4gdjINCj4gPj4+IC0gYWRkIEZpeGVzIHRhZw0KPiA+
-Pj4gICAgLi4uL21lZGlhL3BsYXRmb3JtL254cC9pbXgtanBlZy9teGMtanBlZy5jICAgIHwgODgN
-Cj4gKysrKysrKystLS0tLS0tLS0tLQ0KPiA+Pj4gICAgMSBmaWxlIGNoYW5nZWQsIDM3IGluc2Vy
-dGlvbnMoKyksIDUxIGRlbGV0aW9ucygtKQ0KPiA+Pj4NCj4gPj4+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL21lZGlhL3BsYXRmb3JtL254cC9pbXgtanBlZy9teGMtanBlZy5jDQo+ID4+PiBiL2RyaXZl
-cnMvbWVkaWEvcGxhdGZvcm0vbnhwL2lteC1qcGVnL214Yy1qcGVnLmMNCj4gPj4+IGluZGV4IGMw
-ZmQwMzBkMGYxOS4uOWExYzhkZjUyMmVkIDEwMDY0NA0KPiA+Pj4gLS0tIGEvZHJpdmVycy9tZWRp
-YS9wbGF0Zm9ybS9ueHAvaW14LWpwZWcvbXhjLWpwZWcuYw0KPiA+Pj4gKysrIGIvZHJpdmVycy9t
-ZWRpYS9wbGF0Zm9ybS9ueHAvaW14LWpwZWcvbXhjLWpwZWcuYw0KPiA+Pj4gQEAgLTg5NCw4ICs4
-OTQsOCBAQCBzdGF0aWMgdm9pZCBteGNfanBlZ19jb25maWdfZW5jX2Rlc2Moc3RydWN0DQo+ID4+
-IHZiMl9idWZmZXIgKm91dF9idWYsDQo+ID4+PiAgICAJanBlZy0+c2xvdF9kYXRhW3Nsb3RdLmNm
-Z19zdHJlYW1fc2l6ZSA9DQo+ID4+PiAgICAJCQlteGNfanBlZ19zZXR1cF9jZmdfc3RyZWFtKGNm
-Z19zdHJlYW1fdmFkZHIsDQo+ID4+PiAgICAJCQkJCQkgIHFfZGF0YS0+Zm10LT5mb3VyY2MsDQo+
-ID4+PiAtCQkJCQkJICBxX2RhdGEtPndfYWRqdXN0ZWQsDQo+ID4+PiAtCQkJCQkJICBxX2RhdGEt
-PmhfYWRqdXN0ZWQpOw0KPiA+Pj4gKwkJCQkJCSAgcV9kYXRhLT53LA0KPiA+Pj4gKwkJCQkJCSAg
-cV9kYXRhLT5oKTsNCj4gPj4+DQo+ID4+PiAgICAJLyogY2hhaW4gdGhlIGNvbmZpZyBkZXNjcmlw
-dG9yIHdpdGggdGhlIGVuY29kaW5nIGRlc2NyaXB0b3IgKi8NCj4gPj4+ICAgIAljZmdfZGVzYy0+
-bmV4dF9kZXNjcHRfcHRyID0gZGVzY19oYW5kbGUgfCBNWENfTlhUX0RFU0NQVF9FTjsNCj4gQEAN
-Cj4gPj4+IC05NzcsNyArOTc3LDcgQEAgc3RhdGljIGJvb2wgbXhjX2pwZWdfc291cmNlX2NoYW5n
-ZShzdHJ1Y3QNCj4gPj4+IG14Y19qcGVnX2N0eA0KPiA+PiAqY3R4LA0KPiA+Pj4gICAgCQkJCSAg
-ICAgICZxX2RhdGFfY2FwLT5oX2FkanVzdGVkLA0KPiA+Pj4gICAgCQkJCSAgICAgIHFfZGF0YV9j
-YXAtPmhfYWRqdXN0ZWQsIC8qIGFkanVzdCB1cCAqLw0KPiA+Pj4gICAgCQkJCSAgICAgIE1YQ19K
-UEVHX01BWF9IRUlHSFQsDQo+ID4+PiAtCQkJCSAgICAgIHFfZGF0YV9jYXAtPmZtdC0+dl9hbGln
-biwNCj4gPj4+ICsJCQkJICAgICAgMCwNCj4gPj4+ICAgIAkJCQkgICAgICAwKTsNCj4gPj4+DQo+
-ID4+PiAgICAJCS8qIHNldHVwIGJ5dGVzcGVybGluZS9zaXplaW1hZ2UgZm9yIGNhcHR1cmUgcXVl
-dWUgKi8gQEANCj4gPj4+IC0xMTYxLDE4DQo+ID4+PiArMTE2MSwzMCBAQCBzdGF0aWMgaW50IG14
-Y19qcGVnX3F1ZXVlX3NldHVwKHN0cnVjdCB2YjJfcXVldWUgKnEsDQo+ID4+PiAgICB7DQo+ID4+
-PiAgICAJc3RydWN0IG14Y19qcGVnX2N0eCAqY3R4ID0gdmIyX2dldF9kcnZfcHJpdihxKTsNCj4g
-Pj4+ICAgIAlzdHJ1Y3QgbXhjX2pwZWdfcV9kYXRhICpxX2RhdGEgPSBOVUxMOw0KPiA+Pj4gKwlz
-dHJ1Y3QgbXhjX2pwZWdfcV9kYXRhIHRtcF9xOw0KPiA+Pj4gICAgCWludCBpOw0KPiA+Pj4NCj4g
-Pj4+ICAgIAlxX2RhdGEgPSBteGNfanBlZ19nZXRfcV9kYXRhKGN0eCwgcS0+dHlwZSk7DQo+ID4+
-PiAgICAJaWYgKCFxX2RhdGEpDQo+ID4+PiAgICAJCXJldHVybiAtRUlOVkFMOw0KPiA+Pj4NCj4g
-Pj4+ICsJdG1wX3EuZm10ID0gcV9kYXRhLT5mbXQ7DQo+ID4+PiArCXRtcF9xLncgPSBxX2RhdGEt
-PndfYWRqdXN0ZWQ7DQo+ID4+PiArCXRtcF9xLmggPSBxX2RhdGEtPmhfYWRqdXN0ZWQ7DQo+ID4+
-PiArCWZvciAoaSA9IDA7IGkgPCBNWENfSlBFR19NQVhfUExBTkVTOyBpKyspIHsNCj4gPj4+ICsJ
-CXRtcF9xLmJ5dGVzcGVybGluZVtpXSA9IHFfZGF0YS0+Ynl0ZXNwZXJsaW5lW2ldOw0KPiA+Pj4g
-KwkJdG1wX3Euc2l6ZWltYWdlW2ldID0gcV9kYXRhLT5zaXplaW1hZ2VbaV07DQo+ID4+PiArCX0N
-Cj4gPj4+ICsJbXhjX2pwZWdfc2l6ZWltYWdlKCZ0bXBfcSk7DQo+ID4+PiArCWZvciAoaSA9IDA7
-IGkgPCBNWENfSlBFR19NQVhfUExBTkVTOyBpKyspDQo+ID4+PiArCQl0bXBfcS5zaXplaW1hZ2Vb
-aV0gPSBtYXgodG1wX3Euc2l6ZWltYWdlW2ldLA0KPiA+Pj4gK3FfZGF0YS0+c2l6ZWltYWdlW2ld
-KTsNCj4gPj4+ICsNCj4gPj4+ICAgIAkvKiBIYW5kbGUgQ1JFQVRFX0JVRlMgc2l0dWF0aW9uIC0g
-Km5wbGFuZXMgIT0gMCAqLw0KPiA+Pj4gICAgCWlmICgqbnBsYW5lcykgew0KPiA+Pj4gICAgCQlp
-ZiAoKm5wbGFuZXMgIT0gcV9kYXRhLT5mbXQtPmNvbHBsYW5lcykNCj4gPj4+ICAgIAkJCXJldHVy
-biAtRUlOVkFMOw0KPiA+Pj4gICAgCQlmb3IgKGkgPSAwOyBpIDwgKm5wbGFuZXM7IGkrKykgew0K
-PiA+Pj4gLQkJCWlmIChzaXplc1tpXSA8IHFfZGF0YS0+c2l6ZWltYWdlW2ldKQ0KPiA+Pj4gKwkJ
-CWlmIChzaXplc1tpXSA8IHRtcF9xLnNpemVpbWFnZVtpXSkNCj4gPj4+ICAgIAkJCQlyZXR1cm4g
-LUVJTlZBTDsNCj4gPj4+ICAgIAkJfQ0KPiA+Pj4gICAgCQlyZXR1cm4gMDsNCj4gPj4+IEBAIC0x
-MTgxLDcgKzExOTMsNyBAQCBzdGF0aWMgaW50IG14Y19qcGVnX3F1ZXVlX3NldHVwKHN0cnVjdA0K
-PiA+PiB2YjJfcXVldWUgKnEsDQo+ID4+PiAgICAJLyogSGFuZGxlIFJFUUJVRlMgc2l0dWF0aW9u
-ICovDQo+ID4+PiAgICAJKm5wbGFuZXMgPSBxX2RhdGEtPmZtdC0+Y29scGxhbmVzOw0KPiA+Pj4g
-ICAgCWZvciAoaSA9IDA7IGkgPCAqbnBsYW5lczsgaSsrKQ0KPiA+Pj4gLQkJc2l6ZXNbaV0gPSBx
-X2RhdGEtPnNpemVpbWFnZVtpXTsNCj4gPj4+ICsJCXNpemVzW2ldID0gdG1wX3Euc2l6ZWltYWdl
-W2ldOw0KPiA+Pj4NCj4gPj4+ICAgIAlyZXR1cm4gMDsNCj4gPj4+ICAgIH0NCj4gPj4+IEBAIC0x
-MzgxLDExICsxMzkzLDYgQEAgc3RhdGljIGludCBteGNfanBlZ19wYXJzZShzdHJ1Y3QgbXhjX2pw
-ZWdfY3R4DQo+ID4+ICpjdHgsIHN0cnVjdCB2YjJfYnVmZmVyICp2YikNCj4gPj4+ICAgIAl9DQo+
-ID4+PiAgICAJcV9kYXRhX291dC0+dyA9IGhlYWRlci5mcmFtZS53aWR0aDsNCj4gPj4+ICAgIAlx
-X2RhdGFfb3V0LT5oID0gaGVhZGVyLmZyYW1lLmhlaWdodDsNCj4gPj4+IC0JaWYgKGhlYWRlci5m
-cmFtZS53aWR0aCAlIDggIT0gMCB8fCBoZWFkZXIuZnJhbWUuaGVpZ2h0ICUgOCAhPSAwKSB7DQo+
-ID4+PiAtCQlkZXZfZXJyKGRldiwgIkpQRUcgd2lkdGggb3IgaGVpZ2h0IG5vdCBtdWx0aXBsZSBv
-ZiA4OiAlZHglZFxuIiwNCj4gPj4+IC0JCQloZWFkZXIuZnJhbWUud2lkdGgsIGhlYWRlci5mcmFt
-ZS5oZWlnaHQpOw0KPiA+Pj4gLQkJcmV0dXJuIC1FSU5WQUw7DQo+ID4+PiAtCX0NCj4gPj4+ICAg
-IAlpZiAoaGVhZGVyLmZyYW1lLndpZHRoID4gTVhDX0pQRUdfTUFYX1dJRFRIIHx8DQo+ID4+PiAg
-ICAJICAgIGhlYWRlci5mcmFtZS5oZWlnaHQgPiBNWENfSlBFR19NQVhfSEVJR0hUKSB7DQo+ID4+
-PiAgICAJCWRldl9lcnIoZGV2LCAiSlBFRyB3aWR0aCBvciBoZWlnaHQgc2hvdWxkIGJlIDw9DQo+
-IDgxOTI6ICVkeCVkXG4iLA0KPiA+PiBAQA0KPiA+Pj4gLTE3NDgsMjIgKzE3NTUsMTcgQEAgc3Rh
-dGljIGludCBteGNfanBlZ190cnlfZm10KHN0cnVjdCB2NGwyX2Zvcm1hdA0KPiA+Pj4gKmYsDQo+
-ID4+IGNvbnN0IHN0cnVjdCBteGNfanBlZ19mbXQgKmZtDQo+ID4+PiAgICAJcGl4X21wLT5udW1f
-cGxhbmVzID0gZm10LT5jb2xwbGFuZXM7DQo+ID4+PiAgICAJcGl4X21wLT5waXhlbGZvcm1hdCA9
-IGZtdC0+Zm91cmNjOw0KPiA+Pj4NCj4gPj4+IC0JLyoNCj4gPj4+IC0JICogdXNlIE1YQ19KUEVH
-X0hfQUxJR04gaW5zdGVhZCBvZiBmbXQtPnZfYWxpZ24sIGZvciB2ZXJ0aWNhbA0KPiA+Pj4gLQkg
-KiBhbGlnbm1lbnQsIHRvIGxvb3NlbiB1cCB0aGUgYWxpZ25tZW50IHRvIG11bHRpcGxlIG9mIDgs
-DQo+ID4+PiAtCSAqIG90aGVyd2lzZSBOVjEyLTEwODBwIGZhaWxzIGFzIDEwODAgaXMgbm90IGEg
-bXVsdGlwbGUgb2YgMTYNCj4gPj4+IC0JICovDQo+ID4+PiArCXBpeF9tcC0+d2lkdGggPSB3Ow0K
-PiA+Pj4gKwlwaXhfbXAtPmhlaWdodCA9IGg7DQo+ID4+PiAgICAJdjRsX2JvdW5kX2FsaWduX2lt
-YWdlKCZ3LA0KPiA+Pj4gLQkJCSAgICAgIE1YQ19KUEVHX01JTl9XSURUSCwNCj4gPj4+IC0JCQkg
-ICAgICB3LCAvKiBhZGp1c3QgZG93bndhcmRzKi8NCj4gPj4+ICsJCQkgICAgICB3LCAvKiBhZGp1
-c3QgdXB3YXJkcyovDQo+ID4+PiArCQkJICAgICAgTVhDX0pQRUdfTUFYX1dJRFRILA0KPiA+Pj4g
-ICAgCQkJICAgICAgZm10LT5oX2FsaWduLA0KPiA+Pj4gICAgCQkJICAgICAgJmgsDQo+ID4+PiAt
-CQkJICAgICAgTVhDX0pQRUdfTUlOX0hFSUdIVCwNCj4gPj4+IC0JCQkgICAgICBoLCAvKiBhZGp1
-c3QgZG93bndhcmRzKi8NCj4gPj4+IC0JCQkgICAgICBNWENfSlBFR19IX0FMSUdOLA0KPiA+Pj4g
-KwkJCSAgICAgIGgsIC8qIGFkanVzdCB1cHdhcmRzKi8NCj4gPj4+ICsJCQkgICAgICBNWENfSlBF
-R19NQVhfSEVJR0hULA0KPiA+Pj4gKwkJCSAgICAgIDAsDQo+ID4+PiAgICAJCQkgICAgICAwKTsN
-Cj4gPj4+IC0JcGl4X21wLT53aWR0aCA9IHc7IC8qIG5lZ290aWF0ZSB0aGUgd2lkdGggKi8NCj4g
-Pj4+IC0JcGl4X21wLT5oZWlnaHQgPSBoOyAvKiBuZWdvdGlhdGUgdGhlIGhlaWdodCAqLw0KPiA+
-Pj4NCj4gPj4+ICAgIAkvKiBnZXQgdXNlciBpbnB1dCBpbnRvIHRoZSB0bXBfcSAqLw0KPiA+Pj4g
-ICAgCXRtcF9xLncgPSB3Ow0KPiA+Pj4gQEAgLTE4ODksMzUgKzE4OTEsMTkgQEAgc3RhdGljIGlu
-dCBteGNfanBlZ19zX2ZtdChzdHJ1Y3QNCj4gPj4+IG14Y19qcGVnX2N0eCAqY3R4LA0KPiA+Pj4N
-Cj4gPj4+ICAgIAlxX2RhdGEtPndfYWRqdXN0ZWQgPSBxX2RhdGEtPnc7DQo+ID4+PiAgICAJcV9k
-YXRhLT5oX2FkanVzdGVkID0gcV9kYXRhLT5oOw0KPiA+Pj4gLQlpZiAoanBlZy0+bW9kZSA9PSBN
-WENfSlBFR19ERUNPREUpIHsNCj4gPj4+IC0JCS8qDQo+ID4+PiAtCQkgKiBhbGlnbiB1cCB0aGUg
-cmVzb2x1dGlvbiBmb3IgQ0FTVCBJUCwNCj4gPj4+IC0JCSAqIGJ1dCBsZWF2ZSB0aGUgYnVmZmVy
-IHJlc29sdXRpb24gdW5jaGFuZ2VkDQo+ID4+PiAtCQkgKi8NCj4gPj4+IC0JCXY0bF9ib3VuZF9h
-bGlnbl9pbWFnZSgmcV9kYXRhLT53X2FkanVzdGVkLA0KPiA+Pj4gLQkJCQkgICAgICBxX2RhdGEt
-PndfYWRqdXN0ZWQsICAvKiBhZGp1c3QgdXB3YXJkcyAqLw0KPiA+Pj4gLQkJCQkgICAgICBNWENf
-SlBFR19NQVhfV0lEVEgsDQo+ID4+PiAtCQkJCSAgICAgIHFfZGF0YS0+Zm10LT5oX2FsaWduLA0K
-PiA+Pj4gLQkJCQkgICAgICAmcV9kYXRhLT5oX2FkanVzdGVkLA0KPiA+Pj4gLQkJCQkgICAgICBx
-X2RhdGEtPmhfYWRqdXN0ZWQsIC8qIGFkanVzdCB1cHdhcmRzICovDQo+ID4+PiAtCQkJCSAgICAg
-IE1YQ19KUEVHX01BWF9IRUlHSFQsDQo+ID4+PiAtCQkJCSAgICAgIHFfZGF0YS0+Zm10LT52X2Fs
-aWduLA0KPiA+Pj4gLQkJCQkgICAgICAwKTsNCj4gPj4+IC0JfSBlbHNlIHsNCj4gPj4+IC0JCS8q
-DQo+ID4+PiAtCQkgKiBhbGlnbiBkb3duIHRoZSByZXNvbHV0aW9uIGZvciBDQVNUIElQLA0KPiA+
-Pj4gLQkJICogYnV0IGxlYXZlIHRoZSBidWZmZXIgcmVzb2x1dGlvbiB1bmNoYW5nZWQNCj4gPj4+
-IC0JCSAqLw0KPiA+Pj4gLQkJdjRsX2JvdW5kX2FsaWduX2ltYWdlKCZxX2RhdGEtPndfYWRqdXN0
-ZWQsDQo+ID4+PiAtCQkJCSAgICAgIE1YQ19KUEVHX01JTl9XSURUSCwNCj4gPj4+IC0JCQkJICAg
-ICAgcV9kYXRhLT53X2FkanVzdGVkLCAvKiBhZGp1c3QgZG93bndhcmRzKi8NCj4gPj4+IC0JCQkJ
-ICAgICAgcV9kYXRhLT5mbXQtPmhfYWxpZ24sDQo+ID4+PiAtCQkJCSAgICAgICZxX2RhdGEtPmhf
-YWRqdXN0ZWQsDQo+ID4+PiAtCQkJCSAgICAgIE1YQ19KUEVHX01JTl9IRUlHSFQsDQo+ID4+PiAt
-CQkJCSAgICAgIHFfZGF0YS0+aF9hZGp1c3RlZCwgLyogYWRqdXN0IGRvd253YXJkcyovDQo+ID4+
-PiAtCQkJCSAgICAgIHFfZGF0YS0+Zm10LT52X2FsaWduLA0KPiA+Pj4gLQkJCQkgICAgICAwKTsN
-Cj4gPj4+IC0JfQ0KPiA+Pj4gKwkvKg0KPiA+Pj4gKwkgKiBhbGlnbiB1cCB0aGUgcmVzb2x1dGlv
-biBmb3IgQ0FTVCBJUCwNCj4gPj4+ICsJICogYnV0IGxlYXZlIHRoZSBidWZmZXIgcmVzb2x1dGlv
-biB1bmNoYW5nZWQNCj4gPj4+ICsJICovDQo+ID4+PiArCXY0bF9ib3VuZF9hbGlnbl9pbWFnZSgm
-cV9kYXRhLT53X2FkanVzdGVkLA0KPiA+Pj4gKwkJCSAgICAgIHFfZGF0YS0+d19hZGp1c3RlZCwg
-IC8qIGFkanVzdCB1cHdhcmRzICovDQo+ID4+PiArCQkJICAgICAgTVhDX0pQRUdfTUFYX1dJRFRI
-LA0KPiA+Pj4gKwkJCSAgICAgIHFfZGF0YS0+Zm10LT5oX2FsaWduLA0KPiA+Pj4gKwkJCSAgICAg
-ICZxX2RhdGEtPmhfYWRqdXN0ZWQsDQo+ID4+PiArCQkJICAgICAgcV9kYXRhLT5oX2FkanVzdGVk
-LCAvKiBhZGp1c3QgdXB3YXJkcyAqLw0KPiA+Pj4gKwkJCSAgICAgIE1YQ19KUEVHX01BWF9IRUlH
-SFQsDQo+ID4+PiArCQkJICAgICAgcV9kYXRhLT5mbXQtPnZfYWxpZ24sDQo+ID4+PiArCQkJICAg
-ICAgMCk7DQo+ID4+Pg0KPiA+Pj4gICAgCWZvciAoaSA9IDA7IGkgPCBwaXhfbXAtPm51bV9wbGFu
-ZXM7IGkrKykgew0KPiA+Pj4gICAgCQlxX2RhdGEtPmJ5dGVzcGVybGluZVtpXSA9IHBpeF9tcC0+
-cGxhbmVfZm10W2ldLmJ5dGVzcGVybGluZTsNCg==
+On Tue, 2022-06-14 at 14:04 +0800, CK Hu wrote:
+> Hi, Bo-Chen:
+> 
+> On Mon, 2022-06-13 at 14:48 +0800, Bo-Chen Chen wrote:
+> > From: Guillaume Ranquet <granquet@baylibre.com>
+> > 
+> > dpintf is the displayport interface hardware unit. This unit is
+> > similar
+> > to dpi and can reuse most of the code.
+> > 
+> > This patch adds support for mt8195-dpintf to this dpi driver. Main
+> > differences are:
+> >  - Some features/functional components are not available for dpintf
+> >    which are now excluded from code execution once is_dpintf is set
+> >  - dpintf can and needs to choose between different clockdividers
+> > based
+> >    on the clockspeed. This is done by choosing a different clock
+> > parent.
+> >  - There are two additional clocks that need to be managed. These
+> > are
+> >    only set for dpintf and will be set to NULL if not supplied. The
+> >    clk_* calls handle these as normal clocks then.
+> >  - Some register contents differ slightly between the two
+> > components.
+> > To
+> >    work around this I added register bits/masks with a DPINTF_
+> > prefix
+> >    and use them where different.
+> > 
+> > Based on a separate driver for dpintf created by
+> > Jitao shi <jitao.shi@mediatek.com>.
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > [Bo-Chen: Modify reviewers' comments.]
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > ---
+> >  drivers/gpu/drm/mediatek/mtk_dpi.c          | 115
+> > ++++++++++++++++++--
+> >  drivers/gpu/drm/mediatek/mtk_dpi_regs.h     |  13 +++
+> >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |   4 +
+> >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   1 +
+> >  drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   3 +
+> >  5 files changed, 126 insertions(+), 10 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > index 6b8cf648a5b5..08c8f21b4421 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > @@ -71,6 +71,7 @@ struct mtk_dpi {
+> >  	void __iomem *regs;
+> >  	struct device *dev;
+> >  	struct clk *engine_clk;
+> > +	struct clk *pll_gate_clk;
+> 
+> Separate clock part to an independent patch.
+> 
+
+Hello CK,
+
+as previous reply, I will drop this clock.
+
+> >  	struct clk *pixel_clk;
+> >  	struct clk *tvd_clk;
+> >  	int irq;
+> > @@ -126,6 +127,7 @@ struct mtk_dpi_conf {
+> >  	const u32 *output_fmts;
+> >  	u32 num_output_fmts;
+> >  	bool is_ck_de_pol;
+> > +	bool is_dpintf;
+> >  	bool swap_input_support;
+> >  	/* Mask used for HWIDTH, HPORCH, VSYNC_WIDTH and VSYNC_PORCH
+> > (no shift) */
+> >  	u32 dimension_mask;
+> > @@ -439,6 +441,8 @@ static void mtk_dpi_power_off(struct mtk_dpi
+> > *dpi)
+> >  	mtk_dpi_disable(dpi);
+> >  	clk_disable_unprepare(dpi->pixel_clk);
+> >  	clk_disable_unprepare(dpi->engine_clk);
+> > +	clk_disable_unprepare(dpi->pll_gate_clk);
+> > +	clk_disable_unprepare(dpi->tvd_clk);
+> >  }
+> >  
+> >  static int mtk_dpi_power_on(struct mtk_dpi *dpi)
+> > @@ -448,10 +452,23 @@ static int mtk_dpi_power_on(struct mtk_dpi
+> > *dpi)
+> >  	if (++dpi->refcount != 1)
+> >  		return 0;
+> >  
+> > +	ret = clk_prepare_enable(dpi->tvd_clk);
+> > +	if (ret) {
+> > +		dev_err(dpi->dev, "Failed to enable tvd pll: %d\n",
+> > ret);
+> > +		goto err_refcount;
+> > +	}
+> > +
+> >  	ret = clk_prepare_enable(dpi->engine_clk);
+> >  	if (ret) {
+> >  		dev_err(dpi->dev, "Failed to enable engine clock:
+> > %d\n", ret);
+> > -		goto err_refcount;
+> > +		goto err_engine;
+> > +	}
+> > +
+> > +	ret = clk_prepare_enable(dpi->pll_gate_clk);
+> > +	if (ret) {
+> > +		dev_err(dpi->dev,
+> > +			"Failed to enable pll_gate_clk clock: %d\n",
+> > ret);
+> > +		goto err_ck_cg;
+> >  	}
+> >  
+> >  	ret = clk_prepare_enable(dpi->pixel_clk);
+> > @@ -467,7 +484,11 @@ static int mtk_dpi_power_on(struct mtk_dpi
+> > *dpi)
+> >  	return 0;
+> >  
+> >  err_pixel:
+> > +	clk_disable_unprepare(dpi->pll_gate_clk);
+> > +err_ck_cg:
+> >  	clk_disable_unprepare(dpi->engine_clk);
+> > +err_engine:
+> > +	clk_disable_unprepare(dpi->tvd_clk);
+> >  err_refcount:
+> >  	dpi->refcount--;
+> >  	return ret;
+> > @@ -498,12 +519,16 @@ static int mtk_dpi_set_display_mode(struct
+> > mtk_dpi *dpi,
+> >  	pll_rate = clk_get_rate(dpi->tvd_clk);
+> >  
+> >  	vm.pixelclock = pll_rate / factor;
+> > +
+> > +	if (dpi->conf->is_dpintf)
+> > +		vm.pixelclock /= 4;
+> 
+> Separate this to an independent patch and explain why do this.
+> 
+
+This patch is for support dpintf, It think it should be placed in this
+patch. I will add comment for this.
+/*
+ * For dp_intf, we need to divide clock by 4 because it's
+ * 4 pixels for one round while dpi is 1 pixel for one round.
+ */
+
+> > +
+> >  	if ((dpi->output_fmt == MEDIA_BUS_FMT_RGB888_2X12_LE) ||
+> > -	    (dpi->output_fmt == MEDIA_BUS_FMT_RGB888_2X12_BE))
+> > +	    (dpi->output_fmt == MEDIA_BUS_FMT_RGB888_2X12_BE)) {
+> >  		clk_set_rate(dpi->pixel_clk, vm.pixelclock * 2);
+> > -	else
+> > +	} else {
+> 
+> This modification is not necessary.
+> 
+
+ok.
+
+> >  		clk_set_rate(dpi->pixel_clk, vm.pixelclock);
+> > -
+> > +	}
+> >  
+> >  	vm.pixelclock = clk_get_rate(dpi->pixel_clk);
+> >  
+> > @@ -516,9 +541,21 @@ static int mtk_dpi_set_display_mode(struct
+> > mtk_dpi *dpi,
+> >  			    MTK_DPI_POLARITY_FALLING :
+> > MTK_DPI_POLARITY_RISING;
+> >  	dpi_pol.vsync_pol = vm.flags & DISPLAY_FLAGS_VSYNC_HIGH ?
+> >  			    MTK_DPI_POLARITY_FALLING :
+> > MTK_DPI_POLARITY_RISING;
+> > +
+> 
+> This modification is not necessary.
+> 
+
+ok.
+
+> >  	hsync.sync_width = vm.hsync_len;
+> >  	hsync.back_porch = vm.hback_porch;
+> >  	hsync.front_porch = vm.hfront_porch;
+> > +
+> > +	/*
+> > +	 * For dp_intf, we need to divide everything by 4 because it's
+> > +	 * 4 pixels for one round while dpi is 1 pixel for one round.
+> > +	 */
+> > +	if (dpi->conf->is_dpintf) {
+> 
+> I this this should define dpi->conf->round_pixels rather than dpi-
+> > conf->is_dpintf.
+> > +		hsync.sync_width = vm.hsync_len / 4;
+> > +		hsync.back_porch = vm.hback_porch / 4;
+> > +		hsync.front_porch = vm.hfront_porch / 4;
+> > +	}
+> > +
+
+I think is_dpintf is ok, it just for dpintf.
+
+> >  	hsync.shift_half_line = false;
+> >  	vsync_lodd.sync_width = vm.vsync_len;
+> >  	vsync_lodd.back_porch = vm.vback_porch;
+> > @@ -560,13 +597,20 @@ static int mtk_dpi_set_display_mode(struct
+> > mtk_dpi *dpi,
+> >  	mtk_dpi_config_channel_limit(dpi);
+> >  	mtk_dpi_config_bit_num(dpi, dpi->bit_num);
+> >  	mtk_dpi_config_channel_swap(dpi, dpi->channel_swap);
+> > -	mtk_dpi_config_yc_map(dpi, dpi->yc_map);
+> >  	mtk_dpi_config_color_format(dpi, dpi->color_format);
+> > -	mtk_dpi_config_2n_h_fre(dpi);
+> > -	mtk_dpi_dual_edge(dpi);
+> > -	mtk_dpi_config_disable_edge(dpi);
+> > +	if (dpi->conf->is_dpintf) {
+> 
+> Separate this to an independent patch and give a better config name
+> rather than dpi->conf->is_dpintf.
+> 
+
+This patch is for dpintf. I think it's better to remain in this patch.
+
+> > +		mtk_dpi_mask(dpi, DPI_CON, DPINTF_INPUT_2P_EN,
+> > +			     DPINTF_INPUT_2P_EN);
+> > +	} else {
+> > +		mtk_dpi_config_yc_map(dpi, dpi->yc_map);
+> > +		mtk_dpi_config_2n_h_fre(dpi);
+> > +		mtk_dpi_dual_edge(dpi);
+> > +		mtk_dpi_config_disable_edge(dpi);
+> > +	}
+> >  	mtk_dpi_sw_reset(dpi, false);
+> >  
+> > +	mtk_dpi_enable(dpi);
+> 
+> Why do this? If this is necessary, separate this to an independent
+> patch.
+> 
+
+Yes, no need to do this.
+I will drop this.
+
+> > +
+> >  	return 0;
+> >  }
+> >  
+> > @@ -643,7 +687,10 @@ static int mtk_dpi_bridge_atomic_check(struct
+> > drm_bridge *bridge,
+> >  	dpi->bit_num = MTK_DPI_OUT_BIT_NUM_8BITS;
+> >  	dpi->channel_swap = MTK_DPI_OUT_CHANNEL_SWAP_RGB;
+> >  	dpi->yc_map = MTK_DPI_OUT_YC_MAP_RGB;
+> > -	dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
+> > +	if (out_bus_format == MEDIA_BUS_FMT_YUYV8_1X16)
+> > +		dpi->color_format =
+> > MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL;
+> 
+> Separate this to an independent patch.
+> 
+
+ok
+
+> > +	else
+> > +		dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
+> >  
+> >  	return 0;
+> >  }
+> > @@ -688,7 +735,7 @@ mtk_dpi_bridge_mode_valid(struct drm_bridge
+> > *bridge,
+> >  {
+> >  	struct mtk_dpi *dpi = bridge_to_dpi(bridge);
+> >  
+> > -	if (mode->clock > dpi->conf->max_clock_khz)
+> > +	if (dpi->conf->max_clock_khz && mode->clock > dpi->conf-
+> > > max_clock_khz)
+> 
+> Why dp_intf has no max_clock_khz?
+> 
+
+I will add max_clock_khz to 600MHz for dpintf
+
+> Regards,
+> CK
+> 
+> >  		return MODE_CLOCK_HIGH;
+> >  
+> >  	return MODE_OK;
+> > @@ -802,6 +849,16 @@ static unsigned int
+> > mt8183_calculate_factor(int
+> > clock)
+> >  		return 2;
+> >  }
+> >  
+> > +static unsigned int mt8195_dpintf_calculate_factor(int clock)
+> > +{
+> > +	if (clock < 70000)
+> > +		return 4;
+> > +	else if (clock < 200000)
+> > +		return 2;
+> > +	else
+> > +		return 1;
+> > +}
+> > +
+> >  static const u32 mt8173_output_fmts[] = {
+> >  	MEDIA_BUS_FMT_RGB888_1X24,
+> >  };
+> > @@ -811,6 +868,12 @@ static const u32 mt8183_output_fmts[] = {
+> >  	MEDIA_BUS_FMT_RGB888_2X12_BE,
+> >  };
+> >  
+> > +static const u32 mt8195_output_fmts[] = {
+> > +	MEDIA_BUS_FMT_RGB888_1X24,
+> > +	MEDIA_BUS_FMT_YUV8_1X24,
+> > +	MEDIA_BUS_FMT_YUYV8_1X16,
+> > +};
+> > +
+> >  static const struct mtk_dpi_yc_limit mtk_dpi_limit = {
+> >  	.c_bottom = 0x0010,
+> >  	.c_top = 0x0FE0,
+> > @@ -818,6 +881,13 @@ static const struct mtk_dpi_yc_limit
+> > mtk_dpi_limit = {
+> >  	.y_top = 0x0FE0,
+> >  };
+> >  
+> > +static const struct mtk_dpi_yc_limit mtk_dpintf_limit = {
+> > +	.c_bottom = 0x0000,
+> > +	.c_top = 0xFFF,
+> > +	.y_bottom = 0x0000,
+> > +	.y_top = 0xFFF,
+> > +};
+> > +
+> >  static const struct mtk_dpi_conf mt8173_conf = {
+> >  	.cal_factor = mt8173_calculate_factor,
+> >  	.reg_h_fre_con = 0xe0,
+> > @@ -883,6 +953,19 @@ static const struct mtk_dpi_conf mt8192_conf =
+> > {
+> >  	.limit = &mtk_dpi_limit,
+> >  };
+> >  
+> > +static const struct mtk_dpi_conf mt8195_dpintf_conf = {
+> > +	.cal_factor = mt8195_dpintf_calculate_factor,
+> > +	.output_fmts = mt8195_output_fmts,
+> > +	.num_output_fmts = ARRAY_SIZE(mt8195_output_fmts),
+> > +	.is_dpintf = true,
+> > +	.dimension_mask = DPINTF_HPW_MASK,
+> > +	.hvsize_mask = DPINTF_HSIZE_MASK,
+> > +	.channel_swap_shift = DPINTF_CH_SWAP,
+> > +	.yuv422_en_bit = DPINTF_YUV422_EN,
+> > +	.csc_enable_bit = DPINTF_CSC_ENABLE,
+> > +	.limit = &mtk_dpintf_limit,
+> > +};
+> > +
+> >  static int mtk_dpi_probe(struct platform_device *pdev)
+> >  {
+> >  	struct device *dev = &pdev->dev;
+> > @@ -935,6 +1018,15 @@ static int mtk_dpi_probe(struct
+> > platform_device
+> > *pdev)
+> >  		return ret;
+> >  	}
+> >  
+> > +	dpi->pll_gate_clk = devm_clk_get_optional(dev, "pll_gate");
+> > +	if (IS_ERR(dpi->pll_gate_clk)) {
+> > +		ret = PTR_ERR(dpi->pll_gate_clk);
+> > +		if (ret != -EPROBE_DEFER)
+> > +			dev_err(dev, "Failed to get dpi ck cg clock:
+> > %d\n", ret);
+> > +
+> > +		return ret;
+> > +	}
+> > +
+> >  	dpi->pixel_clk = devm_clk_get(dev, "pixel");
+> >  	if (IS_ERR(dpi->pixel_clk)) {
+> >  		ret = PTR_ERR(dpi->pixel_clk);
+> > @@ -1005,6 +1097,9 @@ static const struct of_device_id
+> > mtk_dpi_of_ids[] = {
+> >  	{ .compatible = "mediatek,mt8192-dpi",
+> >  	  .data = &mt8192_conf,
+> >  	},
+> > +	{ .compatible = "mediatek,mt8195-dp_intf",
+> > +	  .data = &mt8195_dpintf_conf,
+> > +	},
+> >  	{ },
+> >  };
+> >  MODULE_DEVICE_TABLE(of, mtk_dpi_of_ids);
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+> > b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+> > index 3a02fabe1662..f7f0272dbd6a 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+> > @@ -40,9 +40,13 @@
+> >  #define FAKE_DE_LEVEN			BIT(21)
+> >  #define FAKE_DE_RODD			BIT(22)
+> >  #define FAKE_DE_REVEN			BIT(23)
+> > +#define DPINTF_YUV422_EN		BIT(24)
+> > +#define DPINTF_CSC_ENABLE		BIT(26)
+> > +#define DPINTF_INPUT_2P_EN		BIT(29)
+> >  
+> >  #define DPI_OUTPUT_SETTING	0x14
+> >  #define CH_SWAP				0
+> > +#define DPINTF_CH_SWAP			1
+> >  #define CH_SWAP_MASK			(0x7 << 0)
+> >  #define SWAP_RGB			0x00
+> >  #define SWAP_GBR			0x01
+> > @@ -80,8 +84,10 @@
+> >  #define DPI_SIZE		0x18
+> >  #define HSIZE				0
+> >  #define HSIZE_MASK			(0x1FFF << 0)
+> > +#define DPINTF_HSIZE_MASK		(0xFFFF << 0)
+> >  #define VSIZE				16
+> >  #define VSIZE_MASK			(0x1FFF << 16)
+> > +#define DPINTF_VSIZE_MASK		(0xFFFF << 16)
+> >  
+> >  #define DPI_DDR_SETTING		0x1C
+> >  #define DDR_EN				BIT(0)
+> > @@ -93,24 +99,30 @@
+> >  #define DPI_TGEN_HWIDTH		0x20
+> >  #define HPW				0
+> >  #define HPW_MASK			(0xFFF << 0)
+> > +#define DPINTF_HPW_MASK			(0xFFFF << 0)
+> >  
+> >  #define DPI_TGEN_HPORCH		0x24
+> >  #define HBP				0
+> >  #define HBP_MASK			(0xFFF << 0)
+> > +#define DPINTF_HBP_MASK			(0xFFFF << 0)
+> >  #define HFP				16
+> >  #define HFP_MASK			(0xFFF << 16)
+> > +#define DPINTF_HFP_MASK			(0xFFFF << 16)
+> >  
+> >  #define DPI_TGEN_VWIDTH		0x28
+> >  #define DPI_TGEN_VPORCH		0x2C
+> >  
+> >  #define VSYNC_WIDTH_SHIFT		0
+> >  #define VSYNC_WIDTH_MASK		(0xFFF << 0)
+> > +#define DPINTF_VSYNC_WIDTH_MASK		(0xFFFF << 0)
+> >  #define VSYNC_HALF_LINE_SHIFT		16
+> >  #define VSYNC_HALF_LINE_MASK		BIT(16)
+> >  #define VSYNC_BACK_PORCH_SHIFT		0
+> >  #define VSYNC_BACK_PORCH_MASK		(0xFFF << 0)
+> > +#define DPINTF_VSYNC_BACK_PORCH_MASK	(0xFFFF << 0)
+> >  #define VSYNC_FRONT_PORCH_SHIFT		16
+> >  #define VSYNC_FRONT_PORCH_MASK		(0xFFF << 16)
+> > +#define DPINTF_VSYNC_FRONT_PORCH_MASK	(0xFFFF << 16)
+> >  
+> >  #define DPI_BG_HCNTL		0x30
+> >  #define BG_RIGHT			(0x1FFF << 0)
+> > @@ -217,4 +229,5 @@
+> >  
+> >  #define EDGE_SEL_EN			BIT(5)
+> >  #define H_FRE_2N			BIT(25)
+> > +
+> >  #endif /* __MTK_DPI_REGS_H */
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > index 2aab1e1eda36..5bef085714a1 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> > @@ -427,6 +427,7 @@ static const char * const
+> > mtk_ddp_comp_stem[MTK_DDP_COMP_TYPE_MAX] = {
+> >  	[MTK_DISP_RDMA] = "rdma",
+> >  	[MTK_DISP_UFOE] = "ufoe",
+> >  	[MTK_DISP_WDMA] = "wdma",
+> > +	[MTK_DP_INTF] = "dp-intf",
+> >  	[MTK_DPI] = "dpi",
+> >  	[MTK_DSI] = "dsi",
+> >  };
+> > @@ -450,6 +451,8 @@ static const struct mtk_ddp_comp_match
+> > mtk_ddp_matches[DDP_COMPONENT_DRM_ID_MAX]
+> >  	[DDP_COMPONENT_DRM_OVL_ADAPTOR]	= { MTK_DISP_OVL_ADAPTOR,	
+> > 0, &ddp_ovl_adaptor },
+> >  	[DDP_COMPONENT_DSC0]		= { MTK_DISP_DSC,		
+> > 0, &ddp_dsc },
+> >  	[DDP_COMPONENT_DSC1]		= { MTK_DISP_DSC,		
+> > 1, &ddp_dsc },
+> > +	[DDP_COMPONENT_DP_INTF0]	= { MTK_DP_INTF,		0,
+> > &ddp_dpi },
+> > +	[DDP_COMPONENT_DP_INTF1]	= { MTK_DP_INTF,		1,
+> > &ddp_dpi },
+> >  	[DDP_COMPONENT_DSI0]		= { MTK_DSI,			
+> > 0, &ddp_dsi },
+> >  	[DDP_COMPONENT_DSI1]		= { MTK_DSI,			
+> > 1, &ddp_dsi },
+> >  	[DDP_COMPONENT_DSI2]		= { MTK_DSI,			
+> > 2, &ddp_dsi },
+> > @@ -575,6 +578,7 @@ int mtk_ddp_comp_init(struct device_node *node,
+> > struct mtk_ddp_comp *comp,
+> >  	    type == MTK_DISP_PWM ||
+> >  	    type == MTK_DISP_RDMA ||
+> >  	    type == MTK_DPI ||
+> > +	    type == MTK_DP_INTF ||
+> >  	    type == MTK_DSI)
+> >  		return 0;
+> >  
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> > b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> > index af9a6671f9c4..3084cc4e2830 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> > @@ -38,6 +38,7 @@ enum mtk_ddp_comp_type {
+> >  	MTK_DISP_UFOE,
+> >  	MTK_DISP_WDMA,
+> >  	MTK_DPI,
+> > +	MTK_DP_INTF,
+> >  	MTK_DSI,
+> >  	MTK_DDP_COMP_TYPE_MAX,
+> >  };
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> > b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> > index 78e79c8449c8..3b885ad61ac3 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> > @@ -788,6 +788,8 @@ static const struct of_device_id
+> > mtk_ddp_comp_dt_ids[] = {
+> >  	  .data = (void *)MTK_DPI },
+> >  	{ .compatible = "mediatek,mt8192-dpi",
+> >  	  .data = (void *)MTK_DPI },
+> > +	{ .compatible = "mediatek,mt8195-dp_intf",
+> > +	  .data = (void *)MTK_DP_INTF },
+> >  	{ .compatible = "mediatek,mt2701-dsi",
+> >  	  .data = (void *)MTK_DSI },
+> >  	{ .compatible = "mediatek,mt8173-dsi",
+> > @@ -931,6 +933,7 @@ static int mtk_drm_probe(struct platform_device
+> > *pdev)
+> >  		    comp_type == MTK_DISP_OVL_2L ||
+> >  		    comp_type == MTK_DISP_OVL_ADAPTOR ||
+> >  		    comp_type == MTK_DISP_RDMA ||
+> > +		    comp_type == MTK_DP_INTF ||
+> >  		    comp_type == MTK_DPI ||
+> >  		    comp_type == MTK_DSI) {
+> >  			dev_info(dev, "Adding component match for
+> > %pOF\n",
+> 
+> 
+
