@@ -2,63 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA0A754FEDD
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 23:03:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 054B554FF6D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 23:37:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383598AbiFQUlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 16:41:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45736 "EHLO
+        id S235848AbiFQVhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 17:37:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383649AbiFQUlF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 16:41:05 -0400
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08CF06D3AF;
-        Fri, 17 Jun 2022 13:38:35 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id y17so3698155ilj.11;
-        Fri, 17 Jun 2022 13:38:34 -0700 (PDT)
+        with ESMTP id S235826AbiFQVhd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 17:37:33 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6AE19B
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 14:37:32 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id w17so7193206wrg.7
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 14:37:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod.ie; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wGbMUWjxs8BkGkLUVDpfhH3mQEW003HHHcJjYYfU7v4=;
+        b=SLDzV2QIqEa40kiO6UHKNr4FOD7iSpRR4+KbKYh4OQ8FAYv+DyGH964zD+o8MLMqru
+         LAx0TEzv3qw2FW4OB1uGntlpn7DYZAdFJ6aOgFveGQt7ptcSFY66IxN00Nxx3LM60vTz
+         CKfj0YSixRUUYt3Y01puNxiX8KI4XHFGS4qM8ipQZU+P3o5rd9zf6fqoHr0wzw9xcMXq
+         2Jz3hLTHdfE3rhgPMk/nmt+3cUg1gu68UwhgJV4rO+d1jLEPv2ZkcSjPfnt3fVG5Z00j
+         3dEPcrutimdfF6gWpUEcuB8CmV2B0GmCUyBg6Tf3B/mOldFz+cPIyHKHDntg6vsRV8bf
+         PZxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WxC8y4xgzpsGIQGT5vC3MH6pL5FDuKzI7XWPboiHFXc=;
-        b=LYbQQF+KB2wM8B7yVpZDvjRaPEqgEk8Mpr9eqd8kxG6HVP7/SmWgPa62y9TP71Fszv
-         DUE1jSfB2caq8/VYYnBYnZwYM+tlWVIu7MfjvDmH4O8FYJL9bLzFw+GXEH6cKiVjWBZq
-         aqhdMKkSNzdI7M1z/bqnjY3OV8qeHsU5re21mkkHhjQQtq+23X38p7INDjyBj6SRj2jl
-         fNQQ+vwYytPTU1XnfBREKGzVBelr+5bUYMOe9qhY0B67TVTOW0x2ckSz7oaqzwj4UWKz
-         8etfqBVKXnJdzD5tusR83UUAww25ROyFthpfDcepNWT8KQ+2zSuztZAJJ68rxTkL6aXk
-         M0lg==
-X-Gm-Message-State: AJIora8KnlMlWZZ1kNi7ZeqWyFAPXkO2NTq64O9MROtDKDBXv8zDwlhL
-        3m/3ABe4GpxHKaFfzw3kYw==
-X-Google-Smtp-Source: AGRyM1tRfGyyxlHmt6DVN6C8QJwoAzdTs2WSfZKnyY/mpeCUg4tFUo332pxr0ovhLfFD051ISEv6SA==
-X-Received: by 2002:a05:6e02:1188:b0:2d8:c8cb:3fd0 with SMTP id y8-20020a056e02118800b002d8c8cb3fd0mr6715419ili.150.1655498289906;
-        Fri, 17 Jun 2022 13:38:09 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id l124-20020a6bbb82000000b006694bc50b82sm2991817iof.35.2022.06.17.13.38.08
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wGbMUWjxs8BkGkLUVDpfhH3mQEW003HHHcJjYYfU7v4=;
+        b=ncbKkz194tQz/cuL5BqG1xamJDMNuVlO12NLnbt+T++/5SAdYf5F5fo31X+nfQKnE7
+         PZCSZyfCJFQSSl3VXRCCpwg2YP7xbF1krj54qKxXdBR7MalvKzX5VWCO7Rkb2NyKqbXi
+         pZtj8WkzFmYp+bffDgJK4qMEqIhyWaBgCwSOdZbRv7aUpvuIrJ0/7Z62tnXPEwi/5j5D
+         EJk8r6nTsDHS2CdyuiPD482Tp7tTcrUBaqPnBWqCckF302bgscnNSH1Nupi3MPFy1GOJ
+         VziFhho42qQBewlfeEsLoYRqhSyA+AC+BJNNvVJ1nh4KhcED7EXydhXPykS5mZTWcZJE
+         KeVA==
+X-Gm-Message-State: AJIora/slPI6BQPvCOHn2PoDehYz/1kve0b8j4jW5rFYGRTl4YsahbdY
+        9HDydo+HVhM5CmgZP+n8gM4BLA==
+X-Google-Smtp-Source: AGRyM1tr5HuJpzlTGlamBFC16nJpme8r8TCAQYFHnLloq5rkURi5r/W+JiMekrV08CqRLjwlrpNLEA==
+X-Received: by 2002:adf:f184:0:b0:21b:6c76:5b6e with SMTP id h4-20020adff184000000b0021b6c765b6emr4253788wro.126.1655501851181;
+        Fri, 17 Jun 2022 14:37:31 -0700 (PDT)
+Received: from henark71.. ([51.37.234.167])
+        by smtp.gmail.com with ESMTPSA id z14-20020a5d654e000000b00210288c55d0sm5623988wrv.52.2022.06.17.14.37.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jun 2022 13:38:09 -0700 (PDT)
-Received: (nullmailer pid 2402049 invoked by uid 1000);
-        Fri, 17 Jun 2022 20:38:08 -0000
-Date:   Fri, 17 Jun 2022 14:38:08 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
+        Fri, 17 Jun 2022 14:37:30 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rcc: stm32: select the "secure" path for
- stm32mp13
-Message-ID: <20220617203808.GA2400871-robh@kernel.org>
-References: <20220613093815.18334-1-alexandre.torgue@foss.st.com>
- <20220616175531.GA3716982-robh@kernel.org>
- <abf9247c-085b-05ff-a589-d9b190e88666@foss.st.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH] dt-bindings: display: delete ilitek,ili9341.txt
+Date:   Fri, 17 Jun 2022 22:37:07 +0100
+Message-Id: <20220617213706.376730-1-mail@conchuod.ie>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <abf9247c-085b-05ff-a589-d9b190e88666@foss.st.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,47 +70,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 17, 2022 at 09:21:40AM +0200, Alexandre TORGUE wrote:
-> Hi Rob
-> 
-> On 6/16/22 19:55, Rob Herring wrote:
-> > On Mon, Jun 13, 2022 at 11:38:15AM +0200, Alexandre Torgue wrote:
-> > > Like for stm32mp15, when stm32 RCC node is used to interact with a secure
-> > 
-> > 'st,stm32mp1' is stm32mp15?
-> 
-> Yes "st,stm32mp1-rcc" is for the STM32MP15.
-> 
-> > 
-> > > context (using clock SCMI protocol), a different path has to be used for
-> > > yaml verification.
-> > > 
-> > > Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> > > 
-> > > ---
-> > > 
-> > > Hi Rob, Krzysztof,
-> > > 
-> > > If you agree with this patch, I'll apply it directly in my STM32 tree.
-> > > 
-> > > Thanks
-> > > Alex
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-> > > index f8c474227807..242fe922b035 100644
-> > > --- a/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-> > > +++ b/Documentation/devicetree/bindings/clock/st,stm32mp1-rcc.yaml
-> > > @@ -78,6 +78,7 @@ if:
-> > >         contains:
-> > >           enum:
-> > >             - st,stm32mp1-rcc-secure
-> > > +          - st,stm32mp13-rcc
-> > 
-> > You don't need '-secure' because it's always secure?
-> 
-> Yes. Compare to STM32MP15, the STM32MP13 is by default "secure". In our case
-> it is "mapped" to OPTEE, using SCMI protocols.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Okay,
+ilitek,ili9341.txt was replaced by ilitek,ili9341.yaml but the txt
+binding was not deleted. Do so.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ .../bindings/display/ilitek,ili9341.txt       | 27 -------------------
+ 1 file changed, 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+
+diff --git a/Documentation/devicetree/bindings/display/ilitek,ili9341.txt b/Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+deleted file mode 100644
+index 169b32e4ee4e..000000000000
+--- a/Documentation/devicetree/bindings/display/ilitek,ili9341.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-Ilitek ILI9341 display panels
+-
+-This binding is for display panels using an Ilitek ILI9341 controller in SPI
+-mode.
+-
+-Required properties:
+-- compatible:	"adafruit,yx240qv29", "ilitek,ili9341"
+-- dc-gpios:	D/C pin
+-- reset-gpios:	Reset pin
+-
+-The node for this driver must be a child node of a SPI controller, hence
+-all mandatory properties described in ../spi/spi-bus.txt must be specified.
+-
+-Optional properties:
+-- rotation:	panel rotation in degrees counter clockwise (0,90,180,270)
+-- backlight:	phandle of the backlight device attached to the panel
+-
+-Example:
+-	display@0{
+-		compatible = "adafruit,yx240qv29", "ilitek,ili9341";
+-		reg = <0>;
+-		spi-max-frequency = <32000000>;
+-		dc-gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
+-		reset-gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+-		rotation = <270>;
+-		backlight = <&backlight>;
+-	};
+-- 
+2.36.1
+
