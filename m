@@ -2,82 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74F7A54F694
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 13:21:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3C1054F6A9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 13:27:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236185AbiFQLVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 07:21:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49798 "EHLO
+        id S1381641AbiFQL1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 07:27:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230307AbiFQLVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 07:21:21 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B93D16C569
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 04:21:19 -0700 (PDT)
+        with ESMTP id S1381290AbiFQL1J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 07:27:09 -0400
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76ABD6BFD1;
+        Fri, 17 Jun 2022 04:27:06 -0700 (PDT)
+Received: by mail-io1-xd2e.google.com with SMTP id y12so4219890ior.7;
+        Fri, 17 Jun 2022 04:27:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1655464880; x=1687000880;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=SqqORt2lC2LxvXhiT1YfIXmlGzsUQNc9P3IGQGRKcSU=;
-  b=Wyl01Lbx3oiSfBfa9Ufw+/mM8DhLpQ0yvI+uFhqBpOwaO2SnKTsOa2W0
-   FhYeEAyj5f/2lj73ivnLE5/+WBIHoJTJy+9XRV3etVLRWH8vS+OKS1GyH
-   WyDJdVSDsxTaX4KmRE5/Ql7j2R9GAgLJ9gadrJOGhFmhPouQdm54Ljkom
-   WBMBD7TErkMLxjX51KVYAtwc/LuIpMPNv3aPi/g60PWSKKy2j3ZuY/8cw
-   yKIwZ62MXHhZi5jhmJOaqPIFn6fwywE7UaWuMQTvqIq5F8wClxuMRu6vF
-   Gdpn7odjoxeAqLf+8f3vSihq3qdfjxSKOnSp+Sb54X705zhgYHu/rINtg
-   g==;
-X-IronPort-AV: E=Sophos;i="5.92,306,1650924000"; 
-   d="scan'208";a="24515801"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 17 Jun 2022 13:21:17 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 17 Jun 2022 13:21:18 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 17 Jun 2022 13:21:18 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1655464877; x=1687000877;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=SqqORt2lC2LxvXhiT1YfIXmlGzsUQNc9P3IGQGRKcSU=;
-  b=pVuCw2CGrXOVMq1DP8ykyFopD62W7Ef2CL8YnP6cBo3WYrH3ManKL85f
-   sQKuv1MGSMN0pKXRpgC1MfaJNniPKdJQex88dIuYriZ7qXbha4+KdajEv
-   r8SvjL9HIqNsJrus+HaJYldP+ycHR7QDzAg/MFR/daG0DvtftewqJW+0s
-   JV/Mo1ya1w6eS56CP22Lzrbfnez/zdaRacGfgdQEQMnaYue+SqAjPKMUN
-   8qCCE3tQjWRsSO+z7YTv7Vp2+4yH3B+XhQM/6mJNJ2xSIpdpgnaMid8Ai
-   5DasWjhyeGAg/Tfnwb0jaIeVHfYDteadMQSA9Wrphd1A4Llv0fvmO1W+e
-   A==;
-X-IronPort-AV: E=Sophos;i="5.92,306,1650924000"; 
-   d="scan'208";a="24515800"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 17 Jun 2022 13:21:17 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 999BC280072;
-        Fri, 17 Jun 2022 13:21:17 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Markus Niebel <Markus.Niebel@tq-group.com>
-Subject: Re: (EXT) Re: [PATCH 2/2] arm64: dts: freescale: add initial device tree for TQMa8MPQL with i.MX8MP
-Date:   Fri, 17 Jun 2022 13:21:17 +0200
-Message-ID: <5819581.iIbC2pHGDl@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <e039bef3-3fc4-e11e-9dcd-fe3a764edf3b@linaro.org>
-References: <20220616142221.3986670-1-alexander.stein@ew.tq-group.com> <20220616142221.3986670-3-alexander.stein@ew.tq-group.com> <e039bef3-3fc4-e11e-9dcd-fe3a764edf3b@linaro.org>
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=cIita4Mx/OZl+X+VeaS6ACjFa0zy1JtZ/wxGcvDjX4M=;
+        b=cBnghZ9dK8jQypp2zWcU1IJmfJ9ib0azbSO3a6CUrQ6p7k8MqcOEu38UcGE/ELnbTj
+         H8ijRkJPVfwZkD66BARfJX9oqGp5ge7C/Qw3DlQbZsvEEWj/J9mBU7bCEKxQwlnlHY9M
+         SBloAA7m7tmnhDjWeMSIY/T7PARhocjfJGPxhzOeODLK3cPap+SSyb4kH1Z//ZuD4l8v
+         x9YVQQnDeCAKKsgUNQMFXKyMOFvhFCJyKXsnWZg4h4AFQs9m8271FmL3Oc4bhBIDrys2
+         AKhbEKwxmxTk/45W3UpXfGJzK42rRBHh7djKKQ7LrLGqFCSjNEcYTb/10k6Q8kliAaAJ
+         T0AQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=cIita4Mx/OZl+X+VeaS6ACjFa0zy1JtZ/wxGcvDjX4M=;
+        b=OW06Ppzody8xhgFYSzr1WtIbLRoJ+Jj1vA6a1Fw9sNPPpKxDF0CtTsx7IUVFGEfgVD
+         4iSdJGRBbsWE8EOFoYPhFK6t1pQ8t+fZ5s+DKCMJcukEnxFkOe/5dXqfciaWEQAHitu2
+         fY5VV9C3iNqY/jUbSwkACv6bKPP4xnU05/dG40bJnMZIbXVLuT3FnGbbCGNmPk9JJu5X
+         HBd+lmB0zIEb/xOjtrTQ9SEndgu6HbpcWRC86jyDtce9BZWbK3Wpp5bkSeW6p1Dt5FLs
+         UtBMQ1znIfmdE17SG0/lHV6mqwI29ZVp337uf1oM2mVJEEKUWVMUbbTh0Zf2GUYSQTmZ
+         s1Qg==
+X-Gm-Message-State: AJIora9twcC8lcid0wmNWgWpIkb7ju6Vm3srqdGyk0cXyz0QW+lzbpg2
+        GbWI9ul1BcJ1WgPOa5lmzAMXur3ZdiXnudfylRwwNuBzDa4=
+X-Google-Smtp-Source: AGRyM1v+uOPPKXH5BGj0nN0XZL/uXw8K7soKzPUvo/hXYcZRuyA8S1WlggM3NtZdIqlhGxZxIj4Std5tTPlwSTv8/pI=
+X-Received: by 2002:a05:6638:d01:b0:331:d29a:8e60 with SMTP id
+ q1-20020a0566380d0100b00331d29a8e60mr5201134jaj.254.1655465225916; Fri, 17
+ Jun 2022 04:27:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+References: <20220613111146.25221-1-peterwu.pub@gmail.com> <20220613111146.25221-7-peterwu.pub@gmail.com>
+ <28b73da7-d97c-5ea5-0b22-724fa971aeb0@linaro.org>
+In-Reply-To: <28b73da7-d97c-5ea5-0b22-724fa971aeb0@linaro.org>
+From:   ChiaEn Wu <peterwu.pub@gmail.com>
+Date:   Fri, 17 Jun 2022 19:26:55 +0800
+Message-ID: <CABtFH5LTpHyaJvwr6WHWx89gdGmsD-inWJa_LidyJzSL5bxowg@mail.gmail.com>
+Subject: Re: [PATCH v2 06/15] dt-bindings: mfd: Add Mediatek MT6370
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     jic23@kernel.org, lars@metafoo.de, matthias.bgg@gmail.com,
+        lee.jones@linaro.org, Daniel Thompson <daniel.thompson@linaro.org>,
+        jingoohan1@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        szunichen@gmail.com, ChiYuan Huang <cy_huang@richtek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,201 +75,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+Hi Krzysztof,
 
-thanks for the fast feedback.
-
-Am Donnerstag, 16. Juni 2022, 16:26:42 CEST schrieb Krzysztof Kozlowski:
-> On 16/06/2022 07:22, Alexander Stein wrote:
-> > This adds support for TQMa8MPQL module on MBa8MPxL board.
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=E5=B9=
+=B46=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=BA=94 =E6=B8=85=E6=99=A85:15=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+>
+> On 13/06/2022 04:11, ChiaEn Wu wrote:
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> >
+> > Add Mediatek MT6370 binding documentation.
+> >
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 > > ---
-> > 
-> >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
-> >  .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 689 ++++++++++++++++++
-> >  .../boot/dts/freescale/imx8mp-tqma8mpql.dtsi  | 284 ++++++++
-> >  3 files changed, 974 insertions(+)
-> >  create mode 100644
-> >  arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts create mode
-> >  100644 arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi> 
-> > diff --git a/arch/arm64/boot/dts/freescale/Makefile
-> > b/arch/arm64/boot/dts/freescale/Makefile index c288bda8aa36..ab8e61d4dd7c
-> > 100644
-> > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > @@ -82,6 +82,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
-> > 
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
-> > 
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl.dtb
-> > 
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dahlia.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dev.dtb
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> > b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts new file
-> > mode 100644
-> > index 000000000000..e9755bd7619c
+> >  .../bindings/mfd/mediatek,mt6370.yaml         | 279 ++++++++++++++++++
+> >  .../dt-bindings/iio/adc/mediatek,mt6370_adc.h |  18 ++
+> >  2 files changed, 297 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt63=
+70.yaml
+> >  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6370_adc.h
+> >
+> > diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml=
+ b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+> > new file mode 100644
+> > index 000000000000..6c2639e81e50
 > > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> > @@ -0,0 +1,689 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> > +/*
-> > + * Copyright 2021-2022 TQ-Systems GmbH
-> > + * Author: Alexander Stein <alexander.stein@tq-group.com>
-> > + */
+> > +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+> > @@ -0,0 +1,279 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mfd/mediatek,mt6370.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +/dts-v1/;
+> > +title: Mediatek MT6370 SubPMIC
 > > +
-> > +#include <dt-bindings/net/ti-dp83867.h>
-> > +#include <dt-bindings/pwm/pwm.h>
-> > +#include "imx8mp-tqma8mpql.dtsi"
+> > +maintainers:
+> > +  - ChiYuan Huang <cy_huang@richtek.com>
 > > +
-> > +/ {
-> > +	model = "TQ-Systems i.MX8MPlus TQMa8MPxL on MBa8MPxL";
-> > +	compatible = "tq,imx8mp-tqma8mpql-mba8mpxl", "tq,imx8mp-tqma8mpql",
-> > "fsl,imx8mp"; +
-> > +	chosen {
-> > +		stdout-path = &uart4;
-> > +	};
+> > +description: |
+> > +  MT6370 is a highly-integrated smart power management IC, which inclu=
+des a
+> > +  single cell Li-Ion/Li-Polymer switching battery charger, a USB Type-=
+C &
+> > +  Power Delivery (PD) controller, dual flash LED current sources, a RG=
+B LED
+> > +  driver, a backlight WLED driver, a display bias driver and a general=
+ LDO for
+> > +  portable devices.
 > > +
-> > +	iio-hwmon {
-> > +		compatible = "iio-hwmon";
-> > +		io-channels = <&adc 0>, <&adc 1>;
-> > +	};
+> > +properties:
+> > +  compatible:
+> > +    const: mediatek,mt6370
 > > +
-> > +	aliases {
-> > +		mmc0 = &usdhc3;
-> > +		mmc1 = &usdhc2;
-> > +		mmc2 = &usdhc1;
-> > +		rtc0 = &pcf85063;
-> > +		rtc1 = &snvs_rtc;
-> > +		spi0 = &flexspi;
-> > +		spi1 = &ecspi1;
-> > +		spi2 = &ecspi2;
-> > +		spi3 = &ecspi3;
-> > +	};
+> > +  reg:
+> > +    maxItems: 1
 > > +
-> > +	backlight_lvds: backlight-lvds {
-> > +		compatible = "pwm-backlight";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_bllvds>;
-> > +		pwms = <&pwm2 0 5000000 0>;
-> > +		power-supply = <&reg_vcc_12v0>;
-> > +		enable-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
-> > +		status = "disabled";
-> > +	};
+> > +  wakeup-source: true
 > > +
-> > +	gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_gpiobutton>;
-> > +		autorepeat;
+> > +  interrupts:
+> > +    maxItems: 1
 > > +
-> > +		switch1 {
-> 
-> swtich-1
-
-Thanks, will change this.
-
-> > +			label = "S12";
-> > +			linux,code = <BTN_0>;
-> > +			gpios = <&gpio5 26 GPIO_ACTIVE_LOW>;
-> > +		};
+> > +  interrupt-controller: true
 > > +
-> > +		switch2 {
-> 
-> switch-2
-
-Dito.
-
-> 
-> > +			label = "S13";
-> > +			linux,code = <BTN_1>;
-> > +			gpios = <&gpio5 27 GPIO_ACTIVE_LOW>;
-> > +		};
-> > +	};
+> > +  '#interrupt-cells':
+> > +    const: 1
 > > +
-> > +	gpio-leds {
-> > +		compatible = "gpio-leds";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_gpioled>;
+> > +  adc:
+> > +    type: object
+> > +    description: |
+> > +      Provides 9 channels for system monitoring, including vbusdiv5, v=
+busdiv2,
+> > +      vbat, vsys, chg_vddp, ts_bat, ibus, ibat, and temp_jc.
 > > +
-> > +		led0 {
-> 
-> led-0
-
-Will change this.
-
-> > +			label = "led0";
-> 
-> Your label should be more useful... or just replace it with function and
-> color.
-
-I wasn't aware that function and color is preferred to label nowadays. I will 
-use that instead.
-
-> > +			gpios = <&gpio5 5 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "default-on";
-> > +		};
+> > +    properties:
+> > +      compatible:
+> > +        const: mediatek,mt6370-adc
 > > +
-> > +		led1 {
-> 
-> led-1
-
-Will change this.
-
-> > +			label = "led1";
-> > +			gpios = <&gpio5 4 GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "heartbeat";
-> > +		};
+> > +      "#io-channel-cells":
+> > +        const: 1
 > > +
-> > +		led2 {
-> 
-> led-2
+> > +    required:
+> > +      - compatible
+> > +      - '#io-channel-cells'
+>
+> Decide in your entire patchset whether you use ' or ". Don't mix.
 
-Will change this.
+Thanks for your comments.
+We apologize for doing these mistakes...
+We will use the same symbol in the entire patchset and check again
+before the next submission.
 
-> > +			label = "led2";
-> > +			gpios = <&gpio5 3 GPIO_ACTIVE_HIGH>;
-> > +		};
-> > +	};
-> > +
-> > +	lvds_panel: display {
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_lvdspanel>;
-> > +		enable-gpios = <&gpio3 20 GPIO_ACTIVE_HIGH>;
-> > +		backlight = <&backlight_lvds>;
-> > +		status = "disabled";
-> 
-> What's this node about? There is no compatible.
-
-As mentioned in the cover letter, some nodes are not used yet. In this case 
-the intention is to apply an overlay for enabling the display later on. As the 
-MBa8MPxL is a starter kit mainboard there is no fixed display attached. So a 
-user might use our supported display or chose his own. But the backlight and 
-display are fixed, so anything related to that can be part of the general 
-mainboad DTS.
-The display specific overlay will then have (among other things) the following 
-snippet:
-
-> &display0 {
-> 	compatible = "tianma,tm070jvhg33";
-> 	status = "okay";
-> };
-
-Power supply and enable GPIO are fixed, so there the can be part of the 
-mainboard DTS while the actual compatible for the display might change.
-
-I hope this makes this approach a bit more clear and this approach is 
-acceptable.
+>
+> Since you did not test your bindings, I am not reviewing it. First, test
+> them. No need for me to do the job of a automated tool, right?
+>
+> Best regards,
+> Krzysztof
 
 Best regards,
-Alexander
-
-
-
+ChiaEn Wu
