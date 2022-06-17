@@ -2,72 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8080A54F155
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 09:03:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C4054F178
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 09:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380048AbiFQHDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 03:03:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39828 "EHLO
+        id S1380486AbiFQHJT convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 17 Jun 2022 03:09:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234203AbiFQHDC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 03:03:02 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE1E522507;
-        Fri, 17 Jun 2022 00:03:00 -0700 (PDT)
-X-UUID: 66136afbb2224c39a045a3d59a51116b-20220617
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:f68769ac-29cd-4924-87f9-f299951c6610,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:95
-X-CID-INFO: VERSION:1.1.6,REQID:f68769ac-29cd-4924-87f9-f299951c6610,OB:0,LOB:
-        0,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,AC
-        TION:quarantine,TS:95
-X-CID-META: VersionHash:b14ad71,CLOUDID:b4d7de48-4c92-421c-ad91-b806c0f58b2a,C
-        OID:cfe6a68de239,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 66136afbb2224c39a045a3d59a51116b-20220617
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2143805140; Fri, 17 Jun 2022 15:02:52 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Fri, 17 Jun 2022 15:02:51 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Fri, 17 Jun 2022 15:02:50 +0800
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        with ESMTP id S1380446AbiFQHJF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 03:09:05 -0400
+Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.109.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 255D8E017
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 00:08:55 -0700 (PDT)
+Received: from CHE01-GV0-obe.outbound.protection.outlook.com
+ (mail-gv0che01lp2048.outbound.protection.outlook.com [104.47.22.48]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-15-NY3MGSrGP1ONl_VP-0OvSA-2; Fri, 17 Jun 2022 09:08:52 +0200
+X-MC-Unique: NY3MGSrGP1ONl_VP-0OvSA-2
+Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:2e::8) by
+ GVAP278MB0263.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:3d::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5353.15; Fri, 17 Jun 2022 07:08:50 +0000
+Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::2879:acb:62c8:4987]) by ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::2879:acb:62c8:4987%8]) with mapi id 15.20.5353.016; Fri, 17 Jun 2022
+ 07:08:50 +0000
+From:   Francesco Dolcini <francesco.dolcini@toradex.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-CC:     Wei-Shun Chang <weishunc@google.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <rex-bc.chen@mediatek.com>,
-        <randy.wu@mediatek.com>, <jieyy.yang@mediatek.com>,
-        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
-        <jian.yang@mediatek.com>
-Subject: [PATCH v10 2/2] phy: mediatek: Add PCIe PHY driver
-Date:   Fri, 17 Jun 2022 15:02:46 +0800
-Message-ID: <20220617070246.20142-3-jianjun.wang@mediatek.com>
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Anson Huang <Anson.Huang@nxp.com>
+CC:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v1 0/9] imx: thermal: Allow trip point configuration from DT
+Date:   Fri, 17 Jun 2022 09:08:38 +0200
+Message-ID: <20220617070847.186876-1-francesco.dolcini@toradex.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220617070246.20142-1-jianjun.wang@mediatek.com>
-References: <20220617070246.20142-1-jianjun.wang@mediatek.com>
+X-ClientProxiedBy: MR2P264CA0122.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:500:30::14) To ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:2e::8)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c0fb45d4-afcb-4987-e4c7-08da50303abe
+X-MS-TrafficTypeDiagnostic: GVAP278MB0263:EE_
+X-Microsoft-Antispam-PRVS: <GVAP278MB02639CF639D357718B7B3E46E2AF9@GVAP278MB0263.CHEP278.PROD.OUTLOOK.COM>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0
+X-Microsoft-Antispam-Message-Info: d/SSTfJnwNpzFyM4hLL/ZHsyBytMHKUlSlwVS80NdAQ9VWn2UyD8BclcZpL9gZFLEk58o9CUQxdierBU5+iCH74f3khGq6kr6psabqNeuvPjNVCFnczxANCRFWgV7AVO0rhWgndvT0kvfhV9kh+6EOZBkJsDWvrrQ8SAZmtMDX9gZk6N1GqSjxPPadrfillQIS2GC3rbZSMlv30JDqwDSJQl3+HfHrFJrbsq/wPwdOuZ+2OE+8pSWCqPyzJdMsy5JkeleGxKSX305mqN2wFvHoyJ6zpZyD/w4U+odrAgSHICuNp/ec7Lz+q10obyNrDyLPTlavJY5DJ76TwfR334Ko+9zfP3U0oQ5JVxJemQlDE4nYikno/WTdPxLLKEPNtj/UnlkhoV48tZSkdlxOv5VK4f3lkHnsL7QGxYCwnXMYlDeqwpI7phodJ+y9CgsvwCEmMb7k7Eo+w5zDjeKyhkUzb/1wDaercSOGIlwq3f284ty2uFL2eEuVg6Hm6y7Fz58o6IBc6w+d6DodW6DzlUoOJVJAH83dbWDFVV7M42hiImPULsg9RdRXfyp9FgSZ4F/dUGGG/bwgVNPnQyVFHlw5h/r2do3MsuJBUcTvq5vDqy66w6t1YZRwwUhZ9D2fS3b4ljfGB8OHX0vR1IKOdiwQ/f22ZqTUhGUPYHoqqHhf/QGMdVosVSz139wkVstCALvPUT1J6cTp86JG0nYO+6grqCuvCdMYsz13l6FFnUR2UdgFvZN1UxdNCcNDoQ6IoWXsROtIPIqOUXHyYKxsZVxY9D5Z3x9MiH0OeTeZ2DCFU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39840400004)(346002)(136003)(396003)(366004)(38100700002)(966005)(6506007)(52116002)(8936002)(6666004)(6512007)(6486002)(26005)(83380400001)(2906002)(110136005)(5660300002)(54906003)(316002)(36756003)(86362001)(1076003)(2616005)(41300700001)(66556008)(4326008)(44832011)(8676002)(186003)(66476007)(38350700002)(508600001)(66946007)(7416002);DIR:OUT;SFP:1102
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zzNA7pMKn00RzNSRd0PnXjDV9EL/AIuPoGfumLga+dyq+AiOA/mpRJMWAB2L?=
+ =?us-ascii?Q?w3yW9os3zfr61reSePwNNy+BiZDIPn4j5IQjN/PuvUbrlk18eW5N+uedwuqa?=
+ =?us-ascii?Q?Zbceob1jxqMjP1EH59h0vMhh98nYjM845f/TgVEal2JBFND1lKsoq9umZjN/?=
+ =?us-ascii?Q?KxUw05LXmpijJClvgLx0BBuMFoU3xg/aCaE27gOJB+JL3mLEbEVHu/6SIh2Q?=
+ =?us-ascii?Q?Xijr5vmbgFGv7lpRspRqhfV6jHl+ctez3MCOIWzmB+ra600cIKw6hXQbuOKm?=
+ =?us-ascii?Q?iXqkQLykSEDSl0YTAA5+sfwXTGSWTa6+tifmIQf0Hc4FMls7LymCcleBxBFr?=
+ =?us-ascii?Q?6eylJNqSi8cWiPWENWjowunQgfW71In/HJT6uZ7RSmvuy3MMQgpIwXByA5qY?=
+ =?us-ascii?Q?t8xrgAv7ARpfOmMt9IZWels5CvvYR2nMeMyY7HPh6rbTotrVTotSo4e2WUzk?=
+ =?us-ascii?Q?/pEfukrFbRJ5ah2icYBzRM+41TDN/hJIvuHqsWnJRBc5P3gCOhP4cKkcrqdv?=
+ =?us-ascii?Q?dqaXXhXk93vN7IgnRLN21Ut+5u3CX70Kl9Iaiv+S3yubE4dADm+EOy6DbexU?=
+ =?us-ascii?Q?PbCH5IEQXR/lWx7L+EfeBuyLiUr+QMs/C+8d8LN6XiIwTOf4V1CD6X2Snmzw?=
+ =?us-ascii?Q?pQAM6oMdLlloNspzCnLZ0ozRxMRuUv0nb90e7BATcr7BkEUeJhpeMiDeCYc1?=
+ =?us-ascii?Q?yh2MiprEwKx0nCVSklaCvXwjsY66fP4mzkSO9RPqXjFN/34066SQK410Gx1F?=
+ =?us-ascii?Q?ro/FqaXle/g8bKCpNOpQZiow4GHaLR6DCSiJIM9Wwm0gkFMxnpiZjMxfF+00?=
+ =?us-ascii?Q?ij6YGUtzFAWUOnSI7uGcMWP2oZYFhAVemPmWtNopQ5kp4H4tI1CCd0BXys0x?=
+ =?us-ascii?Q?B60gO5NuZ1f88cW2ECkQ0EqZhgiCAIe73cdBWv0CeUQE7lRDluHG5mNISsw4?=
+ =?us-ascii?Q?udeK1R0fbaK7W+EQlN+/OvZJM5dxTfc5TPau34WSuZtYSabiyIhbNOVQbMYV?=
+ =?us-ascii?Q?vH9uxm+3vWRcMDDCTS0xohrgaPqFfgaSIDMvjlu7P2GNhIgSgcd6J8edmSnP?=
+ =?us-ascii?Q?CPor7UCaNM2pu4NN3Zjsir+BlAmCLFSGML6RhrZQkoxvVUhQLuZSN2QzJB4p?=
+ =?us-ascii?Q?q+MOY5BH/K6m99FO5EWx47xOohr74Yc4EpX/50jYcKhzG2/IS5RWcha9YO9a?=
+ =?us-ascii?Q?/CSgoJJSfN5ICop7O+6oSabSQE1RihPOnLUdZrCPx77GGMsW+tYsQvyZPSC7?=
+ =?us-ascii?Q?W3v16Zp+SQMLQ71rvSpQSKTKInP8OE0CGcfLkdqU5HOjAwJjjWJ99lpSj6Or?=
+ =?us-ascii?Q?FM7nU2LM5q2KLQ2dekCpMFoxeFZC5SuHLYyUIJfAJc2CnX1Ex/sat6wk+TAQ?=
+ =?us-ascii?Q?fdFntHE/UcUy7ErGm9/pIQVPGUz7nLfySOem4JRjAsEEUPIVaeZBN1LEOc20?=
+ =?us-ascii?Q?FOOyfWaor9P5TW8pj/IAPkANESX2hk2pz86xxbzGXPgFkZiX0e2Xr6VUC46D?=
+ =?us-ascii?Q?gyIINij02KvEky855dgyEn5Ju4KhnO49BrtNRuR15y1cOh4zCPMXgnmZ9Mpy?=
+ =?us-ascii?Q?4x/wx4cAkrxWq5ZL6Erp+fllcbYxEei0wCHsXExfegzvGQd+ObM+vLsU4037?=
+ =?us-ascii?Q?2cAq+s9TUDPUgpSLhu+day6NPBmmwvNcj8ZRiQlbSkDrvp6LapFaFfjLE5DW?=
+ =?us-ascii?Q?gDc9rozfD92r5ReU05kzhv7hhGy4okS85dMRjZuQOaOAtMH0YiIIRT67Cclm?=
+ =?us-ascii?Q?bgZ/bGuaVDbFqSrlBh9pATRZ79tVz/E=3D?=
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0fb45d4-afcb-4987-e4c7-08da50303abe
+X-MS-Exchange-CrossTenant-AuthSource: ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2022 07:08:50.1993
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GtdTKgY4N3Dd6Ine4X0ngFgokZWRNz6C0PVe92O8u1c41UeMpZi0g2YHzEmgNUDMMI9hFHADQOfopgTFwZPzEr7CA+kUyujDooFCfubpF+w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVAP278MB0263
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=CDE13A77 smtp.mailfrom=francesco.dolcini@toradex.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: toradex.com
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=WINDOWS-1252
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,323 +119,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PCIe GEN3 PHY driver support on MediaTek chipsets.
+This series allows to specify the imx thermal drivers trip point from the device tree,
+without this change the threshold are hard-coded and this might not be correct given the
+thermal design of the final system.
 
-Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
----
- drivers/phy/mediatek/Kconfig        |  11 ++
- drivers/phy/mediatek/Makefile       |   1 +
- drivers/phy/mediatek/phy-mtk-pcie.c | 267 ++++++++++++++++++++++++++++
- 3 files changed, 279 insertions(+)
- create mode 100644 drivers/phy/mediatek/phy-mtk-pcie.c
+This change is backward compatible with the existing device tree, and even
+with this change in by default the thresholds are the same as before.
 
-diff --git a/drivers/phy/mediatek/Kconfig b/drivers/phy/mediatek/Kconfig
-index 55f8e6c048ab..dfb18b490d07 100644
---- a/drivers/phy/mediatek/Kconfig
-+++ b/drivers/phy/mediatek/Kconfig
-@@ -2,6 +2,17 @@
- #
- # Phy drivers for Mediatek devices
- #
-+config PHY_MTK_PCIE
-+	tristate "MediaTek PCIe-PHY Driver"
-+	depends on ARCH_MEDIATEK || COMPILE_TEST
-+	depends on OF
-+	select GENERIC_PHY
-+	help
-+	  Say 'Y' here to add support for MediaTek PCIe PHY driver.
-+	  This driver create the basic PHY instance and provides initialize
-+	  callback for PCIe GEN3 port, it supports software efuse
-+	  initialization.
-+
- config PHY_MTK_TPHY
- 	tristate "MediaTek T-PHY Driver"
- 	depends on ARCH_MEDIATEK || COMPILE_TEST
-diff --git a/drivers/phy/mediatek/Makefile b/drivers/phy/mediatek/Makefile
-index ace660fbed3a..445b23728a61 100644
---- a/drivers/phy/mediatek/Makefile
-+++ b/drivers/phy/mediatek/Makefile
-@@ -3,6 +3,7 @@
- # Makefile for the phy drivers.
- #
- 
-+obj-$(CONFIG_PHY_MTK_PCIE)		+= phy-mtk-pcie.o
- obj-$(CONFIG_PHY_MTK_TPHY)		+= phy-mtk-tphy.o
- obj-$(CONFIG_PHY_MTK_UFS)		+= phy-mtk-ufs.o
- obj-$(CONFIG_PHY_MTK_XSPHY)		+= phy-mtk-xsphy.o
-diff --git a/drivers/phy/mediatek/phy-mtk-pcie.c b/drivers/phy/mediatek/phy-mtk-pcie.c
-new file mode 100644
-index 000000000000..7f29d43442bf
---- /dev/null
-+++ b/drivers/phy/mediatek/phy-mtk-pcie.c
-@@ -0,0 +1,267 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2022 MediaTek Inc.
-+ * Author: Jianjun Wang <jianjun.wang@mediatek.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-consumer.h>
-+#include <linux/of_device.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+#include "phy-mtk-io.h"
-+
-+#define PEXTP_ANA_GLB_00_REG		0x9000
-+/* Internal Resistor Selection of TX Bias Current */
-+#define EFUSE_GLB_INTR_SEL		GENMASK(28, 24)
-+
-+#define PEXTP_ANA_LN0_TRX_REG		0xa000
-+
-+#define PEXTP_ANA_TX_REG		0x04
-+/* TX PMOS impedance selection */
-+#define EFUSE_LN_TX_PMOS_SEL		GENMASK(5, 2)
-+/* TX NMOS impedance selection */
-+#define EFUSE_LN_TX_NMOS_SEL		GENMASK(11, 8)
-+
-+#define PEXTP_ANA_RX_REG		0x3c
-+/* RX impedance selection */
-+#define EFUSE_LN_RX_SEL			GENMASK(3, 0)
-+
-+#define PEXTP_ANA_LANE_OFFSET		0x100
-+
-+/**
-+ * struct mtk_pcie_lane_efuse - eFuse data for each lane
-+ * @tx_pmos: TX PMOS impedance selection data
-+ * @tx_nmos: TX NMOS impedance selection data
-+ * @rx_data: RX impedance selection data
-+ * @lane_efuse_supported: software eFuse data is supported for this lane
-+ */
-+struct mtk_pcie_lane_efuse {
-+	u32 tx_pmos;
-+	u32 tx_nmos;
-+	u32 rx_data;
-+	bool lane_efuse_supported;
-+};
-+
-+/**
-+ * struct mtk_pcie_phy_data - phy data for each SoC
-+ * @num_lanes: supported lane numbers
-+ * @sw_efuse_supported: support software to load eFuse data
-+ */
-+struct mtk_pcie_phy_data {
-+	int num_lanes;
-+	bool sw_efuse_supported;
-+};
-+
-+/**
-+ * struct mtk_pcie_phy - PCIe phy driver main structure
-+ * @dev: pointer to device
-+ * @phy: pointer to generic phy
-+ * @sif_base: IO mapped register base address of system interface
-+ * @data: pointer to SoC dependent data
-+ * @sw_efuse_en: software eFuse enable status
-+ * @efuse_glb_intr: internal resistor selection of TX bias current data
-+ * @efuse: pointer to eFuse data for each lane
-+ */
-+struct mtk_pcie_phy {
-+	struct device *dev;
-+	struct phy *phy;
-+	void __iomem *sif_base;
-+	const struct mtk_pcie_phy_data *data;
-+
-+	bool sw_efuse_en;
-+	u32 efuse_glb_intr;
-+	struct mtk_pcie_lane_efuse *efuse;
-+};
-+
-+static void mtk_pcie_efuse_set_lane(struct mtk_pcie_phy *pcie_phy,
-+				    unsigned int lane)
-+{
-+	struct mtk_pcie_lane_efuse *data = &pcie_phy->efuse[lane];
-+	void __iomem *addr;
-+
-+	if (!data->lane_efuse_supported)
-+		return;
-+
-+	addr = pcie_phy->sif_base + PEXTP_ANA_LN0_TRX_REG +
-+	       lane * PEXTP_ANA_LANE_OFFSET;
-+
-+	mtk_phy_update_bits(addr + PEXTP_ANA_TX_REG, EFUSE_LN_TX_PMOS_SEL,
-+			    FIELD_PREP(EFUSE_LN_TX_PMOS_SEL, data->tx_pmos));
-+
-+	mtk_phy_update_bits(addr + PEXTP_ANA_TX_REG, EFUSE_LN_TX_NMOS_SEL,
-+			    FIELD_PREP(EFUSE_LN_TX_NMOS_SEL, data->tx_nmos));
-+
-+	mtk_phy_update_bits(addr + PEXTP_ANA_RX_REG, EFUSE_LN_RX_SEL,
-+			    FIELD_PREP(EFUSE_LN_RX_SEL, data->rx_data));
-+}
-+
-+/**
-+ * mtk_pcie_phy_init() - Initialize the phy
-+ * @phy: the phy to be initialized
-+ *
-+ * Initialize the phy by setting the efuse data.
-+ * The hardware settings will be reset during suspend, it should be
-+ * reinitialized when the consumer calls phy_init() again on resume.
-+ */
-+static int mtk_pcie_phy_init(struct phy *phy)
-+{
-+	struct mtk_pcie_phy *pcie_phy = phy_get_drvdata(phy);
-+	int i;
-+
-+	if (!pcie_phy->sw_efuse_en)
-+		return 0;
-+
-+	/* Set global data */
-+	mtk_phy_update_bits(pcie_phy->sif_base + PEXTP_ANA_GLB_00_REG,
-+			    EFUSE_GLB_INTR_SEL,
-+			    FIELD_PREP(EFUSE_GLB_INTR_SEL, pcie_phy->efuse_glb_intr));
-+
-+	for (i = 0; i < pcie_phy->data->num_lanes; i++)
-+		mtk_pcie_efuse_set_lane(pcie_phy, i);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops mtk_pcie_phy_ops = {
-+	.init	= mtk_pcie_phy_init,
-+	.owner	= THIS_MODULE,
-+};
-+
-+static int mtk_pcie_efuse_read_for_lane(struct mtk_pcie_phy *pcie_phy,
-+					unsigned int lane)
-+{
-+	struct mtk_pcie_lane_efuse *efuse = &pcie_phy->efuse[lane];
-+	struct device *dev = pcie_phy->dev;
-+	char efuse_id[16];
-+	int ret;
-+
-+	snprintf(efuse_id, sizeof(efuse_id), "tx_ln%d_pmos", lane);
-+	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse->tx_pmos);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read %s\n", efuse_id);
-+
-+	snprintf(efuse_id, sizeof(efuse_id), "tx_ln%d_nmos", lane);
-+	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse->tx_nmos);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read %s\n", efuse_id);
-+
-+	snprintf(efuse_id, sizeof(efuse_id), "rx_ln%d", lane);
-+	ret = nvmem_cell_read_variable_le_u32(dev, efuse_id, &efuse->rx_data);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read %s\n", efuse_id);
-+
-+	if (!(efuse->tx_pmos || efuse->tx_nmos || efuse->rx_data))
-+		return dev_err_probe(dev, -EINVAL,
-+				     "No eFuse data found for lane%d, but dts enable it\n",
-+				     lane);
-+
-+	efuse->lane_efuse_supported = true;
-+
-+	return 0;
-+}
-+
-+static int mtk_pcie_read_efuse(struct mtk_pcie_phy *pcie_phy)
-+{
-+	struct device *dev = pcie_phy->dev;
-+	bool nvmem_enabled;
-+	int ret, i;
-+
-+	/* nvmem data is optional */
-+	nvmem_enabled = device_property_present(dev, "nvmem-cells");
-+	if (!nvmem_enabled)
-+		return 0;
-+
-+	ret = nvmem_cell_read_variable_le_u32(dev, "glb_intr",
-+					      &pcie_phy->efuse_glb_intr);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read glb_intr\n");
-+
-+	pcie_phy->sw_efuse_en = true;
-+
-+	pcie_phy->efuse = devm_kzalloc(dev, pcie_phy->data->num_lanes *
-+				       sizeof(*pcie_phy->efuse), GFP_KERNEL);
-+	if (!pcie_phy->efuse)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < pcie_phy->data->num_lanes; i++) {
-+		ret = mtk_pcie_efuse_read_for_lane(pcie_phy, i);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int mtk_pcie_phy_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct phy_provider *provider;
-+	struct mtk_pcie_phy *pcie_phy;
-+	int ret;
-+
-+	pcie_phy = devm_kzalloc(dev, sizeof(*pcie_phy), GFP_KERNEL);
-+	if (!pcie_phy)
-+		return -ENOMEM;
-+
-+	pcie_phy->sif_base = devm_platform_ioremap_resource_byname(pdev, "sif");
-+	if (IS_ERR(pcie_phy->sif_base))
-+		return dev_err_probe(dev, PTR_ERR(pcie_phy->sif_base),
-+				     "Failed to map phy-sif base\n");
-+
-+	pcie_phy->phy = devm_phy_create(dev, dev->of_node, &mtk_pcie_phy_ops);
-+	if (IS_ERR(pcie_phy->phy))
-+		return dev_err_probe(dev, PTR_ERR(pcie_phy->phy),
-+				     "Failed to create PCIe phy\n");
-+
-+	pcie_phy->dev = dev;
-+	pcie_phy->data = of_device_get_match_data(dev);
-+	if (!pcie_phy->data)
-+		return dev_err_probe(dev, -EINVAL, "Failed to get phy data\n");
-+
-+	if (pcie_phy->data->sw_efuse_supported) {
-+		/*
-+		 * Failed to read the efuse data is not a fatal problem,
-+		 * ignore the failure and keep going.
-+		 */
-+		ret = mtk_pcie_read_efuse(pcie_phy);
-+		if (ret == -EPROBE_DEFER || ret == -ENOMEM)
-+			return ret;
-+	}
-+
-+	phy_set_drvdata(pcie_phy->phy, pcie_phy);
-+
-+	provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+	if (IS_ERR(provider))
-+		return dev_err_probe(dev, PTR_ERR(provider),
-+				     "PCIe phy probe failed\n");
-+
-+	return 0;
-+}
-+
-+static const struct mtk_pcie_phy_data mt8195_data = {
-+	.num_lanes = 2,
-+	.sw_efuse_supported = true,
-+};
-+
-+static const struct of_device_id mtk_pcie_phy_of_match[] = {
-+	{ .compatible = "mediatek,mt8195-pcie-phy", .data = &mt8195_data },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, mtk_pcie_phy_of_match);
-+
-+static struct platform_driver mtk_pcie_phy_driver = {
-+	.probe	= mtk_pcie_phy_probe,
-+	.driver	= {
-+		.name = "mtk-pcie-phy",
-+		.of_match_table = mtk_pcie_phy_of_match,
-+	},
-+};
-+module_platform_driver(mtk_pcie_phy_driver);
-+
-+MODULE_DESCRIPTION("MediaTek PCIe PHY driver");
-+MODULE_AUTHOR("Jianjun Wang <jianjun.wang@mediatek.com>");
-+MODULE_LICENSE("GPL");
+Toradex board are also updated to use a system-specific thresholds.
+
+Discussion on the current design is here:
+https://lore.kernel.org/all/4ba1d7d2-3e8c-ba60-37fd-9598f415c076@linaro.org/
+
+One side note, after this change the dtbs checker starts complaining with this message
+
+```
+linux/arch/arm/boot/dts/imx6dl-alti6p.dtb: tempmon: '#thermal-sensor-cells' does not match any of the regexes: '^(automotive|commercial|extended-commercial|industrial)-thermal$', 'pinctrl-[0-9]+'
+	From schema: linux/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
+```
+
+to my understanding this is just a side effect, '#thermal-sensor-cells' is not changed in
+any way by this series. I can fix that, I wonder if I should remove the property from the
+imx dtsi files or add it to the binding yaml definition, not sure about it.
+Anybody can advise?
+
+Changes in v2:
+ - fix build error without CONFIG_THERMAL_OF
+ - more verbose error reporting in case the dts is not correct
+ - additional comment on the threshold fixup in case the passive threshold is
+   higher than critical
+ - while parsing the dts thermal, return immediately if the node is not there
+
+
+Francesco Dolcini (9):
+  dt-bindings: thermal: Define trips node in $defs
+  thermal: thermal: Export OF trip helper function
+  dt-bindings: thermal: imx: Add trips point
+  imx: thermal: Configure trip point from DT
+  ARM: dts: imx[67]: Add trips points
+  ARM: dts: imx6qdl-apalis: Set CPU critical trip point
+  ARM: dts: imx7-colibri: Set CPU critical trip point
+  ARM: dts: imx6ull-colibri: Set CPU critical trip point
+  ARM: dts: imx6qdl-colibri: Set CPU critical trip point
+
+ .../bindings/thermal/imx-thermal.yaml         |  27 ++++
+ .../bindings/thermal/thermal-zones.yaml       | 130 +++++++++---------
+ arch/arm/boot/dts/imx-thermal.dtsi            |  61 ++++++++
+ arch/arm/boot/dts/imx6qdl-apalis.dtsi         |  12 ++
+ arch/arm/boot/dts/imx6qdl-colibri.dtsi        |  12 ++
+ arch/arm/boot/dts/imx6qdl.dtsi                |   2 +
+ arch/arm/boot/dts/imx6sl.dtsi                 |   2 +
+ arch/arm/boot/dts/imx6sll.dtsi                |   2 +
+ arch/arm/boot/dts/imx6sx.dtsi                 |   2 +
+ arch/arm/boot/dts/imx6ul.dtsi                 |   2 +
+ arch/arm/boot/dts/imx6ull-colibri.dtsi        |  12 ++
+ arch/arm/boot/dts/imx7-colibri.dtsi           |  12 ++
+ arch/arm/boot/dts/imx7s.dtsi                  |   2 +
+ drivers/thermal/imx_thermal.c                 |  58 ++++++++
+ drivers/thermal/thermal_core.h                |   7 +
+ drivers/thermal/thermal_of.c                  |   5 +-
+ 16 files changed, 283 insertions(+), 65 deletions(-)
+ create mode 100644 arch/arm/boot/dts/imx-thermal.dtsi
+
 -- 
-2.18.0
+2.25.1
 
