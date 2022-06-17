@@ -2,109 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEB8754EF43
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 04:22:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 761C454EF88
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 05:39:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379761AbiFQCV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 22:21:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38344 "EHLO
+        id S1379643AbiFQCkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 22:40:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379754AbiFQCV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 22:21:58 -0400
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C075964D09;
-        Thu, 16 Jun 2022 19:21:56 -0700 (PDT)
-Received: from pps.filterd (m0246632.ppops.net [127.0.0.1])
-        by mx0b-00069f02.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25H0W1F3005235;
-        Fri, 17 Jun 2022 02:21:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=corp-2021-07-09;
- bh=EzHUF8ey6N0F7JW+zwYqw3W+IcPMUGcBQ2i4hBobbbI=;
- b=hQA58bFMF1wra2HbPzQnkbe7jOOQZ9UXfdN4PvDJVgexd9Q0geGtGyKa9vIgWUptojQ9
- KakfY9CQlpZYd54fWyK78MzUGDHGBQX6LQJw+Tv/bBipWgvDAwl/8ZA2D5XwLrCSHJ8m
- 8tvm9EZx6Gmom1bqftnPxKrkOOJtbJvmEF/OgeaZSK9mDt7ZC1ijDWmrEcw5sPpu07cm
- Ht3DjngMs3I8wb8ssuo3g8Rx/zbjsEr496QXp6SMZHfR6HG/cky5AYCthDCEDM6yGeiR
- V/O6kb6k1CmvrSFIcD9KaeDxU0WW6Io5P8G4WvkutQdHxYsQcHBvFIlZJDW8KF81A+y0 uA== 
-Received: from phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta03.appoci.oracle.com [138.1.37.129])
-        by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3gmjnscqr9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 17 Jun 2022 02:21:46 +0000
-Received: from pps.filterd (phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-        by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (8.16.1.2/8.16.1.2) with SMTP id 25H2G6vA029102;
-        Fri, 17 Jun 2022 02:21:45 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com with ESMTP id 3gpr27jd9k-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 17 Jun 2022 02:21:45 +0000
-Received: from phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com (phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 25H2LejN040352;
-        Fri, 17 Jun 2022 02:21:45 GMT
-Received: from ca-mkp.mkp.ca.oracle.com (ca-mkp.ca.oracle.com [10.156.108.201])
-        by phxpaimrmta03.imrmtpd1.prodappphxaev1.oraclevcn.com with ESMTP id 3gpr27jd7c-5;
-        Fri, 17 Jun 2022 02:21:45 +0000
-From:   "Martin K. Petersen" <martin.petersen@oracle.com>
-To:     robh+dt@kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        avri.altman@wdc.com, krzk+dt@kernel.org, alim.akhtar@samsung.com
-Cc:     "Martin K . Petersen" <martin.petersen@oracle.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-scsi@vger.kernel.org, jejb@linux.ibm.com
-Subject: Re: [PATCH v6 0/7] treewide: ufs: Add support for Renesas R-Car UFS controller
-Date:   Thu, 16 Jun 2022 22:21:38 -0400
-Message-Id: <165543243409.26207.3308107938510478847.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.35.2
-In-Reply-To: <20220603110524.1997825-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20220603110524.1997825-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S1379552AbiFQCkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 22:40:55 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BA64D64D34
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 19:40:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1655433653;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=O8SRq5MAXxm7CRGT0kP/ZVq+pjZMt/JpCdXhScXH7cM=;
+        b=IxjpuvCeysXpPchBtfL75vDtras0ZsVsCysZXlfq6IrWXjIZuOK5jL8/qMBuljphAkXYyD
+        Kkk65cedHKliQSiA3BXhpZ6JGNnPbyv+HA0mSn3BeQFmLCVOUTnZV8Tw2wIy8NmVm28E2Z
+        rKSOHkAb8pLrVBPWDLPZchUGeh7mF+Q=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-223-HNw1UsnqOpWWm1I1ODtVew-1; Thu, 16 Jun 2022 22:40:49 -0400
+X-MC-Unique: HNw1UsnqOpWWm1I1ODtVew-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com [10.11.54.8])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 4D4BC382ECCB;
+        Fri, 17 Jun 2022 02:40:48 +0000 (UTC)
+Received: from localhost (ovpn-12-144.pek2.redhat.com [10.72.12.144])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id D13D7C08081;
+        Fri, 17 Jun 2022 02:40:45 +0000 (UTC)
+Date:   Fri, 17 Jun 2022 10:40:42 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>, kexec@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH 1/5] arm64: kdump: Provide default size when
+ crashkernel=Y,low is not specified
+Message-ID: <20220617024042.GC234358@MiWiFi-R3L-srv>
+References: <20220613080932.663-1-thunder.leizhen@huawei.com>
+ <20220613080932.663-2-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: 5yTx9iAUTu43-yobBSI7rvZfmkIFt-rx
-X-Proofpoint-ORIG-GUID: 5yTx9iAUTu43-yobBSI7rvZfmkIFt-rx
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220613080932.663-2-thunder.leizhen@huawei.com>
+X-Scanned-By: MIMEDefang 2.85 on 10.11.54.8
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 3 Jun 2022 20:05:17 +0900, Yoshihiro Shimoda wrote:
+On 06/13/22 at 04:09pm, Zhen Lei wrote:
+> To be consistent with the implementation of x86 and improve cross-platform
+> user experience. Try to allocate at least 256 MiB low memory automatically
+> when crashkernel=Y,low is not specified.
 
-> This patch series adds support Renesas R-Car S4-8 UFS controller.
-> This controller has some restrictions so adds some quirks for it.
-> Before using this driver, we have to initialize a clock generator
-> on the environment board (named "Spider") by using the commands of
-> U-Boot like below:
->  => i2c dev 0
->  => i2c mw 0x6c 0x26 0x05
->  => i2c olen 0x6c 2
->  => i2c mw 0x6c 0x13a 0x86
->  => i2c mw 0x6c 0x268 0x06
->  => i2c mw 0x6c 0x269 0x00
->  => i2c mw 0x6c 0x26a 0x3c
->  => i2c mw 0x6c 0x26b 0x00
->  => i2c mw 0x6c 0x26c 0x06
->  => i2c mw 0x6c 0x26d 0x00
->  => i2c mw 0x6c 0x26e 0x3f
->  => i2c mw 0x6c 0x26f 0x00
+This should correspond to the case that crashkernel=,high is explicitly
+specified, while crashkenrel=,low is omitted. It could be better to
+mention these.
+
+Otherwise, this looks good to me.
+
 > 
-> [...]
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> ---
+>  Documentation/admin-guide/kernel-parameters.txt |  8 +-------
+>  arch/arm64/mm/init.c                            | 12 +++++++++++-
+>  2 files changed, 12 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
+> index 8090130b544b070..61b179232b68001 100644
+> --- a/Documentation/admin-guide/kernel-parameters.txt
+> +++ b/Documentation/admin-guide/kernel-parameters.txt
+> @@ -843,7 +843,7 @@
+>  			available.
+>  			It will be ignored if crashkernel=X is specified.
+>  	crashkernel=size[KMG],low
+> -			[KNL, X86-64] range under 4G. When crashkernel=X,high
+> +			[KNL, X86-64, ARM64] range under 4G. When crashkernel=X,high
+                        ~~~~ exceeds 80 characters, it should be OK.
 
-Applied to 5.20/scsi-queue, thanks!
+>  			is passed, kernel could allocate physical memory region
+>  			above 4G, that cause second kernel crash on system
+>  			that require some amount of low memory, e.g. swiotlb
+> @@ -857,12 +857,6 @@
+>  			It will be ignored when crashkernel=X,high is not used
+>  			or memory reserved is below 4G.
+>  
+> -			[KNL, ARM64] range in low memory.
+> -			This one lets the user specify a low range in the
+> -			DMA zone for the crash dump kernel.
+> -			It will be ignored when crashkernel=X,high is not used
+> -			or memory reserved is located in the DMA zones.
+> -
+>  	cryptomgr.notests
+>  			[KNL] Disable crypto self-tests
+>  
+> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> index 339ee84e5a61a0b..5390f361208ccf7 100644
+> --- a/arch/arm64/mm/init.c
+> +++ b/arch/arm64/mm/init.c
+> @@ -96,6 +96,14 @@ phys_addr_t __ro_after_init arm64_dma_phys_limit = PHYS_MASK + 1;
+>  #define CRASH_ADDR_LOW_MAX		arm64_dma_phys_limit
+>  #define CRASH_ADDR_HIGH_MAX		(PHYS_MASK + 1)
+>  
+> +/*
+> + * This is an empirical value in x86_64 and taken here directly. Please
+> + * refer to the code comment in reserve_crashkernel_low() of x86_64 for more
+> + * details.
+> + */
+> +#define DEFAULT_CRASH_KERNEL_LOW_SIZE	\
+> +	max(swiotlb_size_or_default() + (8UL << 20), 256UL << 20)
+> +
+>  static int __init reserve_crashkernel_low(unsigned long long low_size)
+>  {
+>  	unsigned long long low_base;
+> @@ -147,7 +155,9 @@ static void __init reserve_crashkernel(void)
+>  		 * is not allowed.
+>  		 */
+>  		ret = parse_crashkernel_low(cmdline, 0, &crash_low_size, &crash_base);
+> -		if (ret && (ret != -ENOENT))
+> +		if (ret == -ENOENT)
+> +			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
+> +		else if (ret)
+>  			return;
+>  
+>  		crash_max = CRASH_ADDR_HIGH_MAX;
+> -- 
+> 2.25.1
+> 
 
-[1/7] dt-bindings: ufs: Document Renesas R-Car UFS host controller
-      https://git.kernel.org/mkp/scsi/c/7522c08d1e55
-[2/7] ufs: add UFSHCD_QUIRK_BROKEN_64BIT_ADDRESS
-      https://git.kernel.org/mkp/scsi/c/6554400d6f66
-[3/7] ufs: add UFSHCD_QUIRK_HIBERN_FASTAUTO
-      https://git.kernel.org/mkp/scsi/c/2f11bbc2c7f3
-[4/7] scsi: ufs-renesas: Add support for Renesas R-Car UFS controller
-      https://git.kernel.org/mkp/scsi/c/d69520288efd
-[5/7] scsi: MAINTAINERS: Add maintainer for Renesas UFS driver
-      https://git.kernel.org/mkp/scsi/c/09c962fd4816
-
--- 
-Martin K. Petersen	Oracle Linux Engineering
