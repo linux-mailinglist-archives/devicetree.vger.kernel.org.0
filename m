@@ -2,94 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2974F54F44C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 11:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 447B354F454
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 11:33:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380888AbiFQJbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 05:31:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48736 "EHLO
+        id S1380946AbiFQJdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 05:33:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380938AbiFQJbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 05:31:47 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF8F63BDB;
-        Fri, 17 Jun 2022 02:31:46 -0700 (PDT)
-X-UUID: bebfe4cf946149438861554cc01820e4-20220617
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:295a7bae-8bfc-4464-b2b7-f494ee551f66,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:100
-X-CID-INFO: VERSION:1.1.6,REQID:295a7bae-8bfc-4464-b2b7-f494ee551f66,OB:0,LOB:
-        0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,ACT
-        ION:quarantine,TS:100
-X-CID-META: VersionHash:b14ad71,CLOUDID:b90be648-4c92-421c-ad91-b806c0f58b2a,C
-        OID:b57e1dc4853d,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: bebfe4cf946149438861554cc01820e4-20220617
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 713416390; Fri, 17 Jun 2022 17:31:38 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Fri, 17 Jun 2022 17:31:37 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 17 Jun 2022 17:31:36 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        "Chunfeng Yun" <chunfeng.yun@mediatek.com>
-Subject: [PATCH v6 4/4] arm64: dts: mediatek: mt8183: change efuse node name
-Date:   Fri, 17 Jun 2022 17:31:32 +0800
-Message-ID: <20220617093132.22578-4-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220617093132.22578-1-chunfeng.yun@mediatek.com>
-References: <20220617093132.22578-1-chunfeng.yun@mediatek.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1380925AbiFQJdD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 05:33:03 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72A6D15829;
+        Fri, 17 Jun 2022 02:33:02 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id y196so3710044pfb.6;
+        Fri, 17 Jun 2022 02:33:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=DQqtBZQvmWcHeVNDbchb0TJuxs6lxK8z0XJvGtf7guI=;
+        b=XGbCdemz1/31qY+TIdC+qeuVXwy9MkE4SeE9Q3MUi3B5rOsYds/K4LcjJjomqJ295j
+         Ij10mwRe537NcDi3M29i9qVtn/eaz4v1bmTAf8Hg4HigKD5KrsiKdGLtGUumnLOlki+7
+         alrxZ/9QHSb38IrqS/BebMWrjItBzNIw25boG3lsx0WDVy1JRVP2NQom1fWtcrXzLoW5
+         7gRPGuT6ZsRNId9Fg6y0mz7I2ZLTx0sDqUBHf3axoBXkBWnucAR0J+Nx6ZHasXk4ANPo
+         WrjC6++/xxnBEC52kl7KZ1fJstRxMP3zkOgM/GI+tyXze5vPX78d4Ox6hvGUoq8T/gXO
+         nWcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=DQqtBZQvmWcHeVNDbchb0TJuxs6lxK8z0XJvGtf7guI=;
+        b=CaAalMcOaLse1u3oiF1wdKQx0vo7md75LeFrqHST7V+I5XOF+7BN/swQLUoEjal6xB
+         qvZ20jhXoW+k1jAlA6PUBc0fQ7c6/Hs6IXLFw+ewbMhvJPrpWXYpdWA7NXvKdqlk+kde
+         SGgn7uj1xlc2RPhXbxY5/eLs//aD+CuX3eCpBcIdAci/CZkNc/M6D+Y1BrsGupFHBBEJ
+         e9TjAZcYaUMHhy/4oLpotlCQZL+mR57n4V7GmXQyGAjRq2Iyh1FBcxSsoeerxjrBNbPn
+         8e5EbUoRnJuDiFFNVfUSvcnwbWM5oIxKkHQMLWUMQgcT7uzGleTwa9Gbc4shX7Aaoyf3
+         0KOQ==
+X-Gm-Message-State: AJIora8ymFUOdBd+ebEqR0TfoZW1Y7niVgtb09I+u+UXBsf+mE1NTNaI
+        s020bNlIMhf6wQubVpl/w6Q=
+X-Google-Smtp-Source: AGRyM1txPmv7kBAqyuErGcZWmFl01saucMsNwFPHvJMCN0YByXKQJL++Z7XlKZQVAZV6yqkdg/Kt8A==
+X-Received: by 2002:a05:6a00:2410:b0:522:9837:581f with SMTP id z16-20020a056a00241000b005229837581fmr9072334pfh.11.1655458381800;
+        Fri, 17 Jun 2022 02:33:01 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:46b:e813:14e7:c8c7:4065:3f67])
+        by smtp.gmail.com with ESMTPSA id o10-20020a170902d4ca00b0015e8d4eb242sm3103576plg.140.2022.06.17.02.32.59
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 17 Jun 2022 02:33:01 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     jic23@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     lars@metafoo.de, cy_huang@richtek.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] Add Richtek RTQ6056 support
+Date:   Fri, 17 Jun 2022 17:32:53 +0800
+Message-Id: <1655458375-30478-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the fixed "efuse" name for efuse nodes according to its yaml file
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v6: no changes
-v5: new patch
----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This patch series is to enable Richtek RTQ6056 support.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 01e650251928..82c6260998bd 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -321,7 +321,7 @@
- 		compatible = "simple-bus";
- 		ranges;
- 
--		soc_data: soc_data@8000000 {
-+		soc_data: efuse@8000000 {
- 			compatible = "mediatek,mt8183-efuse",
- 				     "mediatek,efuse";
- 			reg = <0 0x08000000 0 0x0010>;
+The RTQ6056 is a high accuracy current-sense monitor with I2C interface, and
+the device provides full information for system by reading out the load current
+and power.
+
+ChiYuan Huang (2):
+  dt-bindings: iio: adc: Add rtq6056 adc support
+  iio: adc: Add rtq6056 support
+
+ .../ABI/testing/sysfs-bus-iio-adc-rtq6056          |  58 +++
+ .../bindings/iio/adc/richtek,rtq6056-adc.yaml      |  57 +++
+ drivers/iio/adc/Kconfig                            |  15 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/rtq6056-adc.c                      | 548 +++++++++++++++++++++
+ 5 files changed, 679 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/richtek,rtq6056-adc.yaml
+ create mode 100644 drivers/iio/adc/rtq6056-adc.c
+
 -- 
-2.18.0
+2.7.4
 
