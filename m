@@ -2,194 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D35954FB4F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 18:43:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3280854FBA5
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 18:55:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383387AbiFQQmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 12:42:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52240 "EHLO
+        id S234564AbiFQQyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 12:54:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383384AbiFQQmo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 12:42:44 -0400
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F11C632D;
-        Fri, 17 Jun 2022 09:42:42 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 880EF320094E;
-        Fri, 17 Jun 2022 12:42:38 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Fri, 17 Jun 2022 12:42:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1655484158; x=1655570558; bh=AiSSKnRv3m
-        zrSKSMor1JpwujxpGQtnv79xXFLeYhgvM=; b=aWJ1WEAB7fpW3ksRDFuo+wlB7T
-        QyH5gRz+OrZHIEnuu1Q0h2c/jNLK6vfxIeok3dOj6duThJ4E2xe4xTeaJp52gPp3
-        BXg9EqYuyV6LxTIGh7zGbF48O8ySDN7sGi6sHJL3iQ7AGmof0Q3v+9uWE4lz81xQ
-        1mgnObakMLIyipm6DqmQ5qRZu1hwH09VL84Nq8Nqm7TlJ4r0tbK7tyXK9nWBtycJ
-        UUfHkijnECeXXTWD1H209NH+McAfaxZPwSdQy+1R8telkDSA3JfXUEWQ/tfq5U6X
-        S+fgOwlzMsRhH1IO8dO+nxk8xOsk+duLf3P7ohvHGvDJSGv+dRwrzNOKOd+A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; t=1655484158; x=1655570558; bh=AiSSKnRv3mzrSKSMor1JpwujxpGQ
-        tnv79xXFLeYhgvM=; b=WdbnG9Mxrwj0toMuApALwtgRZd3wp96RyLRMt1T1T178
-        xmszSIuCUxiyV6v0J0hTzzZCEf6MS3cG3qYp5FG2jFp1Cj0nKL3CUc17HdO8xTaR
-        2Nqx4O3GTSw9Meek3sVu4JbPm6pZpFg6h3t/rj7ZMLKEwSQPx9z+B5yT0tq+2Q+T
-        w7GzL6kczaTqJXVT8GVEix0X98I4foDSQi02NkZ1Tj2kYvy4h5C+E3irIy7lp+re
-        5fYnlOCqzk7okgLp2FYD7fLaJmf7Z9nEHqO7dLKCibtcd0Iz08iI4CQMrp7tHDwf
-        sCFWpd6XQVaq+iGXql1RbCPaQ2GW0cXO7+l+Nuymlg==
-X-ME-Sender: <xms:_K6sYhtK7HDaeNX45fyU_hOMZdqLBPxIAEvOpRyYjuR-WPoIZNL6Eg>
-    <xme:_K6sYqfrCWJe7BLcgJ69dNEOnXWiylMq0jwSj-dZZVVPAlZfzLLMmhiltn2boAXkx
-    3xcEdioSwrQxzC57fM>
-X-ME-Received: <xmr:_K6sYky4Ra-qIClGrA4jLZudJc3DLCVD-EAECpC6rJJeNJOpZwrVDJzoq4tVNltkQNK8m4cr3pHe7ffqTRBWFRz7Il0SmvZ4lGU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedruddvhedguddtudcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enfghrlhcuvffnffculdefhedmnecujfgurhepfffhvfevuffkfhggtggujgesghdtreer
-    tddtvdenucfhrhhomheprfgrthhrihgtkhcuhghilhhlihgrmhhsuceophgrthhrihgtkh
-    esshhtfigtgidrgiihiieqnecuggftrfgrthhtvghrnhepjeejteelheelieejuddtudff
-    hfeuueefhfefleehveegvdeigfffheduleehlefhnecuffhomhgrihhnpehgihhthhhusg
-    drtghomhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhm
-    pehprghtrhhitghksehsthiftgigrdighiii
-X-ME-Proxy: <xmx:_K6sYoMsN1fwFafBxX59k46vv3devjC-WHuIGGzm-SVErQGl5SgzHw>
-    <xmx:_K6sYh9qg5OFy7N2L4mWGMNhzujzp1YSr76PMN5PcH9NFmBZVkq4aw>
-    <xmx:_K6sYoWlxhduHsqMDjuI23Nh5ieZQqN-GwzLtT7Co8QRCym0PonHPg>
-    <xmx:_q6sYvejfzFvkJrNZt9n0skAMhKXbzD8OrVFLsrL0TSWh5chXTdYJg>
-Feedback-ID: i68a1478a:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 17 Jun 2022 12:42:36 -0400 (EDT)
-Date:   Fri, 17 Jun 2022 11:42:35 -0500
-From:   Patrick Williams <patrick@stwcx.xyz>
-To:     Logananth Sundararaj <logananth13.hcl@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        openbmc@lists.ozlabs.org, garnermic@gmail.com, thangavel.k@hcl.com,
-        naveen.mosess@hcl.com
-Subject: Re: [PATCH v2] ARM: dts: aspeed: Adding Facebook Yosemite V3.5 BMC
-Message-ID: <Yqyu+y9ms/DmFCbJ@heinlein.stwcx.org.github.beta.tailscale.net>
-References: <20220616120707.GA22590@logan-ThinkPad-T14-Gen-1>
+        with ESMTP id S229794AbiFQQyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 12:54:54 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5D441ED;
+        Fri, 17 Jun 2022 09:54:53 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id fu3so9862026ejc.7;
+        Fri, 17 Jun 2022 09:54:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QSt3LrzgFcD+YdW3BwQVvoaLeU41rd1AP4Ip8zTtDqc=;
+        b=SlP1pkUKUrW5ybdwtrxH1PpgNTbsnSEHyO8jGuviKkg1OiVuqEhYc/fzM6tIu0c8jS
+         ef8b5eL8gQyB/sAOeBzBP9U1zZVKmC+A9FXilfvSplzYQjZgShOAgugldDmEsdZFxHwR
+         I8Xog09XyuvpsjgODLpEmCkO3VqPyh3cT+UweZWska4lPh610rBNlu0MELIX0CnjUfwa
+         5PvAY1YUPUwR1SgzFdGsFUk1KFKeMbci8ePe8zIKFy61yOLFEwZYZk+0QCxo2bi/lhKj
+         B4F6t/HSRzl0EIHWaiCTNcpBfdYYhEPjlvY0am0FM5RW8ehda8NujIx+7KUk6vTqmACM
+         IPAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QSt3LrzgFcD+YdW3BwQVvoaLeU41rd1AP4Ip8zTtDqc=;
+        b=X9QiBetDb4FJZgOCmSY8Jy7o91ZD6y8wqM/kOpc7wXbA+gFoA3QwleISH7/BHBEq+j
+         xqZCSFz59ibOJhcyhgrougBUsDIAsAvp4PP3SoRx7USNc2/K+Qs8DEsWuQScOLKHbI7b
+         lGpCL/gOIMGDauiNsyhJl+IeSceCIY6qwKDyOgf93mKanb+goe97mZuN5i/65BeioCTG
+         LNxxD7Lcwn4dnIH+aJZj+PFU/k5c0RcM63UOdZEnwohTYwD+oZN0YoCWlH+n/Ti6o56e
+         8vaVWGF1BnbIF9QBP3hhDZp588CG1grZQDUHEUvCYrVbPEayq4q0mjtq6IdauKlY/mMW
+         ipSg==
+X-Gm-Message-State: AJIora+6pVIbSoZITQgXJYI2KWGykh4rVCUQysB4zrflovT+IxwRR9Hl
+        gMQHP85/SNYDFeRTIvV/GBZ7OSShC7H6yxSC3TQ=
+X-Google-Smtp-Source: AGRyM1uH3xkkaNRL2YB0jmqdw7nIbIjlvpkg7HbTGzwEtj453kt0upgJuFaIBE0/nZM6zLd+D9/iIszJ3oRrGXwIiGA=
+X-Received: by 2002:a17:906:c7c1:b0:711:d2e9:99d0 with SMTP id
+ dc1-20020a170906c7c100b00711d2e999d0mr10144363ejb.639.1655484892267; Fri, 17
+ Jun 2022 09:54:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5N0BVpXlyV7XdVV7"
-Content-Disposition: inline
-In-Reply-To: <20220616120707.GA22590@logan-ThinkPad-T14-Gen-1>
-X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+References: <20220616104211.9257-1-ddrokosov@sberdevices.ru>
+ <20220616104211.9257-3-ddrokosov@sberdevices.ru> <CAHp75Vc0+ckNnm2tzLMPrjeFRjwoj3zy0C4koNShFRG3kP8b6w@mail.gmail.com>
+ <20220616170218.dihjli46spimozeg@CAB-WSD-L081021.sigma.sbrf.ru>
+ <CAHp75VdEY9z_0=sAkKOico9JKYPOX6yqnoetiW49oFHm+SeUoQ@mail.gmail.com> <20220617142239.wq43wjdxdc2cq37r@CAB-WSD-L081021.sigma.sbrf.ru>
+In-Reply-To: <20220617142239.wq43wjdxdc2cq37r@CAB-WSD-L081021.sigma.sbrf.ru>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 17 Jun 2022 18:54:14 +0200
+Message-ID: <CAHp75Vfix_cnnyvfv5xsS1_x_PKS2VLDgc6-QA26Pi_U-c21AA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] iio: add MEMSensing MSA311 3-axis accelerometer driver
+To:     Dmitry Rokosov <DDRokosov@sberdevices.ru>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "stephan@gerhold.net" <stephan@gerhold.net>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jun 17, 2022 at 4:22 PM Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
+>
+> On Thu, Jun 16, 2022 at 08:38:46PM +0200, Andy Shevchenko wrote:
+> > On Thu, Jun 16, 2022 at 7:02 PM Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
+> > > On Thu, Jun 16, 2022 at 02:18:52PM +0200, Andy Shevchenko wrote:
+> > > > On Thu, Jun 16, 2022 at 12:42 PM Dmitry Rokosov
+> > > > <DDRokosov@sberdevices.ru> wrote:
 
---5N0BVpXlyV7XdVV7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-On Thu, Jun 16, 2022 at 05:37:07PM +0530, Logananth Sundararaj wrote:
-> The Yosemite V3.5 is a facebook multi-node server
-> platform that host four OCP server. The BMC
-> in the Yosemite V3.5 platform based on AST2600 SoC.
->=20
-> This patch adds linux device tree entry related to
-> Yosemite V3.5 specific devices connected to BMC SoC.
->=20
-> Signed-off-by: Logananth Sundararaj <logananth_s@hcl.com>
->=20
-> ---
-> --- v2 - Enabled i2c drivers.
-> --- v1 - Initial draft.
-> ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../boot/dts/aspeed-bmc-facebook-fby35.dts    | 277 ++++++++++++++++++
->  2 files changed, 278 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-fby35.dts
+> > > > > +       wait_ms = (USEC_PER_SEC * MSEC_PER_SEC) / freq_uhz;
+> > > >
+> > > > This looks very odd from a physics perspective: sec * sec * sec == sec ?!
+> > > >
+> > > > Perhaps you meant some HZ* macros from units.h?
+> > >
+> > > I suppose because of UHZ calculation I have to use NANO instead of
+> > > USEC_PER_SEC in the following line:
+> > >
+> > >         freq_uhz = msa311_odr_table[odr].val * USEC_PER_SEC +
+> > >                    msa311_odr_table[odr].val2;
+> > >
+> > > But below line is right from physics perspective. 1sec = 1/Hz, so
+> > > msec = (USEC_PER_SEC / freq_uhz) * MSEC_PER_SEC:
 
-A few comments below.
+I believe the first one should be HZ_PER_MHZ, then it will be fine.
 
-=2E..
-> +&uart5 {
-> +	status =3D "okay";
-> +	/* Workaround for AST2600 A0 */
-> +	compatible =3D "snps,dw-apb-uart";
-> +};
+> > >         wait_ms = (USEC_PER_SEC * MSEC_PER_SEC) / freq_uhz;
+> > >
+> > > Or do you mean that I should change MSEC_PER_SEC to just MILLI?
+> >
+> > 1 / Hz = 1 sec. That's how physics defines it. Try to figure out what
+> > you meant by above multiplications / divisions and come up with the
+> > best that fits your purposes.
+>
+> From my point of view, I've already implemented the best way to calculate
+> how much time I need to wait for the next data chunk based on ODR Hz
+> value :-)
+>
+> ODR value from the table has val integer part and val2 in microHz.
+> By this line we calculate microHz conversion to take into account val2
+> part:
+>
+>     freq_uhz = msa311_odr_table[odr].val * USEC_PER_SEC +
+>                msa311_odr_table[odr].val2;
+>
+> By the next line we try to calculate miliseconds for msleep() from ODR
+> microHz value:
+>
+>     wait_ms = (USEC_PER_SEC * MSEC_PER_SEC) / freq_uhz;
+>
+> (USEC_PER_SEC / freq_uhz) => seconds
 
-Is this comment accurate?  Are we using A0 hardware on this system?
+> seconds * MSEC_PER_SEC => milliseconds>
 
-> +&fmc {
-> +	status =3D "okay";
-> +	reg =3D <0x1e620000 0xc4>, <0x20000000 0x8000000>;
-> +	flash@0 {
-> +		status =3D "okay";
-> +		m25p,fast-read;
-> +		label =3D "spi0.1";
-> +		spi-max-frequency =3D <50000000>;
-> +		spi-tx-bus-width =3D <2>;
-> +		spi-rx-bus-width =3D <2>;
-> +		#include "openbmc-flash-layout-64.dtsi"
-> +	};
-> +};
+> USEC_PER_SEC and MSEC_PER_SEC are just coefficients, they are not
+> measured in "seconds" units.
 
-Aren't there two SPI flashes?  It seems like it based on:
-https://github.com/facebook/openbmc-linux/blob/dev-5.10/arch/arm/boot/dts/a=
-speed-bmc-facebook-fby35.dts#L162
+Nope, it's a mistake. Those multipliers imply the unit. The rest are
+the numbers. See above how to fix this (as far as I can tell).
 
-> +
-> +&spi1 {
-> +	status =3D "okay";
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_spi1_default>;
-> +
-> +	flash@0 {
-> +		status =3D "okay";
-> +		m25p,fast-read;
-> +		label =3D "pnor";
-> +		spi-rx-bus-width =3D <4>;
-> +		spi-max-frequency =3D <100000000>;
-> +	};
-> +};
+...
 
-What is SPI1 used for?  I don't see it in the facebook/openbmc-linux
-DTS.
+> > > > > +                       if (err) {
+> > > > > +                               dev_err(dev, "cannot update freq (%d)\n", err);
+> > > > > +                               goto failed;
+> > > > > +                       }
+> > > >
+> > > > Why is this inside the loop and more important under lock? Also you
+> > > > may cover the initial error code by this message when moving it out of
+> > > > the loop and lock.
+> > > >
+> > > > Ditto for other code snippets in other function(s) where applicable.
+> > >
+> > > Yes, I can move dev_err() outside of loop. But all ODR search loop
+> > > should be under lock fully, because other msa311 operations should not
+> > > be executed when we search proper ODR place.
+> >
+> > I didn't suggest getting rid of the lock.
 
-> --=20
-> 2.17.1
->=20
+> Sorry, I didn't get you... But I fully agree with you about dev_err()
+> movement.
 
-Are we missing the pwm/tach support?  Or is that still not upstream from
-Aspeed?
+Yes, that's what I'm talking about. The dev_err() should be outside of
+critical section, for example:
 
---=20
-Patrick Williams
+  mutex_unlock();
+  if (ret) {
+    dev_err(...);
+    return ret;
+  }
+  ...
+  return 0;
 
---5N0BVpXlyV7XdVV7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmKsrvsACgkQqwNHzC0A
-wRnIcQ//VcCo6ddGOZm0/gcObmyDc7rvp8grACdL5h0TbcdIsfsewa4a+/bp6ZmV
-flPUo9HCS4mqkHhip2YZbIfiv4ksneGst6p3LupEwLkba87dtBqgrbMhEGTcrjiz
-fJ3DfwnbPrmexUY3UiNZYifiej2L4PwKk/exlj2hx5VKyErHns+T3vuFov/LkLQX
-B5o1KWNis2E6Luj8olDfdnHQm7LR5Xsi7j9G1ZAYyb8Uro5Osja/GpAkqOxMKWoM
-ZpaavyncNeSBiJH6gMYDN2qEwhuWgMVd1nh0OEbNEk0ZfdySMjLHmHqTBX2fXQ/f
-OchWoLQVoC9Je9k8DAkmJ/cw5n9vOx63CyFezeuI5sFPU8S7DLXH1YFZGkES9cF7
-mw+Waxpho39r3wTNMfA6gM1dQ7L+TJxXrjH6W3FfwD6100611QdKX6tfIjiVMAal
-7Urzckk+EN2G5AbMnuede7Xfm2iRrZjSwDkG32/xSo7XtN0ZN/X9E4YWVWktxJ8E
-+pi0fLHaRl2jcgKWYKQGhQc+BTZxS6b1cjJQSNuJSTDaeyQLFAEyyWr2vXGv0OUv
-lYqB2y2bVrVX1VFHOsO+7eUyT84nekhmEbKJ6Yu95Wr1PgXaQRsQ4loA/aqHPqhY
-sb2g9WrcUvuycVQbXM4pKwwBfayoj4j8APpfFLqIJ9yiHk9R/tA=
-=aJmc
------END PGP SIGNATURE-----
-
---5N0BVpXlyV7XdVV7--
+-- 
+With Best Regards,
+Andy Shevchenko
