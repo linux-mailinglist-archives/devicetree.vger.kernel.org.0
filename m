@@ -2,133 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85DA554FEE9
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 23:03:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E0AA54FEEE
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 23:03:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383360AbiFQUhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 16:37:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37846 "EHLO
+        id S1380835AbiFQUiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 16:38:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382325AbiFQUfj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 16:35:39 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7756C5E762;
-        Fri, 17 Jun 2022 13:34:23 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id be31so8522091lfb.10;
-        Fri, 17 Jun 2022 13:34:23 -0700 (PDT)
+        with ESMTP id S1383258AbiFQUhv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 16:37:51 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1548462CF6
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 13:34:55 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id cs6so3577136qvb.6
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 13:34:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vDd9GRNgXOH4DRh4h4tsEZAUpzvs2GX7UG6ZUxEQU3I=;
-        b=lw8A+ey8OiVQ6R8WpbnJEVWi2qreXkw2WJNoZmz9mrILvv42LKWsMb7XfHPbGF9t1c
-         aM3PNDZyWMQ+O8On7hKVB/FWNICsdCCPH4Zf4mAHaJqOffK+iNJ0VgzuF1jJXmj3r7Ke
-         jJXjuuzdSQVZNLzKeFUOyGNy3PDHO5R1syZRs9a9w2GdCzeOgPgpAWtlYuFH+6oTa7ef
-         D8xWauC9rIl61rReFFi6yEwtRugJqqVjZLvIFJVWv2fsnetilEVMP5xbMV86q1V9fRPM
-         uFDK3guhTxy4EoRrhTafWPxebRAakvV0pz7ueL707ewiFUPZdhwL/T+90Y+mKMdyaKoU
-         /aaA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WGHL7WjNLqD3YEDXO1vrsqgtsGl62CAfBugSKIsxPxU=;
+        b=cv2r4yXkHLvtqCXoPhTFcG1riYBBF5Kc9CwQxrBxiOqHHo1j2zt96Z+UPpK/d0vYjT
+         QAKszsSLwTOvcHDnf8kSUe4XAWy7MHdHeLhBv7n83WyTsivH7mvGi8V5MFaNxRB0ZCpe
+         0695dC3x1z/Y8Qwk90ZzRmtKbyg8bD4E7jmkAtpoZBEhHUv0jx6zVzUznJiC3CLZlIqb
+         7UPNh+xGdNmiYkaqJVB3W8prl6jYY4Y+HrYQGwVjTxLJkPnfpIDJqCK4QHhjs+nqtn0N
+         fo8LQUk3cAjTPtnMqbImMaIIRo5lUIIlX5ddqCcyWiFQ9efSaPh29wGfoCBmRlm4mEuN
+         1WTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vDd9GRNgXOH4DRh4h4tsEZAUpzvs2GX7UG6ZUxEQU3I=;
-        b=ODFRSKQlvN4wEYtOWveA8BqECciRqUzynFWmNt/LsNjMXK+TS8vuHL3lSWEpkKIcKA
-         BrQe5Hbnm0J0iWnnLHNlRLRLWw0uFvsxMTvQKcpTr2MBVzvtMNplRFUdg5g2Y+lPfmKZ
-         VQNhQiCiINKaSdr/PesRi8Rean457qGOaBTWZ8fBY6kS++3QTQEQwNMwmSqSND2uo05x
-         KHpGAbcnlZp1CRZ/AKVC99yLvMaA60BfYipZR+uXZcICRFC84pJL4S10XsAfYDYZn7DV
-         izmwFE2PztTR05+sJFnFegxojA/J69R0NNew4c0uG8/QqsXzlJQPQPJwvQI32699BqsK
-         qzRg==
-X-Gm-Message-State: AJIora/G3kuPTgGymbhIdWoPGGdkqCcxoZElqsrRTgkriktE4U9VC6wt
-        TAKHO/r8Vg4F+lMQ7EpVeu89dzB6CCYpzhJz
-X-Google-Smtp-Source: AGRyM1tQRBiE4Z/onR34yRi4gEu5sqX+Q3/+fniA0+YaHZH6w7FIKnCTx20qlAJqho6h+DruXtFlSw==
-X-Received: by 2002:ac2:4e10:0:b0:479:2160:623e with SMTP id e16-20020ac24e10000000b004792160623emr6457849lfr.602.1655498061849;
-        Fri, 17 Jun 2022 13:34:21 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id h13-20020a19ca4d000000b0047dbff43a7dsm752862lfj.63.2022.06.17.13.34.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jun 2022 13:34:21 -0700 (PDT)
-Date:   Fri, 17 Jun 2022 23:34:19 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 19/23] ata: ahci: Add DWC AHCI SATA controller support
-Message-ID: <20220617203419.ksoald7am3677csh@mobilestation>
-References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
- <20220610081801.11854-20-Sergey.Semin@baikalelectronics.ru>
- <52c9ca79-769f-4426-db94-7aad05a68258@opensource.wdc.com>
- <20220615214802.ke6owp5cuv5l77hu@mobilestation>
- <5f1edbd8-018a-bcd0-10f2-94767f341b45@opensource.wdc.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WGHL7WjNLqD3YEDXO1vrsqgtsGl62CAfBugSKIsxPxU=;
+        b=p32AHFCzCV/0R95biMRhwrwL1P7Ah15tzpEXUet+7wmfjqqDv4MbSVibwcL6BKEkjp
+         WBuhx/VTa19tcEPz/Te1lIoMJtZCE+GF95negNlgvMk5OluZ9B81kwDkULvhakpsprAN
+         ZsroIkujcNGdmdljV1fzWFqSyPHpgZMpz/SZwnja/STaAnm3esLwU0ai+Z/nm5bG9zli
+         h1FANR3ykHnnBMC8ZI4VdxwP++sxeDm6O0gBRTO3IStv8bA53sPIBNNvfTImgT4MWSoZ
+         RmwbmLo7jDYUNZWgjreTm6zSeZYhQu7J/7e+X0yatOLm8kw0xAxHi1bXoz5LvapeobX0
+         6VdQ==
+X-Gm-Message-State: AJIora/3eJ+i9AHAhrLTHJbqvbFVaIQNrfPTMz1/Z+3rK2WYJnW2kk0J
+        t1A7cAiWZopA4CCYLXcm8Pq3sgZ1BUEj/vh5PEr2WPu2KkQuXQ==
+X-Google-Smtp-Source: AGRyM1v1dl9Ik0o1hcC8TstCh11I+Up1jTnlCPJuDlc0Pv5THsRcNLs3/HX/N2TDNDkhjKWfpAIeQ5ODqcdIrs8eZZk=
+X-Received: by 2002:a05:622a:487:b0:304:fbfc:9933 with SMTP id
+ p7-20020a05622a048700b00304fbfc9933mr10445999qtx.682.1655498075238; Fri, 17
+ Jun 2022 13:34:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5f1edbd8-018a-bcd0-10f2-94767f341b45@opensource.wdc.com>
+References: <20220617144714.817765-1-dmitry.baryshkov@linaro.org>
+ <20220617144714.817765-8-dmitry.baryshkov@linaro.org> <Yqy2YHpl93kEQRYU@gerhold.net>
+In-Reply-To: <Yqy2YHpl93kEQRYU@gerhold.net>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 17 Jun 2022 23:34:24 +0300
+Message-ID: <CAA8EJpozu6PoWC-kOpFB9OSZLVZaZt6ZkUpYo=bOr0zhErkWqA@mail.gmail.com>
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: msm8916: add clocks to the GCC
+ device node
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 16, 2022 at 09:33:22AM +0900, Damien Le Moal wrote:
-> On 2022/06/16 6:48, Serge Semin wrote:
-> [...]
-> >> MODULE_LICENSE("GPL v2");
-> >>
-> >> To match the file header SPDX.
-> > 
-> > No. Please see the commit bf7fbeeae6db ("module: Cure the
-> > MODULE_LICENSE "GPL" vs. "GPL v2" bogosity") and what checkpatch.pl
-> > says should the "GPL v2" string is used in the module license block.
-> > More info regarding this macro and the possible license values are
-> > described here:
-> > Documentation/process/license-rules.rst
-> 
+On Fri, 17 Jun 2022 at 20:14, Stephan Gerhold <stephan@gerhold.net> wrote:
+>
+> Hi Dmitry,
+>
+> Thanks for cleaning up MSM8916! :)
+>
+> On Fri, Jun 17, 2022 at 05:47:14PM +0300, Dmitry Baryshkov wrote:
+> > As we are converting this platform to use DT clock bindings, add clocks
+> > and clock-names properties to the MMCC device tree node.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/msm8916.dtsi | 14 ++++++++++++++
+> >  1 file changed, 14 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> > index 05472510e29d..e905415b3456 100644
+> > --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> > @@ -934,6 +934,20 @@ gcc: clock-controller@1800000 {
+> >                       #reset-cells = <1>;
+> >                       #power-domain-cells = <1>;
+> >                       reg = <0x01800000 0x80000>;
+> > +                     clocks = <&rpmcc RPM_SMD_BB_CLK1_PIN>,
+>
+> This should be <&xo_board> to avoid functional changes.
 
-> ah ! OK. I was not 100% sure. Doing a quick grep, there is still a lot of (half
-> ?) of "GPL v2" vs "GPL".
-> 
-> Ignore this then.
+Ack, thanks for the suggestion.
 
-Ok.
+>
+> If we want to change this to the actual votable clock later this should
+> probably be <&rpmcc RPM_SMD_XO_CLK_SRC>. AFAIK that clock exists in RPM
+> on MSM8916 but was never added to the clk-smd-rpm driver (for MSM8916).
+>
+> Not sure where the pin-controlled BB_CLK1 is coming from here. :)
 
--Sergey
+It came from the schematics I had at hand (db410c). It uses the
+BB_CLK1 together with the enable pin. I'll probably use xo_board for
+now and postpone changing this to rpmcc clock until the next attempt
+to read msm-3.x code.
 
-> 
-> > 
-> > -Sergey
-> > 
-> >>
-> >>> diff --git a/drivers/ata/ahci_platform.c b/drivers/ata/ahci_platform.c
-> >>> index 9b56490ecbc3..8f5572a9f8f1 100644
-> >>> --- a/drivers/ata/ahci_platform.c
-> >>> +++ b/drivers/ata/ahci_platform.c
-> >>> @@ -80,9 +80,7 @@ static SIMPLE_DEV_PM_OPS(ahci_pm_ops, ahci_platform_suspend,
-> >>>  static const struct of_device_id ahci_of_match[] = {
-> >>>  	{ .compatible = "generic-ahci", },
-> >>>  	/* Keep the following compatibles for device tree compatibility */
-> >>> -	{ .compatible = "snps,spear-ahci", },
-> >>>  	{ .compatible = "ibm,476gtr-ahci", },
-> >>> -	{ .compatible = "snps,dwc-ahci", },
-> >>>  	{ .compatible = "hisilicon,hisi-ahci", },
-> >>>  	{ .compatible = "cavium,octeon-7130-ahci", },
-> >>>  	{ /* sentinel */ }
-> >>
-> >>
-> >> -- 
-> >> Damien Le Moal
-> >> Western Digital Research
-> > 
-> 
-> 
-> -- 
-> Damien Le Moal
-> Western Digital Research
+-- 
+With best wishes
+Dmitry
