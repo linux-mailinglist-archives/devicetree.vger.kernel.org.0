@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D20B8550020
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 00:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2213555002A
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 00:48:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239682AbiFQWow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 18:44:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52898 "EHLO
+        id S1358481AbiFQWsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 18:48:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238184AbiFQWov (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 18:44:51 -0400
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 328E43B3C6;
-        Fri, 17 Jun 2022 15:44:50 -0700 (PDT)
-Received: by mail-io1-f47.google.com with SMTP id i16so5900754ioa.6;
-        Fri, 17 Jun 2022 15:44:50 -0700 (PDT)
+        with ESMTP id S1358121AbiFQWsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 18:48:12 -0400
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69745275C1;
+        Fri, 17 Jun 2022 15:48:11 -0700 (PDT)
+Received: by mail-il1-f170.google.com with SMTP id m16so2367942ilf.6;
+        Fri, 17 Jun 2022 15:48:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=mkyBoQrK77DJf9OidPmzQRZw3BY2GrOu7sXDzTqHibQ=;
-        b=tYpwtZCLTGnIpucqGTZ4Sh5Gv3o/QIz2U9ojPllJXkoOlegH2CZeYIWsRBNqYkfnVg
-         heR/1MYbiyheLkvPW4BHptoN4qQ/HXhobbUm2SDcgM0AbBnt6rlXl4zPFcEj2NYc5NDv
-         jzz2shVTT5czGd0PjN/SD9Dw+5OdH4jL+aBCsG3ecQG5SteCz/PltEKPVnh/Jsetb/ZN
-         nwsvC+yc97Qq3pfbeGIPWhqsYIPwEdCuDprzsYegXgTNKG5uHoIj7jmlylZHJcJRTLjb
-         9wi9zrrVoz+elGoWJ/lntry/yGUCsI4lLCkV7mlA+3Ovl1uLN45Rb/IV/TGaozdy0KO4
-         q4EA==
-X-Gm-Message-State: AJIora8KeqXUDApQv7LyRzWUyzHY6Vy5UGpuantVPPQx81c5N4rTL7cz
-        oxXB4sbe8qhHlgJcts7zlQ==
-X-Google-Smtp-Source: AGRyM1tDPeUx3oHDWGBfNfy3Bwife7YxjkilpSCRIPUY+TToJAdSs36ofKaHo7asCA3YZKFWMOKAcg==
-X-Received: by 2002:a02:6a1e:0:b0:331:f9b9:a920 with SMTP id l30-20020a026a1e000000b00331f9b9a920mr6617996jac.44.1655505889508;
-        Fri, 17 Jun 2022 15:44:49 -0700 (PDT)
+        bh=QWqgJ+BNBlicstTxKNm6zsmC+wdLqiLODgZbKAeFkuM=;
+        b=QSgLDXjSUXB/Z+fD21M1Ym0qzAQ4VWN0JqEdp0yS9IoHuEusYolvuuK5coXYfRTJYt
+         cAHV/2fej7ZDmg331gYj+hskjFCVRSGjvjQsIdnURUFv7+P4HRBEizU70S/Xjvzqkxlk
+         iohm35jo5O98hGVyyoNgV2tF4IlAdJPTAKMPVUbpRbwy1n+dIsK6cUEIWwHIX+ENC9Fg
+         Y4JYq6QaHmu8MZUaanPe3tRv2KgJbUEZPr5w40xXp3otDiHjZ+jOO/xD1ysOif7MjxpP
+         l0nnAl0brI1eyXCGcUHzfj1IFAFgv6GM1TX1N48xG8jEkN3J1bWHZnwmlG9cfqjBLPJY
+         2QfQ==
+X-Gm-Message-State: AJIora/Rz0b/9lZb1KrMezmsBmDYLBIrPjkYTkWmE26+6gxhBkw4MxTL
+        PmocnmLprihknA3w1jdGfRFZ+c+BDg==
+X-Google-Smtp-Source: AGRyM1tF1TFgKSd3rEFaD6pBxylnAQ7yDR97H315fy0ANiBFFFLxcOCCc9qGBhQwWAv/RErvaCyrxA==
+X-Received: by 2002:a05:6e02:1be5:b0:2d3:ea49:fe47 with SMTP id y5-20020a056e021be500b002d3ea49fe47mr6908114ilv.289.1655506090157;
+        Fri, 17 Jun 2022 15:48:10 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id c31-20020a023b1f000000b0032e271a558csm2722382jaa.168.2022.06.17.15.44.48
+        by smtp.gmail.com with ESMTPSA id g9-20020a02cd09000000b0033192b7fd35sm2775207jaq.128.2022.06.17.15.48.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jun 2022 15:44:49 -0700 (PDT)
-Received: (nullmailer pid 2576416 invoked by uid 1000);
-        Fri, 17 Jun 2022 22:44:48 -0000
-Date:   Fri, 17 Jun 2022 16:44:48 -0600
+        Fri, 17 Jun 2022 15:48:09 -0700 (PDT)
+Received: (nullmailer pid 2580984 invoked by uid 1000);
+        Fri, 17 Jun 2022 22:48:08 -0000
+Date:   Fri, 17 Jun 2022 16:48:08 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-imx@nxp.com, Jonathan Cameron <jic23@kernel.org>,
-        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: adc: Add imx6ul & imx6sx compatibles
-Message-ID: <20220617224448.GA2574775-robh@kernel.org>
-References: <20220613123529.466528-1-alexander.stein@ew.tq-group.com>
- <1655141687.002668.3951189.nullmailer@robh.at.kernel.org>
+To:     Piyush Mehta <piyush.mehta@xilinx.com>
+Cc:     gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
+        balbi@kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        michal.simek@xilinx.com, git@xilinx.com, sivadur@xilinx.com
+Subject: Re: [PATCH 2/2] usb: dwc3: core: Enable GUCTL1 bit 10 for fixing crc
+ error after resume bug
+Message-ID: <20220617224808.GA2576564-robh@kernel.org>
+References: <20220613124703.4493-1-piyush.mehta@xilinx.com>
+ <20220613124703.4493-3-piyush.mehta@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1655141687.002668.3951189.nullmailer@robh.at.kernel.org>
+In-Reply-To: <20220613124703.4493-3-piyush.mehta@xilinx.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -64,74 +65,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 13, 2022 at 11:34:46AM -0600, Rob Herring wrote:
-> On Mon, 13 Jun 2022 14:35:29 +0200, Alexander Stein wrote:
-> > Both are already using the vf610 compatible.
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> >  .../devicetree/bindings/iio/adc/fsl,vf610-adc.yaml       | 9 ++++++++-
-> >  1 file changed, 8 insertions(+), 1 deletion(-)
-> > 
+On Mon, Jun 13, 2022 at 06:17:03PM +0530, Piyush Mehta wrote:
+> When configured in HOST mode, after issuing U3/L2 exit controller fails
+> to send proper CRC checksum in CRC5 field. Because of this behavior
+> Transaction Error is generated, resulting in reset and re-enumeration of
+> usb device attached. Enabling chicken bit 10 of GUCTL1 will correct this
+> problem.
 > 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
+> When this bit is set to '1', the UTMI/ULPI opmode will be changed to
+> "normal" along with HS terminations after EOR. This option is to support
+> certain legacy UTMI/ULPI PHYs.
 > 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
+> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
+> ---
+>  drivers/usb/dwc3/core.c | 16 ++++++++++++++++
+>  drivers/usb/dwc3/core.h |  6 ++++++
+>  2 files changed, 22 insertions(+)
 > 
-> Full log is available here: https://patchwork.ozlabs.org/patch/
-> 
-> 
-> adc@2198000: 'num-channels' does not match any of the regexes: 'pinctrl-[0-9]+'
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index e027c0420dc3..8afc025390d2 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -1140,6 +1140,20 @@ static int dwc3_core_init(struct dwc3 *dwc)
+>  		dwc3_writel(dwc->regs, DWC3_GUCTL2, reg);
+>  	}
+>  
+> +	/*
+> +	 * When configured in HOST mode, after issuing U3/L2 exit controller
+> +	 * fails to send proper CRC checksum in CRC5 feild. Because of this
+> +	 * behaviour Transaction Error is generated, resulting in reset and
+> +	 * re-enumeration of usb device attached. Enabling bit 10 of GUCTL1
+> +	 * will correct this problem. This option is to support certain
+> +	 * legacy ULPI PHYs.
+> +	 */
+> +	if (dwc->enable_guctl1_resume_quirk) {
 
-Looks like you need to add 'num-channels'?
+What's the downside to just always doing this?
 
-> 	arch/arm/boot/dts/imx6ul-14x14-evk.dtb
-> 	arch/arm/boot/dts/imx6ul-ccimx6ulsbcexpress.dtb
-> 	arch/arm/boot/dts/imx6ul-ccimx6ulsbcpro.dtb
-> 	arch/arm/boot/dts/imx6ul-geam.dtb
-> 	arch/arm/boot/dts/imx6ul-isiot-emmc.dtb
-> 	arch/arm/boot/dts/imx6ul-isiot-nand.dtb
-> 	arch/arm/boot/dts/imx6ul-kontron-n6310-s-43.dtb
-> 	arch/arm/boot/dts/imx6ul-kontron-n6310-s.dtb
-> 	arch/arm/boot/dts/imx6ull-14x14-evk.dtb
-> 	arch/arm/boot/dts/imx6ull-colibri-aster.dtb
-> 	arch/arm/boot/dts/imx6ull-colibri-emmc-aster.dtb
-> 	arch/arm/boot/dts/imx6ull-colibri-emmc-eval-v3.dtb
-> 	arch/arm/boot/dts/imx6ull-colibri-emmc-iris.dtb
-> 	arch/arm/boot/dts/imx6ull-colibri-emmc-iris-v2.dtb
-> 	arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtb
-> 	arch/arm/boot/dts/imx6ull-colibri-iris.dtb
-> 	arch/arm/boot/dts/imx6ull-colibri-iris-v2.dtb
-> 	arch/arm/boot/dts/imx6ull-colibri-wifi-aster.dtb
-> 	arch/arm/boot/dts/imx6ull-colibri-wifi-eval-v3.dtb
-> 	arch/arm/boot/dts/imx6ull-colibri-wifi-iris.dtb
-> 	arch/arm/boot/dts/imx6ull-colibri-wifi-iris-v2.dtb
-> 	arch/arm/boot/dts/imx6ul-liteboard.dtb
-> 	arch/arm/boot/dts/imx6ull-jozacp.dtb
-> 	arch/arm/boot/dts/imx6ull-myir-mys-6ulx-eval.dtb
-> 	arch/arm/boot/dts/imx6ull-opos6uldev.dtb
-> 	arch/arm/boot/dts/imx6ull-phytec-segin-ff-rdk-emmc.dtb
-> 	arch/arm/boot/dts/imx6ull-phytec-segin-ff-rdk-nand.dtb
-> 	arch/arm/boot/dts/imx6ull-phytec-segin-lc-rdk-nand.dtb
-> 	arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dtb
-> 	arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dtb
-> 	arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dtb
-> 	arch/arm/boot/dts/imx6ull-tqma6ull2-mba6ulx.dtb
-> 	arch/arm/boot/dts/imx6ul-opos6uldev.dtb
-> 	arch/arm/boot/dts/imx6ul-phytec-segin-ff-rdk-emmc.dtb
-> 	arch/arm/boot/dts/imx6ul-phytec-segin-ff-rdk-nand.dtb
-> 	arch/arm/boot/dts/imx6ul-pico-dwarf.dtb
-> 	arch/arm/boot/dts/imx6ul-pico-hobbit.dtb
-> 	arch/arm/boot/dts/imx6ul-pico-pi.dtb
-> 	arch/arm/boot/dts/imx6ul-prti6g.dtb
-> 	arch/arm/boot/dts/imx6ul-tqma6ul1-mba6ulx.dtb
-> 	arch/arm/boot/dts/imx6ul-tqma6ul2l-mba6ulx.dtb
-> 	arch/arm/boot/dts/imx6ul-tqma6ul2-mba6ulx.dtb
-> 	arch/arm/boot/dts/imx6ul-tx6ul-0010.dtb
-> 	arch/arm/boot/dts/imx6ul-tx6ul-0011.dtb
-> 	arch/arm/boot/dts/imx6ul-tx6ul-mainboard.dtb
+> +		reg = dwc3_readl(dwc->regs, DWC3_GUCTL1);
+> +		reg |= DWC3_GUCTL1_RESUME_QUIRK;
+> +		dwc3_writel(dwc->regs, DWC3_GUCTL1, reg);
+> +	}
+> +
+>  	if (!DWC3_VER_IS_PRIOR(DWC3, 250A)) {
+>  		reg = dwc3_readl(dwc->regs, DWC3_GUCTL1);
+>  
+> @@ -1483,6 +1497,8 @@ static void dwc3_get_properties(struct dwc3 *dwc)
+>  				"snps,dis-del-phy-power-chg-quirk");
+>  	dwc->dis_tx_ipgap_linecheck_quirk = device_property_read_bool(dev,
+>  				"snps,dis-tx-ipgap-linecheck-quirk");
+> +	dwc->enable_guctl1_resume_quirk = device_property_read_bool(dev,
+> +				"snps,enable_guctl1_resume_quirk");
+>  	dwc->parkmode_disable_ss_quirk = device_property_read_bool(dev,
+>  				"snps,parkmode-disable-ss-quirk");
+>  
+> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+> index 81c486b3941c..e386209f0e1b 100644
+> --- a/drivers/usb/dwc3/core.h
+> +++ b/drivers/usb/dwc3/core.h
+> @@ -397,6 +397,9 @@
+>  #define DWC3_GUCTL_REFCLKPER_MASK		0xffc00000
+>  #define DWC3_GUCTL_REFCLKPER_SEL		22
+>  
+> +/* Global User Control Register 1 */
+> +#define DWC3_GUCTL1_RESUME_QUIRK		BIT(10)
+> +
+>  /* Global User Control Register 2 */
+>  #define DWC3_GUCTL2_RST_ACTBITLATER		BIT(14)
+>  
+> @@ -1093,6 +1096,8 @@ struct dwc3_scratchpad_array {
+>   *			change quirk.
+>   * @dis_tx_ipgap_linecheck_quirk: set if we disable u2mac linestate
+>   *			check during HS transmit.
+> + * @enable_guctl1_resume_quirk: Set if we enable quirk for fixing improper crc
+> + *			generation after resume from suspend.
+>   * @parkmode_disable_ss_quirk: set if we need to disable all SuperSpeed
+>   *			instances in park mode.
+>   * @tx_de_emphasis_quirk: set if we enable Tx de-emphasis quirk
+> @@ -1308,6 +1313,7 @@ struct dwc3 {
+>  	unsigned		dis_u2_freeclk_exists_quirk:1;
+>  	unsigned		dis_del_phy_power_chg_quirk:1;
+>  	unsigned		dis_tx_ipgap_linecheck_quirk:1;
+> +	unsigned		enable_guctl1_resume_quirk:1;
+>  	unsigned		parkmode_disable_ss_quirk:1;
+>  
+>  	unsigned		tx_de_emphasis_quirk:1;
+> -- 
+> 2.17.1
 > 
 > 
