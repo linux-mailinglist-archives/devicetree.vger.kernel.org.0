@@ -2,160 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 544C954FDF1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 21:55:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A4F854FDFC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 21:59:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234027AbiFQTyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 15:54:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35212 "EHLO
+        id S245727AbiFQT5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 15:57:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229794AbiFQTyI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 15:54:08 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E022E9DA;
-        Fri, 17 Jun 2022 12:54:07 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id y32so8415160lfa.6;
-        Fri, 17 Jun 2022 12:54:07 -0700 (PDT)
+        with ESMTP id S234252AbiFQT5K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 15:57:10 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D905B54030
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 12:57:06 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id es26so5796456edb.4
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 12:57:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=02rUpC1JaF7EaBeJHvEU6ZBWvHsGGlNTq1EAsa26d+U=;
-        b=qKuKUQO/dcX5z9teCBIMgIMk3uOFQJLA3kHLgJnf3nxxZ7xzS/DXSwQhi0dsCujAcf
-         3BXckUda/elXHotAMIpNINg170iI42nMz4NCxKxIaqXZ5C7V1x3pV2rKW2kIyEXBbQdS
-         l46xTw46DtID6yKeA7MEPDIFrok8wY0EntHqq/Sy/eP2oT5dfG8MsjG2vVz0UbF5jq6o
-         /XmaSdi3IZnBNmzrEivxuZqSOeMTxakgYM4UL8r+FwVQiAzkP8jH7KO3cYeT/dU9DH2o
-         ITCzXEqkEBMx0f1eo5mpo4XCURBWxCA1XCQSxHspUeV7C1G5Rf15NmQe1KvSjmcA7wyV
-         G7CA==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=38x3epfps0lP0e6upJ7edYx14JD5Ks8hIBXWzOvf/Ko=;
+        b=jX3i5+5kyx/7CmnKmahw2M0tEq9PN5ECeFW4UZiVGWMPOGQ2Ts0Ld5bb7b0YoFfkQd
+         mBvdoAnSiZguf/k1rTA/hXdrJpvQaZAh2C0DIY78/6bcHDV8dwjma0Idf5hoSnFZxRD/
+         4CfD/V1nv8zAKwcSwHJhhUU9iLISVunCieNVM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=02rUpC1JaF7EaBeJHvEU6ZBWvHsGGlNTq1EAsa26d+U=;
-        b=JlLjKdOPfaO6M0JcRiwhdnToMgWYmGQGlUylxVj0EOV4EqDh2bnRDXVx19AyCAdaEY
-         7kZuOCugaA4aaxFI0Ij8LxKW/MFbgtOap71IJAYkT+XVQ8ofFV4o1OCGz9AVDiQorBGS
-         26OtwcgfCmgKk4WbJ8V3MXYCOzcqyMQ3jH7lwhrMD7sSG5AhAXjdEQl3MxruZL7ZE0kv
-         8En4YPOhkGaJH2D+Ulfb+PakWajwkKO6vapkFJjs5ZCLFtd/i+w2WtW3SFoOvsQoGQW9
-         mogFKbB+cf9RJeDV6OGxDhKfpH+Kqcxikh26VqxZZM9tFSHGHDzev+LJv5ZTzHHsxVCE
-         AKUQ==
-X-Gm-Message-State: AJIora9cvLleZRWlPql3f0QsSmcS+2T7lKwZ0pwa5l2bsEtkELC3POZf
-        gjMr3wjQAjSTuF9WkeuwwhE=
-X-Google-Smtp-Source: AGRyM1scl8XJBZO2QfldF/lmnmDPuZMn9aZDccuJGjXCRN2CeOWsSuAYogHMxuezZr/3ib1KJwEHmw==
-X-Received: by 2002:ac2:4314:0:b0:47e:53ff:7db with SMTP id l20-20020ac24314000000b0047e53ff07dbmr6548634lfh.118.1655495645696;
-        Fri, 17 Jun 2022 12:54:05 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id g18-20020ac24d92000000b0047f523ae57csm381524lfe.17.2022.06.17.12.54.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jun 2022 12:54:05 -0700 (PDT)
-Date:   Fri, 17 Jun 2022 22:54:03 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 07/23] ata: libahci_platform: Convert to using devm
- bulk clocks API
-Message-ID: <20220617195403.wbqy5ozm6x7tq3dh@mobilestation>
-References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
- <20220610081801.11854-8-Sergey.Semin@baikalelectronics.ru>
- <3bf20887-6e2f-41f4-e4ec-5c2278f6cb18@opensource.wdc.com>
- <20220615204509.siz54h4vbgvb3zkm@mobilestation>
- <0dcebae2-5e4e-a0d3-181d-37bb9b40d564@opensource.wdc.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=38x3epfps0lP0e6upJ7edYx14JD5Ks8hIBXWzOvf/Ko=;
+        b=iojAlr+j/nItBE9TIB6+XtFluBFx3A1POYLj+w7uP+fb991N3t/fuoMBV7ozJ9vghF
+         FYbRZ08YoToDKQjFveEy/nttqE6BlmVZW/11UoI+Tnz4g0tPN84XfXexWRKacu+29Oi9
+         QWQOH6rNMKw3Ukc/WDV2ieG2wiSbkJn9iTxavRXQe59SfhCncUmYK101p2e0tgUo9fCj
+         iAe4kHmOzbTm7gUJjhRO5sGJbxPynTI7xy1qdpsa/UtWjItJsBy6hkc1XMOVHYpsNMcM
+         CFy7iIH5Y9ziww2lhsrpCAVfFY5PW/baII0whKL+04ebndqd5ylciQ6/fvutSUHqVdxH
+         wl/Q==
+X-Gm-Message-State: AJIora9e4svfXM8VJSbwt1LD0N4UqhNvLza6ru/dVtBMn86h+seo25FI
+        ArUmSN8Thcveevb0KP2PzDmy4J4iv2t5XwIc1zg=
+X-Google-Smtp-Source: AGRyM1v0jMqtelzuuwX3MjwfKKm33oFH5dNqB7d7BUxJ6azCvXZcoquzPoHGRb7NlswiypsH0B1f1w==
+X-Received: by 2002:a05:6402:278e:b0:431:73ab:49b9 with SMTP id b14-20020a056402278e00b0043173ab49b9mr14382752ede.415.1655495825273;
+        Fri, 17 Jun 2022 12:57:05 -0700 (PDT)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com. [209.85.221.51])
+        by smtp.gmail.com with ESMTPSA id q23-20020a170906b29700b00708e906faecsm2526841ejz.124.2022.06.17.12.57.04
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Jun 2022 12:57:04 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id a15so6996968wrh.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 12:57:04 -0700 (PDT)
+X-Received: by 2002:a05:6000:1685:b0:218:45f0:5be6 with SMTP id
+ y5-20020a056000168500b0021845f05be6mr11122445wrd.301.1655495824252; Fri, 17
+ Jun 2022 12:57:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0dcebae2-5e4e-a0d3-181d-37bb9b40d564@opensource.wdc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220617111021.v6.1.I9e299d3fa6fbf50df6fc7207050bf5c3a7bf4c61@changeid>
+ <CAD=FV=Wp=BMwkbXH+_cHyVP3_0Zh-KXO=N8Y7wg3SktEs7FEXQ@mail.gmail.com>
+In-Reply-To: <CAD=FV=Wp=BMwkbXH+_cHyVP3_0Zh-KXO=N8Y7wg3SktEs7FEXQ@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 17 Jun 2022 12:56:52 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WA+_mK9vLth6KkoynjvNMSXX6d8_c1v29pbM8ALp7aVQ@mail.gmail.com>
+Message-ID: <CAD=FV=WA+_mK9vLth6KkoynjvNMSXX6d8_c1v29pbM8ALp7aVQ@mail.gmail.com>
+Subject: Re: [PATCH v6 1/6] FROMLIST: arm64: dts: qcom: sc7180-trogdor: Split
+ out keyboard node and describe detachables
+To:     "Joseph S. Barrera III" <joebar@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 16, 2022 at 09:23:28AM +0900, Damien Le Moal wrote:
-> On 2022/06/16 5:45, Serge Semin wrote:
-> [...]
-> >>> +		hpriv->clks = devm_kzalloc(dev, sizeof(*hpriv->clks), GFP_KERNEL);
-> >>> +		if (!hpriv->clks) {
-> >>> +			rc = -ENOMEM;
-> >>> +			goto err_out;
-> >>> +		}
-> >>> +		hpriv->clks->clk = devm_clk_get_optional(dev, NULL);
-> > 
-> >>> +		if (IS_ERR(hpriv->clks->clk)) {
-> >>> +			rc = PTR_ERR(hpriv->clks->clk);
-> >>> +			goto err_out;
-> >>> +		} else if (hpriv->clks->clk) {
-> >>
-> >> Nit: the else is not needed here.
-> > 
-> > Well, it depends on what you see behind it. I see many reasons to keep
-> > it and only one tiny reason to drop it. Keeping it will improve the
-> > code readability and maintainability like having a more natural
-> > execution flow representation, thus clearer read-flow (else part as
-> > exception to the if part), less modifications should the goto part is
-> > changed/removed, a more exact program flow representation can be used
-> > by the compiler for some internal optimizations, it's one line shorter
-> > than the case we no 'else' here. On the other hand indeed we can drop
-> > it since if the conditional statement is true, the code afterwards
-> > won't be executed due to the goto operator. But as I see it dropping
-> > the else operator won't improve anything, but vise-versa will worsen
-> > the code instead. So if I get to miss something please justify why you
-> > want it being dropped, otherwise I would rather preserve it.
-> 
-> An else after a goto or return is never necessary and in my opinion makes the
-> code harder to read. I am not interested in debating this in general anyway. For
-> this particular case, the code would be:
-> 
-> 		hpriv->clks->clk = devm_clk_get_optional(dev, NULL);
-> 		if (IS_ERR(hpriv->clks->clk)) {
-> 			/* Error path */
-> 			rc = PTR_ERR(hpriv->clks->clk);
-> 			goto err_out;
-> 		}
-> 
-> 		/* Normal path */
-> 		if (hpriv->clks->clk) {
-> 			...
-> 		}
-> 
-> Which in my opinion is a lot easier to understand compared to having to parse
-> the if/else if and figure out which case in that sequence is normal vs error.
-> 
+Hi,
 
-> As noted, this is a nit. If you really insist, keep that else if.
+On Fri, Jun 17, 2022 at 12:47 PM Doug Anderson <dianders@chromium.org> wrote:
+>
+> Hi,
+>
+> On Fri, Jun 17, 2022 at 11:12 AM Joseph S. Barrera III
+> <joebar@chromium.org> wrote:
+> >
+> > From: Stephen Boyd <swboyd@chromium.org>
+> >
+> > Trogdor devices that have a detachable keyboard still have a
+> > non-detachable keyboard input device present because we include the
+> > cros-ec-keyboard.dtsi snippet in the top-level sc7180-trogdor.dtsi file
+> > that every variant board includes. We do this because the
+> > keyboard-controller node also provides some buttons like the power
+> > button and volume buttons. Unfortunately, this means we register a
+> > keyboard input device that doesn't do anything on boards with a
+> > detachable keyboard.
+> >
+> > Change the node's compatible on detachables to the newly introduced
+> > "google,cros-ec-keyb-switches" compatible to indicate that there are
+> > only switches and no keyboard to register. Similarly, move the keyboard
+> > include that defines the keyboard-controller node out of
+> > sc7180-trogdor.dtsi to boards that actually have a keyboard so that the
+> > matrix properties are not defined on boards with the switches
+> > compatible. Future boards can either use the include approach or the
+> > node definition approach to describe a keyboard with possible switches
+> > or just some switches.
+> >
+> > Cc: Benson Leung <bleung@chromium.org>
+> > Cc: Guenter Roeck <groeck@chromium.org>
+> > Cc: Douglas Anderson <dianders@chromium.org>
+> > Cc: Hsin-Yi Wang <hsinyi@chromium.org>
+> > Cc: "Joseph S. Barrera III" <joebar@chromium.org>
+> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> > (am from https://lore.kernel.org/r/20220518172525.3319993-1-swboyd@chromium.org)
+> >
+> >      evtest shows no more cros_ec device
+> >
+> > Cq-Depend: chromium:3609017
+> > Tested-by: Stephen Boyd <swboyd@chromium.org>
+> > Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> > Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
+>
+> It's OK to re-post Stephen's patch with your series, but:
+>
+> 1. The subject shouldn't have FROMLIST. That's just for patches picked
+> back to a Chromium OS kernel.
+>
+> 2. You shouldn't have "(am from...)". Again, just for patches picked
+> back to a Chromium OS kernel.
+>
+> 3. No Cq-Depend. That's something for patches picked back to a
+> Chromium OS kernel.
+>
+> 4. You should remove tags that were added by the Chromium review
+> system, like Stephen's "Tested-by" and my "Reviewed-by".
+>
+>
+> Another alternative is to not post Stephen's patch but add a note that
+> your patch should be applied atop his, then point to his. AKA:
+>
+> https://lore.kernel.org/r/20220518172525.3319993-1-swboyd@chromium.org
 
-Ok. I'll leave it as is then.
+A further note is that your series ought to be based on this one:
 
-Thanks
--Sergey
+https://patchwork.kernel.org/project/linux-arm-msm/patch/20220602190621.1646679-1-swboyd@chromium.org/
 
-> 
-> > 
-> > -Sergey
-> > 
-> >>
-> >>> +			hpriv->clks->id = __clk_get_name(hpriv->clks->clk);
-> >>> +			hpriv->n_clks = 1;
-> >>>  		}
-> >>> -		hpriv->clks[i] = clk;
-> >>>  	}
-> >>>  
-> >>>  	hpriv->ahci_regulator = devm_regulator_get(dev, "ahci");
-> >>
-> >>
-> >> -- 
-> >> Damien Le Moal
-> >> Western Digital Research
-> 
-> 
-> -- 
-> Damien Le Moal
-> Western Digital Research
+...but when I apply your patch atop that one I get merge conflicts.
+
+-Doug
