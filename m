@@ -2,135 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1EA554F19F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 09:13:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F6F954F1AC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 09:14:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380459AbiFQHNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 03:13:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52908 "EHLO
+        id S1380514AbiFQHOc convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 17 Jun 2022 03:14:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380443AbiFQHNK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 03:13:10 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2093.outbound.protection.outlook.com [40.107.113.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA7E75E145;
-        Fri, 17 Jun 2022 00:13:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m2ct0jpsEo5IRXwl02C7Beq5AmVatVwK6DZQ9RDRvcZC6GK01X1sLeb43WlMa6yibNaWs3bCb5VfmbdrDFtx+e9kDDMB0vk9m59sjUF++DvXhfR+KpgaPmmzpoY/JkiZehWXUoxnfkDhYzfcEGJG08duuAIhAJZk37rcoutdluoh+7GTTIOd1pr4RINpwqP9EjShVriYELpLPWgJ6025E0b2zt5iwf7WaMG5z4wYq6Rpp48rulSK26aG+C1zON6O3JN4yyws3RbYHmn+sMLpKsggbhYj289DpVLFg91kjgVuh4YNqTso2oNVNqkGdHfvAl1xXKlCk++nrSXFdHrV7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gkRbkEVdIoh168gqU9eQq+ljEne+fhIF8Vgz0rrQUWc=;
- b=i7BKluUK2NiF+IUWVYu6gJuYqlNmMu0aRnT9Y2oj55B/5Zn7GrnG8DTrxIcV60Kvah3pLhJPhhkDcargQeOOLkTXUkRLSBhC0aWANjxEGjAkh6mdO/d5SV+12V4JilY/jbKgQTMVS6F1+uu1SYP2VUI0YEzc2Sy3qBUJ8s83SmxI/WoGIfPCnAWW5g/xCF9RHae+W1mDIBObV6iSkaA37TtUOZGUX9c48hw/N9NHWOoAGvgHCTRhfY+R88yvmxpoWcHO9We6AILcgE3ZAu3dixffLldzvtyIuQQvRiGG8OxQsqmyW2hZ/ladfo7JRSuQPloSf4EyT24y8/THiZYIhg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gkRbkEVdIoh168gqU9eQq+ljEne+fhIF8Vgz0rrQUWc=;
- b=iRx+v98OuaIZoW0BGMlg8xcpXuHkPjhzEnGGn2P7D9434324EkpTb7tOSfo7W4FfBaXV3U1bi5OwmhxhvFfAS/81rc89MKPcZ9FVxGEDttrFmhXaO4xeHLH0cQ/atSAXNsr+urnH8Gvyocpt1FsRyMclaJubYaTbamx8qg5BSEw=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OSAPR01MB2593.jpnprd01.prod.outlook.com (2603:1096:604:1::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.14; Fri, 17 Jun
- 2022 07:13:05 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::dc06:eb07:874:ecce]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::dc06:eb07:874:ecce%7]) with mapi id 15.20.5353.016; Fri, 17 Jun 2022
- 07:13:05 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S1380539AbiFQHOV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 03:14:21 -0400
+Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.109.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E160D65D15
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 00:14:18 -0700 (PDT)
+Received: from CHE01-ZR0-obe.outbound.protection.outlook.com
+ (mail-zr0che01lp2112.outbound.protection.outlook.com [104.47.22.112]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-11-YO6aamJEPsWg7gNkNp5Few-1; Fri, 17 Jun 2022 09:14:16 +0200
+X-MC-Unique: YO6aamJEPsWg7gNkNp5Few-1
+Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:2e::8) by
+ GVAP278MB0438.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:3e::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5353.15; Fri, 17 Jun 2022 07:14:13 +0000
+Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::2879:acb:62c8:4987]) by ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::2879:acb:62c8:4987%8]) with mapi id 15.20.5353.016; Fri, 17 Jun 2022
+ 07:14:13 +0000
+From:   Francesco Dolcini <francesco.dolcini@toradex.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH] dt-bindings: usb: ehci: Increase the number of PHYs
-Thread-Topic: [PATCH] dt-bindings: usb: ehci: Increase the number of PHYs
-Thread-Index: AQHYgL9EpS8EJvfSJEqgO1MJ+ZDgva1Qt+gAgADyw4CAAYW5QA==
-Date:   Fri, 17 Jun 2022 07:13:05 +0000
-Message-ID: <OS0PR01MB5922E72A4D64A5B93D2EFFB886AF9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <c5d19e2f9714f43effd90208798fc1936098078f.1655301043.git.geert+renesas@glider.be>
- <CAL_JsqJbmdJd6+D9zog6NwF_LPO5QC_HsODg4FHLJOnMmPP-mg@mail.gmail.com>
- <CAMuHMdU3PnY6yZf70kB9wme7_WTjcPJwmzo--Ua3vJ45w7mD8w@mail.gmail.com>
-In-Reply-To: <CAMuHMdU3PnY6yZf70kB9wme7_WTjcPJwmzo--Ua3vJ45w7mD8w@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bbc159f7-bb38-4904-1089-08da5030d322
-x-ms-traffictypediagnostic: OSAPR01MB2593:EE_
-x-microsoft-antispam-prvs: <OSAPR01MB2593772A7E27252B62FCC0DF86AF9@OSAPR01MB2593.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: jxBTbldklqlj7aAv27wqtd5wBcOKcbmt1DLUNx8IXcl0hSscFfdmKIbz0n6aNOwjouH8iMLBcgSVZoCmhRhhSQs4XGm4kRPuY/jvVoiLxSAiWMBKxCCOEQ2XJGPD3UkI7EsgphDOwnHd+qSnu9lzSoTnMBjyLk7S9NcW5FnIX4qs+slC0jOQ6tx2KjAEryr4PNlPol+qd6/vmZuAzostxzv9v2T2lWQM+AId0QCYQ+b7U+oc8QdolXhr52VO5dI7Y6WDZ2Wmv6o/27i00kMdjF/oSRB8at3tOkx3wrxbgbV3+H2Yqum37LpdWhli25NlI0EWcr67/7h77BpUwPpHHSMTATpETT0DEzLo9vligCZU4SEiLSswYjgxnhkrm8hc1cGqbOuimDUTWYSmMViHPx/nxOc8onP/99zuTWFAjb0OvOTa7bs6XFFUFALcLe2fAVDGqErF3y06LfDfW8qxamuFJBWcCAQMzwL5ZX8cLDSXUvGo0a+M7wtGknRHQ3n5qLeT3uOtK4TsxhhAWXtJhxOZ3CiwvMW5exWqm7sa0p18nE9LqN1MFmBOo+0o+xS0v9fAVkB8SBq+lkUI6GHo4G/PULfDFQafDq7pnss+03MJe5NSlMxUF9IuysIRqfsHaLJOgWnMu9Lsh0IJlBwQ8adre09I2V1R+e1WexW6bKQLOBNddvhWNauR+//uqqjk9LLYTS4wghWXOgMfiBSCEw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(8936002)(52536014)(55016003)(53546011)(54906003)(86362001)(508600001)(38100700002)(122000001)(2906002)(71200400001)(64756008)(66556008)(66946007)(5660300002)(38070700005)(8676002)(76116006)(66446008)(4326008)(9686003)(316002)(26005)(186003)(33656002)(110136005)(6506007)(7696005)(66476007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VTlDRFY4Y1I5cTV6SlUzNzZKdnRVb3BFWUthMWtTd2RYR01jMFlja0VSdkpG?=
- =?utf-8?B?a0djWDZWNDBWSWNCLzN2eEJ1Myt0STBROFY5TVFiMC9GS1k0dlp1R0dxM1Zz?=
- =?utf-8?B?NzEwSmFUTjFLajJUWWJzWVZpbnJ4bCsyb3RJOW82S2ZlS2JmZ1lDNHB6V0M3?=
- =?utf-8?B?Z0VoNkV0NlFGbGErL0l5OVFRL2pyV1BPMW01RG5DWFE5Z09pZ0UzN2ZnQWlS?=
- =?utf-8?B?a2E0SzFYb0p3QkFhemdpSXQ1MFhYdHU0Mk9Xc0xyVGcyWXhDclAySllnWC9F?=
- =?utf-8?B?NWVGbEFyUmIwMitUdHBCNVVUQ1ZXbk9Yb1Q5UXUyNmpEOC9KdEJsclJSRFZH?=
- =?utf-8?B?NDYxN1hMeG93ZTRvRFVXSUFTTFFINW1rZlp1bkVSejJZYTlYNVhST2hGUE9a?=
- =?utf-8?B?S3YvZ0lvK3VmMDVjTEI5UDM5bW92ZlZtTUdKcTdRTnNKVXdZZzFKeUN1ZFJo?=
- =?utf-8?B?MUFtUm4vNXRXT0pVd0tPOVlGMm0vYXNwOEpUazZyZTBzbDhCZDBiVmt2YzFh?=
- =?utf-8?B?UzVSUVpUK2V5OWlIdHZyRnhmV0ZOdUZwaVlLbStJZmYrQTNkR29uZTZKVmFV?=
- =?utf-8?B?SkN2TjNaU3B0Y2VsNG9ldjFXYi9PMElxUC9VR1I3eWVNVlpYeGgrYVB4aXpo?=
- =?utf-8?B?RSs5czZldHZUd0RQSWcrUXpiVHU5SHZTL051d2d2bC9JZzA0Qi9JOXVJeVFG?=
- =?utf-8?B?elZ4T2U2OUU5UFR5Y3JJYnJEYTlIbVBOZUc1WG9hay8xdTBrOXNlellIZUJ0?=
- =?utf-8?B?Ynp5UDhkYlJsUnVaTC94N3Y1NFRQNjNOcFIwVXBMSUo1YSsyUTFYSEJaWEE4?=
- =?utf-8?B?TFJJa1huVnh0MmlkNDgrUnB6Q3JuMnIxTVBTWk1QVDZUL0dnbDRlVjBDcWJC?=
- =?utf-8?B?ak9UdVlaVWtudi9ROTJsN2k4bm5XUjUyd0VUWE11bTdyY01rL1BEZlh0MTgw?=
- =?utf-8?B?cGNFVlR3VDh4YW1zbWVyd1R6S2hqWnRNTXQrOVJzUUNGVGUxQSs3VFdJQVp3?=
- =?utf-8?B?UnVMWE01bjFwL0VCcUtqQUhCWmp0d29YSC8ycjhrVzJWTVIrbTR1Wklsc0ZO?=
- =?utf-8?B?M2ZCYWV4QnNXZWhweGNpVXZnQ3ZsZTh4UTVOUVdjclhJZUVwdFE5Q2x3TDdF?=
- =?utf-8?B?dXVaN0VaRnRONXE0MTViREdYS2JPNTBzazM5bkxyWnFuTm5PWmxmb0ZTZS9s?=
- =?utf-8?B?NnF1cWVWS0xrb2xraE9DWkQwS2dINVlQT2RKa1NPbkNyY3IvRkZHUzRDT0Jy?=
- =?utf-8?B?VHpLWkVXU2FDZlo5RXRrajVab2g1L3FnTENjUjJyb2krZjJ1Yk9KRThPRWtP?=
- =?utf-8?B?bmYzYk41czM4clZSOXVFYm9sOHA0c3dOam5PL0hCc1RpdUl3VlpPNUhkSWV2?=
- =?utf-8?B?YjZqZUlxTWs2YW1GRVVUVnJiSjFOMG9vNHdueVJHSlk4TWIzQmRjekprK0JY?=
- =?utf-8?B?MmVtQ0ZMT2tkaFJMUUlxV09kWDQyUWFzT1JkKzFlV0Y1R1dlZ1JSZ2lScTZk?=
- =?utf-8?B?OXhHM3B4VW5kOTdSNjh5YitXOENjeTlSZGtzRFZEMlIzMGtEeE94M3hGazJY?=
- =?utf-8?B?Z1R5RnAzUE82UzZJbnhibllzRTZXUDhiY2JaOEdEdjdMdEROTzJCR282ek9K?=
- =?utf-8?B?UityeEFQZCtoZktEdThjeVJtNHUySERQMU1tN1VsZW1pRTVHb0h2aDFRazlM?=
- =?utf-8?B?RDQ3anFWTjl1RWhHRjlXTkEzQWRwY0pWc3dzcEtLTWJzNW11a2V2RnhyVTNW?=
- =?utf-8?B?VXpNbFNKZU5qOTFxdzdhbGpwOG5EeHFaeW1FdlJZaUtCWFovcnVXTDMvY3FT?=
- =?utf-8?B?UkdvTk5IMk9DYUN4Y09FSGx4bGc2TDFDOEZ1VzVEVyszdjFYcG8vVEJYNFox?=
- =?utf-8?B?bSs0MXBURmxtM0ZDczl2alEyczFDWFN2K1QzV0ZIeHpVWmpyaHhGUy9KWjM0?=
- =?utf-8?B?dDJtOTMxQ1NjcVpmcW9nWFdPZlVXYmMxK0FXcmx4Uk9MVFlkSXVwbmRzZGJK?=
- =?utf-8?B?dGFUWnFKeTJhTEx0LzJ0TWJVNXVDWm1lWkd2VmlhK0pOdGdNSXROZXBFK05F?=
- =?utf-8?B?ZWI2aVpJVUxibS83TC9ML0xYeVpjZTVFZGVGR0lUVEMyQ1ZaOGpLVG9VYWEx?=
- =?utf-8?B?b1JTenRWS0VTVWhaOFo1UTRabytEclQ3NkNXaUNFVVJXamowK2Z6VGpHY1Rx?=
- =?utf-8?B?TFFaczUwZlBGRlV1dUNMWVdrRkRtcExFOUx0SlFPRkdSR0xsZlBMdENVeFpV?=
- =?utf-8?B?anVoTGlrQzMzMVFMNUY1UFFpMGVhdUlZR3FaNmUveUNib1VXZlNWTzZ3L21S?=
- =?utf-8?B?TVRaZmFoNVhuY1FZV1BLNG5rMHhtS2NNbjBISDZKODYrWXRIeU9KL0pXeklT?=
- =?utf-8?Q?lklXiip+zbTvjt5Y=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        Shawn Guo <shawnguo@kernel.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Anson Huang <Anson.Huang@nxp.com>
+CC:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [RESEND PATCH v2 0/9] imx: thermal: Allow trip point configuration from DT
+Date:   Fri, 17 Jun 2022 09:14:02 +0200
+Message-ID: <20220617071411.187542-1-francesco.dolcini@toradex.com>
+X-Mailer: git-send-email 2.25.1
+X-ClientProxiedBy: MR2P264CA0137.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:500:30::29) To ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:2e::8)
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: b8117fbf-3ae8-4d67-19dc-08da5030fb44
+X-MS-TrafficTypeDiagnostic: GVAP278MB0438:EE_
+X-Microsoft-Antispam-PRVS: <GVAP278MB04381F67FD59AA5FA2754737E2AF9@GVAP278MB0438.CHEP278.PROD.OUTLOOK.COM>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0
+X-Microsoft-Antispam-Message-Info: y0mplDaC7HgihdNPrMxsmgZXc3TgLIo7oWp+Rj/ZOqM1xNtxFXH9I1dbFQe41A7So0jAlxiDvo5RZPDD6YT+Bw3Z7RxlOD28CDeubyFKKE08/yLez1pfTKwERl6stZsrOHaVPt12Gpqdup59CUpXpsKScKq83XS8STGJYTIutIk4oHXoIPfW5ZrK0ruQ8DGaVemqM4x1FNASXzxKtBU4U7rxDLahf1bTawoXpgzbciQaIop7kv5uPtcZvIK0r/ZloqyVgPgYLNpyHZuLLoQ+aqgNwc6fz9TDGoVYKvaXqGYLJYJBbiV4Nc70/7sSZ36bQHbDAKfeJGB+PCWjMo7vWZp6C1yrfHMtLfxsrHPr9d6mtnrCf/EOVwQDDdVup69jWiGv5+DOuTaLuDiX3vVuyqyR+sdMdVBx5HFp3yIDRI/fS06wv5a+UMUe2t+soqhW/y3+AwFGCJ1XmCPl+ksLh23Y6SflrontkhvpuEm/S9nzqJCfR6rKHQ42lbJKgg/wQjmhf7ahIsJwkXYmkXAyEWNSz2kJTAhVVNittDYPvelnMAs3uz7JD/3Qr+5PwniV+9LF0Vg1OAbXb549x1r02zkHqvHU6SlpBnci9E1jflRtiBuVAeEmC9t4vI2CjDX4yuNZKPb+tYkUuFWjuUOtw87jXeAC2D4YPty/Bwj+afe/ZzGoRnyhsDM/zNLAfXqqGoIsHF1ItPSglA54oDhdJoeXRRRdDopA/PUlk7Bmc/0Ayzr4sqaXWlTkJ+zlgnSt4bJkEnSpiQ7PBrLkupU42nLqDJ0U/ytwdlTiy0diWaM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(366004)(136003)(39850400004)(346002)(52116002)(38100700002)(38350700002)(6506007)(2906002)(8676002)(8936002)(6666004)(6486002)(966005)(316002)(66946007)(86362001)(7416002)(508600001)(5660300002)(44832011)(83380400001)(110136005)(41300700001)(2616005)(26005)(6512007)(36756003)(66556008)(54906003)(4326008)(66476007)(186003)(1076003);DIR:OUT;SFP:1102
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8D5JEROGsZfIO2Xbnh4gyAcLQ0XgVwdYJGRw4xYZuYjBoOTKQ83CjbEghK6c?=
+ =?us-ascii?Q?+GOsh7joFfxV2W3Qhzx6TbjIH7uVuE7Hd/IUIjmSy/T1sMWyZEa6rBcqM7w3?=
+ =?us-ascii?Q?4y0steJIsGvd/tbCsDPgXdFIAh3rT193EwGlZIwkUzs/Y/D7CMlwjLo/Xlen?=
+ =?us-ascii?Q?32IZcpRV5gkfeeaZ1gQMFBI4QlYuHSq1PyJaI1WzMtAzR+2f8GHgYGpSppSq?=
+ =?us-ascii?Q?vqf3CoqpbnXERd5RuFQaeTMyC641sabQKx8cdu7p7gnxpdYxuMagSeo1WKfM?=
+ =?us-ascii?Q?LWtDAsZN4kLHimJPyP+5/EBY63Za1orKPo7Dvn5eG4grpS8Yr85axu53zTPR?=
+ =?us-ascii?Q?LCXyfOt/aqTf+kGfeIXhzGb/UYaK7+0bq0dqQUiIG1XtV/oxbdqs2eRLV/Nl?=
+ =?us-ascii?Q?r6Cg6xr6IZF4zPHf8hH9deptQsSIkDf2G0KSjD4NeqL/63R777JjaMUSVPUI?=
+ =?us-ascii?Q?AsshytkEP22gIrXBcUHjoSTIgIdUdi2mgKuUUbAG1I9EZF6PtcD46NFowVzR?=
+ =?us-ascii?Q?y6rOYKoCCiRe1r4iFcqYLzREB8m1SfaDV+C14v6QtkwYow0OaYjYBA6PQXXC?=
+ =?us-ascii?Q?Xu46kZ90NppwQ2s7IcJMeKYUaIRSuNkiSDn6+p8B1vyBuYoxGtzh0RK3Nq+Q?=
+ =?us-ascii?Q?SFankiwljJUa+I1i/7CUhMLwnrlJ4O63JJj6UShCbogFHSnv8CfJ8dYUrjZ1?=
+ =?us-ascii?Q?cK/f5n/YAI6uSmWL9rL7cUnJsWAKfxSpC6DZXI6MvQiOEC8p0y1uCsd8CJNP?=
+ =?us-ascii?Q?s+gyTF42oLyUixa3O+XQOh01ssd5hbvHbl5x5O6lnaF91ImtONVioRmKBFsE?=
+ =?us-ascii?Q?+Nn5hMV0DyOP8zDCCTGbXWQjFn7AemK4ZDXUyWEWUo51CjSq9Uwpa07bsDgp?=
+ =?us-ascii?Q?f5yfpMVARXaWpEFyy27V/BHZ35X71asfg9jevhHC9OLd4wthUYmLwwJplHBP?=
+ =?us-ascii?Q?6NVp0xnM2WgksAa9kn/E6vY99R0CIzl4hVSMRFVBxlX8D9okgS2OVNxv+nE6?=
+ =?us-ascii?Q?F1rO1y9K7Znxun/x1aSFrL1aYnJWM+jMcBjQ8jgthhfEy1PAqD51lxiG6NbA?=
+ =?us-ascii?Q?7nyNzRNcQlL+GhDnIaXSzkcZpebVjiaxgIhj+7WmO3u0pE1CSfpS3R0KY0Bf?=
+ =?us-ascii?Q?gtk5poclcbZsF73JNQDSawykdYmYEmIEHskOmKESU/bIqmVScxiy+Ht4evWT?=
+ =?us-ascii?Q?CUmb393SGsDVDQhOhPsMn0uqv0Zj4BdN7B6+3BvLQ9SxJoOYGQZyMXU4pYmx?=
+ =?us-ascii?Q?8vWY9U0QxQHgJ/PEnF5LmJ6pML9Q6likA4m08Ot2ijQUOUKunkrUdvXCebfA?=
+ =?us-ascii?Q?OsoEYEbMznkmnE7bXu/iIu+YSvj2d94C6x3jzxT72MmbnpmTo3Mx0L72BWQ8?=
+ =?us-ascii?Q?qb+avbHCHjjyzGBpngJDgEcIFa7MTFQB04mkaAm2RdEi/O+G7W75JwbTZwei?=
+ =?us-ascii?Q?PBF5fV0/jJkTOc+tLrHQj3bvn3Moil3MKdkx+03KJO0Qmp1hXu1i/euyD2oD?=
+ =?us-ascii?Q?wOFO5r6dHAXJnJl/aaN/a3IWxEazIrq/dtE4Db82rq+vuyri3s69IjvNWly2?=
+ =?us-ascii?Q?CpXQyEpnN7vUMdnzScXanoaB9nYbUhVsr3aSSBpBk1SBRE9P5BE3n5SWgzVJ?=
+ =?us-ascii?Q?cOfKkK0Du5v2xN0BrsyJ61+y383oYJT2RHYIkmCFzGVSeLA5UzqaFPSTdbQL?=
+ =?us-ascii?Q?pataCw7xdcYKR4RIMzyqvmh7biEpvz/li+UOe0UCZ+UJ9pYUpvYLuhWhtekh?=
+ =?us-ascii?Q?1bWrwz4JXJ001DJMs0MsXcMp8x4oJJQ=3D?=
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b8117fbf-3ae8-4d67-19dc-08da5030fb44
+X-MS-Exchange-CrossTenant-AuthSource: ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bbc159f7-bb38-4904-1089-08da5030d322
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jun 2022 07:13:05.6598
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2022 07:14:13.1792
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ULxRMuOR2sH12M4djy5aacNB6702lMFsSNartnYKKZ1F2XskvUFIibEEfcFjVpAY9lsmGxBrfPcE4hBIhFVX4xE8r3QwRn3wtmlb5CdtS/s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB2593
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YkllLnlMPGNktY74uafB6EDtRnZeiLrwZrBOXpQh7YaEyQSriXVsPpQ8dbsurSJEGwtGKVboGHSHe1ISYF55BkJgfBbNgj8jzYfCi9LXXso=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVAP278MB0438
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=CDE13A77 smtp.mailfrom=francesco.dolcini@toradex.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: toradex.com
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=WINDOWS-1252
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -138,37 +119,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQgYW5kIFJvYiwNCg0KPiBTdWJqZWN0OiBSZTogW1BBVENIXSBkdC1iaW5kaW5nczog
-dXNiOiBlaGNpOiBJbmNyZWFzZSB0aGUgbnVtYmVyIG9mIFBIWXMNCj4gDQo+IEhpIFJvYiwNCj4g
-DQo+IE9uIFdlZCwgSnVuIDE1LCAyMDIyIGF0IDc6MjQgUE0gUm9iIEhlcnJpbmcgPHJvYmgrZHRA
-a2VybmVsLm9yZz4gd3JvdGU6DQo+ID4gT24gV2VkLCBKdW4gMTUsIDIwMjIgYXQgNzo1MyBBTSBH
-ZWVydCBVeXR0ZXJob2V2ZW4NCj4gPiA8Z2VlcnQrcmVuZXNhc0BnbGlkZXIuYmU+IHdyb3RlOg0K
-PiA+ID4NCj4gPiA+ICJtYWtlIGR0YnNfY2hlY2siOg0KPiA+ID4NCj4gPiA+ICAgICBhcmNoL2Fy
-bS9ib290L2R0cy9yOGE3NzQ3MC1pd2cyM3Mtc2JjLmR0YjogdXNiQGVlMDgwMTAwOiBwaHlzOg0K
-PiBbWzE3LCAwXSwgWzMxXV0gaXMgdG9vIGxvbmcNCj4gPiA+ICAgICAgICAgICAgIEZyb20gc2No
-ZW1hOg0KPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL2dlbmVyaWMtZWhj
-aS55YW1sDQo+ID4gPiAgICAgYXJjaC9hcm0vYm9vdC9kdHMvcjhhNzc0NzAtaXdnMjNzLXNiYy5k
-dGI6IHVzYkBlZTBjMDEwMDogcGh5czoNCj4gW1sxNywgMV0sIFszM10sIFsyMSwgMF1dIGlzIHRv
-byBsb25nDQo+ID4gPiAgICAgICAgICAgICBGcm9tIHNjaGVtYToNCj4gPiA+IERvY3VtZW50YXRp
-b24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvZ2VuZXJpYy1laGNpLnlhbWwNCj4gPiA+DQo+ID4g
-PiBTb21lIFVTQiBFSENJIGNvbnRyb2xsZXJzIChlLmcuIG9uIHRoZSBSZW5lc2FzIFJaL0cxQyBT
-b0MpIGhhdmUNCj4gPiA+IG11bHRpcGxlIFBIWXMuICBJbmNyZWFzZSB0aGUgbWF4aW11bSBudW1i
-ZXIgb2YgUEhZcyB0byAzLCB3aGljaCBpcw0KPiA+ID4gc3VmZmljaWVudCBmb3Igbm93Lg0KPiA+
-DQo+ID4gTWF5YmUgbm90IHNvICdnZW5lcmljJy4gV2h5IGFyZSB0aGVyZSAzPyBJIHVuZGVyc3Rh
-bmQgVVNCMyBIQ0kgaGF2aW5nDQo+ID4gMiBmb3IgU1MgYW5kIEhTLiBJcyBpdCBmb3IgbXVsdGlw
-bGUgcG9ydHM/IFRoZXJlJ3MgYSB0aHJlYWQgYWJvdXQgdGhhdA0KPiA+IGN1cnJlbnRseSAoTWVk
-aWF0ZWsgSUlSQykgYW5kIGhvdyB0byBoYW5kbGUgbXVsdGlwbGUgcGh5cy4NCj4gDQo+IFRCSCwg
-SSBkb24ndCBrbm93IGZvciBzdXJlLiBJJ3ZlIG5ldmVyIGJlZW4gbXVjaCBpbnRvIFVTQiwgYW5k
-IHRoZQ0KPiBSWi9HMUMgVVNCIGFyY2hpdGVjdHVyZSBkaWZmZXJzIGZyb20gb3RoZXIgUmVuZXNh
-cyBTb0NzIGluIHRoZSBzYW1lDQo+IGZhbWlseS4NCj4gDQo+IFRoaXMgaXMgVVNCMiwgbm90IFVT
-QjMuICBUaGVyZSBhcmUgdHdvIGNoYW5uZWxzIG9mIE9IQ0kvRUhDSSwgYW5kIHR3bw0KPiBjaGFu
-bmVscyBvZiBVU0IgT1RHLCBhbGwgd2l0aCBjb3JyZXNwb25kaW5nIFBIWXMgKDQgaW4gdG90YWwp
-Lg0KPiBUaGUgZmlyc3QgT0hDSS9FSENJIGNvbWJvIGlzIGxpbmtlZCB0byBvbmUgb2YgdGhlIGhv
-c3QgUEhZcywgYW5kIG9uZSBvZg0KPiB0aGUgT1RHIFBIWXMsIHNvIHRoYXQgbWFrZXMgMiBQSFlz
-Lg0KDQpZZXMgMSBIb3N0IHBoeSBhbmQgb3RoZXIgT1RHIFBIWSBtYWtlcyBpdCAyIFBIWXMuDQoN
-Cj4gVGhlIHNlY29uZCBPSENJL0VIQ0kgY29tYm8gaXMgbGlua2VkIHRvIHRoZSBvdGhlciBob3N0
-IFBIWSwgYW5kIHRvIGJvdGgNCj4gT1RHIFBIWXMsIHNvIHRoYXQgbWFrZXMgMyBQSFlzLiBJSVJD
-IHRoZSB0aGlyZCBsaW5rIHdhcyBkdWUgdG8gc29tZQ0KPiBkZXBlbmRlbmN5IGJldHdlZW4gdGhl
-IDIgT1RHIFBIWXMuDQoNClRoZSB0aGlyZCBQSFkgaXMgYSBkdW1teSBvbmUgdG8gaW5pdGlhbGl6
-ZSB0aW1pbmcvaW50ZXJydXB0IGdlbmVyYXRpb24gcmVnaXN0ZXJzDQpieSByZXVzaW5nIHRoZSBw
-aHktcmNhci1nZW4zLXVzYjIgZHJpdmVyLg0KDQpSZWdhcmRzLA0KQmlqdQ0K
+This series allows to specify the imx thermal drivers trip point from the device tree,
+without this change the threshold are hard-coded and this might not be correct given the
+thermal design of the final system.
+
+This change is backward compatible with the existing device tree, and even
+with this change in by default the thresholds are the same as before.
+
+Toradex board are also updated to use a system-specific thresholds.
+
+Discussion on the current design is here:
+https://lore.kernel.org/all/4ba1d7d2-3e8c-ba60-37fd-9598f415c076@linaro.org/
+
+One side note, after this change the dtbs checker starts complaining with this message
+
+```
+linux/arch/arm/boot/dts/imx6dl-alti6p.dtb: tempmon: '#thermal-sensor-cells' does not match any of the regexes: '^(automotive|commercial|extended-commercial|industrial)-thermal$', 'pinctrl-[0-9]+'
+	From schema: linux/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
+```
+
+to my understanding this is just a side effect, '#thermal-sensor-cells' is not changed in
+any way by this series. I can fix that, I wonder if I should remove the property from the
+imx dtsi files or add it to the binding yaml definition, not sure about it.
+Anybody can advise?
+
+Changes in v2:
+ - fix build error without CONFIG_THERMAL_OF
+ - more verbose error reporting in case the dts is not correct
+ - additional comment on the threshold fixup in case the passive threshold is
+   higher than critical
+ - while parsing the dts thermal, return immediately if the node is not there
+
+
+Francesco Dolcini (9):
+  dt-bindings: thermal: Define trips node in $defs
+  thermal: thermal: Export OF trip helper function
+  dt-bindings: thermal: imx: Add trips point
+  imx: thermal: Configure trip point from DT
+  ARM: dts: imx[67]: Add trips points
+  ARM: dts: imx6qdl-apalis: Set CPU critical trip point
+  ARM: dts: imx7-colibri: Set CPU critical trip point
+  ARM: dts: imx6ull-colibri: Set CPU critical trip point
+  ARM: dts: imx6qdl-colibri: Set CPU critical trip point
+
+ .../bindings/thermal/imx-thermal.yaml         |  27 ++++
+ .../bindings/thermal/thermal-zones.yaml       | 130 +++++++++---------
+ arch/arm/boot/dts/imx-thermal.dtsi            |  61 ++++++++
+ arch/arm/boot/dts/imx6qdl-apalis.dtsi         |  12 ++
+ arch/arm/boot/dts/imx6qdl-colibri.dtsi        |  12 ++
+ arch/arm/boot/dts/imx6qdl.dtsi                |   2 +
+ arch/arm/boot/dts/imx6sl.dtsi                 |   2 +
+ arch/arm/boot/dts/imx6sll.dtsi                |   2 +
+ arch/arm/boot/dts/imx6sx.dtsi                 |   2 +
+ arch/arm/boot/dts/imx6ul.dtsi                 |   2 +
+ arch/arm/boot/dts/imx6ull-colibri.dtsi        |  12 ++
+ arch/arm/boot/dts/imx7-colibri.dtsi           |  12 ++
+ arch/arm/boot/dts/imx7s.dtsi                  |   2 +
+ drivers/thermal/imx_thermal.c                 |  58 ++++++++
+ drivers/thermal/thermal_core.h                |   7 +
+ drivers/thermal/thermal_of.c                  |   5 +-
+ 16 files changed, 283 insertions(+), 65 deletions(-)
+ create mode 100644 arch/arm/boot/dts/imx-thermal.dtsi
+
+-- 
+2.25.1
+
