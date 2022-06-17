@@ -2,57 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B68425500B6
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 01:25:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B0D95500BD
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 01:27:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383608AbiFQXZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 19:25:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58502 "EHLO
+        id S1383655AbiFQX1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 19:27:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383500AbiFQXZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 19:25:31 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 523AC6622C;
-        Fri, 17 Jun 2022 16:25:30 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id d123so5950230iof.10;
-        Fri, 17 Jun 2022 16:25:30 -0700 (PDT)
+        with ESMTP id S236606AbiFQX1Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 19:27:16 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F9566AFA;
+        Fri, 17 Jun 2022 16:27:15 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id q11so5960892iod.8;
+        Fri, 17 Jun 2022 16:27:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9t+RTHlMGnTIMzkuniBS/cRBo0RFDQfHVRvCE6rQ+lk=;
-        b=X6LTPLMQXynsJcmZMfGkHSUrCM3jSqb1WWTT4wXY8cOBmG2A7S5sqYNuwJOilMIfbO
-         9lV4FDOQnxQVDfIH5NpcLALZWfngVsdfsKOyS6MqUYjaT1NUw+eNNWx8EbQdepnuoiCy
-         C18KZjfkRzpd/5umWw1xqSdWcvvKQDGpVXn1tZbToHPnp3s0ClVeThMq88TUVcMLlxra
-         ziTA/BcNQth5QG3Qq1/eXrLoXoId4mTNWgzhE6fq3q0M5wEqrDxrRWVz3sHOdniZdxw/
-         ZlktRSW/QBZsi2UUscRlrCIJrWlmWFCUoCc+hGDfhlIEwotIqwIUxtr2avoWx/OLXkAQ
-         eLuQ==
-X-Gm-Message-State: AJIora/a4uBAxVrnpxLFcsGW++XGGOril9RxGYZ48xxB9M/yECfNL83N
-        UnVegHUYsC1zwYH7w1+vcg==
-X-Google-Smtp-Source: AGRyM1vv8dGfZ8d6eH4xBrD0ZZY9f3vkhZfNHWKMYkfzEMy6bJj+y3ZJxm4fbfo0jwgLRRJDIs3GWg==
-X-Received: by 2002:a05:6638:481c:b0:336:2f15:70fc with SMTP id cp28-20020a056638481c00b003362f1570fcmr3976515jab.163.1655508329524;
-        Fri, 17 Jun 2022 16:25:29 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=mrnGJfuJSJ8KmPJjJNK/2HMET0pHuhxW1Qzfgjvk8ws=;
+        b=bTu3lpFGMOsAQarUg7u8XQZ2vbjRtsqI7VIJP4bewayRdH8DomGHyn5PDCc8S3DgxM
+         EoGGkvEEffbGCubozQ/AORc71vuMoD0Fu61lmsF2h5Y7NfI8HkUsEmMb3ho9SmeYy/QN
+         bGbMZsXt8xmgJwdE+7NCTEF6svZUms8zoqaCCSAKozRrnoIZyFdJxp30l8Q74sQHjGBO
+         E7XxsOBo/Bqtc+JycROB0iX0P7+MZ4eYiSgUJfFVu1gY+o/MFXw9FIOqcIndkpLJgAHJ
+         Sq1swLjEyj6K3pSq30n6imJJhbuJJge0d/5VVzRGPuhSquHdTLJvIyQdHi55Ux5yZIsE
+         FX4Q==
+X-Gm-Message-State: AJIora9uWbExxcB45AaxhYauMfv7C3Jzbdyb67K9X1N3vBse00ii3sHb
+        C0HgVSk2UGA+rBTHhLwJzg==
+X-Google-Smtp-Source: AGRyM1tifihKpTdp799WxK6Tc+JX6s/X9nrpMyulN4Y0ijrWTb5i6wkhgCyeLD424gLNC7G3gBG1Aw==
+X-Received: by 2002:a05:6638:138f:b0:332:1c0:1e81 with SMTP id w15-20020a056638138f00b0033201c01e81mr6550749jad.293.1655508434839;
+        Fri, 17 Jun 2022 16:27:14 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id o2-20020a6bbe02000000b00669de60a268sm3128595iof.21.2022.06.17.16.25.28
+        by smtp.gmail.com with ESMTPSA id h20-20020a02b614000000b0032e70c4e12fsm2771998jam.28.2022.06.17.16.27.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jun 2022 16:25:29 -0700 (PDT)
-Received: (nullmailer pid 2632617 invoked by uid 1000);
-        Fri, 17 Jun 2022 23:25:28 -0000
-Date:   Fri, 17 Jun 2022 17:25:28 -0600
+        Fri, 17 Jun 2022 16:27:14 -0700 (PDT)
+Received: (nullmailer pid 2635209 invoked by uid 1000);
+        Fri, 17 Jun 2022 23:27:12 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <mail@conchuod.ie>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Eric Dumazet <edumazet@google.com>, Vinod Koul <vkoul@kernel.org>,
+        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Jakub Kicinski <kuba@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        linux-phy@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH] dt-bindings: display: delete ilitek,ili9341.txt
-Message-ID: <20220617232528.GA2628998-robh@kernel.org>
-References: <20220617213706.376730-1-mail@conchuod.ie>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220617213706.376730-1-mail@conchuod.ie>
+        Madalin Bucur <madalin.bucur@nxp.com>
+In-Reply-To: <20220617203312.3799646-2-sean.anderson@seco.com>
+References: <20220617203312.3799646-1-sean.anderson@seco.com> <20220617203312.3799646-2-sean.anderson@seco.com>
+Subject: Re: [PATCH net-next 01/28] dt-bindings: phy: Add QorIQ SerDes binding
+Date:   Fri, 17 Jun 2022 17:27:12 -0600
+Message-Id: <1655508432.548094.2635208.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -64,63 +67,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 17, 2022 at 10:37:07PM +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Fri, 17 Jun 2022 16:32:45 -0400, Sean Anderson wrote:
+> This adds a binding for the SerDes module found on QorIQ processors. The
+> phy reference has two cells, one for the first lane and one for the
+> last. This should allow for good support of multi-lane protocols when
+> (if) they are added. There is no protocol option, because the driver is
+> designed to be able to completely reconfigure lanes at runtime.
+> Generally, the phy consumer can select the appropriate protocol using
+> set_mode. For the most part there is only one protocol controller
+> (consumer) per lane/protocol combination. The exception to this is the
+> B4860 processor, which has some lanes which can be connected to
+> multiple MACs. For that processor, I anticipate the easiest way to
+> resolve this will be to add an additional cell with a "protocol
+> controller instance" property.
 > 
-> ilitek,ili9341.txt was replaced by ilitek,ili9341.yaml but the txt
-
-panel/ilitek,ili9341.yaml
-
-
-> binding was not deleted. Do so.
+> Each serdes has a unique set of supported protocols (and lanes). The
+> support matrix is stored in the driver and is selected based on the
+> compatible string. It is anticipated that a new compatible string will
+> need to be added for each serdes on each SoC that drivers support is
+> added for.
 > 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> There are two PLLs, each of which can be used as the master clock for
+> each lane. Each PLL has its own reference. For the moment they are
+> required, because it simplifies the driver implementation. Absent
+> reference clocks can be modeled by a fixed-clock with a rate of 0.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 > ---
->  .../bindings/display/ilitek,ili9341.txt       | 27 -------------------
->  1 file changed, 27 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/ilitek,ili9341.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/display/ilitek,ili9341.txt b/Documentation/devicetree/bindings/display/ilitek,ili9341.txt
-> deleted file mode 100644
-> index 169b32e4ee4e..000000000000
-> --- a/Documentation/devicetree/bindings/display/ilitek,ili9341.txt
-> +++ /dev/null
-> @@ -1,27 +0,0 @@
-> -Ilitek ILI9341 display panels
-> -
-> -This binding is for display panels using an Ilitek ILI9341 controller in SPI
-> -mode.
-> -
-> -Required properties:
-> -- compatible:	"adafruit,yx240qv29", "ilitek,ili9341"
-
-"adafruit,yx240qv29" is not in the schema.
-
-> -- dc-gpios:	D/C pin
-> -- reset-gpios:	Reset pin
-
-Neither is this. It is in panel-common.yaml, but 'unevaluatedProperties' 
-needs to be used instead to allow it. Or add 'reset-gpios: true'.
-
-> -
-> -The node for this driver must be a child node of a SPI controller, hence
-> -all mandatory properties described in ../spi/spi-bus.txt must be specified.
-> -
-> -Optional properties:
-> -- rotation:	panel rotation in degrees counter clockwise (0,90,180,270)
-> -- backlight:	phandle of the backlight device attached to the panel
-> -
-> -Example:
-> -	display@0{
-> -		compatible = "adafruit,yx240qv29", "ilitek,ili9341";
-> -		reg = <0>;
-> -		spi-max-frequency = <32000000>;
-> -		dc-gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
-> -		reset-gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
-> -		rotation = <270>;
-> -		backlight = <&backlight>;
-> -	};
-> -- 
-> 2.36.1
+>  .../bindings/phy/fsl,qoriq-serdes.yaml        | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,qoriq-serdes.yaml
 > 
-> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/fsl,qoriq-serdes.example.dtb: phy@1ea0000: reg: [[0, 32112640], [0, 8192]] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/fsl,qoriq-serdes.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
