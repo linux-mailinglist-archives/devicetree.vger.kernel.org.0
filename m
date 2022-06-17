@@ -2,174 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D9E854F597
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 12:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46AEB54F5AD
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 12:41:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381887AbiFQKhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 06:37:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55468 "EHLO
+        id S1381839AbiFQKld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 06:41:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381833AbiFQKg6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 06:36:58 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEE926AA7D
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 03:36:55 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id s10so4266892ljh.12
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 03:36:55 -0700 (PDT)
+        with ESMTP id S1381609AbiFQKlb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 06:41:31 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B63B56B006;
+        Fri, 17 Jun 2022 03:41:30 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id cn20so5649999edb.6;
+        Fri, 17 Jun 2022 03:41:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=K4qaTb66gTbZJWmfOsRm5JPLXRPUuGXdUkz0yonXfvM=;
-        b=mI/dafrtFJcpC4E7BEP+LSW7tz+zSKId9sS9JikzpRHZanwP5fhlgJxaOvwLMfvhV2
-         phBUA9FCh6rW0xyd1mboHWPW9NB6usE6rOyYJHs+luEpeNDC9C9JVaRZ08VJiOdRycxy
-         qhzxpVRRg4bbnc5T+gte2TjZKbvC8fBe8WXzPwL8BvJAiVsTf223S1aDDSNDfvwxqMaz
-         crl9A5OcuwH6n9e2vZa08aSkGd7Q4ZTahURZPssTnfRcdsEL8UAGo9+LrXY/Zhb5kVBq
-         RBOSJZ89nfh20DL9g/7feQ86YGGtwl7swzZhbzQYr8UI1dOhACxa2Lp7vQ25jFvBErLH
-         5SIw==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=hkp4uK11/4OrCEaz4XjJ83xXpjDH+S9v2Ae5rIMepB0=;
+        b=IbJe/gK1k4fHKqOVKnPxE8nZTqSlRC79Yfe71BoqEPgwqA4lei8xO41woON7CzD3jo
+         2U2gcLr3zjHGaPsCwuJeZUUs671h5K3x6RoqOi7jjpfEVh5zlcEy+Fr2WSN6NMXmRH2t
+         GkV3OUxyd7JyF2fB/GawNHu3nhLnsOqzGJunDcCm26ikQZUo5XhCqdhCchzplyH1JTqB
+         q0Jcmikt/70zFb14mBWo9xodn0RawKh3/TdzJIRzlqmHJumGwPLvJnBvMJsrjXQW7jGL
+         bgwriH9nisl8rcT5K0ycBDvIyBOTEyKncSFsT3P4qkfk35OnFERacVtv3w+P0HnLZTa+
+         z4GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=K4qaTb66gTbZJWmfOsRm5JPLXRPUuGXdUkz0yonXfvM=;
-        b=ustx2HZ4/xs2v1AJmT5EmhmQW3REz09iu4yI821IPItAe4LcUAmLfHFBsFQ1JcGh2o
-         3vZlhJXnDon+bUSmjIQTxoZaN2hec8/soXYDq4OdKM4NOl5diFJuZ0NGkCCfxpksnBFb
-         wjcs1fRqNd0YG35FeeKbVJza8fpAYbzULeZNzw7yBRikRoC11M2nKKChkeiccIHUYE+f
-         5YM5Qa86dv0x0CIoKJR4GUgDokPVDf6yXbeZ8ItDihC2JvmVwP4dcYIb53qeqqIXHty2
-         UuEnI4LH8cmK1cVmk8Qo9vztX94dWxJEW7GJ9DW51EEGYsnI6WY6xYR8qb+47cEhM6Ip
-         Sdww==
-X-Gm-Message-State: AJIora8x10I8JrCD8N55Jlzx1L/tRmO/K8Tti/9BFJCfe2rx+b5u1sZr
-        k/RfxnF4w0fg2lOcXsHjmRdVlA==
-X-Google-Smtp-Source: AGRyM1uojpulIKQGH2iKjaTXZyyy4FI9fy9dyVoCR0/RMEN7Qc4N1lzJE41+w2pEQ2tzs8kXfnle/Q==
-X-Received: by 2002:a05:651c:204c:b0:259:9146:e839 with SMTP id t12-20020a05651c204c00b002599146e839mr4704555ljo.138.1655462214103;
-        Fri, 17 Jun 2022 03:36:54 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 7-20020ac25f47000000b00477b624c0a8sm590011lfz.180.2022.06.17.03.36.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jun 2022 03:36:53 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        freedreno@lists.freedesktop.org
-Subject: [PATCH] arm64: dts: qcom: msm8996: add second DSI interface
-Date:   Fri, 17 Jun 2022 13:36:52 +0300
-Message-Id: <20220617103652.606250-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
+        bh=hkp4uK11/4OrCEaz4XjJ83xXpjDH+S9v2Ae5rIMepB0=;
+        b=WanFQuKs/7UkwRzGz3V/+0+XI/AgVSKDVGQ+9TsLRmt0A6IGu+np9mAeY06cc9Tt/Z
+         MauGEzvWkD0R3yRv1RQ8n1qF5y7BJhm52iykKcPaw4tcZKBZPK/tmUamwNjr3byozANU
+         Wu4qLC4rikSV9oRmsusJ6EWIbOLZM2f5b6tW+7nE0WYKd0SWX5Cc8vr/6y1W/53/vtXb
+         37y1opXmGIt1LIggmakRjewUCTGQWG6M3eOemrQlzOCNEapND/0dh7gstjIaWvAFaSZP
+         mqXPgrKii8wI8z4BJcxBQfz/G4VJDlQ4KmUhUwe73pRyX3gqa6Bo7LedhTspGm1Q2Tfp
+         P9Ig==
+X-Gm-Message-State: AJIora+2HGDNMKk/v6nv+UbA2CgAA+VeOHqN/dZwHgZy0u6tdBcRA37j
+        LZfHHlc5gsd1Inj9VqH+FIg=
+X-Google-Smtp-Source: AGRyM1upqkFvOJmB/mMBOlwf8qUMZi3Mn3x6lcJ0th8pgh5jhc5LwNGxznaYkOW3GVsCG4Z5WAv9Fg==
+X-Received: by 2002:a05:6402:2682:b0:42e:1c85:7ddc with SMTP id w2-20020a056402268200b0042e1c857ddcmr11367546edd.143.1655462489240;
+        Fri, 17 Jun 2022 03:41:29 -0700 (PDT)
+Received: from [192.168.0.24] (80.174.78.229.dyn.user.ono.com. [80.174.78.229])
+        by smtp.gmail.com with ESMTPSA id b14-20020a056402084e00b0043565c79879sm467500edz.43.2022.06.17.03.41.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Jun 2022 03:41:28 -0700 (PDT)
+Message-ID: <fcc5f00b-0776-9511-845a-5eac5d4c7876@gmail.com>
+Date:   Fri, 17 Jun 2022 12:41:27 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 17/40] arm64: dts: mediatek: mt7622-rfb1: correct
+ gpio-keys properties
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
+ <20220616005333.18491-17-krzysztof.kozlowski@linaro.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220616005333.18491-17-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device nodes for the DSI1, second DSI interface found on
-MSM8996/APQ8096 platforms. For example on db820c it is routed to the
-secondary HS expansion connector.
+On 16/06/2022 02:53, Krzysztof Kozlowski wrote:
+> gpio-keys children do not use unit addresses.
+> 
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 73 +++++++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
+Is it me or doesn't the commit message match the actual commit? Change looks 
+good, but message puzzles me.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index f94f10947f26..dffb87a5ee74 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -831,6 +831,13 @@ mdp5_intf1_out: endpoint {
- 							remote-endpoint = <&dsi0_in>;
- 						};
- 					};
-+
-+					port@2 {
-+						reg = <2>;
-+						mdp5_intf2_out: endpoint {
-+							remote-endpoint = <&dsi1_in>;
-+						};
-+					};
- 				};
- 			};
- 
-@@ -900,6 +907,72 @@ dsi0_phy: dsi-phy@994400 {
- 				status = "disabled";
- 			};
- 
-+			dsi1: dsi@996000 {
-+				compatible = "qcom,mdss-dsi-ctrl";
-+				reg = <0x00996000 0x400>;
-+				reg-names = "dsi_ctrl";
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <4>;
-+
-+				clocks = <&mmcc MDSS_MDP_CLK>,
-+					 <&mmcc MDSS_BYTE1_CLK>,
-+					 <&mmcc MDSS_AHB_CLK>,
-+					 <&mmcc MDSS_AXI_CLK>,
-+					 <&mmcc MMSS_MISC_AHB_CLK>,
-+					 <&mmcc MDSS_PCLK1_CLK>,
-+					 <&mmcc MDSS_ESC1_CLK>;
-+				clock-names = "mdp_core",
-+					      "byte",
-+					      "iface",
-+					      "bus",
-+					      "core_mmss",
-+					      "pixel",
-+					      "core";
-+
-+				phys = <&dsi1_phy>;
-+				phy-names = "dsi";
-+				status = "disabled";
-+
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+						dsi1_in: endpoint {
-+							remote-endpoint = <&mdp5_intf2_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						dsi1_out: endpoint {
-+						};
-+					};
-+				};
-+			};
-+
-+			dsi1_phy: dsi-phy@996400 {
-+				compatible = "qcom,dsi-phy-14nm";
-+				reg = <0x00996400 0x100>,
-+				      <0x00996500 0x300>,
-+				      <0x00996800 0x188>;
-+				reg-names = "dsi_phy",
-+					    "dsi_phy_lane",
-+					    "dsi_pll";
-+
-+				#clock-cells = <1>;
-+				#phy-cells = <0>;
-+
-+				clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_BB_CLK1>;
-+				clock-names = "iface", "ref";
-+				status = "disabled";
-+			};
-+
- 			hdmi: hdmi-tx@9a0000 {
- 				compatible = "qcom,hdmi-tx-8996";
- 				reg =	<0x009a0000 0x50c>,
--- 
-2.35.1
+Regards,
+Matthias
 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts b/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
+> index c28da9323a9c..1a86857c9027 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
+> @@ -40,7 +40,6 @@ cpu@1 {
+>   
+>   	gpio-keys {
+>   		compatible = "gpio-keys";
+> -		poll-interval = <100>;
+>   
+>   		key-factory {
+>   			label = "factory";
