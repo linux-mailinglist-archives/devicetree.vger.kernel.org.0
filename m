@@ -2,115 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0FF854FB2B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 18:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D35954FB4F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 18:43:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383184AbiFQQek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 12:34:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46240 "EHLO
+        id S1383387AbiFQQmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 12:42:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382486AbiFQQej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 12:34:39 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 434E745057
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 09:34:39 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id h34-20020a17090a29a500b001eb01527d9eso3757656pjd.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 09:34:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=q6FESaRNIILjWIcxA0LQ9mHPms+OFs17M8IyVVnoYkI=;
-        b=DBRzxRoES6+uoOzrVAX/9mnPDRl/uu5OuBHI9iY9/Q9/+uBUTH3/U6GbwHCC7G2FF0
-         QGeGhopXyylBsGfQinkF+lK8uNA5ZaD3aCqJArS0SJSvVlFb3OBkreORw5lTMhcQ28Wb
-         e/FMrQwoZbTSf+Q/76/tfUo9NfRHmTmKGeF/qjNzJtXP8vRKjCI0KVApYOGD22xhIIOQ
-         Y6vJqsbsgFMCxRdHxhFVzrRbcWFoFTSJJrbI9ROvh9+HEZKJROueg6YdMa8YpqnvmJpn
-         21q8xUBtS8FqDuzECx+bmv6FF7rZIJNzKFuh8nO9FMpl7QacxgqBbo/ga5lNKZ6eh3nT
-         MwRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=q6FESaRNIILjWIcxA0LQ9mHPms+OFs17M8IyVVnoYkI=;
-        b=T5365OVKGNFyAdPO5d0KzWw/Aoam4QjUCb1YbNyfekL1UhZsSw+sAil645jH5bfEve
-         C970rPoRwXePPQXC5J4FUKEmMqjNkoCKSTotAwvwoRvwn2ZisYYddegk3Yt3BOFi7mI6
-         J+XtCwYnklaU1zCOscVO3M4ivwG4xqmMKIIwi9z7o5JHhWF5b+enFVGB3X3PmfeMTLQF
-         b3iHFQtegTj/FCdmHlO9kJcGaSaCJfpVJaJXUqcAZLM+xHuUZjrIPFooTv2CC+Tt0MdV
-         Gv8xB36lqMgRfvZGj1ONN/y44lTkFnhO96qs5VfC7stVCEMiPpmxSVq2komerv8Niiav
-         UXVQ==
-X-Gm-Message-State: AJIora860b5NZuTiQLAkQ9/TPZ7hQzga7A0zYr9/2mINvSWmVsqeiN8h
-        JvIahKzkIIokcnOLD6yotfymRQ==
-X-Google-Smtp-Source: AGRyM1tfVG1KqPfpVeJhmvF6RFCDrmkJV4GVg89/lL7/XGTX8Edk2YUQ7lvfxIPXP5drukqRTjvxkA==
-X-Received: by 2002:a17:90b:4f91:b0:1cd:3a73:3a5d with SMTP id qe17-20020a17090b4f9100b001cd3a733a5dmr11453647pjb.98.1655483678979;
-        Fri, 17 Jun 2022 09:34:38 -0700 (PDT)
-Received: from google.com ([192.77.111.2])
-        by smtp.gmail.com with ESMTPSA id c5-20020a170902d48500b0015ea95948ebsm3849053plg.134.2022.06.17.09.34.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jun 2022 09:34:38 -0700 (PDT)
-Date:   Fri, 17 Jun 2022 17:34:35 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Satya Priya <quic_c_skakit@quicinc.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
-Subject: Re: [PATCH V15 4/9] mfd: pm8008: Add reset-gpios
-Message-ID: <YqytG1kcIG41AW/6@google.com>
-References: <1655200111-18357-1-git-send-email-quic_c_skakit@quicinc.com>
- <1655200111-18357-5-git-send-email-quic_c_skakit@quicinc.com>
- <YquZjdr3H+xtYcjB@google.com>
+        with ESMTP id S1383384AbiFQQmo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 12:42:44 -0400
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F11C632D;
+        Fri, 17 Jun 2022 09:42:42 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 880EF320094E;
+        Fri, 17 Jun 2022 12:42:38 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Fri, 17 Jun 2022 12:42:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; t=1655484158; x=1655570558; bh=AiSSKnRv3m
+        zrSKSMor1JpwujxpGQtnv79xXFLeYhgvM=; b=aWJ1WEAB7fpW3ksRDFuo+wlB7T
+        QyH5gRz+OrZHIEnuu1Q0h2c/jNLK6vfxIeok3dOj6duThJ4E2xe4xTeaJp52gPp3
+        BXg9EqYuyV6LxTIGh7zGbF48O8ySDN7sGi6sHJL3iQ7AGmof0Q3v+9uWE4lz81xQ
+        1mgnObakMLIyipm6DqmQ5qRZu1hwH09VL84Nq8Nqm7TlJ4r0tbK7tyXK9nWBtycJ
+        UUfHkijnECeXXTWD1H209NH+McAfaxZPwSdQy+1R8telkDSA3JfXUEWQ/tfq5U6X
+        S+fgOwlzMsRhH1IO8dO+nxk8xOsk+duLf3P7ohvHGvDJSGv+dRwrzNOKOd+A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1655484158; x=1655570558; bh=AiSSKnRv3mzrSKSMor1JpwujxpGQ
+        tnv79xXFLeYhgvM=; b=WdbnG9Mxrwj0toMuApALwtgRZd3wp96RyLRMt1T1T178
+        xmszSIuCUxiyV6v0J0hTzzZCEf6MS3cG3qYp5FG2jFp1Cj0nKL3CUc17HdO8xTaR
+        2Nqx4O3GTSw9Meek3sVu4JbPm6pZpFg6h3t/rj7ZMLKEwSQPx9z+B5yT0tq+2Q+T
+        w7GzL6kczaTqJXVT8GVEix0X98I4foDSQi02NkZ1Tj2kYvy4h5C+E3irIy7lp+re
+        5fYnlOCqzk7okgLp2FYD7fLaJmf7Z9nEHqO7dLKCibtcd0Iz08iI4CQMrp7tHDwf
+        sCFWpd6XQVaq+iGXql1RbCPaQ2GW0cXO7+l+Nuymlg==
+X-ME-Sender: <xms:_K6sYhtK7HDaeNX45fyU_hOMZdqLBPxIAEvOpRyYjuR-WPoIZNL6Eg>
+    <xme:_K6sYqfrCWJe7BLcgJ69dNEOnXWiylMq0jwSj-dZZVVPAlZfzLLMmhiltn2boAXkx
+    3xcEdioSwrQxzC57fM>
+X-ME-Received: <xmr:_K6sYky4Ra-qIClGrA4jLZudJc3DLCVD-EAECpC6rJJeNJOpZwrVDJzoq4tVNltkQNK8m4cr3pHe7ffqTRBWFRz7Il0SmvZ4lGU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedruddvhedguddtudcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enfghrlhcuvffnffculdefhedmnecujfgurhepfffhvfevuffkfhggtggujgesghdtreer
+    tddtvdenucfhrhhomheprfgrthhrihgtkhcuhghilhhlihgrmhhsuceophgrthhrihgtkh
+    esshhtfigtgidrgiihiieqnecuggftrfgrthhtvghrnhepjeejteelheelieejuddtudff
+    hfeuueefhfefleehveegvdeigfffheduleehlefhnecuffhomhgrihhnpehgihhthhhusg
+    drtghomhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhm
+    pehprghtrhhitghksehsthiftgigrdighiii
+X-ME-Proxy: <xmx:_K6sYoMsN1fwFafBxX59k46vv3devjC-WHuIGGzm-SVErQGl5SgzHw>
+    <xmx:_K6sYh9qg5OFy7N2L4mWGMNhzujzp1YSr76PMN5PcH9NFmBZVkq4aw>
+    <xmx:_K6sYoWlxhduHsqMDjuI23Nh5ieZQqN-GwzLtT7Co8QRCym0PonHPg>
+    <xmx:_q6sYvejfzFvkJrNZt9n0skAMhKXbzD8OrVFLsrL0TSWh5chXTdYJg>
+Feedback-ID: i68a1478a:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 17 Jun 2022 12:42:36 -0400 (EDT)
+Date:   Fri, 17 Jun 2022 11:42:35 -0500
+From:   Patrick Williams <patrick@stwcx.xyz>
+To:     Logananth Sundararaj <logananth13.hcl@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        openbmc@lists.ozlabs.org, garnermic@gmail.com, thangavel.k@hcl.com,
+        naveen.mosess@hcl.com
+Subject: Re: [PATCH v2] ARM: dts: aspeed: Adding Facebook Yosemite V3.5 BMC
+Message-ID: <Yqyu+y9ms/DmFCbJ@heinlein.stwcx.org.github.beta.tailscale.net>
+References: <20220616120707.GA22590@logan-ThinkPad-T14-Gen-1>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="5N0BVpXlyV7XdVV7"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YquZjdr3H+xtYcjB@google.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220616120707.GA22590@logan-ThinkPad-T14-Gen-1>
+X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        PDS_OTHER_BAD_TLD,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Jun 2022, Lee Jones wrote:
 
-> On Tue, 14 Jun 2022, Satya Priya wrote:
-> 
-> > Add the reset-gpio toggling in the pm8008_probe() to bring
-> > pm8008 chip out of reset instead of doing it in DT node using
-> > "output-high" property.
-> > 
-> > Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-> > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> > ---
-> > Changes in V15:
-> >  - None.
-> > 
-> > Changes in V14:
-> >  - None.
-> > 
-> > Changes in V13:
-> >  - None.
-> > 
-> >  drivers/mfd/qcom-pm8008.c | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> 
-> Applied, thanks.
+--5N0BVpXlyV7XdVV7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Sorry, wrong key-combo:
+On Thu, Jun 16, 2022 at 05:37:07PM +0530, Logananth Sundararaj wrote:
+> The Yosemite V3.5 is a facebook multi-node server
+> platform that host four OCP server. The BMC
+> in the Yosemite V3.5 platform based on AST2600 SoC.
+>=20
+> This patch adds linux device tree entry related to
+> Yosemite V3.5 specific devices connected to BMC SoC.
+>=20
+> Signed-off-by: Logananth Sundararaj <logananth_s@hcl.com>
+>=20
+> ---
+> --- v2 - Enabled i2c drivers.
+> --- v1 - Initial draft.
+> ---
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../boot/dts/aspeed-bmc-facebook-fby35.dts    | 277 ++++++++++++++++++
+>  2 files changed, 278 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-fby35.dts
 
-For my own reference (apply this as-is to your sign-off block):
+A few comments below.
 
-  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+=2E..
+> +&uart5 {
+> +	status =3D "okay";
+> +	/* Workaround for AST2600 A0 */
+> +	compatible =3D "snps,dw-apb-uart";
+> +};
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Is this comment accurate?  Are we using A0 hardware on this system?
+
+> +&fmc {
+> +	status =3D "okay";
+> +	reg =3D <0x1e620000 0xc4>, <0x20000000 0x8000000>;
+> +	flash@0 {
+> +		status =3D "okay";
+> +		m25p,fast-read;
+> +		label =3D "spi0.1";
+> +		spi-max-frequency =3D <50000000>;
+> +		spi-tx-bus-width =3D <2>;
+> +		spi-rx-bus-width =3D <2>;
+> +		#include "openbmc-flash-layout-64.dtsi"
+> +	};
+> +};
+
+Aren't there two SPI flashes?  It seems like it based on:
+https://github.com/facebook/openbmc-linux/blob/dev-5.10/arch/arm/boot/dts/a=
+speed-bmc-facebook-fby35.dts#L162
+
+> +
+> +&spi1 {
+> +	status =3D "okay";
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pinctrl_spi1_default>;
+> +
+> +	flash@0 {
+> +		status =3D "okay";
+> +		m25p,fast-read;
+> +		label =3D "pnor";
+> +		spi-rx-bus-width =3D <4>;
+> +		spi-max-frequency =3D <100000000>;
+> +	};
+> +};
+
+What is SPI1 used for?  I don't see it in the facebook/openbmc-linux
+DTS.
+
+> --=20
+> 2.17.1
+>=20
+
+Are we missing the pwm/tach support?  Or is that still not upstream from
+Aspeed?
+
+--=20
+Patrick Williams
+
+--5N0BVpXlyV7XdVV7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmKsrvsACgkQqwNHzC0A
+wRnIcQ//VcCo6ddGOZm0/gcObmyDc7rvp8grACdL5h0TbcdIsfsewa4a+/bp6ZmV
+flPUo9HCS4mqkHhip2YZbIfiv4ksneGst6p3LupEwLkba87dtBqgrbMhEGTcrjiz
+fJ3DfwnbPrmexUY3UiNZYifiej2L4PwKk/exlj2hx5VKyErHns+T3vuFov/LkLQX
+B5o1KWNis2E6Luj8olDfdnHQm7LR5Xsi7j9G1ZAYyb8Uro5Osja/GpAkqOxMKWoM
+ZpaavyncNeSBiJH6gMYDN2qEwhuWgMVd1nh0OEbNEk0ZfdySMjLHmHqTBX2fXQ/f
+OchWoLQVoC9Je9k8DAkmJ/cw5n9vOx63CyFezeuI5sFPU8S7DLXH1YFZGkES9cF7
+mw+Waxpho39r3wTNMfA6gM1dQ7L+TJxXrjH6W3FfwD6100611QdKX6tfIjiVMAal
+7Urzckk+EN2G5AbMnuede7Xfm2iRrZjSwDkG32/xSo7XtN0ZN/X9E4YWVWktxJ8E
++pi0fLHaRl2jcgKWYKQGhQc+BTZxS6b1cjJQSNuJSTDaeyQLFAEyyWr2vXGv0OUv
+lYqB2y2bVrVX1VFHOsO+7eUyT84nekhmEbKJ6Yu95Wr1PgXaQRsQ4loA/aqHPqhY
+sb2g9WrcUvuycVQbXM4pKwwBfayoj4j8APpfFLqIJ9yiHk9R/tA=
+=aJmc
+-----END PGP SIGNATURE-----
+
+--5N0BVpXlyV7XdVV7--
