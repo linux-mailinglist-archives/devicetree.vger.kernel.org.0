@@ -2,51 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 133EC54FC38
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 19:33:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFA2254FCB9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 20:12:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231235AbiFQRdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 13:33:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39404 "EHLO
+        id S1383266AbiFQSMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 14:12:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230253AbiFQRdE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 13:33:04 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B74F81D324
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 10:33:03 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o2Fq8-00054T-R4; Fri, 17 Jun 2022 19:33:00 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o2Fq5-0016Ig-AF; Fri, 17 Jun 2022 19:32:58 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o2Fq5-00H0lC-Tl; Fri, 17 Jun 2022 19:32:57 +0200
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2] arm64: freescale/imx8mp-evk.dts: reorder nodes alphabetically
-Date:   Fri, 17 Jun 2022 19:32:54 +0200
-Message-Id: <20220617173254.340007-1-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S1383189AbiFQSME (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 14:12:04 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11B0531209
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 11:12:03 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id k5-20020a17090a404500b001e8875e6242so4806279pjg.5
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 11:12:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fai5+SrDv8K91PMU2NEm06Sjrm/fhwQHbj0YNEiaVYQ=;
+        b=hCna7bgzcv4fbNXHMcqfQrvXCWIhrqAOgcDq+K+UUKNxK4iLl8JzZfTfV6qTOMU4Cb
+         BxvJAcofOG5MaQwMTgSpbhAtSyncLVo6UGsy+2EOAuP3SeYxOHA0Whg6Ir1XEq5ymSaZ
+         WDfUmmLJ/MzucgIfa8dzg6se0SVLy9lU551Xw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fai5+SrDv8K91PMU2NEm06Sjrm/fhwQHbj0YNEiaVYQ=;
+        b=oQiTsYM+UOJIdPeN/pJd0cdbw1z/vHgk6SAdpvLXkz/r4mqm6JDmcZx8waxKvQrEvf
+         Qktrx3gqJNhhhHqu2cKGCrLRRFoIqWf4wqw9C47+GbH5QMic6UGuaxetYAVUHz9P65z9
+         8uQJu3U/La0Yy9PNFhqlOQZshhKD2u3sxscFiUvHqNTdjS7cwx7oXrFPpkW9oXs5Z+tp
+         snDRG2RBefeO63FoOkYvH4NluYlnlCc7OLhGFDVbChh8KRFiuso0kW4OyIXEbC29KvAF
+         fPMQwxsGIMwfGvkMhIoLhzM8Yxl305YX5A82piedoO387noG0frgryf2BV9HZNWDxut2
+         T4ow==
+X-Gm-Message-State: AJIora+tqXMic3So3uQEHyOS9+J+4wRYfgljM1B2rsL09eWdpXHLuvHh
+        45ESa6j1F5wIg29grO0QaMfc+g==
+X-Google-Smtp-Source: AGRyM1s0q12/vUtyutTPiMf/K6XDCQF+wn5/uhEPgl9PGs2o9xobRY8V1AOXdG/DaG73S2WsmnjFAA==
+X-Received: by 2002:a17:90b:4d11:b0:1e8:436b:a9cc with SMTP id mw17-20020a17090b4d1100b001e8436ba9ccmr23042365pjb.40.1655489522568;
+        Fri, 17 Jun 2022 11:12:02 -0700 (PDT)
+Received: from joebar-glaptop.lan (c-71-202-34-56.hsd1.ca.comcast.net. [71.202.34.56])
+        by smtp.gmail.com with ESMTPSA id o1-20020a62f901000000b0052285857864sm4121930pfh.97.2022.06.17.11.12.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Jun 2022 11:12:02 -0700 (PDT)
+From:   "Joseph S. Barrera III" <joebar@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v6 1/6] FROMLIST: arm64: dts: qcom: sc7180-trogdor: Split out keyboard node and describe detachables
+Date:   Fri, 17 Jun 2022 11:10:36 -0700
+Message-Id: <20220617111021.v6.1.I9e299d3fa6fbf50df6fc7207050bf5c3a7bf4c61@changeid>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2059; h=from:subject; bh=nDoeNLJRdly1OGOsdFYP8RYlwbAObLXbgV4JaJbVy2c=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBirLrAXlpmECTSGUMfIi/zUh1Tv8OOiSBFYpJYSBBY Fl8ZCsmJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCYqy6wAAKCRDB/BR4rcrsCXV/B/ 9Pt/2ojciDBFZslMwhH2q4GaKWm/+GEmoe8mqWJMZ5lVCkGTsH+1mX0yRVdk8LRsqFVtgIb6uiffrN f4ZC6MQZ1HMY2+51OwFHtuFAMLD8isSuq944BqmLtZ2gxZLx5bqG0jl61wAY4otFWFrjSHSDu+/RON k4ujTmpJ+KXb37KK5faKTdBoeJLprIhYjCsUJy3Agz4ORVt2/H5Xelwgpj9WIMYEs+J8Yc96Z+j8qZ PMd8marRxk6436/TqqpWGgHPs3jXWf3oji6kCZhY1VmremF4dx6R1a4sRqCa3qgI76r0FRJSXySH3S wJAU311MDJB+dw2CAQrY7L9/zSnJIh
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -55,74 +74,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The nodes after the root nodes are supposed to be ordered
-alphabetically. There is however an expection for &pinctrl that some
-consider to be good placed at the end of the file. So only move flexcan1
-and flexcan2 to their proper place.
+From: Stephen Boyd <swboyd@chromium.org>
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+Trogdor devices that have a detachable keyboard still have a
+non-detachable keyboard input device present because we include the
+cros-ec-keyboard.dtsi snippet in the top-level sc7180-trogdor.dtsi file
+that every variant board includes. We do this because the
+keyboard-controller node also provides some buttons like the power
+button and volume buttons. Unfortunately, this means we register a
+keyboard input device that doesn't do anything on boards with a
+detachable keyboard.
+
+Change the node's compatible on detachables to the newly introduced
+"google,cros-ec-keyb-switches" compatible to indicate that there are
+only switches and no keyboard to register. Similarly, move the keyboard
+include that defines the keyboard-controller node out of
+sc7180-trogdor.dtsi to boards that actually have a keyboard so that the
+matrix properties are not defined on boards with the switches
+compatible. Future boards can either use the include approach or the
+node definition approach to describe a keyboard with possible switches
+or just some switches.
+
+Cc: Benson Leung <bleung@chromium.org>
+Cc: Guenter Roeck <groeck@chromium.org>
+Cc: Douglas Anderson <dianders@chromium.org>
+Cc: Hsin-Yi Wang <hsinyi@chromium.org>
+Cc: "Joseph S. Barrera III" <joebar@chromium.org>
+Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+(am from https://lore.kernel.org/r/20220518172525.3319993-1-swboyd@chromium.org)
+
+     evtest shows no more cros_ec device
+
+Cq-Depend: chromium:3609017
+Tested-by: Stephen Boyd <swboyd@chromium.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
 ---
-(implicit) v1 was send a year ago and also moved pinctrl. Just stumbled
-over this mail and the concerns back then that pinctrl is good at the
-end. I don't fully agree, but here comes at least the non-disputed part
-of the patch.
 
-Reference: https://lore.kernel.org/linux-arm-kernel/20210707105309.1693138-1-u.kleine-koenig@pengutronix.de
+Changes in v6:
+ - First inclusion of this patch.
 
-Best regards
-Uwe
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi   | 4 ++++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi | 6 ++++++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi    | 2 ++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi   | 2 ++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts        | 2 ++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi          | 1 -
+ 6 files changed, 16 insertions(+), 1 deletion(-)
 
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 28 ++++++++++----------
- 1 file changed, 14 insertions(+), 14 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index 4c3ac4214a2c..97e91db08ae8 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -67,20 +67,6 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+index 8ac1f1e61006..7ee407f7b6bb 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
+@@ -81,6 +81,10 @@ &camcc {
+ };
+ 
+ &cros_ec {
++	keyboard-controller {
++		compatible = "google,cros-ec-keyb-switches";
++	};
++
+ 	cros_ec_proximity: proximity {
+ 		compatible = "google,cros-ec-mkbp-proximity";
+ 		label = "proximity-wifi";
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
+index 9b3e3d13c165..5074014d5269 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
+@@ -114,6 +114,12 @@ &camcc {
+ 	status = "okay";
+ };
+ 
++&cros_ec {
++	keyboard-controller {
++		compatible = "google,cros-ec-keyb-switches";
++	};
++};
++
+ &panel {
+ 	compatible = "samsung,atna33xc20";
+ 	enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+index fe2369c29aad..d8839ccdcf09 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+@@ -6,6 +6,8 @@
+  */
+ 
+ #include "sc7180-trogdor.dtsi"
++/* Must come after sc7180-trogdor.dtsi to modify cros_ec */
++#include <arm/cros-ec-keyboard.dtsi>
+ 
+ &ap_sar_sensor {
+ 	semtech,cs0-ground;
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
+index 3df4920295ad..a7582fb547ee 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
+@@ -6,6 +6,8 @@
+  */
+ 
+ #include "sc7180-trogdor.dtsi"
++/* Must come after sc7180-trogdor.dtsi to modify cros_ec */
++#include <arm/cros-ec-keyboard.dtsi>
+ #include "sc7180-trogdor-ti-sn65dsi86.dtsi"
+ 
+ / {
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
+index 352827e5740a..59a23d0e9651 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
+@@ -8,6 +8,8 @@
+ /dts-v1/;
+ 
+ #include "sc7180-trogdor.dtsi"
++/* Must come after sc7180-trogdor.dtsi to modify cros_ec */
++#include <arm/cros-ec-keyboard.dtsi>
+ #include "sc7180-trogdor-ti-sn65dsi86.dtsi"
+ 
+ / {
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index e55dbaa6dc12..1a4f2e8cc3dc 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -903,7 +903,6 @@ cros_ec_fp: ec@0 {
  	};
  };
  
--&flexcan1 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_flexcan1>;
--	xceiver-supply = <&reg_can1_stby>;
--	status = "okay";
--};
--
--&flexcan2 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_flexcan2>;
--	xceiver-supply = <&reg_can2_stby>;
--	status = "disabled";/* can2 pin conflict with pdm */
--};
--
- &eqos {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_eqos>;
-@@ -197,6 +183,20 @@ ethphy1: ethernet-phy@1 {
- 	};
- };
+-#include <arm/cros-ec-keyboard.dtsi>
+ #include <arm/cros-ec-sbs.dtsi>
  
-+&flexcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	xceiver-supply = <&reg_can1_stby>;
-+	status = "okay";
-+};
-+
-+&flexcan2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan2>;
-+	xceiver-supply = <&reg_can2_stby>;
-+	status = "disabled";/* can2 pin conflict with pdm */
-+};
-+
- &i2c1 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-
-base-commit: b13baccc3850ca8b8cccbf8ed9912dbaa0fdf7f3
+ &uart3 {
 -- 
-2.36.1
+2.31.0
 
