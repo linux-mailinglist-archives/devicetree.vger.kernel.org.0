@@ -2,75 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 761C454EF88
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 05:39:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48ACD54EFC3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 05:40:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379643AbiFQCkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 22:40:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53676 "EHLO
+        id S229781AbiFQCpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 22:45:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379552AbiFQCkz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 22:40:55 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BA64D64D34
-        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 19:40:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1655433653;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=O8SRq5MAXxm7CRGT0kP/ZVq+pjZMt/JpCdXhScXH7cM=;
-        b=IxjpuvCeysXpPchBtfL75vDtras0ZsVsCysZXlfq6IrWXjIZuOK5jL8/qMBuljphAkXYyD
-        Kkk65cedHKliQSiA3BXhpZ6JGNnPbyv+HA0mSn3BeQFmLCVOUTnZV8Tw2wIy8NmVm28E2Z
-        rKSOHkAb8pLrVBPWDLPZchUGeh7mF+Q=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-223-HNw1UsnqOpWWm1I1ODtVew-1; Thu, 16 Jun 2022 22:40:49 -0400
-X-MC-Unique: HNw1UsnqOpWWm1I1ODtVew-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com [10.11.54.8])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 4D4BC382ECCB;
-        Fri, 17 Jun 2022 02:40:48 +0000 (UTC)
-Received: from localhost (ovpn-12-144.pek2.redhat.com [10.72.12.144])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id D13D7C08081;
-        Fri, 17 Jun 2022 02:40:45 +0000 (UTC)
-Date:   Fri, 17 Jun 2022 10:40:42 +0800
-From:   Baoquan He <bhe@redhat.com>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>, kexec@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-Subject: Re: [PATCH 1/5] arm64: kdump: Provide default size when
- crashkernel=Y,low is not specified
-Message-ID: <20220617024042.GC234358@MiWiFi-R3L-srv>
-References: <20220613080932.663-1-thunder.leizhen@huawei.com>
- <20220613080932.663-2-thunder.leizhen@huawei.com>
+        with ESMTP id S229454AbiFQCpU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 22:45:20 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E72BA6540C;
+        Thu, 16 Jun 2022 19:45:10 -0700 (PDT)
+X-UUID: 91633a5d752a45f18f98ce0cc04b95a0-20220617
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:10bce423-1e76-48f9-8b67-89e3e316ca23,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:50
+X-CID-INFO: VERSION:1.1.6,REQID:10bce423-1e76-48f9-8b67-89e3e316ca23,OB:0,LOB:
+        0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:50
+X-CID-META: VersionHash:b14ad71,CLOUDID:f5b7d448-4c92-421c-ad91-b806c0f58b2a,C
+        OID:ebb5ecc694ff,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 91633a5d752a45f18f98ce0cc04b95a0-20220617
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 282833897; Fri, 17 Jun 2022 10:45:05 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Fri, 17 Jun 2022 10:45:04 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Fri, 17 Jun 2022 10:45:04 +0800
+Message-ID: <08f09092a778507004509818dbe4075840b73f6e.camel@mediatek.com>
+Subject: Re: [PATCH v11 01/10] dt-bindings: mediatek,dp: Add Display Port
+ binding
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <daniel@ffwll.ch>, <krzysztof.kozlowski+dt@linaro.org>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>,
+        <matthias.bgg@gmail.com>, <deller@gmx.de>, <airlied@linux.ie>,
+        <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>, <ck.hu@mediatek.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Fri, 17 Jun 2022 10:45:03 +0800
+In-Reply-To: <20220616212813.GA3991754-robh@kernel.org>
+References: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
+         <20220610105522.13449-2-rex-bc.chen@mediatek.com>
+         <20220614202336.GA2400714-robh@kernel.org>
+         <aeebb6879d62865f8baf037e541c568eb9310f23.camel@mediatek.com>
+         <20220616212813.GA3991754-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220613080932.663-2-thunder.leizhen@huawei.com>
-X-Scanned-By: MIMEDefang 2.85 on 10.11.54.8
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_SCC_BODY_TEXT_LINE,
+        T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,83 +76,166 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/13/22 at 04:09pm, Zhen Lei wrote:
-> To be consistent with the implementation of x86 and improve cross-platform
-> user experience. Try to allocate at least 256 MiB low memory automatically
-> when crashkernel=Y,low is not specified.
-
-This should correspond to the case that crashkernel=,high is explicitly
-specified, while crashkenrel=,low is omitted. It could be better to
-mention these.
-
-Otherwise, this looks good to me.
-
+On Thu, 2022-06-16 at 15:28 -0600, Rob Herring wrote:
+> On Thu, Jun 16, 2022 at 09:22:16PM +0800, Rex-BC Chen wrote:
+> > On Tue, 2022-06-14 at 14:23 -0600, Rob Herring wrote:
+> > > On Fri, Jun 10, 2022 at 06:55:13PM +0800, Bo-Chen Chen wrote:
+> > > > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > > > 
+> > > > This controller is present on several mediatek hardware.
+> > > > Currently
+> > > > mt8195 and mt8395 have this controller without a functional
+> > > > difference,
+> > > > so only one compatible field is added.
+> > > > 
+> > > > The controller can have two forms, as a normal display port and
+> > > > as
+> > > > an
+> > > > embedded display port.
+> > > > 
+> > > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > > > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > > > [Bo-Chen: Fix reviewers' comment]
+> > > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > > > ---
+> > > >  .../display/mediatek/mediatek,dp.yaml         | 101
+> > > > ++++++++++++++++++
+> > > >  1 file changed, 101 insertions(+)
+> > > >  create mode 100644
+> > > > Documentation/devicetree/bindings/display/mediatek/mediatek,dp.
+> > > > yaml
+> > > > 
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/display/mediatek/mediatek,d
+> > > > p.ya
+> > > > ml
+> > > > b/Documentation/devicetree/bindings/display/mediatek/mediatek,d
+> > > > p.ya
+> > > > ml
+> > > > new file mode 100644
+> > > > index 000000000000..10f50a0dcf49
+> > > > --- /dev/null
+> > > > +++
+> > > > b/Documentation/devicetree/bindings/display/mediatek/mediatek,d
+> > > > p.ya
+> > > > ml
+> > > > @@ -0,0 +1,101 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: 
+> > > > 
+https://urldefense.com/v3/__http://devicetree.org/schemas/display/mediatek/mediatek,dp.yaml*__;Iw!!CTRNKA9wMg0ARbw!yqAl1KhfbHqHN7-5aeqhzqeOVhPU_Z5beko5q-y-s5pcfp1WL5oVGvY5UF4EfWm4PWjc5mjBwyBUMsr_RI45ipbhsw$
+> > > >  
+> > > > +$schema: 
+> > > > 
+https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!yqAl1KhfbHqHN7-5aeqhzqeOVhPU_Z5beko5q-y-s5pcfp1WL5oVGvY5UF4EfWm4PWjc5mjBwyBUMsr_RI5WzYKENQ$
+> > > >  
+> > > > +
+> > > > +title: MediaTek Display Port Controller
+> > > > +
+> > > > +maintainers:
+> > > > +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> > > > +  - Jitao shi <jitao.shi@mediatek.com>
+> > > > +
+> > > > +description: |
+> > > > +  Device tree bindings for the MediaTek display port and
+> > > > +  embedded display port controller present on some MediaTek
+> > > > SoCs.
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - mediatek,mt8195-dp-tx
+> > > > +      - mediatek,mt8195-edp-tx
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  nvmem-cells:
+> > > > +    maxItems: 1
+> > > > +    description: efuse data for display port calibration
+> > > > +
+> > > > +  nvmem-cell-names:
+> > > > +    const: dp_calibration_data
+> > > > +
+> > > > +  power-domains:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  interrupts:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  ports:
+> > > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > > +    properties:
+> > > > +      port@0:
+> > > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > > +        description: Input endpoint of the controller, usually
+> > > > dp_intf
+> > > > +
+> > > > +      port@1:
+> > > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > > +        description: Output endpoint of the controller
+> > > > +
+> > > > +    required:
+> > > > +      - port@0
+> > > > +      - port@1
+> > > > +
+> > > > +  max-lanes:
+> > > > +    maxItems: 1
+> > > > +    description: maximum number of lanes supported by the
+> > > > hardware.
+> > > 
+> > > We already have a 'data-lanes' property defined in 
+> > > 'video-interfaces.yaml' that can serve this purpose.
+> > > 
+> > 
+> > Hello Rob,
+> > 
+> > Thanks for review.
+> > From the description of video-interfaces.yaml, I think it's not
+> > quite
+> > match what we need. We only need this value be one of "1,2,4".
 > 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  Documentation/admin-guide/kernel-parameters.txt |  8 +-------
->  arch/arm64/mm/init.c                            | 12 +++++++++++-
->  2 files changed, 12 insertions(+), 8 deletions(-)
+> data-lanes = <0>;
+> data-lanes = <0 1>;
+> data-lanes = <0 1 2 3>;
 > 
-> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-> index 8090130b544b070..61b179232b68001 100644
-> --- a/Documentation/admin-guide/kernel-parameters.txt
-> +++ b/Documentation/admin-guide/kernel-parameters.txt
-> @@ -843,7 +843,7 @@
->  			available.
->  			It will be ignored if crashkernel=X is specified.
->  	crashkernel=size[KMG],low
-> -			[KNL, X86-64] range under 4G. When crashkernel=X,high
-> +			[KNL, X86-64, ARM64] range under 4G. When crashkernel=X,high
-                        ~~~~ exceeds 80 characters, it should be OK.
+> Limiting the number of lanes to something less than the max is
+> exactly 
+> how this property is used in addition to being able to show the
+> mapping 
+> of lanes.
+> 
+> Rob
 
->  			is passed, kernel could allocate physical memory region
->  			above 4G, that cause second kernel crash on system
->  			that require some amount of low memory, e.g. swiotlb
-> @@ -857,12 +857,6 @@
->  			It will be ignored when crashkernel=X,high is not used
->  			or memory reserved is below 4G.
->  
-> -			[KNL, ARM64] range in low memory.
-> -			This one lets the user specify a low range in the
-> -			DMA zone for the crash dump kernel.
-> -			It will be ignored when crashkernel=X,high is not used
-> -			or memory reserved is located in the DMA zones.
-> -
->  	cryptomgr.notests
->  			[KNL] Disable crypto self-tests
->  
-> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> index 339ee84e5a61a0b..5390f361208ccf7 100644
-> --- a/arch/arm64/mm/init.c
-> +++ b/arch/arm64/mm/init.c
-> @@ -96,6 +96,14 @@ phys_addr_t __ro_after_init arm64_dma_phys_limit = PHYS_MASK + 1;
->  #define CRASH_ADDR_LOW_MAX		arm64_dma_phys_limit
->  #define CRASH_ADDR_HIGH_MAX		(PHYS_MASK + 1)
->  
-> +/*
-> + * This is an empirical value in x86_64 and taken here directly. Please
-> + * refer to the code comment in reserve_crashkernel_low() of x86_64 for more
-> + * details.
-> + */
-> +#define DEFAULT_CRASH_KERNEL_LOW_SIZE	\
-> +	max(swiotlb_size_or_default() + (8UL << 20), 256UL << 20)
-> +
->  static int __init reserve_crashkernel_low(unsigned long long low_size)
->  {
->  	unsigned long long low_base;
-> @@ -147,7 +155,9 @@ static void __init reserve_crashkernel(void)
->  		 * is not allowed.
->  		 */
->  		ret = parse_crashkernel_low(cmdline, 0, &crash_low_size, &crash_base);
-> -		if (ret && (ret != -ENOENT))
-> +		if (ret == -ENOENT)
-> +			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
-> +		else if (ret)
->  			return;
->  
->  		crash_max = CRASH_ADDR_HIGH_MAX;
-> -- 
-> 2.25.1
-> 
+Hello Rob,
+
+I modify like this:
+  data-lanes:
+    $ref: /schemas/media/video-interfaces.yaml#
+    description: |
+      number of lanes supported by the hardware.
+      The possible values:
+      1     - For 1 lane enabled in IP.
+      1 2   - For 2 lanes enabled in IP.
+      1 2 4 - For 4 lanes enabled in IP.
+    minItems: 1
+    maxItems: 3
+
+example:
+data-lanes = <1 2 4>;
+
+But I encounter errorr:
+Documentation/devicetree/bindings/display/mediatek/mediatek,dp.example.
+dtb: dp_tx@1c600000: data-lanes: [[1, 2, 4]] is not of type 'object'
+Documentation/devicetree/bindings/display/mediatek/mediatek,dp.example.
+dtb: dp_tx@1c600000: data-lanes: [[1, 2, 4]] is not of type 'object'
+
+can you kindly give me some hint for this?
+
+Thanks
+
+BRs,
+Bo-Chen
 
