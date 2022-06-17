@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13A3554F533
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 12:19:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C554254F54D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 12:24:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380750AbiFQKTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 06:19:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40596 "EHLO
+        id S1381096AbiFQKYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 06:24:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380514AbiFQKTy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 06:19:54 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FAB666AF4;
-        Fri, 17 Jun 2022 03:19:54 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id r3so2674245ilt.8;
-        Fri, 17 Jun 2022 03:19:54 -0700 (PDT)
+        with ESMTP id S232153AbiFQKYK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 06:24:10 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E2639814;
+        Fri, 17 Jun 2022 03:24:09 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id n185so2078588wmn.4;
+        Fri, 17 Jun 2022 03:24:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=AkSari7bAxs5W9Thyg7DZj8au2shA+BuW6if8TWNztg=;
-        b=gmG7D5TYbIJ1rbU9KhrqGNKFkbSfmIvY3YE56PlVOk23zyp+MNWWv+wfrOtO2gxRET
-         isS0fGy2XpjDNOzyx4VHdOV1gGddPxgTnSJi2XsWIMwF2Hz3S2/Xc99IWxjWEaWzsAX1
-         WsNVb4OnB6jZl7x+yXUQRdckbNXiETO4yUbxGUO0aA4t+dxjZ9nLuF6vgVY9DGZXUk9D
-         n9cEdeb9vRqsek0klg/2l5hJvxxMj/Tyi60Nyn/3M2lpOlVGSC7aZfTxRIZM1XVL/rsn
-         36DnLnDGYLPORH9GMIPeAkHds0FauGzFfalTmdwtMEguv9rTKwbTv4IQvYr7svsDHo3q
-         ZwHQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=87NBtn3fIzpcWWtrcUYIvzoMaW95mCV5xGCLKQRGxCc=;
+        b=Z1ubmAeXMXtINOBjiTE+TBu9JWUvjg5v9bBjTN1duRP5FrsHW7h4RltWMIuzRRcRLQ
+         +sGFYgauppjoDbO0i1ub+MlOSPj5LXtafc+voS16rHLXpw7ApGdTOMyxDBslh7dXhnvg
+         rBYY4e0KH1GBnw9OMJHmAr9XTEmLoqnKA6zadnaHh/EH27mejQqfHhW8iCyfaUpl3a4E
+         xgHgZR/uYCCvgSjxMzYfFZxsIxw5m2dgV7Hpioq+ndyygjAGnwkK0Pla3faKJ9ZpLBvi
+         gVtUJIAYD8FbF9UV3fq5+KWw1WBzA2qmjRC33JyjWeI7PuK+yoheH08GfoNj+sLYCdB6
+         2W3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=AkSari7bAxs5W9Thyg7DZj8au2shA+BuW6if8TWNztg=;
-        b=C21JPL8Hs7gNz4yslxW7acjzbonuCgOpQ7uExU7aK8042IdfCNyYfRO0btMOLrPVvq
-         R/Ix3TrV6gMD67bwlY+gp/X6RFTUh9kr2MFYelwWv9rJKqxDoyeQSupVm/yRwNzoj26E
-         COOCC3OXl5ymnJoz3PkDD80hlO3gxLcg7XHbWTEr1RRZN3qs/a34m7tD+WibMGb6W+1x
-         zvNSuZVzFl0dd8ZceS2kmb9tHo3BxyYx1YV4zWQyKFBlo9rcqMurB8ElBhEh9puWLSWY
-         yTZt2ZF9M+XDrYTOAlQFAe+5qZPV5LI/vg+tgR5FsGJHAnfH8VJz7SmgmBCQt/MxxOn8
-         dhqw==
-X-Gm-Message-State: AJIora9vckn2DdVmah4BolgNtlTy42yxHOE65qOt5Av9hJ32NTqxVJiz
-        zq0a4m/LTuBT45IjKZZLb3PFonvw8jvROSaD9fo=
-X-Google-Smtp-Source: AGRyM1vBig2TkzvQyr0K0aw7hKaPczT4z9o+rJHZFkgWvf1gI+BxeOefKWTGj0V9A5c6CuCCBvpmQwdXw0KzMt5didk=
-X-Received: by 2002:a05:6e02:198c:b0:2d8:e8bd:d8ff with SMTP id
- g12-20020a056e02198c00b002d8e8bdd8ffmr470214ilf.66.1655461193630; Fri, 17 Jun
- 2022 03:19:53 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=87NBtn3fIzpcWWtrcUYIvzoMaW95mCV5xGCLKQRGxCc=;
+        b=shz/smCmz0/99WHsWiyogTTDnJ9s2Tw9cd+C7WZR6g8Kd5zr9OoXqp7Lz+uC6N0dKo
+         x2lQCtI1CagO3WYmampG1PvmoEq/ly5IZKkeyIDe4kWhxk+FNCXNpQlOFwgbSlZwUr4h
+         26T9P9FJzbmxexZUdJoF2o996K86TXx/ndbFHlP9un8lNUHygElz1xxmWtU5awSdHOAx
+         joS6RU8+SBZaQsrwwis/s2r4ksHTGp3I/cgRBbqLa39hr3q6mTJpn5NkmVKD3sCKVjkw
+         R8QDR7nksxgxWThqkzTyYX/A38x5dFaalJSPDeajRantaEqWnn4uwkrp1W5Bg3y5TsCN
+         6/Yw==
+X-Gm-Message-State: AJIora+P7vX4UCEhq5CAnCDVKMwwgddy3LWA4TEHPSst9XQaHzUZTbax
+        annXiQeYYSgNZJSyiVwqEOk=
+X-Google-Smtp-Source: AGRyM1tYRcM5+4zfrt0cnFtee2FUHZMlGXpNtJjRvwNJspxR68rEySJKJQgcK+qlSQnxTlMMu5r2uA==
+X-Received: by 2002:a05:600c:1e09:b0:39c:5351:789a with SMTP id ay9-20020a05600c1e0900b0039c5351789amr9510011wmb.177.1655461447699;
+        Fri, 17 Jun 2022 03:24:07 -0700 (PDT)
+Received: from [192.168.0.24] (80.174.78.229.dyn.user.ono.com. [80.174.78.229])
+        by smtp.gmail.com with ESMTPSA id j19-20020a05600c1c1300b0039c5645c60fsm14751427wms.3.2022.06.17.03.24.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Jun 2022 03:24:06 -0700 (PDT)
+Message-ID: <cca1882c-2ea7-34a3-ebed-9ea89d46f09d@gmail.com>
+Date:   Fri, 17 Jun 2022 12:24:05 +0200
 MIME-Version: 1.0
-References: <20220613111146.25221-1-peterwu.pub@gmail.com> <20220613111146.25221-3-peterwu.pub@gmail.com>
- <dd9b9be2-7bdf-6cb6-b8ad-d7c0a0d5b98a@linaro.org>
-In-Reply-To: <dd9b9be2-7bdf-6cb6-b8ad-d7c0a0d5b98a@linaro.org>
-From:   ChiaEn Wu <peterwu.pub@gmail.com>
-Date:   Fri, 17 Jun 2022 18:19:42 +0800
-Message-ID: <CABtFH5+5Y5Tq3vO6Sg3kf98CWm9Aijv7qkdBcpm2SB0JZ1gCiA@mail.gmail.com>
-Subject: Re: [PATCH v2 02/15] dt-bindings: power: supply: Add Mediatek MT6370 Charger
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     jic23@kernel.org, lars@metafoo.de, matthias.bgg@gmail.com,
-        lee.jones@linaro.org, Daniel Thompson <daniel.thompson@linaro.org>,
-        jingoohan1@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        szunichen@gmail.com, ChiaEn Wu <chiaen_wu@richtek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 3/7] dt-bindings: display: mediatek: add bindings for
+ MT8365 SoC
+Content-Language: en-US
+To:     Fabien Parent <fparent@baylibre.com>, ck.hu@mediatek.com,
+        jitao.shi@mediatek.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org
+Cc:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@linux.ie,
+        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220530201436.902505-1-fparent@baylibre.com>
+ <20220530201436.902505-3-fparent@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220530201436.902505-3-fparent@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,145 +79,149 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-Thanks for your helpful comments! I have so some questions want to ask
-you below.
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=E5=B9=
-=B46=E6=9C=8817=E6=97=A5 =E9=80=B1=E4=BA=94 =E6=B8=85=E6=99=A85:05=E5=AF=AB=
-=E9=81=93=EF=BC=9A
->
-> On 13/06/2022 04:11, ChiaEn Wu wrote:
-> > From: ChiaEn Wu <chiaen_wu@richtek.com>
-> >
-> > Add Mediatek MT6370 Charger binding documentation.
-> >
-> > Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
-> > ---
-> >  .../power/supply/mediatek,mt6370-charger.yaml | 60 +++++++++++++++++++
-> >  1 file changed, 60 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/power/supply/medi=
-atek,mt6370-charger.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/power/supply/mediatek,mt=
-6370-charger.yaml b/Documentation/devicetree/bindings/power/supply/mediatek=
-,mt6370-charger.yaml
-> > new file mode 100644
-> > index 000000000000..b63553ebb15b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/power/supply/mediatek,mt6370-ch=
-arger.yaml
-> > @@ -0,0 +1,60 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/power/supply/mediatek,mt6370-charge=
-r.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Mediatek MT6370 Battery Charger
-> > +
-> > +maintainers:
-> > +  - ChiaEn Wu <chiaen_wu@richtek.com>
-> > +
-> > +description: |
-> > +  This module is part of the MT6370 MFD device.
-> > +  Provides Battery Charger, Boost for OTG devices and BC1.2 detection.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: mediatek,mt6370-charger
-> > +
-> > +  interrupts:
-> > +    description: |
-> > +      Specify what irqs are needed to be handled by MT6370 Charger dri=
-ver. IRQ
-> > +      "MT6370_IRQ_CHG_MIVR", "MT6370_IRQ_ATTACH" and "MT6370_IRQ_OVPCT=
-RL_UVP_D"
-> > +      are required.
-> > +    items:
-> > +      - description: BC1.2 done irq
-> > +      - description: usb plug in irq
-> > +      - description: mivr irq
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: attach_i
-> > +      - const: uvp_d_evt
-> > +      - const: mivr
-> > +
-> > +  io-channels:
-> > +    description: |
-> > +      Use ADC channel to read vbus, ibus, ibat, etc., info. Ibus ADC c=
-hannel
-> > +      is required.
->
-> Add io-channel-names and describe each item - what type of ADC it is
-> expected to be.
->
+On 30/05/2022 22:14, Fabien Parent wrote:
+> Add MT8365 binding documentation for all the display components that are
+> compatible with the compatible string from other SoCs.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 
-I'm afraid I might not be understanding what you mean.
-I will try to add some text in "description" and "io-channel-names", like b=
-elow
-----------------------------------
-io-channels:
-  description: |
-    Use ADC channel to read VBUS, IBUS, IBAT, etc., info. Ibus ADC channel
-    is required. It can be seen in
-include/dt-bindings/iio/adc/mediatek,mt6370_adc.h
-  minItems: 1
-  maxItems: 9
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
-io-channel-names:
-  items:
-    - const: vbusdiv5
-    - const: vbusdiv2
-    - ...
-----------------------------------
-Did these modifications meet your expectations?
-
-> > +    minItems: 1
-> > +    maxItems: 9
-> > +
-> > +  usb-otg-vbus-regulator:
-> > +    type: object
-> > +    description: OTG boost regulator.
-> > +    $ref: /schemas/regulator/regulator.yaml#
->
-> unevaluatedProperties: false
-
-I will add this in the next patch.
-
->
-> > +
-> > +    properties:
-> > +      enable-gpio:
->
-> "gpios", so:
-> enable-gpios
-
-If this otg regulator only uses one GPIO Pin, do I still need to
-change to "gpios"?
-If so, I will refine it along with the regulator "enable-gpio" in MFD
-dt-binding.
-
->
-> > +        maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - interrupts
-> > +  - interrupt-names
-> > +  - io-channels
-> > +
-> > +additionalProperties: false
-> > +
-> > +...
->
->
-> Best regards,
-> Krzysztof
-
-Best regards,
-ChiaEn Wu
+> ---
+>   .../bindings/display/mediatek/mediatek,aal.yaml |  1 +
+>   .../display/mediatek/mediatek,ccorr.yaml        |  1 +
+>   .../display/mediatek/mediatek,color.yaml        |  1 +
+>   .../display/mediatek/mediatek,dither.yaml       |  1 +
+>   .../bindings/display/mediatek/mediatek,dsi.yaml | 17 +++++++++++------
+>   .../display/mediatek/mediatek,gamma.yaml        |  1 +
+>   .../display/mediatek/mediatek,mutex.yaml        |  1 +
+>   .../bindings/display/mediatek/mediatek,ovl.yaml |  1 +
+>   .../display/mediatek/mediatek,rdma.yaml         |  1 +
+>   9 files changed, 19 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+> index d4d585485e7b..d47bc72f09c0 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+> @@ -33,6 +33,7 @@ properties:
+>                 - mediatek,mt8186-disp-aal
+>                 - mediatek,mt8192-disp-aal
+>                 - mediatek,mt8195-disp-aal
+> +              - mediatek,mt8365-disp-aal
+>             - const: mediatek,mt8183-disp-aal
+>   
+>     reg:
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+> index 63fb02014a56..fc999e614718 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.yaml
+> @@ -32,6 +32,7 @@ properties:
+>         - items:
+>             - enum:
+>                 - mediatek,mt8186-disp-ccorr
+> +              - mediatek,mt8365-disp-ccorr
+>             - const: mediatek,mt8183-disp-ccorr
+>   
+>     reg:
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml
+> index d2f89ee7996f..9d081da433e8 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,color.yaml
+> @@ -39,6 +39,7 @@ properties:
+>                 - mediatek,mt8186-disp-color
+>                 - mediatek,mt8192-disp-color
+>                 - mediatek,mt8195-disp-color
+> +              - mediatek,mt8365-disp-color
+>             - const: mediatek,mt8173-disp-color
+>     reg:
+>       maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dither.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dither.yaml
+> index 8ad8187c02d1..a7706cd65675 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dither.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dither.yaml
+> @@ -29,6 +29,7 @@ properties:
+>                 - mediatek,mt8186-disp-dither
+>                 - mediatek,mt8192-disp-dither
+>                 - mediatek,mt8195-disp-dither
+> +              - mediatek,mt8365-disp-dither
+>             - const: mediatek,mt8183-disp-dither
+>   
+>     reg:
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
+> index fa5bdf28668a..d17ea215960c 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
+> @@ -22,12 +22,17 @@ allOf:
+>   
+>   properties:
+>     compatible:
+> -    enum:
+> -      - mediatek,mt2701-dsi
+> -      - mediatek,mt7623-dsi
+> -      - mediatek,mt8167-dsi
+> -      - mediatek,mt8173-dsi
+> -      - mediatek,mt8183-dsi
+> +    oneOf:
+> +      - enum:
+> +          - mediatek,mt2701-dsi
+> +          - mediatek,mt7623-dsi
+> +          - mediatek,mt8167-dsi
+> +          - mediatek,mt8173-dsi
+> +          - mediatek,mt8183-dsi
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8365-dsi
+> +          - const: mediatek,mt8183-dsi
+>   
+>     reg:
+>       maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
+> index a89ea0ea7542..f54859cfc97b 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
+> @@ -30,6 +30,7 @@ properties:
+>                 - mediatek,mt8186-disp-gamma
+>                 - mediatek,mt8192-disp-gamma
+>                 - mediatek,mt8195-disp-gamma
+> +              - mediatek,mt8365-disp-gamma
+>             - const: mediatek,mt8183-disp-gamma
+>   
+>     reg:
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex.yaml
+> index 3fdad71210b4..f4a12dfae77b 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex.yaml
+> @@ -32,6 +32,7 @@ properties:
+>         - mediatek,mt8186-disp-mutex
+>         - mediatek,mt8192-disp-mutex
+>         - mediatek,mt8195-disp-mutex
+> +      - mediatek,mt8365-disp-mutex
+>   
+>     reg:
+>       maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml
+> index a2a27d0ca038..20e4ca4fc915 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml
+> @@ -41,6 +41,7 @@ properties:
+>         - items:
+>             - enum:
+>                 - mediatek,mt8186-disp-ovl
+> +              - mediatek,mt8365-disp-ovl
+>             - const: mediatek,mt8192-disp-ovl
+>   
+>     reg:
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.yaml
+> index 0882ae86e6c4..3bc914785976 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.yaml
+> @@ -40,6 +40,7 @@ properties:
+>             - enum:
+>                 - mediatek,mt8186-disp-rdma
+>                 - mediatek,mt8192-disp-rdma
+> +              - mediatek,mt8365-disp-rdma
+>             - const: mediatek,mt8183-disp-rdma
+>   
+>     reg:
