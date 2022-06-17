@@ -2,76 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26E4854F2D2
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 10:27:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E94254F2E3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 10:27:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380949AbiFQI0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 04:26:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35458 "EHLO
+        id S1380969AbiFQI1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 04:27:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380942AbiFQI0Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 04:26:16 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 47F3D68983
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 01:26:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1655454374;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=hTHK8486lIIQN7NgMgmBqHT4WzEpoAXoz+nMVgMQJgE=;
-        b=GuGxWNa2kZS8Bgoov3dPgcigmYVKPlX+1Vrmu4Y5l2UgtQeEYhNFQGUdAdvD3OdWR9iDaf
-        BFSb064Is4BxEZs7dcCbeVhHehOPczjgRjlqlDWnE6EI5hHEKbHmpW79AjREhxY41PqTqf
-        runNmiEASp4Fcti64BGYhDb8Hg0nRpw=
-Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
- [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-463-Oa1fsMubMqqWgbWDxIYN4Q-1; Fri, 17 Jun 2022 04:26:09 -0400
-X-MC-Unique: Oa1fsMubMqqWgbWDxIYN4Q-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.rdu2.redhat.com [10.11.54.7])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id C34AC3C10223;
-        Fri, 17 Jun 2022 08:26:08 +0000 (UTC)
-Received: from localhost (ovpn-12-144.pek2.redhat.com [10.72.12.144])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 43C211415106;
-        Fri, 17 Jun 2022 08:26:07 +0000 (UTC)
-Date:   Fri, 17 Jun 2022 16:26:02 +0800
-From:   Baoquan He <bhe@redhat.com>
-To:     Zhen Lei <thunder.leizhen@huawei.com>, msalter@redhat.com,
-        ctatman@redhat.com
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>, kexec@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-Subject: Re: [PATCH 1/5] arm64: kdump: Provide default size when
- crashkernel=Y,low is not specified
-Message-ID: <20220617082602.GE234358@MiWiFi-R3L-srv>
-References: <20220613080932.663-1-thunder.leizhen@huawei.com>
- <20220613080932.663-2-thunder.leizhen@huawei.com>
+        with ESMTP id S1381000AbiFQI1E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 04:27:04 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 921BA68991;
+        Fri, 17 Jun 2022 01:27:02 -0700 (PDT)
+X-UUID: 7ba1a5c9b1114ed5baac875b53b3956a-20220617
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:515ee71a-d3e2-4642-9db6-0cba937dff52,OB:20,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:45
+X-CID-INFO: VERSION:1.1.6,REQID:515ee71a-d3e2-4642-9db6-0cba937dff52,OB:20,LOB
+        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:45
+X-CID-META: VersionHash:b14ad71,CLOUDID:dfc29ff6-e099-41ba-a32c-13b8bfe63214,C
+        OID:d65a67a1ec62,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 7ba1a5c9b1114ed5baac875b53b3956a-20220617
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1664422747; Fri, 17 Jun 2022 16:26:58 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 17 Jun 2022 16:26:56 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 17 Jun 2022 16:26:56 +0800
+Message-ID: <9d924423c2b7ded984e2daf42a3667332dabbee2.camel@mediatek.com>
+Subject: Re: [PATCH v11 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "deller@gmx.de" <deller@gmx.de>,
+        "airlied@linux.ie" <airlied@linux.ie>
+CC:     "msp@baylibre.com" <msp@baylibre.com>,
+        "granquet@baylibre.com" <granquet@baylibre.com>,
+        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
+        <jitao.shi@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Fri, 17 Jun 2022 16:26:55 +0800
+In-Reply-To: <d5416a2f2a655f6574b17597fdc22615fe2fc22a.camel@mediatek.com>
+References: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
+         <20220610105522.13449-6-rex-bc.chen@mediatek.com>
+         <d5416a2f2a655f6574b17597fdc22615fe2fc22a.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220613080932.663-2-thunder.leizhen@huawei.com>
-X-Scanned-By: MIMEDefang 2.85 on 10.11.54.7
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,96 +89,322 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/13/22 at 04:09pm, Zhen Lei wrote:
-> To be consistent with the implementation of x86 and improve cross-platform
-> user experience. Try to allocate at least 256 MiB low memory automatically
-> when crashkernel=Y,low is not specified.
+On Wed, 2022-06-15 at 10:58 +0800, CK Hu wrote:
+> Hi, Bo-Chen:
 > 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  Documentation/admin-guide/kernel-parameters.txt |  8 +-------
->  arch/arm64/mm/init.c                            | 12 +++++++++++-
->  2 files changed, 12 insertions(+), 8 deletions(-)
+> On Fri, 2022-06-10 at 18:55 +0800, Bo-Chen Chen wrote:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > 
+> > This patch adds a embedded displayport driver for the MediaTek
+> > mt8195
+> > SoC.
+> > 
+> > It supports the MT8195, the embedded DisplayPort units. It offers
+> > DisplayPort 1.4 with up to 4 lanes.
+> > 
+> > The driver creates a child device for the phy. The child device
+> > will
+> > never exist without the parent being active. As they are sharing a
+> > register range, the parent passes a regmap pointer to the child so
+> > that
+> > both can work with the same register range. The phy driver sets
+> > device
+> > data that is read by the parent to get the phy device that can be
+> > used
+> > to control the phy properties.
+> > 
+> > This driver is based on an initial version by
+> > Jitao shi <jitao.shi@mediatek.com>
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > ---
 > 
-> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-> index 8090130b544b070..61b179232b68001 100644
-> --- a/Documentation/admin-guide/kernel-parameters.txt
-> +++ b/Documentation/admin-guide/kernel-parameters.txt
-> @@ -843,7 +843,7 @@
->  			available.
->  			It will be ignored if crashkernel=X is specified.
->  	crashkernel=size[KMG],low
-> -			[KNL, X86-64] range under 4G. When crashkernel=X,high
-> +			[KNL, X86-64, ARM64] range under 4G. When crashkernel=X,high
->  			is passed, kernel could allocate physical memory region
->  			above 4G, that cause second kernel crash on system
->  			that require some amount of low memory, e.g. swiotlb
-> @@ -857,12 +857,6 @@
->  			It will be ignored when crashkernel=X,high is not used
->  			or memory reserved is below 4G.
->  
-> -			[KNL, ARM64] range in low memory.
-> -			This one lets the user specify a low range in the
-> -			DMA zone for the crash dump kernel.
-> -			It will be ignored when crashkernel=X,high is not used
-> -			or memory reserved is located in the DMA zones.
-> -
->  	cryptomgr.notests
->  			[KNL] Disable crypto self-tests
->  
-> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> index 339ee84e5a61a0b..5390f361208ccf7 100644
-> --- a/arch/arm64/mm/init.c
-> +++ b/arch/arm64/mm/init.c
-> @@ -96,6 +96,14 @@ phys_addr_t __ro_after_init arm64_dma_phys_limit = PHYS_MASK + 1;
->  #define CRASH_ADDR_LOW_MAX		arm64_dma_phys_limit
->  #define CRASH_ADDR_HIGH_MAX		(PHYS_MASK + 1)
->  
-> +/*
-> + * This is an empirical value in x86_64 and taken here directly. Please
-> + * refer to the code comment in reserve_crashkernel_low() of x86_64 for more
-> + * details.
-> + */
-> +#define DEFAULT_CRASH_KERNEL_LOW_SIZE	\
-> +	max(swiotlb_size_or_default() + (8UL << 20), 256UL << 20)
+> [snip]
+> 
+> > +
+> > +static int mtk_dp_train_flow(struct mtk_dp *mtk_dp, u8
+> > target_link_rate,
+> > +			     u8 target_lane_count)
+> > +{
+> > +	u8 lane_adjust[2] = {};
+> > +	bool pass_tps1 = false;
+> > +	bool pass_tps2_3 = false;
+> > +	int train_retries;
+> > +	int status_control;
+> > +	int iteration_count;
+> > +	int ret;
+> > +	u8 prev_lane_adjust;
+> > +
+> > +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_LINK_BW_SET,
+> > target_link_rate);
+> > +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_LANE_COUNT_SET,
+> > +			   target_lane_count |
+> > DP_LANE_COUNT_ENHANCED_FRAME_EN);
+> > +
+> > +	if (mtk_dp->train_info.sink_ssc)
+> > +		drm_dp_dpcd_writeb(&mtk_dp->aux, DP_DOWNSPREAD_CTRL,
+> > +				   DP_SPREAD_AMP_0_5);
+> > +
+> > +	train_retries = 0;
+> > +	status_control = 0;
+> > +	iteration_count = 1;
+> > +	prev_lane_adjust = 0xFF;
+> > +
+> > +	mtk_dp_set_lanes(mtk_dp, target_lane_count / 2);
+> > +	ret = mtk_dp_phy_configure(mtk_dp, target_link_rate,
+> > target_lane_count);
+> > +	if (ret)
+> > +		return -EINVAL;
+> > +
+> > +	dev_dbg(mtk_dp->dev,
+> > +		"Link train target_link_rate = 0x%x, target_lane_count
+> > = 0x%x\n",
+> > +		target_link_rate, target_lane_count);
+> > +
+> > +	do {
+> > +		train_retries++;
+> > +		if (!mtk_dp->train_info.cable_plugged_in ||
+> > +		    mtk_dp->train_info.irq_sta.hpd_disconnect) {
+> 
+> In mtk_dp_hpd_isr_handler(), train_info.irq_sta.hpd_disconnect would
+> finally be set to false, so you need not to check it here. So remove
+> it
+> here.
+> 
 
-About this default low value, 256M, I am not sure if it can be lowered
-down. We have Ampere Mt-Jade systems in Redhat and their biggest
-contiguous memory is less than 256M under low 4G when the firmware 32bit
-option is disabled. Obviously this will fail the default crashkernel,low
-value.
+Hello CK,
 
-I am not sure how common the 32bit option is disabled. If it's an
-important feature and widely set, it need be taken into consideration
-when deciding this default crashkernel,low value. Otherwise, the
-crashkernel=xM won't work in Ampere Mt-Jade system with 32bit option
-disabled, and people need specify crashkernel=xM,high,
-crashkernel=yM,low explicitly. The omission of crashkernel,low is also
-not allowed in the case.
+ok, I will drop this.
 
-Hi, Mark and Christopher,
+> > +			return -ENODEV;
+> > +		}
+> > +
+> > +		if (mtk_dp->train_state < MTK_DP_TRAIN_STATE_TRAINING)
+> > +			return -EAGAIN;
+> > +
+> > +		if (!pass_tps1) {
+> > +			ret = mtk_dp_train_tps_1(mtk_dp,
+> > target_lane_count,
+> > +						 &iteration_count,
+> > lane_adjust,
+> > +						 &status_control,
+> > +						 &prev_lane_adjust);
+> > +			if (!ret) {
+> > +				pass_tps1 = true;
+> > +				train_retries = 0;
+> > +			} else if (ret == -EINVAL) {
+> > +				break;
+> > +			}
+> > +		} else {
+> > +			ret = mtk_dp_train_tps_2_3(mtk_dp,
+> > target_link_rate,
+> > +						   target_lane_count,
+> > +						   &iteration_count,
+> > +						   lane_adjust,
+> > &status_control,
+> > +						   &prev_lane_adjust);
+> > +			if (!ret) {
+> > +				pass_tps2_3 = true;
+> > +				break;
+> > +			} else if (ret == -EINVAL) {
+> > +				break;
+> > +			}
+> > +		}
+> > +
+> > +		drm_dp_dpcd_read(&mtk_dp->aux,
+> > DP_ADJUST_REQUEST_LANE0_1,
+> > +				 lane_adjust, sizeof(lane_adjust));
+> > +		mtk_dp_train_update_swing_pre(mtk_dp,
+> > target_lane_count,
+> > +					      lane_adjust);
+> > +	} while (train_retries < MTK_DP_TRAIN_RETRY_LIMIT &&
+> > +		 iteration_count < MTK_DP_TRAIN_MAX_ITERATIONS);
+> > +
+> > +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_TRAINING_PATTERN_SET,
+> > +			   DP_TRAINING_PATTERN_DISABLE);
+> > +	ret = mtk_dp_train_set_pattern(mtk_dp, 0);
+> > +	if (ret)
+> > +		return -EINVAL;
+> > +
+> > +	if (!pass_tps2_3)
+> > +		return -ETIMEDOUT;
+> > +
+> > +	mtk_dp->train_info.link_rate = target_link_rate;
+> > +	mtk_dp->train_info.lane_count = target_lane_count;
+> > +
+> > +	mtk_dp_training_set_scramble(mtk_dp, true);
+> > +
+> > +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_LANE_COUNT_SET,
+> > +			   target_lane_count |
+> > +				   DP_LANE_COUNT_ENHANCED_FRAME_EN);
+> > +	mtk_dp_set_enhanced_frame_mode(mtk_dp, true);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> 
+> [snip]
+> 
+> > +
+> > +/*
+> > + * We need to handle HPD signal in eDP even though eDP is a always
+> > connected
+> > + * device. Besides connected status, there is another feature for
+> > HPD signal -
+> > + * HPD pulse: it presents an IRQ from sink devices to source
+> > devices
+> > (Refer to
+> > + * 5.1.4 of DP1.4 spec).
+> > + */
+> > +static irqreturn_t mtk_dp_hpd_isr_handler(struct mtk_dp *mtk_dp)
+> > +{
+> > +	bool connected;
+> > +	u32 irq_status = mtk_dp_swirq_get_clear(mtk_dp) |
+> > +			 mtk_dp_hwirq_get_clear(mtk_dp);
+> > +	struct mtk_dp_train_info *train_info = &mtk_dp->train_info;
+> > +
+> > +	if (irq_status & MTK_DP_HPD_INTERRUPT)
+> > +		train_info->irq_sta.hpd_inerrupt = true;
+> > +	if (irq_status & MTK_DP_HPD_CONNECT)
+> > +		train_info->irq_sta.hpd_connect = true;
+> > +	if (irq_status & MTK_DP_HPD_DISCONNECT)
+> > +		train_info->irq_sta.hpd_disconnect = true;
+> > +
+> 
+> train_info->irq_sta.hpd_connect is used only in this function, so let
+> hpd_connect to be local variable.
+> 
 
-Add you in CC. If you happen to know contact person from Ampere, please
-also feel free to add them in this thread.
+ok
 
-Thanks
-Baoquan
+> > +	if (!irq_status)
+> > +		return IRQ_HANDLED;
+> > +
+> > +	connected = mtk_dp_plug_state(mtk_dp);
+> > +	if (connected || !train_info->cable_plugged_in)
+> > +		train_info->irq_sta.hpd_disconnect  = false;
+> > +	else if (!connected || train_info->cable_plugged_in)
+> > +		train_info->irq_sta.hpd_connect = false;
+> > +
+> > +	if (!(train_info->irq_sta.hpd_connect ||
+> > +	      train_info->irq_sta.hpd_disconnect))
+> > +		return IRQ_WAKE_THREAD;
+> > +
+> > +	if (train_info->irq_sta.hpd_connect) {
+> > +		train_info->irq_sta.hpd_connect = false;
+> > +		train_info->cable_plugged_in = true;
+> > +	} else {
+> > +		train_info->irq_sta.hpd_disconnect = false;
+> > +		train_info->cable_plugged_in = false;
+> > +		mtk_dp->train_state = MTK_DP_TRAIN_STATE_TRAINING;
+> > +	}
+> > +	train_info->cable_state_change = true;
+> > +
+> > +	return IRQ_WAKE_THREAD;
+> > +}
+> > +
+> 
+> [snip]
+> 
+> > +
+> > +static ssize_t mtk_dp_aux_transfer(struct drm_dp_aux *mtk_aux,
+> > +				   struct drm_dp_aux_msg *msg)
+> > +{
+> > +	struct mtk_dp *mtk_dp;
+> > +	bool is_read;
+> > +	u8 request;
+> > +	size_t accessed_bytes = 0;
+> > +	int ret = 0;
+> > +
+> > +	mtk_dp = container_of(mtk_aux, struct mtk_dp, aux);
+> > +
+> > +	if (!mtk_dp->train_info.cable_plugged_in ||
+> > +	    mtk_dp->train_info.irq_sta.hpd_disconnect) {
+> 
+> In mtk_dp_hpd_isr_handler(), train_info.irq_sta.hpd_disconnect would
+> finally be set to false, so you need not to check it here. So remove
+> it
+> here.
+> 
 
->  static int __init reserve_crashkernel_low(unsigned long long low_size)
->  {
->  	unsigned long long low_base;
-> @@ -147,7 +155,9 @@ static void __init reserve_crashkernel(void)
->  		 * is not allowed.
->  		 */
->  		ret = parse_crashkernel_low(cmdline, 0, &crash_low_size, &crash_base);
-> -		if (ret && (ret != -ENOENT))
-> +		if (ret == -ENOENT)
-> +			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
-> +		else if (ret)
->  			return;
->  
->  		crash_max = CRASH_ADDR_HIGH_MAX;
-> -- 
-> 2.25.1
+ok, I will drop this
+
+BRs,
+Bo-Chen
+
+> Regards,
+> CK
+> 
+> > +		ret = -EAGAIN;
+> > +		goto err;
+> > +	}
+> > +
+> > +	switch (msg->request) {
+> > +	case DP_AUX_I2C_MOT:
+> > +	case DP_AUX_I2C_WRITE:
+> > +	case DP_AUX_NATIVE_WRITE:
+> > +	case DP_AUX_I2C_WRITE_STATUS_UPDATE:
+> > +	case DP_AUX_I2C_WRITE_STATUS_UPDATE | DP_AUX_I2C_MOT:
+> > +		request = msg->request &
+> > ~DP_AUX_I2C_WRITE_STATUS_UPDATE;
+> > +		is_read = false;
+> > +		break;
+> > +	case DP_AUX_I2C_READ:
+> > +	case DP_AUX_NATIVE_READ:
+> > +	case DP_AUX_I2C_READ | DP_AUX_I2C_MOT:
+> > +		request = msg->request;
+> > +		is_read = true;
+> > +		break;
+> > +	default:
+> > +		drm_err(mtk_aux->drm_dev, "invalid aux cmd = %d\n",
+> > +			msg->request);
+> > +		ret = -EINVAL;
+> > +		goto err;
+> > +	}
+> > +
+> > +	if (msg->size == 0) {
+> > +		ret = mtk_dp_aux_do_transfer(mtk_dp, is_read, request,
+> > +					     msg->address +
+> > accessed_bytes,
+> > +					     msg->buffer +
+> > accessed_bytes, 0);
+> > +	} else {
+> > +		while (accessed_bytes < msg->size) {
+> > +			size_t to_access =
+> > +				min_t(size_t, DP_AUX_MAX_PAYLOAD_BYTES,
+> > +				      msg->size - accessed_bytes);
+> > +
+> > +			ret = mtk_dp_aux_do_transfer(mtk_dp, is_read,
+> > request,
+> > +						     msg->address +
+> > accessed_bytes,
+> > +						     msg->buffer +
+> > accessed_bytes,
+> > +						     to_access);
+> > +
+> > +			if (ret) {
+> > +				drm_info(mtk_dp->drm_dev,
+> > +					 "Failed to do AUX transfer:
+> > %d\n", ret);
+> > +				break;
+> > +			}
+> > +			accessed_bytes += to_access;
+> > +		}
+> > +	}
+> > +err:
+> > +	if (ret) {
+> > +		msg->reply = DP_AUX_NATIVE_REPLY_NACK |
+> > DP_AUX_I2C_REPLY_NACK;
+> > +		return ret;
+> > +	}
+> > +
+> > +	msg->reply = DP_AUX_NATIVE_REPLY_ACK | DP_AUX_I2C_REPLY_ACK;
+> > +	return msg->size;
+> > +}
+> > +
+> 
 > 
 
