@@ -2,110 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7927654F1E2
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 09:27:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 807DF54F1EA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 09:27:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380411AbiFQH1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 03:27:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38408 "EHLO
+        id S1380518AbiFQH1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 03:27:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380295AbiFQH1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 03:27:23 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43B0B66CA9;
-        Fri, 17 Jun 2022 00:27:15 -0700 (PDT)
-X-UUID: 875e58a613d84ca7b1b3e3664cb22b0a-20220617
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:b9c83141-81c7-4b66-99e4-0ab89fdcab8d,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:40
-X-CID-INFO: VERSION:1.1.6,REQID:b9c83141-81c7-4b66-99e4-0ab89fdcab8d,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:40
-X-CID-META: VersionHash:b14ad71,CLOUDID:8438e048-4c92-421c-ad91-b806c0f58b2a,C
-        OID:e5c3e4578f40,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 875e58a613d84ca7b1b3e3664cb22b0a-20220617
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 389779066; Fri, 17 Jun 2022 15:27:09 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Fri, 17 Jun 2022 15:27:07 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 17 Jun 2022 15:27:04 +0800
-Message-ID: <c6ec34ff6b2a2ead4813a73b989ac21a863b2035.camel@mediatek.com>
-Subject: Re: [PATCH] media: mediatek: vcodec: Fix non subdev architecture
- open power fail
-From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
-To:     Chen-Yu Tsai <wenst@chromium.org>
-CC:     Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Tomasz Figa" <tfiga@google.com>,
-        George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Fritz Koenig" <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 17 Jun 2022 15:27:04 +0800
-In-Reply-To: <CAGXv+5EZ+Mu1481gM9h0kgqO3a0xFKP8drvGv7gRp6=3NU2oKA@mail.gmail.com>
-References: <20220617032113.18576-1-yunfei.dong@mediatek.com>
-         <CAGXv+5EZ+Mu1481gM9h0kgqO3a0xFKP8drvGv7gRp6=3NU2oKA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1380459AbiFQH1j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 03:27:39 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AFD12BD
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 00:27:34 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id o7so7139546eja.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 00:27:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=yhUmQjlVEm98FuejkV49ied/cxReTiKl0adLMVVp/04=;
+        b=Fwy6VFGlfabLlQay+AyWPbhL+ymPIcSSw58I4ati4Gu0SX90FZZKiGyRY5UnAcOseE
+         Y3xhGsNfU1XWjeGEnkOeCvGy/apeySedKcr9vJN8aZiwgr2uLYVnmMexlPpBihkQg5hd
+         FrBxkl+1NsMB326LOIBSFwqXnnYIUqiLXUW0ztajyB2NbM18KVmxAzdaagHfjjjzxr12
+         zoBq0x3czBzLLcR3X8YtRJaiunBvRQxe+B/o8cSP9qFXVJ5s8DsBsINfLTOn5u5fTzAo
+         ldfOfMYNHM+KpTLP7vSOmCezgWlLpERpCvHziL82YSvjUl5YiJuY2LzqdNF7rTP0WHmq
+         fnEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=yhUmQjlVEm98FuejkV49ied/cxReTiKl0adLMVVp/04=;
+        b=ZkJD1NimasdX6Y8QJUBpKX5jeXNX4JyKb0oIMBP45oCfBbc+0hIHEGf64mLoh8oXJI
+         8c9E2PgIrvIVKq5AqMOIEBFJG2xIowr4oIUFPeaP/wQu+UtUqjlxCRDanGe7Tk0vwycr
+         LdoMxux07fAp3HWn8G4XAZ37fenHRu7nEAqP30YIN8IPTRcB/W4zZD0HNY334SngNrb5
+         ftpHwxI3Z7fAyXxYZ4dyMCOF/wRotqp5JSM6D9vI0KA4o0C1EgqzsDB4kFlLZwInyuv6
+         Y5tz2LIrAcQRXvlfTUZtIe5JAW3Or5Uh+A8K9ZL8xe8a7GqOM71oOUho1WUKcE8xUwQw
+         3hJg==
+X-Gm-Message-State: AJIora/LnR4DahEaLKKhYnq1ekHsyTIwKpdApWzPhdfQuRWNYuPQftHo
+        KUXtuG8+8z5wGK/HYeyVyMoA1A==
+X-Google-Smtp-Source: AGRyM1sHnxSHzWDAa3DPinyDjLvfprasBj5z+3vPJoKmBnT+Zar+MTgF0gDYVJTREtggVIPIp4jIJw==
+X-Received: by 2002:a17:907:a427:b0:71b:6f0b:8beb with SMTP id sg39-20020a170907a42700b0071b6f0b8bebmr5651272ejc.496.1655450852661;
+        Fri, 17 Jun 2022 00:27:32 -0700 (PDT)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:d227:8f3c:286a:d9d8])
+        by smtp.gmail.com with ESMTPSA id n9-20020a170906840900b006fec56a80a8sm1762556ejx.115.2022.06.17.00.27.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Jun 2022 00:27:32 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     dri-devel@lists.freedesktop.org,
+        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/6] dt-bindings: display: add Amlogic MIPI DSI Host Controller bindings
+Date:   Fri, 17 Jun 2022 09:27:18 +0200
+Message-Id: <20220617072723.1742668-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220617072723.1742668-1-narmstrong@baylibre.com>
+References: <20220617072723.1742668-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3532; h=from:subject; bh=nfzFDo4vSJe6xj0FTwEJ/U/lIAnr1DaEgJJpcHdVaxw=; b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBirCyqY5ZuFCHuvgCYy0WNIdOndZlC1wP7beVGnIlw N220U86JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYqwsqgAKCRB33NvayMhJ0ZnOD/ 448XF+A0HBYCR8G5hsszIj07/nBsQTDfXg2FAGCrmM5l6izU4QwCKijtYxwRJcQUAeI+n2/F3bkehj fuLHK4tfiXXGDNIYISm6fuo3b4OjI5uTJ7TK03SF+kRszl2OACvBIkK91dvD30r9Vt3ukMxOkbP7bR qtDueOf0BcQnXOx+cZ6RAY9LbqdEbmKkTYUIQn+CsVYZ6OSUD57FiN2BILOltKIhdoINejZUnvQbso Nrko/HA5QbZ/6nCqXFmxaGERRxuP/wofeRCdvX1aZXamS2/+7jRPAYZ+hUHIF3EwRTHENxT5FdOsXL 04hdOPjYXQEFWRFQrBnzgQs3uwKruSsG0OIB3Xbug4kUmX8HXSERS1ZnSgV5XOlQBRbQJho9y1a6Lc tsqxbFPHI7sfy/FsgaJhgbqoIF5T5kaI/Wf8+8p3luA+0U28tRkwGad6252bLdjyHxtjSYUIbZ9Bcn dmhwxY36KKto7GqwdbHmyeK2r08GCrSmhfkKuJKS68RPkLG/DWbfPOBHU8b72GFJHaI4QKz5qta8n+ 8ddmyn1Nrgk8NkOGKRqnQEgxqO4qhvLbIGyha4tRf5owRWD9UlhPbS0SFR3/KOx92iZAD5a2QxHLNh RnGc64vBzoOuhrJkCdRvoqCVClQB+8YhKSTGFdRVn25OVDMwH/O91clAu6Fw==
+X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp; fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chen-Yu,
+The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
+with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI Glue
+on the same Amlogic SoCs.
 
-Thanks for your suggestion.
-On Fri, 2022-06-17 at 14:56 +0800, Chen-Yu Tsai wrote:
-> On Fri, Jun 17, 2022 at 11:21 AM Yunfei Dong <
-> yunfei.dong@mediatek.com> wrote:
-> > 
-> > According to subdev_bitmap bit value to open hardware power, need
-> > to
-> > set subdev_bitmap value for non subdev architecture.
-> > 
-> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> 
-> Fixes: c05bada35f01 ("media: mtk-vcodec: Add to support multi
-> hardware decode")
-> 
-> ?
-> 
-> ChenYu
-Fix it in patch v2.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../display/amlogic,meson-dw-mipi-dsi.yaml    | 116 ++++++++++++++++++
+ 1 file changed, 116 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
 
-Best Regards,
-Yunfei Dong
+diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
+new file mode 100644
+index 000000000000..e057659545a9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
+@@ -0,0 +1,116 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2020 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/display/amlogic,meson-dw-mipi-dsi.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic specific extensions to the Synopsys Designware MIPI DSI Host Controller
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++description: |
++  The Amlogic Meson Synopsys Designware Integration is composed of
++  - A Synopsys DesignWare MIPI DSI Host Controller IP
++  - A TOP control block controlling the Clocks & Resets of the IP
++
++allOf:
++  - $ref: dsi-controller.yaml#
++
++properties:
++  compatible:
++    enum:
++      - amlogic,meson-g12a-dw-mipi-dsi
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    minItems: 2
++
++  clock-names:
++    minItems: 2
++    items:
++      - const: pclk
++      - const: px_clk
++      - const: meas_clk
++
++  resets:
++    minItems: 1
++
++  reset-names:
++    items:
++      - const: top
++
++  phys:
++    minItems: 1
++
++  phy-names:
++    items:
++      - const: dphy
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Input node to receive pixel data.
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: DSI output node to panel.
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - phys
++  - phy-names
++  - ports
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    dsi@7000 {
++          compatible = "amlogic,meson-g12a-dw-mipi-dsi";
++          reg = <0x6000 0x400>;
++          resets = <&reset_top>;
++          reset-names = "top";
++          clocks = <&clk_pclk>, <&clk_px>;
++          clock-names = "pclk", "px_clk";
++          phys = <&mipi_dphy>;
++          phy-names = "dphy";
++
++          ports {
++              #address-cells = <1>;
++              #size-cells = <0>;
++
++              /* VPU VENC Input */
++              mipi_dsi_venc_port: port@0 {
++                  reg = <0>;
++
++                  mipi_dsi_in: endpoint {
++                       remote-endpoint = <&dpi_out>;
++                  };
++              };
++
++              /* DSI Output */
++              mipi_dsi_panel_port: port@1 {
++                  reg = <1>;
++
++                  mipi_out_panel: endpoint {
++                      remote-endpoint = <&mipi_in_panel>;
++                  };
++              };
++          };
++    };
+-- 
+2.25.1
 
