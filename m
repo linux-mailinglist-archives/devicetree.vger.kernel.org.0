@@ -2,57 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE7D454EFD4
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 05:50:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8084754F009
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 06:16:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379775AbiFQDua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 23:50:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47314 "EHLO
+        id S1379945AbiFQEQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 00:16:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379746AbiFQDu3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 23:50:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BB17663DD;
-        Thu, 16 Jun 2022 20:50:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S1379911AbiFQEQo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 00:16:44 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DEECC65D3E
+        for <devicetree@vger.kernel.org>; Thu, 16 Jun 2022 21:16:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1655439403;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Rv0vNXKXyCH9T82Y1Ot9urO7/UnO0DqQajZUCOmTg8E=;
+        b=bjp4DPpxhd9zPgJ0k+q8uFwxd/QHVAbGalHmWgrWWcFE+gSL9iz2oEKYpfiugViKH8I3om
+        Qd5H6+OKVHq2PN4g/UMmVwMbv8SefGTKc4GQLDu/O1nQVJaiMSTtXUdAg6ptNjxz4JGK9o
+        YMblMbwQFWXH+e9UFvm08dmntdpaOD8=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-81-NCX5GbcZNReCBVP6NcqkMg-1; Fri, 17 Jun 2022 00:16:39 -0400
+X-MC-Unique: NCX5GbcZNReCBVP6NcqkMg-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.rdu2.redhat.com [10.11.54.3])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 999B161DB8;
-        Fri, 17 Jun 2022 03:50:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 02247C341C6;
-        Fri, 17 Jun 2022 03:50:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655437827;
-        bh=qryEHpeEJUqn20vEoUi1DYcDxt737X17S9fdpDAEVIg=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=gfhXPoy3C8G9OV1nNevTaOrf3bPXdJ7BqKK9Qfuxq8+pwMzdJnNqEk4mfW7cHJp+k
-         M868gXIRX4jPxSZS+JWQQPze2EDSncVJdSOLq8ZcotHfPWg5exMdb4s/RLQ0ucPWmM
-         ab+tvOshrEbcxsQhRrYfNGhbrWZruc6L/KLG48r9zNQBOFQV5FiNcYGiTKxeZybEBa
-         7HGC4Kc2dwqdJ3Dem8s1SgOFlVeOQLUvbTUX3mt14NncV9dmVPLYh7aNncaLbbB1B3
-         iHCvXLmMwiSjw0DxylsvySHwMF39yp0mnIDGMf5owg6b/BG/SQKpaEP0/XXVzghgZY
-         IE5wcM73Z50jw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id DAFA1E7385E;
-        Fri, 17 Jun 2022 03:50:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 6386F185A79C;
+        Fri, 17 Jun 2022 04:16:38 +0000 (UTC)
+Received: from localhost (ovpn-12-144.pek2.redhat.com [10.72.12.144])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 43DDE1121314;
+        Fri, 17 Jun 2022 04:16:37 +0000 (UTC)
+Date:   Fri, 17 Jun 2022 12:16:33 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>, kexec@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH 2/5] arm64: kdump: Support crashkernel=X fall back to
+ reserve region above DMA zones
+Message-ID: <20220617041633.GD234358@MiWiFi-R3L-srv>
+References: <20220613080932.663-1-thunder.leizhen@huawei.com>
+ <20220613080932.663-3-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v2 0/3] dt-bindings: dp83867: add binding for
- io_impedance_ctrl nvmem cell
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <165543782689.2027.4534991935889934108.git-patchwork-notify@kernel.org>
-Date:   Fri, 17 Jun 2022 03:50:26 +0000
-References: <20220614084612.325229-1-linux@rasmusvillemoes.dk>
-In-Reply-To: <20220614084612.325229-1-linux@rasmusvillemoes.dk>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc:     netdev@vger.kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, kuba@kernel.org, davem@davemloft.net,
-        grygorii.strashko@ti.com, praneeth@ti.com,
-        linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220613080932.663-3-thunder.leizhen@huawei.com>
+X-Scanned-By: MIMEDefang 2.78 on 10.11.54.3
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,36 +78,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+On 06/13/22 at 04:09pm, Zhen Lei wrote:
+> For crashkernel=X without '@offset', select a region within DMA zones
+> first, and fall back to reserve region above DMA zones. This allows
+> users to use the same configuration on multiple platforms.
 
-This series was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
+LGTM,
 
-On Tue, 14 Jun 2022 10:46:09 +0200 you wrote:
-> We have a board where measurements indicate that the current three
-> options - leaving IO_IMPEDANCE_CTRL at the reset value (which is
-> factory calibrated to a value corresponding to approximately 50 ohms)
-> or using one of the two boolean properties to set it to the min/max
-> value - are too coarse.
+Acked-by: Baoquan He <bhe@redhat.com>
+
 > 
-> This series adds a device tree binding for an nvmem cell which can be
-> populated during production with a suitable value calibrated for each
-> board, and corresponding support in the driver. The second patch adds
-> a trivial phy wrapper for dev_err_probe(), used in the third.
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> ---
+>  Documentation/admin-guide/kernel-parameters.txt |  2 +-
+>  arch/arm64/mm/init.c                            | 16 +++++++++++++++-
+>  2 files changed, 16 insertions(+), 2 deletions(-)
 > 
-> [...]
-
-Here is the summary with links:
-  - [net-next,v2,1/3] dt-bindings: dp83867: add binding for io_impedance_ctrl nvmem cell
-    https://git.kernel.org/netdev/net-next/c/ab1e9de84aff
-  - [net-next,v2,2/3] linux/phy.h: add phydev_err_probe() wrapper for dev_err_probe()
-    https://git.kernel.org/netdev/net-next/c/a793679827a8
-  - [net-next,v2,3/3] net: phy: dp83867: implement support for io_impedance_ctrl nvmem cell
-    https://git.kernel.org/netdev/net-next/c/5c2d0a6a0701
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
+> index 61b179232b68001..fdac18beba5624e 100644
+> --- a/Documentation/admin-guide/kernel-parameters.txt
+> +++ b/Documentation/admin-guide/kernel-parameters.txt
+> @@ -823,7 +823,7 @@
+>  			memory region [offset, offset + size] for that kernel
+>  			image. If '@offset' is omitted, then a suitable offset
+>  			is selected automatically.
+> -			[KNL, X86-64] Select a region under 4G first, and
+> +			[KNL, X86-64, ARM64] Select a region under 4G first, and
+>  			fall back to reserve region above 4G when '@offset'
+>  			hasn't been specified.
+>  			See Documentation/admin-guide/kdump/kdump.rst for further details.
+> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> index 5390f361208ccf7..8539598f9e58b4d 100644
+> --- a/arch/arm64/mm/init.c
+> +++ b/arch/arm64/mm/init.c
+> @@ -138,6 +138,7 @@ static void __init reserve_crashkernel(void)
+>  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+>  	char *cmdline = boot_command_line;
+>  	int ret;
+> +	bool fixed_base;
+>  
+>  	if (!IS_ENABLED(CONFIG_KEXEC_CORE))
+>  		return;
+> @@ -166,15 +167,28 @@ static void __init reserve_crashkernel(void)
+>  		return;
+>  	}
+>  
+> +	fixed_base = !!crash_base;
+>  	crash_size = PAGE_ALIGN(crash_size);
+>  
+>  	/* User specifies base address explicitly. */
+> -	if (crash_base)
+> +	if (fixed_base)
+>  		crash_max = crash_base + crash_size;
+>  
+> +retry:
+>  	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+>  					       crash_base, crash_max);
+>  	if (!crash_base) {
+> +		/*
+> +		 * Attempt to fully allocate low memory failed, fall back
+> +		 * to high memory, the minimum required low memory will be
+> +		 * reserved later.
+> +		 */
+> +		if (!fixed_base && (crash_max == CRASH_ADDR_LOW_MAX)) {
+> +			crash_max = CRASH_ADDR_HIGH_MAX;
+> +			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
+> +			goto retry;
+> +		}
+> +
+>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+>  			crash_size);
+>  		return;
+> -- 
+> 2.25.1
+> 
 
