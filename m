@@ -2,146 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8EE054F0DD
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 07:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E6ED54F109
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 08:31:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380228AbiFQF6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 01:58:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52380 "EHLO
+        id S1380284AbiFQGbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 02:31:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379746AbiFQF6o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 01:58:44 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36082674CA;
-        Thu, 16 Jun 2022 22:58:36 -0700 (PDT)
-X-UUID: 23a028511f924f2d9e722492ec71b16a-20220617
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:3a49617c-5f3f-4347-8395-dc8877f428e2,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:0
-X-CID-META: VersionHash:b14ad71,CLOUDID:62bf98f6-e099-41ba-a32c-13b8bfe63214,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 23a028511f924f2d9e722492ec71b16a-20220617
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1241762375; Fri, 17 Jun 2022 13:58:32 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Fri, 17 Jun 2022 13:58:31 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Fri, 17 Jun 2022 13:58:31 +0800
-Message-ID: <03df16e9f56e07d5dd9163b3ac12e2c72b15f852.camel@mediatek.com>
-Subject: Re: [PATCH 7/7] drm/mediatek: add MT8365 SoC support
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Fabien Parent <fparent@baylibre.com>, <matthias.bgg@gmail.com>,
-        <jitao.shi@mediatek.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <robh+dt@kernel.org>
-CC:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Fri, 17 Jun 2022 13:58:31 +0800
-In-Reply-To: <20220530201436.902505-7-fparent@baylibre.com>
-References: <20220530201436.902505-1-fparent@baylibre.com>
-         <20220530201436.902505-7-fparent@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1380180AbiFQGb3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 02:31:29 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CF5F532D7;
+        Thu, 16 Jun 2022 23:31:28 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 2436D1BF203;
+        Fri, 17 Jun 2022 06:31:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1655447487;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=BQ0wrFYdrXuojklvNl1658c5ZfBL7raN6sTUE6g4Wvo=;
+        b=jM5HRtQcblG3I+IejYt28V8RRQQQkuVicdg2nSebNL1ramoLUFWoIpllPtjAgLfQo9hfCP
+        PIq6hRZO9NJWNgehYoPv1q8zzaVNto01sRnVdxNjz4tD0EVQ38kO7ZDllcddDTiB2svRwi
+        eVe8820gGhTQBskyxpND4O/WlSlRC6bxRa2PBApgfCEJVo83a9qvERbCIIAdD5urKmAhDt
+        h4trIsPqxFCgKrNkdMl32F7GtFyMTqIhnJnOQKRjm27/wpPoTm3q5C79kYh906Yl2u+4Sw
+        NFFUTEP5euG8A5UvFoms/dMwgtgQ+HSnzHZEnES2GmdPpvgteDiGwdCb4piEIA==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Christian Marangi <ansuelsmth@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 3/3] dt-bindings: mtd: qcom_nandc: document qcom,boot-partitions binding
+Date:   Fri, 17 Jun 2022 08:31:24 +0200
+Message-Id: <20220617063124.446689-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220616001835.24393-4-ansuelsmth@gmail.com>
+References: 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'5278cc93a97f7b7b9e69632e52503e956153d944'
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Fabien:
-
-On Mon, 2022-05-30 at 22:14 +0200, Fabien Parent wrote:
-> Add DRM support for MT8365 SoC.
-
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
-
+On Thu, 2022-06-16 at 00:18:35 UTC, Christian Marangi wrote:
+> Document new qcom,boot-partition binding used to apply special
+> read/write layout to boot partitions.
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 27
-> ++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
+> QCOM apply a special layout where spare data is not protected
+> by ECC for some special pages (used for boot partition). Add
+> Documentation on how to declare these special pages.
 > 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> index 6abe6bcacbdc..0a30ec75b1e2 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> @@ -195,6 +195,22 @@ static const enum mtk_ddp_comp_id
-> mt8192_mtk_ddp_ext[] = {
->  	DDP_COMPONENT_DPI0,
->  };
->  
-> +static const enum mtk_ddp_comp_id mt8365_mtk_ddp_main[] = {
-> +	DDP_COMPONENT_OVL0,
-> +	DDP_COMPONENT_RDMA0,
-> +	DDP_COMPONENT_COLOR0,
-> +	DDP_COMPONENT_CCORR,
-> +	DDP_COMPONENT_AAL0,
-> +	DDP_COMPONENT_GAMMA,
-> +	DDP_COMPONENT_DITHER,
-> +	DDP_COMPONENT_DSI0,
-> +};
-> +
-> +static const enum mtk_ddp_comp_id mt8365_mtk_ddp_ext[] = {
-> +	DDP_COMPONENT_RDMA1,
-> +	DDP_COMPONENT_DPI0,
-> +};
-> +
->  static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data =
-> {
->  	.main_path = mt2701_mtk_ddp_main,
->  	.main_len = ARRAY_SIZE(mt2701_mtk_ddp_main),
-> @@ -253,6 +269,13 @@ static const struct mtk_mmsys_driver_data
-> mt8192_mmsys_driver_data = {
->  	.ext_len = ARRAY_SIZE(mt8192_mtk_ddp_ext),
->  };
->  
-> +static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data =
-> {
-> +	.main_path = mt8365_mtk_ddp_main,
-> +	.main_len = ARRAY_SIZE(mt8365_mtk_ddp_main),
-> +	.ext_path = mt8365_mtk_ddp_ext,
-> +	.ext_len = ARRAY_SIZE(mt8365_mtk_ddp_ext),
-> +};
-> +
->  static int mtk_drm_kms_init(struct drm_device *drm)
->  {
->  	struct mtk_drm_private *private = drm->dev_private;
-> @@ -490,6 +513,8 @@ static const struct of_device_id
-> mtk_ddp_comp_dt_ids[] = {
->  	  .data = (void *)MTK_DISP_MUTEX },
->  	{ .compatible = "mediatek,mt8192-disp-mutex",
->  	  .data = (void *)MTK_DISP_MUTEX },
-> +	{ .compatible = "mediatek,mt8365-disp-mutex",
-> +	  .data = (void *)MTK_DISP_MUTEX },
->  	{ .compatible = "mediatek,mt8173-disp-od",
->  	  .data = (void *)MTK_DISP_OD },
->  	{ .compatible = "mediatek,mt2701-disp-ovl",
-> @@ -564,6 +589,8 @@ static const struct of_device_id mtk_drm_of_ids[]
-> = {
->  	  .data = &mt8186_mmsys_driver_data},
->  	{ .compatible = "mediatek,mt8192-mmsys",
->  	  .data = &mt8192_mmsys_driver_data},
-> +	{ .compatible = "mediatek,mt8365-mmsys",
-> +	  .data = &mt8365_mmsys_driver_data},
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, mtk_drm_of_ids);
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
 
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+
+Miquel
