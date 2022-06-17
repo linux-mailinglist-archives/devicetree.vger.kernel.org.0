@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 807DF54F1EA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 09:27:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4119054F1EC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 09:27:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380518AbiFQH1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 03:27:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38900 "EHLO
+        id S1380228AbiFQH1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 03:27:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380459AbiFQH1j (ORCPT
+        with ESMTP id S1380462AbiFQH1j (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 03:27:39 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AFD12BD
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 00:27:34 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id o7so7139546eja.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 00:27:34 -0700 (PDT)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EBD221A5
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 00:27:35 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id n20so337011ejz.10
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 00:27:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=yhUmQjlVEm98FuejkV49ied/cxReTiKl0adLMVVp/04=;
-        b=Fwy6VFGlfabLlQay+AyWPbhL+ymPIcSSw58I4ati4Gu0SX90FZZKiGyRY5UnAcOseE
-         Y3xhGsNfU1XWjeGEnkOeCvGy/apeySedKcr9vJN8aZiwgr2uLYVnmMexlPpBihkQg5hd
-         FrBxkl+1NsMB326LOIBSFwqXnnYIUqiLXUW0ztajyB2NbM18KVmxAzdaagHfjjjzxr12
-         zoBq0x3czBzLLcR3X8YtRJaiunBvRQxe+B/o8cSP9qFXVJ5s8DsBsINfLTOn5u5fTzAo
-         ldfOfMYNHM+KpTLP7vSOmCezgWlLpERpCvHziL82YSvjUl5YiJuY2LzqdNF7rTP0WHmq
-         fnEA==
+        bh=RkyY1zQc+wkSzumHL/lljaTT+2/4ZERv1EN4Z7asU2w=;
+        b=xERG2VxM4tcRxozPKAOVE49PUr0ZVUhCJHIGIY8BjQGk16LdIwHM+gIw5vQolLskpA
+         JeM396Ryxfx+qwBxi9Geuw5JWz+A/HKj1fLrxGfnvc7PtBrIrFDD5PXTiGmC4ARJANQr
+         DCKlus8fiBeKfsjDZNWOJX6XG6My5D8QsQ+xFiwSb+3sx6kDZ59nQuz+6a0AdsEgcXAJ
+         h5ns4pFg7UtkY0x4MyaiAyMjXv/U6e1BDiQFGRTcd8639EL9e87Mb0yyUA5LXKBygaZU
+         Q2ywaRXOvyifokRlRYhavFhFVx+p8w7n51fQTi11aJYwhCn7GK3gepLsJcEbSERzuse6
+         jPwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=yhUmQjlVEm98FuejkV49ied/cxReTiKl0adLMVVp/04=;
-        b=ZkJD1NimasdX6Y8QJUBpKX5jeXNX4JyKb0oIMBP45oCfBbc+0hIHEGf64mLoh8oXJI
-         8c9E2PgIrvIVKq5AqMOIEBFJG2xIowr4oIUFPeaP/wQu+UtUqjlxCRDanGe7Tk0vwycr
-         LdoMxux07fAp3HWn8G4XAZ37fenHRu7nEAqP30YIN8IPTRcB/W4zZD0HNY334SngNrb5
-         ftpHwxI3Z7fAyXxYZ4dyMCOF/wRotqp5JSM6D9vI0KA4o0C1EgqzsDB4kFlLZwInyuv6
-         Y5tz2LIrAcQRXvlfTUZtIe5JAW3Or5Uh+A8K9ZL8xe8a7GqOM71oOUho1WUKcE8xUwQw
-         3hJg==
-X-Gm-Message-State: AJIora/LnR4DahEaLKKhYnq1ekHsyTIwKpdApWzPhdfQuRWNYuPQftHo
-        KUXtuG8+8z5wGK/HYeyVyMoA1A==
-X-Google-Smtp-Source: AGRyM1sHnxSHzWDAa3DPinyDjLvfprasBj5z+3vPJoKmBnT+Zar+MTgF0gDYVJTREtggVIPIp4jIJw==
-X-Received: by 2002:a17:907:a427:b0:71b:6f0b:8beb with SMTP id sg39-20020a170907a42700b0071b6f0b8bebmr5651272ejc.496.1655450852661;
-        Fri, 17 Jun 2022 00:27:32 -0700 (PDT)
+        bh=RkyY1zQc+wkSzumHL/lljaTT+2/4ZERv1EN4Z7asU2w=;
+        b=cI7WMnW+8yhgDELBsfh1pJUcl9fikZAm8ltq/XfUdxbWeHW+Jabx9bhIJ1nX3Ac8R+
+         NfoZFyzGqh6lJZmYU5J+HweVgSHv2ERDywg7ttgm8AO/3C6diItK/Gyoi7eqIB7xEOHe
+         0tNG+h3AdXK6HIotImMLSSz0RLZAo3IP0lllZbh+AnGvVSvhJXTA6W6ypglftV4B2p0o
+         vIv8nGFnva7nk1pUoBxjLAXkgsL+uWhGUXpkhvscK1gwtclsX8Fa44P7QDn5s1+58hKM
+         Q3ylIFwNvQgUF1x5uP6HAbme0PGJBQo0VeAI/3hMvstNA/Ib0Jv2skl+EDOpOHhyeLjH
+         Kfxg==
+X-Gm-Message-State: AJIora8fjawrt7Pme9765zFqXJccO7kkBxRjJLmfHymmLvS4xFwikmCr
+        U/xde+ce/38WH222DALTLyd4iA==
+X-Google-Smtp-Source: AGRyM1skuitnOMjblYlPNwwdPN/hYdQiT4LHsSWSQTM/yaG4ViqU+Z/1sy7nX1EYlZS7F7oG10IIng==
+X-Received: by 2002:a17:906:33db:b0:70f:12c0:4ade with SMTP id w27-20020a17090633db00b0070f12c04ademr7911034eja.320.1655450853755;
+        Fri, 17 Jun 2022 00:27:33 -0700 (PDT)
 Received: from localhost.localdomain ([2001:861:44c0:66c0:d227:8f3c:286a:d9d8])
-        by smtp.gmail.com with ESMTPSA id n9-20020a170906840900b006fec56a80a8sm1762556ejx.115.2022.06.17.00.27.31
+        by smtp.gmail.com with ESMTPSA id n9-20020a170906840900b006fec56a80a8sm1762556ejx.115.2022.06.17.00.27.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jun 2022 00:27:32 -0700 (PDT)
+        Fri, 17 Jun 2022 00:27:33 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     dri-devel@lists.freedesktop.org,
         martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org
@@ -54,14 +54,14 @@ Cc:     linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Neil Armstrong <narmstrong@baylibre.com>,
         Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 1/6] dt-bindings: display: add Amlogic MIPI DSI Host Controller bindings
-Date:   Fri, 17 Jun 2022 09:27:18 +0200
-Message-Id: <20220617072723.1742668-2-narmstrong@baylibre.com>
+Subject: [PATCH v3 2/6] dt-bindings: display: meson-vpu: add third DPI output port
+Date:   Fri, 17 Jun 2022 09:27:19 +0200
+Message-Id: <20220617072723.1742668-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220617072723.1742668-1-narmstrong@baylibre.com>
 References: <20220617072723.1742668-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3532; h=from:subject; bh=nfzFDo4vSJe6xj0FTwEJ/U/lIAnr1DaEgJJpcHdVaxw=; b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBirCyqY5ZuFCHuvgCYy0WNIdOndZlC1wP7beVGnIlw N220U86JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYqwsqgAKCRB33NvayMhJ0ZnOD/ 448XF+A0HBYCR8G5hsszIj07/nBsQTDfXg2FAGCrmM5l6izU4QwCKijtYxwRJcQUAeI+n2/F3bkehj fuLHK4tfiXXGDNIYISm6fuo3b4OjI5uTJ7TK03SF+kRszl2OACvBIkK91dvD30r9Vt3ukMxOkbP7bR qtDueOf0BcQnXOx+cZ6RAY9LbqdEbmKkTYUIQn+CsVYZ6OSUD57FiN2BILOltKIhdoINejZUnvQbso Nrko/HA5QbZ/6nCqXFmxaGERRxuP/wofeRCdvX1aZXamS2/+7jRPAYZ+hUHIF3EwRTHENxT5FdOsXL 04hdOPjYXQEFWRFQrBnzgQs3uwKruSsG0OIB3Xbug4kUmX8HXSERS1ZnSgV5XOlQBRbQJho9y1a6Lc tsqxbFPHI7sfy/FsgaJhgbqoIF5T5kaI/Wf8+8p3luA+0U28tRkwGad6252bLdjyHxtjSYUIbZ9Bcn dmhwxY36KKto7GqwdbHmyeK2r08GCrSmhfkKuJKS68RPkLG/DWbfPOBHU8b72GFJHaI4QKz5qta8n+ 8ddmyn1Nrgk8NkOGKRqnQEgxqO4qhvLbIGyha4tRf5owRWD9UlhPbS0SFR3/KOx92iZAD5a2QxHLNh RnGc64vBzoOuhrJkCdRvoqCVClQB+8YhKSTGFdRVn25OVDMwH/O91clAu6Fw==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1046; h=from:subject; bh=LQlD6Fu3ObIBtey05krAjcgHoTrbx+0w6dwgfJGEYig=; b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBirCyrycIYT5c95AzVhdINNgW+nDNvrU5WWX82Nd9Z I9hXFSuJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYqwsqwAKCRB33NvayMhJ0aBmEA CiyTyjR1VeKCUk6d+hM4cmyr5iuMn3U9gb5MpoCunBiqjrakoFPCMcqSVEpcqPA9x7IhaB9XJmrKwR VvYXEmIfNtFf8kUDsbbpwa1oisLAvbEw+kklacItIJ3nK2t4tLTljpQFeYgY5ZVENj0c1c49WX9GOq Q8imHKf+JzBRX+SmfOZnGnFS4GD4SqVl+Em+YSzIao68s9VyFxA+RNCv5Jblh2fB6nhJGO9DGsEvo0 NdzdM1DAwftoaVumZefuwzVpZ3stCQe8eiOLa5477MQAyrcIYm2j9dgm6iCnLQxiS5jNhhbtD6j6r0 56zOHNOzd5PIzl7nR2VPluzEs2dwqPg6hCSOfGqDnIxwB7n2pQfwYPTLkAz+TkHFcuLhgrLGV6snPV E2o7RT06OLYigLDikb31GoAF45yQKYiukBnrK51shwdGIxMywmtb1mYNIaR/Y1MPNm2hkkwAtBSzN7 hWS0VQGvG9tzqWm2fCA+qmyFUk8N2yw2hQ2eVaDkta1Un02Guw07WQl08yh8wrYqMQL/3d6cdBhkuP iEyXEGeZ63MpTInEfh+Q163dd3ujrp9JZ1GIqcr5WvjKA9rL0Br5k2NiSOSfKXyPZS9KxUglN5pR+A o2s6Pg0aBIL/dlFyVeSIvp4Y07nhY3rhAopdbKNM3mBVm6pXsNOBVI2gjnEQ==
 X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp; fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -73,139 +73,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
-with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI Glue
-on the same Amlogic SoCs.
+Add third port corresponding to the ENCL DPI encoder used to connect
+to DSI or LVDS transceivers.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../display/amlogic,meson-dw-mipi-dsi.yaml    | 116 ++++++++++++++++++
- 1 file changed, 116 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
+ .../devicetree/bindings/display/amlogic,meson-vpu.yaml       | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
-new file mode 100644
-index 000000000000..e057659545a9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-mipi-dsi.yaml
-@@ -0,0 +1,116 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2020 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/display/amlogic,meson-dw-mipi-dsi.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+index 047fd69e0377..fdb42b14a099 100644
+--- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
++++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+@@ -96,6 +96,11 @@ properties:
+     description:
+       A port node pointing to the HDMI-TX port node.
+ 
++  port@2:
++    $ref: /schemas/graph.yaml#/properties/port
++    description:
++      A port node pointing to the DPI port node (e.g. DSI or LVDS transceiver).
 +
-+title: Amlogic specific extensions to the Synopsys Designware MIPI DSI Host Controller
-+
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+
-+description: |
-+  The Amlogic Meson Synopsys Designware Integration is composed of
-+  - A Synopsys DesignWare MIPI DSI Host Controller IP
-+  - A TOP control block controlling the Clocks & Resets of the IP
-+
-+allOf:
-+  - $ref: dsi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - amlogic,meson-g12a-dw-mipi-dsi
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 2
-+
-+  clock-names:
-+    minItems: 2
-+    items:
-+      - const: pclk
-+      - const: px_clk
-+      - const: meas_clk
-+
-+  resets:
-+    minItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: top
-+
-+  phys:
-+    minItems: 1
-+
-+  phy-names:
-+    items:
-+      - const: dphy
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Input node to receive pixel data.
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: DSI output node to panel.
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - phys
-+  - phy-names
-+  - ports
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    dsi@7000 {
-+          compatible = "amlogic,meson-g12a-dw-mipi-dsi";
-+          reg = <0x6000 0x400>;
-+          resets = <&reset_top>;
-+          reset-names = "top";
-+          clocks = <&clk_pclk>, <&clk_px>;
-+          clock-names = "pclk", "px_clk";
-+          phys = <&mipi_dphy>;
-+          phy-names = "dphy";
-+
-+          ports {
-+              #address-cells = <1>;
-+              #size-cells = <0>;
-+
-+              /* VPU VENC Input */
-+              mipi_dsi_venc_port: port@0 {
-+                  reg = <0>;
-+
-+                  mipi_dsi_in: endpoint {
-+                       remote-endpoint = <&dpi_out>;
-+                  };
-+              };
-+
-+              /* DSI Output */
-+              mipi_dsi_panel_port: port@1 {
-+                  reg = <1>;
-+
-+                  mipi_out_panel: endpoint {
-+                      remote-endpoint = <&mipi_in_panel>;
-+                  };
-+              };
-+          };
-+    };
+   "#address-cells":
+     const: 1
+ 
 -- 
 2.25.1
 
