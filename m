@@ -2,194 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1EC254FFF6
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 00:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A2A5550018
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 00:43:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235060AbiFQWb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 18:31:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42198 "EHLO
+        id S1346993AbiFQWnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 18:43:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236194AbiFQWbZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 18:31:25 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E94862125
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 15:31:24 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2D467383;
-        Sat, 18 Jun 2022 00:31:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1655505082;
-        bh=NzOouFaqwht6MFYjFoZ+iNTXZeUlvNGeD7j70qippqM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eH83xDr+aehU/orRUVmTnBjhw6uqO9cTN+5C7Dl4Dq3/IAGskvbADdhJKmfECvsxj
-         goGePIG8Hv1j1YiA+onr6V/NZ7Qx1OrmOhAAI/hBqQh7qbhhbX51bvV76KGwzaIlIY
-         9/dwhV+pXefaJF0wk0y++Q53Q5DmUON07084XT34=
-Date:   Sat, 18 Jun 2022 01:31:10 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Paul Elder <paul.elder@ideasonboard.com>
-Subject: Re: (EXT) [PATCH] arm64: dts: imx8mp: Add CSIS DT nodes
-Message-ID: <Yq0Arsms5fYl9MQn@pendragon.ideasonboard.com>
-References: <20220616161643.22867-1-laurent.pinchart@ideasonboard.com>
- <15420032.uLZWGnKmhe@steina-w>
+        with ESMTP id S232007AbiFQWng (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 18:43:36 -0400
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08943BBC8;
+        Fri, 17 Jun 2022 15:43:34 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id q11so5890961iod.8;
+        Fri, 17 Jun 2022 15:43:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Zh/0Zx5VR9OkdNl9GEaMHnSoW3UuL0RxbuRlgNOyx3U=;
+        b=Hgil84+ELMVRzRXMKAfqAuU6mR3YljnBX0unOibFt6Act3TAaf96ovJZ4VvLIODbE9
+         Bh7/iPioI2soLxUkXk2ZAnggIYwROfH/3dMFghApTa6WIgwgHuYcJmpYKHBzjng4ma9H
+         TyrlMz51vOj6g4mJq5hg5OWaAGxtmwCrQu4wzx7BnlMEngd2KjP9VQIlCsfEJqguKwRg
+         opmiDyVWeKpcZGtkq1OIk7pSuYaQKqM86ugnGmwFzYvXS/7TucCu9ciQMWtqI8Pjgk8q
+         o8fcmTfShYHQQxL3O+ewacUihemAiO63qGoq5OgKeRUOxp8pH6rvYYBeX8A+ZG+jX0xe
+         nvjg==
+X-Gm-Message-State: AJIora/9GAMo/VuBIxH/7sS2TIqk2FheBgDP1NG9tMLMYVXT87ULcP+n
+        SJRHBXgrkfRjAcHolat9Pq8hi4s15w==
+X-Google-Smtp-Source: AGRyM1tvyT1XZEsULmIOGU/hr9lRpu/t3yqYEU1/GhEsnQese2mFTYGyCi7NOLnTQaaRUC8jarJyVw==
+X-Received: by 2002:a05:6638:d8c:b0:332:15ef:657f with SMTP id l12-20020a0566380d8c00b0033215ef657fmr6523987jaj.146.1655505814198;
+        Fri, 17 Jun 2022 15:43:34 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id i26-20020a023b5a000000b0032b3a781781sm2734205jaf.69.2022.06.17.15.43.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Jun 2022 15:43:33 -0700 (PDT)
+Received: (nullmailer pid 2574515 invoked by uid 1000);
+        Fri, 17 Jun 2022 22:43:32 -0000
+Date:   Fri, 17 Jun 2022 16:43:32 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     pavel@ucw.cz, linux-pm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, szunichen@gmail.com,
+        lars@metafoo.de, matthias.bgg@gmail.com,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        lee.jones@linaro.org, ChiYuan Huang <cy_huang@richtek.com>,
+        linux-leds@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        jingoohan1@gmail.com, devicetree@vger.kernel.org, jic23@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v2 06/15] dt-bindings: mfd: Add Mediatek MT6370
+Message-ID: <20220617224332.GA2570673-robh@kernel.org>
+References: <20220613111146.25221-1-peterwu.pub@gmail.com>
+ <20220613111146.25221-7-peterwu.pub@gmail.com>
+ <1655127197.567546.3564136.nullmailer@robh.at.kernel.org>
+ <CABtFH5JPu5tOg4wGJf5ay1-NJHLcPTK4XxADGTksHW1-6wjMRQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <15420032.uLZWGnKmhe@steina-w>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CABtFH5JPu5tOg4wGJf5ay1-NJHLcPTK4XxADGTksHW1-6wjMRQ@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
-
-On Fri, Jun 17, 2022 at 08:43:53AM +0200, Alexander Stein wrote:
-> Hello Laurent,
+On Fri, Jun 17, 2022 at 07:15:49PM +0800, ChiaEn Wu wrote:
+> Hi Rob,
 > 
-> thanks for ths and the other MIPI CSI-2 related patches.
+> Rob Herring <robh@kernel.org> 於 2022年6月13日 週一 晚上9:33寫道：
+> >
+> > On Mon, 13 Jun 2022 19:11:37 +0800, ChiaEn Wu wrote:
+> > > From: ChiYuan Huang <cy_huang@richtek.com>
+> > >
+> > > Add Mediatek MT6370 binding documentation.
+> > >
+> > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > > ---
+> > >  .../bindings/mfd/mediatek,mt6370.yaml         | 279 ++++++++++++++++++
+> > >  .../dt-bindings/iio/adc/mediatek,mt6370_adc.h |  18 ++
+> > >  2 files changed, 297 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+> > >  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6370_adc.h
+> > >
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > ./Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/leds/backlight/mediatek,mt6370-backlight.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb: pmic@34: backlight: False schema does not allow {'compatible': ['mediatek,mt6370-backlight'], 'mediatek,bled-channel-use': b'\x0f'}
+> >         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb: pmic@34: charger: False schema does not allow {'compatible': ['mediatek,mt6370-charger'], 'interrupts': [[48], [68], [6]], 'interrupt-names': ['attach_i', 'uvp_d_evt', 'mivr'], 'io-channels': [[1, 5]], 'usb-otg-vbus-regulator': {'regulator-name': ['mt6370-usb-otg-vbus'], 'regulator-min-microvolt': [[4350000]], 'regulator-max-microvolt': [[5800000]], 'regulator-min-microamp': [[500000]], 'regulator-max-microamp': [[3000000]], 'phandle': [[2]]}}
+> >         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb: pmic@34: tcpc: False schema does not allow {'compatible': ['mediatek,mt6370-tcpc'], 'interrupts-extended': [[4294967295, 4, 8]], 'connector': {'compatible': ['usb-c-connector'], 'label': ['USB-C'], 'vbus-supply': [[2]], 'data-role': ['dual'], 'power-role': ['dual'], 'try-power-role': ['sink'], 'source-pdos': [[570527844]], 'sink-pdos': [[570527944]], 'op-sink-microwatt': [[10000000]], 'ports': {'#address-cells': [[1]], '#size-cells': [[0]], 'port@0': {'reg': [[0]], 'endpoint': {'remote-endpoint': [[4294967295]]}}, 'port@1': {'reg': [[1]], 'endpoint': {'remote-endpoint': [[4294967295]]}}, 'port@2': {'reg': [[2]], 'endpoint': {'remote-endpoint': [[4294967295]]}}}}}
+> >         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb: pmic@34: indicator: False schema does not allow {'compatible': ['mediatek,mt6370-indicator'], '#address-cells': [[1]], '#size-cells': [[0]], 'multi-led@0': {'reg': [[0]], 'function': ['indicator'], 'color': [[9]], 'led-max-microamp': [[24000]], '#address-cells': [[1]], '#size-cells': [[0]], 'led@0': {'reg': [[0]], 'color': [[1]]}, 'led@1': {'reg': [[1]], 'color': [[2]]}, 'led@2': {'reg': [[2]], 'color': [[3]]}}, 'led@3': {'reg': [[3]], 'function': ['indicator'], 'color': [[0]], 'led-max-microamp': [[6000]]}}
+> >         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb: pmic@34: flashlight: False schema does not allow {'compatible': ['mediatek,mt6370-flashlight'], '#address-cells': [[1]], '#size-cells': [[0]], 'led@0': {'reg': [[0]], 'led-sources': [[0]], 'function': ['flash'], 'color': [[0]], 'function-enumerator': [[1]], 'led-max-microamp': [[200000]], 'flash-max-microamp': [[500000]], 'flash-max-timeout-us': [[1248000]]}, 'led@1': {'reg': [[1]], 'led-sources': [[1]], 'function': ['flash'], 'color': [[0]], 'function-enumerator': [[2]], 'led-max-microamp': [[200000]], 'flash-max-microamp': [[500000]], 'flash-max-timeout-us': [[1248000]]}}
+> >         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb: backlight: mediatek,bled-channel-use: b'\x0f' is not of type 'object', 'array', 'boolean', 'null'
+> >         From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
+> > Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb:0:0: /example-0/i2c/pmic@34/backlight: failed to match any schema with compatible: ['mediatek,mt6370-backlight']
+> > Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb:0:0: /example-0/i2c/pmic@34/charger: failed to match any schema with compatible: ['mediatek,mt6370-charger']
+> > Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb:0:0: /example-0/i2c/pmic@34/indicator: failed to match any schema with compatible: ['mediatek,mt6370-indicator']
+> > Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb:0:0: /example-0/i2c/pmic@34/flashlight: failed to match any schema with compatible: ['mediatek,mt6370-flashlight']
+> > Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb:0:0: /example-0/i2c/pmic@34/tcpc: failed to match any schema with compatible: ['mediatek,mt6370-tcpc']
+> >
 > 
-> Am Donnerstag, 16. Juni 2022, 18:16:43 CEST schrieb Laurent Pinchart:
-> > Add DT nodes for the two CSI-2 receivers of the i.MX8MP.
-> > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> > This patch depends on the DT bindings submitted in [1], for which I plan
-> > to submit a pull request for v5.20.
-> > 
-> > [1] https://lore.kernel.org/linux-media/83e27382-6f97-015f-2ee1-f43820967093@linaro.org/T/#u
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 60 +++++++++++++++++++++++
-> >  1 file changed, 60 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
-> > d9542dfff83f..c8ed206b7f41 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > @@ -1063,6 +1063,66 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
-> >  				#power-domain-cells = <1>;
-> >  			};
-> > 
-> > +			mipi_csi_0: csi@32e40000 {
-> > +				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
-> > +				reg = <0x32e40000 0x10000>;
-> > +				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-> > +				clock-frequency = <500000000>;
+> Before we submitted these patches, we had already checked by running
+> this command below,
+> "make DT_CHECKER_FLAGS=-m dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml".
+> But we could not find any errors like your error msg after the checking process.
 > 
-> According to datasheet (IMX8MPIEC Rev 1, Table 1, Subsystem "MIPI Interface") 
-> "MIPI CSI1" supports up to 500MHz only in single camera use and overdrive 
-> mode. In normal mode only 400MHz are supported. For dual camera usage only up 
-> to 266MHz is supported.
+> Our mfd dt-binding patch is dependent on "backlight dt-binding",
+> "charger dt-binding", "tcpc dt-binding", "indicator dt-binding" and
+> "flashlight dt-binding" patches.
+> Would you please apply them before you check mfd dt-binding patch?
 
-I wasn't aware of that, thank you for the information.
+That is what is done. Not sure what happened here though.
 
-> Apparently this is when using ISP, things might be 
-> different when using ISI.
-
-Table 13 documents the maximum frequencies of clocks
-MEDIA_CAM1_PIX_CLK_ROOT and MEDIA_CAM2_PIX_CLK_ROOT to be 400/500MHz
-(normal/overdrive) and 277/277MHz respectively, so I'd say this affects
-the ISI too. I wonder what causes the 266MHz constraint for dual camera
-mode.
-
-There's also a constraint of at most 375 MPixel/s aggregate performance
-for the two ISP instances, but I don't know if that's due to the memory
-bandwidth, or if it is on the input side in which case it may include
-blanking and translate directly to clock frequencies. If I had to guess,
-I'd say the former.
-
-> I'm hesitating specifying the overdrive mode 
-> frequency here. Most users, most probably using normal mode, would have 
-> requiring them to adjust this.
-> For dual camera this is even as low as 266MHz, but IMHO this is a special 
-> case.
-
-I agree, we should at least lower the frequency to 400MHz here. Given
-that the frequency limit depends on whether one or two cameras are used,
-I'm actually tempted to either specify the worst case (2x 266MHz), or
-even drop the clock-frequency completely, forcing users to think about
-what they need. The driver however silently falls back to a default
-frequency of 166MHz when the property isn't set, so developers won't
-necessarily immediately notice that something is wrong, or why.
-
-Should I specify 400 MHz and 266 MHz here, or go for the safer option of
-266 MHz and 266 MHz ?
-
-> > +				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
-> > +				clock-names = "pclk", "wrap", "phy", "axi";
-> > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM1_PIX>;
-> > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
-> > +				assigned-clock-rates = <500000000>;
-> > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
-> > +				status = "disabled";
-> > +
-> > +				ports {
-> > +					#address-cells = <1>;
-> > +					#size-cells = <0>;
-> > +
-> > +					port@0 {
-> > +						reg = <0>;
-> > +					};
-> > +
-> > +					port@1 {
-> > +						reg = <1>;
-> > +					};
-> > +				};
-> > +			};
-> > +
-> > +			mipi_csi_1: csi@32e50000 {
-> > +				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
-> > +				reg = <0x32e50000 0x10000>;
-> > +				interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-> > +				clock-frequency = <266000000>;
-> 
-> For single camera usage this can even go as high as 277MHz. 266MHz is only for 
-> dual camera use.
-> 
-> > +				clocks = <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_CAM2_PIX_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>;
-> > +				clock-names = "pclk", "wrap", "phy", "axi";
-> > +				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM2_PIX>;
-> > +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
-> > +				assigned-clock-rates = <266000000>;
-> > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
-> > +				status = "disabled";
-> > +
-> > +				ports {
-> > +					#address-cells = <1>;
-> > +					#size-cells = <0>;
-> > +
-> > +					port@0 {
-> > +						reg = <0>;
-> > +					};
-> > +
-> > +					port@1 {
-> > +						reg = <1>;
-> > +					};
-> > +				};
-> > +			};
-> > +
-> >  			hsio_blk_ctrl: blk-ctrl@32f10000 {
-> >  				compatible = "fsl,imx8mp-hsio-blk-ctrl", "syscon";
-> >  				reg = <0x32f10000 0x24>;
-> > 
-> > base-commit: b13baccc3850ca8b8cccbf8ed9912dbaa0fdf7f3
-
--- 
-Regards,
-
-Laurent Pinchart
+Rob
