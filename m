@@ -2,219 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6A2354F82C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 15:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1019C54F885
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 15:49:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382472AbiFQNIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 09:08:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54436 "EHLO
+        id S1380358AbiFQNtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 09:49:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382359AbiFQNIG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 09:08:06 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6EF4175A7;
-        Fri, 17 Jun 2022 06:08:02 -0700 (PDT)
+        with ESMTP id S233854AbiFQNty (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 09:49:54 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6258B433B8;
+        Fri, 17 Jun 2022 06:49:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1655471282; x=1687007282;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=qMlJTGouMGzkJNwKsS+Zb4L98aeIn5YgnhqvcoiSDMY=;
-  b=erFxOGKJDeurZBfIQtg7pJOFokotpVAJ91Ri6oVudncI60nI2+suukGg
-   RU4pj8m3UTifvTVL/tp3G4CftovM0Wy1QxkovJSoTR/REBeHiHm10nVIl
-   /8QGcF8i6UZuSkC4Ar0UAhQxyG345GdLR28f+saHbfYHI7m+o1M6X9zs1
-   tC1Cl9dGtjz+DxKlvoAGyDu+Wj5kI2SGwdPezdK9bkcIA4EhiEelxloGR
-   /TJJt9Nn6FAU0WgjOND7+hLtMA9yD4+y1QOboGDLyb7pZH4BP+Y2VMlWs
-   CUrAEkgGgVE5ADJAdGdnsGe9po6Az4YlmHsHI2zqbvBwvEFt7CT2JddMu
-   g==;
-X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; 
-   d="scan'208";a="163864329"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Jun 2022 06:08:02 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 17 Jun 2022 06:08:02 -0700
-Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Fri, 17 Jun 2022 06:07:58 -0700
-From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-To:     <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
-        <Nicolas.Ferre@microchip.com>, <Claudiu.Beznea@microchip.com>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <UNGLinuxDriver@microchip.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 3/3] mfd: atmel-flexcom: Add support for lan966x flexcom chip-select configuration
-Date:   Fri, 17 Jun 2022 18:37:29 +0530
-Message-ID: <20220617130729.12072-4-kavyasree.kotagiri@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220617130729.12072-1-kavyasree.kotagiri@microchip.com>
-References: <20220617130729.12072-1-kavyasree.kotagiri@microchip.com>
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+        bh=oRNl7sLDT2M1niS9iFlX8UVibPyyHljcjZhc79I3m3g=;
+        b=YCWT/4O8q8u1FdC7N+RsT1LIx6PqDyalxJtJTyTq2/T8neIdi9TksR1CRULDMFNKhpXJ1eFA7kkHf
+         yERE+R1IIuNTkeGKhLk+Pe39P8J+E6uWfgqo+UJ0V1IUW8VtqmwESxKgOAYUZxqsDjR/r08Ly/dHAE
+         dVhCsDRqyaAIsQHBCZSGJZ7gkF5OxfpCkBK53Gfk/ZkIEmBBVD3cKRoPtqqLk3yXUW57JKBwA/flKW
+         t+vq1u/GgbL+wYg0WWJw7J5M7Lbmlz9dL18jdwqZWVcQAT7t79IMJWdE46dd41gqJ4tAg3IuXVWllH
+         12sVeL7tvE8vkuH56d9GyAOUKpj/POg==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000010,0.023636)], BW: [Enabled, t: (0.000015,0.000001)], RTDA: [Enabled, t: (0.077008), Hit: No, Details: v2.40.0; Id: 15.52k3tm.1g5oupr6p.297c; mclb], total: 0(700)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from h-e2.ddg ([85.143.252.66])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Fri, 17 Jun 2022 16:49:19 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, corbet@lwn.net
+Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
+        Conor.Dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, system@metrotek.ru
+Subject: [PATCH v20 0/4] Microchip Polarfire FPGA manager
+Date:   Fri, 17 Jun 2022 16:48:42 +0300
+Message-Id: <20220617134846.19859-1-i.bornyakov@metrotek.ru>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LAN966x SoC have 5 flexcoms. Each flexcom has 2 chip-selects
-which are optional I/O lines. For each chip select of each
-flexcom there is a configuration register FLEXCOM_SHARED[0-4]:SS_MASK[0-1].
-The width of configuration register is 21 because there are
-21 shared pins on each of which the chip select can be mapped.
-Each bit of the register represents a different FLEXCOM_SHARED pin.
+Add support to the FPGA manager for programming Microchip Polarfire
+FPGAs over slave SPI interface with .dat formatted bitsream image.
 
-Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
----
-v3 -> v4:
- - Add condition for a flexcom whether to configure chip-select lines
-   or not, based on "microchip,flx-shrd-pins" property existence because
-   chip-select lines are optional.
+Changelog:
+  v1 -> v2: fix printk formating
+  v2 -> v3:
+   * replace "microsemi" with "microchip"
+   * replace prefix "microsemi_fpga_" with "mpf_"
+   * more sensible .compatible and .name strings
+   * remove unused defines STATUS_SPI_VIOLATION and STATUS_SPI_ERROR
+  v3 -> v4: fix unused variable warning
+    Put 'mpf_of_ids' definition under conditional compilation, so it
+    would not hang unused if CONFIG_OF is not enabled.
+  v4 -> v5:
+   * prefix defines with MPF_
+   * mdelay() -> usleep_range()
+   * formatting fixes
+   * add DT bindings doc
+   * rework fpga_manager_ops.write() to fpga_manager_ops.write_sg()
+     We can't parse image header in write_init() because image header
+     size is not known beforehand. Thus parsing need to be done in
+     fpga_manager_ops.write() callback, but fpga_manager_ops.write()
+     also need to be reenterable. On the other hand,
+     fpga_manager_ops.write_sg() is called once. Thus, rework usage of
+     write() callback to write_sg().
+  v5 -> v6: fix patch applying
+     I forgot to clean up unrelated local changes which lead to error on
+     patch 0001-fpga-microchip-spi-add-Microchip-MPF-FPGA-manager.patch
+     applying on vanilla kernel.
+  v6 -> v7: fix binding doc to pass dt_binding_check
+  v7 -> v8: another fix for dt_binding_check warning
+  v8 -> v9:
+   * add another patch to support bitstream offset in FPGA image buffer
+   * rework fpga_manager_ops.write_sg() back to fpga_manager_ops.write()
+   * move image header parsing from write() to write_init()
+  v9 -> v10:
+   * add parse_header() callback to fpga_manager_ops
+   * adjust fpga_mgr_write_init[_buf|_sg]() for parse_header() usage
+   * implement parse_header() in microchip-spi driver
+  v10 -> v11: include missing unaligned.h to microchip-spi
+     fix error: implicit declaration of function 'get_unaligned_le[16|32]'
+  v11 -> v12:
+   * microchip-spi: double read hw status, ignore first read, because it
+     can be unreliable.
+   * microchip-spi: remove sleep between status readings in
+     poll_status_not_busy() to save a few seconds. Status is polled on
+     every 16 byte writes - that is quite often, therefore
+     usleep_range() accumulate to a considerable number of seconds.
+  v12 -> v13:
+   * fpga-mgr: separate fpga_mgr_parse_header_buf() from
+     fpga_mgr_write_init_buf()
+   * fpga-mgr: introduce FPGA_MGR_STATE_PARSE_HEADER and
+     FPGA_MGR_STATE_PARSE_HEADER_ERR fpga_mgr_states
+   * fpga-mgr: rename fpga_mgr_write_init_sg() to fpga_mgr_prepare_sg()
+     and rework with respect to a new fpga_mgr_parse_header_buf()
+   * fpga-mgr: rework write accounting in fpga_mgr_buf_load_sg() for
+     better clarity
+   * microchip-spi: rename MPF_STATUS_POLL_TIMEOUT to
+     MPF_STATUS_POLL_RETRIES
+   * microchip-spi: add comment about status reading quirk to
+     mpf_read_status()
+   * microchip-spi: rename poll_status_not_busy() to mpf_poll_status()
+     and add comment.
+   * microchip-spi: make if statement in mpf_poll_status() easier to
+     read.
+  v13 -> v14:
+   * fpga-mgr: improvements from Xu Yilun in
+      - fpga_mgr_parse_header_buf()
+      - fpga_mgr_write_init_buf()
+      - fpga_mgr_prepare_sg()
+      - fpga_mgr_buf_load_sg()
+   * fpga-mgr: add check for -EAGAIN from fpga_mgr_parse_header_buf()
+     when called from fpga_mgr_buf_load_mapped()
+   * microchip-spi: remove excessive cs_change from second spi_transfer
+     in mpf_read_status()
+   * microchip-spi: change type of components_size_start,
+     bitstream_start, i from size_t to u32 in mpf_ops_parse_header()
+  v14 -> v15: eliminate memcpy() in mpf_ops_write()
+    Eliminate excessive memcpy() in mpf_ops_write() by using
+    spi_sync_transfer() instead of spi_write().
+  v15 -> v16:
+   * microchip-spi: change back components_size_start and
+     bitstream_start variables types to size_t, i - to u16 in
+     mpf_ops_parse_header()
+   * fpga-mgr: rename fpga_parse_header_buf() to
+     fpga_parse_header_mapped(). It serves only mapped FPGA image now,
+     adjust it accordingly.
+   * fpga-mgr: separate fpga_mgr_parse_header_sg_first() and
+     fpga_mgr_parse_header_sg() from fpga_mgr_prepare_sg()
+  v16 -> v17:
+   * fpga-mgr: return size of allocated header from
+     fpga_mgr_parse_header_sg(), add `char **ret_buf` to function args
+     to save pointer to allocated header. This allow us to call
+     fpga_mgr_write_init_buf() with exact size of allocated header.
+   * document parse_header() callback in fpga-mgr.rst
+  v17 -> v18:
+   * fpga-mgr: change back fpga_mgr_parse_header_sg() to return
+     allocated buffer but set buffer size into output parameter
+   * fpga-mgr: check returned pointer from krealloc for ZERO_OR_NULL_PTR
+     in fpga_mgr_paese_header_sg() as krealloc may return ZERO_SIZE_PTR.
+   * fpga-mgr: in fpga_mgr_prepare_sg() return fpga_mgr_write_init() on
+     fast path only when both initial_header_size and parse_header() are
+     not defined.
+   * docs: fpga-mgr: a few rewords from Xu Yilun
+  v18 -> v19:
+   * microchip-spi: split multiple assignments on a single line in
+     functions mpf_read_status() and mpf_ops_parse_header()
+   * fpga-mgr: add braces {} around "else if" arm in
+     fpga_mgr_prepare_sg()
+   * fpga-mgr: don't reuse krealloc() arg in fpga_mgr_parse_header_sg().
+     If krealloc() returns NULL, it doesn't free the original.
+  v19 -> v20:
+   * fpga-mgr: initialize info->header_size with
+     mops->initial_header_size at fpga_mgr_load().
+   * fpga-mgr: add mops->skip_header boolean flag. Adjust skipping
+     header before write to check against skip_header flag instead of
+     mere presence of info->header_size.
+   * fpga-mgr: split check for ZERO_OR_NULL_PTR() after realloc() in
+     fpga_mgr_parse_header_sg() function to check against zero header +
+     check against NULL returned from realloc().
+   * docs: fpga-mgr: adjust for skip_header flag.
+   * microchip-spi: add skip_header to mpf_ops.
 
-v2 -> v3:
- - used goto label for clk_disable in error cases.
+Ivan Bornyakov (4):
+  fpga: fpga-mgr: support bitstream offset in image buffer
+  docs: fpga: mgr: document parse_header() callback
+  fpga: microchip-spi: add Microchip MPF FPGA manager
+  dt-bindings: fpga: add binding doc for microchip-spi fpga mgr
 
-v1 -> v2:
- - use GENMASK for mask, macros for maximum allowed values.
- - use u32 values for flexcom chipselects instead of strings.
- - disable clock in case of errors.
+ .../fpga/microchip,mpf-spi-fpga-mgr.yaml      |  44 ++
+ Documentation/driver-api/fpga/fpga-mgr.rst    |  27 +-
+ drivers/fpga/Kconfig                          |   8 +
+ drivers/fpga/Makefile                         |   1 +
+ drivers/fpga/fpga-mgr.c                       | 236 +++++++++--
+ drivers/fpga/microchip-spi.c                  | 398 ++++++++++++++++++
+ include/linux/fpga/fpga-mgr.h                 |  22 +-
+ 7 files changed, 703 insertions(+), 33 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+ create mode 100644 drivers/fpga/microchip-spi.c
 
- drivers/mfd/atmel-flexcom.c | 94 ++++++++++++++++++++++++++++++++++++-
- 1 file changed, 93 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/mfd/atmel-flexcom.c b/drivers/mfd/atmel-flexcom.c
-index 33caa4fba6af..430b6783b5a7 100644
---- a/drivers/mfd/atmel-flexcom.c
-+++ b/drivers/mfd/atmel-flexcom.c
-@@ -28,15 +28,68 @@
- #define FLEX_MR_OPMODE(opmode)	(((opmode) << FLEX_MR_OPMODE_OFFSET) &	\
- 				 FLEX_MR_OPMODE_MASK)
- 
-+/* LAN966x flexcom shared register offsets */
-+#define FLEX_SHRD_SS_MASK_0	0x0
-+#define FLEX_SHRD_SS_MASK_1	0x4
-+#define FLEX_SHRD_PIN_MAX	20
-+#define FLEX_CS_MAX		1
-+#define FLEX_SHRD_MASK		GENMASK(20, 0)
-+
-+struct atmel_flex_caps {
-+	bool has_flx_cs;
-+};
-+
- struct atmel_flexcom {
- 	void __iomem *base;
-+	void __iomem *flexcom_shared_base;
- 	u32 opmode;
- 	struct clk *clk;
- };
- 
-+static int atmel_flexcom_lan966x_cs_config(struct platform_device *pdev)
-+{
-+	struct atmel_flexcom *ddata = dev_get_drvdata(&pdev->dev);
-+	struct device_node *np = pdev->dev.of_node;
-+	u32 flx_shrd_pins[2], flx_cs[2], val;
-+	int err, i, count;
-+
-+	count = of_property_count_u32_elems(np, "microchip,flx-shrd-pins");
-+	if (count <= 0 || count > 2) {
-+		dev_err(&pdev->dev, "Invalid %s property (%d)\n", "flx-shrd-pins",
-+				count);
-+		return -EINVAL;
-+	}
-+
-+	err = of_property_read_u32_array(np, "microchip,flx-shrd-pins", flx_shrd_pins, count);
-+	if (err)
-+		return err;
-+
-+	err = of_property_read_u32_array(np, "microchip,flx-cs", flx_cs, count);
-+	if (err)
-+		return err;
-+
-+	for (i = 0; i < count; i++) {
-+		if (flx_shrd_pins[i] > FLEX_SHRD_PIN_MAX)
-+			return -EINVAL;
-+
-+		if (flx_cs[i] > FLEX_CS_MAX)
-+			return -EINVAL;
-+
-+		val = ~(1 << flx_shrd_pins[i]) & FLEX_SHRD_MASK;
-+
-+		if (flx_cs[i] == 0)
-+			writel(val, ddata->flexcom_shared_base + FLEX_SHRD_SS_MASK_0);
-+		else
-+			writel(val, ddata->flexcom_shared_base + FLEX_SHRD_SS_MASK_1);
-+	}
-+
-+	return 0;
-+}
-+
- static int atmel_flexcom_probe(struct platform_device *pdev)
- {
- 	struct device_node *np = pdev->dev.of_node;
-+	const struct atmel_flex_caps *caps;
- 	struct resource *res;
- 	struct atmel_flexcom *ddata;
- 	int err;
-@@ -76,13 +129,52 @@ static int atmel_flexcom_probe(struct platform_device *pdev)
- 	 */
- 	writel(FLEX_MR_OPMODE(ddata->opmode), ddata->base + FLEX_MR);
- 
-+	caps = of_device_get_match_data(&pdev->dev);
-+	if (!caps) {
-+		dev_err(&pdev->dev, "Could not retrieve flexcom caps\n");
-+		err = -EINVAL;
-+		goto clk_disable;
-+	}
-+
-+	if (caps->has_flx_cs && of_property_read_bool(np, "microchip,flx-shrd-pins")) {
-+		ddata->flexcom_shared_base = devm_platform_get_and_ioremap_resource(pdev, 1, NULL);
-+		if (IS_ERR(ddata->flexcom_shared_base)) {
-+			err = dev_err_probe(&pdev->dev,
-+					PTR_ERR(ddata->flexcom_shared_base),
-+					"failed to get flexcom shared base address\n");
-+			goto clk_disable;
-+		}
-+
-+		err = atmel_flexcom_lan966x_cs_config(pdev);
-+		if (err)
-+			goto clk_disable;
-+	}
-+
-+clk_disable:
- 	clk_disable_unprepare(ddata->clk);
-+	if (err)
-+		return err;
- 
- 	return devm_of_platform_populate(&pdev->dev);
- }
- 
-+static const struct atmel_flex_caps atmel_flexcom_caps = {};
-+
-+static const struct atmel_flex_caps lan966x_flexcom_caps = {
-+	.has_flx_cs = true,
-+};
-+
- static const struct of_device_id atmel_flexcom_of_match[] = {
--	{ .compatible = "atmel,sama5d2-flexcom" },
-+	{
-+		.compatible = "atmel,sama5d2-flexcom",
-+		.data = &atmel_flexcom_caps,
-+	},
-+
-+	{
-+		.compatible = "microchip,lan966x-flexcom",
-+		.data = &lan966x_flexcom_caps,
-+	},
-+
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, atmel_flexcom_of_match);
 -- 
-2.17.1
+2.25.1
+
 
