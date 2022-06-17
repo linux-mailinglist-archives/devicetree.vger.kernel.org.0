@@ -2,198 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 043CE54F5BF
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 12:44:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33D0554F5E3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 12:47:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381998AbiFQKoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 06:44:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38248 "EHLO
+        id S1382126AbiFQKr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 06:47:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381958AbiFQKoh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 06:44:37 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DF456B0A9;
-        Fri, 17 Jun 2022 03:44:36 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id hj18so7385748ejb.0;
-        Fri, 17 Jun 2022 03:44:36 -0700 (PDT)
+        with ESMTP id S1382169AbiFQKrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 06:47:23 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2081.outbound.protection.outlook.com [40.107.244.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 146E86B7F1;
+        Fri, 17 Jun 2022 03:47:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=G9TG1r+905kfPM/SMntdqBzixYbqppl25Ilql8illxBTwKDxuqDx6fEyQWE920g8qKyJQUDxBG9uwMZ76y+2HJ4JTkN0A0ZeqRslEonq8r+vm7tFKJE0eLh5k8IGeA0S65WQUVpfO/x9Gy57uZhfSGRK3Byz38GsPluC2NbDTMb4a9hA5h/iycOIoAIVo3Gct+zgJDjVnmLZIXiZfm9fQlKk/HLDA8lTqD4ZVTJZZLtcUkNpSUSSDhdeiy8GLQRSdK5ZChV+VzSr6BdckrfJSdHP/47O2Pqtuak7XxJpSLM3jAtjMQF5aSPPPvT8a3K0efCb1Of8ZczHTLH3szMvXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8Odb4IuMKC+46SK664kcy7WZMI3iEcQXZdtlnoW8WVc=;
+ b=ChDxOYDqBMPoGFaHeTfLxQarzFrc5UljZV5MmJF4HB4G6B2/taVWmx/8lBYubIkEIAiidyGlRPRy01EkTWuZ9qXt/IUEr++NHxc1TO/w6JLAupLFifIGNBm3SMw5EyfZgc4mg7jmZFM6Y7dY+Krx5KoNuGlmW/HyJq8yd9Bs55RlZApIpYXoscAFBve3ce5KYSp1VZYkzQv/HUdiBfIZ004c063rRCHyyTVQvSH0b4Rz83Ma7kel8Pzw0efTi+wNl54LQQ86t70JqmDxfA8MbLXgGt3VVmblVb/MAj8mUql0i4P/Z89VBwkqwPhHiNGrqJLQplN+Q3QKZtZaMmkPdQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=gmail.com smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=otzMXO+UzjAVntuNvFzmToiaj0Xvl10WTmF2X1x20Gs=;
-        b=NbYG0/ltrsRmRfUcWflVhrJw27NKwjWAIJLlH+BtGanROc2UkceKeROAUsMGYNWAYm
-         uwjxjB4sww9rCvxZbMcmzK7/o+ko5hPycRmwL9Z41FT2agzVwgKMgk1bJZjOhg7IMdfH
-         Erxa5b6ZPlPWptAUQ0GTIFYhFm7r5RO2nMOry269LSBYPA3G/CgBzAvadEGWF8wDHfPR
-         IWysUmq0Jnp2S2O9LKnUd9akvLGUdYQOkjkyqzRZXnjMe4/4PuNyQfz0AeY//YMvqjz/
-         wlPEWG3jjFg1wxOH2SA3BA0ladlyO8vWZH4kEiXJsrKgFRux5hSNtg4XX8z0Ysl1aCPd
-         xEEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=otzMXO+UzjAVntuNvFzmToiaj0Xvl10WTmF2X1x20Gs=;
-        b=ytRJC8BM69peWevUmlz8wa9HXE+sHcqbZJzvHPKt7U+8OW0JRlAJM79hPZgLB+NF2s
-         hEt9M7x9YT4c9DmRDK4VcWsztKJZCJyZUQGJkhLqpVswJm+LlacQNpcD9t7jl01L1nZi
-         kHDaYWxfin2IR8eyX92wWjVHthorJZkbRteaX3uFiaXEji/ecbymCPnIu4jsuE/DZEiF
-         e/zujuEYEdOrWAahJm+Ed/grBsjxUlcocOmi/W1njTSYrxr3AK++GFGS7qjzccVYQ+l9
-         Na3HoBl3gSF8/ewQiH7m5j9WwCZYpwZ6kqnTpkRKvp+tTR3r2ztZshbjws6dkQrxjY4S
-         7ImA==
-X-Gm-Message-State: AJIora/0QoEEOAuGp6Zvfa0Ui78cgNSS9t/B3S7Sm7yfV75mw5qI5Hl3
-        PQ4zMUZzOuccu7HkqPAVf0s=
-X-Google-Smtp-Source: AGRyM1tTm4mmAhpPdwZ1D1xqJQ5B0eHb98NUmc1YWQWMSXAhfW1NR8KcCN8FzvGnAS9VZWpLUFAjtQ==
-X-Received: by 2002:a17:906:2cc8:b0:6fd:d8d8:b8f3 with SMTP id r8-20020a1709062cc800b006fdd8d8b8f3mr8655303ejr.384.1655462674583;
-        Fri, 17 Jun 2022 03:44:34 -0700 (PDT)
-Received: from [192.168.0.24] (80.174.78.229.dyn.user.ono.com. [80.174.78.229])
-        by smtp.gmail.com with ESMTPSA id y3-20020a056402358300b0042dc25fdf5bsm3632843edc.29.2022.06.17.03.44.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 03:44:33 -0700 (PDT)
-Message-ID: <edc8933a-5433-8fe9-f5ab-5efeaa6cde78@gmail.com>
-Date:   Fri, 17 Jun 2022 12:44:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v3 18/40] ARM: dts: mediatek: align gpio-key node names
- with dtschema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8Odb4IuMKC+46SK664kcy7WZMI3iEcQXZdtlnoW8WVc=;
+ b=FQteRmVyPQlXD+j6Aj/zGXch20lxGO17RalBkLSeXWLGVHGf6js+0kNYaI68Qo4nue83YW08vmTWbK2037taZV9vTNgXIEB2/QbUXtqBhzMHj3xaVZcsxRyt1KW2TOvCd9Xqao0CnF3tuhsY9Mo6N7W+24xSGumr1EfKNoMuRRs=
+Received: from DM3PR11CA0002.namprd11.prod.outlook.com (2603:10b6:0:54::12) by
+ MW4PR02MB7171.namprd02.prod.outlook.com (2603:10b6:303:7d::18) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5332.13; Fri, 17 Jun 2022 10:47:17 +0000
+Received: from DM3NAM02FT024.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:0:54:cafe::ae) by DM3PR11CA0002.outlook.office365.com
+ (2603:10b6:0:54::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.14 via Frontend
+ Transport; Fri, 17 Jun 2022 10:47:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com; pr=C
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ DM3NAM02FT024.mail.protection.outlook.com (10.13.5.128) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5353.14 via Frontend Transport; Fri, 17 Jun 2022 10:47:17 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 17 Jun 2022 03:47:15 -0700
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Fri, 17 Jun 2022 03:47:15 -0700
+Envelope-to: git@xilinx.com,
+ saikrishna12468@gmail.com,
+ robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org,
+ linus.walleij@linaro.org,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Received: from [172.23.64.1] (port=60015 helo=xhdvnc101.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <lakshmi.sai.krishna.potthuri@xilinx.com>)
+        id 1o29VN-000AyD-H3; Fri, 17 Jun 2022 03:47:14 -0700
+Received: by xhdvnc101.xilinx.com (Postfix, from userid 14964)
+        id A5D9E215C3; Fri, 17 Jun 2022 16:17:08 +0530 (IST)
+From:   Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
- <20220616005333.18491-18-krzysztof.kozlowski@linaro.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220616005333.18491-18-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Michal Simek <michal.simek@xilinx.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <git@xilinx.com>,
+        <saikrishna12468@gmail.com>,
+        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+Subject: [PATCH 0/4] pinctrl: pinctrl-zynqmp: Add tri-state configuration support
+Date:   Fri, 17 Jun 2022 16:16:55 +0530
+Message-ID: <1655462819-28801-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+X-Mailer: git-send-email 2.1.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 57a7a76f-7ba4-473d-46f6-08da504ebf79
+X-MS-TrafficTypeDiagnostic: MW4PR02MB7171:EE_
+X-Microsoft-Antispam-PRVS: <MW4PR02MB7171936A4B692C2B2DE84722BDAF9@MW4PR02MB7171.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: DwKaHAmYBAGqtnnp6vc3fBT8QU+ANJr3Lc/5LOIVpq4l7boG2g7h7cPyiP9CWSquAt1DRPXlqeM73hzGOZu1jQlRXWQkCEmJGl0trV0cbKfM8BFVAnT6ZCnHhroLT67Sub6QaYSZa/Vs1+Dw4IjFCEN/9jnq7F75MXMyZ+hkI5yZSDN9ePS1szDMv7K0bK8Vb8ALFW/Z9fog5VGf1VpviML3F7IayGLZwwShUYcbbhTmfQx5RdClVGSXbUDXp3kauFLMRsqL43rcvOOsAXbbZW4VIWaI8w4ujcQ7Tdif2LkOkLmEmRYbluq4sLa26eDmUU0WwC8XJWJ6HfZZdtChfXVK47S/YwJ96xjpqqBcCEzb1RMYbnZ/C/sR93mbXhdx/CnKLrcuqm9PzScSixWdT+bBkKnL3XnWYoSbvZtUZxSYR5Wf5YyDcoWmO+VkTju2N6rbqxr4CKBpBe4a5K3RwWNYX/MVZ3QkglauCWLcOKf9ngo72lQa97oGbmc2bV/iGm22twLdXJX8KO5xBIgCPVCp6a+tTKA3+PcJIu/3/WdWLQ3+fliGP0/hdoNqgwuxau8cEtZEDsDQWDy3wsotPOrOMz+oE8XCXoIeOu+J4eF/XlM6iB7ojg136508pc4/wChHHtPgUbPVMRyGFzvYIkg0OCKxI7epR9WxlNEGIvB/6oAhR7QGkgdd9lNp5M62PPdNONrG0t6KMXsJhZMbMQ==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230016)(4636009)(36840700001)(40470700004)(46966006)(6666004)(4744005)(356005)(47076005)(107886003)(5660300002)(186003)(336012)(2906002)(82310400005)(36756003)(426003)(6266002)(316002)(26005)(83380400001)(42186006)(7636003)(54906003)(36860700001)(8676002)(8936002)(498600001)(4326008)(40460700003)(70206006)(70586007)(2616005)(110136005)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2022 10:47:17.5632
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 57a7a76f-7ba4-473d-46f6-08da504ebf79
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT024.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR02MB7171
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series update the Xilinx firmware, ZynqMP dt-binding and ZynqMP
+pinctrl driver to handle 'output-enable' and 'bias-high-impedance'
+configurations. As part of these configurations, ZynqMP pinctrl driver
+takes care of pin tri-state setting.
+Also fix the kernel doc warning in ZynqMP pinctrl driver.
 
+Note: Resending the series as i see this series didn't went out due
+to some issue with my mail client. Please ignore if this series is 
+already received.
 
-On 16/06/2022 02:53, Krzysztof Kozlowski wrote:
-> The node names should be generic and DT schema expects certain pattern
-> (e.g. with key/button/switch).
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Sai Krishna Potthuri (4):
+  firmware: xilinx: Add configuration values for tri-state
+  dt-bindings: pinctrl-zynqmp: Add output-enable configuration
+  pinctrl: pinctrl-zynqmp: Add support for output-enable and
+    bias-high-impedance
+  pinctrl: pinctrl-zynqmp: Fix kernel-doc warning
 
-Applied, thanks!
+ .../bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml         |  4 ++++
+ drivers/pinctrl/pinctrl-zynqmp.c                      | 11 +++++++++++
+ include/linux/firmware/xlnx-zynqmp.h                  |  5 +++++
+ 3 files changed, 20 insertions(+)
 
-> ---
->   arch/arm/boot/dts/mt7623a-rfb-emmc.dts        | 4 ++--
->   arch/arm/boot/dts/mt7623a-rfb-nand.dts        | 4 ++--
->   arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts | 4 ++--
->   arch/arm/boot/dts/mt7623n-rfb-emmc.dts        | 4 ++--
->   arch/arm/boot/dts/mt7629-rfb.dts              | 4 ++--
->   5 files changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/mt7623a-rfb-emmc.dts b/arch/arm/boot/dts/mt7623a-rfb-emmc.dts
-> index 13c86936d1c8..e8b4b6d30d19 100644
-> --- a/arch/arm/boot/dts/mt7623a-rfb-emmc.dts
-> +++ b/arch/arm/boot/dts/mt7623a-rfb-emmc.dts
-> @@ -45,13 +45,13 @@ gpio-keys {
->   		pinctrl-names = "default";
->   		pinctrl-0 = <&key_pins_a>;
->   
-> -		factory {
-> +		button-factory {
->   			label = "factory";
->   			linux,code = <BTN_0>;
->   			gpios = <&pio 256 GPIO_ACTIVE_LOW>;
->   		};
->   
-> -		wps {
-> +		button-wps {
->   			label = "wps";
->   			linux,code = <KEY_WPS_BUTTON>;
->   			gpios = <&pio 257 GPIO_ACTIVE_HIGH>;
-> diff --git a/arch/arm/boot/dts/mt7623a-rfb-nand.dts b/arch/arm/boot/dts/mt7623a-rfb-nand.dts
-> index 88d8f0b2f4c2..61f5da68d4b0 100644
-> --- a/arch/arm/boot/dts/mt7623a-rfb-nand.dts
-> +++ b/arch/arm/boot/dts/mt7623a-rfb-nand.dts
-> @@ -45,13 +45,13 @@ gpio-keys {
->   		pinctrl-names = "default";
->   		pinctrl-0 = <&key_pins_a>;
->   
-> -		factory {
-> +		button-factory {
->   			label = "factory";
->   			linux,code = <BTN_0>;
->   			gpios = <&pio 256 GPIO_ACTIVE_LOW>;
->   		};
->   
-> -		wps {
-> +		button-wps {
->   			label = "wps";
->   			linux,code = <KEY_WPS_BUTTON>;
->   			gpios = <&pio 257 GPIO_ACTIVE_HIGH>;
-> diff --git a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-> index 027c1b0c6a98..5008115d2494 100644
-> --- a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-> +++ b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-> @@ -91,13 +91,13 @@ gpio-keys {
->   		pinctrl-names = "default";
->   		pinctrl-0 = <&key_pins_a>;
->   
-> -		factory {
-> +		button-factory {
->   			label = "factory";
->   			linux,code = <BTN_0>;
->   			gpios = <&pio 256 GPIO_ACTIVE_LOW>;
->   		};
->   
-> -		wps {
-> +		button-wps {
->   			label = "wps";
->   			linux,code = <KEY_WPS_BUTTON>;
->   			gpios = <&pio 257 GPIO_ACTIVE_HIGH>;
-> diff --git a/arch/arm/boot/dts/mt7623n-rfb-emmc.dts b/arch/arm/boot/dts/mt7623n-rfb-emmc.dts
-> index 1b9b9a8145a7..bf67a8e9be59 100644
-> --- a/arch/arm/boot/dts/mt7623n-rfb-emmc.dts
-> +++ b/arch/arm/boot/dts/mt7623n-rfb-emmc.dts
-> @@ -60,13 +60,13 @@ gpio-keys {
->   		pinctrl-names = "default";
->   		pinctrl-0 = <&key_pins_a>;
->   
-> -		factory {
-> +		button-factory {
->   			label = "factory";
->   			linux,code = <BTN_0>;
->   			gpios = <&pio 256 GPIO_ACTIVE_LOW>;
->   		};
->   
-> -		wps {
-> +		button-wps {
->   			label = "wps";
->   			linux,code = <KEY_WPS_BUTTON>;
->   			gpios = <&pio 257 GPIO_ACTIVE_HIGH>;
-> diff --git a/arch/arm/boot/dts/mt7629-rfb.dts b/arch/arm/boot/dts/mt7629-rfb.dts
-> index eb536cbebd9b..84e14bee7235 100644
-> --- a/arch/arm/boot/dts/mt7629-rfb.dts
-> +++ b/arch/arm/boot/dts/mt7629-rfb.dts
-> @@ -23,13 +23,13 @@ chosen {
->   	gpio-keys {
->   		compatible = "gpio-keys";
->   
-> -		reset {
-> +		button-reset {
->   			label = "factory";
->   			linux,code = <KEY_RESTART>;
->   			gpios = <&pio 60 GPIO_ACTIVE_LOW>;
->   		};
->   
-> -		wps {
-> +		button-wps {
->   			label = "wps";
->   			linux,code = <KEY_WPS_BUTTON>;
->   			gpios = <&pio 58 GPIO_ACTIVE_LOW>;
+-- 
+2.17.1
+
