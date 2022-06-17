@@ -2,71 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 228F954FCCD
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 20:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83DCF54FD4F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 21:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383567AbiFQSMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 14:12:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45148 "EHLO
+        id S233841AbiFQTEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 15:04:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383550AbiFQSM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 14:12:29 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9AE336E0F
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 11:12:20 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id h34-20020a17090a29a500b001eb01527d9eso3969915pjd.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 11:12:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=DpZY8rGvI2vk52QK3a3PpGqnbUnWe14CMVh2WjPF3f4=;
-        b=jp8fEEgEtjB2UpHcxYU8SEmnZCyOg8aBH74AVmhtMXOAgmlykM2IGqcKGoIFwVGhYG
-         Nm5Wwjzwi3CO/vBi4Tjuc85NMECmjfzfOHiT++T8k1X4TuBirZN3QQQjPanM8PjAfRw+
-         AKzA1ghtuPBOaQRMeNgpeLrut4VYnRV8NHrSI=
+        with ESMTP id S234102AbiFQTEu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 15:04:50 -0400
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E823344756;
+        Fri, 17 Jun 2022 12:04:49 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id y79so5444614iof.2;
+        Fri, 17 Jun 2022 12:04:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=DpZY8rGvI2vk52QK3a3PpGqnbUnWe14CMVh2WjPF3f4=;
-        b=Fm1IUnNxwE9PjueKws8MzD7zKqx9k+nLevsspyEqiBQrqgQ4nX4yPt6XrHEgZtWTtO
-         DGlzZtdaMYgnSyui2uaDcQSgPQUm7s80WSQWxa0MqN6OgddK8eeGkhV9GsiKMROKsxIX
-         gvx0ki7jDTvZEk8L9VBodvpRj/ZaIAdht3gNkvfKaJz4BF9g1fS0qoTzDRIsgIFoXNwi
-         DfvUIwdM0W3Uxaz4Y/8s/jKozQ00Qq7aIe9QqDtqvZ4Un328dtZ/erPOfl4/ttanTyTC
-         Uf68VDweZD/VQuGD8pCzmHwlhz1J15RQGzVS0WfTNlguR5ggakooVUlz1ffo1aNTiH2o
-         P2Yw==
-X-Gm-Message-State: AJIora92JkVXeMz23ceWTf0/nM07HCe1Xx/j/gmytAMQrz/j203irDQo
-        kHDPT9rkL52pyXq7ydJciOH3sA==
-X-Google-Smtp-Source: AGRyM1uBM5RHyObdSi9ULsnPZZXSzl1rByF1g/Aa6wsbCNt/goOXKEaGeWwtgRbU6+zshLhe8y2eIg==
-X-Received: by 2002:a17:902:700b:b0:167:736e:cfb1 with SMTP id y11-20020a170902700b00b00167736ecfb1mr10790531plk.36.1655489540547;
-        Fri, 17 Jun 2022 11:12:20 -0700 (PDT)
-Received: from joebar-glaptop.lan (c-71-202-34-56.hsd1.ca.comcast.net. [71.202.34.56])
-        by smtp.gmail.com with ESMTPSA id o1-20020a62f901000000b0052285857864sm4121930pfh.97.2022.06.17.11.12.19
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=joRfIL/eN7k8ifMl77EtwTHOeVU5DdMlLc1FNEqs7Wc=;
+        b=Tsn53P/yBIlHYz1Xw4kANQfjgJx35yLez2c4lhTNGmX6iNp57jv5PKc4aSHWzKOBUf
+         iJqlbgsXI9N/ozN6vjm7K4nNIeCJf/+hKmbt9qWqPvFSsG1bwlW6rA/wVXqzT2CbFPT5
+         D2ejXYCST7kpwM3OE8HvIxXQGYlR0M261S1oS/JUgdra7GOGwR/h/dKDxZqb1FsAQ3mY
+         F1FoFLzsARqF6I1BeZpj0v39MWpsUy9zbtX3quWLNwxEXcQdHGjvZBh8psG5sLCa2NlD
+         9FVzIWOhWF+K34ka30xL57KEHRjtqeR7GPpcxrArtP4S2VpAGzIHhFKwyJtxYrJvKeb+
+         P/EQ==
+X-Gm-Message-State: AJIora81gkwccD24aI0w57IfsrFa9FQcWZ6/iTM49P2n8IU3FrbkWC+K
+        9AP/v0tCu6VV7JRL+ub4DshCFdVnLg==
+X-Google-Smtp-Source: AGRyM1vgSvLiPkeOXgOWG8cNtVDgQlyYdM+YmZs1sMYEuBdQAnKRmwJLtIj5lXTAlcBj1kO/NcOKOw==
+X-Received: by 2002:a05:6638:3729:b0:332:1c7e:91f7 with SMTP id k41-20020a056638372900b003321c7e91f7mr6106962jav.84.1655492689172;
+        Fri, 17 Jun 2022 12:04:49 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id q13-20020a0566380ecd00b003315a20c6e1sm2535672jas.9.2022.06.17.12.04.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jun 2022 11:12:20 -0700 (PDT)
-From:   "Joseph S. Barrera III" <joebar@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v6 6/6] arm64: dts: qcom: Remove duplicate sc7180-trogdor include on lazor/homestar
-Date:   Fri, 17 Jun 2022 11:10:41 -0700
-Message-Id: <20220617111021.v6.6.I423a007e8c4451bd1d091fcb65d035e5dcfc9a9d@changeid>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20220617111021.v6.1.I9e299d3fa6fbf50df6fc7207050bf5c3a7bf4c61@changeid>
-References: <20220617111021.v6.1.I9e299d3fa6fbf50df6fc7207050bf5c3a7bf4c61@changeid>
+        Fri, 17 Jun 2022 12:04:48 -0700 (PDT)
+Received: (nullmailer pid 2111168 invoked by uid 1000);
+        Fri, 17 Jun 2022 19:04:47 -0000
+Date:   Fri, 17 Jun 2022 13:04:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     linux-rtc@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: ds1307: Convert to json-schema
+Message-ID: <20220617190447.GA2111063-robh@kernel.org>
+References: <20220617114420.1398259-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220617114420.1398259-1-thierry.reding@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,79 +63,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stephen Boyd <swboyd@chromium.org>
+On Fri, 17 Jun 2022 13:44:19 +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Convert the DS1307 (and compatible) RTC bindings from the free-form text
+> format to json-schema.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+> Changes in v2:
+> - add compatible string list for [ st,m41t00, dallas,ds1338 ]
+> - allow second interrupt and interrupt-names
+> - remove commented-out section
+> - allow vcc-supply
+> 
+>  .../devicetree/bindings/rtc/rtc-ds1307.txt    |  52 ---------
+>  .../devicetree/bindings/rtc/rtc-ds1307.yaml   | 102 ++++++++++++++++++
+>  2 files changed, 102 insertions(+), 52 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.txt
+>  create mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+> 
 
-The sc7180-trogdor-{lazor,homestar}-*.dtsi files all include
-sc7180-trogdor.dtsi and sc7180-trogdor-lazor.dtsi or
-sc7180-trogdor-homestar.dtsi, so including it here in the
-sc7180-trogdor-{lazor,homestar}.dtsi file means we have a duplicate
-include after commit 19794489fa24 ("arm64: dts: qcom: Only include
-sc7180.dtsi in sc7180-trogdor.dtsi"). We include the sc7180-trogdor.dtsi
-file in a board like sc7180-trogdor-lazor-r1.dts so that we can include
-the display bridge snippet (e.g. sc7180-trogdor-ti-sn65dsi86.dtsi)
-instead of making ever increasing variants like
-sc7180-trogdor-lazor-ti-sn65dsi86.dtsi.
-
-Unfortunately, having the double include like this means the display
-bridge's i2c bus is left disabled instead of enabled by the bridge
-snippet. Any boards that use the i2c bus for the display bridge will
-have the bus disabled when we include sc7180-trogdor.dtsi the second
-time, which picks up the i2c status="disabled" line from sc7180.dtsi.
-This leads to the display not turning on and black screens at boot on
-lazor and homestar devices.
-
-Fix this by dropping the include and making a note that the
-sc7180-trogdor-{lazor,homestar}.dtsi file must be included after
-sc7180-trogdor.dtsi
-
-Reported-by: Douglas Anderson <dianders@chromium.org>
-Cc: "Joseph S. Barrera III" <joebar@chromium.org>
-Cc: Matthias Kaehlcke <mka@chromium.org>
-Fixes: 19794489fa24 ("arm64: dts: qcom: Only include sc7180.dtsi in sc7180-trogdor.dtsi")
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-
-Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
----
-
-Changes in v6:
- - First inclusion of this patch.
-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi    | 8 ++++++--
- 2 files changed, 7 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-index 5074014d5269..1bd6c7dcd9e9 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-@@ -5,7 +5,7 @@
-  * Copyright 2021 Google LLC.
-  */
- 
--#include "sc7180-trogdor.dtsi"
-+/* This file must be included after sc7180-trogdor.dtsi */
- 
- / {
- 	/* BOARD-SPECIFIC TOP LEVEL NODES */
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-index d8839ccdcf09..f65c488dcf9d 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-@@ -5,8 +5,12 @@
-  * Copyright 2020 Google LLC.
-  */
- 
--#include "sc7180-trogdor.dtsi"
--/* Must come after sc7180-trogdor.dtsi to modify cros_ec */
-+ap_ec_spi: &spi6 {};
-+ap_h1_spi: &spi0 {};
-+
-+/* This file must be included after sc7180-trogdor.dtsi */
-+
-+/* This include must come after sc7180-trogdor.dtsi to modify cros_ec */
- #include <arm/cros-ec-keyboard.dtsi>
- 
- &ap_sar_sensor {
--- 
-2.31.0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
