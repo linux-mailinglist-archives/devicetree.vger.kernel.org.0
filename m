@@ -2,123 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C772354F410
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 11:17:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0A9354F444
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 11:29:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232062AbiFQJRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 05:17:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34240 "EHLO
+        id S1380830AbiFQJ3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 05:29:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230200AbiFQJRQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 05:17:16 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 054985132B;
-        Fri, 17 Jun 2022 02:17:15 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id w17so4937977wrg.7;
-        Fri, 17 Jun 2022 02:17:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4vsv7dr3uzhUIk6MaDx153ivgxegdosI7Dsq/3/yc84=;
-        b=ACBqxDq5QRbxMPRA+U5PmidBuoHJTv2BC8lJaw1nDyLaHxEIQnEbVgh1x+mlou/rkt
-         mpMX1ICEMpkO/miqr5zblcumCBy1wNo90e4UIpwCqBap8reJuYojFB3S4xiXCzpN5lHz
-         D1MJN+rWmHVdTmPS/Cu2Ip+wJ2npZ3xU5pHFcIlDHEHX6OdsqwvkZhYaABTrA9g23Sxr
-         3x1ELieftG0IeDNRbsW3DE2oakM0Q6aBJDnIGTUSyccEivRbUMcMAOta9CCBSDE3u0Vh
-         PLAr5yoDQ2rsKSt3GuZA32Dcl3bqUyoCgom7QI3GqQzEaUgsMZWYav/WoksfO/RixGrq
-         djeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=4vsv7dr3uzhUIk6MaDx153ivgxegdosI7Dsq/3/yc84=;
-        b=3deE4FDfTeWfQd3CWfloUz2dVGciO6uQZg0RI48+osNny9sllR9xSbVYSrPQp+DUU4
-         H0+l3bCW5q/YSmEe1DoZ5PHlF7qlRrrxdG3ho2sJicUk2ccO+i1CMm/P9JpRqb2wqaYd
-         /X7lASNEM+GNXny/Zuhm8b8GYKo2NEyGK4ye1Q5+BxVB5Vzf+L0Y0STEbClCBvtl4puK
-         qBli6H820ZMsfF5ZDxuOIPyxQBTP+UIgWbfqqUNE9xDnhtFm1Q/58lrYskVINYcgJ/Eq
-         2aIW60lJf8aBgbRrF9IsKDcSctqtwP9kFLhKmsa5XRDhLDOcf0te2HR+jZcZDHP1U0ap
-         7gZg==
-X-Gm-Message-State: AJIora8kJPPDtWLS1jqndwD33amYJPjMaJQl/Zx0GqZym4+gu3/YD3a8
-        I68Czs9NnsDVw13wVMt3H+Y=
-X-Google-Smtp-Source: AGRyM1vtqhqNcKCv+Vd5UmcqgXsk7sCKRe+BlO71XkYROhDQY11lTbjAf8DBCYy7gmcuH56g07pzQw==
-X-Received: by 2002:a05:6000:1445:b0:219:f383:40bc with SMTP id v5-20020a056000144500b00219f38340bcmr8645124wrx.53.1655457433484;
-        Fri, 17 Jun 2022 02:17:13 -0700 (PDT)
-Received: from [192.168.0.24] (80.174.78.229.dyn.user.ono.com. [80.174.78.229])
-        by smtp.gmail.com with ESMTPSA id d18-20020a5d6452000000b00215859413f3sm3980329wrw.107.2022.06.17.02.17.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 02:17:12 -0700 (PDT)
-Message-ID: <074b6829-c5c1-d3fa-d4b9-8b0ba001eabe@gmail.com>
-Date:   Fri, 17 Jun 2022 11:17:11 +0200
+        with ESMTP id S1380568AbiFQJ3D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 05:29:03 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9627633AD
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 02:29:02 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1o28Ha-0001dP-Db; Fri, 17 Jun 2022 11:28:50 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1o28HY-0003ke-Kd; Fri, 17 Jun 2022 11:28:48 +0200
+Date:   Fri, 17 Jun 2022 11:28:48 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Francesco Dolcini <francesco.dolcini@toradex.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [RESEND PATCH v2 4/9] imx: thermal: Configure trip point from DT
+Message-ID: <20220617092848.nzwjjh3gqgbtoyod@pengutronix.de>
+References: <20220617071411.187542-1-francesco.dolcini@toradex.com>
+ <20220617071411.187542-5-francesco.dolcini@toradex.com>
+ <20220617084017.54psumosr6p3a6qt@pengutronix.de>
+ <20220617090442.GB190158@francesco-nb.int.toradex.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: mt6397: Add compatibles for
- MT6331 RTC and keys
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, lee.jones@linaro.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        johnson.wang@mediatek.com, hsin-hsiung.wang@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220616091531.12646-1-angelogioacchino.delregno@collabora.com>
- <20220616091531.12646-2-angelogioacchino.delregno@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220616091531.12646-2-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220617090442.GB190158@francesco-nb.int.toradex.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 16/06/2022 11:15, AngeloGioacchino Del Regno wrote:
-> The MT6331 PMIC provides many sub modules: regulators, audio
-> codec, LED controller, keys, RTC and some GPIOs.
-> It is always paired with a MT6332 Companion PMIC, which provides
-> thermistors, WLEDs (display LED backlight), secondary AP cluster
-> regulators, modem clocks, battery charger and fuel gauge.
+On 22-06-17, Francesco Dolcini wrote:
+> On Fri, Jun 17, 2022 at 10:40:17AM +0200, Marco Felsch wrote:
+> > On 22-06-17, Francesco Dolcini wrote:
+> > > Allow over-writing critical and passive trip point for each
+> > > temperature grade from the device tree, by default the pre-existing
+> > > hard-coded trip points are used.
+> > > 
+> > > This change enables configuring the system thermal characteristics into
+> > > the system-specific device tree instead of relying on global hard-coded
+> > > temperature thresholds that does not take into account the specific
+> > > system thermal design.
+> > > 
+> > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > ---
+> > > v2:
+> > >  - return immediately if no thermal node present in the dts
+> > >  - use dev_info instead of dev_dbg if there is an invalid trip
+> > >  - additional comment in case passive trip point is higher than critical
+> > > ---
+> > >  drivers/thermal/imx_thermal.c | 58 +++++++++++++++++++++++++++++++++++
+> > >  1 file changed, 58 insertions(+)
+> > > 
+> > > diff --git a/drivers/thermal/imx_thermal.c b/drivers/thermal/imx_thermal.c
+> > > index 16663373b682..a964baf802fc 100644
+> > > --- a/drivers/thermal/imx_thermal.c
+> > > +++ b/drivers/thermal/imx_thermal.c
+> > > @@ -17,6 +17,8 @@
+> > >  #include <linux/nvmem-consumer.h>
+> > >  #include <linux/pm_runtime.h>
+> > >  
+> > > +#include "thermal_core.h"
+> > > +
+> > >  #define REG_SET		0x4
+> > >  #define REG_CLR		0x8
+> > >  #define REG_TOG		0xc
+> > > @@ -479,36 +481,92 @@ static int imx_init_calib(struct platform_device *pdev, u32 ocotp_ana1)
+> > >  	return 0;
+> > >  }
+> > >  
+> > > +static void imx_init_temp_from_of(struct platform_device *pdev, const char *name)
+> > > +{
+> > > +	struct imx_thermal_data *data = platform_get_drvdata(pdev);
+> > > +	struct device_node *thermal, *trips, *trip_point;
+> > > +
+> > > +	thermal = of_get_child_by_name(pdev->dev.of_node, name);
+> > > +	if (!thermal)
+> > > +		return;
+> > > +
+> > > +	trips = of_get_child_by_name(thermal, "trips");
+> > > +
+> > > +	for_each_child_of_node(trips, trip_point) {
+> > > +		struct thermal_trip t;
+> > > +
+> > > +		if (thermal_of_populate_trip(trip_point, &t))
+> > > +			continue;
+> > > +
+> > > +		switch (t.type) {
+> > > +		case THERMAL_TRIP_PASSIVE:
+> > > +			data->temp_passive = t.temperature;
+> > > +			break;
+> > > +		case THERMAL_TRIP_CRITICAL:
+> > 
+> > Should we check also the temp_critical and temp_passive not exceeding
+> > the temp_max? Sry. that it came not earlier in my mind. So system damage
+> > is avoided.
 > 
-> Add the necessary compatibles to start implementing the basics.
+> I would not add such kind of restriction in the code. I can think of
+> multiple situations in which a system designer would prefer to take the
+> chances of burning a silicon (or more likely just age it a little bit
+> faster) than to just shut down the system.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
-> ---
->   Documentation/devicetree/bindings/mfd/mt6397.txt | 7 +++++--
->   1 file changed, 5 insertions(+), 2 deletions(-)
+> In the end whoever is building the system should be empowered to do
+> something like that and it's no different from what it's already possible
+> with thermal_of driver for example. 
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> index 293db2a71ef2..f637bee2f3eb 100644
-> --- a/Documentation/devicetree/bindings/mfd/mt6397.txt
-> +++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> @@ -29,6 +29,7 @@ Optional subnodes:
->   - rtc
->   	Required properties: Should be one of follows
->   		- compatible: "mediatek,mt6323-rtc"
-> +		- compatible: "mediatek,mt6331-rtc"
->   		- compatible: "mediatek,mt6358-rtc"
->   		- compatible: "mediatek,mt6397-rtc"
->   	For details, see ../rtc/rtc-mt6397.txt
-> @@ -52,8 +53,10 @@ Optional subnodes:
->   	see ../leds/leds-mt6323.txt
->   
->   - keys
-> -	Required properties:
-> -		- compatible: "mediatek,mt6397-keys" or "mediatek,mt6323-keys"
-> +	Required properties: Should be one of the following
-> +		- compatible: "mediatek,mt6323-keys"
-> +		- compatible: "mediatek,mt6331-keys"
-> +		- compatible: "mediatek,mt6397-keys"
->   	see ../input/mtk-pmic-keys.txt
->   
->   - power-controller
+> In addition to that from a system debug prospective all the threshold
+> (max, passive, critical) are already available in the kernel logs.
+
+Okay, fine with me since you provided dt-snippets with the correct
+temperature. But we should really print a warning since this is a
+abnormal usage and the user should be warned.
+
+Regards,
+  Marco
+> 
+> Francesco
+> 
+> 
