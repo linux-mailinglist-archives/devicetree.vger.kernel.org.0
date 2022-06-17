@@ -2,78 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE46954FDCF
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 21:44:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EE7054FDE3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 21:49:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234451AbiFQTlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 15:41:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53376 "EHLO
+        id S242761AbiFQTrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 15:47:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231890AbiFQTlL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 15:41:11 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A55B159BA3
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 12:41:10 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id gd1so4714556pjb.2
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 12:41:10 -0700 (PDT)
+        with ESMTP id S233044AbiFQTru (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 15:47:50 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 220AE1274E
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 12:47:49 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id o7so10597475eja.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 12:47:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=iNNdP2LZxmKm58FrjwtrJAFY7fk75EuWhvCmR2iKGoc=;
-        b=Z1nVp7zktPau5BC/OAGGnsRMLucenJWjin1G9LC6L4gnzmFv+obGjgdUH78HuIoixb
-         Nv+5XRYOwuLmUY6vBCB/wdROzlwVYnd4SCJphZre3QfibX/Hiul33O79tus/8yo0IJUg
-         ucezWFh94rljovqr1b1v97luXqzR2Gn5chKih9bSHpE0y2JCa9J5EOuy2/0aQ+0NOEZ+
-         hSrMMCL5ds2QjkY1YrG3aAHY2N36X5u0aKf5plVnIN+jJa8JNt4r4qSkZZGXy9azj975
-         AWnrYZdshsHKKqhaX4rB5Rb5ApD+Xd0Vd1pXehA3wZ+p7W1fYeMvrXQ3S468mkHQAHnD
-         D9ng==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1zwRRGT+7U6kcOm23L9Lh8UyJA5oTQ09EyApKVWspK0=;
+        b=e2DlXCS6iKqa9GLoyvPsepDbCTXyGi98RLSEWodCnOkFJA74c2le7Q72NlLN0FGhO5
+         pLm9bgB/9qGbnuSMzlu5tDFZQC7xuU1iUCExxn5Hdj3lzBHhFD5/Lsq6bU4kOJOvCjhU
+         wm7pRl03A0DT+F2RuC3KT5SdOOfZiRlLmEhXk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=iNNdP2LZxmKm58FrjwtrJAFY7fk75EuWhvCmR2iKGoc=;
-        b=QfBNaHcz7S9GFGzlo1l/6Zq0UHwRNyg+qMtSC6X7F+KwIbcvLaPT5WMRDL0RBdcJyp
-         KlL2m8VbQUJffkiXHqc+CHFX1Mgct/RQpnLsPvtdPPhrhpnZM0CBJcq5D8d+DjL1QECc
-         sJro1tsjCVNbZVa2CA7GQHYm82QKwWFeWQrVmkn2aGFkAu0l5APLC2Xg2wOMUxGX98r1
-         2xg4m5TkFzKICsnXY6oTnpwwQ2jKc0vFWICbPyXeU00Fo8iagpzimu1NP95wXabrR5Yt
-         x2hE0lJdRDwsmR53TdJJvjy3AxVbFUlu71HhzQMwL9Z6G6jXQCPJsnY6dT+C0IeOrkLb
-         I+Cg==
-X-Gm-Message-State: AJIora/9YkqQ2QGgouGbpUzuVQ+jFW4B0L3I6lvJH171A4jQi9fSaVK2
-        gzS7XeM2Q1bB66am9Mk44nc4xA==
-X-Google-Smtp-Source: AGRyM1vNWiaAHppJnHGdj2jmXr1y/42d4G8MNghgBWOVZJq0sHQra1yo+ss7Yv2WiLNUQSH80DxW0w==
-X-Received: by 2002:a17:90b:1d8c:b0:1e6:8032:a8dc with SMTP id pf12-20020a17090b1d8c00b001e68032a8dcmr12388262pjb.99.1655494870110;
-        Fri, 17 Jun 2022 12:41:10 -0700 (PDT)
-Received: from [172.31.214.180] ([216.9.110.13])
-        by smtp.googlemail.com with ESMTPSA id x126-20020a626384000000b0051835ccc008sm4073250pfb.115.2022.06.17.12.41.07
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1zwRRGT+7U6kcOm23L9Lh8UyJA5oTQ09EyApKVWspK0=;
+        b=hpF//l8WLUgzlIvZ9K6mhByuq786R6CWUbPBVKw4sv0mH+MG3Izm1ZCD9HeCYmuKCt
+         kzJhLiYYkP6UlfhBG/FPwgj3nwR70YLuOuCQVFpS1wG4RI9prFFTkKRM5krFOsA9LWos
+         DatN/H4uysuGa3OuTmkAR3b35dpkZ0KX0VuySEM47QM7M4LZ9QDkGks+LGpi/i9Eq7PH
+         /3LRXj9C34/kqcbfzWaRgFsoI4oqTDFMSVhC19ERjrhnId/UZ6nlRR+BUNGbWXIRRBR+
+         mGUQTDDsLszkzKteiuVvqVxmWqH8IvUnmPFRCzsCyBpToZu3Jyj6F6+ZXBQwjv2NM5AJ
+         TUWw==
+X-Gm-Message-State: AJIora+xUBuxGJaJ9KV5NrSUmW5z8uKBb/Q1u3gCTrPfOjjJxhRyeSeu
+        v5EQ7G+Gl6ypFh/6say0mOFmfcUm9Kbge54ZsY8=
+X-Google-Smtp-Source: AGRyM1uXnivx44T84uKdA4KlqJYgVd2Oca+HCWM5VA7f4iEz88WlMwiAF14Tz5yTIqcqZYHoeKljIQ==
+X-Received: by 2002:a17:906:519b:b0:711:fb34:16f4 with SMTP id y27-20020a170906519b00b00711fb3416f4mr11060894ejk.275.1655495267328;
+        Fri, 17 Jun 2022 12:47:47 -0700 (PDT)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com. [209.85.128.53])
+        by smtp.gmail.com with ESMTPSA id 22-20020a170906301600b00711d8696de9sm2544177ejz.70.2022.06.17.12.47.46
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 12:41:08 -0700 (PDT)
-Message-ID: <46ec62eb-00da-defb-219f-92121fd35d7e@linaro.org>
-Date:   Fri, 17 Jun 2022 12:41:04 -0700
+        Fri, 17 Jun 2022 12:47:46 -0700 (PDT)
+Received: by mail-wm1-f53.google.com with SMTP id q15so2791110wmj.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 12:47:46 -0700 (PDT)
+X-Received: by 2002:a05:600c:2054:b0:39c:3f73:3552 with SMTP id
+ p20-20020a05600c205400b0039c3f733552mr11938914wmg.15.1655495265869; Fri, 17
+ Jun 2022 12:47:45 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v6 1/4] dt-bindings: nvmem: convert mtk-efuse.txt to YAML
- schema
-Content-Language: en-US
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <20220617111021.v6.1.I9e299d3fa6fbf50df6fc7207050bf5c3a7bf4c61@changeid>
+In-Reply-To: <20220617111021.v6.1.I9e299d3fa6fbf50df6fc7207050bf5c3a7bf4c61@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 17 Jun 2022 12:47:34 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Wp=BMwkbXH+_cHyVP3_0Zh-KXO=N8Y7wg3SktEs7FEXQ@mail.gmail.com>
+Message-ID: <CAD=FV=Wp=BMwkbXH+_cHyVP3_0Zh-KXO=N8Y7wg3SktEs7FEXQ@mail.gmail.com>
+Subject: Re: [PATCH v6 1/6] FROMLIST: arm64: dts: qcom: sc7180-trogdor: Split
+ out keyboard node and describe detachables
+To:     "Joseph S. Barrera III" <joebar@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-References: <20220617093132.22578-1-chunfeng.yun@mediatek.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220617093132.22578-1-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,187 +84,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+On Fri, Jun 17, 2022 at 11:12 AM Joseph S. Barrera III
+<joebar@chromium.org> wrote:
+>
+> From: Stephen Boyd <swboyd@chromium.org>
+>
+> Trogdor devices that have a detachable keyboard still have a
+> non-detachable keyboard input device present because we include the
+> cros-ec-keyboard.dtsi snippet in the top-level sc7180-trogdor.dtsi file
+> that every variant board includes. We do this because the
+> keyboard-controller node also provides some buttons like the power
+> button and volume buttons. Unfortunately, this means we register a
+> keyboard input device that doesn't do anything on boards with a
+> detachable keyboard.
+>
+> Change the node's compatible on detachables to the newly introduced
+> "google,cros-ec-keyb-switches" compatible to indicate that there are
+> only switches and no keyboard to register. Similarly, move the keyboard
+> include that defines the keyboard-controller node out of
+> sc7180-trogdor.dtsi to boards that actually have a keyboard so that the
+> matrix properties are not defined on boards with the switches
+> compatible. Future boards can either use the include approach or the
+> node definition approach to describe a keyboard with possible switches
+> or just some switches.
+>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Cc: Hsin-Yi Wang <hsinyi@chromium.org>
+> Cc: "Joseph S. Barrera III" <joebar@chromium.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> (am from https://lore.kernel.org/r/20220518172525.3319993-1-swboyd@chromium.org)
+>
+>      evtest shows no more cros_ec device
+>
+> Cq-Depend: chromium:3609017
+> Tested-by: Stephen Boyd <swboyd@chromium.org>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
+
+It's OK to re-post Stephen's patch with your series, but:
+
+1. The subject shouldn't have FROMLIST. That's just for patches picked
+back to a Chromium OS kernel.
+
+2. You shouldn't have "(am from...)". Again, just for patches picked
+back to a Chromium OS kernel.
+
+3. No Cq-Depend. That's something for patches picked back to a
+Chromium OS kernel.
+
+4. You should remove tags that were added by the Chromium review
+system, like Stephen's "Tested-by" and my "Reviewed-by".
 
 
-On 17/06/2022 02:31, Chunfeng Yun wrote:
-> Convert mtk-efuse.txt to YAML schema mediatek,efuse.yaml
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
+Another alternative is to not post Stephen's patch but add a note that
+your patch should be applied atop his, then point to his. AKA:
 
-Applied 1/4 and 2/4, dts patches need to go via SoC maintainer.
+https://lore.kernel.org/r/20220518172525.3319993-1-swboyd@chromium.org
 
-
-thanks,
--srini
-
-
-> v6: no changes, based on kernel 5.19-rc1
-> 
-> v5:
-> sync with the series:
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=640196
->     1. change title suggested by Krzysztof;
->     2. No need drop 'reviewed-by Rob' suggested by Krzysztof
->     3. add maintainer Lala who maintain efuse driver now;
-> 
-> v4: fix duplicated unit-address in example;
->      drop reviewed-by Rob, due to changes;
-> 
-> v3: add reviewed-by Rob
-> 
-> v2:
->     1. remove description of subnodes which is covered by nvmem.yaml
-> suggested by Rob
->     2. change the example which is commoner than mt8173's
-> ---
->   .../bindings/nvmem/mediatek,efuse.yaml        | 87 +++++++++++++++++++
->   .../devicetree/bindings/nvmem/mtk-efuse.txt   | 43 ---------
->   2 files changed, 87 insertions(+), 43 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
->   delete mode 100644 Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-> new file mode 100644
-> index 000000000000..f6e01ddb7499
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek efuse
-> +
-> +description: |
-> +  MediaTek's efuse is used for storing calibration data, it can be accessed
-> +  on ARM devices usiong I/O mapped memory.
-> +
-> +maintainers:
-> +  - Andrew-CT Chen <andrew-ct.chen@mediatek.com>
-> +  - Lala Lin <lala.lin@mediatek.com>
-> +
-> +allOf:
-> +  - $ref: "nvmem.yaml#"
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^efuse@[0-9a-f]+$"
-> +
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt7622-efuse
-> +              - mediatek,mt7623-efuse
-> +              - mediatek,mt8173-efuse
-> +              - mediatek,mt8192-efuse
-> +              - mediatek,mt8195-efuse
-> +              - mediatek,mt8516-efuse
-> +          - const: mediatek,efuse
-> +      - const: mediatek,mt8173-efuse
-> +        deprecated: true
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    efuse@11c10000 {
-> +        compatible = "mediatek,mt8195-efuse", "mediatek,efuse";
-> +        reg = <0x11c10000 0x1000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        u3_tx_imp_p0: usb3-tx-imp@184,1 {
-> +            reg = <0x184 0x1>;
-> +            bits = <0 5>;
-> +        };
-> +        u3_rx_imp_p0: usb3-rx-imp@184,2 {
-> +            reg = <0x184 0x2>;
-> +            bits = <5 5>;
-> +        };
-> +        u3_intr_p0: usb3-intr@185 {
-> +            reg = <0x185 0x1>;
-> +            bits = <2 6>;
-> +        };
-> +        comb_tx_imp_p1: usb3-tx-imp@186,1 {
-> +            reg = <0x186 0x1>;
-> +            bits = <0 5>;
-> +        };
-> +        comb_rx_imp_p1: usb3-rx-imp@186,2 {
-> +            reg = <0x186 0x2>;
-> +            bits = <5 5>;
-> +        };
-> +        comb_intr_p1: usb3-intr@187 {
-> +            reg = <0x187 0x1>;
-> +            bits = <2 6>;
-> +        };
-> +        u2_intr_p0: usb2-intr-p0@188,1 {
-> +            reg = <0x188 0x1>;
-> +            bits = <0 5>;
-> +        };
-> +        u2_intr_p1: usb2-intr-p1@188,2 {
-> +            reg = <0x188 0x2>;
-> +            bits = <5 5>;
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-> deleted file mode 100644
-> index 39d529599444..000000000000
-> --- a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-> +++ /dev/null
-> @@ -1,43 +0,0 @@
-> -= Mediatek MTK-EFUSE device tree bindings =
-> -
-> -This binding is intended to represent MTK-EFUSE which is found in most Mediatek SOCs.
-> -
-> -Required properties:
-> -- compatible: should be
-> -	      "mediatek,mt7622-efuse", "mediatek,efuse": for MT7622
-> -	      "mediatek,mt7623-efuse", "mediatek,efuse": for MT7623
-> -	      "mediatek,mt8173-efuse" or "mediatek,efuse": for MT8173
-> -	      "mediatek,mt8192-efuse", "mediatek,efuse": for MT8192
-> -	      "mediatek,mt8195-efuse", "mediatek,efuse": for MT8195
-> -	      "mediatek,mt8516-efuse", "mediatek,efuse": for MT8516
-> -- reg: Should contain registers location and length
-> -- bits: contain the bits range by offset and size
-> -
-> -= Data cells =
-> -Are child nodes of MTK-EFUSE, bindings of which as described in
-> -bindings/nvmem/nvmem.txt
-> -
-> -Example:
-> -
-> -	efuse: efuse@10206000 {
-> -		compatible = "mediatek,mt8173-efuse";
-> -		reg	   = <0 0x10206000 0 0x1000>;
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
-> -
-> -		/* Data cells */
-> -		thermal_calibration: calib@528 {
-> -			reg = <0x528 0xc>;
-> -		};
-> -	};
-> -
-> -= Data consumers =
-> -Are device nodes which consume nvmem data cells.
-> -
-> -For example:
-> -
-> -	thermal {
-> -		...
-> -		nvmem-cells = <&thermal_calibration>;
-> -		nvmem-cell-names = "calibration";
-> -	};
+-Doug
