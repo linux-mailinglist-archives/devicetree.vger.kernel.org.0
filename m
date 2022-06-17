@@ -2,71 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29AE054F7A1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 14:32:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18BBF54F80B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 15:00:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382116AbiFQMcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 08:32:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54596 "EHLO
+        id S235059AbiFQNAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 09:00:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381840AbiFQMce (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 08:32:34 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8491B137
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 05:32:32 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id y19so8496918ejq.6
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 05:32:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=nvAMjfzAieDdDEKI3b0QEO3tnYWZFtyUGMivUCSgJhs=;
-        b=YfL5tjqyOQlGDBiNFNpCeNqtcYZ/gmIIKQ9E3FlTyxyEDAU++nwySeQ0YYJgLUyS+a
-         d/LrRIaRKYg8dugKpxzgyktbPYNzfm8TLZjoaTTuLiN5nMBd6IUU/WRfKbfscLvrvwBX
-         JlPKNk21xCPNH7OT5dYW9OkZYl6/e7tZL2YaZ+M4dAG6uiO/bYnwBlbm1hKODx+tRAGi
-         0QWYNrFz/2ryRjByumLvMnZwB+u0GZBbI1YyCJilyWIic2yPrY/CY+HDLHyhwo04/O90
-         IDfC8MDIyd56jiV5G13UEeBxm67cQeVCuf78xwQrpNZZDD+Zy1NypLe1buIur4swnaiO
-         W6vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=nvAMjfzAieDdDEKI3b0QEO3tnYWZFtyUGMivUCSgJhs=;
-        b=eVPgJ67gVNIBRLvJ+PwZsvE9FG6J4g4c9aeYgHC829wO41gWkEf7vSCBy9XY7lsX2R
-         lpT1uRh6ISIgnNfBt+JGMV1zkLTzEw6c3TwtHJ4xy5wBoPCoOIaxT0P3Dy9mifDgxXbA
-         XMiaIULYmHCeNIKzmYBBTlgB1RCC5Q+J6c0PHBp6s2E3c3+se2+du9dSckFwthuw3fCE
-         EhMMD6+jV/KhARysXEhpQJN7tYsYcIfsQL4b5BYjZlGyjU39mUauv4L1Y/jff/F2zUi/
-         n2F9ene/3OvCtwPwPvtyDUy/D0D3woLhHjJZzs95j6xHXukl71EmoWhfASlTrrlCJus2
-         FvKg==
-X-Gm-Message-State: AJIora9c+C/hUZYgnvWpzV19HevbNV4PnVlnn6I7h+oV2O6rBJfMPR11
-        IlzsloRKNzoiPIT/c25Wqi6ikyEkUOwoTq5cVf0=
-X-Google-Smtp-Source: AGRyM1uEdXBeR4KR6u2kpl3DDSSL0dEn5qonyUoBwJcwjY6hG5D7aFo+0a8UCaX6G8BCPWvAb7H9YMHf7+ZoX2rud90=
-X-Received: by 2002:a17:906:7a1b:b0:712:237d:8562 with SMTP id
- d27-20020a1709067a1b00b00712237d8562mr9225275ejo.446.1655469151137; Fri, 17
- Jun 2022 05:32:31 -0700 (PDT)
+        with ESMTP id S232578AbiFQNAt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 09:00:49 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ABAF5639E;
+        Fri, 17 Jun 2022 06:00:47 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25HD0X4N098085;
+        Fri, 17 Jun 2022 08:00:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655470833;
+        bh=qMt+eqdqMqmv6B0S+kHhjsC9CezQb77SSLn3IbZZsAA=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=RZBBKPTclbfOlKlnZzDgDUpMCCC9JFF0kiREYVpeZzk0B0pWgfYynxU8a6Cg/zp1S
+         8B7Anwa2oCFsnZrmVs5C0UK+K6KW/DAShjPX7Kokh4BQIcnBZEG/Xz67QJW8TIm1aa
+         3FbrxfbkkCA/UuJmfopsf+ByZxgy+E52fdOe07dc=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25HD0XaC041957
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 17 Jun 2022 08:00:33 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 17
+ Jun 2022 08:00:32 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 17 Jun 2022 08:00:32 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25HD0WwN114708;
+        Fri, 17 Jun 2022 08:00:32 -0500
+Date:   Fri, 17 Jun 2022 08:00:32 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, <soc@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, <arm@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] arm64: dts: ti: adjust whitespace around '='
+Message-ID: <20220617130032.ihevrk47sbhbwnbn@diner>
+References: <20220526204139.831895-1-krzysztof.kozlowski@linaro.org>
+ <ba0ae6b9-c66d-81a3-f324-79efb4455ea7@linaro.org>
 MIME-Version: 1.0
-Received: by 2002:a05:6f02:81e:b0:1e:3776:9ec1 with HTTP; Fri, 17 Jun 2022
- 05:32:30 -0700 (PDT)
-Reply-To: sgtmanthey12@gmail.com
-From:   kayla manthey <elidayo14@gmail.com>
-Date:   Fri, 17 Jun 2022 12:32:30 +0000
-Message-ID: <CADX-dTuC9-Y_eQ6FegEErYRGJ2J92sJi-6WowWDjG6o=uWaFZA@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=4.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ba0ae6b9-c66d-81a3-f324-79efb4455ea7@linaro.org>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=20
-Zdravo, molim vas, =C5=BEelim znati da li ste primili moje prethodne poruke=
-.
+On 13:39-20220616, Krzysztof Kozlowski wrote:
+> On 26/05/2022 13:41, Krzysztof Kozlowski wrote:
+> > Fix whitespace coding style: use single space instead of tabs or
+> > multiple spaces around '=' sign in property assignment.  No functional
+> > changes (same DTB).
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > ---
+> > 
+> > Output compared with dtx_diff and fdtdump.
+> 
+> Hi Nishanth,
+> 
+> Are you ok with the patches? Any comments?
+
+
+I will be lining up the patches later today. will respond.
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
