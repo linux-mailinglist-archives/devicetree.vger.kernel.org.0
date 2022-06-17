@@ -2,77 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DDE154EF9F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 05:39:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE7D454EFD4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 05:50:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379014AbiFQDV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jun 2022 23:21:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56994 "EHLO
+        id S1379775AbiFQDua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jun 2022 23:50:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233449AbiFQDV0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 23:21:26 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E3063BF7;
-        Thu, 16 Jun 2022 20:21:24 -0700 (PDT)
-X-UUID: 98419026e2854d72bcc2f8e1b7265788-20220617
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:7bb39891-cf55-45a8-b743-f96efc8e4b7e,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:90
-X-CID-INFO: VERSION:1.1.6,REQID:7bb39891-cf55-45a8-b743-f96efc8e4b7e,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,AC
-        TION:quarantine,TS:90
-X-CID-META: VersionHash:b14ad71,CLOUDID:34f692f6-e099-41ba-a32c-13b8bfe63214,C
-        OID:9773069f2ff6,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 98419026e2854d72bcc2f8e1b7265788-20220617
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 2020571003; Fri, 17 Jun 2022 11:21:18 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 17 Jun 2022 11:21:16 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Fri, 17 Jun 2022 11:21:15 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH] media: mediatek: vcodec: Fix non subdev architecture open power fail
-Date:   Fri, 17 Jun 2022 11:21:13 +0800
-Message-ID: <20220617032113.18576-1-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S1379746AbiFQDu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jun 2022 23:50:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BB17663DD;
+        Thu, 16 Jun 2022 20:50:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 999B161DB8;
+        Fri, 17 Jun 2022 03:50:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 02247C341C6;
+        Fri, 17 Jun 2022 03:50:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655437827;
+        bh=qryEHpeEJUqn20vEoUi1DYcDxt737X17S9fdpDAEVIg=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=gfhXPoy3C8G9OV1nNevTaOrf3bPXdJ7BqKK9Qfuxq8+pwMzdJnNqEk4mfW7cHJp+k
+         M868gXIRX4jPxSZS+JWQQPze2EDSncVJdSOLq8ZcotHfPWg5exMdb4s/RLQ0ucPWmM
+         ab+tvOshrEbcxsQhRrYfNGhbrWZruc6L/KLG48r9zNQBOFQV5FiNcYGiTKxeZybEBa
+         7HGC4Kc2dwqdJ3Dem8s1SgOFlVeOQLUvbTUX3mt14NncV9dmVPLYh7aNncaLbbB1B3
+         iHCvXLmMwiSjw0DxylsvySHwMF39yp0mnIDGMf5owg6b/BG/SQKpaEP0/XXVzghgZY
+         IE5wcM73Z50jw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id DAFA1E7385E;
+        Fri, 17 Jun 2022 03:50:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v2 0/3] dt-bindings: dp83867: add binding for
+ io_impedance_ctrl nvmem cell
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165543782689.2027.4534991935889934108.git-patchwork-notify@kernel.org>
+Date:   Fri, 17 Jun 2022 03:50:26 +0000
+References: <20220614084612.325229-1-linux@rasmusvillemoes.dk>
+In-Reply-To: <20220614084612.325229-1-linux@rasmusvillemoes.dk>
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     netdev@vger.kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, kuba@kernel.org, davem@davemloft.net,
+        grygorii.strashko@ti.com, praneeth@ti.com,
+        linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,27 +60,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to subdev_bitmap bit value to open hardware power, need to
-set subdev_bitmap value for non subdev architecture.
+Hello:
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c | 2 ++
- 1 file changed, 2 insertions(+)
+This series was applied to netdev/net-next.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
 
-diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
-index 995e6e2fb1ab..4103d7c1b638 100644
---- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
-+++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
-@@ -386,6 +386,8 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- 			mtk_v4l2_err("Main device of_platform_populate failed.");
- 			goto err_reg_cont;
- 		}
-+	} else {
-+		set_bit(MTK_VDEC_CORE, dev->subdev_bitmap);
- 	}
- 
- 	ret = video_register_device(vfd_dec, VFL_TYPE_VIDEO, -1);
+On Tue, 14 Jun 2022 10:46:09 +0200 you wrote:
+> We have a board where measurements indicate that the current three
+> options - leaving IO_IMPEDANCE_CTRL at the reset value (which is
+> factory calibrated to a value corresponding to approximately 50 ohms)
+> or using one of the two boolean properties to set it to the min/max
+> value - are too coarse.
+> 
+> This series adds a device tree binding for an nvmem cell which can be
+> populated during production with a suitable value calibrated for each
+> board, and corresponding support in the driver. The second patch adds
+> a trivial phy wrapper for dev_err_probe(), used in the third.
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,v2,1/3] dt-bindings: dp83867: add binding for io_impedance_ctrl nvmem cell
+    https://git.kernel.org/netdev/net-next/c/ab1e9de84aff
+  - [net-next,v2,2/3] linux/phy.h: add phydev_err_probe() wrapper for dev_err_probe()
+    https://git.kernel.org/netdev/net-next/c/a793679827a8
+  - [net-next,v2,3/3] net: phy: dp83867: implement support for io_impedance_ctrl nvmem cell
+    https://git.kernel.org/netdev/net-next/c/5c2d0a6a0701
+
+You are awesome, thank you!
 -- 
-2.18.0
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
