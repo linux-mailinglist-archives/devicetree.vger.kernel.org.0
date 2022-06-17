@@ -2,103 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B27054FC32
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 19:27:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 133EC54FC38
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 19:33:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235959AbiFQR1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 13:27:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33272 "EHLO
+        id S231235AbiFQRdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 13:33:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234143AbiFQR1V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 13:27:21 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8C2F20F70
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 10:27:19 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id e63so3091742pgc.5
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 10:27:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=2NTi/QegNnVCEQq7rooYSxMGN049ehSK5P7btoT2DLE=;
-        b=kGgaOVklbyzgOAH83hnI9hV0dEhP5gJNsLCEw3iDDfXuJG2H3eL1bvHRRnw+xynZZc
-         ZfzUc/2079U7t9aL4eeFQm22AgCFblL9dv8cPY+7nRfXwOr6txz8IvXT3K/h9hwdrhIM
-         ys9dNc2dR85pPC0G6TNeQy+CYhv47cRlxyjww7oGuxGoiRCwQIwtJ0r6cdofuo1Sha9p
-         UIDzZiB1cJbIoluvy5v8JBpfTC15+MAFv/07i5CNmn4BJc0XOr7uibO0gC1qW4e9b5V1
-         ns4q+0b9uCdSOTsz3e5FZ9BY5O33eESn+BgHp0VRCkDn/+ARlUgBKWXEJD+cOY9aCEG+
-         HfDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=2NTi/QegNnVCEQq7rooYSxMGN049ehSK5P7btoT2DLE=;
-        b=CneHBZKxucd0rnaXVnTaMFPCKZfQTvJCAE1zgQKI07Cxx/FP+g5gy8UYGZip/gRG5+
-         6tEmB2vbPlvX/UYOPMic8yJ66gfWwS7ludb9EJIwxCy61TyWayP1moaTDT6OCIjG84RE
-         QbKMZ7c63qgZ2WwhvZOG9eI59eaOXuECQbcw3dbRZ03SWRJbgljOQrtl/4aIPXqeaL5v
-         jEplrkhriTMd9a3b5Qqq4NgnkpNyjA3DoGFLkqroTWEoFl0skT8j8goi5zM63lYnSSkY
-         M/RUe7xMRijoZjJWui4cVBkwjpZKXCkUT6bJqywMeJcvAmFfFVSrNLQuN0CkQr/LX8yq
-         lVUQ==
-X-Gm-Message-State: AJIora+StJK7bjjhb1IrEAK34ncbTV5PmphopZGlhmathVdQi1OdkbfH
-        MhizESEN/qm1Fnqpxb0wT8gPAvSU2wLrSnJwyGZpjeiAAyc=
-X-Google-Smtp-Source: AGRyM1uR2zmAGoVzKXZ3zM+/Ze6ngsGAKTlLQTZfyk8qZVH1wsJAtybouVQb0zPSNF/RTQZVJmhO1QCmsiHnWTf+LAM=
-X-Received: by 2002:a63:4447:0:b0:3fc:d3d1:cea9 with SMTP id
- t7-20020a634447000000b003fcd3d1cea9mr9722549pgk.269.1655486839043; Fri, 17
- Jun 2022 10:27:19 -0700 (PDT)
+        with ESMTP id S230253AbiFQRdE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 13:33:04 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B74F81D324
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 10:33:03 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1o2Fq8-00054T-R4; Fri, 17 Jun 2022 19:33:00 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1o2Fq5-0016Ig-AF; Fri, 17 Jun 2022 19:32:58 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1o2Fq5-00H0lC-Tl; Fri, 17 Jun 2022 19:32:57 +0200
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2] arm64: freescale/imx8mp-evk.dts: reorder nodes alphabetically
+Date:   Fri, 17 Jun 2022 19:32:54 +0200
+Message-Id: <20220617173254.340007-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Received: by 2002:a05:7301:1e03:b0:66:f315:3264 with HTTP; Fri, 17 Jun 2022
- 10:27:18 -0700 (PDT)
-Reply-To: werinammawussi@gmail.com
-From:   Werinam Mawussi <christophermulei2@gmail.com>
-Date:   Fri, 17 Jun 2022 19:27:18 +0200
-Message-ID: <CAAx=c--cBWLivJCxhn7JdR=QF1GZKyBzouuJYj0VWGzQS9i2vg@mail.gmail.com>
-Subject: Important Notification
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=6.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,LOTS_OF_MONEY,MONEY_FREEMAIL_REPTO,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNDISC_FREEM,UNDISC_MONEY autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:52f listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [christophermulei2[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [christophermulei2[at]gmail.com]
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  0.0 LOTS_OF_MONEY Huge... sums of money
-        *  2.2 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  2.0 MONEY_FREEMAIL_REPTO Lots of money from someone using free
-        *      email?
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-        *  0.8 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-X-Spam-Level: ******
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2059; h=from:subject; bh=nDoeNLJRdly1OGOsdFYP8RYlwbAObLXbgV4JaJbVy2c=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBirLrAXlpmECTSGUMfIi/zUh1Tv8OOiSBFYpJYSBBY Fl8ZCsmJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCYqy6wAAKCRDB/BR4rcrsCXV/B/ 9Pt/2ojciDBFZslMwhH2q4GaKWm/+GEmoe8mqWJMZ5lVCkGTsH+1mX0yRVdk8LRsqFVtgIb6uiffrN f4ZC6MQZ1HMY2+51OwFHtuFAMLD8isSuq944BqmLtZ2gxZLx5bqG0jl61wAY4otFWFrjSHSDu+/RON k4ujTmpJ+KXb37KK5faKTdBoeJLprIhYjCsUJy3Agz4ORVt2/H5Xelwgpj9WIMYEs+J8Yc96Z+j8qZ PMd8marRxk6436/TqqpWGgHPs3jXWf3oji6kCZhY1VmremF4dx6R1a4sRqCa3qgI76r0FRJSXySH3S wJAU311MDJB+dw2CAQrY7L9/zSnJIh
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I am bringing this notice to your attention in respect of the death of
-a client of mine that has the same surname with you and his fund
-valued at $19.9M to be paid to you.contact me at
-werinammawussi@gmail.com for more details.
+The nodes after the root nodes are supposed to be ordered
+alphabetically. There is however an expection for &pinctrl that some
+consider to be good placed at the end of the file. So only move flexcan1
+and flexcan2 to their proper place.
 
-Yours Sincerely,
-Werinam Mawussi,
-Attorney At Law.
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+---
+(implicit) v1 was send a year ago and also moved pinctrl. Just stumbled
+over this mail and the concerns back then that pinctrl is good at the
+end. I don't fully agree, but here comes at least the non-disputed part
+of the patch.
+
+Reference: https://lore.kernel.org/linux-arm-kernel/20210707105309.1693138-1-u.kleine-koenig@pengutronix.de
+
+Best regards
+Uwe
+
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 28 ++++++++++----------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+index 4c3ac4214a2c..97e91db08ae8 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+@@ -67,20 +67,6 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+ 	};
+ };
+ 
+-&flexcan1 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_flexcan1>;
+-	xceiver-supply = <&reg_can1_stby>;
+-	status = "okay";
+-};
+-
+-&flexcan2 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_flexcan2>;
+-	xceiver-supply = <&reg_can2_stby>;
+-	status = "disabled";/* can2 pin conflict with pdm */
+-};
+-
+ &eqos {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_eqos>;
+@@ -197,6 +183,20 @@ ethphy1: ethernet-phy@1 {
+ 	};
+ };
+ 
++&flexcan1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_flexcan1>;
++	xceiver-supply = <&reg_can1_stby>;
++	status = "okay";
++};
++
++&flexcan2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_flexcan2>;
++	xceiver-supply = <&reg_can2_stby>;
++	status = "disabled";/* can2 pin conflict with pdm */
++};
++
+ &i2c1 {
+ 	clock-frequency = <400000>;
+ 	pinctrl-names = "default";
+
+base-commit: b13baccc3850ca8b8cccbf8ed9912dbaa0fdf7f3
+-- 
+2.36.1
+
