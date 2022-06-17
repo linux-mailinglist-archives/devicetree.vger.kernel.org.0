@@ -2,60 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0A9354F444
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 11:29:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4D1554F44B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 11:31:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380830AbiFQJ3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 05:29:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47410 "EHLO
+        id S1380786AbiFQJbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 05:31:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380568AbiFQJ3D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 05:29:03 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9627633AD
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 02:29:02 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1o28Ha-0001dP-Db; Fri, 17 Jun 2022 11:28:50 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1o28HY-0003ke-Kd; Fri, 17 Jun 2022 11:28:48 +0200
-Date:   Fri, 17 Jun 2022 11:28:48 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
+        with ESMTP id S241130AbiFQJbp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 05:31:45 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2426D6350B;
+        Fri, 17 Jun 2022 02:31:44 -0700 (PDT)
+X-UUID: 1e41cd9acc2f43c0bd0648c8fb1d8043-20220617
+X-CID-P-RULE: Spam_GS6885AD
+X-CID-O-INFO: VERSION:1.1.6,REQID:4cedab06-6f8a-418f-8b40-4a03d254e7e4,OB:0,LO
+        B:0,IP:0,URL:25,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS6885AD
+        ,ACTION:quarantine,TS:115
+X-CID-INFO: VERSION:1.1.6,REQID:4cedab06-6f8a-418f-8b40-4a03d254e7e4,OB:0,LOB:
+        0,IP:0,URL:25,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,A
+        CTION:quarantine,TS:115
+X-CID-META: VersionHash:b14ad71,CLOUDID:470be648-4c92-421c-ad91-b806c0f58b2a,C
+        OID:80d479e3f24d,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 1e41cd9acc2f43c0bd0648c8fb1d8043-20220617
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1118742490; Fri, 17 Jun 2022 17:31:36 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 17 Jun 2022 17:31:35 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 17 Jun 2022 17:31:34 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [RESEND PATCH v2 4/9] imx: thermal: Configure trip point from DT
-Message-ID: <20220617092848.nzwjjh3gqgbtoyod@pengutronix.de>
-References: <20220617071411.187542-1-francesco.dolcini@toradex.com>
- <20220617071411.187542-5-francesco.dolcini@toradex.com>
- <20220617084017.54psumosr6p3a6qt@pengutronix.de>
- <20220617090442.GB190158@francesco-nb.int.toradex.com>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v6 1/4] dt-bindings: nvmem: convert mtk-efuse.txt to YAML schema
+Date:   Fri, 17 Jun 2022 17:31:29 +0800
+Message-ID: <20220617093132.22578-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220617090442.GB190158@francesco-nb.int.toradex.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,91 +67,179 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-06-17, Francesco Dolcini wrote:
-> On Fri, Jun 17, 2022 at 10:40:17AM +0200, Marco Felsch wrote:
-> > On 22-06-17, Francesco Dolcini wrote:
-> > > Allow over-writing critical and passive trip point for each
-> > > temperature grade from the device tree, by default the pre-existing
-> > > hard-coded trip points are used.
-> > > 
-> > > This change enables configuring the system thermal characteristics into
-> > > the system-specific device tree instead of relying on global hard-coded
-> > > temperature thresholds that does not take into account the specific
-> > > system thermal design.
-> > > 
-> > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > ---
-> > > v2:
-> > >  - return immediately if no thermal node present in the dts
-> > >  - use dev_info instead of dev_dbg if there is an invalid trip
-> > >  - additional comment in case passive trip point is higher than critical
-> > > ---
-> > >  drivers/thermal/imx_thermal.c | 58 +++++++++++++++++++++++++++++++++++
-> > >  1 file changed, 58 insertions(+)
-> > > 
-> > > diff --git a/drivers/thermal/imx_thermal.c b/drivers/thermal/imx_thermal.c
-> > > index 16663373b682..a964baf802fc 100644
-> > > --- a/drivers/thermal/imx_thermal.c
-> > > +++ b/drivers/thermal/imx_thermal.c
-> > > @@ -17,6 +17,8 @@
-> > >  #include <linux/nvmem-consumer.h>
-> > >  #include <linux/pm_runtime.h>
-> > >  
-> > > +#include "thermal_core.h"
-> > > +
-> > >  #define REG_SET		0x4
-> > >  #define REG_CLR		0x8
-> > >  #define REG_TOG		0xc
-> > > @@ -479,36 +481,92 @@ static int imx_init_calib(struct platform_device *pdev, u32 ocotp_ana1)
-> > >  	return 0;
-> > >  }
-> > >  
-> > > +static void imx_init_temp_from_of(struct platform_device *pdev, const char *name)
-> > > +{
-> > > +	struct imx_thermal_data *data = platform_get_drvdata(pdev);
-> > > +	struct device_node *thermal, *trips, *trip_point;
-> > > +
-> > > +	thermal = of_get_child_by_name(pdev->dev.of_node, name);
-> > > +	if (!thermal)
-> > > +		return;
-> > > +
-> > > +	trips = of_get_child_by_name(thermal, "trips");
-> > > +
-> > > +	for_each_child_of_node(trips, trip_point) {
-> > > +		struct thermal_trip t;
-> > > +
-> > > +		if (thermal_of_populate_trip(trip_point, &t))
-> > > +			continue;
-> > > +
-> > > +		switch (t.type) {
-> > > +		case THERMAL_TRIP_PASSIVE:
-> > > +			data->temp_passive = t.temperature;
-> > > +			break;
-> > > +		case THERMAL_TRIP_CRITICAL:
-> > 
-> > Should we check also the temp_critical and temp_passive not exceeding
-> > the temp_max? Sry. that it came not earlier in my mind. So system damage
-> > is avoided.
-> 
-> I would not add such kind of restriction in the code. I can think of
-> multiple situations in which a system designer would prefer to take the
-> chances of burning a silicon (or more likely just age it a little bit
-> faster) than to just shut down the system.
-> 
-> In the end whoever is building the system should be empowered to do
-> something like that and it's no different from what it's already possible
-> with thermal_of driver for example. 
-> 
-> In addition to that from a system debug prospective all the threshold
-> (max, passive, critical) are already available in the kernel logs.
+Convert mtk-efuse.txt to YAML schema mediatek,efuse.yaml
 
-Okay, fine with me since you provided dt-snippets with the correct
-temperature. But we should really print a warning since this is a
-abnormal usage and the user should be warned.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+v6: no changes, based on kernel 5.19-rc1
 
-Regards,
-  Marco
-> 
-> Francesco
-> 
-> 
+v5: 
+sync with the series:
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=640196
+   1. change title suggested by Krzysztof;
+   2. No need drop 'reviewed-by Rob' suggested by Krzysztof
+   3. add maintainer Lala who maintain efuse driver now;
+
+v4: fix duplicated unit-address in example;
+    drop reviewed-by Rob, due to changes;
+
+v3: add reviewed-by Rob
+
+v2:
+   1. remove description of subnodes which is covered by nvmem.yaml
+suggested by Rob
+   2. change the example which is commoner than mt8173's
+---
+ .../bindings/nvmem/mediatek,efuse.yaml        | 87 +++++++++++++++++++
+ .../devicetree/bindings/nvmem/mtk-efuse.txt   | 43 ---------
+ 2 files changed, 87 insertions(+), 43 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+ delete mode 100644 Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+
+diff --git a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+new file mode 100644
+index 000000000000..f6e01ddb7499
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+@@ -0,0 +1,87 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek efuse
++
++description: |
++  MediaTek's efuse is used for storing calibration data, it can be accessed
++  on ARM devices usiong I/O mapped memory.
++
++maintainers:
++  - Andrew-CT Chen <andrew-ct.chen@mediatek.com>
++  - Lala Lin <lala.lin@mediatek.com>
++
++allOf:
++  - $ref: "nvmem.yaml#"
++
++properties:
++  $nodename:
++    pattern: "^efuse@[0-9a-f]+$"
++
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - mediatek,mt7622-efuse
++              - mediatek,mt7623-efuse
++              - mediatek,mt8173-efuse
++              - mediatek,mt8192-efuse
++              - mediatek,mt8195-efuse
++              - mediatek,mt8516-efuse
++          - const: mediatek,efuse
++      - const: mediatek,mt8173-efuse
++        deprecated: true
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    efuse@11c10000 {
++        compatible = "mediatek,mt8195-efuse", "mediatek,efuse";
++        reg = <0x11c10000 0x1000>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        u3_tx_imp_p0: usb3-tx-imp@184,1 {
++            reg = <0x184 0x1>;
++            bits = <0 5>;
++        };
++        u3_rx_imp_p0: usb3-rx-imp@184,2 {
++            reg = <0x184 0x2>;
++            bits = <5 5>;
++        };
++        u3_intr_p0: usb3-intr@185 {
++            reg = <0x185 0x1>;
++            bits = <2 6>;
++        };
++        comb_tx_imp_p1: usb3-tx-imp@186,1 {
++            reg = <0x186 0x1>;
++            bits = <0 5>;
++        };
++        comb_rx_imp_p1: usb3-rx-imp@186,2 {
++            reg = <0x186 0x2>;
++            bits = <5 5>;
++        };
++        comb_intr_p1: usb3-intr@187 {
++            reg = <0x187 0x1>;
++            bits = <2 6>;
++        };
++        u2_intr_p0: usb2-intr-p0@188,1 {
++            reg = <0x188 0x1>;
++            bits = <0 5>;
++        };
++        u2_intr_p1: usb2-intr-p1@188,2 {
++            reg = <0x188 0x2>;
++            bits = <5 5>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+deleted file mode 100644
+index 39d529599444..000000000000
+--- a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-= Mediatek MTK-EFUSE device tree bindings =
+-
+-This binding is intended to represent MTK-EFUSE which is found in most Mediatek SOCs.
+-
+-Required properties:
+-- compatible: should be
+-	      "mediatek,mt7622-efuse", "mediatek,efuse": for MT7622
+-	      "mediatek,mt7623-efuse", "mediatek,efuse": for MT7623
+-	      "mediatek,mt8173-efuse" or "mediatek,efuse": for MT8173
+-	      "mediatek,mt8192-efuse", "mediatek,efuse": for MT8192
+-	      "mediatek,mt8195-efuse", "mediatek,efuse": for MT8195
+-	      "mediatek,mt8516-efuse", "mediatek,efuse": for MT8516
+-- reg: Should contain registers location and length
+-- bits: contain the bits range by offset and size
+-
+-= Data cells =
+-Are child nodes of MTK-EFUSE, bindings of which as described in
+-bindings/nvmem/nvmem.txt
+-
+-Example:
+-
+-	efuse: efuse@10206000 {
+-		compatible = "mediatek,mt8173-efuse";
+-		reg	   = <0 0x10206000 0 0x1000>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-
+-		/* Data cells */
+-		thermal_calibration: calib@528 {
+-			reg = <0x528 0xc>;
+-		};
+-	};
+-
+-= Data consumers =
+-Are device nodes which consume nvmem data cells.
+-
+-For example:
+-
+-	thermal {
+-		...
+-		nvmem-cells = <&thermal_calibration>;
+-		nvmem-cell-names = "calibration";
+-	};
+-- 
+2.18.0
+
