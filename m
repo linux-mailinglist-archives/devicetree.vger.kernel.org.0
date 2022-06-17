@@ -2,253 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 424F954F46A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 11:35:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D878954F497
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jun 2022 11:48:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381195AbiFQJes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 05:34:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53124 "EHLO
+        id S232310AbiFQJsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 05:48:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379989AbiFQJer (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 05:34:47 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C9562106;
-        Fri, 17 Jun 2022 02:34:46 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id s1so2644344ilj.0;
-        Fri, 17 Jun 2022 02:34:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=DE+zQZQcyF759AJuVRCgUw1QrZjmmIkS9SVF/uua3CY=;
-        b=TDYeLEaQ+IkQCFwsN5ZQ3F+UqxbwCBkt2zAq1tT7vFaTl9fJAuS6YerABjtHK4mOxb
-         TrWcAGr6YdcXb4ALZYnuW0EpzY4enIB9a/N3rtcIPVVz4H1oggG/gQz0f3KJwQbFOZs+
-         ZDCH0HPt5AB9qRpQyELl2+owWkOE4MPyxjEyB1griWQ0FRFlaxna+kw6cHUIvotV2buP
-         qGa7xwHI7l3QT8uJSCUU0PAsReT6s7CYfX0V77qw7CtMyEcqx6Q0ejjLwWvhsopT7FxJ
-         em13cvYi2AvF5IlY6VaJ05xly218vuCyMNqAGbLG4d8okAD+4yvBpXEn1shR0HMx1yLK
-         ISlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=DE+zQZQcyF759AJuVRCgUw1QrZjmmIkS9SVF/uua3CY=;
-        b=oHaMYD7fJVGzTCVgqnosNsPIxorQl8/Ti3z8ZuCVZNVc8r4Lre9AfzgVG0Wbys/noh
-         vpnsRLBYQr4Vjac/kIL/ANXeVv6qD6bsOZ/sY69t6zTIU+/xp4TbMvoCfdgS6aUDOfaH
-         w71zxoWbwP0vUp40/4oqojpcKVk9wAVsqhUREtMjA3xvm03ujnpxVBfBijMCbcGZHsUu
-         9YkX398bjuPzJ58WsjJWDgqSLV2ArpmXRGGkMjGvdPzHQpThjz/+WlRS3aAWk1FYrbFp
-         Nx0iHVgsU9aVlBeTkKBsQ1FX9WblkuBYmmrhJ/SHd91o1O3RD2+n1BCRqwxMJv187X5n
-         SeLg==
-X-Gm-Message-State: AJIora9+QLRIdb7oaLqEk7n4q0jk0AdlI1QPcoPyxQEIvxTicCYsbr6q
-        E9c6vbdyWoXzKwSqd05WrqzItQKWxXmr/uZAJABmNoLQnEM=
-X-Google-Smtp-Source: AGRyM1ubwnEFy3CYAH9fHWaontZ0WgA5WaEtmBHPaT66gte2AsL67svPaO35GdaGEkb9HpkJB7x7C2X7WR6oIGxmrjk=
-X-Received: by 2002:a05:6e02:4a1:b0:2d3:a778:f0f1 with SMTP id
- e1-20020a056e0204a100b002d3a778f0f1mr5168320ils.212.1655458485946; Fri, 17
- Jun 2022 02:34:45 -0700 (PDT)
+        with ESMTP id S1381250AbiFQJsZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 05:48:25 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E0756833A;
+        Fri, 17 Jun 2022 02:48:25 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D7FAB660179A;
+        Fri, 17 Jun 2022 10:48:22 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1655459303;
+        bh=uN6wnbzAZuoDWwRcuXfVxiPLqXUDSzCb7JMLgqXhcJY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=PiYfAcyPeP0HfwUiZkJpxWz8nAl4hgrf5aNPMEFifj35+464fd2lwcx/ebiiChtPM
+         DpjmiH90rIx/6+VUzJDkpM/4d+WGK/9zI1HKHapcXJ5O0Lu7w2bT+QSNT94isb+UbY
+         M8PUye0LtMKw22fs0VSawR1LKce7KVYuAnn7xVkji+UR8YzV26irDQf5WpWvGmB/GU
+         iwezIe0MY1BokCxkUKX6N7UicST6Db6rzBmXWTjykRB9tS7eCat8DgW94Qon7sopIo
+         wnNQcb1NzdIF4KM4LcPD6eclqVVZF+5iAIdQnRCF4lzdyK+EPtXdoBww+jQeoGA4NQ
+         vualHWAqQimFQ==
+Message-ID: <d5566b11-e3eb-28bf-73d1-b17e0802b0c0@collabora.com>
+Date:   Fri, 17 Jun 2022 11:48:20 +0200
 MIME-Version: 1.0
-References: <20220613111146.25221-1-peterwu.pub@gmail.com> <20220613111146.25221-16-peterwu.pub@gmail.com>
- <20220613170853.bffuwkcmflfgg4gt@ash.lan>
-In-Reply-To: <20220613170853.bffuwkcmflfgg4gt@ash.lan>
-From:   ChiaEn Wu <peterwu.pub@gmail.com>
-Date:   Fri, 17 Jun 2022 17:34:35 +0800
-Message-ID: <CABtFH5JKnxF5TqV=9EiAZEm4Un0npNo-GX8xLD4W5+S+pA+ysg@mail.gmail.com>
-Subject: Re: [PATCH v2 15/15] video: backlight: mt6370: Add Mediatek MT6370 support
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     jic23@kernel.org, lars@metafoo.de, matthias.bgg@gmail.com,
-        lee.jones@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        szunichen@gmail.com, ChiaEn Wu <chiaen_wu@richtek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v10 2/2] phy: mediatek: Add PCIe PHY driver
+Content-Language: en-US
+To:     Jianjun Wang <jianjun.wang@mediatek.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Wei-Shun Chang <weishunc@google.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rex-bc.chen@mediatek.com, randy.wu@mediatek.com,
+        jieyy.yang@mediatek.com, chuanjia.liu@mediatek.com,
+        qizhong.cheng@mediatek.com, jian.yang@mediatek.com
+References: <20220617070246.20142-1-jianjun.wang@mediatek.com>
+ <20220617070246.20142-3-jianjun.wang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220617070246.20142-3-jianjun.wang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+Il 17/06/22 09:02, Jianjun Wang ha scritto:
+> Add PCIe GEN3 PHY driver support on MediaTek chipsets.
+> 
+> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
 
-Thanks for your helpful feedback!
+Reviewed-by: AngeloGioachino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Daniel Thompson <daniel.thompson@linaro.org> =E6=96=BC 2022=E5=B9=B46=E6=9C=
-=8814=E6=97=A5 =E9=80=B1=E4=BA=8C =E5=87=8C=E6=99=A81:08=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> On Mon, Jun 13, 2022 at 07:11:46PM +0800, ChiaEn Wu wrote:
-> > +static int mt6370_init_backlight_properties(struct mt6370_priv *priv,
-> > +                                         struct backlight_properties *=
-props)
->
-> Most of the changes in this version looks good... but it looks the new
-> code in this function has a number of problems. See below...
->
->
-> > +{
-> > +     struct device *dev =3D priv->dev;
-> > +     u8 prop_val;
-> > +     u32 brightness;
-> > +     unsigned int mask, val;
-> > +     int ret;
-> > +
-> > +     /* Vendor optional properties
-> > +      * if property not exist, keep value in default.
-> > +      */
->
-> That's not the right strategy for booleans. Not existing means false
-> (e.g. flags should actively be unset).
->
-
-I am so sorry for making these mistakes...
-I will try to refine them in the right strategy in the next patch!
-
->
-> > +     if (device_property_read_bool(dev, "mediatek,bled-pwm-enable")) {
-> > +             ret =3D regmap_update_bits(priv->regmap, MT6370_REG_BL_PW=
-M,
-> > +                                      MT6370_BL_PWM_EN_MASK,
-> > +                                      MT6370_BL_PWM_EN_MASK);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
->
-> As above comment... all of the boolean properties are now being read
-> incorrectly.
->
->
-> > +
-> > +     if (device_property_read_bool(dev, "mediatek,bled-pwm-hys-enable"=
-)) {
-> > +             ret =3D regmap_update_bits(priv->regmap, MT6370_REG_BL_PW=
-M,
-> > +                                      MT6370_BL_PWM_HYS_EN_MASK,
-> > +                                      MT6370_BL_PWM_HYS_EN_MASK);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     ret =3D device_property_read_u8(dev, "mediatek,bled-pwm-hys-input=
--bit",
-> > +                                   &prop_val);
-> > +     if (!ret) {
-> > +             val =3D min_t(u8, prop_val, 3)
-> > +                   << (ffs(MT6370_BL_PWM_HYS_SEL_MASK) - 1);
-> > +             ret =3D regmap_update_bits(priv->regmap, MT6370_REG_BL_PW=
-M,
-> > +                                      MT6370_BL_PWM_HYS_SEL_MASK, val)=
-;
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     ret =3D device_property_read_u8(dev, "mediatek,bled-ovp-microvolt=
-",
-> > +                                   &prop_val);
-> > +     if (!ret) {
-> > +             val =3D min_t(u8, prop_val, 3)
-> > +                   << (ffs(MT6370_BL_OVP_SEL_MASK) - 1);
->
-> This has been renamed but still seems to the using 0, 1, 2, 3 rather
-> than an actual value in microvolts.
-
-I=E2=80=99m so sorry for using the not actual value in microvolts and micro=
-amps.
-I will refine these mistakes along with DT in the next patch. Thank you!
-
->
->
-> > +             ret =3D regmap_update_bits(priv->regmap, MT6370_REG_BL_BS=
-TCTRL,
-> > +                                      MT6370_BL_OVP_SEL_MASK, val);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     if (device_property_read_bool(dev, "mediatek,bled-ovp-shutdown"))=
- {
-> > +             ret =3D regmap_update_bits(priv->regmap, MT6370_REG_BL_BS=
-TCTRL,
-> > +                                      MT6370_BL_OVP_EN_MASK,
-> > +                                      MT6370_BL_OVP_EN_MASK);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     ret =3D device_property_read_u8(dev, "mediatek,bled-ocp-microamp"=
-,
-> > +                                   &prop_val);
-> > +     if (!ret) {
-> > +             val =3D min_t(u8, prop_val, 3)
-> > +                   << (ffs(MT6370_BL_OC_SEL_MASK) - 1);
->
-> Likewise, should this be accepting a value in microamps?
->
->
-> > +             ret =3D regmap_update_bits(priv->regmap, MT6370_REG_BL_BS=
-TCTRL,
-> > +                                      MT6370_BL_OC_SEL_MASK, val);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     if (device_property_read_bool(dev, "mediatek,bled-ocp-shutdown"))=
- {
-> > +             ret =3D regmap_update_bits(priv->regmap, MT6370_REG_BL_BS=
-TCTRL,
-> > +                                      MT6370_BL_OC_EN_MASK,
-> > +                                      MT6370_BL_OC_EN_MASK);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> > +     /* Common properties */
-> > +     ret =3D device_property_read_u32(dev, "max-brightness", &brightne=
-ss);
-> > +     if (ret)
-> > +             brightness =3D MT6370_BL_MAX_BRIGHTNESS;
-> > +
-> > +     props->max_brightness =3D min_t(u32, brightness,
-> > +                                   MT6370_BL_MAX_BRIGHTNESS);
-> > +
-> > +     ret =3D device_property_read_u32(dev, "default-brightness", &brig=
-htness);
-> > +     if (ret)
-> > +             brightness =3D props->max_brightness;
-> > +
-> > +     props->brightness =3D min_t(u32, brightness, props->max_brightnes=
-s);
-> > +
-> > +
-> > +     ret =3D device_property_read_u8(dev, "mediatek,bled-channel-use",
-> > +                                   &prop_val);
-> > +     if (ret) {
-> > +             dev_err(dev, "mediatek,bled-channel-use DT property missi=
-ng\n");
-> > +             return ret;
-> > +     }
-> > +
-> > +     if (!prop_val || prop_val > MT6370_BL_MAX_CH) {
-> > +             dev_err(dev, "No channel specified (ch_val:%d)\n", prop_v=
-al);
->
-> Error string has not been updated to match condition that triggers it.
->
-
-I will refine this wrong error string in the next patch, thanks!
-
->
-> > +             return -EINVAL;
-> > +     }
->
->
-> Daniel.
-
-Best regards,
-ChiaEn Wu
