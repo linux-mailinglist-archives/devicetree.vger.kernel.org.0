@@ -2,74 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D937550048
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 01:04:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 148B555005E
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 01:08:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382413AbiFQXEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 19:04:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38574 "EHLO
+        id S235735AbiFQXIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 19:08:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231915AbiFQXEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 19:04:43 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842E65AECE
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 16:04:42 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id 73-20020a17090a0fcf00b001eaee69f600so5346365pjz.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 16:04:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=RoKyPgsIRLbHbebKiGOapoVSb6B/cyX7rANTiMTjAo0=;
-        b=fHkFGLZVgd3z98x+awr68lFG8aNMdMavp7+BYxx2O2CCQpuaCA3dZaR9ktG6r2igXn
-         PIxKinMRNWJY5LfxP7VmaD3n4h3iZllLtzu+hwPpsPZqICOcnL7RYAd1XO25mSoktVPi
-         enV4W6G+BeYFoX8kU3rvfIyCdElShlBIJAZKkHDSy0Ia3JvgeJtmWcSQyVZhUG1Jd4Pm
-         qUBqi2hEeXmY2d536Pmx/NmmqdUUbe34sGZj4FNT77kJQcnPyXCHjwK6VbKuijSI+31C
-         uMGbzPQp9AzZdxW15nbQXv2AN2oZE2OfXNdN08Luk43pcAEaj3XiwFcf9u5ef4ns7WJo
-         iN5Q==
+        with ESMTP id S1377857AbiFQXIN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 19:08:13 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2350322518;
+        Fri, 17 Jun 2022 16:08:11 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id c4so403106ilj.7;
+        Fri, 17 Jun 2022 16:08:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=RoKyPgsIRLbHbebKiGOapoVSb6B/cyX7rANTiMTjAo0=;
-        b=uVuoe1g0I4+psguxxhoXf+ME0eVYLOzo7Jbvi3gaWOTG1WqZZZDKVwWL3ZrNza6juc
-         Y8mHsBzbiI04no+E/CO4aviWPbQITp9uO+QKcM2AdQGSNVjDmpfNEOTZ9jl2IDP48hZQ
-         svIWVD2Jc1OSyzMdzZSFjoNUyTt/ul397THsX9BNevBSAywzwtSFxiZnZQUMzQqTpXtT
-         9vI9sQj2sAD5CjPeurLDNL3GhRB+b3jQisWfHuRacLeXJm/bZ10WOOqxf7ovIJT4aeuN
-         XtmNN4q/7LxAkJdj6+a3GDwTki6j6yFMzmtBQDifpJ52AfbwEXEPdVm91xh4uEWJQLPq
-         a6jA==
-X-Gm-Message-State: AJIora/UceH0EXYF9qOVw4EkJvtnEPYB/Wq1ErLuY28XVxRIK4Wxv9dN
-        h6Cok7cJUdO6mnSErX6+/92xFw==
-X-Google-Smtp-Source: AGRyM1vKdPg8Goi/ejlBDg8dGYVKd1DYp762UWMOPOQLqFsNKBm1vRWI1/Xv145Z6OD5ccCIwefGaA==
-X-Received: by 2002:a17:90b:1808:b0:1e2:a335:ad04 with SMTP id lw8-20020a17090b180800b001e2a335ad04mr24111968pjb.110.1655507082007;
-        Fri, 17 Jun 2022 16:04:42 -0700 (PDT)
-Received: from [172.31.235.92] ([216.9.110.6])
-        by smtp.gmail.com with ESMTPSA id je18-20020a170903265200b0016511314b94sm625513plb.159.2022.06.17.16.04.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 16:04:41 -0700 (PDT)
-Message-ID: <e40ad829-2530-6807-efda-49689e5932e1@linaro.org>
-Date:   Fri, 17 Jun 2022 16:04:38 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=boBsEYeSmkjb+BOCaUDQtsmmY5mPhlPnMP5EgdS/R1I=;
+        b=XCboexXKqf0oZfGfLRH13Iaz4TxS8T8ZL5VnJr8yF1Nv/g9Pg3B5Cb7Gb2dZE9KbhB
+         Q3E26ozz4BuPBfOuz1+0lnSMb/HD420AZCtHNcFClZezQdKecrVonj7AZbVnVLjuDNLi
+         vm8uWQ4svZwKJrIbouvZXz2KrqD+/EvFVI+GKS0bh10xCFq6rKvxoLjt7fqfb9P0q7Ld
+         qzK6q8S3h4G+Tc+xPnzVpL4KP9iT7lPSqWXsH12Q680WlRw2wtH9rHKlCd025XN2uwu7
+         X9Qb4pkgZO5WAeOHtgsTMZ9rBserrxStrgCmSX7MfpmegPQ/ZaYQ/k/+I4cml3H6oCqM
+         wXgg==
+X-Gm-Message-State: AJIora/TRVVj7M5KZ7UiFa6gyzoM+Skp+hO6b9IrnnO+W+Q+wuW05O6+
+        RIJVgdRrNM/R+W0gyTy0qA==
+X-Google-Smtp-Source: AGRyM1uXiG8Xggf+u/lRmTS4EnGutEnUuUzhwGjsExceUCQKBvQOrA5/yQzEqlo4Qn7q5VQa0INI7Q==
+X-Received: by 2002:a92:dc91:0:b0:2d8:ecc3:ffb5 with SMTP id c17-20020a92dc91000000b002d8ecc3ffb5mr1765920iln.170.1655507290320;
+        Fri, 17 Jun 2022 16:08:10 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id h18-20020a02c732000000b0032e3b0933c6sm2730805jao.162.2022.06.17.16.08.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Jun 2022 16:08:09 -0700 (PDT)
+Received: (nullmailer pid 2608063 invoked by uid 1000);
+        Fri, 17 Jun 2022 23:08:08 -0000
+Date:   Fri, 17 Jun 2022 17:08:08 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Irui Wang <irui.wang@mediatek.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        angelogioacchino.delregno@collabora.com,
+        nicolas.dufresne@collabora.com, wenst@chromium.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com, kyrie wu <kyrie.wu@mediatek.com>,
+        srv_heupstream@mediatek.com
+Subject: Re: [RESEND V3,1/8] dt-bindings: mediatek: Add
+ mediatek,mt8195-jpgdec compatible
+Message-ID: <20220617230808.GA2594727-robh@kernel.org>
+References: <20220614121004.31616-1-irui.wang@mediatek.com>
+ <20220614121004.31616-2-irui.wang@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v4 2/3] dt-bindings: mfd: atmel,flexcom: Add new
- compatible string for lan966x
-Content-Language: en-US
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        robh+dt@kernel.org, Nicolas.Ferre@microchip.com,
-        Claudiu.Beznea@microchip.com, krzysztof.kozlowski+dt@linaro.org
-Cc:     UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220617130729.12072-1-kavyasree.kotagiri@microchip.com>
- <20220617130729.12072-3-kavyasree.kotagiri@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220617130729.12072-3-kavyasree.kotagiri@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220614121004.31616-2-irui.wang@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,156 +74,202 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/06/2022 06:07, Kavyasree Kotagiri wrote:
-> LAN966x SoC flexcoms has two optional I/O lines. Namely, CS0 and CS1
-> in flexcom SPI mode. CTS and RTS in flexcom USART mode. These pins
-> can be mapped to lan966x FLEXCOM_SHARED[0-20] pins and usage depends on
-> functions being configured.
+On Tue, Jun 14, 2022 at 08:09:57PM +0800, Irui Wang wrote:
+> From: kyrie wu <kyrie.wu@mediatek.com>
 > 
-> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> Add mediatek,mt8195-jpgdec compatible to binding document.
+> 
+> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
 > ---
-> v3 -> v4:
->  - Added else condition to allOf:if:then.
+>  .../media/mediatek,mt8195-jpegdec.yaml        | 175 ++++++++++++++++++
+>  1 file changed, 175 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
 > 
-> v2 -> v3:
->  - Add reg property of lan966x missed in v2.
-> 
-> v1 -> v2:
->  - Use allOf:if:then for lan966x dt properties
-> 
->  .../bindings/mfd/atmel,flexcom.yaml           | 80 ++++++++++++++++++-
->  1 file changed, 79 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
-> index fdb1645d123f..7e0e4d6b1b96 100644
-> --- a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
-> @@ -18,9 +18,11 @@ properties:
->    compatible:
->      enum:
->        - atmel,sama5d2-flexcom
-> +      - microchip,lan966x-flexcom
-
-
-This looks good now.
-
->  
->    reg:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
->  
->    clocks:
->      maxItems: 1
-> @@ -47,6 +49,27 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      enum: [1, 2, 3]
->  
-> +  microchip,flx-shrd-pins:
-> +    description: Specify the Flexcom shared pins to be used for flexcom
-> +      chip-selects.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 2
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+> new file mode 100644
+> index 000000000000..7b3df7c714aa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+> @@ -0,0 +1,175 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek,mt8195-jpegdec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek JPEG Encoder Device Tree Bindings
+> +
+> +maintainers:
+> +  - kyrie wu <kyrie.wu@mediatek.corp-partner.google.com>
+> +
+> +description: |-
+> +  MediaTek JPEG Decoder is the JPEG decode hardware present in MediaTek SoCs
+> +
+> +properties:
+> +  compatible:
 > +    items:
-> +      minimum: 0
-> +      maximum: 20
+> +      - const: mediatek,mt8195-jpgdec
 > +
-> +  microchip,flx-cs:
-> +    description: Flexcom chip selects. Here, value of '0' represents "cts" line
-> +      of flexcom USART or "cs0" line of flexcom SPI and value of '1' represents
-> +      "rts" line of flexcom USART or "cs1" line of flexcom SPI.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      minimum: 0
-> +      maximum: 1
+> +  mediatek,jpegdec-multi-core:
+> +    type: boolean
+> +    description: |
+> +      Indicates whether the jpeg encoder has multiple cores or not.
 > +
->  patternProperties:
->    "^serial@[0-9a-f]+$":
->      description: See atmel-usart.txt for details of USART bindings.
-> @@ -73,6 +96,33 @@ required:
->    - ranges
->    - atmel,flexcom-mode
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: microchip,lan966x-flexcom
+> +  power-domains:
+> +    maxItems: 1
 > +
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +          items:
-> +            - description: Flexcom base regsiters map
-
-typo here - registers
-
-> +            - description: Flexcom shared registers map
-> +      required:
-> +        - microchip,flx-shrd-pins
-> +        - microchip,flx-cs
+> +  iommus:
+> +    maxItems: 6
+> +    description: |
+> +      Points to the respective IOMMU block with master port as argument, see
+> +      Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml for details.
+> +      Ports are according to the HW.
 > +
-> +    else:
-> +      properties:
-> +        reg:
-> +          maxItems: 1
-
-I think maxItems are not needed in such case. Rob's bot complains, so be
-sure you test your bindings before sending.
-
-> +          items:
-> +            - description: Flexcom base regsiters map
-
-typo
-
-> +        microchip,flx-shrd-pins: false
-> +        microchip,flx-cs: false
+> +  "#address-cells":
+> +    const: 2
 > +
->  additionalProperties: false
->  
->  examples:
-> @@ -101,4 +151,32 @@ examples:
->                  atmel,fifo-size = <32>;
->            };
->      };
+> +  "#size-cells":
+> +    const: 2
+> +
+> +  ranges: true
+> +
+> +# Required child node:
+> +patternProperties:
+> +  "^jpgdec@[0-9a-f]+$":
+> +    type: object
+> +    description: |
+> +      The jpeg decoder hardware device node which should be added as subnodes to
+> +      the main jpeg node.
+> +
+> +    properties:
+> +      compatible:
+> +        const: mediatek,mt8195-jpgdec-hw
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      hw_id:
+> +        description: |
+> +          Current jpegdec hw id.
+
+What's this for and how is it used? We generally don't do indexes in DT.
+
+> +
+> +      iommus:
+> +        minItems: 1
+> +        maxItems: 32
+> +        description: |
+> +          List of the hardware port in respective IOMMU block for current Socs.
+> +          Refer to bindings/iommu/mediatek,iommu.yaml.
+> +
+> +      interrupts:
+> +        maxItems: 1
+> +
+> +      clocks:
+> +        maxItems: 1
+> +
+> +      clock-names:
+> +        items:
+> +          - const: jpgdec
+> +
+> +      power-domains:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - hw_id
+> +      - iommus
+> +      - interrupts
+> +      - clocks
+> +      - clock-names
+> +      - power-domains
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - power-domains
+> +  - iommus
+> +
+> +additionalProperties: false
+> +
+> +examples:
 > +  - |
 > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/memory/mt8195-memory-port.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/mt8195-clk.h>
+> +    #include <dt-bindings/power/mt8195-power.h>
 > +
-> +    flx3: flexcom@e0064000 {
-> +          compatible = "microchip,lan966x-flexcom";
-
-Just like in patch #1 = wrong indentation. 4 spaces for the DTS example.
-
-> +          reg = <0xe0064000 0x100>,
-> +                <0xe2004180 0x8>;
-> +          clocks = <&flx0_clk>;
-> +          #address-cells = <1>;
-> +          #size-cells = <1>;
-> +          ranges = <0x0 0xe0040000 0x800>;
-> +          atmel,flexcom-mode = <2>;
-> +          microchip,flx-shrd-pins = <9>;
-> +          microchip,flx-cs = <0>;
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
 > +
-> +          spi3: spi@400 {
-> +                compatible = "atmel,at91rm9200-spi";
-> +                reg = <0x400 0x200>;
-> +                interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-> +                pinctrl-names = "default";
-> +                pinctrl-0 = <&pinctrl_flx3_default>;
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                clocks = <&nic_clk>;
-> +                clock-names = "spi_clk";
-> +                atmel,fifo-size = <32>;
-> +          };
+> +        jpgdec_master {
+> +                compatible = "mediatek,mt8195-jpgdec";
+> +                mediatek,jpegdec-multi-core;
+> +                power-domains = <&spm MT8195_POWER_DOMAIN_VDEC1>;
+> +                iommus = <&iommu_vpp M4U_PORT_L19_JPGDEC_WDMA0>,
+> +                     <&iommu_vpp M4U_PORT_L19_JPGDEC_BSDMA0>,
+> +                     <&iommu_vpp M4U_PORT_L19_JPGDEC_WDMA1>,
+> +                     <&iommu_vpp M4U_PORT_L19_JPGDEC_BSDMA1>,
+> +                     <&iommu_vpp M4U_PORT_L19_JPGDEC_BUFF_OFFSET1>,
+> +                     <&iommu_vpp M4U_PORT_L19_JPGDEC_BUFF_OFFSET0>;
+> +                #address-cells = <2>;
+> +                #size-cells = <2>;
+> +                ranges;
+> +
+> +                jpgdec@1a040000 {
+> +                    compatible = "mediatek,mt8195-jpgdec-hw";
+> +                    reg = <0 0x1a040000 0 0x10000>;/* JPGDEC_C0 */
+> +                    hw_id = <0>;
+> +                    iommus = <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA0>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA0>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA1>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA1>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGDEC_BUFF_OFFSET1>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGDEC_BUFF_OFFSET0>;
+> +                    interrupts = <GIC_SPI 343 IRQ_TYPE_LEVEL_HIGH 0>;
+> +                    clocks = <&vencsys CLK_VENC_JPGDEC>;
+> +                    clock-names = "jpgdec";
+> +                    power-domains = <&spm MT8195_POWER_DOMAIN_VDEC0>;
+> +                };
+> +
+> +                jpgdec@1a050000 {
+> +                    compatible = "mediatek,mt8195-jpgdec-hw";
+> +                    reg = <0 0x1a050000 0 0x10000>;/* JPGDEC_C1 */
+> +                    hw_id = <1>;
+> +                    iommus = <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA0>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA0>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA1>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGDEC_BSDMA1>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGDEC_BUFF_OFFSET1>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGDEC_BUFF_OFFSET0>;
+> +                    interrupts = <GIC_SPI 344 IRQ_TYPE_LEVEL_HIGH 0>;
+> +                    clocks = <&vencsys CLK_VENC_JPGDEC_C1>;
+> +                    clock-names = "jpgdec";
+> +                    power-domains = <&spm MT8195_POWER_DOMAIN_VDEC1>;
+> +                };
+> +
+> +                jpgdec@1b040000 {
+> +                    compatible = "mediatek,mt8195-jpgdec-hw";
+> +                    reg = <0 0x1b040000 0 0x10000>;/* JPGDEC_C2 */
+> +                    hw_id = <2>;
+> +                    iommus = <&iommu_vpp M4U_PORT_L20_JPGDEC_WDMA0>,
+> +                        <&iommu_vpp M4U_PORT_L20_JPGDEC_BSDMA0>,
+> +                        <&iommu_vpp M4U_PORT_L20_JPGDEC_WDMA1>,
+> +                        <&iommu_vpp M4U_PORT_L20_JPGDEC_BSDMA1>,
+> +                        <&iommu_vpp M4U_PORT_L20_JPGDEC_BUFF_OFFSET1>,
+> +                        <&iommu_vpp M4U_PORT_L20_JPGDEC_BUFF_OFFSET0>;
+> +                    interrupts = <GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH 0>;
+> +                    clocks = <&vencsys_core1 CLK_VENC_CORE1_JPGDEC>;
+> +                    clock-names = "jpgdec";
+> +                    power-domains = <&spm MT8195_POWER_DOMAIN_VDEC2>;
+> +                };
+> +        };
 > +    };
->  ...
-
-
-Best regards,
-Krzysztof
+> -- 
+> 2.18.0
+> 
+> 
