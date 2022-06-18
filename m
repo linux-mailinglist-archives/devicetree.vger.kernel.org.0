@@ -2,65 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC16655023F
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 05:00:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDCCF550242
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 05:03:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383831AbiFRDAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 23:00:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36996 "EHLO
+        id S1383680AbiFRDDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 23:03:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383967AbiFRDAf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 23:00:35 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 037256C560;
-        Fri, 17 Jun 2022 20:00:34 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25I30PZs078245;
-        Fri, 17 Jun 2022 22:00:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1655521225;
-        bh=+5VI5pZBo8bqwisTLTBIUAHES2bOLGNcpeVYMMWFTD0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=kALr+PVdXblpTuhflIf9EavY8lhetJwxWDxYLBs7gkX1RbYVeZbRi8o3qMxnJLOzM
-         CorkOh+8h6AeVnIOWUvXCMqwFUjcJQO7nle7aKTUrnMpwxAfdzz5NFPpJy0FtKi/EE
-         ZJUKjjj5+ZexT0WPuY/z1yoDOS1VExvDGI2fEPYg=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25I30PXv070105
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 17 Jun 2022 22:00:25 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 17
- Jun 2022 22:00:25 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 17 Jun 2022 22:00:25 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25I30Poq125209;
-        Fri, 17 Jun 2022 22:00:25 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Tony Lindgren <tony@atomide.com>, <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <arm@kernel.org>,
-        <olof@lixom.net>, <devicetree@vger.kernel.org>, <soc@kernel.org>,
-        <robh+dt@kernel.org>, <vigneshr@ti.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        <linux-arm-kernel@lists.infradead.org>, <kristo@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>
-CC:     Nishanth Menon <nm@ti.com>
-Subject: Re: (subset) [PATCH 1/3] arm64: dts: ti: adjust whitespace around '='
-Date:   Fri, 17 Jun 2022 22:00:15 -0500
-Message-ID: <165552085007.28094.12509530167428789527.b4-ty@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220526204139.831895-1-krzysztof.kozlowski@linaro.org>
-References: <20220526204139.831895-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S232367AbiFRDDI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 23:03:08 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FDA16C578;
+        Fri, 17 Jun 2022 20:03:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1655521387; x=1687057387;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=u1YpkbtOcUOCaYwksF0M3zdyzUGActOf3AeMErr9Tsk=;
+  b=ArW/IIczv2XGxlozAANxXDL6PPCNB+oCYKzP2HIj7WmSiAlvn/2nHlOP
+   4th71OUf4JvIE6RfkHT6yFYkHDk0MfGDaysKJMBI6s+BR1STCdfgB0Dfj
+   7JJqKaDustYyItQPn0IkHAjQnK7xYVSI/cWx+TK65n4HtTkvojVmETNtm
+   oTMJi2IMjnSWWfXIieFyZ4UrZaJ8yBI/IMbzrWDGPJ8prhUWmumXwU3lp
+   KaX+7P+noG7tUupOkuMALsFjx8oUVWNautvkchNmtFWWt91G98Sn3gpOa
+   hyWKk/+Q8ouI9k3Br5aW2stc1UXReW0Hh/anfKh846DiPNZV16bcjDdLq
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="343615138"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; 
+   d="scan'208";a="343615138"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jun 2022 20:03:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,306,1650956400"; 
+   d="scan'208";a="653869079"
+Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 17 Jun 2022 20:03:03 -0700
+Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o2Ojm-000PyF-Bw;
+        Sat, 18 Jun 2022 03:03:02 +0000
+Date:   Sat, 18 Jun 2022 11:02:18 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sean Anderson <sean.anderson@seco.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>, netdev@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Eric Dumazet <edumazet@google.com>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH net-next 03/28] phy: fsl: Add QorIQ SerDes driver
+Message-ID: <202206181015.BLEIZObf-lkp@intel.com>
+References: <20220617203312.3799646-4-sean.anderson@seco.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220617203312.3799646-4-sean.anderson@seco.com>
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,49 +77,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof Kozlowski,
+Hi Sean,
 
-On Thu, 26 May 2022 22:41:36 +0200, Krzysztof Kozlowski wrote:
-> Fix whitespace coding style: use single space instead of tabs or
-> multiple spaces around '=' sign in property assignment.  No functional
-> changes (same DTB).
-> 
-> 
+I love your patch! Perhaps something to improve:
 
-I have applied the following to branch ti-k3-dts-next on [1].
+[auto build test WARNING on net-next/master]
 
-[1/3] arm64: dts: ti: Adjust whitespace around '='
-      commit: 5888f1ed173e78fb06ebd2aae61061166dd6b359
+url:    https://github.com/intel-lab-lkp/linux/commits/Sean-Anderson/net-dpaa-Convert-to-phylink/20220618-044003
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git 4875d94c69d5a4836c4225b51429d277c297aae8
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20220618/202206181015.BLEIZObf-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/d9c7b1e909ace0c4229445647587ae1f64cf52c0
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Sean-Anderson/net-dpaa-Convert-to-phylink/20220618-044003
+        git checkout d9c7b1e909ace0c4229445647587ae1f64cf52c0
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=sh SHELL=/bin/bash drivers/net/ethernet/freescale/fman/ drivers/phy/freescale/ net/ipv6/
 
-I have applied the following to branch ti-keystone-dts-next on [1].
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-[3/3] ARM: dts: keystone: adjust whitespace around '='
-      commit: 3ea73bf02225ad433e7cfbf8427b08aa8c593775
+All warnings (new ones prefixed by >>):
 
-Thank you!
+>> drivers/phy/freescale/phy-qoriq.c:382:16: warning: no previous prototype for 'qs_clk_hw_to_priv' [-Wmissing-prototypes]
+     382 | struct qs_clk *qs_clk_hw_to_priv(struct clk_hw *hw)
+         |                ^~~~~~~~~~~~~~~~~
 
-Tony: I think it is better if you pick up:
-https://lore.kernel.org/all/20220526204139.831895-2-krzysztof.kozlowski@linaro.org/
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+vim +/qs_clk_hw_to_priv +382 drivers/phy/freescale/phy-qoriq.c
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+   381	
+ > 382	struct qs_clk *qs_clk_hw_to_priv(struct clk_hw *hw)
+   383	{
+   384		return container_of(hw, struct qs_clk, hw);
+   385	}
+   386	
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
