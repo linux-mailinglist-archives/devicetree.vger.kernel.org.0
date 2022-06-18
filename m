@@ -2,139 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0BDD5502E5
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 07:20:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9A7B550342
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 08:49:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229470AbiFRFUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 01:20:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33730 "EHLO
+        id S231425AbiFRGtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 02:49:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbiFRFUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 01:20:36 -0400
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2052.outbound.protection.outlook.com [40.107.101.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E7865EDF3;
-        Fri, 17 Jun 2022 22:20:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bimHtQjX4BuuCOk4Sa9aMT0nhDkVppOrF/uNPk4BuanWzXrEzHxYDk+rj/EybLY8WyVx6UfavqvdqctryXhlPBScuKdMz/EBEWcy5jqoQPp6zKHCDBggVZNved4LKAKemx2MsZrNv/5FFAS49A7NylVuaISyyN3wq9LnIByDAxkKA2Ry9KD56Mwi52LGi7UAOLad+NgQEkHx67NnAy1lqAJjgw6gcwPrd68HJ01Hh4n36+3f4HxGkeAl3xm2IJXMK+7a7dETyx7/Xc+U8NEatMqAVa/PSIUWt1qRwldVVIRN7ET7nlh8YF3GjwkFKFBwPC+P8tchn4fDygCww7LFXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kDG8eO1AxvCuQrB4kvRkEDlYyR1EUY7bFksPQ0fG2YY=;
- b=PlaDqRjGf9i08rGJctzYA15lmVaLbZtf7E/zoMQn3EnOSpXw57E5VRxgv4YPZi08vWNjrB6cCbdwZ/YvJaGz8NzMgqq7zvZSjVXffimRowvdTLUIlDGUlXMYn+jxM1w7WMa9bKAejiYDBMQdiaK493E14PD5lkT350MWWeSfq176vKkr6Jj5uaxN+Skgr2e4EdKUaXRITnbN/Hg16lGxv33goMPsJzF/kKlna2EeBL+DlXx66Lae573cWttDs9K5Hqq/K5e2poueviDmphORKR53X1m3CgHixEiOMM7hZG/qVNpuO8A+LjnX5iQkVPCQZY4Us0wKv2dqiy7DpUot0A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kDG8eO1AxvCuQrB4kvRkEDlYyR1EUY7bFksPQ0fG2YY=;
- b=YfII6m5qWe8gRhAR0SvvtPgqJdAcXg8IfifoFB15CE7I102feSJULxvI5gUXDMsOFtOTvc1zLZOU/kGRpECSgA3uV3zMkjzBs0hzC7nrxgzdkBJlLTHjeoG1yK0kG7rRpmNPipfyLXNUqc9M5hniz7fRSZ2mCYMSzYXGvgfFtTg=
-Received: from DM3PR12CA0047.namprd12.prod.outlook.com (2603:10b6:0:56::15) by
- SJ0PR02MB7421.namprd02.prod.outlook.com (2603:10b6:a03:2a3::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.15; Sat, 18 Jun
- 2022 05:20:28 +0000
-Received: from DM3NAM02FT050.eop-nam02.prod.protection.outlook.com
- (2603:10b6:0:56:cafe::e5) by DM3PR12CA0047.outlook.office365.com
- (2603:10b6:0:56::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.16 via Frontend
- Transport; Sat, 18 Jun 2022 05:20:28 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com; pr=C
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- DM3NAM02FT050.mail.protection.outlook.com (10.13.5.53) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5353.14 via Frontend Transport; Sat, 18 Jun 2022 05:20:28 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Fri, 17 Jun 2022 22:20:27 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Fri, 17 Jun 2022 22:20:27 -0700
-Envelope-to: linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org,
- bhelgaas@google.com
-Received: from [10.140.9.2] (port=44932 helo=xhdbharatku40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <bharat.kumar.gogada@xilinx.com>)
-        id 1o2Qsl-00014q-2w; Fri, 17 Jun 2022 22:20:27 -0700
-From:   Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
-To:     <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <bhelgaas@google.com>, <michals@xilinx.com>,
-        Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
-Subject: [PATCH] MAINTAINERS: Add Xilinx Versal CPM Root Port maintainers
-Date:   Sat, 18 Jun 2022 10:50:22 +0530
-Message-ID: <20220618052022.10388-1-bharat.kumar.gogada@xilinx.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S231959AbiFRGtP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 02:49:15 -0400
+Received: from esa3.hgst.iphmx.com (esa3.hgst.iphmx.com [216.71.153.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 009EB46148
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 23:49:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1655534954; x=1687070954;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=cJlFcpIzoeKzPz93xqBfimQuZjPgKMexkzSIElG5stA=;
+  b=Tqj8powtgdmwW+KRj0zTOX590uQ25DTRtBgs2+Ap7rGBXW6BNLaIUgyD
+   XgOQm5Eh16ZScndtm4oZqyYQiVIV91CV68/p1qdvddYgPS3bCg+Hwi2iM
+   NdsdqnPyD03RH28Ii/QBxuJwSiJX+7I88NBGY2QgHm2GVZ7e1iYI8jwCz
+   MaGRwoDWjGwMSW7Dc2P1iaFhZNOTS8eDpkrMOFZUE31mXjJpMBNLeund1
+   IsHIcjyDARZXZz3T9CLhfbge3duOB7LeSSvs2rbMnTW2pld9d9BpLlFHm
+   6zBEZfo+Ac5dRu+MEbhM+LvZmFBlh/Azi/5R45wh5gWQDKoaWNGSBnCv4
+   w==;
+X-IronPort-AV: E=Sophos;i="5.92,306,1650902400"; 
+   d="scan'208";a="208360277"
+Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 18 Jun 2022 14:49:12 +0800
+IronPort-SDR: yck/TsIvqce0RHJm+wjBDjuB4Wl+4h4mXuJtfz0IO3vBViMhOKQlfB/px+HX3vZJ8c5tCQIF8C
+ IbgLFLPu1ZJ1pXFm8qPM9xMDBBstFwK2a6UOw6oZG2Dr8b8tO8EcBeLrwSmxUI1jg/IMyPbN8U
+ NENHkF040i4JWGRzbhi9+ZAacQ9wdJhZssGc7UJ3lkJm3GhpJxAvkT4HqQsaAYmoceNflzJ34X
+ ybCeNOBnzmaN/4LpKF+ridp8wk8rdp+M3NG8dHCVodIEmdbi6H7JesoDDmrGHOHABlYZSZsgKZ
+ NmmKmlus0RSRp/KAMjrgpdoE
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Jun 2022 23:07:24 -0700
+IronPort-SDR: 3UCieiHs8v3Kyw/y67Z3nZEqQ6Eu2mPyESmexD+W3dk3ft6IK080YLBrLDKLLlwIcVjbX0RRlv
+ 38wGWjK6rhZguZ+y21fQe5LyIdOFiUI4lcllOfMiebBzZopxIjRJI1zKB2whsHay03aGutO95N
+ +9AUMIFECB13Y0qmpUnfXFwIXqarmmGP3cERBDR2s9REUNbjKmvDg5jzBAorhN9TZbmCSIcFwW
+ tX5Ht2CCLdq1cRV9miERx/3e9NSUpstkko671LP31MAUJAezaEoTWL8kx2Ymz4M9dy8eqNuANO
+ rIY=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Jun 2022 23:49:13 -0700
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4LQ62c3Xnfz1SVp1
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 23:49:12 -0700 (PDT)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1655534951; x=1658126952; bh=cJlFcpIzoeKzPz93xqBfimQuZjPgKMexkzS
+        IElG5stA=; b=OpXI24xkSEAwVND8bZRwnvkumDUdfGisI+1cKjvdhxiDVUM6Ad3
+        BWfpyrbG+drUIN0M7XqAzeifo2nQNuOeo2FWmYCFdqIB9ZTo1OEGWH/m+brrVPxC
+        YMAWcLkOiCs37xNte8Pb1Ocyq0UiPnKPA1OcvbvOP4y9Qg0LxJXQOP5sx2QqZkxL
+        YrfkdkAC/6tA94bheRzPC9sT6UgoaG8nuVlcuiwuPvU06dEki90yGnX5U2E2DXJm
+        CDMnIF3ASiBlQxgfWOUJwhIrUasektvh7FPwMpFp0/UB9uPKo9jo6XV1Teo8FpIr
+        MxPK9qvSU8VCs3UeqZKCFw/1eHIyq+ZumqQ==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id UMC7NiMnHwHd for <devicetree@vger.kernel.org>;
+        Fri, 17 Jun 2022 23:49:11 -0700 (PDT)
+Received: from [10.225.163.84] (unknown [10.225.163.84])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4LQ62Y4Pwwz1Rvlc;
+        Fri, 17 Jun 2022 23:49:09 -0700 (PDT)
+Message-ID: <c566c15c-0806-3b3f-5b68-071cd552eb33@opensource.wdc.com>
+Date:   Sat, 18 Jun 2022 15:49:08 +0900
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 09035c78-5dfd-43ef-4ecd-08da50ea41d5
-X-MS-TrafficTypeDiagnostic: SJ0PR02MB7421:EE_
-X-Microsoft-Antispam-PRVS: <SJ0PR02MB74211CBD5D0623060236597DA5AE9@SJ0PR02MB7421.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xXfSoJKhxdVo7kgyGnRbLtDRGF8fOmFEGsyBPSFCojhl4dLCzfVznCNySFQs3peaZYgIWzDREqVdkKtmokKgMF8Qhy6RedIJ6XevESzLCI/Ryq8+HRcGQtVlrk5qupRTnqA+1qqw/59VkLj4eMnYqz3J8fj1LVOb1zow4yWH81GlY/F7/KlXTbjITxnuGUE0u8xmra1wbHRScCylipi8ZKTWniWJEKH4CcFv2f/hf0bfXRh7H2SPoOlaCcHrpRRLIZIdrB2vgoH5QCYSaALfCc7qxEaJHiR9aBrJZPswI3H28eOwH/gE/ZOrllqVsJlv7VAKdusCeJ8Qzr5VVbr0NszSIHDBwhUWH/iGEfNv+bICJK4smw2e6L8Gh/cfF77CmcbX+BVc/2GCYeBtethcEdem967GV9LVAI7gLpfc6lg9crYgkCdNXZJnv/g0AioawSn8LqEemcBD9ygqYKHpIIUQh5Je2RBRM/60LErDBeGSyNLtSdmbQwrvttuV4Hol+9kEvLk9oviWZ4AC00cV3ANZLGcMxbGhyljheRFSjM3WEHxGL4p38nxt3VCQU6yk2OoNZ48IQvC+uxk+XqvArDgqk96aVHZT11MNEGRjEvgiw8rGpodh1/u4ii/wQhFMCZNwOZ5T4L0wP4q4DNpYVvCiLRkzVM848IvXUJo4IeY+ca+w3TVGRDqNssZb9ujy3qynovJLqIYm+1mJlbW2fg==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230016)(4636009)(46966006)(36840700001)(40470700004)(107886003)(2616005)(36756003)(70586007)(70206006)(356005)(4744005)(26005)(5660300002)(186003)(82310400005)(103116003)(36860700001)(6666004)(54906003)(9786002)(110136005)(8936002)(498600001)(7696005)(47076005)(2906002)(7636003)(336012)(426003)(40460700003)(8676002)(1076003)(4326008)(316002)(102446001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2022 05:20:28.2476
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09035c78-5dfd-43ef-4ecd-08da50ea41d5
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT050.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR02MB7421
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v4 08/23] ata: libahci_platform: Sanity check the DT child
+ nodes number
+Content-Language: en-US
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
+ <20220610081801.11854-9-Sergey.Semin@baikalelectronics.ru>
+ <c388835e-3bc1-a69c-82a7-6036c7adec1b@opensource.wdc.com>
+ <20220615205328.chwruabvksdbnaex@mobilestation>
+ <6d16fe23-012d-39fb-21e5-39ce50f7b03a@opensource.wdc.com>
+ <20220617201855.cf64vbhe6wk4hrcu@mobilestation>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <20220617201855.cf64vbhe6wk4hrcu@mobilestation>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
-X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainer for driver and documentation of Xilinx Versal
-CPM Root Port device.
+On 6/18/22 05:18, Serge Semin wrote:
+> On Thu, Jun 16, 2022 at 09:25:48AM +0900, Damien Le Moal wrote:
+>> On 2022/06/16 5:53, Serge Semin wrote:
+>>> On Tue, Jun 14, 2022 at 05:23:33PM +0900, Damien Le Moal wrote:
+>>>> On 6/10/22 17:17, Serge Semin wrote:
+>>>>> Having greater than AHCI_MAX_PORTS (32) ports detected isn't that critical
+>>>>> from the further AHCI-platform initialization point of view since
+>>>>> exceeding the ports upper limit will cause allocating more resources than
+>>>>> will be used afterwards. But detecting too many child DT-nodes doesn't
+>>>>> seem right since it's very unlikely to have it on an ordinary platform. In
+>>>>> accordance with the AHCI specification there can't be more than 32 ports
+>>>>> implemented at least due to having the CAP.NP field of 5 bits wide and the
+>>>>> PI register of dword size. Thus if such situation is found the DTB must
+>>>>> have been corrupted and the data read from it shouldn't be reliable. Let's
+>>>>> consider that as an erroneous situation and halt further resources
+>>>>> allocation.
+>>>>>
+>>>>> Note it's logically more correct to have the nports set only after the
+>>>>> initialization value is checked for being sane. So while at it let's make
+>>>>> sure nports is assigned with a correct value.
+>>>>>
+>>>>> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+>>>>> Reviewed-by: Hannes Reinecke <hare@suse.de>
+>>>>>
+>>>>> ---
+>>>>>
+>>>>> Changelog v2:
+>>>>> - Drop the else word from the child_nodes value checking if-else-if
+>>>>>   statement (@Damien) and convert the after-else part into the ternary
+>>>>>   operator-based statement.
+>>>>>
+>>>>> Changelog v4:
+>>>>> - Fix some logical mistakes in the patch log. (@Sergei Shtylyov)
+>>>>> ---
+>>>>>  drivers/ata/libahci_platform.c | 13 ++++++++++---
+>>>>>  1 file changed, 10 insertions(+), 3 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
+>>>>> index 814804582d1d..8aed7b29c7ab 100644
+>>>>> --- a/drivers/ata/libahci_platform.c
+>>>>> +++ b/drivers/ata/libahci_platform.c
+>>>>> @@ -451,15 +451,22 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
+>>>>>  		}
+>>>>>  	}
+>>>>>  
+>>>>> -	hpriv->nports = child_nodes = of_get_child_count(dev->of_node);
+>>>>> +	/*
+>>>>> +	 * Too many sub-nodes most likely means having something wrong with
+>>>>> +	 * the firmware.
+>>>>> +	 */
+>>>>> +	child_nodes = of_get_child_count(dev->of_node);
+>>>>> +	if (child_nodes > AHCI_MAX_PORTS) {
+>>>>> +		rc = -EINVAL;
+>>>>> +		goto err_out;
+>>>>> +	}
+>>>>>  
+>>>>>  	/*
+>>>>>  	 * If no sub-node was found, we still need to set nports to
+>>>>>  	 * one in order to be able to use the
+>>>>>  	 * ahci_platform_[en|dis]able_[phys|regulators] functions.
+>>>>>  	 */
+>>>>> -	if (!child_nodes)
+>>>>> -		hpriv->nports = 1;
+>>>>> +	hpriv->nports = child_nodes ?: 1;
+>>>>
+>>>
+>>>> This change is not necessary and makes the code far less easy to read.
+>>>
+>>> elaborate please. What change? What part of this change makes the code
+>>> less easy to read?
+>>
+> 
+>> You changed:
+>>
+>> 	if (!child_nodes)
+>> 		hpriv->nports = 1;
+>>
+>> to:
+>>
+>> 	hpriv->nports = child_nodes ?: 1;
+>>
+>> That is the same. So the change is not needed in the first place, and worse,
+>> makes the code way harder to read for no good reason.
+> 
+> No, they aren't the same:
+> +	if (!child_nodes)
+> +		hpriv->nports = 1;
+> and
+> +	hpriv->nports = child_nodes ?: 1;
+> aren't equivalent. The equivalent implementation would be:
+> +	if (child_nodes)
+> +		hpriv->nports = child_nodes;
+> +	else
+> +		hpriv->nports = 1;
 
-Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Then use this code. That cryptic C code is hard to read.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ea3e6c914384..a07f926d7e93 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15063,6 +15063,14 @@ L:	linux-pci@vger.kernel.org
- S:	Maintained
- F:	drivers/pci/controller/dwc/*spear*
- 
-+PCI DRIVER FOR XILINX VERSAL CPM
-+M:	Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
-+M:	Michal Simek <michal.simek@amd.com>
-+L:	linux-pci@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-+F:	drivers/pci/controller/pcie-xilinx-cpm.c
-+
- PCMCIA SUBSYSTEM
- M:	Dominik Brodowski <linux@dominikbrodowski.net>
- S:	Odd Fixes
+> 
+> As I said in the patchlog, hpriv->nports is updated now only if
+> of_get_child_count() returns a valid number of the child nodes,
+> ports, which semantically is more correct. In the previous
+> implementation it was always set to the number of child nodes
+> no matter whether that value was correct or not.
+> 
+> Regarding the ternary operator with omitted operand. Well, it's not
+> that rare beast in the kernel:
+> $ grep -r "?:" kernel/ drivers/ mm/ fs/ block/ | wc -l
+> 699
+> But if you insist in it being not that readable, I can replace it with
+> more bulky if-else statement. Do you?
+
+Yes please, use the spelled out if/else. I prefer easy to read code rather
+than loosing time trying to understand that cryptic C syntax, which  I
+actually did not know about.
+
+> 
+> -Sergey
+> 
+>>
+>>>
+>>> -Sergey
+>>>
+>>>>
+>>>>>  
+>>>>>  	hpriv->phys = devm_kcalloc(dev, hpriv->nports, sizeof(*hpriv->phys), GFP_KERNEL);
+>>>>>  	if (!hpriv->phys) {
+>>>>
+>>>>
+>>>> -- 
+>>>> Damien Le Moal
+>>>> Western Digital Research
+>>
+>>
+>> -- 
+>> Damien Le Moal
+>> Western Digital Research
+
+
 -- 
-2.17.1
-
+Damien Le Moal
+Western Digital Research
