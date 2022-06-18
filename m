@@ -2,278 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33C1F55045E
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 14:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3104550473
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 14:32:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233569AbiFRMLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 08:11:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42020 "EHLO
+        id S234103AbiFRMcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 08:32:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231329AbiFRMLU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 08:11:20 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 797FD13DD1;
-        Sat, 18 Jun 2022 05:11:19 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id x75so4873350qkb.12;
-        Sat, 18 Jun 2022 05:11:19 -0700 (PDT)
+        with ESMTP id S233382AbiFRMcC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 08:32:02 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC921183A0
+        for <devicetree@vger.kernel.org>; Sat, 18 Jun 2022 05:32:00 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id v14so8802310wra.5
+        for <devicetree@vger.kernel.org>; Sat, 18 Jun 2022 05:32:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SXC2BsNoVt3EcIxryvdord8k0rLORi0J738TA6+GHTY=;
-        b=NrtAsD3/x8hHa6/raOZLYmPQqsFNexitsbRvGR1RinfIomg6XJs4lj4Y2+/2oDYQjr
-         HiLgfg9/AXzVLZQzOrd3sIMnTKmHG8gK4zQ68PuUavMq23azIPeBL0Sb2schJ+rWtziS
-         WFrGVMNHU/+0n9k5TpgzwfG0DOKG+9vzZRs8HYU6g/Sbgqo1m5wsJlPNyfTuHt4hKdc9
-         8r+6FJK1eQovjARIvGtQ7OoyeL6zv3Vaxe4rRMg2af0J/1+sNOviYSofzKd6osmWsBCT
-         M9L1KsblxWeip5BdO8YQRX+6qJSbHOFKfm03WssPQTTy3YFxpzdYIyGTP9Aud63zSU0G
-         HXyA==
+        d=conchuod.ie; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cxrfrrOtT2Oa/bD+7FBstHMfLsi5+SmAhxAWzjAkyZ0=;
+        b=S2mJhG/EP2bvAoovp3+1EX915fqgCN7s5TTHRtk6gjrtEqOI/5G9b2iqkP8Hp2fPJT
+         Xv7w9JM5mIzSBmUBnG5veKqEPc/MaxIruLrav0YlVhnIQlMG/M+wTnbgpcN0tcmr+tr2
+         or89IY4gglZ6yWfGfoA+jfJEq4JsK9dvMaD2rRItnHWPYoJkG7IkTqJN1pM8cYB5TpdM
+         9bGqfIt5FOQFRPbbNCxOn37acP1sIBQPp6tl26reXViVZmDuywOt0O5V9tWi+koaQg4c
+         DJEmvefmmDhAvEMjrhz9P1n7uaAObdu8xiUcENoorbn9u8vIjZNy1IW7RHROc+mSnsUJ
+         yKqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SXC2BsNoVt3EcIxryvdord8k0rLORi0J738TA6+GHTY=;
-        b=UBpv0DxRPkgqWGcGX7Vh0qN9uNTB5xh7MyNTP25F3yv8lCJ4H5gh9U80oOLIF5vhJ0
-         pEN56UmHOKL7F8u3KrUBnMpFQedicZc1JC4uMwcZXtUmo+QQz8/g+Pr4ZTlP/Zimd8NW
-         thO5mMBr8IfbEfJ52HP0Vq4M3Zi8Jx71EurZC2TYiq9U8Vde6Gg19d/VF1gXTwVzzS2K
-         tj8oYXKJmUkRvYWx0mF6n+F8zJxIQK+wyUBjRsfBFY5UT77Yc/fWKZJKd3ZswqqoPgOE
-         c6cwqB9uJ0dic3mXoK7x1fwHllEoOFrwmHtCgcYa+wToEaDK1mxXKs6Ebkc6645F/FsE
-         QQeg==
-X-Gm-Message-State: AJIora8XpNywwNiLTLquGgJHYsUJpD/VpAbiBixUH/l9OW0zZ7vx2us1
-        66FZsthgQ7SIyhnYwREKqZkpzbTYdKgtp1e+wiqwDsx0ooU0Zg==
-X-Google-Smtp-Source: AGRyM1u0efNrtt6qKvfc5VUiucWIB57wH5ui2txDo71qtycuSVFPozZBUNURpr0kW/6+oAqX8KXsGr0JeTG4YBuN0Bc=
-X-Received: by 2002:a37:a5d0:0:b0:6a6:7cbc:dc2a with SMTP id
- o199-20020a37a5d0000000b006a67cbcdc2amr10131003qke.496.1655554278367; Sat, 18
- Jun 2022 05:11:18 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cxrfrrOtT2Oa/bD+7FBstHMfLsi5+SmAhxAWzjAkyZ0=;
+        b=PWhhr1cBoZAgCx5cRz4aewrerSrefGFrfh5sztxBLfZvzcR7Wirl01XWn3jSby2n1/
+         leSqWz05PwG2sgPoKplP0OZEMvfTD8r+YeEiExmTiRVpPDaagPvNjKfh9RUD2qLUw+QG
+         O4WdIy86L2NxVzLNoc2R21cesSgW53DM5MpZlSCp9a9lzqkFWsiqLbVOtHc/wmIqqW9e
+         UxY/cWnmQlogUSfVFYhQRkoskhNNSAZGHm1GoS8iMnlx7EmCFz54ycDcpTAM0ffTNG5D
+         AVuv6MbMyOpPb/TA/qYJ97l4+Gl55mC0IC8+S5WBo5vb8JRqq4kTT6woTnurL/hUXGHe
+         uCtg==
+X-Gm-Message-State: AJIora9lwa2ahs1PzzBEeqvx98vtzQe2GH7ra3CPnHeFxfKRKnvusJ6Z
+        rC0I/HqPpHmvehEFoM0Ll4GsLQ==
+X-Google-Smtp-Source: AGRyM1vo09vBquhwF3XuUkIoGOLL2MXJBKKEyvgcE2QTAi/5UKplOA45WdH+tRLIApC05LNQOZn4qQ==
+X-Received: by 2002:adf:fd0f:0:b0:210:32d7:4cb5 with SMTP id e15-20020adffd0f000000b0021032d74cb5mr13971427wrr.565.1655555519244;
+        Sat, 18 Jun 2022 05:31:59 -0700 (PDT)
+Received: from henark71.. ([51.37.234.167])
+        by smtp.gmail.com with ESMTPSA id az10-20020adfe18a000000b00210396b2eaesm9292305wrb.45.2022.06.18.05.31.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 18 Jun 2022 05:31:58 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Niklas Cassel <niklas.cassel@wdc.com>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        Heng Sia <jee.heng.sia@intel.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH 00/14] Canaan devicetree fixes
+Date:   Sat, 18 Jun 2022 13:30:22 +0100
+Message-Id: <20220618123035.563070-1-mail@conchuod.ie>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-References: <20220530101031.11357-1-r-ravikumar@ti.com> <20220530101031.11357-4-r-ravikumar@ti.com>
- <20220618021614.svhnzlsm2chn5jey@kahuna>
-In-Reply-To: <20220618021614.svhnzlsm2chn5jey@kahuna>
-From:   Jason Kridner <jkridner@gmail.com>
-Date:   Sat, 18 Jun 2022 08:11:07 -0400
-Message-ID: <CA+T6QPnCut5KVUXcSqfHCjoc=5-JFvRSz=WFosCjQMXdRSjrTw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] arm64: dts: ti: k3-j721e-sk: Add pinmux for RPi Header
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Rahul T R <r-ravikumar@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        "Raghavendra, Vignesh" <vigneshr@ti.com>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
-        rogerq@kernel.org, devicetree@vger.kernel.org, kristo@kernel.org,
-        ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel@vger.kernel.org, Suman Anna <s-anna@ti.com>,
-        "Pothukuchi, Vijay" <vijayp@ti.com>,
-        Robert Nelson <robertcnelson@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For those seeing this message multiple times, my apologies for not
-properly setting up my mailer.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On Fri, Jun 17, 2022 at 10:16 PM Nishanth Menon <nm@ti.com> wrote:
->
-> On 15:40-20220530, Rahul T R wrote:
-> > From: Sinthu Raja <sinthu.raja@ti.com>
-> >
-> > Add pinmux required to bring out
-> > i2c5, ehrpwm 2 and 3 and gpios on
-> > 40 pin RPi header on sk board
-> >
-> > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
->
->
-> I was digging deeper at https://www.ti.com/lit/zip/sprr438
-> (PROC112E2(001)_SCH.pdf - J3, Also looking at
-> https://github.com/beagleboard/beaglebone-ai-64/blob/master/BeagleBone%20AI%20-64_SCH_V1.02_211119.pdf
-> (P8, P9)
->
-> And comparing it to https://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/
-> And considering potential use such as https://pypi.org/project/RPi.GPIO/
-> variation,
->
-> Here is my suggestion (applies to other TI Boards that attempt to
-> emulate RPI header)
-> a) Default mux in board.dts should be GPIO except for the i2c used for
->    ID detection.
-> b) Secondary functions should be a dt overlay. (These can easily enable
->    the pwms and other functions as needed)
-> c) Maintain node names consistent to allow reuse of overlays across
->    platforms.
->
-> Usage: you can either use extlinux.conf OR uEnv.txt to apply the
-> overlays as desired (ID detection from hats might help automate it based
-> on the bootloader you'd want to use)
->
-> Else, you have created a custom configuration here for 1 specific
-> application, various hats that expect GPIO will end up croaking.
->
->
-> I am open to discussions here.
+Hey all,
+This series should rid us of dtbs_check errors for the RISC-V Canaan k210
+based boards (well, unless you enable W=1 but that's another days work).
+I *DO NOT* have any Canaan hardware so I have not tested any of this in
+anger. I based the series on next-20220617.
 
+For the bindings, I am never sure about which of {unevaluated,additional}
+Properties is correct to use, but the if statements in the binding didn't
+work with additional so I used unevaluated...
 
+@Mark, for your two bindings I was not sure about the properties that I
+made depend on the compatible, but I looked in tree and was not able to
+find other users to contradict what's in the Canaan devicetrees nor did
+I get that much help from their docs.
 
-A read of our recent blog series done with Bootlin is worth a read on
-this topic. https://bbb.io/@2804
+@Rob, yesterday's removal of ilitek,ili9341.txt is moved to ths series
+since I was editing the dt-schema binding here anyway.
 
-My suggestion is to put the entries for the common functions in the
-base tree, but not enable them (except for the I2C used for ID
-detection, as you suggested). This can remove SoC-specific
-requirements on the overlays such that the overlays are written
-against a header specification as defined by the common symbols
-provided. So, make the entries in the base tree and leave them
-"disabled" such that overlays only need to set the symbol to "okay",
-at least for the common stuff to all implementations of the Pi header.
+Finally, @Palmer:
+This + Atul's stuff + the sifive dts watchdog patch will get us sorted
+in terms of dtbs_check errors. To make keeping it that way a little
+easier, I changed the Canaan devicetree Makefile so that it would build
+all of the devicetrees in the directory if SOC_CANAAN. Hopefully someone
+with a device can test it - but my build log *looked* fine but that's
+not exactly sufficient.
 
+Thanks,
+Conor.
 
->
->
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 89 ++++++++++++++++++++++----
-> >  1 file changed, 78 insertions(+), 11 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-> > index 98a55778f3fe..b913b18ae133 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-> > +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-> > @@ -400,6 +400,57 @@
-> >                       J721E_IOPAD(0x124, PIN_INPUT, 7) /* (Y24) PRG0_PRU1_GPO9.GPIO0_72 */
-> >               >;
-> >       };
-> > +
-> > +     main_i2c5_pins_default: main-i2c5-pins-default {
-> > +             pinctrl-single,pins = <
-> > +                     J721E_IOPAD(0x150, PIN_INPUT_PULLUP, 2) /* (Y26) PRG0_MDIO0_MDIO.I2C5_SCL */
-> > +                     J721E_IOPAD(0x154, PIN_INPUT_PULLUP, 2) /* (AA27) PRG0_MDIO0_MDC.I2C5_SDA */
-> > +             >;
-> > +     };
-> > +
-> > +     rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
-> > +             pinctrl-single,pins = <
-> > +                     J721E_IOPAD(0x01c, PIN_INPUT, 7) /* (AD22) PRG1_PRU0_GPO6.GPIO0_7 */
-> > +                     J721E_IOPAD(0x120, PIN_INPUT, 7) /* (AA28) PRG0_PRU1_GPO8.GPIO0_71 */
-> > +                     J721E_IOPAD(0x14c, PIN_INPUT, 7) /* (AA29) PRG0_PRU1_GPO19.GPIO0_82 */
-> > +                     J721E_IOPAD(0x02c, PIN_INPUT, 7) /* (AD21) PRG1_PRU0_GPO10.GPIO0_11 */
-> > +                     J721E_IOPAD(0x198, PIN_INPUT, 7) /* (V25) RGMII6_TD1.GPIO0_101 */
-> > +                     J721E_IOPAD(0x1b0, PIN_INPUT, 7) /* (W24) RGMII6_RD1.GPIO0_107 */
-> > +                     J721E_IOPAD(0x1a0, PIN_INPUT, 7) /* (W29) RGMII6_TXC.GPIO0_103 */
-> > +                     J721E_IOPAD(0x008, PIN_INPUT, 7) /* (AG22) PRG1_PRU0_GPO1.GPIO0_2 */
-> > +                     J721E_IOPAD(0x1d0, PIN_INPUT, 7) /* (AA3) SPI0_D1.GPIO0_115 */
-> > +                     J721E_IOPAD(0x11c, PIN_INPUT, 7) /* (AA24) PRG0_PRU1_GPO7.GPIO0_70 */
-> > +                     J721E_IOPAD(0x148, PIN_INPUT, 7) /* (AA26) PRG0_PRU1_GPO18.GPIO0_81 */
-> > +                     J721E_IOPAD(0x004, PIN_INPUT, 7) /* (AC23) PRG1_PRU0_GPO0.GPIO0_1 */
-> > +                     J721E_IOPAD(0x014, PIN_INPUT, 7) /* (AH23) PRG1_PRU0_GPO4.GPIO0_5 */
-> > +                     J721E_IOPAD(0x020, PIN_INPUT, 7) /* (AE20) PRG1_PRU0_GPO7.GPIO0_8 */
-> > +                     J721E_IOPAD(0x19c, PIN_INPUT, 7) /* (W27) RGMII6_TD0.GPIO0_102 */
-> > +                     J721E_IOPAD(0x1b4, PIN_INPUT, 7) /* (W25) RGMII6_RD0.GPIO0_108 */
-> > +                     J721E_IOPAD(0x188, PIN_INPUT, 7) /* (Y28) RGMII6_TX_CTL.GPIO0_97 */
-> > +                     J721E_IOPAD(0x00c, PIN_INPUT, 7) /* (AF22) PRG1_PRU0_GPO2.GPIO0_3 */
-> > +                     J721E_IOPAD(0x010, PIN_INPUT, 7) /* (AJ23) PRG1_PRU0_GPO3.GPIO0_4 */
-> > +             >;
-> > +     };
-> > +
-> > +     rpi_header_gpio1_pins_default: rpi-header-gpio1-pins-default {
-> > +             pinctrl-single,pins = <
-> > +                     J721E_IOPAD(0x234, PIN_INPUT, 7) /* (U3) EXT_REFCLK1.GPIO1_12 */
-> > +             >;
-> > +     };
-> > +
-> > +     rpi_header_ehrpwm2_pins_default: rpi-header-ehrpwm2-pins-default {
-> > +             pinctrl-single,pins = <
-> > +                     J721E_IOPAD(0x178, PIN_INPUT, 6) /* (U27) RGMII5_RD3.EHRPWM2_A */
-> > +                     J721E_IOPAD(0x17c, PIN_INPUT, 6) /* (U24) RGMII5_RD2.EHRPWM2_B */
-> > +             >;
-> > +     };
-> > +
-> > +     rpi_header_ehrpwm3_pins_default: rpi-header-ehrpwm3-pins-default {
-> > +             pinctrl-single,pins = <
-> > +                     J721E_IOPAD(0x18c, PIN_INPUT, 6) /* (V23) RGMII6_RX_CTL.EHRPWM3_A */
-> > +                     J721E_IOPAD(0x190, PIN_INPUT, 6) /* (W23) RGMII6_TD3.EHRPWM3_B */
-> > +             >;
-> > +     };
-> >  };
-> >
-> >  &wkup_pmx0 {
-> > @@ -631,11 +682,6 @@
-> >       status = "disabled";
-> >  };
-> >
-> > -&main_i2c5 {
-> > -     /* Brought out on RPi Header */
-> > -     status = "disabled";
-> > -};
-> > -
->
-> Please don't relocate nodes in the same patch - kinda messes up the
-> diffstat and makes review a bit harder.
->
-> >  &main_i2c6 {
-> >       /* Unused */
-> >       status = "disabled";
-> > @@ -1138,18 +1184,39 @@
-> >       status = "disabled";
-> >  };
-> >
-> > -&main_ehrpwm2 {
-> > +&main_ehrpwm4 {
-> >       status = "disabled";
-> >  };
-> >
-> > -&main_ehrpwm3 {
-> > +&main_ehrpwm5 {
-> >       status = "disabled";
-> >  };
-> >
-> > -&main_ehrpwm4 {
-> > -     status = "disabled";
-> > +&main_gpio0 {
-> > +     pinctrl-names = "default";
-> > +     pinctrl-0 = <&rpi_header_gpio0_pins_default>;
-> >  };
-> >
-> > -&main_ehrpwm5 {
-> > -     status = "disabled";
-> > +&main_gpio1 {
-> > +     pinctrl-names = "default";
-> > +     pinctrl-0 = <&rpi_header_gpio1_pins_default>;
-> > +};
-> > +
-> > +&main_i2c5 {
-> > +     pinctrl-names = "default";
-> > +     pinctrl-0 = <&main_i2c5_pins_default>;
-> > +     clock-frequency = <400000>;
-> > +     status = "okay";
->
-> Defaults in SoC.dtsi so far are "okay" - so adding that again is
-> superfluous This happens when you are relocating nodes etc
->
-> > +};
-> > +
-> > +&main_ehrpwm2 {
-> > +     pinctrl-names = "default";
-> > +     pinctrl-0 = <&rpi_header_ehrpwm2_pins_default>;
-> > +     status = "okay";
-> > +};
-> > +
-> > +&main_ehrpwm3 {
-> > +     pinctrl-names = "default";
-> > +     pinctrl-0 = <&rpi_header_ehrpwm3_pins_default>;
-> > +     status = "okay";
-> >  };
->
-> --
-> Regards,
-> Nishanth Menon
-> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Conor Dooley (14):
+  dt-bindings: display: convert ilitek,ili9341.txt to dt-schema
+  dt-bindings: display: panel: allow ilitek,ili9341 in isolation
+  ASoC: dt-bindings: convert designware-i2s to dt-schema
+  dt-bindings: dma: add Canaan k210 to Synopsys DesignWare DMA
+  dt-bindings: timer: add Canaan k210 to Synopsys DesignWare timer
+  spi: dt-bindings: dw-apb-ssi: update spi-{r,t}x-bus-width for dwc-ssi
+  riscv: dts: canaan: fix the k210's memory node
+  riscv: dts: canaan: add a specific compatible for k210's dma
+  riscv: dts: canaan: add a specific compatible for k210's timers
+  riscv: dts: canaan: fix mmc node names
+  riscv: dts: canaan: fix kd233 display spi frequency
+  riscv: dts: canaan: use custom compatible for k210 i2s
+  riscv: dts: canaan: remove spi-max-frequency from controllers
+  riscv: dts: canaan: build all devicetress if SOC_CANAAN
+
+ .../bindings/display/ilitek,ili9341.txt       | 27 ------
+ .../display/panel/ilitek,ili9341.yaml         | 60 ++++++++----
+ .../bindings/dma/snps,dw-axi-dmac.yaml        | 35 +++++--
+ .../bindings/sound/designware-i2s.txt         | 35 -------
+ .../bindings/sound/snps,designware-i2s.yaml   | 93 +++++++++++++++++++
+ .../bindings/spi/snps,dw-apb-ssi.yaml         | 48 +++++++---
+ .../bindings/timer/snps,dw-apb-timer.yaml     | 28 ++++--
+ arch/riscv/boot/dts/canaan/Makefile           | 10 +-
+ arch/riscv/boot/dts/canaan/canaan_kd233.dts   |  4 +-
+ arch/riscv/boot/dts/canaan/k210.dtsi          | 25 ++---
+ .../riscv/boot/dts/canaan/sipeed_maix_bit.dts |  2 +-
+ .../boot/dts/canaan/sipeed_maix_dock.dts      |  2 +-
+ arch/riscv/boot/dts/canaan/sipeed_maix_go.dts |  2 +-
+ .../boot/dts/canaan/sipeed_maixduino.dts      |  2 +-
+ 14 files changed, 239 insertions(+), 134 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+ delete mode 100644 Documentation/devicetree/bindings/sound/designware-i2s.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/snps,designware-i2s.yaml
 
 
-
+base-commit: 07dc787be2316e243a16a33d0a9b734cd9365bd3
 -- 
-https://beagleboard.org/about/jkridner - a 501c3 non-profit educating
-around open hardware computing
+2.36.1
+
