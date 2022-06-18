@@ -2,416 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB1B5500E9
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 01:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8ECF55011C
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 02:15:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383708AbiFQXkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 19:40:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40334 "EHLO
+        id S236606AbiFRAOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 20:14:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383712AbiFQXkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 19:40:22 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0281B663F9
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 16:40:20 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id 73-20020a17090a0fcf00b001eaee69f600so5396415pjz.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 16:40:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mndTz+bFsRujK7EU9NBP4r+6ppKYNjQ4Bgdf4exvw8s=;
-        b=dbzxwLgAtBrk2yYp/8Na0Ck5+e3iT3Ro3n8t8EOGNiYoi7FrpFEAtwx4Gs2ngh4kwh
-         IaouxT34E8gD77OXugh03JTRSMzMYh4KYny2mAcc+PetAbujLbXtAN0czgr2lbJ3RJLK
-         qdRisxIy4JIoncQ1LpeUaLm+AF8qKPfue+pEQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mndTz+bFsRujK7EU9NBP4r+6ppKYNjQ4Bgdf4exvw8s=;
-        b=iYiim0jSZUG7ili+DwtVH2RFEkskReEgKbNrLgmPUwPTMXsII4twI7DRY2qqhqGVF6
-         a4cXTiVa1olKERKlFPN6dk8lJRv4YvSKdAVv3NMYd/XndfEZZumLWSLNWHNODCXQsyLi
-         ad1UgksaOVmTRHdzwUOr8oJy9rK2Hq9WqjCroQSBCUkZQAyKF2qzMRYrhxxMnIe5jNa7
-         7+2hv9xxAgIr1suMJ6rx4HA74jwhWZRTB8NjvHf4afBWwOKCQ+HNrUyyUthS3qrJmkhB
-         t9grv6C+7XfNq2+dbqhc28bpVbNd1TCl0KKACd41+lQCPlpbTeJkkCXW0V1lgYM1sbqv
-         TDkQ==
-X-Gm-Message-State: AJIora8XNGEJANkK17P2XJqebYMlLKgatGEBWQv/4Hkz4KMZvlfaDhN9
-        mmSpeSp/MMjdRb0ugqgAcwggsg==
-X-Google-Smtp-Source: AGRyM1tbDG/rJ0JwpAvGh0Evwzu6YUtDayT0SvpsWYcCf6vA3A7vLtSPImkUAQdA9f5UazLX8BqSnQ==
-X-Received: by 2002:a17:90b:4f84:b0:1e8:436b:a9ba with SMTP id qe4-20020a17090b4f8400b001e8436ba9bamr13540468pjb.191.1655509220426;
-        Fri, 17 Jun 2022 16:40:20 -0700 (PDT)
-Received: from joebar-glaptop.roam.corp.google.com (c-71-202-34-56.hsd1.ca.comcast.net. [71.202.34.56])
-        by smtp.gmail.com with ESMTPSA id b8-20020a170902d88800b00165105518f6sm4097422plz.287.2022.06.17.16.40.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jun 2022 16:40:20 -0700 (PDT)
-From:   "Joseph S. Barrera III" <joebar@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v8 5/5] arm64: dts: qcom: sc7180: Add kingoftown dts files
-Date:   Fri, 17 Jun 2022 16:40:06 -0700
-Message-Id: <20220617164000.v8.5.Ib62291487a664a65066d18a3e83c5428a6d2cc6c@changeid>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20220617164000.v8.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
-References: <20220617164000.v8.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
+        with ESMTP id S237031AbiFRAOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 20:14:51 -0400
+Received: from sonic310-12.consmr.mail.ir2.yahoo.com (sonic310-12.consmr.mail.ir2.yahoo.com [77.238.177.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AAFB15732
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 17:14:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1655511287; bh=9TxwzDycA3KEb8oeya066opG4vzRyaGRNE/yQ1cFbhE=; h=From:To:Cc:Subject:Date:References:From:Subject:Reply-To; b=k87zx+MnXuesAc9x9znXOgGHPv/prI9Y7J+hNtEHDSNCXkNHiom5IuF9/V/syGcx1KG0YuL0nGkDntAE99tx2CIZzVc878qcGlEeBbATJ72riRtzbey2WKHyfZnV4EIDvEuAGfJu+xqx4oRatqBPf2Jydpn4NV0a//srw4gBv9c/gRz/2oediAJmcfa579Pr6bVp2woh8kmSAl4IDB6117qBzZAQ6gfsf0+8yFaPVU7nOTfSi9VPcm4/ENpjLpbaPhr2PIhJB7BE1+X6aHI2QkU5KoUoGifTfNsDkOAbZqBVo+UvCsP9fiuwmvoGNx+1C64VK6bt4jOEuxSjpwQwhg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1655511287; bh=6liy8oX0Yp/NkcUeHlmAFw01cIxTi/8teg0TzJRIsFL=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=Xi3Z7BBM53QxarG2J0ynOl6iRCfG0dME5vbSz4knltQnKrLOY/HdsdKdhzblYG1Rc6Nm8mslyNqhkRNk0xLJKjsHjsLf01wZuwo/OjjX8DFEAf44asLk38u7w22McrWCqMsaV3fUVHWPgzlXChQNjH7pgLmIlzhUELjLDjGz3AepBXypozDw3Fns/mMQIoTqMlYLrhTky66VZEk3ehU8CuM6u8V99k+utr6UYHxQ4tBj/XkPsoN1HEoU2PzbjhSDXEO5M/lCFKK9LoXBrn2y5VtH4IxTMQcBA5S/vZuBL2cW84QhubphufGhMAYEATQo1WdpUL/mQI/+u0Ug3eWcYw==
+X-YMail-OSG: cOZfQzQVM1nfHGEs_utzRPcRekix.HzXuA1ce95KvR9pSiPI9V96_QI443q0Mop
+ AZ8ouV_OTjgF53y8v.Cj7V6Goi8eVXHF2GGAX.WVsNdOZy9wWuyaAwikFVtahU_f8fOmjTk4XLbm
+ 1rXEkgUSQg.AKcD99Av_dNB1LjOpJab6fk6w.cbP0sbRdEM2Q7SVgp938.rZn4BDqNpAnLPwfaja
+ M0LkrNqERfr5uhDyblIzSXHSgb_sbku.e.eOGmxGJkdIyI3TCFAGy1Q9gqI2daNtgh.9nHWBWUgU
+ wQ9NZwMAQeK0TDsd8LCJRNZkJyOKc9IYphwtO1UBfuN.duHmhoKoUwlyEIXQR2Py2vffkS6eGOVV
+ z1029szSmtzMYiT3UiXTnsdanscDxjBndgsM.eSLSEZQySayabPZKZTZWuPGWQLOaa8QCpRKZEmn
+ xsrvEp5sOX3RGE1Et_Oa0hr3UygExcSABCmhbAqCp_SpwZAkfzEs.l7CdTwNi3heuf.Btj5RW7me
+ DZ57TcsoFesvdBKgjdu9ktl_ifeSkdD7Tyuxu3NLZPp.UOrEg_YEVsFWLEvwh7MHcXlQ56L4UrtG
+ vzoE5Aow42pbOwazhon.rHhMYbj6m1E4Mzq_7Aymr1OxvIS7hV_IjYSYA.7lEEwLjziA6KKCKfHJ
+ KowW6ltp0rk6UeeEmavjWuVkmOLsieosO0R.MSCvLOZ6x7IuHg1YpsfuxIGZAAQYAaWrQ4dLZb3s
+ 4aOMpv_rwMv7w6ceoAtHvyng6zN5HbDs7nfAHz38qwSHU29EFmgTH6NsL1mTRTwZ13ukXWEBEG.f
+ zdk_8JFG0PKQhelzQ4JLqlDL8qR4hwzk_YuXlp6zMtEBlHCPX1B_VqaTX3q1IwMg82h.tnXdupUH
+ Jk.LPXXINS3sMR9SXPQbgVwZMRHbCl6SIU2FdqpxBmTwPiqgjNCdNbSQg_L0N7UrLH2qVdS7_L.p
+ Yl.2r89wC3aRfFh5Cm5BXewblTSZsamQuqfpnA0eaOt1X_EM8bVAd8.KH17fN8f1ChOQ8PzoXOZS
+ VQ4dbHD5xsOootGig4j.Vraj4ivMJQqBuUoBDoKEIcCsz7DZCbUzb739biWl0AmrttGpA.cj0Rv2
+ VIaWSfFLM6ZmIeZbd1LOI6aw_Y14xd2ygS3uA2.eyMMOG7iKt49vgGF_UtmECCFYWdKw9Fzun6EC
+ DJGtZvAakaMd2KENWkpgz3_2J_NrfDyLF8cZtOuYPhEsjSG2UOrgArZA4ONv6diMtpyjKoAsEWeN
+ C0n7EGVawl2GUL0pVgXOrhoBYXqP.Sfyp2cCXavKXuSt1CDoBFnB0QbcCe1ATaVPcfkX_NfPhRUF
+ nSTKfcR4y.CWn7KTbhWaMvdGZah_qaofOK2QVkItueXiKmw0rvDAT.sHzcTpE63QP9.mvNxgQf4O
+ utO_4mWVgPXV2pnN5G4pC1LSempzje_w8qaNd8B72d9TVawxA6xJxIG8pWBtnp.tk2JSb.y7r1kO
+ _D.BnUHGcMmaSS2_wTsrLZ734vYOihtjyZTrAV5YBYJ.DrFCNcCKpoYzdGv.0cMXzd1PhwjtY_ya
+ PRzUAQaFcsMsAY4itradrPd29tKui6bFR_NSXjwjBr5Tr8fvPcMzKTXq_oIBY58gHh5oz3wtVHDW
+ EmdITvfc2xBG7tEGeqR8XpNDIye2aadVwgoikk.N4GVmC8z3ynDdYy6eHVo6Hbl6qWulhiBazIqt
+ EFTlpqRoQ8AnAlCx5.HWp3lVe1Pz5xMVgIQ51KZ_.FlkINj6J3NPG3RCpAFJdrR1zn21b4V5MeqD
+ WAN3rhS32v6d9rPGmatcdm0b6Yeo6ael97cd2e8QQGIXwjEAYeRrqo9xBNU3YrWWOE8fAuT8I336
+ J4tCCdP7vr9PpoAVQdlFRaVlgCDJIAce_h9jnJCVkhwKbUW2XQZpzA2mQJu3eFWTQF4joSK6Tfq4
+ OOQ_5Ed27AaTU_CYcTyWDeYMpx99opy3XEDv52aykiX2zbaKtoqUpa.ytDPgWF.yKhr8QFj3SGFH
+ dbsg2NGWc7Df0qF.yYsqmTJcwmW2isZWWPbIZ9r9l7ugzPY3b7D1C1TBTUtTKOpNnIKMhaozWW.U
+ QN9X03exUvyR93_aRh_Sx..sCgpFsENa0r4qASQWvUoMnK97OzmvvvaLrvHoqQqP7yNpAAj1Jd1X
+ 50GAZeAPYd2jfsKzhnVTFSbfn.bsgzETelQtdezpnOQo.7w_12YL56V5ZtfVFuLlWUKRh_CiqCNI
+ WloOFdZiONTd8p8irvgyF5JLUXoMXJkHzD_6YO8LfXO9O.MX8Lo6UT49hLoFguctQa58_rPgxtSP
+ VSnNwDQ--
+X-Sonic-MF: <jahau@rocketmail.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.ir2.yahoo.com with HTTP; Sat, 18 Jun 2022 00:14:47 +0000
+Received: by hermes--canary-production-ir2-c9bf9d9bc-74fwm (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 8b08f14069c990c2ed22165f3e3da032;
+          Sat, 18 Jun 2022 00:14:45 +0000 (UTC)
+From:   Jakob Hauser <jahau@rocketmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jakob Hauser <jahau@rocketmail.com>
+Subject: [PATCH v3 0/8] Add support for magnetometer Yamaha YAS537
+Date:   Sat, 18 Jun 2022 02:13:08 +0200
+Message-Id: <cover.1655509425.git.jahau@rocketmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <cover.1655509425.git.jahau.ref@rocketmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kingoftown is a trogdor-based board. These dts files are unchanged copies
-from the downstream Chrome OS 5.4 kernel.
+This patchset adds YAS537 variant to the already existing driver for
+Yamaha YAS magnetometers.
 
-Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
+Patch 1 is a fix on the current driver.
+Patches 2-7 are cleanups and refactoring.
+Patch 8 finally adds the YAS537 variant.
 
-(no changes since v7)
-
-Changes in v7:
-- Incorporated changes from Stephen's "Simplify!" series.
-
-Changes in v4:
-- Fixed description (no downstream bits removed).
-- Added missing version history.
+Changes in v3:
+ - In patch 3 fixed 2x typo "Divide".
+ - In commit message of patch 4 fixed wording "in the yas5xx_get_measure()
+   function".
+ - In patch 4 in the comment for the temperature calculation fixed wording
+   "is the number of counts".
+ - In patch 4 added defaults to switch statements.
+ - Splitted stray changes into new patch 7 v3. "Add YAS537 variant" is now
+   patch 8 v3. I haven't added "Reviewed-by:" tag of Linus to patch 7 v3
+   because as a separate patch these changes appear in a different context.
+ - In new patch 7 v3, changed printk format specifiers in the function
+   yas530_get_calibration_data() to "%16ph" and in the function
+   yas532_get_calibration_data() to "%14ph". The first one is also a minor
+   correction in behaviour, as the calibration data array size of YAS530
+   is 16 (the dev_dbg printed 14 before).
+ - Rebased to linux-next to include patch bb52d3691db8 "iio: magnetometer:
+   yas530: Fix memchr_inv() misuse".
+ - In patch 7 v3, changed memchr_inv() line for YAS532.
+ - In patch 8 v3 in the function yas537_get_calibration_data(), changed
+   memchr_inv() line for YAS537.
+ - Removed comment "corresponds to 0x70" at define YAS537_MAG_AVERAGE_32_MASK.
+ - Added suffixes _US and _MS in defines for YAS537.
+ - In the function yas537_measure(), removed comments "Read data", "Arrange
+   data", "Assign data".
+ - In the function yas537_measure(), replaced bitwise shift by
+   get_unaligned_be16().
+ - Replaced "if (h[i] < -8192)" etc. by clamp_val().
+ - In the functions yas537_measure() and yas537_get_measure(), replaced 8192
+   by BIT(13) and 16384 by BIT(14).
+ - Fixed typo "resolution" in the function yas5xx_read_raw().
+ - Fixed typo "Divide" in patch 8 v3 in the function yas5xx_read_raw().
+ - In patch 8 v3 in the yas537_get_calibration_data(), changed printk format
+   specifier to "%17ph"
+ - In the functions yas537_measure() and yas537_get_calibration_data(), drop
+   some parentheses in regmap_write().
+ - In the function yas537_power_on(), added comment "Wait until the coil has
+   ramped up".
+ - In the function yas5xx_probe(), put YAS537 variant and version printings
+   into one print.
+ - In the function yas537_get_measure(), fixed wording "is the number of
+   counts" in the comment for the temperature calculation.
+ - In the function yas537_get_measure(), added product description document No.
+   into the comment for the temperature calculation (as I first thought the
+   review comment "the number" is related to this).
+ - In the function yas537_get_calibration_data(), corrected comment "Get data
+   into these four blocks val1 to val4".
 
 Changes in v2:
-- First inclusion in series.
+ - Reordered the patchset by moving patch 4 v1 to patch 1 v2.
+ - Removed patch 6 v1 ("Remove redundant defaults on switch devid")
+ - Accordingly, added "default:" to each switch statement in patch 7.
+ - Moved renamings in patch 7 v1 into a separate new patch 6 v2. I added
+   the "Reviewed-by:" tag of Linus to both patches, hope that's ok, else
+   feel free to comment.
+ - Removed regmap reads and related debug dumps in patch 7 in function
+   yas537_dump_calibration(). As this function now applies to version 1
+   only, replaced switch statement by if clause.
+ - Also removed "hard_offsets" debug dumps in that function.
+ - Fixed typo "initialized" in commit message of patch 7.
 
- arch/arm64/boot/dts/qcom/Makefile             |   2 +
- .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  44 ++++
- .../dts/qcom/sc7180-trogdor-kingoftown-r1.dts |  17 ++
- .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   | 220 ++++++++++++++++++
- 4 files changed, 283 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
+Jakob Hauser (8):
+  iio: magnetometer: yas530: Change data type of hard_offsets to signed
+  iio: magnetometer: yas530: Change range of data in volatile register
+  iio: magnetometer: yas530: Correct scaling of magnetic axes
+  iio: magnetometer: yas530: Correct temperature handling
+  iio: magnetometer: yas530: Change data type of calibration
+    coefficients
+  iio: magnetometer: yas530: Rename functions and registers
+  iio: magnetometer: yas530: Apply minor cleanups
+  iio: magnetometer: yas530: Add YAS537 variant
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index dc26704dfe34..a9f2ad013179 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -60,6 +60,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r4.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-kingoftown-r0.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-kingoftown-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-kb.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
-new file mode 100644
-index 000000000000..85aec1be98fc
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Kingoftown board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
-+#include "sc7180-trogdor-kingoftown.dtsi"
-+
-+/ {
-+	model = "Google Kingoftown (rev0)";
-+	compatible = "google,kingoftown-rev0", "qcom,sc7180";
-+};
-+
-+/*
-+ * In rev1+, the enable pin of pp3300_fp_tp will be tied to pp1800_l10a
-+ * power rail instead, since kingoftown does not have FP.
-+ */
-+&pp3300_fp_tp {
-+	gpio = <&tlmm 74 GPIO_ACTIVE_HIGH>;
-+	enable-active-high;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&en_fp_rails>;
-+};
-+
-+&tlmm {
-+	en_fp_rails: en-fp-rails {
-+		pinmux {
-+			pins = "gpio74";
-+			function = "gpio";
-+		};
-+
-+		pinconf {
-+			pins = "gpio74";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
-new file mode 100644
-index 000000000000..2be9138ba89f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Kingoftown board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-parade-ps8640.dtsi"
-+#include "sc7180-trogdor-kingoftown.dtsi"
-+
-+/ {
-+	model = "Google Kingoftown (rev1+)";
-+	compatible = "google,kingoftown", "qcom,sc7180";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-new file mode 100644
-index 000000000000..46d1c4ed5609
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-@@ -0,0 +1,220 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Kingoftown board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+#include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-lte-sku.dtsi"
-+
-+&alc5682 {
-+	compatible = "realtek,rt5682s";
-+	realtek,dmic1-clk-pin = <2>;
-+	realtek,dmic-clk-rate-hz = <2048000>;
-+};
-+
-+ap_ts_pen_1v8: &i2c4 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	ap_ts: touchscreen@10 {
-+		compatible = "elan,ekth3500";
-+		reg = <0x10>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+		vcc33-supply = <&pp3300_ts>;
-+
-+		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&keyboard_controller {
-+	function-row-physmap = <
-+		MATRIX_KEY(0x00, 0x02, 0)       /* T1 */
-+		MATRIX_KEY(0x03, 0x02, 0)       /* T2 */
-+		MATRIX_KEY(0x02, 0x02, 0)       /* T3 */
-+		MATRIX_KEY(0x01, 0x02, 0)       /* T4 */
-+		MATRIX_KEY(0x03, 0x04, 0)       /* T5 */
-+		MATRIX_KEY(0x02, 0x04, 0)       /* T6 */
-+		MATRIX_KEY(0x01, 0x04, 0)       /* T7 */
-+		MATRIX_KEY(0x02, 0x09, 0)       /* T8 */
-+		MATRIX_KEY(0x01, 0x09, 0)       /* T9 */
-+		MATRIX_KEY(0x00, 0x04, 0)       /* T10 */
-+	>;
-+	linux,keymap = <
-+		MATRIX_KEY(0x00, 0x02, KEY_BACK)
-+		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
-+		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
-+		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
-+		MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
-+		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
-+		MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
-+		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
-+		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
-+		MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
-+
-+		CROS_STD_MAIN_KEYMAP
-+	>;
-+};
-+
-+&panel {
-+	compatible = "edp-panel";
-+};
-+
-+&pp3300_dx_edp {
-+	gpio = <&tlmm 67 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&sound {
-+	compatible = "google,sc7180-trogdor";
-+	model = "sc7180-rt5682s-max98357a-1mic";
-+};
-+
-+&wifi {
-+	qcom,ath10k-calibration-variant = "GO_KINGOFTOWN";
-+};
-+
-+/* PINCTRL - modifications to sc7180-trogdor.dtsi */
-+
-+&en_pp3300_dx_edp {
-+	pinmux {
-+		pins = "gpio67";
-+	};
-+
-+	pinconf {
-+		pins = "gpio67";
-+	};
-+};
-+
-+/* PINCTRL - board-specific pinctrl */
-+
-+&tlmm {
-+	gpio-line-names = "TP_INT_L",		/* 0 */
-+			  "AP_RAM_ID0",
-+			  "AP_SKU_ID2",
-+			  "AP_RAM_ID1",
-+			  "",
-+			  "AP_RAM_ID2",
-+			  "AP_TP_I2C_SDA",
-+			  "AP_TP_I2C_SCL",
-+			  "TS_RESET_L",
-+			  "TS_INT_L",
-+			  "",			/* 10 */
-+			  "EDP_BRIJ_IRQ",
-+			  "AP_EDP_BKLTEN",
-+			  "",
-+			  "",
-+			  "EDP_BRIJ_I2C_SDA",
-+			  "EDP_BRIJ_I2C_SCL",
-+			  "HUB_RST_L",
-+			  "",
-+			  "",
-+			  "",			/* 20 */
-+			  "",
-+			  "",
-+			  "AMP_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "HP_IRQ",
-+			  "",
-+			  "",			/* 30 */
-+			  "AP_BRD_ID2",
-+			  "BRIJ_SUSPEND",
-+			  "AP_BRD_ID0",
-+			  "AP_H1_SPI_MISO",
-+			  "AP_H1_SPI_MOSI",
-+			  "AP_H1_SPI_CLK",
-+			  "AP_H1_SPI_CS_L",
-+			  "BT_UART_CTS",
-+			  "BT_UART_RTS",
-+			  "BT_UART_TXD",	/* 40 */
-+			  "BT_UART_RXD",
-+			  "H1_AP_INT_ODL",
-+			  "",
-+			  "UART_AP_TX_DBG_RX",
-+			  "UART_DBG_TX_AP_RX",
-+			  "HP_I2C_SDA",
-+			  "HP_I2C_SCL",
-+			  "FORCED_USB_BOOT",
-+			  "AMP_BCLK",
-+			  "AMP_LRCLK",		/* 50 */
-+			  "AMP_DIN",
-+			  "",
-+			  "HP_BCLK",
-+			  "HP_LRCLK",
-+			  "HP_DOUT",
-+			  "HP_DIN",
-+			  "HP_MCLK",
-+			  "AP_SKU_ID0",
-+			  "AP_EC_SPI_MISO",
-+			  "AP_EC_SPI_MOSI",	/* 60 */
-+			  "AP_EC_SPI_CLK",
-+			  "AP_EC_SPI_CS_L",
-+			  "AP_SPI_CLK",
-+			  "AP_SPI_MOSI",
-+			  "AP_SPI_MISO",
-+			  /*
-+			   * AP_FLASH_WP_L is crossystem ABI. Schematics
-+			   * call it BIOS_FLASH_WP_L.
-+			   */
-+			  "AP_FLASH_WP_L",
-+			  "EN_PP3300_DX_EDP",
-+			  "AP_SPI_CS0_L",
-+			  "",
-+			  "",			/* 70 */
-+			  "",
-+			  "",
-+			  "",
-+			  "EN_FP_RAILS",
-+			  "UIM2_DATA",
-+			  "UIM2_CLK",
-+			  "UIM2_RST",
-+			  "UIM2_PRESENT_L",
-+			  "UIM1_DATA",
-+			  "UIM1_CLK",		/* 80 */
-+			  "UIM1_RST",
-+			  "",
-+			  "CODEC_PWR_EN",
-+			  "HUB_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "AP_SKU_ID1",		/* 90 */
-+			  "AP_RST_REQ",
-+			  "",
-+			  "AP_BRD_ID1",
-+			  "AP_EC_INT_L",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",			/* 100 */
-+			  "",
-+			  "",
-+			  "",
-+			  "EDP_BRIJ_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",			/* 110 */
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "AP_TS_PEN_I2C_SDA",
-+			  "AP_TS_PEN_I2C_SCL",
-+			  "DP_HOT_PLUG_DET",
-+			  "EC_IN_RW_ODL";
-+};
+ drivers/iio/magnetometer/Kconfig         |   4 +-
+ drivers/iio/magnetometer/yamaha-yas530.c | 797 +++++++++++++++++++----
+ 2 files changed, 688 insertions(+), 113 deletions(-)
+
 -- 
-2.31.0
+2.35.1
 
