@@ -2,174 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D012550347
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 08:56:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5BAF55035F
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 09:29:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233055AbiFRGyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 02:54:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58462 "EHLO
+        id S233144AbiFRH3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 03:29:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbiFRGyg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 02:54:36 -0400
-Received: from esa4.hgst.iphmx.com (esa4.hgst.iphmx.com [216.71.154.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A454328E17
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 23:54:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1655535275; x=1687071275;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=+6bmdYR8RDV7Rai4MRodjarsFAmrM8zJ0RVsVV2+CCE=;
-  b=DBU7RyhqzkSlXzdNBRuSvUvgL8J3sopHBO193GausvPlh81nnRQAVc3m
-   EgK88xMN/B+QUfb0flTNaUD6jT0QRTbwuPd+sREqWUfVb1QJlXzez/u5L
-   jJE/qulrkWpZPaxIT00y49WfXtat1D76oxAQVNZXAVA+Gaqdh4Irn9Ram
-   nXOEE3LKoiyoSZzAcN/CFI1eJilyw9JBRRzb63+2o/hoDDt79EWftCjZC
-   XEK/6hRcZt/nbMhYY4M8/5HNaNVGRMbAekg3kQClKDf+jVr2tmlxG2yiP
-   EkjCskBUyBH9cU9CPX1jPP0/opmWEo6+AfkhMAKgwmynxXPaNUSMGoFua
-   w==;
-X-IronPort-AV: E=Sophos;i="5.92,306,1650902400"; 
-   d="scan'208";a="202203488"
-Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 18 Jun 2022 14:54:35 +0800
-IronPort-SDR: uVt9h41lD8SjnfzQksIVUjKj+LyDA7CLOElnRUtSKeZ3/ATlugV0vLf85vEovMOieYMVJVS0wV
- kzKke0JoXYrbdFJtqg7TFEko5t8GeEjmKuVpiJ+GcG9kSt5Ba6gAnQDcg84Cd4EugoTP14oNI1
- ETllZFw2tfLSzfYYWWwCIUeeUuEkiiTuf1dr7udVbIhJyIJ2u5KA6HllplnNt2By9T8LYl/7Ij
- 99EqF/pX6aE3eJoYfScVAUaeCvheB6IRKAGfn3Rsoj61wBigtViCgIRQfJgL8d6/hPMcjNggrr
- zC3ooXmcyMTkyboD8z1OKmwh
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Jun 2022 23:12:46 -0700
-IronPort-SDR: 3RXJKDHguF+sgaLCnOTPba/Ev+JmouYM5DfTfSsrdcucnQW+2ZrOEUr4pb9yBOKonZyBmBsLhO
- 6xIvgZgoMEX5Ug5RLgiJRrrUMmcAGfStU2eqKGX1T0INFyiYIkRUx/3DERoKu8JP+lz79/W2CO
- yR3YV1hm7gTgh4ooHA+uOnKQ4K4I3EexZkGRzKoJin0C2x963SVwI3RV55BYo8ull0dFRFn+Dq
- 0C7NE9FzWEoXRSFokbkH+egtytIP/k8/LKEzusOwECMaDpLhC8NXittuixYtcAcgEKrf26n8mx
- U80=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Jun 2022 23:54:35 -0700
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4LQ68p4bcCz1SVny
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 23:54:34 -0700 (PDT)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1655535274; x=1658127275; bh=+6bmdYR8RDV7Rai4MRodjarsFAmrM8zJ0RV
-        sVV2+CCE=; b=pKJhH2iF8UOgOTx2Qeafz7q4FMyajYT0Ko/rfBb4hEmxrzfLg+A
-        iM8H0itRWP4bycB0wh1ftrw6HEz9PGn0lNYyHq3wwTWQGOxUupmyIC8WVMgn6FeX
-        qnQhG6sCjH5CdfQlzRekJrDHVsQOHZv0d3ZRcTtzt0APu3Pqm6RCIu3eKcDtw1Zh
-        f7nSjcDpby3oZeL/wB6E495bYzBY2GbxhWgGywYnsy8q6wAEFKHUy5IFERi0PBrN
-        42LBROzTCnn/Mx1kTA+tNy5Ra/BZJJ3rlh2zEEgHU7AsAceNHHwPi2sWDqaLS78r
-        H+6KPVL1SZyNwjoVKufkihTmZaK1XZb7X9g==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id XgcKE15oHfQj for <devicetree@vger.kernel.org>;
-        Fri, 17 Jun 2022 23:54:34 -0700 (PDT)
-Received: from [10.225.163.84] (unknown [10.225.163.84])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4LQ68l4Cd6z1Rvlc;
-        Fri, 17 Jun 2022 23:54:31 -0700 (PDT)
-Message-ID: <ae75e0a8-8f02-cdf2-8200-a570c6afa03a@opensource.wdc.com>
-Date:   Sat, 18 Jun 2022 15:54:30 +0900
+        with ESMTP id S232690AbiFRH3r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 03:29:47 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 793B128E1D;
+        Sat, 18 Jun 2022 00:29:42 -0700 (PDT)
+X-UUID: 16e10fa87bcd43128c7520044efe22a3-20220618
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:d0bb85f2-a5d7-49cd-86c3-f168342688c9,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:90
+X-CID-INFO: VERSION:1.1.6,REQID:d0bb85f2-a5d7-49cd-86c3-f168342688c9,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:90
+X-CID-META: VersionHash:b14ad71,CLOUDID:e99cfc48-4c92-421c-ad91-b806c0f58b2a,C
+        OID:b3d8fe10dc9c,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 16e10fa87bcd43128c7520044efe22a3-20220618
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1221594928; Sat, 18 Jun 2022 15:29:34 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sat, 18 Jun 2022 15:29:32 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 18 Jun 2022 15:29:30 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH] media: mediatek: vcodec: Initialize decoder parameters after getting dec_capability
+Date:   Sat, 18 Jun 2022 15:29:29 +0800
+Message-ID: <20220618072929.28783-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v4 19/23] ata: ahci: Add DWC AHCI SATA controller support
-Content-Language: en-US
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Randy Dunlap <rdunlap@infradead.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
- <20220610081801.11854-20-Sergey.Semin@baikalelectronics.ru>
- <6c02f8ef-8aea-8f80-590d-343f67a96f8d@infradead.org>
- <20220610215850.ju76kxjquwef6kd3@mobilestation>
- <73716f9f-892c-41c5-89f0-64a1985438aa@infradead.org>
- <20220615213029.3upsmasnnhigqozm@mobilestation>
- <bfaf0208-8416-c159-93f8-8cc31dbc7ef5@opensource.wdc.com>
- <20220617203649.wa2b3etx6gpm3s5g@mobilestation>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <20220617203649.wa2b3etx6gpm3s5g@mobilestation>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/18/22 05:36, Serge Semin wrote:
-> On Thu, Jun 16, 2022 at 09:31:30AM +0900, Damien Le Moal wrote:
->> On 2022/06/16 6:30, Serge Semin wrote:
->>> On Fri, Jun 10, 2022 at 04:34:13PM -0700, Randy Dunlap wrote:
->>>> Hi Serge,
->>>>
->>>> On 6/10/22 14:58, Serge Semin wrote:
->>>>> On Fri, Jun 10, 2022 at 09:34:46AM -0700, Randy Dunlap wrote:
->>>>>> Hi--
->>>>>
->>>>> Hi Randy
->>>>>
->>>>>>
->>>>>> On 6/10/22 01:17, Serge Semin wrote:
->>>>>>> diff --git a/drivers/ata/Kconfig b/drivers/ata/Kconfig
->>>>>>> index bb45a9c00514..95e0e022b5bb 100644
->>>>>>> --- a/drivers/ata/Kconfig
->>>>>>> +++ b/drivers/ata/Kconfig
->>>>>>> @@ -176,6 +176,16 @@ config AHCI_DM816
->>>>>>>  
->>>>>>>  	  If unsure, say N.
->>>>>>>  
->>>>>>> +config AHCI_DWC
->>>>>>> +	tristate "Synopsys DWC AHCI SATA support"
->>>>>>> +	select SATA_HOST
->>>>>>> +	default SATA_AHCI_PLATFORM
->>>>>>
->>>>>
->>>>>> I don't think this needs to default to SATA_AHCI_PLATFORM.
->>>>>> It might build a driver that isn't needed.
->>>>>> And it's incompatible with "If unsure, say N."
->>>>>
->>>>> Basically you are right, but this particular setting is connected with
->>>>> the modification I've done in the drivers/ata/ahci_platform.c driver
->>>>> in the framework of this commit. I've moved the "snps,spear-ahci" and
->>>>> "snps,dwc-ahci" compatible devices support to the new driver. Thus
->>>>> should I omit the SATA_AHCI_PLATFORM dependency their default kernel
->>>>> configs will lack the corresponding controllers support. If it's not a
->>>>> problem and we can rely on the kernel build system ability to ask
->>>>> whether the new config needs to be set/cleared, then I would be very
->>>>> happy to drop the default setting. What do you think?
->>>>
->>>
->>>> I'd prefer to try it like that.
->>>> If it becomes a problem, we can go back to this v4 patch.
->>>
->>> Agreed then (seeing Damien is silent about your comment).
->>
-> 
->> I have not thought about it :)
->> I do not use SATA PLATFORM at all, so I am not familiar with its dependencies.
->> Will have a look and do my usual build tests anyway.
-> 
-> Ok. I'll be waiting for you reply in this regard the before
-> re-submitting the next series version.
+Need to get dec_capability from scp first, then initialize decoder
+supported format and other parameters according to dec_capability value.
 
-Please send a fixed-up new version. I will use that to look at builds and
-config dependencies.
+Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+---
+ drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c     | 2 --
+ drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c | 2 ++
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-
+diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+index 1465ddff1c6b..41589470da32 100644
+--- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
++++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+@@ -112,8 +112,6 @@ void mtk_vcodec_dec_set_default_params(struct mtk_vcodec_ctx *ctx)
+ {
+ 	struct mtk_q_data *q_data;
+ 
+-	ctx->dev->vdec_pdata->init_vdec_params(ctx);
+-
+ 	ctx->m2m_ctx->q_lock = &ctx->dev->dev_mutex;
+ 	ctx->fh.m2m_ctx = ctx->m2m_ctx;
+ 	ctx->fh.ctrl_handler = &ctx->ctrl_hdl;
+diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
+index 4103d7c1b638..99d7b15f2b9d 100644
+--- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
++++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec_drv.c
+@@ -208,6 +208,8 @@ static int fops_vcodec_open(struct file *file)
+ 
+ 		dev->dec_capability =
+ 			mtk_vcodec_fw_get_vdec_capa(dev->fw_handler);
++		ctx->dev->vdec_pdata->init_vdec_params(ctx);
++
+ 		mtk_v4l2_debug(0, "decoder capability %x", dev->dec_capability);
+ 	}
+ 
 -- 
-Damien Le Moal
-Western Digital Research
+2.18.0
+
