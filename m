@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E11F355048B
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 14:32:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 995F5550490
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 14:32:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234290AbiFRMcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 08:32:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52606 "EHLO
+        id S234803AbiFRMcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 08:32:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234444AbiFRMcI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 08:32:08 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D99761B7BB
-        for <devicetree@vger.kernel.org>; Sat, 18 Jun 2022 05:32:06 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id q9so8799787wrd.8
-        for <devicetree@vger.kernel.org>; Sat, 18 Jun 2022 05:32:06 -0700 (PDT)
+        with ESMTP id S234641AbiFRMcK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 08:32:10 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99A061DA51
+        for <devicetree@vger.kernel.org>; Sat, 18 Jun 2022 05:32:09 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id g4so8782119wrh.11
+        for <devicetree@vger.kernel.org>; Sat, 18 Jun 2022 05:32:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=n9g/PqG7lJoC3tmWnVa7QkZ4DkjcrfTJ4GH+uywTgjo=;
-        b=YKP/o6CNE+lQ/JvutgsR0jZOXfHfDWCY/dQhqMKd5OzvitLi7mgxOOlC22neXUi3t3
-         BN9TvFhMfSVyIRalfKp0Va337xJ573OA/jlHmNvKMC9gL9WCqqIk9PYa0TsCVpUjtR8B
-         tbSkAAYjMwonv2CjEuI0NKpP3MKNtmcrz4U2Kau04jp49doWSVikIYXLNtIJ0CbxpRRk
-         ACyFnBPLFEDO8mQ9dOPY47H5osv138u3PU28fgbHfr0fyUMw+29W9vwD1hyvLo5Y4+V/
-         UZtdS0DFsqY5lgkZ/53LD/FQ/OdBPmTBXN7bsmN9ILMpN1rxcP2HcJnRbBzUtni7FWjs
-         qlYw==
+        bh=MzCNuZqg5sJhSSZ4d8it+v4YJ89K4kJOhMYbzqau3T0=;
+        b=Q/DW33pApkzDugaxPE3P0mBkLxqeHFjsQF8z1VV2ne8TRKuN2bIqDfzxsSTkLEjBrA
+         wpdDJgUWP+1wDHdQ9JS4O1x4Gq88lL49JAWRWB4H62ef/kDIyGqiJWklnIhvj7t3gOgQ
+         m1btN41fR+l8tqU5xRyuBWhlJfRunVaRxbUCkNPjxFxCR7fgJ76b5iLyDoxgvaEFgta2
+         Y7jzvGqyxY8ynrhbm2wsHOUw8jsjq4R2c+1hs16sLw8LkR/A8wnX+Rcz+CEvY4HTn+12
+         wA1hi5h2lS6EglrFG2mc1iaWo2T8RWK90k4OmUe37mNSSxwVnWaTmTTERIaDVuiKnqg6
+         uvGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=n9g/PqG7lJoC3tmWnVa7QkZ4DkjcrfTJ4GH+uywTgjo=;
-        b=C/iVqZz30ekJ7g1A/KSR3Jz2KVFqqgWNrrSxg7fTu8AxSJBjGwNRAJaMxLp+vVVNxO
-         CiSvDVfzFuLYMB0cknRLsi+rNV8i4BxwrDt1zvg9gQKu+TmwkppnDV48yUpE9o5Ofyw4
-         9/7djtepzNsH7U5HcZWHsyqGRCQH1+8dH7cdvb8/eZUbv29YVLO8gjifbf3K9fzKwE56
-         oyFm5riaxIWO2KIDbWHrZDSOXeM41e7UMgG/iW+kYXYl7LKPlwRyslDcyb9/plrMinG1
-         DGGTOFq8GfR53A53ye55IkHgfQ9yRunt6gUdq+PxKmoKxEGq4Sfn4fg8ccl0hDyjt4/M
-         24IQ==
-X-Gm-Message-State: AJIora9BOzL/vd5fV/IgogEjJkJLTlTGiga6bi/AhuJ6Koal7q7LrFLU
-        aihhE/wMRA8GersWmkNb/bOtCw==
-X-Google-Smtp-Source: AGRyM1uLcJx1fdLcx/uXs4UMpQTYdcZbfApX1+t2jE32dzxYMzfs1UyeNBdv+e0Fp23i7qfwRgxtPQ==
-X-Received: by 2002:a5d:4251:0:b0:21b:885b:2fcc with SMTP id s17-20020a5d4251000000b0021b885b2fccmr1452539wrr.52.1655555526382;
-        Sat, 18 Jun 2022 05:32:06 -0700 (PDT)
+        bh=MzCNuZqg5sJhSSZ4d8it+v4YJ89K4kJOhMYbzqau3T0=;
+        b=r21TBrWZcX2Gs6X3zsj7j93afSOUI04Ov7CltYFnjuEOeXcBEyUkJVEpaLZr86gmvW
+         7zBX9l5EXbm22a9lI88udTo3ZR9ogQ1tljgrUuIrGMPH5GgXvNvjIO4AraeY25PiiOCS
+         ciDS1TW5eFVtqqodjghaMd4kAo6vz0d6h7IRXjn/9Kg0YSQP2nSh1KID+oBD2ks8gFgP
+         65fZiuObVNgsvpE3BT9wdM60CWiH9N/BdMMbqy179NU2gb01n2wCzlBiTALzKZEMwGeA
+         SYDL5EfqhbKPa2JeUV/8rMpIo50WhMhRv7QeQqH7grxYg/56z888RbXjVdS4ofqjgyB9
+         aonQ==
+X-Gm-Message-State: AJIora8TpAIKkkYwtXysC+tKt65u7vSgEupIamJVefo+t1n0/84lUXGy
+        7AZYZj+PMHMKceIfNhi7wC95LA==
+X-Google-Smtp-Source: AGRyM1sSSQqHjZc3Rjokw1+aDQhZh51cPdEwrDgxvVJw3mbh+xunRoRwhQyu4jAgaA6W5FK27IHXAg==
+X-Received: by 2002:a5d:598e:0:b0:219:ea16:5a2a with SMTP id n14-20020a5d598e000000b00219ea165a2amr13955140wri.343.1655555528086;
+        Sat, 18 Jun 2022 05:32:08 -0700 (PDT)
 Received: from henark71.. ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id az10-20020adfe18a000000b00210396b2eaesm9292305wrb.45.2022.06.18.05.32.04
+        by smtp.gmail.com with ESMTPSA id az10-20020adfe18a000000b00210396b2eaesm9292305wrb.45.2022.06.18.05.32.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Jun 2022 05:32:05 -0700 (PDT)
+        Sat, 18 Jun 2022 05:32:07 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
 To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
@@ -76,9 +76,9 @@ Cc:     Thomas Gleixner <tglx@linutronix.de>,
         linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
         alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
         linux-riscv@lists.infradead.org
-Subject: [PATCH 04/14] dt-bindings: dma: add Canaan k210 to Synopsys DesignWare DMA
-Date:   Sat, 18 Jun 2022 13:30:26 +0100
-Message-Id: <20220618123035.563070-5-mail@conchuod.ie>
+Subject: [PATCH 05/14] dt-bindings: timer: add Canaan k210 to Synopsys DesignWare timer
+Date:   Sat, 18 Jun 2022 13:30:27 +0100
+Message-Id: <20220618123035.563070-6-mail@conchuod.ie>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220618123035.563070-1-mail@conchuod.ie>
 References: <20220618123035.563070-1-mail@conchuod.ie>
@@ -96,96 +96,78 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-The Canaan k210 apparently has a Sysnopsys Designware AXI DMA
-controller, but according to the documentation & devicetree it has 6
-interrupts rather than the standard one. Add a custom compatible that
-supports the 6 interrupt configuration which falls back to the standard
-binding which is currently the one in use in the devicetree entry.
+The Canaan k210 apparently has a Sysnopsys Designware timer but
+according to the documentation & devicetree it has 2 interrupts rather
+than the standard one. Add a custom compatible that supports the 2
+interrupt configuration and falls back to the standard binding (which
+is currently the one in use in the devicetree entry).
 
 Link: https://canaan-creative.com/wp-content/uploads/2020/03/kendryte_standalone_programming_guide_20190311144158_en.pdf #Page 58
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- .../bindings/dma/snps,dw-axi-dmac.yaml        | 35 ++++++++++++++-----
- 1 file changed, 26 insertions(+), 9 deletions(-)
+ .../bindings/timer/snps,dw-apb-timer.yaml     | 28 +++++++++++++++----
+ 1 file changed, 22 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-index 4324a94b26b2..bc85598151ef 100644
---- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-+++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-@@ -18,9 +18,13 @@ allOf:
- 
+diff --git a/Documentation/devicetree/bindings/timer/snps,dw-apb-timer.yaml b/Documentation/devicetree/bindings/timer/snps,dw-apb-timer.yaml
+index d33c9205a909..9a76acc7a66f 100644
+--- a/Documentation/devicetree/bindings/timer/snps,dw-apb-timer.yaml
++++ b/Documentation/devicetree/bindings/timer/snps,dw-apb-timer.yaml
+@@ -12,6 +12,9 @@ maintainers:
  properties:
    compatible:
--    enum:
--      - snps,axi-dma-1.01a
--      - intel,kmb-axi-dma
-+    oneOf:
+     oneOf:
 +      - items:
-+          - const: canaan,k210-axi-dma
-+          - const: snps,axi-dma-1.01a
-+      - enum:
-+          - snps,axi-dma-1.01a
-+          - intel,kmb-axi-dma
- 
++          - const: canaan,k210-apb-timer
++          - const: snps,dw-apb-timer
+       - const: snps,dw-apb-timer
+       - enum:
+           - snps,dw-apb-timer-sp
+@@ -21,9 +24,6 @@ properties:
    reg:
-     minItems: 1
-@@ -33,9 +37,6 @@ properties:
-       - const: axidma_ctrl_regs
-       - const: axidma_apb_regs
+     maxItems: 1
  
 -  interrupts:
 -    maxItems: 1
 -
-   clocks:
-     items:
-       - description: Bus Clock
-@@ -92,6 +93,22 @@ properties:
-     minimum: 1
-     maximum: 256
+   resets:
+     maxItems: 1
  
+@@ -41,7 +41,23 @@ properties:
+ 
+   clock-frequency: true
+ 
+-additionalProperties: false
++unevaluatedProperties: false
++
 +if:
 +  properties:
 +    compatible:
 +      contains:
-+        const: canaan,k210-axi-dma
++        const: canaan,k210-apb-timer
 +
 +then:
 +  properties:
 +    interrupts:
-+      maxItems: 6
++      maxItems: 2
 +
 +else:
 +  properties:
 +    interrupts:
 +      maxItems: 1
-+
+ 
  required:
    - compatible
-   - reg
-@@ -105,7 +122,7 @@ required:
-   - snps,priority
-   - snps,block-size
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
+@@ -60,8 +76,8 @@ oneOf:
  examples:
    - |
-@@ -113,12 +130,12 @@ examples:
-      #include <dt-bindings/interrupt-controller/irq.h>
-      /* example with snps,dw-axi-dmac */
-      dmac: dma-controller@80000 {
--         compatible = "snps,axi-dma-1.01a";
-+         compatible = "canaan,k210-axi-dma", "snps,axi-dma-1.01a";
-          reg = <0x80000 0x400>;
-          clocks = <&core_clk>, <&cfgr_clk>;
-          clock-names = "core-clk", "cfgr-clk";
-          interrupt-parent = <&intc>;
--         interrupts = <27>;
-+         interrupts = <27>, <28>, <29>, <30>, <31>, <32>;
-          #dma-cells = <1>;
-          dma-channels = <4>;
-          snps,dma-masters = <2>;
+     timer@ffe00000 {
+-      compatible = "snps,dw-apb-timer";
+-      interrupts = <0 170 4>;
++      compatible = "canaan,k210-apb-timer", "snps,dw-apb-timer";
++      interrupts = <0 170 4>, <0 170 4>;
+       reg = <0xffe00000 0x1000>;
+       clocks = <&timer_clk>, <&timer_pclk>;
+       clock-names = "timer", "pclk";
 -- 
 2.36.1
 
