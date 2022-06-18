@@ -2,77 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F3C55501D7
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 04:03:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1341E5501EF
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 04:16:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383753AbiFRCDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 22:03:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52898 "EHLO
+        id S236112AbiFRCQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 22:16:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383749AbiFRCDK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 22:03:10 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E80E35254
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 19:03:09 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id cv13so2924858pjb.4
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 19:03:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=qwlUdxIoCVnThND7GL7EJBgqVc6c184xvlOa5SGWFRw=;
-        b=zUKJFW3uNIeFzfhBIbRELphodAkZL00DL7SE8WSe6tMUeHWHKQIR4oVczHQ08jMkfu
-         O4P4wjxyKOM8vmdqYKTjTRRPmk/WeTnnT+zIY58Oa+rkb/mVYSFyM1xKvggpscYnTCbT
-         ClZtx42yKDXejXsTsNWYPm+LzyUWgG+OZOt61kQ8nre/unYTUZPf1W31mClkbIGfiIN/
-         20eeSUbxcajf7Y50pcINOuCA1ZFbIQWJZzq0xhzUhlyE/0KRBxUVq9aovqZHRXxDqirN
-         HWzlllsKCNWx6AN8fniH1f2WHJAUfzPiAT7Od4JWzPkrwwFILLXy20HDzESoi0AZj3HQ
-         WUZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=qwlUdxIoCVnThND7GL7EJBgqVc6c184xvlOa5SGWFRw=;
-        b=MiOSjzLWoA/toPrxoAVb+phpfX81HMfeLsiuNWfIzQtCt/mmihRnsS7gZrfV6/NX0n
-         XqXuTIS+bIaJ0zmbk0jntGS36DUlLjbneGQETkgOJdCPDWIUHLwOegpiZtJTZ2dyohVY
-         pfpSf/RTO5KK9R3BCtBXTTdhcwrjcrBAkk64PyQz/1HNtywrU5z4QbI1emyFW9C8VubC
-         3r4EUGTHSyTN91J5kSTXhFtKBUlcu2o5D/HmppUlxto9BQJ1Kt7Zq/6MpaGyEVdfnwqN
-         j8SAHkpDWW3zUt5S71veXD9ok1/BbOyAuelwY/XbPPRVxO3bz93n2ktvGLMQWWD7Mcxq
-         9abw==
-X-Gm-Message-State: AJIora9E43mOsFWsOX6hdI8gMm+shCfBZZZ9MwCO7j3fyCOKMxlRBkOh
-        8efKSHz264YRFITNc3Q5lMsiRA==
-X-Google-Smtp-Source: AGRyM1s1TUhyyqdjIqUErRKmjCL+6Q7MKTjRuw/cil0e7K4+kStLBI/fSDyz+N8VeKIW13+8hiYDyw==
-X-Received: by 2002:a17:90a:66c1:b0:1e8:43ae:f7c0 with SMTP id z1-20020a17090a66c100b001e843aef7c0mr13859865pjl.245.1655517788567;
-        Fri, 17 Jun 2022 19:03:08 -0700 (PDT)
-Received: from [172.31.235.92] ([216.9.110.6])
-        by smtp.gmail.com with ESMTPSA id z18-20020a62d112000000b0051bbc198f3fsm4530229pfg.13.2022.06.17.19.03.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 19:03:08 -0700 (PDT)
-Message-ID: <d5139e0c-d301-01b7-3500-90e9526c04f2@linaro.org>
-Date:   Fri, 17 Jun 2022 19:03:04 -0700
+        with ESMTP id S229615AbiFRCQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 22:16:28 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745AA6BFEC;
+        Fri, 17 Jun 2022 19:16:26 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25I2GFMS127097;
+        Fri, 17 Jun 2022 21:16:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655518575;
+        bh=ABE9/FHrYFLhDb+PFoEd2RwQ/DvXSk/GXEvQj7xTXHo=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=VY853mk2KLWIgcY8lcJFqFHg4VA/ssM9YFToA5Y/Fh9EoZW5sAU8yaAUNs4q/mTcR
+         fnOIjTsRM4hT0ZN/upJj17bTfm4hMeY02k8+SyrqPZOUrU4eyi6TiWdJB5u8clyeIZ
+         kp7tOIYp+GDJIf5r22K2YXANQ4pZrO4K3pO60N+0=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25I2GFSj049286
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 17 Jun 2022 21:16:15 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 17
+ Jun 2022 21:16:15 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 17 Jun 2022 21:16:14 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25I2GFSV087434;
+        Fri, 17 Jun 2022 21:16:15 -0500
+Date:   Fri, 17 Jun 2022 21:16:14 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rahul T R <r-ravikumar@ti.com>
+CC:     <robh+dt@kernel.org>, <vigneshr@ti.com>, <kishon@ti.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <lee.jones@linaro.org>,
+        <rogerq@kernel.org>, <devicetree@vger.kernel.org>,
+        <kristo@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>, <vijayp@ti.com>,
+        <jkridner@gmail.com>, <robertcnelson@gmail.com>
+Subject: Re: [PATCH v4 3/3] arm64: dts: ti: k3-j721e-sk: Add pinmux for RPi
+ Header
+Message-ID: <20220618021614.svhnzlsm2chn5jey@kahuna>
+References: <20220530101031.11357-1-r-ravikumar@ti.com>
+ <20220530101031.11357-4-r-ravikumar@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] arm64: dts: qcom: starqltechn: add initial device tree
- for starqltechn
-Content-Language: en-US
-To:     Dzmitry Sankouski <dsankouski@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220617091025.2288817-1-dsankouski@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220617091025.2288817-1-dsankouski@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220530101031.11357-4-r-ravikumar@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,25 +69,179 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/06/2022 02:10, Dzmitry Sankouski wrote:
-> New device support - Samsung S9 (SM-G9600) phone
-> What works:
-> - simple framebuffer
-> - storage (both main and sdcard)
-> - ramoops
+On 15:40-20220530, Rahul T R wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
 > 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> Add pinmux required to bring out
+> i2c5, ehrpwm 2 and 3 and gpios on
+> 40 pin RPi header on sk board
+> 
+> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+
+
+I was digging deeper at https://www.ti.com/lit/zip/sprr438
+(PROC112E2(001)_SCH.pdf - J3, Also looking at
+https://github.com/beagleboard/beaglebone-ai-64/blob/master/BeagleBone%20AI%20-64_SCH_V1.02_211119.pdf
+(P8, P9)
+
+And comparing it to https://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/
+And considering potential use such as https://pypi.org/project/RPi.GPIO/
+variation,
+
+Here is my suggestion (applies to other TI Boards that attempt to
+emulate RPI header)
+a) Default mux in board.dts should be GPIO except for the i2c used for
+   ID detection.
+b) Secondary functions should be a dt overlay. (These can easily enable
+   the pwms and other functions as needed)
+c) Maintain node names consistent to allow reuse of overlays across
+   platforms.
+
+Usage: you can either use extlinux.conf OR uEnv.txt to apply the
+overlays as desired (ID detection from hats might help automate it based
+on the bootloader you'd want to use)
+
+Else, you have created a custom configuration here for 1 specific
+application, various hats that expect GPIO will end up croaking.
+
+
+I am open to discussions here.
+
 > ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../dts/qcom/sdm845-samsung-starqltechn.dts   |  45 ++
->  .../dts/qcom/sdm845-samsung-starqltechn.dtsi  | 448 ++++++++++++++++++
->  3 files changed, 494 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dtsi
+>  arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 89 ++++++++++++++++++++++----
+>  1 file changed, 78 insertions(+), 11 deletions(-)
 > 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> index 98a55778f3fe..b913b18ae133 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> @@ -400,6 +400,57 @@
+>  			J721E_IOPAD(0x124, PIN_INPUT, 7) /* (Y24) PRG0_PRU1_GPO9.GPIO0_72 */
+>  		>;
+>  	};
+> +
+> +	main_i2c5_pins_default: main-i2c5-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x150, PIN_INPUT_PULLUP, 2) /* (Y26) PRG0_MDIO0_MDIO.I2C5_SCL */
+> +			J721E_IOPAD(0x154, PIN_INPUT_PULLUP, 2) /* (AA27) PRG0_MDIO0_MDC.I2C5_SDA */
+> +		>;
+> +	};
+> +
+> +	rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x01c, PIN_INPUT, 7) /* (AD22) PRG1_PRU0_GPO6.GPIO0_7 */
+> +			J721E_IOPAD(0x120, PIN_INPUT, 7) /* (AA28) PRG0_PRU1_GPO8.GPIO0_71 */
+> +			J721E_IOPAD(0x14c, PIN_INPUT, 7) /* (AA29) PRG0_PRU1_GPO19.GPIO0_82 */
+> +			J721E_IOPAD(0x02c, PIN_INPUT, 7) /* (AD21) PRG1_PRU0_GPO10.GPIO0_11 */
+> +			J721E_IOPAD(0x198, PIN_INPUT, 7) /* (V25) RGMII6_TD1.GPIO0_101 */
+> +			J721E_IOPAD(0x1b0, PIN_INPUT, 7) /* (W24) RGMII6_RD1.GPIO0_107 */
+> +			J721E_IOPAD(0x1a0, PIN_INPUT, 7) /* (W29) RGMII6_TXC.GPIO0_103 */
+> +			J721E_IOPAD(0x008, PIN_INPUT, 7) /* (AG22) PRG1_PRU0_GPO1.GPIO0_2 */
+> +			J721E_IOPAD(0x1d0, PIN_INPUT, 7) /* (AA3) SPI0_D1.GPIO0_115 */
+> +			J721E_IOPAD(0x11c, PIN_INPUT, 7) /* (AA24) PRG0_PRU1_GPO7.GPIO0_70 */
+> +			J721E_IOPAD(0x148, PIN_INPUT, 7) /* (AA26) PRG0_PRU1_GPO18.GPIO0_81 */
+> +			J721E_IOPAD(0x004, PIN_INPUT, 7) /* (AC23) PRG1_PRU0_GPO0.GPIO0_1 */
+> +			J721E_IOPAD(0x014, PIN_INPUT, 7) /* (AH23) PRG1_PRU0_GPO4.GPIO0_5 */
+> +			J721E_IOPAD(0x020, PIN_INPUT, 7) /* (AE20) PRG1_PRU0_GPO7.GPIO0_8 */
+> +			J721E_IOPAD(0x19c, PIN_INPUT, 7) /* (W27) RGMII6_TD0.GPIO0_102 */
+> +			J721E_IOPAD(0x1b4, PIN_INPUT, 7) /* (W25) RGMII6_RD0.GPIO0_108 */
+> +			J721E_IOPAD(0x188, PIN_INPUT, 7) /* (Y28) RGMII6_TX_CTL.GPIO0_97 */
+> +			J721E_IOPAD(0x00c, PIN_INPUT, 7) /* (AF22) PRG1_PRU0_GPO2.GPIO0_3 */
+> +			J721E_IOPAD(0x010, PIN_INPUT, 7) /* (AJ23) PRG1_PRU0_GPO3.GPIO0_4 */
+> +		>;
+> +	};
+> +
+> +	rpi_header_gpio1_pins_default: rpi-header-gpio1-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x234, PIN_INPUT, 7) /* (U3) EXT_REFCLK1.GPIO1_12 */
+> +		>;
+> +	};
+> +
+> +	rpi_header_ehrpwm2_pins_default: rpi-header-ehrpwm2-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x178, PIN_INPUT, 6) /* (U27) RGMII5_RD3.EHRPWM2_A */
+> +			J721E_IOPAD(0x17c, PIN_INPUT, 6) /* (U24) RGMII5_RD2.EHRPWM2_B */
+> +		>;
+> +	};
+> +
+> +	rpi_header_ehrpwm3_pins_default: rpi-header-ehrpwm3-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x18c, PIN_INPUT, 6) /* (V23) RGMII6_RX_CTL.EHRPWM3_A */
+> +			J721E_IOPAD(0x190, PIN_INPUT, 6) /* (W23) RGMII6_TD3.EHRPWM3_B */
+> +		>;
+> +	};
+>  };
+>  
+>  &wkup_pmx0 {
+> @@ -631,11 +682,6 @@
+>  	status = "disabled";
+>  };
+>  
+> -&main_i2c5 {
+> -	/* Brought out on RPi Header */
+> -	status = "disabled";
+> -};
+> -
 
-Same comments as with your other patches.
+Please don't relocate nodes in the same patch - kinda messes up the
+diffstat and makes review a bit harder.
 
+>  &main_i2c6 {
+>  	/* Unused */
+>  	status = "disabled";
+> @@ -1138,18 +1184,39 @@
+>  	status = "disabled";
+>  };
+>  
+> -&main_ehrpwm2 {
+> +&main_ehrpwm4 {
+>  	status = "disabled";
+>  };
+>  
+> -&main_ehrpwm3 {
+> +&main_ehrpwm5 {
+>  	status = "disabled";
+>  };
+>  
+> -&main_ehrpwm4 {
+> -	status = "disabled";
+> +&main_gpio0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
+>  };
+>  
+> -&main_ehrpwm5 {
+> -	status = "disabled";
+> +&main_gpio1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&rpi_header_gpio1_pins_default>;
+> +};
+> +
+> +&main_i2c5 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_i2c5_pins_default>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
 
-Best regards,
-Krzysztof
+Defaults in SoC.dtsi so far are "okay" - so adding that again is
+superfluous This happens when you are relocating nodes etc
+
+> +};
+> +
+> +&main_ehrpwm2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&rpi_header_ehrpwm2_pins_default>;
+> +	status = "okay";
+> +};
+> +
+> +&main_ehrpwm3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&rpi_header_ehrpwm3_pins_default>;
+> +	status = "okay";
+>  };
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
