@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87FFC5501A4
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 03:21:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB96B5501A8
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 03:25:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236000AbiFRBVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 21:21:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54406 "EHLO
+        id S233367AbiFRBZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 21:25:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229778AbiFRBVL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 21:21:11 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723D01705C
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:21:09 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id t3-20020a17090a510300b001ea87ef9a3dso5509823pjh.4
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:21:09 -0700 (PDT)
+        with ESMTP id S229459AbiFRBZW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 21:25:22 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 638AA6B00E
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:25:21 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id e63so3892246pgc.5
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:25:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=F+G5vrMheUscNqcqfe/Vgn/7QPQWiVKmIQiHsQqGhT4=;
-        b=m3E2TWWtMPsLtGy3UNkP6R2CyUrzzErld4HxIC7V5BUUbuMycPgbuQxuJXJI6bqpUX
-         XL+ggljtounUakjSM7xIXhsd/6cboev8E1hTu0iwWKgRcPu7clb6PDXCSIleNBhl+Acu
-         My7gjrw+AEcNH+ZcO6+Z0yZfIHrR1Ym+7US0r2O92V/+PiDyw+zptZXEFo8bGCLQMxEK
-         DCYQ+RsB952kDvDBvnI0U9NkgKgGASPBXrpFOwpt+BdM91H/3rQnHWsLR6vg+kNpLbyw
-         qs/Ub35o86VjzVCU6iZr5CUT3ozgGtztWiPl41S9nRLkdFp89euxhhJUwhH2I7thst5c
-         iu/A==
+        bh=pVKqQ1lqgF3EkrSHUJzWYv63xAjHMBJYsr4UymAWSVw=;
+        b=gwoIvyMg1yJEub4U9RbN4pk370+U/FTdG0FmASXW0hglpc3ABXMvrtE7qSWFqvgK0H
+         /nwLfhgifz4kqpEHpMon61La4pZts1Px+JOf7gLtJNpN7QTMP/ik7lUFik9j44ivgZt7
+         Vpf9tB/RzqSdeU3Y7pQvHf2k4Zsx8OqN/Ef0dkNeIohn/hTohnRi1TDoLKG8nScGPl4G
+         xFBm7s5evU1LjionDVWkX7SL+EX7p1KY2J+rRjpB9rJQdj6V+shgzeq6GPuM0051F+Ja
+         Ip/5VZsp5BI4nMGlpqMdFHirZcNr+1KOvO+OtMVAcYySLE9oBnkq6V4sKi8xLX53jXU6
+         BYJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=F+G5vrMheUscNqcqfe/Vgn/7QPQWiVKmIQiHsQqGhT4=;
-        b=1EhO/TM/PeDC6cssOqJUmTd9uLvKMAxMfZJtMUyJWmtwUCKuHmGlIXhnxQJhegh4XM
-         Fp1hoxmqfM3GkcWByAaOXtSh5B3WlCjtFbBCE7eqx6GFzg92V/C3JvdTMxo/Ih/fxW0H
-         nhdGWZB5u3fCEroPVsQktK2hLpmmLLtXyzNwcTrG+T7YFtcVRSR77qYynfGbLk/f06c/
-         CplrI2HLep5SWmnv252fmQIbe6s9tzOKW1w1N7iRHb6wNxyOX1wE4rfuKNWmBmZwCGX2
-         dvyqLOVE5Q545u40CPkp+5KdZ6hOD6p5lhFPOl3/p59UOBHNlkvhyLmBkrePK1v5aoSW
-         KFvA==
-X-Gm-Message-State: AJIora/DMxHR073IY9phPLcBVnHwF2Ex1VGR98y/EMbNZhM12Q4cRJSS
-        HJDcm6Jlt0f4njqPouZTorNSsQ==
-X-Google-Smtp-Source: AGRyM1vG4KjjPKtlm1wgmX54+UP4p9y1x0Anp/mA9ON9D45XnW3TBdS/hae7OlqnJfOS0AB4kGjomA==
-X-Received: by 2002:a17:90a:df91:b0:1e3:4dc8:46e7 with SMTP id p17-20020a17090adf9100b001e34dc846e7mr24426222pjv.106.1655515268980;
-        Fri, 17 Jun 2022 18:21:08 -0700 (PDT)
+        bh=pVKqQ1lqgF3EkrSHUJzWYv63xAjHMBJYsr4UymAWSVw=;
+        b=Ex0tJHZOlX+xiGNDKDp5nG4mHlRgNogUrJh41Eo5anL8TVgD4c2aiuYtAtvdtHpQfX
+         fGaiOmZ+6IeeiT+O96bSdmMku7QMxATjMsTT3bHblZ+Cdmod21Lc9h6AZ6cdPLPTG2+2
+         y92+gIkvS+kcm3dEmHuH5MpvdLP7rKzofk2fGNtAe9M+oW6YqujBeY1n67vpSS9AKtOw
+         4RWBXzH7vFzxrQSvI5283QrpCLblXm6FLrafFYVaffghz1iWftZdehXkKP1K6yYvv+aY
+         5AVs5vJuVhowWBrVnfLbhZ9w3eSuxYDJgbYGQ9foTFOKfx9oaQYja7NgMZ//HWtQz1TD
+         Qkmw==
+X-Gm-Message-State: AJIora9zRi+bbDWf5I4N0LPsE2jFsGN7Dzhzryj4ya/OGRcxTsHOES1s
+        fr78r2nh4zJU3ORLHLtgNbAXaU6KbILfYw==
+X-Google-Smtp-Source: AGRyM1sDlRA2MpZMdKacPonDxwVawuYrATRsYLfBJHJBUQ/uDFZHg+lldB+kDSyziTa+j5YSpZR3Xw==
+X-Received: by 2002:a63:e74a:0:b0:3fe:7c2a:4b17 with SMTP id j10-20020a63e74a000000b003fe7c2a4b17mr11437694pgk.293.1655515520921;
+        Fri, 17 Jun 2022 18:25:20 -0700 (PDT)
 Received: from [172.31.235.92] ([216.9.110.6])
-        by smtp.gmail.com with ESMTPSA id o22-20020a17090ac09600b001e2a36fb4aasm6038921pjs.43.2022.06.17.18.21.07
+        by smtp.gmail.com with ESMTPSA id z9-20020a1709027e8900b00163daef3dc2sm4199943pla.84.2022.06.17.18.25.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 18:21:08 -0700 (PDT)
-Message-ID: <91395246-7d94-c35b-b336-9c193e5d2b9e@linaro.org>
-Date:   Fri, 17 Jun 2022 18:21:00 -0700
+        Fri, 17 Jun 2022 18:25:20 -0700 (PDT)
+Message-ID: <8639e64d-c659-7090-2d0a-078fd96cfbd4@linaro.org>
+Date:   Fri, 17 Jun 2022 18:25:17 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: mmc: mtk-sd: Set clocks based on compatible
+Subject: Re: [PATCH 2/3] dt-bindings: usb: mtk-xhci: Allow middle optional
+ clocks to be missing
 Content-Language: en-US
 To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
+        <nfraprado@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-mmc@vger.kernel.org
-References: <20220617230114.2438875-1-nfraprado@collabora.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org
+References: <20220617222916.2435618-1-nfraprado@collabora.com>
+ <20220617222916.2435618-3-nfraprado@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220617230114.2438875-1-nfraprado@collabora.com>
+In-Reply-To: <20220617222916.2435618-3-nfraprado@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,64 +83,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/06/2022 16:01, Nícolas F. R. A. Prado wrote:
-> The binding was describing a single clock list for all platforms, but
-> that's not really suitable: mt2712 requires an extra 'bus_clk' on some
-> of its controllers, while mt8192 requires four different extra clocks.
-> The rest of the platforms can share the same 3 clocks, with the third
-> being optional as it's not present on all platforms.
+On 17/06/2022 15:29, Nícolas F. R. A. Prado wrote:
+> The current clock list in the binding doesn't allow for one of the
+> optional clocks to be missing and a subsequent clock to be present. An
+> example where this is an issue is in mt8192.dtsi, which has "sys_ck",
+> "ref_ck", "xhci_ck" and would cause dtbs_check warnings.
 > 
-> Move the clock definitions inside if blocks that match on the
-> compatibles. In practice this gets rid of dtbs_check warnings on mt8192,
-> since the 'bus_clk' clock from mt2712 is no longer expected on this
-> platform.
+> Change the clock list in a way that allows the middle optional clocks to
+> be missing, while still guaranteeing a fixed order. The "ref_ck" is kept
+> as a const even though it is optional for simplicity, since it is
+> present in all current dts files.
 > 
-> Fixes: 59a23395d8aa ("dt-bindings: mmc: Add support for MT8192 SoC")
 > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> 
 > ---
 > 
->  .../devicetree/bindings/mmc/mtk-sd.yaml       | 115 ++++++++++++------
->  1 file changed, 81 insertions(+), 34 deletions(-)
+>  .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml       | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> index 2a2e9fa8c188..ba48ff041299 100644
-> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> @@ -10,9 +10,6 @@ maintainers:
->    - Chaotian Jing <chaotian.jing@mediatek.com>
->    - Wenbin Mei <wenbin.mei@mediatek.com>
->  
-> -allOf:
-> -  - $ref: mmc-controller.yaml#
-> -
->  properties:
->    compatible:
->      oneOf:
-> @@ -48,28 +45,8 @@ properties:
->    clocks:
->      description:
->        Should contain phandle for the clock feeding the MMC controller.
-> -    minItems: 2
+> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> index 63cbc2b62d18..99a1b233ec90 100644
+> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> @@ -80,8 +80,13 @@ properties:
+>      items:
+>        - const: sys_ck  # required, the following ones are optional
+>        - const: ref_ck
+> -      - const: mcu_ck
+> -      - const: dma_ck
+> +      - enum:
+> +          - mcu_ck
+> +          - dma_ck
+> +          - xhci_ck
+> +      - enum:
+> +          - dma_ck
+> +          - xhci_ck
+>        - const: xhci_ck
 
-Keep minItems and maxItems matching the widest constraints.
+You allow now almost any order here, including incorrect like
+sys,ref,xhci,xhci,xhci.
 
-> -    items:
-> -      - description: source clock (required).
-> -      - description: HCLK which used for host (required).
-> -      - description: independent source clock gate (required for MT2712).
-> -      - description: bus clock used for internal register access (required for MT2712 MSDC0/3).
-> -      - description: msdc subsys clock gate (required for MT8192).
-> -      - description: peripheral bus clock gate (required for MT8192).
-> -      - description: AXI bus clock gate (required for MT8192).
-> -      - description: AHB bus clock gate (required for MT8192).
-> -
-> -  clock-names:
-> -    minItems: 2
-
-ditto
-
->  
+The order of clocks has to be fixed and we cannot allow flexibility. Are
+you sure that these clocks are actually optional (not wired to the device)?
 
 
 Best regards,
