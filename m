@@ -2,63 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9621550659
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 19:26:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD5F05506C7
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 23:15:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236954AbiFRR0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 13:26:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47986 "EHLO
+        id S230124AbiFRVPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 17:15:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiFRR0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 13:26:21 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A60A915FD3;
-        Sat, 18 Jun 2022 10:26:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 57D85B80B2E;
-        Sat, 18 Jun 2022 17:26:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7DFCC3411A;
-        Sat, 18 Jun 2022 17:26:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655573178;
-        bh=39UnWn6/BLP0wfoTZHT7v2eNKaEICuTAxT3fZ9m190s=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=iO2tqrxnt4KpaHax6i/wrpdA0yUl51BQfyFFDXdlXie//UgyKsVSCJjCaqC8x0HgZ
-         sr2Ur5peM9Wm3C03A0OlYpiKofzqd7I45exkV2OvIeVDyy01W4XwSOnmgkRmn9bRII
-         AwgTJKMztbMPb3BatWny0rxA7rY5gkc+d9eZnlN77+uvUXkCEUqsGbHlna/Kn/6Bas
-         RgUrjW3P3UYIPEAX9aOP2FzM0UiHrDGV4eu/fCMXf1R9AnU/j7PVnhgolSbE4TuLzU
-         j6Fez52xdS3ZphVn02Jl8Q3Uv14kNvGhN1nS32inVVzbcITZIQDDY8JgMtKnE0r2+x
-         +x9xCE1KYEEBA==
-Date:   Sat, 18 Jun 2022 18:35:34 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     ChiYuan Huang <u0084500@gmail.com>,
+        with ESMTP id S229581AbiFRVPA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 17:15:00 -0400
+Received: from out1.migadu.com (out1.migadu.com [IPv6:2001:41d0:2:863f::])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FD8D2672;
+        Sat, 18 Jun 2022 14:14:58 -0700 (PDT)
+Message-ID: <ac1f956bece0151a165afc18ec21898d00dacf31.camel@grimler.se>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
+        t=1655586896;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Z2AOfaSlPHrMVPcO5Ts97JY6OWsmj+2hfSsC8UnVib4=;
+        b=Ve8XRXMAZq+qmbXnRkxh8sCqoflFuaV5TaGKrd9hOZq2ZGm4Dzma/LA4LLURkSHk4Bi6/0
+        XW3ElXe5XCtvaSU1N+DSFaymv+J8uF41tov/YsYXAsFnEHqOwEO1XUyS4tIS+Y3V9qeiyc
+        Na7EGUvDklSL6rXiXMHoAEPDw2Czlwc=
+Subject: Re: [PATCH 3/3] ARM: dts: exynos: add function and color to aat1290
+ flash LED node in Galaxy S3
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From:   Henrik Grimler <henrik@grimler.se>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     replicant@osuosl.org, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        cy_huang <cy_huang@richtek.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add rtq6056 adc support
-Message-ID: <20220618183534.576a2277@jic23-huawei>
-In-Reply-To: <20220618183440.121365d7@jic23-huawei>
-References: <1655458375-30478-1-git-send-email-u0084500@gmail.com>
-        <1655458375-30478-2-git-send-email-u0084500@gmail.com>
-        <7a9d3354-164b-e5e5-936b-95de4c4338f9@linaro.org>
-        <CADiBU3_wyFLpoy3PU0a-EbGAKoQ9LZMprH5DWnzwo05-Gwa2=Q@mail.gmail.com>
-        <279cf4ef-8b41-5e92-73c3-416730038c56@linaro.org>
-        <20220618183440.121365d7@jic23-huawei>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Simon Shields <simon@lineageos.org>,
+        Martin =?ISO-8859-1?Q?J=FCcker?= <martin.juecker@gmail.com>
+Date:   Sat, 18 Jun 2022 23:14:53 +0200
+In-Reply-To: <f1cc0f5a-12fb-28bc-7345-13ac2bf5b74d@linaro.org>
+References: <20220607085343.72414-1-krzysztof.kozlowski@linaro.org>
+         <20220607085343.72414-3-krzysztof.kozlowski@linaro.org>
+         <4a7f8ab6-c061-3861-5790-b6c0fbd7cad1@gmail.com>
+         <ef62a7bb-2217-2947-17dd-fc4a51acdea5@linaro.org>
+         <f1402a1d-a74d-f7b9-b9e2-fc3991781e64@gmail.com>
+         <f1cc0f5a-12fb-28bc-7345-13ac2bf5b74d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+MIME-Version: 1.0
+X-Migadu-Flow: FLOW_OUT
+X-Migadu-Auth-User: grimler.se
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,109 +63,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 18 Jun 2022 18:34:40 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
+Hi Krzysztof and Jacek,
 
-> On Sat, 18 Jun 2022 19:00:19 +0200
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->=20
-> > On 18/06/2022 08:50, ChiYuan Huang wrote: =20
-> > > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=
-=E5=B9=B46=E6=9C=8818=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=889:45=E5=
-=AF=AB=E9=81=93=EF=BC=9A   =20
-> > >>
-> > >> On 17/06/2022 02:32, cy_huang wrote:   =20
-> > >>> From: ChiYuan Huang <cy_huang@richtek.com>
-> > >>>
-> > >>> Add the documentation for Richtek RTQ6056.
-> > >>>
-> > >>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > >>> ---
-> > >>>  .../bindings/iio/adc/richtek,rtq6056-adc.yaml      | 57 ++++++++++=
-++++++++++++
-> > >>>  1 file changed, 57 insertions(+)
-> > >>>  create mode 100644 Documentation/devicetree/bindings/iio/adc/richt=
-ek,rtq6056-adc.yaml
-> > >>>
-> > >>> diff --git a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6=
-056-adc.yaml b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056-ad=
-c.yaml
-> > >>> new file mode 100644
-> > >>> index 00000000..6b4e0e0
-> > >>> --- /dev/null
-> > >>> +++ b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056-adc=
-.yaml
-> > >>> @@ -0,0 +1,57 @@
-> > >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > >>> +%YAML 1.2
-> > >>> +---
-> > >>> +$id: http://devicetree.org/schemas/iio/adc/richtek,rtq6056-adc.yam=
-l#
-> > >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > >>> +
-> > >>> +title: RTQ6056 Bi-Directional Current and Power Monitor with 16-bi=
-t ADC
-> > >>> +
-> > >>> +maintainers:
-> > >>> +  - ChiYuan Huang <cy_huang@richtek.com>
-> > >>> +
-> > >>> +description: |
-> > >>> +  The RTQ6056 is a high accuracy current-sense monitor with I2C an=
-d SMBus
-> > >>> +  interface, and the device provides full information for system b=
-y reading
-> > >>> +  out the loading current and power.
-> > >>> +
-> > >>> +  The device monitors both of the drops across sense resistor and =
-the BUS
-> > >>> +  voltage, converts into the current in amperes, and power in watt=
-s through
-> > >>> +  internal analog-to-digital converter ADC. The programmable calib=
-ration,
-> > >>> +  adjustable conversion time, and averaging function are also buil=
-t in for
-> > >>> +  more design flexibility.
-> > >>> +
-> > >>> +  Datasheet is available at
-> > >>> +  https://www.richtek.com/assets/product_file/RTQ6056/DSQ6056-00.p=
-df
-> > >>> +
-> > >>> +properties:
-> > >>> +  compatible:
-> > >>> +    const: richtek,rtq6056
-> > >>> +
-> > >>> +  reg:
-> > >>> +    maxItems: 1
-> > >>> +
-> > >>> +  "#io-channel-cells":
-> > >>> +    const: 1
-> > >>> +
-> > >>> +  richtek,shunt-resistor-uohm:   =20
-> > >>
-> > >> Use standard properties, so "-micro-ohms". Drop the unit from
-> > >> description and drop the ref.
-> > >>   =20
-> > > Use richtek.shunt-resistor-micro-ohms?   =20
+On Sun, 2022-06-12 at 19:06 +0200, Krzysztof Kozlowski wrote:
+> On 12/06/2022 17:09, Jacek Anaszewski wrote:
+> > On 6/10/22 12:14, Krzysztof Kozlowski wrote:
+> > > On 09/06/2022 22:31, Jacek Anaszewski wrote:
+> > > > Hi Krzysztof,
+> > > >=20
+> > > > On 6/7/22 10:53, Krzysztof Kozlowski wrote:
+> > > > > Add common LED properties - the function and color - to
+> > > > > aat1290 flash
+> > > > > LED node in Galaxy S3.
+> > > > >=20
+> > > > > Signed-off-by: Krzysztof Kozlowski
+> > > > > <krzysztof.kozlowski@linaro.org>
+> > > > > ---
+> > > > > =C2=A0=C2=A0 arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi | 3 +++
+> > > > > =C2=A0=C2=A0 1 file changed, 3 insertions(+)
+> > > > >=20
+> > > > > diff --git a/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
+> > > > > b/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
+> > > > > index 72901772fcad..d76f3678dcab 100644
+> > > > > --- a/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
+> > > > > +++ b/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
+> > > > > @@ -7,6 +7,7 @@
+> > > > > =C2=A0=C2=A0=C2=A0 */
+> > > > > =C2=A0=C2=A0=20
+> > > > > =C2=A0=C2=A0 /dts-v1/;
+> > > > > +#include <dt-bindings/leds/common.h>
+> > > > > =C2=A0=C2=A0 #include "exynos4412-midas.dtsi"
+> > > > > =C2=A0=C2=A0=20
+> > > > > =C2=A0=C2=A0 / {
+> > > > > @@ -27,6 +28,8 @@ led-controller {
+> > > > > =C2=A0=C2=A0=20
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0led {
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0label =3D "flash";
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+function =3D LED_FUNCTION_FLASH;
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+color =3D <LED_COLOR_ID_WHITE>;
+> > > >=20
+> > > > Addition of these two properties will not change anything
+> > > > because
+> > > > the label has precedence. It is deprecated, but if you
+> > > > introduce
+> > > > function and color to the binding instead of the label, the
+> > > > resulting
+> > > > LED class device name will change.
+> > >=20
+> > > Which is not necessarily what we want, right? Adding these
+> > > properties is
+> > > a proper description of hardware, regardless whether current
+> > > Linux
+> > > implementation uses them or not.
 > >=20
-> > Yes.
-> >  =20
-> > > Or the prefix 'richtek,' can be removed?   =20
+> > Actually I'd just drop label in addition to your change.
+> > I don't think it would break anybody seriously - not expecting it
+> > has
+> > any larger group of users and having uniformly constructed DTS
+> > files
+> > in the mainline has greater value.
 > >=20
-> > No, the vendor prefix must stay. =20
 >=20
-> It's a standard generic binding used in a bunch of IIO and hwmon
-> drivers without vendor prefix.  Mind you I can't find a definition
-
-by which I meant to say "bindings" not drivers :)
-
-> in any of the top level binding files.  Probably wants to be in
-> adc.yaml for IIO.
+> What about some PostmarketOSos, LineageOS and other OSes?
 >=20
-> Jonathan
->=20
-> =20
-> >=20
-> > Best regards,
-> > Krzysztof =20
+> Let me Cc here some folks - Simon, Martin, is the label in flash LED
+> node anyhow important for you? Can it be dropped and replaced with
+> function+color?
 >=20
 
+As far as I know LineageOS does not use a mainline-based kernel for the
+S3. PostmarketOS and Replicant does though. For PostmarketOS it should
+be fine to drop the label, and it sounded like it should be fine for
+Replicant also in an IRC discussion, but adding their mailing list to
+CC just in case.
+
+
+Best regards,
+Henrik Grimler
