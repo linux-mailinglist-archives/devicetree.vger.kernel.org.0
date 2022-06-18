@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DD11550344
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 08:52:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D012550347
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 08:56:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229511AbiFRGwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 02:52:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56150 "EHLO
+        id S233055AbiFRGyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 02:54:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbiFRGwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 02:52:34 -0400
-Received: from esa6.hgst.iphmx.com (esa6.hgst.iphmx.com [216.71.154.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABA1148313
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 23:52:33 -0700 (PDT)
+        with ESMTP id S229511AbiFRGyg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 02:54:36 -0400
+Received: from esa4.hgst.iphmx.com (esa4.hgst.iphmx.com [216.71.154.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A454328E17
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 23:54:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1655535154; x=1687071154;
+  t=1655535275; x=1687071275;
   h=message-id:date:mime-version:subject:to:cc:references:
    from:in-reply-to:content-transfer-encoding;
-  bh=8uHQ9MiiAPuzcAYC2a1/X5+Fg5Ls+OxZmIChY7eTPTo=;
-  b=fIUd2gz4Odorofv7qpfVytHZ9xVIT1gQS/kykt/oXNh1+TyIY8dvNidN
-   uPP3yqOB71NHXyIARc/sElXHCSLc0UTKfbQSpaYYFB9zpm0ofwF8vYQo1
-   2wHh9dJKrHDhifpq2Ef5dSKLUR7l22LwrLeFctNCgi+Fgw+veMgqdyZj9
-   bAPD0q77fv2ssVTn47gO0DC+i6zTJYXSD6VQavqBRg28gJDfnxy1hgKPZ
-   hIqkehnAipzVQzgObpb/zltElCQyDE66kN3XGuEYhhqfk94SwlK8wfzwO
-   eaozdAOckl8es+sIAEPZEM5BiYGChSkvREVh1jZ4hq3egBpVj3x4pNeTq
+  bh=+6bmdYR8RDV7Rai4MRodjarsFAmrM8zJ0RVsVV2+CCE=;
+  b=DBU7RyhqzkSlXzdNBRuSvUvgL8J3sopHBO193GausvPlh81nnRQAVc3m
+   EgK88xMN/B+QUfb0flTNaUD6jT0QRTbwuPd+sREqWUfVb1QJlXzez/u5L
+   jJE/qulrkWpZPaxIT00y49WfXtat1D76oxAQVNZXAVA+Gaqdh4Irn9Ram
+   nXOEE3LKoiyoSZzAcN/CFI1eJilyw9JBRRzb63+2o/hoDDt79EWftCjZC
+   XEK/6hRcZt/nbMhYY4M8/5HNaNVGRMbAekg3kQClKDf+jVr2tmlxG2yiP
+   EkjCskBUyBH9cU9CPX1jPP0/opmWEo6+AfkhMAKgwmynxXPaNUSMGoFua
    w==;
 X-IronPort-AV: E=Sophos;i="5.92,306,1650902400"; 
-   d="scan'208";a="204259539"
-Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 18 Jun 2022 14:52:33 +0800
-IronPort-SDR: +LOTv5lcYCId5tBcccxZqXpjdr/NFaJjMUP5ZfMUU0cz8nLQ3nw5P71JwiPOs0YLY4vT7xGmHD
- e0cv1uQTPRza5yOi+wJp3L/yuRAe2agErvtMDqIfauMS8PEyss6o+1DOyGgHaHTAYaaQPgMFIU
- YzuU2k0YGzUAu+LXlYSjKYPHq3d4b0KdaJjpAh82fGWY7WbioA+mHwbjxYPmi3Q2uJRWnV/n3V
- bes1e7dXDLC0X6bBIDUNw6jS13h4q5yquOPHS76YKpDV95Y4ysM3f2QkycIzYQm3X6gQ0Nc+xJ
- SqpI9n59jUJiXd1mXi8qWyXA
+   d="scan'208";a="202203488"
+Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 18 Jun 2022 14:54:35 +0800
+IronPort-SDR: uVt9h41lD8SjnfzQksIVUjKj+LyDA7CLOElnRUtSKeZ3/ATlugV0vLf85vEovMOieYMVJVS0wV
+ kzKke0JoXYrbdFJtqg7TFEko5t8GeEjmKuVpiJ+GcG9kSt5Ba6gAnQDcg84Cd4EugoTP14oNI1
+ ETllZFw2tfLSzfYYWWwCIUeeUuEkiiTuf1dr7udVbIhJyIJ2u5KA6HllplnNt2By9T8LYl/7Ij
+ 99EqF/pX6aE3eJoYfScVAUaeCvheB6IRKAGfn3Rsoj61wBigtViCgIRQfJgL8d6/hPMcjNggrr
+ zC3ooXmcyMTkyboD8z1OKmwh
 Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Jun 2022 23:15:07 -0700
-IronPort-SDR: 4zpGSaRbnnPd3ufOXsCYQjcGz1GCiPA8V9NYYPRqOwZ4geYWKMgPCO+63KSdkzmb0wih4VdT5/
- S7EJkHom7FRD2xYYy9f0XksXDNyhzPsrf16ULG27zP8iguJkhDspjFUAVa5la8MzldEN2LLpmN
- PRFvGL8yh+a/o23I3RiJgn1I8bPnBds0hsLZXYBsYnM1+q6doglOULkcvyzir0dlkSfzKfrDQ3
- F/EhPujIYI+WODPXq0oznYj1bETTXq5PwBB0I32Sm67IFDCGN656NFybQbrDSvx3gntRJDNz2T
- XIo=
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Jun 2022 23:12:46 -0700
+IronPort-SDR: 3RXJKDHguF+sgaLCnOTPba/Ev+JmouYM5DfTfSsrdcucnQW+2ZrOEUr4pb9yBOKonZyBmBsLhO
+ 6xIvgZgoMEX5Ug5RLgiJRrrUMmcAGfStU2eqKGX1T0INFyiYIkRUx/3DERoKu8JP+lz79/W2CO
+ yR3YV1hm7gTgh4ooHA+uOnKQ4K4I3EexZkGRzKoJin0C2x963SVwI3RV55BYo8ull0dFRFn+Dq
+ 0C7NE9FzWEoXRSFokbkH+egtytIP/k8/LKEzusOwECMaDpLhC8NXittuixYtcAcgEKrf26n8mx
+ U80=
 WDCIronportException: Internal
 Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Jun 2022 23:52:33 -0700
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Jun 2022 23:54:35 -0700
 Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4LQ66S2DQWz1SVp1
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 23:52:32 -0700 (PDT)
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4LQ68p4bcCz1SVny
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 23:54:34 -0700 (PDT)
 Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
         reason="pass (just generated, assumed good)"
         header.d=opensource.wdc.com
@@ -56,31 +56,31 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
         opensource.wdc.com; h=content-transfer-encoding:content-type
         :in-reply-to:organization:from:references:to:content-language
         :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1655535151; x=1658127152; bh=8uHQ9MiiAPuzcAYC2a1/X5+Fg5Ls+OxZmIC
-        hY7eTPTo=; b=TUpJ7+ebXL/gL11xJaFgaSyqdV1HX0y+gJhPQYh1RWrl/kfOvXD
-        X9ibxuxriilkY06CD6RvqsfDaU9baWmtRaLLutlL5Okvyhqqghh/il1Za4PYSzB2
-        oLDbJKOjPcWcd+eM/vIsmTPugdeDJTQnWlyGSHmLNlL6kzBsfrHuWdPTdfI87BbE
-        8KxQc3vBGATGLW1RmJ+0tPNOuaSZ8dOeFfoXguxKbnKX0QJlAeBZzKTdqYInrQjR
-        foSQI3moOeez0AhxAMYUnKTNdmxT8HvLOMYYhp2OAymPjrn5Ty6sm6ffs/kCwEnn
-        ZJZ6ICx1nhiQcNLL8WXg7pGG2rqK47o+U5g==
+        1655535274; x=1658127275; bh=+6bmdYR8RDV7Rai4MRodjarsFAmrM8zJ0RV
+        sVV2+CCE=; b=pKJhH2iF8UOgOTx2Qeafz7q4FMyajYT0Ko/rfBb4hEmxrzfLg+A
+        iM8H0itRWP4bycB0wh1ftrw6HEz9PGn0lNYyHq3wwTWQGOxUupmyIC8WVMgn6FeX
+        qnQhG6sCjH5CdfQlzRekJrDHVsQOHZv0d3ZRcTtzt0APu3Pqm6RCIu3eKcDtw1Zh
+        f7nSjcDpby3oZeL/wB6E495bYzBY2GbxhWgGywYnsy8q6wAEFKHUy5IFERi0PBrN
+        42LBROzTCnn/Mx1kTA+tNy5Ra/BZJJ3rlh2zEEgHU7AsAceNHHwPi2sWDqaLS78r
+        H+6KPVL1SZyNwjoVKufkihTmZaK1XZb7X9g==
 X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
 Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
         by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id ZF8CTOCT0hd5 for <devicetree@vger.kernel.org>;
-        Fri, 17 Jun 2022 23:52:31 -0700 (PDT)
+        with ESMTP id XgcKE15oHfQj for <devicetree@vger.kernel.org>;
+        Fri, 17 Jun 2022 23:54:34 -0700 (PDT)
 Received: from [10.225.163.84] (unknown [10.225.163.84])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4LQ66P39qWz1Rvlc;
-        Fri, 17 Jun 2022 23:52:29 -0700 (PDT)
-Message-ID: <f560ca8b-d921-d228-64f0-74e320f8af67@opensource.wdc.com>
-Date:   Sat, 18 Jun 2022 15:52:28 +0900
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4LQ68l4Cd6z1Rvlc;
+        Fri, 17 Jun 2022 23:54:31 -0700 (PDT)
+Message-ID: <ae75e0a8-8f02-cdf2-8200-a570c6afa03a@opensource.wdc.com>
+Date:   Sat, 18 Jun 2022 15:54:30 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v4 12/23] ata: libahci: Extend port-cmd flags set with
- port capabilities
+Subject: Re: [PATCH v4 19/23] ata: ahci: Add DWC AHCI SATA controller support
 Content-Language: en-US
 To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+Cc:     Randy Dunlap <rdunlap@infradead.org>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Hans de Goede <hdegoede@redhat.com>,
         Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
         Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
@@ -88,14 +88,16 @@ Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220610081801.11854-1-Sergey.Semin@baikalelectronics.ru>
- <20220610081801.11854-13-Sergey.Semin@baikalelectronics.ru>
- <d06e9910-527e-cfa2-f2df-737fb4799fe5@opensource.wdc.com>
- <20220615205819.uiqptkqm5qfdvrbj@mobilestation>
- <903e273a-9dc5-f0df-5391-e96e63318323@opensource.wdc.com>
- <20220617203100.jg2o7ponolaenf6r@mobilestation>
+ <20220610081801.11854-20-Sergey.Semin@baikalelectronics.ru>
+ <6c02f8ef-8aea-8f80-590d-343f67a96f8d@infradead.org>
+ <20220610215850.ju76kxjquwef6kd3@mobilestation>
+ <73716f9f-892c-41c5-89f0-64a1985438aa@infradead.org>
+ <20220615213029.3upsmasnnhigqozm@mobilestation>
+ <bfaf0208-8416-c159-93f8-8cc31dbc7ef5@opensource.wdc.com>
+ <20220617203649.wa2b3etx6gpm3s5g@mobilestation>
 From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
 Organization: Western Digital Research
-In-Reply-To: <20220617203100.jg2o7ponolaenf6r@mobilestation>
+In-Reply-To: <20220617203649.wa2b3etx6gpm3s5g@mobilestation>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -108,127 +110,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/18/22 05:31, Serge Semin wrote:
-> On Thu, Jun 16, 2022 at 09:28:18AM +0900, Damien Le Moal wrote:
->> On 2022/06/16 5:58, Serge Semin wrote:
->>> On Tue, Jun 14, 2022 at 05:32:41PM +0900, Damien Le Moal wrote:
->>>> On 6/10/22 17:17, Serge Semin wrote:
->>>>> Currently not all of the Port-specific capabilities listed in the
+On 6/18/22 05:36, Serge Semin wrote:
+> On Thu, Jun 16, 2022 at 09:31:30AM +0900, Damien Le Moal wrote:
+>> On 2022/06/16 6:30, Serge Semin wrote:
+>>> On Fri, Jun 10, 2022 at 04:34:13PM -0700, Randy Dunlap wrote:
+>>>> Hi Serge,
 >>>>
->>>> s/listed/are listed
->>>>
->>>>> PORT_CMD-enumeration. Let's extend that set with the Cold Presence
->>>>> Detection and Mechanical Presence Switch attached to the Port flags [1] so
->>>>> to closeup the set of the platform-specific port-capabilities flags.  Note
->>>>> these flags are supposed to be set by the platform firmware if there is
->>>>> one. Alternatively as we are about to do they can be set by means of the
->>>>> OF properties.
+>>>> On 6/10/22 14:58, Serge Semin wrote:
+>>>>> On Fri, Jun 10, 2022 at 09:34:46AM -0700, Randy Dunlap wrote:
+>>>>>> Hi--
 >>>>>
->>>>> While at it replace PORT_IRQ_DEV_ILCK with PORT_IRQ_DMPS and fix the
->>>>> comment there. In accordance with [2] that IRQ flag is supposed to
->>>>> indicate the state of the signal coming from the Mechanical Presence
->>>>> Switch.
+>>>>> Hi Randy
 >>>>>
->>>>> [1] Serial ATA AHCI 1.3.1 Specification, p.27
->>>>> [2] Serial ATA AHCI 1.3.1 Specification, p.24, p.88
+>>>>>>
+>>>>>> On 6/10/22 01:17, Serge Semin wrote:
+>>>>>>> diff --git a/drivers/ata/Kconfig b/drivers/ata/Kconfig
+>>>>>>> index bb45a9c00514..95e0e022b5bb 100644
+>>>>>>> --- a/drivers/ata/Kconfig
+>>>>>>> +++ b/drivers/ata/Kconfig
+>>>>>>> @@ -176,6 +176,16 @@ config AHCI_DM816
+>>>>>>>  
+>>>>>>>  	  If unsure, say N.
+>>>>>>>  
+>>>>>>> +config AHCI_DWC
+>>>>>>> +	tristate "Synopsys DWC AHCI SATA support"
+>>>>>>> +	select SATA_HOST
+>>>>>>> +	default SATA_AHCI_PLATFORM
+>>>>>>
 >>>>>
->>>>> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
->>>>> Reviewed-by: Hannes Reinecke <hare@suse.de>
+>>>>>> I don't think this needs to default to SATA_AHCI_PLATFORM.
+>>>>>> It might build a driver that isn't needed.
+>>>>>> And it's incompatible with "If unsure, say N."
 >>>>>
->>>>> ---
->>>>>
->>>>> Changelog v4:
->>>>> - Fix the DMPS macros name in the patch log. (@Sergei Shtylyov)
->>>>> ---
->>>>>  drivers/ata/ahci.h | 7 ++++++-
->>>>>  1 file changed, 6 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/drivers/ata/ahci.h b/drivers/ata/ahci.h
->>>>> index 7d834deefeb9..f501531bd1b3 100644
->>>>> --- a/drivers/ata/ahci.h
->>>>> +++ b/drivers/ata/ahci.h
->>>>> @@ -138,7 +138,7 @@ enum {
->>>>>  	PORT_IRQ_BAD_PMP	= (1 << 23), /* incorrect port multiplier */
->>>>>  
->>>>>  	PORT_IRQ_PHYRDY		= (1 << 22), /* PhyRdy changed */
->>>>> -	PORT_IRQ_DEV_ILCK	= (1 << 7), /* device interlock */
->>>>> +	PORT_IRQ_DMPS		= (1 << 7), /* mechanical presence status */
->>>>>  	PORT_IRQ_CONNECT	= (1 << 6), /* port connect change status */
->>>>>  	PORT_IRQ_SG_DONE	= (1 << 5), /* descriptor processed */
->>>>>  	PORT_IRQ_UNK_FIS	= (1 << 4), /* unknown FIS rx'd */
->>>>> @@ -166,6 +166,8 @@ enum {
->>>>>  	PORT_CMD_ATAPI		= (1 << 24), /* Device is ATAPI */
->>>>>  	PORT_CMD_FBSCP		= (1 << 22), /* FBS Capable Port */
->>>>>  	PORT_CMD_ESP		= (1 << 21), /* External Sata Port */
->>>>> +	PORT_CMD_CPD		= (1 << 20), /* Cold Presence Detection */
->>>>> +	PORT_CMD_MPSP		= (1 << 19), /* Mechanical Presence Switch */
->>>>>  	PORT_CMD_HPCP		= (1 << 18), /* HotPlug Capable Port */
->>>>>  	PORT_CMD_PMP		= (1 << 17), /* PMP attached */
->>>>>  	PORT_CMD_LIST_ON	= (1 << 15), /* cmd list DMA engine running */
->>>>> @@ -181,6 +183,9 @@ enum {
->>>>>  	PORT_CMD_ICC_PARTIAL	= (0x2 << 28), /* Put i/f in partial state */
->>>>>  	PORT_CMD_ICC_SLUMBER	= (0x6 << 28), /* Put i/f in slumber state */
->>>>>  
->>>>> +	PORT_CMD_CAP		= PORT_CMD_HPCP | PORT_CMD_MPSP |
->>>>> +				  PORT_CMD_CPD | PORT_CMD_ESP | PORT_CMD_FBSCP,
+>>>>> Basically you are right, but this particular setting is connected with
+>>>>> the modification I've done in the drivers/ata/ahci_platform.c driver
+>>>>> in the framework of this commit. I've moved the "snps,spear-ahci" and
+>>>>> "snps,dwc-ahci" compatible devices support to the new driver. Thus
+>>>>> should I omit the SATA_AHCI_PLATFORM dependency their default kernel
+>>>>> configs will lack the corresponding controllers support. If it's not a
+>>>>> problem and we can rely on the kernel build system ability to ask
+>>>>> whether the new config needs to be set/cleared, then I would be very
+>>>>> happy to drop the default setting. What do you think?
 >>>>
 >>>
->>>> What is this one for ? A comment above it would be nice.
+>>>> I'd prefer to try it like that.
+>>>> If it becomes a problem, we can go back to this v4 patch.
 >>>
->>> Isn't it obviously inferrable from the definition and the item name?
+>>> Agreed then (seeing Damien is silent about your comment).
 >>
 > 
->> I am guessing from the name. Am I guessing OK ? A comment would still be nice.
->> Why just these bits ? There are more cap/support indicator bits in that port cmd
->> bitfield. So why this particular set of bits ? What do they mean all together ?
+>> I have not thought about it :)
+>> I do not use SATA PLATFORM at all, so I am not familiar with its dependencies.
+>> Will have a look and do my usual build tests anyway.
 > 
-> Normally the variable/constant name should be self-content (as the
-> kernel coding style doc states and what the common sense suggests). So
-> the reader could correctly guess its purpose/content/value. In this
-> case PORT_CMD_CAP - means PORT CMD capabilities mask. All of the
-> possible flags have been set in that mask. There are no more
-> capabilities in the PORT CMD register left undeclared. That's why the
-> name is selected the way it is and why I haven't added any comment in
-> here (what the kernel coding style says about the over-commenting the
-> code).
+> Ok. I'll be waiting for you reply in this regard the before
+> re-submitting the next series version.
 
-Yes, I understood from the name what it is. What I do NOT understand is
-why all the feature bits are not there. Why this subset only ? A comment
-about that would be nice so that the reason for it is not lost.
-
-> 
->>
->> Sure I can go and read the specs to figure it out. But again, a comment would
->> avoid readers of the code to have to decrypt all that.
-> 
-> If you still insist on having an additional comment. I can add
-> something like "/* PORT_CMD capabilities mask */". Are you ok with it?
-
-That does not help on its own. The macro name says that already. I would
-like a note about why only these features are selected.
-
-> 
-> -Sergey
-> 
->>
->>>
->>> -Sergey
->>>
->>>>
->>>>> +
->>>>>  	/* PORT_FBS bits */
->>>>>  	PORT_FBS_DWE_OFFSET	= 16, /* FBS device with error offset */
->>>>>  	PORT_FBS_ADO_OFFSET	= 12, /* FBS active dev optimization offset */
->>>>
->>>>
->>>> -- 
->>>> Damien Le Moal
->>>> Western Digital Research
->>
->>
->> -- 
->> Damien Le Moal
->> Western Digital Research
+Please send a fixed-up new version. I will use that to look at builds and
+config dependencies.
 
 
 -- 
