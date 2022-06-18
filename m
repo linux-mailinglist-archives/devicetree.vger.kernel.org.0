@@ -2,133 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BFB155065C
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 19:27:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4B8C550656
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 19:25:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232320AbiFRR1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 13:27:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48484 "EHLO
+        id S236330AbiFRRZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 13:25:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiFRR1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 13:27:05 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E684815FDC;
-        Sat, 18 Jun 2022 10:27:03 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id w17so9354978wrg.7;
-        Sat, 18 Jun 2022 10:27:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=DoIZZ1NTKy4Vr/t9RCJI3Po/KaMoN7vfri8esvxKoD4=;
-        b=Nxp8r11G1j4iGd99hYd/4zZmf4jaIWbqEAANLSikI9r7y+gNhjPgOCLQFs4/9aJH31
-         c+8+WR98KfXuEMxxgWDNoCrj3VIE8bcpmNi1ICx32OC21eN0En0dCMerkwQHqiXPesye
-         eCifP9XKvchch6dq+DgJXRScVnhSzv9FbDWeUP7QrvzzkE2sj7c5IIox23CiexDBY35P
-         q6EC1AY8WLHKMptrZnFeZYLW2ax28xXjDr31oyYErLr4Whgeo47fi9jlWvYl+EpGFU7k
-         YkrAxW98hKX3xQfh6tp6KLRLioihYQj9RnMiwQz1UItsOl2nEm4JWZbjooaupZc1EWLG
-         1lVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=DoIZZ1NTKy4Vr/t9RCJI3Po/KaMoN7vfri8esvxKoD4=;
-        b=zd4BhiFiV75BKOTWnYTee+IzO2aVIvRP9v6qCsSpS7TRKy6Jko630ZrD7xN2JZlMQR
-         7lCdozNuPDmcQwTaaavjd7hZbSDUa5b795h/Fb6Q8oneJy3meY3y3SNTxarcpsBdANaZ
-         pIhFFcHODJI9V7RIvFffIj+trWqxMUzCBQMSbU9GJstePR9TxRNbHXMUh9MuJzgCi3RN
-         IOKA1Hu21RYy8CITqmpVFFrYIDOLsd0vBtTmGxCaSBcD0BrW0bX3nspZuxELs5bYJMn9
-         e4EVi/SctApvB2WyG6ZnFNqSPC5qnG/jOU53ZOgfjgzmqD7xucSLRQ6km6At8gt/nnYB
-         EdrQ==
-X-Gm-Message-State: AJIora+w1audyV90BsDGNy62w80ckcUzLeJs/jjyDhFtkm/xasCKD+43
-        UDlmidHCWbJv5hlxR5T2DdY=
-X-Google-Smtp-Source: AGRyM1tMtCZM/na5Zlkzt1FCoJ/jorGoHxo7DCEfL73cpnVS2Ejl7E66gpXYLOo7mKevuop/PG3jBg==
-X-Received: by 2002:a05:6000:12c3:b0:21a:3795:70ac with SMTP id l3-20020a05600012c300b0021a379570acmr12455037wrx.175.1655573222361;
-        Sat, 18 Jun 2022 10:27:02 -0700 (PDT)
-Received: from [192.168.0.104] (p5b3f781c.dip0.t-ipconnect.de. [91.63.120.28])
-        by smtp.gmail.com with ESMTPSA id t9-20020a05600c198900b0039c4f53c4fdsm16882283wmq.45.2022.06.18.10.27.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 18 Jun 2022 10:27:01 -0700 (PDT)
-Message-ID: <fb16197e-d5a1-eec3-af6d-19b2f5a5779e@gmail.com>
-Date:   Sat, 18 Jun 2022 19:27:00 +0200
+        with ESMTP id S231142AbiFRRZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 13:25:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97CF915FCF;
+        Sat, 18 Jun 2022 10:25:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2E72B60B55;
+        Sat, 18 Jun 2022 17:25:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BDFDC3411A;
+        Sat, 18 Jun 2022 17:25:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655573123;
+        bh=Q6g5uQ1LQChmHpAdw8ycq1g5nOknwEdMg8uvJ98h72Q=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ZvzyXwrvKPXWSQe+/ZLoXnYYLU/AiMwKuFeit6PR33u7BeJ6L13LeNnhgryWe6FiT
+         pUMsFNXUUkjUFQvYCOHX+12uRfI8zD56F7t4W+Kq6kpq2fEctqGxnKuZF6sYnje5X5
+         Ngi/Ima8tTCiQ71eGWhUTybULz4xxFWh0p5Bd9nKA84oRc787Av4G+hc3BjgQ54Wq9
+         FPJHA6xJB3KLs+Y3kVMmo3lq6UViP+1NXs1NsnGqwyDhBd2OfiwCYONiCV/sLbVR8u
+         3TxOLHarcLim4y7mS8XHpb3Nmy/STL4WMeLgwR3Eg26QBb9jrTxlmfX8Kmq/dFWs4I
+         lnOVFJvEM6JEQ==
+Date:   Sat, 18 Jun 2022 18:34:40 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     ChiYuan Huang <u0084500@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        cy_huang <cy_huang@richtek.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add rtq6056 adc support
+Message-ID: <20220618183440.121365d7@jic23-huawei>
+In-Reply-To: <279cf4ef-8b41-5e92-73c3-416730038c56@linaro.org>
+References: <1655458375-30478-1-git-send-email-u0084500@gmail.com>
+        <1655458375-30478-2-git-send-email-u0084500@gmail.com>
+        <7a9d3354-164b-e5e5-936b-95de4c4338f9@linaro.org>
+        <CADiBU3_wyFLpoy3PU0a-EbGAKoQ9LZMprH5DWnzwo05-Gwa2=Q@mail.gmail.com>
+        <279cf4ef-8b41-5e92-73c3-416730038c56@linaro.org>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 1/6] iio: adc: mp2629: fix wrong comparison of channel
-Content-Language: en-US
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     sre@kernel.org, lee.jones@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
-        andy.shevchenko@gmail.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-References: <20220615145357.2370044-1-sravanhome@gmail.com>
- <20220615145357.2370044-2-sravanhome@gmail.com>
- <20220618172301.44363feb@jic23-huawei>
-From:   saravanan sekar <sravanhome@gmail.com>
-In-Reply-To: <20220618172301.44363feb@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/06/22 18:23, Jonathan Cameron wrote:
-Hello Jonathan,
+On Sat, 18 Jun 2022 19:00:19 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> On Wed, 15 Jun 2022 16:53:52 +0200
-> Saravanan Sekar <sravanhome@gmail.com> wrote:
-> 
->> Input voltage channel enum is compared against iio address instead
->> of the channel.
->>
->> Fixes: 7abd9fb64682 ("iio: adc: mp2629: Add support for mp2629 ADC driver")
->> Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
->> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> 
-> So how do you want to handle this?  If I take it as a separate fix it will
-> take a while to get upstream so that the later part of this series can be
-> applied on top of it.
-> 
-> If the fix isn't super urgent, then perhaps we just queue it up with the
-> rest of the series and Lee picks up through MFD?
-> 
+> On 18/06/2022 08:50, ChiYuan Huang wrote:
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=E5=
+=B9=B46=E6=9C=8818=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=889:45=E5=AF=
+=AB=E9=81=93=EF=BC=9A =20
+> >>
+> >> On 17/06/2022 02:32, cy_huang wrote: =20
+> >>> From: ChiYuan Huang <cy_huang@richtek.com>
+> >>>
+> >>> Add the documentation for Richtek RTQ6056.
+> >>>
+> >>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> >>> ---
+> >>>  .../bindings/iio/adc/richtek,rtq6056-adc.yaml      | 57 ++++++++++++=
+++++++++++
+> >>>  1 file changed, 57 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/iio/adc/richtek=
+,rtq6056-adc.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/iio/adc/richtek,rtq605=
+6-adc.yaml b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056-adc.=
+yaml
+> >>> new file mode 100644
+> >>> index 00000000..6b4e0e0
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056-adc.y=
+aml
+> >>> @@ -0,0 +1,57 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/iio/adc/richtek,rtq6056-adc.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: RTQ6056 Bi-Directional Current and Power Monitor with 16-bit =
+ADC
+> >>> +
+> >>> +maintainers:
+> >>> +  - ChiYuan Huang <cy_huang@richtek.com>
+> >>> +
+> >>> +description: |
+> >>> +  The RTQ6056 is a high accuracy current-sense monitor with I2C and =
+SMBus
+> >>> +  interface, and the device provides full information for system by =
+reading
+> >>> +  out the loading current and power.
+> >>> +
+> >>> +  The device monitors both of the drops across sense resistor and th=
+e BUS
+> >>> +  voltage, converts into the current in amperes, and power in watts =
+through
+> >>> +  internal analog-to-digital converter ADC. The programmable calibra=
+tion,
+> >>> +  adjustable conversion time, and averaging function are also built =
+in for
+> >>> +  more design flexibility.
+> >>> +
+> >>> +  Datasheet is available at
+> >>> +  https://www.richtek.com/assets/product_file/RTQ6056/DSQ6056-00.pdf
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: richtek,rtq6056
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  "#io-channel-cells":
+> >>> +    const: 1
+> >>> +
+> >>> +  richtek,shunt-resistor-uohm: =20
+> >>
+> >> Use standard properties, so "-micro-ohms". Drop the unit from
+> >> description and drop the ref.
+> >> =20
+> > Use richtek.shunt-resistor-micro-ohms? =20
+>=20
+> Yes.
+>=20
+> > Or the prefix 'richtek,' can be removed? =20
+>=20
+> No, the vendor prefix must stay.
 
-Thanks for the review. It is not urgent to integrate now, may wait for 
-Lee to take along with the series.
+It's a standard generic binding used in a bunch of IIO and hwmon
+drivers without vendor prefix.  Mind you I can't find a definition
+in any of the top level binding files.  Probably wants to be in
+adc.yaml for IIO.
 
-> On basis we might go that way.
-> 
-> Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Also, this probably wants a stable tag.
-> 
-> Thanks,
-> 
-> Jonathan
-> 
->> ---
->>   drivers/iio/adc/mp2629_adc.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/iio/adc/mp2629_adc.c b/drivers/iio/adc/mp2629_adc.c
->> index aca084f1e78a..e7fbfe92e884 100644
->> --- a/drivers/iio/adc/mp2629_adc.c
->> +++ b/drivers/iio/adc/mp2629_adc.c
->> @@ -73,7 +73,7 @@ static int mp2629_read_raw(struct iio_dev *indio_dev,
->>   		if (ret)
->>   			return ret;
->>   
->> -		if (chan->address == MP2629_INPUT_VOLT)
->> +		if (chan->channel == MP2629_INPUT_VOLT)
->>   			rval &= GENMASK(6, 0);
->>   		*val = rval;
->>   		return IIO_VAL_INT;
-> 
+Jonathan
 
+=20
+>=20
+> Best regards,
+> Krzysztof
 
-Thanks,
-Saravanan
