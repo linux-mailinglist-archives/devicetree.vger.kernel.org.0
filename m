@@ -2,91 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B6F2550733
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 00:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F60555074D
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 00:23:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231599AbiFRV7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 17:59:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55786 "EHLO
+        id S231599AbiFRWXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 18:23:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiFRV7l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 17:59:41 -0400
-Received: from desiato.infradead.org (desiato.infradead.org [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89A8C11836;
-        Sat, 18 Jun 2022 14:59:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-        :In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-        Sender:Reply-To:Content-ID:Content-Description;
-        bh=hPwZVqjqA3XpHZGiLRjRZWV7WdEQl0KKtUxIsmGR710=; b=hdCb/DxC+Yp6Wv7AgYCaQfhQP5
-        9xD0xbWQ4lkwXZlUgRWW7lvheyysOv3NMspVGfcyRExagtaJ0ZfGZogz1ipl3l8FlsQFdLmCe3ApP
-        YQVYTdy6ld6puFY4Ku0LRQIitDjemUCawgGKAwqx+DrdlABMGUpoxpcVsamZ9KSuqVYHMMDw/zRi6
-        c22HSKa8y6vmyaIT7Mg7uMHlMoxF/2jIcZQwW3GTyq6legMtCJQ9LwnOm2tRdEa96pOsrpaZgLdlB
-        rhaeAdt93WeC56LRw2jHTSlR6/MHx5rFhEIrbk55l+KMlKKCLYMWBdQ/Sllnl5+DhEqEADny1yw0p
-        aopxhlzg==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by desiato.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1o2gTF-0092dZ-DZ; Sat, 18 Jun 2022 21:59:10 +0000
-Message-ID: <c39a479d-4a3c-9789-7ce2-579ae3c778a6@infradead.org>
-Date:   Sat, 18 Jun 2022 14:59:00 -0700
+        with ESMTP id S232039AbiFRWXE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 18:23:04 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C83591127;
+        Sat, 18 Jun 2022 15:23:03 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 84862802F2;
+        Sun, 19 Jun 2022 00:23:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1655590981;
+        bh=2f/Vy8H8KrRMFojNWJEwbK4z4F9L0HVx73rd5ObdoLA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Pk0ElU8ldru0aNe7O+zYYS6m9k/D76XKaHkwEs4MhCgrlzYtK5mSd9RSLXtyJZCmL
+         zg1d87I2uCi+kcovpMFhggOi51nTxP3S6y3SCvhGL/m5fHhMz5UZEGNrgIIkcPTJgI
+         fwxKw5cibgzdH1pcDkvdBHYz/RA5axyqa7fSS7Xl1GKd4PFytB956Zbt1NOmZTuxZH
+         I16DpfiIpPzNZAKc98S3zxgIFcmv1YFTvw5u2Nw6jGGdFnTndPubrwrpJT1qLIh9n+
+         Or7nBiRFjF8SVkJnLhjQRp6345/DsF+0xjRbWG0LsT4lTNJ8iG6JckG0tGLjtz7d1K
+         kZSr2BNrYvuUQ==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-media@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] media: dt-bindings: mt9p031: Add MT9P006 compatible string
+Date:   Sun, 19 Jun 2022 00:22:54 +0200
+Message-Id: <20220618222255.478165-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 13/16] pinctrl: Add AXP192 pin control driver
-Content-Language: en-US
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
-        linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org, jic23@kernel.org,
-        lee.jones@linaro.org, sre@kernel.org, broonie@kernel.org,
-        gregkh@linuxfoundation.org, lgirdwood@gmail.com
-Cc:     lars@metafoo.de, rafael@kernel.org, quic_gurus@quicinc.com,
-        sebastian.reichel@collabora.com, andy.shevchenko@gmail.com,
-        michael@walle.cc, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20220618214009.2178567-1-aidanmacdonald.0x0@gmail.com>
- <20220618214009.2178567-14-aidanmacdonald.0x0@gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20220618214009.2178567-14-aidanmacdonald.0x0@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add compatible for MT9P006 sensor, which is older variant of MT9P031
+and compatible with this driver.
 
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Stefan Riedmueller <s.riedmueller@phytec.de>
+Cc: devicetree@vger.kernel.org
+---
+ Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 6/18/22 14:40, Aidan MacDonald wrote:
-> diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-> index f52960d2dfbe..a71e35de333d 100644
-> --- a/drivers/pinctrl/Kconfig
-> +++ b/drivers/pinctrl/Kconfig
-> @@ -113,6 +113,20 @@ config PINCTRL_AT91PIO4
->  	  Say Y here to enable the at91 pinctrl/gpio driver for Atmel PIO4
->  	  controller available on sama5d2 SoC.
->  
-> +config PINCTRL_AXP192
-> +	tristate "X-Powers AXP192 PMIC pinctrl and GPIO Support"
-> +	depends on MFD_AXP20X
-> +	depends on OF
-> +	select PINMUX
-> +	select GENERIC_PINCONF
-> +	select GPIOLIB
-> +	help
-> +	  AXP PMICs provides multiple GPIOs that can be muxed for different
-
-	            provide
-
-> +	  functions. This driver bundles a pinctrl driver to select the function
-> +	  muxing and a GPIO driver to handle the GPIO when the GPIO function is
-> +	  selected.
-> +	  Say Y to enable pinctrl and GPIO support for the AXP192 PMIC.
-
+diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml b/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
+index c2ba78116dbbd..1d6af1bf9a6b6 100644
+--- a/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
+@@ -17,6 +17,7 @@ description: |
+ properties:
+   compatible:
+     enum:
++      - aptina,mt9p006
+       - aptina,mt9p031
+       - aptina,mt9p031m
+ 
 -- 
-~Randy
+2.35.1
+
