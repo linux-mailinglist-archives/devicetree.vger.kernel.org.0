@@ -2,90 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E78D15504F2
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 15:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A546F5504F9
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 15:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236573AbiFRNCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 09:02:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47036 "EHLO
+        id S233696AbiFRNIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 09:08:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234351AbiFRNCR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 09:02:17 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0AA41A056;
-        Sat, 18 Jun 2022 06:02:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1655557333;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=Wt2x8ZQ997/kuqWQRZZZv5j/3VzD5EfVi38V6rhji9I=;
-    b=WQ4FmCOsQm/4afJ+H9lY1EHzE0bjVICu1cmlQp6zo+v/LVCQZzAgd602/FD9+VQW1f
-    VL9KqKaBDFBNbHZGLFvkzF+f2/+8yXckFquz45rSPBjjk1AM+iTqux3z1OBX/nzeMKHh
-    EUfn5eDICwsBVO3QS6AQsC6vq+5jQVQ4Q0PEcrv/Zj0cVNnLLNT4FUuaScnmrDJDPWjq
-    28AbpPgydHI7nWporEI9lC+Kq49bOexXOzKw8JI4H5FUgVTvJt4H8O8feLsmjfg47bya
-    rsP4JXKG6aNABCbXzPXzniDT3nlZCNJbzXTSyTUX1RK9eLO1SlGODNlbFwLzjikpYpLg
-    v/bQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrKw8+6Y="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.46.0 AUTH)
-    with ESMTPSA id g32597y5ID2CAa6
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Sat, 18 Jun 2022 15:02:12 +0200 (CEST)
-Date:   Sat, 18 Jun 2022 15:02:04 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: msm8916: add clocks to the GCC
- device node
-Message-ID: <Yq3MzJ58d0fbsb3L@gerhold.net>
-References: <20220617144714.817765-1-dmitry.baryshkov@linaro.org>
- <20220617144714.817765-8-dmitry.baryshkov@linaro.org>
- <Yqy2YHpl93kEQRYU@gerhold.net>
- <CAA8EJpozu6PoWC-kOpFB9OSZLVZaZt6ZkUpYo=bOr0zhErkWqA@mail.gmail.com>
+        with ESMTP id S237514AbiFRNIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 09:08:35 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EFE2167D4;
+        Sat, 18 Jun 2022 06:08:33 -0700 (PDT)
+Received: (Authenticated sender: contact@artur-rojek.eu)
+        by mail.gandi.net (Postfix) with ESMTPA id EBFAF240004;
+        Sat, 18 Jun 2022 13:08:29 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpozu6PoWC-kOpFB9OSZLVZaZt6ZkUpYo=bOr0zhErkWqA@mail.gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Date:   Sat, 18 Jun 2022 15:08:29 +0200
+From:   Artur Rojek <contact@artur-rojek.eu>
+To:     Chris Morgan <macromorgan@hotmail.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, maccraft123mc@gmail.com,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, dmitry.torokhov@gmail.com,
+        Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v3 2/3] Input: adc-joystick - Add polled input device
+ support
+In-Reply-To: <SN6PR06MB5342762DE16AFC607CA9D5F9A5AD9@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20220613192353.696-1-macroalpha82@gmail.com>
+ <20220613192353.696-3-macroalpha82@gmail.com>
+ <ec496fcf808d73fe356d1961d89bf1ff@artur-rojek.eu>
+ <SN6PR06MB5342762DE16AFC607CA9D5F9A5AD9@SN6PR06MB5342.namprd06.prod.outlook.com>
+Message-ID: <cdb956639e9550b287db31b762f7b764@artur-rojek.eu>
+X-Sender: contact@artur-rojek.eu
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 17, 2022 at 11:34:24PM +0300, Dmitry Baryshkov wrote:
-> On Fri, 17 Jun 2022 at 20:14, Stephan Gerhold <stephan@gerhold.net> wrote:
-> >
-> > If we want to change this to the actual votable clock later this should
-> > probably be <&rpmcc RPM_SMD_XO_CLK_SRC>. AFAIK that clock exists in RPM
-> > on MSM8916 but was never added to the clk-smd-rpm driver (for MSM8916).
-> >
-> > Not sure where the pin-controlled BB_CLK1 is coming from here. :)
+On 2022-06-15 17:12, Chris Morgan wrote:
+> On Wed, Jun 15, 2022 at 03:43:07AM +0200, Artur Rojek wrote:
+>> On 2022-06-13 21:23, Chris Morgan wrote:
+>> > From: Chris Morgan <macromorgan@hotmail.com>
+>> >
+>> > Add polled input device support to the adc-joystick driver. This is
+>> > useful for devices which do not have hardware capable triggers on
+>> > their SARADC. Code modified from adc-joystick.c changes made by Maya
+>> > Matuszczyk.
+>> >
+>> > Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+>> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+>> 
+>> Hi Chris,
+>> 
+>> Comments inline. I also Cc'd Paul and Jonathan, who were attached in 
+>> v2.
+>> 
+>> > ---
+>> >  drivers/input/joystick/adc-joystick.c | 52 +++++++++++++++++++++------
+>> >  1 file changed, 41 insertions(+), 11 deletions(-)
+>> >
+>> > diff --git a/drivers/input/joystick/adc-joystick.c
+>> > b/drivers/input/joystick/adc-joystick.c
+>> > index 78ebca7d400a..dc01cd0214d2 100644
+>> > --- a/drivers/input/joystick/adc-joystick.c
+>> > +++ b/drivers/input/joystick/adc-joystick.c
+>> > @@ -13,6 +13,10 @@
+>> >
+>> >  #include <asm/unaligned.h>
+>> >
+>> > +#define ADC_JSK_POLL_INTERVAL	16
+>> > +#define ADC_JSK_POLL_MIN	8
+>> > +#define ADC_JSK_POLL_MAX	32
+>> > +
+>> >  struct adc_joystick_axis {
+>> >  	u32 code;
+>> >  	s32 range[2];
+>> > @@ -26,8 +30,21 @@ struct adc_joystick {
+>> >  	struct adc_joystick_axis *axes;
+>> >  	struct iio_channel *chans;
+>> >  	int num_chans;
+>> > +	bool polled;
+>> >  };
+>> >
+>> > +static void adc_joystick_poll(struct input_dev *input)
+>> > +{
+>> > +	struct adc_joystick *joy = input_get_drvdata(input);
+>> > +	int i, val;
+>> > +
+>> > +	for (i = 0; i < joy->num_chans; i++) {
+>> > +		iio_read_channel_raw(&joy->chans[i], &val);
+>> > +		input_report_abs(input, joy->axes[i].code, val);
+>> > +	}
+>> > +	input_sync(input);
+>> > +}
+>> > +
+>> >  static int adc_joystick_handle(const void *data, void *private)
+>> >  {
+>> >  	struct adc_joystick *joy = private;
+>> > @@ -215,8 +232,19 @@ static int adc_joystick_probe(struct
+>> > platform_device *pdev)
+>> >  	joy->input = input;
+>> >  	input->name = pdev->name;
+>> >  	input->id.bustype = BUS_HOST;
+>> > -	input->open = adc_joystick_open;
+>> > -	input->close = adc_joystick_close;
+>> > +
+>> > +	if (device_property_read_bool(dev,
+>> > "adc-joystick,no-hardware-trigger"))
+>> > +		joy->polled = 1;
+>> As mentioned in v2, I don't think a DT property is required here. 
+>> Assuming
+>> the polled mode is a fallback for devices with no buffers, just do:
+>> ```
+>> 	joy->polled = !(joy->chans[0].indio_dev->modes &
+>> 			INDIO_ALL_BUFFER_MODES);
+>> ```
 > 
-> It came from the schematics I had at hand (db410c). It uses the
-> BB_CLK1 together with the enable pin. I'll probably use xo_board for
-> now and postpone changing this to rpmcc clock until the next attempt
-> to read msm-3.x code.
+> Understood. I attempted this and noticed that it was showing I have
+> INDIO_BUFFER_TRIGGERED in addition to INDIO_DIRECT_MODE (the
+> INDIO_DIRECT_MODE is the only one specified at the hardware level
+> though). Should I just check for INDIO_BUFFER_SOFTWARE &
+> INDIO_BUFFER_HARDWARE instead? I think it's possible that the inclusion
+> of the industrialio_triggered_buffer module in my kernel is adding
+> this to the channel somehow?
+Having INDIO_BUFFER_TRIGGERED means that your saradc is capable of using 
+the existing flow. You should be able to register a software trigger and 
+use the adc-joystick driver without further issues.
+That said, this is where it gets problematic - there is no way to create 
+an IIO trigger via Device Tree, since triggers don't describe any piece 
+of hardware, and you shouldn't need to register it at runtime 
+(configfs/sysfs) for communication between two kernel drivers either. At 
+the same time, it's not adc-joystick's job to register an external 
+trigger.
+
+Jonathan,
+I don't know what the proper approach to this should be, perhaps you 
+could assist?
+
+Cheers,
+Artur
 > 
-
-Hmm, you're right - BB_CLK1 goes to CXO on most MSM8916+PM8916 devices.
-I think the msm-3.10 kernel still controls it via the RPM_SMD_XO_CLK_SRC
-though. Quite confusing. :)
-
-Thanks,
-Stephan
+> Thank you.
+> 
+>> > +
+>> > +	if (joy->polled) {
+>> > +		input_setup_polling(input, adc_joystick_poll);
+>> > +		input_set_poll_interval(input, ADC_JSK_POLL_INTERVAL);
+>> > +		input_set_min_poll_interval(input, ADC_JSK_POLL_MIN);
+>> > +		input_set_max_poll_interval(input, ADC_JSK_POLL_MAX);
+>> > +	} else {
+>> > +		input->open = adc_joystick_open;
+>> > +		input->close = adc_joystick_close;
+>> > +	}
+>> >
+>> >  	error = adc_joystick_set_axes(dev, joy);
+>> >  	if (error)
+>> > @@ -229,16 +257,18 @@ static int adc_joystick_probe(struct
+>> > platform_device *pdev)
+>> >  		return error;
+>> >  	}
+>> >
+>> > -	joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
+>> > -	if (IS_ERR(joy->buffer)) {
+>> > -		dev_err(dev, "Unable to allocate callback buffer\n");
+>> > -		return PTR_ERR(joy->buffer);
+>> > -	}
+>> > +	if (!joy->polled) {
+>> > +		joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
+>> Please maintain line discipline of 80 chars to stay consistent with 
+>> the rest
+>> of this driver.
+> 
+> Understood, sorry about that.
+> 
+>> > +		if (IS_ERR(joy->buffer)) {
+>> > +			dev_err(dev, "Unable to allocate callback buffer\n");
+>> > +			return PTR_ERR(joy->buffer);
+>> > +		}
+>> >
+>> > -	error = devm_add_action_or_reset(dev, adc_joystick_cleanup,
+>> > joy->buffer);
+>> > -	if (error)  {
+>> > -		dev_err(dev, "Unable to add action\n");
+>> > -		return error;
+>> > +		error = devm_add_action_or_reset(dev, adc_joystick_cleanup,
+>> > joy->buffer);
+>> Same here.
+> 
+> Ditto.
+> 
+>> 
+>> Cheers,
+>> Artur
+>> > +		if (error)  {
+>> > +			dev_err(dev, "Unable to add action\n");
+>> > +			return error;
+>> > +		}
+>> >  	}
+>> >
+>> >  	return 0;
