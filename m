@@ -2,76 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18D6355019F
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 03:17:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87FFC5501A4
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 03:21:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243853AbiFRBRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 21:17:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52090 "EHLO
+        id S236000AbiFRBVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 21:21:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232947AbiFRBRB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 21:17:01 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5323C6B014
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:17:00 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id t3-20020a17090a510300b001ea87ef9a3dso5504764pjh.4
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:17:00 -0700 (PDT)
+        with ESMTP id S229778AbiFRBVL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 21:21:11 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723D01705C
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:21:09 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id t3-20020a17090a510300b001ea87ef9a3dso5509823pjh.4
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:21:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YyLn6g7vHfOuSa6wUd32m7NoZ5cRQIcWpzzoXnE6kB0=;
-        b=qGiwuLye1ynOBURtscgbzmupalCPu2LwEEyvj1yDzFsGJMKFyXiPndg0CGyWgnIHqy
-         S7cww702kckx6jCqb1fTNVsp1ECceJTfzLWEXrILFzZS54owJ9Oq1piAGUPK31KFSJ2y
-         TbcCAV56ifzsAbBfkRBAhzEwuJ+7Ds9Ttqr0vzz4DhWedF6aeizA8m3aGpg02Sz/RY3C
-         IAnzSCV2xN6NUsSZcgLuu5EyKAAMktNbUpudAAWbpRYHuvxe8GowdB23ae9rs7Uyk84y
-         fMPuhCtoCZcbqoy3zGZZ3j9wvsZ85CQb7pJlbjgfK8xKhsDIMPdpRk8KUfkh6rIOBEBh
-         yT/w==
+        bh=F+G5vrMheUscNqcqfe/Vgn/7QPQWiVKmIQiHsQqGhT4=;
+        b=m3E2TWWtMPsLtGy3UNkP6R2CyUrzzErld4HxIC7V5BUUbuMycPgbuQxuJXJI6bqpUX
+         XL+ggljtounUakjSM7xIXhsd/6cboev8E1hTu0iwWKgRcPu7clb6PDXCSIleNBhl+Acu
+         My7gjrw+AEcNH+ZcO6+Z0yZfIHrR1Ym+7US0r2O92V/+PiDyw+zptZXEFo8bGCLQMxEK
+         DCYQ+RsB952kDvDBvnI0U9NkgKgGASPBXrpFOwpt+BdM91H/3rQnHWsLR6vg+kNpLbyw
+         qs/Ub35o86VjzVCU6iZr5CUT3ozgGtztWiPl41S9nRLkdFp89euxhhJUwhH2I7thst5c
+         iu/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=YyLn6g7vHfOuSa6wUd32m7NoZ5cRQIcWpzzoXnE6kB0=;
-        b=FfqC+J+FcWIQ7pJ/O+7XFtGqSRLrF4BO8gA3/xCdju7OsbQpCdmmHZL3njw7MsgeZM
-         lZfbSLZG0sgVOH/iBz//bpknevKBkx4CuqL2sBQTTzl7ymQwQMBBnW9cmPOVeUOzmJtL
-         UhzvWcQaH4YevKV66z3r5F7rTCACoeh0qvKIrQYEfu0EeSy9Wj3hnoEK74aS07NMDd/r
-         5Y4SURqjlKBjbVyd1cptucstTJeaObv62h/acLUTBwp/wXVcNOGj5psoNFi9huPZD4P2
-         l4T3py3p/Cjt9Dml2/v7iy68nb4uxch+baS8Xt7KvkVNzHvKdCKeTselzSpNNif+6ZOv
-         2OIA==
-X-Gm-Message-State: AJIora8QWDx+a3M5kUYqJl4mDiwIezKGn2tn/bv6FJmVdzW+0dB7NUke
-        9MZKyTRPBYmV8AAkLlcWriHDKg==
-X-Google-Smtp-Source: AGRyM1ugD6Hqyw87IEKWEacxbwyqYAnd4hfXfTEMLg8mP1rVupaS3+8mM3vl4bqVy9+M26ewy9HwMg==
-X-Received: by 2002:a17:902:cec5:b0:166:3418:5260 with SMTP id d5-20020a170902cec500b0016634185260mr12357629plg.129.1655515019768;
-        Fri, 17 Jun 2022 18:16:59 -0700 (PDT)
+        bh=F+G5vrMheUscNqcqfe/Vgn/7QPQWiVKmIQiHsQqGhT4=;
+        b=1EhO/TM/PeDC6cssOqJUmTd9uLvKMAxMfZJtMUyJWmtwUCKuHmGlIXhnxQJhegh4XM
+         Fp1hoxmqfM3GkcWByAaOXtSh5B3WlCjtFbBCE7eqx6GFzg92V/C3JvdTMxo/Ih/fxW0H
+         nhdGWZB5u3fCEroPVsQktK2hLpmmLLtXyzNwcTrG+T7YFtcVRSR77qYynfGbLk/f06c/
+         CplrI2HLep5SWmnv252fmQIbe6s9tzOKW1w1N7iRHb6wNxyOX1wE4rfuKNWmBmZwCGX2
+         dvyqLOVE5Q545u40CPkp+5KdZ6hOD6p5lhFPOl3/p59UOBHNlkvhyLmBkrePK1v5aoSW
+         KFvA==
+X-Gm-Message-State: AJIora/DMxHR073IY9phPLcBVnHwF2Ex1VGR98y/EMbNZhM12Q4cRJSS
+        HJDcm6Jlt0f4njqPouZTorNSsQ==
+X-Google-Smtp-Source: AGRyM1vG4KjjPKtlm1wgmX54+UP4p9y1x0Anp/mA9ON9D45XnW3TBdS/hae7OlqnJfOS0AB4kGjomA==
+X-Received: by 2002:a17:90a:df91:b0:1e3:4dc8:46e7 with SMTP id p17-20020a17090adf9100b001e34dc846e7mr24426222pjv.106.1655515268980;
+        Fri, 17 Jun 2022 18:21:08 -0700 (PDT)
 Received: from [172.31.235.92] ([216.9.110.6])
-        by smtp.gmail.com with ESMTPSA id b9-20020a170902650900b00168ba5ac8adsm4155211plk.163.2022.06.17.18.16.58
+        by smtp.gmail.com with ESMTPSA id o22-20020a17090ac09600b001e2a36fb4aasm6038921pjs.43.2022.06.17.18.21.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 18:16:59 -0700 (PDT)
-Message-ID: <d483da73-c5a1-2474-4992-f7ce9947d5ba@linaro.org>
-Date:   Fri, 17 Jun 2022 18:16:56 -0700
+        Fri, 17 Jun 2022 18:21:08 -0700 (PDT)
+Message-ID: <91395246-7d94-c35b-b336-9c193e5d2b9e@linaro.org>
+Date:   Fri, 17 Jun 2022 18:21:00 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH net-next 02/28] dt-bindings: net: fman: Add additional
- interface properties
+Subject: Re: [PATCH] dt-bindings: mmc: mtk-sd: Set clocks based on compatible
 Content-Language: en-US
-To:     Sean Anderson <sean.anderson@seco.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>, netdev@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Eric Dumazet <edumazet@google.com>,
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20220617203312.3799646-1-sean.anderson@seco.com>
- <20220617203312.3799646-3-sean.anderson@seco.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-mmc@vger.kernel.org
+References: <20220617230114.2438875-1-nfraprado@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220617203312.3799646-3-sean.anderson@seco.com>
+In-Reply-To: <20220617230114.2438875-1-nfraprado@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -82,75 +83,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/06/2022 13:32, Sean Anderson wrote:
-> At the moment, MEMACs are configured almost completely based on the
-> phy-connection-type. That is, if the phy interface is RGMII, it assumed
-> that RGMII is supported. For some interfaces, it is assumed that the
-> RCW/bootloader has set up the SerDes properly. The actual link state is
-> never reported.
+On 17/06/2022 16:01, Nícolas F. R. A. Prado wrote:
+> The binding was describing a single clock list for all platforms, but
+> that's not really suitable: mt2712 requires an extra 'bus_clk' on some
+> of its controllers, while mt8192 requires four different extra clocks.
+> The rest of the platforms can share the same 3 clocks, with the third
+> being optional as it's not present on all platforms.
 > 
-> To address these shortcomings, the driver will need additional
-> information. First, it needs to know how to access the PCS/PMAs (in
-> order to configure them and get the link status). The SGMII PCS/PMA is
-> the only currently-described PCS/PMA. Add the XFI and QSGMII PCS/PMAs as
-> well. The XFI (and 1GBase-KR) PCS/PMA is a c45 "phy" which sits on the
-> same MDIO bus as SGMII PCS/PMA. By default they will have conflicting
-> addresses, but they are also not enabled at the same time by default.
-> Therefore, we can let the default address for the XFI PCS/PMA be the
-> same as for SGMII. This will allow for backwards-compatibility.
+> Move the clock definitions inside if blocks that match on the
+> compatibles. In practice this gets rid of dtbs_check warnings on mt8192,
+> since the 'bus_clk' clock from mt2712 is no longer expected on this
+> platform.
 > 
-> QSGMII, however, cannot work with the current binding. This is because
-> the QSGMII PCS/PMAs are only present on one MAC's MDIO bus. At the
-> moment this is worked around by having every MAC write to the PCS/PMA
-> addresses (without checking if they are present). This only works if
-> each MAC has the same configuration, and only if we don't need to know
-> the status. Because the QSGMII PCS/PMA will typically be located on a
-> different MDIO bus than the MAC's SGMII PCS/PMA, there is no fallback
-> for the QSGMII PCS/PMA.
+> Fixes: 59a23395d8aa ("dt-bindings: mmc: Add support for MT8192 SoC")
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 > 
-> MEMACs (across all SoCs) support the following protocols:
+> ---
 > 
-> - MII
-> - RGMII
-> - SGMII, 1000Base-X, and 1000Base-KX
-> - 2500Base-X (aka 2.5G SGMII)
-> - QSGMII
-> - 10GBase-R (aka XFI) and 10GBase-KR
-> - XAUI and HiGig
+>  .../devicetree/bindings/mmc/mtk-sd.yaml       | 115 ++++++++++++------
+>  1 file changed, 81 insertions(+), 34 deletions(-)
 > 
-> Each line documents a set of orthogonal protocols (e.g. XAUI is
-> supported if and only if HiGig is supported). Additionally,
-> 
-> - XAUI implies support for 10GBase-R
-> - 10GBase-R is supported if and only if RGMII is not supported
-> - 2500Base-X implies support for 1000Base-X
-> - MII implies support for RGMII
-> 
-> To switch between different protocols, we must reconfigure the SerDes.
-> This is done by using the standard phys property. We can also use it to
-> validate whether different protocols are supported (e.g. using
-> phy_validate). This will work for serial protocols, but not RGMII or
-> MII. Additionally, we still need to be compatible when there is no
-> SerDes.
-> 
-> While we can detect 10G support by examining the port speed (as set by
-> fsl,fman-10g-port), we cannot determine support for any of the other
-> protocols based on the existing binding. In fact, the binding works
-> against us in some respects, because pcsphy-handle is required even if
-> there is no possible PCS/PMA for that MAC. To allow for backwards-
-> compatibility, we use a boolean-style property for RGMII (instead of
-> presence/absence-style). When the property for RGMII is missing, we will
-> assume that it is supported. The exception is MII, since no existing
-> device trees use it (as far as I could tell).
-> 
-> Unfortunately, QSGMII support will be broken for old device trees. There
-> is nothing we can do about this because of the PCS/PMA situation (as
-> described above).
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> index 2a2e9fa8c188..ba48ff041299 100644
+> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> @@ -10,9 +10,6 @@ maintainers:
+>    - Chaotian Jing <chaotian.jing@mediatek.com>
+>    - Wenbin Mei <wenbin.mei@mediatek.com>
+>  
+> -allOf:
+> -  - $ref: mmc-controller.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -48,28 +45,8 @@ properties:
+>    clocks:
+>      description:
+>        Should contain phandle for the clock feeding the MMC controller.
+> -    minItems: 2
 
-Thanks for the patch but you add too many new properties. The file
-should be converted to YAML/DT schema first.
+Keep minItems and maxItems matching the widest constraints.
+
+> -    items:
+> -      - description: source clock (required).
+> -      - description: HCLK which used for host (required).
+> -      - description: independent source clock gate (required for MT2712).
+> -      - description: bus clock used for internal register access (required for MT2712 MSDC0/3).
+> -      - description: msdc subsys clock gate (required for MT8192).
+> -      - description: peripheral bus clock gate (required for MT8192).
+> -      - description: AXI bus clock gate (required for MT8192).
+> -      - description: AHB bus clock gate (required for MT8192).
+> -
+> -  clock-names:
+> -    minItems: 2
+
+ditto
+
+>  
 
 
 Best regards,
