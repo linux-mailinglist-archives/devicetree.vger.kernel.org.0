@@ -2,75 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 569BC5505BE
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 17:30:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B4785505CF
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 17:39:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235203AbiFRPaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 11:30:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41580 "EHLO
+        id S230356AbiFRPjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 11:39:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235157AbiFRPaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 11:30:03 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0143310FD0
-        for <devicetree@vger.kernel.org>; Sat, 18 Jun 2022 08:30:03 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id y32so11035850lfa.6
-        for <devicetree@vger.kernel.org>; Sat, 18 Jun 2022 08:30:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=1/e1mvC387Kg6krxrVdOK9bDUmZD/rSMjrmBoVChUyY=;
-        b=Y6VCMxYgNgyNPMj9zsdsppQoeYQwMpNdVVxdTH+8Wpo+3GjeF3AxYzywaHrQVhf4zb
-         19in/R4gVpRDUjzMjunejVzUb8hOvn3teiZsRMiBn5iJDl+14pD2w6cCBWTcWm/qeoai
-         fv/OHOcSJ+7AhdkgrXNTwvhqbJtF98snKZKjLEJK3lKgNKHwImezsz4rBuDhhanMzi8w
-         GfVjBU/Cl+6ODiKsaabsRg+TgY0E5WZHT5rL6EcbTFh+oHEVRAXLmVYo5hdmtqm4hCLz
-         MmnEZDgSBPiigVlx8jvAv6ID84L3mQyXwnAO+mBczGM99ERk46lyHncxt7MKNTkMczWi
-         AZcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=1/e1mvC387Kg6krxrVdOK9bDUmZD/rSMjrmBoVChUyY=;
-        b=meNY0kWwTA2/54lh7TEalQBHCutXS/Sqc+Mc8y5/sfryWPzY4ymh3c/FX16cQ2p2jB
-         hEg9sZ6ZZ/VRVXbus/QrZ8XNVp6zBRSO5NoNU3bKk4oRVzjNJafv8PqNfXgCxpmWlc0d
-         X00kAMVEvn24gm5QuAa07zKtOK7QoB3asj0NTPbP8f9L+6N5JA00WG28RaRujDKGf6a0
-         B3RjNwAe/actDDegHcQTukbMi6nPpBJWDstEO3NftBbGJ6V9/JpTO69P6szENKx+Hs9/
-         GpAKgrJLvfrofgnetB8AJY12y6BPsr9NVys3yEtX2lVeGQ9YqnHwBf/nh1LDc3vphVSo
-         MsWQ==
-X-Gm-Message-State: AJIora/MoNLrQSuSr82N68PoiPTVDJTr9L6XN4Z2ZfpuuLN8OPnJL3d7
-        31f3R5TULiJwfVl3qPsMKCbH3WVixlojtw==
-X-Google-Smtp-Source: AGRyM1vsx6BcY+vFiaMfP9N84rL3oHIMRfiZTZnNSPFSz6sBhlqco/EbWtj99hbdbLhtparSH3ujEQ==
-X-Received: by 2002:a05:6512:238d:b0:479:2116:8598 with SMTP id c13-20020a056512238d00b0047921168598mr8709693lfv.322.1655566201316;
-        Sat, 18 Jun 2022 08:30:01 -0700 (PDT)
-Received: from [192.168.43.7] ([188.162.65.10])
-        by smtp.gmail.com with ESMTPSA id t7-20020a2e9d07000000b002556cf330e8sm956719lji.99.2022.06.18.08.29.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 18 Jun 2022 08:30:00 -0700 (PDT)
-Message-ID: <4f1ae43c-0f22-19fe-0794-3cc268104396@linaro.org>
-Date:   Sat, 18 Jun 2022 18:29:58 +0300
+        with ESMTP id S230133AbiFRPjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 11:39:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D95FFDEAD;
+        Sat, 18 Jun 2022 08:39:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7543060B1E;
+        Sat, 18 Jun 2022 15:39:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDC6AC3411A;
+        Sat, 18 Jun 2022 15:39:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655566746;
+        bh=McuYUPbcTogh0Yrn7FSYihqEAcvdIVNBBIDilpwKOpE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=dSnD0FK661SnooSn7Z/CDSOX3C3M6TplRlQ+BdTAy3J5UoTF1ZJhfy0liHIx9LLKJ
+         MmOBy6sUSheDILDX/FclyJ2ODmVSkJuDFnMF9EcDwWOK0MMT7rSQl26Krt7XqdvqGH
+         1ULRRVdc6QRCMSLjBZYYrmNqffXtEeuxOm9uPjF2u1F1Vqa3EQc2N58FHFgSv/NvSE
+         0gBc87cgiNXnUcjPnNOILCd+NQ1oVQDTlP3VULDcsL6ZpPWAwY2t8+39JcivJuquhJ
+         vVRYNmRbCwYBRuOwqx3C78E8ZqVCAyRz5L7XP3svJYw32ZsjUiJbfJih8B78n6II/1
+         HYiaISZCY5RRQ==
+Date:   Sat, 18 Jun 2022 16:48:20 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     lars@metafoo.de, matthias.bgg@gmail.com, lee.jones@linaro.org,
+        daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        szunichen@gmail.com, ChiaEn Wu <chiaen_wu@richtek.com>
+Subject: Re: [PATCH v2 07/15] Documentation: ABI: testing: mt6370: Add ADC
+ sysfs guideline
+Message-ID: <20220618164820.2eeb8ae8@jic23-huawei>
+In-Reply-To: <20220613111146.25221-8-peterwu.pub@gmail.com>
+References: <20220613111146.25221-1-peterwu.pub@gmail.com>
+        <20220613111146.25221-8-peterwu.pub@gmail.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 0/2] spmi: pmic-arb: Add support for PMIC v7
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Collins <quic_collinsd@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        David Dai <daidavid1@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220201134108.2677578-1-vkoul@kernel.org>
- <YhUVAwtfjuIdKrRQ@matsya> <1c66890b-6736-61ef-7d16-619f90ced4a0@linaro.org>
-In-Reply-To: <1c66890b-6736-61ef-7d16-619f90ced4a0@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,51 +63,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/05/2022 22:41, Dmitry Baryshkov wrote:
-> On 22/02/2022 19:53, Vinod Koul wrote:
->> On 01-02-22, 19:11, Vinod Koul wrote:
->>> Hello,
->>>
->>> The is version 3 of support for PMIC v7. I have added a new property
->>> qcom,bus-id for supporting v7 and then add driver changes for v7
->>>
->>> This depends on yaml conversion patch:
->>> https://lore.kernel.org/linux-arm-msm/20211227170151.73116-1-david@ixit.cz/ 
->>>
->>
->> Any feedback on this...
+On Mon, 13 Jun 2022 19:11:38 +0800
+ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+
+> From: ChiaEn Wu <chiaen_wu@richtek.com>
 > 
-> Another gracious reminder about these patches. At this moment this is 
-> one of the important pieces lacking for the full SM8450 support in the 
-> upstream kernel.
-
-Stephen, yet another ping. This is the blocking point for the further 
-SM8450 progress.
-
->>> Changes since v2:
->>>   - Drop yaml conversion patch
->>>   - Fix author for spmi patch
->>> Changes since v1:
->>>   - Add yaml conversion patch and new binding
->>>   - fix driver bug report by Jonathan
->>>
->>> David Collins (1):
->>>    spmi: pmic-arb: Add support for PMIC v7
->>>
->>> Vinod Koul (1):
->>>    dt-bindings: spmi: Add qcom,bus-id
->>>
->>>   .../bindings/spmi/qcom,spmi-pmic-arb.yaml     |  11 +
->>>   drivers/spmi/spmi-pmic-arb.c                  | 233 ++++++++++++++++--
->>>   2 files changed, 225 insertions(+), 19 deletions(-)
->>>
->>> -- 
->>> 2.31.1
->>
+> Add ABI documentation for mt6370 non-standard ADC sysfs interfaces.
 > 
+> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+> ---
+>  .../ABI/testing/sysfs-bus-iio-adc-mt6370      | 36 +++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-mt6370
 > 
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-mt6370 b/Documentation/ABI/testing/sysfs-bus-iio-adc-mt6370
+> new file mode 100644
+> index 000000000000..039b3381176a
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-mt6370
+> @@ -0,0 +1,36 @@
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltage0_raw
+
+Unfortunately the kernel documentation build scripts do no support duplicating
+standard ABI for particular devices so as to provide more information.
+Hence you can't have anything in this file.
 
 
--- 
-With best wishes
-Dmitry
+> +KernelVersion:	5.18
+> +Contact:	chiaen_wu@richtek.com
+> +Description:
+> +		Indicated MT6370 VBUS ADC with lower accuracy(+-75mA)
+Curious though, voltage with a mA accuracy range?
+This scale should be presented directly to userspace anyway so no need
+for this doc.
+
+> +		higher measure range(1~22V)
+> +		Calculating with scale returns voltage in uV
+
+No. All channels return in mV. That's the ABI requirement as
+in sysfs-bus-iio and we cannot vary if for particular drivers.  If we did
+no generic tooling would work.
+
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltage1_raw
+> +KernelVersion:	5.18
+> +Contact:	chiaen_wu@richtek.com
+> +Description:
+> +		Indicated MT6370 VBUS ADC with higher accuracy(+-30mA)
+> +		lower measure range(1~9.76V)
+> +		Calculating with scale offset returns voltage in uV
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltage4_raw
+> +KernelVersion:	5.18
+> +Contact:	chiaen_wu@richtek.com
+> +Description:
+> +		Indicated MT6370 TS_BAT ADC
+> +		Calculating with scale returns voltage in uV
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltage7_raw
+> +KernelVersion:	5.18
+> +Contact:	chiaen_wu@richtek.com
+> +Description:
+> +		Indicated MT6370 CHG_VDDP ADC
+> +		Calculating with scale returns voltage in mV
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_temp8_raw
+> +KernelVersion:	5.18
+> +Contact:	chiaen_wu@richtek.com
+> +Description:
+> +		Indicated MT6370 IC junction temperature
+> +		Calculating with scale and offset returns temperature in degree
+
