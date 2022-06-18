@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70A115501B5
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 03:40:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9B1C5501BA
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 03:45:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234389AbiFRBkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 21:40:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38608 "EHLO
+        id S242164AbiFRBpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 21:45:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234311AbiFRBkT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 21:40:19 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFA7F6B013
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:40:17 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id x138so5509631pfc.12
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:40:17 -0700 (PDT)
+        with ESMTP id S232529AbiFRBpH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 21:45:07 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52BED6B013
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:45:06 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id go6so781396pjb.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:45:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=GMHF/u9bPDg4lVJbvtFVsKtsQngEdOA06oMBpGPsk2g=;
-        b=uilQBylMCOu8HTrM/uvoYdevNLPwOdrfdJ56FIrpT1KowIi5+cAH9zcEBpIpywXqKQ
-         kYGY7hRlFZkHpLdEPzjTZ4MfbwtYd6NMq4wrg63qsKqtewAw1xAn/BA3xDV4vnQM0/yT
-         t/mOp/dDLcWiIH3XOLHq/CPS8G4TV+28XkA1kN8NKIB1xM+qkxwMG3cR7Px5SknRmpKj
-         24hBzAU+P+7zuMRFkSgQj4Tvt6fd3jRHB6kLr4QiEMSQY6VCjLsI7LKLCEIEQ/uwysCZ
-         BV6thugXQKyUP0WtqSoWkH68mXicdsiTEfdm20zibVq2x0QqBKrc3vVWw0VhUpU0na3Q
-         99eg==
+        bh=MVVfG1ukpcWxNx9o6iSFBfRaMO1Vdtzlg+i0swD+fb4=;
+        b=q3BsEgoVvOfEqW1uqQ/h2RJoRA2KAVkCNjtFaZH6ciU4+b1sNXN3iCRnu2XCYBNH9q
+         H853Swy9HwpS7fGroR74zzwzeCMiADQiOL904RmSeAWkEHmOGYj6KAELIK9/2Wpk2ODb
+         HYuIf1TPlgIPga6t4XpZ7yWjNOYcBbyP6kGArJehExA0cPQecr8QJN0XoarWwQU7eE3o
+         GJy3SaxfCY/UXVHJN8Lvq5FJTidG1DswoSRfxwcWhFuz1u1Nkt/3+eOOi/MQqh8LiXE8
+         ayBueIF0F9dIb/6qCtV0l1HOo5loteHEVEbrUU5uFxokX3n86TI6zos1sknyef+TxN4f
+         D98A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=GMHF/u9bPDg4lVJbvtFVsKtsQngEdOA06oMBpGPsk2g=;
-        b=JokEGSBCloTy9TfVJlxXgbX4UVzG6lylgOtsH/aGkBGKjhKt/T11QtyD7MnmlEQP2g
-         5ijS5AT/I9ppogPD9QTo3dh6Czeme/YuIKptaoLaLbcVfFW2RQlCAD+BSOiQCMws4h+v
-         t8jhZhgH4xMWRHFGpw94XjkIhKpfEmNbd8glYoZ6Hmkv1ZXNRAlJgY/SKsu92d6yPgfJ
-         HHa62rkQ2prvkZMVZgrSVCv+/oN8/tjxSjLGiEOtWLXT3nxflBn/rWuL46SZZJ9QtB1w
-         JyRbNY17RABSYkMP59qbdYu7fdhUyjcpmYdj8LlD2UvJBNyHoevq8pP44eUoCAWjPNza
-         OExw==
-X-Gm-Message-State: AJIora8bq3w/SbLoPEEV4iLBsRfmFxsmQttYg8DsFLnykuZMV49kyprV
-        K131pm99Pqsq7wSnM/wbEiGy9g==
-X-Google-Smtp-Source: AGRyM1u8Otwha/+YXvvaGP0YeA0BFSEeABIPl8Nsoy8r8VLEpl7pD+kzP1A7uB7ZYZ74C80Fgcj8VA==
-X-Received: by 2002:a05:6a00:162a:b0:51e:73c4:f895 with SMTP id e10-20020a056a00162a00b0051e73c4f895mr12923091pfc.82.1655516417243;
-        Fri, 17 Jun 2022 18:40:17 -0700 (PDT)
+        bh=MVVfG1ukpcWxNx9o6iSFBfRaMO1Vdtzlg+i0swD+fb4=;
+        b=XBf6HPNFG/GpnFThPdVxaQ6OWZgYlRUKEVD7pH+wXV6RvlNV2wdzQJKhyI4GLR9eYO
+         Y0IAxFS+cyhPzSQmhNBAxJnkCmKupvYm3Zw4v3eXdvGpb4u0m7C5GKbE8HRUWaNL59/w
+         ItHVrQkNJ+o3sY0BpJkybFZ8ea0oGCffqbCiyJ55OSHmvmfdXVX8NyI+bBDJvWPN9bDK
+         uKJZ6IHKcZqsVLh4nlXqFhPQxu6xK8XvSOjB9ORmQJ5EBe4OHFwC4Y5bJtPVeaaF2Aa/
+         UFzgMuCYqUUNn2t8LNIIlsUjMKVqQc88mAQqLh/HMB7HS7uZIV0E+Pggs83LCQjv/bw9
+         NufQ==
+X-Gm-Message-State: AJIora+9Nms3oPT826AmgYiRPbkNihgbvF4PjMzKHUg92VnBSh7Ohcla
+        u9u4phO3u5UL8W0pkYFbrbOp8A==
+X-Google-Smtp-Source: AGRyM1sPqWjdN+XA9tmr0a8NAAwk+Ph/AdPkD7bdRPhjSkxbh27BWLRZd5LO4X5I+QCm+cbu4DJ4Ow==
+X-Received: by 2002:a17:90a:408f:b0:1e3:23a:2370 with SMTP id l15-20020a17090a408f00b001e3023a2370mr13610279pjg.84.1655516705705;
+        Fri, 17 Jun 2022 18:45:05 -0700 (PDT)
 Received: from [172.31.235.92] ([216.9.110.6])
-        by smtp.gmail.com with ESMTPSA id 75-20020a62184e000000b0051b915c1a47sm4281811pfy.113.2022.06.17.18.40.16
+        by smtp.gmail.com with ESMTPSA id i186-20020a62c1c3000000b00524c5c236a6sm4039656pfg.33.2022.06.17.18.45.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 18:40:16 -0700 (PDT)
-Message-ID: <4a614c32-35c5-2dfa-3e15-d54c3c3c5836@linaro.org>
-Date:   Fri, 17 Jun 2022 18:40:13 -0700
+        Fri, 17 Jun 2022 18:45:05 -0700 (PDT)
+Message-ID: <7a9d3354-164b-e5e5-936b-95de4c4338f9@linaro.org>
+Date:   Fri, 17 Jun 2022 18:45:02 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 2/7] dt-bindings: clock: separate bindings for MSM8916 GCC
- device
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add rtq6056 adc support
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220617144714.817765-1-dmitry.baryshkov@linaro.org>
- <20220617144714.817765-3-dmitry.baryshkov@linaro.org>
+To:     cy_huang <u0084500@gmail.com>, jic23@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     lars@metafoo.de, cy_huang@richtek.com, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <1655458375-30478-1-git-send-email-u0084500@gmail.com>
+ <1655458375-30478-2-git-send-email-u0084500@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220617144714.817765-3-dmitry.baryshkov@linaro.org>
+In-Reply-To: <1655458375-30478-2-git-send-email-u0084500@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,62 +75,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/06/2022 07:47, Dmitry Baryshkov wrote:
-> Separate bindings for GCC on Qualcomm MSM8916 platforms. This adds new
-> clocks/clock-names properties to be used for clock links.
+On 17/06/2022 02:32, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Add the documentation for Richtek RTQ6056.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 > ---
->  .../bindings/clock/qcom,gcc-msm8916.yaml      | 61 +++++++++++++++++++
->  .../bindings/clock/qcom,gcc-other.yaml        |  1 -
->  2 files changed, 61 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
+>  .../bindings/iio/adc/richtek,rtq6056-adc.yaml      | 57 ++++++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/richtek,rtq6056-adc.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
+> diff --git a/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056-adc.yaml b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056-adc.yaml
 > new file mode 100644
-> index 000000000000..564aa764b17b
+> index 00000000..6b4e0e0
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
+> +++ b/Documentation/devicetree/bindings/iio/adc/richtek,rtq6056-adc.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/clock/qcom,gcc-msm8916.yaml#
+> +$id: http://devicetree.org/schemas/iio/adc/richtek,rtq6056-adc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Qualcomm Global Clock & Reset Controller Binding for MSM8916
+> +title: RTQ6056 Bi-Directional Current and Power Monitor with 16-bit ADC
 > +
 > +maintainers:
-> +  - Stephen Boyd <sboyd@kernel.org>
-> +  - Taniya Das <quic_tdas@quicinc.com>
+> +  - ChiYuan Huang <cy_huang@richtek.com>
 > +
 > +description: |
-> +  Qualcomm global clock control module which supports the clocks, resets and
-> +  power domains on MSM8916.
+> +  The RTQ6056 is a high accuracy current-sense monitor with I2C and SMBus
+> +  interface, and the device provides full information for system by reading
+> +  out the loading current and power.
 > +
-> +  See also:
-> +  - dt-bindings/clock/qcom,gcc-msm8916.h
+> +  The device monitors both of the drops across sense resistor and the BUS
+> +  voltage, converts into the current in amperes, and power in watts through
+> +  internal analog-to-digital converter ADC. The programmable calibration,
+> +  adjustable conversion time, and averaging function are also built in for
+> +  more design flexibility.
+> +
+> +  Datasheet is available at
+> +  https://www.richtek.com/assets/product_file/RTQ6056/DSQ6056-00.pdf
 > +
 > +properties:
 > +  compatible:
-> +    const: qcom,gcc-msm8916
+> +    const: richtek,rtq6056
 > +
-> +  clocks:
-> +    items:
-> +      - description: XO source
-> +      - description: Sleep clock source
-> +      - description: DSI phy instance 0 dsi clock
-> +      - description: DSI phy instance 0 byte clock
-> +      - description: External MCLK clock
-> +      - description: External Primary I2S clock
-> +      - description: External Secondary I2S clock
+> +  reg:
+> +    maxItems: 1
 > +
-> +  clock-names:
-> +    items:
-> +      - const: xo
-> +      - const: sleep_clk
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +  richtek,shunt-resistor-uohm:
 
-Just "sleep"
+Use standard properties, so "-micro-ohms". Drop the unit from
+description and drop the ref.
+
+> +    description: Shunt IN+/IN- sensing node resistor in microohm.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#io-channel-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      rtq6056@40 {
+
+Generic node name, so probably "adc" (or something else appropriate).
+
+> +        compatible = "richtek,rtq6056";
+> +        reg = <0x40>;
+> +        #io-channel-cells = <1>;
+> +      };
+> +    };
+
 
 Best regards,
 Krzysztof
