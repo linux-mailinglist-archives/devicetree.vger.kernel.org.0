@@ -2,122 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E688550173
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 02:45:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BD04550181
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 03:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383489AbiFRApb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 20:45:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33166 "EHLO
+        id S236372AbiFRBBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 21:01:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234931AbiFRApb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 20:45:31 -0400
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E95B633BA
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 17:45:30 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id 184so5324780pga.12
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 17:45:30 -0700 (PDT)
+        with ESMTP id S233738AbiFRBBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 21:01:46 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97D8A24F19
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:01:45 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id m14so5172782plg.5
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:01:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4UBTCxi8NJwu+bWr0wJOqTsx4bcIPj3/b5hz4TC0hQY=;
-        b=eyJ6ww4XQJY6GkTvPtAS8EmgxidGB0tDgomc5hdevWn1R+oGEvtskMEDqeTnlWqIp6
-         CdDsoZFGFBOlufromgEEF/gGuhNUqyw3Q/SzoGeLHkw56rC29zUWqSoHAcKt5MUH/ls1
-         4VkGt4/kVd+TblxGi4cXck63elJZO4XQwq9h3znyNVdZ8bOncRfYZ2Pe5KeBX2l0yCLu
-         QyKdV54XyFEdF+XgtA+sX2e9YpfDbym1N9nVKLqw7dAYQk8Hxyw9ysJeEbeofRuI+rNv
-         /JBFdnwenTZC0E5UQwJQR0KyHVjHCWdF3x95DPp+C/te4IEvJqQ83sqSdiecWmcek716
-         CN6A==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=FN8gmeeFosyEMCwP+9T5Qcxe++S6hreeBk1oxhzKQmg=;
+        b=CBiE1pQSw4FYMoCDJpYPZ5Bh2jyrzpspvkLAmh0SNBrwgn5dwdTLfo6q6ZMbf8t0xJ
+         FxWwO89ezUXBLZomThJAEnNq3rbg6v+gXEH13Nake0CVhhSiQA/6/8Kut734PcBVwMDO
+         9ZeUJ73vlpufg3yg6iErXmkjjOkYXvYhErz7n54mi0FJUJuylHc/2eRjaP0D68Q+UXN/
+         OV4ui4UPa+QCuAgERNFnI/0sRouA/d17HC+RjZ00ce4Set0f/mJJw7wfdbIkAgjWsRLs
+         2EvD47W8E8e1b+fe+KfvI8RbjElLl7uj2gws608XmTz1z7qAPPR8dhIlKlLFUgJpzQKV
+         S5IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=4UBTCxi8NJwu+bWr0wJOqTsx4bcIPj3/b5hz4TC0hQY=;
-        b=roYdeV5USDymHi8y5I5zGSaizM9Lz1vc7VRwO6qauhVa7bweJw49Q6l0zDfA0KUqkH
-         GQ9xINIcvUSkUVHnuXv6o0vDDnfTVeksHBPTA0jyhEizhjmwyOk3h03slE59dDIGFX3P
-         8KQ7Kyppso1IfZt2hIr5m4AreY1++Xty3UkLBVFl6kE39Mm1/Bdwaz2HN8dm3biN2EyQ
-         AAW74rkqFcvQALS3mjItZrPuIHTWfLOcJ+0CBh9s8cvi6O2JTXqyJs4TO3u1k1xxlpmK
-         VD/nHC0yv5T6qjbVxeTMi6MeKa+BLlocxcO0e8muXgkA+ZTThP/BCrm4zoQy2Vyw9/nV
-         krTw==
-X-Gm-Message-State: AJIora8LGabwF62tGgqPjx4TBRKkW+2MkdYMUy2ckp3/T1EF9BzTZb74
-        QkVbp+aF4osJu8zo7D6WNeu8jg==
-X-Google-Smtp-Source: AGRyM1vPx7U/RB9e0wVTMwzZu9KuNOtp08j+FdGRa9g4rHhb/XAEnR0mYoannyMnwN4UEuV+Ua7ttg==
-X-Received: by 2002:a05:6a00:1a8f:b0:51c:2f82:cdba with SMTP id e15-20020a056a001a8f00b0051c2f82cdbamr12876825pfv.85.1655513129981;
-        Fri, 17 Jun 2022 17:45:29 -0700 (PDT)
-Received: from [172.31.235.92] ([216.9.110.6])
-        by smtp.gmail.com with ESMTPSA id p4-20020a170902780400b0016760c06b76sm4080548pll.194.2022.06.17.17.45.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 17:45:29 -0700 (PDT)
-Message-ID: <acbf8ed3-0b8c-a0b2-88ef-7b13ad0908d5@linaro.org>
-Date:   Fri, 17 Jun 2022 17:45:26 -0700
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to:content-transfer-encoding;
+        bh=FN8gmeeFosyEMCwP+9T5Qcxe++S6hreeBk1oxhzKQmg=;
+        b=CX7UZKWum3JwBDg2R0alqzWMjtPGVOP6csd5QvpJrAKPM0M2+R7sjskiutrIYYTS0m
+         EP1Bo611z0j8tbJQ0AUPJwsncCMDZWLmcDZh6jLJ031QAFQPfWbQxPFXpgPETdLDLqPY
+         RNmZVRCy3qGndHMXcYXzv1cR9IJ4ngu+yVPpUMhdy5uuZZvSe9dhPKosVEFjDYVllSnM
+         PjvHWwApsN6+1tOv2wyP1/A7awG0EcQRbasBWpfR+FeTdyNyWe1uOzVfJ0Q6YJLC0NiS
+         ZLnsncveDO2RCw8o1qAtAMDId/tFGpzOnKBbRkzFEOQhD0e38IFY+ZNMFQkiJKiWu0FL
+         LhlA==
+X-Gm-Message-State: AJIora9h9KdDihhyhs5iU+M4sUhk9TTlNH2R/yWfn3bw0209f8ekbwtM
+        VbapZIXxO2RuU4jkvK3Ydi1EjVQ5rFMvPmKC0Gk=
+X-Google-Smtp-Source: AGRyM1uuEurtAKmjniHtC9tThNyL5+fAcHBPGsA8yUSG7jdyYgva3025XhDIobdrmdlPEm9fiZEgHYuuuWp2Mptsguc=
+X-Received: by 2002:a17:903:11cd:b0:167:90e6:5d83 with SMTP id
+ q13-20020a17090311cd00b0016790e65d83mr12197261plh.136.1655514104352; Fri, 17
+ Jun 2022 18:01:44 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v1 0/9] imx: thermal: Allow trip point configuration from
- DT
-Content-Language: en-US
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Anson Huang <Anson.Huang@nxp.com>
-Cc:     Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220617070847.186876-1-francesco.dolcini@toradex.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220617070847.186876-1-francesco.dolcini@toradex.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Reply-To: oliviaingra343@gmail.com
+Sender: usgundji@gmail.com
+Received: by 2002:a17:90b:3b51:0:0:0:0 with HTTP; Fri, 17 Jun 2022 18:01:43
+ -0700 (PDT)
+From:   Ingram Olivia <oliviaingra@gmail.com>
+Date:   Sat, 18 Jun 2022 01:01:43 +0000
+X-Google-Sender-Auth: 91rJLevh-toDFoyEhW1mQPeMdcw
+Message-ID: <CAOFs0uF0ZB-rHDExaES-nDZoahFQ8s82DcktCtGet3oXkGH4Fw@mail.gmail.com>
+Subject: if you will be able to handle this fund and use it for the said
+ purpose please reply me.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: Yes, score=7.5 required=5.0 tests=ADVANCE_FEE_5_NEW_FRM_MNY,
+        BAYES_60,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        FILL_THIS_FORM,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,LOTS_OF_MONEY,MONEY_FORM,MONEY_FRAUD_8,
+        MONEY_FREEMAIL_REPTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM,UNDISC_MONEY autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:631 listed in]
+        [list.dnswl.org]
+        *  1.5 BAYES_60 BODY: Bayes spam probability is 60 to 80%
+        *      [score: 0.7625]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [oliviaingra343[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [oliviaingra[at]gmail.com]
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  0.0 LOTS_OF_MONEY Huge... sums of money
+        *  2.2 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  2.0 MONEY_FREEMAIL_REPTO Lots of money from someone using free
+        *      email?
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+        *  0.0 FILL_THIS_FORM Fill in a form with personal information
+        *  0.0 MONEY_FORM Lots of money if you fill out a form
+        *  0.0 MONEY_FRAUD_8 Lots of money and very many fraud phrases
+        *  0.0 ADVANCE_FEE_5_NEW_FRM_MNY Advance Fee fraud form and lots of
+        *      money
+        *  0.8 UNDISC_MONEY Undisclosed recipients + money/fraud signs
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/06/2022 00:08, Francesco Dolcini wrote:
-> This series allows to specify the imx thermal drivers trip point from the device tree,
-> without this change the threshold are hard-coded and this might not be correct given the
-> thermal design of the final system.
-> 
-> This change is backward compatible with the existing device tree, and even
-> with this change in by default the thresholds are the same as before.
-> 
-> Toradex board are also updated to use a system-specific thresholds.
-> 
-> Discussion on the current design is here:
-> https://lore.kernel.org/all/4ba1d7d2-3e8c-ba60-37fd-9598f415c076@linaro.org/
-> 
-> One side note, after this change the dtbs checker starts complaining with this message
-> 
-> ```
-> linux/arch/arm/boot/dts/imx6dl-alti6p.dtb: tempmon: '#thermal-sensor-cells' does not match any of the regexes: '^(automotive|commercial|extended-commercial|industrial)-thermal$', 'pinctrl-[0-9]+'
-> 	From schema: linux/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
-> ```
-> 
-> to my understanding this is just a side effect, 
+Hello Dear,
 
-If it starts complaining, it does not look like a side effect but error
-needing to be fixed/addressed.
+I am Mrs. Ingram Olivia, I have decided to donate what I have to
+Motherless babies/ Less privileged/ Widows' because I am dying and
+diagnosed for cancer for about 10 years ago. I have been touched by
+God Almighty to donate from what I have inherited from my late husband
+to you for good work of God Almighty. I have asked Almighty God to
+forgive me and believe he has, because he is a Merciful God, I'm
+presently suffering from Leukemia.
 
+My health condition has gotten worse and just two weeks ago my doctor
+informed me that my condition has reach a critical stage, that I have
+just 5 months left. This confirmation from my doctor was and still is
+devastating news; it is hard to know that you have just a little time
+left to live here.
 
-> '#thermal-sensor-cells' is not changed in
-> any way by this series. I can fix that, I wonder if I should remove the property from the
-> imx dtsi files or add it to the binding yaml definition, not sure about it.
-> Anybody can advise?
+After the doctor=E2=80=99s medical pronunciation that I have just few month=
+s
+to live, I decided to divide my wealth to contribute to your country.
+I want to assist you with the funds to do great charity works in your
+country, this is my last wish. I selected you after searching few
+websites; I prayed and was led to you. I am willing to donate the sum
+of ($8.1million ) to the less privileged through you.
 
-Depends. Is the device a thermal-sensor provider?
+Please I want to transfer this money to you, If you can handle this
+fund and very sure to do charity works on my behalf and from there I
+will travel to meet a specialist as I want to be buried alongside my
+late husband when I passed on.
 
-Best regards,
-Krzysztof
+Note that this fund is in the financial institution and upon my
+instruction; I will file in an application for the transfer of the
+money into your account for the said purpose.
+
+Lastly, I honestly pray that this money when transferred will be used
+for the said purpose even though I might be late then. I have come to
+find out that wealth is vanity and I made a promise to God that my
+wealth will be used to support the poor and the assist the sick. Do
+let me know
+
+if you will be able to handle this fund and use it for the said
+purpose so that I will inform my bank on my decision, If you are
+interested in carrying out this task, get back to me for more details
+on this noble project of mine.
+1: Full name:
+2: Country:
+3:Occupation/position:
+4:Phone/s:
+5: Age:
+6: Sex:
+7: Address:
+God bless you
+Mrs.Ingram Olivia
