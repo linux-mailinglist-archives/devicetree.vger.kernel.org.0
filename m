@@ -2,48 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38218550527
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 15:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62F3B550570
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 16:10:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233897AbiFRNjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 09:39:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41100 "EHLO
+        id S239500AbiFROGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 10:06:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230229AbiFRNjR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 09:39:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0663615801;
-        Sat, 18 Jun 2022 06:39:17 -0700 (PDT)
+        with ESMTP id S239472AbiFROG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 10:06:26 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 795F113E3C;
+        Sat, 18 Jun 2022 07:06:24 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9513560C16;
-        Sat, 18 Jun 2022 13:39:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D73B9C3411A;
-        Sat, 18 Jun 2022 13:39:13 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 391FEB8013C;
+        Sat, 18 Jun 2022 14:06:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 787ADC3411A;
+        Sat, 18 Jun 2022 14:06:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655559556;
-        bh=NaI1s8MV1DekMTJJBuznazPzmo9dH36Xf7i0FHuVPzY=;
+        s=k20201202; t=1655561182;
+        bh=C5dR11nmIbd7ulhKg+caNcYU9xH6pSpJ8aq4v29W2BU=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=sOiNSW5LpDW9Pglq9D9QYvt0Q2PVjmxgUo6ycj8fUCYpT/ScNDPmBoRes/wfTEZmU
-         L7zbSPe1kR9BsvASD7ABYwB7vV0m3d26jIS4II9geCSoKO7iFi+/M3Qx1DImXS3ai8
-         JyWSn0SvgzKlnCcCPheGUdPEHL9qZMCZT+Q37XipeRBWonuOR0Vrksu9v13dousWwj
-         9sCAy1yOWLDSGZ0IVi4iyUdrLgnyV2T2f+ZYi5RwA2aCrWoV+UxMWw6qfMATqPx3hm
-         5Bnd3c1KIN94HrP/sw1p54EsJHtZR3/nW6TB1uxoWU3HvVDNMaknHJDf70ufvf/n50
-         0xS9/i7qs6vQw==
-Date:   Sat, 18 Jun 2022 14:48:33 +0100
+        b=DReMJwDyEA1rcbhV7Wyw0PnbBvnKJgwDNmNDXZH9pP3SmmsLbJOO1DGD2skMuNudA
+         mHpUBsKzkhPIXv000C2dhc6HAG/hgWkDq16QbQE3Ab+m7MaPVK9a68XLmJyK4Pj8P5
+         8Fn/fVD9N8RYPM4gxc0KKMJrYt5/HrojBDyhiAj9tagHYWSMRJjylJHMv/Sjde33TZ
+         pRWw/OJz5IilCqdu/a7b/zErgY93zaO8F/SbjHZyvBqDjDNvZYySzgG8wWhmyIO3vO
+         Iol28XLu7Rw4p0QLtt6iiHHyMI3hfxa3X/28TIS4b+IGJqmtPN4+AKMHq1CbJnl9UC
+         bB7e/whQTcRRA==
+Date:   Sat, 18 Jun 2022 15:15:38 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>
-Subject: Re: [PATCH v4 2/2] iio: adc: ad4130: add AD4130 driver
-Message-ID: <20220618144809.7d36908d@jic23-huawei>
-In-Reply-To: <20220608091238.403897-3-cosmin.tanislav@analog.com>
-References: <20220608091238.403897-1-cosmin.tanislav@analog.com>
-        <20220608091238.403897-3-cosmin.tanislav@analog.com>
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 7/7] iio: magnetometer: yas530: Add YAS537 variant
+Message-ID: <20220618151538.3d142682@jic23-huawei>
+In-Reply-To: <033f64ea-4ba7-eb89-3259-688008e29989@rocketmail.com>
+References: <cover.1655081082.git.jahau@rocketmail.com>
+        <b6e100de37921c22ebf0698f8e0e99794053303a.1655081082.git.jahau@rocketmail.com>
+        <CAHp75VfFwSQ6bk=TMLiyA1j-AsafjGdVFbTTHJJ67C8zeYfz8Q@mail.gmail.com>
+        <033f64ea-4ba7-eb89-3259-688008e29989@rocketmail.com>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -58,21 +62,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  8 Jun 2022 12:12:38 +0300
-Cosmin Tanislav <demonsingur@gmail.com> wrote:
 
-> AD4130-8 is an ultra-low power, high precision, measurement solution for
-> low bandwidth battery operated applications.
+
 > 
-> The fully integrated AFE (Analog Front-End) includes a multiplexer for up
-> to 16 single-ended or 8 differential inputs, PGA (Programmable Gain
-> Amplifier), 24-bit Sigma-Delta ADC, on-chip reference and oscillator,
-> selectable filter options, smart sequencer, sensor biasing and excitation
-> options, diagnostics, and a FIFO buffer.
+> >> +       /* Sanity check, is this all zeroes? */
+> >> +       if (memchr_inv(data, 0x00, 16) == NULL) {  
+> > 
+> >   if (!memchr_inv(...))
+> >   
+> >> +               if (FIELD_GET(GENMASK(5, 0), data[16]) == 0)
+> >> +                       dev_warn(yas5xx->dev, "calibration is blank!\n");
+> >> +       }  
 > 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-FWIW I took another look through and didn't find anything to add to the
-existing reviews of this version.
+> No problem to change for YAS537.
+> 
+> At YAS530/532, there is a similar line that should be changed
+> accordingly. However, there is a patch by Linus that was already added
+> to "fixes-togreg" branch in iio.git quite a while ago [5]. The patch is
+> not included in torvalds/linux v5.19-rc1 or -rc2 and neither in iio.git
+> testing branch. So I'm unsure what I should base the patchset on if I
+> want to change that line. I will probably choose linux-next, as the
+> patch is included there and in Kconfig also patch "iio: magnetometer:
+> ak8974: Drop dependency on OF" is included (which on the other hand
+> isn't included in "fixes-togreg" branch in iio.git).
+> 
+> [5]
+> https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/commit/?h=fixes-togreg&id=bb52d3691db8cf24cea049235223f3599778f264
+
+Busy couple of weeks for me and that fix got caught up in the merge
+window timing before that.  I should get a pull request out shortly.
 
 Jonathan
+
 
