@@ -2,83 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A726550194
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 03:10:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FC85550196
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 03:11:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236308AbiFRBKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 21:10:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48658 "EHLO
+        id S230093AbiFRBLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 21:11:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230093AbiFRBKp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 21:10:45 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F9E26AA60
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:10:45 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id f16so4184376pjj.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 18:10:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dQuvC5DXoLIzOG6p5c0AiJy8toyCxgiZmg25yb2lqqA=;
-        b=Dggm8Dm7zBvjoHbHSd6HDHMHUF6LdYHyPmcWxireNz1uw7Hs4z7s1iE4Jd7VfaPkBp
-         2pf6RFwnr2j8jmyW8wBroPSztuXf2qoYdrt2K4ug4kKs5y+RRivqfsSo4abxzb9Bi4PU
-         qfJZZc3bFXT/rv3TL3Wciem4qUvbVmTwo/mSFKpzybjompzrGFnm786lz3eu/KG8jj9p
-         RZRhzkK7eGPZpUkOgxgD9XGZvIKqFiZFUiKPWlQAxAbiacG5Uo5hkIKWhIp9BhDbXWxH
-         49hkWN/IXhTobkVdQny+UmzbRxXejdUB/PKTGq2Gh4Wg6gosXssn7JoVsPukmT09N1MK
-         th3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=dQuvC5DXoLIzOG6p5c0AiJy8toyCxgiZmg25yb2lqqA=;
-        b=3hDkFkyXBG0R9/WcibJPnC662C1ho72FsG85UlWoo9p/UdRkoAnko+QgcideA56I//
-         RGrG3vqQ97GIbp6BBOZ90t3MVTbmGK6M2BL4lRAG5DMIcLne3jMQHU/WrHdOkfjmokUr
-         X9Ni0oR6yZdT2Tzeq/1cBdJj7oixhmrcpYYCQOD7WD1b3//pfjV+aooNG5k0Gs77us8d
-         NFPY55Hd9IdHfnJc5617v1da76C479LjjphIN5JPKFyYI1PzlWVYqEH31VvQm3mA7etK
-         pZR2cpZ/l58ACrDMpvvY/t8Ej3cYx8q2WiuboeGHROGjKRVr7FX+mAgWymB/WZF7SVhJ
-         BJuA==
-X-Gm-Message-State: AJIora8FSbk6vxOLmvrnI1fXUlR7F1j4n2RdPz9N6cciT85Eb+idJoNv
-        LwmaBWu2GN1xceHzOGv8qkJ3+A==
-X-Google-Smtp-Source: AGRyM1u9LqjXDmgwiW6Uhh/oehvTHpB1YJaHyxWM3b7bhDx1EWI5GnduFNsMOaM9cY2RQJ/LBNTjAw==
-X-Received: by 2002:a17:902:d583:b0:167:6e70:7953 with SMTP id k3-20020a170902d58300b001676e707953mr12392759plh.168.1655514644605;
-        Fri, 17 Jun 2022 18:10:44 -0700 (PDT)
-Received: from [172.31.235.92] ([216.9.110.6])
-        by smtp.gmail.com with ESMTPSA id i3-20020a63a843000000b003fd7e217686sm4411610pgp.57.2022.06.17.18.10.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 18:10:44 -0700 (PDT)
-Message-ID: <a8d009b1-7535-c506-0c92-c917ed5d42c6@linaro.org>
-Date:   Fri, 17 Jun 2022 18:10:40 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [RESEND PATCH v2 1/9] dt-bindings: thermal: Define trips node in
- $defs
-Content-Language: en-US
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        with ESMTP id S229778AbiFRBLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 21:11:44 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A53756AA76;
+        Fri, 17 Jun 2022 18:11:43 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25I1Bbks115437;
+        Fri, 17 Jun 2022 20:11:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655514697;
+        bh=qefky0L0/tfRDIoNIl7XHtyx0o2Vnqk7WTUmHifBdzM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=B4SMRerNjvLtbIEep3a1FF+q567dzP2Gnq2P0+wJ2Od7sRzOl7QFB3sdvijdgGMBN
+         8+XudCWtEYBQqxtTgMgzK3x2oaehKZeVzCVzAqSa/5fVLqoGUsSvwDTRbADYBJBFV2
+         8K1bJo/DjqDja7TzgzQgdGb/lPYs0KItqT70pIgY=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25I1BbmX016741
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 17 Jun 2022 20:11:37 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 17
+ Jun 2022 20:11:37 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 17 Jun 2022 20:11:37 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25I1BbI9067999;
+        Fri, 17 Jun 2022 20:11:37 -0500
+Date:   Fri, 17 Jun 2022 20:11:37 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Anson Huang <Anson.Huang@nxp.com>
-Cc:     Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220617071411.187542-1-francesco.dolcini@toradex.com>
- <20220617071411.187542-2-francesco.dolcini@toradex.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220617071411.187542-2-francesco.dolcini@toradex.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Rahul T R <r-ravikumar@ti.com>
+Subject: Re: [PATCH v2 1/4] arm64: dts: ti: k3-am62-main: Add node for
+ Display SubSystem
+Message-ID: <20220618011137.vg6rqzsujwwjli22@kahuna>
+References: <20220505134303.23208-1-a-bhatia1@ti.com>
+ <20220505134303.23208-2-a-bhatia1@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220505134303.23208-2-a-bhatia1@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,31 +69,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/06/2022 00:14, Francesco Dolcini wrote:
-> Move `trips` definition to `#/$defs/trips-base` and just reference it
-> from the trips node. This allows to easily re-use this binding from
-> another binding file.
+On 19:13-20220505, Aradhya Bhatia wrote:
+> Add DT node for the Display SubSystem on the am62x soc in cbass_main.
+> The DSS IP on this soc is compatible with the one on the am65x soc.
 > 
-> No functional changes expected.
+> The DSS supports one each of video pipeline (vid) and video-lite
+> pipeline (vidl1). It outputs OLDI signals on one video port (vp1) and
+> DPI signals on another (vp2). The video ports are connected to the
+> pipelines via 2 identical overlay managers (ovr1 and ovr2).
 > 
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> Reviewed-by: Rahul T R <r-ravikumar@ti.com>
 > ---
-> v2: no changes
-> ---
->  .../bindings/thermal/thermal-zones.yaml       | 130 +++++++++---------
->  1 file changed, 67 insertions(+), 63 deletions(-)
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 30 ++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> index 2d34f3ccb257..ba84233d20b7 100644
-> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> @@ -10,6 +10,72 @@ title: Thermal zone binding
->  maintainers:
->    - Amit Kucheria <amitk@kernel.org>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index eec8dae65e7c..ff21efa4ffad 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -515,6 +515,36 @@ cpts@3d000 {
+>  		};
+>  	};
 >  
-> +$defs:
+> +	dss: dss@30200000 {
+> +		compatible = "ti,am65x-dss";
 
-Commented on the original v2.
 
-Best regards,
-Krzysztof
+After looking closer at DSS last few days, the OLDI is unfortunately
+different on AM62x.
+
+Even though DPI interface works fine, OLDI TX integration needs a
+separate compatible.
+
+I suggest sending a patch introducing ti,am625-dss compatible.
+
+I will need to drop the entire series - if we can get the compatible
+integrated to master, i can pick the dts updates in the rc1 after.
+
+[...]
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
