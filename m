@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1E345504A3
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 14:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E285504A0
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 14:32:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235250AbiFRMcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 08:32:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52714 "EHLO
+        id S234440AbiFRMcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 08:32:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234440AbiFRMcL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 08:32:11 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 717561DA57
-        for <devicetree@vger.kernel.org>; Sat, 18 Jun 2022 05:32:10 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id m1so1046169wrb.2
-        for <devicetree@vger.kernel.org>; Sat, 18 Jun 2022 05:32:10 -0700 (PDT)
+        with ESMTP id S234708AbiFRMcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 08:32:21 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29FE51DA4D
+        for <devicetree@vger.kernel.org>; Sat, 18 Jun 2022 05:32:12 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id v14so8802364wra.5
+        for <devicetree@vger.kernel.org>; Sat, 18 Jun 2022 05:32:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Xc3yLaPJl3fJMhU7mLPNTXUDP5YmMspTrPH6skgYH5k=;
-        b=WWI5aigpx63NXABwWobIVtxzeWyDWABcTlqhEd7p5galGx1leb4l0QUX6DRW4V7R2/
-         7tCNkKvAuMxDi861SOauKvR8OiOrKRFQWKbf/UOyK4ZoNWlOxvSKeVmw3Pjw/ViKSDBb
-         bJGQhxOX2sak4JARX2cUY3oHghGpdM5DQO1bngmpG9k9r1Q9YO+8El+G/rDrBCypfz88
-         jYj4Hwbu5WXw7XC7sEypXuV849AqQEAwqdgU0LsiCYfp++8WMxNxdrDQLMOhAiSs1NIp
-         AxnI+k8juFNCyik85P9Aotl91uS4CXhVavQDoNI3Z5E9qqRGU5RemiTnsiZNhX6+GfbW
-         +y3A==
+        bh=qmSWtWUd+mMy8ZYoZTgQjYDztLIGNDdvta+tk149+dY=;
+        b=dM4LDKg5XtY0Inv2LgZSsQ50IPuzGfCzEsvHlFQ/2NLIm/6++fbLLGSB9koJgwMTjp
+         07IF9XMy4P4HaeMA1yfSnaPY3CYXQ+u0Kv6ZrDa4GjATk93Wx2p5DeaQw29BenmArCiz
+         I6simFjZ6ZTWhMpFS4z5vR9LZUvOOE+DqLAunuoSePBDY5dNABj/iCXgooJ7JUM1Gx2w
+         oJTVRWFtg+XkkdFP3+9IwXZt69jucggKlNwGuChB7WxmXKdl5k9lj8f8ITLIpfckoFQS
+         YaBPUVjvUVp7mpO9D9wZzFoEi6tceysbIOAoKo4R7lpk7QqiW4+Bkh5CqE2X/nDML5P4
+         Wj6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Xc3yLaPJl3fJMhU7mLPNTXUDP5YmMspTrPH6skgYH5k=;
-        b=8OYI9x/PqhnQfnk5E4vXIvA6MurhqOT5ghc7YD1d1H5tInrlyTptW/xSMu167uo/8z
-         80/EkAF5fkjzEwTbevNAEZGkgGi2xgkOtj5a9sncaZM7RO4fD4VZflqPiPZNCsqduoxA
-         khM3dZVTKfcp+kgzWDnYVCdtjjGQt5jWsp8ySnZzcYnMXU/FlgCfZLSgICFNiOdFKY8e
-         ivDAL24tjuLfkJ4IhiDO+6+j6dZ6j/uwEkJ21+HWNVZXmxrzdgGZ8Iiiy6zc/JGfSEtJ
-         JmsfedM8r04vMFf1a1lectyr2yXon857A6coMVoIQVpscfk4E3WRdZ1Jk0v4HhguIn9G
-         WoVA==
-X-Gm-Message-State: AJIora/j41EF1kj/v406xctslZgl8rwjMRsZYq86+poIPGImZMs/HHQm
-        2YoWQLiINo9olKRHb9kXMLozmw==
-X-Google-Smtp-Source: AGRyM1vjUOgV8azxYb57OQztWrqMQYhc0lprasxXMnlkIZhmfHP3nu/9sasVI2/ycyhjwJt5Z7ma0Q==
-X-Received: by 2002:a05:6000:1789:b0:219:2aa8:7159 with SMTP id e9-20020a056000178900b002192aa87159mr13617696wrg.474.1655555529797;
-        Sat, 18 Jun 2022 05:32:09 -0700 (PDT)
+        bh=qmSWtWUd+mMy8ZYoZTgQjYDztLIGNDdvta+tk149+dY=;
+        b=zVs4FuKwPnguwjA6Gm9wjzKQWcS3odv5O6PzT2FL/ALBprUhLXDwbSE+fHvuSDLSvl
+         KhuYFSuFYlgJe9/nWtA4XKx7bq/1SpWkLqWooBL0k4zIwYqjPHYqnEz3+/ffw/d11LW1
+         zLhL6wyb5jeV9p2iO7gE3TJK93B9bsDX6W1GYuqjunVulsRQIiToBL8yok2KEHDdbLt0
+         nXdicQ3bkMpor4XPDMxd9+LN9zCSd65VgIbRkwF/DWhCny53e0SKGy5Yi2+lMxIYq5wN
+         x9syvqa/XZerYMGCGl8MSjWAjrutRu713pANBFTH18PXk86sy5B88xkn8FmeHZUg4by+
+         0RcA==
+X-Gm-Message-State: AJIora9pc8ncIDrVrzCgBQfQG4t/H+s1l22ygx8HMAI78qEMzRgEZJic
+        qFWdMgpSHctee8gOeVg3EbrO5A==
+X-Google-Smtp-Source: AGRyM1sfPQ5XTH8REWSlcNVbh+KVLu6pjXz8b6gchhSbSGxDuCamFh0CMH0mba5q/rzWCUN22eIJUA==
+X-Received: by 2002:a05:6000:1b03:b0:210:3372:2bd9 with SMTP id f3-20020a0560001b0300b0021033722bd9mr14215037wrz.704.1655555531747;
+        Sat, 18 Jun 2022 05:32:11 -0700 (PDT)
 Received: from henark71.. ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id az10-20020adfe18a000000b00210396b2eaesm9292305wrb.45.2022.06.18.05.32.08
+        by smtp.gmail.com with ESMTPSA id az10-20020adfe18a000000b00210396b2eaesm9292305wrb.45.2022.06.18.05.32.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Jun 2022 05:32:09 -0700 (PDT)
+        Sat, 18 Jun 2022 05:32:11 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
 To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
@@ -76,9 +76,9 @@ Cc:     Thomas Gleixner <tglx@linutronix.de>,
         linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
         alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
         linux-riscv@lists.infradead.org
-Subject: [PATCH 06/14] spi: dt-bindings: dw-apb-ssi: update spi-{r,t}x-bus-width for dwc-ssi
-Date:   Sat, 18 Jun 2022 13:30:28 +0100
-Message-Id: <20220618123035.563070-7-mail@conchuod.ie>
+Subject: [PATCH 07/14] riscv: dts: canaan: fix the k210's memory node
+Date:   Sat, 18 Jun 2022 13:30:29 +0100
+Message-Id: <20220618123035.563070-8-mail@conchuod.ie>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220618123035.563070-1-mail@conchuod.ie>
 References: <20220618123035.563070-1-mail@conchuod.ie>
@@ -96,74 +96,36 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-snps,dwc-ssi-1.01a has a single user - the Canaan k210, which uses a
-width of 4 for spi-{r,t}x-bus-width. Update the binding to reflect
-this.
+The k210 memory node has a compatible string that does not match with
+any driver or dt-binding & has several non standard properties.
+Replace the reg names with a comment and delete the rest.
 
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- .../bindings/spi/snps,dw-apb-ssi.yaml         | 48 ++++++++++++++-----
- 1 file changed, 35 insertions(+), 13 deletions(-)
+---
+ arch/riscv/boot/dts/canaan/k210.dtsi | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-index e25d44c218f2..f2b9e3f062cd 100644
---- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-+++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-@@ -135,19 +135,41 @@ properties:
-       of the designware controller, and the upper limit is also subject to
-       controller configuration.
+diff --git a/arch/riscv/boot/dts/canaan/k210.dtsi b/arch/riscv/boot/dts/canaan/k210.dtsi
+index 44d338514761..287ea6eebe47 100644
+--- a/arch/riscv/boot/dts/canaan/k210.dtsi
++++ b/arch/riscv/boot/dts/canaan/k210.dtsi
+@@ -69,15 +69,9 @@ cpu1_intc: interrupt-controller {
  
--patternProperties:
--  "^.*@[0-9a-f]+$":
--    type: object
--    properties:
--      reg:
--        minimum: 0
--        maximum: 3
--
--      spi-rx-bus-width:
--        const: 1
--
--      spi-tx-bus-width:
--        const: 1
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: snps,dwc-ssi-1.01a
-+
-+then:
-+  patternProperties:
-+    "^.*@[0-9a-f]+$":
-+      type: object
-+      properties:
-+        reg:
-+          minimum: 0
-+          maximum: 3
-+
-+        spi-rx-bus-width:
-+          const: 4
-+
-+        spi-tx-bus-width:
-+          const: 4
-+
-+else:
-+  patternProperties:
-+    "^.*@[0-9a-f]+$":
-+      type: object
-+      properties:
-+        reg:
-+          minimum: 0
-+          maximum: 3
-+
-+        spi-rx-bus-width:
-+          const: 1
-+
-+        spi-tx-bus-width:
-+          const: 1
+ 	sram: memory@80000000 {
+ 		device_type = "memory";
+-		compatible = "canaan,k210-sram";
+ 		reg = <0x80000000 0x400000>,
+ 		      <0x80400000 0x200000>,
+ 		      <0x80600000 0x200000>;
+-		reg-names = "sram0", "sram1", "aisram";
+-		clocks = <&sysclk K210_CLK_SRAM0>,
+-			 <&sysclk K210_CLK_SRAM1>,
+-			 <&sysclk K210_CLK_AI>;
+-		clock-names = "sram0", "sram1", "aisram";
+ 	};
  
- unevaluatedProperties: false
- 
+ 	clocks {
 -- 
 2.36.1
 
