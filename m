@@ -2,76 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 671D9550145
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 02:19:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 965CE550151
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 02:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236761AbiFRARB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 20:17:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39128 "EHLO
+        id S1380637AbiFRAcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 20:32:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383431AbiFRARA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 20:17:00 -0400
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4934C35AAE
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 17:16:59 -0700 (PDT)
-Received: by mail-il1-x12f.google.com with SMTP id 9so596428ill.5
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 17:16:59 -0700 (PDT)
+        with ESMTP id S232350AbiFRAcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 20:32:22 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897E65AA74
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 17:32:21 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id w29so5310208pgl.8
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 17:32:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tNaquVGK4MANQcU7YIAYS6nMk49CnRDX81BKkL8HJ+o=;
-        b=gfNJLvjT3OOqpTcyZcgjOAX1w1VjWNeZFeqIjJURUXH4jzfd9QnB47rg3YffaSILKZ
-         KYEMIcEE99bqsM/xZcho680yrlpU1NtjSb0WnW8HLbfwI3ksgEPlw+W9U5ClbVDp0sNN
-         PbQROK4lmPrdpupDhTTFhBWfIGg9u91NI9y1I=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=wVNpDYWpyZPJrYzzrQ5li1/Ptc6vTF4u416LkJD1v9s=;
+        b=qkE5xNfYDkCsPhFrXdQgXwtrEDw+GQHYRs8SU3FIyNb+VMtro48oMMW8v6on3syij2
+         stV9w6v7KzaGEqCIrvxaQbn8sPgHVTTPWio1YEvmnYYlnimeo2z78datsnkNY6atHSVi
+         gqf+FO/U3fZbekveGQ1Ewxoqog9rowJnDWzkFtqTrh2bq9ciYhl+yK0OiXwt8MoT8I1h
+         PYnmOSX8/pWFuNtvixKKtBKR+YOYfObcteHcZ4SqU9NDxvFBvUT26n1yUXxJC3Bzm64h
+         cp66v7y67qRGwR1cxuSMUPCYmp/h8ux0NxvxY7/huxt1qg2ZWy52ffX0183kekduIe91
+         Pd+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tNaquVGK4MANQcU7YIAYS6nMk49CnRDX81BKkL8HJ+o=;
-        b=AvEeT08zE16N+eLc4QVCEH/RRcAElkmNC4O/VJa9YTUsBZ380VF/AO9pmh5Jx6h51a
-         p41Wl/KYWFkRbwjzQybJvWPM7K6eM5Q0NPbWQBTyWB0riEi5vgd4Mjq0P4B2PNq5unng
-         f2QFEMu3ln93csG5bXn4gjmBXUqtp27oRaA5QeNQxtOLGMpBQKeX0ZAbRWtfe2NlI2KB
-         XozPtDhJTLDRFl7/uqexbqvhVcgb9O6R7YzdXLye7u8S+RQQRIDQ4IQ8hPtMhE2gMBDD
-         /rhTGy8weAF7o5BqSje0mPN498/CRXGBovQReCpI6/bcE+/ueizlywHbz01XFNrOAZHy
-         9HxQ==
-X-Gm-Message-State: AJIora8atb+g3WDwoGQM85La27mkexqQg9YtYy2ZViNZtoRsxjgLTxME
-        +eba+PQiiueinBwqiVpDRNFZoJI86YupsiPObeo=
-X-Google-Smtp-Source: AGRyM1ukYMudzIRTXxPSrFcjMPlgCDtXTJK2qyog9V4VTMtLy7GYP7rBaw5vop4QSthUHGFvVgRQVw==
-X-Received: by 2002:a05:6e02:f86:b0:2d8:dc34:8694 with SMTP id v6-20020a056e020f8600b002d8dc348694mr3622991ilo.245.1655511418608;
-        Fri, 17 Jun 2022 17:16:58 -0700 (PDT)
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com. [209.85.166.51])
-        by smtp.gmail.com with ESMTPSA id 8-20020a92c648000000b002d39719b34dsm2932293ill.87.2022.06.17.17.16.58
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=wVNpDYWpyZPJrYzzrQ5li1/Ptc6vTF4u416LkJD1v9s=;
+        b=H309PZwVPCkJqc7ApO0aC5v6r1kICxXpn8yH3ymTQq62uNWs3d5rllHUdWP3FlGB1G
+         h8/4RpZQcmm6Dg28VzsqZSwhNunSGlBYLfe625GuS9gMccMgs0EuDRco++bUOV/agj8C
+         4GEM+F+bwMy+jhtaKrDEJ08cMtuI4wutQaQ5KpkXG7/wLzLRbcbB7xXMNTjHv7yEfZiE
+         PQZMP7FTgV1AeowoefBeY6wCQTOB2pvp8cTZz4P/VmpAHxAlJgvbLazVB0B4S/P19G8I
+         zK8f/7jGzT5svs4wWLSIP71py7EPadb2e6Y2p3Kf6QM7ivrQwl7AHJE1MgnQH2o7DRdg
+         tzVA==
+X-Gm-Message-State: AJIora+vPufD2nX8WFD4lmWSJiq4F4YzSaWSWyacosg8m42m6jVCaEnH
+        BiH2yryWAX24VLF7QpBC/U1Mr3x3wRY79w==
+X-Google-Smtp-Source: AGRyM1szhd81aS/0lyO2FJLxO1IsTYStSnUgjmcZ4CVPZdrIlNLVjrXFjKKDlqqeJ4tIxZUzY+81Zg==
+X-Received: by 2002:a05:6a00:2148:b0:4fa:92f2:bae3 with SMTP id o8-20020a056a00214800b004fa92f2bae3mr12777140pfk.69.1655512341025;
+        Fri, 17 Jun 2022 17:32:21 -0700 (PDT)
+Received: from [172.31.235.92] ([216.9.110.6])
+        by smtp.gmail.com with ESMTPSA id g1-20020a1709026b4100b001635f7a54e8sm4126616plt.1.2022.06.17.17.32.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 17:16:58 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id q11so6032798iod.8
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 17:16:58 -0700 (PDT)
-X-Received: by 2002:a02:8665:0:b0:335:e259:e54d with SMTP id
- e92-20020a028665000000b00335e259e54dmr4122258jai.184.1655511417885; Fri, 17
- Jun 2022 17:16:57 -0700 (PDT)
+        Fri, 17 Jun 2022 17:32:20 -0700 (PDT)
+Message-ID: <a664b2a9-3cfa-9e8d-039a-bdd3b7448170@linaro.org>
+Date:   Fri, 17 Jun 2022 17:32:17 -0700
 MIME-Version: 1.0
-References: <20220617164000.v8.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
- <20220617164000.v8.5.Ib62291487a664a65066d18a3e83c5428a6d2cc6c@changeid>
-In-Reply-To: <20220617164000.v8.5.Ib62291487a664a65066d18a3e83c5428a6d2cc6c@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 17 Jun 2022 17:16:44 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VxO2a0kTXRc29GRpnDsDRqxttnfoTmRN=rttG3+Xn00Q@mail.gmail.com>
-Message-ID: <CAD=FV=VxO2a0kTXRc29GRpnDsDRqxttnfoTmRN=rttG3+Xn00Q@mail.gmail.com>
-Subject: Re: [PATCH v8 5/5] arm64: dts: qcom: sc7180: Add kingoftown dts files
-To:     "Joseph S. Barrera III" <joebar@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v8 1/5] arm64: dts: qcom: sc7180: Add wormdingler dts
+ files
+Content-Language: en-US
+To:     "Joseph S. Barrera III" <joebar@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
         Alexandru M Stan <amstan@chromium.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20220617164000.v8.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220617164000.v8.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,37 +80,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Fri, Jun 17, 2022 at 4:40 PM Joseph S. Barrera III
-<joebar@chromium.org> wrote:
->
-> Kingoftown is a trogdor-based board. These dts files are unchanged copies
-> from the downstream Chrome OS 5.4 kernel.
->
+On 17/06/2022 16:40, Joseph S. Barrera III wrote:
+> Wormdingler is a trogdor-based board, shipping to customers as the
+> Lenovo IdeaPad Chromebook Duet 3. These dts files are copies from
+> the downstream Chrome OS 5.4 kernel, but with the camera
+> (sc7180-trogdor-mipi-camera.dtsi) #include removed.
+> 
 > Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> 
 > ---
->
+> 
 > (no changes since v7)
->
+> 
 > Changes in v7:
 > - Incorporated changes from Stephen's "Simplify!" series.
->
+> 
+> Changes in v5:
+> - Replaced _ in node name with -
+> - Ordered nodes by name
+> 
 > Changes in v4:
-> - Fixed description (no downstream bits removed).
-> - Added missing version history.
->
+> - Cleaned up rt5682s files
+> - Restored camcc definition
+> - Added missing version history
+> 
+> Changes in v3:
+> - Removed camcc definition
+> 
 > Changes in v2:
-> - First inclusion in series.
->
->  arch/arm64/boot/dts/qcom/Makefile             |   2 +
->  .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  44 ++++
->  .../dts/qcom/sc7180-trogdor-kingoftown-r1.dts |  17 ++
->  .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   | 220 ++++++++++++++++++
->  4 files changed, 283 insertions(+)
+> - Word wrapped patch description.
+> - Removed "Author" from patch description.
+> - Fixed whitespace around "en_pp3300_dx_edp"
+> 
+>  arch/arm64/boot/dts/qcom/Makefile             |   6 +
+>  .../sc7180-trogdor-wormdingler-rev0-boe.dts   |  22 +
+>  .../sc7180-trogdor-wormdingler-rev0-inx.dts   |  22 +
+>  .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  53 +++
+>  ...0-trogdor-wormdingler-rev1-boe-rt5682s.dts |  29 ++
+>  .../sc7180-trogdor-wormdingler-rev1-boe.dts   |  28 ++
+>  ...0-trogdor-wormdingler-rev1-inx-rt5682s.dts |  29 ++
+>  .../sc7180-trogdor-wormdingler-rev1-inx.dts   |  22 +
+>  .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  | 408 ++++++++++++++++++
+>  9 files changed, 619 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 2f8aec2cc6db..e4114e22548a 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -81,6 +81,12 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r2-lte.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r3.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-pompom-r3-lte.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev0-boe.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev0-inx.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-boe.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-inx.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-crd.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+> new file mode 100644
+> index 000000000000..d6ed7d0afe4a
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+> @@ -0,0 +1,22 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Wormdingler board device tree source
+> + *
+> + * Copyright 2021 Google LLC.
+> + *
+> + * SKU: 0x10 => 16
+> + *  - bits 7..4: Panel ID: 0x1 (BOE)
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sc7180-trogdor-wormdingler-rev0.dtsi"
+> +
+> +/ {
+> +	model = "Google Wormdingler rev0 BOE panel board";
+> +	compatible = "google,wormdingler-rev0-sku16", "qcom,sc7180";
 
-I'm not doing a detailed review, but many of the same comments from
-the pazquel review apply here as well.
+There was a v6 a second ago, now it is v8... It's confusing. Don't send
+too often, especially without incorporating actual review.
 
--Doug
+You need to document the compatibles. Please base on Doug's patches
+adding the compatibles for existing boards.
+
+
+Best regards,
+Krzysztof
