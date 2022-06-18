@@ -2,148 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C86235502CE
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 06:36:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0BDD5502E5
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 07:20:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbiFREf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jun 2022 00:35:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38868 "EHLO
+        id S229470AbiFRFUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jun 2022 01:20:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbiFREf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 00:35:57 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A5432C665
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 21:35:56 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id s6so9587518lfo.13
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 21:35:55 -0700 (PDT)
+        with ESMTP id S229461AbiFRFUg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jun 2022 01:20:36 -0400
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2052.outbound.protection.outlook.com [40.107.101.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E7865EDF3;
+        Fri, 17 Jun 2022 22:20:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bimHtQjX4BuuCOk4Sa9aMT0nhDkVppOrF/uNPk4BuanWzXrEzHxYDk+rj/EybLY8WyVx6UfavqvdqctryXhlPBScuKdMz/EBEWcy5jqoQPp6zKHCDBggVZNved4LKAKemx2MsZrNv/5FFAS49A7NylVuaISyyN3wq9LnIByDAxkKA2Ry9KD56Mwi52LGi7UAOLad+NgQEkHx67NnAy1lqAJjgw6gcwPrd68HJ01Hh4n36+3f4HxGkeAl3xm2IJXMK+7a7dETyx7/Xc+U8NEatMqAVa/PSIUWt1qRwldVVIRN7ET7nlh8YF3GjwkFKFBwPC+P8tchn4fDygCww7LFXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kDG8eO1AxvCuQrB4kvRkEDlYyR1EUY7bFksPQ0fG2YY=;
+ b=PlaDqRjGf9i08rGJctzYA15lmVaLbZtf7E/zoMQn3EnOSpXw57E5VRxgv4YPZi08vWNjrB6cCbdwZ/YvJaGz8NzMgqq7zvZSjVXffimRowvdTLUIlDGUlXMYn+jxM1w7WMa9bKAejiYDBMQdiaK493E14PD5lkT350MWWeSfq176vKkr6Jj5uaxN+Skgr2e4EdKUaXRITnbN/Hg16lGxv33goMPsJzF/kKlna2EeBL+DlXx66Lae573cWttDs9K5Hqq/K5e2poueviDmphORKR53X1m3CgHixEiOMM7hZG/qVNpuO8A+LjnX5iQkVPCQZY4Us0wKv2dqiy7DpUot0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VpoARyskjrsl8rfLEbLTskbg6ji6qM2azTrmPXdEaqU=;
-        b=FytwNuiMPbYIJincXBXYnOSJu6v/r2p942L4TJkUDUeuD/0DqSJyQ8kq7a+ZX7i00g
-         A4/4DIXXmvGwyc9f/HU07lNQ1PYF6qGLqt7KOYvvKapcUqA+BvTdCQG7UkQPEAsShFF/
-         cc3LknibrexPA6BUMf9W47z2ysq+sbuQt/2qLoZOwlCxEW0pHOUkmozpZRSFcb9AAxKf
-         EcXtVYHwwPs1ZrMwHY5RvNZupzeqKH/uxOd8usfPnK6VzJe3So6uNp3oufifU7UtP0UW
-         WlCqSDG0nTDERE4GXYOMZnnXRmbPXckt7byUhcJ19JMO64P/+u6+/Trr/SGLZHSVwxMA
-         IJNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=VpoARyskjrsl8rfLEbLTskbg6ji6qM2azTrmPXdEaqU=;
-        b=ULPsXw+PrzwSDDyRL2AziyzGI6qLr6AanQib48/KX106g6kgOvzKY4vkuKeAO7h2Ec
-         cJ6h6TmKKQllMqvoOm3+b3NlJmpgg6WsD/xRNKms15YBT+ipMipY8ni3uAlaPz3+jwXO
-         qmIEnuqcgWbaObo6X7qc1n0I90XhJU9kUhzeFrgwDAqWBaBt7jdVOZ0e6gjGROYO/tCA
-         1tPssR/+mVVmf8KMVE3RP+tzEqMIHu+jBRBRfccwF3faxat1urH0zYsbrMN/pSem90nh
-         YbeHO74UnH/BdfBVGFIVZLXku69c4BCWxRX1ghOA++W50OyT5LJDzoTYkhEF/heegQkp
-         FuQQ==
-X-Gm-Message-State: AJIora8dFTgIlhMsqAbkWae2CBE9yV0HMoLZg/2/E6zDBEOLzXggnIet
-        g28EmuJhfYFIHGt24/GNf2HSsg==
-X-Google-Smtp-Source: AGRyM1sIMez5VxkVOnoLQm8sl13hrGx4EPWDtKb7FI64aoT8FGVfjTjOgllKZSGbswVBo/ED+Uj3xQ==
-X-Received: by 2002:a05:6512:5d2:b0:47f:6270:cb54 with SMTP id o18-20020a05651205d200b0047f6270cb54mr244347lfo.358.1655526954287;
-        Fri, 17 Jun 2022 21:35:54 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id y15-20020a056512044f00b00478ebc6be69sm852584lfk.261.2022.06.17.21.35.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 21:35:53 -0700 (PDT)
-Message-ID: <cd4eaead-4218-2de0-1929-7c8a2aafaff4@linaro.org>
-Date:   Sat, 18 Jun 2022 07:35:52 +0300
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kDG8eO1AxvCuQrB4kvRkEDlYyR1EUY7bFksPQ0fG2YY=;
+ b=YfII6m5qWe8gRhAR0SvvtPgqJdAcXg8IfifoFB15CE7I102feSJULxvI5gUXDMsOFtOTvc1zLZOU/kGRpECSgA3uV3zMkjzBs0hzC7nrxgzdkBJlLTHjeoG1yK0kG7rRpmNPipfyLXNUqc9M5hniz7fRSZ2mCYMSzYXGvgfFtTg=
+Received: from DM3PR12CA0047.namprd12.prod.outlook.com (2603:10b6:0:56::15) by
+ SJ0PR02MB7421.namprd02.prod.outlook.com (2603:10b6:a03:2a3::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.15; Sat, 18 Jun
+ 2022 05:20:28 +0000
+Received: from DM3NAM02FT050.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:0:56:cafe::e5) by DM3PR12CA0047.outlook.office365.com
+ (2603:10b6:0:56::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.16 via Frontend
+ Transport; Sat, 18 Jun 2022 05:20:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com; pr=C
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ DM3NAM02FT050.mail.protection.outlook.com (10.13.5.53) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5353.14 via Frontend Transport; Sat, 18 Jun 2022 05:20:28 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 17 Jun 2022 22:20:27 -0700
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Fri, 17 Jun 2022 22:20:27 -0700
+Envelope-to: linux-pci@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ bhelgaas@google.com
+Received: from [10.140.9.2] (port=44932 helo=xhdbharatku40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <bharat.kumar.gogada@xilinx.com>)
+        id 1o2Qsl-00014q-2w; Fri, 17 Jun 2022 22:20:27 -0700
+From:   Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
+To:     <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <bhelgaas@google.com>, <michals@xilinx.com>,
+        Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
+Subject: [PATCH] MAINTAINERS: Add Xilinx Versal CPM Root Port maintainers
+Date:   Sat, 18 Jun 2022 10:50:22 +0530
+Message-ID: <20220618052022.10388-1-bharat.kumar.gogada@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 2/7] dt-bindings: clock: separate bindings for MSM8916 GCC
- device
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220617144714.817765-1-dmitry.baryshkov@linaro.org>
- <20220617144714.817765-3-dmitry.baryshkov@linaro.org>
- <4a614c32-35c5-2dfa-3e15-d54c3c3c5836@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <4a614c32-35c5-2dfa-3e15-d54c3c3c5836@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 09035c78-5dfd-43ef-4ecd-08da50ea41d5
+X-MS-TrafficTypeDiagnostic: SJ0PR02MB7421:EE_
+X-Microsoft-Antispam-PRVS: <SJ0PR02MB74211CBD5D0623060236597DA5AE9@SJ0PR02MB7421.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xXfSoJKhxdVo7kgyGnRbLtDRGF8fOmFEGsyBPSFCojhl4dLCzfVznCNySFQs3peaZYgIWzDREqVdkKtmokKgMF8Qhy6RedIJ6XevESzLCI/Ryq8+HRcGQtVlrk5qupRTnqA+1qqw/59VkLj4eMnYqz3J8fj1LVOb1zow4yWH81GlY/F7/KlXTbjITxnuGUE0u8xmra1wbHRScCylipi8ZKTWniWJEKH4CcFv2f/hf0bfXRh7H2SPoOlaCcHrpRRLIZIdrB2vgoH5QCYSaALfCc7qxEaJHiR9aBrJZPswI3H28eOwH/gE/ZOrllqVsJlv7VAKdusCeJ8Qzr5VVbr0NszSIHDBwhUWH/iGEfNv+bICJK4smw2e6L8Gh/cfF77CmcbX+BVc/2GCYeBtethcEdem967GV9LVAI7gLpfc6lg9crYgkCdNXZJnv/g0AioawSn8LqEemcBD9ygqYKHpIIUQh5Je2RBRM/60LErDBeGSyNLtSdmbQwrvttuV4Hol+9kEvLk9oviWZ4AC00cV3ANZLGcMxbGhyljheRFSjM3WEHxGL4p38nxt3VCQU6yk2OoNZ48IQvC+uxk+XqvArDgqk96aVHZT11MNEGRjEvgiw8rGpodh1/u4ii/wQhFMCZNwOZ5T4L0wP4q4DNpYVvCiLRkzVM848IvXUJo4IeY+ca+w3TVGRDqNssZb9ujy3qynovJLqIYm+1mJlbW2fg==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230016)(4636009)(46966006)(36840700001)(40470700004)(107886003)(2616005)(36756003)(70586007)(70206006)(356005)(4744005)(26005)(5660300002)(186003)(82310400005)(103116003)(36860700001)(6666004)(54906003)(9786002)(110136005)(8936002)(498600001)(7696005)(47076005)(2906002)(7636003)(336012)(426003)(40460700003)(8676002)(1076003)(4326008)(316002)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2022 05:20:28.2476
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09035c78-5dfd-43ef-4ecd-08da50ea41d5
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT050.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR02MB7421
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/06/2022 04:40, Krzysztof Kozlowski wrote:
-> On 17/06/2022 07:47, Dmitry Baryshkov wrote:
->> Separate bindings for GCC on Qualcomm MSM8916 platforms. This adds new
->> clocks/clock-names properties to be used for clock links.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   .../bindings/clock/qcom,gcc-msm8916.yaml      | 61 +++++++++++++++++++
->>   .../bindings/clock/qcom,gcc-other.yaml        |  1 -
->>   2 files changed, 61 insertions(+), 1 deletion(-)
->>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
->> new file mode 100644
->> index 000000000000..564aa764b17b
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
->> @@ -0,0 +1,61 @@
->> +# SPDX-License-Identifier: GPL-2.0-only
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/qcom,gcc-msm8916.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Global Clock & Reset Controller Binding for MSM8916
->> +
->> +maintainers:
->> +  - Stephen Boyd <sboyd@kernel.org>
->> +  - Taniya Das <quic_tdas@quicinc.com>
->> +
->> +description: |
->> +  Qualcomm global clock control module which supports the clocks, resets and
->> +  power domains on MSM8916.
->> +
->> +  See also:
->> +  - dt-bindings/clock/qcom,gcc-msm8916.h
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,gcc-msm8916
->> +
->> +  clocks:
->> +    items:
->> +      - description: XO source
->> +      - description: Sleep clock source
->> +      - description: DSI phy instance 0 dsi clock
->> +      - description: DSI phy instance 0 byte clock
->> +      - description: External MCLK clock
->> +      - description: External Primary I2S clock
->> +      - description: External Secondary I2S clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: xo
->> +      - const: sleep_clk
-> 
-> Just "sleep"
+Add maintainer for driver and documentation of Xilinx Versal
+CPM Root Port device.
 
-I was hesitating here as all other gcc drivers use 'sleep_clk'.
+Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
+---
+ MAINTAINERS | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ea3e6c914384..a07f926d7e93 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15063,6 +15063,14 @@ L:	linux-pci@vger.kernel.org
+ S:	Maintained
+ F:	drivers/pci/controller/dwc/*spear*
+ 
++PCI DRIVER FOR XILINX VERSAL CPM
++M:	Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
++M:	Michal Simek <michal.simek@amd.com>
++L:	linux-pci@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
++F:	drivers/pci/controller/pcie-xilinx-cpm.c
++
+ PCMCIA SUBSYSTEM
+ M:	Dominik Brodowski <linux@dominikbrodowski.net>
+ S:	Odd Fixes
 -- 
-With best wishes
-Dmitry
+2.17.1
+
