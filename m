@@ -2,70 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3200955016B
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 02:38:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E688550173
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jun 2022 02:45:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231921AbiFRAiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jun 2022 20:38:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57828 "EHLO
+        id S1383489AbiFRApb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jun 2022 20:45:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383734AbiFRAiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 20:38:24 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C82D5E75D
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 17:38:23 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id i15so5148865plr.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 17:38:23 -0700 (PDT)
+        with ESMTP id S234931AbiFRApb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jun 2022 20:45:31 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E95B633BA
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 17:45:30 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id 184so5324780pga.12
+        for <devicetree@vger.kernel.org>; Fri, 17 Jun 2022 17:45:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=1E2D0eIZUTntcwUwaqRwv3cDA3yOsU3BAA73sXGXA8s=;
-        b=MLfHIHojRTDjOwB+I+zGXS1o1NsIM9WO5iTB1M1GPY0xU3GNIq9R+wHRLHbC9a95G4
-         zkokn+kU02Mabtm+KjtW7rHo1ThIFk4yphlnlf8NqjdDRi0hieUy8bqaPpBi+oqtuKut
-         KYDMiTLQnK7utfmVxxUu9Ehl8qZr888LX6EGIgos7NeaFaRtk2ynkUXN7w1hhBdwRkNd
-         T3TzfVeT0nutX6Gk6A5+KGQMXMuxnfDCab2isoT10b6mXSnXG+hli+XYUENjZ8di/ews
-         aIVj/iJPZfemRjRpCn2kICpzjLJbcditeP+ZYeZ1L6jRZ8LsSdKbgGgd9XFw9/NKxRDW
-         +XBw==
+        bh=4UBTCxi8NJwu+bWr0wJOqTsx4bcIPj3/b5hz4TC0hQY=;
+        b=eyJ6ww4XQJY6GkTvPtAS8EmgxidGB0tDgomc5hdevWn1R+oGEvtskMEDqeTnlWqIp6
+         CdDsoZFGFBOlufromgEEF/gGuhNUqyw3Q/SzoGeLHkw56rC29zUWqSoHAcKt5MUH/ls1
+         4VkGt4/kVd+TblxGi4cXck63elJZO4XQwq9h3znyNVdZ8bOncRfYZ2Pe5KeBX2l0yCLu
+         QyKdV54XyFEdF+XgtA+sX2e9YpfDbym1N9nVKLqw7dAYQk8Hxyw9ysJeEbeofRuI+rNv
+         /JBFdnwenTZC0E5UQwJQR0KyHVjHCWdF3x95DPp+C/te4IEvJqQ83sqSdiecWmcek716
+         CN6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=1E2D0eIZUTntcwUwaqRwv3cDA3yOsU3BAA73sXGXA8s=;
-        b=cQPe4eVsSvkGGoKyrdEkjKZP3zlczAgg7x5eU4+2D7nP3J12620nXQnFXlLsg0Q0XK
-         0oeQapJXJz929WiMDGuNEsNXfWs9zGrHKdT3gIMBX7gVHpKltEFv1PTHlB6aKZ/VJV/2
-         oQthgsItl+XkPUDI9CdQECl2V2o5DQOxGZ5ykZxrq8dLgfyP9sO0H5t8bE8KZbaEuHu3
-         aJrNEtDIkQMGKd0vkFblYMdNjT7DenVvJU4sVCxCDw+Yj9sMADRRJeyqEYi57VEZuLH5
-         X1NjxJzulO7WE8m8HEp6Gb4AoHPff+r5GljqXevvoVJg7pUhymdPxWUkpu4UM3o8LBLU
-         uvng==
-X-Gm-Message-State: AJIora/MDIJCGL29rQD3WWAttDuwi86juAYOTiTBvcYNm8Ee0mJCg1zC
-        91vjxBhIqt2Vct+rK3SNO1tGcg==
-X-Google-Smtp-Source: AGRyM1uj3Z9kxkG3CKqxNE/w7cg7parSnynzFxPvFizpC7YlhEXBA9nzGsXp6ADld7B8CujuxAUTGQ==
-X-Received: by 2002:a17:90b:3143:b0:1e8:64bc:f5e9 with SMTP id ip3-20020a17090b314300b001e864bcf5e9mr13484456pjb.228.1655512702811;
-        Fri, 17 Jun 2022 17:38:22 -0700 (PDT)
+        bh=4UBTCxi8NJwu+bWr0wJOqTsx4bcIPj3/b5hz4TC0hQY=;
+        b=roYdeV5USDymHi8y5I5zGSaizM9Lz1vc7VRwO6qauhVa7bweJw49Q6l0zDfA0KUqkH
+         GQ9xINIcvUSkUVHnuXv6o0vDDnfTVeksHBPTA0jyhEizhjmwyOk3h03slE59dDIGFX3P
+         8KQ7Kyppso1IfZt2hIr5m4AreY1++Xty3UkLBVFl6kE39Mm1/Bdwaz2HN8dm3biN2EyQ
+         AAW74rkqFcvQALS3mjItZrPuIHTWfLOcJ+0CBh9s8cvi6O2JTXqyJs4TO3u1k1xxlpmK
+         VD/nHC0yv5T6qjbVxeTMi6MeKa+BLlocxcO0e8muXgkA+ZTThP/BCrm4zoQy2Vyw9/nV
+         krTw==
+X-Gm-Message-State: AJIora8LGabwF62tGgqPjx4TBRKkW+2MkdYMUy2ckp3/T1EF9BzTZb74
+        QkVbp+aF4osJu8zo7D6WNeu8jg==
+X-Google-Smtp-Source: AGRyM1vPx7U/RB9e0wVTMwzZu9KuNOtp08j+FdGRa9g4rHhb/XAEnR0mYoannyMnwN4UEuV+Ua7ttg==
+X-Received: by 2002:a05:6a00:1a8f:b0:51c:2f82:cdba with SMTP id e15-20020a056a001a8f00b0051c2f82cdbamr12876825pfv.85.1655513129981;
+        Fri, 17 Jun 2022 17:45:29 -0700 (PDT)
 Received: from [172.31.235.92] ([216.9.110.6])
-        by smtp.gmail.com with ESMTPSA id v5-20020a63b945000000b003fadd680908sm4332528pgo.83.2022.06.17.17.38.21
+        by smtp.gmail.com with ESMTPSA id p4-20020a170902780400b0016760c06b76sm4080548pll.194.2022.06.17.17.45.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jun 2022 17:38:22 -0700 (PDT)
-Message-ID: <f048cb9b-2f26-a278-7d26-a4ac955259d6@linaro.org>
-Date:   Fri, 17 Jun 2022 17:38:19 -0700
+        Fri, 17 Jun 2022 17:45:29 -0700 (PDT)
+Message-ID: <acbf8ed3-0b8c-a0b2-88ef-7b13ad0908d5@linaro.org>
+Date:   Fri, 17 Jun 2022 17:45:26 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH V8 1/3] dt-bindings: rtc: zynqmp: Add clock information
+Subject: Re: [PATCH v1 0/9] imx: thermal: Allow trip point configuration from
+ DT
 Content-Language: en-US
-To:     Srinivas Neeli <srinivas.neeli@xilinx.com>, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
-        sgoud@xilinx.com, shubhraj@xilinx.com, srinivas.neeli@amd.com,
-        neelisrinivas18@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        git@xilinx.com
-References: <20220613125836.523449-1-srinivas.neeli@xilinx.com>
+To:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Anson Huang <Anson.Huang@nxp.com>
+Cc:     Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220617070847.186876-1-francesco.dolcini@toradex.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220613125836.523449-1-srinivas.neeli@xilinx.com>
+In-Reply-To: <20220617070847.186876-1-francesco.dolcini@toradex.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,68 +86,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/2022 05:58, Srinivas Neeli wrote:
-> Added clock information and deprecated calibration support.
+On 17/06/2022 00:08, Francesco Dolcini wrote:
+> This series allows to specify the imx thermal drivers trip point from the device tree,
+> without this change the threshold are hard-coded and this might not be correct given the
+> thermal design of the final system.
 > 
-> Signed-off-by: Srinivas Neeli <srinivas.neeli@xilinx.com>
-> ---
-> Changes in V8:
-> -None
-> Changes in V7:
-> -None
-> Changes in V6:
-> -Removed dtc warnings.
-> Changes in V5:
-> -Removed quotes and _clk suffix from clocknames.
-> Changes in V4:
-> - Deprecated calibrtion support
-> Changes in V3:
-> - New patch
-> ---
->  .../devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml     | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
+> This change is backward compatible with the existing device tree, and even
+> with this change in by default the thresholds are the same as before.
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml b/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
-> index bdb72d3ddf2a..638dd1d8bb26 100644
-> --- a/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
-> @@ -23,8 +23,15 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  clocks:
-> +    items:
-> +      - description: rtc_clk is the operating frequency of crystal.
-> +
-> +  clock-names:
-> +    maxItems: 1
+> Toradex board are also updated to use a system-specific thresholds.
+> 
+> Discussion on the current design is here:
+> https://lore.kernel.org/all/4ba1d7d2-3e8c-ba60-37fd-9598f415c076@linaro.org/
+> 
+> One side note, after this change the dtbs checker starts complaining with this message
+> 
+> ```
+> linux/arch/arm/boot/dts/imx6dl-alti6p.dtb: tempmon: '#thermal-sensor-cells' does not match any of the regexes: '^(automotive|commercial|extended-commercial|industrial)-thermal$', 'pinctrl-[0-9]+'
+> 	From schema: linux/Documentation/devicetree/bindings/thermal/imx-thermal.yaml
+> ```
+> 
+> to my understanding this is just a side effect, 
 
-You need to specify the name instead of maxItems.
+If it starts complaining, it does not look like a side effect but error
+needing to be fixed/addressed.
 
-> +
->    interrupts:
-> -    minItems: 2
-> +    maxItems: 2
->  
->    interrupt-names:
->      items:
-> @@ -39,6 +46,7 @@ properties:
->      minimum: 0x1
->      maximum: 0x1FFFFF
->      default: 0x198233
-> +    deprecated: true
->  
->  required:
->    - compatible
-> @@ -61,5 +69,7 @@ examples:
->          interrupts = <0 26 4>, <0 27 4>;
->          interrupt-names = "alarm", "sec";
->          calibration = <0x198233>;
-> +        clock-names = "rtc_clk";
-> +        clocks = <&rtc_clk>;
->        };
->      };
 
+> '#thermal-sensor-cells' is not changed in
+> any way by this series. I can fix that, I wonder if I should remove the property from the
+> imx dtsi files or add it to the binding yaml definition, not sure about it.
+> Anybody can advise?
+
+Depends. Is the device a thermal-sensor provider?
 
 Best regards,
 Krzysztof
