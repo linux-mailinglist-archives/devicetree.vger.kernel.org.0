@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3881550A52
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 13:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32F1C550A58
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 13:49:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236744AbiFSLqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jun 2022 07:46:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35320 "EHLO
+        id S236830AbiFSLtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jun 2022 07:49:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236353AbiFSLqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 07:46:22 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DF1211C22
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 04:46:20 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id hj18so15652207ejb.0
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 04:46:20 -0700 (PDT)
+        with ESMTP id S231256AbiFSLtJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 07:49:09 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3348311C32
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 04:49:08 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id e2so625292edv.3
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 04:49:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=JIO2mY682oPXJiHyGHgrm7/Q9vi5siXInrOrzmj3AUo=;
-        b=wdwMtYbnB3sGlyq5lBSmHcAWE2vsrrpF/vtNGPPHqz8dnsvflVypNxXbyL3sZClRLN
-         Txh8nCv5gntNEbG067+KrIUpeT1ndJbe5pKlowuafbGQ8YLlXY5H2MXMp0XqF22hkO6p
-         2GBiB0fbY7KjLdEpoa1Mi3C33+E/ognIiGcRYF7SzSz0V4fu2f2rwm8RfYA8t6C7U7PQ
-         s55KRClprD+V6LjCLA9Cv7PvmEg5CE/KC/O09D5ZzAjJikI3IDrDjdH0/K8UoNCu6DEV
-         BML3PCmmgnVNW1qVhFr2GmWP+64xbBEeg6lrkca0P7GtaUAXNGA79+vqaYF/I5OWv55Q
-         R80Q==
+        bh=Yp4bmUkucrfn0YoCb3947aiyNMhaiNjLfndCRiuztxU=;
+        b=yr+bG3jG4+68iQNvAiVbY3Z1gBJqsRvJGx5qiy0JF4mCyAGs2+gQW+U/llayv2QvZa
+         JObgwL6nY/In7vN0HgMJyKOHcXvcqtzdmIISyxAbBNQcLPd/7bs5WSSXoP1BF4CC0oSj
+         cOA/+WUR3Mjc/ZGuFAcYgKsUk8uEOUyOsnHY2Kdcj/KV2McZ7G5VwDWc+oYaFweytQiE
+         3DWEEJAHPlikXDtlaqwLSmEuovXWj4PGrR2gjXnxInhsq+/pVhYHn++AcQqqzmdENG9M
+         mGqPzpp9dyG8QRwIRiVCBK/yzkGrKuwNwcUEZGSzbCoak4I6gm0aJOkIY6vumz7Ed2+i
+         k4Hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=JIO2mY682oPXJiHyGHgrm7/Q9vi5siXInrOrzmj3AUo=;
-        b=sPSHz9sS68+mgld5LHCQ4hky7Fni4waYYndHuTlPCD+Lell6Xw6RKx5Ul1JR1DG0Ci
-         WJ0xrHEEK2CuOyF9M/hzOvUdSgjNQw3Rhiyk5Bqe1LFlo0kBAmi6ZUMTgFuqAcxwxOtc
-         pExbPxxqrezmawL6yYzHxde/rtn1c5dTJkQF7dITbWnDfUezWCKcN0eFTmwTkENm2Gch
-         zKUjbcxj9LXNk5NlPar7JYkGR7h0VgHouVfzM4Av3eSHaJskyYSMw4Hed1QjcvuKdrnM
-         Cm+uhi4ViXFechyzwsX/AvBa9CLY2NqHjVViXINDIFVLKCQdPhu9n4OaXiUpK19jSk0m
-         NZ6Q==
-X-Gm-Message-State: AJIora8d0H0BwUa9/tocaQh0508kP8Gv23wat7rYL0MZsky2v/OYPlUN
-        Up2A6pLZHXv0mL9EN0T8oH0MaQ==
-X-Google-Smtp-Source: AGRyM1sePyl4/VzHcBtPb/raB3YCRxdOJNwaHxIh3b+epV2BiUpRnbkGH44ooVVXzFb9O5txZOn4/Q==
-X-Received: by 2002:a17:907:9813:b0:711:d5ac:b9ef with SMTP id ji19-20020a170907981300b00711d5acb9efmr16721384ejc.95.1655639178872;
-        Sun, 19 Jun 2022 04:46:18 -0700 (PDT)
+        bh=Yp4bmUkucrfn0YoCb3947aiyNMhaiNjLfndCRiuztxU=;
+        b=X3fkfxSuZmWS/RCKWns9VK4/m2dgQhhcFPHI9R1LQ3ZO+1Qt72ujLb59jYGwtxwU9M
+         xV5jnJ1lwcXopXVPWT7nrwDM7cC1y5D5rwOyORD3pEPek8de/HNIS5n4gSt1sfKkLthk
+         V6LP0wnI1bntj16e9+//5fU2uvlqvvXs7CZHXT4lwAovtMwx4lZo+D/HcD01puquSjym
+         Uy+bmYWGkzmzbi24YWN8GNKD87O0W91epSzbzafMFoY/JJ4AXLxCZ4uQa3JqXMgPzSNf
+         4O9wA/VF+J6sm1iA5AhTrJ+vhRXis4fgDb6AIva2Q6YEEzjp0c5ecF0aFXX/CiEsvlVp
+         0WZQ==
+X-Gm-Message-State: AJIora9e7URNjGxNvDZ8kpuYh2peu9L7VF/vSoEi+oV+ixMvzrH3bUWq
+        iUScWiL1McIoyhPKvjFvDwydbQ==
+X-Google-Smtp-Source: AGRyM1uf/0HgCvqeSezyCxo06xRPdiDZsKSIjIh9ayuMCVtMgx1owUBRCkmcqmcT3JXy2reZyX/UXQ==
+X-Received: by 2002:aa7:cb13:0:b0:433:4985:1b54 with SMTP id s19-20020aa7cb13000000b0043349851b54mr22955689edt.182.1655639346743;
+        Sun, 19 Jun 2022 04:49:06 -0700 (PDT)
 Received: from [192.168.0.206] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g1-20020a17090604c100b006fec56c57e6sm4521040eja.46.2022.06.19.04.46.17
+        by smtp.gmail.com with ESMTPSA id fd18-20020a056402389200b0043570d96d25sm2987288edb.95.2022.06.19.04.49.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Jun 2022 04:46:18 -0700 (PDT)
-Message-ID: <8fbee49a-8215-32b7-3545-66df70ecc38d@linaro.org>
-Date:   Sun, 19 Jun 2022 13:46:17 +0200
+        Sun, 19 Jun 2022 04:49:06 -0700 (PDT)
+Message-ID: <5c7a1763-01fb-249d-a301-9164e2139ac6@linaro.org>
+Date:   Sun, 19 Jun 2022 13:49:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: phy: make phy-cells description a text
+Subject: Re: [PATCH 2/3] dt-bindings: usb: mtk-xhci: Allow middle optional
+ clocks to be missing
 Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sean Anderson <sean.anderson@seco.com>
-References: <20220619113325.21396-1-krzysztof.kozlowski@linaro.org>
- <Yq8LHN+WGVpXDwiM@pendragon.ideasonboard.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org
+References: <20220617222916.2435618-1-nfraprado@collabora.com>
+ <20220617222916.2435618-3-nfraprado@collabora.com>
+ <d95e046262751a7f746fabc5f1d9a39e675730b3.camel@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yq8LHN+WGVpXDwiM@pendragon.ideasonboard.com>
+In-Reply-To: <d95e046262751a7f746fabc5f1d9a39e675730b3.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -84,24 +84,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2022 13:40, Laurent Pinchart wrote:
-> Hi Krzysztof,
+On 19/06/2022 09:40, Chunfeng Yun wrote:
+> On Fri, 2022-06-17 at 18:29 -0400, Nícolas F. R. A. Prado wrote:
+>> The current clock list in the binding doesn't allow for one of the
+>> optional clocks to be missing and a subsequent clock to be present.
+>> An
+>> example where this is an issue is in mt8192.dtsi, which has "sys_ck",
+>> "ref_ck", "xhci_ck" and would cause dtbs_check warnings.
+> How about using fixed clock instead to fix the check warning?
+> Using enum way seems make it more complex.
 > 
-> Thank you for the patch.
-> 
-> On Sun, Jun 19, 2022 at 01:33:25PM +0200, Krzysztof Kozlowski wrote:
->> The description field is a string, so using YAML inside phy-cells
->> description is not actually helpful.
-> 
-> Does it hurt though ? For xlnx,zynqmp-psgtr.yaml I wrote it that way to
-> prepare for a future where it could be described using a YAML schema
-> (but such future may never come).
 
-No, it does not hurt. It is however confusing some folks and they think
-schema goes into description. The description should be
-readable/descriptive for humans, so if you think your approach is
-better, I am perfectly fine with it.
-
+That would mean the clock is not actually optional. The DTS should
+reflect the hardware so either you have the clock there or not. Either
+it is an input or not. Of course there are some exceptions (like
+non-controllable clock or regulator which not always has to be modeled).
 
 Best regards,
 Krzysztof
