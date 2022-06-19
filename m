@@ -2,54 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDE0F550D50
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 23:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3364550DA0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 01:39:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232300AbiFSVf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jun 2022 17:35:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60944 "EHLO
+        id S232633AbiFSXjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jun 2022 19:39:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbiFSVf6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 17:35:58 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9511AE5A
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 14:35:56 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o32aC-0007hT-2I; Sun, 19 Jun 2022 23:35:48 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o32a7-001WKi-3z; Sun, 19 Jun 2022 23:35:44 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o32a7-00HS9b-QX; Sun, 19 Jun 2022 23:35:43 +0200
-Date:   Sun, 19 Jun 2022 23:35:20 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] pwm: Add support for the MSTAR MSC313 PWM
-Message-ID: <20220619213520.qonqdv4e7zkvpeo7@pengutronix.de>
-References: <20220615070813.7720-1-romain.perier@gmail.com>
- <20220615070813.7720-3-romain.perier@gmail.com>
+        with ESMTP id S231539AbiFSXjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 19:39:00 -0400
+Received: from esa6.hgst.iphmx.com (esa6.hgst.iphmx.com [216.71.154.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CA8195AF
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 16:38:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1655681940; x=1687217940;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=+r2le/0cYQHWtPMNeCxIXB43Y8pcNDHfGVPeVoKPk1w=;
+  b=dN/w0Goa9LIIMMkR3p5Fc3y+i5vAZM7WcaW7ZqfVEdjOiEwg0HtRgGkm
+   pUicSdAW+b5jQ3C8JWGn1d/9LXFcubOvN9po5a+BvG6moOPOJLVE+HBob
+   9bABJTkk6d1z6YLb6OOxDiyy2ZpgUIktGVs24HjPMFwDUMKeKd019GKF5
+   /eHMw2BG4d20YGmL956P8ElPTtxXswFigNsdfFipe0m2wphB+88I1NbQa
+   QRtoHlASozJL3PTElXyo1s/Pu/Nf0mQmm0BFHJXRjJEeswyW7XA5Zch1Y
+   Hz2cQ/CUYlQgjjuArHsAIUTtJp9QpzkH/VUmdB92CEr5PTh1KKly7d7xZ
+   w==;
+X-IronPort-AV: E=Sophos;i="5.92,306,1650902400"; 
+   d="scan'208";a="204332793"
+Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 20 Jun 2022 07:39:00 +0800
+IronPort-SDR: sMzxxQnGTeyPYFfRur/xpDpovs+7M6NJmhGNqW2UQLCyoEqr7NgSaRhd9d/gIQmQGxu1Ad+/CW
+ TtNQmzBTvSlK5ZdFeOYC+FyaWD37vw5zav3TjCyXzzGdyu/oizhFcdhVpljYoqycG5VffTI2aH
+ +mZZHeSxhNelZN1rZK+9tVO/s8yiSZzFHhPdn6eHooR4ayKgelLoIliYiAHWmOIEiOz2c9VUR0
+ fCsl3Oz8pIeepZbccSKAMpJ8ewPOEgBiusT4CeemL5kjmXuwhrhfpPy1UESExhrOL0sBipkjvl
+ HwUkNYQBi6qgTR8iV6U/q3oI
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Jun 2022 16:01:30 -0700
+IronPort-SDR: mdfYIzUhyDZ8bJxQK67OZxOVn3fuAO2wfRxSPCSlOyy2i4CT4Uf/5uNzzoDCB8X+1HCyZDr67s
+ j+aMgad9zQPob2FjZVcPqvWxFEwOThf3VVptQZzSL8dBRsTfA3tHOEvecTOvRAnAudLX/+Rih5
+ edfb+o7WiPywx7vmi6yhJjj+MIEKT3MBzt2dGcfAlrL0Yf6Mdp5dTNCnH5RnypR/I6qjwfe84f
+ T+UraN9WVS+2lcV0RywYQiCgOBMIZqxXgR+5+7eQBDW8lyAWfvYaTQPpLxMywab4gnt7l7XA5H
+ gKo=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Jun 2022 16:38:59 -0700
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4LR8PG1DKkz1SVp2
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 16:38:58 -0700 (PDT)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1655681937; x=1658273938; bh=+r2le/0cYQHWtPMNeCxIXB43Y8pcNDHfGVP
+        eVoKPk1w=; b=fPh0jM8V9qqPW70mFILfn0oH/t6YdTP5j5nYoQaZ3qzqvNZhES8
+        wM/NZ1NWJD/pJVvr1BUFf56nUIKAwsRI79NnrEmtxFiYpNl1e2IS0zFLirGVF58/
+        /lWr6pXDvMN/aYVUroAahjbEZ3SknQqMnzGVcpJcirHyRBVnLNNACBcjw5W+w6Oi
+        xx3LXiZvDtQes/ej6dBQtE/0UxPugLIFRuNlvSSDxKfHYhgDS+DzquTgm9yhteAd
+        zxF/VPlxKkDnt0awf+PKnINUx01IznqbpZtT9I8xQTuWk9QlIfY0Ibek5uE3g8+F
+        SWNFWnA6DEKhg0NU7wr0hzVc03FtrycJvSA==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id xNujrBbWYAUb for <devicetree@vger.kernel.org>;
+        Sun, 19 Jun 2022 16:38:57 -0700 (PDT)
+Received: from [10.225.163.87] (unknown [10.225.163.87])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4LR8P82TBvz1Rvlc;
+        Sun, 19 Jun 2022 16:38:52 -0700 (PDT)
+Message-ID: <9cd60b3b-44fe-62ac-9874-80ae2223d078@opensource.wdc.com>
+Date:   Mon, 20 Jun 2022 08:38:50 +0900
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="silqiuwepn6la4xp"
-Content-Disposition: inline
-In-Reply-To: <20220615070813.7720-3-romain.perier@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 07/14] riscv: dts: canaan: fix the k210's memory node
+Content-Language: en-US
+To:     Conor Dooley <mail@conchuod.ie>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Niklas Cassel <niklas.cassel@wdc.com>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        Heng Sia <jee.heng.sia@intel.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20220618123035.563070-1-mail@conchuod.ie>
+ <20220618123035.563070-8-mail@conchuod.ie>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <20220618123035.563070-8-mail@conchuod.ie>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,441 +123,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---silqiuwepn6la4xp
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-On Wed, Jun 15, 2022 at 09:08:10AM +0200, Romain Perier wrote:
-> From: Daniel Palmer <daniel@0x0f.com>
->=20
-> This adds support for the PWM block on the Mstar MSC313e SoCs and newer.
->=20
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-> Co-developed-by: Romain Perier <romain.perier@gmail.com>
-> Signed-off-by: Romain Perier <romain.perier@gmail.com>
+On 6/18/22 21:30, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> The k210 memory node has a compatible string that does not match with
+> any driver or dt-binding & has several non standard properties.
+> Replace the reg names with a comment and delete the rest.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  MAINTAINERS               |   1 +
->  drivers/pwm/Kconfig       |  10 ++
->  drivers/pwm/Makefile      |   1 +
->  drivers/pwm/pwm-msc313e.c | 242 ++++++++++++++++++++++++++++++++++++++
->  4 files changed, 254 insertions(+)
->  create mode 100644 drivers/pwm/pwm-msc313e.c
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2316278d9db9..45d001643b93 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2389,6 +2389,7 @@ F:	arch/arm/mach-mstar/
->  F:	drivers/clk/mstar/
->  F:	drivers/clocksource/timer-msc313e.c
->  F:	drivers/gpio/gpio-msc313.c
-> +F:	drivers/pwm/pwm-msc313e.c
->  F:	drivers/rtc/rtc-msc313.c
->  F:	drivers/watchdog/msc313e_wdt.c
->  F:	include/dt-bindings/clock/mstar-*
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 904de8d61828..802573122b25 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -651,6 +651,16 @@ config PWM_VT8500
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-vt8500.
-> =20
-> +config PWM_MSC313E
-> +	tristate "MStar MSC313e PWM support"
-> +	depends on ARCH_MSTARV7 || COMPILE_TEST
-> +	help
-> +	  Generic PWM framework driver for MSTAR MSC313e.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-msc313e.
-> +
-> +
+> ---
+>  arch/riscv/boot/dts/canaan/k210.dtsi | 6 ------
+>  1 file changed, 6 deletions(-)
+> 
+> diff --git a/arch/riscv/boot/dts/canaan/k210.dtsi b/arch/riscv/boot/dts/canaan/k210.dtsi
+> index 44d338514761..287ea6eebe47 100644
+> --- a/arch/riscv/boot/dts/canaan/k210.dtsi
+> +++ b/arch/riscv/boot/dts/canaan/k210.dtsi
+> @@ -69,15 +69,9 @@ cpu1_intc: interrupt-controller {
+>  
+>  	sram: memory@80000000 {
+>  		device_type = "memory";
+> -		compatible = "canaan,k210-sram";
+>  		reg = <0x80000000 0x400000>,
+>  		      <0x80400000 0x200000>,
+>  		      <0x80600000 0x200000>;
+> -		reg-names = "sram0", "sram1", "aisram";
+> -		clocks = <&sysclk K210_CLK_SRAM0>,
+> -			 <&sysclk K210_CLK_SRAM1>,
+> -			 <&sysclk K210_CLK_AI>;
+> -		clock-names = "sram0", "sram1", "aisram";
+>  	};
 
-only one empty line between entries, and also please stick to alphabetic
-ordering.
+These are used by u-boot to setup the memory clocks and initialize the
+aisram. Sure the kernel actually does not use this, but to be in sync with
+u-boot DT, I would prefer keeping this as is. Right now, u-boot *and* the
+kernel work fine with both u-boot internal DT and the kernel DT.
 
->  config PWM_XILINX
->  	tristate "Xilinx AXI Timer PWM support"
->  	depends on OF_ADDRESS
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index 5c08bdb817b4..e24a48c78335 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -61,4 +61,5 @@ obj-$(CONFIG_PWM_TWL)		+=3D pwm-twl.o
->  obj-$(CONFIG_PWM_TWL_LED)	+=3D pwm-twl-led.o
->  obj-$(CONFIG_PWM_VISCONTI)	+=3D pwm-visconti.o
->  obj-$(CONFIG_PWM_VT8500)	+=3D pwm-vt8500.o
-> +obj-$(CONFIG_PWM_MSC313E)	+=3D pwm-msc313e.o
->  obj-$(CONFIG_PWM_XILINX)	+=3D pwm-xilinx.o
-> diff --git a/drivers/pwm/pwm-msc313e.c b/drivers/pwm/pwm-msc313e.c
-> new file mode 100644
-> index 000000000000..f20419c6b9be
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-msc313e.c
-> @@ -0,0 +1,242 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2021 Daniel Palmer <daniel@thingy.jp>
-> + * Copyright (C) 2022 Romain Perier <romain.perier@gmail.com>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/regmap.h>
-> +
-> +#define DRIVER_NAME "msc313e-pwm"
-> +
-> +#define CHANNEL_OFFSET	0x80
-> +#define REG_DUTY	0x8
-> +#define REG_PERIOD	0x10
-> +#define REG_DIV		0x18
-> +#define REG_CTRL	0x1c
-> +#define REG_SWRST	0x1fc
-> +
-> +struct msc313e_pwm_channel {
-> +	struct regmap_field *clkdiv;
-> +	struct regmap_field *polarity;
-> +	struct regmap_field *dutyl;
-> +	struct regmap_field *dutyh;
-> +	struct regmap_field *periodl;
-> +	struct regmap_field *periodh;
-> +	struct regmap_field *swrst;
-> +};
-> +
-> +struct msc313e_pwm {
-> +	struct regmap *regmap;
-> +	struct pwm_chip pwmchip;
-> +	struct clk *clk;
-> +	struct msc313e_pwm_channel channels[];
-> +};
-> +
-> +struct msc313e_pwm_info {
-> +	unsigned int channels;
-> +};
-> +
-> +#define to_msc313e_pwm(ptr) container_of(ptr, struct msc313e_pwm, pwmchi=
-p)
-> +
-> +static const struct regmap_config msc313e_pwm_regmap_config =3D {
-> +	.reg_bits =3D 16,
-> +	.val_bits =3D 16,
-> +	.reg_stride =3D 4,
-> +};
-> +
-> +static const struct msc313e_pwm_info msc313e_data =3D {
-> +	.channels =3D 8,
-> +};
-> +
-> +static const struct msc313e_pwm_info ssd20xd_data =3D {
-> +	.channels =3D 4,
-> +};
-> +
-> +static void msc313e_pwm_writecounter(struct regmap_field *low, struct re=
-gmap_field *high, u32 value)
-> +{
-> +	regmap_field_write(low, value);
-> +	regmap_field_write(high, value >> 16);
-
-Is this racy? E.g. if the hw is running and the low register overflows
-before the high register is updated?
-
-> +}
-> +
-> +static int msc313e_pwm_config(struct pwm_chip *chip, struct pwm_device *=
-device,
-> +			      int duty_ns, int period_ns)
-> +{
-> +	struct msc313e_pwm *pwm =3D to_msc313e_pwm(chip);
-> +	struct msc313e_pwm_channel *channel =3D &pwm->channels[device->hwpwm];
-> +	unsigned long long nspertick =3D DIV_ROUND_CLOSEST_ULL(NSEC_PER_SEC, cl=
-k_get_rate(pwm->clk));
-> +	unsigned long long div =3D 1;
-> +
-> +	/* fit the period into the period register by prescaling the clk */
-> +	while (DIV_ROUND_CLOSEST_ULL(period_ns, (nspertick =3D DIV_ROUND_CLOSES=
-T_ULL(nspertick, div)))
-> +	      > 0x3ffff){
-
-Strange line breaking.
-
-Dividing by a division is inexact, also please round down, not
-round-closest.
-
-Please test your driver with PWM_DEBUG enabled, and use something like I
-proposed in
-https://lore.kernel.org/linux-pwm/20220607200755.tgsrwe4ten5inw27@pengutron=
-ix.de .
-
-
-> +		div++;
-> +		if (div > (0xffff + 1)) {
-> +			dev_err(chip->dev, "Can't fit period into period register\n");
-> +			return -EINVAL;
-> +		}
-
-If the requested period is too big, please configure the biggest
-possible period.
-
-Also .apply() shouldn't emit error messages as this might flood the
-kernel log.
-
-> +	}
-> +
-> +	regmap_field_write(channel->clkdiv, div - 1);
-> +	msc313e_pwm_writecounter(channel->dutyl, channel->dutyh,
-> +				 DIV_ROUND_CLOSEST_ULL(duty_ns, nspertick));
-> +	msc313e_pwm_writecounter(channel->periodl, channel->periodh,
-> +				 DIV_ROUND_CLOSEST_ULL(period_ns, nspertick));
-> +
-> +	return 0;
-> +};
-> +
-> +static int msc313e_pwm_set_polarity(struct pwm_chip *chip, struct pwm_de=
-vice *device,
-> +				    enum pwm_polarity polarity)
-> +{
-> +	struct msc313e_pwm *pwm =3D to_msc313e_pwm(chip);
-> +	struct msc313e_pwm_channel *channel =3D &pwm->channels[device->hwpwm];
-> +	unsigned int pol =3D 0;
-> +
-> +	if (polarity =3D=3D PWM_POLARITY_INVERSED)
-> +		pol =3D 1;
-> +	regmap_field_update_bits(channel->polarity, 1, pol);
-> +
-> +	return 0;
-> +}
-> +
-> +static int msc313e_pwm_enable(struct pwm_chip *chip, struct pwm_device *=
-device)
-> +{
-> +	struct msc313e_pwm *pwm =3D to_msc313e_pwm(chip);
-> +	struct msc313e_pwm_channel *channel =3D &pwm->channels[device->hwpwm];
-> +	int ret;
-> +
-> +	ret =3D clk_prepare_enable(pwm->clk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	regmap_field_write(channel->swrst, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static void msc313e_pwm_disable(struct pwm_chip *chip, struct pwm_device=
- *device)
-> +{
-> +	struct msc313e_pwm *pwm =3D to_msc313e_pwm(chip);
-> +	struct msc313e_pwm_channel *channel =3D &pwm->channels[device->hwpwm];
-> +
-> +	regmap_field_write(channel->swrst, 1);
-> +	clk_disable(pwm->clk);
-
-how does the hardware behave on disable? Does it emit the inactive
-level? Or 0? Or does it freeze? Or high-Z? Please document that like
-it's done e.g. in drivers/pwm/pwm-sl28cpld.c. Stick to the format used
-there. (i.e. "Limitations:" + a list of hardware properties in the
-toplevel comment.)
-
-Does setting swrst ("software reset"?) reset the other registers?
-
-> +}
-> +
-> +static int msc313e_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			 const struct pwm_state *state)
-> +{
-> +	if (state->enabled) {
-> +		msc313e_pwm_enable(chip, pwm);
-> +		msc313e_pwm_set_polarity(chip, pwm, state->polarity);
-> +		msc313e_pwm_config(chip, pwm, state->duty_cycle, state->period);
-
-If you enable at the end, you might prevent a glitch. I assume the
-glitch isn't preventable in general?
-
-Is the currently running period completed when a new configuration is
-written to the registers?
-
-As msc313e_pwm_enable calls clk_prepare_enable() unconditionally, and
-it's valid to call pwm_apply several times in a row with state->enabled
-=3D true, the clk calls are not balanced.
-
-> +	} else {
-> +		msc313e_pwm_disable(chip, pwm);
-> +	}
-> +	return 0;
-> +}
-> +
-> +static void msc313e_get_state(struct pwm_chip *chip, struct pwm_device *=
-device,
-> +			      struct pwm_state *state)
-> +{
-> +	struct msc313e_pwm *pwm =3D to_msc313e_pwm(chip);
-> +	struct msc313e_pwm_channel *channel =3D &pwm->channels[device->hwpwm];
-> +	unsigned int pol =3D 0;
-> +
-> +	regmap_field_read(channel->polarity, &pol);
-> +	state->polarity =3D pol;
-
-I'd prefer something like:
-
-state->polarity =3D pol ? PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
-
-to not hardcode the values of the PWM constants in the driver.
-
-Also this is incomplete, you need to handle .duty_cycle, .period and
-=2Eenabled, too.
-
-> +}
-> +
-> +static const struct pwm_ops msc313e_pwm_ops =3D {
-> +	.config =3D msc313e_pwm_config,
-> +	.set_polarity =3D msc313e_pwm_set_polarity,
-> +	.enable =3D msc313e_pwm_enable,
-> +	.disable =3D msc313e_pwm_disable,
-
-Please drop these. If there is an apply functions, these are all unused.
-
-> +	.apply =3D msc313e_apply,
-> +	.get_state =3D msc313e_get_state,
-> +	.owner =3D THIS_MODULE
-> +};
-> +
-> +static int msc313e_pwm_probe(struct platform_device *pdev)
-> +{
-> +	const struct msc313e_pwm_info *match_data;
-> +	struct device *dev =3D &pdev->dev;
-> +	struct msc313e_pwm *pwm;
-> +	__iomem void *base;
-> +	int i;
-> +
-> +	match_data =3D of_device_get_match_data(dev);
-> +	if (!match_data)
-> +		return -EINVAL;
-> +
-> +	base =3D devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	pwm =3D devm_kzalloc(dev, struct_size(pwm, channels, match_data->channe=
-ls), GFP_KERNEL);
-> +	if (!pwm)
-> +		return -ENOMEM;
-> +
-> +	pwm->clk =3D devm_clk_get(dev, NULL);
-> +	if (IS_ERR(pwm->clk))
-> +		return dev_err_probe(dev, PTR_ERR(pwm->clk), "Cannot get clk\n");
-> +
-> +	pwm->regmap =3D devm_regmap_init_mmio(dev, base, &msc313e_pwm_regmap_co=
-nfig);
-> +	if (IS_ERR(pwm->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(pwm->regmap), "Cannot get regmap\n");
-> +
-> +	for (i =3D 0; i < match_data->channels; i++) {
-> +		unsigned int offset =3D CHANNEL_OFFSET * i;
-> +		struct reg_field div_clkdiv_field =3D REG_FIELD(offset + REG_DIV, 0, 7=
-);
-> +		struct reg_field ctrl_polarity_field =3D REG_FIELD(offset + REG_CTRL, =
-4, 4);
-> +		struct reg_field dutyl_field =3D REG_FIELD(offset + REG_DUTY, 0, 15);
-> +		struct reg_field dutyh_field =3D REG_FIELD(offset + REG_DUTY + 4, 0, 2=
-);
-> +		struct reg_field periodl_field =3D REG_FIELD(offset + REG_PERIOD, 0, 1=
-5);
-> +		struct reg_field periodh_field =3D REG_FIELD(offset + REG_PERIOD + 4, =
-0, 2);
-> +		struct reg_field swrst_field =3D REG_FIELD(REG_SWRST, i, i);
-> +
-> +		pwm->channels[i].clkdiv =3D devm_regmap_field_alloc(dev, pwm->regmap,
-> +								  div_clkdiv_field);
-> +		pwm->channels[i].polarity =3D devm_regmap_field_alloc(dev, pwm->regmap,
-> +								    ctrl_polarity_field);
-> +		pwm->channels[i].dutyl =3D devm_regmap_field_alloc(dev, pwm->regmap, d=
-utyl_field);
-> +		pwm->channels[i].dutyh =3D devm_regmap_field_alloc(dev, pwm->regmap, d=
-utyh_field);
-> +		pwm->channels[i].periodl =3D devm_regmap_field_alloc(dev, pwm->regmap,=
- periodl_field);
-> +		pwm->channels[i].periodh =3D devm_regmap_field_alloc(dev, pwm->regmap,=
- periodh_field);
-> +		pwm->channels[i].swrst =3D devm_regmap_field_alloc(dev, pwm->regmap, s=
-wrst_field);
-
-Huh, never saw something like that. Is that really easier than using
-regmap_write()?
-
-> +	}
-> +
-> +	pwm->pwmchip.dev =3D dev;
-> +	pwm->pwmchip.ops =3D &msc313e_pwm_ops;
-> +	pwm->pwmchip.base =3D -1;
-
-Please drop this line
-
-> +	pwm->pwmchip.npwm =3D match_data->channels;
-> +	pwm->pwmchip.of_xlate =3D of_pwm_xlate_with_flags;
-
-You can drop this, this is assigned by default in the pwmchip_add
-function.
-
-> +	pwm->pwmchip.of_pwm_n_cells =3D 3;
-
-I didn't double check, but if the dtb has #pwm-cells =3D <3> this isn't
-needed.
-
-> +
-> +	platform_set_drvdata(pdev, pwm);
-
-This is unused -> drop.
-
-> +	return devm_pwmchip_add(dev, &pwm->pwmchip);
-> +}
-> +
-> +static const struct of_device_id msc313e_pwm_dt_ids[] =3D {
-> +	{ .compatible =3D "mstar,msc313e-pwm", .data =3D &msc313e_data },
-> +	{ .compatible =3D "mstar,ssd20xd-pwm", .data =3D &ssd20xd_data },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, msc313e_pwm_dt_ids);
-> +
-> +static struct platform_driver msc313e_pwm_driver =3D {
-> +	.probe =3D msc313e_pwm_probe,
-> +	.driver =3D {
-> +		.name =3D DRIVER_NAME,
-> +		.of_match_table =3D msc313e_pwm_dt_ids,
-> +	},
-> +};
-> +module_platform_driver(msc313e_pwm_driver);
-> +
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_DESCRIPTION("Mstar MSC313e PWM driver");
-> +MODULE_AUTHOR("Daniel Palmer <daniel@thingy.jp>");
-> --=20
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---silqiuwepn6la4xp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmKvlpUACgkQwfwUeK3K
-7AlzsQf/RY9U+Lyajw1cDmiTyhNYqB8fzUUESTBtOT3NKqbboYz5YbYxBGPQpqQ9
-v9Ng1I1+UMJfu3Gs/5T2SHrMTKiXt8HUhbrZZu+SfdqDjJzrfSEKLLZeSZNIpKfB
-xj6vrVifuLX7xjvfOlUfM99eTknF7Vtih1zDbBp/wJnP34w0eio3OIarQ2DPonOE
-z4dw89YcYuD6YvhWGHeY8zL9G9f1vrYfW36pAktWD7Oa3BLNup1u/Lwr/rfaBgVK
-DXyFrxBBULozjFoDd4RaF407RMZk4ZOmXTeHEAlx9Vc0/zVr/lz3DqURPGGKi7ef
-6vFYBFDnAGka8rjuInVQpkGsT+coLw==
-=0Sk+
------END PGP SIGNATURE-----
-
---silqiuwepn6la4xp--
+-- 
+Damien Le Moal
+Western Digital Research
