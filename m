@@ -2,103 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32F1C550A58
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 13:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9A1A550A63
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 13:52:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236830AbiFSLtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jun 2022 07:49:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37558 "EHLO
+        id S235422AbiFSLwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jun 2022 07:52:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231256AbiFSLtJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 07:49:09 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3348311C32
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 04:49:08 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id e2so625292edv.3
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 04:49:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Yp4bmUkucrfn0YoCb3947aiyNMhaiNjLfndCRiuztxU=;
-        b=yr+bG3jG4+68iQNvAiVbY3Z1gBJqsRvJGx5qiy0JF4mCyAGs2+gQW+U/llayv2QvZa
-         JObgwL6nY/In7vN0HgMJyKOHcXvcqtzdmIISyxAbBNQcLPd/7bs5WSSXoP1BF4CC0oSj
-         cOA/+WUR3Mjc/ZGuFAcYgKsUk8uEOUyOsnHY2Kdcj/KV2McZ7G5VwDWc+oYaFweytQiE
-         3DWEEJAHPlikXDtlaqwLSmEuovXWj4PGrR2gjXnxInhsq+/pVhYHn++AcQqqzmdENG9M
-         mGqPzpp9dyG8QRwIRiVCBK/yzkGrKuwNwcUEZGSzbCoak4I6gm0aJOkIY6vumz7Ed2+i
-         k4Hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Yp4bmUkucrfn0YoCb3947aiyNMhaiNjLfndCRiuztxU=;
-        b=X3fkfxSuZmWS/RCKWns9VK4/m2dgQhhcFPHI9R1LQ3ZO+1Qt72ujLb59jYGwtxwU9M
-         xV5jnJ1lwcXopXVPWT7nrwDM7cC1y5D5rwOyORD3pEPek8de/HNIS5n4gSt1sfKkLthk
-         V6LP0wnI1bntj16e9+//5fU2uvlqvvXs7CZHXT4lwAovtMwx4lZo+D/HcD01puquSjym
-         Uy+bmYWGkzmzbi24YWN8GNKD87O0W91epSzbzafMFoY/JJ4AXLxCZ4uQa3JqXMgPzSNf
-         4O9wA/VF+J6sm1iA5AhTrJ+vhRXis4fgDb6AIva2Q6YEEzjp0c5ecF0aFXX/CiEsvlVp
-         0WZQ==
-X-Gm-Message-State: AJIora9e7URNjGxNvDZ8kpuYh2peu9L7VF/vSoEi+oV+ixMvzrH3bUWq
-        iUScWiL1McIoyhPKvjFvDwydbQ==
-X-Google-Smtp-Source: AGRyM1uf/0HgCvqeSezyCxo06xRPdiDZsKSIjIh9ayuMCVtMgx1owUBRCkmcqmcT3JXy2reZyX/UXQ==
-X-Received: by 2002:aa7:cb13:0:b0:433:4985:1b54 with SMTP id s19-20020aa7cb13000000b0043349851b54mr22955689edt.182.1655639346743;
-        Sun, 19 Jun 2022 04:49:06 -0700 (PDT)
-Received: from [192.168.0.206] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id fd18-20020a056402389200b0043570d96d25sm2987288edb.95.2022.06.19.04.49.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Jun 2022 04:49:06 -0700 (PDT)
-Message-ID: <5c7a1763-01fb-249d-a301-9164e2139ac6@linaro.org>
-Date:   Sun, 19 Jun 2022 13:49:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 2/3] dt-bindings: usb: mtk-xhci: Allow middle optional
- clocks to be missing
-Content-Language: en-US
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        with ESMTP id S232251AbiFSLwB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 07:52:01 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D67C12098;
+        Sun, 19 Jun 2022 04:52:00 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C6A3325E;
+        Sun, 19 Jun 2022 13:51:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1655639519;
+        bh=U8T5YtF7Hm8RYD0xYvGiWRWoW/mJIMjaHSf3ZUOezCA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AHIgK/VQ4icDuuO+diTuqMhG0/brKjaSmYB4Jf7JCPgK45iElEmIvJzWZPbYjdNdk
+         5g2WwLR+0vqyeJRVZosSzCYT878HKBRdzL8wAKvyrh8QuvqFFj6bB3lDkYX2Qw74Xj
+         jX77S9+wg7q+GijjtuNe5617yEH2uFUSGH6qZR/0=
+Date:   Sun, 19 Jun 2022 14:51:44 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org
-References: <20220617222916.2435618-1-nfraprado@collabora.com>
- <20220617222916.2435618-3-nfraprado@collabora.com>
- <d95e046262751a7f746fabc5f1d9a39e675730b3.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d95e046262751a7f746fabc5f1d9a39e675730b3.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sean Anderson <sean.anderson@seco.com>
+Subject: Re: [PATCH] dt-bindings: phy: make phy-cells description a text
+Message-ID: <Yq8N0ASsp3e+rDAd@pendragon.ideasonboard.com>
+References: <20220619113325.21396-1-krzysztof.kozlowski@linaro.org>
+ <Yq8LHN+WGVpXDwiM@pendragon.ideasonboard.com>
+ <8fbee49a-8215-32b7-3545-66df70ecc38d@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <8fbee49a-8215-32b7-3545-66df70ecc38d@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2022 09:40, Chunfeng Yun wrote:
-> On Fri, 2022-06-17 at 18:29 -0400, Nícolas F. R. A. Prado wrote:
->> The current clock list in the binding doesn't allow for one of the
->> optional clocks to be missing and a subsequent clock to be present.
->> An
->> example where this is an issue is in mt8192.dtsi, which has "sys_ck",
->> "ref_ck", "xhci_ck" and would cause dtbs_check warnings.
-> How about using fixed clock instead to fix the check warning?
-> Using enum way seems make it more complex.
+On Sun, Jun 19, 2022 at 01:46:17PM +0200, Krzysztof Kozlowski wrote:
+> On 19/06/2022 13:40, Laurent Pinchart wrote:
+> > Hi Krzysztof,
+> > 
+> > Thank you for the patch.
+> > 
+> > On Sun, Jun 19, 2022 at 01:33:25PM +0200, Krzysztof Kozlowski wrote:
+> >> The description field is a string, so using YAML inside phy-cells
+> >> description is not actually helpful.
+> > 
+> > Does it hurt though ? For xlnx,zynqmp-psgtr.yaml I wrote it that way to
+> > prepare for a future where it could be described using a YAML schema
+> > (but such future may never come).
 > 
+> No, it does not hurt. It is however confusing some folks and they think
+> schema goes into description. The description should be
+> readable/descriptive for humans, so if you think your approach is
+> better, I am perfectly fine with it.
 
-That would mean the clock is not actually optional. The DTS should
-reflect the hardware so either you have the clock there or not. Either
-it is an input or not. Of course there are some exceptions (like
-non-controllable clock or regulator which not always has to be modeled).
+I don't mind much. If you think it would be a good idea to eventually
+describe the #phy-cells elements in YAML schema then I'd rather keep the
+current description, if there's very little chance it will happen, I
+don't mind changing it.
 
-Best regards,
-Krzysztof
+-- 
+Regards,
+
+Laurent Pinchart
