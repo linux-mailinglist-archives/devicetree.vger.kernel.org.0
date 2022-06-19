@@ -2,410 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E53AA550A1C
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 13:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E89D2550A25
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 13:24:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236330AbiFSLU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jun 2022 07:20:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48610 "EHLO
+        id S233799AbiFSLYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jun 2022 07:24:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233799AbiFSLU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 07:20:56 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F969617A;
-        Sun, 19 Jun 2022 04:20:55 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id hj18so15592545ejb.0;
-        Sun, 19 Jun 2022 04:20:55 -0700 (PDT)
+        with ESMTP id S230244AbiFSLYs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 07:24:48 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72FD621BB
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 04:24:47 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id o9so2287032edt.12
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 04:24:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=btc6MXZhlyojWTDihSijhm+Q441CgyvD6fYM+EfFunw=;
-        b=GXdMSKnOw/4FAHb0hst8jYeTTuAkof8mytDAKFlhezLILOMSfr9uKo7/Misws4eDfn
-         YS9UgOCqIjtp0qOzjfB0aRkl3/7KvTbvwC3YWpgaRE15ga0Gm5se518RJSswCWeI5Yq1
-         NLnGjTNRi3PMCA9OcN2H27et3yUm7HIMGI4nIMzLu33F9NH9WQHjd8XaHAc+J9FpY2So
-         cXBuCVneChgUstg8Tiz2AHucS4a2JmNMn7iaMPrh5IpMceJT7RAEzo3U7jLkgHlYRS8B
-         cgLum/j9xftxpNs7KwjDGemB7urx3cMNj/KdFx5WcVzb2Y8SvETlWRwbptGMyER48XbK
-         IjqQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=G9AtLmFO1Q7zUjUcmfK78M/O6m/Nuz1KuycFWUuvq/I=;
+        b=O3lMIEQfq5DCFApEzGRIUFMQfQ3a1G8SI1P9xeNf9OoLh/j+orfgq6AY7sVvuOtVbH
+         mDltZoFpRnwfmW4o5iHSenyizSZCbt5NxqYnsgj5xZZErwi4HMkjMO5iLI95T62DGxXt
+         o5SdFt7pNYjN+hCLnRJmvXsw46uD2mWDvo9pRXG8qNpDkQ3MQpYUmD+BykMt4MeGmBVj
+         QU+ES8E+hWJyOIwNuV8vGTRFrTugECFNjnz3drt/9tg3IjG+C6jMEMsJ84E4uhm4Vta0
+         izxp317u4/Dnl4eNVV8aO6RGLb5ejaspcPgwTyzbmi+QXa5ZpDyo9cERtQuvYgNm54hf
+         FY8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=btc6MXZhlyojWTDihSijhm+Q441CgyvD6fYM+EfFunw=;
-        b=30idxoMCCLTDuGdzyf16AT0lqYqHf4ngjuPkjmyE54He8PW9/3KheNWvUNJExfWFfR
-         t/ir1z6UQA9gy9e3dfbb+ODMXepk4gfSUwdp0UkP2F+5BL1rG0sTCWDlZeBg6kImcJl5
-         nTxNYi3HZxfoRizEFaOkeHURiSI0c9Ok/+wwD4BV6Pteunmw9mxFSsCOLu1YKiyLPWWQ
-         5ijbSvGO+yD88Sr4XYNpuNwqjfv2iRTQHQjHc8wruKLVbYbw3h+/6J8Auo1nUA0lMGnC
-         F5eJcvkpgOCQ34cC18bZi5oEGfYnKC+4PoTtoB2lTrM9yDHHSv9WeKPid3beNlp4z3nj
-         f6qw==
-X-Gm-Message-State: AJIora8GvscGnrnHAa+FipGievCj58oIUaOt3pMp9khVRhxFcd64kOah
-        fQB5+2zLd4vejz/A1kOnX1fuN3WcsTzgHPhtMdY=
-X-Google-Smtp-Source: AGRyM1vRDs4b0DmyMmlI7Kp5Hnc/HCHpZMI8j/okNewGXTikOc7OES4Dg2/VBxDVS18rUgEWBv0KD0aBAs7YqcNIAnA=
-X-Received: by 2002:a17:906:1193:b0:70d:cf39:a4db with SMTP id
- n19-20020a170906119300b0070dcf39a4dbmr16805100eja.44.1655637653799; Sun, 19
- Jun 2022 04:20:53 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=G9AtLmFO1Q7zUjUcmfK78M/O6m/Nuz1KuycFWUuvq/I=;
+        b=kIvEusbmjBNbTFbMOdUToMsqaS6UncK0YJcUKD4DjB+UCFiLuZe2CTv/6adAcBC+N7
+         s/tvfbf8RvdmOERIdH5vEX1g/UtOTZR1xGHpJD7xe4ka6Xse/D0TrFau+xXC9/TvPMG2
+         nFy1ScErUaypVOkYG9e4VMvvmJypcl39w27z2LI8W9Txo4jBSMK1exDgrqJhBipwatd2
+         3DYuvewqprVKIh8etmxyecAjL81y2E+YQuFhKMxZKX8fsntiiC1jR2tdILFvaef/XZge
+         c2AyM7XbVMR7QBAhjx5/kkbQx3cpsOZKUasq5MTFzeKSrnLAa8WaZwEbqqlXB+AS84+w
+         8d+g==
+X-Gm-Message-State: AJIora8UFjHLoQYoNqxV8GyBuixMl3beYXz+4tBE24+GJvUAFk29zfrf
+        nibiT4mZy8HGAqQKtzu7HEU0Jg==
+X-Google-Smtp-Source: AGRyM1vAtUjyt4xVHzND3Aw/WtRYqkX65iSIWe7BeNIpO+IWkZs5qF6SmoI/b40MHD3xsv73xib21w==
+X-Received: by 2002:a05:6402:1c09:b0:435:6562:e70d with SMTP id ck9-20020a0564021c0900b004356562e70dmr12979868edb.203.1655637885978;
+        Sun, 19 Jun 2022 04:24:45 -0700 (PDT)
+Received: from [192.168.0.206] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id d5-20020a170906304500b0070f7d1c5a18sm4460333ejd.55.2022.06.19.04.24.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Jun 2022 04:24:45 -0700 (PDT)
+Message-ID: <d79239ce-3959-15f8-7121-478fc6d432e4@linaro.org>
+Date:   Sun, 19 Jun 2022 13:24:43 +0200
 MIME-Version: 1.0
-References: <20220618214009.2178567-1-aidanmacdonald.0x0@gmail.com> <20220618214009.2178567-14-aidanmacdonald.0x0@gmail.com>
-In-Reply-To: <20220618214009.2178567-14-aidanmacdonald.0x0@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 19 Jun 2022 13:20:17 +0200
-Message-ID: <CAHp75Vev77nG-Ui9cp9Bz8KPcq67E3htCTYnu4NNMV0_UP9=rw@mail.gmail.com>
-Subject: Re: [PATCH v3 13/16] pinctrl: Add AXP192 pin control driver
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH net-next 01/28] dt-bindings: phy: Add QorIQ SerDes binding
+Content-Language: en-US
+To:     Sean Anderson <sean.anderson@seco.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>, netdev@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Eric Dumazet <edumazet@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>, quic_gurus@quicinc.com,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Michael Walle <michael@walle.cc>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org
+References: <20220617203312.3799646-1-sean.anderson@seco.com>
+ <20220617203312.3799646-2-sean.anderson@seco.com>
+ <110c4a4b-8007-1826-ee27-02eaedd22d8f@linaro.org>
+ <535a0389-6c97-523d-382f-e54d69d3907e@seco.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <535a0389-6c97-523d-382f-e54d69d3907e@seco.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 18, 2022 at 11:40 PM Aidan MacDonald
-<aidanmacdonald.0x0@gmail.com> wrote:
->
-> The AXP192 PMIC's GPIO registers are much different from the GPIO
-> registers of the AXP20x and AXP813 PMICs supported by the existing
-> pinctrl-axp209 driver. It makes more sense to add a new driver for
-> the AXP192, rather than add support in the existing axp20x driver.
->
-> The pinctrl-axp192 driver is considerably more flexible in terms of
-> register layout and should be able to support other X-Powers PMICs.
-> Interrupts and pull down resistor configuration are supported too.
+On 18/06/2022 05:38, Sean Anderson wrote:
+> Hi Krzysztof,
+> 
+> On 6/17/22 9:15 PM, Krzysztof Kozlowski wrote:
+>> On 17/06/2022 13:32, Sean Anderson wrote:
+>>> This adds a binding for the SerDes module found on QorIQ processors. The
+>>> phy reference has two cells, one for the first lane and one for the
+>>> last. This should allow for good support of multi-lane protocols when
+>>> (if) they are added. There is no protocol option, because the driver is
+>>> designed to be able to completely reconfigure lanes at runtime.
+>>> Generally, the phy consumer can select the appropriate protocol using
+>>> set_mode. For the most part there is only one protocol controller
+>>> (consumer) per lane/protocol combination. The exception to this is the
+>>> B4860 processor, which has some lanes which can be connected to
+>>> multiple MACs. For that processor, I anticipate the easiest way to
+>>> resolve this will be to add an additional cell with a "protocol
+>>> controller instance" property.
+>>>
+>>> Each serdes has a unique set of supported protocols (and lanes). The
+>>> support matrix is stored in the driver and is selected based on the
+>>> compatible string. It is anticipated that a new compatible string will
+>>> need to be added for each serdes on each SoC that drivers support is
+>>> added for.
+>>>
+>>> There are two PLLs, each of which can be used as the master clock for
+>>> each lane. Each PLL has its own reference. For the moment they are
+>>> required, because it simplifies the driver implementation. Absent
+>>> reference clocks can be modeled by a fixed-clock with a rate of 0.
+>>>
+>>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+>>> ---
+>>>
+>>>   .../bindings/phy/fsl,qoriq-serdes.yaml        | 78 +++++++++++++++++++
+>>>   1 file changed, 78 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/phy/fsl,qoriq-serdes.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/fsl,qoriq-serdes.yaml b/Documentation/devicetree/bindings/phy/fsl,qoriq-serdes.yaml
+>>> new file mode 100644
+>>> index 000000000000..4b9c1fcdab10
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/phy/fsl,qoriq-serdes.yaml
+>>> @@ -0,0 +1,78 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/phy/fsl,qoriq-serdes.yaml#
+>>
+>> File name: fsl,ls1046a-serdes.yaml
+> 
+> This is not appropriate, since this binding will be used for many QorIQ
+> devices, not just LS1046A.
 
-...
+This is the DT bindings convention and naming style, so why do you say
+it is not appropriate? If the new SoC at some point requires different
+binding what filename do you use? fsl,qoriq-serdes2.yaml? And then again
+fsl,qoriq-serdes3.yaml?
 
-> +config PINCTRL_AXP192
-> +       tristate "X-Powers AXP192 PMIC pinctrl and GPIO Support"
-> +       depends on MFD_AXP20X
+Please follow DT bindings convention and name it after first compatible
+in the bindings.
+
+> The LS1046A is not even an "ur" device (first
+> model, etc.) but simply the one I have access to.
+
+It does not matter that much if it is first in total. Use the first one
+from the documented compatibles.
+
+> 
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: NXP QorIQ SerDes Device Tree Bindings
+>>
+>> s/Device Tree Bindings//
+> 
+> OK
+> 
+>>> +
+>>> +maintainers:
+>>> +  - Sean Anderson <sean.anderson@seco.com>
+>>> +
+>>> +description: |
+>>> +  This binding describes the SerDes devices found in NXP's QorIQ line of
+>>
+>> Describe the device, not the binding, so wording "This binding" is not
+>> appropriate.
+> 
+> OK
+> 
+>>> +  processors. The SerDes provides up to eight lanes. Each lane may be
+>>> +  configured individually, or may be combined with adjacent lanes for a
+>>> +  multi-lane protocol. The SerDes supports a variety of protocols, including up
+>>> +  to 10G Ethernet, PCIe, SATA, and others. The specific protocols supported for
+>>> +  each lane depend on the particular SoC.
+>>> +
+>>> +properties:
+>>
+>> Compatible goes first.
+>>
+>>> +  "#phy-cells":
+>>> +    const: 2
+>>> +    description: |
+>>> +      The cells contain the following arguments.
+>>> +
+>>> +      - description: |
+>>
+>> Not a correct schema. What is this "- description" attached to? There is
+>> no items here...
+> 
+> This is the same format as used by
+> Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
+
+I'll fix it.
+
+> 
+> How should the cells be documented?
+
+Could be something like that:
+Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml
+
+> 
+>>> +          The first lane in the group. Lanes are numbered based on the register
+>>> +          offsets, not the I/O ports. This corresponds to the letter-based
+>>> +          ("Lane A") naming scheme, and not the number-based ("Lane 0") naming
+>>> +          scheme. On most SoCs, "Lane A" is "Lane 0", but not always.
+>>> +        minimum: 0
+>>> +        maximum: 7
+>>> +      - description: |
+>>> +          Last lane. For single-lane protocols, this should be the same as the
+>>> +          first lane.
+>>> +        minimum: 0
+>>> +        maximum: 7
+>>> +
+>>> +  compatible:
+>>> +    enum:
+>>> +      - fsl,ls1046a-serdes-1
+>>> +      - fsl,ls1046a-serdes-2
+>>
+>> Does not look like proper compatible and your explanation from commit
+>> msg did not help me. What "1" and "2" stand for? Usually compatibles
+>> cannot have some arbitrary properties encoded.
+> 
+> Each serdes has a different set of supported protocols for each lane. This is encoded
+> in the driver data associated with the compatible
+
+Implementation does not matter.
+
+> , along with the appropriate values
+> to plug into the protocol control registers. Because each serdes has a different set
+> of supported protocols 
+
+Another way is to express it with a property.
+
+> and register configuration, 
+
+What does it mean exactly? The same protocols have different programming
+model on the instances?
+
+> adding support for a new SoC will
+> require adding the appropriate configuration to the driver, and adding a new compatible
+> string. Although most of the driver is generic, this critical portion is shared only
+> between closely-related SoCs (such as variants with differing numbers of cores).
+> 
+
+Again implementation - we do not talk here about driver, but the bindings.
+
+> The 1 and 2 stand for the number of the SerDes on that SoC. e.g. the documentation will
+> refer to SerDes1 and SerDes2.
+>   
+> So e.g. other compatibles might be
+> 
+> - fsl,ls1043a-serdes-1 # There's only one serdes on this SoC
+> - fsl,t4042-serdes-1 # This SoC has four serdes
+> - fsl,t4042-serdes-2
+> - fsl,t4042-serdes-3
+> - fsl,t4042-serdes-4
+
+If the devices are really different - there is no common parts in the
+programming model (registers) - then please find some descriptive
+compatible. However if the programming model of common part is
+consistent and the differences are only for different protocols (kind of
+expected), this should be rather a property describing which protocols
+are supported.
 
 
-> +       depends on OF
-
-Why?
-
-> +       select PINMUX
-> +       select GENERIC_PINCONF
-> +       select GPIOLIB
-
-...
-
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-
-Why?
-
-...
-
-> +struct axp192_pctl_function {
-> +       const char              *name;
-> +       /* Mux value written to the control register to select the function (-1 if unsupported) */
-
-Comment is misleading. -1 can't be a value of unsigned type.
-
-> +       const u8                *muxvals;
-> +       const char * const      *groups;
-> +       unsigned int            ngroups;
-> +};
-
-...
-
-> +struct axp192_pctl_desc {
-> +       unsigned int                            npins;
-> +       const struct pinctrl_pin_desc           *pins;
-> +       /* Description of the function control register for each pin */
-> +       const struct axp192_pctl_reg_info       *ctrl_regs;
-> +       /* Description of the output signal register for each pin */
-> +       const struct axp192_pctl_reg_info       *out_regs;
-> +       /* Description of the input signal register for each pin */
-> +       const struct axp192_pctl_reg_info       *in_regs;
-> +       /* Description of the pull down resistor config register for each pin */
-
-Can you just convert these comments to a kernel-doc?
-
-> +       const struct axp192_pctl_reg_info       *pull_down_regs;
-> +
-> +       unsigned int                            nfunctions;
-> +       const struct axp192_pctl_function       *functions;
-> +};
-
-...
-
-> +
-> +
-
-One blank line is enough.
-
-...
-
-> +       switch (param) {
-> +       case PIN_CONFIG_BIAS_DISABLE:
-> +               ret = axp192_pinconf_get_pull_down(pctldev, pin);
-> +               if (ret < 0)
-> +                       return ret;
-
-> +               else if (ret != 0)
-
-1. Redundant 'else'
-2. if (ret > 0)
-
-> +                       return -EINVAL;
-> +               break;
-> +
-> +       case PIN_CONFIG_BIAS_PULL_DOWN:
-> +               ret = axp192_pinconf_get_pull_down(pctldev, pin);
-> +               if (ret < 0)
-> +                       return ret;
-> +               else if (ret == 0)
-
-Ditto.
-
-Looking at this I would rather expect the function to return something
-defined, than 0, non-0.
-
-> +                       return -EINVAL;
-> +               break;
-
-> +       default:
-> +               return -ENOTSUPP;
-> +       }
-
-...
-
-> +       for (cfg = 0; cfg < num_configs; ++cfg) {
-
-cfg++ will work the same way and easier to read.
-
-> +               switch (pinconf_to_config_param(configs[cfg])) {
-> +               case PIN_CONFIG_BIAS_DISABLE:
-> +                       ret = axp192_pinconf_set_pull_down(pctldev, pin, 0);
-> +                       if (ret)
-> +                               return ret;
-> +                       break;
-> +
-> +               case PIN_CONFIG_BIAS_PULL_DOWN:
-> +                       ret = axp192_pinconf_set_pull_down(pctldev, pin, 1);
-> +                       if (ret)
-> +                               return ret;
-> +                       break;
-> +
-> +               default:
-> +                       return -ENOTSUPP;
-> +               }
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct pinconf_ops axp192_conf_ops = {
-> +       .is_generic = true,
-> +       .pin_config_get = axp192_pinconf_get,
-> +       .pin_config_set = axp192_pinconf_set,
-> +       .pin_config_group_get = axp192_pinconf_get,
-> +       .pin_config_group_set = axp192_pinconf_set,
-> +};
-> +
-> +static int axp192_pmx_set(struct pinctrl_dev *pctldev, unsigned int offset, u8 config)
-> +{
-> +       struct axp192_pctl *pctl = pinctrl_dev_get_drvdata(pctldev);
-> +       const struct axp192_pctl_reg_info *reginfo = &pctl->desc->ctrl_regs[offset];
-> +       unsigned int regval = config << (ffs(reginfo->mask) - 1);
-> +
-> +       return regmap_update_bits(pctl->regmap, reginfo->reg, reginfo->mask, regval);
-> +}
-> +
-> +static int axp192_pmx_func_cnt(struct pinctrl_dev *pctldev)
-> +{
-> +       struct axp192_pctl *pctl = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +       return pctl->desc->nfunctions;
-> +}
-> +
-> +static const char *axp192_pmx_func_name(struct pinctrl_dev *pctldev, unsigned int selector)
-> +{
-> +       struct axp192_pctl *pctl = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +       return pctl->desc->functions[selector].name;
-> +}
-> +
-> +static int axp192_pmx_func_groups(struct pinctrl_dev *pctldev, unsigned int selector,
-> +                                 const char * const **groups, unsigned int *num_groups)
-> +{
-> +       struct axp192_pctl *pctl = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +       *groups = pctl->desc->functions[selector].groups;
-> +       *num_groups = pctl->desc->functions[selector].ngroups;
-> +
-> +       return 0;
-> +}
-> +
-> +static int axp192_pmx_set_mux(struct pinctrl_dev *pctldev,
-> +                             unsigned int function, unsigned int group)
-> +{
-> +       struct axp192_pctl *pctl = pinctrl_dev_get_drvdata(pctldev);
-> +       const u8 *muxvals = pctl->desc->functions[function].muxvals;
-> +
-> +       if (muxvals[group] == U8_MAX)
-> +               return -EINVAL;
-> +
-> +       /*
-> +        * Switching to LDO or PWM function will enable LDO/PWM output, so it's
-> +        * better to ignore these requests and let the regulator or PWM drivers
-> +        * handle muxing to avoid interfering with them.
-> +        */
-> +       if (function == AXP192_FUNC_LDO || function == AXP192_FUNC_PWM)
-> +               return 0;
-> +
-> +       return axp192_pmx_set(pctldev, group, muxvals[group]);
-> +}
-> +
-> +static int axp192_pmx_gpio_set_direction(struct pinctrl_dev *pctldev,
-> +                                        struct pinctrl_gpio_range *range,
-> +                                        unsigned int offset, bool input)
-> +{
-> +       struct axp192_pctl *pctl = pinctrl_dev_get_drvdata(pctldev);
-> +       const u8 *muxvals = input ? pctl->desc->functions[AXP192_FUNC_INPUT].muxvals
-> +                                 : pctl->desc->functions[AXP192_FUNC_OUTPUT].muxvals;
-> +
-> +       return axp192_pmx_set(pctldev, offset, muxvals[offset]);
-> +}
-> +
-> +static const struct pinmux_ops axp192_pmx_ops = {
-> +       .get_functions_count    = axp192_pmx_func_cnt,
-> +       .get_function_name      = axp192_pmx_func_name,
-> +       .get_function_groups    = axp192_pmx_func_groups,
-> +       .set_mux                = axp192_pmx_set_mux,
-> +       .gpio_set_direction     = axp192_pmx_gpio_set_direction,
-> +       .strict                 = true,
-> +};
-> +
-> +static int axp192_groups_cnt(struct pinctrl_dev *pctldev)
-> +{
-> +       struct axp192_pctl *pctl = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +       return pctl->desc->npins;
-> +}
-> +
-> +static const char *axp192_group_name(struct pinctrl_dev *pctldev, unsigned int selector)
-> +{
-> +       struct axp192_pctl *pctl = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +       return pctl->desc->pins[selector].name;
-> +}
-> +
-> +static int axp192_group_pins(struct pinctrl_dev *pctldev, unsigned int selector,
-> +                            const unsigned int **pins, unsigned int *num_pins)
-> +{
-> +       struct axp192_pctl *pctl = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +       *pins = &pctl->desc->pins[selector].number;
-> +       *num_pins = 1;
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct pinctrl_ops axp192_pctrl_ops = {
-> +       .dt_node_to_map         = pinconf_generic_dt_node_to_map_group,
-> +       .dt_free_map            = pinconf_generic_dt_free_map,
-> +       .get_groups_count       = axp192_groups_cnt,
-> +       .get_group_name         = axp192_group_name,
-> +       .get_group_pins         = axp192_group_pins,
-> +};
-> +
-> +static int axp192_pctl_probe(struct platform_device *pdev)
-> +{
-> +       struct axp20x_dev *axp20x = dev_get_drvdata(pdev->dev.parent);
-> +       struct axp192_pctl *pctl;
-> +       struct pinctrl_desc *pctrl_desc;
-> +       int ret, i;
-> +
-> +       pctl = devm_kzalloc(&pdev->dev, sizeof(*pctl), GFP_KERNEL);
-> +       if (!pctl)
-> +               return -ENOMEM;
-> +
-> +       pctl->desc = device_get_match_data(&pdev->dev);
-> +       pctl->regmap = axp20x->regmap;
-> +       pctl->regmap_irqc = axp20x->regmap_irqc;
-> +       pctl->dev = &pdev->dev;
-> +
-> +       pctl->chip.base                 = -1;
-> +       pctl->chip.can_sleep            = true;
-> +       pctl->chip.request              = gpiochip_generic_request;
-> +       pctl->chip.free                 = gpiochip_generic_free;
-> +       pctl->chip.parent               = &pdev->dev;
-> +       pctl->chip.label                = dev_name(&pdev->dev);
-> +       pctl->chip.owner                = THIS_MODULE;
-> +       pctl->chip.get                  = axp192_gpio_get;
-> +       pctl->chip.get_direction        = axp192_gpio_get_direction;
-> +       pctl->chip.set                  = axp192_gpio_set;
-> +       pctl->chip.direction_input      = axp192_gpio_direction_input;
-> +       pctl->chip.direction_output     = axp192_gpio_direction_output;
-> +       pctl->chip.to_irq               = axp192_gpio_to_irq;
-> +       pctl->chip.ngpio                = pctl->desc->npins;
-> +
-> +       pctl->irqs = devm_kcalloc(&pdev->dev, pctl->desc->npins, sizeof(int), GFP_KERNEL);
-> +       if (!pctl->irqs)
-> +               return -ENOMEM;
-> +
-> +       for (i = 0; i < pctl->desc->npins; ++i) {
-> +               ret = platform_get_irq_byname_optional(pdev, pctl->desc->pins[i].name);
-> +               if (ret > 0)
-> +                       pctl->irqs[i] = ret;
-> +       }
-> +
-> +       platform_set_drvdata(pdev, pctl);
-> +
-> +       pctrl_desc = devm_kzalloc(&pdev->dev, sizeof(*pctrl_desc), GFP_KERNEL);
-> +       if (!pctrl_desc)
-> +               return -ENOMEM;
-> +
-> +       pctrl_desc->name = dev_name(&pdev->dev);
-> +       pctrl_desc->owner = THIS_MODULE;
-> +       pctrl_desc->pins = pctl->desc->pins;
-> +       pctrl_desc->npins = pctl->desc->npins;
-> +       pctrl_desc->pctlops = &axp192_pctrl_ops;
-> +       pctrl_desc->pmxops = &axp192_pmx_ops;
-> +       pctrl_desc->confops = &axp192_conf_ops;
-> +
-> +       pctl->pctl_dev = devm_pinctrl_register(&pdev->dev, pctrl_desc, pctl);
-> +       if (IS_ERR(pctl->pctl_dev))
-> +               dev_err_probe(&pdev->dev, PTR_ERR(pctl->pctl_dev),
-> +                             "couldn't register pinctrl driver\n");
-> +
-> +       ret = devm_gpiochip_add_data(&pdev->dev, &pctl->chip, pctl);
-> +       if (ret)
-> +               dev_err_probe(&pdev->dev, ret, "Failed to register GPIO chip\n");
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct of_device_id axp192_pctl_match[] = {
-> +       { .compatible = "x-powers,axp192-gpio", .data = &axp192_data, },
-> +       { }
-> +};
-
--- 
-With Best Regards,
-Andy Shevchenko
+Best regards,
+Krzysztof
