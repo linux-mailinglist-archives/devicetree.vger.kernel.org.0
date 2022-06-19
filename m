@@ -2,55 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99755550CE1
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 22:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52F8B550CF4
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 22:32:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233983AbiFSUOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jun 2022 16:14:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57730 "EHLO
+        id S237027AbiFSUci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jun 2022 16:32:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230121AbiFSUOJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 16:14:09 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8244B4AA
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 13:14:08 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o31Iy-0000nr-Id; Sun, 19 Jun 2022 22:13:56 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o31Iq-001Voq-F1; Sun, 19 Jun 2022 22:13:49 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1o31Ir-00HRYt-34; Sun, 19 Jun 2022 22:13:49 +0200
-Date:   Sun, 19 Jun 2022 22:13:41 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linus.walleij@linaro.org, brgl@bgdev.pl, thierry.reding@gmail.com,
-        lee.jones@linaro.org, andrew@lunn.ch,
-        thomas.petazzoni@free-electrons.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] dt-bindings: gpio: gpio-mvebu: document offset
- and marvell,pwm-offset
-Message-ID: <20220619201341.yus35sjz7z3gedal@pengutronix.de>
-References: <20220526012946.3862776-1-chris.packham@alliedtelesis.co.nz>
- <20220526012946.3862776-4-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S235930AbiFSUch (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 16:32:37 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98F86B7FE;
+        Sun, 19 Jun 2022 13:32:34 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1o31am-0000EW-MI; Sun, 19 Jun 2022 22:32:20 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     palmer@dabbelt.com, paul.walmsley@sifive.com
+Cc:     linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        wefu@redhat.com, guoren@kernel.org, cmuellner@linux.com,
+        philipp.tomsich@vrull.eu, hch@lst.de, samuel@sholland.org,
+        atishp@atishpatra.org, anup@brainfault.org, mick@ics.forth.gr,
+        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        drew@beagleboard.org, rdunlap@infradead.org,
+        Heiko Stuebner <heiko@sntech.de>
+Subject: [PATCH v4 0/4] riscv: implement Zicbom-based CMO instructions + the t-head variant
+Date:   Sun, 19 Jun 2022 22:32:08 +0200
+Message-Id: <20220619203212.3604485-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xvuxeb3qoohuploo"
-Content-Disposition: inline
-In-Reply-To: <20220526012946.3862776-4-chris.packham@alliedtelesis.co.nz>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,83 +43,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series is based on the alternatives changes done in my svpbmt series
+and thus also depends on Atish's isa-extension parsing series.
 
---xvuxeb3qoohuploo
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It implements using the cache-management instructions from the  Zicbom-
+extension to handle cache flush, etc actions on platforms needing them.
 
-On Thu, May 26, 2022 at 01:29:46PM +1200, Chris Packham wrote:
-> The offset and marvell,pwm-offset properties weren't in the old binding.
-> Add them based on the existing usage in the driver and board DTS when
-> the marvell,armada-8k-gpio compatible is used.
->=20
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->=20
-> Notes:
->     Changes in v4:
->     - Reword commit message slightly
->     - Add review from Krzysztof
->     Changes in v3:
->     - Split off from 1:1 conversion patch
->=20
->  Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml b/Doc=
-umentation/devicetree/bindings/gpio/gpio-mvebu.yaml
-> index 459ec35864fe..f1bd1e6b2e1f 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml
-> @@ -45,6 +45,10 @@ properties:
->        - const: pwm
->      minItems: 1
-> =20
-> +  offset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Offset in the register map for the gpio registers (in b=
-ytes)
-> +
->    interrupts:
->      description: |
->        The list of interrupts that are used for all the pins managed by t=
-his
-> @@ -68,6 +72,10 @@ properties:
->    "#gpio-cells":
->      const: 2
-> =20
-> +  marvell,pwm-offset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Offset in the register map for the pwm registers (in by=
-tes)
-> +
+SoCs using cpu cores from T-Head like the Allwinne D1 implement a
+different set of cache instructions. But while they are different,
+instructions they provide the same functionality, so a variant can
+easly hook into the existing alternatives mechanism on those.
 
-Seems to match reality (in the driver and some dtsi files).
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+An ongoing discussion is about the currently used pre-coded
+instructions. Palmer's current thinking is that we should wait
+until the relevant instructions have landed in binutils.
 
-Best regards
-Uwe
+The main Zicbom instructions are in toolchains now and at least
+Debian also carries a binutils snapshot with it, but the T-Head
+variant still uses pre-coded instructions for now.
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+The series sits on top of my svpbmt fixup series, which
+for example includes the conversion away from function pointers
+for the check-functions. And also uses my nops-series.
 
---xvuxeb3qoohuploo
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+Hopefully I caught all the review-comments from v3.
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmKvg3IACgkQwfwUeK3K
-7Alwwgf8CsCHCQGSAfBc8+GQ/QiAhiN6VxkHg/K1L/Ag+Zc3gYNy9xeWMkir7ikv
-EhbI3u/MIgvI+xjlomD0cNyuUBhOtglusOp3wpiOcBvvVQn8FwzjZOX0Jnrm1Ke7
-xzx29+lyclz/Jr/mBGUYc3+q+6+4yX3vk9BXrIMG8y87V80Go4pXonXl3AZJFinR
-YpljwaxgrZ8Sl1DyTQrvIKbV7Y4NHhLf23p4qcbyXscaqwvilDtxDpCo4/auqrQN
-Otkbgv7gyJazK9tRbEwD/w8F8eQSjpG6gjJvNZ3JMMmAQWYEWnEbcXgJ2jeHnlKL
-f2myqmeDNVra+gKvUZBF5a+ckLbQbg==
-=J8FS
------END PGP SIGNATURE-----
 
---xvuxeb3qoohuploo--
+changes in v4:
+- modify of_dma_is_coherent() also handle coherent system
+  with maybe noncoherent devices
+- move Zicbom to use real instructions
+- split off the actual dma-noncoherent code from the Zicbom
+  extension
+- Don't assumes devices are non-coherent, instead default to
+  coherent and require the non-coherent ones to be marked
+- CPUFEATURE_ZICBOM instead of CPUFEATURE_CMO
+- fix used cache addresses
+- drop some unused headers from dma-noncoherent.c
+- move unsigned long cast when calling ALT_CMO_OP
+- remove unneeded memset-0
+- define ARCH_DMA_MINALIGN
+- use flush instead of inval in arch_sync_dma_for_cpu()
+- depend on !XIP_KERNEL
+- trim some line lengths
+- improve Kconfig description
+
+changes in v3:
+- rebase onto 5.19-rc1 + svpbmt-fixup-series
+- adapt wording for block-size binding
+- include asm/cacheflush.h into dma-noncoherent to fix the
+  no-prototype error clang seems to generate
+- use __nops macro for readability
+- add some received tags
+- add a0 to the clobber list
+
+changes in v2:
+- cbom-block-size is hardware-specific and comes from firmware
+- update Kconfig name to use the ISA extension name
+- select the ALTERNATIVES symbol when enabled
+- shorten the line lengths of the errata-assembly
+
+Heiko Stuebner (4):
+  of: also handle dma-noncoherent in of_dma_is_coherent()
+  dt-bindings: riscv: document cbom-block-size
+  riscv: Implement Zicbom-based cache management operations
+  riscv: implement cache-management errata for T-Head SoCs
+
+ .../devicetree/bindings/riscv/cpus.yaml       |  5 +
+ arch/riscv/Kconfig                            | 31 ++++++
+ arch/riscv/Kconfig.erratas                    | 11 +++
+ arch/riscv/Makefile                           |  4 +
+ arch/riscv/errata/thead/errata.c              | 15 +++
+ arch/riscv/include/asm/cache.h                |  4 +
+ arch/riscv/include/asm/cacheflush.h           |  6 ++
+ arch/riscv/include/asm/errata_list.h          | 59 +++++++++++-
+ arch/riscv/include/asm/hwcap.h                |  1 +
+ arch/riscv/kernel/cpu.c                       |  1 +
+ arch/riscv/kernel/cpufeature.c                | 18 ++++
+ arch/riscv/kernel/setup.c                     |  2 +
+ arch/riscv/mm/Makefile                        |  1 +
+ arch/riscv/mm/dma-noncoherent.c               | 96 +++++++++++++++++++
+ drivers/of/address.c                          | 16 +++-
+ 15 files changed, 263 insertions(+), 7 deletions(-)
+ create mode 100644 arch/riscv/mm/dma-noncoherent.c
+
+-- 
+2.35.1
+
