@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21128550D2A
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 23:26:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDA30550D34
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 23:27:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237328AbiFSV0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jun 2022 17:26:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56678 "EHLO
+        id S235758AbiFSV1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jun 2022 17:27:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237288AbiFSV0A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 17:26:00 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41BEF656B
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 14:25:59 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id g4so2024741lfv.9
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 14:25:59 -0700 (PDT)
+        with ESMTP id S231372AbiFSV1j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 17:27:39 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 318B0AE5A
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 14:27:38 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id s21so3850054lfs.13
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 14:27:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mgNG4CqobFmIv3cjkJhZdSr5JTtKXvysIj6GWq9VnJY=;
-        b=s0KMIc9+Eo29Hz94u3DVPWl2jKS80lBkD8M/KQwfulYJr4wZ1gTlTic8LGYD4Sf/Y0
-         qia8qqXA5OQtAM5XOPg/SPXG9diNxiC84BJBZtXohpKmbUkdu9mkUhty9qNiwkkBRD5R
-         AT33yH33Enn9lXpowLmQnA3WOcZpoSH17oYEHGhvGKF9NxIf4HmZaD7pyPXGsFrXPl+e
-         JZ2O/SMUnIwlOJucMRxu3C84X/QaefBlD31fzSuRXseOu7TZjWMCWUPXy2uMkq7r1Wri
-         r2fOOgIqvvxcPcTZi7u+GqDBcCWNPV3LjdnFJh2eR5Qge0lN8bI7/OzAlUqrjM10WloO
-         Knkw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CJLe278N4mRl3E1vVE4w4t5r41H7ei/+ymPNgrkUtZg=;
+        b=NbWFoE75zlAPNIrVYEgvAK4lPxQsTJQENiGPBbakhRgSrS+e+GjzRqguwBdUDPJJEN
+         vKqQQZQAhEhLXj2z+4K17S4pV4VVvmNEepZmgFOtcI1zjufnub9sWRldoGJzZ/tlJBpY
+         yfjLgQopzej0TNMq1saMHgUczt90jMP5tM3oSZDCk3wFbKtmWpwv80aXqDgC7bRk+mfL
+         ZABJWUz1+xlvlMlkOnTzuC+zO2wX3n+z+9aGUjwhQ1+VKyRDrT0hWUS0sqe5GDt8iexs
+         oAS9+QXu9rP0vyftqppCiG5mZWNHqzqoLdQfHbxsGCVYiHbvRNkUlCzJnduLYehVJJl1
+         iWzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mgNG4CqobFmIv3cjkJhZdSr5JTtKXvysIj6GWq9VnJY=;
-        b=iY94XJrI0zObwWl0TMgSlnzr0JtQ3gH7mrXVM+0OQAh024Vq++kueHL5nsXB0GsOhM
-         UtVNZUxq1G/3IHmuHKz3gmMFj+hnv6Cwnik7/N9IIebqYEGf4CsR8cAmiGC8D7OFOwX3
-         Pr5iMPKBG3XuKjxX9drMXtlY5bsM0ng8TclRg33SHXnkoxDCqgkULq+MF4b28BS8gu1t
-         le/v7qjr1u3Ejg1E7RZKxJz34iea4Mh3TZ//icwX9qXfu2oJzne2LXrjFiWIbv0HrfFd
-         eUoXzTCL3EYPFEsmDy2HPQRw317crmQjFhZpYy8uGgIOySFVW46VlZWBT1QXf4jX3imu
-         /p+A==
-X-Gm-Message-State: AJIora8Ti/GaFi0xlh16K8hnvMo6k+gBD9wVGVwTk1VxlnCCubZ4ArRp
-        NRuC54m3jsY8LAAALTWkjNRE3g==
-X-Google-Smtp-Source: AGRyM1sLUaSI2w7lpsyGmFlTdfSL2NBxf81GzHNNJ1hv2G64VYnhNsg8z3XZmoVAmDXrJCpEgtTkEw==
-X-Received: by 2002:a05:6512:11c3:b0:479:5b9d:6174 with SMTP id h3-20020a05651211c300b004795b9d6174mr12029377lfr.75.1655673958820;
-        Sun, 19 Jun 2022 14:25:58 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CJLe278N4mRl3E1vVE4w4t5r41H7ei/+ymPNgrkUtZg=;
+        b=7uAQEUA3FaXhovKBvWEXyxdjsuTAfGqhNvdT3YVtpwyY/KlMtiFXYxAZ/HWzRScJR+
+         DeyipWP+FkFPjcPrTZAUDqyWuhZqnpjY/9FHeEObHEU/lyXyjT2Q9sAk1X0BR7n1PDCD
+         i+7EA9cRUeb2MllQGOMwKeze5wN9A2X2K+hUBuR6wgUedH/wzcCEL1BRofRL8kCcApcr
+         Ou948/GJIFzOFJB6mOljOzHvGSrBUqnKEZOBXg0NO3zpQmex6l+btJEEOSRyzpznvX2+
+         UR9BX5xaz3Y+4D3POoUdD83dGO6CNL4c2tVoWGnHMN6MmlSPpzpcY9twcNUFdYfLWajI
+         xItA==
+X-Gm-Message-State: AJIora+YAVxjqUvTk8egADnnqKpiKMtBTOwIT7WHsFat/H0XD/0o1Kmx
+        KeYF8PxZHaiEV0XneLXT4jXgfg==
+X-Google-Smtp-Source: AGRyM1ucbMFjdw2URvElL0AsC7Ua+u+MCHSIC47vbXYscRzPTWBlB/Rg48T4u7a8j9sYjqS2fEfmWg==
+X-Received: by 2002:a05:6512:224b:b0:47f:68cf:e697 with SMTP id i11-20020a056512224b00b0047f68cfe697mr3011924lfu.233.1655674056504;
+        Sun, 19 Jun 2022 14:27:36 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id u3-20020ac258c3000000b00478de10cf5esm626866lfo.247.2022.06.19.14.25.57
+        by smtp.gmail.com with ESMTPSA id s19-20020a056512215300b004796a17246esm649078lfr.252.2022.06.19.14.27.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jun 2022 14:25:58 -0700 (PDT)
+        Sun, 19 Jun 2022 14:27:36 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,12 +59,10 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org,
         Marijn Suijten <marijn.suijten@somainline.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: [PATCH v2 7/7] arm64: dts: qcom: msm8916: add clocks to the GCC device node
-Date:   Mon, 20 Jun 2022 00:25:49 +0300
-Message-Id: <20220619212549.1240891-8-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 0/7] clk: qcom: gcc-msm8916: modernize the driver
+Date:   Mon, 20 Jun 2022 00:27:28 +0300
+Message-Id: <20220619212735.1244953-1-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220619212549.1240891-1-dmitry.baryshkov@linaro.org>
-References: <20220619212549.1240891-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,39 +75,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As we are converting this platform to use DT clock bindings, add clocks
-and clock-names properties to the MMCC device tree node.
+Please excuse me for the spam, I've erroneously sent v2 without the
+requested change.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Update gcc-msm8916 driver and bindings to use DT-specified clocks
+rather than fetching the clocks from the global clocks list.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 05472510e29d..e905415b3456 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -934,6 +934,20 @@ gcc: clock-controller@1800000 {
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
- 			reg = <0x01800000 0x80000>;
-+			clocks = <&rpmcc RPM_SMD_BB_CLK1_PIN>,
-+				 <&sleep_clk>,
-+				 <&dsi_phy0 1>,
-+				 <&dsi_phy0 0>,
-+				 <0>,
-+				 <0>,
-+				 <0>;
-+			clock-names = "xo",
-+				      "sleep_clk",
-+				      "dsi0pll",
-+				      "dsi0pllbyte",
-+				      "ext_mclk",
-+				      "ext_pri_i2s",
-+				      "ext_sec_i2s";
- 		};
- 
- 		tcsr_mutex: hwlock@1905000 {
+Changes since v2:
+ - Use xo-board for the XO rather than RPM clock. This will be sorted
+   out separately (requested by Stephan Gerhold).
+
+Changes since v1:
+ - None.
+
+Dmitry Baryshkov (7):
+  dt-bindings: clk: qcom,gcc-*: use qcom,gcc.yaml
+  dt-bindings: clock: separate bindings for MSM8916 GCC device
+  clk: qcom: gcc-msm8916: use ARRAY_SIZE instead of specifying
+    num_parents
+  clk: qcom: gcc-msm8916: move clock parent tables down
+  clk: qcom: gcc-msm8916: move gcc_mss_q6_bimc_axi_clk down
+  clk: qcom: gcc-msm8916: use parent_hws/_data instead of parent_names
+  arm64: dts: qcom: msm8916: add clocks to the GCC device node
+
+ .../bindings/clock/qcom,gcc-msm8916.yaml      |   61 +
+ .../bindings/clock/qcom,gcc-msm8976.yaml      |   21 +-
+ .../bindings/clock/qcom,gcc-msm8994.yaml      |   21 +-
+ .../bindings/clock/qcom,gcc-msm8996.yaml      |   25 +-
+ .../bindings/clock/qcom,gcc-msm8998.yaml      |   25 +-
+ .../bindings/clock/qcom,gcc-other.yaml        |    1 -
+ .../bindings/clock/qcom,gcc-qcm2290.yaml      |   25 +-
+ .../bindings/clock/qcom,gcc-sc7180.yaml       |   25 +-
+ .../bindings/clock/qcom,gcc-sc7280.yaml       |   21 +-
+ .../bindings/clock/qcom,gcc-sc8180x.yaml      |   25 +-
+ .../bindings/clock/qcom,gcc-sc8280xp.yaml     |   21 +-
+ .../bindings/clock/qcom,gcc-sdm845.yaml       |   25 +-
+ .../bindings/clock/qcom,gcc-sdx55.yaml        |   21 +-
+ .../bindings/clock/qcom,gcc-sdx65.yaml        |   21 +-
+ .../bindings/clock/qcom,gcc-sm6115.yaml       |   25 +-
+ .../bindings/clock/qcom,gcc-sm6125.yaml       |   25 +-
+ .../bindings/clock/qcom,gcc-sm6350.yaml       |   25 +-
+ .../bindings/clock/qcom,gcc-sm8150.yaml       |   25 +-
+ .../bindings/clock/qcom,gcc-sm8250.yaml       |   25 +-
+ .../bindings/clock/qcom,gcc-sm8350.yaml       |   21 +-
+ .../bindings/clock/qcom,gcc-sm8450.yaml       |   21 +-
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |   14 +
+ drivers/clk/qcom/gcc-msm8916.c                | 1020 +++++++++--------
+ 23 files changed, 669 insertions(+), 870 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
+
 -- 
 2.35.1
 
