@@ -2,103 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED651550939
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 09:47:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6555D55094F
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 10:26:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234818AbiFSHrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jun 2022 03:47:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59018 "EHLO
+        id S232690AbiFSI0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jun 2022 04:26:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbiFSHre (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 03:47:34 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE4A1009;
-        Sun, 19 Jun 2022 00:47:33 -0700 (PDT)
-X-UUID: 3689f45147c043cd99750e3a2c325612-20220619
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:b09891e7-49f8-4322-90a5-6d9646dbe65d,OB:20,L
-        OB:30,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,A
-        CTION:release,TS:50
-X-CID-INFO: VERSION:1.1.6,REQID:b09891e7-49f8-4322-90a5-6d9646dbe65d,OB:20,LOB
-        :30,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:50
-X-CID-META: VersionHash:b14ad71,CLOUDID:3b370e49-4c92-421c-ad91-b806c0f58b2a,C
-        OID:83ca1b803afe,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 3689f45147c043cd99750e3a2c325612-20220619
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 413014370; Sun, 19 Jun 2022 15:47:27 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Sun, 19 Jun 2022 15:47:26 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 19 Jun 2022 15:47:25 +0800
-Message-ID: <77a81d8ac29263da965950c9f43240836291f5a4.camel@mediatek.com>
-Subject: Re: [PATCH 1/3] dt-bindings: usb: mtk-xhci: Allow wakeup
- interrupt-names to be optional
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, <kernel@collabora.com>,
+        with ESMTP id S229809AbiFSI0V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 04:26:21 -0400
+Received: from mxout4.routing.net (mxout4.routing.net [IPv6:2a03:2900:1:a::9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E21BBEE0E;
+        Sun, 19 Jun 2022 01:26:18 -0700 (PDT)
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+        by mxout4.routing.net (Postfix) with ESMTP id 1B9861005EE;
+        Sun, 19 Jun 2022 08:26:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1655627176;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=El3eiqyJe3YtA9IE7kBZL0i2kK4Uj0j7O55/zFr8ZLU=;
+        b=ADrErCZhcAqvjuy8n/SQ/YGx6mGDEZEwIkwvwI7RZsGRwXOegwn4Mm9CQs5zFrdzDkWw0d
+        W82WX7cZIk9v6foxd0gvYJQ7rPyuVkGIX9I/uMPX5nLYWzYkHPDhUerM0AwCwgdtAJ1hga
+        IaMww8wfvino7oIxLfb3stHTi2pq61s=
+Received: from frank-G5.. (fttx-pool-157.180.227.195.bambit.de [157.180.227.195])
+        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id DF4AA10054D;
+        Sun, 19 Jun 2022 08:26:14 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-rockchip@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>
-Date:   Sun, 19 Jun 2022 15:47:25 +0800
-In-Reply-To: <20220617222916.2435618-2-nfraprado@collabora.com>
-References: <20220617222916.2435618-1-nfraprado@collabora.com>
-         <20220617222916.2435618-2-nfraprado@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Liang Chen <cl@rock-chips.com>, Simon Xue <xxm@rock-chips.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/5] RK3568 PCIe V3 support
+Date:   Sun, 19 Jun 2022 10:26:00 +0200
+Message-Id: <20220619082605.7935-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Mail-ID: 43d1a18b-a719-4417-955d-f644080d9cf4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-06-17 at 18:29 -0400, Nícolas F. R. A. Prado wrote:
-> Add missing "minItems: 1" to the interrupt-names property to allow
-> the
-> second interrupt-names, "wakeup", to be optional.
-> 
-> Fixes: fe8e488058c4 ("dt-bindings: usb: mtk-xhci: add wakeup
-> interrupt")
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> 
-> ---
-> 
->  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> xhci.yaml
-> index 892718459d25..63cbc2b62d18 100644
-> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> @@ -57,6 +57,7 @@ properties:
->        - description: optional, wakeup interrupt used to support
-> runtime PM
->  
->    interrupt-names:
-> +    minItems: 1
->      items:
->        - const: host
->        - const: wakeup
-Acked-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Thanks
+This series adds Rockchip PCIe V3 support found on rk3568 SOC.
+
+Compared to PCIeV2 which uses the Naneng combphy, PCIe v3 uses a dedicated
+PCI-phy.
+
+Frank Wunderlich (4):
+  dt-bindings: phy: rockchip: add PCIe v3 phy
+  dt-bindings: soc: grf: add pcie30-{phy,pipe}-grf
+  arm64: dts: rockchip: rk3568: Add PCIe v3 nodes
+  arm64: dts: rockchip: Add PCIe v3 nodes to BPI-R2-Pro
+
+Shawn Lin (1):
+  phy: rockchip: Support PCIe v3
+
+ .../bindings/phy/rockchip,pcie3-phy.yaml      |  80 +++++
+ .../devicetree/bindings/soc/rockchip/grf.yaml |   3 +
+ .../boot/dts/rockchip/rk3568-bpi-r2-pro.dts   |  90 +++++
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      | 122 +++++++
+ drivers/phy/rockchip/Kconfig                  |   9 +
+ drivers/phy/rockchip/Makefile                 |   1 +
+ .../phy/rockchip/phy-rockchip-snps-pcie3.c    | 317 ++++++++++++++++++
+ include/linux/phy/pcie.h                      |  12 +
+ 8 files changed, 634 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+ create mode 100644 drivers/phy/rockchip/phy-rockchip-snps-pcie3.c
+ create mode 100644 include/linux/phy/pcie.h
+
+-- 
+2.34.1
 
