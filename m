@@ -2,187 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D806B550B32
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 16:27:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8F4E550B57
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 17:04:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230164AbiFSO13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jun 2022 10:27:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58926 "EHLO
+        id S231712AbiFSPEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jun 2022 11:04:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232930AbiFSO12 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 10:27:28 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29671DF17;
-        Sun, 19 Jun 2022 07:27:25 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id v8so9340320ljj.8;
-        Sun, 19 Jun 2022 07:27:25 -0700 (PDT)
+        with ESMTP id S230425AbiFSPEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 11:04:53 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E3092669;
+        Sun, 19 Jun 2022 08:04:52 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id o9so2671309edt.12;
+        Sun, 19 Jun 2022 08:04:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=+rnapiqQ/iNhoZEw55mrOqXhsrJQeJukdJJz0YdF52c=;
-        b=btKsqxMh0C40YDCkv13jMTT4tBeyKqRThJOTgDQidjmj+Nd4TApTLf2W2CXI76gFAe
-         Tmfr7IccdErVC7/+QZnqX6TjGwTKonEns0jc4qv3tbx/TUP5ZkzqwkWN/jCp4pjMItaO
-         pdwZpZ+bH7+dsrVND+NXSURDWmQfI0eQS/4jdrASI50naDuv92TEZ5ns48PkLl7UmUmp
-         9usp5zCcdT+ThHj5SXlrucXXm7HOui6GbHnkVln3pwmlCVOHGrBoY/XPiKghn6mshsh8
-         q/bhbanGwa+RUs8iK8yXENyE3KQ8+Ni8d0YgJF3I+U8IRWZeLk1KNuP2llslcQkZ8nWN
-         nT8w==
+        h=references:from:to:cc:subject:date:in-reply-to:message-id
+         :mime-version;
+        bh=MvHWIYxlnwe5DqT8JCWuuCj202RaByoQ+NVNi6elRV8=;
+        b=NRLvCCqiC/na3Uu0utCLUNnZqPZ5yvRgu9kPAAKomC+eJaZz0xEc8mbNxJaYZ/urW2
+         5Wvm9aY1fAEYhET4vvhqGl7Be9gtAVxpUD2Y6P3Ue6NLdPDOu2yV3rPwZalI5qTsF/71
+         o3UQ/w9IQcJUByvj05HpVPq0ZJXm3PclcmPZ9HYyR9gQVn/eO0fBUsx50WJ/lNp3FYyJ
+         36yJ+AB3OFtfi133MolywZFIRRX/rj/jdScxxKwM/4xWDaTfNOVxSoV0iGsv7TXj9wqE
+         5zCrqzNsXNl3KnlbTUPLGY8HV7Tm4e9nl0Lu7I/wmYq5i0fbe3tfeooIorWoGCMlQYGj
+         4rkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+rnapiqQ/iNhoZEw55mrOqXhsrJQeJukdJJz0YdF52c=;
-        b=s8JY24xWWWekammRwx7o8h0SrN+PIgE/1955KzaeSlOERvYezB7du3+Y56XoPQQFZf
-         WogDLx+YINqA82ghhEUSyuQ4UogJ/Fur6E15kjhwG0xXPouiFLQMVTQ1aJ+nokt/x17P
-         uEhWxcn9gg/E6/VEkUiIUBql3BidFQ7z3gx113BwJjbkeDrsQ/MgtonWrBuKZ12Y6exG
-         BsYd/6TD5ky3FXVImzMbPDFJpvFUyyLuD4/9NHFEOocaP8El05+SUSWpwO0kQaaKlwVS
-         BeAgu8ej9eVL7GtncDmWgZMVpshc7zj1Nl2CzsAADR22/Kz1J4YjJh2XX9t/gwPGUKYG
-         QqiQ==
-X-Gm-Message-State: AJIora/9pfzkDFvWumf3TEJwwU3Nlu8QKdRTStB6mxQujOB6Jg4n/22U
-        IlyiimrdSYRYwyu+FfQF3zw=
-X-Google-Smtp-Source: AGRyM1tS56MaWKOZQKyi2yt2tECPxHpi/mLAFtv3cpnx9pQl0v21LfZtSjWdshpNpIp13f6e825Pzw==
-X-Received: by 2002:a2e:9893:0:b0:255:951f:9694 with SMTP id b19-20020a2e9893000000b00255951f9694mr9599779ljj.283.1655648843142;
-        Sun, 19 Jun 2022 07:27:23 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id s19-20020a056512315300b00479353215b3sm549381lfi.139.2022.06.19.07.27.21
+        h=x-gm-message-state:references:from:to:cc:subject:date:in-reply-to
+         :message-id:mime-version;
+        bh=MvHWIYxlnwe5DqT8JCWuuCj202RaByoQ+NVNi6elRV8=;
+        b=Y/QsTmZ9au6l7idhuLO/hcCClh003uTL+q7VhzUh6etbO8iNOveja3MxxhsJ6MlbQC
+         mw/Nlvq3QppRSR18HYRJ6ao7bm1cYvbuNHo/E9PrTgbAs7SkXOHwLPEZcCMHf0qWoo+v
+         bJ7VCHa+9r54VY2jLAqAXOB3njOumgfjg5JnhkdDY7lsobbnnnUKLe4JGtheIMtDJLck
+         Vp/UpkLW5kiodxxlmjJ5Mtgvyhs1xr4STYMUkLco9gp/wIbNrChe81SRLcR9qC9kNa5u
+         nBH/g2Mtr31/fy9kFaMdHlTQLXPFPuSkCin4JUPL7C2tJ6y9DhZ26FRHufYEQUKLER4q
+         FoCA==
+X-Gm-Message-State: AJIora9bBsRHqcaC4i1R1C6pAZ/Pygkxo3lZPZricKO1JzVmt8cq+dP6
+        iQUDNrLXqlbBP9DKR89wxPY=
+X-Google-Smtp-Source: AGRyM1tA4QmqEQushoe9b63xEYZ151MaBU2vByHazOXsFnYORd6ThgZYUl74v6HuIcD8aQR5gLRVcA==
+X-Received: by 2002:a05:6402:d:b0:431:98fe:c5fd with SMTP id d13-20020a056402000d00b0043198fec5fdmr23854737edu.170.1655651090973;
+        Sun, 19 Jun 2022 08:04:50 -0700 (PDT)
+Received: from localhost (92.40.168.202.threembb.co.uk. [92.40.168.202])
+        by smtp.gmail.com with ESMTPSA id u20-20020a17090657d400b00712134a676asm4690559ejr.93.2022.06.19.08.04.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jun 2022 07:27:22 -0700 (PDT)
-Date:   Sun, 19 Jun 2022 17:27:20 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 04/17] dt-bindings: PCI: dwc: Add max-link-speed
- common property
-Message-ID: <20220619142720.tzfgefunvf3kirul@mobilestation>
-References: <20220610085706.15741-1-Sergey.Semin@baikalelectronics.ru>
- <20220610085706.15741-5-Sergey.Semin@baikalelectronics.ru>
- <20220615145550.GA1069883-robh@kernel.org>
+        Sun, 19 Jun 2022 08:04:49 -0700 (PDT)
+References: <20220618214009.2178567-1-aidanmacdonald.0x0@gmail.com>
+ <CAHp75VfrzQFq4u0vMtPM7LRYNcQQC-padQ1yyFijbpWx8_LwBQ@mail.gmail.com>
+ <20220619121743.2b259153@jic23-huawei>
+ <CAHp75VcG-rkyJ6Sy_ya5Asrzp1hBAofY1qvK+o4iue=FmNGXxA@mail.gmail.com>
+From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "brgl@bgdev.pl" <brgl@bgdev.pl>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "wens@csie.org" <wens@csie.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "sre@kernel.org" <sre@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "quic_gurus@quicinc.com" <quic_gurus@quicinc.com>,
+        "sebastian.reichel@collabora.com" <sebastian.reichel@collabora.com>,
+        "michael@walle.cc" <michael@walle.cc>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH v3 00/16] Add support for AXP192 PMIC
+Date:   Sun, 19 Jun 2022 15:54:41 +0100
+In-reply-to: <CAHp75VcG-rkyJ6Sy_ya5Asrzp1hBAofY1qvK+o4iue=FmNGXxA@mail.gmail.com>
+Message-ID: <7bYbROHIFQUbzWDNUadQUEIYRAVaP5V5@localhost>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220615145550.GA1069883-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 15, 2022 at 08:55:50AM -0600, Rob Herring wrote:
-> On Fri, Jun 10, 2022 at 11:56:52AM +0300, Serge Semin wrote:
-> > In accordance with [1] DW PCIe controllers support up to Gen5 link speed.
-> > Let's add the max-link-speed property upper bound to 5 then. The DT
-> > bindings of the particular devices are expected to setup more strict
-> > constraint on that parameter.
-> > 
-> > [1] Synopsys DesignWare Cores PCI Express Controller Databook, Version
-> > 5.40a, March 2019, p. 27
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > ---
-> > 
-> > Changelog v3:
-> > - This is a new patch unpinned from the next one:
-> >   https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
-> >   by the Rob' request. (@Rob)
-> > ---
-> >  Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml | 3 +++
-> >  Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml     | 2 ++
-> >  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml        | 1 +
-> >  3 files changed, 6 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> > index 627a5d6625ba..b2fbe886981b 100644
-> > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> > @@ -45,6 +45,9 @@ properties:
-> >        the peripheral devices available on the PCIe bus.
-> >      maxItems: 1
-> >  
-> > +  max-link-speed:
-> > +    maximum: 5
-> 
 
-> Unless the default is less than the max, shouldn't the max here be 1 
-> less than the h/w max?
+Andy Shevchenko <andy.shevchenko@gmail.com> writes:
 
-Why? AFAIU max-link-speed semantics it works as less-than-or-equal
-operator isn't it? The modern DW PCIe Root ports and Endpoints
-IP-cores support up to Gen5 PCIe speed including the Gen5 mode (see
-the CX_MAX_PCIE_SPEED IP-core synthesize paramter). It's reasonable to
-set the max-link-speed here to be in coherency with the IP-core
-reference manual.
+> On Sun, Jun 19, 2022 at 1:08 PM Jonathan Cameron <jic23@kernel.org> wrote:
+>> On Sun, 19 Jun 2022 00:43:07 +0200
+>> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+>> > On Saturday, June 18, 2022, Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+>> > wrote:
+>> >
+>> > > Changes in v3:
+>> > >
+>> > > * Update pinctrl driver to address Andy Shevchenko's review comments
+>> > >   from v1, and fix a few other
+>> >
+>> > I believe I gave more comments than just against pin control driver. Even
+>> > though, some comments are still not addressed in the series, including pin
+>> > control. Am I mistaken?
+>>
+>> Hi Andy,
+>>
+>> Maybe, it's a question of clarity/misunderstanding? You had some 'global' comments
+>> at the end of the pinctrl review. Perhaps not clear enough you meant
+>> they should apply to the rest of the patch series (and more generally to
+>> the driver being modified I think).
+>
+> Yeah, I think that is.
+> I don't remember if we have somewhere a documentation on how to
+> respond to the review comments, in which the point of addressing
+> comment everywhere in the series, and not only in the place(s) where
+> it was given.
 
-> 
-> > +
-> >    num-lanes:
-> >      description:
-> >        Number of PCIe link lanes to use. Can be omitted should the already
-> > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
-> > index dcd521aed213..fc3b5d4ac245 100644
-> > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
-> > @@ -55,4 +55,6 @@ examples:
-> >  
-> >        phys = <&pcie_phy0>, <&pcie_phy1>, <&pcie_phy2>, <&pcie_phy3>;
-> >        phy-names = "pcie0", "pcie1", "pcie2", "pcie3";
-> > +
-> > +      max-link-speed = <3>;
-> >      };
-> > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> > index 4a5c8b933b52..01cedf51e0f8 100644
-> > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> > @@ -74,4 +74,5 @@ examples:
-> >        phy-names = "pcie";
-> >  
-> >        num-lanes = <1>;
-> > +      max-link-speed = <3>;
-> 
-
-> This should give you an error because pci-bus.yaml only goes up to 4. 
-
-I've set max-link-speed to "3" here. So no error will be caused neither
-by this schema nor by the pci-bus.yaml bindings.
-
-* Though these examples won't be evaluated because the generic DW PCIe
-RP and EP schemas have been marked as "select: false".
-
-> 
-> I'm not really sure that limiting it in the common schema is too useful. 
-> We're going to be updating it one step at a time. Limiting it is really 
-> only helpful for specific implementations.
-> 
-
-I disagree. As I said above the max PCIe speed limit set here has been
-taken from the HW reference manual so it describes the modern DW PCIe
-controllers capability. No mater what value is set by the pci-bus.yaml
-schema (eventually we'll get to have it increased to Gen5 too) we can
-use the DW PCIe-specific limitation here as a known upper capabilities
-bound.
-
-> Patch 1 didn't apply for me, so none of the checks ran.
-
-I see. The series will be re-based onto 5.19-rc1 in the next patchset
-revision.
-
--Sergey
-
-> 
-> Rob
+That's exactly it, I was only looking at the pinctrl patch since that's
+the one you replied to, and didn't think to check the other patches for
+similar cases even though that's obvious in retrospect. Sorry for any
+confusion.
