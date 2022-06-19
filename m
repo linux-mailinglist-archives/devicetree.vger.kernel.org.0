@@ -2,61 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30C29550A23
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 13:23:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3051550A47
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 13:33:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233282AbiFSLXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jun 2022 07:23:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50176 "EHLO
+        id S235421AbiFSLdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jun 2022 07:33:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233799AbiFSLXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 07:23:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E3B218B;
-        Sun, 19 Jun 2022 04:23:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3395061008;
-        Sun, 19 Jun 2022 11:23:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70964C3411D;
-        Sun, 19 Jun 2022 11:23:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655637783;
-        bh=Ga08aNWEm/9YKJKYn977YCoDC642zSlRjrKCmmG2dr4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=hgCPWRz7NonQqi9E5oyzdRA7Fgr7xkxVv6vUQscGxN/AcQ8a+pljM/aGoGaCGWci9
-         73o/J3GgOWvedfTJ8qM+jZ4Io2z317cTmcS0ip7ho/dEn+OlMtJsX2EvRQlA8WVpqx
-         GB4Qy2Uzr3OmY9g3wEeFSwMF1x3G3xRfN6TcBwlplLSacuXEWA1vYwMrpxb69MCgcq
-         HNpyMRlxYUmkZIyohx44PTKFCFUpCfm8g3r1M1aD5CXO0nVBF53E5ubcqiAa6MJW/q
-         gys/sc/zrgTVtRXtCbqNXp1UwVHuxSq0j0aybkwPyQLW/TMiWCDK1DRKQWOh3fV8sJ
-         eZTp9EpzhhDJw==
-Date:   Sun, 19 Jun 2022 12:32:21 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     ChiYuan Huang <u0084500@gmail.com>
-Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        with ESMTP id S235595AbiFSLdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 07:33:43 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1351E11A22
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 04:33:42 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id v1so16187238ejg.13
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 04:33:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gzwSi26kgANkAlEKRYap+NCAHJ4FDv7RKV3gyml+oZ4=;
+        b=N9NJrcZmpbNRtbzmrOSzC1g43nYZgHUHXO56Y++wJZFbMETQIcwn5PETLkGyKacdd/
+         lP1ZhkybqL9/QbWtrPGH2yfuAych0rl/ZawKiN5b4NFcynGLUfXRFYTk/uyJKGcaHNiS
+         rZ3ROqtYVCDXd4Lrfy0QvHYKibbJR/alnubrTin0m0wLPZPF583hjS5pvzUKe+wF55Nv
+         XjTt5HR1IBEhs5gSs2EsGSvJDddP5mGrV5jlunrE9O1VD5xQKCE43Yoe264bSt1qz6zB
+         nfohJrrxpgc0i/NdaJRVNCQfCQjaknKDNRMtFWRA9gHZpxZWbqN1o1dUVV9VXgUyd6Ll
+         Msow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gzwSi26kgANkAlEKRYap+NCAHJ4FDv7RKV3gyml+oZ4=;
+        b=Aglh18Ud5W+q3JOvFmAddvYBqqnksTev2HNrwDqj8LLrQUTtDfRmLZS37wqRp/0uuK
+         swPCroHhIjimpiZUgyKCVXzA7vr1ALsdPbmnqbd/MrE2OZYuNZ7DdH7FY5YTp8SQX1oV
+         yIP7Bpj6a3CEILhsOCR/gTBnsxyxUMFv9Z6mgJS0pr+k+uD21Rsj9zGdVC1E7y5Mi6vV
+         hUxJCavFuD648muygHwNYzpyxz1sjdMVfwsDIWPGMOWRPIQNSxKxt+jHd5V+rIF3iXly
+         kg+pJigJgDkvxulWiTtWvw5fXyuJR0F8eWbXWzWUqFmQ8c/ZmpIwg5jivX21wu6mn1py
+         C/Ow==
+X-Gm-Message-State: AJIora+9zQqqpylnHWyTa3X6TKNYi18YW3H8xKyWITRtxvwH0C16cq5H
+        g2YMu5scz7Ly+TxEdlwvt8/8aA==
+X-Google-Smtp-Source: AGRyM1tWBL6BXlRJ8aXxuhVL2aUBW7hRs6lbszHJQK6AclrQOieohBjws/JXHuhaxFHX/fk3lbHu2g==
+X-Received: by 2002:a17:907:1b20:b0:6da:649b:d99e with SMTP id mp32-20020a1709071b2000b006da649bd99emr16482762ejc.712.1655638420564;
+        Sun, 19 Jun 2022 04:33:40 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id m10-20020a056402430a00b0042cf43e1937sm7949927edc.75.2022.06.19.04.33.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Jun 2022 04:33:39 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        cy_huang <cy_huang@richtek.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/2] iio: adc: Add rtq6056 support
-Message-ID: <20220619123221.6c2bbf69@jic23-huawei>
-In-Reply-To: <CADiBU3_LSwDcCrVFTHb8sLBEQWmyUpz94k=yQ=QQ+mC73sGx_w@mail.gmail.com>
-References: <1655458375-30478-1-git-send-email-u0084500@gmail.com>
-        <1655458375-30478-3-git-send-email-u0084500@gmail.com>
-        <20220617181027.000074a8@Huawei.com>
-        <CADiBU3_LSwDcCrVFTHb8sLBEQWmyUpz94k=yQ=QQ+mC73sGx_w@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Sean Anderson <sean.anderson@seco.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: phy: make phy-cells description a text
+Date:   Sun, 19 Jun 2022 13:33:25 +0200
+Message-Id: <20220619113325.21396-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,223 +78,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 18 Jun 2022 23:49:27 +0800
-ChiYuan Huang <u0084500@gmail.com> wrote:
+The description field is a string, so using YAML inside phy-cells
+description is not actually helpful.  Make it a proper text.
 
-> Jonathan Cameron <Jonathan.Cameron@huawei.com> =E6=96=BC 2022=E5=B9=B46=
-=E6=9C=8818=E6=97=A5 =E9=80=B1=E5=85=AD =E5=87=8C=E6=99=A81:10=E5=AF=AB=E9=
-=81=93=EF=BC=9A
-> >
-> > On Fri, 17 Jun 2022 17:32:55 +0800
-> > cy_huang <u0084500@gmail.com> wrote:
-> > =20
-> > > From: ChiYuan Huang <cy_huang@richtek.com>
-> > >
-> > > Add Richtek RTQ6056 supporting.
-> > >
-> > > It can be used for the system to monitor load current and power with =
-16bit
-> > > resolution.
-> > >
-> > > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com> =20
-> >
-> > Hi ChiYuan,
-> >
-> > Comments inline.
-> >
-> > It would be nice to consider how to take advantage of the fact we know =
-which
-> > channels are of interest in buffered mode, and change the operating mod=
-e to
-> > suite.
-> > =20
-> I implement the  buffered mode is for the debugging or continuous
-> tracking purpose.
->=20
-> BUS channel is for input power source voltage
-> Shunt channel is for the cross voltage difference for Rshunt.
-> Current channel is calculated by Vshunt/Rshunt and the value converted by=
- HW.
-> Power channel is calculated by BUS voltage multiple Current channel,
-> and also the value converted by HW.
->=20
-> For the opmode question, this IC already designed for low quiescent.
-> If IC's in continuous mode, the typical quiescent current is still around=
- 550uA.
-> 'Shutdown' mode only use typical 3.5uA.
->=20
-> Like as you said, I may consider to use pm_runtime plus autosuspend to
-> minimize the wait time for the first new sample ready.
-Ok.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/phy/mediatek,tphy.yaml           | 14 ++++----
+ .../bindings/phy/mediatek,xsphy.yaml          | 10 +++---
+ .../bindings/phy/xlnx,zynqmp-psgtr.yaml       | 32 ++++++++-----------
+ 3 files changed, 23 insertions(+), 33 deletions(-)
 
->=20
-> > > ---
-> > >  .../ABI/testing/sysfs-bus-iio-adc-rtq6056          |  58 +++
-> > >  drivers/iio/adc/Kconfig                            |  15 +
-> > >  drivers/iio/adc/Makefile                           |   1 +
-> > >  drivers/iio/adc/rtq6056-adc.c                      | 548 +++++++++++=
-++++++++++
-> > >  4 files changed, 622 insertions(+)
-> > >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-rtq60=
-56
-> > >  create mode 100644 drivers/iio/adc/rtq6056-adc.c
-> > >
-> > > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056 b/Do=
-cumentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
-> > > new file mode 100644
-> > > index 00000000..0516429
-> > > --- /dev/null
-> > > +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-rtq6056
-> > > @@ -0,0 +1,58 @@
-> > > +What:                /sys/bus/iio/devices/iio:deviceX/in_voltage0_ra=
-w =20
-> >
-> > Documentation can't be duplicated in mulitple files so these standard
-> > attributes should rely only on the main docs.  If we duplicate it breaks
-> > building the html docs unfortunately.
-> > =20
-> Does it mean there's no need to explain it here and covert this
-> voltage to millivolt?
+diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+index 4b638c1d4221..bd0e4c4915ed 100644
+--- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
++++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+@@ -154,14 +154,12 @@ patternProperties:
+       "#phy-cells":
+         const: 1
+         description: |
+-          The cells contain the following arguments.
+-
+-          - description: The PHY type
+-              enum:
+-                - PHY_TYPE_USB2
+-                - PHY_TYPE_USB3
+-                - PHY_TYPE_PCIE
+-                - PHY_TYPE_SATA
++          The cells contain the following arguments::
++            - The PHY type::
++              - PHY_TYPE_USB2
++              - PHY_TYPE_USB3
++              - PHY_TYPE_PCIE
++              - PHY_TYPE_SATA
+ 
+       nvmem-cells:
+         items:
+diff --git a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
+index 598fd2b95c29..7262b8e184e2 100644
+--- a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
++++ b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
+@@ -100,12 +100,10 @@ patternProperties:
+       "#phy-cells":
+         const: 1
+         description: |
+-          The cells contain the following arguments.
+-
+-          - description: The PHY type
+-              enum:
+-                - PHY_TYPE_USB2
+-                - PHY_TYPE_USB3
++          The cells contain the following arguments::
++            - The PHY type::
++              - PHY_TYPE_USB2
++              - PHY_TYPE_USB3
+ 
+       # The following optional vendor properties are only for debug or HQA test
+       mediatek,eye-src:
+diff --git a/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
+index 79906519c652..7083eddb467c 100644
+--- a/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
++++ b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
+@@ -18,25 +18,19 @@ properties:
+   "#phy-cells":
+     const: 4
+     description: |
+-      The cells contain the following arguments.
+-
+-      - description: The GTR lane
+-        minimum: 0
+-        maximum: 3
+-      - description: The PHY type
+-        enum:
+-          - PHY_TYPE_DP
+-          - PHY_TYPE_PCIE
+-          - PHY_TYPE_SATA
+-          - PHY_TYPE_SGMII
+-          - PHY_TYPE_USB3
+-      - description: The PHY instance
+-        minimum: 0
+-        maximum: 1 # for DP, SATA or USB
+-        maximum: 3 # for PCIE or SGMII
+-      - description: The reference clock number
+-        minimum: 0
+-        maximum: 3
++      The cells contain the following arguments::
++        - The GTR lane (minimum:: 0, maximum:: 3)
++        - The PHY type::
++            - PHY_TYPE_DP
++            - PHY_TYPE_PCIE
++            - PHY_TYPE_SATA
++            - PHY_TYPE_SGMII
++            - PHY_TYPE_USB3
++      - The PHY instance::
++          minimum:: 0
++          maximum:: 1 # for DP, SATA or USB
++          maximum:: 3 # for PCIE or SGMII
++      - The reference clock number (minimum:: 0, maximum:: 3)
+ 
+   compatible:
+     enum:
+-- 
+2.34.1
 
-Yes, in_voltage0_raw * in_voltage0_scale must be in millivolts
-and you can't have extra documentation here without breaking the
-docs build.
-
-
-> > > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> > > index 48ace74..0b2d17c 100644
-> > > diff --git a/drivers/iio/adc/rtq6056-adc.c b/drivers/iio/adc/rtq6056-=
-adc.c
-> > > new file mode 100644
-> > > index 00000000..8374fce
-> > > --- /dev/null
-> > > +++ b/drivers/iio/adc/rtq6056-adc.c
-> > > @@ -0,0 +1,548 @@
-
-> > > +
-> > > +#define RTQ6056_VENDOR_ID    0x1214
-> > > +#define RTQ6056_DEFAULT_CONFIG       0x4127 =20
-> >
-> > This is not defined in terms of the field provided below
-> > so it's not obvious what the initial state is.
-> > =20
-> To leave a comment about the default state?
-> Or use the macro to define the all field?
-
-Macro to define all fields means we don't have to check the
-comment matches the code, so I would prefer that approach.
-If hard to use macros for some reason, comment would be acceptable.
-
-
-
-
-> > > +
-> > > +static const char *rtq6056_channel_labels[RTQ6056_MAX_CHANNEL] =3D {
-> > > +     [RTQ6056_CH_VSHUNT] =3D "Vshunt(uV)", =20
-> >
-> > Units must be the standard ones for the IIO channel types.
-> > Hence documenting them here is misleading.
-> > =20
-> Can I use the "extend_name' and remove all the 'read_label' and
-> channel_label variable?
-
-No.  We very very rarely use extend name these days.  It was a bad
-design decision and makes it harder to write userspace code.  Label
-is the preferred way to provide this information today.
-
-static const char *rtq6056_channel_labels[RTQ6056_MAX_CHANNEL] =3D {
-     [RTQ6056_CH_VSHUNT] =3D "Vshunt", =20
-     [RTQ6056_CH_VBUS] =3D "Vbus",
-     [RTQ6056_CH_POWER] =3D "Power",
-     [RTQ6056_CH_CURRENT] =3D "Current",
-};
-
-would be my suggestion for the labels.  Power and Current are a bit
-redundant but we need to provide something alongside the useful
-Vshunt and Vbus.
-
-
-
-
-> And also , the unit will be removed. Thx.
-> > > +     [RTQ6056_CH_VBUS] =3D "Vbus(mV)",
-> > > +     [RTQ6056_CH_POWER] =3D "Power(mW)",
-> > > +     [RTQ6056_CH_CURRENT] =3D "Current(mA)",
-> > > +};
-> > ... =20
-> > > +static int rtq6056_probe(struct i2c_client *i2c)
-> > > +{
-> > > +     struct iio_dev *indio_dev;
-> > > +     struct rtq6056_priv *priv;
-> > > +     unsigned int vendor_id, shunt_resistor_uohm;
-> > > +     int ret;
-> > > +
-> > > +     if (!i2c_check_functionality(i2c->adapter, I2C_FUNC_SMBUS_WORD_=
-DATA))
-> > > +             return -EOPNOTSUPP;
-> > > +
-> > > +     indio_dev =3D devm_iio_device_alloc(&i2c->dev, sizeof(*priv));
-> > > +     if (!indio_dev)
-> > > +             return -ENOMEM;
-> > > +
-> > > +     priv =3D iio_priv(indio_dev);
-> > > +     priv->dev =3D &i2c->dev;
-> > > +     priv->vshuntct =3D priv->vbusct =3D RTQ6056_DEFAULT_CONVT;
-> > > +     priv->avg_sample =3D RTQ6056_DEFAULT_AVG;
-> > > +     i2c_set_clientdata(i2c, priv);
-> > > +
-> > > +     priv->regmap =3D devm_regmap_init_i2c(i2c, &rtq6056_regmap_conf=
-ig); =20
-> > You make a lot of use of regmap in this function. I would suggest
-> > first allocating into a local variable, then using that to set
-> > priv->regmap.  The local variable can then be used avoid having
-> > priv->regmap everywhere.
-> > =20
-> dev_get_regmap(), instead?
-
-You could use that, but I was thinking just
-
-	struct regmap *regmap;
-	...
-	regmap =3D devm_regmap_init_i2c(i2c, &...)
-	if (IS_ERR(regmap))
-		return ...
-
-	priv->regmap =3D regmap;
-
-	ret =3D regmap_read(regmap, ....
-etc.=09
-
-
-...
-
-> > > +static void rtq6056_shutdown(struct i2c_client *i2c)
-> > > +{
-> > > +     struct rtq6056_priv *priv =3D i2c_get_clientdata(i2c);
-> > > +
-> > > +     /* Config opmode to 'shutdown' mode to minimize quiescient curr=
-ent */
-> > > +     regmap_field_write(priv->rm_fields[F_OPMODE], 0); =20
-> >
-> > Unusual to provide a shutdown for a device as simple as an ADC.  I'd ex=
-pect
-> > the overall system to power down if we hit this and hence also cover
-> > the ADC.  If that's not the case, then perhaps add a comment explaining
-> > that.
-> > =20
-> That's because some application use VBAT as the VDD source.
-> Not all applcation use the PMIC buck or ldo as the supply for RTQ6056.
-> If use VBAT, then the shutdown quiescent current is important.
-
-Ok. Add that information as a comment so we know why this is done
-when looking back at the driver in future.
-
-Btw, to save on long emails that need scrolling through it's fine
-to just crop out any sections where you are accepting the feedback
-and no additional discussion is needed.  Makes the whole process
-more efficient as if you don't reply to some feedback I'll assume
-you are accepting it.
-
-Thanks,
-
-Jonathan
