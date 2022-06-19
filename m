@@ -2,116 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9124C5509FF
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 13:07:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38BBD550A0C
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 13:12:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235971AbiFSLHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jun 2022 07:07:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40672 "EHLO
+        id S236146AbiFSLMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jun 2022 07:12:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235850AbiFSLHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 07:07:10 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5464611158
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 04:07:08 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id o7so16189211eja.1
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 04:07:08 -0700 (PDT)
+        with ESMTP id S236076AbiFSLMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 07:12:50 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09447BF2;
+        Sun, 19 Jun 2022 04:12:48 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id z11so5354404edp.9;
+        Sun, 19 Jun 2022 04:12:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xX5Jl85d6fm6St1KgeedQuFWE7YII3rFg8ivajgwzyo=;
-        b=REsGotrCyMXduVj3cv1WW//tvGE+ud6K6wWpcoc9gRkj1MBPQx4t4zWtC1WDEC5SbG
-         z2w85ONgv7xWsAUNrU4gNQeb1bZe++XoCajfxIJQuWPmVbUYw0BtOeG1825xpWUab1Ns
-         khW81YCKi8emcTojtt7XRH8NzbJvgG+fjXP+kU6HkvrBIs18assnCU3iNf97BSef3byh
-         HqiLpxZU/y20K9i+YDQQu0Ju6PanaoaE0+zIgJkaLSxBQp/099e14ckhEeLOpaZtMY71
-         KGtf4Ei6Flj0LCYDMW8R7DyOD5OuO14HiS8Tjed+XX3+PlhcPFh1kSfWMESLQbQpXCqM
-         NPKQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=065h+KQsfVelWa30bCNnk4G+lWtioBc+KPUalxR/LAM=;
+        b=OMoN9genkSzO9y8Nb05x9N8A7WJYU9SdAsX6JW1jpqFcnUoJVilI9dQXdooNEuh96E
+         VCOwg1huVghpDAajPoxForq9L/CwVkY+76VLQGbxEwqk7lkQd1B++elmRU8vkuZhST4t
+         BcYa0gv3VkumqkjqNd8lUzIlABUsqGlKjLJwnpMmngExeawBpirNtf+ZXYmmoiyg9h8I
+         baUUEY83mjf4i58n0l4aOXtEZOX6dsvJmkpg8uOcLRcc7a20WbNGLW2BJ4meT/SbZdWe
+         OHKiZcqJ4Nw5VWPtY1qnaAKTV2rjBf5fKx0xY0w8NWc5MmZEA+xqQxi2U/7BSAKpKTL4
+         M0KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xX5Jl85d6fm6St1KgeedQuFWE7YII3rFg8ivajgwzyo=;
-        b=jJpnFDY4xdq9Adf5eWRuH/yQmyGye1pTBBkLEGanoDPlXld2QGHyusMvE7fdmwsN1n
-         6xgSfUrbXU8hH+9qhGBB5QCs2+vRYWGALXS94ABj0wUwmuMDXJEB9cMA9GhcL7RX76iR
-         8Jk/hyXP/o8OFzC+ORU4uDVpOwiHRYT04lp434HhjMv+RsNpyZqaL7Tu/C00+N0TEcUR
-         R7hD10JbHp675JXNM3Tpp9uaDwl+cqZP9lCzDJAm1NFBI6qw5s5IyDHeN9eHGqJ6yYLS
-         7o0fTtOj787T24lqx3Kp4Mq1O+o+5JjW6N68p/Q81pXQ1g9KRyNTIZeCur8u1Y/gSuf4
-         K2gw==
-X-Gm-Message-State: AJIora+BAD0l7qI23+gQaKVyM4h9AtjLMCdT+ZY+q8wAlzIklHkdytMG
-        K+tGG+XOO5TPvPBGxKwExWHzBA==
-X-Google-Smtp-Source: AGRyM1tgIbrxUBhP/G2hz/HDBzXgwLyOT0RpgmYL7Xw3f5Jw4IWh8N4JeIpMvRzXUGsSWbn0Q4O6RQ==
-X-Received: by 2002:a17:906:6a09:b0:71c:3bc5:4d3 with SMTP id qw9-20020a1709066a0900b0071c3bc504d3mr13692832ejc.57.1655636826898;
-        Sun, 19 Jun 2022 04:07:06 -0700 (PDT)
-Received: from [192.168.0.206] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id fq36-20020a1709069da400b006fecef65fc4sm4501369ejc.179.2022.06.19.04.07.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Jun 2022 04:07:06 -0700 (PDT)
-Message-ID: <9a79e689-4290-fd49-6e18-22b306d36bff@linaro.org>
-Date:   Sun, 19 Jun 2022 13:07:05 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=065h+KQsfVelWa30bCNnk4G+lWtioBc+KPUalxR/LAM=;
+        b=7o/7hWTDZTouKuaX8kTmF+5KNhU1gQmgA05AR+NrtJcfQlFlttCUp+mCt6UrDDQdSn
+         g2AR4N9MXhjprqqTataUpNC54rEsSPMMxTAkmhPxn7/yBSLZdkMpdr18BL347/0Y1MIK
+         7pTMsyOVeKiBct+SRgnebjKO5IYV0jHcA5a5NDMI7JJrTBRyHAEKgCuAH/NvOOeoJvoU
+         m2j4wSDTOCBsRKe6uhRC51GFCoKIVnBGLxftdUhaRvs+LbbFTDxPPMy028K18yengw5d
+         HB0oGwySC0TZ6krphOojBFJYLBJwD6kc20GcE4XhX353UhlHg/NuSQAKs685+vEgE0t+
+         7BXg==
+X-Gm-Message-State: AJIora94zwY5wFIHvJfaHgLbd+z+UAVbL7nUhPDSw7Vt5zI0pk4udc6S
+        erQql/0Shqjm6ykOo8lC4YU/i8Hf7YwjaOxPJHI=
+X-Google-Smtp-Source: AGRyM1saLcudqsFi+QL9+2JCvTmt70ofdrGj+8I24+9oRFl8UZipNSZ5l0QcqeD8924ga8iLWxJEAoF46ErZLkcnGWc=
+X-Received: by 2002:aa7:d29a:0:b0:435:705f:1319 with SMTP id
+ w26-20020aa7d29a000000b00435705f1319mr7575701edq.54.1655637166579; Sun, 19
+ Jun 2022 04:12:46 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] arm64: dts: qcom: sagit: add initial device tree for
- sagit
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Dzmitry Sankouski <dsankouski@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220617122007.2307726-1-dsankouski@gmail.com>
- <18956e06-8f9d-fcf0-0e2b-41702ea9b95b@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <18956e06-8f9d-fcf0-0e2b-41702ea9b95b@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20220618214009.2178567-1-aidanmacdonald.0x0@gmail.com>
+ <CAHp75VfrzQFq4u0vMtPM7LRYNcQQC-padQ1yyFijbpWx8_LwBQ@mail.gmail.com> <20220619121743.2b259153@jic23-huawei>
+In-Reply-To: <20220619121743.2b259153@jic23-huawei>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sun, 19 Jun 2022 13:12:09 +0200
+Message-ID: <CAHp75VcG-rkyJ6Sy_ya5Asrzp1hBAofY1qvK+o4iue=FmNGXxA@mail.gmail.com>
+Subject: Re: [PATCH v3 00/16] Add support for AXP192 PMIC
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "brgl@bgdev.pl" <brgl@bgdev.pl>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "wens@csie.org" <wens@csie.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "sre@kernel.org" <sre@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "quic_gurus@quicinc.com" <quic_gurus@quicinc.com>,
+        "sebastian.reichel@collabora.com" <sebastian.reichel@collabora.com>,
+        "michael@walle.cc" <michael@walle.cc>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2022 01:49, Konrad Dybcio wrote:
->> +&ufshc {
->> +	status = "okay";
->> +
->> +	vcc-supply = <&vreg_l20a_2p95>;
->> +	vccq-supply = <&vreg_l26a_1p2>;
->> +	vccq2-supply = <&vreg_s4a_1p8>;
->> +	vcc-max-microamp = <750000>;
->> +	vccq-max-microamp = <560000>;
->> +	vccq2-max-microamp = <750000>;
->> +};
->> +
->> +&ufsphy {
->> +	status = "okay";
->> +
->> +	vdda-phy-supply = <&vreg_l1a_0p875>;
->> +	vdda-pll-supply = <&vreg_l2a_1p2>;
->> +	vddp-ref-clk-supply = <&vreg_l26a_1p2>;
->> +	vdda-phy-max-microamp = <51400>;
->> +	vdda-pll-max-microamp = <14600>;
->> +	vddp-ref-clk-max-microamp = <100>;
->> +	vddp-ref-clk-always-on;
-> Please drop properties that are not supported on mainline.
+On Sun, Jun 19, 2022 at 1:08 PM Jonathan Cameron <jic23@kernel.org> wrote:
+> On Sun, 19 Jun 2022 00:43:07 +0200
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > On Saturday, June 18, 2022, Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+> > wrote:
+> >
+> > > Changes in v3:
+> > >
+> > > * Update pinctrl driver to address Andy Shevchenko's review comments
+> > >   from v1, and fix a few other
+> >
+> > I believe I gave more comments than just against pin control driver. Even
+> > though, some comments are still not addressed in the series, including pin
+> > control. Am I mistaken?
+>
+> Hi Andy,
+>
+> Maybe, it's a question of clarity/misunderstanding? You had some 'global' comments
+> at the end of the pinctrl review. Perhaps not clear enough you meant
+> they should apply to the rest of the patch series (and more generally to
+> the driver being modified I think).
 
-Which brings the other point - please run `make dtbs_check` (you might
-get a lot of output) and be sure there are no errors from your boards
-comparing to other similar DTS.
+Yeah, I think that is.
+I don't remember if we have somewhere a documentation on how to
+respond to the review comments, in which the point of addressing
+comment everywhere in the series, and not only in the place(s) where
+it was given.
 
-The easiest is to:
-1. make dtbs_check, go for coffee
-2. touch your boards (from both of your commits) and few others
-3. run again make dtbs_check and compare
-
-Best regards,
-Krzysztof
+-- 
+With Best Regards,
+Andy Shevchenko
