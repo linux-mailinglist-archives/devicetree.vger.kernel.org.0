@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B25A7550A77
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 14:02:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9123C550A7A
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jun 2022 14:02:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236936AbiFSMCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jun 2022 08:02:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44350 "EHLO
+        id S236743AbiFSMC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jun 2022 08:02:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231256AbiFSMCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 08:02:36 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BCCE12603
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 05:02:33 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id o7so16320013eja.1
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 05:02:33 -0700 (PDT)
+        with ESMTP id S236978AbiFSMCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 08:02:52 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6363AC71
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 05:02:50 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id c13so7126335eds.10
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 05:02:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gnMEBo8E/2r0RxcreeVzvdUJTnoTv3L/ZBGLWIasnvY=;
-        b=PCcmfZ2UXsyas5h+S+YJ7e8bVGZCjvy4Kw3MTXJXovuJK74EkOG9NcHor/wiIAjpBq
-         HFoKQlSFx9TH7qyu9nMb8KpXHOdDxjicINCTNfI3NkxpJW6EwlnoGykgA8fVg7pN4KB3
-         TJl+bZrnt4Kl0BqsU5/ke4A3pxysDP6X5Kk6btfc+Pwn0ALp78VbidbHLD61XHoB13Yl
-         PeILdhWuwDQWap/PsbaQNXJx/1rRuJ2UIs0XlMjNK8PuUSd03LB3kErvRaw910Z0VP+T
-         xC2HkykfhXaGLAevEg8FUgFaAXo968PJdnkkNHW7aWHvieKnZAJXndnjvtqxdeVTo3DG
-         PX1A==
+        bh=5TVNyrHPaBXxANScLiXxuCsDJrfiZta1i604gshu4ow=;
+        b=Bg6YFigz7TMrElHB9j5LkHHsLolA/v9p0UkA9mAwWLMCeyLjA3lrvDoi9OciCSAWFA
+         DV1mk5qeW1n9A826cNjy8jwmi4yXR9SYpHf0p4hRDzGQkqbrM1D/WAwXXdEQoD4mh62D
+         zbuYWnEb7unCMPDcMg8Zw8BZ1vIwFCGcLjbyiBkpu8l48Gh+Gs/3Iyupc2B5tIc5ipXM
+         JqbUBGaFNkO3V6kA6r9F9B9385EyNUKh3vrGJC35Pzi9Nq9u1ZO0iloMmg6NWYflBqIs
+         Id1DtVRhD9O+0WzbbhSxdiDq7tjyXmXzN4PJfsRDzhCoBqRZQwnUttyTOF1sG/p83WRw
+         YgOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=gnMEBo8E/2r0RxcreeVzvdUJTnoTv3L/ZBGLWIasnvY=;
-        b=PeVvAB+fBjNeEUvFs9+ysJq8bEzdscHV4DHsf3WV3sqltztZ3Obn/IH5fV4R33sY/6
-         m8QQB4/9o1kcS1sPKEmy6P0qhhrlbX2VToEALWIaBnXRbEyd0LNQEVZ65a9uxaxXZXWD
-         9LLq+Ap1lDFacwlS6J1sYSSI8Fec+2USuxqTZ/aBRQ3mnTQ0wKIcN2PAUhPDFL9aZH2J
-         iINlVFiSedGX4VYtaHXamzQcMd5e5XCTzZ1rhSUQc3rZkdXSwHzlZHbd31YnU4J/+uLF
-         z66U4myxl30efc9F3WnhS+7PLXBlN7RBMm4gRlcw16pK9aApiqc9KPY7/ox8WsIt+Sj3
-         y2PA==
-X-Gm-Message-State: AJIora/W62b9iW1b12s6Jc8pB3YMx7snueV58DJVZT61uzpRRNlYxYlY
-        hWK4nGPVydchYl3YB63FAGR3Qw==
-X-Google-Smtp-Source: AGRyM1tThOHHQzHhG4kStaX1uXtl/9l9Q2rfmoYpTL6ZRww/UFC78vwuas+bzy1S2m5Muc3nuPUm2Q==
-X-Received: by 2002:a17:907:2d29:b0:70e:8b1c:c3f0 with SMTP id gs41-20020a1709072d2900b0070e8b1cc3f0mr16367652ejc.37.1655640151554;
-        Sun, 19 Jun 2022 05:02:31 -0700 (PDT)
+        bh=5TVNyrHPaBXxANScLiXxuCsDJrfiZta1i604gshu4ow=;
+        b=3YNjEZvrbjSXRv/AHtBkKfPl5lVQYr35EK2AC5zOtTzxH7gQ8HgFRdR59njcFYB0Zm
+         0QhlVJFN7VCij5lojeO50nDlaXQJRmLU3hVX8O4+/k+oXI/+rO/meAX2XRBGrxPCpyZ4
+         BtvQkFPiI30ipBFcT8jBAxd7oekIY/ZKW7KCb8nSP8L7H8LZ5uLLgbK2APt2OOtpIZjT
+         BeLkX8PZoxtGzhRcZZY2G8w7ZkDXvxpE+udkAh46fABuZ+uLPZoAKch402QeJZQrJCU/
+         1SF2FnQRKCksQjW0LJWl5m6gonEZHh4UxnrU+QzBrQXu3W7WbnYEePwga339dnSRKikg
+         2NIw==
+X-Gm-Message-State: AJIora88mp+QaM6GhrEY4cXgYxgoHss3+QpJ9hI6RGKY1v24eQ0jsRFM
+        Llx6kRTQKpXv/GzW4rNxLyUeng==
+X-Google-Smtp-Source: AGRyM1sX79JzihnS5LQ9lBwFQ6OL42649DG5g3G2OvmnO6gC2jOTxV21wSB7U5mIKZampkh3KgWqLA==
+X-Received: by 2002:a05:6402:5202:b0:435:8034:fb87 with SMTP id s2-20020a056402520200b004358034fb87mr980364edd.409.1655640168872;
+        Sun, 19 Jun 2022 05:02:48 -0700 (PDT)
 Received: from [192.168.0.206] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gi19-20020a1709070c9300b006febeb51cd5sm4528523ejc.174.2022.06.19.05.02.30
+        by smtp.gmail.com with ESMTPSA id 21-20020a170906329500b006fe8a4ec62fsm4504703ejw.4.2022.06.19.05.02.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Jun 2022 05:02:30 -0700 (PDT)
-Message-ID: <20c93477-f41d-69c2-5fa5-3640f24fee12@linaro.org>
-Date:   Sun, 19 Jun 2022 14:02:29 +0200
+        Sun, 19 Jun 2022 05:02:48 -0700 (PDT)
+Message-ID: <34337124-0004-d43f-5ae9-0bb42dbd3720@linaro.org>
+Date:   Sun, 19 Jun 2022 14:02:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
@@ -68,15 +68,13 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20220617144714.817765-1-dmitry.baryshkov@linaro.org>
  <20220617144714.817765-3-dmitry.baryshkov@linaro.org>
- <4a614c32-35c5-2dfa-3e15-d54c3c3c5836@linaro.org>
- <cd4eaead-4218-2de0-1929-7c8a2aafaff4@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <cd4eaead-4218-2de0-1929-7c8a2aafaff4@linaro.org>
+In-Reply-To: <20220617144714.817765-3-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,68 +82,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/06/2022 06:35, Dmitry Baryshkov wrote:
-> On 18/06/2022 04:40, Krzysztof Kozlowski wrote:
->> On 17/06/2022 07:47, Dmitry Baryshkov wrote:
->>> Separate bindings for GCC on Qualcomm MSM8916 platforms. This adds new
->>> clocks/clock-names properties to be used for clock links.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>>   .../bindings/clock/qcom,gcc-msm8916.yaml      | 61 +++++++++++++++++++
->>>   .../bindings/clock/qcom,gcc-other.yaml        |  1 -
->>>   2 files changed, 61 insertions(+), 1 deletion(-)
->>>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
->>> new file mode 100644
->>> index 000000000000..564aa764b17b
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
->>> @@ -0,0 +1,61 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/qcom,gcc-msm8916.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Qualcomm Global Clock & Reset Controller Binding for MSM8916
->>> +
->>> +maintainers:
->>> +  - Stephen Boyd <sboyd@kernel.org>
->>> +  - Taniya Das <quic_tdas@quicinc.com>
->>> +
->>> +description: |
->>> +  Qualcomm global clock control module which supports the clocks, resets and
->>> +  power domains on MSM8916.
->>> +
->>> +  See also:
->>> +  - dt-bindings/clock/qcom,gcc-msm8916.h
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: qcom,gcc-msm8916
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: XO source
->>> +      - description: Sleep clock source
->>> +      - description: DSI phy instance 0 dsi clock
->>> +      - description: DSI phy instance 0 byte clock
->>> +      - description: External MCLK clock
->>> +      - description: External Primary I2S clock
->>> +      - description: External Secondary I2S clock
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: xo
->>> +      - const: sleep_clk
->>
->> Just "sleep"
+On 17/06/2022 16:47, Dmitry Baryshkov wrote:
+> Separate bindings for GCC on Qualcomm MSM8916 platforms. This adds new
+> clocks/clock-names properties to be used for clock links.
 > 
-> I was hesitating here as all other gcc drivers use 'sleep_clk'.
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-Eh, indeed, these are existing bindings and drivers. Let's keep sleep_clk.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
