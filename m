@@ -2,63 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A70552452
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 20:58:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8736E55246A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 21:11:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238373AbiFTS6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 14:58:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59828 "EHLO
+        id S244590AbiFTTL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 15:11:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236360AbiFTS6E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 14:58:04 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382DCCFF;
-        Mon, 20 Jun 2022 11:58:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1655751481; x=1687287481;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=x+gv9xpQam84+22/vjH7Q89E2WxB+XSOUwJeuL1wLrU=;
-  b=At6B3dAZny36B1yY0gCIeXagnKzNmS2dAb2wqvk/oP+CAbDZB4J3yCzf
-   3A/gUYxLM6sJbqgiiDWfi79c9tktMKMfQQaU89wLaDp1T0AMpxsxRxh51
-   qwP22Iz5uL93vv/Ax/XZPxPkxL1kAB5GXWtOIy7gFNOcBdMCvAGfafprQ
-   NoZYFn1vHKJabmf4TBO9lR96e0JNIIWtevrt2a2rBsIYNdDlgusKIWdHx
-   QvS4Rwr8/dTsud52mmDWP1Ow5QcDIttLzUMldeFSWUc18FPWjcdomBDhU
-   2FKBoq5+6X72OZBQ553N0nXQ/wy7Gsm5cn7pcQAB8RzL8+d2U/h/ahUQk
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="260390706"
-X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; 
-   d="scan'208";a="260390706"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jun 2022 11:57:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; 
-   d="scan'208";a="643238919"
-Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 20 Jun 2022 11:57:50 -0700
-Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1o3Mar-000VUF-Ga;
-        Mon, 20 Jun 2022 18:57:49 +0000
-Date:   Tue, 21 Jun 2022 02:56:56 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org,
-        ays@melexis.com, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, hyun.kwon@xilinx.com,
-        laurent.pinchart@ideasonboard.com, michal.simek@xilinx.com,
-        kieran.bingham+renesas@ideasonboard.com, devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org
-Subject: Re: [PATCH 4/6] media: uapi: Add mlx7502x header file
-Message-ID: <202206210257.TVLhK9QZ-lkp@intel.com>
-References: <20220620162523.GA14039@vkh-ThinkPad-T490>
+        with ESMTP id S235833AbiFTTL1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 15:11:27 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6045715FF8
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 12:11:26 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id mf9so2624871ejb.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 12:11:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=p8Cq4R+8FtRcvZYSme69qC94a9sE8Xu5aJ+c94otTdk=;
+        b=o919jSIV76WguZgSYpOa1+5sKIJBkfT6eHCmTxwi7OxB3whAEpiI+hHjiOROiBQaWo
+         LJLqq4ubHd/EWli2QCr6HdrFNd0YD2SD7mlwS5wNXxHBRXpetDvsOr0WKlvJ7hEeJKfB
+         9eCL7bs6/7lOEba5m7mVwFYU9ar1XWSg4RbXlzb0NN4yjtX/809yGFEU4djrUEEei4ai
+         Xp02NTsnMThyNop+yyGqSiPuR0rlR0ALum9PxvNJBL2RiXkXMRgV/xry6W9Fvuolij18
+         nI7w+lL8XDT/nE4NVKAZf/lxdsp4p8zK3tNy9wbOX9aTkZxq4OdzdfpqjFLh5HagCbIi
+         33ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=p8Cq4R+8FtRcvZYSme69qC94a9sE8Xu5aJ+c94otTdk=;
+        b=zme+3lTqJ1lk7BSdOL/cGniQ9Td6tPuYxCgExm2c5UT+CrV5R8sbayRLUhJxW/bUfY
+         4l2ONJTokohHCyySuE80QVpQzyh5mAoHt34D0/ggQvKHp1hqHIN1PrLNpW6klaiLYVM2
+         pFpRQCacZhAA5XnmbtViyF8upee6x8jqz24FVfZkaNQMCUHcdr6LpzPddMREwYCzJ7Hj
+         4FdCBejhEfqpA3t3aFpXTpvOHf/ATEjAvniw5PdHinJCI9Y/G7dPbQl6UHCOJQ1YJp9U
+         pHvNaGsymECTWG0ZZJZhMm/riy6MoRUIrL7fgDsT+YR1WU6h1MHfjDi6hUkJODtbqS0g
+         aWcQ==
+X-Gm-Message-State: AJIora+FLVXPCOoPD/syvWHwku2NyJGcTENk0FKAVJnXTWFcefVkaw9j
+        zXBFFtG9bmCVvnX5EzfDq0hmDQ==
+X-Google-Smtp-Source: AGRyM1tgyOsdlguQWQfFO7W7cyKpleASmH1jchFTWI935o6WNHeRhKRm+G+JUR/RRE6d1Bwufw1msQ==
+X-Received: by 2002:a17:906:4a13:b0:715:85cc:9224 with SMTP id w19-20020a1709064a1300b0071585cc9224mr22375632eju.267.1655752284923;
+        Mon, 20 Jun 2022 12:11:24 -0700 (PDT)
+Received: from [192.168.0.212] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id g8-20020a170906538800b006ff05d4726esm6372433ejo.50.2022.06.20.12.11.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Jun 2022 12:11:24 -0700 (PDT)
+Message-ID: <a0dbea42-7a6b-142b-17a0-c819040b7129@linaro.org>
+Date:   Mon, 20 Jun 2022 21:11:23 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220620162523.GA14039@vkh-ThinkPad-T490>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 2/6] ARM: dts: qcom: use dedicated QFPROM compatibles
+Content-Language: en-US
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220505113802.243301-1-krzysztof.kozlowski@linaro.org>
+ <20220505113802.243301-2-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220505113802.243301-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,43 +78,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Volodymyr,
+On 05/05/2022 13:37, Krzysztof Kozlowski wrote:
+> Use dedicated compatibles for QFPROM on APQ8064, IPQ8064 and MSM9874,
+> which is expected by the bindings.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm/boot/dts/qcom-apq8064.dtsi | 2 +-
+>  arch/arm/boot/dts/qcom-apq8084.dtsi | 2 +-
+>  arch/arm/boot/dts/qcom-ipq8064.dtsi | 2 +-
+>  arch/arm/boot/dts/qcom-msm8974.dtsi | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
+> 
 
-I love your patch! Yet something to improve:
+I'll take the bindings (patch #1) but what about DTS here? Any comments?
 
-[auto build test ERROR on 945a9a8e448b65bec055d37eba58f711b39f66f0]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Volodymyr-Kharuk/media-i2c-mlx7502x-ToF-camera-support/20220621-003030
-base:   945a9a8e448b65bec055d37eba58f711b39f66f0
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20220621/202206210257.TVLhK9QZ-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/4c86ad4f2630e1b354d314a93800db2363826242
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Volodymyr-Kharuk/media-i2c-mlx7502x-ToF-camera-support/20220621-003030
-        git checkout 4c86ad4f2630e1b354d314a93800db2363826242
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=m68k prepare
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   scripts/genksyms/parse.y: warning: 9 shift/reduce conflicts [-Wconflicts-sr]
-   scripts/genksyms/parse.y: warning: 5 reduce/reduce conflicts [-Wconflicts-rr]
-   scripts/genksyms/parse.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
->> error: include/uapi/linux/mlx7502x.h: missing "WITH Linux-syscall-note" for SPDX-License-Identifier
-   make[2]: *** [scripts/Makefile.headersinst:63: usr/include/linux/mlx7502x.h] Error 1
-   make[2]: Target '__headers' not remade because of errors.
-   make[1]: *** [Makefile:1286: headers] Error 2
-   make[1]: Target 'prepare' not remade because of errors.
-   make: *** [Makefile:219: __sub-make] Error 2
-   make: Target 'prepare' not remade because of errors.
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Best regards,
+Krzysztof
