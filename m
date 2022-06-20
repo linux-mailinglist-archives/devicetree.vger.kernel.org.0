@@ -2,90 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B05C2551027
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 08:16:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 418EE551053
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 08:31:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238525AbiFTGQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 02:16:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45698 "EHLO
+        id S237592AbiFTGbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 02:31:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233453AbiFTGQN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 02:16:13 -0400
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5404BBF48;
-        Sun, 19 Jun 2022 23:16:12 -0700 (PDT)
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id DA9576732D; Mon, 20 Jun 2022 08:16:07 +0200 (CEST)
-Date:   Mon, 20 Jun 2022 08:16:07 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     palmer@dabbelt.com, paul.walmsley@sifive.com,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        wefu@redhat.com, guoren@kernel.org, cmuellner@linux.com,
-        philipp.tomsich@vrull.eu, hch@lst.de, samuel@sholland.org,
-        atishp@atishpatra.org, anup@brainfault.org, mick@ics.forth.gr,
-        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
-        drew@beagleboard.org, rdunlap@infradead.org,
-        Atish Patra <atish.patra@wdc.com>
-Subject: Re: [PATCH 3/4] riscv: Implement Zicbom-based cache management
- operations
-Message-ID: <20220620061607.GB10485@lst.de>
-References: <20220619203212.3604485-1-heiko@sntech.de> <20220619203212.3604485-4-heiko@sntech.de>
+        with ESMTP id S230121AbiFTGbi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 02:31:38 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 733F963FE;
+        Sun, 19 Jun 2022 23:31:36 -0700 (PDT)
+X-UUID: 3e37489b9576495eb89653281161de40-20220620
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:e245270b-27b5-4318-8799-9759d819e80e,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:-5
+X-CID-META: VersionHash:b14ad71,CLOUDID:b341fae9-f7af-4e69-92ee-0fd74a0c286c,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 3e37489b9576495eb89653281161de40-20220620
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1640627295; Mon, 20 Jun 2022 14:31:31 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Mon, 20 Jun 2022 14:31:29 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Mon, 20 Jun 2022 14:31:27 +0800
+Message-ID: <1b01b9a12d8ffe19aa37e23c644204203ff2db25.camel@mediatek.com>
+Subject: Re: [PATCH] media: mediatek: vcodec: Initialize decoder parameters
+ after getting dec_capability
+From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+CC:     Nicolas Dufresne <nicolas@ndufresne.ca>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        "Hsin-Yi Wang" <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "Irui Wang" <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 20 Jun 2022 14:31:27 +0800
+In-Reply-To: <CAGXv+5E2wULkB7_u_H7jFAi6Jk2AvUcfOJdzOp_5m2b4n3shww@mail.gmail.com>
+References: <20220618072929.28783-1-yunfei.dong@mediatek.com>
+         <CAGXv+5EFkZ6-bvu68dV4hr795+N3tAwbXYg5WCJp+Zd+pf1Aqw@mail.gmail.com>
+         <CAGXv+5E2wULkB7_u_H7jFAi6Jk2AvUcfOJdzOp_5m2b4n3shww@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220619203212.3604485-4-heiko@sntech.de>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 19, 2022 at 10:32:11PM +0200, Heiko Stuebner wrote:
-> +#ifdef CONFIG_RISCV_DMA_NONCOHERENT
-> +#define ARCH_DMA_MINALIGN L1_CACHE_BYTES
-> +#endif
+Hi Chen-Yu,
 
-This needs to be greater or equal to riscv_cbom_block_size, but the
-core code requires a compile time constant here.  So we'll need a big
-fat comment here, and panic if riscv_cbom_block_size is >
-L1_CACHE_BYTES/ARCH_DMA_MINALIGN in the code that queries
-riscv_cbom_block_size.
+Thanks for your suggestion.
+On Mon, 2022-06-20 at 13:25 +0800, Chen-Yu Tsai wrote:
+> On Mon, Jun 20, 2022 at 12:54 PM Chen-Yu Tsai <wenst@chromium.org>
+> wrote:
+> > 
+> > On Sat, Jun 18, 2022 at 3:29 PM Yunfei Dong <
+> > yunfei.dong@mediatek.com> wrote:
+> > > 
+> > > Need to get dec_capability from scp first, then initialize
+> > > decoder
+> > > supported format and other parameters according to dec_capability
+> > > value.
+> > > 
+> > > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> > 
+> > Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> > Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+> > 
+> > Tested on MT8183 on mainline 20220617-next with the vcodec-dec DT
+> > node
+> > copied from the ChromeOS v5.10 kernel.
+> > 
+> > This fixes an issue where the first attempt to enumerate formats on
+> > the
+> > device right after boot returns an empty list.
+> 
+> BTW, this should have a Fixes tag.
+> 
+> Either
+> 
+> Fixes: 7a7ae26fd458 ("media: mediatek: vcodec: support stateless VP8
+> decoding")
+> 
+> which looks like the first instance of when firmware capability
+> really is
+> considered, or
+> 
+> Fixes: fd00d90330d1 ("media: mtk-vcodec: vdec: move stateful ops into
+> their own file")
+> 
+> which matches when ctx->dev->vdec_pdata->init_vdec_params(ctx) was
+> first added.
+> 
+> 
+> ChenYu
 
-Note that the arm64 folks are looking into making this variable or
-killing it off in this current form, so things might be getting better
-soon.
+I will fix the patch in v2.
 
-> +void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
-> +			      enum dma_data_direction dir)
-> +{
-> +	void *vaddr = phys_to_virt(paddr);
-> +
-> +	switch (dir) {
-> +	case DMA_TO_DEVICE:
-> +		ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
-> +		break;
-> +	case DMA_FROM_DEVICE:
-> +		ALT_CMO_OP(inval, vaddr, size, riscv_cbom_block_size);
-> +		break;
+Best Regards,
+Yunfei Dong
 
-For this also see:
-
-https://lore.kernel.org/all/20220606152150.GA31568@willie-the-truck/
-
-and
-
-https://lore.kernel.org/linux-arm-kernel/20220610151228.4562-1-will@kernel.org/T/
-
-> +void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
-> +		const struct iommu_ops *iommu, bool coherent)
-> +{
-> +	dev->dma_coherent = coherent;
-> +}
-
-This probably wants a sanity check warn if coherent if false without
-any support for cache flushing as that will cause data corruption.
