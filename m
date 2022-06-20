@@ -2,150 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DFE75512C4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 10:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAE775512E7
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 10:35:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236504AbiFTIaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 04:30:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47172 "EHLO
+        id S239940AbiFTIfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 04:35:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234935AbiFTIap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 04:30:45 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 376CA11C10
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 01:30:43 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1o3Cnr-0003dz-2w; Mon, 20 Jun 2022 10:30:35 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1o3Cnq-0002if-Ek; Mon, 20 Jun 2022 10:30:34 +0200
-Date:   Mon, 20 Jun 2022 10:30:34 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, shengjiu.wang@gmail.com
-Subject: Re: [PATCH v2 1/3] arm64: dts: imx8mm-evk: add bt-sco sound card
- support
-Message-ID: <20220620083034.hy5qtfpl3hdr5van@pengutronix.de>
-References: <1655691813-19878-1-git-send-email-shengjiu.wang@nxp.com>
- <1655691813-19878-2-git-send-email-shengjiu.wang@nxp.com>
+        with ESMTP id S239937AbiFTIfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 04:35:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DF012ABA;
+        Mon, 20 Jun 2022 01:35:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B7B5961312;
+        Mon, 20 Jun 2022 08:35:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63960C341C4;
+        Mon, 20 Jun 2022 08:35:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655714129;
+        bh=13hg9vAkkqd9KUoEdzPHfQiVrLh+Dwj/Z4m2brBRv/E=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Wt+Hw/L1fCzUcxbpNqWYqN7YvWq3lC2gopJ/YTr0pvKv5ePS0hf6ox+9pLrR9aITY
+         C1vqDTMKGnMOtLPSjMrCQrjgcghuqnfKSTuO0QqRky7mwXK+5WC+1ddnQB8TveAXQD
+         P6MR/B5fVAYSr0e4bmc9p0kLYd1BE6ulJAeMed/fj5stiNuQhqNCO5IO4FdFH61+4v
+         izmuPnWbF1E0mhqvCA5ziag9h2ALMkYp+RmQuZvCTBdS4VvPz1wt6sgQYiLLr8a92p
+         ZPybJjNFOUxq1s6JLDLCnAkQzH+ORNu9izrifoBC70Do0114sBeMuhrs6Ad5thN1Tb
+         NKot9bhO4uzRQ==
+Message-ID: <e3411d6c-ec64-f20e-4c58-13245fe255b5@kernel.org>
+Date:   Mon, 20 Jun 2022 10:35:20 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1655691813-19878-2-git-send-email-shengjiu.wang@nxp.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v3 3/5] PCI: axis: Add ARTPEC-8 PCIe controller driver
+Content-Language: en-US
+To:     wangseok.lee@samsung.com,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
+        "lars.persson@axis.com" <lars.persson@axis.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "kw@linux.com" <kw@linux.com>,
+        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
+        "kernel@axis.com" <kernel@axis.com>
+Cc:     Moon-Ki Jun <moonki.jun@samsung.com>,
+        Sang Min Kim <hypmean.kim@samsung.com>,
+        Dongjin Yang <dj76.yang@samsung.com>,
+        Yeeun Kim <yeeun119.kim@samsung.com>
+References: <20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
+ <CGME20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p3>
+ <20220614013042epcms2p36f88b7eb7f879fefb2f3fbd4548ad705@epcms2p3>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220614013042epcms2p36f88b7eb7f879fefb2f3fbd4548ad705@epcms2p3>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shengjiu,
-
-On 22-06-20, Shengjiu Wang wrote:
-> Add bt-sco sound card, which supports wb profile as default
+On 14/06/2022 03:30, Wangseok Lee wrote:
+> Add support Axis, ARTPEC-8 SoC.
+> ARTPEC-8 is the SoC platform of Axis Communications.
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> index c42b966f7a64..cf734d2a94be 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> @@ -75,6 +75,11 @@
->  		linux,autosuspend-period = <125>;
->  	};
->  
-> +	audio_codec_bt_sco: audio-codec-bt-sco {
-> +		#sound-dai-cells = <1>;
-> +		compatible = "linux,bt-sco";
 
-The compatible property should always be the first property. This
-apply to your other patches as well.
+(...)
 
-Regards,
-  Marco
-
-> +	};
 > +
->  	wm8524: audio-codec {
->  		#sound-dai-cells = <0>;
->  		compatible = "wlf,wm8524";
-> @@ -107,6 +112,25 @@
->  			clocks = <&clk IMX8MM_CLK_SAI3_ROOT>;
->  		};
->  	};
-> +
-> +	sound-bt-sco {
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,name = "bt-sco-audio";
-> +		simple-audio-card,format = "dsp_a";
-> +		simple-audio-card,bitclock-inversion;
-> +		simple-audio-card,frame-master = <&btcpu>;
-> +		simple-audio-card,bitclock-master = <&btcpu>;
-> +
-> +		btcpu: simple-audio-card,cpu {
-> +			sound-dai = <&sai2>;
-> +			dai-tdm-slot-num = <2>;
-> +			dai-tdm-slot-width = <16>;
-> +		};
-> +
-> +		simple-audio-card,codec {
-> +			sound-dai = <&audio_codec_bt_sco 1>;
-> +		};
-> +	};
->  };
->  
->  &A53_0 {
-> @@ -346,6 +370,16 @@
->  	status = "okay";
->  };
->  
-> +&sai2 {
-> +	#sound-dai-cells = <0>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_sai2>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_SAI2>;
-> +	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
-> +	assigned-clock-rates = <24576000>;
-> +	status = "okay";
+> +enum artpec8_pcie_isolation {
+> +	PCIE_CLEAR_ISOLATION = 0,
+> +	PCIE_SET_ISOLATION = 1
 > +};
 > +
->  &sai3 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_sai3>;
-> @@ -494,6 +528,15 @@
->  		>;
->  	};
->  
-> +	pinctrl_sai2: sai2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SAI2_TXC_SAI2_TX_BCLK      0xd6
-> +			MX8MM_IOMUXC_SAI2_TXFS_SAI2_TX_SYNC     0xd6
-> +			MX8MM_IOMUXC_SAI2_TXD0_SAI2_TX_DATA0    0xd6
-> +			MX8MM_IOMUXC_SAI2_RXD0_SAI2_RX_DATA0    0xd6
-> +		>;
-> +	};
-> +
->  	pinctrl_sai3: sai3grp {
->  		fsl,pins = <
->  			MX8MM_IOMUXC_SAI3_TXFS_SAI3_TX_SYNC     0xd6
-> -- 
-> 2.17.1
-> 
-> 
-> 
+> +enum artpec8_pcie_reg_bit {
+> +	PCIE_REG_BIT_LOW = 0,
+> +	PCIE_REG_BIT_HIGH = 1
+> +};
+
+Remove this enum. This is redefinition of true/false or 1/0.
+
+Best regards,
+Krzysztof
