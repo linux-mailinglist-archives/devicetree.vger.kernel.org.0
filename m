@@ -2,199 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3CE55515C8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 12:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EDCA5515D1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 12:28:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239999AbiFTK02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 06:26:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53360 "EHLO
+        id S239854AbiFTK2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 06:28:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240233AbiFTK0Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 06:26:24 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 02F1A13F8A;
-        Mon, 20 Jun 2022 03:26:21 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.92,306,1650898800"; 
-   d="scan'208";a="125005503"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 20 Jun 2022 19:26:21 +0900
-Received: from localhost.localdomain (unknown [10.226.93.116])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 7C98D4273C6A;
-        Mon, 20 Jun 2022 19:26:17 +0900 (JST)
-From:   Phil Edworthy <phil.edworthy@renesas.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S235119AbiFTK2U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 06:28:20 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91EB865E0;
+        Mon, 20 Jun 2022 03:28:18 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25KAS3D8044729;
+        Mon, 20 Jun 2022 05:28:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655720883;
+        bh=8S4RJIt01krO5SFnaHIBaeR25+r/z/wZvXY6r5G9Pkk=;
+        h=From:To:CC:Subject:Date;
+        b=VYqBl3va4IlQQdrVQwOrJ1DGBk/TusowmP/d4xh++/v3dWH5YU5dMwJnlyMp4nvjw
+         tZt5qU6XHT/2njQVtOBzfDyz8w+hxQ9qKIuQMM/VS93YebMvYzM+Fcl7Itk1uHOTGx
+         SP2ZN/O1oz0T8twB2XmQqYUIFNa1ohv8/G4XwIGY=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25KAS3kS049419
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 20 Jun 2022 05:28:03 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 20
+ Jun 2022 05:28:03 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 20 Jun 2022 05:28:03 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25KAS2TQ018315;
+        Mon, 20 Jun 2022 05:28:02 -0500
+From:   Jai Luthra <j-luthra@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 1/2] dt-bindings: watchdog: renesas,wdt: Add r9a09g011 (RZ/V2M) support
-Date:   Mon, 20 Jun 2022 11:25:59 +0100
-Message-Id: <20220620102600.52349-2-phil.edworthy@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220620102600.52349-1-phil.edworthy@renesas.com>
-References: <20220620102600.52349-1-phil.edworthy@renesas.com>
+CC:     <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH v4 0/2] arm64: ti: k3-am62: Enable audio output
+Date:   Mon, 20 Jun 2022 15:57:47 +0530
+Message-ID: <20220620102750.32718-1-j-luthra@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the documentation for the r9a09g011 SoC, but in doing so also
-reorganise the doc to make it easier to read.
-Additionally, make the binding require an interrupt to be specified.
-Whilst the driver does not need an interrupt, all of the SoCs that use
-this binding actually provide one.
+This patch series adds support for audio output via headphone jack on the 
+AM62-SK board. The jack is wired to TLV320AIC3106 (codec), which is connected 
+to McASP (serializer).
 
-Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
+The same 3.5mm jack can be used for combined playback+recording, but audio 
+input is currently disabled on McASP until further testing and debugging.
+
+v4:
+Use audio-friendly 96Mhz source as clock parent for mcasp
+
 v3:
- - Add check for too many interrupts or clocks
-v2:
- - Added minItems for interrupt-names and clock-names
----
- .../bindings/watchdog/renesas,wdt.yaml        | 73 +++++++++++++------
- 1 file changed, 52 insertions(+), 21 deletions(-)
+Fix regulator, clock and codec node names
 
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-index a8d7dde5271b..0f5675d695d6 100644
---- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-@@ -31,6 +31,11 @@ properties:
-               - renesas,r9a07g054-wdt    # RZ/V2L
-           - const: renesas,rzg2l-wdt
- 
-+      - items:
-+          - enum:
-+              - renesas,r9a09g011-wdt    # RZ/V2M
-+          - const: renesas,rzv2m-wdt     # RZ/V2M
-+
-       - items:
-           - enum:
-               - renesas,r8a7742-wdt      # RZ/G1H
-@@ -70,13 +75,29 @@ properties:
-   reg:
-     maxItems: 1
- 
--  interrupts: true
--
--  interrupt-names: true
--
--  clocks: true
--
--  clock-names: true
-+  interrupts:
-+    minItems: 1
-+    items:
-+      - description: Timeout
-+      - description: Parity error
-+
-+  interrupt-names:
-+    minItems: 1
-+    items:
-+      - const: wdt
-+      - const: perrout
-+
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: Register access clock
-+      - description: Main clock
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: pclk
-+      - const: oscclk
- 
-   power-domains:
-     maxItems: 1
-@@ -89,6 +110,7 @@ properties:
- required:
-   - compatible
-   - reg
-+  - interrupts
-   - clocks
- 
- allOf:
-@@ -113,31 +135,38 @@ allOf:
-           contains:
-             enum:
-               - renesas,rzg2l-wdt
-+              - renesas,rzv2m-wdt
-     then:
-       properties:
--        interrupts:
--          maxItems: 2
--        interrupt-names:
--          items:
--            - const: wdt
--            - const: perrout
-         clocks:
--          items:
--            - description: Register access clock
--            - description: Main clock
-+          minItems: 2
-         clock-names:
--          items:
--            - const: pclk
--            - const: oscclk
-+          minItems: 2
-       required:
-         - clock-names
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rzg2l-wdt
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 2
-+        interrupt-names:
-+          minItems: 2
-+      required:
-         - interrupt-names
-     else:
-       properties:
-         interrupts:
-           maxItems: 1
--        clocks:
--          maxItems: 1
- 
- additionalProperties: false
- 
-@@ -145,9 +174,11 @@ examples:
-   - |
-     #include <dt-bindings/clock/r8a7795-cpg-mssr.h>
-     #include <dt-bindings/power/r8a7795-sysc.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-     wdt0: watchdog@e6020000 {
-             compatible = "renesas,r8a7795-wdt", "renesas,rcar-gen3-wdt";
-             reg = <0xe6020000 0x0c>;
-+            interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-             clocks = <&cpg CPG_MOD 402>;
-             power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
-             resets = <&cpg 402>;
+v2:
+Move out the patch for sound/soc/ti/davinici-mcasp.c into a separate series
+
+v3: https://lore.kernel.org/all/20220427085053.14964-1-j-luthra@ti.com/
+v2: https://lore.kernel.org/all/20220422060052.8548-1-j-luthra@ti.com/
+v1: https://lore.kernel.org/all/20220421132224.8601-1-j-luthra@ti.com/
+
+Jai Luthra (1):
+  arm64: dts: ti: k3-am625-sk: Add audio output support
+
+Jayesh Choudhary (1):
+  arm64: dts: ti: k3-am62-main: Add McASP nodes
+
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 57 +++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am625-sk.dts   | 89 ++++++++++++++++++++++++
+ 2 files changed, 146 insertions(+)
+
 -- 
-2.34.1
+2.17.1
 
