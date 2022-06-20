@@ -2,100 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88035552426
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 20:42:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BAEC55242F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 20:46:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235019AbiFTSmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 14:42:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50398 "EHLO
+        id S1343557AbiFTSqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 14:46:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238999AbiFTSmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 14:42:18 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36A681FCC8
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 11:42:17 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id ej4so12365883edb.7
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 11:42:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=xOKx+qKsJ5kkTi5MlwCM1JyykoXmTfPgRpq/ljnv+ss=;
-        b=l8DTBZm8GsYTad7S4RC0ysTwTF2/7iwEpZXfVf+xJV6L1Xa5RkgpPSvvMsZXdaB5/3
-         vA5ZRLszN4/4z6paOgn28e8I7sUOS1BHVO92NfI7GwaHggZpG8biH9gkPXkeL471wvEa
-         JGrZzUIdgdRmsXpJFaGoXX0LMMRBumNgCXEplSXM9VA0CJe7X7f5IhAC4D8cAh9FhI2W
-         BzSB7vBEWJckVGOZyPRgGLkhMAvwVg2m4mLFhmj1s7FDD50lkDcl/LKvHCgVi07xlpOG
-         kC6Lxma1miizSrToXMAeHQkIYrDHg0SYmcZYf4XDZBaQkOhRxGWO6WzMjPJdZq/y9k6K
-         //BA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=xOKx+qKsJ5kkTi5MlwCM1JyykoXmTfPgRpq/ljnv+ss=;
-        b=3pJ1wVdUdBicJiK5Hdp+gmjp9UePZsdhhzM2oE104EdWCLPDQnZTzhvIfrWyX/oGrN
-         7B3hpt/eybZ6elE13DL+nRaz5d+SiYyQfolSaLtjVywPqrvQqzdafUUI8ZBbssRABGJC
-         R6lzdOwU4Oc1m2v+VfFo3n9vVeOKVWWIUXQ2wfzf4Y2fxdJmdSePw0jek965h2BbpOQZ
-         /SahaPEEcKSUa1GYuEWl5PhF5vBMEzLEMkd46BLp1kMIhuFKI2tqE/tXyvIkwKSzxW7Y
-         VeUCvPqs/uEwrGeVy3nwK6r6cxi9HTQQkDbV4P3CH2+I1OrSRT4pNZz7FSoeE6D2GUiF
-         qk6Q==
-X-Gm-Message-State: AJIora+Pvywt75u8qOl9UYncnAw++uklOspJ7mQiabDiCfV6KIQSYKit
-        FK5KiorpPBa9sCddiLWcv3GL+03mSm0vIg==
-X-Google-Smtp-Source: AGRyM1ugdXm1zGuybgNjMaAbTcsHD4Jx9iyyTn2gx9/UGgYYqST+9otKfvbn4e708ZpYpE9wPB13Wg==
-X-Received: by 2002:aa7:cf87:0:b0:435:65c0:f59b with SMTP id z7-20020aa7cf87000000b0043565c0f59bmr20650374edx.214.1655750535850;
-        Mon, 20 Jun 2022 11:42:15 -0700 (PDT)
-Received: from [192.168.0.211] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o7-20020a170906600700b006fe8ec44461sm6390117ejj.101.2022.06.20.11.42.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jun 2022 11:42:15 -0700 (PDT)
-Message-ID: <798877f0-707e-2113-300d-38a0205a9f59@linaro.org>
-Date:   Mon, 20 Jun 2022 20:42:14 +0200
+        with ESMTP id S235019AbiFTSqw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 14:46:52 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA7B1A398;
+        Mon, 20 Jun 2022 11:46:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1655750810; x=1687286810;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3cO+9b7DCuxN6a4z6JHt9DjUZ/m4m3onBWRNXNTs5m0=;
+  b=e8BRQMeZBm0KGhI9fhGSUqXQ7zE5HROVbvCBnNqS0d037yJGwpdrBbOe
+   J5rXrP+07hMnDKNOxk+kt3tF96H0g6nxsoFZ1qvN6rLdYefyH3gGR930i
+   ano1awVDQAc1fwUdhkKKkT5imIdJ0mPlrXjfQOULrj5DK1VqluCxILBBF
+   yMsrG9yP7nufX8+GaBdx+26QQ5WxtdJbnBvm9NHzsGlajLQ825Cv6oWxf
+   mLyqmsfiKh4tX6O0Vi+BEKtoqvBP+IUsupuuNcegpsXV7FOXca53N9KC1
+   KJoKYDQGi1qNFBI/t4HEamn5UqkyqlJSUJwpOrPsd2XCYG9AgiDVMOg1D
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10384"; a="305393344"
+X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; 
+   d="scan'208";a="305393344"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jun 2022 11:46:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,207,1650956400"; 
+   d="scan'208";a="654795752"
+Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 20 Jun 2022 11:46:47 -0700
+Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o3MQB-000VIK-4w;
+        Mon, 20 Jun 2022 18:46:47 +0000
+Date:   Tue, 21 Jun 2022 02:46:41 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org,
+        ays@melexis.com, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, hyun.kwon@xilinx.com,
+        laurent.pinchart@ideasonboard.com, michal.simek@xilinx.com,
+        kieran.bingham+renesas@ideasonboard.com, devicetree@vger.kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org
+Subject: Re: [PATCH 4/6] media: uapi: Add mlx7502x header file
+Message-ID: <202206210214.qdKFyz8R-lkp@intel.com>
+References: <20220620162523.GA14039@vkh-ThinkPad-T490>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: soc: qcom,rpmh-rsc: simplify qcom,tcs-config
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>
-References: <20220426110757.80603-1-krzysztof.kozlowski@linaro.org>
- <1b39bff2-7eb1-b613-654d-59d11dcfe03a@linaro.org>
-In-Reply-To: <1b39bff2-7eb1-b613-654d-59d11dcfe03a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220620162523.GA14039@vkh-ThinkPad-T490>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2022 16:54, Krzysztof Kozlowski wrote:
-> On 26/04/2022 13:07, Krzysztof Kozlowski wrote:
->> The schema for "qcom,tcs-config" property can be a little bit simpler,
->> without the need of defining each item.  Also move the description of
->> each part of "qcom,tcs-config" tupple to the tupple items description.
->>
->> Suggested-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Hi,
-> 
-> This was sent a month ago... any chances for pick up?
+Hi Volodymyr,
 
-I sent it on 26 of April, on 20th of May I pinged, so now it is 20th of
-June.
+I love your patch! Yet something to improve:
 
-OK, I got the point. :) I'll pick it up. Ping me if anyone wants to take
-it instead.
+[auto build test ERROR on 945a9a8e448b65bec055d37eba58f711b39f66f0]
 
-Best regards,
-Krzysztof
+url:    https://github.com/intel-lab-lkp/linux/commits/Volodymyr-Kharuk/media-i2c-mlx7502x-ToF-camera-support/20220621-003030
+base:   945a9a8e448b65bec055d37eba58f711b39f66f0
+config: x86_64-randconfig-a013-20220620 (https://download.01.org/0day-ci/archive/20220621/202206210214.qdKFyz8R-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project af6d2a0b6825e71965f3e2701a63c239fa0ad70f)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/4c86ad4f2630e1b354d314a93800db2363826242
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Volodymyr-Kharuk/media-i2c-mlx7502x-ToF-camera-support/20220621-003030
+        git checkout 4c86ad4f2630e1b354d314a93800db2363826242
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 prepare
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   scripts/genksyms/parse.y: warning: 9 shift/reduce conflicts [-Wconflicts-sr]
+   scripts/genksyms/parse.y: warning: 5 reduce/reduce conflicts [-Wconflicts-rr]
+   scripts/genksyms/parse.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
+>> error: include/uapi/linux/mlx7502x.h: missing "WITH Linux-syscall-note" for SPDX-License-Identifier
+   make[2]: *** [scripts/Makefile.headersinst:63: usr/include/linux/mlx7502x.h] Error 1
+   make[2]: Target '__headers' not remade because of errors.
+   make[1]: *** [Makefile:1286: headers] Error 2
+   make[1]: Target 'prepare' not remade because of errors.
+   make: *** [Makefile:219: __sub-make] Error 2
+   make: Target 'prepare' not remade because of errors.
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
