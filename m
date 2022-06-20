@@ -2,176 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2D0855128D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 10:21:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4086155129A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 10:23:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239325AbiFTIVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 04:21:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38718 "EHLO
+        id S239260AbiFTIWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 04:22:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239153AbiFTIVN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 04:21:13 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB111209A
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 01:21:10 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id gl15so19550997ejb.4
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 01:21:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=H2+1Br+WPxKlr7rhA9GfS8O/m05TRKE7h+ScGuyJAog=;
-        b=JC5OvhqSI3YDLB4ulNcwLiuwrq3174cHPyMi4JeV8uCx84M4SI/6pAzWSwwGIAmo9i
-         p6t9Ivqkdqui3xsiy3Ee0xUhCcJ6w6+jOOIte/Ii6tUtK/BAsuBJ911XGEpGvt1aqiYK
-         QTB7y+CxG1pWhpmx+BPbgHhnHz3voafRZyRc6YsvqsKPdcyWzXQRLQbkHOigs0ZlkeFH
-         UL50DeYMUcOj2rjwGCiX7h9nrnJgw2WRLPQIjCZFjqUqjMVmYlDyNEZWlZCUo4E9gHJJ
-         IdoUff+QZ89fSbkrQWHgF2KZiJcF2i2h9l+lVFA3pPJTh+u+icUmTajeydSWfkGyDcCv
-         +fHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=H2+1Br+WPxKlr7rhA9GfS8O/m05TRKE7h+ScGuyJAog=;
-        b=3HPqejGoWThBOcD/iLLvlXjy+Bti6EnwYY++75M3PevedjVMX6T8QADPq+rDUi9dpx
-         h/ehE0tUataGTx1+vHuD6WYU8TEZ7EpkNXrwXLL1bBNTHsQur43i3HxDYhZ3JbPWeO/p
-         r5dWlp/6CLee1tyf3d/O2tB7gdSw6/VYWWWRt6Y02UGFCDQItc/7a1Y/H4wemWLTKWKi
-         AK7oPyCuf+OTPZpN7gInfXREb0Mg+oZdU22v8MbgNYcv3YIuUmX4lcDNlopXKb7W83T5
-         N+xdqZ0iD2KY4hsARwx9GVjPvhE4e/3T/Br9/anklf7oOp/VEcrvHu8j1x9qBKXHfa3+
-         hpdw==
-X-Gm-Message-State: AJIora/sNtudssx7R+/OCv7dBwMTHGQvgvKGhHU7cFuSvIOAx5DzZcUb
-        cEaN+pb+BOw89EllecpxFWaI5A==
-X-Google-Smtp-Source: AGRyM1vUUFN5yFrpsDyCCDudDRBU4X7vKD37ZJhGh+DJw/CUxCKNVKu2v2/I8EJ7euaQXqIHibedZQ==
-X-Received: by 2002:a17:906:72de:b0:711:f8c8:ba00 with SMTP id m30-20020a17090672de00b00711f8c8ba00mr20299153ejl.586.1655713268738;
-        Mon, 20 Jun 2022 01:21:08 -0700 (PDT)
-Received: from [192.168.0.207] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id h20-20020a1709070b1400b006fe7d269db8sm5469823ejl.104.2022.06.20.01.21.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jun 2022 01:21:08 -0700 (PDT)
-Message-ID: <040f149b-c441-c778-6d4f-f3b2b2afaf4e@linaro.org>
-Date:   Mon, 20 Jun 2022 10:21:06 +0200
+        with ESMTP id S238797AbiFTIWb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 04:22:31 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08B9212091;
+        Mon, 20 Jun 2022 01:22:30 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 978C4660166E;
+        Mon, 20 Jun 2022 09:22:27 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1655713348;
+        bh=Bw8//Vr2/4Y/0JdxL5tF76a5lDkcKuJqgY+A3/ga2oc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=nkDYwqvAQkgqrN1VB8RcGMCWM/y8IbVV5IMjNrJSkbf3JeM4U3lsuMtlMPqHSihGf
+         LS4afm8BEm05GBgs1KoSme5dQ+/U5ll7i5/QDfai6wrtRRhKqQDKvSK2e+CJzCkT1W
+         qEarsfCUI7gQ63UpHjMZsm0JI9gwPYKksjyrfXlqsQK1S+txPemzyGI1BJCRfKmFzu
+         jXTHmAUoWo/HhfF/hFzsl5WeOJ0p1xeCEoaFqhTEtoJwNUETILjvCjgouu5IBySRHZ
+         NR8LDI5T2dZnJ6yawv3Ek1uMm921LKw2N/RDEGk41FCkEE9AsHHhCdncqnqMg8vBGB
+         yyUD7/xVGkQyg==
+Message-ID: <96322aee-6fbe-9c0c-8935-1c2d10ae60f1@collabora.com>
+Date:   Mon, 20 Jun 2022 10:22:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v3 05/18] dt-binding: clk: npcm845: Add binding for
- Nuvoton NPCM8XX Clock
+Subject: Re: [PATCH, v2] media: mediatek: vcodec: Initialize decoder
+ parameters after getting dec_capability
 Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, daniel.lezcano@linaro.org,
-        tglx@linutronix.de, wim@linux-watchdog.org, linux@roeck-us.net,
-        catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
-        olof@lixom.net, jirislaby@kernel.org, shawnguo@kernel.org,
-        bjorn.andersson@linaro.org, geert+renesas@glider.be,
-        marcel.ziswiler@toradex.com, vkoul@kernel.org,
-        biju.das.jz@bp.renesas.com, nobuhiro1.iwamatsu@toshiba.co.jp,
-        robert.hancock@calian.com, j.neuschaefer@gmx.net, lkundrak@v3.sk
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220619151225.209029-1-tmaimon77@gmail.com>
- <20220619151225.209029-6-tmaimon77@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220619151225.209029-6-tmaimon77@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220620063217.9867-1-yunfei.dong@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220620063217.9867-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2022 17:12, Tomer Maimon wrote:
-> Add binding for the Arbel BMC NPCM8XX Clock controller.
+Il 20/06/22 08:32, Yunfei Dong ha scritto:
+> Need to get dec_capability from scp first, then initialize decoder
+> supported format and other parameters according to dec_capability value.
 > 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  .../bindings/clock/nuvoton,npcm845-clk.yaml   | 49 +++++++++++++++++++
->  .../dt-bindings/clock/nuvoton,npcm8xx-clock.h | 49 +++++++++++++++++++
->  2 files changed, 98 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
->  create mode 100644 include/dt-bindings/clock/nuvoton,npcm8xx-clock.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
-> new file mode 100644
-> index 000000000000..3d4fddc090ca
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/nuvoton,npcm845-clk.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton NPCM8XX Clock Controller Binding
-> +
-> +maintainers:
-> +  - Tomer Maimon <tmaimon77@gmail.com>
-> +
-> +description: |
-> +  Nuvoton Arbel BMC NPCM8XX contains an integrated clock controller, which
-> +  generates and supplies clocks to all modules within the BMC.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nuvoton,npcm845-clk
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +    description:
-> +      See include/dt-bindings/clock/nuvoton,npcm8xx-clock.h for the full
-> +      list of NPCM8XX clock IDs.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
+> Fixes: fd00d90330d1 ("media: mtk-vcodec: vdec: move stateful ops into their own file")
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
-Use same quotes through your patchset - either " or '. Do not mix.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    ahb {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        clock-controller@f0801000 {
-> +            compatible = "nuvoton,npcm845-clk";
-> +            reg = <0x0 0xf0801000 0x0 0x1000>;
-> +            #clock-cells = <1>;
-> +        };
-> +    };
-> +...
-> diff --git a/include/dt-bindings/clock/nuvoton,npcm8xx-clock.h b/include/dt-bindings/clock/nuvoton,npcm8xx-clock.h
-> new file mode 100644
-> index 000000000000..e5cce08b00e1
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/nuvoton,npcm8xx-clock.h
-> @@ -0,0 +1,49 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-
-My comment about filename is still waiting to be resolved. I asked for
-same filename as bindings in v1.
-
-https://lore.kernel.org/all/CAP6Zq1gXEqqquKzxTHoxYnvh2LCGt-ES+k=aX61FKyHW5WB62w@mail.gmail.com/
-
-I am still going to NAK it if it is not implemented.
-
-Best regards,
-Krzysztof
