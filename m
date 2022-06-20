@@ -2,86 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DBBD55271D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 00:49:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17AF155276A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 01:02:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233028AbiFTWtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 18:49:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53320 "EHLO
+        id S1345246AbiFTXBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 19:01:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244924AbiFTWtH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 18:49:07 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F9CA1705A
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 15:49:06 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id n185so6527891wmn.4
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 15:49:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod.ie; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=hy0Xdesz3zE5Os2cbPhgUWle+TPKNOoLmrTtPiHUQEo=;
-        b=ZYwDRlfKOOYKL+WIoMVmcZBHfH2hZEk5UjfT4f00kyzA1TsSsZ+LLvooOGasTgLcId
-         /NSAyz9yGyNuvDaS+3NY3LrQJux2Kre3iqsxIzfjtaHz8yP2JPfiqTY0iIx54VZsLF75
-         Bzqxx5NujcXuLdNFG/rKZtgfRcfumIOzcQjIFXgkYjJoapiB7NEOxkt7XIo+thbkpsDZ
-         AXPYAD+vnORi81F2kP1c7A3xKDez+YBlJvfQsHH8b+VCDdx2BVjR6HFF0zFQyv0Thecj
-         nsZQUG8VQSsn6ub9nbGGdLWLOvXLQCQP14tjSUiP3G3d/xo+501S04egjJ0MAwRhGLpS
-         4+cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=hy0Xdesz3zE5Os2cbPhgUWle+TPKNOoLmrTtPiHUQEo=;
-        b=Z2tJ8vBQkrrO7g5ntxJ8tuXf+Ry6notzcMH08CFH6G2z2QZnPCClN9NBIGO+goczlS
-         8aLhI5I95rbNkY/EkLBQQmhSLcTgppOwCQgSyoo647lEQWzf54uDRJPtEbRLndkvGF/a
-         DB7CUrY7rbqEmYk7Z1c0mnHgITyKY2gNBCxyKcLVZuDNnfGSrotNC1W8po4kRJQ70jQu
-         FygRAQZlXeQk2ogP8lmR9ve9+S6ob7TbGxgSRKMTfd7zB1l5jXvnJhauselmhvHQk/Ws
-         AEtjpdxj1+WQdZN9iZ6WAcvaHZbPiuIf64zDO9dm88sfaREI9/ZT4PDH+2p8C5CGP9am
-         XKYg==
-X-Gm-Message-State: AJIora/31l2UhNJF5poDUJmR0HxkXVP4BV9Qgco40AX+6jAqTcr84rAQ
-        gUA5Pav24BHmw32sXZ++hAugTA==
-X-Google-Smtp-Source: AGRyM1sWkC5yVB3Vh70iYg5zpUyg3STH8l29UNOqYvK+YL6zEEjsIRVCZulowHoh/WC9YX4xPFr8HA==
-X-Received: by 2002:a05:600c:4f51:b0:39c:7f6c:a8d6 with SMTP id m17-20020a05600c4f5100b0039c7f6ca8d6mr26961636wmq.143.1655765344601;
-        Mon, 20 Jun 2022 15:49:04 -0700 (PDT)
-Received: from [192.168.2.222] ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id g9-20020a5d6989000000b0020c5253d8dcsm14187651wru.40.2022.06.20.15.49.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jun 2022 15:49:03 -0700 (PDT)
-Message-ID: <a2d85598-76d1-c9dc-d50d-e5aa815997cf@conchuod.ie>
-Date:   Mon, 20 Jun 2022 23:49:01 +0100
+        with ESMTP id S1345096AbiFTXBV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 19:01:21 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0819821268;
+        Mon, 20 Jun 2022 16:01:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8DD60B81647;
+        Mon, 20 Jun 2022 23:01:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3044DC3411B;
+        Mon, 20 Jun 2022 23:01:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655766077;
+        bh=KWnfCOcy6EMVGZ+IQ1j1MYLRVJmYd3M9MCbfdqtcwy8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=A+wc3ri+Y0ZgunxbbsOwClAShd6qwCHrUKPc/hX/9bpBFaAbZqUKq0i2i90nuim1a
+         L+aqK8Ema22rXkAgb3Dsc8h/yiBVjcZiQBGIFzBtp6LAUb+7f/gv91S7nOB5/k1Tup
+         N/KxxGrs3SHxbmb/NY93A4fnQJa2ZcJp8SqUrzrU+L+fVn3fQ1wVWwFjkiNG1NwVHk
+         zkVAoegkraCaimTJx8jZUsPDGFHWhOqxLsESsIqjuTJ2r9B5qyo83m3W0pqPPyD+BD
+         SiWVcZGBLCzNv+e0PDFpQvHpf3rLOv9Q8ZtiyWq9AzJPvkLYXv06iFli0f1hv9ieqN
+         dPCPjPpdgQj5g==
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     jarkko.nikula@linux.intel.com
+Cc:     dinguyen@kernel.org, andriy.shevchenko@linux.intel.com,
+        mika.westerberg@linux.intel.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCHv6 1/2] i2c: designware: introduce a custom scl recovery for SoCFPGA platforms
+Date:   Mon, 20 Jun 2022 18:01:08 -0500
+Message-Id: <20220620230109.986298-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 06/14] spi: dt-bindings: dw-apb-ssi: update
- spi-{r,t}x-bus-width for dwc-ssi
-Content-Language: en-US
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Conor.Dooley@microchip.com, fancer.lancer@gmail.com
-Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        sam@ravnborg.org, Eugeniy.Paltsev@synopsys.com, vkoul@kernel.org,
-        lgirdwood@gmail.com, broonie@kernel.org, daniel.lezcano@linaro.org,
-        palmer@dabbelt.com, palmer@rivosinc.com, tglx@linutronix.de,
-        paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
-        masahiroy@kernel.org, geert@linux-m68k.org, niklas.cassel@wdc.com,
-        dillon.minfei@gmail.com, jee.heng.sia@intel.com,
-        joabreu@synopsys.com, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-spi@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20220618123035.563070-1-mail@conchuod.ie>
- <20220618123035.563070-7-mail@conchuod.ie>
- <20220620205654.g7fyipwytbww5757@mobilestation>
- <61b0fb86-078d-0262-b142-df2984ce0f97@microchip.com>
- <9a1fcb40-9267-d8e6-b3b6-3b03fd789822@opensource.wdc.com>
-From:   Conor Dooley <mail@conchuod.ie>
-In-Reply-To: <9a1fcb40-9267-d8e6-b3b6-3b03fd789822@opensource.wdc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,126 +53,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The I2C pins on the SoCFPGA platforms do not go through a GPIO module,
+thus cannot be recovered by the default method of by doing a GPIO access.
+Only a reset of the I2C IP block can a recovery be successful, so this
+change effectively resets the I2C controller, NOT any attached clients.
 
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+v6: Updated commit log to emphasize this change only resets the I2C
+    controller and not any attached clients.
+v5: removed strayed nextline
+v4: re-arrange code per Andy Shevchenko's recommendation
+v3: simplify the function
+    update commit message
+v2: remove change to MODEL_MASK
+    s/i2c_custom_scl_recovery/i2c_socfpga_scl_recovery
+---
+ drivers/i2c/busses/i2c-designware-core.h    |  1 +
+ drivers/i2c/busses/i2c-designware-master.c  | 49 ++++++++++++++++++---
+ drivers/i2c/busses/i2c-designware-platdrv.c |  1 +
+ 3 files changed, 45 insertions(+), 6 deletions(-)
 
-On 20/06/2022 23:46, Damien Le Moal wrote:
-> On 6/21/22 06:06, Conor.Dooley@microchip.com wrote:
->> On 20/06/2022 21:56, Serge Semin wrote:
->>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>>
->>> On Sat, Jun 18, 2022 at 01:30:28PM +0100, Conor Dooley wrote:
->>>> From: Conor Dooley <conor.dooley@microchip.com>
->>>>
->>>> snps,dwc-ssi-1.01a has a single user - the Canaan k210, which uses a
->>>> width of 4 for spi-{r,t}x-bus-width. Update the binding to reflect
->>>> this.
->>>>
->>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->>>> ---
->>>>  .../bindings/spi/snps,dw-apb-ssi.yaml         | 48 ++++++++++++++-----
->>>>  1 file changed, 35 insertions(+), 13 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
->>>> index e25d44c218f2..f2b9e3f062cd 100644
->>>> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
->>>> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
->>>> @@ -135,19 +135,41 @@ properties:
->>>>        of the designware controller, and the upper limit is also subject to
->>>>        controller configuration.
->>>>
->>>> -patternProperties:
->>>> -  "^.*@[0-9a-f]+$":
->>>> -    type: object
->>>> -    properties:
->>>> -      reg:
->>>> -        minimum: 0
->>>> -        maximum: 3
->>>> -
->>>> -      spi-rx-bus-width:
->>>> -        const: 1
->>>> -
->>>> -      spi-tx-bus-width:
->>>> -        const: 1
->>>> +if:
->>>> +  properties:
->>>> +    compatible:
->>>> +      contains:
->>>> +        const: snps,dwc-ssi-1.01a
->>>> +
->>>> +then:
->>>> +  patternProperties:
->>>> +    "^.*@[0-9a-f]+$":
->>>> +      type: object
->>>> +      properties:
->>>> +        reg:
->>>> +          minimum: 0
->>>> +          maximum: 3
->>>> +
->>>> +        spi-rx-bus-width:
->>>> +          const: 4
->>>> +
->>>> +        spi-tx-bus-width:
->>>> +          const: 4
->>>> +
->>>> +else:
->>>> +  patternProperties:
->>>> +    "^.*@[0-9a-f]+$":
->>>> +      type: object
->>>> +      properties:
->>>> +        reg:
->>>> +          minimum: 0
->>>> +          maximum: 3
->>>> +
->>>> +        spi-rx-bus-width:
->>>> +          const: 1
->>>> +
->>>> +        spi-tx-bus-width:
->>>> +          const: 1
->>>
->>> You can just use a more relaxed constraint "enum: [1 2 4 8]" here
->>
->> 8 too? sure.
->>
->>> irrespective from the compatible string. The modern DW APB SSI
->>> controllers of v.4.* and newer also support the enhanced SPI Modes too
->>> (Dual, Quad and Octal). Since the IP-core version is auto-detected at
->>> run-time there is no way to create a DT-schema correctly constraining
->>> the Rx/Tx SPI bus widths. So let's keep the
->>> compatible-string-independent "patternProperties" here but just extend
->>> the set of acceptable "spi-rx-bus-width" and "spi-tx-bus-width"
->>> properties values.
->>
->> SGTM!
->>
->>>
->>> Note the DW APB SSI/AHB SSI driver currently doesn't support the
->>> enhanced SPI modes. So I am not sure whether the multi-lines Rx/Tx SPI
->>> bus indeed works for Canaan K210 AHB SSI controller. AFAICS from the
->>> DW APB SSI v4.01a manual the Enhanced SPI mode needs to be properly
->>> activated by means of the corresponding CSR. So most likely the DW AHB
->>> SSI controllers need some specific setups too.
->>
->> hmm, well I'll leave that up to people that have Canaan hardware!
-> 
-> I will test this series.
-> 
+diff --git a/drivers/i2c/busses/i2c-designware-core.h b/drivers/i2c/busses/i2c-designware-core.h
+index 70b80e710990..7b22ec1d6a96 100644
+--- a/drivers/i2c/busses/i2c-designware-core.h
++++ b/drivers/i2c/busses/i2c-designware-core.h
+@@ -303,6 +303,7 @@ struct dw_i2c_dev {
+ #define MODEL_MSCC_OCELOT	BIT(8)
+ #define MODEL_BAIKAL_BT1	BIT(9)
+ #define MODEL_AMD_NAVI_GPU	BIT(10)
++#define MODEL_SOCFPGA		BIT(11)
+ #define MODEL_MASK		GENMASK(11, 8)
+ 
+ /*
+diff --git a/drivers/i2c/busses/i2c-designware-master.c b/drivers/i2c/busses/i2c-designware-master.c
+index 44a94b225ed8..fa2ea162acbd 100644
+--- a/drivers/i2c/busses/i2c-designware-master.c
++++ b/drivers/i2c/busses/i2c-designware-master.c
+@@ -813,10 +813,26 @@ static void i2c_dw_unprepare_recovery(struct i2c_adapter *adap)
+ 	i2c_dw_init_master(dev);
+ }
+ 
+-static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
++static int i2c_socfpga_scl_recovery(struct i2c_adapter *adap)
++{
++	struct i2c_bus_recovery_info *bri = adap->bus_recovery_info;
++
++	bri->prepare_recovery(adap);
++	bri->unprepare_recovery(adap);
++
++	return 0;
++}
++
++static int i2c_dw_init_socfpga_recovery_info(struct dw_i2c_dev *dev,
++					     struct i2c_bus_recovery_info *rinfo)
++{
++	rinfo->recover_bus = i2c_socfpga_scl_recovery;
++	return 1;
++}
++
++static int i2c_dw_init_generic_recovery_info(struct dw_i2c_dev *dev,
++					     struct i2c_bus_recovery_info *rinfo)
+ {
+-	struct i2c_bus_recovery_info *rinfo = &dev->rinfo;
+-	struct i2c_adapter *adap = &dev->adapter;
+ 	struct gpio_desc *gpio;
+ 
+ 	gpio = devm_gpiod_get_optional(dev->dev, "scl", GPIOD_OUT_HIGH);
+@@ -831,13 +847,34 @@ static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
+ 	rinfo->sda_gpiod = gpio;
+ 
+ 	rinfo->recover_bus = i2c_generic_scl_recovery;
+-	rinfo->prepare_recovery = i2c_dw_prepare_recovery;
+-	rinfo->unprepare_recovery = i2c_dw_unprepare_recovery;
+-	adap->bus_recovery_info = rinfo;
+ 
+ 	dev_info(dev->dev, "running with gpio recovery mode! scl%s",
+ 		 rinfo->sda_gpiod ? ",sda" : "");
+ 
++	return 1;
++}
++
++static int i2c_dw_init_recovery_info(struct dw_i2c_dev *dev)
++{
++	struct i2c_bus_recovery_info *rinfo = &dev->rinfo;
++	struct i2c_adapter *adap = &dev->adapter;
++	int ret;
++
++	switch (dev->flags & MODEL_MASK) {
++	case MODEL_SOCFPGA:
++		ret = i2c_dw_init_socfpga_recovery_info(dev, rinfo);
++		break;
++	default:
++		ret = i2c_dw_init_generic_recovery_info(dev, rinfo);
++		break;
++	}
++	if (ret <= 0)
++		return ret;
++
++	rinfo->prepare_recovery = i2c_dw_prepare_recovery;
++	rinfo->unprepare_recovery = i2c_dw_unprepare_recovery;
++	adap->bus_recovery_info = rinfo;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/i2c/busses/i2c-designware-platdrv.c b/drivers/i2c/busses/i2c-designware-platdrv.c
+index 70ade5306e45..b33e015e6732 100644
+--- a/drivers/i2c/busses/i2c-designware-platdrv.c
++++ b/drivers/i2c/busses/i2c-designware-platdrv.c
+@@ -153,6 +153,7 @@ static const struct of_device_id dw_i2c_of_match[] = {
+ 	{ .compatible = "snps,designware-i2c", },
+ 	{ .compatible = "mscc,ocelot-i2c", .data = (void *)MODEL_MSCC_OCELOT },
+ 	{ .compatible = "baikal,bt1-sys-i2c", .data = (void *)MODEL_BAIKAL_BT1 },
++	{ .compatible = "intel,socfpga-i2c", .data = (void *)MODEL_SOCFPGA },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, dw_i2c_of_match);
+-- 
+2.25.1
 
-Cool, thanks.
-I'll try to get a respin out tomorrow w/ the memory node "unfixed".
-Conor.
-
->> Thanks,
->> Conor.
->>
->>>
->>> -Sergey
->>>
->>>>
->>>>  unevaluatedProperties: false
->>>>
->>>> --
->>>> 2.36.1
->>>>
->>
-> 
-> 
