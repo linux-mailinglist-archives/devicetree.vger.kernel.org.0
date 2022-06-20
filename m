@@ -2,177 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72C4655123E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 10:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C99A9551285
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 10:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238525AbiFTIMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 04:12:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60610 "EHLO
+        id S239110AbiFTIVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 04:21:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232762AbiFTIMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 04:12:52 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EABC71B1;
-        Mon, 20 Jun 2022 01:12:49 -0700 (PDT)
+        with ESMTP id S238617AbiFTIVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 04:21:06 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C5212086
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 01:21:01 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id j5-20020a05600c1c0500b0039c5dbbfa48so7343446wms.5
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 01:21:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1655712770; x=1687248770;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=m9X+hssY9dN8kHsTO+3H05T9LNHIP8OupMLoBCdeI0Y=;
-  b=nx12Z8IPKIvjomZt5FqLqZJ5rhtJKDIbZ5Jl1Mi106nz2cgwCeIhHKGP
-   tQsXy3GKio7+ZREVE4fB7NlmR7cu5Q5O1KWlc0Eo6/y2fzsn9/YjPg4Si
-   ee/5dIOpEnIQXzpLslu2OLSQVJ8JbQavT/H8MdctUqWlGROVI6ddRVwxk
-   1mzSS3pqoKi/I/3bhJRdcMmeLCDmCHEP427NfVGqv4flAAH3w5Wy72ra0
-   6UDgMJx1uLXdJdpZjuWBgJGL9qtzBVirnycLXBIXnVTzYXvxnNern22Tm
-   VTYRhjHq4GAcLSx9No/rwWMGLd7qkBAbzvxWSXzSz5DDyZ96jcE1RpHum
-   w==;
-X-IronPort-AV: E=Sophos;i="5.92,306,1650924000"; 
-   d="scan'208";a="24538778"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 20 Jun 2022 10:12:47 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 20 Jun 2022 10:12:47 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 20 Jun 2022 10:12:47 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1655712767; x=1687248767;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=m9X+hssY9dN8kHsTO+3H05T9LNHIP8OupMLoBCdeI0Y=;
-  b=boAAbYkKZ4ORgftneITgbtTpX5s95tUXbyFf/ndRWDtBdfa36VBxXdDM
-   3Tgid5KUcFs7MC4qFbSJXjQJcj6RsO/IUO5PfXE14EXAkPIs38RH9cXWo
-   ty9MTrqbbI+uuysJD3w73zZ+PuvSPbdavm7MIi3GdNaO6d6NuY7fMcMnC
-   BkjFiDFXqV5i3X99UMdBjyFdzJ6ILI8btekol26dbMRZ1K1Prd4SzqKm2
-   yBPyehcCtxpHdAfrLnR94cZqycuF2eYOkoTM4sRpECV6fLPD3l4krLd5A
-   9Gnyp52Jpt8/hoHs9kzDFWkkOy+zeoHO6dv0Gqhk8g9vYSVXFVgX5ZWdP
-   A==;
-X-IronPort-AV: E=Sophos;i="5.92,306,1650924000"; 
-   d="scan'208";a="24538777"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 20 Jun 2022 10:12:47 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id E5C5D280056;
-        Mon, 20 Jun 2022 10:12:46 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh@kernel.org>, Jonathan Cameron <jic23@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-imx@nxp.com, linux-iio@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org
-Subject: Re: (EXT) Re: [PATCH] dt-bindings: iio: adc: Add imx6ul & imx6sx compatibles
-Date:   Mon, 20 Jun 2022 10:12:44 +0200
-Message-ID: <12003373.O9o76ZdvQC@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20220618180129.699b8601@jic23-huawei>
-References: <20220613123529.466528-1-alexander.stein@ew.tq-group.com> <20220617224448.GA2574775-robh@kernel.org> <20220618180129.699b8601@jic23-huawei>
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=EVFjsrsD8O/Ly8SBCICyHVMqSVwP/VMmIEwnMpqK/k4=;
+        b=XvRRzz9TGuyO5Gwhoh33U+2+M+0cJdWaF5wsH8PELsfkMp8thOOwgvFusE/Xj+qXgQ
+         QMGTNGhnpeNauNYkpWiG2PV+421B98d8O72D6Og6c69MG9/9YqvYo8pUae0IKjqWBvTj
+         NdkTcwK1NGP8Qk1+45a5iLr9f63NWixuWA/rhCD7Ufpbv5efqoxg2A9tPATQc16w+MHb
+         PTVtGWlgvmv7g9hpU+N2FxiS7wllG/edfV9sXwqf3srD92RW2pylpvtPUOebAXvO9548
+         fqX2wRHZ6renlBN44WY6WkVfY3QjMc1wnVpOICuoHlbTDsHQef2ztn5/jWDyItakhTWE
+         YR9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=EVFjsrsD8O/Ly8SBCICyHVMqSVwP/VMmIEwnMpqK/k4=;
+        b=ybyJBJBeW6pHxmrmKrLEU1B4doNXCKwe4Oqcldo0npXFfVdj1tkDfiupX5cB9+zNYU
+         WuESzQs17eyMa7HfVfwY3cmHDEbjoc2t2BtuQL5DxhuYEhVxdU0DDOmo6RWIqkUR3BPY
+         e+p1xsYci9/rIAzqCDyjm38PRlDfpCa2wwSoB9vd82J597yx3k4gup9+ZdpToHCc9Opd
+         7j8HrZHszMZzENg2ShQjWys+f+347YveypFKjgXa1G9WOcYiLEbKwI9fDKg7W0s8SJzQ
+         H8toDtiQGGckYYmrGDBXZHJyI99k4rG+AxeHLcZwocTrCaKtk9TsOeEPPmHFFZsRuz8q
+         OUoQ==
+X-Gm-Message-State: AJIora8/Ltt3WzPlO7kFTW0LwxpUSoTV9ijtOE3WmMJdokejhVjVKOo3
+        bYDeuk4DNozf5WV2VLBAJVsMdw==
+X-Google-Smtp-Source: AGRyM1unkXgzjYWp7VyjReRJg1Ito996ylAaKPqwIvh9B1hNdEIM4OSDqV6AmMP+zsgse48mv10f3Q==
+X-Received: by 2002:a05:600c:3594:b0:39d:b7c2:dc21 with SMTP id p20-20020a05600c359400b0039db7c2dc21mr27755841wmq.76.1655713259965;
+        Mon, 20 Jun 2022 01:20:59 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id d18-20020adfe852000000b002108ab90e5asm12457698wrn.58.2022.06.20.01.20.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jun 2022 01:20:59 -0700 (PDT)
+Date:   Mon, 20 Jun 2022 09:20:57 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
+Message-ID: <YrAt6dq6ty9p8d05@google.com>
+References: <1655200111-18357-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1655200111-18357-7-git-send-email-quic_c_skakit@quicinc.com>
+ <YquZRcuRCrdF+Q1z@google.com>
+ <eccbb030-97f7-3a6c-958e-05adcdca6210@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <eccbb030-97f7-3a6c-958e-05adcdca6210@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On Mon, 20 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
 
-Am Samstag, 18. Juni 2022, 19:01:29 CEST schrieb Jonathan Cameron:
-> On Fri, 17 Jun 2022 16:44:48 -0600
 > 
-> Rob Herring <robh@kernel.org> wrote:
-> > On Mon, Jun 13, 2022 at 11:34:46AM -0600, Rob Herring wrote:
-> > > On Mon, 13 Jun 2022 14:35:29 +0200, Alexander Stein wrote:
-> > > > Both are already using the vf610 compatible.
-> > > > 
-> > > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > > > ---
-> > > > 
-> > > >  .../devicetree/bindings/iio/adc/fsl,vf610-adc.yaml       | 9
-> > > >  ++++++++-
-> > > >  1 file changed, 8 insertions(+), 1 deletion(-)
+> On 6/17/2022 2:27 AM, Lee Jones wrote:
+> > On Tue, 14 Jun 2022, Satya Priya wrote:
+> > 
+> > > Use i2c_new_dummy_device() to register pm8008-regulator
+> > > client present at a different address space, instead of
+> > > defining a separate DT node. This avoids calling the probe
+> > > twice for the same chip, once for each client pm8008-infra
+> > > and pm8008-regulator.
 > > > 
-> > > Running 'make dtbs_check' with the schema in this patch gives the
-> > > following warnings. Consider if they are expected or the schema is
-> > > incorrect. These may not be new warnings.
+> > > As a part of this define pm8008_regmap_init() to do regmap
+> > > init for both the clients and define pm8008_get_regmap() to
+> > > pass the regmap to the regulator driver.
 > > > 
-> > > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> > > This will change in the future.
+> > > Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+> > > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> > > ---
+> > > Changes in V15:
+> > >   - None.
 > > > 
-> > > Full log is available here: https://patchwork.ozlabs.org/patch/
+> > > Changes in V14:
+> > >   - None.
 > > > 
+> > > Changes in V13:
+> > >   - None.
 > > > 
-> > > adc@2198000: 'num-channels' does not match any of the regexes:
-> > > 'pinctrl-[0-9]+'> 
-> > Looks like you need to add 'num-channels'?
+> > >   drivers/mfd/qcom-pm8008.c       | 34 ++++++++++++++++++++++++++++++++--
+> > >   include/linux/mfd/qcom_pm8008.h |  9 +++++++++
+> > >   2 files changed, 41 insertions(+), 2 deletions(-)
+> > >   create mode 100644 include/linux/mfd/qcom_pm8008.h
+> > > 
+> > > diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
+> > > index 569ffd50..55e2a8e 100644
+> > > --- a/drivers/mfd/qcom-pm8008.c
+> > > +++ b/drivers/mfd/qcom-pm8008.c
+> > > @@ -9,6 +9,7 @@
+> > >   #include <linux/interrupt.h>
+> > >   #include <linux/irq.h>
+> > >   #include <linux/irqdomain.h>
+> > > +#include <linux/mfd/qcom_pm8008.h>
+> > >   #include <linux/module.h>
+> > >   #include <linux/of_device.h>
+> > >   #include <linux/of_platform.h>
+> > > @@ -57,6 +58,7 @@ enum {
+> > >   struct pm8008_data {
+> > >   	struct device *dev;
+> > > +	struct regmap *regulators_regmap;
+> > >   	int irq;
+> > >   	struct regmap_irq_chip_data *irq_data;
+> > >   };
+> > > @@ -150,6 +152,12 @@ static struct regmap_config qcom_mfd_regmap_cfg = {
+> > >   	.max_register	= 0xFFFF,
+> > >   };
+> > > +struct regmap *pm8008_get_regmap(const struct pm8008_data *chip)
+> > > +{
+> > > +	return chip->regulators_regmap;
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(pm8008_get_regmap);
+> > Seems like abstraction for the sake of abstraction.
+> > 
+> > Why not do the dereference inside the regulator driver?
 > 
-> or a lot of wrong dtbs :)
+> To derefer this in the regulator driver, we need to have the pm8008_data
+> struct definition in the qcom_pm8008 header file.
 > 
-> By which I mean ones providing a property that may or may not be actually
-> used by any drivers...
+> I think it doesn't look great to have only that structure in header and all
+> other structs and enum in the mfd driver.
 
-This got already fixed by Baruch's patch which is currently in Shawn's imx-
-fixes-5.19 branch at [1]
+Then why pass 'pm8008_data' at all?
 
-Best reagrds,
-Alexander
+What's preventing you from passing 'regmap'?
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git/
-commit/?h=imx/dt&id=71b81f1cac29297769ec81fe29a3fcc40bc2c31c
-
-> > > 	arch/arm/boot/dts/imx6ul-14x14-evk.dtb
-> > > 	arch/arm/boot/dts/imx6ul-ccimx6ulsbcexpress.dtb
-> > > 	arch/arm/boot/dts/imx6ul-ccimx6ulsbcpro.dtb
-> > > 	arch/arm/boot/dts/imx6ul-geam.dtb
-> > > 	arch/arm/boot/dts/imx6ul-isiot-emmc.dtb
-> > > 	arch/arm/boot/dts/imx6ul-isiot-nand.dtb
-> > > 	arch/arm/boot/dts/imx6ul-kontron-n6310-s-43.dtb
-> > > 	arch/arm/boot/dts/imx6ul-kontron-n6310-s.dtb
-> > > 	arch/arm/boot/dts/imx6ull-14x14-evk.dtb
-> > > 	arch/arm/boot/dts/imx6ull-colibri-aster.dtb
-> > > 	arch/arm/boot/dts/imx6ull-colibri-emmc-aster.dtb
-> > > 	arch/arm/boot/dts/imx6ull-colibri-emmc-eval-v3.dtb
-> > > 	arch/arm/boot/dts/imx6ull-colibri-emmc-iris.dtb
-> > > 	arch/arm/boot/dts/imx6ull-colibri-emmc-iris-v2.dtb
-> > > 	arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtb
-> > > 	arch/arm/boot/dts/imx6ull-colibri-iris.dtb
-> > > 	arch/arm/boot/dts/imx6ull-colibri-iris-v2.dtb
-> > > 	arch/arm/boot/dts/imx6ull-colibri-wifi-aster.dtb
-> > > 	arch/arm/boot/dts/imx6ull-colibri-wifi-eval-v3.dtb
-> > > 	arch/arm/boot/dts/imx6ull-colibri-wifi-iris.dtb
-> > > 	arch/arm/boot/dts/imx6ull-colibri-wifi-iris-v2.dtb
-> > > 	arch/arm/boot/dts/imx6ul-liteboard.dtb
-> > > 	arch/arm/boot/dts/imx6ull-jozacp.dtb
-> > > 	arch/arm/boot/dts/imx6ull-myir-mys-6ulx-eval.dtb
-> > > 	arch/arm/boot/dts/imx6ull-opos6uldev.dtb
-> > > 	arch/arm/boot/dts/imx6ull-phytec-segin-ff-rdk-emmc.dtb
-> > > 	arch/arm/boot/dts/imx6ull-phytec-segin-ff-rdk-nand.dtb
-> > > 	arch/arm/boot/dts/imx6ull-phytec-segin-lc-rdk-nand.dtb
-> > > 	arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dtb
-> > > 	arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dtb
-> > > 	arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dtb
-> > > 	arch/arm/boot/dts/imx6ull-tqma6ull2-mba6ulx.dtb
-> > > 	arch/arm/boot/dts/imx6ul-opos6uldev.dtb
-> > > 	arch/arm/boot/dts/imx6ul-phytec-segin-ff-rdk-emmc.dtb
-> > > 	arch/arm/boot/dts/imx6ul-phytec-segin-ff-rdk-nand.dtb
-> > > 	arch/arm/boot/dts/imx6ul-pico-dwarf.dtb
-> > > 	arch/arm/boot/dts/imx6ul-pico-hobbit.dtb
-> > > 	arch/arm/boot/dts/imx6ul-pico-pi.dtb
-> > > 	arch/arm/boot/dts/imx6ul-prti6g.dtb
-> > > 	arch/arm/boot/dts/imx6ul-tqma6ul1-mba6ulx.dtb
-> > > 	arch/arm/boot/dts/imx6ul-tqma6ul2l-mba6ulx.dtb
-> > > 	arch/arm/boot/dts/imx6ul-tqma6ul2-mba6ulx.dtb
-> > > 	arch/arm/boot/dts/imx6ul-tx6ul-0010.dtb
-> > > 	arch/arm/boot/dts/imx6ul-tx6ul-0011.dtb
-> > > 	arch/arm/boot/dts/imx6ul-tx6ul-mainboard.dtb
-
-
-
-
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
