@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8600B551295
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 10:23:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C72645512A4
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 10:26:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239850AbiFTIWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 04:22:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40184 "EHLO
+        id S239564AbiFTIXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 04:23:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239536AbiFTIWj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 04:22:39 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A24F120A8
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 01:22:34 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id ej4so10054359edb.7
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 01:22:34 -0700 (PDT)
+        with ESMTP id S239703AbiFTIXv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 04:23:51 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E185CD89
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 01:23:48 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id fu3so19560884ejc.7
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 01:23:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yJTL9VsdOv2E21Dkt8BTO3+Qw07qwGtDXpvjpRBhc5g=;
-        b=h6HdvNM3ah/gsRVjcr5JsUh3O7E9bjvNwmVZT89qSD4sHbUmKLzFsHkxunCVjXmhrs
-         iF8X+A4LHt+9zazui0cKN8wY/dVdHGTccWqjENsC5aW8NNBOxDrNhqqOgqlKeIhhOnGb
-         j/YTRw3L+/WAuNymjP0OpFNGEWGiuzwEVD89PilcSlb6f3QMAFVE+tQVSTXlFE8b4Bsf
-         wW8yMWZa+xkIWmo1BXcuZg66pGczoI19J/3l2e7DjVG6XlVCh/gUuzlP2k/1fr2q3Dlm
-         B/9oTmpkCXLedzgZms0RuJYJaAYtCBrwqwM2crb4ZGlxbhmRkxqggS2/c6RLHuRh7u3l
-         fVOg==
+        bh=3Ros44lxzdc9H034iRq9XjLHdkZr6Zmv5Tm2gUHzb4k=;
+        b=F85Durofj7HACsatoRDfeiLEib0a64WUvlROiLKAKCR23NLMEShsxw9VNc2reTh5B6
+         nEn4sUrddK9p57eJkJ26U8cXd0w5NdmweBPdoopqjZbsTVRGQiudD2dcC36iMk2tVD81
+         yl8EcvBRXwKvfnhlm/ofgKE4Jm0m4c54ZNdmwlTjxrw4+VQLs8hQlBL4T4COv8K7yJ1Z
+         7Y/eQmFlnxlpM3hNHnKwpldLgxG2BQH+d2eSM0EhR3Rqd2QNnuFwIuDQp5/j4LWWCiM1
+         nlu3ZFcIaiHq94YrBwbOcIc1BrdBeH1N17YfmPP5oJYEiTYLn54nPBLdg+BECWfqs0Bw
+         OZYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=yJTL9VsdOv2E21Dkt8BTO3+Qw07qwGtDXpvjpRBhc5g=;
-        b=oGMadmIbXaMrXI3ArEy8SWsCh7jGiQ32R1YjUmgMdYxE2E2u+bPDqoycUliT8uIfWH
-         MxGC/WLR/v9w+uDdSgKxSRwH2VSSw16G462oz5f3Q8MldLrFJmmr1nxG9cZ72bU5sFld
-         gCxJ3Wk3kJwiFaFIzcZvB1QLU9ZylT6nmMu2Q506RU8GQqPanHJG5RUNkjs++L0p7Gz9
-         I4xNhDjArtlBd1ZtnPFW1yOpuNRGjE82URNeQfkm1f8gl9/yG5ICKSA2wn8C+jjst5Ez
-         afDoAHEv7W+hLvb19b5FGWOerTFRZFGQi46eg6DCGKnKy/Yod9N7SYf5wwAsr6Mm5uqA
-         +UmA==
-X-Gm-Message-State: AJIora+NPiJO2jiPXg+2fpbQHG5jOA+qd5LKxhWCkAXhRDHtRl6ndSQ7
-        /3hjbU+6aerc7Mxcwcre2cBlFQ==
-X-Google-Smtp-Source: AGRyM1uzcZsqQhCIoAQ1YkKeyAKAqGksNoYWgRmpMgaQIpLaG9BX11BZQzCejDAF/kpDoNvbzDxbqw==
-X-Received: by 2002:a05:6402:4301:b0:42d:e8fb:66f7 with SMTP id m1-20020a056402430100b0042de8fb66f7mr28394069edc.229.1655713352841;
-        Mon, 20 Jun 2022 01:22:32 -0700 (PDT)
+        bh=3Ros44lxzdc9H034iRq9XjLHdkZr6Zmv5Tm2gUHzb4k=;
+        b=n3HytPkCIUwAYovieSN66kaAlBFkZP2nEGFpMc6J7NdY8hDXA6t0skOcNXMWCEa6qZ
+         w3yTPzjSGop4w89OkMrySDArlcclmER9Z+Ue3gdM3Pc52nxDja6HvI0hyHTn+xGRfZJO
+         XPDse291UZwmFhFPMPMS28rcUHVf4ov5Nl3LTGzVgOl+7/3+kHETUBjM/7sGTrMN0xQ1
+         nzq8ZUmS8wqqdS9uejDkhEZPaHNse1UasUwjNWB5fUQNbA9sgqcORW5DMRzSn86YWbPS
+         +gZNHmVS2SO1Ej0/NUKU2PO1PSWKkt02y1AwhjatJJjkPaQZKzBO6J7s1pJlndXgay+R
+         7kDA==
+X-Gm-Message-State: AJIora8QPxywyipND0wjQqLKfQCPj6PpNWZzhI2G0yfd/XmWBpv4EOme
+        s/tlxswqbkI3DJqLUm54yQNsPQ==
+X-Google-Smtp-Source: AGRyM1vAjBf1TjIa/EZdSqh6SpnZpGgdVyfpMQp7XUD/Ztd8tGugtH+zYZB5r7Hj++TdtJOvMarXZw==
+X-Received: by 2002:a17:906:778b:b0:712:e477:8f33 with SMTP id s11-20020a170906778b00b00712e4778f33mr19958626ejm.42.1655713427224;
+        Mon, 20 Jun 2022 01:23:47 -0700 (PDT)
 Received: from [192.168.0.207] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ht16-20020a170907609000b00711c7cca428sm5519146ejc.155.2022.06.20.01.22.31
+        by smtp.gmail.com with ESMTPSA id n9-20020a170906840900b006fec56a80a8sm5452387ejx.115.2022.06.20.01.23.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jun 2022 01:22:32 -0700 (PDT)
-Message-ID: <36b12f00-a7cb-9f94-d1c3-e04f7861b08e@linaro.org>
-Date:   Mon, 20 Jun 2022 10:22:30 +0200
+        Mon, 20 Jun 2022 01:23:46 -0700 (PDT)
+Message-ID: <14fe8f15-e91f-45e0-39e2-7ae0d5f2ea64@linaro.org>
+Date:   Mon, 20 Jun 2022 10:23:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v3 07/18] dt-bindings: reset: npcm: add GCR syscon
- property
+Subject: Re: [PATCH v3 10/18] dt-bindings: reset: npcm: Add support for
+ NPCM8XX
 Content-Language: en-US
 To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
         tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
@@ -74,9 +74,9 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-watchdog@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20220619151225.209029-1-tmaimon77@gmail.com>
- <20220619151225.209029-8-tmaimon77@gmail.com>
+ <20220619151225.209029-11-tmaimon77@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220619151225.209029-8-tmaimon77@gmail.com>
+In-Reply-To: <20220619151225.209029-11-tmaimon77@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,27 +90,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 19/06/2022 17:12, Tomer Maimon wrote:
-> Describe syscon property that handles general control registers (GCR) in
-> Nuvoton BMC NPCM reset driver.
+> Add binding document and device tree binding constants for Nuvoton BMC
+> NPCM8XX reset controller.
 > 
 > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  .../devicetree/bindings/reset/nuvoton,npcm750-reset.yaml     | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/nuvoton,npcm750-reset.yaml b/Documentation/devicetree/bindings/reset/nuvoton,npcm750-reset.yaml
-> index fa5e4ea6400e..7ba3a6ff82ed 100644
-> --- a/Documentation/devicetree/bindings/reset/nuvoton,npcm750-reset.yaml
-> +++ b/Documentation/devicetree/bindings/reset/nuvoton,npcm750-reset.yaml
-> @@ -19,6 +19,9 @@ properties:
->    '#reset-cells':
->      const: 2
->  
-> +  nuvoton,sysgcr:
-> +    description: a phandle to access GCR registers.
 
-That's not valid. You miss here ref. My comment was to skip quotes and
-you removed entire ref.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
