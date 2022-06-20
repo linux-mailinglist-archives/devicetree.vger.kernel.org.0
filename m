@@ -2,150 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 882135513F6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 11:17:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 319AB551468
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 11:34:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235909AbiFTJRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 05:17:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57120 "EHLO
+        id S240668AbiFTJeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 05:34:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236337AbiFTJQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 05:16:59 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 872DD101E6;
-        Mon, 20 Jun 2022 02:16:50 -0700 (PDT)
-X-UUID: 36eef338cfb74a14ab06673e7c6a772d-20220620
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:14f07526-6b8b-4088-ae29-c2bd702ee75f,OB:10,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:45
-X-CID-INFO: VERSION:1.1.6,REQID:14f07526-6b8b-4088-ae29-c2bd702ee75f,OB:10,LOB
-        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:45
-X-CID-META: VersionHash:b14ad71,CLOUDID:2f7effe9-f7af-4e69-92ee-0fd74a0c286c,C
-        OID:a7e4c246682a,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 36eef338cfb74a14ab06673e7c6a772d-20220620
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 401679810; Mon, 20 Jun 2022 17:16:43 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Mon, 20 Jun 2022 17:16:42 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Mon, 20 Jun 2022 17:16:41 +0800
-Message-ID: <485c9b07fb2a60635e7cd52e710af872733fcff9.camel@mediatek.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: dsp: mediatek: Use meaningful names
- for mbox
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        "Takashi Iwai" <tiwai@suse.com>, YC Hung <yc.hung@mediatek.com>,
-        Curtis Malainey <cujomalainey@chromium.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <sound-open-firmware@alsa-project.org>,
-        <alsa-devel@alsa-project.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 20 Jun 2022 17:16:41 +0800
-In-Reply-To: <3830efc5-298d-7887-5718-2cb2a7ad4895@linaro.org>
-References: <20220616073042.13229-1-tinghan.shen@mediatek.com>
-         <20220616073042.13229-2-tinghan.shen@mediatek.com>
-         <629e761b-e3ad-0861-1937-ad660a8a900b@linaro.org>
-         <af32751dd7013a96dac5d165c35e132fda87f2ac.camel@mediatek.com>
-         <3830efc5-298d-7887-5718-2cb2a7ad4895@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S240646AbiFTJeS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 05:34:18 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7AA41274C;
+        Mon, 20 Jun 2022 02:34:17 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id f65so9811719pgc.7;
+        Mon, 20 Jun 2022 02:34:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wBq3Z7oEu9gFIA7jCFZpeq+S3fU28ZeUrdw/hJHHGkg=;
+        b=dWaNUQiBx1z6mDhfWG2BGKV681ibxqG2PSBUFwROknXuWxP1DCiK4ikZdsiO8mZAm/
+         0cCFhFnwAmz/7AFFMSSqWJW/bMYtuGchqrTPmPRuVm6J/dIVYEjVnnE2LzDdBX1rcAH2
+         bpqJWI/S0dYpoz2wp/y3YbpxzmS0h4IbFFk0+Tp8HM8w7e2za3i7yiL1bOb8wyWa6sFN
+         Iy4yEryvI+vKRrM0KNaJOGLkuWQeDPsGtPsotEsI4TEHVQlwYRkOknRKMOE0gWI7y6Sv
+         6BAdPbTt0CjcN1f+jaYzBBu6xsBlOxb+c0FLelG73tV01XbMxwwafTrMgw4S/TFdwvuW
+         +5gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wBq3Z7oEu9gFIA7jCFZpeq+S3fU28ZeUrdw/hJHHGkg=;
+        b=oV8InNO/fSfuqFy/b5HO1Xpghw1/GNv0bm+ElbBvoSpS4b/TAgCPdyMRU/Ldbv58fd
+         BT5CaejMb3yD5mNY8ClrnRf8yihqEHR6ldtNvYsl/2yfr5ZOgIhhEdKj4zd7QnIdFYyU
+         Imz848vjVBNdK4Jhi0yf5H94nyzKDYzU59RUN/2QyjgGb6STjETqvRhJaq4VrEfU2TpS
+         1eT/F8O7Lt6A5aCt2gj4nESFapycLgxa+//UjQxWlWZQ3NMPJ3DM/MSLPSuduAAuayrI
+         5Tul+a83F6qyFWbtWEHO1VTKXc5yc4nzCvHCREIolaQtiKc6iSt8gt4M/Uc/V29zurEn
+         Mq8w==
+X-Gm-Message-State: AJIora/3saoMAdNeghTT7DfQXWPHNzibkwPRQG5r6lwrcER2nlM3C5FN
+        xuH+2OJrmbusrq+HAaUQAVA=
+X-Google-Smtp-Source: AGRyM1tBauLNcRR7D2sWkvnvtc1HidI5RlyIcwafqqTpriwR07db5llpY299JzgZ8s69dWDyl3jJJA==
+X-Received: by 2002:a05:6a00:1941:b0:50d:807d:530b with SMTP id s1-20020a056a00194100b0050d807d530bmr23516600pfk.17.1655717657206;
+        Mon, 20 Jun 2022 02:34:17 -0700 (PDT)
+Received: from linux-server-us.. ([172.247.46.202])
+        by smtp.gmail.com with ESMTPSA id i4-20020aa78b44000000b0051c66160a3asm8574380pfd.181.2022.06.20.02.34.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jun 2022 02:34:16 -0700 (PDT)
+From:   YuTong Chang <mtwget@gmail.com>
+To:     bcousson@baylibre.com
+Cc:     tony@atomide.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        YuTong Chang <mtwget@gmail.com>
+Subject: [PATCH] ARM: dts: am33xx: Fix MMCHS0 dma properties
+Date:   Mon, 20 Jun 2022 02:34:13 -0700
+Message-Id: <20220620093413.4041-1-mtwget@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_SCC_BODY_TEXT_LINE,
-        T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+According to technical manual(table 11-24),
+the DMA of MMCHS0 should be direct mapped.
 
-On Mon, 2022-06-20 at 10:51 +0200, Krzysztof Kozlowski wrote:
-> On 20/06/2022 08:40, Tinghan Shen wrote:
-> > Hi Krzysztof,
-> > 
-> > On Thu, 2022-06-16 at 06:55 -0700, Krzysztof Kozlowski wrote:
-> > > On 16/06/2022 00:30, Tinghan Shen wrote:
-> > > > Rename mbox according to actions instead of 'mbox0' and 'mbox1'.
-> > > > 
-> > > > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> > > > ---
-> > > >  .../devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml   | 10 +++++-----
-> > > >  1 file changed, 5 insertions(+), 5 deletions(-)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
-> > > > b/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
-> > > > index b7e68b0dfa13..ca8d8661f872 100644
-> > > > --- a/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
-> > > > +++ b/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
-> > > > @@ -50,13 +50,13 @@ properties:
-> > > >  
-> > > >    mboxes:
-> > > >      items:
-> > > > -      - description: ipc reply between host and audio DSP.
-> > > > -      - description: ipc request between host and audio DSP.
-> > > > +      - description: mailbox for receiving audio DSP requests.
-> > > > +      - description: mailbox for transmitting requests to audio DSP.
-> > > >  
-> > > >    mbox-names:
-> > > >      items:
-> > > > -      - const: mbox0
-> > > > -      - const: mbox1
-> > > > +      - const: rx
-> > > > +      - const: tx
-> > > >  
-> > > 
-> > > Commit msg lacks important piece - do you break any users with this? Do
-> > > you have any users of this binding?
-> > > 
-> > > 
-> > > Best regards,
-> > > Krzysztof
-> > 
-> > The 8195 dsp node, which uses this binding, has not yet been added to the 8195 devicetree.
-> 
-> Could you mention it in the commit msg? Such one sentence is enough.
-> 
-> With commit msg extended:
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> 
-> Best regards,
-> Krzysztof
+Signed-off-by: YuTong Chang <mtwget@gmail.com>
+---
+ arch/arm/boot/dts/am33xx-l4.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-No problem. I'll udpate commit message at next version.
-
-
-Thanks,
-TingHan
-
-
+diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
+index 7da42a5b959c..0446e2622d5f 100644
+--- a/arch/arm/boot/dts/am33xx-l4.dtsi
++++ b/arch/arm/boot/dts/am33xx-l4.dtsi
+@@ -1502,8 +1502,8 @@ SYSC_OMAP2_SOFTRESET |
+ 			mmc1: mmc@0 {
+ 				compatible = "ti,am335-sdhci";
+ 				ti,needs-special-reset;
+-				dmas = <&edma_xbar 24 0 0
+-					&edma_xbar 25 0 0>;
++				dmas = <&edma 24 0
++					&edma 25 0>;
+ 				dma-names = "tx", "rx";
+ 				interrupts = <64>;
+ 				reg = <0x0 0x1000>;
+-- 
+2.36.1
 
