@@ -2,151 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E26D550EDC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 05:19:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DD7E550EF0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 05:29:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237556AbiFTDTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jun 2022 23:19:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55098 "EHLO
+        id S237885AbiFTD3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jun 2022 23:29:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231530AbiFTDTE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 23:19:04 -0400
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-eopbgr140087.outbound.protection.outlook.com [40.107.14.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F59C0A;
-        Sun, 19 Jun 2022 20:19:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e1jhYS1zVudkitv3ibJyLgqZZ3C3Is6r7eVTXhS2D/jj0gfvdJERxMm0XW0UVmLo8ZyDVgJcjIWUCPuuwN9X9x2r8UHg+D122Iz1zpESaM7rgqJL5CJOG1qNKZgZ3v0vjUfH9tsxhQUCRxm19rCqZ3OQF4EVt3OJzn62PH7sLhmJmx3H6W8nS7tck9n/cQSapGZgnpey1KUabcyEa9YPXwzzhxjkq+2R71SruFqLkWzbBonhEO1eAcHATiJtky2E8yDgf1aygFFenRHbk6SNWkX3NeSYDh4lBOV9YQbsFP3AwzLkmqEyeAzXQ6u0aKMoxyH6BA95AeGLUJebcpYhtA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1L36InQtMWVjY2nGEU46FkDG/ZXrNImSef+up8tKyAI=;
- b=YcCrZvf2U1vvhzyQJ29E+aCsGQ5JFp0tSLhQSKE9yNwLB6QbFlNeiRhzJdgmNf/xPfqg0SEntHYkj5YEduKe9ibDIBSg7apa9tWKUrPGxVoHydW4y/Wu42phef8vfI3J7ujxF8O2lgdShLhvKSxFKqRwWAsLjDcaM1/8AqTBjNfOHoZ3sKIoyZC4a6nTn/He03YLhwWJEFBepKWOw6ICX/87dE/hBHi1rIAI+lZV0wymCnwcLYzBx35T4/eeap3CDsdfvqqW4+oBEWdJSZ+Kjf3f5+O4X3Ex1tqY4ln+dk8IMX6zIs/xIyZ+ED2aUePgJ4qaE3flJqwbW8VmNVJ7Bw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1L36InQtMWVjY2nGEU46FkDG/ZXrNImSef+up8tKyAI=;
- b=fJZn8I5SaHgp2j1kfdXSNHM8px/t0h9ZZXxTufCLZk4Bjt1E4k52KbEPnkoRd3d+5u0WP5HwiTKqww2CWQ5zDgTfyrk2HFw9HgZsveycrlAsOu+hHFq2Sa6gwU9zDkezy08n4vw9rlbqB9HpjGlabi5E6OyUWdj/uDxcmrcggwg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AM0PR04MB6867.eurprd04.prod.outlook.com (2603:10a6:208:182::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.21; Mon, 20 Jun
- 2022 03:18:59 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::a892:e4a9:4769:13a5]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::a892:e4a9:4769:13a5%9]) with mapi id 15.20.5353.016; Mon, 20 Jun 2022
- 03:18:59 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     festevam@gmail.com, linux-imx@nxp.com,
-        laurent.pinchart@ideasonboard.com, paul.elder@ideasonboard.com,
-        marex@denx.de, aford173@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH] arm64: dts: imx8mp: correct clock of pgc_ispdwp
-Date:   Mon, 20 Jun 2022 11:20:44 +0800
-Message-Id: <20220620032044.4093226-1-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2P153CA0011.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:140::14) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S237878AbiFTD3j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jun 2022 23:29:39 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D876249;
+        Sun, 19 Jun 2022 20:29:37 -0700 (PDT)
+X-UUID: 6044d4ae9b2a415eade352b1ed265ef6-20220620
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:8e2cf951-ce8b-47aa-b497-87933e53de16,OB:10,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:45
+X-CID-INFO: VERSION:1.1.6,REQID:8e2cf951-ce8b-47aa-b497-87933e53de16,OB:10,LOB
+        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:45
+X-CID-META: VersionHash:b14ad71,CLOUDID:6939f5e9-f7af-4e69-92ee-0fd74a0c286c,C
+        OID:3cc8a5dd8204,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 6044d4ae9b2a415eade352b1ed265ef6-20220620
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1014500687; Mon, 20 Jun 2022 11:29:27 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Mon, 20 Jun 2022 11:29:26 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Mon, 20 Jun 2022 11:29:26 +0800
+Message-ID: <94b03604c81794ea811e106802a03b888ceb57c3.camel@mediatek.com>
+Subject: Re: [PATCH v11 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 20 Jun 2022 11:29:25 +0800
+In-Reply-To: <20220610105522.13449-6-rex-bc.chen@mediatek.com>
+References: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
+         <20220610105522.13449-6-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 939759c9-805d-4414-23b4-08da526b9e07
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6867:EE_
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-Microsoft-Antispam-PRVS: <AM0PR04MB6867A533560F150C9E486A8CC9B09@AM0PR04MB6867.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MDCLCTPDY3GtU98I7ZC7WLks+XoK/z8rxyG9Qpvq94Qgl/j5nlPEs7FKxBUTm3qFzAwHVrpZKCNa6gCBl/lxNGzoXBpphg4Tcugb8gi6hxVrKnGKY6jylz2fg0jmFZYdDPTQDTxkNujd9uOaSvH3EkRdyvvjsEAV/kcRpXAXaAL0Bn34SxdCUPrYb2/A45YSU/mIqeENQHAGCMOlsdA6dI7CawecnG9HMCicr4d0dzaY8cB1RExDVyImGYHMiUZlZfUJbqlVC1FyX2dynBex/pdGc6C14nr8TlWW+jaorlpFZKp6Md+ROjTjQmh55GYmd43sNQxpi4Rxp87feLY8j/es147B3LSOUEZvzd+1/PhgVT7rFa3BwuE9Uu47/uZg8lVrHQn6yJJP85B2XvS71wgPnyrT2R+6/BXGpOhgwxp2MkE+t/vB5CmPvWlBMCN6HktbfmctgcNW3c0ccNlA0XDdxHg1kscc05mHuPb/ycrqspZGcM2k0wrHdnwDPFdCHPuw3RTtQ1+sMEnyfDyM8gm1cvo2ePO4lcIn348j97XW39rmEfqG9jqo03DR7aOwcFod/6mvOnu764RnezYaOEDTi0bH4yXM0uERGPzCg2lIlqghP17a11piJXftc+m/nqXkV74BNsmwJ9eX9EsuVfQGvX02YKtQyoNz3ziAjcDeVWaArd0yGITipYTjTUrGhBSTxB81+aJqkAEe3lWREmjNHmQBb3ZHyUpFKZauR+c=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(39860400002)(346002)(136003)(376002)(396003)(2616005)(52116002)(6666004)(316002)(38100700002)(86362001)(6506007)(26005)(38350700002)(2906002)(8936002)(41300700001)(5660300002)(7416002)(6512007)(66556008)(8676002)(66476007)(4326008)(478600001)(186003)(1076003)(6486002)(66946007)(83380400001)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QNJCTCexG+5oP6TLCcb7hIiF5Gn38HSKPIz9pUAfFnks1PwYrDWR5Eqf+FqV?=
- =?us-ascii?Q?pjFcM0DQoIKNmC9H2VZDDn9viF1U6aXgspS7bamX9PZfH3WQbQmNCt7YKiry?=
- =?us-ascii?Q?+nam9zEpROxlRGIvBjb4Xiywg2oyY0u+OPvRRbj3gT9xOPvQIv99jVY6rW2F?=
- =?us-ascii?Q?bpwrBifg70cC8SKOqQnI4atsy/FSZu18jsp7RpMqlLqjApTJVQeVKb6qMpXc?=
- =?us-ascii?Q?rbOSTuPRpC4z9xJCs7fUs129ndGJl8hwBpDhhwt3dTk6mAxv4b6SHWJ/4uFM?=
- =?us-ascii?Q?bJbZHAAcLdG+/DitG4i6TI650yKjrhXbl6WGGTcm43TIe5vmuj3+PIGOs9qc?=
- =?us-ascii?Q?PWQnMs2MJb3nxqGQelt08KbDvhvoEkrwE0vMax0Al2SLQ7qVDocJMI7d2y+h?=
- =?us-ascii?Q?HUqE9nyCMJ3V9H86h7mnc/eU+Qad8chUktFAe+ZcrBLBtP+59M+jZgW5oCym?=
- =?us-ascii?Q?i246J0vjjgHwDXWXx4WmJy4jasvym4TPESY18obHl1vhoEjkIBsHx1IM3kwa?=
- =?us-ascii?Q?zeprwEZR6NX56Vs67rF/Zkf+7RZXhIIuBNQIX7SjclHOOfsq6N/euIh+DKCY?=
- =?us-ascii?Q?a6953akkuYVRWPmPFneWelNs3goXPH3MkxKRA6J1hFEXzlL2N4+wzZg+epGv?=
- =?us-ascii?Q?T/m+cDzMEvCGIxHOI9e8RE8uiDDBGFL2RBU/3e9agW7b6T92PYQhrgtdyqJ/?=
- =?us-ascii?Q?zHbZBhQncRcdMzrW7XO8JDKwnDaRgryJ/cVuGsfFj4iM4B7JMfEtuNUEG6BN?=
- =?us-ascii?Q?4ijs93hD0MSbSijQkmmui31Ia42thj+M1EHpk6m308/8rnPV6rb+xcAcEqQp?=
- =?us-ascii?Q?b2hvmEKJ2IhrWm9u5KK9uR87cV/K0fP8fSUaxvhWe4OsC+UOLeuWbT2ZRtyj?=
- =?us-ascii?Q?dinEvun8fCClgq9/XiuKSDWshWFgn5vcyXJ/Jm9Kw4JzoMUligq2QMPgch+H?=
- =?us-ascii?Q?Lmmk0OtILLN40/9KPUqY19D8dTd655/0p03C9CsquNFh4eQ909pIA/AzpA3h?=
- =?us-ascii?Q?6EhybT1MevkvL+BaExWw5d71uYiiGOcuUuX/7lv6qVzSd5OvTWGuSm31vqLh?=
- =?us-ascii?Q?bVOUP0t09AKYrr4fncsO6g9dBkcYFRXVEYIRK5gO8Jgc37PM2/UsmaqJC4rC?=
- =?us-ascii?Q?7aYWQhpYTY7NQyHr1k98wJiADz0dodQ7iYK7d5yJoJ736f1XMxyQLh9Q+I8P?=
- =?us-ascii?Q?GGb2OBNkFdKR1uF1ICMic66GIbVXicjrM730RJDiqkpRjg9g2nGRr4qyXp8O?=
- =?us-ascii?Q?jmOXh84NKavP4DrHCB0BtkKy9GTRyFpeaxVF13OrNBKnSuD9C61Gzk1o7/Wd?=
- =?us-ascii?Q?ujscQ5NKaqzbp8/e5VBUpRz6CoiBr5j0k/229jUZWMawCiFBmv3ZC0FKDve6?=
- =?us-ascii?Q?coKgic92qSCjK0V8YCRfSc/MBpD//lKAOx9bwgF0VIo6yKfCudOK2ttw1hNY?=
- =?us-ascii?Q?kqpJqfGIUTCitoZ9EbEkcIy4Vs99PcU0bZ8jWs6pTACf21lIsplZElv/ScI7?=
- =?us-ascii?Q?Czj3qD8qGq7EtnGlrFhs44V+5ZywEParG4T6jCDDSEzh4T4N+xEL2TFD4/Ej?=
- =?us-ascii?Q?emr5ei/qO+DBWbfEKTkohtgcWJM1gRBM0EaMKSw+WijyrLEwgC8AaXQ8DeCk?=
- =?us-ascii?Q?KEKuKdJiDi8SmJ30TqxNMhEHOrGG/L/Ez87Mi7PRnkzsSHZB4Ddsg9SjvDG8?=
- =?us-ascii?Q?2nAM8Tef78xRR/zFp0Z4llNLZJ7TzYY92A/5QBIrraVwZfJStvJcsiQ9N0F0?=
- =?us-ascii?Q?itxgtTlMFA=3D=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 939759c9-805d-4414-23b4-08da526b9e07
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jun 2022 03:18:59.6666
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gC7rnlSRWHtc9Ad5DruNKTBR7767ubflZcYr6SeQJHLuXhftCyVMOP4sBr50VkCWMutq3Zaj6ebVrUGrci9OFA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6867
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+Hi, Rex:
 
-The deprecated DIV clk is previously part of the ISP composite clk, but
-there is still one child clk(IMX8MP_CLK_MEDIA_ISP_ROOT) sourcing from
-IMX8MP_CLK_MEDIA_ISP( previously IMX8MP_CLK_MEDIA_ISP_DIV)
+On Fri, 2022-06-10 at 18:55 +0800, Bo-Chen Chen wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> This patch adds a embedded displayport driver for the MediaTek mt8195
+> SoC.
+> 
+> It supports the MT8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
+> 
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
+> 
+> This driver is based on an initial version by
+> Jitao shi <jitao.shi@mediatek.com>
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> ---
 
-So IMX8MP_CLK_MEDIA_ISP_ROOT should be used, not IMX8MP_CLK_MEDIA_ISP_DIV.
+[snip]
 
-Fixes: 9d89189d5227 ("arm64: dts: imx8mp: Add MEDIAMIX power domains")
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> +
+> +static void mtk_dp_set_color_depth(struct mtk_dp *mtk_dp, u32
+> color_depth)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index b2f4a5f1f73c..2f970d458f80 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -595,7 +595,7 @@ pgc_hsiomix: power-domains@17 {
- 					pgc_ispdwp: power-domain@18 {
- 						#power-domain-cells = <0>;
- 						reg = <IMX8MP_POWER_DOMAIN_MEDIAMIX_ISPDWP>;
--						clocks = <&clk IMX8MP_CLK_MEDIA_ISP_DIV>;
-+						clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>;
- 					};
- 				};
- 			};
--- 
-2.25.1
+In the whole driver, the color_depth would only be DP_MSA_MISC_8_BPC,
+so remove the parameter color_depth and fix the color depth to
+DP_MSA_MISC_8_BPC in this function.
+
+Regards,
+CK
+
+> +{
+> +	u32 val;
+> +
+> +	mtk_dp->info.depth = color_depth;
+> +
+> +	/* Update MISC0 */
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3034,
+> +			   color_depth, DP_TEST_BIT_DEPTH_MASK);
+> +
+> +	switch (color_depth) {
+> +	case DP_MSA_MISC_6_BPC:
+> +		val = VIDEO_COLOR_DEPTH_DP_ENC0_P0_6BIT;
+> +		break;
+> +	case DP_MSA_MISC_8_BPC:
+> +		val = VIDEO_COLOR_DEPTH_DP_ENC0_P0_8BIT;
+> +		break;
+> +	case DP_MSA_MISC_10_BPC:
+> +		val = VIDEO_COLOR_DEPTH_DP_ENC0_P0_10BIT;
+> +		break;
+> +	case DP_MSA_MISC_12_BPC:
+> +		val = VIDEO_COLOR_DEPTH_DP_ENC0_P0_12BIT;
+> +		break;
+> +	case DP_MSA_MISC_16_BPC:
+> +		val = VIDEO_COLOR_DEPTH_DP_ENC0_P0_16BIT;
+> +		break;
+> +	default:
+> +		drm_warn(mtk_dp->drm_dev, "Unsupported color depth
+> %d\n",
+> +			 color_depth);
+> +		return;
+> +	}
+> +
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_303C, val,
+> +			   VIDEO_COLOR_DEPTH_DP_ENC0_P0_MASK);
+> +}
+> +
 
