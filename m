@@ -2,109 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5D615523CE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 20:24:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBA2055237D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 20:04:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242638AbiFTSYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 14:24:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37856 "EHLO
+        id S244883AbiFTSEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 14:04:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243531AbiFTSYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 14:24:39 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EAAF13FB1;
-        Mon, 20 Jun 2022 11:24:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
-         references;
-        bh=QGRD7oCFnD0lIO8/JoEbhbSbKlBmQoT6/CM5t/z0lq0=;
-        b=Rs0lnhxnt3PHGmfTFT8RdCyWPbeC/GTAAC+g29x5fJw/dxVOCPw266tV9uvNUPHix4i4btMiu88C4
-         A5OQYk0qlWdBU1Szg1ykmtSXYPZEsQYNagcXSyWf6iZx8owf2JriIBi9g0zi6NhSkJ01N9RqE0hCcS
-         r6tokCRsaijAGiC5WAgwfvHHv9lpuYq3VtWlrMV1yHLdidEw0UmHKSnNyKWS0ewe5NzlvvjTzDm+8J
-         +EvGfTqVGII//YbHHQUq8/0G/OCzeT4l1tZaJMNH/JE+CA0FtMyRKxdJZW9wZ2ZKr6h+wtip80FByO
-         imu4dfAEm1FifFLE3i9m/SI2nFD0tFg==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000008,0.008251)], BW: [Enabled, t: (0.000015,0.000001)], RTDA: [Enabled, t: (0.076561), Hit: No, Details: v2.40.0; Id: 15.52k3tn.1g615nd38.16l4n; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from x260 ([178.70.36.174])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Mon, 20 Jun 2022 21:24:15 +0300
-Date:   Mon, 20 Jun 2022 21:01:06 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     corbet@lwn.net, devicetree@vger.kernel.org, hao.wu@intel.com,
-        krzysztof.kozlowski+dt@linaro.org, linux-doc@vger.kernel.org,
-        linux-fpga@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mdf@kernel.org, robh+dt@kernel.org, system@metrotek.ru,
-        trix@redhat.com, yilun.xu@intel.com
-Subject: Re: [PATCH v20 0/4] Microchip Polarfire FPGA manager
-Message-ID: <20220620180106.a5o53zr2waxkoay6@x260>
-References: <20220620100745.yxjmq2qtsicxlrgn@h-e2.ddg>
- <20220620105747.2145347-1-conor.dooley@microchip.com>
+        with ESMTP id S244936AbiFTSEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 14:04:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F95318E3C;
+        Mon, 20 Jun 2022 11:04:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C14416156D;
+        Mon, 20 Jun 2022 18:04:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8716C3411B;
+        Mon, 20 Jun 2022 18:04:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655748282;
+        bh=w6vacAfaqohw95S+mHKQgM+EKeWnz+yRbKl9pZAYgT4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PDbsfohMbYv3MffqWofo0S7UAM3OWif/Gh/rKbWiB5wStzqG5O9JTSUqCxbcdE0QC
+         R/gf2j1b5t9kZBUtQHuHnZCby4kToF6ZQz8v25NCzG35JTNUA9cascUN+S073vlodc
+         747BGINyYhkum55MlnQPY8NgidJYQETduCBfJE5A9qcQLGtD/NX5B3SDxToS08R8zW
+         QczCMm7/qmod4Dj1zd4PhHwZxjs0ft4iu8z/zXspS/6BzPCOojI/0tjp4NrGKMyer5
+         Yn4WJ/mWub0Pq9N6Cf4r5eu01pjH3Bh2o/AVSJBcJ8HwigExQEsdjrModduyoJzPRf
+         7e8dlrFn6tAOQ==
+Date:   Mon, 20 Jun 2022 19:04:36 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Pierluigi Passaro <pierluigi.p@variscite.com>
+Cc:     Alifer Willians de Moraes <alifer.m@variscite.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Eran Matityahu <eran.m@variscite.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
+        "patches@opensource.cirrus.com" <patches@opensource.cirrus.com>,
+        "perex@perex.cz" <perex@perex.cz>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shengjiu.wang@gmail.com" <shengjiu.wang@gmail.com>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>
+Subject: Re: [PATCH 4/4] ASoC: wm8904: add DMIC support
+Message-ID: <YrC2tLI+nUxOGsIX@sirena.org.uk>
+References: <AM6PR08MB43760A5F78137DAE68FE99C7FFB09@AM6PR08MB4376.eurprd08.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="VOCVAPjBvueWLvm9"
 Content-Disposition: inline
-In-Reply-To: <20220620105747.2145347-1-conor.dooley@microchip.com>
+In-Reply-To: <AM6PR08MB43760A5F78137DAE68FE99C7FFB09@AM6PR08MB4376.eurprd08.prod.outlook.com>
+X-Cookie: Good day to avoid cops.  Crawl to work.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 20, 2022 at 11:57:48AM +0100, Conor Dooley wrote:
-> I had a quick check in -next and there's an entry for the BMC
-> driver there.
-> How about the following? I put you as R, but clearly if you want to be
-> maintainer then you are *more than* qualified.
-> Feel free to edit the patch if so, either is fine by me.
-> You can tack this onto a v21 if you have more changes or I can resend
-> standalone once the driver is merged.
-> 
-> Thanks,
-> Conor.
-> 
-> From: Conor Dooley <conor.dooley@microchip.com>
-> Date: Mon, 20 Jun 2022 11:46:19 +0100
-> Subject: [PATCH] MAINTAINERS: add polarfire fpga programmer drivers
-> Add a MAINTAINERS entry for the newly added PolarFire (MPF) SPI slave
-> programming driver.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  MAINTAINERS | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 168e0af869a7..60ab3c4bf65d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7869,6 +7869,14 @@ S:	Maintained
->  F:	Documentation/ABI/testing/sysfs-driver-intel-m10-bmc-sec-update
->  F:	drivers/fpga/intel-m10-bmc-sec-update.c
->  
-> +FPGA PolarFire Drivers
-> +M:	Conor Dooley <conor.dooley@microchip.com>
-> +R:	Ivan Bornyakov <i.bornyakov@metrotek.ru>
-> +L:	linux-fpga@vger.kernel.org
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-> +F:	drivers/fpga/microchip-spi.c
-> +
->  FPU EMULATOR
->  M:	Bill Metzenthen <billm@melbpc.org.au>
->  S:	Maintained
-> 
-> base-commit: 07dc787be2316e243a16a33d0a9b734cd9365bd3
-> -- 
-> 2.36.1
-> 
 
-Ok, I'll add this to v21, but I'll wait for a review on fpga-mgr changes
-first.
+--VOCVAPjBvueWLvm9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Mon, Jun 20, 2022 at 05:52:43PM +0000, Pierluigi Passaro wrote:
+> > > Just for my understanding, are you suggesting to set a device tree
+> > > property to force a fixed behavior in the driver ?
+
+> > Yes.
+
+> Why should we use a fixed behavior ?
+
+The things that are fixed by the design should be fixed.
+
+> > The device shares pins between the line inputs and the DMIC inputs so at
+> > least some of the configuration is going to be determinted at system
+> > design time, that will fix the usable values of at least one of the
+> > controls which ought to be reflected in the runtime behaviour.
+
+> In our design we use:
+> - pin 1: DMIC_CLK
+> - pin 24: LINEIN2R
+> - pin 26: LINEIN2L
+> - pin 27: DMIC_DATA
+
+> we have no pins shared among DMIC and LINEIN.
+
+This means that DMICDAT2 is not usefully selectable at runtime, you've
+got IN1 as digital and IN2 as analogue, so while the DMIC/ADC switch is
+useful the DMIC1/2 switch is not.
+
+--VOCVAPjBvueWLvm9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKwtrMACgkQJNaLcl1U
+h9AVVAf8CNJ1pKU5n40o+hAHDCPrpMkjTpft6KOXuI6XY7ImplHB1hCdT7Q6WATf
+aBd0+QPrVbh1F8JPhUXGwsovT2NTqxO3mnuv8rf3W6/q+sBvebRFd6JFtqPixkRx
+it74je2CMTZXE5dCFp/IC6RfN1A73ommQqkSbMHv/ISFBDJXFwCtBXCkip3sHmIu
+ogp7fB7pZYgfsxh24nHeREBI+HAiwbqefgu7wDTBQ3DEIbWYq3xRffqucidYnUwp
+yenPU0ysSpOEBZXcU9QxvKxlh+H3dPNF4xNKNHXzqIt3IPWJF2WFF4JLdxKGzvoF
+pAKrexCNszAQZt19PrBca61dzOHDeg==
+=G8Fe
+-----END PGP SIGNATURE-----
+
+--VOCVAPjBvueWLvm9--
