@@ -2,68 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B6DD551ED2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 16:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC657551F4B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 16:48:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236979AbiFTO1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 10:27:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57248 "EHLO
+        id S1345217AbiFTOrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 10:47:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351246AbiFTO0E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 10:26:04 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86A024969F
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 06:41:00 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mgr@pengutronix.de>)
-        id 1o3He1-0002eB-Dc; Mon, 20 Jun 2022 15:40:45 +0200
-Received: from mgr by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mgr@pengutronix.de>)
-        id 1o3Hdv-00040a-Fb; Mon, 20 Jun 2022 15:40:39 +0200
-Date:   Mon, 20 Jun 2022 15:40:39 +0200
-From:   Michael Grzeschik <mgr@pengutronix.de>
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S240916AbiFTOqy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 10:46:54 -0400
+Received: from smtp11.infineon.com (smtp11.infineon.com [IPv6:2a00:18f0:1e00:4::5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BAF337BF2;
+        Mon, 20 Jun 2022 07:07:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+  t=1655734065; x=1687270065;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=WFUlWOfqcV+dfLqXHwjqs/AJN8x0qxLjeeFqsnGEuGs=;
+  b=oYvOkfi/U6TLnjaze31CPCWSoZXnPb0nj/Mui9YDETfduwPJdeViNR68
+   bKOqtyj7NTO5ZQ1Aru1A+mtstjecVPJq88tosHzu3JbwLCXJcEEauXryJ
+   a0w3XZgyRQf8ccdd/j3f9vldIgugIsD4VxCWrxqesAz5LXedn2/kOcmNj
+   4=;
+X-SBRS: None
+X-IronPort-AV: E=McAfee;i="6400,9594,10380"; a="301914076"
+X-IronPort-AV: E=Sophos;i="5.92,306,1650924000"; 
+   d="scan'208";a="301914076"
+Received: from unknown (HELO mucxv003.muc.infineon.com) ([172.23.11.20])
+  by smtp11.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jun 2022 16:06:28 +0200
+Received: from MUCSE812.infineon.com (MUCSE812.infineon.com [172.23.29.38])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mucxv003.muc.infineon.com (Postfix) with ESMTPS;
+        Mon, 20 Jun 2022 16:06:27 +0200 (CEST)
+Received: from MUCSE807.infineon.com (172.23.29.33) by MUCSE812.infineon.com
+ (172.23.29.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Mon, 20 Jun
+ 2022 16:06:27 +0200
+Received: from [10.160.196.13] (172.23.8.247) by MUCSE807.infineon.com
+ (172.23.29.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Mon, 20 Jun
+ 2022 16:06:26 +0200
+Message-ID: <cb973352-36f9-8d70-95ac-5b63a566422c@infineon.com>
+Date:   Mon, 20 Jun 2022 16:06:25 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/4] dt-bindings: net: broadcom-bluetooth: Add CYW55572 DT
+ binding
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Liang Chen <cl@rock-chips.com>, linux-media@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-Subject: Re: [PATCH 0/3] Enable JPEG Encoder on RK3566/RK3568
-Message-ID: <20220620134039.GG21590@pengutronix.de>
-References: <20220427224438.335327-1-frattaroli.nicolas@gmail.com>
- <198ce3981ad15844627581f9519cab67ed2a81c1.camel@ndufresne.ca>
- <2438841.KJ31GcehEG@archbook>
- <20220429232047.GG7671@pengutronix.de>
- <0414bb0816eef95961fe47de96f97f925d29228f.camel@ndufresne.ca>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uc35eWnScqDcQrv5"
-Content-Disposition: inline
-In-Reply-To: <0414bb0816eef95961fe47de96f97f925d29228f.camel@ndufresne.ca>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mgr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Linus Walleij <linus.walleij@linaro.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
+        <linux-bluetooth@vger.kernel.org>
+References: <cover.1655723462.git.hakan.jansson@infineon.com>
+ <acd9e85b1ba82875e83ca68ae2aa62d828bfdfa3.1655723462.git.hakan.jansson@infineon.com>
+ <2c753258-b68e-b2ad-c4cc-f0a437769bc2@linaro.org>
+From:   Hakan Jansson <hakan.jansson@infineon.com>
+In-Reply-To: <2c753258-b68e-b2ad-c4cc-f0a437769bc2@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [172.23.8.247]
+X-ClientProxiedBy: MUCSE812.infineon.com (172.23.29.38) To
+ MUCSE807.infineon.com (172.23.29.33)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,119 +85,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
---uc35eWnScqDcQrv5
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for replying.
 
-Hi Nicolas,
-Hi Andrzej,
-
-On Mon, May 02, 2022 at 08:20:50AM -0400, Nicolas Dufresne wrote:
->Le samedi 30 avril 2022 =E0 01:20 +0200, Michael Grzeschik a =E9crit=A0:
->> Since the RK3568 seems to get more and more of attention at the moment
->> I would like to ask if somebody is planning to write support the RKVENC
->> in mainline. That is the VEPU540 core refered to in the RK3568 TRM.
+On 6/20/2022 2:32 PM, Krzysztof Kozlowski wrote:
+>> CYW55572 is a Wi-Fi + Bluetooth combo device from Infineon.
+>> Extend the binding with its DT compatible.
 >>
->> I would start with that in the next weeks, taking the bootlin H1 support
->> as an reference to handle the request_api for the encoder part. Which is
->> currently completely untouched in mainline AFAIK.
->
->I'm very happy to ear you'd be interest in helping with this. I'm adding A=
-ndrzej
->in CC, as he started some base work using VP8 encoder on RK3399 (same HW f=
-ound
->on other RK SoC) to make this possible. Note that these are a new type of
->encoders and a specification is needed to ensure they all have a coherent =
-work-
->flow. The first step was obviously to have working prototype, Bootlin star=
-ted
->with H264 (but never posted anything on the mailing list). I'm under the
->impression they have abandoned it. Andrzej have decided to use VP8 as it is
->simpler. The prototype should help understand the basic flow of an encoder=
- and
->produce a specification for this.
+>> Signed-off-by: Hakan Jansson <hakan.jansson@infineon.com>
+>> ---
+>>   Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+>> index df59575840fe..71fe9b17f8f1 100644
+>> --- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+>> +++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+>> @@ -24,6 +24,7 @@ properties:
+>>         - brcm,bcm43540-bt
+>>         - brcm,bcm4335a0
+>>         - brcm,bcm4349-bt
+>> +      - infineon,cyw55572-bt
+> Patch is okay, but just to be sure - is it entirely different device
+> from Infineon or some variant of Broadcom block?
 
-I just have tested the bootlin v4l2-h264-encoder stack on the rk3399
-with v5.19-rc2. It is working as expected.
+CYW55572 is a new device from Infineon. It is not the same as any 
+Broadcom device.
 
-Since there have been some rumours about using the VEPU121 core on the
-rk3568, which could have h264 support as well. I have tested this
-stack on that core as well.
+>   Are all existing
+> properties applicable to it as well?
 
-The findings are; It is producing some data, but the stream created
-is not possible to be decoded. Tested with vlc and gstreamer.
+Yes, all existing properties are applicable.
 
-Be it due to misconfiguration or the core is really not h264 capable.
 
-Find the latest code here:
-
-https://git.pengutronix.de/cgit/mgr/linux/log/?h=3Dv5.19/topic/rk3568-vepu-=
-h264-stateless-bootlin
-
->From there, the "easy" part is to make per codec controls, to configure the
->encoder. Demonstrating fixed QP, this is about were I believe Bootlin stop=
-ped.
-
-I have seen that the userspace tool is filling in some initial values
-in the PPS and SPS headers, which are not adjustable. I bet you refer to th=
-at.
-
->And I personally believe some OSS userland (not just tests) that can handle
->multiple reference, perhaps more advance GOP pattern and some basic rate c=
-ontrol
->would help build confidence in the uAPI.
-
-I found the following CTRL Types being defined in the bootlin stack
-for the request API.
-
-V4L2_CID_STATELESS_H264_ENCODE_PARAMS
-V4L2_CID_STATELESS_H264_ENCODE_RC
-V4L2_CID_STATELESS_H264_ENCODE_FEEDBACK
-
-The FEEDBACK CID is the information we gain after one frame was
-encoded. With this data the RC (Rate Control) parameter is prepared for
-the next frame.
-
-You mean to have some user interface to make the rate control user
-configurable?
-
->Let us know how we can help, we should >void doing the same thing, as
->this is already quite a large project that can easily take over a year
->to become mainline ready.
-
-It would probably help to share some codebase. If you already have
-something for that rkvenc codec, be it VP8 support. It would probably
-make sense for me to build up on that. Or to discuss common code
-patterns on structures.
-
-Michael
-
---=20
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
---uc35eWnScqDcQrv5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEElXvEUs6VPX6mDPT8C+njFXoeLGQFAmKweNQACgkQC+njFXoe
-LGT11RAAnVZ0A6JKPjgbTZ/1C64OH4qCrOEQTTgTjxGPByN1DdSUNxLlC6ImI93g
-ntqqVZL5ZEH7YDcP60ckHU2Z8CfsGDz1vGLjkP6NwcErjO+3jEu7Y5m3fajJ+xqL
-Jzzm7x3NM1X0lB8aTzwOQ0HdUirA9m6Vd4lvGy8e+M/73SaXLAWlv5CsfONXfuQB
-pamaG6u76JwcgopgmhFBOyxj7TFWrzHIwXJ8DdQTLz3/1fKcQ9/ESyilhbSKjuzh
-/BIHvjJ6Zv3dMfSefrr6tdiyftopOFz4XlxkdKwqKzcgSfiBmiOmCkLqHm+UQcA+
-P5wq+bSjoXRj5chsQ/LfqsUBt9tERP16lZQ/on6Wg7LCfG/rdXcEUrrXoffOyr54
-1KRyjgUzTXLL1nu/e/OK7ar5ZD+Nb5I3/DFNlIgdNRCKX7pS2RKruLyHU2u4T4om
-S3q9u+vfx4D3Aug2Zgtb771sRZJDhn7jvpuiQB+B5nEeGtRzZzAy702IoBJgu1Qx
-4XYYwNC9a1pA4Ywl9P+az5pw+9zZ0cPdt5mPcNI9iHz4L7xXNTZ+HhiMc/GKp4d3
-IhkFkhMBLDcGmQgO8BedhjqSHOP9H3eAOpN/91xoDkSpRWKfhqV8meIgCkQ96haW
-cKsgq2jQqLWq1YcTnE1nIlpspJP5wd87KaHVjTaAcy54jt59hzE=
-=v/bQ
------END PGP SIGNATURE-----
-
---uc35eWnScqDcQrv5--
+Regards,
+Håkan
