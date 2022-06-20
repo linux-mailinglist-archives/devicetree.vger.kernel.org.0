@@ -2,154 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C5FD552253
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 18:33:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2862552269
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 18:40:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231756AbiFTQd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 12:33:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53038 "EHLO
+        id S236849AbiFTQkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 12:40:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242850AbiFTQdW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 12:33:22 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A9C92194
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 09:33:21 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id i15so15060360ybp.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 09:33:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7bPts1cfdv5X3yhWIjMyjMOB+mWmCdJwIk3IAS5T6jU=;
-        b=BCHxrCAqT1fggNN76GvFOUep69xvzXSAOMihzm9MMmw1s64DY79TEN0kB/epprxzSS
-         9UP1zn9jb6iD5khFQJfk+palG/jx7n5qyr1Y8L5u+/bshhVUkO2yrHyAetM4s1+AJUoF
-         qrgUTV65Qfuye/F8wEGx40CfhynB/DzumyZjg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7bPts1cfdv5X3yhWIjMyjMOB+mWmCdJwIk3IAS5T6jU=;
-        b=xCmVnw5DfH9CzzE+b/7rMS+SmdqAe8jG1Vb7coaAQnc7lFT9aa5X1SxO/pjiR9vEaH
-         2+FIBSQGPQiK6BYwmRzKboBIWL03xburC4HRzBcQEXJerMbAhSL+r5EsjY4qRnFXQUAm
-         i/1L8xEK+p4Pi/Kzz+os0FRudEu4p+cy5d6Uw5Dd7I5OFKjBofFIVLOn/+76Y8fK9Taf
-         F0DQ5wd7mOF0EgA0Ej6xjeBWjdevKPFDXTIT5/XcE6SlJHGoG4RTy+P20WvEKuEsp7M0
-         y4QFkIJXVTRw2kLiuZqnLgKAF79d6iSiPxiIKwOQFz3Xoyr7W/ySXE8khsC0Je2wlXHj
-         taCQ==
-X-Gm-Message-State: AJIora+wpQpBQZgg5IHvH43rrIrDLud/ew3xkCEp++YHByg4SG7zKvBZ
-        /MvdZpBrmnjZkiWpTmmwbjr6dM4eQDcZ4qoofvT/
-X-Google-Smtp-Source: AGRyM1uCnTSHZ6dQRjcBpYrT28bl/gWbXFV1h4g4UkNHU1QZjMEp26wKkcXCCaOUdXGQ7W25WsJf2I76NazlVxRHJCc=
-X-Received: by 2002:a25:73d7:0:b0:668:e7db:d62 with SMTP id
- o206-20020a2573d7000000b00668e7db0d62mr11647503ybc.265.1655742800378; Mon, 20
- Jun 2022 09:33:20 -0700 (PDT)
+        with ESMTP id S229906AbiFTQkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 12:40:17 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5768BE15;
+        Mon, 20 Jun 2022 09:40:16 -0700 (PDT)
+Received: from zn.tnic (p200300ea974657f0329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9746:57f0:329c:23ff:fea6:a903])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 46D431EC05ED;
+        Mon, 20 Jun 2022 18:40:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1655743211;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=uVkwYYD3WNvkHSrPcC3CPbJPRGT2Rr8D4frbfFUL2Hs=;
+        b=n1wHZBcSwAq8PYDjrtgmPSl7w3SaSZeFIoFaI1Uu6DNJRlYzUcqGQdWqi32jQLApZWcS2a
+        hse+Za2prAk7smsjcBp9MCBk67LYupuxF7bWvaaFGclzZRn6B6Vgse2fzeRZGyb1KUqLJa
+        ZC9u+BDllQRkUxZk5raV/125ljU+3lo=
+Date:   Mon, 20 Jun 2022 18:40:07 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     medadyoung@gmail.com
+Cc:     rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
+        mchehab@kernel.org, robh+dt@kernel.org, benjaminfair@google.com,
+        yuenn@google.com, venture@google.com, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        ctcchien@nuvoton.com, linux-edac@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v12 1/3] dt-bindings: edac: nuvoton: add NPCM memory
+ controller
+Message-ID: <YrCi1fg+mUPwZ7sX@zn.tnic>
+References: <20220610084340.2268-1-ctcchien@nuvoton.com>
+ <20220610084340.2268-2-ctcchien@nuvoton.com>
 MIME-Version: 1.0
-References: <20220619203212.3604485-1-heiko@sntech.de> <20220619203212.3604485-2-heiko@sntech.de>
-In-Reply-To: <20220619203212.3604485-2-heiko@sntech.de>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Mon, 20 Jun 2022 09:33:09 -0700
-Message-ID: <CAOnJCUJC3dk21cYXXDOsamvwFDHsukoBx7HEYwqHM+MN5fLRpA@mail.gmail.com>
-Subject: Re: [PATCH 1/4] of: also handle dma-noncoherent in of_dma_is_coherent()
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Wei Fu <wefu@redhat.com>, Guo Ren <guoren@kernel.org>,
-        Christoph Muellner <cmuellner@linux.com>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        Christoph Hellwig <hch@lst.de>,
-        Samuel Holland <samuel@sholland.org>,
-        Anup Patel <anup@brainfault.org>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Drew Fustini <drew@beagleboard.org>,
-        Randy Dunlap <rdunlap@infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220610084340.2268-2-ctcchien@nuvoton.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 19, 2022 at 1:32 PM Heiko Stuebner <heiko@sntech.de> wrote:
->
-> of_dma_is_coherent() currently expects the architecture to be
-> non-coherent and some devices being coherent getting marked
-> as such with the dma-coherent devicetree property.
->
-> For PowerPC CONFIG_OF_DMA_DEFAULT_COHERENT was added which currently
-> makes of_dma_is_coherent() always return true but doesn't handle
-> the case of the architecture being coherent but some devices not.
->
-> So modify the function to also check for dma-noncoherent and
-> set a suitable default return value. If CONFIG_OF_DMA_DEFAULT_COHERENT
-> is set the value starts with true and finding dma-noncoherent will
-> set it to false and without CONFIG_OF_DMA_DEFAULT_COHERENT, the
-> behaviour is reversed.
->
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->  drivers/of/address.c | 16 +++++++++++-----
->  1 file changed, 11 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/of/address.c b/drivers/of/address.c
-> index 94f017d808c4..1c362d09983d 100644
-> --- a/drivers/of/address.c
-> +++ b/drivers/of/address.c
-> @@ -1045,26 +1045,32 @@ phys_addr_t __init of_dma_get_max_cpu_address(struct device_node *np)
->   *
->   * It returns true if "dma-coherent" property was found
->   * for this device in the DT, or if DMA is coherent by
-> - * default for OF devices on the current platform.
-> + * default for OF devices on the current platform and no
-> + * "dma-noncoherent" property was found for this device.
+On Fri, Jun 10, 2022 at 04:43:38PM +0800, medadyoung@gmail.com wrote:
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4383949ff654..7f832e6ed4e5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2367,12 +2367,14 @@ L:	openbmc@lists.ozlabs.org (moderated for non-subscribers)
+>  S:	Supported
+>  F:	Documentation/devicetree/bindings/*/*/*npcm*
+>  F:	Documentation/devicetree/bindings/*/*npcm*
+> +F:	Documentation/devicetree/bindings/*/npcm-memory-controller.yaml
+>  F:	arch/arm/boot/dts/nuvoton-npcm*
+>  F:	arch/arm/mach-npcm/
+>  F:	drivers/*/*npcm*
+>  F:	drivers/*/*/*npcm*
+>  F:	include/dt-bindings/clock/nuvoton,npcm7xx-clock.h
+>  
+> +
 
-"dma-noncoherent" is not a standard DT property. I couldn't find any
-references to
-it in the kernel as well. If we are introducing a new DT property for
-non-coherent devices,
-it should be added in DT bindings as well ?
-
->   */
->  bool of_dma_is_coherent(struct device_node *np)
->  {
->         struct device_node *node;
-> +       bool ret = false;
->
->         if (IS_ENABLED(CONFIG_OF_DMA_DEFAULT_COHERENT))
-> -               return true;
-> +               ret = true;
->
->         node = of_node_get(np);
->
->         while (node) {
->                 if (of_property_read_bool(node, "dma-coherent")) {
-> -                       of_node_put(node);
-> -                       return true;
-> +                       ret = true;
-> +                       break;
-> +               }
-> +               if (of_property_read_bool(node, "dma-noncoherent")) {
-> +                       ret = false;
-> +                       break;
->                 }
->                 node = of_get_next_dma_parent(node);
->         }
->         of_node_put(node);
-> -       return false;
-> +       return ret;
->  }
->  EXPORT_SYMBOL_GPL(of_dma_is_coherent);
->
-> --
-> 2.35.1
->
-
+That looks like it went in when committing. You can remove it in case
+you have to resend v13.
 
 -- 
-Regards,
-Atish
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
