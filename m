@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A1BB552353
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 19:58:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C26B552352
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 19:58:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244679AbiFTR5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 13:57:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44600 "EHLO
+        id S244771AbiFTR5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 13:57:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244818AbiFTR5d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 13:57:33 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20A141CB3E
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 10:57:32 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id z11so10006915edp.9
+        with ESMTP id S244876AbiFTR5e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 13:57:34 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 068291DA71
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 10:57:33 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id kq6so22564461ejb.11
         for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 10:57:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VrRt2lOCy922nfr7XfMsj/Ktk4CkWXqc85e3Ig/vB+c=;
-        b=mZhcCjDlXssr3H8K8DuLZ3exyF1IiroVWETn58RQj2Aiwe2KRb3Mo5BwZpaA4esg51
-         /kEw8hgFo1uQ6gWqHIUymnSFcx5OYLCfIaWoJrLdNXTlqhRMr2zLxGiLkL+iEb313coM
-         FhLz//RQB4hImWL+rM/S/LA5XxbO6OSm58o+CsJ6ovLhui+Abnb1A4dVQYmv5j3wASa7
-         0gWAyiXu3t9CnBsyGfLBNVvPp1wGQUu8zPtAURqNGhMCSgS9jWOlH7MJagvOWWdkRIKS
-         OJb9Rzsnoxfi5SPj2e/ZreJfu9XXVl6uxL9KBsatYPI6oi6TCfd4dOTrZWo/qagT7EBp
-         g2YA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=rD/1Bx8Gd7OKYwtuHbi2Y1F/IfDjcD3uslaR6lEC5yw=;
+        b=ipFDuv4n3A1+nSYNYbYqP4cwwOOxYGDeDoT73Hwaj1DFAB+JRAgNKMJFgr4qHgMqfd
+         Qh2KjLziahDKA+HISDeMsTd9uUqE4+vYzkk25EhjzATWhVLJDOXpXXwCXvUYGeljfWkB
+         lgNX1Hve9Bd0DdlLwZt1rNvp1wCrIEKIkiHVI9G/TwE6tk/Rc3sZLi/tE56rV6O59s7e
+         luHo8jLctvl70fE7onDQAKy5lrrc61ln98NPl7FkgrGob7oK6++vmtIItnXVWtCzqNJl
+         wIMtfmNPrHrv92mhQ7cFCa3kDru/TtpAJvRqpsv9n7sqlFLo1+LK/6DYNoMuIrBbvQG4
+         2Hsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VrRt2lOCy922nfr7XfMsj/Ktk4CkWXqc85e3Ig/vB+c=;
-        b=A4YFpydBhcpQjULIT3jtE26QBkJebVADJ3IbKxdNaDZCptVLE2Wy4NRbySq6yOC71v
-         anYY71M7E+4ENMScLHXl7X4VXw6ciQsID5nZ5gTelaPtoNW06ynrJX49ujZuN5cAxFcu
-         GcUsOXK9ywjWqaYJ1mr97mhyYepQmBVnVzW03kr+1gtwAF640c++X4I/JjnRroTN9YaK
-         OvRmT0w1+xcQRuxpHTEff8Q01TNPDTGg6rveg4LJ8cNqtrkxC65qVPiEwbslyb1iIPry
-         6eviYVDJ4UZyIRhr4FZq163VqrXxi46ZQS0e4kwewv1CrHj/jBrmUIewp8kOMqR/NyFG
-         AvWg==
-X-Gm-Message-State: AJIora8YL3HHMOphZMAfSLAOeYAvQFE4EAOB82NHMgBACKpFhn1TrPBv
-        QEyLpSLEAeJHvu1GWBKaxbwEZg==
-X-Google-Smtp-Source: AGRyM1sCLQNiPJbSeZysVNpu4lZNBSZg//4StCRKxRFZ9Utrf2lV3tcTtY7IAhELcw4FOk2Q2eBhOA==
-X-Received: by 2002:aa7:d88a:0:b0:435:6abb:1284 with SMTP id u10-20020aa7d88a000000b004356abb1284mr17848268edq.353.1655747850768;
-        Mon, 20 Jun 2022 10:57:30 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=rD/1Bx8Gd7OKYwtuHbi2Y1F/IfDjcD3uslaR6lEC5yw=;
+        b=bBAM8EdKnrF1u+9eWRnDXtnO835VLM8C5GFwJm5Zrp8QK/iMx5XXB9+MAHDjVQO3/t
+         mnXa1zXXoQd6lwhU63sZ9XMME9qjZf4sIiUxMknwd30NHq+gngbqwnFQbE2tYblEnQ1b
+         WtG3RuSJ35sMyFRtp0jH3bYuSdHRywWd+7vDraBoUJcgz5RLZK2oJNjo1l6msfdYaZOu
+         wkw87zItajyfx1/jzGGYJd0d1KFzXOiNId5CGNDzFPrpUuSrMW2jn1MpMoZjJAW1thqd
+         8zxyR6K1sTeE9g1kL/XwfcUo5S/bp4QSP6O9ClzCzeoLa0gVYvvbJvPuEchKtv599YZW
+         ufPQ==
+X-Gm-Message-State: AJIora8WpAOS/DKMKbV3mhdhXfbksehLp9Oq+ZUwL3rJ23YipbjGf6K8
+        4HXDrVrcnufU7CwYbQy4SBVv/Q==
+X-Google-Smtp-Source: AGRyM1u+9YCsOQ1AZPpIAWblqHkPcR65S+1pJ2KFrv7M8q6Tf2EKagfh41Ip0cxx1YDAa8W/7iiAQA==
+X-Received: by 2002:a17:906:29d:b0:6f0:18d8:7be0 with SMTP id 29-20020a170906029d00b006f018d87be0mr21750796ejf.561.1655747851602;
+        Mon, 20 Jun 2022 10:57:31 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g13-20020aa7c84d000000b004357b717a96sm4309925edt.85.2022.06.20.10.57.29
+        by smtp.gmail.com with ESMTPSA id g13-20020aa7c84d000000b004357b717a96sm4309925edt.85.2022.06.20.10.57.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jun 2022 10:57:30 -0700 (PDT)
+        Mon, 20 Jun 2022 10:57:31 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -54,10 +54,12 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 0/8] ARM: dts: iextend leds on Exynos boards
-Date:   Mon, 20 Jun 2022 19:57:08 +0200
-Message-Id: <20220620175716.132143-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/8] ARM: dts: exynos: add function to LED node in Origen 4210
+Date:   Mon, 20 Jun 2022 19:57:09 +0200
+Message-Id: <20220620175716.132143-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220620175716.132143-1-krzysztof.kozlowski@linaro.org>
+References: <20220620175716.132143-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -70,36 +72,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add common LED property - the function - to LED node in Origen 4210.
 
-Changes since v1
-================
-1. Drop the label from several places, per discussions with Jacek on other
-patchset.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/exynos4210-origen.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Best regards,
-Krzysztof
-
-Krzysztof Kozlowski (8):
-  ARM: dts: exynos: add function to LED node in Origen 4210
-  ARM: dts: exynos: add function to LED nodes in Tiny4412
-  ARM: dts: exynos: add function and color to LED nodes in Itop Elite
-  ARM: dts: exynos: add function and color to LED node in Odroid U3
-  ARM: dts: exynos: add function and color to LED nodes in Odroid X/X2
-  ARM: dts: exynos: add function and color to LED node in Odroid HC1
-  ARM: dts: exynos: add function and color to LED node in Odroid XU4
-  ARM: dts: exynos: add function and color to LED nodes in Odroid XU/XU3
-
- arch/arm/boot/dts/exynos4210-origen.dts         | 2 ++
- arch/arm/boot/dts/exynos4412-itop-elite.dts     | 5 ++++-
- arch/arm/boot/dts/exynos4412-odroidu3.dts       | 4 +++-
- arch/arm/boot/dts/exynos4412-odroidx.dts        | 5 ++++-
- arch/arm/boot/dts/exynos4412-tiny4412.dts       | 3 +++
- arch/arm/boot/dts/exynos5422-odroidhc1.dts      | 4 +++-
- arch/arm/boot/dts/exynos5422-odroidxu4.dts      | 4 +++-
- arch/arm/boot/dts/exynos54xx-odroidxu-leds.dtsi | 8 +++++++-
- 8 files changed, 29 insertions(+), 6 deletions(-)
-
+diff --git a/arch/arm/boot/dts/exynos4210-origen.dts b/arch/arm/boot/dts/exynos4210-origen.dts
+index a08ce2f37ea2..82c4ebdf98ac 100644
+--- a/arch/arm/boot/dts/exynos4210-origen.dts
++++ b/arch/arm/boot/dts/exynos4210-origen.dts
+@@ -15,6 +15,7 @@
+ #include "exynos4210.dtsi"
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
+ #include "exynos-mfc-reserved-memory.dtsi"
+ 
+ / {
+@@ -86,6 +87,7 @@ leds {
+ 		compatible = "gpio-leds";
+ 		status {
+ 			gpios = <&gpx1 3 GPIO_ACTIVE_LOW>;
++			function = LED_FUNCTION_HEARTBEAT;
+ 			linux,default-trigger = "heartbeat";
+ 		};
+ 	};
 -- 
 2.34.1
 
