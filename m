@@ -2,173 +2,306 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D9B551FB6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 17:06:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8372A551FC0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 17:07:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242398AbiFTPE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 11:04:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59742 "EHLO
+        id S242154AbiFTPHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 11:07:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242414AbiFTPEi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 11:04:38 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2088.outbound.protection.outlook.com [40.107.21.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C169BA2;
-        Mon, 20 Jun 2022 07:39:59 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VEVAqSRe1d6m/6Rjt/4pRnY7A/kwpPdfNXgWZTxaljjh28NeUsdnsSIP5krNI3jGbQgq7RsKfHUoCa0pKMRu26FcGDcS3QCNosESwcKwvqxCk0Axv8/P07ChPcnc+AM17a7ON6uB5/wpVmE/swGrf5TchPxBRdbajrD5b/VBnAEgdJujC+Dygp26P89FQH9uqhv0ldqg3A+xBvEG0gPPr2RSMAeyrKlmsmJw9/l/oyt3H15BMVBeAx1yDNc2gdz4nDs0zC5bLfTG3gH44HR0BcBXYCEW6kfl/wpnZD+RfP6idimNuaAMmzp2EC0vQWANmj9PrvrFDGMJyhMv++iD4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HCgcRPidodHYTnAV6xkCFddIgDIvHBJsymjUhY7oPSQ=;
- b=XU1N1G8V14mCxYDfsRs0zr/fuS6ta3Bc3EHhskOXY2KI3GPHrXiGvmyZhMJsr0eZKWSiZeLru+vM0osMITAYBgDe03iQ2VzLVoWjbQSqVBRWJ0xD+/7+mCbTyhMNeotJSXY/8Pb+6ZgWhfnq7lut4rQQJeI0oiDh/pIoOv54NfUFnNvSr6y4wGi3tFIHWGthcAZI3I0dgHKd6aJL/KRHK4JdHncvWmnuaPeklpkL1VRn60ni0ciFSVuM7MdiEDGl2pnqqsj7eoudDkxcJ7E1bT/f21Y7rnu7uGnLmZqgVfs6QuuYVGZvlPN3QaDKAbtwDpF7VmOzw43UqAmiSG+tWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=variscite.com; dmarc=pass action=none
- header.from=variscite.com; dkim=pass header.d=variscite.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=variscite.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HCgcRPidodHYTnAV6xkCFddIgDIvHBJsymjUhY7oPSQ=;
- b=dzb1owEqwnI2qT2XE1T40EO2/04tpcEAWURrj8NGvqqFONeQzvX3eAPsaZH/pru/Fv6Fsys5lJeJnTQfNER0UUGW5ovM3NTEn7PX/ZygfMna1FD67p10sw65awdRzvyBqkXqaCNodct6nDj0+rDXtFynDqC5E66toc98EcbGt12SzfC1MtsryBej6thfgFxh8RFuyL2HEtnf0EC8QjRUtpphnpjAl1I1XIRFEsrLcgRQlR11KwjQmK+uSzv+KpWK5lGDfsuyPxa16QDG4MltrwK4OiYybxyZPaqP4kbl/k9aYii5jAEPrAbSWb+KggFx/Ycz93dfGkTJGmXqQeeKqA==
-Received: from AM6PR08MB4376.eurprd08.prod.outlook.com (2603:10a6:20b:bb::21)
- by DB9PR08MB7097.eurprd08.prod.outlook.com (2603:10a6:10:2c2::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.14; Mon, 20 Jun
- 2022 14:39:55 +0000
-Received: from AM6PR08MB4376.eurprd08.prod.outlook.com
- ([fe80::3d45:c206:59e3:6539]) by AM6PR08MB4376.eurprd08.prod.outlook.com
- ([fe80::3d45:c206:59e3:6539%5]) with mapi id 15.20.5353.022; Mon, 20 Jun 2022
- 14:39:55 +0000
-From:   Pierluigi Passaro <pierluigi.p@variscite.com>
-To:     Rob Herring <robh@kernel.org>,
-        Alifer Willians de Moraes <alifer.m@variscite.com>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Eran Matityahu <eran.m@variscite.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
-        "patches@opensource.cirrus.com" <patches@opensource.cirrus.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "shengjiu.wang@gmail.com" <shengjiu.wang@gmail.com>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>
-Subject: Re: [PATCH 3/4] ASoC: wm8904: extend device tree support
-Thread-Topic: [PATCH 3/4] ASoC: wm8904: extend device tree support
-Thread-Index: AQHYMi1Ro66fcHUK2UeA5XXtHB3uxay5HM2AgJ/kWJ8=
-Date:   Mon, 20 Jun 2022 14:39:55 +0000
-Message-ID: <AM6PR08MB43761F7E94081064E8FA478FFFB09@AM6PR08MB4376.eurprd08.prod.outlook.com>
-References: <20220307141041.27538-1-alifer.m@variscite.com>
- <20220307141041.27538-3-alifer.m@variscite.com>
- <YipkwW6rUbWweXn7@robh.at.kernel.org>
-In-Reply-To: <YipkwW6rUbWweXn7@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-suggested_attachment_session_id: 64df9736-a286-0e01-cb19-1139a6207977
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=variscite.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: aaa87902-54ee-445d-aa03-08da52cabe11
-x-ms-traffictypediagnostic: DB9PR08MB7097:EE_
-x-microsoft-antispam-prvs: <DB9PR08MB709718514CD7C1411B9AB235FFB09@DB9PR08MB7097.eurprd08.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: IlrJncr5LiFDarYRN/uWoZ3GHmU9dxaJTlqgpkjsnqi0MKJL3r/WtoucHOiCLGkuEuVKUT+fOiUf3rXkfjyEt0tsBqOaM1HLm7RwcJSGxGwlmoeGFcPc5wiy7gS7HLGyKCOY8bh/4pvU0pvWRtQkLFeELCwQ1Yx+Pb/a/uRJROOpOrT1o+tmlRzdzP2pJNEOFh2IR3/piz8/u+8FYZ7ShZkxYis/qj0c8GfcD0nVfZ/zNjRAAbqtRShXm+cMB0DKHYp25XPf1+VVtKPJrLhvRFRAZfYq//qxdW+8BXvQLzugo4k1unjKjcGWumT3VunGLvaLNx/4CNicxyKVAYPDTpzzmRZHpBmVHtwSrCE3T9wpHLAGYiBPYaIdhEmgsBHQ1wa96sXSdV7CeGv+7BO9z1j9Hyuk6s0EQ9wuhBIm5hVPyTUE8Sc1try9n6eEdRAE/BkgaRT5WtlwUofX4nP0/n6Vi04mNftu189XRkF7TYgu3wqNA/v7f3EuwRYVg7Y11tDphp8FPZKxupVK7R/443eTKyB0aaTCbiTQn8/WPnM9bHi/BaBiGKWiBHCs4sCb4HuxGFwuQzfCHu913HVK7ABLDzF0Lw2ntfW+q9NIcbau30GW8CgL457edvPBb23T5qORxqYf8lpbaTUqUMdpeecGfC9Cl8j7yOM++EWVWKZ/v7rF3OLDBji8BWJxL3k5vSqIYH3gpArTpO6tLXKz/w==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR08MB4376.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39850400004)(376002)(396003)(366004)(136003)(346002)(6506007)(66556008)(54906003)(7696005)(6636002)(110136005)(71200400001)(26005)(7416002)(66476007)(316002)(5660300002)(478600001)(91956017)(86362001)(9686003)(2906002)(4744005)(8936002)(8676002)(122000001)(66946007)(52536014)(4326008)(76116006)(38070700005)(64756008)(66446008)(186003)(55016003)(38100700002)(41300700001)(33656002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?LmO7cMfRiAx3fcBD4dlVeaoH4hveWs0Kqy4Nsf3sW+5WTJcGaqDSDN8cb7?=
- =?iso-8859-1?Q?+j5ebci2uXjB5YkxT+YzoE0roDuHVnFlsFQ9VBOYpPRuw4oG340Dp14QZ/?=
- =?iso-8859-1?Q?AVAnUv4XTDuonHukvj/KdXCiJsKJpdnG7U5Ja27nRcqpZ2jNIKozoe8Abv?=
- =?iso-8859-1?Q?OIN+K9wICaeKF0GWeTM/658K6Iwm/YSrADrLBqGc34fIe72p8WielEzw3h?=
- =?iso-8859-1?Q?bavlltsZP8r+2pW8VF0VXi2lqYR/oSYjtR1nvJUQqnPIIPw3xp/Csiez0D?=
- =?iso-8859-1?Q?HWlH8ILBsXwUDo/vQrSpjhev4YkA686EKPn6AwMZ9O1AKp1EWtTe/Fzhpy?=
- =?iso-8859-1?Q?j/MAKhFmVj0avr71zFqcYMzwubESUKQ1iL97TrMk4fBd5AOUwFgMlwkJuM?=
- =?iso-8859-1?Q?itWRBluzjh1FRLy9dSnvlsYJcWuOWsQ71e1WihlOCDXbKwo+XHGziFR/rW?=
- =?iso-8859-1?Q?fcdDBr2CD/v+M7T5cWU2jX/5uixa4ZCu/oMmx6oHkdTGlxWD6i+118n9E+?=
- =?iso-8859-1?Q?onXgN1dsAB4GVSgEHJ61EwtycB5OmWPZZ8JxledoajtaP9zSKGfrDw6YfH?=
- =?iso-8859-1?Q?TUDoNk2y5RhveF5las2lOIRfpZlwhxSoqFSh7DrirlEt15Aeh6LQqb0YAm?=
- =?iso-8859-1?Q?DRKqgdcskBJZ/FtI39jAc0DfyxYyJHdWz7gH4RKrXLZxymF4X6Rlqj0f9k?=
- =?iso-8859-1?Q?uX+mdNOm8RhkKkfkCGA7p5IWl299v9b/RaWddVlcQta2AVk0/p5bweriHn?=
- =?iso-8859-1?Q?Vv9DR4ndKkkr8uKFanoaBN1Lo5gazeOXpfXAio1vbo9Ge4HMlVdcO2PD17?=
- =?iso-8859-1?Q?BnNZeW5cvyXrMkkRN6u+beLIV8hE8+gO4RUnO+CPNKVN7DMGE+OrBWiXfp?=
- =?iso-8859-1?Q?eZSyqqHdGKiGpBPDfa/d9yBvoZkfS0pFGPe5MGAsNgqqlqxeLL5uxNbFd4?=
- =?iso-8859-1?Q?eCnxlDmQElKuCVXLMtMOySJVFUYJ76pGyyFmPOId++sT8FP1+OK9gYjepR?=
- =?iso-8859-1?Q?28w0LVu4LSLf/tHH4BxA1hkXflj/8xMEr4RjM2dlAFY6AnYuc2GsqONKZY?=
- =?iso-8859-1?Q?aywE0wr4DMpW2szVL7AzgFBfmaEJ3AU4pfQMXhSrjpUvcfG7SuRs0cCha+?=
- =?iso-8859-1?Q?6dRehEbGEXRbMuF/AgNThK6X3EL0o6GtAQ/4BsYLaZInnZe1lREgNKX4TG?=
- =?iso-8859-1?Q?Qe4dCQYHs/JqCOYzvoBpaX6KoiedTGNIdWqL2d5enIpuy8qqGAb9Jijkqt?=
- =?iso-8859-1?Q?yRofdM+W0MLCFSh1L9kbHdPiArTKiK6MwN9ifwPHPHvaOgAv1Ttqt2g2Le?=
- =?iso-8859-1?Q?FjcYL7RrDxPBPIwNf4h/pa13LNXV8nCVD0TG/Qtz7ocFB1gztzEmkSO2Gi?=
- =?iso-8859-1?Q?3QFIwzSykkgTWvUdHGGh0MOo4yTGet8k4GcdW4hxME4RJRLBS7Ht9oVmJQ?=
- =?iso-8859-1?Q?ps6hP0WC6NEVfrnqYAqB2HX4uZOYG2HIg0Pi1IAiQe7WvCoideyibWHzdp?=
- =?iso-8859-1?Q?ld63EkMVl4AMwGiY4NLbm3vN6L9hC5iClcR1wZtMDB17dgt1VTpL1nBIWi?=
- =?iso-8859-1?Q?Z3BGRGNMKI08HC2s7o2LWxxnI7bcVdqFGKhlGKG77GNPprSAotNvn1e53k?=
- =?iso-8859-1?Q?DOR3eYEjcbQl9emMfY6iiu+X/E5zkCYCuY8fi32ZjYnkITqpa/qaA+Q+xg?=
- =?iso-8859-1?Q?8K0CdVED9xB4BNugjrj8uOHS3qsTvB5GTlejSObxOFcTLvAokorEAx0WS2?=
- =?iso-8859-1?Q?ZaFtUwNUqD+pgxO+8hwKJeg2s5mDaVorwNOgoq8p5KP2XUMVGJJA6OOyRQ?=
- =?iso-8859-1?Q?LX2nHOWBfg=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S234402AbiFTPGp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 11:06:45 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5FE122B3A;
+        Mon, 20 Jun 2022 07:44:16 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25KEhPPw103094;
+        Mon, 20 Jun 2022 09:43:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655736205;
+        bh=msCQwh/1jtTFGMUA6aVLMiqUgrpZbx3J1b6A951eaYs=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=vOIIsAbumW5KLznaAmq33NyjnfJG7lw+ERXEkomw94LUwMTnqSIVHQtG1+KZvyzeY
+         lFknTRHLOBtry0Zppo+2TKDtHvFyG9gEBXkxnQtG2unP5qjzGfGHeUjZ070hnB5rIy
+         1JC18WLROCcqWo4EF0YuV8Ip/FJB4luNuXaVgDy0=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25KEhP2F039948
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 20 Jun 2022 09:43:25 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 20
+ Jun 2022 09:43:24 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 20 Jun 2022 09:43:24 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25KEhNr1065265;
+        Mon, 20 Jun 2022 09:43:24 -0500
+Date:   Mon, 20 Jun 2022 20:13:23 +0530
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     Jason Kridner <jkridner@gmail.com>
+CC:     Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        "Raghavendra, Vignesh" <vigneshr@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <lee.jones@linaro.org>,
+        <rogerq@kernel.org>, <devicetree@vger.kernel.org>,
+        <kristo@kernel.org>,
+        ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>,
+        "Pothukuchi, Vijay" <vijayp@ti.com>,
+        Robert Nelson <robertcnelson@gmail.com>
+Subject: Re: [PATCH v4 3/3] arm64: dts: ti: k3-j721e-sk: Add pinmux for RPi
+ Header
+Message-ID: <20220620144322.x54zitvhjreiy3ey@uda0490373>
+References: <20220530101031.11357-1-r-ravikumar@ti.com>
+ <20220530101031.11357-4-r-ravikumar@ti.com>
+ <20220618021614.svhnzlsm2chn5jey@kahuna>
+ <CA+T6QPnCut5KVUXcSqfHCjoc=5-JFvRSz=WFosCjQMXdRSjrTw@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: variscite.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR08MB4376.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aaa87902-54ee-445d-aa03-08da52cabe11
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2022 14:39:55.1421
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 399ae6ac-38f4-4ef0-94a8-440b0ad581de
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: W6lU+jBHNJNBxpUU1Kp7U6BehChqbJDjKcV6JGRIVZVW90E2thjYKi6hGLSIkHjOzeJvZk4G/+KoJBVrC+fz+q6Wp9CK93nIzMTpBa3FHQY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB7097
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CA+T6QPnCut5KVUXcSqfHCjoc=5-JFvRSz=WFosCjQMXdRSjrTw@mail.gmail.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > The platform_data structure is not populated when using device trees.=
-=0A=
-> > This patch adds optional dts properties to allow populating it:=0A=
-> > - gpio-cfg=0A=
-> > - mic-cfg=0A=
-> > - num-drc-cfgs=0A=
-> > - drc-cfg-regs=0A=
-> > - drc-cfg-names=0A=
-> > - num-retune-mobile-cfgs=0A=
-> > - retune-mobile-cfg-regs=0A=
-> > - retune-mobile-cfg-names=0A=
-> > - retune-mobile-cfg-rates=0A=
-> =0A=
-> If you want to add all this, convert to DT schema first. =0A=
-> They all need vendor prefixes for starters.=0A=
-=0A=
-Beyond adding the vendor prefix, can you please add details or provide any =
-reference about "convert to DT schema" ?=0A=
-=0A=
-> > =0A=
-> > Signed-off-by: Pierluigi Passaro <pierluigi.p@variscite.com>=0A=
-> > Signed-off-by: Alifer Moraes <alifer.m@variscite.com>=0A=
-> > ---=0A=
-> >=A0 .../devicetree/bindings/sound/wm8904.txt=A0=A0=A0=A0=A0 |=A0 53 ++++=
-++++=0A=
-> >=A0 sound/soc/codecs/wm8904.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0 | 113 +++++++++++++++++-=0A=
-> =0A=
-> Binding changes go in their own patches.=0A=
-=0A=
-Do you mean that C code and TXT documentation should be provided as separat=
-ed patches ?=0A=
-=0A=
-Thanks=0A=
-Best Regards=0A=
-Pier=
+On 08:11-20220618, Jason Kridner wrote:
+> For those seeing this message multiple times, my apologies for not
+> properly setting up my mailer.
+> 
+> On Fri, Jun 17, 2022 at 10:16 PM Nishanth Menon <nm@ti.com> wrote:
+> >
+> > On 15:40-20220530, Rahul T R wrote:
+> > > From: Sinthu Raja <sinthu.raja@ti.com>
+> > >
+> > > Add pinmux required to bring out
+> > > i2c5, ehrpwm 2 and 3 and gpios on
+> > > 40 pin RPi header on sk board
+> > >
+> > > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> > > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> >
+> >
+> > I was digging deeper at https://www.ti.com/lit/zip/sprr438
+> > (PROC112E2(001)_SCH.pdf - J3, Also looking at
+> > https://github.com/beagleboard/beaglebone-ai-64/blob/master/BeagleBone%20AI%20-64_SCH_V1.02_211119.pdf
+> > (P8, P9)
+> >
+> > And comparing it to https://www.raspberrypi-spy.co.uk/2012/06/simple-guide-to-the-rpi-gpio-header-and-pins/
+> > And considering potential use such as https://pypi.org/project/RPi.GPIO/
+> > variation,
+> >
+> > Here is my suggestion (applies to other TI Boards that attempt to
+> > emulate RPI header)
+> > a) Default mux in board.dts should be GPIO except for the i2c used for
+> >    ID detection.
+> > b) Secondary functions should be a dt overlay. (These can easily enable
+> >    the pwms and other functions as needed)
+> > c) Maintain node names consistent to allow reuse of overlays across
+> >    platforms.
+> >
+> > Usage: you can either use extlinux.conf OR uEnv.txt to apply the
+> > overlays as desired (ID detection from hats might help automate it based
+> > on the bootloader you'd want to use)
+> >
+> > Else, you have created a custom configuration here for 1 specific
+> > application, various hats that expect GPIO will end up croaking.
+> >
+> >
+> > I am open to discussions here.
+> 
+> 
+> 
+> A read of our recent blog series done with Bootlin is worth a read on
+> this topic. https://bbb.io/@2804
+> 
+> My suggestion is to put the entries for the common functions in the
+> base tree, but not enable them (except for the I2C used for ID
+> detection, as you suggested). This can remove SoC-specific
+> requirements on the overlays such that the overlays are written
+> against a header specification as defined by the common symbols
+> provided. So, make the entries in the base tree and leave them
+> "disabled" such that overlays only need to set the symbol to "okay",
+> at least for the common stuff to all implementations of the Pi header.
+> 
+
+Hi Nishanth, Jason,
+
+I agree for enabling only gpio's in the base dts
+and create overlays based on the specific use case
+
+We cannot create separate overlays for each functionality
+since the pimux varies based on the combination of
+functions enabled
+
+Ex: pinmux for gpio will be different between
+enabling only pwm and enabling pwm + spi
+
+When we create a overlay, along with setting
+the status to okay, we need to take care of
+configuring right pinmux as well
+
+I will send a respin with enabling only gpio
+ 
+> 
+> >
+> >
+> > > ---
+> > >  arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 89 ++++++++++++++++++++++----
+> > >  1 file changed, 78 insertions(+), 11 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> > > index 98a55778f3fe..b913b18ae133 100644
+> > > --- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> > > +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> > > @@ -400,6 +400,57 @@
+> > >                       J721E_IOPAD(0x124, PIN_INPUT, 7) /* (Y24) PRG0_PRU1_GPO9.GPIO0_72 */
+> > >               >;
+> > >       };
+> > > +
+> > > +     main_i2c5_pins_default: main-i2c5-pins-default {
+> > > +             pinctrl-single,pins = <
+> > > +                     J721E_IOPAD(0x150, PIN_INPUT_PULLUP, 2) /* (Y26) PRG0_MDIO0_MDIO.I2C5_SCL */
+> > > +                     J721E_IOPAD(0x154, PIN_INPUT_PULLUP, 2) /* (AA27) PRG0_MDIO0_MDC.I2C5_SDA */
+> > > +             >;
+> > > +     };
+> > > +
+> > > +     rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
+> > > +             pinctrl-single,pins = <
+> > > +                     J721E_IOPAD(0x01c, PIN_INPUT, 7) /* (AD22) PRG1_PRU0_GPO6.GPIO0_7 */
+> > > +                     J721E_IOPAD(0x120, PIN_INPUT, 7) /* (AA28) PRG0_PRU1_GPO8.GPIO0_71 */
+> > > +                     J721E_IOPAD(0x14c, PIN_INPUT, 7) /* (AA29) PRG0_PRU1_GPO19.GPIO0_82 */
+> > > +                     J721E_IOPAD(0x02c, PIN_INPUT, 7) /* (AD21) PRG1_PRU0_GPO10.GPIO0_11 */
+> > > +                     J721E_IOPAD(0x198, PIN_INPUT, 7) /* (V25) RGMII6_TD1.GPIO0_101 */
+> > > +                     J721E_IOPAD(0x1b0, PIN_INPUT, 7) /* (W24) RGMII6_RD1.GPIO0_107 */
+> > > +                     J721E_IOPAD(0x1a0, PIN_INPUT, 7) /* (W29) RGMII6_TXC.GPIO0_103 */
+> > > +                     J721E_IOPAD(0x008, PIN_INPUT, 7) /* (AG22) PRG1_PRU0_GPO1.GPIO0_2 */
+> > > +                     J721E_IOPAD(0x1d0, PIN_INPUT, 7) /* (AA3) SPI0_D1.GPIO0_115 */
+> > > +                     J721E_IOPAD(0x11c, PIN_INPUT, 7) /* (AA24) PRG0_PRU1_GPO7.GPIO0_70 */
+> > > +                     J721E_IOPAD(0x148, PIN_INPUT, 7) /* (AA26) PRG0_PRU1_GPO18.GPIO0_81 */
+> > > +                     J721E_IOPAD(0x004, PIN_INPUT, 7) /* (AC23) PRG1_PRU0_GPO0.GPIO0_1 */
+> > > +                     J721E_IOPAD(0x014, PIN_INPUT, 7) /* (AH23) PRG1_PRU0_GPO4.GPIO0_5 */
+> > > +                     J721E_IOPAD(0x020, PIN_INPUT, 7) /* (AE20) PRG1_PRU0_GPO7.GPIO0_8 */
+> > > +                     J721E_IOPAD(0x19c, PIN_INPUT, 7) /* (W27) RGMII6_TD0.GPIO0_102 */
+> > > +                     J721E_IOPAD(0x1b4, PIN_INPUT, 7) /* (W25) RGMII6_RD0.GPIO0_108 */
+> > > +                     J721E_IOPAD(0x188, PIN_INPUT, 7) /* (Y28) RGMII6_TX_CTL.GPIO0_97 */
+> > > +                     J721E_IOPAD(0x00c, PIN_INPUT, 7) /* (AF22) PRG1_PRU0_GPO2.GPIO0_3 */
+> > > +                     J721E_IOPAD(0x010, PIN_INPUT, 7) /* (AJ23) PRG1_PRU0_GPO3.GPIO0_4 */
+> > > +             >;
+> > > +     };
+> > > +
+> > > +     rpi_header_gpio1_pins_default: rpi-header-gpio1-pins-default {
+> > > +             pinctrl-single,pins = <
+> > > +                     J721E_IOPAD(0x234, PIN_INPUT, 7) /* (U3) EXT_REFCLK1.GPIO1_12 */
+> > > +             >;
+> > > +     };
+> > > +
+> > > +     rpi_header_ehrpwm2_pins_default: rpi-header-ehrpwm2-pins-default {
+> > > +             pinctrl-single,pins = <
+> > > +                     J721E_IOPAD(0x178, PIN_INPUT, 6) /* (U27) RGMII5_RD3.EHRPWM2_A */
+> > > +                     J721E_IOPAD(0x17c, PIN_INPUT, 6) /* (U24) RGMII5_RD2.EHRPWM2_B */
+> > > +             >;
+> > > +     };
+> > > +
+> > > +     rpi_header_ehrpwm3_pins_default: rpi-header-ehrpwm3-pins-default {
+> > > +             pinctrl-single,pins = <
+> > > +                     J721E_IOPAD(0x18c, PIN_INPUT, 6) /* (V23) RGMII6_RX_CTL.EHRPWM3_A */
+> > > +                     J721E_IOPAD(0x190, PIN_INPUT, 6) /* (W23) RGMII6_TD3.EHRPWM3_B */
+> > > +             >;
+> > > +     };
+> > >  };
+> > >
+> > >  &wkup_pmx0 {
+> > > @@ -631,11 +682,6 @@
+> > >       status = "disabled";
+> > >  };
+> > >
+> > > -&main_i2c5 {
+> > > -     /* Brought out on RPi Header */
+> > > -     status = "disabled";
+> > > -};
+> > > -
+> >
+> > Please don't relocate nodes in the same patch - kinda messes up the
+> > diffstat and makes review a bit harder.
+> >
+
+will fix this in the respin
+
+Regards
+Rahul T R
+
+> > >  &main_i2c6 {
+> > >       /* Unused */
+> > >       status = "disabled";
+> > > @@ -1138,18 +1184,39 @@
+> > >       status = "disabled";
+> > >  };
+> > >
+> > > -&main_ehrpwm2 {
+> > > +&main_ehrpwm4 {
+> > >       status = "disabled";
+> > >  };
+> > >
+> > > -&main_ehrpwm3 {
+> > > +&main_ehrpwm5 {
+> > >       status = "disabled";
+> > >  };
+> > >
+> > > -&main_ehrpwm4 {
+> > > -     status = "disabled";
+> > > +&main_gpio0 {
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&rpi_header_gpio0_pins_default>;
+> > >  };
+> > >
+> > > -&main_ehrpwm5 {
+> > > -     status = "disabled";
+> > > +&main_gpio1 {
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&rpi_header_gpio1_pins_default>;
+> > > +};
+> > > +
+> > > +&main_i2c5 {
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&main_i2c5_pins_default>;
+> > > +     clock-frequency = <400000>;
+> > > +     status = "okay";
+> >
+> > Defaults in SoC.dtsi so far are "okay" - so adding that again is
+> > superfluous This happens when you are relocating nodes etc
+> >
+> > > +};
+> > > +
+> > > +&main_ehrpwm2 {
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&rpi_header_ehrpwm2_pins_default>;
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&main_ehrpwm3 {
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&rpi_header_ehrpwm3_pins_default>;
+> > > +     status = "okay";
+> > >  };
+> >
+> > --
+> > Regards,
+> > Nishanth Menon
+> > Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> 
+> 
+> 
+> -- 
+> https://beagleboard.org/about/jkridner - a 501c3 non-profit educating
+> around open hardware computing
