@@ -2,129 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E70CD5520FE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 17:31:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3408552178
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 17:45:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238503AbiFTPbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 11:31:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33128 "EHLO
+        id S242819AbiFTPps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 11:45:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244396AbiFTPas (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 11:30:48 -0400
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2074.outbound.protection.outlook.com [40.107.104.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B020038B8;
-        Mon, 20 Jun 2022 08:30:47 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QkNZDXj8oz184Llv7M82EcE0wp6jpCkERuxudQcgrvAEiMhRbczjNO1755ao93x1R4iWvNUokKAP75d61Wmh/ady/nRUkIAGS69t6CvMK/f1SN4jIn7zjcRwZAOuFfqvcFporAb3bpXrZ6JvY57x+r/PSgm0NPvVIfNfr6rg3Pb9aI9zksmRdo64rUngEPBtL1pHyXVI0+erm8MNJmoy8DB7dvsggJIh8YOkI3qf7xr43m3iNVCpR+HqsfZcyfhHsrXe49PAZ7EGxSbokc0WAOtCdFvz1lSAHsCxFP/OAiJHYxsTBri4EG0FFU4oCn73iHtvjv9Dxjn8cLV8Fs8hBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=v8htea4wMlEqHshHr9yweuT97UELhq2HTX4liiKaNzc=;
- b=l9WhEEPYfJH1CeYY8t4TuDJ09t3AHbYvaCfp80ucZv7e9OmpdHz7jEVspO13s978P6aoTGvUhdyC3ELMO4RPZV0Piumcwc4d9ZwRpNtc0RajoZmFp9GT+NbD4XJ8MqUik37wchdzGcUkFMaHarBs8JbOiszqKib9QxS87mFI8+OKj617f5QR0jUK6jxcuX+4T5nC5fYoP07scJjziif7bE+YK7x0wqVYPmwr9P5/inD7xdcg5PAVmpg/w0so5Pgt1X2jouuk99poKTWasAFxiArrXd2v98y0EbhfrpV8jAEyb0MXixZCGuI4NJO/NS9cdMfMirVlz1zoxC4yNEmrvA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=variscite.com; dmarc=pass action=none
- header.from=variscite.com; dkim=pass header.d=variscite.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=variscite.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v8htea4wMlEqHshHr9yweuT97UELhq2HTX4liiKaNzc=;
- b=Zsgw4wmyjoRJuVgxT7ASRT43ScRK8izS0ePgF7e7hsZyjXyHdt1mLwHqslkh8nAyDmRgx9IkmS0YBSJuzv4D/eXbDBzy6fLGnlauIwxelqqDBylprSVu0++vS/VUeUIwKP20/AJ07gFZZTO1c5/uqlL0yKzoYKBs7N6vD0mpUMLssCAckrvNkzWke7jRVMmxjVnOF33Naw2QnfYqBlzuP8B55z+SonxiVHLUu/0uMZyYuRBabHHJBwwCKRww7hNKImu4RbtFacXzPHwoYhB+XhB8TVVMS0oc+THcVAjuAtxM19YjwPzRaxxiKknUMuH6ov6I6d4OcF0wCvQ1yXSZeA==
-Received: from AM6PR08MB4376.eurprd08.prod.outlook.com (2603:10a6:20b:bb::21)
- by AS8PR08MB8135.eurprd08.prod.outlook.com (2603:10a6:20b:560::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.18; Mon, 20 Jun
- 2022 15:30:45 +0000
-Received: from AM6PR08MB4376.eurprd08.prod.outlook.com
- ([fe80::3d45:c206:59e3:6539]) by AM6PR08MB4376.eurprd08.prod.outlook.com
- ([fe80::3d45:c206:59e3:6539%5]) with mapi id 15.20.5353.022; Mon, 20 Jun 2022
- 15:30:45 +0000
-From:   Pierluigi Passaro <pierluigi.p@variscite.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Alifer Willians de Moraes <alifer.m@variscite.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Eran Matityahu <eran.m@variscite.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
-        "patches@opensource.cirrus.com" <patches@opensource.cirrus.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shengjiu.wang@gmail.com" <shengjiu.wang@gmail.com>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>
-Subject: Re: [PATCH 4/4] ASoC: wm8904: add DMIC support
-Thread-Topic: [PATCH 4/4] ASoC: wm8904: add DMIC support
-Thread-Index: AQHYhLj/Hf9K4uNXmUCdTum1nSiaNg==
-Date:   Mon, 20 Jun 2022 15:30:45 +0000
-Message-ID: <AM6PR08MB437600972B26E3A56E1190C0FFB09@AM6PR08MB4376.eurprd08.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-suggested_attachment_session_id: 9c204568-94a8-5e31-c6ef-c85f0262b07e
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=variscite.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8b6488c2-2314-4513-0109-08da52d1d84b
-x-ms-traffictypediagnostic: AS8PR08MB8135:EE_
-x-microsoft-antispam-prvs: <AS8PR08MB81359DAB52F0DBFE1A793CFBFFB09@AS8PR08MB8135.eurprd08.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: fEhZvga/FgYjGfpkH2jUKUFGGZ6g6SwYoXFKh2vLFOxNy3545c2rXlfG58o9x86Jo/4KJ2o4QsNcJNDbdi7hLUmZRhfqYabZNd8uIgR4U5D5IYFQ+dLlrn9gzQ0kNIl1/5UjMG5i5JqI42QyWiKNg9AVtGdrK8OTbz7vIRQTHZKyCPqRbHIRckziJ6ZKkaOs7JhHcvnk+osU6Yyw0x013sJbH8k/7szf+mhOCMo4FkWH+uFKyxfZf0A3jDz/QfzLW9F08oTA5qicl/VHK0wH/BU7S4xZ4/wg8BDqU4/3GzEWQYzSOxhV/WpRaqW1NADU3crQzNySsm3oZD3R9+ZT+ve4uQtunsChPth1tiiI44l5Vn7P+7ye1tQx3Kalyihk00Zz3k1aWKMO0ffttgnuBxsSGrxR1S+ueqDPnKXYny+jtOULjfDJN7q2HtPqZW+e3YnySBXqBDlL9hc799bJAMF/LOrrxo+Lz91icx3pUjMZsJG4JZOhMB4kFEaVAfi84zSFALkxBKCjc++22FOdTHR3o5GfRMeqL9Z7Kiogy9sRu8B++QxHcpa8tBA/WDiKf23/wfGlO9KIeZWK0KXAxxUiIvAF/4lngW4520O7yejBYwc7Hr5pvyMDrXywONKOVETpT16rAwtjkhd1PrtzZqV3mDqruRE/3aCx/5TOgi/oBQ8JKd9PFsBflXiBqAeO02Gh8m3tk92NOC3WP7yPnw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR08MB4376.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(346002)(366004)(136003)(39840400004)(376002)(76116006)(4744005)(66446008)(64756008)(38100700002)(71200400001)(4326008)(91956017)(6506007)(66476007)(66946007)(83380400001)(6916009)(8676002)(26005)(316002)(478600001)(38070700005)(2906002)(33656002)(86362001)(186003)(66556008)(7696005)(54906003)(41300700001)(8936002)(55016003)(7416002)(122000001)(52536014)(9686003)(5660300002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?LvgETahlGkk79Crdw5EGPOFqpmfWbLvqzQ84cEQVk5BjfN5rQU27MW/Tt3?=
- =?iso-8859-1?Q?fcMZUSqCmbeLyJPe5RnbBcWhcxSpORPwMir0u694BEqlQQt+St18H3Nlf/?=
- =?iso-8859-1?Q?ypVCi8meaxOibkvkrAelimTT0F9sgatgihpgn5RHKF1/iBimL3EeJfQYQW?=
- =?iso-8859-1?Q?7cwOn9liQr3Q4fEeUkHaJfH8sTGHmQq/Wi8nugDFdUGqm49py0JShiRyaQ?=
- =?iso-8859-1?Q?DVa2V1cnx+zK8UmZs2TgKBjPok5CN8u4lb6fmIzHwpUpL93Ym7VdvrrShp?=
- =?iso-8859-1?Q?PisxvnfloAW43veg4HyxBpgXqpz6IJPVEPma1gABUgxlSxCgX/7tbYYHPD?=
- =?iso-8859-1?Q?rI615RdI/hQ49TYw7Lyesu3A1BysV0W6OySSLf7nc99rBQyujHuKliBlxC?=
- =?iso-8859-1?Q?tX27OCYu5OTkkE5Ogfocs3n8+pkaWctReRbzGQCbq3WE53tEtLos9mouGE?=
- =?iso-8859-1?Q?2GQ2k//yAsktjxcED0d1H9Xcpq0xEg3fcl0jS5gKct5UvK3PZNCtiqe/R8?=
- =?iso-8859-1?Q?iBJsn8H9Yy0fogm7Xqe+LNWZKsOaK9awJRThy/6r/W9e7ROQ1uU+65QIJ3?=
- =?iso-8859-1?Q?uxmmEY1nUrydgWvx177wGfa4Bh/E695Vb9RtJj6FvmuxahYnFEzqRmK5SM?=
- =?iso-8859-1?Q?mLGe1PBwDw05Pn6ZXYa2ld8yCmL2YzIucKNLRYt5h5Y5QJlRqbtKhnj/N+?=
- =?iso-8859-1?Q?saxufiJjFuLHwIO+PQbnfMICzIHblikpJoNB6oJdZgxRnRKFLhPxZU3ppb?=
- =?iso-8859-1?Q?msX/rWvnAYUX3OQ0/bjTqp2lRl3C7Q8vPpxfgvl0+6W3C8rGM+ybHAhsGz?=
- =?iso-8859-1?Q?xLEVxvpNftY5+UEXtmohgOK6ALQcEWbmkb6h4VNc+XWoNqND/bROwDmhwL?=
- =?iso-8859-1?Q?DmjIZnV8xNsjhu5V+9xQCykyzZ8jCzuBPADgFs4Jsnr/zDoUrfofoCRhBF?=
- =?iso-8859-1?Q?l/zHH54iC+xQ9/u16cxuh4WH/to3FX8bZyuh4oxQ0LcBElcG/uTKnD3zzo?=
- =?iso-8859-1?Q?lxl9fo2KcsoeewRC4h3NF76uDDHHS2/4lI0xfLcYlyAxH2r/dKKypkrQCB?=
- =?iso-8859-1?Q?Lu1UFT5lANSFPgc8TASG3zraf96sTQInvYYSPIOHoXwv6AjF8tFwKlqi0V?=
- =?iso-8859-1?Q?lXRieffUmtUEtSiRmn1hlsecGV8pOiT6ziOnPm4f+kiVjQ8c6kGvrJE5pb?=
- =?iso-8859-1?Q?dNToVTkjYj3G4uU6fbLoZAvYF+7IvTMAv9uHyS9iuv50SH3X2yEJWazm1Q?=
- =?iso-8859-1?Q?7XUYgs6JPfztF1RSLc2pf6WeRXXRjA4Y6NQtwVxxPeeGNDLxcpBgQOL0ip?=
- =?iso-8859-1?Q?E0DgPhw7e1NgG7tqZSVPfx17B2W9pOW1Y7SL350fXLLTK3sAZ+JctTVT7T?=
- =?iso-8859-1?Q?o2Vk0EbYRI+b1jQdXBBYtkDPw2cpJIsr1m9tmq9IH5qc/s6OymKH+zOskv?=
- =?iso-8859-1?Q?CGif9oOG0mpIUe6/1GDYweD960CXlmgAqAzVdWAtT6Piq8ViOrgZjuY++0?=
- =?iso-8859-1?Q?3AstAkMoF6wQnOASMQEASsbglnjpnRP+E/wXQX6zblJMFuXxgbyNBtn+Lh?=
- =?iso-8859-1?Q?YHd77JFHXczL+LT1NFT8lrEgXEh1fSnDpCk8yxr8eJXMGjOq9e+/MweXMr?=
- =?iso-8859-1?Q?qajCKfkrUqOrc1Q097M7im0UoCAvyPZmSkksVVp2/yuTTAOuxHfpr1VMGc?=
- =?iso-8859-1?Q?fiLYb9hbrkHpZdN1TSnfiWad0NEHChvMuJIGnY4a7yC94OuuMmgFHs+uXe?=
- =?iso-8859-1?Q?+gXFD0DBD+tWHb3WhMXnGr04vy5+QcMMYV4hJ9zxOgalNl6MORtz7wpuWM?=
- =?iso-8859-1?Q?vT8Ba9UDeA=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S237399AbiFTPpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 11:45:47 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05F681AD90;
+        Mon, 20 Jun 2022 08:45:47 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id z7so15664158edm.13;
+        Mon, 20 Jun 2022 08:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=rtXs7kbTYAIaKi3cLmcvhvj9LjGI2rwhz07by3dGrtw=;
+        b=o7uHxiffDFsN/YBO0yimv8zrjf4lJWvAom/17OgGBiyzz9vkUlTwm/Yl+lT2ayjGLt
+         fQuiblU8f0NtWxmZ7jTefJ8YUTJjE9zZCmgUQ+nmzGwMuZSXP3n0tcdgHSHss6EEY6HQ
+         p7MJJvUcpuN+VxY0UbBg/MKvxLyLmq9h5EtPGHjQSy4G7w3K5Me1wxwbsYCz2HFEZbBt
+         8fAEmVqwZ0hXFW65E9vqjcYo4fyPjKuQpyNGDaqnegWAvmsw+QYqKDQA7+R2qWCTksSD
+         HZYQAPyfnyM+oyKQxv2cROwVDXJLocQv5j3Wf7J0V0JP4tiJklL76weWDDVBckK8E/+z
+         QOJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=rtXs7kbTYAIaKi3cLmcvhvj9LjGI2rwhz07by3dGrtw=;
+        b=VQr4t5gOS+AQyJvJIkC5Z7NXkgM+WXf/Adi8lTHGCGqN/uXRG5LIMKkTSooqPL5C11
+         TT3e3ANHWSEzaXqo9+oN9/8Hp2p8x3gsoJpfEwCkDPNZ7ms37TRZVxA7P6hqIgMRxDgx
+         6wisRCQwZkUhYMr76z/DsxOpLAf3BMCkUbSwXSNquVYekpMxosHY+i+hpuNcP8ACzc7R
+         d2cuwmpYi8TrZVovVSQP1k1Gl9E37yb8+LDFJsjEbHJbpKpQTrf/HITG/Q/m3615kMNn
+         9u8yd2I8PC1eCWRWe/D1xCRgARP4lS85B4AN52FG4jm2WL/KbBUAbncDhPUIZlE9m/Qq
+         iWuA==
+X-Gm-Message-State: AJIora+6l1gCcIjHAWxRNdiOMDfyv4id2UPJKsLPpS2I0VCMA5RaIMB7
+        ynX6KDU7PRep6eo2b/8unNA=
+X-Google-Smtp-Source: AGRyM1ujDQR9aZvv3au2jdETK0nvvmjLOG/uM1D6E/NFkZ1eQPLzbujTK+tJbCgfSYF28qMpSIQJmw==
+X-Received: by 2002:a50:fb86:0:b0:435:7f5d:4cb5 with SMTP id e6-20020a50fb86000000b004357f5d4cb5mr8942887edq.163.1655739945357;
+        Mon, 20 Jun 2022 08:45:45 -0700 (PDT)
+Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id f20-20020a17090631d400b0071c6dc728b2sm5895943ejf.86.2022.06.20.08.45.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jun 2022 08:45:44 -0700 (PDT)
+Date:   Mon, 20 Jun 2022 17:45:42 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     Kartik <kkartik@nvidia.com>, robh+dt@kernel.org,
+        krzk+dt@kernel.org, jonathanh@nvidia.com, spujar@nvidia.com,
+        akhilrajeev@nvidia.com, rgumasta@nvidia.com, pshete@nvidia.com,
+        vidyas@nvidia.com, mperttunen@nvidia.com, mkumard@nvidia.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 0/6] Add watchdog timer support for Tegra186/194/234 SoCs
+Message-ID: <YrCWJpfobojqjhBw@orome>
+References: <1649924738-17990-1-git-send-email-kkartik@nvidia.com>
 MIME-Version: 1.0
-X-OriginatorOrg: variscite.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR08MB4376.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b6488c2-2314-4513-0109-08da52d1d84b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2022 15:30:45.6314
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 399ae6ac-38f4-4ef0-94a8-440b0ad581de
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8OuALXKIsdqWknT8o2pC2SJ4UXgc826B+XCG0namFpct0DCNZBdhKttyadkGbcaQC+eGRSwpC8HV+vC21V1dkEfgkDDfbzbTbUBlWhw/8vI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB8135
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="b82/QUJKb3XK5kW+"
+Content-Disposition: inline
+In-Reply-To: <1649924738-17990-1-git-send-email-kkartik@nvidia.com>
+User-Agent: Mutt/2.2.4 (c3baa83e) (2022-04-30)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -132,18 +76,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > Via firmware description.=0A=
-=0A=
-> > Can you please provide any reference approach in the kernel code ?=0A=
-=0A=
-> git grep of_=0A=
-> git grep fwnode_=0A=
-=0A=
-> and I don't immediately remember what the prefix is for ACPI functions.=
-=0A=
-=0A=
-Just for my understanding, are you suggesting to set a device tree property=
- to force a fixed behavior in the driver ?=0A=
-WM8904 allows using both a DMIC and LINEIN, switching between one or the ot=
-her and this is how we currently use it.=0A=
-Why the user should not be allowed to switch between DMIC and LINEIN ?=
+
+--b82/QUJKb3XK5kW+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Apr 14, 2022 at 01:55:32PM +0530, Kartik wrote:
+> The native timers IP block found on Tegra SoCs implements a watchdog
+> timer that can be used to recover from system hangs. This series of
+> patches adds support for watchdog timers available on Tegra186,
+> Tegra194 and Tegra234 SOC's.
+>=20
+> To keep the history intact, I added Tegra234 driver change as separate.
+> The original patchset is an old one authored by Thierry.
+>=20
+> Kartik (4):
+>   dt-bindings: timer: Add Tegra186 & Tegra234 Timer
+>   clocksource/drivers/timer-tegra186: Add support for Tegra234 SoC
+>   arm64: tegra: Enable native timers on Tegra186
+>   arm64: tegra: Enable native timers on Tegra234
+>=20
+> Thierry Reding (2):
+>   clocksource: Add Tegra186 timers support
+>   arm64: tegra: Enable native timers on Tegra194
+>=20
+>  .../bindings/timer/nvidia,tegra186-timer.yaml | 116 ++++
+>  arch/arm64/boot/dts/nvidia/tegra186.dtsi      |   2 +-
+>  arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  16 +
+>  arch/arm64/boot/dts/nvidia/tegra234.dtsi      |  22 +
+>  drivers/clocksource/Kconfig                   |   8 +
+>  drivers/clocksource/Makefile                  |   1 +
+>  drivers/clocksource/timer-tegra186.c          | 514 ++++++++++++++++++
+>  7 files changed, 678 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegra1=
+86-timer.yaml
+>  create mode 100644 drivers/clocksource/timer-tegra186.c
+
+Hi Daniel, Thomas,
+
+any comments on this from the clocksource side of things? So far the
+only comments have been on the bindings, so if there's nothing else on
+the driver bits, Kartik could go ahead and send a v2 so that we can
+hopefully get this into v5.20.
+
+Thanks,
+Thierry
+
+--b82/QUJKb3XK5kW+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmKwliMACgkQ3SOs138+
+s6E+Ig//TlC+iFALnyPKXJqWBopRzUbPKeVZT+qb4Ucj/j9QjI95xY4uKiH5HPqU
+IMgYuTVNezbsvh5H9bFGA1anEH2Wxq77e9C1CfC+Ym/mDl/ZuHPkTPPXmWUe0EoH
+CvaaIpvLwlpaQ2Sl/E2h9hUdt2a4tkZKLQxwJGlNFJCAilof4w/dgy98QH/N2Kmr
+wy+SEKRPEVP4DJrb+UB80NiOa0KuIGPAuXpPy0mtB07rhEI9mVPnD86gacPtQvzW
+Pprae5BS0/YJi0zNUu5QdPrA7H3ga0Fp7HBSneKqJK/FSkvPGtHjw7wK1M7xL1uy
+phC9b0aTHOAWzUKoYF9qua2DI5W5QPx+JwXbhENA4moa4lgXAVJM/SosVgsfdCMA
+pBboodHeABtqOqcbOIlKyNn0b1d1aaJcp+KUgl5pmLDIJplSVZwSei+UtQ5lT2U7
++SPl6j02tkpw/ovjEebjypr1Fg02GHzf1LcMoSVvWcjvRzmWkPhNHrBs/7mgTLub
++eCEA04y5fuhsMDpAHhB7dRplbtOzp0KZVFnWYE+vV3+FGw2KHQeWkXf1UU2I74s
+z0AlEU/6BbNCZqI1j5Ach3C7BvAYAoMOOfH9XJ/O500ukgCZpfsvDHjIZDaxSzdk
+IlaGkYjkkmWHuUf0+wL4cLEV6JVN3RSPG62rBkL89eghfM61j+U=
+=9Pgv
+-----END PGP SIGNATURE-----
+
+--b82/QUJKb3XK5kW+--
