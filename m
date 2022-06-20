@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAE68551749
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 13:23:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF652551750
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 13:24:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241076AbiFTLXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 07:23:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46014 "EHLO
+        id S241213AbiFTLY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 07:24:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241382AbiFTLXB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 07:23:01 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 501352DFD
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 04:23:00 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id me5so20455187ejb.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 04:23:00 -0700 (PDT)
+        with ESMTP id S229910AbiFTLY0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 07:24:26 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43B2615A30
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 04:24:23 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id cf14so4890522edb.8
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 04:24:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=D5DnREkEjVNx3v/VNxec7CBf/bIIKItaeTzt3nym0eQ=;
-        b=GufTziXY8Te2UU01WEJZdmOutWCueBiljcwYxcmW6OS70fBGTzQIjYhjF5WggfaoZr
-         l9ZMTCCutqBzIpo8DeIAAKy++olIcx3fU4hVkEzx2Oh9GY5pGeHrfpKkng3U0hQG7xhs
-         X7AITukiZNmvwVKN8cJ7hFnTUJ1/i2XKEls1Ujdl+zm/GQcq2Oie7oW0UyKa5hfy74qd
-         OTiAKM7+3Sf2bt8LwjE1/msj3imCTEUyS4V7ljYVB+zXosXhc3O84nD8j89Ps8b1/cep
-         SvA1OljQd1StlKM8DrnhUHnHrG14O5ErI2107PXYUpK+dtOvmzXZNiCrdN7rOHQMWv5/
-         t2nA==
+        bh=7YbItpgX2LBuNx7lKZqosV1saRLcfoQOlviZpKCZMRM=;
+        b=T1nbdeKFeraRecCd3Hn8u72fu7OtLH6DrLq5ON5gSmWupN8DmcewNuz4ssWpaI6Xr3
+         00ouvgo7T/iJfHEVzPbvCwzkVVC/FLD1F1VGObB6fhPWw8Z8ifaa7TJ1DbhA2jwSbvAL
+         aMdd8ALj7hUvi3l0A8irE1JpXZ/LCYWWt4RDZ6IDBSakoQBhyBwmg84IbDt2f4kc3YP8
+         FCIZps2S9S0/gun+pdnVlHrVXBxtOymYPB9Cp8hvq77lzgg4ncnndNWRtCy+H3PQVrrZ
+         Nw+FUqRkquAcSwohuCdkIlMDoPCJ1KVupWwXmfxUgyUdz92JTE42DYq1e0dfYtT6lwPe
+         tBHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=D5DnREkEjVNx3v/VNxec7CBf/bIIKItaeTzt3nym0eQ=;
-        b=iR1ujTyYsiapDMBV8xd/n1aXEzIyxBBZFDRwIPrCXHcjnIFo9B+N9Ds9zmbaIPz4u1
-         R28FC2IV2TuEOfWDP2gtWi7m435KTa7OpePBUOvxZjpOZJt3To/eXk56c9kMu1MxtMnb
-         M3/b+m13RwMJSQZAVDL0e/1UEnijeBpZIklTJtDKnzTceRznnTBCkQGWmPpd/ma++UNf
-         VaUS/8LHSIwRVpgsmjIllobakGNdn99NjRz2/ofwhoJ+wWVMTlz5vmhvylQP2YO1yn5N
-         xdMGoOyTXTNvSf/3fVbOM2HwDgsq82YUjSjs/a7qkj+YAbamvV4balEMX1TqRzegnCAj
-         3gAg==
-X-Gm-Message-State: AJIora9tmzzhrDJbqRntW52Nk47qp7fBDxHzx61aPQ/yArOR8ulTY5lc
-        MMlf1+fIMfW0zEco7MnkM4SSWxdxgpeyRQ==
-X-Google-Smtp-Source: AGRyM1u/rRpQgvndnz59kIa2WoXYQDMKkw0CUGGxxKkKieWrT0NpHwVk3cBmEl9a4afIqBZn+6tSxQ==
-X-Received: by 2002:a17:906:7786:b0:712:3c92:4335 with SMTP id s6-20020a170906778600b007123c924335mr20116084ejm.610.1655724178922;
-        Mon, 20 Jun 2022 04:22:58 -0700 (PDT)
+        bh=7YbItpgX2LBuNx7lKZqosV1saRLcfoQOlviZpKCZMRM=;
+        b=v9KvJJJbHStGGoToES10IsJa89ezg/b7JtnhDngP8FIXHrOake2KDyEH1jpdOBmE5M
+         Z/frNQNA/EAsdborMRMYKJVy5oVCufPNfLebhkIwk82FGvkgYRURTqu9kqUgU6Cqxip6
+         Hfr3FrU4urqJRPvYJa2YpEM3YxXbLAnMRy/NHytnNq6LQXk3O7ayACAoQCEaQrx7hVac
+         j+SyctsEbmkrTAf4qkGLAw8TRlwz80UMemSR0kTyacNoL4G5xKj8o7UUo0jri9NuuJ0y
+         GxvJjmp5c81TSYjR74FhneRYK6JOi9ujtuIhQoe5bdB1e5FPEAFM8k1LPLuRMTFCUBRS
+         b8eQ==
+X-Gm-Message-State: AJIora/BbpoVAiPD0MSKjdWjUYFERVJQy7/JNUGC8Xyv1Q+PXMUkLy4d
+        +3g0PeY9l2ysmguCDtmG0mWXdQ==
+X-Google-Smtp-Source: AGRyM1vlX+1cAORRQeoyJ5GjVZ99zgy5FGMZ5N3PChpplc/Pk3QKA+jkysUom51C8/8Xy+I1QI/eXw==
+X-Received: by 2002:a05:6402:40c6:b0:42f:9ff8:62f8 with SMTP id z6-20020a05640240c600b0042f9ff862f8mr28458343edb.95.1655724261713;
+        Mon, 20 Jun 2022 04:24:21 -0700 (PDT)
 Received: from [192.168.0.209] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id kv14-20020a17090778ce00b006fe8b3d8cb6sm5808078ejc.62.2022.06.20.04.22.56
+        by smtp.gmail.com with ESMTPSA id 15-20020a170906300f00b006f3ef214dd9sm5832791ejz.63.2022.06.20.04.24.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jun 2022 04:22:57 -0700 (PDT)
-Message-ID: <9e6ed640-7c51-feca-a61f-2a960eb9986b@linaro.org>
-Date:   Mon, 20 Jun 2022 13:22:56 +0200
+        Mon, 20 Jun 2022 04:24:19 -0700 (PDT)
+Message-ID: <22f4ba43-2505-3000-24b6-b01d58d87e7f@linaro.org>
+Date:   Mon, 20 Jun 2022 13:24:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 1/4] dt-bindings: clock: qcom,gcc-msm8996: add more GCC
- clock sources
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: msm8996: add GCC's optional clock
+ sources
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -63,9 +63,9 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220620071936.1558906-1-dmitry.baryshkov@linaro.org>
- <20220620071936.1558906-2-dmitry.baryshkov@linaro.org>
+ <20220620071936.1558906-4-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220620071936.1558906-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220620071936.1558906-4-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,16 +79,48 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20/06/2022 09:19, Dmitry Baryshkov wrote:
-> Add additional GCC clock sources. This includes PCIe and USB PIPE and
-> UFS symbol clocks.
+> Add missing GCC clock sources. This includes PCIe and USB PIPE and UFS
+> symbol clocks.
 > 
-> Fixes: 2a8aa18c1131 ("dt-bindings: clk: qcom: Fix self-validation, split, and clean cruft")
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../bindings/clock/qcom,gcc-msm8996.yaml         | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 18 ++++++++++++++++--
+>  1 file changed, 16 insertions(+), 2 deletions(-)
 > 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index e97f193aefd3..6c7380f86383 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -689,8 +689,22 @@ gcc: clock-controller@300000 {
+>  
+>  			clocks = <&rpmcc RPM_SMD_BB_CLK1>,
+>  				 <&rpmcc RPM_SMD_LN_BB_CLK>,
+> -				 <&sleep_clk>;
+> -			clock-names = "cxo", "cxo2", "sleep_clk";
+> +				 <&sleep_clk>,
+> +				 <&pciephy_0>,
+> +				 <&pciephy_1>,
+> +				 <&pciephy_2>,
+> +				 <&ssusb_phy_0>,
+> +				 <0>, <0>, <0>;
+
+Since the clocks are optional, there is no need to pass <0> to them. I
+think it does not bring any benefits.
+
+> +			clock-names = "cxo",
+> +				      "cxo2",
+> +				      "sleep_clk",
+> +				      "pcie_0_pipe_clk_src",
+> +				      "pcie_1_pipe_clk_src",
+> +				      "pcie_2_pipe_clk_src",
+> +				      "usb3_phy_pipe_clk_src",
+> +				      "ufs_rx_symbol_0_clk_src",
+> +				      "ufs_rx_symbol_1_clk_src",
+> +				      "ufs_tx_symbol_0_clk_src";
+>  		};
+>  
+>  		tsens0: thermal-sensor@4a9000 {
+
 
 Best regards,
 Krzysztof
