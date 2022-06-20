@@ -2,91 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16DF755160A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 12:39:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00ABF551619
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 12:43:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240960AbiFTKji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 06:39:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35190 "EHLO
+        id S239136AbiFTKnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 06:43:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240983AbiFTKjd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 06:39:33 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2C35140A4
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 03:39:27 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id fu3so20225398ejc.7
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 03:39:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Wu7OjQauT8VsAEcCNOR8tTiMvlUSYPeipgtsHwYY4Vg=;
-        b=m8op4FixOAAlfFZ7egA7dw9XYWx1MedsRDNb/RiDDswivswf1dRO3JJr8j/dB6U8b0
-         wG1V5eA/LYFuOiUxauvTX1kFoE58uC+7lIApV24t1QqUfrlEdBkeiYdRYVgO8VVV5B3m
-         jPlzFxqwsU7KOcgnyBRxDPuMzMxryRAXpnoBnH906aLguQ16CafUqTcdhR8ML9FBGAsq
-         Q3XTgGHED3qelMs+zISNTJBb66zeIDaCzP4HIuMXZM+Sya3peej5uQ8Sc35IWTB8xPqo
-         eFNjunF8X1gBRtP5rVsjNvLSjMAkbL6VLJFinF/mlNcaldTExFi/tx1RsW2mxCD2Fic4
-         GftQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Wu7OjQauT8VsAEcCNOR8tTiMvlUSYPeipgtsHwYY4Vg=;
-        b=O9ekd9OgdwrFmAj72ws4JryP/OFyFluPKVh0H+FJrqzNwqNRit5Aga5KtoZUw2nUtN
-         1XNQdpltAum2bVzKnFwM60LyK70lDa72hZF+1E9aIjyK+bxy6C7HGEUKj4KAugAkHxjC
-         hNLHUCmnnKXVMjp8aaPWPI37s/Qkn2ynyKG66F/C+r0NpTIO2I6DMQemdmXw40RBX7yQ
-         8hZsMcbPk6AZv3dTVLaug4u+/NoG2EiHXnVc4KlH6kzkAAkFjPOX3WHurqCCvNFHlQaj
-         SR50l8TsbvvogstwTsP/8KvTbqpyZDp8v1EbRLpUFcw+MyQ6wHVRbz6zmJYT1OsgI4WO
-         ZGjA==
-X-Gm-Message-State: AJIora94s4U+zAOouf5qWkc/1NE+NiF0Gdr1U3ZnnRKU5TNLx7BbV5+H
-        IzqSpjDtg2mwnH/pSZPSANBnKA==
-X-Google-Smtp-Source: AGRyM1sOCeciJIgUmFsu++sl3HilovcjqIj6UVBWntWzocHHiukB6fjy1Eq8qCfxMertj/cHx6/Q/w==
-X-Received: by 2002:a17:907:7f8b:b0:721:9c02:37f1 with SMTP id qk11-20020a1709077f8b00b007219c0237f1mr9006305ejc.211.1655721566494;
-        Mon, 20 Jun 2022 03:39:26 -0700 (PDT)
-Received: from [192.168.0.209] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c18-20020a05640227d200b0042617ba6396sm10335480ede.32.2022.06.20.03.39.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jun 2022 03:39:25 -0700 (PDT)
-Message-ID: <6e9f17a7-677e-e4b6-54ae-77ad07bf5204@linaro.org>
-Date:   Mon, 20 Jun 2022 12:39:24 +0200
+        with ESMTP id S232170AbiFTKnH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 06:43:07 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA63211174;
+        Mon, 20 Jun 2022 03:43:04 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 98C631C000D;
+        Mon, 20 Jun 2022 10:42:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1655721783;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=8HmuiD0Wo+tdZIhp+vs0Aw78V+tuRHzEd0BRSRg3hb4=;
+        b=CW8ekHH70yp2UEX+lty3nRQ6qoZUUHMZTI1U2No9V7IL/svmi6QQJ/sHRHowZszQGjCCnm
+        cjd6LjNohWfiQm6jNe+ahzKIVpUurR1lKSaJsYArLloWMsrFTMXGZDx1VSFS07QL2y0xLy
+        kjDLz5EIRRO1vKdfOd0nR+6EUHPMYfS96ShrHY5BnIR+5pHymXC01UOIIMLB2u7z/I7ycP
+        emM+j4fKyUXZkfe1L3bmcPUfI6cj04BsRrSFM2MY03EYZdujIigjYR4g1jTPbuiTmXmtbw
+        gUdwW/hQIdmjSjjlW7GL496TRZ/T9ZxuzdvsjkqYr5Gqng3vKp7/hfwCnegYyQ==
+From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
+To:     Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Nathan Lynch <nathanl@linux.ibm.com>,
+        Laurent Dufour <ldufour@linux.ibm.com>,
+        Daniel Henrique Barboza <danielhb413@gmail.com>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        David Hildenbrand <david@redhat.com>,
+        Ohhoon Kwon <ohoono.kwon@samsung.com>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        YueHaibing <yuehaibing@huawei.com>
+Cc:     =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Lizhi Hou <lizhi.hou@xilinx.com>
+Subject: [PATCH v3 0/5] of: add of_property_alloc/free() and of_node_alloc()
+Date:   Mon, 20 Jun 2022 12:41:18 +0200
+Message-Id: <20220620104123.341054-1-clement.leger@bootlin.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add prefix for
- Mixel, Inc.
-Content-Language: en-US
-To:     Liu Ying <victor.liu@nxp.com>, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com
-References: <20220620034533.4108170-1-victor.liu@nxp.com>
- <20220620034533.4108170-2-victor.liu@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220620034533.4108170-2-victor.liu@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2022 05:45, Liu Ying wrote:
-> Add a vendor prefix entry for Mixel, Inc. (https://www.mixel.com).
-> 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+In order to be able to create new nodes and properties dynamically from
+drivers, add of_property_alloc/free() and of_node_alloc(). These
+functions can be used to create new nodes and properties flagged with
+OF_DYNAMIC and to free them.
 
+Some powerpc code was already doing such operations and thus, these
+functions have been used to replace the manual creation of nodes and
+properties. This code has been more than simply replaced to allow using
+of_node_put() rather than a manual deletion of the properties.
+Unfortunately, as I don't own a powerpc platform, it would need to be
+tested.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 
+Changes in V3:
+- Remove gfpflag attribute from of_node_alloc() and of_property_alloc().
+- Removed allocflags from __of_node_dup().
+- Rework powerpc code to only use of_node_put().
+- Fix properties free using of_node_property in OF unittests.
 
-Best regards,
-Krzysztof
+Changes in V2:
+- Remove of_node_free()
+- Rework property allocation to allocate both property and value with
+  1 allocation
+- Rework node allocation to allocate name at the same time the node is
+  allocated
+- Remove extern from definitions
+- Remove of_property_alloc() value_len parameter and add more
+  explanation for the arguments
+- Add a check in of_property_free to check OF_DYNAMIC flag
+- Add a commit which constify the property argument of
+  of_property_check_flags()
+
+Clément Léger (5):
+  of: constify of_property_check_flags() prop argument
+  of: remove __of_node_dup() allocflags parameter
+  of: dynamic: add of_property_alloc() and of_property_free()
+  of: dynamic: add of_node_alloc()
+  powerpc/pseries: use of_property_alloc/free() and of_node_alloc()
+
+ arch/powerpc/platforms/pseries/dlpar.c        |  62 +-------
+ .../platforms/pseries/hotplug-memory.c        |  21 +--
+ arch/powerpc/platforms/pseries/reconfig.c     | 123 ++++++----------
+ drivers/of/dynamic.c                          | 137 ++++++++++++------
+ drivers/of/of_private.h                       |  19 ++-
+ drivers/of/overlay.c                          |   2 +-
+ drivers/of/unittest.c                         |  24 ++-
+ include/linux/of.h                            |  24 ++-
+ 8 files changed, 191 insertions(+), 221 deletions(-)
+
+-- 
+2.36.1
+
