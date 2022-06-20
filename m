@@ -2,73 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A31595524A8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 21:41:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C64FA5524AD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 21:41:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241494AbiFTTl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 15:41:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51510 "EHLO
+        id S244927AbiFTTl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 15:41:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236360AbiFTTlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 15:41:25 -0400
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 658FF13D13
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 12:41:24 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-3177f4ce3e2so86834197b3.5
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 12:41:24 -0700 (PDT)
+        with ESMTP id S244665AbiFTTly (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 15:41:54 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E47651C905
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 12:41:50 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id eo8so16577986edb.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 12:41:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=W3cF1VcNZKMUkal3wxdtJamU5dlHgg7QxmEQyZt0dz0=;
-        b=aO2AYN3zp0ClZrYRS2Q8cyVAwbUa7767aMcv8OyCU5rPa5d03QKD5NJP4c5JAuGSij
-         3lnUxhivwtYF2TKpUEfHSSRwjzT74jT3s63IHP+4lGXEO3JebLxdma7I2g+t4M9pmcrP
-         ZBoIfAsp16J6LeFM7E9trq+cVZZhVBVFyWgw4=
+        d=linaro.org; s=google;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=sEUI2YgJeyDPI47V6RGt0fYdsBueMJxQ+51x+bPWfXk=;
+        b=t4uI+sFquTqOp8Ekf5vDFNUJIZQ2JiTt+PZKS4lhjldYnhigTwUmKYa/CLJJQGjipr
+         cJtLZdqsy/zIP+EUpoU8fKSy61fQ+/X551Nep+Paroj8FB7c4obubL9X9I5qHI1SlEJp
+         UIE6BPcW+tAPmwYMWGkqcMmAdQ2Spd5D44S4Pr4/wuc8TqzkmSwIYY+jlvFqpieMQlKM
+         P6VCi60+oo1snCMBbYd8rlcwLqHgF6NP19BNyXhnI14Q18jKmx+QdlDu9oaW9U8YwC5s
+         04lZHLFzIRzv6IGAEyjtY5rFKZC2ACP1id8364eECusOqKDMQDus2j/Lv9lXAVMGLyvf
+         mVLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=W3cF1VcNZKMUkal3wxdtJamU5dlHgg7QxmEQyZt0dz0=;
-        b=SKIATLnYePkXtXUgNCsExsSRMUS9tmVivSGim6Lobbw4sF1RAeEc1DWXzxmdDdp9rc
-         WkA0RNuGYYsdCIy0iD3ruSe+fNzNr0VG4JINlc2uWClA5hzhwyp3pmVCZqwVCRQOyssv
-         zIGwhZp/+rb4deh/oWn83csLqPkcOktcvvNkOWqM27/eq2UNXy+E5A/muLa7+jvxlGNq
-         lzSrPZJppmdXrzk+5TG+N9pfHj6FbbyqBHMruDo/j/0XBzqf/mMmU9VMJOeu45kGRsXz
-         GXvy1QayuuEmuiNnOUudgHPBmSyKQaLfqf+iA//j1lBXiarAoSHUogfSnxVdXHmVDXMv
-         v7rg==
-X-Gm-Message-State: AJIora9Y+dkUuEZycVOcO4vwOO0dTkxjtvYzJeSWg+kX+QqLgx80w4e9
-        0pAxx5Wz1QikJ/Gq16PytIBHn/wSw+AWdGmWixeY
-X-Google-Smtp-Source: AGRyM1sjc6n2Bzm9cy/SUFZ/GJLuqV4owB4rH6VbtDqmkmLyBzbuScGeatMo9HK8lbzoZ8jRgbVOd1LTgcwYS7echBU=
-X-Received: by 2002:a0d:cbc8:0:b0:317:95ef:399e with SMTP id
- n191-20020a0dcbc8000000b0031795ef399emr15460241ywd.340.1655754083630; Mon, 20
- Jun 2022 12:41:23 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=sEUI2YgJeyDPI47V6RGt0fYdsBueMJxQ+51x+bPWfXk=;
+        b=ibyvxskFNmVUBbsJgcQRyqP57CxFEvBMwhV1StL8HdpYWLc7rhq/xTlfXSsqNyA7Bi
+         G+N8AIUx+G8SgOTO+aXrDOXXpKhZkSEkQw6Ntia4RYEM94woJ7N6qHzkPfQhBfdPcYxf
+         mo5wMj4FzwNiyUTTyXUAH/7/6OJp6GAuTOcobGf2L9zGsbXArY+nWY2tmQf3hFrY721t
+         GUsDrno7/g0Sfu36FAxdlxwMZ092e+Z4Il6ENWxvFLfuCohS7pHH+0Z8PkEIWY7ouYsT
+         PZBbIOssytRAEviMcQDxmZBy3Qp8Pjps77jvZm0i/1GHh2Uz/wXt8GxtXnLpXm4Z229n
+         X64A==
+X-Gm-Message-State: AJIora+Q/fIxTHyvS6SEnQTieHi9nuIINzDTJttBHqBaVIyHzNJVHWCG
+        dBzMzLo0YK1u0Ix5krT8pAg89A==
+X-Google-Smtp-Source: AGRyM1scAVu7vTSEgbiRLCuBIayZlj7HVQWoDuynLy+Uu1q2Kg8/F1hdn1mAdxVUHySH9O31TrhWkQ==
+X-Received: by 2002:a50:fb9a:0:b0:435:6c0e:3342 with SMTP id e26-20020a50fb9a000000b004356c0e3342mr17380428edq.337.1655754109503;
+        Mon, 20 Jun 2022 12:41:49 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id o18-20020a056402439200b0042fbc23bfcesm11448549edc.46.2022.06.20.12.41.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jun 2022 12:41:49 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     krzysztof.kozlowski@linaro.org, linux-kernel@vger.kernel.org,
+        gregkh@linuxfoundation.org, bjorn.andersson@linaro.org,
+        agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, mgautam@codeaurora.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-usb@vger.kernel.org
+Subject: Re: (subset) [PATCH 01/13] dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
+Date:   Mon, 20 Jun 2022 21:41:42 +0200
+Message-Id: <165575403865.144830.4698856147792054347.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220504131923.214367-2-krzysztof.kozlowski@linaro.org>
+References: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org> <20220504131923.214367-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-References: <20220619203212.3604485-1-heiko@sntech.de> <20220619203212.3604485-2-heiko@sntech.de>
- <CAOnJCUJC3dk21cYXXDOsamvwFDHsukoBx7HEYwqHM+MN5fLRpA@mail.gmail.com> <5907887.LM0AJKV5NW@phil>
-In-Reply-To: <5907887.LM0AJKV5NW@phil>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Mon, 20 Jun 2022 12:41:12 -0700
-Message-ID: <CAOnJCUKmWcMT83jkJHX3J56uNeVvFMgudGSg_DWg9G_faBjGXQ@mail.gmail.com>
-Subject: Re: [PATCH 1/4] of: also handle dma-noncoherent in of_dma_is_coherent()
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Wei Fu <wefu@redhat.com>, Guo Ren <guoren@kernel.org>,
-        Christoph Muellner <cmuellner@linux.com>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        Christoph Hellwig <hch@lst.de>,
-        Samuel Holland <samuel@sholland.org>,
-        Anup Patel <anup@brainfault.org>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Drew Fustini <drew@beagleboard.org>,
-        Randy Dunlap <rdunlap@infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,104 +73,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 20, 2022 at 11:11 AM Heiko Stuebner <heiko@sntech.de> wrote:
->
-> Hi Atish,
->
-> Am Montag, 20. Juni 2022, 18:33:09 CEST schrieb Atish Patra:
-> > On Sun, Jun 19, 2022 at 1:32 PM Heiko Stuebner <heiko@sntech.de> wrote:
-> > >
-> > > of_dma_is_coherent() currently expects the architecture to be
-> > > non-coherent and some devices being coherent getting marked
-> > > as such with the dma-coherent devicetree property.
-> > >
-> > > For PowerPC CONFIG_OF_DMA_DEFAULT_COHERENT was added which currently
-> > > makes of_dma_is_coherent() always return true but doesn't handle
-> > > the case of the architecture being coherent but some devices not.
-> > >
-> > > So modify the function to also check for dma-noncoherent and
-> > > set a suitable default return value. If CONFIG_OF_DMA_DEFAULT_COHERENT
-> > > is set the value starts with true and finding dma-noncoherent will
-> > > set it to false and without CONFIG_OF_DMA_DEFAULT_COHERENT, the
-> > > behaviour is reversed.
-> > >
-> > > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> > > ---
-> > >  drivers/of/address.c | 16 +++++++++++-----
-> > >  1 file changed, 11 insertions(+), 5 deletions(-)
-> > >
-> > > diff --git a/drivers/of/address.c b/drivers/of/address.c
-> > > index 94f017d808c4..1c362d09983d 100644
-> > > --- a/drivers/of/address.c
-> > > +++ b/drivers/of/address.c
-> > > @@ -1045,26 +1045,32 @@ phys_addr_t __init of_dma_get_max_cpu_address(struct device_node *np)
-> > >   *
-> > >   * It returns true if "dma-coherent" property was found
-> > >   * for this device in the DT, or if DMA is coherent by
-> > > - * default for OF devices on the current platform.
-> > > + * default for OF devices on the current platform and no
-> > > + * "dma-noncoherent" property was found for this device.
-> >
-> > "dma-noncoherent" is not a standard DT property. I couldn't find any
-> > references to
-> > it in the kernel as well. If we are introducing a new DT property for
-> > non-coherent devices,
-> > it should be added in DT bindings as well ?
->
-> The dma-coherent is part of the core devicetree-spec,
-> so I sent a patch adding dma-noncoherent [0]
-> to the devicetree-spec mailing list yesterday as well.
->
+On Wed, 4 May 2022 15:19:11 +0200, Krzysztof Kozlowski wrote:
+> Add compatible for qcom,sm8450-aoss-qmp with qcom,aoss-qmp as a
+> fallback.  This fixes dtbs_check warnings like:
+> 
+>   sm8450-hdk.dtb: power-controller@c300000: compatible:0: 'qcom,sm8450-aoss-qmp' is not one of
+>     ['qcom,sc7180-aoss-qmp', 'qcom,sc7280-aoss-qmp', 'qcom,sc8180x-aoss-qmp', 'qcom,sdm845-aoss-qmp',
+>      'qcom,sm6350-aoss-qmp', 'qcom,sm8150-aoss-qmp', 'qcom,sm8250-aoss-qmp', 'qcom,sm8350-aoss-qmp']
+> 
+> [...]
 
-Ahh. That's great. Thanks!
+Applied, thanks!
 
-> [0] https://www.spinics.net/lists/devicetree-spec/msg01053.html
->
->
-> >
-> > >   */
-> > >  bool of_dma_is_coherent(struct device_node *np)
-> > >  {
-> > >         struct device_node *node;
-> > > +       bool ret = false;
-> > >
-> > >         if (IS_ENABLED(CONFIG_OF_DMA_DEFAULT_COHERENT))
-> > > -               return true;
-> > > +               ret = true;
-> > >
-> > >         node = of_node_get(np);
-> > >
-> > >         while (node) {
-> > >                 if (of_property_read_bool(node, "dma-coherent")) {
-> > > -                       of_node_put(node);
-> > > -                       return true;
-> > > +                       ret = true;
-> > > +                       break;
-> > > +               }
-> > > +               if (of_property_read_bool(node, "dma-noncoherent")) {
-> > > +                       ret = false;
-> > > +                       break;
-> > >                 }
-> > >                 node = of_get_next_dma_parent(node);
-> > >         }
-> > >         of_node_put(node);
-> > > -       return false;
-> > > +       return ret;
-> > >  }
-> > >  EXPORT_SYMBOL_GPL(of_dma_is_coherent);
-> > >
-> > > --
-> > > 2.35.1
-> > >
-> >
-> >
-> >
->
->
->
->
+[01/13] dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
+        https://git.kernel.org/krzk/linux-dt/c/cd3cd7d63543e4f963a0c823cd8fa29f4fe12f2a
 
-
+Best regards,
 -- 
-Regards,
-Atish
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
