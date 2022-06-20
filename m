@@ -2,76 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31008551690
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 13:06:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63CA55516A6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 13:08:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241226AbiFTLGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 07:06:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55914 "EHLO
+        id S241331AbiFTLHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 07:07:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241220AbiFTLGm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 07:06:42 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA37140C5
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 04:06:41 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id s12so20377437ejx.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 04:06:41 -0700 (PDT)
+        with ESMTP id S241255AbiFTLHs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 07:07:48 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B3C15822;
+        Mon, 20 Jun 2022 04:07:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=so8sDrLioUFy7cOL3aS8tAl9RK2+NGzjPv7D1JAQDqc=;
-        b=u4+Znx6db0I1JIgKEtGzH7OPNIWp0RlAyfziZK61G7HLQXtKDmi0Zxo+Bi+wfiR/KD
-         FEIbLQ2dQ5i/LOnmBPY+8bWjgkGzi81qd+XxzZGYBnmCHPfK2tQfln5FUbnvER/7fYnz
-         Xf0z5hPHp3btaGed1cWbHZet8ft74tE+V/rzl+xxTSoKECBQzYh3vechswvdCqEtIyC1
-         lWd4r5c5ka8n4ivrhcvum5+oEW8M4gcVlqIuHs2aoXL5DHkoRKobgS1+b0+pfyejVNs0
-         IJAO81M44MsKVFwolQJsC6a0OWl/kZcXA+yPgrZnb3k2Phn+Miiyo25DoxyzYL3RRu/R
-         j/0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=so8sDrLioUFy7cOL3aS8tAl9RK2+NGzjPv7D1JAQDqc=;
-        b=M6OrMPXMBeXitIdL5hbm0rMKvUC/FbSyzzRpIxZSmaa+AqGujIptPdODR4LNdnVs/h
-         h6iuYQiBKWGoHo+XTJLyTG3MdoC3Vvm8FWZgAe5Woi/NYsUXinPhFtGJW+BRVDRmzL0c
-         5XANT26AfuJqfZehf8NUXkYjDdeHiJjGCr4Dhd0GRc7Br3YHfXX0XfJYbIEiXWFiY6b2
-         pFkUAdaiqcCl3LyhtMsJsOdC3YDFRDnYuHKCaJfhOMPTqi4KfEmbZQDL7cVf0mi+og04
-         7ZRHl1b/QOmA8+NrAXr6Kxxmj6yTAD2n8sSRLNDIbwGQGQOMtbH7ToLjV7JXsVRGdlqQ
-         Y55Q==
-X-Gm-Message-State: AJIora+45mkQoI7o3N8Wmp1M2qYDXJV2zQFGc4lSFw5mlYWCqS2ahl0Q
-        /IQfOyVPUpubYoh7qSn+lN2tGQ==
-X-Google-Smtp-Source: AGRyM1utaO1T4vO2p3+cLvVRr/p5V5NSZLwsZ5AVyieVsZkGXMqZnNV4gEgHvCEdu8Bh1P9TQOyRnQ==
-X-Received: by 2002:a17:906:58cf:b0:711:7acb:821f with SMTP id e15-20020a17090658cf00b007117acb821fmr20292050ejs.588.1655723199682;
-        Mon, 20 Jun 2022 04:06:39 -0700 (PDT)
-Received: from [192.168.0.209] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id b6-20020a17090630c600b006fef51aa566sm5797606ejb.2.2022.06.20.04.06.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jun 2022 04:06:39 -0700 (PDT)
-Message-ID: <0207c2fe-7c01-7852-3cd1-74297cd4857d@linaro.org>
-Date:   Mon, 20 Jun 2022 13:06:38 +0200
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1655723262; x=1687259262;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=p9cScR7+8tqT8UOdrsD/iPQ6vHskmsKAJjjJIaAQlj8=;
+  b=PUoIq0RB0ciq7/T273PnI+wrCDXU4TFwczb5TcnhEpTZErRTe+0x++yu
+   h+Byafnv59RcP2GT1qsRa0W7NSuZ0b/flPWmjZTUJnNRyUwqKChtUWczw
+   K5TNntWmWROAc8xAMK5K8CA+73IYL/JR3mpn05jMYKNi2U6/3dEvzzfhH
+   k=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 20 Jun 2022 04:07:42 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jun 2022 04:07:41 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 20 Jun 2022 04:07:40 -0700
+Received: from [10.50.53.124] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 20 Jun
+ 2022 04:07:35 -0700
+Message-ID: <a11732d6-a9b1-7ead-e89a-564a57a7192b@quicinc.com>
+Date:   Mon, 20 Jun 2022 16:37:31 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 2/7] dt-bindings: arm: aspeed: document board compatibles
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
 Content-Language: en-US
-To:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org,
-        David Wang <David_Wang6097@jabil.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Steven Lee <steven_lee@aspeedtech.com>,
-        Ken Chen <chen.kenyy@inventec.com>
-References: <20220529104928.79636-1-krzysztof.kozlowski@linaro.org>
- <20220529104928.79636-2-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220529104928.79636-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+To:     Lee Jones <lee.jones@linaro.org>
+CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_jprakash@quicinc.com>
+References: <1655200111-18357-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1655200111-18357-7-git-send-email-quic_c_skakit@quicinc.com>
+ <YquZRcuRCrdF+Q1z@google.com>
+ <eccbb030-97f7-3a6c-958e-05adcdca6210@quicinc.com>
+ <YrAt6dq6ty9p8d05@google.com>
+From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+In-Reply-To: <YrAt6dq6ty9p8d05@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,21 +75,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/05/2022 12:49, Krzysztof Kozlowski wrote:
-> Document all compatibles used in existing upstreamed Aspeed AST2400,
-> AST2500 and AST2600 based boards.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/arm/aspeed/aspeed.yaml           | 83 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
 
-Joel, Andrew,
+On 6/20/2022 1:50 PM, Lee Jones wrote:
+> On Mon, 20 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
+>
+>> On 6/17/2022 2:27 AM, Lee Jones wrote:
+>>> On Tue, 14 Jun 2022, Satya Priya wrote:
+>>>
+>>>> Use i2c_new_dummy_device() to register pm8008-regulator
+>>>> client present at a different address space, instead of
+>>>> defining a separate DT node. This avoids calling the probe
+>>>> twice for the same chip, once for each client pm8008-infra
+>>>> and pm8008-regulator.
+>>>>
+>>>> As a part of this define pm8008_regmap_init() to do regmap
+>>>> init for both the clients and define pm8008_get_regmap() to
+>>>> pass the regmap to the regulator driver.
+>>>>
+>>>> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+>>>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>>>> ---
+>>>> Changes in V15:
+>>>>    - None.
+>>>>
+>>>> Changes in V14:
+>>>>    - None.
+>>>>
+>>>> Changes in V13:
+>>>>    - None.
+>>>>
+>>>>    drivers/mfd/qcom-pm8008.c       | 34 ++++++++++++++++++++++++++++++++--
+>>>>    include/linux/mfd/qcom_pm8008.h |  9 +++++++++
+>>>>    2 files changed, 41 insertions(+), 2 deletions(-)
+>>>>    create mode 100644 include/linux/mfd/qcom_pm8008.h
+>>>>
+>>>> diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
+>>>> index 569ffd50..55e2a8e 100644
+>>>> --- a/drivers/mfd/qcom-pm8008.c
+>>>> +++ b/drivers/mfd/qcom-pm8008.c
+>>>> @@ -9,6 +9,7 @@
+>>>>    #include <linux/interrupt.h>
+>>>>    #include <linux/irq.h>
+>>>>    #include <linux/irqdomain.h>
+>>>> +#include <linux/mfd/qcom_pm8008.h>
+>>>>    #include <linux/module.h>
+>>>>    #include <linux/of_device.h>
+>>>>    #include <linux/of_platform.h>
+>>>> @@ -57,6 +58,7 @@ enum {
+>>>>    struct pm8008_data {
+>>>>    	struct device *dev;
+>>>> +	struct regmap *regulators_regmap;
+>>>>    	int irq;
+>>>>    	struct regmap_irq_chip_data *irq_data;
+>>>>    };
+>>>> @@ -150,6 +152,12 @@ static struct regmap_config qcom_mfd_regmap_cfg = {
+>>>>    	.max_register	= 0xFFFF,
+>>>>    };
+>>>> +struct regmap *pm8008_get_regmap(const struct pm8008_data *chip)
+>>>> +{
+>>>> +	return chip->regulators_regmap;
+>>>> +}
+>>>> +EXPORT_SYMBOL_GPL(pm8008_get_regmap);
+>>> Seems like abstraction for the sake of abstraction.
+>>>
+>>> Why not do the dereference inside the regulator driver?
+>> To derefer this in the regulator driver, we need to have the pm8008_data
+>> struct definition in the qcom_pm8008 header file.
+>>
+>> I think it doesn't look great to have only that structure in header and all
+>> other structs and enum in the mfd driver.
+> Then why pass 'pm8008_data' at all?
 
-Any comments on the series? Rob applied only patch 1, so the rest is
-supposed through Aspeed tree. Shall I pick them up and send to arm-soc?
 
-Best regards,
-Krzysztof
+There is one more option, instead of passing the pm8008_data, we could 
+pass the pdev->dev.parent and get the pm8008 chip data directly in the 
+pm8008_get_regmap() like below
+
+
+struct regmap *pm8008_get_regmap(const struct device *dev)
+  {
+      const struct pm8008_data *chip = dev_get_drvdata(dev);
+
+      return chip->regulators_regmap;
+}
+EXPORT_SYMBOL_GPL(pm8008_get_regmap);
+
+
+By doing this we can avoid having declaration of pm8008_data also in the 
+header. Please let me know if this looks good.
+
+> What's preventing you from passing 'regmap'?
+
+
+I didn't get what you meant here, could you please elaborate a bit?
+
+
