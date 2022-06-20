@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52C72550F88
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 06:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48CA8550FAD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 07:25:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235427AbiFTEy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 00:54:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37492 "EHLO
+        id S237878AbiFTFZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 01:25:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229998AbiFTEy2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 00:54:28 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 437BBDEB5
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 21:54:25 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id b8so13384941edj.11
-        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 21:54:25 -0700 (PDT)
+        with ESMTP id S233453AbiFTFZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 01:25:36 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01B9EDF2A
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 22:25:35 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id c13so9014475eds.10
+        for <devicetree@vger.kernel.org>; Sun, 19 Jun 2022 22:25:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=mukyLCtBBbCJ6QLdWGYeYZEZ9YqINwpy/ZdfkORqBZE=;
-        b=UKNKFhdL+7ivgne6rJC21mSSfiaLKZHX9yoOuIh9UmqiDzzaewQHD7yYJipRMbN5SI
-         sqMO9Scex5fT2OG4s3idcHiBshzVzr83BQRiz9MclD5AgLHLh9ef6R0EaL7PWErhcE/g
-         wKYAz5furNCnzUMXK/fAv/VmQ0Psdwl6aMHDw=
+        bh=iTyxMGysFvLVjw1ty4gwMbVdKBXhcL1xQssE1M7jQRs=;
+        b=hr/i+COcpVsTSVEVRXmn8BToF7wohakO0101jRn9kRrjM38xXFv36ueZmUYFeF7tMs
+         MhQf0KBvD+ufRlJDSD8p+HhwOg1IatNHX5ROaL5G3WIA4Bc/XVrN1sotSR3iUwscYf9w
+         zs6/fyN9LhYXinNOiVjFzKY1HepGVgu2Gb5jc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=mukyLCtBBbCJ6QLdWGYeYZEZ9YqINwpy/ZdfkORqBZE=;
-        b=Td4HigA/Cc0JA+PGA85c/maiecvX3bhIffmnLIsq0rgkpbHY6Q/fASaGykgfqGdXT3
-         Gxy2aqKvPqb8/7SnIBxwElYLH5WOn9xEJ7uv1ebpz05iPEZNOeKys1NcYFPaQPX2nkdV
-         9n7TeRmmuJKqD2KyG7aqhwmWikkmUWSTpHycaP3GPqICk8S8k42rkUXyQYfZGX+DYN2l
-         MvCl3JJMQgjxR3ZaWWPW7BLcg0oHsFoIburWYg4P7D9ZuDgtPyUn9xqcXhMRpNzKZg4L
-         /KugifJvtyYCvWOAnXQi09h6h7sZyq6TUtmmNAibSyfzwMZ9ix3Vw6KQh0XslRtwkrRT
-         4DOw==
-X-Gm-Message-State: AJIora8RWIZa8bTmMqvym76zwZ8D5F40hy3v7+iaLurxfbqcAdpBJtpe
-        q8Eoqc5k+9p2eRFWt8SI1diH8FSExaWTWIQU85SOcA==
-X-Google-Smtp-Source: AGRyM1uRThNT8XmE57SQVNixL8TMkzT1S2u9lzIBzMfvygATaLlCkuFrLWUz2Cy72NYhPuNYT7dU009axLMuI9/ox2A=
-X-Received: by 2002:a05:6402:3785:b0:435:5d0e:2a2e with SMTP id
- et5-20020a056402378500b004355d0e2a2emr19724945edb.307.1655700863894; Sun, 19
- Jun 2022 21:54:23 -0700 (PDT)
+        bh=iTyxMGysFvLVjw1ty4gwMbVdKBXhcL1xQssE1M7jQRs=;
+        b=rnTiqjNZ4o1XTtb7wl9FE9iwVs9TvyIR2rQyPj8PSNT0WRsKHqk0elBHLWVIGHoe+U
+         l9cE4mWs3mwZ+AsbExcD9HLhLfrwE+7GUrIN9Ge+XQI3/qw04XFipjLfrvJ7iTmzT340
+         S7MMNdMsuNkXnAymJxAoYUl6oAGaLUaMu6XKfI5iCI0I2MrJQrU90/6x05A/luZSGIn+
+         tBH0YW5CSdP8iKY7n8xHtKhH/BMreRhtYTJTwQwhhLt4vLLm9zNwfhk1pWDgURspQPP+
+         1XkGw8yE9mg7xGaFOhTJXpILWfCyAp+EsuCkjZ5ObkzyFC5O1ZmcToyQc12Ns/F1WC4O
+         anTw==
+X-Gm-Message-State: AJIora+rVT67CLde/QfmP6Ti4wIYE0rF3uAOoLoKP5MpI6s26SI82w6L
+        DsQz4fBg+MFNPoAotJ7Y0vRU0rBS3xtrCDD1to1rYA==
+X-Google-Smtp-Source: AGRyM1ve6GEVbjnEdneKcnH6buKWIMD7xtxtHnE/K2tR9nDrr6cM5g2g7pzOhyL1GqvCL7sj+U4/HpOoO6q4bsSD2TU=
+X-Received: by 2002:a05:6402:4303:b0:435:833a:16ed with SMTP id
+ m3-20020a056402430300b00435833a16edmr2517462edc.248.1655702733588; Sun, 19
+ Jun 2022 22:25:33 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220618072929.28783-1-yunfei.dong@mediatek.com>
-In-Reply-To: <20220618072929.28783-1-yunfei.dong@mediatek.com>
+References: <20220618072929.28783-1-yunfei.dong@mediatek.com> <CAGXv+5EFkZ6-bvu68dV4hr795+N3tAwbXYg5WCJp+Zd+pf1Aqw@mail.gmail.com>
+In-Reply-To: <CAGXv+5EFkZ6-bvu68dV4hr795+N3tAwbXYg5WCJp+Zd+pf1Aqw@mail.gmail.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 20 Jun 2022 12:54:12 +0800
-Message-ID: <CAGXv+5EFkZ6-bvu68dV4hr795+N3tAwbXYg5WCJp+Zd+pf1Aqw@mail.gmail.com>
+Date:   Mon, 20 Jun 2022 13:25:22 +0800
+Message-ID: <CAGXv+5E2wULkB7_u_H7jFAi6Jk2AvUcfOJdzOp_5m2b4n3shww@mail.gmail.com>
 Subject: Re: [PATCH] media: mediatek: vcodec: Initialize decoder parameters
  after getting dec_capability
 To:     Yunfei Dong <yunfei.dong@mediatek.com>,
@@ -84,18 +84,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 18, 2022 at 3:29 PM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
+On Mon, Jun 20, 2022 at 12:54 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
 >
-> Need to get dec_capability from scp first, then initialize decoder
-> supported format and other parameters according to dec_capability value.
+> On Sat, Jun 18, 2022 at 3:29 PM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
+> >
+> > Need to get dec_capability from scp first, then initialize decoder
+> > supported format and other parameters according to dec_capability value.
+> >
+> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 >
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+>
+> Tested on MT8183 on mainline 20220617-next with the vcodec-dec DT node
+> copied from the ChromeOS v5.10 kernel.
+>
+> This fixes an issue where the first attempt to enumerate formats on the
+> device right after boot returns an empty list.
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+BTW, this should have a Fixes tag.
 
-Tested on MT8183 on mainline 20220617-next with the vcodec-dec DT node
-copied from the ChromeOS v5.10 kernel.
+Either
 
-This fixes an issue where the first attempt to enumerate formats on the
-device right after boot returns an empty list.
+Fixes: 7a7ae26fd458 ("media: mediatek: vcodec: support stateless VP8 decoding")
+
+which looks like the first instance of when firmware capability really is
+considered, or
+
+Fixes: fd00d90330d1 ("media: mtk-vcodec: vdec: move stateful ops into
+their own file")
+
+which matches when ctx->dev->vdec_pdata->init_vdec_params(ctx) was first added.
+
+
+ChenYu
