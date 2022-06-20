@@ -2,93 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5B34551397
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 11:01:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 882135513F6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 11:17:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240235AbiFTJB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 05:01:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44388 "EHLO
+        id S235909AbiFTJRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 05:17:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240248AbiFTJB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 05:01:27 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8682E12D1F;
-        Mon, 20 Jun 2022 02:01:24 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AF8CC883;
-        Mon, 20 Jun 2022 11:01:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1655715681;
-        bh=KcPiSA4mOJI0Q7DYqgykvdJaq4trgNKPzkJE9THtiKI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NjDoEtQ+kewvnqkyrxVBkvGIEVhmpCBk+DqAfSx9WMgDA4l1UmRAII/nvh8HK4dh1
-         N/ZFDbuGxXbc15n4wO1jfdWlhje0cyeBFwhasCXbapWUCe48LFyXyZ5E6oL6qlO1PJ
-         k4lNgzzX3HwmKoqs72nvjIr+sZLuurjOC8trFXVU=
-Date:   Mon, 20 Jun 2022 12:01:07 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, paul.elder@ideasonboard.com, marex@denx.de,
-        aford173@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp: correct clock of pgc_ispdwp
-Message-ID: <YrA3Uxtmfce2jQBs@pendragon.ideasonboard.com>
-References: <20220620032044.4093226-1-peng.fan@oss.nxp.com>
+        with ESMTP id S236337AbiFTJQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 05:16:59 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 872DD101E6;
+        Mon, 20 Jun 2022 02:16:50 -0700 (PDT)
+X-UUID: 36eef338cfb74a14ab06673e7c6a772d-20220620
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:14f07526-6b8b-4088-ae29-c2bd702ee75f,OB:10,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:45
+X-CID-INFO: VERSION:1.1.6,REQID:14f07526-6b8b-4088-ae29-c2bd702ee75f,OB:10,LOB
+        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:45
+X-CID-META: VersionHash:b14ad71,CLOUDID:2f7effe9-f7af-4e69-92ee-0fd74a0c286c,C
+        OID:a7e4c246682a,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 36eef338cfb74a14ab06673e7c6a772d-20220620
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 401679810; Mon, 20 Jun 2022 17:16:43 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Mon, 20 Jun 2022 17:16:42 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Mon, 20 Jun 2022 17:16:41 +0800
+Message-ID: <485c9b07fb2a60635e7cd52e710af872733fcff9.camel@mediatek.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: dsp: mediatek: Use meaningful names
+ for mbox
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        "Takashi Iwai" <tiwai@suse.com>, YC Hung <yc.hung@mediatek.com>,
+        Curtis Malainey <cujomalainey@chromium.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <sound-open-firmware@alsa-project.org>,
+        <alsa-devel@alsa-project.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 20 Jun 2022 17:16:41 +0800
+In-Reply-To: <3830efc5-298d-7887-5718-2cb2a7ad4895@linaro.org>
+References: <20220616073042.13229-1-tinghan.shen@mediatek.com>
+         <20220616073042.13229-2-tinghan.shen@mediatek.com>
+         <629e761b-e3ad-0861-1937-ad660a8a900b@linaro.org>
+         <af32751dd7013a96dac5d165c35e132fda87f2ac.camel@mediatek.com>
+         <3830efc5-298d-7887-5718-2cb2a7ad4895@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220620032044.4093226-1-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_SCC_BODY_TEXT_LINE,
+        T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng,
+Hi Krzysztof,
 
-Thank you for the patch.
-
-On Mon, Jun 20, 2022 at 11:20:44AM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Mon, 2022-06-20 at 10:51 +0200, Krzysztof Kozlowski wrote:
+> On 20/06/2022 08:40, Tinghan Shen wrote:
+> > Hi Krzysztof,
+> > 
+> > On Thu, 2022-06-16 at 06:55 -0700, Krzysztof Kozlowski wrote:
+> > > On 16/06/2022 00:30, Tinghan Shen wrote:
+> > > > Rename mbox according to actions instead of 'mbox0' and 'mbox1'.
+> > > > 
+> > > > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> > > > ---
+> > > >  .../devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml   | 10 +++++-----
+> > > >  1 file changed, 5 insertions(+), 5 deletions(-)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
+> > > > b/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
+> > > > index b7e68b0dfa13..ca8d8661f872 100644
+> > > > --- a/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
+> > > > +++ b/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
+> > > > @@ -50,13 +50,13 @@ properties:
+> > > >  
+> > > >    mboxes:
+> > > >      items:
+> > > > -      - description: ipc reply between host and audio DSP.
+> > > > -      - description: ipc request between host and audio DSP.
+> > > > +      - description: mailbox for receiving audio DSP requests.
+> > > > +      - description: mailbox for transmitting requests to audio DSP.
+> > > >  
+> > > >    mbox-names:
+> > > >      items:
+> > > > -      - const: mbox0
+> > > > -      - const: mbox1
+> > > > +      - const: rx
+> > > > +      - const: tx
+> > > >  
+> > > 
+> > > Commit msg lacks important piece - do you break any users with this? Do
+> > > you have any users of this binding?
+> > > 
+> > > 
+> > > Best regards,
+> > > Krzysztof
+> > 
+> > The 8195 dsp node, which uses this binding, has not yet been added to the 8195 devicetree.
 > 
-> The deprecated DIV clk is previously part of the ISP composite clk, but
-> there is still one child clk(IMX8MP_CLK_MEDIA_ISP_ROOT) sourcing from
-> IMX8MP_CLK_MEDIA_ISP( previously IMX8MP_CLK_MEDIA_ISP_DIV)
+> Could you mention it in the commit msg? Such one sentence is enough.
 > 
-> So IMX8MP_CLK_MEDIA_ISP_ROOT should be used, not IMX8MP_CLK_MEDIA_ISP_DIV.
+> With commit msg extended:
 > 
-> Fixes: 9d89189d5227 ("arm64: dts: imx8mp: Add MEDIAMIX power domains")
-
-Oops, my bad.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index b2f4a5f1f73c..2f970d458f80 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -595,7 +595,7 @@ pgc_hsiomix: power-domains@17 {
->  					pgc_ispdwp: power-domain@18 {
->  						#power-domain-cells = <0>;
->  						reg = <IMX8MP_POWER_DOMAIN_MEDIAMIX_ISPDWP>;
-> -						clocks = <&clk IMX8MP_CLK_MEDIA_ISP_DIV>;
-> +						clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>;
->  					};
->  				};
->  			};
+> 
+> Best regards,
+> Krzysztof
 
--- 
-Regards,
+No problem. I'll udpate commit message at next version.
 
-Laurent Pinchart
+
+Thanks,
+TingHan
+
+
+
