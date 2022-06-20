@@ -2,136 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EDB5551341
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 10:50:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0102551350
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 10:51:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239833AbiFTIth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 04:49:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60624 "EHLO
+        id S239366AbiFTIvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 04:51:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240019AbiFTItg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 04:49:36 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4014812D09;
-        Mon, 20 Jun 2022 01:49:35 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id w9so2074993lji.4;
-        Mon, 20 Jun 2022 01:49:35 -0700 (PDT)
+        with ESMTP id S239319AbiFTIvC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 04:51:02 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F88712D10
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 01:51:01 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id me5so19706438ejb.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 01:51:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SlSfxRd2Xk2SeDc5uvX/PiiwHMy5mVFkHrE6RfQz+u0=;
-        b=d9Kcc342xMbGWPyrQMls4I1iCrtiOhC+X57JVG39P6uK14Bl2lRfSGdl6Y4Byhq0zH
-         nJTipKFc4tTkLhwmg9942xF4Cc40/tVepjCmlhj+mPAgjbmEyQH/A24l5A+jjH7+6H5M
-         ZyCHjcTohfdcVHiFHcxKy4fAE/+PKKEH0+gP5zegmf9/ChX3X11UVlTDk8/RfYWyV0HU
-         mBDgwqh4VTwrtUc9V0y2qQ5XG4B1RxECuQvlleWwXShfJWc2B2Khw8O1WPraYGvNI8To
-         XL5tGWKOF8vcw80e0Tgq/I4YyrmQkdw4bnFWt8CNgBTpOVG+1EctiKVfnee9iclMTovi
-         3bCA==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=l921OzWrKWAkvgffalKJcegxOLa36ztSxqMp8PQLuKE=;
+        b=K8YhUSw2j90oN35WVE7NTJrtHV0dTZB20ol4mTQLyuO94nvyW83AU6qr2lg51vXODD
+         o9R3B4RVANHBRkwyy5TbfSI5mdDhNLzseI0fobTy4UBH7yf9wD34/VB0ukydEmAnDfEM
+         r6RAuE4N+pbS9G/7F5TcxO3zeAPrHW3QK7tL8XYJ1N5qLb5Z4l5makzcW+3y4rT+aUMZ
+         5ZICp0zJ7tQCeNGS4S2hCy54OrzCp0unX7VKSKximXDZomJApbztoGxg0RIc7KDgsDsy
+         m9yTbwwjbzu1OkI5yydxa1OjRCcqzZsnk2F0p2yKA+eyL3eUr1/iWAjbNiwlkdLcj0jT
+         6N1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SlSfxRd2Xk2SeDc5uvX/PiiwHMy5mVFkHrE6RfQz+u0=;
-        b=O5oePGAxd0gZppbzyE5YeEM59nQHIcdzBkaVHcJh7fWj2qp7ifvnt7ci74+Rm1uRO0
-         wVHpWEpQ4HWs/89GrmvdAz2nWl0T50Ww1jMgjaaykfL1l6PW7bRDeq+NhIa/ASN0nAaN
-         1TbPb7TdFmYUT5LKLs1DnB+DSUJgiVo1NBuyazfXLaAzMjVx2SvBlz0QlyGUdU3Hh6a6
-         pkN4mOnWLJ3LktycWyngGAbubf+sUS3e4yRkXFlBW5+oU9pMwbRlH2Rgqj9eUAvOW2M3
-         QYw6uqfNKFmFnxCq0G3ESggrtBnaT7Z1anq4pU66tWSSyiNtQ4hixzP5AiPCtZrbWkJb
-         0/zw==
-X-Gm-Message-State: AJIora9YgfZp+3sZOg18ordJNS6w7ugVKb1k/SZQ/b7XKnVWfy54bV0K
-        RYv6At1TXTB0Lhfk9bWDBHDkE99Vx5ZblJVIMiLVKd4p
-X-Google-Smtp-Source: AGRyM1uxeEzp6Qa/xu2QrohXZxMWMEgcFsJzBfa65ZTYCS5D4yF+rdF2IA0ZatrTmNq8mu617DMiTP3ragMom0zLfBQ=
-X-Received: by 2002:a05:651c:506:b0:255:bc1f:80b5 with SMTP id
- o6-20020a05651c050600b00255bc1f80b5mr11152798ljp.391.1655714973639; Mon, 20
- Jun 2022 01:49:33 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=l921OzWrKWAkvgffalKJcegxOLa36ztSxqMp8PQLuKE=;
+        b=QYLUKL8zKi7pmeS6IehZAA6rbRUHmCaFV+05z3E181nlTDzfU5FDI67D0gs3siYarB
+         o0dXnf6qzTSGHxAMsJvaeeZc44dWQWlTlsl9OrrvxNdvl61cmdo330xkS5bgHHhpp89k
+         SGwBgwCBYrXvifLUcoNQ5KDhfXhXtKkvaElFQKJA/vOBBPEHLVFxxpBRFMoLAZ3Nv56V
+         IRsdTKygFC77FpSAvI8CqPAMDBkvye/qc5Cebc2P5YZoG4jtGc3bhKkhNpCxWxyilJ8g
+         V3LGrDaHwdS02rUSTaWBDdtc9pnJKJfKrcfEe8MehFzlTCGc+MBvk9XRiwnqe46e67bS
+         spMA==
+X-Gm-Message-State: AJIora8WlCobzB6MIPujXsaS2lGPxs0rodTtKowaqjI9OVfkNQuQv+EM
+        Fj3+lztLbXu4Ben+lLJ1+OXtFg==
+X-Google-Smtp-Source: AGRyM1vg839TPzO9Llk78TgzhogRHGaP18+CEPGCz+ZqKqNWO6QJy5rQo9Fs6ITkPjHkEQ3FwxwpLw==
+X-Received: by 2002:a17:907:16a2:b0:711:d048:7d41 with SMTP id hc34-20020a17090716a200b00711d0487d41mr20355368ejc.126.1655715059676;
+        Mon, 20 Jun 2022 01:50:59 -0700 (PDT)
+Received: from [192.168.0.207] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id ff10-20020a1709069c0a00b006fec69696a0sm5512140ejc.220.2022.06.20.01.50.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Jun 2022 01:50:59 -0700 (PDT)
+Message-ID: <a24c24e6-fdee-df79-fd2f-6a71540bd9b3@linaro.org>
+Date:   Mon, 20 Jun 2022 10:50:57 +0200
 MIME-Version: 1.0
-References: <20220619151225.209029-1-tmaimon77@gmail.com> <20220619151225.209029-8-tmaimon77@gmail.com>
- <36b12f00-a7cb-9f94-d1c3-e04f7861b08e@linaro.org>
-In-Reply-To: <36b12f00-a7cb-9f94-d1c3-e04f7861b08e@linaro.org>
-From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Mon, 20 Jun 2022 11:49:22 +0300
-Message-ID: <CAP6Zq1gaxdc6MHuVhQucr84GFtkO8c5k=fAmmJLHg9k8HiJ3pA@mail.gmail.com>
-Subject: Re: [PATCH v3 07/18] dt-bindings: reset: npcm: add GCR syscon property
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 2/3] dt-bindings: usb: mtk-xhci: Allow middle optional
+ clocks to be missing
+Content-Language: en-US
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Robert Hancock <robert.hancock@calian.com>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org
+References: <20220617222916.2435618-1-nfraprado@collabora.com>
+ <20220617222916.2435618-3-nfraprado@collabora.com>
+ <8639e64d-c659-7090-2d0a-078fd96cfbd4@linaro.org>
+ <bb460aa483cc888ffa36709d9e9c1f2e3be0e000.camel@mediatek.com>
+ <bc5458fe-083c-d679-9fcb-95810a290da8@linaro.org>
+ <af50210b95d0cd8b2e3103b3d4a9702aeeba9452.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <af50210b95d0cd8b2e3103b3d4a9702aeeba9452.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 20/06/2022 08:59, Chunfeng Yun wrote:
+> On Sun, 2022-06-19 at 14:05 +0200, Krzysztof Kozlowski wrote:
+>> On 19/06/2022 09:46, Chunfeng Yun wrote:
+>>> On Fri, 2022-06-17 at 18:25 -0700, Krzysztof Kozlowski wrote:
+>>>> On 17/06/2022 15:29, Nícolas F. R. A. Prado wrote:
+>>>>> The current clock list in the binding doesn't allow for one of
+>>>>> the
+>>>>> optional clocks to be missing and a subsequent clock to be
+>>>>> present.
+>>>>> An
+>>>>> example where this is an issue is in mt8192.dtsi, which has
+>>>>> "sys_ck",
+>>>>> "ref_ck", "xhci_ck" and would cause dtbs_check warnings.
+>>>>>
+>>>>> Change the clock list in a way that allows the middle optional
+>>>>> clocks to
+>>>>> be missing, while still guaranteeing a fixed order. The
+>>>>> "ref_ck" is
+>>>>> kept
+>>>>> as a const even though it is optional for simplicity, since it
+>>>>> is
+>>>>> present in all current dts files.
+>>>>>
+>>>>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>>>>> ---
+>>>>>
+>>>>>  .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml       | 9
+>>>>> +++++++--
+>>>>>  1 file changed, 7 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git
+>>>>> a/Documentation/devicetree/bindings/usb/mediatek,mtk-
+>>>>> xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-
+>>>>> xhci.yaml
+>>>>> index 63cbc2b62d18..99a1b233ec90 100644
+>>>>> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-
+>>>>> xhci.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-
+>>>>> xhci.yaml
+>>>>> @@ -80,8 +80,13 @@ properties:
+>>>>>      items:
+>>>>>        - const: sys_ck  # required, the following ones are
+>>>>> optional
+>>>>>        - const: ref_ck
+>>>>> -      - const: mcu_ck
+>>>>> -      - const: dma_ck
+>>>>> +      - enum:
+>>>>> +          - mcu_ck
+>>>>> +          - dma_ck
+>>>>> +          - xhci_ck
+>>>>> +      - enum:
+>>>>> +          - dma_ck
+>>>>> +          - xhci_ck
+>>>>>        - const: xhci_ck
+>>>>
+>>>> You allow now almost any order here, including incorrect like
+>>>> sys,ref,xhci,xhci,xhci.
+>>>>
+>>>> The order of clocks has to be fixed and we cannot allow
+>>>> flexibility.
+>>>> Are
+>>>> you sure that these clocks are actually optional (not wired to
+>>>> the
+>>>> device)?
+>>>
+>>> In fact, these optional clocks are fixed, due to no gates are
+>>> provided,
+>>> SW can't control them by CCF;
+>>> In this case, I usually use a fixed clock, or ignore it.
+>>
+>> But in some versions these clocks are controllable or not?
+> Some SoCs are controllable, some ones are not (fixed clock).
 
-On Mon, 20 Jun 2022 at 11:22, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 19/06/2022 17:12, Tomer Maimon wrote:
-> > Describe syscon property that handles general control registers (GCR) in
-> > Nuvoton BMC NPCM reset driver.
-> >
-> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> > ---
-> >  .../devicetree/bindings/reset/nuvoton,npcm750-reset.yaml     | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/reset/nuvoton,npcm750-reset.yaml b/Documentation/devicetree/bindings/reset/nuvoton,npcm750-reset.yaml
-> > index fa5e4ea6400e..7ba3a6ff82ed 100644
-> > --- a/Documentation/devicetree/bindings/reset/nuvoton,npcm750-reset.yaml
-> > +++ b/Documentation/devicetree/bindings/reset/nuvoton,npcm750-reset.yaml
-> > @@ -19,6 +19,9 @@ properties:
-> >    '#reset-cells':
-> >      const: 2
-> >
-> > +  nuvoton,sysgcr:
-> > +    description: a phandle to access GCR registers.
->
-> That's not valid. You miss here ref. My comment was to skip quotes and
-> you removed entire ref.
-Will add the ref next version.
->
-> Best regards,
-> Krzysztof
+Thanks for confirming. Then I would prefer to make these clocks required
+(not optional) and always provide them - via common clock framework or
+fixed-clock.
 
 Best regards,
-
-Tomer
+Krzysztof
