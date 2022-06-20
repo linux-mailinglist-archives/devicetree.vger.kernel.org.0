@@ -2,48 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 739C955188A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 14:13:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FB76551888
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 14:13:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242145AbiFTMNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 08:13:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57662 "EHLO
+        id S242205AbiFTMNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 08:13:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242719AbiFTMNV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 08:13:21 -0400
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D0943885;
-        Mon, 20 Jun 2022 05:12:56 -0700 (PDT)
-Received: from [192.168.1.101] (abxh227.neoplus.adsl.tpnet.pl [83.9.1.227])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id CBEAB20533;
-        Mon, 20 Jun 2022 14:12:54 +0200 (CEST)
-Message-ID: <cb15fe73-2805-7776-307d-02e1b175301c@somainline.org>
-Date:   Mon, 20 Jun 2022 14:12:54 +0200
+        with ESMTP id S242284AbiFTMNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 08:13:36 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85FF2186CE;
+        Mon, 20 Jun 2022 05:13:31 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id a11-20020a17090acb8b00b001eca0041455so2110890pju.1;
+        Mon, 20 Jun 2022 05:13:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=l21bPVpEqABT+p9DbqMiBD/g5N8ETVurA2tsuMO34hA=;
+        b=E2bhiLOLaQX5Id+mOKVw35/T0Y9neY7K+kld8cSStB4XWpwiXkJm/zKzA5JRLTpSoO
+         ACwJo1lh2EVAYVa/qa7YYY/U3srMBuYgBqJVS+Q0G3pdYRe9uISqdahsAY75nLKbNywt
+         mbOgUEq/hzLO0m7M4FwzB0H+1OBuTnK+98d7mWYqgMeOr7VguG6ksT8NSqt/E4XVA79h
+         0inUqtXrg1cUh+mV0PPu1b1/Oi1v1BmNYKIiw3x8UOYVGg3R4VRpg+j8DhqDnsYuBR/i
+         1NRCv+hxaZs17yiodGO2Lq9g6L+b6NUAIEiEzaA4XYQIX7K6/H7FoI/fcnFEK9uNgIRX
+         4a5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=l21bPVpEqABT+p9DbqMiBD/g5N8ETVurA2tsuMO34hA=;
+        b=tEIIsOLcXaEu4/nH4UVTXqZ+DjtJ1cAb8HEukDqQLB3S30E7LuQ1+QDTk7y/Pt2OQA
+         u5lGByszWuNyPr7k+mKUdKgjdz0mbtQYPtH3ZFFRXxoLYQtG9ab7yoBjbKZiUNMEOcD1
+         brscOG8mlPdLYtF4byKSssFOrSCucxtDvS9DKTZboNyCurG7zzeyY9tj8FuWfv1w/UkW
+         xjfx81Mr6ZOmatoJFnETKXa0mgR0K7X6wmUfX9F+q0z+6Xr8bUlxLoHcD7nbZB2WkHJy
+         MC0Y5+lRO4ote9SNagRdXigbeSzdEYNphAM4C4cDK/OdQSVxpmtxA6NM4OmD+8i0oI7R
+         W5sQ==
+X-Gm-Message-State: AJIora8eHuAJ5RSqmP6XRKnyCAeiHeG2WMivyk9aTCovqN5HzQLTlSZW
+        MHmvP3qxpVyeNF+E425aU+VeNcghWq4=
+X-Google-Smtp-Source: AGRyM1ujMyJeWJesnMMfpgqQBJHnW1Xr43RT5QrR9fedG1YoY/0E4PA7jJloa1A527gt4UwHIcXfMg==
+X-Received: by 2002:a17:902:ce87:b0:163:fc5e:398b with SMTP id f7-20020a170902ce8700b00163fc5e398bmr22960947plg.125.1655727211055;
+        Mon, 20 Jun 2022 05:13:31 -0700 (PDT)
+Received: from linux-server-us.. ([172.247.46.202])
+        by smtp.gmail.com with ESMTPSA id a2-20020a624d02000000b0051e7b6ec81dsm8946987pfb.108.2022.06.20.05.13.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jun 2022 05:13:30 -0700 (PDT)
+From:   YuTong Chang <mtwget@gmail.com>
+To:     bcousson@baylibre.com
+Cc:     tony@atomide.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        YuTong Chang <mtwget@gmail.com>
+Subject: [PATCH v1 0/1] ARM: dts: am33xx: Fix MMCHS0 dma properties
+Date:   Mon, 20 Jun 2022 05:13:25 -0700
+Message-Id: <20220620121326.5122-1-mtwget@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 0/7] clk: qcom: gcc-msm8916: modernize the driver
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20220619212735.1244953-1-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220619212735.1244953-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -52,58 +69,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+---
+v1: Cleaned up coding style and addressed review comments
 
+YuTong Chang (1):
+  ARM: dts: am33xx: Fix MMCHS0 dma properties
 
-On 19.06.2022 23:27, Dmitry Baryshkov wrote:
-> Please excuse me for the spam, I've erroneously sent v2 without the
-> requested change.
-> 
-Please excuse me, I didn't notice and gave you R-bs on v2 instead..
+ arch/arm/boot/dts/am33xx-l4.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Konrad
-> Update gcc-msm8916 driver and bindings to use DT-specified clocks
-> rather than fetching the clocks from the global clocks list.
-> 
-> Changes since v2:
->  - Use xo-board for the XO rather than RPM clock. This will be sorted
->    out separately (requested by Stephan Gerhold).
-> 
-> Changes since v1:
->  - None.
-> 
-> Dmitry Baryshkov (7):
->   dt-bindings: clk: qcom,gcc-*: use qcom,gcc.yaml
->   dt-bindings: clock: separate bindings for MSM8916 GCC device
->   clk: qcom: gcc-msm8916: use ARRAY_SIZE instead of specifying
->     num_parents
->   clk: qcom: gcc-msm8916: move clock parent tables down
->   clk: qcom: gcc-msm8916: move gcc_mss_q6_bimc_axi_clk down
->   clk: qcom: gcc-msm8916: use parent_hws/_data instead of parent_names
->   arm64: dts: qcom: msm8916: add clocks to the GCC device node
-> 
->  .../bindings/clock/qcom,gcc-msm8916.yaml      |   61 +
->  .../bindings/clock/qcom,gcc-msm8976.yaml      |   21 +-
->  .../bindings/clock/qcom,gcc-msm8994.yaml      |   21 +-
->  .../bindings/clock/qcom,gcc-msm8996.yaml      |   25 +-
->  .../bindings/clock/qcom,gcc-msm8998.yaml      |   25 +-
->  .../bindings/clock/qcom,gcc-other.yaml        |    1 -
->  .../bindings/clock/qcom,gcc-qcm2290.yaml      |   25 +-
->  .../bindings/clock/qcom,gcc-sc7180.yaml       |   25 +-
->  .../bindings/clock/qcom,gcc-sc7280.yaml       |   21 +-
->  .../bindings/clock/qcom,gcc-sc8180x.yaml      |   25 +-
->  .../bindings/clock/qcom,gcc-sc8280xp.yaml     |   21 +-
->  .../bindings/clock/qcom,gcc-sdm845.yaml       |   25 +-
->  .../bindings/clock/qcom,gcc-sdx55.yaml        |   21 +-
->  .../bindings/clock/qcom,gcc-sdx65.yaml        |   21 +-
->  .../bindings/clock/qcom,gcc-sm6115.yaml       |   25 +-
->  .../bindings/clock/qcom,gcc-sm6125.yaml       |   25 +-
->  .../bindings/clock/qcom,gcc-sm6350.yaml       |   25 +-
->  .../bindings/clock/qcom,gcc-sm8150.yaml       |   25 +-
->  .../bindings/clock/qcom,gcc-sm8250.yaml       |   25 +-
->  .../bindings/clock/qcom,gcc-sm8350.yaml       |   21 +-
->  .../bindings/clock/qcom,gcc-sm8450.yaml       |   21 +-
->  arch/arm64/boot/dts/qcom/msm8916.dtsi         |   14 +
->  drivers/clk/qcom/gcc-msm8916.c                | 1020 +++++++++--------
->  23 files changed, 669 insertions(+), 870 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8916.yaml
-> 
+-- 
+2.36.1
+
