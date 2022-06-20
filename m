@@ -2,125 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6025550FBA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 07:38:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B50E550FC9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 07:50:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238305AbiFTFiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 01:38:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55896 "EHLO
+        id S233158AbiFTFuN convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Jun 2022 01:50:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234332AbiFTFiU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 01:38:20 -0400
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2077.outbound.protection.outlook.com [40.107.100.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C9C695B1;
-        Sun, 19 Jun 2022 22:38:18 -0700 (PDT)
+        with ESMTP id S230115AbiFTFuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 01:50:11 -0400
+Received: from mo-csw.securemx.jp (mo-csw1114.securemx.jp [210.130.202.156])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 761A0D10C;
+        Sun, 19 Jun 2022 22:50:09 -0700 (PDT)
+Received: by mo-csw.securemx.jp (mx-mo-csw1114) id 25K5nO8U013736; Mon, 20 Jun 2022 14:49:25 +0900
+X-Iguazu-Qid: 2wHHHyKX1U5nDQEbsD
+X-Iguazu-QSIG: v=2; s=0; t=1655704164; q=2wHHHyKX1U5nDQEbsD; m=8IDJ528fAErWSC3XT3EYsl/rupezPOGThb6h8axG8cE=
+Received: from imx12-a.toshiba.co.jp (imx12-a.toshiba.co.jp [61.202.160.135])
+        by relay.securemx.jp (mx-mr1111) id 25K5nL2Q028269
+        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+        Mon, 20 Jun 2022 14:49:21 +0900
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Rcw6x5WrAGu9WjlcvLWVlRSZqb/RYur/uwuKbFCeV/kea0jFkylB/dMg1FdKXS5sANFAbeZMsMWBfojVP40of6E02vzLJ1nLQaPUDZwoVGjfp/ZU2ta5YJ6W2TD7MqYOwu7VJmbQLbNyhiQINaWms4AGZu+mlKpOEXuuFxfn/OFCu/oJaimLWpneK5+6OfudIGt2vUd66V6zqFiu0jf6SqLeD5RzwZxSTZ04RfnNT7pcfhQgX8Q/NM6Gu83EqR9XMRHG0jb51rnOKmQmPbQHEbfiZuQAhmvM6MZN7ojXOOojc8f5BR3nT0WKPwcdsyLEsl9Ao6+OQrj1hSDGyZPrNw==
+ b=dyQHus68FHeJh8eKqVbMJnrqBMG208aRlyQHKVSpUhXJbO+UeNPF39leUY0EcRKUCpWMunPxJuIXp/BCIrXQ8fJAbCsXlVpSU9G5CoaHse2xymwX/E5eNfpSI0IKzDvURJD9kVYmeWttJ1AqFk5jZ/abd8M722JEW0b8mQpk6oCPF6aQyIHTbFHvUM23WdwvjYYLH1IAoQG2UDyk+Ei+f3nBJGMtc6pdSsh/qn4D//atursk24hMO7HaZC1GoOc7vsBHaekXUI2Rdbob2eYcA2cXEnhtuhtd8Ifnsnr1Oyt7TSg22m4ZBopUs4WQB+gl7Kw3mysvWwWTBOcQQSeRGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lLYcousuluVJJAeZgBm0Pq60/g9PBnjFWZW/7M3Wa8M=;
- b=jpH6gKnSCuv+1HOqbYX20wF+pmCRQwnjlC1XtgVm5Qp7t4wCPhDD+XN21kzwEbNf1+G92PDsjdxRI4S4/PWyV/+zcJQt67l92+bVSg6krjPUrxt+nVqNKHa9RAW2RIEb6yG95eyaLoeJBp7++XT+DsX6T1iD5QvPWfBgOBZCT2UxioYel58oXuAfQ530yIPZlgS/ElOdnGyxtLrBk4C27udI6UAR2kIKlzu/CVWXZkZDhUZIBlcyxC1TDEGOpCyH7e3bDXS5CkIMVaZ0/QpUOyK6ScmZksrqYrwBS7YCUhQyrzpCrBenL79vCkFqTQQLs0SJkLAjWycXSHmzSViu+A==
+ bh=VF/UKx/q7MmKplwkKEJeFekjGOi7U7ZnLJ3YUtwLEoc=;
+ b=NmV/oh2vf0nSql/65WgfrzMRtqfjfyjs86Umq6SmYOfcgFsZo1t1pIzADyf5RQTFgezyJe0jNQFsqaI0coFLjExLQgIMzV5Y2/zugx7fylbJhT7nFb/QqQu6Awflxym3O+zXGUpCeBlA+lhbwGuPVlQLVToOBNumXbgjSxuJ4UqhALce6wsNKtHqYaT5bnTChSEXfjWz5TZdhr++0RyIHr6HZscKDqoHIeQib0T9gZZS4dw/DweUYphDqt3XMrwjpBoq0OrxB41XEP6nU08vQZhDjHcg/KzGsH2WQrz+4839758D4OnbNSqXvHWRAV/ZhQI2tdpnPsMOn8gYIGBqzQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lLYcousuluVJJAeZgBm0Pq60/g9PBnjFWZW/7M3Wa8M=;
- b=e9DUUEx7nT0TtdjThlkGCUvErVtpVpVRxABLk0hh2OG6TSe5Bk7ft9DX4uTrmZY1EhCjs6WiSlOw+R+053sdD8VR5rvUYwXiZy7g94XI/+wBHvaW1ftEM4TRwpCcoCH/MxizqTd1by80WOB6UeL399aKndGnc9az+Rk0c6dIehw=
-Received: from DM6PR12MB3993.namprd12.prod.outlook.com (2603:10b6:5:1c5::29)
- by BY5PR12MB4273.namprd12.prod.outlook.com (2603:10b6:a03:212::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.14; Mon, 20 Jun
- 2022 05:38:14 +0000
-Received: from DM6PR12MB3993.namprd12.prod.outlook.com
- ([fe80::c850:f1e2:40ff:2324]) by DM6PR12MB3993.namprd12.prod.outlook.com
- ([fe80::c850:f1e2:40ff:2324%7]) with mapi id 15.20.5353.021; Mon, 20 Jun 2022
- 05:38:14 +0000
-From:   "Manne, Nava kishore" <nava.kishore.manne@amd.com>
-To:     Nava kishore Manne <nava.manne@xilinx.com>,
-        "mdf@kernel.org" <mdf@kernel.org>,
-        "hao.wu@intel.com" <hao.wu@intel.com>,
-        "yilun.xu@intel.com" <yilun.xu@intel.com>,
-        "trix@redhat.com" <trix@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>, git <git@xilinx.com>
-Subject: RE: [PATCH v2 3/3] fpga: region: Add runtime PM support
-Thread-Topic: [PATCH v2 3/3] fpga: region: Add runtime PM support
-Thread-Index: AQHYbqt2k6WhHHAuxk6U19Lom4CxBq1X8mzg
-Date:   Mon, 20 Jun 2022 05:38:13 +0000
-Message-ID: <DM6PR12MB3993A1FF3517D99AC9A1C21CCDB09@DM6PR12MB3993.namprd12.prod.outlook.com>
-References: <20220523134517.4056873-1-nava.manne@xilinx.com>
- <20220523134517.4056873-4-nava.manne@xilinx.com>
-In-Reply-To: <20220523134517.4056873-4-nava.manne@xilinx.com>
-Accept-Language: en-US
-Content-Language: en-US
+ smtp.mailfrom=toshiba.co.jp; dmarc=pass action=none
+ header.from=toshiba.co.jp; dkim=pass header.d=toshiba.co.jp; arc=none
+From:   <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     <jgg@nvidia.com>, <baolu.lu@linux.intel.com>
+CC:     <joro@8bytes.org>, <will@kernel.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <iommu@lists.linux-foundation.org>, <yuji2.ishikawa@toshiba.co.jp>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 1/3] iommu: Add Visconti5 IOMMU driver
+Thread-Topic: [PATCH 1/3] iommu: Add Visconti5 IOMMU driver
+Thread-Index: AQHYb9dH05SFqMkMF0+v2vSGSFgXYa0vIReAgADJMwCAKALTkA==
+Date:   Mon, 20 Jun 2022 05:49:13 +0000
+X-TSB-HOP2: ON
+Message-ID: <TYWPR01MB9420F74E27D8513CD2C2D27592B09@TYWPR01MB9420.jpnprd01.prod.outlook.com>
+References: <20220525013147.2215355-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20220525013147.2215355-2-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <63369db0-cf7f-aa53-bf9f-de2b0b2289ac@linux.intel.com>
+ <20220525182644.GF1343366@nvidia.com>
+In-Reply-To: <20220525182644.GF1343366@nvidia.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
+ header.d=none;dmarc=none action=none header.from=toshiba.co.jp;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1820864f-5789-4793-bc26-08da527f11d9
-x-ms-traffictypediagnostic: BY5PR12MB4273:EE_
-x-microsoft-antispam-prvs: <BY5PR12MB42736FB04F6400F3107E5782CDB09@BY5PR12MB4273.namprd12.prod.outlook.com>
+x-ms-office365-filtering-correlation-id: 0cd66900-a36e-481f-bb66-08da52809b38
+x-ms-traffictypediagnostic: TYAPR01MB2238:EE_
+x-microsoft-antispam-prvs: <TYAPR01MB2238DF2A2685456D1E576EA392B09@TYAPR01MB2238.jpnprd01.prod.outlook.com>
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 3usx7PHa/krj1KuDWoa24wRV6gHhEh+ugqVaG3yRJjjg6GwprfhvZ191clfxBjXxjwmXAFYtk0qJrSGzVsyXiHiBjs9ax4PyxkFaiJpxcuk5nHUbymqebCEhF9JNLkCXys9U9TnKS66lWow2i+De8VAmRDKXOC5tIZ4QqMBi2PxKISE7uQ2+g+dn9rn6tiG9APKRSO3VZyhR2J+ZFnTMan3wfV47Cn9cB2uBRiOsVFT5VSb8ZYBegN8Ib6SeyYddqIeUVV5/EV2bYPrstep2Dd7K15ycRQvVLfa2QnWw2zCse+IisIUrK0vPO5CFkTB361j2B/bnCXEgmqe+sSJTlx2rTp0OEckKUauwSgfwxCYdUaU2jJD1SmboyWYbaI8FYRVK4l2vyc16vlrazpUfcWe5ZSX/2CtXHgZxr2QXrYwsyEFGTp1IiuuG/pjFUTksR3DE+eYAefQS5rx/rK2ZnDzaDkAOSAUqxGK9EtWf8OZhaXG0NvaQUnqTK/KOBz83wkqIkgl02K3D40OF8F15+yCNx4BkZ9pzi3YId2Tuyjz/6TDQBA0eMtapyiJr+MhaFJ/Q5SOf3xvZntLLsTwnDxLa33g0p5lwbFTNFBfSC3psIIipZN5MI1aVYhUmkIk2BwMG8zMgpiFxetFywK2yRGwEMd2ZTFJ+te60gotCeY9EqLmuxUpOFvW/yA7Y/DLKxyMIz7LKZ+qZrmbVuOffixypHsn020mDcBRx/P7JxgY=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB3993.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(39860400002)(136003)(376002)(366004)(396003)(478600001)(8676002)(186003)(55016003)(5660300002)(66446008)(52536014)(33656002)(26005)(76116006)(66946007)(66556008)(7416002)(64756008)(66476007)(7696005)(2906002)(71200400001)(316002)(8936002)(38100700002)(83380400001)(110136005)(9686003)(41300700001)(6506007)(86362001)(921005)(53546011)(122000001)(38070700005);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: G73++VBsUpWmweX12AXoOo0f4qzFV5R5uNTbULlOapMIYSvO3GC3Jv0+KBU21yc9qaQX4kwquEXEglZKPXX6Eeig6hmgK2ofzquBjMH/ynGzzeLhE9MDKXRT/lF44crMayQIqnr894tYcDwg6gk4/+UrPxfQK7H7KlO8mfLH6NTSOU2914rnRYtDaxV+eRO8N1Na/ZInpYSJul2821s/oPLIUpCE0INlouSlWjsppY0Q3QPLdDqM3ieRfaOrbQsj594tdQOFPUZ7ZmijHizXubVTe74UnyIonLHHkuRI6emZ8hGEEPcogr49P/LyG7Hphn1C84gERottvIbEK47pYCINqru8wx3XOe+vHxV4R2Rhk+eNHMKPc6UEuRrToEvzZbmx45zEKNtzw5WYAihNtdUiETMl5shvOCtEyrfvOMhdG8JDmVhm4sye8qD018cI3dS0xGUBp/kBvlaSdXzwMsmheohhCS9zNzb82iwsXFlT+puGK4rN0/aSHdcng0bq8zFPQLj3QziMyZ9EyoDTEUTC0Wz9QWgD/lDyoBsksFG+gJIODC+cMfQYLAyP6mZwnLOq6rUckncF4NHt4g9M8UXXSPRHhBltMDCF0W0PmPYmctrAz+u4Be3zrXx/AeKFWsubV8JirXktyYW2NJ10rRiMj9QR1uHiefyFOF0vkpQkNN72ACjyywm33iAEcBhkg67LSRXKztObGVswc1i0Uw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYWPR01MB9420.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(376002)(136003)(366004)(346002)(396003)(41300700001)(86362001)(26005)(9686003)(38100700002)(38070700005)(122000001)(186003)(53546011)(5660300002)(55016003)(316002)(66476007)(52536014)(66556008)(64756008)(66446008)(83380400001)(8676002)(66946007)(4326008)(76116006)(2906002)(6506007)(7696005)(8936002)(33656002)(478600001)(110136005)(71200400001)(54906003);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?R1i56FIbEIzLnzGRyWERSotWsQzLz8CZoDGxV288QicjuyW4aAdomzQUZLyh?=
- =?us-ascii?Q?cKh7Sra8TXwKsCPHpPaK00YnBH6yBQez+rIoMpSge6dlyui5om2Lp7g6EIxx?=
- =?us-ascii?Q?quSo9V93G6eWSq12h7QSElj1jEi2rFpM5opzrPAoGJuXCh92uAYeWocKRXVx?=
- =?us-ascii?Q?E7w40tsIjyCaWgh6bnW0n8STdGDwR7vlFnWmUYoYEyLVo3t5x+P3b3+P2gY/?=
- =?us-ascii?Q?Okl897FTD0NVXXim8HVxesJ0czHB/w3JaEPbIF7v6g0zPwh6vKUpsRF9+f6j?=
- =?us-ascii?Q?qSLZX58lvluhJ54gjSZPDz5PB4JufouYzorkQM/9Hh+g+so0577TBIXA6BsF?=
- =?us-ascii?Q?TmYtjMTVcrfSfavU3LyE4AtZ0l8sTLDcRqhIdB2BprK2mrTtXHxTuA/mWgg+?=
- =?us-ascii?Q?ejVt90nx+D/pU53sDgLOJ1XC9fg1Szo89q96vECDbNG/me/ZzI+kMk5DKfIF?=
- =?us-ascii?Q?dwigcYwKuu1XrgC+K/rLA4T2IaWVIrYqYRBrl1+2mqaQGrWJmGpOnzZuGTZL?=
- =?us-ascii?Q?skV+z6XJqznTimBL7OD5Fax+xlKK5ahkPL1iFMDemWPLelaen6/ZRiKwZcT2?=
- =?us-ascii?Q?V6MHhYPB7uIk2xs9Dzvoyxtrei6tqc0y6QDXXxVfZmFNMXr7uZLvieqH84IA?=
- =?us-ascii?Q?ML18iaqK18m8t7xcPIyXwTyKpCtSRp4RUPLh8yVLnOULb2lPcquNOgeJxtJr?=
- =?us-ascii?Q?Dijj03uxeN1idXOz5QKMJMTFLKK5Tj3aupkPlau6td9SZrp1dJpQCw8IKrv7?=
- =?us-ascii?Q?whN70seOa04Glh+SQUefRvzfzfLuNhJ+DEF8WfENhalr+W8GuO/edM5THoyC?=
- =?us-ascii?Q?vDyILyjWVn7AGf/K/vP+QtkjTqvx1rCnWiUfXxcZLu1NBb9sUsZoXV+4fwOX?=
- =?us-ascii?Q?muT5xW6l5caioDmWe9pXkr5c0pPueVnrghWX73NLNyQkxA49MOwLoORQR2gT?=
- =?us-ascii?Q?HhWRjgS6HsuJx+BMfZAh8hIBdu0DSaWSh+ikTiZwiLn2v5Sor6/CaehOVLhW?=
- =?us-ascii?Q?LkEfkBCNE6wooMXhOaIS2ffjPZ8XHopphKmrMU8MJ409q7LVVheRmaUaS3if?=
- =?us-ascii?Q?ttP7eVki6ZAdz4pg+3nReOl79t9DA67KkUUpYQpljgI+TV8jfPHJ5E+u/05m?=
- =?us-ascii?Q?m/cckUL5fyORpHvIer6pg0B9ruXQ227G7Jdt3n85LJOGHU0FCNub4Bax8br7?=
- =?us-ascii?Q?w+bLHppSvr41E+0Hlfi+CCIF619zhjQSionRCer+rSDiblTK0EaG64ovzxCd?=
- =?us-ascii?Q?/AC3OXnBBEhXXxim4dgr/nAdbv4P9oYf+Y1tchvFODWO+QVA2ZHeWXQ1ZWIH?=
- =?us-ascii?Q?Z1ZRZNrkFa1d5f3xuIzVlcRo7jseJx0kEKqzfnOeTjX15J4Tluh5CH/sujCZ?=
- =?us-ascii?Q?5kfNGA/oIUFuzbpJYfNfS65IyFgoajxwKHMekdyZZLQK3Xm0uu5CsTJx09CQ?=
- =?us-ascii?Q?Uk8wa2Q2Q6tbWFwUejq+s8fBHBv9DTWzow0F7PdeTFQkusEk1Yu78r2VX9lb?=
- =?us-ascii?Q?0y+H6Vdzo6fOjVpug/5wlq+GpSx+sl47GIBXYDz1WU8+HL/Sa4X6f7bEvsRL?=
- =?us-ascii?Q?BwpUa7cawdgGjbcAz4Sa2yy0GU6Rn/219Ble53OODPYy2IM6Gq9v1TB+dwIA?=
- =?us-ascii?Q?V0bouF8Z1rosgmgKHHEBTtX6YBElVvC5/+4wQ5CXrrumjkd4nOXyX/Z5QFky?=
- =?us-ascii?Q?uKRLmrYvJ17TJ+JImPzWjQzwGmR7M2vqMV1xkr4cN7cQQAS9?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-antispam-messagedata-0: =?iso-2022-jp?B?Z2VGU0VGaWRmRDNubU1qT2hraWNPM0Vaa3RzWStpT05kcnZaSEdTL1BW?=
+ =?iso-2022-jp?B?WmFRdlprTk82Y2ZUcThLQy83K3gxdG9mVHFKcytxaW9ONDk5TWpmK2sr?=
+ =?iso-2022-jp?B?VVF4dzFjMVZVN2JPR21Ec1VQdlptSWdsSExoY1BlRzMzdXFsdnR2WGFL?=
+ =?iso-2022-jp?B?bVM1dVROMEhZYzVpUXkzU0VmYW9ONlMzZWFrNXREMjkzUjdoQ1NlVEpo?=
+ =?iso-2022-jp?B?a0JLdE1DWTVZeFR6Z0J2UlJ6Qnl4NSszMFliV2JJR1N0Yyt2Mk9Sakw4?=
+ =?iso-2022-jp?B?M2pPRCtvd1h6bDVaQ0NBT2Z5eklMcENlMTRsdkYvZnJpWVJZNFVOYkRr?=
+ =?iso-2022-jp?B?SVpDZjUyKzVPQm04NE1ORTdtTm8wZklpanE2eUVjVk85VDVLNW5sbFpG?=
+ =?iso-2022-jp?B?amIzUDVrUWJ1T200dlh2ZUNseTRwUEZHUWZZay9VTHduUUFmN1F5YlE3?=
+ =?iso-2022-jp?B?TEhjbFhCdzZvQXc1S1lHNEVLN2RtQ0w4TWl6ZVovRDl6czVWSTJLeUls?=
+ =?iso-2022-jp?B?d1NzTmlZcWdCMUJQRml4SVo0aU1mVXB5SEo2QlFZRERVQUpnTWZ1RUcv?=
+ =?iso-2022-jp?B?aGt5SndCeHd4Q1V2eitRdHRzbEU0TVc3MzVpY0ljUWhJeElMODFMMTh4?=
+ =?iso-2022-jp?B?cVdKaHBQR1k4REpCWXNITmNXME04WE5RN2Nzd0ZRcFM3RFJGU1ZuMmtO?=
+ =?iso-2022-jp?B?b2lSZGt0bDFOL3Fyc2ZWMEtLYU9ETjdlVUo1OXFRSWdDYnRrYVNkYml0?=
+ =?iso-2022-jp?B?Q3BQV2Q2aW9RQnVwRmNrYVJqMXFOL1VkUVc0ZE1YV0RMdVFqaENOdjd0?=
+ =?iso-2022-jp?B?aDU3cG5lQmhzclQrLzlXY1pHYUFrZXVSaVlkNnI2d3hzWm5YUVYybUw2?=
+ =?iso-2022-jp?B?Vlg4ZDNXaUNaclB1OFJVWXVpRTVxWG1JVHdCTW9RcXowTkV1Q1JwYVBk?=
+ =?iso-2022-jp?B?YTIwS1ozZkU0bXZRNHdmVm9Qa3JJQkYwTFRlYWdpTDNHamduT3BZQjZY?=
+ =?iso-2022-jp?B?MkpybEJjVll0N2ZkNW5XeU54aEhKMkVzRVBhc25hM0hiNEE5Zmp5OXZz?=
+ =?iso-2022-jp?B?Y3BPTmViVnZQeTViL1Vqeng4RTdrelVta3Q4S3NvRHRJa2hkd1RQRkxU?=
+ =?iso-2022-jp?B?elZFZXZqMU1KUnlyTEpheUhxeXR1eHdjRmtOTzcxS0sza1JYRTlJMHZN?=
+ =?iso-2022-jp?B?RmdlUWt6RWFCbWt1SS9XYXRPMGpQYXZQbXJCQVppZ3ZJRjJrdlNReHR1?=
+ =?iso-2022-jp?B?STRJR1Q3eFdLZTdRN2pNdTM2Mkpqd1BhSTlzcGgreFpsV2IvTmxvbVR3?=
+ =?iso-2022-jp?B?ek9pR29hQ0lINnhneFdXcy9xemNESjVvWXhHaGFrVlNYalJPVTVVaTNK?=
+ =?iso-2022-jp?B?OEtycEF4WW9BdUttQTVYdVIwQ2s0bk9OSXZTTUYrVzluT3VPN2loZGJs?=
+ =?iso-2022-jp?B?SHBZa0RRTzBlMWpnVjFrdFA4M0IxVWk1UkZkaXVlUWVXUGpsMmxKSytQ?=
+ =?iso-2022-jp?B?YU43UEZtVEFtVW5JUi9LUFFNcytQbm56UmttREFtdnpweS8xMWt3ZEpK?=
+ =?iso-2022-jp?B?OGk2YVVtb2pTeHY5M0xMZHZJNk45a0ttcjhHOU5xbkJRbGYzcnlnVHFK?=
+ =?iso-2022-jp?B?NnlpT2RWYURGQ0w1OFhXYW56QjZaeGI4a3VybG5ZMGVla0hrMmRDVGlZ?=
+ =?iso-2022-jp?B?VEh1TGpXSkRFUVdOOFFaU0prVStHQkluR0x1YTZOdEpTVUsyN3Jwa0xD?=
+ =?iso-2022-jp?B?L1FHcFpuNHVXcXRYRGpJWDRWSjlvYUJZWTR0NXgrM2NkaEZzMEk4Uzlm?=
+ =?iso-2022-jp?B?VnMzY2ZNUEEraWZqakNXSm1KRlVnM3cvVDNERSt0a2FoSUxDUXRld0I2?=
+ =?iso-2022-jp?B?bFV2a3gzcGwxZWNwVlZHMStyZCszWWF6dWhjNXYvc1Zsa09UTHlwNDM0?=
+ =?iso-2022-jp?B?T0U4bVh6cWRqNWlTV080ZWFtUWgxTVJHVHFZaHA2NVYzV3k0eGg2V2Iz?=
+ =?iso-2022-jp?B?TW9QRmI5OXRJTWdaWUZIVjFnVXNDR3Y5cVBTT3MvSWtnMjk2czJObUcx?=
+ =?iso-2022-jp?B?cnAvT1k3MitvanFjQUtHRGRxOFR1TDhjUjY5YlZCYUozODBrYkhPMldr?=
+ =?iso-2022-jp?B?bTZ4QUkxdGl2cE9RM2xCc1NHaC9rZk9kcjhsakcyYVFvNHliL2xEUmVN?=
+ =?iso-2022-jp?B?M3dBQXBNalYweHI2a044OFM5OHlESVRqay9vOGtjakJiMXJCQ01weU1n?=
+ =?iso-2022-jp?B?Y2owQnk0bnUxQm9tQ0xueDJHSEgwaHRubHcvSTNvUkhFaHdxNEVzU0xv?=
+ =?iso-2022-jp?B?T3lsbDZnNkFkMk1HMHYxV0V0WmN3ZWQvYkYvNkFLNjN2blNLY1RUbWtT?=
+ =?iso-2022-jp?B?VjFQY1BQbnBIdFhhb0pTYUJrdHIxd0EweS9LUE1sTWlzV2ZrS1EzZ2Vo?=
+ =?iso-2022-jp?B?cFYzNlplRkVQTElyOWZqUmlZUUZXNXFCYjhjQVE0K1prMmNTU1FPcER2?=
+ =?iso-2022-jp?B?ekJRbWJyVjM3YzZVRmJXRUtGeGYvV1ViSGxwb3ZxWVdsd3pEK09pOEd6?=
+ =?iso-2022-jp?B?WUZKSUQvZmVOVVZJdk5hYWZKLzhQVXcrakw4NQ==?=
+Content-Type: text/plain; charset="iso-2022-jp"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3993.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1820864f-5789-4793-bc26-08da527f11d9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2022 05:38:13.9684
+X-MS-Exchange-CrossTenant-AuthSource: TYWPR01MB9420.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0cd66900-a36e-481f-bb66-08da52809b38
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2022 05:49:13.9668
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-id: f109924e-fb71-4ba0-b2cc-65dcdf6fbe4f
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4IItal/7+GqwLVNLk/hxcY44n8yJp4gX+MtPmeIvyNU7iYtuLDKznSPSsa9wef3U
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4273
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-MS-Exchange-CrossTenant-userprincipalname: HRHuSwsiOsBmEL0idJc1Zf+EtXSeU1vPhirPAgZ3+1yNuxIJcdKt1bISnCDNxhseln4vNlSM34ErwxwC9WYNz4ZqL5GkVZUcTjWQlXmpLQWZ+NBptShIYlCjDzDoLAK9
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB2238
+X-OriginatorOrg: toshiba.co.jp
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -129,104 +130,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ping!
+Hi,
+
+Thanks for your review.
 
 > -----Original Message-----
-> From: Nava kishore Manne <nava.manne@xilinx.com>
-> Sent: Monday, May 23, 2022 7:15 PM
-> To: mdf@kernel.org; hao.wu@intel.com; yilun.xu@intel.com;
-> trix@redhat.com; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> Michal Simek <michals@xilinx.com>; Nava kishore Manne
-> <navam@xilinx.com>; linux-fpga@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; git <git@xilinx.com>
-> Subject: [PATCH v2 3/3] fpga: region: Add runtime PM support
->=20
-> Add support to handle FPGA/PL power domain. With this patch, the PL
-> power domain will be turned on before loading the bitstream into the
-> targeted region and turned off while removing/unloading the bitstream fro=
-m
-> the targeted region using overlays. This can be achieved by adding the
-> runtime PM support to the fpga regions.
->=20
-> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
-> ---
-> Changes for v2:
->               - Updated commit message.
->               - Updated runtime PM handling logic to fix the PM ref count
->                 imbalance issues.
->=20
->  drivers/fpga/of-fpga-region.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->=20
-> diff --git a/drivers/fpga/of-fpga-region.c b/drivers/fpga/of-fpga-region.=
-c
-> index ae82532fc127..f14bb5916d97 100644
-> --- a/drivers/fpga/of-fpga-region.c
-> +++ b/drivers/fpga/of-fpga-region.c
-> @@ -15,6 +15,7 @@
->  #include <linux/of_platform.h>
->  #include <linux/slab.h>
->  #include <linux/spinlock.h>
-> +#include <linux/pm_runtime.h>
->=20
->  static const struct of_device_id fpga_region_of_match[] =3D {
->  	{ .compatible =3D "fpga-region", },
-> @@ -301,10 +302,17 @@ static int of_fpga_region_notify_pre_apply(struct
-> fpga_region *region,
->  		return -EINVAL;
->  	}
->=20
-> +	ret =3D pm_runtime_resume_and_get(dev->parent);
-> +	if (ret < 0) {
-> +		fpga_image_info_free(info);
-> +		return ret;
-> +	}
-> +
->  	region->info =3D info;
->  	ret =3D fpga_region_program_fpga(region);
->  	if (ret) {
->  		/* error; reject overlay */
-> +		pm_runtime_put_sync(dev->parent);
->  		fpga_image_info_free(info);
->  		region->info =3D NULL;
->  	}
-> @@ -324,10 +332,13 @@ static int of_fpga_region_notify_pre_apply(struct
-> fpga_region *region,  static void of_fpga_region_notify_post_remove(struc=
-t
-> fpga_region *region,
->  					      struct of_overlay_notify_data
-> *nd)  {
-> +	struct device *dev =3D &region->dev;
-> +
->  	fpga_bridges_disable(&region->bridge_list);
->  	fpga_bridges_put(&region->bridge_list);
->  	fpga_image_info_free(region->info);
->  	region->info =3D NULL;
-> +	pm_runtime_put_sync(dev->parent);
->  }
->=20
->  /**
-> @@ -411,6 +422,8 @@ static int of_fpga_region_probe(struct
-> platform_device *pdev)
->  		goto eprobe_mgr_put;
->  	}
->=20
-> +	pm_runtime_enable(&pdev->dev);
-> +
->  	of_platform_populate(np, fpga_region_of_match, NULL, &region-
-> >dev);
->  	platform_set_drvdata(pdev, region);
->=20
-> @@ -430,6 +443,7 @@ static int of_fpga_region_remove(struct
-> platform_device *pdev)
->=20
->  	fpga_region_unregister(region);
->  	fpga_mgr_put(mgr);
-> +	pm_runtime_disable(region->dev.parent);
->=20
->  	return 0;
->  }
-> --
-> 2.25.1
+> From: Jason Gunthorpe <jgg@nvidia.com>
+> Sent: Thursday, May 26, 2022 3:27 AM
+> To: Baolu Lu <baolu.lu@linux.intel.com>
+> Cc: iwamatsu nobuhiro(岩松 信洋 □ＳＷＣ◯ＡＣＴ)
+> <nobuhiro1.iwamatsu@toshiba.co.jp>; Joerg Roedel <joro@8bytes.org>; Will
+> Deacon <will@kernel.org>; Rob Herring <robh+dt@kernel.org>;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+> iommu@lists.linux-foundation.org; ishikawa yuji(石川 悠司 ○ＲＤＣ□ＡＩＴ
+> Ｃ○ＥＡ開) <yuji2.ishikawa@toshiba.co.jp>;
+> linux-arm-kernel@lists.infradead.org
+> Subject: Re: [PATCH 1/3] iommu: Add Visconti5 IOMMU driver
+> 
+> On Wed, May 25, 2022 at 02:26:37PM +0800, Baolu Lu wrote:
+> > On 2022/5/25 09:31, Nobuhiro Iwamatsu wrote:
+> > > +static const struct iommu_ops visconti_atu_ops = {
+> > > +	.domain_alloc = visconti_atu_domain_alloc,
+> > > +	.probe_device = visconti_atu_probe_device,
+> > > +	.release_device = visconti_atu_release_device,
+> > > +	.device_group = generic_device_group,
+> > > +	.of_xlate = visconti_atu_of_xlate,
+> > > +	.pgsize_bitmap = ATU_IOMMU_PGSIZE_BITMAP,
+> > > +	.default_domain_ops = &(const struct iommu_domain_ops) {
+> > > +		.attach_dev = visconti_atu_attach_device,
+> > > +		.detach_dev = visconti_atu_detach_device,
+> >
+> > The detach_dev callback is about to be deprecated. The new drivers
+> > should implement the default domain and blocking domain instead.
+> 
+> Yes please, new drivers need to use default_domains.
+> 
+> It is very strange that visconti_atu_detach_device() does nothing.  It is not
+> required that a domain is fully unmapped before being destructed, I think
+> detach should set ATU_AT_EN to 0.
+
+I see, I rethink implementation.
+
+> 
+> What behavior does the HW have when ATU_AT_ENTRY_EN == 0? If DMA is
+> rejected then this driver should have a IOMMU_DOMAIN_BLOCKING and
+> return that from ops->def_domain_type().
+
+If ATU_AT_ENTRY_EN is 0, nothing happens. It does not work with IOMMU,
+it works with the memory space set in device tree.
+Also, I investigate about IOMMU_DOMAIN_BLOCKING.
+
+> 
+> Attaching a the blocking domain should set ATU_AT_ENTRY_EN = 0
+> 
+> Also, if I surmise how this works properly, it is not following the iommu API to
+> halt all DMA during map/unmap operations. Should at least document this and
+> explain why it is OK..
+
+I see, I will check DMA during map and unmap operations.
+
+> 
+> I'm feeling like these "special" drivers need some kind of handshake with their
+> only users because they don't work with things like VFIO..
+
+Since the devices that utilize this IOMMU function are fixed, I do not think that a special handshake is required.
+Could you you tell me where you thought you needed a handshake?
+
+Best regards,
+  Nobuhiro
+
+> 
+> Jason
 
