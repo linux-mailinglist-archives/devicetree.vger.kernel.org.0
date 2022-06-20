@@ -2,145 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3408552178
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 17:45:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96F2B552183
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 17:48:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242819AbiFTPps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 11:45:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45470 "EHLO
+        id S244134AbiFTPsb convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 20 Jun 2022 11:48:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237399AbiFTPpr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 11:45:47 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05F681AD90;
-        Mon, 20 Jun 2022 08:45:47 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id z7so15664158edm.13;
-        Mon, 20 Jun 2022 08:45:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=rtXs7kbTYAIaKi3cLmcvhvj9LjGI2rwhz07by3dGrtw=;
-        b=o7uHxiffDFsN/YBO0yimv8zrjf4lJWvAom/17OgGBiyzz9vkUlTwm/Yl+lT2ayjGLt
-         fQuiblU8f0NtWxmZ7jTefJ8YUTJjE9zZCmgUQ+nmzGwMuZSXP3n0tcdgHSHss6EEY6HQ
-         p7MJJvUcpuN+VxY0UbBg/MKvxLyLmq9h5EtPGHjQSy4G7w3K5Me1wxwbsYCz2HFEZbBt
-         8fAEmVqwZ0hXFW65E9vqjcYo4fyPjKuQpyNGDaqnegWAvmsw+QYqKDQA7+R2qWCTksSD
-         HZYQAPyfnyM+oyKQxv2cROwVDXJLocQv5j3Wf7J0V0JP4tiJklL76weWDDVBckK8E/+z
-         QOJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=rtXs7kbTYAIaKi3cLmcvhvj9LjGI2rwhz07by3dGrtw=;
-        b=VQr4t5gOS+AQyJvJIkC5Z7NXkgM+WXf/Adi8lTHGCGqN/uXRG5LIMKkTSooqPL5C11
-         TT3e3ANHWSEzaXqo9+oN9/8Hp2p8x3gsoJpfEwCkDPNZ7ms37TRZVxA7P6hqIgMRxDgx
-         6wisRCQwZkUhYMr76z/DsxOpLAf3BMCkUbSwXSNquVYekpMxosHY+i+hpuNcP8ACzc7R
-         d2cuwmpYi8TrZVovVSQP1k1Gl9E37yb8+LDFJsjEbHJbpKpQTrf/HITG/Q/m3615kMNn
-         9u8yd2I8PC1eCWRWe/D1xCRgARP4lS85B4AN52FG4jm2WL/KbBUAbncDhPUIZlE9m/Qq
-         iWuA==
-X-Gm-Message-State: AJIora+6l1gCcIjHAWxRNdiOMDfyv4id2UPJKsLPpS2I0VCMA5RaIMB7
-        ynX6KDU7PRep6eo2b/8unNA=
-X-Google-Smtp-Source: AGRyM1ujDQR9aZvv3au2jdETK0nvvmjLOG/uM1D6E/NFkZ1eQPLzbujTK+tJbCgfSYF28qMpSIQJmw==
-X-Received: by 2002:a50:fb86:0:b0:435:7f5d:4cb5 with SMTP id e6-20020a50fb86000000b004357f5d4cb5mr8942887edq.163.1655739945357;
-        Mon, 20 Jun 2022 08:45:45 -0700 (PDT)
-Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id f20-20020a17090631d400b0071c6dc728b2sm5895943ejf.86.2022.06.20.08.45.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jun 2022 08:45:44 -0700 (PDT)
-Date:   Mon, 20 Jun 2022 17:45:42 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     Kartik <kkartik@nvidia.com>, robh+dt@kernel.org,
-        krzk+dt@kernel.org, jonathanh@nvidia.com, spujar@nvidia.com,
-        akhilrajeev@nvidia.com, rgumasta@nvidia.com, pshete@nvidia.com,
-        vidyas@nvidia.com, mperttunen@nvidia.com, mkumard@nvidia.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 0/6] Add watchdog timer support for Tegra186/194/234 SoCs
-Message-ID: <YrCWJpfobojqjhBw@orome>
-References: <1649924738-17990-1-git-send-email-kkartik@nvidia.com>
+        with ESMTP id S234802AbiFTPsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 11:48:18 -0400
+Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.109.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9E9EC96
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 08:48:16 -0700 (PDT)
+Received: from CHE01-ZR0-obe.outbound.protection.outlook.com
+ (mail-zr0che01lp2104.outbound.protection.outlook.com [104.47.22.104]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-41-LrPDPN-xOV2odip0BadsWQ-2; Mon, 20 Jun 2022 17:48:13 +0200
+X-MC-Unique: LrPDPN-xOV2odip0BadsWQ-2
+Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:2e::8) by
+ GVAP278MB0247.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:36::13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5353.16; Mon, 20 Jun 2022 15:48:11 +0000
+Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::2879:acb:62c8:4987]) by ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::2879:acb:62c8:4987%8]) with mapi id 15.20.5353.022; Mon, 20 Jun 2022
+ 15:48:11 +0000
+Date:   Mon, 20 Jun 2022 17:48:10 +0200
+From:   Francesco Dolcini <francesco.dolcini@toradex.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        l.stach@pengutronix.de, Marco Felsch <m.felsch@pengutronix.de>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/9] dt-bindings: thermal: Define trips node in $defs
+Message-ID: <20220620154810.GB23829@francesco-nb.int.toradex.com>
+References: <20220617070847.186876-1-francesco.dolcini@toradex.com>
+ <20220617070847.186876-2-francesco.dolcini@toradex.com>
+ <b3311560-bbba-7fd9-7cda-65cfbd33458f@linaro.org>
+In-Reply-To: <b3311560-bbba-7fd9-7cda-65cfbd33458f@linaro.org>
+X-ClientProxiedBy: HE1PR0102CA0015.eurprd01.prod.exchangelabs.com
+ (2603:10a6:7:14::28) To ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:2e::8)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="b82/QUJKb3XK5kW+"
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 20a84f8b-e3dc-4882-ec76-08da52d44796
+X-MS-TrafficTypeDiagnostic: GVAP278MB0247:EE_
+X-Microsoft-Antispam-PRVS: <GVAP278MB02478ECEBEC25F49D1C68444E2B09@GVAP278MB0247.CHEP278.PROD.OUTLOOK.COM>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0
+X-Microsoft-Antispam-Message-Info: ygXsZv/rZjzjBE0BLa6kzLawrBpkR0ViP+K6qKOpctEWay92yt4Q0qih4Qjknv61llf8aagGToNkDsCkHUcT4VGLXRfmn95IrlJCM7qhbr9bFGT/pyRAV7Owlq2TlaHL54fKVIPwtmfxqdNHPiWh04S4Xxg/7FLCSrqaMj+kKkVjx/JJeZlrjYCXWEXrF5Lo1xYJlbfesKh8HGx7sW90Iukda36MSmGCnllyZeywsXg/Yab/J+4t1xezjq+XJQvLXRe97gXV2+/ykmi0bUi6n/awbE8iMLdhNEVLjOn/lWupjWB+ENhB9j/rIkG7KwKpyHS7vqd4Km21qg3yY8UgW84vOASJcSMsI9KF9QD7fRZ5MJJqbVxebQPvt4W6lJmpPSUntn3mCEce56cKw+krPURVA23G1WAkysMluWmQxbNwsT4Hxdw6brA6G8QhxP1T4I9OgtsnVlFgL+mujjHj0rHTjFMuub0tmg7wTEBLyDF0yLfeA/pA0fKBLOUl6F2I3V8T9BOPtDg8V8mVpqSz0KZ1RQDU0z//qOUhh3qB+BU1TExlD0xHMpjsJAIjUQc0bT+DE5Xy5f4Iz7jDXYYXOfiM3iZXOYqduiTQoxO/hN0hH8DwokrXogiK8Sy1VkqEV3KQWvNBJb6bBk5JyOtaLi8upzX7lFJpHmfeaaj7Bh7L9IDhzr3WWNf80/DV5ccMnGJgJ9qNbcHkzisop6FHvUx4dvPgGLnq54OIMV3tSQJ7Pl6z9i1GmAqxZDP3qntyx+lJk5ZbrYqHN0SBqj8r/xKBdM6Dqoj8frG1D9gZw5k=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39850400004)(376002)(346002)(136003)(396003)(366004)(8936002)(44832011)(54906003)(5660300002)(110136005)(478600001)(7416002)(6486002)(316002)(86362001)(8676002)(966005)(4326008)(66946007)(66476007)(66556008)(1076003)(6512007)(33656002)(83380400001)(186003)(26005)(41300700001)(2906002)(38350700002)(38100700002)(6506007)(53546011)(52116002);DIR:OUT;SFP:1102
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3EZwdzdufwcSpcvLiIjEp99+ItR6ZYsxiLODWnuBE2UzYBYNbtw08sTx5uyq?=
+ =?us-ascii?Q?PLrzIZSUAfo+VJgD1evVD01e624+O9TszUsbLIeVgtV0/G6dyBQrswaXQvTm?=
+ =?us-ascii?Q?HN2aob5NEItYF7bosE6qQmt3YM8kIu58xm4T02SAaEPiaxKOj1OfuD+eLDQ6?=
+ =?us-ascii?Q?nbsBdA/qUBcwxnl55eW9OSRbCp9Dalka+BsRTyWfYMZc65ZcQQkub9/phFtv?=
+ =?us-ascii?Q?VBO/eC7WZre0w4zQCPjKfyytMvgmkY9XD3RoO+kT4x8iDaokvmeRUJ+ekbsi?=
+ =?us-ascii?Q?fbR/vS8qpHxmd7px6jSu1mIoAYkkKqtacIxxRzjA8dSZnJtCXNcFVtrA4jbA?=
+ =?us-ascii?Q?zYL3lhlmt2k3DR29ZlhTT4pTIvkqdVqlxQB6C5s4Hasz4uoxOEGVd1IN1xjk?=
+ =?us-ascii?Q?nbH+MndNjvT2/NVBx97JeUPe1FUPKFv3n48kGPRsuFEGmKZFDAJfLWpEWhN4?=
+ =?us-ascii?Q?Fa/Ol2Xejq5GsvuYA4DbBxvtnibYO7NRgYCbnCxC/L3yczXoD7TwMRFjmh0b?=
+ =?us-ascii?Q?7hAx59MrfRuKBb9Zab6R49Ex5W4oourrCTzP1zkV3ZlWS4MI22Hz8BT0PayB?=
+ =?us-ascii?Q?ZD92oWDS/gVtZr6/m6cFo/zsqj2+rLrEumPOPya9K03SBuK+lTc62xHmVInH?=
+ =?us-ascii?Q?DWQV0GHkoum44GHIkW8iL2hfdNz8VbIGnBgMJr2ETBCnqhAMeMfEEdFxUdOm?=
+ =?us-ascii?Q?o9u7LYN6DYwANdSUQRegJ1f38BlUJAc2wcvn2acEzOcqHWHAjhJzrbrOIz02?=
+ =?us-ascii?Q?PtN9IdIkjNZYRQB8+8Tx1cZxF28Xogd0DZpm55gEUgxVxuy0RlffamjnOIni?=
+ =?us-ascii?Q?YaZwytP1qfp7XYMAJ/6CQec48OLZWRLdSNCxACtT0FtC8pkCeUd6R1xzOONt?=
+ =?us-ascii?Q?T4mM1UXpSguheN4OUfAWLS3HDxD8+BWPzRZj21/eYJwZ1RX7lLD7S25Oszw/?=
+ =?us-ascii?Q?2H7ptJ93QldyV47S16sryrLz9vrY9dE4Bwy+hNk/qbEd0wAZv7yDB8ospue1?=
+ =?us-ascii?Q?5Gt+cCVe/OlrWs0wCNhq/hCZyzm7UT1vn81qsC/CzwTuOxX7rsesGOgNT4E4?=
+ =?us-ascii?Q?bGe+42dRM7glleBE4B5liLgsLsh4knDLPD+jwJNFSrKbJK6Ij8iOYcxqiVYe?=
+ =?us-ascii?Q?7F1ZtUEJj/VnpkmFF7jTIWG4XDLIsNq3Se718vs3Y9qzHYlsQgw457RNSwe/?=
+ =?us-ascii?Q?DH6leEOZo3FQ92D5S6RuWAHkDuivDMF0kQPW09/7nwkthbqMW+/ngCMnUHzD?=
+ =?us-ascii?Q?p1H7Vr+X0WyBRmCw3MnD2v7i/Fm9BtCBCn2w6Kv8r9Y/mFarm/cb8I3gV7my?=
+ =?us-ascii?Q?WrzPwziMCK4jmeUe0u5rrrQKYH1VQWcCaBBLPYCQxedVJ/Honbvn5rmrVvsm?=
+ =?us-ascii?Q?/lOfgGrXsiymk0NMKxUB9MFvy8x7GDnQ1SX4UGkvk/gn5HKthyZ2/AGicXFz?=
+ =?us-ascii?Q?bX2ZtnIZK1Zb+spNaPfW1iL6qRGOxk6R4/zARla5aEkIv8j4kWiADBn1iyZv?=
+ =?us-ascii?Q?3Mk6WLJur1m1bM+E+2bQHH+g3eUntl2vIpFAWAKeEWu+cHh5rDwMLRpJvxS9?=
+ =?us-ascii?Q?ETLt75qxhnizzoK3zMTWpG8p49ZbANKwiGLQJ7WyaIQHBZiSsfCX6ji2rgMt?=
+ =?us-ascii?Q?Jlhi7ZloGRMtdj2VoKqbwXTor9pYPB8I7L4iVBeq1IlcjbrvZT/MVPgd3Rgf?=
+ =?us-ascii?Q?t/YrAyA9pOxRS439m/vGBtowrxmzrLgEOAXNVbE9jcjbkI2H75CTlPVqazyN?=
+ =?us-ascii?Q?nuPjAM1i22c+8qGV5mzZHeqJe3XARhjFerYpq4kencUWPCrRiVqA?=
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20a84f8b-e3dc-4882-ec76-08da52d44796
+X-MS-Exchange-CrossTenant-AuthSource: ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jun 2022 15:48:11.4589
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ObNOTTJ9UC9st2Ye7Tr1pNex3xSIKZAmpfawlvNObFgozD6mxecjdetS/XbCB5bagXf6bb72pmYiFEdZswD0rNel/AzZOX0KLKpd0oMwcDQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVAP278MB0247
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=CDE13A77 smtp.mailfrom=francesco.dolcini@toradex.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: toradex.com
+Content-Type: text/plain; charset=WINDOWS-1252
 Content-Disposition: inline
-In-Reply-To: <1649924738-17990-1-git-send-email-kkartik@nvidia.com>
-User-Agent: Mutt/2.2.4 (c3baa83e) (2022-04-30)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Krzysztof,
+thanks for your comment, let me try to provide you some additional
+background to better understand this change.
 
---b82/QUJKb3XK5kW+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, Jun 17, 2022 at 06:02:39PM -0700, Krzysztof Kozlowski wrote:
+> On 17/06/2022 00:08, Francesco Dolcini wrote:
+> > Move `trips` definition to `#/$defs/trips-base` and just reference it
+> > from the trips node. This allows to easily re-use this binding from
+> > another binding file.
+> > 
+> > No functional changes expected.
+> 
+> If you want to re-use trips, they should be rather moved to separate
+> YAML file...
 
-On Thu, Apr 14, 2022 at 01:55:32PM +0530, Kartik wrote:
-> The native timers IP block found on Tegra SoCs implements a watchdog
-> timer that can be used to recover from system hangs. This series of
-> patches adds support for watchdog timers available on Tegra186,
-> Tegra194 and Tegra234 SOC's.
->=20
-> To keep the history intact, I added Tegra234 driver change as separate.
-> The original patchset is an old one authored by Thierry.
->=20
-> Kartik (4):
->   dt-bindings: timer: Add Tegra186 & Tegra234 Timer
->   clocksource/drivers/timer-tegra186: Add support for Tegra234 SoC
->   arm64: tegra: Enable native timers on Tegra186
->   arm64: tegra: Enable native timers on Tegra234
->=20
-> Thierry Reding (2):
->   clocksource: Add Tegra186 timers support
->   arm64: tegra: Enable native timers on Tegra194
->=20
->  .../bindings/timer/nvidia,tegra186-timer.yaml | 116 ++++
->  arch/arm64/boot/dts/nvidia/tegra186.dtsi      |   2 +-
->  arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  16 +
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi      |  22 +
->  drivers/clocksource/Kconfig                   |   8 +
->  drivers/clocksource/Makefile                  |   1 +
->  drivers/clocksource/timer-tegra186.c          | 514 ++++++++++++++++++
->  7 files changed, 678 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegra1=
-86-timer.yaml
->  create mode 100644 drivers/clocksource/timer-tegra186.c
+Fine, this should not be a big deal to achieve. Let's agree on the rest
+first, however.
 
-Hi Daniel, Thomas,
+> but anyway this should not be done per-driver bindings, but
+> in more general way. Either the problem - using one DTS for different
+> temperature grades - looks generic or is wrong at the core. In the first
+> option, the generic bindings should be fixed. In the second case - using
+> same DTS for different HW is not correct approach and why only thermal
+> should be specific? I can imagine that cooling devices might have
+> different settings, regulator voltages for DVFS could be a bit different...
 
-any comments on this from the clocksource side of things? So far the
-only comments have been on the bindings, so if there's nothing else on
-the driver bits, Kartik could go ahead and send a v2 so that we can
-hopefully get this into v5.20.
+Let me try to explain the problem I am trying to solve here.
 
-Thanks,
-Thierry
+Currently the imx-thermal driver harcode the critical trip threshold,
+this trip point is read-only as it is considered a system property that
+should not be changed and it is set to a value that is less than the
+actual SoC maximum temperature. NO thermal_of driver used.
 
---b82/QUJKb3XK5kW+
-Content-Type: application/pgp-signature; name="signature.asc"
+Because of that there are systems that cannot work on some valid
+temperature range.
 
------BEGIN PGP SIGNATURE-----
+We are currently looking at a solution that would be backward compatible
+with old device tree.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmKwliMACgkQ3SOs138+
-s6E+Ig//TlC+iFALnyPKXJqWBopRzUbPKeVZT+qb4Ucj/j9QjI95xY4uKiH5HPqU
-IMgYuTVNezbsvh5H9bFGA1anEH2Wxq77e9C1CfC+Ym/mDl/ZuHPkTPPXmWUe0EoH
-CvaaIpvLwlpaQ2Sl/E2h9hUdt2a4tkZKLQxwJGlNFJCAilof4w/dgy98QH/N2Kmr
-wy+SEKRPEVP4DJrb+UB80NiOa0KuIGPAuXpPy0mtB07rhEI9mVPnD86gacPtQvzW
-Pprae5BS0/YJi0zNUu5QdPrA7H3ga0Fp7HBSneKqJK/FSkvPGtHjw7wK1M7xL1uy
-phC9b0aTHOAWzUKoYF9qua2DI5W5QPx+JwXbhENA4moa4lgXAVJM/SosVgsfdCMA
-pBboodHeABtqOqcbOIlKyNn0b1d1aaJcp+KUgl5pmLDIJplSVZwSei+UtQ5lT2U7
-+SPl6j02tkpw/ovjEebjypr1Fg02GHzf1LcMoSVvWcjvRzmWkPhNHrBs/7mgTLub
-+eCEA04y5fuhsMDpAHhB7dRplbtOzp0KZVFnWYE+vV3+FGw2KHQeWkXf1UU2I74s
-z0AlEU/6BbNCZqI1j5Ach3C7BvAYAoMOOfH9XJ/O500ukgCZpfsvDHjIZDaxSzdk
-IlaGkYjkkmWHuUf0+wL4cLEV6JVN3RSPG62rBkL89eghfM61j+U=
-=9Pgv
------END PGP SIGNATURE-----
+I proposed the following:
+1- just increase the threshold to the actual max value allowed according
+   to the SoC thermal grade. 
 
---b82/QUJKb3XK5kW+--
+   As easy as 
+
+-	data->temp_critical = data->temp_max - (1000 * 5);
++	data->temp_critical = data->temp_max;
+   
+   in drivers/thermal/imx_thermal.c 
+
+   https://lore.kernel.org/all/20220420091300.179753-1-francesco.dolcini@toradex.com/
+
+   It was not considered good enough by Lucas since this is a overall
+   system design question, therefore should be configurable.
+
+2- make the critical trip write-able from userspace/sysfs.
+
+   Daniel is against this since critical trip point is a system
+   property, not something the user should be allowed to change.
+
+3- kernel parameter: https://lore.kernel.org/all/20220516190001.147919-1-francesco.dolcini@toradex.com/
+
+   Initially proposed by Daniel, but Marco did not like the idea.
+
+4- New device tree property, fsl,tempmon-critical-offset, ditched also
+   by Marco
+
+5- The current solution in this patch, with the existing trip points
+   that are hardcoded in the code exposed in the device tree as trips.
+
+
+Ideally one could just implement the imx6/7 thermal sensor reading and
+just make use of the thermal_of driver, however that would break
+compatibility with a lot of existing system ... to me this is just a
+no-go.
+
+Adding only one set of thermal trip point in the dts (no thermal-grade
+specific set) could work in some specific scenario, however it does not
+work for me since I have the same dts files using different temperature
+grade SoC. I would need to update this in the firmware before starting
+Linux.
+
+Krzysztof, what do you think? I would not mind to get back to one of
+the more simpler approach I proposed.
+
+Lucas, are you really that against the simple working solution I
+proposed initially [1]? I feel like I am running in circles ...
+
+Francesco
+
