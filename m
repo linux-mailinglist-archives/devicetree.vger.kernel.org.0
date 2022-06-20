@@ -2,66 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08EC35515FE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 12:35:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F38F4551607
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 12:39:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240233AbiFTKfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 06:35:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60286 "EHLO
+        id S240905AbiFTKjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 06:39:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239937AbiFTKfU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 06:35:20 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF9B3140BA;
-        Mon, 20 Jun 2022 03:35:07 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25KAZ2vR037773;
-        Mon, 20 Jun 2022 05:35:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1655721302;
-        bh=B/CMxOrjt3USywgvG1ViD+xucM6jErldrfE1XJdq7LY=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=n3QmW4mo3zk9yGmAYU0yebQPnnjEbcNH/wKy2BRmua7OP2KlFtBW8vIsBL2XQQLPT
-         stLMefhRLkULI7zktQ4LOjF2wBANpRqfCLL4OjnM7SwjAlWPQo/HrE0ZxIUBJ4QGX4
-         LIsseadGPxr+BIXScUlCxz2P9N4DmeoNmqFrDWYc=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25KAZ2pc046067
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 20 Jun 2022 05:35:02 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 20
- Jun 2022 05:35:02 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 20 Jun 2022 05:35:02 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25KAZ1rF031751;
-        Mon, 20 Jun 2022 05:35:02 -0500
-Date:   Mon, 20 Jun 2022 16:05:01 +0530
-From:   Jai Luthra <j-luthra@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Jayesh Choudhary <j-choudhary@ti.com>,
-        Jai Luthra <j-luthra@ti.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: ti: am625-sk: Add audio output support
-Message-ID: <20220620103501.jw3epiky2iynxphn@uda0497096>
-References: <20220620102750.32718-1-j-luthra@ti.com>
- <20220620102750.32718-3-j-luthra@ti.com>
+        with ESMTP id S240794AbiFTKi7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 06:38:59 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1293913FAB
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 03:38:58 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id hj18so19621141ejb.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 03:38:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=+s1fQfW6DNhIDr3s4ER+coLI9K2pOkuofyZ5KAduIYE=;
+        b=pespo32PKkFYzEq5EJWqDcxOhszBLeBhEb5WldaDOvrawNQ0XUVPX9Qx2JeaoUljDD
+         N6oWawR1CV1MzBMPr/nOyuaL2Cehvs++OP2Am+VqYjlxQ9T8PSkDt3fW+dMc8v2rMs4W
+         2RuBLcENxv2KZpo/dJpvfcM/zadlQN3VZzcI+o+0fkPYN8A+d9Grx3xleh+ohLiEX2WO
+         m57jHavyliHkxhHSKGKUouJUJtcQwcbuwld3kt5tU5rs2rJb+lZ8E6TMXo6epM1XyGEd
+         SJhPXK+9FmeAZ9meMT35SoXasnpS236pNShuY7+LXcakYxSeSIoLptC4Sua2HFIweXNa
+         CKtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=+s1fQfW6DNhIDr3s4ER+coLI9K2pOkuofyZ5KAduIYE=;
+        b=d0PrQPafGwpsRga9mzU/RGHGbAk8GQCNtoOxKNgEYUT2KrgJH+pKv8C798YtSjjnbC
+         ToUqRmp1xN9b+K5uR0VRpW1p/jcTQlKlRq8e4qQP1HwJEhU+MH4pJiuRZd3MOJWYm0N+
+         3rF1OvuKuMJI2G06NduYDZgcweUWIq2KdkW9+slT0/yyMseLTSJSnJY5ZzP9xtFmGlHS
+         999l0aefnVCZQtxmHSPY76qOZbDy3KrmQKDr4v5+wrQKYp+1UIQw+CGWhW7i+cSbgaHY
+         AJNlm1zr+qHl84Z0TqRl6akAV4cdVbb9ucMTS0pkYXAvPJVAgtQt5XNatPam6EY8Arw6
+         II+Q==
+X-Gm-Message-State: AJIora+MzHGYVUopaK4hh4tb1GzMLQ3aW6opOWOOvVXExhfHIhE+ihSA
+        zGpYHRAHCRjMoMcmcb7TdGRIhQ==
+X-Google-Smtp-Source: AGRyM1sP4TDttzlpu+tHrmPr9qEAwS7y6wDB+zQXWLVNnZGSmSp9/92ifj3N22k13BDkZ3sEzyxRfg==
+X-Received: by 2002:a17:906:73d4:b0:715:701c:ae96 with SMTP id n20-20020a17090673d400b00715701cae96mr19568704ejl.50.1655721536603;
+        Mon, 20 Jun 2022 03:38:56 -0700 (PDT)
+Received: from [192.168.0.209] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id fq36-20020a1709069da400b006fecef65fc4sm5807864ejc.179.2022.06.20.03.38.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Jun 2022 03:38:55 -0700 (PDT)
+Message-ID: <7c47bab1-cd64-cde1-a4cd-cca6514bc57f@linaro.org>
+Date:   Mon, 20 Jun 2022 12:38:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220620102750.32718-3-j-luthra@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/2] dt-bindings: phy: Add Freescale i.MX8qm Mixel LVDS
+ PHY binding
+Content-Language: en-US
+To:     Liu Ying <victor.liu@nxp.com>, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com
+References: <20220618092201.3837791-1-victor.liu@nxp.com>
+ <20220618092201.3837791-2-victor.liu@nxp.com>
+ <b83e3100-edd6-4f91-75e0-8a87447d8a4c@linaro.org>
+ <89a29795e918343583f45b0f8a65a002592f8b15.camel@nxp.com>
+ <3f805983-47c0-9be1-f221-4cd23b847018@linaro.org>
+ <d8af25c1d5e81d6b308c3162aae670f091b59bd4.camel@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d8af25c1d5e81d6b308c3162aae670f091b59bd4.camel@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,23 +83,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15:57-20220620, Jai Luthra wrote:
-> Add nodes for audio codec and sound card, enable the audio serializer
-> (McASP1) under use and update pinmux. Disable all other McASP nodes.
+On 20/06/2022 09:56, Liu Ying wrote:
+> On Mon, 2022-06-20 at 09:35 +0200, Krzysztof Kozlowski wrote:
+>> On 20/06/2022 05:06, Liu Ying wrote:
+>>> On Sun, 2022-06-19 at 14:11 +0200, Krzysztof Kozlowski wrote:
+>>>> On 18/06/2022 11:22, Liu Ying wrote:
+>>>>> This patch adds bindings for Mixel LVDS PHY found on
+>>>>> Freescale i.MX8qm SoC.
+>>>>>
+>>>>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+>>>>> ---
+>>>>>  .../bindings/phy/mixel,lvds-phy.yaml          | 64
+>>>>> +++++++++++++++++++
+>>>>>  1 file changed, 64 insertions(+)
+>>>>>  create mode 100644
+>>>>> Documentation/devicetree/bindings/phy/mixel,lvds-phy.yaml
+>>>>> diff --git a/Documentation/devicetree/bindings/phy/mixel,lvds-
+>>>>> phy.yaml b/Documentation/devicetree/bindings/phy/mixel,lvds-
+>>>>> phy.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..de964ffb9356
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/phy/mixel,lvds-phy.yaml
+>>>>> @@ -0,0 +1,64 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: 
+>>>>>
+> https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fphy%2Fmixel%2Clvds-phy.yaml%23&amp;data=05%7C01%7Cvictor.liu%40nxp.com%7Cc7d6216ac12148ec95d008da528f78eb%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637913073407696040%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=m588CiXOaJhWFbpEal3MjZaHtvOTUOVIujydIdPxSHg%3D&amp;reserved=0
+>>>>> +$schema: 
+>>>>>
+> https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=05%7C01%7Cvictor.liu%40nxp.com%7Cc7d6216ac12148ec95d008da528f78eb%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637913073407696040%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=IGn5f05QrzyX05k%2FKgTitdq6OYN2FmdpsO6qHXun55Y%3D&amp;reserved=0
+>>>>> +
+>>>>> +title: Mixel LVDS PHY for Freescale i.MX8qm SoC
+>>>>
+>>>> If Mixel is a vendor, it needs it's vendor prefix documented and
+>>>> used
+>>>> in
+>>>> compatible. Filename should match compatible. If it is not a
+>>>> vendor,
+>>>> then filename should be "fsl,imx8qm-lvds-phy.yaml"
+>>>
+>>> Mixel is a vendor. I'll document the vendor prefix and set
+>>> 'fsl,imx8qm-lvds-phy' and 'mixel,lvds-phy' as compatible's enum.
+>>> I'll keep the filename as-is.
+>>
+>> mixel,lvds-phy is not a good compatible (and filename) because it is
+>> not
+>> specific about component version. Please use specific compatibles
+>> only
+>> thus also specific filename (filename should match first compatible).
 > 
-> Audio input is currently not working properly, so the RX port on McASP1
-> is disabled for now, until the issue is debugged.
+> All the information about component version I can find in the PHY IP's
+> data sheet is '28FDSOI-LVDS-1250-8CH-TX-PLL'. '28FDSOI' looks like the
+> technology name. Do you think the compatible name can be
+> 'mixel,lvds-1250-8ch-tx-pll'? Or, any better option?
 > 
-> The serializer is shared between HDMI and codec. By default codec is
-> used for output, but it can be toggled to HDMI using a FET switch
-> connected to the MCASP1_FET_SEL (J24) header on the board.
+> If the compatible name is ok, does the below compabitle property look
+> ok?
 > 
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am625-sk.dts | 89 ++++++++++++++++++++++++++
->  1 file changed, 89 insertions(+)
+> ===================8<==============
+>   compatible:
+>     enum:
+>       - mixel,lvds-1250-8ch-tx-pll
+>       - fsl,imx8qm-lvds-phy
+> ===================8<==============
 
-Oops, I sent this patch twice in the series. Please ignore this one.
+https://mixel.com/wp-content/mixel/pdf/2018/MXL-LVDS-1250-8CH-TX-PLL_SS_28FDSOI.pdf
 
-Thanks,
-Jai
+mentions entire name as a device name, so with 28FDSOI, but your choice
+is also good.
+
+
+Best regards,
+Krzysztof
