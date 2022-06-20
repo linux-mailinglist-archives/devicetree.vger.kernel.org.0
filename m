@@ -2,65 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C685551769
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 13:27:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E560551793
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 13:42:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241391AbiFTL1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 07:27:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49440 "EHLO
+        id S241815AbiFTLmb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 07:42:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241131AbiFTL1Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 07:27:16 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E424015FE3
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 04:27:14 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id b142so7556335qkg.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 04:27:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=J533xN3vmF0b7bVUQdXHVZEy7RzWjbJzXkA6gmKmUpM=;
-        b=uXD9hNHwJQGzSu1R+BjCobalYD7q5Z8EwJPQB48/5crPDTeRGCaJgxUC+DO5AKya+V
-         /tvhBT++bznuMCHZ6dL3mJwbcnc02CCryFRwyQ+1ftSyxndju0SGNwGR9rtlNMFtAXoo
-         ZEsnUHkIFNU0vbyN0P7BTNKNGEtxRZY8iykFHs1mHxgEG+hwyaHLsO+m0pzzMQfXSm/c
-         x1IUli0HM2d3pVQly64GEK7O+i1OOyMVuUem8NUw25+Zm+IraqqcJfTUWVl7dbnbaasR
-         0MeayDdwzLljdq7VAMrGb1qqEXYsIUFU7+l72N6muFi9n3MDHkPznav0bs1DMNpTGbDp
-         RAJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=J533xN3vmF0b7bVUQdXHVZEy7RzWjbJzXkA6gmKmUpM=;
-        b=1uDRT5X7+VlAtjNNX7gZ0lqlGAE/2M6lbmNGH47RofKLvJO8idwt9uahSR3vVLdr0z
-         W8vnldvIvSEQMkR2/sOosLYi1W/9jHOPmPGp9FknJ3SdcqWoyfnipPGzR9bGGSgykukL
-         wCU1bWV0Slmtwt4bu7x3JEsu2UOnMkGzYeR807xuWMn46x2KzDSeXokLPTO9bu0XigaM
-         NU3tZ7oR3d6GgguxYyDTyb/ioaDXz6LhHBQofalAKEoN7fC+HFIRP+ZIRwUW+WvQ2+pj
-         ksXZ11TmqHxYvvJyk4vgYL7uzZnSICQEwe8tC64mfMw282QtzV1EM9Fsvg8fggZ0QZs1
-         md2Q==
-X-Gm-Message-State: AJIora/3Ywtbli+2az5P03uICF7KGSbig8sUUQ8N5K+lSWoiRoe16yqm
-        9OF4x+J6a0nuUdCgZFLk6ChMQw6eaSE97Y/52Hck2Q==
-X-Google-Smtp-Source: AGRyM1sfDngwvGMs+qB5zHQAaYrnUMlXHonu3sVuECoTaRPqj1Jfmm7lD4wGqOJcO36O8Bx+Fh9TJRYROfWBhQ56PbA=
-X-Received: by 2002:a05:620a:2a0e:b0:6a7:8346:1601 with SMTP id
- o14-20020a05620a2a0e00b006a783461601mr15631960qkp.593.1655724434076; Mon, 20
- Jun 2022 04:27:14 -0700 (PDT)
+        with ESMTP id S235801AbiFTLmb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 07:42:31 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 932571659E;
+        Mon, 20 Jun 2022 04:42:29 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25KBgM6x061455;
+        Mon, 20 Jun 2022 06:42:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655725342;
+        bh=4plFmT78RjcqN4kVC76hW4KGxAhnAgKqHE3Pr4lusVA=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=XoLD3Y4ltUZxIMljk5+60Ub/MNz2dDZKSRTwdj6DUVYfjhA7P8itoEBX3jIckGnwu
+         mLYjWdt/bLw51fQg9ELd0O846zPrAVvtS0CWIwSnw5MeYF84QPtzflmDso8AozBFON
+         pRKtuTJXsAvY/IWEPr+mfivcXFZegEK4MJY0ayds=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25KBgMU4087171
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 20 Jun 2022 06:42:22 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 20
+ Jun 2022 06:42:21 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 20 Jun 2022 06:42:21 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25KBgKsC130217;
+        Mon, 20 Jun 2022 06:42:21 -0500
+Date:   Mon, 20 Jun 2022 17:12:19 +0530
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     Nishanth Menon <nm@ti.com>
+CC:     <robh+dt@kernel.org>, <vigneshr@ti.com>, <kishon@ti.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <lee.jones@linaro.org>,
+        <rogerq@kernel.org>, <devicetree@vger.kernel.org>,
+        <kristo@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>,
+        Vijay Pothukuchi <vijayp@ti.com>
+Subject: Re: [PATCH v4 2/3] arm64: dts: ti: k3-j721e-*: Add dts nodes for
+ EHRPWMs
+Message-ID: <20220620114218.fqkf6vnyxafla23z@uda0490373>
+References: <20220530101031.11357-1-r-ravikumar@ti.com>
+ <20220530101031.11357-3-r-ravikumar@ti.com>
+ <20220618021949.i5m4saxi2celzanz@kahuna>
 MIME-Version: 1.0
-References: <20220620071936.1558906-1-dmitry.baryshkov@linaro.org>
- <20220620071936.1558906-4-dmitry.baryshkov@linaro.org> <22f4ba43-2505-3000-24b6-b01d58d87e7f@linaro.org>
-In-Reply-To: <22f4ba43-2505-3000-24b6-b01d58d87e7f@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 20 Jun 2022 14:27:03 +0300
-Message-ID: <CAA8EJpoESu8FBhbg8R6axtS-VfuYqsXKvgvnDExVJy2wZt5+Jg@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: msm8996: add GCC's optional clock sources
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220618021949.i5m4saxi2celzanz@kahuna>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,66 +70,185 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Jun 2022 at 14:24, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 20/06/2022 09:19, Dmitry Baryshkov wrote:
-> > Add missing GCC clock sources. This includes PCIe and USB PIPE and UFS
-> > symbol clocks.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On 21:19-20220617, Nishanth Menon wrote:
+> On 15:40-20220530, Rahul T R wrote:
+> > From: Vijay Pothukuchi <vijayp@ti.com>
+> > 
+> > Add dts nodes for 6 EHRPWM instances on SoC
+> > 
+> > Signed-off-by: Vijay Pothukuchi <vijayp@ti.com>
+> > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
 > > ---
-> >  arch/arm64/boot/dts/qcom/msm8996.dtsi | 18 ++++++++++++++++--
-> >  1 file changed, 16 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> > index e97f193aefd3..6c7380f86383 100644
-> > --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> > @@ -689,8 +689,22 @@ gcc: clock-controller@300000 {
-> >
-> >                       clocks = <&rpmcc RPM_SMD_BB_CLK1>,
-> >                                <&rpmcc RPM_SMD_LN_BB_CLK>,
-> > -                              <&sleep_clk>;
-> > -                     clock-names = "cxo", "cxo2", "sleep_clk";
-> > +                              <&sleep_clk>,
-> > +                              <&pciephy_0>,
-> > +                              <&pciephy_1>,
-> > +                              <&pciephy_2>,
-> > +                              <&ssusb_phy_0>,
-> > +                              <0>, <0>, <0>;
->
-> Since the clocks are optional, there is no need to pass <0> to them. I
-> think it does not bring any benefits.
+> >  .../dts/ti/k3-j721e-common-proc-board.dts     | 24 +++++++
+> >  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 62 ++++++++++++++++++-
+> >  arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 24 +++++++
+> >  3 files changed, 109 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> > index 2bc26a296496..f7d02fa4d6fc 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> > +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> > @@ -995,3 +995,27 @@
+> >  &main_mcan13 {
+> >  	status = "disabled";
+> >  };
+> > +
+> > +&main_ehrpwm0 {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +&main_ehrpwm1 {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +&main_ehrpwm2 {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +&main_ehrpwm3 {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +&main_ehrpwm4 {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +&main_ehrpwm5 {
+> > +	status = "disabled";
+> > +};
+> 
+> 
+> Do the pwm driver croak and die OR it is un-usable on proc-board or
+> disabled due to not-primary function (ideally drivers should shut things
+> off when unused)?
+> 
 
-It serves as a reminder that they should be filled with the proper
-sources. We do the same thing for DSI/DP clocks where the PHY is not
-yet supported, but the GCC lists them.
+Hi Nishanth,
 
-I had to mark them as optional so that the existing schema files pass
-validation. Otherwise they would be in the 'required' part.
+Nodes are disabled since
+EHRPWM is not primary function
+and pins are configured for
+different interfaces like MCASP10 etc..
 
->
-> > +                     clock-names = "cxo",
-> > +                                   "cxo2",
-> > +                                   "sleep_clk",
-> > +                                   "pcie_0_pipe_clk_src",
-> > +                                   "pcie_1_pipe_clk_src",
-> > +                                   "pcie_2_pipe_clk_src",
-> > +                                   "usb3_phy_pipe_clk_src",
-> > +                                   "ufs_rx_symbol_0_clk_src",
-> > +                                   "ufs_rx_symbol_1_clk_src",
-> > +                                   "ufs_tx_symbol_0_clk_src";
-> >               };
-> >
-> >               tsens0: thermal-sensor@4a9000 {
->
->
-> Best regards,
-> Krzysztof
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> > index 43b6cf5791ee..1ee00b73905d 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> > @@ -66,7 +66,67 @@
+> >  			#mux-control-cells = <1>;
+> >  			mux-reg-masks = <0x4000 0x8000000>, /* USB0 to SERDES0/3 mux */
+> >  					<0x4010 0x8000000>; /* USB1 to SERDES1/2 mux */
+> > -	    };
+> > +		};
+> > +
+> > +		ehrpwm_tbclk: clock-controller@4140 {
+> > +			compatible = "ti,am654-ehrpwm-tbclk", "syscon";
+> > +			reg = <0x4140 0x18>;
+> > +			#clock-cells = <1>;
+> > +		};
+> > +	};
+> > +
+> > +	main_ehrpwm0: pwm@3000000 {
+> > +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> > +		#pwm-cells = <3>;
+> > +		reg = <0x0 0x3000000 0x0 0x100>;
+> 
+> would suggest 0x00 instead of 0x0
 
+will fix this in the respin
 
+Regards
+Rahul T R
 
--- 
-With best wishes
-Dmitry
+> 
+> > +		power-domains = <&k3_pds 83 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&ehrpwm_tbclk 0>, <&k3_clks 83 0>;
+> > +		clock-names = "tbclk", "fck";
+> > +	};
+> > +
+> > +	main_ehrpwm1: pwm@3010000 {
+> > +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> > +		#pwm-cells = <3>;
+> > +		reg = <0x0 0x3010000 0x0 0x100>;
+> > +		power-domains = <&k3_pds 84 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&ehrpwm_tbclk 1>, <&k3_clks 84 0>;
+> > +		clock-names = "tbclk", "fck";
+> > +	};
+> > +
+> > +	main_ehrpwm2: pwm@3020000 {
+> > +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> > +		#pwm-cells = <3>;
+> > +		reg = <0x0 0x3020000 0x0 0x100>;
+> > +		power-domains = <&k3_pds 85 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&ehrpwm_tbclk 2>, <&k3_clks 85 0>;
+> > +		clock-names = "tbclk", "fck";
+> > +	};
+> > +
+> > +	main_ehrpwm3: pwm@3030000 {
+> > +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> > +		#pwm-cells = <3>;
+> > +		reg = <0x0 0x3030000 0x0 0x100>;
+> > +		power-domains = <&k3_pds 86 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&ehrpwm_tbclk 3>, <&k3_clks 86 0>;
+> > +		clock-names = "tbclk", "fck";
+> > +	};
+> > +
+> > +	main_ehrpwm4: pwm@3040000 {
+> > +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> > +		#pwm-cells = <3>;
+> > +		reg = <0x0 0x3040000 0x0 0x100>;
+> > +		power-domains = <&k3_pds 87 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&ehrpwm_tbclk 4>, <&k3_clks 87 0>;
+> > +		clock-names = "tbclk", "fck";
+> > +	};
+> > +
+> > +	main_ehrpwm5: pwm@3050000 {
+> > +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> > +		#pwm-cells = <3>;
+> > +		reg = <0x0 0x3050000 0x0 0x100>;
+> > +		power-domains = <&k3_pds 88 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&ehrpwm_tbclk 5>, <&k3_clks 88 0>;
+> > +		clock-names = "tbclk", "fck";
+> >  	};
+> >  
+> >  	gic500: interrupt-controller@1800000 {
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> > index 80358cba6954..98a55778f3fe 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> > +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> > @@ -1129,3 +1129,27 @@
+> >  	memory-region = <&c71_0_dma_memory_region>,
+> >  			<&c71_0_memory_region>;
+> >  };
+> > +
+> > +&main_ehrpwm0 {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +&main_ehrpwm1 {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +&main_ehrpwm2 {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +&main_ehrpwm3 {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +&main_ehrpwm4 {
+> > +	status = "disabled";
+> > +};
+> > +
+> > +&main_ehrpwm5 {
+> > +	status = "disabled";
+> > +};
+> > -- 
+> > 2.17.1
+> > 
+> 
+> -- 
+> Regards,
+> Nishanth Menon
+> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
