@@ -2,83 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CAA15521AE
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 17:57:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46B115521CF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 18:05:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243302AbiFTP5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 11:57:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54470 "EHLO
+        id S229487AbiFTQFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 12:05:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243053AbiFTP5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 11:57:04 -0400
+        with ESMTP id S233907AbiFTQFB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 12:05:01 -0400
 Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6057C1DA67
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 08:57:03 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id c13so11263553eds.10
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 08:57:03 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 562FA201A3
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 09:05:00 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id o10so15778122edi.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 09:05:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=BLJok6X/XP9rRP7OVZBxo2FoWIuF2yxnMwl8P3cexO4=;
-        b=Xt7y5Qe7+Wa7yYibcVvdOfwMtbLwRTN0Zq/M6R55v21ht1WGi/IPChYQ+SvJSe5Brc
-         B6UA+MJObyH2Fm+8VXqwNRvg1mfurkHWqw8Xbq8NPqQmqVIqnya1L4ZahflvmPBtyeXD
-         VR938s9+lVuSDM/XmiZewPLFp4twSGcwligcvSmIjjVgtuPVp18bhkKjkYllVesSTaZs
-         Jp3PInwjuiJ6YQT3OjVPWlrCjvSeG8i4XyiMH2ryEGFTehrTgAEF1eroWKXB3auLr8r4
-         rBXbBgtscJ94JK8zvmoHlBJtsNtdaiYDWxMtwmVzVyGytdzcjzV4nZS7ol/DknUXGzjx
-         5TxQ==
+        bh=PiyaNO6pa1UECbQmSjR1WNenD8YkEf0ERGJt4gH8P0Q=;
+        b=gQcSn4MdkPpkFw9VUNku8D6x6KLxjeo/MkCT25gPhzhY2lob+o/AW/NtLLHzpiyEgl
+         YaTWvpFBUVdbZq9gIr0kkt4PjUcdpsouBzZouKRxcyLG6PH+7qBRpx7iUdKljoK0CyEa
+         pBEh+bzEL97/mTjwOx4lVmlJYxYIopKqa5eKahId/vYDvGr98qeMFTrTZ3Ctf6NJo/wM
+         MRnXdPGYJyb3Vmxc9Kl+rrqd3mY+ch9uyApqGGLfKzojaOB8TRdcWZVexlcTKoVuYvlB
+         +c2j3qsO6o5XRiOpyhKeT1hOS2xFeBSzXaexXVgZ/G2zK0CFajtUrxWc/qbpaMvO2zOB
+         TSIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=BLJok6X/XP9rRP7OVZBxo2FoWIuF2yxnMwl8P3cexO4=;
-        b=2u1RYAelrtc1k4EUhnmfPV4CAm5n970XXURF2JZ2jQSi5iiWOQkJbW8Js/zXVdh+lS
-         bDPZQHgjlTTHrLb9rz3kebpBGShqlnJh3krzWy2et1LrioMA03ZrXjEE+jAGJDK39QuR
-         K3ZfLDSeuMedBglicvC5nZor3X3TmhwcU+En/nkQl4PjedEkpVO1FVoPM3obU0TKiWaB
-         5ukP6cOdS/KhI4G9pYKjlDYuBGzYeqUkF/oNm4Y3EgnKXKHBka+iOgjCkjK6vqcr9EVK
-         fKqIXwdHnW7BvMAWMoz890z1Mugpw8gCw4NqST5thev5rKTWQQqLqVHwWr6RXegHE++e
-         T/SA==
-X-Gm-Message-State: AJIora/wQMta4H1OSA6hhCo7yfGK8VczKLypdU0eF98I2K/LBHK0NthN
-        A7jh+pWTahABdxlOD2noALqVzg==
-X-Google-Smtp-Source: AGRyM1vB4w9kMQvsDMIwngcwm/lZJao/j8ndNodHf3Z/j1CnWv4Tx74ZUtC1ToZcNlh2DUsmeckxOQ==
-X-Received: by 2002:a05:6402:5c8:b0:433:545f:a811 with SMTP id n8-20020a05640205c800b00433545fa811mr30285866edx.101.1655740622007;
-        Mon, 20 Jun 2022 08:57:02 -0700 (PDT)
+        bh=PiyaNO6pa1UECbQmSjR1WNenD8YkEf0ERGJt4gH8P0Q=;
+        b=A0yfqxmvmyGc+OGPtkSIMfUMDPf3wAqyJ6C0vsvmn8T2R+k6UpWDQwEdNIMCWX7K7+
+         SHMG/D3izoIfOXoOF8Wu29QzXUlGGq1+4PRF7Oc528b9YRfo/FTR1vp2jAtAsHvob6nC
+         w9Drb9as4MHYP1JhlmlTCd7ydBPSlK3nCRikm7QqRdMLowfY2TkGzASp61+s6ULF+4vM
+         nE8fxz0TyAVmGDd36Cz7nRdGlNzXcTYreoAUvxe6Gsug/PlvwteqHfL/Nii3/zr9Po6Q
+         78T+NcLwBhb2FsheYHMIYtZ/GAnZDWEJOW0KzlT56df2UhK8ufhc0fSpi5zcd8xZ6u5G
+         yUOQ==
+X-Gm-Message-State: AJIora9PHvo/mj+xZN7aqR18z/VmXbSrj/U13LIGgJcWqthdXKgfZ/n3
+        FcmdNyRlnbvlX84JCCH8vEZnJw==
+X-Google-Smtp-Source: AGRyM1vjJkbpsGZpShi0xdylQhTb+8pCE4v7toIA2SYqutENem+JoaXD18e44Vl4hAvCa9V8XXLOeg==
+X-Received: by 2002:a05:6402:5212:b0:42e:2fa:41a7 with SMTP id s18-20020a056402521200b0042e02fa41a7mr30186493edd.22.1655741098882;
+        Mon, 20 Jun 2022 09:04:58 -0700 (PDT)
 Received: from [192.168.0.210] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id e1-20020a056402148100b004357171dcccsm5866342edv.12.2022.06.20.08.57.00
+        by smtp.gmail.com with ESMTPSA id r17-20020a1709061bb100b00711d88ae162sm6216949ejg.24.2022.06.20.09.04.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jun 2022 08:57:01 -0700 (PDT)
-Message-ID: <bc3268e1-2a6e-8faf-3d3b-a8841569a42f@linaro.org>
-Date:   Mon, 20 Jun 2022 17:57:00 +0200
+        Mon, 20 Jun 2022 09:04:58 -0700 (PDT)
+Message-ID: <1e71759b-32a1-3f35-6c08-b9ea4611e361@linaro.org>
+Date:   Mon, 20 Jun 2022 18:04:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 1/4] dt-bindings: net: broadcom-bluetooth: Add CYW55572 DT
- binding
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: lp50xx: correct reg/unit
+ addresses in example
 Content-Language: en-US
-To:     Hakan Jansson <hakan.jansson@infineon.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        linux-bluetooth@vger.kernel.org
-References: <cover.1655723462.git.hakan.jansson@infineon.com>
- <acd9e85b1ba82875e83ca68ae2aa62d828bfdfa3.1655723462.git.hakan.jansson@infineon.com>
+        Dan Murphy <dmurphy@ti.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>, Kyle Swenson <kyle.swenson@est.tech>
+References: <20220607075247.58048-1-krzysztof.kozlowski@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <acd9e85b1ba82875e83ca68ae2aa62d828bfdfa3.1655723462.git.hakan.jansson@infineon.com>
+In-Reply-To: <20220607075247.58048-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,18 +79,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2022 14:01, Hakan Jansson wrote:
-> CYW55572 is a Wi-Fi + Bluetooth combo device from Infineon.
-> Extend the binding with its DT compatible.
+On 07/06/2022 09:52, Krzysztof Kozlowski wrote:
+> The multi-led node defined address/size cells, so it is intended to have
+> children with unit addresses.
 > 
-> Signed-off-by: Hakan Jansson <hakan.jansson@infineon.com>
+> The second multi-led's reg property defined three LED indexes within one
+> reg item, which is not correct - these are three separate items.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
 > ---
->  Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
 
+Pavel, Jacek,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Any comments on these two patches?
 
 
 Best regards,
