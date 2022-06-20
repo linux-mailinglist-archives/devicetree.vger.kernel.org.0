@@ -2,74 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF652551750
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 13:24:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26F4255175F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 13:25:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241213AbiFTLY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 07:24:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47086 "EHLO
+        id S239999AbiFTLZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 07:25:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229910AbiFTLY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 07:24:26 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43B2615A30
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 04:24:23 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id cf14so4890522edb.8
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 04:24:23 -0700 (PDT)
+        with ESMTP id S241131AbiFTLZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 07:25:29 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE2C15FEC
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 04:25:28 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id y14so10119401qvs.10
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 04:25:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7YbItpgX2LBuNx7lKZqosV1saRLcfoQOlviZpKCZMRM=;
-        b=T1nbdeKFeraRecCd3Hn8u72fu7OtLH6DrLq5ON5gSmWupN8DmcewNuz4ssWpaI6Xr3
-         00ouvgo7T/iJfHEVzPbvCwzkVVC/FLD1F1VGObB6fhPWw8Z8ifaa7TJ1DbhA2jwSbvAL
-         aMdd8ALj7hUvi3l0A8irE1JpXZ/LCYWWt4RDZ6IDBSakoQBhyBwmg84IbDt2f4kc3YP8
-         FCIZps2S9S0/gun+pdnVlHrVXBxtOymYPB9Cp8hvq77lzgg4ncnndNWRtCy+H3PQVrrZ
-         Nw+FUqRkquAcSwohuCdkIlMDoPCJ1KVupWwXmfxUgyUdz92JTE42DYq1e0dfYtT6lwPe
-         tBHA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5QXZowmyjbre5HBlPw3yqu+8qdh4czis+s/CTNbxfBk=;
+        b=mQafKe2Tm9xdswCmldeqcHt1fjBKl9ptnU71Xm/Rw84HrhNZNF80DuTq36zf94ZtJo
+         vE07HJ54i72Y9d7NQlxK3V2abLQKr1LyFEAlI1pdFcY3eCwzYer4t32WtdsTBlaDBbJA
+         DfzVE9A5eog4x+xrXoZMLVFhD4cE0m9BWJRQsY5V+/F12TmIl8e+EEQstY+glIOBU/zZ
+         QcKkI+ORgju03rBX1DDFesHusTYlksgZD4JgJeehdROl2ECH52t8s/gzg71QpuzVHfyR
+         iOdANIXfUKG3y3+5QliefCmhczpr1+qs0Ex+fsNFfVHYIvA4aQIva+D81L6qk+bGvGj0
+         VHgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=7YbItpgX2LBuNx7lKZqosV1saRLcfoQOlviZpKCZMRM=;
-        b=v9KvJJJbHStGGoToES10IsJa89ezg/b7JtnhDngP8FIXHrOake2KDyEH1jpdOBmE5M
-         Z/frNQNA/EAsdborMRMYKJVy5oVCufPNfLebhkIwk82FGvkgYRURTqu9kqUgU6Cqxip6
-         Hfr3FrU4urqJRPvYJa2YpEM3YxXbLAnMRy/NHytnNq6LQXk3O7ayACAoQCEaQrx7hVac
-         j+SyctsEbmkrTAf4qkGLAw8TRlwz80UMemSR0kTyacNoL4G5xKj8o7UUo0jri9NuuJ0y
-         GxvJjmp5c81TSYjR74FhneRYK6JOi9ujtuIhQoe5bdB1e5FPEAFM8k1LPLuRMTFCUBRS
-         b8eQ==
-X-Gm-Message-State: AJIora/BbpoVAiPD0MSKjdWjUYFERVJQy7/JNUGC8Xyv1Q+PXMUkLy4d
-        +3g0PeY9l2ysmguCDtmG0mWXdQ==
-X-Google-Smtp-Source: AGRyM1vlX+1cAORRQeoyJ5GjVZ99zgy5FGMZ5N3PChpplc/Pk3QKA+jkysUom51C8/8Xy+I1QI/eXw==
-X-Received: by 2002:a05:6402:40c6:b0:42f:9ff8:62f8 with SMTP id z6-20020a05640240c600b0042f9ff862f8mr28458343edb.95.1655724261713;
-        Mon, 20 Jun 2022 04:24:21 -0700 (PDT)
-Received: from [192.168.0.209] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id 15-20020a170906300f00b006f3ef214dd9sm5832791ejz.63.2022.06.20.04.24.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jun 2022 04:24:19 -0700 (PDT)
-Message-ID: <22f4ba43-2505-3000-24b6-b01d58d87e7f@linaro.org>
-Date:   Mon, 20 Jun 2022 13:24:18 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5QXZowmyjbre5HBlPw3yqu+8qdh4czis+s/CTNbxfBk=;
+        b=NQRdSR2GS1CaGuGZlSH1ttE23Pu6Eyv2btJ4STq85vVryWTDrfYTxwAO84Gf28U1Y/
+         Owpmobvcl5Vqen2S1AAYeMM8CYMVELi5onwqirDaSAIHw4mbE89VNe9cuIFSLnAMJAt9
+         A1f3+AEUG1yq/7abo3nS/syVsrKuCvMmpdAe7TcofOcvrR5cOubkPvDEkf4Q8KLWkYif
+         YqLEYXOh71XU4cDFcAx2ARE+pjfcnjW2mWTQdP+DZKSWX+F3nzZ6rVToJvLNwcT7lXtk
+         I+I6jP5fvZAOnbgAcrriyuFAb1EIXsMZgOaGgsslr9j6bLqAE0K1+15l1tcsvCs5hq1w
+         C6pA==
+X-Gm-Message-State: AJIora/U87S/0yaz/RYGtlAA9wT/1t8aR0Aii/BW85/3DpZLgORmgtnM
+        hIPj+rtblokrzq1X3ALeBw9hg/npU9PLcruOzD/llw==
+X-Google-Smtp-Source: AGRyM1vQQ/H5C3sjvm2Eix6rA9rAxd2onuNFPRmD6ek/uCZhHOyx6DbTyq3GL/pzz23MuJhfJ7hBe3R9FBy/Q7nxuME=
+X-Received: by 2002:ad4:5aa4:0:b0:465:2b11:cfd with SMTP id
+ u4-20020ad45aa4000000b004652b110cfdmr18934135qvg.55.1655724327833; Mon, 20
+ Jun 2022 04:25:27 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: msm8996: add GCC's optional clock
- sources
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+References: <20220620110739.1598514-1-dmitry.baryshkov@linaro.org>
+ <20220620110739.1598514-4-dmitry.baryshkov@linaro.org> <d80d2148-cfc2-8f48-56d5-71f4aae03cb6@linaro.org>
+In-Reply-To: <d80d2148-cfc2-8f48-56d5-71f4aae03cb6@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 20 Jun 2022 14:25:16 +0300
+Message-ID: <CAA8EJpqp92_SOKyU+AjckKC53pDB-i4wsrYx01BySOWNhUaJsA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] ARM: dts: qcom: msm8660: add pxo/cxo clocks to the
+ GCC node
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220620071936.1558906-1-dmitry.baryshkov@linaro.org>
- <20220620071936.1558906-4-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220620071936.1558906-4-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,49 +74,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2022 09:19, Dmitry Baryshkov wrote:
-> Add missing GCC clock sources. This includes PCIe and USB PIPE and UFS
-> symbol clocks.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 18 ++++++++++++++++--
->  1 file changed, 16 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index e97f193aefd3..6c7380f86383 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -689,8 +689,22 @@ gcc: clock-controller@300000 {
->  
->  			clocks = <&rpmcc RPM_SMD_BB_CLK1>,
->  				 <&rpmcc RPM_SMD_LN_BB_CLK>,
-> -				 <&sleep_clk>;
-> -			clock-names = "cxo", "cxo2", "sleep_clk";
-> +				 <&sleep_clk>,
-> +				 <&pciephy_0>,
-> +				 <&pciephy_1>,
-> +				 <&pciephy_2>,
-> +				 <&ssusb_phy_0>,
-> +				 <0>, <0>, <0>;
+On Mon, 20 Jun 2022 at 14:17, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/06/2022 13:07, Dmitry Baryshkov wrote:
+> > Add pxo/cxo clocks to the GCC device tree node.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  arch/arm/boot/dts/qcom-msm8660.dtsi | 6 ++++--
+> >  1 file changed, 4 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm/boot/dts/qcom-msm8660.dtsi b/arch/arm/boot/dts/qcom-msm8660.dtsi
+> > index 47b97daecef1..61e3ab0ebfd3 100644
+> > --- a/arch/arm/boot/dts/qcom-msm8660.dtsi
+> > +++ b/arch/arm/boot/dts/qcom-msm8660.dtsi
+> > @@ -50,13 +50,13 @@ cpu-pmu {
+> >       };
+> >
+> >       clocks {
+> > -             cxo_board {
+> > +             cxo_board: cxo_board {
+>
+> If you touch this line, please correct the naming for node - no
+> underscores and preferred some prefix or suffix, so:
+> cxo-board-clk
+> clk-cxo-board
 
-Since the clocks are optional, there is no need to pass <0> to them. I
-think it does not bring any benefits.
+Unfortunately, I don't think it's possible. We are bound by backwards
+compatibility. Node name is used as a clock name. And other drivers
+might reference the clock using the name. Thus, if you check other DT
+files, we also have similar clock node names.
 
-> +			clock-names = "cxo",
-> +				      "cxo2",
-> +				      "sleep_clk",
-> +				      "pcie_0_pipe_clk_src",
-> +				      "pcie_1_pipe_clk_src",
-> +				      "pcie_2_pipe_clk_src",
-> +				      "usb3_phy_pipe_clk_src",
-> +				      "ufs_rx_symbol_0_clk_src",
-> +				      "ufs_rx_symbol_1_clk_src",
-> +				      "ufs_tx_symbol_0_clk_src";
->  		};
->  
->  		tsens0: thermal-sensor@4a9000 {
+> >                       compatible = "fixed-clock";
+> >                       #clock-cells = <0>;
+> >                       clock-frequency = <19200000>;
+> >               };
+> >
+> > -             pxo_board {
+> > +             pxo_board: pxo_board {
+>
+> The same
+>
+> >                       compatible = "fixed-clock";
+> >                       #clock-cells = <0>;
+> >                       clock-frequency = <27000000>;
 
-
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
