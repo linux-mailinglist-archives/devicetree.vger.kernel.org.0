@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3F04552276
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 18:45:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9162F552279
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 18:46:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243538AbiFTQoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 12:44:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58714 "EHLO
+        id S231773AbiFTQp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 12:45:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238812AbiFTQo3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 12:44:29 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBBBE13CEC
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 09:44:26 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id u12so22241865eja.8
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 09:44:26 -0700 (PDT)
+        with ESMTP id S243230AbiFTQpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 12:45:46 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF6813D28
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 09:45:44 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id g25so22235158ejh.9
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 09:45:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zOvxPYyfFpXuLlQu08wcT2FJT3L01kNfiiQIBNw39Hs=;
-        b=LPl5Ty5Pxvqg1BSKntIkfTv2Vm4j7b0GOdectZe5G6pjr8YSBtae98r1Y0CLMQmpqG
-         Y6yfZ+ref1sWs8GXbLtdWVbb7Y9q2lwRjFYy/7FxysjuCv9gUrsyGZQ3KYIZX2mRH00O
-         btqRvlgtxqsXhshfdDKkQ1ZHM0asNYcu6O+BhQYGPs90IqYR0Ao8w2Lzr/OVHWGUOtU4
-         30unwZRJO8CB9VyRPemhjPqOu/IUZ5hXJWtD4NIh5up5krnYgANO2MX8Eh7IwDYBUSd5
-         kzcvrUvbeGMzEt81BYorI899zXHKATBUF1BZDLDl/YoOvXlCUxM4zQ2kxjzU8dI+CREO
-         r+yA==
+        bh=N//kAFyyDrmuL/icOLW9HghcGryQyomtQjF80YO7sK8=;
+        b=UYUfNWFZ3gRcP/KIt0ZSIkdDiaRXa9wt77LBZ2b+nvd6n2M8F+KRDlG/xcGFhWUwRl
+         Mc4Xhp2DgjwL26Fj/kWXNS9kmkkkfXHhOWigpfwEn8kRCMJ5g2q5mnlI+ZBOjFDHf0NR
+         R/q0UWEcNpmojfzIMN3a3RYNfEGIsiOD7mHV41selDn2KV2aqaevkfvllFu3Cy1FFBHX
+         YzfSa7SSYiAID/LYzc/d8V2CRdRoX/eL10AC+DCv49U+9NLpeXFdqpcx85uQxEzQuWId
+         ewJdzXRHtLVCYABg/i85vXKzH+GrO0UE63TolN81K9Aw/ao8Y31UfP07e3NtABqNaDsK
+         Pifg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=zOvxPYyfFpXuLlQu08wcT2FJT3L01kNfiiQIBNw39Hs=;
-        b=gsCLX/Rf9QK/0Iz+lg1idyLoWzebJmobyDVQU4VWbIGCkM2soV27CEhD11CS5ThUEv
-         cpP3FanJacvaN9JoAjWjukMIlBd0EH1Pt6RReeGR2AhvovIzaH9ZAJcNvPLmwqTuM4Iw
-         8nXvwnkVfunkaakuBiQaEVx5zQ4Uz1PcdbOb8WT0IZqQL0CcQrlPx9JWHle03kU47oo5
-         m1BaUM7jdyvh3AVx9HSR4BmPS0IeEcPta4fkj4Fut7YJvKdGCyrXsmJaKR4LuDkjvPzL
-         OXbIn3VPQPZFk1d4kOGGBT13SQSLYBVfVjYCq+iwvfmn1HWkiq5JEIVQalVp3j823Elv
-         oE+w==
-X-Gm-Message-State: AJIora+JeFPc4bEhFVdDOnpUydJDI+VfR6QghqOdKP/PM0RylJiN/sCA
-        y3Z9d5NqNH50A82xYoCRHpVtnA==
-X-Google-Smtp-Source: AGRyM1uEPgpX46LVFCkiINaElVOJSQ5K9oX9/OGgzP4xN+TVlIGYPiSReyQkDJdHkA0JtO22GW4d7Q==
-X-Received: by 2002:a17:906:7786:b0:712:3c92:4335 with SMTP id s6-20020a170906778600b007123c924335mr21395593ejm.610.1655743465334;
-        Mon, 20 Jun 2022 09:44:25 -0700 (PDT)
+        bh=N//kAFyyDrmuL/icOLW9HghcGryQyomtQjF80YO7sK8=;
+        b=cHewIq7DuenNRZ/yJLT8pTFh5qCP7T1bF5SLr9INasCpz4FWAA7DBaXkMB7m5w/tKf
+         TlAU60wf4YcJ/ej9JwPxbBj2f/UixV+JcA+zjJRcAagSN4WySHA66LvlySH19xUUNt/G
+         BImpIHbDKKSICfbrUwcvJMKdXKjVZhxxKRH6qkl0d4JJZ5axYOBqDFNPNGiuDx4aLf5N
+         c2RONOp3watHCAapHljxohDUXlP4wTZOfCgAJYCQ+irOnZASNIcIwvnZYOivvwZafDlh
+         f8tiZYfDw1IjTgnwgBKtCw068UDawhA9NQeYo6/te+74zoi58o0uSdUCnuP5yxRSbv/4
+         2yOg==
+X-Gm-Message-State: AJIora/M4FtNvY9fEpsiu+1ENN/rSfFchbfyJrYxBy7jy0f+LgP7pU9z
+        579mH6AbHRGqzRDpJDKTSQLeDg==
+X-Google-Smtp-Source: AGRyM1s8MqQ7R4sGcfpmVQzWbcSYwx4FieK8Nu8wgIxw0sXnXMAftLZOrih19pc5r2Vz3+f60wzHCg==
+X-Received: by 2002:a17:906:6a27:b0:708:1282:cbe9 with SMTP id qw39-20020a1709066a2700b007081282cbe9mr22578720ejc.186.1655743543351;
+        Mon, 20 Jun 2022 09:45:43 -0700 (PDT)
 Received: from [192.168.0.210] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id w13-20020a170906480d00b00704b196e59bsm6237746ejq.185.2022.06.20.09.44.24
+        by smtp.gmail.com with ESMTPSA id z21-20020aa7d415000000b0043566884333sm7561436edq.63.2022.06.20.09.45.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jun 2022 09:44:24 -0700 (PDT)
-Message-ID: <66ba39e3-5462-59c7-3831-20ba3ceed43b@linaro.org>
-Date:   Mon, 20 Jun 2022 18:44:23 +0200
+        Mon, 20 Jun 2022 09:45:42 -0700 (PDT)
+Message-ID: <9307a12a-4ccc-8349-9c8a-79b4bf66a190@linaro.org>
+Date:   Mon, 20 Jun 2022 18:45:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
@@ -159,83 +159,28 @@ On 20/06/2022 17:48, Francesco Dolcini wrote:
 > 
 > 5- The current solution in this patch, with the existing trip points
 >    that are hardcoded in the code exposed in the device tree as trips.
-
-Thanks for the explanation, I see the problem.
-
+> 
 > 
 > Ideally one could just implement the imx6/7 thermal sensor reading and
 > just make use of the thermal_of driver, however that would break
 > compatibility with a lot of existing system ... to me this is just a
 > no-go.
-
-This I did not understand...  What is not implemented in thermal sensor
-which would solve the issue? And why it cannot be implemented in
-backwards compatible way?
-Your change is also not backwards friendly, which means existing boards
-(old DTS) will not receive the update.
-
+> 
 > Adding only one set of thermal trip point in the dts (no thermal-grade
 > specific set) could work in some specific scenario, however it does not
 > work for me since I have the same dts files using different temperature
 > grade SoC. I would need to update this in the firmware before starting
 > Linux.
-
-Usually the bootloader loads the overlay and this is recommended
-approach to runtime tweaking DTB for some variant.
-
 > 
 > Krzysztof, what do you think? I would not mind to get back to one of
 > the more simpler approach I proposed.
-
-As I said, I see the problem, but I am not sure that solution is
-correct. I can also rephrase the solution to a such one: "I want to
-support iMX6 and iMX7 with one DTS, so I will embed all properties from
-both DTS into one DTS and then during boot I will read soc-id register
-and choose some subset of the properties"
-
-No way...
-
-I also brought in previous reply trouble with regulator voltages or some
-other electric-properties. I don't want several duplicated properties
-per different variants of the same SoC.
-
-1. If the devices are fully compatible, use one DTS. If you can squeeze
-different variants into the same DTS without any duplication so that
-entire DTS is used 100% by both variants - sure no, problem, less code.
-
-2. If the devices are in general compatible but have discoverable
-differences, use one DTS, discover the differences and apply them
-dynamically via driver (e.g. read the temperature offset from some
-nvmem/OTP).
-
-3. If the devices are partially the same but have differences, you can
-use overlays for that differences. This is quite flexible and clean
-solution as it also clearly documents the hardware in DTS and its overlays.
-
-4. In all other options devices are different, so I expect different DTS.
-
-We had similar cases already in the past - some SoC versions could work
-on higher frequencies with higher voltages
-(arch/arm/boot/dts/exynos4412-prime.dtsi). These variants identified as
-exactly the same SoC as the earlier/slower one. You cannot use one DTS
-for them. We have chosen different DTS.
-
-For Samsung other case, same SoC comes in different bins with slightly
-different voltages for CPU/memory. Same frequencies but different
-voltages. This might be the closest to your problem. This was detectable
-runtime, so we had one DTS and we adjusted the voltages based on static
-tables in the driver (exynos5422-asv.c).
-
+> 
 > Lucas, are you really that against the simple working solution I
 > proposed initially [1]? I feel like I am running in circles ...
 
-Yes, because it is not generic and skips other similar cases, like
-regulator voltages or battery properties. I can easily imagine that next
-week someone comes with duplicated opp tables, then duplicated voltages,
-then duplicated CPU nodes and finally we have one DTS for imx6 and imx7
-but everything is in multiple variants. :)
-Also I am against because DTS describes one hardware, not multiple
-different variants.
+BTW, the link [1] was missing in your email, so I understood that you
+meant this patchset. If [1] refers to something else, then we need to
+discuss that something else.
 
 Best regards,
 Krzysztof
