@@ -2,99 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC54155111C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 09:13:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDCF9551124
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 09:14:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239145AbiFTHNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 03:13:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51006 "EHLO
+        id S239168AbiFTHOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 03:14:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239160AbiFTHNY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 03:13:24 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 032BCE086
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 00:13:21 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id b8so13740373edj.11
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 00:13:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eZxNhueMBF9WoNcsQRrgiB02jKYBhNhqYGBvBdIMT/o=;
-        b=fy3dwtBDvc791ioyRN1572SmjL/QCaIVbg2+MyM1rCFfoafQv0OE0oBW1d4YrWIIi3
-         DIrhnywVf88jJaKxiRQGAN/hGXKMSYTj4hhcL6B1cMYP7QofkT5dyPwudtEpoWiedZkf
-         vKInpa/OhzZib4wmyfrDVCwTf9f6YX67mE25E=
+        with ESMTP id S239159AbiFTHOb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 03:14:31 -0400
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6651AE08A;
+        Mon, 20 Jun 2022 00:14:30 -0700 (PDT)
+Received: by mail-qk1-f172.google.com with SMTP id n197so7248497qke.1;
+        Mon, 20 Jun 2022 00:14:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=eZxNhueMBF9WoNcsQRrgiB02jKYBhNhqYGBvBdIMT/o=;
-        b=x6RNaL+/ljqcN8C4PeM4VPawP32Z/EYoes1YC4LmN218934gnAtNhMMb/HABZcr0xg
-         lQf+Rx897W2nr4nik430QVQx0lo7qBKacRZmixyWQzf3NnBVb3AK6+1VscJZV643Mig/
-         5jBSz2c73phykrVOahVy5wEidUG9S2tL5Rnf4Ueig1UGd1Yj2FutDKkGNTbpzItBdeYP
-         3VjEknhinOEHoAPNlOo8AZ0We20euXx0aZK4lxODXUXs8aUXWCn5vX8xu5RZHFCDomh9
-         HTwjkrLuWa2Y254hUIhS3HNuDReRiOxrcxWJ7uVtNIxT69poSGUbCqYvqOgoEMi9/jmv
-         jK4g==
-X-Gm-Message-State: AJIora+wuUbg4zXi2XuIZHrBOsUOzB0M5+0wCpmNc0RzDj3m922wOj/u
-        UkXC9HoMvN5iskwMICHcATpGy2gvqIg/j9wsV2EtLg==
-X-Google-Smtp-Source: AGRyM1sL5dIl8AH46jNJrBl/TTzwbPT5YrA248QQiwP24rFmBUawcT2ZGIJ6uCWt77gKUpazkmOZ3P3/igx2WCEym9c=
-X-Received: by 2002:aa7:d6c9:0:b0:435:6698:589a with SMTP id
- x9-20020aa7d6c9000000b004356698589amr17234634edr.59.1655709199702; Mon, 20
- Jun 2022 00:13:19 -0700 (PDT)
+        bh=xZvFgGmRSKV3ViC+lYOiHtpp+gueqKdAasj4tjVN6ZM=;
+        b=MtTbXQeCzvoa8gMsLbH3LjmgIqNXbgbvrf3JNhm8PLuWvAtddmKDaZucVfrY2KFUvT
+         0LBhFFzoqPWxRrwipnKUYQ9e1I1kE/nygHcW27ysfNfvxJfttWLcX7vdBFY/WvC6rkwQ
+         3shJV0briQcF5XviRLdvyFNdlY5BRZu/TA+wTWD5JlqnZl5hgFhTt1szFwr5dUGZ0k4u
+         mPyXjjFn07AsiNxh8k5RhfyC6hgFXuHNICAO+Q+X/+im6O7LPB1WF5SxNn+KV6KavT1M
+         e6LtWR5ef92HULiHrapnWgbrFoHZOBKcyDinBuzXi57Q3zN1gJYcRLcz5NntY64SJQRW
+         z1TQ==
+X-Gm-Message-State: AJIora+scZHBsIrwVcFUWiZchkGw4D1b4AQc+mio0wP0DgCkf5TWIa3L
+        S6RXvC0Bzl95rKsDL7WSaruJb3UYMtbJjg==
+X-Google-Smtp-Source: AGRyM1vA1xX9s1j7h4sfCHlwewpIEy9yKBsxeKph00cn1xrFPXnzYIQ9fzAPg7aKy4k5ARK7EQIaGA==
+X-Received: by 2002:a37:98b:0:b0:6a6:b2ca:194c with SMTP id 133-20020a37098b000000b006a6b2ca194cmr15575165qkj.470.1655709269051;
+        Mon, 20 Jun 2022 00:14:29 -0700 (PDT)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id bs36-20020a05620a472400b006a353b7bf78sm11072852qkb.122.2022.06.20.00.14.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Jun 2022 00:14:28 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id i15so12540754ybp.1;
+        Mon, 20 Jun 2022 00:14:27 -0700 (PDT)
+X-Received: by 2002:a05:6902:120e:b0:634:6f29:6b84 with SMTP id
+ s14-20020a056902120e00b006346f296b84mr24423394ybu.604.1655709267584; Mon, 20
+ Jun 2022 00:14:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220617072521.21551-1-yunfei.dong@mediatek.com>
-In-Reply-To: <20220617072521.21551-1-yunfei.dong@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 20 Jun 2022 15:13:08 +0800
-Message-ID: <CAGXv+5GG1rKsECDotA_RpXay1i7ido+te1=CbX0d21638=+Z2A@mail.gmail.com>
-Subject: Re: [PATCH, v2] media: mediatek: vcodec: Fix non subdev architecture
- open power fail
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+References: <20220613150550.70334-1-phil.edworthy@renesas.com> <20220613150550.70334-2-phil.edworthy@renesas.com>
+In-Reply-To: <20220613150550.70334-2-phil.edworthy@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 20 Jun 2022 09:14:16 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUiXh3duootbNXKE0aWRAGZwOHx63PZN4c0tPT8TLGcvg@mail.gmail.com>
+Message-ID: <CAMuHMdUiXh3duootbNXKE0aWRAGZwOHx63PZN4c0tPT8TLGcvg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: renesas,wdt: Add r9a09g011
+ (RZ/V2M) support
+To:     Phil Edworthy <phil.edworthy@renesas.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Irui Wang <irui.wang@mediatek.com>,
-        George Sun <george.sun@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, devicetree@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-kernel@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 17, 2022 at 3:25 PM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
->
-> According to subdev_bitmap bit value to open hardware power, need to
-> set subdev_bitmap value for non subdev architecture.
->
-> Fixes: c05bada35f01 ("media: mtk-vcodec: Add to support multi hardware decode")
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+Hi Phil,
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+On Mon, Jun 13, 2022 at 5:06 PM Phil Edworthy <phil.edworthy@renesas.com> wrote:
+> Add the documentation for the r9a09g011 SoC, but in doing so also
+> reorganise the doc to make it easier to read.
+> Additionally, make the binding require an interrupt to be specified.
+> Whilst the driver does not need an interrupt, all of the SoCs that use
+> this binding actually provide one.
+>
+> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v2:
+>  - Added minItems for interrupt-names and clock-names
 
-on MT8183 on next-20220617. This makes the hardware operate correctly.
-Previously it kept timing out, presumably because the hardware wasn't
-properly enabled.
+Thanks for the update!
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+One minor nit: you have lost the check that there is only one interrupt
+on e.g. R-Car H3, so "make dtbs_check" no longer complains if I add
+a second interrupt to the wdt node in r8a77951.dtsi.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
