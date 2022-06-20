@@ -2,66 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BE915518F9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 14:33:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD59F551903
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 14:35:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240924AbiFTMdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 08:33:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48214 "EHLO
+        id S242688AbiFTMf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 08:35:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242272AbiFTMdQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 08:33:16 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4080BE9;
-        Mon, 20 Jun 2022 05:33:14 -0700 (PDT)
-X-UUID: da510f831bb5432c9585aded68ee28db-20220620
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:2f14da5f-b24a-459f-8e72-514307cb67e7,OB:0,LO
-        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:25
-X-CID-META: VersionHash:b14ad71,CLOUDID:9a7303ea-f7af-4e69-92ee-0fd74a0c286c,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: da510f831bb5432c9585aded68ee28db-20220620
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1784198173; Mon, 20 Jun 2022 20:33:09 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Mon, 20 Jun 2022 20:33:07 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Mon, 20 Jun 2022 20:33:07 +0800
-Message-ID: <d5a74aca024dd38030bb5edd38084d81b65e27fa.camel@mediatek.com>
-Subject: Re: [PATCH v12 01/14] dt-bindings: mediatek,dpi: Add DP_INTF
- compatible
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-CC:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <airlied@linux.ie>, <devicetree@vger.kernel.org>,
-        <granquet@baylibre.com>, <jitao.shi@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <msp@baylibre.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>, <wenst@chromium.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <angelogioacchino.delregno@collabora.com>
-Date:   Mon, 20 Jun 2022 20:33:07 +0800
-In-Reply-To: <20220620122500.yfc5vhbuluodoo3d@houat>
-References: <20220620121028.29234-1-rex-bc.chen@mediatek.com>
-         <20220620121028.29234-2-rex-bc.chen@mediatek.com>
-         <20220620122500.yfc5vhbuluodoo3d@houat>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S242719AbiFTMfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 08:35:55 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9574A13D14
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 05:35:54 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id v1so20777574ejg.13
+        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 05:35:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=pnFmigdYB8CDy5EmnO11M8plckPdpyszZAnznD2P5mo=;
+        b=kE8oo6DdEe2/sewDFfXMvKp9elIEyCI+S2N/Uy/OSxvuw9Lj9sEniYkLWi2k/ksZZj
+         WYx/r1FXwOHG0ut/UoOqv6r/M/sOUIQtv7/TwRRCiFoDTmRoz0wCaVk3pT/3wjUpa5cn
+         L7B1G2tIq/xb6D21L3XAdmNaPW+vEEJhH8tSzCaa5XDpLlgkUyjpmWC9DHKgzEPfkMlF
+         BbKu/ry7Sc1Ns4AxvDZReH6BWufEqWx5L7i4PJ8N3FTieH2M1pPB4qJ64iyii5bb1Xa/
+         gKjxk8Uq5iUyxCL1eQ7GxIDyeWsOnKsvzIiAvRaVIK9P/77eVh9lJHwOszRyko+skIrq
+         lj3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=pnFmigdYB8CDy5EmnO11M8plckPdpyszZAnznD2P5mo=;
+        b=FVe3bLem6s90j854tG9VFU8l9xraaGj8Q/x/H9Ei6ymjyQhI+tN1eFWgKgezBhFVqP
+         ImwvPPc47FqnHr89cokzjqjyayn6JvKzCJcDsvnbSEwEqCZwgM2MoSClznBDjBa/C4CV
+         mbJvNGu5HCZuu+3N0ZkHkAIBCQ9TOU7m/dlEmVERCEVsITyVUY3VKeGIbfdj1sBGt4Ze
+         mhfDl1gEXFzWDUDI7ETDWfN88SMgsIE7Vvp5CC6I6EHRlgkwVmaImM0ymay3L51S1EFX
+         dD6KyYGRpkyeWukFk3+Eu8y2UxdU0Rbx8D56a/nQmZ7Y5Kx/VRWV4r4IirnCEdzLBtKh
+         CVaA==
+X-Gm-Message-State: AJIora+7+C7jGdgkA+7VjrFIMtCz5cgsvYwaIT436REw9qbzTCo6JKw1
+        nMA91RWlo4zsKleGYiIXS8Bukw==
+X-Google-Smtp-Source: AGRyM1vVkReq11RcMsu+hVm+ixFbKKKPHaU3CC0AhN/NqUZvmeFEaJU0+qUxSFQ/E6KhZ268qZ/8Sw==
+X-Received: by 2002:a17:906:acb:b0:709:d274:611b with SMTP id z11-20020a1709060acb00b00709d274611bmr20598603ejf.147.1655728553140;
+        Mon, 20 Jun 2022 05:35:53 -0700 (PDT)
+Received: from [192.168.0.210] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id g12-20020a056402424c00b0043589eba83bsm1589966edb.58.2022.06.20.05.35.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Jun 2022 05:35:52 -0700 (PDT)
+Message-ID: <22b47d38-930f-c74c-378b-8676593e4eb0@linaro.org>
+Date:   Mon, 20 Jun 2022 14:35:51 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: msm8996: add GCC's optional clock
+ sources
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220620071936.1558906-1-dmitry.baryshkov@linaro.org>
+ <20220620071936.1558906-4-dmitry.baryshkov@linaro.org>
+ <22f4ba43-2505-3000-24b6-b01d58d87e7f@linaro.org>
+ <CAA8EJpoESu8FBhbg8R6axtS-VfuYqsXKvgvnDExVJy2wZt5+Jg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAA8EJpoESu8FBhbg8R6axtS-VfuYqsXKvgvnDExVJy2wZt5+Jg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,94 +80,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-06-20 at 14:25 +0200, Maxime Ripard wrote:
-> On Mon, Jun 20, 2022 at 08:10:15PM +0800, Bo-Chen Chen wrote:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > 
-> > DP_INTF is similar to DPI but does not have the exact same feature
-> > set
-> > or register layouts.
-> > 
-> > DP_INTF is the sink of the display pipeline that is connected to
-> > the
-> > DisplayPort controller and encoder unit. It takes the same clocks
-> > as
-> > DPI.
-> > 
-> > In this patch, we also do these string replacement:
-> > - s/mediatek/MediaTek/ in title.
-> > - s/Mediatek/MediaTek/ in description.
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > [Bo-Chen: Modify reviewers' comments.]
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >  .../bindings/display/mediatek/mediatek,dpi.yaml       | 11 ++++++-
-> > ----
-> >  1 file changed, 6 insertions(+), 5 deletions(-)
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
-> > aml
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
-> > aml
-> > index 77ee1b923991..d72f74632038 100644
-> > ---
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
-> > aml
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
-> > aml
-> > @@ -4,16 +4,16 @@
-> >  $id: 
-> > http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
-> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  
-> > -title: mediatek DPI Controller Device Tree Bindings
-> > +title: MediaTek DPI and DP_INTF Controller
-> >  
-> >  maintainers:
-> >    - CK Hu <ck.hu@mediatek.com>
-> >    - Jitao shi <jitao.shi@mediatek.com>
-> >  
-> >  description: |
-> > -  The Mediatek DPI function block is a sink of the display
-> > subsystem and
-> > -  provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a
-> > parallel
-> > -  output bus.
-> > +  The MediaTek DPI and DP_INTF function blocks are a sink of the
-> > display
-> > +  subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422
-> > pixel data on a
-> > +  parallel output bus.
-> >  
-> >  properties:
-> >    compatible:
-> > @@ -24,6 +24,7 @@ properties:
-> >        - mediatek,mt8183-dpi
-> >        - mediatek,mt8186-dpi
-> >        - mediatek,mt8192-dpi
-> > +      - mediatek,mt8195-dp_intf
+On 20/06/2022 13:27, Dmitry Baryshkov wrote:
+> On Mon, 20 Jun 2022 at 14:24, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 20/06/2022 09:19, Dmitry Baryshkov wrote:
+>>> Add missing GCC clock sources. This includes PCIe and USB PIPE and UFS
+>>> symbol clocks.
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 18 ++++++++++++++++--
+>>>  1 file changed, 16 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+>>> index e97f193aefd3..6c7380f86383 100644
+>>> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+>>> @@ -689,8 +689,22 @@ gcc: clock-controller@300000 {
+>>>
+>>>                       clocks = <&rpmcc RPM_SMD_BB_CLK1>,
+>>>                                <&rpmcc RPM_SMD_LN_BB_CLK>,
+>>> -                              <&sleep_clk>;
+>>> -                     clock-names = "cxo", "cxo2", "sleep_clk";
+>>> +                              <&sleep_clk>,
+>>> +                              <&pciephy_0>,
+>>> +                              <&pciephy_1>,
+>>> +                              <&pciephy_2>,
+>>> +                              <&ssusb_phy_0>,
+>>> +                              <0>, <0>, <0>;
+>>
+>> Since the clocks are optional, there is no need to pass <0> to them. I
+>> think it does not bring any benefits.
 > 
-> Underscores are frowned upon in the compatibles. See Section 2.3.1 of
-> the device tree spec:
+> It serves as a reminder that they should be filled with the proper
+> sources. We do the same thing for DSI/DP clocks where the PHY is not
+> yet supported, but the GCC lists them.
 > 
-> > The compatible string should consist only of lowercase letters,
-> > digits
-> > and dashes, and should start with a letter. A single comma is
-> > typically only used following a vendor prefix. Underscores should
-> > not
-> > be used.
+> I had to mark them as optional so that the existing schema files pass
+> validation. Otherwise they would be in the 'required' part.
 > 
-> Maxime
 
-Hello Maxime,
+Hm, ok. Let's hope someone will actually remember to fill these in once
+there is proper clock.
 
-Thanks for review.
-I will modify this compatible as "mediatek,mt8195-dp-intf"
 
-BRs,
-Bo-Chen
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+
+Best regards,
+Krzysztof
