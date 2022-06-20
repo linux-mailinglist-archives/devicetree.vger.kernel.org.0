@@ -2,81 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5906E5518BA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 14:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C4565518BC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 14:21:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241100AbiFTMVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 08:21:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39106 "EHLO
+        id S242488AbiFTMVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 08:21:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242540AbiFTMVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 08:21:16 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A32B13E05
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 05:21:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1655727675; x=1687263675;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=JcZGJjSSP6wOKdQ6qZDb5Wr4Rc53SWX+TasNUSNE/cY=;
-  b=XbBEK5P/SaoEid2veLrE/bZo4azFoEnFCNSKuxqVdlCpAvgWTX2S4yEW
-   haN49uDvpNT/UeQd8LMeuIKhl+g1uRNMqCgIKPZvDpYG7TO2INwWt4xMP
-   2leB7ebKSXMSPwcpgivaEZnS1E9tquUb+dVMq53K/fGk6JNeiJ3nFErQ6
-   qEDsoAEUOGqPnvo9kuRj2qOgOhdRJOTOcYKX8QXczFYzjwlLo4u7BbErU
-   xP1SsV77uGbotEViKYwsIEiTba9sq+oaqS1U1ZXdGtFbh9g2bqbw2z22o
-   xPioaJrJksY4yCqXWXmLlzb3KCotA6iHgOdD/ADg/3b3lrB0GKkPsN34A
-   w==;
-X-IronPort-AV: E=Sophos;i="5.92,306,1650924000"; 
-   d="scan'208";a="24547471"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 20 Jun 2022 14:21:13 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 20 Jun 2022 14:21:13 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 20 Jun 2022 14:21:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1655727673; x=1687263673;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=JcZGJjSSP6wOKdQ6qZDb5Wr4Rc53SWX+TasNUSNE/cY=;
-  b=ELMMbXq1sIqzN2c2hCwrSIaaycLOMghnmeYOU+Mv2T/dG4scD6qZijmk
-   +/xrh0U0v1JRqe7Snlvx/BcDaLwORheDEaVOCae+xyWGySgTEurXtqPZf
-   DmvtCqfQMf/K4lSGloKW9rhbqO4bQNBiTxpk4oKqB7h5g85jOkC2NVP9f
-   AV/ZC0Kukw89uME3fxJPlv3/nSl85exzeerDylAJPcQBX80Go0h14tNxq
-   H7TSnTxpxgBYt2DoCTttHRwoUz+LuVKA+763nRoqx7VesekvVcqFBRxlw
-   HXj7SoFjc/KQ5TZBSwADIzyfkmxmgwawcO77KYDiLYIgY2mdb8ldbt/tK
-   w==;
-X-IronPort-AV: E=Sophos;i="5.92,306,1650924000"; 
-   d="scan'208";a="24547470"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 20 Jun 2022 14:21:13 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        with ESMTP id S240896AbiFTMVY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 08:21:24 -0400
+Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABB2415A37;
+        Mon, 20 Jun 2022 05:21:21 -0700 (PDT)
+Received: from [141.14.220.45] (g45.guest.molgen.mpg.de [141.14.220.45])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id F06CA280056;
-        Mon, 20 Jun 2022 14:21:12 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Paul Elder <paul.elder@ideasonboard.com>
-Subject: Re: (EXT) Re: (EXT) [PATCH] arm64: dts: imx8mp: Add CSIS DT nodes
-Date:   Mon, 20 Jun 2022 14:21:10 +0200
-Message-ID: <4722627.GXAFRqVoOG@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <Yq0Arsms5fYl9MQn@pendragon.ideasonboard.com>
-References: <20220616161643.22867-1-laurent.pinchart@ideasonboard.com> <15420032.uLZWGnKmhe@steina-w> <Yq0Arsms5fYl9MQn@pendragon.ideasonboard.com>
+        (Authenticated sender: pmenzel)
+        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 9345061EA1923;
+        Mon, 20 Jun 2022 14:21:18 +0200 (CEST)
+Message-ID: <1a554d8e-c479-f646-ce9d-25871affbcee@molgen.mpg.de>
+Date:   Mon, 20 Jun 2022 14:21:18 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 4/4] Bluetooth: hci_bcm: Increase host baudrate for
+ CYW55572 in autobaud mode
+Content-Language: en-US
+To:     Hakan Jansson <hakan.jansson@infineon.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        linux-bluetooth@vger.kernel.org
+References: <cover.1655723462.git.hakan.jansson@infineon.com>
+ <386b205422099c795272ad8b792091b692def3cd.1655723462.git.hakan.jansson@infineon.com>
+From:   Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <386b205422099c795272ad8b792091b692def3cd.1655723462.git.hakan.jansson@infineon.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,191 +58,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Samstag, 18. Juni 2022, 00:31:10 CEST schrieb Laurent Pinchart:
-> Hi Alexander,
-> 
-> On Fri, Jun 17, 2022 at 08:43:53AM +0200, Alexander Stein wrote:
-> > Hello Laurent,
-> > 
-> > thanks for ths and the other MIPI CSI-2 related patches.
-> > 
-> > Am Donnerstag, 16. Juni 2022, 18:16:43 CEST schrieb Laurent Pinchart:
-> > > Add DT nodes for the two CSI-2 receivers of the i.MX8MP.
-> > > 
-> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > ---
-> > > This patch depends on the DT bindings submitted in [1], for which I plan
-> > > to submit a pull request for v5.20.
-> > > 
-> > > [1]
-> > > https://lore.kernel.org/linux-media/83e27382-6f97-015f-2ee1-f4382096709
-> > > 3@linaro.org/T/#u ---
-> > > 
-> > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 60 +++++++++++++++++++++++
-> > >  1 file changed, 60 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
-> > > d9542dfff83f..c8ed206b7f41 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > @@ -1063,6 +1063,66 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
-> > > 
-> > >  				#power-domain-cells = <1>;
-> > >  			
-> > >  			};
-> > > 
-> > > +			mipi_csi_0: csi@32e40000 {
-> > > +				compatible = "fsl,imx8mp-mipi-
-csi2", "fsl,imx8mm-mipi-csi2";
-> > > +				reg = <0x32e40000 0x10000>;
-> > > +				interrupts = <GIC_SPI 17 
-IRQ_TYPE_LEVEL_HIGH>;
-> > > +				clock-frequency = <500000000>;
-> > 
-> > According to datasheet (IMX8MPIEC Rev 1, Table 1, Subsystem "MIPI
-> > Interface") "MIPI CSI1" supports up to 500MHz only in single camera use
-> > and overdrive mode. In normal mode only 400MHz are supported. For dual
-> > camera usage only up to 266MHz is supported.
-> 
-> I wasn't aware of that, thank you for the information.
+[Your To: header field has:
 
-I wasn't either ;-) Just stumbled across when looking why mpi_csi_1 had only 
-266MHz.
+     To:     unlisted-recipients:; (no To-header on input)
 
-> > Apparently this is when using ISP, things might be
-> > different when using ISI.
-> 
-> Table 13 documents the maximum frequencies of clocks
-> MEDIA_CAM1_PIX_CLK_ROOT and MEDIA_CAM2_PIX_CLK_ROOT to be 400/500MHz
-> (normal/overdrive) and 277/277MHz respectively, so I'd say this affects
-> the ISI too. I wonder what causes the 266MHz constraint for dual camera
+which is added to the receiver list when replying to all in Mozilla 
+Thunderbird 91.10.0.
+]
+
+
+Dear Hakan,
+
+
+Am 20.06.22 um 14:01 schrieb Hakan Jansson:
+> Add device specific data for max baudrate in autobaud mode. This allows the
+> host to use a baudrate higher than "init speed" when loading FW in autobaud
 > mode.
+
+Please mention 921600 in the commit message, and maybe also document 
+what the current default is.
+
+Please also add the measurement data to the commit message, that means, 
+how much is the time to load the firmware decreased.
+
 > 
-> There's also a constraint of at most 375 MPixel/s aggregate performance
-> for the two ISP instances, but I don't know if that's due to the memory
-> bandwidth, or if it is on the input side in which case it may include
-> blanking and translate directly to clock frequencies. If I had to guess,
-> I'd say the former.
-
-I do not know either. A colleague suggested it might be due to DMA bandwidth 
-limitation, but this is pure speculation.
-
-> > I'm hesitating specifying the overdrive mode
-> > frequency here. Most users, most probably using normal mode, would have
-> > requiring them to adjust this.
-> > For dual camera this is even as low as 266MHz, but IMHO this is a special
-> > case.
+> Signed-off-by: Hakan Jansson <hakan.jansson@infineon.com>
+> ---
+>   drivers/bluetooth/hci_bcm.c | 20 ++++++++++++++++----
+>   1 file changed, 16 insertions(+), 4 deletions(-)
 > 
-> I agree, we should at least lower the frequency to 400MHz here. Given
-> that the frequency limit depends on whether one or two cameras are used,
-> I'm actually tempted to either specify the worst case (2x 266MHz), or
-> even drop the clock-frequency completely, forcing users to think about
-> what they need. The driver however silently falls back to a default
-> frequency of 166MHz when the property isn't set, so developers won't
-> necessarily immediately notice that something is wrong, or why.
-> 
-> Should I specify 400 MHz and 266 MHz here, or go for the safer option of
-> 266 MHz and 266 MHz ?
+> diff --git a/drivers/bluetooth/hci_bcm.c b/drivers/bluetooth/hci_bcm.c
+> index 0ae627c293c5..d7e0b75db8a6 100644
+> --- a/drivers/bluetooth/hci_bcm.c
+> +++ b/drivers/bluetooth/hci_bcm.c
+> @@ -53,10 +53,12 @@
+>    * struct bcm_device_data - device specific data
+>    * @no_early_set_baudrate: Disallow set baudrate before driver setup()
+>    * @drive_rts_on_open: drive RTS signal on ->open() when platform requires it
+> + * @max_autobaud_speed: max baudrate supported by device in autobaud mode
+>    */
+>   struct bcm_device_data {
+>   	bool	no_early_set_baudrate;
+>   	bool	drive_rts_on_open;
+> +	u32	max_autobaud_speed;
 
-If the property is dropped and 166MHz is selected by default, then a dev_info 
-should be added at least. I have no experience how common a dual camera setup 
-is, so I tend to the, probably, more common single camera setup.
-I was not able to get the same information for imx8mm, but maybe these limits 
-or hint about the difference for single/dual camera can be put into the DT 
-bindings.
+Why specify the length, and not just `unsigned int`? Maybe also add the 
+unit to the variable name?
 
-Best regards,
-Alexander
+>   };
+>   
+>   /**
+> @@ -100,6 +102,7 @@ struct bcm_device_data {
+>    * @drive_rts_on_open: drive RTS signal on ->open() when platform requires it
+>    * @pcm_int_params: keep the initial PCM configuration
+>    * @use_autobaud_mode: start Bluetooth device in autobaud mode
+> + * @max_autobaud_speed: max baudrate supported by device in autobaud mode
+>    */
+>   struct bcm_device {
+>   	/* Must be the first member, hci_serdev.c expects this. */
+> @@ -139,6 +142,7 @@ struct bcm_device {
+>   	bool			drive_rts_on_open;
+>   	bool			use_autobaud_mode;
+>   	u8			pcm_int_params[5];
+> +	u32			max_autobaud_speed;
 
-> > > +				clocks = <&clk 
-IMX8MP_CLK_MEDIA_APB_ROOT>,
-> > > +					 <&clk 
-IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
-> > > +					 <&clk 
-IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> > > +					 <&clk 
-IMX8MP_CLK_MEDIA_AXI_ROOT>;
-> > > +				clock-names = "pclk", "wrap", 
-"phy", "axi";
-> > > +				assigned-clocks = <&clk 
-IMX8MP_CLK_MEDIA_CAM1_PIX>;
-> > > +				assigned-clock-parents = <&clk 
-IMX8MP_SYS_PLL2_1000M>;
-> > > +				assigned-clock-rates = 
-<500000000>;
-> > > +				power-domains = <&media_blk_ctrl 
-IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
-> > > +				status = "disabled";
-> > > +
-> > > +				ports {
-> > > +					#address-cells = <1>;
-> > > +					#size-cells = <0>;
-> > > +
-> > > +					port@0 {
-> > > +						reg = <0>;
-> > > +					};
-> > > +
-> > > +					port@1 {
-> > > +						reg = <1>;
-> > > +					};
-> > > +				};
-> > > +			};
-> > > +
-> > > +			mipi_csi_1: csi@32e50000 {
-> > > +				compatible = "fsl,imx8mp-mipi-
-csi2", "fsl,imx8mm-mipi-csi2";
-> > > +				reg = <0x32e50000 0x10000>;
-> > > +				interrupts = <GIC_SPI 80 
-IRQ_TYPE_LEVEL_HIGH>;
-> > > +				clock-frequency = <266000000>;
-> > 
-> > For single camera usage this can even go as high as 277MHz. 266MHz is only
-> > for dual camera use.
-> > 
-> > > +				clocks = <&clk 
-IMX8MP_CLK_MEDIA_APB_ROOT>,
-> > > +					 <&clk 
-IMX8MP_CLK_MEDIA_CAM2_PIX_ROOT>,
-> > > +					 <&clk 
-IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
-> > > +					 <&clk 
-IMX8MP_CLK_MEDIA_AXI_ROOT>;
-> > > +				clock-names = "pclk", "wrap", 
-"phy", "axi";
-> > > +				assigned-clocks = <&clk 
-IMX8MP_CLK_MEDIA_CAM2_PIX>;
-> > > +				assigned-clock-parents = <&clk 
-IMX8MP_SYS_PLL2_1000M>;
-> > > +				assigned-clock-rates = 
-<266000000>;
-> > > +				power-domains = <&media_blk_ctrl 
-IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
-> > > +				status = "disabled";
-> > > +
-> > > +				ports {
-> > > +					#address-cells = <1>;
-> > > +					#size-cells = <0>;
-> > > +
-> > > +					port@0 {
-> > > +						reg = <0>;
-> > > +					};
-> > > +
-> > > +					port@1 {
-> > > +						reg = <1>;
-> > > +					};
-> > > +				};
-> > > +			};
-> > > +
-> > > 
-> > >  			hsio_blk_ctrl: blk-ctrl@32f10000 {
-> > >  			
-> > >  				compatible = "fsl,imx8mp-hsio-blk-
-ctrl", "syscon";
-> > >  				reg = <0x32f10000 0x24>;
-> > > 
-> > > base-commit: b13baccc3850ca8b8cccbf8ed9912dbaa0fdf7f3
+Ditto.
+
+>   };
+>   
+>   /* generic bcm uart resources */
+> @@ -479,7 +483,10 @@ static int bcm_open(struct hci_uart *hu)
+>   		else if (bcm->dev->drive_rts_on_open)
+>   			hci_uart_set_flow_control(hu, true);
+>   
+> -		hu->init_speed = bcm->dev->init_speed;
+> +		if (bcm->dev->use_autobaud_mode && bcm->dev->max_autobaud_speed)
+> +			hu->init_speed = min(bcm->dev->oper_speed, bcm->dev->max_autobaud_speed);
+> +		else
+> +			hu->init_speed = bcm->dev->init_speed;
+>   
+>   		/* If oper_speed is set, ldisc/serdev will set the baudrate
+>   		 * before calling setup()
+> @@ -585,8 +592,8 @@ static int bcm_setup(struct hci_uart *hu)
+>   		return 0;
+>   
+>   	/* Init speed if any */
+> -	if (hu->init_speed)
+> -		speed = hu->init_speed;
+> +	if (bcm->dev && bcm->dev->init_speed)
+> +		speed = bcm->dev->init_speed;
+>   	else if (hu->proto->init_speed)
+>   		speed = hu->proto->init_speed;
+>   	else
+> @@ -1519,6 +1526,7 @@ static int bcm_serdev_probe(struct serdev_device *serdev)
+>   
+>   	data = device_get_match_data(bcmdev->dev);
+>   	if (data) {
+> +		bcmdev->max_autobaud_speed = data->max_autobaud_speed;
+>   		bcmdev->no_early_set_baudrate = data->no_early_set_baudrate;
+>   		bcmdev->drive_rts_on_open = data->drive_rts_on_open;
+>   	}
+> @@ -1542,6 +1550,10 @@ static struct bcm_device_data bcm43438_device_data = {
+>   	.drive_rts_on_open = true,
+>   };
+>   
+> +static struct bcm_device_data cyw55572_device_data = {
+> +	.max_autobaud_speed = 921600,
+> +};
+> +
+>   static const struct of_device_id bcm_bluetooth_of_match[] = {
+>   	{ .compatible = "brcm,bcm20702a1" },
+>   	{ .compatible = "brcm,bcm4329-bt" },
+> @@ -1554,7 +1566,7 @@ static const struct of_device_id bcm_bluetooth_of_match[] = {
+>   	{ .compatible = "brcm,bcm4349-bt", .data = &bcm43438_device_data },
+>   	{ .compatible = "brcm,bcm43540-bt", .data = &bcm4354_device_data },
+>   	{ .compatible = "brcm,bcm4335a0" },
+> -	{ .compatible = "infineon,cyw55572-bt" },
+> +	{ .compatible = "infineon,cyw55572-bt", .data = &cyw55572_device_data },
+>   	{ },
+>   };
+>   MODULE_DEVICE_TABLE(of, bcm_bluetooth_of_match);
 
 
+Kind regards,
 
-
+Paul
