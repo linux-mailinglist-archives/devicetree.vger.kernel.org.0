@@ -2,148 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03BA755206E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 17:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83AB45520AC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jun 2022 17:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244253AbiFTPUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 11:20:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47180 "EHLO
+        id S243994AbiFTPZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 11:25:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244457AbiFTPUM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 11:20:12 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC60F1EECE;
-        Mon, 20 Jun 2022 08:13:40 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25KC9fn8006964;
-        Mon, 20 Jun 2022 17:13:23 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=1oPWdJ+//Nblq7WtAbY8XqP8ikmhOJuE2xTdicCqfMU=;
- b=fa2IZogG8gkWE4+RBdVPb2APCY/mXSlPIHrTJZfEMit/C7+0+QHRWrS40jyuHxv1ouR8
- 6tJaZljyfwN0RzKGdvvh5eAOzyEpy959bS9BSmflCibMB5Nnp7Kzg11gB5jiMHlFtiR1
- 8jCmExJN0SfOh/P9FDEmynhPCBz6/kKI8VVtUfq6ybn7yIbICNOrjXi+yddnawzxE1bp
- pdEp4YDx5ee5CUUwg80uY4PrZCs7Orv3EWpjKMXblh+kszA3d7OUZgedDau2v4xGF5gU
- 8z+W5lMwbeurW268C+RwnwfJOwX06kolDxa/zGX28bJjJ9nAteDib9L0hhepUXK+1RAR DA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3gtnj9tsmd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 20 Jun 2022 17:13:23 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 212F010002A;
-        Mon, 20 Jun 2022 17:13:23 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0FB8722D18A;
-        Mon, 20 Jun 2022 17:13:23 +0200 (CEST)
-Received: from [10.201.21.93] (10.75.127.118) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Mon, 20 Jun
- 2022 17:13:21 +0200
-Message-ID: <ce4b0d5f-398e-7d2d-91e2-883e16c2dec1@foss.st.com>
-Date:   Mon, 20 Jun 2022 17:13:21 +0200
+        with ESMTP id S243880AbiFTPYt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 11:24:49 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E56CF2BDE;
+        Mon, 20 Jun 2022 08:21:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 92735B8120C;
+        Mon, 20 Jun 2022 15:21:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE862C3411B;
+        Mon, 20 Jun 2022 15:21:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655738515;
+        bh=DRPgAE5eSHKVuERQNm8HAW9Y8Oo6XD7HXWlbayBgLEA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=V2zEVThMzyBiHx3VZPGncWjhdETsYG7K3XNyZ/nVnOWb41ap5Fwi0m+93UgHhygT1
+         rCmADDC7NKmXBnJsgoq19Zmah1q6Gh8w+UCjKn9mUIM2wdXPHETxnT0sTcPqlhUZDw
+         NGHYl/bY5/7g4ZwA9kLXETF3dBq4viE95KjtfDd3AtwBB0STQ6YaTz6BK8Uss4EgjA
+         Jy13HfhrUflwCzgA2tr3UrRV+UxbFOodQ6UIIYvcMs0+r/7/s3977QYPxskJqJdSej
+         rPdg8TjSkCTlksEH6+dvV0VZf0CIul4CAUIoZHgz6EMboeDl9APnXGxBDwKWM3z/I4
+         twwNPp0lKT4qw==
+From:   Mark Brown <broonie@kernel.org>
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>
+Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>
+Subject: [PATCH] ARM: dts: am33xx: Map baseboard EEPROM on BeagleBone Black
+Date:   Mon, 20 Jun 2022 16:21:50 +0100
+Message-Id: <20220620152150.708664-1-broonie@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v4 00/14] Introduction of STM32MP13 RCC driver (Reset
- Clock Controller)
-Content-Language: en-US
-To:     <gabriel.fernandez@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220516070600.7692-1-gabriel.fernandez@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20220516070600.7692-1-gabriel.fernandez@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.118]
-X-ClientProxiedBy: GPXDAG2NODE5.st.com (10.75.127.69) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.64.514
- definitions=2022-06-20_05,2022-06-17_01,2022-02-23_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=800; h=from:subject; bh=DRPgAE5eSHKVuERQNm8HAW9Y8Oo6XD7HXWlbayBgLEA=; b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBisJBTSR3QEXrnym9ZH3pqR0OSRaCQHg5tEe7chXs2 aq5kWCCJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCYrCQUwAKCRAk1otyXVSH0CR0B/ 49mt6bum3wynGu6kkKGkZctn0lbG4ZaxQG2ijynk+yJyxOYTRPKLC8eTunpnZHTbUbglE3Of3eZ5tv pOfgP9Y6K0wZ4in4LbLShUBIhjI0582tEk2p0CYynKW9Jqsed1DcOj8dqaeBj6FkvcvFIDQ3ZYSKgx 8kKoqNsEn76V39EAaBrjuvQz/txMHbFvYSTVx5sp0P8LQiixiNKqfluvD5yqJGXojX5vX2L8iFnSV8 Rq+n16lKmofn0tSM5uIZ1zWWdsASHaNu/O91laWlBuQCDnYHGcKNCl23oX268v8+UruUOLfaBI8B8s kbT08fGC/SjZnawlxa2zkE4rwjLmJV
+X-Developer-Key: i=broonie@kernel.org; a=openpgp; fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gabriel
+The identification EEPROM on the BeagleBone Black baseboard is supplied
+by VDD_3V3A which is supplied by LDO4 on the PMIC. Map this as per the DT
+binding for the EEPROM. Since this supply is always-on this has no
+practical impact but it does silence a warning at boot due to using a dummy
+regulator.
 
-On 5/16/22 09:05, gabriel.fernandez@foss.st.com wrote:
-> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> 
-> v4: (rebased on next-20220512)
->    - rename scmi_shm@0 node into scmi-sram@0
->    - move sram node
->    - add reserved memory for optee
-> 
-> v3:
->    - cosmetic change from Stephen Boyd
->    - rename some functions in clk-stm32-core
->    - add missing static for variables or functions
-> 
-> v2:
->    - Resend because patch 9,10,12,13 has not been sent
->    - add Reviewed by Krzysztof Kozlowski for patch 1
-> 
-> Gabriel Fernandez (14):
->    dt-bindings: rcc: stm32: add new compatible for STM32MP13 SoC
->    clk: stm32: Introduce STM32MP13 RCC drivers (Reset Clock Controller)
->    clk: stm32mp13: add stm32_mux clock management
->    clk: stm32mp13: add stm32_gate management
->    clk: stm32mp13: add stm32 divider clock
->    clk: stm32mp13: add composite clock
->    clk: stm32mp13: manage secured clocks
->    clk: stm32mp13: add all STM32MP13 peripheral clocks
->    clk: stm32mp13: add all STM32MP13 kernel clocks
->    clk: stm32mp13: add multi mux function
->    clk: stm32mp13: add safe mux management
->    ARM: dts: stm32: enable optee firmware and SCMI support on STM32MP13
->    ARM: dts: stm32: add RCC on STM32MP13x SoC family
->    ARM: dts: stm32: add optee reserved memory on stm32mp135f-dk
-> 
->   .../bindings/clock/st,stm32mp1-rcc.yaml       |    2 +
->   arch/arm/boot/dts/stm32mp131.dtsi             |  142 +-
->   arch/arm/boot/dts/stm32mp133.dtsi             |    4 +-
->   arch/arm/boot/dts/stm32mp135f-dk.dts          |   16 +
->   arch/arm/boot/dts/stm32mp13xf.dtsi            |    3 +-
->   drivers/clk/Kconfig                           |    5 +
->   drivers/clk/Makefile                          |    1 +
->   drivers/clk/stm32/Makefile                    |    1 +
->   drivers/clk/stm32/clk-stm32-core.c            |  695 +++++++
->   drivers/clk/stm32/clk-stm32-core.h            |  188 ++
->   drivers/clk/stm32/clk-stm32mp13.c             | 1620 +++++++++++++++
->   drivers/clk/stm32/reset-stm32.c               |  122 ++
->   drivers/clk/stm32/reset-stm32.h               |    8 +
->   drivers/clk/stm32/stm32mp13_rcc.h             | 1748 +++++++++++++++++
->   include/dt-bindings/clock/stm32mp13-clks.h    |  229 +++
->   include/dt-bindings/reset/stm32mp13-resets.h  |  100 +
->   16 files changed, 4813 insertions(+), 71 deletions(-)
->   create mode 100644 drivers/clk/stm32/Makefile
->   create mode 100644 drivers/clk/stm32/clk-stm32-core.c
->   create mode 100644 drivers/clk/stm32/clk-stm32-core.h
->   create mode 100644 drivers/clk/stm32/clk-stm32mp13.c
->   create mode 100644 drivers/clk/stm32/reset-stm32.c
->   create mode 100644 drivers/clk/stm32/reset-stm32.h
->   create mode 100644 drivers/clk/stm32/stm32mp13_rcc.h
->   create mode 100644 include/dt-bindings/clock/stm32mp13-clks.h
->   create mode 100644 include/dt-bindings/reset/stm32mp13-resets.h
-> 
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ arch/arm/boot/dts/am335x-boneblack.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-DT Patches [12][13][14] applied on stm32-next.
+diff --git a/arch/arm/boot/dts/am335x-boneblack.dts b/arch/arm/boot/dts/am335x-boneblack.dts
+index 9312197316f0..b956e2f60fe0 100644
+--- a/arch/arm/boot/dts/am335x-boneblack.dts
++++ b/arch/arm/boot/dts/am335x-boneblack.dts
+@@ -168,3 +168,7 @@ &gpio3 {
+ 		"NC",
+ 		"NC";
+ };
++
++&baseboard_eeprom {
++	vcc-supply = <&ldo4_reg>;
++};
+-- 
+2.30.2
 
-Cheers
-Alex
