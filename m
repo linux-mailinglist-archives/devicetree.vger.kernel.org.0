@@ -2,239 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89C5D5529DC
+	by mail.lfdr.de (Postfix) with ESMTP id 349555529DB
 	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 06:03:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344715AbiFUDkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 23:40:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54406 "EHLO
+        id S1343900AbiFUDma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 23:42:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232935AbiFUDkA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 23:40:00 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65D28632D
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 20:39:59 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id v143so15633035oie.13
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 20:39:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hWxtngEThL/1CXndF6OBNy94w7fuARzauxhQ7hxLhOE=;
-        b=SXW893XzMEBxwo+LkZJq5IBDKGRH9yjB51xSiP5mHpUwPu4P2GMPq1gjaIxldpUuQE
-         Kl7msxEtaIDRUXxcojnPL73Lu+KBakHKxmL7nB2SAuLcMpr6GdlvQAFOFX3onPexAuwX
-         kr6gG8tncr4XBlsAjwP0sDiOfk/jCt3P/pzpCcMWekAAEdxeTmWc9UVPT5xcGcbhjKSr
-         zX8JkDxpwPlwQRtpXYO9s1NKKZt3TpGjSX8rrp/qV/khkXUxmL7fRo8ajkN+YUP85guQ
-         6tftfEJZHMc1Aeor5FRMAsGHUk8FmvWxemOVv0jG2hm+98Kxjf1V5ta7e0CSWZi/biUG
-         uoaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hWxtngEThL/1CXndF6OBNy94w7fuARzauxhQ7hxLhOE=;
-        b=BWTYmGYSRpx3hssHjG6m/blevxudj8O506DeZceko6eJ3CWsfcO8uMPfmg0ldHTFKM
-         z2zMdWc+6OAwAOv83XBHLDaWtcaxLJpb0TnMse1cbLah4tqmxheEM1TCIidbzCLDX4kl
-         vBIvO+iU/biyEBVCYE0tDA83RKqvCJrRjGHDK8iQ6NQ+l9v+oEadVlyj7WmFognzucti
-         JxNu9KGuqcyazptMqqIjG1fGDG7i7tX7Jw28EN0i/guwPstEPNC4tmrFfZfQLt1LYFtT
-         kexSIdsoiQLJEC/7uWAeZhNQMLcdqw7tl5yxnwrANYiI5awnhU+lGa5nZ1n14Ga/ByUW
-         QsmA==
-X-Gm-Message-State: AOAM531bxJbaa0llaldDCZQRrw9jutNZ50Ce+zR/icJhdKBlbJ3R8UbP
-        tN3Y8AhOvbqI44v68zP2QZ3zELjNzDYdVg==
-X-Google-Smtp-Source: ABdhPJzasNTQSQFYwStVLiv+HTVfwGDinnn0CJxvWRSXoooldyj+Em+8GYm7NFgp9nFMOcgsHd5ihA==
-X-Received: by 2002:a05:6808:3027:b0:2f9:6618:ea55 with SMTP id ay39-20020a056808302700b002f96618ea55mr18305800oib.247.1655782798638;
-        Mon, 20 Jun 2022 20:39:58 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id t23-20020a05683022f700b006060322125esm8877594otc.46.2022.06.20.20.39.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jun 2022 20:39:58 -0700 (PDT)
-Date:   Mon, 20 Jun 2022 22:39:56 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232935AbiFUDm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 23:42:28 -0400
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A31B631E;
+        Mon, 20 Jun 2022 20:42:28 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id A908E3200413;
+        Mon, 20 Jun 2022 23:42:26 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute2.internal (MEProxy); Mon, 20 Jun 2022 23:42:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm3; t=1655782946; x=1655869346; bh=QwqtA8TFvXUjbrq3ygXKnCrNk
+        cCC77IXwnuhLmCowy0=; b=nnU5PF/LTt2rpo70idg0NCv+QGLNFDHLvx8Z6gKH8
+        06IfWlgAvnz26c4YGgICHLjDOv1XMwSm1lgRpeeYYles0aW3tiOozFcHfPU7zWe2
+        ZzoFb3Jbpe2ZkXRRwR7xNQX8h3iGFXXRXc6q5imByolxX1iXl4wyYNp6rRSA8w/E
+        sT2OyANrfpbcIutR1w89crua+sO2ObNxiJxXYDNmfVe7trBu/AbKMfQ+7fA+oHZn
+        EizYZdDBBJBkK8oFsa59gXAq4kKLf0PrTCyjHCF2cMztBYSMA+HrGR8vsSZvn6aW
+        z0EazYV5gch8HYui4UcTR6YVe45EZMgbmvapWkp/qoy5Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+        1655782946; x=1655869346; bh=QwqtA8TFvXUjbrq3ygXKnCrNkcCC77IXwnu
+        hLmCowy0=; b=s1XUMhvKgDhqF0AigFoDEr8SokwDvLrN0XNfZeS3FVB+4uOSdxf
+        xp2ZZfY3//iDM0t7hU5kotyDZStTWdG2nNP/L9yHsp6EDe313gqvqUlJnyMif/dx
+        NKcC5pucGaMmeNOJPBr4nFWQXLNRMq7ZzOVTqFzLzBz0O2gtL5kFC3JDPh6vV/s3
+        FbU386LhKeoNjnjrRFP+SZCiVz8zZr4gN0Mrw/Aa0WIxPvFzcllkIbNbOR1bOOVk
+        HkgsoUjkCdb/xvIEeGzbEobOA31/v2fOZZ7KIRk+C3WQSb0W4poneT3qifRxD77B
+        PnDKqbL4wTDdYuqvevKHvyzwofxBXmODcJQ==
+X-ME-Sender: <xms:IT6xYvRiPxDvuVUb3RRJpVozZ8vQFJ_yUXgazg98YJEUpcdMz3j-OA>
+    <xme:IT6xYgx2yvbb0yLGmB1s75g5mKFMlUK-HLfQPu8m61XCrFtSn7JstSsnFOXH9H5IQ
+    0zyEA11E9WWq2DczA>
+X-ME-Received: <xmr:IT6xYk1jsyzc994vm26uUHqrsQZ3gra5WAbTJgdlOx0z425vgh0FJHM2HMv7sXCEGAe18jb47aTHOlG3Gy-hEqf7kTPrce0D6yPF-5Z427oz_D4KpIrtgeTFoEc1RLMFrZlFEg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudefvddgjedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
+    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
+    grthhtvghrnhepkeevlefhjeeuleeltedvjedvfeefteegleehueejffehgffffeekhefh
+    hfekkeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:Ij6xYvDhd8mUdN4HhgpvCcKCcQPRnppB_CzpmsBNp7Q5SalIG2KHJg>
+    <xmx:Ij6xYoiXjCIK_rOPa1md4-Io_bqxaL28LrmIzHtY76L_3UgLFJM97g>
+    <xmx:Ij6xYjpRRyiuYV1-7WbaunhJpKv39QC43aAXsC79manVmKvIV1lhZQ>
+    <xmx:Ij6xYhW55dZ-MKS6TxGanl4uQnQh7NfKoy60oDaCQ5OAtdWB3papIw>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 20 Jun 2022 23:42:25 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Chen-Yu Tsai <wens@csie.org>, Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc8280x: Add reference device
-Message-ID: <YrE9jGuLNeFHFGr7@builder.lan>
-References: <20220607214113.4057684-1-bjorn.andersson@linaro.org>
- <20220607214113.4057684-4-bjorn.andersson@linaro.org>
- <YqDLmsrAkI1OnHqd@hovoldconsulting.com>
+Subject: [PATCH v2 0/4] AXP221/AXP223/AXP809 GPIO support
+Date:   Mon, 20 Jun 2022 22:42:20 -0500
+Message-Id: <20220621034224.38995-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YqDLmsrAkI1OnHqd@hovoldconsulting.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 08 Jun 11:17 CDT 2022, Johan Hovold wrote:
+This series hooks up the GPIO controller found in some older X-Powers
+PMICs. The main motivation is converting the U-Boot driver over to use
+devicetree, but Linux might as well gain support for the hardware too.
 
-> On Tue, Jun 07, 2022 at 02:41:12PM -0700, Bjorn Andersson wrote:
-> > Add basic support for the SC8280XP reference device, which allows it to
-> > boot to a shell (using EFIFB) with functional storage (UFS), USB,
-> > keyboard, touchpad, touchscreen, backlight and remoteprocs.
-> > 
-> > The PMICs are, per socinfo, reused from other platforms. But given that
-> > the address of the PMICs doesn't match other cases and that it's
-> > desirable to label things according to the schematics a new dtsi file is
-> > created to represent the reference combination of PMICs.
-> 
-> nit: missing p in "sc8280xp" in Subject.
-> 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/Makefile            |   1 +
-> >  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts    | 423 +++++++++++++++++++
-> >  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 108 +++++
-> >  3 files changed, 532 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> >  create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
->  
-> > +	vreg_misc_3p3: misc-3p3-regulator {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "VREG_MISC_3P3";
-> > +
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +
-> > +		gpio = <&pmc8280_1_gpios 0 GPIO_ACTIVE_HIGH>;
-> 
-> The PMIC gpios are 1-based, so this should be
-> 
-> 		gpio = <&pmc8280_1_gpios 1 GPIO_ACTIVE_HIGH>;
-> 
-> or the regulator fails to probe.
-> 
-> > +		enable-active-high;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&misc_3p3_reg_en>;
-> > +
-> > +		regulator-boot-on;
-> > +		regulator-always-on;
-> > +	};
-> > +
-> > +	reserved-memory {
-> > +	};
-> > +};
-> 
-> > +&qup0_i2c4 {
-> > +       status = "okay";
-> 
-> Please move the status property last throughout here too.
-> 
-> > +       clock-frequency = <400000>;
-> > +
-> > +       pinctrl-names = "default";
-> > +       pinctrl-0 = <&qup0_i2c4_default>, <&ts0_default>;
-> > +
-> > +       hid@10 {
-> 
-> I've changed this to use the more descriptive name "touchscreen".
-> 
-> > +               compatible = "hid-over-i2c";
-> > +               reg = <0x10>;
-> > +               hid-descr-addr = <0x1>;
-> > +                       
-> > +               interrupts-extended = <&tlmm 175 IRQ_TYPE_LEVEL_LOW>;
-> > +       };
-> > +};
-> 
-> > +&qup2_i2c5 {
-> > +       status = "okay";
-> > +       clock-frequency = <400000>;
-> > +
-> > +       pinctrl-names = "default";
-> > +       pinctrl-0 = <&qup2_i2c5_default>, <&kybd_default>, <&tpad_default>;
-> > +
-> > +       hid@15 {
-> 
-> And this to "touchpad@15"
-> 
-> > +               compatible = "hid-over-i2c";
-> > +               reg = <0x15>;
-> > +               hid-descr-addr = <0x1>;
-> > +
-> > +               interrupts-extended = <&tlmm 182 IRQ_TYPE_LEVEL_LOW>;
-> > +       };
-> > +
-> > +       hid@68 {
-> 
-> And keyboard@68
-> 
-> Sure these are multifunction devices, but this is the primary function.
-> 
-> > +               compatible = "hid-over-i2c";
-> > +               reg = <0x68>;
-> > +               hid-descr-addr = <0x1>;
-> > +
-> > +               interrupts-extended = <&tlmm 104 IRQ_TYPE_LEVEL_LOW>;
-> > +       };
-> > +};
-> 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> > new file mode 100644
-> > index 000000000000..36ed7d808ab8
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> 
-> > +	pmc8280c: pmic@2 {
-> > +		compatible = "qcom,pm8350c", "qcom,spmi-pmic";
-> > +		reg = <0x2 SPMI_USID>;
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +
-> > +		pmc8280c_gpios: gpio@8800 {
-> > +			compatible = "qcom,pm8350c-gpio", "qcom,spmi-gpio";
-> > +			reg = <0x8800>;
-> > +			gpio-controller;
-> > +			gpio-ranges = <&pmc8280c_gpios 0 0 9>;
-> > +			#gpio-cells = <2>;
-> > +			interrupt-controller;
-> > +			#interrupt-cells = <2>;
-> > +		};
-> > +
-> > +		pmc8280c_lpg: lpg@e800 {
-> 
-> I renamed the node (and label suffix) "pwm" when I noticed that the
-> binding had changed in mainline.
-> 
-> Since this device is used as a PWM provider I guess that's a better
-> name?
-> 
+Changes in v2:
+ - Combine multiple "const"s in the binding into an "enum"
 
-The pm8350c seems to include a number of PWM channels, the RGB current
-sink (triled) and the LUT block - together making up the "Light Pulse
-Generator".
+Samuel Holland (4):
+  dt-bindings: gpio: Add AXP221/AXP223/AXP809 compatibles
+  mfd: axp20x: Add AXP221/AXP223/AXP809 GPIO cells
+  pinctrl: axp209: Support the AXP221/AXP223/AXP809 variant
+  ARM: dts: axp22x/axp809: Add GPIO controller nodes
 
-So with that in mind, the compatible seems to have come from the fact
-that the author only intended to use one of the PWM sub-blocks...
+ .../bindings/gpio/x-powers,axp209-gpio.yaml   |  6 ++++++
+ arch/arm/boot/dts/axp22x.dtsi                 | 18 ++++++++++++++++++
+ arch/arm/boot/dts/axp809.dtsi                 | 19 +++++++++++++++++++
+ drivers/mfd/axp20x.c                          |  9 +++++++++
+ drivers/pinctrl/pinctrl-axp209.c              | 14 +++++++++++---
+ 5 files changed, 63 insertions(+), 3 deletions(-)
 
+-- 
+2.35.1
 
-Thanks for the feedback on the series, will updated and resubmit
-accordingly.
-
-Regards,
-Bjorn
-
-> > +			compatible = "qcom,pm8350c-pwm";
-> > +			reg = <0xe800>;
-> > +
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> > +			#pwm-cells = <2>;
-> > +
-> > +			status = "disabled";
-> > +		};
-> > +	};
-> 
-> Johan
