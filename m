@@ -2,126 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FB035533E0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 15:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1FAB553406
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 15:53:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350448AbiFUNlF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 09:41:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38208 "EHLO
+        id S231479AbiFUNxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 09:53:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350556AbiFUNlE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 09:41:04 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A83FB6E;
-        Tue, 21 Jun 2022 06:41:03 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25LCNKhJ006621;
-        Tue, 21 Jun 2022 15:40:50 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=94EDT3RWxV8N6CrVyf2YeNrI9uDWurb0jsl14sNSbNk=;
- b=Hwxa+bTKd2+bs4rbrB3U583e+0I3BB+696axDESxSTgKmUypfuiDdiis3yXuFPIV6BaU
- JmMj340Wnsa7/557TSu71eXrXr+ptRGP4QY+g5AsgyPaQW/4M8DgzpoGWx4ztfBu21QK
- UDrzcKSqlcQOciSB2NJDmkAP634+4Y7lH/Pd6PpxEAWZWjZn2woiONevTII2jOx5aGRB
- 8wd3sC9s9wxSDq9seftHQX1wRPr04KNqeguFVDqIaAwMR4B9tSBvBLYIzJocCdy12gOQ
- 69+vfCjnrn7gkYGqmrjMw//ieBqDTAADqiSQS6KuMyOeP9XoZjJvszM6ar4LXbTgCia9 0Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3gua1n26fn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 21 Jun 2022 15:40:50 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1A401100034;
-        Tue, 21 Jun 2022 15:40:50 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 12CE52278A6;
-        Tue, 21 Jun 2022 15:40:50 +0200 (CEST)
-Received: from [10.48.0.19] (10.75.127.119) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 21 Jun
- 2022 15:40:49 +0200
-Message-ID: <6ca11af0-9c13-4e41-07fd-7fe90f202667@foss.st.com>
-Date:   Tue, 21 Jun 2022 15:40:48 +0200
+        with ESMTP id S229480AbiFUNxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 09:53:47 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEA8112776;
+        Tue, 21 Jun 2022 06:53:44 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id fu3so27668993ejc.7;
+        Tue, 21 Jun 2022 06:53:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=roHXTUL4tKXVN//IvEXVUmOPrGKI2A3Q1fTOEiNxRiE=;
+        b=P5XX+bTiGw5qp8eSMfarTWvbuYZdIdE/DXb5iSZ8X4x/m9/szH6t40nyGlna8U8T7E
+         e9zqDZ2c7I5374q+h+4xdhLKoMxCMXy3CAWe5PUGt+/SxouSYiYMbhXYZaCNnxA5CkCY
+         wi99hSVxmqCBzZLtZw2muvN23Rdb1KEyGYIJIvFZH7iVLeIhtRqfGWXyMoDw5YUHH5oD
+         reUW+m5SeNYHj1VmO1rijqrQE5gJ5MsjHrO4BSn/hsJsuqzPkXFLkIx1iAHJVbD2a3GB
+         GbnykMSfI7VYnn1KOuERBdm+67sGyC/kkCevOwELffMJ8DnRu1lw4miR8viQYylwXpR9
+         Vb3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=roHXTUL4tKXVN//IvEXVUmOPrGKI2A3Q1fTOEiNxRiE=;
+        b=xWDStEErAEr85ZTnrCOrejctAQYVpp497pS4S5+B/88t4c3an1h6v/fjkhHwyBJj8N
+         l8A7iCW0AYGI1Qy7c8NgCPp4Sh4lihoeHz9qeWQbFoDsytwLHlMI51/6TS9DhHJLKCNf
+         E6ZOL0FkPcC/3UCAYUCMYr4r4X5WS9wAnEfLfwWvaQQjx2/ZiBfsHwFqFMx/nt5TLV2S
+         e+wrDCfXMAfo+UtyB+mG7h0nCowBumPNIRmPNTqa9HiDJeNAo1JOBH+7F8TGs3JXaAW5
+         m8OfWqFSlJuRZkbebZ5P1Bs53IsRgEdur9l8zhihBCiRNxdPVNRYinW4UvrGzQRI7KLF
+         R9aw==
+X-Gm-Message-State: AJIora9GQHmLYcp6zR0VSUX58nEXPVQsg7+irzGd8yO/Tyh13+0azhnt
+        9KWHsXL5IqEK80i9P2cL60XWfeKLOiYvOQ==
+X-Google-Smtp-Source: AGRyM1sczfnqeoBRL2JVbKBxe9KgCynS8OEYJM73QMnSa2Iy5BIRI4fRPUdc2rdfo7pOMxyFAXFyuw==
+X-Received: by 2002:a17:906:c7c8:b0:70c:a62c:d0e8 with SMTP id dc8-20020a170906c7c800b0070ca62cd0e8mr25422461ejb.545.1655819623364;
+        Tue, 21 Jun 2022 06:53:43 -0700 (PDT)
+Received: from fedora.robimarko.hr (dh207-99-158.xnet.hr. [88.207.99.158])
+        by smtp.googlemail.com with ESMTPSA id fy11-20020a1709069f0b00b007104b37aab7sm7325408ejc.106.2022.06.21.06.53.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jun 2022 06:53:42 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     kvalo@kernel.org, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, ath11k@lists.infradead.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Robert Marko <robimarko@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: net: wireless: ath11k: add new DT entry for board ID
+Date:   Tue, 21 Jun 2022 15:53:38 +0200
+Message-Id: <20220621135339.1269409-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 4/4] i2c: stm32: add support for the STM32MP13 soc
-Content-Language: en-US
-To:     Alain Volmat <alain.volmat@foss.st.com>, <wsa@kernel.org>,
-        <robh+dt@kernel.org>
-CC:     <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@foss.st.com>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@foss.st.com>,
-        <amelie.delaunay@foss.st.com>
-References: <20220620105405.145959-1-alain.volmat@foss.st.com>
- <20220620105405.145959-5-alain.volmat@foss.st.com>
-From:   Pierre Yves MORDRET <pierre-yves.mordret@foss.st.com>
-In-Reply-To: <20220620105405.145959-5-alain.volmat@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.119]
-X-ClientProxiedBy: GPXDAG2NODE5.st.com (10.75.127.69) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.64.514
- definitions=2022-06-21_06,2022-06-21_01,2022-02-23_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi All
+bus + qmi-chip-id + qmi-board-id and optionally the variant are currently
+used for identifying the correct board data file.
 
-Look good to me.
+This however is sometimes not enough as all of the IPQ8074 boards that I
+have access to dont have the qmi-board-id properly fused and simply return
+the default value of 0xFF.
 
-Reviewed-by: Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>
+So, to provide the correct qmi-board-id add a new DT property that allows
+the qmi-board-id to be overridden from DTS in cases where its not set.
+This is what vendors have been doing in the stock firmwares that were
+shipped on boards I have.
 
-Regards
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+ .../devicetree/bindings/net/wireless/qcom,ath11k.yaml     | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-On 6/20/22 12:54, Alain Volmat wrote:
-> Add a new compatible for the stm32mp13.  Fast Mode Plus control
-> register address differ from the one for STM32MP15.
-> 
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> ---
->  drivers/i2c/busses/i2c-stm32f7.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/i2c/busses/i2c-stm32f7.c b/drivers/i2c/busses/i2c-stm32f7.c
-> index b29d8e476342..9946b330ddce 100644
-> --- a/drivers/i2c/busses/i2c-stm32f7.c
-> +++ b/drivers/i2c/busses/i2c-stm32f7.c
-> @@ -410,6 +410,12 @@ static const struct stm32f7_i2c_setup stm32mp15_setup = {
->  	.fmp_clr_offset = 0x40,
->  };
->  
-> +static const struct stm32f7_i2c_setup stm32mp13_setup = {
-> +	.rise_time = STM32F7_I2C_RISE_TIME_DEFAULT,
-> +	.fall_time = STM32F7_I2C_FALL_TIME_DEFAULT,
-> +	.fmp_clr_offset = 0x4,
-> +};
-> +
->  static inline void stm32f7_i2c_set_bits(void __iomem *reg, u32 mask)
->  {
->  	writel_relaxed(readl_relaxed(reg) | mask, reg);
-> @@ -2469,6 +2475,7 @@ static const struct dev_pm_ops stm32f7_i2c_pm_ops = {
->  static const struct of_device_id stm32f7_i2c_match[] = {
->  	{ .compatible = "st,stm32f7-i2c", .data = &stm32f7_setup},
->  	{ .compatible = "st,stm32mp15-i2c", .data = &stm32mp15_setup},
-> +	{ .compatible = "st,stm32mp13-i2c", .data = &stm32mp13_setup},
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, stm32f7_i2c_match);
-
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index a677b056f112..fe6aafdab9d4 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -41,6 +41,14 @@ properties:
+         * reg
+         * reg-names
+ 
++  qcom,ath11k-board-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Board ID to override the one returned by the firmware or the default
++      0xff if it was not set by the vendor at all.
++      It is used along the ath11k-calibration-variant to mach the correct
++      calibration data from board-2.bin.
++
+   qcom,ath11k-calibration-variant:
+     $ref: /schemas/types.yaml#/definitions/string
+     description:
 -- 
---
-~ Py MORDRET
---
+2.36.1
+
