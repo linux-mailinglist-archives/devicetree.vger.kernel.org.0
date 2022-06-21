@@ -2,66 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24E67553852
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 19:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E4B2553863
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 19:02:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351567AbiFURAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 13:00:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39366 "EHLO
+        id S1344117AbiFURBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 13:01:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351476AbiFURAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 13:00:39 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E32D24F25
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:00:38 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id b142so10587216qkg.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:00:38 -0700 (PDT)
+        with ESMTP id S1351385AbiFURBl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 13:01:41 -0400
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D513728989
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:01:39 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id g15so10571458qke.4
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:01:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ZkEO4M7jOV59qCHyyw5pNgv0UuC6b2G1AI1tuCyDlaA=;
-        b=mtqPOXuTZWFBF/kLU/7R0s5qGBDSwlgvLQm89SWh4DiOT4vVRtUaktsNZNEQsqdPXS
-         nFL+k25MASc3viAKtDqEP7RsrFIXvMrYiYNARgfLvRQ8Ww8cW0RIGBV3JXeI83/RBYXb
-         T8PJCIFKrybguxPsRoFcEMdw2zr+zq7vCX/D2bLyXQKUUSn3YWgs73AbKCi6vRYEr3n1
-         H67vQf//aTcgLNHiynKjJ4ugnVs9kZb3UrGB8X8darfnUOveKkkKgoS5LNAiTah4NTwM
-         ROhQmRup2OFQ/YUZV92iHqFDsdaFJgrcFMRu4gZrgFwWP40AXHC18/0Loiw1GECUbhlx
-         tSCw==
+        bh=ndYFg9yJFFsm+MchCSau+vce/mgo6x0ybmLOESsjBAU=;
+        b=FGvOHsGGUGmDXbxdMzvu/CDu6NuiY5QvnTnk1/HR+gu1fNI5L26/9Wo9ifp221Wh3p
+         wfKeopgo8ivR4mjQrM6YDmsy1kMjzCfUFIwYUgKPQjrdrOPWt9bn7KPMvrD2eyl5s8hJ
+         CpVAFnNGoovLlcunn8PvM7fh49U2rQjSWLgpBzQGubxFdDFwUxuXzHM7R3eWIDrFAXte
+         gliH8epLnJYwan5t2e4UUIuk68H9+WuoTE/X2nkFAS37sKR2kismFsaFDQ8rhVkXJpwe
+         SHd0pNYbEBN3++NazBy5etqW1jy9y427VaLEReT1YH4C1QcTwkolxF4z00aJV2EVQfkr
+         au+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ZkEO4M7jOV59qCHyyw5pNgv0UuC6b2G1AI1tuCyDlaA=;
-        b=6xlhtmAMlsAH5lbP2jJXdluXC80HB/f+jKysp6dFXp9sJuo5tJ/bvxxXuxhs0c7fe5
-         1eymIXMDVEBuZYYM1GQiu7NJb3Oci7WhmzVTjyVobYpo7oXhhw1zCxysirgd4fpXYcE9
-         ZfhmsAg336qGu6XLu/okdvpg9sI9YDBNK1YnHVmPWSHejqFRzL/7zEGxw2sB0VIqLrRd
-         WqOPigTB6CVQAAyxeHWWQvNSzzmlZCr6eyx6u3yPuJyxmS4MYmnLt+HHKS8eYojvW1df
-         n3rRw2y+1hqK189HYmWu6zkN8joGae42/oHP9pR+KsGaQizi0RSlRn55JMWz9lIk+pum
-         rYmQ==
-X-Gm-Message-State: AJIora/YgsYqFp/y3/h0rI2LWleDFRgKy2rReuwBNwxPhPfYCWFy2PGj
-        Qf778QOyGpLgsUhqbAnWfo7DVKFtmXRDOilU0EHzEQ==
-X-Google-Smtp-Source: AGRyM1tpUHhHSSiROE4fi9M7Q5m/N0ialxxH/8ZL4M59Dvo2uPLFsi/GJ1HYDg5pqxD333cgmrK3tCvG/1IBvP73I2M=
-X-Received: by 2002:a05:620a:2a0e:b0:6a7:8346:1601 with SMTP id
- o14-20020a05620a2a0e00b006a783461601mr20504725qkp.593.1655830837507; Tue, 21
- Jun 2022 10:00:37 -0700 (PDT)
+        bh=ndYFg9yJFFsm+MchCSau+vce/mgo6x0ybmLOESsjBAU=;
+        b=CQeZn8Zs3UPUXAjeJ1vEu/IKXJOmYnZXmttU2XVVROInRV/By0WV1FCLUg3V3pnvVt
+         S2f9snjpzdVUDxmRCTbjos48WG5FHRZW0TKt6SWZFZSgr+Z2s6xwzbeGBFqqjHMkSmeV
+         4ETcFkwEg5p/f8a1xIoXBCJP4SWCQxuOg/tiBLty8/mdQBIugQ2J28fSGoSV1sUV2RtO
+         n2QcLRZ8nGv5e+1Eh+Zvdatvd+mLXlMrSnC8EFGwyYO4fQySmNhY0QxR/Pp6Uut3GRg+
+         aOuZWobi3GmYlm0aaG/xlFjJ1bGwJXX0UL3MMj8+1uKxiFL2AIC3NGLXJYAlqKWTD0ZR
+         88IA==
+X-Gm-Message-State: AJIora/Lk2YMA3yFRIFyOxurjM2mRdnyXdufAhW/sexeUmeASQqW5nEy
+        +7rAGfF0ivngHcBoyWYh4eB2sCog0dpVUsoGzAuJyw==
+X-Google-Smtp-Source: AGRyM1uXAP09+bwhOkQRsesIc4uC3aUOpDDew+bAcVuvJA0BtGFIEUAl8yeVqSD68KuR3Bs6PmzCsdahWfCGU4Cb8tM=
+X-Received: by 2002:a37:a83:0:b0:6a6:7e4d:41dc with SMTP id
+ 125-20020a370a83000000b006a67e4d41dcmr20646327qkk.59.1655830897913; Tue, 21
+ Jun 2022 10:01:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220620215150.1875557-1-dmitry.baryshkov@linaro.org> <62b1e1ea.1c69fb81.aafda.3244@mx.google.com>
-In-Reply-To: <62b1e1ea.1c69fb81.aafda.3244@mx.google.com>
+References: <20220621160621.24415-1-y.oudjana@protonmail.com> <20220621160621.24415-2-y.oudjana@protonmail.com>
+In-Reply-To: <20220621160621.24415-2-y.oudjana@protonmail.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 21 Jun 2022 20:00:26 +0300
-Message-ID: <CAA8EJprEhHXSz2f2Estn-3Xih9W=S0qTMg950aXfEFQgoYuVXg@mail.gmail.com>
-Subject: Re: [PATCH] clk: qcom: gcc-ipq806x: use parent_data for the last
- remaining entry
-To:     Christian Marangi <ansuelsmth@gmail.com>
+Date:   Tue, 21 Jun 2022 20:01:27 +0300
+Message-ID: <CAA8EJpqHBRHw4+0-P-KAT4JnAHkXUwTdXM9j2d-n66B3Yr+A+w@mail.gmail.com>
+Subject: Re: [PATCH 1/6] clk: qcom: msm8996-cpu: Rename DIV_2_INDEX to SMUX_INDEX
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
         Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
         linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -73,49 +79,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Jun 2022 at 18:21, Christian Marangi <ansuelsmth@gmail.com> wrote:
+On Tue, 21 Jun 2022 at 19:07, Yassine Oudjana <yassine.oudjana@gmail.com> wrote:
 >
-> On Tue, Jun 21, 2022 at 12:51:50AM +0300, Dmitry Baryshkov wrote:
-> > Use parent_data for the last remaining entry (pll4). This clock is
-> > provided by the lcc device.
-> >
-> > Fixes: cb02866f9a74 ("clk: qcom: gcc-ipq806x: convert parent_names to parent_data")
-> > Cc: Ansuel Smith <ansuelsmth@gmail.com>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  drivers/clk/qcom/gcc-ipq806x.c | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/clk/qcom/gcc-ipq806x.c b/drivers/clk/qcom/gcc-ipq806x.c
-> > index 718de17a1e60..6447f3e81b55 100644
-> > --- a/drivers/clk/qcom/gcc-ipq806x.c
-> > +++ b/drivers/clk/qcom/gcc-ipq806x.c
-> > @@ -79,7 +79,9 @@ static struct clk_regmap pll4_vote = {
-> >       .enable_mask = BIT(4),
-> >       .hw.init = &(struct clk_init_data){
-> >               .name = "pll4_vote",
-> > -             .parent_names = (const char *[]){ "pll4" },
-> > +             .parent_data = &(const struct clk_parent_data){
-> > +                     .fw_name = "pll4", .name = "pll4",
-> > +             },
-> >               .num_parents = 1,
-> >               .ops = &clk_pll_vote_ops,
-> >       },
-> > --
-> > 2.35.1
-> >
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
 >
-> Hi my intention was finding a way to directly reference the hw clk from
-> the lcc driver instead of using fw_name/name parent data. Wonder if that
-> would be a better solution... Seems wrong to me to eventually add also
-> the pll4 clk in the dts to correctly use the fw_name definition (when
-> that will be fixed in the ipq8064 dtsi)
+> The parent at this index is the secondary mux, which can connect
+> not only to primary PLL/2 but also to XO. Rename the index to SMUX_INDEX
+> to better reflect the parent.
+>
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 
-Please don't. They are two separate hardware pieces, two separate
-drivers. Please don't invent anything fancy. Let the OF clk code
-handle it.
-Yes, this will result in "pll4" clock being referenced in DT. We
-already have binding for that, <&lcc PLL4>.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+> ---
+>  drivers/clk/qcom/clk-cpu-8996.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+
 
 -- 
 With best wishes
