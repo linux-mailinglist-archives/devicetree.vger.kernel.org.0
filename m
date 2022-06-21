@@ -2,133 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85C7B553208
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 14:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78EC755323A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 14:38:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349409AbiFUM2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 08:28:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60752 "EHLO
+        id S1348884AbiFUMgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 08:36:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350585AbiFUM2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 08:28:48 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C3F36270
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:28:46 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25L8gmGJ024243;
-        Tue, 21 Jun 2022 14:28:18 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=lxZ7oSgrcpwprhuAEXFleT6BnNeU/lXEpqaOmXXHMi4=;
- b=yFU4ZVdYEgFg2WycVhMRi6AFbeJtMsusAfS02fwtMFNmZrmBzZp9gxv7nkufGb0/mkz9
- +CAA8fSX9cQqa1S6637ike9aCq0g+z/6OMWTlj+YybuMoYMhSW0GKafFutINXksOBCFt
- aiqRU4wTw8n526fKOApzVe+gwlF+Xf6qzbLZs9RPSfUqr6lAZxfCy6kwMGVshabRYNtY
- c6ay3VhJs9d2kVpGgo/I9LYS+kM5s4FT+hFePljDV35pfLRS4Xm7OWPLHoIhvaCltv2T
- XQMTDDl61QGIxkbpxgiKqRw86WSqCfbIgP30EkY/7i3phXYwbOisH0+qJRy8zwMf49TH FA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3guaqh9gqk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 21 Jun 2022 14:28:18 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BBD93100039;
-        Tue, 21 Jun 2022 14:27:36 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B6EF922178E;
-        Tue, 21 Jun 2022 14:27:36 +0200 (CEST)
-Received: from [10.201.21.93] (10.75.127.117) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 21 Jun
- 2022 14:27:36 +0200
-Message-ID: <184f3802-79af-206b-5b59-e063b9d12868@foss.st.com>
-Date:   Tue, 21 Jun 2022 14:27:35 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v3 1/3] ARM: dts: stm32: add STM32MP1-based Phytec SoM
-Content-Language: en-US
-To:     Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
+        with ESMTP id S233248AbiFUMgq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 08:36:46 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B01523E;
+        Tue, 21 Jun 2022 05:36:44 -0700 (PDT)
+X-UUID: 3d23542066bb47bd896da04832323de9-20220621
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:2b65926c-2a54-459f-84f5-4a15c4badc6e,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.6,REQID:2b65926c-2a54-459f-84f5-4a15c4badc6e,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:b14ad71,CLOUDID:3a9f1338-5e4b-44d7-80b2-bb618cb09d29,C
+        OID:52f5ece34a56,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 3d23542066bb47bd896da04832323de9-20220621
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1555816553; Tue, 21 Jun 2022 20:36:39 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 21 Jun 2022 20:36:37 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 21 Jun 2022 20:36:37 +0800
+Message-ID: <b609f8db2a2ae9f5c9e3b6bc60498115bb054990.camel@mediatek.com>
+Subject: Re: [PATCH v11 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "deller@gmx.de" <deller@gmx.de>,
+        "airlied@linux.ie" <airlied@linux.ie>
+CC:     "msp@baylibre.com" <msp@baylibre.com>,
+        "granquet@baylibre.com" <granquet@baylibre.com>,
+        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
+        <jitao.shi@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-CC:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <kernel@pengutronix.de>
-References: <20220621101538.481143-1-s.trumtrar@pengutronix.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20220621101538.481143-1-s.trumtrar@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 21 Jun 2022 20:36:37 +0800
+In-Reply-To: <597d190f72427d5d1da7a4ca46b219e2edb69693.camel@mediatek.com>
+References: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
+         <20220610105522.13449-6-rex-bc.chen@mediatek.com>
+         <597d190f72427d5d1da7a4ca46b219e2edb69693.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.117]
-X-ClientProxiedBy: GPXDAG2NODE5.st.com (10.75.127.69) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.64.514
- definitions=2022-06-21_04,2022-06-21_01,2022-02-23_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/21/22 12:15, Steffen Trumtrar wrote:
-> The Phytec STM32MP1 based SoMs feature up to 1 GB DDR3LP RAM, up to 1 GB eMMC,
-> up to 16 MB QSPI and up to 128 GB NAND flash.
+On Mon, 2022-06-20 at 11:54 +0800, CK Hu wrote:
+> Hi, Rex:
 > 
-> As multiple default pinctrls are overwritten, collect them in one place
-> in stm32mp157c-phycore-stm32mp15-pinctrl.dtsi.
+> On Fri, 2022-06-10 at 18:55 +0800, Bo-Chen Chen wrote:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > 
+> > This patch adds a embedded displayport driver for the MediaTek
+> > mt8195
+> > SoC.
+> > 
+> > It supports the MT8195, the embedded DisplayPort units. It offers
+> > DisplayPort 1.4 with up to 4 lanes.
+> > 
+> > The driver creates a child device for the phy. The child device
+> > will
+> > never exist without the parent being active. As they are sharing a
+> > register range, the parent passes a regmap pointer to the child so
+> > that
+> > both can work with the same register range. The phy driver sets
+> > device
+> > data that is read by the parent to get the phy device that can be
+> > used
+> > to control the phy properties.
+> > 
+> > This driver is based on an initial version by
+> > Jitao shi <jitao.shi@mediatek.com>
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > ---
 > 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
-> Changes since v2:
->    - /delete-property/dmas
->    - fix dtbs_checks warnings
->    - remove problematic+unused nodes
+> [snip]
 > 
+> > +
+> > +static int mtk_dp_bridge_atomic_check(struct drm_bridge *bridge,
+> > +				      struct drm_bridge_state
+> > *bridge_state,
+> > +				      struct drm_crtc_state
+> > *crtc_state,
+> > +				      struct drm_connector_state
+> > *conn_state)
+> > +{
+> > +	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
+> > +	struct drm_crtc *crtc = conn_state->crtc;
+> > +	unsigned int input_bus_format;
+> > +
+> > +	input_bus_format = bridge_state->input_bus_cfg.format;
+> > +
+> > +	dev_dbg(mtk_dp->dev, "input format 0x%04x, output format
+> > 0x%04x\n",
+> > +		bridge_state->input_bus_cfg.format,
+> > +		 bridge_state->output_bus_cfg.format);
+> > +
+> > +	mtk_dp->input_fmt = input_bus_format;
+> > +	if (mtk_dp->input_fmt == MEDIA_BUS_FMT_YUYV8_1X16)
 > 
->   arch/arm/boot/dts/Makefile                    |   3 +-
->   ...stm32mp157c-phycore-stm32mp15-pinctrl.dtsi | 317 +++++++++
->   .../stm32mp157c-phycore-stm32mp15-som.dtsi    | 634 ++++++++++++++++++
->   3 files changed, 953 insertions(+), 1 deletion(-)
->   create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-pinctrl.dtsi
->   create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi
+> input_fmt is used only in this function, so let it be local variable.
 > 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 184899808ee7..de5c3cadb01a 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1213,7 +1213,8 @@ dtb-$(CONFIG_ARCH_STM32) += \
->   	stm32mp157c-ev1.dtb \
->   	stm32mp157c-ev1-scmi.dtb \
->   	stm32mp157c-lxa-mc1.dtb \
-> -	stm32mp157c-odyssey.dtb
-> +	stm32mp157c-odyssey.dtb \
-> +	stm32mp157c-phycore-stm32mp1-3.dtb
->   dtb-$(CONFIG_MACH_SUN4I) += \
->   	sun4i-a10-a1000.dtb \
->   	sun4i-a10-ba10-tvbox.dtb \
-> diff --git a/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-pinctrl.dtsi
-> new file mode 100644
-> index 000000000000..b0b590df43b6
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-pinctrl.dtsi
-> @@ -0,0 +1,317 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +/*
-> + * Copyright (C) Phytec GmbH 2019-2020 - All Rights Reserved
-> + * Author: Dom VOVARD <dom.vovard@linrt.com>.
-> + */
-> +#include "stm32mp15-pinctrl.dtsi"
-> +
+> Regards,
+> CK
+> 
 
-Why do you create a dedicated file for Phytec ? all other SOM providers 
-or board providers add their pinctrl groups in stm32mp15-pinctrl.dtsi file.
+ok, I will do this.
 
-Apart that, Krzysztof did all the review :) (thanks for that)
+BRs,
+Bo-Chen
 
-Alex
+> > +		mtk_dp->info.format = DP_PIXELFORMAT_YUV422;
+> > +	else
+> > +		mtk_dp->info.format = DP_PIXELFORMAT_RGB;
+> > +
+> > +	if (!crtc) {
+> > +		drm_err(mtk_dp->drm_dev,
+> > +			"Can't enable bridge as connector state doesn't
+> > have a crtc\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	mtk_dp_parse_drm_mode_timings(mtk_dp, &crtc_state-
+> > > adjusted_mode);
+> > 
+> > +	if (mtk_dp_parse_capabilities(mtk_dp)) {
+> > +		drm_err(mtk_dp->drm_dev,
+> > +			"Can't enable bridge as nothing is plugged
+> > in\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> 
+> 
+
