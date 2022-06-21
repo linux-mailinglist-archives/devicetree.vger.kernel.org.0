@@ -2,223 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D295F553535
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 17:06:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75C4D553562
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 17:11:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351511AbiFUPGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 11:06:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41548 "EHLO
+        id S1352423AbiFUPK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 11:10:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351055AbiFUPGh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 11:06:37 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F3D927FD3
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 08:06:36 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id k14so1307625plh.4
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 08:06:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=UK5eErzZtKg/HvO01KKCBb0udTzOZqxbnH2ci/fBY9s=;
-        b=ZIemzyjsRq9eoP1h9jF5KmQizCSVDGt6xI4plwAWYZQLJz3pQk4VDas5EyrnQ0YdCb
-         Fs45mr5usc2CrPIlhZLD+lj3w62Z8Ne3WxnrMhq/lfYEA6c3lT0WTSEDUW6PK/SRsW7v
-         349tONgsznrE90mTuus6gRE39w7n373/NSybQl2gDyehRhsR7YCbiIUlqJyeOredxrw5
-         WDrejAt13I718g4SUvKBDD3tkbeg2DnakRsVMSTC+qpV0/J6tW0fxT3BgJhoitVr7Lhh
-         T90S57fg2Y0pM3XswrC0DdGuRFepPMQC+V00zshEMy+kb9nfpPhFK+J06QSWSeuh4Glr
-         dYIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=UK5eErzZtKg/HvO01KKCBb0udTzOZqxbnH2ci/fBY9s=;
-        b=KrUmBrf0PWyBONOiX4D/zRGJZrYdmw863WzBDP/t1GbVEL7oR+tHNQE0xEnVUAOXlJ
-         lD9dL8pOd3+QYfxnbR3q0yZW8M9wowcZ8pJRpl9RSmU0WL8QKihoaAMNXSCgmAlHel2t
-         /p1tZhpXYpES+fp+n+rKV1trBy7XGJciNf0O+o+N6iw4qnnD8Scp73qBbYzWnjYOqf+l
-         OjWvi3mq6SPbGZmnMMZ459t67i0SIIl205Dd6HRxuJww+2iMaOM93gW5AuKUwlaAo2KK
-         y90Y8hdG02l9kGYoFHs/SKOlsk6WwrPsnuk43Q0LK8fBlGoCWjdbSYl8jk2OfGDW99e2
-         zuXw==
-X-Gm-Message-State: AJIora9dBbaTlYPjCr9f0MZnYMSbfxrTXaYQIMoqZwVGP5EFBO5Pz4Up
-        n0thSDxUVF5QRo31LOvFEA3B
-X-Google-Smtp-Source: AGRyM1uMYG5Bf48KHuNG7PKQdT3esTHv7uuvP4fyRon91ArW38BvcQbSytXAtlAXHvLN9buBK1imjw==
-X-Received: by 2002:a17:90a:5911:b0:1ec:9e24:c671 with SMTP id k17-20020a17090a591100b001ec9e24c671mr14559160pji.173.1655823995841;
-        Tue, 21 Jun 2022 08:06:35 -0700 (PDT)
-Received: from thinkpad ([117.193.212.116])
-        by smtp.gmail.com with ESMTPSA id v11-20020a17090331cb00b00164ade949adsm10788163ple.79.2022.06.21.08.06.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jun 2022 08:06:35 -0700 (PDT)
-Date:   Tue, 21 Jun 2022 20:36:29 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Lizhi Hou <lizhi.hou@xilinx.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, yilun.xu@intel.com, maxz@xilinx.com,
-        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
-        stefanos@xilinx.com, trix@redhat.com, mdf@kernel.org,
-        dwmw2@infradead.org, linux-kernel@vger.kernel.org,
-        Max Zhen <max.zhen@xilinx.com>, kishon@ti.com
-Subject: Re: [PATCH V1 RESEND 2/4] Documentation: devicetree: bindings: add
- binding for PCIe endpoint bus
-Message-ID: <20220621150629.GA28880@thinkpad>
-References: <20220305052304.726050-1-lizhi.hou@xilinx.com>
- <20220305052304.726050-3-lizhi.hou@xilinx.com>
+        with ESMTP id S1352390AbiFUPKx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 11:10:53 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051CC26558;
+        Tue, 21 Jun 2022 08:10:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+        s=20161220; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=w6BHQOo4OjAquUzPRJDN9FxN7UMmI2Re8yXkiTY0n9Y=; b=vShT5f5p/4U8Kva9zXvglxMYUx
+        67Tf8dcUoxD1cP49t3NK3BoXWpsG1Fekg6tLmHRKAg2Mlwi5ad/w4jtCvWhGmJyMnHZ4TxHCYfYhO
+        6Q4rpqg7wW5PxWFbPJ7GmlxRbqJ3D9VRmlRUnBnUePJgNEIvIrzgv8khKtXjiO6GiYxKdFIZvrzRf
+        WWvcdpWLtKL4he4W4cgN6cbI4XCEW7XtR/LgXNuejtsLX4h5oWPorPpejkabcartfPF9fSzc19/Qn
+        yr7U1+hPi8V63X5FjvecXURL0IZh23Tbol3+bS0NI0K/JHiia1qWwDcKQYC/B7hSTg8ECvGJ2CHDq
+        B5DJN29Q==;
+Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=toshino.localdomain)
+        by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1o3fWT-00Ea3F-F8; Tue, 21 Jun 2022 18:10:33 +0300
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+To:     thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
+        will@kernel.org, robin.murphy@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski@canonical.com
+Cc:     linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mikko Perttunen <mperttunen@nvidia.com>
+Subject: [PATCH v6 00/10] Host1x context isolation support
+Date:   Tue, 21 Jun 2022 18:10:12 +0300
+Message-Id: <20220621151022.1416300-1-cyndis@kapsi.fi>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220305052304.726050-3-lizhi.hou@xilinx.com>
+X-SA-Exim-Connect-IP: 91.158.25.70
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Mikko Perttunen <mperttunen@nvidia.com>
 
-+ Kishon
+-------------
+Merging notes
+-------------
 
-On Fri, Mar 04, 2022 at 09:23:02PM -0800, Lizhi Hou wrote:
-> Create device tree binding document for PCIe endpoint bus.
-> 
+The changes to DT bindings should be applied on top of Thierry's patch
+'dt-bindings: display: tegra: Convert to json-schema'.
 
-I'm currently working on a PCI endpoint function driver for MHI bus [1] and
-hence interested in this topic.
+The change to the arm-smmu driver should be omitted if Robin Murphy's
+IOMMU bus cleanup series is merged.
 
-Comments below.
+***
+New in v6:
 
-[1] https://lore.kernel.org/lkml/20220502060611.58987-9-manivannan.sadhasivam@linaro.org/
+Rebased on 5.19-rc3 (-next is too broken)
+Added patch to fix TRANSCFG offset on NVDEC.
+***
 
-> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
-> ---
->  .../devicetree/bindings/bus/pci-ep-bus.yaml   | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/pci-ep-bus.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/bus/pci-ep-bus.yaml b/Documentation/devicetree/bindings/bus/pci-ep-bus.yaml
-> new file mode 100644
-> index 000000000000..0ca96298db6f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/pci-ep-bus.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/pci-ep-bus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: PCIe Endpoint Bus binding
-> +
-> +description: |
-> +  PCIe device may use flattened device tree to describe apertures in its
-> +  PCIe BARs. The Bus PCIe endpoint node is created and attached under the
-> +  device tree root node for this kind of device. Then the flatten device
-> +  tree overlay for this device is attached under the endpoint node.
-> +
-> +  The aperture address which is under the endpoint node consists of BAR
-> +  index and offset. It uses the following encoding:
-> +
+***
+New in v5:
 
-On top of Rob's reply:
+Rebased
+Renamed host1x_context to host1x_memory_context
+Small change in DRM side client driver ops to reduce churn with some
+  upcoming changes
+Add NVDEC support
 
-Currently, the BAR memory for the PCI endpoint device is either allocated
-dynamically using pci_epf_alloc_space() or we need to pass the address in
-"phys_addr" field of "struct pci_epf_bar".
+***
 
-In most of the PCI endpoint devices, we need to use a fixed memory region as
-the BAR. Since there is no devicetree integration for PCI endpoint subsystem,
-I've been using the 2nd approach of obtaining the BAR address from PCI endpoint
-controller devicetree node and passing it to "phys_addr" of
-"struct pci_epf_bar".
+***
+New in v4:
 
-Ideally, the BAR information should come from the devicetree. But we cannot use
-just "pci-ep-bus" node. I've been thinking about the below structure:
+Addressed review comments. See individual patches.
+***
 
-pcie_ep: pcie-ep@40000000 {
-        compatible = "pcie-ep";
-	....
+***
+New in v3:
 
-	pci_epf_0: pci-epf@100000 {
-		reg = <0x100000 0x1000>; # BAR0
-	};
+Added device tree bindings for new property.
+***
 
-	pci_epf_1: pci-epf@200000 {
-		reg = <0x200000 0x1000>; # BAR1
-	};
-};
+***
+New in v2:
 
-Where, "pci-epf@" represents each of the PCI endpoint functions implemented by
-this device (note that there can be more than one function per endpoint device)
-and "reg" has the BAR address/size for that function.
+Added support for Tegra194
+Use standard iommu-map property instead of custom mechanism
+***
 
-Rob, what do you think?
+This series adds support for Host1x 'context isolation'. Since
+when programming engines through Host1x, userspace can program in
+any addresses it wants, we need some way to isolate the engines'
+memory spaces. Traditionally this has either been done imperfectly
+with a single shared IOMMU domain, or by copying and verifying the
+programming command stream at submit time (Host1x firewall).
+
+Since Tegra186 there is a privileged (only usable by kernel)
+Host1x opcode that allows setting the stream ID sent by the engine
+to the SMMU. So, by allocating a number of context banks and stream
+IDs for this purpose, and using this opcode at the beginning of
+each job, we can implement isolation. Due to the limited number of
+context banks only each process gets its own context, and not
+each channel.
+
+This feature also allows sharing engines among multiple VMs when
+used with Host1x's hardware virtualization support - up to 8 VMs
+can be configured with a subset of allowed stream IDs, enforced
+at hardware level.
+
+To implement this, this series adds a new host1x context bus, which
+will contain the 'struct device's corresponding to each context
+bank / stream ID, changes to device tree and SMMU code to allow
+registering the devices and using the bus, as well as the Host1x
+stream ID programming code and support in TegraDRM.
 
 Thanks,
-Mani
+Mikko
 
-> +    0xIooooooo 0xoooooooo
-> +
-> +  Where:
-> +
-> +    I = BAR index
-> +    oooooo oooooooo = BAR offset
-> +
-> +  The endpoint is compatible with 'simple-bus' and contains 'ranges'
-> +  property for translating aperture address to CPU address.
-> +
-> +allOf:
-> +  - $ref: /schemas/simple-bus.yaml#
-> +
-> +maintainers:
-> +  - Lizhi Hou <lizhi.hou@xilinx.com>
-> +
-> +properties:
-> +  compatible:
-> +    contains:
-> +      const: pci-ep-bus
-> +
-> +  "#address-cells":
-> +    const: 2
-> +
-> +  "#size-cells":
-> +    const: 2
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^.*@[0-9a-f]+$":
-> +    description: hardware apertures belong to this device.
-> +    type: object
-> +
-> +required:
-> +  - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +        pci-ep-bus@e0000000 {
-> +            compatible = "pci-ep-bus", "simple-bus";
-> +            #address-cells = <2>;
-> +            #size-cells = <2>;
-> +            ranges = <0x0 0x0 0x0 0xe0000000 0x0 0x2000000
-> +                      0x20000000 0x0 0x0 0xe4200000 0x0 0x40000>;
-> +        };
-> +    };
-> -- 
-> 2.27.0
-> 
+Mikko Perttunen (9):
+  iommu/arm-smmu: Attach to host1x context device bus
+  dt-bindings: host1x: Add iommu-map property
+  gpu: host1x: Add context device management code
+  gpu: host1x: Program context stream ID on submission
+  arm64: tegra: Add Host1x context stream IDs on Tegra186+
+  drm/tegra: falcon: Set DMACTX field on DMA transactions
+  drm/tegra: nvdec: Fix TRANSCFG register offset
+  drm/tegra: Support context isolation
+  drm/tegra: Implement stream ID related callbacks on engines
+
+Thierry Reding (1):
+  dt-bindings: display: tegra: Convert to json-schema
+
+ .../display/tegra/nvidia,tegra114-mipi.txt    |  41 --
+ .../display/tegra/nvidia,tegra114-mipi.yaml   |  74 ++
+ .../display/tegra/nvidia,tegra124-dpaux.yaml  | 149 ++++
+ .../display/tegra/nvidia,tegra124-sor.yaml    | 206 ++++++
+ .../display/tegra/nvidia,tegra124-vic.yaml    |  71 ++
+ .../display/tegra/nvidia,tegra186-dc.yaml     |  85 +++
+ .../tegra/nvidia,tegra186-display.yaml        | 310 ++++++++
+ .../tegra/nvidia,tegra186-dsi-padctl.yaml     |  45 ++
+ .../display/tegra/nvidia,tegra20-dc.yaml      | 181 +++++
+ .../display/tegra/nvidia,tegra20-dsi.yaml     | 159 +++++
+ .../display/tegra/nvidia,tegra20-epp.yaml     |  70 ++
+ .../display/tegra/nvidia,tegra20-gr2d.yaml    |  73 ++
+ .../display/tegra/nvidia,tegra20-gr3d.yaml    | 214 ++++++
+ .../display/tegra/nvidia,tegra20-hdmi.yaml    | 126 ++++
+ .../display/tegra/nvidia,tegra20-host1x.txt   | 675 ------------------
+ .../display/tegra/nvidia,tegra20-host1x.yaml  | 352 +++++++++
+ .../display/tegra/nvidia,tegra20-isp.yaml     |  67 ++
+ .../display/tegra/nvidia,tegra20-mpe.yaml     |  73 ++
+ .../display/tegra/nvidia,tegra20-tvo.yaml     |  58 ++
+ .../display/tegra/nvidia,tegra20-vi.yaml      | 163 +++++
+ .../display/tegra/nvidia,tegra210-csi.yaml    |  52 ++
+ .../pinctrl/nvidia,tegra124-dpaux-padctl.txt  |  59 --
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi      |  11 +
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  11 +
+ drivers/gpu/drm/tegra/drm.h                   |  11 +
+ drivers/gpu/drm/tegra/falcon.c                |   8 +
+ drivers/gpu/drm/tegra/falcon.h                |   1 +
+ drivers/gpu/drm/tegra/nvdec.c                 |  13 +-
+ drivers/gpu/drm/tegra/submit.c                |  48 +-
+ drivers/gpu/drm/tegra/uapi.c                  |  43 +-
+ drivers/gpu/drm/tegra/vic.c                   |  67 +-
+ drivers/gpu/host1x/Makefile                   |   1 +
+ drivers/gpu/host1x/context.c                  | 160 +++++
+ drivers/gpu/host1x/context.h                  |  27 +
+ drivers/gpu/host1x/dev.c                      |  12 +-
+ drivers/gpu/host1x/dev.h                      |   2 +
+ drivers/gpu/host1x/hw/channel_hw.c            |  52 +-
+ drivers/gpu/host1x/hw/host1x06_hardware.h     |  10 +
+ drivers/gpu/host1x/hw/host1x07_hardware.h     |  10 +
+ drivers/iommu/arm/arm-smmu/arm-smmu.c         |  13 +
+ include/linux/host1x.h                        |  26 +
+ 41 files changed, 3037 insertions(+), 792 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-mipi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-mipi.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-dpaux.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-sor.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-vic.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra186-dc.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra186-display.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra186-dsi-padctl.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-dc.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-dsi.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-epp.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-gr2d.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-gr3d.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-hdmi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.txt
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-isp.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-mpe.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-tvo.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra210-csi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra124-dpaux-padctl.txt
+ create mode 100644 drivers/gpu/host1x/context.c
+ create mode 100644 drivers/gpu/host1x/context.h
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.36.1
+
