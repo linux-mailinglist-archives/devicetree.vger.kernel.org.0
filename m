@@ -2,74 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 534AD55359B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 17:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F39E25535AE
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 17:15:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230433AbiFUPOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 11:14:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46430 "EHLO
+        id S1352538AbiFUPPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 11:15:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352681AbiFUPNZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 11:13:25 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D46DC2AC56
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 08:12:21 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id h34-20020a17090a29a500b001eb01527d9eso12853558pjd.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 08:12:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=OmNePCR5l0D6yhtyhalpysxE1x2cPrZSQisFtuy9SS4=;
-        b=ZqpvfHu8vpBcIY70GaBqUIIbhg0MYLnkqBGTNo87BKBqizbRzAqJlkEo31fIPmZ8S5
-         CMs+RG9Nz28IKhmzHqiglg3AoTEip6EkhOLQcehBE6GfX2V7ALUyz4uCjlcmFbEb3QbR
-         ZrGDhyxxxX9vMFD0pvqXp0iP07UC9DBvFYUWXo60Nm4va+3hL0VwiJdXG1RaCJjc9NPO
-         hgQT4Tx4vRXvvrWlPjY/eqRdILrdhzMk7K7DLLCr0pPmZEKw2EedAOFBTg/YbpulL/sF
-         xMRDgv7sfoZecKkyis+97n7ASyuBYr/4mmdyowISrYxlTiCPfOkLPV7cQzqQVcDF/BZL
-         xOwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=OmNePCR5l0D6yhtyhalpysxE1x2cPrZSQisFtuy9SS4=;
-        b=QagBBJAIRA9jq00V8RuAKFLphemMmytGZfR+uh0Oz5xLU6RX0Q9+cjE5RMmSi7fyLa
-         jssrMIUbu7LdfjSpJZycBvgo+x6f3xHPmjNXnStsujQU/p0NCGAgg8mrQcNoQ1taNvf7
-         0t7eD3T8EsZ71RN5er6tjwlTofyQqkjO9UbAGGmeAknLy9Qzdu2lsLJ3utbE9244CraH
-         rSZZ4xqgH3wBUXrfAv4c/WA0aqWv77xOwEroy+r4UZDkVRMpDMxz8BrtfAhtmVj/vA9N
-         WjS5OJU9+TsiUumkrJ5Fk13iQoH/fEYSGOKvMI+h01BLdUrWVspFA2JXQ+sovitVINZm
-         uXfw==
-X-Gm-Message-State: AJIora++np9vcDWkl4s1BjaAN58fvICdqnvwTDeJibO/+2y9+n3G0ixB
-        Idq8uYNVNWg9W6nfxDSv7rl+
-X-Google-Smtp-Source: AGRyM1uDqfclGTSJzuew4bdC/Y6di2Wzht8n8gfkOWWwxO3g/JWDyQP85lECbhgyusIhM/khR8CdYg==
-X-Received: by 2002:a17:903:1206:b0:168:e5af:469d with SMTP id l6-20020a170903120600b00168e5af469dmr29754220plh.55.1655824341022;
-        Tue, 21 Jun 2022 08:12:21 -0700 (PDT)
-Received: from thinkpad ([117.193.212.116])
-        by smtp.gmail.com with ESMTPSA id w22-20020a1709026f1600b001676f87473fsm10823245plk.302.2022.06.21.08.12.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jun 2022 08:12:20 -0700 (PDT)
-Date:   Tue, 21 Jun 2022 20:42:11 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Lizhi Hou <lizhi.hou@xilinx.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, yilun.xu@intel.com, maxz@xilinx.com,
-        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
-        stefanos@xilinx.com, trix@redhat.com, mdf@kernel.org,
-        dwmw2@infradead.org, linux-kernel@vger.kernel.org,
-        Max Zhen <max.zhen@xilinx.com>
-Subject: Re: [PATCH V1 RESEND 1/4] pci: add interface to create pci-ep device
- tree node
-Message-ID: <20220621151211.GB28880@thinkpad>
-References: <20220305052304.726050-1-lizhi.hou@xilinx.com>
- <20220305052304.726050-2-lizhi.hou@xilinx.com>
+        with ESMTP id S1352504AbiFUPOz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 11:14:55 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD71729CB2;
+        Tue, 21 Jun 2022 08:14:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 621F6B819F0;
+        Tue, 21 Jun 2022 15:14:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61D04C3411C;
+        Tue, 21 Jun 2022 15:14:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655824447;
+        bh=OZlfEgJPPL27uCOfUcNRBzpd4OtK6pXffLp4w47WDZo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Jlc9O+Xn9LruEt91mMLpCJaOxqOa5u/fynfFRHnL2P15dr0drS7XjW0IO/9cB4WQK
+         s2UZEx+Ky6kbme00Uov0AVnv/podRcieYX7zwU7cOCkPNuzE+Ay+WNWopUnX34W3Z0
+         DuWaSjusj1lvZ8i+g7511sQyKkleMllZehhk3qMAqhNnAePi4LYF5wBGBuUNGYc690
+         81w9Fq1Fa2Iz1lpOLCXNUhg2N0JY4XEGI38LMshbHPEcALu/4AtBc050RFl3QezpN/
+         pFxFqJdnSB+bamqv3kFGiMdMR0w3C1qVQWWGpo8jqLXGShJiaVGC+QsdMsGF546wcT
+         3Xyo4hUMpRCnw==
+Date:   Tue, 21 Jun 2022 17:14:02 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org, jejb@linux.ibm.com, martin.petersen@oracle.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v6 7/7] arm64: dts: renesas: r8a779f0: spider-cpu: Enable
+ UFS device
+Message-ID: <YrHgOptQ56woMAeO@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org, jejb@linux.ibm.com, martin.petersen@oracle.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+References: <20220603110524.1997825-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220603110524.1997825-8-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="nw88w6/DKCvKTgU6"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220305052304.726050-2-lizhi.hou@xilinx.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220603110524.1997825-8-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,253 +66,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 04, 2022 at 09:23:01PM -0800, Lizhi Hou wrote:
-> This patch enables PCIe device to uses flattened device tree to describe
-> apertures in its PCIe BARs. The aperture address consists of PCIe BAR index
-> and offset.
-> 
-> For this kind of device, the driver probe routine calls the new added
-> interface to create a device tree node. This device tree node is attached
-> under system device tree root. Then the driver may load the flatten device
-> tree overlay and attach it under this node. And the node also contains
-> 'ranges' property which is used to translate aperture address(BAR index
-> and offset) to CPU address.
-> 
 
-This is the devicetree support for the PCI endpoint subsystem. Hence, the
-code should live under drivers/pci/endpoint/.
+--nw88w6/DKCvKTgU6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-But let's first settle on the structure of the devicetree binding first.
+Hi Shimoda-san, Geert,
 
-Thanks,
-Mani
+On Fri, Jun 03, 2022 at 08:05:24PM +0900, Yoshihiro Shimoda wrote:
+> Enable UFS device for R-Car S4-8 Spider CPU board.
+>=20
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
-> ---
->  drivers/pci/of.c       | 180 +++++++++++++++++++++++++++++++++++++++++
->  include/linux/of_pci.h |  15 ++++
->  2 files changed, 195 insertions(+)
-> 
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index cb2e8351c2cc..198f08351070 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -605,6 +605,186 @@ int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge)
->  	return pci_parse_request_of_pci_ranges(dev, bridge);
->  }
->  
-> +#if IS_ENABLED(CONFIG_OF_DYNAMIC)
-> +
-> +static void devm_of_pci_destroy_bus_endpoint(struct device *dev, void *res)
-> +{
-> +	struct device_node *node = res;
-> +
-> +	of_detach_node(node);
-> +}
-> +
-> +static int of_ep_add_property(struct device *dev, struct property **proplist, const char *name,
-> +			      const int length, void *value)
-> +{
-> +	struct property *new;
-> +
-> +	new = devm_kzalloc(dev, sizeof(*new), GFP_KERNEL);
-> +	if (!new)
-> +		return -ENOMEM;
-> +
-> +	new->name = devm_kstrdup(dev, name, GFP_KERNEL);
-> +	if (!new->name)
-> +		return -ENOMEM;
-> +
-> +	new->value = devm_kmalloc(dev, length, GFP_KERNEL);
-> +	if (!new->value)
-> +		return -ENOMEM;
-> +
-> +	memcpy(new->value, value, length);
-> +	new->length = length;
-> +	new->next = *proplist;
-> +	*proplist = new;
-> +
-> +	return 0;
-> +}
-> +
-> +static struct device_node *of_ep_alloc_node(struct pci_dev *pdev, const char *name)
-> +{
-> +	struct device_node *node;
-> +	char *full_name;
-> +
-> +	node = devres_alloc(devm_of_pci_destroy_bus_endpoint, sizeof(*node), GFP_KERNEL);
-> +	if (!node)
-> +		return NULL;
-> +
-> +	full_name = devm_kasprintf(&pdev->dev, GFP_KERNEL, "/%s@%llx", name,
-> +				   (u64)pci_resource_start(pdev, 0));
-> +	if (!full_name)
-> +		return NULL;
-> +
-> +	node->parent = of_root;
-> +	node->full_name = full_name;
-> +	of_node_set_flag(node, OF_DYNAMIC);
-> +	of_node_init(node);
-> +
-> +	return node;
-> +}
-> +
-> +/**
-> + * devm_of_pci_create_bus_endpoint - Create a device node for the given pci device.
-> + * @pdev: PCI device pointer.
-> + *
-> + * For PCI device which uses flattened device tree to describe apertures in its BARs,
-> + * a device node for the given pci device is required. Then the flattened device tree
-> + * overlay from the device can be applied to the base tree.
-> + * The device node is under root node and act like bus node. It contains a "ranges"
-> + * property which is used for address translation of its children. Each child node
-> + * corresponds an aperture and use BAR index and offset as its address.
-> +
-> + * Returns 0 on success or a negative error-code on failure.
-> + */
-> +int devm_of_pci_create_bus_endpoint(struct pci_dev *pdev)
-> +{
-> +	struct property *proplist = NULL;
-> +	struct device *dev = &pdev->dev;
-> +	int range_ncells, addr_ncells;
-> +	struct device_node *node;
-> +	void *prop = NULL;
-> +	u32 *range_cell;
-> +	__be32 val;
-> +	int i, ret;
-> +
-> +	node = of_ep_alloc_node(pdev, "pci-ep-bus");
-> +	if (!node)
-> +		return -ENOMEM;
-> +
-> +	/* the endpoint node works as 'simple-bus' to translate aperture addresses. */
-> +	prop = "simple-bus";
-> +	ret = of_ep_add_property(dev, &proplist, "compatible", strlen(prop) + 1, prop);
-> +	if (ret)
-> +		goto cleanup;
-> +
-> +	/* The address and size cells of nodes underneath are 2 */
-> +	val = cpu_to_be32(2);
-> +	ret = of_ep_add_property(dev, &proplist, "#address-cells", sizeof(u32), &val);
-> +	if (ret)
-> +		goto cleanup;
-> +
-> +	ret = of_ep_add_property(dev, &proplist, "#size-cells", sizeof(u32), &val);
-> +	if (ret)
-> +		goto cleanup;
-> +
-> +	/* child address format: 0xIooooooo oooooooo, I = bar index, o = offset on bar */
-> +	addr_ncells = of_n_addr_cells(node);
-> +	if (addr_ncells > 2) {
-> +		/* does not support number of address cells greater than 2 */
-> +		ret = -EINVAL;
-> +		goto cleanup;
-> +	}
-> +
-> +	/* range cells include <node addr cells> <child addr cells> <child size cells> */
-> +	range_ncells = addr_ncells + 4;
-> +	prop = kzalloc(range_ncells * sizeof(u32) * PCI_STD_NUM_BARS, GFP_KERNEL);
-> +	if (!prop) {
-> +		ret = -ENOMEM;
-> +		goto cleanup;
-> +	}
-> +
-> +	range_cell = prop;
-> +	for (i = 0; i < PCI_STD_NUM_BARS; i++) {
-> +		if (!pci_resource_len(pdev, i))
-> +			continue;
-> +		/* highest 4 bits of address are bar index */
-> +		*(__be64 *)range_cell = cpu_to_be64((u64)i << 60);
-> +		range_cell += 2;
-> +		if (addr_ncells == 2)
-> +			*(__be64 *)range_cell = cpu_to_be64((u64)pci_resource_start(pdev, i));
-> +		else
-> +			*(__be32 *)range_cell = cpu_to_be32((u32)pci_resource_start(pdev, i));
-> +
-> +		range_cell += addr_ncells;
-> +		*(__be64 *)range_cell = cpu_to_be64((u64)pci_resource_len(pdev, i));
-> +		range_cell += 2;
-> +	}
-> +
-> +	/* error out if there is not PCI BAR been found */
-> +	if ((void *)range_cell == prop) {
-> +		ret = -EINVAL;
-> +		goto cleanup;
-> +	}
-> +
-> +	ret = of_ep_add_property(dev, &proplist, "ranges", (void *)range_cell - prop, prop);
-> +	kfree(prop);
-> +	if (ret)
-> +		goto cleanup;
-> +
-> +	node->properties = proplist;
-> +	ret = of_attach_node(node);
-> +	if (ret)
-> +		goto cleanup;
-> +
-> +	devres_add(dev, node);
-> +
-> +	return 0;
-> +
-> +cleanup:
-> +	kfree(prop);
-> +	if (node)
-> +		devres_free(node);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(devm_of_pci_create_bus_endpoint);
-> +
-> +struct device_node *of_pci_find_bus_endpoint(struct pci_dev *pdev)
-> +{
-> +	struct device_node *dn;
-> +	char *path;
-> +
-> +	path = kasprintf(GFP_KERNEL, "/pci-ep-bus@%llx",
-> +			 (u64)pci_resource_start(pdev, 0));
-> +	if (!path)
-> +		return NULL;
-> +
-> +	dn = of_find_node_by_path(path);
-> +	kfree(path);
-> +
-> +	return dn;
-> +}
-> +EXPORT_SYMBOL_GPL(of_pci_find_bus_endpoint);
-> +#endif /* CONFIG_OF_DYNAMIC */
-> +
->  #endif /* CONFIG_PCI */
->  
->  /**
-> diff --git a/include/linux/of_pci.h b/include/linux/of_pci.h
-> index 29658c0ee71f..c1d86be321b2 100644
-> --- a/include/linux/of_pci.h
-> +++ b/include/linux/of_pci.h
-> @@ -38,4 +38,19 @@ of_irq_parse_and_map_pci(const struct pci_dev *dev, u8 slot, u8 pin)
->  }
->  #endif
->  
-> +#if IS_ENABLED(CONFIG_OF_DYNAMIC) && IS_ENABLED(CONFIG_PCI)
-> +int devm_of_pci_create_bus_endpoint(struct pci_dev *pdev);
-> +struct device_node *of_pci_find_bus_endpoint(struct pci_dev *pdev);
-> +#else
-> +static inline int devm_of_pci_create_bus_endpoint(struct pci_dev *pdev)
-> +{
-> +	return -EINVAL;
-> +}
-> +
-> +static inline struct device_node *of_pci_find_bus_endpoint(struct pci_dev *pdev)
-> +{
-> +	return NULL;
-> +}
-> +#endif
-> +
->  #endif
-> -- 
-> 2.27.0
-> 
+With my firmware, the manual setup of the clock in the bootloader is
+still needed. So, yes, I agree we should wait with this patch until we
+have a better way to deal with the clock.
 
--- 
-மணிவண்ணன் சதாசிவம்
+Other than that, the patches give me SCSI disks I can work with
+(partition, read, write). There are a few initial errors, though:
+
+[    0.449917] ufshcd-renesas e6860000.ufs: ufshcd_query_attr: opcode 0x03 =
+for idn 1 failed, index 0, err =3D 253
+[    0.452035] ufshcd-renesas e6860000.ufs: ufshcd_query_attr: opcode 0x03 =
+for idn 1 failed, index 0, err =3D 253
+[    0.453859] ufshcd-renesas e6860000.ufs: ufshcd_query_attr: opcode 0x03 =
+for idn 1 failed, index 0, err =3D 253
+[    0.453874] ufshcd-renesas e6860000.ufs: ufshcd_query_attr_retry: query =
+attribute, idn 1, failed with error 253 after 3 retires
+
+(A patch for the typo in the last line has already been sent)
+
+But after that, everything looks fine on first testing. So, for the
+patches:
+
+Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+Happy hacking!
+
+
+--nw88w6/DKCvKTgU6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKx4DYACgkQFA3kzBSg
+KbZ5UxAApdHSQPyJbYMGyD+PpowBvH+U6lPHG+KhuP4ZJaSNqtrWbsJV3XyL9xG+
+J2bEQ+CUKEqX4F48k4GxW5nlC/mNWx2XxvJeiMzklLsmb4LggkkfpjdB1u3N1KbS
+MBlne0ZFN/M0xlu4PYcOxcoKhCSqsGJQB0Hlxt6X0o9rJhn4dudLosjiydqsFVOj
+0K2SSi1XRuPOeevoyFZZUPvgzAzJ7KQ2uH5eaA+l6xcpg0ixooscJxx9pyK9wVYi
+qfZq6GNlMLbknT0LLqc8sr6XXnCTiyoTl+zDMta/ytgdsBonX+h5QW/xR2FWukx3
+ITmtA0dqOkSr9jRllWNYfZ00jdXT23fHiml61mVq7sNLBW/DaWK/PQzgrZC83Z3A
+298bIaj+FqjzEc3iTIFJ3qsKSRgD1DjVhV9Dbae8U+pySQZavgh+DbACGu4HwJfa
+fSxJ55FIwY+PFIrvAC3TDrTQWwQtsnFESpS8NXt6gOaPcSdk3XDgWgs9BaykF0lY
+x76aOEE/EFF9n3SQjSWHNbWe225FfChDB00yJO7YSLy0alxH226MmzwKwYGOhc67
+iXnUgaEJEp6qfgaBhAz5zfLpuGwWWC7zWw6RT2PQFX5D/c2ZbsgOFUWC+mNh1Ewo
+ACJc9A9Kaur1hCmm3fxYBUuwENzYthiT8Q/HSNqdmPjOZNYG4xs=
+=hpD5
+-----END PGP SIGNATURE-----
+
+--nw88w6/DKCvKTgU6--
