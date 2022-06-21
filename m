@@ -2,118 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA17B552D96
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 10:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29A3D552DE4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 11:06:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345003AbiFUIyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 04:54:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39188 "EHLO
+        id S1347543AbiFUJGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 05:06:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348465AbiFUIyl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 04:54:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C5B626ACA;
-        Tue, 21 Jun 2022 01:54:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 05E72614E6;
-        Tue, 21 Jun 2022 08:54:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B03ADC3411C;
-        Tue, 21 Jun 2022 08:54:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1655801679;
-        bh=stOJe6Yy2xjGc5GXNNTGn9kaJkwY1JpspK8KOB4uxx0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KCTrCaUXgRpWTvpAB4Hn9pCQ0nVvRQ8SFBS77UtpNg0k0obRA+v3fIPp80pSLnZfn
-         WF5g6hzW+JUhCcFneEfOGuQPktDhG2r0foiv6ouWnUK9oLyV5i74PIcy8AjGls1FDS
-         dN1/ean6Zhb9xoNCMRqdIKIvhMOTY5v0WkUWnTr0=
-Date:   Tue, 21 Jun 2022 10:54:35 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Sebastian Ene <sebastianene@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        will@kernel.org, vdonnefort@google.com,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v7 2/2] misc: Add a mechanism to detect stalls on guest
- vCPUs
-Message-ID: <YrGHS48LR759stoL@kroah.com>
-References: <20220621080308.3952915-1-sebastianene@google.com>
- <20220621080308.3952915-3-sebastianene@google.com>
- <YrGBBFW2d/scKDeN@kroah.com>
- <6b5bb5e69888f69fcfdcb8c9c2fd2660@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6b5bb5e69888f69fcfdcb8c9c2fd2660@kernel.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1346012AbiFUJGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 05:06:48 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D57D215A34;
+        Tue, 21 Jun 2022 02:06:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1655802408; x=1687338408;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references;
+  bh=K61hZq+5YAjJeBhqEVmDHQoYLRAUk2L5vlwYe0VhwEA=;
+  b=k5aNZkgjWWyMaaZtXdMmPa0ycqqRhgb4aoICVWZ340bZOE20MG6HakT7
+   ZRxT8WIL1PUziANEMtRmzNo3DR89zc1kEsInENxqfbfFHPZGufZT6nxrI
+   P86102htxVnwnKTylc5m+IITaFoe/C1tfp3qGETPw/cVCutC2BQSEr6MM
+   M=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 21 Jun 2022 02:06:48 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 21 Jun 2022 02:06:45 -0700
+X-QCInternal: smtphost
+Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 21 Jun 2022 14:36:30 +0530
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id 2CFC741B2; Tue, 21 Jun 2022 02:06:29 -0700 (PDT)
+From:   Kalyan Thota <quic_kalyant@quicinc.com>
+To:     y@qualcomm.com, dri-devel@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
+        quic_abhinavk@quicinc.com
+Subject: [v1 1/2] drm/msm/disp/dpu1: add dspp support for sc7280
+Date:   Tue, 21 Jun 2022 02:06:26 -0700
+Message-Id: <1655802387-15275-1-git-send-email-quic_kalyant@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <y>
+References: <y>
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 21, 2022 at 09:44:35AM +0100, Marc Zyngier wrote:
-> On 2022-06-21 09:27, Greg Kroah-Hartman wrote:
-> > On Tue, Jun 21, 2022 at 08:03:09AM +0000, Sebastian Ene wrote:
-> > > This driver creates per-cpu hrtimers which are required to do the
-> > > periodic 'pet' operation. On a conventional watchdog-core driver, the
-> > > userspace is responsible for delivering the 'pet' events by writing to
-> > > the particular /dev/watchdogN node. In this case we require a strong
-> > > thread affinity to be able to account for lost time on a per vCPU.
-> > > 
-> > > This part of the driver is the 'frontend' which is reponsible for
-> > > delivering the periodic 'pet' events, configuring the virtual
-> > > peripheral
-> > > and listening for cpu hotplug events. The other part of the driver
-> > > handles the peripheral emulation and this part accounts for lost
-> > > time by
-> > > looking at the /proc/{}/task/{}/stat entries and is located here:
-> > > https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
-> > > 
-> > > Signed-off-by: Sebastian Ene <sebastianene@google.com>
-> > > ---
-> > >  drivers/misc/Kconfig               |  12 ++
-> > >  drivers/misc/Makefile              |   1 +
-> > >  drivers/misc/vcpu_stall_detector.c | 222
-> > > +++++++++++++++++++++++++++++
-> > >  3 files changed, 235 insertions(+)
-> > >  create mode 100644 drivers/misc/vcpu_stall_detector.c
-> > > 
-> > > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> > > index 41d2bb0ae23a..e15c85d74c4b 100644
-> > > --- a/drivers/misc/Kconfig
-> > > +++ b/drivers/misc/Kconfig
-> > > @@ -483,6 +483,18 @@ config OPEN_DICE
-> > > 
-> > >  	  If unsure, say N.
-> > > 
-> > > +config VCPU_STALL_DETECTOR
-> > > +	tristate "VCPU stall detector"
-> > > +	select LOCKUP_DETECTOR
-> > > +	help
-> > > +	  Detect CPU locks on a kvm virtual machine. This driver relies on
-> > > +	  the hrtimers which are CPU-binded to do the 'pet' operation.
-> > > When a
-> > > +	  vCPU has to do a 'pet', it exits the guest through MMIO write and
-> > > +	  the backend driver takes into account the lost ticks for this
-> > > +	  particular CPU.
-> > > +	  To compile this driver as a module, choose M here: the
-> > > +	  module will be called vcpu_stall_detector.
-> > 
-> > Should this depend on KVM_GUEST?
-> 
-> Not all architectures have KVM_GUEST, and arm64 has no use for it.
+Add destination side post processing hw block support in sc7280.
 
-Ah, I thought this was a requirement (or created a better guest image)
-for use under KVM.  Nevermind then...
+This hwblock enablement is necessary to support color features
+like CT Matix (Ex: Night Light feature)
 
-thanks,
+Change-Id: Iba7d5e1693b06cede2891f5b998466070a77c6ef
+Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+---
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-greg k-h
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+index a4fe77c..021eb2f 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+@@ -928,7 +928,7 @@ static const struct dpu_lm_cfg sm8150_lm[] = {
+ 
+ static const struct dpu_lm_cfg sc7280_lm[] = {
+ 	LM_BLK("lm_0", LM_0, 0x44000, MIXER_SC7180_MASK,
+-		&sc7180_lm_sblk, PINGPONG_0, 0, 0),
++		&sc7180_lm_sblk, PINGPONG_0, 0, DSPP_0),
+ 	LM_BLK("lm_2", LM_2, 0x46000, MIXER_SC7180_MASK,
+ 		&sc7180_lm_sblk, PINGPONG_2, LM_3, 0),
+ 	LM_BLK("lm_3", LM_3, 0x47000, MIXER_SC7180_MASK,
+@@ -1792,6 +1792,8 @@ static void sc7280_cfg_init(struct dpu_mdss_cfg *dpu_cfg)
+ 		.ctl = sc7280_ctl,
+ 		.sspp_count = ARRAY_SIZE(sc7280_sspp),
+ 		.sspp = sc7280_sspp,
++		.dspp_count = ARRAY_SIZE(sc7180_dspp),
++		.dspp = sc7180_dspp,
+ 		.mixer_count = ARRAY_SIZE(sc7280_lm),
+ 		.mixer = sc7280_lm,
+ 		.pingpong_count = ARRAY_SIZE(sc7280_pp),
+-- 
+2.7.4
+
