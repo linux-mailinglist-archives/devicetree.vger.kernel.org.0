@@ -2,66 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07B40553EE1
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 01:08:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1058A553EF3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 01:34:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355070AbiFUXI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 19:08:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57886 "EHLO
+        id S1355213AbiFUXeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 19:34:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355060AbiFUXIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 19:08:24 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C6852AC7E;
-        Tue, 21 Jun 2022 16:08:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1655852903; x=1687388903;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fbNcvbxt2AEX50zg7N51mEeNHFJNVXxxyBoLBKPjpeg=;
-  b=C/fOV7VWwDPei+lCeolQpOO7SK1AN331f+96TwN3MWIPPKKPNHvlVkW0
-   hLOUi2eQ+KFNQUqnPcTbOUiJCo34yKwjwJLxrd3hXCdGkvAz4Xpu0R+Fm
-   9H8aUm2iv2ST414pJTV7s7YFCozn8Z5O1ath9xP33/33k0c68LY+v6U13
-   zGClTAJ8w5wW0JefgIijEM1UhTkPXvbaVuTGSeAE2kH+0Lz1rU9PULj5a
-   EiFlM/nc6TxBMNjLJxbWXud7P3GfqXlH0+lVIMZ0OIiSG3MOYbZsXtjsl
-   /wp/wVdwJxPd8nT5TK4J4H0Ac04dC2wnEAke/ePV26mI5nJGEy2/MAoa/
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="260691475"
-X-IronPort-AV: E=Sophos;i="5.92,210,1650956400"; 
-   d="scan'208";a="260691475"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jun 2022 16:08:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,210,1650956400"; 
-   d="scan'208";a="586435848"
-Received: from lkp-server02.sh.intel.com (HELO a67cc04a5eeb) ([10.239.97.151])
-  by orsmga002.jf.intel.com with ESMTP; 21 Jun 2022 16:08:17 -0700
-Received: from kbuild by a67cc04a5eeb with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1o3myn-0000X2-9P;
-        Tue, 21 Jun 2022 23:08:17 +0000
-Date:   Wed, 22 Jun 2022 07:07:47 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Rahul T R <r-ravikumar@ti.com>, linux-phy@lists.infradead.org,
-        kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org, p.yadav@ti.com,
-        tomi.valkeinen@ideasonboard.com, laurent.pinchart@ideasonboard.com,
-        linux-kernel@vger.kernel.org, jpawar@cadence.com,
-        sjakhade@cadence.com, mparab@cadence.com,
-        devicetree@vger.kernel.org, vigneshr@ti.com, lee.jones@linaro.org,
-        Rahul T R <r-ravikumar@ti.com>
-Subject: Re: [PATCH 2/3] phy: cdns-dphy: Add band config for dphy tx
-Message-ID: <202206220747.oBZNVia0-lkp@intel.com>
-References: <20220621180332.28767-3-r-ravikumar@ti.com>
+        with ESMTP id S1354274AbiFUXeW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 19:34:22 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 419D23055E
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 16:34:19 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id i15so13859398plr.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 16:34:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j6EHLC1I3sWRh0/mAsfU2ZCVNMk8CE7YRjypzOnx64c=;
+        b=ny3qCYdwkoUpLmuRdVbSsOq6jsHe9rpqDDqLQqrXz6nByKilro0DP4ezMhrbR0SJqB
+         FoEeGs/0KqYKIO0u/AbqJh4tTPMWNOn4JSYvSnoPwDOaKv1ABF+nrB0APB6130vJfsTR
+         M3HfP4uKcxtpwZLnTGnPsFSmRO+kQ/hVnqCzheHZGbv0YUnzklzmqpazOH3E2sRWQ7C8
+         yaUdG690fvYfG8GV8Qr+YU3/4QrtZhxq8j+ugj4qBs8H9HlGveNYGpXzc0YK/9J3vsW/
+         2l9aJ1+luUEHAfiJ7ZU1e5tOJ5rp2oLkiUsHGzPlwQuNmSMbJQk1WJ5kL2XTg6SqCP+k
+         QI8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j6EHLC1I3sWRh0/mAsfU2ZCVNMk8CE7YRjypzOnx64c=;
+        b=haAucLZjD6tI8IWuNSzA4fYHncK2Z7hjxYwVJwaFvgiishzJJmuB/hiczBa84LE3Kw
+         dl7pFQBo/JExYfMX/0iyfwWZmj+Ue/a9vw+kmQFMv1eIluHtmfkIe5j9xrlaJ+hrttJJ
+         ETYull4FeTMib9HvazadCh6aI9SZ4z9E8M693C99QA+otXSe0MzKso2LRIx4UPSijrrY
+         aSW4Q5Ucxw6i9hbwb6RBKL3sCa8Vz8Kog19ISKDDoJ6sQEK0F9bsmlcCt5fZdu/y2/lP
+         5RPhJSaMVDwL6usvVFq1ZuTdEDm/HUNOhxUYg/xG0/Ni7qJIVMucaQSU8Lt7wPb3zDEL
+         Z+zQ==
+X-Gm-Message-State: AJIora9IgTelReqPczh+izOWs80WBsXOzckDI2ngZMULa7g6ErS0xvzM
+        IvesR3vFwiJDl94yNKwiff52nQ==
+X-Google-Smtp-Source: AGRyM1sZvtNuqN3d0+/aGvE46mIOMd7ki2UIMNFbuxfZwpXow/kWmkaMMZ4+AE05cbkJOQASbSkebw==
+X-Received: by 2002:a17:902:e746:b0:16a:3b5c:2134 with SMTP id p6-20020a170902e74600b0016a3b5c2134mr4693244plf.36.1655854458772;
+        Tue, 21 Jun 2022 16:34:18 -0700 (PDT)
+Received: from prec5560.. (71-212-119-14.tukw.qwest.net. [71.212.119.14])
+        by smtp.gmail.com with ESMTPSA id s7-20020a17090302c700b00168e83eda56sm11297873plk.3.2022.06.21.16.34.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jun 2022 16:34:18 -0700 (PDT)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     bjorn.andersson@linaro.org, agross@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, jonathan@marek.ca, robert.foss@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: [PATCH v6 0/6] SM8350 Display/GPU clock enablement
+Date:   Wed, 22 Jun 2022 01:34:06 +0200
+Message-Id: <20220621233412.506768-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220621180332.28767-3-r-ravikumar@ti.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,91 +71,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rahul,
+Changes since v2
+ - Dropped "clk: Introduce CLK_ASSUME_ENABLED_WHEN_UNUSED"
+ - Dropped "clk: qcom: sm8250-dispcc: Flag shared RCGs as assumed enable"
+ - Dropped "clk: qcom: rcg2: Cache rate changes for parked RCGs"
 
-Thank you for the patch! Yet something to improve:
+Changes since v3:
+ - Dropped RBs & SoBs for bigger changes
+ - Changed author to me for patches with big changes
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v5.19-rc3 next-20220621]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Rahul-T-R/Add-support-for-DPHY-TX-on-J721E/20220622-020528
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: hexagon-randconfig-r041-20220622 (https://download.01.org/0day-ci/archive/20220622/202206220747.oBZNVia0-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project af6d2a0b6825e71965f3e2701a63c239fa0ad70f)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/846aa076b0d86dd2ebc49c2a437c7b452305691d
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Rahul-T-R/Add-support-for-DPHY-TX-on-J721E/20220622-020528
-        git checkout 846aa076b0d86dd2ebc49c2a437c7b452305691d
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/phy/cadence/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/phy/cadence/cdns-dphy.c:324:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           reg = FIELD_PREP(DPHY_BAND_CFG_LEFT_BAND, band_ctrl) |
-                 ^
-   1 error generated.
+Changes since v5:
+ - Reverted dispcc-sm8350 split from dispcc-sm8250
+   and related .index changes - Bjorn
+ - Re-added Tags that were thrown out due to the 
+   above revert
 
 
-vim +/FIELD_PREP +324 drivers/phy/cadence/cdns-dphy.c
 
-   285	
-   286	static int cdns_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
-   287	{
-   288		struct cdns_dphy *dphy = phy_get_drvdata(phy);
-   289		struct cdns_dphy_cfg cfg = { 0 };
-   290		int ret, band_ctrl;
-   291		unsigned int reg;
-   292	
-   293		ret = cdns_dphy_config_from_opts(phy, &opts->mipi_dphy, &cfg);
-   294		if (ret)
-   295			return ret;
-   296	
-   297		/*
-   298		 * Configure the internal PSM clk divider so that the DPHY has a
-   299		 * 1MHz clk (or something close).
-   300		 */
-   301		ret = cdns_dphy_setup_psm(dphy);
-   302		if (ret)
-   303			return ret;
-   304	
-   305		/*
-   306		 * Configure attach clk lanes to data lanes: the DPHY has 2 clk lanes
-   307		 * and 8 data lanes, each clk lane can be attache different set of
-   308		 * data lanes. The 2 groups are named 'left' and 'right', so here we
-   309		 * just say that we want the 'left' clk lane to drive the 'left' data
-   310		 * lanes.
-   311		 */
-   312		cdns_dphy_set_clk_lane_cfg(dphy, DPHY_CLK_CFG_LEFT_DRIVES_LEFT);
-   313	
-   314		/*
-   315		 * Configure the DPHY PLL that will be used to generate the TX byte
-   316		 * clk.
-   317		 */
-   318		cdns_dphy_set_pll_cfg(dphy, &cfg);
-   319	
-   320		band_ctrl = cdns_dphy_tx_get_band_ctrl(opts->mipi_dphy.hs_clk_rate);
-   321		if (band_ctrl < 0)
-   322			return band_ctrl;
-   323	
- > 324		reg = FIELD_PREP(DPHY_BAND_CFG_LEFT_BAND, band_ctrl) |
-   325		      FIELD_PREP(DPHY_BAND_CFG_RIGHT_BAND, band_ctrl);
-   326		writel(reg, dphy->regs + DPHY_BAND_CFG);
-   327	
-   328		return 0;
-   329	}
-   330	
+Jonathan Marek (2):
+  clk: qcom: add support for SM8350 DISPCC
+  dt-bindings: clock: Add Qcom SM8350 DISPCC bindings
+
+Robert Foss (4):
+  arm64: dts: qcom: sm8350: Replace integers with rpmpd defines
+  clk: qcom: add support for SM8350 GPUCC
+  dt-bindings: clock: Add Qcom SM8350 GPUCC bindings
+  arm64: dts: qcom: sm8350: Add DISPCC node
+
+ .../bindings/clock/qcom,dispcc-sm8x50.yaml    |   6 +-
+ .../bindings/clock/qcom,gpucc-sm8350.yaml     |  72 ++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          |  42 +-
+ drivers/clk/qcom/Kconfig                      |  12 +-
+ drivers/clk/qcom/Makefile                     |   1 +
+ drivers/clk/qcom/dispcc-sm8250.c              |  60 +-
+ drivers/clk/qcom/gpucc-sm8350.c               | 637 ++++++++++++++++++
+ .../dt-bindings/clock/qcom,dispcc-sm8350.h    |   1 +
+ include/dt-bindings/clock/qcom,gpucc-sm8350.h |  52 ++
+ 9 files changed, 870 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gpucc-sm8350.yaml
+ create mode 100644 drivers/clk/qcom/gpucc-sm8350.c
+ create mode 120000 include/dt-bindings/clock/qcom,dispcc-sm8350.h
+ create mode 100644 include/dt-bindings/clock/qcom,gpucc-sm8350.h
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.34.1
+
