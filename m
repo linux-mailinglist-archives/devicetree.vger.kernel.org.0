@@ -2,90 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9124F553677
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 17:42:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 785EE553653
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 17:41:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352935AbiFUPkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 11:40:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50490 "EHLO
+        id S1352982AbiFUPlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 11:41:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352773AbiFUPkI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 11:40:08 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCBBF19286;
-        Tue, 21 Jun 2022 08:40:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=4Ik1qUdS4+QkCdU36XYMTDimWksi8zUBnoBPB0cv7hU=;
-        b=kAtusXuQQ/pkEGEQiteES0intNB9Cv3EPKtJ63NWw4QBgJQBh+feCN6NV1LldygK1erQFCdNlZz1h
-         NEJjP4ddQmA57zs7v0EceocrrBKXE4qpwF+wbbqNA9d+x4I3irmZJkDbX9T1qkqfFVIgz4vUktK+YN
-         5h4iHUsIUYQSfMFEzFsK0srXYwAQ9DFZAsu86+Z61Jrb2Ij8vb6uJxUC2lVQEJbxp8s6QP2snhCfFU
-         r9a//xaYtsxzkTSMDff/ads+gukptBSQ6wav+f9byyFNomr5n+ya2WdFAnrZypRD3L29o2vA29Y5Is
-         BOpdFCdcLkdarMs0H5A4EhSW3R+L5Yg==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000007,0.005504)], BW: [Enabled, t: (0.000015,0.000001)], RTDA: [Enabled, t: (0.071756), Hit: No, Details: v2.40.0; Id: 15.52k0tm.1g63emviq.1fdrp; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from h-e2.ddg ([85.143.252.66])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Tue, 21 Jun 2022 18:39:48 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, corbet@lwn.net
-Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        conor.dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, system@metrotek.ru
-Subject: [PATCH v21 5/5] MAINTAINERS: add Microchip PolarFire FPGA drivers entry
-Date:   Tue, 21 Jun 2022 18:38:47 +0300
-Message-Id: <20220621153847.103052-6-i.bornyakov@metrotek.ru>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220621153847.103052-1-i.bornyakov@metrotek.ru>
-References: <20220621153847.103052-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S1352977AbiFUPkM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 11:40:12 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C7FA2C109
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 08:40:11 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id ej4so15970684edb.7
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 08:40:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=1sFbExhS+OPLRXtZhG6HHO16GCs3zpUEDAo1KtqwhuU=;
+        b=WQGkyOh69T3rIJ9GhJep6gi1zgBYkO0OBKsIaFlY+6AZisg0V3xR73aaPs3OW44eku
+         iZWOjwrf100p6yo3l8E8v5hOW+GH3yJA5uKRG4XDKXJ+gLTDhEUS8GfWWzYhJWGfA6VC
+         LS+o7CtrxuSbhvNrlgpEL29B7aE5ENttCeCVqDmoYneLkjLqd71jeTE0hgfqWqxBwRfR
+         PSvyjcKzNSC8TiGVclA7Cb+V8S6/yK6zy9koJlgPvyz+pARkqDykE0wSnEI9tFrq+PHm
+         karQv1IJcNPCk0k6N430IaWslTnkrtyrPzoYJVoUeQlHOLnf9TIddhVCsVKtMgMP64Qw
+         WP3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=1sFbExhS+OPLRXtZhG6HHO16GCs3zpUEDAo1KtqwhuU=;
+        b=yynz7DprNo9fz1vkYhMOUZ56nOtzycLrX5q0a8ODi60qMAHGwkukDy3FO5TBDei10n
+         7GbBZoLrtn3mqfLfJwgVovb7CNZFzBVPLtO+b1u928PkETllNMs1f4WOr17iLio+rydS
+         adZo5V3uHBxKIVNGc3JgUolhJ4e4eupIUhqrhT3YjZ1T79LGWJCWOKEx00tJ7fKQb66y
+         xXXxCrc1vd8LhXWlGpCaFYYokgyGHxGO58ZqCbelaDl7laaE5Wx0fhvuoCiIevsAtX0Q
+         NBV2Usdtj4wJ9vAJYaruNx9p3ZDVA5U/jhKvKIoMo12PNcA4nlQGhnMd89zTHHBk4leH
+         aN1g==
+X-Gm-Message-State: AJIora86HfgU0KjRbJQws8jB7Ii4V6KYASyTdd5z0D8OkIFy0BNtrKsS
+        EhGtQ1gQ2E+UoQlUIXMZeww53g==
+X-Google-Smtp-Source: AGRyM1tgLH2e5nkg+AVdA2b8Jkx7KfBK6e+fSRsOTK0URy9oXzrHdA0RHNt8rt1JcY6ND0eqmpRGiw==
+X-Received: by 2002:a05:6402:51d3:b0:431:6c7b:28d with SMTP id r19-20020a05640251d300b004316c7b028dmr35227379edd.281.1655826009584;
+        Tue, 21 Jun 2022 08:40:09 -0700 (PDT)
+Received: from [192.168.0.221] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id z6-20020a17090665c600b006feb6dee4absm7929479ejn.137.2022.06.21.08.40.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jun 2022 08:40:09 -0700 (PDT)
+Message-ID: <5832f7f1-3c8f-d88d-3b72-99effc1e2e83@linaro.org>
+Date:   Tue, 21 Jun 2022 17:40:07 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v4 05/18] dt-binding: clk: npcm845: Add binding for
+ Nuvoton NPCM8XX Clock
+Content-Language: en-US
+To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, daniel.lezcano@linaro.org,
+        tglx@linutronix.de, wim@linux-watchdog.org, linux@roeck-us.net,
+        catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+        olof@lixom.net, jirislaby@kernel.org, shawnguo@kernel.org,
+        bjorn.andersson@linaro.org, geert+renesas@glider.be,
+        marcel.ziswiler@toradex.com, vkoul@kernel.org,
+        biju.das.jz@bp.renesas.com, nobuhiro1.iwamatsu@toshiba.co.jp,
+        robert.hancock@calian.com, j.neuschaefer@gmx.net, lkundrak@v3.sk
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220621131424.162355-1-tmaimon77@gmail.com>
+ <20220621131424.162355-6-tmaimon77@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220621131424.162355-6-tmaimon77@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for the newly added Microchip PolarFire (MPF) FPGA
-manager. Add myself as a reviewer and Conor Dooley as a maintainer.
+On 21/06/2022 15:14, Tomer Maimon wrote:
+> Add binding for the Arbel BMC NPCM8XX Clock controller.
+> 
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> ---
+>  .../bindings/clock/nuvoton,npcm845-clk.yaml   | 49 +++++++++++++++++++
+>  .../dt-bindings/clock/nuvoton,npcm845-clk.h   | 49 +++++++++++++++++++
+>  2 files changed, 98 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
+>  create mode 100644 include/dt-bindings/clock/nuvoton,npcm845-clk.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
+> new file mode 100644
+> index 000000000000..3d4fddc090ca
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/nuvoton,npcm845-clk.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton NPCM8XX Clock Controller Binding
+> +
+> +maintainers:
+> +  - Tomer Maimon <tmaimon77@gmail.com>
+> +
+> +description: |
+> +  Nuvoton Arbel BMC NPCM8XX contains an integrated clock controller, which
+> +  generates and supplies clocks to all modules within the BMC.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nuvoton,npcm845-clk
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +    description:
+> +      See include/dt-bindings/clock/nuvoton,npcm8xx-clock.h for the full
+> +      list of NPCM8XX clock IDs.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#clock-cells"
 
-Suggested-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+You fixed one comment and ignore second. The same was with v3.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b774f21828f7..ed2517574804 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7884,6 +7884,14 @@ S:	Maintained
- F:	Documentation/ABI/testing/sysfs-driver-intel-m10-bmc-sec-update
- F:	drivers/fpga/intel-m10-bmc-sec-update.c
- 
-+MICROCHIP POLARFIRE FPGA DRIVERS
-+M:	Conor Dooley <conor.dooley@microchip.com>
-+R:	Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+L:	linux-fpga@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-+F:	drivers/fpga/microchip-spi.c
-+
- FPU EMULATOR
- M:	Bill Metzenthen <billm@melbpc.org.au>
- S:	Maintained
--- 
-2.25.1
+This is still no. Implement all the comments you received. I have to
+double check your patchsets every time because I cannot trust that you
+implemented what I asked for.
 
 
+Best regards,
+Krzysztof
