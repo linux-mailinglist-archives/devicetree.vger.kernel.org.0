@@ -2,70 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE353552C79
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 09:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC6A8552C8F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 10:05:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347651AbiFUH5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 03:57:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52842 "EHLO
+        id S1345745AbiFUIEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 04:04:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347817AbiFUH5R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 03:57:17 -0400
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5FB245AB;
-        Tue, 21 Jun 2022 00:57:15 -0700 (PDT)
-Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.57])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4LRzMG6ybKzcbCw;
-        Tue, 21 Jun 2022 15:55:06 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Tue, 21 Jun 2022 15:56:41 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Tue, 21 Jun 2022 15:56:40 +0800
-Subject: Re: [PATCH 5/5] arm64: kdump: Don't defer the reservation of crash
- high memory
-To:     Baoquan He <bhe@redhat.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Ard Biesheuvel <ardb@kernel.org>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>, <kexec@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Jonathan Corbet <corbet@lwn.net>, <linux-doc@vger.kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        "Chen Zhou" <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-References: <20220613080932.663-1-thunder.leizhen@huawei.com>
- <20220613080932.663-6-thunder.leizhen@huawei.com>
- <YrFYHYgX3mC//t2l@MiWiFi-R3L-srv>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <4ad5f8c9-a411-da4e-f626-ead83d107bca@huawei.com>
-Date:   Tue, 21 Jun 2022 15:56:40 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <YrFYHYgX3mC//t2l@MiWiFi-R3L-srv>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        with ESMTP id S1346896AbiFUIEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 04:04:20 -0400
+Received: from mail-wm1-x349.google.com (mail-wm1-x349.google.com [IPv6:2a00:1450:4864:20::349])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC835248FC
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 01:04:18 -0700 (PDT)
+Received: by mail-wm1-x349.google.com with SMTP id be12-20020a05600c1e8c00b0039c506b52a4so6443392wmb.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 01:04:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=Eeewp3+idthWDzP0cBxgfX0lzlyD1daDuRGMu+W66YM=;
+        b=f9ySLsJ6xbP5U+jfb+0Qp727l4/BrPPf7j8N30uqORbt5gDVMsd3u2e5WlAe/gznw0
+         eH1XLzSqx8VlFRvTy+wuss4fz8WQ96mbfilRVwv+dofp9/R+YFalqtD932jmaaqsWLQ7
+         3n+mUoG1/htMPS09Ckl1gYqNN6sN+CxhuopvSwprNtoZX3qH7JnYeCRsIF8Z4FKbmsr0
+         MNjJ+gTe+Lx/2aS7pLtXj3KxTDtWvdSq/Vcjmt58oogqcUA7j0IbJF2BPjzp3A2MQ6q1
+         NRV29TFlGnc7up2Aa6ay6lyZQDW3BWeCqVRJF2mstUyfbkGUJWQZGvObXwBAIok+sHHo
+         CUAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=Eeewp3+idthWDzP0cBxgfX0lzlyD1daDuRGMu+W66YM=;
+        b=fsZy4R2Eo8RSryh2ks5s0ovhtxz7gv3crFgXGy+T8aqGg/O84AzXTwhxmmEQ5elFaH
+         duE8P8TxCP1HwfstL6rtr/pkXFJS1T2Wx2kdvDvr0XEG1AmidIGzBqoXcu7QH0nKDhMx
+         cb+N+S8ubov5/6vYxXRXXd43buAzh8uppiig8MqJgW1H9CVKJp5j9hkFLPzRnsjQqwNr
+         2DdbiothUMBjKn9Nrs6N4YFIdjq9rHRidrJtu4/MBmHvWXEWuklff3dBF+04+C3DV33/
+         +sF2NdTgknk6JgRP/m7J4GjtqCtkK0PL5iFHTnjj2g3yB2pH8P/NuLop4iX/Z7oNd/li
+         xBAQ==
+X-Gm-Message-State: AOAM533y5uE3ELIJBLRGlhpAeTUgERszlyXRkqJXal1C07Om/KwuFYQI
+        LYpSGtQQzzX6tJj1jfOSCLoW1ORkhxCz2IP9JFw=
+X-Google-Smtp-Source: ABdhPJxW+ElcpEjaHECu91qT9sNAnOpyYsYcoxyVS2cxK0gYVSGrIqOQeY/4oUChMxWGMiaXzZ5DG9zHQ1Bxy3XY93g=
+X-Received: from sene.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:27c4])
+ (user=sebastianene job=sendgmr) by 2002:a05:600c:1990:b0:39c:81f0:a882 with
+ SMTP id t16-20020a05600c199000b0039c81f0a882mr38488706wmq.72.1655798657132;
+ Tue, 21 Jun 2022 01:04:17 -0700 (PDT)
+Date:   Tue, 21 Jun 2022 08:03:07 +0000
+Message-Id: <20220621080308.3952915-1-sebastianene@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.37.0.rc0.104.g0611611a94-goog
+Subject: [PATCH v7 0/2] Detect stalls on guest vCPUS
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
+        Guenter Roeck <linux@roeck-us.net>,
+        Sebastian Ene <sebastianene@google.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,204 +68,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds a mechanism to detect stalls on the guest vCPUS by creating a
+per CPU hrtimer which periodically 'pets' the host backend driver.
+On a conventional watchdog-core driver, the userspace is responsible for
+delivering the 'pet' events by writing to the particular /dev/watchdogN node.
+In this case we require a strong thread affinity to be able to
+account for lost time on a per vCPU basis.
 
+This device driver acts as a soft lockup detector by relying on the host
+backend driver to measure the elapesed time between subsequent 'pet' events.
+If the elapsed time doesn't match an expected value, the backend driver
+decides that the guest vCPU is locked and resets the guest. The host
+backend driver takes into account the time that the guest is not
+running. The communication with the backend driver is done through MMIO
+and the register layout of the virtual watchdog is described as part of
+the backend driver changes.
 
-On 2022/6/21 13:33, Baoquan He wrote:
-> Hi,
-> 
-> On 06/13/22 at 04:09pm, Zhen Lei wrote:
->> If the crashkernel has both high memory above DMA zones and low memory
->> in DMA zones, kexec always loads the content such as Image and dtb to the
->> high memory instead of the low memory. This means that only high memory
->> requires write protection based on page-level mapping. The allocation of
->> high memory does not depend on the DMA boundary. So we can reserve the
->> high memory first even if the crashkernel reservation is deferred.
->>
->> This means that the block mapping can still be performed on other kernel
->> linear address spaces, the TLB miss rate can be reduced and the system
->> performance will be improved.
-> 
-> Ugh, this looks a little ugly, honestly.
-> 
-> If that's for sure arm64 can't split large page mapping of linear
-> region, this patch is one way to optimize linear mapping. Given kdump
-> setting is necessary on arm64 server, the booting speed is truly
-> impacted heavily.
+The host backend driver is implemented as part of:
+https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
 
-There is also a performance impact when running.
+Changelog v7:
+ - fix the dtschema warnings for 'timeout-sec' property
+ - rename vcpu_stall_detector.yaml to qemu,vcpu_stall_detector.yaml and
+   place the file under misc
+ - improve the Kconfig description for the driver by making it KVM
+   specific
 
-> 
-> However, I would suggest letting it as is with below reasons:
-> 
-> 1) The code will complicate the crashkernel reservatoin code which
-> is already difficult to understand. 
+Changelog v6:
+ - fix issues reported by lkp@intel robot:
+     building for ARCH=h8300 incorrect type in assignment
+     (different address spaces)
 
-Yeah, I feel it, too.
+Sebastian Ene (2):
+  dt-bindings: vcpu_stall_detector: Add qemu,vcpu-stall-detector
+    compatible
+  misc: Add a mechanism to detect stalls on guest vCPUs
 
-> 2) It can only optimize the two cases, first is CONFIG_ZONE_DMA|DMA32
->   disabled, the other is crashkernel=,high is specified. While both
->   two cases are corner case, most of systems have CONFIG_ZONE_DMA|DMA32
->   enabled, and most of systems have crashkernel=xM which is enough.
->   Having them optimized won't bring benefit to most of systems.
-
-The case of CONFIG_ZONE_DMA|DMA32 disabled have been resolved by
-commit 031495635b46 ("arm64: Do not defer reserve_crashkernel() for platforms with no DMA memory zones").
-Currently the performance problem to be optimized is that DMA is enabled.
-
-
-> 3) Besides, the crashkernel=,high can be handled earlier because 
->   arm64 alwasys have memblock.bottom_up == false currently, thus we
->   don't need worry arbout the lower limit of crashkernel,high
->   reservation for now. If memblock.bottom_up is set true in the future,
->   this patch doesn't work any more.
-> 
-> 
-> ...
->         crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
->                                                crash_base, crash_max);
-> 
-> So, in my opinion, we can leave the current NON_BLOCK|SECT mapping as
-> is caused by crashkernel reserving, since no regression is brought.
-> And meantime, turning to check if there's any way to make the contiguous
-> linear mapping and later splitting work. The patch 4, 5 in this patchset
-> doesn't make much sense to me, frankly speaking.
-
-OK. As discussed earlier, I can rethink if there is a better way to patch 4-5,
-and this time focus on patch 1-2. In this way, all the functions are complete,
-and only optimization is left.
-
-> 
-> Thanks
-> Baoquan
-> 
->>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> ---
->>  arch/arm64/mm/init.c | 71 ++++++++++++++++++++++++++++++++++++++++----
->>  1 file changed, 65 insertions(+), 6 deletions(-)
->>
->> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
->> index fb24efbc46f5ef4..ae0bae2cafe6ab0 100644
->> --- a/arch/arm64/mm/init.c
->> +++ b/arch/arm64/mm/init.c
->> @@ -141,15 +141,44 @@ static void __init reserve_crashkernel(int dma_state)
->>  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
->>  	char *cmdline = boot_command_line;
->>  	int dma_enabled = IS_ENABLED(CONFIG_ZONE_DMA) || IS_ENABLED(CONFIG_ZONE_DMA32);
->> -	int ret;
->> +	int ret, skip_res = 0, skip_low_res = 0;
->>  	bool fixed_base;
->>  
->>  	if (!IS_ENABLED(CONFIG_KEXEC_CORE))
->>  		return;
->>  
->> -	if ((!dma_enabled && (dma_state != DMA_PHYS_LIMIT_UNKNOWN)) ||
->> -	     (dma_enabled && (dma_state != DMA_PHYS_LIMIT_KNOWN)))
->> -		return;
->> +	/*
->> +	 * In the following table:
->> +	 * X,high  means crashkernel=X,high
->> +	 * unknown means dma_state = DMA_PHYS_LIMIT_UNKNOWN
->> +	 * known   means dma_state = DMA_PHYS_LIMIT_KNOWN
->> +	 *
->> +	 * The first two columns indicate the status, and the last two
->> +	 * columns indicate the phase in which crash high or low memory
->> +	 * needs to be reserved.
->> +	 *  ---------------------------------------------------
->> +	 * | DMA enabled | X,high used |  unknown  |   known   |
->> +	 *  ---------------------------------------------------
->> +	 * |      N            N       |    low    |    NOP    |
->> +	 * |      Y            N       |    NOP    |    low    |
->> +	 * |      N            Y       |  high/low |    NOP    |
->> +	 * |      Y            Y       |    high   |    low    |
->> +	 *  ---------------------------------------------------
->> +	 *
->> +	 * But in this function, the crash high memory allocation of
->> +	 * crashkernel=Y,high and the crash low memory allocation of
->> +	 * crashkernel=X[@offset] for crashk_res are mixed at one place.
->> +	 * So the table above need to be adjusted as below:
->> +	 *  ---------------------------------------------------
->> +	 * | DMA enabled | X,high used |  unknown  |   known   |
->> +	 *  ---------------------------------------------------
->> +	 * |      N            N       |    res    |    NOP    |
->> +	 * |      Y            N       |    NOP    |    res    |
->> +	 * |      N            Y       |res/low_res|    NOP    |
->> +	 * |      Y            Y       |    res    |  low_res  |
->> +	 *  ---------------------------------------------------
->> +	 *
->> +	 */
->>  
->>  	/* crashkernel=X[@offset] */
->>  	ret = parse_crashkernel(cmdline, memblock_phys_mem_size(),
->> @@ -169,10 +198,33 @@ static void __init reserve_crashkernel(int dma_state)
->>  		else if (ret)
->>  			return;
->>  
->> +		/* See the third row of the second table above, NOP */
->> +		if (!dma_enabled && (dma_state == DMA_PHYS_LIMIT_KNOWN))
->> +			return;
->> +
->> +		/* See the fourth row of the second table above */
->> +		if (dma_enabled) {
->> +			if (dma_state == DMA_PHYS_LIMIT_UNKNOWN)
->> +				skip_low_res = 1;
->> +			else
->> +				skip_res = 1;
->> +		}
->> +
->>  		crash_max = CRASH_ADDR_HIGH_MAX;
->>  	} else if (ret || !crash_size) {
->>  		/* The specified value is invalid */
->>  		return;
->> +	} else {
->> +		/* See the 1-2 rows of the second table above, NOP */
->> +		if ((!dma_enabled && (dma_state == DMA_PHYS_LIMIT_KNOWN)) ||
->> +		     (dma_enabled && (dma_state == DMA_PHYS_LIMIT_UNKNOWN)))
->> +			return;
->> +	}
->> +
->> +	if (skip_res) {
->> +		crash_base = crashk_res.start;
->> +		crash_size = crashk_res.end - crashk_res.start + 1;
->> +		goto check_low;
->>  	}
->>  
->>  	fixed_base = !!crash_base;
->> @@ -202,9 +254,18 @@ static void __init reserve_crashkernel(int dma_state)
->>  		return;
->>  	}
->>  
->> +	crashk_res.start = crash_base;
->> +	crashk_res.end = crash_base + crash_size - 1;
->> +
->> +check_low:
->> +	if (skip_low_res)
->> +		return;
->> +
->>  	if ((crash_base >= CRASH_ADDR_LOW_MAX) &&
->>  	     crash_low_size && reserve_crashkernel_low(crash_low_size)) {
->>  		memblock_phys_free(crash_base, crash_size);
->> +		crashk_res.start = 0;
->> +		crashk_res.end = 0;
->>  		return;
->>  	}
->>  
->> @@ -219,8 +280,6 @@ static void __init reserve_crashkernel(int dma_state)
->>  	if (crashk_low_res.end)
->>  		kmemleak_ignore_phys(crashk_low_res.start);
->>  
->> -	crashk_res.start = crash_base;
->> -	crashk_res.end = crash_base + crash_size - 1;
->>  	insert_resource(&iomem_resource, &crashk_res);
->>  }
->>  
->> -- 
->> 2.25.1
->>
-> 
-> .
-> 
+ .../misc/qemu,vcpu-stall-detector.yaml        |  50 ++++
+ drivers/misc/Kconfig                          |  12 +
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/vcpu_stall_detector.c            | 222 ++++++++++++++++++
+ 4 files changed, 285 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/qemu,vcpu-stall-detector.yaml
+ create mode 100644 drivers/misc/vcpu_stall_detector.c
 
 -- 
-Regards,
-  Zhen Lei
+2.36.1.476.g0c4daa206d-goog
+
