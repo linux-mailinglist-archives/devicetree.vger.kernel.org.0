@@ -2,64 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ACAF5538B9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 19:17:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF3D65538D6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 19:26:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352412AbiFURRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 13:17:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50584 "EHLO
+        id S233568AbiFUR0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 13:26:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353123AbiFURQ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 13:16:57 -0400
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F1F2CDDA
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:16:56 -0700 (PDT)
-Received: by mail-qv1-xf2b.google.com with SMTP id 43so21347374qvb.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:16:56 -0700 (PDT)
+        with ESMTP id S1353038AbiFUR0N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 13:26:13 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 821752D1EE
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:26:12 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id x75so10621269qkb.12
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:26:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=E5ccaIvRIXteqVNt2w/oxW2Vfyr34lOQhBiY70Y2LiY=;
-        b=ukzNEN/xGYg9ZwWaTaxi/CYWjN1UXK+IY2/TKjL+wloNxlUdoJRzLvkMCVkfEwO4aN
-         1bWcy9Y90TS3+x/R6MmfLOOFVTaFDVhWAjHcJ8ev3cFJJ095ei0I5lZHgebIJo2zR0WR
-         j35TfRnQ6d4deWqqSgVHNkHo9a1iOswMR5v0Xji6rJ1ZtgSguQnGO2XALyfIBdDGTIdQ
-         55D7s7HuF8FzXaL/0pRZG07Nt4ubghd70zGZRxL088Gwh6un2jjdGz83AWbiW2bUgBi1
-         LCXonnOQhnGePzt3elAb7pz/8JJ52pnBNhSlsGnM2PmyTeEQAeN+yoC0f/Osyj2Lp49l
-         Yirw==
+        bh=rX/peAHmhyZwy77vQ2JcNhxgJXXBgZnIyQj7eweojrA=;
+        b=fwypcRYdV1D8yWcf3IT9AiP9ODRtAGU+W+qLoiQFpNS34IWuY4vYKa1mjkpHQOFt8J
+         pc7ymvs97JBiS2T5w4KusAoQ0s78r5pshZ0Nao/vhrzmzZRFeZqMn4xld9ZBr/5LbUlH
+         pF62bCdEY1ttEbY5WjbhM2J5HRQ9ncfKyxkFjMdOgDzq9zLkvmqKObnrxNRuVZ11H5tH
+         hJgJPss08/uELByIHex4h2I3QiGIvrrIMAMxFuM6wbaDJDp7CFOWXeXlUTWxO+vRdT49
+         CEZEPYEk7RhOIb2xpkC2wnpwN6SjUe2PzdakfC236eczhf0NuZ3OP0vb/Z1zdByI7HtV
+         x4GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=E5ccaIvRIXteqVNt2w/oxW2Vfyr34lOQhBiY70Y2LiY=;
-        b=1PXWEzyrcGCBzJSxIKoGSERZk3foG3Cq/lWLPtS4JPyqw/t5gZxCZ0z90vrGMXYeSm
-         oBnot+PKDRRw2Vmfy7mSOcvyq78gu1iSUfPmpBYijt9QUAJT4I48Wh7EIK+g36nL7MdM
-         27cfb+pWkLAWBKyW8Xq6SUYqF1Tshlva4FWpujFEQZwjJtg/K+ATWpaRQ7KY7ee+cTWa
-         skDBYfgGiEEkBCG42n8lRCTrwdSwzRbcMmGkdV4paJG9vJJsnv1S5wDwb8uVNUalKY6K
-         qECcymzlMurgb7ZUJftwz4pD8CYKKUFfLP9aq/494egcFXP9yjmlHFP7ye2awvZxETiE
-         kuSg==
-X-Gm-Message-State: AJIora/pxe+HqWH7vlPgf0tU4Ze5fnI5QVRD1tfpFLbMep3Bxrged9S7
-        fiRZQl3l9QLtK9rxMfmwk5lIV0Oy1qLS/YiXg4Vbew==
-X-Google-Smtp-Source: AGRyM1szZM/xn2oBTLu0KT0Kma3pFng6DiJJW2zHeQ49W5OAaSbei+2IZa+4TPCPwzTRPns55/vkxr0LiQy3eLxlUaE=
-X-Received: by 2002:a05:622a:487:b0:304:fbfc:9933 with SMTP id
- p7-20020a05622a048700b00304fbfc9933mr25369800qtx.682.1655831815253; Tue, 21
- Jun 2022 10:16:55 -0700 (PDT)
+        bh=rX/peAHmhyZwy77vQ2JcNhxgJXXBgZnIyQj7eweojrA=;
+        b=jOKmODWe2bT9xI3mTy5qglk+k3nh/hF6RCXDOws0H9hfmdqvmJ+APafySi/IYqknkw
+         5kdz77TyFwLDUAgW7gNJfvYJm61uOHo/IHk6A6yPlBB0QU99eHqqdgbdDErEkxb0uyEo
+         DDPAVHG4pJIH1LkrsRazlWWhzwQZWQsvx9ann7yhK8g42nOYJP9LydTskv2hzTpZlDY9
+         3Yf8XaLBOm+DClz7AZu+4F4PyO0JRGbA1aKBYu02cCT/amJda6QWgP2aCkbxPe5R7tiS
+         CHduPDOhdDUuVssRXHKq8ZUzoenw0H3/pC7k8cdwLHVzF7a5lIVBLqpXcdWBbX1+Yylk
+         8uQQ==
+X-Gm-Message-State: AJIora+iuhcvzFS1NRipDahLqoCKWAsmfapPOe+ZogAE+U3IBaUuWfZa
+        BASpciBFhBwOlTHYuzvMTYwEgQGaUX2C+BreZkYvbg==
+X-Google-Smtp-Source: AGRyM1tBlLWy/IzZYwrazH4Rk/tiu8x4mgf+qRApIeKdfuVwyySYOqQDFSnqtGWbl6uTf14jc0HkDInSpl6gsgXe+xQ=
+X-Received: by 2002:a05:620a:4156:b0:6a6:f8d2:6d9e with SMTP id
+ k22-20020a05620a415600b006a6f8d26d9emr21197020qko.30.1655832371507; Tue, 21
+ Jun 2022 10:26:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220621163326.16858-1-ansuelsmth@gmail.com> <20220621163326.16858-2-ansuelsmth@gmail.com>
-In-Reply-To: <20220621163326.16858-2-ansuelsmth@gmail.com>
+References: <20220621111818.447452-1-robimarko@gmail.com> <20220621111818.447452-2-robimarko@gmail.com>
+In-Reply-To: <20220621111818.447452-2-robimarko@gmail.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 21 Jun 2022 20:16:44 +0300
-Message-ID: <CAA8EJpo2cfWz6ph1BQLjkQ5HEvG3HWqmxN273dpDxg-aoHXzVw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] clk: qcom: lcc-ipq806x: add reset definition
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Date:   Tue, 21 Jun 2022 20:26:00 +0300
+Message-ID: <CAA8EJposq4796b33jkovDDQdzQsrp733kN5tQYAhFow4G8hvow@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] phy: qcom-qmp-pcie: add IPQ8074 PCIe Gen3 QMP PHY support
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, kishon@ti.com,
+        vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -71,20 +68,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Jun 2022 at 19:33, Christian Marangi <ansuelsmth@gmail.com> wrote:
+On Tue, 21 Jun 2022 at 14:18, Robert Marko <robimarko@gmail.com> wrote:
 >
-> Add reset definition for lcc-ipq806x.
+> IPQ8074 has 2 different single lane PCIe PHY-s, one Gen2 and one Gen3.
+> Gen2 one is already supported, so add the support for the Gen3 one.
+> It uses the same register layout as IPQ6018.
 >
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 > ---
-> v2:
-> - Fix Sob tag
+> Changes in v2:
+> * Rebase onto next-20220621 to apply on the refactored driver
+> * Remove non existant has_phy_com_ctrl and has_lane_rst
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 171 ++++++++++++++++++++++-
+>  1 file changed, 169 insertions(+), 2 deletions(-)
 >
->  drivers/clk/qcom/lcc-ipq806x.c | 7 +++++++
->  1 file changed, 7 insertions(+)
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> index b2cd0cf965d8..b4836417b2c0 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+
+[skipped]
+
+> @@ -2121,8 +2277,16 @@ static int phy_pipe_clk_register(struct qcom_qmp *qmp, struct device_node *np)
+>
+>         init.ops = &clk_fixed_rate_ops;
+>
+> -       /* controllers using QMP phys use 125MHz pipe clock interface */
+> -       fixed->fixed_rate = 125000000;
+> +       /*
+> +        * Controllers using QMP PHY-s use 125MHz pipe clock interface
+> +        * unless other frequency is specified in the DTS.
+> +        */
+> +       ret = of_property_read_u32(np, "clock-output-rate", &rate);
+
+The clock-output-rate is a new property, which doesn't exist yet. If
+the rate is peculiar to your platform/PHY, I'd suggest adding a field
+to the qmp configuration instead.
+
+> +       if (ret)
+> +               fixed->fixed_rate = 125000000;
+> +       else
+> +               fixed->fixed_rate = rate;
+> +
+>         fixed->hw.init = &init;
+>
+>         ret = devm_clk_hw_register(qmp->dev, &fixed->hw);
+> @@ -2255,6 +2419,9 @@ static const struct of_device_id qcom_qmp_phy_pcie_of_match_table[] = {
+>         }, {
+>                 .compatible = "qcom,ipq8074-qmp-pcie-phy",
+>                 .data = &ipq8074_pciephy_cfg,
+> +       }, {
+> +               .compatible = "qcom,ipq8074-qmp-gen3-pcie-phy",
+> +               .data = &ipq8074_pciephy_gen3_cfg,
+>         }, {
+>                 .compatible = "qcom,ipq6018-qmp-pcie-phy",
+>                 .data = &ipq6018_pciephy_cfg,
+> --
+> 2.36.1
+>
+
 
 -- 
 With best wishes
