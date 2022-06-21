@@ -2,107 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A727B552E70
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 11:34:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 587FF552E7C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 11:36:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348964AbiFUJeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 05:34:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46336 "EHLO
+        id S1349061AbiFUJgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 05:36:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348890AbiFUJen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 05:34:43 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A474525E90
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 02:34:42 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id n144so19426545ybf.12
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 02:34:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=/0bRExIb6Mv4sy5raFRmeQINC+UUx7zEZcUUOWWOPJg=;
-        b=h4kelL6+9X0di90BJF8jjkbQ67xu6yQ9Psym56sNHhds6TqYrUs59qFfMJJ/8GOmSO
-         32XnHIVZkfh+zFzP7DLGbFHkZPFcB+8qdYI5Asio/29v9xKd6uay+TeI5YmEWlLoTE78
-         8Zn6n424q0JAoenlQI5EUoyrPS1H3itz6Cx5GATIQaSkuoqNSPsr/6wucUYKi+U+VVQV
-         gQpENi5EFbZMwbBrNL8uM7S1LREmWTS5MdkJtRIwjmIZDAStTKKAXe21VZOy+Ce/24ws
-         paswcJs2ZEC1kAoVQyJbSAhbrDSsbmpFUrYPSVzWB9+X6ATfwxTFbxXtt9dDxah5BUiR
-         brrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=/0bRExIb6Mv4sy5raFRmeQINC+UUx7zEZcUUOWWOPJg=;
-        b=j9zFBAAL52cvJgyjGzn60T8qwFhLJH1VPj+iLucIBJub3vEiNemTA9qeoS/5iuvfnv
-         pzAr1kFrr2iA2s2cVYgVnmZv94uvpUw9uUFlYoHJz+gPIWaBXH/S1n6SdPdL3O8ABa/l
-         U08zZWLwhaZuRz3gPGz2R+iLli4kiohPbBKzgSwLuRiCaafmmBpKWXw8YLkQyTPrjXcY
-         WoDhcwNvdbulIll8bnlUYvt+7QuMIUtSUl0fDVL72jfTuPohBJhPMsR2pZkecN9QmtlA
-         OdqYjqaf/avtJLcwo/59BgD0iR0SfkJEIFqcuC6AYx1GC1fwGJbctZboz/qmgj+EAKEv
-         g1GA==
-X-Gm-Message-State: AJIora+RX8evh4DQf0BISbsl2pex9S2YBHOdORdFbORyYoPVN6Jd9q+2
-        NHmSa1uXMiZkAdJdhUYb7yyVlSZxIGeDGzs8obc=
-X-Google-Smtp-Source: AGRyM1tkFnKoLbDgMnjySy0ErBZpnfjHPfaFKKtSsCxRLgRIKk5bXYNuLJz2vI6RF3anVmPuYfwLxHJ/RTqRlVM2SK4=
-X-Received: by 2002:a25:9bc4:0:b0:669:5116:533b with SMTP id
- w4-20020a259bc4000000b006695116533bmr2049327ybo.537.1655804081508; Tue, 21
- Jun 2022 02:34:41 -0700 (PDT)
+        with ESMTP id S1349035AbiFUJgH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 05:36:07 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BACDE25C79
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 02:36:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1655804165;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=4GxMxN9cunj7j/s8YfY5rtdI8+FBR/4TfOiBLvKgbPo=;
+        b=HaTvUsZZQhL9lsM+P3q6YkazYEWdOEzLhuSbHxiKECwwPxis/SRur/EfNQ6Y/0vrGb4mpo
+        2/6XGniyiR/XgraLDw0ijapF5bul7MAHzGJ9cz5Hf72ph2XbxVatm5otoI1vHvFZjqM3Gh
+        lZdftt2jYZPSUHhVUy10uhJXecqNDGw=
+Received: from mimecast-mx02.redhat.com (mx3-rdu2.redhat.com
+ [66.187.233.73]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-486-0kqwBBi6O-aiHPJp5CQaRQ-1; Tue, 21 Jun 2022 05:36:00 -0400
+X-MC-Unique: 0kqwBBi6O-aiHPJp5CQaRQ-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.rdu2.redhat.com [10.11.54.3])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 975E229AB3F0;
+        Tue, 21 Jun 2022 09:35:59 +0000 (UTC)
+Received: from localhost (ovpn-12-183.pek2.redhat.com [10.72.12.183])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 134E81121314;
+        Tue, 21 Jun 2022 09:35:57 +0000 (UTC)
+Date:   Tue, 21 Jun 2022 17:35:54 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>, kexec@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH 5/5] arm64: kdump: Don't defer the reservation of crash
+ high memory
+Message-ID: <YrGQ+l8bwAsMXaX1@MiWiFi-R3L-srv>
+References: <20220613080932.663-1-thunder.leizhen@huawei.com>
+ <20220613080932.663-6-thunder.leizhen@huawei.com>
+ <YrFYHYgX3mC//t2l@MiWiFi-R3L-srv>
+ <4ad5f8c9-a411-da4e-f626-ead83d107bca@huawei.com>
 MIME-Version: 1.0
-Received: by 2002:a05:7010:e10a:b0:2d9:e631:94d0 with HTTP; Tue, 21 Jun 2022
- 02:34:40 -0700 (PDT)
-Reply-To: dimitryedik@gmail.com
-From:   Dimitry Edik <lsbthdwrds@gmail.com>
-Date:   Tue, 21 Jun 2022 02:34:40 -0700
-Message-ID: <CAGrL05Zv58OMJWkZLfQaQneEMMcXm4F75v=N5LH8YYBTe1yQvQ@mail.gmail.com>
-Subject: Dear Partner,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=7.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        LOTS_OF_MONEY,MONEY_FREEMAIL_REPTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_MONEY_PERCENT,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM,
-        UNDISC_MONEY autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:b30 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [lsbthdwrds[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.0 LOTS_OF_MONEY Huge... sums of money
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  2.2 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-        *  2.0 MONEY_FREEMAIL_REPTO Lots of money from someone using free
-        *      email?
-        *  0.0 T_MONEY_PERCENT X% of a lot of money for you
-        *  2.0 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-X-Spam-Level: *******
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4ad5f8c9-a411-da4e-f626-ead83d107bca@huawei.com>
+X-Scanned-By: MIMEDefang 2.78 on 10.11.54.3
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Dear,
+On 06/21/22 at 03:56pm, Leizhen (ThunderTown) wrote:
+> 
+> 
+> On 2022/6/21 13:33, Baoquan He wrote:
+> > Hi,
+> > 
+> > On 06/13/22 at 04:09pm, Zhen Lei wrote:
+> >> If the crashkernel has both high memory above DMA zones and low memory
+> >> in DMA zones, kexec always loads the content such as Image and dtb to the
+> >> high memory instead of the low memory. This means that only high memory
+> >> requires write protection based on page-level mapping. The allocation of
+> >> high memory does not depend on the DMA boundary. So we can reserve the
+> >> high memory first even if the crashkernel reservation is deferred.
+> >>
+> >> This means that the block mapping can still be performed on other kernel
+> >> linear address spaces, the TLB miss rate can be reduced and the system
+> >> performance will be improved.
+> > 
+> > Ugh, this looks a little ugly, honestly.
+> > 
+> > If that's for sure arm64 can't split large page mapping of linear
+> > region, this patch is one way to optimize linear mapping. Given kdump
+> > setting is necessary on arm64 server, the booting speed is truly
+> > impacted heavily.
+> 
+> There is also a performance impact when running.
 
-My Name is Dimitry Edik from Russia A special assistance to my Russia
-boss who deals in oil import and export He was killed by the Ukraine
-soldiers at the border side. He supplied
-oil to the Philippines company and he was paid over 90 per cent of the
-transaction and the remaining $18.6 Million dollars have been paid into a
-Taiwan bank in the Philippines..i want a partner that will assist me
-with the claims. Is a (DEAL ) 40% for you and 60% for me
-I have all information for the claims.
-Kindly read and reply to me back is 100 per cent risk-free
+Yes, indeed, the TLB flush will happen more often.
 
-Yours Sincerely
-Dimitry Edik
+> 
+> > 
+> > However, I would suggest letting it as is with below reasons:
+> > 
+> > 1) The code will complicate the crashkernel reservatoin code which
+> > is already difficult to understand. 
+> 
+> Yeah, I feel it, too.
+> 
+> > 2) It can only optimize the two cases, first is CONFIG_ZONE_DMA|DMA32
+> >   disabled, the other is crashkernel=,high is specified. While both
+> >   two cases are corner case, most of systems have CONFIG_ZONE_DMA|DMA32
+> >   enabled, and most of systems have crashkernel=xM which is enough.
+> >   Having them optimized won't bring benefit to most of systems.
+> 
+> The case of CONFIG_ZONE_DMA|DMA32 disabled have been resolved by
+> commit 031495635b46 ("arm64: Do not defer reserve_crashkernel() for platforms with no DMA memory zones").
+> Currently the performance problem to be optimized is that DMA is enabled.
+
+Yes, the disabled CONFIG_ZONE_DMA|DMA32 case has avoided the problem since
+its boundary is decided already at that time. Crashkenrel=,high can slso
+avoid this benefitting from the top done memblock allocating. However,
+the crashkerne=xM which now gets the fallback support is the main syntax
+we will use, that still has the problem.
+
+> 
+> 
+> > 3) Besides, the crashkernel=,high can be handled earlier because 
+> >   arm64 alwasys have memblock.bottom_up == false currently, thus we
+> >   don't need worry arbout the lower limit of crashkernel,high
+> >   reservation for now. If memblock.bottom_up is set true in the future,
+> >   this patch doesn't work any more.
+> > 
+> > 
+> > ...
+> >         crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+> >                                                crash_base, crash_max);
+> > 
+> > So, in my opinion, we can leave the current NON_BLOCK|SECT mapping as
+> > is caused by crashkernel reserving, since no regression is brought.
+> > And meantime, turning to check if there's any way to make the contiguous
+> > linear mapping and later splitting work. The patch 4, 5 in this patchset
+> > doesn't make much sense to me, frankly speaking.
+> 
+> OK. As discussed earlier, I can rethink if there is a better way to patch 4-5,
+> and this time focus on patch 1-2. In this way, all the functions are complete,
+> and only optimization is left.
+
+Sounds nice, thx.
+
+> > 
+> >>
+> >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> >> ---
+> >>  arch/arm64/mm/init.c | 71 ++++++++++++++++++++++++++++++++++++++++----
+> >>  1 file changed, 65 insertions(+), 6 deletions(-)
+> >>
+> >> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> >> index fb24efbc46f5ef4..ae0bae2cafe6ab0 100644
+> >> --- a/arch/arm64/mm/init.c
+> >> +++ b/arch/arm64/mm/init.c
+> >> @@ -141,15 +141,44 @@ static void __init reserve_crashkernel(int dma_state)
+> >>  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+> >>  	char *cmdline = boot_command_line;
+> >>  	int dma_enabled = IS_ENABLED(CONFIG_ZONE_DMA) || IS_ENABLED(CONFIG_ZONE_DMA32);
+> >> -	int ret;
+> >> +	int ret, skip_res = 0, skip_low_res = 0;
+> >>  	bool fixed_base;
+> >>  
+> >>  	if (!IS_ENABLED(CONFIG_KEXEC_CORE))
+> >>  		return;
+> >>  
+> >> -	if ((!dma_enabled && (dma_state != DMA_PHYS_LIMIT_UNKNOWN)) ||
+> >> -	     (dma_enabled && (dma_state != DMA_PHYS_LIMIT_KNOWN)))
+> >> -		return;
+> >> +	/*
+> >> +	 * In the following table:
+> >> +	 * X,high  means crashkernel=X,high
+> >> +	 * unknown means dma_state = DMA_PHYS_LIMIT_UNKNOWN
+> >> +	 * known   means dma_state = DMA_PHYS_LIMIT_KNOWN
+> >> +	 *
+> >> +	 * The first two columns indicate the status, and the last two
+> >> +	 * columns indicate the phase in which crash high or low memory
+> >> +	 * needs to be reserved.
+> >> +	 *  ---------------------------------------------------
+> >> +	 * | DMA enabled | X,high used |  unknown  |   known   |
+> >> +	 *  ---------------------------------------------------
+> >> +	 * |      N            N       |    low    |    NOP    |
+> >> +	 * |      Y            N       |    NOP    |    low    |
+> >> +	 * |      N            Y       |  high/low |    NOP    |
+> >> +	 * |      Y            Y       |    high   |    low    |
+> >> +	 *  ---------------------------------------------------
+> >> +	 *
+> >> +	 * But in this function, the crash high memory allocation of
+> >> +	 * crashkernel=Y,high and the crash low memory allocation of
+> >> +	 * crashkernel=X[@offset] for crashk_res are mixed at one place.
+> >> +	 * So the table above need to be adjusted as below:
+> >> +	 *  ---------------------------------------------------
+> >> +	 * | DMA enabled | X,high used |  unknown  |   known   |
+> >> +	 *  ---------------------------------------------------
+> >> +	 * |      N            N       |    res    |    NOP    |
+> >> +	 * |      Y            N       |    NOP    |    res    |
+> >> +	 * |      N            Y       |res/low_res|    NOP    |
+> >> +	 * |      Y            Y       |    res    |  low_res  |
+> >> +	 *  ---------------------------------------------------
+> >> +	 *
+> >> +	 */
+> >>  
+> >>  	/* crashkernel=X[@offset] */
+> >>  	ret = parse_crashkernel(cmdline, memblock_phys_mem_size(),
+> >> @@ -169,10 +198,33 @@ static void __init reserve_crashkernel(int dma_state)
+> >>  		else if (ret)
+> >>  			return;
+> >>  
+> >> +		/* See the third row of the second table above, NOP */
+> >> +		if (!dma_enabled && (dma_state == DMA_PHYS_LIMIT_KNOWN))
+> >> +			return;
+> >> +
+> >> +		/* See the fourth row of the second table above */
+> >> +		if (dma_enabled) {
+> >> +			if (dma_state == DMA_PHYS_LIMIT_UNKNOWN)
+> >> +				skip_low_res = 1;
+> >> +			else
+> >> +				skip_res = 1;
+> >> +		}
+> >> +
+> >>  		crash_max = CRASH_ADDR_HIGH_MAX;
+> >>  	} else if (ret || !crash_size) {
+> >>  		/* The specified value is invalid */
+> >>  		return;
+> >> +	} else {
+> >> +		/* See the 1-2 rows of the second table above, NOP */
+> >> +		if ((!dma_enabled && (dma_state == DMA_PHYS_LIMIT_KNOWN)) ||
+> >> +		     (dma_enabled && (dma_state == DMA_PHYS_LIMIT_UNKNOWN)))
+> >> +			return;
+> >> +	}
+> >> +
+> >> +	if (skip_res) {
+> >> +		crash_base = crashk_res.start;
+> >> +		crash_size = crashk_res.end - crashk_res.start + 1;
+> >> +		goto check_low;
+> >>  	}
+> >>  
+> >>  	fixed_base = !!crash_base;
+> >> @@ -202,9 +254,18 @@ static void __init reserve_crashkernel(int dma_state)
+> >>  		return;
+> >>  	}
+> >>  
+> >> +	crashk_res.start = crash_base;
+> >> +	crashk_res.end = crash_base + crash_size - 1;
+> >> +
+> >> +check_low:
+> >> +	if (skip_low_res)
+> >> +		return;
+> >> +
+> >>  	if ((crash_base >= CRASH_ADDR_LOW_MAX) &&
+> >>  	     crash_low_size && reserve_crashkernel_low(crash_low_size)) {
+> >>  		memblock_phys_free(crash_base, crash_size);
+> >> +		crashk_res.start = 0;
+> >> +		crashk_res.end = 0;
+> >>  		return;
+> >>  	}
+> >>  
+> >> @@ -219,8 +280,6 @@ static void __init reserve_crashkernel(int dma_state)
+> >>  	if (crashk_low_res.end)
+> >>  		kmemleak_ignore_phys(crashk_low_res.start);
+> >>  
+> >> -	crashk_res.start = crash_base;
+> >> -	crashk_res.end = crash_base + crash_size - 1;
+> >>  	insert_resource(&iomem_resource, &crashk_res);
+> >>  }
+> >>  
+> >> -- 
+> >> 2.25.1
+> >>
+> > 
+> > .
+> > 
+> 
+> -- 
+> Regards,
+>   Zhen Lei
+> 
+
