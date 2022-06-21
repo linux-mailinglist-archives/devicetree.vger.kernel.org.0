@@ -2,62 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F39E25535AE
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 17:15:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ACE75535B6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 17:18:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352538AbiFUPPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 11:15:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46348 "EHLO
+        id S1343802AbiFUPQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 11:16:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352504AbiFUPOz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 11:14:55 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD71729CB2;
-        Tue, 21 Jun 2022 08:14:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 621F6B819F0;
-        Tue, 21 Jun 2022 15:14:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61D04C3411C;
-        Tue, 21 Jun 2022 15:14:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655824447;
-        bh=OZlfEgJPPL27uCOfUcNRBzpd4OtK6pXffLp4w47WDZo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Jlc9O+Xn9LruEt91mMLpCJaOxqOa5u/fynfFRHnL2P15dr0drS7XjW0IO/9cB4WQK
-         s2UZEx+Ky6kbme00Uov0AVnv/podRcieYX7zwU7cOCkPNuzE+Ay+WNWopUnX34W3Z0
-         DuWaSjusj1lvZ8i+g7511sQyKkleMllZehhk3qMAqhNnAePi4LYF5wBGBuUNGYc690
-         81w9Fq1Fa2Iz1lpOLCXNUhg2N0JY4XEGI38LMshbHPEcALu/4AtBc050RFl3QezpN/
-         pFxFqJdnSB+bamqv3kFGiMdMR0w3C1qVQWWGpo8jqLXGShJiaVGC+QsdMsGF546wcT
-         3Xyo4hUMpRCnw==
-Date:   Tue, 21 Jun 2022 17:14:02 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org, jejb@linux.ibm.com, martin.petersen@oracle.com,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v6 7/7] arm64: dts: renesas: r8a779f0: spider-cpu: Enable
- UFS device
-Message-ID: <YrHgOptQ56woMAeO@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        alim.akhtar@samsung.com, avri.altman@wdc.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org, jejb@linux.ibm.com, martin.petersen@oracle.com,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-References: <20220603110524.1997825-1-yoshihiro.shimoda.uh@renesas.com>
- <20220603110524.1997825-8-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S1349045AbiFUPQh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 11:16:37 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4209B1D7
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 08:16:36 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id f8so12808029plo.9
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 08:16:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=utQUa+oF9fWRDaamZZaPnhYaPJL6WgW8Mf9WbzgxH3I=;
+        b=mVwRJ+OHn3pHTr7BcfAsDudznGjmNVWCdAAW5BiPqut1VfsBM1G9xlrrf5JBTLaiWY
+         B9SBmZDnUQzEW6LWc3VhRxYVXOcE/Wb3DBLwpT//TvBcVT16IcE2yaF9L5G4gnFH13Hs
+         QV11RmR2nJ9fX82P9091/AfdZKWrdMx1pR4tzRhh50vT4uXW9Z7YmQi1Gdh45Ppb7z3D
+         PefaCEAlIJ6rQIaV6ATrrX+W00vtzLwuDV/WLAxaYdERVBF18vek019AG1fPM0k+derJ
+         KKEvJyO91J/upkSo5zr/BhmLqeGRkpbrCjwgZEysmfutg35i497XY+uADaEM/UPJda1y
+         7Yow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=utQUa+oF9fWRDaamZZaPnhYaPJL6WgW8Mf9WbzgxH3I=;
+        b=ywWMRL0n8BuwrjhQrnpFiMGote0o8mta9L5JWoisETnN650wZFPTpjWjIgsYwPeIOV
+         t8vLejovJfLHR5F9C+INwWUMXr4r9bFljwtUCN2w8/uLa6Lk5gy+uLN5VJzJByRLppxu
+         hSABPlCOJZndQlUpF/hN+QlETa5bWoBRPKaXnYeSo7A6sZ4RPGvNWtQYC5cYvCcWLVW4
+         kGYT2Emq0YK+sl64sSmJL026A+aPgw/GSsIJSFG2RNKkgwTGrIfasGdyxzdCafWs04J0
+         suJUGo+Nqs8hihrvFueY8u9OOZ4ROJFwgAldC8HT3UkBPnEi2j2qvOhRr0Q91DR3O4+x
+         Pwjg==
+X-Gm-Message-State: AJIora/LNGW6KhtH59/UTtCx7S45vwSahIX1AnfRy+ftrB+WYCb+5jx5
+        URWvatKOzLYyoOj+0Y08k3C0
+X-Google-Smtp-Source: AGRyM1u3X+1HZeOndQv31glaYp1I/VYCqt3Ev7SKHvEavA7rUIWAe7snUi+5/aQnqFlJu5f/kj4tuw==
+X-Received: by 2002:a17:902:f78b:b0:16a:4ad:f359 with SMTP id q11-20020a170902f78b00b0016a04adf359mr22896128pln.99.1655824595664;
+        Tue, 21 Jun 2022 08:16:35 -0700 (PDT)
+Received: from thinkpad ([117.193.212.116])
+        by smtp.gmail.com with ESMTPSA id h3-20020a170902680300b001651562eb16sm10909798plk.124.2022.06.21.08.16.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jun 2022 08:16:35 -0700 (PDT)
+Date:   Tue, 21 Jun 2022 20:46:26 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Lizhi Hou <lizhi.hou@xilinx.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org, yilun.xu@intel.com, maxz@xilinx.com,
+        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, trix@redhat.com, mdf@kernel.org,
+        dwmw2@infradead.org, linux-kernel@vger.kernel.org,
+        Max Zhen <max.zhen@xilinx.com>, kishon@ti.com
+Subject: Re: [PATCH V1 RESEND 3/4] fpga: xrt: management physical function
+ driver
+Message-ID: <20220621151626.GA32306@thinkpad>
+References: <20220305052304.726050-1-lizhi.hou@xilinx.com>
+ <20220305052304.726050-4-lizhi.hou@xilinx.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="nw88w6/DKCvKTgU6"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220603110524.1997825-8-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220305052304.726050-4-lizhi.hou@xilinx.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,64 +77,194 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
++ Kishon
 
---nw88w6/DKCvKTgU6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, Mar 04, 2022 at 09:23:03PM -0800, Lizhi Hou wrote:
+> The PCIe device driver which attaches to management function on Alveo
+> devices. The first version of this driver demonstrates calling PCIe
+> interface to create device tree node.
+> 
 
-Hi Shimoda-san, Geert,
+I'm assuming that this driver implements the PCI endpoint functions. Then this
+driver should be under drivers/pci/endpoint/functions/ making use of the
+existing PCI endpoint subsystem.
 
-On Fri, Jun 03, 2022 at 08:05:24PM +0900, Yoshihiro Shimoda wrote:
-> Enable UFS device for R-Car S4-8 Spider CPU board.
->=20
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Thanks,
+Mani
 
-With my firmware, the manual setup of the clock in the bootloader is
-still needed. So, yes, I agree we should wait with this patch until we
-have a better way to deal with the clock.
+> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
+> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
+> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
+> ---
+>  drivers/fpga/Kconfig              |  3 ++
+>  drivers/fpga/Makefile             |  3 ++
+>  drivers/fpga/xrt/Kconfig          | 24 ++++++++++++
+>  drivers/fpga/xrt/Makefile         |  8 ++++
+>  drivers/fpga/xrt/mgmt/Makefile    | 12 ++++++
+>  drivers/fpga/xrt/mgmt/xmgmt-drv.c | 63 +++++++++++++++++++++++++++++++
+>  6 files changed, 113 insertions(+)
+>  create mode 100644 drivers/fpga/xrt/Kconfig
+>  create mode 100644 drivers/fpga/xrt/Makefile
+>  create mode 100644 drivers/fpga/xrt/mgmt/Makefile
+>  create mode 100644 drivers/fpga/xrt/mgmt/xmgmt-drv.c
+> 
+> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
+> index 991b3f361ec9..93ae387c97c5 100644
+> --- a/drivers/fpga/Kconfig
+> +++ b/drivers/fpga/Kconfig
+> @@ -243,4 +243,7 @@ config FPGA_MGR_VERSAL_FPGA
+>  	  configure the programmable logic(PL).
+>  
+>  	  To compile this as a module, choose M here.
+> +
+> +source "drivers/fpga/xrt/Kconfig"
+> +
+>  endif # FPGA
+> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
+> index 0bff783d1b61..81ea43c40c64 100644
+> --- a/drivers/fpga/Makefile
+> +++ b/drivers/fpga/Makefile
+> @@ -49,3 +49,6 @@ obj-$(CONFIG_FPGA_DFL_NIOS_INTEL_PAC_N3000)	+= dfl-n3000-nios.o
+>  
+>  # Drivers for FPGAs which implement DFL
+>  obj-$(CONFIG_FPGA_DFL_PCI)		+= dfl-pci.o
+> +
+> +# XRT drivers for Xilinx Alveo platforms
+> +obj-$(CONFIG_FPGA_XRT)		+= xrt/
+> diff --git a/drivers/fpga/xrt/Kconfig b/drivers/fpga/xrt/Kconfig
+> new file mode 100644
+> index 000000000000..47efc8f71cec
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/Kconfig
+> @@ -0,0 +1,24 @@
+> +
+> +# XRT Alveo FPGA device configuration
+> +#
+> +
+> +config FPGA_XRT
+> +	tristate "XRT Alveo Drivers"
+> +	depends on OF
+> +	select OF_EMPTY_ROOT
+> +	select OF_OVERLAY
+> +	help
+> +	  Select this option to enable Xilinx XRT Alveo drivers. Xilinx Alveo
+> +	  card is PCIe device and has two PCIe functions. The first function
+> +	  performs board manangement and XRT management driver will be attached
+> +	  to it. The second function performs data movement, compute unit
+> +	  scheduling etc. And an XRT user driver will be attached to it.
+> +
+> +config FPGA_XRT_XMGMT
+> +	tristate "Xilinx Alveo Management Driver"
+> +	depends on FPGA_XRT
+> +	help
+> +	  Select this option to enable XRT PCIe driver for Xilinx Alveo FPGA.
+> +	  This driver provides interfaces for userspace application to access
+> +	  Alveo FPGA device, such as: downloading FPGA bitstream, query card
+> +	  information, hot reset card etc.
+> diff --git a/drivers/fpga/xrt/Makefile b/drivers/fpga/xrt/Makefile
+> new file mode 100644
+> index 000000000000..2d251b5653bb
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/Makefile
+> @@ -0,0 +1,8 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +#
+> +# Copyright (C) 2020-2022 Xilinx, Inc. All rights reserved.
+> +#
+> +# Authors: Lizhi.Hou@xilinx.com
+> +#
+> +
+> +obj-$(CONFIG_FPGA_XRT_XMGMT) += mgmt/
+> diff --git a/drivers/fpga/xrt/mgmt/Makefile b/drivers/fpga/xrt/mgmt/Makefile
+> new file mode 100644
+> index 000000000000..b893c7293d70
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/mgmt/Makefile
+> @@ -0,0 +1,12 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +#
+> +# Copyright (C) 2020-2022 Xilinx, Inc. All rights reserved.
+> +#
+> +# Authors: Sonal.Santan@xilinx.com
+> +#          Lizhi.Hou@xilinx.com
+> +#
+> +
+> +obj-$(CONFIG_FPGA_XRT_XMGMT) += xrt-mgmt.o
+> +
+> +xrt-mgmt-objs :=		\
+> +	xmgmt-drv.o
+> diff --git a/drivers/fpga/xrt/mgmt/xmgmt-drv.c b/drivers/fpga/xrt/mgmt/xmgmt-drv.c
+> new file mode 100644
+> index 000000000000..60742a478a43
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/mgmt/xmgmt-drv.c
+> @@ -0,0 +1,63 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Xilinx Alveo Management Function Driver
+> + *
+> + * Copyright (C) 2020-2022 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *     Cheng Zhen <maxz@xilinx.com>
+> + *     Lizhi Hou <lizhih@xilinx.com>
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/pci.h>
+> +#include <linux/aer.h>
+> +#include <linux/vmalloc.h>
+> +#include <linux/delay.h>
+> +#include <linux/of_pci.h>
+> +
+> +#define XMGMT_MODULE_NAME	"xrt-mgmt"
+> +
+> +/* PCI Device IDs */
+> +#define PCI_DEVICE_ID_U50	0x5020
+> +static const struct pci_device_id xmgmt_pci_ids[] = {
+> +	{ PCI_DEVICE(PCI_VENDOR_ID_XILINX, PCI_DEVICE_ID_U50), }, /* Alveo U50 */
+> +	{ 0, }
+> +};
+> +
+> +static int xmgmt_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+> +{
+> +	devm_of_pci_create_bus_endpoint(pdev);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct pci_driver xmgmt_driver = {
+> +	.name = XMGMT_MODULE_NAME,
+> +	.id_table = xmgmt_pci_ids,
+> +	.probe = xmgmt_probe,
+> +};
+> +
+> +static int __init xmgmt_init(void)
+> +{
+> +	int res;
+> +
+> +	res = pci_register_driver(&xmgmt_driver);
+> +	if (res)
+> +		return res;
+> +
+> +	return 0;
+> +}
+> +
+> +static __exit void xmgmt_exit(void)
+> +{
+> +	pci_unregister_driver(&xmgmt_driver);
+> +}
+> +
+> +module_init(xmgmt_init);
+> +module_exit(xmgmt_exit);
+> +
+> +MODULE_DEVICE_TABLE(pci, xmgmt_pci_ids);
+> +MODULE_AUTHOR("XRT Team <runtime@xilinx.com>");
+> +MODULE_DESCRIPTION("Xilinx Alveo management function driver");
+> +MODULE_LICENSE("GPL v2");
+> -- 
+> 2.27.0
+> 
 
-Other than that, the patches give me SCSI disks I can work with
-(partition, read, write). There are a few initial errors, though:
-
-[    0.449917] ufshcd-renesas e6860000.ufs: ufshcd_query_attr: opcode 0x03 =
-for idn 1 failed, index 0, err =3D 253
-[    0.452035] ufshcd-renesas e6860000.ufs: ufshcd_query_attr: opcode 0x03 =
-for idn 1 failed, index 0, err =3D 253
-[    0.453859] ufshcd-renesas e6860000.ufs: ufshcd_query_attr: opcode 0x03 =
-for idn 1 failed, index 0, err =3D 253
-[    0.453874] ufshcd-renesas e6860000.ufs: ufshcd_query_attr_retry: query =
-attribute, idn 1, failed with error 253 after 3 retires
-
-(A patch for the typo in the last line has already been sent)
-
-But after that, everything looks fine on first testing. So, for the
-patches:
-
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-Happy hacking!
-
-
---nw88w6/DKCvKTgU6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKx4DYACgkQFA3kzBSg
-KbZ5UxAApdHSQPyJbYMGyD+PpowBvH+U6lPHG+KhuP4ZJaSNqtrWbsJV3XyL9xG+
-J2bEQ+CUKEqX4F48k4GxW5nlC/mNWx2XxvJeiMzklLsmb4LggkkfpjdB1u3N1KbS
-MBlne0ZFN/M0xlu4PYcOxcoKhCSqsGJQB0Hlxt6X0o9rJhn4dudLosjiydqsFVOj
-0K2SSi1XRuPOeevoyFZZUPvgzAzJ7KQ2uH5eaA+l6xcpg0ixooscJxx9pyK9wVYi
-qfZq6GNlMLbknT0LLqc8sr6XXnCTiyoTl+zDMta/ytgdsBonX+h5QW/xR2FWukx3
-ITmtA0dqOkSr9jRllWNYfZ00jdXT23fHiml61mVq7sNLBW/DaWK/PQzgrZC83Z3A
-298bIaj+FqjzEc3iTIFJ3qsKSRgD1DjVhV9Dbae8U+pySQZavgh+DbACGu4HwJfa
-fSxJ55FIwY+PFIrvAC3TDrTQWwQtsnFESpS8NXt6gOaPcSdk3XDgWgs9BaykF0lY
-x76aOEE/EFF9n3SQjSWHNbWe225FfChDB00yJO7YSLy0alxH226MmzwKwYGOhc67
-iXnUgaEJEp6qfgaBhAz5zfLpuGwWWC7zWw6RT2PQFX5D/c2ZbsgOFUWC+mNh1Ewo
-ACJc9A9Kaur1hCmm3fxYBUuwENzYthiT8Q/HSNqdmPjOZNYG4xs=
-=hpD5
------END PGP SIGNATURE-----
-
---nw88w6/DKCvKTgU6--
+-- 
+மணிவண்ணன் சதாசிவம்
