@@ -2,1034 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00298552B7E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 09:10:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DFE5552B87
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 09:13:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346092AbiFUHKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 03:10:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43812 "EHLO
+        id S1345379AbiFUHMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 03:12:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236786AbiFUHKy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 03:10:54 -0400
-Received: from mickerik.phytec.de (mickerik.phytec.de [195.145.39.210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B997121E27
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:10:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1655795449; x=1658387449;
-        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=4VKgSx85cSn9bhpJNmjMHB2u9XooCrSzKDs+Xciif3o=;
-        b=A4gGZO5bIOdKshl5kdtJU2fckMW7BnzbP4l6Be+gIJMsTry9t4LflEeyfhB3NBvF
-        g28LaTwpDkYrm7VIlAmk89JkFKLunU9DEj8jAocsBBUmY5p2teF0qWDzKYZn6KFt
-        Im6xGxYY3taZnrK3TzctRxbUtzdNm/qQR8UQWay3sZM=;
-X-AuditID: c39127d2-b3a2d70000001dbe-99-62b16ef9390d
-Received: from idefix.phytec.de (Unknown_Domain [172.25.0.20])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id DF.57.07614.9FE61B26; Tue, 21 Jun 2022 09:10:49 +0200 (CEST)
-Received: from augenblix2.phytec.de ([172.25.0.51])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2022062109104902-207925 ;
-          Tue, 21 Jun 2022 09:10:49 +0200 
-From:   Teresa Remmet <t.remmet@phytec.de>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>, upstream@phytec.de
-Subject: [PATCH v3 3/3] arm64: dts: freescale: Add phyBOARD-Polis-i.MX8MM support
-Date:   Tue, 21 Jun 2022 09:10:48 +0200
-Message-Id: <20220621071048.1876093-3-t.remmet@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220621071048.1876093-1-t.remmet@phytec.de>
-References: <20220621071048.1876093-1-t.remmet@phytec.de>
+        with ESMTP id S1346653AbiFUHMn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 03:12:43 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 506C6222BB
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:12:35 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id es26so16365019edb.4
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:12:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=rZJJbO9tmvN3skIIZSoGEawfNisxmFvqIY3afbWNk0k=;
+        b=x2XlL1khCI/cWLpErGp+GFQadkpgwCUNIt+y1cFMvLTJ8QTD7icTnugWki3Lf7ie0f
+         CzpfEy2ptqM4Or39eOzCVLWFUbbJ2PC9H0+mGo9O0onCHMRUuPsb3WAeSPuJruh0qEHI
+         hqvnIxLIflrU6ZD/ACM33uG6PKa2OeNCvg6GXPKN3zkTWRDrNdF9rOWDhcki1S8gcNaQ
+         Q1z1S5ftZ1jeXv98c1WhlbFXcXrCnDbSkd7cVLYa9sLp7OyywI19eVDbBck+Xtr+lToJ
+         hPC69Xik8O4j6WZJgBESUKybjciq3r2LktSTdr4j8UhSCxkdLptWhSOGA+Po/D8cl8tM
+         umDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=rZJJbO9tmvN3skIIZSoGEawfNisxmFvqIY3afbWNk0k=;
+        b=r7t0YQRnTladQ0rrK0WmSRiRwOw/wYISIjugZrGiY2EKJktdXWjEq5nk8MYXYjnX0X
+         jfTwKQKdJRDoXNVLyLSLg5Jke9V2m6vafkqlWcKKywYlwp4NcTbdTjcmbxJfAcaWFXrR
+         Y7eNvXIhZ6oyuhfuRinQCo681k1dYgadIBDbpAEIvW3hbhjag3lhK2qwmoYWf/InyAMN
+         lsVNyPNISjlcBgY7u+BMPuArn1BPmhQ/IGEkSTsb1fMR53y53TBbwhXi5wKVoRT0aHIq
+         fyTpDtL5HG1ghDDoRaDVoruT5Fjozi4JSrP3vPvNqDvwh/r5+zNS/zeyPAlO5q0Li7iK
+         DuVQ==
+X-Gm-Message-State: AJIora9wi6ge/e5ef+GTEY5Usv2jelN41QJiulYhUTeZl1LpkDtjWSWS
+        Wy/CWUHjnkWzl1R3vcs43MettVRBxIe3Mg==
+X-Google-Smtp-Source: AGRyM1vrygzsyf1XkfWBidpFgjIUaEYcyGJLiMBB9DaYIq+y5D3cEOQOG47m6jnRBlKuRDUEajM72Q==
+X-Received: by 2002:aa7:c1c7:0:b0:435:5cb2:c202 with SMTP id d7-20020aa7c1c7000000b004355cb2c202mr27028883edp.10.1655795553854;
+        Tue, 21 Jun 2022 00:12:33 -0700 (PDT)
+Received: from [192.168.0.216] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id e16-20020a170906315000b0071cef6c53aesm6096627eje.0.2022.06.21.00.12.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jun 2022 00:12:33 -0700 (PDT)
+Message-ID: <1c2bbc12-0aa5-6d2a-c701-577ce70f7502@linaro.org>
+Date:   Tue, 21 Jun 2022 09:12:32 +0200
 MIME-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 21.06.2022 09:10:49,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 21.06.2022 09:10:49
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: quoted-printable
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrHLMWRmVeSWpSXmKPExsWyRpJBRPdn3sYkg+u3OS3mHznHavHwqr9F
-        34uHzBabHl9jtej6tZLZonXvEXaLv9s3sVi82CLuwOGxc9Zddo9NqzrZPO5c28PmsXlJvcfG
-        dzuYPPr/Gnh83iQXwB7FZZOSmpNZllqkb5fAlbH13nqmgqe3GSuWXX/P2MD4aCtjFyMnh4SA
-        icSiyV1MXYxcHEIC2xglPjTPZodwzjNKPP57igmkik1AQ+LpitNgtoiAi0Tng3UsIEXMAo1M
-        EjuOXWAGSQgLBEocenyaDcRmEVCV2PXpITuIzStgKbF++nxWiHXyEjMvfQeLcwpYSWy5fBbM
-        FgKqebnuIgtEvaDEyZlPwBZICFxhlNg5cxkzRLOQxOnFZ8FsZgFtiWULXzNPYBSYhaRnFpLU
-        AkamVYxCuZnJ2alFmdl6BRmVJanJeimpmxiBYX54ovqlHYx9czwOMTJxMB5ilOBgVhLhteHe
-        kCTEm5JYWZValB9fVJqTWnyIUZqDRUmc934PU6KQQHpiSWp2ampBahFMlomDU6qBke/Rk8cv
-        KopMNzRwWlqvEH+1Ik70/PLOXfl3/Vz+ylqmOfUEfb7pN03X4b1XSgcnR6h+gvp+4//lHzRk
-        ju5dJXmEa4cix/kXltvWW8p8WuHjkPK6e9NDTeWWU9cM/4R4sXDUXqlYtvDKUSNu9jNbBZkb
-        XjrF/S+6LnOftUB16bbNFrJeM704lViKMxINtZiLihMBsSooDGECAAA=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH net-next 01/28] dt-bindings: phy: Add QorIQ SerDes binding
+Content-Language: en-US
+To:     Sean Anderson <sean.anderson@seco.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>, netdev@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Eric Dumazet <edumazet@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>
+References: <20220617203312.3799646-1-sean.anderson@seco.com>
+ <20220617203312.3799646-2-sean.anderson@seco.com>
+ <110c4a4b-8007-1826-ee27-02eaedd22d8f@linaro.org>
+ <535a0389-6c97-523d-382f-e54d69d3907e@seco.com>
+ <d79239ce-3959-15f8-7121-478fc6d432e4@linaro.org>
+ <e6ed314d-290f-ace5-b0ff-01a9a2edca88@seco.com>
+ <16684442-35d4-df51-d9f7-4de36d7cf6fd@linaro.org>
+ <50fa16ce-ac24-8e4c-5d81-0218535cd05c@seco.com>
+ <e922714b-29c7-0f41-9e5c-9a0aef9fb5de@linaro.org>
+ <5d724f49-71c4-96ad-b756-06b5683fa112@seco.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5d724f49-71c4-96ad-b756-06b5683fa112@seco.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial support for phyBOARD-Polis-i.MX8MM.
-Main features are:
-	* Bluetooth and Wifi
-	* CANFD
-	* eMMC
-	* i2c RTC
-	* Ethernet
-	* PCIe
-	* RS232/RS485
-	* SD-Card
-	* SPI-NOR flash
-	* USB
+On 20/06/2022 20:51, Sean Anderson wrote:
+> On 6/20/22 2:21 PM, Krzysztof Kozlowski wrote:
+>>>>> - samsung_usb2_phy_config in drivers/phy/samsung/
+>>>>
+>>>> This one is a good example - where do you see there compatibles with
+>>>> arbitrary numbers attached?
+>>>
+>>> samsung_usb2_phy_of_match in drivers/phy/samsung/phy-samsung-usb2.c
+>>>
+>>> There is a different compatible for each SoC variant. Each compatible selects a struct
+>>> containing
+>>>
+>>> - A list of phys, each with custom power on and off functions
+>>> - A function which converts a rate to an arbitrary value to program into a register
+>>>
+>>> This is further documented in Documentation/driver-api/phy/samsung-usb2.rst
+>>
+>> Exactly, please follow this approach. Compatible is per different
+>> device, e.g. different SoC variant. Of course you could have different
+>> devices on same SoC, but "1" and "2" are not different devices.
+> 
+> (in this case they are)
 
-Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
----
-Changes in v3:
-- move "enable-active-high" after "gpio" property
-- Add missing newlines before child nodes
-- sort i2c devices by address
+In a meaning of descriptive compatible - it's not.
 
-Changes in v2:
-- added missing space in compatible of imx8mm-phyboard-polis-rdk
-- removed underscores in node names
-- fixed indentation of reg=5Fusdhc2=5Fvmmc node
-- put status always as last property of nodes
-- updated node name of sn65dsi83 to bridge
+>>>
+>>> - For some SerDes on the same SoC, these fields are reserved
+>>
+>> That all sounds like quite different devices, which indeed usually is
+>> described with different compatibles. Still "xxx-1" and "xxx-2" are not
+>> valid compatibles. You need to come with some more reasonable name
+>> describing them. Maybe the block has revision or different model/vendor.
+> 
+> There is none AFAIK. Maybe someone from NXP can comment (since there are many
+> undocumented registers).
 
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../freescale/imx8mm-phyboard-polis-rdk.dts   | 450 ++++++++++++++++++
- .../dts/freescale/imx8mm-phycore-som.dtsi     | 443 +++++++++++++++++
- 3 files changed, 894 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk=
-.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
+Maybe it's also possible to invent some reasonable name based on
+protocols supported? If nothing comes then please add a one-liner
+comment explaining logic behind 1/2 suffix.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/f=
-reescale/Makefile
-index 238a83e5b8c6..1e25dec2109b 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -58,6 +58,7 @@ dtb-$(CONFIG=5FARCH=5FMXC) +=3D imx8mm-icore-mx8mm-edimm2=
-.2.dtb
- dtb-$(CONFIG=5FARCH=5FMXC) +=3D imx8mm-kontron-n801x-s.dtb
- dtb-$(CONFIG=5FARCH=5FMXC) +=3D imx8mm-mx8menlo.dtb
- dtb-$(CONFIG=5FARCH=5FMXC) +=3D imx8mm-nitrogen-r2.dtb
-+dtb-$(CONFIG=5FARCH=5FMXC) +=3D imx8mm-phyboard-polis-rdk.dtb
- dtb-$(CONFIG=5FARCH=5FMXC) +=3D imx8mm-tqma8mqml-mba8mx.dtb
- dtb-$(CONFIG=5FARCH=5FMXC) +=3D imx8mm-var-som-symphony.dtb
- dtb-$(CONFIG=5FARCH=5FMXC) +=3D imx8mm-venice-gw71xx-0x.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts b/=
-arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts
-new file mode 100644
-index 000000000000..c21d15f267c1
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts
-@@ -0,0 +1,450 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2022 PHYTEC Messtechnik GmbH
-+ * Author: Teresa Remmet <t.remmet@phytec.de>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/phy/phy-imx8-pcie.h>
-+#include "imx8mm-phycore-som.dtsi"
-+
-+/ {
-+	model =3D "PHYTEC phyBOARD-Polis-i.MX8MM RDK";
-+	compatible =3D "phytec,imx8mm-phyboard-polis-rdk",
-+		     "phytec,imx8mm-phycore-som", "fsl,imx8mm";
-+
-+	chosen {
-+		stdout-path =3D &uart3;
-+	};
-+
-+	bt=5Fosc=5F32k: bt-lp-clock {
-+		compatible =3D "fixed-clock";
-+		clock-frequency =3D <32768>;
-+		clock-output-names =3D "bt=5Fosc=5F32k";
-+		#clock-cells =3D <0>;
-+	};
-+
-+	can=5Fosc=5F40m: can-clock {
-+		compatible =3D "fixed-clock";
-+		clock-frequency =3D <40000000>;
-+		clock-output-names =3D "can=5Fosc=5F40m";
-+		#clock-cells =3D <0>;
-+	};
-+
-+	fan {
-+		compatible =3D "gpio-fan";
-+		gpios =3D <&gpio4 8 GPIO=5FACTIVE=5FHIGH>;
-+		gpio-fan,speed-map =3D <0     0
-+				      13000 1>;
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl=5Ffan>;
-+		#cooling-cells =3D <2>;
-+	};
-+
-+	leds {
-+		compatible =3D "gpio-leds";
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl=5Fleds>;
-+
-+		led-0 {
-+			color =3D <LED=5FCOLOR=5FID=5FRED>;
-+			function =3D LED=5FFUNCTION=5FDISK;
-+			gpios =3D <&gpio1 1 GPIO=5FACTIVE=5FHIGH>;
-+			linux,default-trigger =3D "mmc2";
-+		};
-+
-+		led-1 {
-+			color =3D <LED=5FCOLOR=5FID=5FBLUE>;
-+			function =3D LED=5FFUNCTION=5FDISK;
-+			gpios =3D <&gpio1 15 GPIO=5FACTIVE=5FHIGH>;
-+			linux,default-trigger =3D "mmc1";
-+		};
-+
-+		led-2 {
-+			color =3D <LED=5FCOLOR=5FID=5FGREEN>;
-+			function =3D LED=5FFUNCTION=5FCPU;
-+			gpios =3D <&gpio1 14 GPIO=5FACTIVE=5FHIGH>;
-+			linux,default-trigger =3D "heartbeat";
-+		};
-+	};
-+
-+	usdhc1=5Fpwrseq: pwr-seq {
-+		compatible =3D "mmc-pwrseq-simple";
-+		post-power-on-delay-ms =3D <100>;
-+		power-off-delay-us =3D <60>;
-+		reset-gpios =3D <&gpio2 7 GPIO=5FACTIVE=5FLOW>;
-+	};
-+
-+	reg=5Fcan=5Fen: regulator-can-en {
-+		compatible =3D "regulator-fixed";
-+		gpio =3D <&gpio1 9 GPIO=5FACTIVE=5FLOW>;
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl=5Fcan=5Fen>;
-+		regulator-max-microvolt =3D <3300000>;
-+		regulator-min-microvolt =3D <3300000>;
-+		regulator-name =3D "CAN=5FEN";
-+		startup-delay-us =3D <20>;
-+	};
-+
-+	reg=5Fusb=5Fotg1=5Fvbus: regulator-usb-otg1 {
-+		compatible =3D "regulator-fixed";
-+		gpio =3D <&gpio1 12 GPIO=5FACTIVE=5FHIGH>;
-+		enable-active-high;
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl=5Fusbotg1pwrgrp>;
-+		regulator-name =3D "usb=5Fotg1=5Fvbus";
-+		regulator-max-microvolt =3D <5000000>;
-+		regulator-min-microvolt =3D <5000000>;
-+	};
-+
-+	reg=5Fusdhc2=5Fvmmc: regulator-usdhc2 {
-+		compatible =3D "regulator-fixed";
-+		gpio =3D <&gpio2 19 GPIO=5FACTIVE=5FHIGH>;
-+		enable-active-high;
-+		off-on-delay-us =3D <20000>;
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl=5Freg=5Fusdhc2=5Fvmmc>;
-+		regulator-max-microvolt =3D <3300000>;
-+		regulator-min-microvolt =3D <3300000>;
-+		regulator-name =3D "VSD=5F3V3";
-+	};
-+
-+	reg=5Fvcc=5F3v3: regulator-vcc-3v3 {
-+		compatible =3D "regulator-fixed";
-+		regulator-max-microvolt =3D <3300000>;
-+		regulator-min-microvolt =3D <3300000>;
-+		regulator-name =3D "VCC=5F3V3";
-+	};
-+};
-+
-+/* SPI - CAN MCP251XFD */
-+&ecspi1 {
-+	cs-gpios =3D <&gpio5 9 GPIO=5FACTIVE=5FLOW>;
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Fecspi1>;
-+	status =3D "okay";
-+
-+	can0: can@0 {
-+		compatible =3D "microchip,mcp251xfd";
-+		clocks =3D <&can=5Fosc=5F40m>;
-+		interrupt-parent =3D <&gpio1>;
-+		interrupts =3D <8 IRQ=5FTYPE=5FLEVEL=5FLOW>;
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl=5Fcan=5Fint>;
-+		reg =3D <0>;
-+		spi-max-frequency =3D <20000000>;
-+		xceiver-supply =3D <&reg=5Fcan=5Fen>;
-+	};
-+};
-+
-+&gpio1 {
-+	gpio-line-names =3D "nINT=5FETHPHY", "LED=5FRED", "WDOG=5FINT", "X=5FRTC=
-=5FINT",
-+		"", "", "", "RESET=5FETHPHY",
-+		"CAN=5FnINT", "CAN=5FEN", "nENABLE=5FFLATLINK", "",
-+		"USB=5FOTG=5FVBUS=5FEN", "", "LED=5FGREEN", "LED=5FBLUE";
-+};
-+
-+&gpio2 {
-+	gpio-line-names =3D "", "", "", "",
-+		"", "", "BT=5FREG=5FON", "WL=5FREG=5FON",
-+		"BT=5FDEV=5FWAKE", "BT=5FHOST=5FWAKE", "", "",
-+		"X=5FSD2=5FCD=5FB", "", "", "",
-+		"", "", "", "SD2=5FRESET=5FB";
-+};
-+
-+&gpio4 {
-+	gpio-line-names =3D "", "", "", "",
-+		"", "", "", "",
-+		"FAN", "miniPCIe=5FnPERST", "", "",
-+		"COEX1", "COEX2";
-+};
-+
-+&gpio5 {
-+	gpio-line-names =3D "", "", "", "",
-+		"", "", "", "",
-+		"", "ECSPI1=5FSS0";
-+};
-+
-+/* PCIe */
-+&pcie0 {
-+	assigned-clocks =3D <&clk IMX8MM=5FCLK=5FPCIE1=5FAUX>,
-+			  <&clk IMX8MM=5FCLK=5FPCIE1=5FCTRL>;
-+	assigned-clock-parents =3D <&clk IMX8MM=5FSYS=5FPLL2=5F50M>,
-+				 <&clk IMX8MM=5FSYS=5FPLL2=5F250M>;
-+	assigned-clock-rates =3D <10000000>, <250000000>;
-+	clocks =3D <&clk IMX8MM=5FCLK=5FPCIE1=5FROOT>, <&clk IMX8MM=5FCLK=5FPCIE1=
-=5FAUX>,
-+		 <&clk IMX8MM=5FCLK=5FPCIE1=5FPHY>;
-+	clock-names =3D "pcie", "pcie=5Faux", "pcie=5Fbus";
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Fpcie>;
-+	reset-gpio =3D <&gpio4 9 GPIO=5FACTIVE=5FLOW>;
-+	status =3D "okay";
-+};
-+
-+&pcie=5Fphy {
-+	clocks =3D <&clk IMX8MM=5FCLK=5FPCIE1=5FPHY>;
-+	fsl,clkreq-unsupported;
-+	fsl,refclk-pad-mode =3D <IMX8=5FPCIE=5FREFCLK=5FPAD=5FOUTPUT>;
-+	fsl,tx-deemph-gen1 =3D <0x2d>;
-+	fsl,tx-deemph-gen2 =3D <0xf>;
-+	status =3D "okay";
-+};
-+
-+&rv3028 {
-+	trickle-resistor-ohms =3D <3000>;
-+};
-+
-+&snvs=5Fpwrkey {
-+	status =3D "okay";
-+};
-+
-+/* UART - RS232/RS485 */
-+&uart1 {
-+	assigned-clocks =3D <&clk IMX8MM=5FCLK=5FUART1>;
-+	assigned-clock-parents =3D <&clk IMX8MM=5FSYS=5FPLL1=5F80M>;
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Fuart1>;
-+	uart-has-rtscts;
-+	status =3D "okay";
-+};
-+
-+/* UART - Sterling-LWB Bluetooth */
-+&uart2 {
-+	assigned-clocks =3D <&clk IMX8MM=5FCLK=5FUART2>;
-+	assigned-clock-parents =3D <&clk IMX8MM=5FSYS=5FPLL1=5F80M>;
-+	fsl,dte-mode;
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Fuart2=5Fbt>;
-+	uart-has-rtscts;
-+	status =3D "okay";
-+
-+	bluetooth {
-+		compatible =3D "brcm,bcm43438-bt";
-+		clocks =3D <&bt=5Fosc=5F32k>;
-+		clock-names =3D "lpo";
-+		device-wakeup-gpios =3D <&gpio2 8 GPIO=5FACTIVE=5FHIGH>;
-+		interrupt-names =3D "host-wakeup";
-+		interrupt-parent =3D <&gpio2>;
-+		interrupts =3D <9 IRQ=5FTYPE=5FEDGE=5FBOTH>;
-+		max-speed =3D <2000000>;
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl=5Fbt>;
-+		shutdown-gpios =3D <&gpio2 6 GPIO=5FACTIVE=5FHIGH>;
-+		vddio-supply =3D <&reg=5Fvcc=5F3v3>;
-+	};
-+};
-+
-+/* UART - console */
-+&uart3 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Fuart3>;
-+	status =3D "okay";
-+};
-+
-+/* USB */
-+&usbotg1 {
-+	adp-disable;
-+	dr=5Fmode =3D "otg";
-+	over-current-active-low;
-+	samsung,picophy-pre-emp-curr-control =3D <3>;
-+	samsung,picophy-dc-vol-level-adjust =3D <7>;
-+	srp-disable;
-+	vbus-supply =3D <&reg=5Fusb=5Fotg1=5Fvbus>;
-+	status =3D "okay";
-+};
-+
-+&usbotg2 {
-+	disable-over-current;
-+	dr=5Fmode =3D "host";
-+	samsung,picophy-pre-emp-curr-control =3D <3>;
-+	samsung,picophy-dc-vol-level-adjust =3D <7>;
-+	status =3D "okay";
-+};
-+
-+/* SDIO - Sterling-LWB Wifi */
-+&usdhc1 {
-+	assigned-clocks =3D <&clk IMX8MM=5FCLK=5FUSDHC1>;
-+	assigned-clock-rates =3D <200000000>;
-+	bus-width =3D <4>;
-+	mmc-pwrseq =3D <&usdhc1=5Fpwrseq>;
-+	non-removable;
-+	no-1-8-v;
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Fusdhc1>, <&pinctrl=5Fwlan>;
-+	#address-cells =3D <1>;
-+	#size-cells =3D <0>;
-+	status =3D "okay";
-+
-+	brcmf: wifi@1 {
-+		compatible =3D "brcm,bcm4329-fmac";
-+		reg =3D <1>;
-+	};
-+};
-+
-+/* SD-Card */
-+&usdhc2 {
-+	assigned-clocks =3D <&clk IMX8MM=5FCLK=5FUSDHC2>;
-+	assigned-clock-rates =3D <200000000>;
-+	bus-width =3D <4>;
-+	cd-gpios =3D <&gpio2 12 GPIO=5FACTIVE=5FLOW>;
-+	disable-wp;
-+	pinctrl-names =3D "default", "state=5F100mhz", "state=5F200mhz";
-+	pinctrl-0 =3D <&pinctrl=5Fusdhc2>, <&pinctrl=5Fusdhc2=5Fgpio>;
-+	pinctrl-1 =3D <&pinctrl=5Fusdhc2=5F100mhz>, <&pinctrl=5Fusdhc2=5Fgpio>;
-+	pinctrl-2 =3D <&pinctrl=5Fusdhc2=5F200mhz>, <&pinctrl=5Fusdhc2=5Fgpio>;
-+	vmmc-supply =3D <&reg=5Fusdhc2=5Fvmmc>;
-+	vqmmc-supply =3D <&reg=5Fnvcc=5Fsd2>;
-+	status =3D "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl=5Fbt: btgrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FSD1=5FDATA4=5FGPIO2=5FIO6	0x00
-+			MX8MM=5FIOMUXC=5FSD1=5FDATA6=5FGPIO2=5FIO8	0x00
-+			MX8MM=5FIOMUXC=5FSD1=5FDATA7=5FGPIO2=5FIO9	0x00
-+		>;
-+	};
-+
-+	pinctrl=5Fcan=5Fen: can-engrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO09=5FGPIO1=5FIO9	0x00
-+		>;
-+	};
-+
-+	pinctrl=5Fcan=5Fint: can-intgrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO08=5FGPIO1=5FIO8	0x00
-+		>;
-+	};
-+
-+	pinctrl=5Fecspi1: ecspi1grp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FECSPI1=5FMISO=5FECSPI1=5FMISO	0x80
-+			MX8MM=5FIOMUXC=5FECSPI1=5FMOSI=5FECSPI1=5FMOSI	0x80
-+			MX8MM=5FIOMUXC=5FECSPI1=5FSCLK=5FECSPI1=5FSCLK	0x80
-+			MX8MM=5FIOMUXC=5FECSPI1=5FSS0=5FGPIO5=5FIO9	0x00
-+		>;
-+	};
-+
-+	pinctrl=5Ffan: fan0grp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FSAI1=5FRXD6=5FGPIO4=5FIO8	0x16
-+		>;
-+	};
-+
-+	pinctrl=5Fleds: leds1grp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO01=5FGPIO1=5FIO1	0x16
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO14=5FGPIO1=5FIO14	0x16
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO15=5FGPIO1=5FIO15	0x16
-+		>;
-+	};
-+
-+	pinctrl=5Fpcie: pciegrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FSAI1=5FRXD7=5FGPIO4=5FIO9	0x00
-+			MX8MM=5FIOMUXC=5FSAI1=5FTXD0=5FGPIO4=5FIO12	0x12
-+			MX8MM=5FIOMUXC=5FSAI1=5FTXD7=5FGPIO4=5FIO19	0x12
-+		>;
-+	};
-+
-+	pinctrl=5Freg=5Fusdhc2=5Fvmmc: regusdhc2vmmcgrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FSD2=5FRESET=5FB=5FGPIO2=5FIO19	0x41
-+		>;
-+	};
-+
-+	pinctrl=5Fuart1: uart1grp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FSAI2=5FRXC=5FUART1=5FDCE=5FRX	0x00
-+			MX8MM=5FIOMUXC=5FSAI2=5FRXD0=5FUART1=5FDCE=5FRTS=5FB	0x00
-+			MX8MM=5FIOMUXC=5FSAI2=5FRXFS=5FUART1=5FDCE=5FTX	0x00
-+			MX8MM=5FIOMUXC=5FSAI2=5FTXFS=5FUART1=5FDCE=5FCTS=5FB	0x00
-+		>;
-+	};
-+
-+	pinctrl=5Fuart2=5Fbt: uart2btgrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FSAI3=5FRXC=5FUART2=5FDTE=5FRTS=5FB	0x00
-+			MX8MM=5FIOMUXC=5FSAI3=5FRXD=5FUART2=5FDTE=5FCTS=5FB	0x00
-+			MX8MM=5FIOMUXC=5FSAI3=5FTXC=5FUART2=5FDTE=5FRX	0x00
-+			MX8MM=5FIOMUXC=5FSAI3=5FTXFS=5FUART2=5FDTE=5FTX	0x00
-+		>;
-+	};
-+
-+	pinctrl=5Fuart3: uart3grp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FUART3=5FRXD=5FUART3=5FDCE=5FRX	0x49
-+			MX8MM=5FIOMUXC=5FUART3=5FTXD=5FUART3=5FDCE=5FTX	0x49
-+		>;
-+	};
-+
-+	pinctrl=5Fusbotg1pwrgrp: usbotg1pwrgrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO12=5FGPIO1=5FIO12	0x00
-+		>;
-+	};
-+
-+	pinctrl=5Fusdhc1: usdhc1grp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FSD1=5FCLK=5FUSDHC1=5FCLK		0x182
-+			MX8MM=5FIOMUXC=5FSD1=5FCMD=5FUSDHC1=5FCMD		0xc6
-+			MX8MM=5FIOMUXC=5FSD1=5FDATA0=5FUSDHC1=5FDATA0	0xc6
-+			MX8MM=5FIOMUXC=5FSD1=5FDATA1=5FUSDHC1=5FDATA1	0xc6
-+			MX8MM=5FIOMUXC=5FSD1=5FDATA2=5FUSDHC1=5FDATA2	0xc6
-+			MX8MM=5FIOMUXC=5FSD1=5FDATA3=5FUSDHC1=5FDATA3	0xc6
-+		>;
-+	};
-+
-+	pinctrl=5Fusdhc2=5Fgpio: usdhc2gpiogrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FSD2=5FCD=5FB=5FGPIO2=5FIO12	0x41
-+		>;
-+	};
-+
-+	pinctrl=5Fusdhc2: usdhc2grp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO04=5FUSDHC2=5FVSELECT	0x1d0
-+			MX8MM=5FIOMUXC=5FSD2=5FCLK=5FUSDHC2=5FCLK		0x192
-+			MX8MM=5FIOMUXC=5FSD2=5FCMD=5FUSDHC2=5FCMD		0x1d2
-+			MX8MM=5FIOMUXC=5FSD2=5FDATA0=5FUSDHC2=5FDATA0	0x1d2
-+			MX8MM=5FIOMUXC=5FSD2=5FDATA1=5FUSDHC2=5FDATA1	0x1d2
-+			MX8MM=5FIOMUXC=5FSD2=5FDATA2=5FUSDHC2=5FDATA2	0x1d2
-+			MX8MM=5FIOMUXC=5FSD2=5FDATA3=5FUSDHC2=5FDATA3	0x1d2
-+		>;
-+	};
-+
-+	pinctrl=5Fusdhc2=5F100mhz: usdhc2-100mhzgrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO04=5FUSDHC2=5FVSELECT	0x1d0
-+			MX8MM=5FIOMUXC=5FSD2=5FCLK=5FUSDHC2=5FCLK		0x194
-+			MX8MM=5FIOMUXC=5FSD2=5FCMD=5FUSDHC2=5FCMD		0x1d4
-+			MX8MM=5FIOMUXC=5FSD2=5FDATA0=5FUSDHC2=5FDATA0	0x1d4
-+			MX8MM=5FIOMUXC=5FSD2=5FDATA1=5FUSDHC2=5FDATA1	0x1d4
-+			MX8MM=5FIOMUXC=5FSD2=5FDATA2=5FUSDHC2=5FDATA2	0x1d4
-+			MX8MM=5FIOMUXC=5FSD2=5FDATA3=5FUSDHC2=5FDATA3	0x1d4
-+		>;
-+	};
-+
-+	pinctrl=5Fusdhc2=5F200mhz: usdhc2-200mhzgrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO04=5FUSDHC2=5FVSELECT	0x1d0
-+			MX8MM=5FIOMUXC=5FSD2=5FCLK=5FUSDHC2=5FCLK		0x196
-+			MX8MM=5FIOMUXC=5FSD2=5FCMD=5FUSDHC2=5FCMD		0x1d6
-+			MX8MM=5FIOMUXC=5FSD2=5FDATA0=5FUSDHC2=5FDATA0	0x1d6
-+			MX8MM=5FIOMUXC=5FSD2=5FDATA1=5FUSDHC2=5FDATA1	0x1d6
-+			MX8MM=5FIOMUXC=5FSD2=5FDATA2=5FUSDHC2=5FDATA2	0x1d6
-+			MX8MM=5FIOMUXC=5FSD2=5FDATA3=5FUSDHC2=5FDATA3	0x1d6
-+		>;
-+	};
-+
-+	pinctrl=5Fwlan: wlangrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FSD1=5FDATA5=5FGPIO2=5FIO7	0x00
-+		>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi b/arch/a=
-rm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
-new file mode 100644
-index 000000000000..94e7b546bdc8
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
-@@ -0,0 +1,443 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2022 PHYTEC Messtechnik GmbH
-+ * Author: Teresa Remmet <t.remmet@phytec.de>
-+ */
-+
-+#include "imx8mm.dtsi"
-+#include <dt-bindings/net/ti-dp83867.h>
-+
-+/ {
-+	model =3D "PHYTEC phyCORE-i.MX8MM";
-+	compatible =3D "phytec,imx8mm-phycore-som", "fsl,imx8mm";
-+
-+	aliases {
-+		rtc0 =3D &rv3028;
-+		rtc1 =3D &snvs=5Frtc;
-+	};
-+
-+	memory@40000000 {
-+		device=5Ftype =3D "memory";
-+		reg =3D <0x0 0x40000000 0 0x80000000>;
-+	};
-+
-+	reg=5Fvdd=5F3v3=5Fs: regulator-vdd-3v3-s {
-+		compatible =3D "regulator-fixed";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-max-microvolt =3D <3300000>;
-+		regulator-min-microvolt =3D <3300000>;
-+		regulator-name =3D "VDD=5F3V3=5FS";
-+	};
-+};
-+
-+&A53=5F0 {
-+	cpu-supply =3D <&reg=5Fvdd=5Farm>;
-+};
-+
-+&A53=5F1 {
-+	cpu-supply =3D <&reg=5Fvdd=5Farm>;
-+};
-+
-+&A53=5F2 {
-+	cpu-supply =3D <&reg=5Fvdd=5Farm>;
-+};
-+
-+&A53=5F3 {
-+	cpu-supply =3D <&reg=5Fvdd=5Farm>;
-+};
-+
-+&ddrc {
-+	operating-points-v2 =3D <&ddrc=5Fopp=5Ftable>;
-+
-+	ddrc=5Fopp=5Ftable: opp-table {
-+		compatible =3D "operating-points-v2";
-+
-+		opp-25M {
-+			opp-hz =3D /bits/ 64 <25000000>;
-+		};
-+
-+		opp-100M {
-+			opp-hz =3D /bits/ 64 <100000000>;
-+		};
-+
-+		opp-750M {
-+			opp-hz =3D /bits/ 64 <750000000>;
-+		};
-+	};
-+};
-+
-+/* Ethernet */
-+&fec1 {
-+	fsl,magic-packet;
-+	phy-mode =3D "rgmii-id";
-+	phy-handle =3D <&ethphy0>;
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Ffec1>;
-+	status =3D "okay";
-+
-+	mdio {
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+
-+		ethphy0: ethernet-phy@0 {
-+			compatible =3D "ethernet-phy-ieee802.3-c22";
-+			enet-phy-lane-no-swap;
-+			interrupts =3D <0 IRQ=5FTYPE=5FEDGE=5FFALLING>;
-+			interrupt-parent =3D <&gpio1>;
-+			ti,clk-output-sel =3D <DP83867=5FCLK=5FO=5FSEL=5FOFF>;
-+			ti,fifo-depth =3D <DP83867=5FPHYCR=5FFIFO=5FDEPTH=5F4=5FB=5FNIB>;
-+			ti,rx-internal-delay =3D <DP83867=5FRGMIIDCTL=5F2=5F00=5FNS>;
-+			ti,tx-internal-delay =3D <DP83867=5FRGMIIDCTL=5F2=5F00=5FNS>;
-+			reg =3D <0>;
-+			reset-gpios =3D <&gpio1 7 GPIO=5FACTIVE=5FHIGH>;
-+			reset-assert-us =3D <1000>;
-+			reset-deassert-us =3D <1000>;
-+		};
-+	};
-+};
-+
-+/* SPI Flash */
-+&flexspi {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Fflexspi0>;
-+	status =3D "okay";
-+
-+	som=5Fflash: flash@0 {
-+		compatible =3D "jedec,spi-nor";
-+		reg =3D <0>;
-+		spi-max-frequency =3D <80000000>;
-+		spi-rx-bus-width =3D <4>;
-+		spi-tx-bus-width =3D <1>;
-+	};
-+};
-+
-+&gpio1 {
-+	gpio-line-names =3D "nINT=5FETHPHY", "", "WDOG=5FINT", "X=5FRTC=5FINT",
-+		"", "", "", "RESET=5FETHPHY",
-+		"", "", "nENABLE=5FFLATLINK";
-+};
-+
-+/* I2C1 */
-+&i2c1 {
-+	clock-frequency =3D <400000>;
-+	pinctrl-names =3D "default","gpio";
-+	pinctrl-0 =3D <&pinctrl=5Fi2c1>;
-+	pinctrl-1 =3D <&pinctrl=5Fi2c1=5Fgpio>;
-+	scl-gpios =3D <&gpio5 14 (GPIO=5FACTIVE=5FHIGH | GPIO=5FOPEN=5FDRAIN)>;
-+	sda-gpios =3D <&gpio5 15 (GPIO=5FACTIVE=5FHIGH | GPIO=5FOPEN=5FDRAIN)>;
-+	status =3D "okay";
-+
-+	pmic@8 {
-+		compatible =3D "nxp,pf8121a";
-+		reg =3D <0x08>;
-+
-+		regulators {
-+			reg=5Fnvcc=5Fsd1: ldo1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt =3D <3300000>;
-+				regulator-min-microvolt =3D <3300000>;
-+				regulator-name =3D "NVCC=5FSD1 (LDO1)";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			reg=5Fnvcc=5Fsd2: ldo2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt =3D <3300000>;
-+				regulator-min-microvolt =3D <1800000>;
-+				regulator-name =3D "NVCC=5FSD2 (LDO2)";
-+				vselect-en;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			reg=5Fvcc=5Fenet: ldo3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt =3D <2500000>;
-+				regulator-min-microvolt =3D <1500000>;
-+				regulator-name =3D "VCC=5FENET=5F2V5 (LDO3)";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			reg=5Fvdda=5F1v8: ldo4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt =3D <1800000>;
-+				regulator-min-microvolt =3D <1500000>;
-+				regulator-name =3D "VDDA=5F1V8 (LDO4)";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-min-microvolt =3D <1500000>;
-+					regulator-suspend-max-microvolt =3D <1500000>;
-+				};
-+			};
-+
-+			reg=5Fsoc=5Fvdda=5Fphy: buck1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt =3D <900000>;
-+				regulator-min-microvolt =3D <400000>;
-+				regulator-name =3D "VDD=5FSOC=5FVDDA=5FPHY=5F0P8 (BUCK1)";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-min-microvolt =3D <400000>;
-+					regulator-suspend-max-microvolt =3D <400000>;
-+				};
-+			};
-+
-+			reg=5Fvdd=5Fgpu=5Fdram: buck2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt =3D <1000000>;
-+				regulator-min-microvolt =3D <1000000>;
-+				regulator-name =3D "VDD=5FGPU=5FDRAM (BUCK2)";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-max-microvolt =3D <1000000>;
-+					regulator-suspend-min-microvolt =3D <1000000>;
-+				};
-+			};
-+
-+			reg=5Fvdd=5Fgpu: buck3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt =3D <1000000>;
-+				regulator-min-microvolt =3D <400000>;
-+				regulator-name =3D "VDD=5FVPU (BUCK3)";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			reg=5Fvdd=5Fmipi: buck4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt =3D <1050000>;
-+				regulator-min-microvolt =3D <900000>;
-+				regulator-name =3D "VDD=5FMIPI=5F0P9 (BUCK4)";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			reg=5Fvdd=5Farm: buck5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt =3D <1050000>;
-+				regulator-min-microvolt =3D <400000>;
-+				regulator-name =3D "VDD=5FARM (BUCK5)";
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			reg=5Fvdd=5F1v8: buck6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt =3D <1800000>;
-+				regulator-min-microvolt =3D <1800000>;
-+				regulator-name =3D "VDD=5F1V8 (BUCK6)";
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-max-microvolt =3D <1800000>;
-+					regulator-suspend-min-microvolt =3D <1800000>;
-+				};
-+			};
-+
-+			reg=5Fnvcc=5Fdram: buck7 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt =3D <1100000>;
-+				regulator-min-microvolt =3D <1100000>;
-+				regulator-name =3D "NVCC=5FDRAM=5F1P1V (BUCK7)";
-+			};
-+
-+			reg=5Fvsnvs: vsnvs {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt =3D <1800000>;
-+				regulator-min-microvolt =3D <1800000>;
-+				regulator-name =3D "NVCC=5FSNVS=5F1P8 (VSNVS)";
-+			};
-+		};
-+	};
-+
-+	sn65dsi83: bridge@2d {
-+		compatible =3D "ti,sn65dsi83";
-+		enable-gpios =3D <&gpio1 10 GPIO=5FACTIVE=5FLOW>;
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl=5Fsn65dsi83>;
-+		reg =3D <0x2d>;
-+		status =3D "disabled";
-+	};
-+
-+	eeprom@51 {
-+		compatible =3D "atmel,24c32";
-+		pagesize =3D <32>;
-+		reg =3D <0x51>;
-+		vcc-supply =3D <&reg=5Fvdd=5F3v3=5Fs>;
-+	};
-+
-+	rv3028: rtc@52 {
-+		compatible =3D "microcrystal,rv3028";
-+		interrupts =3D <3 IRQ=5FTYPE=5FLEVEL=5FLOW>;
-+		interrupt-parent =3D <&gpio1>;
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl=5Frtc>;
-+		reg =3D <0x52>;
-+	};
-+};
-+
-+/* EMMC */
-+&usdhc3 {
-+	assigned-clocks =3D <&clk IMX8MM=5FCLK=5FUSDHC3=5FROOT>;
-+	assigned-clock-rates =3D <400000000>;
-+	bus-width =3D <8>;
-+	keep-power-in-suspend;
-+	pinctrl-names =3D "default", "state=5F100mhz", "state=5F200mhz";
-+	pinctrl-0 =3D <&pinctrl=5Fusdhc3>;
-+	pinctrl-1 =3D <&pinctrl=5Fusdhc3=5F100mhz>;
-+	pinctrl-2 =3D <&pinctrl=5Fusdhc3=5F200mhz>;
-+	non-removable;
-+	status =3D "okay";
-+};
-+
-+/* Watchdog */
-+&wdog1 {
-+	fsl,ext-reset-output;
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Fwdog>;
-+	status =3D "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl=5Ffec1: fec1grp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FENET=5FMDC=5FENET1=5FMDC			0x3
-+			MX8MM=5FIOMUXC=5FENET=5FMDIO=5FENET1=5FMDIO		0x3
-+			MX8MM=5FIOMUXC=5FENET=5FRD0=5FENET1=5FRGMII=5FRD0		0x91
-+			MX8MM=5FIOMUXC=5FENET=5FRD1=5FENET1=5FRGMII=5FRD1		0x91
-+			MX8MM=5FIOMUXC=5FENET=5FRD2=5FENET1=5FRGMII=5FRD2		0x91
-+			MX8MM=5FIOMUXC=5FENET=5FRD3=5FENET1=5FRGMII=5FRD3		0x91
-+			MX8MM=5FIOMUXC=5FENET=5FRXC=5FENET1=5FRGMII=5FRXC		0x91
-+			MX8MM=5FIOMUXC=5FENET=5FRX=5FCTL=5FENET1=5FRGMII=5FRX=5FCTL	0x91
-+			MX8MM=5FIOMUXC=5FENET=5FTD0=5FENET1=5FRGMII=5FTD0		0x1f
-+			MX8MM=5FIOMUXC=5FENET=5FTD1=5FENET1=5FRGMII=5FTD1		0x1f
-+			MX8MM=5FIOMUXC=5FENET=5FTD2=5FENET1=5FRGMII=5FTD2		0x1f
-+			MX8MM=5FIOMUXC=5FENET=5FTD3=5FENET1=5FRGMII=5FTD3		0x1f
-+			MX8MM=5FIOMUXC=5FENET=5FTXC=5FENET1=5FRGMII=5FTXC		0x1f
-+			MX8MM=5FIOMUXC=5FENET=5FTX=5FCTL=5FENET1=5FRGMII=5FTX=5FCTL	0x1f
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO00=5FGPIO1=5FIO0		0x19
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO07=5FGPIO1=5FIO7		0x19
-+		>;
-+	};
-+
-+	pinctrl=5Fflexspi0: flexspi0grp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FNAND=5FALE=5FQSPI=5FA=5FSCLK		0x1c2
-+			MX8MM=5FIOMUXC=5FNAND=5FCE0=5FB=5FQSPI=5FA=5FSS0=5FB		0x82
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA00=5FQSPI=5FA=5FDATA0		0x82
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA01=5FQSPI=5FA=5FDATA1		0x82
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA02=5FQSPI=5FA=5FDATA2		0x82
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA03=5FQSPI=5FA=5FDATA3		0x82
-+		>;
-+	};
-+
-+	pinctrl=5Fi2c1: i2c1grp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FI2C1=5FSDA=5FI2C1=5FSDA			0x400001c0
-+			MX8MM=5FIOMUXC=5FI2C1=5FSCL=5FI2C1=5FSCL			0x400001c0
-+		>;
-+	};
-+
-+	pinctrl=5Fi2c1=5Fgpio: i2c1gpiogrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FI2C1=5FSDA=5FGPIO5=5FIO15		0x1e0
-+			MX8MM=5FIOMUXC=5FI2C1=5FSCL=5FGPIO5=5FIO14		0x1e0
-+		>;
-+	};
-+
-+	pinctrl=5Frtc: rtcgrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO03=5FGPIO1=5FIO3		0x1c0
-+		>;
-+	};
-+
-+	pinctrl=5Fsn65dsi83: sn65dsi83grp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO10=5FGPIO1=5FIO10		0x0
-+		>;
-+	};
-+
-+	pinctrl=5Fusdhc3: usdhc3grp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FNAND=5FCLE=5FUSDHC3=5FDATA7		0x1d0
-+			MX8MM=5FIOMUXC=5FNAND=5FCE1=5FB=5FUSDHC3=5FSTROBE		0x190
-+			MX8MM=5FIOMUXC=5FNAND=5FCE2=5FB=5FUSDHC3=5FDATA5		0x1d0
-+			MX8MM=5FIOMUXC=5FNAND=5FCE3=5FB=5FUSDHC3=5FDATA6		0x1d0
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA04=5FUSDHC3=5FDATA0		0x1d0
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA05=5FUSDHC3=5FDATA1		0x1d0
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA06=5FUSDHC3=5FDATA2		0x1d0
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA07=5FUSDHC3=5FDATA3		0x1d0
-+			MX8MM=5FIOMUXC=5FNAND=5FRE=5FB=5FUSDHC3=5FDATA4		0x1d0
-+			MX8MM=5FIOMUXC=5FNAND=5FWE=5FB=5FUSDHC3=5FCLK		0x190
-+			MX8MM=5FIOMUXC=5FNAND=5FWP=5FB=5FUSDHC3=5FCMD		0x1d0
-+		>;
-+	};
-+
-+	pinctrl=5Fusdhc3=5F100mhz: usdhc3-100mhzgrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FNAND=5FCLE=5FUSDHC3=5FDATA7		0x1d4
-+			MX8MM=5FIOMUXC=5FNAND=5FCE1=5FB=5FUSDHC3=5FSTROBE		0x194
-+			MX8MM=5FIOMUXC=5FNAND=5FCE2=5FB=5FUSDHC3=5FDATA5		0x1d4
-+			MX8MM=5FIOMUXC=5FNAND=5FCE3=5FB=5FUSDHC3=5FDATA6		0x1d4
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA04=5FUSDHC3=5FDATA0		0x1d4
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA05=5FUSDHC3=5FDATA1		0x1d4
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA06=5FUSDHC3=5FDATA2		0x1d4
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA07=5FUSDHC3=5FDATA3		0x1d4
-+			MX8MM=5FIOMUXC=5FNAND=5FRE=5FB=5FUSDHC3=5FDATA4		0x1d4
-+			MX8MM=5FIOMUXC=5FNAND=5FWE=5FB=5FUSDHC3=5FCLK		0x194
-+			MX8MM=5FIOMUXC=5FNAND=5FWP=5FB=5FUSDHC3=5FCMD		0x1d4
-+		>;
-+	};
-+
-+	pinctrl=5Fusdhc3=5F200mhz: usdhc3-200mhzgrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FNAND=5FCLE=5FUSDHC3=5FDATA7		0x1d6
-+			MX8MM=5FIOMUXC=5FNAND=5FCE1=5FB=5FUSDHC3=5FSTROBE		0x196
-+			MX8MM=5FIOMUXC=5FNAND=5FCE2=5FB=5FUSDHC3=5FDATA5		0x1d6
-+			MX8MM=5FIOMUXC=5FNAND=5FCE3=5FB=5FUSDHC3=5FDATA6		0x1d6
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA04=5FUSDHC3=5FDATA0		0x1d6
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA05=5FUSDHC3=5FDATA1		0x1d6
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA06=5FUSDHC3=5FDATA2		0x1d6
-+			MX8MM=5FIOMUXC=5FNAND=5FDATA07=5FUSDHC3=5FDATA3		0x1d6
-+			MX8MM=5FIOMUXC=5FNAND=5FRE=5FB=5FUSDHC3=5FDATA4		0x1d6
-+			MX8MM=5FIOMUXC=5FNAND=5FWE=5FB=5FUSDHC3=5FCLK		0x196
-+			MX8MM=5FIOMUXC=5FNAND=5FWP=5FB=5FUSDHC3=5FCMD		0x1d6
-+		>;
-+	};
-+
-+	pinctrl=5Fwdog: wdoggrp {
-+		fsl,pins =3D <
-+			MX8MM=5FIOMUXC=5FGPIO1=5FIO02=5FWDOG1=5FWDOG=5FB		0x26
-+		>;
-+	};
-+};
---=20
-2.25.1
+>>> The compatibles suggested were "fsl,ls1046-serdes-1" and -2. As noted above, these are separate
+>>> devices which, while having many similarities, have different register layouts and protocol
+>>> support. They are *not* 100% compatible with each other. Would you require that clock drivers
+>>> for different SoCs use the same compatibles just because they had the same registers, even though
+>>> the clocks themselves had different functions and hierarchy?
+>>
+>> You miss the point. Clock controllers on same SoC have different names
+>> used in compatibles. We do not describe them as "vendor,aa-clk-1" and
+>> "vendor,aa-clk-2".
+>>
+>> Come with proper naming and entire discussion might be not valid
+>> (although with not perfect naming Rob might come with questions). I
+>> cannot propose the name because I don't know these hardware blocks and I
+>> do not have access to datasheet.
+>>
+>> Other way, if any reasonable naming is not possible, could be also to
+>> describe the meaning of "-1" suffix, e.g. that it does not mean some
+>> index but a variant from specification.
+> 
+> The documentation refers to these devices as "SerDes1", "SerDes2", etc.
+> 
+> Wold you prefer something like
+> 
+> serdes0: phy@1ea0000 {
+> 	compatible = "fsl,ls1046a-serdes";
+> 	variant = <0>;
+> };
 
+No, it's the same problem, just embeds compatible in different property.
+
+Best regards,
+Krzysztof
