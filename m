@@ -2,256 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D03355534BC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 16:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 584915534C3
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 16:44:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351436AbiFUOl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 10:41:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50034 "EHLO
+        id S1351846AbiFUOoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 10:44:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351700AbiFUOl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 10:41:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20EE25586
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 07:41:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4AD8A6167E
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 14:41:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F06C9C341C4;
-        Tue, 21 Jun 2022 14:41:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655822514;
-        bh=7O/GgqyXUzzQYtevo4lhAlcT2fBJGD64p4uQHpFwsx0=;
-        h=From:To:Cc:Subject:Date:From;
-        b=I1noIyY6OLEXxL7G2Kd3xSxLTBPa/Z9CfRwZkhK0Av0lks68iA0x2PXfrvWARhugJ
-         L8pe3iBPcP3U6dMtFzQxvwlfrp745OcechBhxU7mBp40qqIfrMBi3RdQ2sXutBgkZn
-         aNOp3Wl+KUCniYX0DKwaaAV8XHW4H2BE2VqHwaYOEYdA8AEsolnevQy/uuzw+snfU+
-         eUQq3zpv+J9/8ZKg7fQU97qmZxaVyQDhJfkL7RqnfTlmDXGfLQdayeowIMruYAXbuj
-         eN60lMK4vZ08ckWb5krHK3t9p36zNrKyT07/Brl34btFswaNKFiaMrf88eDJOXjpiV
-         vKFfhW5f43DBQ==
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] arm: dts: socfpga: use the "intel,socfpga-i2c" binding
-Date:   Tue, 21 Jun 2022 09:41:50 -0500
-Message-Id: <20220621144150.1044207-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S1349156AbiFUOoe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 10:44:34 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E098F1A3B7
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 07:44:32 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id 88so17126593qva.9
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 07:44:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :content-transfer-encoding:user-agent:mime-version;
+        bh=UjVnf+9L7ZC1WLXqq85gCxdmWfMAHHI4/tuT2zIFjbg=;
+        b=hTosMnsYfB/KMIWaoOr0Qoc70DK9OmDeFVXrjKGJRmGkpYdNkyQ13BJ8DjhdIOVUAr
+         7Fm2jAy9UdQYGDR3KBQPztNFt4beLoxlXPy55l3S19aDoNKWZGY2VXQrQiAR2gXHQbqn
+         lPEIEzTuQlYSlOvjuLogY3Prv8nzjp+XtAgmrKMvd2L6blRgg09pKHV4Rw8GVHY0zRUA
+         eKFaM8C2PEncf5K207+AJlASQaLY3coOMQWi+W0PvYM7lTh4Cbkk5qrHAoXikJTMXMFu
+         heMMjDYlJucj6N2Gt23ZkP4bgvF1CUneZf2WpaKD+EfXvPvx5ByYxmxfnTxy+hPw2ikk
+         6v8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:content-transfer-encoding:user-agent:mime-version;
+        bh=UjVnf+9L7ZC1WLXqq85gCxdmWfMAHHI4/tuT2zIFjbg=;
+        b=sj2HQ9qX1kzxH4FGKowYuSKkMNtNkA/9TfaAwJ0PNjuaziF9QidbaL0HQwkmUxcZ4C
+         5y1uvC8FHaulXk6MsNI+76jfPCqK1iMgrsYROuvlVg2B75sZxaHZWQEHsN4nDkvGkyOi
+         Uf+HR8CjJ/KgyG93jQMADlzGjBkuO1q7MGgexu3kWB10KqxLGsiKpgW7iqUC7lSavWd1
+         MzBYqDyaLeBnLjiSzNfnTHKpbK3wp1ij4XlNgYpSQkMk6oOgWrUIBmIi0xRNBV9vgDdq
+         dA1VPtlLqDm9Gi7ez6UnhprvJ4g99eyVbyXXy9Q8JLYh4HLzWPQsy+AWWDABzCwuROjt
+         uxdg==
+X-Gm-Message-State: AJIora8GH6ieiMEuorFjz14vuBq/mS7jSAKIDsQSGBhB7VOdnD/L7DDV
+        MZvDNWvym51TGMbJFnnYSFBFzQ==
+X-Google-Smtp-Source: AGRyM1uuiep9kSnI+2x3DKsy14BVrRGzdFdJNl2BFfSWIJ9LXRGbqS0glKXWf6n4g4jO31eE39T6nw==
+X-Received: by 2002:a05:622a:1b09:b0:305:2a33:38bd with SMTP id bb9-20020a05622a1b0900b003052a3338bdmr24109023qtb.346.1655822671988;
+        Tue, 21 Jun 2022 07:44:31 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
+        by smtp.gmail.com with ESMTPSA id s12-20020a05620a0bcc00b006a68fdc2d18sm13702813qki.130.2022.06.21.07.44.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jun 2022 07:44:31 -0700 (PDT)
+Message-ID: <72fb06db282db1377b3d7ac1adf3987b26ac30c8.camel@ndufresne.ca>
+Subject: Re: [PATCH 0/3] Enable JPEG Encoder on RK3566/RK3568
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Michael Grzeschik <mgr@pengutronix.de>
+Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Liang Chen <cl@rock-chips.com>, linux-media@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+Date:   Tue, 21 Jun 2022 10:44:29 -0400
+In-Reply-To: <20220620134039.GG21590@pengutronix.de>
+References: <20220427224438.335327-1-frattaroli.nicolas@gmail.com>
+         <198ce3981ad15844627581f9519cab67ed2a81c1.camel@ndufresne.ca>
+         <2438841.KJ31GcehEG@archbook> <20220429232047.GG7671@pengutronix.de>
+         <0414bb0816eef95961fe47de96f97f925d29228f.camel@ndufresne.ca>
+         <20220620134039.GG21590@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.2 (3.44.2-1.fc36) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The I2C pins on Intel's SoCFPGA platform are not connected to GPIOs and
-thus cannot be recovered by the standard GPIO method. The driver has
-been updated to use the "intel,socfpga-i2c" binding to reset the I2C
-host for error recovery.
+Le lundi 20 juin 2022 =C3=A0 15:40 +0200, Michael Grzeschik a =C3=A9crit=C2=
+=A0:
+> Hi Nicolas,
+> Hi Andrzej,
+>=20
+> On Mon, May 02, 2022 at 08:20:50AM -0400, Nicolas Dufresne wrote:
+> > Le samedi 30 avril 2022 =C3=A0 01:20 +0200, Michael Grzeschik a =C3=A9c=
+rit=C2=A0:
+> > > Since the RK3568 seems to get more and more of attention at the momen=
+t
+> > > I would like to ask if somebody is planning to write support the RKVE=
+NC
+> > > in mainline. That is the VEPU540 core refered to in the RK3568 TRM.
+> > >=20
+> > > I would start with that in the next weeks, taking the bootlin H1 supp=
+ort
+> > > as an reference to handle the request_api for the encoder part. Which=
+ is
+> > > currently completely untouched in mainline AFAIK.
+> >=20
+> > I'm very happy to ear you'd be interest in helping with this. I'm addin=
+g Andrzej
+> > in CC, as he started some base work using VP8 encoder on RK3399 (same H=
+W found
+> > on other RK SoC) to make this possible. Note that these are a new type =
+of
+> > encoders and a specification is needed to ensure they all have a cohere=
+nt work-
+> > flow. The first step was obviously to have working prototype, Bootlin s=
+tarted
+> > with H264 (but never posted anything on the mailing list). I'm under th=
+e
+> > impression they have abandoned it. Andrzej have decided to use VP8 as i=
+t is
+> > simpler. The prototype should help understand the basic flow of an enco=
+der and
+> > produce a specification for this.
+>=20
+> I just have tested the bootlin v4l2-h264-encoder stack on the rk3399
+> with v5.19-rc2. It is working as expected.
+>=20
+> Since there have been some rumours about using the VEPU121 core on the
+> rk3568, which could have h264 support as well. I have tested this
+> stack on that core as well.
+>=20
+> The findings are; It is producing some data, but the stream created
+> is not possible to be decoded. Tested with vlc and gstreamer.
 
-Link: https://lore.kernel.org/lkml/20220620230109.986298-1-dinguyen@kernel.org/
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
- arch/arm/boot/dts/socfpga.dtsi                    |  8 ++++----
- arch/arm/boot/dts/socfpga_arria10.dtsi            | 10 +++++-----
- arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 10 +++++-----
- arch/arm64/boot/dts/intel/socfpga_agilex.dtsi     | 10 +++++-----
- 4 files changed, 19 insertions(+), 19 deletions(-)
+Oh well, I'd say unless vendor document it, we'll not going to just enable =
+it
+there. There is another (and faster) encoder there with an vendor but fully=
+ Open
+Source stack anyway. Thanks for the extra step here.
 
-diff --git a/arch/arm/boot/dts/socfpga.dtsi b/arch/arm/boot/dts/socfpga.dtsi
-index bfaef45bdd04..6cfbfca8b665 100644
---- a/arch/arm/boot/dts/socfpga.dtsi
-+++ b/arch/arm/boot/dts/socfpga.dtsi
-@@ -663,7 +663,7 @@ portc: gpio-controller@0 {
- 		i2c0: i2c@ffc04000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc04000 0x1000>;
- 			resets = <&rst I2C0_RESET>;
- 			clocks = <&l4_sp_clk>;
-@@ -674,7 +674,7 @@ i2c0: i2c@ffc04000 {
- 		i2c1: i2c@ffc05000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc05000 0x1000>;
- 			resets = <&rst I2C1_RESET>;
- 			clocks = <&l4_sp_clk>;
-@@ -685,7 +685,7 @@ i2c1: i2c@ffc05000 {
- 		i2c2: i2c@ffc06000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc06000 0x1000>;
- 			resets = <&rst I2C2_RESET>;
- 			clocks = <&l4_sp_clk>;
-@@ -696,7 +696,7 @@ i2c2: i2c@ffc06000 {
- 		i2c3: i2c@ffc07000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc07000 0x1000>;
- 			resets = <&rst I2C3_RESET>;
- 			clocks = <&l4_sp_clk>;
-diff --git a/arch/arm/boot/dts/socfpga_arria10.dtsi b/arch/arm/boot/dts/socfpga_arria10.dtsi
-index 4370e3cbbb4b..a8675369c07d 100644
---- a/arch/arm/boot/dts/socfpga_arria10.dtsi
-+++ b/arch/arm/boot/dts/socfpga_arria10.dtsi
-@@ -558,7 +558,7 @@ fpga_mgr: fpga-mgr@ffd03000 {
- 		i2c0: i2c@ffc02200 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02200 0x100>;
- 			interrupts = <0 105 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&l4_sp_clk>;
-@@ -569,7 +569,7 @@ i2c0: i2c@ffc02200 {
- 		i2c1: i2c@ffc02300 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02300 0x100>;
- 			interrupts = <0 106 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&l4_sp_clk>;
-@@ -580,7 +580,7 @@ i2c1: i2c@ffc02300 {
- 		i2c2: i2c@ffc02400 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02400 0x100>;
- 			interrupts = <0 107 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&l4_sp_clk>;
-@@ -591,7 +591,7 @@ i2c2: i2c@ffc02400 {
- 		i2c3: i2c@ffc02500 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02500 0x100>;
- 			interrupts = <0 108 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&l4_sp_clk>;
-@@ -602,7 +602,7 @@ i2c3: i2c@ffc02500 {
- 		i2c4: i2c@ffc02600 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02600 0x100>;
- 			interrupts = <0 109 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&l4_sp_clk>;
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-index db771690641b..0ddfd51be590 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-@@ -244,7 +244,7 @@ portb: gpio-controller@0 {
- 		i2c0: i2c@ffc02800 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02800 0x100>;
- 			interrupts = <0 103 4>;
- 			resets = <&rst I2C0_RESET>;
-@@ -255,7 +255,7 @@ i2c0: i2c@ffc02800 {
- 		i2c1: i2c@ffc02900 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02900 0x100>;
- 			interrupts = <0 104 4>;
- 			resets = <&rst I2C1_RESET>;
-@@ -266,8 +266,8 @@ i2c1: i2c@ffc02900 {
- 		i2c2: i2c@ffc02a00 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
- 			reg = <0xffc02a00 0x100>;
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			interrupts = <0 105 4>;
- 			resets = <&rst I2C2_RESET>;
- 			clocks = <&clkmgr STRATIX10_L4_SP_CLK>;
-@@ -277,7 +277,7 @@ i2c2: i2c@ffc02a00 {
- 		i2c3: i2c@ffc02b00 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02b00 0x100>;
- 			interrupts = <0 106 4>;
- 			resets = <&rst I2C3_RESET>;
-@@ -288,7 +288,7 @@ i2c3: i2c@ffc02b00 {
- 		i2c4: i2c@ffc02c00 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02c00 0x100>;
- 			interrupts = <0 107 4>;
- 			resets = <&rst I2C4_RESET>;
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-index 7bbec8aafa62..17e733a48b9d 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-@@ -248,7 +248,7 @@ portb: gpio-controller@0 {
- 		i2c0: i2c@ffc02800 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02800 0x100>;
- 			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
- 			resets = <&rst I2C0_RESET>;
-@@ -259,7 +259,7 @@ i2c0: i2c@ffc02800 {
- 		i2c1: i2c@ffc02900 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02900 0x100>;
- 			interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
- 			resets = <&rst I2C1_RESET>;
-@@ -270,7 +270,7 @@ i2c1: i2c@ffc02900 {
- 		i2c2: i2c@ffc02a00 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02a00 0x100>;
- 			interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
- 			resets = <&rst I2C2_RESET>;
-@@ -281,7 +281,7 @@ i2c2: i2c@ffc02a00 {
- 		i2c3: i2c@ffc02b00 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02b00 0x100>;
- 			interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
- 			resets = <&rst I2C3_RESET>;
-@@ -292,7 +292,7 @@ i2c3: i2c@ffc02b00 {
- 		i2c4: i2c@ffc02c00 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "snps,designware-i2c";
-+			compatible = "intel,socfpga-i2c", "snps,designware-i2c";
- 			reg = <0xffc02c00 0x100>;
- 			interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
- 			resets = <&rst I2C4_RESET>;
--- 
-2.25.1
+>=20
+> Be it due to misconfiguration or the core is really not h264 capable.
+>=20
+> Find the latest code here:
+>=20
+> https://git.pengutronix.de/cgit/mgr/linux/log/?h=3Dv5.19/topic/rk3568-vep=
+u-h264-stateless-bootlin
+>=20
+> > From there, the "easy" part is to make per codec controls, to configure=
+ the
+> > encoder. Demonstrating fixed QP, this is about were I believe Bootlin s=
+topped.
+>=20
+> I have seen that the userspace tool is filling in some initial values
+> in the PPS and SPS headers, which are not adjustable. I bet you refer to =
+that.
+>=20
+> > And I personally believe some OSS userland (not just tests) that can ha=
+ndle
+> > multiple reference, perhaps more advance GOP pattern and some basic rat=
+e control
+> > would help build confidence in the uAPI.
+>=20
+> I found the following CTRL Types being defined in the bootlin stack
+> for the request API.
+>=20
+> V4L2_CID_STATELESS_H264_ENCODE_PARAMS
+> V4L2_CID_STATELESS_H264_ENCODE_RC
+> V4L2_CID_STATELESS_H264_ENCODE_FEEDBACK
+>=20
+> The FEEDBACK CID is the information we gain after one frame was
+> encoded. With this data the RC (Rate Control) parameter is prepared for
+> the next frame.
+>=20
+> You mean to have some user interface to make the rate control user
+> configurable?
+
+RC feedback controls are going to all be vendor specific. This one cannot b=
+e
+called with a generic name like "ENCODE_FEEDBACK" since it is not generic. =
+In
+fact, news Hantro chip don't have this feedback, they have something else b=
+ut it
+is not used by the vendor software (not open source, but you can find leaks=
+ I
+suppose). They only use the size of the compressed frames, and do RC in sof=
+tware
+there.
+
+In addition to that, with the current trend, "feedback" controls would have=
+ to
+use RO Request, so that one can still queue multiple encode and be able to =
+match
+the feedback to a specific request/frame.
+
+>=20
+> > Let us know how we can help, we should >void doing the same thing, as
+> > this is already quite a large project that can easily take over a year
+> > to become mainline ready.
+>=20
+> It would probably help to share some codebase. If you already have
+> something for that rkvenc codec, be it VP8 support. It would probably
+> make sense for me to build up on that. Or to discuss common code
+> patterns on structures.
+
+We are doing the exercise with VP8 using the original Hantro G1 design, as =
+fond
+on IMX8MQ and RK3288. Though we only test on NXP boards at the moment.
+
+Andrzej is on vacation this week, I'll check with him why hist draft isn't
+accessible to the public. Meanwhile, the userland / GStreamer part is draft=
+ed
+(careful its a draft) here:
+
+https://gitlab.freedesktop.org/benjamin.gaignard1/gstreamer/-/tree/WIP_V4L2=
+_VP8_STATELESS_ENCODER
+
+Currently we are still working on very basic bit of the puzzle, understandi=
+ng
+the problem in order to produce a proper Stateless Encoder specification. A=
+s an
+example, the Hantro VP8 encoder brought interesting aspect, as an example i=
+t
+produces 2 buffers. Shall we offset these into 1 buffer, shall we use plane=
+s to
+zero copy that to user, or shall we memcpy in the driver .. Shall the VP8 f=
+rame
+header be produced by the driver (even though the HW don't produce it) or s=
+hall
+we have more stateless VP8 format for both cases. Its a big series of tiny
+things like this that we need to study and weight, and compare against othe=
+r
+Hardware designs.
+
+regards,
+Nicolas
 
