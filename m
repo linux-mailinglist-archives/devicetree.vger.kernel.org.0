@@ -2,259 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28072553628
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 17:33:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23B40553661
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 17:41:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231897AbiFUPd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 11:33:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43778 "EHLO
+        id S1352969AbiFUPkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 11:40:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351948AbiFUPdS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 11:33:18 -0400
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 129719595
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 08:33:17 -0700 (PDT)
-Received: by mail-qv1-xf2a.google.com with SMTP id t16so15889308qvh.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 08:33:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :content-transfer-encoding:user-agent:mime-version;
-        bh=dy8yeG9fTBHltWG4kJedgv5LPIew+OWd8uTBYekbBzc=;
-        b=ApJ/dLZCmEw0l/GZjONyC5HqMPHnP/1v5EjjO1KCkzHQMylqrSeF7f1PAqFEtcA5p7
-         B5L7VLmvKXMkO3mBusxE4aofO5gnetF3tBYYwFOBpVJp+ZHpNjY2yIJIKkIC5ik+xBVg
-         uADxSpGmWIuEmcvyscNyZq4wRAFjkfTGd5fw8vkIUElXZ7Fh7K0t4I4f6BB6HMBT5br2
-         7NCDPnMq22xS1dnrAdLeSQoiWz64pI/Jrs0HO9z4O6pbFJ4oAYasBaxsv3sEwsv/op3Y
-         PyNof9m1d/UwIgmRDoOP1CmTU/y+FXB4dNy3XB838qTtpSSnqKp5JlrXrGTQNEKwf5FG
-         7rhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:content-transfer-encoding:user-agent:mime-version;
-        bh=dy8yeG9fTBHltWG4kJedgv5LPIew+OWd8uTBYekbBzc=;
-        b=toLRuGQcyGjHf1+iQxBllE5zaZ3l4LNpRF970QzJfdr5qDlWq4NhaPAOhiZpBk6G8+
-         QooW5TuVXQuBwtgsPekfmP5LUqwKkoxgoQlcoG9k+UG3yX70D6im4/1Jwc7RNDRYjIuh
-         KeGzvB7TOWf71G1kKjCypbracsB/hWC7eQJ/w1LrYnsl+QXYrN+V7sO5W2LKPjRrKyh9
-         q7SZa5i662XHanHTJfAblcVjBhqhnlNgVDi1RC7psepQUSaOU07YdueXaWaxLrlDhr0v
-         ogWLOYZ0tPfxw/fTku/94vpPwELPldM1yS1K7BvohAulayU1lDPnxYnXTEEbd/g5cvrL
-         OuRA==
-X-Gm-Message-State: AJIora/MAoFfiQlHuXOS//3U9xk/IGcUx9FeDxdjNCcONyskj09+HYYq
-        zbtjv4cOAuEKWSSKs/nwGOkaIw==
-X-Google-Smtp-Source: AGRyM1srW5WWOiSz7XlL+lVwbQcKJ8mCJy/w+hJaCXN4HQuLbalFyFAI4j3aN7yjXcA9VUwq7W66HA==
-X-Received: by 2002:a05:622a:1054:b0:306:3216:4f00 with SMTP id f20-20020a05622a105400b0030632164f00mr24570852qte.109.1655825596108;
-        Tue, 21 Jun 2022 08:33:16 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
-        by smtp.gmail.com with ESMTPSA id 20-20020ac85754000000b002f93554c009sm11589284qtx.59.2022.06.21.08.33.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jun 2022 08:33:15 -0700 (PDT)
-Message-ID: <e95f2b43c131927a488f86081683c15b885efea7.camel@ndufresne.ca>
-Subject: Re: [PATCH v7, 04/15] media: mtk-vcodec: Read max resolution from
- dec_capability
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Date:   Tue, 21 Jun 2022 11:33:14 -0400
-In-Reply-To: <YqwjOurt2DCV6snP@google.com>
-References: <20220223034008.15781-1-yunfei.dong@mediatek.com>
-         <20220223034008.15781-5-yunfei.dong@mediatek.com>
-         <cb7cf296bc7df7334f55cc51ef11b671572559ac.camel@ndufresne.ca>
-         <YqwjOurt2DCV6snP@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.2 (3.44.2-1.fc36) 
+        with ESMTP id S1352867AbiFUPkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 11:40:08 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCDD82BB28;
+        Tue, 21 Jun 2022 08:40:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+        bh=Jmq5B6v8SQVbhm55DgcO6ZMY68OIQiWikBqR9L2Q1V0=;
+        b=gTQ9uSCg0HG+EmsZa03wxGw+gJZ6V3DnJwAQCidiOTin7NRy9mzZsuNhrKAMIwKuD8i6ApVKhkRfv
+         KuK8n3+5fpMYfbt6gr1aCUS/z2BPf+6JxdV6yozMhNOCKxIZepoDG/aDVKjvSJspdc3LfGbmjckdwD
+         nO/Ct3MBff2aJOOEfZRcG8Ze0I88toI1Is5YPWnT8YGhCF40dIOX/YWl9FzI6SLJkuyk58GqBbKD9J
+         3yjbxdT1H0SNAOXxvumHt9RUTIuFKbkTIeZkmFjdYTBDlbHB/OYM7ahJVZ6b2n8g8IKOnt+kVOu6Fl
+         8VXVEB0/ckb1L4W1MURTnXy3kSbVwmg==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000009,0.024835)], BW: [Enabled, t: (0.000015,0.000001)], RTDA: [Enabled, t: (0.075826), Hit: No, Details: v2.40.0; Id: 15.52k32d.1g63empna.1mr5a; mclb], total: 0(700)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from h-e2.ddg ([85.143.252.66])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Tue, 21 Jun 2022 18:39:42 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, corbet@lwn.net
+Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
+        conor.dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, system@metrotek.ru
+Subject: [PATCH v21 0/5] Microchip Polarfire FPGA manager
+Date:   Tue, 21 Jun 2022 18:38:42 +0300
+Message-Id: <20220621153847.103052-1-i.bornyakov@metrotek.ru>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le vendredi 17 juin 2022 =C3=A0 14:46 +0800, Chen-Yu Tsai a =C3=A9crit=C2=
-=A0:
-> Hi,
->=20
-> On Mon, Feb 28, 2022 at 04:29:15PM -0500, Nicolas Dufresne wrote:
-> > Hi Yunfei,
-> >=20
-> > this patch does not work unless userland calls enum_framesizes, which i=
-s
-> > completely optional. See comment and suggestion below.
-> >=20
-> > Le mercredi 23 f=C3=A9vrier 2022 =C3=A0 11:39 +0800, Yunfei Dong a =C3=
-=A9crit=C2=A0:
-> > > Supported max resolution for different platforms are not the same: 2K
-> > > or 4K, getting it according to dec_capability.
-> > >=20
-> > > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> > > Reviewed-by: Tzung-Bi Shih<tzungbi@google.com>
-> > > ---
-> > >  .../platform/mtk-vcodec/mtk_vcodec_dec.c      | 29 +++++++++++------=
---
-> > >  .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  4 +++
-> > >  2 files changed, 21 insertions(+), 12 deletions(-)
-> > >=20
-> > > diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c b/dri=
-vers/media/platform/mtk-vcodec/mtk_vcodec_dec.c
-> > > index 130ecef2e766..304f5afbd419 100644
-> > > --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c
-> > > +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c
-> > > @@ -445,7 +447,7 @@ static int vidioc_vdec_s_fmt(struct file *file, v=
-oid *priv,
-> > >  		return -EINVAL;
-> > > =20
-> > >  	q_data->fmt =3D fmt;
-> > > -	vidioc_try_fmt(f, q_data->fmt);
-> > > +	vidioc_try_fmt(ctx, f, q_data->fmt);
-> > >  	if (f->type =3D=3D V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
-> > >  		q_data->sizeimage[0] =3D pix_mp->plane_fmt[0].sizeimage;
-> > >  		q_data->coded_width =3D pix_mp->width;
-> > > @@ -545,6 +547,9 @@ static int vidioc_enum_framesizes(struct file *fi=
-le, void *priv,
-> > >  				fsize->stepwise.min_height,
-> > >  				fsize->stepwise.max_height,
-> > >  				fsize->stepwise.step_height);
-> > > +
-> > > +		ctx->max_width =3D fsize->stepwise.max_width;
-> > > +		ctx->max_height =3D fsize->stepwise.max_height;
-> >=20
-> > The spec does not require calling enum_fmt, so changing the maximum her=
-e is
-> > incorrect (and fail with GStreamer). If userland never enum the framesi=
-zes, the
-> > resolution get limited to 1080p.
-> >=20
-> > As this only depends and the OUTPUT format and the device being open()
-> > (condition being dev_capability being set and OUTPUT format being known=
- / not
-> > VP8), you could initialize the cxt max inside s_fmt(OUTPUT) instead, wh=
-ich is a
-> > mandatory call. I have tested this change to verify this:
-> >=20
-> >=20
-> > diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c b/drive=
-rs/media/platform/mtk-vcodec/mtk_vcodec_dec.c
-> > index 044e3dfbdd8c..3e7c571526a4 100644
-> > --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c
-> > +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c
-> > @@ -484,6 +484,14 @@ static int vidioc_vdec_s_fmt(struct file *file, vo=
-id *priv,
-> >  	if (fmt =3D=3D NULL)
-> >  		return -EINVAL;
-> > =20
-> > +	if (f->type =3D=3D V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE &&
-> > +	    !(ctx->dev->dec_capability & VCODEC_CAPABILITY_4K_DISABLED) &&
-> > +	    fmt->fourcc !=3D V4L2_PIX_FMT_VP8_FRAME) {
-> > +		mtk_v4l2_debug(3, "4K is enabled");
-> > +		ctx->max_width =3D VCODEC_DEC_4K_CODED_WIDTH;
-> > +		ctx->max_height =3D VCODEC_DEC_4K_CODED_HEIGHT;
-> > +	}
-> > +
-> >  	q_data->fmt =3D fmt;
-> >  	vidioc_try_fmt(ctx, f, q_data->fmt);
-> >  	if (f->type =3D=3D V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
-> > @@ -574,15 +582,9 @@ static int vidioc_enum_framesizes(struct file *fil=
-e, void *priv,
-> > =20
-> >  		fsize->type =3D V4L2_FRMSIZE_TYPE_STEPWISE;
-> >  		fsize->stepwise =3D dec_pdata->vdec_framesizes[i].stepwise;
-> > -		if (!(ctx->dev->dec_capability &
-> > -				VCODEC_CAPABILITY_4K_DISABLED) &&
-> > -				fsize->pixel_format !=3D V4L2_PIX_FMT_VP8_FRAME) {
-> > -			mtk_v4l2_debug(3, "4K is enabled");
-> > -			fsize->stepwise.max_width =3D
-> > -					VCODEC_DEC_4K_CODED_WIDTH;
-> > -			fsize->stepwise.max_height =3D
-> > -					VCODEC_DEC_4K_CODED_HEIGHT;
-> > -		}
-> > +		fsize->stepwise.max_width =3D ctx->max_width;
-> > +		fsize->stepwise.max_height =3D ctx->max_height;
-> > +
->=20
-> Recent testing on ChromeOS suggests this doesn't work. The spec implies
-> that querying capabilities could happen before the output format is set.
-> And also, supported frame sizes are detected for each given format,
-> which may not be the one current set.
+Add support to the FPGA manager for programming Microchip Polarfire
+FPGAs over slave SPI interface with .dat formatted bitsream image.
 
-In v4l2, formats are always set. Perhaps the problem is that we don't
-automatically set ctx->max_width/height for the default format when the fir=
-mware
-is up. I noticed recently the chromium always do G_FMT before S_FMT, so per=
-haps
-it can skip S_FMT if the default format is appropriate, and that endup avoi=
-ding
-the code I've just suggested. At the time I wrote that, I only had GStreame=
-r
-available to test, and it always calls S_FMT, which is mandatory, see 4.5.3=
-.2.
-Initialization step 1. But I cannot say userland would be wrong to skip if =
-that
-format was "initially" correct.
+Changelog:
+  v1 -> v2: fix printk formating
+  v2 -> v3:
+   * replace "microsemi" with "microchip"
+   * replace prefix "microsemi_fpga_" with "mpf_"
+   * more sensible .compatible and .name strings
+   * remove unused defines STATUS_SPI_VIOLATION and STATUS_SPI_ERROR
+  v3 -> v4: fix unused variable warning
+    Put 'mpf_of_ids' definition under conditional compilation, so it
+    would not hang unused if CONFIG_OF is not enabled.
+  v4 -> v5:
+   * prefix defines with MPF_
+   * mdelay() -> usleep_range()
+   * formatting fixes
+   * add DT bindings doc
+   * rework fpga_manager_ops.write() to fpga_manager_ops.write_sg()
+     We can't parse image header in write_init() because image header
+     size is not known beforehand. Thus parsing need to be done in
+     fpga_manager_ops.write() callback, but fpga_manager_ops.write()
+     also need to be reenterable. On the other hand,
+     fpga_manager_ops.write_sg() is called once. Thus, rework usage of
+     write() callback to write_sg().
+  v5 -> v6: fix patch applying
+     I forgot to clean up unrelated local changes which lead to error on
+     patch 0001-fpga-microchip-spi-add-Microchip-MPF-FPGA-manager.patch
+     applying on vanilla kernel.
+  v6 -> v7: fix binding doc to pass dt_binding_check
+  v7 -> v8: another fix for dt_binding_check warning
+  v8 -> v9:
+   * add another patch to support bitstream offset in FPGA image buffer
+   * rework fpga_manager_ops.write_sg() back to fpga_manager_ops.write()
+   * move image header parsing from write() to write_init()
+  v9 -> v10:
+   * add parse_header() callback to fpga_manager_ops
+   * adjust fpga_mgr_write_init[_buf|_sg]() for parse_header() usage
+   * implement parse_header() in microchip-spi driver
+  v10 -> v11: include missing unaligned.h to microchip-spi
+     fix error: implicit declaration of function 'get_unaligned_le[16|32]'
+  v11 -> v12:
+   * microchip-spi: double read hw status, ignore first read, because it
+     can be unreliable.
+   * microchip-spi: remove sleep between status readings in
+     poll_status_not_busy() to save a few seconds. Status is polled on
+     every 16 byte writes - that is quite often, therefore
+     usleep_range() accumulate to a considerable number of seconds.
+  v12 -> v13:
+   * fpga-mgr: separate fpga_mgr_parse_header_buf() from
+     fpga_mgr_write_init_buf()
+   * fpga-mgr: introduce FPGA_MGR_STATE_PARSE_HEADER and
+     FPGA_MGR_STATE_PARSE_HEADER_ERR fpga_mgr_states
+   * fpga-mgr: rename fpga_mgr_write_init_sg() to fpga_mgr_prepare_sg()
+     and rework with respect to a new fpga_mgr_parse_header_buf()
+   * fpga-mgr: rework write accounting in fpga_mgr_buf_load_sg() for
+     better clarity
+   * microchip-spi: rename MPF_STATUS_POLL_TIMEOUT to
+     MPF_STATUS_POLL_RETRIES
+   * microchip-spi: add comment about status reading quirk to
+     mpf_read_status()
+   * microchip-spi: rename poll_status_not_busy() to mpf_poll_status()
+     and add comment.
+   * microchip-spi: make if statement in mpf_poll_status() easier to
+     read.
+  v13 -> v14:
+   * fpga-mgr: improvements from Xu Yilun in
+      - fpga_mgr_parse_header_buf()
+      - fpga_mgr_write_init_buf()
+      - fpga_mgr_prepare_sg()
+      - fpga_mgr_buf_load_sg()
+   * fpga-mgr: add check for -EAGAIN from fpga_mgr_parse_header_buf()
+     when called from fpga_mgr_buf_load_mapped()
+   * microchip-spi: remove excessive cs_change from second spi_transfer
+     in mpf_read_status()
+   * microchip-spi: change type of components_size_start,
+     bitstream_start, i from size_t to u32 in mpf_ops_parse_header()
+  v14 -> v15: eliminate memcpy() in mpf_ops_write()
+    Eliminate excessive memcpy() in mpf_ops_write() by using
+    spi_sync_transfer() instead of spi_write().
+  v15 -> v16:
+   * microchip-spi: change back components_size_start and
+     bitstream_start variables types to size_t, i - to u16 in
+     mpf_ops_parse_header()
+   * fpga-mgr: rename fpga_parse_header_buf() to
+     fpga_parse_header_mapped(). It serves only mapped FPGA image now,
+     adjust it accordingly.
+   * fpga-mgr: separate fpga_mgr_parse_header_sg_first() and
+     fpga_mgr_parse_header_sg() from fpga_mgr_prepare_sg()
+  v16 -> v17:
+   * fpga-mgr: return size of allocated header from
+     fpga_mgr_parse_header_sg(), add `char **ret_buf` to function args
+     to save pointer to allocated header. This allow us to call
+     fpga_mgr_write_init_buf() with exact size of allocated header.
+   * document parse_header() callback in fpga-mgr.rst
+  v17 -> v18:
+   * fpga-mgr: change back fpga_mgr_parse_header_sg() to return
+     allocated buffer but set buffer size into output parameter
+   * fpga-mgr: check returned pointer from krealloc for ZERO_OR_NULL_PTR
+     in fpga_mgr_paese_header_sg() as krealloc may return ZERO_SIZE_PTR.
+   * fpga-mgr: in fpga_mgr_prepare_sg() return fpga_mgr_write_init() on
+     fast path only when both initial_header_size and parse_header() are
+     not defined.
+   * docs: fpga-mgr: a few rewords from Xu Yilun
+  v18 -> v19:
+   * microchip-spi: split multiple assignments on a single line in
+     functions mpf_read_status() and mpf_ops_parse_header()
+   * fpga-mgr: add braces {} around "else if" arm in
+     fpga_mgr_prepare_sg()
+   * fpga-mgr: don't reuse krealloc() arg in fpga_mgr_parse_header_sg().
+     If krealloc() returns NULL, it doesn't free the original.
+  v19 -> v20:
+   * fpga-mgr: initialize info->header_size with
+     mops->initial_header_size at fpga_mgr_load().
+   * fpga-mgr: add mops->skip_header boolean flag. Adjust skipping
+     header before write to check against skip_header flag instead of
+     mere presence of info->header_size.
+   * fpga-mgr: split check for ZERO_OR_NULL_PTR() after realloc() in
+     fpga_mgr_parse_header_sg() function to check against zero header +
+     check against NULL returned from realloc().
+   * docs: fpga-mgr: adjust for skip_header flag.
+   * microchip-spi: add skip_header to mpf_ops.
+  v21 -> v21:
+   * fpga-mgr: in function fpga_mgr_parse_header_sg(), after
+     reallocation of a buffer for a new header, copy only exceeding
+     part, since realloc preserve old buffer content.
+   * fpga-mgr: in function fpga_mgr_buf_load_sg() instead of manually
+     counting fragments with header that should be skipped, use
+     sg_miter_skip().
+   * fpga-mgr: add tag "Suggested-by: Xu Yilun <yilun.xu@intel.com>"
+     since all changes in fpga-mgr was his ideas.
+   * MAINTAINERS: add entry for Microchip PolarFire FPGA drivers as
+     Conor Dooley suggested.
 
-If my understanding is not correct, then perhaps you should provide a tad m=
-ore
-details on how this failed for you, and we can then better judge an appropr=
-iate
-fix.
+Ivan Bornyakov (5):
+  fpga: fpga-mgr: support bitstream offset in image buffer
+  docs: fpga: mgr: document parse_header() callback
+  fpga: microchip-spi: add Microchip MPF FPGA manager
+  dt-bindings: fpga: add binding doc for microchip-spi fpga mgr
+  MAINTAINERS: add Microchip PolarFire FPGA drivers entry
 
-regards,
-Nicolas
+ .../fpga/microchip,mpf-spi-fpga-mgr.yaml      |  44 ++
+ Documentation/driver-api/fpga/fpga-mgr.rst    |  27 +-
+ MAINTAINERS                                   |   8 +
+ drivers/fpga/Kconfig                          |   8 +
+ drivers/fpga/Makefile                         |   1 +
+ drivers/fpga/fpga-mgr.c                       | 225 ++++++++--
+ drivers/fpga/microchip-spi.c                  | 398 ++++++++++++++++++
+ include/linux/fpga/fpga-mgr.h                 |  24 +-
+ 8 files changed, 702 insertions(+), 33 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+ create mode 100644 drivers/fpga/microchip-spi.c
 
->=20
-> So the if block above has to be reintroduced in some form. I'll take a
-> look at this.
->=20
->=20
-> Regards
-> ChenYu
->=20
-> >  		mtk_v4l2_debug(1, "%x, %d %d %d %d %d %d",
-> >  				ctx->dev->dec_capability,
-> >  				fsize->stepwise.min_width,
-> > @@ -592,8 +594,6 @@ static int vidioc_enum_framesizes(struct file *file=
-, void *priv,
-> >  				fsize->stepwise.max_height,
-> >  				fsize->stepwise.step_height);
-> > =20
-> > -		ctx->max_width =3D fsize->stepwise.max_width;
-> > -		ctx->max_height =3D fsize->stepwise.max_height;
-> >  		return 0;
-> >  	}
-> > =20
-> >=20
-> >=20
-> > >  		return 0;
-> > >  	}
-> > > =20
->=20
-> [...]
->=20
+-- 
+2.25.1
+
 
