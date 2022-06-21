@@ -2,142 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 231BB55325A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 14:44:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD119553260
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 14:44:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350608AbiFUMoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 08:44:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44880 "EHLO
+        id S1350098AbiFUMor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 08:44:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350330AbiFUMoT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 08:44:19 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE8851261E
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:44:17 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id e2so8261371edv.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:44:17 -0700 (PDT)
+        with ESMTP id S1350768AbiFUMoq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 08:44:46 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBAEB14D2A
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:44:44 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id u9so16882100oiv.12
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:44:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uc5jJq0YvTzf8BEPMUgKkXPq5VOMLMXDxdKkAuvbItk=;
-        b=o51LpaWxCfqFP3YFV66q9y40X5oK1xKmN9I5bVSTSRV3Ue6tOFTcBotGnOvkcAkeSG
-         JWEuMhVcnHIviKxc+2GgZkmiJALfB8BlzdsSAe9d20F8H7fO+62VPXNVWD6oCHGgSY8z
-         +ZaSdxgU7R8eKt8KP2ie6HuPRGZLlefknuUK+XhMdmuN9BzV+/SoJcwr2WzdOdm8mD+P
-         oOAOGMlX7iy9zhl2MwrL/HOldGCYQTm5hksNGhq7ZKoy6UmGkQYA2mlbK//z5hPyWKzj
-         tcjVSqEmXu6NfJapXTca1fVPcZPXpmCcyGKBi2VwY5afvx6bXrBW4VmYoynDOk946vf4
-         Fwmg==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lBbMh4VJQSENMww0dOzgXxo1RM/VlCElXB1csm8/4yk=;
+        b=eolm2QQGIWVt9QGJZP7tr72BIW3micukjnoCEafo7KN3jMzs3m4Elt5xV/fiYg+lOd
+         vir4bPdilxNpZlovp5y+FTc5/9GKgAWLg2rYAWI4DCjZnGVqziDReoL8DlblgxyRpUwR
+         xnBePY1UrQC/lYHe7a6asq6bjM5aKrl/Z1fKRcuNtZj92nmKrSmt69XnsYMnO7eq27fM
+         IgN8ycYrO/V81iMl1wYK1Ygdzrw2xIB1C0whXaZEjXmYezgjxNb1LNEum7A7arTZ9t+h
+         E8m8x0ID7HdUCiWTKKIAagp6KX3Z7QStVXmoffBq9lS+sH1UxGG2KnvNvqPS2Oa4ItWK
+         Ebug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=uc5jJq0YvTzf8BEPMUgKkXPq5VOMLMXDxdKkAuvbItk=;
-        b=Qcv2ljCQVf2pnFUENYq2upTxTKv0TtjZ54mqH+l1GU1eAI4Gy/hXRovbXsu0WwHfOh
-         pCtw0p7bfIOKmm5bzayxyW2YQ5SPeDFM+ViWjToASPcOYjvmURPLlwma5xGQUGzwQlQr
-         gv+z/+q4j9F/dz1/C5Sw2yIRcNonzhk0eP1CwDclWdiKUiDfbQ5m7pEvNmOVaeBG5kZ6
-         bLSIcMsdBSzmgn6PKODW4yZgETVzM/ZMDxxdriLutAiMS8rlLuHcyCQS+qrJGrib0bD7
-         BU7xwOXjd298QBVS5WBQpIuMqs36h8kv9mnfYcnOZV7lHth4GaNLXUe8oYA/I2R4KILa
-         QlcQ==
-X-Gm-Message-State: AJIora+0RSMgsMXOM1SMMmbat1uwacvxCJV8371+jGwKBdyjdHqqJveW
-        CQMjhTngo8x35gMdpGPIAgGGxA==
-X-Google-Smtp-Source: AGRyM1tUrw283B/iLAAXe1suE6fsNV78cf2NHCU5hHUcZcigWaiVbjFyK+RkskC+/2DrTKT7yzUUeQ==
-X-Received: by 2002:a05:6402:5c9:b0:420:aac6:257b with SMTP id n9-20020a05640205c900b00420aac6257bmr34794630edx.128.1655815456285;
-        Tue, 21 Jun 2022 05:44:16 -0700 (PDT)
-Received: from [192.168.0.220] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id u9-20020a1709061da900b006fe8c831632sm7585849ejh.73.2022.06.21.05.44.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Jun 2022 05:44:15 -0700 (PDT)
-Message-ID: <4a58c6c4-be0e-e56c-2498-a14ba46b508d@linaro.org>
-Date:   Tue, 21 Jun 2022 14:44:14 +0200
+        bh=lBbMh4VJQSENMww0dOzgXxo1RM/VlCElXB1csm8/4yk=;
+        b=Yge81EEgXv98KsRkeFQtZ+AHyQAx8icfOD/9/qQHSeN3s1OWBuv2fvAlP1EycZPxiz
+         dQlfviz3HmShzorNBUZ/DBL8aTr7a4YNtoP/N2kfmXM1zOH+GJCzy2C2BR1TQXjp4vqH
+         GDA/LWeoqC3jkRBOwL3xFtg94vx+1H639irjVlfRg4dewblBeDglQe8csBloPg8rW/lJ
+         dlAwuyWomKZflyMcMv5iRmiERMs+1tWJsMKum0lxkLG3sHDDI1I13OZQRtAdO3QItorA
+         rOD7snepIa0zL7lq+HRpmMfS2UhJVJQZlTnQbIBkgburSg9gDKSMjUgldtgy/Fz5Uoo2
+         l4IA==
+X-Gm-Message-State: AJIora+BexwVG+H8FWkzCBQeXEj1Ziti0OpA8WFpeMQb3A33ZjKbycxA
+        GEX1YaBrXrDwiuSx2HVLA24=
+X-Google-Smtp-Source: AGRyM1sq4B19d7lmERuBrPFlV3/m2YkAYtRTELTucq5c/IRSj7me2X0BE8FuHX0EtJp00/WkU+EhaA==
+X-Received: by 2002:a05:6808:f92:b0:32f:6e27:6cc7 with SMTP id o18-20020a0568080f9200b0032f6e276cc7mr14067682oiw.36.1655815484060;
+        Tue, 21 Jun 2022 05:44:44 -0700 (PDT)
+Received: from localhost.localdomain ([2804:14c:485:4b69:8593:ab55:c903:7d93])
+        by smtp.gmail.com with ESMTPSA id s22-20020a056870e6d600b000f33ced2c50sm8898350oak.56.2022.06.21.05.44.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jun 2022 05:44:43 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     matthias.bgg@gmail.com
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] arm64: dts: mediatek: Replace 'enable-sdio-wakeup'
+Date:   Tue, 21 Jun 2022 09:44:35 -0300
+Message-Id: <20220621124435.121740-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 1/5] dt-bindings: pci: Add ARTPEC-8 PCIe controller
-Content-Language: en-US
-To:     wangseok.lee@samsung.com,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>
-Cc:     Moon-Ki Jun <moonki.jun@samsung.com>,
-        Sang Min Kim <hypmean.kim@samsung.com>,
-        Dongjin Yang <dj76.yang@samsung.com>,
-        Yeeun Kim <yeeun119.kim@samsung.com>
-References: <f9a877ce-1e18-90f9-67e5-b6e67b3b4156@linaro.org>
- <8d806fc9-0067-2c8d-ec41-13787c7644a2@linaro.org>
- <20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
- <20220614012713epcms2p810386a5137fbcf6aefc41fe086badc0b@epcms2p8>
- <20220620075548epcms2p61182d9d7f41fadb1eb139b349bf7486d@epcms2p6>
- <CGME20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p2>
- <20220621074244epcms2p23cb631babfb87e5abb416467fb66e521@epcms2p2>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220621074244epcms2p23cb631babfb87e5abb416467fb66e521@epcms2p2>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/2022 09:42, Wangseok Lee wrote:
->>>  
->>>  samsung,syscon-bus-s-fsys:
->>>    description:
->>>      Phandle to bus-s path of fsys block, this register
->>>      are used for enabling bus-s.
->>>    $ref: /schemas/types.yaml#/definitions/phandle
->>>  
->>>  samsung,syscon-bus-p-fsys:
->>>    description:
->>>      Phandle to bus-p path of fsys block, this register
->>>      are used for enabling bus-p.
->>>    $ref: /schemas/types.yaml#/definitions/phandle
->>
->> This two look unspecific and hacky workaround for missing drivers. Looks
->> like instead of implementing interconnect or clock driver, you decided
->> to poke some other registers. Why this cannot be an interconnect driver?
->>
->>
-> 
-> bus-s, bus-p is a register that exists in the sysreg of the fsys block.
-> It is the same block as "fsys-sysreg" but is separated separately in
-> hardware.
+From: Fabio Estevam <festevam@denx.de>
 
-Two points here:
-1. If it is in FSYS, why it cannot be accessed with samsung,fsys-sysreg?
-2. If it is only register, shuld be described like this. You must
-describe item:
-https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
+As explained in Documentation/devicetree/bindings/mmc/mmc-controller.yaml,
+the 'enable-sdio-wakeup' property is considered deprecated.
 
-> So, get resource is performed separately from "fsys-sysreg".
-> They set pcie slave, dbi related control settings,
-> naming "bus-x" seems to be interconnect.
-> I will add this description to property.
-> I don't think it need to use the interconnect driver,
-> so please let me know your opinion.
+Replace it with the 'wakeup-source' property instead.
 
-Please document both in the bindings and in the driver usage of this
-register. Writing there "0" or "1" is not enough. If the documentation
-is good, I am fine with it. If the explanation is obfuscated/not
-sufficient, it will look like avoiding to implement a driver, which I
-don't want to accept.
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi    | 2 +-
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts     | 2 +-
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi  | 2 +-
+ arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+index 923c1c3477e5..e21feb85d822 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+@@ -410,7 +410,7 @@ &mmc3 {
+ 	sd-uhs-sdr50;
+ 	sd-uhs-sdr104;
+ 	keep-power-in-suspend;
+-	enable-sdio-wakeup;
++	wakeup-source;
+ 	cap-sdio-irq;
+ 	vmmc-supply = <&sdio_fixed_3v3>;
+ 	vqmmc-supply = <&mt6397_vgp3_reg>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+index 7ac9864db9de..52dc4a50e34d 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+@@ -134,7 +134,7 @@ &mmc1 {
+ 	vmmc-supply = <&mt6358_vmch_reg>;
+ 	vqmmc-supply = <&mt6358_vmc_reg>;
+ 	keep-power-in-suspend;
+-	enable-sdio-wakeup;
++	wakeup-source;
+ 	non-removable;
+ };
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index b50261e8b9ed..89e4358f140a 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -382,7 +382,7 @@ &mmc1 {
+ 	sd-uhs-sdr50;
+ 	sd-uhs-sdr104;
+ 	keep-power-in-suspend;
+-	enable-sdio-wakeup;
++	wakeup-source;
+ 	cap-sdio-irq;
+ 	non-removable;
+ 	no-mmc;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
+index afeb5cd37826..530e0c9ce0c9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
+@@ -159,7 +159,7 @@ &mmc1 {
+ 	vmmc-supply = <&mt6358_vmch_reg>;
+ 	vqmmc-supply = <&mt6358_vmc_reg>;
+ 	keep-power-in-suspend;
+-	enable-sdio-wakeup;
++	wakeup-source;
+ 	non-removable;
+ };
+ 
+-- 
+2.25.1
+
