@@ -2,139 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD119553260
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 14:44:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2890A5532FA
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 15:11:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350098AbiFUMor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 08:44:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45170 "EHLO
+        id S236416AbiFUNLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 09:11:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350768AbiFUMoq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 08:44:46 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBAEB14D2A
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:44:44 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id u9so16882100oiv.12
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:44:44 -0700 (PDT)
+        with ESMTP id S230399AbiFUNLU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 09:11:20 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A4E91AF09
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 06:11:19 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id e40so6752582eda.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 06:11:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lBbMh4VJQSENMww0dOzgXxo1RM/VlCElXB1csm8/4yk=;
-        b=eolm2QQGIWVt9QGJZP7tr72BIW3micukjnoCEafo7KN3jMzs3m4Elt5xV/fiYg+lOd
-         vir4bPdilxNpZlovp5y+FTc5/9GKgAWLg2rYAWI4DCjZnGVqziDReoL8DlblgxyRpUwR
-         xnBePY1UrQC/lYHe7a6asq6bjM5aKrl/Z1fKRcuNtZj92nmKrSmt69XnsYMnO7eq27fM
-         IgN8ycYrO/V81iMl1wYK1Ygdzrw2xIB1C0whXaZEjXmYezgjxNb1LNEum7A7arTZ9t+h
-         E8m8x0ID7HdUCiWTKKIAagp6KX3Z7QStVXmoffBq9lS+sH1UxGG2KnvNvqPS2Oa4ItWK
-         Ebug==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=iKG7ipis6svDRJZdPtz2/v7PW+5iNIJmzZjHALS7NSA=;
+        b=okX+XmWFVy8JkpopHuzLRfgSke7JTv9kr3wB8aAZYW7uPFgGtBNefvBCzCyVSiD2HY
+         TnUi0Ww2tDe/iD32IcnsZcbSSPly/JQvMmMcTC95dxbVfXqlV0Oj+1EtG5LQkRBhj6AT
+         4Lr8qoiBBS9N3HvMdWPHUGFj8a5z2FnZCngklGjalL/tVkMuaHywyOyaJ2+S45XkCky2
+         X/cFcjcDmKY6TZw5/yaaHZ8YQRFHBZ6DSEPFcQGQ5jyjgr/uIuyX82plxGm9LxkOVi6f
+         78GBh57ZNFjKjSoKxxdssEvscwQqRR95ejACIeFNNFrY7WMO63gX3D8zse3OsiXEA0h7
+         2eEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=lBbMh4VJQSENMww0dOzgXxo1RM/VlCElXB1csm8/4yk=;
-        b=Yge81EEgXv98KsRkeFQtZ+AHyQAx8icfOD/9/qQHSeN3s1OWBuv2fvAlP1EycZPxiz
-         dQlfviz3HmShzorNBUZ/DBL8aTr7a4YNtoP/N2kfmXM1zOH+GJCzy2C2BR1TQXjp4vqH
-         GDA/LWeoqC3jkRBOwL3xFtg94vx+1H639irjVlfRg4dewblBeDglQe8csBloPg8rW/lJ
-         dlAwuyWomKZflyMcMv5iRmiERMs+1tWJsMKum0lxkLG3sHDDI1I13OZQRtAdO3QItorA
-         rOD7snepIa0zL7lq+HRpmMfS2UhJVJQZlTnQbIBkgburSg9gDKSMjUgldtgy/Fz5Uoo2
-         l4IA==
-X-Gm-Message-State: AJIora+BexwVG+H8FWkzCBQeXEj1Ziti0OpA8WFpeMQb3A33ZjKbycxA
-        GEX1YaBrXrDwiuSx2HVLA24=
-X-Google-Smtp-Source: AGRyM1sq4B19d7lmERuBrPFlV3/m2YkAYtRTELTucq5c/IRSj7me2X0BE8FuHX0EtJp00/WkU+EhaA==
-X-Received: by 2002:a05:6808:f92:b0:32f:6e27:6cc7 with SMTP id o18-20020a0568080f9200b0032f6e276cc7mr14067682oiw.36.1655815484060;
-        Tue, 21 Jun 2022 05:44:44 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14c:485:4b69:8593:ab55:c903:7d93])
-        by smtp.gmail.com with ESMTPSA id s22-20020a056870e6d600b000f33ced2c50sm8898350oak.56.2022.06.21.05.44.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jun 2022 05:44:43 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     matthias.bgg@gmail.com
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] arm64: dts: mediatek: Replace 'enable-sdio-wakeup'
-Date:   Tue, 21 Jun 2022 09:44:35 -0300
-Message-Id: <20220621124435.121740-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        bh=iKG7ipis6svDRJZdPtz2/v7PW+5iNIJmzZjHALS7NSA=;
+        b=nASnQzS1qnZBxD7A4i6GfbpcDVP2WdLchoCT4qWYj6PgQoOZXh6fuAQZFeSfsR/Cuo
+         vAtvIMlC7q0zHwoc9gccjPav5Fo0a8dpFm70qiqfKYApUlH0xTzey2w4KhETvJWcEt1J
+         KDyAr3UAq2B85rOlOSGDgKf3LKTFqo2BcPwfAynDc8Y8PBXR77Q3p/jCZuxK/V6zcGfj
+         mI+C4fwZ4ogJ32vU+VyXcRqmqshgHuzcEhX4J7c3HxRkUIg0QG/TMYOAF/2kKwAAd/bZ
+         TbV4ZVVaKWBQFwbnSmPLV28fW09tl5INxX8z02SZd6WOB/hNMcY84S79cMCJYCxQPCpk
+         zYiw==
+X-Gm-Message-State: AJIora+Wzm4Py+vTH9DW5SbekBEO53gAeS6g85B4lV+4xhj0h6bYla25
+        B1A/wtydw9HC7ejo35qXKztsrg==
+X-Google-Smtp-Source: AGRyM1vKW37lesBOhQl1w2hkQXH+6mMPK7WPBmLgxo70ZkWNzmO3m43rOEkPpANuofDWkYzsHia7IQ==
+X-Received: by 2002:a05:6402:2419:b0:435:1e2a:19ce with SMTP id t25-20020a056402241900b004351e2a19cemr35898425eda.370.1655817077646;
+        Tue, 21 Jun 2022 06:11:17 -0700 (PDT)
+Received: from [192.168.0.220] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id u17-20020a1709060b1100b006ff52dfccf3sm7522455ejg.211.2022.06.21.06.11.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jun 2022 06:11:17 -0700 (PDT)
+Message-ID: <d0f3bab8-fadb-709c-7118-20e23fba1dc4@linaro.org>
+Date:   Tue, 21 Jun 2022 15:11:15 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v4 3/4] clocksource/drivers/exynos_mct: Support
+ local-timers property
+Content-Language: en-US
+To:     tglx@linutronix.de, daniel.lezcano@linaro.org
+Cc:     kernel@axis.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, alim.akhtar@samsung.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        krzysztof.kozlowski@linaro.org
+References: <20220609112738.359385-1-vincent.whitchurch@axis.com>
+ <20220609112738.359385-4-vincent.whitchurch@axis.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220609112738.359385-4-vincent.whitchurch@axis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On 09/06/2022 13:27, Vincent Whitchurch wrote:
+> If the device tree indicates that the hardware requires that the
+> processor only use certain local timers, respect that.
+> 
+> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
 
-As explained in Documentation/devicetree/bindings/mmc/mmc-controller.yaml,
-the 'enable-sdio-wakeup' property is considered deprecated.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Replace it with the 'wakeup-source' property instead.
+Daniel,
+All patches got my review. Do you need here anything more? It seems it's
+only me who reviews such code, so I don't expect more Rb-tags. :)
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi    | 2 +-
- arch/arm64/boot/dts/mediatek/mt8183-evb.dts     | 2 +-
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi  | 2 +-
- arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-index 923c1c3477e5..e21feb85d822 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-@@ -410,7 +410,7 @@ &mmc3 {
- 	sd-uhs-sdr50;
- 	sd-uhs-sdr104;
- 	keep-power-in-suspend;
--	enable-sdio-wakeup;
-+	wakeup-source;
- 	cap-sdio-irq;
- 	vmmc-supply = <&sdio_fixed_3v3>;
- 	vqmmc-supply = <&mt6397_vgp3_reg>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-index 7ac9864db9de..52dc4a50e34d 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-@@ -134,7 +134,7 @@ &mmc1 {
- 	vmmc-supply = <&mt6358_vmch_reg>;
- 	vqmmc-supply = <&mt6358_vmc_reg>;
- 	keep-power-in-suspend;
--	enable-sdio-wakeup;
-+	wakeup-source;
- 	non-removable;
- };
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index b50261e8b9ed..89e4358f140a 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -382,7 +382,7 @@ &mmc1 {
- 	sd-uhs-sdr50;
- 	sd-uhs-sdr104;
- 	keep-power-in-suspend;
--	enable-sdio-wakeup;
-+	wakeup-source;
- 	cap-sdio-irq;
- 	non-removable;
- 	no-mmc;
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-index afeb5cd37826..530e0c9ce0c9 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-@@ -159,7 +159,7 @@ &mmc1 {
- 	vmmc-supply = <&mt6358_vmch_reg>;
- 	vqmmc-supply = <&mt6358_vmc_reg>;
- 	keep-power-in-suspend;
--	enable-sdio-wakeup;
-+	wakeup-source;
- 	non-removable;
- };
- 
--- 
-2.25.1
-
+Best regards,
+Krzysztof
