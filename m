@@ -2,425 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC235552A88
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 07:36:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 958BD552A96
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 07:48:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344994AbiFUFfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 01:35:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48472 "EHLO
+        id S235691AbiFUFsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 01:48:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345235AbiFUFfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 01:35:43 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB8D321E2E
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 22:35:41 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id o18so4505482plg.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Jun 2022 22:35:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=DU5fNNWXPYhNYwE/lt4TzVrSslQtW1sH0pS8VT3mUe4=;
-        b=V1aVo0F+hLQz5DkiDdx6+8MFZfPeIdkr6uGkQUXvfEb8iwC1e2dGqcJT5DePaMFM2e
-         MMC0Clkv2wiraOnPJOxAfnipUVLaOYE6V/S6783xPchvgH9xN/+cILgvs7zR/OH1FjwT
-         RM3fw2y1qIBYy53/Hw4xM1OXeX8A7gBBsNHmE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=DU5fNNWXPYhNYwE/lt4TzVrSslQtW1sH0pS8VT3mUe4=;
-        b=mUKuLyyWb/qgXrXEEJwwoZefVxy0CWEop693GxPMjBVsa1wL0rdT7e1JaqQpJP7pFS
-         xULRNX41qEPWHGBb4PH+TXFenY0WgcLWMQ8q+Nf0HGrwc5vQPaz3ri8dZagvO/Aqhnuk
-         1yVk8o0QJxSLcg3U+Q/TV+tUXq2Pim3BLQ2JnT5MNJcFzoA4/4v77esGVHfgg38tPmrM
-         xStxrkvuRbtd/vV5IpPyRZn8U0yX5VAlP6+7BLMvhrbQoqkPvlOtkywonXpqTg9rFpTO
-         k7+tQWa7CunxBX1x/ort4GS1kquexvijXbcoczniwDIaaQ7YslvVaeavKO7CBuDgfuZ3
-         CEWg==
-X-Gm-Message-State: AJIora8niTItJtZ4qvn66zEMzCi19KzW/5Rl5jeEBAoj5hKh3wP0mCAl
-        mq7UgI1H4KGg079pACdiNIoJkQ==
-X-Google-Smtp-Source: AGRyM1vDyVVoCHuwAkTocq2fs04cgzgt0HD90UQ04mcql8E3CuEXBqCcPFm6LjBcbkzKr1Uo45Dtjw==
-X-Received: by 2002:a17:902:e889:b0:16a:3c79:f92f with SMTP id w9-20020a170902e88900b0016a3c79f92fmr369757plg.51.1655789741555;
-        Mon, 20 Jun 2022 22:35:41 -0700 (PDT)
-Received: from joebar-glaptop.lan (c-71-202-34-56.hsd1.ca.comcast.net. [71.202.34.56])
-        by smtp.gmail.com with ESMTPSA id k7-20020a63ab47000000b00408af01cb42sm10061676pgp.81.2022.06.20.22.35.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jun 2022 22:35:41 -0700 (PDT)
-From:   "Joseph S. Barrera III" <joebar@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "Joseph S. Barrera III" <joebar@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v9 5/5] arm64: dts: qcom: sc7180: Add kingoftown dts files
-Date:   Mon, 20 Jun 2022 22:33:51 -0700
-Message-Id: <20220620223345.v9.5.Ib62291487a664a65066d18a3e83c5428a6d2cc6c@changeid>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20220621053351.650431-1-joebar@chromium.org>
-References: <20220621053351.650431-1-joebar@chromium.org>
+        with ESMTP id S1344723AbiFUFsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 01:48:03 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E68F2AD2;
+        Mon, 20 Jun 2022 22:47:53 -0700 (PDT)
+X-UUID: f18cbc3e1fbe43c7bcb3a87397293eab-20220621
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:c012ab04-bc46-424e-87ea-77325f782ab4,OB:10,L
+        OB:10,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,A
+        CTION:release,TS:45
+X-CID-INFO: VERSION:1.1.6,REQID:c012ab04-bc46-424e-87ea-77325f782ab4,OB:10,LOB
+        :10,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-META: VersionHash:b14ad71,CLOUDID:bfab13ea-f7af-4e69-92ee-0fd74a0c286c,C
+        OID:97c85fc92e71,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: f18cbc3e1fbe43c7bcb3a87397293eab-20220621
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 730324855; Tue, 21 Jun 2022 13:47:48 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 21 Jun 2022 13:47:44 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 21 Jun 2022 13:47:44 +0800
+Message-ID: <9b7e78729878115768f61929feac8fc9ed6b4f29.camel@mediatek.com>
+Subject: Re: [PATCH v12 11/14] drm/mediatek: dpi: Add tvd_clk enable/disable
+ flow
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 21 Jun 2022 13:47:44 +0800
+In-Reply-To: <e8ec7c5f8a750a1748b482b040c6efafc1149401.camel@mediatek.com>
+References: <20220620121028.29234-1-rex-bc.chen@mediatek.com>
+         <20220620121028.29234-12-rex-bc.chen@mediatek.com>
+         <218de671054a2c02d47a0bb4a31a0b07d24d7eee.camel@mediatek.com>
+         <7bffe5226a80474f150ef67e36d2b75ea8e8a9d8.camel@mediatek.com>
+         <6af179e2995ce2f4f2e7c72f10516afb0c1604a3.camel@mediatek.com>
+         <4a873de158868368818c00fbfee1a03f620ad8c9.camel@mediatek.com>
+         <e8ec7c5f8a750a1748b482b040c6efafc1149401.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kingoftown is a trogdor-based board. These dts files are unchanged copies
-from the downstream Chrome OS 5.4 kernel.
+On Tue, 2022-06-21 at 12:08 +0800, CK Hu wrote:
+> Hi, Rex:
+> 
+> On Tue, 2022-06-21 at 11:50 +0800, Rex-BC Chen wrote:
+> > On Tue, 2022-06-21 at 11:45 +0800, CK Hu wrote:
+> > > On Tue, 2022-06-21 at 11:11 +0800, Rex-BC Chen wrote:
+> > > > On Tue, 2022-06-21 at 10:55 +0800, CK Hu wrote:
+> > > > > Hi, Bo-Chen:
+> > > > > 
+> > > > > On Mon, 2022-06-20 at 20:10 +0800, Bo-Chen Chen wrote:
+> > > > > > We should enable/disable tvd_clk when power_on/power_off,
+> > > > > > so
+> > > > > > add
+> > > > > > this
+> > > > > > patch to do this.
+> > > > > 
+> > > > > Without this patch, what would happen?
+> > > > > It seems this patch is redundant for these SoCs:
+> > > > > 
+> > > > > static const struct of_device_id mtk_dpi_of_ids[] = {
+> > > > > 	{ .compatible = "mediatek,mt2701-dpi",
+> > > > > 	  .data = &mt2701_conf,
+> > > > > 	},
+> > > > > 	{ .compatible = "mediatek,mt8173-dpi",
+> > > > > 	  .data = &mt8173_conf,
+> > > > > 	},
+> > > > > 	{ .compatible = "mediatek,mt8183-dpi",
+> > > > > 	  .data = &mt8183_conf,
+> > > > > 	},
+> > > > > 	{ .compatible = "mediatek,mt8192-dpi",
+> > > > > 	  .data = &mt8192_conf,
+> > > > > 	},
+> > > > > 	{ },
+> > > > > };
+> > > > > 
+> > > > > Regards,
+> > > > > CK
+> > > > > 
+> > > > 
+> > > > Hello CK,
+> > > > 
+> > > > IMO, this is a bug fix patch. From the usage of clock, if we
+> > > > want
+> > > > to
+> > > > use it, we should enable it . Therefore, I think we should add
+> > > > this
+> > > > and
+> > > > I will add a fix tag for this patch.
+> > > 
+> > > I think mt8173 chromebook use this driver for HDMI output. So
+> > > mt8173
+> > > chromebook HDMI could not work normally?
+> > > 
+> > > Regards,
+> > > CK
+> > > 
+> > 
+> > Hmm..
+> > I am not sure about this. But without this patch, dpi is also
+> > working
+> > in mt8183/mt8192. It may be related to the ccf driver. But anyway,
+> > I
+> > think we should do this whether ccf driver helps us to enable this
+> > clock.
+> 
+> OK. So, could you help to fix the bug in ccf? If HDMI is disabled but
+> ccf still turn on this clock, the power would be wasted.
+> 
+> Regards,
+> CK
+> 
 
-Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
----
+I am also testing if we don't have this patch and it also "works"
+(dpintf is working fine).
+do you think we need this patch or just drop this?
 
-Changes in v9:
-- Simplify trackpad enabling (51d30402be75).
+For the ccf driver, I am not familiar to ccf and also not a expert of
+ccf.
+It just a guest for this. I am not sure whether it's a "bug" or just a.
+And I think it's not the purpose of this series. If there is any issue,
+I think we will fix it in the future.
 
-Changes in v7:
-- Simplify spi0/spi6 labeling (d277cab7afc7).
-- Remove #include of <arm/cros-ec-keyboard.dtsi>.
+BRs,
+Bo-Chen
 
-Changes in v6:
-- Add #include of <arm/cros-ec-keyboard.dtsi> from v5.4.
-
-Changes in v4:
-- Fix description (no downstream bits removed).
-- Add missing version history.
-
-Changes in v2:
-- First inclusion in series.
-
- arch/arm64/boot/dts/qcom/Makefile             |   2 +
- .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  44 ++++
- .../dts/qcom/sc7180-trogdor-kingoftown-r1.dts |  17 ++
- .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   | 224 ++++++++++++++++++
- 4 files changed, 287 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index dc26704dfe34..a9f2ad013179 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -60,6 +60,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r4.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-kingoftown-r0.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-kingoftown-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-kb.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
-new file mode 100644
-index 000000000000..85aec1be98fc
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Kingoftown board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
-+#include "sc7180-trogdor-kingoftown.dtsi"
-+
-+/ {
-+	model = "Google Kingoftown (rev0)";
-+	compatible = "google,kingoftown-rev0", "qcom,sc7180";
-+};
-+
-+/*
-+ * In rev1+, the enable pin of pp3300_fp_tp will be tied to pp1800_l10a
-+ * power rail instead, since kingoftown does not have FP.
-+ */
-+&pp3300_fp_tp {
-+	gpio = <&tlmm 74 GPIO_ACTIVE_HIGH>;
-+	enable-active-high;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&en_fp_rails>;
-+};
-+
-+&tlmm {
-+	en_fp_rails: en-fp-rails {
-+		pinmux {
-+			pins = "gpio74";
-+			function = "gpio";
-+		};
-+
-+		pinconf {
-+			pins = "gpio74";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
-new file mode 100644
-index 000000000000..2be9138ba89f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Kingoftown board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-parade-ps8640.dtsi"
-+#include "sc7180-trogdor-kingoftown.dtsi"
-+
-+/ {
-+	model = "Google Kingoftown (rev1+)";
-+	compatible = "google,kingoftown", "qcom,sc7180";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-new file mode 100644
-index 000000000000..2268f3e7b5f2
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
-@@ -0,0 +1,224 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Kingoftown board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+#include "sc7180-trogdor.dtsi"
-+#include "sc7180-trogdor-lte-sku.dtsi"
-+
-+&alc5682 {
-+	compatible = "realtek,rt5682s";
-+	realtek,dmic1-clk-pin = <2>;
-+	realtek,dmic-clk-rate-hz = <2048000>;
-+};
-+
-+&ap_tp_i2c {
-+	status = "okay";
-+};
-+
-+ap_ts_pen_1v8: &i2c4 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	ap_ts: touchscreen@10 {
-+		compatible = "elan,ekth3500";
-+		reg = <0x10>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+		vcc33-supply = <&pp3300_ts>;
-+
-+		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&keyboard_controller {
-+	function-row-physmap = <
-+		MATRIX_KEY(0x00, 0x02, 0)       /* T1 */
-+		MATRIX_KEY(0x03, 0x02, 0)       /* T2 */
-+		MATRIX_KEY(0x02, 0x02, 0)       /* T3 */
-+		MATRIX_KEY(0x01, 0x02, 0)       /* T4 */
-+		MATRIX_KEY(0x03, 0x04, 0)       /* T5 */
-+		MATRIX_KEY(0x02, 0x04, 0)       /* T6 */
-+		MATRIX_KEY(0x01, 0x04, 0)       /* T7 */
-+		MATRIX_KEY(0x02, 0x09, 0)       /* T8 */
-+		MATRIX_KEY(0x01, 0x09, 0)       /* T9 */
-+		MATRIX_KEY(0x00, 0x04, 0)       /* T10 */
-+	>;
-+	linux,keymap = <
-+		MATRIX_KEY(0x00, 0x02, KEY_BACK)
-+		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
-+		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
-+		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
-+		MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
-+		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
-+		MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
-+		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
-+		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
-+		MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
-+
-+		CROS_STD_MAIN_KEYMAP
-+	>;
-+};
-+
-+&panel {
-+	compatible = "edp-panel";
-+};
-+
-+&pp3300_dx_edp {
-+	gpio = <&tlmm 67 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&sound {
-+	compatible = "google,sc7180-trogdor";
-+	model = "sc7180-rt5682s-max98357a-1mic";
-+};
-+
-+&wifi {
-+	qcom,ath10k-calibration-variant = "GO_KINGOFTOWN";
-+};
-+
-+/* PINCTRL - modifications to sc7180-trogdor.dtsi */
-+
-+&en_pp3300_dx_edp {
-+	pinmux {
-+		pins = "gpio67";
-+	};
-+
-+	pinconf {
-+		pins = "gpio67";
-+	};
-+};
-+
-+/* PINCTRL - board-specific pinctrl */
-+
-+&tlmm {
-+	gpio-line-names = "TP_INT_L",		/* 0 */
-+			  "AP_RAM_ID0",
-+			  "AP_SKU_ID2",
-+			  "AP_RAM_ID1",
-+			  "",
-+			  "AP_RAM_ID2",
-+			  "AP_TP_I2C_SDA",
-+			  "AP_TP_I2C_SCL",
-+			  "TS_RESET_L",
-+			  "TS_INT_L",
-+			  "",			/* 10 */
-+			  "EDP_BRIJ_IRQ",
-+			  "AP_EDP_BKLTEN",
-+			  "",
-+			  "",
-+			  "EDP_BRIJ_I2C_SDA",
-+			  "EDP_BRIJ_I2C_SCL",
-+			  "HUB_RST_L",
-+			  "",
-+			  "",
-+			  "",			/* 20 */
-+			  "",
-+			  "",
-+			  "AMP_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "HP_IRQ",
-+			  "",
-+			  "",			/* 30 */
-+			  "AP_BRD_ID2",
-+			  "BRIJ_SUSPEND",
-+			  "AP_BRD_ID0",
-+			  "AP_H1_SPI_MISO",
-+			  "AP_H1_SPI_MOSI",
-+			  "AP_H1_SPI_CLK",
-+			  "AP_H1_SPI_CS_L",
-+			  "BT_UART_CTS",
-+			  "BT_UART_RTS",
-+			  "BT_UART_TXD",	/* 40 */
-+			  "BT_UART_RXD",
-+			  "H1_AP_INT_ODL",
-+			  "",
-+			  "UART_AP_TX_DBG_RX",
-+			  "UART_DBG_TX_AP_RX",
-+			  "HP_I2C_SDA",
-+			  "HP_I2C_SCL",
-+			  "FORCED_USB_BOOT",
-+			  "AMP_BCLK",
-+			  "AMP_LRCLK",		/* 50 */
-+			  "AMP_DIN",
-+			  "",
-+			  "HP_BCLK",
-+			  "HP_LRCLK",
-+			  "HP_DOUT",
-+			  "HP_DIN",
-+			  "HP_MCLK",
-+			  "AP_SKU_ID0",
-+			  "AP_EC_SPI_MISO",
-+			  "AP_EC_SPI_MOSI",	/* 60 */
-+			  "AP_EC_SPI_CLK",
-+			  "AP_EC_SPI_CS_L",
-+			  "AP_SPI_CLK",
-+			  "AP_SPI_MOSI",
-+			  "AP_SPI_MISO",
-+			  /*
-+			   * AP_FLASH_WP_L is crossystem ABI. Schematics
-+			   * call it BIOS_FLASH_WP_L.
-+			   */
-+			  "AP_FLASH_WP_L",
-+			  "EN_PP3300_DX_EDP",
-+			  "AP_SPI_CS0_L",
-+			  "",
-+			  "",			/* 70 */
-+			  "",
-+			  "",
-+			  "",
-+			  "EN_FP_RAILS",
-+			  "UIM2_DATA",
-+			  "UIM2_CLK",
-+			  "UIM2_RST",
-+			  "UIM2_PRESENT_L",
-+			  "UIM1_DATA",
-+			  "UIM1_CLK",		/* 80 */
-+			  "UIM1_RST",
-+			  "",
-+			  "CODEC_PWR_EN",
-+			  "HUB_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "AP_SKU_ID1",		/* 90 */
-+			  "AP_RST_REQ",
-+			  "",
-+			  "AP_BRD_ID1",
-+			  "AP_EC_INT_L",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",			/* 100 */
-+			  "",
-+			  "",
-+			  "",
-+			  "EDP_BRIJ_EN",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",			/* 110 */
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "AP_TS_PEN_I2C_SDA",
-+			  "AP_TS_PEN_I2C_SCL",
-+			  "DP_HOT_PLUG_DET",
-+			  "EC_IN_RW_ODL";
-+};
--- 
-2.31.0
+> > 
+> > BRs,
+> > Bo-Chen
+> > 
+> > > > 
+> > > > BRs,
+> > > > Bo-Chen
+> > > > > 
+> > > > > > 
+> > > > > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/mediatek/mtk_dpi.c | 11 ++++++++++-
+> > > > > >  1 file changed, 10 insertions(+), 1 deletion(-)
+> > > > > > 
+> > > > > > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > > > > > b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > > > > > index 2717b1741b7a..f83ecb154457 100644
+> > > > > > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > > > > > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > > > > > @@ -455,6 +455,7 @@ static void mtk_dpi_power_off(struct
+> > > > > > mtk_dpi
+> > > > > > *dpi)
+> > > > > >  	mtk_dpi_disable(dpi);
+> > > > > >  	clk_disable_unprepare(dpi->pixel_clk);
+> > > > > >  	clk_disable_unprepare(dpi->engine_clk);
+> > > > > > +	clk_disable_unprepare(dpi->tvd_clk);
+> > > > > >  }
+> > > > > >  
+> > > > > >  static int mtk_dpi_power_on(struct mtk_dpi *dpi)
+> > > > > > @@ -464,10 +465,16 @@ static int mtk_dpi_power_on(struct
+> > > > > > mtk_dpi
+> > > > > > *dpi)
+> > > > > >  	if (++dpi->refcount != 1)
+> > > > > >  		return 0;
+> > > > > >  
+> > > > > > +	ret = clk_prepare_enable(dpi->tvd_clk);
+> > > > > > +	if (ret) {
+> > > > > > +		dev_err(dpi->dev, "Failed to enable tvd pll:
+> > > > > > %d\n",
+> > > > > > ret);
+> > > > > > +		goto err_refcount;
+> > > > > > +	}
+> > > > > > +
+> > > > > >  	ret = clk_prepare_enable(dpi->engine_clk);
+> > > > > >  	if (ret) {
+> > > > > >  		dev_err(dpi->dev, "Failed to enable engine
+> > > > > > clock:
+> > > > > > %d\n", ret);
+> > > > > > -		goto err_refcount;
+> > > > > > +		goto err_engine;
+> > > > > >  	}
+> > > > > >  
+> > > > > >  	ret = clk_prepare_enable(dpi->pixel_clk);
+> > > > > > @@ -484,6 +491,8 @@ static int mtk_dpi_power_on(struct
+> > > > > > mtk_dpi
+> > > > > > *dpi)
+> > > > > >  
+> > > > > >  err_pixel:
+> > > > > >  	clk_disable_unprepare(dpi->engine_clk);
+> > > > > > +err_engine:
+> > > > > > +	clk_disable_unprepare(dpi->tvd_clk);
+> > > > > >  err_refcount:
+> > > > > >  	dpi->refcount--;
+> > > > > >  	return ret;
+> > > > > 
+> > > > > 
+> > > > 
+> > > > 
+> > > 
+> > > 
+> > 
+> > 
+> 
+> 
 
