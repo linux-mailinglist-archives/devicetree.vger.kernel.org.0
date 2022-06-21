@@ -2,76 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BA2D5531D5
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 14:21:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF9E25531DA
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 14:21:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229921AbiFUMVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 08:21:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55186 "EHLO
+        id S1347196AbiFUMVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 08:21:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349717AbiFUMUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 08:20:52 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B81D1D313
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:20:51 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id pk21so3977853ejb.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:20:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=WGElSp8mpEadMRBQCrftcGEEprjog0OtBAkkb6JBrzw=;
-        b=Zhlo8AWG/JtH6eAN1M+0taZxVbHr91fpNFwkRqNZpJlzI5i92G0MtqE7rJ3RViC9jQ
-         06ujZCYLIN+ptWjGA7jQv9eeqvKJnfg6uEh9aA5pbygLEf+wFOy9dj8utQODrzfANhjr
-         zzvDfYokR5rPo+FzIcQwjWndLxsa1eQYZG4XIcakxMsQnP8tdFbO4Py7wjD2KiVUv5A6
-         ZuXBlObMW7sAF5fdoVoOX7DDd767QbtUkm6HUegxNmnLZzWgQ1qE9GwQDZANFcX4L1Sb
-         cM6XPkqUE5xTDgJoqXCFbjJ/ay3DOUiX1FEvxoTmxdMPTWDHBxoSao4aGLhqkrMePfRx
-         rPUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=WGElSp8mpEadMRBQCrftcGEEprjog0OtBAkkb6JBrzw=;
-        b=Xqu7JruYcC6T1e400O6B4RMZ+u1Ho9BECBTytlDysOqTsPZWyAE9XUjzkWNBFhTFf4
-         B8nmNNI5Vx1wDToldAwP2TCoFhg8jFjXEPj3PH1JUAvm38P7cT1O52GclczNJF0EPVjb
-         0AswHoAXj5knyhV9VPkHFUgDxvfwppeuATYpNmBvMa7xe0MlPMjuFmACqJA4PcIq2LY1
-         zeVGKg3EKHvoIQC/Dc58Il2n/ilERFHB+PDraDpPLlZoawOiQgjOvvsK3MO2NYI0czv/
-         V59Nz4yGPzQZuI0DuT8QSTSaJD1dQ6ELpFHNg8+RUQ+e/S/sUeKz+4opXeaPLsX1lnNr
-         BgDA==
-X-Gm-Message-State: AJIora8WDBFfZwBLSvMrsH4rii8SPewy/5y9fMq4TvY3tgY3l4Eol6t5
-        VmrJwrOha82NvGshZMMBWqquTw==
-X-Google-Smtp-Source: AGRyM1v18K38uZKglk9Uk1W0TWPjruBF48xlJG0nVmclpeTnMAdW2VyrwDvDExZv59wwNP7bHRKlAA==
-X-Received: by 2002:a17:907:7295:b0:71e:bc93:496a with SMTP id dt21-20020a170907729500b0071ebc93496amr17061727ejc.698.1655814050167;
-        Tue, 21 Jun 2022 05:20:50 -0700 (PDT)
-Received: from [192.168.0.220] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id cf9-20020a170906b2c900b00711d5bc20d5sm7508698ejb.221.2022.06.21.05.20.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Jun 2022 05:20:49 -0700 (PDT)
-Message-ID: <63b563ba-8030-798b-a0ab-84fe30efecec@linaro.org>
-Date:   Tue, 21 Jun 2022 14:20:48 +0200
+        with ESMTP id S1350135AbiFUMV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 08:21:29 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF5E22B3C;
+        Tue, 21 Jun 2022 05:21:27 -0700 (PDT)
+X-UUID: e94fb377026848c1af657358276e1a8d-20220621
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:63699e81-a3ed-478e-b6ec-5d68422d7f2f,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.6,REQID:63699e81-a3ed-478e-b6ec-5d68422d7f2f,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:b14ad71,CLOUDID:58661338-5e4b-44d7-80b2-bb618cb09d29,C
+        OID:b4703f8f6c85,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: e94fb377026848c1af657358276e1a8d-20220621
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 388077197; Tue, 21 Jun 2022 20:21:24 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 21 Jun 2022 20:21:23 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 21 Jun 2022 20:21:22 +0800
+Message-ID: <b8becd032f60a0180fcf3e6fa1663add54c24c8c.camel@mediatek.com>
+Subject: Re: [PATCH v11 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "deller@gmx.de" <deller@gmx.de>,
+        "airlied@linux.ie" <airlied@linux.ie>
+CC:     "msp@baylibre.com" <msp@baylibre.com>,
+        "granquet@baylibre.com" <granquet@baylibre.com>,
+        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
+        <jitao.shi@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 21 Jun 2022 20:21:22 +0800
+In-Reply-To: <017bb546af028e881ccd914fad5ac00030199199.camel@mediatek.com>
+References: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
+         <20220610105522.13449-6-rex-bc.chen@mediatek.com>
+         <7a0630c68f2754343521daf7b638a20b44e55624.camel@mediatek.com>
+         <017bb546af028e881ccd914fad5ac00030199199.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 3/3] dt-bindings: arm: stm32: Add Phytec STM32MP1 board
-Content-Language: en-US
-To:     Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        kernel@pengutronix.de
-References: <20220621101538.481143-1-s.trumtrar@pengutronix.de>
- <20220621101538.481143-3-s.trumtrar@pengutronix.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220621101538.481143-3-s.trumtrar@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,11 +90,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/2022 12:15, Steffen Trumtrar wrote:
-> The Phytec STM32MP1 based SoMs feature up to 1 GB DDR3LP RAM, up to 1 GB eMMC,
-> up to 16 MB QSPI and up to 128 GB NAND flash.
+On Mon, 2022-06-20 at 11:19 +0800, CK Hu wrote:
+> On Mon, 2022-06-20 at 11:12 +0800, CK Hu wrote:
+> > On Fri, 2022-06-10 at 18:55 +0800, Bo-Chen Chen wrote:
+> > > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > > 
+> > > This patch adds a embedded displayport driver for the MediaTek
+> > > mt8195
+> > > SoC.
+> > > 
+> > > It supports the MT8195, the embedded DisplayPort units. It offers
+> > > DisplayPort 1.4 with up to 4 lanes.
+> > > 
+> > > The driver creates a child device for the phy. The child device
+> > > will
+> > > never exist without the parent being active. As they are sharing
+> > > a
+> > > register range, the parent passes a regmap pointer to the child
+> > > so
+> > > that
+> > > both can work with the same register range. The phy driver sets
+> > > device
+> > > data that is read by the parent to get the phy device that can be
+> > > used
+> > > to control the phy properties.
+> > > 
+> > > This driver is based on an initial version by
+> > > Jitao shi <jitao.shi@mediatek.com>
+> > > 
+> > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > > [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
+> > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > > ---
+> > 
+> > [snip]
+> > 
+> > > +
+> > > +static void mtk_dp_calculate_pixrate(struct mtk_dp *mtk_dp)
+> > > +{
+> > > +	u8 target_frame_rate = 60;
+> > > +	u32 target_pixel_clk;
+> > > +	struct drm_display_mode mode;
+> > > +	struct mtk_dp_timings *timings = &mtk_dp->info.timings;
+> > > +
+> > > +	drm_display_mode_from_videomode(&timings->vm, &mode);
+> > > +
+> > > +	if (mtk_dp->info.timings.frame_rate > 0) {
+> > > +		target_frame_rate = mtk_dp->info.timings.frame_rate;
+> > > +		target_pixel_clk = mode.htotal * mode.vtotal *
+> > > +				   target_frame_rate;
+> > > +	} else if (mtk_dp->info.timings.pix_rate_khz > 0) {
+> > > +		target_pixel_clk = mtk_dp->info.timings.pix_rate_khz *
+> > > 1000;
+> > > +	} else {
+> > > +		target_pixel_clk = mode.htotal * mode.vtotal *
+> > > +				   target_frame_rate;
+> > > +	}
+> > > +
+> > > +	mtk_dp->info.timings.pix_rate_khz = target_pixel_clk / 1000;
+> > 
+> > It seems that pix_rate_khz is used only here and does not used in
+> > another place, so pix_rate_khz is useless, remove it.
+> 
+> It seems that frame_rate is also redundant, so remove it.
+> 
+> Regards,
+> CK
+> 
 
-This is also not wrapped according to Linux style.
+I think we do use this variable in mtk_dp_parse_drm_mode_timings()
+We use this variable to get target framerate.
 
-Best regards,
-Krzysztof
+BRs,
+Bo-Chen
+
+> > 
+> > Regards,
+> > CK
+> > 
+> > > +}
+> > > +
+> 
+> 
+
