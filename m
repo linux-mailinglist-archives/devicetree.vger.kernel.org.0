@@ -2,78 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62B655538ED
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 19:34:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33912553953
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 20:03:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbiFURcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 13:32:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34518 "EHLO
+        id S237330AbiFUSDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 14:03:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233131AbiFURcy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 13:32:54 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5CACCF2
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:32:52 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id c144so10632854qkg.11
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:32:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jDWLd8u/JyYSgS8BLWA6BB5+c2/1y05vpI/5e/F2mDE=;
-        b=P1dagRCaJZH8jhpZC5udWDf1siXWgC4t/oJeBFlsrALbnhNl3JfXg8bUY5w2WYMUNV
-         fns4Sybzhaf0akPLERfffEnXMHGejmhQGaxMg3zRUlryIsxZRtP/MmJJz/wK16qxApdW
-         v88ye42cesewiXa5FFLDttxOgm5arcV1OtUDpRGUyrHMnappvZma7HFL+pW2PRQnH7Jt
-         d8YJkk7gKXkZ7j0dCIMsI7IA/qmjoU0IUMkGCdEPkl2kqWZMkrnYf9FHvSFIO/DQLeDg
-         +PxZVEv5Q0XxhVQ4pVf7Fip8lhcW5yRjF1pqYXtCyRK3qNTpv38JRFiR1qEbulCMdved
-         rC9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jDWLd8u/JyYSgS8BLWA6BB5+c2/1y05vpI/5e/F2mDE=;
-        b=IFXIxe6WCpStLWNWwdx9IWSqGinRgAYubs8ym+Gusv3YBnSki11DG0NJxhytbMW0ym
-         SQAUDzWhvVr23EacBJufpU4Pe2MbmVxGld6K0oKfeSSlMdxQgUJZh4lZX7tn0LB5JM/r
-         gGzXkHo8DUvRWebde/Ts5Q/eZ3YBquJYZDZCnpLht3CDL/u+Luoj080S3WU0z/6ZXwDi
-         vFWt7zMqRHo4VeLJxu6uAYeYoE7L8yH6180CfSMRWPvvRPspbma0c1rrVae3ceadKMVC
-         rfdwMLo/j0jjdR3A716lmoXH447GmHHWcErClf+A1V625bLpREgc00xRoVMTUEEqjmZQ
-         pBAg==
-X-Gm-Message-State: AJIora9XqxjGAedlXktDs+9K/SepkNa0V5IY0Uq4ideeZy+E0xLvWLGE
-        Rta6J7DlqLIZ8srALf7S6D22MAFJMNUjwA0UG0gh4g==
-X-Google-Smtp-Source: AGRyM1vAJ4oTLEa5lfkAbGOEqYgOyVlTv6vZRypfxxDvdKLImqLbizvk+7KZy/EwBm+aWMjWiL2MV5Sw3IXcWNtJIp4=
-X-Received: by 2002:a05:620a:4305:b0:6a9:3829:c03 with SMTP id
- u5-20020a05620a430500b006a938290c03mr20769832qko.363.1655832771711; Tue, 21
- Jun 2022 10:32:51 -0700 (PDT)
+        with ESMTP id S233796AbiFUSDu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 14:03:50 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3B0C19037;
+        Tue, 21 Jun 2022 11:03:48 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25LI3av3072930;
+        Tue, 21 Jun 2022 13:03:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655834616;
+        bh=D4lJ6CXac8gADtJDuz9BnfzSSTidXj2t1ZNHbx3v8qs=;
+        h=From:To:CC:Subject:Date;
+        b=H3J+vb1r2syJMkadBXRvCNK3H57RRO99QEjxYVcmEgZi+YWA4bJQ8YntKlofL9e/6
+         WHLneRYhBgR+9odj3Zpi12wLq3H3ssnPpV5ZZSCSiwts0RfJIsNGzpPkfcApXa/eO7
+         0u2z8oeFiSIgtP6IJdRZBrvVoMQ7coPL72tAFDEE=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25LI3acu027039
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 21 Jun 2022 13:03:36 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 21
+ Jun 2022 13:03:35 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 21 Jun 2022 13:03:35 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25LI3YcB091018;
+        Tue, 21 Jun 2022 13:03:35 -0500
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     <linux-phy@lists.infradead.org>, <kishon@ti.com>,
+        <vkoul@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <p.yadav@ti.com>, <tomi.valkeinen@ideasonboard.com>,
+        <laurent.pinchart@ideasonboard.com>,
+        <linux-kernel@vger.kernel.org>, <jpawar@cadence.com>,
+        <sjakhade@cadence.com>, <mparab@cadence.com>,
+        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
+        <lee.jones@linaro.org>, Rahul T R <r-ravikumar@ti.com>
+Subject: [PATCH 0/3] Add support for DPHY TX on J721E
+Date:   Tue, 21 Jun 2022 23:33:29 +0530
+Message-ID: <20220621180332.28767-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-References: <20220621160621.24415-1-y.oudjana@protonmail.com>
- <20220621160621.24415-6-y.oudjana@protonmail.com> <CAA8EJprQTiU+=ajKSWbFfbHuVxjEiybTPNez66Ob+4YZ+fXW_A@mail.gmail.com>
- <XJ8UDR.9Y06T8FUTMOH2@gmail.com>
-In-Reply-To: <XJ8UDR.9Y06T8FUTMOH2@gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 21 Jun 2022 20:32:40 +0300
-Message-ID: <CAA8EJppHu1Ld4OdGbMXhxrMAW6=Z79vCKk-Q6Whvi3BVpF6fKA@mail.gmail.com>
-Subject: Re: [PATCH 5/6] dt-bindings: clock: qcom,msm8996-apcc: Fix clocks
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,96 +67,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Jun 2022 at 20:29, Yassine Oudjana <yassine.oudjana@gmail.com> wrote:
->
->
-> On Tue, Jun 21 2022 at 20:07:50 +0300, Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> > On Tue, 21 Jun 2022 at 19:07, Yassine Oudjana
-> > <yassine.oudjana@gmail.com> wrote:
-> >>
-> >>  From: Yassine Oudjana <y.oudjana@protonmail.com>
-> >>
-> >>  The clocks currently listed in clocks and clock-names are the ones
-> >>  supplied by this clock controller, not the ones it consumes. Replace
-> >>  them with the only clock it consumes - the on-board oscillator (XO),
-> >>  and make the properties required.
-> >>
-> >>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> >>  ---
-> >>   .../bindings/clock/qcom,msm8996-apcc.yaml         | 15
-> >> +++++++--------
-> >>   1 file changed, 7 insertions(+), 8 deletions(-)
-> >>
-> >>  diff --git
-> >> a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
-> >> b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
-> >>  index a20cb10636dd..c4971234fef8 100644
-> >>  --- a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
-> >>  +++ b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
-> >>  @@ -26,22 +26,18 @@ properties:
-> >>
-> >>     clocks:
-> >>       items:
-> >>  -      - description: Primary PLL clock for power cluster (little)
-> >>  -      - description: Primary PLL clock for perf cluster (big)
-> >>  -      - description: Alternate PLL clock for power cluster (little)
-> >>  -      - description: Alternate PLL clock for perf cluster (big)
-> >>  +      - description: XO source
-> >>
-> >>     clock-names:
-> >>       items:
-> >>  -      - const: pwrcl_pll
-> >>  -      - const: perfcl_pll
-> >>  -      - const: pwrcl_alt_pll
-> >>  -      - const: perfcl_alt_pll
-> >>  +      - const: xo
-> >>
-> >>   required:
-> >>     - compatible
-> >>     - reg
-> >>     - '#clock-cells'
-> >>  +  - clocks
-> >>  +  - clock-names
-> >
-> > I think we can not list them as required, as then older DT files won't
-> > pass schema validation. But I'll leave this into the hands of Rob and
-> > Krzyshtof.
->
-> The old DT files that didn't have XO defined had a wrong
-> compatible string to begin with (fixed in [1]), so I don't
-> think it's a problem.
+Following series of patches adds support for DPHY TX on TI's J721E
+SoC. New compatible is added and required cdns dphy ops are implemented.
+The series also adds band ctrl configuration required for dphy tx
 
-Looks fine to me then. (Though Rob and Krzysztof have the deciding voice here).
+Rahul T R (3):
+  phy: dt-bindings: cdns,dphy: Add compatible for dphy on j721e
+  phy: cdns-dphy: Add band config for dphy tx
+  phy: cdns-dphy: Add support for DPHY TX on J721e
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
->
-> >>   additionalProperties: false
-> >>
-> >>  @@ -51,4 +47,7 @@ examples:
-> >>           compatible = "qcom,msm8996-apcc";
-> >>           reg = <0x6400000 0x90000>;
-> >>           #clock-cells = <1>;
-> >>  +
-> >>  +        clocks = <&xo_board>;
-> >>  +        clock-names = "xo";
-> >>       };
-> >>  --
-> >>  2.36.1
-> >>
-> >
-> >
-> > --
-> > With best wishes
-> > Dmitry
->
-> [1]
-> https://lore.kernel.org/linux-arm-msm/20210527192958.775434-1-konrad.dybcio@somainline.org/
->
->
-
+ .../devicetree/bindings/phy/cdns,dphy.yaml    |   5 +-
+ drivers/phy/cadence/Kconfig                   |  10 ++
+ drivers/phy/cadence/cdns-dphy.c               | 113 +++++++++++++++++-
+ 3 files changed, 125 insertions(+), 3 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.36.1
+
