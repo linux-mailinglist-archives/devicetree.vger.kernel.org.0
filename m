@@ -2,86 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78EC755323A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 14:38:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E426D553242
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 14:39:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348884AbiFUMgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 08:36:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37972 "EHLO
+        id S233248AbiFUMjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 08:39:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233248AbiFUMgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 08:36:46 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B01523E;
-        Tue, 21 Jun 2022 05:36:44 -0700 (PDT)
-X-UUID: 3d23542066bb47bd896da04832323de9-20220621
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:2b65926c-2a54-459f-84f5-4a15c4badc6e,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.6,REQID:2b65926c-2a54-459f-84f5-4a15c4badc6e,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:b14ad71,CLOUDID:3a9f1338-5e4b-44d7-80b2-bb618cb09d29,C
-        OID:52f5ece34a56,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 3d23542066bb47bd896da04832323de9-20220621
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1555816553; Tue, 21 Jun 2022 20:36:39 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Tue, 21 Jun 2022 20:36:37 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Tue, 21 Jun 2022 20:36:37 +0800
-Message-ID: <b609f8db2a2ae9f5c9e3b6bc60498115bb054990.camel@mediatek.com>
-Subject: Re: [PATCH v11 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "deller@gmx.de" <deller@gmx.de>,
-        "airlied@linux.ie" <airlied@linux.ie>
-CC:     "msp@baylibre.com" <msp@baylibre.com>,
-        "granquet@baylibre.com" <granquet@baylibre.com>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 21 Jun 2022 20:36:37 +0800
-In-Reply-To: <597d190f72427d5d1da7a4ca46b219e2edb69693.camel@mediatek.com>
-References: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
-         <20220610105522.13449-6-rex-bc.chen@mediatek.com>
-         <597d190f72427d5d1da7a4ca46b219e2edb69693.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1350052AbiFUMjo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 08:39:44 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 565DD24099
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:39:42 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id h23so27166659ejj.12
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:39:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fjBt4PhnxyvpQZHwHALGbz1X5a0xwh6G7fjizoTyXiA=;
+        b=eKK2Ss68RzMEMLLhInjk9Sk5Pa7z7rmuUWKu9+SZnuKWe4qM7gbP73qz0k+0u22niv
+         eb+w5qkIBnVo1/QdYtfmHsGDDIrmRlW2DAgJ+7pL/j29za858EuqL++UQ8CBjFy1fGFi
+         vBi+vixQAS2jVjNwmTUZnFV4Spgf1aqGJgKbM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fjBt4PhnxyvpQZHwHALGbz1X5a0xwh6G7fjizoTyXiA=;
+        b=vWyQZ4kbqCZ+EjJkqt7eq4kQWISHb+Tu1W3uW75Up/9bGthPpdXrbKS/z1x9pLlmP7
+         Pp66h9iPdkf48s2aQqpuQESjp6KRbTfFI8Ck/S4bU6Uqa7XJFfPOw1BoRdepY8gQDPUu
+         F1SC/FYX7uT045DVVUp2apQYoA+a4a+RhPX+uJeNSEI+MptzwtqEnjryqTKv5Q58473r
+         JMDI9D00wWo2M6F6NgPc2EzshKFulH78CFeS69ZcjY7Omvk361KmqrXnChM0c6gLAsKu
+         DFiwDVFJRQN/nM/4QQHN240wzfnhUUZi6s32T/t06Ew1ydb1nvTfp5EvrrqzPmJ5U5jS
+         FibA==
+X-Gm-Message-State: AJIora8dj3/LFnz8CrZ2Nq3ecoe5pA97VZMVFuZ592l/x2odkYedDHQQ
+        WzhLAbcOHPWxXP3KxcgmNbUG4C5EQnOqRw==
+X-Google-Smtp-Source: AGRyM1sAWmqa3RsSBvYW/RttYeKcIBN4HDy9kjb49X/P/roUWJ68SolbmiDPG4tyPsDMkNhqnEn7kw==
+X-Received: by 2002:a17:906:779a:b0:715:790f:715c with SMTP id s26-20020a170906779a00b00715790f715cmr24274064ejm.707.1655815180886;
+        Tue, 21 Jun 2022 05:39:40 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-80-116-90-174.pool80116.interbusiness.it. [80.116.90.174])
+        by smtp.gmail.com with ESMTPSA id c19-20020aa7c753000000b004357063bf60sm8003945eds.41.2022.06.21.05.39.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jun 2022 05:39:40 -0700 (PDT)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Oliver Graute <oliver.graute@kococonnector.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org
+Subject: [RESEND PATCH v4 0/6] Input: edt-ft5x06 - Improve configuration
+Date:   Tue, 21 Jun 2022 14:39:31 +0200
+Message-Id: <20220621123937.1330389-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,98 +70,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-06-20 at 11:54 +0800, CK Hu wrote:
-> Hi, Rex:
-> 
-> On Fri, 2022-06-10 at 18:55 +0800, Bo-Chen Chen wrote:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > 
-> > This patch adds a embedded displayport driver for the MediaTek
-> > mt8195
-> > SoC.
-> > 
-> > It supports the MT8195, the embedded DisplayPort units. It offers
-> > DisplayPort 1.4 with up to 4 lanes.
-> > 
-> > The driver creates a child device for the phy. The child device
-> > will
-> > never exist without the parent being active. As they are sharing a
-> > register range, the parent passes a regmap pointer to the child so
-> > that
-> > both can work with the same register range. The phy driver sets
-> > device
-> > data that is read by the parent to get the phy device that can be
-> > used
-> > to control the phy properties.
-> > 
-> > This driver is based on an initial version by
-> > Jitao shi <jitao.shi@mediatek.com>
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> 
-> [snip]
-> 
-> > +
-> > +static int mtk_dp_bridge_atomic_check(struct drm_bridge *bridge,
-> > +				      struct drm_bridge_state
-> > *bridge_state,
-> > +				      struct drm_crtc_state
-> > *crtc_state,
-> > +				      struct drm_connector_state
-> > *conn_state)
-> > +{
-> > +	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
-> > +	struct drm_crtc *crtc = conn_state->crtc;
-> > +	unsigned int input_bus_format;
-> > +
-> > +	input_bus_format = bridge_state->input_bus_cfg.format;
-> > +
-> > +	dev_dbg(mtk_dp->dev, "input format 0x%04x, output format
-> > 0x%04x\n",
-> > +		bridge_state->input_bus_cfg.format,
-> > +		 bridge_state->output_bus_cfg.format);
-> > +
-> > +	mtk_dp->input_fmt = input_bus_format;
-> > +	if (mtk_dp->input_fmt == MEDIA_BUS_FMT_YUYV8_1X16)
-> 
-> input_fmt is used only in this function, so let it be local variable.
-> 
-> Regards,
-> CK
-> 
+The series was born from the analysis and mitigation of a crc problem
+raised by an M06 type device. The added sysfs attributes were helpful
+in debugging the problem. Patches that change the report rate on driver
+probing, mitigated crc errors on kernel bootup. The patch to get/set
+report rate by sysfs for an M12 device, has been tested.
 
-ok, I will do this.
+Changes in v4:
+- Add Rob Herring 'Acked-by' tag.
 
-BRs,
-Bo-Chen
+Changes in v3:
+- Add hz unit suffix.
+- Add '|' to description.
+- Check the lower and upper limits of the report-rate-hz value
+- Convert the M06 report-rate-hz value
 
-> > +		mtk_dp->info.format = DP_PIXELFORMAT_YUV422;
-> > +	else
-> > +		mtk_dp->info.format = DP_PIXELFORMAT_RGB;
-> > +
-> > +	if (!crtc) {
-> > +		drm_err(mtk_dp->drm_dev,
-> > +			"Can't enable bridge as connector state doesn't
-> > have a crtc\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	mtk_dp_parse_drm_mode_timings(mtk_dp, &crtc_state-
-> > > adjusted_mode);
-> > 
-> > +	if (mtk_dp_parse_capabilities(mtk_dp)) {
-> > +		drm_err(mtk_dp->drm_dev,
-> > +			"Can't enable bridge as nothing is plugged
-> > in\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> 
-> 
+Changes in v2:
+- Add Oliver Graute's 'Acked-by' tag to:
+  * Input: edt-ft5x06 - show model name by sysfs
+  * Input: edt-ft5x06 - show firmware version by sysfs
+- Fix yaml file. Tested with `make DT_CHECKER_FLAGS=-m dt_binding_check'.
+
+Dario Binacchi (6):
+  dt-bindings: input: touchscreen: edt-ft5x06: add report-rate-hz
+  Input: edt-ft5x06 - get/set M12 report rate by sysfs
+  Input: edt-ft5x06 - set report rate by dts property
+  Input: edt-ft5x06 - show model name by sysfs
+  Input: edt-ft5x06 - show firmware version by sysfs
+  Input: edt-ft5x06 - show crc and header errors by sysfs
+
+ .../input/touchscreen/edt-ft5x06.yaml         |   8 ++
+ drivers/input/touchscreen/edt-ft5x06.c        | 103 ++++++++++++++++--
+ 2 files changed, 103 insertions(+), 8 deletions(-)
+
+-- 
+2.32.0
 
