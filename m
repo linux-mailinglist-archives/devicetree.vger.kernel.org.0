@@ -2,91 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FA7F552C67
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 09:54:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9469A552C72
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 09:56:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346477AbiFUHyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 03:54:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50692 "EHLO
+        id S1345973AbiFUH4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 03:56:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347566AbiFUHyN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 03:54:13 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6560A240B4
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:54:11 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id v1so25636955ejg.13
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:54:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=TGYC+CLd/1M+90gJK8/fomR0IeIc2wCPl2XftG7b1eQ=;
-        b=GOJ/6dBufOQs/zj+50TNdmUKIpAC87FLuWO1xJhB6j1TTpS+L2sNXMXSSAxNGtGuUm
-         meb69bguCusL1BrbM1+PrgqZf79Ag/Y+EpWCNsurXDkqtg0LKUF3J2ScC3Z6ZRBICknb
-         Mj1RMLBfpDF3ycYFTlvBu1c+1KvGjKajpjjTkbroNgktweP0B86GRdCdfzx9LVGYgbWM
-         KJy2Hdvxd6Hd7gNuTqZX2YcgFYZcoiiRH1LnnBFX6QjFZkbRgVAgF6UB+sHRGrFloDNl
-         1A7aMEbgVFzXlaGs0FZRyec0JR7LgnfrkdJLI3Orh1LrXg5DlRF7uMDn7+2qRJS1/TtG
-         3D5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=TGYC+CLd/1M+90gJK8/fomR0IeIc2wCPl2XftG7b1eQ=;
-        b=bTVKSSHWLYqCLKHRFmHHOCXx48JNFXXDQc/f3LCRy51yezVl1AnbMAXJ1C3LVF7Snz
-         qK04jGdaiCs9ex+2eIeNwpCoIRvKq41PSCBJaB/wGHY3s4I36lZfnEk+nVrM1rYa3+aA
-         OIpJTJW9FCXNkdL51CsJJpAUAT7zdfq83Mgs7tLHtvy8cM+mTbLIgpndZUJ3g6Qo3ihA
-         TN6HJtbITk686z8/QisAMpCM78eNVct3q5/es7e9Z4CMdM/pS3zSR0ls154T3qpcuMev
-         NFOSj2GBGJyy30GcrmHQuhOmAEpVWB6lBT7Rqgl9zsa6Th++ISuqJuEAqHd8cilMen7+
-         Hwvw==
-X-Gm-Message-State: AJIora+jkFGSC7akZSQQxzzN182+CY7o+CbwmHqm/v1REzrgRdeAxNBM
-        B7lLXXy7qmxHEP7nitIC/yTnXA==
-X-Google-Smtp-Source: AGRyM1uqA1FeXdA7Ei4IAR94TJhY69e1fk/nKllBETSu+3zHFfG1fV4TXg6TMSv3VrOLqbYXeneMZg==
-X-Received: by 2002:a17:907:2da6:b0:711:d86d:ccab with SMTP id gt38-20020a1709072da600b00711d86dccabmr24360889ejc.356.1655798050004;
-        Tue, 21 Jun 2022 00:54:10 -0700 (PDT)
-Received: from [192.168.0.216] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l2-20020a056402124200b004357738e04esm6105915edw.21.2022.06.21.00.54.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Jun 2022 00:54:09 -0700 (PDT)
-Message-ID: <626cd8f2-8f54-2877-5b73-c0239a243d99@linaro.org>
-Date:   Tue, 21 Jun 2022 09:54:08 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 2/3] dt-bindings: phy: Add Freescale i.MX8qm Mixel LVDS
- PHY binding
-Content-Language: en-US
-To:     Liu Ying <victor.liu@nxp.com>, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com
-References: <20220620123854.1138028-1-victor.liu@nxp.com>
- <20220620123854.1138028-3-victor.liu@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220620123854.1138028-3-victor.liu@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1347296AbiFUH4k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 03:56:40 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D265A245AB
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:56:38 -0700 (PDT)
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220621075637epoutp047b4f82867bc5370917311a881d4aaf76~6k6-8n48V1415114151epoutp04V
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 07:56:37 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220621075637epoutp047b4f82867bc5370917311a881d4aaf76~6k6-8n48V1415114151epoutp04V
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1655798197;
+        bh=qMkIU/60yigSbDip1bHSim25RSYjPC0FSsBXInxoocM=;
+        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
+        b=o7R+wTJBc5EhObtTVKXwC4+1x0VG19r6NWLBhmL3dKXnF3i+XF+Vg1cKGG/U5Wdn/
+         ibX9od4PrX/0W5NdPqFXinmCWq0hGiS1eeJHoknqNhnRsbcYtMZl1pdGMXIUkICAmx
+         ewkBhzjoKd4zW7md2LErCXt20IIBiya80ZUEWH4I=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+        20220621075635epcas2p153d2731cc2986f491bb6d4accaf87ee7~6k6_7SzU62117621176epcas2p1T;
+        Tue, 21 Jun 2022 07:56:35 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.89]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4LRzNz4RbGz4x9Pp; Tue, 21 Jun
+        2022 07:56:35 +0000 (GMT)
+X-AuditID: b6c32a47-5e1ff700000025aa-5d-62b179b32e90
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        67.39.09642.3B971B26; Tue, 21 Jun 2022 16:56:35 +0900 (KST)
+Mime-Version: 1.0
+Subject: Re: [PATCH v3 3/5] PCI: axis: Add ARTPEC-8 PCIe controller driver
+Reply-To: wangseok.lee@samsung.com
+Sender: Wangseok Lee <wangseok.lee@samsung.com>
+From:   Wangseok Lee <wangseok.lee@samsung.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
+        "lars.persson@axis.com" <lars.persson@axis.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "kw@linux.com" <kw@linux.com>,
+        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
+        "kernel@axis.com" <kernel@axis.com>
+CC:     Moon-Ki Jun <moonki.jun@samsung.com>,
+        Sang Min Kim <hypmean.kim@samsung.com>,
+        Dongjin Yang <dj76.yang@samsung.com>,
+        Yeeun Kim <yeeun119.kim@samsung.com>
+X-Priority: 3
+X-Content-Kind-Code: NORMAL
+In-Reply-To: <e3411d6c-ec64-f20e-4c58-13245fe255b5@kernel.org>
+X-CPGS-Detection: blocking_info_exchange
+X-Drm-Type: N,general
+X-Msg-Generator: Mail
+X-Msg-Type: PERSONAL
+X-Reply-Demand: N
+Message-ID: <20220621075635epcms2p79d73dfb24d1d8d49af7467db48598e6f@epcms2p7>
+Date:   Tue, 21 Jun 2022 16:56:35 +0900
+X-CMS-MailID: 20220621075635epcms2p79d73dfb24d1d8d49af7467db48598e6f
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+X-CPGSPASS: Y
+X-CPGSPASS: Y
+CMS-TYPE: 102P
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrJJsWRmVeSWpSXmKPExsWy7bCmqe7myo1JBmsPyVksacqweHlI02L+
+        kXOsFrtnLGeymDn1DLPF80OzmC0+tahaXHjaw2bxctY9Novz5zewWzT0/Ga1OPLmI7PF/uMr
+        mSwu75rDZnF23nE2iwmrvrFYvPn9gt3i3OJMi9a9R9gtdt45wWzxa+sfJgdRjzXz1jB6XF8X
+        4LFgU6nHplWdbB5Prkxn8ti8pN6jb8sqRo/jN7YzeXzeJBfAGZVtk5GamJJapJCal5yfkpmX
+        bqvkHRzvHG9qZmCoa2hpYa6kkJeYm2qr5OIToOuWmQP0mZJCWWJOKVAoILG4WEnfzqYov7Qk
+        VSEjv7jEVim1ICWnwLxArzgxt7g0L10vL7XEytDAwMgUqDAhO2PTy27mgu1cFQvOTWdsYJzM
+        1cXIySEhYCLRvuATaxcjF4eQwA5Gid2PDjJ2MXJw8AoISvzdIQxSIyzgJfGmtYkRxBYSUJLY
+        sWYeM0RcX+L6im5WEJtNQFfi3+KXbCBzRARmsUks+bqUCcRhFljAKLH/9z5GiG28EjPan7JA
+        2NIS25dvBYtzCthJHD06gx0iriHxY1kvM4QtKnFz9Vt2GPv9sflQc0QkWu+dhaoRlHjwczdU
+        XEpiwZNDrBB2tcT+v7+ZIOwGRon++6kgj0kAXb3jujFImFfAV6J/3zewchYBVYmzL09BneYi
+        0ftuCRuIzSygLbFs4WtmkFZmAU2J9bv0IaYoSxy5xQLzVMPG3+zobGYBPomOw3/h4jvmPYE6
+        Rk1i3sqdzBMYlWchAnoWkl2zEHYtYGRexSiWWlCcm55abFRgDI/b5PzcTYzgNK7lvoNxxtsP
+        eocYmTgYDzFKcDArifDacG9IEuJNSaysSi3Kjy8qzUktPsRoCvTlRGYp0eR8YCbJK4k3NLE0
+        MDEzMzQ3MjUwVxLn9UrZkCgkkJ5YkpqdmlqQWgTTx8TBKdXAJLhlg+rju0+m2H6UOz5H0/Xb
+        xLNemg6zCnUPcuv82N0k1uHMsC936umcDIvohSasF++2r5H1bp6Y+HZNhPi2VRw5ajuvqX27
+        dsoqTSC39PH9M7OiV/F+kytTf6lWOddGcfuh/du+L2Jaseh6YtsOb56f77qO6Nosn2nd+8bC
+        hqU6769f2OxVrCnrPhjKnzkyXejUtoDzff23ZsZ0LT9Znf4sdjXTw91RnHO5r8aZ1k4vN/wl
+        H1ZuslmM2/Xyzp1BazO/nDkXtvX0kTA2tdL/HoV3dcJtZqm+M1S6+dN34vmmSReMDabaKkjv
+        XZq0XedJ/OfQe3HzsqZ1Pz/EHdWZqi4j9LRhx2ZtV3vZjX+WzFdiKc5INNRiLipOBACKymWD
+        bAQAAA==
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7
+References: <e3411d6c-ec64-f20e-4c58-13245fe255b5@kernel.org>
+        <20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
+        <20220614013042epcms2p36f88b7eb7f879fefb2f3fbd4548ad705@epcms2p3>
+        <CGME20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p7>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2022 14:38, Liu Ying wrote:
-> Add bindings for Mixel LVDS PHY found on Freescale i.MX8qm SoC.
-> 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+On=C2=A020/06/2022=C2=A017:35,=C2=A0Krzysztof=20Kozlowski=20wrote:=0D=0A>=
+=20On=C2=A014/06/2022=C2=A003:30,=C2=A0Wangseok=C2=A0Lee=C2=A0wrote:=0D=0A>=
+>=C2=A0Add=C2=A0support=C2=A0Axis,=C2=A0ARTPEC-8=C2=A0SoC.=0D=0A>>=C2=A0ART=
+PEC-8=C2=A0is=C2=A0the=C2=A0SoC=C2=A0platform=C2=A0of=C2=A0Axis=C2=A0Commun=
+ications.=0D=0A>>=C2=A0=0D=0A>=20=0D=0A>=20(...)=0D=0A>=20=0D=0A>>=C2=A0+=
+=0D=0A>>=C2=A0+enum=C2=A0artpec8_pcie_isolation=C2=A0=7B=0D=0A>>=C2=A0+=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0PCIE_CLEAR_ISOLATION=C2=A0=3D=
+=C2=A00,=0D=0A>>=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0PCIE=
+_SET_ISOLATION=C2=A0=3D=C2=A01=0D=0A>>=C2=A0+=7D;=0D=0A>>=C2=A0+=0D=0A>>=C2=
+=A0+enum=C2=A0artpec8_pcie_reg_bit=C2=A0=7B=0D=0A>>=C2=A0+=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0PCIE_REG_BIT_LOW=C2=A0=3D=C2=A00,=0D=0A>>=
+=C2=A0+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0PCIE_REG_BIT_HIGH=C2=
+=A0=3D=C2=A01=0D=0A>>=C2=A0+=7D;=0D=0A>=20=0D=0A>=20Remove=C2=A0this=C2=A0e=
+num.=C2=A0This=C2=A0is=C2=A0redefinition=C2=A0of=C2=A0true/false=C2=A0or=C2=
+=A01/0.=0D=0A>=20=0D=0A>=20Best=C2=A0regards,=0D=0A>=20Krzysztof=0D=0A=0D=
+=0Aok,=20i=20will=20change=20the=20above=20enum=20types=20to=20boolean.=0D=
+=0A=0D=0AThank=20you=20for=20kindness=20reivew.=0D=0A=0D=0ABest=20regards,=
+=0D=0AWangseok=20Lee
