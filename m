@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAED5553887
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 19:08:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73242553893
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 19:09:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352293AbiFURIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 13:08:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45080 "EHLO
+        id S1353370AbiFURJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 13:09:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351920AbiFURIE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 13:08:04 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11864B7C7
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:08:03 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id b142so10605342qkg.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:08:03 -0700 (PDT)
+        with ESMTP id S1353421AbiFURJW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 13:09:22 -0400
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F40FC2A409
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:09:20 -0700 (PDT)
+Received: by mail-qk1-x735.google.com with SMTP id a184so10597472qkg.5
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 10:09:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=3HDmrs3DFE35G4XFfrgco/xuTbSz6ISXl7GhqnFYe1M=;
-        b=tcq2wCeQKzis8PrQ6UfY2M/YKkGpfWBUqCQxcEOs1sC63sjj+sQGJTI/1BO4rat+a1
-         3PuAH/4woUkmhPG2hf6BSEPQhGRIGscgfdN34rN3bdWmtTzdng5nvfg7OXQy/hKMGZB2
-         V8tFtRBjKFNSon3m4mAZbzkGflp8WpvJMb/zDhnnwfL3/u1d94t+gUvj6tspkJNzarZf
-         Hg7ljnxJQja6ytKczVfV4bgKB16JKOpbVY4stSpZtM6mQ5+EQ9A80CQScS6xzv8tIABk
-         b06u0xCD+nGWlOUVHDaIufm+dqYSwCDbJLazUXrL0FI63gPwTJ23Hr7GicGMFCaRJy1L
-         jAag==
+        bh=j7blovD8yZIVSMDnF6wpQvtTZGOIDSOmS5ueDQXNEg4=;
+        b=NeG3Kaj7vE75G3AkBh2+Yw84vXZI5c+6emC1Wwt5NzbaCSOEMo0R+IgeRsgZ2aoHy/
+         xt/JdsNWanaZL5XtJgQ7G7FPbsZmAzZzQhYSHV7fDUsXOviWLHhqow5EGSRA5ZVhIC8W
+         lHXyZX8fXR2Ax489AidUmQYUIVTaYY38D2KOQEn9IOc0RbiXHayDXC3F2lVah4XrN4G1
+         umL9z9YB8em2O6K8hnlCaXLjdOCDtGG6HX5fe6fKNNySnPOkAtYtXSFUzC8jukqqMmMs
+         nqiIoibpyBkamgXTMQRhCDi/mktwUfjkLHR/4NWr9NFeyLerDsRYG8aOyIKF7Wtz/Yqb
+         Knng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=3HDmrs3DFE35G4XFfrgco/xuTbSz6ISXl7GhqnFYe1M=;
-        b=2j4Sj+MOzPTAlIjCklZ8q/egpf4PQSQxv0uD9ZKUB+UF664SHdi//NDbt8h8CipO7b
-         pbCcXx5VYihZYE6fd8CEqE/bAeHQvmLEjtBAWq5DwrkIxUU0u3ZUTQ/VLxhAXPP7A7ol
-         PefUkxvSoWxuwAufyUdqh+TkPqebmiXhClgzqcNSKqlIqfxrBd7gTuC+S6MqkWlf0DHJ
-         tq06NyboeQWHCVQe6V22pOqtt8J1NWliU9yYRaVeX2LRo5mF3s9WDBYXMBBRDmGckMrH
-         N9qLE5QXZL1XcrA+tGmyhrJYnExinht9NKB1fIip2QrnGuHkN6Zm85B022rJ5rFOIdtf
-         TT4A==
-X-Gm-Message-State: AJIora8vF+chOg7DKYcSGFGNd4dDkXxzoDrKX8+8XkTqTGguMF4NdO44
-        qDylSPzlNXJ9rUreawined3Ln+Z+ZJ9HiB/mdbWdTA==
-X-Google-Smtp-Source: AGRyM1uQ/jKdPSTIjotlzhMvoeYQo1L8t6uwWKou2MSwoDlV2zQT7hNIzr//0CS3qto+LtkUZLaL3v8Na0/X0vzgfTY=
-X-Received: by 2002:a05:620a:31a0:b0:6a7:549f:a788 with SMTP id
- bi32-20020a05620a31a000b006a7549fa788mr20758075qkb.203.1655831282044; Tue, 21
- Jun 2022 10:08:02 -0700 (PDT)
+        bh=j7blovD8yZIVSMDnF6wpQvtTZGOIDSOmS5ueDQXNEg4=;
+        b=UisBK2jYoWYCRCI8kMGylucpBAcLgXi/jDJ6dDFZ4RDZw4fvyhWB3DxdmovJE+X2b0
+         PFwYf7L4kw9iTmmGv3735j4QxyF+g8qbi8dfhJMoaXsTFbKuEA5f57n5YrmoMQYW1qzA
+         sSIJIseYrN8JlRqxUN/TI7pstd8fC4k+QCpP6OJrDooFE4r8M3uEukBhcL7Mw6fL4cS/
+         YJnye6krHaJib7C571elpin+LrvoLTtjWg2tbMuKVdmp8cHOLPcOh0j2ull/8qYhh7fE
+         r7nEXFt981tTlo1U9o0BZCaAaMdFVs4Xx2Qy2VzDbTmabRfgzhVXiDXfqHaVuLyLZfFz
+         DPIA==
+X-Gm-Message-State: AJIora9MIEpLi9pDviM3ASHPvskt1hYgsS8/w56qCy5jihL81iEZ6ZzI
+        2R20PZLNFbJ5CjAoEjlYYHbzok+z/zfX01sCcODlPA==
+X-Google-Smtp-Source: AGRyM1vzX9rdE/oum8gEQi8Myh0QDcna7eZrIKYriBs6e5jUFmi+GI0nMJFeYRWdeZlQ0Ly7vp+EGPfSyGI7dzPvJ2U=
+X-Received: by 2002:a05:620a:4156:b0:6a6:f8d2:6d9e with SMTP id
+ k22-20020a05620a415600b006a6f8d26d9emr21129486qko.30.1655831359859; Tue, 21
+ Jun 2022 10:09:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220621160621.24415-1-y.oudjana@protonmail.com> <20220621160621.24415-6-y.oudjana@protonmail.com>
-In-Reply-To: <20220621160621.24415-6-y.oudjana@protonmail.com>
+References: <20220621160621.24415-1-y.oudjana@protonmail.com> <20220621160621.24415-7-y.oudjana@protonmail.com>
+In-Reply-To: <20220621160621.24415-7-y.oudjana@protonmail.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 21 Jun 2022 20:07:50 +0300
-Message-ID: <CAA8EJprQTiU+=ajKSWbFfbHuVxjEiybTPNez66Ob+4YZ+fXW_A@mail.gmail.com>
-Subject: Re: [PATCH 5/6] dt-bindings: clock: qcom,msm8996-apcc: Fix clocks
+Date:   Tue, 21 Jun 2022 20:09:08 +0300
+Message-ID: <CAA8EJpo8E68_nw+H54CqVm7w_5WDYLQYt=UXdyzy=bZobEAs=Q@mail.gmail.com>
+Subject: Re: [PATCH 6/6] clk: qcom: msm8996-cpu: Use parent_data for all clocks
 To:     Yassine Oudjana <yassine.oudjana@gmail.com>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -71,7 +71,7 @@ Cc:     Andy Gross <agross@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,60 +83,183 @@ On Tue, 21 Jun 2022 at 19:07, Yassine Oudjana <yassine.oudjana@gmail.com> wrote:
 >
 > From: Yassine Oudjana <y.oudjana@protonmail.com>
 >
-> The clocks currently listed in clocks and clock-names are the ones
-> supplied by this clock controller, not the ones it consumes. Replace
-> them with the only clock it consumes - the on-board oscillator (XO),
-> and make the properties required.
+> Replace parent_names in PLLs, secondary muxes and primary muxes with
+> parent_data. For primary muxes there were never any *cl_pll_acd clocks,
+> so instead of adding them, put the primary PLLs in both PLL_INDEX and
+> ACD_INDEX, then make sure ACD_INDEX is always picked over PLL_INDEX when
+> setting parent since we always want ACD when using the primary PLLs.
 >
 > Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 > ---
->  .../bindings/clock/qcom,msm8996-apcc.yaml         | 15 +++++++--------
->  1 file changed, 7 insertions(+), 8 deletions(-)
+>  drivers/clk/qcom/clk-cpu-8996.c | 79 ++++++++++++++++++++-------------
+>  1 file changed, 47 insertions(+), 32 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
-> index a20cb10636dd..c4971234fef8 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
-> @@ -26,22 +26,18 @@ properties:
+> diff --git a/drivers/clk/qcom/clk-cpu-8996.c b/drivers/clk/qcom/clk-cpu-8996.c
+> index b3ad9245874d..cdb7b2ef3367 100644
+> --- a/drivers/clk/qcom/clk-cpu-8996.c
+> +++ b/drivers/clk/qcom/clk-cpu-8996.c
+> @@ -112,14 +112,18 @@ static const struct alpha_pll_config hfpll_config = {
+>         .early_output_mask = BIT(3),
+>  };
 >
->    clocks:
->      items:
-> -      - description: Primary PLL clock for power cluster (little)
-> -      - description: Primary PLL clock for perf cluster (big)
-> -      - description: Alternate PLL clock for power cluster (little)
-> -      - description: Alternate PLL clock for perf cluster (big)
-> +      - description: XO source
->
->    clock-names:
->      items:
-> -      - const: pwrcl_pll
-> -      - const: perfcl_pll
-> -      - const: pwrcl_alt_pll
-> -      - const: perfcl_alt_pll
-> +      - const: xo
->
->  required:
->    - compatible
->    - reg
->    - '#clock-cells'
-> +  - clocks
-> +  - clock-names
-
-I think we can not list them as required, as then older DT files won't
-pass schema validation. But I'll leave this into the hands of Rob and
-Krzyshtof.
-
->
->  additionalProperties: false
->
-> @@ -51,4 +47,7 @@ examples:
->          compatible = "qcom,msm8996-apcc";
->          reg = <0x6400000 0x90000>;
->          #clock-cells = <1>;
+> +static const struct clk_parent_data pll_parent[] = {
+> +       { .fw_name = "xo" },
+> +};
 > +
-> +        clocks = <&xo_board>;
-> +        clock-names = "xo";
->      };
+>  static struct clk_alpha_pll pwrcl_pll = {
+>         .offset = PWRCL_REG_OFFSET,
+>         .regs = prim_pll_regs,
+>         .flags = SUPPORTS_DYNAMIC_UPDATE | SUPPORTS_FSM_MODE,
+>         .clkr.hw.init = &(struct clk_init_data){
+>                 .name = "pwrcl_pll",
+> -               .parent_names = (const char *[]){ "xo" },
+> -               .num_parents = 1,
+> +               .parent_data = pll_parent,
+> +               .num_parents = ARRAY_SIZE(pll_parent),
+>                 .ops = &clk_alpha_pll_huayra_ops,
+>         },
+>  };
+> @@ -130,8 +134,8 @@ static struct clk_alpha_pll perfcl_pll = {
+>         .flags = SUPPORTS_DYNAMIC_UPDATE | SUPPORTS_FSM_MODE,
+>         .clkr.hw.init = &(struct clk_init_data){
+>                 .name = "perfcl_pll",
+> -               .parent_names = (const char *[]){ "xo" },
+> -               .num_parents = 1,
+> +               .parent_data = pll_parent,
+> +               .num_parents = ARRAY_SIZE(pll_parent),
+>                 .ops = &clk_alpha_pll_huayra_ops,
+>         },
+>  };
+> @@ -190,8 +194,8 @@ static struct clk_alpha_pll pwrcl_alt_pll = {
+>         .flags = SUPPORTS_OFFLINE_REQ | SUPPORTS_FSM_MODE,
+>         .clkr.hw.init = &(struct clk_init_data) {
+>                 .name = "pwrcl_alt_pll",
+> -               .parent_names = (const char *[]){ "xo" },
+> -               .num_parents = 1,
+> +               .parent_data = pll_parent,
+> +               .num_parents = ARRAY_SIZE(pll_parent),
+>                 .ops = &clk_alpha_pll_hwfsm_ops,
+>         },
+>  };
+> @@ -204,8 +208,8 @@ static struct clk_alpha_pll perfcl_alt_pll = {
+>         .flags = SUPPORTS_OFFLINE_REQ | SUPPORTS_FSM_MODE,
+>         .clkr.hw.init = &(struct clk_init_data) {
+>                 .name = "perfcl_alt_pll",
+> -               .parent_names = (const char *[]){ "xo" },
+> -               .num_parents = 1,
+> +               .parent_data = pll_parent,
+> +               .num_parents = ARRAY_SIZE(pll_parent),
+>                 .ops = &clk_alpha_pll_hwfsm_ops,
+>         },
+>  };
+> @@ -252,6 +256,9 @@ static int clk_cpu_8996_pmux_set_parent(struct clk_hw *hw, u8 index)
+>         u32 val;
+>
+>         val = index;
+> +       /* We always want ACD when using the primary PLL */
+> +       if (val == PLL_INDEX)
+> +               val = ACD_INDEX;
+>         val <<= cpuclk->shift;
+>
+>         return regmap_update_bits(clkr->regmap, cpuclk->reg, mask, val);
+> @@ -282,17 +289,24 @@ static const struct clk_ops clk_cpu_8996_pmux_ops = {
+>         .determine_rate = clk_cpu_8996_pmux_determine_rate,
+>  };
+>
+> +static const struct clk_parent_data pwrcl_smux_parents[] = {
+> +       { .fw_name = "xo" },
+> +       { .hw = &pwrcl_pll_postdiv.hw },
+> +};
+> +
+> +static const struct clk_parent_data perfcl_smux_parents[] = {
+> +       { .fw_name = "xo" },
+> +       { .hw = &perfcl_pll_postdiv.hw },
+> +};
+> +
+>  static struct clk_regmap_mux pwrcl_smux = {
+>         .reg = PWRCL_REG_OFFSET + MUX_OFFSET,
+>         .shift = 2,
+>         .width = 2,
+>         .clkr.hw.init = &(struct clk_init_data) {
+>                 .name = "pwrcl_smux",
+> -               .parent_names = (const char *[]){
+> -                       "xo",
+> -                       "pwrcl_pll_postdiv",
+> -               },
+> -               .num_parents = 2,
+> +               .parent_data = pwrcl_smux_parents,
+> +               .num_parents = ARRAY_SIZE(pwrcl_smux_parents),
+>                 .ops = &clk_regmap_mux_closest_ops,
+>                 .flags = CLK_SET_RATE_PARENT,
+>         },
+> @@ -304,16 +318,27 @@ static struct clk_regmap_mux perfcl_smux = {
+>         .width = 2,
+>         .clkr.hw.init = &(struct clk_init_data) {
+>                 .name = "perfcl_smux",
+> -               .parent_names = (const char *[]){
+> -                       "xo",
+> -                       "perfcl_pll_postdiv",
+> -               },
+> -               .num_parents = 2,
+> +               .parent_data = perfcl_smux_parents,
+> +               .num_parents = ARRAY_SIZE(perfcl_smux_parents),
+>                 .ops = &clk_regmap_mux_closest_ops,
+>                 .flags = CLK_SET_RATE_PARENT,
+>         },
+>  };
+>
+> +static const struct clk_parent_data pwrcl_pmux_parents[] = {
+> +       [SMUX_INDEX] = { .hw = &pwrcl_smux.clkr.hw },
+> +       [PLL_INDEX] = { .hw = &pwrcl_pll.clkr.hw },
+> +       [ACD_INDEX] = { .hw = &pwrcl_pll.clkr.hw },
+> +       [ALT_INDEX] = { .hw = &pwrcl_alt_pll.clkr.hw },
+> +};
+> +
+> +static const struct clk_parent_data perfcl_pmux_parents[] = {
+> +       [SMUX_INDEX] = { .hw = &perfcl_smux.clkr.hw },
+> +       [PLL_INDEX] = { .hw = &perfcl_pll.clkr.hw },
+> +       [ACD_INDEX] = { .hw = &perfcl_pll.clkr.hw },
+> +       [ALT_INDEX] = { .hw = &perfcl_alt_pll.clkr.hw },
+> +};
+> +
+>  static struct clk_cpu_8996_pmux pwrcl_pmux = {
+>         .reg = PWRCL_REG_OFFSET + MUX_OFFSET,
+>         .shift = 0,
+> @@ -323,13 +348,8 @@ static struct clk_cpu_8996_pmux pwrcl_pmux = {
+>         .nb.notifier_call = cpu_clk_notifier_cb,
+>         .clkr.hw.init = &(struct clk_init_data) {
+>                 .name = "pwrcl_pmux",
+> -               .parent_names = (const char *[]){
+> -                       "pwrcl_smux",
+> -                       "pwrcl_pll",
+> -                       "pwrcl_pll_acd",
+> -                       "pwrcl_alt_pll",
+> -               },
+> -               .num_parents = 4,
+> +               .parent_data = pwrcl_pmux_parents,
+
+Please use parent_hws here and below.
+
+> +               .num_parents = ARRAY_SIZE(pwrcl_pmux_parents),
+>                 .ops = &clk_cpu_8996_pmux_ops,
+>                 /* CPU clock is critical and should never be gated */
+>                 .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> @@ -345,13 +365,8 @@ static struct clk_cpu_8996_pmux perfcl_pmux = {
+>         .nb.notifier_call = cpu_clk_notifier_cb,
+>         .clkr.hw.init = &(struct clk_init_data) {
+>                 .name = "perfcl_pmux",
+> -               .parent_names = (const char *[]){
+> -                       "perfcl_smux",
+> -                       "perfcl_pll",
+> -                       "perfcl_pll_acd",
+> -                       "perfcl_alt_pll",
+> -               },
+> -               .num_parents = 4,
+> +               .parent_data = perfcl_pmux_parents,
+> +               .num_parents = ARRAY_SIZE(perfcl_pmux_parents),
+>                 .ops = &clk_cpu_8996_pmux_ops,
+>                 /* CPU clock is critical and should never be gated */
+>                 .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
 > --
 > 2.36.1
 >
