@@ -2,42 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C19745537A2
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 18:14:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79AB75537D1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 18:30:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234558AbiFUQNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 12:13:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35280 "EHLO
+        id S232642AbiFUQaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 12:30:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354146AbiFUQNh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 12:13:37 -0400
-Received: from smtpbg.qq.com (smtpbg139.qq.com [175.27.65.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14B3D6571;
-        Tue, 21 Jun 2022 09:13:32 -0700 (PDT)
-X-QQ-mid: bizesmtp71t1655828007t8vpf67v
-Received: from ubuntu.localdomain ( [106.117.99.68])
-        by bizesmtp.qq.com (ESMTP) with 
-        id ; Wed, 22 Jun 2022 00:13:24 +0800 (CST)
-X-QQ-SSF: 0100000000700090B000B00A0000000
-X-QQ-FEAT: kx8LQfRSHcHF5JzcuCS9S4UVM7t1hm1fZBjnpoMwStvQtf9I7TtB2rx9ZZGe2
-        gzNsqLnzf1x4I8y/0lW4JSw19IUO4Oi6VWmphARxZ21mQzSBq3Xj/FrsOxXtnB6rOT+zKyy
-        AeLeD1GIk08uN1HDav4ayVTtzrrB+wnXj6zcc5VJiWDkH11Hb54ET74p1HBvqnLzBgY3NuA
-        bxrHIJqiPejTYpy0xmZSXolAckexncXiK9LIPCPzRmd7kXJZMb6YO+Z25VTPJp/x/DxSHsk
-        zNOxU5Y0a/5ZT3hwnj34jkoDv54Ndg6X/CtxwIxIAyj/Rpmh8Io6bqdB8Eg10y3sFRL2Ufb
-        zX78WTG
-X-QQ-GoodBg: 0
-From:   Jiang Jian <jiangjian@cdjrlc.com>
-To:     robh+dt@kernel.org, frowand.list@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jiang Jian <jiangjian@cdjrlc.com>
-Subject: [PATCH] of: base: Remove duplicate 'of' in two places.
-Date:   Wed, 22 Jun 2022 00:13:22 +0800
-Message-Id: <20220621161322.17739-1-jiangjian@cdjrlc.com>
-X-Mailer: git-send-email 2.17.1
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:cdjrlc.com:qybgspam:qybgspam6
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR
+        with ESMTP id S231802AbiFUQ37 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 12:29:59 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ECC413FA6
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 09:29:58 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1o3glH-0007xn-5n; Tue, 21 Jun 2022 18:29:55 +0200
+Message-ID: <1bb9aeaf-dc05-3fa4-2b6f-bafbcbec325a@pengutronix.de>
+Date:   Tue, 21 Jun 2022 18:29:53 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH] ARM: dts: imx6qdl-prti6q.dtsi: Add applicable properties
+ to usdhc3
+Content-Language: en-US
+To:     Robin van der Gracht <robin@protonic.nl>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220621140334.568446-1-robin@protonic.nl>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20220621140334.568446-1-robin@protonic.nl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -45,39 +55,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-file: drivers/of/base.c
-line: 1152,1177
-* @matches:    array of of device match structures to search in
-changed to
-* @matches:    array of device match structures to search in
+On 21.06.22 16:03, Robin van der Gracht wrote:
+> The usdhc3 interface is connected to a soldered eMMC chip on all boards
+> that import this dtsi. Adding these properties speeds up the device probe
+> during boot.
+> 
+> Signed-off-by: Robin van der Gracht <robin@protonic.nl>
 
-Signed-off-by: Jiang Jian <jiangjian@cdjrlc.com>
----
- drivers/of/base.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index d4f98c8469ed..f738939cd283 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -1149,7 +1149,7 @@ const struct of_device_id *__of_match_node(const struct of_device_id *matches,
- 
- /**
-  * of_match_node - Tell if a device_node has a matching of_match structure
-- * @matches:	array of of device match structures to search in
-+ * @matches:	array of device match structures to search in
-  * @node:	the of device structure to match against
-  *
-  * Low level utility function used by device matching.
-@@ -1174,7 +1174,7 @@ EXPORT_SYMBOL(of_match_node);
-  *		you pass will not be searched, only the next one
-  *		will; typically, you pass what the previous call
-  *		returned. of_node_put() will be called on it
-- * @matches:	array of of device match structures to search in
-+ * @matches:	array of device match structures to search in
-  * @match:	Updated to point at the matches entry which matched
-  *
-  * Return: A node pointer with refcount incremented, use
+> ---
+>  arch/arm/boot/dts/imx6qdl-prti6q.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/imx6qdl-prti6q.dtsi b/arch/arm/boot/dts/imx6qdl-prti6q.dtsi
+> index 19578f660b09..f0db0d4471f4 100644
+> --- a/arch/arm/boot/dts/imx6qdl-prti6q.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-prti6q.dtsi
+> @@ -94,6 +94,9 @@ &usdhc3 {
+>  	pinctrl-0 = <&pinctrl_usdhc3>;
+>  	bus-width = <8>;
+>  	non-removable;
+> +	no-1-8-v;
+> +	no-sd;
+> +	no-sdio;
+>  	status = "okay";
+>  };
+>  
+
+
 -- 
-2.17.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
