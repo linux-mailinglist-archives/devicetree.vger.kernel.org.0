@@ -2,44 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C640B5533A9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 15:34:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6216F5533D5
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 15:40:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230350AbiFUNeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 09:34:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55628 "EHLO
+        id S1351745AbiFUNiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 09:38:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352032AbiFUNdX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 09:33:23 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F1B9FFB
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 06:33:16 -0700 (PDT)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by albert.telenet-ops.be with bizsmtp
-        id lpZC2700i4C55Sk06pZCno; Tue, 21 Jun 2022 15:33:14 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        with ESMTP id S1351841AbiFUNig (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 09:38:36 -0400
+Received: from metanate.com (unknown [IPv6:2001:8b0:1628:5005::111])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E13AF26;
+        Tue, 21 Jun 2022 06:37:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=metanate.com; s=stronger; h=In-Reply-To:Content-Transfer-Encoding:
+        Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-ID:Content-Description;
+        bh=DC4ZEyWBHqB8Ee7U3iV5pXPcACu5mfk1YFIKPVvFHL0=; b=lbBCVFbO79ungOcgVG+jyWLNrM
+        /KOz1ugytuFjXsCl890ONimeyORTPAQUXBUIjHvM+X177APV2JZaL57SPVVwzPSV8sYu/AsVywSKx
+        h36eglYOvSj+A+72OyE4ORJArfNcTeceSS97vUxpu/hOTBsGgoL55w72ktvIfHGZrT4dKQ31b7fQ5
+        eb0emxr7GEA9U44eUsGxzEnodv9kPHcIZ8MhCDVSrbtmt/aIPrOZRX+JhIQft+ft7W8B6DM8VsVHV
+        vDKEyyI75GWBzNoaDTKDO6QXfcmFEoHFXk8mJXlKwmD+q0fSf//m8h5rohnn4eLPq+fGEWexxN66h
+        R+RDMOZg==;
+Received: from [81.174.171.191] (helo=donbot)
+        by email.metanate.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
         (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1o3e0G-000BZl-Cv; Tue, 21 Jun 2022 15:33:12 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1o3e0F-006Keb-3V; Tue, 21 Jun 2022 15:33:11 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Magnus Damm <magnus.damm@gmail.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] ARM: dts: renesas: Fix DA9063 watchdog sub node names
-Date:   Tue, 21 Jun 2022 15:33:10 +0200
-Message-Id: <1dafdce285f7d14bec9e2033ac87fb30135895db.1655818230.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        (envelope-from <john@metanate.com>)
+        id 1o3e4X-00032a-3U; Tue, 21 Jun 2022 14:37:37 +0100
+Date:   Tue, 21 Jun 2022 14:37:35 +0100
+From:   John Keeping <john@metanate.com>
+To:     LABBE Corentin <clabbe@baylibre.com>
+Cc:     heiko@sntech.de, ardb@kernel.org, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v7 14/33] crypto: rockchip: handle reset also in PM
+Message-ID: <YrHJn6Pl5B/1pj9L@donbot>
+References: <20220508185957.3629088-1-clabbe@baylibre.com>
+ <20220508185957.3629088-15-clabbe@baylibre.com>
+ <YrBUODGF51oUsF1f@donbot>
+ <YrF74tmA9qc+I3JF@Red>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+In-Reply-To: <YrF74tmA9qc+I3JF@Red>
+X-Authenticated: YES
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RDNS_NONE,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,136 +59,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-make dtbs_check:
+On Tue, Jun 21, 2022 at 10:05:54AM +0200, LABBE Corentin wrote:
+> Le Mon, Jun 20, 2022 at 12:04:24PM +0100, John Keeping a écrit :
+> > On Sun, May 08, 2022 at 06:59:38PM +0000, Corentin Labbe wrote:
+> > > reset could be handled by PM functions.
+> > 
+> > Is there any further rationale for this?
+> > 
+> > After this change there is no longer a guaranteed reset pulse on probe
+> > since the reset control may already be de-asserted.  This is normally
+> > the most important case for a reset as it's the only time when the state
+> > of the hardware is unknown.
+> > 
+> > The original use of devm_add_action_or_reset() seems a bit weird already
+> > since there doesn't seem to be any need to assert reset when the driver
+> > is unloaded.
+> > 
+> 
+> I am not an hw engineer, so my knowledge on reset is low.
+> So why not having a reset pulse on probe is a problem ?
 
-    arch/arm/boot/dts/r8a7791-koelsch-single-memory-node.dtb: pmic@58: 'wdt' does not match any of the regexes: 'pinctrl-[0-9]+'
-	    From schema: Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-    ...
+The point of the reset is to bring the hardware back to a known state.
+Since we don't know what state the hardware will be in following the
+bootloader or previous OS, I think the reset in probe is the only place
+that it is important.
 
-Change the watchdog child node names to match the DA9063 DT bindings and
-the Generic Names Recommendation in the Devicetree Specification.
-
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Seen after commit 441613662db7bbf5 ("dt-bindings: mfd: Convert da9063 to
-yaml") in mfd/for-mfd-next.
-
-To be queued in renesas-devel for v5.20.
-
- arch/arm/boot/dts/r8a7790-lager.dts   | 2 +-
- arch/arm/boot/dts/r8a7790-stout.dts   | 2 +-
- arch/arm/boot/dts/r8a7791-koelsch.dts | 2 +-
- arch/arm/boot/dts/r8a7791-porter.dts  | 2 +-
- arch/arm/boot/dts/r8a7792-blanche.dts | 2 +-
- arch/arm/boot/dts/r8a7793-gose.dts    | 2 +-
- arch/arm/boot/dts/r8a7794-alt.dts     | 2 +-
- arch/arm/boot/dts/r8a7794-silk.dts    | 2 +-
- 8 files changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm/boot/dts/r8a7790-lager.dts b/arch/arm/boot/dts/r8a7790-lager.dts
-index 55181690032f870f..dc1b58e1cf1a01eb 100644
---- a/arch/arm/boot/dts/r8a7790-lager.dts
-+++ b/arch/arm/boot/dts/r8a7790-lager.dts
-@@ -442,7 +442,7 @@ rtc {
- 				compatible = "dlg,da9063-rtc";
- 			};
- 
--			wdt {
-+			watchdog {
- 				compatible = "dlg,da9063-watchdog";
- 			};
- 		};
-diff --git a/arch/arm/boot/dts/r8a7790-stout.dts b/arch/arm/boot/dts/r8a7790-stout.dts
-index 2bbc05502d400ba7..f9213927a1094649 100644
---- a/arch/arm/boot/dts/r8a7790-stout.dts
-+++ b/arch/arm/boot/dts/r8a7790-stout.dts
-@@ -342,7 +342,7 @@ rtc {
- 			compatible = "dlg,da9063-rtc";
- 		};
- 
--		wdt {
-+		watchdog {
- 			compatible = "dlg,da9063-watchdog";
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/r8a7791-koelsch.dts b/arch/arm/boot/dts/r8a7791-koelsch.dts
-index ae373e6f7b371f13..062415e33458378d 100644
---- a/arch/arm/boot/dts/r8a7791-koelsch.dts
-+++ b/arch/arm/boot/dts/r8a7791-koelsch.dts
-@@ -803,7 +803,7 @@ rtc {
- 			compatible = "dlg,da9063-rtc";
- 		};
- 
--		wdt {
-+		watchdog {
- 			compatible = "dlg,da9063-watchdog";
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/r8a7791-porter.dts b/arch/arm/boot/dts/r8a7791-porter.dts
-index 41135e3ec4a321f3..c44755c75fbd277e 100644
---- a/arch/arm/boot/dts/r8a7791-porter.dts
-+++ b/arch/arm/boot/dts/r8a7791-porter.dts
-@@ -391,7 +391,7 @@ pmic@5a {
- 		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
- 		interrupt-controller;
- 
--		wdt {
-+		watchdog {
- 			compatible = "dlg,da9063-watchdog";
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/r8a7792-blanche.dts b/arch/arm/boot/dts/r8a7792-blanche.dts
-index b00a2e430b2ab513..aafd16fb324e08a8 100644
---- a/arch/arm/boot/dts/r8a7792-blanche.dts
-+++ b/arch/arm/boot/dts/r8a7792-blanche.dts
-@@ -336,7 +336,7 @@ rtc {
- 			compatible = "dlg,da9063-rtc";
- 		};
- 
--		wdt {
-+		watchdog {
- 			compatible = "dlg,da9063-watchdog";
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/r8a7793-gose.dts b/arch/arm/boot/dts/r8a7793-gose.dts
-index 84bd3468cd2baf96..84794358157eac29 100644
---- a/arch/arm/boot/dts/r8a7793-gose.dts
-+++ b/arch/arm/boot/dts/r8a7793-gose.dts
-@@ -738,7 +738,7 @@ rtc {
- 			compatible = "dlg,da9063-rtc";
- 		};
- 
--		wdt {
-+		watchdog {
- 			compatible = "dlg,da9063-watchdog";
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/r8a7794-alt.dts b/arch/arm/boot/dts/r8a7794-alt.dts
-index 1c4446dea275c907..28b2bd7e5f898e4c 100644
---- a/arch/arm/boot/dts/r8a7794-alt.dts
-+++ b/arch/arm/boot/dts/r8a7794-alt.dts
-@@ -464,7 +464,7 @@ rtc {
- 			compatible = "dlg,da9063-rtc";
- 		};
- 
--		wdt {
-+		watchdog {
- 			compatible = "dlg,da9063-watchdog";
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/r8a7794-silk.dts b/arch/arm/boot/dts/r8a7794-silk.dts
-index 3c1394d4acbff447..3ba96e7c7a1dd85a 100644
---- a/arch/arm/boot/dts/r8a7794-silk.dts
-+++ b/arch/arm/boot/dts/r8a7794-silk.dts
-@@ -434,7 +434,7 @@ rtc {
- 			compatible = "dlg,da9063-rtc";
- 		};
- 
--		wdt {
-+		watchdog {
- 			compatible = "dlg,da9063-watchdog";
- 		};
- 	};
--- 
-2.25.1
-
+If this patch isn't fixing anything, I suggest just dropping it.
