@@ -2,114 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 900185532FE
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 15:11:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92C1A553346
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 15:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349833AbiFUNLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 09:11:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40748 "EHLO
+        id S1351247AbiFUNOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 09:14:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229741AbiFUNLn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 09:11:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2065B1DA6D;
-        Tue, 21 Jun 2022 06:11:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B13B7614FC;
-        Tue, 21 Jun 2022 13:11:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAA18C341C4;
-        Tue, 21 Jun 2022 13:11:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655817102;
-        bh=4xEME0PJkdFrWYpmGq18CjMHFdjMkxkM8iVMwtol8e0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eUVPXq0oGf0ynQ+mmppKszQbX0ExCvwwwyzClTkcVE2WThQMGV7mvgtdtLwZi9kpe
-         dDtkTM9jnjSnDNtlRJewWC2apC09nfHB0duGnIXX0vqBCDd2TgvrAQUuRzZP/zIVMI
-         Qpxjuj6zkn5CTumFR0+GSS6TqhPfsPduG/ILTsZ028IBm564m0B90BDHOesyPEfIDJ
-         lgcjqomPUoKP17Xs6KIlERtTK2y7LLH3NVb06Zrn7GoO6wqzZKmX5zptHYXZ/71NYW
-         AIei+ef2lro1GS4HLIqKo7DmO+D52U9EVKbAKnLXvmtcoi3VNenn9OmHeZRQM95nvV
-         l6dTKpR7L08qQ==
-Date:   Tue, 21 Jun 2022 14:11:35 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Pierluigi Passaro <pierluigi.p@variscite.com>
-Cc:     Alifer Willians de Moraes <alifer.m@variscite.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Eran Matityahu <eran.m@variscite.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
-        "patches@opensource.cirrus.com" <patches@opensource.cirrus.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shengjiu.wang@gmail.com" <shengjiu.wang@gmail.com>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>
-Subject: Re: [PATCH 4/4] ASoC: wm8904: add DMIC support
-Message-ID: <YrHDh6lzdZXj7HcQ@sirena.org.uk>
-References: <20220307141041.27538-1-alifer.m@variscite.com>
- <20220307141041.27538-4-alifer.m@variscite.com>
- <AM6PR08MB4376411B180D8860E2AD3AE0FFB09@AM6PR08MB4376.eurprd08.prod.outlook.com>
+        with ESMTP id S233448AbiFUNOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 09:14:34 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EB63719C23;
+        Tue, 21 Jun 2022 06:14:30 -0700 (PDT)
+Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
+        by maillog.nuvoton.com (Postfix) with ESMTP id B868C1C803E9;
+        Tue, 21 Jun 2022 21:14:28 +0800 (CST)
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 21
+ Jun 2022 21:14:28 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS01.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2375.7 via Frontend
+ Transport; Tue, 21 Jun 2022 21:14:28 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id 03EB161DF1; Tue, 21 Jun 2022 16:14:26 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
+        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
+        <benjaminfair@google.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <p.zabel@pengutronix.de>,
+        <gregkh@linuxfoundation.org>, <daniel.lezcano@linaro.org>,
+        <tglx@linutronix.de>, <wim@linux-watchdog.org>,
+        <linux@roeck-us.net>, <catalin.marinas@arm.com>, <will@kernel.org>,
+        <arnd@arndb.de>, <olof@lixom.net>, <jirislaby@kernel.org>,
+        <shawnguo@kernel.org>, <bjorn.andersson@linaro.org>,
+        <geert+renesas@glider.be>, <marcel.ziswiler@toradex.com>,
+        <vkoul@kernel.org>, <biju.das.jz@bp.renesas.com>,
+        <nobuhiro1.iwamatsu@toshiba.co.jp>, <robert.hancock@calian.com>,
+        <j.neuschaefer@gmx.net>, <lkundrak@v3.sk>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v4 00/18] Introduce Nuvoton Arbel NPCM8XX BMC SoC
+Date:   Tue, 21 Jun 2022 16:14:06 +0300
+Message-ID: <20220621131424.162355-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zPDn0Yp+KJI2UZco"
-Content-Disposition: inline
-In-Reply-To: <AM6PR08MB4376411B180D8860E2AD3AE0FFB09@AM6PR08MB4376.eurprd08.prod.outlook.com>
-X-Cookie: Edited for television.
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset  adds initial support for the Nuvoton 
+Arbel NPCM8XX Board Management controller (BMC) SoC family. 
 
---zPDn0Yp+KJI2UZco
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The Nuvoton Arbel NPCM8XX SoC is a fourth-generation BMC.
+The NPCM8XX computing subsystem comprises a quadcore ARM 
+Cortex A35 ARM-V8 architecture.
 
-On Mon, Jun 20, 2022 at 07:53:56PM +0000, Pierluigi Passaro wrote:
+This patchset adds minimal architecture and drivers such as:
+Clocksource, Clock, Reset, and WD.
 
-> > This means that DMICDAT2 is not usefully selectable at runtime, you've
-> > got IN1 as digital and IN2 as analogue, so while the DMIC/ADC switch is
-> > useful the DMIC1/2 switch is not.
+Some of the Arbel NPCM8XX peripherals are based on Poleg NPCM7XX.
 
-> A customer could have the following working configuration
-> - pin 1: DMIC_CLK
-> - pin 24: LINEIN2R
-> - pin 25: DMICDAT2
-> - pin 26: LINEIN2L
-> - pin 27: DMICDAT1
+This patchset was tested on the Arbel NPCM8XX evaluation board.
 
-> with no shared pins: here there's the chance to select DMIC1, DMIC2 and
-> LINEIN2 at runtime: I can't find a reason for a fixed behavior.
-> Can you please elaborate ?
+Addressed comments from:
+ - Krzysztof Kozlowski: https://www.spinics.net/lists/arm-kernel/msg989907.html
+			https://www.spinics.net/lists/arm-kernel/msg989909.html
+ - Christophe JAILLET : https://www.spinics.net/lists/arm-kernel/msg989825.html
+			https://www.spinics.net/lists/arm-kernel/msg990151.html
 
-So in that case the driver should offer the DMIC1/2 selection.  The
-driver should be looking at which pins are wired up as DMICs and only
-registering controls that can actually be used in the system based on
-the pins that are wired up.
+Changes since version 3:
+ - NPCM8XX clock driver
+	- Rename NPCM8xx clock dt-binding header file.
+	- Remove unused structures.
+	- Improve Handling the clocks registration.
+ - NPCM reset driver
+	- Add ref phandle to dt-binding.
 
---zPDn0Yp+KJI2UZco
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes since version 2:
+ - Remove NPCM8xx WDT compatible patch.
+ - Remove NPCM8xx UART compatible patch.
+ - NPCM8XX clock driver
+	- Add debug new line.
+	- Add 25M fixed rate clock.
+	- Remove unused clocks and clock name from dt-binding.
+ - NPCM reset driver
+	- Revert to npcm7xx dt-binding.
+	- Skip dt binding quotes.
+	- Adding DTS backward compatibility.
+	- Remove NPCM8xx binding include file.
+	- Warp commit message.
+- NPCM8XX device tree:
+	- Remove unused clock nodes (used in the clock driver)
+	- Modify gcr and rst node names.
 
------BEGIN PGP SIGNATURE-----
+Changes since version 1:
+ - NPCM8XX clock driver
+	- Modify dt-binding.
+	- Remove unsed definition and include.
+	- Include alphabetically.
+	- Use clock devm.
+ - NPCM reset driver
+	- Modify dt-binding.
+	- Modify syscon name.
+	- Add syscon support to NPCM7XX dts reset node.
+	- use data structure.
+ - NPCM8XX device tree:
+	- Modify evb compatible name.
+	- Add NPCM7xx compatible.
+	- Remove disable nodes from the EVB DTS.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKxw4YACgkQJNaLcl1U
-h9BfeAf/UZDQPNisaKHZIdpACSlbsSETLopyOjBB/groSLMQsNWcxbfkFhXkhdZS
-mASQEVcOrYDiXD7yh6dcIeBAys+tfFZkrbX5YVBy+3sMm9jufXa7k3gbcJ6fA5rx
-ARo7N0DMY9I2YqAkQ6dtTOxIicnYMxWJibPLagGEc6WiGGbi1CfnlZJ8UmHKTy7T
-CFIAQes0bK4R26y7dZW7ogoSAClxlwImn9pLvrkwEh9VppUsP7XR/SauygBUsl3g
-8gR9o1PjcVI3heKldnX1mQrzN13oJfBm2Vjd+7VGl8cLs3ZaQ8cx4dAgt+zj1JTF
-7EXAU2zpt9gbnFQhQXfk+PuFpldzwA==
-=5L+0
------END PGP SIGNATURE-----
+Tomer Maimon (18):
+  dt-bindings: timer: npcm: Add npcm845 compatible string
+  clocksource: timer-npcm7xx: Add NPCM845 timer support
+  dt-bindings: serial: 8250: Add npcm845 compatible string
+  dt-bindings: watchdog: npcm: Add npcm845 compatible string
+  dt-binding: clk: npcm845: Add binding for Nuvoton NPCM8XX Clock
+  clk: npcm8xx: add clock controller
+  dt-bindings: reset: npcm: add GCR syscon property
+  ARM: dts: nuvoton: add reset syscon property
+  reset: npcm: using syscon instead of device data
+  dt-bindings: reset: npcm: Add support for NPCM8XX
+  reset: npcm: Add NPCM8XX support
+  dt-bindings: arm: npcm: Add maintainer
+  dt-bindings: arm: npcm: Add nuvoton,npcm845 compatible string
+  dt-bindings: arm: npcm: Add nuvoton,npcm845 GCR compatible string
+  arm64: npcm: Add support for Nuvoton NPCM8XX BMC SoC
+  arm64: dts: nuvoton: Add initial NPCM8XX device tree
+  arm64: dts: nuvoton: Add initial NPCM845 EVB device tree
+  arm64: defconfig: Add Nuvoton NPCM family support
 
---zPDn0Yp+KJI2UZco--
+ .../devicetree/bindings/arm/npcm/npcm.yaml    |   7 +
+ .../bindings/arm/npcm/nuvoton,gcr.yaml        |   2 +
+ .../bindings/clock/nuvoton,npcm845-clk.yaml   |  49 ++
+ .../bindings/reset/nuvoton,npcm750-reset.yaml |  10 +-
+ .../devicetree/bindings/serial/8250.yaml      |   1 +
+ .../bindings/timer/nuvoton,npcm7xx-timer.yaml |   2 +
+ .../bindings/watchdog/nuvoton,npcm-wdt.txt    |   3 +-
+ MAINTAINERS                                   |   2 +
+ arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi |   1 +
+ arch/arm64/Kconfig.platforms                  |  11 +
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/nuvoton/Makefile          |   2 +
+ .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 170 +++++
+ .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts  |  30 +
+ .../boot/dts/nuvoton/nuvoton-npcm845.dtsi     |  76 +++
+ arch/arm64/configs/defconfig                  |   3 +
+ drivers/clk/Kconfig                           |   6 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-npcm8xx.c                     | 594 ++++++++++++++++++
+ drivers/clocksource/timer-npcm7xx.c           |   1 +
+ drivers/reset/reset-npcm.c                    | 206 +++++-
+ .../dt-bindings/clock/nuvoton,npcm845-clk.h   |  49 ++
+ 22 files changed, 1191 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
+ create mode 100644 arch/arm64/boot/dts/nuvoton/Makefile
+ create mode 100644 arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+ create mode 100644 arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
+ create mode 100644 arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
+ create mode 100644 drivers/clk/clk-npcm8xx.c
+ create mode 100644 include/dt-bindings/clock/nuvoton,npcm845-clk.h
+
+-- 
+2.33.0
+
