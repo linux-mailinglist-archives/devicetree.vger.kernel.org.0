@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 858D65534BB
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 16:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D03355534BC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 16:42:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348291AbiFUOlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 10:41:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49894 "EHLO
+        id S1351436AbiFUOl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 10:41:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349156AbiFUOlu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 10:41:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8888525289
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 07:41:49 -0700 (PDT)
+        with ESMTP id S1351700AbiFUOl4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 10:41:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20EE25586
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 07:41:55 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2352B616CD
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 14:41:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09D90C3411C;
-        Tue, 21 Jun 2022 14:41:47 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4AD8A6167E
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 14:41:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F06C9C341C4;
+        Tue, 21 Jun 2022 14:41:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655822508;
+        s=k20201202; t=1655822514;
         bh=7O/GgqyXUzzQYtevo4lhAlcT2fBJGD64p4uQHpFwsx0=;
         h=From:To:Cc:Subject:Date:From;
-        b=RLJToAjmIs97OEh5R3ry4Nxnb7cscG4b+FrYQSLxw5gXi6iN28WtiTWsy7NCkHEJM
-         2AWKNfwgfm6v6MVhhKph0SB6ufWZsfNRO2iA42WdcPTF8NuQag0VRugLP5dZLuFNj8
-         0GlC4rxD2T+H4z65XJBz1w0HLOMvvC1GffSlruBLY7G1Hbx9urd3+OeCGHAt6tVSQS
-         pd1NimXuDKdI25FNX8D8Hydxo7G+fGg0cf2AiJvGqer4Ffxb6QPkcyy442NBBPONzV
-         GnF55AXFTE2mtuLsOQyacvFHsE0FyRNSwc9dyisxFxHdwHr8sOK3nFqgRA3JzoDcxu
-         eRBRgIOZoyaXw==
+        b=I1noIyY6OLEXxL7G2Kd3xSxLTBPa/Z9CfRwZkhK0Av0lks68iA0x2PXfrvWARhugJ
+         L8pe3iBPcP3U6dMtFzQxvwlfrp745OcechBhxU7mBp40qqIfrMBi3RdQ2sXutBgkZn
+         aNOp3Wl+KUCniYX0DKwaaAV8XHW4H2BE2VqHwaYOEYdA8AEsolnevQy/uuzw+snfU+
+         eUQq3zpv+J9/8ZKg7fQU97qmZxaVyQDhJfkL7RqnfTlmDXGfLQdayeowIMruYAXbuj
+         eN60lMK4vZ08ckWb5krHK3t9p36zNrKyT07/Brl34btFswaNKFiaMrf88eDJOXjpiV
+         vKFfhW5f43DBQ==
 From:   Dinh Nguyen <dinguyen@kernel.org>
 To:     robh+dt@kernel.org, mark.rutland@arm.com
 Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org
 Subject: [PATCH] arm: dts: socfpga: use the "intel,socfpga-i2c" binding
-Date:   Tue, 21 Jun 2022 09:41:42 -0500
-Message-Id: <20220621144142.1044151-1-dinguyen@kernel.org>
+Date:   Tue, 21 Jun 2022 09:41:50 -0500
+Message-Id: <20220621144150.1044207-1-dinguyen@kernel.org>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
