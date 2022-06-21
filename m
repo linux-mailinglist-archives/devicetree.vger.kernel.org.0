@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E0ED552F86
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 12:16:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87CB6552F85
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 12:16:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346612AbiFUKQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1347196AbiFUKQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 21 Jun 2022 06:16:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50716 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347054AbiFUKQA (ORCPT
+        with ESMTP id S1346612AbiFUKQA (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 06:16:00 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68CB2286E4
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6854F286D6
         for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 03:15:56 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <str@pengutronix.de>)
-        id 1o3avK-0007EV-6B; Tue, 21 Jun 2022 12:15:54 +0200
+        id 1o3avK-0007EW-69; Tue, 21 Jun 2022 12:15:54 +0200
 Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <str@pengutronix.de>)
-        id 1o3avD-001oZZ-Ds; Tue, 21 Jun 2022 12:15:48 +0200
+        id 1o3avD-001oZY-Dv; Tue, 21 Jun 2022 12:15:48 +0200
 Received: from str by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <str@pengutronix.de>)
-        id 1o3avD-002OWD-Tj; Tue, 21 Jun 2022 12:15:47 +0200
+        id 1o3avD-002OWP-UN; Tue, 21 Jun 2022 12:15:47 +0200
 From:   Steffen Trumtrar <s.trumtrar@pengutronix.de>
 To:     linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
@@ -34,9 +34,9 @@ Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         kernel@pengutronix.de, Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Subject: [PATCH v3 2/3] ARM: dts: stm32: add STM32MP1-based Phytec board
-Date:   Tue, 21 Jun 2022 12:15:37 +0200
-Message-Id: <20220621101538.481143-2-s.trumtrar@pengutronix.de>
+Subject: [PATCH v3 3/3] dt-bindings: arm: stm32: Add Phytec STM32MP1 board
+Date:   Tue, 21 Jun 2022 12:15:38 +0200
+Message-Id: <20220621101538.481143-3-s.trumtrar@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220621101538.481143-1-s.trumtrar@pengutronix.de>
 References: <20220621101538.481143-1-s.trumtrar@pengutronix.de>
@@ -55,76 +55,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Phytec STM32MP1-3 Dev board. The devboard uses a Phytec stm32m15-som.
+The Phytec STM32MP1 based SoMs feature up to 1 GB DDR3LP RAM, up to 1 GB eMMC,
+up to 16 MB QSPI and up to 128 GB NAND flash.
 
 Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
 ---
- .../dts/stm32mp157c-phycore-stm32mp1-3.dts    | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
- create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
+ Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
-new file mode 100644
-index 000000000000..e91c0ef499c9
---- /dev/null
-+++ b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
-@@ -0,0 +1,56 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) Phytec GmbH 2019-2020 - All Rights Reserved
-+ * Author: Dom VOVARD <dom.vovard@linrt.com>.
-+ */
+diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+index 8b31565fee59..4bae21769ca1 100644
+--- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
++++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+@@ -143,6 +143,12 @@ properties:
+           - const: seeed,stm32mp157c-odyssey-som
+           - const: st,stm32mp157
+ 
++      - description: Phytec STM32MP1 SoM based Boards
++        items:
++          - enum:
++              - phytec,phycore-stm32mp1-3
++          - const: st,stm32mp157
 +
-+/dts-v1/;
-+
-+#include <dt-bindings/pinctrl/stm32-pinfunc.h>
-+#include "stm32mp157.dtsi"
-+#include "stm32mp15xc.dtsi"
-+#include "stm32mp15xxac-pinctrl.dtsi"
-+#include "stm32mp157c-phycore-stm32mp15-som.dtsi"
-+
-+/ {
-+	model = "PHYTEC phyCORE-STM32MP1-3 Dev Board";
-+	compatible = "phytec,phycore-stm32mp1-3", "st,stm32mp157";
-+};
-+
-+&cryp1 {
-+	status = "okay";
-+};
-+
-+&dts {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "disabled";
-+};
-+
-+&gpu {
-+	status = "okay";
-+	contiguous-area = <&gpu_reserved>;
-+};
-+
-+&i2c4_eeprom {
-+	status = "okay";
-+};
-+
-+&i2c4_rtc {
-+	status = "okay";
-+};
-+
-+&qspi {
-+	status = "okay";
-+};
-+
-+&sdmmc1 {
-+	secure-status = "disabled";
-+};
-+
-+&sdmmc2 {
-+	status = "okay";
-+	secure-status = "disabled";
-+};
+ additionalProperties: true
+ 
+ ...
 -- 
 2.30.2
 
