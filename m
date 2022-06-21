@@ -2,41 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A0BE55296A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 04:33:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BCE5552958
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 04:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344219AbiFUCaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jun 2022 22:30:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48370 "EHLO
+        id S242778AbiFUC3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jun 2022 22:29:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344166AbiFUCaS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 22:30:18 -0400
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE22193D8;
-        Mon, 20 Jun 2022 19:30:18 -0700 (PDT)
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 1EC811A1262;
-        Tue, 21 Jun 2022 04:30:17 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id C70D51A1254;
-        Tue, 21 Jun 2022 04:30:16 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id A3D49180222B;
-        Tue, 21 Jun 2022 10:30:15 +0800 (+08)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     shengjiu.wang@gmail.com
-Subject: [PATCH v3 3/3] arm64: dts: imx8mn-evk: add bt-sco sound card support
-Date:   Tue, 21 Jun 2022 10:16:03 +0800
-Message-Id: <1655777763-21153-4-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1655777763-21153-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1655777763-21153-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        with ESMTP id S1343873AbiFUC3N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jun 2022 22:29:13 -0400
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD51114011;
+        Mon, 20 Jun 2022 19:29:12 -0700 (PDT)
+Received: from kwepemi500011.china.huawei.com (unknown [172.30.72.53])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4LRr6Z5t6kzDsC8;
+        Tue, 21 Jun 2022 10:28:38 +0800 (CST)
+Received: from [127.0.0.1] (10.67.102.125) by kwepemi500011.china.huawei.com
+ (7.221.188.124) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Tue, 21 Jun
+ 2022 10:29:05 +0800
+Message-ID: <62B12CE5.3070605@hisilicon.com>
+Date:   Tue, 21 Jun 2022 10:28:53 +0800
+From:   Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+MIME-Version: 1.0
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, <arm@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <soc@kernel.org>
+Subject: Re: (subset) [PATCH v3 10/40] arm64: dts: hisilicon: correct gpio-keys
+ properties
+References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org> <20220616005333.18491-10-krzysztof.kozlowski@linaro.org> <165572367262.35195.3017202631161821565.b4-ty@linaro.org>
+In-Reply-To: <165572367262.35195.3017202631161821565.b4-ty@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.67.102.125]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ kwepemi500011.china.huawei.com (7.221.188.124)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -45,88 +54,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bt-sco sound card, which supports wb profile as default
+Hi Krzysztof,
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi | 43 +++++++++++++++++++
- 1 file changed, 43 insertions(+)
+On 2022/6/20 19:14, Krzysztof Kozlowski wrote:
+> On Wed, 15 Jun 2022 17:53:03 -0700, Krzysztof Kozlowski wrote:
+>> gpio-keys children do not use unit addresses.
+>>
+>>
+> 
+> Applied, thanks!
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-index d1f6cccfa00d..89e8ec010f1b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-@@ -47,6 +47,11 @@
- 		linux,autosuspend-period = <125>;
- 	};
- 
-+	audio_codec_bt_sco: audio-codec-bt-sco {
-+		compatible = "linux,bt-sco";
-+		#sound-dai-cells = <1>;
-+	};
-+
- 	wm8524: audio-codec {
- 		#sound-dai-cells = <0>;
- 		compatible = "wlf,wm8524";
-@@ -57,6 +62,25 @@
- 		clock-names = "mclk";
- 	};
- 
-+	sound-bt-sco {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "bt-sco-audio";
-+		simple-audio-card,format = "dsp_a";
-+		simple-audio-card,bitclock-inversion;
-+		simple-audio-card,frame-master = <&btcpu>;
-+		simple-audio-card,bitclock-master = <&btcpu>;
-+
-+		btcpu: simple-audio-card,cpu {
-+			sound-dai = <&sai2>;
-+			dai-tdm-slot-num = <2>;
-+			dai-tdm-slot-width = <16>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&audio_codec_bt_sco 1>;
-+		};
-+	};
-+
- 	sound-wm8524 {
- 		compatible = "fsl,imx-audio-wm8524";
- 		model = "wm8524-audio";
-@@ -183,6 +207,16 @@
- 	};
- };
- 
-+&sai2 {
-+	#sound-dai-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai2>;
-+	assigned-clocks = <&clk IMX8MN_CLK_SAI2>;
-+	assigned-clock-parents = <&clk IMX8MN_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <24576000>;
-+	status = "okay";
-+};
-+
- &sai3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sai3>;
-@@ -354,6 +388,15 @@
- 		>;
- 	};
- 
-+	pinctrl_sai2: sai2grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SAI2_TXC_SAI2_TX_BCLK      0xd6
-+			MX8MN_IOMUXC_SAI2_TXFS_SAI2_TX_SYNC     0xd6
-+			MX8MN_IOMUXC_SAI2_TXD0_SAI2_TX_DATA0    0xd6
-+			MX8MN_IOMUXC_SAI2_RXD0_SAI2_RX_DATA0    0xd6
-+		>;
-+	};
-+
- 	pinctrl_sai3: sai3grp {
- 		fsl,pins = <
- 			MX8MN_IOMUXC_SAI3_TXFS_SAI3_TX_SYNC     0xd6
--- 
-2.17.1
+Thanks!
+
+Best Regards,
+Wei
+
+> 
+> [10/40] arm64: dts: hisilicon: correct gpio-keys properties
+>         https://git.kernel.org/krzk/linux/c/717b3096da2ea205c6f31b4c2cd4485671d6ac79
+> 
+> Best regards,
+> 
 
