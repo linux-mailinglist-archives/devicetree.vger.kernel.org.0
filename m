@@ -2,117 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04F7D5535D0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 17:21:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03EE5553606
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 17:25:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352654AbiFUPVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 11:21:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59146 "EHLO
+        id S1352916AbiFUPZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 11:25:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237311AbiFUPVS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 11:21:18 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95CD328705;
-        Tue, 21 Jun 2022 08:21:16 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id g27so12782612wrb.10;
-        Tue, 21 Jun 2022 08:21:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=qd+fXNIigO6bT/TI4/YvAL8F3wpHGElIc1OVu6S8MEo=;
-        b=hm+qUkm+3WNmF/VXhDTQ7wkhJUBeAZiFDPrDnEp8BWAeR8d3pFOZeDGCyK1N39ydx0
-         yn8pHHS0DXq3j8mR/JozSCkdo9RTvoNhnzYbPtyzqGiyQzxGCzmQzCBrM7T24pHY7K/m
-         7fUZHwx7l0mi4092IciMkNS+PfTw1X6n0fxqXrB+vDJyS/Ydl2MnVH38Awygy9hd1y3K
-         L4jcq8kOeXqn0m/mHeM53cn+C1yzvT29hbEVXUQK/C6bcOoHaUwdq32A+AEt6677EbVr
-         toLz3Yz2L/2ZVww0CFftAe58d2/nT4CH26d/AAAKG3nahAP4N6Bt0/KJMX1XhRQB3VNI
-         tLag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qd+fXNIigO6bT/TI4/YvAL8F3wpHGElIc1OVu6S8MEo=;
-        b=uBpcz58g2MTjqG/E45Pz0RLak2h7up0vpt4JrE7BIbhkBi5F/E93Bu+CbUTq1ATHhT
-         neih6YfBldgSmh/p3BDUSEhdjzErUFfwsOEPzv8X9PqIPrXmqWsv+a9EuydFsNRJVZ7w
-         ewcRGtrO9HEo1i1xOcI1sQxoc6lQswAEqznpCpBBXQinNmOXymiXZGsb9y71BwuRiYkc
-         M1O3Qy+7ruBX/PMJEIPdji4fX70OgNxxjXN7dfh68X9mATyNSiDbJbjCgIJJF1Qzkxjk
-         6bBCtTtj47UfD+WdiIPHQ7v1kaWNphLcnl/APaxfk/vYEatRDLwhhGfYWBRDF4g2oaum
-         2TOA==
-X-Gm-Message-State: AJIora8ACHyB5JxYq4zPRk+2Ie+iXSP69OES8mjobAoAE1FUEaCBND9n
-        W5wJHiVSGuzR5xetp9ZjY8w=
-X-Google-Smtp-Source: AGRyM1tQfP7qGqIvY8mVsTifRoAdgXmtbjWBgNERiEbu572ag1ss0LEijGLxMRoKfsRanU1QFaSf7g==
-X-Received: by 2002:adf:e801:0:b0:21b:873f:ed62 with SMTP id o1-20020adfe801000000b0021b873fed62mr17015242wrm.17.1655824875093;
-        Tue, 21 Jun 2022 08:21:15 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.gmail.com with ESMTPSA id f23-20020a7bcc17000000b0039740903c39sm18405298wmh.7.2022.06.21.08.21.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jun 2022 08:21:14 -0700 (PDT)
-Message-ID: <62b1e1ea.1c69fb81.aafda.3244@mx.google.com>
-X-Google-Original-Message-ID: <YrHh6YN6WiGOH1d4@Ansuel-xps.>
-Date:   Tue, 21 Jun 2022 17:21:13 +0200
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] clk: qcom: gcc-ipq806x: use parent_data for the last
- remaining entry
-References: <20220620215150.1875557-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S1352881AbiFUPZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 11:25:05 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4498D2B1A2;
+        Tue, 21 Jun 2022 08:25:01 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25LCQIIO032482;
+        Tue, 21 Jun 2022 17:24:37 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=1DjHc8YrbaZYa2K0821Lb5I79I/6OnNRBe5v5W+s1JU=;
+ b=Pq2DYeD/8pUdcymCVVOeGSCBbH1/E4xbkBFva0+FbL8lZo1k/0Q14hP4PHN7gtAnbt+J
+ op+pEHSTIcNhbKzPvtCyp1yEqjJRNEPlnY9g4tkF3Ezr/iavQT/pQy7IEjSBlzSMc/Xh
+ rYNMAsd5e82qL3fbIKld2Nyelu3I0Wz24gNLEgGtMb5YVIUgQcZLciZBGQ4RFu+ZzKsm
+ 8gFNK67iBklzO9x+UYcy/bMYz1eoZt4f1ihdD2bibq8ox3UPlJeusxd3W0mpHUboZk/S
+ AyQKp/E1yyfWYkmGuNMc1KcF/IW2DjaVFSqqiuH763Sn1wrPm0sD+akLy8F0lfh4kStL yg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3gu9vcjtxx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 21 Jun 2022 17:24:37 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 95E70100034;
+        Tue, 21 Jun 2022 17:24:36 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8FB2722ECD8;
+        Tue, 21 Jun 2022 17:24:36 +0200 (CEST)
+Received: from localhost (10.75.127.50) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 21 Jun
+ 2022 17:24:34 +0200
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+To:     <hminas@synopsys.com>, <gregkh@linuxfoundation.org>,
+        <robh+dt@kernel.org>
+CC:     <stern@rowland.harvard.edu>, <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <amelie.delaunay@foss.st.com>, <fabrice.gasnier@foss.st.com>
+Subject: [PATCH v2 0/4] usb: host: add TPL support to ehci ohci and dwc2
+Date:   Tue, 21 Jun 2022 17:23:46 +0200
+Message-ID: <20220621152350.145745-1-fabrice.gasnier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220620215150.1875557-1-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.64.514
+ definitions=2022-06-21_08,2022-06-21_01,2022-02-23_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 21, 2022 at 12:51:50AM +0300, Dmitry Baryshkov wrote:
-> Use parent_data for the last remaining entry (pll4). This clock is
-> provided by the lcc device.
-> 
-> Fixes: cb02866f9a74 ("clk: qcom: gcc-ipq806x: convert parent_names to parent_data")
-> Cc: Ansuel Smith <ansuelsmth@gmail.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/clk/qcom/gcc-ipq806x.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/qcom/gcc-ipq806x.c b/drivers/clk/qcom/gcc-ipq806x.c
-> index 718de17a1e60..6447f3e81b55 100644
-> --- a/drivers/clk/qcom/gcc-ipq806x.c
-> +++ b/drivers/clk/qcom/gcc-ipq806x.c
-> @@ -79,7 +79,9 @@ static struct clk_regmap pll4_vote = {
->  	.enable_mask = BIT(4),
->  	.hw.init = &(struct clk_init_data){
->  		.name = "pll4_vote",
-> -		.parent_names = (const char *[]){ "pll4" },
-> +		.parent_data = &(const struct clk_parent_data){
-> +			.fw_name = "pll4", .name = "pll4",
-> +		},
->  		.num_parents = 1,
->  		.ops = &clk_pll_vote_ops,
->  	},
-> -- 
-> 2.35.1
-> 
+The Target Peripheral List (TPL) support is used to identify targeted
+devices during Embedded Host (EH) compliance testing. Add TPL support
+setting from device tree on ehci-platform, ohci-platform and dwc2 drivers.
+Also document TPL support in DWC2 dt-bindings.
 
-Hi my intention was finding a way to directly reference the hw clk from
-the lcc driver instead of using fw_name/name parent data. Wonder if that
-would be a better solution... Seems wrong to me to eventually add also
-the pll4 clk in the dts to correctly use the fw_name definition (when
-that will be fixed in the ipq8064 dtsi)
+Changes in v2:
+- Document TPL support in DWC2 dt-bindings
+- Spell TPL and EH
+- Add collected ack
+
+Amelie Delaunay (3):
+  usb: host: ohci-platform: add TPL support
+  usb: host: ehci-platform: add TPL support
+  usb: dwc2: host: add TPL support
+
+Fabrice Gasnier (1):
+  dt-bindings: usb: dwc2: document TPL support
+
+ Documentation/devicetree/bindings/usb/dwc2.yaml | 3 +++
+ drivers/usb/dwc2/hcd.c                          | 3 +++
+ drivers/usb/host/ehci-platform.c                | 2 ++
+ drivers/usb/host/ohci-platform.c                | 3 +++
+ 4 files changed, 11 insertions(+)
 
 -- 
-	Ansuel
+2.25.1
+
