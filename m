@@ -2,83 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 288815531D1
+	by mail.lfdr.de (Postfix) with ESMTP id 738455531D2
 	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 14:20:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347849AbiFUMUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 08:20:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54876 "EHLO
+        id S1348291AbiFUMUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 08:20:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231562AbiFUMUK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 08:20:10 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCD11101F3;
-        Tue, 21 Jun 2022 05:20:08 -0700 (PDT)
-X-UUID: ccc31857e7374f59bde51e3f24d31a16-20220621
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:cf095ce0-0df2-4386-beea-b26d718d7df2,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:b14ad71,CLOUDID:e4caa62d-1756-4fa3-be7f-474a6e4be921,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: ccc31857e7374f59bde51e3f24d31a16-20220621
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1886926876; Tue, 21 Jun 2022 20:20:04 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Tue, 21 Jun 2022 20:20:02 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 21 Jun 2022 20:20:01 +0800
-Message-ID: <67ef34c9ae20db5b97f89ba71471b7e7b67503b0.camel@mediatek.com>
-Subject: Re: [PATCH v11 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "deller@gmx.de" <deller@gmx.de>,
-        "airlied@linux.ie" <airlied@linux.ie>
-CC:     "msp@baylibre.com" <msp@baylibre.com>,
-        "granquet@baylibre.com" <granquet@baylibre.com>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 21 Jun 2022 20:19:56 +0800
-In-Reply-To: <7a0630c68f2754343521daf7b638a20b44e55624.camel@mediatek.com>
-References: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
-         <20220610105522.13449-6-rex-bc.chen@mediatek.com>
-         <7a0630c68f2754343521daf7b638a20b44e55624.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1344495AbiFUMUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 08:20:35 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791C6101F3
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:20:33 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id u12so27069417eja.8
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:20:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=FqXRBoWYjZEUDh9NP8NDg9hGa7Z+YCO68X9tbRPRfAY=;
+        b=U2psEGjiEB6aDgr4BC2Pvn4cA98M35o8czCPFGOoQ0kv0jNBOKMsd4in3lJIya44Nc
+         UqP13NIyjBiN3+HQG2sGzKR04QF++cozPZObBscKTi+dNbQuQMJ6U3ZHOe86Dmewvl2m
+         ceOPy7gQRTgCWiQ168F5z9za/Y3Lhvaf9RUzCAHRXz9N3MoDvaY3Ooa3ElYbwUWu2hPl
+         8sOuMP9fok3rdSWwfrTFwS2nkOvVQv/tAmrPD71w3E1DXMT/ysgIY2zTtcVcPEo+zMgz
+         B9t+ftUEp+C3subGkT2MwJQcafLieUrmeFF2lZPeSODzkR8LFOAfJxDM1q78SoyF0DHs
+         eaRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=FqXRBoWYjZEUDh9NP8NDg9hGa7Z+YCO68X9tbRPRfAY=;
+        b=Q/2WZ9iiZh8l3UCEQtsOqih4IjsAqUKUcuXhYDZXnvYD+vCHJdv5SEVC215fO4EtQ8
+         VGB6t2TyzE+bdQD57VXURGVhuD0kvECJ8rFMEreWgrRQSCP3hI1oXrCQIxlznk+8W/PK
+         AKbffCDV+hcME6W3l5+GX1I7nrQJ1WanQorvEsUyBz+J627qpT8y0qrdLc+HWG57i+4i
+         OnmNtNGxAiOyk69ZruG7yv4P8Yeacyc1O2PZP140SqW1vwPaExUEt7uD048QnbLRZrA0
+         VQ1E+pnQ/JYxPU4M37rqbP1wdxHDTIBqqq/SqMC9ljDdG7QPAnAufB+/Dtg1K2KRSjjH
+         ZiQw==
+X-Gm-Message-State: AJIora84O6L/18+FQXgthhZLb2tyToBnVbsqSSKM4tzEEP60eEedyruk
+        3xr9Jku8+vi0W2+CETa5ussDaw==
+X-Google-Smtp-Source: AGRyM1uAz2TCiWXc4bm0hIjEoI/vEDZwkP9e/hQxnyf2PwWpbtubuPKMpAhnsMet2JbboOPhk5rQXQ==
+X-Received: by 2002:a17:907:3d8a:b0:70e:6b1:b004 with SMTP id he10-20020a1709073d8a00b0070e06b1b004mr26052667ejc.61.1655814032028;
+        Tue, 21 Jun 2022 05:20:32 -0700 (PDT)
+Received: from [192.168.0.220] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id cf20-20020a170906b2d400b006f3ef214e42sm7593503ejb.168.2022.06.21.05.20.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jun 2022 05:20:31 -0700 (PDT)
+Message-ID: <4097c29a-0630-d4a1-e5bb-f8446aa54d73@linaro.org>
+Date:   Tue, 21 Jun 2022 14:20:30 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v3 2/3] ARM: dts: stm32: add STM32MP1-based Phytec board
+Content-Language: en-US
+To:     Steffen Trumtrar <s.trumtrar@pengutronix.de>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        kernel@pengutronix.de
+References: <20220621101538.481143-1-s.trumtrar@pengutronix.de>
+ <20220621101538.481143-2-s.trumtrar@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220621101538.481143-2-s.trumtrar@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,77 +79,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-06-20 at 11:12 +0800, CK Hu wrote:
-> On Fri, 2022-06-10 at 18:55 +0800, Bo-Chen Chen wrote:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > 
-> > This patch adds a embedded displayport driver for the MediaTek
-> > mt8195
-> > SoC.
-> > 
-> > It supports the MT8195, the embedded DisplayPort units. It offers
-> > DisplayPort 1.4 with up to 4 lanes.
-> > 
-> > The driver creates a child device for the phy. The child device
-> > will
-> > never exist without the parent being active. As they are sharing a
-> > register range, the parent passes a regmap pointer to the child so
-> > that
-> > both can work with the same register range. The phy driver sets
-> > device
-> > data that is read by the parent to get the phy device that can be
-> > used
-> > to control the phy properties.
-> > 
-> > This driver is based on an initial version by
-> > Jitao shi <jitao.shi@mediatek.com>
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> 
-> [snip]
-> 
-> > +
-> > +static void mtk_dp_calculate_pixrate(struct mtk_dp *mtk_dp)
-> > +{
-> > +	u8 target_frame_rate = 60;
-> > +	u32 target_pixel_clk;
-> > +	struct drm_display_mode mode;
-> > +	struct mtk_dp_timings *timings = &mtk_dp->info.timings;
-> > +
-> > +	drm_display_mode_from_videomode(&timings->vm, &mode);
-> > +
-> > +	if (mtk_dp->info.timings.frame_rate > 0) {
-> > +		target_frame_rate = mtk_dp->info.timings.frame_rate;
-> > +		target_pixel_clk = mode.htotal * mode.vtotal *
-> > +				   target_frame_rate;
-> > +	} else if (mtk_dp->info.timings.pix_rate_khz > 0) {
-> > +		target_pixel_clk = mtk_dp->info.timings.pix_rate_khz *
-> > 1000;
-> > +	} else {
-> > +		target_pixel_clk = mode.htotal * mode.vtotal *
-> > +				   target_frame_rate;
-> > +	}
-> > +
-> > +	mtk_dp->info.timings.pix_rate_khz = target_pixel_clk / 1000;
-> 
-> It seems that pix_rate_khz is used only here and does not used in
-> another place, so pix_rate_khz is useless, remove it.
-> 
-> Regards,
-> CK
-> 
+On 21/06/2022 12:15, Steffen Trumtrar wrote:
+> Add the Phytec STM32MP1-3 Dev board. The devboard uses a Phytec stm32m15-som.
 
-this variable will be used in audio patch.
-I will move it to audio patch.
+Use Linux coding style.
 
-BRs,
-Bo-Chen
-> > +}
-> > +
 > 
+> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> ---
+>  .../dts/stm32mp157c-phycore-stm32mp1-3.dts    | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
 > 
+> diff --git a/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
+> new file mode 100644
+> index 000000000000..e91c0ef499c9
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
+> @@ -0,0 +1,56 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+> +/*
+> + * Copyright (C) Phytec GmbH 2019-2020 - All Rights Reserved
+> + * Author: Dom VOVARD <dom.vovard@linrt.com>.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/pinctrl/stm32-pinfunc.h>
+> +#include "stm32mp157.dtsi"
+> +#include "stm32mp15xc.dtsi"
+> +#include "stm32mp15xxac-pinctrl.dtsi"
+> +#include "stm32mp157c-phycore-stm32mp15-som.dtsi"
+> +
+> +/ {
+> +	model = "PHYTEC phyCORE-STM32MP1-3 Dev Board";
+> +	compatible = "phytec,phycore-stm32mp1-3", "st,stm32mp157";
 
+Confusing approach. Either this is Som or dev board. If this is Som,
+name it (so not "Dev Board"), although usually SoMs cannot boot by
+themself, so this is a board.
+
+If this is board, then phytec,phycore-stm32mp1-3 compatible is not
+enough - you should have:
+1. board compatible
+2. SoM compatible
+3. SoC compatible
+
+> +};
+> +
+> +&cryp1 {
+> +	status = "okay";
+> +};
+> +
+> +&dts {
+> +	status = "okay";
+> +};
+> +
+> +&fmc {
+> +	status = "disabled";
+> +};
+> +
+> +&gpu {
+> +	status = "okay";
+> +	contiguous-area = <&gpu_reserved>;
+> +};
+> +
+> +&i2c4_eeprom {
+> +	status = "okay";
+> +};
+> +
+> +&i2c4_rtc {
+> +	status = "okay";
+> +};
+> +
+> +&qspi {
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc1 {
+> +	secure-status = "disabled";
+> +};
+> +
+> +&sdmmc2 {
+> +	status = "okay";
+> +	secure-status = "disabled";
+> +};
+
+Which proves that aliases for MMC should be here.
+
+
+Best regards,
+Krzysztof
