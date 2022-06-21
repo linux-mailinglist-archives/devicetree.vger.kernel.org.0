@@ -2,52 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 623AD552D01
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 10:29:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57678552D33
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 10:39:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348169AbiFUI2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 04:28:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45964 "EHLO
+        id S1347012AbiFUIjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 04:39:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348003AbiFUI1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 04:27:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA6D3112B;
-        Tue, 21 Jun 2022 01:27:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0FA68614E8;
-        Tue, 21 Jun 2022 08:27:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA0EDC3411D;
-        Tue, 21 Jun 2022 08:27:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1655800071;
-        bh=vq74hwgGIXNtd0Oi63FHItQ2lILjSqcBsh/3jD/OHLE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YinFmWa0LnPWSl/yFozEUqdXRXcFe43cprSV792cAQ3aIEKKQvS1TXTpJF2xUT1cQ
-         5t/aEXebIamIl6rgiO7Vx6lF/0IzixGEKjwfuxgt6D+Agirczg6MS+DYZlK+4bDuNw
-         g1lrL3YBbouTPimhhJolQbMTXmuYNdntgnGpWV0M=
-Date:   Tue, 21 Jun 2022 10:27:48 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Sebastian Ene <sebastianene@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        maz@kernel.org, will@kernel.org, vdonnefort@google.com,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v7 2/2] misc: Add a mechanism to detect stalls on guest
- vCPUs
-Message-ID: <YrGBBFW2d/scKDeN@kroah.com>
-References: <20220621080308.3952915-1-sebastianene@google.com>
- <20220621080308.3952915-3-sebastianene@google.com>
+        with ESMTP id S229895AbiFUIjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 04:39:18 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 102752316D;
+        Tue, 21 Jun 2022 01:39:16 -0700 (PDT)
+X-UUID: bd6ab4af7d2341c9943ad31ff53200b2-20220621
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:c0e04849-8556-4565-b4e2-adb89745ac1b,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:b14ad71,CLOUDID:90210e38-5e4b-44d7-80b2-bb618cb09d29,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: bd6ab4af7d2341c9943ad31ff53200b2-20220621
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1741225776; Tue, 21 Jun 2022 16:39:12 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 21 Jun 2022 16:39:11 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 21 Jun 2022 16:39:11 +0800
+Message-ID: <446b9713cf2ad4313c8f3c8b53dd5295ab1aa575.camel@mediatek.com>
+Subject: Re: [PATCH v12 12/14] drm/mediatek: dpi: Add YUV422 output support
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 21 Jun 2022 16:39:11 +0800
+In-Reply-To: <d2a6c5044417e1ac8be9e6387951807e619162e8.camel@mediatek.com>
+References: <20220620121028.29234-1-rex-bc.chen@mediatek.com>
+         <20220620121028.29234-13-rex-bc.chen@mediatek.com>
+         <d2a6c5044417e1ac8be9e6387951807e619162e8.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220621080308.3952915-3-sebastianene@google.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,50 +68,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 21, 2022 at 08:03:09AM +0000, Sebastian Ene wrote:
-> This driver creates per-cpu hrtimers which are required to do the
-> periodic 'pet' operation. On a conventional watchdog-core driver, the
-> userspace is responsible for delivering the 'pet' events by writing to
-> the particular /dev/watchdogN node. In this case we require a strong
-> thread affinity to be able to account for lost time on a per vCPU.
+On Tue, 2022-06-21 at 11:04 +0800, CK Hu wrote:
+> Hi, Bo-Chen:
 > 
-> This part of the driver is the 'frontend' which is reponsible for
-> delivering the periodic 'pet' events, configuring the virtual peripheral
-> and listening for cpu hotplug events. The other part of the driver
-> handles the peripheral emulation and this part accounts for lost time by
-> looking at the /proc/{}/task/{}/stat entries and is located here:
-> https://chromium-review.googlesource.com/c/chromiumos/platform/crosvm/+/3548817
+> On Mon, 2022-06-20 at 20:10 +0800, Bo-Chen Chen wrote:
+> > Dp_intf supports YUV422 as output format. In MT8195 Chrome project,
+> > YUV422 output format is used for 4K resolution.
 > 
-> Signed-off-by: Sebastian Ene <sebastianene@google.com>
-> ---
->  drivers/misc/Kconfig               |  12 ++
->  drivers/misc/Makefile              |   1 +
->  drivers/misc/vcpu_stall_detector.c | 222 +++++++++++++++++++++++++++++
->  3 files changed, 235 insertions(+)
->  create mode 100644 drivers/misc/vcpu_stall_detector.c
+> Move this patch before [1]. Otherwise, [1] would result in a bug.
 > 
-> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> index 41d2bb0ae23a..e15c85d74c4b 100644
-> --- a/drivers/misc/Kconfig
-> +++ b/drivers/misc/Kconfig
-> @@ -483,6 +483,18 @@ config OPEN_DICE
->  
->  	  If unsure, say N.
->  
-> +config VCPU_STALL_DETECTOR
-> +	tristate "VCPU stall detector"
-> +	select LOCKUP_DETECTOR
-> +	help
-> +	  Detect CPU locks on a kvm virtual machine. This driver relies on
-> +	  the hrtimers which are CPU-binded to do the 'pet' operation. When a
-> +	  vCPU has to do a 'pet', it exits the guest through MMIO write and
-> +	  the backend driver takes into account the lost ticks for this
-> +	  particular CPU.
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called vcpu_stall_detector.
+> [1] [v12,10/14] drm/mediatek: dpi: Add dpintf support
+> 
+ok, I will do this.
 
-Should this depend on KVM_GUEST?
+> > 
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > ---
+> >  drivers/gpu/drm/mediatek/mtk_dpi.c | 5 ++++-
+> >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > index f83ecb154457..fc76ccad0a82 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > @@ -692,7 +692,10 @@ static int mtk_dpi_bridge_atomic_check(struct
+> > drm_bridge *bridge,
+> >  	dpi->bit_num = MTK_DPI_OUT_BIT_NUM_8BITS;
+> >  	dpi->channel_swap = MTK_DPI_OUT_CHANNEL_SWAP_RGB;
+> >  	dpi->yc_map = MTK_DPI_OUT_YC_MAP_RGB;
+> > -	dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
+> > +	if (out_bus_format == MEDIA_BUS_FMT_YUYV8_1X16)
+> > +		dpi->color_format =
+> > MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL;
+> > +	else
+> > +		dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
+> 
+> If out_bus_format is MEDIA_BUS_FMT_YUV8_1X24, the color_format is
+> MTK_DPI_COLOR_FORMAT_RGB?
+> 
 
-thanks,
+I will drop output format of MEDIA_BUS_FMT_YUV8_1X24 for mt8195_dpintf
+because if support MEDIA_BUS_FMT_YUV8_1X24 means support RGB888.
 
-greg k-h
+BRs,
+Bo-Chen
+
+> Regards,
+> CK
+> 
+> >  
+> >  	return 0;
+> >  }
+> 
+> 
+
