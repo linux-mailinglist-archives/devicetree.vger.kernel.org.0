@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B41C7552BA7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 09:19:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61D55552BED
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 09:27:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344413AbiFUHT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 03:19:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50308 "EHLO
+        id S1347057AbiFUH1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 03:27:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229895AbiFUHT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 03:19:56 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 742CEB1CD
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:19:55 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id e40so5541793eda.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:19:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dW7LTV+JrwgsWr7RJjBQKGVv8yoFjLp2uTqKjDi+Z6E=;
-        b=E5/lCXMgjnzbURIeet6+LFqfxqP7CQSMw8O3BPWQLVsTHr4vnWBrKkhZ66SyaNHc+2
-         sDzwCWK1/jo9JxealZ0bLVtiUpE33FwowmS3XyUO0jJdBBssoo3qPsZS/x/OtQmxoQrz
-         KsGiSbqoUOJLReeB1cztMwfW/PJ2n48z1BHgLLnrNtz7/w5/vyJfaFkxTyoN+MwZZF5l
-         IERnsazimEwoTFu/h0SxViWpl8B0pAhUyOR4TA0/Zqkk3m1PXAChWh+lvUxQFvQVl5JS
-         jaE4Cyb1GV4A2m26Qkp/KcacoCEg4dJPPfg+wOR2jgaVdTc2F2i19ZTzjIUuneHccOO0
-         gY5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=dW7LTV+JrwgsWr7RJjBQKGVv8yoFjLp2uTqKjDi+Z6E=;
-        b=MGaSesEEh6MSFeiZFnr+2iHTAIR4JxwNLukCeV6PKE1k+uwbsvAOMKGdA/OJ01t4x2
-         fKwmxcrHACPhtisWyOshP8ADep7t4IOtfhOM1pYSoL0LAvvBjZ+VItmhwvc0f2posq0E
-         O0VLHsQxf0wU7phXENT1WfCeo8p2uZRCyVgRrozCYY8bDb5goUSMVPNHdoIYQ22xJz/s
-         E2XRsiFNkR+fsvFkRcdJZWYrL20c6OeOxx0V0JBTT8xOJzR+EiH0sdG6qSnTrbl42mtP
-         IQTaZx6fckTa4tjF7xZAmic2an6PDbUDyPHiR9pi/aG2V8nz2xCnstA0vHq0wAGEdtR4
-         psUA==
-X-Gm-Message-State: AJIora/Uae+lzXonYP9j+MWvL5tTKMKxg//097cSK9thrRoUBDWjyxYC
-        Qoc5BnCcw51ScpHbncQqNMyUFA==
-X-Google-Smtp-Source: AGRyM1u5HZfRPrxD6ieLvj09AlW5VTW96uHA1rkvTbZ/MXswFeS4rivnv5KhNl454I/Wx98aQgZcSQ==
-X-Received: by 2002:a05:6402:520a:b0:435:965f:e266 with SMTP id s10-20020a056402520a00b00435965fe266mr1967106edd.409.1655795994107;
-        Tue, 21 Jun 2022 00:19:54 -0700 (PDT)
-Received: from [192.168.0.216] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p24-20020a170907911800b00709343c0017sm7115247ejq.98.2022.06.21.00.19.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Jun 2022 00:19:53 -0700 (PDT)
-Message-ID: <3ac4c6f1-0655-b26d-5b89-c492f609a8bc@linaro.org>
-Date:   Tue, 21 Jun 2022 09:19:52 +0200
+        with ESMTP id S1347048AbiFUH1M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 03:27:12 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A781F22B13;
+        Tue, 21 Jun 2022 00:27:09 -0700 (PDT)
+X-UUID: 19db8c8726654863b28f9c5b736b49bb-20220621
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:198fdd82-d505-403b-89c2-a5f042339be1,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:b14ad71,CLOUDID:c4ee0b38-5e4b-44d7-80b2-bb618cb09d29,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 19db8c8726654863b28f9c5b736b49bb-20220621
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 130421415; Tue, 21 Jun 2022 15:27:05 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 21 Jun 2022 15:27:03 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 21 Jun 2022 15:27:03 +0800
+Message-ID: <d16d04776e20b01323df8fc7cc83b989be4cdd30.camel@mediatek.com>
+Subject: Re: [PATCH v11 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 21 Jun 2022 15:27:03 +0800
+In-Reply-To: <20220610105522.13449-6-rex-bc.chen@mediatek.com>
+References: <20220610105522.13449-1-rex-bc.chen@mediatek.com>
+         <20220610105522.13449-6-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v5 2/3] dt-bindings: mfd: atmel,flexcom: Add new
- compatible string for lan966x
-Content-Language: en-US
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        robh+dt@kernel.org, Nicolas.Ferre@microchip.com,
-        Claudiu.Beznea@microchip.com, krzysztof.kozlowski+dt@linaro.org
-Cc:     UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220620144634.25464-1-kavyasree.kotagiri@microchip.com>
- <20220620144634.25464-3-kavyasree.kotagiri@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220620144634.25464-3-kavyasree.kotagiri@microchip.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,17 +70,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2022 16:46, Kavyasree Kotagiri wrote:
-> LAN966x SoC flexcoms has two optional I/O lines. Namely, CS0 and CS1
-> in flexcom SPI mode. CTS and RTS in flexcom USART mode. These pins
-> can be mapped to lan966x FLEXCOM_SHARED[0-20] pins and usage depends on
-> functions being configured.
+Hi, Bo-Chen:
+
+On Fri, 2022-06-10 at 18:55 +0800, Bo-Chen Chen wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
 > 
-> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> This patch adds a embedded displayport driver for the MediaTek mt8195
+> SoC.
+> 
+> It supports the MT8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
+> 
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
+> 
+> This driver is based on an initial version by
+> Jitao shi <jitao.shi@mediatek.com>
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> ---
 
+[snip]
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +static int mtk_dp_parse_capabilities(struct mtk_dp *mtk_dp)
+> +{
+> +	u8 val;
+> +	struct mtk_dp_train_info *train_info = &mtk_dp->train_info;
+> +
+> +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER,
+> DP_SET_POWER_D0);
+> +	usleep_range(2000, 5000);
+> +
+> +	drm_dp_read_dpcd_caps(&mtk_dp->aux, mtk_dp->rx_cap);
+> +
+> +	mtk_dp->rx_cap[DP_TRAINING_AUX_RD_INTERVAL] &=
+> DP_TRAINING_AUX_RD_MASK;
+> +
+> +	train_info->link_rate = min_t(int, mtk_dp->max_linkrate,
+> +				      mtk_dp->rx_cap[mtk_dp-
+> >max_linkrate]);
 
+drm_dp_max_link_rate(mtk_dp->rx_cap)
 
-Best regards,
-Krzysztof
+Regards,
+CK
+
+> +	train_info->lane_count = min_t(int, mtk_dp->max_lanes,
+> +				       drm_dp_max_lane_count(mtk_dp-
+> >rx_cap));
+> +
+> +	train_info->tps3 = drm_dp_tps3_supported(mtk_dp->rx_cap);
+> +	train_info->tps4 = drm_dp_tps4_supported(mtk_dp->rx_cap);
+> +
+> +	train_info->sink_ssc = !!(mtk_dp->rx_cap[DP_MAX_DOWNSPREAD] &
+> +				  DP_MAX_DOWNSPREAD_0_5);
+> +
+> +	train_info->sink_ssc = false;
+> +
+> +	drm_dp_dpcd_readb(&mtk_dp->aux, DP_MSTM_CAP, &val);
+> +	if (val & DP_MST_CAP) {
+> +		/* Clear DP_DEVICE_SERVICE_IRQ_VECTOR_ESI0 */
+> +		drm_dp_dpcd_readb(&mtk_dp->aux,
+> +				  DP_DEVICE_SERVICE_IRQ_VECTOR_ESI0,
+> &val);
+> +		if (val)
+> +			drm_dp_dpcd_writeb(&mtk_dp->aux,
+> +					   DP_DEVICE_SERVICE_IRQ_VECTOR
+> _ESI0,
+> +					   val);
+> +	}
+> +
+> +	return 0;
+> +}
+
