@@ -2,90 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DFE5552B87
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 09:13:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70057552B8D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 09:14:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345379AbiFUHMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 03:12:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
+        id S1345003AbiFUHOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 03:14:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346653AbiFUHMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 03:12:43 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 506C6222BB
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:12:35 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id es26so16365019edb.4
-        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:12:35 -0700 (PDT)
+        with ESMTP id S239480AbiFUHOz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 03:14:55 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E602B186D3
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:14:53 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id cf14so8306125edb.8
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:14:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=rZJJbO9tmvN3skIIZSoGEawfNisxmFvqIY3afbWNk0k=;
-        b=x2XlL1khCI/cWLpErGp+GFQadkpgwCUNIt+y1cFMvLTJ8QTD7icTnugWki3Lf7ie0f
-         CzpfEy2ptqM4Or39eOzCVLWFUbbJ2PC9H0+mGo9O0onCHMRUuPsb3WAeSPuJruh0qEHI
-         hqvnIxLIflrU6ZD/ACM33uG6PKa2OeNCvg6GXPKN3zkTWRDrNdF9rOWDhcki1S8gcNaQ
-         Q1z1S5ftZ1jeXv98c1WhlbFXcXrCnDbSkd7cVLYa9sLp7OyywI19eVDbBck+Xtr+lToJ
-         hPC69Xik8O4j6WZJgBESUKybjciq3r2LktSTdr4j8UhSCxkdLptWhSOGA+Po/D8cl8tM
-         umDQ==
+        bh=BU3K6SinExvEocmmVPaQvW019Wdd8765AUfADvWsjq8=;
+        b=xY9S8gGdlJGQCO07Q+2Nif+7F+wUWZSqeaYzI+/xN6CmLvdv63g6mOmni/9E1yYxsH
+         uI17z96Mml3ciYVyMDtRAlm37PSTXF1ZXBMWwVC/H3aNKs/PqaMNj5s+Oq+4xwRSZkAL
+         hyuy0YvZNQpHxLeZeekbD9Fyam83qoBdOx+oBcmiY9pJgEO9ihqbzw6r2Cgpbrw88YP+
+         UWNYbY2jtasa9G0901v8zzrDRzj4gxPBd2l4G2bx86qq9KrEjL2+dV7PtHXNeX/ZBmpI
+         FaUR68G7DhK+GMBVKiSV9moScQmiMhX1rXykJOSd47zhVMR9x7OX23a0VbJse16ZIdod
+         XskA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=rZJJbO9tmvN3skIIZSoGEawfNisxmFvqIY3afbWNk0k=;
-        b=r7t0YQRnTladQ0rrK0WmSRiRwOw/wYISIjugZrGiY2EKJktdXWjEq5nk8MYXYjnX0X
-         jfTwKQKdJRDoXNVLyLSLg5Jke9V2m6vafkqlWcKKywYlwp4NcTbdTjcmbxJfAcaWFXrR
-         Y7eNvXIhZ6oyuhfuRinQCo681k1dYgadIBDbpAEIvW3hbhjag3lhK2qwmoYWf/InyAMN
-         lsVNyPNISjlcBgY7u+BMPuArn1BPmhQ/IGEkSTsb1fMR53y53TBbwhXi5wKVoRT0aHIq
-         fyTpDtL5HG1ghDDoRaDVoruT5Fjozi4JSrP3vPvNqDvwh/r5+zNS/zeyPAlO5q0Li7iK
-         DuVQ==
-X-Gm-Message-State: AJIora9wi6ge/e5ef+GTEY5Usv2jelN41QJiulYhUTeZl1LpkDtjWSWS
-        Wy/CWUHjnkWzl1R3vcs43MettVRBxIe3Mg==
-X-Google-Smtp-Source: AGRyM1vrygzsyf1XkfWBidpFgjIUaEYcyGJLiMBB9DaYIq+y5D3cEOQOG47m6jnRBlKuRDUEajM72Q==
-X-Received: by 2002:aa7:c1c7:0:b0:435:5cb2:c202 with SMTP id d7-20020aa7c1c7000000b004355cb2c202mr27028883edp.10.1655795553854;
-        Tue, 21 Jun 2022 00:12:33 -0700 (PDT)
+        bh=BU3K6SinExvEocmmVPaQvW019Wdd8765AUfADvWsjq8=;
+        b=IEFb0SWIKH7pwFT64BFw79n7Bm93fQj03NS/CGsVr5f5YC5UWGilANYs3Jhh5UHX1V
+         rbjF4GouspFQgjKKsJqmOzl5e2YGXO5l0Inm0V0JejHoD3KiWgvs0IiA/Bjgttinbv+X
+         1SPddHYrfiq7VEbH8bAf8xs4DSJtZRpqoMNsv71qEopx393/ygLTEhndMNZTbowJBt7w
+         RVo1Hds6NC5CuPHwI/fRetp46wB22B4VZDKDebD5flZNCO+CmryzF7GzYhtIP/ch3MUv
+         eNqub6xP1HDO+be1C5c9v1LtutpIOi/6VS0p1bn85tWYWkZY0RacJtLGwuK6G08tu53p
+         GoSw==
+X-Gm-Message-State: AJIora+/2IFUoF7c9zl/yF9gQJJfVklIa6CWXkHIEq1tsfw6QCuNSSNn
+        +EBwLHiZ2v4VWGXt0swSa9DpKg==
+X-Google-Smtp-Source: AGRyM1tBku4dOhxRZ+tsBWaShFdZdDXQbIGVuRg++IW5L6zuGtkFMc1YBVszGNTf/5dmlH8pwRuK4w==
+X-Received: by 2002:a05:6402:2554:b0:42d:ee79:559d with SMTP id l20-20020a056402255400b0042dee79559dmr33858014edb.175.1655795692479;
+        Tue, 21 Jun 2022 00:14:52 -0700 (PDT)
 Received: from [192.168.0.216] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id e16-20020a170906315000b0071cef6c53aesm6096627eje.0.2022.06.21.00.12.32
+        by smtp.gmail.com with ESMTPSA id q12-20020a5085cc000000b0042ab87ea713sm11952447edh.22.2022.06.21.00.14.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Jun 2022 00:12:33 -0700 (PDT)
-Message-ID: <1c2bbc12-0aa5-6d2a-c701-577ce70f7502@linaro.org>
-Date:   Tue, 21 Jun 2022 09:12:32 +0200
+        Tue, 21 Jun 2022 00:14:52 -0700 (PDT)
+Message-ID: <afae6179-3681-f5c6-4615-3228f16f1271@linaro.org>
+Date:   Tue, 21 Jun 2022 09:14:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH net-next 01/28] dt-bindings: phy: Add QorIQ SerDes binding
+Subject: Re: [PATCH 2/3] dt-bindings: usb: mtk-xhci: Allow middle optional
+ clocks to be missing
 Content-Language: en-US
-To:     Sean Anderson <sean.anderson@seco.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>, netdev@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Eric Dumazet <edumazet@google.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>
-References: <20220617203312.3799646-1-sean.anderson@seco.com>
- <20220617203312.3799646-2-sean.anderson@seco.com>
- <110c4a4b-8007-1826-ee27-02eaedd22d8f@linaro.org>
- <535a0389-6c97-523d-382f-e54d69d3907e@seco.com>
- <d79239ce-3959-15f8-7121-478fc6d432e4@linaro.org>
- <e6ed314d-290f-ace5-b0ff-01a9a2edca88@seco.com>
- <16684442-35d4-df51-d9f7-4de36d7cf6fd@linaro.org>
- <50fa16ce-ac24-8e4c-5d81-0218535cd05c@seco.com>
- <e922714b-29c7-0f41-9e5c-9a0aef9fb5de@linaro.org>
- <5d724f49-71c4-96ad-b756-06b5683fa112@seco.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org
+References: <20220617222916.2435618-1-nfraprado@collabora.com>
+ <20220617222916.2435618-3-nfraprado@collabora.com>
+ <8639e64d-c659-7090-2d0a-078fd96cfbd4@linaro.org>
+ <bb460aa483cc888ffa36709d9e9c1f2e3be0e000.camel@mediatek.com>
+ <bc5458fe-083c-d679-9fcb-95810a290da8@linaro.org>
+ <af50210b95d0cd8b2e3103b3d4a9702aeeba9452.camel@mediatek.com>
+ <a24c24e6-fdee-df79-fd2f-6a71540bd9b3@linaro.org>
+ <20220620155057.a6qilnhm7snzhapa@notapiano>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5d724f49-71c4-96ad-b756-06b5683fa112@seco.com>
+In-Reply-To: <20220620155057.a6qilnhm7snzhapa@notapiano>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,75 +89,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2022 20:51, Sean Anderson wrote:
-> On 6/20/22 2:21 PM, Krzysztof Kozlowski wrote:
->>>>> - samsung_usb2_phy_config in drivers/phy/samsung/
+On 20/06/2022 17:50, Nícolas F. R. A. Prado wrote:
+> On Mon, Jun 20, 2022 at 10:50:57AM +0200, Krzysztof Kozlowski wrote:
+>> On 20/06/2022 08:59, Chunfeng Yun wrote:
+>>> On Sun, 2022-06-19 at 14:05 +0200, Krzysztof Kozlowski wrote:
+>>>> On 19/06/2022 09:46, Chunfeng Yun wrote:
+>>>>> On Fri, 2022-06-17 at 18:25 -0700, Krzysztof Kozlowski wrote:
+>>>>>> On 17/06/2022 15:29, Nícolas F. R. A. Prado wrote:
+>>>>>>> The current clock list in the binding doesn't allow for one of
+>>>>>>> the
+>>>>>>> optional clocks to be missing and a subsequent clock to be
+>>>>>>> present.
+>>>>>>> An
+>>>>>>> example where this is an issue is in mt8192.dtsi, which has
+>>>>>>> "sys_ck",
+>>>>>>> "ref_ck", "xhci_ck" and would cause dtbs_check warnings.
+>>>>>>>
+>>>>>>> Change the clock list in a way that allows the middle optional
+>>>>>>> clocks to
+>>>>>>> be missing, while still guaranteeing a fixed order. The
+>>>>>>> "ref_ck" is
+>>>>>>> kept
+>>>>>>> as a const even though it is optional for simplicity, since it
+>>>>>>> is
+>>>>>>> present in all current dts files.
+>>>>>>>
+>>>>>>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>>>>>>> ---
+>>>>>>>
+>>>>>>>  .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml       | 9
+>>>>>>> +++++++--
+>>>>>>>  1 file changed, 7 insertions(+), 2 deletions(-)
+>>>>>>>
+>>>>>>> diff --git
+>>>>>>> a/Documentation/devicetree/bindings/usb/mediatek,mtk-
+>>>>>>> xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-
+>>>>>>> xhci.yaml
+>>>>>>> index 63cbc2b62d18..99a1b233ec90 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-
+>>>>>>> xhci.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-
+>>>>>>> xhci.yaml
+>>>>>>> @@ -80,8 +80,13 @@ properties:
+>>>>>>>      items:
+>>>>>>>        - const: sys_ck  # required, the following ones are
+>>>>>>> optional
+>>>>>>>        - const: ref_ck
+>>>>>>> -      - const: mcu_ck
+>>>>>>> -      - const: dma_ck
+>>>>>>> +      - enum:
+>>>>>>> +          - mcu_ck
+>>>>>>> +          - dma_ck
+>>>>>>> +          - xhci_ck
+>>>>>>> +      - enum:
+>>>>>>> +          - dma_ck
+>>>>>>> +          - xhci_ck
+>>>>>>>        - const: xhci_ck
+>>>>>>
+>>>>>> You allow now almost any order here, including incorrect like
+>>>>>> sys,ref,xhci,xhci,xhci.
+>>>>>>
+>>>>>> The order of clocks has to be fixed and we cannot allow
+>>>>>> flexibility.
+>>>>>> Are
+>>>>>> you sure that these clocks are actually optional (not wired to
+>>>>>> the
+>>>>>> device)?
+>>>>>
+>>>>> In fact, these optional clocks are fixed, due to no gates are
+>>>>> provided,
+>>>>> SW can't control them by CCF;
+>>>>> In this case, I usually use a fixed clock, or ignore it.
 >>>>
->>>> This one is a good example - where do you see there compatibles with
->>>> arbitrary numbers attached?
->>>
->>> samsung_usb2_phy_of_match in drivers/phy/samsung/phy-samsung-usb2.c
->>>
->>> There is a different compatible for each SoC variant. Each compatible selects a struct
->>> containing
->>>
->>> - A list of phys, each with custom power on and off functions
->>> - A function which converts a rate to an arbitrary value to program into a register
->>>
->>> This is further documented in Documentation/driver-api/phy/samsung-usb2.rst
+>>>> But in some versions these clocks are controllable or not?
+>>> Some SoCs are controllable, some ones are not (fixed clock).
 >>
->> Exactly, please follow this approach. Compatible is per different
->> device, e.g. different SoC variant. Of course you could have different
->> devices on same SoC, but "1" and "2" are not different devices.
+>> Thanks for confirming. Then I would prefer to make these clocks required
+>> (not optional) and always provide them - via common clock framework or
+>> fixed-clock.
 > 
-> (in this case they are)
-
-In a meaning of descriptive compatible - it's not.
-
->>>
->>> - For some SerDes on the same SoC, these fields are reserved
->>
->> That all sounds like quite different devices, which indeed usually is
->> described with different compatibles. Still "xxx-1" and "xxx-2" are not
->> valid compatibles. You need to come with some more reasonable name
->> describing them. Maybe the block has revision or different model/vendor.
+> Hi Krzysztof and Chunfeng,
 > 
-> There is none AFAIK. Maybe someone from NXP can comment (since there are many
-> undocumented registers).
-
-Maybe it's also possible to invent some reasonable name based on
-protocols supported? If nothing comes then please add a one-liner
-comment explaining logic behind 1/2 suffix.
-
->>> The compatibles suggested were "fsl,ls1046-serdes-1" and -2. As noted above, these are separate
->>> devices which, while having many similarities, have different register layouts and protocol
->>> support. They are *not* 100% compatible with each other. Would you require that clock drivers
->>> for different SoCs use the same compatibles just because they had the same registers, even though
->>> the clocks themselves had different functions and hierarchy?
->>
->> You miss the point. Clock controllers on same SoC have different names
->> used in compatibles. We do not describe them as "vendor,aa-clk-1" and
->> "vendor,aa-clk-2".
->>
->> Come with proper naming and entire discussion might be not valid
->> (although with not perfect naming Rob might come with questions). I
->> cannot propose the name because I don't know these hardware blocks and I
->> do not have access to datasheet.
->>
->> Other way, if any reasonable naming is not possible, could be also to
->> describe the meaning of "-1" suffix, e.g. that it does not mean some
->> index but a variant from specification.
+> thank you both for the feedback.
 > 
-> The documentation refers to these devices as "SerDes1", "SerDes2", etc.
+> Since the solution I proposed in this patch is not acceptable I see two options:
+> 1. Split the clocks in several if blocks matched by compatibles
+> 2. Make the clocks required and use fixed-clock nodes for the missing clocks in
+>    the DT
 > 
-> Wold you prefer something like
+> My understanding is that 1 is the desirable solution if the clock is really
+> missing in some hardware variants, while 2 is desirable if all hardware variants
+> really receive all the clocks, only that on some variants they're fixed and not
+> controlable by SW.
 > 
-> serdes0: phy@1ea0000 {
-> 	compatible = "fsl,ls1046a-serdes";
-> 	variant = <0>;
-> };
+> From what I'm reading of this discussion it seems that the latter is the case
+> here and thus we should go for 2. Is this correct?
 
-No, it's the same problem, just embeds compatible in different property.
+This is how I understood it as well, so correct from my side.
+
+> 
+> Also Chunfeng, do you have information on whether the same is true for the MMC
+> HW block? I recently submitted some changes to that binding [1] but I followed
+> approach 1 there instead. However if all the clocks are present in the HW level
+> there as well it would make more sense for me to change it to follow approach 2.
+> 
+> Thanks,
+> Nícolas
+> 
+> [1] https://lore.kernel.org/all/20220617230114.2438875-1-nfraprado@collabora.com
+
 
 Best regards,
 Krzysztof
