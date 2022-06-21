@@ -2,131 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADBB5553408
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 15:53:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10E2255345B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 16:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351025AbiFUNxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 09:53:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46846 "EHLO
+        id S1351020AbiFUOTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 10:19:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230521AbiFUNxs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 09:53:48 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4317A13D24;
-        Tue, 21 Jun 2022 06:53:46 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id mf9so7349600ejb.0;
-        Tue, 21 Jun 2022 06:53:46 -0700 (PDT)
+        with ESMTP id S1351155AbiFUOTg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 10:19:36 -0400
+X-Greylist: delayed 965 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 21 Jun 2022 07:19:32 PDT
+Received: from smtp28.bhosted.nl (smtp28.bhosted.nl [IPv6:2a02:9e0:8000::40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4035C1DA6C
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 07:19:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+bnD9hK3prWl6/gYLDJgj48e9xi4+igUWjv8z3KjEBQ=;
-        b=LowuFnu5EJgFHfzLAZhiUV7XOQNZYlScpKJ1ehzxo7KJUk/9pWR71H5EwqtpxEx3Fb
-         YfUSnzxFnVD5ot3ZdEG/1igUSRaTi/xWfLb5fuEOpbNSFVuKIjJTVrwwTHeCLKoMRJiK
-         KzxkPB4jtqUyMX0mNr0addwuL2bf1o/va3KQGfEucHbsrEipOW/Tu6qRQGWNAR36wPQ+
-         0l4e/9P2t8Qt6/XCOfuMjO/QegqXx1ndv31XZaecmI15AW/LMCT7QJ6ogvgzx/NhjVmj
-         ZQ5RnwLxa8kMBixDilmjmSKpGebk/zzlWsGhbtnErPIUxik2SZ6+HuZ2IUPl9ttXvmGG
-         G9nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+bnD9hK3prWl6/gYLDJgj48e9xi4+igUWjv8z3KjEBQ=;
-        b=RkBR2opaXSGus81rEpODpEcHKTIeVDYDt+IPvDrdNbp4F8ShJogD0qNlQvpX2XtL0v
-         nzqyy2UZOZW24tWQacy1KHwasRnvxnBuXM2U/OOFjFKQ161+e+dt3IawS2jn4Ev7Vvzw
-         7lz79CnAKRHbyT88LEVtUF0pK0nSKQdOyaZvoSSdwSEcb0qnudz2Yysxf0bkReVSFl1+
-         cwKIX1/1YzJJcgDh4HtrZnrVWfhvRRlJwQqEwhKOHtJo0VbZMtIcgVw6QTmXRw1f4wJt
-         Ri1sb+g0GOEXmqKXFq2KxSBGLCiqrFRcYsrgS1U1qqnCSVWLfNU4qtCunFgejAFAQR+b
-         kk7w==
-X-Gm-Message-State: AJIora+S1VKg35+dG9eCqXLpHXjcYXetOhSELTe2G51bDSR91togdERc
-        bU0WnFATQmr1yRg5YAtcNdw=
-X-Google-Smtp-Source: AGRyM1t1OnGmn/19PEpvpFJ5PtSkks3BLBi/GIwdyVDyqV8uzkzUJ+za1jeXY1Kw9XAFhVPac2/SNw==
-X-Received: by 2002:a17:907:7b8a:b0:707:59d4:14a3 with SMTP id ne10-20020a1709077b8a00b0070759d414a3mr25833143ejc.51.1655819624627;
-        Tue, 21 Jun 2022 06:53:44 -0700 (PDT)
-Received: from fedora.robimarko.hr (dh207-99-158.xnet.hr. [88.207.99.158])
-        by smtp.googlemail.com with ESMTPSA id fy11-20020a1709069f0b00b007104b37aab7sm7325408ejc.106.2022.06.21.06.53.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jun 2022 06:53:44 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     kvalo@kernel.org, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, ath11k@lists.infradead.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH 2/2] ath11k: search DT for qcom,ath11k-board-id
-Date:   Tue, 21 Jun 2022 15:53:39 +0200
-Message-Id: <20220621135339.1269409-2-robimarko@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220621135339.1269409-1-robimarko@gmail.com>
-References: <20220621135339.1269409-1-robimarko@gmail.com>
+        d=protonic.nl; s=202111;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc:to:from:
+         from;
+        bh=B9lL9OqSXc2eVWzkrNe9zxYlTNTyMllYa44sGFVBFnM=;
+        b=RODBEiWX5dtF8x+goNia8bLTbClkx28ml6ZqLOtfb6b5jNhYKKBlu0kzzpJzI3PKlDnh1iEhLLcMl
+         EtsDQCR4H7jTZkEWtQfOVEjUqYDiHF5EkFkJBHsTg5asxOZ+49q45Eo5UYW4J2hbHMae8hthpLbBZE
+         bBSFum1bXO3jD0UbhwdzKPMvpWWRRPrI26gyUoCTC9Xcq02awdYWTPIFs0/Lb0afJYOlB5t127UnlZ
+         GyZDDO4gRo57YrryMXh3ITlGvASLK7HSCrgrxiFvC14zEVK1Gz+zQ6ObtBtTnjMm03/A/3+spNyQTT
+         hGnyxWAo/9Ti5/cWUxpk8ugDUx5zyTA==
+X-MSG-ID: ea2d0624-f16a-11ec-8a45-0050569d11ae
+From:   Robin van der Gracht <robin@protonic.nl>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>
+Subject: [PATCH] ARM: dts: imx6qdl-prti6q.dtsi: Add applicable properties to usdhc3
+Date:   Tue, 21 Jun 2022 16:03:34 +0200
+Message-Id: <20220621140334.568446-1-robin@protonic.nl>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-bus + qmi-chip-id + qmi-board-id and optionally the variant are currently
-used for identifying the correct board data file.
+The usdhc3 interface is connected to a soldered eMMC chip on all boards
+that import this dtsi. Adding these properties speeds up the device probe
+during boot.
 
-This however is sometimes not enough as all of the IPQ8074 boards that I
-have access to dont have the qmi-board-id properly fused and simply return
-the default value of 0xFF.
-
-So, to provide the correct qmi-board-id look for the qcom,ath11k-board-id
-property and use that.
-This is what vendors have been doing in the stock firmwares that were
-shipped on boards I have.
-
-It should be added to DTS like:
-	wifi@c000000 {
-        status = "okay";
-
-        qcom,ath11k-board-id = <658>;
-        qcom,ath11k-calibration-variant = "Edgecore-EAP102";
-    };
-
-Signed-off-by: Robert Marko <robimarko@gmail.com>
+Signed-off-by: Robin van der Gracht <robin@protonic.nl>
 ---
- drivers/net/wireless/ath/ath11k/qmi.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/imx6qdl-prti6q.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 00136601cb7d..9d27b4968d10 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -2172,12 +2172,14 @@ static int ath11k_qmi_request_device_info(struct ath11k_base *ab)
+diff --git a/arch/arm/boot/dts/imx6qdl-prti6q.dtsi b/arch/arm/boot/dts/imx6qdl-prti6q.dtsi
+index 19578f660b09..f0db0d4471f4 100644
+--- a/arch/arm/boot/dts/imx6qdl-prti6q.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-prti6q.dtsi
+@@ -94,6 +94,9 @@ &usdhc3 {
+ 	pinctrl-0 = <&pinctrl_usdhc3>;
+ 	bus-width = <8>;
+ 	non-removable;
++	no-1-8-v;
++	no-sd;
++	no-sdio;
+ 	status = "okay";
+ };
  
- static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
- {
-+	struct device *dev = ab->dev;
- 	struct qmi_wlanfw_cap_req_msg_v01 req;
- 	struct qmi_wlanfw_cap_resp_msg_v01 resp;
- 	struct qmi_txn txn;
- 	int ret = 0;
- 	int r;
- 	char *fw_build_id;
-+	unsigned int board_id;
- 	int fw_build_id_mask_len;
- 
- 	memset(&req, 0, sizeof(req));
-@@ -2219,7 +2221,9 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
- 		ab->qmi.target.chip_family = resp.chip_info.chip_family;
- 	}
- 
--	if (resp.board_info_valid)
-+	if (!of_property_read_u32(dev->of_node, "qcom,ath11k-board-id", &board_id))
-+		ab->qmi.target.board_id = board_id;
-+	else if (resp.board_info_valid)
- 		ab->qmi.target.board_id = resp.board_info.board_id;
- 	else
- 		ab->qmi.target.board_id = 0xFF;
 -- 
-2.36.1
+2.34.1
 
