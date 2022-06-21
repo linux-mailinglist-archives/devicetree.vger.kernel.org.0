@@ -2,86 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20E9F552BE2
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 09:26:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B41C7552BA7
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 09:19:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346706AbiFUHZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 03:25:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55542 "EHLO
+        id S1344413AbiFUHT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 03:19:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346703AbiFUHZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 03:25:31 -0400
-X-Greylist: delayed 399 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 21 Jun 2022 00:25:29 PDT
-Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92A9022B05;
-        Tue, 21 Jun 2022 00:25:29 -0700 (PDT)
-Received: from coburn.home.jannau.net (p579ad988.dip0.t-ipconnect.de [87.154.217.136])
-        by soltyk.jannau.net (Postfix) with ESMTPSA id 463C626ED16;
-        Tue, 21 Jun 2022 09:18:49 +0200 (CEST)
-From:   Janne Grunau <j@jannau.net>
-To:     iommu@lists.linux-foundation.org
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        asahi@lists.linux.dev, Sven Peter <sven@svenpeter.dev>,
-        Rob Herring <robh@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Hector Martin <marcan@marcan.st>,
-        Joerg Roedel <joro@8bytes.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/5] dt-bindings: iommu: dart: add t6000 compatible
-Date:   Tue, 21 Jun 2022 09:18:44 +0200
-Message-Id: <20220621071848.14834-2-j@jannau.net>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220621071848.14834-1-j@jannau.net>
-References: <20220621071848.14834-1-j@jannau.net>
+        with ESMTP id S229895AbiFUHT4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 03:19:56 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 742CEB1CD
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:19:55 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id e40so5541793eda.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 00:19:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=dW7LTV+JrwgsWr7RJjBQKGVv8yoFjLp2uTqKjDi+Z6E=;
+        b=E5/lCXMgjnzbURIeet6+LFqfxqP7CQSMw8O3BPWQLVsTHr4vnWBrKkhZ66SyaNHc+2
+         sDzwCWK1/jo9JxealZ0bLVtiUpE33FwowmS3XyUO0jJdBBssoo3qPsZS/x/OtQmxoQrz
+         KsGiSbqoUOJLReeB1cztMwfW/PJ2n48z1BHgLLnrNtz7/w5/vyJfaFkxTyoN+MwZZF5l
+         IERnsazimEwoTFu/h0SxViWpl8B0pAhUyOR4TA0/Zqkk3m1PXAChWh+lvUxQFvQVl5JS
+         jaE4Cyb1GV4A2m26Qkp/KcacoCEg4dJPPfg+wOR2jgaVdTc2F2i19ZTzjIUuneHccOO0
+         gY5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=dW7LTV+JrwgsWr7RJjBQKGVv8yoFjLp2uTqKjDi+Z6E=;
+        b=MGaSesEEh6MSFeiZFnr+2iHTAIR4JxwNLukCeV6PKE1k+uwbsvAOMKGdA/OJ01t4x2
+         fKwmxcrHACPhtisWyOshP8ADep7t4IOtfhOM1pYSoL0LAvvBjZ+VItmhwvc0f2posq0E
+         O0VLHsQxf0wU7phXENT1WfCeo8p2uZRCyVgRrozCYY8bDb5goUSMVPNHdoIYQ22xJz/s
+         E2XRsiFNkR+fsvFkRcdJZWYrL20c6OeOxx0V0JBTT8xOJzR+EiH0sdG6qSnTrbl42mtP
+         IQTaZx6fckTa4tjF7xZAmic2an6PDbUDyPHiR9pi/aG2V8nz2xCnstA0vHq0wAGEdtR4
+         psUA==
+X-Gm-Message-State: AJIora/Uae+lzXonYP9j+MWvL5tTKMKxg//097cSK9thrRoUBDWjyxYC
+        Qoc5BnCcw51ScpHbncQqNMyUFA==
+X-Google-Smtp-Source: AGRyM1u5HZfRPrxD6ieLvj09AlW5VTW96uHA1rkvTbZ/MXswFeS4rivnv5KhNl454I/Wx98aQgZcSQ==
+X-Received: by 2002:a05:6402:520a:b0:435:965f:e266 with SMTP id s10-20020a056402520a00b00435965fe266mr1967106edd.409.1655795994107;
+        Tue, 21 Jun 2022 00:19:54 -0700 (PDT)
+Received: from [192.168.0.216] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id p24-20020a170907911800b00709343c0017sm7115247ejq.98.2022.06.21.00.19.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jun 2022 00:19:53 -0700 (PDT)
+Message-ID: <3ac4c6f1-0655-b26d-5b89-c492f609a8bc@linaro.org>
+Date:   Tue, 21 Jun 2022 09:19:52 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v5 2/3] dt-bindings: mfd: atmel,flexcom: Add new
+ compatible string for lan966x
+Content-Language: en-US
+To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        robh+dt@kernel.org, Nicolas.Ferre@microchip.com,
+        Claudiu.Beznea@microchip.com, krzysztof.kozlowski+dt@linaro.org
+Cc:     UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220620144634.25464-1-kavyasree.kotagiri@microchip.com>
+ <20220620144634.25464-3-kavyasree.kotagiri@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220620144634.25464-3-kavyasree.kotagiri@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sven Peter <sven@svenpeter.dev>
+On 20/06/2022 16:46, Kavyasree Kotagiri wrote:
+> LAN966x SoC flexcoms has two optional I/O lines. Namely, CS0 and CS1
+> in flexcom SPI mode. CTS and RTS in flexcom USART mode. These pins
+> can be mapped to lan966x FLEXCOM_SHARED[0-20] pins and usage depends on
+> functions being configured.
+> 
+> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
 
-The M1 Max/Pro SoCs come with a new DART variant that is incompatible with
-the previous one. Add a new compatible for those.
 
-Signed-off-by: Sven Peter <sven@svenpeter.dev>
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Janne Grunau <j@jannau.net>
----
 
-(no changes since v2)
-
-Changes in v2:
-- added Rob's Acked-by:
-
- Documentation/devicetree/bindings/iommu/apple,dart.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/iommu/apple,dart.yaml b/Documentation/devicetree/bindings/iommu/apple,dart.yaml
-index 82ad669feef7..06af2bacbe97 100644
---- a/Documentation/devicetree/bindings/iommu/apple,dart.yaml
-+++ b/Documentation/devicetree/bindings/iommu/apple,dart.yaml
-@@ -22,7 +22,9 @@ description: |+
- 
- properties:
-   compatible:
--    const: apple,t8103-dart
-+    enum:
-+      - apple,t8103-dart
-+      - apple,t6000-dart
- 
-   reg:
-     maxItems: 1
--- 
-2.35.1
-
+Best regards,
+Krzysztof
