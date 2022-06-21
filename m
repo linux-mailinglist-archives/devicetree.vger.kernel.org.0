@@ -2,257 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5388355316F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 13:56:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC4FA553194
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jun 2022 14:03:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349123AbiFUL4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 07:56:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38100 "EHLO
+        id S1350394AbiFUMDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 08:03:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348633AbiFUL4I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 07:56:08 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5B4711460;
-        Tue, 21 Jun 2022 04:56:07 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id kq6so26901743ejb.11;
-        Tue, 21 Jun 2022 04:56:07 -0700 (PDT)
+        with ESMTP id S1350388AbiFUMDp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 08:03:45 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42E5B2B242
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:03:43 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id z7so19010124edm.13
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 05:03:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=gnl0wJDcbGyeG2Jzp9z8ykP0NivEyMSr5iKIZo5tXBk=;
-        b=o7UBtpV1wF5UpMl03Q8Vi7f1/Gbekb5LSvxLJ0iQtBmQQpSbhSCgtxKLWHf6+bL+tq
-         oGUJowxIKNN4DXzVzYee4SzLh7smMShK7Cdr0rsxRYg3EljpSlNFeCuBS6xzqSSZM6gv
-         9hrIw2CNg4JxwjW2cAdpOn29sqDNmJ9qHC6zViXmFuOxA7pWdTf9LBEXuHyQE6MwO9BO
-         Rx+ruavybv2yTcgPYqqBv7kiU/0egsKBI9rNxXwACQhVyADDnMcumcIWDPYXPgbuL4uJ
-         x6LyN4x2jeFGWQB1+5iiTNyWZoSIswCxvg338E4Y3004/Wuef6O7RTqTrgQap7VJWQZY
-         WUmg==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=20hOXgHS4fSMKzf2+VEVhuMt/xTY7rwW+BkuR688jQI=;
+        b=G0fDoM6iYkilX2J2us0oDAnu2OXLTFoGwQGcIQ61gW+KroUP3F34RD4BJ1IlsFeOKi
+         8f8+8bvCxI+BjoQhqGDC8Bmih/uM2UMNh0HfP5LHcTP5thFbXw57Wl/JjRk3EIaphPgC
+         /r9iH8r0MZLQ/ZiseG3jh/J+adm1eZ8inUGHNLerNsDK1bRyGyI9t7y5tTAvDDVdeB1B
+         xwLgffZMmNEJhBSsXCtiJaQ53o6MWqYnFwBx1ozBtod/JlyyMz+pR8DZEdtPNbe/8IO5
+         pZskEbg504lpOOtekPsnMcsUaoBfJ2WNfNfE5rDxevNShYsJWXp++OGVY0izxGKuJIRl
+         k4pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=gnl0wJDcbGyeG2Jzp9z8ykP0NivEyMSr5iKIZo5tXBk=;
-        b=eDulhQSvVJznuWvcYlIjf1eFTbaURj/pMfWtP/vIy9oTBNB9PTQhONTIWsOr4X+pey
-         VErdZmlvDlWFLefKFgFK9Zlw0YgGwYBoUXP+BX4JbDYOFd2ibXQbA+PXDQ+q36RPm+RW
-         B8MskT9FMn63Gtao2bK0y0AOLwvuu104q48syCvW0c2Y2EX8z3Pnevc/eJeZl0xiSv4F
-         qNuG72wNkSnOq6SOPddHyeKMYdLXQhlc56L0obs8HvHiS6P85IvKRcAJGPOtEPnWALQJ
-         jK3DpWXOBRGfPYRvaO1W8r6epcjDRJAFHi1OjynW13WvdZ6vVed9gSOls2kS8LvhgFmB
-         6/Kw==
-X-Gm-Message-State: AJIora8LW4dW64h2912mg66RN9WTSgTk5q9H2Ss6/Weva2GFFJ0S5T9s
-        gtQjbZUjXWGcYoiClfM75IY=
-X-Google-Smtp-Source: AGRyM1vuZsNu3hanNf6cHV6qvU0DNqRqDR1yRqb3ASlaAkoAaM2oy0VZ68quEjqMht+YzCPnbe/TEw==
-X-Received: by 2002:a17:907:7b8d:b0:722:def3:915f with SMTP id ne13-20020a1709077b8d00b00722def3915fmr4308432ejc.728.1655812566187;
-        Tue, 21 Jun 2022 04:56:06 -0700 (PDT)
-Received: from skbuf ([188.25.159.210])
-        by smtp.gmail.com with ESMTPSA id ky20-20020a170907779400b006f4cb79d9a8sm7519895ejc.75.2022.06.21.04.56.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jun 2022 04:56:05 -0700 (PDT)
-Date:   Tue, 21 Jun 2022 14:56:03 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v8 15/16] ARM: dts: r9a06g032-rzn1d400-db: add
- switch description
-Message-ID: <20220621115603.yzcxcu7gzwng6bcg@skbuf>
-References: <20220620110846.374787-1-clement.leger@bootlin.com>
- <20220620110846.374787-16-clement.leger@bootlin.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=20hOXgHS4fSMKzf2+VEVhuMt/xTY7rwW+BkuR688jQI=;
+        b=Yl5CYLC6WMtJrK9f2gbk/Uh3W24+A1udd1EIZfQXG2sFoVzAwWPx5tX8LKGlIOOUos
+         LZ2S+bw96aTz1LA2UlDiG4oGYlhGBu+0CS81Fu3PVD37/5KJFzKgS37cP7HCKB7rLXpQ
+         GBxNoKNr0xPiCTwxGUO9sF9tYSe2h6L1eMgBKStt/SbWndS4LjInJFEzZJ+um7vIVKyC
+         zQpVcwukuK1d+612PFTmu9CXLhGwji0Q61YGY1IqbLUgCda3FtYHlyAqKj0nPFhh5Qpp
+         TFGYPp5vFDunfe4qyiA1PMQtqLRxnRyw60rZxHnKckisumbYi6pTmrpspa3p8MF8oQUU
+         2z1A==
+X-Gm-Message-State: AJIora/2ZSjuqHiny3AcOIHNBQnSG+qC36esEurkinnOlDk4T9+6fsPW
+        OY5/9JxOgjfiRCYjDPPCTPqZeQ==
+X-Google-Smtp-Source: AGRyM1vuqpi73lfGfP1AhQV/V6GZDUbkiFuWxRqJMB+M0pVkbVaH3yMP1muhb8X6319Kpo4FNFG3DQ==
+X-Received: by 2002:a05:6402:3689:b0:435:95b0:edf2 with SMTP id ej9-20020a056402368900b0043595b0edf2mr3480378edb.279.1655813021696;
+        Tue, 21 Jun 2022 05:03:41 -0700 (PDT)
+Received: from [192.168.0.220] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id n12-20020a170906840c00b00706c50870a0sm7470520ejx.194.2022.06.21.05.03.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jun 2022 05:03:41 -0700 (PDT)
+Message-ID: <3e02909d-131a-7899-f02b-fa0afcbef1d9@linaro.org>
+Date:   Tue, 21 Jun 2022 14:03:39 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 03/15] dt-bindings: leds: mt6370: Add Mediatek mt6370
+ current sink type LED indicator
+Content-Language: en-US
+To:     szuni chen <szunichen@gmail.com>
+Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+        ChiYuan Huang <cy_huang@richtek.com>
+References: <20220613111146.25221-1-peterwu.pub@gmail.com>
+ <20220613111146.25221-4-peterwu.pub@gmail.com>
+ <91e9e3af-8208-7535-1864-08744f934593@linaro.org>
+ <CA+hk2fZbh0=8gurGS95XpXrYyF3NbwFbFMcygcrW_q10m0zinA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CA+hk2fZbh0=8gurGS95XpXrYyF3NbwFbFMcygcrW_q10m0zinA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220620110846.374787-16-clement.leger@bootlin.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 20, 2022 at 01:08:45PM +0200, Cl�ment L�ger wrote:
-> Add description for the switch, GMAC2 and MII converter. With these
-> definitions, the switch port 0 and 1 (MII port 5 and 4) are working on
-> RZ/N1D-DB board.
+On 20/06/2022 05:07, szuni chen wrote:
+> Dear Krzysztof,
 > 
-> Signed-off-by: Cl�ment L�ger <clement.leger@bootlin.com>
-> ---
-
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
-
-Just minor comments below:
-
->  arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts | 117 ++++++++++++++++++++
->  1 file changed, 117 insertions(+)
+> Thank you for the valuable command.
 > 
-> diff --git a/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
-> index 3f8f3ce87e12..36b898d9f115 100644
-> --- a/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
-> +++ b/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
-> @@ -8,6 +8,8 @@
->  
->  /dts-v1/;
->  
-> +#include <dt-bindings/pinctrl/rzn1-pinctrl.h>
-> +#include <dt-bindings/net/pcs-rzn1-miic.h>
->  #include "r9a06g032.dtsi"
->  
->  / {
-> @@ -31,3 +33,118 @@ &wdt0 {
->  	timeout-sec = <60>;
->  	status = "okay";
->  };
-> +
-> +&gmac2 {
-> +	status = "okay";
-> +	phy-mode = "gmii";
-> +	fixed-link {
-> +		speed = <1000>;
-> +		full-duplex;
-> +	};
-> +};
-> +
-> +&switch {
-> +	status = "okay";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pins_mdio1>, <&pins_eth3>, <&pins_eth4>;
-> +
-> +	dsa,member = <0 0>;
-
-This doesn't really have any value for single-switch DSA trees, since
-that is the implicit tree id/switch id, but it doesn't hurt, either.
-
-> +
-> +	mdio {
-> +		clock-frequency = <2500000>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		switch0phy4: ethernet-phy@4{
-
-Space between ethernet-phy@4 and {.
-
-> +			reg = <4>;
-> +			micrel,led-mode = <1>;
-> +		};
-> +
-> +		switch0phy5: ethernet-phy@5{
-
-Same thing here.
-
-> +			reg = <5>;
-> +			micrel,led-mode = <1>;
-> +		};
-> +	};
-> +};
-> +
-> +&switch_port0 {
-> +	label = "lan0";
-> +	phy-mode = "mii";
-> +	phy-handle = <&switch0phy5>;
-> +	status = "okay";
-> +};
-> +
-> +&switch_port1 {
-> +	label = "lan1";
-> +	phy-mode = "mii";
-> +	phy-handle = <&switch0phy4>;
-> +	status = "okay";
-> +};
-> +
-> +&switch_port4 {
-> +	status = "okay";
-> +};
-> +
-> +&eth_miic {
-> +	status = "okay";
-> +	renesas,miic-switch-portin = <MIIC_GMAC2_PORT>;
-> +};
-> +
-> +&mii_conv4 {
-> +	renesas,miic-input = <MIIC_SWITCH_PORTB>;
-> +	status = "okay";
-> +};
-> +
-> +&mii_conv5 {
-> +	renesas,miic-input = <MIIC_SWITCH_PORTA>;
-> +	status = "okay";
-> +};
-> +
-> +&pinctrl{
-> +	pins_mdio1: pins_mdio1 {
-> +		pinmux = <
-> +			RZN1_PINMUX(152, RZN1_FUNC_MDIO1_SWITCH)
-> +			RZN1_PINMUX(153, RZN1_FUNC_MDIO1_SWITCH)
-> +		>;
-> +	};
-> +	pins_eth3: pins_eth3 {
-> +		pinmux = <
-> +			RZN1_PINMUX(36, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(37, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(38, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(39, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(40, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(41, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(42, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(43, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(44, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(45, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(46, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(47, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +		>;
-> +		drive-strength = <6>;
-> +		bias-disable;
-> +	};
-> +	pins_eth4: pins_eth4 {
-> +		pinmux = <
-> +			RZN1_PINMUX(48, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(49, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(50, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(51, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(52, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(53, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(54, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(55, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(56, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(57, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(58, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +			RZN1_PINMUX(59, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)
-> +		>;
-> +		drive-strength = <6>;
-> +		bias-disable;
-> +	};
-> +};
-> -- 
-> 2.36.1
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 於 2022年6月17日 週五 清晨5:09寫道：
+>>
+>> On 13/06/2022 04:11, ChiaEn Wu wrote:
+>>> From: ChiYuan Huang <cy_huang@richtek.com>
+>>>
+>>> Add Mediatek mt6370 current sink type LED indicator binding documentation.
+>>>
+>>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+>>> ---
+>>>  .../leds/mediatek,mt6370-indicator.yaml       | 48 +++++++++++++++++++
+>>>  1 file changed, 48 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/leds/mediatek,mt6370-indicator.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/leds/mediatek,mt6370-indicator.yaml b/Documentation/devicetree/bindings/leds/mediatek,mt6370-indicator.yaml
+>>> new file mode 100644
+>>> index 000000000000..42b96c8047a3
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/leds/mediatek,mt6370-indicator.yaml
+>>> @@ -0,0 +1,48 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/leds/mediatek,mt6370-indicator.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: LED driver for MT6370 PMIC from MediaTek Integrated.
+>>> +
+>>> +maintainers:
+>>> +  - Alice Chen <alice_chen@richtek.com>
+>>> +
+>>> +description: |
+>>> +  This module is part of the MT6370 MFD device.
+>>> +  Add MT6370 LED driver include 4-channel RGB LED support Register/PWM/Breath Mode
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: mediatek,mt6370-indicator
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 1
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 0
+>>> +
+>>> +patternProperties:
+>>> +  "^(multi-)?led@[0-3]$":
+>>
+>> If this is multi-led, then you should reference
+>> /schemas/leds/leds-pwm-multicolor.yaml
+>>
+>> See other examples using it.
 > 
+> In my opinion, leds-pwm-multicolor.yaml is used for external pwm
+> signals, and needs to assign an external pwm property.
+> But our pwm leds use an internal clock to generate the pwm signal. Is
+> leds-class-multicolor.yaml more appropriate?
 
+Yeah, I meant the latter but pasted wrong file.
+/schemas/leds/leds-class-multicolor.yaml#
+
+Best regards,
+Krzysztof
