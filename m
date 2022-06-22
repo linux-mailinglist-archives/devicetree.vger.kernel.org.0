@@ -2,254 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4DA05542D4
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 08:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E312A5542C0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 08:25:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356904AbiFVGLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 02:11:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56550 "EHLO
+        id S230059AbiFVGMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 02:12:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230006AbiFVGLD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 02:11:03 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EACC41F61C;
-        Tue, 21 Jun 2022 23:11:00 -0700 (PDT)
-X-UUID: 5a727973065c4e8683ff43bae6390ba9-20220622
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:b323eea3-5f11-4f5b-83c7-965cd29cae5c,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:b14ad71,CLOUDID:8cf0b72d-1756-4fa3-be7f-474a6e4be921,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 5a727973065c4e8683ff43bae6390ba9-20220622
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <wenbin.mei@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 514534466; Wed, 22 Jun 2022 14:10:56 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 22 Jun 2022 14:10:56 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Wed, 22 Jun 2022 14:10:55 +0800
-Message-ID: <2705069844be7b3152a810e21b9f737a88d0302d.camel@mediatek.com>
-Subject: Re: [PATCH 2/3] dt-bindings: usb: mtk-xhci: Allow middle optional
- clocks to be missing
-From:   Wenbin Mei <wenbin.mei@mediatek.com>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, <kernel@collabora.com>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>
-Date:   Wed, 22 Jun 2022 14:10:55 +0800
-In-Reply-To: <ba6cccfa05aed087d14f5adc6db06496547a5094.camel@mediatek.com>
-References: <20220617222916.2435618-1-nfraprado@collabora.com>
-         <20220617222916.2435618-3-nfraprado@collabora.com>
-         <8639e64d-c659-7090-2d0a-078fd96cfbd4@linaro.org>
-         <bb460aa483cc888ffa36709d9e9c1f2e3be0e000.camel@mediatek.com>
-         <bc5458fe-083c-d679-9fcb-95810a290da8@linaro.org>
-         <af50210b95d0cd8b2e3103b3d4a9702aeeba9452.camel@mediatek.com>
-         <a24c24e6-fdee-df79-fd2f-6a71540bd9b3@linaro.org>
-         <20220620155057.a6qilnhm7snzhapa@notapiano>
-         <afae6179-3681-f5c6-4615-3228f16f1271@linaro.org>
-         <ba6cccfa05aed087d14f5adc6db06496547a5094.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
+        with ESMTP id S229628AbiFVGMg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 02:12:36 -0400
+Received: from EUR03-VE1-obe.outbound.protection.outlook.com (mail-eopbgr50075.outbound.protection.outlook.com [40.107.5.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 469DF205CD;
+        Tue, 21 Jun 2022 23:12:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R7Hm5sgNrEDD9sBXTLVzdzDcYGYvtSj3TEF3BmUw6d/DVjUYa+enAog8Y4G33Hvn5F3vG+wIwoyuml9ns0AsO2sRiB0QMvf5s+loz/40l941PW9f2bN7mi3TKDZpiz/DMHphSbuRFCejW3hjGGog1gqfzchtefiiG3Kat3vZBI39t5+RF1rANBuHSGESFqQeP6newBY64MpGLGwyDHdcFDALyp92LJX+Bvyx58Dim8B0Y1GiWshnwBe0zQOabDlhYOwQyO66dn74XaT+gGTiyLAzx2eQf73Nqvz82/O5kLBqCWgcJdP3jL3Yvs81KuzZq17JgaeaxYxHe1xMeF2rvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=igf+rCWJnk9M4X5AryTMM4EpgCPAVPcMI1nCvtQXu5E=;
+ b=i5NoJ92VhBUSEoOvqsEF0yWVuGjRi1d3MfWvbIiKxfrtU2icoL0+HW+9r6D8Tr02dup0cuLgVKPlwx7cv5e0R2x/GfNw55Z1EzARc7UbMjpUJog0U27wlK6zpGNrAU4YbGJrn34FKo0+0rKz7Uz6OEtvLkWNxHW4Sy4EtwbLXPWqttJxd0i+NsDSHr55eQL6CJgMCS8smhYWpHKMUvkUoD1UJ5EAiyBQcOWyvuRtup0yc3VvEpxYBASeQkjEU69N1W1qQUqHbtDdU3Lz/IYGAwq4qDVFAPuqdmAKMI/bHGNJf2tciytCdRFrW3YdjgXHyGgQD/NHt8L1dn1xfrtQBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=igf+rCWJnk9M4X5AryTMM4EpgCPAVPcMI1nCvtQXu5E=;
+ b=h/IskNVjHQLvpraNLhDRFQV79u7rdY7IvsOrc6jxd7CanTfwWdjCnycoywz24erq4WQu+tIk4QqNnUE6Rpk+NR7jGIFlen5bfGvb+HrQlVYUYuOs/1OU2lHiEgnmAqAEnAqeXSAQ4puvfJJkwZMzJOp2mFdk5TX3rD/KMlJMdVQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM8PR04MB7986.eurprd04.prod.outlook.com (2603:10a6:20b:245::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.15; Wed, 22 Jun
+ 2022 06:12:31 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::71af:d414:52be:d531]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::71af:d414:52be:d531%6]) with mapi id 15.20.5353.022; Wed, 22 Jun 2022
+ 06:12:31 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     festevam@gmail.com, linux-imx@nxp.com, hvilleneuve@dimonoff.com,
+        l.stach@pengutronix.de, abbaraju.manojsai@amarulasolutions.com,
+        jagan@amarulasolutions.com, matteo.lisi@engicam.com,
+        tharvey@gateworks.com, t.remmet@phytec.de,
+        u.kleine-koenig@pengutronix.de, t.remmet@phytec.deh,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH 00/14] arm64: dts: imx8mp: correct pad settings
+Date:   Wed, 22 Jun 2022 14:13:56 +0800
+Message-Id: <20220622061410.853301-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR04CA0007.apcprd04.prod.outlook.com
+ (2603:1096:4:197::19) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8afd9276-3f73-4655-b5d6-08da541630de
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7986:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-Microsoft-Antispam-PRVS: <AM8PR04MB79865D43E59CE13F1C40EAB6C9B29@AM8PR04MB7986.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5WOfsJTVBHuNLMH7ZvI/nrG1kZNO0FmEPb857D70SUgkTLbHA2fBhCF7vO+sZACLNcMC/BwU13EnzfW4Ma5SWqZVu556FKQ1nmp3o4Hyi1rvVAtkXr4ku5PW9Etll1Kpo9oqor6lS0+Z2yl4lk2+OJD3G2w8YNkADNd1kwVhaGKRUft6KalvuHH1OT00ZmhJZdmlQYpJB1XkjSob7lx/VPFW6nmjMiX9FufVYEgWyQOGEqQJv7bT1Xo7domDfxvN0PQLFrpII/0bG1xNgeyfdgkhIc6jrl2aLly0SjgrTUwbsUJTZT5zhLOiyjEvXxI27IOyxoG334QR7B6qlR14Ux/1amAIOG7D8eehYUsU4dFN4LdVQ4fXtxMvGwJvr8booz0YiClzS61OrOiGrckrzfNi9s8t5MeGkJpVYjzXrByWhvsqjtDh5zfQeAwZTP+E3xsW5+vp2quPFjC6LhJKhN8H3t680TU99exIFt9jMT2yFZXzkhZzy8It0QC6lJCe18k6B70idO+OXXTVkzvIxGBYEELeUHnn5txZ9EsRC/acKoUbPT7mdLmJDR8z45UWi4TSaBvHBVYqt/wEE07BJ+DmMRbQ0hqpwNaODNfbYnuQ2epLK6Kz1C114QcfhTQBOu608dIHmgVdlCG6wYLTYrYqWcDampA+VjAnB4e0EjgF6CwMl1RKajXxYJjOd+Euk4B5XsNaxOo5Sr9gKY5Tf35Et492vQ837DvxUSbu7u0XJHIqTqvjARBHuqAfOXoQJEEPt/1/FACNxVspIK5/0xLJeUKDO0P6IC+cBzTkPN4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(396003)(376002)(366004)(346002)(39860400002)(26005)(2906002)(6666004)(52116002)(6506007)(86362001)(6512007)(316002)(38100700002)(1076003)(8676002)(66946007)(38350700002)(4326008)(66476007)(66556008)(2616005)(8936002)(7416002)(41300700001)(83380400001)(186003)(5660300002)(478600001)(6486002)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nkDqD3gTMuuLh4FKTVuiTOp1TI/PjBIx8B7aNWInXBVkGUuIuktxSaivMfhM?=
+ =?us-ascii?Q?xH/56rhKBJ/i8OT78ag2fLsbAi3MpjAFMKkUt1jNDGZQmJhDqCrZGsdTd+Um?=
+ =?us-ascii?Q?Ezm07jvlqQ1fIZD0XSsiafrN7nXtbELC+87qgHH/jVXfr9wu0u2bN8KYtouM?=
+ =?us-ascii?Q?gDK32zNgFLITEvvzE47EG1ZWCox3hyw7Cm0a6LlpKegdo26WPzrftokFU57X?=
+ =?us-ascii?Q?m+7tbh8ruV589muor66DKU+Ddwg3Yg54ouqdRKM+p1KrCIMCWumoE2eyA2a7?=
+ =?us-ascii?Q?TQ2Qu34MCv8BLNTwSZWZFJAybftjO/SAatKA/CUahbRDfc9B15t/zArrE1zi?=
+ =?us-ascii?Q?bsln/Bf7HUYzxfNWuomhYI2MFNTDnNm+IcxHr7oUBJJdt8cnIllgeZAgVQgQ?=
+ =?us-ascii?Q?mEelpbIfasctMahgkTgRVgDoPRqrkjeKbysFbItYHjPr/+LAOwv9xc4yuYcF?=
+ =?us-ascii?Q?b4BTBI6wsIojd5Bmd/LIg/l7MCXG7vR40HhJW6vKfNb5cIjwhgWfHOce+sUz?=
+ =?us-ascii?Q?Es7OxYP3oHt0DrF/SWT0UbIaUJXsweNtDRCEoQz5yAINZD1mZvsBLIO1bVy/?=
+ =?us-ascii?Q?+UypSQJEqAvx4LD3E22c1XCwEbEvNDJY4+jBra535gBiYeirdqG7fol8lJHW?=
+ =?us-ascii?Q?jpZLvlYD+UM29Sx9zKLViM5JfS5RSvjWczA4vFA3o1cmzG7bzAR1/qIyrnqC?=
+ =?us-ascii?Q?aVJoL15ll0UXfCAMsmU4VR+HAzfC269TC2jWD7X4bJRZXKz5aLp8umFugoxh?=
+ =?us-ascii?Q?+V9bZroKvWggcplGkJhH+ze9aC54Qr92fjobXuY5w27VfIKQlivnTvyB12BJ?=
+ =?us-ascii?Q?AQP687l6GpzNfKskrM1WASMdZpvXLijSZfx+pCHE/YKHQV0ydbAte77Xooxi?=
+ =?us-ascii?Q?Hi+hYuOHhxe0iYF4udUgnkR9iXpZspF0LB1VyKQofyv10jPWnqYVT641A7so?=
+ =?us-ascii?Q?O1uh/uJ9A+XnLqJ8PkG3qwI+Uj95ojAHs548rAf8S2FawR3u8ZFOalgPbE4W?=
+ =?us-ascii?Q?HAWw44yatV6+59b5CDjIM02HDL0YUvhgitX5utKH3HhHVFoeKTckCW1w1GyT?=
+ =?us-ascii?Q?XpvrSuw/nKSqKZ+MoaQJOMMH6N115phFkoRiCKjsgH6OwhdRm+HwtjdJC3IL?=
+ =?us-ascii?Q?DP0XJV8dIwwvQjvVJpL68x9q6pwmS7hY/3rWLSgmZ+rdt6O4tt4jIL1jYudh?=
+ =?us-ascii?Q?CC0rW3+7d8N10kBnRt5eBEsPOgV3qHi6CjJEzyW2YFmTkKI9DL10LlWuFU6H?=
+ =?us-ascii?Q?UdUmK4PHR8KdVMZTrmCUN+a9OrZV+geQwTvM7BgXXl3HumG+x5D6OFUIp92l?=
+ =?us-ascii?Q?A4UFdRvq06Q4loW9FeHJ1zqUiLOnvMiuicU9/t/WG1MjJItSswbs/VaD/OmM?=
+ =?us-ascii?Q?0xsp5CrFo97U1OYGC64g99/6g8fH99JHSgi8qJcoBLFnNjQWtFM3fd4JYvcF?=
+ =?us-ascii?Q?Kk2+sVj2QygYdfGf9mdyF/PBhVmsTNZoEcWUX6YmY2YbA7hUM0Rw4GUj/qw9?=
+ =?us-ascii?Q?+H3qTmVQbJJb7cW2WoZAWPHk3YQzLiWTypgW2N6/n57tspF2x7OlmZtiACBq?=
+ =?us-ascii?Q?PldZbZLsb+sDeJGhx5CJlFxQZyUnlHUXd3CJq+g70dAJQhthYLY1aACm63K2?=
+ =?us-ascii?Q?S9bswZVCSbnxwM37uwQbunNV+ius3vRiv1nkSCAjTaX7QK2/mUnKLTQFKmFR?=
+ =?us-ascii?Q?r38F9UE0d29fGZkT0Uv+FtNFp7cyrSge2/370pAcPcVh4p15SpYJzz4DW04E?=
+ =?us-ascii?Q?btvB3Fr13Q=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8afd9276-3f73-4655-b5d6-08da541630de
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2022 06:12:31.5710
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: D/wT+5tBuGo5IT11YxZ8tSSHfF9mhK5sYgdaD5J8VwoYY792A7yfHBL1uwPYDF7pzijSCf5EnXRS+o+YHXvKow==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7986
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-06-22 at 09:57 +0800, Chunfeng Yun wrote:
-> On Tue, 2022-06-21 at 09:14 +0200, Krzysztof Kozlowski wrote:
-> > On 20/06/2022 17:50, Nícolas F. R. A. Prado wrote:
-> > > On Mon, Jun 20, 2022 at 10:50:57AM +0200, Krzysztof Kozlowski
-> > > wrote:
-> > > > On 20/06/2022 08:59, Chunfeng Yun wrote:
-> > > > > On Sun, 2022-06-19 at 14:05 +0200, Krzysztof Kozlowski wrote:
-> > > > > > On 19/06/2022 09:46, Chunfeng Yun wrote:
-> > > > > > > On Fri, 2022-06-17 at 18:25 -0700, Krzysztof Kozlowski
-> > > > > > > wrote:
-> > > > > > > > On 17/06/2022 15:29, Nícolas F. R. A. Prado wrote:
-> > > > > > > > > The current clock list in the binding doesn't allow
-> > > > > > > > > for
-> > > > > > > > > one of
-> > > > > > > > > the
-> > > > > > > > > optional clocks to be missing and a subsequent clock
-> > > > > > > > > to
-> > > > > > > > > be
-> > > > > > > > > present.
-> > > > > > > > > An
-> > > > > > > > > example where this is an issue is in mt8192.dtsi,
-> > > > > > > > > which
-> > > > > > > > > has
-> > > > > > > > > "sys_ck",
-> > > > > > > > > "ref_ck", "xhci_ck" and would cause dtbs_check
-> > > > > > > > > warnings.
-> > > > > > > > > 
-> > > > > > > > > Change the clock list in a way that allows the middle
-> > > > > > > > > optional
-> > > > > > > > > clocks to
-> > > > > > > > > be missing, while still guaranteeing a fixed order.
-> > > > > > > > > The
-> > > > > > > > > "ref_ck" is
-> > > > > > > > > kept
-> > > > > > > > > as a const even though it is optional for simplicity,
-> > > > > > > > > since it
-> > > > > > > > > is
-> > > > > > > > > present in all current dts files.
-> > > > > > > > > 
-> > > > > > > > > Signed-off-by: Nícolas F. R. A. Prado <
-> > > > > > > > > nfraprado@collabora.com>
-> > > > > > > > > ---
-> > > > > > > > > 
-> > > > > > > > >  .../devicetree/bindings/usb/mediatek,mtk-
-> > > > > > > > > xhci.yaml       | 9
-> > > > > > > > > +++++++--
-> > > > > > > > >  1 file changed, 7 insertions(+), 2 deletions(-)
-> > > > > > > > > 
-> > > > > > > > > diff --git
-> > > > > > > > > a/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > > > > > > > xhci.yaml
-> > > > > > > > > b/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > > > > > > > xhci.yaml
-> > > > > > > > > index 63cbc2b62d18..99a1b233ec90 100644
-> > > > > > > > > ---
-> > > > > > > > > a/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > > > > > > > xhci.yaml
-> > > > > > > > > +++
-> > > > > > > > > b/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > > > > > > > xhci.yaml
-> > > > > > > > > @@ -80,8 +80,13 @@ properties:
-> > > > > > > > >      items:
-> > > > > > > > >        - const: sys_ck  # required, the following
-> > > > > > > > > ones
-> > > > > > > > > are
-> > > > > > > > > optional
-> > > > > > > > >        - const: ref_ck
-> > > > > > > > > -      - const: mcu_ck
-> > > > > > > > > -      - const: dma_ck
-> > > > > > > > > +      - enum:
-> > > > > > > > > +          - mcu_ck
-> > > > > > > > > +          - dma_ck
-> > > > > > > > > +          - xhci_ck
-> > > > > > > > > +      - enum:
-> > > > > > > > > +          - dma_ck
-> > > > > > > > > +          - xhci_ck
-> > > > > > > > >        - const: xhci_ck
-> > > > > > > > 
-> > > > > > > > You allow now almost any order here, including
-> > > > > > > > incorrect
-> > > > > > > > like
-> > > > > > > > sys,ref,xhci,xhci,xhci.
-> > > > > > > > 
-> > > > > > > > The order of clocks has to be fixed and we cannot allow
-> > > > > > > > flexibility.
-> > > > > > > > Are
-> > > > > > > > you sure that these clocks are actually optional (not
-> > > > > > > > wired to
-> > > > > > > > the
-> > > > > > > > device)?
-> > > > > > > 
-> > > > > > > In fact, these optional clocks are fixed, due to no gates
-> > > > > > > are
-> > > > > > > provided,
-> > > > > > > SW can't control them by CCF;
-> > > > > > > In this case, I usually use a fixed clock, or ignore it.
-> > > > > > 
-> > > > > > But in some versions these clocks are controllable or not?
-> > > > > 
-> > > > > Some SoCs are controllable, some ones are not (fixed clock).
-> > > > 
-> > > > Thanks for confirming. Then I would prefer to make these clocks
-> > > > required
-> > > > (not optional) and always provide them - via common clock
-> > > > framework or
-> > > > fixed-clock.
-> > > 
-> > > Hi Krzysztof and Chunfeng,
-> > > 
-> > > thank you both for the feedback.
-> > > 
-> > > Since the solution I proposed in this patch is not acceptable I
-> > > see
-> > > two options:
-> > > 1. Split the clocks in several if blocks matched by compatibles
-> > > 2. Make the clocks required and use fixed-clock nodes for the
-> > > missing clocks in
-> > >    the DT
-> > > 
-> > > My understanding is that 1 is the desirable solution if the clock
-> > > is really
-> > > missing in some hardware variants, while 2 is desirable if all
-> > > hardware variants
-> > > really receive all the clocks, only that on some variants they're
-> > > fixed and not
-> > > controlable by SW.
-> > > 
-> > > From what I'm reading of this discussion it seems that the latter
-> > > is the case
-> > > here and thus we should go for 2. Is this correct?
-> > 
-> > This is how I understood it as well, so correct from my side.
-> 
-> Also right for me.
-> 
-> > 
-> > > 
-> > > Also Chunfeng, do you have information on whether the same is
-> > > true
-> > > for the MMC
-> > > HW block? I recently submitted some changes to that binding [1]
-> > > but
-> > > I followed
-> > > approach 1 there instead. However if all the clocks are present
-> > > in
-> > > the HW level
-> > > there as well it would make more sense for me to change it to
-> > > follow approach 2.
-> 
-> I discussed it with Wenbin, MMC seems a little different with USB,
-> 
-> Hi Wenbin,
-> 
->    Please give some comments about MMC, thanks
-> 
-Hi Chunfeng,
+From: Peng Fan <peng.fan@nxp.com>
 
-As we discussed, the following change is the desirable solution for the
-Mediatek MMC HW.
+i.MX8MP iomux pad BIT3 and BIT0 are reserved bits. Writing 1 to the
+reserved bit will be ignored and reading will still return 0. Although
+function not broken with reserved bits set, we should not set reserved
+bits.
 
-https://lists.infradead.org/pipermail/linux-mediatek/2022-June/043691.html
+Peng Fan (13):
+  arm64: dts: imx8mp-evk: correct mmc pad settings
+  arm64: dts: imx8mp-evk: correct gpio-led pad settings
+  arm64: dts: imx8mp-evk: correct vbus pad settings
+  arm64: dts: imx8mp-evk: correct eqos pad settings
+  arm64: dts: imx8mp-evk: correct vbus pad settings
+  arm64: dts: imx8mp-evk: correct I2C5 pad settings
+  arm64: dts: imx8mp-evk: correct I2C1 pad settings
+  arm64: dts: imx8mp-evk: correct I2C3 pad settings
+  arm64: dts: imx8mp-venice-gw74xx: correct pad settings
+  arm64: dts: imx8mp-phyboard-pollux-rdk: correct uart pad settings
+  arm64: dts: imx8mp-phyboard-pollux-rdk: correct eqos pad settings
+  arm64: dts: imx8mp-phyboard-pollux-rdk: correct i2c2 & mmc settings
+  arm64: dts: imx8mp-icore-mx8mp-edim2.2: correct pad settings
 
-Thanks.
-> > > 
-> > > Thanks,
-> > > Nícolas
-> > > 
-> > > [1] 
-> > > 
-https://lore.kernel.org/all/20220617230114.2438875-1-nfraprado@collabora.com
-> > 
-> > 
-> > Best regards,
-> > Krzysztof
-> 
-> 
+Sherry Sun (1):
+  arm64: dts: imx8mp-evk: correct the uart2 pinctl value
+
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts  |  88 ++++++-------
+ .../freescale/imx8mp-icore-mx8mp-edimm2.2.dts |  40 +++---
+ .../freescale/imx8mp-phyboard-pollux-rdk.dts  |  48 ++++----
+ .../dts/freescale/imx8mp-venice-gw74xx.dts    | 116 +++++++++---------
+ 4 files changed, 146 insertions(+), 146 deletions(-)
+
+-- 
+2.25.1
 
