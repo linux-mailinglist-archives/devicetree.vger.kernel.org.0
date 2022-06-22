@@ -2,211 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AA69554875
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:15:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22E8C554868
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:15:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348285AbiFVKxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 06:53:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39138 "EHLO
+        id S1353568AbiFVLF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 07:05:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355072AbiFVKxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 06:53:38 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29A8739B9A;
-        Wed, 22 Jun 2022 03:53:36 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25MArMte027964;
-        Wed, 22 Jun 2022 05:53:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1655895202;
-        bh=28XJ9wIA9l8rfkupe3uYGly7sxILC7G1n8Ezz6F22jA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=I+yTT2dw9VtgG60z9c47p3kqWNCykoLbY+HSrIUoqlPhTYlAs3/W9Yoz/OzUHsNBz
-         0A70MJgAMziUmhw4oKP/0lz2PujbqmlnDkYZBRL8XhgFvtXSPw1XLd4t1F1EWvEI2Q
-         I4Dtj+Ch1QkEbDppQ3QCIi9j9PJit0QOYK1pxs3c=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25MArMsd083854
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 22 Jun 2022 05:53:22 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 22
- Jun 2022 05:53:22 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 22 Jun 2022 05:53:22 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25MArLqp043750;
-        Wed, 22 Jun 2022 05:53:21 -0500
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     <linux-phy@lists.infradead.org>, <kishon@ti.com>,
-        <vkoul@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <laurent.pinchart@ideasonboard.com>
-CC:     <p.yadav@ti.com>, <tomi.valkeinen@ideasonboard.com>,
-        <linux-kernel@vger.kernel.org>, <jpawar@cadence.com>,
-        <sjakhade@cadence.com>, <mparab@cadence.com>,
-        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
-        <lee.jones@linaro.org>, Rahul T R <r-ravikumar@ti.com>
-Subject: [PATCH v3 3/3] phy: cdns-dphy: Add support for DPHY TX on J721e
-Date:   Wed, 22 Jun 2022 16:23:11 +0530
-Message-ID: <20220622105311.21415-4-r-ravikumar@ti.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220622105311.21415-1-r-ravikumar@ti.com>
-References: <20220622105311.21415-1-r-ravikumar@ti.com>
+        with ESMTP id S234590AbiFVLFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 07:05:24 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC853BBD2;
+        Wed, 22 Jun 2022 04:05:17 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id ej4so19413036edb.7;
+        Wed, 22 Jun 2022 04:05:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=BsWeZKTMRUjS4UGWGKXKi/F6OhLV9oNlEr0sqKPjdhY=;
+        b=goSSVIS2xMmIt8+zQ+4MnTruyoXO+gM/WRoEM6Cuo0Prstx1aOOwxieSEas175GI/Y
+         pR2Ri8ptjhMZM/G7BHcC7rgqDl7INoPAriq7bsCHGZaWu/qkjeRlUw4V0ROTlGdz8Jsz
+         ZGNVA9rlMFvvpoELJv0Gr/0V7oP28iDObt/v/9fSfFXohainHuDFWRfYpz0WhcPFSn5v
+         TZkEbd++U+4Lt5ORaWDswJ87h+OTBxqy3lfL3eFCaJcKfpk3IXE4l8eYzXXW4G6vNZaq
+         /7L3bJjNz22oFeOw74YdcXFiGlAiK/Hpa+Ha3pZuSu6M0TMMTi0rSX0YXOE9lEsDAZtb
+         l3oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=BsWeZKTMRUjS4UGWGKXKi/F6OhLV9oNlEr0sqKPjdhY=;
+        b=gwWPpagxg2tym0yF/TD0jGE4LAX/u3gka7dvKYdEcUELY1WEyBLs5jwSpzqWAKNLCn
+         Zo9mifafSVtbchn3n84YYOVA6b2Pnta+Bzi7vMXgLBKT3b8em40/EdNGpT3qH7JhEkuI
+         ESho1wW8uHmjzpv2TgHb4ZBZRxS2MieNcRbiH6rod8nJqDjeiPNgcPKmC7dVdrVwX5IS
+         2ztDEIAzfqhy/9DNBPrPlbmbx8yPWTNit6XRmtcQ8NDd96OvL8lpposXfThD0h2AzAAW
+         XZqGNh9kmUBTTU6DezDODB9D0o4LYf1MN9fFJbHEAyPqmnMr1fPWFDlnJN/nCxJjdXEU
+         rbqA==
+X-Gm-Message-State: AJIora9OBXkgtVf4P9PEZVqYcYxPG4LxyTOq4xBg4aviCMJhaUwYoEl6
+        uI/TKVwPq8utOiG02mjjLGM=
+X-Google-Smtp-Source: AGRyM1s9nDUowq9+/oNlBIcMXsoZizGRGfHc6q9TiQd5vkG3V7Wuhzig5PXTkxlYtZVA2ciTT6f/JA==
+X-Received: by 2002:a05:6402:4385:b0:435:9104:955b with SMTP id o5-20020a056402438500b004359104955bmr3470937edc.45.1655895915755;
+        Wed, 22 Jun 2022 04:05:15 -0700 (PDT)
+Received: from [192.168.0.24] (80.174.78.229.dyn.user.ono.com. [80.174.78.229])
+        by smtp.gmail.com with ESMTPSA id b12-20020a17090630cc00b00722edb5fb53sm1007705ejb.116.2022.06.22.04.05.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jun 2022 04:05:14 -0700 (PDT)
+Message-ID: <6b4f108c-b4bc-72cf-5972-222fbb2f3fca@gmail.com>
+Date:   Wed, 22 Jun 2022 13:05:13 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v6 15/16] arm64: dts: mediatek: Add infra #reset-cells
+ property for MT8192
+Content-Language: en-US
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     p.zabel@pengutronix.de, angelogioacchino.delregno@collabora.com,
+        chun-jie.chen@mediatek.com, wenst@chromium.org,
+        runyang.chen@mediatek.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220503093856.22250-1-rex-bc.chen@mediatek.com>
+ <20220503093856.22250-16-rex-bc.chen@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220503093856.22250-16-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support new compatible for dphy-tx on j721e
-and implement dphy ops required.
 
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
----
- drivers/phy/cadence/Kconfig     | 10 ++++++
- drivers/phy/cadence/cdns-dphy.c | 62 +++++++++++++++++++++++++++++++++
- 2 files changed, 72 insertions(+)
 
-diff --git a/drivers/phy/cadence/Kconfig b/drivers/phy/cadence/Kconfig
-index 1adde2d99ae7..18024ac6d511 100644
---- a/drivers/phy/cadence/Kconfig
-+++ b/drivers/phy/cadence/Kconfig
-@@ -22,6 +22,16 @@ config PHY_CADENCE_DPHY
- 	  system. If M is selected, the module will be called
- 	  cdns-dphy.
- 
-+if PHY_CADENCE_DPHY
-+
-+config PHY_CADENCE_DPHY_J721E
-+	depends on ARCH_K3 || COMPILE_TEST
-+	bool "J721E DPHY TX Wiz support"
-+	default y
-+	help
-+	  Support J721E Cadence DPHY TX Wiz configuration.
-+endif
-+
- config PHY_CADENCE_DPHY_RX
- 	tristate "Cadence D-PHY Rx Support"
- 	depends on HAS_IOMEM && OF
-diff --git a/drivers/phy/cadence/cdns-dphy.c b/drivers/phy/cadence/cdns-dphy.c
-index 14f951013b4f..a6b7d696f77a 100644
---- a/drivers/phy/cadence/cdns-dphy.c
-+++ b/drivers/phy/cadence/cdns-dphy.c
-@@ -7,6 +7,7 @@
- #include <linux/bitops.h>
- #include <linux/clk.h>
- #include <linux/io.h>
-+#include <linux/iopoll.h>
- #include <linux/module.h>
- #include <linux/of_address.h>
- #include <linux/of_device.h>
-@@ -18,6 +19,7 @@
- 
- #define REG_WAKEUP_TIME_NS		800
- #define DPHY_PLL_RATE_HZ		108000000
-+#define POLL_TIMEOUT_US			1000
- 
- /* DPHY registers */
- #define DPHY_PMA_CMN(reg)		(reg)
-@@ -62,6 +64,18 @@
- #define DSI_NULL_FRAME_OVERHEAD		6
- #define DSI_EOT_PKT_SIZE		4
- 
-+#define DPHY_TX_J721E_WIZ_PLL_CTRL	0xF04
-+#define DPHY_TX_J721E_WIZ_STATUS	0xF08
-+#define DPHY_TX_J721E_WIZ_RST_CTRL	0xF0C
-+#define DPHY_TX_J721E_WIZ_PSM_FREQ	0xF10
-+
-+#define DPHY_TX_J721E_WIZ_IPDIV		GENMASK(4, 0)
-+#define DPHY_TX_J721E_WIZ_OPDIV		GENMASK(13, 8)
-+#define DPHY_TX_J721E_WIZ_FBDIV		GENMASK(25, 16)
-+#define DPHY_TX_J721E_WIZ_LANE_RSTB	BIT(31)
-+#define DPHY_TX_WIZ_PLL_LOCK		BIT(31)
-+#define DPHY_TX_WIZ_O_CMN_READY		BIT(31)
-+
- struct cdns_dphy_cfg {
- 	u8 pll_ipdiv;
- 	u8 pll_opdiv;
-@@ -210,6 +224,43 @@ static void cdns_dphy_ref_set_psm_div(struct cdns_dphy *dphy, u8 div)
- 	       dphy->regs + DPHY_PSM_CFG);
- }
- 
-+#ifdef CONFIG_PHY_CADENCE_DPHY_J721E
-+static unsigned long cdns_dphy_j721e_get_wakeup_time_ns(struct cdns_dphy *dphy)
-+{
-+	return 1000000;
-+}
-+
-+static void cdns_dphy_j721e_set_pll_cfg(struct cdns_dphy *dphy,
-+					const struct cdns_dphy_cfg *cfg)
-+{
-+	u32 status;
-+
-+	writel(DPHY_CMN_PWM_HIGH(6) | DPHY_CMN_PWM_LOW(0x101) |
-+	       DPHY_CMN_PWM_DIV(0x8),
-+	       dphy->regs + DPHY_CMN_PWM);
-+
-+	writel((FIELD_PREP(DPHY_TX_J721E_WIZ_IPDIV, cfg->pll_ipdiv) |
-+		FIELD_PREP(DPHY_TX_J721E_WIZ_OPDIV, cfg->pll_opdiv) |
-+		FIELD_PREP(DPHY_TX_J721E_WIZ_FBDIV, cfg->pll_fbdiv)),
-+		dphy->regs + DPHY_TX_J721E_WIZ_PLL_CTRL);
-+
-+	writel(DPHY_TX_J721E_WIZ_LANE_RSTB,
-+	       dphy->regs + DPHY_TX_J721E_WIZ_RST_CTRL);
-+
-+	readl_poll_timeout(dphy->regs + DPHY_TX_J721E_WIZ_PLL_CTRL, status,
-+			   (status & DPHY_TX_WIZ_PLL_LOCK), 0, POLL_TIMEOUT_US);
-+
-+	readl_poll_timeout(dphy->regs + DPHY_TX_J721E_WIZ_STATUS, status,
-+			   (status & DPHY_TX_WIZ_O_CMN_READY), 0,
-+			   POLL_TIMEOUT_US);
-+}
-+
-+static void cdns_dphy_j721e_set_psm_div(struct cdns_dphy *dphy, u8 div)
-+{
-+	writel(div, dphy->regs + DPHY_TX_J721E_WIZ_PSM_FREQ);
-+}
-+#endif /* !CONFIG_PHY_CADENCE_DPHY_J721E */
-+
- /*
-  * This is the reference implementation of DPHY hooks. Specific integration of
-  * this IP may have to re-implement some of them depending on how they decided
-@@ -221,6 +272,14 @@ static const struct cdns_dphy_ops ref_dphy_ops = {
- 	.set_psm_div = cdns_dphy_ref_set_psm_div,
- };
- 
-+#ifdef CONFIG_PHY_CADENCE_DPHY_J721E
-+static const struct cdns_dphy_ops j721e_dphy_ops = {
-+	.get_wakeup_time_ns = cdns_dphy_j721e_get_wakeup_time_ns,
-+	.set_pll_cfg = cdns_dphy_j721e_set_pll_cfg,
-+	.set_psm_div = cdns_dphy_j721e_set_psm_div,
-+};
-+#endif /* !CONFIG_PHY_CADENCE_DPHY_J721E */
-+
- static int cdns_dphy_config_from_opts(struct phy *phy,
- 				      struct phy_configure_opts_mipi_dphy *opts,
- 				      struct cdns_dphy_cfg *cfg)
-@@ -408,6 +467,9 @@ static int cdns_dphy_remove(struct platform_device *pdev)
- 
- static const struct of_device_id cdns_dphy_of_match[] = {
- 	{ .compatible = "cdns,dphy", .data = &ref_dphy_ops },
-+#ifdef CONFIG_PHY_CADENCE_DPHY_J721E
-+	{ .compatible = "ti,j721e-dphy", .data = &j721e_dphy_ops },
-+#endif /* !CONFIG_PHY_CADENCE_DPHY_J721E */
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, cdns_dphy_of_match);
--- 
-2.36.1
+On 03/05/2022 11:38, Rex-BC Chen wrote:
+> To support reset of infra, we add property of #reset-cells.
+> 
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
+Applied, thanks!
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 411feb294613..79803420d8ef 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -269,6 +269,7 @@
+>   			compatible = "mediatek,mt8192-infracfg", "syscon";
+>   			reg = <0 0x10001000 0 0x1000>;
+>   			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+>   		};
+>   
+>   		pericfg: syscon@10003000 {
