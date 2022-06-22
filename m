@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B886B55472A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:11:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D2925547EC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:12:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353295AbiFVIch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 04:32:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57782 "EHLO
+        id S230256AbiFVIdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 04:33:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352513AbiFVIcg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 04:32:36 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D941D78
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:32:35 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id t5so93085eje.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:32:35 -0700 (PDT)
+        with ESMTP id S1354033AbiFVIde (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 04:33:34 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AEE92F020
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:33:32 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id eo8so22883882edb.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:33:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :references:from:in-reply-to:content-transfer-encoding;
-        bh=WIUcmFiN2jsL7oALDMp5YXGwCzJ0JqW4KnAxg4P/XMU=;
-        b=k9Gvq7+J9mhzaht3u87CbdlwP+NVlSPWWWYmFGGNQIro/etVMQlfRMzzkmHXJjZLPT
-         /2jU0et3pQJq3gG8wjqHhubqpZ8qBWdSe1957mW+R4AJtmASHzjgTyIApF3wYvyND+3g
-         aUkPpPsFP8scmGhOZVTm/rPjEO87fQrl1bQO8axt/Kl7rVfE4dxMUEG6fZ9/21JCvJWt
-         eNdIEIBF8HAoi8bZTGT83Q53cj1GvkbqS8Fshh5NyqUsWIhcjfRfAgm+IH2hC3VO5hn5
-         9pQojSP5EOT+qi4lWC6syDqO1phDO4rVqb5KHTHPSDlqUso+gb+q4uZYq+dGzs+svKB6
-         rUpQ==
+        bh=qRakZp5pSMYhL6XIJv26moqr0Al+sHh6pOGmxdJQIII=;
+        b=o2n9rxPaSrA4T+KJc8P6WKj85N0u6YbvtL8c9ZO8j6Ofr8tYdESYqjOnlqn3YTEb6t
+         ewwm0FT5KkFSAQdTRQvufxPG6NkZt/grwOruVj7u5Qhar+id93/l1h0mfpXnbBlNb4kd
+         GSFh/0pJ6IAT+kOpKBbzPz++6BxyDWh47cwoWZP0yfOhLIlYJ9rLZhY/YmWs0V9W9/a/
+         H6k8jU8EcEPbSIpFtQ/BsIPeZffKahhPOsF9UBM5VxocyUAYbGKXZC2I+JQIS98fHT3G
+         mA+EXb/LZXZgwggcUkQedgW4x22mrVPVy1oMt5rZUlKqOEGjFNReokhpu6WzJrvxnWmO
+         PPsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=WIUcmFiN2jsL7oALDMp5YXGwCzJ0JqW4KnAxg4P/XMU=;
-        b=fPQSwrKmSUF+ap1y31BQgGX0xtsOITGSMLF/VKoHSJVoylNg7R812GIqXwm/0bggJl
-         cxj8fGSUoaMc396+VmmxmG1Ke1jgpdms13M+AUCBHIEcQNMP1fmaao5bY/5LoZIHxEoE
-         5ZH34WyhpLhgNPRVCv2Ht7TL79ShqoPNvfPrcSNd1OulxuESnLwFZgml3aCWUOe8CRsf
-         tBmVxsbTpSP7oKYWw8KQnwB7WeVnkvNoPCqwZYjvyl601A6kCffNIH6DTW4ft9LJd7Rf
-         C5IOYej0DfyygNkucREULRdR1WXGAEtQDUyA8Fmz/VNbqdNOX5kqvgw5ORpIm0xsMYdw
-         qf7g==
-X-Gm-Message-State: AJIora8o+FanlR3nnQ6WFy3lEL5Jvnh5W4Z3mDpDCjZzx63h52cgWID7
-        tmqupmhwdeV/i5/qWOQDg0Ck3Q==
-X-Google-Smtp-Source: AGRyM1tkWJaPUpA9hMb6RtgYb3GvUnb8qwNoBsCBzv6suFeJmRITYuJ/8pOTGlbh5lQl9YoNbT7gSA==
-X-Received: by 2002:a17:906:2806:b0:70d:ed7a:ca5b with SMTP id r6-20020a170906280600b0070ded7aca5bmr2012582ejc.173.1655886753696;
-        Wed, 22 Jun 2022 01:32:33 -0700 (PDT)
+        bh=qRakZp5pSMYhL6XIJv26moqr0Al+sHh6pOGmxdJQIII=;
+        b=1wRypwBQoJLvtQVSCgAU6/MTfcCsb73N1lvHxyEOQnc7TveBhboL488ZUMXXkK+zks
+         75jeqJzP0FQtT1JgOZKL+mRbwMNs/aXr6n+ux3XIUHTd7P8OPMi/ymglOyS/yJdaZKe3
+         P9Uo3R3dmRY91/y/RuP8ALhYprKd/uc/jWmfMxLwsoYxlHJ95xIlX9LszNit35hVdOcR
+         xLQB1cgWEFauI9jezUz0NEs5n2rOgqW6/zd2FnnccNwtZQpaVVG0/edEoXEvLEeX8rOu
+         zOCyFgTawzKiwdWB+o0Pk9vR7l8YiU0ISGTiewCbsLhNfFcJPt6m2dnMAcN7Eavr4OHn
+         NjeA==
+X-Gm-Message-State: AJIora/Yg/TwZ4rIDKpV0xuPKBT6ID6Y1Pwkaw5wCWcC0bq6zIiJlClC
+        SQoZK9zxCRe+xozTzT8mzSQmcg==
+X-Google-Smtp-Source: AGRyM1vZAfoRBSAbcGlOtrkZW9xrmbi2gm+avyL7ia7RJgDzQXicYVnr6RnRLuw7MjtdyfMoV1dGFw==
+X-Received: by 2002:a05:6402:278e:b0:431:73ab:49b9 with SMTP id b14-20020a056402278e00b0043173ab49b9mr2696567ede.415.1655886810677;
+        Wed, 22 Jun 2022 01:33:30 -0700 (PDT)
 Received: from [192.168.0.223] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id y4-20020aa7ccc4000000b004316f94ec4esm14477994edt.66.2022.06.22.01.32.32
+        by smtp.gmail.com with ESMTPSA id l2-20020a1709060cc200b006feed200464sm8902090ejh.131.2022.06.22.01.33.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 01:32:33 -0700 (PDT)
-Message-ID: <50ab1e83-f14b-6d2c-df31-60a255552c46@linaro.org>
-Date:   Wed, 22 Jun 2022 10:32:31 +0200
+        Wed, 22 Jun 2022 01:33:30 -0700 (PDT)
+Message-ID: <6aa08062-4587-edc7-1638-fed797874eaf@linaro.org>
+Date:   Wed, 22 Jun 2022 10:33:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v3 11/40] arm64: dts: marvell: align gpio-key node names
- with dtschema
+Subject: Re: [PATCH v3 21/40] arm64: dts: qcom: align gpio-key node names with
+ dtschema
 Content-Language: en-US
 To:     arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Olof Johansson <olof@lixom.net>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
- <20220616005333.18491-11-krzysztof.kozlowski@linaro.org>
+ <20220616005333.18491-21-krzysztof.kozlowski@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220616005333.18491-11-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220616005333.18491-21-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,13 +86,48 @@ On 16/06/2022 02:53, Krzysztof Kozlowski wrote:
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts     | 2 +-
->  arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts | 4 ++--
->  2 files changed, 3 insertions(+), 3 deletions(-)
+>  arch/arm64/boot/dts/qcom/apq8096-db820c.dts   |  2 +-
+>  .../boot/dts/qcom/msm8916-alcatel-idol347.dts |  2 +-
+>  .../arm64/boot/dts/qcom/msm8916-asus-z00l.dts |  4 ++--
+>  .../arm64/boot/dts/qcom/msm8916-huawei-g7.dts |  2 +-
+>  .../boot/dts/qcom/msm8916-longcheer-l8150.dts |  2 +-
+>  .../boot/dts/qcom/msm8916-longcheer-l8910.dts |  2 +-
+>  .../qcom/msm8916-samsung-a2015-common.dtsi    |  6 +++---
+>  .../boot/dts/qcom/msm8916-samsung-j5.dts      |  4 ++--
+>  .../dts/qcom/msm8916-samsung-serranove.dts    |  6 +++---
+>  .../dts/qcom/msm8916-wingtech-wt88047.dts     |  2 +-
+>  .../boot/dts/qcom/msm8992-xiaomi-libra.dts    |  2 +-
+>  .../dts/qcom/msm8994-msft-lumia-octagon.dtsi  | 10 +++++-----
+>  .../qcom/msm8994-sony-xperia-kitakami.dtsi    |  2 +-
+>  .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  |  6 +++---
+>  .../boot/dts/qcom/msm8998-fxtec-pro1.dts      | 20 +++++++++----------
+>  .../boot/dts/qcom/msm8998-oneplus-common.dtsi |  6 +++---
+>  .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi |  8 ++++----
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      |  2 +-
+>  .../dts/qcom/sdm630-sony-xperia-nile.dtsi     |  8 ++++----
+>  .../boot/dts/qcom/sdm632-fairphone-fp3.dts    |  2 +-
+>  .../boot/dts/qcom/sdm660-xiaomi-lavender.dts  |  2 +-
+>  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi    |  2 +-
+>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |  4 ++--
+>  .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |  4 ++--
+>  .../boot/dts/qcom/sdm845-shift-axolotl.dts    |  2 +-
+>  .../dts/qcom/sdm845-sony-xperia-tama.dtsi     |  2 +-
+>  .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts |  2 +-
+>  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  4 ++--
+>  .../qcom/sm6125-sony-xperia-seine-pdx201.dts  |  2 +-
+>  .../boot/dts/qcom/sm7225-fairphone-fp4.dts    |  2 +-
+>  arch/arm64/boot/dts/qcom/sm8150-hdk.dts       |  4 ++--
+>  .../dts/qcom/sm8150-microsoft-surface-duo.dts |  4 ++--
+>  arch/arm64/boot/dts/qcom/sm8250-hdk.dts       |  4 ++--
+>  .../boot/dts/qcom/sm8250-sony-xperia-edo.dtsi |  2 +-
+>  .../dts/qcom/sm8350-sony-xperia-sagami.dtsi   |  2 +-
+>  36 files changed, 71 insertions(+), 71 deletions(-)
+> 
 
-Andrew, Gregory, Sebastian,
+Bjorn,
 
-Any comments on Marvel parts? Shall I grab them with rest of cleanups?
+Any comments on Qualcomm parts? Shall I grab them with rest of cleanups?
 
 Best regards,
 Krzysztof
