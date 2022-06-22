@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA432554FB9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 17:47:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C37D5550FF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 18:13:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229823AbiFVPro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 11:47:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46758 "EHLO
+        id S1359560AbiFVQN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 12:13:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359075AbiFVPrn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 11:47:43 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 208553A5DF;
-        Wed, 22 Jun 2022 08:47:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1655912842;
-        bh=P76JCAoBEwYxagrCxqz0x5UalaF1hec9VzDLAcDAK90=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=gI1K62Ac1Y8Zx3itipz4l03G0B4VpHAqQssoOhMy45OJHJ7d6vl6R48KWA23w5wHX
-         lLpcQtAu5Z9rWcNJ3tME5m7Xum9Y/CA553ucU33xukIAk0a0rh5Ww1jYD9CkfhF0xb
-         OHrcXkxYHMChG59WJajHANGnes5KYp99xt9wn8f8=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from Venus.fritz.box ([46.223.2.22]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N9Mta-1naV942eE0-015Fq4; Wed, 22
- Jun 2022 17:47:22 +0200
-From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
-To:     gregkh@linuxfoundation.org, jirislaby@kernel.org
-Cc:     ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        andriy.shevchenko@linux.intel.com, vz@mleia.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lukas@wunner.de, p.rosenberger@kunbus.com,
-        Lino Sanfilippo <l.sanfilippo@kunbus.com>
-Subject: [PATCH 8/8] serial: 8250: lpc18xx: Remove redundant sanity check for RS485 flags
-Date:   Wed, 22 Jun 2022 17:46:59 +0200
-Message-Id: <20220622154659.8710-9-LinoSanfilippo@gmx.de>
+        with ESMTP id S1376571AbiFVQNw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 12:13:52 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A71E25E9F;
+        Wed, 22 Jun 2022 09:13:51 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id c13so20139110eds.10;
+        Wed, 22 Jun 2022 09:13:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cE/2OYYz5mN+xKGqyzZkM7i8jyDkRjpQ6WY0c9nnpkI=;
+        b=nUQ08BYK5oFMjhuwIdhfb68k27dg61OmpVwaXYMS2hbVZ9fdyf4oALt66tdaAUL1B3
+         rWBbo4MtyGKruasxn6e7dLhgHxT7LvmG0Pv//40q50rgMdT2GxH75jMdCs2hmJWfoBAA
+         b0rday1T6F/TkSeyE2Q/HBQBDt5gmvhgDjldLPtLkUD1T2+gjpW9bvme1SJnwqbMN4Pg
+         m2ToIWwJfj8bYsPP2DD4hddV+T6+336irst/x0Qkk+OmjsdYvg5Cn72N7wSYlVDKsKAv
+         t/xheAfXiJoPoZL/hy7MrwiCT23C/OylmEHjICTSiQq0MSMLxXIvM87lGKoLoy7Ag+0e
+         aYdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cE/2OYYz5mN+xKGqyzZkM7i8jyDkRjpQ6WY0c9nnpkI=;
+        b=rG46YWwaT1ZlnUHJNnYLBqCAUBAFOrl0Bo4tqoiIA6nfJEBFaAH0oO+IX24llsGIZ5
+         7PxtQKcjjiUUxsfj1CIeVKnXb/XjceUonDllX9UDFBRi4qjLiWrdp26BW4hHhZxZGDOD
+         Byc17Iy9d25cPo08+uTExJUPLJC5i0R79N+vPjAAqMuRI6oGX0reEkQs+fqfGOQxe/un
+         2X7YMOhFupeFHiM2vjFVSxS+xNKLD0F5e3vpLQQFlxJxf6ENJSZ4zsXsqdZCieRjj0/r
+         YaKQdNbeqtWsdH75fe1oEX8LpFqU8/a29XkoOFJg73HxsEg+g7Fr9Sybe8kzaVqNjqU0
+         al+w==
+X-Gm-Message-State: AJIora88chQXhsgato30gS/5kiZ2wq3b150Bgf6g9wBkUZdij4pbv2U9
+        zm//uvMfSB3Q319w9PyFZCs=
+X-Google-Smtp-Source: AGRyM1tWD6g6LO0qhLnaY9KN6b/00f7QxioRtjLEKur7v1cPD63I0UcdtnaoF4NQCs9CgxoC6rjd9w==
+X-Received: by 2002:a05:6402:348e:b0:435:a912:355f with SMTP id v14-20020a056402348e00b00435a912355fmr4947487edc.326.1655914429451;
+        Wed, 22 Jun 2022 09:13:49 -0700 (PDT)
+Received: from localhost.localdomain ([185.107.95.225])
+        by smtp.gmail.com with ESMTPSA id sd14-20020a1709076e0e00b007072dc80e06sm9576036ejc.190.2022.06.22.09.13.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Jun 2022 09:13:48 -0700 (PDT)
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Yassine Oudjana <yassine.oudjana@gmail.com>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] ASoC: dt-bindings: Add bindings for WCD9335 DAIs
+Date:   Wed, 22 Jun 2022 20:13:19 +0400
+Message-Id: <20220622161322.168017-1-y.oudjana@protonmail.com>
 X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
-References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-X-Provags-ID: V03:K1:WKHLwSJiQn/lE+w+iwlvUVlY+hSjpvhwDHxzI/x8AFxyiTj4QCk
- GTI2fk9fSpQP3EnqiPKgLA/I98tb8vKF0Q4dwXlGNBk+RnRJLkvLOrJCT6JkraJYyX6hvfP
- vss2kjip1uOIBclB0Issx6scJCOIPxFsNJAMk229SIDjibTBwNB7AZyWoVlB4lRWToVKN2K
- d8myOgdT/Z2X1ICVbHXYw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:iVH+DtPsNl4=:I3yIIZMg6ftu/BPmnCuV47
- yr8woBxBq0n/NEkF8Th+CcdZiXC7vlGyp/DN5B2FPGur7o6AD7/UwSCwFC2WWldf3HpK6OraY
- evL1IQ3wIeTMr5JCtM40+ZHdHTLlcvRwcuCWeGoM/CiQsWG88IrqJofXafcbYofa+QKC/oI9L
- pmXngFqXuXxjkbJ2PKUg5Rp3Zo85K16r1yP1QghTo1I2xmvY3m/T/Lc3GvKS7J6XIhHHZdYBF
- 9OzaTIur2dtfwY+Lbl+QGrlsb3ktTV7vodgPnuegX53RClh4IZrvTgmXSM/Y/mQNwLz+zfhBC
- eMr0c5O1pwibXgELsJcJ8RTCFDQpSuxV2rOXjS+95feRbXLicHC7fFIKDquNnvkH+mwAcnmxz
- neQzO8FAVdvlwHRC7xyGO0GXMnGK1x9JTDvsnLZ98nCC2K1/myWxTM2FPPOeOTB1ULtIkXbKM
- hW8k66Tj2b6vHr9QVzNB0AEipTEf64Aeq+MCMfty+xgj9TPu+WeIgn4OjD53jQ0M3cnjCLFSR
- BMvhayoW0tLe7ByS8THdHvKlVD9cRasuODbeO3jEHj52xUUtXiegDK50ZGp+FQ4qHqCfQenLW
- iV4Xi9E7umRJQ9hs5pugWESRDR8jSDF9DcM38ZNfaTQaNtG+QAequSopBEmdNawhDl52X8AiD
- fKbSe3wwSvJ0Z2TwwaZqR3/vjsVEy1WJhkYXgJwO8m2lrcLdAMI17nC6k/qL10m4kyEsyV+u4
- IpQbpuAybwIOQ9O3yM2e6m+xfO+r1tAOUxlkzv1ZrRsvrcx00oPNPJrq4zgObvsu/zi76iQZd
- TeGcZY8stRdVkgGhiDln3yQ5LxmqSWr4i9zIcJFz0zfsobOVbHPx2Wo3c+zp4Qo3d2WvKMC9S
- qKHcZngglEppklaE/EDJIX83T9lPMDdg2yI9oWCHxLYDvguUFYIg8xcVE0mWIkEQcRILkVxvV
- k5Ualh/6T56zYez6mbthhUVMnCfMtJCkdAq2PxJbyJYovtnPZpa8Ce8vYjLUKWppwDmK5FHDv
- JXG7eX2lcdFtWpaHT7R5y6uoXJBngAj48KDaqlLvRd9d+h+2xy63+q/HpgurFGdhAmyCayLSR
- bDyfDbXYqaQ1UyRrhTcSQwcbo0ELvbYfNOLdMgV/G0PN2Ko6+H/mfLWcA==
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,MIME_BASE64_TEXT,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,24 +79,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogTGlubyBTYW5maWxpcHBvIDxsLnNhbmZpbGlwcG9Aa3VuYnVzLmNvbT4KCkJlZm9yZSB0
-aGUgZHJpdmVycyByczQ4NV9jb25maWcoKSBmdW5jdGlvbiBpcyBjYWxsZWQgdGhlIHNlcmlhbCBj
-b3JlCmFscmVhZHkgZW5zdXJlcyB0aGF0IG9ubHkgb25lIG9mIGJvdGggb3B0aW9ucyBSVFMgb24g
-c2VuZCBvciBSVFMgYWZ0ZXIgc2VuZAppcyBzZXQuIFNvIHJlbW92ZSB0aGUgY29uY2VybmluZyBz
-YW5pdHkgY2hlY2sgaW4gdGhlIGRyaXZlciBmdW5jdGlvbiB0bwphdm9pZCByZWR1bmRhbmN5LgoK
-U2lnbmVkLW9mZi1ieTogTGlubyBTYW5maWxpcHBvIDxsLnNhbmZpbGlwcG9Aa3VuYnVzLmNvbT4K
-LS0tCiBkcml2ZXJzL3R0eS9zZXJpYWwvODI1MC84MjUwX2xwYzE4eHguYyB8IDYgKy0tLS0tCiAx
-IGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDUgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy90dHkvc2VyaWFsLzgyNTAvODI1MF9scGMxOHh4LmMgYi9kcml2ZXJzL3R0eS9z
-ZXJpYWwvODI1MC84MjUwX2xwYzE4eHguYwppbmRleCAzYTFjYjUxY2JjOTEuLjIxODk2YWRlYjE3
-MiAxMDA2NDQKLS0tIGEvZHJpdmVycy90dHkvc2VyaWFsLzgyNTAvODI1MF9scGMxOHh4LmMKKysr
-IGIvZHJpdmVycy90dHkvc2VyaWFsLzgyNTAvODI1MF9scGMxOHh4LmMKQEAgLTQ0LDEyICs0NCw4
-IEBAIHN0YXRpYyBpbnQgbHBjMTh4eF9yczQ4NV9jb25maWcoc3RydWN0IHVhcnRfcG9ydCAqcG9y
-dCwKIAkJcnM0ODVfY3RybF9yZWcgfD0gTFBDMThYWF9VQVJUX1JTNDg1Q1RSTF9OTU1FTiB8CiAJ
-CQkJICBMUEMxOFhYX1VBUlRfUlM0ODVDVFJMX0RDVFJMOwogCi0JCWlmIChyczQ4NS0+ZmxhZ3Mg
-JiBTRVJfUlM0ODVfUlRTX09OX1NFTkQpIHsKKwkJaWYgKHJzNDg1LT5mbGFncyAmIFNFUl9SUzQ4
-NV9SVFNfT05fU0VORCkKIAkJCXJzNDg1X2N0cmxfcmVnIHw9IExQQzE4WFhfVUFSVF9SUzQ4NUNU
-UkxfT0lOVjsKLQkJCXJzNDg1LT5mbGFncyAmPSB+U0VSX1JTNDg1X1JUU19BRlRFUl9TRU5EOwot
-CQl9IGVsc2UgewotCQkJcnM0ODUtPmZsYWdzIHw9IFNFUl9SUzQ4NV9SVFNfQUZURVJfU0VORDsK
-LQkJfQogCX0KIAogCWlmIChyczQ4NS0+ZGVsYXlfcnRzX2FmdGVyX3NlbmQpIHsKLS0gCjIuMzYu
-MQoK
+Add DT bindings for WCD9335 DAIs and use them in the driver as well
+as all device trees currently using WCD9335.
+
+Changes since v1:
+ - Make header guard match path
+ - Maintain the alphabetical order in msm8996-xiaomi-gemini includes
+
+Yassine Oudjana (3):
+  ASoC: dt-bindings: Add bindings for WCD9335 DAIs
+  ASoC: wcd9335: Use DT bindings instead of local DAI definitions
+  arm64: dts: qcom: Use WCD9335 DT bindings
+
+ MAINTAINERS                                       |  1 +
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dts       |  5 +++--
+ .../arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts |  5 +++--
+ .../boot/dts/qcom/msm8996-xiaomi-scorpio.dts      |  5 +++--
+ include/dt-bindings/sound/qcom,wcd9335.h          | 15 +++++++++++++++
+ sound/soc/codecs/wcd9335.c                        | 13 ++-----------
+ 6 files changed, 27 insertions(+), 17 deletions(-)
+ create mode 100644 include/dt-bindings/sound/qcom,wcd9335.h
+
+-- 
+2.36.1
+
