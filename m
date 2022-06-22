@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D905B556DEF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 23:49:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18472556DF0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 23:49:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235565AbiFVVtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 17:49:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36680 "EHLO
+        id S232842AbiFVVtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 17:49:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234854AbiFVVtj (ORCPT
+        with ESMTP id S235520AbiFVVtj (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 17:49:39 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707983EF3F
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 14:49:37 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id 128so10251163pfv.12
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 14:49:37 -0700 (PDT)
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 246C33EF34
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 14:49:39 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id d14so13586935pjs.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 14:49:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Yr59+R9n9NhdYApBelLI06daIODj/6Mh7LKlQvJr/gw=;
-        b=RcMS/jrweitn+T8xp2cfEG0KNvhEwT108ZvQZG52GLYIPrJRlJ2hppPz/aK21b2GFw
-         0DneDDKV2ta3EO8l57p4cGXOGT/wrP7ZaFTnvLwi8BMb6N07y6hXRuX4Q9SUXwyApPhY
-         nmYXMG0MIgLQtgS2BzUXiCm9K7qIi4kWylBAQ=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=RYo72b6Ijno9jF+3oVXVAu6rYky7oicN7MbfvMQU10Y=;
+        b=L+30HUEUe2KDcIAq1uFJrj2Z5LR7I01NP2W/YaBtnp/sFrf8UrfzzY9/HfFOUAtKfz
+         7WjJru0+PyIXFx4RwJZpfoOThNWYekGY8vzi7JB++QE3hvpcD3GdnZL3MAc1Ykd9YNQ2
+         CNs7zjfQU4emUngu8c6FB6ngrqfvbD3UgwinM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Yr59+R9n9NhdYApBelLI06daIODj/6Mh7LKlQvJr/gw=;
-        b=x3I12A0P7eaP/Nht7brXe4ZkmOPCX4JWbiiqx/wu+tV9ZzWCtVXHhv0jVUigXA8h/g
-         CXVcUx/qqjtaDjnna7A751CkFjSSyMXjzQoKoJ5HWM+2JMsJQ2RUq7sZVPQ1ga9HH22m
-         x1RdlJ37/TiqQw5tZJPVcJFq0wiIA8/fFtiRBZOFZEq1871rsG2eAddPy6BgsGIWtjl8
-         5OA9ite3fkcwTu5rEgFGeOyqepnkfihb2qxOg7IE+G/q4ZRGOX9YWe1xxiea3A/52UtW
-         9Zrhm9hcvrOoLPAeehnkmq5CpVi5IJgikIHhrBC2xKzolsDjALNL8X8qC88eXHrKQBbH
-         0hvA==
-X-Gm-Message-State: AJIora9JJbJFaz1m5LNwHxDQaRElsNBwPOHN9tiITCKKBVhPuUF6diAw
-        7j8AS6wQEClnztXPSLvMBMjAQw==
-X-Google-Smtp-Source: AGRyM1vp8OobL2BMitO/smIQP+sHw2vY8YWWz3fUJmlaNdjB8Oml7eic1gydaYb+0pzEHjN5KiNJzw==
-X-Received: by 2002:a05:6a00:23ca:b0:525:28b4:9e3b with SMTP id g10-20020a056a0023ca00b0052528b49e3bmr15193756pfc.43.1655934576558;
-        Wed, 22 Jun 2022 14:49:36 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=RYo72b6Ijno9jF+3oVXVAu6rYky7oicN7MbfvMQU10Y=;
+        b=kQXekCk3NIfRfhElVT18Y+ZrY/Zx1c1gMoTuH6SEcjsVzjv4/9u+UiOaNAuWlUrdr3
+         D8jOnptMqQa6VFdGcFkLM/bs4VaGrTORMLS/du4LtH7jNjtkGHVieigdmoDwzaTqPoiV
+         WQ4TMTcCf+1SYilyH9bepXE545nujNaiE7aLDDqYRTpelnZ1988FItFvg4uFJY1Ej+n1
+         0v08v2tt7bX9jhEXZGi7YBY6L2CMRJ5yhXOvuMPF6peqkjgDlQseaA8ipW1nKj8S7Hmr
+         qwPQOH9+JC9513nQaDvVdSZ8S47oSpbnleAnUWhMoZ6ri+qW1mFz+knFgedTETEtG8if
+         rAGw==
+X-Gm-Message-State: AJIora91qgMRvRjfu4hWpXbcfn2o0wN5aqIjwUhD2M7esxrFoffV3t6x
+        YEjzbDqfC0pcHOltY/Uluxps7A==
+X-Google-Smtp-Source: AGRyM1vcEnofwplspmPqXo/cxwmtOIHXhYS3FkGFuH7j/q/BgcTozPwcRKVgSdRL0exE/1XA0/BcxA==
+X-Received: by 2002:a17:90b:1c02:b0:1e3:4b6d:4269 with SMTP id oc2-20020a17090b1c0200b001e34b6d4269mr468613pjb.57.1655934578721;
+        Wed, 22 Jun 2022 14:49:38 -0700 (PDT)
 Received: from localhost ([2620:15c:11a:202:83c:92dc:a659:2900])
-        by smtp.gmail.com with UTF8SMTPSA id f128-20020a62db86000000b00517c84fd24asm5339161pfg.172.2022.06.22.14.49.34
+        by smtp.gmail.com with UTF8SMTPSA id i188-20020a62c1c5000000b005187431876fsm6752817pfg.180.2022.06.22.14.49.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 14:49:36 -0700 (PDT)
+        Wed, 22 Jun 2022 14:49:38 -0700 (PDT)
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Alan Stern <stern@rowland.harvard.edu>,
@@ -61,23 +61,18 @@ Cc:     linux-kernel@vger.kernel.org,
         Stephen Boyd <swboyd@chromium.org>,
         Peter Chen <peter.chen@kernel.org>,
         Matthias Kaehlcke <mka@chromium.org>,
-        Bhuvanesh Surachari <Bhuvanesh_Surachari@mentor.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kai-Heng Feng <kai.heng.feng@canonical.com>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Subject: [PATCH v23 0/3] usb: misc: Add onboard_usb_hub driver
-Date:   Wed, 22 Jun 2022 14:49:28 -0700
-Message-Id: <20220622214931.1914770-1-mka@chromium.org>
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v23 1/3] of/platform: Add stubs for of_platform_device_create/destroy()
+Date:   Wed, 22 Jun 2022 14:49:29 -0700
+Message-Id: <20220622144857.v23.1.I08fd2e1c775af04f663730e9fb4d00e6bbb38541@changeid>
 X-Mailer: git-send-email 2.37.0.rc0.104.g0611611a94-goog
+In-Reply-To: <20220622214931.1914770-1-mka@chromium.org>
+References: <20220622214931.1914770-1-mka@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,180 +80,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds:
-- the onboard_usb_hub_driver
-- glue in the generic hub code to create and destroy the
-  onboard_usb_hub platform devices if needed
-- device tree changes that add RTS5411 entries for the QCA SC7180
-  based boards trogdor and lazor
-- a couple of stubs for platform device functions to avoid
-  unresolved symbols with certain kernel configs
+Code for platform_device_create() and of_platform_device_destroy() is
+only generated if CONFIG_OF_ADDRESS=y. Add stubs to avoid unresolved
+symbols when CONFIG_OF_ADDRESS is not set.
 
-The main issue the driver addresses is that a USB hub needs to be
-powered before it can be discovered. For discrete onboard hubs (an
-example for such a hub is the Realtek RTS5411) this is often solved
-by supplying the hub with an 'always-on' regulator, which is kind
-of a hack. Some onboard hubs may require further initialization
-steps, like changing the state of a GPIO or enabling a clock, which
-requires even more hacks. This driver creates a platform device
-representing the hub which performs the necessary initialization.
-Currently it only supports switching on a single regulator, support
-for multiple regulators or other actions can be added as needed.
-Different initialization sequences can be supported based on the
-compatible string.
-
-Besides performing the initialization the driver can be configured
-to power the hub off during system suspend. This can help to extend
-battery life on battery powered devices which have no requirements
-to keep the hub powered during suspend. The driver can also be
-configured to leave the hub powered when a wakeup capable USB device
-is connected when suspending, and power it off otherwise.
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+---
 
 Changes in v23:
-- refactored onboard_hub_create_pdevs()
-- got rid of CONFIG_USB_ONBOARD_HUB_ACTUAL
+- none
 
 Changes in v22:
-- call onboard_hub_create/destroy_pdevs() from hub_probe/disconnect()
-  instead of doing it from the HCD. When the pdevs are create from the
-  HCD usb_of_get_device_node() (called by onboard_hub_create_pdevs())
-  may return NULL because the USB device for the root hub doesn't
-  exist yet. Creating the pdevs from the hub code also has the
-  advantage of enabling support for nested onboard hubs (as long as
-  all hubs in the chain have DT nodes and are supported by the driver).
-- moved onboard_hub_create_pdevs(), onboard_hub_destroy_pdevs() and
-  of_is_onboard_usb_hub() into a separate file to allow them to be
-  linked into the USB core module (if CONFIG_USB=m)
-- Added extra checks to ensure only one platform device is created
-  for each physical hub. This is necessary because
-  onboard_hub_create_pdevs() is now called from hub_probe() instead
-  of usb_add_hcd(). As a result the function is called twice for
-  typical USB3 hub, once for the USB3 part of the hub, and once for
-  USB <= 2.x. Generally the parent hub downstream of the primary HCD
-  creates the onboard hub platform device.
-- use kzalloc() instead of devm_kzalloc() to allocate list entries. Using
-  managed memory can cause issues since the managed memory is allocated
-  before the device is probed.
-- use a workqueue to (re-)attach the USB driver during/after _probe().
-  This is necessary to avoid self-deadlocks on systems with nested
-  onboard hubs.
-- don't initialize list_head in onboard_hub_create_pdevs(), this needs
-  to be done by the owner, to ensure that onboard_hub_destroy_pdevs()
-  is called with a struct that was properly initialized even when
-  onboard_hub_create_pdevs() is not called.
-- rebased series on v5.19-rc1
+- none
 
 Changes in v21:
-- dropped patch 'driver core: Export device_is_bound()'
-- refactored _find_onboard_hub()
-- removed 'onboard_hub_dev' symlinks from USB devices
-- dropped patch 'arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub'
-  (will be sent separately)
-- rebased series on v5.17-rc4
+- none
 
 Changes in v20:
-- addressed review comments from Stephen
-- changed DT node names for hubs
+- added 'Reviewed-by' tags from Stephen and Doug
 
 Changes in v19:
-- added VID:PID pairs and compatible strings for RTS5414 hub
-- updated comments with RTS5411 USB versions to reflect those
-  reported/supported by the hub
-- rebased series on v5.16
+- still no changes ...
 
 Changes in v18:
-- introduced hidden Kconfig option to align module vs. builtin
-  choice with CONFIG_USB (thanks Doug!)
-- added patch 'driver core: Export device_is_bound()'
-- also adjust device tree of pompom rev1
-- dropped the following patches, which aren't needed anymore by this
-  series (though they might still be useful on their own):
-  - usb: Specify dependencies on USB_XHCI_PLATFORM with 'depends on'
-  - arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM
-  - ARM: configs: Explicitly enable USB_XHCI_PLATFORM where needed
+- still no changes ...
 
 Changes in v17:
-- rebased on top of v5.16-rc1
-- moved creation of onboard_hub platform devices from xhci_platform
-  to the generic HCD code
-- addressed review comments for the onboard_hub driver
-- moved Kconfig/defconfig changes to the end of the series. The
-  onboard_hub driver doesn't depend on XHCI_PLATFORM anymore,
-  hence these changes aren't really required for the driver, but
-  they still seem to be a worthwhile improvement
+- none
 
 Changes in v16:
-- added patch 'ARM: configs: Explicitly enable USB_XHCI_PLATFORM
-  where needed' to keep arm32 defconfigs effectively unchanged
+- none
 
 Changes in v15:
-- adjusted dependencies of USB_DWC3_CORE to make sure it can only
-  be enabled when at least one of USB_DWC3_HOST, USB_DWC3_GADGET
-  or USB_DWC3_DUAL_ROLE is selectable
+- none
 
 Changes in v14:
-- rebased on top of v5.14-rc1
-- dropped DT binding patch which landed in v5.13
+- none
 
 Changes in v13:
-- added patch "usb: Specify dependency on USB_XHCI_PLATFORM with
-  'depends on'" to the series to avoid Kconfig conflicts
-- added patch "arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM"
-  to the series to keep effective defconfig unchanged
+- none
 
 Changes in v12:
-- onboard_hub driver: use IS_ENABLED(CONFIG_USB_ONBOARD_HUB_MODULE)
-  in onboard_hub.h to also check for the driver built as module
-- onboard_hub_driver: include onboard_hub.h again to make sure there
-  are prototype declarations for the public functions
+- none
 
 Changes in v11:
-- support multiple onboard hubs connected to the same parent
-- don't include ‘onboard_hub.h’ from the onboard hub driver
+- none
 
 Changes in v10:
-- always use of_is_onboard_usb_hub() stub unless ONBOARD_USB_HUB=y/m
-- keep 'regulator-boot-on' property for pp3300_hub
+- none
 
 Changes in v9:
-- added dependency on ONBOARD_USB_HUB (or !ONBOARD_USB_HUB) to
-  USB_PLATFORM_XHCI
+- added Rob's 'Acked-by' tag
+
+Changes in v8:
+- fixed C&P error in commit message
 
 Changes in v7:
-- updated DT binding
-- series rebased on qcom/arm64-for-5.13
+- none
 
 Changes in v6:
-- updated summary
+- patch added to the series
 
-Changes in v5:
-- cover letter added
+ include/linux/of_platform.h | 22 ++++++++++++++++++----
+ 1 file changed, 18 insertions(+), 4 deletions(-)
 
-Matthias Kaehlcke (3):
-  of/platform: Add stubs for of_platform_device_create/destroy()
-  usb: misc: Add onboard_usb_hub driver
-  usb: core: hub: Create platform devices for onboard hubs in
-    hub_probe()
-
- .../sysfs-bus-platform-onboard-usb-hub        |   8 +
- MAINTAINERS                                   |   7 +
- drivers/usb/core/Makefile                     |   1 +
- drivers/usb/core/hub.c                        |   9 +-
- drivers/usb/core/hub.h                        |   1 +
- drivers/usb/misc/Kconfig                      |  16 +
- drivers/usb/misc/Makefile                     |   1 +
- drivers/usb/misc/onboard_usb_hub.c            | 427 ++++++++++++++++++
- drivers/usb/misc/onboard_usb_hub.h            |  17 +
- drivers/usb/misc/onboard_usb_hub_pdevs.c      | 137 ++++++
- include/linux/of_platform.h                   |  22 +-
- include/linux/usb/onboard_hub.h               |  18 +
- 12 files changed, 659 insertions(+), 5 deletions(-)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-onboard-usb-hub
- create mode 100644 drivers/usb/misc/onboard_usb_hub.c
- create mode 100644 drivers/usb/misc/onboard_usb_hub.h
- create mode 100644 drivers/usb/misc/onboard_usb_hub_pdevs.c
- create mode 100644 include/linux/usb/onboard_hub.h
-
+diff --git a/include/linux/of_platform.h b/include/linux/of_platform.h
+index 84a966623e78..d15b6cd5e1c3 100644
+--- a/include/linux/of_platform.h
++++ b/include/linux/of_platform.h
+@@ -61,16 +61,18 @@ static inline struct platform_device *of_find_device_by_node(struct device_node
+ }
+ #endif
+ 
++extern int of_platform_bus_probe(struct device_node *root,
++				 const struct of_device_id *matches,
++				 struct device *parent);
++
++#ifdef CONFIG_OF_ADDRESS
+ /* Platform devices and busses creation */
+ extern struct platform_device *of_platform_device_create(struct device_node *np,
+ 						   const char *bus_id,
+ 						   struct device *parent);
+ 
+ extern int of_platform_device_destroy(struct device *dev, void *data);
+-extern int of_platform_bus_probe(struct device_node *root,
+-				 const struct of_device_id *matches,
+-				 struct device *parent);
+-#ifdef CONFIG_OF_ADDRESS
++
+ extern int of_platform_populate(struct device_node *root,
+ 				const struct of_device_id *matches,
+ 				const struct of_dev_auxdata *lookup,
+@@ -84,6 +86,18 @@ extern int devm_of_platform_populate(struct device *dev);
+ 
+ extern void devm_of_platform_depopulate(struct device *dev);
+ #else
++/* Platform devices and busses creation */
++static inline struct platform_device *of_platform_device_create(struct device_node *np,
++								const char *bus_id,
++								struct device *parent)
++{
++	return NULL;
++}
++static inline int of_platform_device_destroy(struct device *dev, void *data)
++{
++	return -ENODEV;
++}
++
+ static inline int of_platform_populate(struct device_node *root,
+ 					const struct of_device_id *matches,
+ 					const struct of_dev_auxdata *lookup,
 -- 
 2.37.0.rc0.104.g0611611a94-goog
 
