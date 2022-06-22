@@ -2,61 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07079555539
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 22:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17A85555592
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 22:57:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377003AbiFVUIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 16:08:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42612 "EHLO
+        id S234750AbiFVU5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 16:57:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377007AbiFVUIA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 16:08:00 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D1C11820;
-        Wed, 22 Jun 2022 13:07:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id AA35DCE2224;
-        Wed, 22 Jun 2022 20:07:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66944C34114;
-        Wed, 22 Jun 2022 20:07:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655928475;
-        bh=AyEm/DsgtRvODwHTwbe8b+cxW30Z8a4jqqeWajrOL6c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Qo1iNeQmk+JAeKqd8AUY3dq34k2BOzQe1qAozB57Wv4QA9vPVpLFUKnY3mgbT+daF
-         m+fAByUO+ta4qc/eYdBWIwhCt6v9jdhT2Qltl7Wz7pFXjNwabgs8BNOldnaSZGVKPz
-         C4SH2hmqGLzlxEHRcR9XzUoKBDEfcb2bapqwwFNSvs99LnCJ6DoJ8fZLyezYy7vHNO
-         TCUEFFAzb7LGQ0eWWGnqtzqagB0Gn/1DG9CeGanwgfo8fuNj7E19qebA3DP5AtIbgk
-         iKHaMhGO73PT3MDh022haHF67e1UabuVIu3RB0Vp7CVeRYRZ9Aes1KPPYh/WuMgL/0
-         HNWvT32m9ONfQ==
-Date:   Wed, 22 Jun 2022 22:07:51 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     jarkko.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
-        mika.westerberg@linux.intel.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCHv6 1/2] i2c: designware: introduce a custom scl recovery
- for SoCFPGA platforms
-Message-ID: <YrN2lxvlP4cWfelY@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>, jarkko.nikula@linux.intel.com,
-        andriy.shevchenko@linux.intel.com, mika.westerberg@linux.intel.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220620230109.986298-1-dinguyen@kernel.org>
- <YrI6EeVkkWVMNPFY@shikoro>
- <928b2996-b2e7-d847-0e20-7e19df3cbf03@kernel.org>
+        with ESMTP id S230253AbiFVU5X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 16:57:23 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB0BC18E17
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 13:57:21 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id eo8so25674625edb.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 13:57:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kxnuHmLGyITyuJDC4SS30IEft3M8dZ4Ya6gP8MJhMNg=;
+        b=QFSFaEaeJQxCaHLKIP2QqHitJCIMZXiIsfGS1ifVx/IfRhI7Tkpengt7pNtBzu3mLg
+         6WJw0biLZF/o031nUuEOuDsgWl1zKjsSSJC7fzYjAE1Jq3QhY2HYgkgihpTWUPq1zkbH
+         +xVK+tDAjIKhEcS96aqjzvEUOnT6hrAa3Zk0Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kxnuHmLGyITyuJDC4SS30IEft3M8dZ4Ya6gP8MJhMNg=;
+        b=VmJsHEm8h5JsMxRf/2ucXPpn66y0bLpBZZpGanmHr0uM0JTOZIxdtH6tsMiBmKSfHb
+         MX9Ej6+82I+Z7aS5mDPv2R293A4UGW8XiwUWG9SoDmkUlIIryYkOM1uo+xgMTFNsYsSQ
+         ftgwd5StkstvDciFAUY5LyfKnrI9eSe/1svSvUOPjzmAUP+5Rf6KLGAlmYbR6QjnxCbC
+         4wFGlj81mV+JHF9vz+Rpg+gfDrqKZoGEsRH0L/2OUwji/gIqD+BgiTKfcd7c1q3PUJrE
+         Zf81V/M2sWTRn8Qz1zAqVslXnzCU6hNnEpA03pnFJnTpLu+1hUibfvlsPeojcf66ve3f
+         3t3Q==
+X-Gm-Message-State: AJIora8U2Egzcpl1FFA59svcQooesbDS0Q/zqAjjZUEXRdmtyVf5F3g0
+        0pqOkIls6VMvGPdzmDGPGwRkBd7oYiEefSeGA6k=
+X-Google-Smtp-Source: AGRyM1txzKIVaNJkoA1fb943/BpNC4NWTqrE8RjRzM3sDbmYe2TsZwQw9vuNRhs+6aE9iC3QB/bsvw==
+X-Received: by 2002:a05:6402:274a:b0:435:9807:7752 with SMTP id z10-20020a056402274a00b0043598077752mr6442062edd.63.1655931440212;
+        Wed, 22 Jun 2022 13:57:20 -0700 (PDT)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com. [209.85.221.45])
+        by smtp.gmail.com with ESMTPSA id g13-20020aa7c84d000000b004357b717a96sm9281855edt.85.2022.06.22.13.57.18
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jun 2022 13:57:19 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id m1so17333640wrb.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 13:57:18 -0700 (PDT)
+X-Received: by 2002:adf:fb12:0:b0:20c:79b2:a200 with SMTP id
+ c18-20020adffb12000000b0020c79b2a200mr5248141wrr.617.1655931438474; Wed, 22
+ Jun 2022 13:57:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="k3GeTzjyPXiwZ4uz"
-Content-Disposition: inline
-In-Reply-To: <928b2996-b2e7-d847-0e20-7e19df3cbf03@kernel.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220621053351.650431-1-joebar@chromium.org> <20220620223345.v9.4.I41e2c2dc12961fe000ebc4d4ef6f0bc5da1259ea@changeid>
+In-Reply-To: <20220620223345.v9.4.I41e2c2dc12961fe000ebc4d4ef6f0bc5da1259ea@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 22 Jun 2022 13:57:06 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WS0dQyNe6X3+baCztM2bZbYBzdRoAir09Ad1otWtz9ag@mail.gmail.com>
+Message-ID: <CAD=FV=WS0dQyNe6X3+baCztM2bZbYBzdRoAir09Ad1otWtz9ag@mail.gmail.com>
+Subject: Re: [PATCH v9 4/5] arm64: dts: qcom: sc7180: Add pazquel dts files
+To:     "Joseph S. Barrera III" <joebar@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,53 +80,134 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---k3GeTzjyPXiwZ4uz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, Jun 20, 2022 at 10:35 PM Joseph S. Barrera III
+<joebar@chromium.org> wrote:
+>
+> Pazquel is a trogdor-based board. These dts files are unchanged copies
+> from the downstream Chrome OS 5.4 kernel.
+>
+> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
+> ---
+>
+> Changes in v9:
+> - Restore two lines accidentally removed from ap_sar_sensor.
+> - Simplify trackpad enabling (51d30402be75).
+>
+> Changes in v7:
+> - Only include sc7180.dtsi in sc7180-trogdor.dtsi (19794489fa24).
+> - Simplify spi0/spi6 labeling (d277cab7afc7).
+> - Remove #include of <arm/cros-ec-keyboard.dtsi>.
+> - Accidentally removed two lines from ap_sar_sensor.
+>
+> Changes in v6:
+> - Copy changes to ap_sar_sensor from v5.4.
+> - Add #include of <arm/cros-ec-keyboard.dtsi>.
+>
+> Changes in v4:
+> - Fix description (no downstream bits removed).
+> - Add missing version history.
+>
+> Changes in v3:
+> - First inclusion in series.
+>
+>  arch/arm64/boot/dts/qcom/Makefile             |   4 +
+>  .../sc7180-trogdor-pazquel-lte-parade.dts     |  22 ++
+>  .../qcom/sc7180-trogdor-pazquel-lte-ti.dts    |  22 ++
+>  .../qcom/sc7180-trogdor-pazquel-parade.dts    |  17 ++
+>  .../dts/qcom/sc7180-trogdor-pazquel-ti.dts    |  17 ++
+>  .../boot/dts/qcom/sc7180-trogdor-pazquel.dtsi | 221 ++++++++++++++++++
+>  6 files changed, 303 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-ti.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-parade.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-ti.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 5cfd6316768c..dc26704dfe34 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -79,6 +79,10 @@ dtb-$(CONFIG_ARCH_QCOM)      += sc7180-trogdor-mrbland-rev0-auo.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += sc7180-trogdor-mrbland-rev0-boe.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += sc7180-trogdor-mrbland-rev1-auo.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += sc7180-trogdor-mrbland-rev1-boe.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)        += sc7180-trogdor-pazquel-lte-parade.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)        += sc7180-trogdor-pazquel-lte-ti.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)        += sc7180-trogdor-pazquel-parade.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)        += sc7180-trogdor-pazquel-ti.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += sc7180-trogdor-pompom-r1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += sc7180-trogdor-pompom-r1-lte.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += sc7180-trogdor-pompom-r2.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
+> new file mode 100644
+> index 000000000000..ecedab8d1662
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
+> @@ -0,0 +1,22 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Pazquel board device tree source
+> + *
+> + * Copyright 2021 Google LLC.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sc7180.dtsi"
+
+Repeating my comment from v8:
+
+This is not good and was an important part of "Simplify!" sc7180.dtsi
+should only be included by sc7180-trogdor.dtsi.
 
 
-> From the original code, the first mechanism to a recovery is to acquire a
-> GPIO for the SCL line and send the 9 SCL pulses, after that, it does a re=
-set
-> of the I2C module. For the SOCFPGA part, there is no GPIO line for the SC=
-L,
-> thus the I2C module cannot even get a reset. This code allows the function
-> to reset the I2C module for SOCFPGA, which is the 2nd part of the recovery
-> process.
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
+> new file mode 100644
+> index 000000000000..5485f50f89ad
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
+> @@ -0,0 +1,221 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Pazquel board device tree source
+> + *
+> + * Copyright 2021 Google LLC.
+> + */
+> +
+> +#include "sc7180-trogdor.dtsi"
+> +
+> +&ap_sar_sensor {
+> +       compatible = "semtech,sx9324";
+> +       semtech,ph0-pin = <1 3 3>;
+> +       semtech,ph1-pin = <3 1 3>;
+> +       semtech,ph2-pin = <1 3 3>;
+> +       semtech,ph3-pin = <0 0 0>;
+> +       semtech,ph01-resolution = <1024>;
+> +       semtech,ph23-resolution = <1024>;
+> +       semtech,startup-sensor = <1>;
+> +       semtech,ph01-proxraw-strength = <3>;
+> +       semtech,ph23-proxraw-strength = <1>;
+> +       semtech,avg-pos-strength = <128>;
+> +       semtech,input-analog-gain = <0>;
+> +       semtech,cs-idle-sleep = "gnd";
+> +
+> +       /delete-property/ svdd-supply;
+> +       vdd-supply = <&pp1800_prox>;
+> +};
+> +
+> +/delete-node/&trackpad;
+> +&ap_tp_i2c {
 
-The second part is totally useless if the client device is holding SDA
-low. Which is exactly the situation that recovery tries to fix. As I
-said, if you can't control SCL, you don't have recovery.
-
-> > See, this function is named scl_recovery, but there is no SCL involved.
-> > This is why I think there is the misunderstanding here.
-> >=20
->=20
-> I understand your point here. Perhaps just call it i2c_socfpga_recovery()?
-
-No. adap->bus_recovery_info should be NULL.
+You need status = "okay"; here since Stephen's "Simplify!" patch
+series means that the i2c node itself is now disabled by default.
 
 
---k3GeTzjyPXiwZ4uz
-Content-Type: application/pgp-signature; name="signature.asc"
+> +       trackpad: trackpad@15 {
+> +               status = "okay";
 
------BEGIN PGP SIGNATURE-----
+You _don't_ need the status = "okay"; here.
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKzdpIACgkQFA3kzBSg
-Kbbenw/+MKIeOGi3aN2VFP3pJ8kgOpg4sbGFw9tClUx81LHRgs3VAxoZvDE2TIj7
-wmOdoSflUKsUURKTcljecE3u9Mw/vHIPKKsBRN/KGdjvReXg+JUsAGqnnSWLFBzg
-iLljZX0QyxtM4gjbIacARiSIvwm0xhqjbI8cyAE08juIFO6/0JNVdzTIE5kPLPOG
-2Poz+79wckBg4iIV6SA4SrEcAb1HWHrQGbx41SRNg5421mbIzUrvqzmwHMRtYphL
-G6FSQAaO6d6veTovNznqj3p4XqM7I7DwhZrw3vefQjsuIio0sKzpj144Y0A9glVP
-A8eHtigSKFevE3OqsFuy9zyieOaLp/+9HIO4tGFz6iy58DFaqz3L6en2Yx29EUKi
-3VjppRzYnKMftAkN9a4ckkGPWMsWhWHzDGZev5nhw9VNYXqGeHksadrG0ii4weft
-gQ3JGdryUenF4O7xxWooRvOj1In8Aoe6RZj+TQxBRjuB2CxYazPsPKXs2lfWUI5a
-Vrhqm3dyq7jsjTN0iO5CcZtwaMNw+1TgvF3s5kMSs1O1YFahrA7v2Dn0johCN0rX
-Kc7fJEnLktb1Ul6ovrnSKEWbGDuSsdnB4mqTlHK3OeahO4v8OGAhetg0HKvu8zYp
-Az8M/8l3eDMnEIdA+MtqwGEnbkxxGmEXuRnba2vSm2XdS0ZnMb4=
-=jG7j
------END PGP SIGNATURE-----
 
---k3GeTzjyPXiwZ4uz--
+-Doug
