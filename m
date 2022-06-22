@@ -2,175 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9B35554A88
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 15:10:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75555554A8C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 15:10:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233994AbiFVNKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 09:10:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60150 "EHLO
+        id S1348980AbiFVNK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 09:10:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352817AbiFVNJ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 09:09:57 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB63F3138B;
-        Wed, 22 Jun 2022 06:09:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7DF1CB81EB5;
-        Wed, 22 Jun 2022 13:09:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35158C34114;
-        Wed, 22 Jun 2022 13:09:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655903380;
-        bh=NsupuDvFVEzxG4bNGH8iGooT4sCes2l2/JfLnXk6bz4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PP7SAnmb4sHFNgLrdLLGJ19baVNHJ4VTk3ITSLDUpbKhwYeDUe0S/QjOlAeu7FN5f
-         lPRkpXZKjER/jM77taOZ3Jdj6dIpBfjGJoXa9eJpzFsbZesSdtJ0usTlctNkULroC0
-         n6gw8NH8Sw0EHcSvkdnJFZuOiPstFiwFv5G3sfMPC8+ibMh+9TIlw8erPoshlBn4p6
-         zILpsElhWPVpKZ5ASpfUxWdAiSJDuzsb1zN4TsUMeacKCmVk7wkyiqa2g7DXjgg6KU
-         xiMcYeZ0b/CIWJpO7IaxH8mzqRku8LxAAZ/zklHDPbm0j2W5muAvmDKwuMlJXmVrQo
-         0w/82e3CzLWdQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1o406y-0006Fb-EU; Wed, 22 Jun 2022 15:09:37 +0200
-Date:   Wed, 22 Jun 2022 15:09:36 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sc8280xp: Add reference device
-Message-ID: <YrMUkL3fh2vcmo4l@hovoldconsulting.com>
-References: <20220622041224.627803-1-bjorn.andersson@linaro.org>
- <20220622041224.627803-5-bjorn.andersson@linaro.org>
+        with ESMTP id S1352144AbiFVNK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 09:10:57 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54DC41146A;
+        Wed, 22 Jun 2022 06:10:53 -0700 (PDT)
+Received: (Authenticated sender: ash@heyquark.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 94A62FF80E;
+        Wed, 22 Jun 2022 13:10:41 +0000 (UTC)
+From:   Ash Logan <ash@heyquark.com>
+To:     paulus@samba.org, mpe@ellerman.id.au, christophe.leroy@csgroup.eu,
+        robh+dt@kernel.org, benh@kernel.crashing.org
+Cc:     linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        j.ne@posteo.net, linkmauve@linkmauve.fr,
+        rw-r-r-0644@protonmail.com, devicetree@vger.kernel.org
+Subject: [PATCH v2 00/12] powerpc: Nintendo Wii U support
+Date:   Wed, 22 Jun 2022 23:10:25 +1000
+Message-Id: <20220622131037.57604-1-ash@heyquark.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220302044406.63401-1-ash@heyquark.com>
+References: <20220302044406.63401-1-ash@heyquark.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220622041224.627803-5-bjorn.andersson@linaro.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 21, 2022 at 09:12:22PM -0700, Bjorn Andersson wrote:
-> Add basic support for the SC8280XP reference device, which allows it to
-> boot to a shell (using EFIFB) with functional storage (UFS), USB,
-> keyboard, touchpad, touchscreen, backlight and remoteprocs.
-> 
-> The PMICs are, per socinfo, reused from other platforms. But given that
-> the address of the PMICs doesn't match other cases and that it's
-> desirable to label things according to the schematics a new dtsi file is
-> created to represent the reference combination of PMICs.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
-> 
-> Changes since v1:
-> - Reordered "status" last
-> - Fixed invalid PMIC gpio 0
-> - Replaced "hid" name with touchscreen, touchpad and keyboard
-> - Added &xo_board_clk frequency
+The following patches add basic support for the Nintendo Wii U video
+game console, a PowerPC system somewhat similar to the GameCube and
+Wii.
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> @@ -0,0 +1,432 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022, Linaro Limited
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
+This includes:
+- devicetree source
+- bootwrapper support
+- udbg console to bootloader
+- early udbg console
+- interrupt controllers
+- platform support
+- recognition of the Espresso processor
+- workaround for the discontiguous RAM blocks
 
-> +#include <dt-bindings/input/gpio-keys.h>
+This is enough to boot on hardware. dmesg pics (with a small hack to
+udbg-immortal, not included):
+Link: https://wiki.linux-wiiu.org/images/7/7e/Mainline-initial-dmesg1.png
+Link: https://wiki.linux-wiiu.org/images/9/91/Mainline-initial-dmesg2.png
 
-This one is unused and should be dropped.
+For those who have hardware and would like to try these patches, some
+modification is required to the stock OS to allow Linux. For info:
+https://wiki.linux-wiiu.org/wiki/AdvancedSetup
 
-> +#include <dt-bindings/input/input.h>
+Some of the design choices (new platform > embedded6xx) were discussed
+previously:
+Link: https://lore.kernel.org/lkml/0020d47c-0e23-822c-33f5-ccb7ea4c1072@heyquark.com/T/
 
-And this one belongs in sc8280xp-pmics.dtsi where it's used.
+Turns out even less changes were needed than previously anticipated for
+discontiguous memory, and KUAP is yet to give trouble. Thanks to those
+who helped and discussed this.
 
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +
-> +#include "sc8280xp.dtsi"
-> +#include "sc8280xp-pmics.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm SC8280XP CRD";
-> +	compatible = "qcom,sc8280xp-crd", "qcom,sc8280xp";
-> +
-> +	aliases {
-> +		serial0 = &qup2_uart17;
-> +	};
-> +
-> +	backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pmc8280c_lpg 3 1000000>;
-> +		enable-gpios = <&pmc8280_1_gpios 8 GPIO_ACTIVE_HIGH>;
-> +		power-supply = <&vreg_edp_bl>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&edp_bl_en>, <&edp_bl_pwm>;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	vreg_edp_bl: edp-bl-regulator {
+Changes since v1:
+ - Style and formatting tweaks to the devicetree, thanks Rob Herring for
+   the review.
 
-The fixed regulator nodes should be renamed "regulator-edp-bl"...
+Ash Logan (12):
+  dt-bindings: wiiu: Document the Nintendo Wii U devicetree
+  powerpc: wiiu: device tree
+  powerpc: wiiu: bootwrapper support
+  powerpc: wiiu: introduce wiiu platform
+  powerpc: wiiu: declare as non-coherent
+  powerpc: wiiu: udbg support for latteipc
+  powerpc: wiiu: espresso interrupt controller support
+  powerpc: wiiu: latte interrupt controller support
+  powerpc: espresso processor support
+  powerpc: wiiu: platform support
+  powerpc: wiiu: don't enforce flat memory
+  powerpc: wiiu: Add minimal default config
 
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "VREG_EDP_BL";
-> +		regulator-min-microvolt = <3600000>;
-> +		regulator-max-microvolt = <3600000>;
-> +
-> +		gpio = <&pmc8280_1_gpios 9 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&edp_bl_reg_en>;
-> +
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vreg_misc_3p3: misc-3p3-regulator {
+ .../bindings/powerpc/nintendo/wiiu.yaml       |  28 ++
+ .../powerpc/nintendo/wiiu/espresso-pic.yaml   |  42 +++
+ .../bindings/powerpc/nintendo/wiiu/gpu7.yaml  |  41 +++
+ .../powerpc/nintendo/wiiu/latte-ahci.yaml     |  43 +++
+ .../powerpc/nintendo/wiiu/latte-dsp.yaml      |  35 ++
+ .../powerpc/nintendo/wiiu/latte-pic.yaml      |  46 +++
+ .../powerpc/nintendo/wiiu/latte-sdhci.yaml    |  40 +++
+ .../bindings/powerpc/nintendo/wiiu/latte.yaml |  25 ++
+ arch/powerpc/Kconfig.debug                    |   9 +
+ arch/powerpc/boot/Makefile                    |   4 +
+ arch/powerpc/boot/dts/wiiu.dts                | 322 ++++++++++++++++++
+ arch/powerpc/boot/wiiu-head.S                 | 103 ++++++
+ arch/powerpc/boot/wiiu.c                      |  73 ++++
+ arch/powerpc/boot/wrapper                     |   4 +
+ arch/powerpc/configs/wiiu_defconfig           |   7 +
+ arch/powerpc/include/asm/udbg.h               |   1 +
+ arch/powerpc/kernel/cputable.c                |  16 +
+ arch/powerpc/kernel/head_book3s_32.S          |  20 ++
+ arch/powerpc/kernel/udbg.c                    |   3 +
+ arch/powerpc/mm/init_32.c                     |   4 +-
+ arch/powerpc/platforms/Kconfig                |   1 +
+ arch/powerpc/platforms/Kconfig.cputype        |   2 +-
+ arch/powerpc/platforms/Makefile               |   1 +
+ arch/powerpc/platforms/wiiu/Kconfig           |  19 ++
+ arch/powerpc/platforms/wiiu/Makefile          |   4 +
+ arch/powerpc/platforms/wiiu/espresso-pic.c    | 183 ++++++++++
+ arch/powerpc/platforms/wiiu/espresso-pic.h    |  59 ++++
+ arch/powerpc/platforms/wiiu/latte-pic.c       | 259 ++++++++++++++
+ arch/powerpc/platforms/wiiu/latte-pic.h       |  23 ++
+ arch/powerpc/platforms/wiiu/setup.c           |  67 ++++
+ arch/powerpc/platforms/wiiu/udbg_latteipc.c   | 122 +++++++
+ arch/powerpc/platforms/wiiu/udbg_latteipc.h   |  27 ++
+ 32 files changed, 1630 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu.yaml
+ create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/espresso-pic.yaml
+ create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/gpu7.yaml
+ create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-ahci.yaml
+ create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-dsp.yaml
+ create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-pic.yaml
+ create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte-sdhci.yaml
+ create mode 100644 Documentation/devicetree/bindings/powerpc/nintendo/wiiu/latte.yaml
+ create mode 100644 arch/powerpc/boot/dts/wiiu.dts
+ create mode 100644 arch/powerpc/boot/wiiu-head.S
+ create mode 100644 arch/powerpc/boot/wiiu.c
+ create mode 100644 arch/powerpc/configs/wiiu_defconfig
+ create mode 100644 arch/powerpc/platforms/wiiu/Kconfig
+ create mode 100644 arch/powerpc/platforms/wiiu/Makefile
+ create mode 100644 arch/powerpc/platforms/wiiu/espresso-pic.c
+ create mode 100644 arch/powerpc/platforms/wiiu/espresso-pic.h
+ create mode 100644 arch/powerpc/platforms/wiiu/latte-pic.c
+ create mode 100644 arch/powerpc/platforms/wiiu/latte-pic.h
+ create mode 100644 arch/powerpc/platforms/wiiu/setup.c
+ create mode 100644 arch/powerpc/platforms/wiiu/udbg_latteipc.c
+ create mode 100644 arch/powerpc/platforms/wiiu/udbg_latteipc.h
 
-...and "regulator-misc-3p3" (e.g. so we have a common prefix to sort
-by).
 
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "VREG_MISC_3P3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&pmc8280_1_gpios 1 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&misc_3p3_reg_en>;
-> +
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reserved-memory {
-> +	};
-> +};
+base-commit: 4b0986a3613c92f4ec1bdc7f60ec66fea135991f
+-- 
+2.36.1
 
-Johan
