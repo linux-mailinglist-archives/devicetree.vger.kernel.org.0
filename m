@@ -2,135 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F4195546F5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6D435545F5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:09:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357193AbiFVLQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 07:16:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55802 "EHLO
+        id S1357699AbiFVLiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 07:38:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357187AbiFVLQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 07:16:26 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FAAB3A72E;
-        Wed, 22 Jun 2022 04:16:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id BB3CECE1EE0;
-        Wed, 22 Jun 2022 11:16:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FCCEC34114;
-        Wed, 22 Jun 2022 11:16:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655896578;
-        bh=tMTA9meN2czeIclIiOAgShr7yIKAOgnCpTndOYpqW5M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pUATFC9kpVwIRTdzsbji6glLE0TrGPunoayWozO3r2+04fGy49+1jX4EbPLczZvwx
-         IrAo95I2n30GbTI/BW0MXtrJLVZEdj1sGl6ybAyRufHgYMhvfD1hl/hibhes3jYnW8
-         RkpupOOmMIlceXGm0l7xDDLo2gdAuSwVulOqIl4YW4ANPJj+y8mwmUTXmWfVYSRCiS
-         x9puLv+b+0K7dw8xV0zgypHrtCqjqFvf9N+uIC8qBdItC5iTYonNYbmgj0qQnEj9eD
-         4H2mXvciaOm9kZlUL+kRxLGq4OreCsWRwKZx0OMw3IlYM8GI9AjSadFUg9KDNYQoFT
-         30lUbSVZvXUiQ==
-Date:   Wed, 22 Jun 2022 13:16:13 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Avri Altman <Avri.Altman@wdc.com>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
-        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v6 7/7] arm64: dts: renesas: r8a779f0: spider-cpu: Enable
- UFS device
-Message-ID: <YrL5/ZN5qU2w+uRK@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Avri Altman <Avri.Altman@wdc.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
-        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-References: <20220603110524.1997825-1-yoshihiro.shimoda.uh@renesas.com>
- <20220603110524.1997825-8-yoshihiro.shimoda.uh@renesas.com>
- <YrHgOptQ56woMAeO@shikoro>
- <DM6PR04MB6575D7C91E0925B5D498ABF3FCB29@DM6PR04MB6575.namprd04.prod.outlook.com>
- <YrLU6/jAZ5lGnL3p@shikoro>
- <DM6PR04MB6575FD5AEE828A184B3713D8FCB29@DM6PR04MB6575.namprd04.prod.outlook.com>
- <DM6PR04MB6575DA24CCF398A890129C78FCB29@DM6PR04MB6575.namprd04.prod.outlook.com>
+        with ESMTP id S1357483AbiFVLhz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 07:37:55 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42BBB3CA4E;
+        Wed, 22 Jun 2022 04:37:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+        s=20161220; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=T02pZ/spQxA2e8NWYLL7bn+PampfH2BP7FC9jpkGLKg=; b=121d3BvSP/wf5vchE/sx9HTFcR
+        qRNWybK0GTlHEcqNBmf5Xno7j11EHkY01ufmX8mujhVgtCLEWa423HEeGgJ80HlF+BlxQgf69Jzln
+        vkBo1eIss91GrLpf856lVYJkmR4fVphdLZMs9nA+0tWL4Wf7iCh1NKhnGhBaiBDYvc9cUzKJT2d4h
+        Ho308fMBPp9KerrT0JPDIfDpTm8k7XpbpUowomCzZ1kD20nVWMTITHOD7Yg89k/ORy1FbqUwh9Ho5
+        oGjdivpnQeh5Jzz7I4FTeFRCF9VIDiyriNk+dxYVeyBGUlk3tMmSQnDLooXtFo2IeInLu2tc7Lj53
+        0DkRsi3w==;
+Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=toshino.localdomain)
+        by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1o3yg3-0001Xl-8a; Wed, 22 Jun 2022 14:37:42 +0300
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+To:     thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, digetx@gmail.com
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mikko Perttunen <mperttunen@nvidia.com>
+Subject: [PATCH v2 00/13] Host1x support on Tegra234
+Date:   Wed, 22 Jun 2022 14:37:20 +0300
+Message-Id: <20220622113733.1710471-1-cyndis@kapsi.fi>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="UMw3NYlBKlieYLVM"
-Content-Disposition: inline
-In-Reply-To: <DM6PR04MB6575DA24CCF398A890129C78FCB29@DM6PR04MB6575.namprd04.prod.outlook.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 91.158.25.70
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Mikko Perttunen <mperttunen@nvidia.com>
 
---UMw3NYlBKlieYLVM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+-------------
+Merging notes
+-------------
 
-Hi Avri,
+This series should be applied on top of the Host1x context isolation
+series.
 
-> > > which leads me to this call in ufshpb_get_dev_info():
-> > >
-> > > 2622         ret = ufshcd_query_attr_retry(hba,
-> > > UPIU_QUERY_OPCODE_READ_ATTR,
-> > > 2623                 QUERY_ATTR_IDN_MAX_HPB_SINGLE_CMD, 0, 0,
-> > > &max_single_cmd);
-> > >
-> > > And from here on, I miss the UFS experience to debug further. But I
-> > > will happily provide more information if people give me pointers.
-> > Ah ok.
-> > That's cool - HPB is enable on your platform.
-> > For some reason JEDEC didn't merge the HPB amendment into UFS4.0 - and I
-> > forgot all about that attribute.
-> And the source of this error is that your device does not support HPB2.0,
-> Which is fine, because HPB2.0 support was removed a while ago.
+-------------
+Changes in v2
+-------------
 
-As I understand, the UFS core needs an update then? If you CC me on
-patches, I will test them right away.
+Rebased on top of v5.19-rc3.
 
-Happy hacking,
+Updated Host1x device tree schema based on Rob's comments.
 
-   Wolfram
+No changes to node names done, as that is a change that should be
+done uniformly in a separate series for all Tegra generations,
+if deemed appropriate.
 
+-------------
+Original message
+-------------
 
---UMw3NYlBKlieYLVM
-Content-Type: application/pgp-signature; name="signature.asc"
+Hi all,
 
------BEGIN PGP SIGNATURE-----
+This series adds support for Host1x and VIC on the recently released
+Tegra234 (Orin) SoC. It's split into the following parts:
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKy+f0ACgkQFA3kzBSg
-KbZC/BAAr5WOTjNVprF5QAvo3KROFxn0Rr0jwxY+lUUR0mGYSzzfYTCrxLAZ5NwW
-dsgGT/wEQkYqEyQy7cQYyX338QnIV5rmEyXfWJG/VvYMJSXoxGyKk7eyuFHKdFlN
-tSMBLsJUfMItpPLkvfGZl0gcLMAo94O1Ndxf68G6MUJkR2gvbUdVdjA8WBPWuJAk
-QAObulCAHK8W2vKxERPkmvC6GE323+Af8DSF2rEXEIGCBCrmqFu7y5AKHvMEnjcc
-9UcIUc1M+yuWZmtx40Mjw69Cc01KEf076cP2FxwO9R+h7l2ihjojAepUAabLFcjI
-DbuKaXJ5aKILY6B5ngJsiOc8RVOlPK04c+fSQ9TDq4wG5S8gRejq8wP1prI9Twuq
-tfPeyVw6DUZy0yvH4xO0UBlPn/C+ZOV+/qRwYbHMB90cXTsIeeckleFTdMiZBII2
-B6Gx5D1ldEt4Sv8o4PDUMV8AWV2pRsqk0C8oQMuKf7s6NhrZpA2kVkK8mnNWNE+d
-9abLFBir/Pjpcgz7QA8KCF0rcIyO22XOt4Ny9cyGQRG1QLR38lH8EP3ht/SRSsIY
-GdGEZ9+Jtvjvk+y/7FkrP/wYF9/eQDzxEim9ypUN17yQ9ZCY3jnrJ/AKExIxsP+P
-X1f28fEdLJmIv+FGSv6yXWKHh8m0WpdHv/NC5p38ZmDIKSeZt8c=
-=drAy
------END PGP SIGNATURE-----
+* Device tree binding updates
+* Cleanup in host1x driver
+* Add programming of new registers and old registers that now need to
+  be programmed to a non-reset value
+* Tegra234 device data and headers
+* Rewrite of the job opcode sequence, and related patches to
+  support MLOCKs on Tegra186+.
 
---UMw3NYlBKlieYLVM--
+The rewrite of the job opcode sequence brings Tegra186, Tegra194 and
+Tegra234 support to a 'full-featured' status that is necessary to
+support all host1x features in the future. This should not have any
+impact on older SoCs.
+
+This series should be applied on top of the Host1x context isolation
+series.
+
+Tested on Jetson AGX Xavier and Jetson AGX Orin.
+
+Thanks,
+Mikko
+
+Mikko Perttunen (13):
+  dt-bindings: Add bindings for Tegra234 Host1x and VIC
+  dt-bindings: Add headers for Host1x and VIC on Tegra234
+  arm64: tegra: Add Host1x and VIC on Tegra234
+  gpu: host1x: Deduplicate hardware headers
+  gpu: host1x: Simplify register mapping and add common aperture
+  gpu: host1x: Program virtualization tables
+  gpu: host1x: Allow reset to be missing
+  gpu: host1x: Program interrupt destinations on Tegra234
+  gpu: host1x: Tegra234 device data and headers
+  gpu: host1x: Rewrite job opcode sequence
+  gpu: host1x: Add MLOCK release code on Tegra234
+  gpu: host1x: Use RESTART_W to skip timed out jobs on Tegra186+
+  drm/tegra: vic: Add Tegra234 support
+
+ .../display/tegra/nvidia,tegra124-vic.yaml    |   1 +
+ .../display/tegra/nvidia,tegra20-host1x.yaml  | 110 +++++++++--
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |  46 +++++
+ drivers/gpu/drm/tegra/drm.c                   |   1 +
+ drivers/gpu/drm/tegra/vic.c                   |  12 ++
+ drivers/gpu/host1x/Makefile                   |   3 +-
+ drivers/gpu/host1x/cdma.c                     |  19 +-
+ drivers/gpu/host1x/dev.c                      | 112 +++++++----
+ drivers/gpu/host1x/dev.h                      |  11 ++
+ drivers/gpu/host1x/hw/cdma_hw.c               |  34 ++++
+ drivers/gpu/host1x/hw/channel_hw.c            | 144 ++++++++------
+ drivers/gpu/host1x/hw/host1x01_hardware.h     | 114 +----------
+ drivers/gpu/host1x/hw/host1x02_hardware.h     | 113 +----------
+ drivers/gpu/host1x/hw/host1x04_hardware.h     | 113 +----------
+ drivers/gpu/host1x/hw/host1x05_hardware.h     | 113 +----------
+ drivers/gpu/host1x/hw/host1x06_hardware.h     | 128 +------------
+ drivers/gpu/host1x/hw/host1x07_hardware.h     | 128 +------------
+ drivers/gpu/host1x/hw/host1x08.c              |  33 ++++
+ drivers/gpu/host1x/hw/host1x08.h              |  15 ++
+ drivers/gpu/host1x/hw/host1x08_hardware.h     |  21 ++
+ drivers/gpu/host1x/hw/hw_host1x08_channel.h   |  11 ++
+ drivers/gpu/host1x/hw/hw_host1x08_common.h    |  11 ++
+ .../gpu/host1x/hw/hw_host1x08_hypervisor.h    |   9 +
+ drivers/gpu/host1x/hw/hw_host1x08_uclass.h    | 181 ++++++++++++++++++
+ drivers/gpu/host1x/hw/hw_host1x08_vm.h        |  36 ++++
+ drivers/gpu/host1x/hw/intr_hw.c               |  11 ++
+ drivers/gpu/host1x/hw/opcodes.h               | 150 +++++++++++++++
+ include/dt-bindings/clock/tegra234-clock.h    |   4 +
+ include/dt-bindings/memory/tegra234-mc.h      |   5 +
+ .../dt-bindings/power/tegra234-powergate.h    |   1 +
+ include/dt-bindings/reset/tegra234-reset.h    |   1 +
+ 31 files changed, 877 insertions(+), 814 deletions(-)
+ create mode 100644 drivers/gpu/host1x/hw/host1x08.c
+ create mode 100644 drivers/gpu/host1x/hw/host1x08.h
+ create mode 100644 drivers/gpu/host1x/hw/host1x08_hardware.h
+ create mode 100644 drivers/gpu/host1x/hw/hw_host1x08_channel.h
+ create mode 100644 drivers/gpu/host1x/hw/hw_host1x08_common.h
+ create mode 100644 drivers/gpu/host1x/hw/hw_host1x08_hypervisor.h
+ create mode 100644 drivers/gpu/host1x/hw/hw_host1x08_uclass.h
+ create mode 100644 drivers/gpu/host1x/hw/hw_host1x08_vm.h
+ create mode 100644 drivers/gpu/host1x/hw/opcodes.h
+
+-- 
+2.36.1
+
