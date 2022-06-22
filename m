@@ -2,71 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54413554B8F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 15:43:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88187554B93
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 15:43:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235059AbiFVNnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 09:43:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33820 "EHLO
+        id S1353117AbiFVNnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 09:43:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353117AbiFVNm7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 09:42:59 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40B2E6150
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 06:42:57 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id t25so27835778lfg.7
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 06:42:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=AG/AGLFtspsBCjlBWHr4/smuRbxFiZY+aRHzoGzHeAY=;
-        b=CieY+zlnH1jg/SQSVcK6U9bLI5arZKPjdLkWRSSd2EVfBjGKmIswBsPRcE54zZQLqe
-         DO8C92T89CUHrcm6ZHEzNd9NCOPh2TKmPKYYTu9f7Vv1qql8tF9FAis3jft6yPSg+arl
-         PSe3oIdVXRpAA4DBAIz44w1Z9QPQ/SfaYmHluyDf1QN6jygMdBmgP3OxXUdTthOWgflo
-         rHhb1d+QgjFbYHI79q3GA1H2JZDDu4nSS96QWSP+Ev6qKHIi1x3Y9/mPm+HyxDHBZMU7
-         ArfoaVViRhGCsR6+5YvONrgZaM7y5BOxDxfgXb1dFfZp9rqnBTEgaLEPp7u2AkcA8vBD
-         2aWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AG/AGLFtspsBCjlBWHr4/smuRbxFiZY+aRHzoGzHeAY=;
-        b=F3QfmwGU8wzhns4AIXYboESiSVO5meKycsgrTVWm/He374V9zjdvWDkIzRsvHkcDGv
-         4QqJKc2qo6QRd9I/YuVoFk50A/QGDeI4fTGjccC5+bxBxEnYdWt3OOQSVwbjVWI74xKD
-         cxY6mwa42ebb8Y8Ftqh6R8KXvcMlGgWNXOHDX2entf9Zx02oNP86evQLrSYlE5Ppb/Ql
-         kZVlmJHGq4ihWt1vpPBz8jacHEwnHWBlNElZusZwERG8e23g1PYJOgKFGCE2Tn4wYYeq
-         rJICbUsv2QALc/9os2MsSTIXxhnqyyOeEgrUqFcK1nRMPog33G0V322zcKJXGr4zHj4q
-         ZJ7Q==
-X-Gm-Message-State: AJIora8/a453UypUFTNxX6TRo6l67Qeo9LGv52Vh5WXuuWglr8F+ghhe
-        TVGYEAw/i5dAXCpVQfDPjZcETA==
-X-Google-Smtp-Source: AGRyM1vqCTRYzgAFWer6yh9WUjpiaRcSn4i1Ecj33k+3DUBlyHtVlQDGefbg0GSaFMD1p9ZD0xlZJg==
-X-Received: by 2002:a05:6512:61:b0:47f:7f37:fad3 with SMTP id i1-20020a056512006100b0047f7f37fad3mr2140827lfo.318.1655905375526;
-        Wed, 22 Jun 2022 06:42:55 -0700 (PDT)
-Received: from vkh-ThinkPad-T490 ([91.192.183.26])
-        by smtp.gmail.com with ESMTPSA id n26-20020a05651203fa00b004795311530asm1627595lfq.209.2022.06.22.06.42.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jun 2022 06:42:55 -0700 (PDT)
-Date:   Wed, 22 Jun 2022 16:42:49 +0300
-From:   Volodymyr Kharuk <vkh@melexis.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-media@vger.kernel.org, ays@melexis.com, mchehab@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        hyun.kwon@xilinx.com, laurent.pinchart@ideasonboard.com,
-        michal.simek@xilinx.com, kieran.bingham+renesas@ideasonboard.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 5/6] media: dt-bindings: media: i2c: Add mlx7502x camera
- sensor binding
-Message-ID: <20220622134249.GA56966@vkh-ThinkPad-T490>
-References: <20220620162525.GA14062@vkh-ThinkPad-T490>
- <d66fe477-9ce7-97c1-4f21-93562c9a5711@linaro.org>
+        with ESMTP id S233196AbiFVNnU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 09:43:20 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F298E186CE;
+        Wed, 22 Jun 2022 06:43:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 6A977CE1EE3;
+        Wed, 22 Jun 2022 13:43:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3617C3411B;
+        Wed, 22 Jun 2022 13:43:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655905396;
+        bh=jDB1Cmjv2ziK6j8aryAIRqu1467tjzlSp6wfYt0MFcQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=S9T7cnqpV1WcPaC+DcszUY1WiRuvebMnlhf3ztL5usOyhUj45669V+TMotvdRzSlP
+         7lzi5U4e5KFFtaYxQ/wXQ3AJ69QuY2S/3myFzi+CU+xPVvGtv13duHLyGy8dPsBuhk
+         481Mh5vDgxWNSFl5HmYnj8a2h6V1Tf8PGzEv0iG2Y0bj4/erXlrPK8aJ2ht6uOnsY2
+         fum0QCbgh6Dba32vUzJwy7jxesqCeiuzNo13MBYSWwjD6EFTnyuk03jVQER6CPJsmy
+         Flt0CnVqSDjyabtcxKvtLs3t+gFqY9L4RQ+mU+WPZEYzSqXaPUVLbIn5x8+G/C3QmR
+         8qVnRbymt79AA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1o40dV-0006Ww-1e; Wed, 22 Jun 2022 15:43:13 +0200
+Date:   Wed, 22 Jun 2022 15:43:13 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sc8280xp: Add reference device
+Message-ID: <YrMccQXwsz/zC/gl@hovoldconsulting.com>
+References: <20220622041224.627803-1-bjorn.andersson@linaro.org>
+ <20220622041224.627803-5-bjorn.andersson@linaro.org>
+ <099cc82f-d52f-315f-189d-bcc40c1afd49@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d66fe477-9ce7-97c1-4f21-93562c9a5711@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <099cc82f-d52f-315f-189d-bcc40c1afd49@somainline.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,207 +64,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Wed, Jun 22, 2022 at 02:33:02PM +0200, Konrad Dybcio wrote:
+> On 22.06.2022 06:12, Bjorn Andersson wrote:
 
-Thanks for your review,
+> > +&qup2_i2c5 {
+> > +	clock-frequency = <400000>;
+> > +
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&qup2_i2c5_default>, <&kybd_default>, <&tpad_default>;
+> > +
+> > +	status = "okay";
+> > +
+> I think all device DTs generally have 'status = "okay"' at the beginning. Should we change that?
+> 
 
-On Mon, Jun 20, 2022 at 06:55:40PM +0200, Krzysztof Kozlowski wrote:
-> On 20/06/2022 18:25, Volodymyr Kharuk wrote:
-> > From: Volodymyr Kharuk <vkh@melexis.com>
-> > To: linux-media@vger.kernel.org
-> > Cc: Volodymyr Kharuk <vkh@melexis.com>,
-> > 	Andrii Kyselov <ays@melexis.com>,
-> > 	Mauro Carvalho Chehab <mchehab@kernel.org>,
-> > 	Rob Herring <robh+dt@kernel.org>,
-> > 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-> > 	Hyun Kwon <hyun.kwon@xilinx.com>,
-> > 	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-> > 	Michal Simek <michal.simek@xilinx.com>,
-> > 	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-> > 	devicetree@vger.kernel.org
-> > Subject: [PATCH 5/6] media: dt-bindings: media: i2c: Add mlx7502x camera sensor binding
-> > Date: Mon, 20 Jun 2022 19:24:36 +0300
-> > Message-Id: <fde3ed603f2c605278ab8fe2c0aa03e96ce4fb33.1655738299.git.vkh@melexis.com>
-> > X-Mailer: git-send-email 2.36.1
-> > In-Reply-To: <cover.1655738299.git.vkh@melexis.com>
-> > References: <cover.1655738299.git.vkh@melexis.com>
-> > MIME-Version: 1.0
-> > Content-Transfer-Encoding: 8bit
-> 
-> I don't think your email is correct... The easiest to create proper
-> patch is to use Git (git format-patch, git send-email).
-Actually I've used git format-patch and git send-email.
-I wanted to use mutt as sendmail. Mutt didn't understand the header from git send-email.
-So now I switched to another sendmail. Now it should be fine.
-> 
-> 
-> > 
-> > Add device tree binding of the mlx7502x and update MAINTAINERS
-> > 
-> > Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
-> > ---
-> >  .../bindings/media/i2c/melexis,mlx7502x.yaml  | 106 ++++++++++++++++++
-> >  MAINTAINERS                                   |   1 +
-> >  2 files changed, 107 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> > new file mode 100644
-> > index 000000000000..0cc6e425caec
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> > @@ -0,0 +1,106 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/melexis,mlx7502x.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Melexis ToF 7502x MIPI CSI-2 Sensor Device Tree Bindings
-> 
-> s/Device Tree Bindings//
-> 
-> > +
-> > +maintainers:
-> > +  - Volodymyr Kharuk <vkh@melexis.com>
-> > +
-> > +description: |-
-> > +  Melexis ToF 7502x sensors has a CSI-2 output. It supports 2 and 4 lanes,
-> > +  and mipi speeds are 300, 600, 704, 800, 904, 960Mbs. Supported format is RAW12.
-> > +  Sensor 75026 is QVGA, while 75027 is VGA sensor.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: melexis,mlx7502x
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  vcc-supply:
-> > +    description: VCC supply phandle.
-> > +
-> > +  hw-trigger-gpio:
-> 
-> Yoiu need vendor prefix here, because this does not look like standard
-> property. Plus "gpios", not "gpio", so:
-> melexis,hw-trigger-gpios
-> 
-> > +    maxItems: 1
-> > +    description: Hardware Trigger GPIO Control (active low)
-> > +
-> > +  reset-gpio:
-> 
-> reset-gpios
-> 
-> > +    maxItems: 1
-> > +    description: Reset Sensor GPIO Control (active low)
-> > +
-> > +  leden-gpio:
-> 
-> vendor prefix + gpios, unless this is "enable-gpios" standard property.
-Yes it is enable for another device(illumination), so it not the standard one.
-> 
-> > +    maxItems: 1
-> > +    description: Led driver enanle GPIO Control (active high)
-> 
-> enable?
-Yeap, thanks
-> 
-> > +
-> > +  port:
-> > +    description: MIPI CSI-2 transmitter port
-> > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          data-lanes:
-> > +            anyOf:
-> 
-> oneOf
-> although probably has the same effect
-Agree.
-> 
-> > +              - items:
-> > +                  - const: 1
-> > +                  - const: 2
-> > +              - items:
-> > +                  - const: 1
-> > +                  - const: 2
-> > +                  - const: 3
-> > +                  - const: 4
-> > +
-> > +          clock-noncontinuous: true
-> > +          link-frequencies: true
-> > +
-> > +        required:
-> > +          - data-lanes
-> > +          - link-frequencies
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    i2c1 {
-> 
-> Just "i2c"
-> 
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        mlx7502x: camera@57 {
-> > +            compatible = "melexis,mlx7502x";
-> > +            reg = <0x57>;
-> > +
-> > +            vcc-supply = <&mlx_7502x_reg>;
-> > +            hw-trigger-gpio = <&gpio_exp 2 GPIO_ACTIVE_HIGH>;
-> > +            reset-gpio = <&gpio_exp 6 GPIO_ACTIVE_HIGH>;
-> > +            leden-gpio = <&gpio_exp 7 GPIO_ACTIVE_HIGH>;
-> > +
-> > +            port {
-> > +                mlx7502x_out_mipi_csi2: endpoint {
-> > +                    remote-endpoint = <&mipi_csi2_from_mlx7502x>;
-> > +                    data-lanes = <1 2 3 4>;
-> > +                    link-frequencies = /bits/ 64 < 960000000
-> > +                                                   904000000
-> > +                                                   800000000
-> > +                                                   704000000
-> > +                                                   600000000
-> > +                                                   300000000 >;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 6b74de976e90..ce052a351fda 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -12676,6 +12676,7 @@ M:	Volodymyr Kharuk <vkh@melexis.com>
-> >  L:	linux-media@vger.kernel.org
-> >  S:	Supported
-> >  W:	http://www.melexis.com
-> > +F:	Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> >  F:	include/uapi/linux/mlx7502x.h
-> >  
-> >  MELFAS MIP4 TOUCHSCREEN DRIVER
-> 
-> 
-> Best regards,
-> Krzysztof
+No, quite the opposite, status go at the end.
 
--- 
-BR,
-Volodymyr Kharuk
+(And please break your lines at 72 cols or so).
 
+> > +
+> > +/* PINCTRL - additions to nodes defined in sc8280xp.dtsi */
+> This comment seems redundant.
+
+Nope, it's a marker that explains why the pinctrl nodes are seemingly
+out of sort order. We've decided to group them all at the end.
+
+But sure "- additions to nodes defined in sc8280xp.dtsi" could be moved
+since we also have PMIC pinctrl nodes here (as I just did for the x13s
+dts).
+
+> 
+> > +
+> > +&pmc8280_1_gpios {
+> > +	edp_bl_en: edp-bl-en-state {
+> > +		pins = "gpio8";
+> > +		function = "normal";
+> > +	};
+> > +
+> > +	edp_bl_reg_en: edp-bl-reg-en-state {
+> > +		pins = "gpio9";
+> > +		function = "normal";
+> > +	};
+> > +
+> > +	misc_3p3_reg_en: misc-3p3-reg-en-state {
+> > +		pins = "gpio1";
+> > +		function = "normal";
+> > +	};
+> > +};
+
+> > +	tpad_default: tpad-default-state {
+> > +		int-n {
+> If you aren't gonna add more pins to this touchpad block, I think you could drop this extra level.
+
+You'd just lose information (what the pin is used for) with no real
+gain.
+
+> > +			pins = "gpio182";
+> > +			function = "gpio";
+> > +			bias-disable;
+> > +		};
+> > +	};
+
+Johan
