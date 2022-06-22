@@ -2,69 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A28E5548B0
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D68FA5547AE
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:12:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233286AbiFVL7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 07:59:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41100 "EHLO
+        id S1346654AbiFVL75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 07:59:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357300AbiFVL7B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 07:59:01 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 032D53CA6B
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 04:58:57 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id ay16so14332959ejb.6
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 04:58:56 -0700 (PDT)
+        with ESMTP id S1357518AbiFVL7p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 07:59:45 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D9AF3DA4C
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 04:59:44 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id ay16so14337053ejb.6
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 04:59:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=TubmODShT3jlb3v00kGpERu9RrmPlpU/0Z9qGMR5zOs=;
-        b=UYhfGGFbTwqGWb2uOb2hIeLMZDiVaGsArTQT5CtqWMJr/DQwpOs9zzcruTjSyElnZQ
-         XLhlSYZvIg8ahvqehcovOnsU/B4gqFkMs/tua5li1r4YkkcxVaYAR3Ct5TcE7hwjbbEx
-         +Lg5XIgKixE3Er2SvaxrtIMOuAwzZ2l/qZD06lT/nud2Cg2ZlbQspppvdEUj4rcMDEvU
-         tN5BLe84ZtJrVm26EqM8CaJF1eaNv59c7klw9ROBx/GlMvjY5Cd16lzqG0jO8wXJQ7ig
-         9UBnc/YjkxMLHPJBlPUHIDzuyMD2mMZZQOo+/LlBrIZ8pNB5s593b4lwjF6zIQqW5uz9
-         WMcg==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=DZU7yMbXa4P+Gd4uGBEFY4wwtiYkAUkzlhILMat6l/o=;
+        b=OQavwAI28a9L9KdZhcA2DZvhpudJzVv3Y4A/eL02kiClu0lv+TbDzezFSzNslpAt9V
+         VKW50MzB7ZVmYNjfRoAsXxNaNFYxj2pfk4tVazyC8qGKJkNfI9DI2Fhh3ygIQusVDLuk
+         Zc3J9B7L8Bu+ClnjSgmnPh4MZlvE8954+PP5+PI6xJ/5bnGmlryjy+XAmN1C5eMEOwRH
+         bi4ZJ+ItGwJkdlo/1AoitCP6MrIfwmUOOaWdZ5yr0Pa/exd8I0V3OlL08mnLJmPCr5pm
+         /Xi+cFVxm3B0pmp3j6swnJvaMicEficBuujVyUO15l/+6OyFc2ScXf4qPKG9W3V0NVjs
+         WGng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=TubmODShT3jlb3v00kGpERu9RrmPlpU/0Z9qGMR5zOs=;
-        b=bXDZuCtgSSCBjhIn6DZU6WEs9ceIG+f/mwLbAeVhfRrQbDibVom3h9KzXm7bOn/KwK
-         UNDLY4TJl0pmupu6gOIjlPT09dsec0DGN7se4e185zyYXzRHQWBTr6PE9mMSqrQF3Ko8
-         Ye/5KGShAZpjSIU//yXRv0Hl7p4Ia/k2sb0+g0MvOTuevtD/+uJIUYWanEyGF9TALjmv
-         pNNs5KGtkyieXwVSAENSO1xOCyLPkSYu+aUdmuop8k0IObz9JIPDYtyAln+TglfyJ3+v
-         /vYLI9lNwWPmkZJHYCJtdACh9wiSdZxhDwIQhvdsuVfdQQIueoGpnBu2quVcr+JXmpeg
-         Yr9A==
-X-Gm-Message-State: AJIora9LdNW5qctHTSzso4UsiB+fA02XXxYfK/BSjttnOfhMclh5sau/
-        dJe5lGUKQ2HefoE/urtsQGoSDt6dn0oK0w==
-X-Google-Smtp-Source: AGRyM1sShVPcdJqilUZ2pSQF6ujR77qLdps0duCEkxqzuEYxDASdWz1FiZ4LSBwOe0AJHI8FJUr52A==
-X-Received: by 2002:a17:907:3f95:b0:722:abe4:5132 with SMTP id hr21-20020a1709073f9500b00722abe45132mr2828914ejc.757.1655899135084;
-        Wed, 22 Jun 2022 04:58:55 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id qw21-20020a1709066a1500b0070c4abe4706sm1746212ejc.158.2022.06.22.04.58.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jun 2022 04:58:54 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        krzysztof.kozlowski@linaro.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, robh+dt@kernel.org,
-        pavel@ucw.cz, linux-leds@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alim.akhtar@samsung.com,
-        jacek.anaszewski@gmail.com
-Subject: Re: (subset) [PATCH v2 3/3] ARM: dts: exynos: add function and color to aat1290 flash LED node in Galaxy S3
-Date:   Wed, 22 Jun 2022 13:58:50 +0200
-Message-Id: <165589912783.8422.8897560005665418003.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220620175033.130468-4-krzysztof.kozlowski@linaro.org>
-References: <20220620175033.130468-1-krzysztof.kozlowski@linaro.org> <20220620175033.130468-4-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=DZU7yMbXa4P+Gd4uGBEFY4wwtiYkAUkzlhILMat6l/o=;
+        b=eQRuEys6Tc6AdsQ42ecIcNtu8vja1iYyuXMDJaEoPUvhPC18SRntViydRf6u3VKUvr
+         pmhSGw63sXvAKXKLKYGfL0RhbkL6xROp092M72jNDfi76o8yrKiZ8Y1kzJrLSElBSx6p
+         T+FdN/HP9oGGnVOf4LQN9+ZS3luX6koaJ7CQ7P6ooQUFeCuKgz/Yvw8pkY0cjr00JVtU
+         Ajj7q1vBgFCek3Mhv82UHeLQ+DtlAAaTN+Eu2EMq8oUaxeWewqSnnAb5Hsu0A+RcT6wF
+         zvTDu49GgKoBsgUdBdNDdChJP1224A2hxvGeoXwsmiTHRX1NHjXWfT2ZwEWpQmmj/qND
+         xTpg==
+X-Gm-Message-State: AJIora9cFQ0WmD10rwHS9WwY/0ZJ1aXevSsF9J7zfq89AnCdXZ4qHF0Y
+        HzW/WwbsD5EtVNwPwL4NCsxZ2Q==
+X-Google-Smtp-Source: AGRyM1sLi7a4kBO3JthSo4Cm36WUXfT8Gem0ucOSW3Mc1lDmNrfdb0myCuFRlgJKnXF4QxcDvSZkUA==
+X-Received: by 2002:a17:906:ee1:b0:70d:d293:7b30 with SMTP id x1-20020a1709060ee100b0070dd2937b30mr2743102eji.134.1655899182685;
+        Wed, 22 Jun 2022 04:59:42 -0700 (PDT)
+Received: from [192.168.0.224] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id yy16-20020a170906dc1000b00722e19fec6dsm2819950ejb.156.2022.06.22.04.59.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jun 2022 04:59:42 -0700 (PDT)
+Message-ID: <ad708829-6ee3-b95d-d3ef-27dd85ff5df5@linaro.org>
+Date:   Wed, 22 Jun 2022 13:59:41 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 03/14] ARM: dts: qcom: use generic sram as name for imem
+ and ocmem nodes
+Content-Language: en-US
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Brian Masney <masneyb@onstation.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220607171848.535128-1-krzysztof.kozlowski@linaro.org>
+ <20220607171848.535128-3-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220607171848.535128-3-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,17 +80,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Jun 2022 19:50:33 +0200, Krzysztof Kozlowski wrote:
-> Add common LED properties - the function and color - to aat1290 flash
-> LED node in Galaxy S3, so we can drop deprecated label property.
+On 07/06/2022 19:18, Krzysztof Kozlowski wrote:
+> According to Devicetree specification, the device nodes should be
+> generic, reflecting the function of the device.  The typical name for
+> memory regions is "sram".
 > 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts | 2 +-
+>  arch/arm/boot/dts/qcom-msm8974.dtsi                | 4 ++--
+>  arch/arm/boot/dts/qcom-sdx55.dtsi                  | 2 +-
+>  3 files changed, 4 insertions(+), 4 deletions(-)
 > 
 
-Applied, thanks!
+Bjorn,
 
-[3/3] ARM: dts: exynos: add function and color to aat1290 flash LED node in Galaxy S3
-      https://git.kernel.org/krzk/linux/c/ebadc8a63645f7923dc63154ad8d290313f03101
+Any comments from your side on these cleanups?
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
