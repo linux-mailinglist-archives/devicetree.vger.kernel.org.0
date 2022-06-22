@@ -2,125 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D276554F1D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 17:26:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62762554F2D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 17:27:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357089AbiFVP0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 11:26:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58802 "EHLO
+        id S236065AbiFVP1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 11:27:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236696AbiFVP0K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 11:26:10 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C41F439162;
-        Wed, 22 Jun 2022 08:26:07 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id cf14so14646728edb.8;
-        Wed, 22 Jun 2022 08:26:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=iUzY4nbnMghL5U5lbC9orjTiyOqHbnNJpaguJ2BvQ0I=;
-        b=AEoeVrOdTGpW8f5/WdP1QJAyvtpZm3Rcmw/2pg+2BxRLGzEojWTu72Nhl8OIUZA6ru
-         flVFlEbrYE/DcKVLppgHHckPgzgR9oQ2UPcRWuOg31W3w/7nD3LHRB44VyloGTUigePI
-         Qkjdl3z98ZLPlb8kHaXW97f90vPmQvnREWKb7ae8TQGQGnYP1T3aDPLA7zSkV6kCJ5m0
-         aWV2UuYVWT0nh5GX9cWFwNCcEJIWrUjLiMWSD9Km8S26cSBVh0Z6mhE+FlO9q4bAp15h
-         0AJzCPpCiw8UxLo+OkoR1DvNr1on0LycHZ3wquvsxBXWxKcxggF4UmnPK65I1nbZqgRu
-         qu5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=iUzY4nbnMghL5U5lbC9orjTiyOqHbnNJpaguJ2BvQ0I=;
-        b=HPJ3LwqmvFFtwTTGdLd8ruOYJsJLU8vOo4EEm+cGJSHui/WIRJf5uMQyDjZgqXrd3K
-         iSOFLaeDUKceabYZvuW7GVEmPY/9NkZLPorrLkhwHkAsBDRV+2T/NPNMLW5olhJXcJfK
-         nwAT/FjG4DkwvSyess2IQ4ka4Y3ApbvgiTdwAn20ktEO0UaqSV4tQfznjXmIAHsBhcnh
-         LIbQyi3UKzxOvfKFwBmoE8z5LyEQOHvNN8TqrN87HSjjuw5jlrgv8HESiqZJPQugH/FZ
-         AyfPBtGRDk8IuXr3jSOx6cHGStPPl9+/Okay4j7rfwniLK/ajkzC5GfHqAtR6t3Ahr+c
-         iBjw==
-X-Gm-Message-State: AJIora+XYEG7gLqEXSY2NDqudxw3JG0jJTQHEwjHas+7n25ihQVK3NWx
-        FcD4pTLAcr9iBJmwxe6FJAg=
-X-Google-Smtp-Source: AGRyM1vgpTRl9gQqy9pZt2ocx7au56m3oMlaDtHNIMEQagwDUpJU7dK3BCZgg8DRywhG7QCBvmtPPQ==
-X-Received: by 2002:a05:6402:414c:b0:435:1e2a:2c7f with SMTP id x12-20020a056402414c00b004351e2a2c7fmr4719527eda.132.1655911566341;
-        Wed, 22 Jun 2022 08:26:06 -0700 (PDT)
-Received: from [192.168.0.16] ([37.223.148.38])
-        by smtp.gmail.com with ESMTPSA id e7-20020a50ec87000000b0043561e0c9adsm12665751edr.52.2022.06.22.08.26.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 08:26:05 -0700 (PDT)
-Message-ID: <d1dcedbb-413e-48ee-fdbc-e4d77465b62c@gmail.com>
-Date:   Wed, 22 Jun 2022 17:26:02 +0200
+        with ESMTP id S1359386AbiFVP1E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 11:27:04 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE61D39165;
+        Wed, 22 Jun 2022 08:27:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 81CB6B81F99;
+        Wed, 22 Jun 2022 15:27:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49CF9C34114;
+        Wed, 22 Jun 2022 15:27:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655911620;
+        bh=LofunbVPsAFbpla4sYsGRa5somVhJXmX25y4hisPFLE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iO9wu6LuSXMwYekG555g50Hr2oFdpIYyQCDO13mFFXKh8nvTyB8I44mTfXYTvlXJl
+         6EYUFkKrVjcm88QWmgznWlYtnCAwDMZGOeozOy8qA1ZnfhVBnWK45C9D1pNjpGoJDZ
+         1IyngjrXXhi8+tzPD0j3UIOB40LjoNd0eLYelq9WKa44VyVIYqkASKERgtbQFL2PVZ
+         23ixMA8XKowPVtPTcJ1Jpaxzc7K5lMWP9uZAI20kmeg9kIYdqhyBH4dYdpJfpQyZ9T
+         s7P0wmOsIoaHrLUjbSr72tbNG+1GL/YWc/ey/3oBTp2bggi/gI+6bdZKiFAvGjF6Ki
+         3WzF+Cl2Ev6lA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1o42Fq-0007Hf-IN; Wed, 22 Jun 2022 17:26:55 +0200
+Date:   Wed, 22 Jun 2022 17:26:54 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sc8280xp: Add reference device
+Message-ID: <YrM0vhXpY3uWgprs@hovoldconsulting.com>
+References: <20220622041224.627803-1-bjorn.andersson@linaro.org>
+ <20220622041224.627803-5-bjorn.andersson@linaro.org>
+ <099cc82f-d52f-315f-189d-bcc40c1afd49@somainline.org>
+ <YrMccQXwsz/zC/gl@hovoldconsulting.com>
+ <9d0c1897-195f-0548-ea5d-ffc35768f518@somainline.org>
+ <b2c9faf0-95a8-772f-c211-f1599b35f8f8@linaro.org>
+ <51965fa3-d146-70f1-2ad8-db6197989348@somainline.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 00/10] MediaTek Helio X10 MT6795 - Devicetree, part 1
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        kernel@collabora.com
-References: <20220609112303.117928-1-angelogioacchino.delregno@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220609112303.117928-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <51965fa3-d146-70f1-2ad8-db6197989348@somainline.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jun 22, 2022 at 05:10:50PM +0200, Konrad Dybcio wrote:
+> 
+> 
+> On 22.06.2022 16:48, Krzysztof Kozlowski wrote:
+> > On 22/06/2022 16:36, Konrad Dybcio wrote:
+> >>
+> >>
+> >> On 22.06.2022 15:43, Johan Hovold wrote:
+> >>> On Wed, Jun 22, 2022 at 02:33:02PM +0200, Konrad Dybcio wrote:
+> >>>> On 22.06.2022 06:12, Bjorn Andersson wrote:
+> >>>
+> >>>>> +&qup2_i2c5 {
+> >>>>> +	clock-frequency = <400000>;
+> >>>>> +
+> >>>>> +	pinctrl-names = "default";
+> >>>>> +	pinctrl-0 = <&qup2_i2c5_default>, <&kybd_default>, <&tpad_default>;
+> >>>>> +
+> >>>>> +	status = "okay";
+> >>>>> +
+> >>>> I think all device DTs generally have 'status = "okay"' at the beginning. Should we change that?
+> >>>>
+> >>>
+> >>> No, quite the opposite, status go at the end.
+> >> Then all other device DTs should be updated, as in dts/qcom/
+> >> everybody keeps it first in non-SoC/PMIC files.
+> > 
+> > The word "should" is a bit too much here, but I agree, we can update all
+> > of them to match one, chosen approach.
+> > 
+> > However the location for "status" property is more important for the
+> > definition of nodes in DTSI, because it's the least important piece
+> > there and also kind of expected - here go properties + I disable it. For
+> > me this is more important.
 
+Right, and this is the argument for keeping status last, something which
+is well defined.
 
-On 09/06/2022 13:22, AngeloGioacchino Del Regno wrote:
-> In an effort to give some love to the apparently forgotten MT6795 SoC,
-> I am upstreaming more components that are necessary to support platforms
-> powered by this one apart from a simple boot to serial console.
-> 
-> This series modernizes the devicetree of the MT6795 SoC and adds a
-> couple of nodes that are supported by this SoC.
-> 
-> In my local tree I have much more than that (including the dts for
-> that Xperia M5 smartphone that I always mention...), but I decided
-> to push the devicetree commits in multiple parts, as to get these
-> in sooner than later because that reduces my delta, and this makes
-> upstreaming a bit easier, especially when having to rebase things
-> around, which happens a lot.
-> 
-> So, this series *does NOT* depends on any of the other series that
-> I've pushed and is mergeable in parallel.
+If you look at some of the qcom dtsi it's hard to determine whether a
+node is disabled or not because the status property does not actually go
+"first" but is rather typically mixed up somewhere in the middle (or
+upper part) of nodes.
 
-Applied, thanks!
+> > For node redefinition in DTS, I see benefits in two approaches:
+> > 1. Let me first enable the node and then configure it.
+> > 2. Let me configure the node and enable it.
 
-> 
-> Tested on a MT6795 Sony Xperia M5 (codename "Holly") smartphone.
-> 
-> Changes in v2:
->   - Split fixed-clocks addition/removal patch for readability
->   - Added patches for pinctrl controller node and vGIC interrupt
-> 
-> AngeloGioacchino Del Regno (10):
->    arm64: dts: mediatek: mt6795: Create soc bus node and move mmio
->      devices
->    arm64: dts: mediatek: mt6795: Add cpu-map and L2 cache
->    arm64: dts: mediatek: mt6795: Add Cortex A53 PMU nodes
->    arm64: dts: mediatek: mt6795: Add watchdog node to avoid timeouts
->    arm64: dts: mediatek: mt6795: Add fixed clocks for 32kHz and 26MHz XOs
->    arm64: dts: mediatek: mt6795: Remove incorrect fixed-clocks
->    arm64: dts: mediatek: mt6795: Add general purpose timer node
->    arm64: dts: mediatek: mt6795: Add ARM CCI-400 node and assign to CPUs
->    arm64: dts: mediatek: mt6795: Add pinctrl controller node
->    arm64: dts: mediatek: mt6795: Specify interrupts for vGIC
-> 
->   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 260 ++++++++++++++++++-----
->   1 file changed, 205 insertions(+), 55 deletions(-)
-> 
+So for consistency, just put status last everywhere (dtsi and dts) and
+be done with it.
+
+> I looked around non-qcom device trees and it looks like the common
+> consensus is 2. Although I personally visually prefer 1. and it's
+> been used in all qcom arm64 DTs to date, I don't think there are any
+> blockers for us to switch to 1. going forward to keep it consistent.
+
+You mean inconsistent with the majority of dts? ;)
+
+> That's if we want to clean up the existing ones, as changing the rules
+> and not applying that to the older files will make for a huge mess as
+> time goes on and will unnecessarily prolong the review process (as
+> existing DTs are commonly a source of reference and people make
+> certain choices based on those).
+
+That's a fair point. Consistency is good, and dt snipped tends to be
+copied, but it's not the end of the world to not update old dts either.
+
+> I don't think the DTS specification or the Linux docs explicitly which
+> one to choose though.
+
+No, but a praxis has been developed over time (e.g. compatible first,
+reg second, status last).
+
+Johan
