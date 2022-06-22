@@ -2,56 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FCB2554F85
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 17:39:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98A65554F96
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 17:41:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358083AbiFVPj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 11:39:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39856 "EHLO
+        id S1359355AbiFVPlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 11:41:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352029AbiFVPjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 11:39:25 -0400
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7B702CE18
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 08:39:24 -0700 (PDT)
-Received: from [192.168.1.101] (abxi223.neoplus.adsl.tpnet.pl [83.9.2.223])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id DE60B1FFEA;
-        Wed, 22 Jun 2022 17:39:22 +0200 (CEST)
-Message-ID: <5158fe83-88b1-1081-df7f-4118ce6f5ec0@somainline.org>
-Date:   Wed, 22 Jun 2022 17:39:22 +0200
+        with ESMTP id S1359247AbiFVPkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 11:40:52 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FA392ED76;
+        Wed, 22 Jun 2022 08:40:51 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id z9so9465352wmf.3;
+        Wed, 22 Jun 2022 08:40:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=6HvjioZHPtwBf4fSwa9wIuwFcez8I2M80JFO0QJMojs=;
+        b=dpZHPTmcfuFjzjJ0Lys34TeMfY59Nf1bKZM5XTxOYpqqCBsl7Y6AhxrXkzb+gPakMK
+         FloXTG3essSGnodFfCg3jtPf0tPM+4wamt0q6BPSfR89FBPb/HfsmktFXGDn/eile+Y8
+         /yK/eD6l6WjEX6SjenLshLSETc34Dq0GIAUxh5to/GL+FYMWttj7fc3sYov1tPtYCCOR
+         dBP/PX7cqo2YrMZAIB7/zxxxT0TtRBoETiX67M1AssNL8bCqTidpwSyWiO3dm0cdg1ES
+         JdHLImitJR/7Tnz6Cv6zOWfoqt9Zh8aGFUZVk+pLR7jGoIrbbaB8qllQxWmm2FDQhN5q
+         Yt4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=6HvjioZHPtwBf4fSwa9wIuwFcez8I2M80JFO0QJMojs=;
+        b=PA8F2uSqZZooPnDPLKJO+B75lJxoyIxtPni3WDIK3dJI+0Z7boygya/ye/Z+TnfPPt
+         mHMu0kDn8yi7Y+tRCYuseEX5jxg0SXDnw6kKlwjgJleo+rEDEzUmr4Ik/QdohVOv3Dg8
+         bHRrjJZgfDQ4Z4GV4CcaGfOBuznLSeQZGIJnE6ibgxsGa+KAXK/y8YfKZ7l40oBdfAQB
+         47RdJBKZzSvm4O9fNETwz1iHQvE9I/Ud7IsG0I1AHATwruhBEM9NeoozUO1rFL6XINMM
+         JU6bJDYwzqxA2CHkz4qEHU44S1NoQZMBc2duaHYqGCYECy5vehY3dlAmRUTGMG+dEDbF
+         zLvg==
+X-Gm-Message-State: AJIora/USaZmMK+7EboWDXmue9v04GyOGU+YO7eh7cAJVAlRxR8I8VAb
+        t9WJJR8w+nCFBMyPWoOvl5Q=
+X-Google-Smtp-Source: AGRyM1ulMlpI/C9yUV5vRRJTaw3SQd1l5jIXTUtRosaGOoW6+N4l7XU10IynPKr7U0RVMv8wVfr7bw==
+X-Received: by 2002:a7b:c402:0:b0:3a0:2ba7:1fa7 with SMTP id k2-20020a7bc402000000b003a02ba71fa7mr3160994wmi.152.1655912449594;
+        Wed, 22 Jun 2022 08:40:49 -0700 (PDT)
+Received: from [192.168.0.16] ([37.223.148.38])
+        by smtp.gmail.com with ESMTPSA id r64-20020a1c4443000000b003942a244f39sm31645408wma.18.2022.06.22.08.40.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jun 2022 08:40:48 -0700 (PDT)
+Message-ID: <37fb545a-bc45-65b0-b67b-5ef1b0346777@gmail.com>
+Date:   Wed, 22 Jun 2022 17:40:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sc8280xp: Add reference device
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v11 0/3] Add basic node support for MediaTek MT8186 SoC
 Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220622041224.627803-1-bjorn.andersson@linaro.org>
- <20220622041224.627803-5-bjorn.andersson@linaro.org>
- <099cc82f-d52f-315f-189d-bcc40c1afd49@somainline.org>
- <YrMccQXwsz/zC/gl@hovoldconsulting.com>
- <9d0c1897-195f-0548-ea5d-ffc35768f518@somainline.org>
- <b2c9faf0-95a8-772f-c211-f1599b35f8f8@linaro.org>
- <51965fa3-d146-70f1-2ad8-db6197989348@somainline.org>
- <YrM0vhXpY3uWgprs@hovoldconsulting.com>
- <e7d9150b-8332-6394-f6cf-0e59d0cf931b@somainline.org>
- <YrM3KX3HLjsYrQvf@hovoldconsulting.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <YrM3KX3HLjsYrQvf@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>, hsinyi@chromium.org
+References: <20220520122217.30716-1-allen-kh.cheng@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220520122217.30716-1-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -62,59 +80,84 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 22.06.2022 17:37, Johan Hovold wrote:
-> On Wed, Jun 22, 2022 at 05:30:24PM +0200, Konrad Dybcio wrote:
->> On 22.06.2022 17:26, Johan Hovold wrote:
->>> On Wed, Jun 22, 2022 at 05:10:50PM +0200, Konrad Dybcio wrote:
->>>> On 22.06.2022 16:48, Krzysztof Kozlowski wrote:
->>>>> On 22/06/2022 16:36, Konrad Dybcio wrote:
->>>>>> On 22.06.2022 15:43, Johan Hovold wrote:
+On 20/05/2022 14:22, Allen-KH Cheng wrote:
+> MT8186 is a SoC based on 64bit ARMv8 architecture.
+> It contains 6 CA55 and 2 CA76 cores.
+> MT8186 share many HW IP with MT65xx series.
 > 
->>>>>>> No, quite the opposite, status go at the end.
->>>>>> Then all other device DTs should be updated, as in dts/qcom/
->>>>>> everybody keeps it first in non-SoC/PMIC files.
->>>>>
->>>>> The word "should" is a bit too much here, but I agree, we can update all
->>>>> of them to match one, chosen approach.
->>>>>
->>>>> However the location for "status" property is more important for the
->>>>> definition of nodes in DTSI, because it's the least important piece
->>>>> there and also kind of expected - here go properties + I disable it. For
->>>>> me this is more important.
->>>
->>> Right, and this is the argument for keeping status last, something which
->>> is well defined.
->>>
->>> If you look at some of the qcom dtsi it's hard to determine whether a
->>> node is disabled or not because the status property does not actually go
->>> "first" but is rather typically mixed up somewhere in the middle (or
->>> upper part) of nodes.
->>>
->>>>> For node redefinition in DTS, I see benefits in two approaches:
->>>>> 1. Let me first enable the node and then configure it.
->>>>> 2. Let me configure the node and enable it.
->>>
->>> So for consistency, just put status last everywhere (dtsi and dts) and
->>> be done with it.
->> That works.
+> This patchset was tested on MT8186 evaluation board to shell.
 > 
-> Actually, it looks like a lot of the qcom dtsi already do this too (i.e.
-> put status last). The dts may be more inconsistent on this matter
-> judging from a quick look.
-Yes, as I mentioned this concerns the device-specific trees, as
-the includable ones are (or well, should have been made) fine.
 
-Konrad
+Applied, thanks!
+
+> Based on next-20220519, linux-next/master
 > 
->>>> I looked around non-qcom device trees and it looks like the common
->>>> consensus is 2. Although I personally visually prefer 1. and it's
->>>> been used in all qcom arm64 DTs to date, I don't think there are any
->>>> blockers for us to switch to 1. going forward to keep it consistent.
->>>
->>> You mean inconsistent with the majority of dts? ;)
->> Not like anything involving Qualcomm was ever consistent or compliant
->> with the majority :D
+> changes since v9:
+>   - remove some merged PATCHs from series
+>   - reorder nodes in dts (cpu-map)
+>   - remove okay status in auxadc
+>   - remove unnecessary suffix node name for i2c
+>   - add pwm node
+>   - add dsi-phy node
+>   - add dpi node
 > 
-> Heh. :)
+> changes since v9:
+>   - add one space before equal sign of drive-strength-adv
+>   - corect compatible name for big cores (ca76)
+>   - use upper case of address in pinctrl
+>   - add pwrap node
+>   - add pwm node
 > 
-> Johan
+> changes since v8:
+>   - change name from pins_bus to pins-sda-scl
+>   - correct email address
+>   - add capacity-dmips-mhz for each CPU
+>   - add ppi-partitions in gic node
+>   - change name to power-domain
+>   - remove status "okay" in scp node
+>   - update timer and pericfg compatible in series
+> 
+> changes since v7:
+>   - add scp&auxadc node
+> 
+> changes since v6:
+>   - remove unnecessary blank line
+> 
+> changes since v5:
+>   - replace Mediatek a to MediaTek
+>   - use GPL-2.0-only OR BSD-2-Clause
+> 
+> changes since v4:
+>   - correct driver clock of mt8186
+>   - add power domains controller and clock controllers
+>   - add pinctrl, usb host, spi and i2c nodes
+>   - add node status in mt8186-evb.dts
+>   - correct some dtbs_check warnings
+> 
+> changes since v3:
+>   - remove serial, mmc and phy patch from series. (already merged)
+>   - remove mcusysoff node
+>   - move oscillator nodes at the head of dts
+>   - change name from usb-phy to t-phy
+> 
+> changes since v2:
+>   - add soc {} in mt8186.dtsi
+> 
+> changes since v1:
+>   - add dt-bindings: arm: Add compatible for MediaTek MT8186
+> 
+> Allen-KH Cheng (3):
+>    dt-bindings: arm: mediatek: Add mt8186 pericfg compatible
+>    dt-bindings: arm: Add compatible for MediaTek MT8186
+>    arm64: dts: Add MediaTek SoC MT8186 dts and evaluation board and
+>      Makefile
+> 
+>   .../devicetree/bindings/arm/mediatek.yaml     |    4 +
+>   .../arm/mediatek/mediatek,pericfg.yaml        |    1 +
+>   arch/arm64/boot/dts/mediatek/Makefile         |    1 +
+>   arch/arm64/boot/dts/mediatek/mt8186-evb.dts   |  232 ++++
+>   arch/arm64/boot/dts/mediatek/mt8186.dtsi      | 1016 +++++++++++++++++
+>   5 files changed, 1254 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-evb.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> 
