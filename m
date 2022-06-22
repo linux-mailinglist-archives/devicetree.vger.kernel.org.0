@@ -2,74 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DE11554477
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 10:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33376554437
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 10:11:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352866AbiFVHd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 03:33:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37094 "EHLO
+        id S1354640AbiFVHyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 03:54:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352917AbiFVHdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 03:33:53 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE3473703A
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 00:33:51 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id s10so18243671ljh.12
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 00:33:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7u2mzyIk7qCiF6G6ao+KItshVsiYCB6EE/ZVw3jOeOg=;
-        b=UoIIX31fk9eu9RxAogLJsx9A/YAhFrakUcRqjx96kbbYaA8qL+nG3a6RkL1Sa2/Pw1
-         xeskW6xtvK88Z+1Z732KSM65232wAYSuJ/PNo5JsjzaD8l6OIw1oJ5T4791jYzrMVreV
-         jSb462RMd3xrJDmzEqPMeXQoFLaaLljj2+Oprm3rze+Bo0AEEFdYQdGaQ5nua1OW7ZRL
-         0xYi/6ESpQLfvobvZpplNRP2ojxgOn6jiJo801f9GnA+C5jC+SpH+JDBYIUJiTStrFHp
-         aL/+BwGqQKK9sm2m7CNfooiYsr8mOHlRZqrYjmWlkVzNmy5zFsyd5bQrj5jnNkiI2lVi
-         rmng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=7u2mzyIk7qCiF6G6ao+KItshVsiYCB6EE/ZVw3jOeOg=;
-        b=n7I1HwGYe2hEyo74oNKZTvoh8KWnfazK60sH5h5pO7FipogZmqVrAsaysZ94JYo/6I
-         Vv5/2WG7V6bnFiSPcvJkDSGE4f/G08JRzS5/wLJ16QmAE6h894cvZDOr6zKM26qS44vL
-         gFT/QmFkFcRwQdiJSrwVlIALxIWsX2uwiyoUxb3HoJGqoEETd+o+bzN5tKsTItNgKvR9
-         syIHDwPrYzYg0tnexB433KrnJNabXkoso+MEER01Ip+wWVAQyfmk4Yng4uZ9vLNhu44p
-         6OeLmyuLBKNnJEhbY4g6jPoRfHvwLja+VHDlEhT/VObaKq+mOv09KNrFFpvIExJqmkoD
-         sQuQ==
-X-Gm-Message-State: AJIora9NURjSjafMuWrg9CLlq4BFdRoj0HHCwD0PucnK8Jo1cc9CPXL6
-        BHsEUhv/yWQPXmqHz+/HCyEi6w==
-X-Google-Smtp-Source: AGRyM1v37LDfzbSuWOdp8P7QX+rUiUHnLdODI+EKsivLYUpBCF1ewbujHxy46Ymd9r+swKWmjewGPQ==
-X-Received: by 2002:a2e:b890:0:b0:25a:890a:b424 with SMTP id r16-20020a2eb890000000b0025a890ab424mr942861ljp.275.1655883229985;
-        Wed, 22 Jun 2022 00:33:49 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id m12-20020a056512358c00b0047f8de9734asm335583lfr.123.2022.06.22.00.33.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 00:33:49 -0700 (PDT)
-Message-ID: <b8b21831-8078-fb53-d4be-9feb6138b19d@linaro.org>
-Date:   Wed, 22 Jun 2022 10:33:48 +0300
+        with ESMTP id S1350126AbiFVHx7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 03:53:59 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA39E2EA3B;
+        Wed, 22 Jun 2022 00:53:56 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25M7rjPH111761;
+        Wed, 22 Jun 2022 02:53:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655884425;
+        bh=XRLpJuhaa+vyh1FAr3N8/cRnB8Vfl/3G2BsHH7apZ1M=;
+        h=From:To:CC:Subject:Date;
+        b=wKkdhaJEGmug5aW2A50jvnS+zGxAyZJsiR2OxQ0SWytnqCUhcqElq8HDLU8D5xwO5
+         Sf4kZzUaZr11bfflDS1QKtYkHZsRGcNfAFAt6nIZ5PjeOo59EsixviPsfgIprQR8pb
+         XODZj4T6m9e+l0ZdeAyyio9wbT+zCrvrvQIh7K18=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25M7rjS1115076
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 22 Jun 2022 02:53:45 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 22
+ Jun 2022 02:53:45 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 22 Jun 2022 02:53:45 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25M7ridD119679;
+        Wed, 22 Jun 2022 02:53:44 -0500
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     <linux-phy@lists.infradead.org>, <kishon@ti.com>,
+        <vkoul@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <p.yadav@ti.com>, <tomi.valkeinen@ideasonboard.com>,
+        <laurent.pinchart@ideasonboard.com>,
+        <linux-kernel@vger.kernel.org>, <jpawar@cadence.com>,
+        <sjakhade@cadence.com>, <mparab@cadence.com>,
+        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
+        <lee.jones@linaro.org>, Rahul T R <r-ravikumar@ti.com>
+Subject: [PATCH v2 0/3] Add support for DPHY TX on J721E
+Date:   Wed, 22 Jun 2022 13:23:37 +0530
+Message-ID: <20220622075340.16915-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v1 0/3] WAR to handle WCN6750 hardware issue
-Content-Language: en-GB
-To:     Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-        agross@kernel.org, robh+dt@kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marcel@holtmann.org,
-        johan.hedberg@gmail.com
-Cc:     mka@chromium.org, linux-bluetooth@vger.kernel.org,
-        quic_hemantg@quicinc.com, quic_saluvala@quicinc.com,
-        quic_rjliao@quicinc.com, mcchou@chromium.org
-References: <1651228073-1999-1-git-send-email-quic_bgodavar@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1651228073-1999-1-git-send-email-quic_bgodavar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,34 +67,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/04/2022 13:27, Balakrishna Godavarthi wrote:
-> On WCN6750 sometimes observed AON power source takes 100ms
-> time to fully discharge voltage during OFF. As WCN6750 is
-> combo chip for WLAN and BT. If any of the tech area ON is
-> triggered during discharge phase, it fails to turn ON.
-> To overcome this hardware issue, During BT ON, driver check
-> for WLAN_EN pin status. If it high, it will pull BT_EN to high
-> immediately else it will wait for 100ms assuming WLAN was just
-> powered OFF and then BT_EN will be pulled to high.
+Following series of patches adds support for DPHY TX on TI's J721E
+SoC. New compatible is added and required cdns dphy ops are implemented.
+The series also adds band ctrl configuration required for dphy tx
 
-Ugh. This adds another point to support separate power sequencer device 
-for WiFi+BT devices. Let me refresh my last patchset, so that we can 
-implement it as a part of common code, rather than hacking hci_qca on 
-and on.
+v2:
+-Fix a build error reported by kernel test robot <lkp@intel.com>
+ which uses clang compiler. Did not get the error with GNU Toolchain
+ 9.2-2019.12
 
-> 
-> Balakrishna Godavarthi (3):
->    dt-bindings: net: bluetooth: Add wlan-gpio entry for wcn6750
->    arm64: dts: qcom: sc7280: Add wlan enable gpio to bluetooth node
->    Bluetooth: hci_qca: WAR to handle WCN6750 HW issue
-> 
->   .../bindings/net/qualcomm-bluetooth.yaml           |  6 +++++
->   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  1 +
->   drivers/bluetooth/hci_qca.c                        | 30 +++++++++++++++++-----
->   3 files changed, 31 insertions(+), 6 deletions(-)
-> 
+Rahul T R (3):
+  phy: dt-bindings: cdns,dphy: Add compatible for dphy on j721e
+  phy: cdns-dphy: Add band config for dphy tx
+  phy: cdns-dphy: Add support for DPHY TX on J721e
 
+ .../devicetree/bindings/phy/cdns,dphy.yaml    |   5 +-
+ drivers/phy/cadence/Kconfig                   |  10 ++
+ drivers/phy/cadence/cdns-dphy.c               | 114 +++++++++++++++++-
+ 3 files changed, 126 insertions(+), 3 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.36.1
+
