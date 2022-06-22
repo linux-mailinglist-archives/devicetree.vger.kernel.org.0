@@ -2,69 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EE6C55404B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 03:57:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE36C55408E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 04:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344874AbiFVB5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 21:57:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58026 "EHLO
+        id S232651AbiFVCcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 22:32:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231720AbiFVB5X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 21:57:23 -0400
+        with ESMTP id S232452AbiFVCcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 22:32:22 -0400
 Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D32B431201;
-        Tue, 21 Jun 2022 18:57:21 -0700 (PDT)
-X-UUID: a6098956ce0e4987891d618e8fd9e30e-20220622
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C7433A22;
+        Tue, 21 Jun 2022 19:32:20 -0700 (PDT)
+X-UUID: 47ec2e72a6094c4284d6e95c42f7a1f0-20220622
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:660ed2cd-09ad-4643-b901-452f7f5f3b84,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:b14ad71,CLOUDID:e65b28ea-f7af-4e69-92ee-0fd74a0c286c,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: a6098956ce0e4987891d618e8fd9e30e-20220622
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
+X-CID-O-INFO: VERSION:1.1.6,REQID:50bf1460-bb55-4385-8336-6a96b99c6943,OB:0,LO
+        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:70
+X-CID-INFO: VERSION:1.1.6,REQID:50bf1460-bb55-4385-8336-6a96b99c6943,OB:0,LOB:
+        0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:70
+X-CID-META: VersionHash:b14ad71,CLOUDID:337429ea-f7af-4e69-92ee-0fd74a0c286c,C
+        OID:7f036f2b718d,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 47ec2e72a6094c4284d6e95c42f7a1f0-20220622
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1683346429; Wed, 22 Jun 2022 09:57:17 +0800
+        with ESMTP id 1016340308; Wed, 22 Jun 2022 10:32:14 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
  mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 22 Jun 2022 09:57:16 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ Wed, 22 Jun 2022 10:32:14 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Wed, 22 Jun 2022 09:57:13 +0800
-Message-ID: <ba6cccfa05aed087d14f5adc6db06496547a5094.camel@mediatek.com>
-Subject: Re: [PATCH 2/3] dt-bindings: usb: mtk-xhci: Allow middle optional
- clocks to be missing
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, <kernel@collabora.com>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
+ Transport; Wed, 22 Jun 2022 10:32:14 +0800
+Message-ID: <efd33799d1b7da447113c6edd6cf7409b05e3f3d.camel@mediatek.com>
+Subject: Re: [PATCH v13 01/14] dt-bindings: mediatek,dpi: Add DP_INTF
+ compatible
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>
-Date:   Wed, 22 Jun 2022 09:57:12 +0800
-In-Reply-To: <afae6179-3681-f5c6-4615-3228f16f1271@linaro.org>
-References: <20220617222916.2435618-1-nfraprado@collabora.com>
-         <20220617222916.2435618-3-nfraprado@collabora.com>
-         <8639e64d-c659-7090-2d0a-078fd96cfbd4@linaro.org>
-         <bb460aa483cc888ffa36709d9e9c1f2e3be0e000.camel@mediatek.com>
-         <bc5458fe-083c-d679-9fcb-95810a290da8@linaro.org>
-         <af50210b95d0cd8b2e3103b3d4a9702aeeba9452.camel@mediatek.com>
-         <a24c24e6-fdee-df79-fd2f-6a71540bd9b3@linaro.org>
-         <20220620155057.a6qilnhm7snzhapa@notapiano>
-         <afae6179-3681-f5c6-4615-3228f16f1271@linaro.org>
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 22 Jun 2022 10:32:14 +0800
+In-Reply-To: <20220621113732.11595-2-rex-bc.chen@mediatek.com>
+References: <20220621113732.11595-1-rex-bc.chen@mediatek.com>
+         <20220621113732.11595-2-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-MTK:  N
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
         SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
@@ -75,157 +71,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-06-21 at 09:14 +0200, Krzysztof Kozlowski wrote:
-> On 20/06/2022 17:50, Nícolas F. R. A. Prado wrote:
-> > On Mon, Jun 20, 2022 at 10:50:57AM +0200, Krzysztof Kozlowski
-> > wrote:
-> > > On 20/06/2022 08:59, Chunfeng Yun wrote:
-> > > > On Sun, 2022-06-19 at 14:05 +0200, Krzysztof Kozlowski wrote:
-> > > > > On 19/06/2022 09:46, Chunfeng Yun wrote:
-> > > > > > On Fri, 2022-06-17 at 18:25 -0700, Krzysztof Kozlowski
-> > > > > > wrote:
-> > > > > > > On 17/06/2022 15:29, Nícolas F. R. A. Prado wrote:
-> > > > > > > > The current clock list in the binding doesn't allow for
-> > > > > > > > one of
-> > > > > > > > the
-> > > > > > > > optional clocks to be missing and a subsequent clock to
-> > > > > > > > be
-> > > > > > > > present.
-> > > > > > > > An
-> > > > > > > > example where this is an issue is in mt8192.dtsi, which
-> > > > > > > > has
-> > > > > > > > "sys_ck",
-> > > > > > > > "ref_ck", "xhci_ck" and would cause dtbs_check
-> > > > > > > > warnings.
-> > > > > > > > 
-> > > > > > > > Change the clock list in a way that allows the middle
-> > > > > > > > optional
-> > > > > > > > clocks to
-> > > > > > > > be missing, while still guaranteeing a fixed order. The
-> > > > > > > > "ref_ck" is
-> > > > > > > > kept
-> > > > > > > > as a const even though it is optional for simplicity,
-> > > > > > > > since it
-> > > > > > > > is
-> > > > > > > > present in all current dts files.
-> > > > > > > > 
-> > > > > > > > Signed-off-by: Nícolas F. R. A. Prado <
-> > > > > > > > nfraprado@collabora.com>
-> > > > > > > > ---
-> > > > > > > > 
-> > > > > > > >  .../devicetree/bindings/usb/mediatek,mtk-
-> > > > > > > > xhci.yaml       | 9
-> > > > > > > > +++++++--
-> > > > > > > >  1 file changed, 7 insertions(+), 2 deletions(-)
-> > > > > > > > 
-> > > > > > > > diff --git
-> > > > > > > > a/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > > > > > > xhci.yaml
-> > > > > > > > b/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > > > > > > xhci.yaml
-> > > > > > > > index 63cbc2b62d18..99a1b233ec90 100644
-> > > > > > > > ---
-> > > > > > > > a/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > > > > > > xhci.yaml
-> > > > > > > > +++
-> > > > > > > > b/Documentation/devicetree/bindings/usb/mediatek,mtk-
-> > > > > > > > xhci.yaml
-> > > > > > > > @@ -80,8 +80,13 @@ properties:
-> > > > > > > >      items:
-> > > > > > > >        - const: sys_ck  # required, the following ones
-> > > > > > > > are
-> > > > > > > > optional
-> > > > > > > >        - const: ref_ck
-> > > > > > > > -      - const: mcu_ck
-> > > > > > > > -      - const: dma_ck
-> > > > > > > > +      - enum:
-> > > > > > > > +          - mcu_ck
-> > > > > > > > +          - dma_ck
-> > > > > > > > +          - xhci_ck
-> > > > > > > > +      - enum:
-> > > > > > > > +          - dma_ck
-> > > > > > > > +          - xhci_ck
-> > > > > > > >        - const: xhci_ck
-> > > > > > > 
-> > > > > > > You allow now almost any order here, including incorrect
-> > > > > > > like
-> > > > > > > sys,ref,xhci,xhci,xhci.
-> > > > > > > 
-> > > > > > > The order of clocks has to be fixed and we cannot allow
-> > > > > > > flexibility.
-> > > > > > > Are
-> > > > > > > you sure that these clocks are actually optional (not
-> > > > > > > wired to
-> > > > > > > the
-> > > > > > > device)?
-> > > > > > 
-> > > > > > In fact, these optional clocks are fixed, due to no gates
-> > > > > > are
-> > > > > > provided,
-> > > > > > SW can't control them by CCF;
-> > > > > > In this case, I usually use a fixed clock, or ignore it.
-> > > > > 
-> > > > > But in some versions these clocks are controllable or not?
-> > > > 
-> > > > Some SoCs are controllable, some ones are not (fixed clock).
-> > > 
-> > > Thanks for confirming. Then I would prefer to make these clocks
-> > > required
-> > > (not optional) and always provide them - via common clock
-> > > framework or
-> > > fixed-clock.
-> > 
-> > Hi Krzysztof and Chunfeng,
-> > 
-> > thank you both for the feedback.
-> > 
-> > Since the solution I proposed in this patch is not acceptable I see
-> > two options:
-> > 1. Split the clocks in several if blocks matched by compatibles
-> > 2. Make the clocks required and use fixed-clock nodes for the
-> > missing clocks in
-> >    the DT
-> > 
-> > My understanding is that 1 is the desirable solution if the clock
-> > is really
-> > missing in some hardware variants, while 2 is desirable if all
-> > hardware variants
-> > really receive all the clocks, only that on some variants they're
-> > fixed and not
-> > controlable by SW.
-> > 
-> > From what I'm reading of this discussion it seems that the latter
-> > is the case
-> > here and thus we should go for 2. Is this correct?
+Hi, Bo-Chen:
+
+On Tue, 2022-06-21 at 19:37 +0800, Bo-Chen Chen wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
 > 
-> This is how I understood it as well, so correct from my side.
-Also right for me.
+> DP_INTF is similar to DPI but does not have the exact same feature
+> set
+> or register layouts.
+> 
+> DP_INTF is the sink of the display pipeline that is connected to the
+> DisplayPort controller and encoder unit. It takes the same clocks as
+> DPI.
+> 
+> In this patch, we also do these string replacement:
+> - s/mediatek/MediaTek/ in title.
+> - s/Mediatek/MediaTek/ in description.
+
+I would like one patch do one thing. The patch title is "Add DP_INTF
+compatible" so it would not imply refining the case of "MediaTek". So
+separate this to an independent patch.
+
+Regards,
+CK
 
 > 
-> > 
-> > Also Chunfeng, do you have information on whether the same is true
-> > for the MMC
-> > HW block? I recently submitted some changes to that binding [1] but
-> > I followed
-> > approach 1 there instead. However if all the clocks are present in
-> > the HW level
-> > there as well it would make more sense for me to change it to
-> > follow approach 2.
-
-I discussed it with Wenbin, MMC seems a little different with USB,
-
-Hi Wenbin,
-
-   Please give some comments about MMC, thanks
-
-> > 
-> > Thanks,
-> > Nícolas
-> > 
-> > [1] 
-> > https://lore.kernel.org/all/20220617230114.2438875-1-nfraprado@collabora.com
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> [Bo-Chen: Modify reviewers' comments.]
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> ---
+>  .../bindings/display/mediatek/mediatek,dpi.yaml       | 11 ++++++---
+> --
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 > 
-> 
-> Best regards,
-> Krzysztof
+> diff --git
+> a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam
+> l
+> b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam
+> l
+> index 77ee1b923991..5bb23e97cf33 100644
+> ---
+> a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam
+> l
+> +++
+> b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam
+> l
+> @@ -4,16 +4,16 @@
+>  $id: 
+> http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: mediatek DPI Controller Device Tree Bindings
+> +title: MediaTek DPI and DP_INTF Controller
+>  
+>  maintainers:
+>    - CK Hu <ck.hu@mediatek.com>
+>    - Jitao shi <jitao.shi@mediatek.com>
+>  
+>  description: |
+> -  The Mediatek DPI function block is a sink of the display subsystem
+> and
+> -  provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a
+> parallel
+> -  output bus.
+> +  The MediaTek DPI and DP_INTF function blocks are a sink of the
+> display
+> +  subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422
+> pixel data on a
+> +  parallel output bus.
+>  
+>  properties:
+>    compatible:
+> @@ -24,6 +24,7 @@ properties:
+>        - mediatek,mt8183-dpi
+>        - mediatek,mt8186-dpi
+>        - mediatek,mt8192-dpi
+> +      - mediatek,mt8195-dp-intf
+>  
+>    reg:
+>      maxItems: 1
+> @@ -55,7 +56,7 @@ properties:
+>      $ref: /schemas/graph.yaml#/properties/port
+>      description:
+>        Output port node. This port should be connected to the input
+> port of an
+> -      attached HDMI or LVDS encoder chip.
+> +      attached HDMI, LVDS or DisplayPort encoder chip.
+>  
+>  required:
+>    - compatible
 
