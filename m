@@ -2,73 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 347A9554879
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:15:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2766E55497C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:17:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354489AbiFVIjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 04:39:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33510 "EHLO
+        id S1347731AbiFVIrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 04:47:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355793AbiFVIig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 04:38:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBA5B2E9C5;
-        Wed, 22 Jun 2022 01:38:10 -0700 (PDT)
+        with ESMTP id S236729AbiFVIrP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 04:47:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48F1E396A2;
+        Wed, 22 Jun 2022 01:47:14 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 61FD9618AC;
-        Wed, 22 Jun 2022 08:38:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F13F3C3411D;
-        Wed, 22 Jun 2022 08:38:08 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0DCA5B81CEE;
+        Wed, 22 Jun 2022 08:47:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD63CC34114;
+        Wed, 22 Jun 2022 08:47:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655887089;
-        bh=TBXnTYbMO1KcqUfe1FmCMCJGDaSopCCEE3/EmlShD/0=;
+        s=k20201202; t=1655887631;
+        bh=9Cic3CRnN/+87wCqzwhlvsAQjVOpaTeW1l6o5THs8CI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RNnDoacnz9Ii/s6yiGMYtckqQRrdtVhK9Z96AcjqYoVvQ5A86GsJLrXnN1eARyQr2
-         QNgeBDT+H+mqSz3S6x5DygUGyxbhToBC+E0aiJYdCxl5hbas3TdbbTAuOnmQVukOaG
-         KdCD2x2sBZi2tDwuPknXhryX8/WmeRKkV6QXX8m3Pvbu5sbgshWfoPkvBnBdCXEHsd
-         wcvujVKDFm2WpwhC+zBfg4NQd/7dCW67i5K4YDw59MPux6Nj5ySEPNdkahfZAmoGVB
-         0/pZUWq0ROAJbJ4VGrLx87iNTfB1RpDSNzVMl5LcAPobHouk1eEUSRgbp5VJq3NS6b
-         pH3PLn3/hQxcg==
-Date:   Wed, 22 Jun 2022 10:38:03 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Avri Altman <Avri.Altman@wdc.com>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
-        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v6 7/7] arm64: dts: renesas: r8a779f0: spider-cpu: Enable
- UFS device
-Message-ID: <YrLU6/jAZ5lGnL3p@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Avri Altman <Avri.Altman@wdc.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
-        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-References: <20220603110524.1997825-1-yoshihiro.shimoda.uh@renesas.com>
- <20220603110524.1997825-8-yoshihiro.shimoda.uh@renesas.com>
- <YrHgOptQ56woMAeO@shikoro>
- <DM6PR04MB6575D7C91E0925B5D498ABF3FCB29@DM6PR04MB6575.namprd04.prod.outlook.com>
+        b=cVkLQHWzW3Yw9TVz2dzzKzeR+QnUq7x4+bB64283XnsAVsrEODYwYX6FfUrgY6xrH
+         nutrHVc3eirGnmejV5vkOXo90XofpO/yl0Uj3Kaqn1ip/DQJU76WjxQtCj+4DrQQ0n
+         G81OuSPJX0C9G6bABNgG6GrkH3f+4cAjBS3l7tGWXHxKzKlo9MwjsDe2SM5YFp7Cqt
+         iBHl/ezc/P6nuNMx312+xM2QzF9gSNAnj4aw8Lu4XIqg0PWcLad7EskZK8x4obrTXc
+         Rm2ocVRqmeukupGMAZEPk2zTFv1VGor1JiiXNfHTEQtCc+kURThcfDNSdxo/xn56p5
+         F79Cz7Y6CW/4g==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1o3w0x-0002Su-Ct; Wed, 22 Jun 2022 10:47:07 +0200
+Date:   Wed, 22 Jun 2022 10:47:07 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: arm: qcom: Document additional
+ sc8280xp devices
+Message-ID: <YrLXCx90bn7Id4Bn@hovoldconsulting.com>
+References: <20220622041224.627803-1-bjorn.andersson@linaro.org>
+ <20220622041224.627803-2-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="CL2vYtuWr8EZvn7j"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DM6PR04MB6575D7C91E0925B5D498ABF3FCB29@DM6PR04MB6575.namprd04.prod.outlook.com>
+In-Reply-To: <20220622041224.627803-2-bjorn.andersson@linaro.org>
 X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -79,66 +62,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jun 21, 2022 at 09:12:19PM -0700, Bjorn Andersson wrote:
+> Add the CRD (Customer Reference Design?) and the Lenovo Thinkpad X13s to
 
---CL2vYtuWr8EZvn7j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Qualcomm refers to "Compute Reference Design", for example, in commit
+427b249504ea ("arm64: dts: qcom: sc7280-crd: Add device tree files for
+CRD").
 
-Hi Avri, all,
+> the valid device compatibles found on the sc8280xp platform.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+> 
+> Changes since v1:
+> - Added the two missing board compatibles
+> 
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 5c06d1bfc046..6ec7521be19d 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -238,6 +238,8 @@ properties:
+>  
+>        - items:
+>            - enum:
+> +              - lenovo,thinkpad-x13s
+> +              - qcom,sc8280xp-crd
+>                - qcom,sc8280xp-qrd
 
-> > [    0.449917] ufshcd-renesas e6860000.ufs: ufshcd_query_attr: opcode 0x03
-> > for idn 1 failed, index 0, err = 253
-> > [    0.452035] ufshcd-renesas e6860000.ufs: ufshcd_query_attr: opcode 0x03
-> > for idn 1 failed, index 0, err = 253
-> > [    0.453859] ufshcd-renesas e6860000.ufs: ufshcd_query_attr: opcode 0x03
-> > for idn 1 failed, index 0, err = 253
-> > [    0.453874] ufshcd-renesas e6860000.ufs: ufshcd_query_attr_retry: query
-> > attribute, idn 1, failed with error 253 after 3 retires
-> Should be interesting to find out who is trying to read an undefined (reserved) attribute in your system.
+I believe the "qcom,sc8280xp-qrd" entry was a mistake and should have
+been "-crd" all along? Perhaps you should remove that entry in this
+patch.
 
-So, the call trace is:
+>            - const: qcom,sc8280xp
 
-[    0.455361] Call trace:
-[    0.455521]  ufshcd_query_attr_retry+0x68/0xb0
-[    0.455808]  ufshpb_get_dev_info+0x80/0x110
-[    0.456083]  ufshcd_probe_hba+0xce0/0x10d0
-[    0.456349]  ufshcd_async_scan+0x34/0x310
-[    0.456609]  async_run_entry_fn+0x34/0x130
-[    0.456873]  process_one_work+0x1e4/0x434
-[    0.457136]  worker_thread+0x174/0x4dc
-[    0.457379]  kthread+0xdc/0xe0
-[    0.457580]  ret_from_fork+0x10/0x20
+Looks good otherwise:
 
-which leads me to this call in ufshpb_get_dev_info():
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
-2622         ret = ufshcd_query_attr_retry(hba, UPIU_QUERY_OPCODE_READ_ATTR,
-2623                 QUERY_ATTR_IDN_MAX_HPB_SINGLE_CMD, 0, 0, &max_single_cmd);
-
-And from here on, I miss the UFS experience to debug further. But I will
-happily provide more information if people give me pointers.
-
-All the best,
-
-   Wolfram
-
---CL2vYtuWr8EZvn7j
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKy1OsACgkQFA3kzBSg
-KbZgNg//dRpEnYmcKwjlUj0sg4K8t+AfpzTR9VvBoyHZjTJCHyaT1wLNc9lWaeJi
-BSgblwaT3pgMdFV4dcO8g2PcFCCSNas6T43om1KLhpz51m190hnJRWhWCUFTQLpl
-yh6GF1C6qG6zoqT+e8K6/PANBhyoQALk8aJJxhp1RD7fQiB/IdRPgzKMMajbhGBp
-l3I0V3gneVyqBwFaUqQOBkZc9oxUu5HsvZKLgrulai9IYfwbOqoV9JtbM0inzmJ/
-UkK5pmG7fhwu9qQFMj+efhAjcjlpJj5qDcheqYfddsTIcPpnQm0kEImd2DMmaiL3
-w/yCVZs3XAfbACCyPOZ+3avkDZBmiKm5w+3oMbxipfSpnTewrQ6ujMaO8Pk72Hmz
-StA25EgoW+ZQzIHZ4LbWvE3/Z8qWONmrGM3654gaMQXI/2ErrSjjKC9WZlMv/9N3
-ACZ/W7OvFOH+IF21gHuldzXwiyBTRUqSVwlMMGHeJ99PNoHLw0yVy9n6fVit6Bvd
-d0b5aV32q5mRzOUbtpyMpZhehsvwtpulVpBfE+qxj0LjUNQpGdQCFKUWyUxUsqCo
-Fww7uDuVY6QapUUhTKIEb0bgH38C7vZ3dHcmOuM2UrD2vAJ+Tkl3c4vN7tr/k1sK
-1qKukoK5bbmMenuOvZ+pz0j/tCQNebtDQD6+6TObr9XcDfjtLaU=
-=Yie3
------END PGP SIGNATURE-----
-
---CL2vYtuWr8EZvn7j--
+Johan
