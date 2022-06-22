@@ -2,88 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0283D5552CB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 19:48:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EB9D5552DA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 19:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377425AbiFVRse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 13:48:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53068 "EHLO
+        id S1377268AbiFVRvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 13:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359663AbiFVRsc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 13:48:32 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8203F3150E
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 10:48:30 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id f16so15219698pjj.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 10:48:30 -0700 (PDT)
+        with ESMTP id S1358522AbiFVRvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 13:51:44 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61EA935246
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 10:51:43 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id q9so2278034ljp.4
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 10:51:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=INtMn1T8YiMhzQt2Th4wtcU0KbijPUKMnT6GFbUU1es=;
-        b=iMepv6cEm1kKrueKz6F8JmBrKe29Bg85av9Djx9b2MBTrbDc+JfTwOd23NQ0BJeQQq
-         37fpA2gDzLO8DXBdJ7A/uB8Xuvc4+KcZ7fS8DOsSgvAElBeVOGA5tMu6YLkOQDWz3BpQ
-         kizqT+2a2uqLFbJqLLOcqRR8PeNirsLEMS434=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=lyHjNlGIepIT/t3IaYDnRx3eF0Wl2lezOvJ866alVNE=;
+        b=phpEogNR2Dg76Apl+C0m8n/9gUnfdkc6rnmv8hg35SveC82wohLJms9nr8qUFjSTrt
+         4Wqhfvb7TrbFI0PccZBegFGbM6GWr4WH60OyCtbhsxjLU5Gc19GKXWPP4ElsqfSX70r4
+         GI8QbEhNgxtYK4Xyzgo0aD4lxO8yoOXSP1ERqgttwcWrM9LBVriiDKrg6TWygQvTAYD1
+         gwUXdUJl30pALaY/eKtcdJDLVMhcpnDNUTG8kt/basq2l9yPy5n4cAJPiHRVjSyhApU7
+         AIhFhue8YAUjo6mD/YxRMnzlCFrk8+m/fUb1RIXRUrWefCqJsAgGjAgmDmmRQZi0niT4
+         eSPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=INtMn1T8YiMhzQt2Th4wtcU0KbijPUKMnT6GFbUU1es=;
-        b=x34yyUPiCFaDNKqPm/pjYBuIGBgpNE1p+ijsEUDVHsbwlzeWzGWegpiqMJ9gXz+kr+
-         4GsORB0lazStPf+eh+lUYev3+pp0ImoefIfS68VkUbuNbSMXtUd+DR4KfA9SduvP7oxq
-         MDMBRcOSQABtPDnF4Nu3UyduDb6o0P4Yx6BM0fA7MSed0GqTvlCV/5KNcaMnYALtkkyD
-         ijDE7lZx2dnXxkr90YTlY648HHWZB7z8BHsuPoPJjYTjQjqMnCFOEV2z3CCT85wFMNC4
-         FXXs91Xj4Dqt35p+YKj/aop/Om/N2bpkQC0GKQj5s/oJfCX/Eq9Kw5Q8gDDy0QIwrG0K
-         x1Mg==
-X-Gm-Message-State: AJIora9gYmFuhQ9bFEO9XTz1IbIDGgyiMXRHUASnOFxjb3pgHYZMy4mj
-        H35Jfx6NeWcqMhh1vdivqCd96Q==
-X-Google-Smtp-Source: AGRyM1uOMxnpSmvwdwqtw/1opcMtIJbxFZWf2fsabN2cbcr6zK0lX2+IO4vplGkVs7xRBGrXcbNLOA==
-X-Received: by 2002:a17:903:41c7:b0:16a:2dcf:c4a0 with SMTP id u7-20020a17090341c700b0016a2dcfc4a0mr13200643ple.83.1655920110049;
-        Wed, 22 Jun 2022 10:48:30 -0700 (PDT)
-Received: from pmalani.c.googlers.com.com (157.214.185.35.bc.googleusercontent.com. [35.185.214.157])
-        by smtp.gmail.com with ESMTPSA id l17-20020a17090b079100b001ece55aec38sm35470pjz.30.2022.06.22.10.48.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jun 2022 10:48:29 -0700 (PDT)
-From:   Prashant Malani <pmalani@chromium.org>
-To:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Cc:     bleung@chromium.org, swboyd@chromium.org,
-        heikki.krogerus@linux.intel.com,
-        Pin-Yen Lin <treapking@chromium.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Allen Chen <allen.chen@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        =?UTF-8?q?Jos=C3=A9=20Exp=C3=B3sito?= <jose.exposito89@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>, Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Xin Ji <xji@analogixsemi.com>
-Subject: [PATCH v5 9/9] drm/bridge: it6505: Add typec_mux_set callback function
-Date:   Wed, 22 Jun 2022 17:34:38 +0000
-Message-Id: <20220622173605.1168416-10-pmalani@chromium.org>
-X-Mailer: git-send-email 2.37.0.rc0.104.g0611611a94-goog
-In-Reply-To: <20220622173605.1168416-1-pmalani@chromium.org>
-References: <20220622173605.1168416-1-pmalani@chromium.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=lyHjNlGIepIT/t3IaYDnRx3eF0Wl2lezOvJ866alVNE=;
+        b=kPSNjc/6eCZNQcJVCcYO5SSVOeLbbyZ+SGzXy8Os/qJI5VLBsulJhiw0KRLaQeNZf4
+         OFUOjkK44QlETAUZhMZbSPItOXA8uG/yZQURFvwsp7fFrYuWEyQzzmyNGq47RsaomLms
+         t5KbRpNJupecfu2vQYDMt/HuaDEmRPfOtQJD9O6ruXjZS/SaN6PqFDulKM+a0082K1qT
+         K/ES1oqKNnr3drne9Sgnw8EzFUfleFFJHT+jyV0XXXMC0jerETcIOEhVAsKMC33eeroA
+         jtsplRofpJ1hMu4C+OL4mDY9OfgBTwAQ5RB45xLlRzVJNhZPZ921pNRLGL0bcAPHm88R
+         C7xg==
+X-Gm-Message-State: AJIora9tmV6fCpGF2Rwewszavk6Y91TodgVRWWSQQxdZdhR1o53JWPhq
+        zZfzSRdpbLuoyfW4lj7ja/sFKA==
+X-Google-Smtp-Source: AGRyM1uqRH0eeNtScZfg9vgahrtzqeNiUZh3ZaiXJFRiWQWm4xvksCJ8mnE2AFxPxob07sW9BfcD1A==
+X-Received: by 2002:a05:651c:211e:b0:25a:88ca:d766 with SMTP id a30-20020a05651c211e00b0025a88cad766mr2448216ljq.230.1655920301613;
+        Wed, 22 Jun 2022 10:51:41 -0700 (PDT)
+Received: from [192.168.1.212] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id k1-20020a192d01000000b00478fc20dc88sm2628594lfj.73.2022.06.22.10.51.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jun 2022 10:51:40 -0700 (PDT)
+Message-ID: <54ef4527-bb30-c7c6-ab74-0a2557c763cc@linaro.org>
+Date:   Wed, 22 Jun 2022 20:51:40 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] dt-bindings: msm: update maintainers list with proper id
+Content-Language: en-GB
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>, robdclark@gmail.com,
+        sean@poorly.run, swboyd@chromium.org, vkoul@kernel.org,
+        agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Cc:     abhinavk@codeaurora.org, quic_aravindh@quicinc.com,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1655916953-32039-1-git-send-email-quic_khsieh@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <1655916953-32039-1-git-send-email-quic_khsieh@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -92,107 +77,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Pin-Yen Lin <treapking@chromium.org>
+On 22/06/2022 19:55, Kuogee Hsieh wrote:
+> Use quic id instead of codeaurora id in maintainers list
+> for display devicetree bindings.
+> 
+> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
 
-Add the callback function when the driver receives state changes of the
-Type-C ports. The callback function configures the lane_swap state and
-ends up updating the lane swap registers of it6505 bridge chip.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
-Signed-off-by: Prashant Malani <pmalani@chromium.org>
----
+> ---
+>   Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> index cd05cfd..c950710 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>   title: MSM Display Port Controller
+>   
+>   maintainers:
+> -  - Kuogee Hsieh <khsieh@codeaurora.org>
+> +  - Kuogee Hsieh <quic_khsieh@quicinc.com>
+>   
+>   description: |
+>     Device tree bindings for DisplayPort host controller for MSM targets
 
-v5 is the first version for this patch.
 
- drivers/gpu/drm/bridge/ite-it6505.c | 58 +++++++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
-
-diff --git a/drivers/gpu/drm/bridge/ite-it6505.c b/drivers/gpu/drm/bridge/ite-it6505.c
-index cb1dd4cbd33b..87b9bd742b52 100644
---- a/drivers/gpu/drm/bridge/ite-it6505.c
-+++ b/drivers/gpu/drm/bridge/ite-it6505.c
-@@ -17,6 +17,7 @@
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- #include <linux/types.h>
-+#include <linux/usb/typec_dp.h>
- #include <linux/usb/typec_mux.h>
- #include <linux/wait.h>
- 
-@@ -404,6 +405,7 @@ struct debugfs_entries {
- };
- 
- struct it6505_port_data {
-+	bool dp_connected;
- 	struct typec_mux_dev *typec_mux;
- 	struct it6505 *it6505;
- };
-@@ -3237,9 +3239,65 @@ static void it6505_shutdown(struct i2c_client *client)
- 		it6505_lane_off(it6505);
- }
- 
-+static void it6505_typec_ports_update(struct it6505 *it6505)
-+{
-+	usleep_range(3000, 4000);
-+
-+	if (it6505->typec_ports[0].dp_connected && it6505->typec_ports[1].dp_connected)
-+		/* Both ports available, do nothing to retain the current one. */
-+		return;
-+	else if (it6505->typec_ports[0].dp_connected)
-+		it6505->lane_swap = false;
-+	else if (it6505->typec_ports[1].dp_connected)
-+		it6505->lane_swap = true;
-+
-+	usleep_range(3000, 4000);
-+}
-+
- static int it6505_typec_mux_set(struct typec_mux_dev *mux,
- 				struct typec_mux_state *state)
- {
-+	struct it6505_port_data *data = typec_mux_get_drvdata(mux);
-+	struct it6505 *it6505 = data->it6505;
-+	struct device *dev = &it6505->client->dev;
-+	bool old_dp_connected, new_dp_connected;
-+
-+	if (it6505->num_typec_switches == 1)
-+		return 0;
-+
-+	mutex_lock(&it6505->extcon_lock);
-+
-+	old_dp_connected = it6505->typec_ports[0].dp_connected ||
-+			   it6505->typec_ports[1].dp_connected;
-+
-+	dev_dbg(dev, "mux_set dp_connected: c0=%d, c1=%d\n",
-+		it6505->typec_ports[0].dp_connected, it6505->typec_ports[1].dp_connected);
-+
-+	data->dp_connected = (state->alt && state->alt->svid == USB_TYPEC_DP_SID &&
-+			      state->alt->mode == USB_TYPEC_DP_MODE);
-+
-+	new_dp_connected = it6505->typec_ports[0].dp_connected ||
-+			   it6505->typec_ports[1].dp_connected;
-+
-+	if (it6505->enable_drv_hold) {
-+		dev_dbg(dev, "enable driver hold");
-+		goto unlock;
-+	}
-+
-+	it6505_typec_ports_update(it6505);
-+
-+	if (!old_dp_connected && new_dp_connected)
-+		pm_runtime_get_sync(dev);
-+
-+	if (old_dp_connected && !new_dp_connected) {
-+		pm_runtime_put_sync(dev);
-+		if (it6505->bridge.dev)
-+			drm_helper_hpd_irq_event(it6505->bridge.dev);
-+		memset(it6505->dpcd, 0, sizeof(it6505->dpcd));
-+	}
-+
-+unlock:
-+	mutex_unlock(&it6505->extcon_lock);
- 	return 0;
- }
- 
 -- 
-2.37.0.rc0.104.g0611611a94-goog
-
+With best wishes
+Dmitry
