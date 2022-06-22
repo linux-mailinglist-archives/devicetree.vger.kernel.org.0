@@ -2,158 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C8B4554E1E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 17:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4F30554E34
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 17:02:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358489AbiFVPAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 11:00:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58996 "EHLO
+        id S235799AbiFVPCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 11:02:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358281AbiFVPAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 11:00:02 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D68593DDE9
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 08:00:00 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id sb34so5789265ejc.11
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 08:00:00 -0700 (PDT)
+        with ESMTP id S1357949AbiFVPCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 11:02:05 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0D3A3CFF9
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 08:02:03 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id w24so7892892pjg.5
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 08:02:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4WRbj1QERW/av8psTVhlz4CLgb5wsd2uJJdprSn+O1g=;
-        b=ywoEjbfFbhivBAwWa/R/EzH9PY9yDMp4YbZJueOVLsv555+LQ2EHk8LXaq1KYJRZTz
-         aWNsy9DW6jJ+1/Qk9ChphBFLTnupm2CBWGrrUN/+aqNkvYvjWgSb2QKJ83C8fPNHerPc
-         os8s58x1zsuP1PToF56fprTaU7Nzs1hS9prG5PgoLLwMTPOjH8kQKb/BG6WA1FESzyoe
-         YlFj3/jGBKyWV4mIWsHb+4E8JogrKy/H4wZvFGLhYtB+jaiDRpZ5N7eg71ZI/7daIoi7
-         PvCbv5b643Q//fIaNJpVJkMEDKVO06G9g6D+8PUvjKhEOEty4cEe17VG8+9r+nU6tuM2
-         BTOg==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=vhZEVnaGNBjosB86GDUW8b2wHjB/+QU31bPXl36TqFE=;
+        b=bOIblDT7+P2BBNypX05Nisr9+JiNO30n5N0+Z8TsF8G8ewS1QQZ2blbKxZ3afwl4rb
+         Y1R7WjL0nQm22vyflOQhEeZFDRruhD2rMxeOQYEfpEV7tW8n/ju9SzNMyVgL9BE26Vgd
+         FPoyWluWkn5NNuhlxGiavmntWuTzVXfRo77wVsa62cPMStB3JdJrYD+wkVfiN1rNOqNf
+         ZyyclRAod0inNVFoU0jnQ0MB+3irBDVq0/iOt9ZwHBKVlY6XDu+4VLY2EYKpkm1k7EVM
+         ihzj2OoXiiZzbOIYCo0kkkYO8bFuNsaV/VkYkiSxlxuYsSK8SV65II48K4y9ptx1O0B4
+         3BVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=4WRbj1QERW/av8psTVhlz4CLgb5wsd2uJJdprSn+O1g=;
-        b=YFibUrgUCBG0Er09oVBQQH4D1uVzbdNg2JG6HF7PzWMAghL1Ab0exVWBhV6ajSlTKi
-         XS3uW+3DK6diluODkkI9jyRi6qeUy0pQmnlXNSISODjgVUnMYcvotPoKVOuowNY10sAu
-         ZH73oAHHGiKXq251rpkKhYVTvCIcqrc09rUJrwGeD7U+zg0i5joUoGIdgS17B+vAG6d/
-         fXDZvRYQIG8RflmUPw2lLZY69NNLakTlYyyTbBSfOCnJlPprV1AOeot5N/+N9rpS3J7Y
-         I3R5BzRz74Iu5l0ETDPtC7ajaMoNEdXYuftRz5bOBEqdBz0/8geZ87jUbf6ZLl2aErzv
-         7n2Q==
-X-Gm-Message-State: AJIora8ORbU64PeZe+K+0wnyVRzkJgpXdxe2ni8SWfx5IQ5FxfMXqgHJ
-        +fKYxz0Pi+b8Go9tic/r70PfFAbxVBrkpw==
-X-Google-Smtp-Source: AGRyM1u3mPVv9tLPHuraiJXYGakA8OSJV1otrdE7dZHmWgQ8rMN06jOfUwrVjHL4Mk4I8uCfoPlhXw==
-X-Received: by 2002:a17:906:2252:b0:711:d2e6:9e7e with SMTP id 18-20020a170906225200b00711d2e69e7emr3797696ejr.161.1655909999464;
-        Wed, 22 Jun 2022 07:59:59 -0700 (PDT)
-Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id lb13-20020a170907784d00b006fa84a0af2asm9696187ejc.16.2022.06.22.07.59.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 07:59:59 -0700 (PDT)
-Message-ID: <d7da5034-a2a5-71d1-5898-4a110d495638@linaro.org>
-Date:   Wed, 22 Jun 2022 16:59:57 +0200
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=vhZEVnaGNBjosB86GDUW8b2wHjB/+QU31bPXl36TqFE=;
+        b=tWP6WQWpmX4cSPQ7JT2mHK/wEoulFniTT/ZxXZMmAuHQI+e4nHLq6HuDKRO4LNs0ii
+         A/7hgnOQnMJCGqk9moL0+9Qjl9H1AEEFne9+y8Suy5Zj+Z6+bdUnzCg3U92diql1Y6uI
+         WnU05xFtPSHukx/NVvPwCVmfdvO7cPGS1c6ReRHhslYbMkysSsU3sAKdv2qZ1NWjN0Tx
+         DjlIjIp3IlSZMvV5O2gk+hAgSD6+H6TSj5Zlsabi0Htbjg8aLfHBJTWlv4m21foKsArl
+         LHIXeYvS2Jb3ML8bEm0ex8u8EARi4FLVW06wkiZ3gatPjkH8yfXYRbm87f/WXDxpm5x2
+         z57g==
+X-Gm-Message-State: AJIora/rgZQGON5niSTPnRxVWkl8OFjWMKN/3qovB+fk98ZsBIVyG0XC
+        T9xMnErqzdn9J68LTM+TzyHK/wjjVGdO038PmTA=
+X-Google-Smtp-Source: AGRyM1toIig5ko4X91q4CAxDqQnZnwtT8qlWTs7GRjU3136Ss298ySYrx9golUZ8IsMMwX5SjEXNFGkkdWK3GEMPZ/M=
+X-Received: by 2002:a17:903:2cf:b0:151:a932:f1f0 with SMTP id
+ s15-20020a17090302cf00b00151a932f1f0mr34621367plk.130.1655910123205; Wed, 22
+ Jun 2022 08:02:03 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 5/6] dt-bindings: clock: qcom,msm8996-apcc: Fix clocks
-Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220621160621.24415-1-y.oudjana@protonmail.com>
- <20220621160621.24415-6-y.oudjana@protonmail.com>
- <CAA8EJprQTiU+=ajKSWbFfbHuVxjEiybTPNez66Ob+4YZ+fXW_A@mail.gmail.com>
- <XJ8UDR.9Y06T8FUTMOH2@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <XJ8UDR.9Y06T8FUTMOH2@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Received: by 2002:a17:903:2308:b0:16a:1b3f:f74b with HTTP; Wed, 22 Jun 2022
+ 08:02:02 -0700 (PDT)
+Reply-To: sales0212@asonmedsystemsinc.com
+From:   Prasad Ronni <lerwickfinance7@gmail.com>
+Date:   Wed, 22 Jun 2022 16:02:02 +0100
+Message-ID: <CAFkto5u=T4juAX=CPEE_uD2VPgpXudytrSqLxDGkEyhnZpoy8Q@mail.gmail.com>
+Subject: Service Needed.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_20,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/2022 19:28, Yassine Oudjana wrote:
-> 
-> On Tue, Jun 21 2022 at 20:07:50 +0300, Dmitry Baryshkov 
-> <dmitry.baryshkov@linaro.org> wrote:
->> On Tue, 21 Jun 2022 at 19:07, Yassine Oudjana 
->> <yassine.oudjana@gmail.com> wrote:
->>>
->>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
->>>
->>>  The clocks currently listed in clocks and clock-names are the ones
->>>  supplied by this clock controller, not the ones it consumes. Replace
->>>  them with the only clock it consumes - the on-board oscillator (XO),
->>>  and make the properties required.
->>>
->>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->>>  ---
->>>   .../bindings/clock/qcom,msm8996-apcc.yaml         | 15 
->>> +++++++--------
->>>   1 file changed, 7 insertions(+), 8 deletions(-)
->>>
->>>  diff --git 
->>> a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml 
->>> b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
->>>  index a20cb10636dd..c4971234fef8 100644
->>>  --- a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
->>>  +++ b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
->>>  @@ -26,22 +26,18 @@ properties:
->>>
->>>     clocks:
->>>       items:
->>>  -      - description: Primary PLL clock for power cluster (little)
->>>  -      - description: Primary PLL clock for perf cluster (big)
->>>  -      - description: Alternate PLL clock for power cluster (little)
->>>  -      - description: Alternate PLL clock for perf cluster (big)
->>>  +      - description: XO source
->>>
->>>     clock-names:
->>>       items:
->>>  -      - const: pwrcl_pll
->>>  -      - const: perfcl_pll
->>>  -      - const: pwrcl_alt_pll
->>>  -      - const: perfcl_alt_pll
->>>  +      - const: xo
->>>
->>>   required:
->>>     - compatible
->>>     - reg
->>>     - '#clock-cells'
->>>  +  - clocks
->>>  +  - clock-names
->>
->> I think we can not list them as required, as then older DT files won't
->> pass schema validation. But I'll leave this into the hands of Rob and
->> Krzyshtof.
-> 
-> The old DT files that didn't have XO defined had a wrong
-> compatible string to begin with (fixed in [1]), so I don't
-> think it's a problem.
-> 
+-- 
+Hi,
 
-Reasonable.
+Are you currently open to work as our executive company representative
+on contractual basis working remotely? If yes, we will be happy to
+share more details. Looking forward to your response.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+Regards,
