@@ -2,113 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9226B555508
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 21:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07079555539
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 22:08:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358657AbiFVTsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 15:48:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57716 "EHLO
+        id S1377003AbiFVUIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 16:08:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359444AbiFVTsO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 15:48:14 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8E492DD60;
-        Wed, 22 Jun 2022 12:48:09 -0700 (PDT)
-Received: from [46.183.103.8] (helo=phil.sntech)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1o46KG-0004LY-G0; Wed, 22 Jun 2022 21:47:45 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     soc@kernel.org, Olof Johansson <olof@lixom.net>, arm@kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     Heiko Stuebner <heiko@sntech.de>, openbmc@lists.ozlabs.org,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Joel Stanley <joel@jms.id.au>, linux-arm-msm@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-aspeed@lists.ozlabs.org,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-input@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andy Gross <agross@kernel.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, Peter Rosin <peda@axentia.se>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Li Yang <leoyang.li@nxp.com>, linux-tegra@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-omap@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Tero Kristo <kristo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew Jeffery <andrew@aj.id.au>, Andrew Lunn <andrew@lunn.ch>,
-        Nishanth Menon <nm@ti.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        linux-mediatek@lists.infradead.org
-Subject: Re: (subset) [PATCH v3 00/40] dt-bindings: input: gpio-keys: rework matching children
-Date:   Wed, 22 Jun 2022 21:47:36 +0200
-Message-Id: <165592714968.3933570.9891201783444800337.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
-References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S1377007AbiFVUIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 16:08:00 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D1C11820;
+        Wed, 22 Jun 2022 13:07:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id AA35DCE2224;
+        Wed, 22 Jun 2022 20:07:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66944C34114;
+        Wed, 22 Jun 2022 20:07:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655928475;
+        bh=AyEm/DsgtRvODwHTwbe8b+cxW30Z8a4jqqeWajrOL6c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Qo1iNeQmk+JAeKqd8AUY3dq34k2BOzQe1qAozB57Wv4QA9vPVpLFUKnY3mgbT+daF
+         m+fAByUO+ta4qc/eYdBWIwhCt6v9jdhT2Qltl7Wz7pFXjNwabgs8BNOldnaSZGVKPz
+         C4SH2hmqGLzlxEHRcR9XzUoKBDEfcb2bapqwwFNSvs99LnCJ6DoJ8fZLyezYy7vHNO
+         TCUEFFAzb7LGQ0eWWGnqtzqagB0Gn/1DG9CeGanwgfo8fuNj7E19qebA3DP5AtIbgk
+         iKHaMhGO73PT3MDh022haHF67e1UabuVIu3RB0Vp7CVeRYRZ9Aes1KPPYh/WuMgL/0
+         HNWvT32m9ONfQ==
+Date:   Wed, 22 Jun 2022 22:07:51 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Dinh Nguyen <dinguyen@kernel.org>
+Cc:     jarkko.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
+        mika.westerberg@linux.intel.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCHv6 1/2] i2c: designware: introduce a custom scl recovery
+ for SoCFPGA platforms
+Message-ID: <YrN2lxvlP4cWfelY@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>, jarkko.nikula@linux.intel.com,
+        andriy.shevchenko@linux.intel.com, mika.westerberg@linux.intel.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220620230109.986298-1-dinguyen@kernel.org>
+ <YrI6EeVkkWVMNPFY@shikoro>
+ <928b2996-b2e7-d847-0e20-7e19df3cbf03@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,RCVD_IN_SBL_CSS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=no
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="k3GeTzjyPXiwZ4uz"
+Content-Disposition: inline
+In-Reply-To: <928b2996-b2e7-d847-0e20-7e19df3cbf03@kernel.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
-X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Jun 2022 17:52:24 -0700, Krzysztof Kozlowski wrote:
-> Merging
-> =======
-> 1. dt-bindings: rebased on top of Rob's:
->    https://lore.kernel.org/all/20220608211207.2058487-1-robh@kernel.org/
-> 
-> 2. DTS patches are independent. They can be picked up directly by sub-arch
->    maintainers, by Arnd or Olof, or eventually by me (if you wish).
-> 
-> [...]
 
-Applied, thanks!
+--k3GeTzjyPXiwZ4uz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[26/40] arm64: dts: rockchip: align gpio-key node names with dtschema
-        commit: 517ed0ffd3cc691bef747288d51d01d2705b2251
 
-        In the pinenote dts the original patch changed "cover" to
-        switch, so to keep the cover information intact, I changed
-        the node to "switch-cover" ... similar to other "switch-lid"
-        instances in some other Rockchip devicetrees.
+> From the original code, the first mechanism to a recovery is to acquire a
+> GPIO for the SCL line and send the 9 SCL pulses, after that, it does a re=
+set
+> of the I2C module. For the SOCFPGA part, there is no GPIO line for the SC=
+L,
+> thus the I2C module cannot even get a reset. This code allows the function
+> to reset the I2C module for SOCFPGA, which is the 2nd part of the recovery
+> process.
 
-[27/40] ARM: dts: rockchip: align gpio-key node names with dtschema
-        commit: 271e2c92285075a890c58cba9ad5979a8959f6ff
-[28/40] ARM: dts: rockchip: rk3288-tinker: correct gpio-keys properties
-        commit: e5a3cbe8b45b0a436a39cc969b7bcc8353248018
+The second part is totally useless if the client device is holding SDA
+low. Which is exactly the situation that recovery tries to fix. As I
+said, if you can't control SCL, you don't have recovery.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+> > See, this function is named scl_recovery, but there is no SCL involved.
+> > This is why I think there is the misunderstanding here.
+> >=20
+>=20
+> I understand your point here. Perhaps just call it i2c_socfpga_recovery()?
+
+No. adap->bus_recovery_info should be NULL.
+
+
+--k3GeTzjyPXiwZ4uz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKzdpIACgkQFA3kzBSg
+Kbbenw/+MKIeOGi3aN2VFP3pJ8kgOpg4sbGFw9tClUx81LHRgs3VAxoZvDE2TIj7
+wmOdoSflUKsUURKTcljecE3u9Mw/vHIPKKsBRN/KGdjvReXg+JUsAGqnnSWLFBzg
+iLljZX0QyxtM4gjbIacARiSIvwm0xhqjbI8cyAE08juIFO6/0JNVdzTIE5kPLPOG
+2Poz+79wckBg4iIV6SA4SrEcAb1HWHrQGbx41SRNg5421mbIzUrvqzmwHMRtYphL
+G6FSQAaO6d6veTovNznqj3p4XqM7I7DwhZrw3vefQjsuIio0sKzpj144Y0A9glVP
+A8eHtigSKFevE3OqsFuy9zyieOaLp/+9HIO4tGFz6iy58DFaqz3L6en2Yx29EUKi
+3VjppRzYnKMftAkN9a4ckkGPWMsWhWHzDGZev5nhw9VNYXqGeHksadrG0ii4weft
+gQ3JGdryUenF4O7xxWooRvOj1In8Aoe6RZj+TQxBRjuB2CxYazPsPKXs2lfWUI5a
+Vrhqm3dyq7jsjTN0iO5CcZtwaMNw+1TgvF3s5kMSs1O1YFahrA7v2Dn0johCN0rX
+Kc7fJEnLktb1Ul6ovrnSKEWbGDuSsdnB4mqTlHK3OeahO4v8OGAhetg0HKvu8zYp
+Az8M/8l3eDMnEIdA+MtqwGEnbkxxGmEXuRnba2vSm2XdS0ZnMb4=
+=jG7j
+-----END PGP SIGNATURE-----
+
+--k3GeTzjyPXiwZ4uz--
