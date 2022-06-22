@@ -2,67 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C90C6556DC7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 23:22:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D905B556DEF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 23:49:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233670AbiFVVWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 17:22:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52030 "EHLO
+        id S235565AbiFVVtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 17:49:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230465AbiFVVWH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 17:22:07 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD9E1CB2C;
-        Wed, 22 Jun 2022 14:22:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1655932926; x=1687468926;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wbr1pl9iV24n71aLN4ufD61f/bpnnMShwneyl4/fWGA=;
-  b=bwKae3CUuC9IdN2uQOlC6U5CsF9KIRAIYavnleRAqTJl+fhf35ACxi0g
-   KgL99B9BGNlkj9ehOoY+L34ocuu9K+19J6gaTUfqSjV3YQUf6glFrRQLb
-   8c+jaPl+IqD7OXvWsOC0dunKA2pWW/2roY2oZX29Dl7boc2YfvkZazmvi
-   AL54Iy2+ic4XpGP2pzrqmm4cX3dO6OXjHF9OIY06Y4g5PUebXjizw8MUp
-   G10SYYicNcgo7liZDavW8wD/ezXZjzzrIffVwYa5XNvyMSoao+DWTb81T
-   SUUNivuNFUSq+7SANNPiiMxO9UQ/pZfjokn3nJGRHelgMRDeP+lTfw3VJ
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="366871337"
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; 
-   d="scan'208";a="366871337"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2022 14:22:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; 
-   d="scan'208";a="677755811"
-Received: from lkp-server02.sh.intel.com (HELO a67cc04a5eeb) ([10.239.97.151])
-  by FMSMGA003.fm.intel.com with ESMTP; 22 Jun 2022 14:22:02 -0700
-Received: from kbuild by a67cc04a5eeb with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1o47nW-0001hj-22;
-        Wed, 22 Jun 2022 21:22:02 +0000
-Date:   Thu, 23 Jun 2022 05:21:15 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>, y@qualcomm.com,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Vinod Polimera <quic_vpolimer@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com, dmitry.baryshkov@linaro.org,
-        quic_sbillaka@quicinc.com
-Subject: Re: [v3 5/5] drm/msm/disp/dpu1: add PSR support for eDP interface in
- dpu driver
-Message-ID: <202206230551.H0oXeV2E-lkp@intel.com>
-References: <1655808800-3996-6-git-send-email-quic_vpolimer@quicinc.com>
+        with ESMTP id S234854AbiFVVtj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 17:49:39 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707983EF3F
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 14:49:37 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id 128so10251163pfv.12
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 14:49:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Yr59+R9n9NhdYApBelLI06daIODj/6Mh7LKlQvJr/gw=;
+        b=RcMS/jrweitn+T8xp2cfEG0KNvhEwT108ZvQZG52GLYIPrJRlJ2hppPz/aK21b2GFw
+         0DneDDKV2ta3EO8l57p4cGXOGT/wrP7ZaFTnvLwi8BMb6N07y6hXRuX4Q9SUXwyApPhY
+         nmYXMG0MIgLQtgS2BzUXiCm9K7qIi4kWylBAQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Yr59+R9n9NhdYApBelLI06daIODj/6Mh7LKlQvJr/gw=;
+        b=x3I12A0P7eaP/Nht7brXe4ZkmOPCX4JWbiiqx/wu+tV9ZzWCtVXHhv0jVUigXA8h/g
+         CXVcUx/qqjtaDjnna7A751CkFjSSyMXjzQoKoJ5HWM+2JMsJQ2RUq7sZVPQ1ga9HH22m
+         x1RdlJ37/TiqQw5tZJPVcJFq0wiIA8/fFtiRBZOFZEq1871rsG2eAddPy6BgsGIWtjl8
+         5OA9ite3fkcwTu5rEgFGeOyqepnkfihb2qxOg7IE+G/q4ZRGOX9YWe1xxiea3A/52UtW
+         9Zrhm9hcvrOoLPAeehnkmq5CpVi5IJgikIHhrBC2xKzolsDjALNL8X8qC88eXHrKQBbH
+         0hvA==
+X-Gm-Message-State: AJIora9JJbJFaz1m5LNwHxDQaRElsNBwPOHN9tiITCKKBVhPuUF6diAw
+        7j8AS6wQEClnztXPSLvMBMjAQw==
+X-Google-Smtp-Source: AGRyM1vp8OobL2BMitO/smIQP+sHw2vY8YWWz3fUJmlaNdjB8Oml7eic1gydaYb+0pzEHjN5KiNJzw==
+X-Received: by 2002:a05:6a00:23ca:b0:525:28b4:9e3b with SMTP id g10-20020a056a0023ca00b0052528b49e3bmr15193756pfc.43.1655934576558;
+        Wed, 22 Jun 2022 14:49:36 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:83c:92dc:a659:2900])
+        by smtp.gmail.com with UTF8SMTPSA id f128-20020a62db86000000b00517c84fd24asm5339161pfg.172.2022.06.22.14.49.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jun 2022 14:49:36 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>, linux-usb@vger.kernel.org,
+        Roger Quadros <rogerq@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, Michal Simek <michal.simek@xilinx.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Bhuvanesh Surachari <Bhuvanesh_Surachari@mentor.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kai-Heng Feng <kai.heng.feng@canonical.com>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+Subject: [PATCH v23 0/3] usb: misc: Add onboard_usb_hub driver
+Date:   Wed, 22 Jun 2022 14:49:28 -0700
+Message-Id: <20220622214931.1914770-1-mka@chromium.org>
+X-Mailer: git-send-email 2.37.0.rc0.104.g0611611a94-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1655808800-3996-6-git-send-email-quic_vpolimer@quicinc.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,93 +85,180 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+This series adds:
+- the onboard_usb_hub_driver
+- glue in the generic hub code to create and destroy the
+  onboard_usb_hub platform devices if needed
+- device tree changes that add RTS5411 entries for the QCA SC7180
+  based boards trogdor and lazor
+- a couple of stubs for platform device functions to avoid
+  unresolved symbols with certain kernel configs
 
-Thank you for the patch! Perhaps something to improve:
+The main issue the driver addresses is that a USB hub needs to be
+powered before it can be discovered. For discrete onboard hubs (an
+example for such a hub is the Realtek RTS5411) this is often solved
+by supplying the hub with an 'always-on' regulator, which is kind
+of a hack. Some onboard hubs may require further initialization
+steps, like changing the state of a GPIO or enabling a clock, which
+requires even more hacks. This driver creates a platform device
+representing the hub which performs the necessary initialization.
+Currently it only supports switching on a single regulator, support
+for multiple regulators or other actions can be added as needed.
+Different initialization sequences can be supported based on the
+compatible string.
 
-[auto build test WARNING on drm/drm-next]
-[also build test WARNING on drm-exynos/exynos-drm-next drm-tip/drm-tip tegra-drm/drm/tegra/for-next linus/master v5.19-rc3 next-20220622]
-[cannot apply to drm-intel/for-linux-next airlied/drm-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Besides performing the initialization the driver can be configured
+to power the hub off during system suspend. This can help to extend
+battery life on battery powered devices which have no requirements
+to keep the hub powered during suspend. The driver can also be
+configured to leave the hub powered when a wakeup capable USB device
+is connected when suspending, and power it off otherwise.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vinod-Polimera/drm-msm-dp-Add-basic-PSR-support-for-eDP/20220621-195406
-base:   git://anongit.freedesktop.org/drm/drm drm-next
-config: arm64-randconfig-r025-20220622 (https://download.01.org/0day-ci/archive/20220623/202206230551.H0oXeV2E-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 8b8d126598ce7bd5243da7f94f69fa1104288bee)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm64 cross compiling tool for clang build
-        # apt-get install binutils-aarch64-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/2c3c31343481a4faf2402cf513c85fb7d75ce205
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Vinod-Polimera/drm-msm-dp-Add-basic-PSR-support-for-eDP/20220621-195406
-        git checkout 2c3c31343481a4faf2402cf513c85fb7d75ce205
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
+Changes in v23:
+- refactored onboard_hub_create_pdevs()
+- got rid of CONFIG_USB_ONBOARD_HUB_ACTUAL
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+Changes in v22:
+- call onboard_hub_create/destroy_pdevs() from hub_probe/disconnect()
+  instead of doing it from the HCD. When the pdevs are create from the
+  HCD usb_of_get_device_node() (called by onboard_hub_create_pdevs())
+  may return NULL because the USB device for the root hub doesn't
+  exist yet. Creating the pdevs from the hub code also has the
+  advantage of enabling support for nested onboard hubs (as long as
+  all hubs in the chain have DT nodes and are supported by the driver).
+- moved onboard_hub_create_pdevs(), onboard_hub_destroy_pdevs() and
+  of_is_onboard_usb_hub() into a separate file to allow them to be
+  linked into the USB core module (if CONFIG_USB=m)
+- Added extra checks to ensure only one platform device is created
+  for each physical hub. This is necessary because
+  onboard_hub_create_pdevs() is now called from hub_probe() instead
+  of usb_add_hcd(). As a result the function is called twice for
+  typical USB3 hub, once for the USB3 part of the hub, and once for
+  USB <= 2.x. Generally the parent hub downstream of the primary HCD
+  creates the onboard hub platform device.
+- use kzalloc() instead of devm_kzalloc() to allocate list entries. Using
+  managed memory can cause issues since the managed memory is allocated
+  before the device is probed.
+- use a workqueue to (re-)attach the USB driver during/after _probe().
+  This is necessary to avoid self-deadlocks on systems with nested
+  onboard hubs.
+- don't initialize list_head in onboard_hub_create_pdevs(), this needs
+  to be done by the owner, to ensure that onboard_hub_destroy_pdevs()
+  is called with a struct that was properly initialized even when
+  onboard_hub_create_pdevs() is not called.
+- rebased series on v5.19-rc1
 
-All warnings (new ones prefixed by >>):
+Changes in v21:
+- dropped patch 'driver core: Export device_is_bound()'
+- refactored _find_onboard_hub()
+- removed 'onboard_hub_dev' symlinks from USB devices
+- dropped patch 'arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub'
+  (will be sent separately)
+- rebased series on v5.17-rc4
 
->> drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c:1064:3: warning: add explicit braces to avoid dangling else [-Wdangling-else]
-                   drm_for_each_encoder_mask(encoder, crtc->dev, crtc->state->encoder_mask)
-                   ^
-   include/drm/drm_encoder.h:314:3: note: expanded from macro 'drm_for_each_encoder_mask'
-                   for_each_if ((encoder_mask) & drm_encoder_mask(encoder))
-                   ^
-   include/drm/drm_util.h:63:53: note: expanded from macro 'for_each_if'
-   #define for_each_if(condition) if (!(condition)) {} else
-                                                       ^
-   1 warning generated.
+Changes in v20:
+- addressed review comments from Stephen
+- changed DT node names for hubs
 
+Changes in v19:
+- added VID:PID pairs and compatible strings for RTS5414 hub
+- updated comments with RTS5411 USB versions to reflect those
+  reported/supported by the hub
+- rebased series on v5.16
 
-vim +1064 drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+Changes in v18:
+- introduced hidden Kconfig option to align module vs. builtin
+  choice with CONFIG_USB (thanks Doug!)
+- added patch 'driver core: Export device_is_bound()'
+- also adjust device tree of pompom rev1
+- dropped the following patches, which aren't needed anymore by this
+  series (though they might still be useful on their own):
+  - usb: Specify dependencies on USB_XHCI_PLATFORM with 'depends on'
+  - arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM
+  - ARM: configs: Explicitly enable USB_XHCI_PLATFORM where needed
 
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1032  
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1033  static void dpu_crtc_enable(struct drm_crtc *crtc,
-351f950db4ab28 Maxime Ripard     2020-10-08  1034  		struct drm_atomic_state *state)
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1035  {
-e12e5263bf1d8d Rob Clark         2020-09-07  1036  	struct dpu_crtc *dpu_crtc = to_dpu_crtc(crtc);
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1037  	struct drm_encoder *encoder;
-35c719da95c0d2 Rob Clark         2020-08-11  1038  	bool request_bandwidth = false;
-2c3c31343481a4 Vinod Polimera    2022-06-21  1039  	struct drm_crtc_state *old_crtc_state;
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1040  
-2c3c31343481a4 Vinod Polimera    2022-06-21  1041  	old_crtc_state = drm_atomic_get_old_crtc_state(state, crtc);
-b77d0f0d4ee757 Sean Paul         2018-11-16  1042  	pm_runtime_get_sync(crtc->dev->dev);
-b77d0f0d4ee757 Sean Paul         2018-11-16  1043  
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1044  	DRM_DEBUG_KMS("crtc%d\n", crtc->base.id);
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1045  
-241b507c166fef Rob Clark         2019-08-20  1046  	drm_for_each_encoder_mask(encoder, crtc->dev, crtc->state->encoder_mask) {
-241b507c166fef Rob Clark         2019-08-20  1047  		/* in video mode, we hold an extra bandwidth reference
-241b507c166fef Rob Clark         2019-08-20  1048  		 * as we cannot drop bandwidth at frame-done if any
-241b507c166fef Rob Clark         2019-08-20  1049  		 * crtc is being used in video mode.
-241b507c166fef Rob Clark         2019-08-20  1050  		 */
-241b507c166fef Rob Clark         2019-08-20  1051  		if (dpu_encoder_get_intf_mode(encoder) == INTF_MODE_VIDEO)
-241b507c166fef Rob Clark         2019-08-20  1052  			request_bandwidth = true;
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1053  		dpu_encoder_register_frame_event_callback(encoder,
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1054  				dpu_crtc_frame_event_cb, (void *)crtc);
-241b507c166fef Rob Clark         2019-08-20  1055  	}
-241b507c166fef Rob Clark         2019-08-20  1056  
-241b507c166fef Rob Clark         2019-08-20  1057  	if (request_bandwidth)
-241b507c166fef Rob Clark         2019-08-20  1058  		atomic_inc(&_dpu_crtc_get_kms(crtc)->bandwidth_ref);
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1059  
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1060  	trace_dpu_crtc_enable(DRMID(crtc), true, dpu_crtc);
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1061  	dpu_crtc->enabled = true;
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1062  
-2c3c31343481a4 Vinod Polimera    2022-06-21  1063  	if (!old_crtc_state->self_refresh_active)
-a796ba2cb3dde3 Sean Paul         2018-11-16 @1064  		drm_for_each_encoder_mask(encoder, crtc->dev, crtc->state->encoder_mask)
-a796ba2cb3dde3 Sean Paul         2018-11-16  1065  			dpu_encoder_assign_crtc(encoder, crtc);
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1066  
-2f2eb723b50b4d Rajesh Yadav      2018-07-13  1067  	/* Enable/restore vblank irq handling */
-2f2eb723b50b4d Rajesh Yadav      2018-07-13  1068  	drm_crtc_vblank_on(crtc);
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1069  }
-25fdd5933e4c0f Jeykumar Sankaran 2018-06-27  1070  
+Changes in v17:
+- rebased on top of v5.16-rc1
+- moved creation of onboard_hub platform devices from xhci_platform
+  to the generic HCD code
+- addressed review comments for the onboard_hub driver
+- moved Kconfig/defconfig changes to the end of the series. The
+  onboard_hub driver doesn't depend on XHCI_PLATFORM anymore,
+  hence these changes aren't really required for the driver, but
+  they still seem to be a worthwhile improvement
+
+Changes in v16:
+- added patch 'ARM: configs: Explicitly enable USB_XHCI_PLATFORM
+  where needed' to keep arm32 defconfigs effectively unchanged
+
+Changes in v15:
+- adjusted dependencies of USB_DWC3_CORE to make sure it can only
+  be enabled when at least one of USB_DWC3_HOST, USB_DWC3_GADGET
+  or USB_DWC3_DUAL_ROLE is selectable
+
+Changes in v14:
+- rebased on top of v5.14-rc1
+- dropped DT binding patch which landed in v5.13
+
+Changes in v13:
+- added patch "usb: Specify dependency on USB_XHCI_PLATFORM with
+  'depends on'" to the series to avoid Kconfig conflicts
+- added patch "arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM"
+  to the series to keep effective defconfig unchanged
+
+Changes in v12:
+- onboard_hub driver: use IS_ENABLED(CONFIG_USB_ONBOARD_HUB_MODULE)
+  in onboard_hub.h to also check for the driver built as module
+- onboard_hub_driver: include onboard_hub.h again to make sure there
+  are prototype declarations for the public functions
+
+Changes in v11:
+- support multiple onboard hubs connected to the same parent
+- don't include ‘onboard_hub.h’ from the onboard hub driver
+
+Changes in v10:
+- always use of_is_onboard_usb_hub() stub unless ONBOARD_USB_HUB=y/m
+- keep 'regulator-boot-on' property for pp3300_hub
+
+Changes in v9:
+- added dependency on ONBOARD_USB_HUB (or !ONBOARD_USB_HUB) to
+  USB_PLATFORM_XHCI
+
+Changes in v7:
+- updated DT binding
+- series rebased on qcom/arm64-for-5.13
+
+Changes in v6:
+- updated summary
+
+Changes in v5:
+- cover letter added
+
+Matthias Kaehlcke (3):
+  of/platform: Add stubs for of_platform_device_create/destroy()
+  usb: misc: Add onboard_usb_hub driver
+  usb: core: hub: Create platform devices for onboard hubs in
+    hub_probe()
+
+ .../sysfs-bus-platform-onboard-usb-hub        |   8 +
+ MAINTAINERS                                   |   7 +
+ drivers/usb/core/Makefile                     |   1 +
+ drivers/usb/core/hub.c                        |   9 +-
+ drivers/usb/core/hub.h                        |   1 +
+ drivers/usb/misc/Kconfig                      |  16 +
+ drivers/usb/misc/Makefile                     |   1 +
+ drivers/usb/misc/onboard_usb_hub.c            | 427 ++++++++++++++++++
+ drivers/usb/misc/onboard_usb_hub.h            |  17 +
+ drivers/usb/misc/onboard_usb_hub_pdevs.c      | 137 ++++++
+ include/linux/of_platform.h                   |  22 +-
+ include/linux/usb/onboard_hub.h               |  18 +
+ 12 files changed, 659 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-onboard-usb-hub
+ create mode 100644 drivers/usb/misc/onboard_usb_hub.c
+ create mode 100644 drivers/usb/misc/onboard_usb_hub.h
+ create mode 100644 drivers/usb/misc/onboard_usb_hub_pdevs.c
+ create mode 100644 include/linux/usb/onboard_hub.h
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.37.0.rc0.104.g0611611a94-goog
+
