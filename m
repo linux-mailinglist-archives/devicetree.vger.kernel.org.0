@@ -2,225 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08B8E5554D1
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 21:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9226B555508
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 21:48:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241624AbiFVTmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 15:42:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49856 "EHLO
+        id S1358657AbiFVTsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 15:48:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358028AbiFVTle (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 15:41:34 -0400
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D1839837
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 12:41:25 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id p8so22494983oip.8
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 12:41:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=qQgALAi2wVXgabuqYRv/Dghd+oQEz58M6MZz7MxqqrY=;
-        b=P+OxY6J0Y4ToESliTs4NpNX9arOEpoPUKm12pXVZHA1IIMSz+3hGp9EMFCNQjeGoKJ
-         WTzbIL17quGNmJtW4dn2bqD4kSBLpIL0HaLXUMNZh1mTLFQBAfdPpLF91xJVmVGJ/Ykz
-         /YH4Nj6XCrfRcZguxBUCn5b5p6muhQaRYBviWUR0mbcQtYXZqtfKRHfNubxq8s0QxPWS
-         LnaVr3j1Mf3eT4gUSYFRM5Y6YPKJQiS1fnKPHhbsv3wWrtySmrGcesW4FTUUjo1s4s4P
-         OFxzdAdnuU/2g0v2syPjxo2KOTDLZiJC5Kg5wee1/PvelupDi95Z9EFtZetfevfFl/4h
-         oH8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=qQgALAi2wVXgabuqYRv/Dghd+oQEz58M6MZz7MxqqrY=;
-        b=WAODAD0wIjuLxJsEJU3ksavjfBKNaaz+DRMZGw5vky5lXhBSBwb61aj70WAZiJ9G3K
-         +JOjPTyNcr/rL5bfhjBvQv/FtEhzJlth+hxD3eOenHhsCKuldGve9B8Drj3gFsH6/FIj
-         tZ0SEagAEYKGZlf4JPnC+55IanT4SWjgCUp6qBMNMjntml34dbdo+lu5qXKVQ49YzUnt
-         qEWwwcwOcOsmtxCtrqept4tuecWYXcjq+ZxXeRyu8naRwJUIAeKHifKvGYShlbDqmGJO
-         UsbXaV73nW2tzG0E7BCeE3pbTdEqLXFbGNIVsyIpbQ8jAvbv3WbUtXoxfMqjS0EGahbz
-         gQew==
-X-Gm-Message-State: AJIora8lo+IZvUi6hLLXSsgwYex7A1Xh9ppqhf6K0d1y6D6fuIm2EULE
-        LrrCsUEUDI3jVxBP7cclkwK6xw==
-X-Google-Smtp-Source: AGRyM1uCM2nsUqojnEb3efZ6zb/TnSiIXLMQDdoG0Z4BWMkU1uo9akeZVzd2iHCb93LRc0uXctDRGA==
-X-Received: by 2002:aca:6088:0:b0:32f:7c9:a89f with SMTP id u130-20020aca6088000000b0032f07c9a89fmr2967745oib.129.1655926884657;
-        Wed, 22 Jun 2022 12:41:24 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a13-20020a056808128d00b003342a70fd59sm2396236oiw.10.2022.06.22.12.41.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jun 2022 12:41:24 -0700 (PDT)
-Date:   Wed, 22 Jun 2022 14:41:22 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S1359444AbiFVTsO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 15:48:14 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8E492DD60;
+        Wed, 22 Jun 2022 12:48:09 -0700 (PDT)
+Received: from [46.183.103.8] (helo=phil.sntech)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1o46KG-0004LY-G0; Wed, 22 Jun 2022 21:47:45 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     soc@kernel.org, Olof Johansson <olof@lixom.net>, arm@kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>
+Cc:     Heiko Stuebner <heiko@sntech.de>, openbmc@lists.ozlabs.org,
+        Khuong Dinh <khuong@os.amperecomputing.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Joel Stanley <joel@jms.id.au>, linux-arm-msm@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-aspeed@lists.ozlabs.org,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-input@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andy Gross <agross@kernel.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org, Peter Rosin <peda@axentia.se>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Fabio Estevam <festevam@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: add SC8280XP platform
-Message-ID: <YrNwYsbKG+ai5vFT@builder.lan>
-References: <20220622041224.627803-1-bjorn.andersson@linaro.org>
- <20220622041224.627803-4-bjorn.andersson@linaro.org>
- <YrNl2jS3Stcl2DP8@gerhold.net>
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Li Yang <leoyang.li@nxp.com>, linux-tegra@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-omap@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Tero Kristo <kristo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Jeffery <andrew@aj.id.au>, Andrew Lunn <andrew@lunn.ch>,
+        Nishanth Menon <nm@ti.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        linux-mediatek@lists.infradead.org
+Subject: Re: (subset) [PATCH v3 00/40] dt-bindings: input: gpio-keys: rework matching children
+Date:   Wed, 22 Jun 2022 21:47:36 +0200
+Message-Id: <165592714968.3933570.9891201783444800337.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
+References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=windows-1252
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YrNl2jS3Stcl2DP8@gerhold.net>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,RCVD_IN_SBL_CSS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 22 Jun 13:56 CDT 2022, Stephan Gerhold wrote:
-
-> On Tue, Jun 21, 2022 at 09:12:21PM -0700, Bjorn Andersson wrote:
-> > Introduce initial support for the Qualcomm SC8280XP platform, aka 8cx
-> > Gen 3. This initial contribution supports SMP, CPUfreq, CPU cluster
-> > idling, GCC, TLMM, SMMU, RPMh regulators, power-domains and clocks,
-> > interconnects, some QUPs, UFS, remoteprocs, USB, watchdog, LLCC and
-> > tsens.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > 
-> >  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2145 ++++++++++++++++++++++++
-> >  1 file changed, 2145 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > new file mode 100644
-> > index 000000000000..ac13965a181e
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+On Wed, 15 Jun 2022 17:52:24 -0700, Krzysztof Kozlowski wrote:
+> Merging
+> =======
+> 1. dt-bindings: rebased on top of Rob's:
+>    https://lore.kernel.org/all/20220608211207.2058487-1-robh@kernel.org/
+> 
+> 2. DTS patches are independent. They can be picked up directly by sub-arch
+>    maintainers, by Arnd or Olof, or eventually by me (if you wish).
+> 
 > [...]
-> > +	reserved-memory {
-> > +		#address-cells = <2>;
-> > +		#size-cells = <2>;
-> > +		ranges;
-> > +
-> > +		memory@80000000 {
-> > +			reg = <0 0x80000000 0 0x860000>;
-> > +			no-map;
-> > +		};
-> > +
-> > +		cmd_db: memory@80860000 {
-> > +			compatible = "qcom,cmd-db";
-> > +			reg = <0 0x80860000 0 0x20000>;
-> > +			no-map;
-> > +		};
-> > +
-> > +		memory@80880000 {
-> > +			reg = <0 0x80880000 0 0x80000>;
-> > +			no-map;
-> > +		};
-> > +
-> > +		smem_mem: smem@80900000 {
-> > +			compatible = "qcom,smem";
-> > +			reg = <0 0x80900000 0 0x200000>;
-> > +			no-map;
-> > +			hwlocks = <&tcsr_mutex 3>;
-> > +		};
-> > +
-> > +		memory@80b00000 {
-> > +			reg = <0 0x80b00000 0 0x100000>;
-> > +			no-map;
-> > +		};
-> > +
-> > +		memory@83b00000 {
-> > +			reg = <0 0x83b00000 0 0x1700000>;
-> > +			no-map;
-> > +		};
-> > +
-> > +		memory@85b00000 {
-> > +			reg = <0 0x85b00000 0 0xc00000>;
-> > +			no-map;
-> > +		};
-> > +
-> > +		pil_adsp_mem: memory@86c00000 {
-> > +			reg = <0 0x86c00000 0 0x2000000>;
-> > +			no-map;
-> > +		};
-> > +
-> > +		pil_nsp0_mem: memory@8a100000 {
-> > +			reg = <0 0x8a100000 0 0x1e00000>;
-> > +			no-map;
-> > +		};
-> > +
-> > +		pil_nsp1_mem: memory@8c600000 {
-> > +			reg = <0 0x8c600000 0 0x1e00000>;
-> > +			no-map;
-> > +		};
-> > +
-> > +		memory@aeb00000 {
-> > +			reg = <0 0xaeb00000 0 0x16600000>;
-> > +			no-map;
-> > +		};
-> 
-> Doesn't memory@ still cause the dtbs_check warnings? Similar to
-> 
-> > soc/qcom/qcom,smem.example.dt.yaml: memory@fa00000: 'device_type' is a required property
-> >         From schema: dtschema/schemas/memory.yaml
-> 
-> as in [1]. If I understood it correctly there Rob said that memory@
-> shouldn't be used for reserved-memory. Perhaps even reserved-memory@
-> might be better then.
-> 
-> The device tree specification on the other hand suggests using the
-> purpose of the reserved memory, like we did on older SoCs:
-> 
-> > 3.5.2 /reserved-memory/ child nodes
-> > Following the generic-names recommended practice, node names should
-> > reflect the purpose of the node (ie. “framebuffer” or “dma-pool”).
-> 
-> [1]: https://lore.kernel.org/linux-arm-msm/CAL_Jsq+66j8Y5y+PQ+mezkaxN1pfHFKz524YUF4Lz_OU5E-mZQ@mail.gmail.com/
-> 
 
-Thanks for the pointer. I stared at these for a while given that we
-"shouldn't use memory@", but like with the other platforms I figured we
-could fix it later...
+Applied, thanks!
 
-I'll update these accordingly.
+[26/40] arm64: dts: rockchip: align gpio-key node names with dtschema
+        commit: 517ed0ffd3cc691bef747288d51d01d2705b2251
 
-> > +		timer@17c20000 {
-> > +			compatible = "arm,armv7-timer-mem";
-> > +			#address-cells = <2>;
-> > +			#size-cells = <2>;
-> > +			ranges;
-> > +			reg = <0x0 0x17c20000 0x0 0x1000>;
-> > +			clock-frequency = <19200000>;
-> [...]
-> > +		};
-> > +	timer {
-> > +		compatible = "arm,armv8-timer";
-> > +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> > +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> > +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> > +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-> > +		clock-frequency = <19200000>;
-> > +	};
-> 
-> Is the "clock-frequency" really needed for these two?
-> 
-> The binding docs are pretty clear that this should be configured by the
-> firmware instead:
-> 
-> > Should be present only where necessary to work around broken firmware
-> > which does not configure CNTFRQ on all CPUs to a uniform correct
-> > value. Use of this property is strongly discouraged; fix your firmware
-> > unless absolutely impossible.
-> 
-> I hope Qualcomm's firmware is actually improving on newer platforms
-> and not making big steps backwards. :-)
-> 
+        In the pinenote dts the original patch changed "cover" to
+        switch, so to keep the cover information intact, I changed
+        the node to "switch-cover" ... similar to other "switch-lid"
+        instances in some other Rockchip devicetrees.
 
-I believe I inherited this from somewhere, will check if it's actually
-needed.
+[27/40] ARM: dts: rockchip: align gpio-key node names with dtschema
+        commit: 271e2c92285075a890c58cba9ad5979a8959f6ff
+[28/40] ARM: dts: rockchip: rk3288-tinker: correct gpio-keys properties
+        commit: e5a3cbe8b45b0a436a39cc969b7bcc8353248018
 
-Thanks,
-Bjorn
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
