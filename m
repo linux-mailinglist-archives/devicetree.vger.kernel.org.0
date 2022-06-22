@@ -2,75 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8677F554627
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:10:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F260255472E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:11:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230189AbiFVIXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 04:23:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47204 "EHLO
+        id S237768AbiFVIZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 04:25:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229989AbiFVIXD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 04:23:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C47BD6478;
-        Wed, 22 Jun 2022 01:23:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D1CD6185C;
-        Wed, 22 Jun 2022 08:23:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA9DDC3411D;
-        Wed, 22 Jun 2022 08:23:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655886181;
-        bh=P5mdURKMr+mRkZVjrQMgOzOhTCZmcsEXIdG+fjI0jTw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fdTUSaf4cpnmn+fEVbYhHTt7niysFro6D1GYt8LUZ6msmpcDMJrC1WVf5c42FtkPx
-         gNxq1Q2asjSHeajMz/CM4K1femcsvw6rlUZ1pKtARiJodYYR4PC9pGzOH1VqFixIGa
-         vKsM4IvE+NGvSwnMNiB0puo6FKRDbA/lhMdDTKW+YkllUkMr9odjJxBMxWZfXDUtLU
-         lk6Y6DAhdOZ6KrOYaUlA+tx+fZIIKbIqWHTNJ26P8ZYonklI0c8b01vGWQYmdYITlx
-         PUQaNYY51EQKI2hK7hIxWWzchCJnfPZLCO7uA5SHk5wvWrvxjtMha4KNj2QATota84
-         k4prYbuF0fjyw==
-Date:   Wed, 22 Jun 2022 10:22:52 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
-        "avri.altman@wdc.com" <avri.altman@wdc.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
-        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v6 7/7] arm64: dts: renesas: r8a779f0: spider-cpu: Enable
- UFS device
-Message-ID: <YrLRXMSZvTdLNkDQ@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
-        "avri.altman@wdc.com" <avri.altman@wdc.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
-        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
-        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-References: <20220603110524.1997825-1-yoshihiro.shimoda.uh@renesas.com>
- <20220603110524.1997825-8-yoshihiro.shimoda.uh@renesas.com>
- <YrHgOptQ56woMAeO@shikoro>
- <TYBPR01MB53410E99F2A9D783FAFD42DBD8B29@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+        with ESMTP id S233614AbiFVIZY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 04:25:24 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8A2381A3
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:25:22 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id u15so4898993ejc.10
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:25:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=Sk7O8lq07lQl5L3t5X6FFNtNHOKCXJGWanHL8zfryQY=;
+        b=nE57QXyZ+uLvpFZbraeiA4sJT4OtDPcsAI9qW642P2/Wp2wlW8hLV7FQYC9+735+WE
+         OPB12XTPs9yLe4YlYPwW7/Y4dekJEBEjurThbDv2JB9TQSuQXZWKnnw6lssIjLUFtOAL
+         xOg8rBREGSf9rrBEL0V4GyXq0/y47BY4bd1SxzWiKJoyWFD/w5bePBAVhtyynitzDPYH
+         qc33wXGoTqj2kiiYK/wGnoJTPE4OqU4tBZWxTmWHVheHo2lozE5KVWSQso4sHfRhNndm
+         +11zb92S8W5/WfktCsyEUeJH6mwwaSoH11H7WmvViAiHrkXYEMZPJNXsprEw7rYB47pd
+         x2eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Sk7O8lq07lQl5L3t5X6FFNtNHOKCXJGWanHL8zfryQY=;
+        b=uSQZHrXYFSoNkCjS5PqEW7t9Xo2fMyClxtr21ekKlkoo4be0yFpTT9gG7hrAElDnZ0
+         ZMeVHCFG1f+4tY2Ez2BVG3gTfLJMhNFFYnBqNkmAd53cUitY1AIezQ9JBfPuyA0fRwRv
+         k0nhiTcsZaeOnx2U7Dmjw/JFNwswdZvGeJ1UOQh4QoFFJXcc5z3oQZJuc9EjKFTD3J2J
+         U1uO8qt1muj1ewNGMh0WBaT7F+31p47PW2kFcYIZkVAdkO+bR6u3QrkxhZeHu819Opp7
+         qwIhQAH0XlM359RSLs+IMP2wVADj5RcFjlZGJ4hV1SjlFqdEf2wSBDQdw+DhCvDGlf9m
+         Uw+A==
+X-Gm-Message-State: AJIora886olnt1CwTQHfc/Y/zsW7bQFNoM6quJ7ldLR0is+LSJ5GBwgR
+        xGS/dc7qB8nC632GtfgeOrnhmA==
+X-Google-Smtp-Source: AGRyM1u3EImERlNbTceP1iq3dl3z6SkR6Z0617AtkvGI/qiz1PIqSTKt0YthoOabCGYpE6GlFM8hXA==
+X-Received: by 2002:a17:906:209:b0:712:12d8:b52b with SMTP id 9-20020a170906020900b0071212d8b52bmr2000410ejd.394.1655886321475;
+        Wed, 22 Jun 2022 01:25:21 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id r2-20020a17090609c200b006fef0c7072esm8917082eje.144.2022.06.22.01.25.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Jun 2022 01:25:20 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     robh+dt@kernel.org, agross@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+        devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 01/12] dt-bindings: vendor-prefixes: add Shift GmbH
+Date:   Wed, 22 Jun 2022 10:25:18 +0200
+Message-Id: <165588573167.12753.11773180092884098160.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220521164550.91115-1-krzysztof.kozlowski@linaro.org>
+References: <20220521164550.91115-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Jr88FrY4P3CI52rY"
-Content-Disposition: inline
-In-Reply-To: <TYBPR01MB53410E99F2A9D783FAFD42DBD8B29@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,51 +71,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, 21 May 2022 18:45:39 +0200, Krzysztof Kozlowski wrote:
+> Add prefix for SHIFT GmbH, phone manufacturer
+> (https://www.shiftphones.com/en/).
+> 
+> 
 
---Jr88FrY4P3CI52rY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied, thanks!
 
-Hi Shimoda-san,
+[01/12] dt-bindings: vendor-prefixes: add Shift GmbH
+        https://git.kernel.org/krzk/linux-dt/c/de0f2f0d6f35a583aaade4c290d9e8c3e03970b3
+[02/12] dt-bindings: arm: qcom: add missing MSM8998 board compatibles
+        https://git.kernel.org/krzk/linux-dt/c/a47214e3fde968d4b251b5de8eb16c32f2b0262e
+[03/12] dt-bindings: arm: qcom: add missing MSM8992 board compatibles
+        https://git.kernel.org/krzk/linux-dt/c/581704606d4ec5b8e6749b7abc200795e845a0a2
+[04/12] dt-bindings: arm: qcom: add missing QCS404 board compatibles
+        https://git.kernel.org/krzk/linux-dt/c/1ceefa2a55ce7d9e4b8901b22e981f8965f9c4e3
+[05/12] dt-bindings: arm: qcom: add missing SDM630 board compatibles
+        https://git.kernel.org/krzk/linux-dt/c/4fc3efba32057a76155449a2713ff242109a65a0
+[06/12] dt-bindings: arm: qcom: add missing SDM636 board compatibles
+        https://git.kernel.org/krzk/linux-dt/c/7e86c41be0bebd01e2f0c87cd5b00c5746ab4089
+[07/12] dt-bindings: arm: qcom: add missing SDM845 board compatibles
+        https://git.kernel.org/krzk/linux-dt/c/1facf9135a1b846c7f4e8db044b425b81a7bffff
+[08/12] dt-bindings: arm: qcom: add missing SM6125 board compatibles
+        https://git.kernel.org/krzk/linux-dt/c/103a90f68bf1f30b46de5c08c19c9f8e97530024
+[09/12] dt-bindings: arm: qcom: add missing SM6350 board compatibles
+        https://git.kernel.org/krzk/linux-dt/c/f9702486c77ba74f65859098e3d8e4bdb2e8a745
 
-> Hmm, my environment [1] could not reproduce this error messages.=20
-
-Interesting. I will add some debug output to provide more information.
-
-> based on renesas-drivers-2022-05-24-v5.18 which I made the patches.
-> Perhaps, should I test on the latest kernel?
-> Which kernel version did you test?
-
-renesas-drivers-2022-06-07-v5.19-rc1 with my Thermal, HSCIF, and your
-UFS patches on top. I pushed it here:
-
-git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git renesas/s4/ufs-=
-experimental
-
-I'll be back soon,
-
-   Wolfram
-
-
---Jr88FrY4P3CI52rY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKy0VgACgkQFA3kzBSg
-KbYqYxAApd8+WuAKHQsQuwhjDcF1HQ5argTIjceKBbQASp1lfI31BOiLO7UJ/kcD
-4XNGQzvrKaeZcPImu418PagFPpRnjM01k9aQo9p4DyKdIzshfkFIfIbmhMgqAfFQ
-9wCGDDFZT4KVGVxKBvTLOqgabm4wM1qxOVz7hTD+I2uX0E67A6LVg4HWfB0wXRFC
-Ml7bXy+XjAVNX8Bjtu/Clmpg7QAf1GaJt2wPkVF45PL7POncxlyUTi1dLMNWvDtJ
-surrOJ8sc5XBJDtbKBcyYfHCOuK3tQhjYQa72hSC5ePtTDT743xearc7y+Xdaay2
-W3jNbFqREz/taAQsxc0H4vcr4EIcFpiiDhJrSZcTbLvWfHbRa5y0Q7idCJ4l6HPB
-7bH8a+GAUcsQsrsUo3y6K98PtMsRdfMz/5QclwMVANnj+46iFjTKsNOpVt5tV0ME
-M9Ir1Ai9zcmUVLcPMHgaHvXP5kAGQEktaS/CNCi8ojkxJqEvEke6W/OD7DljLbJG
-Y4MPpbb2JFGfUSN7tsIt49JQeN8qXLjM1upHgj0Pww/dwUR0w84s2zbl1Cxwq58E
-/UM753fcKfNryKMU72mBuCQD+zWbATvPwVN1MB1tyO6P3LzmAd+rH4QHT+47/MP2
-2AFo4Nrlct9BQ+UYJ5ytJPzOgZI+57YmeVJS8UXrCc3OVrLf9uY=
-=cyYy
------END PGP SIGNATURE-----
-
---Jr88FrY4P3CI52rY--
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
