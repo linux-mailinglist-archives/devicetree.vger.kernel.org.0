@@ -2,108 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C0C455447A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 10:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52A69554428
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 10:11:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230517AbiFVHWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 03:22:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55524 "EHLO
+        id S1351969AbiFVHYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 03:24:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349995AbiFVHWG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 03:22:06 -0400
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA66536E38
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 00:22:03 -0700 (PDT)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220622072201epoutp03ad032c7c2abb92c96d90648f5dbf795f~64GFiO2oj0659906599epoutp03a
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:22:01 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220622072201epoutp03ad032c7c2abb92c96d90648f5dbf795f~64GFiO2oj0659906599epoutp03a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1655882521;
-        bh=OsCBkB/Hg8OJ6ApY98wwN1LH5i0yIp4If2YhK1U5tNc=;
-        h=Subject:Reply-To:From:To:CC:Date:References:From;
-        b=LsXJS/0K2YwssEUmNyNh/bfplOx82rw9DPxgz2Db44Tg9VxO3BxKHKh+wS0qVHFww
-         z0C4h4T9cVM4b28Gq6y0HTSzTrT+XfwmNEKhRQoGqSBZmM0CpTibTcynV/O/zY0AxB
-         kloZaAkVgUJH5dFTgNMRpc1Z4EQvWCrB8+mvUStU=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-        20220622072200epcas2p2ef8275ffd36cfb4ec8d194e2788cf415~64GEi9OP42374823748epcas2p2O;
-        Wed, 22 Jun 2022 07:22:00 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.90]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4LSZZc1QlDz4x9QH; Wed, 22 Jun
-        2022 07:22:00 +0000 (GMT)
-X-AuditID: b6c32a47-5f7ff700000025aa-f3-62b2c31848a1
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        29.23.09642.813C2B26; Wed, 22 Jun 2022 16:22:00 +0900 (KST)
-Mime-Version: 1.0
-Subject: Re: [PATCH v3 1/5] dt-bindings: pci: Add ARTPEC-8 PCIe controller
-Reply-To: wangseok.lee@samsung.com
-Sender: Wangseok Lee <wangseok.lee@samsung.com>
-From:   Wangseok Lee <wangseok.lee@samsung.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>
-CC:     Moon-Ki Jun <moonki.jun@samsung.com>,
-        Sang Min Kim <hypmean.kim@samsung.com>,
-        Dongjin Yang <dj76.yang@samsung.com>,
-        Yeeun Kim <yeeun119.kim@samsung.com>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20220622072159epcms2p52a21560a7e60cffd13ea70e55ac15428@epcms2p5>
-Date:   Wed, 22 Jun 2022 16:21:59 +0900
-X-CMS-MailID: 20220622072159epcms2p52a21560a7e60cffd13ea70e55ac15428
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-X-CPGSPASS: Y
-X-CPGSPASS: Y
-CMS-TYPE: 102P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLJsWRmVeSWpSXmKPExsWy7bCmma7E4U1JBstusFosacqweHlI02L+
-        kXOsFrtnLGeymDn1DLPF80OzmC0+tahaXHjaw2bxctY9Nou9r7eyWzT0/Ga1OPLmI7PF/uMr
-        mSwu75rDZnF23nE2iwmrvrFYvPn9gt3i3OJMi9a9R9gtdt45wWzxa+sfJgdRjzXz1jB6XF8X
-        4LFgU6nHplWdbB53ru1h83hyZTqTx+Yl9R59W1Yxehy/sZ3J4/MmuQCuqGybjNTElNQihdS8
-        5PyUzLx0WyXv4HjneFMzA0NdQ0sLcyWFvMTcVFslF58AXbfMHKD3lBTKEnNKgUIBicXFSvp2
-        NkX5pSWpChn5xSW2SqkFKTkF5gV6xYm5xaV56Xp5qSVWhgYGRqZAhQnZGauuPGMr2KZX0Xtu
-        D2sD4xzdLkZODgkBE4nmba8Zuxi5OIQEdjBK7Pq1ga2LkYODV0BQ4u8OYZAaYQEvibXrXrGA
-        2EICShI71sxjhojrS1xf0c0KYrMJ6Er8W/ySDWSOiMBqNolZO18wgTjMAgsYJfb/3scIsY1X
-        Ykb7UxYIW1pi+/KtUHENiR/LepkhbFGJm6vfssPY74/Nh6oRkWi9dxaqRlDiwc/dUHEpiQVP
-        DrFC2NUS+//+ZoKwGxgl+u+ngjwjAXTpjuvGIGFeAV+J1t5usPEsAqoSrQunQo10kbg4+wzY
-        acwC2hLLFr5mBmllFtCUWL9LH2KKssSRWywwjzRs/M2OzmYW4JPoOPwXLr5j3hOoY9Qk5q3c
-        yQwxRkZi60v/CYxKsxDhPAvJ2lkIaxcwMq9iFEstKM5NTy02KjCGR21yfu4mRnA613LfwTjj
-        7Qe9Q4xMHIyHGCU4mJVEeG24NyQJ8aYkVlalFuXHF5XmpBYfYjQFengis5Rocj4wo+SVxBua
-        WBqYmJkZmhuZGpgrifN6pWxIFBJITyxJzU5NLUgtgulj4uCUamCKvf3EXXyStmDOhxMPX61d
-        vlFO8NW6u1ttTlY+3Pt24fkpc+33HC+NfuIvFGnTuChiuuNUnU9LZF5f4ld8wJqxxm67Bsd3
-        4esy9jI8Sc8W/mB+2v/Q3mDzy3wZr7DPlX+3NbDVJXOKqzEUp/xujuPPT9vuabVniaZkc+a8
-        7RcdmSyPSDb1tvqsqeG+9/YVm9ibQ6b572ZLLHnrpSrzMP+xQpGJX+DuOIagoD0f9j9ccn7v
-        0t+FH6U6Nu9bqj57D+ujt3X167wUnu2cKbD1ucLRhFts14MvL+ZIKH+aECyYYaj29WRuoPOJ
-        7zvl88yyV54QfsfA/qVy3SuPi+3XL8geDX5+cofJsjvLQ8XOtBa9UGIpzkg01GIuKk4EABHd
-        qzBwBAAA
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7
-References: <CGME20220614011616epcms2p7dcaa67c53b7df5802dd7a697e2d472d7@epcms2p5>
+        with ESMTP id S232569AbiFVHYm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 03:24:42 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF42D22BF6;
+        Wed, 22 Jun 2022 00:24:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1655882681; x=1687418681;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NgoHLyZGRgMPgNFB7tpululSiyLjykD0PpFVx9n2Or0=;
+  b=hjvJ4wk1B0xZ2fNj3mZ3rnC200GGaPOmafmT7Sp663brWx5d5H4gT5xc
+   WjdEgMTIDgawZ4CGYTF8xuLfGmip5DZEbXgYV2yDmwfnPa+nNdu2WQSz6
+   1u4LgN5tSWuLxvOOaTte1xV+JO8fAnkAI2Q2uBxGUAkzJe/5b+EGQ5Pgx
+   SStxsKD/K1QSawdY3j/qstpTRbICh4x551gvVBClIM+ovgoFDxIERvtC1
+   UpyMI1p2xfGgFctvSf/lPBwJsR+l7Pbrtrpbj24wHhAxhs+Iy50SgqqDs
+   U//XnNJRHkEDC5qOy0O7gMWu1MGY99/JQNqwQsxQ44KXzbGabr1QBRJ8p
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="281071179"
+X-IronPort-AV: E=Sophos;i="5.92,211,1650956400"; 
+   d="scan'208";a="281071179"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2022 00:24:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,211,1650956400"; 
+   d="scan'208";a="562834083"
+Received: from lkp-server02.sh.intel.com (HELO a67cc04a5eeb) ([10.239.97.151])
+  by orsmga006.jf.intel.com with ESMTP; 22 Jun 2022 00:24:37 -0700
+Received: from kbuild by a67cc04a5eeb with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o3uj7-0000zN-5j;
+        Wed, 22 Jun 2022 07:24:37 +0000
+Date:   Wed, 22 Jun 2022 15:24:35 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Mikko Perttunen <cyndis@kapsi.fi>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, joro@8bytes.org, will@kernel.org,
+        robin.murphy@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski@canonical.com
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 04/10] gpu: host1x: Add context device management code
+Message-ID: <202206221557.laES8yNQ-lkp@intel.com>
+References: <20220621151022.1416300-5-cyndis@kapsi.fi>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220621151022.1416300-5-cyndis@kapsi.fi>
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -111,80 +70,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On=C2=A021/06/2022=C2=A021:44,=C2=A0Krzysztof=C2=A0Kozlowski=C2=A0wrote:=0D=
-=0A>=C2=A0On=C2=A021/06/2022=C2=A009:42,=C2=A0Wangseok=C2=A0Lee=C2=A0wrote:=
-=0D=0A>>>>=C2=A0=C2=A0=0D=0A>>>>=C2=A0=C2=A0samsung,syscon-bus-s-fsys:=0D=
-=0A>>>>=C2=A0=C2=A0=C2=A0=C2=A0description:=0D=0A>>>>=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0Phandle=C2=A0to=C2=A0bus-s=C2=A0path=C2=A0of=C2=A0fsys=C2=A0=
-block,=C2=A0this=C2=A0register=0D=0A>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0are=C2=A0used=C2=A0for=C2=A0enabling=C2=A0bus-s.=0D=0A>>>>=C2=A0=C2=A0=
-=C2=A0=C2=A0=24ref:=C2=A0/schemas/types.yaml=23/definitions/phandle=0D=0A>>=
->>=C2=A0=C2=A0=0D=0A>>>>=C2=A0=C2=A0samsung,syscon-bus-p-fsys:=0D=0A>>>>=C2=
-=A0=C2=A0=C2=A0=C2=A0description:=0D=0A>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0Phandle=C2=A0to=C2=A0bus-p=C2=A0path=C2=A0of=C2=A0fsys=C2=A0block,=C2=
-=A0this=C2=A0register=0D=0A>>>>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0are=C2=
-=A0used=C2=A0for=C2=A0enabling=C2=A0bus-p.=0D=0A>>>>=C2=A0=C2=A0=C2=A0=C2=
-=A0=24ref:=C2=A0/schemas/types.yaml=23/definitions/phandle=0D=0A>>>=0D=0A>>=
->=C2=A0This=C2=A0two=C2=A0look=C2=A0unspecific=C2=A0and=C2=A0hacky=C2=A0wor=
-karound=C2=A0for=C2=A0missing=C2=A0drivers.=C2=A0Looks=0D=0A>>>=C2=A0like=
-=C2=A0instead=C2=A0of=C2=A0implementing=C2=A0interconnect=C2=A0or=C2=A0cloc=
-k=C2=A0driver,=C2=A0you=C2=A0decided=0D=0A>>>=C2=A0to=C2=A0poke=C2=A0some=
-=C2=A0other=C2=A0registers.=C2=A0Why=C2=A0this=C2=A0cannot=C2=A0be=C2=A0an=
-=C2=A0interconnect=C2=A0driver?=0D=0A>>>=0D=0A>>>=0D=0A>>=C2=A0=0D=0A>>=C2=
-=A0bus-s,=C2=A0bus-p=C2=A0is=C2=A0a=C2=A0register=C2=A0that=C2=A0exists=C2=
-=A0in=C2=A0the=C2=A0sysreg=C2=A0of=C2=A0the=C2=A0fsys=C2=A0block.=0D=0A>>=
-=C2=A0It=C2=A0is=C2=A0the=C2=A0same=C2=A0block=C2=A0as=C2=A0=22fsys-sysreg=
-=22=C2=A0but=C2=A0is=C2=A0separated=C2=A0separately=C2=A0in=0D=0A>>=C2=A0ha=
-rdware.=0D=0A>=C2=A0=0D=0A>=C2=A0Two=C2=A0points=C2=A0here:=0D=0A>=C2=A01.=
-=C2=A0If=C2=A0it=C2=A0is=C2=A0in=C2=A0FSYS,=C2=A0why=C2=A0it=C2=A0cannot=C2=
-=A0be=C2=A0accessed=C2=A0with=C2=A0samsung,fsys-sysreg?=0D=0A>=C2=A02.=C2=
-=A0If=C2=A0it=C2=A0is=C2=A0only=C2=A0register,=C2=A0shuld=C2=A0be=C2=A0desc=
-ribed=C2=A0like=C2=A0this.=C2=A0You=C2=A0must=0D=0A>=C2=A0describe=C2=A0ite=
-m:=0D=0A>=C2=A0https://protect2.fireeye.com/v1/url?k=3D0f529a57-50c9a332-0f=
-531118-000babff32e3-50938d8198077d59&q=3D1&e=3D32284e69-bbed-4d09-b6d6-0a43=
-428aebf5&u=3Dhttps%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv5.18-rc1%2Fsource%=
-2FDocumentation%2Fdevicetree%2Fbindings%2Fsoc%2Fsamsung%2Fexynos-usi.yaml%2=
-3L42=0D=0A>=C2=A0=0D=0A=0D=0AIt=C2=A0would=C2=A0be=C2=A0better=C2=A0to=C2=
-=A0access=C2=A0with=C2=A0fsys-sysreg,=C2=A0but=C2=A0their=C2=A0h/w=C2=A0add=
-ress=C2=A0are=0D=0Afar=C2=A0from=C2=A0each=C2=A0other.=C2=A0The=C2=A0fsys=
-=C2=A0block=C2=A0consists=C2=A0of=C2=A0a=C2=A0system=C2=A0register=C2=A0and=
-=C2=A0an=0D=0Aadditional=C2=A0control=C2=A0system=C2=A0register.=C2=A0=22bu=
-s-s-fsys=22=C2=A0and=C2=A0=22bus-p-fsys=22=C2=A0are=0D=0Aadditional=C2=A0co=
-ntrol=C2=A0system=C2=A0register.=C2=A0sysreg=C2=A0and=C2=A0additional=C2=A0=
-control=C2=A0sysreg=0D=0Aaddresses=C2=A0are=C2=A0far=C2=A0from=C2=A0each=C2=
-=A0other=C2=A0and=C2=A0there=C2=A0are=C2=A0h/w=C2=A0registers=C2=A0that=C2=
-=A0perform=0D=0Adifferent=C2=A0functions=C2=A0between=C2=A0them.=0D=0A=0D=
-=0A>>=C2=A0So,=C2=A0get=C2=A0resource=C2=A0is=C2=A0performed=C2=A0separatel=
-y=C2=A0from=C2=A0=22fsys-sysreg=22.=0D=0A>>=C2=A0They=C2=A0set=C2=A0pcie=C2=
-=A0slave,=C2=A0dbi=C2=A0related=C2=A0control=C2=A0settings,=0D=0A>>=C2=A0na=
-ming=C2=A0=22bus-x=22=C2=A0seems=C2=A0to=C2=A0be=C2=A0interconnect.=0D=0A>>=
-=C2=A0I=C2=A0will=C2=A0add=C2=A0this=C2=A0description=C2=A0to=C2=A0property=
-.=0D=0A>>=C2=A0I=C2=A0don't=C2=A0think=C2=A0it=C2=A0need=C2=A0to=C2=A0use=
-=C2=A0the=C2=A0interconnect=C2=A0driver,=0D=0A>>=C2=A0so=C2=A0please=C2=A0l=
-et=C2=A0me=C2=A0know=C2=A0your=C2=A0opinion.=0D=0A>=C2=A0=0D=0A>=C2=A0Pleas=
-e=C2=A0document=C2=A0both=C2=A0in=C2=A0the=C2=A0bindings=C2=A0and=C2=A0in=
-=C2=A0the=C2=A0driver=C2=A0usage=C2=A0of=C2=A0this=0D=0A>=C2=A0register.=C2=
-=A0Writing=C2=A0there=C2=A0=220=22=C2=A0or=C2=A0=221=22=C2=A0is=C2=A0not=C2=
-=A0enough.=C2=A0If=C2=A0the=C2=A0documentation=0D=0A>=C2=A0is=C2=A0good,=C2=
-=A0I=C2=A0am=C2=A0fine=C2=A0with=C2=A0it.=C2=A0If=C2=A0the=C2=A0explanation=
-=C2=A0is=C2=A0obfuscated/not=0D=0A>=C2=A0sufficient,=C2=A0it=C2=A0will=C2=
-=A0look=C2=A0like=C2=A0avoiding=C2=A0to=C2=A0implement=C2=A0a=C2=A0driver,=
-=C2=A0which=C2=A0I=0D=0A>=C2=A0don't=C2=A0want=C2=A0to=C2=A0accept.=0D=0A>=
-=C2=A0=0D=0A=0D=0AI=C2=A0think=C2=A0i=C2=A0should=C2=A0add=C2=A0enough=C2=
-=A0description.=C2=A0Is=C2=A0it=C2=A0sufficient=C2=A0to=C2=A0modify=0D=0Ath=
-e=C2=A0name=C2=A0and=C2=A0description=C2=A0of=C2=A0property=C2=A0like=C2=A0=
-this?=0D=0A=0D=0Asamsung,fsys-bus-s:=0D=0A=C2=A0=C2=A0description:=0D=0A=C2=
-=A0=C2=A0=C2=A0=C2=A0Phandle=C2=A0to=C2=A0bus-s=C2=A0of=C2=A0fsys=C2=A0bloc=
-k,=C2=A0this=C2=A0register=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0is=C2=A0additional=
-=C2=A0control=C2=A0sysreg=C2=A0in=C2=A0fsys=C2=A0block=C2=A0and=0D=0A=C2=A0=
-=C2=A0=C2=A0=C2=A0this=C2=A0is=C2=A0used=C2=A0for=C2=A0pcie=C2=A0slave=C2=
-=A0control=C2=A0setting.=0D=0A=C2=A0=C2=A0=24ref:=C2=A0/schemas/types.yaml=
-=23/definitions/phandle=0D=0A=0D=0Asamsung,fsys-bus-p:=0D=0A=C2=A0=C2=A0des=
-cription:=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0Phandle=C2=A0to=C2=A0bus-p=C2=A0of=
-=C2=A0fsys=C2=A0block,=C2=A0this=C2=A0register=0D=0A=C2=A0=C2=A0=C2=A0=C2=
-=A0is=C2=A0additional=C2=A0control=C2=A0sysreg=C2=A0in=C2=A0fsys=C2=A0block=
-=C2=A0and=0D=0A=C2=A0=C2=A0=C2=A0=C2=A0this=C2=A0is=C2=A0used=C2=A0for=C2=
-=A0pcie=C2=A0dbi=C2=A0control=C2=A0setting.=0D=0A=C2=A0=C2=A0=24ref:=C2=A0/=
-schemas/types.yaml=23/definitions/phandle=0D=0A=0D=0A>=C2=A0Best=C2=A0regar=
-ds,=0D=0A>=C2=A0Krzysztof=0D=0A=0D=0AThank=C2=A0you=C2=A0for=C2=A0kindness=
-=C2=A0reivew.=0D=0A=0D=0ABest=C2=A0regards,=0D=0AWangseok=C2=A0Lee
+Hi Mikko,
+
+Thank you for the patch! Yet something to improve:
+
+[auto build test ERROR on drm/drm-next]
+[also build test ERROR on tegra/for-next linus/master v5.19-rc3]
+[cannot apply to tegra-drm/drm/tegra/for-next next-20220621]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Mikko-Perttunen/Host1x-context-isolation-support/20220621-231339
+base:   git://anongit.freedesktop.org/drm/drm drm-next
+config: arm64-randconfig-r021-20220622 (https://download.01.org/0day-ci/archive/20220622/202206221557.laES8yNQ-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 8b8d126598ce7bd5243da7f94f69fa1104288bee)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/2501beeae7469b805f9f624049fd56643cf6e18e
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Mikko-Perttunen/Host1x-context-isolation-support/20220621-231339
+        git checkout 2501beeae7469b805f9f624049fd56643cf6e18e
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/gpu/host1x/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/host1x/context.c:80:28: error: no member named 'ids' in 'struct iommu_fwspec'
+                   ctx->stream_id = fwspec->ids[0] & 0xffff;
+                                    ~~~~~~  ^
+   1 error generated.
+
+
+vim +80 drivers/gpu/host1x/context.c
+
+    15	
+    16	int host1x_memory_context_list_init(struct host1x *host1x)
+    17	{
+    18		struct host1x_memory_context_list *cdl = &host1x->context_list;
+    19		struct device_node *node = host1x->dev->of_node;
+    20		struct host1x_memory_context *ctx;
+    21		unsigned int i;
+    22		int err;
+    23	
+    24		cdl->devs = NULL;
+    25		cdl->len = 0;
+    26		mutex_init(&cdl->lock);
+    27	
+    28		err = of_property_count_u32_elems(node, "iommu-map");
+    29		if (err < 0)
+    30			return 0;
+    31	
+    32		cdl->devs = kcalloc(err, sizeof(*cdl->devs), GFP_KERNEL);
+    33		if (!cdl->devs)
+    34			return -ENOMEM;
+    35		cdl->len = err / 4;
+    36	
+    37		for (i = 0; i < cdl->len; i++) {
+    38			struct iommu_fwspec *fwspec;
+    39	
+    40			ctx = &cdl->devs[i];
+    41	
+    42			ctx->host = host1x;
+    43	
+    44			device_initialize(&ctx->dev);
+    45	
+    46			/*
+    47			 * Due to an issue with T194 NVENC, only 38 bits can be used.
+    48			 * Anyway, 256GiB of IOVA ought to be enough for anyone.
+    49			 */
+    50			ctx->dma_mask = DMA_BIT_MASK(38);
+    51			ctx->dev.dma_mask = &ctx->dma_mask;
+    52			ctx->dev.coherent_dma_mask = ctx->dma_mask;
+    53			dev_set_name(&ctx->dev, "host1x-ctx.%d", i);
+    54			ctx->dev.bus = &host1x_context_device_bus_type;
+    55			ctx->dev.parent = host1x->dev;
+    56	
+    57			dma_set_max_seg_size(&ctx->dev, UINT_MAX);
+    58	
+    59			err = device_add(&ctx->dev);
+    60			if (err) {
+    61				dev_err(host1x->dev, "could not add context device %d: %d\n", i, err);
+    62				goto del_devices;
+    63			}
+    64	
+    65			err = of_dma_configure_id(&ctx->dev, node, true, &i);
+    66			if (err) {
+    67				dev_err(host1x->dev, "IOMMU configuration failed for context device %d: %d\n",
+    68					i, err);
+    69				device_del(&ctx->dev);
+    70				goto del_devices;
+    71			}
+    72	
+    73			fwspec = dev_iommu_fwspec_get(&ctx->dev);
+    74			if (!fwspec) {
+    75				dev_err(host1x->dev, "Context device %d has no IOMMU!\n", i);
+    76				device_del(&ctx->dev);
+    77				goto del_devices;
+    78			}
+    79	
+  > 80			ctx->stream_id = fwspec->ids[0] & 0xffff;
+    81		}
+    82	
+    83		return 0;
+    84	
+    85	del_devices:
+    86		while (i--)
+    87			device_del(&cdl->devs[i].dev);
+    88	
+    89		kfree(cdl->devs);
+    90		cdl->len = 0;
+    91	
+    92		return err;
+    93	}
+    94	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
