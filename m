@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEBC8554D01
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 16:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55E82554CFA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 16:29:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242136AbiFVO3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 10:29:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52930 "EHLO
+        id S1356938AbiFVO3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 10:29:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358044AbiFVO2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 10:28:17 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD6A1BEAA
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:28:16 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id eo8so24219488edb.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:28:16 -0700 (PDT)
+        with ESMTP id S233919AbiFVO3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 10:29:06 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2364031353
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:29:05 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id z7so24145794edm.13
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:29:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=KF2rN6or5HKqUuQgEplVYVKSFo8eqgnFjZPNJQPN7DY=;
-        b=wHtAo5TFotLBbcElJtBbyRlvW3Fh6/jVwjWcRSfL74sxvd7rCWnn9WKriUvEaGefY9
-         NAoYhzEoSrAAXIVCQ8ubyBS5nW8rY/NzPQQOygi1LLqnhZ9YfrThXn4yeqxAcS/btKXE
-         iTOpWZvsCeW+Il067F706l+8m99tSltHYDpniSuZNIRE2orW1WZCAHFD2C3RvhUAZ7I2
-         88hhfHDMeN0ORI+QmtZ+EyUM2kr5gguenwyxas9XZrNfWGhKxaJBHQT0/WWU1WhJPQ5a
-         nHXis3h+j4Gbh4Ste8bEmc5JRPP7xqX5Uss0t6wJtjksbQI/eBQoLoFnPYaLBrO9gx0K
-         2XLA==
+        bh=eY6hl7x2OmQan4PYUD1Bjl8LlhVtyhv+gi/IBaGVvk0=;
+        b=i3ZR2WI0WybHw6Ud95ax651bUgjBXx7D2e/cL+4L9Pa4tohtPtl+zZ2Ou1ft+cC8ye
+         g/gsFaHRK6KB/KtjAjC3Jf2ucw4oIuy6GBfr7V8r83/JfljSuZRcfnkNWA0UqCEd4a47
+         6a14DYRD8+bW/RNoj6kM5Ay5nsQi5bvfb0dIQBn/DImeaJ+Kyru2ENkUFlRCsW0MjOI+
+         KiJpOiTOjFWV3hO3k5fApEu7LZ7ZowWgJOuMhlOvNRRyYj/kvKMtMxZJypCsdLEcCHiy
+         0rlNzif5MF4qcSBUn8yt1NRtESbuVrWXYDG7yUPqVyAyySbJFtVQ/cyKah1GVIC6LF73
+         iJoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=KF2rN6or5HKqUuQgEplVYVKSFo8eqgnFjZPNJQPN7DY=;
-        b=sVPBlIS1EH9BCjBxtcMbw9yyF0gx9T1dK0BZbblMTsbzGXyx2V0xcc+SMj2LQRnmMp
-         3Knk0Nc3zEIBfIU98Out5WJGZg1BtFistFbv7xqHwzPUyD0u2oaDucqCX8AOY62MA3Hc
-         4IdSRtXUZywU9KWiTn8ovva72ppiRRmc4lm8sicE5hTFzm3t3YN8YsrbP6Qxxr8LE0Iw
-         +66wmag/6n8hIUpvlHZxIC+mx2HtuViqx88lAPisMp1BV5hUlg9S0OdOq/wDvzJkHfA6
-         fCVOA7fDN4Ew9Ich2wXXd64G7a4MAGvRL4wKEgI6/CbezaSUnr0uYgwnlT6MBMBQ69rb
-         vAyA==
-X-Gm-Message-State: AJIora8W71R3X3SCwTcV3SB53QFJqK0utGuSL143zs2xDFeJVpF5JZIB
-        xmLJ++sPCqsOKChtQvNSyuXQuw==
-X-Google-Smtp-Source: AGRyM1v26ha318CN8KJM3KWSrdhQTfAp/GKOeRT0mkhtPFB53FRQRyFwPmVys9k8fqLFOlUe6dJ4xg==
-X-Received: by 2002:aa7:c542:0:b0:435:75e:8a7b with SMTP id s2-20020aa7c542000000b00435075e8a7bmr4498560edr.108.1655908094665;
-        Wed, 22 Jun 2022 07:28:14 -0700 (PDT)
+        bh=eY6hl7x2OmQan4PYUD1Bjl8LlhVtyhv+gi/IBaGVvk0=;
+        b=aYtk3E8sSBRVtzdUKAqnHZmomyOQg8TDib3EBRPo+CrgXfjL0G8eCAA+0gqjW3ws1g
+         KWveOwZpBKZktEy04UkrZtnfFUAyXM6fL6EgEH8xrCmTxG26GRt6KVH/WFE712FiytDS
+         lc6lrRznEoi1O7JTGFO+IFv8Werb+ACg49YvbLgRZrhbMqwng6VdLAI/Eco9/DD4uPxu
+         CnZ1IET0XxwHhwAGi2s6nBVTUFl4gxeNanN/7GTbmqtEO15z286quZEhlp/XQsjXG+OF
+         xJqV3exLWH8tQB6i6SycvvGvSNPejuhavjlHeccsPS7BUg1s0kuFl9rzT+H9b3+XV+lJ
+         VT9g==
+X-Gm-Message-State: AJIora8gw6hZ1dvI1Y4cJ8/pbs4IxRoloQaOPGJ7yKHLBp3FNC5J42jZ
+        fj30gAwxi1gzcJ6Gd03d7PITqQ==
+X-Google-Smtp-Source: AGRyM1srgj2iJtoHexTQ9IsSqs2aSBpb/QKqY7iWJ8uB+/1bmVRho+nrxcHIX3oN0e2HZIqTmd1j6g==
+X-Received: by 2002:aa7:c38d:0:b0:435:9257:99a5 with SMTP id k13-20020aa7c38d000000b00435925799a5mr4476690edq.204.1655908143688;
+        Wed, 22 Jun 2022 07:29:03 -0700 (PDT)
 Received: from [192.168.0.225] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g36-20020a056402322400b004357f88fcdcsm8130733eda.11.2022.06.22.07.28.13
+        by smtp.gmail.com with ESMTPSA id s2-20020a1709060d6200b006f3ef214e2csm9700954ejh.146.2022.06.22.07.29.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 07:28:14 -0700 (PDT)
-Message-ID: <767ffc9d-bc36-c627-8245-e46a46e6974d@linaro.org>
-Date:   Wed, 22 Jun 2022 16:28:13 +0200
+        Wed, 22 Jun 2022 07:29:03 -0700 (PDT)
+Message-ID: <7c707d16-1237-e587-3768-245b710e0663@linaro.org>
+Date:   Wed, 22 Jun 2022 16:29:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 01/13] dt-bindings: Add bindings for Tegra234 Host1x
- and VIC
+Subject: Re: [PATCH v3 1/3] phy: dt-bindings: cdns,dphy: Add compatible for
+ dphy on j721e
 Content-Language: en-US
-To:     Mikko Perttunen <cyndis@kapsi.fi>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, digetx@gmail.com
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mikko Perttunen <mperttunen@nvidia.com>
-References: <20220622113733.1710471-1-cyndis@kapsi.fi>
- <20220622113733.1710471-2-cyndis@kapsi.fi>
+To:     Rahul T R <r-ravikumar@ti.com>, linux-phy@lists.infradead.org,
+        kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        laurent.pinchart@ideasonboard.com
+Cc:     p.yadav@ti.com, tomi.valkeinen@ideasonboard.com,
+        linux-kernel@vger.kernel.org, jpawar@cadence.com,
+        sjakhade@cadence.com, mparab@cadence.com,
+        devicetree@vger.kernel.org, vigneshr@ti.com, lee.jones@linaro.org
+References: <20220622105311.21415-1-r-ravikumar@ti.com>
+ <20220622105311.21415-2-r-ravikumar@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220622113733.1710471-2-cyndis@kapsi.fi>
+In-Reply-To: <20220622105311.21415-2-r-ravikumar@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,218 +80,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2022 13:37, Mikko Perttunen wrote:
-> From: Mikko Perttunen <mperttunen@nvidia.com>
+On 22/06/2022 12:53, Rahul T R wrote:
+> Add compatible to support dphy tx on j721e
 > 
-> Update VIC and Host1x bindings for changes in Tegra234.
-> 
-> Namely,
-> - New compatible strings
-> - Sharded syncpoint interrupts
-> - Optional reset.
-> 
-> Also, fix the order of descriptions for VM/hypervisor
-> register apertures -- while the reg-names specification
-> was correct, the descriptions for these were switched.
-> 
-> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
-> v2:
-> * Add back 'required' for resets/reset-names on older SoCs
-> * Simplified reg descriptions
-> * Updated commit message
-> ---
->  .../display/tegra/nvidia,tegra124-vic.yaml    |   1 +
->  .../display/tegra/nvidia,tegra20-host1x.yaml  | 110 +++++++++++++++---
->  2 files changed, 95 insertions(+), 16 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-vic.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-vic.yaml
-> index 37bb5ddc1963..7200095ef19e 100644
-> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-vic.yaml
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra124-vic.yaml
-> @@ -21,6 +21,7 @@ properties:
->            - nvidia,tegra210-vic
->            - nvidia,tegra186-vic
->            - nvidia,tegra194-vic
-> +          - nvidia,tegra234-vic
->  
->        - items:
->            - const: nvidia,tegra132-vic
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
-> index 0adeb03b9e3a..5fe25e0a8d48 100644
-> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
-> @@ -24,6 +24,7 @@ properties:
->            - nvidia,tegra210-host1x
->            - nvidia,tegra186-host1x
->            - nvidia,tegra194-host1x
-> +          - nvidia,tegra234-host1x
->  
->        - items:
->            - const: nvidia,tegra132-host1x
-> @@ -31,23 +32,19 @@ properties:
->  
->    reg:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 3
->  
->    reg-names:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 3
->  
->    interrupts:
-> -    items:
-> -      - description: host1x syncpoint interrupt
-> -      - description: host1x general interrupt
->      minItems: 1
-> +    maxItems: 9
->  
->    interrupt-names:
-> -    items:
-> -      - const: syncpt
-> -      - const: host1x
->      minItems: 1
-> +    maxItems: 9
->  
->    '#address-cells':
->      description: The number of cells used to represent physical base addresses
-> @@ -110,13 +107,35 @@ required:
->    - reg
->    - clocks
->    - clock-names
-> -  - resets
-> -  - reset-names
->  
->  additionalProperties:
->    type: object
->  
->  allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra20-host1x
-> +              - nvidia,tegra30-host1x
-> +              - nvidia,tegra114-host1x
-> +              - nvidia,tegra124-host1x
-> +              - nvidia,tegra210-host1x
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          items:
-> +            - description: host1x syncpoint interrupt
-> +            - description: host1x general interrupt
-> +
-> +        interrupt-names:
-> +          items:
-> +            - const: syncpt
-> +            - const: host1x
-> +      required:
-> +        - resets
-> +        - reset-names
->    - if:
->        properties:
->          compatible:
-> @@ -133,10 +152,8 @@ allOf:
->  
->          reg:
->            items:
-> -            - description: physical base address and length of the register
-> -                region assigned to the VM
-> -            - description: physical base address and length of the register
-> -                region used by the hypervisor
-> +            - description: region used by the hypervisor
-> +            - description: region assigned to the virtual machine
->  
->          resets:
->            maxItems: 1
-> @@ -144,6 +161,67 @@ allOf:
->          reset-names:
->            maxItems: 1
->  
-> +        interrupts:
-> +          items:
-> +            - description: host1x syncpoint interrupt
-> +            - description: host1x general interrupt
-> +
-> +        interrupt-names:
-> +          items:
-> +            - const: syncpt
-> +            - const: host1x
-> +
-> +        iommu-map:
-> +          description: Specification of stream IDs available for memory context device
-> +            use. Should be a mapping of IDs 0..n to IOMMU entries corresponding to
-> +            usable stream IDs.
-> +
-> +      required:
-> +        - reg-names
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra234-host1x
-> +    then:
-> +      properties:
-> +        reg-names:
-> +          items:
-> +            - const: common
-> +            - const: hypervisor
-> +            - const: vm
-> +
-> +        reg:
-> +          items:
-> +            - description: region used by host1x server
-> +            - description: region used by the hypervisor
-> +            - description: region assigned to the virtual machine
-> +
-> +        interrupts:
-> +          items:
-> +            - description: host1x syncpoint interrupt 0
-> +            - description: host1x syncpoint interrupt 1
-> +            - description: host1x syncpoint interrupt 2
-> +            - description: host1x syncpoint interrupt 3
-> +            - description: host1x syncpoint interrupt 4
-> +            - description: host1x syncpoint interrupt 5
-> +            - description: host1x syncpoint interrupt 6
-> +            - description: host1x syncpoint interrupt 7
-> +            - description: host1x general interrupt
-> +
-> +        interrupt-names:
-> +          items:
-> +            - const: syncpt0
-> +            - const: syncpt1
-> +            - const: syncpt2
-> +            - const: syncpt3
-> +            - const: syncpt4
-> +            - const: syncpt5
-> +            - const: syncpt6
-> +            - const: syncpt7
-> +            - const: host1x
-> +
->          iommu-map:
->            description: Specification of stream IDs available for memory context device
->              use. Should be a mapping of IDs 0..n to IOMMU entries corresponding to
-> @@ -160,8 +238,8 @@ examples:
->      host1x@50000000 {
->          compatible = "nvidia,tegra20-host1x";
->          reg = <0x50000000 0x00024000>;
-> -        interrupts = <0 65 0x04   /* mpcore syncpt */
-> -                      0 67 0x04>; /* mpcore general */
-> +        interrupts = <0 65 0x04>, /* mpcore syncpt */
-> +                     <0 67 0x04>; /* mpcore general */
 
-Split this part to separate patch.
 
-Rest looks good but because of dependency cannot be tested by automation.
-
->          interrupt-names = "syncpt", "host1x";
->          clocks = <&tegra_car TEGRA20_CLK_HOST1X>;
->          clock-names = "host1x";
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
