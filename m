@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 767DC5549A2
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:17:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8677F554627
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:10:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241717AbiFVIVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 04:21:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45914 "EHLO
+        id S230189AbiFVIXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 04:23:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240874AbiFVIVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 04:21:16 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15EE8381AA
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:21:15 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id s14so11668016ljs.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:21:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=hH4k7mItas1ozJafGvT+HMnXj4jefZuKB4OxUVSVNAM=;
-        b=mJkFkMl2HoaHNHloqTF8OhEapW5qRboQ3QqXnKasJMpkRIzVZNkat8VeBcpTvmA6fE
-         i6ILOZgsDuHbTHwa+vsDXfq2jzHfqaO7eOmm9G28tI67ezFcu3tE2mjlJHgoZqVjCf3I
-         GYXmqEM+WWluAHFwKj26fzP9Z1BLgV/XHWXJ7+f1NrY8u8C8wrO3EJ/U9QU1AW3PWCAD
-         f2jGXng3nolkxfxTRwe7rCoQ+e7cG0mu2QxfXV5KT9d5kwL0sE+yD6Zd6vtLOIhYF6eS
-         ulN+9LndwNre2tKRSZZtdFiKkNoeXQF1VNujqPEAh+KWmgxQxCiuF3h5qTAf6AbV1bQP
-         SV5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=hH4k7mItas1ozJafGvT+HMnXj4jefZuKB4OxUVSVNAM=;
-        b=bjopINfagOPjSJBFQropKXP3tCLBouknBxM8nWYuTGPQ32IiiKBuuavJsNAM5faFxn
-         5k/o16D3NfQCJtJoj6nxw5bh8IXgZnnCHm0+1JSqIyoYhUzs2uUvjlf2vxR6ax6bcXqd
-         90a0waoOrbn5Q35AcCLsYrukCae+qliN/s0kzJ1x1mPCblkUOqyK332ynTFXqHCwrddn
-         XmBxsb9YGjGasWkoVQTqbrum3Xbr70M9Zt0q6ws7ToXoehE8PMGkprsix6oXeInTadXi
-         ahTAKSi18tDjRBxwGysutKhBRdrLlAYiV3Mp351B47y5gROhTBUBtyz4HWbUDSOMFQKk
-         +phA==
-X-Gm-Message-State: AJIora+daXcXmLRk8nJRqWWh9w5M2qhrDvulrSn1zb3AzjLpc02/l79R
-        jBR76XuPG7GNR8DehCJvMgrmKA==
-X-Google-Smtp-Source: AGRyM1vZI4BCaoHbqoZW1pO9dUwTGGxOVqzVqDXrvgflmNzYZJzZL3puwPzeX8wGyGh3wFeYnsEV7w==
-X-Received: by 2002:a05:651c:20d:b0:255:7ad5:50c2 with SMTP id y13-20020a05651c020d00b002557ad550c2mr1159916ljn.438.1655886073351;
-        Wed, 22 Jun 2022 01:21:13 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id x27-20020a19e01b000000b0047975170628sm2474802lfg.96.2022.06.22.01.21.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 01:21:12 -0700 (PDT)
-Message-ID: <c072077a-cc16-c8f8-fcfa-891b3357cb66@linaro.org>
-Date:   Wed, 22 Jun 2022 11:21:12 +0300
+        with ESMTP id S229989AbiFVIXD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 04:23:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C47BD6478;
+        Wed, 22 Jun 2022 01:23:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D1CD6185C;
+        Wed, 22 Jun 2022 08:23:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA9DDC3411D;
+        Wed, 22 Jun 2022 08:23:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655886181;
+        bh=P5mdURKMr+mRkZVjrQMgOzOhTCZmcsEXIdG+fjI0jTw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fdTUSaf4cpnmn+fEVbYhHTt7niysFro6D1GYt8LUZ6msmpcDMJrC1WVf5c42FtkPx
+         gNxq1Q2asjSHeajMz/CM4K1femcsvw6rlUZ1pKtARiJodYYR4PC9pGzOH1VqFixIGa
+         vKsM4IvE+NGvSwnMNiB0puo6FKRDbA/lhMdDTKW+YkllUkMr9odjJxBMxWZfXDUtLU
+         lk6Y6DAhdOZ6KrOYaUlA+tx+fZIIKbIqWHTNJ26P8ZYonklI0c8b01vGWQYmdYITlx
+         PUQaNYY51EQKI2hK7hIxWWzchCJnfPZLCO7uA5SHk5wvWrvxjtMha4KNj2QATota84
+         k4prYbuF0fjyw==
+Date:   Wed, 22 Jun 2022 10:22:52 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+        "avri.altman@wdc.com" <avri.altman@wdc.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
+        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v6 7/7] arm64: dts: renesas: r8a779f0: spider-cpu: Enable
+ UFS device
+Message-ID: <YrLRXMSZvTdLNkDQ@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+        "avri.altman@wdc.com" <avri.altman@wdc.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
+        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+References: <20220603110524.1997825-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220603110524.1997825-8-yoshihiro.shimoda.uh@renesas.com>
+ <YrHgOptQ56woMAeO@shikoro>
+ <TYBPR01MB53410E99F2A9D783FAFD42DBD8B29@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: Removal of qcom,board-id and qcom,msm-id
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        krzysztof.kozlowski@linaro.org
-Cc:     agross@kernel.org, arnd@arndb.de, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, olof@lixom.net, robh@kernel.org,
-        sboyd@kernel.org
-References: <a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org>
- <20220522195138.35943-1-konrad.dybcio@somainline.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220522195138.35943-1-konrad.dybcio@somainline.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Jr88FrY4P3CI52rY"
+Content-Disposition: inline
+In-Reply-To: <TYBPR01MB53410E99F2A9D783FAFD42DBD8B29@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,36 +79,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/05/2022 22:51, Konrad Dybcio wrote:
-> Hi,
-> 
-> removing these properties will not bring almost any benefit (other than making
-> some checks happy any saving some <200 LoC) and will make the lives of almost
-> all people doing independent development for linux-on-msm harder. There are
-> almost unironically like 3 people outside Linaro and QUIC who have
-> non-vendor-fused development boards AND the sources to rebuild the
-> bootloader on their own. Making it harder to boot is only going to
-> discourage people from developing on these devices, which is already not
-> that pleasant, especially with newer platforms where you have to fight with
-> the oh-so-bright ideas of Android boot chain..
-> 
-> This only concerns devices released before sm8350, as the new ones will not
-> even boot with these properties present (or at least SONY Sagami, but I
-> doubt it's an isolated case), so other than completing support for older
-> devices, it won't be an issue going forward, anyway.
 
-I almost missed this part of the discussion (and Krzysztof had to point 
-me to it in discussion of his patches).
+--Jr88FrY4P3CI52rY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I think this is a Sony peculiarity. At least the distributed SM8350 
-(lahaina) and SM8450 (waipio) Qualcomm device trees use these properties:
+Hi Shimoda-san,
 
-https://github.com/MiCode/kernel_devicetree/blob/zeus-s-oss/qcom/lahaina-hdk.dts
-https://github.com/MiCode/kernel_devicetree/blob/zeus-s-oss/qcom/lahaina-v2.1.dtsi
-https://github.com/MiCode/kernel_devicetree/blob/zeus-s-oss/qcom/waipio-qrd-pm8010.dts
-https://github.com/MiCode/kernel_devicetree/blob/zeus-s-oss/qcom/waipio-v2.dtsi
+> Hmm, my environment [1] could not reproduce this error messages.=20
+
+Interesting. I will add some debug output to provide more information.
+
+> based on renesas-drivers-2022-05-24-v5.18 which I made the patches.
+> Perhaps, should I test on the latest kernel?
+> Which kernel version did you test?
+
+renesas-drivers-2022-06-07-v5.19-rc1 with my Thermal, HSCIF, and your
+UFS patches on top. I pushed it here:
+
+git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git renesas/s4/ufs-=
+experimental
+
+I'll be back soon,
+
+   Wolfram
 
 
--- 
-With best wishes
-Dmitry
+--Jr88FrY4P3CI52rY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKy0VgACgkQFA3kzBSg
+KbYqYxAApd8+WuAKHQsQuwhjDcF1HQ5argTIjceKBbQASp1lfI31BOiLO7UJ/kcD
+4XNGQzvrKaeZcPImu418PagFPpRnjM01k9aQo9p4DyKdIzshfkFIfIbmhMgqAfFQ
+9wCGDDFZT4KVGVxKBvTLOqgabm4wM1qxOVz7hTD+I2uX0E67A6LVg4HWfB0wXRFC
+Ml7bXy+XjAVNX8Bjtu/Clmpg7QAf1GaJt2wPkVF45PL7POncxlyUTi1dLMNWvDtJ
+surrOJ8sc5XBJDtbKBcyYfHCOuK3tQhjYQa72hSC5ePtTDT743xearc7y+Xdaay2
+W3jNbFqREz/taAQsxc0H4vcr4EIcFpiiDhJrSZcTbLvWfHbRa5y0Q7idCJ4l6HPB
+7bH8a+GAUcsQsrsUo3y6K98PtMsRdfMz/5QclwMVANnj+46iFjTKsNOpVt5tV0ME
+M9Ir1Ai9zcmUVLcPMHgaHvXP5kAGQEktaS/CNCi8ojkxJqEvEke6W/OD7DljLbJG
+Y4MPpbb2JFGfUSN7tsIt49JQeN8qXLjM1upHgj0Pww/dwUR0w84s2zbl1Cxwq58E
+/UM753fcKfNryKMU72mBuCQD+zWbATvPwVN1MB1tyO6P3LzmAd+rH4QHT+47/MP2
+2AFo4Nrlct9BQ+UYJ5ytJPzOgZI+57YmeVJS8UXrCc3OVrLf9uY=
+=cyYy
+-----END PGP SIGNATURE-----
+
+--Jr88FrY4P3CI52rY--
