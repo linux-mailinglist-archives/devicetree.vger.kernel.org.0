@@ -2,48 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71E85554BAB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 15:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64727554BC0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 15:49:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347354AbiFVNrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 09:47:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37594 "EHLO
+        id S1355979AbiFVNtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 09:49:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236466AbiFVNrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 09:47:47 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B94F72F648;
-        Wed, 22 Jun 2022 06:47:39 -0700 (PDT)
+        with ESMTP id S1357493AbiFVNtj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 09:49:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD5D62AC40;
+        Wed, 22 Jun 2022 06:49:38 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id F0D1ECE1F96;
-        Wed, 22 Jun 2022 13:47:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8695BC34114;
-        Wed, 22 Jun 2022 13:47:34 +0000 (UTC)
-Message-ID: <c1b8820d-5ff5-b6dd-bc22-35f8daf756db@xs4all.nl>
-Date:   Wed, 22 Jun 2022 15:47:33 +0200
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4E7C461B4A;
+        Wed, 22 Jun 2022 13:49:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99C63C34114;
+        Wed, 22 Jun 2022 13:49:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655905777;
+        bh=s/BTpD1smaZjhWjSTCDLGZE1k7ODXU40+GIAkraIWEQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lPDad96kmLy1MwuS+kg2oxCr9Nk6F3628i7Kiy47bUuA0TS5uOATOvW6gzIk1Va+V
+         caZvU+/G7izv4S4DqVGWXOA+eMtxn1fSugp21S7xU+Uuq9SdnVrTL1Zpk04VXSWDQR
+         FX9S6HLtqrSHtxVeOu0mt4BB/cmGoy909NoL73S+JytR5f+fFE8q4sz8tSf7iXXn7F
+         nPrWBDHDYbF9N4+tAiEDz79h9R4rVB5NchFcZ6wjzdO7k0ggS7+t4E1v6neH/O0fNL
+         FPtJBA1eMIgWwk6Ajs6ednHOBHLV2e6WQWuqY8O87Co3d+VAsB4x3b2qAaWoYWjw7K
+         HlstxSM6BA4Pg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1o40je-0006ZX-CV; Wed, 22 Jun 2022 15:49:34 +0200
+Date:   Wed, 22 Jun 2022 15:49:34 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/6] arm64: dts: qcom: sc8280xp: add Lenovo Thinkpad
+ X13s devicetree
+Message-ID: <YrMd7nX8Tu5eu6hU@hovoldconsulting.com>
+References: <20220622041224.627803-1-bjorn.andersson@linaro.org>
+ <20220622041224.627803-7-bjorn.andersson@linaro.org>
+ <fb234ad7-6a95-d5f2-9ebc-48ac2dd8fb8a@somainline.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v10 0/5] media: atmel: atmel-isc: implement media
- controller
-Content-Language: en-US
-To:     Eugen.Hristev@microchip.com, linux-arm-kernel@lists.infradead.org,
-        linux-media@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Claudiu.Beznea@microchip.com, Nicolas.Ferre@microchip.com,
-        jacopo@jmondi.org
-References: <20220503095127.48710-1-eugen.hristev@microchip.com>
- <1da61f9c-0605-dc9d-63a3-21c18fcb74c7@xs4all.nl>
- <a19d9e72-7609-1daa-93eb-fdedcaa672c4@microchip.com>
- <bc22469c-d1ab-72e2-8e9e-6bd42d66f3d9@microchip.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-In-Reply-To: <bc22469c-d1ab-72e2-8e9e-6bd42d66f3d9@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fb234ad7-6a95-d5f2-9ebc-48ac2dd8fb8a@somainline.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -52,161 +65,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2022 14:42, Eugen.Hristev@microchip.com wrote:
-> On 6/22/22 3:25 PM, Eugen Hristev - M18282 wrote:
->> On 6/22/22 2:53 PM, Hans Verkuil wrote:
->>> Hi Eugen,
->>>
->>> On 03/05/2022 11:51, Eugen Hristev wrote:
->>>> This series is a split from the series :
->>>> [PATCH v9 00/13] media: atmel: atmel-isc: implement media controller
->>>> and it includes the media controller part.
->>>> previous fixes were sent on a different patch series.
->>>>
->>>> As discussed on the ML, moving forward with having the media link validate at
->>>> start/stop streaming call.
->>>> I will test the patch :
->>>> [RFC PATCHv2] vb2: add support for (un)prepare_streaming queue ops
->>>> afterwards, but that patch requires moving my logic to the new vb2 callbacks.
->>>
->>> I'm looking at merging this series, but I would like to have the output of
->>> 'v4l2-compliance -m /dev/mediaX' to verify that the MC links etc. is all
->>> correct.
->>
->> Hello Hans,
->>
->> Please have a look at attached file . Unless you want me to add the
->> whole output to the e-mail ?
->>
->> I also added output of media-ctl -p for your convenience.
->> the subdev2 is a device and driver that is not upstream and has some
->> compliance issues, they are reported by the v4l2-compliance tool, but
->> they should not affect this series, it's a synopsys driver that was
->> rejected on mainline a few years ago, I took it for internal usage, but
->> it's not cleaned up nor worked a lot upon.
->>
->>>
->>> And one more question which may have been answered already in the past:
->>>
->>> Changing to the MC will break existing applications, doesn't it? Or did I
->>> miss something?
->>>
->>
->> The existing applications will have to configure the pipeline now. It
->> will no longer work by configuring just the top video node /dev/video0 .
->> They would have to use media-ctl for it, something similar with this set
->> of commands:
+On Wed, Jun 22, 2022 at 02:39:43PM +0200, Konrad Dybcio wrote:
+> On 22.06.2022 06:12, Bjorn Andersson wrote:
+> > From: Johan Hovold <johan+linaro@kernel.org>
+> > 
+> > Add an initial Lenovo Thinkpad X13s devicetree.
+> > 
+> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> > 
+> > Changs since v1:
+> > - New patch
+> > 
+> >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+> >  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 393 ++++++++++++++++++
+> >  2 files changed, 394 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > index 2f416b84b71c..43053f1f6be9 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -91,6 +91,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd-r3.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-crd.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-lenovo-thinkpad-x13s.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-ganges-kirin.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-discovery.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-pioneer.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > new file mode 100644
+> > index 000000000000..58d3d8035751
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > @@ -0,0 +1,393 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +/*
+> > + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> > + * Copyright (c) 2022, Linaro Limited
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> Can be moved to SoC dtsi.
+
+Again, no, the SoC dtsi does not need that header and we include files
+where they are used.
+
+> > +&qup0_i2c4 {
+> > +	clock-frequency = <400000>;
+> > +
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&qup0_i2c4_default>, <&ts0_default>;
+> > +
+> > +	status = "okay";
+> Again, the ordering of status= question from one of the previous patches.
+
+This is the right order, but the ADP dts hasn't been updated yet.
+ 
 > 
-> To add on top of that, actually, the reality is that without the MC 
-> support in atmel-isc , some of our platforms do not work at all, because 
-> the csi2dc driver which is in the middle of the pipeline, is a MC 
-> driver. So it will not work without configuring it with MC anyway. It 
-> used to work in a very preliminary version of the csi2dc driver which I 
-> sent a few years ago, but that way of handling things was rejected. 
-> Hence I changed the csi2dc to being full-MC driver (requested for new 
-> drivers) and now I am completing the conversion for the whole pipeline.
-> We are using this MC-centric approach in production for our products to 
-> be as close as possible to mainline, and backported it to our 5.15 
-> internal releases, which people are using right now.
+> > +
+> > +	/* FIXME: verify, missing on some x13s */
+> Won't this fail gracefully-ish if it's absent?
 
-I'm not all that keen on breaking userspace for those who do NOT use the
-Atmel BSP. Basically some platforms are currently broken, and with this patch
-series some other platforms are broken, but at least can be fixed by changing
-userspace.
+Sure, but that's not the point. I don't access to a X13s with a
+touchscreen yet so the i2c address and hid descriptor address has not
+been verified yet.
 
-How feasible is it to do something similar that TI did for the cal driver?
-(drivers/media/platform/ti/cal)
+> > +	touchscreen@10 {
+> > +		compatible = "hid-over-i2c";
+> > +		reg = <0x10>;
+> > +		hid-descr-addr = <0x1>;
+> > +		interrupts-extended = <&tlmm 175 IRQ_TYPE_LEVEL_LOW>;
+> > +		vdd-supply = <&vreg_misc_3p3>;
+> > +	};
+> > +};
 
-I.e., based on a module option the MC is enabled or disabled. And if a
-csi2dc is present, then the MC API is always enabled.
+> > +/* PINCTRL - additions to nodes defined in sc8280xp.dtsi */
+> Seems redundant.
 
-Regards,
+Again, no. But I've dropped the reference to sc8280xp.dtsi.
 
-	Hans
+> > +	tpad_default: tpad-default-state {
 
-> 
->>
->> media-ctl -d /dev/media0 --set-v4l2 '"imx219
->> 1-0010":0[fmt:SRGGB10_1X10/1920x1080]'
->> media-ctl -d /dev/media0 --set-v4l2
->> '"dw-csi.0":0[fmt:SRGGB10_1X10/1920x1080]'
->> media-ctl -d /dev/media0 --set-v4l2 '"csi2dc":0[fmt:SRGGB10_1X10/1920x1080]'
->> media-ctl -d /dev/media0 --set-v4l2
->> '"atmel_isc_scaler":0[fmt:SRGGB10_1X10/1920x1080]'
->>
->> Thank you for taking care of this !
->>
->> Eugen
->>
->>> Regards,
->>>
->>>           Hans
->>>
->>>>
->>>> Full series history:
->>>>
->>>> Changes in v10:
->>>> -> split the series into this first fixes part.
->>>> -> moved IO_MC addition from first patch to the second patch on the driver changes
->>>> -> edited commit messages
->>>> -> DT nodes now disabled by default.
->>>>
->>>> Changes in v9:
->>>> -> kernel robot reported isc_link_validate is not static, changed to static.
->>>>
->>>> Changes in v8:
->>>> -> scaler: modified crop bounds to have the exact source size
->>>>
->>>> Changes in v7:
->>>> -> scaler: modified crop bounds to have maximum isc size
->>>> -> format propagation: did small changes as per Jacopo review
->>>>
->>>>
->>>> Changes in v6:
->>>> -> worked a bit on scaler, added try crop and other changes as per Jacopo review
->>>> -> worked on isc-base enum_fmt , reworked as per Jacopo review
->>>>
->>>> Changes in v5:
->>>> -> removed patch that removed the 'stop' variable as it was still required
->>>> -> added two new trivial patches
->>>> -> reworked some parts of the scaler and format propagation after discussions with Jacopo
->>>>
->>>>
->>>> Changes in v4:
->>>> -> as reviewed by Hans, added new patch to remove the 'stop' variable and reworked
->>>> one patch that was using it
->>>> -> as reviewed by Jacopo, reworked some parts of the media controller implementation
->>>>
->>>>
->>>> Changes in v3:
->>>> - change in bindings, small fixes in csi2dc driver and conversion to mc
->>>> for the isc-base.
->>>> - removed some MAINTAINERS patches and used patterns in MAINTAINERS
->>>>
->>>> Changes in v2:
->>>> - integrated many changes suggested by Jacopo in the review of the v1 series.
->>>> - add a few new patches
->>>>
->>>> Eugen Hristev (5):
->>>>     media: atmel: atmel-isc: prepare for media controller support
->>>>     media: atmel: atmel-isc: implement media controller
->>>>     ARM: dts: at91: sama7g5: add nodes for video capture
->>>>     ARM: configs: at91: sama7: add xisc and csi2dc
->>>>     ARM: multi_v7_defconfig: add atmel video pipeline modules
->>>>
->>>>    arch/arm/boot/dts/sama7g5.dtsi                |  51 ++
->>>>    arch/arm/configs/multi_v7_defconfig           |   3 +
->>>>    arch/arm/configs/sama7_defconfig              |   2 +
->>>>    drivers/media/platform/atmel/Makefile         |   2 +-
->>>>    drivers/media/platform/atmel/atmel-isc-base.c | 485 +++++++++---------
->>>>    .../media/platform/atmel/atmel-isc-scaler.c   | 267 ++++++++++
->>>>    drivers/media/platform/atmel/atmel-isc.h      |  50 +-
->>>>    .../media/platform/atmel/atmel-sama5d2-isc.c  |  34 +-
->>>>    .../media/platform/atmel/atmel-sama7g5-isc.c  |  32 +-
->>>>    9 files changed, 685 insertions(+), 241 deletions(-)
->>>>    create mode 100644 drivers/media/platform/atmel/atmel-isc-scaler.c
->>>>
->>>
->>
-> 
+> > +		int-n {
+> Same comment as in the reference device dt.
 
+I think it's better to keep the child node as documentation.
+
+Johan
