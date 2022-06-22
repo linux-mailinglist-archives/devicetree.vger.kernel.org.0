@@ -2,183 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02F8F553FE5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 03:11:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A63B55402A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 03:43:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354937AbiFVBLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jun 2022 21:11:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33872 "EHLO
+        id S1355210AbiFVBnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jun 2022 21:43:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354643AbiFVBLH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 21:11:07 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A33E23191B;
-        Tue, 21 Jun 2022 18:11:06 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id w17so21183390wrg.7;
-        Tue, 21 Jun 2022 18:11:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=zIg/BRRxdkYhUPWpTwl1+aMNGlh1YT/9AIwW2tFGVlk=;
-        b=AXrxQDkmAUcOCh+UdnnNbIqZOiuzmon7wk7L3jQI2qCCZA8YVEcXCRkl6ttkGrC+uD
-         1oZfkW48SVoSfGaftqyfa1tYqP/kAuYxDfxuL0aEGxXysRyavyrhehp174XmhMPMTFkl
-         oFDJZWSoO+PmgKaEn1KCuJP1n8oeaEB75I6zvTSqmlKyVJCeXTI/1p3fdqUBJN/mDKsm
-         AueMlVSrR4rqimpS6LVne+TzC1yGsf1Z/RM20Pp7utN889Niyi6efKIXQqYU5CxnNhyy
-         T3k9UtoDMSAWLWjsinDxlci6KqXUVoTycCR1v3FKsCVh2QyqqJ4JCwBfG2tQo4JSqfiG
-         Nrzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=zIg/BRRxdkYhUPWpTwl1+aMNGlh1YT/9AIwW2tFGVlk=;
-        b=o66zqGCokQUGN9vzbJTN6zeZoG9e6W3Jy+YmTV/B0mFNO5k/Y1Js4CwMiAMuAyZnwN
-         hpVQctX69RSt3H2MPvgpAbiR1osKk9hBrmkPKrbIVLToZZXlJr8xUObGWbmlo3js7zPc
-         Iv3DKln6qqOOrK5Ki7i6f/zDtgV1fRXUqaZUKXsFvgcuITmODb/s5SbwJbMAr9F9dgbP
-         CjmJYNu7zgNkz1pVULWGN8D3Zil4brdiBMvd7S+q5Fr2wBPaSg5MW13HIUzI5X1Lyjyk
-         Jv4b14Bet1stEF8XhEHmJYjxICuZbWt9NkNg5DHO8zrZaFhjIfZpnEvRFU9bQfgAnip5
-         V/1g==
-X-Gm-Message-State: AJIora8FoXtgIbEbrbqN+LN52Q7aEZB/SFX0HPRQy+jkMTp+VWL66tyU
-        cguPp9/MpthnVhAE/669XAE=
-X-Google-Smtp-Source: AGRyM1v/u5MWPXIFPc5OhGTADPYHN20NOfalAr5VlbRCN6NuUJstWYLreXzWuGpBBOaxhXwWMUMwHQ==
-X-Received: by 2002:a05:6000:50:b0:21a:3d97:14fd with SMTP id k16-20020a056000005000b0021a3d9714fdmr618139wrx.685.1655860265052;
-        Tue, 21 Jun 2022 18:11:05 -0700 (PDT)
-Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.googlemail.com with ESMTPSA id x13-20020adfdd8d000000b0021b81855c1csm16560086wrl.27.2022.06.21.18.11.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jun 2022 18:11:04 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S230152AbiFVBnA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jun 2022 21:43:00 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BD9B1ADB9;
+        Tue, 21 Jun 2022 18:42:55 -0700 (PDT)
+X-UUID: 904bb9f843774432bbf8b5efd98b3e47-20220622
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:bfd57a8b-c40b-4042-b20b-bf8940967f12,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.6,REQID:bfd57a8b-c40b-4042-b20b-bf8940967f12,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:b14ad71,CLOUDID:2377b02d-1756-4fa3-be7f-474a6e4be921,C
+        OID:05c0f3f8a543,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 904bb9f843774432bbf8b5efd98b3e47-20220622
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 695938187; Wed, 22 Jun 2022 09:42:50 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Wed, 22 Jun 2022 09:42:49 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Wed, 22 Jun 2022 09:42:47 +0800
+Message-ID: <6ad2fd7b3fc961f7018e189e2f11219bf7216757.camel@mediatek.com>
+Subject: Re: [PATCH v4, 0/3] add h264 decoder driver for mt8186
+From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
+To:     Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jens Axboe <axboe@kernel.dk>, Stephen Boyd <sboyd@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        =?UTF-8?q?=EF=BF=BDecki?= <rafal@milecki.pl>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v6 3/3] mtd: core: introduce of support for dynamic partitions
-Date:   Wed, 22 Jun 2022 03:06:28 +0200
-Message-Id: <20220622010628.30414-4-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220622010628.30414-1-ansuelsmth@gmail.com>
-References: <20220622010628.30414-1-ansuelsmth@gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Tomasz Figa" <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Fritz Koenig" <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 22 Jun 2022 09:42:47 +0800
+In-Reply-To: <5316234cef174e49110f949991ef71c578a3478e.camel@ndufresne.ca>
+References: <20220512034620.30500-1-yunfei.dong@mediatek.com>
+         <edbb4605c9e30329d2f5a4ff738571acb6b91f1f.camel@ndufresne.ca>
+         <5316234cef174e49110f949991ef71c578a3478e.camel@ndufresne.ca>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We have many parser that register mtd partitions at runtime. One example
-is the cmdlinepart or the smem-part parser where the compatible is defined
-in the dts and the partitions gets detected and registered by the
-parser. This is problematic for the NVMEM subsystem that requires an OF
-node to detect NVMEM cells.
+Hi Nicolas,
 
-To fix this problem, introduce an additional logic that will try to
-assign an OF node to the MTD if declared.
+Thanks for your comments.
+On Tue, 2022-06-14 at 13:46 -0400, Nicolas Dufresne wrote:
+> Le lundi 13 juin 2022 à 16:10 -0400, Nicolas Dufresne a écrit :
+> > Le jeudi 12 mai 2022 à 11:46 +0800, Yunfei Dong a écrit :
+> > > Firstly, add mt8186 compatible and private data, then add
+> > > document for
+> > > compatible "mediatek,mt8186-vcodec-dec". For mt8186 is single
+> > > core
+> > > architecture, need to add new interface for h264 hardware
+> > > decoder.
+> > 
+> > Would be nice to take the habit of sharing fluster score for this
+> > new HW, I
+> > would expect no less then what the numbers you'd get from running
+> > over MT8195 or
+> > 92, remains nice to demonstrate that this was tested and document
+> > any oops along
+> > the way.
+> > > 
+> > > Patche 1 add mt8186 compatible and private data.
+> > > Patche 2 add mt8186 compatible document.
+> > > Patche 3 add h264 single core driver.
+> > > ---
+> > > This patch depends on "support for MT8192 decoder"[1]
+> > > 
+> > > [1]  
+> > > https://patchwork.kernel.org/project/linux-mediatek/cover/20220512021950.29087-1-yunfei.dong@mediatek.com/
+> 
+> I forgot earlier, but I suppose this will also depends on an scp.img
+> firmware ?
+> If so, any linux-firmware submission to link to ?
+> 
+Yes, need scp.img to test mt8186.
+But not all patches are merged now, we are testing the driver, will
+send scp.img in the middle of july.
 
-On MTD addition, it will be checked if the MTD has an OF node and if
-not declared will check if a partition with the same label / node name is
-declared in DTS. If an exact match is found, the partition dynamically
-allocated by the parser will have a connected OF node.
-
-The NVMEM subsystem will detect the OF node and register any NVMEM cells
-declared statically in the DTS.
-
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- drivers/mtd/mtdcore.c | 61 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 61 insertions(+)
-
-diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-index 7731796024e0..e9d534b9971d 100644
---- a/drivers/mtd/mtdcore.c
-+++ b/drivers/mtd/mtdcore.c
-@@ -546,6 +546,66 @@ static int mtd_nvmem_add(struct mtd_info *mtd)
- 	return 0;
- }
- 
-+static void mtd_check_of_node(struct mtd_info *mtd)
-+{
-+	struct device_node *partitions, *parent_dn, *mtd_dn = NULL;
-+	const char *pname, *prefix = "partition-";
-+	int plen, mtd_name_len, offset, prefix_len;
-+	struct mtd_info *parent;
-+	bool found = false;
-+
-+	/* Check if MTD already has a device node */
-+	if (dev_of_node(&mtd->dev))
-+		return;
-+
-+	/* Check if a partitions node exist */
-+	parent = mtd->parent;
-+	parent_dn = dev_of_node(&parent->dev);
-+	if (!parent_dn)
-+		return;
-+
-+	partitions = of_get_child_by_name(parent_dn, "partitions");
-+	if (!partitions)
-+		goto exit_parent;
-+
-+	prefix_len = strlen(prefix);
-+	mtd_name_len = strlen(mtd->name);
-+
-+	/* Search if a partition is defined with the same name */
-+	for_each_child_of_node(partitions, mtd_dn) {
-+		offset = 0;
-+
-+		/* Skip partition with no/wrong prefix */
-+		if (!of_node_name_prefix(mtd_dn, "partition-"))
-+			continue;
-+
-+		/* Label have priority. Check that first */
-+		if (of_property_read_string(mtd_dn, "label", &pname)) {
-+			of_property_read_string(mtd_dn, "name", &pname);
-+			offset = prefix_len;
-+		}
-+
-+		plen = strlen(pname) - offset;
-+		if (plen == mtd_name_len &&
-+		    !strncmp(mtd->name, pname + offset, plen)) {
-+			found = true;
-+			break;
-+		}
-+	}
-+
-+	if (!found)
-+		goto exit_partitions;
-+
-+	/* Set of_node only for nvmem */
-+	if (of_device_is_compatible(mtd_dn, "nvmem-cells"))
-+		mtd_set_of_node(mtd, mtd_dn);
-+
-+exit_partitions:
-+	of_node_put(partitions);
-+exit_parent:
-+	of_node_put(parent_dn);
-+}
-+
- /**
-  *	add_mtd_device - register an MTD device
-  *	@mtd: pointer to new MTD device info structure
-@@ -651,6 +711,7 @@ int add_mtd_device(struct mtd_info *mtd)
- 	mtd->dev.devt = MTD_DEVT(i);
- 	dev_set_name(&mtd->dev, "mtd%d", i);
- 	dev_set_drvdata(&mtd->dev, mtd);
-+	mtd_check_of_node(mtd);
- 	of_node_get(mtd_get_of_node(mtd));
- 	error = device_register(&mtd->dev);
- 	if (error)
--- 
-2.36.1
+Best Regards,
+Yunfei Dong
+> > > ---
+> > > changed with v3:
+> > > - fix __iomem not reasonable, align share memory to dram.
+> > > changed with v2:
+> > > - fix sparse and smatch check fail for patch 3
+> > > changed with v1:
+> > > - rebase driver to the latest media_stage.
+> > > ---
+> > > Yunfei Dong (3):
+> > >   dt-bindings: media: mediatek: vcodec: Adds decoder dt-bindings
+> > > for
+> > >     mt8186
+> > >   media: mediatek: vcodec: Support MT8186
+> > >   media: mediatek: vcodec: add h264 decoder driver for mt8186
+> > > 
+> > >  .../media/mediatek,vcodec-subdev-decoder.yaml |   4 +-
+> > >  .../platform/mediatek/vcodec/mtk_vcodec_dec.h |   1 +
+> > >  .../mediatek/vcodec/mtk_vcodec_dec_drv.c      |   4 +
+> > >  .../vcodec/mtk_vcodec_dec_stateless.c         |  19 ++
+> > >  .../vcodec/vdec/vdec_h264_req_multi_if.c      | 177
+> > > +++++++++++++++++-
+> > >  5 files changed, 203 insertions(+), 2 deletions(-)
+> > > 
+> 
+> 
 
