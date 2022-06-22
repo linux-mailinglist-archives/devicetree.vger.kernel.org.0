@@ -2,187 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2798E55432B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 09:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 623D355433D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 09:04:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351347AbiFVGsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 02:48:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58370 "EHLO
+        id S1351666AbiFVGwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 02:52:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351301AbiFVGsv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 02:48:51 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F59935A83;
-        Tue, 21 Jun 2022 23:48:50 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id h23so32048155ejj.12;
-        Tue, 21 Jun 2022 23:48:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GBoEfewX7uE5qiTFF5ceaeSxviE76/D0VbXLBnCtMOk=;
-        b=EUth92aS+ARXNsUtB82Fn+0F0yahSJwW0aRp3pWoXXG95IKw1RArK9Ig7q3Rce1Ehw
-         IB9YD315FvrufeFHauaTVDmyU561dpJJXVoxeP+YEOqYEB0GnwGjYYtO1LZlK0o6QfsS
-         BWFYFQiQlRYg0TliVlsC5C5feb19tNjrrKtR8kj8DM6+fCRVWi11MZKCMVbP+keN1pSk
-         Y1EH0SW0kUa5wZx/+ZvoXeYEPP577kv00tMCUDJ/q/mSmcBZtgAtalgDCO97V29+FF0L
-         wIqsPe04Qtlfs5uOqGtzgmol7qNeUSdazWS2kf76TziOEgPdeiTWHQ3efBkkbD6pe2Jo
-         fq3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GBoEfewX7uE5qiTFF5ceaeSxviE76/D0VbXLBnCtMOk=;
-        b=wMpAhawFPNW0Vdq5mzXoLO3H6+bcWlRzhsQHAM/MSerW/lfrdAh327/f4b5EJr9o1U
-         rss20o2TKsJovRRyhkNJh1GwfaZO3tIgdRJ5ttArdvxfkPPozKOKk7mnK1CjkR6h4xp6
-         9eUpqMmp0Jho38Sk1H4UzNToJJ58nw07+gFJ45PxoEyebsSWI7ixJdqSul44AkHLva3b
-         OCkaougOXLz4hlP4aSs9TFhwwCnG1ZCIbUFY+t6OCrR72zXlBkA6r/z35tg//x0DWaQz
-         10cWARIzPsp3RTccztRMUo2tkA0jEDVeDNB7dkzu2voZwlQ4sffSDnX8koGnmwES4unx
-         Jetg==
-X-Gm-Message-State: AJIora+SJVDS8Gs5YITqaYkFttRKiDHrPzgm3MCi5IOpyCg+H76n2Ltp
-        9P/wphD2OWvOF9y/6+P+KIo=
-X-Google-Smtp-Source: AGRyM1vWBsfxuaNlo0tjKP0/6jEDWmmlRypkx4HG/8dsYU+wsKOh1CtyzxerPhaniyY/3W5GIrXT8A==
-X-Received: by 2002:a17:906:6a27:b0:708:1282:cbe9 with SMTP id qw39-20020a1709066a2700b007081282cbe9mr1767404ejc.186.1655880528800;
-        Tue, 21 Jun 2022 23:48:48 -0700 (PDT)
-Received: from localhost.localdomain ([185.107.95.225])
-        by smtp.gmail.com with ESMTPSA id sd12-20020a1709076e0c00b00722e8c47cc9sm1197148ejc.181.2022.06.21.23.48.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jun 2022 23:48:47 -0700 (PDT)
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1349964AbiFVGwK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 02:52:10 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A41336174
+        for <devicetree@vger.kernel.org>; Tue, 21 Jun 2022 23:52:08 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1o3uDV-0002vo-Q5; Wed, 22 Jun 2022 08:51:57 +0200
+Received: from pengutronix.de (2a03-f580-87bc-d400-0ddb-1bbb-e3fd-3cee.ip6.dokom21.de [IPv6:2a03:f580:87bc:d400:ddb:1bbb:e3fd:3cee])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 3C3799C01B;
+        Wed, 22 Jun 2022 06:51:56 +0000 (UTC)
+Date:   Wed, 22 Jun 2022 08:51:55 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Yassine Oudjana <yassine.oudjana@gmail.com>,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: qcom: Use WCD9335 DT bindings
-Date:   Wed, 22 Jun 2022 10:47:58 +0400
-Message-Id: <20220622064758.40543-4-y.oudjana@protonmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220622064758.40543-1-y.oudjana@protonmail.com>
-References: <20220622064758.40543-1-y.oudjana@protonmail.com>
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1] arm64: dts: imx8mm-verdin: update CAN clock to 40MHz
+Message-ID: <20220622065155.uoo2matz36a45nfa@pengutronix.de>
+References: <20220512104019.19725-1-andrejs.cainikovs@toradex.com>
+ <20220621180749.GA22098@francesco-nb.int.toradex.com>
+ <20220621195046.rnv66d2333wjmtow@pengutronix.de>
+ <7d04c05771ded0f8302d716fa5289d94df27c8eb.camel@toradex.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="76kamf7d6dnpz6x3"
+Content-Disposition: inline
+In-Reply-To: <7d04c05771ded0f8302d716fa5289d94df27c8eb.camel@toradex.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yassine Oudjana <y.oudjana@protonmail.com>
 
-Replace DAI indices in codec nodes with definitions from the WCD9335
-DT bindings for devices that use WCD9335.
+--76kamf7d6dnpz6x3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
----
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts         | 5 +++--
- arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts  | 5 +++--
- arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts | 5 +++--
- 3 files changed, 9 insertions(+), 6 deletions(-)
+On 22.06.2022 08:38:04, Andrejs Cainikovs wrote:
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0can1: can@0 {
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "microchip,mcp251xfd";
+> > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0clocks =3D <&clk20m>;
+> > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0clocks =3D <&clk40m>;
+> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0interrupts-extended =3D <&gpio1 6
+> > > > IRQ_TYPE_EDGE_FALLING>;
+> >=20
+> > You don't want to use an edge triggered interrupt with the mcp251xfd
+> > chip. You will be losing interrupts, better use IRQ_TYPE_LEVEL_LOW.
+>=20
+> This particular change is not about interrupts.
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-index 49afbb1a066a..ff915cd8e5a6 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-@@ -13,6 +13,7 @@
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/sound/qcom,q6afe.h>
- #include <dt-bindings/sound/qcom,q6asm.h>
-+#include <dt-bindings/sound/qcom,wcd9335.h>
- 
- /*
-  * GPIO name legend: proper name = the GPIO line is used as GPIO
-@@ -1009,7 +1010,7 @@ platform {
- 	};
- 
- 		codec {
--			sound-dai = <&wcd9335 6>;
-+			sound-dai = <&wcd9335 AIF4_PB>;
- 		};
- 	};
- 
-@@ -1024,7 +1025,7 @@ platform {
- 		};
- 
- 		codec {
--			sound-dai = <&wcd9335 1>;
-+			sound-dai = <&wcd9335 AIF1_CAP>;
- 		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
-index 22978d06f85b..261f2ea7def0 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
-@@ -9,6 +9,7 @@
- #include <dt-bindings/sound/qcom,q6afe.h>
- #include <dt-bindings/sound/qcom,q6asm.h>
- #include <dt-bindings/input/ti-drv260x.h>
-+#include <dt-bindings/sound/qcom,wcd9335.h>
- 
- / {
- 	model = "Xiaomi Mi 5";
-@@ -193,7 +194,7 @@ platform {
- 		};
- 
- 		codec {
--			sound-dai = <&wcd9335 6>;
-+			sound-dai = <&wcd9335 AIF4_PB>;
- 		};
- 	};
- 
-@@ -208,7 +209,7 @@ platform {
- 		};
- 
- 		codec {
--			sound-dai = <&wcd9335 1>;
-+			sound-dai = <&wcd9335 AIF1_CAP>;
- 		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
-index 1e2dd6763ad1..c9f935cfb587 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
-@@ -9,6 +9,7 @@
- #include "pmi8996.dtsi"
- #include <dt-bindings/sound/qcom,q6afe.h>
- #include <dt-bindings/sound/qcom,q6asm.h>
-+#include <dt-bindings/sound/qcom,wcd9335.h>
- 
- / {
- 	model = "Xiaomi Mi Note 2";
-@@ -171,7 +172,7 @@ platform {
- 		};
- 
- 		codec {
--			sound-dai = <&wcd9335 6>;
-+			sound-dai = <&wcd9335 AIF4_PB>;
- 		};
- 	};
- 
-@@ -186,7 +187,7 @@ platform {
- 		};
- 
- 		codec {
--			sound-dai = <&wcd9335 1>;
-+			sound-dai = <&wcd9335 AIF1_CAP>;
- 		};
- 	};
- };
--- 
-2.36.1
+Sure, I just noticed it.
 
+> But thanks for a hint, I'll make sure this is addressed.
+
+Thanks,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--76kamf7d6dnpz6x3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmKyvAkACgkQrX5LkNig
+010wLwgAilTVnq+l3oHfKypqDgkOYJt5Clt1qpWaDjQR3y7xem66KBUD262Cvjhh
+LJScmqZNUUUIXS65kl2JDPuOLvm6RmR83+oGF0j9AyWWEk50g2FU3sJX5TZCpm+G
+2chxh01cuppbO8Lf8TZLKJtzfimWxtZZpJ25AJJP7Mwl1Nqo+CjXJuRuL0IRVr/v
+/BTzry3IjLirEFjy+0coO5LnSj6tX9fb0+WnREqkvN9nLI6X1ZPD4YIeidaN8kig
+Y5sAgvN/4iWno0uUl4YK/H/hH9OFddkK0ctgIgqnXi/8h8qpZqJlfjZQGbaXq/iv
+OXBkBjZoDkVCfuwPI6tNz/FwxIgJkA==
+=kWUK
+-----END PGP SIGNATURE-----
+
+--76kamf7d6dnpz6x3--
