@@ -2,87 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3C1F55440D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 10:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DE11554477
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 10:11:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbiFVHb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 03:31:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35068 "EHLO
+        id S1352866AbiFVHd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 03:33:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234410AbiFVHb2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 03:31:28 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22E2537021
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 00:31:26 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id b23so9696025ljh.7
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 00:31:26 -0700 (PDT)
+        with ESMTP id S1352917AbiFVHdx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 03:33:53 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE3473703A
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 00:33:51 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id s10so18243671ljh.12
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 00:33:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=mRfcyZt+nnbGBIJgn9azMqSuPxdBFrJVag5LBfIwDKs=;
-        b=NqtZLW1cvxMKFd7JYa3zwD1lcbRcUChVmZTc9wPrBtXN2C5oHrOCRGVgEJApVNcQ23
-         IZ1J+SMdUYKxVBt8PRTVVpKSEcXJIz8dWz61jE56fPBqIT/UYx4dKB2VmyFj2x6xRaZy
-         FLAixflAtWuQB9nwgmP86YzZhnRg1ReJJz5T419/Exk/kov8nszkb/n+fqQ53FCbVqk9
-         YV9wLw/kHRz6MtYNJUpNHSOenPgZ0xInSeCFZbsD09flPRKVkTGFbz8W5MtwoFez2+c0
-         t0WbnzxbfHMpLNps73qRr0u4EnGU+33Wi4mOf2tozQqVKxlaASVl9NdObVLfS6y/IIet
-         NAJA==
+        bh=7u2mzyIk7qCiF6G6ao+KItshVsiYCB6EE/ZVw3jOeOg=;
+        b=UoIIX31fk9eu9RxAogLJsx9A/YAhFrakUcRqjx96kbbYaA8qL+nG3a6RkL1Sa2/Pw1
+         xeskW6xtvK88Z+1Z732KSM65232wAYSuJ/PNo5JsjzaD8l6OIw1oJ5T4791jYzrMVreV
+         jSb462RMd3xrJDmzEqPMeXQoFLaaLljj2+Oprm3rze+Bo0AEEFdYQdGaQ5nua1OW7ZRL
+         0xYi/6ESpQLfvobvZpplNRP2ojxgOn6jiJo801f9GnA+C5jC+SpH+JDBYIUJiTStrFHp
+         aL/+BwGqQKK9sm2m7CNfooiYsr8mOHlRZqrYjmWlkVzNmy5zFsyd5bQrj5jnNkiI2lVi
+         rmng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=mRfcyZt+nnbGBIJgn9azMqSuPxdBFrJVag5LBfIwDKs=;
-        b=Y06K7PIqNZDxYT6jGCrRLZvMbczEQ1EhrxrIMMzDe2KjMJfeqal2HYehiPLBQJbDVX
-         3dO6RGA4XvUCKKEN70LOAOvrXY7vpP+PFVsjJnjCCj914RDWoBmprbfObEzVUmXmLj3B
-         W0xBG5OQ+onQV1j+xXRdlnu7zFccS3mtq6caWC7sPTCjWw0Yl6aKvgUezeF+3GEc+apO
-         yc/R8NnkoQcWAPHMlfuPhZqg8jHSk/qFeRxkQUGD15UUmFV6+Hl6WR1QMcg5R6XD6VgY
-         hbfyxN0M1mZqpdc4q6YZqLx/FiGpTW11vKLJwUg+jQv9L3cRa8vCze3GMeNUB5ZEuGzK
-         YtIg==
-X-Gm-Message-State: AJIora9FGqK9iO942uStMWgtJ0p4VisOmzpQi2LpkEiOw6iEHtVtUslp
-        oFU+UiwCuMspGKYZsm12pfryHQ==
-X-Google-Smtp-Source: AGRyM1vSZt6sTbeMAihWpRwuOLqdKpTdFhhOfwhu3HhkjnPPM8QWKsD7uBUmfF4h/SxWQpv0WyqVTg==
-X-Received: by 2002:a2e:a7c7:0:b0:255:8ecd:14b0 with SMTP id x7-20020a2ea7c7000000b002558ecd14b0mr1104245ljp.472.1655883084375;
-        Wed, 22 Jun 2022 00:31:24 -0700 (PDT)
+        bh=7u2mzyIk7qCiF6G6ao+KItshVsiYCB6EE/ZVw3jOeOg=;
+        b=n7I1HwGYe2hEyo74oNKZTvoh8KWnfazK60sH5h5pO7FipogZmqVrAsaysZ94JYo/6I
+         Vv5/2WG7V6bnFiSPcvJkDSGE4f/G08JRzS5/wLJ16QmAE6h894cvZDOr6zKM26qS44vL
+         gFT/QmFkFcRwQdiJSrwVlIALxIWsX2uwiyoUxb3HoJGqoEETd+o+bzN5tKsTItNgKvR9
+         syIHDwPrYzYg0tnexB433KrnJNabXkoso+MEER01Ip+wWVAQyfmk4Yng4uZ9vLNhu44p
+         6OeLmyuLBKNnJEhbY4g6jPoRfHvwLja+VHDlEhT/VObaKq+mOv09KNrFFpvIExJqmkoD
+         sQuQ==
+X-Gm-Message-State: AJIora9NURjSjafMuWrg9CLlq4BFdRoj0HHCwD0PucnK8Jo1cc9CPXL6
+        BHsEUhv/yWQPXmqHz+/HCyEi6w==
+X-Google-Smtp-Source: AGRyM1v37LDfzbSuWOdp8P7QX+rUiUHnLdODI+EKsivLYUpBCF1ewbujHxy46Ymd9r+swKWmjewGPQ==
+X-Received: by 2002:a2e:b890:0:b0:25a:890a:b424 with SMTP id r16-20020a2eb890000000b0025a890ab424mr942861ljp.275.1655883229985;
+        Wed, 22 Jun 2022 00:33:49 -0700 (PDT)
 Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id s19-20020a056512215300b004796a17246esm1603388lfr.252.2022.06.22.00.31.23
+        by smtp.gmail.com with ESMTPSA id m12-20020a056512358c00b0047f8de9734asm335583lfr.123.2022.06.22.00.33.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 00:31:23 -0700 (PDT)
-Message-ID: <0739a09c-1281-379f-98db-76ab395c0853@linaro.org>
-Date:   Wed, 22 Jun 2022 10:31:23 +0300
+        Wed, 22 Jun 2022 00:33:49 -0700 (PDT)
+Message-ID: <b8b21831-8078-fb53-d4be-9feb6138b19d@linaro.org>
+Date:   Wed, 22 Jun 2022 10:33:48 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: document qcom,msm-id and
- qcom,board-id
+Subject: Re: [PATCH v1 0/3] WAR to handle WCN6750 hardware issue
 Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+        agross@kernel.org, robh+dt@kernel.org, bjorn.andersson@linaro.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Kumar Gala <galak@codeaurora.org>,
-        Stephen Boyd <sboyd@kernel.org>
-References: <20220621185649.37391-1-krzysztof.kozlowski@linaro.org>
- <20220621185649.37391-2-krzysztof.kozlowski@linaro.org>
- <609d1f0f-daca-4fde-3315-5d8e171ca5c4@linaro.org>
- <7ef854a5-0e56-c71e-447a-f52cdcf51ef0@linaro.org>
- <CAA8EJpp3HqsPOcz1t9W=cjExuddjEV2MaA10L5mMgcUrmqUmAQ@mail.gmail.com>
- <70300b95-8b4d-5029-bfbb-544abbc64441@linaro.org>
+        linux-kernel@vger.kernel.org, marcel@holtmann.org,
+        johan.hedberg@gmail.com
+Cc:     mka@chromium.org, linux-bluetooth@vger.kernel.org,
+        quic_hemantg@quicinc.com, quic_saluvala@quicinc.com,
+        quic_rjliao@quicinc.com, mcchou@chromium.org
+References: <1651228073-1999-1-git-send-email-quic_bgodavar@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <70300b95-8b4d-5029-bfbb-544abbc64441@linaro.org>
+In-Reply-To: <1651228073-1999-1-git-send-email-quic_bgodavar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,169 +78,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2022 10:00, Krzysztof Kozlowski wrote:
-> On 21/06/2022 21:49, Dmitry Baryshkov wrote:
->> On Tue, 21 Jun 2022 at 22:32, Krzysztof Kozlowski
->> <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>> On 21/06/2022 21:26, Dmitry Baryshkov wrote:
->>>> On 21/06/2022 21:56, Krzysztof Kozlowski wrote:
->>>>> The top level qcom,msm-id and qcom,board-id properties are utilized by
->>>>> bootloaders on Qualcomm MSM platforms to determine which device tree
->>>>> should be used and passed to the kernel.
->>>>>
->>>>> The commit b32e592d3c28 ("devicetree: bindings: Document qcom board
->>>>> compatible format") from 2015 was a consensus during discussion about
->>>>> upstreaming qcom,msm-id and qcom,board-id fields.  There are however still
->>>>> problems with that consensus:
->>>>> 1. It was reached 7 years ago but it turned out its implementation did
->>>>>      not reach all possible products.
->>>>>
->>>>> 2. Initially additional tool (dtbTool) was needed for parsing these
->>>>>      fields to create a QCDT image consisting of multiple DTBs, later the
->>>>>      bootloaders were improved and they use these qcom,msm-id and
->>>>>      qcom,board-id properties directly.
->>>>
->>>> I might be mistaken here. I think it was expected that dtbTool would use
->>>> board compat strings to generate qcom,msm-id and qcom,board-id
->>>> properties. It's not that the bootloaders were improved.
->>>
->>> Don't ask me, I am new to this.
->>>
->>> https://lore.kernel.org/all/02ab0276-b078-fe66-8596-fcec4378722b@somainline.org/
->>
->>
->>
->>
->>>
->>>>
->>>>>
->>>>> 3. Extracting relevant information from the board compatible requires
->>>>>      this additional tool (dtbTool), which makes the build process more
->>>>>      complicated and not easily reproducible (DTBs are modified after the
->>>>>      kernel build).
->>>>>
->>>>> 4. Some versions of Qualcomm bootloaders expect these properties even
->>>>>      when booting with a single DTB.  The community is stuck with these
->>>>>      bootloaders thus they require properties in the DTBs.
->>>>>
->>>>> Since several upstreamed Qualcomm SoC-based boards require these
->>>>> properties to properly boot and the properties are reportedly used by
->>>>> bootloaders, document them.
->>>>>
->>>>> Link: https://lore.kernel.org/r/a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org/
->>>>> Co-developed-by: Kumar Gala <galak@codeaurora.org>
->>>>> Signed-off-by: Kumar Gala <galak@codeaurora.org>
->>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> ---
->>>>>    .../devicetree/bindings/arm/qcom.yaml         | 123 ++++++++++++++++++
->>>>>    include/dt-bindings/arm/qcom,ids.h            |  30 +++++
->>>>>    2 files changed, 153 insertions(+)
->>>>>    create mode 100644 include/dt-bindings/arm/qcom,ids.h
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
->>>>> index 6c38c1387afd..05b98cde4653 100644
->>>>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->>>>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->>>>> @@ -403,6 +403,129 @@ properties:
->>>>>                  - qcom,sm8450-qrd
->>>>>              - const: qcom,sm8450
->>>>>
->>>>> +  # Board compatibles go above
->>>>> +
->>>>> +  qcom,msm-id:
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
->>>>> +    minItems: 1
->>>>> +    maxItems: 8
->>>>> +    items:
->>>>> +      items:
->>>>> +        - description: |
->>>>> +            MSM chipset ID - an exact match value consisting of three bitfields::
->>>>
->>>> two bitfields
->>>
->>> Right, thanks.
->>>
->>>>
->>>>> +             - bits 0-15  - The unique MSM chipset ID
->>>>> +             - bits 16-31 - Reserved; should be 0
->>>>> +        - description: |
->>>>> +            Hardware revision ID - a chipset specific 32-bit ID representing
->>>>> +            the version of the chipset.  It is best a match value - the
->>>>> +            bootloader will look for the closest possible match.
->>>>> +    deprecated: true
->>>>> +    description:
->>>>> +      The MSM chipset and hardware revision use by Qualcomm bootloaders.  It
->>>>> +      can optionally be an array of these to indicate multiple hardware that
->>>>> +      use the same device tree.  It is expected that the bootloader will use
->>>>> +      this information at boot-up to decide which device tree to use when given
->>>>> +      multiple device trees, some of which may not be compatible with the
->>>>> +      actual hardware.  It is the bootloader's responsibility to pass the
->>>>> +      correct device tree to the kernel.
->>>>> +      The property is deprecated - it is not expected on newer boards
->>>>> +      (starting with SM8350).
->>>>
->>>> Could you please elaborate this?
->>>
->>> Second paragraph:
->>> https://lore.kernel.org/all/20220522195138.35943-1-konrad.dybcio@somainline.org/
->>
->> I think this is something peculiar to Sony. Public lahaina (sm8350)
->> dts files contain both these properties:
->>
->> https://github.com/MiCode/kernel_devicetree/blob/zeus-s-oss/qcom/lahaina-hdk.dts
->> https://github.com/MiCode/kernel_devicetree/blob/zeus-s-oss/qcom/lahaina-v2.1.dtsi
->>
->>>
->>> Plus consensus with Rob:
->>> https://lore.kernel.org/all/CAL_JsqKL-mtAQ8Q9H4vLGM8izVVzDPbUAVWSdS8AmGjN6X6kcA@mail.gmail.com/
->>
->> I'm not sure here. But sm8350 and sm8450 dtsi files use these
->> properties. I've linked lahaina files above.
->> The waiptio dtsi (sm8450) are present at the same URL.
+On 29/04/2022 13:27, Balakrishna Godavarthi wrote:
+> On WCN6750 sometimes observed AON power source takes 100ms
+> time to fully discharge voltage during OFF. As WCN6750 is
+> combo chip for WLAN and BT. If any of the tech area ON is
+> triggered during discharge phase, it fails to turn ON.
+> To overcome this hardware issue, During BT ON, driver check
+> for WLAN_EN pin status. If it high, it will pull BT_EN to high
+> immediately else it will wait for 100ms assuming WLAN was just
+> powered OFF and then BT_EN will be pulled to high.
+
+Ugh. This adds another point to support separate power sequencer device 
+for WiFi+BT devices. Let me refresh my last patchset, so that we can 
+implement it as a part of common code, rather than hacking hci_qca on 
+and on.
+
 > 
-> If you did not like where the consensus is going during the discussion
-> last week, I would expect to join the discussion. Not to comment after I
-> implement it.
-
-Please excuse me. I probably missed that part of the discussion. Yes, it 
-was my fault.
-
->>>> If the AOSP team were to add e.g.
->>>> SM8350-HDK to their single RB3+RB5 images, they would still need the
->>>> qcom,board-id/qcom,msm-id properties to let the bootloader choose proper
->>>> DTB.
->>>
->>> If you have any email addresses in mind, please Cc them to invite in
->>> discussions. Otherwise I am afraid it won't be allowed. The feedback I
->>> got before was that SM8350 and newer do not require this property. Feel
->>> free to propose other way to solve comments (see "consensus with Rob"
->>> above).
->>
->> Amit is in CC list. In the past he used these properties to allow
->> single-image booting of RB3 and RB5.
->> In fact I might prefer adding more of these properties to the dts
->> files, where it makes sense, to allow adding more dt files to the
->> images we create.
->> I'd really like to be able to boot a single image on all my boards
->> (rb3, rb5, db410c, db820, ifc6560, etc).
+> Balakrishna Godavarthi (3):
+>    dt-bindings: net: bluetooth: Add wlan-gpio entry for wcn6750
+>    arm64: dts: qcom: sc7280: Add wlan enable gpio to bluetooth node
+>    Bluetooth: hci_qca: WAR to handle WCN6750 HW issue
 > 
-> You have several options here. Use the board-compatible-encoded-scheme,
-> which was merged like 6 years ago or something. Bootloader could parse
-> it, dtbTool as well. Add a generic property, like Rob wanted (and
-> probably fix bootloader). Or find any other way to satisfy Rob's
-> comments. These properties were not accepted 6 years ago and the board
-> compatible approach was merged instead. If 6 years is not enough to
-> change the bootloaders, nothing will happen here ever, so we need to
-> make some statement.
+>   .../bindings/net/qualcomm-bluetooth.yaml           |  6 +++++
+>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  1 +
+>   drivers/bluetooth/hci_qca.c                        | 30 +++++++++++++++++-----
+>   3 files changed, 31 insertions(+), 6 deletions(-)
+> 
 
-Let me respond to his email. Amit, you might have something to add there 
-too.
-
-Basically I think we should allow these properties to be used for all 
-the Qcom boards. Marking them as 'deprecated' is fine to me, thus we 
-would not endorse them. But we would still be able to use them when 
-needed/wanted (like AOSP requirements for the single boot image).
 
 -- 
 With best wishes
