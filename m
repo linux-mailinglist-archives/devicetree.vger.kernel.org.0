@@ -2,76 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E215554933
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:17:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD7F45549E4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:30:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357509AbiFVMG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 08:06:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46998 "EHLO
+        id S232489AbiFVMUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 08:20:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234389AbiFVMGX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 08:06:23 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7526C3DDCC;
-        Wed, 22 Jun 2022 05:06:16 -0700 (PDT)
-X-UUID: 89cb5cfe996d45b8b5e117f9fbc5ef64-20220622
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:bca889a7-37dd-4ebc-a06b-0b4a1495cc5c,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:b14ad71,CLOUDID:dd68c12d-1756-4fa3-be7f-474a6e4be921,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 89cb5cfe996d45b8b5e117f9fbc5ef64-20220622
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 428670532; Wed, 22 Jun 2022 20:06:11 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Wed, 22 Jun 2022 20:06:10 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Wed, 22 Jun 2022 20:06:10 +0800
-Message-ID: <9a02f733ffcffd03d173bd7d0daac1802b7dcff3.camel@mediatek.com>
-Subject: Re: [PATCH v6 16/16] arm64: dts: mediatek: Add infra #reset-cells
- property for MT8195
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "chun-jie.chen@mediatek.com" <chun-jie.chen@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        Runyang Chen =?UTF-8?Q?=28=E9=99=88=E6=B6=A6=E6=B4=8B=29?= 
-        <Runyang.Chen@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 22 Jun 2022 20:06:10 +0800
-In-Reply-To: <3a587e20-f991-adf8-fe4e-a09caa1e14c7@gmail.com>
-References: <20220503093856.22250-1-rex-bc.chen@mediatek.com>
-         <20220503093856.22250-17-rex-bc.chen@mediatek.com>
-         <3a587e20-f991-adf8-fe4e-a09caa1e14c7@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S234528AbiFVMU3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 08:20:29 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D73935DF3
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 05:20:28 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id ay16so14463697ejb.6
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 05:20:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=YqZl55YlnzKJuZvnAvOYUqgqzVWeklNXo8K4BWb79NY=;
+        b=K+vUm9h4zeZ2BY+AkhsLxdTYyhJwqnMXqQq77ZRQfWdtzXQwazdV7BvakFNKvQJxGb
+         YbZqFHNUdhLZ5rkfeG9GzWzmy0i05jF+yiQg8vU/hKgJvaCCmROqzo1ePUT0nW3nKGUb
+         awSUdhmwMFCXKWFnTe0GlnC6o/TV/UIx84e8QJEZjXf+qSo/JH9yEfluwL4JpjwyP6lJ
+         C3v6aS4CbXAKHBZ3u0eWXDUTiz5mZLZLDle3Ex5Cr41wSJ3Ouze7STBZxmb+C++WIMaz
+         YkGxZucrMsZHESuItdlF4xdJ5T7GkNi5dtvrDtaLfu+1DR9q6wJLUUJbdkozGT3mKCLX
+         mILg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=YqZl55YlnzKJuZvnAvOYUqgqzVWeklNXo8K4BWb79NY=;
+        b=aH2ChU3tc2fDtET9oe4vy60Fe2fp+xyzrh5lK9y+DUFC77nzd6bx/yUQ0XFPd9KJGB
+         gtX27FVhzs5bJi6qAr+EfiYDupEIqzS4LJErxQp4SLzGpcw3IJ6bvzAcbd+7x0/ivL7/
+         CHaFlUMW2pEO0li1bwqFiYkYYqw6HpRkAatkQM6s3ce6xC/rqMINDyqAM01BS2QlF3qd
+         h8K5qJ7tadtmHfFoqhfjeRzyJSI0NWezpRie/sXiJW2fyLujkRf4woT9NXZp1mAZjlzS
+         eWGbU66Dxpbc1ZITOAxddJ5IfPBZUpEDD+U9rOlNOQtk0eXlQs+ejwv55V4amn0u3/77
+         RaxA==
+X-Gm-Message-State: AJIora+cOiBvO6geEwKO3zIZuu4dL+6ZSSTjYVphuB4piHewljom06eN
+        ypblIXlMib3xWUZWtZwmwVtX9w==
+X-Google-Smtp-Source: AGRyM1tRaVprGVLQKE51VKBB6prua/fQyAH18plkrLguHseuDTTg9AZY0HC40TSxd49AsE/GzfvZTQ==
+X-Received: by 2002:a17:907:d0d:b0:711:d554:1c8f with SMTP id gn13-20020a1709070d0d00b00711d5541c8fmr2878279ejc.223.1655900426586;
+        Wed, 22 Jun 2022 05:20:26 -0700 (PDT)
+Received: from [192.168.0.224] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id p6-20020a17090653c600b00722e0b1fa8esm3077762ejo.164.2022.06.22.05.20.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jun 2022 05:20:25 -0700 (PDT)
+Message-ID: <be7fafdb-5553-1b64-e7f1-5909aced3ba5@linaro.org>
+Date:   Wed, 22 Jun 2022 14:20:24 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v4 1/4] dt-bindings: interconnect: qcom,sdm845-cpu-bwmon:
+ add BWMON device
+Content-Language: en-US
+To:     Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>
+References: <20220601101140.170504-1-krzysztof.kozlowski@linaro.org>
+ <20220601101140.170504-2-krzysztof.kozlowski@linaro.org>
+ <Yp5tjUICIEUptKSx@ripper> <3e4e504c-5a38-43cd-ea8d-afbbb72eacad@linaro.org>
+ <dbfe1e7c-19dc-2d20-700a-c26f0bf721e5@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <dbfe1e7c-19dc-2d20-700a-c26f0bf721e5@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,79 +83,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-06-22 at 19:08 +0800, Matthias Brugger wrote:
+On 22/06/2022 13:58, Rajendra Nayak wrote:
 > 
-> On 03/05/2022 11:38, Rex-BC Chen wrote:
-> > We will use mediatek clock reset as infracfg_ao reset instead of
-> > ti-syscon. To support this, remove property of ti reset and add
-> > property of #reset-cells for mediatek clock reset.
-> > 
-> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> > Reviewed-by: AngeloGioacchino Del Regno <
-> > angelogioacchino.delregno@collabora.com>
 > 
-> My understanding is that using the old DTS with a newer kernel
-> wouldn't 
-> introduce a regression, correct?
+> On 6/7/2022 12:20 PM, Krzysztof Kozlowski wrote:
+>> On 06/06/2022 23:11, Bjorn Andersson wrote:
+>>> On Wed 01 Jun 03:11 PDT 2022, Krzysztof Kozlowski wrote:
+>>>
+>>>> Add bindings for the Qualcomm Bandwidth Monitor device providing
+>>>> performance data on interconnects.  The bindings describe only BWMON
+>>>> version 4, e.g. the instance on SDM845 between CPU and Last Level Cache
+>>>> Controller.
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>>> Acked-by: Georgi Djakov <djakov@kernel.org>
+>>>> ---
+>>>>   .../interconnect/qcom,sdm845-cpu-bwmon.yaml   | 97 +++++++++++++++++++
+>>>>   1 file changed, 97 insertions(+)
+>>>>   create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..8c82e06ee432
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml
+>>>> @@ -0,0 +1,97 @@
+>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/interconnect/qcom,sdm845-cpu-bwmon.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Qualcomm Interconnect Bandwidth Monitor
+>>>> +
+>>>> +maintainers:
+>>>> +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> +
+>>>> +description:
+>>>> +  Bandwidth Monitor measures current throughput on buses between various NoC
+>>>> +  fabrics and provides information when it crosses configured thresholds.
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - qcom,sdm845-cpu-bwmon       # BWMON v4
+>>>
+>>> It seems the thing that's called bwmon v4 is compatible with a number of
+>>> different platforms, should we add a generic compatible to the binding
+>>> as well, to avoid having to update the implementation for each SoC?
+>>>
+>>> (I.e. "qcom,sdm845-cpu-bwmon", "qcom,bwmon-v4")
 > 
-> Applied, thanks!
-> 
+> it seems pretty useful to have the "qcom,bwmon-v4" and "qcom,bwmon-v5"
+> compatibles, I tried these patches on a sc7280 device which has a bwmon4
+> between the cpu and caches (and also has a bwmon5 between the caches and DDR)
+> and the driver works with zero changes.
 
-Hello Matthias,
+The trouble with naming it v4 is that such versioning does not exist in
+documentation. At least I failed to find it. Neither there is clear
+mapping between SoC and block version.
 
-yes, because there is no user for this infra reset controller in
-upstream mainline.
+The only indication about BWMON versioning comes from downstream
+sources, which I find not enough to justify usage of versions for blocks.
 
-In addition, could you also help to give us some suggestion for Nancy's
-series?
+Therefore as per DT recommendation (which I am enforcing on others) I am
+not planning put there bwmon-v4.
 
-Thanks for your big support!
-
-[1]: 
-https://patchwork.kernel.org/project/linux-mediatek/list/?series=651900
-
-BRs,
-Bo-Chen
-
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 13 +------------
-> >   1 file changed, 1 insertion(+), 12 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > index b57e620c2c72..8e5ac11b19f1 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> > @@ -10,7 +10,6 @@
-> >   #include <dt-bindings/interrupt-controller/irq.h>
-> >   #include <dt-bindings/phy/phy.h>
-> >   #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
-> > -#include <dt-bindings/reset/ti-syscon.h>
-> >   
-> >   / {
-> >   	compatible = "mediatek,mt8195";
-> > @@ -295,17 +294,7 @@
-> >   			compatible = "mediatek,mt8195-infracfg_ao",
-> > "syscon", "simple-mfd";
-> >   			reg = <0 0x10001000 0 0x1000>;
-> >   			#clock-cells = <1>;
-> > -
-> > -			infracfg_rst: reset-controller {
-> > -				compatible = "ti,syscon-reset";
-> > -				#reset-cells = <1>;
-> > -				ti,reset-bits = <
-> > -					0x140 18 0x144 18 0 0
-> > (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* pcie */
-> > -					0x120 0  0x124 0  0 0
-> > (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* thermal */
-> > -					0x730 10 0x734 10 0 0
-> > (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* thermal */
-> > -					0x150 5  0x154 5  0 0
-> > (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* svs gpu */
-> > -				>;
-> > -			};
-> > +			#reset-cells = <1>;
-> >   		};
-> >   
-> >   		pericfg: syscon@10003000 {
-
+Best regards,
+Krzysztof
