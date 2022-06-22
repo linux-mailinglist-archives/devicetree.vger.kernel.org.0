@@ -2,108 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F311A554C58
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 16:13:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99492554C81
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 16:15:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358029AbiFVOM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 10:12:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34554 "EHLO
+        id S1358436AbiFVOPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 10:15:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358035AbiFVOM4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 10:12:56 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B42FB210;
-        Wed, 22 Jun 2022 07:12:53 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id g25so34505628ejh.9;
-        Wed, 22 Jun 2022 07:12:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ren2+uJhEOKFuly4Y7r0RVT/r2/Z143SWwTToasxhOA=;
-        b=CQTnUj+3r1Tmk+T0IjuiHB1Hr4poYEqyzqY7e1KiKmdVMECfrXc4U5GEg0+HGYFtGK
-         /63ZwSp/BIYc8pDjJQdAhJjVDxcvfs6MUrDxMOe3vyLpx3UjbS6NpkQTLniUIVmX4u9k
-         la5+rQMbRD/KXjJML7sUQ573tQDMVpUt7frQWfL6v426debfnOw1gfnGXdzDh0wyC8QP
-         bfGGXiL6G5Udv3dYc36Rgf7BiPgTaTD4g1UvxWwtPv+9vzPLSUSF4T8vIVvVTogpBJd6
-         wOhbWPDWKTxaYUcyRxH8AXk1DGtjFpgk5+fcwKfl89uNIaiCFB7sR0oPLENO7/FMMx5C
-         m3fA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ren2+uJhEOKFuly4Y7r0RVT/r2/Z143SWwTToasxhOA=;
-        b=tZzXohYEpi10NrajFxobRXEoHyPxwPu49oucdjMtk4iwm3jMuTHn7ad5zs01LnPK52
-         D81cz77/KYX/ZQ2yEsWo6YX2++lj9Uhsnvhtv/iFeRgcSEgvyoRU2TGT9gD8JuuEYs7i
-         nFLwzYZTMBxRY5EfZ/nPaXl/8qQfyFY15WOBFwcvttaeZdcF2zHTCM9zUUT0kTLHNXia
-         bDCsOUGN63uyxgZRd0DyhO38aXJhNZkcAbrJnNk/57HhvVFQ8dPOeYPh9G+5hkhZNWVY
-         A5Wcpu1yi3rLJ07Q8f5BMw9UZkbW4GuZVKgHisDNvlO/GOlJUJXLiu6h0A1Gwz2NiYQh
-         KrhA==
-X-Gm-Message-State: AJIora/aiNgXVpCsSomgemE0tfq+C6OqlvyyGFEiuqlRcspD1vHexf7s
-        i11VnAFVfKJnM4VcIprSg70=
-X-Google-Smtp-Source: AGRyM1tjj8BA36t5S7r9EYwBFt3Kn2rjeOb1UXCuXZaNTZE7evzeCkF4MwXZS/VBuSfPIwoVJ7nfIg==
-X-Received: by 2002:a17:907:86aa:b0:722:d5b2:fca2 with SMTP id qa42-20020a17090786aa00b00722d5b2fca2mr3277139ejc.264.1655907171611;
-        Wed, 22 Jun 2022 07:12:51 -0700 (PDT)
-Received: from [192.168.0.16] ([37.223.148.38])
-        by smtp.gmail.com with ESMTPSA id k10-20020a17090632ca00b00722e7919835sm2332703ejk.111.2022.06.22.07.12.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 07:12:49 -0700 (PDT)
-Message-ID: <45a6ab4b-bc43-2c98-4f94-be6e4e9fc445@gmail.com>
-Date:   Wed, 22 Jun 2022 16:12:48 +0200
+        with ESMTP id S1358431AbiFVOPD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 10:15:03 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAFAC39826;
+        Wed, 22 Jun 2022 07:14:45 -0700 (PDT)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id 89BA21C0004;
+        Wed, 22 Jun 2022 14:14:41 +0000 (UTC)
+Date:   Wed, 22 Jun 2022 16:14:39 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     Eugen.Hristev@microchip.com, linux-arm-kernel@lists.infradead.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Claudiu.Beznea@microchip.com,
+        Nicolas.Ferre@microchip.com
+Subject: Re: [PATCH v10 0/5] media: atmel: atmel-isc: implement media
+ controller
+Message-ID: <20220622141439.v2ozrctikjxd67ue@uno.localdomain>
+References: <20220503095127.48710-1-eugen.hristev@microchip.com>
+ <1da61f9c-0605-dc9d-63a3-21c18fcb74c7@xs4all.nl>
+ <a19d9e72-7609-1daa-93eb-fdedcaa672c4@microchip.com>
+ <bc22469c-d1ab-72e2-8e9e-6bd42d66f3d9@microchip.com>
+ <c1b8820d-5ff5-b6dd-bc22-35f8daf756db@xs4all.nl>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v4 0/5] mtk_iommu: Specify phandles to infracfg and
- pericfg
-Content-Language: en-US
-To:     Joerg Roedel <joro@8bytes.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     yong.wu@mediatek.com, will@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski@linaro.org, miles.chen@mediatek.com
-References: <20220616110830.26037-1-angelogioacchino.delregno@collabora.com>
- <YrMc2EUBDIxnoWiB@8bytes.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <YrMc2EUBDIxnoWiB@8bytes.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c1b8820d-5ff5-b6dd-bc22-35f8daf756db@xs4all.nl>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Joerg,
+Hi Hans, Eugen
 
-On 22/06/2022 15:44, Joerg Roedel wrote:
-> On Thu, Jun 16, 2022 at 01:08:25PM +0200, AngeloGioacchino Del Regno wrote:
->> AngeloGioacchino Del Regno (5):
->>    dt-bindings: iommu: mediatek: Add mediatek,infracfg phandle
->>    iommu/mediatek: Lookup phandle to retrieve syscon to infracfg
->>    arm64: dts: mediatek: mt8173: Add mediatek,infracfg phandle for IOMMU
->>    arm64: dts: mediatek: mt2712e: Add mediatek,infracfg phandle for IOMMU
->>    iommu/mediatek: Cleanup pericfg lookup flow
->>
->>   .../bindings/iommu/mediatek,iommu.yaml        | 17 +++++++
->>   arch/arm64/boot/dts/mediatek/mt2712e.dtsi     |  2 +
->>   arch/arm64/boot/dts/mediatek/mt8173.dtsi      |  1 +
->>   drivers/iommu/mtk_iommu.c                     | 50 +++++++++++--------
->>   4 files changed, 49 insertions(+), 21 deletions(-)
-> 
-> Applied, thanks.
+On Wed, Jun 22, 2022 at 03:47:33PM +0200, Hans Verkuil wrote:
+> On 22/06/2022 14:42, Eugen.Hristev@microchip.com wrote:
+> > On 6/22/22 3:25 PM, Eugen Hristev - M18282 wrote:
+> >> On 6/22/22 2:53 PM, Hans Verkuil wrote:
+> >>> Hi Eugen,
+> >>>
+> >>> On 03/05/2022 11:51, Eugen Hristev wrote:
+> >>>> This series is a split from the series :
+> >>>> [PATCH v9 00/13] media: atmel: atmel-isc: implement media controller
+> >>>> and it includes the media controller part.
+> >>>> previous fixes were sent on a different patch series.
+> >>>>
+> >>>> As discussed on the ML, moving forward with having the media link validate at
+> >>>> start/stop streaming call.
+> >>>> I will test the patch :
+> >>>> [RFC PATCHv2] vb2: add support for (un)prepare_streaming queue ops
+> >>>> afterwards, but that patch requires moving my logic to the new vb2 callbacks.
+> >>>
+> >>> I'm looking at merging this series, but I would like to have the output of
+> >>> 'v4l2-compliance -m /dev/mediaX' to verify that the MC links etc. is all
+> >>> correct.
+> >>
+> >> Hello Hans,
+> >>
+> >> Please have a look at attached file . Unless you want me to add the
+> >> whole output to the e-mail ?
+> >>
+> >> I also added output of media-ctl -p for your convenience.
+> >> the subdev2 is a device and driver that is not upstream and has some
+> >> compliance issues, they are reported by the v4l2-compliance tool, but
+> >> they should not affect this series, it's a synopsys driver that was
+> >> rejected on mainline a few years ago, I took it for internal usage, but
+> >> it's not cleaned up nor worked a lot upon.
+> >>
+> >>>
+> >>> And one more question which may have been answered already in the past:
+> >>>
+> >>> Changing to the MC will break existing applications, doesn't it? Or did I
+> >>> miss something?
+> >>>
+> >>
+> >> The existing applications will have to configure the pipeline now. It
+> >> will no longer work by configuring just the top video node /dev/video0 .
+> >> They would have to use media-ctl for it, something similar with this set
+> >> of commands:
+> >
+> > To add on top of that, actually, the reality is that without the MC
+> > support in atmel-isc , some of our platforms do not work at all, because
+> > the csi2dc driver which is in the middle of the pipeline, is a MC
+> > driver. So it will not work without configuring it with MC anyway. It
+> > used to work in a very preliminary version of the csi2dc driver which I
+> > sent a few years ago, but that way of handling things was rejected.
+> > Hence I changed the csi2dc to being full-MC driver (requested for new
+> > drivers) and now I am completing the conversion for the whole pipeline.
+> > We are using this MC-centric approach in production for our products to
+> > be as close as possible to mainline, and backported it to our 5.15
+> > internal releases, which people are using right now.
+>
+> I'm not all that keen on breaking userspace for those who do NOT use the
+> Atmel BSP. Basically some platforms are currently broken, and with this patch
+> series some other platforms are broken, but at least can be fixed by changing
+> userspace.
+>
+> How feasible is it to do something similar that TI did for the cal driver?
+> (drivers/media/platform/ti/cal)
+>
+> I.e., based on a module option the MC is enabled or disabled. And if a
+> csi2dc is present, then the MC API is always enabled.
+>
 
-I wanted to check if you took also 3 and 4, as these should go through my tree. 
-Unfortunately you haven't pushed your tree (yet). In case you took the whole 
-series, can you please drop the dts patches. I'll apply them now on my 
-v5.19-next/dts64 branch.
+I think I have suggested Eugen to move to MC when he
+started looking in libcamera, so sorry for the intrusion but I feel
+a bit bad for not rising the point earlier and get him to v10
 
-Regards.
-Matthias
+I understand your point Hans, and when a vendor upstreaming code or a
+user requires to maintain compatibility, the burden of keeping more
+code in to handle the MC and non-MC cases is worth the complications.
+
+But if even the vendor wants to move to MC to allow more use-cases I
+think we have to acknolege that if you're running mainline on an
+embedded system you could expect to adjust your setup between kernel
+updates. The idea to document the media-ctl commands required to setup
+the pipeline it's helpful, and might help in the interim period until
+the platform is not supported by libcamera.
+
+That said, if Eugen wants to give the flag a try I won't
+oppose :)
+
+
+> Regards,
+>
+> 	Hans
+>
+> >
+> >>
+> >> media-ctl -d /dev/media0 --set-v4l2 '"imx219
+> >> 1-0010":0[fmt:SRGGB10_1X10/1920x1080]'
+> >> media-ctl -d /dev/media0 --set-v4l2
+> >> '"dw-csi.0":0[fmt:SRGGB10_1X10/1920x1080]'
+> >> media-ctl -d /dev/media0 --set-v4l2 '"csi2dc":0[fmt:SRGGB10_1X10/1920x1080]'
+> >> media-ctl -d /dev/media0 --set-v4l2
+> >> '"atmel_isc_scaler":0[fmt:SRGGB10_1X10/1920x1080]'
+> >>
+> >> Thank you for taking care of this !
+> >>
+> >> Eugen
+> >>
+> >>> Regards,
+> >>>
+> >>>           Hans
+> >>>
+> >>>>
+> >>>> Full series history:
+> >>>>
+> >>>> Changes in v10:
+> >>>> -> split the series into this first fixes part.
+> >>>> -> moved IO_MC addition from first patch to the second patch on the driver changes
+> >>>> -> edited commit messages
+> >>>> -> DT nodes now disabled by default.
+> >>>>
+> >>>> Changes in v9:
+> >>>> -> kernel robot reported isc_link_validate is not static, changed to static.
+> >>>>
+> >>>> Changes in v8:
+> >>>> -> scaler: modified crop bounds to have the exact source size
+> >>>>
+> >>>> Changes in v7:
+> >>>> -> scaler: modified crop bounds to have maximum isc size
+> >>>> -> format propagation: did small changes as per Jacopo review
+> >>>>
+> >>>>
+> >>>> Changes in v6:
+> >>>> -> worked a bit on scaler, added try crop and other changes as per Jacopo review
+> >>>> -> worked on isc-base enum_fmt , reworked as per Jacopo review
+> >>>>
+> >>>> Changes in v5:
+> >>>> -> removed patch that removed the 'stop' variable as it was still required
+> >>>> -> added two new trivial patches
+> >>>> -> reworked some parts of the scaler and format propagation after discussions with Jacopo
+> >>>>
+> >>>>
+> >>>> Changes in v4:
+> >>>> -> as reviewed by Hans, added new patch to remove the 'stop' variable and reworked
+> >>>> one patch that was using it
+> >>>> -> as reviewed by Jacopo, reworked some parts of the media controller implementation
+> >>>>
+> >>>>
+> >>>> Changes in v3:
+> >>>> - change in bindings, small fixes in csi2dc driver and conversion to mc
+> >>>> for the isc-base.
+> >>>> - removed some MAINTAINERS patches and used patterns in MAINTAINERS
+> >>>>
+> >>>> Changes in v2:
+> >>>> - integrated many changes suggested by Jacopo in the review of the v1 series.
+> >>>> - add a few new patches
+> >>>>
+> >>>> Eugen Hristev (5):
+> >>>>     media: atmel: atmel-isc: prepare for media controller support
+> >>>>     media: atmel: atmel-isc: implement media controller
+> >>>>     ARM: dts: at91: sama7g5: add nodes for video capture
+> >>>>     ARM: configs: at91: sama7: add xisc and csi2dc
+> >>>>     ARM: multi_v7_defconfig: add atmel video pipeline modules
+> >>>>
+> >>>>    arch/arm/boot/dts/sama7g5.dtsi                |  51 ++
+> >>>>    arch/arm/configs/multi_v7_defconfig           |   3 +
+> >>>>    arch/arm/configs/sama7_defconfig              |   2 +
+> >>>>    drivers/media/platform/atmel/Makefile         |   2 +-
+> >>>>    drivers/media/platform/atmel/atmel-isc-base.c | 485 +++++++++---------
+> >>>>    .../media/platform/atmel/atmel-isc-scaler.c   | 267 ++++++++++
+> >>>>    drivers/media/platform/atmel/atmel-isc.h      |  50 +-
+> >>>>    .../media/platform/atmel/atmel-sama5d2-isc.c  |  34 +-
+> >>>>    .../media/platform/atmel/atmel-sama7g5-isc.c  |  32 +-
+> >>>>    9 files changed, 685 insertions(+), 241 deletions(-)
+> >>>>    create mode 100644 drivers/media/platform/atmel/atmel-isc-scaler.c
+> >>>>
+> >>>
+> >>
+> >
+>
