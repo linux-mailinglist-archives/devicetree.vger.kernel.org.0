@@ -2,108 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D93F45552FE
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 20:09:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46A45555329
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 20:17:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237486AbiFVSIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 14:08:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37078 "EHLO
+        id S1377606AbiFVSRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 14:17:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377061AbiFVSIk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 14:08:40 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5822A716
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 11:08:38 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id a11so11567004ljb.5
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 11:08:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YYOVza86qJ14cSLpuOVf8g0H0wsocOlznH9bAfGGaxw=;
-        b=PKyLAriixe9E4ti02dlcBihreBCiDlDIyYUbwbqrQ80mcn+af+bhNahW6lNsGTayD3
-         J27iq5UCLFANnCtAGRRWtDYzS6FEox/9W75kUPwSGPTyBXku2DVcMxFU1Wi5IsMpvfCU
-         E8m++fQ873QasSbFL4oaDe6Qy+AfLFvN8eNbHFv+/O+HW1glFRayCJItG/b7IIyMdAQM
-         hfPASZFxucjPOV/w+O8dQcLtESFvfSreJD18JuKz7VGQDjNmNZj37ITIs1MNzGnKHHeS
-         hnsas55iXcuROPPbICg0kl86ic+iKVSp/MiR9ETzL+nriHqBp8qeQw0iEt1KMKq/w0mZ
-         vZnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YYOVza86qJ14cSLpuOVf8g0H0wsocOlznH9bAfGGaxw=;
-        b=qfcZzC65G2Mwf+tjteS2bD6HGBqxYpdIBw0q9cOkEQQ/soX72PytNSrN/WbzO6rfF7
-         Q8Ze/gzgzIhDNYvt+OtI8MwjCmGJCKhY9NdJHQkXIuyKpRLnvzOKO9s0jnZ+YaZyKQt6
-         s8Mb4tpASBhhJd26Bpzvsg08er/r+doh58Bo2GJCqxfD+mlW/x3gbrdP5ZJ615ZuIdKV
-         6IyzRCxL9Gbo7Q6XAoHHcjXelpCUpOAkcQx2Y0EUKPLBKrE7eQAjR7zXxv4w+A6Rnw+1
-         sgsY/4O/bL0nDqRGIrDi6M0MvH05mPQAGEo4Ek6T9EdPvWNCzydb5v46h54Sn8CSFHso
-         iTVg==
-X-Gm-Message-State: AJIora9Khoo/XgGd5ocMc+igIIxdVAcRu3sWpInA2PEx8d/p2ddZb744
-        kyfoKlZ7E7zQaflIMqpqsZGEVqWriprmdKqL
-X-Google-Smtp-Source: AGRyM1uhQxkDu4CTbNs4cg12dNZuoExse8UIX9Yk4z3BH/MUJryNDchCf5y8fAWed3JmdHP+Tl//LQ==
-X-Received: by 2002:a2e:b8d1:0:b0:25a:8ee9:86f4 with SMTP id s17-20020a2eb8d1000000b0025a8ee986f4mr553926ljp.480.1655921317316;
-        Wed, 22 Jun 2022 11:08:37 -0700 (PDT)
-Received: from [192.168.1.212] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id p12-20020ac24ecc000000b0047f7419de4asm1158515lfr.180.2022.06.22.11.08.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 11:08:36 -0700 (PDT)
-Message-ID: <687c302f-6f7f-a43e-de19-73b42b569d64@linaro.org>
-Date:   Wed, 22 Jun 2022 21:08:35 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: msm: update maintainers list with proper id
-Content-Language: en-GB
-To:     Kuogee Hsieh <quic_khsieh@quicinc.com>, robdclark@gmail.com,
-        sean@poorly.run, swboyd@chromium.org, vkoul@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        with ESMTP id S1377586AbiFVSRj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 14:17:39 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 62EFC3E5FD;
+        Wed, 22 Jun 2022 11:17:36 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.92,212,1650898800"; 
+   d="scan'208";a="125315333"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 23 Jun 2022 03:17:35 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 105CB40C7F2E;
+        Thu, 23 Jun 2022 03:17:31 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Cc:     abhinavk@codeaurora.org, quic_aravindh@quicinc.com,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1655916953-32039-1-git-send-email-quic_khsieh@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1655916953-32039-1-git-send-email-quic_khsieh@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Cc:     linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/2] Add CPG wrapper for Renesas RZ/Five SoC
+Date:   Wed, 22 Jun 2022 19:17:21 +0100
+Message-Id: <20220622181723.13033-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2022 19:55, Kuogee Hsieh wrote:
-> Use quic id instead of codeaurora id in maintainers list
-> for display devicetree bindings.
-> 
-> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
-> ---
->   Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 2 +-
+Hi All,
 
-This patch has been already accepted. Why did you resend it?
+This patch series adds CPG wrapper for Renesas RZ/Five SoC. RZ/Five SoC
+has almost identical clock structure compared to RZ/G2UL, so
+r9a07g043-cpg.c file is re-used to add support for Renesas RZ/Five SoC.
 
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> index cd05cfd..c950710 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->   title: MSM Display Port Controller
->   
->   maintainers:
-> -  - Kuogee Hsieh <khsieh@codeaurora.org>
-> +  - Kuogee Hsieh <quic_khsieh@quicinc.com>
->   
->   description: |
->     Device tree bindings for DisplayPort host controller for MSM targets
+Below is the clock structure reported by Linux with this patch series:
 
+/ # cat /sys/devices/soc0/family
+RZ/Five
+/ # cat /sys/devices/soc0/machine
+Renesas SMARC EVK based on r9a07g043
+/ # cat /sys/devices/soc0/revision
+0
+/ # cat /sys/devices/soc0/soc_id
+r9a07g043
+/ #
+/ # cat /sys/kernel/debug/clk/clk_summary
+                                 enable  prepare  protect                                duty  hardware
+   clock                          count    count    count        rate   accuracy phase  cycle    enable
+-------------------------------------------------------------------------------------------------------
+ extal                                3        3        0    24000000          0     0  50000         Y
+    .pll6                             0        0        0   500000000          0     0  50000         Y
+       .pll6_250                      0        0        0   250000000          0     0  50000         Y
+          HP                          0        0        0   250000000          0     0  50000         Y
+    .pll3                             1        1        0  1600000000          0     0  50000         Y
+       .pll3_533                      0        0        0   533333333          0     0  50000         Y
+          .sel_pll3_3                 0        0        0   533333333          0     0  50000         Y
+             divpl3c                  0        0        0   266666667          0     0  50000         Y
+                SPI1                  0        0        0    66666666          0     0  50000         Y
+                   spi_clk2           0        0        0    66666666          0     0  50000         N
+                SPI0                  0        0        0   133333333          0     0  50000         Y
+                   spi_clk            0        0        0   133333333          0     0  50000         N
+       .pll3_400                      0        0        0   400000000          0     0  50000         Y
+       .pll3_div2                     1        1        0   800000000          0     0  50000         Y
+          .pll3_div2_4                1        1        0   200000000          0     0  50000         Y
+             M0                       0        0        0   200000000          0     0  50000         Y
+                eth1_axi              0        0        0   200000000          0     0  50000         N
+                eth0_axi              0        0        0   200000000          0     0  50000         N
+             P1                       3        3        0   200000000          0     0  50000         Y
+                usb_pclk              0        0        0   200000000          0     0  50000         N
+                usb0_func             0        0        0   200000000          0     0  50000         N
+                usb1_host             0        0        0   200000000          0     0  50000         N
+                usb0_host             0        0        0   200000000          0     0  50000         N
+                sdhi1_aclk            0        0        0   200000000          0     0  50000         N
+                sdhi0_aclk            0        0        0   200000000          0     0  50000         N
+                dmac_aclk             2        2        0   200000000          0     0  50000         Y
+                iax45_clk             1        1        0   200000000          0     0  50000         Y
+                P1_DIV2               1        1        0   100000000          0     0  50000         Y
+                   dmac_pclk          1        1        0   100000000          0     0  50000         Y
+             .pll3_div2_4_2           0        0        0   100000000          0     0  50000         Y
+                ZT                    0        0        0   100000000          0     0  50000         Y
+                   eth1_chi           0        0        0   100000000          0     0  50000         N
+                   eth0_chi           0        0        0   100000000          0     0  50000         N
+                P2                    0        0        0   100000000          0     0  50000         Y
+                   iax45_pclk         0        0        0   100000000          0     0  50000         N
+    .pll2                             1        1        0  1600000000          0     0  50000         Y
+       .clk_533                       0        0        0   533333333          0     0  50000         Y
+          sd1                         0        0        0   533333333          0     0  50000         Y
+             sdhi1_clk_hs             0        0        0   533333333          0     0  50000         N
+             SD1_DIV4                 0        0        0   133333333          0     0  50000         Y
+                sdhi1_imclk2          0        0        0   133333333          0     0  50000         N
+                sdhi1_imclk           0        0        0   133333333          0     0  50000         N
+          sd0                         0        0        0   533333333          0     0  50000         Y
+             sdhi0_clk_hs             0        0        0   533333333          0     0  50000         N
+             SD0_DIV4                 0        0        0   133333333          0     0  50000         Y
+                sdhi0_imclk2          0        0        0   133333333          0     0  50000         N
+                sdhi0_imclk           0        0        0   133333333          0     0  50000         N
+          .clk_266                    0        0        0   266666666          0     0  50000         Y
+       .clk_800                       0        0        0   800000000          0     0  50000         Y
+          .clk_400                    0        0        0   400000000          0     0  50000         Y
+       .pll2_div2                     1        1        0   800000000          0     0  50000         Y
+          .pll2_div2_10               0        0        0    80000000          0     0  50000         Y
+             TSU                      0        0        0    80000000          0     0  50000         Y
+                tsu_pclk              0        0        0    80000000          0     0  50000         N
+                adc_adclk             0        0        0    80000000          0     0  50000         N
+          .pll2_div2_8                1        1        0   100000000          0     0  50000         Y
+             P0                       1        3        0   100000000          0     0  50000         Y
+                adc_pclk              0        0        0   100000000          0     0  50000         N
+                canfd                 0        0        0   100000000          0     0  50000         N
+                rspi2                 0        0        0   100000000          0     0  50000         N
+                rspi1                 0        0        0   100000000          0     0  50000         N
+                rspi0                 0        0        0   100000000          0     0  50000         N
+                sci1                  0        0        0   100000000          0     0  50000         N
+                sci0                  0        0        0   100000000          0     0  50000         N
+                scif4                 0        0        0   100000000          0     0  50000         N
+                scif3                 0        0        0   100000000          0     0  50000         N
+                scif2                 0        0        0   100000000          0     0  50000         N
+                scif1                 0        0        0   100000000          0     0  50000         N
+                scif0                 2        2        0   100000000          0     0  50000         Y
+                i2c3                  0        0        0   100000000          0     0  50000         N
+                i2c2                  0        0        0   100000000          0     0  50000         N
+                i2c1                  0        1        0   100000000          0     0  50000         N
+                i2c0                  0        1        0   100000000          0     0  50000         N
+                ssi3_sfr              0        0        0   100000000          0     0  50000         N
+                ssi3_pclk             0        0        0   100000000          0     0  50000         N
+                ssi2_sfr              0        0        0   100000000          0     0  50000         N
+                ssi2_pclk             0        0        0   100000000          0     0  50000         N
+                ssi1_sfr              0        0        0   100000000          0     0  50000         N
+                ssi1_pclk             0        0        0   100000000          0     0  50000         N
+                ssi0_sfr              0        0        0   100000000          0     0  50000         N
+                ssi0_pclk             0        0        0   100000000          0     0  50000         N
+                wdt2_pclk             0        0        0   100000000          0     0  50000         N
+                wdt0_pclk             0        0        0   100000000          0     0  50000         N
+                ostm2_pclk            0        0        0   100000000          0     0  50000         N
+                ostm1_pclk            0        0        0   100000000          0     0  50000         N
+                ostm0_pclk            0        0        0   100000000          0     0  50000         N
+                P0_DIV2               0        0        0    50000000          0     0  50000         Y
+    .pll1                             0        0        0  1000000000          0     0  50000         Y
+       I                              0        0        0  1000000000          0     0  50000         Y
+    .osc_div1000                      0        0        0       24000          0     0  50000         Y
+    .osc                              1        1        0    24000000          0     0  50000         Y
+       gpio                           1        2        0    24000000          0     0  50000         Y
+       wdt2_clk                       0        0        0    24000000          0     0  50000         N
+       wdt0_clk                       0        0        0    24000000          0     0  50000         N
+/ #
+/ #
+/ #
+
+RFC->v1:
+* Fixed review comments pointed by Geert.
+
+RFC: https://patchwork.ozlabs.org/project/devicetree-bindings/cover/
+20220505193143.31826-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (2):
+  dt-bindings: clock: r9a07g043-cpg: Add Renesas RZ/Five CPG Clock and
+    Reset Definitions
+  clk: renesas: r9a07g043: Add support for RZ/Five SoC
+
+ drivers/clk/renesas/r9a07g043-cpg.c       | 32 +++++++++++++++++++++++
+ include/dt-bindings/clock/r9a07g043-cpg.h | 20 ++++++++++++++
+ 2 files changed, 52 insertions(+)
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
