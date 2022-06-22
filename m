@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4066554708
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAF6555471B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:11:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239079AbiFVKOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 06:14:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35124 "EHLO
+        id S244742AbiFVKOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 06:14:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233054AbiFVKOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 06:14:48 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 965FD3A5FD
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 03:14:47 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id j5-20020a05600c1c0500b0039c5dbbfa48so10768277wms.5
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 03:14:47 -0700 (PDT)
+        with ESMTP id S235630AbiFVKOt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 06:14:49 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7266A3AA56
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 03:14:48 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id m32-20020a05600c3b2000b0039756bb41f2so8655444wms.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 03:14:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ZGMHT1uhjCKvxJm1ObjOuYivPXVQOnihHYXcGYcwvas=;
-        b=nKEBuDo2khsFXyhhiCOkz3xLQFq3fpyOaakLCcIfD0KQAYYeMqHG16/xfV/Jh5RvAh
-         M8m4z3dO2KOg2upsEK1hxI3CvHEsyBaeFn/Svcx/sepUahoZyVs9lMsnFu0REWnTl+kd
-         bMXxgXxU4oyqzJNctDhaCrhitdpZhCJHSmHqFNPFxjnhQz9SurO5mUjZtf9xatk5TSBA
-         ojl6+imXM7cXFJd8DipOpp1sfoofm2Itv9+eD3alkAbv/4rA2ihQD5QyhX694kNJIMP3
-         XM7D0ku5dxdl+h+JBX3bxtI4y9S2gNR5SUX4EDLy99hrnxo665PzGWJHzq0Ba6+wKyOY
-         kbtQ==
+        bh=GVGI728rV0ZlRWovIbavmx1jiCPdP4ulmg/ao4WGVQI=;
+        b=yoiHxxi5Fr39G7nZrf1FVVgYDNTvIwZpMJLS+6LkGjtzOAHa52SoGoig5UatCG/WTK
+         WXVfxU968FGk6TWEYWrDy7thi3ufeC9SL20xOaupG3Rn9Zouk0rhJ9Mt+OwkFzvLymap
+         MDFLITscxmWMvMFWXc8+aUx+i6uU6AWnDQP/WDoPYW4aGadGnMjowqREx31PLALojP+W
+         bNYEmzDzeUmqLzGlcvp7VGjZyXUtuoW4SqE3X1C+sdWxxX0IAmNSobDJ/Jb4IQUR7fMJ
+         gCDbxw+fT7sMu+lnGjNptk/4Eiq3rWtKU3zV175CjeJmSpiz7PEQkzSOYZxK7daINu61
+         oIAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ZGMHT1uhjCKvxJm1ObjOuYivPXVQOnihHYXcGYcwvas=;
-        b=5ZSk01XQ8Sxop59BwYa71ESR3ysGTXaFElXZJeHgwQ5eChl9QmeEZni7PlKfW68tEt
-         VIQZypvBaddm0XRSJaF+bA0Y47OMoIVZH+t+Pj2Z7IOoe6vcEHqznoTUVdC3hKSA7Shl
-         cBIlEuI4WeXiDM1yUkd9NbnFySKnhJz2PToI9tbwobxmJjXvbtuDQhBPT8MWvmN32rbR
-         XT6VB3RUvd3Qn7WsbuFb9HY2Qr2RUmCPymfetQQyrcpGz4pX2LHSZtSLSku4DmthXdEd
-         IO0KPne7XVKnksYw5TW1/0DEDIkA7guXgN/YQnnh1cueNWeAOC41b1HBUoXoiBW8YujR
-         1DiQ==
-X-Gm-Message-State: AJIora+lHGzvWnXO1Hy1gUKsBiQH5Bat/1BZ0vI2fsTjXcrkp3Ubtj/Y
-        nzFr827zKoIiR1bW0jFroNdl5g==
-X-Google-Smtp-Source: AGRyM1v007oGF6GyrHQNq0+BOyS4cdvxLvwNXS3/IfxgfWnvBjzy2ucrJT/HKxalC4BaUp9+fdNlSw==
-X-Received: by 2002:a7b:cb88:0:b0:39d:16a7:dac7 with SMTP id m8-20020a7bcb88000000b0039d16a7dac7mr3060353wmi.128.1655892886072;
-        Wed, 22 Jun 2022 03:14:46 -0700 (PDT)
+        bh=GVGI728rV0ZlRWovIbavmx1jiCPdP4ulmg/ao4WGVQI=;
+        b=x4G/CRlecAaceE2kUhfv/g0LT7X6/dTauC/+5JIB7PjNaOuq/673y5Dzdm7uIMLVpu
+         xldT82TyCcz/9o01iSd+Ve2NY/2bVxVf1ylO17ydveJ8whffkRCJUe92M9aadQ13CkrN
+         1B3WvRSGkWlbDWxkPsuAhfiXj5MK/Jpr+k5Sl2eq6DK1eSCVUr68jsDgbluAaxtf8lxn
+         zVZ2CemqgqZ7whEPniTXrCnUuDGoCjp/58m570qJFqC0nIKoO5z/0sWfgcrkZC92rjsh
+         7s0ufhndUlPXeu3kzAzFR5cHh5+UguGUyHUkISHhXEBWPJp2FlpDjmmBVxIMDkk5476+
+         JwKw==
+X-Gm-Message-State: AJIora9M5xoxEPR4R9pVDq6ompbaaHZIPoeHGdk/MDME0bajXMPEcuR/
+        qFtvBQHoh0o5AMajhngu5YSb1Q==
+X-Google-Smtp-Source: AGRyM1uWZMKFzyzyVi3Mcy3CPedN1dz613U3U0JixHOgaUFg8RD7jRt6Bu0VCBWdyY2qNmAVJTIYcA==
+X-Received: by 2002:a1c:4e15:0:b0:3a0:1990:afeb with SMTP id g21-20020a1c4e15000000b003a01990afebmr13313618wmh.137.1655892887112;
+        Wed, 22 Jun 2022 03:14:47 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id w5-20020a05600018c500b00210320d9fbfsm22184549wrq.18.2022.06.22.03.14.45
+        by smtp.gmail.com with ESMTPSA id w5-20020a05600018c500b00210320d9fbfsm22184549wrq.18.2022.06.22.03.14.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jun 2022 03:14:45 -0700 (PDT)
+        Wed, 22 Jun 2022 03:14:46 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     David_Wang6097@jabil.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+To:     chen.kenyy@inventec.com, devicetree@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
+        joel@jms.id.au, robh+dt@kernel.org, krzysztof.kozlowski@linaro.org,
+        steven_lee@aspeedtech.com, andrew@aj.id.au,
+        linux-aspeed@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org,
         krzysztof.kozlowski+dt@linaro.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        edward_chen@jabil.com, ben_pai@jabil.com
-Subject: Re: (subset) [PATCH v5 3/3] dt-bindings: arm: aspeed: document board compatibles
-Date:   Wed, 22 Jun 2022 12:14:43 +0200
-Message-Id: <165589284658.28441.5142469500178504592.b4-ty@linaro.org>
+Cc:     David_Wang6097@jabil.com
+Subject: Re: (subset) [PATCH 2/7] dt-bindings: arm: aspeed: document board compatibles
+Date:   Wed, 22 Jun 2022 12:14:44 +0200
+Message-Id: <165589284658.28441.1588047978357747292.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220531011100.882643-2-David_Wang6097@jabil.com>
-References: <20220531011100.882643-1-David_Wang6097@jabil.com> <20220531011100.882643-2-David_Wang6097@jabil.com>
+In-Reply-To: <20220529104928.79636-2-krzysztof.kozlowski@linaro.org>
+References: <20220529104928.79636-1-krzysztof.kozlowski@linaro.org> <20220529104928.79636-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,16 +75,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 May 2022 09:10:59 +0800, David Wang wrote:
-> Document jabil board compatible.
+On Sun, 29 May 2022 12:49:23 +0200, Krzysztof Kozlowski wrote:
+> Document all compatibles used in existing upstreamed Aspeed AST2400,
+> AST2500 and AST2600 based boards.
 > 
 > 
 
-Applied, thanks with fixing up the white space.
+Applied, thanks!
 
-Please be sure git format-patch and checkpatch do not complain on your patches.
-
-[3/3] dt-bindings: arm: aspeed: document board compatibles
+[2/7] dt-bindings: arm: aspeed: document board compatibles
       https://git.kernel.org/krzk/linux-dt/c/ae8980247d5af8528145713e07f1338abc57a00d
 
 Best regards,
