@@ -2,63 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26C99554C92
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 16:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D079554CAB
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 16:17:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354913AbiFVOQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 10:16:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37350 "EHLO
+        id S1358242AbiFVORs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 10:17:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358162AbiFVOPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 10:15:51 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18F36393F5;
-        Wed, 22 Jun 2022 07:15:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BAE01B81F31;
-        Wed, 22 Jun 2022 14:15:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 824FEC34114;
-        Wed, 22 Jun 2022 14:15:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655907315;
-        bh=OR7xiTCWZs1tjxHWPG20iS6R15OoZpcmvJbr8d4jd0E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=e+Iz6+HniIaTGnxsu76Y1gwTDILMFU8si5DqybZK+lWvIPucw/FbW2BM5nq0AbAOT
-         x05bP8sk04ZgZTR9lXHMq18vKi9rguum7xWKGJH8WNZTnSHrmzObQzPxwnh/l64WbL
-         AuGsHUk59tKIjzEKUtltV7E0oKQSCyOf90GxMZeEsNt3MoN4rpBBV9rkqdDToF0zRo
-         QeC+IMpB/AsuIAD/EtbhYPkqt9/iT0P8HZ5e5Hz9bZCvuyTUZd1idY23fk21sG6Znu
-         GlUHbPTpgR1qMmlCMnXXm7/mwYs6k7m9nB2uxwVGsTTqiMJdG6d7yJhtn2Qk4/TtnQ
-         RZW/yQX/FE2Lw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1o418S-0006kJ-N9; Wed, 22 Jun 2022 16:15:12 +0200
-Date:   Wed, 22 Jun 2022 16:15:12 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: add SA8540P and ADP
-Message-ID: <YrMj8HS2aMexHHLx@hovoldconsulting.com>
-References: <20220622041224.627803-1-bjorn.andersson@linaro.org>
- <20220622041224.627803-6-bjorn.andersson@linaro.org>
- <8fc661d7-6f75-59d8-fa19-76193ed2f4fe@somainline.org>
- <YrMc0Y7PIDQpP2xw@hovoldconsulting.com>
- <f7e066d0-3493-f531-3357-10dca20e1f95@linaro.org>
+        with ESMTP id S1358244AbiFVORX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 10:17:23 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C9EB3D1CF
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:16:32 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1o419h-0006ep-Lu; Wed, 22 Jun 2022 16:16:29 +0200
+Message-ID: <98769f04d7b7445939a1808cc7e5236635aa3313.camel@pengutronix.de>
+Subject: Re: [PATCH v3 4/7] dt-bindings: usb: dwc3-imx8mp: add power domain
+ property
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        patchwork-lst@pengutronix.de, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Date:   Wed, 22 Jun 2022 16:16:27 +0200
+In-Reply-To: <Yh+ru3drWx5nwybv@robh.at.kernel.org>
+References: <20220228201731.3330192-1-l.stach@pengutronix.de>
+         <20220228201731.3330192-5-l.stach@pengutronix.de>
+         <Yh+ru3drWx5nwybv@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f7e066d0-3493-f531-3357-10dca20e1f95@linaro.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,31 +52,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 22, 2022 at 04:11:15PM +0200, Krzysztof Kozlowski wrote:
-> On 22/06/2022 15:44, Johan Hovold wrote:
-> > On Wed, Jun 22, 2022 at 02:37:02PM +0200, Konrad Dybcio wrote:
-> >> On 22.06.2022 06:12, Bjorn Andersson wrote:
+Am Mittwoch, dem 02.03.2022 um 11:39 -0600 schrieb Rob Herring:
+> On Mon, Feb 28, 2022 at 09:17:28PM +0100, Lucas Stach wrote:
+> > The USB controllers in the i.MX8MP are located inside the HSIO
+> > power domain. Add the power-domains property to the DT binding
+> > to be able to describe the hardware properly.
 > > 
-> >>> --- /dev/null
-> >>> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> >>> @@ -0,0 +1,427 @@
-> >>> +// SPDX-License-Identifier: BSD-3-Clause
-> >>> +/*
-> >>> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> >>> + * Copyright (c) 2022, Linaro Limited
-> >>> + */
-> >>> +
-> >>> +/dts-v1/;
-> >>> +
-> >>> +#include <dt-bindings/gpio/gpio.h>
-> >> Can be moved to SoC dtsi.
-> > 
-> > No, the SoC dtsi does not use any defines from that header file.
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > ---
+> >  Documentation/devicetree/bindings/usb/fsl,imx8mp-dwc3.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
 > 
-> Even if the DTSI used these constants, it is a good practice to include
-> headers in each file using them. The same as we always do for C code.
+> Acked-by: Rob Herring <robh@kernel.org>
+> 
+This patch hasn't landed anywhere, yet.
 
-Yes, that's what I said in my slightly more verbose answer to the same
-comment to one of the other patches.
+Rob, can you take it directly, or should I resend to go trough the
+USB(?) tree?
 
-Johan
+Regards,
+Lucas
+
