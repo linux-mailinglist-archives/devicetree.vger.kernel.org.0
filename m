@@ -2,81 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8142554DC4
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 16:48:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02BE9554DC9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 16:48:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230123AbiFVOs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 10:48:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46328 "EHLO
+        id S233196AbiFVOsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 10:48:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235274AbiFVOsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 10:48:22 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEA3B1000
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:48:20 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id cf14so14486921edb.8
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:48:20 -0700 (PDT)
+        with ESMTP id S232464AbiFVOsp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 10:48:45 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B66AA3B3EE
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:48:44 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id lw20so12430650ejb.4
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:48:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6G/ojy09xOD7Yk10IXx6XAWZEdv4ioy60C9A76FQFHw=;
-        b=gKFpOXoSswiKIyETZbbHGlP9RrX21keBgH0q9ZFLlbnXXmwv7IUyaEO8iocTlDUICb
-         kkombdr/22igQ8TePP03v7ChHNF9hrIHYxajnVCZr9YTL+wDCR+yTIs/b55QN8cU3xRW
-         5h4pypYGVa4zSqpky06UAiHlVBdfnHx23M3X7bd8V5oAbmoV/5j4QRqFRg57nVMGRbsw
-         KR8lKuQC+dxkLzcuyFIigB/6x4aLNOiOMXH/qYJqysP2O5ATwfkvG+zefEU27Y+k4sTc
-         WtMK9l2C4nGNNHh3bWTJkP+pIvtwAmi9IQkhPq40It2C1D224GloOSMrA+FGXCmYC1/A
-         d++w==
+        bh=HH079LRyJTHmM+5gTDBKSJiZpHcFCkFjE8Gfy06llCc=;
+        b=H9tP4SI9QupeqEThyhbGj6fshmasD8PmJFGVHL7k7YByj2aMUy03B5eYGHNd2eMY74
+         XR6LRJmw/8PPwjk6xlbKZhXYFTke5A70dFaOHoRFyi0lz2OaJ7M18rhdJCLCZ0/wxbGk
+         2nmdaSa2GBf+qpEuUSSz22bLq6H++ga00KwHWt6bSRuUt+Uza96Cg/wz38LJt466nUXu
+         1WZtDG0wVI91nnt2oYicf3RRPGWW6/XnAQr/KP0pwHh9GHJjMdsk1dztKssfodFT/Mmk
+         N+y7mt5XpoPQirdnyo6H5Wf8MZCeuhId3dHCXz6A3f2jGvvj4/MzDkYCRFZR8WXm30GN
+         SPuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=6G/ojy09xOD7Yk10IXx6XAWZEdv4ioy60C9A76FQFHw=;
-        b=AIvTzW6W6mnbQ3oqsw8dhaQAvyPjYffE3OC1jTWOCkzHmtuOcRdRB1QWwzoEwzpYkg
-         I90/36QSG9qlY1QWi+ZXpC/l8O724E5rIW33ViNxEUyvRpZ4xnaHLYkxbpFbFkxCNkdy
-         dNonF8HS23Ve3NMaF/8oy5EcVvwxrKbbT+SVswpPQM2V7Ypnev3RWUvO6iDsP9R/P2VW
-         DzbtjqRpKXKSd687KgMH5rVX05GGJvR+yefY16ZvS66XGJWtrsv9vQKEIlYi0HdnbNr9
-         TzLEtWV0IRcvHq63rtIB6vh9uo1POliMAiBIGgPOuSB+DpKZotVKJyo/cDz6Yr6UebIO
-         FwzQ==
-X-Gm-Message-State: AJIora8v06vurzRurAliYUyBkTC9nm3Ec4MljrE+n4sV1g+GeJ7q8+t5
-        BajJtbCsFvNteJVtK6O3/ijhcw==
-X-Google-Smtp-Source: AGRyM1tepXVn3qZDFiUKLwEMJAiZepWcMEUbpTD17FAIjwRJXcma8VPMvtQzh93nwAj98NOdU0r3pg==
-X-Received: by 2002:aa7:c2cf:0:b0:435:6576:b7c0 with SMTP id m15-20020aa7c2cf000000b004356576b7c0mr4537554edp.18.1655909299272;
-        Wed, 22 Jun 2022 07:48:19 -0700 (PDT)
+        bh=HH079LRyJTHmM+5gTDBKSJiZpHcFCkFjE8Gfy06llCc=;
+        b=zZA3v35zLfw0elaUji/xeFqttdY2/RJKYz+8mbMgJGnUyL2Qc1iJiXIfU2Ef54G0n+
+         3VPZ/Zxj2tX3SDb4Odr002IUXi2lguQuiRMOA8IuS0CRw/JC2QuP4biJ61vmVX0eEkpW
+         JfrBdzC0SZkPP0Mhyy34vuoaKUq96nvWP2mawd1nKqeHdNNNDGdPHlNOirztl8vw30Hm
+         PDoYRvDIE2l/bbIrCg6M9/GCZDAXNaa4IRmF57WN+AprLZRy/gqIwUzD+OfaxRTHSgJQ
+         2lomPmNX0+FUTTBDrX+9giuCQ/ZqPUw+mze0ibO4q8daW9rZYbu+L0bejYwiCjfdahVc
+         JwGQ==
+X-Gm-Message-State: AJIora9xdNYD12F8n9RniuiPx0PM8KFyFNYS7OFBkKEU7g9q2ViUNUQJ
+        p7bJQdS5u3IDdZgyRD4WBJrapA==
+X-Google-Smtp-Source: AGRyM1tTU8sGWhE5uoJlmgoqQlCvu0Bo0iKSowkNVd8F9534/qg8dpEzj0RucSD0a2PdldIeeIU+3g==
+X-Received: by 2002:a17:907:a427:b0:71b:6f0b:8beb with SMTP id sg39-20020a170907a42700b0071b6f0b8bebmr3434300ejc.496.1655909323287;
+        Wed, 22 Jun 2022 07:48:43 -0700 (PDT)
 Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id sb6-20020a1709076d8600b0070aaad0a173sm9385739ejc.192.2022.06.22.07.48.18
+        by smtp.gmail.com with ESMTPSA id gg19-20020a170906899300b00715705dd23asm9286292ejc.89.2022.06.22.07.48.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 07:48:18 -0700 (PDT)
-Message-ID: <b2c9faf0-95a8-772f-c211-f1599b35f8f8@linaro.org>
-Date:   Wed, 22 Jun 2022 16:48:17 +0200
+        Wed, 22 Jun 2022 07:48:42 -0700 (PDT)
+Message-ID: <fbf2251a-8df7-7bb3-bfda-8359b6d151be@linaro.org>
+Date:   Wed, 22 Jun 2022 16:48:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sc8280xp: Add reference device
+Subject: Re: [PATCH v2 1/4] dt-binding: mfd: Add Richtek RT5120 PMIC support
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Johan Hovold <johan@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220622041224.627803-1-bjorn.andersson@linaro.org>
- <20220622041224.627803-5-bjorn.andersson@linaro.org>
- <099cc82f-d52f-315f-189d-bcc40c1afd49@somainline.org>
- <YrMccQXwsz/zC/gl@hovoldconsulting.com>
- <9d0c1897-195f-0548-ea5d-ffc35768f518@somainline.org>
+To:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
+        broonie@kernel.org, dmitry.torokhov@gmail.com
+Cc:     lgirdwood@gmail.com, cy_huang@richtek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org
+References: <1655892104-10874-1-git-send-email-u0084500@gmail.com>
+ <1655892104-10874-2-git-send-email-u0084500@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9d0c1897-195f-0548-ea5d-ffc35768f518@somainline.org>
+In-Reply-To: <1655892104-10874-2-git-send-email-u0084500@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,39 +77,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2022 16:36, Konrad Dybcio wrote:
+On 22/06/2022 12:01, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
+> Add Richtek RT5120 PMIC devicetree document.
 > 
-> On 22.06.2022 15:43, Johan Hovold wrote:
->> On Wed, Jun 22, 2022 at 02:33:02PM +0200, Konrad Dybcio wrote:
->>> On 22.06.2022 06:12, Bjorn Andersson wrote:
->>
->>>> +&qup2_i2c5 {
->>>> +	clock-frequency = <400000>;
->>>> +
->>>> +	pinctrl-names = "default";
->>>> +	pinctrl-0 = <&qup2_i2c5_default>, <&kybd_default>, <&tpad_default>;
->>>> +
->>>> +	status = "okay";
->>>> +
->>> I think all device DTs generally have 'status = "okay"' at the beginning. Should we change that?
->>>
->>
->> No, quite the opposite, status go at the end.
-> Then all other device DTs should be updated, as in dts/qcom/
-> everybody keeps it first in non-SoC/PMIC files.
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 
-The word "should" is a bit too much here, but I agree, we can update all
-of them to match one, chosen approach.
-
-However the location for "status" property is more important for the
-definition of nodes in DTSI, because it's the least important piece
-there and also kind of expected - here go properties + I disable it. For
-me this is more important.
-
-For node redefinition in DTS, I see benefits in two approaches:
-1. Let me first enable the node and then configure it.
-2. Let me configure the node and enable it.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
