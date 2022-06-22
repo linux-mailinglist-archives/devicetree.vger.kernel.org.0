@@ -2,60 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7622F55526C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 19:31:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 773F155527F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 19:36:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230144AbiFVRaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 13:30:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38948 "EHLO
+        id S230247AbiFVRgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 13:36:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239201AbiFVRaS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 13:30:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B193230F76;
-        Wed, 22 Jun 2022 10:30:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5080761C36;
-        Wed, 22 Jun 2022 17:30:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11686C34114;
-        Wed, 22 Jun 2022 17:30:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1655919016;
-        bh=B9aUHJD3yJ+AfE8Llrw6Si0We0sEP5bH4s0Gorml2mU=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=PbhL7BDbL8ugnS61MPkvlHVei8H0YXV25HEjOO4yIEagzWBsXsOQ43PjjMKF0CX6J
-         ztJjPP2SmofIZ+HgK8jFO5IDlrxo4pYcGT/0CEKmmgiT55cI04oI5mocctHOa89ZlF
-         BOArjVrYOPZAwqwTyUt3vvSKqCxPZKlifuRsNd2EBMV06VeUDxtPNpAmtZeg0/11XO
-         sIWLN5Zf6egJM3q5ctgUFJ7SXIDZMepAXFX433At2osHWiVd632iOy5gMd+2foB0HV
-         ccFbiozoNwwY1oQSAHsHbAkp8VMo2bAXyJeX7tC3F5nhea+qZgBfizUkhP1H1dbK3o
-         PbAVgLkTVaCXQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     kai.vehmanen@linux.intel.com, peter.ujfalusi@linux.intel.com,
-        ranjani.sridharan@linux.intel.com, lgirdwood@gmail.com,
-        perex@perex.cz, tiwai@suse.com, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, yc.hung@mediatek.com,
-        cujomalainey@chromium.org, yung-chuan.liao@linux.intel.com,
-        tinghan.shen@mediatek.com, daniel.baluta@nxp.com,
-        allen-kh.cheng@mediatek.com, krzysztof.kozlowski+dt@linaro.org,
-        pierre-louis.bossart@linux.intel.com
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, alsa-devel@alsa-project.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        sound-open-firmware@alsa-project.org
-In-Reply-To: <20220622062245.21021-1-tinghan.shen@mediatek.com>
-References: <20220622062245.21021-1-tinghan.shen@mediatek.com>
-Subject: Re: [PATCH v4 0/4] Add MT8186 ADSP dt-binding
-Message-Id: <165591901017.1405752.13178281441778356298.b4-ty@kernel.org>
-Date:   Wed, 22 Jun 2022 18:30:10 +0100
+        with ESMTP id S229593AbiFVRgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 13:36:21 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9BDA31DDD
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 10:36:20 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id a14so7097368pgh.11
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 10:36:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EGSWfwuV6kDT1fwM+T4JAkD27EMrpSWAszwgosFVQVw=;
+        b=grWObt6Okfs3RafY2b0NVKjFrBhkE6C1/0vcWncE04tJrdoQojz3GOVtF8Mi2x1HRW
+         QkTbr6Qt7h5qJ8e/vypQSZl7HMB3jQbVCaxyGsro8g9N18Ao7HQs3SZy4ndhrH5S8Xx1
+         mP0WgDsVLIt/JclEEcE6snj1DLR5W92U6w6Qg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EGSWfwuV6kDT1fwM+T4JAkD27EMrpSWAszwgosFVQVw=;
+        b=Neg1KjJ0mR1rInF7Eyia47n4y9cYlkTVHWbApgWJhnHk8Iui6uxafEO3eEHMhlNePO
+         AFXnwEcOUpM4KJiyKsNX/kCUE9MsehocbemFj4XyP6zWhNX/2i3PQmsmfGtckA2QSni0
+         F4CyjbDzdl5LKS5iBh97nnKqQzCzEAkQbShx0yKPVmrmvTSeAmFvPQ9GTvXIcyd82dDd
+         mURWlULRUPPwJgnYdfNn0Rl2NZfGWKamlCriXdyTq5iIsDLqAIKqHHVk9m8ElaBtXdRQ
+         embUnpCF3INT+7oChPwA8G9wjntmnieIv76DEID1uF4TL7W0vw+zbv/dA/xx+u2mc45D
+         nZ/A==
+X-Gm-Message-State: AJIora9gjqBlWLSr10nOqOKIHqRDnL6BWgUALYveQ0peUzLNws5L1ibX
+        xf1enBL2P4/29/a5ZpuR65InWA==
+X-Google-Smtp-Source: AGRyM1sB1+bTIxsIF22HqeLedT3vzGfH5CbBlkgMvEj61XWLvZw7HZSjL+m1aKkDdcE5g72JbC97/A==
+X-Received: by 2002:a63:4a4e:0:b0:401:baa6:d695 with SMTP id j14-20020a634a4e000000b00401baa6d695mr3975223pgl.259.1655919380268;
+        Wed, 22 Jun 2022 10:36:20 -0700 (PDT)
+Received: from pmalani.c.googlers.com.com (157.214.185.35.bc.googleusercontent.com. [35.185.214.157])
+        by smtp.gmail.com with ESMTPSA id l17-20020a17090b079100b001ece55aec38sm35470pjz.30.2022.06.22.10.36.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Jun 2022 10:36:19 -0700 (PDT)
+From:   Prashant Malani <pmalani@chromium.org>
+To:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Cc:     bleung@chromium.org, swboyd@chromium.org,
+        heikki.krogerus@linux.intel.com,
+        Prashant Malani <pmalani@chromium.org>,
+        Allen Chen <allen.chen@ite.com.tw>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?UTF-8?q?Jos=C3=A9=20Exp=C3=B3sito?= <jose.exposito89@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>, Pin-Yen Lin <treapking@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Xin Ji <xji@analogixsemi.com>
+Subject: [PATCH v5 0/9] usb: typec: Introduce typec-switch binding
+Date:   Wed, 22 Jun 2022 17:34:29 +0000
+Message-Id: <20220622173605.1168416-1-pmalani@chromium.org>
+X-Mailer: git-send-email 2.37.0.rc0.104.g0611611a94-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,49 +90,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Jun 2022 14:22:41 +0800, Tinghan Shen wrote:
-> v3 -> v4:
-> 1. Update commit message of patch 1/4
-> 2. Add review tag to path 3/4
-> 
-> v2 -> v3:
-> 1. Change mbox-names to rx/tx for both mt8186 and mt8195.
-> 2. Update description of mbox-names
-> 3. Use static string array instead of kasprintf
-> 4. Align clock names in dsp driver with dt-bindings
-> 
-> [...]
+This series introduces a binding for Type-C data lane switches. These
+control the routing and operating modes of USB Type-C data lanes based
+on the PD messaging from the Type-C port driver regarding connected
+peripherals.
 
-Applied to
+The first 2 patches introduce the new "typec-switch" binding as
+well as one user of it (the ANX7625 drm bridge).
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Patches 3-5 add functionality to the anx7625 driver to
+register the mode-switches, as well as program its crosspoint
+switch depending on which Type-C port has a DisplayPort (DP) peripheral
+connected to it.
 
-Thanks!
+Patch 6-9 add similar bindings update and Type-C switch support to the
+it6505 driver.
 
-[1/4] dt-bindings: dsp: mediatek: Use meaningful names for mbox
-      commit: 009b21f392759ca7be91bc4be9d9534f6cee2878
-[2/4] firmware: mediatek: Use meaningful names for mbox
-      commit: 74bbdd632637628fef8f651bddc5d17aeb7eb46a
-[3/4] dt-bindings: dsp: mediatek: Add mt8186 dsp document
-      commit: 99370c4ea3d0cee8445f6a1104f25667e3fd47ba
-[4/4] ASoC: SOF: mediatek: Align mt8186 clock names with dt-bindings
-      commit: acaeb8c62fd1b2b57be1523b8d5b1d64a1a9dc38
+v4:
+https://lore.kernel.org/linux-usb/20220615172129.1314056-8-pmalani@chromium.org/
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Changes in v5:
+- Rebased on usb-next, so removed Patch v4 1/7 and Patch v4 2/7 from
+  this version (v5) since they are already in usb-next.
+- Added newer Reviewed-by tags.
+- Added new patches (6-9) in this version for a 2nd example (it6505)
+  of a binding of the user.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Patch submission suggestions:
+Option 1:
+- Bindings patches 1/9 and 2/9 can go through the USB repo (since they are
+  already reviewed from v4 [1]).
+- Bindings patch 6/9 can go through the USB repo, and the remaining patches
+  (3-5,7-9) can go through the DRM repo.
+  <or>
+- Patches 3-9 can all go through the DRM repo.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Option 2:
+- All patches (1-9) go through the USB repo.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+(My apologies if I've made this confusing, and I appreciate any
+suggestions for better submission strategy).
 
-Thanks,
-Mark
+[1]: https://lore.kernel.org/linux-usb/YrMxFeMc0tk%2FK1qL@kroah.com/
+
+Pin-Yen Lin (5):
+  drm/bridge: anx7625: Add typec_mux_set callback function
+  dt/bindings: drm/bridge: it6505: Add mode-switch support
+  drm/bridge: it6505: Register number of Type C switches
+  drm/bridge: it6505: Register Type-C mode switches
+  drm/bridge: it6505: Add typec_mux_set callback function
+
+Prashant Malani (4):
+  dt-bindings: usb: Add Type-C switch binding
+  dt-bindings: drm/bridge: anx7625: Add mode-switch support
+  drm/bridge: anx7625: Register number of Type C switches
+  drm/bridge: anx7625: Register Type-C mode switches
+
+ .../display/bridge/analogix,anx7625.yaml      |  64 +++++++
+ .../bindings/display/bridge/ite,it6505.yaml   |  97 +++++++++-
+ .../devicetree/bindings/usb/typec-switch.yaml |  74 ++++++++
+ drivers/gpu/drm/bridge/analogix/anx7625.c     | 148 +++++++++++++++
+ drivers/gpu/drm/bridge/analogix/anx7625.h     |  20 ++
+ drivers/gpu/drm/bridge/ite-it6505.c           | 171 +++++++++++++++++-
+ 6 files changed, 569 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/typec-switch.yaml
+
+-- 
+2.37.0.rc0.104.g0611611a94-goog
+
