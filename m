@@ -2,225 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB188554EF1
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 17:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D276554F1D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 17:26:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359200AbiFVPS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 11:18:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53268 "EHLO
+        id S1357089AbiFVP0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 11:26:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359221AbiFVPS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 11:18:57 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A69F377ED
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 08:18:55 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id u12so34947531eja.8
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 08:18:55 -0700 (PDT)
+        with ESMTP id S236696AbiFVP0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 11:26:10 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C41F439162;
+        Wed, 22 Jun 2022 08:26:07 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id cf14so14646728edb.8;
+        Wed, 22 Jun 2022 08:26:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=KGHN8V/MAIJRoZiVsIc82ytAURP+6QoR2xSizEhnqIE=;
-        b=AwntirR+Sp6DAcIOzmk1WFjzqReFE9ry4/mzdDiW/OfsDDT8ENg01M/2hHXYwwHIKN
-         UooNHpmJMqQqfs7Vkqjin/cA8QdWusjILhtlqMcPWI7VKybsJI4dWRJZJXInr5goSpPq
-         n8v9K8A7lygcL+vLnN//TVwxYquc+uAuoiChh2bgha6kzVQtWN71h6HZoRSaip3TNtJE
-         vE/ayPdvnq4af59PIp/Uqt+Am9pXmPhdysxOlzlhodvasafulr70t9t0F+PrAtUKbQxr
-         to8pHyECA4pe/rw9u4NXpjCmYwKYlN2pMNBsIcTcfcpfg+0nUsm4QYFmll7mIyUQiLMo
-         IVYg==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=iUzY4nbnMghL5U5lbC9orjTiyOqHbnNJpaguJ2BvQ0I=;
+        b=AEoeVrOdTGpW8f5/WdP1QJAyvtpZm3Rcmw/2pg+2BxRLGzEojWTu72Nhl8OIUZA6ru
+         flVFlEbrYE/DcKVLppgHHckPgzgR9oQ2UPcRWuOg31W3w/7nD3LHRB44VyloGTUigePI
+         Qkjdl3z98ZLPlb8kHaXW97f90vPmQvnREWKb7ae8TQGQGnYP1T3aDPLA7zSkV6kCJ5m0
+         aWV2UuYVWT0nh5GX9cWFwNCcEJIWrUjLiMWSD9Km8S26cSBVh0Z6mhE+FlO9q4bAp15h
+         0AJzCPpCiw8UxLo+OkoR1DvNr1on0LycHZ3wquvsxBXWxKcxggF4UmnPK65I1nbZqgRu
+         qu5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=KGHN8V/MAIJRoZiVsIc82ytAURP+6QoR2xSizEhnqIE=;
-        b=XkDlnKsmNxse/k8KdMmOa7vC77PN+5k5XGQPhCj0JFB4qrHVet67S4idfRE7QCOXP+
-         sqQma7zi9kpr0UdLy2QwXr804Ke4YuSA6iOHD/CXuAe0I9/IlvifaAg4zcj/SGfo9eHt
-         bB8vn7+XNJ770oMT8At5vaGLB45u4+NMhk36V3tDeImNnjoLi/r9aAmhHsiJU5rHj3Mq
-         y+a/m99s8v0K9r7h92TH2gzzXpOTiCjZAsUxLWhJmWt3v3F+0dszhYxp1LHbjBtHVYS3
-         wHZw5I1Qlg3QrX+to89AziuC8QUWdmbsNKRP0naOl7/22g7eE3/r7T/NzLx87kIfhvRJ
-         XVFg==
-X-Gm-Message-State: AJIora/6wMlxcZdqvsrgD+vS+xm8Ztj8xqXwrg0XQaz/ToLNrQUgZL4n
-        kSluJ9PociJtmTQAEEEzQn6UUw==
-X-Google-Smtp-Source: AGRyM1uK824g/kFW/aTUbMXWwczn4JMyDfIciJmyAMAlZ5C5rNgycx6YKUE3YERXNZd/x/RKDRi6zw==
-X-Received: by 2002:a17:907:868f:b0:702:f865:55de with SMTP id qa15-20020a170907868f00b00702f86555demr3704720ejc.24.1655911134088;
-        Wed, 22 Jun 2022 08:18:54 -0700 (PDT)
-Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id kx7-20020a170907774700b00722ea7a7febsm1568756ejc.194.2022.06.22.08.18.52
+        bh=iUzY4nbnMghL5U5lbC9orjTiyOqHbnNJpaguJ2BvQ0I=;
+        b=HPJ3LwqmvFFtwTTGdLd8ruOYJsJLU8vOo4EEm+cGJSHui/WIRJf5uMQyDjZgqXrd3K
+         iSOFLaeDUKceabYZvuW7GVEmPY/9NkZLPorrLkhwHkAsBDRV+2T/NPNMLW5olhJXcJfK
+         nwAT/FjG4DkwvSyess2IQ4ka4Y3ApbvgiTdwAn20ktEO0UaqSV4tQfznjXmIAHsBhcnh
+         LIbQyi3UKzxOvfKFwBmoE8z5LyEQOHvNN8TqrN87HSjjuw5jlrgv8HESiqZJPQugH/FZ
+         AyfPBtGRDk8IuXr3jSOx6cHGStPPl9+/Okay4j7rfwniLK/ajkzC5GfHqAtR6t3Ahr+c
+         iBjw==
+X-Gm-Message-State: AJIora+XYEG7gLqEXSY2NDqudxw3JG0jJTQHEwjHas+7n25ihQVK3NWx
+        FcD4pTLAcr9iBJmwxe6FJAg=
+X-Google-Smtp-Source: AGRyM1vgpTRl9gQqy9pZt2ocx7au56m3oMlaDtHNIMEQagwDUpJU7dK3BCZgg8DRywhG7QCBvmtPPQ==
+X-Received: by 2002:a05:6402:414c:b0:435:1e2a:2c7f with SMTP id x12-20020a056402414c00b004351e2a2c7fmr4719527eda.132.1655911566341;
+        Wed, 22 Jun 2022 08:26:06 -0700 (PDT)
+Received: from [192.168.0.16] ([37.223.148.38])
+        by smtp.gmail.com with ESMTPSA id e7-20020a50ec87000000b0043561e0c9adsm12665751edr.52.2022.06.22.08.26.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 08:18:53 -0700 (PDT)
-Message-ID: <876c9580-48ca-0491-24bc-4f20871277f0@linaro.org>
-Date:   Wed, 22 Jun 2022 17:18:52 +0200
+        Wed, 22 Jun 2022 08:26:05 -0700 (PDT)
+Message-ID: <d1dcedbb-413e-48ee-fdbc-e4d77465b62c@gmail.com>
+Date:   Wed, 22 Jun 2022 17:26:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH V2 7/8] arm64: dts: Add ipq5018 SoC and MP03 board support
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 00/10] MediaTek Helio X10 MT6795 - Devicetree, part 1
 Content-Language: en-US
-To:     Sricharan R <quic_srichara@quicinc.com>, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, p.zabel@pengutronix.de,
-        quic_varada@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220621161126.15883-1-quic_srichara@quicinc.com>
- <20220621161126.15883-8-quic_srichara@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220621161126.15883-8-quic_srichara@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
+        kernel@collabora.com
+References: <20220609112303.117928-1-angelogioacchino.delregno@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220609112303.117928-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/2022 18:11, Sricharan R wrote:
-> From: Varadarajan Narayanan <quic_varada@quicinc.com>
+
+
+On 09/06/2022 13:22, AngeloGioacchino Del Regno wrote:
+> In an effort to give some love to the apparently forgotten MT6795 SoC,
+> I am upstreaming more components that are necessary to support platforms
+> powered by this one apart from a simple boot to serial console.
 > 
-> Add initial device tree support for the Qualcomm IPQ5018 SoC and
-> MP03.1-C2 board.
+> This series modernizes the devicetree of the MT6795 SoC and adds a
+> couple of nodes that are supported by this SoC.
 > 
-> Co-developed-by: Sricharan R <quic_srichara@quicinc.com>
-> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-
-Chain needs fixes.
-
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts |  29 +++
->  arch/arm64/boot/dts/qcom/ipq5018.dtsi         | 221 ++++++++++++++++++
->  3 files changed, 251 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> In my local tree I have much more than that (including the dts for
+> that Xperia M5 smartphone that I always mention...), but I decided
+> to push the devicetree commits in multiple parts, as to get these
+> in sooner than later because that reduces my delta, and this makes
+> upstreaming a bit easier, especially when having to rebase things
+> around, which happens a lot.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index f9e6343acd03..c44e701f093c 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-asus-z00l.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-huawei-g7.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-mp03.1-c2.dtb
+> So, this series *does NOT* depends on any of the other series that
+> I've pushed and is mergeable in parallel.
 
-This does not look like in proper order.
+Applied, thanks!
 
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8150.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8910.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-mtp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
-> new file mode 100644
-> index 000000000000..d1cd080ec3db
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
-> @@ -0,0 +1,29 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
-> +/*
-> + * IPQ5018 CP01 board device tree source
-> + *
-> + * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "ipq5018.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. IPQ5018/AP-MP03-C2";
-> +	compatible = "qcom,ipq5018-mp03", "qcom,ipq5018";
-> +
-> +	aliases {
-> +		serial0 = &blsp1_uart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&blsp1_uart1 {
-> +	pinctrl-0 = <&serial_1_pins>;
-> +	pinctrl-names = "default";
-> +	status = "ok";
-
-"okay" is preferred.
-
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> new file mode 100644
-> index 000000000000..084fb7b30dfd
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> @@ -0,0 +1,221 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
-> +/*
-> + * Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
-> + */
-> +/*
-> + * IPQ5018 SoC device tree source
-> + *
-> + * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-
-Combine these two comments.
-
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/clock/qcom,gcc-ipq5018.h>
-> +#include <dt-bindings/reset/qcom,gcc-ipq5018.h>
-> +
-> +/ {
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +	interrupt-parent = <&intc>;
-> +
-> +	sleep_clk: sleep-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <32000>;
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	xo: xo {
-
-Node name: xo-clk
-
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-
-The clock is provided by board, so at least frequency should be defined
-there.
-
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	gen2clk0: gen2clk0 {
-
-Keep consistent prefixes, so gen2-clk or gen2-0-clk
-
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <125000000>;
-> +		clock-output-names = "pcie20_phy0_pipe_clk";
-> +	};
-> +
-> +	gen2clk1: gen2clk1 {
-
-gen2-1-clk
-
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <125000000>;
-> +		clock-output-names = "pcie20_phy1_pipe_clk";
-> +	};
-> +
-
-
-Best regards,
-Krzysztof
+> 
+> Tested on a MT6795 Sony Xperia M5 (codename "Holly") smartphone.
+> 
+> Changes in v2:
+>   - Split fixed-clocks addition/removal patch for readability
+>   - Added patches for pinctrl controller node and vGIC interrupt
+> 
+> AngeloGioacchino Del Regno (10):
+>    arm64: dts: mediatek: mt6795: Create soc bus node and move mmio
+>      devices
+>    arm64: dts: mediatek: mt6795: Add cpu-map and L2 cache
+>    arm64: dts: mediatek: mt6795: Add Cortex A53 PMU nodes
+>    arm64: dts: mediatek: mt6795: Add watchdog node to avoid timeouts
+>    arm64: dts: mediatek: mt6795: Add fixed clocks for 32kHz and 26MHz XOs
+>    arm64: dts: mediatek: mt6795: Remove incorrect fixed-clocks
+>    arm64: dts: mediatek: mt6795: Add general purpose timer node
+>    arm64: dts: mediatek: mt6795: Add ARM CCI-400 node and assign to CPUs
+>    arm64: dts: mediatek: mt6795: Add pinctrl controller node
+>    arm64: dts: mediatek: mt6795: Specify interrupts for vGIC
+> 
+>   arch/arm64/boot/dts/mediatek/mt6795.dtsi | 260 ++++++++++++++++++-----
+>   1 file changed, 205 insertions(+), 55 deletions(-)
+> 
