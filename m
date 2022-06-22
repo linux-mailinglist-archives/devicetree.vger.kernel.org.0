@@ -2,118 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C396655494D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:17:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C2CC554706
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:11:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348225AbiFVKXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 06:23:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44192 "EHLO
+        id S1350823AbiFVK3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 06:29:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353254AbiFVKX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 06:23:29 -0400
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A816D15A0B;
-        Wed, 22 Jun 2022 03:23:28 -0700 (PDT)
-Received: from [192.168.1.101] (abxi223.neoplus.adsl.tpnet.pl [83.9.2.223])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 941FF20597;
-        Wed, 22 Jun 2022 12:23:26 +0200 (CEST)
-Message-ID: <f8b71e08-7f40-0438-1d07-ec637cf9552f@somainline.org>
-Date:   Wed, 22 Jun 2022 12:23:26 +0200
+        with ESMTP id S1354748AbiFVK2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 06:28:50 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E65D531201;
+        Wed, 22 Jun 2022 03:28:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1655893730; x=1687429730;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=dj28N6SLVUB4mV+mjREMiUuxJGVVRloqCn6LP2R95QY=;
+  b=lb5VlZYmpFdBmRZmxjnu27chn8+phMMHlj14j4qg/s9M7iAVCD57jCQL
+   sq35iQaYhbS9Au360Q5RsRd2tfsGlHJXPq4/d1HgZOfYppo7/ndMzcd4K
+   bgm6yv4CMd2ZRH64KGFT3BpZIvGicj4hBhBimNrzKYEHjKzzXSp+wEVM5
+   Aa2U6djPtxPJ5L91c0CD5wQ9p2HJO2yNsMqX/gsBqRdfEPO/mmz+G7bEr
+   4DYD3K9ji49OM39ACNXrSgS1PTIgWZg37ykQk9piGs3spgaov5T+q7c3l
+   qqLqVWlkwiNM72WtTjyh7J6nbDnmy5wKZuBQYuXQRM6mU3gOCOUWyoSVZ
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10385"; a="269099673"
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; 
+   d="scan'208";a="269099673"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2022 03:28:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; 
+   d="scan'208";a="592120346"
+Received: from lkp-server02.sh.intel.com (HELO a67cc04a5eeb) ([10.239.97.151])
+  by fmsmga007.fm.intel.com with ESMTP; 22 Jun 2022 03:28:43 -0700
+Received: from kbuild by a67cc04a5eeb with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o3xbG-00018z-Gn;
+        Wed, 22 Jun 2022 10:28:42 +0000
+Date:   Wed, 22 Jun 2022 18:27:57 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>
+Cc:     kbuild-all@lists.01.org,
+        =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v8 05/16] net: pcs: add Renesas MII converter
+ driver
+Message-ID: <202206221821.YTh0dW9N-lkp@intel.com>
+References: <20220620110846.374787-6-clement.leger@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v6 6/6] arm64: dts: qcom: sm8350: Add DISPCC node
-Content-Language: en-US
-To:     Robert Foss <robert.foss@linaro.org>, bjorn.andersson@linaro.org,
-        agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, jonathan@marek.ca,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20220621233412.506768-1-robert.foss@linaro.org>
- <20220621233412.506768-7-robert.foss@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220621233412.506768-7-robert.foss@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220620110846.374787-6-clement.leger@bootlin.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi "Clément,
+
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on net-next/master]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Cl-ment-L-ger/add-support-for-Renesas-RZ-N1-ethernet-subsystem-devices/20220620-191343
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git dbca1596bbb08318f5e3b3b99f8ca0a0d3830a65
+config: ia64-randconfig-r003-20220622 (https://download.01.org/0day-ci/archive/20220622/202206221821.YTh0dW9N-lkp@intel.com/config)
+compiler: ia64-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/fd8100fa88a9cffefe76f27b683803108d39c253
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Cl-ment-L-ger/add-support-for-Renesas-RZ-N1-ethernet-subsystem-devices/20220620-191343
+        git checkout fd8100fa88a9cffefe76f27b683803108d39c253
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=ia64 SHELL=/bin/bash drivers/net/pcs/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/net/pcs/pcs-rzn1-miic.c:501:34: warning: 'miic_of_mtable' defined but not used [-Wunused-const-variable=]
+     501 | static const struct of_device_id miic_of_mtable[] = {
+         |                                  ^~~~~~~~~~~~~~
+   drivers/net/pcs/pcs-rzn1-miic.c: In function 'miic_probe':
+>> drivers/net/pcs/pcs-rzn1-miic.c:430:19: warning: 'conf' is used uninitialized [-Wuninitialized]
+     430 |         dt_val[0] = conf;
+         |         ~~~~~~~~~~^~~~~~
+   drivers/net/pcs/pcs-rzn1-miic.c:424:13: note: 'conf' was declared here
+     424 |         u32 conf;
+         |             ^~~~
 
 
-On 22.06.2022 01:34, Robert Foss wrote:
-> Add the dispcc clock-controller DT node for sm8350.
-> 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+vim +/conf +430 drivers/net/pcs/pcs-rzn1-miic.c
 
-Konrad
-> 
-> Changes since v2
->  - Remove interconnect include - Bjorn
-> 
-> Changes since v3
->  - Switch from .fw_name to .index
-> 
-> Changes since v5
->  - Revert .fw_name to .index change
-> 
-> 
->  arch/arm64/boot/dts/qcom/sm8350.dtsi | 26 ++++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> index 52428b6df64e..99464cd1299e 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/clock/qcom,dispcc-sm8350.h>
->  #include <dt-bindings/clock/qcom,gcc-sm8350.h>
->  #include <dt-bindings/clock/qcom,rpmh.h>
->  #include <dt-bindings/dma/qcom-gpi.h>
-> @@ -2525,6 +2526,31 @@ usb_2_dwc3: usb@a800000 {
->  			};
->  		};
->  
-> +		dispcc: clock-controller@af00000 {
-> +			compatible = "qcom,sm8350-dispcc";
-> +			reg = <0 0x0af00000 0 0x10000>;
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +				 <0>,
-> +				 <0>,
-> +				 <0>,
-> +				 <0>,
-> +				 <0>,
-> +				 <0>;
-> +			clock-names = "bi_tcxo",
-> +				      "dsi0_phy_pll_out_byteclk",
-> +				      "dsi0_phy_pll_out_dsiclk",
-> +				      "dsi1_phy_pll_out_byteclk",
-> +				      "dsi1_phy_pll_out_dsiclk",
-> +				      "dp_phy_pll_link_clk",
-> +				      "dp_phy_pll_vco_div_clk";
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +
-> +			power-domains = <&rpmhpd SM8350_MMCX>;
-> +			power-domain-names = "mmcx";
-> +		};
-> +
->  		adsp: remoteproc@17300000 {
->  			compatible = "qcom,sm8350-adsp-pas";
->  			reg = <0 0x17300000 0 0x100>;
+   418	
+   419	static int miic_parse_dt(struct device *dev, u32 *mode_cfg)
+   420	{
+   421		s8 dt_val[MIIC_MODCTRL_CONF_CONV_NUM];
+   422		struct device_node *np = dev->of_node;
+   423		struct device_node *conv;
+   424		u32 conf;
+   425		int port;
+   426	
+   427		memset(dt_val, MIIC_MODCTRL_CONF_NONE, sizeof(dt_val));
+   428	
+   429		of_property_read_u32(np, "renesas,miic-switch-portin", &conf);
+ > 430		dt_val[0] = conf;
+   431	
+   432		for_each_child_of_node(np, conv) {
+   433			if (of_property_read_u32(conv, "reg", &port))
+   434				continue;
+   435	
+   436			if (!of_device_is_available(conv))
+   437				continue;
+   438	
+   439			if (of_property_read_u32(conv, "renesas,miic-input", &conf) == 0)
+   440				dt_val[port] = conf;
+   441		}
+   442	
+   443		return miic_match_dt_conf(dev, dt_val, mode_cfg);
+   444	}
+   445	
+   446	static int miic_probe(struct platform_device *pdev)
+   447	{
+   448		struct device *dev = &pdev->dev;
+   449		struct miic *miic;
+   450		u32 mode_cfg;
+   451		int ret;
+   452	
+   453		ret = miic_parse_dt(dev, &mode_cfg);
+   454		if (ret < 0)
+   455			return -EINVAL;
+   456	
+   457		miic = devm_kzalloc(dev, sizeof(*miic), GFP_KERNEL);
+   458		if (!miic)
+   459			return -ENOMEM;
+   460	
+   461		spin_lock_init(&miic->lock);
+   462		miic->dev = dev;
+   463		miic->base = devm_platform_ioremap_resource(pdev, 0);
+   464		if (!miic->base)
+   465			return -EINVAL;
+   466	
+   467		ret = devm_pm_runtime_enable(dev);
+   468		if (ret < 0)
+   469			return ret;
+   470	
+   471		ret = pm_runtime_resume_and_get(dev);
+   472		if (ret < 0)
+   473			return ret;
+   474	
+   475		ret = miic_init_hw(miic, mode_cfg);
+   476		if (ret)
+   477			goto disable_runtime_pm;
+   478	
+   479		/* miic_create() relies on that fact that data are attached to the
+   480		 * platform device to determine if the driver is ready so this needs to
+   481		 * be the last thing to be done after everything is initialized
+   482		 * properly.
+   483		 */
+   484		platform_set_drvdata(pdev, miic);
+   485	
+   486		return 0;
+   487	
+   488	disable_runtime_pm:
+   489		pm_runtime_put(dev);
+   490	
+   491		return ret;
+   492	}
+   493	
+   494	static int miic_remove(struct platform_device *pdev)
+   495	{
+   496		pm_runtime_put(&pdev->dev);
+   497	
+   498		return 0;
+   499	}
+   500	
+ > 501	static const struct of_device_id miic_of_mtable[] = {
+   502		{ .compatible = "renesas,rzn1-miic" },
+   503		{ /* sentinel */ },
+   504	};
+   505	MODULE_DEVICE_TABLE(of, miic_of_mtable);
+   506	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
