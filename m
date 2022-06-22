@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41471554D8C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 16:37:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CAE7554DB6
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 16:44:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358329AbiFVOhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 10:37:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36786 "EHLO
+        id S1358384AbiFVOoc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 10:44:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358341AbiFVOho (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 10:37:44 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A634E3CA55
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:37:43 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id lw20so12363494ejb.4
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:37:43 -0700 (PDT)
+        with ESMTP id S1358816AbiFVOob (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 10:44:31 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A2A413DD1
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:44:30 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id cw10so11013134ejb.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:44:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Q7FWHUTEap0PZjswCQpJN7yAT4damqIiUlPO4JtpvK8=;
-        b=AOmms+lpRy3WoF+seNDdWn3S8SWmvZ9HoIchhnWnpPEIzM+tHSaM8zmKl6LU0i7q9i
-         fUZaXjmeZMeFkY3ccNRvGGU6l2Byap6ODfm5+0ShjqKyPtIKU2+qynYVvu8UxSkbaEFs
-         TpPTIOSmE/oU8ZVw94G0/yXjq1481If+sch9z4/sVoPuYxwpz+AaM4SdzOxmY0ip4uq0
-         rlCNSZfTxO8blnJNIAv5UC9mfc7Mu2Voy/TM1V01geSEYf8Lw1jmCF49TQoOY/FkQerb
-         Fc+KkF/9Hvapk/e+ggpurD9sgkDQREd1Ux42i4QneAgEmumuI9CD5oQPrFztWzpyhgeo
-         65Rw==
+        bh=RYwfVfzefAqNKZVKQvEbtCq+rTse+HGi+t512K/5paI=;
+        b=h9aeHOCNsP48s1f9UZgl/sF7ri8jSbgNzUu1SbJeScku1cP8iyLMogSd4BLRSacMOw
+         s6DTFMmVjqExbxKYaHGY2zgriJLt83x/RHSsxSjlKdBeDh9U8GvPWILy0IA5uKjWm+3a
+         280ZLXcFqCZXTha793RLkTyulDrO5j7T2KbFPnko1DQxf+o8nkZdV0hExyBZHB4UaM2d
+         nOJ/Rv+2Ldw+3Eik7vMCp2+HC6otkJhsNi+/PRjAOC3XbCjtnotWq7XCamdkg2otDk1r
+         X84F/7jdyOaZ3gjHtrTIjpIscfu+4Pp5cWkLegzAX0wmJa+dTDleCPHMXFcb3kAUTqBb
+         9XBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Q7FWHUTEap0PZjswCQpJN7yAT4damqIiUlPO4JtpvK8=;
-        b=x0Hmi2tXT3PrAo6Fw1cPz68n1V5ROP3hHf4sX8rxPUx7x55X4fZh7qOUD5sm0584uN
-         WW7B+dwDZw9AeKi7DIkxxG+XdrX9psRQX51LzJ7uNK/1s8Cqnhz2c/qPMylQ51pqV35f
-         C3opnYjRKL/lUicEQ7QpLMD436EntySWd3Xvk/Vcnv43TuNOByRtLvHvLchOjRkYnn0d
-         Dd1Y8SEb9fK2fFFuGBra7vklHiHoaaET9TYjmUg5/s3NWjJ6I1mpWlQaioXtnau/al+i
-         V0NrWIc2LoUUE+OT4kCJPfhDhhJVSS864TbfHHuN27NQIKo0cwrcoykKJLH4erEHog1N
-         Q1DQ==
-X-Gm-Message-State: AJIora/kjQUWAoXW1PGAuvWXq1kwX9yJM2KDbqXbgo4Gw+csPqWG+etk
-        2WDmBWbA9Y1/HzP8s9G1Z/n1nw==
-X-Google-Smtp-Source: AGRyM1u1RV97xZQnajZzn4UOSzoNgfTAf1p1d8b2E+yNf71kj+KdZvXEAp2Xl75lEO9HhsBsNaAC9w==
-X-Received: by 2002:a17:907:8a17:b0:711:e3fe:7767 with SMTP id sc23-20020a1709078a1700b00711e3fe7767mr3395022ejc.380.1655908662250;
-        Wed, 22 Jun 2022 07:37:42 -0700 (PDT)
+        bh=RYwfVfzefAqNKZVKQvEbtCq+rTse+HGi+t512K/5paI=;
+        b=j/9Ir+cSaXz3VJytMVaUH+sfx9dVnJszVRqCDDKmjvxz/puJYxs2qfgJgsn06/yIF9
+         g5qS5OgtQ3Ma+Sql0g+OrpJZpgnhFRl9IQd4kLj5w7Sqb1vVOYiFMgh4VdBjZL+OMaMS
+         TlavLkQRTl9jTeBCxrL7VVFrvops+4AvIpqhASeNemNpZS32seJ39HLLN92WfOCA/SaG
+         FxYHIoZbyAnOAOD8aE7cp0c9BctuMpxZW26gYz8lF/1VlTYiw0T91AZka2KnDNIDZKzj
+         eS3d4ooF6ecY1/Npq5NvFm7oEYgDgLFrYMSU/cYAEBkbTArh91v8CA/7H0AZndJtrlRf
+         wOmA==
+X-Gm-Message-State: AJIora9LjGzQK/Je3I3ODOXCFfSNLscUmZkesHtdUvG3Yw+NVZJxnrw8
+        uTuGPVhak2A+3woiSfc1Rogfrw==
+X-Google-Smtp-Source: AGRyM1t2cmVsqdR/E0vWWjOrjyMeXenoOBMJTlmkjA4NoZ8yBMWEQ07KErXLMvZgRfN6RBzLCLVDfA==
+X-Received: by 2002:a17:907:980a:b0:722:f4a7:e00 with SMTP id ji10-20020a170907980a00b00722f4a70e00mr2325769ejc.114.1655909068742;
+        Wed, 22 Jun 2022 07:44:28 -0700 (PDT)
 Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id en26-20020a056402529a00b004357f391015sm7935823edb.97.2022.06.22.07.37.41
+        by smtp.gmail.com with ESMTPSA id a23-20020a1709063a5700b0070efa110afcsm9210203ejf.83.2022.06.22.07.44.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 07:37:41 -0700 (PDT)
-Message-ID: <c54b9423-10cb-e174-44e6-61468efd333f@linaro.org>
-Date:   Wed, 22 Jun 2022 16:37:40 +0200
+        Wed, 22 Jun 2022 07:44:28 -0700 (PDT)
+Message-ID: <6f5606be-5b6a-23f5-1fb3-b4964f8166b4@linaro.org>
+Date:   Wed, 22 Jun 2022 16:44:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: qcom-pm8xxx: Update the maintainers
- section
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: add SC8280XP platform
 Content-Language: en-US
-To:     Satya Priya <quic_c_skakit@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org, quic_tsoni@quicinc.com
-References: <1655874639-11273-1-git-send-email-quic_c_skakit@quicinc.com>
- <1655874639-11273-2-git-send-email-quic_c_skakit@quicinc.com>
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220607214113.4057684-1-bjorn.andersson@linaro.org>
+ <20220607214113.4057684-3-bjorn.andersson@linaro.org>
+ <79443fb4-5c09-a33f-594d-71ac93cc0317@linaro.org>
+ <YrE84tLOpJtzrNW4@builder.lan>
+ <9a31a488-f4fe-33f5-84e7-fe4509769d7c@linaro.org> <YrKNNQ2h6I8aseiW@ripper>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1655874639-11273-2-git-send-email-quic_c_skakit@quicinc.com>
+In-Reply-To: <YrKNNQ2h6I8aseiW@ripper>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,25 +82,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2022 07:10, Satya Priya wrote:
-> Update the maintainers section with latest mail ID.
+On 22/06/2022 05:32, Bjorn Andersson wrote:
+>>>>
+>>>
+>>> It's an interesting question, but I don't think it's possible to change
+>>> the rate of this clock from one board to another.
+>>>
+>>> So I think it's best to keep this in the .dtsi, to avoid unnecessary
+>>> duplication.
+>>
+>> It does not matter whether the frequency can be changed or not. This is
+>> the same on almost every SoC and the same comments appear every time -
+>> the clock is a property of the board, not of the SoC, so it should be in
+>> the board DTSI. To avoid the duplication you can indeed keep here most
+>> of the clock properties, but the frequency must be in board DTS.
+>>
 > 
-> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> index 2568736..61bd0b3 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Qualcomm PM8xxx PMIC multi-function devices
->  
+> I find this to be a rather strict interpretation of "board specific",
+> but I'm okay with it.
 
-Both patches can be squashed and then applied by Rob.
+Yes, it is quite strict, but in the long term helps - people explicitly
+need to enable/fill properties in new board DTSes, which hopefully will
+trigger some thinking - "do I really have 385 MHz XO clock"?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Although here it might not really important, but that approach is useful
+for all other cases, including aliases and buses. And one day, such
+clear design will help new guys doing new hardware bring-up and they
+will say: "I will start my new DTS board on some examples from mainline". :)
 
 Best regards,
 Krzysztof
