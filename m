@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 349D3554826
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:13:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B886B55472A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:11:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351964AbiFVIag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 04:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55340 "EHLO
+        id S1353295AbiFVIch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 04:32:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353499AbiFVIaa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 04:30:30 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50AD610D1
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:30:29 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id i17-20020a7bc951000000b0039c4760ec3fso624673wml.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:30:29 -0700 (PDT)
+        with ESMTP id S1352513AbiFVIcg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 04:32:36 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D941D78
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:32:35 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id t5so93085eje.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:32:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :references:from:in-reply-to:content-transfer-encoding;
-        bh=Ms/HKnagjpWOkTSuqrlOB4okpfVHQ9DTgJbAyIUZ6V4=;
-        b=K3zDe3mPlB00MLjcFS42DXpYKYf2TVGmfQ3L8zKJgwUqbSXfnDPEcFBgyHRdKgDFXF
-         WsBAZWWYEX5jzyiDDm2DMpIeXWkjx2wXt1wdHGcP1VnWaUH6spt4wZgKC2TH4MKD3zEk
-         P6R8ZEcEvYlrKyuRH8sTk5ZjWNmP1jJlFyASryr9LldFHKLV+LGX4VK5+Zpsz26/P0DP
-         rQ+v6cEdI9WP0jooa+fkrx2UUO/Xc9m9qkXW85yLtRb7mcw2ENOkj3tRu+O49LGOOJd2
-         4S9nLF6lqzajDSNtiTff1JmVj8JKk5UTIKhFstK7gzzcwlJxt/WoKitTHv0ZEUjn+o0r
-         4Gag==
+        bh=WIUcmFiN2jsL7oALDMp5YXGwCzJ0JqW4KnAxg4P/XMU=;
+        b=k9Gvq7+J9mhzaht3u87CbdlwP+NVlSPWWWYmFGGNQIro/etVMQlfRMzzkmHXJjZLPT
+         /2jU0et3pQJq3gG8wjqHhubqpZ8qBWdSe1957mW+R4AJtmASHzjgTyIApF3wYvyND+3g
+         aUkPpPsFP8scmGhOZVTm/rPjEO87fQrl1bQO8axt/Kl7rVfE4dxMUEG6fZ9/21JCvJWt
+         eNdIEIBF8HAoi8bZTGT83Q53cj1GvkbqS8Fshh5NyqUsWIhcjfRfAgm+IH2hC3VO5hn5
+         9pQojSP5EOT+qi4lWC6syDqO1phDO4rVqb5KHTHPSDlqUso+gb+q4uZYq+dGzs+svKB6
+         rUpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Ms/HKnagjpWOkTSuqrlOB4okpfVHQ9DTgJbAyIUZ6V4=;
-        b=nEJaDYwP7kH5ZWoSZTDWhlstsQK7GPiE0hqKx2qC+zUDdA94M7K85vEXm2FyAyG+Op
-         HSGB30XntyXjTTv5v+O8Dw4mHM+5YX2vYY3CCqhsyT3hYthypiJSLHWpDuNUSw//Qpkj
-         /g25KnM9MRG83ls1joHxZV1c36krUD5Lg7S6N8iHkldeHrQ5z34gIa1ysB9K2stKh33u
-         yeIO39fr2ml8Wx5A7HVY9QziNBGfmwV+7N77mKavsx4rM522ULDcpZFoJVaEN6q0I7RP
-         s3zOSO5bJvIGTDR0PXXzGAmb97smL0/zSi+PanUEfMTyRLFixHu54Vyb6CX8sXRWeKwo
-         /LKg==
-X-Gm-Message-State: AJIora8AUiFxa4YjxfNdKtG+r/Pe589nd6K5ylTrTGnXvM0/7WHxd8F7
-        9EudpT+tkXmVFIOUiimMJImMdw==
-X-Google-Smtp-Source: AGRyM1tQ7QLdivgUmT4kY5FU+N9htHIPI5XIgL1dnBJAH1mNMWUvvNWGHru4x1XpllOOMXFcFsPe2Q==
-X-Received: by 2002:a1c:44c5:0:b0:3a0:2ae2:5277 with SMTP id r188-20020a1c44c5000000b003a02ae25277mr1741579wma.30.1655886627887;
-        Wed, 22 Jun 2022 01:30:27 -0700 (PDT)
+        bh=WIUcmFiN2jsL7oALDMp5YXGwCzJ0JqW4KnAxg4P/XMU=;
+        b=fPQSwrKmSUF+ap1y31BQgGX0xtsOITGSMLF/VKoHSJVoylNg7R812GIqXwm/0bggJl
+         cxj8fGSUoaMc396+VmmxmG1Ke1jgpdms13M+AUCBHIEcQNMP1fmaao5bY/5LoZIHxEoE
+         5ZH34WyhpLhgNPRVCv2Ht7TL79ShqoPNvfPrcSNd1OulxuESnLwFZgml3aCWUOe8CRsf
+         tBmVxsbTpSP7oKYWw8KQnwB7WeVnkvNoPCqwZYjvyl601A6kCffNIH6DTW4ft9LJd7Rf
+         C5IOYej0DfyygNkucREULRdR1WXGAEtQDUyA8Fmz/VNbqdNOX5kqvgw5ORpIm0xsMYdw
+         qf7g==
+X-Gm-Message-State: AJIora8o+FanlR3nnQ6WFy3lEL5Jvnh5W4Z3mDpDCjZzx63h52cgWID7
+        tmqupmhwdeV/i5/qWOQDg0Ck3Q==
+X-Google-Smtp-Source: AGRyM1tkWJaPUpA9hMb6RtgYb3GvUnb8qwNoBsCBzv6suFeJmRITYuJ/8pOTGlbh5lQl9YoNbT7gSA==
+X-Received: by 2002:a17:906:2806:b0:70d:ed7a:ca5b with SMTP id r6-20020a170906280600b0070ded7aca5bmr2012582ejc.173.1655886753696;
+        Wed, 22 Jun 2022 01:32:33 -0700 (PDT)
 Received: from [192.168.0.223] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id y12-20020a5d620c000000b0021b866397a7sm12912224wru.1.2022.06.22.01.30.26
+        by smtp.gmail.com with ESMTPSA id y4-20020aa7ccc4000000b004316f94ec4esm14477994edt.66.2022.06.22.01.32.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 01:30:26 -0700 (PDT)
-Message-ID: <0a35d997-7e7e-8847-7c87-edd33719f7a3@linaro.org>
-Date:   Wed, 22 Jun 2022 10:30:25 +0200
+        Wed, 22 Jun 2022 01:32:33 -0700 (PDT)
+Message-ID: <50ab1e83-f14b-6d2c-df31-60a255552c46@linaro.org>
+Date:   Wed, 22 Jun 2022 10:32:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: adjust whitespace around '='
+Subject: Re: [PATCH v3 11/40] arm64: dts: marvell: align gpio-key node names
+ with dtschema
 Content-Language: en-US
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+To:     arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220526204248.832139-1-krzysztof.kozlowski@linaro.org>
+References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
+ <20220616005333.18491-11-krzysztof.kozlowski@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220526204248.832139-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220616005333.18491-11-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,20 +80,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/05/2022 22:42, Krzysztof Kozlowski wrote:
-> Fix whitespace coding style: use single space instead of tabs or
-> multiple spaces around '=' sign in property assignment.  No functional
-> changes (same DTB).
+On 16/06/2022 02:53, Krzysztof Kozlowski wrote:
+> The node names should be generic and DT schema expects certain pattern
+> (e.g. with key/button/switch).
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
 > ---
-> 
-> Output compared with dtx_diff and fdtdump.
+>  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts     | 2 +-
+>  arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts | 4 ++--
+>  2 files changed, 3 insertions(+), 3 deletions(-)
 
-Any comments on these two patches? If there are no objections I'll take
-them with rest of cleanups.
+Andrew, Gregory, Sebastian,
 
+Any comments on Marvel parts? Shall I grab them with rest of cleanups?
 
 Best regards,
 Krzysztof
