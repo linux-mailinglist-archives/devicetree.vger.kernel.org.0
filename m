@@ -2,73 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D2BF554E03
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 16:55:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C8B4554E1E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 17:00:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358810AbiFVOzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 10:55:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54860 "EHLO
+        id S1358489AbiFVPAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 11:00:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358790AbiFVOzq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 10:55:46 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 912B53BBC2
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:55:40 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id e40so11727522eda.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 07:55:40 -0700 (PDT)
+        with ESMTP id S1358281AbiFVPAC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 11:00:02 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D68593DDE9
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 08:00:00 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id sb34so5789265ejc.11
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 08:00:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=X4Pad+8YipqXc8GK64t0Ga8h3j5acT4+ZXhROSFDHAY=;
-        b=XaohlEvylppMCY+/f6p9Lh/ym1Lu1XP4HY/ahNo8U3FobNAq5i6QYoHqsYQH7gsp/l
-         tG0fOtThXQAFnAk1dNF7pnFrQ4KacfboqDJZlHSNCi4MNhEBK0MOqo2TKJ5CV6RGbdy8
-         f/vaZA3fJT4lB6x10IJLm42VIZPioeOE849DYzCJzmkT5XAmzPFH0e4Lx73dVQo/n6yZ
-         fuefbMwfGTzqKghT6wkElXWdCU/OdNrrAZm3GfLUkwweapg38cqZQE4YLIwjMk0PUKNW
-         J5fNUAaAnUmKURnXn9ZUxVa43/wCQBV6PEFl2Db86eHY9Aapzu44VY1ZzO8bo+0KlerO
-         dDog==
+        bh=4WRbj1QERW/av8psTVhlz4CLgb5wsd2uJJdprSn+O1g=;
+        b=ywoEjbfFbhivBAwWa/R/EzH9PY9yDMp4YbZJueOVLsv555+LQ2EHk8LXaq1KYJRZTz
+         aWNsy9DW6jJ+1/Qk9ChphBFLTnupm2CBWGrrUN/+aqNkvYvjWgSb2QKJ83C8fPNHerPc
+         os8s58x1zsuP1PToF56fprTaU7Nzs1hS9prG5PgoLLwMTPOjH8kQKb/BG6WA1FESzyoe
+         YlFj3/jGBKyWV4mIWsHb+4E8JogrKy/H4wZvFGLhYtB+jaiDRpZ5N7eg71ZI/7daIoi7
+         PvCbv5b643Q//fIaNJpVJkMEDKVO06G9g6D+8PUvjKhEOEty4cEe17VG8+9r+nU6tuM2
+         BTOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=X4Pad+8YipqXc8GK64t0Ga8h3j5acT4+ZXhROSFDHAY=;
-        b=HkZqwR6jIL9dMavKKOKaGyCEy+5wQEGcWfCXV+L/W9IQhm3Y7zFTMc2p8YsNNxg3F6
-         3VZT3q44a22CW+qqoq7Pn6XxzKP6PFfd/WR3VU/CHCwg1bKIkEpcoGVCdVmfYBv3bZAH
-         fOPsVIfoO1RPaZRKHxn1Qxlnxb5n3Bdq+6aUnw8KQcRoZItw1LZueVIcZcnRyY+6YShc
-         NufM21yErHaiN80WJW6zsAGZ4lWU8X3q+f4yqw2GyoBLIDIiJyQ+h4Fb9bSwf/gDKeZh
-         jMGmaG+oecpgUOwdKaXFhN5ZPxF2WdpbLtFk0wE4rnO7F6yaNVJLodvI0MnA2q33i0pL
-         X3RQ==
-X-Gm-Message-State: AJIora8qFElY4EasUEISlKZQK+hgqYzQL3nV2ZIoS7QLEzua+xmvGtg2
-        RzZsRBP+DsfTWA1yzf8YcfarLA==
-X-Google-Smtp-Source: AGRyM1u0tYBGnlEakino5fvDCPmYG7WkCkTmr987C3P4bO2FgwL/3yqTnzyi+ecJDIW6Kl+6s3mbNw==
-X-Received: by 2002:a05:6402:528d:b0:435:89c6:e16b with SMTP id en13-20020a056402528d00b0043589c6e16bmr4717954edb.292.1655909739169;
-        Wed, 22 Jun 2022 07:55:39 -0700 (PDT)
+        bh=4WRbj1QERW/av8psTVhlz4CLgb5wsd2uJJdprSn+O1g=;
+        b=YFibUrgUCBG0Er09oVBQQH4D1uVzbdNg2JG6HF7PzWMAghL1Ab0exVWBhV6ajSlTKi
+         XS3uW+3DK6diluODkkI9jyRi6qeUy0pQmnlXNSISODjgVUnMYcvotPoKVOuowNY10sAu
+         ZH73oAHHGiKXq251rpkKhYVTvCIcqrc09rUJrwGeD7U+zg0i5joUoGIdgS17B+vAG6d/
+         fXDZvRYQIG8RflmUPw2lLZY69NNLakTlYyyTbBSfOCnJlPprV1AOeot5N/+N9rpS3J7Y
+         I3R5BzRz74Iu5l0ETDPtC7ajaMoNEdXYuftRz5bOBEqdBz0/8geZ87jUbf6ZLl2aErzv
+         7n2Q==
+X-Gm-Message-State: AJIora8ORbU64PeZe+K+0wnyVRzkJgpXdxe2ni8SWfx5IQ5FxfMXqgHJ
+        +fKYxz0Pi+b8Go9tic/r70PfFAbxVBrkpw==
+X-Google-Smtp-Source: AGRyM1u3mPVv9tLPHuraiJXYGakA8OSJV1otrdE7dZHmWgQ8rMN06jOfUwrVjHL4Mk4I8uCfoPlhXw==
+X-Received: by 2002:a17:906:2252:b0:711:d2e6:9e7e with SMTP id 18-20020a170906225200b00711d2e69e7emr3797696ejr.161.1655909999464;
+        Wed, 22 Jun 2022 07:59:59 -0700 (PDT)
 Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ju27-20020a17090798bb00b00722e57fa051sm2678547ejc.90.2022.06.22.07.55.38
+        by smtp.gmail.com with ESMTPSA id lb13-20020a170907784d00b006fa84a0af2asm9696187ejc.16.2022.06.22.07.59.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 07:55:38 -0700 (PDT)
-Message-ID: <60ee4aa5-4fef-24e0-0ccf-b93eee1db876@linaro.org>
-Date:   Wed, 22 Jun 2022 16:55:37 +0200
+        Wed, 22 Jun 2022 07:59:59 -0700 (PDT)
+Message-ID: <d7da5034-a2a5-71d1-5898-4a110d495638@linaro.org>
+Date:   Wed, 22 Jun 2022 16:59:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath11k: add new DT entry
- for board ID
+Subject: Re: [PATCH 5/6] dt-bindings: clock: qcom,msm8996-apcc: Fix clocks
 Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     Kalle Valo <kvalo@kernel.org>, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, ath11k@lists.infradead.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20220621135339.1269409-1-robimarko@gmail.com>
- <a194d4c5-8e31-ecd9-ecd0-0c96af03485b@linaro.org>
- <CAOX2RU6fBo5f6cxAUgLKj3j+_oP7nSm7awCpr_yiO_p3NssWkQ@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220621160621.24415-1-y.oudjana@protonmail.com>
+ <20220621160621.24415-6-y.oudjana@protonmail.com>
+ <CAA8EJprQTiU+=ajKSWbFfbHuVxjEiybTPNez66Ob+4YZ+fXW_A@mail.gmail.com>
+ <XJ8UDR.9Y06T8FUTMOH2@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAOX2RU6fBo5f6cxAUgLKj3j+_oP7nSm7awCpr_yiO_p3NssWkQ@mail.gmail.com>
+In-Reply-To: <XJ8UDR.9Y06T8FUTMOH2@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,60 +91,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/2022 20:47, Robert Marko wrote:
-> On Tue, 21 Jun 2022 at 17:58, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 21/06/2022 15:53, Robert Marko wrote:
->>> bus + qmi-chip-id + qmi-board-id and optionally the variant are currently
->>> used for identifying the correct board data file.
->>>
->>> This however is sometimes not enough as all of the IPQ8074 boards that I
->>> have access to dont have the qmi-board-id properly fused and simply return
->>> the default value of 0xFF.
->>>
->>> So, to provide the correct qmi-board-id add a new DT property that allows
->>> the qmi-board-id to be overridden from DTS in cases where its not set.
->>> This is what vendors have been doing in the stock firmwares that were
->>> shipped on boards I have.
->>>
->>> Signed-off-by: Robert Marko <robimarko@gmail.com>
->>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>> ---
->>>  .../devicetree/bindings/net/wireless/qcom,ath11k.yaml     | 8 ++++++++
->>>  1 file changed, 8 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->>> index a677b056f112..fe6aafdab9d4 100644
->>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->>> @@ -41,6 +41,14 @@ properties:
->>>          * reg
->>>          * reg-names
->>>
->>> +  qcom,ath11k-board-id:
->>
->> The "board" a bit confuses me because in the context of entire system it
->> means the entire hardware running Qualcomm SoC. This is sometimes
->> encoded as qcom,board-id property.
+On 21/06/2022 19:28, Yassine Oudjana wrote:
 > 
-> Hi Krzysztof,
-> I agree that the name is a bit confusing, it's not the same as
-> qcom,board-id AFAIK
-> and QCA as well as vendors are using a similar property in the wifi
-> node to override
-> the default qmi-board-id to the correct one as its rarely properly fused.
+> On Tue, Jun 21 2022 at 20:07:50 +0300, Dmitry Baryshkov 
+> <dmitry.baryshkov@linaro.org> wrote:
+>> On Tue, 21 Jun 2022 at 19:07, Yassine Oudjana 
+>> <yassine.oudjana@gmail.com> wrote:
+>>>
+>>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>
+>>>  The clocks currently listed in clocks and clock-names are the ones
+>>>  supplied by this clock controller, not the ones it consumes. Replace
+>>>  them with the only clock it consumes - the on-board oscillator (XO),
+>>>  and make the properties required.
+>>>
+>>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>  ---
+>>>   .../bindings/clock/qcom,msm8996-apcc.yaml         | 15 
+>>> +++++++--------
+>>>   1 file changed, 7 insertions(+), 8 deletions(-)
+>>>
+>>>  diff --git 
+>>> a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml 
+>>> b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
+>>>  index a20cb10636dd..c4971234fef8 100644
+>>>  --- a/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
+>>>  +++ b/Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml
+>>>  @@ -26,22 +26,18 @@ properties:
+>>>
+>>>     clocks:
+>>>       items:
+>>>  -      - description: Primary PLL clock for power cluster (little)
+>>>  -      - description: Primary PLL clock for perf cluster (big)
+>>>  -      - description: Alternate PLL clock for power cluster (little)
+>>>  -      - description: Alternate PLL clock for perf cluster (big)
+>>>  +      - description: XO source
+>>>
+>>>     clock-names:
+>>>       items:
+>>>  -      - const: pwrcl_pll
+>>>  -      - const: perfcl_pll
+>>>  -      - const: pwrcl_alt_pll
+>>>  -      - const: perfcl_alt_pll
+>>>  +      - const: xo
+>>>
+>>>   required:
+>>>     - compatible
+>>>     - reg
+>>>     - '#clock-cells'
+>>>  +  - clocks
+>>>  +  - clock-names
+>>
+>> I think we can not list them as required, as then older DT files won't
+>> pass schema validation. But I'll leave this into the hands of Rob and
+>> Krzyshtof.
 > 
-> I assume it would be better-called qcom,ath11k-qmi-board-id as you
-> dont even have
-> to be using a Qualcomm SoC as the same is used by PCI ath11k cards as well.
+> The old DT files that didn't have XO defined had a wrong
+> compatible string to begin with (fixed in [1]), so I don't
+> think it's a problem.
 > 
 
-Thanks for the explanation. What is the "board" in that context? The
-card/hardware with ath11k? Then maybe qcom,ath11k-qmi-id or
-qcom,ath11k-qmi-hw-id?
+Reasonable.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
