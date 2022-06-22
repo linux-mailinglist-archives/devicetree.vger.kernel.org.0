@@ -2,190 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00DD0555109
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 18:14:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59AC05551CE
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 18:56:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376484AbiFVQON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 12:14:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50536 "EHLO
+        id S1376760AbiFVQzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 12:55:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239261AbiFVQOM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 12:14:12 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1713231DE4;
-        Wed, 22 Jun 2022 09:14:07 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id mf9so14997017ejb.0;
-        Wed, 22 Jun 2022 09:14:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=rzYR8E/Z4d+yIxT6wxjVdh3AUuQSp32xTOoEtVA33Ic=;
-        b=mHdOM2WoMZGuHTH9ibMduMO9iTX7wWF3RnKUIlwlF/f5maP3tJLzgD0LFBy0kaAFuu
-         LBf3pKzeW0j2ZXwFr9pBeNzHMx2XqTpPlzeVscunilw/mRu2jq7G2zOjNyV355hFIvF0
-         U7gQNfF4d93YXFZmss4Zw83fi4vc3s1D5OVDgj3RfV5YsI2DtORJ1F5/7Z9xed0lzd/3
-         QhOkLryhMlAtYOEAn2JmlUlJBeFcwFklSr+/2om0JKO/s5rPbeJWWDW0k59WSR8U+Bdc
-         kcFwZYPRsHhjRtQCJCihHT+tH3Ar+Z8cGRdw9z3H+Ko1XNahTyd3E3gq+JKRP3v5FvjE
-         u4pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=rzYR8E/Z4d+yIxT6wxjVdh3AUuQSp32xTOoEtVA33Ic=;
-        b=VWs15fhJDLMOejRkaA3ipXZCUg6VweV0b5Yi0qdvxCE4ZsXSVjbUwF6FulZkHkoKq4
-         po+TfNCHjg8mjYfzPJmrABgGc37sWbGHCB4sQzkMAnJaUGZeerE3kryueWYMHLCEldHK
-         tN/AJp7Uyz44JEQq3v8iy6jkw/BwzZ7keAmYL6px07v7bPoUlbdZCBi6+zFAj1d5Hx9Q
-         FW/agoSgU3sT9jf2uT1rI0GGp+ONZJHDUTZx6APQFWxjv4da7N4IpnRe8dStFBxgAN7E
-         0xd1Zdjn3r+ZqgcS3oMZY0BUYratrJSNLflKYRsv539IKLXFrEA0XNcU8iQ9AXuBJ2MH
-         9IyA==
-X-Gm-Message-State: AJIora/wdTWD1oSphfa06OmyCjcuysU1He9uH9utWI3J/bqU2tLbCSaM
-        pLg4t+gp9kO3kJJ1p8+da4o=
-X-Google-Smtp-Source: AGRyM1tFNI8nzCzf1c3HbSPbmMDqjs4QMeRDCukz3KOrq4G1bBxyF6h6Icic02RBVljA/Fz0VS5r5A==
-X-Received: by 2002:a17:906:147:b0:712:1288:348f with SMTP id 7-20020a170906014700b007121288348fmr3774357ejh.324.1655914445528;
-        Wed, 22 Jun 2022 09:14:05 -0700 (PDT)
-Received: from localhost.localdomain ([185.107.95.225])
-        by smtp.gmail.com with ESMTPSA id sd14-20020a1709076e0e00b007072dc80e06sm9576036ejc.190.2022.06.22.09.13.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jun 2022 09:14:05 -0700 (PDT)
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1377352AbiFVQxp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 12:53:45 -0400
+X-Greylist: delayed 470 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 22 Jun 2022 09:52:06 PDT
+Received: from smtp-190c.mail.infomaniak.ch (smtp-190c.mail.infomaniak.ch [IPv6:2001:1600:4:17::190c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97A9841613
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 09:52:06 -0700 (PDT)
+Received: from smtp-3-0000.mail.infomaniak.ch (unknown [10.4.36.107])
+        by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4LSq3L32bczMqwg4;
+        Wed, 22 Jun 2022 18:44:14 +0200 (CEST)
+Received: from philippe-pc.toradex.int (unknown [31.10.206.125])
+        by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4LSq3J1hSjzlqV0V;
+        Wed, 22 Jun 2022 18:44:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
+        s=20220412; t=1655916254;
+        bh=16ktisfcvBgIYLREi0tcTzW4w4C5ndQSyEJGx6PC66Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=vLCYOSQp/JhOUYEuL2eekc5smKl3lsAvjtBe8HdlSycjBnvJI0SvWlE4KLQ/6Chum
+         B9jAJMyb9WO04DPm1g/yk/i3Dxuv6mAkzRRLSC6Hgd0KE8FsuNo+5+uQqQ6hFeMpPi
+         qVwwL5zo3byiZpNN5/1tlB/pjHA3HWmNI0+ZNnoY=
+From:   Philippe Schenker <dev@pschenker.ch>
+To:     shawnguo@kernel.org, devicetree@vger.kernel.org
+Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Yassine Oudjana <yassine.oudjana@gmail.com>,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: qcom: Use WCD9335 DT bindings
-Date:   Wed, 22 Jun 2022 20:13:22 +0400
-Message-Id: <20220622161322.168017-4-y.oudjana@protonmail.com>
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8m{m,p}-verdin: use IT temperatures
+Date:   Wed, 22 Jun 2022 18:44:10 +0200
+Message-Id: <20220622164410.457249-1-dev@pschenker.ch>
 X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220622161322.168017-1-y.oudjana@protonmail.com>
-References: <20220622161322.168017-1-y.oudjana@protonmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yassine Oudjana <y.oudjana@protonmail.com>
+From: Philippe Schenker <philippe.schenker@toradex.com>
 
-Replace DAI indices in codec nodes with definitions from the WCD9335
-DT bindings for devices that use WCD9335.
+Use IT temperature threshold for critical/passive trip point
+on Verdin iMX8M Plus and Mini.
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+
 ---
-Changes since v1:
- - Maintain the alphabetical order in msm8996-xiaomi-gemini includes
 
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts         | 5 +++--
- arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts  | 5 +++--
- arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts | 5 +++--
- 3 files changed, 9 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 8 ++++++++
+ arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 8 ++++++++
+ 2 files changed, 16 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-index 49afbb1a066a..ff915cd8e5a6 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-@@ -13,6 +13,7 @@
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/sound/qcom,q6afe.h>
- #include <dt-bindings/sound/qcom,q6asm.h>
-+#include <dt-bindings/sound/qcom,wcd9335.h>
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+index eafa88d980b3..a819ed43e727 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+@@ -154,6 +154,14 @@ &A53_3 {
+ 	cpu-supply = <&reg_vdd_arm>;
+ };
  
- /*
-  * GPIO name legend: proper name = the GPIO line is used as GPIO
-@@ -1009,7 +1010,7 @@ platform {
- 	};
++&cpu_alert0 {
++	temperature = <95000>;
++};
++
++&cpu_crit0 {
++	temperature = <105000>;
++};
++
+ &ddrc {
+ 	operating-points-v2 = <&ddrc_opp_table>;
  
- 		codec {
--			sound-dai = <&wcd9335 6>;
-+			sound-dai = <&wcd9335 AIF4_PB>;
- 		};
- 	};
- 
-@@ -1024,7 +1025,7 @@ platform {
- 		};
- 
- 		codec {
--			sound-dai = <&wcd9335 1>;
-+			sound-dai = <&wcd9335 AIF1_CAP>;
- 		};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+index fb17e329cd37..7d8d8df569c5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+@@ -146,6 +146,14 @@ reserved-memory {
  	};
  };
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
-index 22978d06f85b..8cdae01aaa85 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
-@@ -8,6 +8,7 @@
- #include "msm8996-xiaomi-common.dtsi"
- #include <dt-bindings/sound/qcom,q6afe.h>
- #include <dt-bindings/sound/qcom,q6asm.h>
-+#include <dt-bindings/sound/qcom,wcd9335.h>
- #include <dt-bindings/input/ti-drv260x.h>
  
- / {
-@@ -193,7 +194,7 @@ platform {
- 		};
- 
- 		codec {
--			sound-dai = <&wcd9335 6>;
-+			sound-dai = <&wcd9335 AIF4_PB>;
- 		};
- 	};
- 
-@@ -208,7 +209,7 @@ platform {
- 		};
- 
- 		codec {
--			sound-dai = <&wcd9335 1>;
-+			sound-dai = <&wcd9335 AIF1_CAP>;
- 		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
-index 1e2dd6763ad1..c9f935cfb587 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
-@@ -9,6 +9,7 @@
- #include "pmi8996.dtsi"
- #include <dt-bindings/sound/qcom,q6afe.h>
- #include <dt-bindings/sound/qcom,q6asm.h>
-+#include <dt-bindings/sound/qcom,wcd9335.h>
- 
- / {
- 	model = "Xiaomi Mi Note 2";
-@@ -171,7 +172,7 @@ platform {
- 		};
- 
- 		codec {
--			sound-dai = <&wcd9335 6>;
-+			sound-dai = <&wcd9335 AIF4_PB>;
- 		};
- 	};
- 
-@@ -186,7 +187,7 @@ platform {
- 		};
- 
- 		codec {
--			sound-dai = <&wcd9335 1>;
-+			sound-dai = <&wcd9335 AIF1_CAP>;
- 		};
- 	};
- };
++&cpu_alert0 {
++	temperature = <95000>;
++};
++
++&cpu_crit0 {
++	temperature = <105000>;
++};
++
+ /* Verdin SPI_1 */
+ &ecspi1 {
+ 	#address-cells = <1>;
 -- 
 2.36.1
 
