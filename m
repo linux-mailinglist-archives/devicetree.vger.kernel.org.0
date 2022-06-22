@@ -2,64 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF32355476C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:12:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0B56554803
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:13:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354555AbiFVIgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 04:36:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33064 "EHLO
+        id S1353931AbiFVIgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 04:36:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354358AbiFVIfs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 04:35:48 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9431F38BD2
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:35:46 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id lw20so10274875ejb.4
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:35:46 -0700 (PDT)
+        with ESMTP id S1351628AbiFVIf5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 04:35:57 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D0CD2F020
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:35:47 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id pk21so9505874ejb.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 01:35:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=ibSeTeoGrJU9Aqagmc754YJgfL9Rjsjx962UCMljOXo=;
-        b=Pv4rFnY614dxv6rhYl+a5MDZYYOkFrklTB1DqB56UO7YtAUEo3mZd0uvQ1Q0eJVru/
-         qVIZI7IzKvUsiWg77KaNzq0vS2aWRj6NLWkNSbLv5YyXNZo1hLEcIDRmCeL+eKd1bP1Q
-         A69a3aCK1pYjHy/D7CSiNab1TtnSv3tSIAs5lpc721ETXr1nkYoQgBbOEa9p8rjsZf0p
-         OrBipnYrC2GcnXITndwrdayoWqv16ywaXQzyW6MI1Fji+Qx+UefAhGEqWHdacju2tvSI
-         GgZbZsh/O9Vv0PEQDR7nUyBs1nUVkNWZiZBvosq4kMqlhRmCAEMg74l7oncgglf9Wwr9
-         TAtA==
+        bh=F/hLw10VPO91osuq443lJcyKKYrTvVX/tDBUoayUs+E=;
+        b=koYQmYVk+PfNmCQNz1y1UaJo5p8PBTMTJDB8ka/c5G/oD+wVWcRE4yQysoGGUpSYfn
+         K4llGnIDmSmqPHx6b6nO0m+As+Tqd2LekGS6PXUaA22Q9rfyeTDh7b3LvmRIQ912NI9i
+         2moRx3u3w+v9bwVUuj0n9G0Foz1Jw1p33cVyI2hUXEmZcUorTZ0vD+iExac7WvAc1pso
+         GOeY3MKfTbSLmIWuetrlYvwxuenpEnhnAG7BPJIvUiU/aN/6lZoWJgYgfCoG+4afZCLb
+         ELd2V/Slezj96PihsJv7PPejm8Npc8mK7NcZ+gQogaJkPQ4dHZ9vL557eWiHyjqQS4kl
+         woFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ibSeTeoGrJU9Aqagmc754YJgfL9Rjsjx962UCMljOXo=;
-        b=V64WYhZK2AYuuQGPG+oqFux9hop0rk6ZmG8yZGh0GBhQDmLwI4sB+zakr/AN+73+O6
-         7DJpEQin8Dht4opHVN+GHSF+v+L4wmYVGyPNIIwONe7MIbCjNY92/cIwdnDH0wyeSAzK
-         hkx7Vb1xmPZNHITIybaZ1UZpssLQbRoJ3bQsEySN9K5o3OF5USbjeVmX5/2B/1+ipYkD
-         6QEzfkMAflBGYV7m4ZroaU1JJ6KNe/HspflVxzyxn6CozoNlttZIvDpWnQVuwMfMFlW+
-         M/h1lbj4jTWe2rp6OPbkX/HUtb7KB1T8Hg2Xkag/2PPSkEuGM5OcJoGhAk1huJAERrSA
-         yYGg==
-X-Gm-Message-State: AJIora/8eV7Aqjc262ooSJVz3o+N2ZA4tJvNWr8D6GJzMGsuHk1Xr0Qo
-        T38ws/9FBcvWI3dEcaWfnv0Rr5MqgBP9zA==
-X-Google-Smtp-Source: AGRyM1ttLbxNCfJfZjrL1pM7VtFS0jyMlykBozG6xZbRJN3ZAHMlEmgKZip7Yto4hapdf8V/ANRK4Q==
-X-Received: by 2002:a17:907:9605:b0:6f5:c66:7c13 with SMTP id gb5-20020a170907960500b006f50c667c13mr2011528ejc.66.1655886944973;
-        Wed, 22 Jun 2022 01:35:44 -0700 (PDT)
+        bh=F/hLw10VPO91osuq443lJcyKKYrTvVX/tDBUoayUs+E=;
+        b=YDPqm69+0WUQLUAGUkpJHPICxbQ2nobOUBHBVUuwK7WapVNQrujzV8UALy2AWVp1h3
+         7qdLRb+JfFPO9ySyKVs13WUakfb70QBCsklldnVoyOGUzzyZsKlUxhgNIe/E+OyWOqCO
+         vMyp0Bia2G0LjzexdSQo4y/q4sNdjFq/bfj1pIb9C8waXJQW34t7I3lM1qizy3bp8kHb
+         6Wfujj2l7vOphF31++AMLci7a0rRzKaKUy4Fiac3eFz2KT/pZ1xeoulbea0Nf91PAth5
+         Jmx/p0g+RnVwfIQas95GdsdtWtRy0Jj9nQxZ0vTu1FlxLtC+RZlCxgJULCWpgCv44Hok
+         ZPPw==
+X-Gm-Message-State: AJIora++v3qqFReiZnZl24SlOtBRbYotaBLHnjFwuNg9nebqWv0MZ/jQ
+        oTf7OA4MTPKb7e2TnUxGQh7itqoBXWgFPA==
+X-Google-Smtp-Source: AGRyM1uUImJ/tIjrM0xGIYhl4KAd9nMt3w3I7YWD5FZGM2jymGTlRe9irKxqSkKJFy3t1Rdld6mGJA==
+X-Received: by 2002:a17:906:6a0c:b0:711:d9d9:45ce with SMTP id qw12-20020a1709066a0c00b00711d9d945cemr2030582ejc.184.1655886945901;
+        Wed, 22 Jun 2022 01:35:45 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ku10-20020a170907788a00b00722e603c39asm1979733ejc.31.2022.06.22.01.35.43
+        by smtp.gmail.com with ESMTPSA id ku10-20020a170907788a00b00722e603c39asm1979733ejc.31.2022.06.22.01.35.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jun 2022 01:35:44 -0700 (PDT)
+        Wed, 22 Jun 2022 01:35:45 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, gregkh@linuxfoundation.org,
-        krzysztof.kozlowski@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        mgautam@codeaurora.org, linux-kernel@vger.kernel.org,
-        bjorn.andersson@linaro.org, linux-usb@vger.kernel.org,
-        agross@kernel.org
-Subject: Re: (subset) [PATCH 05/13] arm64: dts: qcom: add missing AOSS QMP compatible fallback
-Date:   Wed, 22 Jun 2022 10:35:31 +0200
-Message-Id: <165588692597.15720.9610794575339246261.b4-ty@linaro.org>
+        linux-arm-msm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        krzysztof.kozlowski@linaro.org, agross@kernel.org
+Subject: Re: (subset) [PATCH 10/12] ARM: dts: qcom: ipq4019: fix Micron SPI NOR compatible
+Date:   Wed, 22 Jun 2022 10:35:32 +0200
+Message-Id: <165588692598.15720.3558202512187171238.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220504131923.214367-6-krzysztof.kozlowski@linaro.org>
-References: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org> <20220504131923.214367-6-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220521164550.91115-10-krzysztof.kozlowski@linaro.org>
+References: <20220521164550.91115-1-krzysztof.kozlowski@linaro.org> <20220521164550.91115-10-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -73,20 +71,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 4 May 2022 15:19:15 +0200, Krzysztof Kozlowski wrote:
-> The AOSS QMP bindings expect all compatibles to be followed by fallback
-> "qcom,aoss-qmp" because all of these are actually compatible with each
-> other.  This fixes dtbs_check warnings like:
-> 
->   sm8250-hdk.dtb: power-controller@c300000: compatible: ['qcom,sm8250-aoss-qmp'] is too short
+On Sat, 21 May 2022 18:45:48 +0200, Krzysztof Kozlowski wrote:
+> The proper compatible for Micron n25q128a11 SPI NOR flash should include
+> vendor-prefix and use jedec,spi-nor fallback.
 > 
 > 
-> [...]
 
 Applied, thanks!
 
-[05/13] arm64: dts: qcom: add missing AOSS QMP compatible fallback
-        https://git.kernel.org/krzk/linux/c/9a2f272b5f665ac945bc06f7b2e7cdf1cd974cce
+[10/12] ARM: dts: qcom: ipq4019: fix Micron SPI NOR compatible
+        https://git.kernel.org/krzk/linux/c/b67569748cfc9409e01e9ff6243e2064f24d3cf8
 
 Best regards,
 -- 
