@@ -2,164 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CF73555332
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 20:17:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9A595553D3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 20:56:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377591AbiFVSRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 14:17:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44174 "EHLO
+        id S1358156AbiFVS4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 14:56:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377622AbiFVSRs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 14:17:48 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9485B3EBBD;
-        Wed, 22 Jun 2022 11:17:44 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.92,212,1650898800"; 
-   d="scan'208";a="125315340"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 23 Jun 2022 03:17:43 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 7689740C7F32;
-        Thu, 23 Jun 2022 03:17:40 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1376265AbiFVS4p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 14:56:45 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 480D03A735;
+        Wed, 22 Jun 2022 11:56:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1655924195;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=0ka+e5CwrN5MVcA+6Ffzw9FiJob8j1H7d6oQqpb8Ud8=;
+    b=K6FD2FMfI6s/FXqzJb63CuyoSdVGtQzHaJ8gt8fsPtIJdrWUKLbQ0+nams0qXRGQ1x
+    JtSxMyYK0OwadcMjkZXhW5ur1O3uGey3rsc9Pw5XiAClzEPMxzjcrI823nac0G9zAeb2
+    oYEdA4CA7g2JDuO504iEZnXlFNKR+E/mOc24AM0ZGoqPQ1LKpCp7adePvJ0VM7TFu4Zv
+    tceP2buHrGkYGfpLmKn9YXdCPYqYHZusKnccn+Hdx4+VISLFK7OlogiqUH1M2Xu4AJ16
+    oVKqSjL1TrLReYl/VLMfoTbwG/ggQ5nwMoVWuymAlXr2yw5aKnl59hmanYQXO883KuzU
+    81vA==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK88/6Y="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.46.0 AUTH)
+    with ESMTPSA id g32597y5MIuZOtr
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Wed, 22 Jun 2022 20:56:35 +0200 (CEST)
+Date:   Wed, 22 Jun 2022 20:56:26 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] clk: renesas: r9a07g043: Add support for RZ/Five SoC
-Date:   Wed, 22 Jun 2022 19:17:23 +0100
-Message-Id: <20220622181723.13033-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220622181723.13033-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220622181723.13033-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: add SC8280XP platform
+Message-ID: <YrNl2jS3Stcl2DP8@gerhold.net>
+References: <20220622041224.627803-1-bjorn.andersson@linaro.org>
+ <20220622041224.627803-4-bjorn.andersson@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220622041224.627803-4-bjorn.andersson@linaro.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Renesas RZ/Five SoC has almost the same clock structure compared to the
-Renesas RZ/G2UL SoC, re-use the r9a07g043-cpg.c file to add support for
-RZ/Five SoC.
+On Tue, Jun 21, 2022 at 09:12:21PM -0700, Bjorn Andersson wrote:
+> Introduce initial support for the Qualcomm SC8280XP platform, aka 8cx
+> Gen 3. This initial contribution supports SMP, CPUfreq, CPU cluster
+> idling, GCC, TLMM, SMMU, RPMh regulators, power-domains and clocks,
+> interconnects, some QUPs, UFS, remoteprocs, USB, watchdog, LLCC and
+> tsens.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> 
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2145 ++++++++++++++++++++++++
+>  1 file changed, 2145 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> new file mode 100644
+> index 000000000000..ac13965a181e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+[...]
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		memory@80000000 {
+> +			reg = <0 0x80000000 0 0x860000>;
+> +			no-map;
+> +		};
+> +
+> +		cmd_db: memory@80860000 {
+> +			compatible = "qcom,cmd-db";
+> +			reg = <0 0x80860000 0 0x20000>;
+> +			no-map;
+> +		};
+> +
+> +		memory@80880000 {
+> +			reg = <0 0x80880000 0 0x80000>;
+> +			no-map;
+> +		};
+> +
+> +		smem_mem: smem@80900000 {
+> +			compatible = "qcom,smem";
+> +			reg = <0 0x80900000 0 0x200000>;
+> +			no-map;
+> +			hwlocks = <&tcsr_mutex 3>;
+> +		};
+> +
+> +		memory@80b00000 {
+> +			reg = <0 0x80b00000 0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		memory@83b00000 {
+> +			reg = <0 0x83b00000 0 0x1700000>;
+> +			no-map;
+> +		};
+> +
+> +		memory@85b00000 {
+> +			reg = <0 0x85b00000 0 0xc00000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_adsp_mem: memory@86c00000 {
+> +			reg = <0 0x86c00000 0 0x2000000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_nsp0_mem: memory@8a100000 {
+> +			reg = <0 0x8a100000 0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_nsp1_mem: memory@8c600000 {
+> +			reg = <0 0x8c600000 0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		memory@aeb00000 {
+> +			reg = <0 0xaeb00000 0 0x16600000>;
+> +			no-map;
+> +		};
 
-This patch splits up the clocks and reset arrays for RZ/G2UL and RZ/Five
-SoC using #ifdef CONFIG_ARM64 and #ifdef CONFIG_RISCV checks.
+Doesn't memory@ still cause the dtbs_check warnings? Similar to
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- drivers/clk/renesas/r9a07g043-cpg.c | 32 +++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+> soc/qcom/qcom,smem.example.dt.yaml: memory@fa00000: 'device_type' is a required property
+>         From schema: dtschema/schemas/memory.yaml
 
-diff --git a/drivers/clk/renesas/r9a07g043-cpg.c b/drivers/clk/renesas/r9a07g043-cpg.c
-index 33c2bd8df2e5..37475465100d 100644
---- a/drivers/clk/renesas/r9a07g043-cpg.c
-+++ b/drivers/clk/renesas/r9a07g043-cpg.c
-@@ -36,9 +36,11 @@ enum clk_ids {
- 	CLK_PLL3_DIV2_4_2,
- 	CLK_SEL_PLL3_3,
- 	CLK_DIV_PLL3_C,
-+#ifdef CONFIG_ARM64
- 	CLK_PLL5,
- 	CLK_PLL5_500,
- 	CLK_PLL5_250,
-+#endif
- 	CLK_PLL6,
- 	CLK_PLL6_250,
- 	CLK_P1_DIV2,
-@@ -100,9 +102,11 @@ static const struct cpg_core_clk r9a07g043_core_clks[] __initconst = {
- 	DEF_FIXED(".pll3_533", CLK_PLL3_533, CLK_PLL3, 1, 3),
- 	DEF_MUX_RO(".sel_pll3_3", CLK_SEL_PLL3_3, SEL_PLL3_3, sel_pll3_3),
- 	DEF_DIV("divpl3c", CLK_DIV_PLL3_C, CLK_SEL_PLL3_3, DIVPL3C, dtable_1_32),
-+#ifdef CONFIG_ARM64
- 	DEF_FIXED(".pll5", CLK_PLL5, CLK_EXTAL, 125, 1),
- 	DEF_FIXED(".pll5_500", CLK_PLL5_500, CLK_PLL5, 1, 6),
- 	DEF_FIXED(".pll5_250", CLK_PLL5_250, CLK_PLL5_500, 1, 2),
-+#endif
- 	DEF_FIXED(".pll6", CLK_PLL6, CLK_EXTAL, 125, 6),
- 	DEF_FIXED(".pll6_250", CLK_PLL6_250, CLK_PLL6, 1, 2),
- 
-@@ -126,12 +130,20 @@ static const struct cpg_core_clk r9a07g043_core_clks[] __initconst = {
- };
- 
- static struct rzg2l_mod_clk r9a07g043_mod_clks[] = {
-+#ifdef CONFIG_ARM64
- 	DEF_MOD("gic",		R9A07G043_GIC600_GICCLK, R9A07G043_CLK_P1,
- 				0x514, 0),
- 	DEF_MOD("ia55_pclk",	R9A07G043_IA55_PCLK, R9A07G043_CLK_P2,
- 				0x518, 0),
- 	DEF_MOD("ia55_clk",	R9A07G043_IA55_CLK, R9A07G043_CLK_P1,
- 				0x518, 1),
-+#endif
-+#ifdef CONFIG_RISCV
-+	DEF_MOD("iax45_pclk",	R9A07G043_IAX45_PCLK, R9A07G043_CLK_P2,
-+				0x518, 0),
-+	DEF_MOD("iax45_clk",	R9A07G043_IAX45_CLK, R9A07G043_CLK_P1,
-+				0x518, 1),
-+#endif
- 	DEF_MOD("dmac_aclk",	R9A07G043_DMAC_ACLK, R9A07G043_CLK_P1,
- 				0x52c, 0),
- 	DEF_MOD("dmac_pclk",	R9A07G043_DMAC_PCLK, CLK_P1_DIV2,
-@@ -243,9 +255,14 @@ static struct rzg2l_mod_clk r9a07g043_mod_clks[] = {
- };
- 
- static struct rzg2l_reset r9a07g043_resets[] = {
-+#ifdef CONFIG_ARM64
- 	DEF_RST(R9A07G043_GIC600_GICRESET_N, 0x814, 0),
- 	DEF_RST(R9A07G043_GIC600_DBG_GICRESET_N, 0x814, 1),
- 	DEF_RST(R9A07G043_IA55_RESETN, 0x818, 0),
-+#endif
-+#ifdef CONFIG_RISCV
-+	DEF_RST(R9A07G043_IAX45_RESETN, 0x818, 0),
-+#endif
- 	DEF_RST(R9A07G043_DMAC_ARESETN, 0x82c, 0),
- 	DEF_RST(R9A07G043_DMAC_RST_ASYNC, 0x82c, 1),
- 	DEF_RST(R9A07G043_OSTM0_PRESETZ, 0x834, 0),
-@@ -291,8 +308,13 @@ static struct rzg2l_reset r9a07g043_resets[] = {
- };
- 
- static const unsigned int r9a07g043_crit_mod_clks[] __initconst = {
-+#ifdef CONFIG_ARM64
- 	MOD_CLK_BASE + R9A07G043_GIC600_GICCLK,
- 	MOD_CLK_BASE + R9A07G043_IA55_CLK,
-+#endif
-+#ifdef CONFIG_RISCV
-+	MOD_CLK_BASE + R9A07G043_IAX45_CLK,
-+#endif
- 	MOD_CLK_BASE + R9A07G043_DMAC_ACLK,
- };
- 
-@@ -310,11 +332,21 @@ const struct rzg2l_cpg_info r9a07g043_cpg_info = {
- 	/* Module Clocks */
- 	.mod_clks = r9a07g043_mod_clks,
- 	.num_mod_clks = ARRAY_SIZE(r9a07g043_mod_clks),
-+#ifdef CONFIG_ARM64
- 	.num_hw_mod_clks = R9A07G043_TSU_PCLK + 1,
-+#endif
-+#ifdef CONFIG_RISCV
-+	.num_hw_mod_clks = R9A07G043_IAX45_PCLK + 1,
-+#endif
- 
- 	/* Resets */
- 	.resets = r9a07g043_resets,
-+#ifdef CONFIG_ARM64
- 	.num_resets = R9A07G043_TSU_PRESETN + 1, /* Last reset ID + 1 */
-+#endif
-+#ifdef CONFIG_RISCV
-+	.num_resets = R9A07G043_IAX45_RESETN + 1, /* Last reset ID + 1 */
-+#endif
- 
- 	.has_clk_mon_regs = true,
- };
--- 
-2.25.1
+as in [1]. If I understood it correctly there Rob said that memory@
+shouldn't be used for reserved-memory. Perhaps even reserved-memory@
+might be better then.
 
+The device tree specification on the other hand suggests using the
+purpose of the reserved memory, like we did on older SoCs:
+
+> 3.5.2 /reserved-memory/ child nodes
+> Following the generic-names recommended practice, node names should
+> reflect the purpose of the node (ie. “framebuffer” or “dma-pool”).
+
+[1]: https://lore.kernel.org/linux-arm-msm/CAL_Jsq+66j8Y5y+PQ+mezkaxN1pfHFKz524YUF4Lz_OU5E-mZQ@mail.gmail.com/
+
+> +		timer@17c20000 {
+> +			compatible = "arm,armv7-timer-mem";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			reg = <0x0 0x17c20000 0x0 0x1000>;
+> +			clock-frequency = <19200000>;
+[...]
+> +		};
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+> +		clock-frequency = <19200000>;
+> +	};
+
+Is the "clock-frequency" really needed for these two?
+
+The binding docs are pretty clear that this should be configured by the
+firmware instead:
+
+> Should be present only where necessary to work around broken firmware
+> which does not configure CNTFRQ on all CPUs to a uniform correct
+> value. Use of this property is strongly discouraged; fix your firmware
+> unless absolutely impossible.
+
+I hope Qualcomm's firmware is actually improving on newer platforms
+and not making big steps backwards. :-)
+
+Thanks,
+Stephan
