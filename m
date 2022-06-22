@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBBA255465C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:10:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47DC55546F7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:11:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237431AbiFVKSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S234833AbiFVKSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 22 Jun 2022 06:18:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36468 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240535AbiFVKSC (ORCPT
+        with ESMTP id S235545AbiFVKSC (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 06:18:02 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB743AA6F
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 03:17:45 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id o10so23199121edi.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 03:17:45 -0700 (PDT)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4C723B01C
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 03:17:46 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id fd6so20434386edb.5
+        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 03:17:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ySkJSlQo1QiWIR9DLd5CIrfBGUCsep0GFFfnEfKFKN4=;
-        b=DnncSgJUOg++r/Npn4SZZ7gvSY+IV6yT74oWsTQmNIjVH+IpnLK7l0TlMlvlCDYZS1
-         2tv6WK2RBy8Uprinq17piL0bsFWAsjrj5mpuLCyThG6jMiSZtIlFXzbWySzAn5b01SdU
-         ebRY5CGjXu+p0ATuOK1noCYTrMi0aCKYOa3e51d/CZwhjJj+FL3LpfcI4g+hmevOWQU6
-         RMFFOee9Nm21FAmDpCnOn88A99ZdocWvmS3yUMOEajmt0l9JE7QYUHd64CoXp6DB7MZV
-         1XmfvmuDFO1JO5tUqwVASyzzgw/2NjMDdH///0c2D5eEUBkZmj5O2z5GTgxEJ208UUII
-         vlfg==
+        bh=sw2lC+m2hGDUwBL9IFA6pBssodKXCe1mWf619i6f5BQ=;
+        b=hgLMdhIMgiUy+MoiXvHJ2RJ9Wa0i1ZtMh73G1txuIKpg2AaqgMOwrM9CZPZ/sxDHYZ
+         IMgph9yXYODnsgCQbf4TNClb8Ig7RHB8cabwDRw4cDlk7Q3tjgmmj0W0xB/iLnHX9n9+
+         Z8bXF7T8T9B2ZVaGBQh8R7pePDlE1Jsyt6uy3Cg43YaZMkrg22A4aqupR6A21O0xhUxe
+         NfLmARQNCl5rZsME4DXIfs4bmbmy00RiWWWZa0lQ95N05AvVsE3cb9WiA8niad8+VBzU
+         ZZYwXKW3uEtEr4BOYecqDjltS0jA1vLMCuh4PfAP28A+VWI6iJ3iH/8hwi7X/rmrneR6
+         dZ8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ySkJSlQo1QiWIR9DLd5CIrfBGUCsep0GFFfnEfKFKN4=;
-        b=Mit5Uq/gXQ40NIw82glq42t92qsyN+T+2+KVWWCAVt6FxxS1l51MFizHphq3XBRpfl
-         /r+KsasUAZ92Jl3jzz4g2oQ1EDoQw0jXGBUoAYnAoYoSwqeJgOz9W1F/EVN2x7HLHj5v
-         hFOCd/KuCIwpGicotcUh8tlPI0V10sC4vl2yuSL98xwnKdgqFxb7imoC//ZUtaidBq4S
-         l4uHkWefsaMBnzNfWdsN6WJf3B6g20CtmhnqODDxvsrR+Y8SSTMEPGZaZeQr3y2eRH3c
-         /Su7P5hpEdmdXm4OMgc9sRqnkfkIgbQRfAXER4t4CjCI4VBiF4n+fJ8YDTKVnzgstnJ7
-         HW1Q==
-X-Gm-Message-State: AJIora8VgwZNtuSkzBA4rdXXS+9ZcLSxJPxzAqOOhM8DwZkqm303KaP/
-        itc6NAdsQR2HWXjbYPeRahLgww==
-X-Google-Smtp-Source: AGRyM1tVe9qPZdAXW/Yf6kb//4YtLCp5bqCUQK/D3F9haBOVm/B3p84N9+vNGIkS6zSOIQoSdRmmwA==
-X-Received: by 2002:a50:fe15:0:b0:435:9155:f83b with SMTP id f21-20020a50fe15000000b004359155f83bmr3199554edt.391.1655893064356;
-        Wed, 22 Jun 2022 03:17:44 -0700 (PDT)
+        bh=sw2lC+m2hGDUwBL9IFA6pBssodKXCe1mWf619i6f5BQ=;
+        b=T8HuDkoklURxjejW6cbMHtkt0cK8JwrqlCjHcfmD5rpR0blLCDzT6rcVmjDmGdBDxm
+         IeV7yOM9UlrN2VEQq1+IB3SMl4o1qONNU5DNhjU39+V7D/Lybfq3nD43OTbzGWm8EpZi
+         ofCTuNs3PhXBUd9ieIKh/Q5GGVhleKdM/wuXRsqMTXw4ohKiFLQrw2RKDazZ//oMmx0p
+         Hk1dQkKvXJowlsltW51++e1xnGofERSKLMYam8xsBTO7WDHwv7srj4UEClmXKBpTFCms
+         lm6Psr4YN4JHldYEfTTUCtCYrNBTnUkZXwyYmWox5LLf6TXqw8QGS14R/PWZitxMuBqP
+         zkKg==
+X-Gm-Message-State: AJIora/Wwnr/F8yHJIoAgBeaoNylvACs1bldgczfegLkJdt55GycB2xv
+        2tn5IK1lUG5b/rnM4eQCZxH6/A==
+X-Google-Smtp-Source: AGRyM1vibWYX9QDeWYNt9B5sInQlF+vF5g0R5kz55sooOwbcMXMh2vUXX0FF1o1QUF932CUm0pAP5g==
+X-Received: by 2002:a05:6402:28a2:b0:435:798e:2988 with SMTP id eg34-20020a05640228a200b00435798e2988mr3220145edb.217.1655893065351;
+        Wed, 22 Jun 2022 03:17:45 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ky4-20020a170907778400b006fe921fcb2dsm9028707ejc.49.2022.06.22.03.17.43
+        by smtp.gmail.com with ESMTPSA id ky4-20020a170907778400b006fe921fcb2dsm9028707ejc.49.2022.06.22.03.17.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jun 2022 03:17:43 -0700 (PDT)
+        Wed, 22 Jun 2022 03:17:44 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     steven_lee@aspeedtech.com, linux-kernel@vger.kernel.org,
         andrew@aj.id.au, joel@jms.id.au, krzysztof.kozlowski@linaro.org,
@@ -55,12 +55,12 @@ To:     steven_lee@aspeedtech.com, linux-kernel@vger.kernel.org,
         robh+dt@kernel.org, Arnd Bergmann <arnd@arndb.de>,
         krzysztof.kozlowski+dt@linaro.org
 Cc:     David_Wang6097@jabil.com
-Subject: Re: (subset) [PATCH 6/7] ARM: dts: ast2600-evb-a1: fix board compatible
-Date:   Wed, 22 Jun 2022 12:17:38 +0200
-Message-Id: <165589305701.29629.16741118174396025883.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH 7/7] ARM: dts: aspeed: centriq2400: use qcom compatible
+Date:   Wed, 22 Jun 2022 12:17:39 +0200
+Message-Id: <165589305701.29629.10216921074802952879.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220529104928.79636-6-krzysztof.kozlowski@linaro.org>
-References: <20220529104928.79636-1-krzysztof.kozlowski@linaro.org> <20220529104928.79636-6-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220529104928.79636-7-krzysztof.kozlowski@linaro.org>
+References: <20220529104928.79636-1-krzysztof.kozlowski@linaro.org> <20220529104928.79636-7-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -74,15 +74,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 29 May 2022 12:49:27 +0200, Krzysztof Kozlowski wrote:
-> The AST2600 EVB A1 board should have dedicated compatible.
+On Sun, 29 May 2022 12:49:28 +0200, Krzysztof Kozlowski wrote:
+> "qualcomm" is not a documented compatible and instead "qcom" should be
+> used.
 > 
 > 
 
 Applied, thanks!
 
-[6/7] ARM: dts: ast2600-evb-a1: fix board compatible
-      https://git.kernel.org/krzk/linux/c/33c39140cc298e0d4e36083cb9a665a837773a60
+[7/7] ARM: dts: aspeed: centriq2400: use qcom compatible
+      https://git.kernel.org/krzk/linux/c/6202c6063145cf9ec22b40aac219122dd702a10f
 
 Best regards,
 -- 
