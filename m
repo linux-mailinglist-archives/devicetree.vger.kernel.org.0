@@ -2,66 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 898A85546F2
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:11:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F4195546F5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 14:11:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350021AbiFVLMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 07:12:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52828 "EHLO
+        id S1357193AbiFVLQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 07:16:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231809AbiFVLMj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 07:12:39 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9D793BFAF;
-        Wed, 22 Jun 2022 04:12:37 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25MBCTTN031674;
-        Wed, 22 Jun 2022 06:12:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1655896349;
-        bh=4cn2KPCkAbJlA+enbARbaubHWo+n0LCFvCvOwchwjzw=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=VDk/eHG6vfnIJ9sj6oWRQYxv0rNrloyhUGtTQVkxvCDTSIVTwnIITASVBJHynvmM8
-         lNCduqavbF/SxaCskLnAQw2DzeKMFxM5xnWLCj3UWohLsWwejUgurxBiRnDkIgFKIb
-         yL3I3dmUdCWLh5sZIhVM8l4+rPm2la3zrr1gUqb4=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25MBCTtZ089514
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 22 Jun 2022 06:12:29 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 22
- Jun 2022 06:12:29 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 22 Jun 2022 06:12:29 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25MBCSrJ109738;
-        Wed, 22 Jun 2022 06:12:28 -0500
-Date:   Wed, 22 Jun 2022 16:42:27 +0530
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     <linux-phy@lists.infradead.org>, <kishon@ti.com>,
-        <vkoul@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <p.yadav@ti.com>,
-        <tomi.valkeinen@ideasonboard.com>, <linux-kernel@vger.kernel.org>,
-        <jpawar@cadence.com>, <sjakhade@cadence.com>, <mparab@cadence.com>,
-        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
-        <lee.jones@linaro.org>
-Subject: Re: [PATCH v2 2/3] phy: cdns-dphy: Add band config for dphy tx
-Message-ID: <20220622111226.srjx7hddeecwan7y@uda0490373>
-References: <20220622075340.16915-1-r-ravikumar@ti.com>
- <20220622075340.16915-3-r-ravikumar@ti.com>
- <YrLPz8OTaMImArC4@pendragon.ideasonboard.com>
+        with ESMTP id S1357187AbiFVLQ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 07:16:26 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FAAB3A72E;
+        Wed, 22 Jun 2022 04:16:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id BB3CECE1EE0;
+        Wed, 22 Jun 2022 11:16:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FCCEC34114;
+        Wed, 22 Jun 2022 11:16:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655896578;
+        bh=tMTA9meN2czeIclIiOAgShr7yIKAOgnCpTndOYpqW5M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pUATFC9kpVwIRTdzsbji6glLE0TrGPunoayWozO3r2+04fGy49+1jX4EbPLczZvwx
+         IrAo95I2n30GbTI/BW0MXtrJLVZEdj1sGl6ybAyRufHgYMhvfD1hl/hibhes3jYnW8
+         RkpupOOmMIlceXGm0l7xDDLo2gdAuSwVulOqIl4YW4ANPJj+y8mwmUTXmWfVYSRCiS
+         x9puLv+b+0K7dw8xV0zgypHrtCqjqFvf9N+uIC8qBdItC5iTYonNYbmgj0qQnEj9eD
+         4H2mXvciaOm9kZlUL+kRxLGq4OreCsWRwKZx0OMw3IlYM8GI9AjSadFUg9KDNYQoFT
+         30lUbSVZvXUiQ==
+Date:   Wed, 22 Jun 2022 13:16:13 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Avri Altman <Avri.Altman@wdc.com>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
+        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v6 7/7] arm64: dts: renesas: r8a779f0: spider-cpu: Enable
+ UFS device
+Message-ID: <YrL5/ZN5qU2w+uRK@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Avri Altman <Avri.Altman@wdc.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "jejb@linux.ibm.com" <jejb@linux.ibm.com>,
+        "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+        "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+References: <20220603110524.1997825-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220603110524.1997825-8-yoshihiro.shimoda.uh@renesas.com>
+ <YrHgOptQ56woMAeO@shikoro>
+ <DM6PR04MB6575D7C91E0925B5D498ABF3FCB29@DM6PR04MB6575.namprd04.prod.outlook.com>
+ <YrLU6/jAZ5lGnL3p@shikoro>
+ <DM6PR04MB6575FD5AEE828A184B3713D8FCB29@DM6PR04MB6575.namprd04.prod.outlook.com>
+ <DM6PR04MB6575DA24CCF398A890129C78FCB29@DM6PR04MB6575.namprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="UMw3NYlBKlieYLVM"
 Content-Disposition: inline
-In-Reply-To: <YrLPz8OTaMImArC4@pendragon.ideasonboard.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <DM6PR04MB6575DA24CCF398A890129C78FCB29@DM6PR04MB6575.namprd04.prod.outlook.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,147 +82,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11:16-20220622, Laurent Pinchart wrote:
-> Hi Rahul,
-> 
-> Thank you for the patch.
-> 
-> On Wed, Jun 22, 2022 at 01:23:39PM +0530, Rahul T R wrote:
-> > Add support for band ctrl config for dphy tx.
-> > 
-> > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> > ---
-> >  drivers/phy/cadence/cdns-dphy.c | 52 ++++++++++++++++++++++++++++++++-
-> >  1 file changed, 51 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/phy/cadence/cdns-dphy.c b/drivers/phy/cadence/cdns-dphy.c
-> > index ba042e39cfaf..ddfa524d8ce7 100644
-> > --- a/drivers/phy/cadence/cdns-dphy.c
-> > +++ b/drivers/phy/cadence/cdns-dphy.c
-> > @@ -4,6 +4,7 @@
-> >   */
-> >  
-> >  #include <linux/bitops.h>
-> > +#include <linux/bitfield.h>
-> 
-> Nitpicking, bitfield goes before bitops :-)
-> 
-> >  #include <linux/clk.h>
-> >  #include <linux/io.h>
-> >  #include <linux/module.h>
-> > @@ -45,6 +46,10 @@
-> >  #define DPHY_CMN_OPDIV_FROM_REG		BIT(6)
-> >  #define DPHY_CMN_OPDIV(x)		((x) << 7)
-> >  
-> > +#define DPHY_BAND_CFG			DPHY_PCS(0x0)
-> > +#define DPHY_BAND_CFG_LEFT_BAND		GENMASK(4, 0)
-> > +#define DPHY_BAND_CFG_RIGHT_BAND	GENMASK(9, 5)
-> > +
-> >  #define DPHY_PSM_CFG			DPHY_PCS(0x4)
-> >  #define DPHY_PSM_CFG_FROM_REG		BIT(0)
-> >  #define DPHY_PSM_CLK_DIV(x)		((x) << 1)
-> > @@ -92,6 +97,22 @@ struct cdns_dphy {
-> >  	struct phy *phy;
-> >  };
-> >  
-> > +struct cdns_dphy_band {
-> > +	unsigned int min_rate;
-> > +	unsigned int max_rate;
-> > +};
-> > +
-> > +/* Order of bands is important since the index is the band number. */
-> > +static struct cdns_dphy_band tx_bands[] = {
-> 
-> static const
-> 
-> > +	{80, 100}, {100, 120}, {120, 160}, {160, 200}, {200, 240},
-> > +	{240, 320}, {320, 390}, {390, 450}, {450, 510}, {510, 560},
-> > +	{560, 640}, {640, 690}, {690, 770}, {770, 870}, {870, 950},
-> > +	{950, 1000}, {1000, 1200}, {1200, 1400}, {1400, 1600}, {1600, 1800},
-> > +	{1800, 2000}, {2000, 2200}, {2200, 2500}
-> 
-> The max_rate value of band N is always equal to the min_rate value of
-> band N+1. Could we store one only ?
-> 
-> > +};
-> > +
-> > +static int num_tx_bands = ARRAY_SIZE(tx_bands);
-> 
-> You can use ARRAY_SIZE(tx_bands) directly below and drop this.
-> 
-> > +
-> >  static int cdns_dsi_get_dphy_pll_cfg(struct cdns_dphy *dphy,
-> >  				     struct cdns_dphy_cfg *cfg,
-> >  				     struct phy_configure_opts_mipi_dphy *opts,
-> > @@ -232,6 +253,26 @@ static int cdns_dphy_config_from_opts(struct phy *phy,
-> >  	return 0;
-> >  }
-> >  
-> > +static int cdns_dphy_tx_get_band_ctrl(unsigned long hs_clk_rate)
-> > +{
-> > +	unsigned int rate;
-> > +	int i;
-> > +
-> > +	rate = hs_clk_rate / 1000000UL;
-> > +
-> > +	if (rate < tx_bands[0].min_rate || rate >= tx_bands[num_tx_bands - 1].max_rate)
-> > +		return -EOPNOTSUPP;
-> > +
-> > +	for (i = 0; i < num_tx_bands; i++) {
-> > +		if (rate >= tx_bands[i].min_rate && rate < tx_bands[i].max_rate)
-> > +			return i;
-> > +	}
-> > +
-> > +	/* Unreachable. */
-> > +	WARN(1, "Reached unreachable code.");
-> 
-> I'd drop the WARN() if it's really unreachable.
->
 
-Hi Laurent,
+--UMw3NYlBKlieYLVM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks for the review!
-I have sent a v3, addressing
-all the comments
+Hi Avri,
 
-Please review
+> > > which leads me to this call in ufshpb_get_dev_info():
+> > >
+> > > 2622         ret = ufshcd_query_attr_retry(hba,
+> > > UPIU_QUERY_OPCODE_READ_ATTR,
+> > > 2623                 QUERY_ATTR_IDN_MAX_HPB_SINGLE_CMD, 0, 0,
+> > > &max_single_cmd);
+> > >
+> > > And from here on, I miss the UFS experience to debug further. But I
+> > > will happily provide more information if people give me pointers.
+> > Ah ok.
+> > That's cool - HPB is enable on your platform.
+> > For some reason JEDEC didn't merge the HPB amendment into UFS4.0 - and I
+> > forgot all about that attribute.
+> And the source of this error is that your device does not support HPB2.0,
+> Which is fine, because HPB2.0 support was removed a while ago.
 
-Regards
-Rahul T R
+As I understand, the UFS core needs an update then? If you CC me on
+patches, I will test them right away.
 
-> > +	return -EINVAL;
-> > +}
-> > +
-> >  static int cdns_dphy_validate(struct phy *phy, enum phy_mode mode, int submode,
-> >  			      union phy_configure_opts *opts)
-> >  {
-> > @@ -247,7 +288,8 @@ static int cdns_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
-> >  {
-> >  	struct cdns_dphy *dphy = phy_get_drvdata(phy);
-> >  	struct cdns_dphy_cfg cfg = { 0 };
-> > -	int ret;
-> > +	int ret, band_ctrl;
-> > +	unsigned int reg;
-> >  
-> >  	ret = cdns_dphy_config_from_opts(phy, &opts->mipi_dphy, &cfg);
-> >  	if (ret)
-> > @@ -276,6 +318,14 @@ static int cdns_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
-> >  	 */
-> >  	cdns_dphy_set_pll_cfg(dphy, &cfg);
-> >  
-> > +	band_ctrl = cdns_dphy_tx_get_band_ctrl(opts->mipi_dphy.hs_clk_rate);
-> > +	if (band_ctrl < 0)
-> > +		return band_ctrl;
-> > +
-> > +	reg = FIELD_PREP(DPHY_BAND_CFG_LEFT_BAND, band_ctrl) |
-> > +	      FIELD_PREP(DPHY_BAND_CFG_RIGHT_BAND, band_ctrl);
-> > +	writel(reg, dphy->regs + DPHY_BAND_CFG);
-> > +
-> >  	return 0;
-> >  }
-> >  
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
+Happy hacking,
+
+   Wolfram
+
+
+--UMw3NYlBKlieYLVM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKy+f0ACgkQFA3kzBSg
+KbZC/BAAr5WOTjNVprF5QAvo3KROFxn0Rr0jwxY+lUUR0mGYSzzfYTCrxLAZ5NwW
+dsgGT/wEQkYqEyQy7cQYyX338QnIV5rmEyXfWJG/VvYMJSXoxGyKk7eyuFHKdFlN
+tSMBLsJUfMItpPLkvfGZl0gcLMAo94O1Ndxf68G6MUJkR2gvbUdVdjA8WBPWuJAk
+QAObulCAHK8W2vKxERPkmvC6GE323+Af8DSF2rEXEIGCBCrmqFu7y5AKHvMEnjcc
+9UcIUc1M+yuWZmtx40Mjw69Cc01KEf076cP2FxwO9R+h7l2ihjojAepUAabLFcjI
+DbuKaXJ5aKILY6B5ngJsiOc8RVOlPK04c+fSQ9TDq4wG5S8gRejq8wP1prI9Twuq
+tfPeyVw6DUZy0yvH4xO0UBlPn/C+ZOV+/qRwYbHMB90cXTsIeeckleFTdMiZBII2
+B6Gx5D1ldEt4Sv8o4PDUMV8AWV2pRsqk0C8oQMuKf7s6NhrZpA2kVkK8mnNWNE+d
+9abLFBir/Pjpcgz7QA8KCF0rcIyO22XOt4Ny9cyGQRG1QLR38lH8EP3ht/SRSsIY
+GdGEZ9+Jtvjvk+y/7FkrP/wYF9/eQDzxEim9ypUN17yQ9ZCY3jnrJ/AKExIxsP+P
+X1f28fEdLJmIv+FGSv6yXWKHh8m0WpdHv/NC5p38ZmDIKSeZt8c=
+=drAy
+-----END PGP SIGNATURE-----
+
+--UMw3NYlBKlieYLVM--
