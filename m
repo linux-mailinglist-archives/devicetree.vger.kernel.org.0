@@ -2,94 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12132555206
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 19:11:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F831555247
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 19:24:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377241AbiFVRJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 13:09:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43044 "EHLO
+        id S1359799AbiFVRYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 13:24:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355951AbiFVRJM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 13:09:12 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55BCD3EF30;
-        Wed, 22 Jun 2022 10:07:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1655917663; x=1687453663;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2GUfLn3Tz3WxjmHe+ZnGNWrA4D2qWYVVfvVgDLrL0IQ=;
-  b=jPHKOqTR+Jra6Fa58yNrFvY8KnEZMZKWwqof2v8I0tQZo6yq56YiuKzl
-   jgGh+cNfUQ/DO39Xm8zzg11i1+mCZ/2f6yUHFbw8KfG80Kiy1y6DzURE9
-   m43AFqOBjTwbQVLwHLTi5Roya0OKlprKpRC/28SHfguvXERDN471uv31d
-   QLOWr4TEE65ER7X8+I6N3RRTOb9LfFrcFfdtoNKZtAAxWuT6wpo4rfAE6
-   KRFqde0IbcN2pOy4DC4v7E861Z7bbGqG9mTifuUWyiv7+kklJWwtIFkvK
-   A1qVYfI7CSuSa9r1kJuAXSqom6ueFBlSvhQA8V4zwhNyaZ/9E9mf4MX/G
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="278025906"
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; 
-   d="scan'208";a="278025906"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2022 10:07:05 -0700
-X-IronPort-AV: E=Sophos;i="5.92,212,1650956400"; 
-   d="scan'208";a="585805521"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2022 10:07:01 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1o43of-000sUH-S5;
-        Wed, 22 Jun 2022 20:06:57 +0300
-Date:   Wed, 22 Jun 2022 20:06:57 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
-Cc:     gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vz@mleia.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lukas@wunner.de, p.rosenberger@kunbus.com,
-        Lino Sanfilippo <l.sanfilippo@kunbus.com>
-Subject: Re: [PATCH 2/8] serial: core, 8250: set RS485 termination gpio in
- serial core
-Message-ID: <YrNMMQUYdgDz45Jc@smile.fi.intel.com>
-References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
- <20220622154659.8710-3-LinoSanfilippo@gmx.de>
+        with ESMTP id S1344588AbiFVRYf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 13:24:35 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FD4324BFD;
+        Wed, 22 Jun 2022 10:24:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1655918671;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=Rf641NUrcEXqA/dr8a9JQSxqSi528bpAP6rbP83uW/g=;
+    b=a/FqR0hyY7YwlwWbpgzoQSLgrm9jtNmLUsnLkcGhaAwiAGRQUBROH8IwkEVj7bgcaz
+    564CfLlxXz7QAW99yP4eWfqQMYHUEmfMYra/4AG5NPuYRdR9XxoHGPuSPO6dg2qWo6P9
+    MgXRSq+6z7pB1WabDkjvVu2G7XbVY7XB6nbWXoi1ZcbR1wEPCZkOoLNs5jugJcj1FmRM
+    2rKfQ22tWrihbZURpaYg9Q7YYCM8GRQqAMtadOhRhOLMBDFJlFCOfw8W7PY4QY28EH9j
+    xm5y9DqKlgacoDKMvL8YE+C9LFVfNpUGpwYoe7Imy8kvQ+iVlxW+eQf6e8zMCzlq5Qwu
+    7PSQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK88/6Y="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.46.0 AUTH)
+    with ESMTPSA id g32597y5MHOUOle
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Wed, 22 Jun 2022 19:24:30 +0200 (CEST)
+Date:   Wed, 22 Jun 2022 19:24:28 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: msm8916: add xo clocks to rpmcc and
+ a53pll
+Message-ID: <YrNQRDJTrTECSHXd@gerhold.net>
+References: <20220620010519.1533364-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220622154659.8710-3-LinoSanfilippo@gmx.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220620010519.1533364-1-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 22, 2022 at 05:46:53PM +0200, Lino Sanfilippo wrote:
-> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+On Mon, Jun 20, 2022 at 04:05:19AM +0300, Dmitry Baryshkov wrote:
+> Both a53pll and rpmcc make use of xo as a clock parent. Add it to the
+> respective device nodes.
 > 
-> In serial8250_em485_config() the termination GPIO is set with the uart_port
-> spinlock held. This is an issue if setting the GPIO line can sleep (e.g.
-> since the concerning GPIO expander is connected via SPI or I2C).
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+FWIW:
+
+Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+
+Thanks!
+Stephan
+
+> ---
+>  arch/arm64/boot/dts/qcom/msm8916.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Fix this by setting the termination line outside of the uart_port spinlock
-> in the serial core.
-
-This doesn't describe that this patch is actually changing GPIO to support
-sleep mode. So, it doesn't fix anything. Please rephrase the commit message
-accordingly.
-
-> This also makes setting the termination GPIO generic for all uart drivers.
-
-UART
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> index 562c42ce2c5c..d679aa5989a6 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> @@ -301,6 +301,8 @@ rpm_requests: rpm-requests {
+>  				rpmcc: clock-controller {
+>  					compatible = "qcom,rpmcc-msm8916", "qcom,rpmcc";
+>  					#clock-cells = <1>;
+> +					clocks = <&xo_board>;
+> +					clock-names = "xo";
+>  				};
+>  
+>  				rpmpd: power-controller {
+> @@ -1872,6 +1874,8 @@ a53pll: clock@b016000 {
+>  			compatible = "qcom,msm8916-a53pll";
+>  			reg = <0x0b016000 0x40>;
+>  			#clock-cells = <0>;
+> +			clocks = <&xo_board>;
+> +			clock-names = "xo";
+>  		};
+>  
+>  		timer@b020000 {
+> -- 
+> 2.35.1
+> 
