@@ -2,75 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98A65554F96
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 17:41:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 947B8554FBD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jun 2022 17:48:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359355AbiFVPlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 11:41:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40814 "EHLO
+        id S1359522AbiFVPru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 11:47:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359247AbiFVPkw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 11:40:52 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FA392ED76;
-        Wed, 22 Jun 2022 08:40:51 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id z9so9465352wmf.3;
-        Wed, 22 Jun 2022 08:40:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6HvjioZHPtwBf4fSwa9wIuwFcez8I2M80JFO0QJMojs=;
-        b=dpZHPTmcfuFjzjJ0Lys34TeMfY59Nf1bKZM5XTxOYpqqCBsl7Y6AhxrXkzb+gPakMK
-         FloXTG3essSGnodFfCg3jtPf0tPM+4wamt0q6BPSfR89FBPb/HfsmktFXGDn/eile+Y8
-         /yK/eD6l6WjEX6SjenLshLSETc34Dq0GIAUxh5to/GL+FYMWttj7fc3sYov1tPtYCCOR
-         dBP/PX7cqo2YrMZAIB7/zxxxT0TtRBoETiX67M1AssNL8bCqTidpwSyWiO3dm0cdg1ES
-         JdHLImitJR/7Tnz6Cv6zOWfoqt9Zh8aGFUZVk+pLR7jGoIrbbaB8qllQxWmm2FDQhN5q
-         Yt4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6HvjioZHPtwBf4fSwa9wIuwFcez8I2M80JFO0QJMojs=;
-        b=PA8F2uSqZZooPnDPLKJO+B75lJxoyIxtPni3WDIK3dJI+0Z7boygya/ye/Z+TnfPPt
-         mHMu0kDn8yi7Y+tRCYuseEX5jxg0SXDnw6kKlwjgJleo+rEDEzUmr4Ik/QdohVOv3Dg8
-         bHRrjJZgfDQ4Z4GV4CcaGfOBuznLSeQZGIJnE6ibgxsGa+KAXK/y8YfKZ7l40oBdfAQB
-         47RdJBKZzSvm4O9fNETwz1iHQvE9I/Ud7IsG0I1AHATwruhBEM9NeoozUO1rFL6XINMM
-         JU6bJDYwzqxA2CHkz4qEHU44S1NoQZMBc2duaHYqGCYECy5vehY3dlAmRUTGMG+dEDbF
-         zLvg==
-X-Gm-Message-State: AJIora/USaZmMK+7EboWDXmue9v04GyOGU+YO7eh7cAJVAlRxR8I8VAb
-        t9WJJR8w+nCFBMyPWoOvl5Q=
-X-Google-Smtp-Source: AGRyM1ulMlpI/C9yUV5vRRJTaw3SQd1l5jIXTUtRosaGOoW6+N4l7XU10IynPKr7U0RVMv8wVfr7bw==
-X-Received: by 2002:a7b:c402:0:b0:3a0:2ba7:1fa7 with SMTP id k2-20020a7bc402000000b003a02ba71fa7mr3160994wmi.152.1655912449594;
-        Wed, 22 Jun 2022 08:40:49 -0700 (PDT)
-Received: from [192.168.0.16] ([37.223.148.38])
-        by smtp.gmail.com with ESMTPSA id r64-20020a1c4443000000b003942a244f39sm31645408wma.18.2022.06.22.08.40.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 08:40:48 -0700 (PDT)
-Message-ID: <37fb545a-bc45-65b0-b67b-5ef1b0346777@gmail.com>
-Date:   Wed, 22 Jun 2022 17:40:43 +0200
+        with ESMTP id S1359499AbiFVPrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 11:47:45 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E96773DA73;
+        Wed, 22 Jun 2022 08:47:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1655912839;
+        bh=L8drsTWcNOyZJVCVCetGz7KjvhiqquEoLgBrlbOh1+E=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=fKyDBlcys7eskg8MJlSh8wgaowKKA7y6IHbsrVa/uG/8xXfXeyWw/h+qJ3w9qfmSk
+         /D0rViqCdCQrjD2Qiy9aqkbnN8kTO2Sv15i6A0aGegBctuFdhxGFwDIzGobWxNy7ka
+         ufHEQ5YFuc8sIlhlhdH23cPa6Asyxhc6miVeeMIM=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from Venus.fritz.box ([46.223.2.22]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1M8QWA-1nzcjH1wwa-004WFY; Wed, 22
+ Jun 2022 17:47:19 +0200
+From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
+To:     gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, vz@mleia.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lukas@wunner.de, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Subject: [PATCH 0/8] Fixes and cleanup for RS485
+Date:   Wed, 22 Jun 2022 17:46:51 +0200
+Message-Id: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v11 0/3] Add basic node support for MediaTek MT8186 SoC
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>, hsinyi@chromium.org
-References: <20220520122217.30716-1-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220520122217.30716-1-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: base64
+X-Provags-ID: V03:K1:e/eU2TOHo85vgoolisGNSxZ7p2gsZGNQv2/UUXz7pRlUZkCwexO
+ VOGzoIc01yVuZM+KA3OahdIof1j4JHtzJ+JOV6jFx+y9i6NJsvBiWOfdKPRWOUyIdQP6USs
+ ObASqb6eUGW+8HQKK9Wi62s0LiAxdkkF33cNCpOP5wGnsHPpNBVQ3UfCHzVB37lgwxOnT4C
+ Q8pAQEJJNjzsT3qDnDx0Q==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:M7ZkbU9xVqI=:3bMQJUSUIkd6h/NCT/6iAs
+ 2jyEFZRUA8GYFKeY1e5BbSuEk0T3DPxCkG89prgaQIBkktHHVdJtQkZ/BzfiF21Brb75oCp2U
+ H9UN3YNRSpx0d4Jj9JpVxzyfXEJLNXZ2FuFiIh5/wstHJm1XZJmFLW7JB71WDskRBGUxH0LnD
+ WxFgS5WRDoU7o59cwvGB6d/ZbkLRrqohBkjMN0a6HHub6Tmnh3EbsueXc6dE1ig9zFuFvG507
+ GFi7K5L2WoRNLocTNcO0MTMCatcwpceB6vWVswKMd3NzcLt5trsTF2JdIr3Bqw7udjr8PkYBb
+ cBzV+5hpYwqxycNCH8v9aR2pLDZjZZHuBemHiMrexjkwjU3xqzRlJyPEesXTbFKxfkxIPJ00m
+ iSu+hpU/DmV9z8C+GpFFcsfqGjTQAVww7P/y4gLuG6V3gDeiDIoI7s20oeVWUKbVtP7dFbZ+1
+ BggxoumcDg5/Do6dIa3oy6GXaeNovGNk5BTwdHCJg6SyPH0asrt2rgAwjm2dOQnJEo2McqCye
+ cSiQzajILAZCRABRwrSonf7q4WaeBVJSD+0IallsfzF3cIzQfcIHjtDTHbQgfEhGOOFirORUM
+ tWFITzYCt1/Igb4jLK0UeASxFvb+BzHslHo9DG+mJVuqkW9k6LtU/tg395DtAB8/eApb0oODl
+ HZzcwQpV/S0sJ51j9/cGVjl2Kz2YMY+bn5DE/knJiipeyg60/ifzQpY7WrdHj7KJ1hq7N5jXF
+ EHOmsI52BUR75RfQ7uxe4o1K0k/quAOYrLhAcJgBLUTZjrKAZGRMTEf15x18d1uCArisHgZer
+ cZbrdOhm6unBDCBcAhMrz9syCWD1CJ0YIKofcfNx8Gen/bNMF7RAOrGfJs2goCC2BNAtVwk02
+ NUQ6mp2rlm3jXWQVXhQz1DDB66+1YbpWmaHw+sb43FQvy7cIbtYpU4XCXz4s6NxKdRP/3J7NN
+ uDNv+Xi4mVQAcYiUThGb78QfMcGDDyfrGW9EnaU96F9qnTBchO49G51L5ro2Sr47hRoG17x0K
+ EFSMNgzvQ4cvd3DQLdKQ4paqT32WoQctU5y6efugJGzbZurdvy4JaKq4zj0dVijmsB02N8BTE
+ m14JLl6e9vkwfk6BLpaJcRPqXrW1e5VeaXuNlD7Z44inSioyVm2ktgISg==
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,MIME_BASE64_TEXT,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,86 +71,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 20/05/2022 14:22, Allen-KH Cheng wrote:
-> MT8186 is a SoC based on 64bit ARMv8 architecture.
-> It contains 6 CA55 and 2 CA76 cores.
-> MT8186 share many HW IP with MT65xx series.
-> 
-> This patchset was tested on MT8186 evaluation board to shell.
-> 
-
-Applied, thanks!
-
-> Based on next-20220519, linux-next/master
-> 
-> changes since v9:
->   - remove some merged PATCHs from series
->   - reorder nodes in dts (cpu-map)
->   - remove okay status in auxadc
->   - remove unnecessary suffix node name for i2c
->   - add pwm node
->   - add dsi-phy node
->   - add dpi node
-> 
-> changes since v9:
->   - add one space before equal sign of drive-strength-adv
->   - corect compatible name for big cores (ca76)
->   - use upper case of address in pinctrl
->   - add pwrap node
->   - add pwm node
-> 
-> changes since v8:
->   - change name from pins_bus to pins-sda-scl
->   - correct email address
->   - add capacity-dmips-mhz for each CPU
->   - add ppi-partitions in gic node
->   - change name to power-domain
->   - remove status "okay" in scp node
->   - update timer and pericfg compatible in series
-> 
-> changes since v7:
->   - add scp&auxadc node
-> 
-> changes since v6:
->   - remove unnecessary blank line
-> 
-> changes since v5:
->   - replace Mediatek a to MediaTek
->   - use GPL-2.0-only OR BSD-2-Clause
-> 
-> changes since v4:
->   - correct driver clock of mt8186
->   - add power domains controller and clock controllers
->   - add pinctrl, usb host, spi and i2c nodes
->   - add node status in mt8186-evb.dts
->   - correct some dtbs_check warnings
-> 
-> changes since v3:
->   - remove serial, mmc and phy patch from series. (already merged)
->   - remove mcusysoff node
->   - move oscillator nodes at the head of dts
->   - change name from usb-phy to t-phy
-> 
-> changes since v2:
->   - add soc {} in mt8186.dtsi
-> 
-> changes since v1:
->   - add dt-bindings: arm: Add compatible for MediaTek MT8186
-> 
-> Allen-KH Cheng (3):
->    dt-bindings: arm: mediatek: Add mt8186 pericfg compatible
->    dt-bindings: arm: Add compatible for MediaTek MT8186
->    arm64: dts: Add MediaTek SoC MT8186 dts and evaluation board and
->      Makefile
-> 
->   .../devicetree/bindings/arm/mediatek.yaml     |    4 +
->   .../arm/mediatek/mediatek,pericfg.yaml        |    1 +
->   arch/arm64/boot/dts/mediatek/Makefile         |    1 +
->   arch/arm64/boot/dts/mediatek/mt8186-evb.dts   |  232 ++++
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi      | 1016 +++++++++++++++++
->   5 files changed, 1254 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-evb.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> 
+RnJvbTogTGlubyBTYW5maWxpcHBvIDxsLnNhbmZpbGlwcG9Aa3VuYnVzLmNvbT4KClRoZSBmb2xs
+b3dpbmcgc2VyaWVzIGluY2x1ZGVzIGNsZWFudXAgYW5kIGZpeGVzIGFyb3VuZCBSUzQ4NSBpbiB0
+aGUgc2VyaWFsCmNvcmUgYW5kIHVhcnQgZHJpdmVyczoKClBhdGNoIDE6IE9ubHkgcmVxdWVzdCB0
+aGUgcnM0ODUgdGVybWluYXRpb24gZ3BpbyBpZiBpdCBpcyBzdXBwb3J0ZWQuClBhdGNoIDI6IFNl
+dCB0aGUgcnM0ODUgdGVybWluYXRpb24gR1BJTyBpbiB0aGUgc2VyaWFsIGNvcmUuIFRoaXMgaXMg
+bmVlZGVkCgkgc2luY2UgaWYgdGhlIGdwaW8gaXMgb25seSBhY2Nlc3NpYmxlIGluIHNsZWVwYWJs
+ZSBjb250ZXh0LiBJdCBhbHNvCgkgaXMgYSBmdXJ0aGVyIHN0ZXAgdG8gbWFrZSB0aGUgUlM0ODUg
+aGFuZGxpbmcgbW9yZSBnZW5lcmljLgpQYXRjaCAzOiBNb3ZlIHNhbml0aXppbmcgb2YgUlM0ODUg
+ZGVsYXlzIGludG8gYW4gb3duIGZ1bmN0aW9uLiBUaGlzIGlzIGluIAoJIHByZXBhcmF0aW9uIG9m
+IHBhdGNoIDQuClBhdGNoIDQ6IFNhbml0aXplIFJTNDg1IGRlbGF5cyByZWFkIGZyb20gZGV2aWNl
+IHRyZWUuClBhdGNoIDU6IENvcnJlY3QgUlM0ODUgZGVsYXlzIGluIGJpbmRpbmcgZG9jdW1lbnRh
+dGlvbi4KUGF0Y2ggNjogUmVtb3ZlIHJlZHVuZGFudCBjb2RlIGluIDgyNTBfZHdsaWIuClBhdGNo
+IDc6IFJlbW92ZSByZWR1bmRhbnQgY29kZSBpbiBhcjkzM3guClBhdGNoIDg6IFJlbW92ZSByZWR1
+bmRhbnQgY29kZSBpbiA4MjUwLWxwYzE4eHguCgpUaGlzIHBhdGNoc2V0IGlzIGJhc2VkIHR0eS10
+ZXN0aW5nLgoKTGlubyBTYW5maWxpcHBvICg4KToKICBzZXJpYWw6IGNvcmU6IG9ubHkgZ2V0IFJT
+NDg1IHRlcm1pbmF0aW9uIGdwaW8gaWYgc3VwcG9ydGVkCiAgc2VyaWFsOiBjb3JlLCA4MjUwOiBz
+ZXQgUlM0ODUgdGVybWluYXRpb24gZ3BpbyBpbiBzZXJpYWwgY29yZQogIHNlcmlhbDogY29yZTog
+bW92ZSBzYW5pdGl6aW5nIG9mIFJTNDg1IGRlbGF5cyBpbnRvIG93biBmdW5jdGlvbgogIHNlcmlh
+bDogY29yZTogc2FuaXRpemUgUlM0ODUgZGVsYXlzIHJlYWQgZnJvbSBkZXZpY2UgdHJlZQogIGR0
+X2JpbmRpbmdzOiByczQ4NTogQ29ycmVjdCBkZWxheSB2YWx1ZXMKICBzZXJpYWw6IDgyNTBfZHds
+aWI6IHJlbW92ZSByZWR1bmRhbnQgc2FuaXR5IGNoZWNrIGZvciBSUzQ4NSBmbGFncwogIHNlcmlh
+bDogYXI5MzN4OiBSZW1vdmUgcmVkdW5kYW50IGFzc2lnbm1lbnQgaW4gcnM0ODVfY29uZmlnCiAg
+c2VyaWFsOiA4MjUwOiBscGMxOHh4OiBSZW1vdmUgcmVkdW5kYW50IHNhbml0eSBjaGVjayBmb3Ig
+UlM0ODUgZmxhZ3MKCiAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9zZXJpYWwvcnM0ODUueWFtbCAg
+ICAgfCAgNCArLQogZHJpdmVycy90dHkvc2VyaWFsLzgyNTAvODI1MF9kd2xpYi5jICAgICAgICAg
+IHwgMTAgKy0tCiBkcml2ZXJzL3R0eS9zZXJpYWwvODI1MC84MjUwX2xwYzE4eHguYyAgICAgICAg
+fCAgNiArLQogZHJpdmVycy90dHkvc2VyaWFsLzgyNTAvODI1MF9wb3J0LmMgICAgICAgICAgIHwg
+IDMgLQogZHJpdmVycy90dHkvc2VyaWFsL2FyOTMzeF91YXJ0LmMgICAgICAgICAgICAgIHwgIDEg
+LQogZHJpdmVycy90dHkvc2VyaWFsL3NlcmlhbF9jb3JlLmMgICAgICAgICAgICAgIHwgODUgKysr
+KysrKysrKysrLS0tLS0tLQogNiBmaWxlcyBjaGFuZ2VkLCA1OSBpbnNlcnRpb25zKCspLCA1MCBk
+ZWxldGlvbnMoLSkKCgpiYXNlLWNvbW1pdDogZGYzNmYzZTNmYmI3NmQzMGQ2MjNhMTYyM2UzMWUz
+Y2U5YzJmYTc1MAotLSAKMi4zNi4xCgo=
