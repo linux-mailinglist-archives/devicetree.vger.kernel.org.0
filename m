@@ -2,124 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C54CE558B50
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 00:40:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46B62558B99
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 01:14:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230045AbiFWWkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 18:40:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37252 "EHLO
+        id S230312AbiFWXOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 19:14:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbiFWWku (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 18:40:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57BAC517DE;
-        Thu, 23 Jun 2022 15:40:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E03C061EF8;
-        Thu, 23 Jun 2022 22:40:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7225C3411D;
-        Thu, 23 Jun 2022 22:40:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656024048;
-        bh=nnitVTYwb6+eE3UB/jXxlIFf+kvi+dKql4XS6JwuRC4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=CEYhBM5bT3+v80LqWsNgMQ9sp4oZ+tv0FfvSIjgvPo9lyF98+Ufy9q7UGF8a4pgcG
-         u58UTOJA32YKvXpZuA/e/rgm7hpyiemTwP9Wj4algR9uMmhlrfSbzOfAeW/a7IpVr3
-         Yw6+1Uq841ZylEkdJQiO2mGnpdruKV5PEU7MBPvgEZYsSwkSHm+LUx1F8K1KziwpKl
-         yE0d59WYHjhMTFRWwjANXIXr1xHjGzEZmBUXT+au8cYBn8wWmMgdz+bhmbiqb+g/Pz
-         2IojuMlqT8helRtpHc1vTpAZqsz9psc6o6t0iBUkBExZEdiOHwxy0FOqLPm0YU5OAJ
-         vbl/YYpgdllEg==
-Date:   Thu, 23 Jun 2022 17:40:46 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v6 0/6] RZN1 USB Host support
-Message-ID: <20220623224046.GA1484281@bhelgaas>
+        with ESMTP id S230270AbiFWXOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 19:14:01 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D299C5D127
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 16:13:57 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-31780ad7535so8763817b3.8
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 16:13:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=q4rQdhnWLSWo14RnjtXWJNi2g5jmxMvqoaFVDnX2E5Q=;
+        b=cmIBzn0GUySKMskyqJKDVgDVN/8vHWzNfjJ+BREUrbPM7OiFQy/ATX7aLRhZ8MANv1
+         DeCxgq5hoHNltsRta4mLMJ5CVkKh4hfP6LVOwSV/7ivHGPCIqDCrcZofNe4RU/N40PFA
+         084lsyuhYt6X1dulYD/2vojMLUtCUUuNjPCYYrjag+23v4QnctG6vuufvkN8P84KHpsZ
+         1smdglM09EjAq6n/VWxttVgTknSAAilZfUXcBMOYhadXU9RaXikEWNdJ2rEO52JTzByf
+         AZX6K773hR1jhsQBFWv6Jdd8yXumqgqHK9g5FERmM19ObNBe6obaPeOOW1hv8UESqekO
+         6hJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=q4rQdhnWLSWo14RnjtXWJNi2g5jmxMvqoaFVDnX2E5Q=;
+        b=hX4ij7LyzbQqTcX91aJJM7pk2s70q1qzwdLimIupevdkKKWTFKKMZiM4CNzAVcFgKl
+         cY0GsHOSiKCD5WiC0ArA4Dw7GbvaVMjj6WeqStleCQv6p+PagRv9RZbiFUve6aaNitoO
+         xi60NuAaLBtT6O22lg9Ic1UkVeK3Lt84mdT7QMRSjz/yHIaE0JafTv8VykqedZL+BPIK
+         IsIEFn7Y1GUndk2kQvkndJse2fCaTOKXDuLsDxqnncXU07cFkrj3whwe8gdq3GQ7wnu8
+         ThIV/FuKiMIgaI2Ksa8PqOiVd2htdbhntGxksnKDm78r+thW6msZqFwQD5ukkcXhRN6y
+         KBFg==
+X-Gm-Message-State: AJIora/ecX/8bM1f7qkT0Ls4UncLOFRtCtDgGdG2mTiKgcOZnH7fqBvk
+        4oPtabSGHCBwQXuh7He+adP5qnBLKjvpPfm5/EEpFw==
+X-Google-Smtp-Source: AGRyM1tmOAvKbstD4mNEDSzf5ARhyGW/aO0E7tWlKoUjb1ZKcoDOPfJmrPrA9mjxTsX3Z0whnYeMEFOcEVoRWtE94Ys=
+X-Received: by 2002:a0d:dfd5:0:b0:317:f0d4:505b with SMTP id
+ i204-20020a0ddfd5000000b00317f0d4505bmr12968633ywe.518.1656026036778; Thu, 23
+ Jun 2022 16:13:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220623223912.GA1484125@bhelgaas>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220623080344.783549-1-saravanak@google.com> <20220623080344.783549-3-saravanak@google.com>
+ <20220623100421.GY1615@pengutronix.de> <CAGETcx_eVkYtVX9=TOKnhpP2_ZpJwRDoBye3i7ND2u5Q-eQfPg@mail.gmail.com>
+ <20220623203716.GA1615@pengutronix.de>
+In-Reply-To: <20220623203716.GA1615@pengutronix.de>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 23 Jun 2022 16:13:20 -0700
+Message-ID: <CAGETcx-mCu+M0HhhX+bTNpzEswviJj2U8eCefLv3ezr29Nd+wA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] of: base: Avoid console probe delay when fw_devlink.strict=1
+To:     sascha hauer <sha@pengutronix.de>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>, peng fan <peng.fan@nxp.com>,
+        kevin hilman <khilman@kernel.org>,
+        ulf hansson <ulf.hansson@linaro.org>,
+        len brown <len.brown@intel.com>, pavel machek <pavel@ucw.cz>,
+        joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>,
+        andrew lunn <andrew@lunn.ch>,
+        heiner kallweit <hkallweit1@gmail.com>,
+        russell king <linux@armlinux.org.uk>,
+        "david s. miller" <davem@davemloft.net>,
+        eric dumazet <edumazet@google.com>,
+        jakub kicinski <kuba@kernel.org>,
+        paolo abeni <pabeni@redhat.com>,
+        linus walleij <linus.walleij@linaro.org>,
+        hideaki yoshifuji <yoshfuji@linux-ipv6.org>,
+        david ahern <dsahern@kernel.org>, kernel-team@android.com,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        iommu@lists.linux-foundation.org, netdev@vger.kernel.org,
+        linux-gpio@vger.kernel.org, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 23, 2022 at 05:39:14PM -0500, Bjorn Helgaas wrote:
-> On Fri, May 20, 2022 at 11:41:49AM +0200, Herve Codina wrote:
-> > Hi,
-> > 
-> > This series add support for the USB Host controllers available on
-> > RZN1 (r9a06g032) SOC.
-> > 
-> > These USB Host controllers are PCI OHCI/EHCI controllers located
-> > behind a bridge.
-> > 
-> > Regards,
-> > Herve
-> > 
-> > Changes v2:
-> > - Convert bindings to json-schema
-> > - Update clocks description
-> > - Remove unneeded '.compatible = "renesas,pci-r9a06g032"'
-> > 
-> > Changes v3:
-> > - Remove the unneeded patch that calls clk_bulk_prepare_enable()
-> > - Rework the device tree binding (conversion from .txt and RZ/N1 support)
-> > - Use the RZ/N1 SOCs family only in the driver match compatible string.
-> > - Enable PM and PM_GENERIC_DOMAIN for RZ/N1 and add the missing
-> >   '#power-domain-cells' in sysctrl node.
-> > 
-> > Changes v4:
-> > - Remove patches related to PM enable and #pwower-domain-cells as they
-> >   will be handle out of this series.
-> > - Add Bob's reviewed-by on patch 1
-> > - Add Geert's reviewed by on patch 1 and 6
-> > - Rename clocks and make the 'resets' property optional on RZ/N1 family
-> > - Reword some commit logs and titles
-> > - Fix dst node location (sort by node names or unit addresses)
-> > - Fix the USB PHY node name
-> > 
-> > Changes v5:
-> > - Rename clocks ("usb_" prefix removed)
-> > - Add Geert's reviewed-by on patch 2, 3, 4 and 5
-> > 
-> > Changes v6:
-> > - Include schema optionnal part (ie 'if:') in a 'allOf:' block
-> > - Modify commit log on commit 2/6
-> > 
-> > Herve Codina (6):
-> >   dt-bindings: PCI: pci-rcar-gen2: Convert bindings to json-schema
-> >   dt-bindings: PCI: renesas,pci-rcar-gen2: Add device tree support for
-> >     r9a06g032
-> >   PCI: rcar-gen2: Add RZ/N1 SOCs family compatible string
-> 
-> Applied the first three patches (above) to pci/ctrl/rcar-gen2 for
-> v5.20, thank you!
+On Thu, Jun 23, 2022 at 1:37 PM sascha hauer <sha@pengutronix.de> wrote:
+>
+> On Thu, Jun 23, 2022 at 10:26:46AM -0700, Saravana Kannan wrote:
+> > On Thu, Jun 23, 2022 at 3:05 AM sascha hauer <sha@pengutronix.de> wrote:
+> > >
+> > > On Thu, Jun 23, 2022 at 01:03:43AM -0700, Saravana Kannan wrote:
+> > > > Commit 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
+> > > > enabled iommus and dmas dependency enforcement by default. On some
+> > > > systems, this caused the console device's probe to get delayed until the
+> > > > deferred_probe_timeout expires.
+> > > >
+> > > > We need consoles to work as soon as possible, so mark the console device
+> > > > node with FWNODE_FLAG_BEST_EFFORT so that fw_delink knows not to delay
+> > > > the probe of the console device for suppliers without drivers. The
+> > > > driver can then make the decision on where it can probe without those
+> > > > suppliers or defer its probe.
+> > > >
+> > > > Fixes: 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
+> > > > Reported-by: Sascha Hauer <sha@pengutronix.de>
+> > > > Reported-by: Peng Fan <peng.fan@nxp.com>
+> > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > Tested-by: Peng Fan <peng.fan@nxp.com>
+> > > > ---
+> > > >  drivers/of/base.c | 2 ++
+> > > >  1 file changed, 2 insertions(+)
+> > > >
+> > > > diff --git a/drivers/of/base.c b/drivers/of/base.c
+> > > > index d4f98c8469ed..a19cd0c73644 100644
+> > > > --- a/drivers/of/base.c
+> > > > +++ b/drivers/of/base.c
+> > > > @@ -1919,6 +1919,8 @@ void of_alias_scan(void * (*dt_alloc)(u64 size, u64 align))
+> > > >                       of_property_read_string(of_aliases, "stdout", &name);
+> > > >               if (name)
+> > > >                       of_stdout = of_find_node_opts_by_path(name, &of_stdout_options);
+> > > > +             if (of_stdout)
+> > > > +                     of_stdout->fwnode.flags |= FWNODE_FLAG_BEST_EFFORT;
+> > >
+> > > The device given in the stdout-path property doesn't necessarily have to
+> > > be consistent with the console= parameter. The former is usually
+> > > statically set in the device trees contained in the kernel while the
+> > > latter is dynamically set by the bootloader. So if you change the
+> > > console uart in the bootloader then you'll still run into this trap.
+> > >
+> > > It's problematic to consult only the device tree for dependencies. I
+> > > found several examples of drivers in the tree for which dma support
+> > > is optional. They use it if they can, but continue without it when
+> > > not available. "hwlock" is another property which consider several
+> > > drivers as optional. Also consider SoCs in early upstreaming phases
+> > > when the device tree is merged with "dmas" or "hwlock" properties,
+> > > but the corresponding drivers are not yet upstreamed. It's not nice
+> > > to defer probing of all these devices for a long time.
+> > >
+> > > I wonder if it wouldn't be a better approach to just probe all devices
+> > > and record the device(node) they are waiting on. Then you know that you
+> > > don't need to probe them again until the device they are waiting for
+> > > is available.
+> >
+> > That actually breaks things in a worse sense. There are cases where
+> > the consumer driver is built in and the optional supplier driver is
+> > loaded at boot. Without fw_devlink and the deferred probe timeout, we
+> > end up probing the consumer with limited functionality. With the
+> > current setup, sure we delay some probes a bit but at least everything
+> > works with the right functionality. And you can reduce or remove the
+> > delay if you want to optimize it.
+>
+> We have optional and mandatory resources. In this situation a driver has
+> to decide what to do. Either it continues with limited resources or it
+> defers probing. Some drivers try to allocate the optional resources at
+> open time so that they are able to use them once they are available.  We
+> could even think of an asynchronous callback into a driver when a
+> resource becomes available. Whether we put this decision what is
+> optional or not into the driver or in the framework doesn't make a
+> difference to the problem, it is still the same: When a resource is not
+> yet available we have no idea if and when it becomes available, if it's
+> worth waiting for it or not.
+>
+> The difference is that with my proposal (which isn't actually mine but
+> from my collegue Lucas) a driver can decide very fine grained how it
+> wants to deal with the situation. With fw_devlink we try to put this
+> intelligence into the framework and it seems there are quite some quirks
+> necessary to get that running for everyone.
 
-Oh, just noticed there's no ack from Marek or Yoshihiro, the
-maintainers of drivers/pci/controller/pci-rcar-gen2.c.  Let me know if
-you object!  If you can ack it, I will amend the commits to reflect
-that.
+That's one possible solution, but for that to work, all drivers with
+optional suppliers would need to be changed to take advantage of this
+callback to work correctly when the optional suppliers become
+available. We could add this callback, but it would be a long time
+before the callback handles all/most cases of optional suppliers.
 
-Bjorn
+One of the goals of fw_devlink is so that people can stop having to
+play initcall chicken where they try to tune their initcall levels wrt
+to the chain of suppliers to avoid probe failures or minimize deferred
+probed. Technically with deferred probes and proper error handling,
+people shouldn't have to play initcall chicken, but we still have a
+lot of those. Adding this callback is just going to make writing
+drivers even harder. And there are tons of drivers that can't do
+proper clean up and some drivers can't even be unbound once they are
+bound.
+
+Also, if I'm not mistaken (I could be), stuff like pinctrl is setup
+before we even get to driver->probe(). So when the pinctrl supplier
+becomes available, the driver would need to unbind fully and rebind.
+What if there's a current user of the device?
+
+> Anyway, we have fw_devlink now and actually I think the dependency graph
+> that we have with fw_devlink is quite nice to resolve the natural probe
+> order. But why do we have to put an extra penalty on drivers whose
+> resources are not yet available?  Probe devices with complete resources
+> as long as you find them, execute more initcalls as long as there are
+> any, but when there are no more left, you could start probing devices
+> with incomplete resources, why wait for another ten seconds?
+
+The timeout is defining how long after the most recent module load
+that we give up waiting for more modules to be loaded. On a Pixel 6
+with serial console output, the timeout of 5 seconds would work
+because the worst case gap between two module loads is ~2.8 seconds
+(so 5 seconds for some margin). The default is this high to
+accommodate slow storage devices where mounting all the filesystems
+can take time (think HDD or network FS). The default is configured for
+correctness so that we can maximize functionality across systems, but
+people can optimize for the specific case.
+
+> For me it's no problem when the UART probes late, we have earlycon which
+> can be used to debug problems that arise before the UART probes, but
+> what nags is the ten seconds delay. zero would be a much saner value for
+> me.
+
+Having said all that, I empathize with your annoyance at the delay.
+Open to ideas of making this better without making the default
+functionality worse.
+
+-Saravana
