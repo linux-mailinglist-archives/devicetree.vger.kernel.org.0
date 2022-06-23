@@ -2,116 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AC9A55800A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 18:39:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB60E558014
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 18:40:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232290AbiFWQjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 12:39:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41384 "EHLO
+        id S232305AbiFWQkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 12:40:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232305AbiFWQjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 12:39:21 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9471E48E62;
-        Thu, 23 Jun 2022 09:39:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656002359; x=1687538359;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EI+QQ+/jwbwz1xOCAJK7+a2mr8/Kd1EZs7K/UPWhtF4=;
-  b=B0H4jhAwT9yCuhl5RKUj+DgehXTWyTO13dtL+RzviDUf49Eqwagc4mY1
-   e+6KS7drkldGFz6RD73L6/G5Mi6jFD8u0GrrTx0hon1VzXGA6w/wvuLlr
-   PDGNSzSRPQXgSMDeveGU1Rqt5x7ut5fRpHIYxY7r0JyQ8nlTDa9S2eXWL
-   HBYIy1n90+z7GqSUobqfkCRuefsC2hyDkQdCNzwkawFu3vfKwl2E6OTRm
-   0/3xis/GfyDVqIUX6CLvGLqnivMc9ZpxuSPRp1H1v+l++btgtn5hIJg0C
-   hgzFtZDX5OquyljzLAe0eBpbvo6klCjvhZFPluvLBE7mkvt6b64BGdz7j
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="342455606"
-X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; 
-   d="scan'208";a="342455606"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2022 09:39:19 -0700
-X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; 
-   d="scan'208";a="834715838"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2022 09:39:11 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1o4PrG-000tDS-Q2;
-        Thu, 23 Jun 2022 19:39:06 +0300
-Date:   Thu, 23 Jun 2022 19:39:06 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     sascha hauer <sha@pengutronix.de>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>, peng fan <peng.fan@nxp.com>,
-        kevin hilman <khilman@kernel.org>,
-        ulf hansson <ulf.hansson@linaro.org>,
-        len brown <len.brown@intel.com>, pavel machek <pavel@ucw.cz>,
-        joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>,
-        andrew lunn <andrew@lunn.ch>,
-        heiner kallweit <hkallweit1@gmail.com>,
-        russell king <linux@armlinux.org.uk>,
-        "david s. miller" <davem@davemloft.net>,
-        eric dumazet <edumazet@google.com>,
-        jakub kicinski <kuba@kernel.org>,
-        paolo abeni <pabeni@redhat.com>,
-        linus walleij <linus.walleij@linaro.org>,
-        hideaki yoshifuji <yoshfuji@linux-ipv6.org>,
-        david ahern <dsahern@kernel.org>, kernel-team@android.com,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        iommu@lists.linux-foundation.org, netdev@vger.kernel.org,
-        linux-gpio@vger.kernel.org, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] of: base: Avoid console probe delay when
- fw_devlink.strict=1
-Message-ID: <YrSXKkYfr+Hinsuu@smile.fi.intel.com>
-References: <20220623080344.783549-1-saravanak@google.com>
- <20220623080344.783549-3-saravanak@google.com>
- <20220623100421.GY1615@pengutronix.de>
+        with ESMTP id S232098AbiFWQkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 12:40:17 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7085D4925F;
+        Thu, 23 Jun 2022 09:40:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 04B49B8248A;
+        Thu, 23 Jun 2022 16:40:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D90AC3411B;
+        Thu, 23 Jun 2022 16:40:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656002412;
+        bh=JfbqMd3ZFkhV2Jb0VUbEs8hnVb0OikMcCTXQnjWaEJE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=tnD+s1cMkq8CTU/zJrXjVry1+V7AyXUhWjp+hb4ABETeA59Awz56s4J1uNkgN2e79
+         5G0OTgd8omUH1DArMdqX+HMIfJyagj6Fpk6+nppc1ovp9NMeCSwo5vw3CwR2xGqQ/A
+         Yqw0kPoV2E0v1RWyCqHxnXccm9JKci4Zd/hhxPWs6PIMQCa8cYarq1ftVFWHf0kyP6
+         me+GoRnYBNfIoL6fNi8S5ykKw3R4lNBqro7+iHE2xhYze74E6iVVZrPNis02/jC6gD
+         hHGN7DZXk4cLX4A9FY1AT2n6d/FVXiZLx/K/UCuD8n4IQdT1+B30NO64Um1Ci2M3UN
+         ANb5nn4rJGZIA==
+Date:   Thu, 23 Jun 2022 11:40:10 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 0/2] dt-bindings: PCI: uniphier: Fix endpoint
+ descriptions
+Message-ID: <20220623164010.GA1457016@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220623100421.GY1615@pengutronix.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <1655950142-2026-1-git-send-email-hayashi.kunihiko@socionext.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 23, 2022 at 12:04:21PM +0200, sascha hauer wrote:
-> On Thu, Jun 23, 2022 at 01:03:43AM -0700, Saravana Kannan wrote:
+On Thu, Jun 23, 2022 at 11:09:00AM +0900, Kunihiko Hayashi wrote:
+> Changes since v3:
+> - Add Reviewed-by: and Acked-by: tags
 
-...
+Hi Rob, I notice your Reviewed-by and Acked-by tags.  Does that mean
+you want me to merge these?  It looks like you've merged most of the
+recent changes yourself.  Happy to do it either way, whatever you
+intend.
 
-> I wonder if it wouldn't be a better approach to just probe all devices
-> and record the device(node) they are waiting on. Then you know that you
-> don't need to probe them again until the device they are waiting for
-> is available.
-
-There may be no device, but resource. And we become again to the something like
-deferred probe ugly hack.
-
-The real solution is to rework device driver model in the kernel that it will
-create a graph of dependencies and then simply follow it. But actually it should
-be more than 1 graph, because there are resources and there are power, clock and
-resets that may be orthogonal to the higher dependencies (like driver X provides
-a resource to driver Y).
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> Changes since v2:
+> - Move some items to minimize if/then schemas in Patch 2
+> - Remove Patch 3 because the warning comment is for an unmerged source
+> 
+> Changes since v1:
+> - Fix "config" in the Patch 1 commit message to "addr_space"
+> 
+> Kunihiko Hayashi (2):
+>   dt-bindings: PCI: designware-ep: Increase maxItems of reg and
+>     reg-names
+>   dt-bindings: PCI: uniphier-ep: Clean up reg, clocks, resets, and their
+>     names using compatible string
+> 
+>  .../bindings/pci/snps,dw-pcie-ep.yaml         |  4 +-
+>  .../pci/socionext,uniphier-pcie-ep.yaml       | 76 ++++++++++++-------
+>  2 files changed, 51 insertions(+), 29 deletions(-)
+> 
+> -- 
+> 2.25.1
+> 
