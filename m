@@ -2,84 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FB1B5576DC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 11:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2D215576EE
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 11:45:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbiFWJmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 05:42:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44644 "EHLO
+        id S230315AbiFWJpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 05:45:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229710AbiFWJml (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 05:42:41 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B85349918
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 02:42:39 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id cw10so16113763ejb.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 02:42:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xyKsHf35jPc8YVsck6ueew5VoRnlUL9zoS2z12Liz/8=;
-        b=NBNe5LDexk9OpBZQ/NTq5PWJ+ojiyO3zUmYQi1uwO0yLdnXaNXpvGf9V1YEREj8SoQ
-         NMCq6dBpaFfGA9LlsMgUwyCdE1ReEuDwyEwwX9jluWnPiK/NcD3ISxaF1ZPJ8mauRLYg
-         Uulf2DwiUxlhPiwMySxnyydZ+9kTCih/7sglmXPs5IM6wg7fj+HUKIn4ZeQfA7R9YGst
-         Q6ofqUqy7eG+XQ/UZisrMl4Zj96x1qhuHCE2rb4pU5LCzn4fNQf1OTR5a+UpZrKhqvyO
-         raEO0wEl4LhFpuzHCkrPLmwV5Tn7XOO+HxAuvsbq+aOEYa1Y0NpuYif8Ie68F4HnJ/Va
-         i3DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xyKsHf35jPc8YVsck6ueew5VoRnlUL9zoS2z12Liz/8=;
-        b=rBXYu+Kkspcc8aUHU2j9KS7U7k5QvKl4aaAWImn6MHwHLYhJt96M33EqwhNNKdOk5l
-         VfwX9wLu20gsZ43Ptlas+mfxKBGEEmCRltmCIn7mtcP8ldfseib8rtCiSvs4VLrW7UVf
-         GBWTvAE0GFRf76rKBPtsf0pGWXFIzQPNuIpbqLiaNumEhk1uEeeB3s2MSKjXms/sS1r4
-         +EaBqtEHnnpz2o6fpX+FZiUFhQPpjrCfNMj8wBBfxDWwxkkwYQPrnP3SZrUv1obscLeF
-         Uz9kFuvaj1cwlhH9Lv8/k4AQHMG4sFSPV65LOe3eWD0wuo8pEOSFDbCGYCJ2ansTrfkV
-         /5qQ==
-X-Gm-Message-State: AJIora9GKTKZl1BUqcE5n3vO1TZdxw8jh9zK0wSvHBMg3It9Mjq7Ehu9
-        CL2cMTpb4xARjVE/g9ec3xR+oA==
-X-Google-Smtp-Source: AGRyM1tzA92PdAeMyMzX0kya8FT14/pyP2fWwXS1iCh5k1iMXETkpTLPfwxtpkwzjfOgSa6fM4r7Vw==
-X-Received: by 2002:a17:907:6d0d:b0:711:c940:7f1c with SMTP id sa13-20020a1709076d0d00b00711c9407f1cmr7338092ejc.399.1655977357508;
-        Thu, 23 Jun 2022 02:42:37 -0700 (PDT)
-Received: from [192.168.0.227] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l2-20020a056402124200b004357738e04esm10848659edw.21.2022.06.23.02.42.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Jun 2022 02:42:37 -0700 (PDT)
-Message-ID: <2875e9e7-8fb3-e5f6-6221-6aaffb7813c4@linaro.org>
-Date:   Thu, 23 Jun 2022 11:42:36 +0200
+        with ESMTP id S229692AbiFWJpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 05:45:35 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7DAA496AA;
+        Thu, 23 Jun 2022 02:45:33 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25N9jPcr047116;
+        Thu, 23 Jun 2022 04:45:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655977525;
+        bh=Pi/6nVVvO0gXMhT7Kn1W6gxKOmLcIzaVRT/1b0Zz+xc=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=VyY23mELmk/vUp2ZjpDn+yDkNkSebXrzlrA9+S24zuqYsBD9VoLXBXns1tQGSPlbZ
+         MyxchKa7cKJvNLKvvegOwlUlVNuEIY93paEhOnWW682fJ1JSq14d2XtoJ07YheyBWd
+         MekidNOMeV4cPweDn7pFtU+lilAs+SP5pFgcg9Fw=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25N9jP3F043556
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 23 Jun 2022 04:45:25 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 23
+ Jun 2022 04:45:24 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 23 Jun 2022 04:45:24 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25N9jNaI007380;
+        Thu, 23 Jun 2022 04:45:24 -0500
+Date:   Thu, 23 Jun 2022 15:15:23 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Rahul T R <r-ravikumar@ti.com>
+CC:     <linux-phy@lists.infradead.org>, <kishon@ti.com>,
+        <vkoul@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <laurent.pinchart@ideasonboard.com>,
+        <tomi.valkeinen@ideasonboard.com>, <linux-kernel@vger.kernel.org>,
+        <jpawar@cadence.com>, <sjakhade@cadence.com>, <mparab@cadence.com>,
+        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
+        <lee.jones@linaro.org>
+Subject: Re: [PATCH v3 3/3] phy: cdns-dphy: Add support for DPHY TX on J721e
+Message-ID: <20220623094523.ccrsmw477a5btgcf@ti.com>
+References: <20220622105311.21415-1-r-ravikumar@ti.com>
+ <20220622105311.21415-4-r-ravikumar@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: qcom: document qcom,msm-id and
- qcom,board-id
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Amit Pundir <amit.pundir@linaro.org>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Kumar Gala <galak@codeaurora.org>
-References: <20220622114856.6243-1-krzysztof.kozlowski@linaro.org>
- <20220622114856.6243-2-krzysztof.kozlowski@linaro.org>
- <93fd2970-5d07-f86d-b3a5-a4ebd8a2fa61@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <93fd2970-5d07-f86d-b3a5-a4ebd8a2fa61@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220622105311.21415-4-r-ravikumar@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,212 +69,165 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2022 13:56, Konrad Dybcio wrote:
+Hi Rahul,
+
+On 22/06/22 04:23PM, Rahul T R wrote:
+> Add support new compatible for dphy-tx on j721e
+> and implement dphy ops required.
 > 
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> ---
+>  drivers/phy/cadence/Kconfig     | 10 ++++++
+>  drivers/phy/cadence/cdns-dphy.c | 62 +++++++++++++++++++++++++++++++++
+>  2 files changed, 72 insertions(+)
 > 
-> On 22.06.2022 13:48, Krzysztof Kozlowski wrote:
->> The top level qcom,msm-id and qcom,board-id properties are utilized by
->> bootloaders on Qualcomm MSM platforms to determine which device tree
->> should be used and passed to the kernel.
->>
->> The commit b32e592d3c28 ("devicetree: bindings: Document qcom board
->> compatible format") from 2015 was a consensus during discussion about
->> upstreaming qcom,msm-id and qcom,board-id fields.  There are however still
->> problems with that consensus:
->> 1. It was reached 7 years ago but it turned out its implementation did
->>    not reach all possible products.
->>
->> 2. Initially additional tool (dtbTool) was needed for parsing these
->>    fields to create a QCDT image consisting of multiple DTBs, later the
->>    bootloaders were improved and they use these qcom,msm-id and
->>    qcom,board-id properties directly.
->>
->> 3. Extracting relevant information from the board compatible requires
->>    this additional tool (dtbTool), which makes the build process more
->>    complicated and not easily reproducible (DTBs are modified after the
->>    kernel build).
->>
->> 4. Some versions of Qualcomm bootloaders expect these properties even
->>    when booting with a single DTB.  The community is stuck with these
->>    bootloaders thus they require properties in the DTBs.
->>
->> Since several upstreamed Qualcomm SoC-based boards require these
->> properties to properly boot and the properties are reportedly used by
->> bootloaders, document them.
->>
->> Link: https://lore.kernel.org/r/a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org/
->> Co-developed-by: Kumar Gala <galak@codeaurora.org>
->> Signed-off-by: Kumar Gala <galak@codeaurora.org>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>  .../devicetree/bindings/arm/qcom.yaml         | 121 ++++++++++++++++++
->>  include/dt-bindings/arm/qcom,ids.h            |  30 +++++
->>  2 files changed, 151 insertions(+)
->>  create mode 100644 include/dt-bindings/arm/qcom,ids.h
->>
->> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
->> index 6c38c1387afd..431e3ff31d75 100644
->> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->> @@ -403,6 +403,127 @@ properties:
->>                - qcom,sm8450-qrd
->>            - const: qcom,sm8450
->>  
->> +  # Board compatibles go above
->> +
->> +  qcom,msm-id:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
->> +    minItems: 1
->> +    maxItems: 8
->> +    items:
->> +      items:
->> +        - description: |
->> +            MSM chipset ID - an exact match value consisting of two bitfields::
->> +             - bits 0-15  - The unique MSM chipset ID
->> +             - bits 16-31 - Reserved; should be 0
->> +        - description: |
->> +            Hardware revision ID - a chipset specific 32-bit ID representing
->> +            the version of the chipset.  It is best a match value - the
->> +            bootloader will look for the closest possible match.
->> +    deprecated: true
->> +    description:
->> +      The MSM chipset and hardware revision use by Qualcomm bootloaders.  It
->> +      can optionally be an array of these to indicate multiple hardware that
->> +      use the same device tree.  It is expected that the bootloader will use
->> +      this information at boot-up to decide which device tree to use when given
->> +      multiple device trees, some of which may not be compatible with the
->> +      actual hardware.  It is the bootloader's responsibility to pass the
->> +      correct device tree to the kernel.
->> +      The property is deprecated.
->> +
->> +  qcom,board-id:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
->> +    minItems: 1
->> +    maxItems: 8
->> +    items:
->> +      oneOf:
->> +        - maxItems: 2
->> +          items:
->> +            - description: |
->> +                Board ID consisting of three bitfields::
->> +                  - bits 31-24 - Unused
->> +                  - bits 23-16 - Platform Version Major
->> +                  - bits 15-8  - Platform Version Minor
->> +                  - bits 7-0   - Platform Type
->> +                Platform Type field is an exact match value.  The
->> +                Platform Major/Minor field is a best match.  The bootloader will
->> +                look for the closest possible match.
->> +            - description: |
->> +                Subtype ID unique to a Platform Type/Chipset ID.  For a given
->> +                Platform Type, there will typically only be a single board and the
->> +                subtype_id will be 0.  However in some cases board variants may
->> +                need to be distinguished by different subtype_id values.
->> +        # OnePlus uses a variant of board-id with four elements:
->> +        - minItems: 4
->> +          items:
->> +            - const: 8
->> +            - const: 0
->> +            - description: OnePlus board ID
->> +            - description: OnePlus subtype ID
->> +    deprecated: true
->> +    description:
->> +      The board type and revision information.  It can optionally be an array
->> +      of these to indicate multiple boards that use the same device tree.  It
->> +      is expected that the bootloader will use this information at boot-up to
->> +      decide which device tree to use when given multiple device trees, some of
->> +      which may not be compatible with the actual hardware.  It is the
->> +      bootloader's responsibility to pass the correct device tree to the
->> +      kernel
->> +      The property is deprecated.
->> +
->> +allOf:
->> +  # Explicit allow-list for older SoCs. The legacy properties are not allowed
->> +  # on newer SoCs.
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,apq8026
->> +              - qcom,apq8094
->> +              - qcom,apq8096
->> +              - qcom,msm8992
->> +              - qcom,msm8994
->> +              - qcom,msm8996
->> +              - qcom,msm8998
->> +              - qcom,sdm630
->> +              - qcom,sdm632
->> +              - qcom,sdm845
->> +              - qcom,sdx55
->> +              - qcom,sdx65
->> +              - qcom,sm6125
->> +              - qcom,sm6350
->> +              - qcom,sm7225
->> +              - qcom,sm8150
->> +              - qcom,sm8250
->> +    then:
->> +      properties:
->> +        qcom,board-id: true
->> +        qcom,msm-id: true
->> +    else:
->> +      properties:
->> +        qcom,board-id: false
->> +        qcom,msm-id: false
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - oneplus,cheeseburger
->> +              - oneplus,dumpling
->> +              - oneplus,enchilada
->> +              - oneplus,fajita
->> +    then:
->> +      properties:
->> +        qcom,board-id:
->> +          items:
->> +            minItems: 4
->> +    else:
->> +      properties:
->> +        qcom,board-id:
->> +          items:
->> +            maxItems: 2
->> +
->>  additionalProperties: true
->>  
->>  ...
->> diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
->> new file mode 100644
->> index 000000000000..df4a07b898cc
->> --- /dev/null
->> +++ b/include/dt-bindings/arm/qcom,ids.h
->> @@ -0,0 +1,30 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * Copyright (c) 2015, The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2022 Linaro Ltd
->> + * Author: Krzysztof Kozlowski <krzk@kernel.org> based on previous work of Kumar Gala.
->> + */
->> +#ifndef _DT_BINDINGS_ARM_QCOM_IDS_H
->> +#define _DT_BINDINGS_ARM_QCOM_IDS_H
->> +
->> +/* qcom,msm-id */
->> +#define QCOM_ID_APQ8026				199
->> +#define QCOM_ID_MSM8916				206
->> +#define QCOM_ID_MSM8994				207
->> +#define QCOM_ID_MSM8996				246
->> +#define QCOM_ID_APQ8016				247
->> +#define QCOM_ID_MSM8216				248
->> +#define QCOM_ID_MSM8116				249
->> +#define QCOM_ID_MSM8616				250
->> +#define QCOM_ID_MSM8998				292
->> +#define QCOM_ID_SDM845				321
-> These are the same ones used in the qcom socid driver. Perhaps they can be exported from there?
+> diff --git a/drivers/phy/cadence/Kconfig b/drivers/phy/cadence/Kconfig
+> index 1adde2d99ae7..18024ac6d511 100644
+> --- a/drivers/phy/cadence/Kconfig
+> +++ b/drivers/phy/cadence/Kconfig
+> @@ -22,6 +22,16 @@ config PHY_CADENCE_DPHY
+>  	  system. If M is selected, the module will be called
+>  	  cdns-dphy.
+>  
+> +if PHY_CADENCE_DPHY
+> +
+> +config PHY_CADENCE_DPHY_J721E
+> +	depends on ARCH_K3 || COMPILE_TEST
+> +	bool "J721E DPHY TX Wiz support"
+> +	default y
+> +	help
+> +	  Support J721E Cadence DPHY TX Wiz configuration.
+> +endif
+> +
+>  config PHY_CADENCE_DPHY_RX
+>  	tristate "Cadence D-PHY Rx Support"
+>  	depends on HAS_IOMEM && OF
+> diff --git a/drivers/phy/cadence/cdns-dphy.c b/drivers/phy/cadence/cdns-dphy.c
+> index 14f951013b4f..a6b7d696f77a 100644
+> --- a/drivers/phy/cadence/cdns-dphy.c
+> +++ b/drivers/phy/cadence/cdns-dphy.c
+> @@ -7,6 +7,7 @@
+>  #include <linux/bitops.h>
+>  #include <linux/clk.h>
+>  #include <linux/io.h>
+> +#include <linux/iopoll.h>
+>  #include <linux/module.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_device.h>
+> @@ -18,6 +19,7 @@
+>  
+>  #define REG_WAKEUP_TIME_NS		800
+>  #define DPHY_PLL_RATE_HZ		108000000
+> +#define POLL_TIMEOUT_US			1000
+>  
+>  /* DPHY registers */
+>  #define DPHY_PMA_CMN(reg)		(reg)
+> @@ -62,6 +64,18 @@
+>  #define DSI_NULL_FRAME_OVERHEAD		6
+>  #define DSI_EOT_PKT_SIZE		4
+>  
+> +#define DPHY_TX_J721E_WIZ_PLL_CTRL	0xF04
+> +#define DPHY_TX_J721E_WIZ_STATUS	0xF08
+> +#define DPHY_TX_J721E_WIZ_RST_CTRL	0xF0C
+> +#define DPHY_TX_J721E_WIZ_PSM_FREQ	0xF10
+> +
+> +#define DPHY_TX_J721E_WIZ_IPDIV		GENMASK(4, 0)
+> +#define DPHY_TX_J721E_WIZ_OPDIV		GENMASK(13, 8)
+> +#define DPHY_TX_J721E_WIZ_FBDIV		GENMASK(25, 16)
+> +#define DPHY_TX_J721E_WIZ_LANE_RSTB	BIT(31)
+> +#define DPHY_TX_WIZ_PLL_LOCK		BIT(31)
+> +#define DPHY_TX_WIZ_O_CMN_READY		BIT(31)
+> +
+>  struct cdns_dphy_cfg {
+>  	u8 pll_ipdiv;
+>  	u8 pll_opdiv;
+> @@ -210,6 +224,43 @@ static void cdns_dphy_ref_set_psm_div(struct cdns_dphy *dphy, u8 div)
+>  	       dphy->regs + DPHY_PSM_CFG);
+>  }
+>  
+> +#ifdef CONFIG_PHY_CADENCE_DPHY_J721E
+
+Honestly, I don't think there is much use for using this config here. I 
+prefer to have as little ifdefs scattered in code as possible. And I 
+don't think the code you add makes much of a difference in terms of 
+size.
+
+I have not looked much into the WIZ module but the code looks fine to 
+me.
+
+> +static unsigned long cdns_dphy_j721e_get_wakeup_time_ns(struct cdns_dphy *dphy)
+> +{
+> +	return 1000000;
+> +}
+> +
+> +static void cdns_dphy_j721e_set_pll_cfg(struct cdns_dphy *dphy,
+> +					const struct cdns_dphy_cfg *cfg)
+> +{
+> +	u32 status;
+> +
+> +	writel(DPHY_CMN_PWM_HIGH(6) | DPHY_CMN_PWM_LOW(0x101) |
+> +	       DPHY_CMN_PWM_DIV(0x8),
+
+Please avoid using magic numbers. Or if you are going to use them, at 
+least explain in a comment what they are doing.
+
+> +	       dphy->regs + DPHY_CMN_PWM);
+> +
+> +	writel((FIELD_PREP(DPHY_TX_J721E_WIZ_IPDIV, cfg->pll_ipdiv) |
+> +		FIELD_PREP(DPHY_TX_J721E_WIZ_OPDIV, cfg->pll_opdiv) |
+> +		FIELD_PREP(DPHY_TX_J721E_WIZ_FBDIV, cfg->pll_fbdiv)),
+> +		dphy->regs + DPHY_TX_J721E_WIZ_PLL_CTRL);
+> +
+> +	writel(DPHY_TX_J721E_WIZ_LANE_RSTB,
+> +	       dphy->regs + DPHY_TX_J721E_WIZ_RST_CTRL);
+> +
+> +	readl_poll_timeout(dphy->regs + DPHY_TX_J721E_WIZ_PLL_CTRL, status,
+> +			   (status & DPHY_TX_WIZ_PLL_LOCK), 0, POLL_TIMEOUT_US);
+> +
+> +	readl_poll_timeout(dphy->regs + DPHY_TX_J721E_WIZ_STATUS, status,
+> +			   (status & DPHY_TX_WIZ_O_CMN_READY), 0,
+> +			   POLL_TIMEOUT_US);
+> +}
+> +
+> +static void cdns_dphy_j721e_set_psm_div(struct cdns_dphy *dphy, u8 div)
+> +{
+> +	writel(div, dphy->regs + DPHY_TX_J721E_WIZ_PSM_FREQ);
+> +}
+> +#endif /* !CONFIG_PHY_CADENCE_DPHY_J721E */
+> +
+>  /*
+>   * This is the reference implementation of DPHY hooks. Specific integration of
+>   * this IP may have to re-implement some of them depending on how they decided
+> @@ -221,6 +272,14 @@ static const struct cdns_dphy_ops ref_dphy_ops = {
+>  	.set_psm_div = cdns_dphy_ref_set_psm_div,
+>  };
+>  
+> +#ifdef CONFIG_PHY_CADENCE_DPHY_J721E
+> +static const struct cdns_dphy_ops j721e_dphy_ops = {
+> +	.get_wakeup_time_ns = cdns_dphy_j721e_get_wakeup_time_ns,
+> +	.set_pll_cfg = cdns_dphy_j721e_set_pll_cfg,
+> +	.set_psm_div = cdns_dphy_j721e_set_psm_div,
+> +};
+> +#endif /* !CONFIG_PHY_CADENCE_DPHY_J721E */
+> +
+>  static int cdns_dphy_config_from_opts(struct phy *phy,
+>  				      struct phy_configure_opts_mipi_dphy *opts,
+>  				      struct cdns_dphy_cfg *cfg)
+> @@ -408,6 +467,9 @@ static int cdns_dphy_remove(struct platform_device *pdev)
+>  
+>  static const struct of_device_id cdns_dphy_of_match[] = {
+>  	{ .compatible = "cdns,dphy", .data = &ref_dphy_ops },
+> +#ifdef CONFIG_PHY_CADENCE_DPHY_J721E
+> +	{ .compatible = "ti,j721e-dphy", .data = &j721e_dphy_ops },
+> +#endif /* !CONFIG_PHY_CADENCE_DPHY_J721E */
+>  	{ /* sentinel */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, cdns_dphy_of_match);
+> -- 
+> 2.36.1
 > 
 
-I can actually use the bindings in the socid driver. Less code.
-
-Best regards,
-Krzysztof
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
