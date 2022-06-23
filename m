@@ -2,80 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D8A15570D5
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 04:02:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42A535570DB
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 04:04:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377348AbiFWCCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 22:02:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49422 "EHLO
+        id S233881AbiFWCEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jun 2022 22:04:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233881AbiFWCCw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 22:02:52 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAD1B33F
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 19:02:51 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id d5so16885178plo.12
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 19:02:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IkUXOkZY+RAO77Ddayq7n78HFolbGi4/R0jnJleOuts=;
-        b=qDK6Y2htLz5tGUO8dlBrbHGhH2ak1LdI/hhL1515H8H1TbHNDPwLGrlnYvtaUZD4Ee
-         pzSzmhi4Y3Uo/RXxHGB0q1QNITi7OIyRgpfryOB1pa6UcqhAIwgV9o/uNGJkHsO0lRC4
-         tYZiDAAhjSHcQBJ7+Xy18N89yk3C6i637j5lFNnGQF7vQcvruPTz5Zy3EcQK8+ySUlut
-         NRwmRkoZtzgkHBZS2YobjTLz9cfj8KQ7+SOvwZ3OHyLBT7baBxSm5/ZDS8qIGh6+Exzp
-         aKlWrYBQfWjnckgnk8Ei4Ockh0NSwLeR3zv8c4Ht/amHjUbgFqY4W4bu83+6cPj/1TOH
-         rxkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=IkUXOkZY+RAO77Ddayq7n78HFolbGi4/R0jnJleOuts=;
-        b=EXw7cvrA2uooxZDc+HmCSnBJbX/LdoVG55WLewLwauw4zFo7j2ldaepcB+ttJUuY56
-         kG+HvnCHaY7p3hrWL+GQbBflMzNTIYEVjDn4I6Giw3DaE9ELaIYYsYxO0imohivpmvXu
-         yljk2KW9YQm2Vm9M2rLGkN5EnAbA7ubYoeS0fomrymOr0WOu9UR5yY6Rc6qGzdYdOEPS
-         J81j369IHs6OvqVC7L4Ho8R4yJL8NjXz/tXQz0zV7yaTl8V9kOTmy9t45G3pqqNSscjz
-         +/bNUs7Qrp9/GEVdbAxcrNqpMPI35bNIodB4/XtLlIytNul7UkDPGfgMLNNVZZmhOcrn
-         r6dA==
-X-Gm-Message-State: AJIora8eHO/hkFDUDZmogljX1qcuYIiDVNiyjMUm66R69MHWc2UZnaMB
-        piEWQmPNSBgTjdm8V1QZ41c=
-X-Google-Smtp-Source: AGRyM1s7kxNWni7pQ32zWh2Ta+Ryow6AIKvy28d/OqwdaavSHxp6PHVAI7kpSx+SGWO7NiY6cvMufA==
-X-Received: by 2002:a17:90a:fe16:b0:1ec:a69e:d135 with SMTP id ck22-20020a17090afe1600b001eca69ed135mr1434133pjb.31.1655949771260;
-        Wed, 22 Jun 2022 19:02:51 -0700 (PDT)
-Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id k10-20020a634b4a000000b0040d48cf046csm517078pgl.55.2022.06.22.19.02.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jun 2022 19:02:50 -0700 (PDT)
-Message-ID: <b45bf51c-cb34-b15b-d8ef-db9b409a8130@gmail.com>
-Date:   Wed, 22 Jun 2022 19:02:49 -0700
+        with ESMTP id S231310AbiFWCEK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 22:04:10 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53D7D21E17;
+        Wed, 22 Jun 2022 19:04:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1655949824;
+        bh=rL6VxwOlcQhp3wySuLV2AVqCnX+m+t3FXl4nhTKJ5ws=;
+        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=ZZwmaEkfEIryCj9VqC7uZKxRfBg1xVaL+Asbg5SQZSd2PKLffCEJAyA7+6d5DPPEy
+         SHKQ8Jcb+ke+izHiwfZaeGCZI04sSEFZVNQBXaiZkVxsSYwH5cVUGGGt3shBXkY3QM
+         igo9R5ZiOHICwehDeIhdxupqsmYf4Ep2x+E5m/00=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.0.33] ([46.223.2.181]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MNKhs-1oIzDR3xIg-00OstY; Thu, 23
+ Jun 2022 04:03:44 +0200
+Subject: Re: [PATCH 2/8] serial: core, 8250: set RS485 termination gpio in
+ serial core
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vz@mleia.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lukas@wunner.de, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
+ <20220622154659.8710-3-LinoSanfilippo@gmx.de>
+ <YrNMMQUYdgDz45Jc@smile.fi.intel.com>
+From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
+Message-ID: <7f502ad0-8c86-5029-8801-238402c48d0e@gmx.de>
+Date:   Thu, 23 Jun 2022 04:03:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH V3 00/11] soc: bcm2835-power: Prepare BCM2711 V3D support
+In-Reply-To: <YrNMMQUYdgDz45Jc@smile.fi.intel.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Lee Jones <lee.jones@linaro.org>
-Cc:     Peter Robinson <pbrobinson@gmail.com>,
-        Melissa Wen <melissa.srw@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220607204226.8703-1-stefan.wahren@i2se.com>
- <952d541b-6b41-3db6-3ea0-efd5eab612a7@gmail.com>
- <da127e9e-c79c-2a92-02c8-82811dfe44b0@broadcom.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <da127e9e-c79c-2a92-02c8-82811dfe44b0@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:BHxZUtz7aL7d4oKsWy5vYNIC67j+odc8NKypfMy1GloZQ3bEmOb
+ ThmaeUBb1M4nT3ehnOa/eJ0ynUyqQwiSPkZxaHMn4NOlADvT2+9BBBYd/F/hIicZgJWcvQq
+ RVV8l/6cGIQ7SwC7vP5L5lfB0mhgKhZnEmN3Dj/Xjg0aODb+pAYzhwoziO/sPfbVHpaPhiY
+ ndFlH5HGRFb54+BCrIZrg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:EtEHicE+FI8=:yUFwRsuReLOQVavO9hKK1d
+ uvdYBUGK8F3iZi6GoL+aNxZkFYun6mOL3Ub+zJBbwxSxTzxH1Fd/KmTfmoGspV+CR1EZYsJBo
+ 4yduTQQBprc5gAzmGLlifyhCw3nZ8qCUPlLMAgDX2aJkB6e6ckGaBZhvBMaHKFnqY3+037+fc
+ ilc4eIfEtzWvfDP5lF+DLQs7pT5XaB0adr8hzRAqa5d01hY9xwPO9BdwA/vTgJFTnsfC6a3BL
+ OLnLOJCiec2wPB3j0qYgv04D1nnp6hs6vNvixo4rGXF48rO6dG9evq/1afG0YWe80ju3EV4eJ
+ nSr5kkGVuEaK8xmTPpd8QVFq0T6I96ivchOTSPFK/KA5LLloNnaIiKVN8MnLpNluk0R6zR5AT
+ vCx9YCUCAYQHzr8ynJeJFDeteP1NiRSpULmnO50j03axY3zXXRJxtD2wmG5t83uSAn+v/qngO
+ ZOMExJ+n7YFcF3gmpKiouSwfyakxPQP8eSx6mezq2VIELAqRyxYLcGywX9nsbkEUCncTQVDv2
+ sB7o2wyMUdPw89ZSqKxLYIMeW5Glk0Dy2nj1LSEkwQjhk8np1+KKmfN2egkFBUYDqc+/tz2TC
+ crQz7N9nEjiQBK4tDRY0c2gRU9/Dijh5fjqzhFuXb43V5Y0cCn9YIml50D+TNXG/YPzyiT6k4
+ pEeP+l/d3XvjuO+j/vztY+hRNwb/xG+Ng7xJ1G7eg+8z8mqgMnIpIFvcgQwukaOJAbDMSW3ba
+ QN+kXOOLYAk1xZzXytuHjfMO33GmIBrVsy0HmUL18CsYxxSDKLCo+rZK9uOjs1mE70DnKNr92
+ btitCvr8ZLzpV7pSwJEww23hcBqQDk2pgMGSxdKJ8xt6Yuyehr3Bz4XRD7169vh+C5y0KALl9
+ ckXFnRYuY0RcKv9GODEdtYfiSRFltT9ZI07LJaCS1gUO3IYGlrZDfNgvhucKTS0g2jrszyZ0J
+ A8FB+1Q9i3QpEDPrr2Sc9OzyDKOCFIW5KU7D+cNKJbR8yTHpBCuQKqAy5T/c7zpJCq/kMBJ3/
+ R69HGuocmsFmh+OIip9HnKQJKnBi9F/CxIYa35/RDhv6VRTk4ZF5/mHLvMdaHcolZ73nBGZdW
+ tgODXSbx1j4Fd3EelYHn0gXiQlI5Vi7pH/QMNHsblr+m+XQDQuuuLtrQw==
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,28 +79,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 22.06.22 at 19:06, Andy Shevchenko wrote:
+> On Wed, Jun 22, 2022 at 05:46:53PM +0200, Lino Sanfilippo wrote:
+>> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+>>
+>> In serial8250_em485_config() the termination GPIO is set with the uart_=
+port
+>> spinlock held. This is an issue if setting the GPIO line can sleep (e.g=
+.
+>> since the concerning GPIO expander is connected via SPI or I2C).
+>>
+>> Fix this by setting the termination line outside of the uart_port spinl=
+ock
+>> in the serial core.
+>
+> This doesn't describe that this patch is actually changing GPIO to suppo=
+rt
+> sleep mode. So, it doesn't fix anything. Please rephrase the commit mess=
+age
+> accordingly.
+
+Good point, I will adjust the commit message in the next version.
+
+>> This also makes setting the termination GPIO generic for all uart drive=
+rs.
+>
+> UART
+>
+
+Right, upper letters should be used.
+
+Thanks a lot for the review!
+
+Regards,
+Lino
 
 
-On 6/15/2022 10:38 AM, Florian Fainelli wrote:
-> On 6/8/22 02:27, Florian Fainelli wrote:
->>
->>
->> On 6/7/2022 10:42 PM, Stefan Wahren wrote:
->>> This series is a split out of version 4 - Raspberry PI 4 V3D 
->>> enablement send
->>> by Peter Robinson [1]. It attempts to enable BCM2711 V3D support for the
->>> power management driver. It's a rework of the less controversial changes
->>> (excluding V3D GPU driver changes) so this can be reviewed and 
->>> applied faster.
->>
->> Lee, can I get your Ack so I can take all of these patches through the 
->> Broadcom ARM SoC pull requests for v5.20?
-> 
-> We still have some time, but can I get an Ack from you Lee in order to 
-> take these patches through the Broadcom ARM SoC pull request for v5.20? 
-> Thank you
-
-Lee, can you please review and Ack the MFD patches so we have a shot at 
-getting this into v5.20? Thank you
--- 
-Florian
