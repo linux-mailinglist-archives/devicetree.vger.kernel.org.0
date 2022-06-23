@@ -2,236 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 209F85573A6
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 09:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF04C5573BF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 09:19:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbiFWHNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 03:13:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35172 "EHLO
+        id S230018AbiFWHTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 03:19:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbiFWHNw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 03:13:52 -0400
-Received: from smtp.smtpout.orange.fr (smtp06.smtpout.orange.fr [80.12.242.128])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E6D845AD3
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 00:13:50 -0700 (PDT)
-Received: from [192.168.1.18] ([90.11.190.129])
-        by smtp.orange.fr with ESMTPA
-        id 4H24ogdVvP8Ap4H24ojZfO; Thu, 23 Jun 2022 09:13:48 +0200
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
-X-ME-Date: Thu, 23 Jun 2022 09:13:48 +0200
-X-ME-IP: 90.11.190.129
-Message-ID: <21679090-7a89-865b-becf-d5552e8cedea@wanadoo.fr>
-Date:   Thu, 23 Jun 2022 09:13:39 +0200
+        with ESMTP id S229774AbiFWHTd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 03:19:33 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D62FE45AF1;
+        Thu, 23 Jun 2022 00:19:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1655968772; x=1687504772;
+  h=message-id:date:mime-version:subject:to:references:from:
+   in-reply-to:content-transfer-encoding;
+  bh=5lPbECoT8Z/3W+qVNGRvi8kQA8ZEoBHnTPns26WjHgc=;
+  b=QPQ6piBxkIrny11+I9J4z1WGGryt8s6tpzMOHOZqzHPtZ1iiFrWio0S9
+   9U1nirZwqAehycDt4SlHEsmUQ391WzU+ae4zNfHuHOvMXD7kxbK5l9o5g
+   oxj6g1DITMeA5GsDQV6FnTtVwxPErq6EoMoH+Jp/NTGq6W2c8agdtQfmD
+   A=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 23 Jun 2022 00:19:32 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2022 00:19:32 -0700
+Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 23 Jun 2022 00:19:31 -0700
+Received: from [10.242.242.148] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 23 Jun
+ 2022 00:19:25 -0700
+Message-ID: <dfccfc26-ce21-1355-6103-14e921f8e29c@quicinc.com>
+Date:   Thu, 23 Jun 2022 12:49:22 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 1/5] crypto: aspeed: Add HACE hash driver
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH V2 7/8] arm64: dts: Add ipq5018 SoC and MP03 board support
 Content-Language: en-US
-To:     Neal Liu <neal_liu@aspeedtech.com>
-Cc:     BMC-SW@aspeedtech.com, andrew@aj.id.au,
-        christophe.jaillet@wanadoo.fr, clabbe.montjoie@gmail.com,
-        davem@davemloft.net, devicetree@vger.kernel.org,
-        dhphadke@microsoft.com, herbert@gondor.apana.org.au,
-        joel@jms.id.au, johnny_huang@aspeedtech.com,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rdunlap@infradead.org,
-        robh+dt@kernel.org
-References: <20220621063752.1005781-1-neal_liu@aspeedtech.com>
- <20220621063752.1005781-2-neal_liu@aspeedtech.com>
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20220621063752.1005781-2-neal_liu@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
+        <p.zabel@pengutronix.de>, <quic_varada@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220621161126.15883-1-quic_srichara@quicinc.com>
+ <20220621161126.15883-8-quic_srichara@quicinc.com>
+ <876c9580-48ca-0491-24bc-4f20871277f0@linaro.org>
+From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <876c9580-48ca-0491-24bc-4f20871277f0@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 21/06/2022 à 08:37, Neal Liu a écrit :
-> Hash and Crypto Engine (HACE) is designed to accelerate the
-> throughput of hash data digest, encryption, and decryption.
-> 
-> Basically, HACE can be divided into two independently engines
-> - Hash Engine and Crypto Engine. This patch aims to add HACE
-> hash engine driver for hash accelerator.
-> 
-> Signed-off-by: Neal Liu <neal_liu-SAlXDmAnmOAqDJ6do+/SaQ@public.gmane.org>
-> Signed-off-by: Johnny Huang <johnny_huang-SAlXDmAnmOAqDJ6do+/SaQ@public.gmane.org>
-> ---
 
-[...]
+On 6/22/2022 8:48 PM, Krzysztof Kozlowski wrote:
+> On 21/06/2022 18:11, Sricharan R wrote:
+>> From: Varadarajan Narayanan <quic_varada@quicinc.com>
+>>
+>> Add initial device tree support for the Qualcomm IPQ5018 SoC and
+>> MP03.1-C2 board.
+>>
+>> Co-developed-by: Sricharan R <quic_srichara@quicinc.com>
+>> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
+>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Chain needs fixes.
 
-> +++ b/drivers/crypto/aspeed/Kconfig
-> @@ -0,0 +1,23 @@
-> +config CRYPTO_DEV_ASPEED
-> +	tristate "Support for Aspeed cryptographic engine driver"
-> +	depends on ARCH_ASPEED
-> +	help
-> +	  Hash and Crypto Engine (HACE) is designed to accelerate the
-> +	  throughput of hash data digest, encryption and decryption.
-> +
-> +	  Select y here to have support for the cryptographic driver
-> +	  available on Aspeed SoC.
-> +
-> +config CRYPTO_DEV_ASPEED_HACE_HASH
-> +	bool "Enable ASPEED Hash & Crypto Engine (HACE) hash"
+  ok.
 
-Nit: Sometimes you have ASPEED, sometimes you have Aspeed. (see a few 
-lines above)
 
-[...]
+>> ---
+>>   arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>>   .../arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts |  29 +++
+>>   arch/arm64/boot/dts/qcom/ipq5018.dtsi         | 221 ++++++++++++++++++
+>>   3 files changed, 251 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
+>>   create mode 100644 arch/arm64/boot/dts/qcom/ipq5018.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>> index f9e6343acd03..c44e701f093c 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c2.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-asus-z00l.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-huawei-g7.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-mp03.1-c2.dtb
+> This does not look like in proper order.
 
-> +static int aspeed_ahash_req_update(struct aspeed_hace_dev *hace_dev)
-> +{
-> +	struct aspeed_engine_hash *hash_engine = &hace_dev->hash_engine;
-> +	struct ahash_request *req = hash_engine->req;
-> +	struct aspeed_sham_reqctx *rctx = ahash_request_ctx(req);
-> +	aspeed_hace_fn_t resume;
-> +
-> +	AHASH_DBG(hace_dev, "\n");
-> +
-> +	if (hace_dev->version == AST2600_VERSION) {
-> +		rctx->cmd |= HASH_CMD_HASH_SRC_SG_CTRL;
-> +		resume = aspeed_ahash_update_resume_sg;
-> +
-> +	} else {
-> +		resume = aspeed_ahash_update_resume;
-> +	}
-> +
-> +	hash_engine->dma_prepare(hace_dev);
+   ok, will fix.
 
-Apparently dma_prepare() can fail. Should there be some error handling here?
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8150.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8910.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-mtp.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
+>> new file mode 100644
+>> index 000000000000..d1cd080ec3db
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
+>> @@ -0,0 +1,29 @@
+>> +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
+>> +/*
+>> + * IPQ5018 CP01 board device tree source
+>> + *
+>> + * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "ipq5018.dtsi"
+>> +
+>> +/ {
+>> +	model = "Qualcomm Technologies, Inc. IPQ5018/AP-MP03-C2";
+>> +	compatible = "qcom,ipq5018-mp03", "qcom,ipq5018";
+>> +
+>> +	aliases {
+>> +		serial0 = &blsp1_uart1;
+>> +	};
+>> +
+>> +	chosen {
+>> +		stdout-path = "serial0:115200n8";
+>> +	};
+>> +};
+>> +
+>> +&blsp1_uart1 {
+>> +	pinctrl-0 = <&serial_1_pins>;
+>> +	pinctrl-names = "default";
+>> +	status = "ok";
+> "okay" is preferred.
 
-> +
-> +	return aspeed_hace_ahash_trigger(hace_dev, resume);
-> +}
-> +
+   ok.
 
-[...]
 
-> +static int aspeed_hace_probe(struct platform_device *pdev)
-> +{
-> +	const struct of_device_id *hace_dev_id;
-> +	struct aspeed_engine_hash *hash_engine;
-> +	struct aspeed_hace_dev *hace_dev;
-> +	struct resource *res;
-> +	int rc;
-> +
-> +	hace_dev = devm_kzalloc(&pdev->dev, sizeof(struct aspeed_hace_dev),
-> +				GFP_KERNEL);
-> +	if (!hace_dev)
-> +		return -ENOMEM;
-> +
-> +	hace_dev_id = of_match_device(aspeed_hace_of_matches, &pdev->dev);
-> +	if (!hace_dev_id) {
-> +		dev_err(&pdev->dev, "Failed to match hace dev id\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	hace_dev->dev = &pdev->dev;
-> +	hace_dev->version = (unsigned long)hace_dev_id->data;
-> +	hash_engine = &hace_dev->hash_engine;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +
-> +	platform_set_drvdata(pdev, hace_dev);
-> +
-> +	/* Initialize crypto hardware engine structure for hash */
-> +	hace_dev->crypt_engine_hash = crypto_engine_alloc_init(hace_dev->dev,
-> +							       true);
+>> +};
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+>> new file mode 100644
+>> index 000000000000..084fb7b30dfd
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+>> @@ -0,0 +1,221 @@
+>> +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
+>> +/*
+>> + * Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
+>> + */
+>> +/*
+>> + * IPQ5018 SoC device tree source
+>> + *
+>> + * Copyright (c) 2019, The Linux Foundation. All rights reserved.
+> Combine these two comments.
 
-This returns NULL on error and crypto_engine_start() will crash in such 
-a case.
+   ok.
 
-> +
-> +	rc = crypto_engine_start(hace_dev->crypt_engine_hash);
-> +	if (rc)
-> +		goto err_engine_hash_start;
-> +
-> +	tasklet_init(&hash_engine->done_task, aspeed_hace_hash_done_task,
-> +		     (unsigned long)hace_dev);
-> +
-> +	hace_dev->regs = devm_ioremap_resource(&pdev->dev, res);
-> +	if (!hace_dev->regs) {
-> +		dev_err(&pdev->dev, "Failed to map resources\n");
-> +		return -ENOMEM;
 
-I think that all direct returns from here to the end of the function 
-should be "goto err_engine_hash_start;".
+>> + */
+>> +
+>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +#include <dt-bindings/clock/qcom,gcc-ipq5018.h>
+>> +#include <dt-bindings/reset/qcom,gcc-ipq5018.h>
+>> +
+>> +/ {
+>> +	#address-cells = <2>;
+>> +	#size-cells = <2>;
+>> +	interrupt-parent = <&intc>;
+>> +
+>> +	sleep_clk: sleep-clk {
+>> +		compatible = "fixed-clock";
+>> +		clock-frequency = <32000>;
+>> +		#clock-cells = <0>;
+>> +	};
+>> +
+>> +	xo: xo {
+> Node name: xo-clk
 
-> +	}
-> +
-> +	/* Get irq number and register it */
-> +	hace_dev->irq = platform_get_irq(pdev, 0);
-> +	if (!hace_dev->irq) {
-> +		dev_err(&pdev->dev, "Failed to get interrupt\n");
-> +		return -ENXIO;
-> +	}
-> +
-> +	rc = devm_request_irq(&pdev->dev, hace_dev->irq, aspeed_hace_irq, 0,
-> +			      dev_name(&pdev->dev), hace_dev);
-> +	if (rc) {
-> +		dev_err(&pdev->dev, "Failed to request interrupt\n");
-> +		return rc;
-> +	}
-> +
-> +	/* Get clk and enable it */
-> +	hace_dev->clk = devm_clk_get(&pdev->dev, NULL);
-> +	if (IS_ERR(hace_dev->clk)) {
-> +		dev_err(&pdev->dev, "Failed to get clk\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	rc = clk_prepare_enable(hace_dev->clk);
-> +	if (rc) {
-> +		dev_err(&pdev->dev, "Failed to enable clock 0x%x\n", rc);
-> +		return rc;
-> +	}
-> +
-> +	/* Allocate DMA buffer for hash engine input used */
-> +	hash_engine->ahash_src_addr =
-> +		dma_alloc_coherent(&pdev->dev,
-> +				   ASPEED_HASH_SRC_DMA_BUF_LEN,
-> +				   &hash_engine->ahash_src_dma_addr,
-> +				   GFP_KERNEL);
+  ok.
 
-Most of the resources are devm_'ed. Does it make sense to use 
-dmam_alloc_coherent() here to simplify the .remove function?
 
-> +	if (!hash_engine->ahash_src_addr) {
-> +		dev_err(&pdev->dev, "Failed to allocate dma buffer\n");
-> +		rc = -ENOMEM;
-> +		goto clk_exit;
-> +	}
-> +
-> +	aspeed_hace_register(hace_dev);
-> +
-> +	dev_info(&pdev->dev, "ASPEED Crypto Accelerator successfully registered\n");
-> +
-Nit: Sometimes you have ASPEED, sometimes you have Aspeed.
+>> +		compatible = "fixed-clock";
+>> +		clock-frequency = <24000000>;
+> The clock is provided by board, so at least frequency should be defined
+> there.
 
-> +	return rc;
-> +
-> +clk_exit:
-> +	clk_disable_unprepare(hace_dev->clk);
-> +err_engine_hash_start:
-> +	crypto_engine_exit(hace_dev->crypt_engine_hash);
-> +
-> +	return rc;
-> +}
-> +
+   ok, will move to board file. Somehow all other boards are defining it 
+in soc dts itself, so
+   followed it.
 
-[...]
+>> +		#clock-cells = <0>;
+>> +	};
+>> +
+>> +	gen2clk0: gen2clk0 {
+> Keep consistent prefixes, so gen2-clk or gen2-0-clk
 
-> +MODULE_AUTHOR("Neal Liu <neal_liu-SAlXDmAnmOAqDJ6do+/SaQ@public.gmane.org>");
-> +MODULE_DESCRIPTION("ASPEED HACE driver Crypto Accelerator");
+  ok, will fix.
 
-Nit: Sometimes you have ASPEED, sometimes you have Aspeed.
+
+>> +		compatible = "fixed-clock";
+>> +		#clock-cells = <0>;
+>> +		clock-frequency = <125000000>;
+>> +		clock-output-names = "pcie20_phy0_pipe_clk";
+>> +	};
+>> +
+>> +	gen2clk1: gen2clk1 {
+> gen2-1-clk
+
+  ok, will fix.
+
+Regards,
+   Sricharan
 
