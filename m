@@ -2,232 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2D215576EE
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 11:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 125635576FB
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 11:47:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230315AbiFWJpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 05:45:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47646 "EHLO
+        id S231154AbiFWJqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 05:46:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229692AbiFWJpf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 05:45:35 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7DAA496AA;
-        Thu, 23 Jun 2022 02:45:33 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25N9jPcr047116;
-        Thu, 23 Jun 2022 04:45:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1655977525;
-        bh=Pi/6nVVvO0gXMhT7Kn1W6gxKOmLcIzaVRT/1b0Zz+xc=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=VyY23mELmk/vUp2ZjpDn+yDkNkSebXrzlrA9+S24zuqYsBD9VoLXBXns1tQGSPlbZ
-         MyxchKa7cKJvNLKvvegOwlUlVNuEIY93paEhOnWW682fJ1JSq14d2XtoJ07YheyBWd
-         MekidNOMeV4cPweDn7pFtU+lilAs+SP5pFgcg9Fw=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25N9jP3F043556
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 23 Jun 2022 04:45:25 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 23
- Jun 2022 04:45:24 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 23 Jun 2022 04:45:24 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25N9jNaI007380;
-        Thu, 23 Jun 2022 04:45:24 -0500
-Date:   Thu, 23 Jun 2022 15:15:23 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Rahul T R <r-ravikumar@ti.com>
-CC:     <linux-phy@lists.infradead.org>, <kishon@ti.com>,
-        <vkoul@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <laurent.pinchart@ideasonboard.com>,
-        <tomi.valkeinen@ideasonboard.com>, <linux-kernel@vger.kernel.org>,
-        <jpawar@cadence.com>, <sjakhade@cadence.com>, <mparab@cadence.com>,
-        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
-        <lee.jones@linaro.org>
-Subject: Re: [PATCH v3 3/3] phy: cdns-dphy: Add support for DPHY TX on J721e
-Message-ID: <20220623094523.ccrsmw477a5btgcf@ti.com>
-References: <20220622105311.21415-1-r-ravikumar@ti.com>
- <20220622105311.21415-4-r-ravikumar@ti.com>
+        with ESMTP id S229937AbiFWJql (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 05:46:41 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C424949927;
+        Thu, 23 Jun 2022 02:46:39 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id h23so39814731ejj.12;
+        Thu, 23 Jun 2022 02:46:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CqZHI78qt9lumbdFWlSiHgcuuijsjPdVdWVBLjHodmk=;
+        b=D38lj8H8nJhIo9qkx/MnZ8wJ1AkNoxYBlHUbMF4zwGLQsc73QZg/eYrvqbxfYv64R1
+         CdXo/2hZprxh0OmqHz63eiVupNkiL4+XXEbcnbk80c7Ovxq+15xb8CTuxVygBkRKOUrn
+         aAba6DsefOi2kHghmRTRYRas8PHUyxqlGxAqfGnmVwOuUg/iBJE70Y3jnebaneuPwRIQ
+         UPutxElfQgar0VmZVnbY6MNeF+wvaMI5vK6qMogMGyzDDlah/j5RuEfM7Fv95zoEX9Vw
+         6RhssvO9KLptXYbzKnUbonEPYK82iRuJ5b8ienIAqEk03TyQJR6UUwsJRMLDmclvDWbV
+         PFaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CqZHI78qt9lumbdFWlSiHgcuuijsjPdVdWVBLjHodmk=;
+        b=1p/R2+muDh1qgmwioYpFL+jDgcdTfC/XMO4J+1wZ8PICg+kIcBNWR+HYnoAyF4CChb
+         YyT673YRGysYM8KbclFMlz8rM8mdKIFw8sezvnUi1o38ghhl3FJ8MYzf1TGe4yql4jX0
+         uN7NtEDSte1kQjKEOdhCHj5uLiv0gHliA+xnQT2na0nEWvuhNk0UyRMtRNXVhFXq+Jho
+         a2ITMocXChcLIlSfWdY5TKzq4ZeNmYuO/FzMqbJ54n9cLIFv3gbUoB5rqO/stM38Tkr9
+         NEmuQF0VYVxmyfSSkne9pD1vytPr50b5y7/xrQ3OkYgbh+OoGH2I7hT5BkXWYpW9oPqe
+         2QQg==
+X-Gm-Message-State: AJIora9Q8Q2AGcCYnreocRN1G1qWTGaHLOVM0Gech1ljUR7FEWdoT/sL
+        GVtHgSH3SmFVyxYQ0y6MZDjgcUYAw91e+PKtXbk=
+X-Google-Smtp-Source: AGRyM1tcdDytx3LsBRh8vBYNujZdlq64fb8nbca2bDlIhtR7BJ/rWehDXJzpfzQCwCnDrzBHegri9ri9odY7E19Xv+w=
+X-Received: by 2002:a17:906:434f:b0:711:eb76:c320 with SMTP id
+ z15-20020a170906434f00b00711eb76c320mr7344946ejm.636.1655977598189; Thu, 23
+ Jun 2022 02:46:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220622105311.21415-4-r-ravikumar@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220622154659.8710-1-LinoSanfilippo@gmx.de> <20220622154659.8710-2-LinoSanfilippo@gmx.de>
+ <YrNLtg+BZlwKsBbF@smile.fi.intel.com> <2dda5707-6f13-6d33-863d-a88b89e88a88@gmx.de>
+In-Reply-To: <2dda5707-6f13-6d33-863d-a88b89e88a88@gmx.de>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 23 Jun 2022 11:45:57 +0200
+Message-ID: <CAHp75Vd_ix=bJs9k6bYM8S+3f_Pw7Tvs9DhPcZxu1=33T=mQ7A@mail.gmail.com>
+Subject: Re: [PATCH 1/8] serial: core: only get RS485 termination gpio if supported
+To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Lukas Wunner <lukas@wunner.de>, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rahul,
+On Thu, Jun 23, 2022 at 4:00 AM Lino Sanfilippo <LinoSanfilippo@gmx.de> wrote:
+> On 22.06.22 at 19:04, Andy Shevchenko wrote:
+> > On Wed, Jun 22, 2022 at 05:46:52PM +0200, Lino Sanfilippo wrote:
+> >> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+> >>
+> >> In uart_get_rs485_mode() only try to get a termination GPIO if RS485 bus
+> >> termination is supported by the driver.
+> >
+> > I'm not sure I got the usefulness of this change.
+> > We request GPIO line as optional, so if one is defined it in the DT/ACPI, then
+> > they probably want to (opportunistically) have it>
+> >
+> > With your change it's possible to have a DTS where GPIO line defined in a
+> > broken way and user won't ever know about it, if they are using platforms
+> > without termination support.
+>
+> This behavior is not introduced with this patch, also in the current code the driver
+> wont inform the user if it does not make use erroneous defined termination GPIO.
 
-On 22/06/22 04:23PM, Rahul T R wrote:
-> Add support new compatible for dphy-tx on j721e
-> and implement dphy ops required.
-> 
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> ---
->  drivers/phy/cadence/Kconfig     | 10 ++++++
->  drivers/phy/cadence/cdns-dphy.c | 62 +++++++++++++++++++++++++++++++++
->  2 files changed, 72 insertions(+)
-> 
-> diff --git a/drivers/phy/cadence/Kconfig b/drivers/phy/cadence/Kconfig
-> index 1adde2d99ae7..18024ac6d511 100644
-> --- a/drivers/phy/cadence/Kconfig
-> +++ b/drivers/phy/cadence/Kconfig
-> @@ -22,6 +22,16 @@ config PHY_CADENCE_DPHY
->  	  system. If M is selected, the module will be called
->  	  cdns-dphy.
->  
-> +if PHY_CADENCE_DPHY
-> +
-> +config PHY_CADENCE_DPHY_J721E
-> +	depends on ARCH_K3 || COMPILE_TEST
-> +	bool "J721E DPHY TX Wiz support"
-> +	default y
-> +	help
-> +	  Support J721E Cadence DPHY TX Wiz configuration.
-> +endif
-> +
->  config PHY_CADENCE_DPHY_RX
->  	tristate "Cadence D-PHY Rx Support"
->  	depends on HAS_IOMEM && OF
-> diff --git a/drivers/phy/cadence/cdns-dphy.c b/drivers/phy/cadence/cdns-dphy.c
-> index 14f951013b4f..a6b7d696f77a 100644
-> --- a/drivers/phy/cadence/cdns-dphy.c
-> +++ b/drivers/phy/cadence/cdns-dphy.c
-> @@ -7,6 +7,7 @@
->  #include <linux/bitops.h>
->  #include <linux/clk.h>
->  #include <linux/io.h>
-> +#include <linux/iopoll.h>
->  #include <linux/module.h>
->  #include <linux/of_address.h>
->  #include <linux/of_device.h>
-> @@ -18,6 +19,7 @@
->  
->  #define REG_WAKEUP_TIME_NS		800
->  #define DPHY_PLL_RATE_HZ		108000000
-> +#define POLL_TIMEOUT_US			1000
->  
->  /* DPHY registers */
->  #define DPHY_PMA_CMN(reg)		(reg)
-> @@ -62,6 +64,18 @@
->  #define DSI_NULL_FRAME_OVERHEAD		6
->  #define DSI_EOT_PKT_SIZE		4
->  
-> +#define DPHY_TX_J721E_WIZ_PLL_CTRL	0xF04
-> +#define DPHY_TX_J721E_WIZ_STATUS	0xF08
-> +#define DPHY_TX_J721E_WIZ_RST_CTRL	0xF0C
-> +#define DPHY_TX_J721E_WIZ_PSM_FREQ	0xF10
-> +
-> +#define DPHY_TX_J721E_WIZ_IPDIV		GENMASK(4, 0)
-> +#define DPHY_TX_J721E_WIZ_OPDIV		GENMASK(13, 8)
-> +#define DPHY_TX_J721E_WIZ_FBDIV		GENMASK(25, 16)
-> +#define DPHY_TX_J721E_WIZ_LANE_RSTB	BIT(31)
-> +#define DPHY_TX_WIZ_PLL_LOCK		BIT(31)
-> +#define DPHY_TX_WIZ_O_CMN_READY		BIT(31)
-> +
->  struct cdns_dphy_cfg {
->  	u8 pll_ipdiv;
->  	u8 pll_opdiv;
-> @@ -210,6 +224,43 @@ static void cdns_dphy_ref_set_psm_div(struct cdns_dphy *dphy, u8 div)
->  	       dphy->regs + DPHY_PSM_CFG);
->  }
->  
-> +#ifdef CONFIG_PHY_CADENCE_DPHY_J721E
+It does. If a previously stale GPIO resource may have deferred a probe
+and hence one may debug why the driver is not working, after this
+change one may put a stale GPIO resource into DT/ACPI and have nothing
+in the result. Meaning the change relaxes validation which I consider
+is not good.
 
-Honestly, I don't think there is much use for using this config here. I 
-prefer to have as little ifdefs scattered in code as possible. And I 
-don't think the code you add makes much of a difference in terms of 
-size.
+> This patch at least prevents the driver from allocating and holding a GPIO descriptor across
+> the drivers lifetime that will never be used.
 
-I have not looked much into the WIZ module but the code looks fine to 
-me.
+But it's not your issue, if DTS defines it, so the platform has an
+idea about its usage.
 
-> +static unsigned long cdns_dphy_j721e_get_wakeup_time_ns(struct cdns_dphy *dphy)
-> +{
-> +	return 1000000;
-> +}
-> +
-> +static void cdns_dphy_j721e_set_pll_cfg(struct cdns_dphy *dphy,
-> +					const struct cdns_dphy_cfg *cfg)
-> +{
-> +	u32 status;
-> +
-> +	writel(DPHY_CMN_PWM_HIGH(6) | DPHY_CMN_PWM_LOW(0x101) |
-> +	       DPHY_CMN_PWM_DIV(0x8),
+> Furthermore it simplifies the code in patch 2 when we want to set the GPIO, since we can
+> skip the check whether or not the termination GPIO is supported by the driver.
 
-Please avoid using magic numbers. Or if you are going to use them, at 
-least explain in a comment what they are doing.
-
-> +	       dphy->regs + DPHY_CMN_PWM);
-> +
-> +	writel((FIELD_PREP(DPHY_TX_J721E_WIZ_IPDIV, cfg->pll_ipdiv) |
-> +		FIELD_PREP(DPHY_TX_J721E_WIZ_OPDIV, cfg->pll_opdiv) |
-> +		FIELD_PREP(DPHY_TX_J721E_WIZ_FBDIV, cfg->pll_fbdiv)),
-> +		dphy->regs + DPHY_TX_J721E_WIZ_PLL_CTRL);
-> +
-> +	writel(DPHY_TX_J721E_WIZ_LANE_RSTB,
-> +	       dphy->regs + DPHY_TX_J721E_WIZ_RST_CTRL);
-> +
-> +	readl_poll_timeout(dphy->regs + DPHY_TX_J721E_WIZ_PLL_CTRL, status,
-> +			   (status & DPHY_TX_WIZ_PLL_LOCK), 0, POLL_TIMEOUT_US);
-> +
-> +	readl_poll_timeout(dphy->regs + DPHY_TX_J721E_WIZ_STATUS, status,
-> +			   (status & DPHY_TX_WIZ_O_CMN_READY), 0,
-> +			   POLL_TIMEOUT_US);
-> +}
-> +
-> +static void cdns_dphy_j721e_set_psm_div(struct cdns_dphy *dphy, u8 div)
-> +{
-> +	writel(div, dphy->regs + DPHY_TX_J721E_WIZ_PSM_FREQ);
-> +}
-> +#endif /* !CONFIG_PHY_CADENCE_DPHY_J721E */
-> +
->  /*
->   * This is the reference implementation of DPHY hooks. Specific integration of
->   * this IP may have to re-implement some of them depending on how they decided
-> @@ -221,6 +272,14 @@ static const struct cdns_dphy_ops ref_dphy_ops = {
->  	.set_psm_div = cdns_dphy_ref_set_psm_div,
->  };
->  
-> +#ifdef CONFIG_PHY_CADENCE_DPHY_J721E
-> +static const struct cdns_dphy_ops j721e_dphy_ops = {
-> +	.get_wakeup_time_ns = cdns_dphy_j721e_get_wakeup_time_ns,
-> +	.set_pll_cfg = cdns_dphy_j721e_set_pll_cfg,
-> +	.set_psm_div = cdns_dphy_j721e_set_psm_div,
-> +};
-> +#endif /* !CONFIG_PHY_CADENCE_DPHY_J721E */
-> +
->  static int cdns_dphy_config_from_opts(struct phy *phy,
->  				      struct phy_configure_opts_mipi_dphy *opts,
->  				      struct cdns_dphy_cfg *cfg)
-> @@ -408,6 +467,9 @@ static int cdns_dphy_remove(struct platform_device *pdev)
->  
->  static const struct of_device_id cdns_dphy_of_match[] = {
->  	{ .compatible = "cdns,dphy", .data = &ref_dphy_ops },
-> +#ifdef CONFIG_PHY_CADENCE_DPHY_J721E
-> +	{ .compatible = "ti,j721e-dphy", .data = &j721e_dphy_ops },
-> +#endif /* !CONFIG_PHY_CADENCE_DPHY_J721E */
->  	{ /* sentinel */ },
->  };
->  MODULE_DEVICE_TABLE(of, cdns_dphy_of_match);
-> -- 
-> 2.36.1
-> 
+That's fine.
 
 -- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+With Best Regards,
+Andy Shevchenko
