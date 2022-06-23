@@ -2,66 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC29C557FD4
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 18:29:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97399557FD5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 18:30:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231634AbiFWQ3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 12:29:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60644 "EHLO
+        id S232027AbiFWQ3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 12:29:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232209AbiFWQ3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 12:29:30 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F72446B3E;
-        Thu, 23 Jun 2022 09:29:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656001769; x=1687537769;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=shSMQSjp0om7znr1pZFQg0KFLkYI8bsl3XjfCXpVkk4=;
-  b=ir7TMXTJtFrLNXMajO3vlX2ht+HQ/kPoPEGb2QdrPnw5nLtwvn+azo7h
-   wyIqygesm+fPIWx8fLtug5WBCirk80rR4un6FiU73ws7Hqh1fFrBXY0Kb
-   v61t34HAvReWFhkTieNuAV7wH5sy3oKuNNkV0TZJwyhif+1b8Rt73jvY0
-   D5laRS5AUx/8EFNaI/PF3Z/+P+Z/wI1pBMnG7UaVQfT990qsXMAdgagmG
-   9YOu5HlWCVt73bpzOkbJQKq6zplmebH8+p22j5o/Pb7knICy2gxhX6N4W
-   P+g2PvWIY5mlK3+MLS/vQX+Rs5Jkv0XZMsPU5xdH5Jy3d7vpTyDVl/22f
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="281498539"
-X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; 
-   d="scan'208";a="281498539"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2022 09:29:28 -0700
-X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; 
-   d="scan'208";a="615634196"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2022 09:29:25 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1o4Php-000tCz-QO;
-        Thu, 23 Jun 2022 19:29:21 +0300
-Date:   Thu, 23 Jun 2022 19:29:21 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
-Cc:     gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vz@mleia.com,
+        with ESMTP id S232285AbiFWQ3k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 12:29:40 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEF8F46B32
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 09:29:39 -0700 (PDT)
+Received: from [IPv6:2a00:23c7:6883:e501:cf51:f3a2:10b5:accf] (unknown [IPv6:2a00:23c7:6883:e501:cf51:f3a2:10b5:accf])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: obbardc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id AEEC266017E4;
+        Thu, 23 Jun 2022 17:29:38 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1656001778;
+        bh=0fcf2Og5+kAlUKXKZjiLdn0YJRF3DsBLftoZV9IJdiw=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=l+w2abAK8h9HgrwpbWg/B7Xm/ZaYbCCurnXZ5ciUQbyFRDTaxvAMFlniqbO8hgs+S
+         981JtASOd+mligWTmMli1hppeFeGWghNcEEmC4+0/Y5fiTssfNFoMTBmp4jqnSulK2
+         p3GPoLcdzkwTAMDKAJ7NogogOjBqlbHZ8Grr9PtOqIz1Stm9ynrF2g90OPyhvnnKoN
+         PpgFpwZFFBIm6918/vzZHy3hIJJZ0eMY7mB4GTJwpwL79QTmvRjQ5HO7uGbM1nOGnS
+         gCpZhnxZuTUGBOhqTMSx23f4Yjarc3OfE+HPqmMYDyAYDZUutn/IrDq9sMpMQuSFJG
+         1eJdb/IWM8ohg==
+Message-ID: <0a302a938736d3d5dc9e158718f2cd0c33b53ea4.camel@collabora.com>
+Subject: Re: [PATCH 1/6] dt-bindings: arm: rockchip: add rk3388 compatible
+ string to pmu.yaml
+From:   Christopher Obbard <chris.obbard@collabora.com>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-rockchip@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lukas@wunner.de, p.rosenberger@kunbus.com,
-        Lino Sanfilippo <l.sanfilippo@kunbus.com>
-Subject: Re: [PATCH 5/8] dt_bindings: rs485: Correct delay values
-Message-ID: <YrSU4eL9hgISg3Y1@smile.fi.intel.com>
-References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
- <20220622154659.8710-6-LinoSanfilippo@gmx.de>
+        kernel@collabora.com
+Date:   Thu, 23 Jun 2022 17:29:33 +0100
+In-Reply-To: <20220623162309.243766-2-sebastian.reichel@collabora.com>
+References: <20220623162309.243766-1-sebastian.reichel@collabora.com>
+         <20220623162309.243766-2-sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.2-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220622154659.8710-6-LinoSanfilippo@gmx.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,23 +59,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 22, 2022 at 05:46:56PM +0200, Lino Sanfilippo wrote:
-> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
-> 
-> The maximum allowed delay for RTS before and RTS after send is 100 ms.
-> Adjust the documentation accordingly.
+On Thu, 2022-06-23 at 18:23 +0200, Sebastian Reichel wrote:
+> Add the compatible for the pmu mfd on rk3388.
+
+Hey Sebastian,
+
+Also looks looks like this (and the patch subject) should instead refer
+to the rk3588 ?
+
+Thanks!
+Chris
 
 
-Is it only documentation issue? If the code allows this to be set higher
-than 100, we may not change the documentation since this an ABI (from
-firmware <--> kernel perspective) we need to support old variants.
-
-If the above is true and limit is dictated by the spec, we may issue a
-warning in the code and drop it to the allowed maximum, otherwise we
-can't do much here.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>=20
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+> =C2=A0Documentation/devicetree/bindings/arm/rockchip/pmu.yaml | 2 ++
+> =C2=A01 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip/pmu.yaml
+> b/Documentation/devicetree/bindings/arm/rockchip/pmu.yaml
+> index 5ece38065e54..4c645049c15b 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip/pmu.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip/pmu.yaml
+> @@ -25,6 +25,7 @@ select:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - rockchip,r=
+k3368-pmu
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - rockchip,r=
+k3399-pmu
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - rockchip,r=
+k3568-pmu
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - rockchip,rk3588=
+-pmu
+> =C2=A0
+> =C2=A0=C2=A0 required:
+> =C2=A0=C2=A0=C2=A0=C2=A0 - compatible
+> @@ -39,6 +40,7 @@ properties:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - rockchip,r=
+k3368-pmu
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - rockchip,r=
+k3399-pmu
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - rockchip,r=
+k3568-pmu
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - rockchip,rk3588=
+-pmu
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: syscon
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: simple-mfd
+> =C2=A0
+> --=20
+> 2.35.1
+>=20
+>=20
