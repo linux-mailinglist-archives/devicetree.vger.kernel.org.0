@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC94F5579D7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 14:04:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D58C05579E0
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 14:05:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231741AbiFWMEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 08:04:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52112 "EHLO
+        id S231694AbiFWMEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 08:04:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231420AbiFWMEe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 08:04:34 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E88FD488B9
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 05:04:27 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id y32so32970526lfa.6
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 05:04:27 -0700 (PDT)
+        with ESMTP id S231503AbiFWMEh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 08:04:37 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A102496A2
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 05:04:30 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id q9so5020594ljp.4
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 05:04:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=phwT+Z6nWrWm8Hr0ddNtVBYpY/29m2pZjUGouNitf4c=;
-        b=GQL8E4bhfx7Iai+2lcA/S84OUj1KpEBjIQE+ze7obNQQ6vaNEW4VwUMYD6X56Wxgj3
-         J9XvfjrrblfmJG99VkxuxAgxnfB1CZVReAj/Ztypv+2QjFgMQRyixmRbKFyAbGPaVRZl
-         J4gura9cPiSojJCCrPK6e11Sl4NVj2+maHvwdyy1X0ZRwgi5NXpDijsOQtvq5irjwsfz
-         4kWmlXoP9Oxg4YgdgYkn24L3zhxrth3u/Vff3oRtCKIKodHrt2vFhrNSDtaWltE5CJeS
-         tzz7c9WfyveFTxFml1X5RROitWAipVoBmDxNKKzaYx3Ia+iIGYa65S+Ht+WEU3wj/aDj
-         lJRg==
+        bh=CY/R0xFxG7Py4HYT1PPxbuqpWVbd/YtENkbXJ6Hu/gI=;
+        b=qWF5I02mOgSa/6EheKom+AYbV93XG73Ty7LFbQLmHPnP9//1va4j+e+h8SH2IUOjx2
+         duCoO+EFt7R/NT0wrAdEc8Vdzw81Attg9obPOvpg1oFAyNKJEkM5mzbX5uDQoZLZnIC5
+         AJvfyyRdIxR7MScM4YNMrwVwKSDfCgn8g1d9feQG+JiRTjqjM41AxSjP9AybInDFwIzr
+         qsYENfOi1+/TrRaNG1JwJoL+8LkkZ01yotFduy0kdhiZx6SqfEyLIkYsfVtt6WzkeiI+
+         ViFY4bpI4R9GQYtrdFIo59O4nox2AHAgmEqJxUNDbi02yS4tNrlgQSHKXC8KDQQJ2+w+
+         quXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=phwT+Z6nWrWm8Hr0ddNtVBYpY/29m2pZjUGouNitf4c=;
-        b=SedI6RBc9J5YnJktpwRuzBT1EcLIqOHd8gvSR5TN6QhQ0HF4eeZTgJUOH+y6lHhPNN
-         cby3WJHRvynpMyT0aHoWDydv0UTb0pzeVAgBjcA9mqo9qwqgejkUiu7oqIYiGUN5tIOq
-         k93PKubCF2ZxLzMVPM8selCR6kauy5Gq5nFFuhXwfo7zHBszNOu+NRJ2HEPGzSCOTmYs
-         8QTwEhCBO6K0sDuk2FQUCtObi6l9GemaiJPIdohe+b+dG5x8b8Zn/HBL7OPcWNPRwrOY
-         /lZAjyG9nEm9mOoxyxPa2V/6iifhz78M1Nhy21Z7xQ9XGxn4iGizZrpI273/k3D1/NwU
-         pHgw==
-X-Gm-Message-State: AJIora/EXeBBcbpne7MXwftWV6IVmAQsg9tt6lRowG2CrHIJRPpWfTyR
-        LfnNAQGwOj37nGJo8o5huLGTIkgyK1liHSSw
-X-Google-Smtp-Source: AGRyM1vsh64TMNAD9XuPmd3FfqFMpFJ0tlZrucUc2f64uUmXi21/MIvZq1NrLpYBdC650ejTtbzbow==
-X-Received: by 2002:a05:6512:2810:b0:47f:a76c:8770 with SMTP id cf16-20020a056512281000b0047fa76c8770mr1707701lfb.116.1655985867352;
-        Thu, 23 Jun 2022 05:04:27 -0700 (PDT)
+        bh=CY/R0xFxG7Py4HYT1PPxbuqpWVbd/YtENkbXJ6Hu/gI=;
+        b=YSsD3Imk/TVIFdVs+S/PaLJ3J/FRIvnqHxTrpDimxdEOw8XdLenmu+ygPOZtwpIudN
+         9WLNyDbGAWlHfNhbbX6ExYercg/TBtBEWf7KNufxHu7xTNvq+bwuxaqcbZBGuppZE2jR
+         tzHe150Ek3r2BYVoBwrnGRJA+n/SbsFzIsT96msVTy0EeljP63dcoQlHA1+ZNDcn0us4
+         n+2dnIIPMOjclnmUw/cj20dEKFcn+gb+vTCy11Qbnfq+V1BjMwiZ+msAu3qLYDqRbV4J
+         P6d/SmWeOXVYVJFQ5vIc73uFR99v0FUtTVl1b/IcLFxGNsHlpncOESfS1KehyzF8VaUL
+         Eerg==
+X-Gm-Message-State: AJIora9VV28LFRiLWUzpvFefY0W10yF8D81z0WZjkIO6+uKzTEY1+kqs
+        6yf6mTXpU3rvp43E/O3WQTRiyg==
+X-Google-Smtp-Source: AGRyM1v4xU8frsl4EdzPmth7IQWf9+k5j4HpKc5Lfr4vZiEBleu3ornilOj2mxVdCh7cdA19hq/XCA==
+X-Received: by 2002:a2e:5342:0:b0:259:ac23:8d52 with SMTP id t2-20020a2e5342000000b00259ac238d52mr4637857ljd.488.1655985868269;
+        Thu, 23 Jun 2022 05:04:28 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 18-20020ac25f52000000b0047f6b4a53cdsm1799888lfz.172.2022.06.23.05.04.26
+        by smtp.gmail.com with ESMTPSA id 18-20020ac25f52000000b0047f6b4a53cdsm1799888lfz.172.2022.06.23.05.04.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jun 2022 05:04:26 -0700 (PDT)
+        Thu, 23 Jun 2022 05:04:27 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -57,9 +57,9 @@ To:     Andy Gross <agross@kernel.org>,
         Taniya Das <quic_tdas@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 10/15] ARM: dts: qcom: apq8064: add clocks to the LCC device node
-Date:   Thu, 23 Jun 2022 15:04:13 +0300
-Message-Id: <20220623120418.250589-11-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 11/15] ARM: dts: qcom: msm8960: add clocks to the LCC device node
+Date:   Thu, 23 Jun 2022 15:04:14 +0300
+Message-Id: <20220623120418.250589-12-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220623120418.250589-1-dmitry.baryshkov@linaro.org>
 References: <20220623120418.250589-1-dmitry.baryshkov@linaro.org>
@@ -80,14 +80,23 @@ and clock-names properties to the LCC device tree node.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom-apq8064.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ arch/arm/boot/dts/qcom-msm8960.dtsi | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index 0d323c208978..72b099ed4543 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -834,6 +834,20 @@ lcc: clock-controller@28000000 {
+diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
+index 4a2d74cf01d2..3d58846319ae 100644
+--- a/arch/arm/boot/dts/qcom-msm8960.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
+@@ -63,7 +63,7 @@ cxo_board {
+ 			clock-output-names = "cxo_board";
+ 		};
+ 
+-		pxo_board {
++		pxo_board: pxo_board {
+ 			compatible = "fixed-clock";
+ 			#clock-cells = <0>;
+ 			clock-frequency = <27000000>;
+@@ -137,6 +137,20 @@ lcc: clock-controller@28000000 {
  			reg = <0x28000000 0x1000>;
  			#clock-cells = <1>;
  			#reset-cells = <1>;
@@ -107,7 +116,7 @@ index 0d323c208978..72b099ed4543 100644
 +				      "pcm_codec_clk";
  		};
  
- 		mmcc: clock-controller@4000000 {
+ 		clock-controller@4000000 {
 -- 
 2.35.1
 
