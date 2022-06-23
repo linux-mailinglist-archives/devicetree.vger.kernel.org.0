@@ -2,70 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72AB9557319
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 08:29:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7E7355733F
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 08:42:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbiFWG26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 02:28:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59446 "EHLO
+        id S229874AbiFWGmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 02:42:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229686AbiFWG25 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 02:28:57 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B68DC39141;
-        Wed, 22 Jun 2022 23:28:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1655965736; x=1687501736;
-  h=message-id:date:mime-version:subject:to:references:from:
-   in-reply-to:content-transfer-encoding;
-  bh=jocLkGp1VXmknBvXV/K17H/H1y8PcS/JMLkx80qGTXM=;
-  b=hElQj1MnqEz2uAl2egQCYmmp0UG5Nn7qEdOSJOeyc9mf9sa/Jbcxg/xY
-   9bqGB/wMrXMzMTBk7LXf9+AHSFK5H9tgs5ncFBsnvz3YNX+X5bWQHEkiK
-   AEx3/IRS9nFLG0WJzx3N1ubaq4GMFYNapp+KMd0pdvKsLqm93+l/TEdi3
-   g=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 22 Jun 2022 23:28:56 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2022 23:28:55 -0700
-Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 22 Jun 2022 23:28:55 -0700
-Received: from [10.242.242.148] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 22 Jun
- 2022 23:28:50 -0700
-Message-ID: <76025864-e264-21e0-cba4-5c9a672afcea@quicinc.com>
-Date:   Thu, 23 Jun 2022 11:58:47 +0530
+        with ESMTP id S229476AbiFWGmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 02:42:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964E4E80;
+        Wed, 22 Jun 2022 23:42:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 328E461423;
+        Thu, 23 Jun 2022 06:42:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92F66C3411B;
+        Thu, 23 Jun 2022 06:42:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1655966572;
+        bh=WM63W4t+GfDhnclF1xtyqcOeZnCwVwt8C6UTIapLzkQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QIKZD7ziOL/HJRmCog8cjYEpmdWzMlegswjLhO/BzieT7AdJae2Z+HoRG7j6YSUx+
+         cpepKiFpWvRgC5i23Xqw0QZzpfFoVm/TByhpkfO0uSjAoIDov6rnCwbJuYEL/vlUyj
+         pOYxpQvZxYzVIpaWxRHeIvxOXvQgGuL6oH1zg6LnIm2iD86v1kK2hCg2U2BRssS8j2
+         wE29jKkjo0Fy9wzO3AAOdG8jwyAJZbJU0aJS+LItFcelUIS2aUS7/1x9XAS6jLAKVd
+         yPDtmmBzxF76PsGjqiVDuegrnNe1TZjcYCnXK6JDGJBq6I5EE6GDKmZPqsJgiJuBKZ
+         xLpUo98oEShGA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1o4GYC-0004Xe-Kd; Thu, 23 Jun 2022 08:42:49 +0200
+Date:   Thu, 23 Jun 2022 08:42:48 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: add SC8280XP platform
+Message-ID: <YrQLaGcB9NoCDQQM@hovoldconsulting.com>
+References: <20220607214113.4057684-1-bjorn.andersson@linaro.org>
+ <20220607214113.4057684-3-bjorn.andersson@linaro.org>
+ <YrP4qs+GIlaS7Wzy@matsya>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH V2 6/8] dt-bindings: qcom: Add ipq5018 bindings
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <p.zabel@pengutronix.de>, <quic_varada@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220621161126.15883-1-quic_srichara@quicinc.com>
- <20220621161126.15883-7-quic_srichara@quicinc.com>
- <317d18af-e4a0-523e-960f-5e2df66afe19@linaro.org>
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <317d18af-e4a0-523e-960f-5e2df66afe19@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YrP4qs+GIlaS7Wzy@matsya>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,23 +64,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 23, 2022 at 10:52:50AM +0530, Vinod Koul wrote:
+> On 07-06-22, 14:41, Bjorn Andersson wrote:
+> > +	aggre1_noc: interconncet-aggre1-noc {
 
-On 6/22/2022 8:44 PM, Krzysztof Kozlowski wrote:
-> On 21/06/2022 18:11, Sricharan R wrote:
->> From: Varadarajan Narayanan <quic_varada@quicinc.com>
->>
->> Document the new ipq5018 SOC/board device tree bindings.
->>
->> Co-developed-by: Sricharan R <quic_srichara@quicinc.com>
->> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
->> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Your chain is wrong. Since you send it, your SoB is the last. We have
-> nice example for this:
->
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L473
->
-   sure, will fix it.
+> s/interconncet/interconnect
 
-Regards,
-   Sricharan
+Note that you're reviewing v1 and that this has since been fixed.
 
+> Hmmm I thought it was required that node name should be interconnect@x
+
+> > +		usb_0_hsphy: phy@88e5000 {
+> > +			compatible = "qcom,sc8280xp-usb-hs-phy",
+> > +				     "qcom,usb-snps-hs-5nm-phy";
+> > +			reg = <0 0x088e5000 0 0x400>;
+> 
+> this doesn't match with node address above (I think W=1 would warn you
+> of such mismatches, useful to run on new dts
+
+This unit address is actually correct, but there were some other
+mismatches that were also fixed in v2.
+
+Johan
