@@ -2,122 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A28775586C1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 20:17:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 757955586E5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 20:18:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236775AbiFWSQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 14:16:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44494 "EHLO
+        id S236744AbiFWSSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 14:18:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236778AbiFWSQg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 14:16:36 -0400
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A06B25DF35;
-        Thu, 23 Jun 2022 10:22:44 -0700 (PDT)
-Received: by mail-yb1-f173.google.com with SMTP id u9so219638ybq.3;
-        Thu, 23 Jun 2022 10:22:44 -0700 (PDT)
+        with ESMTP id S237173AbiFWSR4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 14:17:56 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16515B3C1C;
+        Thu, 23 Jun 2022 10:24:18 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id i18so111624lfu.8;
+        Thu, 23 Jun 2022 10:24:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Vd6I47XVnnsBhvyCl3F2FOHX4RVw1fOk5Ka4rUmvOyw=;
+        b=AfKR0c24ywYANVT/yo48pwbD67+tfKAyJ5mxn73xIoJZFyu1YGuFdFJAD3avh68hHf
+         L9mG2F4voRL2y8BD4ffFqMytVW6zDLtNFU1OyahEiYd+0W961n8howXJhbrYRim8pKnS
+         TsJ107hrjN4/VPbCfTiRNIh1nKzxwTM7mftm7IyVU3dmJZRX+tFBzLzlf9OirlkDGLPK
+         XH+DYiAuqGPryc78DuqNHDUckevTjKEC+Izsm+Ck8I6XnB8pTGGnpN1r7gO/SNSeBpzT
+         FHP+6upHqMjsGC9xp79r1Rw2W4gDheEuLSHeVz4CozYrWvlO8KkLmGdGRHECYw0GHHkR
+         BV4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QzySQcL24GEYxXoJc82RsC0c2BhGDpj4k4DOkY9xrS0=;
-        b=EA9QO/BQU35unKlx6FbkmO5/gPZgmhdZgoPbgFC6ffBaA9VooOcc0BRLOU39xQVF5u
-         oCQBgnLZoYCyzVFx7UIoZDv9EQX6dTDh4Rgq+u/q19CS8XJPMXCMbOzr/wvoN8a+JJEX
-         n+dfZAHFvr9Z2RZB/XL9H/844Gm0m5QrkH2LAFi2Edlk952DPNVmyNwpHEo0zDEgttH/
-         rh/cvmHqXZv3hq9jo2fuvJWXhzak+RaB6VSTOM7wwmz9+vUeiVyRW9eHndW02UhCqfSG
-         zciotoAlnfZ/mSNthxa1kW0Dqxa+aopjSNJbaqDfEBibkC99qnrZLbTwsBuiL8Fdv7Fv
-         iS+g==
-X-Gm-Message-State: AJIora8hjXpF/oHWli0PfCcSNJcgeSauYfwdswID16swkOdq45TP3wEt
-        BttImfYagxBaZOWbKf9rxILcTsZ7uMFC93gcX1A=
-X-Google-Smtp-Source: AGRyM1vlR+G3ynXaQ+rOy9k5hMBPieUkqHmh9QChAgpgAs7VODTNv3swHyAeiQ4sYXpc/+o+j6AcUnENYWlbLbMDoS8=
-X-Received: by 2002:a05:6902:1141:b0:669:3f2a:c6bb with SMTP id
- p1-20020a056902114100b006693f2ac6bbmr10551083ybu.365.1656004963776; Thu, 23
- Jun 2022 10:22:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220623080344.783549-1-saravanak@google.com> <20220623080344.783549-3-saravanak@google.com>
- <20220623100421.GY1615@pengutronix.de> <YrSXKkYfr+Hinsuu@smile.fi.intel.com>
-In-Reply-To: <YrSXKkYfr+Hinsuu@smile.fi.intel.com>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Thu, 23 Jun 2022 19:22:32 +0200
-Message-ID: <CAJZ5v0girHMO5v=KMXmTuXNjrfx+1gi8ma25mNc+gt=3U8pppA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] of: base: Avoid console probe delay when fw_devlink.strict=1
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     sascha hauer <sha@pengutronix.de>,
-        Saravana Kannan <saravanak@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Vd6I47XVnnsBhvyCl3F2FOHX4RVw1fOk5Ka4rUmvOyw=;
+        b=CdFQbQ5DcboTglYypdlV+OY8WmZdAi++9mj4vmWWZRC4RByfUVIKAzJECgTlcruPmd
+         9nexaiuqg5oR+tWeiqSG9ErY4dIUbWfCKpsxsjQU049RGLdnF/4akpVJ+J308QMzgZUj
+         YLGmYwxgNA1nJgHt+p2pjlWCcH+ft/F7AhvDlxfHGL/nQtnGBx4Fme8bn+NAOKDjY8KE
+         rS+6oVcXTN5gkp9qGWj8eLyGAx8uyGD3nldK+3YrXFixhzKi+qtBZretZZk/la6saDkP
+         T+IGS3XsAmhPVPPJDzmPUBKRh8N6GVdEKJLItarWK3i8XV9OTBZHx/x3ZJ9SggjpbUXR
+         /cuw==
+X-Gm-Message-State: AJIora/9J/OExdGf7nFPulhkOHO3RsufiOaXvWGdzmRb55Cyvu8PW8+p
+        p5aq+0Tav81hKkbjhYCajnM=
+X-Google-Smtp-Source: AGRyM1uGcwmA4B2BYgcxHcSU64lGKl2lkAP50JWq/nzLH/mLaOoHxPa9gArlBKjn55ukt20bk9e+Wg==
+X-Received: by 2002:a05:6512:2241:b0:479:6426:15af with SMTP id i1-20020a056512224100b00479642615afmr6111281lfu.631.1656005057043;
+        Thu, 23 Jun 2022 10:24:17 -0700 (PDT)
+Received: from gmail.com (82-209-154-112.cust.bredband2.com. [82.209.154.112])
+        by smtp.gmail.com with ESMTPSA id v6-20020a05651203a600b0047f9cfa914csm677369lfp.18.2022.06.23.10.24.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Jun 2022 10:24:15 -0700 (PDT)
+Date:   Thu, 23 Jun 2022 19:26:05 +0200
+From:   Marcus Folkesson <marcus.folkesson@gmail.com>
+To:     Kent Gustavsson <kent@minoris.se>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>, peng fan <peng.fan@nxp.com>,
-        kevin hilman <khilman@kernel.org>,
-        ulf hansson <ulf.hansson@linaro.org>,
-        len brown <len.brown@intel.com>, pavel machek <pavel@ucw.cz>,
-        joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>,
-        andrew lunn <andrew@lunn.ch>,
-        heiner kallweit <hkallweit1@gmail.com>,
-        russell king <linux@armlinux.org.uk>,
-        "david s. miller" <davem@davemloft.net>,
-        eric dumazet <edumazet@google.com>,
-        jakub kicinski <kuba@kernel.org>,
-        paolo abeni <pabeni@redhat.com>,
-        linus walleij <linus.walleij@linaro.org>,
-        hideaki yoshifuji <yoshfuji@linux-ipv6.org>,
-        david ahern <dsahern@kernel.org>,
-        "Cc: Android Kernel" <kernel-team@android.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:AMD IOMMU (AMD-VI)" <iommu@lists.linux-foundation.org>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 10/10] iio: adc: mcp3911: add support to set PGA
+Message-ID: <YrSiLdFzkXtCZIBi@gmail.com>
+References: <20220623170844.2189814-1-marcus.folkesson@gmail.com>
+ <20220623170844.2189814-10-marcus.folkesson@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="lGrmasrXvQkSs9iU"
+Content-Disposition: inline
+In-Reply-To: <20220623170844.2189814-10-marcus.folkesson@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 23, 2022 at 6:39 PM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Thu, Jun 23, 2022 at 12:04:21PM +0200, sascha hauer wrote:
-> > On Thu, Jun 23, 2022 at 01:03:43AM -0700, Saravana Kannan wrote:
->
-> ...
->
-> > I wonder if it wouldn't be a better approach to just probe all devices
-> > and record the device(node) they are waiting on. Then you know that you
-> > don't need to probe them again until the device they are waiting for
-> > is available.
->
-> There may be no device, but resource. And we become again to the something like
-> deferred probe ugly hack.
->
-> The real solution is to rework device driver model in the kernel that it will
-> create a graph of dependencies and then simply follow it. But actually it should
-> be more than 1 graph, because there are resources and there are power, clock and
-> resets that may be orthogonal to the higher dependencies (like driver X provides
-> a resource to driver Y).
 
-There is one graph, or it wouldn't be possible to shut down the system orderly.
+--lGrmasrXvQkSs9iU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-The problem is that this graph is generally dynamic, especially during
-system init, and following dependencies in transient states is
-generally hard.
+On Thu, Jun 23, 2022 at 07:08:44PM +0200, Marcus Folkesson wrote:
+> -		.info_mask_shared_by_type_available =		\
+> -			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
+> +		.info_mask_shared_by_type_available =           \
+> +			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO)	\
 
-Device links allow the already known dependencies to be recorded and
-taken into account later, so we already have a graph for those.
+This change was not supposed to sneak in. Removed in v2.
 
-The unknown dependencies obviously cannot be used for creating a graph
-of any sort, though, and here we are in the business of guessing what
-the unknown dependencies may be IIUC.
+/Marcus
+
+
+
+--lGrmasrXvQkSs9iU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmK0oicACgkQiIBOb1ld
+UjJvmQ/+O1qb9I5+2vmxERYd3bqBZ7uUt0KqGiSxxvQJ8ZkEhN95leqvOtCicSsl
+9zRV1VyQc6z6dB4Hwol4FZ27FKPL3bzNQatSnBIbDqX7nQKGGT0uY2UWwrhcqm/I
+dRgc5WBODVjjpqcZPR/KkWhHBBO+qDhPTRVq6Q2OZIueKNcG26+5XIsNo5Uhw1dB
+p2yj3jfySqp4Q4FIQlcM7wB72/0rc9T4BbvQDRNcdin7UaSl4rWmtfxg7ZPOje1p
+9O6ek1soQKuEDqj18h7N2VD3zuG2FN4DtBNxPERqRF9rqkgiyf4/pvpYl9ontZp1
+zEJujWE0aUodxaN9A8q3RvDRPT2TbmE5OxcBdYvUot9tHX99NNiscZjdV1Wp61Wt
+pbZklmGOiQ0PcwNsakZRRer9+e6JGSm5KpC3ssckadejOVOT32C/v1iErGBuvlru
+vA18SDq3ZvPmO5s/WybjIGnpmqJ/YK9khZSn247/YOiOC8IgcDKWIv8SfItOhJN/
+mQLqmHXDZPH9Mhf7rM/EnvjVUjBDZyBwt0guZMkgMS45iS9eEvSoWyMXgC6fmgtJ
+i4jmRNTXc3IbBibdvuX4xIEjEeLJJjmlQZWL0F/TTAuL1Xxx0FC1WaTcKWYD141S
+eMbTVMPXie6rK8p8pGx5OTv+6fJe6A5BO0uxf6g2CSW+FlVAb5U=
+=DB3I
+-----END PGP SIGNATURE-----
+
+--lGrmasrXvQkSs9iU--
