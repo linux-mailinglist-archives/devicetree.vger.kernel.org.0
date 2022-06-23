@@ -2,114 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70CB95575D7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 10:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F3545575F6
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 10:54:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230215AbiFWIrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 04:47:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56180 "EHLO
+        id S230220AbiFWIyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 04:54:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbiFWIq6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 04:46:58 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31FA349265
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 01:46:57 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id n1so26645394wrg.12
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 01:46:57 -0700 (PDT)
+        with ESMTP id S230281AbiFWIyp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 04:54:45 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DCBC37BC9;
+        Thu, 23 Jun 2022 01:54:44 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id ge10so8060802ejb.7;
+        Thu, 23 Jun 2022 01:54:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=yuZRIg16hgWgvyLgcyb1djhvkqhq6ELp3GvATbp3wU4=;
-        b=IPyFvhxKXms2uxVdYCFhGSLzGeNTDdVbl+GzCUpzlIZFsGOviclFqParLyBgfEmkdL
-         OHX4LmbzNiWDaTcxZ9ep55ys3WBCfqmrOUXzuHfFwYUL+j0fWVL+zjbfB6mNONbtlCBZ
-         2ORGkqIw+I33Hq8xn4209LpHnwaSxhuxJDf2fTY4xG55A1qkUTte5yT7uMKH1PoQCPoi
-         EaypG3LSqBwMUyUmnnHfl2jry+4ElfViEW+vkj8XYqG9KU5r9pVcO+4sfuyQqzWcRRmj
-         3Zjopzmjq4O2EIKiKaormwRF5J1rIfO8CbQRarWzvpbTR8t1QxxQEqm2kZA9K2EWcM+t
-         Xs/g==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=9ewocLK4QQe9PxZjCCcv8MwH3fNq/SZdcCp141CybdY=;
+        b=Kqjw6Rve6l85j+tA8aUQq34+hQ66vEsjrz7vZgWhz7Ljx6vlzB/s0S3zyfFQUH/3BT
+         ZkoVvbpAQT0P8iWwpcGzSap2PCc40eq4cSfiuq4QCtmnpAzDkPt+fMI4DBgkA+27LIrI
+         eN16lc3f2jh7/ppkiKXiryX6aWvVb0L2f3CHOBu2BLisB23B+Mm+9+WAoyze/eNLdB86
+         cQ6NsCSLdUsv8Nw+QsCT03NjVe4ZnUmWMNojoAUVbeFNtjfDZOzVbiJhuskuAzLjqHS8
+         udz2ZBV/V0Phaa/vIIg9iK+PVwKhCxdnuv2P+h5O+NOvgH+8yzA4YG26sHiAhVavWVzX
+         /36Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=yuZRIg16hgWgvyLgcyb1djhvkqhq6ELp3GvATbp3wU4=;
-        b=1Kt8kyrdtpR+ckjkKblyG1NgmPJv10yzahI4HlPEusdPX+MAAdHT6L5RyAR/j7SpMc
-         f9C3DUV7wHTZIkJPTlIcaakjdZ/8QsjEufx4781PvIRdQaTSshTY20toPfvBuqnVRgoX
-         9etLR5lqMZ5ZKJrtzkzBBRV5wmfSCCsgzI/jLuwjDLw9ds2j8MjE+/c+wKMs5VgcGCth
-         U4HfpU0a/z/x01HADVCd/2XjEfIPT7VDst1YYh77upKmXEgRvpLBAbIL4mPlkMHBE+ZR
-         x8t7kUkD4EmObgBt4zhN3x/eNVvw8zjrRJCK+UKCVMtXBwyT2m5z+Yg+9Jgzl/75/3vR
-         NS7A==
-X-Gm-Message-State: AJIora9wUXEfSTNx+kimjoWqeV9OA+NBQbXZ1LZmI7qElBmJBltmWHYL
-        N1OoaU9tm8lh1kLEAYta/xSBQA==
-X-Google-Smtp-Source: AGRyM1tAO9KV+qTetpje4rU4OMUWuh4fswkS5Bu3Wxjp7FLiryhsmjKpmvyh00en80vqsC7j8F/tIQ==
-X-Received: by 2002:a05:6000:1447:b0:21a:278a:181c with SMTP id v7-20020a056000144700b0021a278a181cmr7396898wrx.161.1655974015758;
-        Thu, 23 Jun 2022 01:46:55 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id v6-20020adfa1c6000000b0021b8905e797sm15391550wrv.69.2022.06.23.01.46.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jun 2022 01:46:55 -0700 (PDT)
-Date:   Thu, 23 Jun 2022 09:46:53 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Satya Priya <quic_c_skakit@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        quic_tsoni@quicinc.com
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: qcom-pm8xxx: Update the
- maintainers section
-Message-ID: <YrQofT4lvwO/K/2k@google.com>
-References: <1655874639-11273-1-git-send-email-quic_c_skakit@quicinc.com>
- <1655874639-11273-2-git-send-email-quic_c_skakit@quicinc.com>
- <c54b9423-10cb-e174-44e6-61468efd333f@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=9ewocLK4QQe9PxZjCCcv8MwH3fNq/SZdcCp141CybdY=;
+        b=Bq4CLLAM2UA13887kT4CGcFu3bjt9+1YYLlygNQk2c7KBl2dNhKVbhlkSccynjusvk
+         5koI9pZKZJjhFhaqcQJW5rqCvbgkZZkfqr2dgiOpHLnRfjnsiC94rutEsNTcMJTAYeMv
+         vkteWGfMRjhlHxnSIsa6blnvZQj70+Tuz5lm7JdPng2WV5b9E0VYq2bsM0UGWB4AP/rR
+         0QiqWiBzqkyM9k8P9d/tcozA4VO7QhPsubfwp8ATRdNcwxY8lVF5NR+PDKG1SuWHMuyu
+         6iU7VrBkv6fxbmLfa8VKFtCXGx8tHa9ek7yFid5xd/67pfKZVxE6Gus3iwj+ten850Rk
+         eyNA==
+X-Gm-Message-State: AJIora+pukWAxqt3wxjVn8X5WkbIPS/dudzhqWLwFFzRK77zxyXHqBG2
+        wVeJhOuXYhLKmqELjcCHrS7z2z1uOwyv7bFv5jw=
+X-Google-Smtp-Source: AGRyM1s/cuwwgO+0Sp2pW/dYpZ5m/GlC8Pm/9k9OqASIANcWAar3Aq5myyz+KQKUvdUTygA/txrImEaGpacIQGqXKII=
+X-Received: by 2002:a17:907:6295:b0:703:92b8:e113 with SMTP id
+ nd21-20020a170907629500b0070392b8e113mr7172323ejc.594.1655974482584; Thu, 23
+ Jun 2022 01:54:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c54b9423-10cb-e174-44e6-61468efd333f@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220607155324.118102-1-aidanmacdonald.0x0@gmail.com>
+ <20220607155324.118102-3-aidanmacdonald.0x0@gmail.com> <YqDLflKTsYaupArl@sirena.org.uk>
+ <6YJcC5wyOg6x6Ny4Os8ujFbK2qB4alkU@localhost>
+In-Reply-To: <6YJcC5wyOg6x6Ny4Os8ujFbK2qB4alkU@localhost>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+Date:   Thu, 23 Jun 2022 11:54:29 +0300
+Message-ID: <CANhJrGMqUmnSvyNRgRyp40YnGQkD3N_2AZLn94NDp+4RG0_x5w@mail.gmail.com>
+Subject: Re: [PATCH v2 02/17] regmap-irq: Add get_irq_reg to support unusual
+ register layouts
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, Chen-Yu Tsai <wens@csie.org>,
+        jic23@kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, lars@metafoo.de,
+        "Rafael J . Wysocki" <rafael@kernel.org>, quic_gurus@quicinc.com,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio@vger.kernel.org, Linux PM list <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLY,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Jun 2022, Krzysztof Kozlowski wrote:
+Hi dee Ho peeps!
 
-> On 22/06/2022 07:10, Satya Priya wrote:
-> > Update the maintainers section with latest mail ID.
-> > 
-> > Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-> > ---
-> >  Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> > index 2568736..61bd0b3 100644
-> > --- a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> > @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  title: Qualcomm PM8xxx PMIC multi-function devices
-> >  
-> 
-> Both patches can be squashed and then applied by Rob.
+Sorry for the late reply.
 
-Nope. :)
+pe 10. kes=C3=A4k. 2022 klo 18.43 Aidan MacDonald
+(aidanmacdonald.0x0@gmail.com) kirjoitti:
+>
+> Mark Brown <broonie@kernel.org> writes:
+>
+> > On Tue, Jun 07, 2022 at 04:53:09PM +0100, Aidan MacDonald wrote:
+> >
+> >> -    if (!chip->sub_reg_offsets || !chip->not_fixed_stride) {
+> >> +    if (chip->get_irq_reg) {
+> >> +            reg =3D chip->get_irq_reg(base_reg, i);
+> >> +    } else if (!chip->sub_reg_offsets || !chip->not_fixed_stride) {
+> >
+> > It seems like it would be cleaner and clearer to refactor things so tha=
+t
+> > we always have a get_irq_reg() with standard chips getting given a
+> > default implementation which implements the current behaviour.
+>
+> I don't think that is a good way to clean things up. I only intended
+> get_irq_reg() to be a quick hack to solve a problem; in my opinion it
+> would be a poor abstraction to base the API around.
+>
+> What I'd suggest is something that will simplify regmap-irq. Instead of
+> defining the base registers, etc. in the chip, introduce a new struct
+> to describe a register group:
+>
+>     struct regmap_irq_reg_group {
+>         unsigned int status_base;
+>         unsigned int mask_base;
+>         ...
+>
+>         unsigned int irq_reg_stride;
+>
+>         int num_regs;
+>     };
+>
+> The idea is that the registers in a group are linearly mapped using the
+> formula "base + (i * irq_reg_stride)". Then it's possible to allow for
+> multiple register groups in regmap_irq_chip:
+>
+>     struct regmap_irq_chip {
+>         const struct regmap_irq_reg_group *groups;
+>         unsigned int num_groups;
+>
+>         unsigned int main_status_base;
+>         unsigned int num_main_status_bits;
+>         int num_main_regs;
+>
+>         ...
+>     };
+>
+> It should be straightforward to fit existing chips into this model.
+>
+> - Chips that use a main status + sub-block IRQ layout will define
+>   one register group for each sub-block and continue to describe the
+>   location of the main status registers inside of regmap_irq_chip.
+>   A group will only get polled if the corresponding main status bit
+>   is set -- n'th group is polled if n'th bit is set.
 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Does this work for devices where a single main status bit can flag
+IRQs in more than one sub-registers?
 
-Thanks.
+Best Regards
+ -- Matti
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+--=20
+
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
+Discuss - Estimate - Plan - Report and finally accomplish this:
+void do_work(int time) __attribute__ ((const));
