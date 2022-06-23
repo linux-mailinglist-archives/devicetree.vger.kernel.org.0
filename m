@@ -2,144 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31EA3557E59
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 16:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A07D9557E93
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 17:27:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231938AbiFWO6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 10:58:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53306 "EHLO
+        id S230520AbiFWP1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 11:27:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231726AbiFWO6o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 10:58:44 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B66DD255B8
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 07:58:42 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id u12so41627932eja.8
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 07:58:42 -0700 (PDT)
+        with ESMTP id S230119AbiFWP1R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 11:27:17 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FFA03C490;
+        Thu, 23 Jun 2022 08:27:16 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id lw20so19487305ejb.4;
+        Thu, 23 Jun 2022 08:27:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Y3C1rVPk3dPdQBmkyB1J9bluo/i+1VAHektHpfoJOfg=;
-        b=eVaMHAr2oC82IAagxnteHFSDcz7RlK0q2TZUuHIizv2N5Kq5o9RBYn/2V1MywyL6i3
-         QdvHiX21MNjDcFOs1BNL08YsmRqqaK2gHafg2vinVJWoSAzyueB8pPLhYNI5LG0nB9r/
-         vV5y7JVBLEqNCeAkpLHApqchL5gU6ZszSf9o9VN3nXvz8xfZ5Dck4nLvPRMdeXuEmjQj
-         qipaYGlOKb/1pUDtZIDAwncuSheh1K6YvswOOoQ2j9RZRr0gxegpYYBEeNAe3YydJ/hb
-         SnVN4vWa+HZ1pqlzp2+Si1/DLDAUNA7xyvZQLkPZw57CKTEt0lN3p7t8bcF2jYk6fAjv
-         9j7Q==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ykyqSjgUxDNew/kX2FqRW+o85J45vRgI317oIb0mdOw=;
+        b=q6Qip1p+ISbEQeUsx8FxMeZqyYyJ/n5wGPz0OxKFEyiyoeUzpspLCc3sb5X4zaWrU6
+         Hk9kH1VacSE81ZZeu37YLnSf0CJdTUkKt83zZwkrnQx0Kr9/GpYrYHlcecaNS3hOTi2k
+         dPqyIScb9f8J/jsne9a/zSwJ9MZQ/40qAeGdG3JXCt90gLp6wHDr9e7cD0d5MqoAkVOS
+         AcuwUoUV2s5yWvjqnUjKyGEWPsbMrigdiS5L9KC/t8ouFz+S+ygr3coyY3VpK65q8iuX
+         hOo5OKDW/KVNTS4F5NaDYW78czpH7FWphblsGsIcKmi/M4zngibb025pmIxFjrcirPCC
+         mtZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Y3C1rVPk3dPdQBmkyB1J9bluo/i+1VAHektHpfoJOfg=;
-        b=yWYfa2aGziCMBsPDj8HM3lt/9MIP63/hRJ+uNz6F6VE7YkBCSoDBPRrqz/oqGOA5bW
-         v7LnXTMgJ6aYo75ZzUHD1yYQaaNi5ntYDgjo9GNIBV00AOjS33K4k0L4F4GBXs5nRiIt
-         NcnsAa+TPe5OXjAgwqaPCZenmh2U1cnkongbTTVkSZmIoCawmoyj9z3s3VGxohc72Db9
-         8IrkZAz9lU8p1L9ItzH5QYjNP9M9LMPVt/MQK+oO8EidJmcYOZ2tH49G2Mm/7VDLG2R0
-         dsC2/fzlRi8F/7VIHDA74bXDpptUsVTdhJ+1CGWsw13lfc+j+hG5lQHl/87xxyuHKbmO
-         e1vQ==
-X-Gm-Message-State: AJIora/weWJ7KMQKP1q3mJcGzvITyIy/JhFJGOCXmUvg9Sq5jbtcTI0d
-        K014QxrueVAwoQHBHKevIilPlw==
-X-Google-Smtp-Source: AGRyM1sci6mwJozc2hMmlhymIpKJZRmDhVDXZoRmJzbimMA7FpKYPx4rRJO+hTuNriUckbfyZ4eqSA==
-X-Received: by 2002:a17:907:9816:b0:726:2b90:4bab with SMTP id ji22-20020a170907981600b007262b904babmr939600ejc.544.1655996321231;
-        Thu, 23 Jun 2022 07:58:41 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c18-20020a05640227d200b0042617ba6396sm18238783ede.32.2022.06.23.07.58.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jun 2022 07:58:40 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: [GIT PULL] dt-bindings: qcom for v5.20
-Date:   Thu, 23 Jun 2022 16:58:37 +0200
-Message-Id: <20220623145837.456817-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        bh=ykyqSjgUxDNew/kX2FqRW+o85J45vRgI317oIb0mdOw=;
+        b=aXJxQfkuZPoyWqLPwjyMtMkoFrHuC8w7pRmDy3iYREwDjQQ3+kB5IS3+c+MadsKWFj
+         /3faawKoHERZMTSVSxMNsf69AcZQx/YcbhSgqP2GO8zzTSCxBSGbjRAYuOIIhtK2YsQp
+         qDu/ZqzrRv3Ndp2CJzjSe+rFb+1nL6s9YeAxAXXDKG/9zO+E9jN0cHZMWfih0hlo3scz
+         3Up5HNOd40XCoZ5wCRPWYYZ3OyjwQQTnotivb4Giugtrh6dnoq90hoj7E48ltPZLJcXq
+         j8lylmGz8XLHJDd8oXf89OJNu2HZTRhbalXZZGMalTCnlt61SbWu8XCo4l1hGVv0Pm4C
+         +Jew==
+X-Gm-Message-State: AJIora+tZpawdZBGsfb7tDE81mdAzKLDQzNXCKPk0DB5A3CjSK7OsAoU
+        g5kUQA78lConrEoYqAazBagh2etzhYg=
+X-Google-Smtp-Source: AGRyM1tZFjarUlaeh6EKbdYRsB3Y5yEjgEsZnHu4UBJcviqhau5Sopswybzoh9R99sqDI6dSsjhe4w==
+X-Received: by 2002:a17:907:6d0a:b0:722:b0b5:be69 with SMTP id sa10-20020a1709076d0a00b00722b0b5be69mr8818695ejc.76.1655998034932;
+        Thu, 23 Jun 2022 08:27:14 -0700 (PDT)
+Received: from [192.168.0.182] ([79.119.98.153])
+        by smtp.gmail.com with ESMTPSA id q16-20020a056402033000b0043564320274sm14702970edw.19.2022.06.23.08.27.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jun 2022 08:27:14 -0700 (PDT)
+Message-ID: <2aa93eab-de6d-866b-a829-36b47ff00982@gmail.com>
+Date:   Thu, 23 Jun 2022 18:27:12 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v5 2/2] iio: adc: ad4130: add AD4130 driver
+Content-Language: en-US
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+References: <20220620162059.1097264-1-cosmin.tanislav@analog.com>
+ <20220620162059.1097264-3-cosmin.tanislav@analog.com>
+ <CAHp75VcBJkQ+CwyoDaTJ_AD+mv9d0tEd_txqHwkPRy4-xvnyKg@mail.gmail.com>
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+In-Reply-To: <CAHp75VcBJkQ+CwyoDaTJ_AD+mv9d0tEd_txqHwkPRy4-xvnyKg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob and Bjorn,
-
-I am fixing/improving quite a lot of Qualcomm bindings and I produced several
-separate patchsets. They wait on mailing list for quite a long time, in some
-cases two months, so I decided to grab all them and send in one organized pull.
-
-All patches here got Rob's ack.
-
-This also brings compatibles for Qualcomm boards, therefore it might be
-desirable to merge everything through Bjorn's tree, however at this point I
-want to just get it merged as fast as possible, because I am really afraid they
-will miss the v5.20 cycle.  Therefore the pull is towards Rob, but maybe
-First-comes-first-served is also good approach.
-
-Best regards,
-Krzysztof
 
 
-The following changes since commit f2906aa863381afb0015a9eb7fefad885d4e5a56:
+On 6/20/22 21:29, Andy Shevchenko wrote:
+> On Mon, Jun 20, 2022 at 6:27 PM Cosmin Tanislav <demonsingur@gmail.com> wrote:
+>>
+>> AD4130-8 is an ultra-low power, high precision, measurement solution for
+>> low bandwidth battery operated applications.
+>>
+>> The fully integrated AFE (Analog Front-End) includes a multiplexer for up
+>> to 16 single-ended or 8 differential inputs, PGA (Programmable Gain
+>> Amplifier), 24-bit Sigma-Delta ADC, on-chip reference and oscillator,
+>> selectable filter options, smart sequencer, sensor biasing and excitation
+>> options, diagnostics, and a FIFO buffer.
+> 
+> ...
+> 
+>> +KernelVersion: 5.18
+> 
+> Are you sure?
+> 
+> ...
+> 
+>> +struct ad4130_state {
+>> +       struct regmap                   *regmap;
+>> +       struct spi_device               *spi;
+>> +       struct clk                      *mclk;
+>> +       struct regulator_bulk_data      regulators[4];
+>> +       u32                             irq_trigger;
+>> +       u32                             inv_irq_trigger;
+>> +
+>> +       /*
+>> +        * Synchronize access to members of driver state, and ensure atomicity
+> 
+> the driver
+> 
+>> +        * of consecutive regmap operations.
+>> +        */
+>> +       struct mutex                    lock;
+>> +       struct completion               completion;
+>> +
+>> +       struct iio_chan_spec            chans[AD4130_MAX_CHANNELS];
+>> +       struct ad4130_chan_info         chans_info[AD4130_MAX_CHANNELS];
+>> +       struct ad4130_slot_info         slots_info[AD4130_MAX_SETUPS];
+>> +       enum ad4130_pin_function        pins_fn[AD4130_MAX_ANALOG_PINS];
+>> +       u32                             vbias_pins[AD4130_MAX_ANALOG_PINS];
+>> +       u32                             num_vbias_pins;
+>> +       int                             scale_tbls[AD4130_REF_SEL_MAX][AD4130_MAX_PGA][2];
+>> +       struct gpio_chip                gc;
+>> +       unsigned int                    gpio_offsets[AD4130_MAX_GPIOS];
+>> +       unsigned int                    num_gpios;
+>> +
+>> +       u32                     int_pin_sel;
+>> +       u32                     int_ref_uv;
+>> +       u32                     mclk_sel;
+>> +       bool                    int_ref_en;
+>> +       bool                    bipolar;
+>> +
+>> +       unsigned int            num_enabled_channels;
+>> +       unsigned int            effective_watermark;
+>> +       unsigned int            watermark;
+>> +
+>> +       struct spi_message      fifo_msg;
+>> +       struct spi_transfer     fifo_xfer[2];
+>> +
+>> +       /*
+>> +        * DMA (thus cache coherency maintenance) requires the
+>> +        * transfer buffers to live in their own cache lines.
+>> +        */
+> 
+> This is a good comment, but what fields does it apply to?
 
-  Linux 5.19-rc1 (2022-06-05 17:18:54 -0700)
+Whatever is below it, grouped together. This is not hard to
+understand.
 
-are available in the Git repository at:
+> 
+>> +       u8                      reset_buf[AD4130_RESET_BUF_SIZE] __aligned(IIO_DMA_MINALIGN);
+>> +       u8                      reg_write_tx_buf[4];
+>> +       u8                      reg_read_tx_buf[1];
+>> +       u8                      reg_read_rx_buf[3];
+>> +       u8                      fifo_tx_buf[2];
+>> +       u8                      fifo_rx_buf[AD4130_FIFO_SIZE *
+>> +                                           AD4130_FIFO_MAX_SAMPLE_SIZE];
+>> +};
+> 
+> ...
+> 
+>> +static IIO_DEVICE_ATTR(hwfifo_watermark, 0444, ad4130_get_fifo_watermark, NULL, 0);
+>> +static IIO_DEVICE_ATTR(hwfifo_enabled, 0444, ad4130_get_fifo_enabled, NULL, 0);
+> 
+> IIO_DEVICE_ATTR_RO()
+> 
+> ...
+> 
+>> +       for (i = 0; i < st->num_gpios; i++)
+>> +               val |= BIT(st->gpio_offsets[i]);
+> 
+> This might overflow.
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git tags/dt-bindings-qcom-5.20
+No it might not. num_gpios is at max AD4130_MAX_GPIOS, which is 4.
 
-for you to fetch changes up to f9702486c77ba74f65859098e3d8e4bdb2e8a745:
+> 
+> ...
+> 
+>> +       for (i = 0; i < st->num_vbias_pins; i++)
+>> +               val |= BIT(st->vbias_pins[i]);
+> 
+> Ditto.
 
-  dt-bindings: arm: qcom: add missing SM6350 board compatibles (2022-06-22 10:11:34 +0200)
+No it might not. num_vbias_pins is at max AD4130_MAX_ANALOG_PINS, which
+is 16.
 
-----------------------------------------------------------------
-Devicetree bindings for Qualcomm for v5.20
+> 
+> ...
+> 
+>> +       st->regmap = devm_regmap_init(dev, NULL, st, &ad4130_regmap_config);
+>> +       if (IS_ERR(st->regmap))
+>> +               return PTR_ERR(st->regmap);
+> 
+> Can it use regular regmap SPI?
 
-Cleanup, fixes and additions of missing pieces for Qualcomm bindings.
-These are address dtbs_check warnings and do not bring new hardware
-(new compatibles are added for existing boards/hardware).
+No. I'm pretty sure I've already talked about this.
 
-----------------------------------------------------------------
-Krzysztof Kozlowski (24):
-      dt-bindings: soc: qcom,rpmh-rsc: simplify qcom,tcs-config
-      spi: dt-bindings: qcom,spi-geni-qcom: allow three interconnects
-      dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
-      dt-bindings: soc: qcom: qcom,smd-rpm: add power-controller
-      dt-bindings: nvmem: qfprom: add IPQ8064 and SDM630 compatibles
-      dt-bindings: leds: qcom-wled: fix number of addresses
-      dt-bindings: arm: qcom: fix Alcatel OneTouch Idol 3 compatibles
-      dt-bindings: arm: qcom: fix Longcheer L8150 compatibles
-      dt-bindings: arm: qcom: fix MSM8916 MTP compatibles
-      dt-bindings: arm: qcom: fix MSM8994 boards compatibles
-      dt-bindings: arm: qcom: add missing MSM8916 board compatibles
-      dt-bindings: arm: qcom: add missing MSM8994 board compatibles
-      dt-bindings: arm: qcom: add missing SM8150 board compatibles
-      dt-bindings: arm: qcom: add missing SM8250 board compatibles
-      dt-bindings: arm: qcom: add missing SM8350 board compatibles
-      dt-bindings: vendor-prefixes: add Shift GmbH
-      dt-bindings: arm: qcom: add missing MSM8998 board compatibles
-      dt-bindings: arm: qcom: add missing MSM8992 board compatibles
-      dt-bindings: arm: qcom: add missing QCS404 board compatibles
-      dt-bindings: arm: qcom: add missing SDM630 board compatibles
-      dt-bindings: arm: qcom: add missing SDM636 board compatibles
-      dt-bindings: arm: qcom: add missing SDM845 board compatibles
-      dt-bindings: arm: qcom: add missing SM6125 board compatibles
-      dt-bindings: arm: qcom: add missing SM6350 board compatibles
-
- Documentation/devicetree/bindings/arm/qcom.yaml    | 108 +++++++++++++++++++--
- .../bindings/leds/backlight/qcom-wled.yaml         |   9 +-
- .../devicetree/bindings/nvmem/qcom,qfprom.yaml     |   2 +
- .../bindings/soc/qcom/qcom,aoss-qmp.yaml           |   1 +
- .../bindings/soc/qcom/qcom,rpmh-rsc.yaml           |  33 +++----
- .../devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml |   3 +
- .../bindings/spi/qcom,spi-geni-qcom.yaml           |   5 +-
- .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
- 8 files changed, 133 insertions(+), 30 deletions(-)
+> 
