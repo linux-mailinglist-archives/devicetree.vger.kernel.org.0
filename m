@@ -2,123 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DE58557793
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 12:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A603557767
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 12:06:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231216AbiFWKMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 06:12:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44342 "EHLO
+        id S231448AbiFWKGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 06:06:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231139AbiFWKMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 06:12:43 -0400
-Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C47F049F83
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 03:12:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kernkonzept.com; s=mx1; h=Content-Transfer-Encoding:MIME-Version:References
-        :In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=WHVNOWKI6E4FR1UMwztSAeuKd9LQg2I0ttlKUhNAPeg=; b=qsHXnbhy3QNW19LAuOZaQS0pxp
-        hCrtuLX6IuZ+Ne0SWUYA7xhYqipshJ6U+jSclsywEWnSweaIvbGDCTcvY3M/AGCXA8CkX2/KpMZmw
-        wySHztja7GIlfTs53jEWFF0vcGprWGbUIqbmjafa4q7F067xRTzUG6zL0UqfLVloNg4RNTeillQfD
-        LAtwNCq8hweGAzNmOPFkzVA7P2TeSXPVMvy9mLmutMv4+6ghAYuXVKc+X3toE8lgODWWMrVlaaqYf
-        tP4eIKhphPsmu8OEBp103Suo5QRRPohGxA5N9MhVNfLtXJKEoklQqIO0RQzXtY+TDFBFGME4/AD4u
-        25g9p/3w==;
-Received: from [10.22.3.24] (helo=kernkonzept.com)
-        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
-        id 1o4JQ3-005qg2-3h; Thu, 23 Jun 2022 11:46:35 +0200
-From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S230313AbiFWKGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 06:06:17 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E42C61759C
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 03:06:15 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1o4JhK-0001s4-PU; Thu, 23 Jun 2022 12:04:26 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1o4JhF-0006Dc-DA; Thu, 23 Jun 2022 12:04:21 +0200
+Date:   Thu, 23 Jun 2022 12:04:21 +0200
+From:   sascha hauer <sha@pengutronix.de>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Subject: [PATCH 3/3] regulator: qcom_smd: Add PM8909 RPM regulators
-Date:   Thu, 23 Jun 2022 11:46:14 +0200
-Message-Id: <20220623094614.1410180-4-stephan.gerhold@kernkonzept.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220623094614.1410180-1-stephan.gerhold@kernkonzept.com>
-References: <20220623094614.1410180-1-stephan.gerhold@kernkonzept.com>
+        Frank Rowand <frowand.list@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>, peng fan <peng.fan@nxp.com>,
+        kevin hilman <khilman@kernel.org>,
+        ulf hansson <ulf.hansson@linaro.org>,
+        len brown <len.brown@intel.com>, pavel machek <pavel@ucw.cz>,
+        joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>,
+        andrew lunn <andrew@lunn.ch>,
+        heiner kallweit <hkallweit1@gmail.com>,
+        russell king <linux@armlinux.org.uk>,
+        "david s. miller" <davem@davemloft.net>,
+        eric dumazet <edumazet@google.com>,
+        jakub kicinski <kuba@kernel.org>,
+        paolo abeni <pabeni@redhat.com>,
+        linus walleij <linus.walleij@linaro.org>,
+        hideaki yoshifuji <yoshfuji@linux-ipv6.org>,
+        david ahern <dsahern@kernel.org>, kernel-team@android.com,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        iommu@lists.linux-foundation.org, netdev@vger.kernel.org,
+        linux-gpio@vger.kernel.org, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] of: base: Avoid console probe delay when
+ fw_devlink.strict=1
+Message-ID: <20220623100421.GY1615@pengutronix.de>
+References: <20220623080344.783549-1-saravanak@google.com>
+ <20220623080344.783549-3-saravanak@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220623080344.783549-3-saravanak@google.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The set of regulators available in the PM8909 PMIC is similar to PM8916
-which is already supported by the driver. s3, s4 and l16 are missing.
-However, probing the SPMI hardware identification registers using the
-qcom_spmi-regulator driver reveals that the regulators in PM8909 are
-actually some kind of mixture between PM8916 and PM8226:
+On Thu, Jun 23, 2022 at 01:03:43AM -0700, Saravana Kannan wrote:
+> Commit 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
+> enabled iommus and dmas dependency enforcement by default. On some
+> systems, this caused the console device's probe to get delayed until the
+> deferred_probe_timeout expires.
+> 
+> We need consoles to work as soon as possible, so mark the console device
+> node with FWNODE_FLAG_BEST_EFFORT so that fw_delink knows not to delay
+> the probe of the console device for suppliers without drivers. The
+> driver can then make the decision on where it can probe without those
+> suppliers or defer its probe.
+> 
+> Fixes: 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
+> Reported-by: Sascha Hauer <sha@pengutronix.de>
+> Reported-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> Tested-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/of/base.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index d4f98c8469ed..a19cd0c73644 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -1919,6 +1919,8 @@ void of_alias_scan(void * (*dt_alloc)(u64 size, u64 align))
+>  			of_property_read_string(of_aliases, "stdout", &name);
+>  		if (name)
+>  			of_stdout = of_find_node_opts_by_path(name, &of_stdout_options);
+> +		if (of_stdout)
+> +			of_stdout->fwnode.flags |= FWNODE_FLAG_BEST_EFFORT;
 
-  - ult_lo_smps (= pm8916_buck_lvo_smps): s1
-  - ult_ho_smps (= pm8916_buck_hvo_smps): s2
-  - ult_nldo (= pm8916_nldo): l1, l2, l3, l10
-  - ult_pldo (= pm8916_pldo): l4, l8, l9, l12-l15, l17, l18
-  - pldo (= pm8226_pldo): l5, l6, l7, l11
+The device given in the stdout-path property doesn't necessarily have to
+be consistent with the console= parameter. The former is usually
+statically set in the device trees contained in the kernel while the
+latter is dynamically set by the bootloader. So if you change the
+console uart in the bootloader then you'll still run into this trap.
 
-Use this mapping to add the rpm_regulator_data for PM8909 by reusing
-the existing regulator definitions.
+It's problematic to consult only the device tree for dependencies. I
+found several examples of drivers in the tree for which dma support
+is optional. They use it if they can, but continue without it when
+not available. "hwlock" is another property which consider several
+drivers as optional. Also consider SoCs in early upstreaming phases
+when the device tree is merged with "dmas" or "hwlock" properties,
+but the corresponding drivers are not yet upstreamed. It's not nice
+to defer probing of all these devices for a long time.
 
-Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
----
- drivers/regulator/qcom_smd-regulator.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+I wonder if it wouldn't be a better approach to just probe all devices
+and record the device(node) they are waiting on. Then you know that you
+don't need to probe them again until the device they are waiting for
+is available.
 
-diff --git a/drivers/regulator/qcom_smd-regulator.c b/drivers/regulator/qcom_smd-regulator.c
-index 8b2d884cd693..59024c639141 100644
---- a/drivers/regulator/qcom_smd-regulator.c
-+++ b/drivers/regulator/qcom_smd-regulator.c
-@@ -784,6 +784,29 @@ static const struct rpm_regulator_data rpm_pm8841_regulators[] = {
- 	{}
- };
- 
-+static const struct rpm_regulator_data rpm_pm8909_regulators[] = {
-+	{ "s1", QCOM_SMD_RPM_SMPA, 1, &pm8916_buck_lvo_smps, "vdd_s1" },
-+	{ "s2", QCOM_SMD_RPM_SMPA, 2, &pm8916_buck_hvo_smps, "vdd_s2" },
-+	{ "l1", QCOM_SMD_RPM_LDOA, 1, &pm8916_nldo, "vdd_l1" },
-+	{ "l2", QCOM_SMD_RPM_LDOA, 2, &pm8916_nldo, "vdd_l2_l5" },
-+	{ "l3", QCOM_SMD_RPM_LDOA, 3, &pm8916_nldo, "vdd_l3_l6_l10" },
-+	{ "l4", QCOM_SMD_RPM_LDOA, 4, &pm8916_pldo, "vdd_l4_l7" },
-+	{ "l5", QCOM_SMD_RPM_LDOA, 5, &pm8226_pldo, "vdd_l2_l5" },
-+	{ "l6", QCOM_SMD_RPM_LDOA, 6, &pm8226_pldo, "vdd_l3_l6_l10" },
-+	{ "l7", QCOM_SMD_RPM_LDOA, 7, &pm8226_pldo, "vdd_l4_l7" },
-+	{ "l8", QCOM_SMD_RPM_LDOA, 8, &pm8916_pldo, "vdd_l8_l11_l15_l18" },
-+	{ "l9", QCOM_SMD_RPM_LDOA, 9, &pm8916_pldo, "vdd_l9_l12_l14_l17" },
-+	{ "l10", QCOM_SMD_RPM_LDOA, 10, &pm8916_nldo, "vdd_l3_l6_l10" },
-+	{ "l11", QCOM_SMD_RPM_LDOA, 11, &pm8226_pldo, "vdd_l8_l11_l15_l18" },
-+	{ "l12", QCOM_SMD_RPM_LDOA, 12, &pm8916_pldo, "vdd_l9_l12_l14_l17" },
-+	{ "l13", QCOM_SMD_RPM_LDOA, 13, &pm8916_pldo, "vdd_l13" },
-+	{ "l14", QCOM_SMD_RPM_LDOA, 14, &pm8916_pldo, "vdd_l9_l12_l14_l17" },
-+	{ "l15", QCOM_SMD_RPM_LDOA, 15, &pm8916_pldo, "vdd_l8_l11_l15_l18" },
-+	{ "l17", QCOM_SMD_RPM_LDOA, 17, &pm8916_pldo, "vdd_l9_l12_l14_l17" },
-+	{ "l18", QCOM_SMD_RPM_LDOA, 18, &pm8916_pldo, "vdd_l8_l11_l15_l18" },
-+	{}
-+};
-+
- static const struct rpm_regulator_data rpm_pm8916_regulators[] = {
- 	{ "s1", QCOM_SMD_RPM_SMPA, 1, &pm8916_buck_lvo_smps, "vdd_s1" },
- 	{ "s2", QCOM_SMD_RPM_SMPA, 2, &pm8916_buck_lvo_smps, "vdd_s2" },
-@@ -1222,6 +1245,7 @@ static const struct rpm_regulator_data rpm_pm2250_regulators[] = {
- static const struct of_device_id rpm_of_match[] = {
- 	{ .compatible = "qcom,rpm-mp5496-regulators", .data = &rpm_mp5496_regulators },
- 	{ .compatible = "qcom,rpm-pm8841-regulators", .data = &rpm_pm8841_regulators },
-+	{ .compatible = "qcom,rpm-pm8909-regulators", .data = &rpm_pm8909_regulators },
- 	{ .compatible = "qcom,rpm-pm8916-regulators", .data = &rpm_pm8916_regulators },
- 	{ .compatible = "qcom,rpm-pm8226-regulators", .data = &rpm_pm8226_regulators },
- 	{ .compatible = "qcom,rpm-pm8941-regulators", .data = &rpm_pm8941_regulators },
+Sascha
+
+
 -- 
-2.30.2
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
