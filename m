@@ -2,75 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA05C557358
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 08:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F5F055737F
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 09:05:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbiFWGv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 02:51:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46140 "EHLO
+        id S229991AbiFWHFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 03:05:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbiFWGv0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 02:51:26 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1260D44773
-        for <devicetree@vger.kernel.org>; Wed, 22 Jun 2022 23:51:26 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1o4Gfk-0001vC-Io; Thu, 23 Jun 2022 08:50:36 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1o4Gff-0003Pg-AE; Thu, 23 Jun 2022 08:50:31 +0200
-Date:   Thu, 23 Jun 2022 08:50:31 +0200
-From:   Sascha Hauer <sha@pengutronix.de>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Len Brown <len.brown@intel.com>, Pavel Machek <pavel@ucw.cz>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
-        David Ahern <dsahern@kernel.org>, kernel-team@android.com,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        iommu@lists.linux-foundation.org, netdev@vger.kernel.org,
-        linux-gpio@vger.kernel.org, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] driver core: fw_devlink: Allow firmware to mark
- devices as best effort
-Message-ID: <20220623065031.GX1615@pengutronix.de>
-References: <20220622215912.550419-1-saravanak@google.com>
- <20220622215912.550419-2-saravanak@google.com>
+        with ESMTP id S229793AbiFWHFm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 03:05:42 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317B745519
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 00:05:41 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id g26so17645145ejb.5
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 00:05:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=FUqOVP3OH7BWYjo6vdlKJOAexlQHETbAKu5icdi+qLI=;
+        b=Z3kQtFflp9ce1ZM08KTXQjN3/rys8fUPdg6bFciqs7HRkuvSLYCXT30XIGG74Whnbo
+         2w2TMEoeFr/jQ7RQNYBZX3WPP5GrFk6oOSuyDI9iPU2/AHQZ6C3F6D69i7TAYI3AQQtz
+         03JTE7KKCSegXy9fyXaKRjsfYlgjaEyvipR/xWN811r3xokYYx+HFE3F5ZdyalC7aENR
+         vA1meuxYwHmUkmw/DxdH3xTNO2C67JIpX/1FtHHpbjEWfLwrWMaDNk579g3X2kiFsKrt
+         e7ADgDiACVsdABiMnm2fv7466/IE4PddktbRMemlBGqZsK+KKh5QmuNkv2XKCq9hHXvk
+         aKGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=FUqOVP3OH7BWYjo6vdlKJOAexlQHETbAKu5icdi+qLI=;
+        b=12pXnrvfBvQqaDjVEgStIAQl7OCuA/R4ZadBRIZ+4Wz2MbZJgV3AqMvDS6oLXJDPub
+         Sz4JLOiN+nsoz46VHe3UhjIZUPL0Iafs6lRuNJF1kMLZy/yB5IowgwZOdAPXjTwl8jqL
+         EE9yG+cIcDt65waqlT1hY1f1AsQS78YHDyPo78A8n1WhDYOUwOz1/pm6tQAG4SffAux0
+         U1GLSrjmOjFq34W4dfufoJM4dVNoVFzH2MwWY8XTgBlim44pt1t0HBQLC1GqdMXR7bZW
+         PCLX9lOG2tQhJGIrYG3i3kS4z9Za86QZE3fMquGfQNXMdYYZzT29/Ybc7c894WCih8yk
+         x18w==
+X-Gm-Message-State: AJIora83ndJ5HoBOdkS2a+oRYRfD4LPKz5G+C52atUxl4fct2k+etSWF
+        8SR+DrUDv+g6/eN8ILTVMLV8OQ==
+X-Google-Smtp-Source: AGRyM1sSWLw+uz9Wo/Vqcc2Qzmpm0rtmfs9IKZ6vHicf79GE/X5RwZggFtUqWDuVFpql/v0tm0c+Uw==
+X-Received: by 2002:a17:906:9c82:b0:6df:c5f0:d456 with SMTP id fj2-20020a1709069c8200b006dfc5f0d456mr6845907ejc.287.1655967938872;
+        Thu, 23 Jun 2022 00:05:38 -0700 (PDT)
+Received: from [192.168.0.226] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id a24-20020aa7cf18000000b004356c18b2b9sm12227191edy.44.2022.06.23.00.05.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jun 2022 00:05:38 -0700 (PDT)
+Message-ID: <84cba0c8-fb31-3314-5e2c-7a0c13030b9a@linaro.org>
+Date:   Thu, 23 Jun 2022 09:05:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220622215912.550419-2-saravanak@google.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: (subset) [PATCH 7/7] ARM: dts: aspeed: centriq2400: use qcom
+ compatible
+Content-Language: en-US
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Steven Lee <steven_lee@aspeedtech.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Ken Chen <chen.kenyy@inventec.com>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        David Wang <David_Wang6097@jabil.com>
+References: <20220529104928.79636-1-krzysztof.kozlowski@linaro.org>
+ <20220529104928.79636-7-krzysztof.kozlowski@linaro.org>
+ <165589305701.29629.10216921074802952879.b4-ty@linaro.org>
+ <CACPK8XfxXi8kQr+vxta8rD6SBgxLf_oBjAH0UkPBacQta552YQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CACPK8XfxXi8kQr+vxta8rD6SBgxLf_oBjAH0UkPBacQta552YQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,46 +86,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 22, 2022 at 02:59:10PM -0700, Saravana Kannan wrote:
-> When firmware sets the FWNODE_FLAG_BEST_EFFORT flag for a fwnode,
-> fw_devlink will do a best effort ordering for that device where it'll
-> only enforce the probe/suspend/resume ordering of that device with
-> suppliers that have drivers. The driver of that device can then decide
-> if it wants to defer probe or probe without the suppliers.
+On 23/06/2022 07:34, Joel Stanley wrote:
+> On Wed, 22 Jun 2022 at 10:17, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On Sun, 29 May 2022 12:49:28 +0200, Krzysztof Kozlowski wrote:
+>>> "qualcomm" is not a documented compatible and instead "qcom" should be
+>>> used.
+>>>
+>>>
+>>
+>> Applied, thanks!
 > 
-> This will be useful for avoid probe delays of the console device that
-> were caused by commit 71066545b48e ("driver core: Set
-> fw_devlink.strict=1 by default").
+> What tree did you apply this to? Did you get review from the maintainer?
+
+Tree was mentioned below.
+
 > 
-> Fixes: 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
-> Reported-by: Sascha Hauer <sha@pengutronix.de>
-> Reported-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->  drivers/base/core.c    | 3 ++-
->  include/linux/fwnode.h | 4 ++++
->  2 files changed, 6 insertions(+), 1 deletion(-)
+> This board is unmaintained and unused. I would prefer it removed
+> rather than meaningless fixes be applied.
+
+I can drop the patch. I'll send the patch to remove the board.
+
 > 
-> diff --git a/drivers/base/core.c b/drivers/base/core.c
-> index 839f64485a55..61edd18b7bf3 100644
-> --- a/drivers/base/core.c
-> +++ b/drivers/base/core.c
-> @@ -968,7 +968,8 @@ static void device_links_missing_supplier(struct device *dev)
->  
->  static bool dev_is_best_effort(struct device *dev)
->  {
-> -	return fw_devlink_best_effort && dev->can_match;
-> +	return (fw_devlink_best_effort && dev->can_match) ||
-> +		dev->fwnode->flags & FWNODE_FLAG_BEST_EFFORT;
-
-Check for dev->fwnode first. I am running in a NULL pointer exception
-here for a device that doesn't have a fwnode.
-
-Sascha
+>>
+>> [7/7] ARM: dts: aspeed: centriq2400: use qcom compatible
+>>       https://git.kernel.org/krzk/linux/c/6202c6063145cf9ec22b40aac219122dd702a10f
+>>
+>> Best regards,
+>> --
+>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Best regards,
+Krzysztof
