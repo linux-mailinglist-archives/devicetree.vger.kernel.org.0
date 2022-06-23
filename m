@@ -2,143 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB45E5577DA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 12:27:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 744EC55780C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 12:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbiFWK1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 06:27:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57246 "EHLO
+        id S229624AbiFWKnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 06:43:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230429AbiFWK1Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 06:27:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D35C53E5F7;
-        Thu, 23 Jun 2022 03:27:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 59AFB61E7B;
-        Thu, 23 Jun 2022 10:27:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92F82C3411B;
-        Thu, 23 Jun 2022 10:27:07 +0000 (UTC)
-Date:   Thu, 23 Jun 2022 11:27:03 +0100
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Kefeng Wang <wangkefeng.wang@huawei.com>
-Cc:     Baoquan He <bhe@redhat.com>, Zhen Lei <thunder.leizhen@huawei.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>, kexec@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>,
-        liushixin <liushixin2@huawei.com>
-Subject: Re: [PATCH 5/5] arm64: kdump: Don't defer the reservation of crash
- high memory
-Message-ID: <YrQ/98J5UqPh8K89@arm.com>
-References: <20220613080932.663-1-thunder.leizhen@huawei.com>
- <20220613080932.663-6-thunder.leizhen@huawei.com>
- <YrFYHYgX3mC//t2l@MiWiFi-R3L-srv>
- <3f66323d-f371-b931-65fb-edfae0f01c88@huawei.com>
- <YrIIJkhKWSuAqkCx@arm.com>
- <ba3a97d6-262d-6413-135d-0be9b0af9a6a@huawei.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ba3a97d6-262d-6413-135d-0be9b0af9a6a@huawei.com>
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229595AbiFWKnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 06:43:05 -0400
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1D08BCB5;
+        Thu, 23 Jun 2022 03:43:03 -0700 (PDT)
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5460B202D8C;
+        Thu, 23 Jun 2022 12:43:02 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id DD410200904;
+        Thu, 23 Jun 2022 12:43:01 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 9A2A11802201;
+        Thu, 23 Jun 2022 18:43:00 +0800 (+08)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     shengjiu.wang@gmail.com
+Subject: [PATCH] ASoC: dt-bindings: fsl,micfil: Convert format to json-schema
+Date:   Thu, 23 Jun 2022 18:28:45 +0800
+Message-Id: <1655980125-24141-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 22, 2022 at 08:03:21PM +0800, Kefeng Wang wrote:
-> On 2022/6/22 2:04, Catalin Marinas wrote:
-> > On Tue, Jun 21, 2022 at 02:24:01PM +0800, Kefeng Wang wrote:
-> > > On 2022/6/21 13:33, Baoquan He wrote:
-> > > > On 06/13/22 at 04:09pm, Zhen Lei wrote:
-> > > > > If the crashkernel has both high memory above DMA zones and low memory
-> > > > > in DMA zones, kexec always loads the content such as Image and dtb to the
-> > > > > high memory instead of the low memory. This means that only high memory
-> > > > > requires write protection based on page-level mapping. The allocation of
-> > > > > high memory does not depend on the DMA boundary. So we can reserve the
-> > > > > high memory first even if the crashkernel reservation is deferred.
-> > > > > 
-> > > > > This means that the block mapping can still be performed on other kernel
-> > > > > linear address spaces, the TLB miss rate can be reduced and the system
-> > > > > performance will be improved.
-> > > > Ugh, this looks a little ugly, honestly.
-> > > > 
-> > > > If that's for sure arm64 can't split large page mapping of linear
-> > > > region, this patch is one way to optimize linear mapping. Given kdump
-> > > > setting is necessary on arm64 server, the booting speed is truly
-> > > > impacted heavily.
-> > > Is there some conclusion or discussion that arm64 can't split large page
-> > > mapping?
-> > > 
-> > > Could the crashkernel reservation (and Kfence pool) be splited dynamically?
-> > > 
-> > > I found Mark replay "arm64: remove page granularity limitation from
-> > > KFENCE"[1],
-> > > 
-> > >    "We also avoid live changes from block<->table mappings, since the
-> > >    archtitecture gives us very weak guarantees there and generally requires
-> > >    a Break-Before-Make sequence (though IIRC this was tightened up
-> > >    somewhat, so maybe going one way is supposed to work). Unless it's
-> > >    really necessary, I'd rather not split these block mappings while
-> > >    they're live."
-> > The problem with splitting is that you can end up with two entries in
-> > the TLB for the same VA->PA mapping (e.g. one for a 4KB page and another
-> > for a 2MB block). In the lucky case, the CPU will trigger a TLB conflict
-> > abort (but can be worse like loss of coherency).
-> Thanks for your explanation，
-> > Prior to FEAT_BBM (added in ARMv8.4), such scenario was not allowed at
-> > all, the software would have to unmap the range, TLBI, remap. With
-> > FEAT_BBM (level 2), we can do this without tearing the mapping down but
-> > we still need to handle the potential TLB conflict abort. The handler
-> > only needs a TLBI but if it touches the memory range being changed it
-> > risks faulting again. With vmap stacks and the kernel image mapped in
-> > the vmalloc space, we have a small window where this could be handled
-> > but we probably can't go into the C part of the exception handling
-> > (tracing etc. may access a kmalloc'ed object for example).
-> 
-> So if without FEAT_BBM，we can only guarantee BBM sequence via
-> "unmap the range, TLBI, remap" or the following option,
+Convert the NXP MICFIL binding to DT schema format using json-schema.
 
-Yes, that's the break-before-make sequence.
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+---
+ .../devicetree/bindings/sound/fsl,micfil.txt  | 33 ---------
+ .../devicetree/bindings/sound/fsl,micfil.yaml | 73 +++++++++++++++++++
+ 2 files changed, 73 insertions(+), 33 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/fsl,micfil.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/fsl,micfil.yaml
 
-> and with FEAT_BBM (level 2), we could have easy way to avoid TLB
-> conflict for some vmalloc space, but still hard to deal with other
-> scence?
-
-It's not too hard in theory. Basically there's a small risk of getting a
-TLB conflict abort for the mappings you change without a BBM sequence (I
-think it's nearly non-existed when going from large block to smaller
-pages, though the architecture states that it's still possible). Since
-we only want to do this for the linear map and the kernel and stack are
-in the vmalloc space, we can handle such trap as an safety measure (it
-just needs a TLBI). It may help to tweak a model to force it to generate
-such conflict aborts, otherwise we'd not be able to test the code.
-
-It's possible that such trap is raised at EL2 if a guest caused the
-conflict abort (the architecture left this as IMP DEF). The hypervisors
-may need to be taught to do a TLBI VMALLS12E1 instead of killing the
-guest. I haven't checked what KVM does.
-
+diff --git a/Documentation/devicetree/bindings/sound/fsl,micfil.txt b/Documentation/devicetree/bindings/sound/fsl,micfil.txt
+deleted file mode 100644
+index 1ea05d4996c7..000000000000
+--- a/Documentation/devicetree/bindings/sound/fsl,micfil.txt
++++ /dev/null
+@@ -1,33 +0,0 @@
+-NXP MICFIL Digital Audio Interface (MICFIL).
+-
+-The MICFIL digital interface provides a 16-bit audio signal from a PDM
+-microphone bitstream in a configurable output sampling rate.
+-
+-Required properties:
+-
+-  - compatible		: Compatible list, contains "fsl,imx8mm-micfil"
+-			  or "fsl,imx8mp-micfil"
+-
+-  - reg			: Offset and length of the register set for the device.
+-
+-  - interrupts		: Contains the micfil interrupts.
+-
+-  - clocks		: Must contain an entry for each entry in clock-names.
+-
+-  - clock-names		: Must include the "ipg_clk" for register access and
+-			  "ipg_clk_app" for internal micfil clock.
+-
+-  - dmas		: Generic dma devicetree binding as described in
+-			  Documentation/devicetree/bindings/dma/dma.txt.
+-
+-Example:
+-micfil: micfil@30080000 {
+-	compatible = "fsl,imx8mm-micfil";
+-	reg = <0x0 0x30080000 0x0 0x10000>;
+-	interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
+-		     <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
+-	clocks = <&clk IMX8MM_CLK_PDM_IPG>,
+-		 <&clk IMX8MM_CLK_PDM_ROOT>;
+-	clock-names = "ipg_clk", "ipg_clk_app";
+-	dmas = <&sdma2 24 26 0x80000000>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
+new file mode 100644
+index 000000000000..74c77f4cf7a4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/fsl,micfil.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP MICFIL Digital Audio Interface (MICFIL)
++
++maintainers:
++  - Shengjiu Wang <shengjiu.wang@nxp.com>
++
++description: |
++  The MICFIL digital interface provides a 16-bit or 24-bit audio signal
++  from a PDM microphone bitstream in a configurable output sampling rate.
++
++properties:
++  compatible:
++    enum:
++      - fsl,imx8mm-micfil
++      - fsl,imx8mp-micfil
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 4
++
++  dmas:
++    items:
++      - description: DMA controller phandle and request line for RX
++
++  dma-names:
++    items:
++      - const: rx
++
++  clocks:
++    items:
++      - description: The ipg clock for register access
++      - description: internal micfil clock
++
++  clock-names:
++    items:
++      - const: ipg_clk
++      - const: ipg_clk_app
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - dmas
++  - dma-names
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/imx8mm-clock.h>
++    micfil: audio-controller@30080000 {
++        compatible = "fsl,imx8mm-micfil";
++        reg = <0x30080000 0x10000>;
++        interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clk IMX8MM_CLK_PDM_IPG>,
++                 <&clk IMX8MM_CLK_PDM_ROOT>;
++        clock-names = "ipg_clk", "ipg_clk_app";
++        dmas = <&sdma2 24 25 0>;
++        dma-names = "rx";
++    };
 -- 
-Catalin
+2.17.1
+
