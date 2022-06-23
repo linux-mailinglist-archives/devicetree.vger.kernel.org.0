@@ -2,146 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EBA5557225
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 06:58:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DC23557232
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 06:58:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231487AbiFWEpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 00:45:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40746 "EHLO
+        id S232278AbiFWEox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 00:44:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238158AbiFWDeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 23:34:23 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728D036155;
-        Wed, 22 Jun 2022 20:34:17 -0700 (PDT)
-X-UUID: a79ae7d571454f528d2d996e8fb2a215-20220623
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:c7583246-f3e0-477c-a035-85da7ab95b6b,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.6,REQID:c7583246-f3e0-477c-a035-85da7ab95b6b,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:b14ad71,CLOUDID:67213c38-5e4b-44d7-80b2-bb618cb09d29,C
-        OID:7494f817c6eb,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: a79ae7d571454f528d2d996e8fb2a215-20220623
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 106634298; Thu, 23 Jun 2022 11:34:11 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 23 Jun 2022 11:34:10 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 23 Jun 2022 11:34:09 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 23 Jun 2022 11:34:09 +0800
-Message-ID: <0c269c54042d556bd5c7f4a7a13d4e33074888d1.camel@mediatek.com>
-Subject: Re: [PATCH v13 12/14] drm/mediatek: dpi: add config to control
- setting of direct connection to pins
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <ck.hu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 23 Jun 2022 11:34:09 +0800
-In-Reply-To: <3246fb94ec05a43b7017849198d949ce8c8636a7.camel@mediatek.com>
-References: <20220621113732.11595-1-rex-bc.chen@mediatek.com>
-         <20220621113732.11595-13-rex-bc.chen@mediatek.com>
-         <55c98626-9b95-7721-94cf-8c471580a53b@collabora.com>
-         <3246fb94ec05a43b7017849198d949ce8c8636a7.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S244155AbiFWDxe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 23:53:34 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2041.outbound.protection.outlook.com [40.107.94.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 784D73EB92;
+        Wed, 22 Jun 2022 20:53:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iYcHYEbNKqUxV/0orMG5J1fprFwq8jy2DNl4ieKDBPcXbANEgswkaEiWC4LGsxzsgELaZMYJodXkMC0UVZ751BxVIiqlPrZ3K1XkBHcb+8ZGWhy0oySAt3ZY6ouLj3fZ3CAZl/HJyD5jmKs25r/71S5V8x1i6IdG+o3A1bNYo+1VAVD9Mu/RmNh+Ztv6DaH5VrYdVA1HbWSYbeHJkau4WasuddQNn9ZIHSQfVfaG8mFH7aKNGmBGEQ10xAOy75h/xqpYDvq4xQxmCLrTF5H4MTRIifzE2UjoviDEWftTp20AhZtLBulxdXOaRYyW+YzW23D1m51rV89aDV7035h8QA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+simp11sJ4pfHdIpOI7ambFRw2g1+WRLvAfVoHlyQso=;
+ b=Oj2GN+ogs1B42Hjm0TMxmjcqhDoGqJRKyLROtPG7QnpFT1Yobur2Ydn+5ldyttS47qz/AkqtDkjW3XqetxHlUu64hGj6JaBqIo7LrPun543LnBTRm2hG4tGGHePu3u4sqAhGvgo3fwd5aRlMEhqMqlwUacQAor0WQQihkIw3EfHBVkr8BZ7ppaaNhwPz+JVKE7ZWcz+5O2exvIKLMjZxBiEp9XbCrIzOKlf0RYJ8eWVZEN7MEmVzAL5q4eSOq/qf2AuIAB8IFco2DZ5tCiyJVdi8iowyApVKrdoBXxT4u5/v3FiZLWBAKONX7GPO6inRkYAXmvsWv0ZDZoONINZ5lg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+simp11sJ4pfHdIpOI7ambFRw2g1+WRLvAfVoHlyQso=;
+ b=QK6ySWWq+qstfyun25O4iOXw5j6p2KRX0zb6mg16YQ0WGkFYGfRWMtIbhrinDeyTngUrJHhiYwo6czwHrabfW6TJHeGD0XMKY6LDmzut1rYoe8yT6s9nHdA+JlQi4to0pdpSJB/4VVgpIeEojX3pTYnon2foYH92tCfMdETPqw0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21) by BYAPR08MB5783.namprd08.prod.outlook.com
+ (2603:10b6:a03:11a::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.15; Thu, 23 Jun
+ 2022 03:53:29 +0000
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::ccb4:7984:aaf2:e18f]) by SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::ccb4:7984:aaf2:e18f%6]) with mapi id 15.20.5353.022; Thu, 23 Jun 2022
+ 03:53:28 +0000
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        Jeff LaBundy <jeff@labundy.com>
+Subject: [PATCH 0/7] Miscellaneous fixes for Azoteq IQS7222A/B/C
+Date:   Wed, 22 Jun 2022 22:53:02 -0500
+Message-Id: <20220623035309.39528-1-jeff@labundy.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SN4PR0701CA0001.namprd07.prod.outlook.com
+ (2603:10b6:803:28::11) To SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 36d70e39-ae77-467f-e633-08da54cbeeb8
+X-MS-TrafficTypeDiagnostic: BYAPR08MB5783:EE_
+X-Microsoft-Antispam-PRVS: <BYAPR08MB57831E0E0A086F1F95E63396D3B59@BYAPR08MB5783.namprd08.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XoAkTkLzQbwwvLVvvuWm6y8LJZN2dYHDhTiOiB3l3k+VJ2kq+d38cQGqJtyFo6aDdBRar1jnDBXX+HljqalmJwmwQPq7BvAkVC+Z4dzrKtlVry0Yo5pPbusK8U+L/663zX5QMloM07kRlJh/Htbwv8lpewYKizKh7v4ja/jCjKpNR6U+Prx1T3iTtZgvTu1QHzq3+tSLrXaVmsZ8xaz/0iN5y5ru/7zW3ToCnOixwimW0THEMGZIkr4TbCjjXuI36WzKArjJtE9DR7MF/l26JI1O2SAXGyGxHDY+fWL0Zs4sL/bhuEjXaRFZmOmSxjHvBNghsPS0jWdmDf5LeDas0I0dkngInJC79Xn/NuebT9mtEQOOx3BOd4dxS6NeEqdN3LP7Hcc3A2u7+dl3QLU8+mA6jcE02CtaAOJ7lAxtKdjeqiIwADmnMdNHaL9vevU+oZwq2efjgLqcSAGW6iaucqKF3vtonsvNnzxxXGoDSwhcdT+lSqQ4fsOTUbwDD4GjX5EJsUVi2E9HCZuSVpLodReA6pvfP5ncgGyBfXLiUQiDwQsVICKxtw5ZqcvorcNBzdY3cJ2Eks/m276WoMWykEIXPb6r3iIZiKmjgZwQs3jDWPPz5zBObVI7qmjUxV4/p1XZWG14DhS0mRoE3vze620lwsJX/DEn4WTrB8mba1yx4h3XbyHaFTFTrTzuVNeHKiRFcdIfmhJ+lnBhshtllSrkykNXSsqnC74/wGYRTMr5JD+8ZtY/Mbg1LfhupaTQ
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(39830400003)(376002)(346002)(136003)(396003)(366004)(36756003)(316002)(6666004)(2906002)(41300700001)(6512007)(26005)(107886003)(52116002)(86362001)(66946007)(38350700002)(8936002)(66556008)(6486002)(38100700002)(4744005)(478600001)(186003)(2616005)(83380400001)(6506007)(4326008)(8676002)(5660300002)(1076003)(66476007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?//Siz3DLphGEaaohMqbd9W5Iqee9/oh88BlcvrARhcl8jV6J8W2Hy6+1mH5b?=
+ =?us-ascii?Q?t6U+EDBoOFxoi2YX9lf+K1yOjN1I2SXjmmP99RM1Nx6CNEFs/n+IydmIgK0e?=
+ =?us-ascii?Q?DGYdwJu4l9wy7YuFnltp6lFahkOcBMphzmnkVX529UJmj5pVb4JVDb83ui7J?=
+ =?us-ascii?Q?YHI123mSqJa+XOT3bvazfU79UI/lEl8cuinzN4uQtesZ9JI6LxeTzfeBiO7A?=
+ =?us-ascii?Q?4IkOoWz6x7KKZIKtNbZwukQwZ1Rw+xPodlFXQgK5AJX3UCt3aF2gRPQz+FM5?=
+ =?us-ascii?Q?CShhJzHDaZz3V62QNm6LoueeNIxPZY0LAlaZTx+GFq8hX03VWVuGqzq7CzFI?=
+ =?us-ascii?Q?IYA43e5b3wCx+EtAgkvGS4/Dj6iYN+3w4KlDeFGOVSrwvt5yCghibOz7pq/l?=
+ =?us-ascii?Q?Ci6rPK4PHWXLBLaLoGbMgjreWT43uBaQomPC3Xix+TxluH6J+Y3Tubi+L549?=
+ =?us-ascii?Q?tVKi/ypKWvsP3W6yE9Cw9u960D4QSle56xFvK2hnVxzhz6JoKe6BEQb49t25?=
+ =?us-ascii?Q?NEbr6AnWzxoht4VNG+vko76FI79+MrSvyMBHCcitW8x/aGeUXmGfYtQ+sR4e?=
+ =?us-ascii?Q?Vc6N6cr9KHy0hPeNyY3XCCsdawe4Tnh2emrbrxXrm2xjzJqyVuU7fMDGY54Q?=
+ =?us-ascii?Q?pa7ajHJdAQKU+mPdHzbHWz1gjzQk+rwZ/+xEkO5afU4kViUWWqqyuydByZfW?=
+ =?us-ascii?Q?O0E6c77Ns+s6EyoEqJuM4NzLPzE/KAT0TxyxGUiv+zQEjBJhint/a7Zslvpc?=
+ =?us-ascii?Q?5ucpjcp2cR03gEE7MlUO61X6ZusaF55o2AR/HPHfzVjeq87WdJwLrqZlacUd?=
+ =?us-ascii?Q?s2hYawNm4bYOiDpvSlKCUoH7MqFOci7doJV7aU/KmqCGpmwLJzVDQ/lfa6h1?=
+ =?us-ascii?Q?+oqwqHFbYbig4+fAWRGBEJCoCgIqGv1B03cRdirtpIRF4+GVqvXYC2939RjF?=
+ =?us-ascii?Q?BfhnJme9gddbqOF54SZPSH2arLqjrjGVAZilYZAinCNCer7T2Y5r8EzNPiaD?=
+ =?us-ascii?Q?7NNw5JPZugc/oYiWJws2VzeEKeAgAGSKwo5gMH+tLsEJlv5kg8zwNX2DuuxL?=
+ =?us-ascii?Q?zBY5sPCApOkspgCM5+Z3l1JEuBCl/3fpdBZJhs4xLoIZgkFokGqJfGpy9OZg?=
+ =?us-ascii?Q?hXAbyVlp8MU/sl68RNZYl40by2etxw7Z+VCkKuzR/8m4ZkPbmykOseVB0rE+?=
+ =?us-ascii?Q?ob5k92srW/gkJARA9bEwJMdMTaFdjibE2wL69V7/wf2Csvp6rN6SfIn1lp0Y?=
+ =?us-ascii?Q?Z+SA5QAdebVibYeX7BvX5qqpN+2KYbFwdlLWsJtxW0rZs5S1N0pkPSrX88YM?=
+ =?us-ascii?Q?wdJtjZqwUW54qWbtHdh9GknXa7Y0hmDSQyFCcHwiPgfB+4DiKuY7thiqr2Q2?=
+ =?us-ascii?Q?vs2Wmk+p8TP8BWzAuU5P3YnVd+bBhaZXD3RdGJbnTP2B8c55fAAkeAJYGDbc?=
+ =?us-ascii?Q?BPgp0qr4nvedc7y8b6Po6Y45z0cc5d0C04fzQbzVnNILsZs6+kczlZoE0X4U?=
+ =?us-ascii?Q?PeUTQNwqIGMMTPNvF3kK59TOcsc0Nz9HYNGElZnIs/rQTPVKpSfIMxruvV9T?=
+ =?us-ascii?Q?jSxp6NJMZ1tojYDeQ/gJsb9CRtSB8I9/E9isGItzJkEW8PlK41Tlywvwdo1C?=
+ =?us-ascii?Q?P8raO3b292wkiyL5yvsmMZIekpdvTsAJxHLBBQiOzP9Z3NfYrK5sh2ahwoOe?=
+ =?us-ascii?Q?PTc0gKMfEw2yOBwvI25xCodNJSD17HLGtkFiU1ccMyJMQQIcyEgoLeZRpk0e?=
+ =?us-ascii?Q?yplgc637ww=3D=3D?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36d70e39-ae77-467f-e633-08da54cbeeb8
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2022 03:53:28.8410
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: U7zeYkf9a0Ey4xouhinusqCnWw4XDYN3v1SPGfHqqwz7x+fD0yE0paJiVKTcgahJ1tz8Fny7s8mnq6lxLBo34Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR08MB5783
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-06-22 at 17:08 +0800, Rex-BC Chen wrote:
-> On Tue, 2022-06-21 at 14:11 +0200, AngeloGioacchino Del Regno wrote:
-> > Il 21/06/22 13:37, Bo-Chen Chen ha scritto:
-> > > MediaTek dpi supports direct connection to pins while dp_intf
-> > > does
-> > > not
-> > > support. Therefore, add a config "support_direct_pin" to control
-> > > this.
-> > > 
-> > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > > ---
-> > >   drivers/gpu/drm/mediatek/mtk_dpi.c | 17 +++++++++++++----
-> > >   1 file changed, 13 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > > b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > > index 438bf3bc5e4a..ef7f828a4b1e 100644
-> > > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > > @@ -129,6 +129,8 @@ struct mtk_dpi_yc_limit {
-> > >    * @is_ck_de_pol: Support CK/DE polarity.
-> > >    * @swap_input_support: Support input swap function.
-> > >    * @color_fmt_trans_support: Enable color format transfer.
-> > > + * @support_direct_pin: Dpi can directly connect pins, and
-> > > enable
-> > > this config
-> > > + *			to do this.
-> > 
-> > @support_direct_pin: IP supports direct connection to pins
-> > 
-> > or
-> > 
-> > @support_direct_pin: IP has direct connection to DP pins
-> > 
-> > or
-> > 
-> > @support_direct_pin: IP connects directly to DP pins
-> > 
-> > pick one, after which:
-> > 
-> > Reviewed-by: AngeloGioacchino Del Regno <
-> > angelogioacchino.delregno@collabora.com>
-> > 
-> > 
-> 
-> Hello Angelo,
-> 
-> this is not connect to "DP" pin. This setting is for dpi to connect
-> to
-> panel directly and there is no such usecase for dp_intf.
-> 
-> Therefore, I will use "@support_direct_pin: IP supports direct
-> connection to pins".
-> 
-> Thanks
-> 
-> BRs,
-> Bo-Chen
-> 
+This series comprises a handful of minor fixes that result from
+continued testing and updated guidance from the vendor.
 
-Hello Angelo,
+Jeff LaBundy (7):
+  Input: iqs7222 - fortify slider event reporting
+  Input: iqs7222 - protect volatile registers
+  Input: iqs7222 - acknowledge reset before writing registers
+  Input: iqs7222 - handle reset during ATI
+  Input: iqs7222 - remove support for RF filter
+  dt-bindings: input: iqs7222: Remove support for RF filter
+  dt-bindings: input: iqs7222: Correct bottom speed step size
 
-I think "@support_direct_pin: IP supports direct connection to dpi
-panels" is more precise for this config. I will use this description.
+ .../bindings/input/azoteq,iqs7222.yaml        |   7 +-
+ drivers/input/misc/iqs7222.c                  | 132 ++++++++++++------
+ 2 files changed, 90 insertions(+), 49 deletions(-)
 
-BRs,
-Bo-Chen
+-- 
+2.25.1
 
