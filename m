@@ -2,126 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B3D05577D5
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 12:26:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB45E5577DA
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 12:27:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230314AbiFWKZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 06:25:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55180 "EHLO
+        id S229769AbiFWK1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 06:27:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231243AbiFWKZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 06:25:46 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E5D4AE2D;
-        Thu, 23 Jun 2022 03:25:08 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id g12so16665329ljk.11;
-        Thu, 23 Jun 2022 03:25:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=WqCHtUCnOvJqjoM2/65DgkYvOyKmc4p+aq7/u8FCyxA=;
-        b=PIkKFT6MmcaUETNYYp/00cGxbMns4B3hZ5K5nmtGI6rNA0GIEW+mljG/Fne1m1MoDJ
-         hEob9rUTJYEcXgm+2VfxUeSgEiCC4beWQTqOtIjvrmPzJY59yY0aQjFSYFq6uZ+yCsBY
-         TkSAwqVecLhSbMBWc2qGK5asYINBDeVKWuZfIJIRPVXH2ooAOk+CilaQasEiFEnBPvo1
-         9yU7sRGCq0pbvG7DXQEPHm1Bepg/+EXQeJ5lKtflHEWo024/pU+tCE0tyKXp96P7eK6/
-         MtHCviPz6ujkgIRgMZdT9HQ/BMuTmBvX0T0E+5sbw8JvnmtJwX+DR8LPIVdwao4FUT9T
-         fbMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WqCHtUCnOvJqjoM2/65DgkYvOyKmc4p+aq7/u8FCyxA=;
-        b=xMc2bE3kLNvmQkza61DTzP2N2j66Wx7HQyAl24DvwbKAwP+AT5S1OLuEYDJCthaBoD
-         0ttPg0vzKO3Ol/BGhCqj0gTEyUofmE6NcOxMmTWRd+pHCLy8BjZQ+7AqUth7TkBW2ijV
-         T+/MU8L2dz5k2UpiLgUV6dYDeoTawr434MY9xOtJJnqukAGzqRCt2geigL1ipuzizPLp
-         J97cLCGv60pkE1nHBiRV6CkeEAqxjAQBHtCLc7CsBOs3Cq7xMLlHzxPy8+2qwfgA4m0s
-         mHeopZLMsfcgYIzkTDdFnnJpKE6QuZPeZaSh8YWJqTMX3DNXjp2g0BZc3oZwCwoKH8Hh
-         Ww/w==
-X-Gm-Message-State: AJIora+5rFk8kuFcqSWFmnhstsKuQGssJovI7tE1dPUk7x31aBknQLe4
-        7IZbOEn3IMZS8zszmo4/ayw/IcaOH6lbylZx
-X-Google-Smtp-Source: AGRyM1uzm9hmF9QK316rJoAfTTvEoAQhcLS5DK1sh8QXwvTquRMs7E5mQ7FvnFV0WtaDWVYa8qbSYg==
-X-Received: by 2002:a2e:a883:0:b0:25a:8d91:27b4 with SMTP id m3-20020a2ea883000000b0025a8d9127b4mr2875724ljq.509.1655979906447;
-        Thu, 23 Jun 2022 03:25:06 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id z1-20020a2e9641000000b00253deeaeb3dsm2727519ljh.131.2022.06.23.03.25.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jun 2022 03:25:05 -0700 (PDT)
-Date:   Thu, 23 Jun 2022 13:25:02 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Conor.Dooley@microchip.com
-Cc:     damien.lemoal@opensource.wdc.com, mail@conchuod.ie,
-        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        sam@ravnborg.org, Eugeniy.Paltsev@synopsys.com, vkoul@kernel.org,
-        lgirdwood@gmail.com, broonie@kernel.org, daniel.lezcano@linaro.org,
-        palmer@dabbelt.com, palmer@rivosinc.com, tglx@linutronix.de,
-        paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
-        masahiroy@kernel.org, geert@linux-m68k.org, niklas.cassel@wdc.com,
-        dillon.minfei@gmail.com, jee.heng.sia@intel.com,
-        joabreu@synopsys.com, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-spi@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 06/14] spi: dt-bindings: dw-apb-ssi: update
- spi-{r,t}x-bus-width for dwc-ssi
-Message-ID: <20220623102502.jiksqr3m6y733haq@mobilestation>
-References: <20220618123035.563070-1-mail@conchuod.ie>
- <20220618123035.563070-7-mail@conchuod.ie>
- <20220620205654.g7fyipwytbww5757@mobilestation>
- <61b0fb86-078d-0262-b142-df2984ce0f97@microchip.com>
- <9a1fcb40-9267-d8e6-b3b6-3b03fd789822@opensource.wdc.com>
- <a2d85598-76d1-c9dc-d50d-e5aa815997cf@conchuod.ie>
- <c272728f-f610-77df-bd9b-c9fee6b727f8@opensource.wdc.com>
- <bd2547f8-e069-60a2-a223-9f694457636d@microchip.com>
+        with ESMTP id S230429AbiFWK1Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 06:27:16 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D35C53E5F7;
+        Thu, 23 Jun 2022 03:27:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 59AFB61E7B;
+        Thu, 23 Jun 2022 10:27:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92F82C3411B;
+        Thu, 23 Jun 2022 10:27:07 +0000 (UTC)
+Date:   Thu, 23 Jun 2022 11:27:03 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Kefeng Wang <wangkefeng.wang@huawei.com>
+Cc:     Baoquan He <bhe@redhat.com>, Zhen Lei <thunder.leizhen@huawei.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>, kexec@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>,
+        liushixin <liushixin2@huawei.com>
+Subject: Re: [PATCH 5/5] arm64: kdump: Don't defer the reservation of crash
+ high memory
+Message-ID: <YrQ/98J5UqPh8K89@arm.com>
+References: <20220613080932.663-1-thunder.leizhen@huawei.com>
+ <20220613080932.663-6-thunder.leizhen@huawei.com>
+ <YrFYHYgX3mC//t2l@MiWiFi-R3L-srv>
+ <3f66323d-f371-b931-65fb-edfae0f01c88@huawei.com>
+ <YrIIJkhKWSuAqkCx@arm.com>
+ <ba3a97d6-262d-6413-135d-0be9b0af9a6a@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <bd2547f8-e069-60a2-a223-9f694457636d@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ba3a97d6-262d-6413-135d-0be9b0af9a6a@huawei.com>
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 21, 2022 at 04:06:21PM +0000, Conor.Dooley@microchip.com wrote:
-> On 21/06/2022 00:17, Damien Le Moal wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> > On 6/21/22 07:49, Conor Dooley wrote:
-> >>
-> ---8<---
-> >>>>
-> >>>> hmm, well I'll leave that up to people that have Canaan hardware!
-> >>>
-> >>> I will test this series.
-> >>>
-> >>
-> >> Cool, thanks.
-> >> I'll try to get a respin out tomorrow w/ the memory node "unfixed".
-> > 
-> > OK. I will test that then :)
+On Wed, Jun 22, 2022 at 08:03:21PM +0800, Kefeng Wang wrote:
+> On 2022/6/22 2:04, Catalin Marinas wrote:
+> > On Tue, Jun 21, 2022 at 02:24:01PM +0800, Kefeng Wang wrote:
+> > > On 2022/6/21 13:33, Baoquan He wrote:
+> > > > On 06/13/22 at 04:09pm, Zhen Lei wrote:
+> > > > > If the crashkernel has both high memory above DMA zones and low memory
+> > > > > in DMA zones, kexec always loads the content such as Image and dtb to the
+> > > > > high memory instead of the low memory. This means that only high memory
+> > > > > requires write protection based on page-level mapping. The allocation of
+> > > > > high memory does not depend on the DMA boundary. So we can reserve the
+> > > > > high memory first even if the crashkernel reservation is deferred.
+> > > > > 
+> > > > > This means that the block mapping can still be performed on other kernel
+> > > > > linear address spaces, the TLB miss rate can be reduced and the system
+> > > > > performance will be improved.
+> > > > Ugh, this looks a little ugly, honestly.
+> > > > 
+> > > > If that's for sure arm64 can't split large page mapping of linear
+> > > > region, this patch is one way to optimize linear mapping. Given kdump
+> > > > setting is necessary on arm64 server, the booting speed is truly
+> > > > impacted heavily.
+> > > Is there some conclusion or discussion that arm64 can't split large page
+> > > mapping?
+> > > 
+> > > Could the crashkernel reservation (and Kfence pool) be splited dynamically?
+> > > 
+> > > I found Mark replay "arm64: remove page granularity limitation from
+> > > KFENCE"[1],
+> > > 
+> > >    "We also avoid live changes from block<->table mappings, since the
+> > >    archtitecture gives us very weak guarantees there and generally requires
+> > >    a Break-Before-Make sequence (though IIRC this was tightened up
+> > >    somewhat, so maybe going one way is supposed to work). Unless it's
+> > >    really necessary, I'd rather not split these block mappings while
+> > >    they're live."
+> > The problem with splitting is that you can end up with two entries in
+> > the TLB for the same VA->PA mapping (e.g. one for a 4KB page and another
+> > for a 2MB block). In the lucky case, the CPU will trigger a TLB conflict
+> > abort (but can be worse like loss of coherency).
+> Thanks for your explanation，
+> > Prior to FEAT_BBM (added in ARMv8.4), such scenario was not allowed at
+> > all, the software would have to unmap the range, TLBI, remap. With
+> > FEAT_BBM (level 2), we can do this without tearing the mapping down but
+> > we still need to handle the potential TLB conflict abort. The handler
+> > only needs a TLBI but if it touches the memory range being changed it
+> > risks faulting again. With vmap stacks and the kernel image mapped in
+> > the vmalloc space, we have a small window where this could be handled
+> > but we probably can't go into the C part of the exception handling
+> > (tracing etc. may access a kmalloc'ed object for example).
 > 
-> Since the memory node hit that dt-schema snag, I have not sent a v2.
-> Going to be AFK for a few days, so I dropped the memory node change,
-> changed the spi binding & put the series on:
-> git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/ canaan
-> 
+> So if without FEAT_BBM，we can only guarantee BBM sequence via
+> "unmap the range, TLBI, remap" or the following option,
 
-> If you get a chance to look at it great, if not I'll send a v2 once
-> the memory node is figured out.
+Yes, that's the break-before-make sequence.
 
-commit 84df6ca0f277 ("spi: dt-bindings: dw-apb-ssi: update
-spi-{r,t}x-bus-width") looks good to me. Feel free to add my ack tag
-to v2 of that patch.
+> and with FEAT_BBM (level 2), we could have easy way to avoid TLB
+> conflict for some vmalloc space, but still hard to deal with other
+> scence?
 
--Sergey
+It's not too hard in theory. Basically there's a small risk of getting a
+TLB conflict abort for the mappings you change without a BBM sequence (I
+think it's nearly non-existed when going from large block to smaller
+pages, though the architecture states that it's still possible). Since
+we only want to do this for the linear map and the kernel and stack are
+in the vmalloc space, we can handle such trap as an safety measure (it
+just needs a TLBI). It may help to tweak a model to force it to generate
+such conflict aborts, otherwise we'd not be able to test the code.
 
-> 
-> Thanks,
-> Conor.
-> 
+It's possible that such trap is raised at EL2 if a guest caused the
+conflict abort (the architecture left this as IMP DEF). The hypervisors
+may need to be taught to do a TLBI VMALLS12E1 instead of killing the
+guest. I haven't checked what KVM does.
+
+-- 
+Catalin
