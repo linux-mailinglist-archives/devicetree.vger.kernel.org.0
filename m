@@ -2,70 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 647325577E3
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 12:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9EDC5577EF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 12:35:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229760AbiFWKag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 06:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59846 "EHLO
+        id S229760AbiFWKfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 06:35:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbiFWKae (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 06:30:34 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A0B674A3D5;
-        Thu, 23 Jun 2022 03:30:32 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.92,215,1650898800"; 
-   d="scan'208";a="123880673"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 23 Jun 2022 19:30:31 +0900
-Received: from renesas-ubuntu18.ree.adwin.renesas.com (unknown [10.226.92.226])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 547E84008550;
-        Thu, 23 Jun 2022 19:30:28 +0900 (JST)
-From:   Chris Paterson <chris.paterson2@renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        with ESMTP id S229693AbiFWKfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 06:35:15 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22CFE4A3E3;
+        Thu, 23 Jun 2022 03:35:15 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25NAZ703091168;
+        Thu, 23 Jun 2022 05:35:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655980507;
+        bh=mPia7diqj1/M4jw9SHLoRb0ZUgQzioMWwdAouSjz+h4=;
+        h=From:To:CC:Subject:Date;
+        b=MK1pefrUzrMk6ZcCHUFh+oykqxV9dPF6xnnuce6QrsvEtTqyJk5mBOfGzCsZM2sUQ
+         boH2DvYRBk3vXx5cxkTIc68rtmN6XqzjO2Bb6dCGQL59DcuL9iqtJ44Zlv3pgrjZPz
+         OPskNBCOZSHbqbXRa2VnDaE1CMgSZvHKb3b2OnZs=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25NAZ76L023234
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 23 Jun 2022 05:35:07 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 23
+ Jun 2022 05:35:06 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 23 Jun 2022 05:35:06 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25NAZ6OJ023886;
+        Thu, 23 Jun 2022 05:35:06 -0500
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+To:     Tomi Valkeinen <tomba@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>,
         Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Paterson <chris.paterson2@renesas.com>
-Subject: [PATCH] arm64: dts: renesas: r9a07g054l2-smarc: Correct SoC name in comment
-Date:   Thu, 23 Jun 2022 11:30:24 +0100
-Message-Id: <20220623103024.24222-1-chris.paterson2@renesas.com>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Aradhya Bhatia <a-bhatia1@ti.com>
+Subject: [PATCH v2 0/2] Add DSS support for AM625 SoC
+Date:   Thu, 23 Jun 2022 16:05:02 +0530
+Message-ID: <20220623103504.26866-1-a-bhatia1@ti.com>
 X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This dts is for the RZ/V2L SMARC EVK, not RZ/G2L.
+This patch series adds a new compatible for the DSS IP on TI's AM625
+SoC. It further adds the required support for the same in the tidss
+driver. The IP is a newer version of the DSS IP available on AM65X SoC,
+with a major change being in the addition of another OLDI TX inside it.
+With the help of 2 OLDI TXes, this new DSS IP supports OLDI displays
+with a resolution of upto 2K. The OLDI support will be added
+subsequently.
 
-Fixes: f91c4c74796a ("arm64: dts: renesas: Add initial device tree for RZ/V2L SMARC EVK")
-Signed-off-by: Chris Paterson <chris.paterson2@renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changelog:
+V2:
+  - Removed redundant regsiter array 
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts
-index 4e07e1a0fb66..3d01a4cf0fbe 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- /*
-- * Device Tree Source for the RZ/G2L SMARC EVK board
-+ * Device Tree Source for the RZ/V2L SMARC EVK board
-  *
-  * Copyright (C) 2021 Renesas Electronics Corp.
-  */
+Aradhya Bhatia (2):
+  dt-bindings: display: ti,am65x-dss: Add am625 dss compatible
+  drm/tidss: Add support for AM625 DSS
+
+ .../bindings/display/ti/ti,am65x-dss.yaml     |  4 +-
+ drivers/gpu/drm/tidss/tidss_dispc.c           | 56 ++++++++++++++++++-
+ drivers/gpu/drm/tidss/tidss_dispc.h           |  2 +
+ drivers/gpu/drm/tidss/tidss_drv.c             |  1 +
+ 4 files changed, 61 insertions(+), 2 deletions(-)
+
 -- 
 2.36.1
 
