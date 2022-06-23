@@ -2,63 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBBD8557746
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 11:58:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7934557739
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 11:56:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231372AbiFWJ6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 05:58:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59442 "EHLO
+        id S231362AbiFWJ4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 05:56:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230129AbiFWJ6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 05:58:17 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F2FF1835C;
-        Thu, 23 Jun 2022 02:58:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1655978295; x=1687514295;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GuvmMAbni6/rG58eFy5iRUdXYl1CKtVdb7Hi8LQ32/E=;
-  b=i1b9YPkfj2XCKhI7Sv9wN9f2lxtPyRXP0bwb4CjWZSROs0jK7kzlXmve
-   cT69nHgKNkGkd+MGAtDN6SdgqJd4gkxy7HzFtzWtFjoXIBh5n9RnoHa79
-   KuVu7qxecdH6bmPEKvvTYoQKp7yT793h2RTvEyRugHfQFSyvY5gjNGqI5
-   GNoYT/oNOZm1UuN46ohg5pp2lpKd7AOPL4VQ2ugsc4XHVEpGL1Ry2G7L+
-   1VbW85AI7aLzNKkKudZ+6A7zrO7micE9wl4TR1NCStvyusxb5m6vupzx3
-   xFQt7Ai+1p5Q6HDDPaMMjE06ZjBOLwZ2csZ2tWULLU8hdTDBDv7B5Ds60
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="280724612"
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; 
-   d="scan'208";a="280724612"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2022 02:58:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; 
-   d="scan'208";a="677993403"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by FMSMGA003.fm.intel.com with ESMTP; 23 Jun 2022 02:58:12 -0700
-Date:   Thu, 23 Jun 2022 17:50:02 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     mdf@kernel.org, hao.wu@intel.com, trix@redhat.com, corbet@lwn.net,
-        conor.dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, system@metrotek.ru
-Subject: Re: [PATCH v21 3/5] fpga: microchip-spi: add Microchip MPF FPGA
-  manager
-Message-ID: <20220623095002.GA1763235@yilunxu-OptiPlex-7050>
-References: <20220621153847.103052-1-i.bornyakov@metrotek.ru>
- <20220621153847.103052-4-i.bornyakov@metrotek.ru>
- <20220623092939.GB1752270@yilunxu-OptiPlex-7050>
- <20220623094802.jqq43y452duvfjme@h-e2.ddg>
+        with ESMTP id S231335AbiFWJ4A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 05:56:00 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C547445792
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 02:55:58 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id g4so20027582lfv.9
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 02:55:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=7I3TTWN/wwecpZB3nSKMxEQGHr0b18hK3/YGntHqpBA=;
+        b=USyuzvpLnWwvFy1lJjpUXIVRpcZYiLKJAcsuVnYfqiBnV102zpy7fueziMhn2hufjN
+         h4twOEQhWIuonqAnuLn20dl8z81gVcRsMqcS8qgjPHR1JapoGgCVx47tZJXbbtdLZqRJ
+         x5+it83WvReQj8rF5dwqsB9y8PTElnkMEfunpTyKk/l8ia/rU9J88YJR+dI9iHjjGC7Q
+         dZ+K/djNtq+2nhgZfpgYUcY+xBZ3TxepPwermtqxWPf7qIakouHNUyGdYNMVgUxTrhfE
+         wlv/C79XLKcsekEBYBzCFTbCpcaI+vD941Y35hxEP4Gvvt7MDMSaX8x9fmuzj8C+9s3t
+         kKLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7I3TTWN/wwecpZB3nSKMxEQGHr0b18hK3/YGntHqpBA=;
+        b=JSCUMvXwiYKkttqOrQ5tOEgDjRDAFUf8FR5cfEVaWObPrcoUOSL9v2noro9qCQwkIE
+         l6Q2BPbx0URvotayM2dGAdCQfva4iFMiTmgmfUtJ8VwDqERsk1xiTTEk5oBpU5an/VNg
+         XR4tsEHBS5Y8P8rbF9IkEBFzSJWZrc7l83qhp3p7ZuSguoof7YGLx6s4irHSa0XXF6gV
+         QIRye1tQYV/jDv9PcgwfgKI3VUuvWoogPI8P2Uv1Iuxlk/tSkI/QMWRs9A9dotD3GvYZ
+         8WUVakeiDW7DFYxNTmg4MtldFTi1smxVdvs5V8eR4zn3eJfueYjpaeDD/hlEjPhSNdfR
+         8Pzw==
+X-Gm-Message-State: AJIora+j5weQEMwWDJ15NGN8/YtjX8/rp5e+o2so2ehLUVZvqV24RAIY
+        jQUmq4TZcSG+o+O2fSAbpzWEhg==
+X-Google-Smtp-Source: AGRyM1v4Q9yvmE7pbfBTUrw/Cd6mLuzEEELlqBH4NjBS6PsAsDd6asGEcJhZXpEdI1KBWqts81YnjA==
+X-Received: by 2002:a05:6512:304d:b0:47d:c236:566f with SMTP id b13-20020a056512304d00b0047dc236566fmr4848838lfb.641.1655978157101;
+        Thu, 23 Jun 2022 02:55:57 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id s9-20020a056512214900b004790b5a0b22sm2923672lfr.239.2022.06.23.02.55.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jun 2022 02:55:56 -0700 (PDT)
+Message-ID: <4c4efb31-14c8-9e58-edc2-7e2f787e6976@linaro.org>
+Date:   Thu, 23 Jun 2022 12:55:55 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220623094802.jqq43y452duvfjme@h-e2.ddg>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: Removal of qcom,board-id and qcom,msm-id
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        krzysztof.kozlowski@linaro.org
+Cc:     agross@kernel.org, arnd@arndb.de, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, olof@lixom.net, robh@kernel.org,
+        sboyd@kernel.org
+References: <a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org>
+ <20220522195138.35943-1-konrad.dybcio@somainline.org>
+ <c072077a-cc16-c8f8-fcfa-891b3357cb66@linaro.org>
+ <d0b55a37-428e-8081-6785-11be20aa14c7@somainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <d0b55a37-428e-8081-6785-11be20aa14c7@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,472 +79,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 23, 2022 at 12:48:02PM +0300, Ivan Bornyakov wrote:
-> On Thu, Jun 23, 2022 at 05:29:39PM +0800, Xu Yilun wrote:
-> > On Tue, Jun 21, 2022 at 06:38:45PM +0300, Ivan Bornyakov wrote:
-> > > Add support to the FPGA manager for programming Microchip Polarfire
-> > > FPGAs over slave SPI interface with .dat formatted bitsream image.
-> > > 
-> > > Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
-> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > Tested-by: Conor Dooley <conor.dooley@microchip.com>
-> > > Acked-by: Xu Yilun <yilun.xu@intel.com>
-> > > ---
-> > >  drivers/fpga/Kconfig         |   8 +
-> > >  drivers/fpga/Makefile        |   1 +
-> > >  drivers/fpga/microchip-spi.c | 398 +++++++++++++++++++++++++++++++++++
-> > >  3 files changed, 407 insertions(+)
-> > >  create mode 100644 drivers/fpga/microchip-spi.c
-> > > 
-> > > diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-> > > index 0831eecc9a09..6c416955da53 100644
-> > > --- a/drivers/fpga/Kconfig
-> > > +++ b/drivers/fpga/Kconfig
-> > > @@ -255,4 +255,12 @@ config FPGA_M10_BMC_SEC_UPDATE
-> > >  	  (BMC) and provides support for secure updates for the BMC image,
-> > >  	  the FPGA image, the Root Entry Hashes, etc.
-> > >  
-> > > +config FPGA_MGR_MICROCHIP_SPI
-> > > +	tristate "Microchip Polarfire SPI FPGA manager"
-> > > +	depends on SPI
-> > > +	help
-> > > +	  FPGA manager driver support for Microchip Polarfire FPGAs
-> > > +	  programming over slave SPI interface with .dat formatted
-> > > +	  bitstream image.
-> > 
-> > I still see the checkpatch warning here, please help fix it.
-> > 
-> > WARNING: please write a help paragraph that fully describes the config symbol
-> > 
+On 22/06/2022 14:53, Konrad Dybcio wrote:
 > 
-> Clearly there is a help paragraph. The reason why checkpatch warns here
-> is that help paragrap is of 3 lines long while minimum requirement is 4
-> lines. But does it really matter?
-
-Thanks for the info. It's good to me now.
-
 > 
-> > Thanks,
-> > Yilun
-> > 
-> > > +
-> > >  endif # FPGA
-> > > diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-> > > index 139ac1b573d3..42ae8b58abce 100644
-> > > --- a/drivers/fpga/Makefile
-> > > +++ b/drivers/fpga/Makefile
-> > > @@ -19,6 +19,7 @@ obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
-> > >  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
-> > >  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
-> > >  obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)	+= versal-fpga.o
-> > > +obj-$(CONFIG_FPGA_MGR_MICROCHIP_SPI)	+= microchip-spi.o
-> > >  obj-$(CONFIG_ALTERA_PR_IP_CORE)		+= altera-pr-ip-core.o
-> > >  obj-$(CONFIG_ALTERA_PR_IP_CORE_PLAT)	+= altera-pr-ip-core-plat.o
-> > >  
-> > > diff --git a/drivers/fpga/microchip-spi.c b/drivers/fpga/microchip-spi.c
-> > > new file mode 100644
-> > > index 000000000000..bd284c7b8dc9
-> > > --- /dev/null
-> > > +++ b/drivers/fpga/microchip-spi.c
-> > > @@ -0,0 +1,398 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Microchip Polarfire FPGA programming over slave SPI interface.
-> > > + */
-> > > +
-> > > +#include <asm/unaligned.h>
-> > > +#include <linux/delay.h>
-> > > +#include <linux/fpga/fpga-mgr.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/of_device.h>
-> > > +#include <linux/spi/spi.h>
-> > > +
-> > > +#define	MPF_SPI_ISC_ENABLE	0x0B
-> > > +#define	MPF_SPI_ISC_DISABLE	0x0C
-> > > +#define	MPF_SPI_READ_STATUS	0x00
-> > > +#define	MPF_SPI_READ_DATA	0x01
-> > > +#define	MPF_SPI_FRAME_INIT	0xAE
-> > > +#define	MPF_SPI_FRAME		0xEE
-> > > +#define	MPF_SPI_PRG_MODE	0x01
-> > > +#define	MPF_SPI_RELEASE		0x23
-> > > +
-> > > +#define	MPF_SPI_FRAME_SIZE	16
-> > > +
-> > > +#define	MPF_HEADER_SIZE_OFFSET	24
-> > > +#define	MPF_DATA_SIZE_OFFSET	55
-> > > +
-> > > +#define	MPF_LOOKUP_TABLE_RECORD_SIZE		9
-> > > +#define	MPF_LOOKUP_TABLE_BLOCK_ID_OFFSET	0
-> > > +#define	MPF_LOOKUP_TABLE_BLOCK_START_OFFSET	1
-> > > +
-> > > +#define	MPF_COMPONENTS_SIZE_ID	5
-> > > +#define	MPF_BITSTREAM_ID	8
-> > > +
-> > > +#define	MPF_BITS_PER_COMPONENT_SIZE	22
-> > > +
-> > > +#define	MPF_STATUS_POLL_RETRIES		10000
-> > > +#define	MPF_STATUS_BUSY			BIT(0)
-> > > +#define	MPF_STATUS_READY		BIT(1)
-> > > +#define	MPF_STATUS_SPI_VIOLATION	BIT(2)
-> > > +#define	MPF_STATUS_SPI_ERROR		BIT(3)
-> > > +
-> > > +struct mpf_priv {
-> > > +	struct spi_device *spi;
-> > > +	bool program_mode;
-> > > +};
-> > > +
-> > > +static int mpf_read_status(struct spi_device *spi)
-> > > +{
-> > > +	u8 status = 0, status_command = MPF_SPI_READ_STATUS;
-> > > +	struct spi_transfer xfers[2] = { 0 };
-> > > +	int ret;
-> > > +
-> > > +	/*
-> > > +	 * HW status is returned on MISO in the first byte after CS went
-> > > +	 * active. However, first reading can be inadequate, so we submit
-> > > +	 * two identical SPI transfers and use result of the later one.
-> > > +	 */
-> > > +	xfers[0].tx_buf = &status_command;
-> > > +	xfers[1].tx_buf = &status_command;
-> > > +	xfers[0].rx_buf = &status;
-> > > +	xfers[1].rx_buf = &status;
-> > > +	xfers[0].len = 1;
-> > > +	xfers[1].len = 1;
-> > > +	xfers[0].cs_change = 1;
-> > > +
-> > > +	ret = spi_sync_transfer(spi, xfers, 2);
-> > > +
-> > > +	if ((status & MPF_STATUS_SPI_VIOLATION) ||
-> > > +	    (status & MPF_STATUS_SPI_ERROR))
-> > > +		ret = -EIO;
-> > > +
-> > > +	return ret ? : status;
-> > > +}
-> > > +
-> > > +static enum fpga_mgr_states mpf_ops_state(struct fpga_manager *mgr)
-> > > +{
-> > > +	struct mpf_priv *priv = mgr->priv;
-> > > +	struct spi_device *spi;
-> > > +	bool program_mode;
-> > > +	int status;
-> > > +
-> > > +	spi = priv->spi;
-> > > +	program_mode = priv->program_mode;
-> > > +	status = mpf_read_status(spi);
-> > > +
-> > > +	if (!program_mode && !status)
-> > > +		return FPGA_MGR_STATE_OPERATING;
-> > > +
-> > > +	return FPGA_MGR_STATE_UNKNOWN;
-> > > +}
-> > > +
-> > > +static int mpf_ops_parse_header(struct fpga_manager *mgr,
-> > > +				struct fpga_image_info *info,
-> > > +				const char *buf, size_t count)
-> > > +{
-> > > +	size_t component_size_byte_num, component_size_byte_off,
-> > > +	       components_size_start, bitstream_start,
-> > > +	       block_id_offset, block_start_offset;
-> > > +	u8 header_size, blocks_num, block_id;
-> > > +	u32 block_start, component_size;
-> > > +	u16 components_num, i;
-> > > +
-> > > +	if (!buf) {
-> > > +		dev_err(&mgr->dev, "Image buffer is not provided\n");
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	header_size = *(buf + MPF_HEADER_SIZE_OFFSET);
-> > > +	if (header_size > count) {
-> > > +		info->header_size = header_size;
-> > > +		return -EAGAIN;
-> > > +	}
-> > > +
-> > > +	/*
-> > > +	 * Go through look-up table to find out where actual bitstream starts
-> > > +	 * and where sizes of components of the bitstream lies.
-> > > +	 */
-> > > +	blocks_num = *(buf + header_size - 1);
-> > > +	block_id_offset = header_size + MPF_LOOKUP_TABLE_BLOCK_ID_OFFSET;
-> > > +	block_start_offset = header_size + MPF_LOOKUP_TABLE_BLOCK_START_OFFSET;
-> > > +
-> > > +	header_size += blocks_num * MPF_LOOKUP_TABLE_RECORD_SIZE;
-> > > +	if (header_size > count) {
-> > > +		info->header_size = header_size;
-> > > +		return -EAGAIN;
-> > > +	}
-> > > +
-> > > +	components_size_start = 0;
-> > > +	bitstream_start = 0;
-> > > +
-> > > +	while (blocks_num--) {
-> > > +		block_id = *(buf + block_id_offset);
-> > > +		block_start = get_unaligned_le32(buf + block_start_offset);
-> > > +
-> > > +		switch (block_id) {
-> > > +		case MPF_BITSTREAM_ID:
-> > > +			bitstream_start = block_start;
-> > > +			info->header_size = block_start;
-> > > +			if (block_start > count)
-> > > +				return -EAGAIN;
-> > > +
-> > > +			break;
-> > > +		case MPF_COMPONENTS_SIZE_ID:
-> > > +			components_size_start = block_start;
-> > > +			break;
-> > > +		default:
-> > > +			break;
-> > > +		}
-> > > +
-> > > +		if (bitstream_start && components_size_start)
-> > > +			break;
-> > > +
-> > > +		block_id_offset += MPF_LOOKUP_TABLE_RECORD_SIZE;
-> > > +		block_start_offset += MPF_LOOKUP_TABLE_RECORD_SIZE;
-> > > +	}
-> > > +
-> > > +	if (!bitstream_start || !components_size_start) {
-> > > +		dev_err(&mgr->dev, "Failed to parse header look-up table\n");
-> > > +		return -EFAULT;
-> > > +	}
-> > > +
-> > > +	/*
-> > > +	 * Parse bitstream size.
-> > > +	 * Sizes of components of the bitstream are 22-bits long placed next
-> > > +	 * to each other. Image header should be extended by now up to where
-> > > +	 * actual bitstream starts, so no need for overflow check anymore.
-> > > +	 */
-> > > +	components_num = get_unaligned_le16(buf + MPF_DATA_SIZE_OFFSET);
-> > > +
-> > > +	for (i = 0; i < components_num; i++) {
-> > > +		component_size_byte_num =
-> > > +			(i * MPF_BITS_PER_COMPONENT_SIZE) / BITS_PER_BYTE;
-> > > +		component_size_byte_off =
-> > > +			(i * MPF_BITS_PER_COMPONENT_SIZE) % BITS_PER_BYTE;
-> > > +
-> > > +		component_size = get_unaligned_le32(buf +
-> > > +						    components_size_start +
-> > > +						    component_size_byte_num);
-> > > +		component_size >>= component_size_byte_off;
-> > > +		component_size &= GENMASK(MPF_BITS_PER_COMPONENT_SIZE - 1, 0);
-> > > +
-> > > +		info->data_size += component_size * MPF_SPI_FRAME_SIZE;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +/* Poll HW status until busy bit is cleared and mask bits are set. */
-> > > +static int mpf_poll_status(struct spi_device *spi, u8 mask)
-> > > +{
-> > > +	int status, retries = MPF_STATUS_POLL_RETRIES;
-> > > +
-> > > +	while (retries--) {
-> > > +		status = mpf_read_status(spi);
-> > > +		if (status < 0)
-> > > +			return status;
-> > > +
-> > > +		if (status & MPF_STATUS_BUSY)
-> > > +			continue;
-> > > +
-> > > +		if (!mask || (status & mask))
-> > > +			return status;
-> > > +	}
-> > > +
-> > > +	return -EBUSY;
-> > > +}
-> > > +
-> > > +static int mpf_spi_write(struct spi_device *spi, const void *buf, size_t buf_size)
-> > > +{
-> > > +	int status = mpf_poll_status(spi, 0);
-> > > +
-> > > +	if (status < 0)
-> > > +		return status;
-> > > +
-> > > +	return spi_write(spi, buf, buf_size);
-> > > +}
-> > > +
-> > > +static int mpf_spi_write_then_read(struct spi_device *spi,
-> > > +				   const void *txbuf, size_t txbuf_size,
-> > > +				   void *rxbuf, size_t rxbuf_size)
-> > > +{
-> > > +	const u8 read_command[] = { MPF_SPI_READ_DATA };
-> > > +	int ret;
-> > > +
-> > > +	ret = mpf_spi_write(spi, txbuf, txbuf_size);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = mpf_poll_status(spi, MPF_STATUS_READY);
-> > > +	if (ret < 0)
-> > > +		return ret;
-> > > +
-> > > +	return spi_write_then_read(spi, read_command, sizeof(read_command),
-> > > +				   rxbuf, rxbuf_size);
-> > > +}
-> > > +
-> > > +static int mpf_ops_write_init(struct fpga_manager *mgr,
-> > > +			      struct fpga_image_info *info, const char *buf,
-> > > +			      size_t count)
-> > > +{
-> > > +	const u8 program_mode[] = { MPF_SPI_FRAME_INIT, MPF_SPI_PRG_MODE };
-> > > +	const u8 isc_en_command[] = { MPF_SPI_ISC_ENABLE };
-> > > +	struct mpf_priv *priv = mgr->priv;
-> > > +	struct device *dev = &mgr->dev;
-> > > +	struct spi_device *spi;
-> > > +	u32 isc_ret = 0;
-> > > +	int ret;
-> > > +
-> > > +	if (info->flags & FPGA_MGR_PARTIAL_RECONFIG) {
-> > > +		dev_err(dev, "Partial reconfiguration is not supported\n");
-> > > +		return -EOPNOTSUPP;
-> > > +	}
-> > > +
-> > > +	spi = priv->spi;
-> > > +
-> > > +	ret = mpf_spi_write_then_read(spi, isc_en_command, sizeof(isc_en_command),
-> > > +				      &isc_ret, sizeof(isc_ret));
-> > > +	if (ret || isc_ret) {
-> > > +		dev_err(dev, "Failed to enable ISC: spi_ret %d, isc_ret %u\n",
-> > > +			ret, isc_ret);
-> > > +		return -EFAULT;
-> > > +	}
-> > > +
-> > > +	ret = mpf_spi_write(spi, program_mode, sizeof(program_mode));
-> > > +	if (ret) {
-> > > +		dev_err(dev, "Failed to enter program mode: %d\n", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	priv->program_mode = true;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int mpf_ops_write(struct fpga_manager *mgr, const char *buf, size_t count)
-> > > +{
-> > > +	u8 spi_frame_command[] = { MPF_SPI_FRAME };
-> > > +	struct spi_transfer xfers[2] = { 0 };
-> > > +	struct mpf_priv *priv = mgr->priv;
-> > > +	struct device *dev = &mgr->dev;
-> > > +	struct spi_device *spi;
-> > > +	int ret, i;
-> > > +
-> > > +	if (count % MPF_SPI_FRAME_SIZE) {
-> > > +		dev_err(dev, "Bitstream size is not a multiple of %d\n",
-> > > +			MPF_SPI_FRAME_SIZE);
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	spi = priv->spi;
-> > > +
-> > > +	xfers[0].tx_buf = spi_frame_command;
-> > > +	xfers[0].len = sizeof(spi_frame_command);
-> > > +
-> > > +	for (i = 0; i < count / MPF_SPI_FRAME_SIZE; i++) {
-> > > +		xfers[1].tx_buf = buf + i * MPF_SPI_FRAME_SIZE;
-> > > +		xfers[1].len = MPF_SPI_FRAME_SIZE;
-> > > +
-> > > +		ret = mpf_poll_status(spi, 0);
-> > > +		if (ret >= 0)
-> > > +			ret = spi_sync_transfer(spi, xfers, ARRAY_SIZE(xfers));
-> > > +
-> > > +		if (ret) {
-> > > +			dev_err(dev, "Failed to write bitstream frame %d/%zu\n",
-> > > +				i, count / MPF_SPI_FRAME_SIZE);
-> > > +			return ret;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int mpf_ops_write_complete(struct fpga_manager *mgr,
-> > > +				  struct fpga_image_info *info)
-> > > +{
-> > > +	const u8 isc_dis_command[] = { MPF_SPI_ISC_DISABLE };
-> > > +	const u8 release_command[] = { MPF_SPI_RELEASE };
-> > > +	struct mpf_priv *priv = mgr->priv;
-> > > +	struct device *dev = &mgr->dev;
-> > > +	struct spi_device *spi;
-> > > +	int ret;
-> > > +
-> > > +	spi = priv->spi;
-> > > +
-> > > +	ret = mpf_spi_write(spi, isc_dis_command, sizeof(isc_dis_command));
-> > > +	if (ret) {
-> > > +		dev_err(dev, "Failed to disable ISC: %d\n", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	usleep_range(1000, 2000);
-> > > +
-> > > +	ret = mpf_spi_write(spi, release_command, sizeof(release_command));
-> > > +	if (ret) {
-> > > +		dev_err(dev, "Failed to exit program mode: %d\n", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	priv->program_mode = false;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static const struct fpga_manager_ops mpf_ops = {
-> > > +	.state = mpf_ops_state,
-> > > +	.initial_header_size = 71,
-> > > +	.skip_header = true,
-> > > +	.parse_header = mpf_ops_parse_header,
-> > > +	.write_init = mpf_ops_write_init,
-> > > +	.write = mpf_ops_write,
-> > > +	.write_complete = mpf_ops_write_complete,
-> > > +};
-> > > +
-> > > +static int mpf_probe(struct spi_device *spi)
-> > > +{
-> > > +	struct device *dev = &spi->dev;
-> > > +	struct fpga_manager *mgr;
-> > > +	struct mpf_priv *priv;
-> > > +
-> > > +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > > +	if (!priv)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	priv->spi = spi;
-> > > +
-> > > +	mgr = devm_fpga_mgr_register(dev, "Microchip Polarfire SPI FPGA Manager",
-> > > +				     &mpf_ops, priv);
-> > > +
-> > > +	return PTR_ERR_OR_ZERO(mgr);
-> > > +}
-> > > +
-> > > +static const struct spi_device_id mpf_spi_ids[] = {
-> > > +	{ .name = "mpf-spi-fpga-mgr", },
-> > > +	{},
-> > > +};
-> > > +MODULE_DEVICE_TABLE(spi, mpf_spi_ids);
-> > > +
-> > > +#if IS_ENABLED(CONFIG_OF)
-> > > +static const struct of_device_id mpf_of_ids[] = {
-> > > +	{ .compatible = "microchip,mpf-spi-fpga-mgr" },
-> > > +	{},
-> > > +};
-> > > +MODULE_DEVICE_TABLE(of, mpf_of_ids);
-> > > +#endif /* IS_ENABLED(CONFIG_OF) */
-> > > +
-> > > +static struct spi_driver mpf_driver = {
-> > > +	.probe = mpf_probe,
-> > > +	.id_table = mpf_spi_ids,
-> > > +	.driver = {
-> > > +		.name = "microchip_mpf_spi_fpga_mgr",
-> > > +		.of_match_table = of_match_ptr(mpf_of_ids),
-> > > +	},
-> > > +};
-> > > +
-> > > +module_spi_driver(mpf_driver);
-> > > +
-> > > +MODULE_DESCRIPTION("Microchip Polarfire SPI FPGA Manager");
-> > > +MODULE_LICENSE("GPL");
-> > > -- 
-> > > 2.25.1
-> > > 
+> On 22.06.2022 10:21, Dmitry Baryshkov wrote:
+>> On 22/05/2022 22:51, Konrad Dybcio wrote:
+>>> Hi,
+>>>
+>>> removing these properties will not bring almost any benefit (other than making
+>>> some checks happy any saving some <200 LoC) and will make the lives of almost
+>>> all people doing independent development for linux-on-msm harder. There are
+>>> almost unironically like 3 people outside Linaro and QUIC who have
+>>> non-vendor-fused development boards AND the sources to rebuild the
+>>> bootloader on their own. Making it harder to boot is only going to
+>>> discourage people from developing on these devices, which is already not
+>>> that pleasant, especially with newer platforms where you have to fight with
+>>> the oh-so-bright ideas of Android boot chain..
+>>>
+>>> This only concerns devices released before sm8350, as the new ones will not
+>>> even boot with these properties present (or at least SONY Sagami, but I
+>>> doubt it's an isolated case), so other than completing support for older
+>>> devices, it won't be an issue going forward, anyway.
+>>
+>> I almost missed this part of the discussion (and Krzysztof had to point me to it in discussion of his patches).
+>>
+>> I think this is a Sony peculiarity. At least the distributed SM8350 (lahaina) and SM8450 (waipio) Qualcomm device trees use these properties:
+>>
+>> https://github.com/MiCode/kernel_devicetree/blob/zeus-s-oss/qcom/lahaina-hdk.dts
+>> https://github.com/MiCode/kernel_devicetree/blob/zeus-s-oss/qcom/lahaina-v2.1.dtsi
+>> https://github.com/MiCode/kernel_devicetree/blob/zeus-s-oss/qcom/waipio-qrd-pm8010.dts
+>> https://github.com/MiCode/kernel_devicetree/blob/zeus-s-oss/qcom/waipio-v2.dtsi
+>>
+>>
+> Hi,
+> 
+> I was puzzled on this back when I first tried to get mainline booting on 8350 too. What I think happened, is that msm-id is used in some code paths, but not others (remember there are plenty of combinations including various Google's inventions from all over the years: QCDT, DTBO, vendor_boot, AVB signage, A/B presence/absence of recovery partition, virtual partitions etc etc).
+> 
+> Frankly, I have no idea why they are still here, but for booting just the kernel (no vendor_boot / GKI / dtbo mess), they need to be absent, at least on Sagami devices. This may be a bug in the Qualcomm bootloader, but they officially have to go with the GKI path to pass Google's compatibility tests, so this may not have been thouroughly tested (if at all), though I highly doubt this is going to change, as vendors are generally reluctant to update their bootloaders and Qualcomm is probably not interested in messing with a useless-to-the-main-purpose feature.
+
+I remember that on early sm8450 boards/bootloaders we had the issues 
+with the bootloader (I don't remember exact details). However I just 
+checked the SM4850-HDK + the downstream kernel + appended dtb (which 
+contains qcom,msm-id and qcom,board-id properties) and the kernel boots 
+fine. So, I can suppose, there was some kind of an issue, which got 
+fixed with later ABL releases.
+
+Anyway the latest Krzysztof's text seems fine to me. And if anybody adds 
+these properties to the DT, he knows what he is doing and why.
+
+-- 
+With best wishes
+Dmitry
