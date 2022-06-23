@@ -2,139 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 718965589F3
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 22:20:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19A17558A01
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 22:26:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229461AbiFWUT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 16:19:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48146 "EHLO
+        id S229787AbiFWU0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 16:26:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbiFWUT6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 16:19:58 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8164128723;
-        Thu, 23 Jun 2022 13:19:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1656015566;
-        bh=7z0s+WHf2+v1qxr7m1rw9SjbVWQ/P3W5Q+Q8hQUhFL4=;
-        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
-        b=QtTskdiVf9SnLc0VDy0EIhIbvpMEzrUAMWnmUFkmkUODhMQ/kqzxpJQVzZsHpBX89
-         kCFS99QVz5o6YiBoT++oDJplAkjhZPv3AeBAgMSNGdOdtrU+5tCV/z6pnf/zKBNZiz
-         cjYEO5nRUkXUaQEGqMKQ/UWOw5/htUwm/b9qIvUE=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.0.33] ([46.223.3.134]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MplXp-1nJMNn1pnR-00q9Ow; Thu, 23
- Jun 2022 22:19:26 +0200
-Subject: Re: [PATCH 1/8] serial: core: only get RS485 termination gpio if
- supported
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lukas Wunner <lukas@wunner.de>, p.rosenberger@kunbus.com,
-        Lino Sanfilippo <l.sanfilippo@kunbus.com>
-References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
- <20220622154659.8710-2-LinoSanfilippo@gmx.de>
- <YrNLtg+BZlwKsBbF@smile.fi.intel.com>
- <2dda5707-6f13-6d33-863d-a88b89e88a88@gmx.de>
- <CAHp75Vd_ix=bJs9k6bYM8S+3f_Pw7Tvs9DhPcZxu1=33T=mQ7A@mail.gmail.com>
- <52ea773c-b5b0-fc4d-9b85-022676778af7@gmx.de>
- <YrSVozxvPZtJdQL5@smile.fi.intel.com>
-From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
-Message-ID: <ed24e677-4179-5bb6-54ba-5657442b9c63@gmx.de>
-Date:   Thu, 23 Jun 2022 22:19:23 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S229461AbiFWU0M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 16:26:12 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C2A52E60
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 13:26:10 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id cf14so562417edb.8
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 13:26:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9DQnJCB/qnsZZ49YdwXaekju9k4tCSafvgxqzP9n2e4=;
+        b=Pkfw2SVEODkEr/iN3r2gia1wLufw1vFGeVCgqKehK/nKj1tniPTjFy00fU8Qm5lAXc
+         FCC5ZLbyDI7wAvX80ZNILC4EgzlpbjDJbqRHCQ8KXSfDBb2ZzLJjx2Swj2ya4R5hgIpU
+         NWQF8fZ72qCynH/W4bOEP1GUD4biW4hBXwnjNFmXnfF80fB5XN61vsm+keE5rWT/Sjjn
+         TQyn4PsuSowMsXeX6o6W+gj4EmjFCo/OQECEF+1WvuM7WUObxiwPu+Q8GtyQcdZCRmZ/
+         4PZq4Z5Vu6r258j98Va1mAnmRqCXdQe+4ws2GAv2ujbUJcC87OxlDhJ+GmOOCEtp5Rdb
+         J7Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9DQnJCB/qnsZZ49YdwXaekju9k4tCSafvgxqzP9n2e4=;
+        b=zqNzDbgG/KOdvGmeM3cOwNmPnVYtwd3kYMSaTovLKYTI0TWcBmGoZBo0NruZG5hpCT
+         vct61sIpMVZi77d0VDOur8QAWnDtGHvtU4viTMTZwjOQ1ysICvpx+4/b7eff1JuJLFyy
+         bJ312DSwJ1DdK1FxBWr9NKPeFirQGWg4DFX3i8v4z8+uNlOcaMQS2mgDn8cttM/Luu+A
+         1fv0Ekz4YM9cGKb+rod1f3NrZenOuQUmSDBnGNlAEcdwOE31UXsjQGW0/c335HajOwFg
+         m+KyMPqkOIPIE51ZSmGKirRBm32tx9G0E38pIfprQjosDD0gIhnU26KkM0uVfq7QSKfu
+         ygFg==
+X-Gm-Message-State: AJIora9hGaQwVpoFwMoCUMauzeZ8V1Y4CCqsIX3w9/eSmCM2z5Z08Pxg
+        o3ucmcf4Fa1erdltzLJIJ6Q3nGgmLFo4r9qRxdWs6A==
+X-Google-Smtp-Source: AGRyM1udbZoS5HJJFMkz3vP35YFIDi1NipZA1WLbI3MwDL5OTpckKueb5LXpr8ocKVdSIt0x1YRZbhIx8cOMsNjEYcM=
+X-Received: by 2002:a05:6402:1774:b0:435:7fea:8c02 with SMTP id
+ da20-20020a056402177400b004357fea8c02mr12808712edb.213.1656015968593; Thu, 23
+ Jun 2022 13:26:08 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YrSVozxvPZtJdQL5@smile.fi.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:R+h3v9u71I2BMWiuwJYl5ijLux5TSOJmiFNOdVkiUBhncJoBYBj
- Rpba1VLsz5PHFzMjtBa1BsosaVGfcUk1ZECJJOlVS4qskkA5UY/GboaENpFRfKFWsxMBvd9
- 91FcB4CF+HNLwr8+H2xoEBkMJY56ompf3/WhsPfqj3qGjPuquDLrVq2Lmfm1vXqwHiAx345
- xPfK2FSueTie/lNWc0DiQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:ypiX5zbmpH8=:3CTlB2vV9+v2noZpkCw0V2
- 1ToshIfaQqtoMscI0pX4QT62ADYtN+IpTCk2i7BkrnHytxC7icSm1HWVYvJwdoKZwhyW9SRp0
- xfqEHnzToVVi7We2Y+xv4O855spRcG0Y9KDFOVBuC0PZT3UZwr5zel2fNJJ63a13PcNaTvOnX
- tlMZlW4ogqyGCrkBeRlwNXRa6xG8iEZEWQHALl1mHRRcSZKQAKQ2NAQN/+sK332zRVROiXJHs
- ycPqL9BJ0/bH/HxY1nWdaT1Iq44oH2PKLOa3Tpgw5t82OzexUIOF2/YmS20KINt5HAaavOsu8
- ugSfRP99tjSz/1ZHrzq6mfFNxsniw2r/UG36ORQwCLezs4sGG2k3XJkX0S+51xwIA1tlwMTK8
- FxbSmkHGg1+A8QPutHq4ia3Tb0MQQ5ZqM/GMNgzadlr6lax0J2Q/hiRF/U6a6yPx5iNXqeU90
- kMxgZqOU3cbZqnZW+OGNrjbIG2h5nS5/YB6zVWji/p3fphtfL92u/lSfHvxHk1thsV7AksN+C
- xsn/5z9ipZo50IHuxYCzpHfYmYxpv7VEhfnP5lBsp0GaqWSVCBHXDooFK5Rxh1uqU1foPZ68t
- CSH2TLnBrZ9XOofredqSdV5NcY0myIxfLJ4FOr4FKoMKSTQA9j8iDdoNkgzl1WMNyfNDF/Ids
- NHDPssN8+4axOHqWt6Vvh3aXpvomN+NCowaYBrUle20g49spd7I/tLGGFDDXkQLUoE07jn6NZ
- 1PE/2dy9ZVrzNYpCD+rCAllqrP9wT9Shm3eAIAtLit1+1+YWSbAB2QQ8yYB/+B1EuMPgS4iRu
- wiypOa1DvVby8APC0n775tUZYsXAvlpah0iMrEA9+mO8pSFOUCr1nmIS0vTD/It5kdG+g4VPw
- LTQYhDotdZYbL5pekeP1pQPhO4hzE1lwgIddL4xFyTM53QKp87QCUjCy2uHe+EwerKDk+Q4Pc
- mG2G2LhXOhjVdRcvPrft8flDrVE1WPnn4yaTcDMvwSgOHwz8QJ+nOOsWU1J4oUMTcv1ifjzJv
- GGnyzzdpKaRxCKD+qm2ozFYQsF1jxxzKgA5mZiiV/rdeNWOzpx0t5GUGpoxNGB0fVAzF128b4
- NE6awCfFITxHdB11Xh0DxC0f2HgzcllNK69RBsP/yOJIux8TkGhahtS1Q==
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220526012946.3862776-1-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20220526012946.3862776-1-chris.packham@alliedtelesis.co.nz>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Thu, 23 Jun 2022 22:25:58 +0200
+Message-ID: <CAMRc=MfOdbanS+rBoMnD00z2y015nW5xtyyzLHfHrMi68GHyOA@mail.gmail.com>
+Subject: Re: [PATCH v4 0/3] dt-bindings: gpio: gpio-mvebu: Convert to DT
+ schema format
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Thomas Petazzoni <thomas.petazzoni@free-electrons.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:PWM SUBSYSTEM" <linux-pwm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23.06.22 at 18:32, Andy Shevchenko wrote:
-
->>
->> Ok I see the point. So what about changing it to:
+On Thu, May 26, 2022 at 3:29 AM Chris Packham
+<chris.packham@alliedtelesis.co.nz> wrote:
 >
-> You mean adding below after the existing code in the module?
-
-Right, to be more precise between getting the gpio and the error check:
-
-
-	port->rs485_term_gpio =3D devm_gpiod_get_optional(dev, "rs485-term",
-							GPIOD_OUT_LOW);
-
-	if (port->rs485_term_gpio &&
-	    !(port->rs485_supported->flags & SER_RS485_TERMINATE_BUS)) {
-		dev_warn(port->dev,
-			"%s (%d): RS485 termination gpio not supported by driver\n",
-			port->name, port->line);
-		devm_gpiod_put(dev, port->rs485_term_gpio);
-		port->rs485_term_gpio =3D NULL;
-	}
-
-	if (IS_ERR(port->rs485_term_gpio)) {
-		ret =3D PTR_ERR(port->rs485_term_gpio);
-		port->rs485_term_gpio =3D NULL;
-		return dev_err_probe(dev, ret, "Cannot get rs485-term-gpios\n");
-	}
-
-Regards,
-Lino
-
+> The 1st patch converts the old binding mostly 1:1.
+> The 2nd patch deprecates the unused marvell,armadaxp compatible.
+> The 3rd patch documents the existing usage of the offset/marvell,pwm-offset
+> properties.
 >
->> 	if (port->rs485_term_gpio &&
->> 	    !(port->rs485_supported->flags & SER_RS485_TERMINATE_BUS)) {
->> 		dev_warn(port->dev,
->> 			"%s (%d): RS485 termination gpio not supported by driver\n",
->> 			port->name, port->line);
->> 		devm_gpiod_put(dev, port->rs485_term_gpio);
->> 		port->rs485_term_gpio =3D NULL;
->> 	}
->>
->> This would also be consistent to the warnings we print in uart_sanitize=
-_serial_rs485() for invalid
->> RS485 settings.
+> Chris Packham (3):
+>   dt-bindings: gpio: gpio-mvebu: convert txt binding to DT schema format
+>   dt-bindings: gpio: gpio-mvebu: deprecate armadaxp-gpio
+>   dt-bindings: gpio: gpio-mvebu: document offset and marvell,pwm-offset
 >
-> Probably it's okay, but I dunno we have much on this to gain. Users may =
-start
-> complaining of this (harmless) warning. I leave it to others to comment.
+>  .../arm/marvell/ap80x-system-controller.txt   |   2 +-
+>  .../arm/marvell/cp110-system-controller.txt   |   2 +-
+>  .../devicetree/bindings/gpio/gpio-mvebu.txt   |  93 -----------
+>  .../devicetree/bindings/gpio/gpio-mvebu.yaml  | 146 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  5 files changed, 149 insertions(+), 96 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-mvebu.txt
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml
+>
+> --
+> 2.36.1
 >
 
+Applied the series, thanks!
+
+Bart
