@@ -2,158 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB722557D36
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 15:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27538557D84
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 16:08:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230216AbiFWNna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 09:43:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54096 "EHLO
+        id S231583AbiFWOIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 10:08:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231493AbiFWNn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 09:43:28 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5447C24BDC
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 06:43:21 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id k22so21587371wrd.6
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 06:43:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=eRK+unsPW70xNn5MF8+19eCG7D3AK/lgynWxuPdsIyE=;
-        b=KC804tV7q8m5lKxx02VfQNPyCFRxbLo+UN5MqQqk1P+QbuQa4VcB2DrqvkkpPc4wLh
-         s8YD9o2Eiw8erHMZ6g3Ia7a0hyCPKQt3dQhrWjxY7MVQ+N+R6b5WlLXKQYsrlnRxHzog
-         E2sf54tTcmTN6YbXT+A5UHQ5N/d1dBEzbXYSl58xn/DSXDKRHGikl18c1Dewu5+tmqAo
-         JWR2R+BecqmGJdKOoqPajDcTtrvcsivMLPCP1TsgqwJCt60ewBhMWun7q+A0t7wb6Fa5
-         u7SPQBBJb5LqETPHZT7BjI6j+0AwxO054RkyMDT9jgCAOSDplPJobh2EkUOEu7PwvTVI
-         nrzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eRK+unsPW70xNn5MF8+19eCG7D3AK/lgynWxuPdsIyE=;
-        b=Wbr9OQPT8UfRLkHc9vVJYI1Ns8dX/Xi97VNhDqWYuJoG0+Hkuv0uXSpjgFy2I8mzN7
-         oWgDYbrXz3RFTXv1VEK//A48DKC+rUaQfZx/qSiXXj5UZnn0Cydi33t3D1rgMj2IdBmN
-         2A/G0N8kNEVNt8sJ6J6xL5kd6i3N/XkBjWzVM2EucIUjR+Z6z09EPepq/BM7jcwkQ9qv
-         eQeoYZhvN7jhplQkckgS+RYlVR3g2bHj4OKHLdSio/R7BXiGfnfdEZCLkKdG8EpM9rk8
-         bg81UDZg/aWqAIyjwZmvsGtAoKRrVenTJgVSxzfZPZoGrSTT3hIfB/fECeuFTZrx96Es
-         baXw==
-X-Gm-Message-State: AJIora8kIHnFk2xcvXvYYVS3+fDG78nbjYAN2mhA0dNozt0Qyx7QcgZx
-        2BmxtL5bQx1fhiw7NgFer6jAig==
-X-Google-Smtp-Source: AGRyM1vjF4PN7klzy0olb9rrzdVMRPfVzufgs3EKRfc33dNmi33WjI/0td30uX34aWiNQWi+iEa1Yg==
-X-Received: by 2002:a05:6000:10b:b0:21b:88ca:9abf with SMTP id o11-20020a056000010b00b0021b88ca9abfmr8191539wrx.694.1655991799771;
-        Thu, 23 Jun 2022 06:43:19 -0700 (PDT)
-Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id p129-20020a1c2987000000b003974cb37a94sm3313906wmp.22.2022.06.23.06.43.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jun 2022 06:43:18 -0700 (PDT)
-Date:   Thu, 23 Jun 2022 14:43:16 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     lee.jones@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, sre@kernel.org, chunfeng.yun@mediatek.com,
-        gregkh@linuxfoundation.org, jic23@kernel.org, lars@metafoo.de,
-        lgirdwood@gmail.com, broonie@kernel.org, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, deller@gmx.de,
-        chiaen_wu@richtek.com, alice_chen@richtek.com,
-        cy_huang@richtek.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S231454AbiFWOII (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 10:08:08 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21CF63EB8F;
+        Thu, 23 Jun 2022 07:08:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E2E28B823D8;
+        Thu, 23 Jun 2022 14:08:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C72C1C3411B;
+        Thu, 23 Jun 2022 14:07:59 +0000 (UTC)
+Date:   Thu, 23 Jun 2022 15:07:56 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Baoquan He <bhe@redhat.com>
+Cc:     Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>, kexec@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        szunichen@gmail.com
-Subject: Re: [PATCH v3 14/14] video: backlight: mt6370: Add Mediatek MT6370
- support
-Message-ID: <20220623134316.rg3adyobz3hkgflt@maple.lan>
-References: <20220623115631.22209-1-peterwu.pub@gmail.com>
- <20220623115631.22209-15-peterwu.pub@gmail.com>
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>,
+        liushixin <liushixin2@huawei.com>
+Subject: Re: [PATCH 5/5] arm64: kdump: Don't defer the reservation of crash
+ high memory
+Message-ID: <YrRzvO5F0dumsbAU@arm.com>
+References: <20220613080932.663-1-thunder.leizhen@huawei.com>
+ <20220613080932.663-6-thunder.leizhen@huawei.com>
+ <YrFYHYgX3mC//t2l@MiWiFi-R3L-srv>
+ <3f66323d-f371-b931-65fb-edfae0f01c88@huawei.com>
+ <YrIIJkhKWSuAqkCx@arm.com>
+ <YrLUREAoBMSZo7RR@MiWiFi-R3L-srv>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220623115631.22209-15-peterwu.pub@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <YrLUREAoBMSZo7RR@MiWiFi-R3L-srv>
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 23, 2022 at 07:56:31PM +0800, ChiaEn Wu wrote:
-> From: ChiaEn Wu <chiaen_wu@richtek.com>
+On Wed, Jun 22, 2022 at 04:35:16PM +0800, Baoquan He wrote:
+> On 06/21/22 at 07:04pm, Catalin Marinas wrote:
+> > The problem with splitting is that you can end up with two entries in
+> > the TLB for the same VA->PA mapping (e.g. one for a 4KB page and another
+> > for a 2MB block). In the lucky case, the CPU will trigger a TLB conflict
+> > abort (but can be worse like loss of coherency).
 > 
-> Add Mediatek MT6370 Backlight support.
-> 
-> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+> Thanks for this explanation. Is this a drawback of arm64 design? X86
+> code do the same thing w/o issue, is there way to overcome this on
+> arm64 from hardware or software side?
 
-> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
-> index a003e02..7cd823d 100644
-> <snip>
-> +static int mt6370_init_backlight_properties(struct mt6370_priv *priv,
-> +					    struct backlight_properties *props)
-> +{
-> +	struct device *dev = priv->dev;
-> +	u8 prop_val;
-> +	u32 brightness, ovp_uV, ocp_uA;
-> +	unsigned int mask, val;
-> +	int ret;
-> +
-> +	/* Vendor optional properties */
-> +	val = 0;
-> +	if (device_property_read_bool(dev, "mediatek,bled-pwm-enable"))
-> +		val |= MT6370_BL_PWM_EN_MASK;
-> +
-> +	if (device_property_read_bool(dev, "mediatek,bled-pwm-hys-enable"))
-> +		val |= MT6370_BL_PWM_HYS_EN_MASK;
-> +
-> +	ret = device_property_read_u8(dev,
-> +				      "mediatek,bled-pwm-hys-input-th-steps",
-> +				      &prop_val);
-> +	if (!ret) {
-> +		prop_val = clamp_val(prop_val,
-> +				     MT6370_BL_PWM_HYS_TH_MIN_STEP,
-> +				     MT6370_BL_PWM_HYS_TH_MAX_STEP);
-> +		/*
-> +		 * prop_val =  1      -->  1 steps --> 0x00
-> +		 * prop_val =  2 ~  4 -->  4 steps --> 0x01
-> +		 * prop_val =  5 ~ 16 --> 16 steps --> 0x10
-> +		 * prop_val = 17 ~ 64 --> 64 steps --> 0x11
+It is a drawback of the arm64 implementations. Having multiple TLB
+entries for the same VA would need additional logic in hardware to
+detect, so the microarchitects have pushed back. In ARMv8.4, some
+balanced was reached with FEAT_BBM so that the only visible side-effect
+is a potential TLB conflict abort that could be resolved by software.
 
-                                                      ^^^^^
-These numbers are binary, not hex, right? If so, the comments
-should be 0b00 to 0b03 .
+> I ever got a arm64 server with huge memory, w or w/o crashkernel setting 
+> have different bootup time. And the more often TLB miss and flush will
+> cause performance cost. It is really a pity if we have very powerful
+> arm64 cpu and system capacity, but bottlenecked by this drawback.
 
+Is it only the boot time affected or the runtime performance as well?
 
-> +		 */
-> +		prop_val = (ilog2(roundup_pow_of_two(prop_val)) + 1) >> 1;
-> +		val |= prop_val << (ffs(MT6370_BL_PWM_HYS_SEL_MASK) - 1);
-> +	}
-> +
-> +	ret = regmap_update_bits(priv->regmap, MT6370_REG_BL_PWM,
-> +				 val, val);
-> +	if (ret)
-> +		return ret;
-
-Overall, I like this approach! Easy to read and understand.
-
-
-> <snip>
-> +static int mt6370_bl_probe(struct platform_device *pdev)
-> +{
-> +	struct mt6370_priv *priv;
-> +	struct backlight_properties props = {
-> +		.type = BACKLIGHT_RAW,
-> +		.scale = BACKLIGHT_SCALE_LINEAR,
-
-Sorry, I missed this before but the KConfig comment says that the
-backlight can support both linear and exponential curves.
-
-Is there a good reason to default to linear?
-
-
-Daniel.
-> 
+-- 
+Catalin
