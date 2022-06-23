@@ -2,114 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 757955586E5
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 20:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBA8655876E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 20:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236744AbiFWSSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 14:18:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47424 "EHLO
+        id S237194AbiFWS0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 14:26:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237173AbiFWSR4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 14:17:56 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16515B3C1C;
-        Thu, 23 Jun 2022 10:24:18 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id i18so111624lfu.8;
-        Thu, 23 Jun 2022 10:24:18 -0700 (PDT)
+        with ESMTP id S237187AbiFWS0H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 14:26:07 -0400
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 702CF6F79E
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 10:27:23 -0700 (PDT)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-31780ad7535so1069477b3.8
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 10:27:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Vd6I47XVnnsBhvyCl3F2FOHX4RVw1fOk5Ka4rUmvOyw=;
-        b=AfKR0c24ywYANVT/yo48pwbD67+tfKAyJ5mxn73xIoJZFyu1YGuFdFJAD3avh68hHf
-         L9mG2F4voRL2y8BD4ffFqMytVW6zDLtNFU1OyahEiYd+0W961n8howXJhbrYRim8pKnS
-         TsJ107hrjN4/VPbCfTiRNIh1nKzxwTM7mftm7IyVU3dmJZRX+tFBzLzlf9OirlkDGLPK
-         XH+DYiAuqGPryc78DuqNHDUckevTjKEC+Izsm+Ck8I6XnB8pTGGnpN1r7gO/SNSeBpzT
-         FHP+6upHqMjsGC9xp79r1Rw2W4gDheEuLSHeVz4CozYrWvlO8KkLmGdGRHECYw0GHHkR
-         BV4g==
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=EL/06AiO/r0aaZHGPm8olM4Z1g8u3q+FzLtpTcwW9+E=;
+        b=JnCT42yA4RwkalddkzPrJcFW4xS8/AuSbzy9tJ3tePu5bM24Ibqr3x++pzaPDrLfSq
+         kaGJTArX9fUCrT0wKKOCtTLYJfjz7rj9imdcL7Pqfb4slmHg8IMENvZlqFm4OXbLEZny
+         J9YpduFdJ0C9SGIfK3lAhmOLKKSD54emhGXwyTKd4zLc6mUsVCr0UEcbk+IU96MD0I9r
+         JA/jzjJFQ+fQd7mJ8EkAmfjizWANCRRDX1m02PA1R+yQuTc3BWGj/hPC7P5U7eOqhdOe
+         TNE+ns8QKBZrDwGhF91i4cSeiE94OXjudpzhMpSeD6m7B9EcjFqLK1KazAZTYMoHsxV2
+         /pXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Vd6I47XVnnsBhvyCl3F2FOHX4RVw1fOk5Ka4rUmvOyw=;
-        b=CdFQbQ5DcboTglYypdlV+OY8WmZdAi++9mj4vmWWZRC4RByfUVIKAzJECgTlcruPmd
-         9nexaiuqg5oR+tWeiqSG9ErY4dIUbWfCKpsxsjQU049RGLdnF/4akpVJ+J308QMzgZUj
-         YLGmYwxgNA1nJgHt+p2pjlWCcH+ft/F7AhvDlxfHGL/nQtnGBx4Fme8bn+NAOKDjY8KE
-         rS+6oVcXTN5gkp9qGWj8eLyGAx8uyGD3nldK+3YrXFixhzKi+qtBZretZZk/la6saDkP
-         T+IGS3XsAmhPVPPJDzmPUBKRh8N6GVdEKJLItarWK3i8XV9OTBZHx/x3ZJ9SggjpbUXR
-         /cuw==
-X-Gm-Message-State: AJIora/9J/OExdGf7nFPulhkOHO3RsufiOaXvWGdzmRb55Cyvu8PW8+p
-        p5aq+0Tav81hKkbjhYCajnM=
-X-Google-Smtp-Source: AGRyM1uGcwmA4B2BYgcxHcSU64lGKl2lkAP50JWq/nzLH/mLaOoHxPa9gArlBKjn55ukt20bk9e+Wg==
-X-Received: by 2002:a05:6512:2241:b0:479:6426:15af with SMTP id i1-20020a056512224100b00479642615afmr6111281lfu.631.1656005057043;
-        Thu, 23 Jun 2022 10:24:17 -0700 (PDT)
-Received: from gmail.com (82-209-154-112.cust.bredband2.com. [82.209.154.112])
-        by smtp.gmail.com with ESMTPSA id v6-20020a05651203a600b0047f9cfa914csm677369lfp.18.2022.06.23.10.24.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jun 2022 10:24:15 -0700 (PDT)
-Date:   Thu, 23 Jun 2022 19:26:05 +0200
-From:   Marcus Folkesson <marcus.folkesson@gmail.com>
-To:     Kent Gustavsson <kent@minoris.se>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 10/10] iio: adc: mcp3911: add support to set PGA
-Message-ID: <YrSiLdFzkXtCZIBi@gmail.com>
-References: <20220623170844.2189814-1-marcus.folkesson@gmail.com>
- <20220623170844.2189814-10-marcus.folkesson@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EL/06AiO/r0aaZHGPm8olM4Z1g8u3q+FzLtpTcwW9+E=;
+        b=KYGAuN7mIMPkmE7nZdZKlZIft4FWpvDgv3EIDzIi+sdvzhWwHoL/e27jFxn5WWGl9k
+         9F1VzxXT6nDy6O9fGOMsxoeFFz+jEkrefZNIwOo4kaEB0wiZ4aESale1DUUrNgGE0mMn
+         WFTezXZziNVrL0B4gocEyf8oB8dt9Jhci1qZixEGnrz2XnFhA/m5A908uHfCXCWFze9s
+         c68WYNpA2INKdVmmdeiObtaYn59tS4ME9+KR3lXFznYDA8+Deh/fxG+Wih3NHfMBMmVw
+         1AvorgDm4H7OVSLd/Txm6gWkH0DhGO5EA4P9s8lHJ+UvNyml8R6e34abO8H4SSo2+Lra
+         SVyw==
+X-Gm-Message-State: AJIora9tU+Dbx04C2a5jQMtor9MtkVR0M3MIOcMS9h+pfqpqpdQPa+i5
+        S5vC8ElrIC/RT01VcD3CreCx1rcfV/aTLAbzoC3t8Q==
+X-Google-Smtp-Source: AGRyM1th3RmV9czY2nAQEMvAwHPPL7mFnNzI7DxsJuq4R6Wbusl3da+wwbtdHDw4EMO4U/ky+UtTRttD4UQUKoucelI=
+X-Received: by 2002:a81:a095:0:b0:317:d4ce:38b6 with SMTP id
+ x143-20020a81a095000000b00317d4ce38b6mr11755149ywg.83.1656005242403; Thu, 23
+ Jun 2022 10:27:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="lGrmasrXvQkSs9iU"
-Content-Disposition: inline
-In-Reply-To: <20220623170844.2189814-10-marcus.folkesson@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220623080344.783549-1-saravanak@google.com> <20220623080344.783549-3-saravanak@google.com>
+ <20220623100421.GY1615@pengutronix.de>
+In-Reply-To: <20220623100421.GY1615@pengutronix.de>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 23 Jun 2022 10:26:46 -0700
+Message-ID: <CAGETcx_eVkYtVX9=TOKnhpP2_ZpJwRDoBye3i7ND2u5Q-eQfPg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] of: base: Avoid console probe delay when fw_devlink.strict=1
+To:     sascha hauer <sha@pengutronix.de>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>, peng fan <peng.fan@nxp.com>,
+        kevin hilman <khilman@kernel.org>,
+        ulf hansson <ulf.hansson@linaro.org>,
+        len brown <len.brown@intel.com>, pavel machek <pavel@ucw.cz>,
+        joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>,
+        andrew lunn <andrew@lunn.ch>,
+        heiner kallweit <hkallweit1@gmail.com>,
+        russell king <linux@armlinux.org.uk>,
+        "david s. miller" <davem@davemloft.net>,
+        eric dumazet <edumazet@google.com>,
+        jakub kicinski <kuba@kernel.org>,
+        paolo abeni <pabeni@redhat.com>,
+        linus walleij <linus.walleij@linaro.org>,
+        hideaki yoshifuji <yoshfuji@linux-ipv6.org>,
+        david ahern <dsahern@kernel.org>, kernel-team@android.com,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        iommu@lists.linux-foundation.org, netdev@vger.kernel.org,
+        linux-gpio@vger.kernel.org, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 23, 2022 at 3:05 AM sascha hauer <sha@pengutronix.de> wrote:
+>
+> On Thu, Jun 23, 2022 at 01:03:43AM -0700, Saravana Kannan wrote:
+> > Commit 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
+> > enabled iommus and dmas dependency enforcement by default. On some
+> > systems, this caused the console device's probe to get delayed until the
+> > deferred_probe_timeout expires.
+> >
+> > We need consoles to work as soon as possible, so mark the console device
+> > node with FWNODE_FLAG_BEST_EFFORT so that fw_delink knows not to delay
+> > the probe of the console device for suppliers without drivers. The
+> > driver can then make the decision on where it can probe without those
+> > suppliers or defer its probe.
+> >
+> > Fixes: 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
+> > Reported-by: Sascha Hauer <sha@pengutronix.de>
+> > Reported-by: Peng Fan <peng.fan@nxp.com>
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > Tested-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  drivers/of/base.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/of/base.c b/drivers/of/base.c
+> > index d4f98c8469ed..a19cd0c73644 100644
+> > --- a/drivers/of/base.c
+> > +++ b/drivers/of/base.c
+> > @@ -1919,6 +1919,8 @@ void of_alias_scan(void * (*dt_alloc)(u64 size, u64 align))
+> >                       of_property_read_string(of_aliases, "stdout", &name);
+> >               if (name)
+> >                       of_stdout = of_find_node_opts_by_path(name, &of_stdout_options);
+> > +             if (of_stdout)
+> > +                     of_stdout->fwnode.flags |= FWNODE_FLAG_BEST_EFFORT;
+>
+> The device given in the stdout-path property doesn't necessarily have to
+> be consistent with the console= parameter. The former is usually
+> statically set in the device trees contained in the kernel while the
+> latter is dynamically set by the bootloader. So if you change the
+> console uart in the bootloader then you'll still run into this trap.
+>
+> It's problematic to consult only the device tree for dependencies. I
+> found several examples of drivers in the tree for which dma support
+> is optional. They use it if they can, but continue without it when
+> not available. "hwlock" is another property which consider several
+> drivers as optional. Also consider SoCs in early upstreaming phases
+> when the device tree is merged with "dmas" or "hwlock" properties,
+> but the corresponding drivers are not yet upstreamed. It's not nice
+> to defer probing of all these devices for a long time.
+>
+> I wonder if it wouldn't be a better approach to just probe all devices
+> and record the device(node) they are waiting on. Then you know that you
+> don't need to probe them again until the device they are waiting for
+> is available.
 
---lGrmasrXvQkSs9iU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+That actually breaks things in a worse sense. There are cases where
+the consumer driver is built in and the optional supplier driver is
+loaded at boot. Without fw_devlink and the deferred probe timeout, we
+end up probing the consumer with limited functionality. With the
+current setup, sure we delay some probes a bit but at least everything
+works with the right functionality. And you can reduce or remove the
+delay if you want to optimize it.
 
-On Thu, Jun 23, 2022 at 07:08:44PM +0200, Marcus Folkesson wrote:
-> -		.info_mask_shared_by_type_available =		\
-> -			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
-> +		.info_mask_shared_by_type_available =           \
-> +			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO)	\
-
-This change was not supposed to sneak in. Removed in v2.
-
-/Marcus
-
-
-
---lGrmasrXvQkSs9iU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmK0oicACgkQiIBOb1ld
-UjJvmQ/+O1qb9I5+2vmxERYd3bqBZ7uUt0KqGiSxxvQJ8ZkEhN95leqvOtCicSsl
-9zRV1VyQc6z6dB4Hwol4FZ27FKPL3bzNQatSnBIbDqX7nQKGGT0uY2UWwrhcqm/I
-dRgc5WBODVjjpqcZPR/KkWhHBBO+qDhPTRVq6Q2OZIueKNcG26+5XIsNo5Uhw1dB
-p2yj3jfySqp4Q4FIQlcM7wB72/0rc9T4BbvQDRNcdin7UaSl4rWmtfxg7ZPOje1p
-9O6ek1soQKuEDqj18h7N2VD3zuG2FN4DtBNxPERqRF9rqkgiyf4/pvpYl9ontZp1
-zEJujWE0aUodxaN9A8q3RvDRPT2TbmE5OxcBdYvUot9tHX99NNiscZjdV1Wp61Wt
-pbZklmGOiQ0PcwNsakZRRer9+e6JGSm5KpC3ssckadejOVOT32C/v1iErGBuvlru
-vA18SDq3ZvPmO5s/WybjIGnpmqJ/YK9khZSn247/YOiOC8IgcDKWIv8SfItOhJN/
-mQLqmHXDZPH9Mhf7rM/EnvjVUjBDZyBwt0guZMkgMS45iS9eEvSoWyMXgC6fmgtJ
-i4jmRNTXc3IbBibdvuX4xIEjEeLJJjmlQZWL0F/TTAuL1Xxx0FC1WaTcKWYD141S
-eMbTVMPXie6rK8p8pGx5OTv+6fJe6A5BO0uxf6g2CSW+FlVAb5U=
-=DB3I
------END PGP SIGNATURE-----
-
---lGrmasrXvQkSs9iU--
+-Saravana
