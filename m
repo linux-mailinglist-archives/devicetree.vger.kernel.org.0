@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17C465588E7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 21:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A00575588EF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 21:33:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbiFWTdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 15:33:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52490 "EHLO
+        id S230505AbiFWTdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 15:33:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231618AbiFWTcU (ORCPT
+        with ESMTP id S231583AbiFWTcU (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 15:32:20 -0400
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36C8B3F32C
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 12:08:33 -0700 (PDT)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-3177f4ce3e2so3806807b3.5
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED6293EF3A
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 12:08:32 -0700 (PDT)
+Received: by mail-ot1-x331.google.com with SMTP id l9-20020a056830268900b006054381dd35so204234otu.4
         for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 12:08:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cI9+Tt7Z23d5RLVvZyen7R3tMKAwKXD+mtIbHKBAs/0=;
-        b=EwRTeyODFUti7GZ+xjLiRABaUIFE+v7VX2QUxT1gLoLb7OcrDvTuc6YmjFeBi4QPK8
-         cMcrZYL/sB3CiRaYHBqxYeHyYY9+3MMopZKUBg8OgBIT5gj7y2fBBjARSaMRIu9EVLOi
-         /mclFnDn/0H+0h2tsaiH5pZNuBZIw6OokDWIE=
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=G7GUFKx0kufkNV6cl0VJc529FkLJIKTxF3dZCCvrwdY=;
+        b=iN0a13Zqsn8ttJ7ja/KPwL2wPvJTDmHPO333uxUAd1CAaE8rvuUZkbPDyN3+0gOYeh
+         yFjnENL67HNFCTd3LjmuhZ4hhwqdRyCMALZc3RW5N1Org7VuzCf1DFMR5WtCyfv2391G
+         uo55OZxLAmQCzfMdLjGN999g9b+vwqIJ9/3eM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cI9+Tt7Z23d5RLVvZyen7R3tMKAwKXD+mtIbHKBAs/0=;
-        b=7/17j3X5A/UJ92awdJuX3kEd/7AedV/7T2APPRKfeRgVrlO3SXiZa6xFa70CnZSurZ
-         0dT5y4boODaTL6mb5+x5KgXtZHcu/E7PswGgzLGcN1ROK5emPKg1sVblMlEzEp9rnx4V
-         8RFkbrM1ruPNtpVB2gV8W3NyUfJnDz/lgDEwdhm/r/3rBrsXTv+aqfpfoQmC+AtUBFEj
-         Pp2sM6c4aRhI0JE92Kj58mfHYtlmyYU+VFn1xF7duhBVy37hQIoUECYznh9r0FqSJARb
-         vOirX0hfjp9hF+dnANFZpIo8zGDKrNOUXYPPyVaglv3m++Jq07yV64MyL18XmiXD8oPC
-         XI4w==
-X-Gm-Message-State: AJIora88ZUw+M0Ejp9mZpo9Z4FfRhGn7pVefacJEBI5nTgqbdt5lbE5p
-        R62mKEVx6OwJPnRg+nD4WkQaxqgTE1UXAKIoMoJlfg==
-X-Google-Smtp-Source: AGRyM1uI+NXVSDSF+kdbOhzo94TrmT6zO+AbQ7d8LLAT0eOAHI6q+f2Lm9Z72G3mIZo/6BEfD/8XNNQ0xyYslCAEtI8=
-X-Received: by 2002:a0d:f045:0:b0:317:e6b2:2c64 with SMTP id
- z66-20020a0df045000000b00317e6b22c64mr12234518ywe.350.1656011311909; Thu, 23
- Jun 2022 12:08:31 -0700 (PDT)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=G7GUFKx0kufkNV6cl0VJc529FkLJIKTxF3dZCCvrwdY=;
+        b=y5cC92eZO/Puh6ufQDZbMDCUbJkmWPLFqcLshbClcFR6lQLNAPUP+q+Vo2gBnO45hb
+         szordDeWJGhlvbpcfl5xBb5MbsICzq3wmX1kI3fwBTkpylACex7Wln8N/W9Hh5Cn5/PW
+         JGmiq3mzIGlbQ6IeCHb+bmbswRVB0qxBmSpGfvZpjn2BBcTV/lgTQHpxwrgjbHcj4pvk
+         giRS9rQ4afqVVyAXteWmQTx05drWgW9h/cb4X/4ucHrgLyZKTwRxfux9aUaDORc7icsk
+         jYHe+pAtV82AtzjYyN2WlFt1qI4QyBh7217jj/cC9eMskGcN1ziAlhR4OUsDZVFnHp7Q
+         riYg==
+X-Gm-Message-State: AJIora/7yt70XYVg+SPgWn7HO+TU1Orpxp+rDApvyML8kKMFez7k9yYY
+        ASvBNcorO0wtLA3d4Mk2g2fXoEnPTuru7thfXmkTYw==
+X-Google-Smtp-Source: AGRyM1vgbF+x4e8hC812jkDhF5ujgwGy9u1TIoIP8891Q9B03Dipuo0gmMCNmbyza772yJuf+a8CoPoLp42FIFqFmzE=
+X-Received: by 2002:a9d:729b:0:b0:60c:21bd:97c0 with SMTP id
+ t27-20020a9d729b000000b0060c21bd97c0mr4488368otj.77.1656011312243; Thu, 23
+ Jun 2022 12:08:32 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 23 Jun 2022 15:08:31 -0400
 MIME-Version: 1.0
+In-Reply-To: <CACeCKaduttgNfxyzE2_7eD1N4NLNp_8J1EaWTnn+eqp+_P-i1A@mail.gmail.com>
 References: <20220622173605.1168416-1-pmalani@chromium.org>
- <20220622173605.1168416-2-pmalani@chromium.org> <CAE-0n51kcr3VGdR2Kf8j1JaBbLcCmWo9GYhhvkUQ4+jn2iEKLg@mail.gmail.com>
-In-Reply-To: <CAE-0n51kcr3VGdR2Kf8j1JaBbLcCmWo9GYhhvkUQ4+jn2iEKLg@mail.gmail.com>
-From:   Prashant Malani <pmalani@chromium.org>
-Date:   Thu, 23 Jun 2022 12:08:21 -0700
-Message-ID: <CACeCKac4eL9++QwbDBKrVTpUzhes=WczqZfh+cFiVgoO4py4MQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/9] dt-bindings: usb: Add Type-C switch binding
-To:     Stephen Boyd <swboyd@chromium.org>
+ <20220622173605.1168416-7-pmalani@chromium.org> <CAE-0n51d4S3T+_f+YXsu3es7AMxuyFORSXFQe2LTSkZB4C56Ng@mail.gmail.com>
+ <CACeCKaduttgNfxyzE2_7eD1N4NLNp_8J1EaWTnn+eqp+_P-i1A@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 23 Jun 2022 15:08:31 -0400
+Message-ID: <CAE-0n53Y4pe3TvNQVKZsqLU4cA-Vs4zH3HHV5U97W_6qCNsEow@mail.gmail.com>
+Subject: Re: [PATCH v5 6/9] dt/bindings: drm/bridge: it6505: Add mode-switch support
+To:     Prashant Malani <pmalani@chromium.org>
 Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
         bleung@chromium.org, heikki.krogerus@linux.intel.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Pin-Yen Lin <treapking@chromium.org>,
+        Allen Chen <allen.chen@ite.com.tw>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
         Daniel Vetter <daniel@ffwll.ch>,
         David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
         dri-devel@lists.freedesktop.org,
@@ -70,8 +73,8 @@ Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
         Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
         Maxime Ripard <maxime@cerno.tech>,
         Neil Armstrong <narmstrong@baylibre.com>,
-        Pin-Yen Lin <treapking@chromium.org>,
-        Robert Foss <robert.foss@linaro.org>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Robert Foss <robert.foss@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Sam Ravnborg <sam@ravnborg.org>,
         Thomas Zimmermann <tzimmermann@suse.de>,
@@ -87,119 +90,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 23, 2022 at 11:30 AM Stephen Boyd <swboyd@chromium.org> wrote:
+Quoting Prashant Malani (2022-06-23 11:37:08)
+> On Thu, Jun 23, 2022 at 11:24 AM Stephen Boyd <swboyd@chromium.org> wrote:
+> >
+> > Quoting Prashant Malani (2022-06-22 10:34:35)
+> > > From: Pin-Yen Lin <treapking@chromium.org>
+> > >
+> > > ITE IT6505 can be used in systems to switch USB Type-C DisplayPort
+> > > alternate mode lane traffic between 2 Type-C ports.
+> >
+> > How does it work? From what I can tell from the information I find when
+> > googling this part[1] and looking at the existing binding doc is that
+> > this device is a DPI to DP bridge, and it outputs DP (probably 4 lanes
+> > of it?). Does the 2 type-c port design work by transmitting DP on two
+> > lanes of DP for one type-c port and another two lanes of DP for the
+> > other type-c port?
+> >
+> > DP could be one lane, so if this device is able to output one lane on
+> > any output differential pair then I suspect it could support 4 type-c
+> > ports if the hardware engineer connected it that way. Can you confirm my
+> > suspicion?
 >
-> Quoting Prashant Malani (2022-06-22 10:34:30)
-> > diff --git a/Documentation/devicetree/bindings/usb/typec-switch.yaml b/Documentation/devicetree/bindings/usb/typec-switch.yaml
-> > new file mode 100644
-> > index 000000000000..78b0190c8543
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/typec-switch.yaml
-> > @@ -0,0 +1,74 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/typec-switch.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: USB Type-C Switch
-> > +
-> > +maintainers:
-> > +  - Prashant Malani <pmalani@chromium.org>
-> > +
-> > +description:
-> > +  A USB Type-C switch represents a component which routes USB Type-C data
-> > +  lines to various protocol host controllers (e.g USB, VESA DisplayPort,
-> > +  Thunderbolt etc.) depending on which mode the Type-C port, port partner
-> > +  and cable are operating in. It can also modify lane routing based on
-> > +  the orientation of a connected Type-C peripheral.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: typec-switch
-> > +
-> > +  mode-switch:
-> > +    type: boolean
-> > +    description: Specify that this switch can handle alternate mode switching.
-> > +
-> > +  orientation-switch:
-> > +    type: boolean
-> > +    description: Specify that this switch can handle orientation switching.
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +    description: OF graph binding modelling data lines to the Type-C switch.
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description: Link between the switch and a Type-C connector.
+> I will let Pin-Yen comment re: this hardware, but 1-lane DP is not a
+> supported Type-C Pin assignment
+> (as per VESA DP Alternate Mode Spec version 2.0 [2]), so the H/W
+
+Some missing link?
+
+> configuration you are suggesting shouldn't be possible.
 >
-> Is there an update to the usb-c-connector binding to accept this port
-> connection?
 
-Not at this time. I don't think we should enforce that either.
-(Type-C data-lines could theoretically be routed through intermediate
-hardware like retimers/repeaters)
-
->
-> > +
-> > +    required:
-> > +      - port@0
-> > +
-> > +required:
-> > +  - compatible
-> > +  - ports
-> > +
-> > +anyOf:
-> > +  - required:
-> > +      - mode-switch
-> > +  - required:
-> > +      - orientation-switch
-> > +
-> > +additionalProperties: true
-> > +
-> > +examples:
-> > +  - |
-> > +    drm-bridge {
-> > +        usb-switch {
-> > +            compatible = "typec-switch";
->
-> I still don't understand the subnode design here. usb-switch as a
-> container node indicates to me that this is a bus, but in earlier rounds
-> of this series it was stated this isn't a bus.
-
-I am not aware of this as a requirement. Can you please point me to the
-documentation that states this needs to be the case?
-
-> Why doesn't it work to
-> merge everything inside usb-switch directly into the drm-bridge node?
-
-I attempted to explain the rationale in the previous version [1], but
-using a dedicated sub-node means the driver doesn't haven't to
-inspect individual ports to determine which of them need switches
-registered for them. If it sees a `typec-switch`, it registers a
-mode-switch and/or orientation-switch. IMO it simplifies the hardware
-device binding too.
-
-It also maps with the internal block diagram for these hardware
-components (for ex. the anx7625 crosspoint switch is a separate
-sub-block within anx7625).
-
-[1] https://lore.kernel.org/linux-usb/CACeCKaeH6qTTdG_huC4yw0xxG8TYEOtfPW3tiVNwYs=P4QVPXg@mail.gmail.com/
-
->
-> > +            mode-switch;
-> > +            orientation-switch;
-> > +            ports {
-> > +                #address-cells = <1>;
-> > +                #size-cells = <0>;
-> > +
-> > +                port@0 {
-> > +                    reg = <0>;
-> > +                    anx_ep: endpoint {
-> > +                        remote-endpoint = <&typec_controller>;
-> > +                    };
-> > +                };
-> > +            };
-> > +        };
+Alright, cool. But it is possible in the DP spec. So it seems like if
+this is connected to 4 DP connectors it could be used to mux between DP
+on 4 DP ports.
