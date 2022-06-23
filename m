@@ -2,85 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B26BF5588D5
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 21:29:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6BCE5588DD
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 21:30:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231382AbiFWT3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 15:29:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48214 "EHLO
+        id S231449AbiFWT35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 15:29:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231249AbiFWT3C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 15:29:02 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5CED8E1F3
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 11:58:39 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-3137316bb69so3301197b3.10
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 11:58:39 -0700 (PDT)
+        with ESMTP id S231455AbiFWT3c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 15:29:32 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EAE592149;
+        Thu, 23 Jun 2022 12:00:21 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id u12so99863eja.8;
+        Thu, 23 Jun 2022 12:00:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=FGzlsKlEfCGevmle/pHXLhVfx4U6rXBQGlZEgzoZTXI=;
-        b=dvSmYPqhPiGxfI/5Zh18vm11MWcK7wOb8aYAdPwZxHqODG5Cuad8CaOEmv/Y2sa9p5
-         VFVhZ3n04fnAE4EIBrxppU2JaQtCw+HwNGxNTftlpnSpGrlUtLsEAh3L0ohX07rtK8oT
-         vpTgkigl4cA4ZXj7VK0JpmQlWypFDFhQ+PPfA1npnvuud8+/3Lrzirf0Ok6pZdv9uXCk
-         VQcI1MF7PNbwpflSIIU5YLGwsfEJ+D0pBc2y9RzFdvO63vg93D63dsccsAeQnJ/ihgqY
-         4KLTrkboG5Upk2hTkDe4NH4xsTpqB4jE9ojiP37WepP0vtdLf6M8E6YgpB9gFhYJ6DSW
-         ukCA==
+        bh=DlD0qxEHT2yzgN07/r9hAt1+bX51O7i0+YMrDs9OqBI=;
+        b=f11c4tn3nl7urOAnkHO27alkVuIcDL2eMLUTUz1bg8OraDNhiUYgNDbNM/S+SX+NXD
+         oOD1clTA6J3Wdh2VpyEptUNa/6DbNdXu55pKdoPvkGPdu29vYCHb0BL5jQLkwUAZktFM
+         Kk+uS9ZZsxlh2v6nZRne1NcBT9Q+DB7Ny0wUd2juLeelh697JPhi3uf6X8bzN5fSLn0t
+         JcrsNNb5uh1QcU31D1WnJr/LPaLBDbvu+eAEaVGsUWXL8oWBbj+erypHxZ0BIWP+wBzD
+         mq4F00+VauyqgV9b64PyqTwkl06v4YIP6rG3kPRNqmY7TcK5lpUQwXx4j4ysh2sNohP+
+         l5YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=FGzlsKlEfCGevmle/pHXLhVfx4U6rXBQGlZEgzoZTXI=;
-        b=0SbcCtM2nAkV4ZJSD8yxmeH1TNLvq90475nbs+N89Mn5BzurtJ7Osg9WE7u91xrK6r
-         TudfQ/6LRMTCVKJUzqFWmZStcIzipc34VwfVtQVSQbK+6bBcQhWDTD7B7M57mZ9U5P6R
-         fkTMFoBcm0EKkJ6KYpqx5HuYuaziq6qd+pr3ISv/jJQGD+WS7SP6AnopUN7UCWdrSJFz
-         SQXS9jmoF5Tc+WuiZCWfq+SZDd/v2ibYUTuxP/Qsym0VxYj8lvEUoOCUqKMSsumtyAKR
-         xtQTxgyLcMHpwczhbhok9tey5PGgx+iosOrumf6z673DQmeJuhgRWzNLlzx+4z8kEsUM
-         1C6g==
-X-Gm-Message-State: AJIora8qdjsjdp1l6l0R2qqGJRwfogzo3j74tqLEuFgfPtYPd712hFbX
-        4uTIf8S4BHOHCGTs4XI5WxmorLQO0QmTzqYoP5cnsQ==
-X-Google-Smtp-Source: AGRyM1u/7wTdCyiFsm9BDRpZC1OybvAg1SKbmp+485CFKjjGjAnrIHBxFj8KE4k+UDRgnBvuLIE8imoEDuaOOm432SE=
-X-Received: by 2002:a0d:dfd5:0:b0:317:f0d4:505b with SMTP id
- i204-20020a0ddfd5000000b00317f0d4505bmr11837779ywe.518.1656010718792; Thu, 23
- Jun 2022 11:58:38 -0700 (PDT)
+        bh=DlD0qxEHT2yzgN07/r9hAt1+bX51O7i0+YMrDs9OqBI=;
+        b=2OT5pMDBRgfgmYvd7BtaeAx6tWXCIodcXoM+PicjHoHUfYmD5nT44Iuny/oT8bXc9E
+         9aafEpBJVCEjOZgnpn9mzdzrgwvtmkV66oea/YqD5ZmGJazucTLHS8Iw0WtXfhYPX6Tj
+         HdhVThYFRYR9tFrKjJnMLvo9kkzIP0cZeoTHu+IoetyyX8a0phg86Q0IPkGXPys0ME8l
+         Kttg2PerRAnEHH1FFhkFl7+UY5Az2BS1dgxDASPT6WxHAExkA3aCYsMszd6Ki6VuaR8q
+         98UJGfA55Ijz9N5h7bgkjjSDNGPncyoMj3hkBGs+DjkYuxTDAPtoJUfZ5Hb9Q/1Avgz0
+         UURg==
+X-Gm-Message-State: AJIora/ZvvL10j8dEwITxS4+S06O5UU1Z3qzD+js9yxPRwRQcZnqnyVy
+        lSiv5fdEFdf2qoCiOkj5p0gFsM3+yxkhaLlSJco=
+X-Google-Smtp-Source: AGRyM1tjvJdRj1PCspbJAq1ILaoQ+ef9Zgu837d8hxEsWLP71mAQ+rAb5XvUL3ESbXicGB497dv2xjD8VYMwG4XkNMo=
+X-Received: by 2002:a17:907:2d09:b0:722:f0bf:ac26 with SMTP id
+ gs9-20020a1709072d0900b00722f0bfac26mr9722254ejc.77.1656010819823; Thu, 23
+ Jun 2022 12:00:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220622062027.994614-1-peng.fan@oss.nxp.com> <20220622072435.GT1615@pengutronix.de>
- <CAGETcx9JpTbYtGFoKttWLeiBB73QzzBM1o-OL0o-XuFouLcEog@mail.gmail.com>
- <CAOMZO5DFX72xuxWwAPsuk4Q667Ap7Dk+pR89cWDQJkzT0D2osA@mail.gmail.com>
- <CAOMZO5Ccu_v_G9DEwrEfVHq83-hfrXCP_h20Rv0=oFTLux5AkQ@mail.gmail.com>
- <CAGETcx85z_hkhKFHUwnihqcD0UQG3xtSZjw=BZxqwQB0D1CMgw@mail.gmail.com> <CAOMZO5A6Zn=6tXU2VQ+-cj=50mpxCmoZ8c437=w1Spd34k7T6A@mail.gmail.com>
-In-Reply-To: <CAOMZO5A6Zn=6tXU2VQ+-cj=50mpxCmoZ8c437=w1Spd34k7T6A@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 23 Jun 2022 11:58:02 -0700
-Message-ID: <CAGETcx-_nwrzJzaY3yc80g4AfydV5J9-JYE5h1m+5TT05jyKOw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mp: drop dmas property for uart console
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+References: <20220623170844.2189814-1-marcus.folkesson@gmail.com>
+In-Reply-To: <20220623170844.2189814-1-marcus.folkesson@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 23 Jun 2022 20:59:43 +0200
+Message-ID: <CAHp75VfKeGPL=T3cNCr2MWRBdOoNA3WuxhH_wSMkxsaBFjsELg@mail.gmail.com>
+Subject: Re: [PATCH 01/10] iio: adc: mcp3911: correct "microchip,device-addr" property
+To:     Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc:     Kent Gustavsson <kent@minoris.se>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>, hvilleneuve@dimonoff.com,
-        Lucas Stach <l.stach@pengutronix.de>,
-        abbaraju.manojsai@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Teresa Remmet <t.remmet@phytec.de>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, t.remmet@phytec.deh,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,23 +71,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 23, 2022 at 11:43 AM Fabio Estevam <festevam@gmail.com> wrote:
+On Thu, Jun 23, 2022 at 7:40 PM Marcus Folkesson
+<marcus.folkesson@gmail.com> wrote:
 >
-> On Thu, Jun 23, 2022 at 3:26 PM Saravana Kannan <saravanak@google.com> wrote:
->
-> > I don't think it'll be hard to fix the console= case either. In the
-> > case where you are not using stdout-path, how are you setting the
-> > console? Just want to make sure I'm handling that case too.
->
-> When stdout-path is not passed in DT, then the bootloader needs to pass
-> console=ttymxc0,115200, for example.
->
-> Please copy me in v3 if you send it.
+> Go for the right property name that is documented in the bindings.
 
-Will do. I'm looking at the serial console code and I don't see a
-difference between earlycon= vs console= handling. And I know that
-earlycon= doesn't go through the driver core and isn't affected by any
-of this. If you have additional pointers on where console= is parsed,
-feel free to pass it on. I'll continue poking at this.
+If the driver is already for a while in the kernel, I'm afraid we may
+not do this, since it's part of ABI (firmware <--> OS). You can add a
+new property and try it first.
 
--Saravana
+-- 
+With Best Regards,
+Andy Shevchenko
