@@ -2,71 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F23E05579DE
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 14:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7B295579F3
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 14:05:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231646AbiFWMEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 08:04:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52190 "EHLO
+        id S231663AbiFWMFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 08:05:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231673AbiFWMEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 08:04:41 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 741084CD47
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 05:04:32 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id a11so14259355ljb.5
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 05:04:32 -0700 (PDT)
+        with ESMTP id S231449AbiFWMFW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 08:05:22 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C1344B42D
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 05:05:21 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id t5so8095125eje.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 05:05:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+ZSA6xHQZ9aqASlGuBjY/Lc+K6EWssVTLnudC8h7Ugc=;
-        b=jEPdaVuSYHVAXI7PQcfhMs4Y48HYVRpwDx3OONIo7QHh2qHN6THTxsy+0wO7neM4QW
-         lSbhb5hAp+p/xUydOV8w+tOmQUkPGz50ayN71VkENvO0xhls1Zy+D64YB27CTbuBjTb2
-         tCydXhELrmdwaNphsLdp0bXh9N76gERgiaDfGKgM4anRcgHCMlrAXODA86MxZDFlh/Ky
-         hkBXBMDLzPTiRzOxKZJaiZukIbfEI2deubmkajDchSWwVGyN0JnDMNOHMKag2/Iiaon8
-         eh+qRooEG/E1BlNqWRUW+wIpholTv8Xldpm5Bt/wB3ADYORn1cT3PoIR4Spkroa7o/6/
-         Ev4Q==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=PppxL2KUqFlV+/8Q6Av1eKZ6SPqrPZYPPPP8wnWzrpI=;
+        b=qDAFx0FRaVkJCKKl6seZsibKMWsEzBDitPBMd/GIuG1a72QpBhz66kEQ6gMOwhuDJQ
+         EN3cTlJljisc+k6oA5802OBA5maMZQ+2ohdH++0RW7+KS6V+++CmTTIjB45REHrGbanS
+         YmRIQcLENNCJHioVVdSwrfb65soYBGDNvoOH8C5PopdroXuPOY6qJEgN37IbY7SVy71C
+         AeTRyzZaFpev4v9SBXnWIpRrBrdhOWJhRyMFi0PIFOJa7TbLCTeZy8c/ZtmA+D9ELkgp
+         hVfpxt8beJrkmrE8UfT68+GXPITtsYPiDTY73X1RDQT41dqbwIKyYDAPtJCLQlgIZZDk
+         vKrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+ZSA6xHQZ9aqASlGuBjY/Lc+K6EWssVTLnudC8h7Ugc=;
-        b=XAdvvAHohv0eOV4629Ls1exinJXQDAf5Cd5/yfjl/9JqvlVgSrxVlNWA6dBnpHwG4i
-         TfjI4KgcyNf0VPJh3mcPERSLHO0e7mtBRMC8xdomsZ2NJWmgU4LIRZz0gaB+d63DKe3I
-         LUhfaKmMJqPbHkCXSP8TJ0wLt84SARTl1Vs2CWPNm172nMNM5GejIyzRSCfiCqoW2YFU
-         vmeRoVdJW/9nZn3WpqedWtAEYvG9e8N9nK+yd4ZJsQ7L6wnhKd9Boqq24RC87kVPct6q
-         eq3l7eWDeqiz1RNz3YfCencBPCmw194WyBauc6RlJWb/ibTZJehU3r5LVslZwiWPGS7I
-         X6EQ==
-X-Gm-Message-State: AJIora+TI3jWI7vNGHfHXZRbUW4K5ulMQFJ/ynI7zWV936nnxdppO37S
-        mXtnKhyxXeSY3vFtPL9PWiyZ5Q==
-X-Google-Smtp-Source: AGRyM1vyTttTf9/+DOHZEFqBUI8Pj1xvEChHdF/WQ4rT74eb+M5p7WPr4E+2gOh2gRvp14Eyf/lSGg==
-X-Received: by 2002:a2e:a78a:0:b0:25a:8c6a:f3c7 with SMTP id c10-20020a2ea78a000000b0025a8c6af3c7mr3421276ljf.218.1655985871235;
-        Thu, 23 Jun 2022 05:04:31 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 18-20020ac25f52000000b0047f6b4a53cdsm1799888lfz.172.2022.06.23.05.04.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jun 2022 05:04:30 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=PppxL2KUqFlV+/8Q6Av1eKZ6SPqrPZYPPPP8wnWzrpI=;
+        b=nGJdLm3s9FEBNnbELfGCP8jZW/Zd4eqmp1rf6TS1gxebuCu+WZBKgOkm/5Rp697AMq
+         uuS1B9HmcrT2g3Tn5suWVTRZhT3UaELNA+BAVGr+z6XSW2jO+Amt/BgBrUYYTse5jCQj
+         lZ0B6ny0AVV32ckW88TZjtUxctLj+o4oiBfEmr1Ou43J1GB2sTXB6MDj2ug7Yh4S33Na
+         Iuhi7udDEELfN6XYQxyT31WjdNyktGDGyQDwdzaSDHwiyOriEzdZSI1GqSHVG2fwjZ5l
+         VdXR0+Gxghcu0MsmTdshWDJl6xDbibGd8lOO1OKIut4gzszAKmU9vd+RRLxfSzt8Z/5W
+         fVDw==
+X-Gm-Message-State: AJIora9kPrQiL150fdE0KNbbHjyyS/Q6W3L/U/ynC5mJ2UIPbujIgAyh
+        dJvrM04Qzu0LrPYZQbUUjImndA==
+X-Google-Smtp-Source: AGRyM1vsUBr3PdB0hhAURyeHMPTDJEWaOUR4fFilhHFdevtuR+Szbs2SytIwDzsrjRR2URuwf5x2xw==
+X-Received: by 2002:a17:906:6485:b0:712:10cd:e3b7 with SMTP id e5-20020a170906648500b0071210cde3b7mr7618453ejm.557.1655985919875;
+        Thu, 23 Jun 2022 05:05:19 -0700 (PDT)
+Received: from [192.168.0.230] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id j17-20020a17090623f100b00711d5baae0esm10838324ejg.145.2022.06.23.05.05.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jun 2022 05:05:19 -0700 (PDT)
+Message-ID: <a2c5cdec-632e-3d90-c90d-1c3c0503e825@linaro.org>
+Date:   Thu, 23 Jun 2022 14:05:18 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/2] dt-bindings: clock: r9a07g043-cpg: Add Renesas
+ RZ/Five CPG Clock and Reset Definitions
+Content-Language: en-US
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 15/15] ARM: dts: qcom: msm8960: add clocks to the MMCC device node
-Date:   Thu, 23 Jun 2022 15:04:18 +0300
-Message-Id: <20220623120418.250589-16-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220623120418.250589-1-dmitry.baryshkov@linaro.org>
-References: <20220623120418.250589-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Cc:     linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220622181723.13033-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220622181723.13033-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220622181723.13033-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,41 +83,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As we are converting this platform to use DT clock bindings, add clocks
-and clock-names properties to the MMCC device tree node.
+On 22/06/2022 20:17, Lad Prabhakar wrote:
+> Renesas RZ/Five SoC has almost the same clock structure compared to the
+> Renesas RZ/G2UL SoC, re-use the r9a07g043-cpg.h header file and just
+> amend the RZ/Five CPG clock and reset definitions.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  include/dt-bindings/clock/r9a07g043-cpg.h | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm/boot/dts/qcom-msm8960.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
 
-diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
-index c7058da58be5..b65659801b6e 100644
---- a/arch/arm/boot/dts/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
-@@ -164,6 +164,22 @@ clock-controller@4000000 {
- 			#clock-cells = <1>;
- 			#power-domain-cells = <1>;
- 			#reset-cells = <1>;
-+			clocks = <&pxo_board>,
-+				 <&gcc PLL3>,
-+				 <&gcc PLL8_VOTE>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>,
-+				 <0>;
-+			clock-names = "pxo",
-+				      "pll3",
-+				      "pll8_vote",
-+				      "dsi1pll",
-+				      "dsi1pllbyte",
-+				      "dsi2pll",
-+				      "dsi2pllbyte",
-+				      "hdmipll";
- 		};
- 
- 		l2cc: clock-controller@2011000 {
--- 
-2.35.1
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+
+Best regards,
+Krzysztof
