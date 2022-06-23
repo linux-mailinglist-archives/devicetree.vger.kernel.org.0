@@ -2,54 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 677DE557125
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 04:42:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EBA5557225
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 06:58:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbiFWCmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jun 2022 22:42:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44986 "EHLO
+        id S231487AbiFWEpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 00:45:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbiFWCmn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 22:42:43 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78BF942A10;
-        Wed, 22 Jun 2022 19:42:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1655952162; x=1687488162;
-  h=from:to:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=7c58LfG4TSl0Fs6TzOVpB2DHdxx//cWudkJuL9FQBx4=;
-  b=OaQ5IVl/tHlydeUmL3HMiDZL25b0zFL5feshYGoq62/9Qc6S8CMU6YJE
-   X1Ql+R0KpO1z4IKwSFtBGrB6GeGPsD1CxHWE+IErVJd/5mBpgYyMeGt85
-   GgSgVpxGHxcj6zfUZp9bnPEPKZH/QW6LEOHnNzFjptc1SkBkY2aFpplO5
-   1/I4021HJ0Cd425dBMFTNLQN8d7apFPgKCTybm7z8KZoja0HnGNPsAJbZ
-   E5qd8gsWvaxSRIS2O7xK3xCu+TLybgOnwawOHir3Kp15odwpGkPt9O6am
-   8ak6Kp8/fh/mskIFv9rDHLLYCIWeP1fwv7Q7IveBZJs4ZphC1HYXpN60z
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="342289221"
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; 
-   d="scan'208";a="342289221"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2022 19:42:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,215,1650956400"; 
-   d="scan'208";a="563271632"
-Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
-  by orsmga006.jf.intel.com with ESMTP; 22 Jun 2022 19:42:39 -0700
-From:   niravkumar.l.rabara@intel.com
-To:     dinguyen@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, niravkumar.l.rabara@intel.com
-Subject: [PATCH] arm64: dts: altera: socfpga_stratix10: move clocks out of soc node
-Date:   Thu, 23 Jun 2022 10:42:21 +0800
-Message-Id: <20220623024221.2766255-1-niravkumar.l.rabara@intel.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S238158AbiFWDeX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jun 2022 23:34:23 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728D036155;
+        Wed, 22 Jun 2022 20:34:17 -0700 (PDT)
+X-UUID: a79ae7d571454f528d2d996e8fb2a215-20220623
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:c7583246-f3e0-477c-a035-85da7ab95b6b,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.6,REQID:c7583246-f3e0-477c-a035-85da7ab95b6b,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:b14ad71,CLOUDID:67213c38-5e4b-44d7-80b2-bb618cb09d29,C
+        OID:7494f817c6eb,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: a79ae7d571454f528d2d996e8fb2a215-20220623
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 106634298; Thu, 23 Jun 2022 11:34:11 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 23 Jun 2022 11:34:10 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 23 Jun 2022 11:34:09 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Thu, 23 Jun 2022 11:34:09 +0800
+Message-ID: <0c269c54042d556bd5c7f4a7a13d4e33074888d1.camel@mediatek.com>
+Subject: Re: [PATCH v13 12/14] drm/mediatek: dpi: add config to control
+ setting of direct connection to pins
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <ck.hu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 23 Jun 2022 11:34:09 +0800
+In-Reply-To: <3246fb94ec05a43b7017849198d949ce8c8636a7.camel@mediatek.com>
+References: <20220621113732.11595-1-rex-bc.chen@mediatek.com>
+         <20220621113732.11595-13-rex-bc.chen@mediatek.com>
+         <55c98626-9b95-7721-94cf-8c471580a53b@collabora.com>
+         <3246fb94ec05a43b7017849198d949ce8c8636a7.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,90 +77,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+On Wed, 2022-06-22 at 17:08 +0800, Rex-BC Chen wrote:
+> On Tue, 2022-06-21 at 14:11 +0200, AngeloGioacchino Del Regno wrote:
+> > Il 21/06/22 13:37, Bo-Chen Chen ha scritto:
+> > > MediaTek dpi supports direct connection to pins while dp_intf
+> > > does
+> > > not
+> > > support. Therefore, add a config "support_direct_pin" to control
+> > > this.
+> > > 
+> > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > > ---
+> > >   drivers/gpu/drm/mediatek/mtk_dpi.c | 17 +++++++++++++----
+> > >   1 file changed, 13 insertions(+), 4 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > > b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > > index 438bf3bc5e4a..ef7f828a4b1e 100644
+> > > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > > @@ -129,6 +129,8 @@ struct mtk_dpi_yc_limit {
+> > >    * @is_ck_de_pol: Support CK/DE polarity.
+> > >    * @swap_input_support: Support input swap function.
+> > >    * @color_fmt_trans_support: Enable color format transfer.
+> > > + * @support_direct_pin: Dpi can directly connect pins, and
+> > > enable
+> > > this config
+> > > + *			to do this.
+> > 
+> > @support_direct_pin: IP supports direct connection to pins
+> > 
+> > or
+> > 
+> > @support_direct_pin: IP has direct connection to DP pins
+> > 
+> > or
+> > 
+> > @support_direct_pin: IP connects directly to DP pins
+> > 
+> > pick one, after which:
+> > 
+> > Reviewed-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
+> > 
+> > 
+> 
+> Hello Angelo,
+> 
+> this is not connect to "DP" pin. This setting is for dpi to connect
+> to
+> panel directly and there is no such usecase for dp_intf.
+> 
+> Therefore, I will use "@support_direct_pin: IP supports direct
+> connection to pins".
+> 
+> Thanks
+> 
+> BRs,
+> Bo-Chen
+> 
 
-The clocks are not part of the SoC but provided on the board
-(external oscillators). Moving them out of soc node.
+Hello Angelo,
 
-Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
----
- .../boot/dts/altera/socfpga_stratix10.dtsi    | 56 +++++++++----------
- 1 file changed, 28 insertions(+), 28 deletions(-)
+I think "@support_direct_pin: IP supports direct connection to dpi
+panels" is more precise for this config. I will use this description.
 
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-index aa2bba75265f..5c7d926d18f7 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-@@ -97,6 +97,34 @@ intc: interrupt-controller@fffc1000 {
- 		      <0x0 0xfffc6000 0x0 0x2000>;
- 	};
- 
-+	clocks {
-+		cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+		};
-+
-+		cb_intosc_ls_clk: cb-intosc-ls-clk {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+		};
-+
-+		f2s_free_clk: f2s-free-clk {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+		};
-+
-+		osc1: osc1 {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+		};
-+
-+		qspi_clk: qspi-clk {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+			clock-frequency = <200000000>;
-+		};
-+	};
-+
- 	soc {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-@@ -119,34 +147,6 @@ clkmgr: clock-controller@ffd10000 {
- 			#clock-cells = <1>;
- 		};
- 
--		clocks {
--			cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
--				#clock-cells = <0>;
--				compatible = "fixed-clock";
--			};
--
--			cb_intosc_ls_clk: cb-intosc-ls-clk {
--				#clock-cells = <0>;
--				compatible = "fixed-clock";
--			};
--
--			f2s_free_clk: f2s-free-clk {
--				#clock-cells = <0>;
--				compatible = "fixed-clock";
--			};
--
--			osc1: osc1 {
--				#clock-cells = <0>;
--				compatible = "fixed-clock";
--			};
--
--			qspi_clk: qspi-clk {
--				#clock-cells = <0>;
--				compatible = "fixed-clock";
--				clock-frequency = <200000000>;
--			};
--		};
--
- 		gmac0: ethernet@ff800000 {
- 			compatible = "altr,socfpga-stmmac-a10-s10", "snps,dwmac-3.74a", "snps,dwmac";
- 			reg = <0xff800000 0x2000>;
--- 
-2.25.1
+BRs,
+Bo-Chen
 
