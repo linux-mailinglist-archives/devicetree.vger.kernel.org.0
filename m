@@ -2,183 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E323558A44
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 22:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46B96558A5D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 22:51:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230042AbiFWUiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 16:38:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37266 "EHLO
+        id S229575AbiFWUvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 16:51:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230288AbiFWUiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 16:38:23 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE60852512
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 13:38:21 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1o4TZo-0005zb-EL; Thu, 23 Jun 2022 22:37:20 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1o4TZk-0004Od-6x; Thu, 23 Jun 2022 22:37:16 +0200
-Date:   Thu, 23 Jun 2022 22:37:16 +0200
-From:   sascha hauer <sha@pengutronix.de>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>, peng fan <peng.fan@nxp.com>,
-        kevin hilman <khilman@kernel.org>,
-        ulf hansson <ulf.hansson@linaro.org>,
-        len brown <len.brown@intel.com>, pavel machek <pavel@ucw.cz>,
-        joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>,
-        andrew lunn <andrew@lunn.ch>,
-        heiner kallweit <hkallweit1@gmail.com>,
-        russell king <linux@armlinux.org.uk>,
-        "david s. miller" <davem@davemloft.net>,
-        eric dumazet <edumazet@google.com>,
-        jakub kicinski <kuba@kernel.org>,
-        paolo abeni <pabeni@redhat.com>,
-        linus walleij <linus.walleij@linaro.org>,
-        hideaki yoshifuji <yoshfuji@linux-ipv6.org>,
-        david ahern <dsahern@kernel.org>, kernel-team@android.com,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        iommu@lists.linux-foundation.org, netdev@vger.kernel.org,
-        linux-gpio@vger.kernel.org, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] of: base: Avoid console probe delay when
- fw_devlink.strict=1
-Message-ID: <20220623203716.GA1615@pengutronix.de>
-References: <20220623080344.783549-1-saravanak@google.com>
- <20220623080344.783549-3-saravanak@google.com>
- <20220623100421.GY1615@pengutronix.de>
- <CAGETcx_eVkYtVX9=TOKnhpP2_ZpJwRDoBye3i7ND2u5Q-eQfPg@mail.gmail.com>
+        with ESMTP id S229584AbiFWUvn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 16:51:43 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF394F9D0;
+        Thu, 23 Jun 2022 13:51:42 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id i8-20020a17090aee8800b001ecc929d14dso4354160pjz.0;
+        Thu, 23 Jun 2022 13:51:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DF2FXD71gqOjtQrBwDNRffReItmxuKK3gUoUPPQiRu8=;
+        b=MLqV5p7IsGqf4Ko6unI+XADaUccyjVXRrH96dePvy+ZlepoxctSj7qO+ktAsHHr7Tb
+         UNug+zVH4LApYBTo3l+FYSqxI1EL2n/Qhbjwr03piPAgRwE3siRwTncpTLd6gte7Psqk
+         1jEXWP8yLiBmyO+PfYDUYevHrSLYfHeboN95Vqg7vfSDNeXbAgWqhOH4HwRnQr94TVxd
+         YOa4HQHny4osLtN4Mjxc+Upn2WN0GngWi/dRjWZm18gREuJC9i+G/ts9zrs5kdxQCEDZ
+         zzns1p/Ke/TIWr5zQDUn3AH7pEw8OdWQ6Nss2fTP1iJZ7ixRPP3gqt0fbYEQPTxkgeGr
+         GHiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DF2FXD71gqOjtQrBwDNRffReItmxuKK3gUoUPPQiRu8=;
+        b=ZwZNoaA7GYadnrp1k/O0C7Ehj0VZdeyM1nVrLceI0Sq5j743J4qnjDyTN8GDPNibl8
+         ciwdew271WMK5Ti6juCctn13DhvLV7sPG9cbVTiigZi6L+H7n7wJGuBsD8JJIgRg+/sh
+         U62Bi2dbrXBzKjKlSH/rqAYVG9b+e4oXwnBl7ilW1VyX8pT3JWusuhEaGXq/J9SX2gD8
+         /p8YttAg73y3WHDwddkZWZkl3rPw38w3Atcx6rz/RoMN/9Fs9a7PzPacmBjIcZvebGr7
+         70U3bTC7tVBapzgoxDa7wYLGIkP9VInKTqcC/si4cBZpL1eOfjbXp5wezwpH/LdZgDJR
+         K6Bg==
+X-Gm-Message-State: AJIora/mF2Os7/DSWbnh/J4cO6qElLkvV9DPMlv6cizTPxdS62Wfi85c
+        lcBBDJUp+2SH0jNPBdevs+h3gVzscSQhyRq/cT4=
+X-Google-Smtp-Source: AGRyM1umWrpYxCdsqahfZggxS4kZJfv4CL610/K1pDg8FvTpbU1OYrW3f+KJjo0bYpzbI39huYxJD7FTv3PKCxIYlH0=
+X-Received: by 2002:a17:903:32cb:b0:16a:3f2e:ca70 with SMTP id
+ i11-20020a17090332cb00b0016a3f2eca70mr13327719plr.153.1656017502408; Thu, 23
+ Jun 2022 13:51:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx_eVkYtVX9=TOKnhpP2_ZpJwRDoBye3i7ND2u5Q-eQfPg@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220622062027.994614-1-peng.fan@oss.nxp.com> <20220622072435.GT1615@pengutronix.de>
+ <CAGETcx9JpTbYtGFoKttWLeiBB73QzzBM1o-OL0o-XuFouLcEog@mail.gmail.com>
+ <CAOMZO5DFX72xuxWwAPsuk4Q667Ap7Dk+pR89cWDQJkzT0D2osA@mail.gmail.com>
+ <CAOMZO5Ccu_v_G9DEwrEfVHq83-hfrXCP_h20Rv0=oFTLux5AkQ@mail.gmail.com>
+ <CAGETcx85z_hkhKFHUwnihqcD0UQG3xtSZjw=BZxqwQB0D1CMgw@mail.gmail.com>
+ <CAOMZO5A6Zn=6tXU2VQ+-cj=50mpxCmoZ8c437=w1Spd34k7T6A@mail.gmail.com> <CAGETcx-_nwrzJzaY3yc80g4AfydV5J9-JYE5h1m+5TT05jyKOw@mail.gmail.com>
+In-Reply-To: <CAGETcx-_nwrzJzaY3yc80g4AfydV5J9-JYE5h1m+5TT05jyKOw@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 23 Jun 2022 17:51:31 -0300
+Message-ID: <CAOMZO5BvnBCza5HQVNUQqDBZR9WsXiK4RuVPh654GJGb2jw+1g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp: drop dmas property for uart console
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>, hvilleneuve@dimonoff.com,
+        Lucas Stach <l.stach@pengutronix.de>,
+        abbaraju.manojsai@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Teresa Remmet <t.remmet@phytec.de>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, t.remmet@phytec.deh,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 23, 2022 at 10:26:46AM -0700, Saravana Kannan wrote:
-> On Thu, Jun 23, 2022 at 3:05 AM sascha hauer <sha@pengutronix.de> wrote:
-> >
-> > On Thu, Jun 23, 2022 at 01:03:43AM -0700, Saravana Kannan wrote:
-> > > Commit 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
-> > > enabled iommus and dmas dependency enforcement by default. On some
-> > > systems, this caused the console device's probe to get delayed until the
-> > > deferred_probe_timeout expires.
-> > >
-> > > We need consoles to work as soon as possible, so mark the console device
-> > > node with FWNODE_FLAG_BEST_EFFORT so that fw_delink knows not to delay
-> > > the probe of the console device for suppliers without drivers. The
-> > > driver can then make the decision on where it can probe without those
-> > > suppliers or defer its probe.
-> > >
-> > > Fixes: 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
-> > > Reported-by: Sascha Hauer <sha@pengutronix.de>
-> > > Reported-by: Peng Fan <peng.fan@nxp.com>
-> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > Tested-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >  drivers/of/base.c | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> > > diff --git a/drivers/of/base.c b/drivers/of/base.c
-> > > index d4f98c8469ed..a19cd0c73644 100644
-> > > --- a/drivers/of/base.c
-> > > +++ b/drivers/of/base.c
-> > > @@ -1919,6 +1919,8 @@ void of_alias_scan(void * (*dt_alloc)(u64 size, u64 align))
-> > >                       of_property_read_string(of_aliases, "stdout", &name);
-> > >               if (name)
-> > >                       of_stdout = of_find_node_opts_by_path(name, &of_stdout_options);
-> > > +             if (of_stdout)
-> > > +                     of_stdout->fwnode.flags |= FWNODE_FLAG_BEST_EFFORT;
-> >
-> > The device given in the stdout-path property doesn't necessarily have to
-> > be consistent with the console= parameter. The former is usually
-> > statically set in the device trees contained in the kernel while the
-> > latter is dynamically set by the bootloader. So if you change the
-> > console uart in the bootloader then you'll still run into this trap.
-> >
-> > It's problematic to consult only the device tree for dependencies. I
-> > found several examples of drivers in the tree for which dma support
-> > is optional. They use it if they can, but continue without it when
-> > not available. "hwlock" is another property which consider several
-> > drivers as optional. Also consider SoCs in early upstreaming phases
-> > when the device tree is merged with "dmas" or "hwlock" properties,
-> > but the corresponding drivers are not yet upstreamed. It's not nice
-> > to defer probing of all these devices for a long time.
-> >
-> > I wonder if it wouldn't be a better approach to just probe all devices
-> > and record the device(node) they are waiting on. Then you know that you
-> > don't need to probe them again until the device they are waiting for
-> > is available.
-> 
-> That actually breaks things in a worse sense. There are cases where
-> the consumer driver is built in and the optional supplier driver is
-> loaded at boot. Without fw_devlink and the deferred probe timeout, we
-> end up probing the consumer with limited functionality. With the
-> current setup, sure we delay some probes a bit but at least everything
-> works with the right functionality. And you can reduce or remove the
-> delay if you want to optimize it.
+On Thu, Jun 23, 2022 at 3:58 PM Saravana Kannan <saravanak@google.com> wrote:
 
-We have optional and mandatory resources. In this situation a driver has
-to decide what to do. Either it continues with limited resources or it
-defers probing. Some drivers try to allocate the optional resources at
-open time so that they are able to use them once they are available.  We
-could even think of an asynchronous callback into a driver when a
-resource becomes available. Whether we put this decision what is
-optional or not into the driver or in the framework doesn't make a
-difference to the problem, it is still the same: When a resource is not
-yet available we have no idea if and when it becomes available, if it's
-worth waiting for it or not.
+> Will do. I'm looking at the serial console code and I don't see a
+> difference between earlycon= vs console= handling. And I know that
+> earlycon= doesn't go through the driver core and isn't affected by any
+> of this. If you have additional pointers on where console= is parsed,
+> feel free to pass it on. I'll continue poking at this.
 
-The difference is that with my proposal (which isn't actually mine but
-from my collegue Lucas) a driver can decide very fine grained how it
-wants to deal with the situation. With fw_devlink we try to put this
-intelligence into the framework and it seems there are quite some quirks
-necessary to get that running for everyone.
-
-Anyway, we have fw_devlink now and actually I think the dependency graph
-that we have with fw_devlink is quite nice to resolve the natural probe
-order. But why do we have to put an extra penalty on drivers whose
-resources are not yet available?  Probe devices with complete resources
-as long as you find them, execute more initcalls as long as there are
-any, but when there are no more left, you could start probing devices
-with incomplete resources, why wait for another ten seconds?
-
-For me it's no problem when the UART probes late, we have earlycon which
-can be used to debug problems that arise before the UART probes, but
-what nags is the ten seconds delay. zero would be a much saner value for
-me.
-
-Sascha
-
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+It seems to be parsed at uart_parse_earlycon() inside
+drivers/tty/serial/serial_core.c.
