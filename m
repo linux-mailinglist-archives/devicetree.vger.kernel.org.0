@@ -2,121 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3271F557520
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 10:13:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A02855754B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 10:22:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229765AbiFWINa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 04:13:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58276 "EHLO
+        id S230029AbiFWIWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 04:22:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231142AbiFWIN2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 04:13:28 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C65C313CFD;
-        Thu, 23 Jun 2022 01:13:27 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5CA8A66016E1;
-        Thu, 23 Jun 2022 09:13:25 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1655972006;
-        bh=aKUeSQS7JjwmLoA51+Y/QiVigSc3OYpsPtreXvN2cyY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=iCOPl6Mb1zctioVnRoo1h+YmE6mUnuFw6iO0R+k3aLmZKHCKnku7NBVDmt00tdhoN
-         DhQE2vLNb8WLU+xrS2XgPH4MFO/HJ8LPVVJZR7V83SApXqioJXOHOLzBujAgm0PYCW
-         Zki3btv0GC5UionwXKUjI+CLAY0lueTfh9o4u/dwYtALK60Su/15OzH+rDzbNnrZLm
-         A+LS85neuTq48igqYhv8BjyuTWQg484OqXKz3PFsezICja8Ei/GbaeAHbZ9wPQFcul
-         cAbmjq7ULZ1Nhhxk1lx9mWiFWL9yKSjbbtaQG3whgyH3mF9tJJx6ds9IDhYz1Nm0e2
-         0bHCntzaXUQNg==
-Message-ID: <ff4dc55c-bb87-ac15-2d39-1f1ed41f4221@collabora.com>
-Date:   Thu, 23 Jun 2022 10:13:23 +0200
+        with ESMTP id S229972AbiFWIWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 04:22:44 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B84848890;
+        Thu, 23 Jun 2022 01:22:39 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25N8MNBp044453;
+        Thu, 23 Jun 2022 03:22:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1655972543;
+        bh=I3Kzpe4Zao+JGFPeNsw2PKGMWnjaFeLczTJXnIkQ3CM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=kg9nHwl5LlPcfmdLQ7nc4WvIgEw0Vtjc0SfgQTh12+xs1a3mR2CpcL1v4TpMDaBXF
+         e9Z3O51z9Ojw0s/2clRJuCUvg6lifPrmg1vCX+n2pOMKpuVtxv60La4TV4P2ZGCLlF
+         FtwMHu4PzW/owIv+eutma/E+NaZipn4kG4p+OzDg=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25N8MN91129679
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 23 Jun 2022 03:22:23 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 23
+ Jun 2022 03:22:23 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 23 Jun 2022 03:22:23 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25N8MMS5004868;
+        Thu, 23 Jun 2022 03:22:23 -0500
+Date:   Thu, 23 Jun 2022 13:52:21 +0530
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>
+CC:     Tomi Valkeinen <tomba@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        DRI Devel List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] drm/tidss: Add support for AM625 DSS
+Message-ID: <20220623082220.wpnnzkzjmkcni3o6@uda0490373>
+References: <20220620123217.25809-1-a-bhatia1@ti.com>
+ <20220620123217.25809-3-a-bhatia1@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] soc: mediatek: mutex: add suffix 0 to
- DDP_COMPONENT_DITHER for mt8395
-Content-Language: en-US
-To:     Jason-JH Lin <jason-jh.lin@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Fabien Parent <fparent@baylibre.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220622131952.29583-1-jason-jh.lin@mediatek.com>
- <26854a9b-09c2-c14e-eabe-cfc574d6012e@collabora.com>
- <66d3a7719eb7797acfe3ccfd8ed0f710ea384023.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <66d3a7719eb7797acfe3ccfd8ed0f710ea384023.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220620123217.25809-3-a-bhatia1@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 23/06/22 02:33, Jason-JH Lin ha scritto:
-> Hi Angelo,
-> 
-> Yes, I missed that!
-> So just forget about this patch and use yours.
-> 
-> Thanks for your help :)
-> 
+Hi Aradhya,
 
-No worries, it happens...
-Btw, you're welcome.
-
-Cheers!
-
-> Regard,
-> Jason-JH.Lin
+On 18:02-20220620, Aradhya Bhatia wrote:
+> Add support for the DSS IP on TI's new AM625 soc in the tidss driver.
 > 
-> On Wed, 2022-06-22 at 15:31 +0200, AngeloGioacchino Del Regno wrote:
->> Il 22/06/22 15:19, Jason-JH.Lin ha scritto:
->>> Add suffix 0 to DDP_COMPONENT_DITHER for mt8395.
->>>
->>> Fixes: 141311b856d8 ("soc: mediatek: mutex: add MT8365 support")
->>> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
->>
->>
->> Hello Jason-JH,
->>
->> you must've missed my commit, sent two days ago, which is doing the
->> same:
->>
->>
-> https://lore.kernel.org/lkml/20220620102454.131417-1-angelogioacchino.delregno@collabora.com/T/#u
->>
->> Anyway, I have avoided to rename the definition, as from what I
->> understand
->> MT8365 has only one dither mod and that's called "DITHER", not
->> "DITHER0"...
->> ...but I've added the suffix to the array assignment, as that's what
->> we have
->> in the enumeration.
->>
->> I think that #define MT8365_MUTEX_MOD_DISP_DITHER should be kept as-
->> is.
->>
->> Also... this commit is not fixing anything, as it was already working
->> before,
->> so the Fixes tag shouldn't be present.
->>
->> Regards,
->> Angelo
->>
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> ---
+>  drivers/gpu/drm/tidss/tidss_dispc.c | 83 ++++++++++++++++++++++++++++-
+>  drivers/gpu/drm/tidss/tidss_dispc.h |  2 +
+>  drivers/gpu/drm/tidss/tidss_drv.c   |  1 +
+>  3 files changed, 85 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
+> index dae47853b728..511d1f1d46fc 100644
+> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+> @@ -272,6 +272,82 @@ const struct dispc_features dispc_j721e_feats = {
+>  	.vid_order = { 1, 3, 0, 2 },
+>  };
+>  
+> +static const u16 tidss_am62x_common_regs[DISPC_COMMON_REG_TABLE_LEN] = {
+> +	[DSS_REVISION_OFF] =			0x4,
+> +	[DSS_SYSCONFIG_OFF] =			0x8,
+> +	[DSS_SYSSTATUS_OFF] =			0x20,
+> +	[DISPC_IRQ_EOI_OFF] =			0x24,
+> +	[DISPC_IRQSTATUS_RAW_OFF] =		0x28,
+> +	[DISPC_IRQSTATUS_OFF] =			0x2c,
+> +	[DISPC_IRQENABLE_SET_OFF] =		0x30,
+> +	[DISPC_IRQENABLE_CLR_OFF] =		0x40,
+> +	[DISPC_VID_IRQENABLE_OFF] =		0x44,
+> +	[DISPC_VID_IRQSTATUS_OFF] =		0x58,
+> +	[DISPC_VP_IRQENABLE_OFF] =		0x70,
+> +	[DISPC_VP_IRQSTATUS_OFF] =		0x7c,
+> +
+> +	[WB_IRQENABLE_OFF] =			0x88,
+> +	[WB_IRQSTATUS_OFF] =			0x8c,
+> +
+> +	[DISPC_GLOBAL_MFLAG_ATTRIBUTE_OFF] =	0x90,
+> +	[DISPC_GLOBAL_OUTPUT_ENABLE_OFF] =	0x94,
+> +	[DISPC_GLOBAL_BUFFER_OFF] =		0x98,
+> +	[DSS_CBA_CFG_OFF] =			0x9c,
+> +	[DISPC_DBG_CONTROL_OFF] =		0xa0,
+> +	[DISPC_DBG_STATUS_OFF] =		0xa4,
+> +	[DISPC_CLKGATING_DISABLE_OFF] =		0xa8,
+> +	[DISPC_SECURE_DISABLE_OFF] =		0xac,
+> +};
+> +
+
+register offsets are exactly same as
+am65x, same can be reused here
+
+with that
+Reviewed-by: Rahul T R <r-ravikumar@ti.com>
+
+Regards
+Rahul T R
+> +const struct dispc_features dispc_am625_feats = {
+> +	.max_pclk_khz = {
+> +		[DISPC_VP_DPI] = 165000,
+> +		[DISPC_VP_OLDI] = 165000,
+> +	},
+> +
+> +	.scaling = {
+> +		.in_width_max_5tap_rgb = 1280,
+> +		.in_width_max_3tap_rgb = 2560,
+> +		.in_width_max_5tap_yuv = 2560,
+> +		.in_width_max_3tap_yuv = 4096,
+> +		.upscale_limit = 16,
+> +		.downscale_limit_5tap = 4,
+> +		.downscale_limit_3tap = 2,
+> +		/*
+> +		 * The max supported pixel inc value is 255. The value
+> +		 * of pixel inc is calculated like this: 1+(xinc-1)*bpp.
+> +		 * The maximum bpp of all formats supported by the HW
+> +		 * is 8. So the maximum supported xinc value is 32,
+> +		 * because 1+(32-1)*8 < 255 < 1+(33-1)*4.
+> +		 */
+> +		.xinc_max = 32,
+> +	},
+> +
+> +	.subrev = DISPC_AM625,
+> +
+> +	.common = "common",
+> +	.common_regs = tidss_am62x_common_regs,
+> +
+> +	.num_vps = 2,
+> +	.vp_name = { "vp1", "vp2" },
+> +	.ovr_name = { "ovr1", "ovr2" },
+> +	.vpclk_name =  { "vp1", "vp2" },
+> +	.vp_bus_type = { DISPC_VP_OLDI, DISPC_VP_DPI },
+> +
+> +	.vp_feat = { .color = {
+> +			.has_ctm = true,
+> +			.gamma_size = 256,
+> +			.gamma_type = TIDSS_GAMMA_8BIT,
+> +		},
+> +	},
+> +
+> +	.num_planes = 2,
+> +	/* note: vid is plane_id 0 and vidl1 is plane_id 1 */
+> +	.vid_name = { "vid", "vidl1" },
+> +	.vid_lite = { false, true, },
+> +	.vid_order = { 1, 0 },
+> +};
+> +
+>  static const u16 *dispc_common_regmap;
+>  
+>  struct dss_vp_data {
+> @@ -775,6 +851,7 @@ dispc_irq_t dispc_read_and_clear_irqstatus(struct dispc_device *dispc)
+>  		return dispc_k2g_read_and_clear_irqstatus(dispc);
+>  	case DISPC_AM65X:
+>  	case DISPC_J721E:
+> +	case DISPC_AM625:
+>  		return dispc_k3_read_and_clear_irqstatus(dispc);
+>  	default:
+>  		WARN_ON(1);
+> @@ -790,6 +867,7 @@ void dispc_set_irqenable(struct dispc_device *dispc, dispc_irq_t mask)
+>  		break;
+>  	case DISPC_AM65X:
+>  	case DISPC_J721E:
+> +	case DISPC_AM625:
+>  		dispc_k3_set_irqenable(dispc, mask);
+>  		break;
+>  	default:
+> @@ -1279,6 +1357,7 @@ void dispc_ovr_set_plane(struct dispc_device *dispc, u32 hw_plane,
+>  					x, y, layer);
+>  		break;
+>  	case DISPC_AM65X:
+> +	case DISPC_AM625:
+>  		dispc_am65x_ovr_set_plane(dispc, hw_plane, hw_videoport,
+>  					  x, y, layer);
+>  		break;
+> @@ -2202,6 +2281,7 @@ static void dispc_plane_init(struct dispc_device *dispc)
+>  		break;
+>  	case DISPC_AM65X:
+>  	case DISPC_J721E:
+> +	case DISPC_AM625:
+>  		dispc_k3_plane_init(dispc);
+>  		break;
+>  	default:
+> @@ -2307,6 +2387,7 @@ static void dispc_vp_write_gamma_table(struct dispc_device *dispc,
+>  		dispc_k2g_vp_write_gamma_table(dispc, hw_videoport);
+>  		break;
+>  	case DISPC_AM65X:
+> +	case DISPC_AM625:
+>  		dispc_am65x_vp_write_gamma_table(dispc, hw_videoport);
+>  		break;
+>  	case DISPC_J721E:
+> @@ -2580,7 +2661,7 @@ int dispc_runtime_resume(struct dispc_device *dispc)
+>  		REG_GET(dispc, DSS_SYSSTATUS, 2, 2),
+>  		REG_GET(dispc, DSS_SYSSTATUS, 3, 3));
+>  
+> -	if (dispc->feat->subrev == DISPC_AM65X)
+> +	if (dispc->feat->subrev == DISPC_AM65X || dispc->feat->subrev == DISPC_AM625)
+>  		dev_dbg(dispc->dev, "OLDI RESETDONE %d,%d,%d\n",
+>  			REG_GET(dispc, DSS_SYSSTATUS, 5, 5),
+>  			REG_GET(dispc, DSS_SYSSTATUS, 6, 6),
+> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.h b/drivers/gpu/drm/tidss/tidss_dispc.h
+> index e49432f0abf5..a28005dafdc9 100644
+> --- a/drivers/gpu/drm/tidss/tidss_dispc.h
+> +++ b/drivers/gpu/drm/tidss/tidss_dispc.h
+> @@ -61,6 +61,7 @@ enum dispc_dss_subrevision {
+>  	DISPC_K2G,
+>  	DISPC_AM65X,
+>  	DISPC_J721E,
+> +	DISPC_AM625,
+>  };
+>  
+>  struct dispc_features {
+> @@ -88,6 +89,7 @@ struct dispc_features {
+>  extern const struct dispc_features dispc_k2g_feats;
+>  extern const struct dispc_features dispc_am65x_feats;
+>  extern const struct dispc_features dispc_j721e_feats;
+> +extern const struct dispc_features dispc_am625_feats;
+>  
+>  void dispc_set_irqenable(struct dispc_device *dispc, dispc_irq_t mask);
+>  dispc_irq_t dispc_read_and_clear_irqstatus(struct dispc_device *dispc);
+> diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
+> index 04cfff89ee51..326059e99696 100644
+> --- a/drivers/gpu/drm/tidss/tidss_drv.c
+> +++ b/drivers/gpu/drm/tidss/tidss_drv.c
+> @@ -235,6 +235,7 @@ static const struct of_device_id tidss_of_table[] = {
+>  	{ .compatible = "ti,k2g-dss", .data = &dispc_k2g_feats, },
+>  	{ .compatible = "ti,am65x-dss", .data = &dispc_am65x_feats, },
+>  	{ .compatible = "ti,j721e-dss", .data = &dispc_j721e_feats, },
+> +	{ .compatible = "ti,am625-dss", .data = &dispc_am625_feats, },
+>  	{ }
+>  };
+>  
+> -- 
+> 2.36.1
+> 
