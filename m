@@ -2,58 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A00575588EF
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 21:33:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3E2B55891A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 21:36:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230505AbiFWTdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 15:33:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52368 "EHLO
+        id S231180AbiFWTe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 15:34:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231583AbiFWTcU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 15:32:20 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED6293EF3A
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 12:08:32 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id l9-20020a056830268900b006054381dd35so204234otu.4
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 12:08:32 -0700 (PDT)
+        with ESMTP id S229926AbiFWTeq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 15:34:46 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0970E67E59
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 12:15:54 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id i15so749210ybp.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 12:15:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=G7GUFKx0kufkNV6cl0VJc529FkLJIKTxF3dZCCvrwdY=;
-        b=iN0a13Zqsn8ttJ7ja/KPwL2wPvJTDmHPO333uxUAd1CAaE8rvuUZkbPDyN3+0gOYeh
-         yFjnENL67HNFCTd3LjmuhZ4hhwqdRyCMALZc3RW5N1Org7VuzCf1DFMR5WtCyfv2391G
-         uo55OZxLAmQCzfMdLjGN999g9b+vwqIJ9/3eM=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=icBv02YthTFvrtUFWz0nh/9bhPVkmRsemm78ezrfeog=;
+        b=O+7rr+XqABJcGtIev7QuTB6drGNOp0FepFlPL9QPhSNPXGIt3f7U4DTmMg9xIEHhKZ
+         uTsyrzAeqt3Tu0JjNpXw1NwLXmH8BI895ef+JPO5kn8Lr2RsyoARbK33Ko1ZYta+uF3e
+         VkUFUxb84/ecefpxjKQWFURfIRjRbjiFwBW6w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=G7GUFKx0kufkNV6cl0VJc529FkLJIKTxF3dZCCvrwdY=;
-        b=y5cC92eZO/Puh6ufQDZbMDCUbJkmWPLFqcLshbClcFR6lQLNAPUP+q+Vo2gBnO45hb
-         szordDeWJGhlvbpcfl5xBb5MbsICzq3wmX1kI3fwBTkpylACex7Wln8N/W9Hh5Cn5/PW
-         JGmiq3mzIGlbQ6IeCHb+bmbswRVB0qxBmSpGfvZpjn2BBcTV/lgTQHpxwrgjbHcj4pvk
-         giRS9rQ4afqVVyAXteWmQTx05drWgW9h/cb4X/4ucHrgLyZKTwRxfux9aUaDORc7icsk
-         jYHe+pAtV82AtzjYyN2WlFt1qI4QyBh7217jj/cC9eMskGcN1ziAlhR4OUsDZVFnHp7Q
-         riYg==
-X-Gm-Message-State: AJIora/7yt70XYVg+SPgWn7HO+TU1Orpxp+rDApvyML8kKMFez7k9yYY
-        ASvBNcorO0wtLA3d4Mk2g2fXoEnPTuru7thfXmkTYw==
-X-Google-Smtp-Source: AGRyM1vgbF+x4e8hC812jkDhF5ujgwGy9u1TIoIP8891Q9B03Dipuo0gmMCNmbyza772yJuf+a8CoPoLp42FIFqFmzE=
-X-Received: by 2002:a9d:729b:0:b0:60c:21bd:97c0 with SMTP id
- t27-20020a9d729b000000b0060c21bd97c0mr4488368otj.77.1656011312243; Thu, 23
- Jun 2022 12:08:32 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 23 Jun 2022 15:08:31 -0400
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=icBv02YthTFvrtUFWz0nh/9bhPVkmRsemm78ezrfeog=;
+        b=q+ydcmeTvSZM6Rl/dnBky0bmnIxHdqFCKe+OqbjQxyu+iDfQsUu95SNh8AevLlBjto
+         /UIN3feAbWdqms2sa/AD9H9fg8BeUkKOzG3kLU9xhuAYTCWZRdVYeijbFfXk+BkUAMj0
+         Ypp+AY0Q0/lrPHaJLwpilNNiJLbO2TOOiyWrJ5dgI7Chf8VD7DDcaQIKXI4HEuFi1cYe
+         HZv9WWUZPsa1PqFokFXjwERLPt6F9e286AxitH7U6HIay3tSCMx8oM5V5aMNxwsPwTjT
+         YixjLpw6b8fPd8O3HHWWZ1NJRdvaiJR4Hg2VdjUnpX+rXROdOk97rqNG8DyLe+akztpY
+         0aiQ==
+X-Gm-Message-State: AJIora+MVCL5emDhZJ8jhPAzT8YbApdvjN9wkjELxSA/LZJblmOfXcNw
+        Lz51wIN7j1LNODB+wAL76Z8R+JzLqHk4vWi0tTNfwA==
+X-Google-Smtp-Source: AGRyM1vo9eclvYKWlnI8Z1IzhZDtiALcpS4DTk5sKAvdnhcBIHH5/5ayi+8XWmysWgoIxmF1Fz9B2bQ3stMqDTeW3yQ=
+X-Received: by 2002:a25:540a:0:b0:669:b4cb:41d7 with SMTP id
+ i10-20020a25540a000000b00669b4cb41d7mr3084875ybb.196.1656011753251; Thu, 23
+ Jun 2022 12:15:53 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CACeCKaduttgNfxyzE2_7eD1N4NLNp_8J1EaWTnn+eqp+_P-i1A@mail.gmail.com>
 References: <20220622173605.1168416-1-pmalani@chromium.org>
  <20220622173605.1168416-7-pmalani@chromium.org> <CAE-0n51d4S3T+_f+YXsu3es7AMxuyFORSXFQe2LTSkZB4C56Ng@mail.gmail.com>
- <CACeCKaduttgNfxyzE2_7eD1N4NLNp_8J1EaWTnn+eqp+_P-i1A@mail.gmail.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Thu, 23 Jun 2022 15:08:31 -0400
-Message-ID: <CAE-0n53Y4pe3TvNQVKZsqLU4cA-Vs4zH3HHV5U97W_6qCNsEow@mail.gmail.com>
+ <CACeCKaduttgNfxyzE2_7eD1N4NLNp_8J1EaWTnn+eqp+_P-i1A@mail.gmail.com> <CAE-0n53Y4pe3TvNQVKZsqLU4cA-Vs4zH3HHV5U97W_6qCNsEow@mail.gmail.com>
+In-Reply-To: <CAE-0n53Y4pe3TvNQVKZsqLU4cA-Vs4zH3HHV5U97W_6qCNsEow@mail.gmail.com>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Thu, 23 Jun 2022 12:15:42 -0700
+Message-ID: <CACeCKaem-b5ePtkeR2njS9ZgX3Ez1GViArPxS92fk7eF0=NmFA@mail.gmail.com>
 Subject: Re: [PATCH v5 6/9] dt/bindings: drm/bridge: it6505: Add mode-switch support
-To:     Prashant Malani <pmalani@chromium.org>
+To:     Stephen Boyd <swboyd@chromium.org>
 Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
         bleung@chromium.org, heikki.krogerus@linux.intel.com,
         Pin-Yen Lin <treapking@chromium.org>,
@@ -90,36 +87,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Prashant Malani (2022-06-23 11:37:08)
-> On Thu, Jun 23, 2022 at 11:24 AM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > Quoting Prashant Malani (2022-06-22 10:34:35)
-> > > From: Pin-Yen Lin <treapking@chromium.org>
+On Thu, Jun 23, 2022 at 12:08 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> Quoting Prashant Malani (2022-06-23 11:37:08)
+> > On Thu, Jun 23, 2022 at 11:24 AM Stephen Boyd <swboyd@chromium.org> wrote:
 > > >
-> > > ITE IT6505 can be used in systems to switch USB Type-C DisplayPort
-> > > alternate mode lane traffic between 2 Type-C ports.
+> > > Quoting Prashant Malani (2022-06-22 10:34:35)
+> > > > From: Pin-Yen Lin <treapking@chromium.org>
+> > > >
+> > > > ITE IT6505 can be used in systems to switch USB Type-C DisplayPort
+> > > > alternate mode lane traffic between 2 Type-C ports.
+> > >
+> > > How does it work? From what I can tell from the information I find when
+> > > googling this part[1] and looking at the existing binding doc is that
+> > > this device is a DPI to DP bridge, and it outputs DP (probably 4 lanes
+> > > of it?). Does the 2 type-c port design work by transmitting DP on two
+> > > lanes of DP for one type-c port and another two lanes of DP for the
+> > > other type-c port?
+> > >
+> > > DP could be one lane, so if this device is able to output one lane on
+> > > any output differential pair then I suspect it could support 4 type-c
+> > > ports if the hardware engineer connected it that way. Can you confirm my
+> > > suspicion?
 > >
-> > How does it work? From what I can tell from the information I find when
-> > googling this part[1] and looking at the existing binding doc is that
-> > this device is a DPI to DP bridge, and it outputs DP (probably 4 lanes
-> > of it?). Does the 2 type-c port design work by transmitting DP on two
-> > lanes of DP for one type-c port and another two lanes of DP for the
-> > other type-c port?
+> > I will let Pin-Yen comment re: this hardware, but 1-lane DP is not a
+> > supported Type-C Pin assignment
+> > (as per VESA DP Alternate Mode Spec version 2.0 [2]), so the H/W
+>
+> Some missing link?
+
+My bad. I tried to find a publicly accessible link to the DP altmode
+spec, but it
+seems like one needs to be a VESA member to access it :/
+
+>
+> > configuration you are suggesting shouldn't be possible.
 > >
-> > DP could be one lane, so if this device is able to output one lane on
-> > any output differential pair then I suspect it could support 4 type-c
-> > ports if the hardware engineer connected it that way. Can you confirm my
-> > suspicion?
 >
-> I will let Pin-Yen comment re: this hardware, but 1-lane DP is not a
-> supported Type-C Pin assignment
-> (as per VESA DP Alternate Mode Spec version 2.0 [2]), so the H/W
+> Alright, cool. But it is possible in the DP spec. So it seems like if
+> this is connected to 4 DP connectors it could be used to mux between DP
+> on 4 DP ports.
 
-Some missing link?
-
-> configuration you are suggesting shouldn't be possible.
->
-
-Alright, cool. But it is possible in the DP spec. So it seems like if
-this is connected to 4 DP connectors it could be used to mux between DP
-on 4 DP ports.
+Ack. In that case, no "typec-switches" should be added to the DT.
