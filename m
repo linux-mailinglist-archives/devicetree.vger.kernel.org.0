@@ -2,61 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFDF3557FCC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 18:29:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC29C557FD4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 18:29:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232269AbiFWQ27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 12:28:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60124 "EHLO
+        id S231634AbiFWQ3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 12:29:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232249AbiFWQ26 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 12:28:58 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8868F3EA93;
-        Thu, 23 Jun 2022 09:28:57 -0700 (PDT)
-Received: from jupiter.universe (unknown [95.33.159.255])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id AF31166017E4;
-        Thu, 23 Jun 2022 17:28:55 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656001736;
-        bh=NR9TyHKc60OYnxwLzxpQ1c2wItafR5D/uWReeMDiZLI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=C4UNF7lZTqD5LepVh7lPXHlQ4Cg/MEBb0h35zYH+X8dGc8Eu0ai5PQMPD5IarZXf2
-         e7h0C7YgJ4TWpOj/Za/hPe9A0p0X8iJGdbcD5X1quHJvT0PDTGWJQ7CVzXh5zjle+4
-         p0ilh6svW6dAG/2XvlSuUcgpTSHIgSMb+nQNRD1qSksgEWCxSo94pTUHP9lYZIVT/4
-         aTHqXJemhYdox00n8txpy56Q3zYYT2idzOwicN9pAHjQek1Zz/6BlLlTi9u/mIyC74
-         aH6GFfmUNOh9oWw3igFheTNgflmESEipeFusus4ddL8mBHfKfB5g+6e1UNzhg7YPYo
-         +qDY/tzxGJmBg==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id 4A59D480591; Thu, 23 Jun 2022 18:28:53 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        with ESMTP id S232209AbiFWQ3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 12:29:30 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F72446B3E;
+        Thu, 23 Jun 2022 09:29:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1656001769; x=1687537769;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=shSMQSjp0om7znr1pZFQg0KFLkYI8bsl3XjfCXpVkk4=;
+  b=ir7TMXTJtFrLNXMajO3vlX2ht+HQ/kPoPEGb2QdrPnw5nLtwvn+azo7h
+   wyIqygesm+fPIWx8fLtug5WBCirk80rR4un6FiU73ws7Hqh1fFrBXY0Kb
+   v61t34HAvReWFhkTieNuAV7wH5sy3oKuNNkV0TZJwyhif+1b8Rt73jvY0
+   D5laRS5AUx/8EFNaI/PF3Z/+P+Z/wI1pBMnG7UaVQfT990qsXMAdgagmG
+   9YOu5HlWCVt73bpzOkbJQKq6zplmebH8+p22j5o/Pb7knICy2gxhX6N4W
+   P+g2PvWIY5mlK3+MLS/vQX+Rs5Jkv0XZMsPU5xdH5Jy3d7vpTyDVl/22f
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10386"; a="281498539"
+X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; 
+   d="scan'208";a="281498539"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2022 09:29:28 -0700
+X-IronPort-AV: E=Sophos;i="5.92,216,1650956400"; 
+   d="scan'208";a="615634196"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2022 09:29:25 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1o4Php-000tCz-QO;
+        Thu, 23 Jun 2022 19:29:21 +0300
+Date:   Thu, 23 Jun 2022 19:29:21 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
+Cc:     gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vz@mleia.com,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com
-Subject: [PATCH 3/3] dt-bindings: net: rockchip-dwmac: add rk3588 gmac compatible
-Date:   Thu, 23 Jun 2022 18:28:50 +0200
-Message-Id: <20220623162850.245608-4-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220623162850.245608-1-sebastian.reichel@collabora.com>
-References: <20220623162850.245608-1-sebastian.reichel@collabora.com>
+        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lukas@wunner.de, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Subject: Re: [PATCH 5/8] dt_bindings: rs485: Correct delay values
+Message-ID: <YrSU4eL9hgISg3Y1@smile.fi.intel.com>
+References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
+ <20220622154659.8710-6-LinoSanfilippo@gmx.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220622154659.8710-6-LinoSanfilippo@gmx.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,58 +69,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string for RK3588 gmac, which is similar to the RK3568
-one, but needs another syscon device for clock selection.
+On Wed, Jun 22, 2022 at 05:46:56PM +0200, Lino Sanfilippo wrote:
+> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+> 
+> The maximum allowed delay for RTS before and RTS after send is 100 ms.
+> Adjust the documentation accordingly.
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 6 ++++++
- Documentation/devicetree/bindings/net/snps,dwmac.yaml     | 1 +
- 2 files changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-index 083623c8d718..c42f5a74a92e 100644
---- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-@@ -25,6 +25,7 @@ select:
-           - rockchip,rk3368-gmac
-           - rockchip,rk3399-gmac
-           - rockchip,rk3568-gmac
-+          - rockchip,rk3588-gmac
-           - rockchip,rv1108-gmac
-   required:
-     - compatible
-@@ -50,6 +51,7 @@ properties:
-       - items:
-           - enum:
-               - rockchip,rk3568-gmac
-+              - rockchip,rk3588-gmac
-           - const: snps,dwmac-4.20a
- 
-   clocks:
-@@ -81,6 +83,10 @@ properties:
-     description: The phandle of the syscon node for the general register file.
-     $ref: /schemas/types.yaml#/definitions/phandle
- 
-+  rockchip,php_grf:
-+    description: The phandle of the syscon node for the peripheral general register file.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-   tx_delay:
-     description: Delay value for TXD timing. Range value is 0~0x7F, 0x30 as default.
-     $ref: /schemas/types.yaml#/definitions/uint32
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 36c85eb3dc0d..b5aba399ca5d 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -72,6 +72,7 @@ properties:
-         - rockchip,rk3328-gmac
-         - rockchip,rk3366-gmac
-         - rockchip,rk3368-gmac
-+        - rockchip,rk3588-gmac
-         - rockchip,rk3399-gmac
-         - rockchip,rv1108-gmac
-         - snps,dwmac
+Is it only documentation issue? If the code allows this to be set higher
+than 100, we may not change the documentation since this an ABI (from
+firmware <--> kernel perspective) we need to support old variants.
+
+If the above is true and limit is dictated by the spec, we may issue a
+warning in the code and drop it to the allowed maximum, otherwise we
+can't do much here.
+
 -- 
-2.35.1
+With Best Regards,
+Andy Shevchenko
+
 
