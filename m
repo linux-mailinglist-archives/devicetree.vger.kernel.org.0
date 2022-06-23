@@ -2,130 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DDE4557505
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 10:11:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3271F557520
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jun 2022 10:13:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230012AbiFWIK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 04:10:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54976 "EHLO
+        id S229765AbiFWINa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 04:13:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230274AbiFWIK5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 04:10:57 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2066.outbound.protection.outlook.com [40.107.93.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A593747AC6;
-        Thu, 23 Jun 2022 01:10:55 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QMKRf/y2wKD9ROdcPPdpeIBsE7zRfTOzNl42tyxVGUrLTHg+qZ2W216kcHKSBcpeioxTvJM40E3ybdszE7oXVUO9hDR8IpmQoolv3fwjOMzrQC9V4GnuIg6+ZZTb0FB/dSjzw2oHt/6BqLlu1Rg6bcJNc78LyOs8y+xz9aV98loS/TypUd/j8NEcJwCP71UrzE8heiLy3gAzyjicJlsyuepdNqPTHpgUQPM6mu8L+G0cDWLYlDFt2mnzqIt+LPQvjAaaUY1WT7ZtDjBy3nbtvI3BEIyYpnWj5Z8R6t7KTiyQFNwQnrCQzlwurKrGKUi1TtoAXCTCy951CeYhhci6JQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VoOy9yiPzj3OCKIHNjLWoRcFQL/iqbRq7WWtueqn6Fw=;
- b=fVqow5uRlBGtDbG1ydR3RiPXcvfyulfvc0xWTY0R1/AbvhMI7ucoa+4CatHHkyZCkefTyTzhWQoqm5P8l1ipA++BemCKQemkzLKZa3XzWmR8uLo8snelODhovnZiKQe5r8dMz6s2MMCvUo2hmMXoQ8Plwk7T8syy/D7YMAYEFuKdpEeKGmWylfhwVeCs+G4iHkeAYQsExuhl58nY8WyBx5byJJt9qIU8xVhuK7pKfd3BBVFjsuHBbmyJxYWXCtCFX4CqHcXue+p5yZEaBhdcKipj8XvnrMC+vBvjL7XvSHHfM96jd1gANrZhUrgSNZbGcQ8vrKFzL+qkcYyiJagNQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VoOy9yiPzj3OCKIHNjLWoRcFQL/iqbRq7WWtueqn6Fw=;
- b=dZ+0Pladw/DNKh9AEZGUH0J4CRNjjy0k7Ig3IEX0DLgEJoG7CqHDi1Kk4AQ+Di+22G0yuiSU0OHz40durcVOU9F50jHcbCfHhxepcmOKYwFl8iTvKITvpqIoJhQA6+UVIFOLYZpoftm0lMUHZ8K123XN78vJ+pq16/T5hShzfR8=
-Received: from MWHPR01CA0031.prod.exchangelabs.com (2603:10b6:300:101::17) by
- BL0PR12MB5507.namprd12.prod.outlook.com (2603:10b6:208:1c4::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.15; Thu, 23 Jun
- 2022 08:10:49 +0000
-Received: from CO1NAM11FT012.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:101:cafe::8e) by MWHPR01CA0031.outlook.office365.com
- (2603:10b6:300:101::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.16 via Frontend
- Transport; Thu, 23 Jun 2022 08:10:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT012.mail.protection.outlook.com (10.13.175.192) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5373.15 via Frontend Transport; Thu, 23 Jun 2022 08:10:48 +0000
-Received: from [10.254.241.52] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Thu, 23 Jun
- 2022 03:10:44 -0500
-Message-ID: <d931f674-1a36-d98d-5ddc-434e1e1c4e27@amd.com>
-Date:   Thu, 23 Jun 2022 10:10:42 +0200
+        with ESMTP id S231142AbiFWIN2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 04:13:28 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C65C313CFD;
+        Thu, 23 Jun 2022 01:13:27 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 5CA8A66016E1;
+        Thu, 23 Jun 2022 09:13:25 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1655972006;
+        bh=aKUeSQS7JjwmLoA51+Y/QiVigSc3OYpsPtreXvN2cyY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=iCOPl6Mb1zctioVnRoo1h+YmE6mUnuFw6iO0R+k3aLmZKHCKnku7NBVDmt00tdhoN
+         DhQE2vLNb8WLU+xrS2XgPH4MFO/HJ8LPVVJZR7V83SApXqioJXOHOLzBujAgm0PYCW
+         Zki3btv0GC5UionwXKUjI+CLAY0lueTfh9o4u/dwYtALK60Su/15OzH+rDzbNnrZLm
+         A+LS85neuTq48igqYhv8BjyuTWQg484OqXKz3PFsezICja8Ei/GbaeAHbZ9wPQFcul
+         cAbmjq7ULZ1Nhhxk1lx9mWiFWL9yKSjbbtaQG3whgyH3mF9tJJx6ds9IDhYz1Nm0e2
+         0bHCntzaXUQNg==
+Message-ID: <ff4dc55c-bb87-ac15-2d39-1f1ed41f4221@collabora.com>
+Date:   Thu, 23 Jun 2022 10:13:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v3 30/40] arm64: dts: xilinx: align gpio-key node names
- with dtschema
+Subject: Re: [PATCH] soc: mediatek: mutex: add suffix 0 to
+ DDP_COMPONENT_DITHER for mt8395
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <arm@kernel.org>, <soc@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
- <20220616005333.18491-30-krzysztof.kozlowski@linaro.org>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <20220616005333.18491-30-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Jason-JH Lin <jason-jh.lin@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Fabien Parent <fparent@baylibre.com>
+Cc:     CK Hu <ck.hu@mediatek.com>, Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Nancy Lin <nancy.lin@mediatek.com>,
+        Singo Chang <singo.chang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220622131952.29583-1-jason-jh.lin@mediatek.com>
+ <26854a9b-09c2-c14e-eabe-cfc574d6012e@collabora.com>
+ <66d3a7719eb7797acfe3ccfd8ed0f710ea384023.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <66d3a7719eb7797acfe3ccfd8ed0f710ea384023.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 42378de2-f8f5-4257-83cf-08da54efe1b6
-X-MS-TrafficTypeDiagnostic: BL0PR12MB5507:EE_
-X-Microsoft-Antispam-PRVS: <BL0PR12MB5507964C2465EBB97D1A2CB988B59@BL0PR12MB5507.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uhQnkgCQMoD29BsquWmEiMwoOmNtSm3rqGXd0R6dUqSnT8NyHGZAAIs0/FGdepnqd/qoKtT/V1KO2GBXoDHlaoaZPVvKoeFR3Pgbc/ajlqv80zjGAA29TBemJyPb3tkJ49nF2iOPi9AmO738I+6wvgEKvcXOK9Rxv9irmY9wT+tLe3JBz7G2Szrk47tEp5/EyjykNibnjPOvjEZny0UmPni0Dw0symB1Nkf139001eIbPnhbeRI97OnMlMRbkx8QbsFD2ezlFsi87kNwSyFsC++nB3D8MepDsXNnXUEyUrJ9TTZHASyvpVc43MQ4KFRwt2vF5bN7fB/+kjwztA4uu8cMp++t04ieGCtLkcSKRscQ1R0PISgKmjYvgxUxd/bOwFVHij2id73wfkcDps6PY/KTxFX7oNZdxvSbfutE6fNjzk7RS4Bpkux0FfS5Yu7bQxMwt90RZkeAhQ09J08sFIwD40hIXLE83TfKlQV7YOAnWzGHpjA+5iVMpdCY6b4wFuogNOQ1YTQ6FXB2keoaXbiPDbc3+xN+C/eEg+EWzlCjtZIkoyf8lEI/sEo/3ucKCYHulI0sOgbHBFY9yQSFLZStJKZfJIvG+yPKEjfetzzOFcD3+AIeybesMnHmNR/iuBQmg/FIVD30x2kJVdNx5GxUZLHhl3LNxr9p+P/qi9AO+Qns+oaDLtMxVrABRleDQ7jjffHdwuVFaWVkZHC1D5chpzhPc2Iy56vkOVv2gLIVsPYC5A74hptANgMBmW+LPk+6qrnqAGEuA2ONU9mwvyse3OtypZS8Y/VNbMxLPxfxfvE6t8b3U3fzpGkDUqb/Z9VIMzEs7ofGj46+abstfdcr7tTehzXOnoY9iIq0gyWAynOnGCygLDINIc+Uu9YONVDKrSr314eIoCGc6smGMg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(346002)(376002)(39860400002)(136003)(396003)(36840700001)(46966006)(40470700004)(478600001)(44832011)(4744005)(2906002)(36860700001)(316002)(70586007)(16576012)(110136005)(7416002)(36756003)(31696002)(26005)(86362001)(53546011)(5660300002)(31686004)(41300700001)(2616005)(70206006)(8676002)(8936002)(47076005)(40480700001)(40460700003)(83380400001)(186003)(336012)(82310400005)(82740400003)(16526019)(81166007)(426003)(921005)(356005)(36900700001)(83996005)(43740500002)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2022 08:10:48.5223
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42378de2-f8f5-4257-83cf-08da54efe1b6
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT012.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB5507
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6/16/22 02:53, Krzysztof Kozlowski wrote:
-> CAUTION: This message has originated from an External Source. Please use proper judgment and caution when opening attachments, clicking links, or responding to this email.
+Il 23/06/22 02:33, Jason-JH Lin ha scritto:
+> Hi Angelo,
 > 
+> Yes, I missed that!
+> So just forget about this patch and use yours.
 > 
-> The node names should be generic and DT schema expects certain pattern
-> (e.g. with key/button/switch).
+> Thanks for your help :)
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts | 2 +-
->   arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts | 2 +-
->   arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts | 2 +-
->   arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts | 2 +-
->   arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts | 2 +-
->   5 files changed, 5 insertions(+), 5 deletions(-)
 
-Applied.
-M
+No worries, it happens...
+Btw, you're welcome.
+
+Cheers!
+
+> Regard,
+> Jason-JH.Lin
+> 
+> On Wed, 2022-06-22 at 15:31 +0200, AngeloGioacchino Del Regno wrote:
+>> Il 22/06/22 15:19, Jason-JH.Lin ha scritto:
+>>> Add suffix 0 to DDP_COMPONENT_DITHER for mt8395.
+>>>
+>>> Fixes: 141311b856d8 ("soc: mediatek: mutex: add MT8365 support")
+>>> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+>>
+>>
+>> Hello Jason-JH,
+>>
+>> you must've missed my commit, sent two days ago, which is doing the
+>> same:
+>>
+>>
+> https://lore.kernel.org/lkml/20220620102454.131417-1-angelogioacchino.delregno@collabora.com/T/#u
+>>
+>> Anyway, I have avoided to rename the definition, as from what I
+>> understand
+>> MT8365 has only one dither mod and that's called "DITHER", not
+>> "DITHER0"...
+>> ...but I've added the suffix to the array assignment, as that's what
+>> we have
+>> in the enumeration.
+>>
+>> I think that #define MT8365_MUTEX_MOD_DISP_DITHER should be kept as-
+>> is.
+>>
+>> Also... this commit is not fixing anything, as it was already working
+>> before,
+>> so the Fixes tag shouldn't be present.
+>>
+>> Regards,
+>> Angelo
+>>
