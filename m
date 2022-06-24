@@ -2,77 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6838255A337
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 23:03:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 808E855A3AE
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 23:37:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232001AbiFXVCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 17:02:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34140 "EHLO
+        id S231732AbiFXVgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 17:36:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231986AbiFXVCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 17:02:07 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1215B79297
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 14:02:07 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id u15so7041477ejc.10
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 14:02:06 -0700 (PDT)
+        with ESMTP id S231757AbiFXVgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 17:36:20 -0400
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE2A86AF6
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 14:36:18 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-2ef5380669cso36560257b3.9
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 14:36:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Or58d3ZkEn57TFqLS2gsXrc8iLHGrlKLbW8WGHYFJRc=;
-        b=hAWheESAndEXKAPbcUiqlEueWvXAeJOuFEGkSwpyB7xj3pkczS6kBS5vMNKLC+N4hl
-         fbhuEaZlkv9aPLOglB7zgD6r6ICdBm9a8yhU/IVxiTyr0mJTB3BqtymT1jMS0XFgybXq
-         Wef4CYmSGYRxPZYezK9LaBzQifGnobDAuguds=
+         :cc:content-transfer-encoding;
+        bh=cGTylEOWtLkcLIsxYVoGzfL+q0nSap9+8NoSlXBuXe4=;
+        b=cmDy8lsyV2rPNiNRuYkEb5rHWD8XZVHKqJZAeKf3TnWZFLlj+/DTdLUMbXEmtTuv9s
+         4KLbNJHfJqFtWZDtoSIB0jA5BkjqsNets6Rbr/qrINRnJTlQirI2k20GLR/Ql3zSe9Wq
+         Pb5aXUq1NZ5lDKQQMD7a39HTujZM62LjFsQtIqhJoX7pGAoQGMqpg1+inV2FswApITO2
+         CmT3BH618Yqgt62CZsqxQ5e1jZosKUxMbd0fExcTgjLrAxPBxkG7CVcmjw/O8dvTmdbG
+         l6UouC6UHf0T16KEM/mMUtmMtJOh0vyJl540PkTEmkGnFr3Ic8OHzXavkS9AsevSsxDH
+         c7uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Or58d3ZkEn57TFqLS2gsXrc8iLHGrlKLbW8WGHYFJRc=;
-        b=DBdc+4tmlmtSqjUXzWujMZl/rREUcAxzcEBzQTqQk0cnTW/eidEevMdLxrj6rAXs85
-         lVQxDnKX1f89GL9dbWBddHh6byho3+nedpo8qkZNsgnSYL1qjWtv9t+BDRbv94+sBdOo
-         hbA41EO3oReHERMEAhLAcgxJZBgtwRtB5j8LUgoW0nv3wJx/8i7rX5jLrGq44lkBms4L
-         j19jmoy3RxCzVHr7ciEV/mhT8CpuMbL9G/qp9PGoFvsE91Drb/7gzAkf3rxvv2xBK3Fl
-         HI+p+gmWR07gJBSsFHLoOUziWnAScvEjyiGNAjipHeUdwEhu49kmfwpFl85Xhu1360ch
-         YNtA==
-X-Gm-Message-State: AJIora8UTBQanitHcXZd1dgKfRMRH/0oCj4LSPYVkuHUNtDWCyqYWfm7
-        NS6XIvA7Xx40UQaSMZjLszN97NqSrnQF7YZv/Bk=
-X-Google-Smtp-Source: AGRyM1tPJr4MdKIjGFBH3oskMcrZmN4ihvbYBq3GsHTeDoIp+qPA8q8JeAPVU9NJAkEeNbOHyhrq3g==
-X-Received: by 2002:a17:906:1501:b0:715:76d0:862a with SMTP id b1-20020a170906150100b0071576d0862amr843236ejd.681.1656104525451;
-        Fri, 24 Jun 2022 14:02:05 -0700 (PDT)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com. [209.85.221.46])
-        by smtp.gmail.com with ESMTPSA id b7-20020a50e787000000b0042ab4e20543sm2826773edn.48.2022.06.24.14.02.04
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 14:02:04 -0700 (PDT)
-Received: by mail-wr1-f46.google.com with SMTP id g18so4631365wrb.10
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 14:02:04 -0700 (PDT)
-X-Received: by 2002:adf:f90d:0:b0:20c:de32:4d35 with SMTP id
- b13-20020adff90d000000b0020cde324d35mr874128wrr.583.1656104524155; Fri, 24
- Jun 2022 14:02:04 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=cGTylEOWtLkcLIsxYVoGzfL+q0nSap9+8NoSlXBuXe4=;
+        b=G/tHQ6q9GmQt8G50duV8Ww2W0Lc+d3Fv2ZLSobMv6EFgffI0NKELhG+WN+hi8SBS8I
+         6cZ7YoKBTCRMB42G9/ULj0RGVa+wzix8wmMr0aBml0VSwZj0qVKERIzsIv1cCJqjLOoM
+         Z0EfOKAr2mPZ+11zOX3GFWso4jFNkc6oZ5hiKLFdZ67nuXmdILtoO3PCS2Diz97F+4+8
+         lAYZB0M9X9pOnz1nXLR+bbRlr2zR/76ArzE50ejWUaRwbVGcRioX6SezHzKxhHjiojvZ
+         a0Gegd5i+zxmFbAKo19Wv/wVFuhlcK7JluSU7tl8qd3EkF3CUx/7Th9Vq2qC5NDNU+4A
+         R5gw==
+X-Gm-Message-State: AJIora861QazbwGb4cdMbCdbmTH2gtPOCJjXxkf06HhR10FBWVzzCH9p
+        2//MFVbFctW9N1pf9KAgl46R8Oyzeq8S7TzBEnBPZw==
+X-Google-Smtp-Source: AGRyM1v7bTPADut4sgzebmriq1YeKB4PBfCCubvcMefuaUSK78eOKMtZqJdaXmsewcrgPAHhOp3HhKhV310/qVQEQyc=
+X-Received: by 2002:a0d:cc54:0:b0:317:752c:bcf3 with SMTP id
+ o81-20020a0dcc54000000b00317752cbcf3mr1068283ywd.437.1656106577632; Fri, 24
+ Jun 2022 14:36:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220624185612.35493-1-joebar@chromium.org>
-In-Reply-To: <20220624185612.35493-1-joebar@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 24 Jun 2022 14:01:52 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UbrdqXYaabK0YEyjX0zszxMkU72-4fc10zyPTs_oKG_w@mail.gmail.com>
-Message-ID: <CAD=FV=UbrdqXYaabK0YEyjX0zszxMkU72-4fc10zyPTs_oKG_w@mail.gmail.com>
-Subject: Re: [PATCH v11 0/5] arm64: dts: qcom: sc7180: Add five new
- trogdor-based boards
-To:     "Joseph S. Barrera III" <joebar@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+References: <20220623115631.22209-1-peterwu.pub@gmail.com> <20220623115631.22209-13-peterwu.pub@gmail.com>
+ <CACRpkdZatfOFmeGXepTrjAk1or4W6KNUEaXnP+srRebfM=52AA@mail.gmail.com>
+ <CACRpkdbzZqerE_2PeGMUWRbtjK=9P8V763cj83ZqjP4n6AVHAg@mail.gmail.com> <CA+hk2fZEG0TxMGhGJY21w=MmXgKsH5mYCYynQV1jbhpOCyf3qg@mail.gmail.com>
+In-Reply-To: <CA+hk2fZEG0TxMGhGJY21w=MmXgKsH5mYCYynQV1jbhpOCyf3qg@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 24 Jun 2022 23:36:06 +0200
+Message-ID: <CACRpkdYoR9SGQdxJQmUReP7SLk_BxG0yuTWAL__o90PuO8sCqA@mail.gmail.com>
+Subject: Re: [PATCH v3 12/14] leds: mt6370: Add Mediatek MT6370 current sink
+ type LED Indicator support
+To:     szuni chen <szunichen@gmail.com>
+Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
+        Helge Deller <deller@gmx.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+        alice_chen@richtek.com, Linux PM <linux-pm@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        ChiYuan Huang <cy_huang@richtek.com>, chiaen_wu@richtek.com,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,65 +96,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Jun 24, 2022 at 9:20 AM szuni chen <szunichen@gmail.com> wrote:
 
-On Fri, Jun 24, 2022 at 11:57 AM Joseph S. Barrera III
-<joebar@chromium.org> wrote:
+> > I meant this one. Move that into drivers/leds/flash
+> >  drivers/leds/flash/leds-mt6370-flash.c             |  657 ++++++++++++
 >
-> This series adds five new trogdor-based boards to upstream.
-> The patches should be applied *after* applying
-> https://lore.kernel.org/all/20220602190621.1646679-1-swboyd@chromium.org/
-> (arm64: dts: qcom: Remove duplicate sc7180-trogdor include on lazor/homestar)
->
-> The patches do *not* expect
-> https://lore.kernel.org/all/20220518172525.3319993-1-swboyd@chromium.org/
-> (sc7180-trogdor: Split out keyboard node and describe detachables)
-> to be applied.
->
-> The compatibles in this series are documented by Doug's series
-> https://lore.kernel.org/r/20220520143502.v4.5.Ie8713bc0377672ed8dd71189e66fc0b77226fb85@changeid
->
-> Changes in v11:
-> - Add 'include sc7180-trogdor.dtsi' to sc7180-trogdor-pazquel-* files.
-> - Add 'include sc7180-trogdor.dtsi' to sc7180-trogdor-kingoftown-* files.
-> - Restore 'include sc7180.dtsi' to sc7180-trogdor-ti-sn65dsi86.dtsi.
+> In next version, I'll use "leds: flash: ......" instead of "leds:
+> flashlight: ......" in subject.
+> May I confirm that the driver has already in the drivers/leds/flash,
+> so I don=E2=80=99t have to move it in next version?
 
-I'm a bit baffled. Why did you add an include of "sc7180.dtsi" to
-sc7180-trogdor-ti-sn65dsi86.dtsi? Am I missing something? The way you
-have it will cause "sc7180.dtsi" to be included twice. For instance,
-let's look at "sc7180-trogdor-coachz-r3.dts". It has:
+Yeah you're right, I am just writing wrong comments today, it is already
+correct. Sorry!
 
-#include "sc7180-trogdor-coachz.dtsi"
-
-That will in turn cause these includes:
-
-#include "sc7180-trogdor.dtsi"
-#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
-
-That will in turn do:
-
-/* From sc7180-trogdor.dtsi */
-#include <dt-bindings/gpio/gpio.h>
-#include <dt-bindings/input/gpio-keys.h>
-#include <dt-bindings/input/input.h>
-#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-#include <dt-bindings/sound/sc7180-lpass.h>
-
-#include "sc7180.dtsi"
-#include "pm6150.dtsi"
-#include "pm6150l.dtsi"
-
-/* From sc7180-trogdor-ti-sn65dsi86.dtsi */
-#include "sc7180.dtsi"
-#include <dt-bindings/gpio/gpio.h>
-
-...and, as you can see, "sc7180.dtsi" will get included twice. That
-will break things since it will undo some of the changes that
-sc7180-trogdor.dtsi did. ...and, in fact, I just tried putting your
-patches on an sc7180 device that uses the TI bridge chip and it,
-unsurprisingly, doesn't boot.
-
-If you just remove that one addition then I think we can finally be
-done with this series. I tried that and my device boots.
-
--Doug
+Yours,
+Linus Walleij
