@@ -2,124 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CC21559D35
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 17:24:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B03E559D59
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 17:30:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232242AbiFXPX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 11:23:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34070 "EHLO
+        id S232672AbiFXP0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 11:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232289AbiFXPX4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 11:23:56 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A64E4EF5C
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 08:23:51 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id m1so3595868wrb.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 08:23:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+bhqNUnBw2VlBb+vKh9BVjK86IEzMRn9rbxeRT0RpzU=;
-        b=unSq8mf41jKUNz0zl0xeXhApqvYec4N3cTR8n5fovaRhwmji9yx7zuESRXHRXiIgtb
-         kbkB9TDS6IQFZtFmjwOYK6SS2XmBHK/SGChPmng3OZGRqr5o1Eu9OYieOjdRmwYRldOe
-         XptsV14p+JHshQP7F3oBh05e6GPreOfhXUpnqAhQo3yOMHWQu4Dsp829OUV1a++xItDc
-         B94B+a2nf0H6T4gUUrBefrDJ7RzZMxETNjhcir5Re9++JIz88YRFgFl0mT/DPRzQGicO
-         5KnUPkgJzqnO8mEm/Fj8vH/JPd93G6DAnle4x0/9ZrC4deqywXDK/DASo9VEp43Ot8FZ
-         mu8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+bhqNUnBw2VlBb+vKh9BVjK86IEzMRn9rbxeRT0RpzU=;
-        b=cF6lpVdwXoKLAEEnNUHn3h6PHcVmG99BvN7sPl6HDKpL9h2hlQzyjea+2W9E39qXHY
-         9cci53H2CBfWU+Pt8T/9h0iFu87y4fuk3+305PaPkwcqngK4mNjP3T4PK/ojSy5tO3ud
-         IPmSpczpf/KQ5hyB6gcuvod3HlGbNDGV3aufaEvmdO5KdMP3M/026mgaj0A6caoTYJhb
-         6FLOn0VAS+for/wvZARq0hm9Al7gq6fVlF42SgTk2bglxXSdsissU0DP+yuEaPDTtSlx
-         XJozrAbA+cINqi0dUn/eyov0VJkHMDFVD8v+brBWHhjiHHqEnhQiO+BQ+oJ8+s5wN96r
-         Lt1g==
-X-Gm-Message-State: AJIora90UCulhGDbGme1g+lb5c63MiJodyeu/GulVC6/CIJRolqX+uSR
-        sUW9r0fzLYq1vwrK/wsDjKgjuw==
-X-Google-Smtp-Source: AGRyM1s9YBvmKfcs61SMXYZ8cH6Yai5Wzlk65zklCRkC8/sqfy96FjnpPWRBJJj5I7pxa5IPeTokBw==
-X-Received: by 2002:adf:df8a:0:b0:21b:9219:634c with SMTP id z10-20020adfdf8a000000b0021b9219634cmr13427248wrl.669.1656084229815;
-        Fri, 24 Jun 2022 08:23:49 -0700 (PDT)
-Received: from [192.168.0.237] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id k31-20020a05600c1c9f00b0039c5642e430sm3309268wms.20.2022.06.24.08.23.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 08:23:49 -0700 (PDT)
-Message-ID: <329101e6-4f81-78c3-818b-8d70905248a6@linaro.org>
-Date:   Fri, 24 Jun 2022 17:23:47 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v1 3/3] arm64: dts: qcom: sc7280: Add missing pcie clocks
-Content-Language: en-US
-To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        helgaas@kernel.org
-Cc:     linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
-        quic_hemantk@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
-        manivannan.sadhasivam@linaro.org, swboyd@chromium.org,
-        dmitry.baryshkov@linaro.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232671AbiFXP0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 11:26:49 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D67515B1;
+        Fri, 24 Jun 2022 08:26:44 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 91C1A1BF20E;
+        Fri, 24 Jun 2022 15:26:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1656084403;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=wD+f6RoGESWUd50gh7hz7GMhaUjGtOMiPEM0xd+2bV0=;
+        b=cgY6IVNZI/ieXXDiDCYRs5umVd/6Ukdb3BWmr4gdPExgBMLGe3VOqnFnZ0hd2GtAhLRL20
+        l46SHG2lov1Bpg/q79ePfs2pN9NsPM873tK8xmHjrKQjH7HaO4P0tI2b4F6apBhdfkcWJW
+        StfaKubcvYfB6BVrD1BYL75Jhjy3U2rJTYFis866+9ilIqY+ESRVljAaElGmp7kQDYqw1f
+        5RH6LsoEq6EMjc/fmojJzV/ZKY9IICw85qze8XCcgLNqktd7uowXOBtbLmnxEAbLkf7avK
+        YXl0mkHXjJ9/ReWXv7ZhHrIBYG/iPX7HuywWW5OejJv2kZ1ABc+4Nv//Bxv9kA==
+From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <1656062391-14567-1-git-send-email-quic_krichai@quicinc.com>
- <1656062391-14567-4-git-send-email-quic_krichai@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1656062391-14567-4-git-send-email-quic_krichai@quicinc.com>
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
+Subject: [PATCH] MIPS: mscc: ocelot: enable FDMA usage
+Date:   Fri, 24 Jun 2022 17:25:48 +0200
+Message-Id: <20220624152548.128700-1-clement.leger@bootlin.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/06/2022 11:19, Krishna chaitanya chundru wrote:
-> Add missing pcie clocks.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-Thank you for your patch. There is something to discuss/improve.
+Enable FDMA usage by adding "fdma" resource in regs and interrupts.
 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index e66fc67..a5ce095 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -2043,6 +2043,8 @@
->  				 <&gcc GCC_PCIE_1_SLV_AXI_CLK>,
->  				 <&gcc GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
->  				 <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>,
-> +				 <&gcc GCC_AGGRE_NOC_PCIE_CENTER_SF_AXI_CLK>,
-> +				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>,
->  				 <&gcc GCC_DDRSS_PCIE_SF_CLK>;
->  
->  			clock-names = "pipe",
-> @@ -2055,6 +2057,8 @@
->  				      "bus_slave",
->  				      "slave_q2a",
->  				      "tbu",
-> +				      "aggre0",
-> +				      "aggre1",
->  				      "ddrss_sf_tbu";
+Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+---
+ arch/mips/boot/dts/mscc/ocelot.dtsi | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-Unfortunately wrong order.
+diff --git a/arch/mips/boot/dts/mscc/ocelot.dtsi b/arch/mips/boot/dts/mscc/ocelot.dtsi
+index cfc219a72bdd..6bd8a1ad94da 100644
+--- a/arch/mips/boot/dts/mscc/ocelot.dtsi
++++ b/arch/mips/boot/dts/mscc/ocelot.dtsi
+@@ -136,13 +136,14 @@ switch@1010000 {
+ 			      <0x1880000 0x10000>,
+ 			      <0x1040000 0x10000>,
+ 			      <0x1050000 0x10000>,
+-			      <0x1060000 0x10000>;
++			      <0x1060000 0x10000>,
++			      <0x1a0 0x1c4>;
+ 			reg-names = "sys", "rew", "qs", "ptp", "port0", "port1",
+ 				    "port2", "port3", "port4", "port5", "port6",
+ 				    "port7", "port8", "port9", "port10", "qsys",
+-				    "ana", "s0", "s1", "s2";
+-			interrupts = <18 21 22>;
+-			interrupt-names = "ptp_rdy", "xtr", "inj";
++				    "ana", "s0", "s1", "s2", "fdma";
++			interrupts = <18 21 22 16>;
++			interrupt-names = "ptp_rdy", "xtr", "inj", "fdma";
+ 
+ 			ethernet-ports {
+ 				#address-cells = <1>;
+-- 
+2.36.1
 
-Please test your patches with `make dtbs_check`.
-
-
-Best regards,
-Krzysztof
