@@ -2,110 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5C6455A2D5
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 22:37:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9724D55A2E2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 22:41:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229761AbiFXUhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 16:37:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46140 "EHLO
+        id S231220AbiFXUlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 16:41:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiFXUhT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 16:37:19 -0400
-Received: from mailrelay4-1.pub.mailoutpod1-cph3.one.com (mailrelay4-1.pub.mailoutpod1-cph3.one.com [46.30.210.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 809F4828B6
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 13:37:18 -0700 (PDT)
+        with ESMTP id S229441AbiFXUlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 16:41:50 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47F6363630;
+        Fri, 24 Jun 2022 13:41:49 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id w20so6385682lfa.11;
+        Fri, 24 Jun 2022 13:41:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=rsa1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=TPfs2QT7MjSlfibpr7aNRy/3mX4Ppd6HsikuuFFfOgI=;
-        b=mCmloxF5kRH23rbwRYtYSvI1Qe5ieH0ONv+zMRuknslxW0bEmwZkWsuxNUV+t8z+8fHAU0ydceyGI
-         tbaxH/rhESgEYCp/Qyh+UEBPi+TnrIc0Dk9yF0tLWR4GhzFF4Z8DpPkdHgRSwzUByWArNHvzbWYO69
-         RLMohu9CxvIraT3ZGAbYlBux5Blh7BFTjagAkufbaeL8PVEN1I9AJ8YSbbCpFdvrzV4Lep7skJIUKZ
-         sSe5xOu4pHgRtoDWEZU6JuzsBpSCpfPACwKVlkIVhYMq3IFsahUtGjCOqrKWOfTXLtzGOgP9Q+yu+6
-         6xz0ukIZfiSkmQq4jIQcuWA9PgDEBzA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=ed1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=TPfs2QT7MjSlfibpr7aNRy/3mX4Ppd6HsikuuFFfOgI=;
-        b=uQqRZTYsBlWT5c/y5rNbmV/ZA4UFvzI9fVUADgwkkLVa/hw/lHbxRbe7ka969fcFsyxKbjCZq1aKq
-         rmfWta2Ag==
-X-HalOne-Cookie: c9bafe8a4ad68d7eda8a0eaf402083f9e04b9925
-X-HalOne-ID: 6f0a39d1-f3fd-11ec-8233-d0431ea8bb10
-Received: from mailproxy1.cst.dirpod4-cph3.one.com (80-162-45-141-cable.dk.customer.tdc.net [80.162.45.141])
-        by mailrelay4.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
-        id 6f0a39d1-f3fd-11ec-8233-d0431ea8bb10;
-        Fri, 24 Jun 2022 20:37:16 +0000 (UTC)
-Date:   Fri, 24 Jun 2022 22:37:14 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Joel Selvaraj <jo@jsfamily.in>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=/jG5W+ePlStAo427FPsgRmaP+U/0rD3zZzMdqRYYbmg=;
+        b=J+tGRTrSFTb1R8Vpr8cSIVIm/o2Vqxs+I2fXmSTA2UCTtbWmE8Fg0sRokRImAhBYJw
+         xq7CLvEwVzlTrLtsqp1g006ujV5OnJj6pfhLyOXJVcvgkrAaVPto4YFjTBaYYLnZklOc
+         RvhVBLvpez2CY1JRQ9ku0JYimoPj+tDA9JkYdy9BkhyGCoZWIqk092HsH7cBc3aIziGu
+         TkTChrOWEoXvt6JpnGete/IfDHoeui49vS+4xpjhT6JRSieX1d7duusa0LwdX9qk+Bnw
+         AX5WP9DSydJ1DC6VDm1jnKdb1rbFKACQ2BUrbWYCFK32Rs0jp3v3FvMwz9aYq+5feFhg
+         HGQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/jG5W+ePlStAo427FPsgRmaP+U/0rD3zZzMdqRYYbmg=;
+        b=4g633KW7j9ex4QmL5MknDRJlC566VDtFOQ3ajoCrqEZbfrZwfLB+L5vkkm0kQXBP4A
+         3kyHzeO+8E20MObWfvJAxc70tiZfhzvvhxMHEhddSkpL3ZALJ/0OItLMG7o5HJg2vOkb
+         efZXLfKwL/fHefrv5cJLzGtv6qyzjoKDd0T+GmiNqL1kJqx0UnkNlOvBudkhU03p/yCc
+         BG6Mrp1uymkKdMH78+C6P6YR7jcLKX/F0tp21kEKrrpnZqWL2WV+0x1s7fDlIN9gFtM6
+         lqlSkaiOynY6zO0FaJwg6d+/2pJJWv1kwtb6acjcdYN/k9AxH9ItqwUrrb+JVPy7Rfn0
+         /wkA==
+X-Gm-Message-State: AJIora9MgOVNkvknWycY94gxfhV+IawDQ86jaw6jLmmKZ8MTfEdZuqVP
+        VVmF/bIKPLY5tATNZCmHoSQYBgzhJkapUg==
+X-Google-Smtp-Source: AGRyM1uctHDCNUKjjxfR1aVDBN/pntJ2Pv6ctSxnvIPYmNdb7JIuhWvHsn1bfb+oEyhecmXfDr12sw==
+X-Received: by 2002:ac2:5616:0:b0:47f:8d53:f602 with SMTP id v22-20020ac25616000000b0047f8d53f602mr419029lfd.169.1656103302868;
+        Fri, 24 Jun 2022 13:41:42 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id s9-20020a056512314900b0047f88d15ec0sm506070lfi.251.2022.06.24.13.41.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Jun 2022 13:41:42 -0700 (PDT)
+Date:   Fri, 24 Jun 2022 23:41:39 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Alexey Brodkin <abrodkin@synopsys.com>,
+        Vineet Gupta <vgupta@synopsys.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v4 0/4] Introduce EBBG FT8719 DRM panel driver
-Message-ID: <YrYgehpgkIQY0Fqt@ravnborg.org>
-References: <BY5PR02MB700961069804230B5AFC5E04D9DF9@BY5PR02MB7009.namprd02.prod.outlook.com>
+        Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-usb@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Khuong Dinh <khuong@os.amperecomputing.com>,
+        Patrice Chotard <patrice.chotard@st.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org, linux-snps-arc@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v9 2/5] arm: dts: lpc18xx: Harmonize EHCI/OHCI DT
+ nodes name
+Message-ID: <20220624204139.ndyi437ye7c2gl45@mobilestation>
+References: <20220624141622.7149-1-Sergey.Semin@baikalelectronics.ru>
+ <20220624141622.7149-3-Sergey.Semin@baikalelectronics.ru>
+ <1f426a67-2cf2-b67e-3cd0-a4c452591baa@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <BY5PR02MB700961069804230B5AFC5E04D9DF9@BY5PR02MB7009.namprd02.prod.outlook.com>
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLACK autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <1f426a67-2cf2-b67e-3cd0-a4c452591baa@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Joel,
+On Fri, Jun 24, 2022 at 07:14:44PM +0200, Krzysztof Kozlowski wrote:
+> On 24/06/2022 16:16, Serge Semin wrote:
+> > In accordance with the Generic EHCI/OHCI bindings the corresponding node
+> > name is suppose to comply with the Generic USB HCD DT schema, which
+> > requires the USB nodes to have the name acceptable by the regexp:
+> > "^usb(@.*)?" . Make sure the "generic-ehci" and "generic-ohci"-compatible
+> > nodes are correctly named.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > Acked-by: Vladimir Zapolskiy <vz@mleia.com>
+> > Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > ---
+> >  arch/arm/boot/dts/lpc18xx.dtsi | 4 ++--
+> 
 
-On Wed, Jun 01, 2022 at 01:54:06PM +0530, Joel Selvaraj wrote:
-> Add bindings and DRM panel driver for EBBG FT8719 6.18" 2246x1080 DSI
-> video mode panel, which can be found on some Xiaomi Poco F1 phones.
-> The panel's backlight is managed through QCOM WLED driver.
-> 
-> The driver is built using linux-mdss-dsi-panel-driver-generator[1], and
-> additionally support for handling regulators and linking external
-> backlight is added.
-> 
-> [1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
-> 
-> Changes in v4: (Linus Walleij's Suggestion)
->  - Introduce mipi_dsi_dcs_write_seq macro in include/drm/drm_mipi_dsi.h
->  - Remove the driver specific dsi_dcs_write_seq macro
->  - Use the newly introduced mipi_dsi_dcs_write_seq macro instead
-> 
-> Changes in v3: (Mostly Linus Walleij's Suggestions)
->  - Removed ctx->prepared state variable as it's handled by the core
->  - Print error in dsi_dcs_write_seq macro if it fails to write
->  - Removed magic power on sequences as panel works fine without them
-> 
-> Changes in v2: (Krzysztof Kozlowski's Suggestions)
->  - dt-bindings: specify maxItems for reg
->  - dt-bindings: cleanup and simplify the panel properties
->  - dt-bindings: in example change "|+" to "|' and "dsi0" to "dsi"
-> 
-> Joel Selvaraj (4):
->   dt-bindings: vendor-prefixes: Add prefix for EBBG
->   dt-bindings: display: Add bindings for EBBG FT8719
->   drm/mipi-dsi: Introduce mipi_dsi_dcs_write_seq macro
->   drm/panel: introduce ebbg,ft8719 panel
+> You should split the patchset per architecture, because maybe that's why
+> no one picks it up?
 
-All applied to drm-misc (drm-misc-next), thanks!
+Each patch is sent out to the corresponding mailing list and the
+maintainers. I don't think splitting the patchset into the subsets will
+be more efficient especially seeing the initial patchset consisted of
+30 patches of which only five left.
 
-	Sam
+I was very busy last year with another activities so what was left of this
+patchset was stalling on my local repo all that time. I have been very
+surprised to realise that the submitted part still hasn't been merged in for
+all that time. So I've got back to resubmitting the series.
+
+* Though the Qualcom dts have been fixed by you lately.
+
+> 
+> Let me pick up ARM bits through my cleanup series. If anyone objects,
+> please let me know.
+
+Ok. Thanks.
+
+-Sergey
+
+> 
+> Best regards,
+> Krzysztof
