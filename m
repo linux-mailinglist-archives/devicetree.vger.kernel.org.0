@@ -2,58 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51984558FF9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 06:40:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3396A55921E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 07:38:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbiFXEjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 00:39:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41308 "EHLO
+        id S230176AbiFXFXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 01:23:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbiFXEjS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 00:39:18 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC40651598;
-        Thu, 23 Jun 2022 21:39:17 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25O4d6qS068763;
-        Thu, 23 Jun 2022 23:39:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1656045546;
-        bh=Qr7kwL8JoQVm3lN/8hS8jovzJ7eb7o2KHm2DeVEvAWU=;
-        h=From:To:CC:Subject:Date;
-        b=Ta3MbIfGZIeJ9bSjXBbGrMG5kKQD0/UF6u6aKdCGmIKqzG+gHD6BGgGRSL38c4FL4
-         Zt0lKkjRdqn+BE1LQvzD7l0tom+b0A3sWclizsulsE1XzuAHdh+uDOqDZxjWT7Cp1N
-         xVAyXqoB71K1SEDr9Caj/++LYIaKpPrFOSd2AZ1k=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25O4d6qC023184
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 23 Jun 2022 23:39:06 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 23
- Jun 2022 23:39:06 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 23 Jun 2022 23:39:06 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25O4d547018862;
-        Thu, 23 Jun 2022 23:39:05 -0500
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <devicetree@vger.kernel.org>
-CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <j-choudhary@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] arm64: dts: ti: k3-am62-main: Enable crypto accelerator
-Date:   Fri, 24 Jun 2022 10:09:05 +0530
-Message-ID: <20220624043905.129207-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S231331AbiFXFXQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 01:23:16 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94EF42B270
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 22:23:15 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id p63so1154337qkd.10
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 22:23:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Yl4RQmeDwLz9nkuUQqjK9sXArcf/+1jvTW/uw9Xfl2I=;
+        b=bkxR24CXCbUYXMtPJhEeGzpL+GGnnHhwRTl1FXuAr+ldO/dbcDV/k8KRrMbd6ZfAbd
+         GDcg4OQAsE5rXjhomUcmTXVWGdoNF3Tf9NHP0L8tgD+ZDDYqefTID3831mEpL8+XD1va
+         T/+9LEkgjo5TTZwC433t2ms4t9zrdydkAKA6lWAJaAjSKKC3cEdLl8C0CZic3NXCKvF8
+         reDN8I33Sp8q8I7HG1NeOwj2m9LlLl4Bir/VTd1VYrXgcq/6TDWM6zUWDmy92S93pByc
+         XM2U7W2821hgJ7FpfKDHqHB4YB6xdQ8zRwMCKCLWJIYBftifCj48V4NVMGvwKWidyb0I
+         UEdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Yl4RQmeDwLz9nkuUQqjK9sXArcf/+1jvTW/uw9Xfl2I=;
+        b=q2uUwd5RuepEePyy/hkYrfhhjP3q6BRs0cg/12aHtxpZjoE8mhkTma/qbjEw1r1Lep
+         YfcFEHukw5nCHJAI2o8T2iOwCENqrrGWh3CSmaWJfTcFSc4Pb0GOhJRQCwhQtuM0t/Zu
+         5TIHW35OZ7Nf+BjwHrnwkFb9XR2l6Y0QMO+sCSC9G7zkh3Rz38qkg4Apvr+yikwBeFi0
+         syAlByY10buVLnGN0TBPGpmCJJ6FY1h0Z8/suo7n3/xJ2wegDSfSedmgTWgbNtHT6sOK
+         s15cXNpggIr3tdxvbdT+ApTeg/c4ed1yRzQ6kkF0P0mv94kqL0uyQU/jjrso4zstbrEN
+         41+g==
+X-Gm-Message-State: AJIora8OrkEpF4rbv9+s3ks0pf0hyHIE+gnZfwP5XcaRpEeewjwAxnM7
+        G72nnQ2mCud3PJianfs73Wg8oaNZQKMzedrZkXn72Q==
+X-Google-Smtp-Source: AGRyM1s0WpY+/3CRy5hH1oeYzxu9eGU6p6MwlHU3YyOfOdzZLpNPxgroBPT004zE6BsNToAK5wTgottIKl4t+Boo6u8=
+X-Received: by 2002:a05:620a:31a0:b0:6a7:549f:a788 with SMTP id
+ bi32-20020a05620a31a000b006a7549fa788mr9288637qkb.203.1656048194761; Thu, 23
+ Jun 2022 22:23:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+References: <20220620215150.1875557-1-dmitry.baryshkov@linaro.org> <CAE-0n53X6mwQuoZAgC-mBP42HKqy=NuE7nJpgHGk-pYSFQpcjQ@mail.gmail.com>
+In-Reply-To: <CAE-0n53X6mwQuoZAgC-mBP42HKqy=NuE7nJpgHGk-pYSFQpcjQ@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 24 Jun 2022 08:23:03 +0300
+Message-ID: <CAA8EJpoYJx5KumZugdCSBwz4JXf6fJyKDMPqG3G1bVBdB+y5-Q@mail.gmail.com>
+Subject: Re: [PATCH] clk: qcom: gcc-ipq806x: use parent_data for the last
+ remaining entry
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, Ansuel Smith <ansuelsmth@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -62,47 +72,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the node for sa3ul crypto accelerator.
+On Fri, 24 Jun 2022 at 03:27, Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> Quoting Dmitry Baryshkov (2022-06-20 14:51:50)
+> > Use parent_data for the last remaining entry (pll4). This clock is
+> > provided by the lcc device.
+> >
+> > Fixes: cb02866f9a74 ("clk: qcom: gcc-ipq806x: convert parent_names to parent_data")
+> > Cc: Ansuel Smith <ansuelsmth@gmail.com>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  drivers/clk/qcom/gcc-ipq806x.c | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/clk/qcom/gcc-ipq806x.c b/drivers/clk/qcom/gcc-ipq806x.c
+> > index 718de17a1e60..6447f3e81b55 100644
+> > --- a/drivers/clk/qcom/gcc-ipq806x.c
+> > +++ b/drivers/clk/qcom/gcc-ipq806x.c
+> > @@ -79,7 +79,9 @@ static struct clk_regmap pll4_vote = {
+> >         .enable_mask = BIT(4),
+> >         .hw.init = &(struct clk_init_data){
+> >                 .name = "pll4_vote",
+> > -               .parent_names = (const char *[]){ "pll4" },
+> > +               .parent_data = &(const struct clk_parent_data){
+> > +                       .fw_name = "pll4", .name = "pll4",
+>
+> Is there a DT binding update?
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
-On local testing, crypto self-tests and tcrypt tests were passing
-for SHA256, SHA512, ECB-AES and CBC-AES algorithms.
-RNG node has not been added due to the indirect access of the
-hardware random number generator from OP-TEE.
+I will include it in v2.
 
-Changelog v1->v2:
-- Change the flag from TI_SCI_PD_EXCLUSIVE to TI_SCI_PD_SHARED
-  since sa3ul hardware is also used by OP-TEE and so it should
-  be requested using shared TI-SCI flag
-
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index df3b9883e887..8bb9cb5d4c1a 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -165,6 +165,19 @@
- 		};
- 	};
- 
-+	crypto: crypto@40900000 {
-+		compatible = "ti,am62-sa3ul";
-+		reg = <0x00 0x40900000 0x00 0x1200>;
-+		power-domains = <&k3_pds 70 TI_SCI_PD_SHARED>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
-+
-+		dmas = <&main_pktdma 0xf501 0>, <&main_pktdma 0x7506 0>,
-+				<&main_pktdma 0x7507 0>;
-+		dma-names = "tx", "rx1", "rx2";
-+	};
-+
- 	main_pmx0: pinctrl@f4000 {
- 		compatible = "pinctrl-single";
- 		reg = <0x00 0xf4000 0x00 0x2ac>;
 -- 
-2.17.1
-
+With best wishes
+Dmitry
