@@ -2,90 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C2E2559E48
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:15:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E241B559E58
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:15:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230475AbiFXQGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 12:06:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36794 "EHLO
+        id S230519AbiFXQIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 12:08:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230458AbiFXQGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:06:41 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CC2F5535C
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:06:40 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id n1so3696113wrg.12
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:06:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=XD25QM33us7hPEequuu5UA72HkDpqMdvG8CesGBJr0o=;
-        b=tTfKAwsZQSYXujHGO/BsaRvBdcaNwCqG7HIiKalwbqfhHKdbZSkZ/5Or17qeliqKGq
-         JDE2vMnl6zH0zQBkFTUAL3hK84XBjWM3WPVKld8QV4Dr4WcQ5JYi6dBVYFr2vj5gUeSA
-         Ly+HGwKo5x9GS54htRUXP3ZtOsH0H3okkdgBWMat9yKyK4/GMwBwrQ/GkOSS2p5L9h2Q
-         ALP7JernsUKXZV+TrFDXJDx8i8NDjodlVrGA69kYvyfI2dIXRfc6dntOP6rwx44y3qm5
-         8jSNWJNk4cBFM5UlKr1EnEbfqzKbZYab2vAnI81m4WGZBaxmO4EfqgLLjH4O2rQeZan8
-         EDAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=XD25QM33us7hPEequuu5UA72HkDpqMdvG8CesGBJr0o=;
-        b=Rd0yw4JNEeLlfBH292uaDxnvM7kuq3QpBt/AJW4tt/pJNZEWmI7RU00shSUmETT574
-         kr3+bGz33sGHQhiLj69oWTpASFjHXh8Dfpb+13Grt5wifSiR5FrtBOhZFY+enG0Ettlh
-         LM71EzbUOeolk2UIpN1X03KW6qGpxPiEhStjetAIrBc6vi4DODa4y2Lb5FW2CuIeRUCk
-         LDtNS2Z0WLXHGYlXDmtu4ZtmmJHLXU68/EN7IQdQPYcdhwM/YFjM7gTd8WVeEVLwcunm
-         Jb6Z9OXCFYf3phGY07rxGBz72ZWqazKn0ISFitEn90a3C27Px6SRoEirPssbowK5Lt7P
-         J9IQ==
-X-Gm-Message-State: AJIora9e7z0l7lsobSMYhrWv+0OWhkTmWfneS4s4tvIyZ3wkgTD0DjDV
-        v5N+pqtzUscG66fkIIJY04FCTA==
-X-Google-Smtp-Source: AGRyM1uubThZWxs0LtJdne3P4esvibl90VzKex8ROZDrXmt3/kumeOoNNP4LbTVIZXQ4u0xtRlU3tw==
-X-Received: by 2002:a5d:50d0:0:b0:21b:978f:e54 with SMTP id f16-20020a5d50d0000000b0021b978f0e54mr14021882wrt.612.1656086798942;
-        Fri, 24 Jun 2022 09:06:38 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id k1-20020a5d6281000000b0021b9e360523sm2754953wru.8.2022.06.24.09.06.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Jun 2022 09:06:38 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-tegra@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, vbhadram@nvidia.com
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        thierry.reding@gmail.com, treding@nvidia.com, robh+dt@kernel.org,
-        catalin.marinas@arm.com, krzysztof.kozlowski+dt@linaro.org,
-        kuba@kernel.org, jonathanh@nvidia.com, will@kernel.org
-Subject: Re: (subset) [PATCH net-next v1 4/9] memory: tegra: Add MGBE memory clients for Tegra234
-Date:   Fri, 24 Jun 2022 18:06:35 +0200
-Message-Id: <165608679241.23612.16454571226827958210.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220623074615.56418-4-vbhadram@nvidia.com>
-References: <20220623074615.56418-1-vbhadram@nvidia.com> <20220623074615.56418-4-vbhadram@nvidia.com>
+        with ESMTP id S231160AbiFXQIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:08:21 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9838929CA2;
+        Fri, 24 Jun 2022 09:08:16 -0700 (PDT)
+Received: from notapiano (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0780866017FA;
+        Fri, 24 Jun 2022 17:08:13 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1656086895;
+        bh=KGOY/hKSjd6Fa8Gy3cPJe3LIX1aHDy62+SKTc+gQNls=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OJhEKwCxKH5CaQUTh954WJwlHVZYeXRtFfVXE2QIBRMmZ7N2GrutyjZCdOEGPRfM6
+         aHeFF1YHf8ADrGN+qK55wKTxMEno1UP3hpuVT01p/e2xg2O8GA1NRsJC33r7Efto3/
+         U7tp7icBQ4A2PSTnpKfODdpbHccrb7EdpnLQirrA+za60VqxGv19t+2mvz63GUq0zL
+         qZE6BNBgJ5AbfC4R0baa62JmjqPu6MhczBVBN+p1Wa+V50F4VWwGsru8lnySjhaFfQ
+         gtKxdP1rMIDyKJCYyTl+qlx3mjoIQ8tdz/R+vaZD5yglBziQ8METSLVenQu7fvMQTL
+         bx1yGvPrmk2LA==
+Date:   Fri, 24 Jun 2022 12:08:10 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Guodong Liu <guodong.liu@mediatek.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v2 4/5] pinctrl: mediatek: dropping original advanced
+ drive configuration function
+Message-ID: <20220624160810.alotw7iwvivp5zg6@notapiano>
+References: <20220624133700.15487-1-guodong.liu@mediatek.com>
+ <20220624133700.15487-5-guodong.liu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220624133700.15487-5-guodong.liu@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Jun 2022 13:16:10 +0530, Bhadram Varka wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Tegra234 has multiple network interfaces with each their own memory
-> clients and stream IDs to allow for proper isolation.
-> 
-> 
+Hi Guodong,
 
-Applied, thanks!
+On Fri, Jun 24, 2022 at 09:36:59PM +0800, Guodong Liu wrote:
+> Function bias_combo getter/setters already handle all cases advanced drive
+> configuration, include drive for I2C related pins.
 
-[4/9] memory: tegra: Add MGBE memory clients for Tegra234
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/6b36629c85dc7d4551e57e92a3e970d099333e4e
+This commit message could be improved. I suggest using the following commit
+message:
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The bias_combo getter/setter is already able to handle advanced drive
+configuration, which is the reason commit 353d2ef77f2b ("dt-bindings: pinctrl:
+mt8192: Use generic bias instead of pull-*-adv") dropped the pull-up-adv and
+pull-down-adv properties from the binding. With those properties removed,
+there's no longer any use for the adv_pull callbacks, so drop them.
+
+> 
+> Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
+
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
+Thanks,
+Nícolas
