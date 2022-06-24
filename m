@@ -2,136 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40EAE559E6B
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:22:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ABD5559E71
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229813AbiFXQTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 12:19:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47054 "EHLO
+        id S231496AbiFXQWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 12:22:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbiFXQTd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:19:33 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51BEA3C706;
-        Fri, 24 Jun 2022 09:19:32 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id u15so5671608ejc.10;
-        Fri, 24 Jun 2022 09:19:32 -0700 (PDT)
+        with ESMTP id S231477AbiFXQWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:22:03 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EB825676A
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:22:02 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id lw20so5743934ejb.4
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:22:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ricq+0JGNrGAcgcMt4hFdqFNI3qZ/PX1ec96tksYHus=;
-        b=eRxhCWkn13cUhuAtIMUKPlqbg7ZCfht/gpzbZID7uumdf1/NipqZ3RTpa1+8cP2P3a
-         TLqYnWduW/JuTvG047izM0rviDRfNOKp7UtvFuqOriCz8TjvFf2vg8UsJMlVbshJLYQE
-         QoqSLpqyzikDzRRiBd+t0ExSK1g/x6eBRDbfanBK5hibfYlwQx4nTzz2C54vyOgF9bYD
-         NPRBb1xWQlYVRLM7YahsZxHzSUKgtCNv9eP2rCu9xo32Ey+Ut/2FkE7ajRl55+PgXj29
-         fRyw0+t+F8HAYznY78ISNAQghny6potH7aqs9u2JqSk+DITbBsq1Xq0KXszQovg8CfwE
-         lQ/A==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fYS0kphQrUZ27SsnoM13mR7jUP14ty0cByxPu8gKCIk=;
+        b=HK2uiyivhaPV5sfrvS2eGOt2LyWTJ9bq/nz9CbzFAb9pqnfFA/3Mpv84tZvVkt9Y6I
+         TgyDmNC2oSoOterV7IY5A11r+FuseW87b7DEgpppipalbbtb8aCNOSgmHtHtroDNgDFx
+         UrPqyFDiP6jKRWSum/SpoIAC8QKM+DG7NZFKHAJfZGxeWVM6HWTuLWazrbh2P9eH0pUR
+         K3nbumuEwRDn75h+zk1dkM891/+Ns2Xy0CDYDWozDH/0ZimvDnHpXbP95Dm6/m79Lrey
+         jfoAOLeS5OD38UZYwbU5Vz2ndbNQNn0ZQ9UwyXw4Z9nyk1QtYT8ZnJI12viXpH0NzTaK
+         mpjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ricq+0JGNrGAcgcMt4hFdqFNI3qZ/PX1ec96tksYHus=;
-        b=EGEmn6RyDk8dZR8toK55eTVOWvTyJfDzb/h5g1Ymc6UK1Gq8FJKuw5YGri9WGKFKZq
-         Ed62x4lY8hFTWnkx/lpMce2lDSWmtgayfSHb8DlDqBODchaoG00h0l0adpOnc7vcdVZP
-         gyfDISDQAMqZQjsikFWOHL9gac8B1+9HBdUpRuAlDZGZvawvw4mZ0iUq1iPr5HX+ssiE
-         /324eeOT8WidgL85wWJpN9O+KijjFh/eMVUWmxqACQhTIF1SEhoLaANye1gu4rhoy7eq
-         7wHx6yiHYDO8XUMvSRj7x5m0VCXSqRiJ182qz+f4hI1p2I3BVO6dZLlAFf5JpyMlheeo
-         pPiw==
-X-Gm-Message-State: AJIora8Rk2u3DrmwZaj3wg5KXgRMUFzMHZpnC8q0vLyMZI8d1J1sijzc
-        SPEXD6n0leJCcqKZaIQZxog=
-X-Google-Smtp-Source: AGRyM1vYSmRhC0W592gyOElmmpaOJAnjsQons5TuW0eJdafGDIjCh8LkM60zHMIHjI7y0j+CeZTjig==
-X-Received: by 2002:a17:906:209:b0:712:12d8:b52b with SMTP id 9-20020a170906020900b0071212d8b52bmr14234350ejd.394.1656087570697;
-        Fri, 24 Jun 2022 09:19:30 -0700 (PDT)
-Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id p22-20020a170906839600b00711d5bc20d5sm1306237ejx.221.2022.06.24.09.19.29
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fYS0kphQrUZ27SsnoM13mR7jUP14ty0cByxPu8gKCIk=;
+        b=tgX6eO1u9dSMRBwU3s0x5Bt9u9NN2ydQ/zK/sxvxrMyJfucJL86IAavQkJu4u0NTXo
+         J5cItDxxmgmvZIm1b2XmHr4al6TXPPEyLcqlB3ykcrIV/czQUBtNkqiSJGCv/OgYzmTA
+         K7qck3DyXCDj7WoZDqYPoo4TrUrywpJ7Z3s+Grmk4PWsEHix7wS1YshfwB2q9FEZzXLU
+         C8imi0QD4AQPzLEmTaK7yK8seI2z+X/H7MPhrZGZiLFV6A+m5STdfxoUfoZ32rzzJXeJ
+         MlPnQVHeBZgc1TBIeKt2RPCxSt+9jGC3C6jrZuJN/D101cc3nXmoG55m8KFmdZrs9apR
+         vr0Q==
+X-Gm-Message-State: AJIora/xO7FQg0sUmDxEZKhFYoYKuYHgrEfEhvRwOxjaj4Cjt8Mu+Kii
+        yy6mCdtQGqcV0vlj5+0eSjJdFQ==
+X-Google-Smtp-Source: AGRyM1t8apVUwtpqK9f+AuB+xavgZYcKt4ycH9bTdkv7323dillMym7El0pwbvAK1Xm7gEEODxChVw==
+X-Received: by 2002:a17:907:3f81:b0:6ff:1a3d:9092 with SMTP id hr1-20020a1709073f8100b006ff1a3d9092mr14128573ejc.319.1656087721147;
+        Fri, 24 Jun 2022 09:22:01 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id ia10-20020a170907a06a00b0070b7875aa6asm1334374ejc.166.2022.06.24.09.22.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Jun 2022 09:19:29 -0700 (PDT)
-Date:   Fri, 24 Jun 2022 18:19:27 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-tegra@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, vbhadram@nvidia.com,
-        treding@nvidia.com, robh+dt@kernel.org, catalin.marinas@arm.com,
-        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
-        jonathanh@nvidia.com, will@kernel.org
-Subject: Re: (subset) [PATCH net-next v1 3/9] dt-bindings: memory: Add
- Tegra234 MGBE memory clients
-Message-ID: <YrXkDylsf5JSklSz@orome>
-References: <20220623074615.56418-1-vbhadram@nvidia.com>
- <20220623074615.56418-3-vbhadram@nvidia.com>
- <165608679241.23612.13616476913302198468.b4-ty@linaro.org>
- <d0bc0054-4457-bd56-161b-19808c65c0e9@linaro.org>
+        Fri, 24 Jun 2022 09:22:00 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: connector: usb: align example indentation to four-space
+Date:   Fri, 24 Jun 2022 18:21:41 +0200
+Message-Id: <20220624162141.25890-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Bcv3WXIFwInsOvvQ"
-Content-Disposition: inline
-In-Reply-To: <d0bc0054-4457-bd56-161b-19808c65c0e9@linaro.org>
-User-Agent: Mutt/2.2.6 (2022-06-05)
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+One DTS example was using 8-space indentation, while others 2-space.
+For complex DTS with multiple levels, 2-space is not that readable and
+in DTS examples 4-space is preferred.
 
---Bcv3WXIFwInsOvvQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/connector/usb-connector.yaml     | 152 +++++++++---------
+ 1 file changed, 76 insertions(+), 76 deletions(-)
 
-On Fri, Jun 24, 2022 at 06:10:54PM +0200, Krzysztof Kozlowski wrote:
-> On 24/06/2022 18:06, Krzysztof Kozlowski wrote:
-> > On Thu, 23 Jun 2022 13:16:09 +0530, Bhadram Varka wrote:
-> >> From: Thierry Reding <treding@nvidia.com>
-> >>
-> >> Add the memory client and stream ID definitions for the MGBE hardware
-> >> found on Tegra234 SoCs.
-> >>
-> >>
-> >=20
-> > Applied, thanks!
-> >=20
-> > [3/9] dt-bindings: memory: Add Tegra234 MGBE memory clients
-> >       https://git.kernel.org/krzk/linux-mem-ctrl/c/f35756b5fc488912b8bc=
-5f5686e4f236d00923d7
-> >=20
->=20
-> Hmm, actually now I think you might need it for DTS, although there was
-> no cover letter here explaining merging/dependencies...
->=20
-> I could provide you a tag with it or opposite (take a tag with only the
-> header).
+diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+index 0420fa563532..ae515651fc6b 100644
+--- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
++++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+@@ -263,11 +263,11 @@ examples:
+   # Micro-USB connector with HS lines routed via controller (MUIC).
+   - |
+     muic-max77843 {
+-      usb_con1: connector {
+-        compatible = "usb-b-connector";
+-        label = "micro-USB";
+-        type = "micro";
+-      };
++        usb_con1: connector {
++            compatible = "usb-b-connector";
++            label = "micro-USB";
++            type = "micro";
++        };
+     };
+ 
+   # USB-C connector attached to CC controller (s2mm005), HS lines routed
+@@ -275,34 +275,34 @@ examples:
+   # DisplayPort video lines are routed to the connector via SS mux in USB3 PHY.
+   - |
+     ccic: s2mm005 {
+-      usb_con2: connector {
+-        compatible = "usb-c-connector";
+-        label = "USB-C";
++        usb_con2: connector {
++            compatible = "usb-c-connector";
++            label = "USB-C";
+ 
+-        ports {
+-          #address-cells = <1>;
+-          #size-cells = <0>;
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
+ 
+-          port@0 {
+-            reg = <0>;
+-            usb_con_hs: endpoint {
+-              remote-endpoint = <&max77865_usbc_hs>;
+-            };
+-          };
+-          port@1 {
+-            reg = <1>;
+-            usb_con_ss: endpoint {
+-              remote-endpoint = <&usbdrd_phy_ss>;
+-            };
+-          };
+-          port@2 {
+-            reg = <2>;
+-            usb_con_sbu: endpoint {
+-              remote-endpoint = <&dp_aux>;
++                port@0 {
++                    reg = <0>;
++                    usb_con_hs: endpoint {
++                        remote-endpoint = <&max77865_usbc_hs>;
++                    };
++                };
++                port@1 {
++                    reg = <1>;
++                    usb_con_ss: endpoint {
++                        remote-endpoint = <&usbdrd_phy_ss>;
++                    };
++                };
++                port@2 {
++                    reg = <2>;
++                    usb_con_sbu: endpoint {
++                        remote-endpoint = <&dp_aux>;
++                    };
++                };
+             };
+-          };
+         };
+-      };
+     };
+ 
+   # USB-C connector attached to a typec port controller(ptn5110), which has
+@@ -310,16 +310,16 @@ examples:
+   - |
+     #include <dt-bindings/usb/pd.h>
+     typec: ptn5110 {
+-      usb_con3: connector {
+-        compatible = "usb-c-connector";
+-        label = "USB-C";
+-        power-role = "dual";
+-        try-power-role = "sink";
+-        source-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)>;
+-        sink-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)
+-                     PDO_VAR(5000, 12000, 2000)>;
+-        op-sink-microwatt = <10000000>;
+-      };
++        usb_con3: connector {
++            compatible = "usb-c-connector";
++            label = "USB-C";
++            power-role = "dual";
++            try-power-role = "sink";
++            source-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)>;
++            sink-pdos = <PDO_FIXED(5000, 2000, PDO_FIXED_USB_COMM)
++                         PDO_VAR(5000, 12000, 2000)>;
++            op-sink-microwatt = <10000000>;
++        };
+     };
+ 
+   # USB-C connector attached to SoC and USB3 typec port controller(hd3ss3220)
+@@ -332,20 +332,20 @@ examples:
+         data-role = "dual";
+ 
+         ports {
+-                #address-cells = <1>;
+-                #size-cells = <0>;
+-                port@0 {
+-                        reg = <0>;
+-                        hs_ep: endpoint {
+-                                remote-endpoint = <&usb3_hs_ep>;
+-                        };
++            #address-cells = <1>;
++            #size-cells = <0>;
++            port@0 {
++                reg = <0>;
++                hs_ep: endpoint {
++                    remote-endpoint = <&usb3_hs_ep>;
+                 };
+-                port@1 {
+-                        reg = <1>;
+-                        ss_ep: endpoint {
+-                                remote-endpoint = <&hd3ss3220_in_ep>;
+-                        };
++            };
++            port@1 {
++                reg = <1>;
++                ss_ep: endpoint {
++                    remote-endpoint = <&hd3ss3220_in_ep>;
+                 };
++            };
+         };
+     };
+ 
+@@ -354,12 +354,12 @@ examples:
+     #include <dt-bindings/gpio/gpio.h>
+ 
+     usb {
+-      connector {
+-        compatible = "gpio-usb-b-connector", "usb-b-connector";
+-        type = "micro";
+-        id-gpios = <&pio 12 GPIO_ACTIVE_HIGH>;
+-        vbus-supply = <&usb_p0_vbus>;
+-      };
++        connector {
++            compatible = "gpio-usb-b-connector", "usb-b-connector";
++            type = "micro";
++            id-gpios = <&pio 12 GPIO_ACTIVE_HIGH>;
++            vbus-supply = <&usb_p0_vbus>;
++        };
+     };
+ 
+   # Micro-USB connector with HS lines routed via controller (MUIC) and MHL
+@@ -367,27 +367,27 @@ examples:
+   # mobile phone
+   - |
+     muic-max77843 {
+-      usb_con4: connector {
+-        compatible = "samsung,usb-connector-11pin", "usb-b-connector";
+-        label = "micro-USB";
+-        type = "micro";
++        usb_con4: connector {
++            compatible = "samsung,usb-connector-11pin", "usb-b-connector";
++            label = "micro-USB";
++            type = "micro";
+ 
+-        ports {
+-          #address-cells = <1>;
+-          #size-cells = <0>;
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
+ 
+-          port@0 {
+-            reg = <0>;
+-            muic_to_usb: endpoint {
+-              remote-endpoint = <&usb_to_muic>;
+-            };
+-          };
+-          port@3 {
+-            reg = <3>;
+-            usb_con_mhl: endpoint {
+-              remote-endpoint = <&sii8620_mhl>;
++                port@0 {
++                    reg = <0>;
++                    muic_to_usb: endpoint {
++                        remote-endpoint = <&usb_to_muic>;
++                    };
++                };
++                port@3 {
++                    reg = <3>;
++                    usb_con_mhl: endpoint {
++                        remote-endpoint = <&sii8620_mhl>;
++                    };
++                };
+             };
+-          };
+         };
+-      };
+     };
+-- 
+2.34.1
 
-I can pick this up into the Tegra tree where I already carry an earlier
-patch for Tegra234 GPCDMA that you had acked. That works better for this
-model since, as you said, this is needed as a dependency for the DTS
-files.
-
-Thierry
-
---Bcv3WXIFwInsOvvQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmK15A8ACgkQ3SOs138+
-s6F4aw/9F6xVeKGoS+LCN6kuUthd8eX5662IvuX6Usc3LK+EuUkGMGbCr0+Dc7Xn
-90ao9Pp8kFYw30M81Us20Eu9ZDTgoON9klXCPYsN7D1o4lHwaz/akvJQRMJxqhnl
-EfNvD/XgoUdpI2GvgRIGSh3qV0PL8B+uq7X1KpMGAlHlNyrb/KskxlvrwSEkCdtV
-ZjGZbnJSt8yGcRJggxwZQQss/JorAdQKTwcqmOpR8cKCkWqCv3TxaxsRvNZYX5pt
-JoxFow2fW6qfHUju0oHaMQmpzfehnaxzwPn4GLlSCj5CACcOSKrpH+ND+EXbeU+l
-krVowQBz49gWpja9IR721nofk3D+GKgDHtHvKIkQQObP6CyHZHCE7APNEQEHulSi
-pVYouza9d0vlQy8xXxq+D2BnrPO0pFRuPksWkl9WFNNPfYtfqDWjo/5Vo+GNxcpT
-P0fI0ITYq85slCHfJKPhRYLfJfMnEEsYvqMZDI0sakpZaXNJSclnPVtZwoE/yI88
-aKyQwJi8wiSUTW9bk+2tb9Pi238OCGCBmm6U4ECEBWGWIjDmN7f30D78xayiW4gb
-jcrrvnhvFytNx1fYhKUZmep1SB2fUO6TlA6g1uHEkv4ogDMWV8ltaMHJ0gurBK/M
-m/oicnimEqafyLgWMm/M0vEQyigusaUeWAtoPUM3+/C2J0FsW3M=
-=cVYG
------END PGP SIGNATURE-----
-
---Bcv3WXIFwInsOvvQ--
