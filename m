@@ -2,106 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 620A2559D4E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 17:30:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 240CB559D7F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 17:40:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232225AbiFXP3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 11:29:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39124 "EHLO
+        id S232059AbiFXPiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 11:38:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232517AbiFXP3d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 11:29:33 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AED529801;
-        Fri, 24 Jun 2022 08:29:32 -0700 (PDT)
-Received: from notapiano (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6632866017FA;
-        Fri, 24 Jun 2022 16:29:29 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656084570;
-        bh=QLIJRVIptCHxe8YA2obqLBI5SkwO2iKvXB+7BviNrXI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=R7Cbtu6iwOlYUJNrtTEjjeuyVABZb58IsLv6iv4aHnEjAV7+4X9OKEFgcpkT6JESk
-         i/2VCZsY7/cbMsRcgf4dOTxx/3PSzWYVUP8jMMMQ4yyf7RCvrr+nWbUjSg7OhBBD4M
-         Nc6GoM0YFzIqCElY4ata+my5gludPw2FJB1ZUA/coPcI/L9qfb9fjHRA22aqsTfUNA
-         s4VQqHzTeL4lhivXY7A2kZQiaXKiXwNHDI19/JvInN+pjKDLjCqMbGOEJ2OSc5c92q
-         uCZayN2p8ztKQ0BpwAbAbzBDwdw8Ze4K4XnBxRpsyOVsWmHb1H+SsfGgFBbv8nK9g4
-         lEY+rGj9GpJ4A==
-Date:   Fri, 24 Jun 2022 11:29:26 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Guodong Liu <guodong.liu@mediatek.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v2 3/5] pinctrl: mediatek: add rsel setting on mt8192
-Message-ID: <20220624152926.76hvymguryhfv4sq@notapiano>
-References: <20220624133700.15487-1-guodong.liu@mediatek.com>
- <20220624133700.15487-4-guodong.liu@mediatek.com>
+        with ESMTP id S232371AbiFXPh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 11:37:58 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56D1DB7C0
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 08:37:57 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id c130-20020a1c3588000000b0039c6fd897b4so3528460wma.4
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 08:37:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=IGWWvGYMbJMzHNjMbMwN/PgKeHvUTnFkfiEKD4OboOU=;
+        b=dctimEgMCr/Ncq3rV7xZgljVKZJ5didIgUqFkPEb1mNuKIbZdvBp1rDgMlHMd6oelI
+         lzQUNV4tQ2OOJh2BAYCh518YxoCPym36nK6FZlYHqxcF/eKourkKVXdiQZH8zYAxv6ln
+         hrdk2e1h1GV4+mpJLrbIE9G6YBhsxCbo5RR7bQgeqFv4RdXfRJ7qKTAlsHdcspiVM/aI
+         M3K44TCX8WYnKSKx2LxQZ9XddSWV4ljzAiYxIVH4jj1b6BrXH5oI2WSnm9QbEKsNhKa3
+         4s+rVNxEc4ba5BgKv5qfHF9vp8MK5aUUxNKWHNLx/WRKwBEYh/tQY+ChHg4tr9OU8MjX
+         Y0aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=IGWWvGYMbJMzHNjMbMwN/PgKeHvUTnFkfiEKD4OboOU=;
+        b=X6BNoXwvf7cmE6p70uKK/HaMPsl4RMN2vAIjlRzPGQLmWSFi2W8Cq1FmqvXcMV2IpQ
+         Cov/L7a13lYWvnS5KnHS0ceXIxYmeuXnvdLgOIudbkuKkqL8mjQUWKLHBRcUyyx/gcUr
+         mQoEXd/TLz3YGS1njuJppNP+hqhj/KWXzyHXR6sNDDk4TnDIVqDgNzEF6IpGM5NLAWda
+         lrzBfrh6flbbyJ2BWmnv+bfAt3jFznXXJvJTlfZHQbtagiSuGAveH89YOpjBjWQMvgZ7
+         FzgyNUOa36wkNTmYtnpEnpgeH8jsyszbAsyPKjanWc6anE6WDg47+IUyPDRHH5VHdtrA
+         SoOw==
+X-Gm-Message-State: AJIora9N/xEE1ljXnrQr8Sq5PZGrojTq5tMqdnZMfNE+tCO/dJsOlSY0
+        n3QI9P19UacNEu1NyrwwOSS/JA==
+X-Google-Smtp-Source: AGRyM1uxz26dArL1HDuhnHUPyQcp+dojHE88iHnjWFPwQfSmo5RIw/FZdyx3sebIjsfZagXwHsvh7A==
+X-Received: by 2002:a05:600c:29d3:b0:397:4730:ee75 with SMTP id s19-20020a05600c29d300b003974730ee75mr4619787wmd.149.1656085075899;
+        Fri, 24 Jun 2022 08:37:55 -0700 (PDT)
+Received: from [192.168.0.237] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id bh7-20020a05600c3d0700b0039c948dbb61sm3135904wmb.26.2022.06.24.08.37.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Jun 2022 08:37:55 -0700 (PDT)
+Message-ID: <8dc2a434-15bc-c602-0272-fdb6159fc0d1@linaro.org>
+Date:   Fri, 24 Jun 2022 17:37:54 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220624133700.15487-4-guodong.liu@mediatek.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2] ARM: dts: am33xx: Fix MMCHS0 dma properties
+Content-Language: en-US
+To:     YuTong Chang <mtwget@gmail.com>, bcousson@baylibre.com
+Cc:     tony@atomide.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220620124146.5330-1-mtwget@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220620124146.5330-1-mtwget@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guodong,
-
-thanks for the patch. Please see comments below.
-
-On Fri, Jun 24, 2022 at 09:36:58PM +0800, Guodong Liu wrote:
-> 1. I2C pins's resistance value can be controlled by rsel register.
-> This patch provides rsel (resistance selection) setting on mt8192.
-> 2. Also add the missing pull type array for mt8192 to document the
-> pull type of each pin and prevent invalid pull type settings.
+On 20/06/2022 14:41, YuTong Chang wrote:
+> According to technical manual(table 11-24), the DMA of MMCHS0 should be
+> direct mapped.
 > 
-> Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
+> Signed-off-by: YuTong Chang <mtwget@gmail.com>
 > ---
->  drivers/pinctrl/mediatek/pinctrl-mt8192.c | 136 ++++++++++++++++++++++
->  1 file changed, 136 insertions(+)
-> 
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-mt8192.c b/drivers/pinctrl/mediatek/pinctrl-mt8192.c
-> index efabeb422aea..ffb0b04f0e3c 100644
-> --- a/drivers/pinctrl/mediatek/pinctrl-mt8192.c
-> +++ b/drivers/pinctrl/mediatek/pinctrl-mt8192.c
+> v1 -> v2: Cleaned up coding style and addressed review comments
 
-<snip>
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-> +	MTK_PULL_PU_PD_TYPE,/*100* MTK_PULL_PU_PD_TYPE,/*101*/
-> +	MTK_PULL_PU_PD_TYPE,/*102* MTK_PULL_PU_PD_TYPE,/*103*/
-> +	MTK_PULL_PU_PD_TYPE,/*104* MTK_PULL_PU_PD_TYPE,/*105*/
-> +	MTK_PULL_PU_PD_TYPE,/*106* MTK_PULL_PU_PD_TYPE,/*107*/
-> +	MTK_PULL_PU_PD_TYPE,/*108* MTK_PULL_PU_PD_TYPE,/*109*/
-> +	MTK_PULL_PU_PD_TYPE,/*110* MTK_PULL_PU_PD_TYPE,/*111*/
-> +	MTK_PULL_PU_PD_TYPE,/*112* MTK_PULL_PU_PD_TYPE,/*113*/
-> +	MTK_PULL_PU_PD_TYPE,/*114* MTK_PULL_PU_PD_TYPE,/*115*/
-> +	MTK_PULL_PU_PD_TYPE,/*116* MTK_PULL_PU_PD_TYPE,/*117*/
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
 
-The comments on pins 100 - 116 are missing the closing '/', effectively
-commenting out pins 101 - 117 and leading to errors. Please fix this.
+If a tag was not added on purpose, please state why and what changed.
 
-Other than that,
 
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks,
-Nícolas
+
+Best regards,
+Krzysztof
