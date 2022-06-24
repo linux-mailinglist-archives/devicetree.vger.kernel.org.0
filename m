@@ -2,69 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78475559FD9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 20:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD8A6559FEB
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 20:07:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229936AbiFXR1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 13:27:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51396 "EHLO
+        id S230271AbiFXRb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 13:31:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbiFXR0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 13:26:40 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D26892BE6;
-        Fri, 24 Jun 2022 10:26:39 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id s17so3378785iob.7;
-        Fri, 24 Jun 2022 10:26:39 -0700 (PDT)
+        with ESMTP id S229451AbiFXRbZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 13:31:25 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86E882F64D
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:31:21 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id z7so4391764edm.13
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:31:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=CG/b0wH+UMkfYfXRKwVOJNE5zV94/elLpfi+TKsRhGM=;
+        b=HfeGJVH/6ikCElyeTJ8/0fWURF3JP7NZ6Ap/LgH98OnZVu2834sBS7Hg9aSwneg2Iw
+         FocaMnDw0144InTI5IQ3y7G1dgQf0fZ7uNMcWiEz1CMM0r/BHsS0eluk+6rGh4eBjn+V
+         2aFBo5k+xlS6iK6r7Xgv9G08lDgcyOHg6f4b/igHfsvfIeGM7A20im/8uvoW9KkM4Vda
+         k1iGOXtZvqDk6fvGGKZF5fF3P/EOTPfgysNCTf2pr6lo0+Wlw4a5HstKr4cCPQtGbvD6
+         +dmCceck4GB2Gspt8xCuw+/9EO5/rw1Dq7nErlk5l5T5c6GyWVHSLzSVS8MMIY0nWHD5
+         XILQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=92QKbH/mPXhxHIYJf1fLlrKB6WxLUvpdcDo1o4OtEnM=;
-        b=nkLqdtay6VGjJqffHvqtqksKSKVkBilY1c1m5KAlQMy8AJo7DT/wTGSiN7+Hvhm6OZ
-         5NK5dApuZdhWE7sD7gmiuW8mnZNgcBVUWr08Y2QT5VUkWgLZWrdwwqNJFe3KLCMcVDiy
-         OQkBVynzJVclFSBAvtlpFjkdTFkU7nBi+RExRN7qf2SF4KNAnAp6m35rcdlw3XWHjg0O
-         jyaGn8aX9MWabkgmH4krflJGpABcTYGkLvT9Ff1Cn7vmFykm0oh3DpTKayQDOu7LFBY1
-         KBdZbUaiR+/9Mg6TXWzJbqbh+o2F5a/G524sZ1RjL+AJcIYtJGIsyIPiLUmvaUnoWf/K
-         cWTA==
-X-Gm-Message-State: AJIora/T87xyD3LzBX1ATxDZL4VjYTWfmf/6ffZkthaxIq5ZiERfn/8E
-        aw/Pd2wwO9Z6XxwV5t2hItwyaxa/og==
-X-Google-Smtp-Source: AGRyM1s8SzrwSpGacP/r2ARwl+tUdS8WymnOz9QJv44qHprtsvHiQ9e/7OSdNfiAyfKqtnqiAMvqmw==
-X-Received: by 2002:a02:90ce:0:b0:32e:e2ce:b17c with SMTP id c14-20020a0290ce000000b0032ee2ceb17cmr153954jag.268.1656091599142;
-        Fri, 24 Jun 2022 10:26:39 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id u10-20020a92da8a000000b002d925059ba6sm1354817iln.87.2022.06.24.10.26.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Jun 2022 10:26:38 -0700 (PDT)
-Received: (nullmailer pid 146342 invoked by uid 1000);
-        Fri, 24 Jun 2022 17:26:34 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     tinghan.shen@mediatek.com, linux-kernel@vger.kernel.org,
-        wenst@chromium.org, p.zabel@pengutronix.de,
-        chun-jie.chen@mediatek.com, matthias.bgg@gmail.com,
-        sboyd@kernel.org, konrad.dybcio@somainline.org,
-        linux-clk@vger.kernel.org, fparent@baylibre.com,
-        phone-devel@vger.kernel.org, robh+dt@kernel.org,
-        y.oudjana@protonmail.com, rex-bc.chen@mediatek.com,
-        martin.botka@somainline.org, marijn.suijten@somainline.org,
-        sam.shih@mediatek.com, kernel@collabora.com,
-        mturquette@baylibre.com, linux-arm-kernel@lists.infradead.org,
-        ikjn@chromium.org, krzysztof.kozlowski+dt@linaro.org,
-        weiyi.lu@mediatek.com, miles.chen@mediatek.com, ck.hu@mediatek.com,
-        linux-mediatek@lists.infradead.org, jason-jh.lin@mediatek.com,
-        ~postmarketos/upstreaming@lists.sr.ht, bgolaszewski@baylibre.com,
-        paul.bouchara@somainline.org, devicetree@vger.kernel.org
-In-Reply-To: <20220624093525.243077-5-angelogioacchino.delregno@collabora.com>
-References: <20220624093525.243077-1-angelogioacchino.delregno@collabora.com> <20220624093525.243077-5-angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v3 4/7] dt-bindings: clock: mediatek: Add clock driver bindings for MT6795
-Date:   Fri, 24 Jun 2022 11:26:34 -0600
-Message-Id: <1656091594.386709.146341.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=CG/b0wH+UMkfYfXRKwVOJNE5zV94/elLpfi+TKsRhGM=;
+        b=Yw2BNU6FoPaZPrbx4nzLTwX1IQEfe1Y4SUnh9i2icPTgq7cyotvQttFu1yeK7g5815
+         cjArzImbJeZvHk7WVgC0zwtbgCqirOrm4rYLeHp7iYO48jEGA//4wwIDitBXHw6NBv3L
+         kEZqPo9Ghhvk59auTDLgLspPn2s446B7UwyfTInKv60aP3R38s6IPYz4RA88VDMHK2vt
+         NY+FFrwF/VH3qNQhZvoYvKPBGrbsNEcgDMNkPFgiTvca/QqtouktnUKcT7TZlxBJlpzY
+         1Ow+bS2FuvvxsEgod32emAEo0HrDVW+GaUoJcLYgZJl70W2O0m2Ckvrtn5aamklGlE5q
+         hpvg==
+X-Gm-Message-State: AJIora92AI1Z6NvprVa5QXkMdFy/SEs3yaqfc+BZ1FTAF723uE4SIoPG
+        P3qMvMqWhRKo9Aj1MzgaRZsCDA==
+X-Google-Smtp-Source: AGRyM1vqnT2ShJHGIA4aE9VkHlN9n8AHcyFDKauqLWZ+G5Irtlq8DjQRDf6siIWtS2A3Z+NcFLURLg==
+X-Received: by 2002:a05:6402:414c:b0:435:1e2a:2c7f with SMTP id x12-20020a056402414c00b004351e2a2c7fmr249960eda.132.1656091880129;
+        Fri, 24 Jun 2022 10:31:20 -0700 (PDT)
+Received: from [192.168.0.237] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id se13-20020a170906ce4d00b006fef0c7072esm1410177ejb.144.2022.06.24.10.31.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Jun 2022 10:31:19 -0700 (PDT)
+Message-ID: <31f5f441-eba3-4ffb-cf68-159cd827ade7@linaro.org>
+Date:   Fri, 24 Jun 2022 19:31:18 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] dt-bindings: leds: lp50xx: fix LED children names
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dan Murphy <dmurphy@ti.com>, linux-leds@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20220624111325.96478-1-krzysztof.kozlowski@linaro.org>
+ <1656091594.405509.146345.nullmailer@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1656091594.405509.146345.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,42 +77,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Jun 2022 11:35:22 +0200, AngeloGioacchino Del Regno wrote:
-> Add the bindings for the clock drivers of the MediaTek Helio X10
-> MT6795 SoC.
+On 24/06/2022 19:26, Rob Herring wrote:
+> On Fri, 24 Jun 2022 13:13:25 +0200, Krzysztof Kozlowski wrote:
+>> The lp50xx LEDs expects to have single-color LED children with unit
+>> addresses.  This is required by the driver and provided by existing
+>> DTSes.  Fix the binding to match actual usage.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Fixes: dce1452301e7 ("dt: bindings: lp50xx: Introduce the lp50xx family of RGB drivers")
+>> ---
+>>  Documentation/devicetree/bindings/leds/leds-lp50xx.yaml | 8 +++++++-
+>>  1 file changed, 7 insertions(+), 1 deletion(-)
+>>
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../bindings/clock/mediatek,mt6795-clock.yaml | 66 +++++++++++++++++
->  .../clock/mediatek,mt6795-sys-clock.yaml      | 74 +++++++++++++++++++
->  2 files changed, 140 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-clock.yaml
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-lp50xx.example.dtb: led-controller@14: multi-led@2:#size-cells:0:0: 0 was expected
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+This is expected and fixed in:
+https://lore.kernel.org/all/20220607075247.58048-1-krzysztof.kozlowski@linaro.org/
 
-yamllint warnings/errors:
+I did not combine this patch with above patchset because this one is a
+fix and might be backported to stable.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.example.dtb: power-controller@10001000: '#power-domain-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/power-domain.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.example.dtb: power-controller@10003000: '#power-domain-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/power-domain.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Best regards,
+Krzysztof
