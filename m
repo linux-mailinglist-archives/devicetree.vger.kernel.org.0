@@ -2,107 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B1B8559860
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 13:19:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99D37559862
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 13:19:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229962AbiFXLTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 07:19:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47062 "EHLO
+        id S229587AbiFXLTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 07:19:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbiFXLTE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 07:19:04 -0400
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A33256F84;
-        Fri, 24 Jun 2022 04:19:03 -0700 (PDT)
-Received: by mail-qv1-f48.google.com with SMTP id o43so4087447qvo.4;
-        Fri, 24 Jun 2022 04:19:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9Cj7lugVD8UUUwjT9MTe2bieOs5d3zpPuDxtcUlSg/I=;
-        b=Z+5dX+vSjYpknJJFehsfSSCyN/Hqx1EsogtPx5pzDSf5I4PWpHVRerOLSr5T8VE1HA
-         HLSa8gut0olyd0MyoizXTMNZbYwrPaMylaSF3vj6k0CKDarbU7LlOeqqBh5AZCVLUz4g
-         jOq2NPO4hvCm+0UCDnFdHRplb0sITv0OfopvyKv87HheNnXDTbevn3SV+y3A8gyndEXv
-         ZpJpxMLDNbP+tplFuHH3BSplCYEszu47SaqXn+jbla2+fGJZRtpCTXusXzrkki5JCpTq
-         QRlObY8NV07uIks8rswCTZ/kp+rmCUkRR2HtUqsjYnqn3vTWJTmbkHYnEE4s+lwwMFP/
-         7swA==
-X-Gm-Message-State: AJIora+1jAAEppMOzkZxj2hYXHyxsye2V3vKdDEO8vzVBOVCcXBXy/22
-        qBpEiLimBcQFJVytOuTxDsMQxFsPYEoQZw==
-X-Google-Smtp-Source: AGRyM1vkYfMcAkxILupBKCz5jxJSPd4DWUFFTIAN6CYyh8hpXownl3fxnyxSoe3fxnowZJ0jLFCW3w==
-X-Received: by 2002:ad4:5be5:0:b0:470:3d13:81d6 with SMTP id k5-20020ad45be5000000b004703d1381d6mr24227399qvc.114.1656069542399;
-        Fri, 24 Jun 2022 04:19:02 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id bp11-20020a05622a1b8b00b00304e38fb3dasm1294722qtb.35.2022.06.24.04.19.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 04:19:01 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-31780ad7535so21328187b3.8;
-        Fri, 24 Jun 2022 04:19:01 -0700 (PDT)
-X-Received: by 2002:a81:4fc9:0:b0:318:b0ca:4b13 with SMTP id
- d192-20020a814fc9000000b00318b0ca4b13mr4238711ywb.502.1656069541307; Fri, 24
- Jun 2022 04:19:01 -0700 (PDT)
+        with ESMTP id S229523AbiFXLTO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 07:19:14 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0FCF60F3D;
+        Fri, 24 Jun 2022 04:19:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=drUiWUYPOZ/mgsA2rYPc/1tb3Z6e5waNzU0Gaj97Y94=; b=V4tqB7bt46YbBvHVmMMPgnR83K
+        SfeytZgNSy7zchvIyqboLlbKzOGDcOlf9dQ3cfVgR++WaU3YrpDSu/lVJYFuJHRDpUWeBU5WiVe7y
+        w6QpuEML9NK9hHmIz0/fmJbSzphOfHsYOKGz0bDe0UR2+6Z8VGFk0rAE3c/Wf/XJkTpg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1o4hKv-0083zQ-1I; Fri, 24 Jun 2022 13:18:53 +0200
+Date:   Fri, 24 Jun 2022 13:18:53 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        David Wu <david.wu@rock-chips.com>, kernel@collabora.com
+Subject: Re: [PATCH 1/3] net: ethernet: stmmac: dwmac-rk: Disable delayline
+ if it is invalid
+Message-ID: <YrWdnQKVbJR+NrfH@lunn.ch>
+References: <20220623162850.245608-1-sebastian.reichel@collabora.com>
+ <20220623162850.245608-2-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-References: <20220624101736.27217-1-phil.edworthy@renesas.com>
-In-Reply-To: <20220624101736.27217-1-phil.edworthy@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 24 Jun 2022 13:18:49 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWHL4W4JW72yczODohj+xZ3EmqVm0dtuWxbfY_fs3VZeg@mail.gmail.com>
-Message-ID: <CAMuHMdWHL4W4JW72yczODohj+xZ3EmqVm0dtuWxbfY_fs3VZeg@mail.gmail.com>
-Subject: Re: [PATCH 0/2] i2c: Add new driver for Renesas RZ/V2M controller
-To:     Phil Edworthy <phil.edworthy@renesas.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Sven Peter <sven@svenpeter.dev>, Jie Deng <jie.deng@intel.com>,
-        Jan Dabros <jsd@semihalf.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Tyrone Ting <kfting@nuvoton.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220623162850.245608-2-sebastian.reichel@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Phil,
+> @@ -1422,7 +1420,7 @@ static struct rk_priv_data *rk_gmac_setup(struct platform_device *pdev,
+>  
+>  	ret = of_property_read_u32(dev->of_node, "tx_delay", &value);
+>  	if (ret) {
+> -		bsp_priv->tx_delay = 0x30;
+> +		bsp_priv->tx_delay = -1;
+>  		dev_err(dev, "Can not read property: tx_delay.");
+>  		dev_err(dev, "set tx_delay to 0x%x\n",
+>  			bsp_priv->tx_delay);
+> @@ -1433,7 +1431,7 @@ static struct rk_priv_data *rk_gmac_setup(struct platform_device *pdev,
+>  
+>  	ret = of_property_read_u32(dev->of_node, "rx_delay", &value);
+>  	if (ret) {
+> -		bsp_priv->rx_delay = 0x10;
+> +		bsp_priv->rx_delay = -1;
+>  		dev_err(dev, "Can not read property: rx_delay.");
+>  		dev_err(dev, "set rx_delay to 0x%x\n",
+>  			bsp_priv->rx_delay);
 
-Thanks for your series!
+rockchip-dwmac.yaml says:
 
-On Fri, Jun 24, 2022 at 12:17 PM Phil Edworthy
-<phil.edworthy@renesas.com> wrote:
-> The Renesas RZ/V2M SoC (r9a09g011) has a new i2c controller. This series
-> add the driver. One annoying problem is that the SoC uses a single reset
-> line for two i2c controllers, and unfortunately one of the controllers
-> is managed by some firmware, not by Linux. Therefore, the driver just
-> deasserts the reset.
 
-That is actually an integration issue, not an i2c controller issue.
+  tx_delay:
+    description: Delay value for TXD timing. Range value is 0~0x7F, 0x30 as default.
+    $ref: /schemas/types.yaml#/definitions/uint32
 
-Perhaps we need a RESET_IS_CRITICAL flag, cfr. CLK_IS_CRITICAL,
-to be set by the reset provider?
+  rx_delay:
+    description: Delay value for RXD timing. Range value is 0~0x7F, 0x10 as default.
+    $ref: /schemas/types.yaml#/definitions/uint32
 
-Gr{oetje,eeting}s,
+So it seems to me you are changing the documented default. You cannot
+do that, this is ABI.
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+   Andrew
