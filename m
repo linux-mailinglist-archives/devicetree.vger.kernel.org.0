@@ -2,112 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEF60559C2B
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 16:45:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F9A4559CDF
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 17:00:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233173AbiFXOnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 10:43:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43278 "EHLO
+        id S233523AbiFXOxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 10:53:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233289AbiFXOm3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 10:42:29 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC0C6DB37;
-        Fri, 24 Jun 2022 07:42:08 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 75869E000E;
-        Fri, 24 Jun 2022 14:42:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1656081727;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=HwRXAVM+bLFoGniqDG1yhd1DR+kIDYmn2tlOrSDOfaQ=;
-        b=UW/kVaiYEmPnYQO7vh95aNKCtlhBzFvaXS8Sv6HA0n2sUg+pN9KQ8/Hmt4CwpIG/Vo4idz
-        sY+Us0GGDX1rXhHg+MTZn0RlDAR5sqaAqgqY/lH2U6bvaVmWZJcgp9W1pT5bLlCGzJsqjl
-        jcJDJ048FEFxvVV6vmd/yGBO0k39850hKvaRtk7DqEA4jp4HVdbTifT9xrgjSU6t+2/7R3
-        lM5HhOE40+UHRq8cLANC8XfYZ1kXv+CFuiPpYQ4ECBJxNO/pV9bC5CBi+2ZAutZMjaCeK6
-        QtC2hB5v2gxR3ET5PDxUcYTz9E/THtRmalvCCfNQk5lJOv+TLNbHQq9reyk0Ew==
-From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>
-Cc:     =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?q?Miqu=C3=A8l=20Raynal?= <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH net-next v9 16/16] MAINTAINERS: add Renesas RZ/N1 switch related driver entry
-Date:   Fri, 24 Jun 2022 16:40:01 +0200
-Message-Id: <20220624144001.95518-17-clement.leger@bootlin.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220624144001.95518-1-clement.leger@bootlin.com>
-References: <20220624144001.95518-1-clement.leger@bootlin.com>
+        with ESMTP id S232800AbiFXOxU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 10:53:20 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72F6581702;
+        Fri, 24 Jun 2022 07:49:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C4C46B82929;
+        Fri, 24 Jun 2022 14:49:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC909C34114;
+        Fri, 24 Jun 2022 14:49:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656082173;
+        bh=pZY+pA5AINAjtnkof1xdlWisxtGnP3HBGU+2ebSV7h8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=U4iDyQPS3eVRP4fTQRv7+TVyY6fpy+8zlZxcb+T8qyL7dtsvRNfnudWqIEWGQPkoj
+         +Hcpkq2nJpImcv/t3xq5Fi/nJ7oYjamstZd+E5WKH0Bay189S7iYCdMaW/1VCqddLT
+         yS1EoPCqxs3SmEP1nrR/RYKvUOGIMbjHaXDnoBrOB+TpLMY1nIXOPBn4oT7uxnM5XV
+         GqZgK8Uwvx/kE3+g4byAthuGKTJHSprbfW2zw53H7MsRgfWUn+3hcBfazu3pjnPvG4
+         KIaF8DHOsSgciPBkTZTRoqBMKBkN+ikGFfYwATGBGWYCHax+2SBs1N6L0jzAhJMYnR
+         bsRaAE38EiePg==
+Message-ID: <c90eb127-fa5a-2231-106d-5054e0097281@kernel.org>
+Date:   Fri, 24 Jun 2022 09:49:31 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] arm64: dts: altera: socfpga_stratix10: move clocks out of
+ soc node
+Content-Language: en-US
+To:     niravkumar.l.rabara@intel.com
+Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org
+References: <20220624031017.3247656-1-niravkumar.l.rabara@intel.com>
+ <20220624115911.3389627-1-niravkumar.l.rabara@intel.com>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20220624115911.3389627-1-niravkumar.l.rabara@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After contributing the drivers, volunteer for maintenance and add
-myself as the maintainer for Renesas RZ/N1 switch related drivers.
 
-Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
----
- MAINTAINERS | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e2c3548ec192..4163c072842e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17056,6 +17056,19 @@ S:	Supported
- F:	Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
- F:	drivers/iio/adc/rzg2l_adc.c
- 
-+RENESAS RZ/N1 A5PSW SWITCH DRIVER
-+M:	Clément Léger <clement.leger@bootlin.com>
-+L:	linux-renesas-soc@vger.kernel.org
-+L:	netdev@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
-+F:	Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
-+F:	drivers/net/dsa/rzn1_a5psw*
-+F:	drivers/net/pcs/pcs-rzn1-miic.c
-+F:	include/dt-bindings/net/pcs-rzn1-miic.h
-+F:	include/linux/pcs-rzn1-miic.h
-+F:	net/dsa/tag_rzn1_a5psw.c
-+
- RENESAS RZ/N1 RTC CONTROLLER DRIVER
- M:	Miquel Raynal <miquel.raynal@bootlin.com>
- L:	linux-rtc@vger.kernel.org
--- 
-2.36.1
+On 6/24/22 06:59, niravkumar.l.rabara@intel.com wrote:
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> 
+> The clocks are not part of the SoC but provided on the board
+> (external oscillators). Moving them out of soc node.
+> 
+> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> ---
+>   .../boot/dts/altera/socfpga_stratix10.dtsi    | 56 +++++++++----------
+>   .../dts/altera/socfpga_stratix10_socdk.dts    | 10 ++--
+>   2 files changed, 32 insertions(+), 34 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+> index aa2bba75265f..5c7d926d18f7 100644
+> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+> @@ -97,6 +97,34 @@ intc: interrupt-controller@fffc1000 {
+>   		      <0x0 0xfffc6000 0x0 0x2000>;
+>   	};
+>   
+> +	clocks {
+> +		cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
+> +			#clock-cells = <0>;
+> +			compatible = "fixed-clock";
+> +		};
+> +
+> +		cb_intosc_ls_clk: cb-intosc-ls-clk {
+> +			#clock-cells = <0>;
+> +			compatible = "fixed-clock";
+> +		};
+> +
+> +		f2s_free_clk: f2s-free-clk {
+> +			#clock-cells = <0>;
+> +			compatible = "fixed-clock";
+> +		};
+> +
+> +		osc1: osc1 {
+> +			#clock-cells = <0>;
+> +			compatible = "fixed-clock";
+> +		};
+> +
+> +		qspi_clk: qspi-clk {
+> +			#clock-cells = <0>;
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <200000000>;
+> +		};
+> +	};
+> +
+>   	soc {
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+> @@ -119,34 +147,6 @@ clkmgr: clock-controller@ffd10000 {
+>   			#clock-cells = <1>;
+>   		};
+>   
+> -		clocks {
+> -			cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
+> -				#clock-cells = <0>;
+> -				compatible = "fixed-clock";
+> -			};
+> -
+> -			cb_intosc_ls_clk: cb-intosc-ls-clk {
+> -				#clock-cells = <0>;
+> -				compatible = "fixed-clock";
+> -			};
+> -
+> -			f2s_free_clk: f2s-free-clk {
+> -				#clock-cells = <0>;
+> -				compatible = "fixed-clock";
+> -			};
+> -
+> -			osc1: osc1 {
+> -				#clock-cells = <0>;
+> -				compatible = "fixed-clock";
+> -			};
+> -
+> -			qspi_clk: qspi-clk {
+> -				#clock-cells = <0>;
+> -				compatible = "fixed-clock";
+> -				clock-frequency = <200000000>;
+> -			};
+> -		};
+> -
+>   		gmac0: ethernet@ff800000 {
+>   			compatible = "altr,socfpga-stmmac-a10-s10", "snps,dwmac-3.74a", "snps,dwmac";
+>   			reg = <0xff800000 0x2000>;
+> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+> index 5159cd5771dc..48424e459f12 100644
+> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+> @@ -52,12 +52,6 @@ ref_033v: regulator-v-ref {
+>   	};
+>   
+>   	soc {
+> -		clocks {
+> -			osc1 {
+> -				clock-frequency = <25000000>;
+> -			};
+> -		};
+> -
+>   		eccmgr {
+>   			sdmmca-ecc@ff8c8c00 {
+>   				compatible = "altr,socfpga-s10-sdmmc-ecc",
+> @@ -113,6 +107,10 @@ &mmc {
+>   	bus-width = <4>;
+>   };
+>   
+> +&osc1 {
+> +	clock-frequency = <25000000>;
+> +};
+> +
+>   &uart0 {
+>   	status = "okay";
+>   };
+
+What about arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts?
+
+Also for future versions, please use a 'PATCHv#".
 
