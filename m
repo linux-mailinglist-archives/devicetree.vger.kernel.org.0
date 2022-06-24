@@ -2,112 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 808E855A3AE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 23:37:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65C8555A3BC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 23:39:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231732AbiFXVgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 17:36:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36252 "EHLO
+        id S231834AbiFXViO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 17:38:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231757AbiFXVgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 17:36:20 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE2A86AF6
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 14:36:18 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-2ef5380669cso36560257b3.9
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 14:36:18 -0700 (PDT)
+        with ESMTP id S231936AbiFXViO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 17:38:14 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F5C1275CA;
+        Fri, 24 Jun 2022 14:38:13 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id mf9so7345256ejb.0;
+        Fri, 24 Jun 2022 14:38:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=cGTylEOWtLkcLIsxYVoGzfL+q0nSap9+8NoSlXBuXe4=;
-        b=cmDy8lsyV2rPNiNRuYkEb5rHWD8XZVHKqJZAeKf3TnWZFLlj+/DTdLUMbXEmtTuv9s
-         4KLbNJHfJqFtWZDtoSIB0jA5BkjqsNets6Rbr/qrINRnJTlQirI2k20GLR/Ql3zSe9Wq
-         Pb5aXUq1NZ5lDKQQMD7a39HTujZM62LjFsQtIqhJoX7pGAoQGMqpg1+inV2FswApITO2
-         CmT3BH618Yqgt62CZsqxQ5e1jZosKUxMbd0fExcTgjLrAxPBxkG7CVcmjw/O8dvTmdbG
-         l6UouC6UHf0T16KEM/mMUtmMtJOh0vyJl540PkTEmkGnFr3Ic8OHzXavkS9AsevSsxDH
-         c7uQ==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Z7I2IWqKLu6VPHBvWw1URaGy2Jyv3oxdY6jM6lX88zs=;
+        b=k+Vfhz0lL+B3LoYbvPyQG/5fvwgXMJcURocf1PXdAESeBJ5/ZIVKpR3YhM8o5GlYVR
+         ZaXwuL9elL/yvCgiszgd8soJF5mPFXukWv7pS47957scf6StxS5iLm5I3x2dlXoMhLds
+         aCuAIX+hFi9szf0BakWJe+ZHe1oFq4Cq2wZG0oIrbT4IluoXGdlxgG0yflNFu/X+VPnV
+         xUkobwKrOzArh3EwHJXed6oBi6ZPy98eqOJIF/WmpwolaYyEtBulC0B4Q/fHWHmafmJC
+         65haMHPCDnWqTlgacLDCcLzjUr/ruckPTlQjMnZm588i5B/K9AfXb9MlZB5xBqvsh/Q7
+         7Sbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=cGTylEOWtLkcLIsxYVoGzfL+q0nSap9+8NoSlXBuXe4=;
-        b=G/tHQ6q9GmQt8G50duV8Ww2W0Lc+d3Fv2ZLSobMv6EFgffI0NKELhG+WN+hi8SBS8I
-         6cZ7YoKBTCRMB42G9/ULj0RGVa+wzix8wmMr0aBml0VSwZj0qVKERIzsIv1cCJqjLOoM
-         Z0EfOKAr2mPZ+11zOX3GFWso4jFNkc6oZ5hiKLFdZ67nuXmdILtoO3PCS2Diz97F+4+8
-         lAYZB0M9X9pOnz1nXLR+bbRlr2zR/76ArzE50ejWUaRwbVGcRioX6SezHzKxhHjiojvZ
-         a0Gegd5i+zxmFbAKo19Wv/wVFuhlcK7JluSU7tl8qd3EkF3CUx/7Th9Vq2qC5NDNU+4A
-         R5gw==
-X-Gm-Message-State: AJIora861QazbwGb4cdMbCdbmTH2gtPOCJjXxkf06HhR10FBWVzzCH9p
-        2//MFVbFctW9N1pf9KAgl46R8Oyzeq8S7TzBEnBPZw==
-X-Google-Smtp-Source: AGRyM1v7bTPADut4sgzebmriq1YeKB4PBfCCubvcMefuaUSK78eOKMtZqJdaXmsewcrgPAHhOp3HhKhV310/qVQEQyc=
-X-Received: by 2002:a0d:cc54:0:b0:317:752c:bcf3 with SMTP id
- o81-20020a0dcc54000000b00317752cbcf3mr1068283ywd.437.1656106577632; Fri, 24
- Jun 2022 14:36:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220623115631.22209-1-peterwu.pub@gmail.com> <20220623115631.22209-13-peterwu.pub@gmail.com>
- <CACRpkdZatfOFmeGXepTrjAk1or4W6KNUEaXnP+srRebfM=52AA@mail.gmail.com>
- <CACRpkdbzZqerE_2PeGMUWRbtjK=9P8V763cj83ZqjP4n6AVHAg@mail.gmail.com> <CA+hk2fZEG0TxMGhGJY21w=MmXgKsH5mYCYynQV1jbhpOCyf3qg@mail.gmail.com>
-In-Reply-To: <CA+hk2fZEG0TxMGhGJY21w=MmXgKsH5mYCYynQV1jbhpOCyf3qg@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 24 Jun 2022 23:36:06 +0200
-Message-ID: <CACRpkdYoR9SGQdxJQmUReP7SLk_BxG0yuTWAL__o90PuO8sCqA@mail.gmail.com>
-Subject: Re: [PATCH v3 12/14] leds: mt6370: Add Mediatek MT6370 current sink
- type LED Indicator support
-To:     szuni chen <szunichen@gmail.com>
-Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Z7I2IWqKLu6VPHBvWw1URaGy2Jyv3oxdY6jM6lX88zs=;
+        b=T1DO8R/VSLeZvD6gD+2sisw1Lgg173APE7/2kNGz9FG0dh79zZnvXOZAnjuKMXOhn6
+         BFFGNvmgft671OzpukiFy0UQjzpWBkk+2pczw175muxRzlK/4dlVvaF8AS0tBBzuH2s9
+         SwLYWxNWneuosCIeHPOTG1kaGWycKK86iQr7wPhLh2Q/DGsJNvpnkh/mjUzHEfYb0ga9
+         J23X8+53vEL1paClUDkcF91p9DtLkloLvf76BE/vZoH65byGMHh7y8dd3fG8wVQXQX6w
+         keLnC9PYoJ8lKP5Bf0vzhKMTccVye1Yh2OdM2Y0vP07A2WwJZ3EoY9CM9F/6ScwI84MM
+         UWjg==
+X-Gm-Message-State: AJIora/Eg9G6A1QgiBaXD6VsGDP13xkGPTsMOBgE4hnoHWX6oDuUQ/kK
+        qA+/GmEPD8JxW7z2fwBPAWc=
+X-Google-Smtp-Source: AGRyM1sLDJpOEW6C4Z9xCjLlXqYqDYeusKaE0xHWbYmPGL57FD+lUDfwELvOUEEdLLeJfFxPkUfW/A==
+X-Received: by 2002:a17:907:6ea0:b0:726:3068:d511 with SMTP id sh32-20020a1709076ea000b007263068d511mr1011338ejc.764.1656106691884;
+        Fri, 24 Jun 2022 14:38:11 -0700 (PDT)
+Received: from skbuf ([188.27.185.253])
+        by smtp.gmail.com with ESMTPSA id b20-20020a0564021f1400b0042e15364d14sm2873701edb.8.2022.06.24.14.38.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Jun 2022 14:38:10 -0700 (PDT)
+Date:   Sat, 25 Jun 2022 00:38:08 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
-        Helge Deller <deller@gmx.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
-        alice_chen@richtek.com, Linux PM <linux-pm@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        ChiYuan Huang <cy_huang@richtek.com>, chiaen_wu@richtek.com,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Marek Vasut <marex@denx.de>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: net/dsa: Add spi-peripheral-props.yaml
+ references
+Message-ID: <20220624213808.u7mp5srxfjjv2bk4@skbuf>
+References: <20220531220122.2412711-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220531220122.2412711-1-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 24, 2022 at 9:20 AM szuni chen <szunichen@gmail.com> wrote:
+On Tue, May 31, 2022 at 05:01:18PM -0500, Rob Herring wrote:
+> SPI peripheral device bindings need to reference spi-peripheral-props.yaml
+> in order to use various SPI controller specific properties. Otherwise,
+> the unevaluatedProperties check will reject any controller specific
+> properties.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
-> > I meant this one. Move that into drivers/leds/flash
-> >  drivers/leds/flash/leds-mt6370-flash.c             |  657 ++++++++++++
->
-> In next version, I'll use "leds: flash: ......" instead of "leds:
-> flashlight: ......" in subject.
-> May I confirm that the driver has already in the drivers/leds/flash,
-> so I don=E2=80=99t have to move it in next version?
-
-Yeah you're right, I am just writing wrong comments today, it is already
-correct. Sorry!
-
-Yours,
-Linus Walleij
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
