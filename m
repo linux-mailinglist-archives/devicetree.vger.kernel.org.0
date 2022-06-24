@@ -2,68 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F33C559F93
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 19:26:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 042C2559F4E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 19:26:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231757AbiFXRIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 13:08:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60096 "EHLO
+        id S232018AbiFXRMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 13:12:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231737AbiFXRIS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 13:08:18 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE5404D611
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:08:17 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id g26so5963994ejb.5
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:08:17 -0700 (PDT)
+        with ESMTP id S232013AbiFXRMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 13:12:45 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8404522CB
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:12:43 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id o16so3981792wra.4
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:12:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=B3kbilczJ8RqirddUQQRugRdMnYuaeBC6YottAZodwA=;
-        b=HRBaG764wephebWOC8/49MIYVztpToSxXeB0QsyV22rOgy8GG7+IV6JbhsDyVBO8Gv
-         fxdW2KYjaM16uOxKmVZSOuAJAKR/kFTEs02n7ITm9uXnV10YRgVgu9jfruDqQiarOpft
-         fxeakHN0/TAdKp1Qml2w6Gd0Szlu+Ln1r9h1el/0hvvNw7PblN2PimBFJPmH9TzJ+AXp
-         lsywsu8YIyLROyBxAZPk0rjDc1yc7bTet143kWB634CeJ7brnl+opM0bkpYwWfF9p/ra
-         PHvm2mrFQm+eR3dnUFyfvTbOKITIJdV47k4+pjsbbk/qAhDoowIx0Z3+JOFbDRAlgyq4
-         Q4iQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=S1enbfspzMYdsg8aLcCCE6tVeP2Nz6635Lj1zrxNDvo=;
+        b=fTK+IFWkefY1750lr/cELH860S2T1skNE/I48GKN1yHBXl5MnjftqDuw4DBNfrRL4e
+         8PqoLq3x+vFEW+pUf8bz9WWSrvD7YwmyCdKwg2h96SFAPYdGJZCSAiJ/hC8xhzPqpBJv
+         jvOznwmQT5fCL67U+XjRXztPqJIRI4UIgY0F4yQ45LaJtHCoShb+3uqdvm984lTdjWb2
+         YBvjd4YRFKI8nKvzmiM/+o1VsGoSGe2Bj8jw98dd/6so7pX5oHZoSiEHAJ0j3C3KH2S1
+         hz/nfxnmp+bd/XHxpBRN9uzCdSiKJVf4tBwz0gRnApaP4p5yUUMgktxeIwOGcqLl82sz
+         3yfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=B3kbilczJ8RqirddUQQRugRdMnYuaeBC6YottAZodwA=;
-        b=qeRZeW4jsP2rJbFlOhMfXkcOFmAinjQe6eVq9DlZlhgyg41ulSIWQD57czUGin7J2e
-         BQrAQssnlDt5ZzlPQ3Wma0IMPM28p4XKxsevjvvgLh79hFE9Fh9rjJ+tKJ9QgCAYwL58
-         JMz2YyoT05+/PhP+sMgoakV6XXFRXnQlT6ck1Oid89Lxp3rbu18goPxIJ/wVu4zWWUJC
-         GMfBNLrggst9TmQjNBytzW1pIs0/pu8r3C25QetBbmv0PKo4MuPjJD7bzLwOfWoLE/R5
-         VNDF0PwE3uClwV6SLjSnCKlULpaAP5N0rLkgZt/MlFF+v+YjIdFKn+cGEgFUhRHsj0hC
-         4kyQ==
-X-Gm-Message-State: AJIora+o6AUpw7gu31v8K5HjVsX4TykbNgaFgOiarT7t25hIRKXOh3VD
-        MeSxotw+zLaV4Ko7iQ7gvM4Qqg==
-X-Google-Smtp-Source: AGRyM1uof2YdzllXeIBAMDcOip+DoGmlHYw/RrLhxqqbIl9BLXRgli7t/mzBKTyj/GlSUCJJRAzFSQ==
-X-Received: by 2002:a17:907:9727:b0:6fe:d943:312f with SMTP id jg39-20020a170907972700b006fed943312fmr14178971ejc.263.1656090496153;
-        Fri, 24 Jun 2022 10:08:16 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i24-20020a170906251800b007262a1c8d20sm1433742ejb.19.2022.06.24.10.08.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Jun 2022 10:08:15 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] riscv: dts: align gpio-key node names with dtschema
-Date:   Fri, 24 Jun 2022 19:08:11 +0200
-Message-Id: <20220624170811.66395-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        bh=S1enbfspzMYdsg8aLcCCE6tVeP2Nz6635Lj1zrxNDvo=;
+        b=qChJnHEDEeZGtG7baBiTBg2q2jABNe887KxVREufHIe5L4CxxXW2meKpG5rFBOETM7
+         wlEWIWQIkh+1qvvg3RpYc3/8FeoRCLBj16MokrVgR4eUSfppzdFmsd21JqViwslt7s/F
+         6BlZkNVCsraofScfhl/kKQvOR1pO2z6jRGAhTFoTe9x1v4ZImNoXucwOQqHugcXHOOaF
+         J4m4DbV/sRM60QL+fZcZDLEMS5r8RntKWAVIVlvz0ZcbrE8aEjues1HdoGTrnKf7fv4/
+         KeRlyXR+OT3bsEfwepSka1NoeGPrdaiY0YUQhqZHQPDWHpQGJU8ONFQTUHjRdclI+ddV
+         FCiw==
+X-Gm-Message-State: AJIora/zfLCDo+xc3QUae/rIjwxd3PNuohgTzYeCuhKdUReiavDD8Jin
+        bkeQPQElwvhtqtMguu7pSpH9Eg==
+X-Google-Smtp-Source: AGRyM1ukgR0OpkdFo6A2uHwXamZLQR8RW4cLRijXAiSEjqw/+r2pulA3xRBZgK7698u6EU50UchjKA==
+X-Received: by 2002:a05:6000:223:b0:21b:b95e:a522 with SMTP id l3-20020a056000022300b0021bb95ea522mr196783wrz.46.1656090762538;
+        Fri, 24 Jun 2022 10:12:42 -0700 (PDT)
+Received: from [192.168.0.237] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id h6-20020adffd46000000b0021b96cdf68fsm2770955wrs.97.2022.06.24.10.12.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Jun 2022 10:12:41 -0700 (PDT)
+Message-ID: <d8fa1d0e-99cd-9bcf-3e17-7673553c875e@linaro.org>
+Date:   Fri, 24 Jun 2022 19:12:40 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH net-next v1 2/9] dt-bindings: Add Tegra234 MGBE clocks and
+ resets
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Bhadram Varka <vbhadram@nvidia.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jonathanh@nvidia.com, kuba@kernel.org, catalin.marinas@arm.com,
+        will@kernel.org, Thierry Reding <treding@nvidia.com>
+References: <20220623074615.56418-1-vbhadram@nvidia.com>
+ <20220623074615.56418-2-vbhadram@nvidia.com>
+ <53e8aa2f-f5f6-43d9-c167-ec5c5818dfb0@linaro.org> <YrXkpiaxqjzJdaL9@orome>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YrXkpiaxqjzJdaL9@orome>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,101 +79,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The node names should be generic and DT schema expects certain pattern
-(e.g. with key/button/switch).
+On 24/06/2022 18:21, Thierry Reding wrote:
+> On Fri, Jun 24, 2022 at 06:02:58PM +0200, Krzysztof Kozlowski wrote:
+>> On 23/06/2022 09:46, Bhadram Varka wrote:
+>>> From: Thierry Reding <treding@nvidia.com>
+>>>
+>>> Add the clocks and resets used by the MGBE Ethernet hardware found on
+>>> Tegra234 SoCs.
+>>>
+>>> Signed-off-by: Thierry Reding <treding@nvidia.com>
+>>> Signed-off-by: Bhadram Varka <vbhadram@nvidia.com>
+>>> ---
+>>>  include/dt-bindings/clock/tegra234-clock.h | 101 +++++++++++++++++++++
+>>>  include/dt-bindings/reset/tegra234-reset.h |   8 ++
+>>>  2 files changed, 109 insertions(+)
+>>>
+>>> diff --git a/include/dt-bindings/clock/tegra234-clock.h b/include/dt-bindings/clock/tegra234-clock.h
+>>> index bd4c3086a2da..bab85d9ba8cd 100644
+>>> --- a/include/dt-bindings/clock/tegra234-clock.h
+>>> +++ b/include/dt-bindings/clock/tegra234-clock.h
+>>> @@ -164,10 +164,111 @@
+>>>  #define TEGRA234_CLK_PEX1_C5_CORE		225U
+>>>  /** @brief PLL controlled by CLK_RST_CONTROLLER_PLLC4_BASE */
+>>>  #define TEGRA234_CLK_PLLC4			237U
+>>> +/** @brief RX clock recovered from MGBE0 lane input */
+>>
+>> The IDs should be abstract integer incremented by one, without any
+>> holes. I guess the issue was here before, so it's fine but I'll start
+>> complaining at some point :)
+> 
+> These IDs originate from firmware and therefore are more like hardware
+> IDs rather than an arbitrary enumeration. These will be used directly in
+> IPC calls with the firmware to reference individual clocks and resets.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If they are actually shared with firmware, it's fine. Thanks for
+explanation.
 
----
+> We've adopted these 1:1 in order to avoid adding an extra level of
+> indirection (via some lookup table) in the kernel.
 
-See: https://lore.kernel.org/all/20220616005224.18391-1-krzysztof.kozlowski@linaro.org/
----
- arch/riscv/boot/dts/canaan/canaan_kd233.dts     | 2 +-
- arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts  | 2 +-
- arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts | 2 +-
- arch/riscv/boot/dts/canaan/sipeed_maix_go.dts   | 6 +++---
- arch/riscv/boot/dts/canaan/sipeed_maixduino.dts | 2 +-
- 5 files changed, 7 insertions(+), 7 deletions(-)
+This if fine, but some folks (including myself once...) define in
+bindings register values and offsets without any actual need. I was
+afraid that's the case here.
 
-diff --git a/arch/riscv/boot/dts/canaan/canaan_kd233.dts b/arch/riscv/boot/dts/canaan/canaan_kd233.dts
-index 039b92abf046..f72540bd14a3 100644
---- a/arch/riscv/boot/dts/canaan/canaan_kd233.dts
-+++ b/arch/riscv/boot/dts/canaan/canaan_kd233.dts
-@@ -35,7 +35,7 @@ led1 {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		key0 {
-+		key {
- 			label = "KEY0";
- 			linux,code = <BTN_0>;
- 			gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
-diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts
-index b9e30df127fe..8abdbe26a1d0 100644
---- a/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts
-+++ b/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts
-@@ -47,7 +47,7 @@ led2 {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		boot {
-+		key-boot {
- 			label = "BOOT";
- 			linux,code = <BTN_0>;
- 			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
-diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
-index 8d23401b0bbb..3c6df1ecf76f 100644
---- a/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
-+++ b/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
-@@ -52,7 +52,7 @@ led2 {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		boot {
-+		key-boot {
- 			label = "BOOT";
- 			linux,code = <BTN_0>;
- 			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
-diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
-index 24fd83b43d9d..03c9843d503e 100644
---- a/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
-+++ b/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
-@@ -46,19 +46,19 @@ led2 {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		up {
-+		key-up {
- 			label = "UP";
- 			linux,code = <BTN_1>;
- 			gpios = <&gpio1_0 7 GPIO_ACTIVE_LOW>;
- 		};
- 
--		press {
-+		key-press {
- 			label = "PRESS";
- 			linux,code = <BTN_0>;
- 			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
- 		};
- 
--		down {
-+		key-down {
- 			label = "DOWN";
- 			linux,code = <BTN_2>;
- 			gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
-diff --git a/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts b/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts
-index 25341f38292a..7164ad063178 100644
---- a/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts
-+++ b/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts
-@@ -23,7 +23,7 @@ chosen {
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
--		boot {
-+		key-boot {
- 			label = "BOOT";
- 			linux,code = <BTN_0>;
- 			gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
--- 
-2.34.1
-
+Best regards,
+Krzysztof
