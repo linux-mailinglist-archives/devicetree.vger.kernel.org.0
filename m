@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E5B1559F41
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 19:26:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93EAA559FA3
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 19:26:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232361AbiFXRUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 13:20:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40348 "EHLO
+        id S231228AbiFXRYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 13:24:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232366AbiFXRUK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 13:20:10 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 046DC68C4D
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:19:34 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id z11so4380277edp.9
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:19:34 -0700 (PDT)
+        with ESMTP id S229533AbiFXRYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 13:24:23 -0400
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25DA5FD08
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:22:59 -0700 (PDT)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-101d96fe0a5so4682992fac.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:22:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KS34vGYRSEeom0zBAYcIutCueN9pUJGrVfFONWYZS6I=;
-        b=MQpUNRQdH2CMCUcbwB0qvConkQ0Y41WRRGOC1mrEUw9Dc+Sjbe5enP+cumPAVrTUta
-         B+L0hqHj5RQsjBSMgV4CGhybdo47EDlRYS4obEZpRzwd3HfVDa3Y7Vba+ZF0qcqQfug5
-         o2NeMp7YD0JEJ5/GBVm5lYHwBjXzgpkYuIc6zqMEpWiFBtolOa4APvfnYMwba9JcrQqq
-         6sx4bIK6zd/7hxghZEqNNQajIxkpCGl7oE6bbMHN1BtW/cttI4DDeII8LOy6mU2EMYIX
-         X4MCTblnDY8ac2pnui+utOl8zKefVGlEhgZZl8Q3ijRsWCeXPKrqnQSz7XsKz8bb6Fq4
-         XyVg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=L1LsHWFKG+99YZtTVfbZXke7/Fw4nSx0rDnGuVjotKk=;
+        b=GkZ3LIEaKHWfF8ytJkF4Mrlr6+RDIaitMljk54b47mw8ul6p92zvtqi+xQBIacQEt+
+         u/tvl33HFDzxpwNTXN33W/oCxmlBm5AeigeFNRSzSaEuzRMQOR+cwlAoYJQWvDyk52Zb
+         7F2i9YYM/6dQ9zYGPTdhBugSPgsQhwDSTEY7Wwq1wC6MfJEYGUNCuTqA7t0CfGiZNbu7
+         svIV17dSTY0oEiXrDvpcVcrzZByNsKTzaYmQcRIv5x81I0q9dMGJGe5V+9t66m8EMY8S
+         23nnteJQ9uELdnWI89VrHE7MA9ul0RwytytUgBRb3vGquVBqB5HWeiX0paFHYymm/ntQ
+         K5rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KS34vGYRSEeom0zBAYcIutCueN9pUJGrVfFONWYZS6I=;
-        b=CrsNm2GCu/Ug9UUbR9T2De0q+p/fDz71r6j7KhCj1HQg3iBUv6Q+xBEmGI/vh1zvWF
-         TnuUgEMOCmA20ck32mCA0wn0TuVLrwgRtfptT5Zvv1ZqYeWCrMU05xvxUOmR7EXHFOB0
-         a2p7JImsQloxr1hVRylZYzCP/zVgnRImzKelzXvudGfzg0XR2s/6JYh6WXXzk1k4OO/F
-         Ccpsq+/mJ8nMWZTDy+ZE3FvyiAMAQlEhh65BbxC5y6h9eWAFTH3shAvRuC63kgjNf/LW
-         uH1LKdQvK7iFXYHFQN2yq2r6OzGzbfNh4eYZ+1Yo0qsNtgZoizg1eSqEGXoQB4DNvPsV
-         y65A==
-X-Gm-Message-State: AJIora/z99djUFCZnGS3NvNK7E5qn1Cwhv+qXZZ3z+d7AgsPSdi1NUSh
-        lZjhBup0uPYmAdesvgVSQ3Huog==
-X-Google-Smtp-Source: AGRyM1sy0G4UxBbA4d5YsqvS5law/GMKQEGgXv43hk/UUfo4dMXlTbf3wk4hUoOrGV/kkymXUz9C8Q==
-X-Received: by 2002:aa7:c6d9:0:b0:435:706a:4578 with SMTP id b25-20020aa7c6d9000000b00435706a4578mr196157eds.24.1656091173189;
-        Fri, 24 Jun 2022 10:19:33 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i24-20020a170906251800b007262a1c8d20sm1445456ejb.19.2022.06.24.10.19.31
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=L1LsHWFKG+99YZtTVfbZXke7/Fw4nSx0rDnGuVjotKk=;
+        b=2UPXP7RahrlFxaBOwN4wGIAStjpOyZjg4k9kt/CQKqrpNAxD8uz/PqzD/R1BeWi1uc
+         hvUUCY1mnalngGg2sl43mCPj/gK0EIlM0aUeCCD8RDx/t/egRtPdtvQZlTTeNfanKNjP
+         tF7jBCV/gJDPqqEcAdrzMrFZPZElTG6Fb6TqAkflrqgZf5NmXLSJockL7xzlEpfhSoOA
+         6w2x75aBoDW2VvmSFdggo/KL0nvpeAuGJAdDwXRDPGPLbsBr8I/7SJLsAoIzaNE9dzRC
+         4Q12NKCXyazx4cciIWgia0teUtz7sh/K2/HkiftXtSgjJAvM54mU0MOcp7dvdf7cRvyM
+         NSKw==
+X-Gm-Message-State: AJIora9KyVmJoP5K6REfjtwc+/NmruLyi+7jA8apRxPUvkOfIMIYUFgq
+        4Enc7GtzX/mu00UdFTYhypK+Mg==
+X-Google-Smtp-Source: AGRyM1ucIUqODgba9WnMdqPTLnQQHUmgA+7AYLAwY36RlBgRBLiafTzPlKwMPpBZuzNiDyRcYWE8Dw==
+X-Received: by 2002:a05:6870:17a9:b0:fb:4e7d:5b95 with SMTP id r41-20020a05687017a900b000fb4e7d5b95mr2736602oae.286.1656091370937;
+        Fri, 24 Jun 2022 10:22:50 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id a28-20020a0568301ddc00b00616b06d520dsm651264otj.5.2022.06.24.10.22.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Jun 2022 10:19:32 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     gregkh@linuxfoundation.org, mpe@ellerman.id.au,
-        abrodkin@synopsys.com, agross@kernel.org, robh@kernel.org,
-        vz@mleia.com, Sergey.Semin@baikalelectronics.ru,
-        bjorn.andersson@linaro.org, linux-usb@vger.kernel.org,
-        balbi@kernel.org, vgupta@synopsys.com, krzk@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        patrice.chotard@st.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, paulus@samba.org,
-        linux-arm-kernel@lists.infradead.org, fancer.lancer@gmail.com,
-        linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, benh@kernel.crashing.org,
-        khuong@os.amperecomputing.com
-Subject: Re: (subset) [PATCH RESEND v9 2/5] arm: dts: lpc18xx: Harmonize EHCI/OHCI DT nodes name
-Date:   Fri, 24 Jun 2022 19:19:30 +0200
-Message-Id: <165609116546.68884.16917167353605359946.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220624141622.7149-3-Sergey.Semin@baikalelectronics.ru>
-References: <20220624141622.7149-1-Sergey.Semin@baikalelectronics.ru> <20220624141622.7149-3-Sergey.Semin@baikalelectronics.ru>
+        Fri, 24 Jun 2022 10:22:50 -0700 (PDT)
+Date:   Fri, 24 Jun 2022 12:22:48 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v8 1/7] dt-bindings: clock: add QCOM SM8450 camera clock
+ bindings
+Message-ID: <YrXy6H+GZ0jhM3R/@builder.lan>
+References: <20220624115917.2524868-1-vladimir.zapolskiy@linaro.org>
+ <20220624115917.2524868-2-vladimir.zapolskiy@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220624115917.2524868-2-vladimir.zapolskiy@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,21 +74,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Jun 2022 17:16:18 +0300, Serge Semin wrote:
-> In accordance with the Generic EHCI/OHCI bindings the corresponding node
-> name is suppose to comply with the Generic USB HCD DT schema, which
-> requires the USB nodes to have the name acceptable by the regexp:
-> "^usb(@.*)?" . Make sure the "generic-ehci" and "generic-ohci"-compatible
-> nodes are correctly named.
-> 
-> 
-> [...]
+On Fri 24 Jun 06:59 CDT 2022, Vladimir Zapolskiy wrote:
+[..]
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> new file mode 100644
+> index 000000000000..e3503e322ffa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,sm8450-camcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Camera Clock & Reset Controller Binding for SM8450
+> +
+> +maintainers:
+> +  - Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> +
+> +description: |
+> +  Qualcomm camera clock control module which supports the clocks, resets and
+> +  power domains on SM8450.
+> +
+> +  See also dt-bindings/clock/qcom,camcc-sm8450.h
 
-Applied, thanks!
+Please prefix this path with include/
 
-[2/5] arm: dts: lpc18xx: Harmonize EHCI/OHCI DT nodes name
-      https://git.kernel.org/krzk/linux/c/986fd5fe55cb369c34a1dc65b1469aac536a6d50
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Regards,
+Bjorn
