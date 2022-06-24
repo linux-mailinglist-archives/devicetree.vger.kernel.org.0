@@ -2,126 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D643559365
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 08:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9B8A5593F8
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 09:12:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbiFXG1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 02:27:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38844 "EHLO
+        id S229834AbiFXHMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 03:12:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229734AbiFXG1e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 02:27:34 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17F82506FD;
-        Thu, 23 Jun 2022 23:27:34 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id x3so2806460lfd.2;
-        Thu, 23 Jun 2022 23:27:34 -0700 (PDT)
+        with ESMTP id S229523AbiFXHMJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 03:12:09 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8700647A8
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 00:12:07 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id c65so2162150edf.4
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 00:12:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=/sedk71D7R4whH0Mv3CPlpRx99+rEAt+wQi/LXeqlJs=;
-        b=HavAjAmztdTX8MaSJjnLsWrw7E2g13xom9bIrP01fLE66JN0frGA+6h/aAr9xNItoC
-         cYKfDVanr4buHuTF6YUA/qHPPBxVjWh7GkcwLM6tYp5qzfZVS9+EVMgqTaD262Ur9Osb
-         Ga/tJHLPd5S82CnSXcYsMU12nyZBkxZH/yN2B0LoNw/Bn/AnfRHPGfJoP42dCXABNOIe
-         MbUrDDBEZ/8U2VwQAYqdqn9IpDbCPR9wLMcYc6kl7ImUtXJdG8zhaIsJkAPEyKdKQyot
-         T/FNIg25FJaKy7r+gTimOzEkCIcaEZ8d5P5kCF8N5us40ImcfYC0XQjfk9Wqbu4dwDYk
-         yQiA==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=2gnwhLkz//Lr9PwS+PlyoY2fhYDAe2RIemWacp+cIxw=;
+        b=KWHKUG0NXbook3uGdrrcwExPIs859eoqcM8phquK3Kl8hEXRSIi7nrSPBMWE0x3fKi
+         SoGNjhtF7g5GAcjGbzI0MytmCMVGg+p3g0NMSyAwYhO+9VPwZzIKWNx0BvPVX14Wtqnh
+         NQetHwhDwRF8cR4IVHxYjH5sJzF/vFbVMjYqQ+QTMYksii1OEO17kSqIqRvZDFB/u5vm
+         ev9DVQr2N4I+hOjvDcuD4BbiFm1bTrMFuuLkZDYaMEN4b+kZGBhDiW7drkSpBEJ2Nv1S
+         B2k0pZ/pMzSRxMjzke5boTaX3XHDN9juBPwlQDoVmG+TGeAPFqFHMPXgCqMAXzRfGJ9q
+         jkBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/sedk71D7R4whH0Mv3CPlpRx99+rEAt+wQi/LXeqlJs=;
-        b=QHn00uUqUh/DQHz3mJOt2p4qgVceGBJ4CqNOu5MMFFhVpz3l9SYnQ7X203WfD9lR0G
-         qJGdedka5hmnWphWvdAYbRizRKUkSAdSw6YnXm3Eq0KQYdegegM54Nbnjsp01catlWAu
-         4F19M1Am89iYEWXRvDBkMzw5EljAg1KmtZpVceKwi3MjmNWoJdQDjsl1hU2m6evSTNmk
-         pW85os/jxDrId53JyY+ST3HBxLWTow9d9RqscQYXfvG0e7eVcOTvtKidwouy6gkIx/lM
-         HfuAYnjUkQC/An+vH+KkXGtAsvkNwgbsEHIUfgxWtzBp7DvS2gcl2G6aZ0dmq8Iq4tPv
-         ezFA==
-X-Gm-Message-State: AJIora+RezNQCn6roKdMo7jV3pGjeMoFyPIHISAGWnZHu+NDq21x+Six
-        5Mm+mP4l72QQvqx+v7T7W/3W3Oc5QQAcVQ==
-X-Google-Smtp-Source: AGRyM1t2xOfIH1PjMFYNiUJToLBqF+8bYFknvT3QPsb6KmxgwD0YC4nF5oNJ6hT9Tzj0wy38yr/ieA==
-X-Received: by 2002:a05:6512:32c2:b0:47f:9c32:645 with SMTP id f2-20020a05651232c200b0047f9c320645mr7144875lfg.312.1656052052353;
-        Thu, 23 Jun 2022 23:27:32 -0700 (PDT)
-Received: from gmail.com (82-209-154-112.cust.bredband2.com. [82.209.154.112])
-        by smtp.gmail.com with ESMTPSA id q14-20020ac24a6e000000b0047255d2117bsm214407lfp.170.2022.06.23.23.27.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jun 2022 23:27:30 -0700 (PDT)
-Date:   Fri, 24 Jun 2022 08:29:20 +0200
-From:   Marcus Folkesson <marcus.folkesson@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Kent Gustavsson <kent@minoris.se>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 02/10] iio: adc: mcp3911: use resource-managed version of
- iio_device_register
-Message-ID: <YrVZwAqmE0QmibQY@gmail.com>
-References: <20220623170844.2189814-1-marcus.folkesson@gmail.com>
- <20220623170844.2189814-2-marcus.folkesson@gmail.com>
- <CAHp75VcYk9PjQ=3ZPB1f=uQ-1GYKnvV-wsu+-z1z81W_ZHCqrw@mail.gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=2gnwhLkz//Lr9PwS+PlyoY2fhYDAe2RIemWacp+cIxw=;
+        b=fmHC+sEXq5W7Guq9cs11X0kY6cZj/wFrjLXpOXCeeH3l+22SY1VG98av8yAS+F05kE
+         S3EAWBP71PIbG/NqOSg3sOic8iZuv2LljphtV24meSld2m+iSZ1ecHjoi+mw3v4Hvy4L
+         5RiaRwXlz2FZJf/MHoGX0UWeJPalq8tHrthQY73ZvfEllrLxH/gskr0s2xOFgQKHqlHI
+         Zcco2FQNZ0QG5qiPMy61SK0Y8/cC5MzyPEQYE5RMifUw8CqnvH/aW0RDJOSJaVj3bHvK
+         PtwWN74UwS2aKPMOLB1eEIYdEjGzB85ZLdeFP55hpy/WdMMvmt5o38v3Pj+M4pR7gwor
+         wW1w==
+X-Gm-Message-State: AJIora81obji7VTK0CEk65tcsBdR96mS6JDTt6YDZdr7c3t8XExuef19
+        uO0jq3dVPY2FjWLxFugL/w9Dhw==
+X-Google-Smtp-Source: AGRyM1slPp5YhKubruMtrStgiaOe29+R5gvoqEqIxtmRCwIsImiR2RA+0bdWl4Ky8ykAKUrV+iSovw==
+X-Received: by 2002:a05:6402:2422:b0:435:6707:7f1f with SMTP id t34-20020a056402242200b0043567077f1fmr15931322eda.38.1656054726537;
+        Fri, 24 Jun 2022 00:12:06 -0700 (PDT)
+Received: from [192.168.0.233] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id e7-20020a170906044700b007030c97ae62sm598868eja.191.2022.06.24.00.12.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Jun 2022 00:12:05 -0700 (PDT)
+Message-ID: <0378a9e1-a2f9-5c7d-2fdd-0a78ff237db9@linaro.org>
+Date:   Fri, 24 Jun 2022 09:12:04 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Z3FU30Rz5qR/KF9m"
-Content-Disposition: inline
-In-Reply-To: <CAHp75VcYk9PjQ=3ZPB1f=uQ-1GYKnvV-wsu+-z1z81W_ZHCqrw@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: (subset) [PATCH 7/7] ARM: dts: aspeed: centriq2400: use qcom
+ compatible
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Steven Lee <steven_lee@aspeedtech.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Ken Chen <chen.kenyy@inventec.com>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        David Wang <David_Wang6097@jabil.com>
+References: <20220529104928.79636-1-krzysztof.kozlowski@linaro.org>
+ <20220529104928.79636-7-krzysztof.kozlowski@linaro.org>
+ <165589305701.29629.10216921074802952879.b4-ty@linaro.org>
+ <CACPK8XfxXi8kQr+vxta8rD6SBgxLf_oBjAH0UkPBacQta552YQ@mail.gmail.com>
+ <84cba0c8-fb31-3314-5e2c-7a0c13030b9a@linaro.org>
+In-Reply-To: <84cba0c8-fb31-3314-5e2c-7a0c13030b9a@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23/06/2022 09:05, Krzysztof Kozlowski wrote:
+> On 23/06/2022 07:34, Joel Stanley wrote:
+>> On Wed, 22 Jun 2022 at 10:17, Krzysztof Kozlowski
+>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>
+>>> On Sun, 29 May 2022 12:49:28 +0200, Krzysztof Kozlowski wrote:
+>>>> "qualcomm" is not a documented compatible and instead "qcom" should be
+>>>> used.
+>>>>
+>>>>
+>>>
+>>> Applied, thanks!
+>>
+>> What tree did you apply this to? Did you get review from the maintainer?
+> 
+> Tree was mentioned below.
+> 
+>>
+>> This board is unmaintained and unused. I would prefer it removed
+>> rather than meaningless fixes be applied.
+> 
+> I can drop the patch. I'll send the patch to remove the board.
 
---Z3FU30Rz5qR/KF9m
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Does your answer also means that you are planning to take these? I am
+going to prepare a pull request to arm-soc so need to know whether to
+keep these or not. I don't have any particular need of handling these
+patches by myself, but I want the issues to get fixed.
 
-Thank you for your comments (all of them) Andy!
-
-On Thu, Jun 23, 2022 at 09:01:59PM +0200, Andy Shevchenko wrote:
-> On Thu, Jun 23, 2022 at 7:40 PM Marcus Folkesson
-> <marcus.folkesson@gmail.com> wrote:
-> >
-> > Keep using managed resources as much as possible.
->=20
-> You may not mix devm_ and non-devm_ API calls like this.
-> So, you rule of thumb that goto is most of the time wrong after devm_ cal=
-l.
-
-Can you please confirm that clocks and regulators are disabled when the
-resources are handed back?
-I cannot see where when I'm trying to follow the code.
-
-Best regards
-Marcus Folkesson
-
---Z3FU30Rz5qR/KF9m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmK1WbsACgkQiIBOb1ld
-UjLgrQ/+N2Ug71ripAScd5r6c8hrLl5oQLFSqMGBgQd4+61MWRNFDHnCVhRp1RyQ
-k3huY0OLvBiwfcM+0FAdRRRz2QzZKQv+D+/XzMzU0LES/QjQN2pAA0nP4Wz46w0g
-u/io/Pb2wdWRKfWKG1Qqh4GsZHmSIrbbZ9Dw1cVUEnSrEVpoZd26ODbwBgll6SGn
-HmWYYM5XuC6vYwR8FhnR2pjFiAvULwPUhCRz7ixZMHhd5BiC9RvbjwDevpnhvmc4
-tkk93qdiWAKYewQbbx8KQg+HrjZbQNyWNYAW1SQ1nXq1KJ9iVmYGnfK72xZfTp+9
-DPG7Q073Au9+CoIAkZBj0qTDMQarsxsLllu8Hc5xgkTLLfNgEQVndHLXmq1968Qa
-KJhOxHDLmthoB46UqSIyV8xE40LHba3djdSZYH9fUEmTd/7gput9G+DMuhPhkwC3
-uMMBohd2rCcwBNLjkhTNY7J7P962JMHCvCLlED3NV4LZJJ58qk21nwHuv34Jgy7W
-ufnu0Skw8pmn6sCwhsfhDB8uPj55Vo9EPZwbw7XyVeRxALmmtMJhGVw49fXv63iy
-i8bYrdnDyNPySs4NQc0m/yyoQMZaxQ0hJEgoUZClzuYjbSb9iKwrLbIix+sF6BYY
-/QLeKN33RNIbcmAJSEplPpJwksm+Nc/I9Q/xdMAx0YlSmLuS0Rg=
-=3Jth
------END PGP SIGNATURE-----
-
---Z3FU30Rz5qR/KF9m--
+Best regards,
+Krzysztof
