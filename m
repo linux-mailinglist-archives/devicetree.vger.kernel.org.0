@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02B77559D9A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 17:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62662559DA5
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 17:51:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232234AbiFXPok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 11:44:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50194 "EHLO
+        id S232363AbiFXPvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 11:51:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232266AbiFXPok (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 11:44:40 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BCB04833D
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 08:44:39 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id lw20so5534698ejb.4
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 08:44:39 -0700 (PDT)
+        with ESMTP id S232245AbiFXPvK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 11:51:10 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7746D4B43C
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 08:51:08 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id w17so3674465wrg.7
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 08:51:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uNpK+mBBTUHQ7WDb+nB+qBpNmtp+L0qJueskM+LbU9U=;
-        b=colwbZfShIhrPFPWp9hacqTOa/0vOIMn9OMChd3IGNCNQ2WFNvUOTQP+DH01Wch4wA
-         N5R8jaUi3Q4a5zzW7+YW03PC78z4RTz9NUftsGrx8vLDpC1e0htx5aNz6grMXok5tQZZ
-         JeHVemmLy+OQxQnoHI8Maqk/Kh8XUVkL09DBJXSQouCNPJ1rJPUjEsBOi/PLPI/lVxEN
-         iN22TymTfg/SUBu9IxFgInrnXfZz1PDvC8R23PKcdtTqlo21bbbDp/+0LU7c1idcyuQb
-         kAQqwtda4WESfmPkAuDDlfpueW0qdQoBx25KS9twW34kvTe8vN2t7hU/r+uakWLwhWUv
-         XOlQ==
+        bh=1CrnY/L8UABvLIJiMmcMINNSOrobx/14XP39GlCqEpM=;
+        b=qbsP+Yas83OsXg6dxt20eN6kIlOkUUXPABbETCOuWL4gVGH2b6AuvYu5lY6rvN6pri
+         jcqUq3lEDC+8y3wrnEgXGfv22m0O+IelPxroHbQakVYvAc1FHzrQcQSO3Cj13afNLKGQ
+         WpOLj9oPWXjaUzHnUp4wMdodCYDHeQolSOTFB8E1ca0NPc5SYpHNQ8N0L3Es1tZFGGJl
+         EeTiVuHVcEeOzhECpGuOZhNDcRtBAudDj8/oaOnIC8bg6oZTXMK47KhCn4DfnJ6Al2Mj
+         eG4AyTGy31hMLmT3Fgg+CYk4swfTZLgFQUECwSdfhE3QoBa9uWdS9TcN8kpPo3IwxnbE
+         1Uzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=uNpK+mBBTUHQ7WDb+nB+qBpNmtp+L0qJueskM+LbU9U=;
-        b=tKBQFxuX2CxglGuXJpneWiLoz3yPMHAEr0hzFhgG8O4cnyJ2NfVpbLR71aEfnYopTM
-         6IFlIFiI+pfLS1zKRW+H6DyW3J50fFSrbKfHCxdY9v7d68ukMl8eCP8xIrCvAXeNub4G
-         fbgSyw7LhzEg3Gn4e1cnCxdzn+XWJlpZ1DZUO6UGVuI5l6F8Xa7m0cVLzK1iXtkF6F8y
-         v0EOcTdBnc0d+PseHsMQ5GRK5yGzTTMCJt1L4V1opqOeJMOVY2OfF9XbxhywmNayUQ7T
-         p9vRlbKQ0LAAuUIxO0NU79Y/Cif/wvGxjbYGZRx9Bs1Pdmz9yXnqB10HHx4Z6iU8EKyD
-         nFmA==
-X-Gm-Message-State: AJIora/pjRrZNbRVoycgKbgllzoNSXp7+PusG69y7H08Dlkxdb+/LLEy
-        Tj1gY9+2et7C5E0DpD9Lh1VUeA==
-X-Google-Smtp-Source: AGRyM1tBon2mhw6kEmJOKmZ7zCt1VvMwGTP8W4a8ouVhnioZMJrYrw2HJ/ZF/csjXzw5h52+oMeodA==
-X-Received: by 2002:a17:907:1b14:b0:6ef:a5c8:afbd with SMTP id mp20-20020a1709071b1400b006efa5c8afbdmr14034942ejc.151.1656085477728;
-        Fri, 24 Jun 2022 08:44:37 -0700 (PDT)
+        bh=1CrnY/L8UABvLIJiMmcMINNSOrobx/14XP39GlCqEpM=;
+        b=JGu8//PcPr1+UruBoP/sGaUHBs8cPKAUHIyA6/G2iY57Nn8NFQ3EyRbFb+33Sk4cSL
+         VdvDJkL4oWbXSiPb1tVEFrWg9xi4fVKQQZVx5hb3vwM4vvOE2Ujc5+U28eDA+YpmhKEv
+         VSnSxHWzZ68bDpW+oUDE2pK0A9V1noDErTpSp4zcuoW0qSwlBBjMEMxnTw42mubCC1+o
+         ye6vPwSnL9QSJ1LLB8Yu7+Wv3XLgaLzIC5Y9VOlUiENhcLbk89WdOqWgyODZrpD9Ifwu
+         wXGmLKIdBMY2f8AdetYITi83HFf9mc60R9J8x2CLTL469BN3N1p8x3uyvstCf7ntKvDz
+         8W/A==
+X-Gm-Message-State: AJIora/iFX4KuOG58X40j16yHoSBfUFUBTir8rI/vNuZbUrpDvXZZDEB
+        4DvxuDKbVoX9LRJEcoNwQ4GXhQ==
+X-Google-Smtp-Source: AGRyM1v2gqFyndN5Tm5xbKAMlQo9PYqSGLNBtIIxdkvmg9BQ3lqnAs0VGTWOqxiGJOv+8VRFDa2ZoQ==
+X-Received: by 2002:a05:6000:141:b0:21b:90e1:2207 with SMTP id r1-20020a056000014100b0021b90e12207mr13937817wrx.704.1656085866993;
+        Fri, 24 Jun 2022 08:51:06 -0700 (PDT)
 Received: from [192.168.0.237] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id a18-20020a1709063a5200b006fe8b456672sm1305804ejf.3.2022.06.24.08.44.36
+        by smtp.gmail.com with ESMTPSA id p2-20020a056000018200b002103cfd2fbasm2691509wrx.65.2022.06.24.08.51.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 08:44:37 -0700 (PDT)
-Message-ID: <f7506312-b6da-7b16-bed2-370a9c8e9049@linaro.org>
-Date:   Fri, 24 Jun 2022 17:44:36 +0200
+        Fri, 24 Jun 2022 08:51:06 -0700 (PDT)
+Message-ID: <97934f38-4da5-ab9e-7089-d6e48edd5e6a@linaro.org>
+Date:   Fri, 24 Jun 2022 17:51:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: gpio: Add AXP221/AXP223/AXP809
- compatibles
+Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Ampere's Mt.
+ Mitchell BMC
 Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Quan Nguyen <quan@os.amperecomputing.com>,
+        openbmc@lists.ozlabs.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        linux-kernel@vger.kernel.org
-References: <20220621034224.38995-1-samuel@sholland.org>
- <20220621034224.38995-2-samuel@sholland.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>
+Cc:     Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20220621092120.2427152-1-quan@os.amperecomputing.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220621034224.38995-2-samuel@sholland.org>
+In-Reply-To: <20220621092120.2427152-1-quan@os.amperecomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,22 +83,582 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/2022 05:42, Samuel Holland wrote:
-> These PMICs each have 2 GPIOs with the same register layout as AXP813,
-> but without an ADC function.
+On 21/06/2022 11:21, Quan Nguyen wrote:
+> The Mt. Mitchell BMC is an ASPEED AST2600-based BMC for the Mt. Mitchell
+> hardware reference platform with AmpereOne(TM) processor.
 > 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+> Signed-off-by: Phong Vo <phong@os.amperecomputing.com>
+> Signed-off-by: Thang Q. Nguyen <thang@os.amperecomputing.com>
 > ---
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../boot/dts/aspeed-bmc-ampere-mtmitchell.dts | 579 ++++++++++++++++++
+>  2 files changed, 580 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
 > 
-> Changes in v2:
->  - Combine multiple "const"s in the binding into an "enum"
-> 
->  .../devicetree/bindings/gpio/x-powers,axp209-gpio.yaml      | 6 ++++++
->  1 file changed, 6 insertions(+)
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 5112f493f494..93c236c14fa0 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1558,6 +1558,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-ast2600-evb.dtb \
+>  	aspeed-bmc-amd-ethanolx.dtb \
+>  	aspeed-bmc-ampere-mtjade.dtb \
+> +	aspeed-bmc-ampere-mtmitchell.dtb \
+>  	aspeed-bmc-arm-centriq2400-rep.dtb \
+>  	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+>  	aspeed-bmc-asrock-e3c246d4i.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+> new file mode 100644
+> index 000000000000..42425e13030a
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
+> @@ -0,0 +1,579 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +// Copyright 2022 Ampere Computing LTC.
+> +
+> +/dts-v1/;
+> +
+> +#include "aspeed-g6.dtsi"
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +
+> +/ {
+> +	model = "Ampere Mt.Mitchell BMC";
+> +	compatible = "ampere,mtmitchell-bmc", "aspeed,ast2600";
+
+The compatible has to be documented. Please rebase on top of:
+https://lore.kernel.org/all/20220529104928.79636-3-krzysztof.kozlowski@linaro.org/
+
+> +
+> +	chosen {
+> +		stdout-path = &uart5;
+> +		bootargs = "console=ttyS4,115200n8 earlycon";
+
+console is not needed, earlycon is debugging tool so definitely should
+not go to mainline widely distributed DTS. Remove entire bootargs.
+
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x80000000 0x80000000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		gfx_memory: framebuffer {
+> +			size = <0x01000000>;
+> +			alignment = <0x01000000>;
+> +			compatible = "shared-dma-pool";
+> +			reusable;
+> +		};
+> +
+> +		video_engine_memory: video {
+> +			size = <0x04000000>;
+> +			alignment = <0x01000000>;
+> +			compatible = "shared-dma-pool";
+> +			reusable;
+> +		};
+> +
+> +		/* 1GB memory */
+> +		vga_memory: region@bf000000 {
+> +			no-map;
+> +			compatible = "shared-dma-pool";
+> +			reg = <0xbf000000 0x01000000>;  /* 16M */
+> +		};
+> +
+
+No need for blank line.
+
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		S0_overtemp {
+
+Only lower-case letters, no underscore but hyphen. Missing prefix (e.g.
+key/event/switch/button)
+
+See:
+https://lore.kernel.org/all/20220616005224.18391-1-krzysztof.kozlowski@linaro.org/
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +			label = "S0_OVERTEMP";
+> +			gpios = <&gpio0 ASPEED_GPIO(V, 7) GPIO_ACTIVE_LOW>;
+> +			linux,code = <ASPEED_GPIO(V, 7)>;
+> +		};
+> +
+> +		S0_hightemp {
+> +			label = "S0_HIGHTEMP";
+> +			gpios = <&gpio0 ASPEED_GPIO(V, 0) GPIO_ACTIVE_LOW>;
+> +			linux,code = <ASPEED_GPIO(V, 0)>;
+> +		};
+> +
+> +		S1_overtemp {
+> +			label = "S1_OVERTEMP";
+> +			gpios = <&gpio0 ASPEED_GPIO(X, 6) GPIO_ACTIVE_LOW>;
+> +			linux,code = <ASPEED_GPIO(X, 6)>;
+> +		};
+> +
+> +		S1_hightemp {
+> +			label = "S1_HIGHTEMP";
+> +			gpios = <&gpio0 ASPEED_GPIO(X, 3) GPIO_ACTIVE_LOW>;
+> +			linux,code = <ASPEED_GPIO(X, 3)>;
+> +		};
+> +	};
+> +
+> +	ltc2497_reg: ltc2497_regulator {
 
+No underscores in node name, no specific names (Devicetree spec requires
+generic), so ltc2497 has to go. You could add some more specific
+prefix/suffix to describe the function.
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "ltc2497_reg";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	gpioI5mux: mux-controller {
+> +		compatible = "gpio-mux";
+> +		#mux-control-cells = <0>;
+> +		mux-gpios = <&gpio0 ASPEED_GPIO(I, 5) GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	adc0mux: adc0mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 0>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc1mux: adc1mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 1>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc2mux: adc2mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 2>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc3mux: adc3mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 3>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc4mux: adc4mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 4>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc5mux: adc5mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 5>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc6mux: adc6mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 6>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc7mux: adc7mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc0 7>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc8mux: adc8mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 0>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc9mux: adc9mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 1>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc10mux: adc10mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 2>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc11mux: adc11mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 3>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc12mux: adc12mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 4>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc13mux: adc13mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 5>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc14mux: adc14mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 6>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	adc15mux: adc15mux {
+> +		compatible = "io-channel-mux";
+> +		io-channels = <&adc1 7>;
+> +		#io-channel-cells = <1>;
+> +		io-channel-names = "parent";
+> +		mux-controls = <&gpioI5mux>;
+> +		channels = "s0", "s1";
+> +	};
+> +
+> +	iio-hwmon {
+> +		compatible = "iio-hwmon";
+> +		io-channels = <&adc0mux 0>, <&adc0mux 1>,
+> +			<&adc1mux 0>, <&adc1mux 1>,
+> +			<&adc2mux 0>, <&adc2mux 1>,
+> +			<&adc3mux 0>, <&adc3mux 1>,
+> +			<&adc4mux 0>, <&adc4mux 1>,
+> +			<&adc5mux 0>, <&adc5mux 1>,
+> +			<&adc6mux 0>, <&adc6mux 1>,
+> +			<&adc7mux 0>, <&adc7mux 1>,
+> +			<&adc8mux 0>, <&adc8mux 1>,
+> +			<&adc9mux 0>, <&adc9mux 1>,
+> +			<&adc10mux 0>, <&adc10mux 1>,
+> +			<&adc11mux 0>, <&adc11mux 1>,
+> +			<&adc12mux 0>, <&adc12mux 1>,
+> +			<&adc13mux 0>, <&adc13mux 1>,
+> +			<&adc14mux 0>, <&adc14mux 1>,
+> +			<&adc15mux 0>, <&adc15mux 1>,
+> +			<&ltc2497 0>, <&ltc2497 1>,
+> +			<&ltc2497 2>, <&ltc2497 3>,
+> +			<&ltc2497 4>, <&ltc2497 5>,
+> +			<&ltc2497 6>, <&ltc2497 7>,
+> +			<&ltc2497 8>, <&ltc2497 9>,
+> +			<&ltc2497 10>, <&ltc2497 11>,
+> +			<&ltc2497 12>, <&ltc2497 13>,
+> +			<&ltc2497 14>, <&ltc2497 15>;
+> +	};
+> +};
+> +
+> +&mdio0 {
+> +	status = "okay";
+> +
+> +	ethphy0: ethernet-phy@0 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0>;
+> +	};
+> +};
+> +
+> +&mac0 {
+> +	status = "okay";
+> +
+> +	phy-mode = "rgmii";
+> +	phy-handle = <&ethphy0>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii1_default>;
+> +};
+> +
+> +&fmc {
+> +	status = "okay";
+> +	flash@0 {
+> +		status = "okay";> +		m25p,fast-read;
+> +		label = "bmc";
+> +		spi-max-frequency = <50000000>;
+> +#include "openbmc-flash-layout-64.dtsi"
+> +	};
+> +
+> +	flash@1 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "alt-bmc";
+> +		spi-max-frequency = <50000000>;
+> +#include "openbmc-flash-layout-64-alt.dtsi"
+> +	};
+> +};
+> +
+> +&spi1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_spi1_default>;
+> +
+> +	flash@0 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "pnor";
+> +		spi-max-frequency = <20000000>;
+> +	};
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +};
+> +
+> +&uart2 {
+> +	status = "okay";
+> +};
+> +
+> +&uart3 {
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	temp@2e {
+
+Generic node name, so usually it is "temperature-sensor"
+
+> +		compatible = "adi,adt7490";
+> +		reg = <0x2e>;
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	status = "okay";
+> +
+> +	psu@58 {
+> +		compatible = "pmbus";
+> +		reg = <0x58>;
+> +	};
+> +
+> +	psu@59 {
+> +		compatible = "pmbus";
+> +		reg = <0x59>;
+> +	};
+> +};
+> +
+> +&i2c3 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c4 {
+> +	status = "okay";
+> +
+> +	ltc2497: ltc2497@16 {
+
+Generic node name.
+
+> +		compatible = "lltc,ltc2497";
+> +		reg = <0x16>;
+> +		vref-supply = <&ltc2497_reg>;
+> +		#io-channel-cells = <1>;
+> +		status = "okay";
+> +	 };
+> +
+> +	eeprom@50 {
+> +		compatible = "atmel,24c64";
+> +		reg = <0x50>;
+> +		pagesize = <32>;
+> +	};
+> +
+> +	i2c-mux@70 {
+> +		compatible = "nxp,pca9545";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <0x70>;
+> +		i2c-mux-idle-disconnect;
+> +
+> +		i2c4_bus70_chn0: i2c@0 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x0>;
+> +
+> +			outlet_temp1: tmp75@48 {
+
+Generic node name.
+
+> +				compatible = "ti,tmp75";
+> +				reg = <0x48>;
+> +			};
+> +			psu1_inlet_temp2: tmp75@49 {
+
+Generic node name.
+
+> +				compatible = "ti,tmp75";
+> +				reg = <0x49>;
+> +			};
+> +		};
+> +
+> +		i2c4_bus70_chn1: i2c@1 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x1>;
+> +
+> +			pcie_zone_temp1: tmp75@48 {
+
+Generic node name.
+
+> +				compatible = "ti,tmp75";
+> +				reg = <0x48>;
+> +			};
+> +			psu0_inlet_temp2: tmp75@49 {
+
+Generic node name.
+
+> +				compatible = "ti,tmp75";
+> +				reg = <0x49>;
+> +			};
+> +		};
+> +
+> +		i2c4_bus70_chn2: i2c@2 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x2>;
+> +
+> +			pcie_zone_temp2: tmp75@48 {
+
+Generic node name.
+
+> +				compatible = "ti,tmp75";
+> +				reg = <0x48>;
+> +			};
+> +			outlet_temp2: tmp75@49 {
+
+Generic node name.
+
+> +				compatible = "ti,tmp75";
+> +				reg = <0x49>;
+> +			};
+> +		};
+> +
+> +		i2c4_bus70_chn3: i2c@3 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0x3>;
+> +
+> +			mb_inlet_temp1: tmp75@7c {
+
+Generic node name.
+
+> +				compatible = "microchip,emc1413";
+> +				reg = <0x7c>;
+> +			};
+> +			mb_inlet_temp2: tmp75@4c {
+
+Generic node name.
+
+> +				compatible = "microchip,emc1413";
+> +				reg = <0x4c>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&i2c5 {
+> +	status = "okay";
+> +
+> +	i2c-mux@70 {
+> +		compatible = "nxp,pca9548";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <0x70>;
+> +		i2c-mux-idle-disconnect;
+> +	};
+> +};
+> +
+> +&i2c6 {
+> +	status = "okay";
+> +	rtc@51 {
+> +		compatible = "nxp,pcf85063a";
+> +		reg = <0x51>;
+> +	};
+> +};
+> +
+> +&i2c7 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c9 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c11 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c14 {
+> +	status = "okay";
+> +	eeprom@50 {
+> +		compatible = "atmel,24c64";
+> +		reg = <0x50>;
+> +		pagesize = <32>;
+> +	};
+> +
+> +	bmc_ast2600_cpu: tmp175@35 {
+
+Generic node name.
 
 Best regards,
 Krzysztof
