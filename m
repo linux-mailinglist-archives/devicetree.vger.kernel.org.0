@@ -2,71 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 042C2559F4E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 19:26:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9B06559F94
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 19:26:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232018AbiFXRMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 13:12:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34216 "EHLO
+        id S229651AbiFXROv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 13:14:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232013AbiFXRMp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 13:12:45 -0400
+        with ESMTP id S231979AbiFXROt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 13:14:49 -0400
 Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8404522CB
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:12:43 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id o16so3981792wra.4
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:12:43 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6388364798
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:14:48 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id o4so4746wrh.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 10:14:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=S1enbfspzMYdsg8aLcCCE6tVeP2Nz6635Lj1zrxNDvo=;
-        b=fTK+IFWkefY1750lr/cELH860S2T1skNE/I48GKN1yHBXl5MnjftqDuw4DBNfrRL4e
-         8PqoLq3x+vFEW+pUf8bz9WWSrvD7YwmyCdKwg2h96SFAPYdGJZCSAiJ/hC8xhzPqpBJv
-         jvOznwmQT5fCL67U+XjRXztPqJIRI4UIgY0F4yQ45LaJtHCoShb+3uqdvm984lTdjWb2
-         YBvjd4YRFKI8nKvzmiM/+o1VsGoSGe2Bj8jw98dd/6so7pX5oHZoSiEHAJ0j3C3KH2S1
-         hz/nfxnmp+bd/XHxpBRN9uzCdSiKJVf4tBwz0gRnApaP4p5yUUMgktxeIwOGcqLl82sz
-         3yfQ==
+        bh=ktu3ikYNE7irPLarQIpMZpPOBYDmyDcsFDEun1kygEY=;
+        b=xi9MZOPXRCdoh9sO8tIFIGDgvS9dqWXO3XDyam9oNMuirIIWFHfz20y14sMxxpqGIT
+         SOcuoeLbfj3s7aZMasQ/REd2xJGE4+YLgO8TbMaT+gCZtd9H+0LRXQUWB16W0htXNpuf
+         nyYqF+5xS1ZaUFBVys39bJUQo+t/uRywgLUcgb1hs/5GkNWejnhrGHhGW9VKrld0n2EW
+         AbETSPvLqdL8vVWVydLgUG3xWQY15O1Gd04XuAI9KzhYlOfcHS/WllVm89ucIjkc/2gH
+         Rq78KNq0DxCHzgnb5pD+cOJdCidEfOF4jfIbwUrMxQj2EGvD2Z5WAwARhkifoDNmf05e
+         qeZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=S1enbfspzMYdsg8aLcCCE6tVeP2Nz6635Lj1zrxNDvo=;
-        b=qChJnHEDEeZGtG7baBiTBg2q2jABNe887KxVREufHIe5L4CxxXW2meKpG5rFBOETM7
-         wlEWIWQIkh+1qvvg3RpYc3/8FeoRCLBj16MokrVgR4eUSfppzdFmsd21JqViwslt7s/F
-         6BlZkNVCsraofScfhl/kKQvOR1pO2z6jRGAhTFoTe9x1v4ZImNoXucwOQqHugcXHOOaF
-         J4m4DbV/sRM60QL+fZcZDLEMS5r8RntKWAVIVlvz0ZcbrE8aEjues1HdoGTrnKf7fv4/
-         KeRlyXR+OT3bsEfwepSka1NoeGPrdaiY0YUQhqZHQPDWHpQGJU8ONFQTUHjRdclI+ddV
-         FCiw==
-X-Gm-Message-State: AJIora/zfLCDo+xc3QUae/rIjwxd3PNuohgTzYeCuhKdUReiavDD8Jin
-        bkeQPQElwvhtqtMguu7pSpH9Eg==
-X-Google-Smtp-Source: AGRyM1ukgR0OpkdFo6A2uHwXamZLQR8RW4cLRijXAiSEjqw/+r2pulA3xRBZgK7698u6EU50UchjKA==
-X-Received: by 2002:a05:6000:223:b0:21b:b95e:a522 with SMTP id l3-20020a056000022300b0021bb95ea522mr196783wrz.46.1656090762538;
-        Fri, 24 Jun 2022 10:12:42 -0700 (PDT)
+        bh=ktu3ikYNE7irPLarQIpMZpPOBYDmyDcsFDEun1kygEY=;
+        b=lOEFQ7fP67Ifm581svCQD7CPujLrarb/fxWlAtL6clngbHjnS1saEVx22mRms68NXm
+         h7oD2zuRNGfvWreBWpKCtkFD267nZ/Cv7a/4fK4sd9a1F7dGh698/3oySxElTqIbOEwE
+         NM1sriPc9+LlMV7xWfjDyApBalLrEH8JNqRoJYiQulpMtDaK3g71+Kl+MlwUm6O0jLoh
+         nyfb278UemPpa4ZJykeSGlTzuLp32bMCsheRKtOm7tNoveuOZp3USJnwOIj02XvtzWDC
+         3I5Vr/havWWaqypOz7I99iO6j35nevy61b+do7p9NpsW3Yc0Q6FnFGZlf08AbR374J5y
+         4WqQ==
+X-Gm-Message-State: AJIora+GeUq7KdUEwJFFWf+VMws3iL5fAZN9imdftaj8e7n/dWRquZPV
+        FREh3h0hioRh6Rcl9isl2IE/3Q==
+X-Google-Smtp-Source: AGRyM1sLQYGZAaX+lFxtBA94oQIWAvZYbgECA77xFxvwaOZQm0PFlwQ5AY512c5CrAbgrYnDliPWmg==
+X-Received: by 2002:a05:6000:184c:b0:21b:b6ac:8cb6 with SMTP id c12-20020a056000184c00b0021bb6ac8cb6mr197570wri.154.1656090886924;
+        Fri, 24 Jun 2022 10:14:46 -0700 (PDT)
 Received: from [192.168.0.237] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id h6-20020adffd46000000b0021b96cdf68fsm2770955wrs.97.2022.06.24.10.12.41
+        by smtp.gmail.com with ESMTPSA id az33-20020a05600c602100b003a03b4cb7cfsm2781255wmb.38.2022.06.24.10.14.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 10:12:41 -0700 (PDT)
-Message-ID: <d8fa1d0e-99cd-9bcf-3e17-7673553c875e@linaro.org>
-Date:   Fri, 24 Jun 2022 19:12:40 +0200
+        Fri, 24 Jun 2022 10:14:46 -0700 (PDT)
+Message-ID: <1f426a67-2cf2-b67e-3cd0-a4c452591baa@linaro.org>
+Date:   Fri, 24 Jun 2022 19:14:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH net-next v1 2/9] dt-bindings: Add Tegra234 MGBE clocks and
- resets
+Subject: Re: [PATCH RESEND v9 2/5] arm: dts: lpc18xx: Harmonize EHCI/OHCI DT
+ nodes name
 Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Bhadram Varka <vbhadram@nvidia.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jonathanh@nvidia.com, kuba@kernel.org, catalin.marinas@arm.com,
-        will@kernel.org, Thierry Reding <treding@nvidia.com>
-References: <20220623074615.56418-1-vbhadram@nvidia.com>
- <20220623074615.56418-2-vbhadram@nvidia.com>
- <53e8aa2f-f5f6-43d9-c167-ec5c5818dfb0@linaro.org> <YrXkpiaxqjzJdaL9@orome>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Alexey Brodkin <abrodkin@synopsys.com>,
+        Vineet Gupta <vgupta@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-usb@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Khuong Dinh <khuong@os.amperecomputing.com>,
+        Patrice Chotard <patrice.chotard@st.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org, linux-snps-arc@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220624141622.7149-1-Sergey.Semin@baikalelectronics.ru>
+ <20220624141622.7149-3-Sergey.Semin@baikalelectronics.ru>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YrXkpiaxqjzJdaL9@orome>
+In-Reply-To: <20220624141622.7149-3-Sergey.Semin@baikalelectronics.ru>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,48 +95,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/06/2022 18:21, Thierry Reding wrote:
-> On Fri, Jun 24, 2022 at 06:02:58PM +0200, Krzysztof Kozlowski wrote:
->> On 23/06/2022 09:46, Bhadram Varka wrote:
->>> From: Thierry Reding <treding@nvidia.com>
->>>
->>> Add the clocks and resets used by the MGBE Ethernet hardware found on
->>> Tegra234 SoCs.
->>>
->>> Signed-off-by: Thierry Reding <treding@nvidia.com>
->>> Signed-off-by: Bhadram Varka <vbhadram@nvidia.com>
->>> ---
->>>  include/dt-bindings/clock/tegra234-clock.h | 101 +++++++++++++++++++++
->>>  include/dt-bindings/reset/tegra234-reset.h |   8 ++
->>>  2 files changed, 109 insertions(+)
->>>
->>> diff --git a/include/dt-bindings/clock/tegra234-clock.h b/include/dt-bindings/clock/tegra234-clock.h
->>> index bd4c3086a2da..bab85d9ba8cd 100644
->>> --- a/include/dt-bindings/clock/tegra234-clock.h
->>> +++ b/include/dt-bindings/clock/tegra234-clock.h
->>> @@ -164,10 +164,111 @@
->>>  #define TEGRA234_CLK_PEX1_C5_CORE		225U
->>>  /** @brief PLL controlled by CLK_RST_CONTROLLER_PLLC4_BASE */
->>>  #define TEGRA234_CLK_PLLC4			237U
->>> +/** @brief RX clock recovered from MGBE0 lane input */
->>
->> The IDs should be abstract integer incremented by one, without any
->> holes. I guess the issue was here before, so it's fine but I'll start
->> complaining at some point :)
+On 24/06/2022 16:16, Serge Semin wrote:
+> In accordance with the Generic EHCI/OHCI bindings the corresponding node
+> name is suppose to comply with the Generic USB HCD DT schema, which
+> requires the USB nodes to have the name acceptable by the regexp:
+> "^usb(@.*)?" . Make sure the "generic-ehci" and "generic-ohci"-compatible
+> nodes are correctly named.
 > 
-> These IDs originate from firmware and therefore are more like hardware
-> IDs rather than an arbitrary enumeration. These will be used directly in
-> IPC calls with the firmware to reference individual clocks and resets.
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Acked-by: Vladimir Zapolskiy <vz@mleia.com>
+> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  arch/arm/boot/dts/lpc18xx.dtsi | 4 ++--
 
-If they are actually shared with firmware, it's fine. Thanks for
-explanation.
+You should split the patchset per architecture, because maybe that's why
+no one picks it up?
 
-> We've adopted these 1:1 in order to avoid adding an extra level of
-> indirection (via some lookup table) in the kernel.
-
-This if fine, but some folks (including myself once...) define in
-bindings register values and offsets without any actual need. I was
-afraid that's the case here.
+Let me pick up ARM bits through my cleanup series. If anyone objects,
+please let me know.
 
 Best regards,
 Krzysztof
