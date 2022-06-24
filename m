@@ -2,151 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58779558F6E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 06:02:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48BFF558F77
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 06:05:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229786AbiFXEC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 00:02:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45398 "EHLO
+        id S231431AbiFXEFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 00:05:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229728AbiFXECV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 00:02:21 -0400
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C6D532EF;
-        Thu, 23 Jun 2022 21:02:20 -0700 (PDT)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-fb6b4da1dfso2218176fac.4;
-        Thu, 23 Jun 2022 21:02:19 -0700 (PDT)
+        with ESMTP id S229912AbiFXEFk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 00:05:40 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0491563A3
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 21:05:38 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id l81so2106320oif.9
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 21:05:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=C38bDs4A1JfWnOqmeYv1BTYo2A48cLLwdXZTR1jlAA0=;
-        b=L8Dq1FdrKjrt2f3l9xNpRgivDT0iEZF2jKKlVhypq6/jyWdJZBKRHLkcEjI7nujJ0z
-         RbPakAI00kU0HoXSksL29V5uU+OUHrYEeHt13nzKvqjpkfVj0bNVzmaFpbD21vD7/qm3
-         UpP7ouJO5jmt38uinYPE+7fQXzRJBz6hbCXgpH/PIzlBDmPiuoy7I1W6M6KUVe8HPRJ8
-         ulMhnTjMEwSeMnRn9SbNkWWjaaDMrJ3QOpa8KFAvoA9kc/OtgWS1VuN5PVrKWXmbOVks
-         5vkK/l1T/Q6c4jC30zLoFYAxZ6MVDhYflfNRyqGeF6rIujLD2nejHeZeIZA2zC/FlxQn
-         Zjew==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5Jjrq7awYQaeFzIlST9+9YCiK3puRVXguo52HCZEX/o=;
+        b=Jg2HxYha/NIZgJEWtC/HRXceJtHhMZJ1yOl23yPzbXLoV3kc+hbn3kalj7vjH7MEeO
+         X1r5KUBpuZf+MJ05ptSbldK4EcmucQBgQKOiDVQE97ktDpdmRFTP/U+k1TETkoNaB3P6
+         hZa36XQdTinfQ54HLNL5l+448dkt6dRoQzc/3ofXBFb09cMqV3woXsh6dp7cEiCZoC/G
+         lRahLFQCIy2WLmOBj7wogMP+PAeFUuALqD9YqkC5YubrwI71wDJ9ytlZloBGYRMPClhB
+         UT4ySd4lyfz4hVYYWwR1z2rfzQx0FIiG25vPy6+pjl6Yeux7xwtNz/YhqqqIq/F0U48/
+         fE4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=C38bDs4A1JfWnOqmeYv1BTYo2A48cLLwdXZTR1jlAA0=;
-        b=4ylP9va7FuAaLXjRfRfXYbWqGs/tSmJllo7wRBNJGDqHbfuoR+V2WDuwXf5WTw8hig
-         TqbZp2kvwYtAZ1Byy7nqfX92BLDQH5uzEYwLolxrfncs5ox5Ee7kAxBdy7nI0Ay8NSsu
-         pMiPhShp9uHPWGfmVeXUNwUffjHEZiUPN92pws2tp+xSxxbACQuZohV5NruT4Oq81bFM
-         B6ISZ5tRX4Y8tRxHHgD8/S7hSt8weYzQoKq7AUW5LX9K8HhTsjlOJVRPornq9EJjwWRM
-         2ufYRRNOrfS880yGddBprC1XfN/ASynNMiuFNOBvw8/y1ozu3WLk7MnIGx8uoMJOeS7J
-         Z5sQ==
-X-Gm-Message-State: AJIora9Fl0ynxhIQZwdReMQBxo9JwRl/Q8l6CiY7X1VKWMH/BDjbtj3G
-        C1kEbz0YKhd86jVYA1UwRt4=
-X-Google-Smtp-Source: AGRyM1uun8x0X75mHWSZsw5pqOFbPlSawWvIGWizmZFosmSrSxO1YfFuABH899fP3OhK9Cw5i1rnjg==
-X-Received: by 2002:a05:6870:ea01:b0:f1:e631:ed6f with SMTP id g1-20020a056870ea0100b000f1e631ed6fmr819106oap.89.1656043339416;
-        Thu, 23 Jun 2022 21:02:19 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:742c:47ee:54c0:bcc7? ([2600:1700:2442:6db0:742c:47ee:54c0:bcc7])
-        by smtp.gmail.com with ESMTPSA id 14-20020a9d080e000000b0061691239049sm848171oty.60.2022.06.23.21.02.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Jun 2022 21:02:18 -0700 (PDT)
-Message-ID: <fc6ff5a8-75c3-fcc9-5809-ffbea058d4c7@gmail.com>
-Date:   Thu, 23 Jun 2022 23:02:17 -0500
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5Jjrq7awYQaeFzIlST9+9YCiK3puRVXguo52HCZEX/o=;
+        b=jCLw4naicKwmbxJFcD12gC0LPSgSwbXy3zO/MvXgS08TuCX1nfHZeZGRUbdrr5bj7r
+         fdmgGo1y/eEuDkzSniyG9aqRh4a1WXth8fdo0+xpqS/GJncGPnTlC/WedfRP1GXWD8h0
+         jq0igusHAJROZiCOsOwxhjRBRonNDkYmKJqSt+792pVaiDRr6FdVNPYZw/oi4Au1o05f
+         08U179P+6PxviHALRnkVEHtezlqg83iPbm+gyGiPx0sgSGdiVHQoW8sHktL4qzloVccd
+         gFsMli45caXqvcKsJvFyv2gI/dUrknzBTkd/FRm46SW+YUTmBT7w6QMMpyNADH3cuytc
+         UKRg==
+X-Gm-Message-State: AJIora93gZ860ar4x2zS8F7XDDX2SX+kQUHyRsNQm6N9eB/CiP77lMys
+        bFF4aVNzTGoSivlr/qb1HXZUtA==
+X-Google-Smtp-Source: AGRyM1vDeI5MEyL2hISaemwrekGndBtHUjrULdlHJG/uc5iI8LR6oGhEiG9J6lfWw7kjbDqmUp1kDA==
+X-Received: by 2002:a05:6808:20a8:b0:32e:d283:2dfa with SMTP id s40-20020a05680820a800b0032ed2832dfamr791710oiw.279.1656043538330;
+        Thu, 23 Jun 2022 21:05:38 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id s64-20020acaa943000000b0032f51af1999sm542996oie.42.2022.06.23.21.05.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Jun 2022 21:05:37 -0700 (PDT)
+Date:   Thu, 23 Jun 2022 23:05:35 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sricharan R <quic_srichara@quicinc.com>
+Cc:     agross@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linus.walleij@linaro.org,
+        catalin.marinas@arm.com, p.zabel@pengutronix.de,
+        quic_varada@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH V2 3/8] clk: qcom: Add Global Clock controller (GCC)
+ driver for IPQ5018
+Message-ID: <YrU4D+eDBctFl0ZY@builder.lan>
+References: <20220621161126.15883-1-quic_srichara@quicinc.com>
+ <20220621161126.15883-4-quic_srichara@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 0/5] of: add of_property_alloc/free() and
- of_node_alloc()
-Content-Language: en-US
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nathan Lynch <nathanl@linux.ibm.com>,
-        Laurent Dufour <ldufour@linux.ibm.com>,
-        Daniel Henrique Barboza <danielhb413@gmail.com>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        David Hildenbrand <david@redhat.com>,
-        Ohhoon Kwon <ohoono.kwon@samsung.com>,
-        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
-        YueHaibing <yuehaibing@huawei.com>
-Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        Lizhi Hou <lizhi.hou@xilinx.com>
-References: <20220620104123.341054-1-clement.leger@bootlin.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <20220620104123.341054-1-clement.leger@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220621161126.15883-4-quic_srichara@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry for the lack of response, it's been a busy week.  I will get to this
-soon.
+On Tue 21 Jun 11:11 CDT 2022, Sricharan R wrote:
+> diff --git a/drivers/clk/qcom/gcc-ipq5018.c b/drivers/clk/qcom/gcc-ipq5018.c
+[..]
+> +static const struct clk_parent_data gcc_xo_gpll0_gpll0_out_main_div2[] = {
+> +	{ .fw_name = "xo", .name = "xo", },
 
--Frank
+Please replace .fw_name with .index based lookup, in line with what was
+done in gcc-sc8280xp.c recently.
 
-On 6/20/22 06:41, Clément Léger wrote:
-> In order to be able to create new nodes and properties dynamically from
-> drivers, add of_property_alloc/free() and of_node_alloc(). These
-> functions can be used to create new nodes and properties flagged with
-> OF_DYNAMIC and to free them.
-> 
-> Some powerpc code was already doing such operations and thus, these
-> functions have been used to replace the manual creation of nodes and
-> properties. This code has been more than simply replaced to allow using
-> of_node_put() rather than a manual deletion of the properties.
-> Unfortunately, as I don't own a powerpc platform, it would need to be
-> tested.
-> 
-> ---
-> 
-> Changes in V3:
-> - Remove gfpflag attribute from of_node_alloc() and of_property_alloc().
-> - Removed allocflags from __of_node_dup().
-> - Rework powerpc code to only use of_node_put().
-> - Fix properties free using of_node_property in OF unittests.
-> 
-> Changes in V2:
-> - Remove of_node_free()
-> - Rework property allocation to allocate both property and value with
->   1 allocation
-> - Rework node allocation to allocate name at the same time the node is
->   allocated
-> - Remove extern from definitions
-> - Remove of_property_alloc() value_len parameter and add more
->   explanation for the arguments
-> - Add a check in of_property_free to check OF_DYNAMIC flag
-> - Add a commit which constify the property argument of
->   of_property_check_flags()
-> 
-> Clément Léger (5):
->   of: constify of_property_check_flags() prop argument
->   of: remove __of_node_dup() allocflags parameter
->   of: dynamic: add of_property_alloc() and of_property_free()
->   of: dynamic: add of_node_alloc()
->   powerpc/pseries: use of_property_alloc/free() and of_node_alloc()
-> 
->  arch/powerpc/platforms/pseries/dlpar.c        |  62 +-------
->  .../platforms/pseries/hotplug-memory.c        |  21 +--
->  arch/powerpc/platforms/pseries/reconfig.c     | 123 ++++++----------
->  drivers/of/dynamic.c                          | 137 ++++++++++++------
->  drivers/of/of_private.h                       |  19 ++-
->  drivers/of/overlay.c                          |   2 +-
->  drivers/of/unittest.c                         |  24 ++-
->  include/linux/of.h                            |  24 ++-
->  8 files changed, 191 insertions(+), 221 deletions(-)
-> 
+There's no reason to include global name lookup (.name) in new drivers,
+so please omit this part.
 
+> +	{ .fw_name = "gpll0", .name = "gpll0", },
+> +	{ .fw_name = "gpll0_out_main_div2", .name = "gpll0_out_main_div2", },
+> +};
+> +
+[..]
+> +static struct clk_alpha_pll gpll0_main = {
+> +	.offset = 0x21000,
+> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
+> +	.clkr = {
+> +		.enable_reg = 0x0b000,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(struct clk_init_data){
+> +			.name = "gpll0_main",
+> +			.parent_data = &(const struct clk_parent_data){
+> +				.fw_name = "xo",
+> +				.name = "xo",
+
+Are you referring to the board XO here, or the CXO pin on the SoC? On
+many platforms these are not the same...
+
+Please omit the .name here as well and as this is used a few times,
+please create a struct clk_parent_data for this parent.
+
+> +			},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_stromer_ops,
+> +			.flags = CLK_IS_CRITICAL,
+> +		},
+> +	},
+> +};
+> +
+> +static struct clk_fixed_factor gpll0_out_main_div2 = {
+> +	.mult = 1,
+> +	.div = 2,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "gpll0_out_main_div2",
+> +		.parent_data = &(const struct clk_parent_data){
+
+It would be nice to have a space inbetween ) and { in all these.
+
+> +			.fw_name = "gpll0_main",
+> +			.name = "gpll0_main",
+> +		},
+> +		.num_parents = 1,
+> +		.ops = &clk_fixed_factor_ops,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+[..]
+> +static struct clk_branch gcc_gephy_tx_clk = {
+> +	.halt_reg = 0x56014,
+> +	.halt_check = BRANCH_HALT_DELAY,
+> +	.clkr = {
+> +		.enable_reg = 0x56014,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(struct clk_init_data){
+> +			.name = "gcc_gephy_tx_clk",
+> +			.parent_data = &(const struct clk_parent_data){
+> +				.fw_name = "gmac0_tx_div_clk_src",
+> +				.name = "gmac0_tx_div_clk_src",
+> +			},
+
+This parent_data is repeated multiple times, but more importantly it's
+not an external clock, so you should use .parent_hw instead of
+.parent_data.
+
+Please review the parent for all your clocks.
+
+Regards,
+Bjorn
