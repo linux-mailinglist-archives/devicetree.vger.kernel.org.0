@@ -2,86 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C6A6558CC3
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 03:24:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03EB6558D27
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 04:13:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230177AbiFXBYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 21:24:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37192 "EHLO
+        id S229534AbiFXCNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 22:13:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229760AbiFXBYP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 21:24:15 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64F21563BE
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 18:24:14 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id 15so2070570ybc.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 18:24:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=10PmzWCyUBI5Vfce1rbhp0nN4ZOkA3OYApu3p4Z3wDQ=;
-        b=glXeRVHVfV8WrwBqJ/kMZnqq8X5UeIcwOsiFsj/kz7g3p9ZhnG8+7rYmkC4Ooh8CoD
-         H2ZxY3SNaBMWVW1hTeMEGJiRLySNetp6ZqokKzzuE+/3PiJro+eTVWkGtMnExLj35OJs
-         zcso9bW6vOY8KzWSW9Oetg7R7bOFMcqDtfmfY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=10PmzWCyUBI5Vfce1rbhp0nN4ZOkA3OYApu3p4Z3wDQ=;
-        b=B1IwM5SGRRf+OLa6N4LZWLT40lLER6I0plhMfya833bV3oSURrjrg5z9a22QPrb95I
-         8TmMcNF02YZHTE48k67wYH8HgUZpI3JxH+CIw84PjeBYUxOaxYCJOZ18O7NOscSlQWYO
-         y0huJEHLXGqxqv6FRUzfVWR/+dZuVH8CWGjiwxmBqGc8LRgsU3L9SmE1b5x53cxmP279
-         pyixkQQLpX2BeGOPVnTVDPVWqA0yRaOFz9RSDaC2EItRXjmYbOEw2BM6kA3mKnCVCJLb
-         yoTjLY5zyWHvyMqgD4JLkSmwETpY3krq9/I545sAP1qxp+DIbk1sMo9qxhvND6WiFj4A
-         3Emw==
-X-Gm-Message-State: AJIora/2Rr6rnBW3yi4hdyMOhUru/N3w0+eN1b5gQLd8EP3vW03sDfTz
-        yTbttYvAxWRI3eKL7FLUzVNsffFEnV6xGWt8+uyWvx1bMlg=
-X-Google-Smtp-Source: AGRyM1uzGBk9nFl76gEcXxNwEdLIRcnWpYTQHhBodEuO9ylyG3VAyW/StyEf8ihoveC1W4ma6tvIzZhoSPWESvWOAUs=
-X-Received: by 2002:a25:f30b:0:b0:669:9f30:7c84 with SMTP id
- c11-20020a25f30b000000b006699f307c84mr9265199ybs.240.1656033853604; Thu, 23
- Jun 2022 18:24:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220622173605.1168416-1-pmalani@chromium.org>
- <20220622173605.1168416-2-pmalani@chromium.org> <CAE-0n51kcr3VGdR2Kf8j1JaBbLcCmWo9GYhhvkUQ4+jn2iEKLg@mail.gmail.com>
- <CACeCKac4eL9++QwbDBKrVTpUzhes=WczqZfh+cFiVgoO4py4MQ@mail.gmail.com>
- <CAE-0n51E1TLMRNWnqiV-jU_qg15BF4D6A+0G1y1SRTu1zNs2Dg@mail.gmail.com> <CACeCKacGZFY-_yn1R33OVcsdG47oqNTGBA43L5hrH2zyhK=cRw@mail.gmail.com>
-In-Reply-To: <CACeCKacGZFY-_yn1R33OVcsdG47oqNTGBA43L5hrH2zyhK=cRw@mail.gmail.com>
-From:   Prashant Malani <pmalani@chromium.org>
-Date:   Thu, 23 Jun 2022 18:24:02 -0700
-Message-ID: <CACeCKaessEPP+aPmwuF8C74hgOFQyc5YFJ_cWqLvQSzXLWaqVg@mail.gmail.com>
-Subject: Re: [PATCH v5 1/9] dt-bindings: usb: Add Type-C switch binding
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        bleung@chromium.org, heikki.krogerus@linux.intel.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S229454AbiFXCNl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 22:13:41 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B5CE50B15;
+        Thu, 23 Jun 2022 19:13:39 -0700 (PDT)
+X-UUID: 34b04833fb34470db8bcbd642ac9da1b-20220624
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:c9ce167b-c3af-4a21-b541-de503d456e63,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:b14ad71,CLOUDID:66b2e82d-1756-4fa3-be7f-474a6e4be921,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 34b04833fb34470db8bcbd642ac9da1b-20220624
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <wenbin.mei@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1807525243; Fri, 24 Jun 2022 10:13:34 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Fri, 24 Jun 2022 10:13:32 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Fri, 24 Jun 2022 10:13:32 +0800
+Message-ID: <e34b886c276805f4778d8eb5cd2fe7314efc08f9.camel@mediatek.com>
+Subject: Re: [PATCH v2] dt-bindings: mmc: mtk-sd: Set clocks based on
+ compatible
+From:   Wenbin Mei <wenbin.mei@mediatek.com>
+To:     "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+CC:     <kernel@collabora.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Pin-Yen Lin <treapking@chromium.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Xin Ji <xji@analogixsemi.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-mmc@vger.kernel.org>
+Date:   Fri, 24 Jun 2022 10:13:31 +0800
+In-Reply-To: <20220623154038.771874-1-nfraprado@collabora.com>
+References: <20220623154038.771874-1-nfraprado@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,186 +67,181 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 23, 2022 at 5:35 PM Prashant Malani <pmalani@chromium.org> wrote:
->
-> On Thu, Jun 23, 2022 at 4:14 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > Quoting Prashant Malani (2022-06-23 12:08:21)
-> > > On Thu, Jun 23, 2022 at 11:30 AM Stephen Boyd <swboyd@chromium.org> wrote:
-> > > >
-> > > > Quoting Prashant Malani (2022-06-22 10:34:30)
-> > > > > diff --git a/Documentation/devicetree/bindings/usb/typec-switch.yaml b/Documentation/devicetree/bindings/usb/typec-switch.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..78b0190c8543
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/usb/typec-switch.yaml
-> > > > > @@ -0,0 +1,74 @@
-> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > +%YAML 1.2
-> > [...]
-> > > > > +  ports:
-> > > > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > > > +    description: OF graph binding modelling data lines to the Type-C switch.
-> > > > > +
-> > > > > +    properties:
-> > > > > +      port@0:
-> > > > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > > > +        description: Link between the switch and a Type-C connector.
-> > > >
-> > > > Is there an update to the usb-c-connector binding to accept this port
-> > > > connection?
-> > >
-> > > Not at this time. I don't think we should enforce that either.
-> > > (Type-C data-lines could theoretically be routed through intermediate
-> > > hardware like retimers/repeaters)
-> >
-> > I'm mostly wondering if having such a connection to the usb-c-connector,
-> > or even through some retimer/repeater, would be sufficient to detect how
-> > many type-c ports are connected to the device. If the type-c pin
-> > assignments only support two or four lanes for DP then it seems like we
-> > should describe the two lanes or four lanes as one graph endpoint
-> > "output" and then have some 'data-lanes' property in case the DP lanes
-> > are flipped while being sent to the retimer or usb-c-connector. This
-> > would of course depend on the capability of the device, i.e. if it can
-> > remap DP lanes or only has 2 lanes of DP, etc.
-> >
-> > > > > +  - |
-> > > > > +    drm-bridge {
-> > > > > +        usb-switch {
-> > > > > +            compatible = "typec-switch";
-> > > >
-> > > > I still don't understand the subnode design here. usb-switch as a
-> > > > container node indicates to me that this is a bus, but in earlier rounds
-> > > > of this series it was stated this isn't a bus.
-> > >
-> > > I am not aware of this as a requirement. Can you please point me to the
-> > > documentation that states this needs to be the case?
-> >
-> > I'm not aware of any documentation for the dos and don'ts here. Are
-> > there any examples in the bindings directory that split up a device into
-> > subnodes that isn't in bindings/mfd?
->
-> usb-c-connector [3] and its users is an example.
->
-> >  I just know from experience that
-> > any time I try to make a child node of an existing node that I'm
-> > supposed to be describing a bus, unless I'm adding some sort of
-> > exception node like a graph binding or an opp table. Typically a node
-> > corresponds 1:1 with a device in the kernel. I'll defer to Rob for any
-> > citations.
-> >
-> > >
-> > > > Why doesn't it work to
-> > > > merge everything inside usb-switch directly into the drm-bridge node?
-> > >
-> > > I attempted to explain the rationale in the previous version [1], but
-> > > using a dedicated sub-node means the driver doesn't haven't to
-> > > inspect individual ports to determine which of them need switches
-> > > registered for them. If it sees a `typec-switch`, it registers a
-> > > mode-switch and/or orientation-switch. IMO it simplifies the hardware
-> > > device binding too.
-> >
-> > How is that any harder than hard-coding that detail into the driver
-> > about which port and endpoint is possibly connected to the
-> > usb-c-connector (or retimer)? All of that logic could be behind some API
-> > that registers a typec-switch based on a graph port number that's passed
-> > in, ala drm_of_find_panel_or_bridge()'s design.
->
-> If each driver has to do it (and the port specifics vary for each driver),
-> it becomes an avoidable overhead for each of them.
-> I prefer hard-coding such details if avoidable. I suppose both approaches
-Sorry, I meant "I prefer not hard-coding such details..."
+On Thu, 2022-06-23 at 11:40 -0400, Nícolas F. R. A. Prado wrote:
+> The binding was describing a single clock list for all platforms, but
+> that's not really suitable: mt2712 requires an extra 'bus_clk' on
+> some
+> of its controllers, while mt8192 requires four different extra
+> clocks.
+> The rest of the platforms can share the same 3 clocks, with the third
+> being optional as it's not present on all platforms.
+> 
+> Move the clock definitions inside if blocks that match on the
+> compatibles. In practice this gets rid of dtbs_check warnings on
+> mt8192,
+> since the 'bus_clk' clock from mt2712 is no longer expected on this
+> platform.
+> 
+> Fixes: 59a23395d8aa ("dt-bindings: mmc: Add support for MT8192 SoC")
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
 
-> require modifications to the binding and the driver code.
->
-> >
-> > Coming from a DT writer's perspective, I just want to go through the
-> > list of output pins in the datasheet and match them up to the ports
-> > binding for this device. If it's a pure DP bridge, where USB hardware
-> > isn't an input or an output like the ITE chip, then I don't want to have
-> > to describe a port graph binding for the case when it's connected to a
-> > dp-connector (see dp-connector.yaml) in the top-level node and then have
-> > to make an entirely different subnode for the usb-c-connector case with
-> > a whole other set of graph ports.
->
-> This approach still allows for that, if the driver has any use for it
-> (AFAICT these drivers don't).
-> Iff that driver uses it, one can (optionally) route their output
-> (top-level) ports through the
-> "typec-switch" sub-node (and onwards as required).
-> If it's being used in a "pure-DP" configuration, the "typec-switch" just
-> goes away (the top level ports can be routed as desired by the driver).
-> (Again, I must reiterate that neither this driver or the anx driver
-> utilizes this)
->
-> >
-> > How would I even know which two differential pairs correspond to port0
-> > or port1 in this binding in the ITE case?
->
-> Why do we need to know that? It doesn't affect this or the other
-> driver or hardware's
-> functioning in a perceivable way.
->
-> > Ideally we make the graph
-> > binding more strict for devices by enforcing that their graph ports
-> > exist. Otherwise we're not fully describing the connections between
-> > devices and our dtb checkers are going to let things through where the
-> > driver most likely will fail because it can't figure out what to do,
-> > e.g. display DP on 4 lanes or play some DP lane rerouting games to act
-> > as a mux.
->
-> How is the current binding enforcing this? The typec-switch binding
-> as a first step ensures that the DT is connecting the hardware(anx,ite
-> etc) to something
-> that at least "claims" to be a Type-C switch.
->
-> >
-> > >
-> > > It also maps with the internal block diagram for these hardware
-> > > components (for ex. the anx7625 crosspoint switch is a separate
-> > > sub-block within anx7625).
-> >
-> > We don't make DT bindings for sub-components like this very often. It
-> > would make more sense to me to have a subnode if a typec switch was some
-> > sort of off the shelf hard macro that the hardware engineer placed down
-> > inside the IC that they delivered. Then we could have a completely
-> > generic driver that binds to the generic binding that knows how to drive
-> > the hardware, because it's an unchangeable hard macro with a well
-> > defined programming interface.
-> >
-> > >
-> > > [1] https://lore.kernel.org/linux-usb/CACeCKaeH6qTTdG_huC4yw0xxG8TYEOtfPW3tiVNwYs=P4QVPXg@mail.gmail.com/
-> >
-> > I looked at the fsa4480 driver and the device has a publicly available
-> > datasheet[2]. That device is designed for "audio accessory mode" but I
-> > guess it's being used to simply mux SBU lines? There isn't an upstream
-> > user of the binding so far, but it also doesn't look like a complete
-> > binding. I'd expect to see DN_L/R as a graph output connected to the
-> > usb-c-connector and probably have a usb2.0 input port and a 'sound-dai'
-> > property to represent the input audio path.
-> >
-> > Finally, simply connecting to the typec controller node isn't sufficient
-> > because a typec controller can be controlling many usb-c-connectors so I
-> > don't see how the graph binding would be able to figure out how many
-> > usb-c-connectors are connected to a mux like device, unless we took the
-> > approach of this patch.
->
-> It can follow the endpoint of the typec-switch port (the port parent
-> of the remote
-> end-point would be a 'usb-c-connector'). That is if the graph binding
-> (I'm assuming you mean the switch device here) wants to figure this
-> out in the first place.
->
-> > Is that why you're proposing this binding? To
-> > avoid describing a graph binding in the usb-c-connector and effectively
-> > "pushing" the port count up to the mux?
->
-> No, that is not the intention behind this series. The
-> 'usb-c-connector' still needs the
-> graph binding to the `typec-switch`. SBU, HS and SS lanes might have different
-> muxes altogether (usb-c-connect has separate ports for SBU, HS and SS lanes)
->
-> >
-> > [2] https://www.onsemi.com/pdf/datasheet/fsa4480-d.pdf
->
-> [3] https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/connector/usb-connector.yaml#L23
+Reviewed-by: Wenbin Mei <wenbin.mei@mediatek.com>
+
+> ---
+> v1: 
+> https://lore.kernel.org/all/20220617230114.2438875-1-nfraprado@collabora.com
+> 
+> Changes in v2:
+> - Kept widest minItems/maxItems outside the if blocks
+> 
+>  .../devicetree/bindings/mmc/mtk-sd.yaml       | 111 +++++++++++++---
+> --
+>  1 file changed, 81 insertions(+), 30 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> index 2a2e9fa8c188..5e73218d2e6e 100644
+> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> @@ -10,9 +10,6 @@ maintainers:
+>    - Chaotian Jing <chaotian.jing@mediatek.com>
+>    - Wenbin Mei <wenbin.mei@mediatek.com>
+>  
+> -allOf:
+> -  - $ref: mmc-controller.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -49,27 +46,11 @@ properties:
+>      description:
+>        Should contain phandle for the clock feeding the MMC
+> controller.
+>      minItems: 2
+> -    items:
+> -      - description: source clock (required).
+> -      - description: HCLK which used for host (required).
+> -      - description: independent source clock gate (required for
+> MT2712).
+> -      - description: bus clock used for internal register access
+> (required for MT2712 MSDC0/3).
+> -      - description: msdc subsys clock gate (required for MT8192).
+> -      - description: peripheral bus clock gate (required for
+> MT8192).
+> -      - description: AXI bus clock gate (required for MT8192).
+> -      - description: AHB bus clock gate (required for MT8192).
+> +    maxItems: 7
+>  
+>    clock-names:
+>      minItems: 2
+> -    items:
+> -      - const: source
+> -      - const: hclk
+> -      - const: source_cg
+> -      - const: bus_clk
+> -      - const: sys_cg
+> -      - const: pclk_cg
+> -      - const: axi_cg
+> -      - const: ahb_cg
+> +    maxItems: 7
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -171,15 +152,85 @@ required:
+>    - vmmc-supply
+>    - vqmmc-supply
+>  
+> -if:
+> -  properties:
+> -    compatible:
+> -      contains:
+> -        const: mediatek,mt8183-mmc
+> -then:
+> -  properties:
+> -    reg:
+> -      minItems: 2
+> +allOf:
+> +  - $ref: mmc-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mediatek,mt8183-mmc
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 2
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mediatek,mt8192-mmc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: source clock
+> +            - description: HCLK which used for host
+> +            - description: independent source clock gate
+> +            - description: msdc subsys clock gate
+> +            - description: peripheral bus clock gate
+> +            - description: AXI bus clock gate
+> +            - description: AHB bus clock gate
+> +        clock-names:
+> +          items:
+> +            - const: source
+> +            - const: hclk
+> +            - const: source_cg
+> +            - const: sys_cg
+> +            - const: pclk_cg
+> +            - const: axi_cg
+> +            - const: ahb_cg
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mediatek,mt2712-mmc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 3
+> +          items:
+> +            - description: source clock
+> +            - description: HCLK which used for host
+> +            - description: independent source clock gate
+> +            - description: bus clock used for internal register
+> access (required for MSDC0/3).
+> +        clock-names:
+> +          minItems: 3
+> +          items:
+> +            - const: source
+> +            - const: hclk
+> +            - const: source_cg
+> +            - const: bus_clk
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              enum:
+> +                - mediatek,mt2712-mmc
+> +                - mediatek,mt8192-mmc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          items:
+> +            - description: source clock
+> +            - description: HCLK which used for host
+> +            - description: independent source clock gate
+> +        clock-names:
+> +          minItems: 2
+> +          items:
+> +            - const: source
+> +            - const: hclk
+> +            - const: source_cg
+>  
+>  unevaluatedProperties: false
+>  
+
