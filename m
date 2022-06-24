@@ -2,275 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 139865595C3
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 10:50:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1981C5595D4
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 10:55:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230181AbiFXIs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 04:48:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37026 "EHLO
+        id S231388AbiFXIvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 04:51:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbiFXIs6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 04:48:58 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7E4DC56FB2;
-        Fri, 24 Jun 2022 01:48:57 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.92,218,1650898800"; 
-   d="scan'208";a="123998081"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 24 Jun 2022 17:48:57 +0900
-Received: from localhost.localdomain (unknown [10.226.93.68])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 63D6D40078AD;
-        Fri, 24 Jun 2022 17:48:54 +0900 (JST)
-From:   Phil Edworthy <phil.edworthy@renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: pinctrl: renesas: Add DT bindings for RZ/V2M pinctrl
-Date:   Fri, 24 Jun 2022 09:48:32 +0100
-Message-Id: <20220624084833.22605-2-phil.edworthy@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220624084833.22605-1-phil.edworthy@renesas.com>
-References: <20220624084833.22605-1-phil.edworthy@renesas.com>
+        with ESMTP id S231778AbiFXIvS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 04:51:18 -0400
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39FE4792B3;
+        Fri, 24 Jun 2022 01:51:08 -0700 (PDT)
+Received: by mail-qv1-xf35.google.com with SMTP id n15so3596209qvh.12;
+        Fri, 24 Jun 2022 01:51:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=iOkJMguCySKiYgS3jaAKrTeCcltfp+Ak4u2IsO3Ufzc=;
+        b=OS9y9gyqqlzBUxmT5C5qu5Bzoov0SFyiZghT1n2aZ6NXxe47VHQ2fxNtwNcSSNMSZc
+         TLujETxvVIzU7ZaBySBQKfS2B3GmzGsJpW+Z/sx4QadJF5AwweatiW25cA3VyBl1kw4f
+         zNMjb8JP1KkoOOfGDi+DB+JbPmAsmUF0R5Cg4eJMCW8YAAbZeXrYNGyTbemUqRJaAAFR
+         B4D5wo0c2JB38NP4yV7DgMhzIXzGj3A0YM3utDucRIkmA41mENTxYzywcYEfuIi3CwKS
+         uFKzXfk35U42oPGU4YEOm7oi/UkPjeMRqkd7aaof02RHFSuDe0GGxkrSWBYWdvd+9VaU
+         83Bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iOkJMguCySKiYgS3jaAKrTeCcltfp+Ak4u2IsO3Ufzc=;
+        b=tS3v0/k+bOIyt2aTinm1L4dITVjEQHa2mHXV8s11+T2EenNTNsiyLfJJwm9/U6HrtL
+         UTH6ZRoZ/GQPTddG1QEVz18TcZOVOQLjQfUU78GxpboLB8dsgfOnGNScwQABtJPXTft4
+         RDb4vq/f30JR4Cn2ut1vi1txC3/etekoiFFnv+Njj1QxNSh+V0uKjVAgOU9KvuGcL/uT
+         NW+TrfKhilMJOiREUqnUL4Lahud8UdTG1ZY2sSYddqp1FaEGK++F2Tzk/Ju5U2AggR2g
+         etdqbDGvUI7BJp6Qi1h6U25GZT+ACLHlM+1H+ywm3jrRTgY2W3YThaaFkgsl8KvvyCKL
+         nTIg==
+X-Gm-Message-State: AJIora+HzIpDg+UCgqdD3hInz8ffIGPyr2R3y85VxN4FSdZeGS+QeBia
+        qt4k3BvbeDyAuYHPjeUBCTHRIca4H4zLgEcAhSY=
+X-Google-Smtp-Source: AGRyM1uiyXBd99GGaJBVR8C85XZmoBzCNHgrHQ/Wwsu4HOvyYcJpTRur+mwswijaZ+WAJ/rBF4BpXrIwIkgbPjNMzeg=
+X-Received: by 2002:a05:6214:2129:b0:470:396d:19c4 with SMTP id
+ r9-20020a056214212900b00470396d19c4mr24485321qvc.34.1656060667403; Fri, 24
+ Jun 2022 01:51:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220623182542.1116677-1-robimarko@gmail.com> <20220624010103.GA23758@quicinc.com>
+In-Reply-To: <20220624010103.GA23758@quicinc.com>
+From:   Robert Marko <robimarko@gmail.com>
+Date:   Fri, 24 Jun 2022 10:50:56 +0200
+Message-ID: <CAOX2RU7yKuV4i_9YRs9fx2DTTvAndWFFw3cYtQ3qFk9m1zZJVg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: firmware: qcom-scm: convert to dtschema
+To:     Guru Das Srinagesh <quic_gurus@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree binding documentation and header file for Renesas
-RZ/V2M pinctrl.
+On Fri, 24 Jun 2022 at 03:01, Guru Das Srinagesh <quic_gurus@quicinc.com> wrote:
+>
+> On Thu, Jun 23, 2022 at 08:25:42PM +0200, Robert Marko wrote:
+> > Convert bindings for Qualcomm SCM to dtschema.
+> >
+> > SoC compatibles that were used, but not documented were added.
+> >
+> > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > ---
+> >  .../devicetree/bindings/firmware/qcom,scm.txt |  57 --------
+> >  .../bindings/firmware/qcom,scm.yaml           | 124 ++++++++++++++++++
+> >  2 files changed, 124 insertions(+), 57 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/firmware/qcom,scm.txt
+> >  create mode 100644 Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.txt b/Documentation/devicetree/bindings/firmware/qcom,scm.txt
+> > deleted file mode 100644
+> > index 0f4e5ab26477..000000000000
+> > --- a/Documentation/devicetree/bindings/firmware/qcom,scm.txt
+> > +++ /dev/null
+> > @@ -1,57 +0,0 @@
+> > -QCOM Secure Channel Manager (SCM)
+> > -
+> > -Qualcomm processors include an interface to communicate to the secure firmware.
+> > -This interface allows for clients to request different types of actions.  These
+> > -can include CPU power up/down, HDCP requests, loading of firmware, and other
+> > -assorted actions.
+> > -
+> > -Required properties:
+> > -- compatible: must contain one of the following:
+> > - * "qcom,scm-apq8064"
+> > - * "qcom,scm-apq8084"
+> > - * "qcom,scm-ipq4019"
+> > - * "qcom,scm-ipq806x"
+> > - * "qcom,scm-ipq8074"
+> > - * "qcom,scm-mdm9607"
+> > - * "qcom,scm-msm8226"
+> > - * "qcom,scm-msm8660"
+> > - * "qcom,scm-msm8916"
+> > - * "qcom,scm-msm8953"
+> > - * "qcom,scm-msm8960"
+> > - * "qcom,scm-msm8974"
+> > - * "qcom,scm-msm8976"
+> > - * "qcom,scm-msm8994"
+> > - * "qcom,scm-msm8996"
+> > - * "qcom,scm-msm8998"
+> > - * "qcom,scm-sc7180"
+> > - * "qcom,scm-sc7280"
+> > - * "qcom,scm-sdm845"
+> > - * "qcom,scm-sdx55"
+> > - * "qcom,scm-sm6350"
+> > - * "qcom,scm-sm8150"
+> > - * "qcom,scm-sm8250"
+> > - * "qcom,scm-sm8350"
+> > - * "qcom,scm-sm8450"
+> > - and:
+> > - * "qcom,scm"
+> > -- clocks: Specifies clocks needed by the SCM interface, if any:
+> > - * core clock required for "qcom,scm-apq8064", "qcom,scm-msm8660" and
+> > -   "qcom,scm-msm8960"
+> > - * core, iface and bus clocks required for "qcom,scm-apq8084",
+> > -   "qcom,scm-msm8916", "qcom,scm-msm8953", "qcom,scm-msm8974" and "qcom,scm-msm8976"
+> > -- clock-names: Must contain "core" for the core clock, "iface" for the interface
+> > -  clock and "bus" for the bus clock per the requirements of the compatible.
+> > -- qcom,dload-mode: phandle to the TCSR hardware block and offset of the
+> > -                download mode control register (optional)
+> > -
+> > -Example for MSM8916:
+> > -
+> > -     firmware {
+> > -             scm {
+> > -                     compatible = "qcom,msm8916", "qcom,scm";
+> > -                     clocks = <&gcc GCC_CRYPTO_CLK> ,
+> > -                              <&gcc GCC_CRYPTO_AXI_CLK>,
+> > -                              <&gcc GCC_CRYPTO_AHB_CLK>;
+> > -                     clock-names = "core", "bus", "iface";
+> > -             };
+> > -     };
+> > diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> > new file mode 100644
+> > index 000000000000..7dd7beb39846
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> > @@ -0,0 +1,124 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/firmware/qcom,scm.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: QCOM Secure Channel Manager (SCM) bindings
+> > +
+> > +maintainers:
+> > +  - Robert Marko <robimarko@gmail.com>
+>
+> I'd like to volunteer my name as well, if that's okay:
+>
+> Guru Das Srinagesh <quic_gurus@quicinc.com>
 
-Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v2:
- - Remove power-source as it is not supported
- - Add enum and description for slew-rate
- - Remove 'oneOf' and 'items' for compatible string
- - Add description for the interrupts
- - Remove input-enable property as it is not appropriate
----
- .../pinctrl/renesas,rzv2m-pinctrl.yaml        | 170 ++++++++++++++++++
- include/dt-bindings/pinctrl/rzv2m-pinctrl.h   |  23 +++
- 2 files changed, 193 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.yaml
- create mode 100644 include/dt-bindings/pinctrl/rzv2m-pinctrl.h
+Hi,
+Sure, will add you to v2.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.yaml
-new file mode 100644
-index 000000000000..eac6245db7dc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.yaml
-@@ -0,0 +1,170 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/renesas,rzv2m-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/V2M combined Pin and GPIO controller
-+
-+maintainers:
-+  - Geert Uytterhoeven <geert+renesas@glider.be>
-+  - Phil Edworthy <phil.edworthy@renesas.com>
-+
-+description:
-+  The Renesas RZ/V2M SoC features a combined Pin and GPIO controller.
-+  Pin multiplexing and GPIO configuration is performed on a per-pin basis.
-+  Each port features up to 16 pins, each of them configurable for GPIO function
-+  (port mode) or in alternate function mode.
-+  Up to 8 different alternate function modes exist for each single pin.
-+
-+properties:
-+  compatible:
-+    const: renesas,r9a09g011-pinctrl # RZ/V2M
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    const: 2
-+    description:
-+      The first cell contains the global GPIO port index, constructed using the
-+      RZV2M_GPIO() helper macro in <dt-bindings/pinctrl/rzv2m-pinctrl.h> and the
-+      second cell represents consumer flag as mentioned in ../gpio/gpio.txt
-+      E.g. "RZV2M_GPIO(8, 1)" for P8_1.
-+
-+  gpio-ranges:
-+    maxItems: 1
-+
-+  interrupts:
-+    description: INEXINT[0..38] corresponding to individual pin inputs.
-+    maxItems: 39
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+additionalProperties:
-+  anyOf:
-+    - type: object
-+      allOf:
-+        - $ref: pincfg-node.yaml#
-+        - $ref: pinmux-node.yaml#
-+
-+      description:
-+        Pin controller client devices use pin configuration subnodes (children
-+        and grandchildren) for desired pin configuration.
-+        Client device subnodes use below standard properties.
-+
-+      properties:
-+        phandle: true
-+        pinmux:
-+          description:
-+            Values are constructed from GPIO port number, pin number, and
-+            alternate function configuration number using the RZV2M_PORT_PINMUX()
-+            helper macro in <dt-bindings/pinctrl/rzv2m-pinctrl.h>.
-+        pins: true
-+        bias-disable: true
-+        bias-pull-down: true
-+        bias-pull-up: true
-+        drive-strength-microamp:
-+          # Superset of supported values
-+          enum: [ 1600, 1800, 2000, 3200, 3800, 4000, 6400, 7800, 8000,
-+                  9000, 9600, 11000, 12000, 13000, 18000 ]
-+        slew-rate:
-+          description: 0 is slow slew rate, 1 is fast slew rate
-+          enum: [ 0, 1 ]
-+        gpio-hog: true
-+        gpios: true
-+        output-high: true
-+        output-low: true
-+        line-name: true
-+
-+    - type: object
-+      properties:
-+        phandle: true
-+
-+      additionalProperties:
-+        $ref: "#/additionalProperties/anyOf/0"
-+
-+allOf:
-+  - $ref: "pinctrl.yaml#"
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - gpio-ranges
-+  - interrupts
-+  - clocks
-+  - power-domains
-+  - resets
-+
-+examples:
-+  - |
-+    #include <dt-bindings/pinctrl/rzv2m-pinctrl.h>
-+    #include <dt-bindings/clock/r9a09g011-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    pinctrl: pinctrl@b6250000 {
-+            compatible = "renesas,r9a09g011-pinctrl";
-+            reg = <0xb6250000 0x800>;
-+
-+            gpio-controller;
-+            #gpio-cells = <2>;
-+            gpio-ranges = <&pinctrl 0 0 352>;
-+            interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-+            clocks = <&cpg CPG_MOD R9A09G011_PFC_PCLK>;
-+            resets = <&cpg R9A09G011_PFC_PRESETN>;
-+            power-domains = <&cpg>;
-+
-+            i2c2_pins: i2c2 {
-+                    pinmux = <RZV2M_PORT_PINMUX(3, 8, 2)>, /* SDA */
-+                             <RZV2M_PORT_PINMUX(3, 9, 2)>; /* SCL */
-+            };
-+    };
-diff --git a/include/dt-bindings/pinctrl/rzv2m-pinctrl.h b/include/dt-bindings/pinctrl/rzv2m-pinctrl.h
-new file mode 100644
-index 000000000000..525532cd15da
---- /dev/null
-+++ b/include/dt-bindings/pinctrl/rzv2m-pinctrl.h
-@@ -0,0 +1,23 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * This header provides constants for Renesas RZ/V2M pinctrl bindings.
-+ *
-+ * Copyright (C) 2022 Renesas Electronics Corp.
-+ *
-+ */
-+
-+#ifndef __DT_BINDINGS_RZV2M_PINCTRL_H
-+#define __DT_BINDINGS_RZV2M_PINCTRL_H
-+
-+#define RZV2M_PINS_PER_PORT	16
-+
-+/*
-+ * Create the pin index from its bank and position numbers and store in
-+ * the upper 16 bits the alternate function identifier
-+ */
-+#define RZV2M_PORT_PINMUX(b, p, f)	((b) * RZV2M_PINS_PER_PORT + (p) | ((f) << 16))
-+
-+/* Convert a port and pin label to its global pin index */
-+#define RZV2M_GPIO(port, pin)	((port) * RZV2M_PINS_PER_PORT + (pin))
-+
-+#endif /* __DT_BINDINGS_RZV2M_PINCTRL_H */
--- 
-2.34.1
+>
+> > +
+> > +description: |
+> ...
+> > +
+> > +  '#reset-cells':
+> > +    const: 1
+>
+> This isn't part of the original file - could you please explain why this is
+> being added?
 
+Yes, its not part of the original file, however I noticed that a lot of SCM
+nodes were adding #reset-cells, and upon looking at the SCM code its
+clear that it is being registered as a reset controller so #reset-cells are
+appropriate.
+
+However, since its not really being used via phandles #reset-cells did
+not really matter, hence why I did not add them to be required,
+this is something that DT guys can probably clarify.
+
+Regards,
+Robert
+>
+> > +
+> > +  qcom,dload-mode:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description:
+> > +      Phandle to the TCSR hardware block and offset of the download mode control register
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - qcom,scm-apq8064
+> > +              - qcom,scm-msm8660
+> > +              - qcom,scm-msm8960
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: SCM core clock
+> > +        clock-names:
+> > +          items:
+> > +            - const: core
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - qcom,scm-apq8084
+> > +              - qcom,scm-mdm9607
+> > +              - qcom,scm-msm8916
+> > +              - qcom,scm-msm8953
+> > +              - qcom,scm-msm8974
+> > +              - qcom,scm-msm8976
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: SCM core clock
+> > +            - description: SCM bus clock
+> > +            - description: SCM interface clock
+> > +        clock-names:
+> > +          items:
+> > +            - const: core
+> > +            - const: bus
+> > +            - const: iface
+>
+> Thanks, I had this YAML conversion patch done locally, but couldn't figure out
+> how to represent the above logic in YAML. Thank you for this patch.
+>
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/qcom,gcc-msm8916.h>
+> > +    firmware {
+> > +      scm {
+> > +        compatible = "qcom,scm-msm8916", "qcom,scm";
+> > +
+> > +        clocks = <&gcc GCC_CRYPTO_CLK>,
+> > +                 <&gcc GCC_CRYPTO_AXI_CLK>,
+> > +                 <&gcc GCC_CRYPTO_AHB_CLK>;
+> > +        clock-names = "core", "bus", "iface";
+> > +        qcom,dload-mode = <&tcsr 0x6100>;
+> > +      };
+> > +    };
+> > --
+> > 2.36.1
+> >
