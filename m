@@ -2,272 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45D13558F3E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 05:44:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29FE9558F4A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 05:53:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229862AbiFXDob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 23:44:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60568 "EHLO
+        id S229555AbiFXDxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 23:53:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230217AbiFXDo2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 23:44:28 -0400
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 902F74D61E
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 20:44:26 -0700 (PDT)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-101ab23ff3fso2201504fac.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 20:44:26 -0700 (PDT)
+        with ESMTP id S229522AbiFXDxC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 23:53:02 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A636B2DF8;
+        Thu, 23 Jun 2022 20:53:00 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id k20so1145974qkj.1;
+        Thu, 23 Jun 2022 20:53:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=LsVAWFxXYW9U7WkPksAuQVnNc7dyC8As5T0zm8UW5hA=;
-        b=D5WWm9pkGorlJ7Oa+cZXIDW1PD5SceZfIHMI8VXpHeIGLw0b83jZdMGGX8XbWbZfO4
-         K8rThFQLq1mkrE73KGALs4VVkDn8WobG02FY9KvRwfmW3VD5Cjz/12OORsaiqSmB36hl
-         5ns1Hr7gwIp6AKa9Lptj0zjZFtKHqwrEBsYR21yUcj84TM7gjgN4EVd5xRDm4xnXOHfG
-         ePFn3k5mw/rBp/Z1lR+HfB/YfhEFFJRH/Yowku94N3PZjpL5gzd/2Zwx+Cj6q4SmJdD/
-         iQJn98KTUvlRXgDwymt1y/haALFj9Z4kZhAQeLY98COTUK/SJn19XewzWzL2glXXj3Yi
-         GSCw==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=jFjbFWbsQToqDA8+D3foTir4V11S3makzDP6KaddiXk=;
+        b=pJozIOLD7RqGuye/lDl9ttTO8v5xyU502lQ8dahAhv/hIDHGoNeY/GYqX2c+m8SMjk
+         sk7mbjho4vPUNaved+Hf/M2JDS+uxlOXK9wQNxopBnn282lgqM//YGEikuGHeEsKwY2X
+         pO0+TPgeVNOZEXirkjnGCsGQk+sO/+Liap69dCdaQcboUK6ODf5bt8d7DzFtiOtlbVOV
+         2XY9zoHp0NFZTj7xKjublnO0ognb8wYvRPp+6h0yFOyF3oEkO1sx0AeZ7VylA2/pL7qZ
+         8UcWi4xDhczY29MpPpsiifjsHzn/EqmA/1VOHf5Tw0L6VzxlY+oh3fiJaXT7QVS7+WPU
+         zF1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LsVAWFxXYW9U7WkPksAuQVnNc7dyC8As5T0zm8UW5hA=;
-        b=NCwA/fsnf7/wHRoYaqo+v1ueKoH9r7zzDdgboMuXHskfvzQNwFR8sFDC1UdnqPW4Dt
-         im7yxgSy7Nu+UTuwW02ejC/ctrcZHILH8eQx5Tt7ZxoK15IoNhwZ7R/PJIXHJOv8K/zG
-         aRlSTkTyeJLslig759hvYub8FyEP32RlPAzQyG0nXOrLB7xBc6LmJ0tmG+2lBoqfDbRB
-         JFW8lRyUuehoIZi+Z/s8g2369ItaWvm7J8p+yAuFBt8SJ89Tugafmu6ZAjtXvzO8/VhP
-         zlQkKcc74lst7PzsiOrNxrZCxnWvPBr41g8EQPZIRUhReQGjjsDYjCZTQULSfGkIrrRf
-         4Y4Q==
-X-Gm-Message-State: AJIora/o90ZK2JfxQQmQ1lpWo+8Qxjg/0FZ5ky07o2MWXglYw7ZmzRbr
-        8zA5lAdWn5mlfgxls7BeaI3k3g==
-X-Google-Smtp-Source: AGRyM1tsiqNsqAvJu0wE+gfTif8LTF9rrpM54BGnBx5SoMvZNMqeZ0rwn08kFQqwe9EasV4DxsivsA==
-X-Received: by 2002:a05:6870:6195:b0:100:ee8a:ce86 with SMTP id a21-20020a056870619500b00100ee8ace86mr906630oah.40.1656042265790;
-        Thu, 23 Jun 2022 20:44:25 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m28-20020a9d609c000000b0060c0b3c1b2asm907505otj.33.2022.06.23.20.44.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jun 2022 20:44:25 -0700 (PDT)
-Date:   Thu, 23 Jun 2022 22:44:22 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sricharan R <quic_srichara@quicinc.com>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, p.zabel@pengutronix.de,
-        quic_varada@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH V2 4/8] dt-bindings: pinctrl: qcom: Add ipq5018 pinctrl
- bindings
-Message-ID: <YrUzFgB+PxYViH5L@builder.lan>
-References: <20220621161126.15883-1-quic_srichara@quicinc.com>
- <20220621161126.15883-5-quic_srichara@quicinc.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=jFjbFWbsQToqDA8+D3foTir4V11S3makzDP6KaddiXk=;
+        b=Y1fqlf6RYYSCfagmcDQCoo61ntTpNIB3ahi3i0VJHDhgpx7gTOVX+0724pl5aw6pTA
+         PjWZNMDedW6xxQj4oo/VmK+6PYC1alTFveRp1CmBNUkwTrRgK+n2dNZzIv82B+w6MuuX
+         jbP3DRCRtWvOwSWe62hDmx3r0vUNLG8+pSGuqxggkjpFyx7iIkoH+PCjiPVOXE17ACd0
+         y4snLpWNYFbRGhfC72AtuL66Xe6iv5lkvpj+PAiFeyKXXDq4WqZOBI61WKFvId2DWidO
+         E1rSn+PDc4Z3PxabR3qR0/iLFEjprQxu2PsNd1rakWhfQkiPJC//0/N3Wo9JtCV1K5wB
+         v+Gw==
+X-Gm-Message-State: AJIora/pS69crZMfNsNPG8/8wPN71JTju2e99PoNvxWezOywolnvGchY
+        7OyUUN3mU5gY93WqsIKLz/8=
+X-Google-Smtp-Source: AGRyM1uw52y3qqBwl8c5hW8ZZhzkECGp+Xmrrth2mPnnZHEgRVCmeAS8FPK2PYSxXOCBq0Wq9aODWg==
+X-Received: by 2002:a37:c50:0:b0:6af:46d:c373 with SMTP id 77-20020a370c50000000b006af046dc373mr952136qkm.659.1656042779802;
+        Thu, 23 Jun 2022 20:52:59 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:742c:47ee:54c0:bcc7? ([2600:1700:2442:6db0:742c:47ee:54c0:bcc7])
+        by smtp.gmail.com with ESMTPSA id x11-20020a05620a448b00b006a768c699adsm1145926qkp.125.2022.06.23.20.52.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jun 2022 20:52:59 -0700 (PDT)
+Message-ID: <8be0e1b7-92a9-f0ec-04ac-6946bd1d8103@gmail.com>
+Date:   Thu, 23 Jun 2022 22:52:58 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220621161126.15883-5-quic_srichara@quicinc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v1 1/2] of: base: populate of_root node if not set
+Content-Language: en-US
+From:   Frank Rowand <frowand.list@gmail.com>
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Lizhi Hou <lizhi.hou@xilinx.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh@kernel.org>
+References: <20220623105044.152832-1-clement.leger@bootlin.com>
+ <20220623105044.152832-2-clement.leger@bootlin.com>
+ <ecf13de1-531f-b73b-b325-44ef78a3f818@gmail.com>
+ <56822a64-f289-3b7d-2175-3669194587c9@gmail.com>
+In-Reply-To: <56822a64-f289-3b7d-2175-3669194587c9@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 21 Jun 11:11 CDT 2022, Sricharan R wrote:
-
-> From: Varadarajan Narayanan <quic_varada@quicinc.com>
+On 6/23/22 21:01, Frank Rowand wrote:
+> On 6/23/22 19:15, Frank Rowand wrote:
+>> Hi Clement,
+>>
+>> I said that I would send a patch to do this, but have failed to follow
+>> through.  Sorry about that.
+>>
+>>
+>> On 6/23/22 06:50, Clément Léger wrote:
+>>> When enabling CONFIG_OF on a platform where of_root is not populated by
+>>> firmware, we end up without a root node. In order to apply overlays and
+>>> create subnodes of the root node, we need one. Create this root node
+>>> by unflattening an empty builtin dtb with of_fdt_unflatten().
+>>>
+>>> Co-developed-by: Rob Herring <robh@kernel.org>
+>>> Signed-off-by: Rob Herring <robh@kernel.org>
+>>> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+>>> ---
+>>>  drivers/of/Makefile       |  2 +-
+>>>  drivers/of/base.c         | 18 ++++++++++++++++--
+>>>  drivers/of/empty_root.dts |  6 ++++++
+>>>  3 files changed, 23 insertions(+), 3 deletions(-)
+>>>  create mode 100644 drivers/of/empty_root.dts
+>>>
+>>> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
+>>> index e0360a44306e..ce56c8b95c83 100644
+>>> --- a/drivers/of/Makefile
+>>> +++ b/drivers/of/Makefile
+>>> @@ -1,5 +1,5 @@
+>>>  # SPDX-License-Identifier: GPL-2.0
+>>> -obj-y = base.o device.o platform.o property.o
+>>> +obj-y = base.o empty_root.dtb.o device.o platform.o property.o
+>>>  obj-$(CONFIG_OF_KOBJ) += kobj.o
+>>>  obj-$(CONFIG_OF_DYNAMIC) += dynamic.o
+>>>  obj-$(CONFIG_OF_FLATTREE) += fdt.o
+>>> diff --git a/drivers/of/base.c b/drivers/of/base.c
+>>> index d4f98c8469ed..43e0f027a49c 100644
+>>> --- a/drivers/of/base.c
+>>> +++ b/drivers/of/base.c
+>>> @@ -22,6 +22,7 @@
+>>>  #include <linux/module.h>
+>>>  #include <linux/of.h>
+>>>  #include <linux/of_device.h>
+>>> +#include <linux/of_fdt.h>
+>>>  #include <linux/of_graph.h>
+>>>  #include <linux/spinlock.h>
+>>>  #include <linux/slab.h>
+>>> @@ -163,6 +164,8 @@ void __of_phandle_cache_inv_entry(phandle handle)
+>>>  		phandle_cache[handle_hash] = NULL;
+>>>  }
+>>>  
+>>> +extern const char __dtb_empty_root_begin[];
+>>> +
+>>>  void __init of_core_init(void)
+>>>  {
+>>>  	struct device_node *np;
+>>> @@ -176,6 +179,18 @@ void __init of_core_init(void)
+>>>  		pr_err("failed to register existing nodes\n");
+>>>  		return;
+>>>  	}
+>>> +
+>>> +	if (!of_root) {
+>>> +		void *dt;
+>>> +		const unsigned long *fdt = (const unsigned long *)
+>>> +							__dtb_empty_root_begin;
+>>> +		dt = of_fdt_unflatten_tree(fdt, NULL, &of_root);
+>>> +		if (!dt) {
+>>> +			pr_err("Failed to setup empty root dt\n");
+>>> +			return;
+>>> +		}
+>>> +	}
+>>> +
+>>>  	for_each_of_allnodes(np) {
+>>>  		__of_attach_node_sysfs(np);
+>>>  		if (np->phandle && !phandle_cache[of_phandle_cache_hash(np->phandle)])
+>>> @@ -184,8 +199,7 @@ void __init of_core_init(void)
+>>>  	mutex_unlock(&of_mutex);
+>>>  
+>>>  	/* Symlink in /proc as required by userspace ABI */
+>>> -	if (of_root)
+>>> -		proc_symlink("device-tree", NULL, "/sys/firmware/devicetree/base");
+>>> +	proc_symlink("device-tree", NULL, "/sys/firmware/devicetree/base");
+>>>  }
+>>
+>> This approach is adding an additional method of unflattening the tree.
+>> I would prefer to consolidate in a single location.
+>>
+>> I have leveraged this patch series into a different patch series to
+>> accomplish that.  I have boot tested with one configuration, but want
+>> to test two more configurations before sending the new series.  It
+>> should only take "a few minutes".
 > 
-> Add device tree binding Documentation details for ipq5018
-> pinctrl driver.
+> "a few minutes" is taking longer than expected.  One of the devicetree
+> interrupt unittests is not giving the expected result for one of the
+> configurations I am checking.
+
+The test is ok.  The problem was unrelated asynchronous output to the
+console intermingled with test output.
+
+My suggested alternative patch series is at:
+
+   https://lore.kernel.org/r/20220624034327.2542112-1-frowand.list@gmail.com
+
+-Frank
+
 > 
-> Co-developed-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> Co-developed-by: Sricharan R <quic_srichara@quicinc.com>
-> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
-> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  .../pinctrl/qcom,ipq5018-pinctrl.yaml         | 145 ++++++++++++++++++
->  1 file changed, 145 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq5018-pinctrl.yaml
+> -Frank
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,ipq5018-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,ipq5018-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..9b16c08bd127
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,ipq5018-pinctrl.yaml
-> @@ -0,0 +1,145 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,ipq5018-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. IPQ5018 TLMM block
-> +
-> +maintainers:
-> +  - Varadarajan Narayanan <quic_varada@quicinc.com>
-> +  - Sricharan R <quic_srichara@quicinc.com>
-> +  - Nitheesh Sekar <quic_nsekar@quicinc.com>
-> +
-> +description: |
-> +  This binding describes the Top Level Mode Multiplexer block found in the
-> +  IPQ5018 platform.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,ipq5018-pinctrl
-
-qcom,ipq5018-tlmm please
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description: Specifies the TLMM summary IRQ
-> +    maxItems: 1
-
-Please rely on qcom,tlmm-common.yaml, in line with e.g.
-qcom,sc8280xp-pinctrl.yaml.
-
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    description:
-> +      Specifies the PIN numbers and Flags, as defined in defined in
-> +      include/dt-bindings/interrupt-controller/irq.h
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    description: Specifying the pin number and flags, as defined in
-> +      include/dt-bindings/gpio/gpio.h
-> +    const: 2
-> +
-> +  gpio-ranges:
-> +    maxItems: 1
-> +
-> +#PIN CONFIGURATION NODES
-> +patternProperties:
-> +  '-pinmux$':
-
-This will only allow describing properties directly in the state node,
-not under subnodes. Please update according to e.g. sc8280xp
-
-Also, please use the suffix "-state"
-
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: "/schemas/pinctrl/pincfg-node.yaml"
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this
-> +          subnode.
-> +        items:
-> +          oneOf:
-> +            - pattern: "^gpio([1-9]|[1-7][0-9]|80)$"
-
-According to the implementation you should only accept
-"^gpio([1-9]|[1-3][0-9]|4[0-6]$"
-
-> +        minItems: 1
-> +        maxItems: 4
-> +
-> +      function:
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins.
-> +        enum: [ atest_char, atest_char0, atest_char1, atest_char2, atest_char3,
-> +          audio_pdm0, audio_pdm1, audio_rxbclk, audio_rxd, audio_rxfsync,
-> +          audio_rxmclk, audio_txbclk, audio_txd, audio_txfsync, audio_txmclk,
-> +          blsp0_i2c, blsp0_spi, blsp0_uart0, blsp0_uart1, blsp1_i2c0,
-> +          blsp1_i2c1, blsp1_spi0, blsp1_spi1, blsp1_uart0, blsp1_uart1,
-> +          blsp1_uart2, blsp2_i2c0, blsp2_i2c1, blsp2_spi, blsp2_spi0,
-> +          blsp2_spi1, btss0, btss1, btss10, btss11, btss12, btss13, btss2,
-> +          btss3, btss4, btss5, btss6, btss7, btss8, btss9, burn0, burn1,
-> +          cri_trng, cri_trng0, cri_trng1, cxc_clk, cxc_data, dbg_out, eud_gpio,
-> +          gcc_plltest, gcc_tlmm, gpio, mac0, mac1, mdc, mdio, pcie0_clk,
-> +          pcie0_wake, pcie1_clk, pcie1_wake, pll_test, prng_rosc, pwm0, pwm1,
-> +          pwm2, pwm3, qdss_cti_trig_in_a0, qdss_cti_trig_in_a1,
-> +          qdss_cti_trig_in_b0, qdss_cti_trig_in_b1, qdss_cti_trig_out_a0,
-> +          qdss_cti_trig_out_a1, qdss_cti_trig_out_b0, qdss_cti_trig_out_b1,
-> +          qdss_traceclk_a, qdss_traceclk_b, qdss_tracectl_a, qdss_tracectl_b,
-> +          qdss_tracedata_a, qdss_tracedata_b, qspi_clk, qspi_cs, qspi0, qspi1,
-> +          qspi2, qspi3, reset_out, sdc1_clk, sdc1_cmd, sdc10, sdc11, sdc12,
-> +          sdc13, wci0, wci1, wci2, wci3, wci4, wci5, wci6, wci7, wsa_swrm,
-> +          wsi_clk3, wsi_data3, wsis_reset, xfem0, xfem1, xfem2, xfem3, xfem4,
-> +          xfem5, xfem6, xfem7 ]
-> +
-> +      drive-strength:
-> +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> +        default: 2
-> +        description:
-> +          Selects the drive strength for the specified pins, in mA.
-> +
-> +      bias-pull-down: true
-> +
-> +      bias-pull-up: true
-> +
-> +      bias-disable: true
-> +
-> +      output-high: true
-> +
-> +      output-low: true
-> +
-> +    required:
-> +      - pins
-> +      - function
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +  - gpio-ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +        tlmm: pinctrl@1000000 {
-> +              compatible = "qcom,ipq5018-pinctrl";
-> +              reg = <0x01000000 0x300000>;
-> +              interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> +              interrupt-controller;
-> +              #interrupt-cells = <2>;
-> +              gpio-controller;
-> +              #gpio-cells = <2>;
-> +              gpio-ranges = <&tlmm 0 80>;
-
-I think this should be 47.
-
-Regards,
-Bjorn
-
-> +
-> +              serial3-pinmux {
-> +                      pins = "gpio44", "gpio45";
-> +                      function = "blsp0_uart0";
-> +                      drive-strength = <8>;
-> +                      bias-pull-down;
-> +              };
-> +        };
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
+>>
+>> -Frank
+>>
+>>>  
+>>>  static struct property *__of_find_property(const struct device_node *np,
+>>> diff --git a/drivers/of/empty_root.dts b/drivers/of/empty_root.dts
+>>> new file mode 100644
+>>> index 000000000000..cf9e97a60f48
+>>> --- /dev/null
+>>> +++ b/drivers/of/empty_root.dts
+>>> @@ -0,0 +1,6 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>> +/dts-v1/;
+>>> +
+>>> +/ {
+>>> +
+>>> +};
+>>
 > 
+
