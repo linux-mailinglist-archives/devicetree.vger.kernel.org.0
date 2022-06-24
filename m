@@ -2,143 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 807BD559E76
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:22:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D18A9559E6D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:22:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231483AbiFXQWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 12:22:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48358 "EHLO
+        id S231520AbiFXQWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 12:22:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbiFXQWD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:22:03 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DD4356756;
-        Fri, 24 Jun 2022 09:22:02 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id t5so5775553eje.1;
-        Fri, 24 Jun 2022 09:22:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=IZW2pT7Y1PlJtZTT1KeQ7+S8Oay6FOqebmbNuSNNNlY=;
-        b=QCOs9yiK7UIpiQqxyiQWztc/NGleizowx11M/398B80qoRS+/Uo9uc5VOCirYNqw2/
-         Gm3o2HHamRP6zLmklhWTtb/3gW9sIU7xnWLdw1ZULefIS7uHeqYzHpAgm1hYyUqKuvOk
-         ftVngW86ofgh7z4pwiaVRHLrq1hPysFfeJppUjemW60SJ9sL/5PG3reD/26EwuL4YBoi
-         EFw+MR7g3uzvDFW7hGopL27AsJD3R1ZODJMqPyq2ZxPs72uGaZxdnjz8EKr2wZt7I1a2
-         E3vIlff5UY2xfNApP49wbYzkB7GcecnrPwiaPqxrdkjQnOw1SNFFSIqiMSje1Ku/ySIY
-         EAYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=IZW2pT7Y1PlJtZTT1KeQ7+S8Oay6FOqebmbNuSNNNlY=;
-        b=3idllwQPeg+QHJeHAT6DHGLhFVgKKf4+sEL6kkfKBRD5U7osBboI3zMBJ8sRMAr5ej
-         jS6lHnN/nUI5NECYGfSTTKOEhJnP1hr720m3H+Cpf6Z6Eud5/vlJO8AuVPwYFlW8hCmX
-         2dnskmAGxUOg/sxHt484ka+078abqRx0snT7lJ4Bj/uFqoJcGGxU3OuCLeMD6n1dpkG2
-         UHFexN6vLLJGfTHUGXqiqaM/8DIB51jX0HsMSgYz6ie4HZfNOqSQSBXv7swVwzMdE+wr
-         mOCKw7AsaYDP5KMFCVj8Dzf4Hqzdhuqr8s+iDh4l3Y21lOr01kKZnZwzDVDvXiaFz6ip
-         SQNQ==
-X-Gm-Message-State: AJIora+cWmmdgoGs256LyxZzSuQaYXAac47uVPeXlG2tnjPDHJ98pry6
-        PKyeAul3h0kKxf96oz7oOKg=
-X-Google-Smtp-Source: AGRyM1szrUBh0WA1OG2b/WfcGqlM0v8kIHkxOWsSPykep/TaE5WgOlfsNh9qzuJUvF8KNnHQIshDOg==
-X-Received: by 2002:a17:907:1c0b:b0:711:cc52:2920 with SMTP id nc11-20020a1709071c0b00b00711cc522920mr14445838ejc.301.1656087720853;
-        Fri, 24 Jun 2022 09:22:00 -0700 (PDT)
-Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id l4-20020aa7d944000000b00435b4775d94sm2394144eds.73.2022.06.24.09.21.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Jun 2022 09:21:59 -0700 (PDT)
-Date:   Fri, 24 Jun 2022 18:21:58 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bhadram Varka <vbhadram@nvidia.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jonathanh@nvidia.com, kuba@kernel.org, catalin.marinas@arm.com,
-        will@kernel.org, Thierry Reding <treding@nvidia.com>
-Subject: Re: [PATCH net-next v1 2/9] dt-bindings: Add Tegra234 MGBE clocks
- and resets
-Message-ID: <YrXkpiaxqjzJdaL9@orome>
-References: <20220623074615.56418-1-vbhadram@nvidia.com>
- <20220623074615.56418-2-vbhadram@nvidia.com>
- <53e8aa2f-f5f6-43d9-c167-ec5c5818dfb0@linaro.org>
+        with ESMTP id S231349AbiFXQWJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:22:09 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C8F656768;
+        Fri, 24 Jun 2022 09:22:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1656087728; x=1687623728;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=3Vei00oM6TwEwv+jiVXx6m0V86jDoQE6ASqcA1hqcLc=;
+  b=G7p8OjNEEADZLAPzyuMVdO5mmcf62IC+futsS+MWEGYZllfDvoHVtyzM
+   SJXz7bWAREQZfiVdqvuQlboo40ySaywgOieTrRsWUp1oyNse7ef3OOXVY
+   QW1mHvx9cloXg2TM9WoYrFZOfcRY1OR5ExgXinKs2yKMihivvShQau1wN
+   NyDmGr9tfvrsAme4WMFP4xtVjgiURQwSqSYzlQH89ZrCs1CMKqQFiI+DI
+   8gzb6X5Lu4f21wN0ltSPyt8Lu8OgKdgwp2CdMFCfTLmBCexVW0CJcN4de
+   mLGhJLLpSPIVboaGEhHmMHaEyPvoBZUs1NdZAeFhJ1yjmQi0JscF3c9/k
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10388"; a="264074740"
+X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; 
+   d="scan'208";a="264074740"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2022 09:22:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; 
+   d="scan'208";a="621765099"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
+  by orsmga001.jf.intel.com with ESMTP; 24 Jun 2022 09:22:03 -0700
+From:   niravkumar.l.rabara@intel.com
+To:     dinguyen@kernel.org
+Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, niravkumar.l.rabara@intel.com,
+        robh+dt@kernel.org
+Subject: [PATCHv3] arm64: dts: altera: socfpga_stratix10: move clocks out of soc node
+Date:   Sat, 25 Jun 2022 00:21:59 +0800
+Message-Id: <20220624162159.3403541-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <c90eb127-fa5a-2231-106d-5054e0097281@kernel.org>
+References: <c90eb127-fa5a-2231-106d-5054e0097281@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="j7YpGeEo8VO5okh2"
-Content-Disposition: inline
-In-Reply-To: <53e8aa2f-f5f6-43d9-c167-ec5c5818dfb0@linaro.org>
-User-Agent: Mutt/2.2.6 (2022-06-05)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
---j7YpGeEo8VO5okh2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The clocks are not part of the SoC but provided on the board
+(external oscillators). Moving them out of soc node.
 
-On Fri, Jun 24, 2022 at 06:02:58PM +0200, Krzysztof Kozlowski wrote:
-> On 23/06/2022 09:46, Bhadram Varka wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Add the clocks and resets used by the MGBE Ethernet hardware found on
-> > Tegra234 SoCs.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > Signed-off-by: Bhadram Varka <vbhadram@nvidia.com>
-> > ---
-> >  include/dt-bindings/clock/tegra234-clock.h | 101 +++++++++++++++++++++
-> >  include/dt-bindings/reset/tegra234-reset.h |   8 ++
-> >  2 files changed, 109 insertions(+)
-> >=20
-> > diff --git a/include/dt-bindings/clock/tegra234-clock.h b/include/dt-bi=
-ndings/clock/tegra234-clock.h
-> > index bd4c3086a2da..bab85d9ba8cd 100644
-> > --- a/include/dt-bindings/clock/tegra234-clock.h
-> > +++ b/include/dt-bindings/clock/tegra234-clock.h
-> > @@ -164,10 +164,111 @@
-> >  #define TEGRA234_CLK_PEX1_C5_CORE		225U
-> >  /** @brief PLL controlled by CLK_RST_CONTROLLER_PLLC4_BASE */
-> >  #define TEGRA234_CLK_PLLC4			237U
-> > +/** @brief RX clock recovered from MGBE0 lane input */
->=20
-> The IDs should be abstract integer incremented by one, without any
-> holes. I guess the issue was here before, so it's fine but I'll start
-> complaining at some point :)
+Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+---
+ .../boot/dts/altera/socfpga_stratix10.dtsi    | 56 +++++++++----------
+ .../dts/altera/socfpga_stratix10_socdk.dts    | 10 ++--
+ .../altera/socfpga_stratix10_socdk_nand.dts   | 10 ++--
+ 3 files changed, 36 insertions(+), 40 deletions(-)
 
-These IDs originate from firmware and therefore are more like hardware
-IDs rather than an arbitrary enumeration. These will be used directly in
-IPC calls with the firmware to reference individual clocks and resets.
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+index aa2bba75265f..5c7d926d18f7 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+@@ -97,6 +97,34 @@ intc: interrupt-controller@fffc1000 {
+ 		      <0x0 0xfffc6000 0x0 0x2000>;
+ 	};
+ 
++	clocks {
++		cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
++			#clock-cells = <0>;
++			compatible = "fixed-clock";
++		};
++
++		cb_intosc_ls_clk: cb-intosc-ls-clk {
++			#clock-cells = <0>;
++			compatible = "fixed-clock";
++		};
++
++		f2s_free_clk: f2s-free-clk {
++			#clock-cells = <0>;
++			compatible = "fixed-clock";
++		};
++
++		osc1: osc1 {
++			#clock-cells = <0>;
++			compatible = "fixed-clock";
++		};
++
++		qspi_clk: qspi-clk {
++			#clock-cells = <0>;
++			compatible = "fixed-clock";
++			clock-frequency = <200000000>;
++		};
++	};
++
+ 	soc {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+@@ -119,34 +147,6 @@ clkmgr: clock-controller@ffd10000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
+-		clocks {
+-			cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
+-				#clock-cells = <0>;
+-				compatible = "fixed-clock";
+-			};
+-
+-			cb_intosc_ls_clk: cb-intosc-ls-clk {
+-				#clock-cells = <0>;
+-				compatible = "fixed-clock";
+-			};
+-
+-			f2s_free_clk: f2s-free-clk {
+-				#clock-cells = <0>;
+-				compatible = "fixed-clock";
+-			};
+-
+-			osc1: osc1 {
+-				#clock-cells = <0>;
+-				compatible = "fixed-clock";
+-			};
+-
+-			qspi_clk: qspi-clk {
+-				#clock-cells = <0>;
+-				compatible = "fixed-clock";
+-				clock-frequency = <200000000>;
+-			};
+-		};
+-
+ 		gmac0: ethernet@ff800000 {
+ 			compatible = "altr,socfpga-stmmac-a10-s10", "snps,dwmac-3.74a", "snps,dwmac";
+ 			reg = <0xff800000 0x2000>;
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+index 5159cd5771dc..48424e459f12 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+@@ -52,12 +52,6 @@ ref_033v: regulator-v-ref {
+ 	};
+ 
+ 	soc {
+-		clocks {
+-			osc1 {
+-				clock-frequency = <25000000>;
+-			};
+-		};
+-
+ 		eccmgr {
+ 			sdmmca-ecc@ff8c8c00 {
+ 				compatible = "altr,socfpga-s10-sdmmc-ecc",
+@@ -113,6 +107,10 @@ &mmc {
+ 	bus-width = <4>;
+ };
+ 
++&osc1 {
++	clock-frequency = <25000000>;
++};
++
+ &uart0 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
+index 0ab676c639a1..847a7c01f5af 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
+@@ -52,12 +52,6 @@ ref_033v: regulator-v-ref {
+ 	};
+ 
+ 	soc {
+-		clocks {
+-			osc1 {
+-				clock-frequency = <25000000>;
+-			};
+-		};
+-
+ 		eccmgr {
+ 			sdmmca-ecc@ff8c8c00 {
+ 				compatible = "altr,socfpga-s10-sdmmc-ecc",
+@@ -126,6 +120,10 @@ partition@200000 {
+ 	};
+ };
+ 
++&osc1 {
++	clock-frequency = <25000000>;
++};
++
+ &uart0 {
+ 	status = "okay";
+ };
+-- 
+2.25.1
 
-We've adopted these 1:1 in order to avoid adding an extra level of
-indirection (via some lookup table) in the kernel.
-
-Thierry
-
---j7YpGeEo8VO5okh2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmK15KYACgkQ3SOs138+
-s6GZrBAAvdVy6k9waK79sgT+nnevfX0LJBLc/wZxC+HnGUilZtdkaIOOtPBUcW+K
-EYVLkOnphholpRvp8od96Ox827wQ0YgKUyAqig5IkMlzb82g4Ru5MBnF3KefYkQw
-aH4r981BEvAZWTHBs9qLVEos69O1Em+sAEM2iVXHSbix5Rn/QWMLsNODtdl9EDMz
-CZYvJRytUrG+6jimjwqTuocl09v2lrNzKeomWppGbtvE1IsibiRgLyiUc5LYUZ9U
-x7UheFrBZji67LX32afJnZzCnzpVHXysq8/vkvmOBhg97kxV0lWub/P/qXwzHppG
-7ckqcpGuTlLgVRkHcwOC/bZR6phesXtOWgm0ZX26Ury8pqfLmd79w07oIeUZidd3
-sF6I9axbArySqI4Lu2Rjo798Royc8TO4kuEQiH1jfdw4weSgxK0rg1Ox0IcR2SqZ
-swXjOBxYogPLUw5X5WHmBJYIS3d9X7qFa+zMeGhDmD+zOsFpN/1pr+GOFrQPwzyt
-xyh1OdjuAj3R/Gxoajp7jeAT+54NW3bgkJJsxwOTJ0gKNCPiGEN3KtYKEMAWmqmS
-zFyz3bQ5tRF6Qu0y+YHIJGhAA+w11QHqP19Xcj28i7MQywqfLNs3LEhz8WS0EZ7A
-ySB0czlEx8U7jtyER6wzn9SnC0YtVV9u4xAbZgx1MyV9MFfxEV4=
-=Medi
------END PGP SIGNATURE-----
-
---j7YpGeEo8VO5okh2--
