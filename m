@@ -2,241 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DBA1559837
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 12:53:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48F9E559858
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 13:13:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230313AbiFXKxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 06:53:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32968 "EHLO
+        id S230181AbiFXLNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 07:13:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229584AbiFXKxq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 06:53:46 -0400
-Received: from mail.bugwerft.de (mail.bugwerft.de [46.23.86.59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2709042EC2
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 03:53:45 -0700 (PDT)
-Received: from hq-00021.holoplot.net (unknown [176.126.217.202])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id BA70F50457C;
-        Fri, 24 Jun 2022 10:47:25 +0000 (UTC)
-From:   Daniel Mack <daniel@zonque.org>
-To:     broonie@kernel.org, ryan.lee.analog@gmail.com
-Cc:     robh+dt@kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, Daniel Mack <daniel@zonque.org>
-Subject: [PATCH 8/8] ASoC: max98396: Fix TDM mode BSEL settings
-Date:   Fri, 24 Jun 2022 12:47:12 +0200
-Message-Id: <20220624104712.1934484-9-daniel@zonque.org>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220624104712.1934484-1-daniel@zonque.org>
-References: <20220624104712.1934484-1-daniel@zonque.org>
+        with ESMTP id S229595AbiFXLNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 07:13:30 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9091535A92
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 04:13:29 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id h23so3946430ejj.12
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 04:13:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0zlxTVnvbHpKy0DwhHrN4iNAtQ8jGGjP1mEZMb9Cqfc=;
+        b=BZ40dSXMcmZVrrFgwl+Svd+XT2GC1ZjSxQe9gAJ3i1aM9JQG6gU+AV52iu7Fpu+iwr
+         AFTy+gCgeUc9N/+qCzAIBTlf1Ic+VQE6/mjVzQIaXg8pgqLlubqvTatTI0AS44CWLCA8
+         2N44cmo7bFuCuT1V7gvfWlEI7yslFcHD0dH/5M1Mna5ZM7b2YQ13e8ssvEqwA93ACrfI
+         5bAePAt2QvDX9rB3N64/NHt0r2E/fA0why7b54JgxQPrkaRdEJCNwkX80Iu130RMgidl
+         oT8yc1svJdnXmoY92DuwF8QGj45XnrCYInJwlsyVWjLh8KJsw7u9b8nRVUP7NMuPRHIr
+         X3OA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0zlxTVnvbHpKy0DwhHrN4iNAtQ8jGGjP1mEZMb9Cqfc=;
+        b=O6kmD241QKvF2K2dzc9kaoZVK4sDGBhnlyZ0mdwrN+DV+pcMRXFKK1Vq63c81RY+ag
+         rOMnx4+iiBq+iMm/Q28WI0fcDN1kFIbPJXI5fsc4Y0y9FVU+wR9P+SayCV6eBBY4PmkO
+         8y59kUeDbCaRQcEM5LXyZaN/92QexQMik6vvyaL0tadV3+hKXuzxEwVgukRzr83Bi7sa
+         doC8Fd069459ZHHbiMuMwQPVw8OHgPxDKbc/DWTavfTBmloMjHWMONQJYikuwIqorGHl
+         QAtCnjXQDXLxQqcxx+BTuQZnAeh4LjIgm5kEnaWPXIhOFTFmCwOEgpEIV/akbSAdJGK8
+         RyXQ==
+X-Gm-Message-State: AJIora8J/jJhkYvi5/mapKxD96V1bd1PbltKc0VGSCgUqZg46Upw5wDj
+        PYhtbtyWk+ozSeSwoYsSk01+AQ==
+X-Google-Smtp-Source: AGRyM1sIeHNs7Q5rcCDUucuqRivorQ8lvaJWn3CypW2Y1pnrMMJZxiu2vO3vGBttNwZ8JeR2lpFs/w==
+X-Received: by 2002:a17:907:72d6:b0:722:e59a:72f4 with SMTP id du22-20020a17090772d600b00722e59a72f4mr13068601ejc.158.1656069208122;
+        Fri, 24 Jun 2022 04:13:28 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id x22-20020a170906711600b00722e4bab163sm898877ejj.200.2022.06.24.04.13.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Jun 2022 04:13:27 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dan Murphy <dmurphy@ti.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: leds: lp50xx: fix LED children names
+Date:   Fri, 24 Jun 2022 13:13:25 +0200
+Message-Id: <20220624111325.96478-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In TDM mode, the BSEL register value must be set according to table 5 in the
-datasheet. This patch adds a lookup function and uses it in
-max98396_dai_tdm_slot().
+The lp50xx LEDs expects to have single-color LED children with unit
+addresses.  This is required by the driver and provided by existing
+DTSes.  Fix the binding to match actual usage.
 
-As the first 3 entries can also be used for non-TDM setups, the code now
-re-uses the same code for such scenarios.
-
-max98396_set_clock() is folded into its only user for clarity.
-
-Signed-off-by: Daniel Mack <daniel@zonque.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Fixes: dce1452301e7 ("dt: bindings: lp50xx: Introduce the lp50xx family of RGB drivers")
 ---
- sound/soc/codecs/max98396.c | 124 +++++++++++++++++++++++-------------
- 1 file changed, 81 insertions(+), 43 deletions(-)
+ Documentation/devicetree/bindings/leds/leds-lp50xx.yaml | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/sound/soc/codecs/max98396.c b/sound/soc/codecs/max98396.c
-index f28831f4e74b..f1657a5f2140 100644
---- a/sound/soc/codecs/max98396.c
-+++ b/sound/soc/codecs/max98396.c
-@@ -438,47 +438,55 @@ static int max98396_dai_set_fmt(struct snd_soc_dai *codec_dai, unsigned int fmt)
- 	return 0;
- }
+diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+index f12fe5b53f30..c274a10bbde6 100644
+--- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+@@ -65,8 +65,14 @@ patternProperties:
+           for the child node.  The LED modules can either be used stand alone
+           or grouped into a module bank.
  
--/* BCLKs per LRCLK */
--static const int bclk_sel_table[] = {
--	32, 48, 64, 96, 128, 192, 256, 384, 512, 320,
-+/* Refer to table 5 in the datasheet */
-+static const struct max98396_pcm_config {
-+	int in, out, width, bsel, max_sr;
-+} max98396_pcm_configs[] = {
-+	{ .in = 2,  .out = 4,  .width = 16, .bsel = 0x2, /*  32 */ .max_sr = 192000  },
-+	{ .in = 2,  .out = 6,  .width = 24, .bsel = 0x3, /*  48 */ .max_sr = 192000  },
-+	{ .in = 2,  .out = 8,  .width = 32, .bsel = 0x4, /*  64 */ .max_sr = 192000  },
-+	{ .in = 3,  .out = 15, .width = 32, .bsel = 0xd, /* 125 */ .max_sr = 192000  },
-+	{ .in = 4,  .out = 8,  .width = 16, .bsel = 0x4, /*  64 */ .max_sr = 192000  },
-+	{ .in = 4,  .out = 12, .width = 24, .bsel = 0x5, /*  96 */ .max_sr = 192000  },
-+	{ .in = 4,  .out = 16, .width = 32, .bsel = 0x6, /* 128 */ .max_sr = 192000  },
-+	{ .in = 5,  .out = 15, .width = 24, .bsel = 0xd, /* 125 */ .max_sr = 192000  },
-+	{ .in = 7,  .out = 15, .width = 16, .bsel = 0xd, /* 125 */ .max_sr = 192000  },
-+	{ .in = 2,  .out = 4,  .width = 16, .bsel = 0x2, /*  32 */ .max_sr = 96000   },
-+	{ .in = 2,  .out = 6,  .width = 24, .bsel = 0x3, /*  48 */ .max_sr = 96000   },
-+	{ .in = 2,  .out = 8,  .width = 32, .bsel = 0x4, /*  64 */ .max_sr = 96000   },
-+	{ .in = 3,  .out = 15, .width = 32, .bsel = 0xd, /* 125 */ .max_sr = 96000   },
-+	{ .in = 4,  .out = 8,  .width = 16, .bsel = 0x4, /*  64 */ .max_sr = 96000   },
-+	{ .in = 4,  .out = 12, .width = 24, .bsel = 0x5, /*  96 */ .max_sr = 96000   },
-+	{ .in = 4,  .out = 16, .width = 32, .bsel = 0x6, /* 128 */ .max_sr = 96000   },
-+	{ .in = 5,  .out = 15, .width = 24, .bsel = 0xd, /* 125 */ .max_sr = 96000   },
-+	{ .in = 7,  .out = 15, .width = 16, .bsel = 0xd, /* 125 */ .max_sr = 96000   },
-+	{ .in = 7,  .out = 31, .width = 32, .bsel = 0xc, /* 250 */ .max_sr = 96000   },
-+	{ .in = 8,  .out = 16, .width = 16, .bsel = 0x6, /* 128 */ .max_sr = 96000   },
-+	{ .in = 8,  .out = 24, .width = 24, .bsel = 0x7, /* 192 */ .max_sr = 96000   },
-+	{ .in = 8,  .out = 32, .width = 32, .bsel = 0x8, /* 256 */ .max_sr = 96000   },
-+	{ .in = 10, .out = 31, .width = 24, .bsel = 0xc, /* 250 */ .max_sr = 96000   },
-+	{ .in = 15, .out = 31, .width = 16, .bsel = 0xc, /* 250 */ .max_sr = 96000   },
-+	{ .in = 16, .out = 32, .width = 16, .bsel = 0x8, /* 256 */ .max_sr = 96000   },
-+	{ .in = 7,  .out = 31, .width = 32, .bsel = 0xc, /* 250 */ .max_sr = 48000   },
-+	{ .in = 10, .out = 31, .width = 24, .bsel = 0xc, /* 250 */ .max_sr = 48000   },
-+	{ .in = 10, .out = 40, .width = 32, .bsel = 0xb, /* 320 */ .max_sr = 48000   },
-+	{ .in = 15, .out = 31, .width = 16, .bsel = 0xc, /* 250 */ .max_sr = 48000   },
-+	{ .in = 16, .out = 48, .width = 24, .bsel = 0x9, /* 384 */ .max_sr = 48000   },
-+	{ .in = 16, .out = 64, .width = 32, .bsel = 0xa, /* 512 */ .max_sr = 48000   },
- };
- 
--static int max98396_get_bclk_sel(int bclk)
-+static int max98396_pcm_config_index(int in_slots, int out_slots, int width)
- {
- 	int i;
--	/* match BCLKs per LRCLK */
--	for (i = 0; i < ARRAY_SIZE(bclk_sel_table); i++) {
--		if (bclk_sel_table[i] == bclk)
--			return i + 2;
--	}
--	return 0;
--}
- 
--static int max98396_set_clock(struct snd_soc_component *component,
--			      struct snd_pcm_hw_params *params)
--{
--	struct max98396_priv *max98396 = snd_soc_component_get_drvdata(component);
--	/* BCLK/LRCLK ratio calculation */
--	int blr_clk_ratio = params_channels(params) * max98396->ch_size;
--	int value;
--
--	if (!max98396->tdm_mode) {
--		/* BCLK configuration */
--		value = max98396_get_bclk_sel(blr_clk_ratio);
--		if (!value) {
--			dev_err(component->dev,
--				"blr_clk_ratio %d unsupported, format %d\n",
--				blr_clk_ratio, params_format(params));
--			return -EINVAL;
--		}
-+	for (i = 0; i < ARRAY_SIZE(max98396_pcm_configs); i++) {
-+		const struct max98396_pcm_config *c = &max98396_pcm_configs[i];
- 
--		regmap_update_bits(max98396->regmap,
--				   MAX98396_R2042_PCM_CLK_SETUP,
--				   MAX98396_PCM_CLK_SETUP_BSEL_MASK,
--				   value);
-+		if (in_slots == c->in && out_slots <= c->out && width == c->width)
-+			return i;
- 	}
- 
--	return 0;
-+	return -1;
- }
- 
- static int max98396_dai_hw_params(struct snd_pcm_substream *substream,
-@@ -489,8 +497,7 @@ static int max98396_dai_hw_params(struct snd_pcm_substream *substream,
- 	struct max98396_priv *max98396 = snd_soc_component_get_drvdata(component);
- 	unsigned int sampling_rate = 0;
- 	unsigned int chan_sz = 0;
--	int ret, reg;
--	int status;
-+	int ret, reg, status, bsel;
- 	bool update = false;
- 
- 	/* pcm mode configuration */
-@@ -510,8 +517,6 @@ static int max98396_dai_hw_params(struct snd_pcm_substream *substream,
- 		goto err;
- 	}
- 
--	max98396->ch_size = snd_pcm_format_width(params_format(params));
--
- 	dev_dbg(component->dev, "format supported %d",
- 		params_format(params));
- 
-@@ -559,6 +564,33 @@ static int max98396_dai_hw_params(struct snd_pcm_substream *substream,
- 		goto err;
- 	}
- 
-+	if (max98396->tdm_mode) {
-+		if (params_rate(params) > max98396->tdm_max_samplerate) {
-+			dev_err(component->dev, "TDM sample rate %d too high",
-+				params_rate(params));
-+			goto err;
-+		}
-+	} else {
-+		/* BCLK configuration */
-+		ret = max98396_pcm_config_index(params_channels(params),
-+						params_channels(params),
-+						snd_pcm_format_width(params_format(params)));
-+		if (ret < 0) {
-+			dev_err(component->dev,
-+				"no PCM config for %d channels, format %d\n",
-+				params_channels(params), params_format(params));
-+			goto err;
-+		}
++      '#address-cells':
++        const: 1
 +
-+		bsel = max98396_pcm_configs[ret].bsel;
++      '#size-cells':
++        const: 0
 +
-+		if (params_rate(params) > max98396_pcm_configs[ret].max_sr) {
-+			dev_err(component->dev, "sample rate %d too high",
-+				params_rate(params));
-+			goto err;
-+		}
-+	}
-+
- 	ret = regmap_read(max98396->regmap, MAX98396_R210F_GLOBAL_EN, &status);
- 	if (ret < 0)
- 		goto err;
-@@ -604,12 +636,15 @@ static int max98396_dai_hw_params(struct snd_pcm_substream *substream,
- 				   MAX98396_IVADC_SR_MASK,
- 				   sampling_rate << MAX98396_IVADC_SR_SHIFT);
+     patternProperties:
+-      "(^led-[0-9a-f]$|led)":
++      "^led@[0-9a-f]+$":
+         type: object
+         $ref: common.yaml#
  
--	ret = max98396_set_clock(component, params);
-+	regmap_update_bits(max98396->regmap,
-+			   MAX98396_R2042_PCM_CLK_SETUP,
-+			   MAX98396_PCM_CLK_SETUP_BSEL_MASK,
-+			   bsel);
- 
- 	if (status && update)
- 		max98396_global_enable_onoff(max98396->regmap, true);
- 
--	return ret;
-+	return 0;
- 
- err:
- 	return -EINVAL;
-@@ -634,13 +669,16 @@ static int max98396_dai_tdm_slot(struct snd_soc_dai *dai,
- 		max98396->tdm_mode = true;
- 
- 	/* BCLK configuration */
--	bsel = max98396_get_bclk_sel(slots * slot_width);
--	if (bsel == 0) {
--		dev_err(component->dev, "BCLK %d not supported\n",
--			slots * slot_width);
-+	ret = max98396_pcm_config_index(slots, slots, slot_width);
-+	if (ret < 0) {
-+		dev_err(component->dev, "no TDM config for %d slots %d bits\n",
-+			slots, slot_width);
- 		return -EINVAL;
- 	}
- 
-+	bsel = max98396_pcm_configs[ret].bsel;
-+	max98396->tdm_max_samplerate = max98396_pcm_configs[ret].max_sr;
-+
- 	/* Channel size configuration */
- 	switch (slot_width) {
- 	case 16:
 -- 
-2.36.1
+2.34.1
 
