@@ -2,75 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CCA1559E57
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 635F1559E59
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:15:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230227AbiFXQKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 12:10:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40118 "EHLO
+        id S231190AbiFXQLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 12:11:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230463AbiFXQKJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:10:09 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 546E34B431;
-        Fri, 24 Jun 2022 09:10:09 -0700 (PDT)
-Received: from notapiano (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9EB4D6601808;
-        Fri, 24 Jun 2022 17:10:06 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656087008;
-        bh=v78/bL0UJy6F1Vz08tiEF9fcaRXbAmDnh/8P2xPvWJs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NsVJ/18bFgfDZ+Ulx/LzgvhWJwcSMn/5RHO1wHnSAwg8rmIv+qoNCKhVFDJdut0uk
-         FRgU+ycRb4hblG+VkTxn5GIDwajXZrv8GSKigwh2alo337TZIjq4oVF9pjb1/JF/pz
-         O+SN+Ec7O/Z1dvpwhIgWTEKepbbdeWVAIDO1f77GzChIKMtCybMln+bT+AYRRZ9vA3
-         8JAPKQOz8kJfSnP8D1DuDymO7DRM2nYuxqOJOgEN5vvLhmbCOq/SGQlDetz3T8UiKn
-         5SY7rWcqD2j4fcSVQPP/PapmJIRIlxtYGhag74hSEPiLN9lQl38HtAeQziY2MktYBa
-         LpmFCQwDSas8Q==
-Date:   Fri, 24 Jun 2022 12:10:03 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Guodong Liu <guodong.liu@mediatek.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v2 5/5] pinctrl: mediatek: fix the pinconf definition of
- some GPIO pins
-Message-ID: <20220624161003.pzq2ap7frsh5zrbu@notapiano>
-References: <20220624133700.15487-1-guodong.liu@mediatek.com>
- <20220624133700.15487-6-guodong.liu@mediatek.com>
+        with ESMTP id S231332AbiFXQK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:10:59 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB6BF4F9E2
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:10:57 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id z19so4106917edb.11
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:10:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=GVGaHvLcAZTNe2APbU/fEg0Z2klKQLmnbsFslF8kMQQ=;
+        b=Ru5smQhEMboe8UqsC9iYprq3TT+71g4O0eiD+wCzDwQGdwRvArs+NwzLEncqilSNBz
+         rpXxPmNVRZrGDaO+wmbOHPEkRmUPhLb8KD7rgRYhwP4uT1Ws3aOOZYEVQs3UbZbWawC1
+         y/htZ4R9rIXRbqdEgK8g+2VesdAzs5tPVc3HgM9WhF+aAYv6tUC/EdZ3f9Au+xgyrXjw
+         Df53PqYAp/x7h4W5K+D/OsseXXY9h7eyw+WVL/7djRuR5kjbrJS6/kUY1L6sfgawTeff
+         QB6naRuyAe2RBQAv1h7/JPoQeZW462/71bOOoXNkemEMnB7gb+C5ewvdVSLXhx8K2GAb
+         ZUUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=GVGaHvLcAZTNe2APbU/fEg0Z2klKQLmnbsFslF8kMQQ=;
+        b=gvhLwzmPnpH8IxAE75Fyozseh2EaxY1FwUqqD/1Rme0Kh0wAClJJbW+JIAfx/u2l24
+         ay7EmCXE3/Dhsfi93ffMqeD+INV4ChCHAXahIcFz/rzVh//uKZGo430CXIn6hIm0mvxZ
+         UkUXwV2J+LbfFPJ4kybMgXj4WDg34N5zUpJ3lnLArx9rQ+joVmYrSOwZGLVNMV4Xt1OG
+         dLUvo/DT7Mo9VIiLvE/93SQzOCAi74sOAjvS59Cq1ZE2ILbR5N32M9hMVtA0z35m1z2t
+         YGerOGQDMQflI0UZDYm9O1NaCov31/N1FOU+t8m+YTkX40qbzhDhqIqOw4CuAUinK16J
+         AezA==
+X-Gm-Message-State: AJIora/iQo9l6PhWXiL/iQ40bNo4mNv3PDOHOotmLOTvy/BH9OswfwhC
+        L/RofkXhLeBHdpEY9/hJXWu5cw==
+X-Google-Smtp-Source: AGRyM1vvb73J/VYAt4ux967UEedGM6d2tsVPm8xXwcPRJsbVb+q/9Lewgloj/oyuxkcY7AS92YGRRQ==
+X-Received: by 2002:a05:6402:d5e:b0:435:dc14:d457 with SMTP id ec30-20020a0564020d5e00b00435dc14d457mr9586449edb.58.1656087056517;
+        Fri, 24 Jun 2022 09:10:56 -0700 (PDT)
+Received: from [192.168.0.237] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id s12-20020a1709064d8c00b006fe8ec44461sm1342294eju.101.2022.06.24.09.10.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Jun 2022 09:10:56 -0700 (PDT)
+Message-ID: <d0bc0054-4457-bd56-161b-19808c65c0e9@linaro.org>
+Date:   Fri, 24 Jun 2022 18:10:54 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220624133700.15487-6-guodong.liu@mediatek.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: (subset) [PATCH net-next v1 3/9] dt-bindings: memory: Add
+ Tegra234 MGBE memory clients
+Content-Language: en-US
+To:     linux-tegra@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, vbhadram@nvidia.com
+Cc:     thierry.reding@gmail.com, treding@nvidia.com, robh+dt@kernel.org,
+        catalin.marinas@arm.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, jonathanh@nvidia.com, will@kernel.org
+References: <20220623074615.56418-1-vbhadram@nvidia.com>
+ <20220623074615.56418-3-vbhadram@nvidia.com>
+ <165608679241.23612.13616476913302198468.b4-ty@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <165608679241.23612.13616476913302198468.b4-ty@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 24, 2022 at 09:37:00PM +0800, Guodong Liu wrote:
-> Remove pin definitions that do not support the R0 & R1 pinconfig property.
+On 24/06/2022 18:06, Krzysztof Kozlowski wrote:
+> On Thu, 23 Jun 2022 13:16:09 +0530, Bhadram Varka wrote:
+>> From: Thierry Reding <treding@nvidia.com>
+>>
+>> Add the memory client and stream ID definitions for the MGBE hardware
+>> found on Tegra234 SoCs.
+>>
+>>
 > 
-> Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
+> Applied, thanks!
+> 
+> [3/9] dt-bindings: memory: Add Tegra234 MGBE memory clients
+>       https://git.kernel.org/krzk/linux-mem-ctrl/c/f35756b5fc488912b8bc5f5686e4f236d00923d7
+> 
 
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Hmm, actually now I think you might need it for DTS, although there was
+no cover letter here explaining merging/dependencies...
 
-Thanks,
-Nícolas
+I could provide you a tag with it or opposite (take a tag with only the
+header).
+
+Best regards,
+Krzysztof
