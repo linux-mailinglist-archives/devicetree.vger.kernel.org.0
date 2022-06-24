@@ -2,78 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D7B45596FE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 11:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73CF65596F9
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 11:48:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbiFXJp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 05:45:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34190 "EHLO
+        id S230073AbiFXJrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 05:47:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230481AbiFXJpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 05:45:54 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79CFB79458
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 02:45:53 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id e40so2688172eda.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 02:45:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/PZ3XOMvkhnYxJnipJbwxRBEHfIP+qGhL45xt0zC5m4=;
-        b=eiHnSME3SRCyMlSVOoBz9BQV5ZpeDXeKANxFn0XuA4Fejm7uep4vtZK1s7sjasHj5C
-         6K+8aFMoguHWAvYGA7ruiWMUHCIR46vpb0qn0mZDLqj1PLUpaT+I4Vzp4oM020Ub9vvg
-         WOtc+LFTx259FAtUqMfRU93YpJadtUH8ZdmlRJghls4WK9yr93RjAurko/X5VBMfz3he
-         H1g92DUTYlhCqtOSKlhLeR2HYUdRfzW8mOHXtMVp4EtIcJxpfd+LMhvHOuwimzLTdJwe
-         emnXM/5FJDvorbzjmhwv1M8Ix9rDT3D9A8CaLRpRCg3i811JohW7OuRXv42tMhoyc3GH
-         oXxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/PZ3XOMvkhnYxJnipJbwxRBEHfIP+qGhL45xt0zC5m4=;
-        b=sLafZao7YbNTK8L2oIX0ubpk0UE9ZjuDR6ChrwPSyrUEfRpzBcHrfdZD8D1BKdaXmg
-         KX3TKNgqoXc084tArKottRE5oWJSmUpBMwpkG7oa61E7XJ8XEiWNizpJJmV0EPZ4Wg0g
-         Bh3w6gr3RpjmXIyi0jUpEF1sLkFlXHzZYRO8Y8vWdzZ0rSSTtHBS6UwulG/h+KQGm2Ry
-         XOLBByjhd3MW2MKTtUeL7GBSIHxIo8a2MytaDrhlgUPQ23Kbl9dJ22zN9D4/cRlUvCfQ
-         Ggp11EwBRuIAiBuobIv41tPz9szCZtjtIg6LcsneEb71G3/JaH+y2MtDITY6K+hxTI0X
-         gliQ==
-X-Gm-Message-State: AJIora9A0bTB3JHjzRpOajsbsCh2dRdhy6xuiwHJQsCGb6GtmlNdt8zP
-        7X0XZ17ZhRC644qBfLEnG7BkjA==
-X-Google-Smtp-Source: AGRyM1sx1ph41d4hnCr0PkPpX3Fmpbye7S6ANOY9g1Ju3MgEJ5imR/2cHlIRJ+PZIajHLOeFImTjGg==
-X-Received: by 2002:a50:c209:0:b0:435:6b37:46cb with SMTP id n9-20020a50c209000000b004356b3746cbmr16584506edf.341.1656063952058;
-        Fri, 24 Jun 2022 02:45:52 -0700 (PDT)
-Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id w16-20020a1709061f1000b0071d3b6ed4eesm799543ejj.160.2022.06.24.02.45.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 02:45:51 -0700 (PDT)
-Message-ID: <3bb0ffa0-8091-0848-66af-180a41a68bf7@linaro.org>
-Date:   Fri, 24 Jun 2022 11:45:50 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [RFC] Correct memory layout reporting for "jedec,lpddr2" and
- related bindings
-Content-Language: en-US
-To:     Julius Werner <jwerner@chromium.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Dmitry Osipenko <digetx@gmail.com>, Jian-Jia Su <jjsu@google.com>,
-        Doug Anderson <dianders@chromium.org>,
+        with ESMTP id S230013AbiFXJri (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 05:47:38 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C1C579441;
+        Fri, 24 Jun 2022 02:47:36 -0700 (PDT)
+X-UUID: cf956e9eb5714787b99fb2c02d5966c6-20220624
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:4dc945dc-c918-4613-9527-9f4434499ab4,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:0
+X-CID-META: VersionHash:b14ad71,CLOUDID:c0456cea-f7af-4e69-92ee-0fd74a0c286c,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: cf956e9eb5714787b99fb2c02d5966c6-20220624
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1774139846; Fri, 24 Jun 2022 17:47:32 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Fri, 24 Jun 2022 17:47:30 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Fri, 24 Jun 2022 17:47:29 +0800
+Message-ID: <8c3fe4712e183118b3488c987195d9c9aae966de.camel@mediatek.com>
+Subject: Re: [PATCH v4, 4/8] media: mediatek: vcodec: Add more extra
+ processing for multi-core encoding
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Nikola Milosavljevic <mnidza@outlook.com>
-References: <CAODwPW9E8wWwxbYKyf4_-JFb4F-JSmLR3qOF_iudjX0f9ndF0A@mail.gmail.com>
- <CAODwPW8fiFSNehZbZDdR9kjHxohLGiyE7edU=Opy0xV_P8JbEQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAODwPW8fiFSNehZbZDdR9kjHxohLGiyE7edU=Opy0xV_P8JbEQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        "Tiffany Lin" <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        <nicolas.dufresne@collabora.com>
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Fri, 24 Jun 2022 17:47:29 +0800
+In-Reply-To: <a8c3e22c-8f22-2fb9-ff23-f394c5c34366@collabora.com>
+References: <20220624082335.10165-1-irui.wang@mediatek.com>
+         <20220624082335.10165-5-irui.wang@mediatek.com>
+         <a8c3e22c-8f22-2fb9-ff23-f394c5c34366@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,145 +79,305 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2022 04:28, Julius Werner wrote:
-> Sorry, wrong email for Krzysztof.
+Dear Angelo,
+
+Many thanks for your reviewing and comments. I will fix them in next
+version.
+
+On Fri, 2022-06-24 at 11:00 +0200, AngeloGioacchino Del Regno wrote:
+> Il 24/06/22 10:23, Irui Wang ha scritto:
+> > Add a bit for indicating support multi-core encoding, because
+> > multi-core
+> > encoding need more working buffers for encoder hardware. The
+> > working
+> > buffers are allocated from kernel side then pass to scp firmware
+> > side
+> > through shared memory, the struct definition must be kept align
+> > between
+> > kernel and scp firmware side. New another shared memory struct for
+> > multi-core encoding.
+> > 
+> > Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> > ---
+> >   .../platform/mediatek/vcodec/mtk_vcodec_drv.h |   2 +
+> >   .../mediatek/vcodec/mtk_vcodec_util.c         |  19 ++
+> >   .../mediatek/vcodec/mtk_vcodec_util.h         |   2 +
+> >   .../mediatek/vcodec/venc/venc_h264_if.c       | 171
+> > +++++++++++++++---
+> >   4 files changed, 170 insertions(+), 24 deletions(-)
+> > 
+> > diff --git
+> > a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_drv.h
+> > b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_drv.h
+> > index 8919bdf2eef5..3a291cac6b5e 100644
+> > --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_drv.h
+> > +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_drv.h
+> > @@ -29,6 +29,8 @@
+> >   #define WAIT_INTR_TIMEOUT_MS	1000
+> >   #define IS_VDEC_LAT_ARCH(hw_arch) ((hw_arch) >=
+> > MTK_VDEC_LAT_SINGLE_CORE)
+> >   #define IS_VDEC_INNER_RACING(capability) ((capability) &
+> > MTK_VCODEC_INNER_RACING)
+> > +#define MTK_VENC_MULTICORE_ENABLE BIT(1)
+> > +#define IS_VENC_MULTICORE(capability) ((capability) &
+> > MTK_VENC_MULTICORE_ENABLE)
+> >   
+> >   /*
+> >    * enum mtk_hw_reg_idx - MTK hw register base index
+> > diff --git
+> > a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.c
+> > b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.c
+> > index ace78c4b5b9e..a723243626c0 100644
+> > --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.c
+> > +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.c
+> > @@ -11,6 +11,7 @@
+> >   
+> >   #include "mtk_vcodec_dec_hw.h"
+> >   #include "mtk_vcodec_drv.h"
+> > +#include "mtk_vcodec_enc_hw.h"
+> >   #include "mtk_vcodec_util.h"
+> >   
+> >   void __iomem *mtk_vcodec_get_reg_addr(struct mtk_vcodec_ctx
+> > *data,
+> > @@ -26,6 +27,24 @@ void __iomem *mtk_vcodec_get_reg_addr(struct
+> > mtk_vcodec_ctx *data,
+> >   }
+> >   EXPORT_SYMBOL(mtk_vcodec_get_reg_addr);
+> >   
+> > +void __iomem *mtk_venc_get_core_reg_addr(struct mtk_vcodec_ctx
+> > *ctx,
+> > +					 unsigned int hw_id)
 > 
-> On Tue, Jun 14, 2022 at 7:25 PM Julius Werner <jwerner@chromium.org> wrote:
->>
->> We (Chromium OS) have been trying to find a way to pass LPDDR memory
->> chip information that is available to the firmware through the FDT
->> (mostly for userspace informational purposes, for now). We have been
->> using and expanding the existing "jedec,lpddr2" and "jedec,lpddr3"
->> bindings for this (e.g. [1]). The goal is to be able to identify the
->> memory layout of the system (how the parts look like, how they're tied
->> together, how much capacity there is in total) as accurately as
->> possible from software-probed values.
->>
->> The existing bindings contain the fields "io-width" and "density",
->> which is terminology directly matching what an LPDDR chip can report
->> to firmware through the "Mode Register" interface, specifically MR8.
->> (The LPDDR specs describing this are not public, but you can see the
->> register definitions in most LPDDR chip datasheets that can be
->> randomly found online, e.g. [2] page 37.) The code in
->> drivers/memory/of_memory.c also suggests that these are supposed to
->> directly correspond to the MR8 values read from the chip, since when
->> of_lpddr2_get_info() copies the device tree values into struct
->> lpddr2_info, it encodes them in a format that directly matches the
->> mode register bit field patterns.
->>
->> The problem with this is that each individual LPDDR chip has its own
->> set of mode registers (per rank) that only describe the density of
->> that particular chip (rank). The host memory controller may have
->> multiple channels (each of which is basically an entirely separate set
->> of physical LPDDR pins on the board), a single channel may be
->> connected to multiple LPDDR chips (e.g. if the memory controller has
->> an outgoing 32-bit channel, that channel could be tied to two 16-bit
->> LPDDR chips by tying the low 16 bits to one and the high 16 bits to
->> the other), and then each of those chips may offer multiple
->> independent ranks (which rank is being accessed at a given time is
->> controlled by a separate chip select pin).
->>
->> So if we just have one "io-width" and one "density" field in the FDT,
->> there's no way to figure out how much memory there's actually
->> connected in total, because that only describes a single LPDDR chip.
->> Worse, there may be chips where different ranks have different
->> densities (e.g. a 6GB dual-rank chip with one 4GB and one 2GB rank),
->> and different channels could theoretically be connected to chips of
->> completely different manufacturers.
->>
->> We need to be able to report the information that's currently encoded
->> in the "jedec,lpddr2" binding separately for each channel+rank
->> combination, and we need to be able to tell how many LPDDR chips are
->> combined under a single memory channel. 
+> This is enum mtk_venc_hw_id.....
+fix in next version.
+> 
+> > +{
+> > +	struct mtk_venc_hw_dev *sub_core;
+> > +
+> > +	if (hw_id >= MTK_VENC_HW_MAX) {
+> > +		mtk_v4l2_err("Invalid hw_id = %d", hw_id);
+> > +		return NULL;
+> > +	}
+> > +
+> > +	sub_core = (struct mtk_venc_hw_dev *)ctx->dev-
+> > >enc_hw_dev[hw_id];
+> > +	if (!sub_core)
+> > +		return NULL;
+> > +
+> > +	return sub_core->reg_base;
+> > +}
+> > +EXPORT_SYMBOL(mtk_venc_get_core_reg_addr);
+> > +
+> >   int mtk_vcodec_mem_alloc(struct mtk_vcodec_ctx *data,
+> >   			struct mtk_vcodec_mem *mem)
+> >   {
+> > diff --git
+> > a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
+> > b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
+> > index 71956627a0e2..a74c98aa355b 100644
+> > --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
+> > +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
+> > @@ -50,6 +50,8 @@ struct mtk_vcodec_dev;
+> >   
+> >   void __iomem *mtk_vcodec_get_reg_addr(struct mtk_vcodec_ctx
+> > *data,
+> >   				unsigned int reg_idx);
+> > +void __iomem *mtk_venc_get_core_reg_addr(struct mtk_vcodec_ctx
+> > *data,
+> > +					 unsigned int hw_id);
+> >   int mtk_vcodec_mem_alloc(struct mtk_vcodec_ctx *data,
+> >   				struct mtk_vcodec_mem *mem);
+> >   void mtk_vcodec_mem_free(struct mtk_vcodec_ctx *data,
+> > diff --git
+> > a/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
+> > b/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
+> > index 4d9b8798dffe..888cee39d324 100644
+> > --- a/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
+> > +++ b/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
+> 
+> ..snip..
+> 
+> > @@ -143,8 +184,8 @@ struct venc_h264_vsi {
+> >    * @ctx: context for v4l2 layer integration
+> >    */
+> >   struct venc_h264_inst {
+> > -	void __iomem *hw_base;
+> > -	struct mtk_vcodec_mem work_bufs[VENC_H264_VPU_WORK_BUF_MAX];
+> > +	void __iomem *hw_base[MTK_VENC_HW_MAX];
+> > +	struct mtk_vcodec_mem work_bufs[VENC_MULTI_CORE_WORK_BUF_MAX];
+> >   	struct mtk_vcodec_mem pps_buf;
+> >   	bool work_buf_allocated;
+> >   	unsigned int frm_cnt;
+> > @@ -152,12 +193,13 @@ struct venc_h264_inst {
+> >   	unsigned int prepend_hdr;
+> >   	struct venc_vpu_inst vpu_inst;
+> >   	struct venc_h264_vsi *vsi;
+> > +	struct venc_multi_core_vsi *core_vsi;
+> 
+> You're adding a new struct member without adding it to the
+> documentation,
+> please add it there too.
+Add it in next version.
+> 
+> >   	struct mtk_vcodec_ctx *ctx;
+> >   };
+> >   
+> >   static inline u32 h264_read_reg(struct venc_h264_inst *inst, u32
+> > addr)
+> >   {
+> > -	return readl(inst->hw_base + addr);
+> > +	return readl(inst->hw_base[MTK_VENC_CORE_0] + addr);
+> >   }
+> >   
+> >   static unsigned int h264_get_profile(struct venc_h264_inst *inst,
+> > @@ -228,13 +270,20 @@ static unsigned int h264_get_level(struct
+> > venc_h264_inst *inst,
+> >   static void h264_enc_free_work_buf(struct venc_h264_inst *inst)
+> >   {
+> >   	int i;
+> > +	struct mtk_vcodec_ctx *ctx = inst->ctx;
+> > +	int max_work_buf;
+> 
+> int i, max_work_buf;
+> 
+> >   
+> >   	mtk_vcodec_debug_enter(inst);
+> >   
+> > +	if (IS_VENC_MULTICORE(ctx->dev->enc_capability))
+> > +		max_work_buf = VENC_MULTI_CORE_WORK_BUF_MAX;
+> > +	else
+> > +		max_work_buf = VENC_H264_VPU_WORK_BUF_MAX;
+> > +
+> >   	/* Except the SKIP_FRAME buffers,
+> >   	 * other buffers need to be freed by AP.
+> >   	 */
+> > -	for (i = 0; i < VENC_H264_VPU_WORK_BUF_MAX; i++) {
+> > +	for (i = 0; i < max_work_buf; i++) {
+> >   		if (i != VENC_H264_VPU_WORK_BUF_SKIP_FRAME)
+> >   			mtk_vcodec_mem_free(inst->ctx, &inst-
+> > >work_bufs[i]);
+> >   	}
+> > @@ -248,11 +297,21 @@ static int h264_enc_alloc_work_buf(struct
+> > venc_h264_inst *inst)
+> >   {
+> >   	int i;
+> >   	int ret = 0;
+> > -	struct venc_h264_vpu_buf *wb = inst->vsi->work_bufs;
+> > +	struct mtk_vcodec_ctx *ctx = inst->ctx;
+> > +	struct venc_h264_vpu_buf *wb;
+> > +	int max_work_buf;
+> 
+> While at it, can you please fix the order of these declarations?
+> 
+> 	struct mtk_vcodec_ctx *ctx = inst->ctx;
+> 	struct venc_h264_vpu_buf *wb;
+> 	int i, max_work_buf;
+> 	int ret = 0;
+> 
+fix it in next version.
+> >   
+> >   	mtk_vcodec_debug_enter(inst);
+> >   
+> > -	for (i = 0; i < VENC_H264_VPU_WORK_BUF_MAX; i++) {
+> > +	if (IS_VENC_MULTICORE(ctx->dev->enc_capability)) {
+> > +		wb = inst->core_vsi->work_bufs;
+> > +		max_work_buf = VENC_MULTI_CORE_WORK_BUF_MAX;
+> > +	} else {
+> > +		wb = inst->vsi->work_bufs;
+> > +		max_work_buf = VENC_H264_VPU_WORK_BUF_MAX;
+> > +	}
+> > +
+> > +	for (i = 0; i < max_work_buf; i++) {
+> >   		/*
+> >   		 * This 'wb' structure is set by VPU side and shared to
+> > AP for
+> >   		 * buffer allocation and IO virtual addr mapping. For
+> > most of
+> > @@ -358,6 +417,26 @@ static int h264_frame_type(struct
+> > venc_h264_inst *inst)
+> >   		return VENC_H264_P_FRM;  /* Note: B frames are not
+> > supported */
+> >   	}
+> >   }
+> > +
+> > +static int h264_core_frame_type(struct venc_h264_inst *inst)
+> > +{
+> > +	struct venc_multi_core_vsi *vsi = inst->core_vsi;
+> > +
+> > +	if ((vsi->config.gop_size != 0 &&
+> > +	     (inst->frm_cnt % vsi->config.gop_size) == 0) ||
+> > +	    (inst->frm_cnt == 0 && vsi->config.gop_size == 0)) {
+> > +		/* IDR frame */
+> > +		return VENC_H264_IDR_FRM;
+> 
+> You can get to a maximum of 100 columns and, thinking about
+> readability...:
+> 
+> if ((vsi->config.gop_size != 0 && (inst->frm_cnt % vsi-
+> >config.gop_size) == 0) ||
+>      (inst->frm_cnt == 0 && vsi->config.gop_size == 0)) {
+> 
+> this gets to 90 columns, so it's acceptable (and more readable).
 
-Why?
+> 
+> > +	} else if ((vsi->config.intra_period != 0 &&
+> > +		    (inst->frm_cnt % vsi->config.intra_period) == 0) ||
+> > +		   (inst->frm_cnt == 0 && vsi->config.intra_period ==
+> > 0)) {
+> 
+> ..but, unfortunately, this doesn't, so we have to live with it.
+thanks, I will check it.
+> 
+> 
+> > +		/* I frame */
+> > +		return VENC_H264_I_FRM;
+> > +	} else {
+> > +		return VENC_H264_P_FRM;  /* Note: B frames are not
+> > supported */
+> > +	}
+> > +}
+> > +
+> >   static int h264_encode_sps(struct venc_h264_inst *inst,
+> >   			   struct mtk_vcodec_mem *bs_buf,
+> >   			   unsigned int *bs_size)
+> > @@ -440,12 +519,16 @@ static int h264_encode_frame(struct
+> > venc_h264_inst *inst,
+> >   	int ret = 0;
+> >   	unsigned int irq_status;
+> >   	struct venc_frame_info frame_info;
+> > +	struct mtk_vcodec_ctx *ctx = inst->ctx;
+> >   
+> >   	mtk_vcodec_debug_enter(inst);
+> >   	mtk_vcodec_debug(inst, "frm_cnt = %d\n ", inst->frm_cnt);
+> >   	frame_info.frm_count = inst->frm_cnt;
+> >   	frame_info.skip_frm_count = inst->skip_frm_cnt;
+> > -	frame_info.frm_type = h264_frame_type(inst);
+> > +	if (IS_VENC_MULTICORE(ctx->dev->enc_capability))
+> > +		frame_info.frm_type = h264_core_frame_type(inst);
+> > +	else
+> > +		frame_info.frm_type = h264_frame_type(inst);
+> >   	mtk_vcodec_debug(inst, "frm_count = %d,skip_frm_count
+> > =%d,frm_type=%d.\n",
+> >   			 frame_info.frm_count,
+> > frame_info.skip_frm_count,
+> >   			 frame_info.frm_type);
+> > @@ -501,7 +584,7 @@ static void h264_encode_filler(struct
+> > venc_h264_inst *inst, void *buf,
+> >   static int h264_enc_init(struct mtk_vcodec_ctx *ctx)
+> >   {
+> >   	const bool is_ext = MTK_ENC_CTX_IS_EXT(ctx);
+> > -	int ret = 0;
+> > +	int ret, i;
+> 
+> Can you also move this after `inst` please?
+> 
+fix it in next version.
+> >   	struct venc_h264_inst *inst;
+> >   
+> 
+> Cheers,
+> Angelo
 
-At beginning of your message you kind of mixed two different usages:
-1. Knowing the topology of the memory.
-2. Figuring out total memory.
+Thanks
+Best Regards
 
-Implementing (1) above would probably solve your (2) use case. But if
-you only need (2), do you really need to define entire topology?
-
->> For the former, I'd suggest
->> creating a separate FDT node for each channel, and then creating
->> subnodes under those for each rank that implement the binding. For the
->> latter, I would suggest adding a new property "channel-io-width" which
->> describes the width of the channel from the host memory controller's
->> point of view, so that you can divide that property by the already
->> existing "io-width" property to figure out how many parts are tied
->> together in series in a single channel. The final layout, then, would
->> look something like this:
->>
->> lpddr2-channel0 {
-
-Looks reasonable.
-
-This should be then:
-channel@0
-
-and children as well (so rank@0)
-
->>     rank0 {
->>         compatible = "jedec,lpddr2";
->>         density = <2048>;
->>         channel-io-width = <32>;
->>         io-width = <16>;
->>     };
->>     rank1 {
->>         compatible = "jedec,lpddr2";
->>         density = <1024>;
->>         channel-io-width = <32>;
->>         io-width = <16>;
->>     };
-
-You also need a timings node. I don't think it would be different for
-each of ranks, would it?
-
->> };
->> lpddr2-channel0 {
->>     rank0 {
->>         compatible = "jedec,lpddr2";
->>         density = <2048>;
->>         channel-io-width = <32>;
->>         io-width = <16>;
->>     };
->>     rank1 {
->>         compatible = "jedec,lpddr2";
->>         density = <1024>;
->>         channel-io-width = <32>;
->>         io-width = <16>;
->>     };
->> };
->>
->> This would be describing a dual-channel, dual-rank layout where each
->> 32-bit channel is connected to two 16-bit LPDDR chips in series. The
->> total capacity would be (2048 Mbits * (32/16) chips + 1024 Mbits *
->> (32/16) chips) * 2 channels = 12Gbits.
->>
->> Does this seem reasonable? If nobody has any objections, I can draft
->> up a real patch to change the respective bindings. (The two existing
->> uses in platform device trees would stay how they are until the
->> respective platform maintainers choose to update them, since only they
->> would know the exact configuration. They wouldn't technically violate
->> the changed binding since they still contain the same properties
->> (other than "channel-io-width" which could be declared optional), but
->> they wouldn't represent the total memory layout.)
->>
->> (Also, btw, would it make sense to use this opportunity to combine the
->> "jedec,lpddr2" and "jedec,lpddr3" bindings into a single document?
-
-These bindings are quite different, so combining would result in big
-allOf. I am not sure if there is benefit in that.
-
->> They contain all the same properties and I think it makes sense to
->> keep them in sync, so duplicating the documentation is just
->> unnecessary maintenance overhead. I would also like to add a
->> "jedec,lpddr4" binding that has the same properties.)
->>
->> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
->> [2] https://media-www.micron.com/-/media/client/global/documents/products/data-sheet/dram/mobile-dram/low-power-dram/lpddr2/2gb_automotive_lpddr2_u89n.pdf
-
-
-Best regards,
-Krzysztof
