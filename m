@@ -2,61 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F59A55A01D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 20:07:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC80955A01C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 20:07:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230458AbiFXR1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 13:27:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52896 "EHLO
+        id S229645AbiFXR1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 13:27:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230160AbiFXR0r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 13:26:47 -0400
+        with ESMTP id S232517AbiFXR0o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 13:26:44 -0400
 Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE37B15731;
-        Fri, 24 Jun 2022 10:26:43 -0700 (PDT)
-Received: by mail-il1-f181.google.com with SMTP id p13so1958902ilq.0;
-        Fri, 24 Jun 2022 10:26:43 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D77911A16;
+        Fri, 24 Jun 2022 10:26:41 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id w10so1925409ilj.4;
+        Fri, 24 Jun 2022 10:26:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=pG44rlutVz8or+Ka4stYxBDxJcy/zH2ZBfdoozeWmIQ=;
-        b=h0yMMxQs212+R43sXJ+SFDT8t878vKvXYnXGy0J7kq+U5bWCKjr12zuNxCUQ1NENH7
-         f4GjjLvPo6kDu+Wy5nG91pTHx09mdQc0uOQ1c9ft8JRxO1HX9pGxK0rGB6417NxgHumb
-         ZK/veQhl5D/1at20RoZdq/DdMe8dhkF3xWQlmevWcrfX7Cko9dEUjIXibYgStshCPSUZ
-         upfHbKBvsZiPrvBtSTZ/T0wfCLFlWuZg0i7wDZP12X/W4txO+LoR33mXxWI5oU1gMnaf
-         DuJSSmQY9J4ClZG2E833u/FvumlAH5iyZErdyU9MoljWtuLCdYuyLQpFv5MuyCJKmpCX
-         9P+g==
-X-Gm-Message-State: AJIora8p6MIoWPGfYdpkNaXhf+tYqHmg5XC7+VyWuO6LgSMg0lvXrzeh
-        EHLZ5BTmE6Fgma4l3F2hJQ==
-X-Google-Smtp-Source: AGRyM1sp8qJgtkAHwQ7xSchoyFjcFRtWdFDawd+7XUChsAzX5klGJTS7YDEzNpsD5lqJ/34v5mQAFg==
-X-Received: by 2002:a05:6e02:16cc:b0:2da:63c7:257e with SMTP id 12-20020a056e0216cc00b002da63c7257emr25166ilx.285.1656091602736;
-        Fri, 24 Jun 2022 10:26:42 -0700 (PDT)
+        bh=B5w8YwmvaMvgaa+XdQ9K9wrK3DoeF6dUpZwQeNncYzU=;
+        b=5S7jZ2DwxYsqIR3F3tWMPBX8DGfNIddNGlGBHhoqeKJpFE3T6hwbSs5XOQqDDW56Cz
+         03jhUSUFO39oM6HFQYCNh69dIckGooiN/NdiywpXmlH0XkBt3t8UCU1UjZUv2qlmITLb
+         2RakjGSEGXWQ9CoMkXDsWmXO4XWuuIjV+m/GtbNXSAznV7+VYjIJNh70zfWTu96fmUQf
+         VGjAxBvNPCGOsj2Nr4PcLi+YRqvfYSKypR/Lv2zBj4xaI+HmH3ZjAsJMdVCywVMIS7wS
+         9JzQGz9zEJiS+a42yZVvYh59pmsJUMp4vaBG2p5x/MZccLIX0JXBHpj/xV4SChopvZDu
+         w3fQ==
+X-Gm-Message-State: AJIora90fsaort/i9rOCMZCyLofP95JBXe+zxdeByaXa5WAgDiCmLG8n
+        6w3/X2ouort14KNNgJ2L2+kgHB+7tg==
+X-Google-Smtp-Source: AGRyM1v4lwCvNUsULQiN1Fb/2fRNm5hCntJ8GiYUQcFu8to/stf++2gRR+lEsPmEbGiKxezIqCr1NQ==
+X-Received: by 2002:a92:7c06:0:b0:2d6:605d:8164 with SMTP id x6-20020a927c06000000b002d6605d8164mr29024ilc.179.1656091600683;
+        Fri, 24 Jun 2022 10:26:40 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id z6-20020a05660217c600b006692192baf7sm1495029iox.25.2022.06.24.10.26.41
+        by smtp.gmail.com with ESMTPSA id c10-20020a92940a000000b002d90c9077a2sm1338850ili.57.2022.06.24.10.26.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Jun 2022 10:26:42 -0700 (PDT)
-Received: (nullmailer pid 146336 invoked by uid 1000);
+        Fri, 24 Jun 2022 10:26:40 -0700 (PDT)
+Received: (nullmailer pid 146340 invoked by uid 1000);
         Fri, 24 Jun 2022 17:26:34 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Kumar Gala <galak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org,
+To:     Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc:     linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org
-In-Reply-To: <20220623105401.168122-2-krzysztof.kozlowski@linaro.org>
-References: <20220623105401.168122-1-krzysztof.kozlowski@linaro.org> <20220623105401.168122-2-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: arm: qcom: document qcom,msm-id and qcom,board-id
+        Kent Gustavsson <kent@minoris.se>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>
+In-Reply-To: <20220623170844.2189814-5-marcus.folkesson@gmail.com>
+References: <20220623170844.2189814-1-marcus.folkesson@gmail.com> <20220623170844.2189814-5-marcus.folkesson@gmail.com>
+Subject: Re: [PATCH 05/10] dt-bindings: iio: adc: mcp3911: add microchip,data-ready-hiz entry
 Date:   Fri, 24 Jun 2022 11:26:34 -0600
-Message-Id: <1656091594.364332.146335.nullmailer@robh.at.kernel.org>
+Message-Id: <1656091594.379237.146339.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,46 +62,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Jun 2022 12:53:59 +0200, Krzysztof Kozlowski wrote:
-> The top level qcom,msm-id and qcom,board-id properties are utilized by
-> bootloaders on Qualcomm MSM platforms to determine which device tree
-> should be used and passed to the kernel.
+On Thu, 23 Jun 2022 19:08:39 +0200, Marcus Folkesson wrote:
+> The Data Ready Output Pin is either hard wired to work as high
+> impedance or push-pull. Make it configurable.
 > 
-> The commit b32e592d3c28 ("devicetree: bindings: Document qcom board
-> compatible format") from 2015 was a consensus during discussion about
-> upstreaming qcom,msm-id and qcom,board-id fields.  There are however still
-> problems with that consensus:
-> 1. It was reached 7 years ago but it turned out its implementation did
->    not reach all possible products.
-> 
-> 2. Initially additional tool (dtbTool) was needed for parsing these
->    fields to create a QCDT image consisting of multiple DTBs, later the
->    bootloaders were improved and they use these qcom,msm-id and
->    qcom,board-id properties directly.
-> 
-> 3. Extracting relevant information from the board compatible requires
->    this additional tool (dtbTool), which makes the build process more
->    complicated and not easily reproducible (DTBs are modified after the
->    kernel build).
-> 
-> 4. Some versions of Qualcomm bootloaders expect these properties even
->    when booting with a single DTB.  The community is stuck with these
->    bootloaders thus they require properties in the DTBs.
-> 
-> Since several upstreamed Qualcomm SoC-based boards require these
-> properties to properly boot and the properties are reportedly used by
-> bootloaders, document them.
-> 
-> Link: https://lore.kernel.org/r/a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org/
-> Co-developed-by: Kumar Gala <galak@codeaurora.org>
-> Signed-off-by: Kumar Gala <galak@codeaurora.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
 > ---
->  .../devicetree/bindings/arm/qcom.yaml         | 121 +++++++++++++++
->  include/dt-bindings/arm/qcom,ids.h            | 146 ++++++++++++++++++
->  2 files changed, 267 insertions(+)
->  create mode 100644 include/dt-bindings/arm/qcom,ids.h
+>  .../devicetree/bindings/iio/adc/microchip,mcp3911.yaml    | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -116,33 +78,25 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/qcom.yaml: properties:qcom,board-id:items: 'oneOf' conditional failed, one must be fixed:
-	{'oneOf': [{'maxItems': 2, 'items': [{'description': 'Board ID consisting of three bitfields::\n  - bits 31-24 - Unused\n  - bits 23-16 - Platform Version Major\n  - bits 15-8  - Platform Version Minor\n  - bits 7-0   - Platform Type\nPlatform Type field is an exact match value.  The\nPlatform Major/Minor field is a best match.  The bootloader will\nlook for the closest possible match.\n'}, {'description': 'Subtype ID unique to a Platform Type/Chipset ID.  For a given\nPlatform Type, there will typically only be a single board and the\nsubtype_id will be 0.  However in some cases board variants may\nneed to be distinguished by different subtype_id values.\n'}]}, {'minItems': 4, 'items': [{'const': 8}, {'const': 0}, {'description': 'OnePlus board ID'}, {'description': 'OnePlus subtype ID'}]}]} is not of type 'array'
-	{'maxItems': 2, 'items': [{'description': 'Board ID consisting of three bitfields::\n  - bits 31-24 - Unused\n  - bits 23-16 - Platform Version Major\n  - bits 15-8  - Platform Version Minor\n  - bits 7-0   - Platform Type\nPlatform Type field is an exact match value.  The\nPlatform Major/Minor field is a best match.  The bootloader will\nlook for the closest possible match.\n'}, {'description': 'Subtype ID unique to a Platform Type/Chipset ID.  For a given\nPlatform Type, there will typically only be a single board and the\nsubtype_id will be 0.  However in some cases board variants may\nneed to be distinguished by different subtype_id values.\n'}]} should not be valid under {'required': ['maxItems']}
-		hint: "maxItems" is not needed with an "items" list
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/qcom.yaml: properties:qcom,board-id:items:oneOf:1: 'oneOf' conditional failed, one must be fixed:
-		[{'const': 8}, {'const': 0}, {'description': 'OnePlus board ID'}, {'description': 'OnePlus subtype ID'}] is too long
-		[{'const': 8}, {'const': 0}, {'description': 'OnePlus board ID'}, {'description': 'OnePlus subtype ID'}] is too short
-		False schema does not allow 4
-		1 was expected
-		4 is greater than the maximum of 2
-		4 is greater than the maximum of 3
-		hint: "minItems" is only needed if less than the "items" list length
-		from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/qcom.yaml: properties:qcom,board-id:items:oneOf:1: 'oneOf' conditional failed, one must be fixed:
-		[{'const': 8}, {'const': 0}, {'description': 'OnePlus board ID'}, {'description': 'OnePlus subtype ID'}] is too long
-		[{'const': 8}, {'const': 0}, {'description': 'OnePlus board ID'}, {'description': 'OnePlus subtype ID'}] is too short
-		False schema does not allow 4
-		1 was expected
-		4 is greater than the maximum of 2
-		4 is greater than the maximum of 3
-		hint: "minItems" is only needed if less than the "items" list length
-		from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/qcom.yaml: ignoring, error in schema: properties: qcom,board-id: items
-Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb:0:0: /: failed to match any schema with compatible: ['arrow,apq8096-db820c', 'qcom,apq8096-sbc', 'qcom,apq8096']
-Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb:0:0: /: failed to match any schema with compatible: ['arrow,apq8096-db820c', 'qcom,apq8096-sbc', 'qcom,apq8096']
-Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb:0:0: /: failed to match any schema with compatible: ['arrow,apq8096-db820c', 'qcom,apq8096-sbc', 'qcom,apq8096']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml: properties:microchip,data-ready-hiz: 'oneOf' conditional failed, one must be fixed:
+	Additional properties are not allowed ('default' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml: properties:microchip,data-ready-hiz: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	Additional properties are not allowed ('default', 'type' were unexpected)
+		hint: A vendor string property with exact values has an implicit type
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml: properties:microchip,data-ready-hiz: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.yaml: ignoring, error in schema: properties: microchip,data-ready-hiz
+Documentation/devicetree/bindings/iio/adc/microchip,mcp3911.example.dtb:0:0: /example-0/spi/adc@0: failed to match any schema with compatible: ['microchip,mcp3911']
 
 doc reference errors (make refcheckdocs):
 
