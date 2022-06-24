@@ -2,66 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 240CB559D7F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 17:40:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B930559D87
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 17:44:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232059AbiFXPiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 11:38:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44876 "EHLO
+        id S229751AbiFXPni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 11:43:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232371AbiFXPh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 11:37:58 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56D1DB7C0
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 08:37:57 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id c130-20020a1c3588000000b0039c6fd897b4so3528460wma.4
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 08:37:57 -0700 (PDT)
+        with ESMTP id S231255AbiFXPnf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 11:43:35 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C66A34675
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 08:43:34 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id lw20so5528194ejb.4
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 08:43:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IGWWvGYMbJMzHNjMbMwN/PgKeHvUTnFkfiEKD4OboOU=;
-        b=dctimEgMCr/Ncq3rV7xZgljVKZJ5didIgUqFkPEb1mNuKIbZdvBp1rDgMlHMd6oelI
-         lzQUNV4tQ2OOJh2BAYCh518YxoCPym36nK6FZlYHqxcF/eKourkKVXdiQZH8zYAxv6ln
-         hrdk2e1h1GV4+mpJLrbIE9G6YBhsxCbo5RR7bQgeqFv4RdXfRJ7qKTAlsHdcspiVM/aI
-         M3K44TCX8WYnKSKx2LxQZ9XddSWV4ljzAiYxIVH4jj1b6BrXH5oI2WSnm9QbEKsNhKa3
-         4s+rVNxEc4ba5BgKv5qfHF9vp8MK5aUUxNKWHNLx/WRKwBEYh/tQY+ChHg4tr9OU8MjX
-         Y0aQ==
+        bh=xOyaMS6jTo3CVc3dXMGLLaIKejspuR/lyhY3Gbozvck=;
+        b=eSPMRb7Hf/zd4geaeAmyaoanm4R/jmP6HWLQaRYGOI1puZPnxFqq+JhAz/Gs7+cak6
+         bwj8kYHHEuxYQdNSTzs/GkyzVTkdxZ65Z4OgID8J609urrNk+PtDmYmpW+sdaGxOx17D
+         JhtY1l1YWDv8kTgSv7GIDwSgGJB7G/NB+j99QkbPDBx+Ow9BKhGNFfBim/JE58Hxloqr
+         MDpd84z+h4NCuT9ykIKAq6w5K+hoIuy1gCQ9eRPc6e8lUAeW3egDw1l8+poZcgDjjTGZ
+         22P5AjnODGOO6hT0XhBBkJRpzgnxclrL4/21fczuO9odzhDp091UwMmZBsU9rQLrGvBA
+         MioA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=IGWWvGYMbJMzHNjMbMwN/PgKeHvUTnFkfiEKD4OboOU=;
-        b=X6BNoXwvf7cmE6p70uKK/HaMPsl4RMN2vAIjlRzPGQLmWSFi2W8Cq1FmqvXcMV2IpQ
-         Cov/L7a13lYWvnS5KnHS0ceXIxYmeuXnvdLgOIudbkuKkqL8mjQUWKLHBRcUyyx/gcUr
-         mQoEXd/TLz3YGS1njuJppNP+hqhj/KWXzyHXR6sNDDk4TnDIVqDgNzEF6IpGM5NLAWda
-         lrzBfrh6flbbyJ2BWmnv+bfAt3jFznXXJvJTlfZHQbtagiSuGAveH89YOpjBjWQMvgZ7
-         FzgyNUOa36wkNTmYtnpEnpgeH8jsyszbAsyPKjanWc6anE6WDg47+IUyPDRHH5VHdtrA
-         SoOw==
-X-Gm-Message-State: AJIora9N/xEE1ljXnrQr8Sq5PZGrojTq5tMqdnZMfNE+tCO/dJsOlSY0
-        n3QI9P19UacNEu1NyrwwOSS/JA==
-X-Google-Smtp-Source: AGRyM1uxz26dArL1HDuhnHUPyQcp+dojHE88iHnjWFPwQfSmo5RIw/FZdyx3sebIjsfZagXwHsvh7A==
-X-Received: by 2002:a05:600c:29d3:b0:397:4730:ee75 with SMTP id s19-20020a05600c29d300b003974730ee75mr4619787wmd.149.1656085075899;
-        Fri, 24 Jun 2022 08:37:55 -0700 (PDT)
+        bh=xOyaMS6jTo3CVc3dXMGLLaIKejspuR/lyhY3Gbozvck=;
+        b=oFVAwBJlr7qUFO+ghJF8R2rU2dPjIL/+EwI82tNEOnqpPgy4RdniAGF8aJf56XFqtp
+         G56/R7OMDQC06aXxk4oK+eSB8TBV56hBGd0MluulqNj5+JLI7hsGovNzhFvNjjhKZtvR
+         3/KgdN6tvbFd86Ua/xJuF5SyxeqknImFa/sBjrXhmZzQFvBqCiZiV5HXzfyXPNV1qQPO
+         Mh0chnkN5NCTbw78c29Ebagrm1OZDnXfpzdxqIP35UfFgJ8B0yfVc5nPIQiqNVkC3Zjn
+         A02A4skimZPDeAh+1QfsHg4nZenyz9gYhvkwwXV++h6JXJyUq19ETbJa0TtM+ikXTF2f
+         hrNg==
+X-Gm-Message-State: AJIora8zGky0sMwCXI4uCgTKszq64NaCnhabXQ9Jeozr2Ysr9kEUnKCz
+        Qz8G2ijlfXs2ed90V/hmgr3fzQ==
+X-Google-Smtp-Source: AGRyM1uU8WGXrocmvkPib9phSOmKZ86jSknDjqjGMNFTBgCy4FSTh+vhMTA0H1fCwG7O2VV3ATVKuA==
+X-Received: by 2002:a17:907:72d2:b0:722:f9c8:c3fa with SMTP id du18-20020a17090772d200b00722f9c8c3famr11379944ejc.608.1656085412800;
+        Fri, 24 Jun 2022 08:43:32 -0700 (PDT)
 Received: from [192.168.0.237] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id bh7-20020a05600c3d0700b0039c948dbb61sm3135904wmb.26.2022.06.24.08.37.55
+        by smtp.gmail.com with ESMTPSA id l2-20020a170906078200b006fe89cafc42sm1318873ejc.172.2022.06.24.08.43.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 08:37:55 -0700 (PDT)
-Message-ID: <8dc2a434-15bc-c602-0272-fdb6159fc0d1@linaro.org>
-Date:   Fri, 24 Jun 2022 17:37:54 +0200
+        Fri, 24 Jun 2022 08:43:32 -0700 (PDT)
+Message-ID: <7768c848-e91d-12d2-d960-196b47778e85@linaro.org>
+Date:   Fri, 24 Jun 2022 17:43:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2] ARM: dts: am33xx: Fix MMCHS0 dma properties
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: bridge: Convert cdns,dsi.txt
+ to yaml
 Content-Language: en-US
-To:     YuTong Chang <mtwget@gmail.com>, bcousson@baylibre.com
-Cc:     tony@atomide.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220620124146.5330-1-mtwget@gmail.com>
+To:     Rahul T R <r-ravikumar@ti.com>, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
+        robert.foss@linaro.org, jonas@kwiboo.se, jernej.skrabec@gmail.com,
+        airlied@linux.ie, daniel@ffwll.ch, p.zabel@pengutronix.de,
+        tomi.valkeinen@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+        linux-kernel@vger.kernel.org, jpawar@cadence.com,
+        sjakhade@cadence.com, mparab@cadence.com, a-bhatia1@ti.com,
+        devicetree@vger.kernel.org, vigneshr@ti.com, lee.jones@linaro.org
+References: <20220620205403.31744-1-r-ravikumar@ti.com>
+ <20220620205403.31744-2-r-ravikumar@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220620124146.5330-1-mtwget@gmail.com>
+In-Reply-To: <20220620205403.31744-2-r-ravikumar@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -74,24 +81,350 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2022 14:41, YuTong Chang wrote:
-> According to technical manual(table 11-24), the DMA of MMCHS0 should be
-> direct mapped.
+On 20/06/2022 22:54, Rahul T R wrote:
+> Convert cdns,dsi.txt binding to yaml format
 > 
-> Signed-off-by: YuTong Chang <mtwget@gmail.com>
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
 > ---
-> v1 -> v2: Cleaned up coding style and addressed review comments
+>  .../bindings/display/bridge/cdns,dsi.txt      | 112 ----------
+>  .../bindings/display/bridge/cdns,dsi.yaml     | 193 ++++++++++++++++++
+>  2 files changed, 193 insertions(+), 112 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,dsi.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,dsi.txt b/Documentation/devicetree/bindings/display/bridge/cdns,dsi.txt
+> deleted file mode 100644
+> index 525a4bfd8634..000000000000
+> --- a/Documentation/devicetree/bindings/display/bridge/cdns,dsi.txt
+> +++ /dev/null
+> @@ -1,112 +0,0 @@
+> -Cadence DSI bridge
+> -==================
+> -
+> -The Cadence DSI bridge is a DPI to DSI bridge supporting up to 4 DSI lanes.
+> -
+> -Required properties:
+> -- compatible: should be set to "cdns,dsi".
+> -- reg: physical base address and length of the controller's registers.
+> -- interrupts: interrupt line connected to the DSI bridge.
+> -- clocks: DSI bridge clocks.
+> -- clock-names: must contain "dsi_p_clk" and "dsi_sys_clk".
+> -- phys: phandle link to the MIPI D-PHY controller.
+> -- phy-names: must contain "dphy".
+> -- #address-cells: must be set to 1.
+> -- #size-cells: must be set to 0.
+> -
+> -Optional properties:
+> -- resets: DSI reset lines.
+> -- reset-names: can contain "dsi_p_rst".
+> -
+> -Required subnodes:
+> -- ports: Ports as described in Documentation/devicetree/bindings/graph.txt.
+> -  2 ports are available:
+> -  * port 0: this port is only needed if some of your DSI devices are
+> -	    controlled through  an external bus like I2C or SPI. Can have at
+> -	    most 4 endpoints. The endpoint number is directly encoding the
+> -	    DSI virtual channel used by this device.
+> -  * port 1: represents the DPI input.
+> -  Other ports will be added later to support the new kind of inputs.
+> -
+> -- one subnode per DSI device connected on the DSI bus. Each DSI device should
+> -  contain a reg property encoding its virtual channel.
+> -
+> -Example:
+> -	dsi0: dsi@fd0c0000 {
+> -		compatible = "cdns,dsi";
+> -		reg = <0x0 0xfd0c0000 0x0 0x1000>;
+> -		clocks = <&pclk>, <&sysclk>;
+> -		clock-names = "dsi_p_clk", "dsi_sys_clk";
+> -		interrupts = <1>;
+> -		phys = <&dphy0>;
+> -		phy-names = "dphy";
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		ports {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -
+> -			port@1 {
+> -				reg = <1>;
+> -				dsi0_dpi_input: endpoint {
+> -					remote-endpoint = <&xxx_dpi_output>;
+> -				};
+> -			};
+> -		};
+> -
+> -		panel: dsi-dev@0 {
+> -			compatible = "<vendor,panel>";
+> -			reg = <0>;
+> -		};
+> -	};
+> -
+> -or
+> -
+> -	dsi0: dsi@fd0c0000 {
+> -		compatible = "cdns,dsi";
+> -		reg = <0x0 0xfd0c0000 0x0 0x1000>;
+> -		clocks = <&pclk>, <&sysclk>;
+> -		clock-names = "dsi_p_clk", "dsi_sys_clk";
+> -		interrupts = <1>;
+> -		phys = <&dphy1>;
+> -		phy-names = "dphy";
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		ports {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -
+> -			port@0 {
+> -				reg = <0>;
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -
+> -				dsi0_output: endpoint@0 {
+> -					reg = <0>;
+> -					remote-endpoint = <&dsi_panel_input>;
+> -				};
+> -			};
+> -
+> -			port@1 {
+> -				reg = <1>;
+> -				dsi0_dpi_input: endpoint {
+> -					remote-endpoint = <&xxx_dpi_output>;
+> -				};
+> -			};
+> -		};
+> -	};
+> -
+> -	i2c@xxx {
+> -		panel: panel@59 {
+> -			compatible = "<vendor,panel>";
+> -			reg = <0x59>;
+> -
+> -			port {
+> -				dsi_panel_input: endpoint {
+> -					remote-endpoint = <&dsi0_output>;
+> -				};
+> -			};
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+> new file mode 100644
+> index 000000000000..3da47c01dca8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,dsi.yaml
+> @@ -0,0 +1,193 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/cdns,dsi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cadence DSI bridge
+> +
+> +maintainers:
+> +  - Boris Brezillon <boris.brezillon@bootlin.com>
+> +
+> +description: |
+> +   CDNS DSI is a bridge device which converts DPI to DSI
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - cdns,dsi
+> +      - ti,j721e-dsi
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+It wasn't here before, so this is not a conversion. Split adding new
+compatibles and features from actual conversion.
 
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+> +
+> +  reg:
+> +    minItems: 1
+> +    items:
+> +      - description:
+> +          Register block for controller's registers.
+> +      - description:
+> +          Register block for wrapper settings registers in case of TI J7 SoCs.
 
-If a tag was not added on purpose, please state why and what changed.
+This needs allOf with if:then:else constraining number of items per variant.
 
+> +
+> +  clocks:
+> +    items:
+> +      - description: PSM clock, used by the IP
+> +      - description: sys clock, used by the IP
+> +
+> +  clock-names:
+> +    items:
+> +      - const: dsi_p_clk
+> +      - const: dsi_sys_clk
+> +
+> +  phys:
+> +    minItems: 1
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+instead maxItems: 1
+
+> +    description: phandle link to the MIPI D-PHY controller.
+> +
+> +  phy-names:
+> +    const: dphy
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    minItems: 1
+
+instead maxItems: 1
+
+> +    description: PHY reset.
+> +
+> +  reset-names:
+> +    const: dsi_p_rst
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+
+additionalProperties: false
+
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Output port representing the DSI output. It can have
+> +          most 4 endpoints. The endpoint number is directly encoding
+> +          the DSI virtual channel used by this device.
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Input port representing the DP bridge input.
+> +
+> +    required:
+> +      - port@1
+> +
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - phys
+> +  - phy-names
+> +  - ports
+> +
+> +allOf:
+> +  - $ref: ../dsi-controller.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    dsi@fd0c0000 {
+> +        compatible = "cdns,dsi";
+> +        reg = <0x0 0xfd0c0000 0x0 0x1000>;
+> +        clocks = <&pclk>, <&sysclk>;
+> +        clock-names = "dsi_p_clk", "dsi_sys_clk";
+> +        interrupts = <1>;
+> +        phys = <&dphy0>;
+> +        phy-names = "dphy";
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +                endpoint {
+> +                    remote-endpoint = <&xxx_dpi_output>;
+> +                };
+> +            };
+> +        };
+> +
+> +        panel@0 {
+> +            compatible = "panasonic,vvx10f034n00";
+> +            reg = <0>;
+> +            power-supply = <&vcc_lcd_reg>;
+> +        };
+> +    };
+> +
+> +  - |
+> +    dsi@fd0c0000 {
+> +        compatible = "cdns,dsi";
+> +        reg = <0x0 0xfd0c0000 0x0 0x1000>;
+> +        clocks = <&pclk>, <&sysclk>;
+> +        clock-names = "dsi_p_clk", "dsi_sys_clk";
+> +        interrupts = <1>;
+> +        phys = <&dphy1>;
+> +        phy-names = "dphy";
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                reg = <0>;
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                dsi0_output: endpoint@0 {
+> +                    reg = <0>;
+> +                    remote-endpoint = <&dsi_panel_input>;
+> +                };
+> +            };
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +                endpoint {
+> +                    remote-endpoint = <&xxx_dpi_output>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        bridge@2d {
+> +            compatible = "ti,sn65dsi86";
+> +            reg = <0x2d>;
+> +
+> +            vpll-supply = <&src_pp1800_s4a>;
+> +            vccio-supply = <&src_pp1800_s4a>;
+> +            vcca-supply = <&src_pp1200_l2a>;
+> +            vcc-supply = <&src_pp1200_l2a>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                port@0 {
+> +                    reg = <0>;
+> +                    dsi_panel_input: endpoint {
+> +                        remote-endpoint = <&dsi0_output>;
+> +                    };
+> +                };
+> +
+> +                port@1 {
+> +                    reg = <1>;
+> +                    endpoint {
+> +                        remote-endpoint = <&panel_in_edp>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
 
 
 Best regards,
