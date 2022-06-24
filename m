@@ -2,98 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B058155965A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 11:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8401E55967A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 11:25:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231516AbiFXJUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 05:20:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35838 "EHLO
+        id S231376AbiFXJXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 05:23:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230245AbiFXJUP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 05:20:15 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 240FC680BB;
-        Fri, 24 Jun 2022 02:20:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1656062415; x=1687598415;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references;
-  bh=FH5MRkjexNSBtIFQJCSSojv/QFrWgGXcfNpOdTHtJRE=;
-  b=I8FDs6ug8UkpLg372J61PZDEK4dIaBIAdRiEU/0CwioWPIpfNXdFFsVn
-   xxi8Fj3mPMfo13SqgM4OjOSPnAUhYacJXFab6rxY4HJNi6rkX2YJTgS3P
-   hxzqI4F249QTbC3lHW7NQQvPRn/f+ArE2oG8xicgJ5tO8WEJoMj5m928o
-   c=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 24 Jun 2022 02:20:15 -0700
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 24 Jun 2022 02:20:13 -0700
-X-QCInternal: smtphost
-Received: from hu-krichai-hyd.qualcomm.com (HELO hu-sgudaval-hyd.qualcomm.com) ([10.213.110.37])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 24 Jun 2022 14:49:55 +0530
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
-        id 147913E69; Fri, 24 Jun 2022 14:49:55 +0530 (+0530)
-From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
-To:     helgaas@kernel.org
-Cc:     linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
-        quic_hemantk@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
-        manivannan.sadhasivam@linaro.org, swboyd@chromium.org,
-        dmitry.baryshkov@linaro.org,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH v1 3/3] arm64: dts: qcom: sc7280: Add missing pcie clocks
-Date:   Fri, 24 Jun 2022 14:49:51 +0530
-Message-Id: <1656062391-14567-4-git-send-email-quic_krichai@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1656062391-14567-1-git-send-email-quic_krichai@quicinc.com>
-References: <1656062391-14567-1-git-send-email-quic_krichai@quicinc.com>
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231243AbiFXJXD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 05:23:03 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10BF52BC3;
+        Fri, 24 Jun 2022 02:23:01 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3B5AC66017FA;
+        Fri, 24 Jun 2022 10:22:59 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1656062579;
+        bh=9Soc6n0CqFUw5ZJ1qMew3TiS4i4OwU3mvCqAavwe5wg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=nZIokHZdtJm1ECwVKvDQBwV3vTQoam56MCQ88jG9j5oK+852SDX86EZmXOFd0MyFM
+         aoOE3XTvgjpadKYCkxndt1Fas9058NPUY8vNw3kHZOMiuHXGccY9f2ZTQYYdAx6r/T
+         J2JMHnSOU6z96e42d6BHK+l0SK/zlsDiktujVK2C7O8qom6vUZasdBNbl8FOK+aFgo
+         L5WtM+UGHO1v54ID07R6DN4hoVSg32VC1bt5mOYZAWIqvgbBYEwJH4FDvU40sPK0hv
+         bJSDok7cdWaGlT0XXmEJLpP2aydZ2bBXIn50iJrGg3WO8N9ivD+y65P+hB+7uvKfoO
+         c90owLut6DaDw==
+Message-ID: <26ff5b3e-00f6-783e-04ec-b4fcd600175e@collabora.com>
+Date:   Fri, 24 Jun 2022 11:22:56 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 0/2] MediaTek Helio X10 MT6795 - power domains
+Content-Language: en-US
+To:     robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+        matthias.bgg@gmail.com, chun-jie.chen@mediatek.com,
+        weiyi.lu@mediatek.com, mbrugger@suse.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com,
+        nfraprado@collabora.com
+References: <20220503141441.125852-1-angelogioacchino.delregno@collabora.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220503141441.125852-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing pcie clocks.
+Il 03/05/22 16:14, AngeloGioacchino Del Regno ha scritto:
+> In an effort to give some love to the apparently forgotten MT6795 SoC,
+> I am upstreaming more components that are necessary to support platforms
+> powered by this one apart from a simple boot to serial console.
+> 
+> This series introduces support for the MTCMOS power domains found on
+> the Helio X10.
+> 
+> Tested on a Sony Xperia M5 (codename "Holly") smartphone.
+> 
+> Changes in v2:
+>   - Changed license header for mt6795-power.h binding as per
+>     Krzysztof's review.
+> 
+> AngeloGioacchino Del Regno (2):
+>    dt-bindings: power: Add MediaTek Helio X10 MT6795 power domains
+>    soc: mediatek: pm-domains: Add support for Helio X10 MT6795
+> 
+>   .../power/mediatek,power-controller.yaml      |   2 +
+>   drivers/soc/mediatek/mt6795-pm-domains.h      | 112 ++++++++++++++++++
+>   drivers/soc/mediatek/mtk-pm-domains.c         |   5 +
+>   include/dt-bindings/power/mt6795-power.h      |  16 +++
+>   4 files changed, 135 insertions(+)
+>   create mode 100644 drivers/soc/mediatek/mt6795-pm-domains.h
+>   create mode 100644 include/dt-bindings/power/mt6795-power.h
+> 
 
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index e66fc67..a5ce095 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2043,6 +2043,8 @@
- 				 <&gcc GCC_PCIE_1_SLV_AXI_CLK>,
- 				 <&gcc GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
- 				 <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>,
-+				 <&gcc GCC_AGGRE_NOC_PCIE_CENTER_SF_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>,
- 				 <&gcc GCC_DDRSS_PCIE_SF_CLK>;
- 
- 			clock-names = "pipe",
-@@ -2055,6 +2057,8 @@
- 				      "bus_slave",
- 				      "slave_q2a",
- 				      "tbu",
-+				      "aggre0",
-+				      "aggre1",
- 				      "ddrss_sf_tbu";
- 
- 			assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
--- 
-2.7.4
+Gentle ping for this series...
 
+I've verified it still applies cleanly on next-20220624.. can we please
+get it merged in?
+
+Thanks,
+Angelo
