@@ -2,229 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1B8F55A492
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 01:06:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F4D955A4FB
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 01:44:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231903AbiFXXDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 19:03:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37798 "EHLO
+        id S229530AbiFXXoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 19:44:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231786AbiFXXDm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 19:03:42 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3F41828B4
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 16:03:40 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id sb34so7471827ejc.11
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 16:03:40 -0700 (PDT)
+        with ESMTP id S230008AbiFXXoF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 19:44:05 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE4828AC06;
+        Fri, 24 Jun 2022 16:44:03 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id i7so6957869ybe.11;
+        Fri, 24 Jun 2022 16:44:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=iJe+xcZ3/D6PBSynO0jW7/Eqhilgv6gNqpZ8p3aGXd0=;
-        b=MnE6HFKeJE96PcaRLagx5/+3ziVOcE+1hsvFY5sY/Cdn8gEfANbQZhJr3yWzr0DNyP
-         cro1ywge4Mq9rwcGE7j2QM9hpm+qkHMKIJ4pyk3i2OioePxvc1btkQSHwEaekZnjwoT5
-         UXFwfiwVrYlb6RLk8vuzINxhNcravsga2+dD0=
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=V1brg2y3JDj6U/8CjOdEq248XdYOzJ81ukpZs2/J6U8=;
+        b=L5mUz/R7adkDYUiVk2Y8mAxfEW65sH5WSCnPVZqLvidJHxkq00zUfXXCrgaJLXeU0G
+         TR7rTPQ+KG6YAtuMTX8GtWKTLjEwiPODRV3kz7Og/WwaDcRBfkIkIfCGPPTau/z4E2ko
+         veRudcqY88uclMsw6twNecxETVIDpgpb6h9X/TgnD5usl5Wi5U5iDksSXb145bwBZ3Ue
+         ZK9HMCqQqfHMn6HJB/gFMRH7XwUKNKiZbL4y+4/l8Po6DCb+XajGBL7HeKX/rdnDcLSb
+         mx4sqh8Di0sTc+sdbHbpuTWpUZJU+TaT4nqAW7QttSEpOQkFKpMatP9Ztj+unehnNJRC
+         DUVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=iJe+xcZ3/D6PBSynO0jW7/Eqhilgv6gNqpZ8p3aGXd0=;
-        b=aH23rbD32bz0pCVLqPwTwClLSbaNlRswCqHIJCIDmD3xcFIDhVR4GNvyEX5M8KxhCG
-         xyTa9ydP8f/IkBKdQsT0sWx4hzXGY1JznE7icQlRxxKyanzVn2BO0fqClLHe8Ts7sHIo
-         HwQkixoLeItfQ7XeNJqEgOJ/5502SElbIYteuwFhH0I23dwozm0fGUnrE8rafHdEpm7Y
-         /tOu34NjTyxI3DfY3OaehL2lN+q8TY+82jDL3Lg4yW4emompFU8c7Bkqebx/jneYxPYw
-         lFk7uMn1fDUY9YNNH7wuU0LLX2dxuEEXUKVcqIm/jzXMova619jUchq7ZkTnuwM01gVQ
-         LpaQ==
-X-Gm-Message-State: AJIora8n9sXmeT0L5YFexlzLa/RJlmTiKNRhQvHNGsa9R7tlJweKtxR3
-        moeZnHfmQ0kqZa7YCgVogIs3yQ==
-X-Google-Smtp-Source: AGRyM1u9OrGaQ3FO3H0QgxOTsvLQiGp1ni6Lj1KBxemuMVOZbqVG6TzVRElD9/a1D3MJ77tfYQcEng==
-X-Received: by 2002:a17:906:9c84:b0:6e0:7c75:6f01 with SMTP id fj4-20020a1709069c8400b006e07c756f01mr1328997ejc.103.1656111819427;
-        Fri, 24 Jun 2022 16:03:39 -0700 (PDT)
-Received: from tom-ThinkPad-T14s-Gen-2i.station (net-188-217-58-216.cust.vodafonedsl.it. [188.217.58.216])
-        by smtp.gmail.com with ESMTPSA id w1-20020aa7da41000000b004356a647d08sm2880291eds.94.2022.06.24.16.03.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Jun 2022 16:03:39 -0700 (PDT)
-From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Cc:     linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
-        quentin.schulz@theobroma-systems.com,
-        Tommaso Merciai <tommaso.merciai@amarulasolutions.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 7/7] media: dt-bindings: ov5693: document YAML binding
-Date:   Sat, 25 Jun 2022 01:03:07 +0200
-Message-Id: <20220624230307.3066530-8-tommaso.merciai@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220624230307.3066530-1-tommaso.merciai@amarulasolutions.com>
-References: <20220624230307.3066530-1-tommaso.merciai@amarulasolutions.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=V1brg2y3JDj6U/8CjOdEq248XdYOzJ81ukpZs2/J6U8=;
+        b=BNIXWDNkAlHcM0iJD8cBbbl9OXSpqqRbTKkpwvtoVqp8s4FbZcvbebkjV7Ug5165tF
+         zM4pyLAHgYNiQwwhC3vQ5z4NQvAghP73EyZbLu8+kBl0At2mYaETUslEtTrUk78fRX6f
+         Lk+vIDmK++/Xwk4ypgGq5cM5mxHjumhYC0nduAa8qk3UO/fMQyEiJvqep6YTlxrFVcG+
+         rwQVMmlH4L6Zncqqj//EiEiAZsgU3QMsMVkmqjyRxFngYX8A0LEPSwLDYptG9vMMZ0Zh
+         4hBxPoFf0GsS5VlJQLlBeEq5y7WnDPDnGr92sY/PCjSW7owWBdqp4VwnJf2uuGsIp4P0
+         FU9A==
+X-Gm-Message-State: AJIora8k8GY9+wNXrtUco61E8d0Bm1kllFa43HMl58WLUURXEhS6FxaO
+        NcJ96hf+bpC1A2jWBMgWV4TSFP9M0y/3pmsTWK4=
+X-Google-Smtp-Source: AGRyM1sjX822X/Dsy8VIFBGvzBLqvpKs7BIx362sSa5Zd+7UmGXE/g/4Z/fcgebJhZRBeq9CHZ6VxnHhew15CUmd9fU=
+X-Received: by 2002:a25:be07:0:b0:664:4210:aaf3 with SMTP id
+ h7-20020a25be07000000b006644210aaf3mr1716779ybk.415.1656114243169; Fri, 24
+ Jun 2022 16:44:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220623162850.245608-1-sebastian.reichel@collabora.com>
+ <20220623162850.245608-2-sebastian.reichel@collabora.com> <YrWdnQKVbJR+NrfH@lunn.ch>
+ <20220624162956.vn4b3va5cz2agvrb@mercury.elektranox.org> <YrXryvTpnSIOyUTD@lunn.ch>
+ <20220624173547.ccads2mikb4np5wz@mercury.elektranox.org> <YrX2ROe3a5Qeot4z@lunn.ch>
+ <20220624201537.l7p6aoquvvadmpei@mercury.elektranox.org>
+In-Reply-To: <20220624201537.l7p6aoquvvadmpei@mercury.elektranox.org>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Fri, 24 Jun 2022 19:43:51 -0400
+Message-ID: <CAMdYzYr_EA2Oxf6Q-WkX987eWUKRokRR1EsCWM4J+BcF+OkO9A@mail.gmail.com>
+Subject: Re: [PATCH 1/3] net: ethernet: stmmac: dwmac-rk: Disable delayline if
+ it is invalid
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Linux Kernel Network Developers <netdev@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        David Wu <david.wu@rock-chips.com>, kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds documentation of device tree in YAML schema for the
-OV5693 CMOS image sensor from Omnivision
+On Fri, Jun 24, 2022 at 4:16 PM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> Hi,
+>
+> On Fri, Jun 24, 2022 at 07:37:08PM +0200, Andrew Lunn wrote:
+> > > The Rockchip hardware supports enabling/disabling delays and
+> > > configuring a delay value of 0x00-0x7f. For the RK3588 evaluation
+> > > board the RX delay should be disabled.
+> >
+> > So you can just put 0 in DT then.
+>
+> My understanding is, that there is a difference between
+> enabled delay with a delay value of 0 and delay fully
+> disabled. But I could not find any details aboout this
+> in the datasheet unfortunately.
 
-Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
----
- .../bindings/media/i2c/ovti,ov5693.yaml       | 123 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 124 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+The driver already sets the delays to 0 in case of the rgmii-id modes.
+0 is disabled, even in this patch. The only thing this patch does is
+change the behavior when the delays are not set. If the rx delays
+should be 0, they should be defined as 0 in the device tree. There is
+rgmii-rxid for a reason as well, but if they are setting the rx delay
+to 0 with rgmii that implies this hardware is fundamentally broken.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-new file mode 100644
-index 000000000000..1ee70af40000
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-@@ -0,0 +1,123 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (c) 2022 Amarulasolutions
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov5693.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Omnivision OV5693 CMOS Sensor
-+
-+maintainers:
-+  - Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-+
-+allOf:
-+  - $ref: /schemas/media/video-interface-devices.yaml#
-+
-+description: |
-+  The Omnivision OV5693 is a high performance, 1/4-inch, 5 megapixel, CMOS
-+  image sensor that delivers 2592x1944 at 30fps. It provides full-frame,
-+  sub-sampled, and windowed 10-bit MIPI images in various formats via the
-+  Serial Camera Control Bus (SCCB) interface.
-+
-+  Supports images sizes: 5 Mpixel, EIS1080p, 1080p, 720p, VGA, QVGA
-+
-+  OV5693 is programmable through I2C and two-wire Serial Camera Control Bus (SCCB).
-+  The sensor output is available via CSI-2 serial data output (up to 2-lane).
-+
-+properties:
-+  compatible:
-+    const: ovti,ov5693
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description:
-+      System input clock (aka XVCLK). From 6 to 27 MHz.
-+    maxItems: 1
-+
-+  dovdd-supply:
-+    description:
-+      Digital I/O voltage supply, 1.8V.
-+
-+  avdd-supply:
-+    description:
-+      Analog voltage supply, 2.8V.
-+
-+  dvdd-supply:
-+    description:
-+      Digital core voltage supply, 1.2V.
-+
-+  reset-gpios:
-+    description:
-+      The phandle and specifier for the GPIO that controls sensor reset.
-+      This corresponds to the hardware pin XSHUTDN which is physically
-+      active low.
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          data-lanes:
-+            minItems: 1
-+            maxItems: 2
-+
-+          # Supports max data transfer of 900 Mbps per lane
-+          link-frequencies: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - dovdd-supply
-+  - avdd-supply
-+  - dvdd-supply
-+  - port
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/px30-cru.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/pinctrl/rockchip.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ov5693: camera@36 {
-+            compatible = "ovti,ov5693";
-+            reg = <0x36>;
-+
-+            reset-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&cif_clkout_m0>;
-+
-+            clocks = <&cru SCLK_CIF_OUT>;
-+            assigned-clocks = <&cru SCLK_CIF_OUT>;
-+            assigned-clock-rates = <19200000>;
-+
-+            avdd-supply = <&vcc_1v8>;
-+            dvdd-supply = <&vcc_1v2>;
-+            dovdd-supply = <&vcc_2v8>;
-+
-+            rotation = <90>;
-+            orientation = <0>;
-+
-+            port {
-+                ucam_out: endpoint {
-+                    remote-endpoint = <&mipi_in_ucam>;
-+                    data-lanes = <1 2>;
-+                    link-frequencies = /bits/ 64 <450000000>;
-+                };
-+            };
-+        };
-+    };
-\ No newline at end of file
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1fc9ead83d2a..844307cb20c4 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14719,6 +14719,7 @@ M:	Daniel Scally <djrscally@gmail.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
- F:	drivers/media/i2c/ov5693.c
- 
- OMNIVISION OV5695 SENSOR DRIVER
--- 
-2.25.1
+Very Respectfully,
+Peter Geis
 
+>
+> -- Sebastian
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
