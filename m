@@ -2,68 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9BA9559E1C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:06:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 877F4559E21
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:06:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229962AbiFXQBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 12:01:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33466 "EHLO
+        id S230245AbiFXQCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 12:02:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230073AbiFXQBm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:01:42 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55BB85251F
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:01:41 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id o16so3734333wra.4
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:01:41 -0700 (PDT)
+        with ESMTP id S229872AbiFXQCD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:02:03 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC48F52E48
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:02:02 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id v14so3721933wra.5
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:02:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ffiO6A2PsfBMr7NqXQDGe4LlsBtZjortKK8FGiE8TGs=;
-        b=kgIGHkC9AmqJrRisa88gEb2JSgScN9bTHPrFYutqUu3j4EstnyWyH4Vt4PYgnr9wM7
-         g1Jv7MXUI3WAB6EsQuB5VZz7SP0td1kZM8aHXB3334K4ewpr7f3MXm8FbbdOznRGguvS
-         9npxt9kXyuL8dePxN4eNBJih2eAKLJYfnropKFhsxtJFb5vn9xZLZDaeLxxdOT+uhgu7
-         3g9Tgk1Q4KU08dTsHPkDehTnAWTp6s9QGlC+C82CA4Ykt8mHcGCE9bINdYKZj0AXVxyb
-         K3pJ1DpOKkUR6dPZXOp4lH/wfDAGpvVFshjIujmrGNIAff8cayGDyBrUKkUCR6/UtDUa
-         54lw==
+        bh=46fj+UJF99kTFPBT32r985RsfVjZGl2LSfFiw6tGANo=;
+        b=ebcQYv0emdVVWOAr+fH88T/wu55UxnCnFHW4hEJgrm2A3IR4wtQ6tMVCkVyneR2ew1
+         DjMliG2u+nREX14KGIryxKBFdKJn9RqAJ1SO8uQZ11ZMB0cQ3Iq3ThQKSHnNUDjpiqv1
+         1/61o7jT6CaUnwX/fSqbqTzvs/jzDJNx/kUrUAV8fdwbeDv3gha5Lp1I5lEWQKHgAqK0
+         zwdRYyASfWuMl2Zlv9f5l2k97tYC2Xh6e/RMuoN7UDnG88JSKDpKQjn60WmhM7A5UpiT
+         yEsFrw2BmifwUDY6O3Ki/UJboG6xwjEUmDT+Ct5Sez2Oqx0Rc8aHfROswKlBkgGtI9M/
+         TexQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ffiO6A2PsfBMr7NqXQDGe4LlsBtZjortKK8FGiE8TGs=;
-        b=bSQEZsnUl+Dgqv1roikt/50jW4Y6YWm8kfMvY+EEL1UM6PIk/tTD6Q+hazrEtoGQPo
-         EXx1Uvw0t4Nlm0MhuLMdL2qLmB9Bp/ibUEhbqLyVS7NKB2PGEWyPuKUzGsxpn0R0V08t
-         oLFYmsrTxoEp9m1lNZciPjRBiHLS/zIGwe4USNkSgxp5xW5tDcfOmVLvGunihgTsCyCo
-         Z/+ZpVL3+JWiEGjn29k2oAxAtxCdjlYb2mWr2F/XNVFkmyP0r/ZDGrw3t4wkTgjTjOHL
-         Lv0aIJmAbk89Fupb2PkSDhJCXQg6rncGkBJ8oSZhdTRH+7zfCnJXpO9uimyE5JiEJ8im
-         iRHA==
-X-Gm-Message-State: AJIora8jXq9AUPWYs/qcWXhmAIuUb7yjdoFc8Jj7qv3SHs8+08BKPG4y
-        deatsZ4nl2OlR05cVPx6NJ/log==
-X-Google-Smtp-Source: AGRyM1vKGC5ccFr+1PSGrjWJ2Vn9gJPfJi5n/uVuZ8+6JKiJ9SiV5LkmBEgKYLw1Q+Ux8lewMHEdMg==
-X-Received: by 2002:a05:6000:381:b0:21b:9a20:7edb with SMTP id u1-20020a056000038100b0021b9a207edbmr13997766wrf.71.1656086499812;
-        Fri, 24 Jun 2022 09:01:39 -0700 (PDT)
+        bh=46fj+UJF99kTFPBT32r985RsfVjZGl2LSfFiw6tGANo=;
+        b=c0u8Spmt3/Sm1Y5iDAW6uRJPqAo6QT0J9SagF9Wn7YgznJuYorRdltOj918Pf/I4c4
+         80Y1gDzqWDfV4MOrCIxbYmQDjqZu1EEOtT6MQRRjvdbkNqRgIxH3NHJzV7uJBeI/VFIf
+         OydzA4ByPyqdqz8QWDd2GnEOKD2y4ltX6EA1/ArFG1tBu92OXuTMX26faXEoUjBmALv2
+         ijNApMpGyBUI9phoqAGr9Non4X4mAWqubFmxzc6ibXkRSfkDlGk1eeJrTwLUzg3myucd
+         q/Ck9/F4MfXk0Gd+dRtRGjnW1S/hydhnOFvMgO9CsN5CX8thjz2F+9snq57ZwA2HOrte
+         Lenw==
+X-Gm-Message-State: AJIora9D6sYDF7htuflhUbxKlx6ZFPMQ5ml3QA7BhDc16JYeclQfe2sN
+        xiisKcky1QK8obqWxogh00YODg==
+X-Google-Smtp-Source: AGRyM1vBnYbMBo+bqFkjGK96XrB4066YHdRQQQzg/C79EYzSRJwJS7+8MI20wKyonIEWmjhJbuj33A==
+X-Received: by 2002:adf:dc91:0:b0:21b:89bc:9d5c with SMTP id r17-20020adfdc91000000b0021b89bc9d5cmr13956357wrj.159.1656086521327;
+        Fri, 24 Jun 2022 09:02:01 -0700 (PDT)
 Received: from [192.168.0.237] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id z17-20020a5d6551000000b0021b932de5d6sm2720639wrv.39.2022.06.24.09.01.38
+        by smtp.gmail.com with ESMTPSA id s11-20020a5d4ecb000000b0020fe61acd09sm2647767wrv.12.2022.06.24.09.02.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 09:01:39 -0700 (PDT)
-Message-ID: <ac726845-01ec-4f35-7197-4c52fc483644@linaro.org>
-Date:   Fri, 24 Jun 2022 18:01:38 +0200
+        Fri, 24 Jun 2022 09:02:00 -0700 (PDT)
+Message-ID: <e0dd7045-dd39-0a47-30ef-839f287dd445@linaro.org>
+Date:   Fri, 24 Jun 2022 18:02:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH] ASoC: dt-bindings: fsl,micfil: Convert format to
- json-schema
+Subject: Re: [PATCH net-next v1 1/9] dt-bindings: power: Add Tegra234 MGBE
+ power domains
 Content-Language: en-US
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     shengjiu.wang@gmail.com
-References: <1655980125-24141-1-git-send-email-shengjiu.wang@nxp.com>
+To:     Bhadram Varka <vbhadram@nvidia.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, kuba@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org,
+        Thierry Reding <treding@nvidia.com>
+References: <20220623074615.56418-1-vbhadram@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1655980125-24141-1-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <20220623074615.56418-1-vbhadram@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,90 +77,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2022 12:28, Shengjiu Wang wrote:
-> Convert the NXP MICFIL binding to DT schema format using json-schema.
+On 23/06/2022 09:46, Bhadram Varka wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  .../devicetree/bindings/sound/fsl,micfil.txt  | 33 ---------
->  .../devicetree/bindings/sound/fsl,micfil.yaml | 73 +++++++++++++++++++
->  2 files changed, 73 insertions(+), 33 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/fsl,micfil.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,micfil.yaml
+> Add power domain IDs for the four MGBE power partitions found on
+> Tegra234.
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,micfil.txt b/Documentation/devicetree/bindings/sound/fsl,micfil.txt
-> deleted file mode 100644
-> index 1ea05d4996c7..000000000000
-> --- a/Documentation/devicetree/bindings/sound/fsl,micfil.txt
-> +++ /dev/null
-> @@ -1,33 +0,0 @@
-> -NXP MICFIL Digital Audio Interface (MICFIL).
-> -
-> -The MICFIL digital interface provides a 16-bit audio signal from a PDM
-> -microphone bitstream in a configurable output sampling rate.
-> -
-> -Required properties:
-> -
-> -  - compatible		: Compatible list, contains "fsl,imx8mm-micfil"
-> -			  or "fsl,imx8mp-micfil"
-> -
-> -  - reg			: Offset and length of the register set for the device.
-> -
-> -  - interrupts		: Contains the micfil interrupts.
-> -
-> -  - clocks		: Must contain an entry for each entry in clock-names.
-> -
-> -  - clock-names		: Must include the "ipg_clk" for register access and
-> -			  "ipg_clk_app" for internal micfil clock.
-> -
-> -  - dmas		: Generic dma devicetree binding as described in
-> -			  Documentation/devicetree/bindings/dma/dma.txt.
-> -
-> -Example:
-> -micfil: micfil@30080000 {
-> -	compatible = "fsl,imx8mm-micfil";
-> -	reg = <0x0 0x30080000 0x0 0x10000>;
-> -	interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
-> -	clocks = <&clk IMX8MM_CLK_PDM_IPG>,
-> -		 <&clk IMX8MM_CLK_PDM_ROOT>;
-> -	clock-names = "ipg_clk", "ipg_clk_app";
-> -	dmas = <&sdma2 24 26 0x80000000>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
-> new file mode 100644
-> index 000000000000..74c77f4cf7a4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/fsl,micfil.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP MICFIL Digital Audio Interface (MICFIL)
-> +
-> +maintainers:
-> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
-> +
-> +description: |
-> +  The MICFIL digital interface provides a 16-bit or 24-bit audio signal
-> +  from a PDM microphone bitstream in a configurable output sampling rate.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx8mm-micfil
-> +      - fsl,imx8mp-micfil
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 4
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Bhadram Varka <vbhadram@nvidia.com>
 
-You should describe the interrupts/items. Similarly to clocks.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
