@@ -2,126 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB1355593AA
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 08:43:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A9F559348
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 08:23:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229496AbiFXGm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 02:42:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50530 "EHLO
+        id S229892AbiFXGXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 02:23:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbiFXGm6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 02:42:58 -0400
-X-Greylist: delayed 1210 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 23 Jun 2022 23:42:54 PDT
-Received: from 6.mo552.mail-out.ovh.net (6.mo552.mail-out.ovh.net [188.165.49.222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4B87F3B
-        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 23:42:54 -0700 (PDT)
-Received: from mxplan5.mail.ovh.net (unknown [10.108.1.179])
-        by mo552.mail-out.ovh.net (Postfix) with ESMTPS id DCFD726D1E;
-        Fri, 24 Jun 2022 06:06:17 +0000 (UTC)
-Received: from kaod.org (37.59.142.97) by DAG4EX1.mxp5.local (172.16.2.31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Fri, 24 Jun
- 2022 08:06:17 +0200
-Authentication-Results: garm.ovh; auth=pass (GARM-97G002a741d817-3ab1-43d1-972f-d7ae1c10c91a,
-                    5EF2319963E9DB1A14486A5EC8730A2EE4B20F29) smtp.auth=clg@kaod.org
-X-OVh-ClientIp: 82.64.250.170
-Message-ID: <3114efc7-5131-2de5-4ebc-6b6deeea1f23@kaod.org>
-Date:   Fri, 24 Jun 2022 08:06:10 +0200
+        with ESMTP id S230415AbiFXGXk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 02:23:40 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44F8D2980E
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 23:23:38 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-31780ad7535so15162467b3.8
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 23:23:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1pWYuiEty7n8qfKXbe+MlxripfjF42zMy4YaNonGDYE=;
+        b=LWlf67Kpn5DO70LzfZDzY/86k3RghUlz3LHvmFCRfp9vgWrB54PqfNu2vRF/Bdm7wc
+         ap99VK+4MQUQ+6cin3CVK00IbKjFwKj9hJY00FJWKZ+T6+Tsx1JzMXtnbwqHGT3mulUt
+         H0L5JKLz7ywUjS16o9iBqqT0TcachObVtQ0ucF3TSwp90e9HmJH9RNV0ZQ6J68d/kYAX
+         nEwFuUDUzDBezOwyq+6kVSYL3YCsnU3Px78klL9yrKaUWJlgIKUKeZJtWjG29iFkSFiR
+         pek0U91njY9MeCQ1UyKutB0l8JPIg8lysMDZ0xBMr3cTNS7GpTVSDFQe1FKYX2yHrOFZ
+         WIvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1pWYuiEty7n8qfKXbe+MlxripfjF42zMy4YaNonGDYE=;
+        b=4bJFLIPG1A6TFinDf8GA8JDbTLXL4RBAwjRtkH3ftQnks2hekLXiKEkXEVTV5U2xIt
+         sfhnaGQUfpi6lDcP1Eg2I2qY6h+icMnKigbv9YjdP26YAyJ6QHJqkcX2vyQfzfcdvHcL
+         +qo+YEsC/bYipGx6CMhrXzSfeiZK3ZEkvvVoIf1R2Wt1St5f9o0zV+6onoXjZl9r76bc
+         3nPR7IztBQHdzn95+qpkdmWI7UAtFgbI8GyXWwusXQpjbd2mPfjMsDzF7kria2mCh/xm
+         /RQawpTr3JznHk7gBSWudUd7UQnY/6nlqpYV1ylMgiDuU6vIqHNrTC6OAZ/vVLK3szOp
+         cnBA==
+X-Gm-Message-State: AJIora8/o0mnTwWNpYUA0/BIidv0+u3jH5XcPgrDUbxLuJZrTew/BKDe
+        swJGbY7cJVowSvjg61/leU8Ah38k8Y0/Ds1E9Tnlew==
+X-Google-Smtp-Source: AGRyM1ugT6Af5nX5Ixp3Ow5c+O9Je/TdD9Y/945uEnJCiYAwQr3zWQy2YOg5odN0QU1EceYIiYefh3gmTCwAPJv1mBE=
+X-Received: by 2002:a81:6587:0:b0:318:38c2:2fb1 with SMTP id
+ z129-20020a816587000000b0031838c22fb1mr14986240ywb.118.1656051817552; Thu, 23
+ Jun 2022 23:23:37 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH] ARM: dts: aspeed: ast2600-evb: Update I2C devices
-Content-Language: en-US
-To:     Joel Stanley <joel@jms.id.au>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>
-References: <20220623094717.3873328-1-joel@jms.id.au>
-From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
-In-Reply-To: <20220623094717.3873328-1-joel@jms.id.au>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [37.59.142.97]
-X-ClientProxiedBy: DAG5EX1.mxp5.local (172.16.2.41) To DAG4EX1.mxp5.local
- (172.16.2.31)
-X-Ovh-Tracer-GUID: 77572050-9480-412a-a6cc-5d4782b5fe48
-X-Ovh-Tracer-Id: 6077889174570503075
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudefkedguddthecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfhfhfgjtgfgihesthekredttdefjeenucfhrhhomhepveorughrihgtpgfnvggpifhorghtvghruceotghlgheskhgrohgurdhorhhgqeenucggtffrrghtthgvrhhnpeeigedvffekgeeftedutddttdevudeihfegudffkeeitdekkeetkefhffelveelleenucfkpheptddrtddrtddrtddpfeejrdehledrudegvddrleejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehmgihplhgrnhehrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheptghlgheskhgrohgurdhorhhgpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqrghsphgvvggusehlihhsthhsrdhoiihlrggsshdrohhrghdpoffvtefjohhsthepmhhoheehvd
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220623115631.22209-1-peterwu.pub@gmail.com> <20220623115631.22209-13-peterwu.pub@gmail.com>
+In-Reply-To: <20220623115631.22209-13-peterwu.pub@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 24 Jun 2022 08:23:26 +0200
+Message-ID: <CACRpkdZatfOFmeGXepTrjAk1or4W6KNUEaXnP+srRebfM=52AA@mail.gmail.com>
+Subject: Re: [PATCH v3 12/14] leds: mt6370: Add Mediatek MT6370 current sink
+ type LED Indicator support
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     lee.jones@linaro.org, daniel.thompson@linaro.org,
+        jingoohan1@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        sre@kernel.org, chunfeng.yun@mediatek.com,
+        gregkh@linuxfoundation.org, jic23@kernel.org, lars@metafoo.de,
+        lgirdwood@gmail.com, broonie@kernel.org, linux@roeck-us.net,
+        heikki.krogerus@linux.intel.com, deller@gmx.de,
+        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        szunichen@gmail.com, alice_chen@richtek.com,
+        linux-pm@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, cy_huang@richtek.com,
+        chiaen_wu@richtek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/23/22 11:47, Joel Stanley wrote:
-> The AST2600A3 EVB has the following I2C devices:
-> 
->   - ADT7490 at 0x2e
->   - EEPROM at 0xa0
->   - LM75 at 0x9a
-> 
-> The bus these devices appear on can be configured by jumpers. The device
-> tree is configured with the buses given by the default jumper settings.
-> 
-> Signed-off-by: Joel Stanley <joel@jms.id.au>
+Hi ChiaEn!
 
-Reviewed-by: Cédric Le Goater <clg@kaod.org>
+Thanks for your patch!
 
-Thanks,
+On Thu, Jun 23, 2022 at 1:58 PM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
 
-C.
+> From: ChiYuan Huang <cy_huang@richtek.com>
+>
+> Add Mediatek MT6370 current sink type LED Indicator driver.
+>
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+(...)
+>  drivers/leds/Kconfig       |  11 +
+>  drivers/leds/Makefile      |   1 +
+>  drivers/leds/leds-mt6370.c | 989 +++++++++++++++++++++++++++++++++++++++++++++
 
-> ---
->   arch/arm/boot/dts/aspeed-ast2600-evb.dts | 21 ++++++++++++++++-----
->   1 file changed, 16 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-> index 5a6063bd4508..9da70b873ab6 100644
-> --- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-> +++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-> @@ -207,11 +207,6 @@ &uart5 {
->   
->   &i2c0 {
->   	status = "okay";
-> -
-> -	temp@2e {
-> -		compatible = "adi,adt7490";
-> -		reg = <0x2e>;
-> -	};
->   };
->   
->   &i2c1 {
-> @@ -240,10 +235,26 @@ &i2c6 {
->   
->   &i2c7 {
->   	status = "okay";
-> +
-> +	temp@2e {
-> +		compatible = "adi,adt7490";
-> +		reg = <0x2e>;
-> +	};
-> +
-> +	eeprom@50 {
-> +		compatible = "atmel,24c08";
-> +		reg = <0x50>;
-> +		pagesize = <16>;
-> +	};
->   };
->   
->   &i2c8 {
->   	status = "okay";
-> +
-> +	lm75@4d {
-> +		compatible = "national,lm75";
-> +		reg = <0x4d>;
-> +	};
->   };
->   
->   &i2c9 {
+There is a drivers/leds/flash subdirectory these days, put the driver
+in that directory instead.
 
+Yours,
+Linus Walleij
