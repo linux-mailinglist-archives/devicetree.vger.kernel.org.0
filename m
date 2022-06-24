@@ -2,210 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D6C355A47B
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 00:47:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1B8F55A492
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 01:06:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230008AbiFXWrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 18:47:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56652 "EHLO
+        id S231903AbiFXXDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 19:03:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbiFXWrN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 18:47:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A75548895B;
-        Fri, 24 Jun 2022 15:47:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 459C6623FE;
-        Fri, 24 Jun 2022 22:47:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DB00C34114;
-        Fri, 24 Jun 2022 22:47:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656110831;
-        bh=Ca3HUp39Q0d3xmJxhaLir8O9ecIOzJGm3bv6w+0zQ+I=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=HXh0pzsyyEk8HfvYHyOoUCPxe54mkeZuIsw5jveaIiS+zPXuH43k978V3HMPuqwvj
-         /xfsKnq4B7JdsojOO1DCar56dWUtBS8SjkM4g/QoU9vsgOhSBJaJDJETSSxyYrqkR8
-         RBCPHgT+uhOEX8nkjLR0w3NR1902W3KqzTfLE5V3rugQRs+gShFV11KFgTI+19+89A
-         jxNaUuBLuyV41uoGn14lm3z6Treu2tTGYwqqNBZMfV7IlBSFxPaef6Y9C8IJtHV1f5
-         GH0N0xNtP66kQ+/tUBilxTbtq+D3RqiNjztOAjUCne9mQh0CCoe+7bTvR5PGR8FpJD
-         kuBbEiwB27lbw==
-Message-ID: <e07e2591-6913-cb51-021b-125c3c60b2fc@kernel.org>
-Date:   Fri, 24 Jun 2022 17:47:09 -0500
+        with ESMTP id S231786AbiFXXDm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 19:03:42 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3F41828B4
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 16:03:40 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id sb34so7471827ejc.11
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 16:03:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=iJe+xcZ3/D6PBSynO0jW7/Eqhilgv6gNqpZ8p3aGXd0=;
+        b=MnE6HFKeJE96PcaRLagx5/+3ziVOcE+1hsvFY5sY/Cdn8gEfANbQZhJr3yWzr0DNyP
+         cro1ywge4Mq9rwcGE7j2QM9hpm+qkHMKIJ4pyk3i2OioePxvc1btkQSHwEaekZnjwoT5
+         UXFwfiwVrYlb6RLk8vuzINxhNcravsga2+dD0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=iJe+xcZ3/D6PBSynO0jW7/Eqhilgv6gNqpZ8p3aGXd0=;
+        b=aH23rbD32bz0pCVLqPwTwClLSbaNlRswCqHIJCIDmD3xcFIDhVR4GNvyEX5M8KxhCG
+         xyTa9ydP8f/IkBKdQsT0sWx4hzXGY1JznE7icQlRxxKyanzVn2BO0fqClLHe8Ts7sHIo
+         HwQkixoLeItfQ7XeNJqEgOJ/5502SElbIYteuwFhH0I23dwozm0fGUnrE8rafHdEpm7Y
+         /tOu34NjTyxI3DfY3OaehL2lN+q8TY+82jDL3Lg4yW4emompFU8c7Bkqebx/jneYxPYw
+         lFk7uMn1fDUY9YNNH7wuU0LLX2dxuEEXUKVcqIm/jzXMova619jUchq7ZkTnuwM01gVQ
+         LpaQ==
+X-Gm-Message-State: AJIora8n9sXmeT0L5YFexlzLa/RJlmTiKNRhQvHNGsa9R7tlJweKtxR3
+        moeZnHfmQ0kqZa7YCgVogIs3yQ==
+X-Google-Smtp-Source: AGRyM1u9OrGaQ3FO3H0QgxOTsvLQiGp1ni6Lj1KBxemuMVOZbqVG6TzVRElD9/a1D3MJ77tfYQcEng==
+X-Received: by 2002:a17:906:9c84:b0:6e0:7c75:6f01 with SMTP id fj4-20020a1709069c8400b006e07c756f01mr1328997ejc.103.1656111819427;
+        Fri, 24 Jun 2022 16:03:39 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i.station (net-188-217-58-216.cust.vodafonedsl.it. [188.217.58.216])
+        by smtp.gmail.com with ESMTPSA id w1-20020aa7da41000000b004356a647d08sm2880291eds.94.2022.06.24.16.03.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Jun 2022 16:03:39 -0700 (PDT)
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+Cc:     linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
+        quentin.schulz@theobroma-systems.com,
+        Tommaso Merciai <tommaso.merciai@amarulasolutions.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 7/7] media: dt-bindings: ov5693: document YAML binding
+Date:   Sat, 25 Jun 2022 01:03:07 +0200
+Message-Id: <20220624230307.3066530-8-tommaso.merciai@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220624230307.3066530-1-tommaso.merciai@amarulasolutions.com>
+References: <20220624230307.3066530-1-tommaso.merciai@amarulasolutions.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCHv3] arm64: dts: altera: socfpga_stratix10: move clocks out
- of soc node
-Content-Language: en-US
-To:     niravkumar.l.rabara@intel.com
-Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org
-References: <c90eb127-fa5a-2231-106d-5054e0097281@kernel.org>
- <20220624162159.3403541-1-niravkumar.l.rabara@intel.com>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20220624162159.3403541-1-niravkumar.l.rabara@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch adds documentation of device tree in YAML schema for the
+OV5693 CMOS image sensor from Omnivision
 
+Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+---
+ .../bindings/media/i2c/ovti,ov5693.yaml       | 123 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 2 files changed, 124 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
 
-On 6/24/22 11:21, niravkumar.l.rabara@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> 
-> The clocks are not part of the SoC but provided on the board
-> (external oscillators). Moving them out of soc node.
-> 
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> ---
->   .../boot/dts/altera/socfpga_stratix10.dtsi    | 56 +++++++++----------
->   .../dts/altera/socfpga_stratix10_socdk.dts    | 10 ++--
->   .../altera/socfpga_stratix10_socdk_nand.dts   | 10 ++--
->   3 files changed, 36 insertions(+), 40 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-> index aa2bba75265f..5c7d926d18f7 100644
-> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-> @@ -97,6 +97,34 @@ intc: interrupt-controller@fffc1000 {
->   		      <0x0 0xfffc6000 0x0 0x2000>;
->   	};
->   
-> +	clocks {
-> +		cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
-> +			#clock-cells = <0>;
-> +			compatible = "fixed-clock";
-> +		};
-> +
-> +		cb_intosc_ls_clk: cb-intosc-ls-clk {
-> +			#clock-cells = <0>;
-> +			compatible = "fixed-clock";
-> +		};
-> +
-> +		f2s_free_clk: f2s-free-clk {
-> +			#clock-cells = <0>;
-> +			compatible = "fixed-clock";
-> +		};
-> +
-> +		osc1: osc1 {
-> +			#clock-cells = <0>;
-> +			compatible = "fixed-clock";
-> +		};
-> +
-> +		qspi_clk: qspi-clk {
-> +			#clock-cells = <0>;
-> +			compatible = "fixed-clock";
-> +			clock-frequency = <200000000>;
-> +		};
-> +	};
-> +
->   	soc {
->   		#address-cells = <1>;
->   		#size-cells = <1>;
-> @@ -119,34 +147,6 @@ clkmgr: clock-controller@ffd10000 {
->   			#clock-cells = <1>;
->   		};
->   
-> -		clocks {
-> -			cb_intosc_hs_div2_clk: cb-intosc-hs-div2-clk {
-> -				#clock-cells = <0>;
-> -				compatible = "fixed-clock";
-> -			};
-> -
-> -			cb_intosc_ls_clk: cb-intosc-ls-clk {
-> -				#clock-cells = <0>;
-> -				compatible = "fixed-clock";
-> -			};
-> -
-> -			f2s_free_clk: f2s-free-clk {
-> -				#clock-cells = <0>;
-> -				compatible = "fixed-clock";
-> -			};
-> -
-> -			osc1: osc1 {
-> -				#clock-cells = <0>;
-> -				compatible = "fixed-clock";
-> -			};
-> -
-> -			qspi_clk: qspi-clk {
-> -				#clock-cells = <0>;
-> -				compatible = "fixed-clock";
-> -				clock-frequency = <200000000>;
-> -			};
-> -		};
-> -
->   		gmac0: ethernet@ff800000 {
->   			compatible = "altr,socfpga-stmmac-a10-s10", "snps,dwmac-3.74a", "snps,dwmac";
->   			reg = <0xff800000 0x2000>;
-> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-> index 5159cd5771dc..48424e459f12 100644
-> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-> @@ -52,12 +52,6 @@ ref_033v: regulator-v-ref {
->   	};
->   
->   	soc {
-> -		clocks {
-> -			osc1 {
-> -				clock-frequency = <25000000>;
-> -			};
-> -		};
-> -
->   		eccmgr {
->   			sdmmca-ecc@ff8c8c00 {
->   				compatible = "altr,socfpga-s10-sdmmc-ecc",
-> @@ -113,6 +107,10 @@ &mmc {
->   	bus-width = <4>;
->   };
->   
-> +&osc1 {
-> +	clock-frequency = <25000000>;
-> +};
-> +
->   &uart0 {
->   	status = "okay";
->   };
-> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
-> index 0ab676c639a1..847a7c01f5af 100644
-> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
-> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
-> @@ -52,12 +52,6 @@ ref_033v: regulator-v-ref {
->   	};
->   
->   	soc {
-> -		clocks {
-> -			osc1 {
-> -				clock-frequency = <25000000>;
-> -			};
-> -		};
-> -
->   		eccmgr {
->   			sdmmca-ecc@ff8c8c00 {
->   				compatible = "altr,socfpga-s10-sdmmc-ecc",
-> @@ -126,6 +120,10 @@ partition@200000 {
->   	};
->   };
->   
-> +&osc1 {
-> +	clock-frequency = <25000000>;
-> +};
-> +
->   &uart0 {
->   	status = "okay";
->   };
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+new file mode 100644
+index 000000000000..1ee70af40000
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+@@ -0,0 +1,123 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2022 Amarulasolutions
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov5693.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Omnivision OV5693 CMOS Sensor
++
++maintainers:
++  - Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
++
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
++description: |
++  The Omnivision OV5693 is a high performance, 1/4-inch, 5 megapixel, CMOS
++  image sensor that delivers 2592x1944 at 30fps. It provides full-frame,
++  sub-sampled, and windowed 10-bit MIPI images in various formats via the
++  Serial Camera Control Bus (SCCB) interface.
++
++  Supports images sizes: 5 Mpixel, EIS1080p, 1080p, 720p, VGA, QVGA
++
++  OV5693 is programmable through I2C and two-wire Serial Camera Control Bus (SCCB).
++  The sensor output is available via CSI-2 serial data output (up to 2-lane).
++
++properties:
++  compatible:
++    const: ovti,ov5693
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description:
++      System input clock (aka XVCLK). From 6 to 27 MHz.
++    maxItems: 1
++
++  dovdd-supply:
++    description:
++      Digital I/O voltage supply, 1.8V.
++
++  avdd-supply:
++    description:
++      Analog voltage supply, 2.8V.
++
++  dvdd-supply:
++    description:
++      Digital core voltage supply, 1.2V.
++
++  reset-gpios:
++    description:
++      The phandle and specifier for the GPIO that controls sensor reset.
++      This corresponds to the hardware pin XSHUTDN which is physically
++      active low.
++    maxItems: 1
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            minItems: 1
++            maxItems: 2
++
++          # Supports max data transfer of 900 Mbps per lane
++          link-frequencies: true
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - dovdd-supply
++  - avdd-supply
++  - dvdd-supply
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/px30-cru.h>
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/pinctrl/rockchip.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov5693: camera@36 {
++            compatible = "ovti,ov5693";
++            reg = <0x36>;
++
++            reset-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&cif_clkout_m0>;
++
++            clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clock-rates = <19200000>;
++
++            avdd-supply = <&vcc_1v8>;
++            dvdd-supply = <&vcc_1v2>;
++            dovdd-supply = <&vcc_2v8>;
++
++            rotation = <90>;
++            orientation = <0>;
++
++            port {
++                ucam_out: endpoint {
++                    remote-endpoint = <&mipi_in_ucam>;
++                    data-lanes = <1 2>;
++                    link-frequencies = /bits/ 64 <450000000>;
++                };
++            };
++        };
++    };
+\ No newline at end of file
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 1fc9ead83d2a..844307cb20c4 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14719,6 +14719,7 @@ M:	Daniel Scally <djrscally@gmail.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+ F:	drivers/media/i2c/ov5693.c
+ 
+ OMNIVISION OV5695 SENSOR DRIVER
+-- 
+2.25.1
 
-
-Applied!
-
-Thanks,
-Dinh
