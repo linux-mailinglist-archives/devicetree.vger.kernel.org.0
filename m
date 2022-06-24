@@ -2,66 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 647DB558F5F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 05:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58779558F6E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 06:02:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbiFXD7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 23:59:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43028 "EHLO
+        id S229786AbiFXEC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 00:02:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbiFXD7c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 23:59:32 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C80552514;
-        Thu, 23 Jun 2022 20:59:31 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id b24so352501qkn.4;
-        Thu, 23 Jun 2022 20:59:31 -0700 (PDT)
+        with ESMTP id S229728AbiFXECV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 00:02:21 -0400
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C6D532EF;
+        Thu, 23 Jun 2022 21:02:20 -0700 (PDT)
+Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-fb6b4da1dfso2218176fac.4;
+        Thu, 23 Jun 2022 21:02:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=1nNf3XStVvU0zxU2GlC+AY6jj6Sph5Ok2Q3M9aTXj3c=;
-        b=Qo1e6VfJl1mAt7its+TcW1KhbQ5FY2hceBuiIwEITJk4hLVY2seInCUcbaOwXZT3UH
-         4CjCdYJVMSeXy3i4YBOiF20dtpQ2YAd9XM212xKSqWQhRdXPUkWhmoQxZDI8XmvAP3LY
-         iRNAzNu+cTwMrGMn+ogI6aksMwILBTR2rhjn1c3AKQbHWQE/Y+Fj7QW/c+BiNnklhDIL
-         TJ5RY8+8ee1xrMlSHgQW5btX8urIXJ8KeoAf9IhLxkPmKtr4ZEASW8Powkdd3A0rmGnx
-         P6uoguAH0Iv2LRM1HHrcc0J1en6DMVoMWXJ+6k1gni+vO+4Ym8e+GNgdZCvHT3nZCUud
-         5CDA==
+        bh=C38bDs4A1JfWnOqmeYv1BTYo2A48cLLwdXZTR1jlAA0=;
+        b=L8Dq1FdrKjrt2f3l9xNpRgivDT0iEZF2jKKlVhypq6/jyWdJZBKRHLkcEjI7nujJ0z
+         RbPakAI00kU0HoXSksL29V5uU+OUHrYEeHt13nzKvqjpkfVj0bNVzmaFpbD21vD7/qm3
+         UpP7ouJO5jmt38uinYPE+7fQXzRJBz6hbCXgpH/PIzlBDmPiuoy7I1W6M6KUVe8HPRJ8
+         ulMhnTjMEwSeMnRn9SbNkWWjaaDMrJ3QOpa8KFAvoA9kc/OtgWS1VuN5PVrKWXmbOVks
+         5vkK/l1T/Q6c4jC30zLoFYAxZ6MVDhYflfNRyqGeF6rIujLD2nejHeZeIZA2zC/FlxQn
+         Zjew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=1nNf3XStVvU0zxU2GlC+AY6jj6Sph5Ok2Q3M9aTXj3c=;
-        b=8IFrRrEQHvMH7VrzYYPBAyybLIG3kIFFd5H7GxbO6pcxkWasr40ez/w+bIvizqt+22
-         WrHYaXJL7aPG3MoGNOpU6EYLjKxtYPd/ah6tpJyWq9vs5K/nOCmLrJEbSwMxbbln18M6
-         Otjepiz2CVI0SuS45s0BmeaFu1aV0jSjKvVnJ72/N9HTzv/5f1NerPFMru0qbcNsM1qB
-         kTaKXugxUBrTiiGyXtGati+fpK6LzpY5K/07xP84vrxUVJ/XiA8qUUhmj3YVS/wNoQxl
-         OeF8uypFJpvYAQcunPF1AgkHleLscBXWHucrI3FRKe3rQf8TSRN6h3K5tooLGZyxj2EY
-         ncSg==
-X-Gm-Message-State: AJIora9FKL2gD8HSJQ0FBD7wezQ1vfrZQIRhQXOU6AORBqRE2MVpiNLr
-        V+HO5ntWPk3cJIGf/nGsYEK2iY1UN4cF3w==
-X-Google-Smtp-Source: AGRyM1tH74J6QRCCuhGBKAIcA/xDMPL9TX2L/JBNOXXCCFY30JyeLtHWRY4Bsz+l0qlyPHGj/pzhmw==
-X-Received: by 2002:a05:620a:244a:b0:6a7:3cb5:98b0 with SMTP id h10-20020a05620a244a00b006a73cb598b0mr8763086qkn.295.1656043170695;
-        Thu, 23 Jun 2022 20:59:30 -0700 (PDT)
+        bh=C38bDs4A1JfWnOqmeYv1BTYo2A48cLLwdXZTR1jlAA0=;
+        b=4ylP9va7FuAaLXjRfRfXYbWqGs/tSmJllo7wRBNJGDqHbfuoR+V2WDuwXf5WTw8hig
+         TqbZp2kvwYtAZ1Byy7nqfX92BLDQH5uzEYwLolxrfncs5ox5Ee7kAxBdy7nI0Ay8NSsu
+         pMiPhShp9uHPWGfmVeXUNwUffjHEZiUPN92pws2tp+xSxxbACQuZohV5NruT4Oq81bFM
+         B6ISZ5tRX4Y8tRxHHgD8/S7hSt8weYzQoKq7AUW5LX9K8HhTsjlOJVRPornq9EJjwWRM
+         2ufYRRNOrfS880yGddBprC1XfN/ASynNMiuFNOBvw8/y1ozu3WLk7MnIGx8uoMJOeS7J
+         Z5sQ==
+X-Gm-Message-State: AJIora9Fl0ynxhIQZwdReMQBxo9JwRl/Q8l6CiY7X1VKWMH/BDjbtj3G
+        C1kEbz0YKhd86jVYA1UwRt4=
+X-Google-Smtp-Source: AGRyM1uun8x0X75mHWSZsw5pqOFbPlSawWvIGWizmZFosmSrSxO1YfFuABH899fP3OhK9Cw5i1rnjg==
+X-Received: by 2002:a05:6870:ea01:b0:f1:e631:ed6f with SMTP id g1-20020a056870ea0100b000f1e631ed6fmr819106oap.89.1656043339416;
+        Thu, 23 Jun 2022 21:02:19 -0700 (PDT)
 Received: from ?IPV6:2600:1700:2442:6db0:742c:47ee:54c0:bcc7? ([2600:1700:2442:6db0:742c:47ee:54c0:bcc7])
-        by smtp.gmail.com with ESMTPSA id c13-20020a05620a164d00b006a6a4b43c01sm1009402qko.38.2022.06.23.20.59.29
+        by smtp.gmail.com with ESMTPSA id 14-20020a9d080e000000b0061691239049sm848171oty.60.2022.06.23.21.02.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Jun 2022 20:59:30 -0700 (PDT)
-Message-ID: <14a9c8fe-410e-2c85-7d1e-733222d1902c@gmail.com>
-Date:   Thu, 23 Jun 2022 22:59:29 -0500
+        Thu, 23 Jun 2022 21:02:18 -0700 (PDT)
+Message-ID: <fc6ff5a8-75c3-fcc9-5809-ffbea058d4c7@gmail.com>
+Date:   Thu, 23 Jun 2022 23:02:17 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH] of: base: Remove duplicate 'of' in two places.
+Subject: Re: [PATCH v3 0/5] of: add of_property_alloc/free() and
+ of_node_alloc()
 Content-Language: en-US
-To:     Jiang Jian <jiangjian@cdjrlc.com>, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220621161322.17739-1-jiangjian@cdjrlc.com>
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nathan Lynch <nathanl@linux.ibm.com>,
+        Laurent Dufour <ldufour@linux.ibm.com>,
+        Daniel Henrique Barboza <danielhb413@gmail.com>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        David Hildenbrand <david@redhat.com>,
+        Ohhoon Kwon <ohoono.kwon@samsung.com>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        YueHaibing <yuehaibing@huawei.com>
+Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Lizhi Hou <lizhi.hou@xilinx.com>
+References: <20220620104123.341054-1-clement.leger@bootlin.com>
 From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <20220621161322.17739-1-jiangjian@cdjrlc.com>
+In-Reply-To: <20220620104123.341054-1-clement.leger@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -72,43 +93,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/21/22 12:13, Jiang Jian wrote:
-> file: drivers/of/base.c
-> line: 1152,1177
-> * @matches:    array of of device match structures to search in
-> changed to
-> * @matches:    array of device match structures to search in
+Sorry for the lack of response, it's been a busy week.  I will get to this
+soon.
+
+-Frank
+
+On 6/20/22 06:41, Clément Léger wrote:
+> In order to be able to create new nodes and properties dynamically from
+> drivers, add of_property_alloc/free() and of_node_alloc(). These
+> functions can be used to create new nodes and properties flagged with
+> OF_DYNAMIC and to free them.
 > 
-> Signed-off-by: Jiang Jian <jiangjian@cdjrlc.com>
+> Some powerpc code was already doing such operations and thus, these
+> functions have been used to replace the manual creation of nodes and
+> properties. This code has been more than simply replaced to allow using
+> of_node_put() rather than a manual deletion of the properties.
+> Unfortunately, as I don't own a powerpc platform, it would need to be
+> tested.
+> 
 > ---
->  drivers/of/base.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/of/base.c b/drivers/of/base.c
-> index d4f98c8469ed..f738939cd283 100644
-> --- a/drivers/of/base.c
-> +++ b/drivers/of/base.c
-> @@ -1149,7 +1149,7 @@ const struct of_device_id *__of_match_node(const struct of_device_id *matches,
->  
->  /**
->   * of_match_node - Tell if a device_node has a matching of_match structure
-> - * @matches:	array of of device match structures to search in
-> + * @matches:	array of device match structures to search in
->   * @node:	the of device structure to match against
->   *
->   * Low level utility function used by device matching.
-> @@ -1174,7 +1174,7 @@ EXPORT_SYMBOL(of_match_node);
->   *		you pass will not be searched, only the next one
->   *		will; typically, you pass what the previous call
->   *		returned. of_node_put() will be called on it
-> - * @matches:	array of of device match structures to search in
-> + * @matches:	array of device match structures to search in
->   * @match:	Updated to point at the matches entry which matched
->   *
->   * Return: A node pointer with refcount incremented, use
+> Changes in V3:
+> - Remove gfpflag attribute from of_node_alloc() and of_property_alloc().
+> - Removed allocflags from __of_node_dup().
+> - Rework powerpc code to only use of_node_put().
+> - Fix properties free using of_node_property in OF unittests.
+> 
+> Changes in V2:
+> - Remove of_node_free()
+> - Rework property allocation to allocate both property and value with
+>   1 allocation
+> - Rework node allocation to allocate name at the same time the node is
+>   allocated
+> - Remove extern from definitions
+> - Remove of_property_alloc() value_len parameter and add more
+>   explanation for the arguments
+> - Add a check in of_property_free to check OF_DYNAMIC flag
+> - Add a commit which constify the property argument of
+>   of_property_check_flags()
+> 
+> Clément Léger (5):
+>   of: constify of_property_check_flags() prop argument
+>   of: remove __of_node_dup() allocflags parameter
+>   of: dynamic: add of_property_alloc() and of_property_free()
+>   of: dynamic: add of_node_alloc()
+>   powerpc/pseries: use of_property_alloc/free() and of_node_alloc()
+> 
+>  arch/powerpc/platforms/pseries/dlpar.c        |  62 +-------
+>  .../platforms/pseries/hotplug-memory.c        |  21 +--
+>  arch/powerpc/platforms/pseries/reconfig.c     | 123 ++++++----------
+>  drivers/of/dynamic.c                          | 137 ++++++++++++------
+>  drivers/of/of_private.h                       |  19 ++-
+>  drivers/of/overlay.c                          |   2 +-
+>  drivers/of/unittest.c                         |  24 ++-
+>  include/linux/of.h                            |  24 ++-
+>  8 files changed, 191 insertions(+), 221 deletions(-)
+> 
 
-"of of device" looks wrong, but 'of device' means Open Firmeare device.
-So technically it is correct.  If Rob wants to accept the patch then
-I am ok with the acceptance, to avoid future attempts to fix.
-
-Reviewed-by: Frank Rowand <frank.rowand@sony.com>
