@@ -2,56 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D294055A012
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 20:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78475559FD9
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 20:07:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230091AbiFXR1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 13:27:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50376 "EHLO
+        id S229936AbiFXR1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 13:27:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232515AbiFXR0i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 13:26:38 -0400
+        with ESMTP id S229595AbiFXR0k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 13:26:40 -0400
 Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36DCEF3B;
-        Fri, 24 Jun 2022 10:26:37 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id y18so3400641iof.2;
-        Fri, 24 Jun 2022 10:26:37 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D26892BE6;
+        Fri, 24 Jun 2022 10:26:39 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id s17so3378785iob.7;
+        Fri, 24 Jun 2022 10:26:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=Rz662/Zn6lBlNQLMw1j2/Ac9WyQjxNUeH6Y/SpV0998=;
-        b=llCGrGPy2oR3UKUKf92bQ7HPvyH94xU18QAtz39/zJ78OzV/wJOV6MewVxagwVmFrj
-         ocSPqFdKXi4WcXGk5R59hBO9UbRAonS6C061QG1hHZiu4qe9dXrz3wxld9o9eWBuHoCw
-         lnsurBw0TkSAAJUqwuszZd1cpmFFQKd44M/3WmKL/f/AZR/fKUws/n4JHNh6keyMDu1t
-         /v4J0eHByVXMFcedxp8hJwSX/Ykgk9nG+ciRvsprWup7XZf0IjzTWbnW9RJYZf0qgX5H
-         C0yiONSJLfGSqXeszWD5EkU3dahYDHtCc0shE97+mDBJCJNxZX6GQ9ouynQFctqnJIT1
-         GStQ==
-X-Gm-Message-State: AJIora+a6jTBNSUcw2M4/LG6SXG45P4gjc1HpzQb5DDXcJEp4LPXoVU7
-        9G+J3kZC+mi+e8YX1W1hvYM7+mCpog==
-X-Google-Smtp-Source: AGRyM1s17ABWF+9JuVgOsvDU0B+DYN2MEhcfHVJ1KI3e8M1JaSdgtpWOtkEOvhi77t18qdtOVHEj5Q==
-X-Received: by 2002:a05:6602:2c95:b0:669:e6fa:c3d4 with SMTP id i21-20020a0566022c9500b00669e6fac3d4mr33108iow.33.1656091595980;
-        Fri, 24 Jun 2022 10:26:35 -0700 (PDT)
+        bh=92QKbH/mPXhxHIYJf1fLlrKB6WxLUvpdcDo1o4OtEnM=;
+        b=nkLqdtay6VGjJqffHvqtqksKSKVkBilY1c1m5KAlQMy8AJo7DT/wTGSiN7+Hvhm6OZ
+         5NK5dApuZdhWE7sD7gmiuW8mnZNgcBVUWr08Y2QT5VUkWgLZWrdwwqNJFe3KLCMcVDiy
+         OQkBVynzJVclFSBAvtlpFjkdTFkU7nBi+RExRN7qf2SF4KNAnAp6m35rcdlw3XWHjg0O
+         jyaGn8aX9MWabkgmH4krflJGpABcTYGkLvT9Ff1Cn7vmFykm0oh3DpTKayQDOu7LFBY1
+         KBdZbUaiR+/9Mg6TXWzJbqbh+o2F5a/G524sZ1RjL+AJcIYtJGIsyIPiLUmvaUnoWf/K
+         cWTA==
+X-Gm-Message-State: AJIora/T87xyD3LzBX1ATxDZL4VjYTWfmf/6ffZkthaxIq5ZiERfn/8E
+        aw/Pd2wwO9Z6XxwV5t2hItwyaxa/og==
+X-Google-Smtp-Source: AGRyM1s8SzrwSpGacP/r2ARwl+tUdS8WymnOz9QJv44qHprtsvHiQ9e/7OSdNfiAyfKqtnqiAMvqmw==
+X-Received: by 2002:a02:90ce:0:b0:32e:e2ce:b17c with SMTP id c14-20020a0290ce000000b0032ee2ceb17cmr153954jag.268.1656091599142;
+        Fri, 24 Jun 2022 10:26:39 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id m16-20020a92cad0000000b002d79f619517sm1370186ilq.26.2022.06.24.10.26.34
+        by smtp.gmail.com with ESMTPSA id u10-20020a92da8a000000b002d925059ba6sm1354817iln.87.2022.06.24.10.26.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Jun 2022 10:26:35 -0700 (PDT)
-Received: (nullmailer pid 146329 invoked by uid 1000);
+        Fri, 24 Jun 2022 10:26:38 -0700 (PDT)
+Received: (nullmailer pid 146342 invoked by uid 1000);
         Fri, 24 Jun 2022 17:26:34 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Sebastian Ene <sebastianene@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>, will@kernel.org,
-        vdonnefort@google.com, maz@kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20220621080308.3952915-2-sebastianene@google.com>
-References: <20220621080308.3952915-1-sebastianene@google.com> <20220621080308.3952915-2-sebastianene@google.com>
-Subject: Re: [PATCH v7 1/2] dt-bindings: vcpu_stall_detector: Add qemu,vcpu-stall-detector compatible
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     tinghan.shen@mediatek.com, linux-kernel@vger.kernel.org,
+        wenst@chromium.org, p.zabel@pengutronix.de,
+        chun-jie.chen@mediatek.com, matthias.bgg@gmail.com,
+        sboyd@kernel.org, konrad.dybcio@somainline.org,
+        linux-clk@vger.kernel.org, fparent@baylibre.com,
+        phone-devel@vger.kernel.org, robh+dt@kernel.org,
+        y.oudjana@protonmail.com, rex-bc.chen@mediatek.com,
+        martin.botka@somainline.org, marijn.suijten@somainline.org,
+        sam.shih@mediatek.com, kernel@collabora.com,
+        mturquette@baylibre.com, linux-arm-kernel@lists.infradead.org,
+        ikjn@chromium.org, krzysztof.kozlowski+dt@linaro.org,
+        weiyi.lu@mediatek.com, miles.chen@mediatek.com, ck.hu@mediatek.com,
+        linux-mediatek@lists.infradead.org, jason-jh.lin@mediatek.com,
+        ~postmarketos/upstreaming@lists.sr.ht, bgolaszewski@baylibre.com,
+        paul.bouchara@somainline.org, devicetree@vger.kernel.org
+In-Reply-To: <20220624093525.243077-5-angelogioacchino.delregno@collabora.com>
+References: <20220624093525.243077-1-angelogioacchino.delregno@collabora.com> <20220624093525.243077-5-angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v3 4/7] dt-bindings: clock: mediatek: Add clock driver bindings for MT6795
 Date:   Fri, 24 Jun 2022 11:26:34 -0600
-Message-Id: <1656091594.340446.146328.nullmailer@robh.at.kernel.org>
+Message-Id: <1656091594.386709.146341.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -63,21 +72,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Jun 2022 08:03:08 +0000, Sebastian Ene wrote:
-> The VCPU stall detection mechanism allows to configure the expiration
-> duration and the internal counter clock frequency measured in Hz.
-> Add these properties in the schema.
+On Fri, 24 Jun 2022 11:35:22 +0200, AngeloGioacchino Del Regno wrote:
+> Add the bindings for the clock drivers of the MediaTek Helio X10
+> MT6795 SoC.
 > 
-> While this is a memory mapped virtual device, it is expected to be loaded
-> when the DT contains the compatible: "qemu,vcpu-stall-detector" node.
-> In a protected VM we trust the generated DT nodes and we don't rely on
-> the host to present the hardware peripherals.
-> 
-> Signed-off-by: Sebastian Ene <sebastianene@google.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../misc/qemu,vcpu-stall-detector.yaml        | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/qemu,vcpu-stall-detector.yaml
+>  .../bindings/clock/mediatek,mt6795-clock.yaml | 66 +++++++++++++++++
+>  .../clock/mediatek,mt6795-sys-clock.yaml      | 74 +++++++++++++++++++
+>  2 files changed, 140 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-clock.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -86,8 +91,10 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/qemu,vcpu-stall-detector.example.dtb: vmwdt@9030000: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/qemu,vcpu-stall-detector.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.example.dtb: power-controller@10001000: '#power-domain-cells' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/power-domain.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.example.dtb: power-controller@10003000: '#power-domain-cells' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/power-domain.yaml
 
 doc reference errors (make refcheckdocs):
 
