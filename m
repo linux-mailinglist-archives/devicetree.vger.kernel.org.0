@@ -2,136 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E8F1558CA9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 03:13:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C6A6558CC3
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 03:24:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229879AbiFXBNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jun 2022 21:13:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57872 "EHLO
+        id S230177AbiFXBYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jun 2022 21:24:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbiFXBNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 21:13:44 -0400
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54FF5675A;
-        Thu, 23 Jun 2022 18:13:38 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I5E5oIOYRzezv7qJUfdd+euTCU3o0eK3kijySwH/EgwmNmnc6gbfpI9htQpf28EkibunyHIu3J0rVIkDl2mKvPlEs9lNZ+Gd+uJVDe46VRLBeCuXvbKmR85ws8Z+WfR/9i6TVww9ZKFzCnyeiV+l57GkdZNeNx6cxvKkios7NTJM+OSJXGcnJiSMWsjn2B+6knMDBslrtHEyB+bnNThV07nCDF2fgxsGeulQibUL/oQ7FZROf+/qcKCaOIAPgIijQ2VH7OShHHwzzUS9WUPpjj9ZaIP2KtR/EjpC/yVCyd+krfc62ej0p4TtwoE8ahn76Opno8RWmM4vyucbUgdvqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ky1RTkforugfFxsogW4vlj6GWqC29uwlOqa62lcBTj0=;
- b=WNv4khQOncTf6eLNYOI2fSueBQ08TAox5vtmS2jARX36VLmibhdH5/abrbV1ZexfxMDat8S6M1gprQqGM7JtCicOWKSnoNqF5EWUZgnyJiov1hFX4teIPihejPjdyTglDA3vraWQC5GQYuN2bRmiqh1iCgE4qH3ujNnfcFWToS9bfrcjA9NTxoQDKALIxi5+0p9e2KaaIx/w8xfVozuPI15onu8zS03rRMClHJHwe/B+lDtyi4+E8AZizaixNgoIVuo8zgeRkrd66R/5g7HS+SHDc5a38T3U6dxZsGMt0qdqTX+XfbbkSY7zVV2Nc2xGiQHWxSX5XREj2ZB7uRJxzw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
+        with ESMTP id S229760AbiFXBYP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jun 2022 21:24:15 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64F21563BE
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 18:24:14 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id 15so2070570ybc.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Jun 2022 18:24:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ky1RTkforugfFxsogW4vlj6GWqC29uwlOqa62lcBTj0=;
- b=BWPSNPw50mVr6iBGWXu0/RR09onlEO4vI8gyRQsXoeu3hZPBZm21lupbuPAo4Y4sot/CmmBNam7J9Siqh2C5C2uKy1oYOBkNbYoYUDnGeVPVpwgz5bROG9QpO4ORUNYQa52NeshMnn/i2N7TWdHNxTsOhRw4WoDhvVHomERjCHU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=labundy.com;
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21) by DM6PR08MB5433.namprd08.prod.outlook.com
- (2603:10b6:5:f9::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.18; Fri, 24 Jun
- 2022 01:13:36 +0000
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::ccb4:7984:aaf2:e18f]) by SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::ccb4:7984:aaf2:e18f%6]) with mapi id 15.20.5353.022; Fri, 24 Jun 2022
- 01:13:36 +0000
-Date:   Thu, 23 Jun 2022 20:13:31 -0500
-From:   Jeff LaBundy <jeff@labundy.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 5/7] Input: iqs7222 - remove support for RF filter
-Message-ID: <20220624011331.GA87950@nixie71>
-References: <20220623035309.39528-1-jeff@labundy.com>
- <20220623035309.39528-6-jeff@labundy.com>
- <YrUN115qdy14sfEx@google.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YrUN115qdy14sfEx@google.com>
-X-ClientProxiedBy: SN4PR0501CA0035.namprd05.prod.outlook.com
- (2603:10b6:803:40::48) To SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21)
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=10PmzWCyUBI5Vfce1rbhp0nN4ZOkA3OYApu3p4Z3wDQ=;
+        b=glXeRVHVfV8WrwBqJ/kMZnqq8X5UeIcwOsiFsj/kz7g3p9ZhnG8+7rYmkC4Ooh8CoD
+         H2ZxY3SNaBMWVW1hTeMEGJiRLySNetp6ZqokKzzuE+/3PiJro+eTVWkGtMnExLj35OJs
+         zcso9bW6vOY8KzWSW9Oetg7R7bOFMcqDtfmfY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=10PmzWCyUBI5Vfce1rbhp0nN4ZOkA3OYApu3p4Z3wDQ=;
+        b=B1IwM5SGRRf+OLa6N4LZWLT40lLER6I0plhMfya833bV3oSURrjrg5z9a22QPrb95I
+         8TmMcNF02YZHTE48k67wYH8HgUZpI3JxH+CIw84PjeBYUxOaxYCJOZ18O7NOscSlQWYO
+         y0huJEHLXGqxqv6FRUzfVWR/+dZuVH8CWGjiwxmBqGc8LRgsU3L9SmE1b5x53cxmP279
+         pyixkQQLpX2BeGOPVnTVDPVWqA0yRaOFz9RSDaC2EItRXjmYbOEw2BM6kA3mKnCVCJLb
+         yoTjLY5zyWHvyMqgD4JLkSmwETpY3krq9/I545sAP1qxp+DIbk1sMo9qxhvND6WiFj4A
+         3Emw==
+X-Gm-Message-State: AJIora/2Rr6rnBW3yi4hdyMOhUru/N3w0+eN1b5gQLd8EP3vW03sDfTz
+        yTbttYvAxWRI3eKL7FLUzVNsffFEnV6xGWt8+uyWvx1bMlg=
+X-Google-Smtp-Source: AGRyM1uzGBk9nFl76gEcXxNwEdLIRcnWpYTQHhBodEuO9ylyG3VAyW/StyEf8ihoveC1W4ma6tvIzZhoSPWESvWOAUs=
+X-Received: by 2002:a25:f30b:0:b0:669:9f30:7c84 with SMTP id
+ c11-20020a25f30b000000b006699f307c84mr9265199ybs.240.1656033853604; Thu, 23
+ Jun 2022 18:24:13 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8062099e-f383-4a6f-d18b-08da557ec371
-X-MS-TrafficTypeDiagnostic: DM6PR08MB5433:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AF1bYzvYKgLaGcnc3wUdSZIB65CJvNicPX5Wzn8mA9xn1t+iR1/wZmPR2SyvJd/eN1UcrSa2A0/zKxqjazeK2qSwlCzsTuoTSmSP5/rmUBP5ML4UndLXQUkGnmXNf7Nm2pyZCN7o1F/ZB7FxBS8j6ihdGOuPXdXQIfx+/bGAPEImOIMxlmum2yqWsg/2NyjSfbMWRSvCTfp3W7+KpjZA/MduIwt0VT2yU/4eNW3M70dYjT5GykL1U4Hocg8jUmiQ8o9Q6t09mKW6jRcHq4UxsizM1QoNP6CtTxCJMZOThPC69oWHk0L7cHpQuiDh/yut3nahE9+KRHpQzWTNfR6S3YyAZTVfSuAQE3bkmHXt3KSzPhjvZIFVvudx3nRvjjPFesz1dRy6NIMVWphaaAhPbC2+0cN5P7EmhJdv7+Ypsr4+8XQEAnL7bR5buHITFslXd9fLjAcyUaZuDeK/A+Kq9D6+wlTs+5AK/ukp4/wWt/trICi8M/l/VZtuelMsTUZ2XIze+N4evI4t9IwdEHKCaxayQqCpBTY3qXsl8lcw7eCCStBOmWtOUWetDVY2bMYgpo8itOdjPbFY9wMzmH8YvWHgZlxGiX+9q7B3XVsxQQlyhx/tCpx//Dr4I1zkkN4dE5ubYzysw+pvmDwKmree0EH3XnyR7ZmhXWT6RBGxpayv099EbCyzh2dUVatpTWr0NqD/O3XclNonA6TudtnPo6ucQBemgXeaNq+oS7YhI8yuSD1nhbsOqv9BN1g9fZ2HboFJlAc+eKQvm2FshUld/JLZsdl9PXV0r4baotabhr8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(136003)(39830400003)(366004)(346002)(396003)(376002)(6666004)(6512007)(8936002)(478600001)(41300700001)(6916009)(6486002)(66476007)(4744005)(66946007)(52116002)(186003)(33656002)(1076003)(86362001)(38100700002)(8676002)(9686003)(5660300002)(2906002)(66556008)(38350700002)(4326008)(6506007)(316002)(26005)(33716001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ZOW56Qt7WFpC+xsfM9nk5RSii8u0aZfyDoWuk1pR7A2mF4R7vR5Dt23Zt6FD?=
- =?us-ascii?Q?SLQVpRFxfs5WGReHxDzAVcATfav5rT8qbRmBHvEOXfqEBgVDeatRikLDrnaW?=
- =?us-ascii?Q?dDFgRWXrDWrx06O4AfC95k0rUfZNfiOX8LZSSWkepLtXgOuOa4CoDlW+SriH?=
- =?us-ascii?Q?b/fBY2Fwtz7sa3T0rajd4UguHFZtwuHoxo87xk/9ipoc7+TN2wxNku+3X5nb?=
- =?us-ascii?Q?TxI/WdUVm1Kk5q0BHuCoGoYgC/xOpTHzrJrMfhf2xtpU+t/e7cJqkqzTxfvL?=
- =?us-ascii?Q?i6kuBY2MYkcMPPirn5AyGZVFgHi/5NOq1nF+d9yxO2CeSs+1SfSpJ3VXfRoy?=
- =?us-ascii?Q?5dmCzAAtBgxAa4aUFRi6UH6QWwPZeTi88tFn1i8T4VoBTEMh9uvw273lrnoR?=
- =?us-ascii?Q?NZzWLc+AFeEv2Z6SJj1AiU1xZlCvM6oilm92C5tE+V40uNcLaoDLFdSTmgoy?=
- =?us-ascii?Q?CJzG3SLbKMGDIRPBTfxSv6iSaUsysYCdGVaQ5ofwBqmAwAZRlwG+w5hmVy+u?=
- =?us-ascii?Q?y3fK1i+co/opvmu5kFU24OHrkeRZ4BqqIGKi4dXbq6YML49sXxxOnUb3fbcn?=
- =?us-ascii?Q?nDJyLV3vtws3R/AaKhnjCJ4kcQtxm8mtQE4GUXXPRDsMRILgu3O6VWgSPtId?=
- =?us-ascii?Q?oCXA5olBdy6ZJ/8oH6Cknrpz7WJ5FZidobZBzlSZLC4G7VhLpoGE48+wcoAZ?=
- =?us-ascii?Q?tsPKs4esuVQfD8/5ZzY2QAR1TUu0nwZ2kDOxtKiosh8Ys9hZ9nCrdpjvt21J?=
- =?us-ascii?Q?Gz+p9GWYC2W+SUa1VnF9fLQ25hHuHyysH4Q6ZO17wO/Du01RWCC15sRer9bt?=
- =?us-ascii?Q?52RfR/T+7oHyCgYDmJ1+O6sBJImwj3/LzqhzbnOVMqlmyrkOnD6iDWkLyVZK?=
- =?us-ascii?Q?hXO3nwnepFaE0YkZRBaZ6mThy90vXAXk8y9GaV344iYeuqsrlkIUF6uXkIZ+?=
- =?us-ascii?Q?6etwKyfnf6msJ15NsBjHGQDFSUr+Ri+KpR2fYGggTQMRfeuv1FeCT/aE3Olu?=
- =?us-ascii?Q?4gjbEqJEXRIQyjLuHa69PWDWYOamlba7poyZr4iW2cMFCzsali8vAxEyzRTI?=
- =?us-ascii?Q?qbeON6U7EyNL/lh3yMrPDrbaK5m5EHio6noY3jTWi+K0Kd2XjhJdRYYTkqvt?=
- =?us-ascii?Q?92oJAIaOtWPDgfVCaa82W/9Jei5+j5r51c4VpG+CIkhKaBXMxHfj1F8yRugY?=
- =?us-ascii?Q?IwUmxi8pi/rFWvB/j++GPHy/vAyf7UEpAh72566ZKPpjrvFl5XHHPravhIof?=
- =?us-ascii?Q?e1e//Aaz9Vacefxb8md4mWcO6PkxzArgG0pbZ/uqDug/pOZQJq5TX6m4GAIS?=
- =?us-ascii?Q?qjDKUWkQKqCHy76CEv1u+OrsBjh0JoxIXEemQVAmf6bx0SYfVXeCBjbmK3+e?=
- =?us-ascii?Q?PieW43L+xkWhM5vu/jt/Qub+/nzzMSy6BfEisgAIpZG7XUEjuxCtTZosEmKU?=
- =?us-ascii?Q?hAxs6FU3TTMN6gwT7uDvUaClJOanYdFiuLbA8HypNWfGwIyRti0QqJth1alE?=
- =?us-ascii?Q?hfC54UMRGetVuJ/+n7BXSzS9//43Y/ESwpdU+dDqLdUojxIo9V/6DNnrE8cU?=
- =?us-ascii?Q?gm2DFSbHu00lTBi5yFh8N/kNh2VzDwGEIIDQHSoy?=
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8062099e-f383-4a6f-d18b-08da557ec371
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2022 01:13:36.0852
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: utKCscaGzOSMvxSJL+2pWADF0ZqSO6fHQ71/VQUZuX6aTWtdMfkcMpK8w6VtdWHaM9Em1KiypEvSBMkuFkVOmQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR08MB5433
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220622173605.1168416-1-pmalani@chromium.org>
+ <20220622173605.1168416-2-pmalani@chromium.org> <CAE-0n51kcr3VGdR2Kf8j1JaBbLcCmWo9GYhhvkUQ4+jn2iEKLg@mail.gmail.com>
+ <CACeCKac4eL9++QwbDBKrVTpUzhes=WczqZfh+cFiVgoO4py4MQ@mail.gmail.com>
+ <CAE-0n51E1TLMRNWnqiV-jU_qg15BF4D6A+0G1y1SRTu1zNs2Dg@mail.gmail.com> <CACeCKacGZFY-_yn1R33OVcsdG47oqNTGBA43L5hrH2zyhK=cRw@mail.gmail.com>
+In-Reply-To: <CACeCKacGZFY-_yn1R33OVcsdG47oqNTGBA43L5hrH2zyhK=cRw@mail.gmail.com>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Thu, 23 Jun 2022 18:24:02 -0700
+Message-ID: <CACeCKaessEPP+aPmwuF8C74hgOFQyc5YFJ_cWqLvQSzXLWaqVg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/9] dt-bindings: usb: Add Type-C switch binding
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        bleung@chromium.org, heikki.krogerus@linux.intel.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Pin-Yen Lin <treapking@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Xin Ji <xji@analogixsemi.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+On Thu, Jun 23, 2022 at 5:35 PM Prashant Malani <pmalani@chromium.org> wrote:
+>
+> On Thu, Jun 23, 2022 at 4:14 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> >
+> > Quoting Prashant Malani (2022-06-23 12:08:21)
+> > > On Thu, Jun 23, 2022 at 11:30 AM Stephen Boyd <swboyd@chromium.org> wrote:
+> > > >
+> > > > Quoting Prashant Malani (2022-06-22 10:34:30)
+> > > > > diff --git a/Documentation/devicetree/bindings/usb/typec-switch.yaml b/Documentation/devicetree/bindings/usb/typec-switch.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..78b0190c8543
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/usb/typec-switch.yaml
+> > > > > @@ -0,0 +1,74 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > [...]
+> > > > > +  ports:
+> > > > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > > > +    description: OF graph binding modelling data lines to the Type-C switch.
+> > > > > +
+> > > > > +    properties:
+> > > > > +      port@0:
+> > > > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > > > +        description: Link between the switch and a Type-C connector.
+> > > >
+> > > > Is there an update to the usb-c-connector binding to accept this port
+> > > > connection?
+> > >
+> > > Not at this time. I don't think we should enforce that either.
+> > > (Type-C data-lines could theoretically be routed through intermediate
+> > > hardware like retimers/repeaters)
+> >
+> > I'm mostly wondering if having such a connection to the usb-c-connector,
+> > or even through some retimer/repeater, would be sufficient to detect how
+> > many type-c ports are connected to the device. If the type-c pin
+> > assignments only support two or four lanes for DP then it seems like we
+> > should describe the two lanes or four lanes as one graph endpoint
+> > "output" and then have some 'data-lanes' property in case the DP lanes
+> > are flipped while being sent to the retimer or usb-c-connector. This
+> > would of course depend on the capability of the device, i.e. if it can
+> > remap DP lanes or only has 2 lanes of DP, etc.
+> >
+> > > > > +  - |
+> > > > > +    drm-bridge {
+> > > > > +        usb-switch {
+> > > > > +            compatible = "typec-switch";
+> > > >
+> > > > I still don't understand the subnode design here. usb-switch as a
+> > > > container node indicates to me that this is a bus, but in earlier rounds
+> > > > of this series it was stated this isn't a bus.
+> > >
+> > > I am not aware of this as a requirement. Can you please point me to the
+> > > documentation that states this needs to be the case?
+> >
+> > I'm not aware of any documentation for the dos and don'ts here. Are
+> > there any examples in the bindings directory that split up a device into
+> > subnodes that isn't in bindings/mfd?
+>
+> usb-c-connector [3] and its users is an example.
+>
+> >  I just know from experience that
+> > any time I try to make a child node of an existing node that I'm
+> > supposed to be describing a bus, unless I'm adding some sort of
+> > exception node like a graph binding or an opp table. Typically a node
+> > corresponds 1:1 with a device in the kernel. I'll defer to Rob for any
+> > citations.
+> >
+> > >
+> > > > Why doesn't it work to
+> > > > merge everything inside usb-switch directly into the drm-bridge node?
+> > >
+> > > I attempted to explain the rationale in the previous version [1], but
+> > > using a dedicated sub-node means the driver doesn't haven't to
+> > > inspect individual ports to determine which of them need switches
+> > > registered for them. If it sees a `typec-switch`, it registers a
+> > > mode-switch and/or orientation-switch. IMO it simplifies the hardware
+> > > device binding too.
+> >
+> > How is that any harder than hard-coding that detail into the driver
+> > about which port and endpoint is possibly connected to the
+> > usb-c-connector (or retimer)? All of that logic could be behind some API
+> > that registers a typec-switch based on a graph port number that's passed
+> > in, ala drm_of_find_panel_or_bridge()'s design.
+>
+> If each driver has to do it (and the port specifics vary for each driver),
+> it becomes an avoidable overhead for each of them.
+> I prefer hard-coding such details if avoidable. I suppose both approaches
+Sorry, I meant "I prefer not hard-coding such details..."
 
-On Thu, Jun 23, 2022 at 06:05:27PM -0700, Dmitry Torokhov wrote:
-> On Wed, Jun 22, 2022 at 10:53:07PM -0500, Jeff LaBundy wrote:
-> > The vendor has redacted the RF filter enable control; remove it from
-> 
-> Did you mean "retracted" by chance?
-
-I did mean redact, as in 'to censor,' as the field has since been
-marked reserved in the datasheet since silicon was released.
-
-That being said, I'm happy to re-spin with this stated explicitly
-in case of poor word choice on my part.
-
-> 
-> Thanks.
-> 
-> -- 
-> Dmitry
-
-Kind regards,
-Jeff LaBundy
+> require modifications to the binding and the driver code.
+>
+> >
+> > Coming from a DT writer's perspective, I just want to go through the
+> > list of output pins in the datasheet and match them up to the ports
+> > binding for this device. If it's a pure DP bridge, where USB hardware
+> > isn't an input or an output like the ITE chip, then I don't want to have
+> > to describe a port graph binding for the case when it's connected to a
+> > dp-connector (see dp-connector.yaml) in the top-level node and then have
+> > to make an entirely different subnode for the usb-c-connector case with
+> > a whole other set of graph ports.
+>
+> This approach still allows for that, if the driver has any use for it
+> (AFAICT these drivers don't).
+> Iff that driver uses it, one can (optionally) route their output
+> (top-level) ports through the
+> "typec-switch" sub-node (and onwards as required).
+> If it's being used in a "pure-DP" configuration, the "typec-switch" just
+> goes away (the top level ports can be routed as desired by the driver).
+> (Again, I must reiterate that neither this driver or the anx driver
+> utilizes this)
+>
+> >
+> > How would I even know which two differential pairs correspond to port0
+> > or port1 in this binding in the ITE case?
+>
+> Why do we need to know that? It doesn't affect this or the other
+> driver or hardware's
+> functioning in a perceivable way.
+>
+> > Ideally we make the graph
+> > binding more strict for devices by enforcing that their graph ports
+> > exist. Otherwise we're not fully describing the connections between
+> > devices and our dtb checkers are going to let things through where the
+> > driver most likely will fail because it can't figure out what to do,
+> > e.g. display DP on 4 lanes or play some DP lane rerouting games to act
+> > as a mux.
+>
+> How is the current binding enforcing this? The typec-switch binding
+> as a first step ensures that the DT is connecting the hardware(anx,ite
+> etc) to something
+> that at least "claims" to be a Type-C switch.
+>
+> >
+> > >
+> > > It also maps with the internal block diagram for these hardware
+> > > components (for ex. the anx7625 crosspoint switch is a separate
+> > > sub-block within anx7625).
+> >
+> > We don't make DT bindings for sub-components like this very often. It
+> > would make more sense to me to have a subnode if a typec switch was some
+> > sort of off the shelf hard macro that the hardware engineer placed down
+> > inside the IC that they delivered. Then we could have a completely
+> > generic driver that binds to the generic binding that knows how to drive
+> > the hardware, because it's an unchangeable hard macro with a well
+> > defined programming interface.
+> >
+> > >
+> > > [1] https://lore.kernel.org/linux-usb/CACeCKaeH6qTTdG_huC4yw0xxG8TYEOtfPW3tiVNwYs=P4QVPXg@mail.gmail.com/
+> >
+> > I looked at the fsa4480 driver and the device has a publicly available
+> > datasheet[2]. That device is designed for "audio accessory mode" but I
+> > guess it's being used to simply mux SBU lines? There isn't an upstream
+> > user of the binding so far, but it also doesn't look like a complete
+> > binding. I'd expect to see DN_L/R as a graph output connected to the
+> > usb-c-connector and probably have a usb2.0 input port and a 'sound-dai'
+> > property to represent the input audio path.
+> >
+> > Finally, simply connecting to the typec controller node isn't sufficient
+> > because a typec controller can be controlling many usb-c-connectors so I
+> > don't see how the graph binding would be able to figure out how many
+> > usb-c-connectors are connected to a mux like device, unless we took the
+> > approach of this patch.
+>
+> It can follow the endpoint of the typec-switch port (the port parent
+> of the remote
+> end-point would be a 'usb-c-connector'). That is if the graph binding
+> (I'm assuming you mean the switch device here) wants to figure this
+> out in the first place.
+>
+> > Is that why you're proposing this binding? To
+> > avoid describing a graph binding in the usb-c-connector and effectively
+> > "pushing" the port count up to the mux?
+>
+> No, that is not the intention behind this series. The
+> 'usb-c-connector' still needs the
+> graph binding to the `typec-switch`. SBU, HS and SS lanes might have different
+> muxes altogether (usb-c-connect has separate ports for SBU, HS and SS lanes)
+>
+> >
+> > [2] https://www.onsemi.com/pdf/datasheet/fsa4480-d.pdf
+>
+> [3] https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/connector/usb-connector.yaml#L23
