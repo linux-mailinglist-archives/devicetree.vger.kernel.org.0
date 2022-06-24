@@ -2,81 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AF51559743
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 12:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B1E8559749
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 12:05:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230271AbiFXKC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 06:02:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47728 "EHLO
+        id S229932AbiFXKFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 06:05:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231133AbiFXKCX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 06:02:23 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AE537A1AF
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 03:02:21 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id sb34so3599485ejc.11
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 03:02:21 -0700 (PDT)
+        with ESMTP id S230334AbiFXKFf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 06:05:35 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 676EC77FDD
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 03:05:32 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id e2so2750009edv.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 03:05:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=GtDx/4MtrxYt8hYrk4oMF8kIZqBnmvODq04HfBb169o=;
-        b=EPz+7sJNDH++V1yMWLrc5mRkOsO+NqZvLBrjqveEPoRRpCThZZ41cOoejZek82+QIG
-         28oBv6aGSlevvdxpkzAkvGzcY201imYWhlJNA5NPN/m/8oVaPWKug7D1CfKK5p14lz55
-         QffaEfY+Y4qMXPxB1unyi1u8N9j+/oWBz86a0NptnrYcqC0/eNqg04+K8wUCbeMzYdbd
-         GKmEV6EeeXdzPfmU6cAv14I0z3c8CIK8QUt7x3COZTbu11U1q0p/q8r+5Xmrpth5PUnh
-         VVO2uDmWpLrqkcL+bp5CZJkgvJYl9JM6P22l9/2AL9SIT3Mzf3uyf3FQsdeWRsijrCKz
-         kLfw==
+        bh=vT/m4Tsbd8efm3hJuxbD4cqK3IhssJw6vrlwpvAa4b0=;
+        b=UakZorhpkKl5ALlrNDpU9jBka/t7cECYvhFhzj+zFDtScfLk4YgEeyOfo8DFWO15pX
+         acdIkWuEWtfqRecdqSXnO6RuScer29NgRYGQi6w2b3AevrhtqGV4PyqFV7a7iCvnY+sz
+         II+sI7Sn35mv1L55DCt78FSqkyddA8r13goTTMrWr2P/zMq2OgymKpeV3LuqffvPPV0c
+         gxsfp8H+kd9rdXlBWi6P+ycPP0PrQm9hqjXMR9R6ZkONPE3AWNqGgVc8xBeaoZoOqwa/
+         m2oC2JqyOnyHMotqqqMJK9RbyXsMfJD8qnSgV+hHzIj49dnboun3MfivtpYLc97L4VwU
+         ge9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=GtDx/4MtrxYt8hYrk4oMF8kIZqBnmvODq04HfBb169o=;
-        b=ZFZP//dZdKxkLJpxBn9Qg06KIznlncSB2htrBa9GY/PjEF76D5aUPIzOf9pRWLtGUF
-         rymfranL5ROLSV4Ye95J3VuS5EyqYZ3cZpYOMJNSwWO7YXvgGJhIoB9bwn0FeV+x0i95
-         MewdL+JLcyFyIMtZgEQE8/MohSsmXOCz07fXRSaMfPMAD+u10eGsc6bR6iULdDAjuqaf
-         hhqCu+6ipm+RQIydJn0tD3Xw3WlsvvWHDUxKzHvIA6QyJB3A0xNJ2SgJb+z0q6cadq3B
-         aivowPMZ3jYVwgHyRPimN3idB6ITi5ShORdL97W31vHDVH9k7861v1h4w0gCA7LBalfg
-         OZuQ==
-X-Gm-Message-State: AJIora/aHvGlYTgPZp2sPN7ExymLYGhrDFUzKsRVno6SCHpzNGajoZ7q
-        9bJ6el3Qbtofve2eHT6tTmtUUg==
-X-Google-Smtp-Source: AGRyM1sefjpiKJ7ux0kcypv9fmdJCP+pCzqZ3OVhjn3YCPERtUsWGvmVzsziW2GqNk3WP0rJOKi51A==
-X-Received: by 2002:a17:906:5047:b0:710:456a:695e with SMTP id e7-20020a170906504700b00710456a695emr12397953ejk.433.1656064940041;
-        Fri, 24 Jun 2022 03:02:20 -0700 (PDT)
+        bh=vT/m4Tsbd8efm3hJuxbD4cqK3IhssJw6vrlwpvAa4b0=;
+        b=czi/dvEzPids0S5u19d3m5I+D9chykyjo5iErCYc5O2KmzJgrtG/7nuJrwiebaCszS
+         QTnyb6BmvQFFrCFOPYB1tu7ENTSlSojx//NAMSBWZSwGX0Mierh1WCIFkyKg20IhN62B
+         aw3cx4FT993D2dZSS0G8QUVQ7C18od/jb6wkwlqMW692sQxcNzDryvPKNMxIlkXuXiVN
+         pcv3V13D9z4ZnG4Sl++ZDTJXu8Dx8HP/rZR8NDlvvccTs1rAJq8bNgq3JJQ8VcDUwgyu
+         G6BVlGjVyFuhPO8iW879+xUmGrqhvvAsDAgm3CrZM8twJ/shw5pwyC3bsyZE+3zQNaZs
+         kfgw==
+X-Gm-Message-State: AJIora/XsRygas0URWNepnTScRw9yWoZBcYsIGWxWb6YnpxFlDAxc6ge
+        +VXnOxYwLL7SRvMsR4eTi5epPw==
+X-Google-Smtp-Source: AGRyM1uaOjXwhg5I8X289/Baaww5kJzfDpSLWW9kaNvjsU7L/qEOz6gkCuSWZSjiQSEuXlbmDZ+EFQ==
+X-Received: by 2002:a05:6402:11cb:b0:435:75ed:f12f with SMTP id j11-20020a05640211cb00b0043575edf12fmr16487090edw.305.1656065130928;
+        Fri, 24 Jun 2022 03:05:30 -0700 (PDT)
 Received: from [192.168.0.234] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id uz12-20020a170907118c00b00711aed17047sm850487ejb.28.2022.06.24.03.02.18
+        by smtp.gmail.com with ESMTPSA id z8-20020a170906434800b00722f2a0944fsm845519ejm.107.2022.06.24.03.05.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 03:02:18 -0700 (PDT)
-Message-ID: <5a19a73a-e81a-8f7e-e26c-6c1d8e8331a4@linaro.org>
-Date:   Fri, 24 Jun 2022 12:02:17 +0200
+        Fri, 24 Jun 2022 03:05:30 -0700 (PDT)
+Message-ID: <3db6ca83-1fa0-0a6d-5af9-4dd0ba38b9a6@linaro.org>
+Date:   Fri, 24 Jun 2022 12:05:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2] dt-bindings: mmc: mtk-sd: Set clocks based on
- compatible
+Subject: Re: [PATCH v5 02/14] dt-bindings: clk: imx: Add fsl,scu-clk yaml file
 Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+To:     Viorel Suman <viorel.suman@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-mmc@vger.kernel.org
-References: <20220623154038.771874-1-nfraprado@collabora.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Agner <stefan@agner.ch>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Oliver Graute <oliver.graute@kococonnector.com>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Liu Ying <victor.liu@nxp.com>,
+        Ming Qian <ming.qian@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Abel Vesa <abel.vesa@nxp.com>
+References: <20220616164303.790379-1-viorel.suman@nxp.com>
+ <20220616164303.790379-3-viorel.suman@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220623154038.771874-1-nfraprado@collabora.com>
+In-Reply-To: <20220616164303.790379-3-viorel.suman@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,21 +105,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2022 17:40, Nícolas F. R. A. Prado wrote:
-> The binding was describing a single clock list for all platforms, but
-> that's not really suitable: mt2712 requires an extra 'bus_clk' on some
-> of its controllers, while mt8192 requires four different extra clocks.
-> The rest of the platforms can share the same 3 clocks, with the third
-> being optional as it's not present on all platforms.
+On 16/06/2022 18:42, Viorel Suman wrote:
+> From: Abel Vesa <abel.vesa@nxp.com>
 > 
-> Move the clock definitions inside if blocks that match on the
-> compatibles. In practice this gets rid of dtbs_check warnings on mt8192,
-> since the 'bus_clk' clock from mt2712 is no longer expected on this
-> platform.
+> In order to replace the fsl,scu txt file from bindings/arm/freescale,
+> we need to split it between the right subsystems. This patch documents
+> separately the 'clock' child node of the SCU main node.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
+> ---
+>  .../bindings/clock/fsl,scu-clk.yaml           | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/fsl,scu-clk.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/fsl,scu-clk.yaml b/Documentation/devicetree/bindings/clock/fsl,scu-clk.yaml
+> new file mode 100644
+> index 000000000000..8b59758eee4a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/fsl,scu-clk.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/fsl,scu-clk.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: i.MX SCU Client Device Node - Clock bindings based on SCU Message Protocol
+> +
+> +maintainers:
+> +  - Abel Vesa <abel.vesa@nxp.com>
+> +
+> +description: i.MX SCU Client Device Node
+> +  Client nodes are maintained as children of the relevant IMX-SCU device node.
+> +  This binding uses the common clock binding.
+> +  (Documentation/devicetree/bindings/clock/clock-bindings.txt)
+> +  The clock consumer should specify the desired clock by having the clock
+> +  ID in its "clocks" phandle cell.
+> +  See the full list of clock IDs from
+> +  include/dt-bindings/clock/imx8qxp-clock.h
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - fsl,imx8dxl-clk
+> +          - fsl,imx8qm-clk
+> +          - fsl,imx8qxp-clk
+> +      - const: fsl,scu-clk
+> +
+> +  '#clock-cells':
+> +    const: 2
+> +
+> +  clocks:
+> +    items:
+> +      - description: XTAL 32KHz
+> +      - description: XTAL 24MHz
+> +    minItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      enum:
+> +        - xtal_32KHz
+> +        - xtal_24Mhz
 
-And now we see that you introduce incompatible change and ABI break.
-This should not be combined with that patch but instead separate patch
-explaining why ABI break is ok.
+No, this does not match your clocks property and allow any combination.
+Are you sure that hardware can have entirely different clocks connected?
+
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+
+Why the clocks are not required?
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clock-controller {
+> +           compatible = "fsl,imx8qxp-clk", "fsl,scu-clk";
+
+Wrong indentation. 4 spaces for DTS example.
+
+> +           #clock-cells = <2>;
+> +    };
+
 
 Best regards,
 Krzysztof
