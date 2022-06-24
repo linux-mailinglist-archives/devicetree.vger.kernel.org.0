@@ -2,78 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A16A55989F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 13:39:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59C8E5598A7
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 13:41:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230167AbiFXLjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 07:39:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60714 "EHLO
+        id S229778AbiFXLky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 07:40:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230092AbiFXLjn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 07:39:43 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 483F877070
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 04:39:40 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id u15so4085292ejc.10
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 04:39:40 -0700 (PDT)
+        with ESMTP id S230414AbiFXLky (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 07:40:54 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5961792B9
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 04:40:52 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id lw20so4150222ejb.4
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 04:40:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Wj6+le4xQYgRWhbJ4o+JcrPIptpoGXL5M4xVrdtZbXI=;
-        b=O26iv82q0trCWgDQwRmW6rUiSusM7pWvnNkO+V25QbNy7sOhu5esaQuJS7PwEwU3me
-         Y5h7BfA9Gsbe2XrGvelcv6XAS5b+QDIjWuyq9j37ZvWmhRmJ48gmjKfPI+n6s0JkG0Im
-         CDVkH9TIGF7b8/w7lXV62OP94WgbzGfx7wpTJbGIrqDtM3uOjQnbLKSKlKwAtePFBT0V
-         p0UC7KC2dcsZiVk+jsW+BB+3hwR39LVFSI68D3J4t1grJmX1kHAWk4K42QCX24AX1oi0
-         SbMSM89C1Pj1C7dtRAeCcSnHR7lTOSfcpvpwV+KgsO9loIxaBH/9by5n0QkWSZvgYpVw
-         4zZQ==
+        bh=yy24MqgNoh04Wcf3D2OtiN2cBgfAiEXHDzWGPuJGK9o=;
+        b=lHmUiWiXPi9B6UOOWeyFYwQG8hPeZnA+ltsmMKdFIkgssbt3bc684dUGLED1PcrHNV
+         zMtTDHV/vSMKeBUEQ1Ns1/822af0cGXN8FeH4f2/E6SLnOFUhcney0xFzsZxsz0b0MyN
+         G3jediLVRnPaG1/NpHAFBYX/ln8O/mom1ODWhtlEPyGtEMvv1cKMSDF1SBRG/j7lB+ZQ
+         Qdumnn8pu+Cm6YQ0v0NjDM4F1eLMIplOVmRRp5HR3J5IzQN0w9befAomRwaqKgmLLk6d
+         2UPtKOgwUxDnQxxMsrtMO6e0bE3TX6pISD0q/NU9c0jeMPSMHgUXEwsnC3f43eCzTyQR
+         0Tnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Wj6+le4xQYgRWhbJ4o+JcrPIptpoGXL5M4xVrdtZbXI=;
-        b=jo9t02Cfie/nIrWE7/3lkzP0QDebRG+Yfs7tRAOWPXGFa/93U2/2Oyztv9bgzdRPr/
-         QJdVLK/DOmJO58aVHNQBmeasjVO6OrF2HqY5s1zUuAJstqifYT6xMDCUkEEt4LfRLhay
-         tRV7khc+ZzZfKT19FXzOXHL3qMsW2piHo2n8FYsvFj6eqZMLRIKcp+PJKMSdMIDD/1I1
-         hNZUMLYVTEeV7giXEP4w83B0P4aKTHIAwhDoEDuOQdvm1Sdi36REwzYW9Ck4HfGAwG3E
-         UvjphM7DvKU5Rx8kdYg5ytcNOJ1gSGyWoMhZ0rIcH7HHj495OIaFxm3asOLBGTveMtcN
-         pm7w==
-X-Gm-Message-State: AJIora9swLEzBgy9p7jqdxe2ZmZB4UpRjNN0yqR4uDSW3tU2MY0+x50g
-        j4o8YLNI9BDbqws9qJtfbHGEXg==
-X-Google-Smtp-Source: AGRyM1tMl63rWpj4b70pBJHZZBdq7tLURrxHPvEhTWmOq2GveNEsVZf4u0behvJ6CGqQ22A5aqS+/g==
-X-Received: by 2002:a17:907:7e81:b0:726:2912:7467 with SMTP id qb1-20020a1709077e8100b0072629127467mr7207432ejc.373.1656070778635;
-        Fri, 24 Jun 2022 04:39:38 -0700 (PDT)
+        bh=yy24MqgNoh04Wcf3D2OtiN2cBgfAiEXHDzWGPuJGK9o=;
+        b=gDI0jG/oZflVMIPsxOEWd9kjlgXFicp8zI7w1movaVZWJwF5WAh027Ug3K+0jPikKL
+         XiyF4+xFp9zpwQ3Z/k6+d5O11XAeesdZsUXc3+5xUo9t/IBvf3nVSVdljU6TnzzvYM87
+         chs8yjNee1OOWKoTrEIUcbdB4qv08RDehYNJYUNP9V31iu7TQmHHBLYQRrRZWQn522A+
+         m+kURVfCfgzwhi/Kmfh7uqaw6ep6plPNz/wrnjDOzxVI76myBBDsVS4qt/CThe4ObBji
+         ikwgTe0Y37tmwa6iW2VOncjhx1mictwBfw1Wg8ho9cmlEL50H5qlQHNpkNXaRBKdGqOz
+         jNYA==
+X-Gm-Message-State: AJIora+2rceX/FTOluB+tByOp62C/38yCjoe0Z2YkVL3OsbUuovIojHQ
+        9YSe7SgDytklCU8J/B7O15uRPg==
+X-Google-Smtp-Source: AGRyM1tD0+on2/SUIA73VKnd1ynphMygj9K2ZiDycQZkB6sBMq+S76vrTE6qtDUnJ8sffk6YYFEaAg==
+X-Received: by 2002:a17:907:9722:b0:706:19d0:80b5 with SMTP id jg34-20020a170907972200b0070619d080b5mr12930874ejc.33.1656070851427;
+        Fri, 24 Jun 2022 04:40:51 -0700 (PDT)
 Received: from [192.168.0.235] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id r1-20020a17090638c100b007219c20dcd8sm962517ejd.196.2022.06.24.04.39.37
+        by smtp.gmail.com with ESMTPSA id n18-20020a05640204d200b00435a08a3557sm1844443edw.27.2022.06.24.04.40.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 04:39:38 -0700 (PDT)
-Message-ID: <8956c98e-657c-0263-c8d9-d6beb54410f9@linaro.org>
-Date:   Fri, 24 Jun 2022 13:39:36 +0200
+        Fri, 24 Jun 2022 04:40:51 -0700 (PDT)
+Message-ID: <22dc8eba-af71-ff7c-fd74-bf5778655bfc@linaro.org>
+Date:   Fri, 24 Jun 2022 13:40:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v3 06/14] dt-bindings: mfd: Add Mediatek MT6370
+Subject: Re: [PATCH 2/2] dt-bindings: iio: dac: mcp4922: expand for mcp4921
+ support
 Content-Language: en-US
-To:     ChiaEn Wu <peterwu.pub@gmail.com>, lee.jones@linaro.org,
-        daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, sre@kernel.org, chunfeng.yun@mediatek.com,
-        gregkh@linuxfoundation.org, jic23@kernel.org, lars@metafoo.de,
-        lgirdwood@gmail.com, broonie@kernel.org, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, deller@gmx.de
-Cc:     chiaen_wu@richtek.com, alice_chen@richtek.com,
-        cy_huang@richtek.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        szunichen@gmail.com
-References: <20220623115631.22209-1-peterwu.pub@gmail.com>
- <20220623115631.22209-7-peterwu.pub@gmail.com>
+To:     Kory Maincent <kory.maincent@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Michael Welling <mwelling@ieee.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     thomas.petazzoni@bootlin.com, Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>
+References: <20220624095619.1415614-1-kory.maincent@bootlin.com>
+ <20220624095619.1415614-2-kory.maincent@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220623115631.22209-7-peterwu.pub@gmail.com>
+In-Reply-To: <20220624095619.1415614-2-kory.maincent@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,92 +80,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2022 13:56, ChiaEn Wu wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
+On 24/06/2022 11:56, Kory Maincent wrote:
+> Add device tree bindings for the MCP4921 DAC.
 > 
-> Add Mediatek MT6370 binding documentation.
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 > ---
+>  Documentation/devicetree/bindings/iio/dac/microchip,mcp4922.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> v3
-> - Use " in entire patchset
-> - Refine ADC description
-> - Rename "enable-gpio" to "enable-gpios" in "regualtor"
-> - Change "/schemas/" to "../" in every reference of all MT6370 modules
-> ---
->  .../devicetree/bindings/mfd/mediatek,mt6370.yaml   | 280 +++++++++++++++++++++
->  include/dt-bindings/iio/adc/mediatek,mt6370_adc.h  |  18 ++
->  2 files changed, 298 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
->  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6370_adc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
-> new file mode 100644
-> index 0000000..fa9da13
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
-> @@ -0,0 +1,280 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/mediatek,mt6370.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek MT6370 SubPMIC
-> +
-> +maintainers:
-> +  - ChiYuan Huang <cy_huang@richtek.com>
-> +
-> +description: |
-> +  MT6370 is a highly-integrated smart power management IC, which includes a
-> +  single cell Li-Ion/Li-Polymer switching battery charger, a USB Type-C &
-> +  Power Delivery (PD) controller, dual flash LED current sources, a RGB LED
-> +  driver, a backlight WLED driver, a display bias driver and a general LDO for
-> +  portable devices.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt6370
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  wakeup-source: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 1
-> +
-> +  adc:
-> +    type: object
-> +    description: |
-> +      Provides 9 channels for system monitoring, including VBUSDIV5 (lower
-> +      accuracy, higher measure range), VBUSDIV2 (higher accuracy, lower
-> +      measure range), VBAT, VSYS, CHG_VDDP, TS_BAT, IBUS, IBAT, and TEMP_JC.
-> +
-> +    properties:
-> +      compatible:
-> +        const: mediatek,mt6370-adc
-> +
-> +      "#io-channel-cells":
-> +        const: 1
-> +
-> +    required:
-> +      - compatible
-> +      - "#io-channel-cells"
-> +
-> +  backlight:
-> +    type: object
-> +    $ref: ../leds/backlight/mediatek,mt6370-backlight.yaml#
 
-This was correct before: /schemas/leds/ ....
 
-Same in other places.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
