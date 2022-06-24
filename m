@@ -2,91 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C2D355A239
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 21:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28E9E55A232
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 21:56:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229844AbiFXTuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 15:50:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42158 "EHLO
+        id S231419AbiFXTzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 15:55:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbiFXTut (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 15:50:49 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E9E78239F
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 12:50:48 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id w83so4906411oiw.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 12:50:48 -0700 (PDT)
+        with ESMTP id S230280AbiFXTzC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 15:55:02 -0400
+Received: from mailrelay2-1.pub.mailoutpod1-cph3.one.com (mailrelay2-1.pub.mailoutpod1-cph3.one.com [46.30.210.183])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 564B68288A
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 12:55:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=e/cuN06gu5d3H08+E32P24eeFEsHL/38GmTdr7mnsJI=;
-        b=DnD73jfYTyMuwYURD46ZCgwurf3N4iJrI4aj5oZtEeRISafyiuc6ktpCpOpiMsRmq8
-         ddnPwMFCsQQyngFhq5tbBvbBI6oqOSkkHvqKDFZy5gVaEd/TbPvd9ugCgZ72gdY22lp4
-         nV7RAIU3NiJ6taFPiMV9hc+kpVdaz3PoyPnhI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=e/cuN06gu5d3H08+E32P24eeFEsHL/38GmTdr7mnsJI=;
-        b=ss2/WXfg2uRmLDmZHlTqp2I25L8UHpFvWbVEdGTM0btuZBn3ucovreWi47rjrlBvYV
-         tOhJIB4bn9O4/x3dHdQhxNk1hEvUIfgWB2ShgEFs/P8/swWOmuOu0YC5PFStUiyVMw0t
-         nydEvFmbUPlgwqBHYhMj+tHtWMp5wmW8+KeKE6KZ22GMpJ/29GsAnNY/N0DcIXDBKiA/
-         wW+BL8NP8pHhdjM0ElE3XhsBWdaZUVDnBI2HsWrKhu8XBkalKxcrypFxStWQBO0Hu2JR
-         KYR//BKUpZ4a4rLwpQVVgrGx3dI93hibMglxyx7rSRMkRnY9kbGqLBsBg+KyHqSSRCww
-         2ILA==
-X-Gm-Message-State: AJIora908+w478Gpb7Bzm0uh7k3FraGIy1uSVYxmMKx95THQLkaisTuP
-        fLZ+oWvhQIVZLBzQaZ3IF7W/9DVeJ0xqsuG6E3JsPbOUDBw=
-X-Google-Smtp-Source: AGRyM1vJzTGGcyi3EtPhNbDexEz9ca3AqycOPzRVlRGeieEqyWu+bKX7aXFWlYmnwjQVgeL0ky+0dN/IPTvYySDJ8A4=
-X-Received: by 2002:a05:6808:171c:b0:334:9342:63ef with SMTP id
- bc28-20020a056808171c00b00334934263efmr459282oib.63.1656100247798; Fri, 24
- Jun 2022 12:50:47 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 24 Jun 2022 12:50:47 -0700
-MIME-Version: 1.0
-In-Reply-To: <CACeCKaffqb6v7TFji2u00VSQ=DGvRe-gcxMnAEbZCC1qtDZF6A@mail.gmail.com>
-References: <20220622173605.1168416-1-pmalani@chromium.org>
- <20220622173605.1168416-2-pmalani@chromium.org> <CAE-0n51kcr3VGdR2Kf8j1JaBbLcCmWo9GYhhvkUQ4+jn2iEKLg@mail.gmail.com>
- <CACeCKac4eL9++QwbDBKrVTpUzhes=WczqZfh+cFiVgoO4py4MQ@mail.gmail.com>
- <CAE-0n51E1TLMRNWnqiV-jU_qg15BF4D6A+0G1y1SRTu1zNs2Dg@mail.gmail.com>
- <CACeCKacGZFY-_yn1R33OVcsdG47oqNTGBA43L5hrH2zyhK=cRw@mail.gmail.com>
- <CAE-0n53i90ZUFSmrR=ScXtMdn_bWPY49WWTf9LXbxu_udGgP9w@mail.gmail.com> <CACeCKaffqb6v7TFji2u00VSQ=DGvRe-gcxMnAEbZCC1qtDZF6A@mail.gmail.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 24 Jun 2022 12:50:47 -0700
-Message-ID: <CAE-0n51AYqr4wcD-JaVaTYjFgxCj+iX+xAYKCrZCqGHE2XEUgA@mail.gmail.com>
-Subject: Re: [PATCH v5 1/9] dt-bindings: usb: Add Type-C switch binding
-To:     Prashant Malani <pmalani@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        bleung@chromium.org, heikki.krogerus@linux.intel.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Pin-Yen Lin <treapking@chromium.org>,
-        Robert Foss <robert.foss@linaro.org>,
+        d=ravnborg.org; s=rsa1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=fFH1rzKaL0Dkml2PgMJpcpxYa5SvbbT/XBFKaTsmoVU=;
+        b=dPM4baGFWJmCklVsVLd0z5ixiMe2DRlWPNC33CUDEEKs0pxhCaeE3CCvvrneNRw/gJcZhOuKcqSN2
+         ryYt0P6tEtP1kA54BOpnXrrqQ/6qZjUH9GitW6R8UP/m58RqBKy1VCbvWSBUvaUmxFNxcBiRV/gxFl
+         CJdpzywrEi2zUMrralMaZcaFsTTGtG+P1rGUZj8RvUPubBDgX5J3W3InkutBsnt0AapGmUxkKELuX0
+         1Nx3nU8I5gyMvPsO5I8g2K12bCZtV7BfYPekc84stklfTti+2xEgvNL9ApKo9V+DkxlG1uRVohFiWY
+         0snFH9olmcU6NdfcGkP1kvA8mG1R+Sg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=fFH1rzKaL0Dkml2PgMJpcpxYa5SvbbT/XBFKaTsmoVU=;
+        b=y85KJl9BjWr/xQ3YZSqrhbQ76R+7Sc7S8wBlUvVHrqxHyS1IU0M82Nb3gTv13NJWwV4LzY1AaGxtj
+         HuJSUiJBQ==
+X-HalOne-Cookie: 298b65dc2eaecc3462e00c4ae0f5020d4b3cb813
+X-HalOne-ID: 870a78e6-f3f7-11ec-a916-d0431ea8a290
+Received: from mailproxy2.cst.dirpod3-cph3.one.com (80-162-45-141-cable.dk.customer.tdc.net [80.162.45.141])
+        by mailrelay2.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+        id 870a78e6-f3f7-11ec-a916-d0431ea8a290;
+        Fri, 24 Jun 2022 19:54:59 +0000 (UTC)
+Date:   Fri, 24 Jun 2022 21:54:57 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Bastian Krause <bst@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Yannick Fertre <yannick.fertre@st.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Xin Ji <xji@analogixsemi.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH 2/2] drm/panel: simple: add AM-800600P5TMQW-TB8H
+Message-ID: <YrYWkdqZG1sazr2N@ravnborg.org>
+References: <20220610111511.1421067-1-bst@pengutronix.de>
+ <20220610111511.1421067-2-bst@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220610111511.1421067-2-bst@pengutronix.de>
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLACK autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,139 +63,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Prashant Malani (2022-06-23 19:48:04)
-> On Thu, Jun 23, 2022 at 7:13 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > Quoting Prashant Malani (2022-06-23 17:35:38)
-> > > On Thu, Jun 23, 2022 at 4:14 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> > > >
-> > > > I'm not aware of any documentation for the dos and don'ts here. Are
-> > > > there any examples in the bindings directory that split up a device into
-> > > > subnodes that isn't in bindings/mfd?
-> > >
-> > > usb-c-connector [3] and its users is an example.
-> >
-> > What are the subnodes? The graph ports? That is not what I meant.
->
-> cros-ec-typec [4] uses subnodes of usb-c-connector. Chrome OS DTs
-> use the ports from the included usb-c-connector to switching hardware.
+Hi Bastian,
 
-Ok, got it. usb-c-connector nodes are children of the typec controller
-(in this case cros-ec-typec) because otherwise we would need to make a
-phandle link from the usb-c-connector node(s) under the root node / to
-the typec controller. The phandle link may need to be done in both
-directions, so it makes more sense to put the usb-c-connector nodes
-underneath the typec controller to express the direct relationship
-between the typec controller and the usb-c-connectors.
+On Fri, Jun 10, 2022 at 01:15:11PM +0200, Bastian Krause wrote:
+> Add support for the Ampire AM-800600P5TMQW-TB8H 800x600 panel. Data
+> sheet is currently not publicly available, unfortunately.
+> 
+> Signed-off-by: Bastian Krause <bst@pengutronix.de>
 
-Furthermore, the usb-c-connector is not integrated as part of the EC in
-the same package. There is a discrete part placed on the board that
-corresponds to the usb-c-connector and that is separate from the EC. The
-connectors are in essence only controllable through the EC because
-that's the typec controller. It's similar to how we place i2c devices as
-child nodes of the i2c controller.
+Applied to drm-misc (drm-misc-next).
+When applying I fixed up the compatible to match the binding.
+You may need to fix your DT files if they used the old compatible.
+The one from the binding had a dash like similar panels, so that is
+the one I picked.
+See below for the fix-up.
 
->
-> > I meant splitting up a device functionality, like type-c and display
-> > bridge, into subnodes. Composition of devices through DT bindings isn't
-> > how it's done. Instead, we dump all the different functionality into the
-> > same node. For example, look at the number of bindings that have both
-> > #clock-cells and #reset-cells, when those are distinct frameworks in the
-> > kernel and also different properties. We don't make subnodes to contain
-> > the different functionality of a device.
-> >
-> > And in this case I still don't see the point to making a subnode.
->
-> I've already provided my best effort at explaining the rationale.
->
-> > The
-> > API can simply setup a type-c switch based on a graph binding for the
-> > toplevel node, e.g. the drm-bridge, and the driver can tell the API
-> > which port+endpoint to use to search the graph for the usb-c-connector
-> > to associate with the switch.
->
-> OK, drm-bridge uses that approach. This is another approach. I didn't fully
-> understand why we *have* to follow what drm-bridge is doing.
->
-> > We don't need to connect the graph within
-> > the drm-bridge node to the graph within the typec-switch node to do
-> > that. That's an internal detail of the drm-bridge that we don't expose
-> > to DT, because the driver knows the detail.
->
-> I still don't understand why we can't do that. These devices have actual
-> hardware blocks that represent the Type-C switch functionality.
->
+	Sam
 
-We don't break up device functionality for an IC into different subnodes
-with different compatibles. Similarly, we don't describe internal
-connection details of device nodes. The device driver that binds to the
-compatible should know the details of the internal block diagram of the
-part. The DT binding should describe the external connections of the
-part and have properties that inform the driver about how the part was
-integrated into the system (e.g. mode-switch). The unwritten DT mantra
-is "less is more".
-
-We could definitely make many subnodes and add properties for everything
-inside an IC so that the DT describes the complete block diagram of the
-part, but at that point the driver is a shell of its former self. The
-driver will spend time parsing properties to learn details that are
-entirely unchanging for the lifetime of the device (e.g. that the device
-has typec switch capabilities); things that should be hard-coded in the
-driver.
-
-Of course, if the device is integrated into the system and doesn't need
-to perform typec switching, then we want a property to tell the driver
-that this device is integrated in a way that the typec switch is not
-needed/used. Basically the driver should key that functionality off of
-the presence of the 'mode-switch' or 'orientation-switch' property
-instead of off the presence of a typec-switch subnode.
-
-> > >
-> > > >
-> > > > How would I even know which two differential pairs correspond to port0
-> > > > or port1 in this binding in the ITE case?
-> > >
-> > > Why do we need to know that? It doesn't affect this or the other
-> > > driver or hardware's
-> > > functioning in a perceivable way.
-> >
-> > If the device registers allow control of the DP lane to physical pin
-> > mapping, so that DP lane0 and DP lane1 can be swapped logically, then
-> > we'll want to know which DP lanes we need to swap by writing some lane
-> > remapping register in the device. Sometimes for routing purposes devices
-> > support this lane remapping feature so the PCB can route the lines
-> > directly to the connector instead of going in circles and destroying the
-> > signal integrity.
->
-> Then add more end-points to port@1 (for each differential pair
-> you want to describe) of the usb-c-connector and route them
-> to the typec-switch accordingly.
-> FWIW I'm not aware of h/w *that supports DP alt mode* that uses the
-> functionality
-> you're referring to.
->
-
-The Qualcomm QMP usb+dp phy supports lane remapping.
-
-> >
-> > >
-> > > > Is that why you're proposing this binding? To
-> > > > avoid describing a graph binding in the usb-c-connector and effectively
-> > > > "pushing" the port count up to the mux?
-> > >
-> > > No, that is not the intention behind this series. The
-> > > 'usb-c-connector' still needs the
-> > > graph binding to the `typec-switch`. SBU, HS and SS lanes might have different
-> > > muxes altogether (usb-c-connect has separate ports for SBU, HS and SS lanes)
-> >
-> > If the usb-c-connector still needs a graph binding to the typec-switch
-> > then why isn't that part of this series?
->
-> That's not what I meant (what I meant earlier is the intention is not
-> what you stated).
-> I simply meant that the usb-c-connectors ports should be connected to
-> the typec-switch
-> ports. There isn't any binding update required for this.
->
-
-Ok. Got it.
+> ---
+>  drivers/gpu/drm/panel/panel-simple.c | 33 ++++++++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index 4a2e580a2f7b7..3a61873dd887c 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -778,6 +778,36 @@ static const struct panel_desc ampire_am800480r3tmqwa1h = {
+>  	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
+>  };
+>  
+> +static const struct display_timing ampire_am800600p5tmqw_tb8h_timing = {
+> +	.pixelclock = { 34500000, 39600000, 50400000 },
+> +	.hactive = { 800, 800, 800 },
+> +	.hfront_porch = { 12, 112, 312 },
+> +	.hback_porch = { 87, 87, 48 },
+> +	.hsync_len = { 1, 1, 40 },
+> +	.vactive = { 600, 600, 600 },
+> +	.vfront_porch = { 1, 21, 61 },
+> +	.vback_porch = { 38, 38, 19 },
+> +	.vsync_len = { 1, 1, 20 },
+> +	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
+> +		DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE |
+> +		DISPLAY_FLAGS_SYNC_POSEDGE,
+> +};
+> +
+> +static const struct panel_desc ampire_am800600p5tmqwtb8h = {
+> +	.timings = &ampire_am800600p5tmqw_tb8h_timing,
+> +	.num_timings = 1,
+> +	.bpc = 6,
+> +	.size = {
+> +		.width = 162,
+> +		.height = 122,
+> +	},
+> +	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
+> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH |
+> +		DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE |
+> +		DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE,
+> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
+> +};
+> +
+>  static const struct display_timing santek_st0700i5y_rbslw_f_timing = {
+>  	.pixelclock = { 26400000, 33300000, 46800000 },
+>  	.hactive = { 800, 800, 800 },
+> @@ -3754,6 +3784,9 @@ static const struct of_device_id platform_of_match[] = {
+>  	}, {
+>  		.compatible = "ampire,am800480r3tmqwa1h",
+>  		.data = &ampire_am800480r3tmqwa1h,
+> +	}, {
+> +		.compatible = "ampire,am800600p5tmqwtb8h",
+was changed to
+> +		.compatible = "ampire,am800600p5tmqw-tb8h",
+> +		.data = &ampire_am800600p5tmqwtb8h,
+>  	}, {
+>  		.compatible = "arm,rtsm-display",
+>  		.data = &arm_rtsm,
+> -- 
+> 2.30.2
+> 
