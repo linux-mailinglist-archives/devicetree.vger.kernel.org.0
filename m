@@ -2,59 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25012558FBF
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 06:24:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 738F8558FF7
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 06:34:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229653AbiFXEYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 00:24:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33348 "EHLO
+        id S229534AbiFXEeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 00:34:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbiFXEYw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 00:24:52 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC8768089;
-        Thu, 23 Jun 2022 21:24:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656044691; x=1687580691;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kVDxIvarWkuRah5cpv92jCl+ab4t1rlKwD8uPlR7P2s=;
-  b=hq1jzfcWVFxVXUL91zp8yqUfAAVud8iC4A9gg97NOfh3IjUNO5wdkr/a
-   QVg0YCgw9Xqa5TYNptJhxio15jVcnK0bM7tMNEsFu0q616cWvbmTYfY2j
-   efsVrzp3BZT91xExwEmyZwfa77pK8syfYnPZN2VWk1BtnKruP1qwLYNad
-   GQB4jB9z9fkYEu1gUt/2STLeAIncizfVbgHLspP32VInv8LTWCEu/hxch
-   HIjwX3BUcvWRjGLIl5PF3lObU/VUJmoFE8aspKnKSz/iP5lLGAtWxGaFp
-   mzTe0sfvb5cWRZEs13DgGEXWxS5+3P4n3b/vEwTuaDwaUpodBEJu7oKxA
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10387"; a="260736270"
-X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; 
-   d="scan'208";a="260736270"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jun 2022 21:24:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,218,1650956400"; 
-   d="scan'208";a="915522842"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmsmga005.fm.intel.com with ESMTP; 23 Jun 2022 21:24:48 -0700
-Date:   Fri, 24 Jun 2022 12:16:37 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     mdf@kernel.org, hao.wu@intel.com, trix@redhat.com, corbet@lwn.net,
-        conor.dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, system@metrotek.ru
-Subject: Re: [PATCH v22 0/5] Microchip Polarfire FPGA manager
-Message-ID: <20220624041637.GA1979449@yilunxu-OptiPlex-7050>
-References: <20220623163248.3672-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S229441AbiFXEef (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 00:34:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 847DC60F25;
+        Thu, 23 Jun 2022 21:34:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 11F71620FE;
+        Fri, 24 Jun 2022 04:34:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79368C34114;
+        Fri, 24 Jun 2022 04:34:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656045273;
+        bh=IZ5ZDn+9JIMGyBmDD2iT5ZTpxrtT5hVkr4pA6eYPL1o=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=WPhKfR9xr4x2sOntt3FQPKFrIn/4f4ExdSawkL52JIm1ImarWI5KFECBHQe9mh/gu
+         PWpPiGfWpkzOhzd2/2smGxrjw8D786MLMSJbmg7Xtv/bgDVT01DVEdic8Q3W2f+ijb
+         rzYnZNxrfX1NjTEdqFG9YSppTtnwqNKZj49OLffBrpFx1YAgAwWd40XTk7tCbJkGHa
+         lCLlRcQgEFBHQNgIHvQ3Gs4hZeeUYLkX6dmvp9oTkUmMvcRibr4qHTr6Cc4lfqwL/R
+         Jf1E2it522tpqTUBmZAj28ZS6Ans+02GRKtGKdn0qIiBpec+UR8Gf9mZkZzDoNa8RR
+         poad5oYVZbaAw==
+Date:   Thu, 23 Jun 2022 21:34:31 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Biao Huang <biao.huang@mediatek.com>
+Cc:     David Miller <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Fabien Parent <fparent@baylibre.com>,
+        Felix Fietkau <nbd@nbd.name>,
+        "John Crispin" <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Yinghua Pan <ot_yinghua.pan@mediatek.com>,
+        <srv_heupstream@mediatek.com>,
+        Macpaul Lin <macpaul.lin@mediatek.com>
+Subject: Re: [PATCH net-next v3 09/10] net: ethernet: mtk-star-emac:
+ separate tx/rx handling with two NAPIs
+Message-ID: <20220623213431.23528544@kernel.org>
+In-Reply-To: <20220622090545.23612-10-biao.huang@mediatek.com>
+References: <20220622090545.23612-1-biao.huang@mediatek.com>
+        <20220622090545.23612-10-biao.huang@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220623163248.3672-1-i.bornyakov@metrotek.ru>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,169 +69,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 23, 2022 at 07:32:43PM +0300, Ivan Bornyakov wrote:
-> Add support to the FPGA manager for programming Microchip Polarfire
-> FPGAs over slave SPI interface with .dat formatted bitsream image.
-> 
-> Changelog:
->   v1 -> v2: fix printk formating
->   v2 -> v3:
->    * replace "microsemi" with "microchip"
->    * replace prefix "microsemi_fpga_" with "mpf_"
->    * more sensible .compatible and .name strings
->    * remove unused defines STATUS_SPI_VIOLATION and STATUS_SPI_ERROR
->   v3 -> v4: fix unused variable warning
->     Put 'mpf_of_ids' definition under conditional compilation, so it
->     would not hang unused if CONFIG_OF is not enabled.
->   v4 -> v5:
->    * prefix defines with MPF_
->    * mdelay() -> usleep_range()
->    * formatting fixes
->    * add DT bindings doc
->    * rework fpga_manager_ops.write() to fpga_manager_ops.write_sg()
->      We can't parse image header in write_init() because image header
->      size is not known beforehand. Thus parsing need to be done in
->      fpga_manager_ops.write() callback, but fpga_manager_ops.write()
->      also need to be reenterable. On the other hand,
->      fpga_manager_ops.write_sg() is called once. Thus, rework usage of
->      write() callback to write_sg().
->   v5 -> v6: fix patch applying
->      I forgot to clean up unrelated local changes which lead to error on
->      patch 0001-fpga-microchip-spi-add-Microchip-MPF-FPGA-manager.patch
->      applying on vanilla kernel.
->   v6 -> v7: fix binding doc to pass dt_binding_check
->   v7 -> v8: another fix for dt_binding_check warning
->   v8 -> v9:
->    * add another patch to support bitstream offset in FPGA image buffer
->    * rework fpga_manager_ops.write_sg() back to fpga_manager_ops.write()
->    * move image header parsing from write() to write_init()
->   v9 -> v10:
->    * add parse_header() callback to fpga_manager_ops
->    * adjust fpga_mgr_write_init[_buf|_sg]() for parse_header() usage
->    * implement parse_header() in microchip-spi driver
->   v10 -> v11: include missing unaligned.h to microchip-spi
->      fix error: implicit declaration of function 'get_unaligned_le[16|32]'
->   v11 -> v12:
->    * microchip-spi: double read hw status, ignore first read, because it
->      can be unreliable.
->    * microchip-spi: remove sleep between status readings in
->      poll_status_not_busy() to save a few seconds. Status is polled on
->      every 16 byte writes - that is quite often, therefore
->      usleep_range() accumulate to a considerable number of seconds.
->   v12 -> v13:
->    * fpga-mgr: separate fpga_mgr_parse_header_buf() from
->      fpga_mgr_write_init_buf()
->    * fpga-mgr: introduce FPGA_MGR_STATE_PARSE_HEADER and
->      FPGA_MGR_STATE_PARSE_HEADER_ERR fpga_mgr_states
->    * fpga-mgr: rename fpga_mgr_write_init_sg() to fpga_mgr_prepare_sg()
->      and rework with respect to a new fpga_mgr_parse_header_buf()
->    * fpga-mgr: rework write accounting in fpga_mgr_buf_load_sg() for
->      better clarity
->    * microchip-spi: rename MPF_STATUS_POLL_TIMEOUT to
->      MPF_STATUS_POLL_RETRIES
->    * microchip-spi: add comment about status reading quirk to
->      mpf_read_status()
->    * microchip-spi: rename poll_status_not_busy() to mpf_poll_status()
->      and add comment.
->    * microchip-spi: make if statement in mpf_poll_status() easier to
->      read.
->   v13 -> v14:
->    * fpga-mgr: improvements from Xu Yilun in
->       - fpga_mgr_parse_header_buf()
->       - fpga_mgr_write_init_buf()
->       - fpga_mgr_prepare_sg()
->       - fpga_mgr_buf_load_sg()
->    * fpga-mgr: add check for -EAGAIN from fpga_mgr_parse_header_buf()
->      when called from fpga_mgr_buf_load_mapped()
->    * microchip-spi: remove excessive cs_change from second spi_transfer
->      in mpf_read_status()
->    * microchip-spi: change type of components_size_start,
->      bitstream_start, i from size_t to u32 in mpf_ops_parse_header()
->   v14 -> v15: eliminate memcpy() in mpf_ops_write()
->     Eliminate excessive memcpy() in mpf_ops_write() by using
->     spi_sync_transfer() instead of spi_write().
->   v15 -> v16:
->    * microchip-spi: change back components_size_start and
->      bitstream_start variables types to size_t, i - to u16 in
->      mpf_ops_parse_header()
->    * fpga-mgr: rename fpga_parse_header_buf() to
->      fpga_parse_header_mapped(). It serves only mapped FPGA image now,
->      adjust it accordingly.
->    * fpga-mgr: separate fpga_mgr_parse_header_sg_first() and
->      fpga_mgr_parse_header_sg() from fpga_mgr_prepare_sg()
->   v16 -> v17:
->    * fpga-mgr: return size of allocated header from
->      fpga_mgr_parse_header_sg(), add `char **ret_buf` to function args
->      to save pointer to allocated header. This allow us to call
->      fpga_mgr_write_init_buf() with exact size of allocated header.
->    * document parse_header() callback in fpga-mgr.rst
->   v17 -> v18:
->    * fpga-mgr: change back fpga_mgr_parse_header_sg() to return
->      allocated buffer but set buffer size into output parameter
->    * fpga-mgr: check returned pointer from krealloc for ZERO_OR_NULL_PTR
->      in fpga_mgr_paese_header_sg() as krealloc may return ZERO_SIZE_PTR.
->    * fpga-mgr: in fpga_mgr_prepare_sg() return fpga_mgr_write_init() on
->      fast path only when both initial_header_size and parse_header() are
->      not defined.
->    * docs: fpga-mgr: a few rewords from Xu Yilun
->   v18 -> v19:
->    * microchip-spi: split multiple assignments on a single line in
->      functions mpf_read_status() and mpf_ops_parse_header()
->    * fpga-mgr: add braces {} around "else if" arm in
->      fpga_mgr_prepare_sg()
->    * fpga-mgr: don't reuse krealloc() arg in fpga_mgr_parse_header_sg().
->      If krealloc() returns NULL, it doesn't free the original.
->   v19 -> v20:
->    * fpga-mgr: initialize info->header_size with
->      mops->initial_header_size at fpga_mgr_load().
->    * fpga-mgr: add mops->skip_header boolean flag. Adjust skipping
->      header before write to check against skip_header flag instead of
->      mere presence of info->header_size.
->    * fpga-mgr: split check for ZERO_OR_NULL_PTR() after realloc() in
->      fpga_mgr_parse_header_sg() function to check against zero header +
->      check against NULL returned from realloc().
->    * docs: fpga-mgr: adjust for skip_header flag.
->    * microchip-spi: add skip_header to mpf_ops.
->   v20 -> v21:
->    * fpga-mgr: in function fpga_mgr_parse_header_sg(), after
->      reallocation of a buffer for a new header, copy only exceeding
->      part, since realloc preserve old buffer content.
->    * fpga-mgr: in function fpga_mgr_buf_load_sg() instead of manually
->      counting fragments with header that should be skipped, use
->      sg_miter_skip().
->    * fpga-mgr: add tag "Suggested-by: Xu Yilun <yilun.xu@intel.com>"
->      since all changes in fpga-mgr was his ideas.
->    * MAINTAINERS: add entry for Microchip PolarFire FPGA drivers as
->      Conor Dooley suggested.
->   v21 -> v22:
->    * fpga-mgr: in function fpga_mgr_buf_load_sg() drop excessive
->      sg_miter_stop() when sg_miter_skip() reaches end of sg_mapping_iter
-> 
-> Ivan Bornyakov (5):
->   fpga: fpga-mgr: support bitstream offset in image buffer
->   docs: fpga: mgr: document parse_header() callback
->   fpga: microchip-spi: add Microchip MPF FPGA manager
->   dt-bindings: fpga: add binding doc for microchip-spi fpga mgr
->   MAINTAINERS: add Microchip PolarFire FPGA drivers entry
-> 
->  .../fpga/microchip,mpf-spi-fpga-mgr.yaml      |  44 ++
->  Documentation/driver-api/fpga/fpga-mgr.rst    |  27 +-
->  MAINTAINERS                                   |   8 +
->  drivers/fpga/Kconfig                          |   8 +
->  drivers/fpga/Makefile                         |   1 +
->  drivers/fpga/fpga-mgr.c                       | 223 ++++++++--
->  drivers/fpga/microchip-spi.c                  | 398 ++++++++++++++++++
->  include/linux/fpga/fpga-mgr.h                 |  24 +-
->  8 files changed, 700 insertions(+), 33 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
->  create mode 100644 drivers/fpga/microchip-spi.c
+On Wed, 22 Jun 2022 17:05:44 +0800 Biao Huang wrote:
+> +	if (rx || tx) {
+> +		spin_lock_irqsave(&priv->lock, flags);
+> +		/* mask Rx and TX Complete interrupt */
+> +		mtk_star_disable_dma_irq(priv, rx, tx);
+> +		spin_unlock_irqrestore(&priv->lock, flags);
 
-Applied the series to for-next
+You do _irqsave / _irqrestore here
 
-Thanks for the improvement to FPGA core.
-Yilun
+> +		if (rx)
+> +			__napi_schedule_irqoff(&priv->rx_napi);
+> +		if (tx)
+> +			__napi_schedule_irqoff(&priv->tx_napi);
 
-> 
-> -- 
-> 2.36.1
-> 
+Yet assume _irqoff here.
+
+So can this be run from non-IRQ context or not?
+
+> -	if (mtk_star_ring_full(ring))
+> +	if (unlikely(mtk_star_tx_ring_avail(ring) < MAX_SKB_FRAGS + 1))
+>  		netif_stop_queue(ndev);
+
+Please look around other drivers (like ixgbe) and copy the way they
+handle safe stopping of the queues. You need to add some barriers and
+re-check after disabling.
+
+> -	spin_unlock_bh(&priv->lock);
+> -
+>  	mtk_star_dma_resume_tx(priv);
+>  
+>  	return NETDEV_TX_OK;
+
+
+> +	while ((entry != head) && (count < MTK_STAR_RING_NUM_DESCS - 1)) {
+>  
+
+Parenthesis unnecessary, so is the empty line after the while ().
+
+>  		ret = mtk_star_tx_complete_one(priv);
+>  		if (ret < 0)
+>  			break;
+> +
+> +		count++;
+> +		pkts_compl++;
+> +		bytes_compl += ret;
+> +		entry = ring->tail;
+>  	}
+>  
+> +	__netif_tx_lock_bh(netdev_get_tx_queue(priv->ndev, 0));
+>  	netdev_completed_queue(ndev, pkts_compl, bytes_compl);
+> +	__netif_tx_unlock_bh(netdev_get_tx_queue(priv->ndev, 0));
+
+what are you taking this lock for?
+
+> -	if (wake && netif_queue_stopped(ndev))
+> +	if (unlikely(netif_queue_stopped(ndev)) &&
+> +	    (mtk_star_tx_ring_avail(ring) > MTK_STAR_TX_THRESH))
+>  		netif_wake_queue(ndev);
+>  
+> -	spin_unlock(&priv->lock);
+> +	if (napi_complete(napi)) {
+> +		spin_lock_irqsave(&priv->lock, flags);
+> +		mtk_star_enable_dma_irq(priv, false, true);
+> +		spin_unlock_irqrestore(&priv->lock, flags);
+> +	}
+> +
+> +	return 0;
+>  }
+
+> @@ -1475,6 +1514,7 @@ static int mtk_star_set_timing(struct mtk_star_priv *priv)
+>  
+>  	return regmap_write(priv->regs, MTK_STAR_REG_TEST0, delay_val);
+>  }
+> +
+>  static int mtk_star_probe(struct platform_device *pdev)
+>  {
+>  	struct device_node *of_node;
+
+spurious whitespace change
