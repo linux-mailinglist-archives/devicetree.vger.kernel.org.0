@@ -2,216 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B4D5559E73
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40EAE559E6B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:22:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231395AbiFXQQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 12:16:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44800 "EHLO
+        id S229813AbiFXQTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 12:19:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231434AbiFXQQd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:16:33 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0241052533
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:16:31 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id c13so4147534eds.10
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:16:30 -0700 (PDT)
+        with ESMTP id S229598AbiFXQTd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:19:33 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51BEA3C706;
+        Fri, 24 Jun 2022 09:19:32 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id u15so5671608ejc.10;
+        Fri, 24 Jun 2022 09:19:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YocsH/SCIFBtqFkbbqYZ9NPO0UIAT3/bIxNj7wG+byE=;
-        b=yhdKSJLG78moAYzJ88cQkhH/Hj5st2xbcRGlEiwd0dUxqsNyyB7j3EJGWPeIUgohrw
-         vx7twc6VO4e5ryjWo8HD3Wu3vpxXVbeoTYKzYFhl08J0gKex+mXu/mgeNrrsAY3ZM6sW
-         ZfE/T+ddDwm97PYBRken2rgWFIfj9dppAXIhbg8rnqOqVtaG3CiBSc9R0JsymSKxPnik
-         LhyNphKCPMTtVlZR9LkrqwWVANaJlRr7W9oROdhI4bb/zRzCrRYifa76XKZKrZLMsWVq
-         fkJdb2ukyNt6MCxrdbgQjjU1n8bUBYQx7ortZngOVow2D1b81R6+zdK6bIUpkR2JpewG
-         W5Dg==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=ricq+0JGNrGAcgcMt4hFdqFNI3qZ/PX1ec96tksYHus=;
+        b=eRxhCWkn13cUhuAtIMUKPlqbg7ZCfht/gpzbZID7uumdf1/NipqZ3RTpa1+8cP2P3a
+         TLqYnWduW/JuTvG047izM0rviDRfNOKp7UtvFuqOriCz8TjvFf2vg8UsJMlVbshJLYQE
+         QoqSLpqyzikDzRRiBd+t0ExSK1g/x6eBRDbfanBK5hibfYlwQx4nTzz2C54vyOgF9bYD
+         NPRBb1xWQlYVRLM7YahsZxHzSUKgtCNv9eP2rCu9xo32Ey+Ut/2FkE7ajRl55+PgXj29
+         fRyw0+t+F8HAYznY78ISNAQghny6potH7aqs9u2JqSk+DITbBsq1Xq0KXszQovg8CfwE
+         lQ/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YocsH/SCIFBtqFkbbqYZ9NPO0UIAT3/bIxNj7wG+byE=;
-        b=cr6kzW2PZwfYJH7CKOlkso9N5uKCh674gSpg9TG2O6UkvUoBdnLbLlllzS9OVefv4E
-         txJFf51kUCvUd9nkixG726KMnVfjZTEdvDMVk6ZN/jbi1fXv/mjU9fuHUaA9g8/2rGkE
-         l+qz/UB7OniNrzr6EbfmgZrhllVuQIefmUcLotvXk7BXv4vjq/uhymDh/eVsV3UsxuIc
-         28nKoKobaCyXH/b3XYpWO93UJjn5GBlHQNtKsr8hJusJgWGTOplNqT7IzBz46if2+rVO
-         F+siuayz7SMUbqvj6QaOhKd0jtymZGvW5ppoUUsBFvocg462/Wq5mury2dD3OI69+fkK
-         yfiQ==
-X-Gm-Message-State: AJIora9RSD4p+bVaDGPqZqcDOloC5hJdljGzx4ZdbLMaa9opsyKhBOt3
-        Fvg/mPO1kkYDl2SVVoTZqSWjOg==
-X-Google-Smtp-Source: AGRyM1sRGlX6n9a00k4nlkcTq8GcVHrv/VdC8qA06SSsZy9JjDIaeQFaarDYrDBySHNlCTH2NeO2uA==
-X-Received: by 2002:a05:6402:4248:b0:435:9150:ccfb with SMTP id g8-20020a056402424800b004359150ccfbmr18736992edb.374.1656087389569;
-        Fri, 24 Jun 2022 09:16:29 -0700 (PDT)
-Received: from [192.168.0.237] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id k12-20020a17090666cc00b007041e969a8asm1350125ejp.97.2022.06.24.09.16.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 09:16:29 -0700 (PDT)
-Message-ID: <ddb0e946-c955-1404-c1cd-c2548f34ec35@linaro.org>
-Date:   Fri, 24 Jun 2022 18:16:27 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ricq+0JGNrGAcgcMt4hFdqFNI3qZ/PX1ec96tksYHus=;
+        b=EGEmn6RyDk8dZR8toK55eTVOWvTyJfDzb/h5g1Ymc6UK1Gq8FJKuw5YGri9WGKFKZq
+         Ed62x4lY8hFTWnkx/lpMce2lDSWmtgayfSHb8DlDqBODchaoG00h0l0adpOnc7vcdVZP
+         gyfDISDQAMqZQjsikFWOHL9gac8B1+9HBdUpRuAlDZGZvawvw4mZ0iUq1iPr5HX+ssiE
+         /324eeOT8WidgL85wWJpN9O+KijjFh/eMVUWmxqACQhTIF1SEhoLaANye1gu4rhoy7eq
+         7wHx6yiHYDO8XUMvSRj7x5m0VCXSqRiJ182qz+f4hI1p2I3BVO6dZLlAFf5JpyMlheeo
+         pPiw==
+X-Gm-Message-State: AJIora8Rk2u3DrmwZaj3wg5KXgRMUFzMHZpnC8q0vLyMZI8d1J1sijzc
+        SPEXD6n0leJCcqKZaIQZxog=
+X-Google-Smtp-Source: AGRyM1vYSmRhC0W592gyOElmmpaOJAnjsQons5TuW0eJdafGDIjCh8LkM60zHMIHjI7y0j+CeZTjig==
+X-Received: by 2002:a17:906:209:b0:712:12d8:b52b with SMTP id 9-20020a170906020900b0071212d8b52bmr14234350ejd.394.1656087570697;
+        Fri, 24 Jun 2022 09:19:30 -0700 (PDT)
+Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id p22-20020a170906839600b00711d5bc20d5sm1306237ejx.221.2022.06.24.09.19.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Jun 2022 09:19:29 -0700 (PDT)
+Date:   Fri, 24 Jun 2022 18:19:27 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-tegra@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, vbhadram@nvidia.com,
+        treding@nvidia.com, robh+dt@kernel.org, catalin.marinas@arm.com,
+        krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+        jonathanh@nvidia.com, will@kernel.org
+Subject: Re: (subset) [PATCH net-next v1 3/9] dt-bindings: memory: Add
+ Tegra234 MGBE memory clients
+Message-ID: <YrXkDylsf5JSklSz@orome>
+References: <20220623074615.56418-1-vbhadram@nvidia.com>
+ <20220623074615.56418-3-vbhadram@nvidia.com>
+ <165608679241.23612.13616476913302198468.b4-ty@linaro.org>
+ <d0bc0054-4457-bd56-161b-19808c65c0e9@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 1/4] dt-bindings: usb: typec: add bindings for stm32g0
- controller
-Content-Language: en-US
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>, robh+dt@kernel.org,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        amelie.delaunay@foss.st.com, alexandre.torgue@foss.st.com
-References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
- <20220624155413.399190-2-fabrice.gasnier@foss.st.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220624155413.399190-2-fabrice.gasnier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Bcv3WXIFwInsOvvQ"
+Content-Disposition: inline
+In-Reply-To: <d0bc0054-4457-bd56-161b-19808c65c0e9@linaro.org>
+User-Agent: Mutt/2.2.6 (2022-06-05)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/06/2022 17:54, Fabrice Gasnier wrote:
-> This patch adds DT schema documentation for the STM32G0 Type-C controller.
 
-No "This patch"
+--Bcv3WXIFwInsOvvQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+On Fri, Jun 24, 2022 at 06:10:54PM +0200, Krzysztof Kozlowski wrote:
+> On 24/06/2022 18:06, Krzysztof Kozlowski wrote:
+> > On Thu, 23 Jun 2022 13:16:09 +0530, Bhadram Varka wrote:
+> >> From: Thierry Reding <treding@nvidia.com>
+> >>
+> >> Add the memory client and stream ID definitions for the MGBE hardware
+> >> found on Tegra234 SoCs.
+> >>
+> >>
+> >=20
+> > Applied, thanks!
+> >=20
+> > [3/9] dt-bindings: memory: Add Tegra234 MGBE memory clients
+> >       https://git.kernel.org/krzk/linux-mem-ctrl/c/f35756b5fc488912b8bc=
+5f5686e4f236d00923d7
+> >=20
+>=20
+> Hmm, actually now I think you might need it for DTS, although there was
+> no cover letter here explaining merging/dependencies...
+>=20
+> I could provide you a tag with it or opposite (take a tag with only the
+> header).
 
-> STM32G0 provides an integrated USB Type-C and power delivery interface.
-> It can be programmed with a firmware to handle UCSI protocol over I2C
-> interface. A GPIO is used as an interrupt line.
-> It may be used as a wakeup source, so use optional "wakeup-source" and
-> "power-domains" properties to support wakeup.
-> 
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> ---
->  .../bindings/usb/st,typec-stm32g0.yaml        | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml b/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
-> new file mode 100644
-> index 0000000000000..b2729bd015a1a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/usb/st,typec-stm32g0.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+I can pick this up into the Tegra tree where I already carry an earlier
+patch for Tegra234 GPCDMA that you had acked. That works better for this
+model since, as you said, this is needed as a dependency for the DTS
+files.
 
-No quotes.
+Thierry
 
-> +
-> +title: STMicroelectronics STM32G0 Type-C controller bindings
+--Bcv3WXIFwInsOvvQ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-s/bindings//
+-----BEGIN PGP SIGNATURE-----
 
-> +
-> +description: |
-> +  The STM32G0 MCU can be programmed to control Type-C connector(s) through I2C
-> +  typically using the UCSI protocol over I2C, with a dedicated alert
-> +  (interrupt) pin.
-> +
-> +maintainers:
-> +  - Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stm32g0-typec
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  connector:
-> +    type: object> +    allOf:
-> +      - $ref: ../connector/usb-connector.yaml#
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmK15A8ACgkQ3SOs138+
+s6F4aw/9F6xVeKGoS+LCN6kuUthd8eX5662IvuX6Usc3LK+EuUkGMGbCr0+Dc7Xn
+90ao9Pp8kFYw30M81Us20Eu9ZDTgoON9klXCPYsN7D1o4lHwaz/akvJQRMJxqhnl
+EfNvD/XgoUdpI2GvgRIGSh3qV0PL8B+uq7X1KpMGAlHlNyrb/KskxlvrwSEkCdtV
+ZjGZbnJSt8yGcRJggxwZQQss/JorAdQKTwcqmOpR8cKCkWqCv3TxaxsRvNZYX5pt
+JoxFow2fW6qfHUju0oHaMQmpzfehnaxzwPn4GLlSCj5CACcOSKrpH+ND+EXbeU+l
+krVowQBz49gWpja9IR721nofk3D+GKgDHtHvKIkQQObP6CyHZHCE7APNEQEHulSi
+pVYouza9d0vlQy8xXxq+D2BnrPO0pFRuPksWkl9WFNNPfYtfqDWjo/5Vo+GNxcpT
+P0fI0ITYq85slCHfJKPhRYLfJfMnEEsYvqMZDI0sakpZaXNJSclnPVtZwoE/yI88
+aKyQwJi8wiSUTW9bk+2tb9Pi238OCGCBmm6U4ECEBWGWIjDmN7f30D78xayiW4gb
+jcrrvnhvFytNx1fYhKUZmep1SB2fUO6TlA6g1uHEkv4ogDMWV8ltaMHJ0gurBK/M
+m/oicnimEqafyLgWMm/M0vEQyigusaUeWAtoPUM3+/C2J0FsW3M=
+=cVYG
+-----END PGP SIGNATURE-----
 
-Full path, so /schemas/connector/...
-
-unevaluatedProperties: false
-
-> +
-> +  firmware-name:
-> +    description: |
-> +      Should contain the name of the default firmware image
-> +      file located on the firmware search path
-> +
-> +  wakeup-source: true
-> +  power-domains: true
-
-maxItems
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c5 {
-
-Just "i2c"
-
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      stm32g0@53 {
-
-Generic node name describing class of the device.
-
-> +        compatible = "st,stm32g0-typec";
-> +        reg = <0x53>;
-> +        /* Alert pin on GPIO PE12 */
-> +        interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-> +        interrupt-parent = <&gpioe>;
-> +
-> +        /* Example with one type-C connector */
-> +        connector {
-> +          compatible = "usb-c-connector";
-> +          label = "USB-C";
-> +
-> +          port {
-
-This does not look like proper schema of connector.yaml.
-
-> +            con_usb_c_ep: endpoint {
-> +              remote-endpoint = <&usbotg_hs_ep>;
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
-> +
-> +    usbotg_hs {
-
-Generic node names, no underscores in node names.
-
-> +      usb-role-switch;
-> +      port {
-> +        usbotg_hs_ep: endpoint {
-> +          remote-endpoint = <&con_usb_c_ep>;
-> +        };
-> +      };
-> +    };
-> +...
-
-
-Best regards,
-Krzysztof
+--Bcv3WXIFwInsOvvQ--
