@@ -2,270 +2,561 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1981C5595D4
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 10:55:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C917E5596A3
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 11:31:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231388AbiFXIvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 04:51:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38414 "EHLO
+        id S231535AbiFXJ2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 05:28:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231778AbiFXIvS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 04:51:18 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39FE4792B3;
-        Fri, 24 Jun 2022 01:51:08 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id n15so3596209qvh.12;
-        Fri, 24 Jun 2022 01:51:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iOkJMguCySKiYgS3jaAKrTeCcltfp+Ak4u2IsO3Ufzc=;
-        b=OS9y9gyqqlzBUxmT5C5qu5Bzoov0SFyiZghT1n2aZ6NXxe47VHQ2fxNtwNcSSNMSZc
-         TLujETxvVIzU7ZaBySBQKfS2B3GmzGsJpW+Z/sx4QadJF5AwweatiW25cA3VyBl1kw4f
-         zNMjb8JP1KkoOOfGDi+DB+JbPmAsmUF0R5Cg4eJMCW8YAAbZeXrYNGyTbemUqRJaAAFR
-         B4D5wo0c2JB38NP4yV7DgMhzIXzGj3A0YM3utDucRIkmA41mENTxYzywcYEfuIi3CwKS
-         uFKzXfk35U42oPGU4YEOm7oi/UkPjeMRqkd7aaof02RHFSuDe0GGxkrSWBYWdvd+9VaU
-         83Bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iOkJMguCySKiYgS3jaAKrTeCcltfp+Ak4u2IsO3Ufzc=;
-        b=tS3v0/k+bOIyt2aTinm1L4dITVjEQHa2mHXV8s11+T2EenNTNsiyLfJJwm9/U6HrtL
-         UTH6ZRoZ/GQPTddG1QEVz18TcZOVOQLjQfUU78GxpboLB8dsgfOnGNScwQABtJPXTft4
-         RDb4vq/f30JR4Cn2ut1vi1txC3/etekoiFFnv+Njj1QxNSh+V0uKjVAgOU9KvuGcL/uT
-         NW+TrfKhilMJOiREUqnUL4Lahud8UdTG1ZY2sSYddqp1FaEGK++F2Tzk/Ju5U2AggR2g
-         etdqbDGvUI7BJp6Qi1h6U25GZT+ACLHlM+1H+ywm3jrRTgY2W3YThaaFkgsl8KvvyCKL
-         nTIg==
-X-Gm-Message-State: AJIora+HzIpDg+UCgqdD3hInz8ffIGPyr2R3y85VxN4FSdZeGS+QeBia
-        qt4k3BvbeDyAuYHPjeUBCTHRIca4H4zLgEcAhSY=
-X-Google-Smtp-Source: AGRyM1uiyXBd99GGaJBVR8C85XZmoBzCNHgrHQ/Wwsu4HOvyYcJpTRur+mwswijaZ+WAJ/rBF4BpXrIwIkgbPjNMzeg=
-X-Received: by 2002:a05:6214:2129:b0:470:396d:19c4 with SMTP id
- r9-20020a056214212900b00470396d19c4mr24485321qvc.34.1656060667403; Fri, 24
- Jun 2022 01:51:07 -0700 (PDT)
+        with ESMTP id S231986AbiFXJ2U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 05:28:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15AF91EAD2;
+        Fri, 24 Jun 2022 02:28:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EE2B062095;
+        Fri, 24 Jun 2022 09:28:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3154C34114;
+        Fri, 24 Jun 2022 09:27:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656062880;
+        bh=C0uYnFRgGGrjy3PiU3f/Ru/C6QDqECnHj7AGp9a1S88=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=hWGToQuaB2rQD34YC2A6dAfLblFKm/FEZ580TsHD8vmVbKJmKopHauqZXl0mFI//7
+         1NGGIqAOIhnx0yGEzpK404Ynt+ZW3YhU+2oomxbCGfN0obNRRdoiPjImv4H5EZazkg
+         UbGXCuZoJiYKiDUJO7NE4pzjmTOH7O5pOoo68NJCwp3NmpdxXol/R0tdMpJKXe3kPs
+         h8as7XgVF4eIZcIblVrBoFqVJbqfEL0+IM7k+DjJwtFg4vTTQD/gZxObjfbkAj82by
+         So8KwBMEJ1aMESkheTbPQxgfg6fsOTkXpuVbXLdqMlC6cMg4pC7fnNyVaNfulK2bkj
+         v6aqobazT7ECQ==
+Received: by pali.im (Postfix)
+        id BB5CD711; Fri, 24 Jun 2022 11:27:56 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Michael Ellerman <mpe@ellerman.id.au>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, Marek Behun <marek.behun@nic.cz>,
+        Josef Schlehofer <josef.schlehofer@nic.cz>
+Subject: [PATCH v2] powerpc: dts: Add DTS file for CZ.NIC Turris 1.x routers
+Date:   Fri, 24 Jun 2022 10:55:50 +0200
+Message-Id: <20220624085550.20570-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20220511143712.22550-1-pali@kernel.org>
+References: <20220511143712.22550-1-pali@kernel.org>
 MIME-Version: 1.0
-References: <20220623182542.1116677-1-robimarko@gmail.com> <20220624010103.GA23758@quicinc.com>
-In-Reply-To: <20220624010103.GA23758@quicinc.com>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Fri, 24 Jun 2022 10:50:56 +0200
-Message-ID: <CAOX2RU7yKuV4i_9YRs9fx2DTTvAndWFFw3cYtQ3qFk9m1zZJVg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: firmware: qcom-scm: convert to dtschema
-To:     Guru Das Srinagesh <quic_gurus@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Jun 2022 at 03:01, Guru Das Srinagesh <quic_gurus@quicinc.com> wrote:
->
-> On Thu, Jun 23, 2022 at 08:25:42PM +0200, Robert Marko wrote:
-> > Convert bindings for Qualcomm SCM to dtschema.
-> >
-> > SoC compatibles that were used, but not documented were added.
-> >
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
-> > ---
-> >  .../devicetree/bindings/firmware/qcom,scm.txt |  57 --------
-> >  .../bindings/firmware/qcom,scm.yaml           | 124 ++++++++++++++++++
-> >  2 files changed, 124 insertions(+), 57 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/firmware/qcom,scm.txt
-> >  create mode 100644 Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.txt b/Documentation/devicetree/bindings/firmware/qcom,scm.txt
-> > deleted file mode 100644
-> > index 0f4e5ab26477..000000000000
-> > --- a/Documentation/devicetree/bindings/firmware/qcom,scm.txt
-> > +++ /dev/null
-> > @@ -1,57 +0,0 @@
-> > -QCOM Secure Channel Manager (SCM)
-> > -
-> > -Qualcomm processors include an interface to communicate to the secure firmware.
-> > -This interface allows for clients to request different types of actions.  These
-> > -can include CPU power up/down, HDCP requests, loading of firmware, and other
-> > -assorted actions.
-> > -
-> > -Required properties:
-> > -- compatible: must contain one of the following:
-> > - * "qcom,scm-apq8064"
-> > - * "qcom,scm-apq8084"
-> > - * "qcom,scm-ipq4019"
-> > - * "qcom,scm-ipq806x"
-> > - * "qcom,scm-ipq8074"
-> > - * "qcom,scm-mdm9607"
-> > - * "qcom,scm-msm8226"
-> > - * "qcom,scm-msm8660"
-> > - * "qcom,scm-msm8916"
-> > - * "qcom,scm-msm8953"
-> > - * "qcom,scm-msm8960"
-> > - * "qcom,scm-msm8974"
-> > - * "qcom,scm-msm8976"
-> > - * "qcom,scm-msm8994"
-> > - * "qcom,scm-msm8996"
-> > - * "qcom,scm-msm8998"
-> > - * "qcom,scm-sc7180"
-> > - * "qcom,scm-sc7280"
-> > - * "qcom,scm-sdm845"
-> > - * "qcom,scm-sdx55"
-> > - * "qcom,scm-sm6350"
-> > - * "qcom,scm-sm8150"
-> > - * "qcom,scm-sm8250"
-> > - * "qcom,scm-sm8350"
-> > - * "qcom,scm-sm8450"
-> > - and:
-> > - * "qcom,scm"
-> > -- clocks: Specifies clocks needed by the SCM interface, if any:
-> > - * core clock required for "qcom,scm-apq8064", "qcom,scm-msm8660" and
-> > -   "qcom,scm-msm8960"
-> > - * core, iface and bus clocks required for "qcom,scm-apq8084",
-> > -   "qcom,scm-msm8916", "qcom,scm-msm8953", "qcom,scm-msm8974" and "qcom,scm-msm8976"
-> > -- clock-names: Must contain "core" for the core clock, "iface" for the interface
-> > -  clock and "bus" for the bus clock per the requirements of the compatible.
-> > -- qcom,dload-mode: phandle to the TCSR hardware block and offset of the
-> > -                download mode control register (optional)
-> > -
-> > -Example for MSM8916:
-> > -
-> > -     firmware {
-> > -             scm {
-> > -                     compatible = "qcom,msm8916", "qcom,scm";
-> > -                     clocks = <&gcc GCC_CRYPTO_CLK> ,
-> > -                              <&gcc GCC_CRYPTO_AXI_CLK>,
-> > -                              <&gcc GCC_CRYPTO_AHB_CLK>;
-> > -                     clock-names = "core", "bus", "iface";
-> > -             };
-> > -     };
-> > diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> > new file mode 100644
-> > index 000000000000..7dd7beb39846
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> > @@ -0,0 +1,124 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/firmware/qcom,scm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: QCOM Secure Channel Manager (SCM) bindings
-> > +
-> > +maintainers:
-> > +  - Robert Marko <robimarko@gmail.com>
->
-> I'd like to volunteer my name as well, if that's okay:
->
-> Guru Das Srinagesh <quic_gurus@quicinc.com>
+CZ.NIC Turris 1.0 and 1.1 are open source routers, they have dual-core
+PowerPC Freescale P2020 CPU and are based on Freescale P2020RDB-PC-A board.
+Hardware design is fully open source, all firmware and hardware design
+files are available at Turris project website:
 
-Hi,
-Sure, will add you to v2.
+https://docs.turris.cz/hw/turris-1x/turris-1x/
+https://project.turris.cz/en/hardware.html
 
->
-> > +
-> > +description: |
-> ...
-> > +
-> > +  '#reset-cells':
-> > +    const: 1
->
-> This isn't part of the original file - could you please explain why this is
-> being added?
+Signed-off-by: Pali Rohár <pali@kernel.org>
+---
+Changes in v2:
+* Sort all nodes by addresses
+* Fix i2c address for MCU and SPD/EEPROM PSWP
+---
+ arch/powerpc/boot/dts/turris1x.dts | 475 +++++++++++++++++++++++++++++
+ 1 file changed, 475 insertions(+)
+ create mode 100644 arch/powerpc/boot/dts/turris1x.dts
 
-Yes, its not part of the original file, however I noticed that a lot of SCM
-nodes were adding #reset-cells, and upon looking at the SCM code its
-clear that it is being registered as a reset controller so #reset-cells are
-appropriate.
+diff --git a/arch/powerpc/boot/dts/turris1x.dts b/arch/powerpc/boot/dts/turris1x.dts
+new file mode 100644
+index 000000000000..c76b628cf026
+--- /dev/null
++++ b/arch/powerpc/boot/dts/turris1x.dts
+@@ -0,0 +1,475 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Turris 1.x Device Tree Source
++ *
++ * Copyright 2013 - 2022 CZ.NIC z.s.p.o. (http://www.nic.cz/)
++ *
++ * Pinout, Schematics and Altium hardware design files are open source
++ * and available at: https://docs.turris.cz/hw/turris-1x/turris-1x/
++ */
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/leds/common.h>
++/include/ "fsl/p2020si-pre.dtsi"
++
++/ {
++	model = "Turris 1.x";
++	compatible = "cznic,turris1x", "fsl,P2020RDB-PC"; /* fsl,P2020RDB-PC is required for booting Linux */
++
++	aliases {
++		ethernet0 = &enet0;
++		ethernet1 = &enet1;
++		ethernet2 = &enet2;
++		serial0 = &serial0;
++		serial1 = &serial1;
++		pci0 = &pci0;
++		pci1 = &pci1;
++		pci2 = &pci2;
++		spi0 = &spi0;
++	};
++
++	memory {
++		device_type = "memory";
++	};
++
++	soc: soc@ffe00000 {
++		ranges = <0x0 0x0 0xffe00000 0x00100000>;
++
++		i2c@3000 {
++			/* PCA9557PW GPIO controller for boot config */
++			gpio-controller@18 {
++				compatible = "nxp,pca9557";
++				label = "bootcfg";
++				reg = <0x18>;
++				#gpio-cells = <2>;
++				gpio-controller;
++				polarity = <0x00>;
++			};
++
++			/* STM32F030R8T6 MCU for power control */
++			power-control@2a {
++				/*
++				 * Turris Power Control firmware runs on STM32F0 MCU.
++				 * This firmware is open source and available at:
++				 * https://gitlab.nic.cz/turris/hw/turris_power_control
++				 */
++				reg = <0x2a>;
++			};
++
++			/* DDR3 SPD/EEPROM PSWP instruction */
++			eeprom@32 {
++				reg = <0x32>;
++			};
++
++			/* SA56004ED temperature control */
++			temperature-sensor@4c {
++				compatible = "nxp,sa56004";
++				reg = <0x4c>;
++				interrupt-parent = <&gpio>;
++				interrupts = <12 IRQ_TYPE_LEVEL_LOW>, /* GPIO12 - ALERT pin */
++					     <13 IRQ_TYPE_LEVEL_LOW>; /* GPIO13 - CRIT pin */
++			};
++
++			/* DDR3 SPD/EEPROM */
++			eeprom@52 {
++				compatible = "atmel,spd";
++				reg = <0x52>;
++			};
++
++			/* MCP79402-I/ST Protected EEPROM */
++			eeprom@57 {
++				reg = <0x57>;
++			};
++
++			/* ATSHA204-TH-DA-T crypto module */
++			crypto@64 {
++				compatible = "atmel,atsha204";
++				reg = <0x64>;
++			};
++
++			/* IDT6V49205BNLGI clock generator */
++			clock-generator@69 {
++				compatible = "idt,6v49205b";
++				reg = <0x69>;
++			};
++
++			/* MCP79402-I/ST RTC */
++			rtc@6f {
++				compatible = "microchip,mcp7940x";
++				reg = <0x6f>;
++				interrupt-parent = <&gpio>;
++				interrupts = <14 0>; /* GPIO14 - MFP pin */
++			};
++		};
++
++		/* SPI on connector P1 */
++		spi0: spi@7000 {
++		};
++
++		gpio: gpio-controller@fc00 {
++			#interrupt-cells = <2>;
++			interrupt-controller;
++		};
++
++		/* Connected to SMSC USB2412-DZK 2-Port USB 2.0 Hub Controller */
++		usb@22000 {
++			phy_type = "ulpi";
++			dr_mode = "host";
++		};
++
++		enet0: ethernet@24000 {
++			/* Connected to port 6 of QCA8337N-AL3C switch */
++			phy-connection-type = "rgmii-id";
++
++			fixed-link {
++				speed = <1000>;
++				full-duplex;
++			};
++		};
++
++		mdio@24520 {
++			/* KSZ9031RNXCA ethernet phy for WAN port */
++			phy: ethernet-phy@7 {
++				interrupts = <3 1 0 0>;
++				reg = <0x7>;
++			};
++
++			/* QCA8337N-AL3C switch with integrated ethernet PHYs for LAN ports */
++			switch@10 {
++				compatible = "qca,qca8337";
++				interrupts = <2 1 0 0>;
++				reg = <0x10>;
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++						label = "cpu1";
++						ethernet = <&enet1>;
++						phy-mode = "rgmii-id";
++
++						fixed-link {
++							speed = <1000>;
++							full-duplex;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						label = "lan5";
++					};
++
++					port@2 {
++						reg = <2>;
++						label = "lan4";
++					};
++
++					port@3 {
++						reg = <3>;
++						label = "lan3";
++					};
++
++					port@4 {
++						reg = <4>;
++						label = "lan2";
++					};
++
++					port@5 {
++						reg = <5>;
++						label = "lan1";
++					};
++
++					port@6 {
++						reg = <6>;
++						label = "cpu0";
++						ethernet = <&enet0>;
++						phy-mode = "rgmii-id";
++
++						fixed-link {
++							speed = <1000>;
++							full-duplex;
++						};
++					};
++				};
++			};
++		};
++
++		ptp_clock@24e00 {
++			fsl,tclk-period = <5>;
++			fsl,tmr-prsc = <200>;
++			fsl,tmr-add = <0xcccccccd>;
++			fsl,tmr-fiper1 = <0x3b9ac9fb>;
++			fsl,tmr-fiper2 = <0x0001869b>;
++			fsl,max-adj = <249999999>;
++		};
++
++		enet1: ethernet@25000 {
++			/* Connected to port 0 of QCA8337N-AL3C switch */
++			phy-connection-type = "rgmii-id";
++
++			fixed-link {
++				speed = <1000>;
++				full-duplex;
++			};
++		};
++
++		mdio@25520 {
++			status = "disabled";
++		};
++
++		enet2: ethernet@26000 {
++			/* Connected to KSZ9031RNXCA ethernet phy (WAN port) */
++			label = "wan";
++			phy-handle = <&phy>;
++			phy-connection-type = "rgmii-id";
++		};
++
++		mdio@26520 {
++			status = "disabled";
++		};
++
++		sdhc@2e000 {
++			bus-width = <4>;
++			cd-gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
++		};
++	};
++
++	lbc: localbus@ffe05000 {
++		reg = <0 0xffe05000 0 0x1000>;
++
++		ranges = <0x0 0x0 0x0 0xef000000 0x01000000>, /* NOR */
++			 <0x1 0x0 0x0 0xff800000 0x00040000>, /* NAND */
++			 <0x3 0x0 0x0 0xffa00000 0x00020000>; /* CPLD */
++
++		/* S29GL128P90TFIR10 NOR */
++		nor@0,0 {
++			compatible = "cfi-flash";
++			reg = <0x0 0x0 0x01000000>;
++			bank-width = <2>;
++			device-width = <1>;
++
++			partitions {
++				compatible = "fixed-partitions";
++				#address-cells = <1>;
++				#size-cells = <1>;
++
++				partition@0 {
++					/* 128 kB for Device Tree Blob */
++					reg = <0x00000000 0x00020000>;
++					label = "dtb";
++				};
++
++				partition@20000 {
++					/* 1.7 MB for Rescue Linux Kernel Image */
++					reg = <0x00020000 0x001a0000>;
++					label = "rescue-kernel";
++				};
++
++				partition@1c0000 {
++					/* 1.5 MB for Rescue JFFS2 Root File System */
++					reg = <0x001c0000 0x00180000>;
++					label = "rescue-rootfs";
++				};
++
++				partition@340000 {
++					/* 11 MB for TAR.XZ Backup with content of NAND Root File System */
++					reg = <0x00340000 0x00b00000>;
++					label = "backup-rootfs";
++				};
++
++				partition@e40000 {
++					/* 768 kB for Certificates JFFS2 File System */
++					reg = <0x00e40000 0x000c0000>;
++					label = "certificates";
++				};
++
++				/* free unused space 0x00f00000-0x00f20000 */
++
++				partition@f20000 {
++					/* 128 kB for U-Boot Environment Variables */
++					reg = <0x00f20000 0x00020000>;
++					label = "u-boot-env";
++				};
++
++				partition@f40000 {
++					/* 768 kB for U-Boot Bootloader Image */
++					reg = <0x00f40000 0x000c0000>;
++					label = "u-boot";
++				};
++			};
++		};
++
++		/* MT29F2G08ABAEAWP:E NAND */
++		nand@1,0 {
++			compatible = "fsl,p2020-fcm-nand", "fsl,elbc-fcm-nand";
++			reg = <0x1 0x0 0x00040000>;
++			nand-ecc-mode = "soft";
++			nand-ecc-algo = "bch";
++
++			partitions {
++				compatible = "fixed-partitions";
++				#address-cells = <1>;
++				#size-cells = <1>;
++
++				partition@0 {
++					/* 256 MB for UBI with one volume: UBIFS Root File System */
++					reg = <0x00000000 0x10000000>;
++					label = "rootfs";
++				};
++			};
++		};
++
++		/* LCMXO1200C-3FTN256C FPGA */
++		cpld@3,0 {
++			/*
++			 * Turris CPLD firmware which runs on this Lattice FPGA,
++			 * is extended version of P1021RDB-PC CPLD v4.1 firmware.
++			 * It is backward compatible with its original version
++			 * and the only extension is support for Turris LEDs.
++			 * Turris CPLD firmware is open source and available at:
++			 * https://gitlab.nic.cz/turris/hw/turris_cpld/-/blob/master/CZ_NIC_Router_CPLD.v
++			 */
++			compatible = "cznic,turris1x-cpld", "fsl,p1021rdb-pc-cpld", "simple-bus";
++			reg = <0x3 0x0 0x30>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0x0 0x3 0x0 0x00020000>;
++
++			/* MAX6370KA+T watchdog */
++			watchdog@2 {
++				/*
++				 * CPLD firmware maps SET0, SET1 and SET2
++				 * input logic of MAX6370KA+T chip to CPLD
++				 * memory space at byte offset 0x2. WDI
++				 * input logic is outside of the CPLD and
++				 * connected via external GPIO.
++				 */
++				compatible = "maxim,max6370";
++				reg = <0x02 0x01>;
++				gpios = <&gpio 11 GPIO_ACTIVE_LOW>;
++			};
++
++			led-controller@13 {
++				/*
++				 * LEDs are controlled by CPLD firmware.
++				 * All five LAN LEDs share common RGB settings
++				 * and so it is not possible to set different
++				 * colors on different LAN ports.
++				 */
++				compatible = "cznic,turris1x-leds";
++				reg = <0x13 0x1d>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				multi-led@0 {
++					reg = <0x0>;
++					color = <LED_COLOR_ID_RGB>;
++					function = LED_FUNCTION_WAN;
++				};
++
++				multi-led@1 {
++					reg = <0x1>;
++					color = <LED_COLOR_ID_RGB>;
++					function = LED_FUNCTION_LAN;
++					function-enumerator = <5>;
++				};
++
++				multi-led@2 {
++					reg = <0x2>;
++					color = <LED_COLOR_ID_RGB>;
++					function = LED_FUNCTION_LAN;
++					function-enumerator = <4>;
++				};
++
++				multi-led@3 {
++					reg = <0x3>;
++					color = <LED_COLOR_ID_RGB>;
++					function = LED_FUNCTION_LAN;
++					function-enumerator = <3>;
++				};
++
++				multi-led@4 {
++					reg = <0x4>;
++					color = <LED_COLOR_ID_RGB>;
++					function = LED_FUNCTION_LAN;
++					function-enumerator = <2>;
++				};
++
++				multi-led@5 {
++					reg = <0x5>;
++					color = <LED_COLOR_ID_RGB>;
++					function = LED_FUNCTION_LAN;
++					function-enumerator = <1>;
++				};
++
++				multi-led@6 {
++					reg = <0x6>;
++					color = <LED_COLOR_ID_RGB>;
++					function = LED_FUNCTION_WLAN;
++				};
++
++				multi-led@7 {
++					reg = <0x7>;
++					color = <LED_COLOR_ID_RGB>;
++					function = LED_FUNCTION_POWER;
++				};
++			};
++		};
++	};
++
++	pci2: pcie@ffe08000 {
++		/*
++		 * PCIe bus for on-board TUSB7340RKM USB 3.0 xHCI controller.
++		 * This xHCI controller is available only on Turris 1.1 boards.
++		 * Turris 1.0 boards have nothing connected to this PCIe bus,
++		 * so system would see only PCIe Root Port of this PCIe Root
++		 * Complex. TUSB7340RKM xHCI controller has four SuperSpeed
++		 * channels. Channel 0 is connected to the front USB 3.0 port,
++		 * channel 1 (but only USB 2.0 subset) to USB 2.0 pins on mPCIe
++		 * slot 1 (CN5), channels 2 and 3 to connector P600.
++		 *
++		 * P2020 PCIe Root Port uses 1MB of PCIe MEM and xHCI controller
++		 * uses 64kB + 8kB of PCIe MEM. No PCIe IO is used or required.
++		 * So allocate 2MB of PCIe MEM for this PCIe bus.
++		 */
++		reg = <0 0xffe08000 0 0x1000>;
++		ranges = <0x02000000 0x0 0xc0000000 0 0xc0000000 0x0 0x00200000>, /* MEM */
++			 <0x01000000 0x0 0x00000000 0 0xffc20000 0x0 0x00010000>; /* IO */
++
++		pcie@0 {
++			ranges;
++		};
++	};
++
++	pci1: pcie@ffe09000 {
++		/* PCIe bus on mPCIe slot 2 (CN6) for expansion mPCIe card */
++		reg = <0 0xffe09000 0 0x1000>;
++		ranges = <0x02000000 0x0 0xa0000000 0 0xa0000000 0x0 0x20000000>, /* MEM */
++			 <0x01000000 0x0 0x00000000 0 0xffc10000 0x0 0x00010000>; /* IO */
++
++		pcie@0 {
++			ranges;
++		};
++	};
++
++	pci0: pcie@ffe0a000 {
++		/*
++		 * PCIe bus on mPCIe slot 1 (CN5) for expansion mPCIe card.
++		 * Turris 1.1 boards have in this mPCIe slot additional USB 2.0
++		 * pins via channel 1 of TUSB7340RKM xHCI controller and also
++		 * additional SIM card slot, both for USB-based WWAN cards.
++		 */
++		reg = <0 0xffe0a000 0 0x1000>;
++		ranges = <0x02000000 0x0 0x80000000 0 0x80000000 0x0 0x20000000>, /* MEM */
++			 <0x01000000 0x0 0x00000000 0 0xffc00000 0x0 0x00010000>; /* IO */
++
++		pcie@0 {
++			ranges;
++		};
++	};
++};
++
++/include/ "fsl/p2020si-post.dtsi"
+-- 
+2.20.1
 
-However, since its not really being used via phandles #reset-cells did
-not really matter, hence why I did not add them to be required,
-this is something that DT guys can probably clarify.
-
-Regards,
-Robert
->
-> > +
-> > +  qcom,dload-mode:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description:
-> > +      Phandle to the TCSR hardware block and offset of the download mode control register
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - qcom,scm-apq8064
-> > +              - qcom,scm-msm8660
-> > +              - qcom,scm-msm8960
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          items:
-> > +            - description: SCM core clock
-> > +        clock-names:
-> > +          items:
-> > +            - const: core
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - qcom,scm-apq8084
-> > +              - qcom,scm-mdm9607
-> > +              - qcom,scm-msm8916
-> > +              - qcom,scm-msm8953
-> > +              - qcom,scm-msm8974
-> > +              - qcom,scm-msm8976
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          items:
-> > +            - description: SCM core clock
-> > +            - description: SCM bus clock
-> > +            - description: SCM interface clock
-> > +        clock-names:
-> > +          items:
-> > +            - const: core
-> > +            - const: bus
-> > +            - const: iface
->
-> Thanks, I had this YAML conversion patch done locally, but couldn't figure out
-> how to represent the above logic in YAML. Thank you for this patch.
->
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/qcom,gcc-msm8916.h>
-> > +    firmware {
-> > +      scm {
-> > +        compatible = "qcom,scm-msm8916", "qcom,scm";
-> > +
-> > +        clocks = <&gcc GCC_CRYPTO_CLK>,
-> > +                 <&gcc GCC_CRYPTO_AXI_CLK>,
-> > +                 <&gcc GCC_CRYPTO_AHB_CLK>;
-> > +        clock-names = "core", "bus", "iface";
-> > +        qcom,dload-mode = <&tcsr 0x6100>;
-> > +      };
-> > +    };
-> > --
-> > 2.36.1
-> >
