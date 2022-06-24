@@ -2,140 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5776559A30
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 15:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8828559A6C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 15:37:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232050AbiFXNN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 09:13:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50642 "EHLO
+        id S229751AbiFXNhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 09:37:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231511AbiFXNN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 09:13:27 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D7364FD;
-        Fri, 24 Jun 2022 06:13:25 -0700 (PDT)
-Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Fri, 24 Jun 2022
- 21:13:23 +0800
-From:   Liang Yang <liang.yang@amlogic.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        <linux-mtd@lists.infradead.org>
-CC:     Liang Yang <liang.yang@amlogic.com>, Rob Herring <robh@kernel.org>,
+        with ESMTP id S229450AbiFXNhS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 09:37:18 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19E15403CB;
+        Fri, 24 Jun 2022 06:37:10 -0700 (PDT)
+X-UUID: 8a594478fc1c4e89bef7eccb6dfe713f-20220624
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:d932a952-0dea-4457-a195-0c61fdcd5daf,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:b14ad71,CLOUDID:8a72f82d-1756-4fa3-be7f-474a6e4be921,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 8a594478fc1c4e89bef7eccb6dfe713f-20220624
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+        (envelope-from <guodong.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1107029862; Fri, 24 Jun 2022 21:37:07 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 24 Jun 2022 21:37:06 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 24 Jun 2022 21:37:05 +0800
+From:   Guodong Liu <guodong.liu@mediatek.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>
+CC:     Sean Wang <sean.wang@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        =?UTF-8?q?N=EDcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v7 1/5] dt-bindings: nand: meson: fix meson nfc clock
-Date:   Fri, 24 Jun 2022 21:12:51 +0800
-Message-ID: <20220624131257.29906-2-liang.yang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220624131257.29906-1-liang.yang@amlogic.com>
-References: <20220624131257.29906-1-liang.yang@amlogic.com>
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Guodong Liu <guodong.liu@mediatek.com>
+Subject: [PATCH v2 0/5] pinctrl: mediatek: add driver support driving and resistance property  on mt8192
+Date:   Fri, 24 Jun 2022 21:36:55 +0800
+Message-ID: <20220624133700.15487-1-guodong.liu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7BIT
 Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.21]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK'
-which is defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is
-the divider and bit6~7 is the mux for fix pll and xtal. At the beginning,
-a common MMC and NAND sub-clock was discussed and planed to be implemented
-as NFC clock provider, but now this series of patches of a common MMC and
-NAND sub-clock are never being accepted and the current binding was never
-valid. the reasons for giving up are:
-1. EMMC and NAND, which are mutually exclusive anyway
-2. coupling the EMMC and NAND.
-3. it seems that a common MMC and NAND sub-clock is over engineered.
-and let us see the link fot more information:
-https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com
-so The meson nfc can't work now, let us rework the clock.
+changes since v1:
 
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Liang Yang <liang.yang@amlogic.com>
----
- .../bindings/mtd/amlogic,meson-nand.txt       | 29 ++++++++-----------
- 1 file changed, 12 insertions(+), 17 deletions(-)
+- Patch 1 Add commit only, add "mediatek:" on the commit title for this
+patch, describe the patch modification in detail.
 
-diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-index 5794ab1147c1..5d5cdfef417f 100644
---- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-@@ -7,18 +7,19 @@ Required properties:
- - compatible : contains one of:
-   - "amlogic,meson-gxl-nfc"
-   - "amlogic,meson-axg-nfc"
-+
-+- reg        : Offset and length of the register set
-+
-+- reg-names  : "nfc" is the register set for NFC controller and "emmc"
-+		is the register set for MCI controller.
-+
- - clocks     :
- 	A list of phandle + clock-specifier pairs for the clocks listed
- 	in clock-names.
- 
- - clock-names: Should contain the following:
- 	"core" - NFC module gate clock
--	"device" - device clock from eMMC sub clock controller
--	"rx" - rx clock phase
--	"tx" - tx clock phase
--
--- amlogic,mmc-syscon	: Required for NAND clocks, it's shared with SD/eMMC
--				controller port C
-+	"device" - parent clock for internal NFC
- 
- Optional children nodes:
- Children nodes represent the available nand chips.
-@@ -28,24 +29,18 @@ see Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindi
- 
- Example demonstrate on AXG SoC:
- 
--	sd_emmc_c_clkc: mmc@7000 {
--		compatible = "amlogic,meson-axg-mmc-clkc", "syscon";
--		reg = <0x0 0x7000 0x0 0x800>;
--	};
--
- 	nand-controller@7800 {
- 		compatible = "amlogic,meson-axg-nfc";
--		reg = <0x0 0x7800 0x0 0x100>;
-+		reg = <0x0 0x7800 0x0 0x100>,
-+		      <0x0 0x7000 0x0 0x800>;
-+		reg-names = "nfc", "emmc";
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
- 
- 		clocks = <&clkc CLKID_SD_EMMC_C>,
--			<&sd_emmc_c_clkc CLKID_MMC_DIV>,
--			<&sd_emmc_c_clkc CLKID_MMC_PHASE_RX>,
--			<&sd_emmc_c_clkc CLKID_MMC_PHASE_TX>;
--		clock-names = "core", "device", "rx", "tx";
--		amlogic,mmc-syscon = <&sd_emmc_c_clkc>;
-+			 <&clkc CLKID_FCLK_DIV2>;
-+		clock-names = "core", "device";
- 
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&nand_pins>;
+- Patch 2  Add commit only, add "mediatek:" on the commit title for this
+patch, use space instead of tab before the =, Dropping E1, E0, and EN
+arrays in this patch, which were used by the original advanced
+drive configuration.
+
+- Patch 3 Add commit describe the patch modification in detail,
+add the missing pull type array for mt8192 to document the pull type of
+each pin and prevent invalid pull type settings. use space instead of
+tab after the ,.
+
+- Patch 4 Remove the original advanced drive configuration.
+
+- Patch 5 Remove pin definitions that do not support the R0 & R1
+pinconfig property.
+
+v1:
+
+Patch 1 make driver consistent with "drive-strength" properties
+  description of  pinctrl-mt8192.yaml
+
+Patch 2 make driver consistent with "mediatek,drive-strength-adv"
+  description pinctrl-mt8192.yaml, however, "mediatek,drive-strength-adv"
+  description of pinctrl-mt8192.yaml needs to be synchronize a little bit.
+
+Patch 3 Since the bias-pull-{up,down} is generic properties, make
+  driver to be used for setting type {PUPD/R1/R0 , PU/PD, PU/PD/RSEL}.
+
+Patch 4 Remove some pins definitions not support PUPD/R1/R0.
+
+Please see the following for detailed  description 
+
+Patch 1 provides generic driving setup, which support 2/4/6/8/10/12/14/16mA
+  driving.
+
+Patch 2 provides I2C pins specific driving setup property, can support
+  0.125/0.25/0.5/1mA adjustment, and also support driving setup with
+  unit microamp.
+
+Patch 3 provides I2C pins pull up/down type which is RSEL. It can support
+  RSEL define or si unit value(ohm) to set different resistance
+
+Patch 4 Remove pin definitions that do not support the R0 & R1 pinconfig
+  property
+
+Guodong Liu (5):
+  pinctrl: mediatek: add generic driving setup property on mt8192
+  pinctrl: mediatek: add drive for I2C related pins on mt8192
+  pinctrl: mediatek: add rsel setting on mt8192
+  pinctrl: mediatek: dropping original advanced drive configuration
+    function
+  pinctrl: mediatek: fix the pinconf definition of some GPIO pins
+
+ drivers/pinctrl/mediatek/pinctrl-mt8192.c | 296 ++++++++++++----------
+ 1 file changed, 163 insertions(+), 133 deletions(-)
+
 -- 
-2.34.1
+2.25.5
 
