@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 877F4559E21
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2DC2559E16
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jun 2022 18:06:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230245AbiFXQCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 12:02:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33710 "EHLO
+        id S230366AbiFXQDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 12:03:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229872AbiFXQCD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:02:03 -0400
+        with ESMTP id S230280AbiFXQDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 12:03:04 -0400
 Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC48F52E48
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:02:02 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id v14so3721933wra.5
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:02:02 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6892311C16
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:03:02 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id i10so3795605wrc.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 09:03:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=46fj+UJF99kTFPBT32r985RsfVjZGl2LSfFiw6tGANo=;
-        b=ebcQYv0emdVVWOAr+fH88T/wu55UxnCnFHW4hEJgrm2A3IR4wtQ6tMVCkVyneR2ew1
-         DjMliG2u+nREX14KGIryxKBFdKJn9RqAJ1SO8uQZ11ZMB0cQ3Iq3ThQKSHnNUDjpiqv1
-         1/61o7jT6CaUnwX/fSqbqTzvs/jzDJNx/kUrUAV8fdwbeDv3gha5Lp1I5lEWQKHgAqK0
-         zwdRYyASfWuMl2Zlv9f5l2k97tYC2Xh6e/RMuoN7UDnG88JSKDpKQjn60WmhM7A5UpiT
-         yEsFrw2BmifwUDY6O3Ki/UJboG6xwjEUmDT+Ct5Sez2Oqx0Rc8aHfROswKlBkgGtI9M/
-         TexQ==
+        bh=k7sNPIkshs8hu2yu7mroWNudPOiCNYBjcO8jSGHCo44=;
+        b=DNUUK/3WHa6QP/Cm7MAnmTVZ9qedZ5CiIIG2zJCd3nWHrKBpI5U/Qt5OtaKz/kbBiI
+         JtXveDt9t+IJkedvTUikme8xg6m+Fz1CUyQt/zRBwChEhYDx2574hYfXFqi3xKs8lytM
+         1G+KbLelub0IFjdD0UlZJuwP5bbYk2wIrOWg3W9movbKQcBTdD9PxIUC3FqA/aZiPR6p
+         m4dTMYIvoODFg/g5HkLYYo/H2E/AymFryX165AjjjF9soNX0wirEkBeeca/DMMK1/uKV
+         EJsk/V1N8syAYtgRNqExpvonbtx/dQi1lpYe6Nw4y5pZDvoz9ETSijnNwK94Fi/84rnS
+         xRRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=46fj+UJF99kTFPBT32r985RsfVjZGl2LSfFiw6tGANo=;
-        b=c0u8Spmt3/Sm1Y5iDAW6uRJPqAo6QT0J9SagF9Wn7YgznJuYorRdltOj918Pf/I4c4
-         80Y1gDzqWDfV4MOrCIxbYmQDjqZu1EEOtT6MQRRjvdbkNqRgIxH3NHJzV7uJBeI/VFIf
-         OydzA4ByPyqdqz8QWDd2GnEOKD2y4ltX6EA1/ArFG1tBu92OXuTMX26faXEoUjBmALv2
-         ijNApMpGyBUI9phoqAGr9Non4X4mAWqubFmxzc6ibXkRSfkDlGk1eeJrTwLUzg3myucd
-         q/Ck9/F4MfXk0Gd+dRtRGjnW1S/hydhnOFvMgO9CsN5CX8thjz2F+9snq57ZwA2HOrte
-         Lenw==
-X-Gm-Message-State: AJIora9D6sYDF7htuflhUbxKlx6ZFPMQ5ml3QA7BhDc16JYeclQfe2sN
-        xiisKcky1QK8obqWxogh00YODg==
-X-Google-Smtp-Source: AGRyM1vBnYbMBo+bqFkjGK96XrB4066YHdRQQQzg/C79EYzSRJwJS7+8MI20wKyonIEWmjhJbuj33A==
-X-Received: by 2002:adf:dc91:0:b0:21b:89bc:9d5c with SMTP id r17-20020adfdc91000000b0021b89bc9d5cmr13956357wrj.159.1656086521327;
-        Fri, 24 Jun 2022 09:02:01 -0700 (PDT)
+        bh=k7sNPIkshs8hu2yu7mroWNudPOiCNYBjcO8jSGHCo44=;
+        b=3euFNMBcOEvH+orRC3skqY0OF81GZ4RYFh/JEbspta8kaWm5flRQveM8dmk1qvQQ7U
+         wlVMHCuOptH0BZQQhfJupsoKwuwgf+dTIIibyLI+lpuBL+OKD6vFZwhSGDYCiWY9s5X5
+         9oKDHZP+bg63IN/+KZMyR4PngSNuupWF98s4s7xrDWXnCJnwoI1FHObyTTpO5SRiVJQJ
+         bl6TO3PjIe6Yj/c9tvJh5kIjI2GJheu2RTIjgLHkOP07Jb8WaREmWrt4UIxyD5OKyd5J
+         JSXaqV52OgD6J28txOf8ox7aKHLEKeQzqx8tki3YEhKPzdUIC1H0fSL5EUl3CH3+OKWN
+         ktPg==
+X-Gm-Message-State: AJIora+mgoimlZfQ4UNbO71jAF7Lgl0Ym/2Tvqmah07byhbvQ22AV5Ai
+        QKVUl0F6pzL1CXDY4/3dpmtjBw==
+X-Google-Smtp-Source: AGRyM1v6EKlCPfruQY4kqyHY1qTXjCySikHyVgSzAUwJnyTXGiIHyXrrozgV15uMdm3odkLAH9j5EA==
+X-Received: by 2002:a5d:59a5:0:b0:218:3ffb:e6ea with SMTP id p5-20020a5d59a5000000b002183ffbe6eamr14332757wrr.715.1656086580838;
+        Fri, 24 Jun 2022 09:03:00 -0700 (PDT)
 Received: from [192.168.0.237] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s11-20020a5d4ecb000000b0020fe61acd09sm2647767wrv.12.2022.06.24.09.02.00
+        by smtp.gmail.com with ESMTPSA id t7-20020a05600001c700b002167efdd549sm2665316wrx.38.2022.06.24.09.02.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 09:02:00 -0700 (PDT)
-Message-ID: <e0dd7045-dd39-0a47-30ef-839f287dd445@linaro.org>
-Date:   Fri, 24 Jun 2022 18:02:00 +0200
+        Fri, 24 Jun 2022 09:03:00 -0700 (PDT)
+Message-ID: <53e8aa2f-f5f6-43d9-c167-ec5c5818dfb0@linaro.org>
+Date:   Fri, 24 Jun 2022 18:02:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH net-next v1 1/9] dt-bindings: power: Add Tegra234 MGBE
- power domains
+Subject: Re: [PATCH net-next v1 2/9] dt-bindings: Add Tegra234 MGBE clocks and
+ resets
 Content-Language: en-US
 To:     Bhadram Varka <vbhadram@nvidia.com>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
@@ -63,8 +63,9 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         catalin.marinas@arm.com, will@kernel.org,
         Thierry Reding <treding@nvidia.com>
 References: <20220623074615.56418-1-vbhadram@nvidia.com>
+ <20220623074615.56418-2-vbhadram@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220623074615.56418-1-vbhadram@nvidia.com>
+In-Reply-To: <20220623074615.56418-2-vbhadram@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,15 +81,31 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 23/06/2022 09:46, Bhadram Varka wrote:
 > From: Thierry Reding <treding@nvidia.com>
 > 
-> Add power domain IDs for the four MGBE power partitions found on
-> Tegra234.
+> Add the clocks and resets used by the MGBE Ethernet hardware found on
+> Tegra234 SoCs.
 > 
 > Signed-off-by: Thierry Reding <treding@nvidia.com>
 > Signed-off-by: Bhadram Varka <vbhadram@nvidia.com>
+> ---
+>  include/dt-bindings/clock/tegra234-clock.h | 101 +++++++++++++++++++++
+>  include/dt-bindings/reset/tegra234-reset.h |   8 ++
+>  2 files changed, 109 insertions(+)
+> 
+> diff --git a/include/dt-bindings/clock/tegra234-clock.h b/include/dt-bindings/clock/tegra234-clock.h
+> index bd4c3086a2da..bab85d9ba8cd 100644
+> --- a/include/dt-bindings/clock/tegra234-clock.h
+> +++ b/include/dt-bindings/clock/tegra234-clock.h
+> @@ -164,10 +164,111 @@
+>  #define TEGRA234_CLK_PEX1_C5_CORE		225U
+>  /** @brief PLL controlled by CLK_RST_CONTROLLER_PLLC4_BASE */
+>  #define TEGRA234_CLK_PLLC4			237U
+> +/** @brief RX clock recovered from MGBE0 lane input */
 
+The IDs should be abstract integer incremented by one, without any
+holes. I guess the issue was here before, so it's fine but I'll start
+complaining at some point :)
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 
 Best regards,
 Krzysztof
