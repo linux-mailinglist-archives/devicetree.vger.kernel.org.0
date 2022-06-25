@@ -2,78 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE24155AC66
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 22:12:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D677055AC86
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 22:22:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233490AbiFYUKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 16:10:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44196 "EHLO
+        id S233423AbiFYUNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jun 2022 16:13:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233409AbiFYUKE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 16:10:04 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44CFEBE28
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:10:03 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id o9so7807599edt.12
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:10:03 -0700 (PDT)
+        with ESMTP id S233352AbiFYUNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 16:13:32 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49801140D7
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:13:29 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id t5so11317234eje.1
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:13:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/TRe8PPkrucrwsyUREwEITQi4+bjFLceMfzbAkZcbG0=;
-        b=CiU3XSV8upO14tCMCu3rQbOwKOED4tVHC7pKd8jZ7viQJDc9p8EbazI9ZG423jeGjq
-         qiiT9TCnQYAMtmzmipG2bK9sYDXRG/qv+BWcKlR2NpZEwBSdq8fezAEgf4Xok3QQQRx3
-         1lgk3AR9pxIwRBuyu8QMlEfPXJBDQD2io48ZeSCrF3OK53y6dmAB+Hb4ksYCyA7EvZEC
-         0HRYEXCGMP2wGJfFknw8cTJsgScOL51Ly3J7wBdWhR58YCe3saopw49P1JbJL2guD43J
-         6+QTZ6r1KCXqReHxj933InUTEznT7K/j27y5dLVak7JlYr1eINE6SjdXvdFYL2k/7t20
-         H53g==
+        bh=EX5/OV4Y97rSxhW/VrY4DWi994sLKdFU1OiRI3gA0Pg=;
+        b=L2RZeKS7pg1rWAty5u9tozngrNlynjTAQGIwC2K6FVhE6uE2XXReXUlTYqBk1QN0f9
+         b5eFY+IrepivXnpGZEyR5XRYaVsu26kDPamGmJb7siPeiPIZg7PhrpZjCLQdZlVF0vec
+         GgQcovvRlHT933D4sXnXQGzn2xDKs9egVwx8+6J5gKrvhUf53XtX4EQV+O1U30ucVv0y
+         MYmNoqojWA3PcFZJrN9uRMYBd/Nt+/civX5Twwn1ce8tsJIZw1TLDsN+Hh8WnPw34aZz
+         am5TeZ7OAfOpMJdQ2k6xViyINEVDJmqKUIJonUE28UZXribQ4qntJoXqD+/Fnd70WEe/
+         zPRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=/TRe8PPkrucrwsyUREwEITQi4+bjFLceMfzbAkZcbG0=;
-        b=kv8BqzvnghuZVWy7scuGXlvitJA12JhID6HpDrbQZ/DeZlaZOUpkXnoftdUUhdA/W6
-         Ee/Co+FpMhf8yB5PINrLBLdU8WkGxvSEVoMlbvLWAHHhkz3pwh6i3zi5XCkbI3iq5EiN
-         1vahFoRMy2JmVF0Hi/JTVM0fL1HIOiAvhPQYMrBHTx8JROIkeiqciFGwUeE/H5CAUL4L
-         8boU+nWGv9ojeT7TA2CBkO0+cs5v1t/lAAyteP68QOu+UKVqg/UsZw2A8LhEyQhCymNm
-         E4UUQci43mJuFETVWPC3hr1xW+y8IzSvM9/AC+Ii8fgBV0y8PRm8TYn1mboQplhtGyRL
-         Ww0w==
-X-Gm-Message-State: AJIora8GQyGWLpo5zRwyH8mCA/IHlpXuzneAYW/BA/UsD8+fynrmMFsg
-        s6mHPXBr8C0e5Ujxp77dtq48rw==
-X-Google-Smtp-Source: AGRyM1unaOf6CkbSeUN2QjTDqVjdaybkJc2p/Cqy8w+rraAvjGRsT2ODM6UG09B7qmtVXEKEbMwBEg==
-X-Received: by 2002:a05:6402:13cc:b0:435:557e:6325 with SMTP id a12-20020a05640213cc00b00435557e6325mr6735502edx.83.1656187801802;
-        Sat, 25 Jun 2022 13:10:01 -0700 (PDT)
+        bh=EX5/OV4Y97rSxhW/VrY4DWi994sLKdFU1OiRI3gA0Pg=;
+        b=Mh5Lx/5TKvtlyOUy8nmiL/uUNl0Kk72Gr7oWVm/51T3Bavx8KLjm9hDu5KaVMMDynM
+         WErKzJSS+iy286aPcJVLobUHgSfpJYF9tObZO5hweoJvFVsjLNypBxRYfGD+HNSHK8KL
+         fUy59A8JXlFLcMR8DCBMeeQtgNSYh/GXTMQYmQdaV+hlxz1ALUP0YHfdhXHuasZkFSmK
+         MUXIaPejw4OLTO+fghaX2zwWK4DOX146KBaxSl9VPFk8YW3UuihkDhYIMCDcNMy+0AKs
+         qNJIFw60zcx4BVSKrB3KVypjj5MYzoag+W6kzp+LHJgS5kPKZMfm/5tSDWxBxDJG3RA4
+         XneQ==
+X-Gm-Message-State: AJIora+mTeHdE+QriEekbwNJWomAVTViv0oaJIil3Luu3eEUmBEOhVPs
+        BRg7b5dz7oati9BYt2FwXJJu7g==
+X-Google-Smtp-Source: AGRyM1vB/HqTaytz02KmlYA8Ek+qvhv/8UTLSXBXTA4S5wYxfLQzPyqczhCTI6ROkeXKd/0Msaq/cQ==
+X-Received: by 2002:a17:907:c26:b0:711:ca03:ab3c with SMTP id ga38-20020a1709070c2600b00711ca03ab3cmr5415388ejc.654.1656188007725;
+        Sat, 25 Jun 2022 13:13:27 -0700 (PDT)
 Received: from [192.168.0.239] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p23-20020a1709061b5700b0070e3f58ed5csm3001017ejg.48.2022.06.25.13.10.00
+        by smtp.gmail.com with ESMTPSA id m18-20020a170906235200b006fee16142b9sm2951162eja.110.2022.06.25.13.13.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Jun 2022 13:10:01 -0700 (PDT)
-Message-ID: <46ec1f38-dcbe-f87c-4f37-999d24eec522@linaro.org>
-Date:   Sat, 25 Jun 2022 22:10:00 +0200
+        Sat, 25 Jun 2022 13:13:27 -0700 (PDT)
+Message-ID: <eaf2fda8-0cd6-b518-10cb-4e21b5f8c909@linaro.org>
+Date:   Sat, 25 Jun 2022 22:13:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: firmware: qcom-scm: convert to dtschema
+Subject: Re: [PATCH v5 1/9] dt-bindings: usb: Add Type-C switch binding
 Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>,
-        David Heidelberg <david@ixit.cz>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20220623182542.1116677-1-robimarko@gmail.com>
- <26cdc24c-e0e8-1059-f6ca-11c08615eeca@linaro.org>
- <CAOX2RU7aEaBt_PYS2UA6BES+dJgx4n2QPHJ6yWYWZuTt2SLXoA@mail.gmail.com>
+To:     Prashant Malani <pmalani@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        bleung@chromium.org, heikki.krogerus@linux.intel.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Pin-Yen Lin <treapking@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Xin Ji <xji@analogixsemi.com>
+References: <20220622173605.1168416-1-pmalani@chromium.org>
+ <20220622173605.1168416-2-pmalani@chromium.org>
+ <CAE-0n51kcr3VGdR2Kf8j1JaBbLcCmWo9GYhhvkUQ4+jn2iEKLg@mail.gmail.com>
+ <CACeCKac4eL9++QwbDBKrVTpUzhes=WczqZfh+cFiVgoO4py4MQ@mail.gmail.com>
+ <CAE-0n51E1TLMRNWnqiV-jU_qg15BF4D6A+0G1y1SRTu1zNs2Dg@mail.gmail.com>
+ <CACeCKacGZFY-_yn1R33OVcsdG47oqNTGBA43L5hrH2zyhK=cRw@mail.gmail.com>
+ <CAE-0n53i90ZUFSmrR=ScXtMdn_bWPY49WWTf9LXbxu_udGgP9w@mail.gmail.com>
+ <CACeCKaffqb6v7TFji2u00VSQ=DGvRe-gcxMnAEbZCC1qtDZF6A@mail.gmail.com>
+ <CAE-0n51AYqr4wcD-JaVaTYjFgxCj+iX+xAYKCrZCqGHE2XEUgA@mail.gmail.com>
+ <CACeCKad_vB+cHzwkBrvi90u7mBmJbk=YuecOwsp1xexYUiq-_A@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAOX2RU7aEaBt_PYS2UA6BES+dJgx4n2QPHJ6yWYWZuTt2SLXoA@mail.gmail.com>
+In-Reply-To: <CACeCKad_vB+cHzwkBrvi90u7mBmJbk=YuecOwsp1xexYUiq-_A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,35 +106,216 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/06/2022 10:50, Robert Marko wrote:
-> On Fri, 24 Jun 2022 at 11:52, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+On 24/06/2022 23:41, Prashant Malani wrote:
+> On Fri, Jun 24, 2022 at 12:50 PM Stephen Boyd <swboyd@chromium.org> wrote:
 >>
->> On 23/06/2022 20:25, Robert Marko wrote:
->>> Convert bindings for Qualcomm SCM to dtschema.
+>> Quoting Prashant Malani (2022-06-23 19:48:04)
+>>> On Thu, Jun 23, 2022 at 7:13 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>>>>
+>>>> Quoting Prashant Malani (2022-06-23 17:35:38)
+>>>>> On Thu, Jun 23, 2022 at 4:14 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>>>>>>
+>>>>>> I'm not aware of any documentation for the dos and don'ts here. Are
+>>>>>> there any examples in the bindings directory that split up a device into
+>>>>>> subnodes that isn't in bindings/mfd?
+>>>>>
+>>>>> usb-c-connector [3] and its users is an example.
+>>>>
+>>>> What are the subnodes? The graph ports? That is not what I meant.
 >>>
->>> SoC compatibles that were used, but not documented were added.
->>>
->>> Signed-off-by: Robert Marko <robimarko@gmail.com>
+>>> cros-ec-typec [4] uses subnodes of usb-c-connector. Chrome OS DTs
+>>> use the ports from the included usb-c-connector to switching hardware.
 >>
->> This was already submitted:
->> https://lore.kernel.org/all/20211218194038.26913-1-david@ixit.cz/
+>> Ok, got it. usb-c-connector nodes are children of the typec controller
+>> (in this case cros-ec-typec) because otherwise we would need to make a
+>> phandle link from the usb-c-connector node(s) under the root node / to
+>> the typec controller. The phandle link may need to be done in both
+>> directions, so it makes more sense to put the usb-c-connector nodes
+>> underneath the typec controller to express the direct relationship
+>> between the typec controller and the usb-c-connectors.
+>>
+>> Furthermore, the usb-c-connector is not integrated as part of the EC in
+>> the same package. There is a discrete part placed on the board that
+>> corresponds to the usb-c-connector and that is separate from the EC. The
+>> connectors are in essence only controllable through the EC because
+>> that's the typec controller.
 > 
-> Hi Krzysztof,
-> I was not aware there was already a version sent, just used linux-next
-> as the base
-
-
-lore and "dfn" keyword. Several people are working on Qualcomm bindings,
-so that's the only way to check it.
-
-> and it wasn't there so I assumed, will search through the archives next time.
+> From the perspective of the AP, the `usb-c-connector` *is* an integrated part of
+> the Chrome EC; there is no alternative way to control it except
+> through the Chrome EC.
+> So the above example reinforces the usage model for typec-switch (which is
+> also an "integrated" component).
 > 
-> Anyway, that attempt looks abandoned.
+>> It's similar to how we place i2c devices as
+>> child nodes of the i2c controller.
+>>
+>>>
+>>>> I meant splitting up a device functionality, like type-c and display
+>>>> bridge, into subnodes. Composition of devices through DT bindings isn't
+>>>> how it's done. Instead, we dump all the different functionality into the
+>>>> same node. For example, look at the number of bindings that have both
+>>>> #clock-cells and #reset-cells, when those are distinct frameworks in the
+>>>> kernel and also different properties. We don't make subnodes to contain
+>>>> the different functionality of a device.
+>>>>
+>>>> And in this case I still don't see the point to making a subnode.
+>>>
+>>> I've already provided my best effort at explaining the rationale.
+>>>
+>>>> The
+>>>> API can simply setup a type-c switch based on a graph binding for the
+>>>> toplevel node, e.g. the drm-bridge, and the driver can tell the API
+>>>> which port+endpoint to use to search the graph for the usb-c-connector
+>>>> to associate with the switch.
+>>>
+>>> OK, drm-bridge uses that approach. This is another approach. I didn't fully
+>>> understand why we *have* to follow what drm-bridge is doing.
+>>>
+>>>> We don't need to connect the graph within
+>>>> the drm-bridge node to the graph within the typec-switch node to do
+>>>> that. That's an internal detail of the drm-bridge that we don't expose
+>>>> to DT, because the driver knows the detail.
+>>>
+>>> I still don't understand why we can't do that. These devices have actual
+>>> hardware blocks that represent the Type-C switch functionality.
+>>>
+>>
+>> We don't break up device functionality for an IC into different subnodes
+>> with different compatibles. Similarly, we don't describe internal
+>> connection details of device nodes. The device driver that binds to the
+>> compatible should know the details of the internal block diagram of the
+>> part.
+> 
+> I don't completely agree with the above. There
+> is scope for middle-ground where some details can be codified into
+> DT bindings, and the driver can have the flexibility to be able to handle them.
+> But this now devolves into an ideological debate which I don't want
+> to get involved in, so I will restrict my responses on this subject.
+> 
+>> The DT binding should describe the external connections of the
+>> part and have properties that inform the driver about how the part was
+>> integrated into the system (e.g. mode-switch). The unwritten DT mantra
+>> is "less is more".
+>>
+>> We could definitely make many subnodes and add properties for everything
+>> inside an IC so that the DT describes the complete block diagram of the
+>> part, but at that point the driver is a shell of its former self.
+> 
+> That is a pathological/extreme argument which is not the case here,
+> we're just adding 1 sub-node because it's a sub-component that interfaces
+> with a kernel framework (Type-C class etc). The driver should be able to deal
+> with varying hardware configurations for the device and I don't believe that
+> makes it a "shell of its former self" any more than hard-coding port
+> details in the driver.
+> 
+>> The driver will spend time parsing properties to learn details that are
+> 
+> This parsing only occurs 1 once at probe, so I don't consider it much
+> of an overhead. The alternative suggested leads to the driver using time
+> looking up OF ports (with the port number). I fail to see how either is
+> noticeably more efficient than the other, especially on modern systems.
+> 
+>> entirely unchanging for the lifetime of the device (e.g. that the device
+>> has typec switch capabilities); things that should be hard-coded in the
+>> driver.
+>>
+>> Of course, if the device is integrated into the system and doesn't need
+>> to perform typec switching, then we want a property to tell the driver
+>> that this device is integrated in a way that the typec switch is not
+>> needed/used. Basically the driver should key that functionality off of
+>> the presence of the 'mode-switch' or 'orientation-switch' property
+>> instead of off the presence of a typec-switch subnode.
+>>
+>>>>>
+>>>>>>
+>>>>>> How would I even know which two differential pairs correspond to port0
+>>>>>> or port1 in this binding in the ITE case?
+>>>>>
+>>>>> Why do we need to know that? It doesn't affect this or the other
+>>>>> driver or hardware's
+>>>>> functioning in a perceivable way.
+>>>>
+>>>> If the device registers allow control of the DP lane to physical pin
+>>>> mapping, so that DP lane0 and DP lane1 can be swapped logically, then
+>>>> we'll want to know which DP lanes we need to swap by writing some lane
+>>>> remapping register in the device. Sometimes for routing purposes devices
+>>>> support this lane remapping feature so the PCB can route the lines
+>>>> directly to the connector instead of going in circles and destroying the
+>>>> signal integrity.
+>>>
+>>> Then add more end-points to port@1 (for each differential pair
+>>> you want to describe) of the usb-c-connector and route them
+>>> to the typec-switch accordingly.
+>>> FWIW I'm not aware of h/w *that supports DP alt mode* that uses the
+>>> functionality
+>>> you're referring to.
+>>>
+>>
+>> The Qualcomm QMP usb+dp phy supports lane remapping.
+> 
+> Ok great. So we can follow the method described above for specifying these
+> differential pairs if required. That is not related to this patch
+> series (although it is compatible
+> with it).
+> 
+>>
+>>>>
+>>>>>
+>>>>>> Is that why you're proposing this binding? To
+>>>>>> avoid describing a graph binding in the usb-c-connector and effectively
+>>>>>> "pushing" the port count up to the mux?
+>>>>>
+>>>>> No, that is not the intention behind this series. The
+>>>>> 'usb-c-connector' still needs the
+>>>>> graph binding to the `typec-switch`. SBU, HS and SS lanes might have different
+>>>>> muxes altogether (usb-c-connect has separate ports for SBU, HS and SS lanes)
+>>>>
+>>>> If the usb-c-connector still needs a graph binding to the typec-switch
+>>>> then why isn't that part of this series?
+>>>
+>>> That's not what I meant (what I meant earlier is the intention is not
+>>> what you stated).
+>>> I simply meant that the usb-c-connectors ports should be connected to
+>>> the typec-switch
+>>> ports. There isn't any binding update required for this.
+>>>
+>>
+>> Ok. Got it.
+> 
+> This really is a limited binding change that helps describe connections
+> between Type-C components, helps these components integrate with
+> the kernel Type-C framework, and consolidates the associated properties.
+> I believe it works for most current use cases in the upstream kernel.
+> 
+> I'm happy to discuss more theoretical use cases further, but
+> respectfully, I prefer to do
+> so off-list.
+> 
+> If the maintainer is OK with it (Krzysztof has reviewed it, but I
+> don't want to presume
+> what the protocol is for patches in this subsystem), and we've
+> provided 2 users as asked for
 
-Let's give few days to David to respond and to re-submit. If he does, I
-am for FIFO approach. If David does not resubmits, then check the review
-he got to be sure there is no need for same feedback.
+Although I reviewed it, but Stephen has legitimate concerns and they
+should be addressed.
+
+I guess Rob's feedback would be valuable here as well.
+
+I think it would help if you articulated the exact problem, because
+there is a quite a discussion. Do I understand correctly that the
+bindings mimic USB connector and this is not appropriate for this type
+of a device?
+
+Or maybe this should not be represented in DT at all?
+
+> in v4 [5], then I request its consideration for submission.
+> If the maintainers have further concerns, we'd be happy to address them.
+> 
+> Best regards,
+> 
+> -Prashant
+> 
+> [5] https://lore.kernel.org/linux-usb/20220616193424.GA3844759-robh@kernel.org/
 
 
 Best regards,
