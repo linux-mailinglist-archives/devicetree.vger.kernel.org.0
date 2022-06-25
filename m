@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D57D55A97D
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 13:39:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3842655A983
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 13:39:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232661AbiFYLhQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 07:37:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56480 "EHLO
+        id S232285AbiFYLhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jun 2022 07:37:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232077AbiFYLhP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 07:37:15 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 530B616586
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 04:37:14 -0700 (PDT)
+        with ESMTP id S232671AbiFYLhU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 07:37:20 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CF0516586
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 04:37:19 -0700 (PDT)
 Received: from localhost.localdomain ([37.4.249.155]) by
  mrelayeu.kundenserver.de (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MbBQU-1nXwGa3TTc-00bemk; Sat, 25 Jun 2022 13:37:00 +0200
+ id 1N0WLC-1nhkPh1V1Y-00wTxi; Sat, 25 Jun 2022 13:37:01 +0200
 From:   Stefan Wahren <stefan.wahren@i2se.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>,
         Ray Jui <rjui@broadcom.com>,
@@ -28,96 +28,191 @@ Cc:     Peter Robinson <pbrobinson@gmail.com>,
         bcm-kernel-feedback-list@broadcom.com,
         Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Rob Herring <robh@kernel.org>,
         Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH V4 00/11] soc: bcm2835-power: Prepare BCM2711 V3D support
-Date:   Sat, 25 Jun 2022 13:36:08 +0200
-Message-Id: <20220625113619.15944-1-stefan.wahren@i2se.com>
+Subject: [PATCH V4 01/11] dt-bindings: soc: bcm: bcm2835-pm: Convert bindings to DT schema
+Date:   Sat, 25 Jun 2022 13:36:09 +0200
+Message-Id: <20220625113619.15944-2-stefan.wahren@i2se.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220625113619.15944-1-stefan.wahren@i2se.com>
+References: <20220625113619.15944-1-stefan.wahren@i2se.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:44spOXJIxwmdBxWwS17OT5K0ONHn+LJ+gmM4CIy3bLktx8S20XU
- cXCatCCoW4Uiu9ZU+tH71/GgESVS6RPhvJqtfnNYg0lbdhkVisODiDXZaHT5cvFLiCoEIK4
- kW1LHrAuGNnKeAYOpCMkTd3QR0oXZg/Mtwyisd96oRckcd0gaLZ7uSuSbEdvlcCzjx0KzLl
- d1BxgE0C877xzEY0qC1eg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:eGrdUFM9nuY=:1hQad5Ij8LZ43sWy/A46K7
- P9v6yGVLgZ62lptIaFTRJfgjcxzzzJ5h/OhTAulBGLn3VsHkOTv9n3Tb6MDihd1oLGEuHYmgx
- moO9g0i8y2vSekk7G473zgEBKxNxApViZR9DbGFFlX3eu5wEjVUcEWSNn7t6TpLkLZrplPzNW
- jrpJ578rUHGqvojrJGzTGAl60IyabnRvJ+2okg8yxx5n4BKr0Jh6ZUH7GnvX6Ccjbrkx5rge1
- KujGasejbuqebla2SO/FJ+7Ot3WMLsCLrpg1HYfPccZlarbsB2Rh/KFpyMofa0b2ZGLp/RGeZ
- AjIAcvgVMN8qMJ7pg1+yW2+MXx9ELJK7F3Hr1Wo3lK3GAbLZylYF+NppbBx2jydbm1m7VMYJf
- AVSESc//b32OzlIpwekX1INo9xm3DXxV28/JI4JNr+tUDbOZgNYILhGodY3QCIxzIx8Cs5AyY
- Wbd2i81typdnfKVXm33pNx3tLNoEDXq4Dk7OMVi2Ik64jEL1l6E5Hcmp2IlrXgrrK8t3ZtyEj
- hfn1l8wRBpLIdkZh8z7HXvhz2aNAWdHTOZBAfXDjhmVbuRZjLOTV6f1Jkg4GHJGtwsGEFT1Lj
- bWeE0sUU9yiUthAnZtAeEgTcsqmVJgzxxhBoPHICCpB4fO1gvOjn6xkv6SOvGJmhiTJcz0Nil
- b3tXG7GGWX+IJaJ5iukMvyCG/8WmxErfn7QyqcVRA8DeztDMTNS7EjHBz0bUGxKos2QmWPQ62
- ZuXGInlvsNppuI9K1ttJrsO2wlhvFBYSc/9FU+uPizUOiEZEjwaDMtaJiO0=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Provags-ID: V03:K1:msqBF+QLUnnWMtPx4/p2yPn6zghKFQymebuRS3n1XDjJk9nJka1
+ r23Yv4ORbKSnV6PQGsKet8GpXQPvYvQryamimaSaHjVWC8qLpw+iIsdFoqsYmEShQ+Jsdlr
+ H6yIl3EDxyIghzMni95c8Y0puDJoPL+W9JpEvxosem55CvbQV16R+3FfH0Y5Dzu81ME04x3
+ PXtVyyvEHEtXMLAx26FwA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Ez0nIWd3UkI=:wNuRCL4PzCgqB9H2uGFa98
+ dBucIhFpQbvsjehK3nxW3b1Ot5stpY2Z+NtV8tXQx/UJXLSf41zUHe/40BwU+mi5XfPHtjpmA
+ uCikDAlMiOhsIK8FX3uFOVTh/AWOSsRbzFj12FAyKt75YNSXZra21LlYfkukNmbOlo/q9foZm
+ vkXxUbEAjx6fHJZijitP+VO8XcRIcYVkkrcvcpyy8M5C/4hxSrcRfsf3g5jRe2yobW9tG6bXr
+ rnVvuCjkJVa9Mdba6ksJFQGwSLsqIrO0U91TVC7YIDSGPkh+s3go2/OD1yEQPG1UuEJ+VKJGd
+ gz2I5A/oWBY2y7hh+6j02O8QNGmp1mbBr/w1pkXaTvwe4VeHGuWGUPfAAPZxc9gSDPxL3UB+h
+ 5U7LMVBXFHcjyXIPKAhchqxFK/DCpvN8Mlv4gL5/j7r9wbasErBjAA4ZSLO8zGMyItR2I2kgR
+ Oi9+eeIj1OKYlcGzW+a5cj+mmCW3JRI8xmV9xAbasAit8OACqAKN58dVQOZNfIJfGdlzxOGds
+ Uqiu1nYTYN/2EhfqVZ2h+go2j7k3TxLiQXBJYq29vUF6JXSID/ebk5zdffHWEysVIP23Aykwh
+ tbwBiYI/uaI+vRoqlBUODCiClyQEOvm+QgTmIRZZqhKmGCb/xH4O/DgkC49gUwmJds2FGxfMT
+ wift5pKuCkCS7fUB/qJjW/3BhVdXrJEJoEZF3TQ2mbMPBcPf6TOwzm0qRaO2sk5XsZ4U29Ysl
+ /QHmT+ICFrEDQdoAFsus0+G1KSyubHFcR8ix5sNePWn1Pyge0uPGcUBWK3o=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series is a split out of version 4 - Raspberry PI 4 V3D enablement send
-by Peter Robinson [1]. It attempts to enable BCM2711 V3D support for the
-power management driver. It's a rework of the less controversial changes
-(excluding V3D GPU driver changes) so this can be reviewed and applied faster.
+From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 
-Changes in V4:
-- refactor bcm2835_pm_get_pdata to be easier to read
-- remove DT runtime checks and rely on DT schema as suggested by Lee
-- fix comment style as found by Lee
+This converts the brcm,bcm2835-pm bindings from text to proper schema.
 
-Changes in V3:
-- add more Reviewed-by by Peter
-- fix minItems in Patch #3 found by Rob
-
-Changes in V2:
-- add Peter's Reviewed-by
-- simplify schema for rpivid_asb as suggested by Rob
-- fix reference and clarify fallback & error handling in patch #7
-- drop unnecessary newline in patch #9
-- improve log messages as noticed by Peter
-
-Changes since the mention series:
-- fix DT schema errors
-- make rpivid_asb register optional in DT schema
-- avoid code duplication in BCM2835 ASB enable/disable
-- rework ASB V3D handling so we don't need the V3D flag
-- avoid log errors for optional register
-- use a define for expected ASB_AXI_BRDG_ID result
-- fix copy & paste issues in bcm2835-pm changes
-
-[1] - https://patchwork.kernel.org/project/linux-arm-kernel/cover/20220213225646.67761-1-pbrobinson@gmail.com/
-
-Nicolas Saenz Julienne (6):
-  dt-bindings: soc: bcm: bcm2835-pm: Convert bindings to DT schema
-  dt-bindings: soc: bcm: bcm2835-pm: Introduce reg-names
-  ARM: dts: bcm2835/bcm2711: Introduce reg-names in watchdog node
-  ARM: dts: bcm2711: Use proper compatible in PM/Watchdog node
-  mfd: bcm2835-pm: Use 'reg-names' to get resources
-  soc: bcm: bcm2835-power: Bypass power_on/off() calls
-
-Stefan Wahren (5):
-  dt-bindings: soc: bcm: bcm2835-pm: Add support for bcm2711
-  mfd: bcm2835-pm: Add support for BCM2711
-  soc: bcm: bcm2835-power: Refactor ASB control
-  soc: bcm: bcm2835-power: Resolve ASB register macros
-  soc: bcm: bcm2835-power: Add support for BCM2711's RPiVid ASB
-
- .../bindings/soc/bcm/brcm,bcm2835-pm.txt      | 46 ----------
- .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 86 +++++++++++++++++++
- arch/arm/boot/dts/bcm2711.dtsi                |  3 +-
- arch/arm/boot/dts/bcm2835-common.dtsi         |  1 +
- drivers/mfd/bcm2835-pm.c                      | 74 +++++++++++-----
- drivers/soc/bcm/bcm2835-power.c               | 72 ++++++++++------
- include/linux/mfd/bcm2835-pm.h                |  1 +
- 7 files changed, 192 insertions(+), 91 deletions(-)
+Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+---
+ .../bindings/soc/bcm/brcm,bcm2835-pm.txt      | 46 -----------
+ .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 77 +++++++++++++++++++
+ 2 files changed, 77 insertions(+), 46 deletions(-)
  delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
  create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
 
+diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
+deleted file mode 100644
+index 72ff033565e5..000000000000
+--- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
++++ /dev/null
+@@ -1,46 +0,0 @@
+-BCM2835 PM (Power domains, watchdog)
+-
+-The PM block controls power domains and some reset lines, and includes
+-a watchdog timer.  This binding supersedes the brcm,bcm2835-pm-wdt
+-binding which covered some of PM's register range and functionality.
+-
+-Required properties:
+-
+-- compatible:		Should be "brcm,bcm2835-pm"
+-- reg:			Specifies base physical address and size of the two
+-			  register ranges ("PM" and "ASYNC_BRIDGE" in that
+-			  order)
+-- clocks:		a) v3d: The V3D clock from CPRMAN
+-			b) peri_image: The PERI_IMAGE clock from CPRMAN
+-			c) h264: The H264 clock from CPRMAN
+-			d) isp: The ISP clock from CPRMAN
+-- #reset-cells: 	Should be 1.  This property follows the reset controller
+-			  bindings[1].
+-- #power-domain-cells:	Should be 1.  This property follows the power domain
+-			  bindings[2].
+-
+-Optional properties:
+-
+-- timeout-sec:		Contains the watchdog timeout in seconds
+-- system-power-controller: Whether the watchdog is controlling the
+-    system power.  This node follows the power controller bindings[3].
+-
+-[1] Documentation/devicetree/bindings/reset/reset.txt
+-[2] Documentation/devicetree/bindings/power/power-domain.yaml
+-[3] Documentation/devicetree/bindings/power/power-controller.txt
+-
+-Example:
+-
+-pm {
+-	compatible = "brcm,bcm2835-pm", "brcm,bcm2835-pm-wdt";
+-	#power-domain-cells = <1>;
+-	#reset-cells = <1>;
+-	reg = <0x7e100000 0x114>,
+-	      <0x7e00a000 0x24>;
+-	clocks = <&clocks BCM2835_CLOCK_V3D>,
+-		 <&clocks BCM2835_CLOCK_PERI_IMAGE>,
+-		 <&clocks BCM2835_CLOCK_H264>,
+-		 <&clocks BCM2835_CLOCK_ISP>;
+-	clock-names = "v3d", "peri_image", "h264", "isp";
+-	system-power-controller;
+-};
+diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+new file mode 100644
+index 000000000000..5d1ff0f6c8ce
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+@@ -0,0 +1,77 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/soc/bcm/brcm,bcm2835-pm.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: BCM2835 PM (Power domains, watchdog)
++
++description: |
++  The PM block controls power domains and some reset lines, and includes a
++  watchdog timer.
++
++maintainers:
++  - Nicolas Saenz Julienne <nsaenz@kernel.org>
++
++allOf:
++  - $ref: ../../watchdog/watchdog.yaml#
++
++properties:
++  compatible:
++    items:
++      - const: brcm,bcm2835-pm
++      - const: brcm,bcm2835-pm-wdt
++
++  reg:
++    items:
++      - description: PM registers
++      - description: ASB registers
++
++  "#power-domain-cells":
++    const: 1
++
++  "#reset-cells":
++    const: 1
++
++  clocks:
++    minItems: 4
++    maxItems: 4
++
++  clock-names:
++    items:
++      - const: v3d
++      - const: peri_image
++      - const: h264
++      - const: isp
++
++  system-power-controller:
++    type: boolean
++
++  timeout-sec: true
++
++required:
++  - compatible
++  - reg
++  - "#power-domain-cells"
++  - "#reset-cells"
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/bcm2835.h>
++
++    watchdog@7e100000 {
++        compatible = "brcm,bcm2835-pm", "brcm,bcm2835-pm-wdt";
++        #power-domain-cells = <1>;
++        #reset-cells = <1>;
++        reg = <0x7e100000 0x114>,
++              <0x7e00a000 0x24>;
++        clocks = <&clocks BCM2835_CLOCK_V3D>,
++               <&clocks BCM2835_CLOCK_PERI_IMAGE>,
++               <&clocks BCM2835_CLOCK_H264>,
++               <&clocks BCM2835_CLOCK_ISP>;
++        clock-names = "v3d", "peri_image", "h264", "isp";
++        system-power-controller;
++    };
 -- 
 2.25.1
 
