@@ -2,122 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE66E55A622
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 04:44:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1B0255A668
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 05:41:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232129AbiFYCkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 22:40:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57214 "EHLO
+        id S231869AbiFYD2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 23:28:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232140AbiFYCkG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 22:40:06 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E2760E16;
-        Fri, 24 Jun 2022 19:40:06 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id a11-20020a17090acb8b00b001eca0041455so6465955pju.1;
-        Fri, 24 Jun 2022 19:40:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=HDcuGmdEJPjYJ8xyZzVCZ34wGorcrWsLrP0TcStyIDc=;
-        b=H8Fg5efefLr38e5HBlnt8y+P6HIRWd5N8+heYgU29UAjguRYsuoZkhH6oG2mjAlg6z
-         /WtmeRQQRRJafhqAHkQjmSaX0JrxoWwFLSOIMrhYChW+ehWgt3JESegQ0XX0jGpKqCEK
-         vAyIGAq0cf9NJH0rVqcgrRjX0+Y5rLyVBv80gCNltXc7GRX8lkpdG02xAtLKm0xygXwR
-         HBOJ256W6P8smV74nif5aCk4QGHoUr0kTktnB2aSqhOHdqD7jQpptUBdU1dndkw2zHq9
-         aCfd77WepwECJkV/W0HqF7Ov0aRx1fqQC62i3U3Svum2dNDUvRlHr39IQ7vn8JtAihEt
-         X+nA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=HDcuGmdEJPjYJ8xyZzVCZ34wGorcrWsLrP0TcStyIDc=;
-        b=KXuoR/LREZiu+gRzNmqXlheS78B4+vR3+2vEmuXNS8Gmt3p+7GR1oyY6aM1YvUAmZY
-         IbQ3YimNCi+YN53de0NJfKg+INEIREe/VWljNFw+wjPZa4rr3nLsZ2KdSSrVuEIxlV+z
-         jljhDDbffQrLngy9ZMSoxGfLt+wredPQ7oalUVX/9GtXSRUU85AHJFnXKP7BGOIqCEwa
-         zKdfxohE/u6I+TL4kiyEa7ClLHY/ooIcFWVBWOZCQbhq3YGoMJi3vcv6XI5WZMkhyxOr
-         Q/+FdD2be15ZIzG6+Wom8J3OAF/xx+QkDkuPAYWqNO1Mt7Z6chX5k+tCeGO1jRCLUblG
-         FbEA==
-X-Gm-Message-State: AJIora+bCA+A2LLn8dA3kUOec09xI1RoGwfYle+CieXjW/n0smsAv7Wb
-        D/AP4YKi27q3XUs34bZchUQ=
-X-Google-Smtp-Source: AGRyM1tOBmd4L43N9HbayQSoq747LhviG51zoGht0eLNqkVxb7H0EzM9XOSN1cvmX+UFsdXxr98SSQ==
-X-Received: by 2002:a17:902:ef8f:b0:16a:728b:795d with SMTP id iz15-20020a170902ef8f00b0016a728b795dmr2251632plb.84.1656124805583;
-        Fri, 24 Jun 2022 19:40:05 -0700 (PDT)
-Received: from ?IPV6:2600:8802:b00:4a48:edae:5ad3:3d10:1075? ([2600:8802:b00:4a48:edae:5ad3:3d10:1075])
-        by smtp.gmail.com with ESMTPSA id i16-20020a17090a7e1000b001e2afd35791sm2523536pjl.18.2022.06.24.19.40.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jun 2022 19:40:05 -0700 (PDT)
-Message-ID: <475ea399-5bdf-1c71-5e10-8c7b201212ba@gmail.com>
-Date:   Fri, 24 Jun 2022 19:40:03 -0700
+        with ESMTP id S229520AbiFYD2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 23:28:42 -0400
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D632F3DA7A;
+        Fri, 24 Jun 2022 20:28:41 -0700 (PDT)
+Received: from [192.168.86.247] (23-119-123-228.lightspeed.sntcca.sbcglobal.net [23.119.123.228])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 7234E20C7956;
+        Fri, 24 Jun 2022 20:28:40 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 7234E20C7956
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1656127721;
+        bh=JQrEV25Qq2xdPblGSoG19vTOK76ID9Ode4ej2R5wAh8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=OspP72b4TUDmYtGZoMOvxPICki6wwW3eHAaAo/JIHK4PRJagLc+N0v38EbMeQQMHE
+         GQmbi9VPrzmjZCQgEKjbZsfSqFXD6mjNCv52DKX+35DahzdvBxkqCAPz007w9QwIYP
+         Ov8ZnP1gQaUxChSEwjmi+22z47+4jZ4M51gTFSp4=
+Message-ID: <3dde4d8e-5f97-dc07-1763-981942d23f12@linux.microsoft.com>
+Date:   Fri, 24 Jun 2022 20:28:39 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH net-next v9 15/16] ARM: dts: r9a06g032-rzn1d400-db: add
- switch description
+Subject: Re: [PATCH v4 0/5] Add Aspeed crypto driver for hardware acceleration
 Content-Language: en-US
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
+To:     Neal Liu <neal_liu@aspeedtech.com>,
+        Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
         "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?Q?Miqu=c3=a8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-References: <20220624144001.95518-1-clement.leger@bootlin.com>
- <20220624144001.95518-16-clement.leger@bootlin.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220624144001.95518-16-clement.leger@bootlin.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Dhananjay Phadke <dhphadke@microsoft.com>,
+        Johnny Huang <johnny_huang@aspeedtech.com>
+Cc:     devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        BMC-SW@aspeedtech.com, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220624090827.3909179-1-neal_liu@aspeedtech.com>
+From:   Dhananjay Phadke <dphadke@linux.microsoft.com>
+In-Reply-To: <20220624090827.3909179-1-neal_liu@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Neal,
 
-
-On 6/24/2022 7:40 AM, Clément Léger wrote:
-> Add description for the switch, GMAC2 and MII converter. With these
-> definitions, the switch port 0 and 1 (MII port 5 and 4) are working on
-> RZ/N1D-DB board.
+On 6/24/2022 2:08 AM, Neal Liu wrote:
+> Aspeed Hash and Crypto Engine (HACE) is designed to accelerate the
+> throughput of hash data digest, encryption and decryption.
 > 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
-> ---
+> These patches aim to add Aspeed hash & crypto driver support.
+> The hash & crypto driver also pass the run-time self tests that
+> take place at algorithm registration.
+> 
+> Tested-by below configs:
+> - CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
+> - CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
+> - CONFIG_DMA_API_DEBUG=y
+> - CONFIG_DMA_API_DEBUG_SG=y
+> - CONFIG_CPU_BIG_ENDIAN=y
+> 
+> Change since v3:
+> - Use dmam_alloc_coherent() instead to manage dma_alloc_coherent().
+> - Add more error handler of dma_prepare() & crypto_engine_start().
+> 
+> Change since v2:
+> - Fix endianness issue. Tested on both little endian & big endian
+>    system.
+> - Use common crypto hardware engine for enqueue & dequeue requests.
+> - Use pre-defined IVs for SHA-family.
+> - Revise error handler flow.
+> - Fix sorts of coding style problems.
+> 
+> Change since v1:
+> - Add more error handlers, including DMA memory allocate/free, DMA
+>    map/unmap, clock enable/disable, etc.
+> - Fix check dma_map error for config DMA_API_DEBUG.
+> - Fix dt-binding doc & dts node naming.
+> 
+> 
+> Neal Liu (5):
+>    crypto: aspeed: Add HACE hash driver
+>    dt-bindings: clock: Add AST2600 HACE reset definition
+>    ARM: dts: aspeed: Add HACE device controller node
+>    dt-bindings: crypto: add documentation for aspeed hace
+>    crypto: aspeed: add HACE crypto driver
 
-[snip]
+The driver claims compatible with aspeed,ast2500-hace, but there's no
+equivalent g5 DTS change (patch 3/5) or reset definition (patch 2/5) in
+aspeed-clock.h? Either drop ast2500 compatible from this patch series or 
+fix these.
 
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pins_mdio1>, <&pins_eth3>, <&pins_eth4>;
-> +
-> +	dsa,member = <0 0>;
-
-Does not hurt to have it, but not required at this point. Not a reson to 
-spin a v10 though:
-
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+Thanks,
+Dhananjay
