@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62E2055AC65
+	by mail.lfdr.de (Postfix) with ESMTP id CE24155AC66
 	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 22:12:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233511AbiFYUHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 16:07:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41842 "EHLO
+        id S233490AbiFYUKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jun 2022 16:10:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233495AbiFYUHx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 16:07:53 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF0C14D02
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:07:50 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id fi2so11210721ejb.9
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:07:50 -0700 (PDT)
+        with ESMTP id S233409AbiFYUKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 16:10:04 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44CFEBE28
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:10:03 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id o9so7807599edt.12
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:10:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=X+Lr3CyLHg8l+WoesZRIR4QxL5Y/Rc1xXhYNDNvStyI=;
-        b=IBoAZmceQvdZPXV/2l6M1n8oicyx4EqEU2jxFqPzYHocRD2KVno+pbt6uizvvb+2bJ
-         72Xz6eMz/tCB7CFgF9niLi3bSrXZ1Sp4FuT8ykA8Xd+fJml2AjZlS7lZ8Mv1A2E4idji
-         f+AJnHZI3YDuCUGlLAnkmxxG+h0i6aAp9rFQFdpXGg5BIG4d/2bPMTlzGW3fEkI3fQAZ
-         +bP6sw7KwEz6WImvC3TqD5fdAgcL1pcFqEsE3ET6huztcZH44kgWo57tki9xgXPfyyVW
-         kOrZuLf3Jwk0/0TKdUz84J16zWox7bpuyUsgSiMhgDPy1fdfytZwSkTdgQziILSw2/Mm
-         QdTw==
+        bh=/TRe8PPkrucrwsyUREwEITQi4+bjFLceMfzbAkZcbG0=;
+        b=CiU3XSV8upO14tCMCu3rQbOwKOED4tVHC7pKd8jZ7viQJDc9p8EbazI9ZG423jeGjq
+         qiiT9TCnQYAMtmzmipG2bK9sYDXRG/qv+BWcKlR2NpZEwBSdq8fezAEgf4Xok3QQQRx3
+         1lgk3AR9pxIwRBuyu8QMlEfPXJBDQD2io48ZeSCrF3OK53y6dmAB+Hb4ksYCyA7EvZEC
+         0HRYEXCGMP2wGJfFknw8cTJsgScOL51Ly3J7wBdWhR58YCe3saopw49P1JbJL2guD43J
+         6+QTZ6r1KCXqReHxj933InUTEznT7K/j27y5dLVak7JlYr1eINE6SjdXvdFYL2k/7t20
+         H53g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=X+Lr3CyLHg8l+WoesZRIR4QxL5Y/Rc1xXhYNDNvStyI=;
-        b=gW4S22af0V/mMYVIRI/zExplSJWQKtuh7tm+yL8YPrb3RrXXc5UXPwJPgX6XfWscKc
-         E4LVu47HeJ+MjSwu14n42ecB9zeZSHYMdGT04CP3y6Ll5eG01a4KPKMdBJBTQsLwJi+g
-         LOIKgzSpqsaATfmU6xXUlNxw8l1JNSRYUsifK/eYbBSTyKgzOIJFtMXYQxs3U3WDE2Gc
-         Fi6MHgHnxxh2vkdhxKRtA2H9++JCcgBIUBSkg3oW1AhU1z6jUMm99zG+JYsL4Kh3NV9T
-         w5AubY4Fi/h2e2yJE21yaFUC619J/wRdvwgaj0rJb32YAkN6ItE0eRYwuBT5gdJ/qqe9
-         fMKA==
-X-Gm-Message-State: AJIora8d+ItKcFSSH4koySZhP4F35zQ13j5OjOf3nCgjfyVlaB8GT2yz
-        9a5AwYM68GAMNEKA4CE0efRPGg==
-X-Google-Smtp-Source: AGRyM1uFK1aCJI0IKu+IECshTEhUPm544i46IeQzI6rca2B7aLaB2Qq1VQJblNRj3bbgkXG+E+r3mQ==
-X-Received: by 2002:a17:907:9816:b0:726:2b90:4bab with SMTP id ji22-20020a170907981600b007262b904babmr5331885ejc.544.1656187669249;
-        Sat, 25 Jun 2022 13:07:49 -0700 (PDT)
+        bh=/TRe8PPkrucrwsyUREwEITQi4+bjFLceMfzbAkZcbG0=;
+        b=kv8BqzvnghuZVWy7scuGXlvitJA12JhID6HpDrbQZ/DeZlaZOUpkXnoftdUUhdA/W6
+         Ee/Co+FpMhf8yB5PINrLBLdU8WkGxvSEVoMlbvLWAHHhkz3pwh6i3zi5XCkbI3iq5EiN
+         1vahFoRMy2JmVF0Hi/JTVM0fL1HIOiAvhPQYMrBHTx8JROIkeiqciFGwUeE/H5CAUL4L
+         8boU+nWGv9ojeT7TA2CBkO0+cs5v1t/lAAyteP68QOu+UKVqg/UsZw2A8LhEyQhCymNm
+         E4UUQci43mJuFETVWPC3hr1xW+y8IzSvM9/AC+Ii8fgBV0y8PRm8TYn1mboQplhtGyRL
+         Ww0w==
+X-Gm-Message-State: AJIora8GQyGWLpo5zRwyH8mCA/IHlpXuzneAYW/BA/UsD8+fynrmMFsg
+        s6mHPXBr8C0e5Ujxp77dtq48rw==
+X-Google-Smtp-Source: AGRyM1unaOf6CkbSeUN2QjTDqVjdaybkJc2p/Cqy8w+rraAvjGRsT2ODM6UG09B7qmtVXEKEbMwBEg==
+X-Received: by 2002:a05:6402:13cc:b0:435:557e:6325 with SMTP id a12-20020a05640213cc00b00435557e6325mr6735502edx.83.1656187801802;
+        Sat, 25 Jun 2022 13:10:01 -0700 (PDT)
 Received: from [192.168.0.239] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id v10-20020a50f08a000000b004357f88fcdcsm4642069edl.11.2022.06.25.13.07.48
+        by smtp.gmail.com with ESMTPSA id p23-20020a1709061b5700b0070e3f58ed5csm3001017ejg.48.2022.06.25.13.10.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Jun 2022 13:07:48 -0700 (PDT)
-Message-ID: <f542defa-3c87-a138-8bf1-4986c6bde832@linaro.org>
-Date:   Sat, 25 Jun 2022 22:07:47 +0200
+        Sat, 25 Jun 2022 13:10:01 -0700 (PDT)
+Message-ID: <46ec1f38-dcbe-f87c-4f37-999d24eec522@linaro.org>
+Date:   Sat, 25 Jun 2022 22:10:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
 Subject: Re: [PATCH] dt-bindings: firmware: qcom-scm: convert to dtschema
 Content-Language: en-US
-To:     Guru Das Srinagesh <quic_gurus@quicinc.com>,
-        Robert Marko <robimarko@gmail.com>
+To:     Robert Marko <robimarko@gmail.com>,
+        David Heidelberg <david@ixit.cz>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -65,16 +65,15 @@ Cc:     Andy Gross <agross@kernel.org>,
         Devicetree List <devicetree@vger.kernel.org>,
         open list <linux-kernel@vger.kernel.org>
 References: <20220623182542.1116677-1-robimarko@gmail.com>
- <20220624010103.GA23758@quicinc.com>
- <CAOX2RU7yKuV4i_9YRs9fx2DTTvAndWFFw3cYtQ3qFk9m1zZJVg@mail.gmail.com>
- <20220625015714.GA6675@quicinc.com>
+ <26cdc24c-e0e8-1059-f6ca-11c08615eeca@linaro.org>
+ <CAOX2RU7aEaBt_PYS2UA6BES+dJgx4n2QPHJ6yWYWZuTt2SLXoA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220625015714.GA6675@quicinc.com>
+In-Reply-To: <CAOX2RU7aEaBt_PYS2UA6BES+dJgx4n2QPHJ6yWYWZuTt2SLXoA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,34 +81,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/06/2022 03:57, Guru Das Srinagesh wrote:
-> On Jun 24 2022 10:50, Robert Marko wrote:
->> On Fri, 24 Jun 2022 at 03:01, Guru Das Srinagesh <quic_gurus@quicinc.com> wrote:
->>>
->>> On Thu, Jun 23, 2022 at 08:25:42PM +0200, Robert Marko wrote:
->>>
->>>> +
->>>> +description: |
->>> ...
->>>> +
->>>> +  '#reset-cells':
->>>> +    const: 1
->>>
->>> This isn't part of the original file - could you please explain why this is
->>> being added?
+On 25/06/2022 10:50, Robert Marko wrote:
+> On Fri, 24 Jun 2022 at 11:52, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> Yes, its not part of the original file, however I noticed that a lot of SCM
->> nodes were adding #reset-cells, and upon looking at the SCM code its
->> clear that it is being registered as a reset controller so #reset-cells are
->> appropriate.
+>> On 23/06/2022 20:25, Robert Marko wrote:
+>>> Convert bindings for Qualcomm SCM to dtschema.
+>>>
+>>> SoC compatibles that were used, but not documented were added.
+>>>
+>>> Signed-off-by: Robert Marko <robimarko@gmail.com>
 >>
->> However, since its not really being used via phandles #reset-cells did
->> not really matter, hence why I did not add them to be required,
->> this is something that DT guys can probably clarify.
+>> This was already submitted:
+>> https://lore.kernel.org/all/20211218194038.26913-1-david@ixit.cz/
 > 
-> Makes sense, ACK.
+> Hi Krzysztof,
+> I was not aware there was already a version sent, just used linux-next
+> as the base
 
-Please mention deviations from conversion in the commit msg.
+
+lore and "dfn" keyword. Several people are working on Qualcomm bindings,
+so that's the only way to check it.
+
+> and it wasn't there so I assumed, will search through the archives next time.
+> 
+> Anyway, that attempt looks abandoned.
+
+Let's give few days to David to respond and to re-submit. If he does, I
+am for FIFO approach. If David does not resubmits, then check the review
+he got to be sure there is no need for same feedback.
 
 
 Best regards,
