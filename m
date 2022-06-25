@@ -2,57 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0A0D55A5E1
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 03:33:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A358E55A5F0
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 03:57:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231600AbiFYBcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 21:32:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51018 "EHLO
+        id S230388AbiFYB5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 21:57:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231569AbiFYBcy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 21:32:54 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C78C45AFE;
-        Fri, 24 Jun 2022 18:32:51 -0700 (PDT)
-Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id CAEED84472;
-        Sat, 25 Jun 2022 03:32:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1656120769;
-        bh=XORlzyHvsaFZp8TCn7dgYyIVqomD81V6Jj80HNYGlV4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bOoS0abhEwCRsRNKEsYQfXkbX1MTIDopQV9BOPB0NG+r2L215l7hrAD15rmoadZJd
-         2LZFdU8HNZzoAXkTbhFMCaLwrA1nosRbqLsygx7fcbacfbw+KAotoyLqeLiAFtUUML
-         tOVXbYd6qye+9bTztct26NqeyB9ZHLb7HNiQJzbq2orAkddqq/RmkInYFYdMi8mXYp
-         o66NxwIx47zxFO+Iq2xOdl/Re5vow1PtLxFgfjD3Th3u/rzOY0jeUquN2Ky9N81tVo
-         MqkFpq+1QxR5G/GqJgheBef6J73vpgLEw5bgBdGYMdZ2Rd7YP2C5Rx3RjTb9pukt0L
-         7KAgDEdLVU5wQ==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-clk@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Rob Herring <robh@kernel.org>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S229520AbiFYB5R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 21:57:17 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5414D51E52;
+        Fri, 24 Jun 2022 18:57:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1656122236; x=1687658236;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9SWAe/gPW+o7A+E1CI50enYZzx1mTK47iGojpYjytnY=;
+  b=t+liYEIzwGFFHJzGQxuTNgE4CzrwRN9vMkoftEGrvrGBR96DdhIGs7pf
+   HakHBtg0H0x5KKOOBbnwzwN5D+X5z9J0dMgVkIQ0v7m5iLGOvZ7MNz76K
+   VgIYwEabEZnKXVFHZyp3XvD7FxQ21pMQRc0sp+96hbmThx03CfaDU27LU
+   U=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Jun 2022 18:57:16 -0700
+X-QCInternal: smtphost
+Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2022 18:57:15 -0700
+Received: from quicinc.com (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 24 Jun
+ 2022 18:57:15 -0700
+Date:   Fri, 24 Jun 2022 18:57:14 -0700
+From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
+To:     Robert Marko <robimarko@gmail.com>
+CC:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com
-Subject: [PATCH v3 4/6] dt-bindings: clock: imx8mp: Add audiomix block control
-Date:   Sat, 25 Jun 2022 03:32:33 +0200
-Message-Id: <20220625013235.710346-4-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220625013235.710346-1-marex@denx.de>
-References: <20220625013235.710346-1-marex@denx.de>
+        <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: firmware: qcom-scm: convert to dtschema
+Message-ID: <20220625015714.GA6675@quicinc.com>
+References: <20220623182542.1116677-1-robimarko@gmail.com>
+ <20220624010103.GA23758@quicinc.com>
+ <CAOX2RU7yKuV4i_9YRs9fx2DTTvAndWFFw3cYtQ3qFk9m1zZJVg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAOX2RU7yKuV4i_9YRs9fx2DTTvAndWFFw3cYtQ3qFk9m1zZJVg@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
@@ -63,123 +66,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Unlike the other block control IPs in i.MX8M, the audiomix is mostly a
-series of clock gates and muxes. Add DT bindings for this IP.
+On Jun 24 2022 10:50, Robert Marko wrote:
+> On Fri, 24 Jun 2022 at 03:01, Guru Das Srinagesh <quic_gurus@quicinc.com> wrote:
+> >
+> > On Thu, Jun 23, 2022 at 08:25:42PM +0200, Robert Marko wrote:
+> >
+> > > +
+> > > +description: |
+> > ...
+> > > +
+> > > +  '#reset-cells':
+> > > +    const: 1
+> >
+> > This isn't part of the original file - could you please explain why this is
+> > being added?
+> 
+> Yes, its not part of the original file, however I noticed that a lot of SCM
+> nodes were adding #reset-cells, and upon looking at the SCM code its
+> clear that it is being registered as a reset controller so #reset-cells are
+> appropriate.
+> 
+> However, since its not really being used via phandles #reset-cells did
+> not really matter, hence why I did not add them to be required,
+> this is something that DT guys can probably clarify.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Abel Vesa <abel.vesa@nxp.com>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Jacky Bai <ping.bai@nxp.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-clk@vger.kernel.org
-Cc: linux-imx@nxp.com
----
-V2: No change
-V3: - Add missed RB from Rob from V1
-    - Rename audio_ahb to plain ahb
----
- .../bindings/clock/imx8mp-audiomix.yaml       | 84 +++++++++++++++++++
- 1 file changed, 84 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
+Makes sense, ACK.
 
-diff --git a/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-new file mode 100644
-index 0000000000000..01b4e1e311cef
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-@@ -0,0 +1,84 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/imx8mp-audiomix.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP i.MX8MP AudioMIX Block Control Binding
-+
-+maintainers:
-+  - Marek Vasut <marex@denx.de>
-+
-+description: |
-+  NXP i.MX8M Plus AudioMIX is dedicated clock muxing and gating IP
-+  used to control Audio related clock on the SoC.
-+
-+properties:
-+  compatible:
-+    const: fsl,imx8mp-audio-blk-ctrl
-+
-+  reg:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  power-domain-names:
-+    const: audio
-+
-+  clocks:
-+    minItems: 7
-+    maxItems: 7
-+
-+  clock-names:
-+    items:
-+      - const: ahb
-+      - const: sai1
-+      - const: sai2
-+      - const: sai3
-+      - const: sai5
-+      - const: sai6
-+      - const: sai7
-+
-+  '#clock-cells':
-+    const: 1
-+    description:
-+      The clock consumer should specify the desired clock by having the clock
-+      ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8mp-clock.h
-+      for the full list of i.MX8MP IMX8MP_CLK_AUDIOMIX_ clock IDs.
-+
-+required:
-+  - compatible
-+  - reg
-+  - power-domains
-+  - power-domain-names
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  # Clock Control Module node:
-+  - |
-+    #include <dt-bindings/clock/imx8mp-clock.h>
-+
-+    clock-controller@30e20000 {
-+        #clock-cells = <1>;
-+        compatible = "fsl,imx8mp-audio-blk-ctrl";
-+        clocks = <&clk IMX8MP_CLK_AUDIO_ROOT>,
-+                 <&clk IMX8MP_CLK_SAI1>,
-+                 <&clk IMX8MP_CLK_SAI2>,
-+                 <&clk IMX8MP_CLK_SAI3>,
-+                 <&clk IMX8MP_CLK_SAI5>,
-+                 <&clk IMX8MP_CLK_SAI6>,
-+                 <&clk IMX8MP_CLK_SAI7>;
-+        clock-names = "ahb",
-+                      "sai1", "sai2", "sai3",
-+                      "sai5", "sai6", "sai7";
-+        power-domains = <&pgc_audio>;
-+        power-domain-names = "audio";
-+        reg = <0x30e20000 0x10000>;
-+    };
-+
-+...
--- 
-2.35.1
+Thank you.
 
+Guru Das.
