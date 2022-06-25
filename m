@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B12355AD02
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 00:52:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B13D455AD4C
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 00:59:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233530AbiFYWv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 18:51:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58766 "EHLO
+        id S233696AbiFYW72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jun 2022 18:59:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233409AbiFYWvz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 18:51:55 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2D5413E3F
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 15:51:54 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-31780ad7535so54629117b3.8
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 15:51:54 -0700 (PDT)
+        with ESMTP id S233712AbiFYW72 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 18:59:28 -0400
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9D3D13FAA
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 15:59:26 -0700 (PDT)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-31772f8495fso54857077b3.4
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 15:59:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=x/3CJY8b07RBucsswH4q0R75uAfMe2AO1c8Bas6krMQ=;
-        b=xp+KQrZlauuD2PE/DYgNZ7pEu5ZnYTvujmpuigZnI27SuYCTRDZ+6Uq69d826Ft5n4
-         0ocKLmD1LJVQCIQM0g534Sp8j+mcafQ/lRP/YAXaK96Z0pL02FcHPhz/H4xbvzv7NXRs
-         hqzeIYtW2QfHbrFxNmlm2EsXdsX6mdB4aNt+Hhh4pHsD+mBZjBxy1fYuDhdy/214s9bf
-         B7lIZsHZsrduLVnF0p2mWI1C4b7dm4VYhSJgcTlSY/L8NJs9HSnR2CHmVhtfWpV4XhdW
-         ha7mn2+M2TSHVhehLAQzirOJsaBcfSi3fjeRjtykv7iiFXsx3o2K0ww0DGoqrIF+dU/I
-         0fMQ==
+        bh=Kz4CQpOKhPTyDsa60xKPIiVM3jnSyd80mVmcmJIhuHQ=;
+        b=f0R0dNNfG+cy3gFp7wt9apjvTZnUDWzypyV4qpxTt0EYhTusE7dczqOjHtdnJ6vezN
+         zHCYjY76OuU7+5Kurfz9oaZcDHK4a3uwUh3eDulaNbh8hB6891r6dpwGNRRrYLaL0rGI
+         lXHEoGEl0PVXK+UANPXZuirl60K+W2t2Kir2E6bca3VxQvvETRSmzmqghmbYWZRf2c+O
+         qQ7Uwvryau8aALkvZtL19zhwrXOxRQuMK4ocOgSBgDpdEydMdiCLF+mETnI5hsInX+0a
+         9Jd7mhj/C6OsaaKO0Au+5T+hKmp/3hxrDjcU/5FKa/Ui/MGI9jYcSPGrFadHuCt/y8Bb
+         VoKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=x/3CJY8b07RBucsswH4q0R75uAfMe2AO1c8Bas6krMQ=;
-        b=ClUWKgfE04kJVkUg0fdF+vJZPAzLvOdUDieOVuON6KH98UWJY3trsBBC/vlPxpkpar
-         02oaLEtOOVm/lx3r2OVodDREm+j++9tN3CLKWHImHnBu16vpkBCRK59bEJldlKpzu1LY
-         cPkZP06/JYkKacPxCy8MgcGCdJBThJDlNWw5A0QtR1aGWJsTKbJSjeH/J/decqSS5mjm
-         p2bVIEjST+HhiQfX1e565l0qPP1JdLUatf4pLJF97XOx/FjzbwYSgBNco2pbT4eWJYFL
-         ABiVgiKaQhTrHRX2oT4PofjIdzEDiluy7dSxVDL35hZKD9ciRXG70GtueBvg78GhqHJo
-         Pufg==
-X-Gm-Message-State: AJIora8J/0NevNXV9JWDlR+3eDnuDKyKUJKtSU6CQJJwECmzr6skqcFF
-        tV8qAy0LJVF+6WDbKz7tJ66y1XTzKRhYBpMBY3lWEg==
-X-Google-Smtp-Source: AGRyM1umXxfdalPMIDRFDGUVcUE4Jii7SRvJss2hlJNKGIYyu+4E52LaAQK1djFUeRB8dmAFR8j+DlFSVYQXtF4zXqw=
-X-Received: by 2002:a0d:e20a:0:b0:317:ce36:a3a0 with SMTP id
- l10-20020a0de20a000000b00317ce36a3a0mr6827319ywe.448.1656197514196; Sat, 25
- Jun 2022 15:51:54 -0700 (PDT)
+        bh=Kz4CQpOKhPTyDsa60xKPIiVM3jnSyd80mVmcmJIhuHQ=;
+        b=Vcat2P/b568M/4x44PPQWdI4ZZKGz50XF9ufy8vUsGHjlu0c0bASd5sVT13IHoNXQ6
+         Dd0PygTOSNIM6kwjLp8eFIOlzyC51VwjiT3Y17BIM1jd23lpJkNmyEUiy9rTk9KKDJrh
+         /LrpsKAnLGQRNFXECRd+dJV6u5NKSW+YvBcn+jhrIyh1iSdV00rdenfggpJSoUAghGR/
+         ag5hgePGcILdYV72BLfVeeCZm6bxUftv4e8VXfLQ+SEMOpjaHsW06CDIY901hRLbndyz
+         N4LVyRYawyLFfGcKFREkUYZC4FOma357N4YVcCA1u0JY1V7WCPwbAKiS0xGL1lyO09d6
+         BXGQ==
+X-Gm-Message-State: AJIora+27RbBEH5fgCnLiM2AWI5dJlNpNdgKEWYUrv6N8dYmFhxuqb23
+        CDy/gZScvIkVQxrPy3bF/NZQgn0JaWID+EFnVQDRcA==
+X-Google-Smtp-Source: AGRyM1uosYwxlq64LUlIuBLDzEOZIVCn/f27F5vp117PBBS+sA4ZCR/UdMd9wStyWymJXop43cXKJFCZnY1Vqnm0CGM=
+X-Received: by 2002:a0d:eace:0:b0:317:87ac:b3a8 with SMTP id
+ t197-20020a0deace000000b0031787acb3a8mr6860068ywe.126.1656197966000; Sat, 25
+ Jun 2022 15:59:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <1654921357-16400-1-git-send-email-quic_srivasam@quicinc.com>
-In-Reply-To: <1654921357-16400-1-git-send-email-quic_srivasam@quicinc.com>
+References: <20220427144620.9105-1-pmalgujar@marvell.com> <20220427144620.9105-3-pmalgujar@marvell.com>
+ <CACRpkdaqeTs-jHPBmtdiz+LdMM0pz0zqt4diX=e+YpgaGr0Jbw@mail.gmail.com>
+ <20220603090618.GA27121@Dell2s-9> <CACRpkdaOd0-k_mt0ZrKT-DbVc3f0b5uXXmXpBNH=hq3BGCB+vQ@mail.gmail.com>
+ <20220613080452.GA1884@Dell2s-9>
+In-Reply-To: <20220613080452.GA1884@Dell2s-9>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 26 Jun 2022 00:51:43 +0200
-Message-ID: <CACRpkdbX3GyVxJ1wNhDTdykSFAEY9dkpLXWhP5+Lzh7pxd5oYg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] [PATCH v4 0/2] Add pinctrl support adsp bypass platforms
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
-        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        linux-gpio@vger.kernel.org
+Date:   Sun, 26 Jun 2022 00:59:14 +0200
+Message-ID: <CACRpkdY-+D1tkNJoWLpQH9-2AcE1xb546eJx5Nuq+Tw3WKj6mw@mail.gmail.com>
+Subject: Re: [PATCH 2/5] dt-bindings: gpio: gpio-thunderx: Describe pin-cfg option
+To:     Piyush Malgujar <pmalgujar@marvell.com>
+Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rric@kernel.org,
+        cchavva@marvell.com, wsadowski@marvell.com
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -71,16 +70,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 11, 2022 at 6:23 AM Srinivasa Rao Mandadapu
-<quic_srivasam@quicinc.com> wrote:
+On Mon, Jun 13, 2022 at 10:04 AM Piyush Malgujar <pmalgujar@marvell.com> wrote:
 
-> This patch set is to make clock voting optinal for adsp bypass
-> sc7280 platforms.
->
-> Changes Since V3:
+> Thanks for the reply.
+> But as in this case, we expect a 32 bit reg value via DTS for this driver
+> only from user with internal understanding of marvell soc and this reg bit
+> value can have many different combinations as the register fields can vary
+> for different marvell SoCs.
+> This patch just reads the reg value from DTS and writes it to the register.
 
-This v4 patch set applied. Bjorn can yell if he has concerns and I'll
-pull it out again.
+I understand that this is convenient but it does not use the right kernel
+abstractions and it does not use device tree bindings the right way
+either.
+
+Rewrite the patches using definitions and fine control and move away
+from magic numbers to be poked into registers.
 
 Yours,
 Linus Walleij
