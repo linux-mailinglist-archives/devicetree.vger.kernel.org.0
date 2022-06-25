@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D10B355AC9E
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 22:39:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 386CC55ACA4
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 22:43:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233552AbiFYUig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 16:38:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59532 "EHLO
+        id S233493AbiFYUnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jun 2022 16:43:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233513AbiFYUig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 16:38:36 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48E1C11A07
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:38:35 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id r18so20079edb.9
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:38:35 -0700 (PDT)
+        with ESMTP id S233401AbiFYUnR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 16:43:17 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66E7665FB
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:43:16 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id g26so11334087ejb.5
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:43:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=MfJhDTjDLNxHEOb0O70IYA2LdOjCiYcIoiUYXbrNOZ4=;
-        b=JHokDgSBVB0acKRGJoylSeaZb3PORhzalT1OMuL1Xpx6TTt+EtewQAhP3OdWqg5IoT
-         mRGcmhAzXpOT9HqrUOXV5VB5tEPz0Kb4pwLONY95kGUEIuLePUBinAPKRvVFMFljKxJ3
-         Yp32RJinLVg7pllz/zmVr/+jm6LCOCuvTziT1NXnmqSWZX4ihi8JYglFFSLANHeIW+To
-         /OybiTvi+xfAbtjR32QEHksWECEa9lF4FKIn1FMdgjyAcoaUBEXU9loGUWKkUcF0Gtmg
-         LTYoQoHgyWMHoIXuToyOcEW4XkVe/jFCQ+wrh1oGqiB8uBxPpuGsbJNPxcugasfqWGP+
-         LTCQ==
+        bh=iFd1veKfhTMGQGljEN9uvXrZe1abjjQ/8ra6X7ZXp/A=;
+        b=Q7zhM31lwwRJmmE86uF2FZdYeGJWH8clPbsigWZbDLOJkiq5xQB4H51dgNqn2WCHnx
+         yUXJzBRWoVFajl57tWs4A69Wbki0B8V6iPIANs+sUlfUDigI0GlifsugGjE5wqOMd+/y
+         3CpLaWbqBcZr37Ce7sSFjjD7xg1mqyT69ipPkjCsv48oCysOCsktRsLZtjVgT497qpu5
+         DcAvK9SrwWTCZO9i+rwbxJ16hZqYBo02WvDH26todecvwLGQfVRcLMTNMPFHBJoqb6Wc
+         75Xbhv36Ay184RbeLY8M/ygMw1D3mXj5nHzu+9iKS2YnB3+L4/fqYfrHAu+Ie1/0gzhZ
+         ls3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=MfJhDTjDLNxHEOb0O70IYA2LdOjCiYcIoiUYXbrNOZ4=;
-        b=jC+uhMc8jEG1ePU0sFw/wNt/PFZL977+k1x3vkMn4kizergN6lLF/+F5ks5bAxEl5p
-         6zPq+md3snORcRr1fq1dIvkAzsMnDfEJG0KBL7mHuZEL9WNcZSvoBMXPSm2/Ip7YHnhb
-         64CER2nI/jnHn4fv9LMkUEmUMTcx7FbSONmUATB5OEIG0GZdH30sygwDjNC30JRBM+A7
-         bSVPVIJ1n3aiov5q+cNCY0EiHO1KmHG3CSc9kWqksdl9DUZ2QWQfbcUUDTonT6Akql55
-         kNyCpkwM8m+nFEMu/JXR0W0J95fK9pjqYQ+I/lwQDIIF4wYnWFdCOGwV0iHCUJAD8MUq
-         moaA==
-X-Gm-Message-State: AJIora930sZKg0jx9a9xhCFbKEd33t0yrwiNedsNLjpn30qkfp8PUq8B
-        9OSR01ivJZ+nN95sFRo/WDv4uQ==
-X-Google-Smtp-Source: AGRyM1twbLaxDqEWBJhXOCA/HSV54AxQLykkUVdEnBcNoXWXhA0wOnXIAdRMUyLxgzdJFE5KGxAtnQ==
-X-Received: by 2002:a05:6402:1bc1:b0:435:67ef:2f41 with SMTP id ch1-20020a0564021bc100b0043567ef2f41mr6856792edb.85.1656189513876;
-        Sat, 25 Jun 2022 13:38:33 -0700 (PDT)
+        bh=iFd1veKfhTMGQGljEN9uvXrZe1abjjQ/8ra6X7ZXp/A=;
+        b=fyMf4Lj/gKbtIbKcbCwpgllqpBSysaFhhyFiRcAL3fDOl1sb5tP8NCM3WEla6ZIf5G
+         HUQkvCwIh6bgLKWALTzrNHO6LO3XvWb3JVLAMaYxA8y4MokZgMff/tJidRMCFxf1sU47
+         vH41Um7tMNX0hbchK+N5eC5AfbWxxcqPV99RknsHxTy1ndiBW3BhVQTCQvSvuG9wr8mI
+         PFkPlh+E0ol0prnikYRxULwjwj2W9+WGYl0+3hnBVPvsV6F6a1hm7vi1OevHTi/KzuG8
+         X5mAgPFF0GC+UkPU7fvTnfImM3a0bAhL33SjAathcVgRq3ipxaGaXsKhCeJCwILNE2Xd
+         d5fg==
+X-Gm-Message-State: AJIora/MdXBYYXpb9OqzeGtrbEdMSpKsUaU64sRJN2ucUOsyVfCOdrjR
+        azVUrZbYfv9SZFrZyJwxJl/mBg==
+X-Google-Smtp-Source: AGRyM1ubzxZPS0hDWjk/Wtmb8RnNWKmiyIjbS5HD1t1lVciAej4xtBFwV019ReryeNb/GjF5I2Bz9Q==
+X-Received: by 2002:a17:907:2ce4:b0:722:df67:12cc with SMTP id hz4-20020a1709072ce400b00722df6712ccmr5399009ejc.715.1656189794930;
+        Sat, 25 Jun 2022 13:43:14 -0700 (PDT)
 Received: from [192.168.0.239] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id x2-20020aa7d382000000b00435640c141esm4572024edq.93.2022.06.25.13.38.32
+        by smtp.gmail.com with ESMTPSA id g26-20020a170906199a00b00724ff3251c4sm3019630ejd.26.2022.06.25.13.43.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Jun 2022 13:38:33 -0700 (PDT)
-Message-ID: <62719859-bfed-6c85-76c9-ede0b75d492e@linaro.org>
-Date:   Sat, 25 Jun 2022 22:38:32 +0200
+        Sat, 25 Jun 2022 13:43:14 -0700 (PDT)
+Message-ID: <2f2b2544-9c53-3a6a-d9c9-375e75b112f3@linaro.org>
+Date:   Sat, 25 Jun 2022 22:43:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH V9 1/3] dt-bindings: rtc: zynqmp: Add clock information
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: Document RZ/V2M I2C controller
 Content-Language: en-US
-To:     Srinivas Neeli <srinivas.neeli@xilinx.com>, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        srinivas.neeli@amd.com, neelisrinivas18@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
-        sgoud@xilinx.com, shubhraj@xilinx.com
-Cc:     devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        git@amd.com, git@xilinx.com, Rob Herring <robh@kernel.org>
-References: <20220624120203.2817457-1-srinivas.neeli@xilinx.com>
+To:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org
+References: <20220624101736.27217-1-phil.edworthy@renesas.com>
+ <20220624101736.27217-2-phil.edworthy@renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220624120203.2817457-1-srinivas.neeli@xilinx.com>
+In-Reply-To: <20220624101736.27217-2-phil.edworthy@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,68 +78,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/06/2022 14:02, Srinivas Neeli wrote:
-> Added clock information and deprecated calibration support.
+On 24/06/2022 12:17, Phil Edworthy wrote:
+> Document Renesas RZ/V2M (r9a09g011) I2C controller bindings.
 > 
-> Signed-off-by: Srinivas Neeli <srinivas.neeli@xilinx.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
-> Changes in V9:
-> -Updated clock information in clock-names.
-> Changes in V8:
-> -None
-> Changes in V7:
-> -None
-> Changes in V6:
-> -Removed dtc warnings.
-> Changes in V5:
-> -Removed quotes and _clk suffix from clocknames.
-> Changes in V4:
-> - Deprecated calibrtion support
-> Changes in V3:
-> - New patch
-> ---
->  .../devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml     | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
+>  .../bindings/i2c/renesas,rzv2m.yaml           | 76 +++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml b/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
-> index bdb72d3ddf2a..9dfe2cc5966a 100644
-> --- a/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
-> @@ -23,8 +23,15 @@ properties:
->    reg:
->      maxItems: 1
->  
+> diff --git a/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+> new file mode 100644
+> index 000000000000..9049461ad2f4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/renesas,rzv2m.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/V2M I2C Bus Interface
+> +
+> +maintainers:
+> +  - Phil Edworthy <phil.edworthy@renesas.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,i2c-r9a09g011  # RZ/V2M
+> +      - const: renesas,rzv2m-i2c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Data transmission/reception interrupt
+> +      - description: Status interrupt
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: tia
+> +      - const: tis
+> +
+> +  clock-frequency:
+> +    description:
+> +      Desired I2C bus clock frequency in Hz. The absence of this property
+> +      indicates the default frequency 100 kHz.
+
+Instead of last sentence, just add "default: 100000".
+
+> +
 > +  clocks:
 > +    maxItems: 1
 > +
-> +  clock-names:
-> +    items:
-> +      - const: rtc
+> +  power-domains:
+> +    maxItems: 1
 > +
->    interrupts:
-> -    minItems: 2
-> +    maxItems: 2
->  
->    interrupt-names:
->      items:
-> @@ -39,6 +46,7 @@ properties:
->      minimum: 0x1
->      maximum: 0x1FFFFF
->      default: 0x198233
-> +    deprecated: true
->  
->  required:
->    - compatible
-> @@ -61,5 +69,7 @@ examples:
->          interrupts = <0 26 4>, <0 27 4>;
->          interrupt-names = "alarm", "sec";
->          calibration = <0x198233>;
-> +        clock-names = "rtc_clk";
-> +        clocks = <&rtc_clk>;
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - power-domains
+> +  - resets
 
-Please test your bindings with `make dt_binding_check` before sending.
+This was not mentioned in properties. Why?
 
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r9a09g011-cpg.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    i2c0: i2c@a4030000 {
+> +            compatible = "renesas,i2c-r9a09g011", "renesas,rzv2m-i2c";
+> +            reg = <0xa4030000 0x80>;
+> +            interrupts = <GIC_SPI 232 IRQ_TYPE_EDGE_RISING>,
+> +                         <GIC_SPI 236 IRQ_TYPE_EDGE_RISING>;
+> +            interrupt-names = "tia", "tis";
+> +            clocks = <&cpg CPG_MOD R9A09G011_IIC_PCLK0>;
+> +            resets = <&cpg R9A09G011_IIC_GPA_PRESETN>;
+> +            power-domains = <&cpg>;
+> +            clock-frequency = <100000>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +    };
 
 
 Best regards,
