@@ -2,87 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C49955AC38
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 21:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F37EA55AC42
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 22:04:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232421AbiFYT6r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 15:58:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35358 "EHLO
+        id S233345AbiFYUBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jun 2022 16:01:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231474AbiFYT6r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 15:58:47 -0400
-Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [IPv6:2a01:4f8:150:2161:1:b009:f23e:0])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B8BBA187;
-        Sat, 25 Jun 2022 12:58:46 -0700 (PDT)
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-         client-signature RSA-PSS (4096 bits) client-digest SHA256)
-        (Client CN "*.hostsharing.net", Issuer "RapidSSL TLS DV RSA Mixed SHA256 2020 CA-1" (verified OK))
-        by bmailout3.hostsharing.net (Postfix) with ESMTPS id B874A10045BFD;
-        Sat, 25 Jun 2022 21:58:44 +0200 (CEST)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-        id 936301191F2; Sat, 25 Jun 2022 21:58:44 +0200 (CEST)
-Date:   Sat, 25 Jun 2022 21:58:44 +0200
-From:   Lukas Wunner <lukas@wunner.de>
-To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
-Cc:     gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        andriy.shevchenko@linux.intel.com, vz@mleia.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.rosenberger@kunbus.com, Lino Sanfilippo <l.sanfilippo@kunbus.com>
-Subject: Re: [PATCH 2/8] serial: core, 8250: set RS485 termination gpio in
- serial core
-Message-ID: <20220625195844.GB2879@wunner.de>
-References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
- <20220622154659.8710-3-LinoSanfilippo@gmx.de>
+        with ESMTP id S233329AbiFYUBm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 16:01:42 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B49EB7E9
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:01:41 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id e2so7848694edv.3
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 13:01:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=eLUkWe3N3ho8cfTa3t+ONCUq2y/Cga4VTVfEgbT2d1U=;
+        b=I2f9aiJ4WaR57Hl9e0IVnNn9g3MVdrAIgnzqHEx1MDg/UGlaNcpuj4OyVgpYP1pkl6
+         4LgzUHyXA2VC/pIMRlodhwg34bqqqqkjlpXA9EJU0H2ksIKBr09Rb/T/avrwUeKAKZcV
+         1o1+wQbjaw4HRM4VcoSsMo4ZAGRHcK+Nj4Z45cLKt58jrkBMH9BORte9KoVksmw6ptkJ
+         XEO0wzI1igrcB1la/uawH7JovJkaIj/oBgy7tl5FlInlVMYpTOasxUKyINVBJVGgApmK
+         Z513MT9xSUTHEyHNmd4wUtQVJf1/l108ht7zb6MihdORGAjzV/G8MrKyRVzYMauqxrL5
+         mciA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=eLUkWe3N3ho8cfTa3t+ONCUq2y/Cga4VTVfEgbT2d1U=;
+        b=py2efdG83Wm/Pj5YFlaEBZOuknHoNwMh8kpCs+yiFRiHQ1UDv+uKLOO4YVwd+1HHil
+         QYJDNE1FN1xLDksVomQw2C/xNavKMc+7RqxcGyDWfVt+uJ7ozMI8wurA5DdLTL+Z/th5
+         6Eq5Za/vxjpPuWJdEjaiKuWamrmrL/PgkDWf24yv+dWijNlcNlkZ5nfSaXq/zSORC006
+         veTKiRsJHkF5z+Up6ExaBGiyLMLaFzd/99EFeUBr5Agxxqn6UIW/5QlSL1uoGXAzZyKA
+         Okwel8eX9Ro0+FWWyv5v7sgbyLNgF2zu1jcTtWOUDSAhbK2BeRPKl7lGyEBMXN1F66I/
+         ia7w==
+X-Gm-Message-State: AJIora+0rV64Jqx4zX/UlSts3ynoaoLQetRx/NoImHOoMj7NEdvzBMRX
+        jlipiwoP8K6FrjlSmfDx1HM1aA==
+X-Google-Smtp-Source: AGRyM1sknHsOi2FQ+azTJL4HGK/J1vfpZw0VDY8r98cQEG7zXxJxXdhGXAKaEoTZ33YbJW1joA6xWQ==
+X-Received: by 2002:a50:fc90:0:b0:435:6b30:f1b0 with SMTP id f16-20020a50fc90000000b004356b30f1b0mr6885798edq.423.1656187299784;
+        Sat, 25 Jun 2022 13:01:39 -0700 (PDT)
+Received: from [192.168.0.239] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id a7-20020a056402236700b0043570d96d25sm4522957eda.95.2022.06.25.13.01.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 25 Jun 2022 13:01:39 -0700 (PDT)
+Message-ID: <59c043a4-dd40-1f6b-69d2-bc32b970e874@linaro.org>
+Date:   Sat, 25 Jun 2022 22:01:38 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220622154659.8710-3-LinoSanfilippo@gmx.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: sifive,plic:
+ Document Renesas RZ/Five SoC
+Content-Language: en-US
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220624180311.3007-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220624180311.3007-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220624180311.3007-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 22, 2022 at 05:46:53PM +0200, Lino Sanfilippo wrote:
-> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+On 24/06/2022 20:03, Lad Prabhakar wrote:
+> Document Renesas RZ/Five (R9A07G043) SoC.
 > 
-> In serial8250_em485_config() the termination GPIO is set with the uart_port
-> spinlock held. This is an issue if setting the GPIO line can sleep (e.g.
-> since the concerning GPIO expander is connected via SPI or I2C).
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> RFC->v1:
+> * Fixed Review comments pointed by Geert and Rob
+> ---
+>  .../sifive,plic-1.0.0.yaml                    | 40 +++++++++++++++++--
+>  1 file changed, 36 insertions(+), 4 deletions(-)
 > 
-> Fix this by setting the termination line outside of the uart_port spinlock
-> in the serial core.
-[...]
-> --- a/drivers/tty/serial/serial_core.c
-> +++ b/drivers/tty/serial/serial_core.c
-> @@ -1400,6 +1411,7 @@ static int uart_set_rs485_config(struct uart_port *port,
->  	if (ret)
->  		return ret;
->  	uart_sanitize_serial_rs485(port, &rs485);
-> +	uart_set_rs485_termination(port, &rs485);
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> index 27092c6a86c4..5eebe0b01b4d 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> @@ -28,7 +28,10 @@ description:
 >  
->  	spin_lock_irqsave(&port->lock, flags);
->  	ret = port->rs485_config(port, &rs485);
+>    While the PLIC supports both edge-triggered and level-triggered interrupts,
+>    interrupt handlers are oblivious to this distinction and therefore it is not
+> -  specified in the PLIC device-tree binding.
+> +  specified in the PLIC device-tree binding for SiFive PLIC (and similar PLIC's),
+> +  but for the Renesas RZ/Five Soc (AX45MP AndesCore) which has NCEPLIC100 we need
+> +  to specify the interrupt type as the flow for EDGE interrupts is different
+> +  compared to LEVEL interrupts.
+>  
+>    While the RISC-V ISA doesn't specify a memory layout for the PLIC, the
+>    "sifive,plic-1.0.0" device is a concrete implementation of the PLIC that
+> @@ -57,6 +60,7 @@ properties:
+>            - enum:
+>                - allwinner,sun20i-d1-plic
+>            - const: thead,c900-plic
+> +      - const: renesas,r9a07g043-plic
+>  
+>    reg:
+>      maxItems: 1
+> @@ -64,8 +68,7 @@ properties:
+>    '#address-cells':
+>      const: 0
+>  
+> -  '#interrupt-cells':
+> -    const: 1
+> +  '#interrupt-cells': true
+>  
+>    interrupt-controller: true
+>  
+> @@ -91,7 +94,36 @@ required:
+>    - interrupts-extended
+>    - riscv,ndev
+>  
+> -additionalProperties: false
+> +if:
 
-That's one way to solve the issue.  Another would be to push
-acquisition of the port spinlock down into drivers.
+Make it inside allOf. Avoids further indentation change on next variant.
 
-I think in most drivers we don't need to take the port spinlock at all
-or only for a few specific register accesses.  So taking the lock here
-in the midlayer is likely unwarranted.  However, changing that requires
-going through every single driver's ->rs485_config() callback and
-checking whether it needs the lock or not.  That's painful, but
-unavoidable in the long run.  This patch just kicks the can down the road...
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: renesas,r9a07g043-plic
+> +then:
+> +  properties:
+> +    clocks:
+> +      maxItems: 1
+> +
+> +    resets:
+> +      maxItems: 1
+> +
+> +    power-domains:
+> +      maxItems: 1
+> +
+> +    '#interrupt-cells':
+> +      const: 2
+> +
+> +  required:
+> +    - clocks
+> +    - resets
+> +    - power-domains
+> +
+> +else:
+> +  properties:
+> +    '#interrupt-cells':
+> +      const: 1
+> +
+> +unevaluatedProperties: false
 
-Thanks,
 
-Lukas
+This does not look correct, why changing additional->unevaluated here?
+
+
+Best regards,
+Krzysztof
