@@ -2,48 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4394D55A785
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 08:38:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71B7A55A795
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 08:52:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231643AbiFYGh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 02:37:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46668 "EHLO
+        id S230077AbiFYGv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jun 2022 02:51:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231796AbiFYGh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 02:37:58 -0400
-Received: from smtp.smtpout.orange.fr (smtp05.smtpout.orange.fr [80.12.242.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F05CE9
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 23:37:56 -0700 (PDT)
-Received: from [192.168.1.18] ([90.11.190.129])
-        by smtp.orange.fr with ESMTPA
-        id 4zQToScCo6rrE4zQTo0f6d; Sat, 25 Jun 2022 08:37:53 +0200
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
-X-ME-Date: Sat, 25 Jun 2022 08:37:53 +0200
-X-ME-IP: 90.11.190.129
-Message-ID: <f2e89d3a-f6ad-6fdc-1bd1-eb38f5a8f569@wanadoo.fr>
-Date:   Sat, 25 Jun 2022 08:37:49 +0200
+        with ESMTP id S229931AbiFYGv1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 02:51:27 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B61AE4477E;
+        Fri, 24 Jun 2022 23:51:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=DpRcewL0IJOgcup/joXmgDicwFFYm/SKIQKzwXVWCV0=; b=S17dD0BnFVszDueqzqzCO7RBSt
+        L8S1H8njwdNi0KtUNa68tSCRzXhWS+0i/kpyzIF2vo00VrkjZ0Tzt02jQFC3IzLKPPaO6OB7fdH5j
+        UolqLyN+Rbjdv0TyiyzlIKYcWObsFlZvE7uZKigOIOOstQuSclpBhlMIVNyXeYjE60BE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1o4zdB-008AWB-Sz; Sat, 25 Jun 2022 08:50:57 +0200
+Date:   Sat, 25 Jun 2022 08:50:57 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Linux Kernel Network Developers <netdev@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        David Wu <david.wu@rock-chips.com>, kernel@collabora.com
+Subject: Re: [PATCH 1/3] net: ethernet: stmmac: dwmac-rk: Disable delayline
+ if it is invalid
+Message-ID: <YrawUa4VcRrMvNJf@lunn.ch>
+References: <20220623162850.245608-1-sebastian.reichel@collabora.com>
+ <20220623162850.245608-2-sebastian.reichel@collabora.com>
+ <YrWdnQKVbJR+NrfH@lunn.ch>
+ <20220624162956.vn4b3va5cz2agvrb@mercury.elektranox.org>
+ <YrXryvTpnSIOyUTD@lunn.ch>
+ <20220624173547.ccads2mikb4np5wz@mercury.elektranox.org>
+ <YrX2ROe3a5Qeot4z@lunn.ch>
+ <20220624201537.l7p6aoquvvadmpei@mercury.elektranox.org>
+ <CAMdYzYr_EA2Oxf6Q-WkX987eWUKRokRR1EsCWM4J+BcF+OkO9A@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 2/4] usb: typec: ucsi: stm32g0: add support for stm32g0
- i2c controller
-Content-Language: en-US
-To:     fabrice.gasnier@foss.st.com
-Cc:     alexandre.torgue@foss.st.com, amelie.delaunay@foss.st.com,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        heikki.krogerus@linux.intel.com, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-usb@vger.kernel.org, robh+dt@kernel.org
-References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
- <20220624155413.399190-3-fabrice.gasnier@foss.st.com>
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20220624155413.399190-3-fabrice.gasnier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMdYzYr_EA2Oxf6Q-WkX987eWUKRokRR1EsCWM4J+BcF+OkO9A@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,67 +68,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 24/06/2022 à 17:54, Fabrice Gasnier a écrit :
-> STM32G0 provides an integrated USB Type-C and power delivery interface.
-> It can be programmed with a firmware to handle UCSI protocol over I2C
-> interface. A GPIO is used as an interrupt line.
-> 
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier-rj0Iel/JR4NBDgjK7y7TUQ@public.gmane.org>
-> ---
->   drivers/usb/typec/ucsi/Kconfig        |  10 ++
->   drivers/usb/typec/ucsi/Makefile       |   1 +
->   drivers/usb/typec/ucsi/ucsi_stm32g0.c | 218 ++++++++++++++++++++++++++
->   3 files changed, 229 insertions(+)
->   create mode 100644 drivers/usb/typec/ucsi/ucsi_stm32g0.c
-> 
+> The driver already sets the delays to 0 in case of the rgmii-id modes.
+> 0 is disabled, even in this patch. The only thing this patch does is
+> change the behavior when the delays are not set. If the rx delays
+> should be 0, they should be defined as 0 in the device tree. There is
+> rgmii-rxid for a reason as well, but if they are setting the rx delay
+> to 0 with rgmii that implies this hardware is fundamentally broken.
 
-[...]
+Or the delay is implemented by longer tracks on the PCB. It happens
+sometimes, but not very often.
 
-> +static int ucsi_stm32g0_async_write(struct ucsi *ucsi, unsigned int offset, const void *val,
-> +				    size_t len)
-> +{
-> +	struct ucsi_stm32g0 *g0 = ucsi_get_drvdata(ucsi);
-> +	struct i2c_client *client = g0->client;
-> +	struct i2c_msg msg[] = {
-> +		{
-> +			.addr	= client->addr,
-> +			.flags  = 0,
-> +		}
-> +	};
-> +	unsigned char *buf;
-> +	int ret;
-> +
-> +	buf = kzalloc(len + 1, GFP_KERNEL);
-
-Hi,
-
-Nit: kmalloc() would be enough here, the whole buffer is written just a 
-few lines after.
-
-> +	if (!buf)
-> +		return -ENOMEM;
-> +
-> +	buf[0] = offset;
-> +	memcpy(&buf[1], val, len);
-> +	msg[0].len = len + 1;
-> +	msg[0].buf = buf;
-> +
-> +	ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
-> +	kfree(buf);
-> +	if (ret != ARRAY_SIZE(msg)) {
-> +		dev_err(g0->dev, "i2c write %02x, %02x error: %d\n", client->addr, buf[0], ret);
-
-Use-after-free of buf.
-
-> +
-> +		return ret < 0 ? ret : -EIO;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-
-Just my 2c,
-CJ
-
-[...]
+	   Andrew
