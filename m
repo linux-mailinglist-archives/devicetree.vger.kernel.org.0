@@ -2,64 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9018155AAE1
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 16:23:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B994555AB16
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 16:47:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232558AbiFYORE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 10:17:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42498 "EHLO
+        id S233016AbiFYOpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jun 2022 10:45:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbiFYORE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 10:17:04 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F84511166;
-        Sat, 25 Jun 2022 07:17:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id EFFF3B80B6F;
-        Sat, 25 Jun 2022 14:17:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECF55C3411C;
-        Sat, 25 Jun 2022 14:16:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656166619;
-        bh=DPdph+BPnWRw4GV1RBw9IJIXu7QRVxKcJtV/fs6dT8Q=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=FPoFpK3mxtX4Rgu/8uPhdmD1dW4zg4iNdkw/IUTQWs4/P/u6Hh92T2QGf8I/TNPTK
-         XK8OrbtCNtA4Kjs9tLlz9C4aQsEuKAfVeyID6KUYivMRX841z9HFskBzIJ/8UYupqK
-         /tulztVTe+d2qqhWBtCH8JVxyk+FQDfGgD5ja41b+2vTkDaNQb2qzAX7eDhdfOA7d1
-         rutSpcJdgmtViv6GwFl7SqPec9IRxs67Ce2E2SfD9QmXJvzRCMKnm/UZgnH7m1Sn0o
-         nmPzVkRAoUb0EMUaX+JxHPk6/i1o5E/SKiOs2w+yC/VMEo57rzH/nicD4bagCfY8C4
-         K8jm0DxcLnTqA==
-Date:   Sat, 25 Jun 2022 15:26:26 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Chris Morgan <macromorgan@hotmail.com>
-Cc:     Artur Rojek <contact@artur-rojek.eu>,
-        Chris Morgan <macroalpha82@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        maccraft123mc@gmail.com, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        dmitry.torokhov@gmail.com, Paul Cercueil <paul@crapouillou.net>,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] Input: adc-joystick - Add polled input device
- support
-Message-ID: <20220625152626.39b26d2e@jic23-huawei>
-In-Reply-To: <SN6PR06MB5342A21E55CF37B348D6F48FA5B39@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20220613192353.696-1-macroalpha82@gmail.com>
-        <20220613192353.696-3-macroalpha82@gmail.com>
-        <ec496fcf808d73fe356d1961d89bf1ff@artur-rojek.eu>
-        <SN6PR06MB5342762DE16AFC607CA9D5F9A5AD9@SN6PR06MB5342.namprd06.prod.outlook.com>
-        <cdb956639e9550b287db31b762f7b764@artur-rojek.eu>
-        <20220619163230.3130be79@jic23-huawei>
-        <8225d239df59501b51fa71bac625827e@artur-rojek.eu>
-        <SN6PR06MB5342A21E55CF37B348D6F48FA5B39@SN6PR06MB5342.namprd06.prod.outlook.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S232979AbiFYOpi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 10:45:38 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A449140C1
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 07:45:37 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id pk21so10333589ejb.2
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 07:45:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TL/BmZNGSH0YDu8VnWJmtXrclXOV4slFnYUNd3pBuw4=;
+        b=aQIBfwmMXYQv2Dj5sonaawXdulKap1MyHWcEGk2rr1YTsThaBv0VAWvyjc7z60te9e
+         4FBP4j18U/sh397iE/kUgdCqG1F5zeZs5vuwO5gaamkmTpqKrecFFboWVL+v23NqegqQ
+         ZYYm8NdB4DY/M51y3/91g3JkRt1EzEXelW0T4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TL/BmZNGSH0YDu8VnWJmtXrclXOV4slFnYUNd3pBuw4=;
+        b=oATO4r1yz/3kWtxin6CnK+COGBRniY8ox8gADzrjy2w67Fm1eTWyqSOazmP+yUdBPG
+         s/hpqGPAfSp2yW8h1I8L05bMEzeVcfDrgQUFLVGnpb8wNiDMrF5BBU0tXmtnYc/NBT/v
+         fM52cZRnqK14/RGRj/K/JnCnW8aXNdB9C1yhsY1MVPfa9eiImseEK8XPgg9EB44t1pv5
+         m/QzsaAD0vc/TZZf43AxTakYcJhIES1E5ckhqGM34O/eFlxYCyvg4tW1YFG63BShbdMG
+         OFO6nQboonI3NUDY2c9GVU4yb4M5LqCxm2O/5WSzk5i31uWMDdrJ92k5e/mLlo5VaiCV
+         uTjg==
+X-Gm-Message-State: AJIora94S11UQvY7pXhrOJJY6DDTUdvpXpB3bet8VLSb3+RpDiv1+qAq
+        MqfMOiQ6bBmvdNd4a7eVF63KNJ0hW1ymW/UY2Ds=
+X-Google-Smtp-Source: AGRyM1sIjl4qQ84e1HYVryxj3FvhP2pftcmlOBffve9wxOaaYL7bd276MfHtF3UAacxGi7KeYx3Srg==
+X-Received: by 2002:a17:907:a406:b0:726:34db:89ee with SMTP id sg6-20020a170907a40600b0072634db89eemr4294072ejc.540.1656168335473;
+        Sat, 25 Jun 2022 07:45:35 -0700 (PDT)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com. [209.85.221.53])
+        by smtp.gmail.com with ESMTPSA id g16-20020a1709064e5000b007072dc80e06sm2633777ejw.190.2022.06.25.07.45.32
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 25 Jun 2022 07:45:33 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id w17so6885256wrg.7
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 07:45:32 -0700 (PDT)
+X-Received: by 2002:adf:f90d:0:b0:20c:de32:4d35 with SMTP id
+ b13-20020adff90d000000b0020cde324d35mr3993162wrr.583.1656168332218; Sat, 25
+ Jun 2022 07:45:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220625022716.683664-1-joebar@chromium.org> <20220624192643.v13.4.I41e2c2dc12961fe000ebc4d4ef6f0bc5da1259ea@changeid>
+In-Reply-To: <20220624192643.v13.4.I41e2c2dc12961fe000ebc4d4ef6f0bc5da1259ea@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Sat, 25 Jun 2022 07:45:20 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=X+92d+PvrHENT3g5=hkJ_UaVWHgMHyuvn3erg10DpVAw@mail.gmail.com>
+Message-ID: <CAD=FV=X+92d+PvrHENT3g5=hkJ_UaVWHgMHyuvn3erg10DpVAw@mail.gmail.com>
+Subject: Re: [PATCH v13 4/5] arm64: dts: qcom: sc7180: Add pazquel dts files
+To:     "Joseph S. Barrera III" <joebar@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,268 +80,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Jun 2022 16:41:01 -0500
-Chris Morgan <macromorgan@hotmail.com> wrote:
+Hi,
 
-> On Sun, Jun 19, 2022 at 06:31:17PM +0200, Artur Rojek wrote:
-> > On 2022-06-19 17:32, Jonathan Cameron wrote:  
-> > > On Sat, 18 Jun 2022 15:08:29 +0200
-> > > Artur Rojek <contact@artur-rojek.eu> wrote:
-> > >   
-> > > > On 2022-06-15 17:12, Chris Morgan wrote:  
-> > > > > On Wed, Jun 15, 2022 at 03:43:07AM +0200, Artur Rojek wrote:  
-> > > > >> On 2022-06-13 21:23, Chris Morgan wrote:  
-> > > > >> > From: Chris Morgan <macromorgan@hotmail.com>
-> > > > >> >
-> > > > >> > Add polled input device support to the adc-joystick driver. This is
-> > > > >> > useful for devices which do not have hardware capable triggers on
-> > > > >> > their SARADC. Code modified from adc-joystick.c changes made by Maya
-> > > > >> > Matuszczyk.
-> > > > >> >
-> > > > >> > Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> > > > >> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>  
-> > > > >>
-> > > > >> Hi Chris,
-> > > > >>
-> > > > >> Comments inline. I also Cc'd Paul and Jonathan, who were attached in
-> > > > >> v2.  
-> > > +CC linux-iio
-> > >   
-> > > > >>  
-> > > > >> > ---
-> > > > >> >  drivers/input/joystick/adc-joystick.c | 52 +++++++++++++++++++++------
-> > > > >> >  1 file changed, 41 insertions(+), 11 deletions(-)
-> > > > >> >
-> > > > >> > diff --git a/drivers/input/joystick/adc-joystick.c
-> > > > >> > b/drivers/input/joystick/adc-joystick.c
-> > > > >> > index 78ebca7d400a..dc01cd0214d2 100644
-> > > > >> > --- a/drivers/input/joystick/adc-joystick.c
-> > > > >> > +++ b/drivers/input/joystick/adc-joystick.c
-> > > > >> > @@ -13,6 +13,10 @@
-> > > > >> >
-> > > > >> >  #include <asm/unaligned.h>
-> > > > >> >
-> > > > >> > +#define ADC_JSK_POLL_INTERVAL	16
-> > > > >> > +#define ADC_JSK_POLL_MIN	8
-> > > > >> > +#define ADC_JSK_POLL_MAX	32
-> > > > >> > +
-> > > > >> >  struct adc_joystick_axis {
-> > > > >> >  	u32 code;
-> > > > >> >  	s32 range[2];
-> > > > >> > @@ -26,8 +30,21 @@ struct adc_joystick {
-> > > > >> >  	struct adc_joystick_axis *axes;
-> > > > >> >  	struct iio_channel *chans;
-> > > > >> >  	int num_chans;
-> > > > >> > +	bool polled;
-> > > > >> >  };
-> > > > >> >
-> > > > >> > +static void adc_joystick_poll(struct input_dev *input)
-> > > > >> > +{
-> > > > >> > +	struct adc_joystick *joy = input_get_drvdata(input);
-> > > > >> > +	int i, val;
-> > > > >> > +
-> > > > >> > +	for (i = 0; i < joy->num_chans; i++) {
-> > > > >> > +		iio_read_channel_raw(&joy->chans[i], &val);  
-> > Perhaps check the return value and leave early on error.  
-> 
-> Okay, I'll do that.
-> 
-> > > > >> > +		input_report_abs(input, joy->axes[i].code, val);
-> > > > >> > +	}
-> > > > >> > +	input_sync(input);
-> > > > >> > +}
-> > > > >> > +
-> > > > >> >  static int adc_joystick_handle(const void *data, void *private)
-> > > > >> >  {
-> > > > >> >  	struct adc_joystick *joy = private;
-> > > > >> > @@ -215,8 +232,19 @@ static int adc_joystick_probe(struct
-> > > > >> > platform_device *pdev)
-> > > > >> >  	joy->input = input;
-> > > > >> >  	input->name = pdev->name;
-> > > > >> >  	input->id.bustype = BUS_HOST;
-> > > > >> > -	input->open = adc_joystick_open;
-> > > > >> > -	input->close = adc_joystick_close;
-> > > > >> > +
-> > > > >> > +	if (device_property_read_bool(dev,
-> > > > >> > "adc-joystick,no-hardware-trigger"))
-> > > > >> > +		joy->polled = 1;  
-> > > > >> As mentioned in v2, I don't think a DT property is required here.
-> > > > >> Assuming
-> > > > >> the polled mode is a fallback for devices with no buffers, just do:
-> > > > >> ```
-> > > > >> 	joy->polled = !(joy->chans[0].indio_dev->modes &
-> > > > >> 			INDIO_ALL_BUFFER_MODES);
-> > > > >> ```  
-> > > > >
-> > > > > Understood. I attempted this and noticed that it was showing I have
-> > > > > INDIO_BUFFER_TRIGGERED in addition to INDIO_DIRECT_MODE (the
-> > > > > INDIO_DIRECT_MODE is the only one specified at the hardware level
-> > > > > though). Should I just check for INDIO_BUFFER_SOFTWARE &
-> > > > > INDIO_BUFFER_HARDWARE instead? I think it's possible that the inclusion
-> > > > > of the industrialio_triggered_buffer module in my kernel is adding
-> > > > > this to the channel somehow?  
-> > > > Having INDIO_BUFFER_TRIGGERED means that your saradc is capable of
-> > > > using
-> > > > the existing flow. You should be able to register a software trigger
-> > > > and
-> > > > use the adc-joystick driver without further issues.
-> > > > That said, this is where it gets problematic - there is no way to
-> > > > create
-> > > > an IIO trigger via Device Tree, since triggers don't describe any
-> > > > piece
-> > > > of hardware, and you shouldn't need to register it at runtime
-> > > > (configfs/sysfs) for communication between two kernel drivers
-> > > > either. At
-> > > > the same time, it's not adc-joystick's job to register an external
-> > > > trigger.
-> > > > 
-> > > > Jonathan,
-> > > > I don't know what the proper approach to this should be, perhaps you
-> > > > could assist?  
-> > > 
-> > > You are correct in your description above. Device tree folk take the
-> > > view
-> > > that sysfs / hrtimer etc triggers are a policy decision so don't belong
-> > > in device tree.  In general you need some userspace code to stitch up
-> > > the trigger anyway (even ADCs that provide triggers of their own often
-> > > have several).
-> > > 
-> > > An alternative that may make sense here would be for the adc-joystick
-> > > driver to provide a trigger of it's own. That's easy enough to do,
-> > > but as things stand we don't provide a way to control the attached
-> > > trigger from other kernel drivers (i.e. you can't do the equivalent
-> > > of writing current_trigger for another device).
-> > > 
-> > > It's probably not implausible to add that though.  Is it worth it for
-> > > a joystick (vs doing what is done here), maybe not.
-> > > 
-> > > It would be worth doing if we cared about high performance (for some
-> > > ADCs
-> > > anyway) but here we don't really so the polled read functions are fine.
-> > > 
-> > > Note many ADC drivers only support running in either polled or buffered
-> > > mode in IIO because polling random channels when doing highly optimised
-> > > accesses tends to make the drivers complex.  Hence you might find this
-> > > doesn't work for all setups...
-> > > 
-> > > Thanks,
-> > > 
-> > > Jonathan  
-> > 
-> > Jonathan,
-> > thanks for the detailed answer.
-> > 
-> > Chris,
-> > In light of the above, I think the best course of action should be to keep
-> > your polling code. It looks like your saradc has introduced [1]
-> > `INDIO_BUFFER_TRIGGERED` support exclusively for this very (adc-joystick)
-> > case. This means we can't use `indio_dev->modes` to determine whether the
-> > joystick can be polled, otherwise we might break behavior of existing
-> > hardware. I suggest that we get back to passing this intention via optional
-> > `poll-interval` DT property, that enables the polling path if present
-> > (indiscriminately of the IIO mode). Let's see what the Device Tree folk say
-> > about that :)
-> >   
-> 
-> Thanks. While I know there is a very strict policy of "don't break userspace"
-> I'm not aware of any consumers of the rockchip sardac using the adc-joystick
-> in production. I mean, it's in the tree for this one device but to this day
-> no one is shipping a distro with it to my knowledge, especially since the
-> driver has a major known issue I'm not able to fix at current time (has to do
-> with channels 1 and 2 being used instead of 0 and 1 for this specific SARADC).
-> What I'm getting at is if the current situation is wrong by adding the 
-> INDIO_BUFFER_TRIGGERED I don't think it's too late to change it right now.
+On Fri, Jun 24, 2022 at 7:28 PM Joseph S. Barrera III
+<joebar@chromium.org> wrote:
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index e55dbaa6dc12..69cd4b3b911b 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -11,6 +11,12 @@
+>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>  #include <dt-bindings/sound/sc7180-lpass.h>
+>
+> +#ifdef __SC7180_TROGDOR_DTSI__
+> +#error "Duplicate include"
+> +#else
+> +#define __SC7180_TROGDOR_DTSI__
+> +#endif
+> +
 
-No, better to leave that alone as it's correct, just not helpful to what you
-want to do here.
+I'm not convinced about the need for this. That being said:
 
-> 
-> Would the current poll code be best given the circumstances then? If you think
-> so, I'll go ahead and make all requested changes and resubmit it. I think I'm
-> understanding that what you want is for us to check for the existence of the
-> property of "poll-interval" which is the polling time in milliseconds. If this
-> value is present, use the polling code and if this value is not present, use
-> the existing code (regardless of what the hardware supports or doesn't).
+* If you want to try to do something like this, it should be in a
+separate patch, probably at the end of the series. Then if people all
+love it then it can be applied and if people don't like it then the
+series can simply be applied without it.
 
-Sounds good to me.  We might get push back on dt binding though as
-that doesn't sound very much like something that is about hardware rather
-than policy.  It could be argued that a joystick works best at a particular
-rate though so maybe we'll be fine.  We'll see when you send out the binding docs.
+* IMO if you wanted to pick one file to put this in it'd be
+sc7180.dtsi, not sc7180-trogdor.dtsi.
 
-Jonathan
-
-> 
-> Thank you once again for all your help and guidance.
-> -Chris
-> 
-> > Cheers,
-> > Artur
-> > 
-> > [1] https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgit.kernel.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Ftorvalds%2Flinux.git%2Fcommit%2F%3Fid%3D4e130dc7b41348b13684f0758c26cc6cf72a3449&amp;data=05%7C01%7C%7C43ade3c4216a47079d5208da52112487%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C637912530824693621%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=Gorf7r9PJr1CDBbRKVNXnRyBJBw2cy%2FLv9tPP24Q5B0%3D&amp;reserved=0  
-> > > 
-> > > 
-> > >   
-> > > > 
-> > > > Cheers,
-> > > > Artur  
-> > > > >
-> > > > > Thank you.
-> > > > >  
-> > > > >> > +
-> > > > >> > +	if (joy->polled) {
-> > > > >> > +		input_setup_polling(input, adc_joystick_poll);
-> > > > >> > +		input_set_poll_interval(input, ADC_JSK_POLL_INTERVAL);
-> > > > >> > +		input_set_min_poll_interval(input, ADC_JSK_POLL_MIN);
-> > > > >> > +		input_set_max_poll_interval(input, ADC_JSK_POLL_MAX);
-> > > > >> > +	} else {
-> > > > >> > +		input->open = adc_joystick_open;
-> > > > >> > +		input->close = adc_joystick_close;
-> > > > >> > +	}
-> > > > >> >
-> > > > >> >  	error = adc_joystick_set_axes(dev, joy);
-> > > > >> >  	if (error)
-> > > > >> > @@ -229,16 +257,18 @@ static int adc_joystick_probe(struct
-> > > > >> > platform_device *pdev)
-> > > > >> >  		return error;
-> > > > >> >  	}
-> > > > >> >
-> > > > >> > -	joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
-> > > > >> > -	if (IS_ERR(joy->buffer)) {
-> > > > >> > -		dev_err(dev, "Unable to allocate callback buffer\n");
-> > > > >> > -		return PTR_ERR(joy->buffer);
-> > > > >> > -	}
-> > > > >> > +	if (!joy->polled) {
-> > > > >> > +		joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle, joy);  
-> > > > >> Please maintain line discipline of 80 chars to stay consistent with
-> > > > >> the rest
-> > > > >> of this driver.  
-> > > > >
-> > > > > Understood, sorry about that.
-> > > > >  
-> > > > >> > +		if (IS_ERR(joy->buffer)) {
-> > > > >> > +			dev_err(dev, "Unable to allocate callback buffer\n");
-> > > > >> > +			return PTR_ERR(joy->buffer);
-> > > > >> > +		}
-> > > > >> >
-> > > > >> > -	error = devm_add_action_or_reset(dev, adc_joystick_cleanup,
-> > > > >> > joy->buffer);
-> > > > >> > -	if (error)  {
-> > > > >> > -		dev_err(dev, "Unable to add action\n");
-> > > > >> > -		return error;
-> > > > >> > +		error = devm_add_action_or_reset(dev, adc_joystick_cleanup,
-> > > > >> > joy->buffer);  
-> > > > >> Same here.  
-> > > > >
-> > > > > Ditto.
-> > > > >  
-> > > > >>
-> > > > >> Cheers,
-> > > > >> Artur  
-> > > > >> > +		if (error)  {
-> > > > >> > +			dev_err(dev, "Unable to add action\n");
-> > > > >> > +			return error;
-> > > > >> > +		}
-> > > > >> >  	}
-> > > > >> >
-> > > > >> >  	return 0;  
-
+-Doug
