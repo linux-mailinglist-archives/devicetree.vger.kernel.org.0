@@ -2,174 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 059DA55A5C6
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 03:21:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0A0D55A5E1
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 03:33:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230013AbiFYBVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jun 2022 21:21:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44456 "EHLO
+        id S231600AbiFYBcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jun 2022 21:32:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiFYBVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 21:21:19 -0400
-Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A129D27B3A
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 18:21:18 -0700 (PDT)
-Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-1048b8a38bbso5963176fac.12
-        for <devicetree@vger.kernel.org>; Fri, 24 Jun 2022 18:21:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=BRJxtK7by35Zc8QH/nnvKQKs9hK/8AIEzJouUPpaTpA=;
-        b=ipnQNOEUKRMUQtRZdBO/Uv8XHyRCyACkN75EaXH9G5TIYduaIi6Fs3ClcaZUdqHlQ/
-         +azX+aM5vTZ05ypVs97hsPIGZ6MeiRi0gG49Mkz0HiH4qpW09CVB+6Nr2tzBDQpHvTYT
-         AgDl0IMUAOBERWThy7J32xiYX4nq4ZwFo2lak=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=BRJxtK7by35Zc8QH/nnvKQKs9hK/8AIEzJouUPpaTpA=;
-        b=onpZNA6dvIGGckgcZcecOCp1hAtuUpNFF8aH4eZdXTm3p7HmPIL3/oliHAq3NZootY
-         HEKjNYJUXIAscsEpRm1g6D4JXYrT4NskdtT1ov4ZZLHZ7BuI3j+7LKsyVl9f1/bPrZth
-         L6Vq6P3mPHsRNp/qG+cBOOOIeSPoNYuf4zNrkBJ8D8LluNHFOiWqQLRP5hOTElLSIPJS
-         11yFQTFaSbJbmpIUvzyg/dIlhKwhRLj39ADIgHKNlx1K804kaUa7ea8Fkw1Bx3Suk5RQ
-         tOxKuFkUzBWY1CqTXSQTo3qYxskH20fX3/TGT93sYkeo37dSlH4LTRuXVX1pY1xYxaYc
-         KJgw==
-X-Gm-Message-State: AJIora8C6R8j/NWPxr2BCU+jYh4ZpWVI+CfmGBmPGJKrCC/pFjCDGSgu
-        BL83+m6ueplWCRFrTjaSym1CbREPWQM/ksI3QzSpsA==
-X-Google-Smtp-Source: AGRyM1u6/T+WcVjOW9N89LEkv92dI1MrVPLEX2x3G21Lc4IDCSUfjTNLNtnwWFOb4IiXjzG08Co3TRX9cSNHdNMmXMo=
-X-Received: by 2002:a05:6870:b381:b0:fe:2004:b3b5 with SMTP id
- w1-20020a056870b38100b000fe2004b3b5mr1223058oap.63.1656120078008; Fri, 24 Jun
- 2022 18:21:18 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 24 Jun 2022 18:21:17 -0700
-MIME-Version: 1.0
-In-Reply-To: <CACeCKad_vB+cHzwkBrvi90u7mBmJbk=YuecOwsp1xexYUiq-_A@mail.gmail.com>
-References: <20220622173605.1168416-1-pmalani@chromium.org>
- <20220622173605.1168416-2-pmalani@chromium.org> <CAE-0n51kcr3VGdR2Kf8j1JaBbLcCmWo9GYhhvkUQ4+jn2iEKLg@mail.gmail.com>
- <CACeCKac4eL9++QwbDBKrVTpUzhes=WczqZfh+cFiVgoO4py4MQ@mail.gmail.com>
- <CAE-0n51E1TLMRNWnqiV-jU_qg15BF4D6A+0G1y1SRTu1zNs2Dg@mail.gmail.com>
- <CACeCKacGZFY-_yn1R33OVcsdG47oqNTGBA43L5hrH2zyhK=cRw@mail.gmail.com>
- <CAE-0n53i90ZUFSmrR=ScXtMdn_bWPY49WWTf9LXbxu_udGgP9w@mail.gmail.com>
- <CACeCKaffqb6v7TFji2u00VSQ=DGvRe-gcxMnAEbZCC1qtDZF6A@mail.gmail.com>
- <CAE-0n51AYqr4wcD-JaVaTYjFgxCj+iX+xAYKCrZCqGHE2XEUgA@mail.gmail.com> <CACeCKad_vB+cHzwkBrvi90u7mBmJbk=YuecOwsp1xexYUiq-_A@mail.gmail.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 24 Jun 2022 18:21:17 -0700
-Message-ID: <CAE-0n50yT79TTqBWqqG8jpuhFZhCqV75hpViESgojRutCZ1M9A@mail.gmail.com>
-Subject: Re: [PATCH v5 1/9] dt-bindings: usb: Add Type-C switch binding
-To:     Prashant Malani <pmalani@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        bleung@chromium.org, heikki.krogerus@linux.intel.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Pin-Yen Lin <treapking@chromium.org>,
-        Robert Foss <robert.foss@linaro.org>,
+        with ESMTP id S231569AbiFYBcy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jun 2022 21:32:54 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C78C45AFE;
+        Fri, 24 Jun 2022 18:32:51 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id CAEED84472;
+        Sat, 25 Jun 2022 03:32:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1656120769;
+        bh=XORlzyHvsaFZp8TCn7dgYyIVqomD81V6Jj80HNYGlV4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=bOoS0abhEwCRsRNKEsYQfXkbX1MTIDopQV9BOPB0NG+r2L215l7hrAD15rmoadZJd
+         2LZFdU8HNZzoAXkTbhFMCaLwrA1nosRbqLsygx7fcbacfbw+KAotoyLqeLiAFtUUML
+         tOVXbYd6qye+9bTztct26NqeyB9ZHLb7HNiQJzbq2orAkddqq/RmkInYFYdMi8mXYp
+         o66NxwIx47zxFO+Iq2xOdl/Re5vow1PtLxFgfjD3Th3u/rzOY0jeUquN2Ky9N81tVo
+         MqkFpq+1QxR5G/GqJgheBef6J73vpgLEw5bgBdGYMdZ2Rd7YP2C5Rx3RjTb9pukt0L
+         7KAgDEdLVU5wQ==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-clk@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>, Rob Herring <robh@kernel.org>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Xin Ji <xji@analogixsemi.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com
+Subject: [PATCH v3 4/6] dt-bindings: clock: imx8mp: Add audiomix block control
+Date:   Sat, 25 Jun 2022 03:32:33 +0200
+Message-Id: <20220625013235.710346-4-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220625013235.710346-1-marex@denx.de>
+References: <20220625013235.710346-1-marex@denx.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Prashant Malani (2022-06-24 14:41:36)
-> On Fri, Jun 24, 2022 at 12:50 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > Quoting Prashant Malani (2022-06-23 19:48:04)
-> > > On Thu, Jun 23, 2022 at 7:13 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> > > >
-> > > > Quoting Prashant Malani (2022-06-23 17:35:38)
-> > > > > On Thu, Jun 23, 2022 at 4:14 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> > > > > >
-> > > > > > I'm not aware of any documentation for the dos and don'ts here. Are
-> > > > > > there any examples in the bindings directory that split up a device into
-> > > > > > subnodes that isn't in bindings/mfd?
-> > > > >
-> > > > > usb-c-connector [3] and its users is an example.
-> > > >
-> > > > What are the subnodes? The graph ports? That is not what I meant.
-> > >
-> > > cros-ec-typec [4] uses subnodes of usb-c-connector. Chrome OS DTs
-> > > use the ports from the included usb-c-connector to switching hardware.
-> >
-> > Ok, got it. usb-c-connector nodes are children of the typec controller
-> > (in this case cros-ec-typec) because otherwise we would need to make a
-> > phandle link from the usb-c-connector node(s) under the root node / to
-> > the typec controller. The phandle link may need to be done in both
-> > directions, so it makes more sense to put the usb-c-connector nodes
-> > underneath the typec controller to express the direct relationship
-> > between the typec controller and the usb-c-connectors.
-> >
-> > Furthermore, the usb-c-connector is not integrated as part of the EC in
-> > the same package. There is a discrete part placed on the board that
-> > corresponds to the usb-c-connector and that is separate from the EC. The
-> > connectors are in essence only controllable through the EC because
-> > that's the typec controller.
->
-> From the perspective of the AP, the `usb-c-connector` *is* an integrated part of
-> the Chrome EC; there is no alternative way to control it except
-> through the Chrome EC.
-> So the above example reinforces the usage model for typec-switch (which is
-> also an "integrated" component).
+Unlike the other block control IPs in i.MX8M, the audiomix is mostly a
+series of clock gates and muxes. Add DT bindings for this IP.
 
-No the usb-c-connector is not an integrated part of the EC. It is a
-discrete part with a part number that gets placed on the PCB. From the
-perspective of the AP it is controlled via the EC, but it is not
-integrated into the same package that the EC is packaged in to be
-soldered down to the PCB.
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Abel Vesa <abel.vesa@nxp.com>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Jacky Bai <ping.bai@nxp.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-clk@vger.kernel.org
+Cc: linux-imx@nxp.com
+---
+V2: No change
+V3: - Add missed RB from Rob from V1
+    - Rename audio_ahb to plain ahb
+---
+ .../bindings/clock/imx8mp-audiomix.yaml       | 84 +++++++++++++++++++
+ 1 file changed, 84 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
 
-So the example of usb-c-connector as a subnode doesn't reinforce the
-argument for a typec-switch binding. It highlights the difference that
-I've been trying to explain. The difference between internal vs.
-external components of a device. In the EC case the usb-c-connector is
-an external component from the EC, hence the two nodes. In the anx or
-ite case the typec switch is an internal component, hence the single
-node for the anx or ite part.
+diff --git a/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
+new file mode 100644
+index 0000000000000..01b4e1e311cef
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/imx8mp-audiomix.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP i.MX8MP AudioMIX Block Control Binding
++
++maintainers:
++  - Marek Vasut <marex@denx.de>
++
++description: |
++  NXP i.MX8M Plus AudioMIX is dedicated clock muxing and gating IP
++  used to control Audio related clock on the SoC.
++
++properties:
++  compatible:
++    const: fsl,imx8mp-audio-blk-ctrl
++
++  reg:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  power-domain-names:
++    const: audio
++
++  clocks:
++    minItems: 7
++    maxItems: 7
++
++  clock-names:
++    items:
++      - const: ahb
++      - const: sai1
++      - const: sai2
++      - const: sai3
++      - const: sai5
++      - const: sai6
++      - const: sai7
++
++  '#clock-cells':
++    const: 1
++    description:
++      The clock consumer should specify the desired clock by having the clock
++      ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8mp-clock.h
++      for the full list of i.MX8MP IMX8MP_CLK_AUDIOMIX_ clock IDs.
++
++required:
++  - compatible
++  - reg
++  - power-domains
++  - power-domain-names
++  - clocks
++  - clock-names
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  # Clock Control Module node:
++  - |
++    #include <dt-bindings/clock/imx8mp-clock.h>
++
++    clock-controller@30e20000 {
++        #clock-cells = <1>;
++        compatible = "fsl,imx8mp-audio-blk-ctrl";
++        clocks = <&clk IMX8MP_CLK_AUDIO_ROOT>,
++                 <&clk IMX8MP_CLK_SAI1>,
++                 <&clk IMX8MP_CLK_SAI2>,
++                 <&clk IMX8MP_CLK_SAI3>,
++                 <&clk IMX8MP_CLK_SAI5>,
++                 <&clk IMX8MP_CLK_SAI6>,
++                 <&clk IMX8MP_CLK_SAI7>;
++        clock-names = "ahb",
++                      "sai1", "sai2", "sai3",
++                      "sai5", "sai6", "sai7";
++        power-domains = <&pgc_audio>;
++        power-domain-names = "audio";
++        reg = <0x30e20000 0x10000>;
++    };
++
++...
+-- 
+2.35.1
 
->
-> This really is a limited binding change that helps describe connections
-> between Type-C components, helps these components integrate with
-> the kernel Type-C framework, and consolidates the associated properties.
-> I believe it works for most current use cases in the upstream kernel.
->
-> I'm happy to discuss more theoretical use cases further, but
-> respectfully, I prefer to do
-> so off-list.
-
-I'm happy to move the discussion to the anx or ite bindings if you'd
-prefer to discuss more concrete bindings.
-
->
-> If the maintainer is OK with it (Krzysztof has reviewed it, but I
-> don't want to presume
-> what the protocol is for patches in this subsystem), and we've
-> provided 2 users as asked for
-> in v4 [5], then I request its consideration for submission.
-> If the maintainers have further concerns, we'd be happy to address them.
->
-
-Rob?
