@@ -2,133 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9708B55AB4D
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 17:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 499FC55AB7C
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 18:09:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229593AbiFYPcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 11:32:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51518 "EHLO
+        id S233248AbiFYQGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jun 2022 12:06:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbiFYPcE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 11:32:04 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32F5A15820
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 08:32:03 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id a2so9344544lfg.5
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 08:32:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=Z9ETXVQoG+NSia4BWAvn8UPiHwd3KtEYBLM24GpcwVY=;
-        b=Gg3ivGB/psyf11Mg4SFHWWk4639JAi/73oqYuQ/Bw62+6wcg29IedtjpTCpD6fPyVx
-         OFMCg9N9y7lNOJ2Zy9rQG87KUtXYmbjd2+1xSAC+ZDKVfMKIlX5/W+oYLHnOPHUo7gzv
-         yYq/6c/rQHKOxf6R2kCZ4NNr0/rTCSuTzcYKvTACr22HGPDSN/cRGArwOxOxQIfZpazx
-         cu69leHGF3zlwBUksXt9hL5/4v4xeE4jeNx1lNYsYXJvtycxZnmIwTReS66duc5TnSTC
-         QOuzx8guse6oXrARHOrsDnL5c9DytUnHVDDsWwqw8jmybflzBuFiKHtsrxQjJoOkpXBA
-         gCMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=Z9ETXVQoG+NSia4BWAvn8UPiHwd3KtEYBLM24GpcwVY=;
-        b=Sv3FILF0EyN7KfqQb80V6q2g0K8VaznYh3axqPbTk6scIYv0aEdl4T/J/DwQZ0Rprc
-         wbvE8feK8FRj/h64dfBgwuan/CJHP0adzt4WkNDa4hwafxjU9hwGnV39fWTK+5z8AckE
-         8XbnpvM5tOyCdJVVn8lqaaZtRdGFtyWPiEH0NnQZTth0H7DJrdOwBdVn6LJp2jRhIf8o
-         cLB+9QawPbKh9w1crEyGUwe1PW8QIx4UcblIk7aBhBuZuxRNqXdjtfQWJsj1WzIS6slq
-         DJ5/GzfBRFDHreNh4eiRj6zM5+laxgGvMV14z6U7JfCdXGuLw/q5p6GKZ5iCdR+8slz7
-         BOhg==
-X-Gm-Message-State: AJIora/ads1aPxxaFVY3HYIq7PAiZvqIzqRrwWhfEXh2bBl7dxCXuOQ+
-        mBMXU9u4FMZh14EjUxnTf9uKDCC7Rmvj8g==
-X-Google-Smtp-Source: AGRyM1tYRUZ2+K9ffQbbS2qyHHn7CfSUYEej8iuTqyvLAig+xeKvZnz3WV5JP/I16y9lw5dsM8GbxA==
-X-Received: by 2002:a05:6512:1281:b0:47f:7066:6fb2 with SMTP id u1-20020a056512128100b0047f70666fb2mr2658566lfs.247.1656171121420;
-        Sat, 25 Jun 2022 08:32:01 -0700 (PDT)
-Received: from smtpclient.apple (31-178-127-80.dynamic.chello.pl. [31.178.127.80])
-        by smtp.gmail.com with ESMTPSA id g23-20020ac24d97000000b0047255d2117csm908460lfe.171.2022.06.25.08.32.00
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 25 Jun 2022 08:32:00 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH v11 20/24] arm64: dts: rockchip: enable vop2 and hdmi tx
- on rock-3a
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <CAMdYzYpdo6Hb30y1oEya5GT1eXHJVTETq--HcmMjF40gvCUZ9A@mail.gmail.com>
-Date:   Sat, 25 Jun 2022 17:31:59 +0200
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        kernel test robot <lkp@intel.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <E9DC63DF-46A6-438E-A7F1-5F7A65F56DFC@gmail.com>
-References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
- <20220422072841.2206452-21-s.hauer@pengutronix.de>
- <A86359EC-5291-41BD-966E-EB7890644731@gmail.com>
- <CAMdYzYoFG3wCQaWXQNJd7mE20OMCj=ZeuewwZfaCJyoCBT-kQQ@mail.gmail.com>
- <0E6FE020-C95E-47CF-A9D6-AC3F2B2D334F@gmail.com>
- <CAMdYzYobfJ7WGN+UQ7t5e1Zy9knjfHLse8KzrGrHPfeMkkG0gw@mail.gmail.com>
- <9F2D8CFF-1EAE-4586-9EE9-82A9D67840BB@gmail.com>
- <CAMdYzYrz7DRj7F9hGaAPaTSiZkQ4eMNujAp8uPuE9geL6kAz4g@mail.gmail.com>
- <9567EECF-A154-4FE1-A03C-5ED080409030@gmail.com>
- <190C3FD3-0185-4A99-B10E-A5790047D993@gmail.com>
- <CAMdYzYqGGfWDr11iyyfzigxsL7_N2szuag9P6TUZGuzGF4oB+A@mail.gmail.com>
- <AF6176F5-995E-473B-B494-844ECC26BC03@gmail.com>
- <CAMdYzYocZw1SNtgbfqn1VuvKTCiuMNTYRn2MydiGnL-UxtnYuA@mail.gmail.com>
- <0D8B18A1-82FD-4902-A443-AD774DE43DAD@gmail.com>
- <CAMdYzYpdo6Hb30y1oEya5GT1eXHJVTETq--HcmMjF40gvCUZ9A@mail.gmail.com>
-To:     Peter Geis <pgwipeout@gmail.com>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S233242AbiFYQGA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 12:06:00 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DB4B167F3;
+        Sat, 25 Jun 2022 09:05:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B6851B80C2C;
+        Sat, 25 Jun 2022 16:05:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61259C3411C;
+        Sat, 25 Jun 2022 16:05:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656173156;
+        bh=AToRdKG3QacktWi9IxW2BHWjWYtnPEVe84zJg54fJbA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=fGwapFIFYQVzdVIiYmnOpMXFdnjqbX7gyB8aL6hlrOh+99RVXILoAKibc4r6AmJk1
+         W2V/iC/ytjfLhCPXtoWAx1T5i0Zn3cUBWsYueq3MBFUjMcR2MehYpSd4JbEEbmRQAv
+         CQfhbX+NjKUTM7Bt79ck+4gj7H+MqrA5tCXwsOCPIrFHH9UXPyai2VXbX9z37KVEHU
+         UeH5qkHiFsPbV+nB7K0zFgRf7vI+eW1Vk+sV6vQG6VTSBMDWkotVqPuMrWUC1EKmvj
+         vLpfa6vmV3g/P2zkaLdqHTF0wfnar0Oo0+lh+yKeru11eGZGDeW0lcF0f0jeEWQl3v
+         F4lw0It6clzXw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1o58IE-0035Px-7I;
+        Sat, 25 Jun 2022 17:05:54 +0100
+Date:   Sat, 25 Jun 2022 17:05:59 +0100
+Message-ID: <87zgi0eniw.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH 2/2] irqchip/sifive-plic: Add support for Renesas RZ/Five SoC
+In-Reply-To: <CA+V-a8tFn7aS-1jD6o9TX9kNDQ=4S3xWCXwkww3Es2+Red6vmA@mail.gmail.com>
+References: <20220624180311.3007-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220624180311.3007-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <8735ftf73p.wl-maz@kernel.org>
+        <CA+V-a8ukQsotuWLm6_qR79qO9n_Ffo2e79AitC_=53ocsjZtzA@mail.gmail.com>
+        <87h7492c58.wl-maz@kernel.org>
+        <CA+V-a8tFn7aS-1jD6o9TX9kNDQ=4S3xWCXwkww3Es2+Red6vmA@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, sagar.kadam@sifive.com, palmer@dabbelt.com, paul.walmsley@sifive.com, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, biju.das.jz@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, 25 Jun 2022 14:03:33 +0100,
+"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> 
+> [1  <text/plain; UTF-8 (7bit)>]
+> Hi Marc,
+> 
+> On Sat, Jun 25, 2022 at 12:52 PM Marc Zyngier <maz@kernel.org> wrote:
+> >
 
+[...]
 
-> Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w =
-dniu 25.06.2022, o godz. 16:00:
->=20
->=20
-> The first issue you have is the TV isn't responding until the absolute
-> end.
+> > You are just reinventing the wheel we are already have, except that
+> > yours is a bit square ;-). What really should happen is that the
+> > set_type method should set the correct flow depending on the trigger
+> > of the interrupt, and *never* have to check the configuration on the
+> > handling path.
+> >
+> A Bit lost here..
+> 
+> We have the below chained handler:
+> 
+> static void plic_handle_irq(struct irq_desc *desc)
+> {
+>     struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+>     struct irq_chip *chip = irq_desc_get_chip(desc);
+>     void __iomem *claim = handler->hart_base + CONTEXT_CLAIM;
+>     irq_hw_number_t hwirq;
+> 
+>     WARN_ON_ONCE(!handler->present);
+> 
+>     chained_irq_enter(chip, desc);
+> 
+>     while ((hwirq = readl(claim))) {
+>         int err = generic_handle_domain_irq(handler->priv->irqdomain,
+>                             hwirq);
+>         if (unlikely(err))
+>             pr_warn_ratelimited("can't find mapping for hwirq %lu\n",
+>                     hwirq);
+>     }
+> 
+>     chained_irq_exit(chip, desc);
+> }
+> 
+> static void plic_irq_eoi(struct irq_data *d)
+> {
+>     struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+> 
+>     if (irqd_irq_masked(d)) {
+>         plic_irq_unmask(d);
+>         writel(d->hwirq, handler->hart_base + CONTEXT_CLAIM);
+>         plic_irq_mask(d);
+>     } else {
+>         writel(d->hwirq, handler->hart_base + CONTEXT_CLAIM);
+>     }
+> }
+> 
+> Where it's claiming -> handling interrupt -> interrupt completion in
+> eoi which is according to architecture.
+> 
+> 
+> Now with fasteoi_ack flow If I introduce the below ack callback to
+> issue interrupt completion.
+> 
+> static void plic_irq_ack(struct irq_data *d)
+> {
+>     struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+> 
+>     if (irqd_irq_masked(d)) {
+>         plic_irq_unmask(d);
+>         writel(d->hwirq, handler->hart_base + CONTEXT_CLAIM);
+>         plic_irq_mask(d);
+>     } else {
+>         writel(d->hwirq, handler->hart_base + CONTEXT_CLAIM);
+>     }
+> }
+> 
+> Here we are issuing an interrupt completion first, and later in the
+> handler  plic_handle_irq() we are claiming the interrupt by reading
+> the claim register. With this we are not following [0].
 
-I suspect this is because lack on idle gaps between cec commands sent =
-from board to tv.
-Maybe TV sw. can't deal with consecutive commands without any idle =
-between them?=20
+Whatever [0] says doesn't really matter, since the HW is totally
+busted.
 
-It is interesting that disconnecting TV - so CEC line is driven only by =
-board - rock3a still don't have any idle gaps while rock3b (and radxa =
-4.19 bsp) has them (very similar between 5.18mailine and 4.19 bsp).
+> Do you think this flow is OK (interrupt completion -> Interrupt claim
+> -> handle IRQ)?
 
-How this is possible that change I/O from m0->m1 impacts _timings_ on =
-free hanging CEC line?=20
+You keep missing my point. Edge and Level *must* have different flows
+and this also implies different callbacks. You can't just handle both
+at once. You should have something like this (untested):
 
-> This strikes me as a signal integrity issue. Do you have an
-> oscilloscope (not a logic analyzer, you need voltages and ramp times)
-> to compare the working vs non-working signals? Check both sides of the
-> level shifter.
+diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
+index bb87e4c3b88e..5e072be32d9f 100644
+--- a/drivers/irqchip/irq-sifive-plic.c
++++ b/drivers/irqchip/irq-sifive-plic.c
+@@ -176,16 +176,52 @@ static void plic_irq_eoi(struct irq_data *d)
+ 	}
+ }
+ 
++static int broken_set_type(struct irq_data *d, unsigned int type);
++
+ static struct irq_chip plic_chip = {
+ 	.name		= "SiFive PLIC",
+ 	.irq_mask	= plic_irq_mask,
+ 	.irq_unmask	= plic_irq_unmask,
+ 	.irq_eoi	= plic_irq_eoi,
++	.irq_set_type	= broken_set_type,
++#ifdef CONFIG_SMP
++	.irq_set_affinity = plic_set_affinity,
++#endif
++};
++
++static void broken_eoi(struct irq_data *data) {}
++
++static struct irq_chip plic_chip_edge = {
++	.name		= "Edgy PLIC",
++	.irq_mask	= plic_irq_mask,
++	.irq_unmask	= plic_irq_unmask,
++	.irq_ack	= plic_irq_eoi,
++	.irq_eoi	= broken_eoi,
++	.irq_set_type	= broken_set_type,
+ #ifdef CONFIG_SMP
+ 	.irq_set_affinity = plic_set_affinity,
+ #endif
+ };
+ 
++static int broken_set_type(struct irq_data *d, unsigned int type)
++{
++	if (!plic_is_totaly_broken())
++		return 0;
++
++	if (type == IRQ_TYPE_EDGE_RISING)
++		irq_set_chip_handler_name_locked(d, plic_chip_edge,
++						 handle_fasteoi_ack_irq,
++						 "Edge");
++	else if (type == IRQ_TYPE_LEVEL_HIGH)
++		irq_set_chip_handler_name_locked(d, plic_chip,
++						 handle_fasteoi_irq,
++						 "Level");
++	else
++		return -EINVAL;
++
++	return 0;
++}
++
+ static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
+ 			      irq_hw_number_t hwirq)
+ {
 
-Indeed - i will verify this with digital oscilloscope.=20
-Already ordered and must await week or 2 for delivery :-(
+which applies the correct flow and chip depending on the trigger
+information. This also implies that for chained PLICs, the secondary
+PLIC output is handled as a level into the primary PLIC.
 
-My analog oscilloscope shows correct levels and slopes "seems" to be the =
-same like in working (no memory so i can compare only visually on fuzzy =
-screen)=20
+	M.
 
-For me key is to understand why on rock3a there is no any idles between =
-cec commands - even when nothing is connected to bard (so cec is only =
-sending and nothing external impacts cec state machine)....=20=
+-- 
+Without deviation from the norm, progress is not possible.
