@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B19B55A979
+	by mail.lfdr.de (Postfix) with ESMTP id D08A755A97B
 	for <lists+devicetree@lfdr.de>; Sat, 25 Jun 2022 13:39:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232680AbiFYLhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 07:37:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56550 "EHLO
+        id S232682AbiFYLhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jun 2022 07:37:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232682AbiFYLhS (ORCPT
+        with ESMTP id S232401AbiFYLhS (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 07:37:18 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 341C7167E5
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E3F18371
         for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 04:37:17 -0700 (PDT)
 Received: from localhost.localdomain ([37.4.249.155]) by
  mrelayeu.kundenserver.de (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1M8xsm-1nz05v1cla-006AK8; Sat, 25 Jun 2022 13:37:05 +0200
+ id 1MgNxZ-1nS9Fe3aPP-00hy2z; Sat, 25 Jun 2022 13:37:05 +0200
 From:   Stefan Wahren <stefan.wahren@i2se.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>,
         Ray Jui <rjui@broadcom.com>,
@@ -28,117 +28,79 @@ Cc:     Peter Robinson <pbrobinson@gmail.com>,
         bcm-kernel-feedback-list@broadcom.com,
         Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
         Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH V4 10/11] soc: bcm: bcm2835-power: Add support for BCM2711's RPiVid ASB
-Date:   Sat, 25 Jun 2022 13:36:18 +0200
-Message-Id: <20220625113619.15944-11-stefan.wahren@i2se.com>
+Subject: [PATCH V4 11/11] soc: bcm: bcm2835-power: Bypass power_on/off() calls
+Date:   Sat, 25 Jun 2022 13:36:19 +0200
+Message-Id: <20220625113619.15944-12-stefan.wahren@i2se.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220625113619.15944-1-stefan.wahren@i2se.com>
 References: <20220625113619.15944-1-stefan.wahren@i2se.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:CrAi4k9Wo8hscyvh6c49EdnfeKAOjVeZNKoVyBNv8a+wSJRWS4z
- X/dnARLoxXrNsaNJuB3fMJjmvMU76kAJIFnvdg7ZQFqHQJk2a5jmXokxxiyn0ZCZMCPrFu1
- oMYRVrOpRUgB03KFIBxMrvNUpKINUwNKaiGQTrfgKzP69Kye/ORXYetqhdDfvk4CyeKOHr+
- GjUm+OE04XcpEs0z20hmg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:l/7/A6MLRNI=:mqVwQO8FHcu1+Z0dh9v62s
- 1NGbvXmwIPOM/x6UOc9ib/+79IjAd/vEQgGf3cmWwuyBMn+t1eyVHS8SppX1T4E3sF2BBuadT
- CHxr+zZpE2ck1uSpoLY06yDbvhsmtx1l42M/2+5uvhUWxF/J1CRe+GU1dxO25FEsuWGgfgBKI
- i0RUZaSJ8FCO1gRbM6yckG2hhbi+W49uO9hNEEn9opj1SReUcaogh8Yno0lf3trxV1v9txL4O
- 7kTHjWtpVzIsjTfCPaTW97LvZhjJFV5W1utVL9ApqKeO5ujvAT/90xM/D9jGFF+m0pvqQ/RUi
- 7clsRhNyzgDagcQ5LIqBRl1vyuBI7FKmsO2Znyaor+nH/CmD/Qd3UlkX9TIkrhK1vM4meKeex
- 76oBBDcuHzgE0v3t2/0Wk+mWEEYS1sapIX5kM8WDc1SSD+g9fWBiYP5wxuS3ArVMhYT79Msyg
- xrABKXhUXIVvCJ8OsBDlW20jAY1R7iUaCp/9hUNoocbYYYbpwaOhcc+XSYtNwXrQ0fe2SZ8ZQ
- +/9f/Ui0NZgNzvT7XioW6jTqbGLbnfjrNLbW5cS366R30OPPlpRjam5t4oHWlZIVXPGlA7LSl
- uBWGVOobtJ5BDz6jmc8gHLSN3rR7eYcTRgoRBvIli2Ma1AIofEQLj1jCPpMEnC1Jwl7P+PeKZ
- bgMk6nmJFOcyvs1DgMrapS0QSfZmx6P9viKM1F+XE4jvuZfrEbDl6SNRet6tUJpEyJzsspnrW
- uJDtszOpgc5XvM2VVA6b8h7Xrx6nDuPM151MokCtQxGQ9DkMd+l9Vxr3Euw=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:2PrwkBUhlX3feTxtsVZZDn4SLPgtv9Owu+n+ReAxpWPwW+CUQu/
+ CTWiEynQbYzHpcIvmpdxk4zbxImg9Xfro0H4ROK2q+C70L+C4IqHLfkJ1PUWyCHIaDheqcW
+ OYSBuHy0/F4ungU8+2oIHg09DZ4gxRqMYdGZDuzXnIwAMVDQKD+zmpkj7n2U8teZGqk1J+t
+ 3JV96p6oLrPy10pqF4q4A==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:TsRRSqpYVLU=:frROenGdWb1y3SOA3jkZIM
+ qQ9IleGV+nFEDrD+ysN+HWBXyUnlppwXIKyOHW/jL2fBRB+S/FcNk0DCRuT3GzDe0cU4z/L9N
+ YHnq4tOO/bA1fL0quxPu716Tt/HPH1dWmV8NZiWZbuAA8jXCMEYdQVuwBkLRDycqbvYQSBeSY
+ farJCjkJhCv4zfqdadiyMjKeiJhNpb5cyZODifh1hfSt5d458L8aNQu/UKwkLDNXWu2xJDPyb
+ DnaYJ01yHvHGpQcctK9nv/mTatgqxFNuB5+MFadoUvgAZ2s2aPDG5AMWrVoEVOPMAEGxiMZXK
+ tQdc1AmjwwOEjup63QLQEu/HB/oDBkabnZ8GotOdddIPTLEH7QgOycOaWxw54NhWEFgl17aFq
+ GPpSG4PMhhaB67zxKOvNR1+0ADdiPCH9trwPXIJPlQAuKCUeNrekHwe4SYbzg/ZWRs7MxbxR7
+ f0Y1pe/Oari0m9NNwjnBxZoM4sS6l6+P3ooXtemoJNzyipzEnmMVdSZDO7enYWfiJh/09TiDv
+ lCzFLHbGi+p1mGlzblqepsDi0VU4cscgAMPZCm0Yh/ce137cThJ4/LAeHHfkflq6vYeZc93Qp
+ j47IdV4gyIElS9Sd9y26XaJHnANo/uu/QgXE/9weBI+NbiKXNypnLW1IvwIy3mSIx6f1fnJcy
+ /49dGVAQoDqfJKV2tKc80KGeKL7xNI1Y4otedAvvbfw32icKYCIfMEN53LH0AlQA6O7OMu2Bx
+ rz6pQdTOBZC1FFNIijTF24UE129FXiijW1fDMp+4rJYN/wEzH7eHZD5EIJU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In BCM2711 the new RPiVid ASB took over V3D. The old ASB is still present
-with the ISP and H264 bits, and V3D is in the same place in the new ASB
-as the old one.
+From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 
-Use the fact that 'pm->rpivid_asb' is populated as a hint that we're on
-BCM2711.
+Bypass power_on/power_off() when running on BCM2711 as they are not
+needed.
 
+Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
 ---
- drivers/soc/bcm/bcm2835-power.c | 25 +++++++++++++++++++++++--
- 1 file changed, 23 insertions(+), 2 deletions(-)
+ drivers/soc/bcm/bcm2835-power.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/drivers/soc/bcm/bcm2835-power.c b/drivers/soc/bcm/bcm2835-power.c
-index 9c352f66e6d5..1e06d91c0739 100644
+index 1e06d91c0739..5bcd047768b6 100644
 --- a/drivers/soc/bcm/bcm2835-power.c
 +++ b/drivers/soc/bcm/bcm2835-power.c
-@@ -126,6 +126,8 @@
+@@ -198,6 +198,10 @@ static int bcm2835_power_power_off(struct bcm2835_power_domain *pd, u32 pm_reg)
+ {
+ 	struct bcm2835_power *power = pd->power;
  
- #define ASB_AXI_BRDG_ID			0x20
- 
-+#define BCM2835_BRDG_ID			0x62726467
++	/* We don't run this on BCM2711 */
++	if (power->rpivid_asb)
++		return 0;
 +
- struct bcm2835_power_domain {
- 	struct generic_pm_domain base;
- 	struct bcm2835_power *power;
-@@ -139,6 +141,8 @@ struct bcm2835_power {
- 	void __iomem		*base;
- 	/* AXI Async bridge registers. */
- 	void __iomem		*asb;
-+	/* RPiVid bridge registers. */
-+	void __iomem		*rpivid_asb;
+ 	/* Enable functional isolation */
+ 	PM_WRITE(pm_reg, PM_READ(pm_reg) & ~PM_ISFUNC);
  
- 	struct genpd_onecell_data pd_xlate;
- 	struct bcm2835_power_domain domains[BCM2835_POWER_DOMAIN_COUNT];
-@@ -151,8 +155,15 @@ static int bcm2835_asb_control(struct bcm2835_power *power, u32 reg, bool enable
- 	u64 start;
- 	u32 val;
+@@ -219,6 +223,10 @@ static int bcm2835_power_power_on(struct bcm2835_power_domain *pd, u32 pm_reg)
+ 	int inrush;
+ 	bool powok;
  
--	if (!reg)
-+	switch (reg) {
-+	case 0:
++	/* We don't run this on BCM2711 */
++	if (power->rpivid_asb)
++		return 0;
++
+ 	/* If it was already powered on by the fw, leave it that way. */
+ 	if (PM_READ(pm_reg) & PM_POWUP)
  		return 0;
-+	case ASB_V3D_S_CTRL:
-+	case ASB_V3D_M_CTRL:
-+		if (power->rpivid_asb)
-+			base = power->rpivid_asb;
-+		break;
-+	}
- 
- 	start = ktime_get_ns();
- 
-@@ -621,13 +632,23 @@ static int bcm2835_power_probe(struct platform_device *pdev)
- 	power->dev = dev;
- 	power->base = pm->base;
- 	power->asb = pm->asb;
-+	power->rpivid_asb = pm->rpivid_asb;
- 
- 	id = readl(power->asb + ASB_AXI_BRDG_ID);
--	if (id != 0x62726467 /* "BRDG" */) {
-+	if (id != BCM2835_BRDG_ID /* "BRDG" */) {
- 		dev_err(dev, "ASB register ID returned 0x%08x\n", id);
- 		return -ENODEV;
- 	}
- 
-+	if (power->rpivid_asb) {
-+		id = readl(power->rpivid_asb + ASB_AXI_BRDG_ID);
-+		if (id != BCM2835_BRDG_ID /* "BRDG" */) {
-+			dev_err(dev, "RPiVid ASB register ID returned 0x%08x\n",
-+				     id);
-+			return -ENODEV;
-+		}
-+	}
-+
- 	power->pd_xlate.domains = devm_kcalloc(dev,
- 					       ARRAY_SIZE(power_domain_names),
- 					       sizeof(*power->pd_xlate.domains),
 -- 
 2.25.1
 
