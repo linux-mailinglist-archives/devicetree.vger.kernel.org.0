@@ -2,67 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B13D455AD4C
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 00:59:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4220F55AD65
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 01:18:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233696AbiFYW72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 18:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36272 "EHLO
+        id S233562AbiFYXSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jun 2022 19:18:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233712AbiFYW72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 18:59:28 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9D3D13FAA
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 15:59:26 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-31772f8495fso54857077b3.4
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 15:59:26 -0700 (PDT)
+        with ESMTP id S233322AbiFYXSX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 19:18:23 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B09F112095
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 16:18:22 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-3176b6ed923so54736597b3.11
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 16:18:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Kz4CQpOKhPTyDsa60xKPIiVM3jnSyd80mVmcmJIhuHQ=;
-        b=f0R0dNNfG+cy3gFp7wt9apjvTZnUDWzypyV4qpxTt0EYhTusE7dczqOjHtdnJ6vezN
-         zHCYjY76OuU7+5Kurfz9oaZcDHK4a3uwUh3eDulaNbh8hB6891r6dpwGNRRrYLaL0rGI
-         lXHEoGEl0PVXK+UANPXZuirl60K+W2t2Kir2E6bca3VxQvvETRSmzmqghmbYWZRf2c+O
-         qQ7Uwvryau8aALkvZtL19zhwrXOxRQuMK4ocOgSBgDpdEydMdiCLF+mETnI5hsInX+0a
-         9Jd7mhj/C6OsaaKO0Au+5T+hKmp/3hxrDjcU/5FKa/Ui/MGI9jYcSPGrFadHuCt/y8Bb
-         VoKw==
+        bh=I1lEsJtkNZbW6pyj+UEBzWbQKiimWRk8J2D2WyS2PI8=;
+        b=KoacatgMZZBpRCXPbvLZYAuPJOuGRaP35V6GQGHzf9ip4nu9ZN9GwQlkv3whLZ0elc
+         D9kt8nEMn5EyqAgr1MgXuUXmo+Y0AC0DKSofvzMmYPR66Y2eIjJs19NYd6tlwVcdg5rB
+         5IEwg8iIs1HeVvM63yEp97Oi/ceOx/401MffbkHaBjrwn1COYHG7b+eEbefwOyKep/RW
+         Skt9O7k/YCCZnuZcIPuB0t3+vYCeRM00BZljm6MiALd71OaTlVSPVZAKM9A3PyWHUiae
+         ibgHzU8NsukO2X+n2LiDbprvSUDbfmRciABJ1jKdCflBIdAuUOe8hunRtgUtQ8kATAHH
+         80lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Kz4CQpOKhPTyDsa60xKPIiVM3jnSyd80mVmcmJIhuHQ=;
-        b=Vcat2P/b568M/4x44PPQWdI4ZZKGz50XF9ufy8vUsGHjlu0c0bASd5sVT13IHoNXQ6
-         Dd0PygTOSNIM6kwjLp8eFIOlzyC51VwjiT3Y17BIM1jd23lpJkNmyEUiy9rTk9KKDJrh
-         /LrpsKAnLGQRNFXECRd+dJV6u5NKSW+YvBcn+jhrIyh1iSdV00rdenfggpJSoUAghGR/
-         ag5hgePGcILdYV72BLfVeeCZm6bxUftv4e8VXfLQ+SEMOpjaHsW06CDIY901hRLbndyz
-         N4LVyRYawyLFfGcKFREkUYZC4FOma357N4YVcCA1u0JY1V7WCPwbAKiS0xGL1lyO09d6
-         BXGQ==
-X-Gm-Message-State: AJIora+27RbBEH5fgCnLiM2AWI5dJlNpNdgKEWYUrv6N8dYmFhxuqb23
-        CDy/gZScvIkVQxrPy3bF/NZQgn0JaWID+EFnVQDRcA==
-X-Google-Smtp-Source: AGRyM1uosYwxlq64LUlIuBLDzEOZIVCn/f27F5vp117PBBS+sA4ZCR/UdMd9wStyWymJXop43cXKJFCZnY1Vqnm0CGM=
-X-Received: by 2002:a0d:eace:0:b0:317:87ac:b3a8 with SMTP id
- t197-20020a0deace000000b0031787acb3a8mr6860068ywe.126.1656197966000; Sat, 25
- Jun 2022 15:59:26 -0700 (PDT)
+        bh=I1lEsJtkNZbW6pyj+UEBzWbQKiimWRk8J2D2WyS2PI8=;
+        b=S+IpCS2Db4TUC7JXUHKVvVQgqVkEu2B0RaZaVrH3X1gONDv98RFE57zmpkfqFfzSEH
+         uzaEEJumxf7RL4KIraweCwNRdilXXRg7cqpGSrmwtBatVOClFP7MLkrYLf9hgKslVv0u
+         KdVbFYHtP0AZDCMUfh1Zegf1RLYLQTv2xxQ/1T9xv9hpqZTKEURR11tp12xxtTCdXg0U
+         i2NfhXJWd5KhPwq86CAy6jkfgouQjmKYZQ11Ai3TD8mGtnl93spjxqUOsOklSL/hWWqm
+         0nnoQ+r0qT89dKBiHSOO78r4gwErh7pa/tyaKtQRpt5sHZHaprVv6NmbVi9tAzDnpviF
+         vBfA==
+X-Gm-Message-State: AJIora/ONDeuIM7F8UdZhq5RtYiWZFDAZSXwcrIUuVyTl0PTIXb2Vwfg
+        BORREYDykobGINMvA8iYTaTkgZ45VOgU1V7TEu5tKg==
+X-Google-Smtp-Source: AGRyM1vPgaDOnRXygiHaY2iEqka3XlgQt2gTMAnBu+rU9CZe9K4dmUR22BvkxFs8sAUWLBKQ4L3Y0aeMiNfUdKfZCEk=
+X-Received: by 2002:a0d:d487:0:b0:318:48dd:95b3 with SMTP id
+ w129-20020a0dd487000000b0031848dd95b3mr7009019ywd.140.1656199102016; Sat, 25
+ Jun 2022 16:18:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220427144620.9105-1-pmalgujar@marvell.com> <20220427144620.9105-3-pmalgujar@marvell.com>
- <CACRpkdaqeTs-jHPBmtdiz+LdMM0pz0zqt4diX=e+YpgaGr0Jbw@mail.gmail.com>
- <20220603090618.GA27121@Dell2s-9> <CACRpkdaOd0-k_mt0ZrKT-DbVc3f0b5uXXmXpBNH=hq3BGCB+vQ@mail.gmail.com>
- <20220613080452.GA1884@Dell2s-9>
-In-Reply-To: <20220613080452.GA1884@Dell2s-9>
+References: <20220625200600.7582-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220625200600.7582-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220625200600.7582-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 26 Jun 2022 00:59:14 +0200
-Message-ID: <CACRpkdY-+D1tkNJoWLpQH9-2AcE1xb546eJx5Nuq+Tw3WKj6mw@mail.gmail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: gpio: gpio-thunderx: Describe pin-cfg option
-To:     Piyush Malgujar <pmalgujar@marvell.com>
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rric@kernel.org,
-        cchavva@marvell.com, wsadowski@marvell.com
+Date:   Sun, 26 Jun 2022 01:18:11 +0200
+Message-ID: <CACRpkdbYbRnjEB+LdUGPxj1T2KbxtieGMY2uzbThD2ffY8zkJw@mail.gmail.com>
+Subject: Re: [PATCH v6 5/5] pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to
+ handle GPIO interrupt
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,21 +75,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 13, 2022 at 10:04 AM Piyush Malgujar <pmalgujar@marvell.com> wrote:
+On Sat, Jun 25, 2022 at 10:07 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
 
-> Thanks for the reply.
-> But as in this case, we expect a 32 bit reg value via DTS for this driver
-> only from user with internal understanding of marvell soc and this reg bit
-> value can have many different combinations as the register fields can vary
-> for different marvell SoCs.
-> This patch just reads the reg value from DTS and writes it to the register.
+> Add IRQ domain to RZ/G2L pinctrl driver to handle GPIO interrupt.
+>
+> GPIO0-GPIO122 pins can be used as IRQ lines but only 32 pins can be
+> used as IRQ lines at a given time. Selection of pins as IRQ lines
+> is handled by IA55 (which is the IRQC block) which sits in between the
+> GPIO and GIC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I understand that this is convenient but it does not use the right kernel
-abstractions and it does not use device tree bindings the right way
-either.
+Looks OK to me, as long as I get Marc's approval I'l merge this!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Rewrite the patches using definitions and fine control and move away
-from magic numbers to be poked into registers.
+Maybe Marc want to apply all patches to the irqchip tree?
 
 Yours,
 Linus Walleij
