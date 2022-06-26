@@ -2,129 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A71B455B00B
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 09:57:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EC4455B04D
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 10:36:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233923AbiFZHvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 03:51:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40688 "EHLO
+        id S233974AbiFZIdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 04:33:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234018AbiFZHvV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 03:51:21 -0400
-Received: from sonic301-20.consmr.mail.ir2.yahoo.com (sonic301-20.consmr.mail.ir2.yahoo.com [77.238.176.97])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AAB012AD4
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 00:51:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1656229877; bh=39cnnm2LcZpob9DUMBAQbw/FL7wmWN3SUwndjA+V+IM=; h=Date:Subject:From:To:Cc:References:In-Reply-To:From:Subject:Reply-To; b=aCOHGye8jea7IQosA6kJLtGHeXJ0nYmVYabloYgoyge4OeNF3i3yppRY2HYmdh/R9Kq5Ufl6zGGQQp7uhvHwlncFACKVU8MnHIbTuqd8cQvRWfBIDrwiUkYPGSXklJp8IUPT3nnIvoPV8J/eoelpoWyuGFfMBQ/+B/j1NdA9uZZJmP0V+Zb96/Q0FAwBdM3U9ldrGuPcU/NMgm9lcEAyiw8xjGzq/XfdMe5Sc7jLuFUfpOUYyc5ME7qvLGR197wj56BTGa6H5K8WdDRbD+yISNlNDNKX9zGzp1rnbLbI4pJhVfSbFb0sXt+W6QkN2xNawYmgtTaxi3WgZhwFIYh0jQ==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1656229877; bh=Qezq+kiFonbVJBLljqyjQV8R26/WQGnH7Xqlfj1tTGH=; h=X-Sonic-MF:Date:Subject:From:To:From:Subject; b=hLF6gVA+MS+LfFYqRumOtsfX4SQOlaPmUiZX01JvrDziAg99lPte4QOkWZF2ZNj4bxV0XQfi42UOqlkNgxceiyTFh2Wq1hPLCtJ45GfWR+KdtHahvVRproP4auXcOm2XJvesG0fZblHYho30AWwa7vy8Dna6H1c6bg1U4IOn+msQ2AqbJv8yjsHVrCh08TVL70o9JXcvmkmBuKW3TpSdFh3kbKkSh35d/vpQdpUGB+y7fojopBYZENyVN3GFK13WOvJGaYz1dObrmnASOKezvVC8zaRlMmv3hnt59Ks2yau/Qzixbjy8n93iv1JzrwBHa67LLJPET5xVO03gshYmGQ==
-X-YMail-OSG: qQ0smoAVM1mnPWGV7bUD98WUopSwrzNXadP2D1iGIuSf1TEGJhpE5LrbFTThXRZ
- i1hFhK0z.GmGB3JqK393rKDt2q5QZbqyoj9bH.sMJpZJsfw2ONXVwmaMULEDyzlXZSDgTsGXTYGE
- aeuPIIOCaPClOhV147udSUXdln05JFNBw1lpS3bHa0JxpGu58_WWuRFf07knohna74zaPAErmtpj
- L1mDMI0a.r5aG_06YnA.SdsKkEFVmRKGVToyT_6pbkcHV3vgporI.RaDIgb_YbF21qh7ruKgHVGJ
- E6.b1KWp1v8ouGZUibXHi6HXaImFLBqZzocebFQEvLEaRpLbqNHrr4T6Ps6Zg3H19XUYC9LvckkE
- MX9sRcuZmfgqlfsnXJ.39F7n1KT.iwsUjAeubyeh0HDLKeymXS.9Pf4LHikFEYm_TwgKPXvbY2ul
- egpu9OHEL5ZIY9JqeEBdarNkUBNuY55wG2V.u81dW60hagJh2JTRpMJqirhm8mMKbYDrl3vLHCj4
- E10PpelW5OYhyBDMjZSRQM_XztfnWxkFKJAcn7Q0hM3aR.Yfc5v02gx.y1gJDpXiuXzR9MjFgr9q
- O3uj6BYKIiv6itFcFKiJjwM_93xcPFkH4MtPxyV5fHKqQ97evGT6IRCUx.SXsYbA7yk3hKEi4PN_
- LayAn3syYrkrWGqcjQpcnyEotRwZGv9ep7FD6Hovt6QTBL6sYxXx30Ba6WptzkQrjErbnsTIrF1Y
- KzT3imbGUs901bP7f8_xiyzaqihfMH7PLhkncmtt78rlLhul9crCbpmZE6WpZnU023ok7YVeWUQt
- 237O8Fwzh8y_WPeqADPbMLQrS6EShg9tJbKxyc7toV28GEpAsWH4zpxvZbLJkVckGpe2IbqD36U1
- uR8Med9mYKAtnkENeywd.11xrh6uHPG9Uh2X9lRQsf3CDS5B9utCv0rGL0oVSbKQpqR84KxduHqA
- Tkk20gCmQKhqiHSSv0FndhtM1NL5RyTdjNc3Mjvn6Y71gwBkj2BhaapZXdOvg2.f8eQbg0Yhihaa
- lDhc5D9kMZVTBC.wECIaN0o5q5jHtxW9QZOWJmEUG8pvlhpZadFLVEsMomgoDEIshuAaKkufUzYj
- 29JzUGkb0ivx7Sc37ZWcHXjzM15YLi2MWs9hE7HtWPad21K8kx8D7ejLTJON0drhfAmhCXtRwRIC
- DCP374HsH6jzS6cpgj8kz2ygKnh483I9sJD4I.27oMSKF0h5gmDRjFJUsFaYUH6IYNwOf0B09hQB
- mLUji6ysFptXxzHx8zhrbRbzlkLfKY3vOfhr0rEEKedjFEVntPGmLnYcGssmJdomDnfaYbtrgvlk
- 3WUkDZXVwNVdAmlNtDiSfh1KSh.rB_th3JDfbeuVnIR4RWPBxxE01_zS0MPJ8KO8hKZTzu1iotsD
- CM2CULG3ehLnlJuaWs7W0RLCtvAVSD0jYPs_sDpG4msv1x8oFBy0ZDflXJBotC65Z2nG5j2FmJcT
- 8IXswusGqLMwwlfNn1CiwqT4.ns22Aiapg4hVxlBQSd9uzkg6t60zKoQ0CcgGsTRWt9d3sNoUdOH
- bVlqIgFnMQFUf4nY43f.PAb6L5Adztz1TNIiD_.6cuaOZWv7nqQ2ul1g5UZASUADtC0Fj_AiKCtz
- Uub.rj13k8xPf2A07UEIENUGCQBIFkeLrkJLOQlNr.UZpCnudr4ZC1j6jZt89f5LRpUicd8DsJP2
- Kn6CpcF5yv1CeKBlDe7vFJIkGFG.gUv202Apt0garmIYJfaS_gd8mKI79tiq.WrZw_PaWqf8whWK
- Ns4nsYmUqSYr0lur44fuw5ieFcnS9ZkiEYUnuGrugi_sDX9U7VDkU.eyKU13IgYIE5PmGZmt5lGU
- f2SiSFCHVpumXvIxlyny0jnLecMZJ.j4jxqhhtuWSn_ZpwcK1B7e6kV_Z7cp6hYzSp35yuWOnjdd
- ugvG.cEU1FMrcRMF1nR8xi8a.AQRmPva5VbinjoOEGIwVAGUk.FYY9zqvpu7cDIOFT.eGXry3vup
- oW9maZOkDmsxm9WKN181d2A_0D.uDFUA5THgfR6MFkh4OLyS6FSedDQ13DAdmrHKwMrVAm0ikNEI
- 1uH2iMiiz8yxlGrKVyDmAXJ9ALJyeGJULvVZBpB4b4ezHErRk._YdXOGqCHQwraYSDsRdFyQ.EO2
- b0yScIUqm8c5kZdyOc8EwrUF1URiNGHtzrGCjGWDCqXnkm0eM8R2p9i4UgPRALfSoLJST46ZUT9o
- ygGxrk_DXDikGLGE6ztEr2VxA2SpSquv3ApO8Qp476GeoCFCph_6MBAPO.h8d8jIT8lpG
-X-Sonic-MF: <jahau@rocketmail.com>
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic301.consmr.mail.ir2.yahoo.com with HTTP; Sun, 26 Jun 2022 07:51:17 +0000
-Received: by hermes--canary-production-ir2-c9bf9d9bc-fw6gn (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 3a9d8ca4ca272df8e505774fd3b7d3a5;
-          Sun, 26 Jun 2022 07:51:12 +0000 (UTC)
-Message-ID: <c7de2a05-af72-5b73-b70c-82d84e84887c@rocketmail.com>
-Date:   Sun, 26 Jun 2022 09:51:11 +0200
+        with ESMTP id S234045AbiFZIdT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 04:33:19 -0400
+Received: from smtp.smtpout.orange.fr (smtp09.smtpout.orange.fr [80.12.242.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F7CB6175
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 01:33:17 -0700 (PDT)
+Received: from [192.168.1.18] ([90.11.190.129])
+        by smtp.orange.fr with ESMTPA
+        id 5NhgocNcnOXCy5NhhoLboN; Sun, 26 Jun 2022 10:33:15 +0200
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
+X-ME-Date: Sun, 26 Jun 2022 10:33:15 +0200
+X-ME-IP: 90.11.190.129
+Message-ID: <c8b888fc-dff9-c278-da10-6883c4277289@wanadoo.fr>
+Date:   Sun, 26 Jun 2022 10:33:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 5/8] iio: magnetometer: yas530: Change data type of
- calibration coefficients
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v8 2/8] ASoC: mediatek: mt8186: add platform driver
 Content-Language: en-US
-From:   Jakob Hauser <jahau@rocketmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1655509425.git.jahau@rocketmail.com>
- <18f223776f6942d52af2e41dd10160e220a23311.1655509425.git.jahau@rocketmail.com>
- <20220618155618.18996d0c@jic23-huawei>
- <10c06f21-23d3-d3a8-5a6d-8290cf2971cb@rocketmail.com>
-In-Reply-To: <10c06f21-23d3-d3a8-5a6d-8290cf2971cb@rocketmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.20280 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+To:     jiaxin.yu@mediatek.com
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        aaronyu@google.com, alsa-devel@alsa-project.org,
+        angelogioacchino.delregno@collabora.com, broonie@kernel.org,
+        devicetree@vger.kernel.org, julianbraha@gmail.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, trevor.wu@mediatek.com, tzungbi@google.com
+References: <20220625190852.29130-1-jiaxin.yu@mediatek.com>
+ <20220625190852.29130-3-jiaxin.yu@mediatek.com>
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20220625190852.29130-3-jiaxin.yu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
-
-On 21.06.22 02:51, Jakob Hauser wrote:
->
+Le 25/06/2022 à 21:08, Jiaxin Yu a écrit :
+> Add mt8186 platform and affiliated driver.
 > 
-> On 18.06.22 16:56, Jonathan Cameron wrote:
->
->> On Sat, 18 Jun 2022 02:13:13 +0200
->> Jakob Hauser <jahau@rocketmail.com> wrote:
->>
->>> This is a preparation for adding YAS537 variant.
->>>
->>> YAS537 uses other data types on the calibration coefficients [1] than YAS530 [2]
->>> and YAS532 [3].
->>>
->>> On YAS537, at least for a4 and a7 this could matter because 8-bit unsigned data
->>> from the register gets stored into a signed data type, therefore this should be
->>> 8-bit as well.
->>>
->>> For YAS530/532, on the other hand, it doesn't seem to matter. The size of a2-a9
->>> and k is smaller than 8-bit at extraction, also the applied math is low. And
->>> Cx/Cy1/Cy2, now being defined as signed 16-bit, are extracted as unsigned 8-bit
->>> and undergo only minor math.
->>
->> Ok. If this is harmless to existing drivers fair enough, though my personal
->> inclination would have been to take the easier approach of making the
->> new variant sign extend on variable load (sign_extend_32() and similar)
->> just so we didn't need to check the older parts weren't affected.
-> 
-> I didn't know that operation :) Let's take this.
+> Signed-off-by: Jiaxin Yu <jiaxin.yu-NuS5LvNUpcJWk0Htik3J/w@public.gmane.org>
+> ---
+>   sound/soc/mediatek/Kconfig                    |   12 +
+>   sound/soc/mediatek/Makefile                   |    1 +
+>   sound/soc/mediatek/mt8186/Makefile            |   19 +
+>   sound/soc/mediatek/mt8186/mt8186-afe-common.h |  235 ++
+>   .../soc/mediatek/mt8186/mt8186-afe-control.c  |  255 ++
+>   sound/soc/mediatek/mt8186/mt8186-afe-pcm.c    | 3011 +++++++++++++++++
+>   6 files changed, 3533 insertions(+)
+>   create mode 100644 sound/soc/mediatek/mt8186/Makefile
+>   create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-common.h
+>   create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-control.c
+>   create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-pcm.c
 
-While working on patchset v4, I just realized that sign_extend32() can't
-be used at the variable declaration but instead needs to be applied at
-"variable load", as you wrote.
+[...]
 
-I wasn't aware of this until now. In that case, I'd  prefer to leave the
-patch unchanged. Overall the resulting code looks simpler that way.
-Applying sign_extend32() at all locations where we extract calibration
-coefficients makes it more dizzy.
+> +	MT8186_DAI_HOSTLESS_SRC_AAUDIO,
+> +	MT8186_DAI_HOSTLESS_SRC_1,	/* just an exmpale */
 
-Kind regards,
-Jakob
+example?
+
+> +	MT8186_DAI_HOSTLESS_SRC_BARGEIN,
+> +	MT8186_DAI_HOSTLESS_UL1,
+
+[...]
+
+> +#define MTK_SPK_I2S_0_STR "MTK_SPK_I2S_0"
+> +#define MTK_SPK_I2S_1_STR "MTK_SPK_I2S_1"
+> +#define MTK_SPK_I2S_2_STR "MTK_SPK_I2S_2"
+> +#define MTK_SPK_I2S_3_STR "MTK_SPK_I2S_3"
+
+Out of curiosity, why no 4?
+Or, if related to mtk_spk_i2s_type below, why  6, 7, 8 and 9?
+
+> +#define MTK_SPK_I2S_5_STR "MTK_SPK_I2S_5"
+> +#define MTK_SPK_I2S_6_STR "MTK_SPK_I2S_6"
+> +#define MTK_SPK_I2S_7_STR "MTK_SPK_I2S_7"
+> +#define MTK_SPK_I2S_8_STR "MTK_SPK_I2S_8"
+> +#define MTK_SPK_I2S_9_STR "MTK_SPK_I2S_9"
+> +
+
+[...]
+
+> +
+> +enum mtk_spk_i2s_type {
+> +	MTK_SPK_I2S_TYPE_INVALID = -1,
+> +	MTK_SPK_I2S_0,
+> +	MTK_SPK_I2S_1,
+> +	MTK_SPK_I2S_2,
+> +	MTK_SPK_I2S_3,
+> +	MTK_SPK_I2S_5,
+> +	MTK_SPK_I2S_TYPE_NUM
+> +};
+
+[...]
+
+> +static int mt8186_afe_pcm_dev_probe(struct platform_device *pdev)
+> +{
+> +	struct mtk_base_afe *afe;
+> +	struct mt8186_afe_private *afe_priv;
+> +	struct resource *res;
+> +	struct reset_control *rstc;
+> +	struct device *dev = &pdev->dev;
+> +	int i, ret, irq_id;
+> +
+> +	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(34));
+> +	if (ret)
+> +		return ret;
+> +
+> +	afe = devm_kzalloc(dev, sizeof(*afe), GFP_KERNEL);
+> +	if (!afe)
+> +		return -ENOMEM;
+> +	platform_set_drvdata(pdev, afe);
+> +
+> +	afe->platform_priv = devm_kzalloc(dev, sizeof(*afe_priv), GFP_KERNEL);
+> +	if (!afe->platform_priv)
+> +		return -ENOMEM;
+> +
+> +	afe_priv = afe->platform_priv;
+> +	afe->dev = &pdev->dev;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	afe->base_addr = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(afe->base_addr))
+> +		return PTR_ERR(afe->base_addr);
+> +
+> +	/* init audio related clock */
+> +	ret = mt8186_init_clock(afe);
+> +	if (ret) {
+> +		dev_err(dev, "init clock error, ret %d\n", ret);
+> +		return ret;
+> +	}
+
+There is a mt8186_deinit_clock() call in the remove function.
+Should this also be called in the error handling path below?
+Or should a devm_add_action_or_reset() be used to ease error handling?
+
+> +
+> +	/* init memif */
+> +	afe->memif_32bit_supported = 0;
+> +	afe->memif_size = MT8186_MEMIF_NUM;
+> +	afe->memif = devm_kcalloc(dev, afe->memif_size, sizeof(*afe->memif),
+> +				  GFP_KERNEL);
+> +
+
+Nit: no need for an empty line here.
+
+> +	if (!afe->memif)
+> +		return -ENOMEM;
+> +
+
+[...]
+
+> +
+> +	return 0;
+> +
+> +err_pm_disable:
+> +	pm_runtime_put_noidle(dev);
+> +	pm_runtime_set_suspended(dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int mt8186_afe_pcm_dev_remove(struct platform_device *pdev)
+> +{
+> +	struct mtk_base_afe *afe = platform_get_drvdata(pdev);
+> +
+> +	if (!pm_runtime_status_suspended(&pdev->dev))
+> +		mt8186_afe_runtime_suspend(&pdev->dev);
+
+Out of curiosity, is it normal to have some pm_runtime related code here 
+that does not look the same as the one in the error handling of the probe?
+(I don't know much about pm, but usually, .remove() functions and error 
+handling in the probe look quite close)
+
+> +
+> +	mt8186_deinit_clock(afe);
+> +
+> +	return 0;
+> +}
+> +
+
+[...]
