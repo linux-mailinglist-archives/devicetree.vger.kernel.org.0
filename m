@@ -2,77 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E96BB55B3F2
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 22:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70EC055B403
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 22:20:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231767AbiFZUAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 16:00:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55984 "EHLO
+        id S231939AbiFZUSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 16:18:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232020AbiFZUAY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 16:00:24 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36267F67
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 13:00:23 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id h23so14896447ejj.12
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 13:00:23 -0700 (PDT)
+        with ESMTP id S231767AbiFZUSY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 16:18:24 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 724EB181
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 13:18:21 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id fi2so14976186ejb.9
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 13:18:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=56YzwVQKdHGziCBUUIednU1Z8rEBgdNoppTuq6x0/M8=;
-        b=NnwoGGTb7v+KSqJ5iDMFmofL3n9nM5O/+xjyqJ1YBYmQxbiEZ6Li1wJ1SL9/RwCMW5
-         5CPkIKEP+HSlofaZ9XBU4e0al5O4FU19sS/XS7+j+afROckxahWfDAhw8OIkcmp07nvR
-         oD/kXv1XlmWdg1MOrZdBWgh1u53lgeR6IkkG9jJR8+A1+pH37c7rxWs2odAD/J+vSHA9
-         T5JcfaMFIKQ6AONnA5rzdDflDt1/o4K7UFqb0aGD59e/Q/UviFnjmZbTWAhz02E1KDo+
-         iRzVmy+FaEn/NppE6okbwI4JSBAAozt9O2b/hqwDrfJpgwOhERwAZ+V50J//BTG24mG/
-         nNxQ==
+        bh=lnbF1fjC+JvjJ15dVinDZNgoh7EJaSVwGaKHW7o0wZ8=;
+        b=wW32Ek+GuFD9uwHEGLBbT+0C8MIBVLar4kXtsEkBF64mra8w7rqkWRoVkPW/k8YU/H
+         7M6WNL+0rAWa40wnTM5rB+KaD/HyXE5dCJilu7P1YZAd2lyR9TzMvTjHZsufmasYkLaY
+         LCOR4F1tuzGnIP7lEm//+/rqZDxzOjO5v5H97H4ZPYDQIgfOUEnmtO77oth0Jy5rp9Xx
+         1M7QFSezlIsfPunkRVIiDUri06hnezyGcjJLtOZR8st+nTNaLCtXHjz040qrgFPfOMd6
+         hGZWE/dx9EfCKwcqmcLT0/ogb8vOicAvxZlDbhI68G6x1BKjReBIM75XoYYc7of9jXi4
+         qyfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=56YzwVQKdHGziCBUUIednU1Z8rEBgdNoppTuq6x0/M8=;
-        b=v+svxGLyPKJqkXRML0GxOjxjlOKWdyzzG8Uq7bUFUDm1fVvPbERmVdgYAEtUKvaQBU
-         AJknDZpblILny2PbfjUPJ+zIEkp7dh2aIclOtHr3n1AXaryHF+Wuolo4Mxc7jzzUjNRG
-         YTpmfgnQJJ7cWjnD9dymaUg/Mfa7oQtPgS7I95fx2vhCtrxZi9DVTCYz6TSJmRDiAtOH
-         A6em56jaFfnzy6exTlUXU2xPtrD3U3F63ieYDNS6JHgz8pVO2Ytxc8nlk9GdVjnFmlwd
-         Jr0fVXyspo6ZWwM9FZNkc+3n92vXJccG29GSaJelwbMbxLbj1UMjaQdMzQXYKuIAztQb
-         Jr0A==
-X-Gm-Message-State: AJIora8puXqmjbfYLS1DQb2XjyWrrxjjPaPHklLoa2LT98JNypGIWqGo
-        yDEhv7Bj/c9uA7rLzXqPMHWvtQ==
-X-Google-Smtp-Source: AGRyM1smRDpHE9xz9/L06jkLVOqTAUdavGeWX6/lobROMiqKscv2iJGPLP10Se3MtGyQnK2ImDbuJw==
-X-Received: by 2002:a17:907:6e9f:b0:711:d2cb:63d8 with SMTP id sh31-20020a1709076e9f00b00711d2cb63d8mr9794470ejc.232.1656273621773;
-        Sun, 26 Jun 2022 13:00:21 -0700 (PDT)
+        bh=lnbF1fjC+JvjJ15dVinDZNgoh7EJaSVwGaKHW7o0wZ8=;
+        b=xTRCKvJlc0gtI+EqVpaDwPQFAlml/MKaeAw0TKU4Gg7kT/iAO2gQvGEnJxlkWjZ4Pb
+         cbL50MAOqjfDLmp2bAnRzjfnrwqcqW3qUZ8OBg5PmwBowxH2SUZ5QwYHAGuH+MxTdMet
+         LstO3+PBpu674Jr36++1o/gS3+RnvYfxdltOiigwPubDSeABlZgW5QP+EwmCBQPMZS2v
+         Rdlfuh6kst6V+8ClrcObRkDh/qfZSOaFF68NpDlk3mO5PcIjwtDCPYhNsijxNgD8laQ/
+         MaNp5wny2vHH3gVrlaD1/dsy3gUuINtmDbhGnbuhy6Zhppe3Nas5/+6SRFPHyP3cwy+6
+         tU2A==
+X-Gm-Message-State: AJIora927vOYNxhpiTU3aZAqkur/NoxOzEChqjEoxGOwsOmdniU84oFm
+        wvrm98SwN1RZWw+d5kD+TWZzhA==
+X-Google-Smtp-Source: AGRyM1v0yaNtAV+Id57QV3yP/7C35VegUiMHZ3SK4snewZleCVTI+jGXtu3/rbJCqSl6AXK/2njUDQ==
+X-Received: by 2002:a17:907:3e81:b0:726:9615:d14d with SMTP id hs1-20020a1709073e8100b007269615d14dmr5276783ejc.517.1656274699878;
+        Sun, 26 Jun 2022 13:18:19 -0700 (PDT)
 Received: from [192.168.0.245] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i17-20020a1709061e5100b00704b196e59bsm4099635ejj.185.2022.06.26.13.00.20
+        by smtp.gmail.com with ESMTPSA id c20-20020a056402101400b004358cec9ce1sm6402929edu.65.2022.06.26.13.18.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Jun 2022 13:00:21 -0700 (PDT)
-Message-ID: <9dd87d64-5124-a75b-be8a-1b056da645ce@linaro.org>
-Date:   Sun, 26 Jun 2022 22:00:20 +0200
+        Sun, 26 Jun 2022 13:18:19 -0700 (PDT)
+Message-ID: <4fdcb631-16cd-d5f1-e2be-19ecedb436eb@linaro.org>
+Date:   Sun, 26 Jun 2022 22:18:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v4 3/3] dt-bindings: firmware: convert Qualcomm SCM
- binding to the yaml
+Subject: Re: [PATCH 3/3] dt-bindings: net: rockchip-dwmac: add rk3588 gmac
+ compatible
 Content-Language: en-US
-To:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Das Srinagesh <quic_gurus@quicinc.com>
-Cc:     ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220626183247.142776-1-david@ixit.cz>
- <20220626183247.142776-3-david@ixit.cz>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+References: <20220623162850.245608-1-sebastian.reichel@collabora.com>
+ <20220623162850.245608-4-sebastian.reichel@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220626183247.142776-3-david@ixit.cz>
+In-Reply-To: <20220623162850.245608-4-sebastian.reichel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,147 +85,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/06/2022 20:32, David Heidelberg wrote:
-> Convert Qualcomm SCM firmware binding to the yaml format.
+On 23/06/2022 18:28, Sebastian Reichel wrote:
+> Add compatible string for RK3588 gmac, which is similar to the RK3568
+> one, but needs another syscon device for clock selection.
 > 
-> This commit also:
->  - adds qcom,scm-mdm9607 into list which has only core clock
->  - adds qcom,scm-sm6125, qcom,scm-ipq6018
->  - #reset-cells, because the property is already used
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 6 ++++++
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml     | 1 +
+>  2 files changed, 7 insertions(+)
+
+Rebase on some new kernel tree, you use old Cc addresses.
+
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> --
-> v4:
->  - added clocks minItems and maxItems
->  - removed quotes from $id and $schema
->  - adjusted description of TCSR HW block
+> diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> index 083623c8d718..c42f5a74a92e 100644
+> --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> @@ -25,6 +25,7 @@ select:
+>            - rockchip,rk3368-gmac
+>            - rockchip,rk3399-gmac
+>            - rockchip,rk3568-gmac
+> +          - rockchip,rk3588-gmac
+>            - rockchip,rv1108-gmac
+>    required:
+>      - compatible
+> @@ -50,6 +51,7 @@ properties:
+>        - items:
+>            - enum:
+>                - rockchip,rk3568-gmac
+> +              - rockchip,rk3588-gmac
+>            - const: snps,dwmac-4.20a
+>  
+>    clocks:
+> @@ -81,6 +83,10 @@ properties:
+>      description: The phandle of the syscon node for the general register file.
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>  
+> +  rockchip,php_grf:
 
-Thank you for your patch. There is something to discuss/improve.
+What does the "php" mean?
 
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,scm-apq8064
-> +          - qcom,scm-apq8084
-> +          - qcom,scm-ipq4019
-> +          - qcom,scm-ipq6018
-> +          - qcom,scm-ipq806x
-> +          - qcom,scm-ipq8074
-> +          - qcom,scm-mdm9607
-> +          - qcom,scm-msm8226
-> +          - qcom,scm-msm8660
-> +          - qcom,scm-msm8916
-> +          - qcom,scm-msm8953
-> +          - qcom,scm-msm8960
-> +          - qcom,scm-msm8974
-> +          - qcom,scm-msm8976
-> +          - qcom,scm-msm8994
-> +          - qcom,scm-msm8996
-> +          - qcom,scm-msm8998
-> +          - qcom,scm-sc7180
-> +          - qcom,scm-sc7280
-> +          - qcom,scm-sdm845
-> +          - qcom,scm-sdx55
-> +          - qcom,scm-sm6125
-> +          - qcom,scm-sm6350
-> +          - qcom,scm-sm8150
-> +          - qcom,scm-sm8250
-> +          - qcom,scm-sm8350
-> +          - qcom,scm-sm8450
-> +          - qcom,scm-qcs404
-> +      - const: qcom,scm
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  qcom,dload-mode:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle to TCSR hardware block
-> +          - description: offset of the download mode control register
-> +    description: TCSR hardware block
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,scm-apq8064
-> +              - qcom,scm-mdm9607
-> +              - qcom,scm-msm8660
-> +              - qcom,scm-msm8960
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: core
-> +
-> +        clocks:
-> +          maxItems: 1
-> +
-> +      required:
-> +        - clocks
-> +        - clock-names
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,scm-apq8084
-> +              - qcom,scm-msm8916
-> +              - qcom,scm-msm8953
-> +              - qcom,scm-msm8974
-> +              - qcom,scm-msm8976
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: core
-> +            - const: bus
-> +            - const: iface
-> +
-> +        clocks:
-> +          minItems: 3
-> +          maxItems: 3
-> +
-> +
-
-Just one blank line.
-
-> +      required:
-> +        - clocks
-> +        - clock-names
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    include <dt-bindings/clock/qcom,gcc-msm8916.h>
-> +
-> +    firmware {
-> +        scm {
-> +            compatible = "qcom,msm8916", "qcom,scm";
-> +            clocks = <&gcc GCC_CRYPTO_CLK>,
-> +                     <&gcc GCC_CRYPTO_AXI_CLK>,
-> +                     <&gcc GCC_CRYPTO_AHB_CLK>;
-> +            clock-names = "core", "bus", "iface";
-> +        };
-> +    };
+No underscores in names, hyphens instead.
 
 
 Best regards,
