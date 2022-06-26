@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7BE355B242
+	by mail.lfdr.de (Postfix) with ESMTP id 8F88555B241
 	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 15:52:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234459AbiFZNgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 09:36:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60786 "EHLO
+        id S232613AbiFZNlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 09:41:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233597AbiFZNgo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 09:36:44 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92663F5B0;
-        Sun, 26 Jun 2022 06:36:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1656250581;
-        bh=hZku3pKad6YdlzoC5bnphtrI9Ac066vFM1ZhUPMS+rw=;
-        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
-        b=b9ZE/z5GSMtb3BZtVIzM6M5tJ8rCPS4Q1ppvhyuXq4Hw9hlcyZwxKwPJhrWT9fB0s
-         Tuy0KbphosNndDXxRMpFLwjeAyXNEKai+9tbiZDE83nEEbKyYWz8uplZro+WQAiFKy
-         tVjed0FRXJRJ91nKtCAfYoChINNKhwngzRw9U+iE=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.0.33] ([46.223.2.248]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N79yG-1nZciH1HW0-017XzA; Sun, 26
- Jun 2022 15:36:21 +0200
-Subject: Re: [PATCH 2/8] serial: core, 8250: set RS485 termination gpio in
- serial core
-To:     Lukas Wunner <lukas@wunner.de>
-Cc:     gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        andriy.shevchenko@linux.intel.com, vz@mleia.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.rosenberger@kunbus.com, Lino Sanfilippo <l.sanfilippo@kunbus.com>
-References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
- <20220622154659.8710-3-LinoSanfilippo@gmx.de>
- <20220625195844.GB2879@wunner.de>
-From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
-Message-ID: <067e6fa2-6015-2eea-5719-8b75fb08882c@gmx.de>
-Date:   Sun, 26 Jun 2022 15:36:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S231148AbiFZNlU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 09:41:20 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 453F0DFFE;
+        Sun, 26 Jun 2022 06:41:19 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id i17so11321553qvo.13;
+        Sun, 26 Jun 2022 06:41:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wsr7GyWI/nrL4tsAp10vAzoFNjZ53E89T9GWndfpfdo=;
+        b=me6B0zZoRRhh6rEZLz1xxKTu16H//E447EH8bpU2IQh/i/IGWhtmIVLMoZL5ErTWX4
+         CVXkDF6KN/DU3EEvNO9Z2c6H/Uu11yF4H3evy4YR9xzteBRDmqVeqKfeO3MDlZVYTz7T
+         DCBHTj4ddkrZ+WuquRE0C16ossEhevyr+Gbllr5aPmu+J7t+plF8OSf6wqK72jfteOPB
+         Vpprz1+5jrj3jfy0OzWs43uWI2vusnlnXl9lrrARC2lbvlsbJ6owcO7i9qIiLqp5aaeA
+         +ES8f2v23qmB82FGtgsSrC+c0heEn7n0gENR29zqiqcNVpxoaR5iivEnyOUUkXZrzlNG
+         3TXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wsr7GyWI/nrL4tsAp10vAzoFNjZ53E89T9GWndfpfdo=;
+        b=rA4bRjJufZ0t+4y2Fj44ZP/DDxuU0nSqa4kHqv+0Hkm60Nx9srZwaVNrn41l+VR3X+
+         XWzPzm22Rx9F7csgBWCsThDcjado2DrQhJM343e4UCsBhMZAuWX/k7lCWqpKdy8/xa3C
+         zlpXY5znxo/+z377WUFAtx3RJPBmj928jz4s7O+7ZWv3miUvO6Vdqf1fRqEygeO8NpbR
+         tyFA58phdqUjRae4ZJbifur5czu7zVkjgXsIL8eXS0aHx+Hbxwlvrj3mZL8O48JW1rYF
+         lvqGmMSQls00uuVX0azqvgwkt3466phuqzp1Q5BQB6K7U7lkwjXSeQeVf3rmTD8O28XL
+         /7CQ==
+X-Gm-Message-State: AJIora9PAQLVy7gdH4byjeCiMq9LcDOam86Of0L2BLppHVRbuDJjYSoA
+        0NFfy5hfLqqaLEj0saK8VgpnaHOxWEvZQHwFVgc=
+X-Google-Smtp-Source: AGRyM1tWY6CCIhsExLB2W7wpR6qwuX2B+MmpQkfjs8JMlfBvozH1vusWsotmarNOX9imUk6M6rPP430PXOKuc2EUKj8=
+X-Received: by 2002:ac8:5dce:0:b0:305:300e:146d with SMTP id
+ e14-20020ac85dce000000b00305300e146dmr6019153qtx.546.1656250878361; Sun, 26
+ Jun 2022 06:41:18 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20220625195844.GB2879@wunner.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:hGacXh8oLZwt9FXVfKQ60JrkzhKSJzVtnlbg7gxtB/Y8cLLiTZX
- 0UudFxjwIY6NNCUIvHA9id3q9rsmkt2Yb1CUX3ZQmqxbGf99XceXBTanC75Eu3CFG6wNSgz
- Y181rwQmovaKbb/4m+R++hxGVjXzJWvnP4YhlkXnh/tUTlSyEyH3YrPEA7WWNLFrSsPxr/F
- +/t156IfegsjgTCUv6j+A==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:64O+XQE5+sw=:qLnwlZq1Yx43Hro9ph4Hvz
- mU2ImpgbsRpC8OWld0hX7Hgqn64mxGHNzRzOuXE21AFnd+h0NPn1SFS35RThbriuO9euOaw2x
- QdOPMJhZ2nCBM7Ui5UzIxOZCaoqz1EUZufuoMWEMlkFDd6srLb3+RC/NpV0iPYRJ5BaWmsOG7
- oYGyVqZtbS6IGKADr3T8o0Bl+hF55PHUXA2xGqQx1KShqdp//cxMEPrL9QWZwhKxnEh4fWR4F
- vxJoGOHWf8zDiUeSJDXH45ETwQt4hJ8yZvNu9RFLi26mIY0XLE6h1EJGripG7W9OOC6LafcIu
- p9cZMK9WRW9MyPzMILT5TMbxpwHsLlNwKOPTxLCrKrE4rRirF2i2p5bgDboJMnYonxcxgiwpm
- 2zGFtJYmR7bsjLELi6Pt1LBEyRyv6RMAXBjE3+x+HGV/k6i86OQfaj27GIpktkqvIILByPEgG
- uz/XKNbVe6JBtXhXXWJvI2glHUFumDpeA5wQmdp/5G7YfRUZvusPPZu35voYNRM7Ag8nia7/J
- kEBQQmy2L2dQ+/dD1yln/EmIWvncPD0tYLFpX8QFHt+zKAzCNuwwHbmWkqPFcswaXQryZ6dYb
- viRve4kwhWq1WK6aqRyL/Em7kQ2QGUQag2g00hxv5m66kWvpzFm+QxpwSyPudw+4sTr3WcJwT
- aCXb71RjOfQyyEvjWKRU+2UDCLb/+5ZnhHuxKvHmaRRAdJyX3VbyD184jf13TDn/ZrLzRdN/4
- +GFBaaNttECHxY2fgYrNGq8oiat3REVsFr2RGqJMfdcJbXzRw+NfbsVwtYEOXPX6L7+9bKLlR
- v2ZdyR+KxuGo2P5wM6t7ZIbL7RnZgE/GJ6eeGOpBeh7tM4wEjKT1AOFTcVoqezR3Xm986Cpni
- tTkSzyG3vAmV4SfYpILmmtQ65QsKYFMwEGaJoKDj5aeLFWKHM22CEEbHfObEvIzMAMnz2W7Om
- BZ9qk9IXnyF7iCpCbqCp+/IVNCuFWPy4tW4Ug0JAfEKBdqpeDPT6dCb7TUU5clGpITG2vS2lr
- kn35cd+DVX2YnHAYAtGnEfeptJPWDumIF04r+TDyvxJ16tjGoeBxwKY0lAUA1/Hk7FElzNBtR
- i3ce1JeFkkRsUjpftXWlVQz/MdFnwkhKtyLaQf26XHaoLR2nWYGlnwa/A==
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+References: <20220623182542.1116677-1-robimarko@gmail.com> <26cdc24c-e0e8-1059-f6ca-11c08615eeca@linaro.org>
+ <CAOX2RU7aEaBt_PYS2UA6BES+dJgx4n2QPHJ6yWYWZuTt2SLXoA@mail.gmail.com> <46ec1f38-dcbe-f87c-4f37-999d24eec522@linaro.org>
+In-Reply-To: <46ec1f38-dcbe-f87c-4f37-999d24eec522@linaro.org>
+From:   Robert Marko <robimarko@gmail.com>
+Date:   Sun, 26 Jun 2022 15:41:07 +0200
+Message-ID: <CAOX2RU4zhtwacgWWwZehnRBXw9qUgVPdfOexOWeKSxe-tt=ZHA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: firmware: qcom-scm: convert to dtschema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,53 +71,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.06.22 at 21:58, Lukas Wunner wrote:
-> On Wed, Jun 22, 2022 at 05:46:53PM +0200, Lino Sanfilippo wrote:
->> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
->>
->> In serial8250_em485_config() the termination GPIO is set with the uart_=
-port
->> spinlock held. This is an issue if setting the GPIO line can sleep (e.g=
-.
->> since the concerning GPIO expander is connected via SPI or I2C).
->>
->> Fix this by setting the termination line outside of the uart_port spinl=
-ock
->> in the serial core.
-> [...]
->> --- a/drivers/tty/serial/serial_core.c
->> +++ b/drivers/tty/serial/serial_core.c
->> @@ -1400,6 +1411,7 @@ static int uart_set_rs485_config(struct uart_port=
- *port,
->>  	if (ret)
->>  		return ret;
->>  	uart_sanitize_serial_rs485(port, &rs485);
->> +	uart_set_rs485_termination(port, &rs485);
->>
->>  	spin_lock_irqsave(&port->lock, flags);
->>  	ret =3D port->rs485_config(port, &rs485);
+On Sat, 25 Jun 2022 at 22:10, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> That's one way to solve the issue.  Another would be to push
-> acquisition of the port spinlock down into drivers.
+> On 25/06/2022 10:50, Robert Marko wrote:
+> > On Fri, 24 Jun 2022 at 11:52, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 23/06/2022 20:25, Robert Marko wrote:
+> >>> Convert bindings for Qualcomm SCM to dtschema.
+> >>>
+> >>> SoC compatibles that were used, but not documented were added.
+> >>>
+> >>> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> >>
+> >> This was already submitted:
+> >> https://lore.kernel.org/all/20211218194038.26913-1-david@ixit.cz/
+> >
+> > Hi Krzysztof,
+> > I was not aware there was already a version sent, just used linux-next
+> > as the base
 >
-> I think in most drivers we don't need to take the port spinlock at all
-> or only for a few specific register accesses.  So taking the lock here
-> in the midlayer is likely unwarranted.  However, changing that requires
-> going through every single driver's ->rs485_config() callback and
-> checking whether it needs the lock or not.
+>
+> lore and "dfn" keyword. Several people are working on Qualcomm bindings,
+> so that's the only way to check it.
+>
+> > and it wasn't there so I assumed, will search through the archives next time.
+> >
+> > Anyway, that attempt looks abandoned.
+>
+> Let's give few days to David to respond and to re-submit. If he does, I
+> am for FIFO approach. If David does not resubmits, then check the review
+> he got to be sure there is no need for same feedback.
 
-As a first step its sufficient to take the lock in each drivers rs485_conf=
-ig()
-function and remove it from uart_set_rs485_config(). Then after time sort =
-out
-the drivers that dont require the lock and remove it from their function.
-
-However the point of this patch was also to generalize the handling of the
-termination GPIO, so I would still see this placed in uart_set_rs485_confi=
-g().
+I see that David sent a v2 today, I'm just glad to get this converted.
 
 Regards,
-Lino
-
-
-
+Robert
+>
+>
+> Best regards,
+> Krzysztof
