@@ -2,68 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F88555B241
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 15:52:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BFC755B264
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 16:10:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232613AbiFZNlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 09:41:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34570 "EHLO
+        id S232390AbiFZOKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 10:10:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231148AbiFZNlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 09:41:20 -0400
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 453F0DFFE;
-        Sun, 26 Jun 2022 06:41:19 -0700 (PDT)
-Received: by mail-qv1-xf2f.google.com with SMTP id i17so11321553qvo.13;
-        Sun, 26 Jun 2022 06:41:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wsr7GyWI/nrL4tsAp10vAzoFNjZ53E89T9GWndfpfdo=;
-        b=me6B0zZoRRhh6rEZLz1xxKTu16H//E447EH8bpU2IQh/i/IGWhtmIVLMoZL5ErTWX4
-         CVXkDF6KN/DU3EEvNO9Z2c6H/Uu11yF4H3evy4YR9xzteBRDmqVeqKfeO3MDlZVYTz7T
-         DCBHTj4ddkrZ+WuquRE0C16ossEhevyr+Gbllr5aPmu+J7t+plF8OSf6wqK72jfteOPB
-         Vpprz1+5jrj3jfy0OzWs43uWI2vusnlnXl9lrrARC2lbvlsbJ6owcO7i9qIiLqp5aaeA
-         +ES8f2v23qmB82FGtgsSrC+c0heEn7n0gENR29zqiqcNVpxoaR5iivEnyOUUkXZrzlNG
-         3TXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wsr7GyWI/nrL4tsAp10vAzoFNjZ53E89T9GWndfpfdo=;
-        b=rA4bRjJufZ0t+4y2Fj44ZP/DDxuU0nSqa4kHqv+0Hkm60Nx9srZwaVNrn41l+VR3X+
-         XWzPzm22Rx9F7csgBWCsThDcjado2DrQhJM343e4UCsBhMZAuWX/k7lCWqpKdy8/xa3C
-         zlpXY5znxo/+z377WUFAtx3RJPBmj928jz4s7O+7ZWv3miUvO6Vdqf1fRqEygeO8NpbR
-         tyFA58phdqUjRae4ZJbifur5czu7zVkjgXsIL8eXS0aHx+Hbxwlvrj3mZL8O48JW1rYF
-         lvqGmMSQls00uuVX0azqvgwkt3466phuqzp1Q5BQB6K7U7lkwjXSeQeVf3rmTD8O28XL
-         /7CQ==
-X-Gm-Message-State: AJIora9PAQLVy7gdH4byjeCiMq9LcDOam86Of0L2BLppHVRbuDJjYSoA
-        0NFfy5hfLqqaLEj0saK8VgpnaHOxWEvZQHwFVgc=
-X-Google-Smtp-Source: AGRyM1tWY6CCIhsExLB2W7wpR6qwuX2B+MmpQkfjs8JMlfBvozH1vusWsotmarNOX9imUk6M6rPP430PXOKuc2EUKj8=
-X-Received: by 2002:ac8:5dce:0:b0:305:300e:146d with SMTP id
- e14-20020ac85dce000000b00305300e146dmr6019153qtx.546.1656250878361; Sun, 26
- Jun 2022 06:41:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220623182542.1116677-1-robimarko@gmail.com> <26cdc24c-e0e8-1059-f6ca-11c08615eeca@linaro.org>
- <CAOX2RU7aEaBt_PYS2UA6BES+dJgx4n2QPHJ6yWYWZuTt2SLXoA@mail.gmail.com> <46ec1f38-dcbe-f87c-4f37-999d24eec522@linaro.org>
-In-Reply-To: <46ec1f38-dcbe-f87c-4f37-999d24eec522@linaro.org>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Sun, 26 Jun 2022 15:41:07 +0200
-Message-ID: <CAOX2RU4zhtwacgWWwZehnRBXw9qUgVPdfOexOWeKSxe-tt=ZHA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: firmware: qcom-scm: convert to dtschema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230497AbiFZOKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 10:10:16 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EADF9588;
+        Sun, 26 Jun 2022 07:10:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1656252590;
+        bh=yTusrjLOKRKwRvbd8R+ykK/3/JvyRwhEMn0DfEPv1UQ=;
+        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+        b=OEFvmYruw9c/MQw0Bb57+QhL/P3LfieAzofQsvHzfZU4qHFtZ6YCY8fGF49l0nlN7
+         d91HEORwKcv5+VjBO7JThNTMwrXuURI0wsAnEPtqyY2qup8tlyKEsWkJ4ssvDt+5UI
+         zowxewehHN5/BKy76GTg0uolk6B6+T4mtj0AoFvw=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.0.33] ([46.223.2.248]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mk0NU-1nLMYg0rea-00kNyS; Sun, 26
+ Jun 2022 16:09:50 +0200
+Subject: Re: [PATCH 7/8] serial: ar933x: Remove redundant assignment in
+ rs485_config
+To:     =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        vz@mleia.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        linux-serial <linux-serial@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>, lukas@wunner.de,
+        p.rosenberger@kunbus.com, Lino Sanfilippo <l.sanfilippo@kunbus.com>
+References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
+ <20220622154659.8710-8-LinoSanfilippo@gmx.de>
+ <f7beef4-c422-cae3-8e22-8652b407434@linux.intel.com>
+From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
+Message-ID: <df19d91d-371b-f0e9-e37c-2bde00d2b840@gmx.de>
+Date:   Sun, 26 Jun 2022 16:09:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <f7beef4-c422-cae3-8e22-8652b407434@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:HPs9BkINPOugQ76QtMRekLInNgNbeZHcwpIRkgAQ+/3JpS8T0E5
+ na8Gv2u7zhVw+/nGBiNBdETNueMeS2z0KYd8T+thup1HRX8cPEQWHJCRUme+sLjOVrY9j/v
+ HGcmWJriW/REC6uIJyGdMquWHsEvzy69rHxqpAYt9v/R5gyUAza+rlq5uqy7XN/wV2Lgtdk
+ vRA0qQqnky+Ef3Gyj9OZQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:0M5kIdMhVrk=:srVvd9zQL+xSR57YuedoOV
+ /klAYSy3rvIMzmA00If2+O4UcMWsOhuIcPzEln880XwVg6Y45DlNZbRfjjT31dPXqvdzb8edr
+ DqkggG9E11HTUgKrHMvl+zNrkd6B5STjmN4B5ApRWcta0kz5TcyaDndDYHh7HH9ytgM0JSFjS
+ jLgPGGM9A9zzfi2kz4N+dcXgHAagTGwhxgYU+1scp7M6qsXGVv2Z5mOtitep1jMYajpZ643ek
+ L+gM5O/J39AHGSHMaS2+YS2i4ley2UnoIUOhG8gb8QW+XmGYHAT8hR9p+3opzut2JT4hH27W+
+ NwBeHqNfN+wDP9HnGwIufJRrYw1OaNcS3zotqpRIYeNf0zSzGgdRBg1kbElmD5JKY6N+ePIK7
+ BwHjI/Sh/OOYxShROfH+airEgIlq2E1P+jC5YM19MFhJi0yb+DLtgXKQWziVQ3F+AYexp9FhG
+ YQVM59n1577iA7LSKWdR90/P3trIpAn3QGdHBXMs6sReNShW1yPmpMK5SzTrK0sidY0MQddb5
+ zPE44nmHBqceHQFGwpLTL5/S03oMo24+BFb7XAIZoa5mtINsVnN07oUkUUAtRY7fLXX98sa3g
+ JvvtASfBu5+OKrlMoSJ9t4kp/bKPDcUbSla/Ar8+Lk0edH/zqswF27WVb6FKK4wj4EspC5w2F
+ c77ZUt8MuJZ+f5QO+KP88UxrcnHlIZAp6L2W6hpjDclzIPNfPhDALw+S4jclNRAm9G5G9pkBu
+ HfAU3VcEEh5PKS6zfkrDr/Wp3FrJnKDyR1QoHtsCjYwJrjT5D1nNfLLQTbuvMzVTnoX8q+ZKU
+ xO9r3a7e1WOdqLE6dW15E9lerGP26whbH6uMdePSU5WHnErLNgd60EmRqkruUfUViCipkI3Az
+ ON7noMgBcVNDapFc0YeKr0bEKtlkuC+F035YTYAi+oeVSIw0kTIK1xYwIayFY8wrvTuIGSjwc
+ cz4wXmFxGI/UgqL0sXvTQb/R0lRAwaMtmo4hpfLlbjeldAFHLliY9p7Z+yXFEFwX7azljTmAp
+ PkAutccHGbPK82e4mOOsstpwmh0K74VrAizX2IGTo72I8CDF5czBic0XQBrEPXpOZWAcBZp/P
+ hZrP9muQ960wbyBcKxKfZtxKyDt/F5TJtG/VlEkRrA9qGIgA1s23EPv/Q==
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,44 +81,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 25 Jun 2022 at 22:10, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On 25.06.22 at 12:14, Ilpo J=C3=A4rvinen wrote:
+> On Wed, 22 Jun 2022, Lino Sanfilippo wrote:
 >
-> On 25/06/2022 10:50, Robert Marko wrote:
-> > On Fri, 24 Jun 2022 at 11:52, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 23/06/2022 20:25, Robert Marko wrote:
-> >>> Convert bindings for Qualcomm SCM to dtschema.
-> >>>
-> >>> SoC compatibles that were used, but not documented were added.
-> >>>
-> >>> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> >>
-> >> This was already submitted:
-> >> https://lore.kernel.org/all/20211218194038.26913-1-david@ixit.cz/
-> >
-> > Hi Krzysztof,
-> > I was not aware there was already a version sent, just used linux-next
-> > as the base
+>> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+>>
+>> In uart_set_rs485_config() the serial core already assigns the passed
+>> serial_rs485 struct to the uart port.
+>>
+>> So remove the assignment in the drivers rs485_config() function to avoi=
+d
+>> redundancy.
+>>
+>> Signed-off-by: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+>> ---
+>>  drivers/tty/serial/ar933x_uart.c | 1 -
+>>  1 file changed, 1 deletion(-)
+>>
+>> diff --git a/drivers/tty/serial/ar933x_uart.c b/drivers/tty/serial/ar93=
+3x_uart.c
+>> index ab2c5b2a1ce8..857e010d01dc 100644
+>> --- a/drivers/tty/serial/ar933x_uart.c
+>> +++ b/drivers/tty/serial/ar933x_uart.c
+>> @@ -591,7 +591,6 @@ static int ar933x_config_rs485(struct uart_port *po=
+rt,
+>>  		dev_err(port->dev, "RS485 needs rts-gpio\n");
+>>  		return 1;
+>>  	}
+>> -	port->rs485 =3D *rs485conf;
+>>  	return 0;
+>>  }
 >
+> Hmm, I realize that for some reason I missed cleaning up this particular
+> driver after introducing the serial_rs485 sanitization. It shouldn't nee=
+d
+> that preceeding if block either because ar933x_no_rs485 gets applied if
+> there's no rts_gpiod so the core clears SER_RS485_ENABLED.
 >
-> lore and "dfn" keyword. Several people are working on Qualcomm bindings,
-> so that's the only way to check it.
->
-> > and it wasn't there so I assumed, will search through the archives next time.
-> >
-> > Anyway, that attempt looks abandoned.
->
-> Let's give few days to David to respond and to re-submit. If he does, I
-> am for FIFO approach. If David does not resubmits, then check the review
-> he got to be sure there is no need for same feedback.
 
-I see that David sent a v2 today, I'm just glad to get this converted.
+I think we still need that "if" in case that RS485 was not enabled at driv=
+er
+startup (no rs485-enabled-at-boot-time) and no RTS GPIO was defined but th=
+en
+RS485 is enabled via TIOCSRS485.
+
+Maybe in ar933x_uart_probe()
+
+	if ((port->rs485.flags & SER_RS485_ENABLED) &&
+	    !up->rts_gpiod) {
+		dev_err(&pdev->dev, "lacking rts-gpio, disabling RS485\n");
+		port->rs485.flags &=3D ~SER_RS485_ENABLED;
+		port->rs485_supported =3D &ar933x_no_rs485;
+	}
+
+should rather be
+
+	if (!up->rts_gpiod) {
+		dev_err(&pdev->dev, "lacking rts-gpio, disabling RS485\n");
+		port->rs485.flags &=3D ~SER_RS485_ENABLED;
+		port->rs485_supported =3D &ar933x_no_rs485;
+	}
+
+
+
 
 Regards,
-Robert
->
->
-> Best regards,
-> Krzysztof
+Lino
+
+
+
