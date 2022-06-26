@@ -2,69 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38C4B55B079
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 10:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F45255B0AC
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 11:13:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234012AbiFZI5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 04:57:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39588 "EHLO
+        id S234191AbiFZJLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 05:11:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231126AbiFZI5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 04:57:00 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAB0E11A21;
-        Sun, 26 Jun 2022 01:56:59 -0700 (PDT)
+        with ESMTP id S234076AbiFZJLO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 05:11:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 180DA12AA3;
+        Sun, 26 Jun 2022 02:11:13 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 97F4AB80D30;
-        Sun, 26 Jun 2022 08:56:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24FBAC341CA;
-        Sun, 26 Jun 2022 08:56:57 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2461B6118A;
+        Sun, 26 Jun 2022 09:11:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D65F3C341D0;
+        Sun, 26 Jun 2022 09:11:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656233817;
-        bh=Y02jfhJb1Aqml7DaR0aSSrkuFXXZPYf8YiFSNPaKI7s=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=eroUWlgUoQRbpFWysapxdXBVoUkOrEQpvFyG9hjANycmYhsy6EjgCPTMWsYIgsASa
-         Urvby5om/JJ3V/EuSwdyynAGkJg8gO0keisYx0y32L6wLHj8fcyAPoFSduN7CyFUg1
-         h95354tLRMfOZcuvBSNlsy+u304toTu4ub3uk6tHAH4a9dFcAvz8LN9/6xX8UHgAUy
-         BBAtpOPvGmXFuX/1R0EPyg/AA5Uurb3MgQalw0yNd1sbnkVgt/lG9dtz6rfZJPbLO8
-         /lyO/Jpm31W11yxjpijme6/kyUxwLK6ejIh4VQMyKx/aBrbSexfZlRXs24u7FaNWcz
-         aWDaBHI1/I8xQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1o5O4c-003Af3-TG;
-        Sun, 26 Jun 2022 09:56:55 +0100
-Date:   Sun, 26 Jun 2022 09:57:00 +0100
-Message-ID: <87wnd3erab.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        s=k20201202; t=1656234671;
+        bh=PhI7xlCBz8s4EqXsemcBzFaZLbSNGrNWFqcVvz20FLU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=HhAf8IklB9OEeSwUHmvWxlXncEZMnsUL3ruxIFgodyPNv9p+IrCpMlJ2Ee1QRPg4Y
+         hcLQjIGJsa57ccuYyM9Yyy/ROtPClfozh4WxentR1FyhgZLpBjfJOGg0x+KF4uJ/xK
+         kJvya0UqPXI61UML+5xdxeC865OaTGDrndLJQhHMXq2RYO88lEbM26jWxoanedVi+e
+         mtQoMumgkipZ4Bxf/XC3su3ouzdbhmQdJsOcFrbZpKeXoPTd+pXhJvNl4aEKmUZnEX
+         5AkPirLrYw/XgJk3fQoIdoqyPnzuUz7+aN/pwnstjak/isdyfdJp2rwGOaiGtxsqlk
+         h/pj4xfQ6G59g==
+Received: from mchehab by mail.kernel.org with local (Exim 4.95)
+        (envelope-from <mchehab@kernel.org>)
+        id 1o5OIN-001coA-Qi;
+        Sun, 26 Jun 2022 10:11:07 +0100
+From:   Mauro Carvalho Chehab <mchehab@kernel.org>
+To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        "H. Peter Anvin" <hpa@zytor.com>, Alex Shi <alexs@kernel.org>,
+        Borislav Petkov <bp@alien8.de>,
+        Dave Hansen <dave.hansen@linux.intel.com>,
+        Dipen Patel <dipenp@nvidia.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Federico Vaga <federico.vaga@vaga.pv.it>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Ingo Molnar <mingo@redhat.com>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v2 2/2] irqchip/sifive-plic: Add support for Renesas RZ/Five SoC
-In-Reply-To: <20220626004326.8548-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220626004326.8548-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <20220626004326.8548-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: prabhakar.mahadev-lad.rj@bp.renesas.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, sagar.kadam@sifive.com, palmer@dabbelt.com, paul.walmsley@sifive.com, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, prabhakar.csengg@gmail.com, biju.das.jz@bp.renesas.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Yanteng Si <siyanteng@loongson.cn>, devicetree@vger.kernel.org,
+        keyrings@vger.kernel.org, kvm@vger.kernel.org,
+        linux-cachefs@redhat.com, linux-input@vger.kernel.org,
+        linux-m68k@lists.linux-m68k.org, linux-riscv@lists.infradead.org,
+        linux-tegra@vger.kernel.org, rust-for-linux@vger.kernel.org,
+        x86@kernel.org
+Subject: [PATCH v2 00/20] Update Documentation/ cross-references
+Date:   Sun, 26 Jun 2022 10:10:46 +0100
+Message-Id: <cover.1656234456.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -75,127 +74,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 26 Jun 2022 01:43:26 +0100,
-Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> 
-> The Renesas RZ/Five SoC has a RISC-V AX45MP AndesCore with NCEPLIC100. The
-> NCEPLIC100 supports both edge-triggered and level-triggered interrupts. In
-> case of edge-triggered interrupts NCEPLIC100 ignores the next interrupt
-> edge until the previous completion message has been received and
-> NCEPLIC100 doesn't support pending interrupt counter, hence losing the
-> interrupts if not acknowledged in time.
-> 
-> So the workaround for edge-triggered interrupts to be handled correctly
-> and without losing is that it needs to be acknowledged first and then
-> handler must be run so that we don't miss on the next edge-triggered
-> interrupt.
-> 
-> This patch adds a new compatible string for Renesas RZ/Five SoC and adds
-> support to change interrupt flow based on the interrupt type. It also
-> implements irq_ack and irq_set_type callbacks.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2:
-> * Implemented IRQ flow as suggested by Marc
-> 
-> RFC-->v1:
-> * Fixed review comments pointed by Geert
-> * Dropped handle_fasteoi_ack_irq support as for the PLIC we need to
-> claim the interrupt by reading the register and then acknowledge it.
-> * Add a new chained handler for RZ/Five SoC.
-> ---
->  drivers/irqchip/Kconfig           |  1 +
->  drivers/irqchip/irq-sifive-plic.c | 73 ++++++++++++++++++++++++++++++-
->  2 files changed, 72 insertions(+), 2 deletions(-)
+Fix most broken documentation file cross references on next-20220624.
 
-[...]
+After this series, only 3 references will be broken:
 
->
-> +static int plic_irq_set_type(struct irq_data *d, unsigned int type)
-> +{
-> +	struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
-> +
-> +	if (handler->priv->of_data != RENESAS_R9A07G043_PLIC)
-> +		return 0;
-> +
-> +	switch (type) {
-> +	case IRQ_TYPE_LEVEL_HIGH:
-> +		irq_set_chip_handler_name_locked(d, &renesas_rzfive_edge_plic_chip,
-> +						 handle_fasteoi_ack_irq,
-> +						 "Edge");
-> +		break;
-> +
-> +	case IRQ_TYPE_EDGE_RISING:
-> +		irq_set_chip_handler_name_locked(d, &plic_chip,
-> +						 handle_fasteoi_irq,
-> +						 "Level");
-> +		break;
+Warning: Documentation/dev-tools/kunit/run_wrapper.rst references a file that doesn't exist: Documentation/dev-tools/kunit/non_uml.rst
+Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
+Warning: drivers/acpi/device_pm.c references a file that doesn't exist: Documentation/firmware-guide/acpi/low-power-probe.rst
 
-Really? Have you even tested this?
+All of them seem to be due to the lack of a patch actually adding the
+documentation. Maybe the document file is still under review?
 
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
->  			      irq_hw_number_t hwirq)
->  {
-> @@ -198,6 +248,19 @@ static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
->  	return 0;
->  }
->  
-> +static int plic_irq_domain_translate(struct irq_domain *d,
-> +				     struct irq_fwspec *fwspec,
-> +				     unsigned long *hwirq,
-> +				     unsigned int *type)
-> +{
-> +	struct plic_priv *priv = d->host_data;
-> +
-> +	if (priv->of_data == RENESAS_R9A07G043_PLIC)
-> +		return irq_domain_translate_twocell(d, fwspec, hwirq, type);
-> +
-> +	return irq_domain_translate_onecell(d, fwspec, hwirq, type);
-> +}
-> +
->  static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
->  				 unsigned int nr_irqs, void *arg)
->  {
-> @@ -206,7 +269,7 @@ static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
->  	unsigned int type;
->  	struct irq_fwspec *fwspec = arg;
->  
-> -	ret = irq_domain_translate_onecell(domain, fwspec, &hwirq, &type);
-> +	ret = plic_irq_domain_translate(domain, fwspec, &hwirq, &type);
->  	if (ret)
->  		return ret;
->  
-> @@ -220,7 +283,7 @@ static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
->  }
->  
->  static const struct irq_domain_ops plic_irqdomain_ops = {
-> -	.translate	= irq_domain_translate_onecell,
-> +	.translate	= plic_irq_domain_translate,
->  	.alloc		= plic_irq_domain_alloc,
->  	.free		= irq_domain_free_irqs_top,
->  };
-> @@ -293,6 +356,11 @@ static int __init plic_init(struct device_node *node,
->  	if (!priv)
->  		return -ENOMEM;
->  
-> +	if (of_device_is_compatible(node, "renesas,r9a07g043-plic")) {
-> +		priv->of_data = RENESAS_R9A07G043_PLIC;
-> +		plic_chip.name = "Renesas RZ/Five PLIC";
+Regards,
+Mauro
 
-NAK. The irq_chip structure isn't the place for platform marketing.
-This is way too long anyway (and same for the edge version), and you
-even sent me a patch to make that structure const...
+Mauro Carvalho Chehab (20):
+  docs: netdev: update maintainer-netdev.rst reference
+  docs: filesystems: update netfs-api.rst reference
+  docs: zh_CN: page_frags.rst: fix a broken reference
+  docs: zh_CN/riscv/pmu.rst: remove old docuementation
+  docs: zh_CN/devicetree: fix typos
+  docs: zh_CN: fix a broken reference
+  docs: zh_CN/vm: fix a typo for page reporting ReST file
+  docs: zh_CN/vm/zsmalloc.rst: fix a typo
+  docs: zh_CN/vm/index.rst: fix a broken reference
+  Documentation: update watch_queue.rst references
+  Documentation: KVM: update s390-pv.rst reference
+  Documentation: KVM: update amd-memory-encryption.rst references
+  Documentation: KVM: update msr.rst reference
+  Documentation: KVM: update s390-diag.rst reference
+  objtool: update objtool.txt references
+  arch: m68k: q40: README: drop references to IDE driver
+  tegra194-hte.rst: fix reference to its binding
+  dt-bindings: mfd: update dlg,da9063.yaml reference
+  MAINTAINERS: update nvidia,tegra20-host1x.yaml reference
+  MAINTAINERS: fix cross references to mfd/dlg,da9063.yaml
 
-	M.
+ .../admin-guide/kernel-parameters.txt         |   2 +-
+ .../bindings/input/da9062-onkey.txt           |   2 +-
+ Documentation/driver-api/hte/tegra194-hte.rst |   2 +-
+ Documentation/security/keys/core.rst          |   2 +-
+ Documentation/security/secrets/coco.rst       |   2 +-
+ .../it_IT/networking/netdev-FAQ.rst           |   2 +-
+ .../translations/zh_CN/devicetree/index.rst   |   2 +-
+ .../zh_CN/devicetree/of_unittest.rst          |   2 +-
+ .../zh_CN/devicetree/usage-model.rst          |   2 +-
+ .../zh_CN/doc-guide/kernel-doc.rst            |   2 +-
+ .../translations/zh_CN/riscv/index.rst        |   1 -
+ .../translations/zh_CN/riscv/pmu.rst          | 235 ------------------
+ .../zh_CN/vm/free_page_reporting.rst          |   2 +-
+ .../translations/zh_CN/vm/frontswap.rst       |   2 +-
+ Documentation/translations/zh_CN/vm/index.rst |   2 +-
+ .../translations/zh_CN/vm/page_frags.rst      |   2 +-
+ .../translations/zh_CN/vm/zsmalloc.rst        |   2 +-
+ Documentation/virt/kvm/api.rst                |   4 +-
+ Documentation/virt/kvm/s390/s390-pv-boot.rst  |   2 +-
+ Documentation/virt/kvm/x86/hypercalls.rst     |   2 +-
+ Documentation/x86/orc-unwinder.rst            |   2 +-
+ MAINTAINERS                                   |   6 +-
+ arch/m68k/q40/README                          |   5 +-
+ include/linux/fscache.h                       |   2 +-
+ include/linux/objtool.h                       |   2 +-
+ include/linux/watch_queue.h                   |   2 +-
+ init/Kconfig                                  |   2 +-
+ kernel/watch_queue.c                          |   2 +-
+ lib/Kconfig.debug                             |   2 +-
+ tools/include/linux/objtool.h                 |   2 +-
+ tools/objtool/check.c                         |   2 +-
+ 31 files changed, 33 insertions(+), 270 deletions(-)
+ delete mode 100644 Documentation/translations/zh_CN/riscv/pmu.rst
 
 -- 
-Without deviation from the norm, progress is not possible.
+2.36.1
+
+
