@@ -2,89 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DF7655B106
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 12:09:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F5F555B122
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 12:29:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231403AbiFZKGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 06:06:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47512 "EHLO
+        id S234231AbiFZK3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 06:29:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229955AbiFZKGS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 06:06:18 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A434B4AE;
-        Sun, 26 Jun 2022 03:06:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=ETSXXR3XzgEhkm6ZhG3jzrQ5JVh23r2tv8xELktbMK0=; b=2VxIh+rLvtGkW1BMXzrLQTbgJh
-        b0gPCfkzwwu5a0FknvqBQ2ICpc60iHlAnYvw68oXbqo6ZYV0xRLxBI/lggAVjMvhHutBCgh3cH/oK
-        qrkGjqA7YjIK+Hy2sTNd4zD7FvnjAlkxGOZXJ/d5uKKiPeEXy+AI5RalhXZKxbqWBtRk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1o5P9W-008Hgp-AH; Sun, 26 Jun 2022 12:06:02 +0200
-Date:   Sun, 26 Jun 2022 12:06:02 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     alexandru.tachici@analog.com
-Cc:     netdev@vger.kernel.org, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gerhard@engleder-embedded.com,
-        geert+renesas@glider.be, joel@jms.id.au, stefan.wahren@i2se.com,
-        wellslutw@gmail.com, geert@linux-m68k.org, robh+dt@kernel.org,
-        d.michailidis@fungible.com, stephen@networkplumber.org,
-        l.stelmach@samsung.com, linux-kernel@vger.kernel.org
-Subject: Re: [net-next 2/2] dt-bindings: net: adin1110: Add docs
-Message-ID: <YrgvimyFdPVhL6hF@lunn.ch>
-References: <20220624200628.77047-1-alexandru.tachici@analog.com>
- <20220624200628.77047-3-alexandru.tachici@analog.com>
+        with ESMTP id S229616AbiFZK3B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 06:29:01 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38E3F11C27
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 03:28:59 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id ge10so13299036ejb.7
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 03:28:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=UryUvcXWPpBXfvIflu4cxT9Q9H+kMYtJGeIQndtNQSc=;
+        b=J9tW/hh8Vxxadht/p2/HAMoeJuD8BWvbcQU5buW1oPKBF4wwnwGo/ZM3n8OW6CQXuD
+         5mjg0BBbRFeYvbBBswoKiH8Nbz81NRywcdfXpQYOxtZLI1dT8LzI4cFstgjEiZJhz8VM
+         driBZpRUvCocFX4X+8w8SS5DlKb/V8wHXD+128Tu9R8bCYuJ8Z/BPKyw8gv//AwYV9/G
+         PPhsFg1QKpoAYqdaJVlzvI0T3S9gfR4fwWSd5Us7/0luZ357gQTHlBtZFBOJ7J8YJ+Dr
+         fL3wNWwKTak0D+5iZ9XIr1LkoaOR8IHORl3UPQy5QiDc4PoVTaMiT3IuhuLbBuZOnbvF
+         6m4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=UryUvcXWPpBXfvIflu4cxT9Q9H+kMYtJGeIQndtNQSc=;
+        b=tngscv5elVF5ouLIp429/JUjc4I6b2iqbps9fY/p72kzbrbOp0qD5/meO0v/Xnq7Vv
+         bUbZGm/XiP1dkzK/wwjG4iZb8K79yjbWSyfsHyhUhWgzJJFKfU1/NC5aZCt6nxIPRsFn
+         8D0OlQqAixeEOVLyo4qMJ4C1rxwm7SS8Wpuc9UIYo1c0l08U12mJwqO2TlvUjLHO15O9
+         p3MBg42/Zu/usuLRaYFpTZKgrE6bLgu/wd/4VNKq3zrchwohRM7oX2rSmfi5FDsm8Ptu
+         Q37fXJwNPmHVY/eiy+j4pXYUcIwSWlHHm5rKnO/wmhO3NqLvJJ21XBIrZ/BYK342xNHf
+         AZEA==
+X-Gm-Message-State: AJIora963cvZEIl3d8BsZGdYFEjgv1zhlUpHaxIyHZ29V3uDRuj4MTUg
+        bMkakcL7ZnEQGA1pTdhbbONNlg==
+X-Google-Smtp-Source: AGRyM1sblJgmEXbxMeGf+RD2dHMi4zVazxPkN9rudj8RaT/bHUJavjCmx8LIYG68F1Q3UPK3+2Rsgg==
+X-Received: by 2002:a17:906:7303:b0:722:f008:2970 with SMTP id di3-20020a170906730300b00722f0082970mr7234670ejc.491.1656239337624;
+        Sun, 26 Jun 2022 03:28:57 -0700 (PDT)
+Received: from [192.168.0.239] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id x10-20020a170906298a00b00705cd37fd5asm3637815eje.72.2022.06.26.03.28.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 26 Jun 2022 03:28:57 -0700 (PDT)
+Message-ID: <ec660b83-998e-3a53-ce17-8f7d9d8728cc@linaro.org>
+Date:   Sun, 26 Jun 2022 12:28:56 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220624200628.77047-3-alexandru.tachici@analog.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v3 04/40] dt-bindings: pinctrl: nuvoton,wpcm450-pinctrl:
+ align key node name
+Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
+ <20220616005333.18491-4-krzysztof.kozlowski@linaro.org>
+ <CACRpkdYVPeEtKKA9xdiSAP6oJrX5eAKoOVaLnrELTv_ZQOEMUw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CACRpkdYVPeEtKKA9xdiSAP6oJrX5eAKoOVaLnrELTv_ZQOEMUw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +patternProperties:
-> +  "^phy@[0-1]$":
-> +    description: |
-> +      ADIN1100 PHY that is present on the same chip as the MAC.
-> +    type: object
-> +
-> +    properties:
-> +      reg:
-> +        items:
-> +          maximum: 1
-> +
-> +    allOf:
-> +      - if:
-> +          properties:
-> +            compatible:
-> +              contains:
-> +                const: adi,adin1110
-> +        then:
-> +          properties:
-> +            compatible:
-> +              const: ethernet-phy-id0283.bc91
-> +        else:
-> +          properties:
-> +            compatible:
-> +              const: ethernet-phy-id0283.bca1
-> +
-> +    required:
-> +      - compatible
-> +      - reg
+On 26/06/2022 01:28, Linus Walleij wrote:
+> On Thu, Jun 16, 2022 at 2:54 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> gpio-keys schema requires keys to have more generic name.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> OK, do you want me to apply this one patch to the pinctrl tree or
+> will you collect a series?
 
-Why is any of this needed? You register an MDIO bus and then use the
-PHY at address 0 or 1. phylib should find the PHY and read its ID
-register to load the driver. So i don't think there is anything useful
-here.
+I would prefer if you picked it up. I am not aware of any conflicts.
 
-	Andrew
+I am picking up only some left-overs and in general better if the
+subsystem maintainer takes these.
+
+
+Best regards,
+Krzysztof
