@@ -2,120 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DDB555B05A
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 10:41:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38C4B55B079
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 10:57:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233994AbiFZIjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 04:39:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33070 "EHLO
+        id S234012AbiFZI5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 04:57:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232248AbiFZIjr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 04:39:47 -0400
-Received: from sonic310-57.consmr.mail.ir2.yahoo.com (sonic310-57.consmr.mail.ir2.yahoo.com [77.238.177.30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0968F12AA8
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 01:39:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1656232783; bh=PERmfplRdvSLSyKVEv1CEvkeTqyeWKpirz+NeED+LV4=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=PIxc168/IVhUl/8t2TqzSw1j6cLXjpvKPV1Fp46n9Htm/9UQoje6CTX4EIpFMa7Nm0KCiL3gCUB7CaOaFW1rX2IH/7g/2zzzfuQ7K3CiEEawrbqbZYEEV/zGx49D65kpiU2IHEmLjhx8kQ8f1ow5zfpmQLCVXh9pH9ppbR3sugyzuFDh4UwkOvof83i9OYYt/lIazx4Qz1tItZL18ttHSPhVQgUDUkuocSKGnGdcxuj0e5Ev0YmHz6CJG1Y6g6aFP0aAZh0uaI8/IsIck4VFRZ58ZryR2WkB6eFLt99mTOVe0NnKo2mHNWVGtCdijF1qk6sUM72aJAjLYY5Jlg0DZw==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1656232783; bh=fkEfSZbvjwc+J4CusW6LxTPHb8B2sd6BRbMnLrnpEd5=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=mNkiJwZB8abEgwCG4btrNv0hrQUYQolmsLdHfZ1Q8eJGg3mFICRXF5SD5qcbrF8vcWX2Y6hRi/4eq+TN78o0N3gR4axrrZtz4Eko2KjKGuERc0xZzIuwpZDQu63ZWvfae2rMVQ/hYsu8e1FUMsWHVLDAAHsYWbGJkmrz2nL15mXS5VU9m2c6APFs6Z/VzRXVMgTlkdPAxcB982EJpW1qxC+EuR2FZTTp95EN1lLw+qkQgo5lXnRRGGodl7DzBhkm9kUfbLvJs5UBSr8BNiJ1DNjS7ywLGMwVBE+VqRV2Q5nXMcv0JkhRKp+JuPUQ29mquz7/fs3dEMPdGxKgci5YGA==
-X-YMail-OSG: WuKzFysVM1nbnXJb4xF00IEES6YkqZzdRqlcKXP4d2lR6pr2D4F32iGkcqb6aii
- l.UZWMRpkNvia2E997wgdqwEbZXkbhDKuRNBQguFbayqt7nJmsidhzICxNaVsngz0m8L3Csm7uF7
- PkjT.vK3CN17A10WTHWZ31JvTdisN1JaXdfK0hrfICUNDwylXZyEsiq41pH6taorvqrePKVAp_FJ
- IiD9OAUivM57LGvVZjPdl7jLthZIbFraPPff9mu2UWTwZXTBEV4AjinKpKVa.RnQHoS2zAtWbwXT
- rPBXIX7p7CLDr5VrBEz4ZYWoQOA0fQ_XXU.MYN0DE3R.zwP0QDBg5CR2SJQBTVYpsJpsfGJ8_aV0
- JzdH3494Emq2SoMXs54Rk4g_wnz7fZJq4563fxTl7jDIhDAWAfcg_sw8u9SBL1Z5w4.Oe_dX6y5W
- gyTbeIiObHvNoWZGj6N.hQ7CO1C97wVoOHjqawrPcKuv5oG3Mp1eVql5tl8FO39q7cr0EMix8h1L
- 7hBIdK1DauSr2jNZzkGUmgJs89qGo.96dj7YJwJF6manUbaRrmRsnXKMSlQL4FKzHNjOY8_NZgNW
- LoQaDcbTtSl98SIFZhR0ee1V5K7_Bb7lZEjkZqlMEbIBc9r_sMKjPO1QIoAnnYNdoG6tBy4d3W11
- J6kNmy83ECb5inb8KCRQhIzuyFSO49SGSkrv9kad671VzL9rmU7ZIKZ9GeknTVARrmiPzDK6TgW0
- pWTeDdtSO8VpvoSqfQ4r8HwYln2_zkVn.ZGxpTh0mn0zqlspayL8M_s8mwCjj17XYQ9pBsM3lW3V
- Ayzx6Hntq6mN.queGN.FdtlAzrROaDZSmdmrr8Sc0Py8Js24t4bWRxI5EQC48YJLFk3VsbW.uTWw
- skRKDgKHt4mEiNzR_G3Hr58oZjgSYivSUAGVYGwOL_qbyMHga.OSJDHAGsW85T1PH6GnePPNObg5
- fgRb9oCNkrI3josj7vS.3zeYH7Y_0C_Wb4KkrxTid.47A.C0Mb2sjeh3aMCw8JqWoJVnxz8e5pVZ
- OFTY2w1tGmpcpiLEBFVRS8r2IkqxAiG_HByw3yKXUUeDKKqndNrKf4CObpvUIqYDpNb95gplW4id
- l3PExLBtYL4byY9ugwk3ffR3doY71PUH_qKqG38py.hB4QHFkAyyX8frrGqImd_UDiV_fOjxZGQq
- oQ3Hd0BRcmP5JomxNRCp_qWjRXYaK.b.qL65wntfkWNvIPbt3FLCiobk9hegr3nGKO6gFQ4xV00E
- LAHGSNA0a5WVFR.Fk9uCPd4uXj8DdSEtjYWBEFETMWmsYQlAmoL69T4VDWaiyDoAEk8mnhSnGX9l
- UnahN6S7HDqFIxKXMMQvoCkQLBpW.Ly1RGAMw_SMtGwf8fuHTd5SDjjAnGzVdzToT4G3v8zrGYEL
- gLkzoRh6dRXG_inOmHp2ww5pgd9SnPTCTqtxqkWHOd03UsJVR58Lsxi3rfm.JyBRA0yEAIS3VPtD
- K4iFzDCKWWA33B_51Nez7fFcrsPnSrw8cDqcxBgXs9eSs7uK.q8MQwz0Uy9_KV9KUi.qez_EWIXp
- YLpegL84xb_jyltZ1QwPq8s21biLbFuTftY1hOyfK0swMEzLB6ex.hLzS1mSXExBRnmoDJ6D.WR7
- xlbbFqJ4urNcHnk0cdttmpI9SmguGBPsVIDRdih.ty.9u83rF7QNizz36UqOmzGR_9mEzijKFYCy
- IjaQTBkp4efsDMtISyQLOwTPXe62GZZgdBSNpD8LHRAgETdNQz13Rz3a.3qd3P.2_mXPKRjJw_OQ
- 99LdJIYUKry77EEkINe29D.K5dVNxzOC00LX5e89Z9F1EudT1HJNPq69OZvtCT_nEqHssQNsI8gh
- tjjJA5mVfy.robKLKcuR2uWwGmhyxhaMGNzxXucHKoYANwcEkd72Y2HaaxSQA8VIYWTeKc75aKDs
- X_FEQVCfYDSrNJI.x2rrT3947800FqHp2rsPlCfs1GaUevi6iMJBsn0MGnONsMqzzWM8f7qdvtZN
- xTLAZsDJyZSk0ODl85XSa8JbcRdFVp4RpE80jX8dSvcftqMLURf90ZBCRkCjoMOPcZYUTPKUL_wZ
- 4i25.ySSJvj5cON.CQ6XP47WnLoTCGtPjTQ4uRE58HDTnLb5giG5OV_IkGBXIO6SGpf.aniSCXll
- ioXgM5BoOKD1YaPM3Fy_E6D2.Nov6Ty74HHS8IwbYNsvruJXFk1heklvxeercYny5p4sXa_ofnxh
- t4iC24hAoI1IbIKbAuG7V4G0R1A7CSMxjj9_ZT3bO4qTRfzRva.Ohqr769smMqqLFVup_hzEa
-X-Sonic-MF: <jahau@rocketmail.com>
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.ir2.yahoo.com with HTTP; Sun, 26 Jun 2022 08:39:43 +0000
-Received: by hermes--canary-production-ir2-c9bf9d9bc-brwkd (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 4f396652dc92420c3e14bdad7cbc95a1;
-          Sun, 26 Jun 2022 08:39:40 +0000 (UTC)
-Message-ID: <daf3206f-0cd5-e8a4-bab9-6f8f379e4ba2@rocketmail.com>
-Date:   Sun, 26 Jun 2022 10:39:39 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 6/8] iio: magnetometer: yas530: Rename functions and
- registers
-Content-Language: en-US
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1655509425.git.jahau@rocketmail.com>
- <f1a49262b124cbcdf4a258f65fd54ee389de3a29.1655509425.git.jahau@rocketmail.com>
- <20220618160041.15798dcd@jic23-huawei>
- <d3e074b8-9679-87fe-dc5a-9493f0586aca@rocketmail.com>
- <20220625151637.600d20a0@jic23-huawei>
-From:   Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <20220625151637.600d20a0@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.20280 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S231126AbiFZI5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 04:57:00 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAB0E11A21;
+        Sun, 26 Jun 2022 01:56:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 97F4AB80D30;
+        Sun, 26 Jun 2022 08:56:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24FBAC341CA;
+        Sun, 26 Jun 2022 08:56:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656233817;
+        bh=Y02jfhJb1Aqml7DaR0aSSrkuFXXZPYf8YiFSNPaKI7s=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=eroUWlgUoQRbpFWysapxdXBVoUkOrEQpvFyG9hjANycmYhsy6EjgCPTMWsYIgsASa
+         Urvby5om/JJ3V/EuSwdyynAGkJg8gO0keisYx0y32L6wLHj8fcyAPoFSduN7CyFUg1
+         h95354tLRMfOZcuvBSNlsy+u304toTu4ub3uk6tHAH4a9dFcAvz8LN9/6xX8UHgAUy
+         BBAtpOPvGmXFuX/1R0EPyg/AA5Uurb3MgQalw0yNd1sbnkVgt/lG9dtz6rfZJPbLO8
+         /lyO/Jpm31W11yxjpijme6/kyUxwLK6ejIh4VQMyKx/aBrbSexfZlRXs24u7FaNWcz
+         aWDaBHI1/I8xQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1o5O4c-003Af3-TG;
+        Sun, 26 Jun 2022 09:56:55 +0100
+Date:   Sun, 26 Jun 2022 09:57:00 +0100
+Message-ID: <87wnd3erab.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v2 2/2] irqchip/sifive-plic: Add support for Renesas RZ/Five SoC
+In-Reply-To: <20220626004326.8548-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220626004326.8548-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220626004326.8548-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: prabhakar.mahadev-lad.rj@bp.renesas.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, sagar.kadam@sifive.com, palmer@dabbelt.com, paul.walmsley@sifive.com, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, prabhakar.csengg@gmail.com, biju.das.jz@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
+On Sun, 26 Jun 2022 01:43:26 +0100,
+Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> 
+> The Renesas RZ/Five SoC has a RISC-V AX45MP AndesCore with NCEPLIC100. The
+> NCEPLIC100 supports both edge-triggered and level-triggered interrupts. In
+> case of edge-triggered interrupts NCEPLIC100 ignores the next interrupt
+> edge until the previous completion message has been received and
+> NCEPLIC100 doesn't support pending interrupt counter, hence losing the
+> interrupts if not acknowledged in time.
+> 
+> So the workaround for edge-triggered interrupts to be handled correctly
+> and without losing is that it needs to be acknowledged first and then
+> handler must be run so that we don't miss on the next edge-triggered
+> interrupt.
+> 
+> This patch adds a new compatible string for Renesas RZ/Five SoC and adds
+> support to change interrupt flow based on the interrupt type. It also
+> implements irq_ack and irq_set_type callbacks.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2:
+> * Implemented IRQ flow as suggested by Marc
+> 
+> RFC-->v1:
+> * Fixed review comments pointed by Geert
+> * Dropped handle_fasteoi_ack_irq support as for the PLIC we need to
+> claim the interrupt by reading the register and then acknowledge it.
+> * Add a new chained handler for RZ/Five SoC.
+> ---
+>  drivers/irqchip/Kconfig           |  1 +
+>  drivers/irqchip/irq-sifive-plic.c | 73 ++++++++++++++++++++++++++++++-
+>  2 files changed, 72 insertions(+), 2 deletions(-)
 
-On 25.06.22 16:16, Jonathan Cameron wrote:
+[...]
+
 >
-> On Tue, 21 Jun 2022 02:53:58 +0200
-> Jakob Hauser <jahau@rocketmail.com> wrote:
-> 
->> On 18.06.22 17:00, Jonathan Cameron wrote:
->>>
->>> We've been bitten in the past by naming choices like this, so please
->>> use yas530 only and rely on comments or code that makes it obvious that
->>> it applies to the yas532 as well.  
->>
->> Hm, ok. It's harder to keep the overview. But I can imagine adding up
->> names can get out of control. I'll change it.
->>
->> For functions and registers used by all variants, I'd keep yas5xx or
->> YAS5XX respectively. I hope that's ok.
-> 
-> I reserve the right to laugh at you if the next variant to come along
-> fits the wild card but not the registers that have been shared until then :)
-> 
-> Otherwise, I'm fine with keeping the naming for those cases.
+> +static int plic_irq_set_type(struct irq_data *d, unsigned int type)
+> +{
+> +	struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+> +
+> +	if (handler->priv->of_data != RENESAS_R9A07G043_PLIC)
+> +		return 0;
+> +
+> +	switch (type) {
+> +	case IRQ_TYPE_LEVEL_HIGH:
+> +		irq_set_chip_handler_name_locked(d, &renesas_rzfive_edge_plic_chip,
+> +						 handle_fasteoi_ack_irq,
+> +						 "Edge");
+> +		break;
+> +
+> +	case IRQ_TYPE_EDGE_RISING:
+> +		irq_set_chip_handler_name_locked(d, &plic_chip,
+> +						 handle_fasteoi_irq,
+> +						 "Level");
+> +		break;
 
-Thanks for your reply. Reserving that right is fine :) It could turn out
-that way.
+Really? Have you even tested this?
 
-For the time being and as long as possible, keeping the generic ya5xx
-naming for those cases makes it more distinguishable what's generally
-applicable and what's variant-specific.
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
+>  			      irq_hw_number_t hwirq)
+>  {
+> @@ -198,6 +248,19 @@ static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
+>  	return 0;
+>  }
+>  
+> +static int plic_irq_domain_translate(struct irq_domain *d,
+> +				     struct irq_fwspec *fwspec,
+> +				     unsigned long *hwirq,
+> +				     unsigned int *type)
+> +{
+> +	struct plic_priv *priv = d->host_data;
+> +
+> +	if (priv->of_data == RENESAS_R9A07G043_PLIC)
+> +		return irq_domain_translate_twocell(d, fwspec, hwirq, type);
+> +
+> +	return irq_domain_translate_onecell(d, fwspec, hwirq, type);
+> +}
+> +
+>  static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
+>  				 unsigned int nr_irqs, void *arg)
+>  {
+> @@ -206,7 +269,7 @@ static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
+>  	unsigned int type;
+>  	struct irq_fwspec *fwspec = arg;
+>  
+> -	ret = irq_domain_translate_onecell(domain, fwspec, &hwirq, &type);
+> +	ret = plic_irq_domain_translate(domain, fwspec, &hwirq, &type);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -220,7 +283,7 @@ static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
+>  }
+>  
+>  static const struct irq_domain_ops plic_irqdomain_ops = {
+> -	.translate	= irq_domain_translate_onecell,
+> +	.translate	= plic_irq_domain_translate,
+>  	.alloc		= plic_irq_domain_alloc,
+>  	.free		= irq_domain_free_irqs_top,
+>  };
+> @@ -293,6 +356,11 @@ static int __init plic_init(struct device_node *node,
+>  	if (!priv)
+>  		return -ENOMEM;
+>  
+> +	if (of_device_is_compatible(node, "renesas,r9a07g043-plic")) {
+> +		priv->of_data = RENESAS_R9A07G043_PLIC;
+> +		plic_chip.name = "Renesas RZ/Five PLIC";
 
-Kind regards,
-Jakob
+NAK. The irq_chip structure isn't the place for platform marketing.
+This is way too long anyway (and same for the edge version), and you
+even sent me a patch to make that structure const...
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
