@@ -2,72 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6207655B1B8
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 14:04:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EADE855B1CE
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 14:19:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234396AbiFZMD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 08:03:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43926 "EHLO
+        id S234420AbiFZMTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 08:19:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234365AbiFZMDw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 08:03:52 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC44CD125
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 05:03:51 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id ej4so9421570edb.7
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 05:03:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+zmPJgqjOhKNxFG0WLIBtjuHyrzK8bUH/JzPK1c1kpc=;
-        b=WDacz+9KjhgEyr47IP9SwrI9knAGT37osRX03n2ARJEhWu2jCngSpFB/Ad0DmtKluA
-         MqeCkie5cUPZ2B+VzIbl+ABTq/IhjCfX0OJ8rb7JwNNnG/ZFANAR5xAFCmQQw6QaJWU7
-         6c8enZnQaa3fkYTw2VfrZy3JGDW3jwte1YJhx7tj+lsqXM9o8Jhpi5+4FWsg+PRDm1s8
-         oQIN9sVTikAgfkf5+CQ9ZH0jYVu1TxRuZTjGCexI3YItIfZ05KDwIQG1TPPbgKlbiu3G
-         fCMDe5H1AK4soeoz7PPIQa5lnCMphMuAxWSc286w1yrAGvJHv61dSQeCSOUiC8vxOWAq
-         SB8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+zmPJgqjOhKNxFG0WLIBtjuHyrzK8bUH/JzPK1c1kpc=;
-        b=U7icJQ8BP0po0NSYPHrLSudRgrLt1GrzE0gat1iaOpzEVEA4CysMdn7r+gA80gm4Vt
-         Kom+c5SL6/8eDVlSu1mHwRJ2eXlKcPXkKPWgGXmpxqF8/16tkxSFK6OZPOiNS5bLEAew
-         fQLKkjPig2zKqLfgo+JRScOIP3Q6WGo1mRWgTcOTBxxg6rXuZX816YZ0OhuUZyWgknYK
-         hqo96U56vVKJ0KVDuSKXz45AHd0HNhaCjLW7Z50/I7H6+NRqN/6CF8rhAY19HA7OcbkV
-         8Xq+b9mw3OXH8FOLLG0SzdnXlIxNjrSz3PUA2kkYhXAVbyJLJCfKkCaHmh+DrcWkdD/V
-         Pk0w==
-X-Gm-Message-State: AJIora+O871NDohJf+fyUzhCKbeWQqVjc2/aK/e3AqCVZ3AcGEvaYGmo
-        VTGO6iW09ps5WECIc+HNKqKwQA==
-X-Google-Smtp-Source: AGRyM1t4tdIH5gDOHb7Z/tDF1bjiE1v9aeT3gyFwsF5yUDnE/VscnS05VH0cdHCya9w56xeLJJWUvQ==
-X-Received: by 2002:a50:ff0e:0:b0:433:5d15:eada with SMTP id a14-20020a50ff0e000000b004335d15eadamr10461999edu.102.1656245030325;
-        Sun, 26 Jun 2022 05:03:50 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id q24-20020a170906b29800b0072629374590sm3751585ejz.120.2022.06.26.05.03.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Jun 2022 05:03:49 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S234299AbiFZMTk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 08:19:40 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA9B0DFEE;
+        Sun, 26 Jun 2022 05:19:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A1FA1B80D8C;
+        Sun, 26 Jun 2022 12:19:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30185C34114;
+        Sun, 26 Jun 2022 12:19:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656245976;
+        bh=e9Kxi48rcO/WhIBif/j/W/eQk+T5/MunSN0PVg43DTM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=TYar2W/jJdY73jLP/CvHuZNECwQfcOAA+VddWRkqUAYAHo45gMnvbwxH/xlf7M3My
+         DJFJfEk3xKlw8ipW2RISVEifrklH12d9S4u1vNea0vQleMjrIxjW5nbogj1MPLScp5
+         wHsdV2RAXlBhL9dAejNZEa+3S3mcDhj4z//DfnflCgIkeQL9exmwwZ+anJxxelq2oX
+         rbOyRUChChOXQcdbT/pwZ+5coFoR+zGjb0h2T5tqscrL5lGC3Y+p19ttG9CfgA5DUf
+         0183rjcP+jbXnORzPGsMkAGSSVdZ0/ZQi/IcaYySVIny9FtzDiTDEp9067NR5wZeIB
+         mXq2zvy+77Sww==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1o5REj-003Cfx-Ie;
+        Sun, 26 Jun 2022 13:19:33 +0100
+Date:   Sun, 26 Jun 2022 13:19:41 +0100
+Message-ID: <87v8snehwi.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 5/5] dt-bindings: mmc: samsung,s3c6410-sdhci: convert to dtschema
-Date:   Sun, 26 Jun 2022 14:03:42 +0200
-Message-Id: <20220626120342.38851-6-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220626120342.38851-1-krzysztof.kozlowski@linaro.org>
-References: <20220626120342.38851-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v2 2/2] irqchip/sifive-plic: Add support for Renesas RZ/Five SoC
+In-Reply-To: <CA+V-a8tcxj_N0sBHhgAZAN8WSJ12JnDzAvUUnCXto3wHLqNVwg@mail.gmail.com>
+References: <20220626004326.8548-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220626004326.8548-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <87wnd3erab.wl-maz@kernel.org>
+        <CA+V-a8tcxj_N0sBHhgAZAN8WSJ12JnDzAvUUnCXto3wHLqNVwg@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, sagar.kadam@sifive.com, palmer@dabbelt.com, paul.walmsley@sifive.com, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, biju.das.jz@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,150 +80,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Samsung SoC SDHCI Controller bindings to DT schema.
+On Sun, 26 Jun 2022 10:38:18 +0100,
+"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> 
+> Hi Marc,
+> 
+> Thank you for the review.
+> 
+> On Sun, Jun 26, 2022 at 9:56 AM Marc Zyngier <maz@kernel.org> wrote:
+> >
+> > On Sun, 26 Jun 2022 01:43:26 +0100,
+> > Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > >
+> > > The Renesas RZ/Five SoC has a RISC-V AX45MP AndesCore with NCEPLIC100. The
+> > > NCEPLIC100 supports both edge-triggered and level-triggered interrupts. In
+> > > case of edge-triggered interrupts NCEPLIC100 ignores the next interrupt
+> > > edge until the previous completion message has been received and
+> > > NCEPLIC100 doesn't support pending interrupt counter, hence losing the
+> > > interrupts if not acknowledged in time.
+> > >
+> > > So the workaround for edge-triggered interrupts to be handled correctly
+> > > and without losing is that it needs to be acknowledged first and then
+> > > handler must be run so that we don't miss on the next edge-triggered
+> > > interrupt.
+> > >
+> > > This patch adds a new compatible string for Renesas RZ/Five SoC and adds
+> > > support to change interrupt flow based on the interrupt type. It also
+> > > implements irq_ack and irq_set_type callbacks.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > ---
+> > > v1->v2:
+> > > * Implemented IRQ flow as suggested by Marc
+> > >
+> > > RFC-->v1:
+> > > * Fixed review comments pointed by Geert
+> > > * Dropped handle_fasteoi_ack_irq support as for the PLIC we need to
+> > > claim the interrupt by reading the register and then acknowledge it.
+> > > * Add a new chained handler for RZ/Five SoC.
+> > > ---
+> > >  drivers/irqchip/Kconfig           |  1 +
+> > >  drivers/irqchip/irq-sifive-plic.c | 73 ++++++++++++++++++++++++++++++-
+> > >  2 files changed, 72 insertions(+), 2 deletions(-)
+> >
 
-The original bindings were quite old and incomplete, so add during
-conversion typical (already used) properties like reg, clocks,
-interrupts.
+[...]
 
-The bindings were not precising the clocks, although the upstream DTS
-and Linux driver were expecting bus clocks in certain patterns in any
-order.  Document the status quo even though it is not a proper approach
-for bindings.
+> > > +     if (of_device_is_compatible(node, "renesas,r9a07g043-plic")) {
+> > > +             priv->of_data = RENESAS_R9A07G043_PLIC;
+> > > +             plic_chip.name = "Renesas RZ/Five PLIC";
+> >
+> > NAK. The irq_chip structure isn't the place for platform marketing.
+> > This is way too long anyway (and same for the edge version), and you
+> > even sent me a patch to make that structure const...
+> >
+> My bad will drop this.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/mmc/samsung,s3c6410-sdhci.yaml   | 81 +++++++++++++++++++
- .../devicetree/bindings/mmc/samsung-sdhci.txt | 32 --------
- 2 files changed, 81 insertions(+), 32 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mmc/samsung,s3c6410-sdhci.yaml
- delete mode 100644 Documentation/devicetree/bindings/mmc/samsung-sdhci.txt
+And why you're at it, please turn this rather random 'of_data' into
+something like:
 
-diff --git a/Documentation/devicetree/bindings/mmc/samsung,s3c6410-sdhci.yaml b/Documentation/devicetree/bindings/mmc/samsung,s3c6410-sdhci.yaml
-new file mode 100644
-index 000000000000..5d873a60f650
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/samsung,s3c6410-sdhci.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/samsung,s3c6410-sdhci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung SoC SDHCI Controller
-+
-+maintainers:
-+  - Jaehoon Chung <jh80.chung@samsung.com>
-+  - Krzysztof Kozlowski <krzk@kernel.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - samsung,s3c6410-sdhci
-+      - samsung,exynos4210-sdhci
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 2
-+    maxItems: 5
-+
-+  clock-names:
-+    minItems: 2
-+    items:
-+      - const: hsmmc
-+      - pattern: "^mmc_busclk.[0-3]$"
-+      - pattern: "^mmc_busclk.[0-3]$"
-+      - pattern: "^mmc_busclk.[0-3]$"
-+      - pattern: "^mmc_busclk.[0-3]$"
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+allOf:
-+  - $ref: mmc-controller.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,exynos4210-sdhci
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 2
-+        clock-names:
-+          items:
-+            - const: hsmmc
-+            - const: mmc_busclk.2
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/exynos4.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    mmc@12510000 {
-+        compatible = "samsung,exynos4210-sdhci";
-+        reg = <0x12510000 0x100>;
-+        interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clock CLK_SDMMC0>, <&clock CLK_SCLK_MMC0>;
-+        clock-names = "hsmmc", "mmc_busclk.2";
-+        bus-width = <4>;
-+        cd-gpios = <&gpx3 4 GPIO_ACTIVE_LOW>;
-+        pinctrl-0 = <&sd2_clk &sd2_cmd &sd2_bus4 &sdhci2_cd>;
-+        pinctrl-names = "default";
-+        vmmc-supply = <&ldo21_reg>;
-+    };
-diff --git a/Documentation/devicetree/bindings/mmc/samsung-sdhci.txt b/Documentation/devicetree/bindings/mmc/samsung-sdhci.txt
-deleted file mode 100644
-index 42e0a9afa100..000000000000
---- a/Documentation/devicetree/bindings/mmc/samsung-sdhci.txt
-+++ /dev/null
-@@ -1,32 +0,0 @@
--* Samsung's SDHCI Controller device tree bindings
--
--Samsung's SDHCI controller is used as a connectivity interface with external
--MMC, SD and eMMC storage mediums. This file documents differences between the
--core mmc properties described by mmc.txt and the properties used by the
--Samsung implementation of the SDHCI controller.
--
--Required SoC Specific Properties:
--- compatible: should be one of the following
--  - "samsung,s3c6410-sdhci": For controllers compatible with s3c6410 sdhci
--    controller.
--  - "samsung,exynos4210-sdhci": For controllers compatible with Exynos4 sdhci
--    controller.
--
--Required Board Specific Properties:
--- pinctrl-0: Should specify pin control groups used for this controller.
--- pinctrl-names: Should contain only one value - "default".
--
--Example:
--	sdhci@12530000 {
--		compatible = "samsung,exynos4210-sdhci";
--		reg = <0x12530000 0x100>;
--		interrupts = <0 75 0>;
--		bus-width = <4>;
--		cd-gpios = <&gpk2 2 0>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&sd0_clk &sd0_cmd &sd0_bus4>;
--	};
--
--	Note: This example shows both SoC specific and board specific properties
--	in a single device node. The properties can be actually be separated
--	into SoC specific node and board specific node.
+diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
+index bb87e4c3b88e..cd1683b77caf 100644
+--- a/drivers/irqchip/irq-sifive-plic.c
++++ b/drivers/irqchip/irq-sifive-plic.c
+@@ -64,6 +64,10 @@ struct plic_priv {
+ 	struct cpumask lmask;
+ 	struct irq_domain *irqdomain;
+ 	void __iomem *regs;
++	enum {
++		VANILLA_PLIC,
++		RENESAS_R9A07G043_PLIC,
++	} flavour;
+ };
+ 
+ struct plic_handler {
+
+to give some structure to the whole thing, because I'm pretty sure
+we'll see more braindead implementations as time goes by.
+
+It almost feels like I've written this whole patch. Oh wait...
+
+	M.
+
 -- 
-2.34.1
-
+Without deviation from the norm, progress is not possible.
