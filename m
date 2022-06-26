@@ -2,76 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36ED755B2D7
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 18:34:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 252BA55B2D0
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 18:34:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231403AbiFZQdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 12:33:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45258 "EHLO
+        id S231534AbiFZQep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 12:34:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231255AbiFZQdb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 12:33:31 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 912D865FB
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 09:33:29 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id z19so9914584edb.11
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 09:33:29 -0700 (PDT)
+        with ESMTP id S231390AbiFZQeo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 12:34:44 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCD75DFCB
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 09:34:42 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id o9so9925351edt.12
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 09:34:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=68B9lJ1vmzx8DGV8aIXPTfB6PMzhU14Z31jyK76XQi0=;
-        b=ly/4ffXIoVL9bTAPzHFXDg2QSNnrZffTLrDrkkzDT8vaM0YC9Wa7o5fuyzBO4/afDW
-         GA2JgZrRuOdlFGWZIuxnrD4wm/4lda5EYGfwcA3GiOpv5c+vEw3C8lJ7lMswbXx6WKT/
-         3jalfdPMfeEBNknwo+rz8JoF/9GWRXP6WRiirkgnHsoAVfqoMGNsdywizXLK4KtQoRjn
-         CZIkwbMDaUiUlkr70fC3CV5GD1xuT2rVZ4ujyS0FzAoRB6NOt38sFKY2XaMyjs82Ll4g
-         e1asTcCqq+HUDlNDMOThZ/lCmMnvG2+w3y7J22IiuGjzSVXJoJD6DX1w7YKkI5/sE1kW
-         OGMQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=e9P6heqcp+I8YkZp0/mxY/4PuhtkEMvskXjsnP0rZxs=;
+        b=gPZ+TP8C/VUdtYh5E1XrqFM1GsRBMEB9YqWPMpz2s+LqPSi0zFDnLLUFJh6wh5k4gi
+         Wu13zScVARUBidaetzSxo9rw8Y92Gk+eHxLWLGUWUeWDHczuOGBQBwzMifGfQ/VLKH4f
+         IQQxgWApg4L8k+qIvmeuPwFFlGQhPzDhkm1W3EeDBvRphAnkhR7Vut5fcYGL/YuQveco
+         u8Rl0+yiWMMbFJ5gZo790hnyfKENMsufFHbkVW/uaydwEFjmNon4H/Zq2KRynpT6mt8H
+         OOMHqZ19jLot1TB0R8CX8Exp+Ss2GE6ygIf5LYxjaoHgrSg1gKISSMdEnvuKgadaLuMi
+         umhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=68B9lJ1vmzx8DGV8aIXPTfB6PMzhU14Z31jyK76XQi0=;
-        b=e0ueJ4xrveDH+9UxRPtVkjpJUXHSEUbBhBrth7XlznDI3Jzhi9Uk7Nf7kRM60o4VjH
-         jLD94w1VT0ZwMTwT510hELfSrY3oumkQcFOqivoIY5gGnmiIQinwOoGpZhSFEbRfe2aH
-         Bli/zX7iIPAyNPR8OyEFB6kzzXIim4eGaglvjHHX/6bx0POMaTc34+R0Qd38scSskLyV
-         FCNycW3SVu6W85j/IvGoaIL2KjyTUGqfD5iGhkyVqRVDFNd+jAiEHWDS5UKxT3piwQbd
-         ogriQ72ejhwauDqISVYz+f3YIYwn360wHsH7PSueCXPP/GHJA9IF0IZ4hfcsu5Z0mXYT
-         /J1A==
-X-Gm-Message-State: AJIora8dYDl2BZs5CuE2M6B7YcSUL5KSIaoegyp9UiO9UV5H5HMCeneL
-        wcn5F5NSlY/nNoB7VxLrVZFLCw==
-X-Google-Smtp-Source: AGRyM1u1ZfRB1y3TcPVT4N9WeFl3Dl2yUL5xcrrcr5hym04I/wxAO0O+zyDC7FUtggQl28BDAZhUUg==
-X-Received: by 2002:a05:6402:1907:b0:435:c243:a66e with SMTP id e7-20020a056402190700b00435c243a66emr11638456edz.44.1656261208128;
-        Sun, 26 Jun 2022 09:33:28 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g5-20020a17090613c500b00722fb3c99bcsm3930403ejc.203.2022.06.26.09.33.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Jun 2022 09:33:27 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Inki Dae <inki.dae@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=e9P6heqcp+I8YkZp0/mxY/4PuhtkEMvskXjsnP0rZxs=;
+        b=GdhdS6nZZUX2r1+JMjCdVs8His1OhfuWjkv/ZILn/hLz3bBbgkqvgc7R0SrThNm8gH
+         f98sMT94KKLLLg9lBobw3OtOAc2zJO2/Lw1Mhf33DsYe5KMiuE1F290JsBli6j/F8gpi
+         mgBKyTDfAd/QJqlBrEH0gCIQzSiyRyXZ2mkEpgwgK7tLnuKO8ONq9am6ZoGW3HjSDSfD
+         Jelk/0PGaspJYzjZjQ5JAO4dA2VZf35BmPQ6VgYzPlW4E4KrR0M/AyJwushGGi1RKrJf
+         xRJrhG4t2a59fguJW4tH4qESV3vLy9i/DJnj6FxowDLkMMeRZHrV+ylZZXlY3ClUTcVy
+         nVuw==
+X-Gm-Message-State: AJIora8I31BgtS1FXv7tNVR/P5MwYb4aS95DdfjMdIsxRdyAn83iMa3p
+        WZ2y7LXJvq9jcjWKe9nsfMvB+g==
+X-Google-Smtp-Source: AGRyM1uBmdo7hfEaAegqO2f0OjVvZbRL+mNwQ9yHklFk0lD/O1yymQ4kZm8iycCmjFAuDIyXYUJjhQ==
+X-Received: by 2002:a05:6402:2948:b0:42a:ae0c:2f26 with SMTP id ed8-20020a056402294800b0042aae0c2f26mr11707300edb.425.1656261281414;
+        Sun, 26 Jun 2022 09:34:41 -0700 (PDT)
+Received: from [192.168.0.242] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id c11-20020aa7c98b000000b00435a912358dsm6144469edt.30.2022.06.26.09.34.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 26 Jun 2022 09:34:40 -0700 (PDT)
+Message-ID: <d35bfc8d-24ca-a3f7-49f8-e9f4c9ffec1d@linaro.org>
+Date:   Sun, 26 Jun 2022 18:34:40 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: qcom: Document lg,judyln and
+ lg,judyp devices
+Content-Language: en-US
+To:     Stefan Hansson <newbie13xd@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-phy@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: remove Joonyoung Shim from maintainers
-Date:   Sun, 26 Jun 2022 18:33:20 +0200
-Message-Id: <20220626163320.6393-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220626163320.6393-1-krzysztof.kozlowski@linaro.org>
-References: <20220626163320.6393-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Stephen Boyd <sboyd@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20220626151213.10159-1-newbie13xd@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220626151213.10159-1-newbie13xd@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,118 +80,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Emails to Joonyoung Shim bounce ("550 5.1.1 Recipient address rejected:
-User unknown"), so remove him from maintainers of DT bindings (display,
-phy).
+On 26/06/2022 17:12, Stefan Hansson wrote:
+> Add binding documentation for the LG G7 and LG V35 smartphones
+> which are based on Snapdragon 845 (sdm845).
+> 
+> Changes since v2:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/display/samsung/samsung,exynos-hdmi-ddc.yaml        | 1 -
- .../devicetree/bindings/display/samsung/samsung,exynos-hdmi.yaml | 1 -
- .../bindings/display/samsung/samsung,exynos-mixer.yaml           | 1 -
- .../bindings/display/samsung/samsung,exynos5433-decon.yaml       | 1 -
- .../bindings/display/samsung/samsung,exynos5433-mic.yaml         | 1 -
- .../bindings/display/samsung/samsung,exynos7-decon.yaml          | 1 -
- .../devicetree/bindings/display/samsung/samsung,fimd.yaml        | 1 -
- .../devicetree/bindings/phy/samsung,exynos-hdmi-phy.yaml         | 1 -
- 8 files changed, 8 deletions(-)
+This goes after ---
 
-diff --git a/Documentation/devicetree/bindings/display/samsung/samsung,exynos-hdmi-ddc.yaml b/Documentation/devicetree/bindings/display/samsung/samsung,exynos-hdmi-ddc.yaml
-index 919734c05c0b..458d399cb025 100644
---- a/Documentation/devicetree/bindings/display/samsung/samsung,exynos-hdmi-ddc.yaml
-+++ b/Documentation/devicetree/bindings/display/samsung/samsung,exynos-hdmi-ddc.yaml
-@@ -8,7 +8,6 @@ title: Samsung Exynos SoC HDMI DDC
- 
- maintainers:
-   - Inki Dae <inki.dae@samsung.com>
--  - Joonyoung Shim <jy0922.shim@samsung.com>
-   - Seung-Woo Kim <sw0312.kim@samsung.com>
-   - Kyungmin Park <kyungmin.park@samsung.com>
-   - Krzysztof Kozlowski <krzk@kernel.org>
-diff --git a/Documentation/devicetree/bindings/display/samsung/samsung,exynos-hdmi.yaml b/Documentation/devicetree/bindings/display/samsung/samsung,exynos-hdmi.yaml
-index 63379fae3636..e4a68c5a1a09 100644
---- a/Documentation/devicetree/bindings/display/samsung/samsung,exynos-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/samsung/samsung,exynos-hdmi.yaml
-@@ -8,7 +8,6 @@ title: Samsung Exynos SoC HDMI
- 
- maintainers:
-   - Inki Dae <inki.dae@samsung.com>
--  - Joonyoung Shim <jy0922.shim@samsung.com>
-   - Seung-Woo Kim <sw0312.kim@samsung.com>
-   - Kyungmin Park <kyungmin.park@samsung.com>
-   - Krzysztof Kozlowski <krzk@kernel.org>
-diff --git a/Documentation/devicetree/bindings/display/samsung/samsung,exynos-mixer.yaml b/Documentation/devicetree/bindings/display/samsung/samsung,exynos-mixer.yaml
-index 00e325a19cb1..25d53fde92e1 100644
---- a/Documentation/devicetree/bindings/display/samsung/samsung,exynos-mixer.yaml
-+++ b/Documentation/devicetree/bindings/display/samsung/samsung,exynos-mixer.yaml
-@@ -8,7 +8,6 @@ title: Samsung Exynos SoC Mixer
- 
- maintainers:
-   - Inki Dae <inki.dae@samsung.com>
--  - Joonyoung Shim <jy0922.shim@samsung.com>
-   - Seung-Woo Kim <sw0312.kim@samsung.com>
-   - Kyungmin Park <kyungmin.park@samsung.com>
-   - Krzysztof Kozlowski <krzk@kernel.org>
-diff --git a/Documentation/devicetree/bindings/display/samsung/samsung,exynos5433-decon.yaml b/Documentation/devicetree/bindings/display/samsung/samsung,exynos5433-decon.yaml
-index 7c37470bd329..921bfe925cd6 100644
---- a/Documentation/devicetree/bindings/display/samsung/samsung,exynos5433-decon.yaml
-+++ b/Documentation/devicetree/bindings/display/samsung/samsung,exynos5433-decon.yaml
-@@ -8,7 +8,6 @@ title: Samsung Exynos5433 SoC Display and Enhancement Controller (DECON)
- 
- maintainers:
-   - Inki Dae <inki.dae@samsung.com>
--  - Joonyoung Shim <jy0922.shim@samsung.com>
-   - Seung-Woo Kim <sw0312.kim@samsung.com>
-   - Kyungmin Park <kyungmin.park@samsung.com>
-   - Krzysztof Kozlowski <krzk@kernel.org>
-diff --git a/Documentation/devicetree/bindings/display/samsung/samsung,exynos5433-mic.yaml b/Documentation/devicetree/bindings/display/samsung/samsung,exynos5433-mic.yaml
-index c5c6239c28d0..7d405f2febcd 100644
---- a/Documentation/devicetree/bindings/display/samsung/samsung,exynos5433-mic.yaml
-+++ b/Documentation/devicetree/bindings/display/samsung/samsung,exynos5433-mic.yaml
-@@ -8,7 +8,6 @@ title: Samsung Exynos5433 SoC Mobile Image Compressor (MIC)
- 
- maintainers:
-   - Inki Dae <inki.dae@samsung.com>
--  - Joonyoung Shim <jy0922.shim@samsung.com>
-   - Seung-Woo Kim <sw0312.kim@samsung.com>
-   - Kyungmin Park <kyungmin.park@samsung.com>
-   - Krzysztof Kozlowski <krzk@kernel.org>
-diff --git a/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml b/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
-index 320eedc61a5b..969bd8c563a5 100644
---- a/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
-+++ b/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
-@@ -8,7 +8,6 @@ title: Samsung Exynos7 SoC Display and Enhancement Controller (DECON)
- 
- maintainers:
-   - Inki Dae <inki.dae@samsung.com>
--  - Joonyoung Shim <jy0922.shim@samsung.com>
-   - Seung-Woo Kim <sw0312.kim@samsung.com>
-   - Kyungmin Park <kyungmin.park@samsung.com>
-   - Krzysztof Kozlowski <krzk@kernel.org>
-diff --git a/Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml b/Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml
-index c62ea9d22843..5d5cc220f78a 100644
---- a/Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml
-+++ b/Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml
-@@ -8,7 +8,6 @@ title: Samsung S3C/S5P/Exynos SoC Fully Interactive Mobile Display (FIMD)
- 
- maintainers:
-   - Inki Dae <inki.dae@samsung.com>
--  - Joonyoung Shim <jy0922.shim@samsung.com>
-   - Seung-Woo Kim <sw0312.kim@samsung.com>
-   - Kyungmin Park <kyungmin.park@samsung.com>
-   - Krzysztof Kozlowski <krzk@kernel.org>
-diff --git a/Documentation/devicetree/bindings/phy/samsung,exynos-hdmi-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,exynos-hdmi-phy.yaml
-index 3e5f035de2e9..efc679c385ab 100644
---- a/Documentation/devicetree/bindings/phy/samsung,exynos-hdmi-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/samsung,exynos-hdmi-phy.yaml
-@@ -8,7 +8,6 @@ title: Samsung Exynos SoC HDMI PHY
- 
- maintainers:
-   - Inki Dae <inki.dae@samsung.com>
--  - Joonyoung Shim <jy0922.shim@samsung.com>
-   - Seung-Woo Kim <sw0312.kim@samsung.com>
-   - Kyungmin Park <kyungmin.park@samsung.com>
-   - Krzysztof Kozlowski <krzk@kernel.org>
--- 
-2.34.1
-
+> 
+>  - Rebased on top of
+> https://lore.kernel.org/all/20220521164550.91115-7-krzysztof.kozlowski@linaro.org/
+> 
+> Signed-off-by: Stefan Hansson <newbie13xd@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+Best regards,
+Krzysztof
