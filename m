@@ -2,243 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5572A55ADE1
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 02:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84ACD55ADF9
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 03:40:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233761AbiFZAo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 20:44:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56952 "EHLO
+        id S231754AbiFZBkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Jun 2022 21:40:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233753AbiFZAo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 20:44:26 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6A74413D23;
-        Sat, 25 Jun 2022 17:44:24 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.92,222,1650898800"; 
-   d="scan'208";a="125658112"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 26 Jun 2022 09:44:24 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id CBA9A40078B9;
-        Sun, 26 Jun 2022 09:44:19 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231234AbiFZBkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 21:40:00 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 729D82DCA
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 18:39:59 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id m2so5286249plx.3
+        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 18:39:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Srp/EXNpLzg2U+1jpiVWipYx2E7RDsq+GqrwFGqqee8=;
+        b=MRZctG7Tj2P7uyeZvSA+yhlqoEkIoVAML9xi6pdoMkwmMXsQKhKtmNqdwBWbxll2ea
+         9svV2JdNJtismM4bqmwrjTjzmws+1AGVo3kJihyfm39LJ8UZraogCZwGuw7An7vuZC5Y
+         mVnjDauZ5JyEnHpJYkkz/TSDT/zFljwgNQA1k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Srp/EXNpLzg2U+1jpiVWipYx2E7RDsq+GqrwFGqqee8=;
+        b=afLXnU3qtQ14MKqgB3j5BbddDuM142HYudjr7GqfNMwCjl1fG6eh78yNHcjWMvQT0T
+         FR93JaqdqmsgxWViaLqt+XbrczxGM/drTWOXe24MU3YsRlBeeBfAbB104giKp5QX5VAX
+         rB8LCNTczaDMMVu/3UgP9LKoNoyMA5Y6tJvMQS99i1hq/s5kc1OL4EU9V/Ov3KMIpzGl
+         8W8U0pqfbTW/adxj4RKg2gwT/vHau3VkU61/mVWV/pj96rOOpL/5u0V+4Y4+QfwBd05k
+         ZI8mILGWZ68uH2/dSA7GYXHEhM6zpECQTnyX3ZuUAojOfUuJLyvxK/GgEyn83gGKtjVy
+         CRSA==
+X-Gm-Message-State: AJIora/uWUhn/lhybutVhfEoJ1EarCrpfg6VhlmcH4ZUydfU/fhoc/7g
+        myMlIp6T5IhMH7OyUrGKwelvsQ==
+X-Google-Smtp-Source: AGRyM1uUshWNdamy7bieEQgd1CHfnXdRkDBdChOwefpxd6jgtkMJeSkhGKxhZKVKEu5IoWgr8Suk+g==
+X-Received: by 2002:a17:902:d384:b0:16a:6622:de87 with SMTP id e4-20020a170902d38400b0016a6622de87mr7208456pld.132.1656207598909;
+        Sat, 25 Jun 2022 18:39:58 -0700 (PDT)
+Received: from joebar-glaptop.attlocal.net ([107.126.90.40])
+        by smtp.gmail.com with ESMTPSA id m13-20020a170902e40d00b00167838b82e0sm4283200ple.205.2022.06.25.18.39.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Jun 2022 18:39:58 -0700 (PDT)
+From:   "Joseph S. Barrera III" <joebar@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Alexandru M Stan <amstan@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "Joseph S. Barrera III" <joebar@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 2/2] irqchip/sifive-plic: Add support for Renesas RZ/Five SoC
-Date:   Sun, 26 Jun 2022 01:43:26 +0100
-Message-Id: <20220626004326.8548-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220626004326.8548-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220626004326.8548-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v14 0/5] arm64: dts: qcom: sc7180: Add five new trogdor-based boards
+Date:   Sat, 25 Jun 2022 18:39:01 -0700
+Message-Id: <20220626013906.885523-1-joebar@chromium.org>
+X-Mailer: git-send-email 2.31.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Renesas RZ/Five SoC has a RISC-V AX45MP AndesCore with NCEPLIC100. The
-NCEPLIC100 supports both edge-triggered and level-triggered interrupts. In
-case of edge-triggered interrupts NCEPLIC100 ignores the next interrupt
-edge until the previous completion message has been received and
-NCEPLIC100 doesn't support pending interrupt counter, hence losing the
-interrupts if not acknowledged in time.
+This series adds five new trogdor-based boards to upstream.
+The patches should be applied *after* applying
+https://lore.kernel.org/all/20220602190621.1646679-1-swboyd@chromium.org/
+(arm64: dts: qcom: Remove duplicate sc7180-trogdor include on lazor/homestar)
 
-So the workaround for edge-triggered interrupts to be handled correctly
-and without losing is that it needs to be acknowledged first and then
-handler must be run so that we don't miss on the next edge-triggered
-interrupt.
+The patches do *not* expect
+https://lore.kernel.org/all/20220518172525.3319993-1-swboyd@chromium.org/
+(sc7180-trogdor: Split out keyboard node and describe detachables)
+to be applied.
 
-This patch adds a new compatible string for Renesas RZ/Five SoC and adds
-support to change interrupt flow based on the interrupt type. It also
-implements irq_ack and irq_set_type callbacks.
+The compatibles in this series are documented by Doug's series
+https://lore.kernel.org/r/20220520143502.v4.5.Ie8713bc0377672ed8dd71189e66fc0b77226fb85@changeid
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v1->v2:
-* Implemented IRQ flow as suggested by Marc
+Changes in v14:
+- Remove unidiomatic compile-time test for duplicate include.
 
-RFC-->v1:
-* Fixed review comments pointed by Geert
-* Dropped handle_fasteoi_ack_irq support as for the PLIC we need to
-claim the interrupt by reading the register and then acknowledge it.
-* Add a new chained handler for RZ/Five SoC.
----
- drivers/irqchip/Kconfig           |  1 +
- drivers/irqchip/irq-sifive-plic.c | 73 ++++++++++++++++++++++++++++++-
- 2 files changed, 72 insertions(+), 2 deletions(-)
+Changes in v13:
+- Remove 'include sc7180-trogdor.dtsi' in sc7180-trogdor-ti-sn65dsi86.dtsi.
+- Add compile-time test for duplicate include in sc7180-trogdor.dtsi.
 
-diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-index 4ab1038b5482..0245dcabe3e9 100644
---- a/drivers/irqchip/Kconfig
-+++ b/drivers/irqchip/Kconfig
-@@ -530,6 +530,7 @@ config SIFIVE_PLIC
- 	bool "SiFive Platform-Level Interrupt Controller"
- 	depends on RISCV
- 	select IRQ_DOMAIN_HIERARCHY
-+	select IRQ_FASTEOI_HIERARCHY_HANDLERS
- 	help
- 	   This enables support for the PLIC chip found in SiFive (and
- 	   potentially other) RISC-V systems.  The PLIC controls devices
-diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
-index bb87e4c3b88e..9fb9f62afb6a 100644
---- a/drivers/irqchip/irq-sifive-plic.c
-+++ b/drivers/irqchip/irq-sifive-plic.c
-@@ -60,10 +60,13 @@
- #define	PLIC_DISABLE_THRESHOLD		0x7
- #define	PLIC_ENABLE_THRESHOLD		0
- 
-+#define RENESAS_R9A07G043_PLIC		1
-+
- struct plic_priv {
- 	struct cpumask lmask;
- 	struct irq_domain *irqdomain;
- 	void __iomem *regs;
-+	u8 of_data;
- };
- 
- struct plic_handler {
-@@ -81,6 +84,8 @@ static int plic_parent_irq __ro_after_init;
- static bool plic_cpuhp_setup_done __ro_after_init;
- static DEFINE_PER_CPU(struct plic_handler, plic_handlers);
- 
-+static int plic_irq_set_type(struct irq_data *d, unsigned int type);
-+
- static void __plic_toggle(void __iomem *enable_base, int hwirq, int enable)
- {
- 	u32 __iomem *reg = enable_base + (hwirq / 32) * sizeof(u32);
-@@ -176,16 +181,61 @@ static void plic_irq_eoi(struct irq_data *d)
- 	}
- }
- 
-+static void renesas_rzfive_plic_edge_irq_eoi(struct irq_data *data)
-+{
-+	/* We have nothing to do here */
-+}
-+
- static struct irq_chip plic_chip = {
- 	.name		= "SiFive PLIC",
- 	.irq_mask	= plic_irq_mask,
- 	.irq_unmask	= plic_irq_unmask,
- 	.irq_eoi	= plic_irq_eoi,
-+	.irq_set_type	= plic_irq_set_type,
-+#ifdef CONFIG_SMP
-+	.irq_set_affinity = plic_set_affinity,
-+#endif
-+};
-+
-+static struct irq_chip renesas_rzfive_edge_plic_chip = {
-+	.name		= "Renesas RZ/Five PLIC",
-+	.irq_mask	= plic_irq_mask,
-+	.irq_unmask	= plic_irq_unmask,
-+	.irq_ack	= plic_irq_eoi,
-+	.irq_eoi	= renesas_rzfive_plic_edge_irq_eoi,
-+	.irq_set_type	= plic_irq_set_type,
- #ifdef CONFIG_SMP
- 	.irq_set_affinity = plic_set_affinity,
- #endif
- };
- 
-+static int plic_irq_set_type(struct irq_data *d, unsigned int type)
-+{
-+	struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
-+
-+	if (handler->priv->of_data != RENESAS_R9A07G043_PLIC)
-+		return 0;
-+
-+	switch (type) {
-+	case IRQ_TYPE_LEVEL_HIGH:
-+		irq_set_chip_handler_name_locked(d, &renesas_rzfive_edge_plic_chip,
-+						 handle_fasteoi_ack_irq,
-+						 "Edge");
-+		break;
-+
-+	case IRQ_TYPE_EDGE_RISING:
-+		irq_set_chip_handler_name_locked(d, &plic_chip,
-+						 handle_fasteoi_irq,
-+						 "Level");
-+		break;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
- 			      irq_hw_number_t hwirq)
- {
-@@ -198,6 +248,19 @@ static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
- 	return 0;
- }
- 
-+static int plic_irq_domain_translate(struct irq_domain *d,
-+				     struct irq_fwspec *fwspec,
-+				     unsigned long *hwirq,
-+				     unsigned int *type)
-+{
-+	struct plic_priv *priv = d->host_data;
-+
-+	if (priv->of_data == RENESAS_R9A07G043_PLIC)
-+		return irq_domain_translate_twocell(d, fwspec, hwirq, type);
-+
-+	return irq_domain_translate_onecell(d, fwspec, hwirq, type);
-+}
-+
- static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
- 				 unsigned int nr_irqs, void *arg)
- {
-@@ -206,7 +269,7 @@ static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
- 	unsigned int type;
- 	struct irq_fwspec *fwspec = arg;
- 
--	ret = irq_domain_translate_onecell(domain, fwspec, &hwirq, &type);
-+	ret = plic_irq_domain_translate(domain, fwspec, &hwirq, &type);
- 	if (ret)
- 		return ret;
- 
-@@ -220,7 +283,7 @@ static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
- }
- 
- static const struct irq_domain_ops plic_irqdomain_ops = {
--	.translate	= irq_domain_translate_onecell,
-+	.translate	= plic_irq_domain_translate,
- 	.alloc		= plic_irq_domain_alloc,
- 	.free		= irq_domain_free_irqs_top,
- };
-@@ -293,6 +356,11 @@ static int __init plic_init(struct device_node *node,
- 	if (!priv)
- 		return -ENOMEM;
- 
-+	if (of_device_is_compatible(node, "renesas,r9a07g043-plic")) {
-+		priv->of_data = RENESAS_R9A07G043_PLIC;
-+		plic_chip.name = "Renesas RZ/Five PLIC";
-+	}
-+
- 	priv->regs = of_iomap(node, 0);
- 	if (WARN_ON(!priv->regs)) {
- 		error = -EIO;
-@@ -411,5 +479,6 @@ static int __init plic_init(struct device_node *node,
- }
- 
- IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
-+IRQCHIP_DECLARE(renesas_r9a07g043_plic, "renesas,r9a07g043-plic", plic_init);
- IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for legacy systems */
- IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", plic_init); /* for firmware driver */
+Changes in v12:
+- Replace 'include sc7180.dtsi' with 'include sc7180-trogdor.dtsi'
+  in sc7180-trogdor-ti-sn65dsi86.dtsi.
+
+Changes in v11:
+- Restore 'include sc7180.dtsi' to sc7180-trogdor-ti-sn65dsi86.dtsi.
+- Add 'include sc7180-trogdor.dtsi' to sc7180-trogdor-pazquel-* files.
+- Add 'include sc7180-trogdor.dtsi' to sc7180-trogdor-kingoftown-* files.
+
+Changes in v10:
+- Move "okay" for ap_tp_i2c to proper location.
+- Remove 'include sc7180.dtsi' from *all* sc7180-trogdor-pazquel* files.
+- Remove 'include sc7180.dtsi' from *all* sc7180-trogdor-kingoftown* files.
+
+Changes in v9:
+- Correct version history, based on diffing earlier patches.
+- Restore two lines accidentally removed from ap_sar_sensor.
+- Simplify trackpad enabling (51d30402be75).
+
+Changes in v8:
+- Incorporate the deletion of the usb_c1 node from 9f9fb70a7294.
+
+Changes in v7:
+- Accidentally removed two lines from ap_sar_sensor.
+- Only include sc7180.dtsi in sc7180-trogdor.dtsi (19794489fa24).
+- Remove #include of <arm/cros-ec-keyboard.dtsi>.
+- Restore changes requested by Doug.
+- Restore mrbland patch.
+- Simplify spi0/spi6 labeling (d277cab7afc7).
+- Simplify trackpad enabling (51d30402be75).
+
+Changes in v6:
+- Accidentally deleted changes requested by Doug.
+- Add #include of <arm/cros-ec-keyboard.dtsi>.
+- Copy changes to ap_sar_sensor from v5.4.
+- Only include sc7180.dtsi in sc7180-trogdor.dtsi (19794489fa24).
+- Remove mrbland patch.
+- Simplify spi0/spi6 labeling (d277cab7afc7).
+- Simplify trackpad enabling (51d30402be75).
+
+Changes in v5:
+- Add comment that compatible will be filled in per-board.
+- Order nodes by name.
+- Remove extra newline.
+- Replace _ in node name with -.
+
+Changes in v4:
+- Add missing version history.
+- Clean up rt5682s files.
+- Fix description (no downstream bits removed).
+- Restore camcc definition.
+
+Changes in v3:
+- Remove camcc definition.
+- First inclusion in series.
+
+Changes in v2:
+- Add word wrapping to patch description.
+- First inclusion in series.
+- Fix whitespace around "en_pp3300_dx_edp".
+- Remove "Author" from patch description.
+- Word wrap patch description.
+
+Joseph S. Barrera III (5):
+  arm64: dts: qcom: sc7180: Add wormdingler dts files
+  arm64: dts: qcom: sc7180: Add quackingstick dts files
+  arm64: dts: qcom: sc7180: Add mrbland dts files
+  arm64: dts: qcom: sc7180: Add pazquel dts files
+  arm64: dts: qcom: sc7180: Add kingoftown dts files
+
+ arch/arm64/boot/dts/qcom/Makefile             |  18 +
+ .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  44 ++
+ .../dts/qcom/sc7180-trogdor-kingoftown-r1.dts |  17 +
+ .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   | 225 ++++++++++
+ .../qcom/sc7180-trogdor-mrbland-rev0-auo.dts  |  22 +
+ .../qcom/sc7180-trogdor-mrbland-rev0-boe.dts  |  22 +
+ .../dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi |  53 +++
+ .../qcom/sc7180-trogdor-mrbland-rev1-auo.dts  |  22 +
+ .../qcom/sc7180-trogdor-mrbland-rev1-boe.dts  |  24 ++
+ .../boot/dts/qcom/sc7180-trogdor-mrbland.dtsi | 344 +++++++++++++++
+ .../sc7180-trogdor-pazquel-lte-parade.dts     |  22 +
+ .../qcom/sc7180-trogdor-pazquel-lte-ti.dts    |  22 +
+ .../qcom/sc7180-trogdor-pazquel-parade.dts    |  17 +
+ .../dts/qcom/sc7180-trogdor-pazquel-ti.dts    |  17 +
+ .../boot/dts/qcom/sc7180-trogdor-pazquel.dtsi | 221 ++++++++++
+ .../sc7180-trogdor-quackingstick-r0-lte.dts   |  38 ++
+ .../qcom/sc7180-trogdor-quackingstick-r0.dts  |  26 ++
+ .../qcom/sc7180-trogdor-quackingstick.dtsi    | 318 ++++++++++++++
+ .../sc7180-trogdor-wormdingler-rev0-boe.dts   |  22 +
+ .../sc7180-trogdor-wormdingler-rev0-inx.dts   |  22 +
+ .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  53 +++
+ ...0-trogdor-wormdingler-rev1-boe-rt5682s.dts |  29 ++
+ .../sc7180-trogdor-wormdingler-rev1-boe.dts   |  28 ++
+ ...0-trogdor-wormdingler-rev1-inx-rt5682s.dts |  29 ++
+ .../sc7180-trogdor-wormdingler-rev1-inx.dts   |  22 +
+ .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  | 408 ++++++++++++++++++
+ 26 files changed, 2085 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r0.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown-r1.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-kingoftown.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-auo.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0-boe.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-auo.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland-rev1-boe.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-ti.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-parade.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-ti.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick-r0-lte.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick-r0.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-boe.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0-inx.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev0.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe-rt5682s.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-boe.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx-rt5682s.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler-rev1-inx.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
+
 -- 
-2.25.1
+2.31.0
 
