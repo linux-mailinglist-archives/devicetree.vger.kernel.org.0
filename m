@@ -2,88 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A856855B12E
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 12:34:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E1B755B140
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 12:42:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233665AbiFZKbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 06:31:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57946 "EHLO
+        id S234263AbiFZKgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 06:36:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbiFZKbk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 06:31:40 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FED111C2F
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 03:31:39 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id cw10so13353198ejb.3
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 03:31:39 -0700 (PDT)
+        with ESMTP id S234259AbiFZKgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 06:36:20 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 016BD12774
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 03:36:19 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id q6so13257288eji.13
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 03:36:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uid1nPU8KOeE8niwF3D46qRU8qJY11HwGt4P2APkK6s=;
-        b=XAAC8AAlqRMmEzIHciueTzD3m22dmzWily6b8BHr6rpAvs0uXwzFyjFU045Lj7kkAe
-         E79BdJ7MTKVbCL4wI6W9DsNgbpv6aW6GnwH7FZ4j3Es873/RwWQZOYfEASsZ8PPpzVP5
-         dP5C+APcEInT67HZF1QBAf2do2AqTi8t07BAr4Gnx6UU+kyFOgz3SrYCkQ0LvoCC2dY5
-         wAIMpoeO6Tp2eb8BRQqGfvmaMIF2KLt6qtodk3zqF8PF3YIfXCn9TvG9r4GjheCfMRFh
-         8ec2U8O7uXcId5goQakMrd/qdV1II34NJfmrTyvrbe0MNI60NvlpB6Mwy0F/+l4Rqp0l
-         6+eg==
+        bh=/KOGP9jELmtiwr0N4d0KhuY//bqDOGVF37th/t1CLEc=;
+        b=c9k+2kBBz3UPPDy153Zqn5YLgmmzCvWAx5s0bmqNurg0OpWm5fMwHhi0y2l5k8FhY8
+         R4OKjAkq+/OKojaWSfaUlIWG/gFJCYVt8/QcgX5bWHENFFesScVVvKi3Z3yCfuP3jUN4
+         howve+/5fXJ1d5LjbvzvsQPa0xkRqXFj8bI0Z4dXRM0bsCI1iCK/VTeLo8b/bO4z/MDr
+         MUYVnwQiJB3uMsG/S2t0k4zVR9frhQxOPR/LEFfO9DwQDtZMut0G5Ia9YYNe7CDW45zO
+         03Eo7BEl+6uOix+WhqpQbp8t9n+U8YrEDs75LnV2hwUzk7FCRgV2Wsd2bYXjpk7rglFt
+         xAWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=uid1nPU8KOeE8niwF3D46qRU8qJY11HwGt4P2APkK6s=;
-        b=Es9WP/rV5RS6nwPeUPKmF02kNFiGy0xAjNXb05JkTHbLvwWwsZ8llDyhgbHh0PJFD1
-         6ezvNw/m1Jh8SS9reIPffdkZkBIHnM19P8P0wOGLxYb5LSKr0IGepG25Q9tfh1fe7COm
-         CEFozFKsYXRTq7JewYsAm/gfzoezkpNCQHkLmTz+gAW/l6JkFEwylENuiJjbY40Dvde1
-         jyrwWfGK3/swdNFG8GFuzvoExZYBgOV9Bl/k5kiJGS8c9yAG8iT03y8TqkcbhmxKf/EP
-         POIznhTSiRBdeG69ROOaTIu/9OO5xJnbbtkNNmy8744MmGMeGZsmKi06xu9IP6uTM4RA
-         6toA==
-X-Gm-Message-State: AJIora9hPE+mZqCG9RLl1v1/zdRkZXeKZ6ecBzSqtMs3n87PLowWgUWs
-        kVaxZabuqC1DjFTIjgH4Y3UUcg==
-X-Google-Smtp-Source: AGRyM1v5PkYm9NSDHkT60vS80gGlYU4SSApNwB4dG6nO+r0o1Sb57gZPEpYSfK3zIyIeGsRQtSZH7A==
-X-Received: by 2002:a17:907:980a:b0:722:f4a7:e00 with SMTP id ji10-20020a170907980a00b00722f4a70e00mr7752467ejc.114.1656239497724;
-        Sun, 26 Jun 2022 03:31:37 -0700 (PDT)
+        bh=/KOGP9jELmtiwr0N4d0KhuY//bqDOGVF37th/t1CLEc=;
+        b=xDnPEJJaEz2Rz+BdyapxZCPVzdqZQBEbSt4E27V8DdiqGkVcf+UnT2u90qAasWyPoH
+         eB2SdSDYl4+UjvjSTrskVwcKMTaSEQbOtjNp64GdatITyb1PjmRbhsiJYa+hshd0SH0M
+         HoLUFIo6JcgSFG0DRQny4wzszn7U24nKizJ3fuZcwM9K36ccONuv6KsqjlUO+jWz/zPc
+         RxBG+xLep4CGoxh77MtX/6sTKRujFDOuaTujEAVBr82ZqCDWEwWJe+T1S3O7FFboLYOn
+         3gxXe3edhOwMTbbQ2Rl3Ii6OJ/FX3eVIJ4MhCRTId6pqfsxkH5SQBjfC2PCTl7bE03bK
+         4AWQ==
+X-Gm-Message-State: AJIora9GeM46+00d1CKYCfOn7OtDeAO1l6GhfLSpnRELEHJBw7YzUjms
+        eE426ZZzy4X8AHnKdNFHel1WRw==
+X-Google-Smtp-Source: AGRyM1tgawZLer3hzJeLKf6LM8wmjjs2sRb71tDoP2t9+PZad8dfYMUiHALgBJhdp/iOHGqpoDxK5Q==
+X-Received: by 2002:a17:907:8a13:b0:707:194c:30df with SMTP id sc19-20020a1709078a1300b00707194c30dfmr7675177ejc.154.1656239777590;
+        Sun, 26 Jun 2022 03:36:17 -0700 (PDT)
 Received: from [192.168.0.239] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g10-20020aa7dc4a000000b0043567edac3csm5724723edu.61.2022.06.26.03.31.36
+        by smtp.gmail.com with ESMTPSA id q21-20020aa7d455000000b0042fb3badd48sm5673595edr.9.2022.06.26.03.36.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Jun 2022 03:31:37 -0700 (PDT)
-Message-ID: <ee945844-5d78-7c2b-215e-25fe5617b481@linaro.org>
-Date:   Sun, 26 Jun 2022 12:31:35 +0200
+        Sun, 26 Jun 2022 03:36:17 -0700 (PDT)
+Message-ID: <e14c6be5-1815-3c6b-2f41-3d00c4888f64@linaro.org>
+Date:   Sun, 26 Jun 2022 12:36:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v3 4/7] dt-bindings: clock: mediatek: Add clock driver
- bindings for MT6795
+Subject: Re: [PATCH V10 1/3] dt-bindings: rtc: zynqmp: Add clock information
 Content-Language: en-US
-To:     David Heidelberg <david.heidelberg@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        y.oudjana@protonmail.com, jason-jh.lin@mediatek.com,
-        ck.hu@mediatek.com, fparent@baylibre.com, rex-bc.chen@mediatek.com,
-        tinghan.shen@mediatek.com, chun-jie.chen@mediatek.com,
-        weiyi.lu@mediatek.com, ikjn@chromium.org, miles.chen@mediatek.com,
-        sam.shih@mediatek.com, wenst@chromium.org,
-        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        kernel@collabora.com
-References: <20220624093525.243077-1-angelogioacchino.delregno@collabora.com>
- <20220624093525.243077-5-angelogioacchino.delregno@collabora.com>
- <cea65d6a-7d9b-7b14-9984-bcd7f115da47@linaro.org>
- <728b2c54-0dc0-533f-bab8-fca228f6c1b1@collabora.com>
+To:     Srinivas Neeli <srinivas.neeli@xilinx.com>, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        srinivas.neeli@amd.com, neelisrinivas18@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
+        sgoud@xilinx.com, shubhraj@xilinx.com
+Cc:     devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        git@amd.com, git@xilinx.com, Rob Herring <robh@kernel.org>
+References: <20220626070817.3780977-1-srinivas.neeli@xilinx.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <728b2c54-0dc0-533f-bab8-fca228f6c1b1@collabora.com>
+In-Reply-To: <20220626070817.3780977-1-srinivas.neeli@xilinx.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,130 +78,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/06/2022 11:47, David Heidelberg wrote:
-> On 25/06/2022 22:29, Krzysztof Kozlowski wrote:
->> On 24/06/2022 11:35, AngeloGioacchino Del Regno wrote:
->>> Add the bindings for the clock drivers of the MediaTek Helio X10
->>> MT6795 SoC.
->>>
->>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>> ---
->>>   .../bindings/clock/mediatek,mt6795-clock.yaml | 66 +++++++++++++++++
->>>   .../clock/mediatek,mt6795-sys-clock.yaml      | 74 +++++++++++++++++++
->>>   2 files changed, 140 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-clock.yaml
->>>   create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt6795-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt6795-clock.yaml
->>> new file mode 100644
->>> index 000000000000..795fb18721c3
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt6795-clock.yaml
->>> @@ -0,0 +1,66 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: "http://devicetree.org/schemas/clock/mediatek,mt6795-clock.yaml#"
->>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>> +
->>> +title: MediaTek Functional Clock Controller for MT6795
->>> +
->>> +maintainers:
->>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>> +  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
->>> +
->>> +description: |
->>> +  The clock architecture in MediaTek like below
->>> +  PLLs -->
->>> +          dividers -->
->>> +                      muxes
->>> +                           -->
->>> +                              clock gate
->>> +
->>> +  The devices provide clock gate control in different IP blocks.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - mediatek,mt6795-mfgcfg
->>> +      - mediatek,mt6795-vdecsys
->>> +      - mediatek,mt6795-vencsys
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  '#clock-cells':
->>> +    const: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - '#clock-cells'
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    soc {
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +
->>> +        mfgcfg: clock-controller@13000000 {
->>> +            compatible = "mediatek,mt6795-mfgcfg";
->>> +            reg = <0 0x13000000 0 0x1000>;
->>> +            #clock-cells = <1>;
->>> +        };
->>> +
->>> +        vdecsys: clock-controller@16000000 {
->>> +            compatible = "mediatek,mt6795-vdecsys";
->>> +            reg = <0 0x16000000 0 0x1000>;
->>> +            #clock-cells = <1>;
->>> +        };
->>> +
->>> +        vencsys: clock-controller@18000000 {
->>> +            compatible = "mediatek,mt6795-vencsys";
->>> +            reg = <0 0x18000000 0 0x1000>;
->>> +            #clock-cells = <1>;
->>> +        };
->>> +    };
->>> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
->>> new file mode 100644
->>> index 000000000000..44b96af9ceaf
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
->>> @@ -0,0 +1,74 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: "http://devicetree.org/schemas/clock/mediatek,mt6795-sys-clock.yaml#"
->>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>> +
->>> +title: MediaTek System Clock Controller for MT6795
->>> +
->>> +maintainers:
->>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>> +  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
->>> +
->>> +description:
->>> +  The Mediatek system clock controller provides various clocks and system configuration
->> Wrap according to Linux coding convention, so at 80.
+On 26/06/2022 09:08, Srinivas Neeli wrote:
+> Added clock information and deprecated calibration support.
 > 
-> What I understood that 100 length was agreed [1] as a limit. I haven't 
-> noticed any recent change regarding to line length.
-> 
-> [1] 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=bdc48fa11e46f867ea4d75fa59ee87a7f48be144
+> Signed-off-by: Srinivas Neeli <srinivas.neeli@xilinx.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> Changes in V10:
+> -resolved dt_check error.
+> Changes in V9:
 
-The coding style (also in change above) clearly states:
-"The preferred limit on the length of a single line is 80 columns."
-Just read the first line of new diff/hunk...
 
-checkpatch was indeed long time converted not to complain on 80 but on
-100, but that does not change coding style. The point of that was only
-to accept 100 wrapping when it is beneficial,  iow, it increases the
-code readability.
-
-It's not the case here and coding style clearly asks for 80. Wrap at 80.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
