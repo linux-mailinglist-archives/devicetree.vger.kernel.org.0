@@ -2,99 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0657855B0B6
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 11:13:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CE0655B0D2
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 11:35:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234145AbiFZJLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 05:11:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46342 "EHLO
+        id S234332AbiFZJQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 05:16:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234155AbiFZJLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 05:11:16 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 471FD12A93;
-        Sun, 26 Jun 2022 02:11:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 6540BCE0F90;
-        Sun, 26 Jun 2022 09:11:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0BB0C341D2;
-        Sun, 26 Jun 2022 09:11:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656234671;
-        bh=NCpiqd/D1JiRGRI6GFPpPviNDEw1WQaXUZZDjx551mU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fHa/6D2/6MlyBB7kFaoPvwT7M37Z6+np2e4+K3s/u9VjR/vdduDG6/7u14eWpSQGh
-         SYC6yxhxTc7fYwdUuNyYBSQMAYb+v+DkqP6qO3LwozKn3ALp8kEJP+XPCZMDrp8fPo
-         50Q+XK5ZxnyjIwBpf/klBX8zsatXyUuy3R9Fn3qGZrpReBrOFhfMdI/SMCJ8Iahelj
-         jNu3X+CIjQ5NznInR4r2eaCJ9oYAwuBdhXhKqB1URmLXYIu3Hb/NRQGgic0Z7bSEXb
-         VAe8+TY2XgZ5MvNFm98kg79L3NmUuNIYPqJ+jE7vDYEm1USumqH1LxlUIXrqxvbPd3
-         quB1Tf3lBhb/Q==
-Received: from mchehab by mail.kernel.org with local (Exim 4.95)
-        (envelope-from <mchehab@kernel.org>)
-        id 1o5OIO-001cpF-6v;
-        Sun, 26 Jun 2022 10:11:08 +0100
-From:   Mauro Carvalho Chehab <mchehab@kernel.org>
-To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        "Mauro Carvalho Chehab" <mchehab+huawei@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Support Opensource <support.opensource@diasemi.com>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 18/20] dt-bindings: mfd: update dlg,da9063.yaml reference
-Date:   Sun, 26 Jun 2022 10:11:04 +0100
-Message-Id: <da459164d166d994b06f9ce8bf3a2108ccd0abd5.1656234456.git.mchehab@kernel.org>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <cover.1656234456.git.mchehab@kernel.org>
-References: <cover.1656234456.git.mchehab@kernel.org>
+        with ESMTP id S234328AbiFZJQl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 05:16:41 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8435412D3E;
+        Sun, 26 Jun 2022 02:16:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=1gzj5oIHVtFlpBvDQAUEEcqsXk12AVODco7VgEIoQf8=; b=AZer2m1ttmyhsW7HUqwAleQ8dx
+        XZYv8v4i/jV1WWmk/LMtxP+PaiZNdy6Kmb24Oz6LDeWuSE3k2DNrNE2cC4bBH15trYS1++n8nkSh+
+        02CXBYT5KFWqbt52oWsbqCxl2eea1tYsrBtg8qQb8fo535rTrxjdC31OEfTYkQlHn1LU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1o5ONF-008HVF-32; Sun, 26 Jun 2022 11:16:09 +0200
+Date:   Sun, 26 Jun 2022 11:16:09 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     alexandru.tachici@analog.com
+Cc:     netdev@vger.kernel.org, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gerhard@engleder-embedded.com,
+        geert+renesas@glider.be, joel@jms.id.au, stefan.wahren@i2se.com,
+        wellslutw@gmail.com, geert@linux-m68k.org, robh+dt@kernel.org,
+        d.michailidis@fungible.com, stephen@networkplumber.org,
+        l.stelmach@samsung.com, linux-kernel@vger.kernel.org
+Subject: Re: [net-next 1/2] net: ethernet: adi: Add ADIN1110 support
+Message-ID: <Yrgj2WM5/O7YSUeZ@lunn.ch>
+References: <20220624200628.77047-1-alexandru.tachici@analog.com>
+ <20220624200628.77047-2-alexandru.tachici@analog.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220624200628.77047-2-alexandru.tachici@analog.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Changeset 441613662db7 ("dt-bindings: mfd: Convert da9063 to yaml")
-renamed: Documentation/devicetree/bindings/mfd/da9063.txt
-to: Documentation/devicetree/bindings/mfd/dlg,da9063.yaml.
+> +static int adin1110_mdio_read(struct mii_bus *bus, int phy_id, int reg)
+> +{
+> +	struct adin1110_priv *priv = bus->priv;
+> +	u32 val = 0;
+> +	int ret;
+> +
+> +	mutex_lock(&priv->lock);
+> +
+> +	val |= FIELD_PREP(ADIN1110_MDIO_OP, ADIN1110_MDIO_OP_RD);
+> +	val |= FIELD_PREP(ADIN1110_MDIO_ST, 0x1);
+> +	val |= FIELD_PREP(ADIN1110_MDIO_PRTAD, phy_id);
+> +	val |= FIELD_PREP(ADIN1110_MDIO_DEVAD, reg);
+> +
+> +	/* write the clause 22 read command to the chip */
 
-Update its cross-reference accordingly.
+Please return -EOPNOTSUPP if asked to do a C45 transfer.
 
-Fixes: 441613662db7 ("dt-bindings: mfd: Convert da9063 to yaml")
-Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
----
+> +static int adin1110_mdio_write(struct mii_bus *bus, int phy_id, int reg, u16 reg_val)
+> +{
+> +	struct adin1110_priv *priv = bus->priv;
+> +	u32 val = 0;
+> +	int ret;
 
-To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
-See [PATCH v2 00/20] at: https://lore.kernel.org/all/cover.1656234456.git.mchehab@kernel.org/
+same here.
 
- Documentation/devicetree/bindings/input/da9062-onkey.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/input/da9062-onkey.txt b/Documentation/devicetree/bindings/input/da9062-onkey.txt
-index 5f9fbc68e58a..e5eef59a93dc 100644
---- a/Documentation/devicetree/bindings/input/da9062-onkey.txt
-+++ b/Documentation/devicetree/bindings/input/da9062-onkey.txt
-@@ -2,7 +2,7 @@
- 
- This module is part of the DA9061/DA9062/DA9063. For more details about entire
- DA9062 and DA9061 chips see Documentation/devicetree/bindings/mfd/da9062.txt
--For DA9063 see Documentation/devicetree/bindings/mfd/da9063.txt
-+For DA9063 see Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
- 
- This module provides the KEY_POWER event.
- 
--- 
-2.36.1
-
+     Andrew
