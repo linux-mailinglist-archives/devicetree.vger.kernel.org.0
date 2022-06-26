@@ -2,96 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9486955AE97
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 06:14:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4735E55AEE4
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 06:40:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230439AbiFZDm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Jun 2022 23:42:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48392 "EHLO
+        id S233915AbiFZEkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 00:40:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233889AbiFZDm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Jun 2022 23:42:27 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6976613E8E
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 20:42:25 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id k12-20020a17090a404c00b001eaabc1fe5dso9252905pjg.1
-        for <devicetree@vger.kernel.org>; Sat, 25 Jun 2022 20:42:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Fm4CiRWTrY1xm9RLX1deAr3n8PdyWY9E+pPn+FMbLvw=;
-        b=kqgu1HSkTJovDW5DnaFLtQo2hjWo5bfFdX8NfAwmudDxCPe0IcT7qw4EmhT4C+R1aS
-         4CCh8u5T2lAdNBqPRkZkY4regcy/lYSx7kRsUzlQIxAzB6u0hCZ6eIAc6MLLzUxrWX1J
-         bBcX8EMJFQo0i+f+u/J/kCqpWlOy6dXkr96xs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Fm4CiRWTrY1xm9RLX1deAr3n8PdyWY9E+pPn+FMbLvw=;
-        b=btOU/v6cMrvwgSsjX/FxRV2CecuVpYdkvXicpIPQFx4IIm4Vx2p0pLzZ/Li5LFeqoH
-         Yfu9Rv83jzA/1v7tcF9zww9SapyeyyuAw+Q4n1i49WUJ5u4lximxjUkSiyBmysyhm81O
-         9tNWgBcTRuhSpj3sKV0GpGhl+GKvJ+S5kDzpZeTuenHQ6l8R+eGE2t8nCQ6byd1XHaDK
-         dgSwcCsVIoRG4tz9bFhagZc6g5ED0u2qzs6gI8uDOgPXczoC1YMROtCxzaSKpmJ7TEyt
-         SgXWpTLHlnRg+zNW1IzHbanamZaRT2HKCN6DfTdJ8ablpUNK2V6fPCM3YtFUmrmfwaaW
-         lyMg==
-X-Gm-Message-State: AJIora99u/7/HdYTg9N/hHMrTW3vkHTxbC79vhSff806t3DJ8gGdeBTe
-        Mg2p5zRZW+s9UotlKwuauQ7Q3z7qD6+TIw==
-X-Google-Smtp-Source: AGRyM1uQpFBrV3V/C++kV15CCtP/ORtqOCAtfGTrHJrM2kWRw19CERn8AJrxQs/NlhcpTmNLpPLNiw==
-X-Received: by 2002:a17:90b:3b4a:b0:1ed:38a0:d45f with SMTP id ot10-20020a17090b3b4a00b001ed38a0d45fmr8112619pjb.87.1656214944111;
-        Sat, 25 Jun 2022 20:42:24 -0700 (PDT)
-Received: from [192.168.1.67] ([107.126.90.40])
-        by smtp.gmail.com with ESMTPSA id x9-20020aa79a89000000b0052514384f02sm4297737pfi.54.2022.06.25.20.42.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Jun 2022 20:42:23 -0700 (PDT)
-Message-ID: <cc136daa-b820-96c3-b5f6-c2c13690f2e0@chromium.org>
-Date:   Sat, 25 Jun 2022 20:41:59 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v13 4/5] arm64: dts: qcom: sc7180: Add pazquel dts files
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S233909AbiFZEkN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 00:40:13 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38B8612D04;
+        Sat, 25 Jun 2022 21:40:07 -0700 (PDT)
+X-UUID: 64becf58045f403a8382ece9878e720a-20220626
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:cf81427b-976e-485d-9895-273afb68efef,OB:10,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:95
+X-CID-INFO: VERSION:1.1.6,REQID:cf81427b-976e-485d-9895-273afb68efef,OB:10,LOB
+        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:95
+X-CID-META: VersionHash:b14ad71,CLOUDID:1b8b91d8-850a-491d-a127-60d9309b2b3e,C
+        OID:b107df16dc8b,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 64becf58045f403a8382ece9878e720a-20220626
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <guodong.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2147397096; Sun, 26 Jun 2022 12:40:00 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sun, 26 Jun 2022 12:39:59 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sun, 26 Jun 2022 12:39:58 +0800
+From:   Guodong Liu <guodong.liu@mediatek.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>
+CC:     Sean Wang <sean.wang@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        =?UTF-8?q?N=EDcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>, <linux-gpio@vger.kernel.org>,
         <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20220625022716.683664-1-joebar@chromium.org>
- <20220624192643.v13.4.I41e2c2dc12961fe000ebc4d4ef6f0bc5da1259ea@changeid>
- <CAD=FV=X+92d+PvrHENT3g5=hkJ_UaVWHgMHyuvn3erg10DpVAw@mail.gmail.com>
-From:   "Joseph S. Barrera III" <joebar@chromium.org>
-In-Reply-To: <CAD=FV=X+92d+PvrHENT3g5=hkJ_UaVWHgMHyuvn3erg10DpVAw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Guodong Liu <guodong.liu@mediatek.com>
+Subject: [PATCH v3 0/5] pinctrl: mediatek: add driver support driving and resistance property  on mt8192
+Date:   Sun, 26 Jun 2022 12:39:50 +0800
+Message-ID: <20220626043955.32756-1-guodong.liu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/25/22 7:45 AM, Doug Anderson wrote:
-> * If you want to try to do something like this, it should be in a
-> separate patch, probably at the end of the series. Then if people all
-> love it then it can be applied and if people don't like it then the
-> series can simply be applied without it.
+changes since v2:
 
-Right now I don't see *any* device tree files for *any* architecture
-using #ifdef guards. So introducing them and selling them seems like
-more than I want to take on right now, especially because I assume
-they've already been proposed before (given that they are such a common
-idiom in C/C++).
+- Patch 1 Optimize commit message description.
 
-So in v14 I have just removed the #ifdef guards.
+- Patch 3 Fix careless character missing the closing '/'.
 
+- Patch 4 Optimize commit message description.
+
+changes since v1:
+
+- Patch 1 Add commit only, add "mediatek:" on the commit title for this
+patch, describe the patch modification in detail.
+
+- Patch 2  Add commit only, add "mediatek:" on the commit title for this
+patch, use space instead of tab before the =, Dropping E1, E0, and EN
+arrays in this patch, which were used by the original advanced
+drive configuration.
+
+- Patch 3 Add commit describe the patch modification in detail,
+add the missing pull type array for mt8192 to document the pull type of
+each pin and prevent invalid pull type settings. use space instead of
+tab after the ,.
+
+- Patch 4 Remove the original advanced drive configuration.
+
+- Patch 5 Remove pin definitions that do not support the R0 & R1
+pinconfig property.
+
+v1:
+
+Patch 1 make driver consistent with "drive-strength" properties
+  description of  pinctrl-mt8192.yaml
+
+Patch 2 make driver consistent with "mediatek,drive-strength-adv"
+  description pinctrl-mt8192.yaml, however, "mediatek,drive-strength-adv"
+  description of pinctrl-mt8192.yaml needs to be synchronize a little bit.
+
+Patch 3 Since the bias-pull-{up,down} is generic properties, make
+  driver to be used for setting type {PUPD/R1/R0 , PU/PD, PU/PD/RSEL}.
+
+Patch 4 Remove some pins definitions not support PUPD/R1/R0.
+
+Please see the following for detailed  description 
+
+Patch 1 provides generic driving setup, which support 2/4/6/8/10/12/14/16mA
+  driving.
+
+Patch 2 provides I2C pins specific driving setup property, can support
+  0.125/0.25/0.5/1mA adjustment, and also support driving setup with
+  unit microamp.
+
+Patch 3 provides I2C pins pull up/down type which is RSEL. It can support
+  RSEL define or si unit value(ohm) to set different resistance
+
+Patch 4 Remove pin definitions that do not support the R0 & R1 pinconfig
+  property
+
+Guodong Liu (5):
+  pinctrl: mediatek: add generic driving setup property on mt8192
+  pinctrl: mediatek: add drive for I2C related pins on mt8192
+  pinctrl: mediatek: add rsel setting on mt8192
+  pinctrl: mediatek: dropping original advanced drive configuration
+    function
+  pinctrl: mediatek: fix the pinconf definition of some GPIO pins
+
+ drivers/pinctrl/mediatek/pinctrl-mt8192.c | 296 ++++++++++++----------
+ 1 file changed, 163 insertions(+), 133 deletions(-)
+
+-- 
+2.25.5
 
