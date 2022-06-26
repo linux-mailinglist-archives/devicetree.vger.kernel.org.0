@@ -2,127 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60A3A55B2A7
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 17:48:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2DC655B2D6
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 18:34:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231390AbiFZPmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 11:42:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54024 "EHLO
+        id S229626AbiFZQdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 12:33:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiFZPmA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 11:42:00 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F39EDFDB;
-        Sun, 26 Jun 2022 08:41:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1656258099;
-        bh=9wnn2viNtYo2HS4a6b8V2lbF+SSHfd4WFAFaclgRsso=;
-        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
-        b=SHlhQLJT8dgGcqR+X5nHvn7Yjw4el0brNLtT897XUkjePIvV7HSm8fOECnfOBmutl
-         x6KPuUYG554QgIvtaUVlD7FQ+d0+i/+9+eK0kxF/jy2xDFddJR5rmueyp6NRelRDzk
-         wCOCGuqjgcXIdlJrmnUVtAgIv3A+7RhI+qgSCuuA=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.0.33] ([46.223.2.248]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1M7b6b-1o0Ef93eAf-0085OH; Sun, 26
- Jun 2022 17:41:38 +0200
-Subject: Re: [PATCH 2/8] serial: core, 8250: set RS485 termination gpio in
- serial core
-To:     =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        vz@mleia.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        linux-serial <linux-serial@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, lukas@wunner.de,
-        p.rosenberger@kunbus.com, Lino Sanfilippo <l.sanfilippo@kunbus.com>
-References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
- <20220622154659.8710-3-LinoSanfilippo@gmx.de>
- <83762813-70ec-93c3-4015-5676ce9534fd@linux.intel.com>
-From:   Lino Sanfilippo <LinoSanfilippo@gmx.de>
-Message-ID: <aa851698-ff26-a319-500a-575a9c669d95@gmx.de>
-Date:   Sun, 26 Jun 2022 17:41:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S229854AbiFZQdH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 12:33:07 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF3DD60D2
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 09:33:04 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id g26so14342917ejb.5
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 09:33:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hB1/nxGV8qsZiY8aZhrRp6a1Tsyj5sJFWV1lzltoTWk=;
+        b=OacIlK6GSGCwnH8lqTDMoLwxuj0g69SiZ+/ofQzy7s8mF0vGtBWxV1bVhwZF6Xt60A
+         rfjMf4BjBXKrujw+O8QWesWK0batSE4JfAGdBS/Dd3vGwOtIPSLYH0SIFkuj5IbkkHVh
+         eWwv1qi96RBKPfn9bx+lWNbwofn9yaVGpAqnh4+lVud7dd8aBb6R6w1lhK3IHrWGCyMk
+         FjU2twV10er2KtPl0gSfS/D/fOcTuhp1Uw6aJZCn3ZRdSXaIH/bsBcGGba4UvMjf7Che
+         IKxPG0IDynyvheD8pp44x3LAD5jXOFqvUQGM5svGEf6kPpe8EYpnNxOTl/jM59wE0Upo
+         +9+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hB1/nxGV8qsZiY8aZhrRp6a1Tsyj5sJFWV1lzltoTWk=;
+        b=KZWq1UeluRoHyUKV0hYEOjxS7ZQ/G2MtFg2K0LsFtD3uvSzWvTfbWxnXAdLzstggov
+         Kn1PFOvM7KGG5XLRpLZ/0qa4PaYfdkHKO9fnsR+s/mbp9Lcvq8FDpOJmPKaVOajd/0Q0
+         8QAHQyFzQQfdbirqVBv4xMCI+/WZ12CnTqyyA/9OA54oV92tszQRnkP6AI1D5zBqKWDF
+         uFpzKzM+nz3TJSki/+7IFd8TT5LNvHeJgEub1KgiZfSHSDtzOyX3//vs7WxyCwqK4vcm
+         GMzz0o6kwi0VhsyttXnf94HZmUb+icpXvQsKu4OkaHQw/tQ7w9Vv1gk9t8nF5Q1ZR3yd
+         aFlg==
+X-Gm-Message-State: AJIora+73BSPA1ZvuQY9YkNE9agz9T4LHBhWJw5bSR3Nwifpj8CWo6/O
+        X5UM4s23Q8Bt3WgOK3tMoa3sOA==
+X-Google-Smtp-Source: AGRyM1uzDIyih5ar9W3rE94lRN0L8WXSa5mqvZd9HRog//U5hNVHbIyQECpwBSHMCeGshA6Ir+wovA==
+X-Received: by 2002:a17:907:8a01:b0:726:2c8e:4cad with SMTP id sc1-20020a1709078a0100b007262c8e4cadmr8513580ejc.611.1656261183403;
+        Sun, 26 Jun 2022 09:33:03 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id h7-20020a1709070b0700b00711d8696de9sm3913361ejl.70.2022.06.26.09.33.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Jun 2022 09:33:02 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: media: samsung,exynos5250-gsc: convert to dtschema
+Date:   Sun, 26 Jun 2022 18:33:00 +0200
+Message-Id: <20220626163300.6271-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-In-Reply-To: <83762813-70ec-93c3-4015-5676ce9534fd@linux.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:cyIQlMtZ+G8jaNtEoKMkpMf21pMZu7+zmG4ZsrBrWfjfJ8shTgY
- pupK7k4b3RxBSSU6r9jfqTCB/AphGTAU8V3S3pjE2iwtUCvrYjHGrkDi+IPTZtbaekmMP+j
- XLGfEG2lV+c8+nuB09tRdgrxUIbTeEoRaX28TCdEgdjkjYfN9fyuas6tcj1o9kLXhp5/HUn
- m8SricM+TNI9EiH/EpPHg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:fIJ5qj6lHQc=:8S6VSR7PdExKw8bJkX+MlF
- H3suE7c7Pe31QjpiBufX07LOqmrqcIPg9Fb74x6UYoHX0oIemab+QCZnQBoipJ+ZRU2MrHS5x
- YbZZsMXFkSyd/jraIb1QkxALtwaYRC2TVItcrFAP2khOCzjkahUGtg7Xo1vQzri/EgV1fureK
- ZnJ8BWp32B9RgiCm1+6YaDmTDvNwEC3AH64mKc7RWIGcOuJG+v96COjpg6GFgMmakS4TDCUiA
- qePKp9BlPyrft6XyxHuFMXGe9lPiwzUHBNljEGGDaLLLiHr5DpWOQ55YRFZz95yDMhFddqdLP
- w/It7/0N/09QO+MWw2n+/CZfkxqxFyW9+WLEkz8pZ78Yg41AsXS6TFvKfwy7HfhbBNkfs7kGG
- M65SooRgYaOFRySABeQHafEaPv3vn6eo9Aizb7ntyPC3sYHoDpBMQbIyFgDixyd0atKw1rXhj
- IxmzzuSac633dPs8pwy537nD1TGox6uBlR2ibk5Lmf1RvI2TnTyL9en4iPXiyHvhnDIdvYr2p
- WURTyDybVg/jtC445+TLuZtbGkdxV7M3f+dYrJV7AQozPjQMJ7NqNkOHCBd5tgxsQhNKp9ZKh
- DHnukgvivd57KVUuh/Btq3PbkAWd9s2fkNWRZICTJDaytt2dlBBBOZXGzhrDTJPhJgaakrcqa
- 43vh758Dkg1bf8ZKqb++q0PLM+0QWAAWwqkaHD9Dlh3cXOmg0x22nwN/wqW7onSPqbLMB+Rm5
- ZbXnuqPM9JBXQQZvLtiwphigpARm/8JWzI6syf/EH4VF9oU2KrVtU3b6oFDbAbZVXQqBhY0PL
- 2xfoyQR7UUYsYt8hyKBG9cCwLrcNwjxeUjOVFTyUuOoegcCADElKZMxE63J6UU6MaBCRVlkNp
- LYkOPRUGYyrFZpctUonaYlx4cWvaMifyDxhe7g2aXBjPtjkuYPHWmy7YLxxuAhiugVFmkKaQW
- eRtw+y89NGeDycpISmXxIdc2u4mt12L3+LMCMwc8cGaaHYbekAAvdjIiVBL+aJJswjPSnc8c5
- FCwh/4nmH8Ruo8qTnNeSjZqJKOXWJ+/i9ftc7HxCGup0W2J/vsr64f1jZwObNz6n4/i7UdFNN
- eepTFF5kuDkJc12KYI927EsBzYxv0oAaKKj7n9hqdRjENbw/9nZfNcuPg==
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the Samsung Exynos SoC G-Scaler bindings to DT schema.
 
-Hi,
+Changes done during conversion:
+1. A typical (already used) properties like clocks, iommus and
+   power-domains.
+2. Require clocks, because they are essential for the block to operate.
+3. Describe the differences in clocks between the Exynos5250/5420 and
+   the Exynos5433 G-Scalers.  This includes the fifth Exynos5433 clock
+   "gsd" (GSCL Smart Deck) which was added to the DTS, but not to the
+   bindings and Linux driver.  Similarly to Exynos5433 DECON change [1],
+   the clock should be used.
 
-On 25.06.22 at 12:40, Ilpo J=C3=A4rvinen wrote:
->> +
->>  int uart_rs485_config(struct uart_port *port)
->>  {
->>  	struct serial_rs485 *rs485 =3D &port->rs485;
->>  	int ret;
->>
->>  	uart_sanitize_serial_rs485(port, rs485);
->> +	uart_set_rs485_termination(port, rs485);
->>
->>  	ret =3D port->rs485_config(port, rs485);
->>  	if (ret)
->> @@ -1400,6 +1411,7 @@ static int uart_set_rs485_config(struct uart_port=
- *port,
->>  	if (ret)
->>  		return ret;
->>  	uart_sanitize_serial_rs485(port, &rs485);
->> +	uart_set_rs485_termination(port, &rs485);
->>
->>  	spin_lock_irqsave(&port->lock, flags);
->>  	ret =3D port->rs485_config(port, &rs485);
->
-> When port->rs485_config(port, &rs485) returns non-zero, the input got
-> partially applied?
->
->
-The thing is we dont know what the state of the termination GPIO (asserted=
- or deasserted)
-was before we set it and port->rs485_config() failed, so we cannot restore=
- it.
-We could read the GPIO before we change it but AFAIK this is unsafe since =
-it is an output
-pin. Maybe add a boolean variable "rs485_termination_gpio_asserted" to uar=
-t_port to track the
-current state?
+[1] https://lore.kernel.org/all/6270db2d-667d-8d6f-9289-be92da486c25@samsung.com/
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+---
 
-Regards,
-Lino
+Changes since v1:
+1. Remove Joonyoung Shim from maintainers (emails bounce).
+---
+ .../devicetree/bindings/media/exynos5-gsc.txt |  38 ------
+ .../media/samsung,exynos5250-gsc.yaml         | 109 ++++++++++++++++++
+ 2 files changed, 109 insertions(+), 38 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/exynos5-gsc.txt
+ create mode 100644 Documentation/devicetree/bindings/media/samsung,exynos5250-gsc.yaml
 
-
+diff --git a/Documentation/devicetree/bindings/media/exynos5-gsc.txt b/Documentation/devicetree/bindings/media/exynos5-gsc.txt
+deleted file mode 100644
+index 1872688fa408..000000000000
+--- a/Documentation/devicetree/bindings/media/exynos5-gsc.txt
++++ /dev/null
+@@ -1,38 +0,0 @@
+-* Samsung Exynos5 G-Scaler device
+-
+-G-Scaler is used for scaling and color space conversion on Exynos5 SoCs.
+-
+-Required properties:
+-- compatible: should be one of
+-	      "samsung,exynos5250-gsc"
+-	      "samsung,exynos5420-gsc"
+-	      "samsung,exynos5433-gsc"
+-	      "samsung,exynos5-gsc" (deprecated)
+-- reg: should contain G-Scaler physical address location and length.
+-- interrupts: should contain G-Scaler interrupt number
+-
+-Optional properties:
+-- samsung,sysreg: handle to syscon used to control the system registers to
+-  set writeback input and destination
+-
+-Example:
+-
+-gsc_0:  gsc@13e00000 {
+-	compatible = "samsung,exynos5250-gsc";
+-	reg = <0x13e00000 0x1000>;
+-	interrupts = <0 85 0>;
+-};
+-
+-Aliases:
+-Each G-Scaler node should have a numbered alias in the aliases node,
+-in the form of gscN, N = 0...3. G-Scaler driver uses these aliases
+-to retrieve the device IDs using "of_alias_get_id()" call.
+-
+-Example:
+-
+-aliases {
+-	gsc0 =&gsc_0;
+-	gsc1 =&gsc_1;
+-	gsc2 =&gsc_2;
+-	gsc3 =&gsc_3;
+-};
+diff --git a/Documentation/devicetree/bindings/media/samsung,exynos5250-gsc.yaml b/Documentation/devicetree/bindings/media/samsung,exynos5250-gsc.yaml
+new file mode 100644
+index 000000000000..878397830a4d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/samsung,exynos5250-gsc.yaml
+@@ -0,0 +1,109 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/samsung,exynos5250-gsc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung Exynos SoC G-Scaler
++
++maintainers:
++  - Inki Dae <inki.dae@samsung.com>
++  - Krzysztof Kozlowski <krzk@kernel.org>
++  - Seung-Woo Kim <sw0312.kim@samsung.com
++
++description:
++  G-Scaler is used for scaling and color space conversion on Samsung Exynos
++  SoCs.
++
++  Each G-Scaler node should have a numbered alias in the aliases node, in the
++  form of gscN, N = 0...3.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - samsung,exynos5250-gsc
++              - samsung,exynos5420-gsc
++          - const: samsung,exynos5-gsc
++      - enum:
++          - samsung,exynos5433-gsc
++      - const: samsung,exynos5-gsc
++        deprecated: True
++
++  clocks:
++    minItems: 1
++    maxItems: 5
++
++  clock-names:
++    minItems: 1
++    maxItems: 5
++
++  interrupts:
++    maxItems: 1
++
++  iommus:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++  samsung,sysreg:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Syscon used to control the system registers to set writeback input and destination.
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - interrupts
++  - reg
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - samsung,exynos5-gsc
++              - samsung,exynos5250-gsc
++              - samsung,exynos5420-gsc
++    then:
++      properties:
++        clocks:
++          maxItems: 1
++        clock-names:
++          items:
++            - const: gscl
++    else:
++      properties:
++        clocks:
++          minItems: 5
++        clock-names:
++          items:
++            - const: pclk
++            - const: aclk
++            - const: aclk_xiu
++            - const: aclk_gsclbend
++            - const: gsd
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/exynos5250.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    video-scaler@13e00000 {
++        compatible = "samsung,exynos5250-gsc", "samsung,exynos5-gsc";
++        reg = <0x13e00000 0x1000>;
++        interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
++        power-domains = <&pd_gsc>;
++        clocks = <&clock CLK_GSCL0>;
++        clock-names = "gscl";
++        iommus = <&sysmmu_gsc0>;
++    };
+-- 
+2.34.1
 
