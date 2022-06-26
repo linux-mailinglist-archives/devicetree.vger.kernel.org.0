@@ -2,179 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F52D55AFDF
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 09:31:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A71B455B00B
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jun 2022 09:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233883AbiFZHZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 03:25:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58250 "EHLO
+        id S233923AbiFZHvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 03:51:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233862AbiFZHZU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 03:25:20 -0400
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2084.outbound.protection.outlook.com [40.107.223.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 343DD10571;
-        Sun, 26 Jun 2022 00:25:19 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kU+5bsrudE4A/Tcp1HOKy3nolxqFMIicbAdTraPM52AYr2nzkNjx07nfMf1EGrR0FrSUVjHqU6HPEVMu1JCno+DkyEiAErVcmLVyUdYISRKmAxYa6vdCGB3jRkIrdwqUfZAX+3QeVk9+iamJ+4jtNyvurFFbC8VkWhLUiSmjLAoSKBLewNGYkgYLnP87Kjn8jWJ9O+0imYKVZxeDXoUtZp2FrONZoxrcqbr2G4rT3/mP3bR+qlVuS/uwWri6Klzzy+Ftmzg059JgA+x1BxcP31gZ9vj4WCjxZ9/ihlmrS7zOSq9NwSLKH3aggZJhqL6LfSrlKaqbBCAYQ4HHoFwVCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=00rFrVl0swFH6LEceOTJflMyK5slsclyhzfM8VT91+0=;
- b=MrRGj1XheUE+1lUvkAWXtnsm4nGH/NNxg1+Y/N4kkmALVV/nWF6Ryto7yRw1cZKyAnWr/tWIzyywmoxLdpHzvI3Pb3vbcH75Cy3XVnUcLpqLmeTesP3/NxGwIuLkd3DvFOiOPAmzF3Tpe9Pj8DIj3l0uxIW0jjvEt9GtQaHvfAmv8lmxZcfUoZ6PcipZ+DE6FV+iRfCcizGg7xe5tzbPYnMTtXRPnVlX9wvrH79PlyCCosoSyu2axccGVNlpuYjJsjZJgEcZcwhcB2i4Tl1lWyCMegA+I0kkhwW8M9Sg/98bXjwJouUEL/AOfiKnrGYr/NZ7xD8e9sdzz7J/2oXDHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=00rFrVl0swFH6LEceOTJflMyK5slsclyhzfM8VT91+0=;
- b=P3L/Vd1QBeWiNFUQChLO74uDCCfa7XbpHplQsjZLw9HqIxZ/ke3ROijklULCblha77YNVMwkEIARA93pe9WAFwDAqRdYrqmKsAbotf3ya7x6ZTKwjUO9nf7tnEaoE9DOTdjIrFzvd37zeeHXfjXZrGLshDNkEIn0lFUteWETnt8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=labundy.com;
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21) by BN6PR08MB3395.namprd08.prod.outlook.com
- (2603:10b6:405:66::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5353.16; Sun, 26 Jun
- 2022 07:25:17 +0000
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::2c67:a29a:4e8c:3ac0]) by SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::2c67:a29a:4e8c:3ac0%7]) with mapi id 15.20.5373.018; Sun, 26 Jun 2022
- 07:25:17 +0000
-From:   Jeff LaBundy <jeff@labundy.com>
-To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        Jeff LaBundy <jeff@labundy.com>
-Subject: [PATCH v2 9/9] dt-bindings: input: iqs7222: Extend slider-mapped GPIO to IQS7222C
-Date:   Sun, 26 Jun 2022 02:24:12 -0500
-Message-Id: <20220626072412.475211-10-jeff@labundy.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220626072412.475211-1-jeff@labundy.com>
-References: <20220626072412.475211-1-jeff@labundy.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SN7PR04CA0064.namprd04.prod.outlook.com
- (2603:10b6:806:121::9) To SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21)
+        with ESMTP id S234018AbiFZHvV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 03:51:21 -0400
+Received: from sonic301-20.consmr.mail.ir2.yahoo.com (sonic301-20.consmr.mail.ir2.yahoo.com [77.238.176.97])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AAB012AD4
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 00:51:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1656229877; bh=39cnnm2LcZpob9DUMBAQbw/FL7wmWN3SUwndjA+V+IM=; h=Date:Subject:From:To:Cc:References:In-Reply-To:From:Subject:Reply-To; b=aCOHGye8jea7IQosA6kJLtGHeXJ0nYmVYabloYgoyge4OeNF3i3yppRY2HYmdh/R9Kq5Ufl6zGGQQp7uhvHwlncFACKVU8MnHIbTuqd8cQvRWfBIDrwiUkYPGSXklJp8IUPT3nnIvoPV8J/eoelpoWyuGFfMBQ/+B/j1NdA9uZZJmP0V+Zb96/Q0FAwBdM3U9ldrGuPcU/NMgm9lcEAyiw8xjGzq/XfdMe5Sc7jLuFUfpOUYyc5ME7qvLGR197wj56BTGa6H5K8WdDRbD+yISNlNDNKX9zGzp1rnbLbI4pJhVfSbFb0sXt+W6QkN2xNawYmgtTaxi3WgZhwFIYh0jQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1656229877; bh=Qezq+kiFonbVJBLljqyjQV8R26/WQGnH7Xqlfj1tTGH=; h=X-Sonic-MF:Date:Subject:From:To:From:Subject; b=hLF6gVA+MS+LfFYqRumOtsfX4SQOlaPmUiZX01JvrDziAg99lPte4QOkWZF2ZNj4bxV0XQfi42UOqlkNgxceiyTFh2Wq1hPLCtJ45GfWR+KdtHahvVRproP4auXcOm2XJvesG0fZblHYho30AWwa7vy8Dna6H1c6bg1U4IOn+msQ2AqbJv8yjsHVrCh08TVL70o9JXcvmkmBuKW3TpSdFh3kbKkSh35d/vpQdpUGB+y7fojopBYZENyVN3GFK13WOvJGaYz1dObrmnASOKezvVC8zaRlMmv3hnt59Ks2yau/Qzixbjy8n93iv1JzrwBHa67LLJPET5xVO03gshYmGQ==
+X-YMail-OSG: qQ0smoAVM1mnPWGV7bUD98WUopSwrzNXadP2D1iGIuSf1TEGJhpE5LrbFTThXRZ
+ i1hFhK0z.GmGB3JqK393rKDt2q5QZbqyoj9bH.sMJpZJsfw2ONXVwmaMULEDyzlXZSDgTsGXTYGE
+ aeuPIIOCaPClOhV147udSUXdln05JFNBw1lpS3bHa0JxpGu58_WWuRFf07knohna74zaPAErmtpj
+ L1mDMI0a.r5aG_06YnA.SdsKkEFVmRKGVToyT_6pbkcHV3vgporI.RaDIgb_YbF21qh7ruKgHVGJ
+ E6.b1KWp1v8ouGZUibXHi6HXaImFLBqZzocebFQEvLEaRpLbqNHrr4T6Ps6Zg3H19XUYC9LvckkE
+ MX9sRcuZmfgqlfsnXJ.39F7n1KT.iwsUjAeubyeh0HDLKeymXS.9Pf4LHikFEYm_TwgKPXvbY2ul
+ egpu9OHEL5ZIY9JqeEBdarNkUBNuY55wG2V.u81dW60hagJh2JTRpMJqirhm8mMKbYDrl3vLHCj4
+ E10PpelW5OYhyBDMjZSRQM_XztfnWxkFKJAcn7Q0hM3aR.Yfc5v02gx.y1gJDpXiuXzR9MjFgr9q
+ O3uj6BYKIiv6itFcFKiJjwM_93xcPFkH4MtPxyV5fHKqQ97evGT6IRCUx.SXsYbA7yk3hKEi4PN_
+ LayAn3syYrkrWGqcjQpcnyEotRwZGv9ep7FD6Hovt6QTBL6sYxXx30Ba6WptzkQrjErbnsTIrF1Y
+ KzT3imbGUs901bP7f8_xiyzaqihfMH7PLhkncmtt78rlLhul9crCbpmZE6WpZnU023ok7YVeWUQt
+ 237O8Fwzh8y_WPeqADPbMLQrS6EShg9tJbKxyc7toV28GEpAsWH4zpxvZbLJkVckGpe2IbqD36U1
+ uR8Med9mYKAtnkENeywd.11xrh6uHPG9Uh2X9lRQsf3CDS5B9utCv0rGL0oVSbKQpqR84KxduHqA
+ Tkk20gCmQKhqiHSSv0FndhtM1NL5RyTdjNc3Mjvn6Y71gwBkj2BhaapZXdOvg2.f8eQbg0Yhihaa
+ lDhc5D9kMZVTBC.wECIaN0o5q5jHtxW9QZOWJmEUG8pvlhpZadFLVEsMomgoDEIshuAaKkufUzYj
+ 29JzUGkb0ivx7Sc37ZWcHXjzM15YLi2MWs9hE7HtWPad21K8kx8D7ejLTJON0drhfAmhCXtRwRIC
+ DCP374HsH6jzS6cpgj8kz2ygKnh483I9sJD4I.27oMSKF0h5gmDRjFJUsFaYUH6IYNwOf0B09hQB
+ mLUji6ysFptXxzHx8zhrbRbzlkLfKY3vOfhr0rEEKedjFEVntPGmLnYcGssmJdomDnfaYbtrgvlk
+ 3WUkDZXVwNVdAmlNtDiSfh1KSh.rB_th3JDfbeuVnIR4RWPBxxE01_zS0MPJ8KO8hKZTzu1iotsD
+ CM2CULG3ehLnlJuaWs7W0RLCtvAVSD0jYPs_sDpG4msv1x8oFBy0ZDflXJBotC65Z2nG5j2FmJcT
+ 8IXswusGqLMwwlfNn1CiwqT4.ns22Aiapg4hVxlBQSd9uzkg6t60zKoQ0CcgGsTRWt9d3sNoUdOH
+ bVlqIgFnMQFUf4nY43f.PAb6L5Adztz1TNIiD_.6cuaOZWv7nqQ2ul1g5UZASUADtC0Fj_AiKCtz
+ Uub.rj13k8xPf2A07UEIENUGCQBIFkeLrkJLOQlNr.UZpCnudr4ZC1j6jZt89f5LRpUicd8DsJP2
+ Kn6CpcF5yv1CeKBlDe7vFJIkGFG.gUv202Apt0garmIYJfaS_gd8mKI79tiq.WrZw_PaWqf8whWK
+ Ns4nsYmUqSYr0lur44fuw5ieFcnS9ZkiEYUnuGrugi_sDX9U7VDkU.eyKU13IgYIE5PmGZmt5lGU
+ f2SiSFCHVpumXvIxlyny0jnLecMZJ.j4jxqhhtuWSn_ZpwcK1B7e6kV_Z7cp6hYzSp35yuWOnjdd
+ ugvG.cEU1FMrcRMF1nR8xi8a.AQRmPva5VbinjoOEGIwVAGUk.FYY9zqvpu7cDIOFT.eGXry3vup
+ oW9maZOkDmsxm9WKN181d2A_0D.uDFUA5THgfR6MFkh4OLyS6FSedDQ13DAdmrHKwMrVAm0ikNEI
+ 1uH2iMiiz8yxlGrKVyDmAXJ9ALJyeGJULvVZBpB4b4ezHErRk._YdXOGqCHQwraYSDsRdFyQ.EO2
+ b0yScIUqm8c5kZdyOc8EwrUF1URiNGHtzrGCjGWDCqXnkm0eM8R2p9i4UgPRALfSoLJST46ZUT9o
+ ygGxrk_DXDikGLGE6ztEr2VxA2SpSquv3ApO8Qp476GeoCFCph_6MBAPO.h8d8jIT8lpG
+X-Sonic-MF: <jahau@rocketmail.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic301.consmr.mail.ir2.yahoo.com with HTTP; Sun, 26 Jun 2022 07:51:17 +0000
+Received: by hermes--canary-production-ir2-c9bf9d9bc-fw6gn (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 3a9d8ca4ca272df8e505774fd3b7d3a5;
+          Sun, 26 Jun 2022 07:51:12 +0000 (UTC)
+Message-ID: <c7de2a05-af72-5b73-b70c-82d84e84887c@rocketmail.com>
+Date:   Sun, 26 Jun 2022 09:51:11 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 20b4c25a-1d72-450a-5ab3-08da57450521
-X-MS-TrafficTypeDiagnostic: BN6PR08MB3395:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DST51h/BjgHkbMay1bYmOLoLXUUQKq6gs+2HeqOScAv+1Kh29yo4plicRyejk8G7hoS3EyUp0a9WIhHAYDgZ7BdF2U7a2KaBhwWKYeq1bbh+M8/LjYymG/GK5x0PWXz0Sozb3SCmssEln895wbTDebFa2TtYbHHhKjDX1KtwxFm7kfgL0g6KE2GXJWQKTuhhOKB4Kh626m3v1miOr0ROpl+KSdzUi0Avtxcatu3GMWP4Nz7jp+scygfhJY1yRc+azwbIUMVV1kiJRp7ytK5HcJFxOsl51lnBLpKVOBzhPo6hIxxROJ8kMAYiTEClEw6J3gq17gDXJS6LDKKKQmwbDXKmg4KTZYebnaug5++zAMpqOqznD3xsgoo7XZuTYSZN+s/ILJrDffNadj6xfHeW74Fki3EGtBEHhHm8hdUCvwIMtxuhZ+U1PC5d9ZdA+qsSswdViYbbecH4xnkseyyDa1TYVSpmQ+WO4+fcteUdl3/38wfx7eNoMt6JNzjDNQxP0uXdJrhoG/3HqvHTShSoXwnWIChgtv3AJ6WXOQ5Y2cd/oyZcAUXKvWBFIfTUgfAwXjfuklNJOb2QblfOt1cCHi8jjG4ZQsZH2jrtN+KfjV4OcAyb04AcfUVF8hZlBNrcrT8VlAsZorktrVvroT//x/RfzAUOed0U3Ms/Y+BPMbvI16nOXZ1lRVavm5Mkd3O9cqJ7SDcRkDwkG8mnuVE40JlBm/+qBPCZvkfe4VGcmKC3qUvekpLNW6MaCsTYMb0Mto/7N4GZ3zHT8kNbYkSPuhUX32pH9iSN4ifWj8lE7Is=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(346002)(366004)(39830400003)(136003)(376002)(396003)(2906002)(107886003)(6506007)(8676002)(316002)(83380400001)(8936002)(86362001)(1076003)(36756003)(66946007)(186003)(6512007)(66556008)(38350700002)(2616005)(52116002)(26005)(38100700002)(41300700001)(478600001)(4326008)(66476007)(6666004)(6486002)(5660300002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Abes1QiCI2cdaWLS56kb5tiCq8AvUQzhLMVyP3V4tE3LZ+QlIs+ljAAyT/v0?=
- =?us-ascii?Q?n194Fc7vu2mA7VloJT6dVNx6fVLiVXCUBSGtuPMV2l86tHFZ+H5KKenGABam?=
- =?us-ascii?Q?DFDD4w9YCnFxFKzXDZ5pooc0M0o1vHgHNptxlak1wasasH2jTNLlJ4SwU6AC?=
- =?us-ascii?Q?e3ADxwk2JEsidDR5qeLk/+ml87T6KgbRnSAgn9KW2Q2+NOlQ3wZEc0ip/2FG?=
- =?us-ascii?Q?x8RR2pW0GSutNZoRbhlyaOaSp6+V6/l5JoTUnZGTSSTsPIbLXUZiC3C06Xks?=
- =?us-ascii?Q?aeBhOSurUct1yw3eCqCHQGNelRgAt6Z2ARsAM9fSfWsOYLLnIPyPJ/juGIik?=
- =?us-ascii?Q?U2WzizLxeaxO+A84r6748Lib2T5Lx2RAdsuOVo5Mv5UWs55XbM0Lb3aFCB7K?=
- =?us-ascii?Q?kp5tXFy2opSKa/4HGF9peFDw8bqBDS++FJPcMM6DVyJW+cyXfqGezWzDxyIy?=
- =?us-ascii?Q?M+zSg/prjPS2apDNLUknLJOVQ03XxlsETjkcfFy7Kdf2FZuyJjd/eN5o1gzj?=
- =?us-ascii?Q?5OhIaeNqZZYIcaH5lvnt++KVTBtzo+vUvScL+DhvjSeTLE6Sw3eaGhoBFXf9?=
- =?us-ascii?Q?Sktanu6lDIWpij9Whh6VMCE1DHbMmq342kN//77Xu8TSPCZ55albl2vFI3Yj?=
- =?us-ascii?Q?T1FXJwYZ66pKbeZ42z+fX/pEaVRejyXOwt4V4FnzFvFDLKTTQ20ivk/s1AVo?=
- =?us-ascii?Q?5XcWv88zsGVsp7/5kmJxfJ4bb3zls0pjVGU6l12zyz3GKxaM4wMrMNXaayjd?=
- =?us-ascii?Q?MfB1vjoqbz6RYJFjth8LPA0jjnrZCROQCJXUV0e1n24jc617m+TB9gClhvvY?=
- =?us-ascii?Q?u2hnLWyD8Fj9441i00UQXyOFAPGrODJoYD8HC/9lG/qhyKuz/THJFkvYSKCU?=
- =?us-ascii?Q?Nl9CqE/qidmVrEoNqwhzQH3NWIwphrspPODOilVPMEx++AIyilKo31fj1tZP?=
- =?us-ascii?Q?3EOEJuGDVoUQxNUnJ+uUMDdYEiZpwotECvxCpxshkhHMQdS6LIGe8g5BEp7D?=
- =?us-ascii?Q?OT1U24lGgtoAE+J1GcRXaqzdNpBH4Ee5amQ5QVHsqKuRsj4F4TpKMKbwDDlo?=
- =?us-ascii?Q?lwvgvOsNvFu/aDEzhnb9tl3uX2Nm6FA7RW1ZGeQ3xGexnIseoPPyd817dAIu?=
- =?us-ascii?Q?gBAR1enD1q4mpiSiun+lfttZRVSL85XgF9JfOSQjjZCdepBOb2vIBA5FchjW?=
- =?us-ascii?Q?0m1UGyNb9Lua51Y4H4Khse7/SIrtLcHWVKWaHHtrF/VH16baoN3RfUU0Pek2?=
- =?us-ascii?Q?QeFqOxLS1weS6YFv/9vdtDxTR3SpRbV1Z22GKj6LHBIqIBIAEH53+CulFLZO?=
- =?us-ascii?Q?UxH0QA3kb5Diqu0a9ge7jJFmaOJVEgsXQ6vjbVTNbwawZVFD5pCt0Cchdch/?=
- =?us-ascii?Q?382vzMjhUmtkhWUEwDY9zykVXDy73kYfMXp235J3WyRV31cVNX/GIinVKRPW?=
- =?us-ascii?Q?U8/lVt3OGMETem7Lw2BVjND8vw5FJAzZfo0tA2RY5GGsgXozk5yvlOHIbNKr?=
- =?us-ascii?Q?wXmM+vhIX3C8SW46F0SrwLC82tpPrddlW/e323Dlh3Lc83BUend6llH6dKSo?=
- =?us-ascii?Q?CXPxIm1wy2XRJry801tlEux81rgXZjpmmjDeD8PR?=
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20b4c25a-1d72-450a-5ab3-08da57450521
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2022 07:25:17.7872
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iT4Rgzlk6SIZeVQXZKJLieFbqyf4fvMB20VqhWEd2IaT3QDVr7x110GJYURV6NxBihrPekS822nFU9B+pET4EQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR08MB3395
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v3 5/8] iio: magnetometer: yas530: Change data type of
+ calibration coefficients
+Content-Language: en-US
+From:   Jakob Hauser <jahau@rocketmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <cover.1655509425.git.jahau@rocketmail.com>
+ <18f223776f6942d52af2e41dd10160e220a23311.1655509425.git.jahau@rocketmail.com>
+ <20220618155618.18996d0c@jic23-huawei>
+ <10c06f21-23d3-d3a8-5a6d-8290cf2971cb@rocketmail.com>
+In-Reply-To: <10c06f21-23d3-d3a8-5a6d-8290cf2971cb@rocketmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: WebService/1.1.20280 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Although the IQS7222C does not offer slider gesture support, the
-press/release event can still be mapped to any of the IQS7222C's
-three GPIO pins. Update the binding to reflect this relationship.
+Hi Jonathan,
 
-Fixes: 44dc42d254bf ("dt-bindings: input: Add bindings for Azoteq IQS7222A/B/C")
-Signed-off-by: Jeff LaBundy <jeff@labundy.com>
----
-Changes in v2:
- - Added to series
+On 21.06.22 02:51, Jakob Hauser wrote:
+>
+> 
+> On 18.06.22 16:56, Jonathan Cameron wrote:
+>
+>> On Sat, 18 Jun 2022 02:13:13 +0200
+>> Jakob Hauser <jahau@rocketmail.com> wrote:
+>>
+>>> This is a preparation for adding YAS537 variant.
+>>>
+>>> YAS537 uses other data types on the calibration coefficients [1] than YAS530 [2]
+>>> and YAS532 [3].
+>>>
+>>> On YAS537, at least for a4 and a7 this could matter because 8-bit unsigned data
+>>> from the register gets stored into a signed data type, therefore this should be
+>>> 8-bit as well.
+>>>
+>>> For YAS530/532, on the other hand, it doesn't seem to matter. The size of a2-a9
+>>> and k is smaller than 8-bit at extraction, also the applied math is low. And
+>>> Cx/Cy1/Cy2, now being defined as signed 16-bit, are extracted as unsigned 8-bit
+>>> and undergo only minor math.
+>>
+>> Ok. If this is harmless to existing drivers fair enough, though my personal
+>> inclination would have been to take the easier approach of making the
+>> new variant sign extend on variable load (sign_extend_32() and similar)
+>> just so we didn't need to check the older parts weren't affected.
+> 
+> I didn't know that operation :) Let's take this.
 
- .../bindings/input/azoteq,iqs7222.yaml        | 21 ++++++++++++-------
- 1 file changed, 13 insertions(+), 8 deletions(-)
+While working on patchset v4, I just realized that sign_extend32() can't
+be used at the variable declaration but instead needs to be applied at
+"variable load", as you wrote.
 
-diff --git a/Documentation/devicetree/bindings/input/azoteq,iqs7222.yaml b/Documentation/devicetree/bindings/input/azoteq,iqs7222.yaml
-index c9c3a1e9bcae..32d0d5190334 100644
---- a/Documentation/devicetree/bindings/input/azoteq,iqs7222.yaml
-+++ b/Documentation/devicetree/bindings/input/azoteq,iqs7222.yaml
-@@ -611,16 +611,15 @@ patternProperties:
-           azoteq,gpio-select:
-             $ref: /schemas/types.yaml#/definitions/uint32-array
-             minItems: 1
--            maxItems: 1
-+            maxItems: 3
-             items:
-               minimum: 0
--              maximum: 0
-+              maximum: 2
-             description: |
--              Specifies an individual GPIO mapped to a tap, swipe or flick
--              gesture as follows:
-+              Specifies one or more GPIO mapped to the event as follows:
-               0: GPIO0
--              1: GPIO3 (reserved)
--              2: GPIO4 (reserved)
-+              1: GPIO3 (IQS7222C only)
-+              2: GPIO4 (IQS7222C only)
- 
-               Note that although multiple events can be mapped to a single
-               GPIO, they must all be of the same type (proximity, touch or
-@@ -705,6 +704,14 @@ allOf:
-               multipleOf: 4
-               maximum: 1020
- 
-+          patternProperties:
-+            "^event-(press|tap|(swipe|flick)-(pos|neg))$":
-+              properties:
-+                azoteq,gpio-select:
-+                  maxItems: 1
-+                  items:
-+                    maximum: 0
-+
-     else:
-       patternProperties:
-         "^channel-([0-9]|1[0-9])$":
-@@ -721,8 +728,6 @@ allOf:
- 
-                 azoteq,gesture-dist: false
- 
--                azoteq,gpio-select: false
--
- required:
-   - compatible
-   - reg
--- 
-2.25.1
+I wasn't aware of this until now. In that case, I'd  prefer to leave the
+patch unchanged. Overall the resulting code looks simpler that way.
+Applying sign_extend32() at all locations where we extract calibration
+coefficients makes it more dizzy.
 
+Kind regards,
+Jakob
