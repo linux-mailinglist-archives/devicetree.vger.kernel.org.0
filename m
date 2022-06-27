@@ -2,62 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE99C55CCFB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:02:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AF3C55D678
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:16:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234194AbiF0Nlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 09:41:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46844 "EHLO
+        id S236286AbiF0NsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 09:48:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235234AbiF0Nln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 09:41:43 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BA2A2AFA;
-        Mon, 27 Jun 2022 06:41:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3149EB816E3;
-        Mon, 27 Jun 2022 13:41:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D46BAC341C8;
-        Mon, 27 Jun 2022 13:41:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656337299;
-        bh=pCG5s39AJ9DVqDRGCv6x03MsqLw2hoNiDc/CQCC/rSg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BYmjBt8UP2j6IIT72mZcrUcskbTGd8WtD/KjJrlIngIqtNG9JEAJqDVc839Ugr3kC
-         qw+RdKlOAdAkxw15QJhFV3F8HDP3xGvNIHkJ99Ox8lVi19t2T3ze3lobXX6KvRnw9t
-         xIMMb2WYbnzPaPhzVHcHuQCnBbXnfQOJcMoTt5rXDPeGD+c1Kk5Mal6QhPo6PLgE90
-         aUEZ9XlSO82Pw73RRtCsT/B2UGiE+NOIhthC4ektNI9ocFBGcy8l3vgRbK197anjmf
-         LWmEgcbLriHop5HKt9rxZ/SUaJapvMvMZTJbPZ8Y+vPJLbodSVmk9RUa72dXpF6QWG
-         eCxl7rwm4Gxeg==
-Received: by mail-vk1-f175.google.com with SMTP id bb7so4472371vkb.9;
-        Mon, 27 Jun 2022 06:41:39 -0700 (PDT)
-X-Gm-Message-State: AJIora9GXSEumQTQapiTpoYvq0bg6drz9Ehag/9Z0EfbRZbNGy51GCik
-        1hUPvoTvnyO4oVBpJDOFYeLMQP4vvW5QT54m3Q==
-X-Google-Smtp-Source: AGRyM1slNcLsPZreCo8jteG/8X2opfPUctBMU3rLVPYIEDG2Ydtd+0sdfd2zX3U0XFUbg2Iv6nS7EqmRIVLB7ZSf9TE=
-X-Received: by 2002:a1f:2bd5:0:b0:370:23aa:ead7 with SMTP id
- r204-20020a1f2bd5000000b0037023aaead7mr1002325vkr.26.1656337298837; Mon, 27
- Jun 2022 06:41:38 -0700 (PDT)
+        with ESMTP id S236407AbiF0Nrd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 09:47:33 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 788FF6141
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 06:47:31 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id e28so7988469wra.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 06:47:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=thKvXG+JY3HbxZ4gHoPQEiQ+g4hVQKN6LBHIr47r/6k=;
+        b=jHNN/E/FNcXapK91iIDirAbb8f+wGuCbENy43xqwJNYCKodSw6sMQw5o3qBrwoBv5/
+         EBbdUO7C5KuSgFCPffAH0hqEQALbGoEhGlayBiez57/4mxZptaX6hEocri8MCD8m966N
+         OME3Wcv0nSd6XZR/+W7O/B5zMbnkZvTMlu8LM5E9rwowE0h+aIvHeu4JnabkLnMtWNe4
+         G8RV8szA1uuKsx5r46GEGat4w4/vEQAUFzl6zHJ1KxDpQl+86EpH8s4wTvkG459LGk/9
+         tViG69hLpnyGmp44Y+BX5CWXoQwZF+1pPjCcH6OMt93d4h4vxXiWINOb52yB3mtjKJ5I
+         y5lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=thKvXG+JY3HbxZ4gHoPQEiQ+g4hVQKN6LBHIr47r/6k=;
+        b=4lWC9deAMwjDGG7SOArbyT1GR1fbxiHsS49WaOiPBX+RCjOJwam0yzZzSqRGmx/yFb
+         0RxbNImJhU76i0kOELihXMqERqTp/wmcx+z2tfrwgbt6t+q4DEiZsjBJUQpwKVLd2oaM
+         PZZrLmlFhaLiVotsllqAr9qB4wCYlvO8opMrQAfpjVqVCDDpBq0E4hqlZkhcEiMtbMGb
+         AN5olVCAc7huOTtaQTFGFtCR2d+Ma3B8geGRquZdUekhFsG2Oe5OldgSPzC6zJl7DUeG
+         Ok0UzmTW++h41t8o5YvF7fgMHY8I69tzP14khFi30YnQsCMIIrP9Wox8IvocsO1YJXzy
+         l7NA==
+X-Gm-Message-State: AJIora8QvdqjHc9pdEh+9wXbGwI43z2dVSdy9Gcs4Wm1uyLE7Df9haiy
+        oLtsImFXEhKgKmgOi+6VeGdkHQ==
+X-Google-Smtp-Source: AGRyM1u6bcKos2Ai+xOrhZQz5EBIS0SCQvcwH2heAPU9X0Nf/agWvME05l1J5jMwiTo3Zm2Bvu++Zg==
+X-Received: by 2002:a05:6000:15c1:b0:21b:ad5e:2798 with SMTP id y1-20020a05600015c100b0021bad5e2798mr12340957wry.237.1656337649964;
+        Mon, 27 Jun 2022 06:47:29 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id p13-20020a05600c358d00b003942a244f47sm18847964wmq.32.2022.06.27.06.47.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jun 2022 06:47:29 -0700 (PDT)
+Date:   Mon, 27 Jun 2022 14:47:27 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, andrzej.hajda@intel.com,
+        narmstrong@baylibre.com, robert.foss@linaro.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, mchehab@kernel.org,
+        marcel.ziswiler@toradex.com, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 13/14] dt-bindings: mfd: Add i.MX8qm/qxp Control and
+ Status Registers module binding
+Message-ID: <Yrm07wceI4DfGVNG@google.com>
+References: <20220611141421.718743-1-victor.liu@nxp.com>
+ <20220611141421.718743-14-victor.liu@nxp.com>
 MIME-Version: 1.0
-References: <20220521164550.91115-1-krzysztof.kozlowski@linaro.org> <20220521164550.91115-4-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220521164550.91115-4-krzysztof.kozlowski@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 27 Jun 2022 07:41:27 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKXDs=QHKob2Xy6vAFZfnkM9ggfmqf9TNA1hv8TScTmgQ@mail.gmail.com>
-Message-ID: <CAL_JsqKXDs=QHKob2Xy6vAFZfnkM9ggfmqf9TNA1hv8TScTmgQ@mail.gmail.com>
-Subject: Re: [PATCH 04/12] dt-bindings: arm: qcom: add missing QCS404 board compatibles
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220611141421.718743-14-victor.liu@nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,22 +81,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 21, 2022 at 10:46 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Document board compatibles already present in Linux kernel.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Sat, 11 Jun 2022, Liu Ying wrote:
+
+> This patch adds bindings for i.MX8qm/qxp Control and Status Registers module.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> v8->v9:
+> * No change.
+> 
+> v7->v8:
+> * No change.
+> 
+> v6->v7:
+> * Add Rob's R-b tag.
+> 
+> v5->v6:
+> * Drop 'select' schema. (Rob)
+> 
+> v4->v5:
+> * Newly introduced in v5. (Rob)
+> 
+>  .../bindings/mfd/fsl,imx8qxp-csr.yaml         | 192 ++++++++++++++++++
+>  1 file changed, 192 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/fsl,imx8qxp-csr.yaml
 
-This is now failing in linux-next:
+Applied, thanks.
 
-/builds/robherring/linux-dt/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.example.dtb:
-/: compatible: 'oneOf' conditional failed, one must be fixed:
- ['qcom,qcs404'] is too short
- 'qcom,qcs404' is not one of ['qcom,apq8016-sbc']
-...
- 'qcom,qcs404' is not one of ['qcom,sm8450-hdk', 'qcom,sm8450-qrd']
- From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/arm/qcom.yaml
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
