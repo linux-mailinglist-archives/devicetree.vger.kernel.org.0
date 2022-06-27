@@ -2,133 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2D0655E27F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:35:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFF9555D4D0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:14:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237604AbiF0Q2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 12:28:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58212 "EHLO
+        id S239167AbiF0Q2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 12:28:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239227AbiF0Q2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 12:28:17 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DF1BB4B6
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 09:28:13 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id i25so8315749wrc.13
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 09:28:13 -0700 (PDT)
+        with ESMTP id S239139AbiF0Q2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 12:28:42 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9CA07678
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 09:28:41 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id m14so8640718plg.5
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 09:28:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=RFbscGfZ1HvqkolFfPgOHxRAqCYKsO6AGhI1CWcF3U0=;
-        b=QL9P5fYJiAGJ0cVberqQxZgecUlCyO035Rs/RHERScTvlSGjFZWJwcJ83NKx7icnCf
-         MmmkqeK7/MKYHkhThvS+4I5n6eilA1iv0cTdd1jM4UXHDDaaVEXvSnXIRzJWnCUCUcUi
-         hfbpR0k3AwYuP7wFzDx1Qb4iWIpTN9nBpMOsMz5YzOvQfMZ+aNGdk1BwqtUaNtHKCBDC
-         fA9t5x0TJ4kWUQmeUPz8VsbAvV+0a4AUoZiJIyO7qENghiYMyKTM8whwQHTooEBVZnfa
-         hv7NO7jkwT4JYF/WPaOvNMBn/r4c0lJo2uE2cyoUPVH1HBvXxtPYqUUryaiaIppTOHk7
-         Xteg==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=eJNYcwa8MdB3TFlmjQGXEXwu3LQ+F2ULUjPAF03GvZI=;
+        b=ncMlSWAC8DSEspwYSE6ymvT/EvKPWFY757CGu5oOZew7TislLANKfKKwVY+okxFmFs
+         OlrBFj6orPeP+nNDY9CVYrTs78ZBUuRI/FOa/DG80f765DwYD2ctTWBV5w2+hpl5eRSf
+         wHbuP+02IWdWUHuRKlyZaf/pi9LzNCIVrKq4LN8DJ98snvHUVFuuzO/N73Vdw+kmU+Zf
+         MqpDs+BTfn1zXkWT2ZgMYzUzuBQLi+u3YJiG5rPlPqmJ152xU7ybr+QJKh9ChSLPUOzP
+         JXI4lHxbQvI3Xn644LSO41rtltxRcn84uAU0AGZvZ/H8JEe5xUKt0cT0uARsjFuXn83P
+         pBMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=RFbscGfZ1HvqkolFfPgOHxRAqCYKsO6AGhI1CWcF3U0=;
-        b=nW+oS+jy5QCwVaP4LBC9XkrjP8IpTJzlH00py0DURIeiVScD8avgI7/JsaBsrZZmJl
-         pFD14eH/VuLf5fBH1Fp/BNDwoyC4x+yg+aWpRO0zl77RauznvYDixFYDwpQlWwXkk9eV
-         VHMlqVetK8RDDoB3DxZ4qnbP1r7NaYv83KszbsNOXYbpEyV1Uo6udsttG6/aHg0OU+dE
-         vNHaBIwA/fGVBneJfaNayN702AYg+DeZWV+OxjHR68KbAs7RG441yOpd42om9ikzItmM
-         kNDQvoTWsyjEZpA5YMSP0uAME/Xw/lMPJmYjG56c46fEr7orNN+75fBhKQwKK7mhRWvW
-         JVsA==
-X-Gm-Message-State: AJIora+YjqFcBHsuWMUvp83LJyWqOArwy1DP/GQW0Xl9kXpEivFki0oW
-        K6YCEKI0Iuc8yUrlHLgb2ue6fw==
-X-Google-Smtp-Source: AGRyM1tWghCzrhvaQKuNnG4CtD67zaV7MVCuo84J73jDL9LXJFGuDL/uN51RLsUeyYqHqBL/FNulUA==
-X-Received: by 2002:a5d:5966:0:b0:21b:80b5:ecc3 with SMTP id e38-20020a5d5966000000b0021b80b5ecc3mr12930472wri.130.1656347292409;
-        Mon, 27 Jun 2022 09:28:12 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id m17-20020adfe0d1000000b0021b866397a7sm11132854wri.1.2022.06.27.09.28.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 09:28:12 -0700 (PDT)
-Date:   Mon, 27 Jun 2022 17:28:09 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
-        szuni chen <szunichen@gmail.com>,
-        ChiYuan Huang <cy_huang@richtek.com>
-Subject: Re: [PATCH v2 08/15] mfd: mt6370: Add Mediatek MT6370 support
-Message-ID: <YrnamaUx236MsNQa@google.com>
-References: <20220613111146.25221-1-peterwu.pub@gmail.com>
- <20220613111146.25221-9-peterwu.pub@gmail.com>
- <Yqph8jwHU8rPooJA@google.com>
- <CABtFH5KLVQFYOBGZ--9+s4GrHXbsDao-yL-KCFwL3FD_kbNhjg@mail.gmail.com>
- <Yrm7NTID16g8gM5t@google.com>
- <CABtFH5L7B_kEvG5E2Um5EANEScJPTfQthyLNfCbvoHq_YDpXxQ@mail.gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=eJNYcwa8MdB3TFlmjQGXEXwu3LQ+F2ULUjPAF03GvZI=;
+        b=6oPbYvx7wId7G5F6vYXsuZur3ak2ax/Sz+ZRbq+Ask45dIGL4l2uRm6BCvDkjblfKC
+         6GP4Ni0mFTeuL4/EktMcYo1JvKqLc6uia1p8uKc1qovTu2boR8uzxb9RVSqCMUxsUsn0
+         D8k3GlC4lzGXT9BOStlp5mjSU//2x+KJIuGINiruZeKQ2TbYTzvgzkm9n+woXCk73rUe
+         xnvI3/5hfr6HmD0isNrgFkHJy9JNCiZU+H7BgjFugoyQIaX3YlD4GdecuwCuC8waPTx6
+         Ef/4O0TKyBvGef1yvHArRsNMZjq9zeJIIfkEgpMifzQGr+v08+0PE17kt1Vfmh7j7Xhj
+         Rvrw==
+X-Gm-Message-State: AJIora+lgmeErkbA1OEsHpZlmtlrRx6hWnjItpFkQnYFxCZGKCwO+xdO
+        oJGQKkYdsi7MxNOmZc5P1LU=
+X-Google-Smtp-Source: AGRyM1ueosPO/zKtUwGRpLnxzkctM/qLka4xC6ytgyiKQ1rpsTVWoqogWw5Y4Eku1elVF3ZCNpbB5Q==
+X-Received: by 2002:a17:90b:4f8c:b0:1ed:243:ba07 with SMTP id qe12-20020a17090b4f8c00b001ed0243ba07mr21424205pjb.89.1656347321357;
+        Mon, 27 Jun 2022 09:28:41 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id z1-20020a170902d54100b0016b85cdf8d3sm1315915plf.72.2022.06.27.09.28.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jun 2022 09:28:40 -0700 (PDT)
+Message-ID: <7ef987c7-1d99-bd63-f7fa-66bd12811716@gmail.com>
+Date:   Mon, 27 Jun 2022 09:28:38 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABtFH5L7B_kEvG5E2Um5EANEScJPTfQthyLNfCbvoHq_YDpXxQ@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH V4 06/11] mfd: bcm2835-pm: Use 'reg-names' to get
+ resources
+Content-Language: en-US
+To:     Lee Jones <lee.jones@linaro.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Melissa Wen <melissa.srw@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+References: <20220625113619.15944-1-stefan.wahren@i2se.com>
+ <20220625113619.15944-7-stefan.wahren@i2se.com> <YrnZUqQsKVVGHUGh@google.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <YrnZUqQsKVVGHUGh@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[...]
-
-> > > > > +#define MT6370_IRQ_DSV_VPOS_OCP              124
-> > > > > +#define MT6370_IRQ_DSV_BST_OCP               125
-> > > > > +#define MT6370_IRQ_DSV_VNEG_SCP              126
-> > > > > +#define MT6370_IRQ_DSV_VPOS_SCP              127
-> > > > > +
-> > > > > +struct mt6370_info {
-> > > > > +     struct i2c_client *i2c[MT6370_MAX_I2C];
-> > > > > +     struct device *dev;
-> > > > > +     struct regmap *regmap;
-> > > > > +     struct regmap_irq_chip_data *irq_data;
-> > > > > +};
-> > > >
-> > > > Can we shove all of the above into a header file?
-> > >
-> > > Well... In Patch v1, we put these "#define IRQ" into
-> > > "include/dt-bindings/mfd/mediatek,mt6370.h".
-> > > But the reviewer of DT files hoped us to remove this header file, we
-> > > put these "#define IRQ" in this .c file.
-> > > Shall we leave them here or put them into the header file in
-> > > "driver/power/supply/mt6370-charger.h"?
-> >
-> > Where are they used?
+On 6/27/22 09:22, Lee Jones wrote:
+> On Sat, 25 Jun 2022, Stefan Wahren wrote:
 > 
-> Sorry, I wrote the wrong path last time...
-> What I should say last time was to put them into the header file into
-> "driver/mfd/mt6370.h"
-> These "#define IRQ" are just used in "driver/mfd/mt6370.c"
-> I’m really sorry for making this mistake...
+>> From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+>>
+>> If available in firmware, find resources by their 'reg-names' position
+>> instead of relying on hardcoded offsets. Care is taken to support old
+>> firmware nonetheless.
+>>
+>> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+>> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+>> ---
+>>   drivers/mfd/bcm2835-pm.c | 61 +++++++++++++++++++++++++++-------------
+>>   1 file changed, 41 insertions(+), 20 deletions(-)
+> 
+> Anything preventing me from applying the two MFD patches?
+> 
 
-Yes, that would be fine.
-
+They are self contained and cater to being backward/forward compatible 
+with Device Tree changes, so not really no. If that is how you want it, 
+please proceed in taking the 2 MFD patches and I will apply the rest.
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Florian
