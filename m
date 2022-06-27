@@ -2,88 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D41C455DC21
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:25:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9863155E16E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:33:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241334AbiF0UdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 16:33:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55194 "EHLO
+        id S241355AbiF0UeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 16:34:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241315AbiF0UdR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:33:17 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A30215FBF;
-        Mon, 27 Jun 2022 13:33:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5C10FB81B1A;
-        Mon, 27 Jun 2022 20:33:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF69CC385A5;
-        Mon, 27 Jun 2022 20:33:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656361994;
-        bh=UGNf3JQBQA1G3N3IKKt0DxZWbqRY9n/yeyxP0VBx39A=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=ToXkyagZiDbV2GVROo8aBKcl0Ma0D2GA7XJf36txPJmqqvFuuz0FRiQ/WxfA6qL7d
-         EkAK64B8DJ/ocfOM19SHtgE+ZyDYEqmS4iDzCVaVUJznvFoCSr6Jzvn4bkIevDECWT
-         DcD3GhVIxXvUgt8WUO9cGN20DW7qIudPOQj7M28i5NCJt9J/skW42u7cpHtOesrfZm
-         iBQLt13GIwsQdk/FdnvW6n9R+crurrX+5ws+f7pKsDKQOEc5IfbbkCGmPM3yGex2Mm
-         /TK2xtaodexcBDaFTsnJPS51NmSyQ3+xt5AxX1SG5HAJrnTh/81iJQkz9xkLZC376H
-         HysY2i4h5GkBw==
-From:   Mark Brown <broonie@kernel.org>
-To:     andi@etezian.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        krzysztof.kozlowski@linaro.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org
-In-Reply-To: <20220626112838.19281-1-krzysztof.kozlowski@linaro.org>
-References: <20220626112838.19281-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] spi: dt-bindings: samsung: Add Exynos4210 SPI
-Message-Id: <165636199250.4094756.9720956481733870534.b4-ty@kernel.org>
-Date:   Mon, 27 Jun 2022 21:33:12 +0100
+        with ESMTP id S239299AbiF0UeF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:34:05 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BA046340;
+        Mon, 27 Jun 2022 13:34:05 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id o9so14690887edt.12;
+        Mon, 27 Jun 2022 13:34:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=OLWwuKwhDGZ5AVt1p7fFud+w2xnXRC2cyekV81w3MDU=;
+        b=dheqE6WHwvec6tvb6t2RbF5VQNheGf73O7aOBbWBM90uPgRY7rjxLwdopKqx72QETI
+         9+X7x7jSPVLe35HXCDQldILySK6vIaAFKfnX3HPBP0/j95N8DUoKhHp7021brMu9adLG
+         yQGG2iTCry+dnpBEIfhwqQI3FsMWrs6gaWN1SzhlRdwlpU7TA0f87EBVzhZUvyEl9p+v
+         naGmnvUsNkzChfpTJPj4aM2kXkZNXpdjNvCCAz1DtdjOEQXU3H55lUVo3BTVg3PJr9qn
+         krDTRJOYoa/gMT7+yRFcL+eTIiPJv1z1iYTuQSFygvCy6I+O2QDSnCP6uUX6MCdwidHK
+         IKVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=OLWwuKwhDGZ5AVt1p7fFud+w2xnXRC2cyekV81w3MDU=;
+        b=npCC/2A/rRewfTLLDahvlN07iqT6//+Cc3df09bfNy4n561wVLfxK0mjlTJrAqtgEg
+         xYWLSlwE2HtxaQcXytTcEKBvL+QIcpkvFcxTvbeIv3lnYfxcBqDoi94ZXEVk7dykap0F
+         H+blwsmATO0h6qHamCt9GMCQnW+tZUNGwou3OllmGIbH9/GlO+ZiWvOBeK3OPLNKutbN
+         r18JWkNxTuy8Pp73Hh8nN3iGiMbhNT6aTMPIiiU177VLQxCR4kHQIp9eF1J5Tp3gQFZa
+         CY+FpSQBuY6RT9eyJXtuicJQYIsCV0CySeDR2dvY/1ENrfnbI9Rc9q1SeD4R8l2QEfTn
+         aFIQ==
+X-Gm-Message-State: AJIora+5I/NoKCkc4jsfstWAuDdEiYKYYdG8u2lPD8RTzgPDBjMifSKd
+        cJDdv+CtSG+Tm6cAjXNseiYrC2jOjYo=
+X-Google-Smtp-Source: AGRyM1t+7vYQ+AGGmRmAHAA6HQWSIKQ56fM95D1r6YAj+WD+1Y+PPYMi6z7Zq+alDcC2KC05jXGFig==
+X-Received: by 2002:a05:6402:280b:b0:437:9efc:a065 with SMTP id h11-20020a056402280b00b004379efca065mr5648487ede.3.1656362043648;
+        Mon, 27 Jun 2022 13:34:03 -0700 (PDT)
+Received: from jernej-laptop.localnet (213-161-3-76.dynamic.telemach.net. [213.161.3.76])
+        by smtp.gmail.com with ESMTPSA id b9-20020aa7d489000000b004358243e752sm8120949edr.5.2022.06.27.13.34.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jun 2022 13:34:02 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Chen-Yu Tsai <wens@csie.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>, Ondrej Jirman <x@xff.cz>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 2/6] pinctrl: sunxi: Add I/O bias setting for H6 R-PIO
+Date:   Mon, 27 Jun 2022 22:34:00 +0200
+Message-ID: <4405996.LvFx2qVVIh@jernej-laptop>
+In-Reply-To: <20220626021148.56740-3-samuel@sholland.org>
+References: <20220626021148.56740-1-samuel@sholland.org> <20220626021148.56740-3-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 26 Jun 2022 13:28:38 +0200, Krzysztof Kozlowski wrote:
-> Document samsung,exynos4210-spi compatible which is already used on
-> several Exynos SoCs.
+Dne nedelja, 26. junij 2022 ob 04:11:43 CEST je Samuel Holland napisal(a):
+> H6 requires I/O bias configuration on both of its PIO devices.
+> Previously it was only done for the main PIO.
 > 
+> The setting for Port L is at bit 0, so the bank calculation needs to
+> account for the pin base. Otherwise the wrong bit is used.
 > 
+> Fixes: cc62383fcebe ("pinctrl: sunxi: Support I/O bias voltage setting on
+> H6") Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Applied to
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Did you noticed any improvement with this properly set? In theory, 3.3 V bias 
+should always work, right?
 
-Thanks!
+Best regards,
+Jernej
 
-[1/1] spi: dt-bindings: samsung: Add Exynos4210 SPI
-      commit: 595d68c1b7a81c6cfbdd7c8b50c1e047dc1087ac
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
