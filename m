@@ -2,216 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49A8C55CFD6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFB3F55D177
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:09:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233255AbiF0H74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 03:59:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35724 "EHLO
+        id S233268AbiF0ICQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 04:02:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233268AbiF0H7y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 03:59:54 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2068.outbound.protection.outlook.com [40.107.243.68])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 188E3E46;
-        Mon, 27 Jun 2022 00:59:51 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m9dzrQFWzQXEHdNnMu3mvxtwbXuwpyGSKCsG8JgYtRc2exg//JoshSBUO/362d0iF/X3X39bY1CdiDWs4wFcPztBCOwT+INmEeUN9UJJjHm9k8NY1wahncHEcriHTKiRca0r5io8H1njL1wu9p2XI+cNl1VHu+UZQmkv1fxGgSageHC/ebIc12q8PYahJaTIqUICv7GL5Mri5tbj63/7cXUEfYTaEccTwdWvS6SK3adzpGBkWUFkrWUMrQyQD3XOzQw1t4q4Lf+Jg9vBKrIBQWRpyvo/SprqhztxAopvJjHEBBBzYGkw9t1NCOuU37n+gSIkVvj/pzK+NCF6beLpIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pj2TPMKoFnwG7hRN5yUHBGCcB0zqLDhqRVBr7Ym7q/k=;
- b=muQ5mLo5qEqHpwWbIQ8Wud9L8erJhFf4fZe07lNL8l1ZXAsS1E7JKL2/jO2it4CQudkN2+CuPa4qw+S+JyGQMF8roDczCq72Jd0AvmDR/SvAil0QVoeE5YWOIksDOkAL4nejHKCzi5FS/jtjNAdGbwc31C0rxid3a8TScsvaSm94FHK3Bc1JNrKBA4y8VGngKtTZ0rQgIEzKIdGRFDObzu19T0v1Qjp30pL/LJo+xZmX+E13FbIs+LAyCwBH2K/kT14iD8IrLlX02FueXsjZhfthsvfFb42UxaFR3cbLcHCEmNbMeJZlqxQkS6SGh2cFVSB6GzkpyzuH44Rn5LDfZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pj2TPMKoFnwG7hRN5yUHBGCcB0zqLDhqRVBr7Ym7q/k=;
- b=c39zjN0yKp/6psV+JMl6KrkWRPCRhkDbIs/ZtEG4i/UEExrLmUy0wcWY3OGTiT6sY5cJjkbI72c3v3qfjV6c9g+D3sgMZtjVKmKEWjcY9VzTIZpC6V7bsUBSBv/OU2gCpY8o5bh2hK05DwtCPcWfzIvDW3FbXvdxZaWjQDyKJcPW/qqIgH56PyJFw557uZDt7DRB0D8uSyBjJHXl4KAYrLZ0ICDVR95oPgKD97ikzykB2K7yExKGsKU0jEphdCpqe1D9f2nX7Dm/Nmoh6PdUTej4JHXIpBJ42GN+WwMur7B/10kyyWi+ptUMes97/4vtKiWXDe49xsTNhxN3Jj3NrA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from BN8PR12MB2900.namprd12.prod.outlook.com (2603:10b6:408:69::18)
- by MWHPR1201MB0143.namprd12.prod.outlook.com (2603:10b6:301:54::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.15; Mon, 27 Jun
- 2022 07:59:48 +0000
-Received: from BN8PR12MB2900.namprd12.prod.outlook.com
- ([fe80::3904:2c16:b3b7:c5f3]) by BN8PR12MB2900.namprd12.prod.outlook.com
- ([fe80::3904:2c16:b3b7:c5f3%5]) with mapi id 15.20.5373.017; Mon, 27 Jun 2022
- 07:59:47 +0000
-Message-ID: <48b2c4c2-3032-a90b-07c1-f03b3a84df3a@nvidia.com>
-Date:   Mon, 27 Jun 2022 13:29:33 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH RESEND v4 07/15] PCI: tegra194: Drop manual DW PCIe
- controller version setup
-Content-Language: en-US
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru>
- <20220624143947.8991-8-Sergey.Semin@baikalelectronics.ru>
-From:   Vidya Sagar <vidyas@nvidia.com>
-In-Reply-To: <20220624143947.8991-8-Sergey.Semin@baikalelectronics.ru>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0104.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:9b::6) To BN8PR12MB2900.namprd12.prod.outlook.com
- (2603:10b6:408:69::18)
+        with ESMTP id S232689AbiF0ICI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 04:02:08 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCC1265D
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 01:02:05 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id eq6so11748205edb.6
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 01:02:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=BjTHbseoixUmzYUWFRt8jD61QtMOJnGOU7tJHocPH+4=;
+        b=Crykg2D7L2/jYw9Zc+QOPJCotcSmhHmJ4Bd1BEkA7tw4o0rSDDPexy38nFMqt8LUve
+         gRaiYejkMWWQIGubeM6taLxx8xYn+8UzT/8WEA2R8E7+6j6LsKBzbp3sAOzM2FW+4bd1
+         nfp9TcXo/2J7WPs3gdHbXxNwii83+q4rWdHg4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=BjTHbseoixUmzYUWFRt8jD61QtMOJnGOU7tJHocPH+4=;
+        b=zFMARzPOdwAVEjGbJy0hF8KhZjk8Vy3re7JUtnSHaHONYUe7x+Vttg090/H8RkSvK/
+         dBceRQEm0Tp/jyqEYBDxW0XlAUgxrhbKYQspQ8OlXnYz96ZDk5uPo0AyMN9VmfJd7oR2
+         9nD8hqoeWgNRdT/mJ663B966VKhLd3Jzt1xr1oXR5V63Et35wsGLsPfQEi8J0zVY6DoO
+         LDEbXPIKrPj+Bxf/CL3Z0TH6R07/iVSEN2F9WKF1tjAjmINK45ivUlJ6ZclZNQa4NsDC
+         EmvY289gSYcodis/WkZYSGFCd710JwvYK2uWL+8asGg1vuGGRbR9GH1jAm4mK5wVJui5
+         mRtA==
+X-Gm-Message-State: AJIora+2BOhpLx/yK1P1QVH+UjZRCTmclqLgJay1EB1y9NNB6NxZ0J2S
+        bx3Mn7vLgcs4YBSRWojgq5KrAg==
+X-Google-Smtp-Source: AGRyM1tiYP8kZA9oM4ucvX9W8C/b40cQ+3pgjpkJmJ7Ja2f6ohJKIB48BzMmr1d96XYj5nuQ09HDcQ==
+X-Received: by 2002:a05:6402:1f15:b0:435:8a5a:e69c with SMTP id b21-20020a0564021f1500b004358a5ae69cmr14765615edb.90.1656316923777;
+        Mon, 27 Jun 2022 01:02:03 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-58-216.cust.vodafonedsl.it. [188.217.58.216])
+        by smtp.gmail.com with ESMTPSA id r19-20020a1709062cd300b006ff802baf5dsm4728152ejr.54.2022.06.27.01.02.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jun 2022 01:02:03 -0700 (PDT)
+Date:   Mon, 27 Jun 2022 10:02:01 +0200
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
+        quentin.schulz@theobroma-systems.com,
+        Daniel Scally <djrscally@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 7/7] media: dt-bindings: ov5693: document YAML binding
+Message-ID: <20220627080201.GA175635@tom-ThinkPad-T14s-Gen-2i>
+References: <20220624230307.3066530-1-tommaso.merciai@amarulasolutions.com>
+ <20220624230307.3066530-8-tommaso.merciai@amarulasolutions.com>
+ <7b138ea1-735f-03b1-720b-d3934ad83060@linaro.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 10724ea7-015e-4fb7-8277-08da581300ef
-X-MS-TrafficTypeDiagnostic: MWHPR1201MB0143:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?K0FoQmhuNE5SRjZERjZzMm5VNlZCM2dKWnVud0NBVEEvckE4eDNJVnpRbG5k?=
- =?utf-8?B?djZ6OUJIc2E5WFN1emU3QkZrTFhDN1E0bjNQcnZYNUJVeWR5VWI4RHdsekcx?=
- =?utf-8?B?S1hGSGtlZG9mbGVGbDdRUFJQV05jWlJzeWRaMFVrazBldnBrZkc3bkNkVzRU?=
- =?utf-8?B?Qy83aUwyYVdlNHB1dXQxeFdvNkRIa2ZQWTcrc2VOcUh2cTdPYmFVcXNmRU9y?=
- =?utf-8?B?ZjZ6NmlucHBaRDNMU3piOHZ4N2JMODA1YnpTMzFjNGJ5dzRraHJUVjQ4Y3hI?=
- =?utf-8?B?czJqS1VsZHVTTXRObkU0RkpqTlJkM3REN1VjV1hnVjdmMjhEY0Frckw1TWFS?=
- =?utf-8?B?UVVPRWdsVnZxcG55OWt2Y1Z4RmptNmltdjJWdVdKK0wxb2ZGYmJ1NVdGYkpL?=
- =?utf-8?B?V2hQV2lRcDViSlJZc2ZpcGVIeGpHSW5QR1d3QzkrY2VVekJPYW0rWi9aRkw2?=
- =?utf-8?B?Tkt2cWVkazZySVQ4S0Zhb2hhN2MrNjd2dko1eFRSck1nU3p3Q2dsT0s5MnFE?=
- =?utf-8?B?eE4xTVJUT3FpUnpqZzRYU1pjR0llbjFRSzcyVXlLY3ZzYzV4RkpkVXRYMEdJ?=
- =?utf-8?B?aUpEMGNEZkdIMkd6ejd6MUpPUTNlK1ZsZzZFYlJnZHNlR3grb2phQkFta0RN?=
- =?utf-8?B?Nk43THhTck9KeFdVL013Z3JGRWhSMFN1Tno3RjZibXpLb1pqU2JpYzFSbmZW?=
- =?utf-8?B?LyszcStMMVhFamxZdUFlRVpUSTJYNmI4aU1Ec0ljYy9HMFdQWnc1QW5ValpE?=
- =?utf-8?B?ZWV6dWJjT0FES0ViQ1hOWXc1K0t1RzZnY1JLdkRsYmZRbnZ0ZkVxVVZSaWkz?=
- =?utf-8?B?Rlk4dHBmRTUzN1dVd1AwV1ZqTG83eStzSEt5VVVJYS8rUTFCSGROc1JkQVNR?=
- =?utf-8?B?dG5VSmZUTHFQdFhaKzRLenNxeXVoeEZIRHhMWjBUb09BT0ZDQ2x6Y1hmQmpn?=
- =?utf-8?B?UlBFcWtodkQyNjE2UmNYeU5jUzFKbUNIc3JwdGY3TVJJeEFGeWpzb1ozREwv?=
- =?utf-8?B?SHhxZHVrUE54NTFMb2VGcFZNRUNiNHZ3aSt5UjFjNm0zUzZrc2I4aklRUk94?=
- =?utf-8?B?RWIzeGVuOEgwVFQ3L3AwZ1JIckFBZHM4VTIrVjJnbERQZ00vSXV3NXFyOHI3?=
- =?utf-8?B?bHdMYjZKbzFIQ3JJYnplUmFCN25UeHQ1UiswYkwyWGNCTFNDLzEyV0IwTExB?=
- =?utf-8?B?U2xrbGYzdGswaW11blUzM0Y0b0l6SHdLNGJVNHpFOGJnaDJrck1VNVJGdUE4?=
- =?utf-8?B?WTZCK2ZrVVJIQ1RXS0tNdVhEOFdUa2V4MjJMdGRjV3dhdG5vdz09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN8PR12MB2900.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(366004)(39860400002)(376002)(136003)(346002)(36756003)(6506007)(31696002)(6512007)(66556008)(316002)(7416002)(110136005)(66476007)(186003)(26005)(53546011)(2616005)(921005)(38100700002)(41300700001)(66946007)(6486002)(86362001)(478600001)(54906003)(8936002)(83380400001)(6666004)(6636002)(2906002)(5660300002)(8676002)(4326008)(966005)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QWdpUmRjSGU5U3owQVBGU2t3VG0zZFJRZGowMHQyRS9Xa3hHb1RIQ1ZTNTgr?=
- =?utf-8?B?MGttQ1VuUklWNDJmUWx3T2I0bTJ2L1FQS3ZFRTE5b2NzVkxXWXV2SzFwKzNO?=
- =?utf-8?B?R0o5VmRxbVVTNlN1aFh4cklJU2s1VTZKUFpaTkRJb1IvKzh4NjJiSVRyVHQz?=
- =?utf-8?B?dm5BRzdvbDZEMCtmdXkzNURWUEFoNHBjOGtlUUROblQrdFZ4amw0Ym91ZitB?=
- =?utf-8?B?aVR1ajVhYk43Y3pMTmlhODFmeXlYaVJGMVI3S1hOamJBY2tkN3p2VE43R0tG?=
- =?utf-8?B?SFZMWW9yL3Q2amVkL0plU1NmMGZQZ00vYk1MWU9OS2JGcldscklKYnpTT3hW?=
- =?utf-8?B?NlRsZVJrWnhqM0JiNjdrb0JhWjcwOGlnMUV5MjRuNFpucmZacTVCbkZKalhJ?=
- =?utf-8?B?M1o0aFpLRDRmOVR0RndtTVZLcGkrdGlDbitzZXc5TGh3OEF4UEIxS0NOQktz?=
- =?utf-8?B?NHNNYTJHU2ZnZTVodmVPQ0s3ZENudml0L0N3V0FqV0t2SG1OZzhGVVh2Vm9s?=
- =?utf-8?B?dVRaek81WlJXZDFUbkx0cGVUb0RYY2hqakRLYzVzWGtvY0dOSzcreTFaeE8z?=
- =?utf-8?B?OWJraG56WS8xUkdxNURJZXg5c2diYzlWSkFGeldzcm50ZVZBdnJKZzg2Qkdm?=
- =?utf-8?B?V3FuOGFXVFVEMkJQNTkrajh1d0hmaDJoNTNSS29yNW1HY2xwWlNIamwzUG5P?=
- =?utf-8?B?eStUN3AzakpDc1Fjd2FDaXplWlBwVkxMTW1jZ3NqWnA2djVncUJya2ZGZ2dq?=
- =?utf-8?B?QlJzSmV3bmoycld2N1Ewb2FvZ24zZkl3YnMyOWhSRjcrUXJwcDNENXhrUDVs?=
- =?utf-8?B?cXExUm40aXRHNkNWZi82Zit5SHVQd3V3MjNsdzcxaE1rVzl4aXJQWnp3RnNa?=
- =?utf-8?B?cnVZckhzRmxkTVJoSnAvOEhwNU5RdzJ4d1V2WTVDOGRJUjZoaktRMjE4eE94?=
- =?utf-8?B?KzBsZlF6N3ZpWUZRRHF0MG5iYVFBUlRqallkQ1Z3Q1NkMnJqWkJRdHcxZjBp?=
- =?utf-8?B?UklxZ280dmRpVE1kb0wxWS9VSnB6aThPcXlsS3RKNTBkakp2VGtXM1Q0MUxv?=
- =?utf-8?B?Y0twd01RNVduc091U2kxbC9wUWFUcGJCMm0vTXplVDBodHhJay9CVTVGQkJL?=
- =?utf-8?B?bkpLMEE1Y3ZQU3RhZFJ2U0dMK3dJR1BvdGlXUDFlbVUySnNwNklPdUJBNHd4?=
- =?utf-8?B?Rk1oRzFmckUzaGM1MkZzNlhtRnRJZ3BGOEtpYkV3QUR0bWhTTk9NTEsvdmN2?=
- =?utf-8?B?RkJ5cllhMFFvSzh4WHVtNkE1Yk5ZcVJJRDhMMTE5eE9rNUN2eUJjaWdjakN2?=
- =?utf-8?B?ZWYwZHMzMU9LQ0k1WE82eGpIVTViWUhudkdUWFNXcFdFV1VhblVHYmJjWmtt?=
- =?utf-8?B?M2Y3YmZoSkVsTWVVTHFjQkp2UWF0Wk9mZ1RuQllhcy8vYUZFd1JuRmV1cEN0?=
- =?utf-8?B?cDdmRWtYaE12NzlTY3M4NVBjbkRlSzJsOCtoQ1BLVEd4Q0UxZHJ0MFdQN3Zl?=
- =?utf-8?B?NXdwaHNkbVVuQXMyZnZCMWRZa1JpR0l6dGRMZ3doOFlVR1ZXdEFVUGtMNnNP?=
- =?utf-8?B?bndHVUQxTHhaYWxld3Q5Ly9tbmNldHdXclo4eURKTTlFQUlocjl0V0xnRkhy?=
- =?utf-8?B?ZUY2V1JWTEUzOElJZTh1ZGtPSGVicVFNMnZMcTZzcWhyZFlKdUdHWTZJeE82?=
- =?utf-8?B?MVFIYkNscFlRaTlYbjVadjkzdVNNNWIyYWVlZ3k1dzBydiswSDdEcEhPeXpH?=
- =?utf-8?B?bnpQVGw1ejUwcVJCSVMybzkyVjNvL0lJb0pVenpIcWRGRXBxd2Jkd21wK1ZF?=
- =?utf-8?B?MkcwanMyUFZzYVdKMW4wUkpycytzcHVOQmRlV2syM0NuVzhVQkIzVFcwRUZJ?=
- =?utf-8?B?WmFVV2wxT1BwakZPb1ZHcnluOTZrdHpEamdXZ1NKWEEyQUZhd0s2NVdVMW9k?=
- =?utf-8?B?a3ZlaFVoSTJjcXpaOEl2ZlhkQ09Ta3FjU0NSS2lWUm9Ub05LdU5hUEJINWNH?=
- =?utf-8?B?cFBZdUVicXVNaGpKZldjN25MeW0rSnBVdmdRbk5QZEcyeEZkR1RVRHZKMW9v?=
- =?utf-8?B?a3ROVzhYUXZiY2FGWU1GSDR3TUhEaWM2Q3N2RmdURTNmbnpSTHkyRTBnbjFo?=
- =?utf-8?Q?yFyX5ImNJBwOAdJRS57Jz5S/F?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10724ea7-015e-4fb7-8277-08da581300ef
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB2900.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2022 07:59:47.2790
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Omi5RNHpFtqOJSp9gkzKAQRMfBBFCX5xwgczzfJI9qIEZDXOurzEvKbCplgoIhT+zmAGk6zsxwXLEotHKmhRVA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0143
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7b138ea1-735f-03b1-720b-d3934ad83060@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
+Thanks for your review, I will fix this in v2.
 
+Regards,
+Tommaso
 
-On 6/24/2022 8:09 PM, Serge Semin wrote:
-> External email: Use caution opening links or attachments
+On Sat, Jun 25, 2022 at 10:35:50PM +0200, Krzysztof Kozlowski wrote:
+> On 25/06/2022 01:03, Tommaso Merciai wrote:
+> > This patch adds documentation of device tree in YAML schema for the
+> > OV5693 CMOS image sensor from Omnivision
+> > 
+> > Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+> > ---
+> >  .../bindings/media/i2c/ovti,ov5693.yaml       | 123 ++++++++++++++++++
+> >  MAINTAINERS                                   |   1 +
+> >  2 files changed, 124 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+> > new file mode 100644
+> > index 000000000000..1ee70af40000
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
+> > @@ -0,0 +1,123 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright (c) 2022 Amarulasolutions
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5693.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Omnivision OV5693 CMOS Sensor
+> > +
+> > +maintainers:
+> > +  - Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/media/video-interface-devices.yaml#
 > 
+> This goes after description.
 > 
-> Since the DW PCIe common code now supports the IP-core version
-> auto-detection there is no point in manually setting the version up for the
-> controllers newer than v4.70a. Seeing Tegra 194 PCIe Host and EP
-> controllers are based on the DW PCIe v4.90a IP-core we can freely drop the
-> dw_pcie.version field initialization.
+> > +
+> > +description: |
+> > +  The Omnivision OV5693 is a high performance, 1/4-inch, 5 megapixel, CMOS
+> > +  image sensor that delivers 2592x1944 at 30fps. It provides full-frame,
+> > +  sub-sampled, and windowed 10-bit MIPI images in various formats via the
+> > +  Serial Camera Control Bus (SCCB) interface.
+> > +
+> > +  Supports images sizes: 5 Mpixel, EIS1080p, 1080p, 720p, VGA, QVGA
+> > +
+> > +  OV5693 is programmable through I2C and two-wire Serial Camera Control Bus (SCCB).
+> > +  The sensor output is available via CSI-2 serial data output (up to 2-lane).
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: ovti,ov5693
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    description:
+> > +      System input clock (aka XVCLK). From 6 to 27 MHz.
+> > +    maxItems: 1
+> > +
+> > +  dovdd-supply:
+> > +    description:
+> > +      Digital I/O voltage supply, 1.8V.
+> > +
+> > +  avdd-supply:
+> > +    description:
+> > +      Analog voltage supply, 2.8V.
+> > +
+> > +  dvdd-supply:
+> > +    description:
+> > +      Digital core voltage supply, 1.2V.
+> > +
+> > +  reset-gpios:
+> > +    description:
+> > +      The phandle and specifier for the GPIO that controls sensor reset.
+> > +      This corresponds to the hardware pin XSHUTDN which is physically
+> > +      active low.
+> > +    maxItems: 1
+> > +
+> > +  port:
+> > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        $ref: /schemas/media/video-interfaces.yaml#
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          data-lanes:
+> > +            minItems: 1
+> > +            maxItems: 2
+> > +
+> > +          # Supports max data transfer of 900 Mbps per lane
+> > +          link-frequencies: true
 > 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> This is not needed. Provided by video-interfaces.yaml.
 > 
-> ---
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - dovdd-supply
+> > +  - avdd-supply
+> > +  - dvdd-supply
+> > +  - port
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/px30-cru.h>
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    #include <dt-bindings/pinctrl/rockchip.h>
+> > +
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        ov5693: camera@36 {
+> > +            compatible = "ovti,ov5693";
+> > +            reg = <0x36>;
+> > +
+> > +            reset-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
+> > +            pinctrl-names = "default";
+> > +            pinctrl-0 = <&cif_clkout_m0>;
+> > +
+> > +            clocks = <&cru SCLK_CIF_OUT>;
+> > +            assigned-clocks = <&cru SCLK_CIF_OUT>;
+> > +            assigned-clock-rates = <19200000>;
+> > +
+> > +            avdd-supply = <&vcc_1v8>;
+> > +            dvdd-supply = <&vcc_1v2>;
+> > +            dovdd-supply = <&vcc_2v8>;
+> > +
+> > +            rotation = <90>;
+> > +            orientation = <0>;
+> > +
+> > +            port {
+> > +                ucam_out: endpoint {
+> > +                    remote-endpoint = <&mipi_in_ucam>;
+> > +                    data-lanes = <1 2>;
+> > +                    link-frequencies = /bits/ 64 <450000000>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > \ No newline at end of file
 > 
-> Folks, I don't have Tegra 194 PCIe hw instance to test it out. Could you
-> please make sure this patch doesn't brake anything?
+> ^^^ This has to be fixed.
+> 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> Best regards,
+> Krzysztof
 
-Hi,
-I tried to apply the series 
-https://patchwork.kernel.org/project/linux-pci/list/?series=653624 on 
-top of linux-next and ran into conflicts. Could you please tell me the 
-minimum set of patches to be taken?
+-- 
+Tommaso Merciai
+Embedded Linux Engineer
+tommaso.merciai@amarulasolutions.com
+__________________________________
 
-Thanks,
-Vidya Sagar
-
-> 
-> Changelog v3:
-> - This is a new patch create as a result of the discussion:
->    https://lore.kernel.org/linux-pci/20220503214638.1895-6-Sergey.Semin@baikalelectronics.ru/
-> ---
->   drivers/pci/controller/dwc/pcie-tegra194.c | 1 -
->   1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
-> index f24b30b7454f..e497e6de8d15 100644
-> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
-> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
-> @@ -1979,7 +1979,6 @@ static int tegra194_pcie_probe(struct platform_device *pdev)
->          pci->ops = &tegra_dw_pcie_ops;
->          pci->n_fts[0] = N_FTS_VAL;
->          pci->n_fts[1] = FTS_VAL;
-> -       pci->version = DW_PCIE_VER_490A;
-> 
->          pp = &pci->pp;
->          pp->num_vectors = MAX_MSI_IRQS;
-> --
-> 2.35.1
-> 
+Amarula Solutions SRL
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+T. +39 042 243 5310
+info@amarulasolutions.com
+www.amarulasolutions.com
