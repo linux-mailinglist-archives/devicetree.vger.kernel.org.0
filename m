@@ -2,150 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A02BB55B48E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jun 2022 02:16:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E654555B4CD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jun 2022 02:55:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229521AbiF0AQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 20:16:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34898 "EHLO
+        id S229468AbiF0Ay0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 20:54:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiF0AQQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 20:16:16 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 348802BC9;
-        Sun, 26 Jun 2022 17:16:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656288975; x=1687824975;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ETjJrKM7EKk6qTo3Ymv4caPFnW5n+rV1F7mfJnOmGRw=;
-  b=EcKpt91LksF/odPka4uwLxxxaO5GoW5rMCf8qsc5KZ5x2C0hr8KEWVro
-   Qz2QFb2rdkLjuIrQKpE0clSLeFgWW+fKH/HC29RHI9zBRJYuZmM28C9WM
-   IsX4aRjHkmk91U2GWwWCL6q0gIL4NeXioHy8gD9CTgAK19vu9Ijz4Pkty
-   hXr4kVMqEdBe2LCtHGmtITEdNGWNwG5dY2i2kLCn3WtlfjOS8T+KPaLrU
-   KgiELc/1Rh2DVyWLZVATfoL7UwRyRh5SGu75+iviNghtTKMTEmGQojW6G
-   xRKxJetjGhRMdnyiX2UFSis+X9AwMVAY4zumUDZyNp7KVgc3WsDuCD/cR
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10390"; a="278868720"
-X-IronPort-AV: E=Sophos;i="5.92,225,1650956400"; 
-   d="scan'208";a="278868720"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jun 2022 17:16:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,225,1650956400"; 
-   d="scan'208";a="732083282"
-Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 26 Jun 2022 17:16:11 -0700
-Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1o5cQF-0007zZ-6B;
-        Mon, 27 Jun 2022 00:16:11 +0000
-Date:   Mon, 27 Jun 2022 08:15:20 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Ash Logan <ash@heyquark.com>, paulus@samba.org, mpe@ellerman.id.au,
-        christophe.leroy@csgroup.eu, robh+dt@kernel.org,
-        benh@kernel.crashing.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        j.ne@posteo.net, linkmauve@linkmauve.fr,
-        rw-r-r-0644@protonmail.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 06/12] powerpc: wiiu: udbg support for latteipc
-Message-ID: <202206270817.dnXU7wge-lkp@intel.com>
-References: <20220622131037.57604-7-ash@heyquark.com>
+        with ESMTP id S229682AbiF0AyY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 20:54:24 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D4BD2DF5
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 17:54:18 -0700 (PDT)
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220627005414epoutp045cc4ddc2bb40d27894d505cb3c9a0e24~8VB74c_qs1091110911epoutp04R
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 00:54:14 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220627005414epoutp045cc4ddc2bb40d27894d505cb3c9a0e24~8VB74c_qs1091110911epoutp04R
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1656291254;
+        bh=VyGKq5/V7sBKRWikplOQYWFBGryszyHFEP4fSH4V+xg=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=mtJi2z6fu9P5+6ISzEGxF3B12AIwxJ8jqVu0Qi9eVxwcSSUEXf9SF45QSA7mbLul2
+         hKlB2DoQDn/FpSLhkxVj1kXUGmyjH8XC3VtTu6YXwBLaikFv250hgt3QkkkrmnG3m/
+         zePBFhC4ZADN4nGeAuaYIX47fRoMEs1UeXaJeB3I=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+        20220627005413epcas2p1474c27ba236c90f2ea25bc32bd81e6ed~8VB69FT623199031990epcas2p1v;
+        Mon, 27 Jun 2022 00:54:13 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.68]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4LWTks4c3zz4x9Q5; Mon, 27 Jun
+        2022 00:54:13 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        90.9C.09650.5BFF8B26; Mon, 27 Jun 2022 09:54:13 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+        20220627005413epcas2p3b3a22da2bf40b77b942cb2c6427135d5~8VB6LG_ve1545015450epcas2p3R;
+        Mon, 27 Jun 2022 00:54:13 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220627005413epsmtrp1d09a5c595ac5dfbd525fae81071f6c26~8VB6KOWWv0629806298epsmtrp1t;
+        Mon, 27 Jun 2022 00:54:13 +0000 (GMT)
+X-AuditID: b6c32a46-0a3ff700000025b2-83-62b8ffb5af63
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        88.1A.08802.4BFF8B26; Mon, 27 Jun 2022 09:54:13 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220627005412epsmtip239c15c288929643923b2f7a37348fb93~8VB58Zr131353713537epsmtip2W;
+        Mon, 27 Jun 2022 00:54:12 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH 0/3] fixes for exynosautov9 clock
+Date:   Mon, 27 Jun 2022 09:52:07 +0900
+Message-Id: <20220627005210.6473-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220622131037.57604-7-ash@heyquark.com>
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrJJsWRmVeSWpSXmKPExsWy7bCmme7W/zuSDBrfK1k8mLeNzeLyfm2L
+        61+es1rMP3KO1aLvxUNmi72vt7JbbHp8jdXiY889VosZ5/cxWVw85WrRuvcIu8XhN+2sFv+u
+        bWSxWLXrD6MDn8f7G63sHjtn3WX32LSqk83jzrU9bB6bl9R79G1ZxejxeZNcAHtUtk1GamJK
+        apFCal5yfkpmXrqtkndwvHO8qZmBoa6hpYW5kkJeYm6qrZKLT4CuW2YO0MFKCmWJOaVAoYDE
+        4mIlfTubovzSklSFjPziElul1IKUnALzAr3ixNzi0rx0vbzUEitDAwMjU6DChOyMSQt2MBUs
+        YKlYeeo4awPjPuYuRk4OCQETiX1v9rN1MXJxCAnsYJSY3XmaBcL5xCjR138AKvOZUWJ6ZzMj
+        TMvZDasYIRK7GCWOzVnFBpIQEvjIKDH/PQeIzSagK7Hl+SuwIhGBx0wSh4+0gRUxC9xglDi8
+        FWy5sIChxOLjzUBxDg4WAVWJ9a/9QMK8ArYSK7bNYYJYJi+xYX4vM0RcUOLkzCcsEGPkJZq3
+        zmYGmS8hMJFDYm37H6jrXCR2/m5ghbCFJV4d38IOYUtJvOxvg7KLJZbO+sQE0dzAKHF52y82
+        iISxxKxn7YwgBzELaEqs36UPYkoIKEscuQW1l0+i4/Bfdogwr0RHmxBEo7rEge3TWSBsWYnu
+        OZ+hLvCQWPjiEzMkeGIl7ky6xjiBUX4Wkm9mIflmFsLeBYzMqxjFUguKc9NTi40KjOCRmpyf
+        u4kRnGa13HYwTnn7Qe8QIxMH4yFGCQ5mJRHe19e3JgnxpiRWVqUW5ccXleakFh9iNAUG70Rm
+        KdHkfGCizyuJNzSxNDAxMzM0NzI1MFcS5/VK2ZAoJJCeWJKanZpakFoE08fEwSnVwHT4nPB9
+        /sOSzotEJ1vO/VX/TefMa717dQcazj02i51Q8XRTxpbTdqETfmjHKFev0quMmL21+I3x/Nxi
+        1R1TJwhOkPshNK1QJyjju6yT/rMd3rPCewO3x8ZPr/D/u+V5umX4H3ux9fLW+jKHZju59jwp
+        nzRllt/hOQ8rprJkK/1aX1Inteh+ZFikf/6B5MibInVLNG+nMJXe1f992fnixN/vYxI1yk9c
+        lExu5w4Vi01J93aRsVKtbXo75SXTdF/DSZH5ywrvrU7dcshL1S72qJGLKlsHI0dPfvHjxvZr
+        c1dtZsj1EGDucinMuz5BLH2f4rtvrkZMbUbmWk9tftktn63I/m1m/8w2tf0ebxzblFiKMxIN
+        tZiLihMB9gKphjwEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrFLMWRmVeSWpSXmKPExsWy7bCSvO7W/zuSDO63M1s8mLeNzeLyfm2L
+        61+es1rMP3KO1aLvxUNmi72vt7JbbHp8jdXiY889VosZ5/cxWVw85WrRuvcIu8XhN+2sFv+u
+        bWSxWLXrD6MDn8f7G63sHjtn3WX32LSqk83jzrU9bB6bl9R79G1ZxejxeZNcAHsUl01Kak5m
+        WWqRvl0CV8akBTuYChawVKw8dZy1gXEfcxcjJ4eEgInE2Q2rGLsYuTiEBHYwSszu+MIIkZCV
+        ePZuBzuELSxxv+UIK0TRe0aJhav/MYEk2AR0JbY8fwXWLSLwnEliyoqDYA6zwB1GiSmzZ4NV
+        CQsYSiw+3szWxcjBwSKgKrH+tR9ImFfAVmLFtjlMEBvkJTbM72WGiAtKnJz5hAXEZgaKN2+d
+        zTyBkW8WktQsJKkFjEyrGCVTC4pz03OLDQuM8lLL9YoTc4tL89L1kvNzNzGCg19LawfjnlUf
+        9A4xMnEwHmKU4GBWEuF9fX1rkhBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHeC10n44UE0hNLUrNT
+        UwtSi2CyTBycUg1MNhala2WXL7bp9dy0vrDuimTZu7z10l6TnO5P+WL5Yp+yLf++OW6W+VP9
+        pcsyY3wzq5Rn2Elu8Os4Zfx/O8fS6x1T5W3+R0w3WFjl5aXNneGzZPuMqsaPq+oDT1hvceIP
+        3ufxvfUrw8rqgln3tP/9LZZ9dzH5+4ytH7zfv7I7qp737+ui/uvdj/Zsraxcl7izMJfD2EnP
+        iS+yjyn+u2yK2YmjJ2f3tIcfVF6aHaCw+It4+6k5m+Na1q1UO3jy3c5b/2fyTmWT/vHkX8nr
+        d994BeQ22NxTWhhz68cEkVwFM3kB1ifyDLfKbDw+Xr7rskm+9M//FjeTVoMzz1/k6aRJPzN7
+        cOeMutE9rUfSLzKfKLEUZyQaajEXFScCACNUEljtAgAA
+X-CMS-MailID: 20220627005413epcas2p3b3a22da2bf40b77b942cb2c6427135d5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220627005413epcas2p3b3a22da2bf40b77b942cb2c6427135d5
+References: <CGME20220627005413epcas2p3b3a22da2bf40b77b942cb2c6427135d5@epcas2p3.samsung.com>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ash,
+There are some fixes for exynosautov9 such as clock id numbering,
+missing clocks and register offsets.
 
-Thank you for the patch! Perhaps something to improve:
+Chanho Park (3):
+  dt-bindings: clock: exynosautov9: correct clock numbering of peric0/c1
+  clk: samsung: exynosautov9: add missing gate clks for peric0/c1
+  clk: samsung: exynosautov9: correct register offsets of peric0/c1
 
-[auto build test WARNING on powerpc/next]
-[also build test WARNING on robh/for-next linus/master v5.19-rc4 next-20220624]
-[cannot apply to mpe/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ash-Logan/dt-bindings-wiiu-Document-the-Nintendo-Wii-U-devicetree/20220622-221056
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/powerpc/linux.git next
-config: powerpc-randconfig-c003-20220626
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project b0d6dd3905db145853c7c744ac92d49b00b1fa20)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install powerpc cross compiling tool for clang build
-        # apt-get install binutils-powerpc-linux-gnu
-        # https://github.com/intel-lab-lkp/linux/commit/acc3ab8f224a93f1a41267aeb09dee3d2ec810fb
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Ash-Logan/dt-bindings-wiiu-Document-the-Nintendo-Wii-U-devicetree/20220622-221056
-        git checkout acc3ab8f224a93f1a41267aeb09dee3d2ec810fb
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash arch/powerpc/platforms/wiiu/ drivers/usb/misc/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> arch/powerpc/platforms/wiiu/udbg_latteipc.c:65:13: warning: no previous prototype for function 'latteipc_udbg_init' [-Wmissing-prototypes]
-   void __init latteipc_udbg_init(void)
-               ^
-   arch/powerpc/platforms/wiiu/udbg_latteipc.c:65:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   void __init latteipc_udbg_init(void)
-   ^
-   static 
-   1 warning generated.
-
-
-vim +/latteipc_udbg_init +65 arch/powerpc/platforms/wiiu/udbg_latteipc.c
-
-    61	
-    62	/*
-    63	 * Latte IPC udbg support initialization.
-    64	 */
-  > 65	void __init latteipc_udbg_init(void)
-    66	{
-    67		struct device_node *np;
-    68		void __iomem *ipc_io_base;
-    69	
-    70		if (latteipc_io_base)
-    71			udbg_printf("%s: early -> final\n", __func__);
-    72	
-    73		np = of_find_compatible_node(NULL, NULL, "nintendo,latte-ipc");
-    74		if (!np) {
-    75			udbg_printf("%s: IPC node not found\n", __func__);
-    76			goto out;
-    77		}
-    78	
-    79		ipc_io_base = latteipc_udbg_setup_ipc_io_base(np);
-    80		if (!ipc_io_base) {
-    81			udbg_printf("%s: failed to setup IPC io base\n", __func__);
-    82			goto done;
-    83		}
-    84	
-    85		udbg_putc = latteipc_udbg_putc;
-    86		udbg_printf("latteipc_udbg: ready\n");
-    87	
-    88	done:
-    89		of_node_put(np);
-    90	out:
-    91		return;
-    92	}
-    93	
+ drivers/clk/samsung/clk-exynosautov9.c        | 28 ++++++----
+ .../dt-bindings/clock/samsung,exynosautov9.h  | 56 +++++++++----------
+ 2 files changed, 46 insertions(+), 38 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.36.1
+
