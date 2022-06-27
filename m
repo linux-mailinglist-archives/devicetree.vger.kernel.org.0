@@ -2,80 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38DFF55D724
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:17:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C47855C14E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:44:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232439AbiF0KLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 06:11:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54614 "EHLO
+        id S233720AbiF0KRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 06:17:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231776AbiF0KL2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 06:11:28 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FDDF6401;
-        Mon, 27 Jun 2022 03:11:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233982AbiF0KRT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 06:17:19 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 731296440
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 03:17:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1656325036;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=29XAW3SdVV053hARy2DHbS6TO7CBuYcWdq0hwUUUOu8=;
+        b=i02/zf9jeGNZ63POGBjKzIzknhWwA0Rptr8MX0ZqVp0Y857DyCi4KiPZAaOCClZ78BZd6m
+        yvi3IpMAaJCtKdRY7kPPaZvTaf1XFjO6HszsqiRJUEgOpKUarZvkbpGB4JCV6BRbsJ901R
+        XcYIEeIT3QogvF0Wv+gJJBQj20IwBeI=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-668-_16kP6lEP1-vh2RorxSJ6Q-1; Mon, 27 Jun 2022 06:17:13 -0400
+X-MC-Unique: _16kP6lEP1-vh2RorxSJ6Q-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com [10.11.54.2])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BF161B8106E;
-        Mon, 27 Jun 2022 10:11:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66AF1C3411D;
-        Mon, 27 Jun 2022 10:11:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656324684;
-        bh=uM9Jg0xWGjqPi0Q4iaOPjmzP/20updvm1fUGxrOmNGM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=G0lRwuQ5A6e7SuAtuHgJhvkJ9nOwh4bP0BSZ2uoYhzGNN347xKLZ79PT5l8WJS9Fg
-         la8tZGg6YkAYUreLjih3n5IgGhpBnNyTBCaHlHkyky1F9M1t/CdfpKqVv+3KwCOd4O
-         0isOnQEIG3vwdUGH2JP26UKlfCyGJ/xeslFDLpXBYKGA/pYeQIr5EhKXL9T04l+ZgW
-         h+RMJ/Q+2e5qD3xI62wre8v3GzN9Vp3jf54EfdTxKeTP32Ee2H5dM1MdnxscqM1V9w
-         dSb54w2w8hFtwfi5NfH+n7NuVkQXK2gH0Fj8kV2HpzRF5QIkmslMz/+vNhbsm542aw
-         DCCoNxhorI2fw==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1o5liE-003OOJ-5W;
-        Mon, 27 Jun 2022 11:11:22 +0100
-Date:   Mon, 27 Jun 2022 11:11:21 +0100
-Message-ID: <87a69y2z7a.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 474EC83395C;
+        Mon, 27 Jun 2022 10:17:12 +0000 (UTC)
+Received: from localhost (ovpn-13-65.pek2.redhat.com [10.72.13.65])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id CDC4A404E4DD;
+        Mon, 27 Jun 2022 10:17:10 +0000 (UTC)
+Date:   Mon, 27 Jun 2022 18:17:07 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        Eric Biederman <ebiederm@xmission.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v2 2/2] irqchip/sifive-plic: Add support for Renesas RZ/Five SoC
-In-Reply-To: <CAMuHMdVt9FjCtvMgJcCh=g2b+8b-fgabGbOLDcXNrrPMpC+3jQ@mail.gmail.com>
-References: <20220626004326.8548-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <20220626004326.8548-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <87wnd3erab.wl-maz@kernel.org>
-        <CA+V-a8tcxj_N0sBHhgAZAN8WSJ12JnDzAvUUnCXto3wHLqNVwg@mail.gmail.com>
-        <87v8snehwi.wl-maz@kernel.org>
-        <CAMuHMdVt9FjCtvMgJcCh=g2b+8b-fgabGbOLDcXNrrPMpC+3jQ@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: geert@linux-m68k.org, prabhakar.csengg@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, sagar.kadam@sifive.com, palmer@dabbelt.com, paul.walmsley@sifive.com, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, biju.das.jz@bp.renesas.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>, kexec@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>,
+        liushixin <liushixin2@huawei.com>
+Subject: Re: [PATCH 5/5] arm64: kdump: Don't defer the reservation of crash
+ high memory
+Message-ID: <YrmDo7Sx1jNQ4WFd@MiWiFi-R3L-srv>
+References: <20220613080932.663-1-thunder.leizhen@huawei.com>
+ <20220613080932.663-6-thunder.leizhen@huawei.com>
+ <YrFYHYgX3mC//t2l@MiWiFi-R3L-srv>
+ <3f66323d-f371-b931-65fb-edfae0f01c88@huawei.com>
+ <YrIIJkhKWSuAqkCx@arm.com>
+ <YrLUREAoBMSZo7RR@MiWiFi-R3L-srv>
+ <YrRzvO5F0dumsbAU@arm.com>
+ <Yrkbak66vYT55H4x@MiWiFi-R3L-srv>
+ <e3318551-4134-245a-c060-86ab81eb3e68@huawei.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e3318551-4134-245a-c060-86ab81eb3e68@huawei.com>
+X-Scanned-By: MIMEDefang 2.84 on 10.11.54.2
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,85 +87,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Jun 2022 09:53:13 +0100,
-Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+On 06/27/22 at 05:17pm, Leizhen (ThunderTown) wrote:
 > 
-> Hi Marc,
 > 
-> On Sun, Jun 26, 2022 at 2:19 PM Marc Zyngier <maz@kernel.org> wrote:
-> > On Sun, 26 Jun 2022 10:38:18 +0100,
-> > "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> > > On Sun, Jun 26, 2022 at 9:56 AM Marc Zyngier <maz@kernel.org> wrote:
-> > > > On Sun, 26 Jun 2022 01:43:26 +0100,
-> > > > Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > > > The Renesas RZ/Five SoC has a RISC-V AX45MP AndesCore with NCEPLIC100. The
-> > > > > NCEPLIC100 supports both edge-triggered and level-triggered interrupts. In
-> > > > > case of edge-triggered interrupts NCEPLIC100 ignores the next interrupt
-> > > > > edge until the previous completion message has been received and
-> > > > > NCEPLIC100 doesn't support pending interrupt counter, hence losing the
-> > > > > interrupts if not acknowledged in time.
-> > > > >
-> > > > > So the workaround for edge-triggered interrupts to be handled correctly
-> > > > > and without losing is that it needs to be acknowledged first and then
-> > > > > handler must be run so that we don't miss on the next edge-triggered
-> > > > > interrupt.
-> > > > >
-> > > > > This patch adds a new compatible string for Renesas RZ/Five SoC and adds
-> > > > > support to change interrupt flow based on the interrupt type. It also
-> > > > > implements irq_ack and irq_set_type callbacks.
-> > > > >
-> > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> On 2022/6/27 10:52, Baoquan He wrote:
+> > On 06/23/22 at 03:07pm, Catalin Marinas wrote:
+> >> On Wed, Jun 22, 2022 at 04:35:16PM +0800, Baoquan He wrote:
+> >>> On 06/21/22 at 07:04pm, Catalin Marinas wrote:
+> >>>> The problem with splitting is that you can end up with two entries in
+> >>>> the TLB for the same VA->PA mapping (e.g. one for a 4KB page and another
+> >>>> for a 2MB block). In the lucky case, the CPU will trigger a TLB conflict
+> >>>> abort (but can be worse like loss of coherency).
+> >>>
+> >>> Thanks for this explanation. Is this a drawback of arm64 design? X86
+> >>> code do the same thing w/o issue, is there way to overcome this on
+> >>> arm64 from hardware or software side?
+> >>
+> >> It is a drawback of the arm64 implementations. Having multiple TLB
+> >> entries for the same VA would need additional logic in hardware to
+> >> detect, so the microarchitects have pushed back. In ARMv8.4, some
+> >> balanced was reached with FEAT_BBM so that the only visible side-effect
+> >> is a potential TLB conflict abort that could be resolved by software.
+> > 
+> > I see, thx.
+> > 
+> >>
+> >>> I ever got a arm64 server with huge memory, w or w/o crashkernel setting 
+> >>> have different bootup time. And the more often TLB miss and flush will
+> >>> cause performance cost. It is really a pity if we have very powerful
+> >>> arm64 cpu and system capacity, but bottlenecked by this drawback.
+> >>
+> >> Is it only the boot time affected or the runtime performance as well?
+> > 
+> > Sorry for late reply. What I observerd is the boot time serious latecy
+> > with huge memory. Since the timestamp is not available at that time,
+> > we can't tell the number. I didn't notice the runtime performance.
 > 
-> > > > > +     if (of_device_is_compatible(node, "renesas,r9a07g043-plic")) {
-> > > > > +             priv->of_data = RENESAS_R9A07G043_PLIC;
-> > > > > +             plic_chip.name = "Renesas RZ/Five PLIC";
-> > > >
-> > > > NAK. The irq_chip structure isn't the place for platform marketing.
-> > > > This is way too long anyway (and same for the edge version), and you
-> > > > even sent me a patch to make that structure const...
-> > > >
-> > > My bad will drop this.
-> >
-> > And why you're at it, please turn this rather random 'of_data' into
-> > something like:
-> >
-> > diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
-> > index bb87e4c3b88e..cd1683b77caf 100644
-> > --- a/drivers/irqchip/irq-sifive-plic.c
-> > +++ b/drivers/irqchip/irq-sifive-plic.c
-> > @@ -64,6 +64,10 @@ struct plic_priv {
-> >         struct cpumask lmask;
-> >         struct irq_domain *irqdomain;
-> >         void __iomem *regs;
-> > +       enum {
-> > +               VANILLA_PLIC,
-> > +               RENESAS_R9A07G043_PLIC,
-> > +       } flavour;
-> >  };
-> >
-> >  struct plic_handler {
-> >
-> > to give some structure to the whole thing, because I'm pretty sure
-> > we'll see more braindead implementations as time goes by.
+> There's some data here, and I see you're not on the cc list.
 > 
-> What about using a feature flag (e.g. had_edge_irqs) instead?
+> https://lore.kernel.org/linux-mm/1656241815-28494-1-git-send-email-guanghuifeng@linux.alibaba.com/T/
 
-Sure. Then make this an unsigned long, and have a set of quirk bits,
-because I expect this to grow quickly.
+Thanks, Zhen Lei. I also saw the patch. That seems to be a good way,
+since there's only one process running at that time. Not sure if there's
+still risk of multiple TLB entries for the same VA existing.
 
->
-> > It almost feels like I've written this whole patch. Oh wait...
-> 
-> > Without deviation from the norm, progress is not possible.
-> 
-> How applicable ;-)
-
-I'm not sure there is any sign of progress here, and evolution
-through random mutation has a pretty massive failure rate.
-
-Thanks,
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
