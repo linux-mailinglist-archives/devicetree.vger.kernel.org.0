@@ -2,175 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB77E55DB1F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:24:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11EE255D445
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:13:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232845AbiF0JHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 05:07:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58960 "EHLO
+        id S232453AbiF0JMk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 05:12:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232471AbiF0JHf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:07:35 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791A363A2;
-        Mon, 27 Jun 2022 02:07:33 -0700 (PDT)
-X-UUID: 23f17b2fbb3043a588c92764b0d1dd80-20220627
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:f70f43ab-e014-4ee0-9be2-df16cfa7cdc2,OB:0,LO
-        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:25
-X-CID-META: VersionHash:b14ad71,CLOUDID:1bda232e-1756-4fa3-be7f-474a6e4be921,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 23f17b2fbb3043a588c92764b0d1dd80-20220627
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1260323630; Mon, 27 Jun 2022 17:07:29 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Mon, 27 Jun 2022 17:07:28 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Mon, 27 Jun 2022 17:07:28 +0800
-Message-ID: <5a5d11158dd45355e5e6c3b5decbe41495bd19ad.camel@mediatek.com>
-Subject: Re: [PATCH v14 01/15] dt-bindings: mediatek,dpi: Add DP_INTF
- compatible
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 27 Jun 2022 17:07:28 +0800
-In-Reply-To: <a2612c2628eefbbf909d4847b3d0067746813f33.camel@mediatek.com>
-References: <20220624030946.14961-1-rex-bc.chen@mediatek.com>
-         <20220624030946.14961-2-rex-bc.chen@mediatek.com>
-         <a2612c2628eefbbf909d4847b3d0067746813f33.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S233786AbiF0JMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:12:33 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EFD62664;
+        Mon, 27 Jun 2022 02:12:31 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 3E49FE0004;
+        Mon, 27 Jun 2022 09:12:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1656321148;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=P/aeWWjcU0pgTxSwnjFANZsIuEo0pdJ58U5EC/Hg9ws=;
+        b=pjj1BJqlH41VjgpxpUnUPjFak7CZHgFA73fITnzpLF2aujUnxSv5YBybx35HmLB/1u8afq
+        UhQ2zBx3y6bMSHU2THvZeaHhvJREii3B1WyfhfM/oiKxtdqiz7c9JC3IPOPp/3G8fRse1n
+        KJ8YSiMFayq0TQqu7ZES9J6Zyq8/JhOaVmqkTiUHcc8ythxd2K08zQozS2B3rPt+5ayr5x
+        IKUZOcVqmeZQ0z7CLyQx1ZcWd8JZaf2V4BHErcfXvamtxpBfGrjdrA//enBhMI8+V7NQEa
+        kBpHbEQl0+NSZRlGq6K1TiA0hB3rYDjFKlJ61vlk8z7WLzCVtdXbMbRA1fAGTw==
+Date:   Mon, 27 Jun 2022 11:11:39 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lizhi Hou <lizhi.hou@xilinx.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 1/2] of: create of_root if no dtb provided
+Message-ID: <20220627111139.22ea1abd@fixe.home>
+In-Reply-To: <6d40876c-2751-01bb-94ab-7c9ab90e636f@gmail.com>
+References: <20220624034327.2542112-1-frowand.list@gmail.com>
+        <20220624034327.2542112-2-frowand.list@gmail.com>
+        <20220624141320.3c473605@fixe.home>
+        <6d40876c-2751-01bb-94ab-7c9ab90e636f@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-06-27 at 15:50 +0800, CK Hu wrote:
-> Hi, Bo-Chen:
-> 
-> On Fri, 2022-06-24 at 11:09 +0800, Bo-Chen Chen wrote:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > 
-> > DP_INTF is similar to DPI but does not have the exact same feature
-> > set
-> > or register layouts.
-> > 
-> > DP_INTF is the sink of the display pipeline that is connected to
-> > the
-> > DisplayPort controller and encoder unit. It takes the same clocks
-> > as
-> > DPI.
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > [Bo-Chen: Modify reviewers' comments.]
-> 
-> Except this line,
-> 
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> 
+Le Fri, 24 Jun 2022 11:44:07 -0500,
+Frank Rowand <frowand.list@gmail.com> a =C3=A9crit :
 
-Hello CK,
+> On 6/24/22 08:13, Cl=C3=A9ment L=C3=A9ger wrote:
+> > Le Thu, 23 Jun 2022 22:43:26 -0500,
+> > frowand.list@gmail.com a =C3=A9crit :
+> >  =20
+> >> =20
+> >> +/*
+> >> + * __dtb_empty_root_begin[] magically created by cmd_dt_S_dtb in
+> >> + * scripts/Makefile.lib
+> >> + */
+> >> +extern void *__dtb_empty_root_begin;
+> >> +
+> >>  /*
+> >>   * of_fdt_limit_memory - limit the number of regions in the /memory n=
+ode
+> >>   * @limit: maximum entries
+> >> @@ -1332,8 +1338,13 @@ bool __init early_init_dt_scan(void *params)
+> >>   */
+> >>  void __init unflatten_device_tree(void)
+> >>  { =20
+> >=20
+> > Hi Frank,
+> >=20
+> > This function is only defined when CONFIG_OF_EARLY_FLATTREE is enabled.=
+ =20
+>=20
+> More precisely, only if CONFIG_OF_FLATTREE is enabled.  But that would
+> most likely be seleved by CONFIG_OF_EARLY_FLATTREE, so in practice the
+> issue you raise is valid.
+>=20
+> > Which means that on platforms that do not select this, the default
+> > empty device-tree creation will not be done. =20
+>=20
+> Yes, so platforms that need this functionality need to select this
+> option.
 
-What do you mean?
-Do you mean I should drop this line?
+Yes, but this seems a bit odd because this is not really a early
+flattree that is provided by the firmware. This simply allows to have a
+working support for overlays (As a "side effect" I agree).
 
-BRs,
-Bo-Chen
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > Reviewed-by: AngeloGioacchino Del Regno <
-> > angelogioacchino.delregno@collabora.com>
-> > ---
-> >  .../bindings/display/mediatek/mediatek,dpi.yaml       | 11 ++++++-
-> > --
-> > --
-> >  1 file changed, 6 insertions(+), 5 deletions(-)
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
-> > am
-> > l
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
-> > am
-> > l
-> > index 77ee1b923991..8e526a4b134e 100644
-> > ---
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
-> > am
-> > l
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
-> > am
-> > l
-> > @@ -4,16 +4,16 @@
-> >  $id: 
-> > http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
-> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  
-> > -title: mediatek DPI Controller Device Tree Bindings
-> > +title: mediatek DPI and DP_INTF Controller
-> >  
-> >  maintainers:
-> >    - CK Hu <ck.hu@mediatek.com>
-> >    - Jitao shi <jitao.shi@mediatek.com>
-> >  
-> >  description: |
-> > -  The Mediatek DPI function block is a sink of the display
-> > subsystem
-> > and
-> > -  provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a
-> > parallel
-> > -  output bus.
-> > +  The Mediatek DPI and DP_INTF function blocks are a sink of the
-> > display
-> > +  subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422
-> > pixel data on a
-> > +  parallel output bus.
-> >  
-> >  properties:
-> >    compatible:
-> > @@ -24,6 +24,7 @@ properties:
-> >        - mediatek,mt8183-dpi
-> >        - mediatek,mt8186-dpi
-> >        - mediatek,mt8192-dpi
-> > +      - mediatek,mt8195-dp-intf
-> >  
-> >    reg:
-> >      maxItems: 1
-> > @@ -55,7 +56,7 @@ properties:
-> >      $ref: /schemas/graph.yaml#/properties/port
-> >      description:
-> >        Output port node. This port should be connected to the input
-> > port of an
-> > -      attached HDMI or LVDS encoder chip.
-> > +      attached HDMI, LVDS or DisplayPort encoder chip.
-> >  
-> >  required:
-> >    - compatible
-> 
-> 
+>=20
+> >=20
+> > This configuration option is selected by the platform and not by the
+> > user. On x86, only one config enables this (X86_INTEL_CE) which means
+> > this won't work on all the other platforms even if CONFIG_OF is
+> > selected. I would need this to work by only selected CONFIG_OF. =20
+>=20
+> Maybe this means that CONFIG_OF should be changed to select
+> CONFIG_OF_FLATTREE.  Any opinions on this Rob?
+>=20
+> > That's why I decided to add the of_root creation in of_core_init()
+> > using a function (of_fdt_unflatten()) that is provided if CONFIG_OF is
+> > defined. =20
+>=20
+> I mentioned this in response to the previous patch series, but will
+> repeat here for those who might not have read that email thread.
+>=20
+> I do not want the root live tree to be created buy different code in
+> different places; I want one central place where this occurs.  When
+> the tree can be created in multiple places by different code blocks,
+> it becomes more difficult to understand the code and more likely that
+> one of the tree creation code blocks is not updated when another is.
 
+Understood, my point was more about the fact that I did not wanted to
+select CONFIG_OF_FLATTREE to be able to use that support which does not
+seems entirely tied to having a "early flattree".
+
+Thanks,
+
+Cl=C3=A9ment
+
+>=20
+> >  =20
+> >> -	__unflatten_device_tree(initial_boot_params, NULL, &of_root,
+> >> +	if (!initial_boot_params) {
+> >> +		initial_boot_params =3D (void *) __dtb_empty_root_begin;
+> >> +		unflatten_and_copy_device_tree();
+> >> +	} else {
+> >> +		__unflatten_device_tree(initial_boot_params, NULL, &of_root,
+> >>  				early_init_dt_alloc_memory_arch, false);
+> >> +	}
+> >> =20
+> >>  	/* Get pointer to "/chosen" and "/aliases" nodes for use everywhere =
+*/
+> >>  	of_alias_scan(early_init_dt_alloc_memory_arch);
+> >> @@ -1373,6 +1384,12 @@ void __init unflatten_and_copy_device_tree(void)
+> >>  	unflatten_device_tree();
+> >>  }
+> >> =20
+> >> +void __init setup_of(void)
+> >> +{
+> >> +	if (!of_root)
+> >> +		unflatten_device_tree();
+> >> +}
+> >> +
+> >>  #ifdef CONFIG_SYSFS
+> >>  static ssize_t of_fdt_raw_read(struct file *filp, struct kobject *kob=
+j,
+> >>  			       struct bin_attribute *bin_attr,
+> >> diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
+> >> index d69ad5bb1eb1..4566876db351 100644
+> >> --- a/include/linux/of_fdt.h
+> >> +++ b/include/linux/of_fdt.h
+> >> @@ -81,6 +81,7 @@ extern const void *of_flat_dt_match_machine(const vo=
+id *default_match,
+> >>  /* Other Prototypes */
+> >>  extern void unflatten_device_tree(void);
+> >>  extern void unflatten_and_copy_device_tree(void);
+> >> +extern void setup_of(void);
+> >>  extern void early_init_devtree(void *);
+> >>  extern void early_get_first_memblock_info(void *, phys_addr_t *);
+> >>  #else /* CONFIG_OF_EARLY_FLATTREE */
+> >> @@ -91,6 +92,7 @@ static inline void early_init_fdt_reserve_self(void)=
+ {}
+> >>  static inline const char *of_flat_dt_get_machine_name(void) { return =
+NULL; }
+> >>  static inline void unflatten_device_tree(void) {}
+> >>  static inline void unflatten_and_copy_device_tree(void) {}
+> >> +static inline void of_setup(void) {} =20
+> >  =20
+>=20
+> > Shouldn't this be setup_of(void) ? =20
+>=20
+> Yes, thanks!  Will fix.
+>=20
+> One other thing I need to do is test this patch on a user mode linux
+> kernel.
+>=20
+> -Frank
+>=20
+
+
+
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
