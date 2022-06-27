@@ -2,139 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A75CB55CB40
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:59:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB77E55DB1F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:24:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233168AbiF0JF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 05:05:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58086 "EHLO
+        id S232845AbiF0JHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 05:07:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233086AbiF0JFz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:05:55 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35FE1634B;
-        Mon, 27 Jun 2022 02:05:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656320754; x=1687856754;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=jcKmTKeNDN11ToKECGTcEIIGoAMkwCReSD4tvZEnNOU=;
-  b=gh89DNe4LlIV3cmFQXzkOR5I57fix3KhHHbqM5idztRcTyFZtuUk5W+5
-   DRHzumX06f2vLeVrABUuXKQfMHry2HtRYW/QDZLMW0040hF9y7dEyV15l
-   CLDl/LLRT/UJzeDvnpubz5QQfzJVKaqWIPjqGGdKsMgjH0c550WbEfJV1
-   /KParq2Eo93HyjRIVCoFdRWnICVbzhYHucW5QsikB0N4MySnwbqA6FNDx
-   d79zPv8cE73mNatcjAmW2JVYO1d650Vyab4Y7tj0XG4UsS/urrhdSO0ow
-   AvUqprzvoUlP3r/nRuh5HFG7RDpdFuurNCWmxpbJHyB0KVDpM6DG74owq
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10390"; a="367719636"
-X-IronPort-AV: E=Sophos;i="5.92,225,1650956400"; 
-   d="scan'208";a="367719636"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2022 02:05:53 -0700
-X-IronPort-AV: E=Sophos;i="5.92,225,1650956400"; 
-   d="scan'208";a="646348400"
-Received: from gretavix-mobl3.amr.corp.intel.com ([10.249.43.78])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2022 02:05:49 -0700
-Date:   Mon, 27 Jun 2022 12:05:50 +0300 (EEST)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     Lukas Wunner <lukas@wunner.de>
-cc:     Lino Sanfilippo <LinoSanfilippo@gmx.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        vz@mleia.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        linux-serial <linux-serial@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, p.rosenberger@kunbus.com,
-        Lino Sanfilippo <l.sanfilippo@kunbus.com>
-Subject: Re: [PATCH 1/8] serial: core: only get RS485 termination gpio if
- supported
-In-Reply-To: <20220625194951.GA2879@wunner.de>
-Message-ID: <fbce8d7e-86e-d47e-bcd8-5b99754d1d2e@linux.intel.com>
-References: <20220622154659.8710-1-LinoSanfilippo@gmx.de> <20220622154659.8710-2-LinoSanfilippo@gmx.de> <20220625194951.GA2879@wunner.de>
+        with ESMTP id S232471AbiF0JHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:07:35 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791A363A2;
+        Mon, 27 Jun 2022 02:07:33 -0700 (PDT)
+X-UUID: 23f17b2fbb3043a588c92764b0d1dd80-20220627
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.6,REQID:f70f43ab-e014-4ee0-9be2-df16cfa7cdc2,OB:0,LO
+        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:25
+X-CID-META: VersionHash:b14ad71,CLOUDID:1bda232e-1756-4fa3-be7f-474a6e4be921,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 23f17b2fbb3043a588c92764b0d1dd80-20220627
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1260323630; Mon, 27 Jun 2022 17:07:29 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Mon, 27 Jun 2022 17:07:28 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Mon, 27 Jun 2022 17:07:28 +0800
+Message-ID: <5a5d11158dd45355e5e6c3b5decbe41495bd19ad.camel@mediatek.com>
+Subject: Re: [PATCH v14 01/15] dt-bindings: mediatek,dpi: Add DP_INTF
+ compatible
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 27 Jun 2022 17:07:28 +0800
+In-Reply-To: <a2612c2628eefbbf909d4847b3d0067746813f33.camel@mediatek.com>
+References: <20220624030946.14961-1-rex-bc.chen@mediatek.com>
+         <20220624030946.14961-2-rex-bc.chen@mediatek.com>
+         <a2612c2628eefbbf909d4847b3d0067746813f33.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 25 Jun 2022, Lukas Wunner wrote:
+On Mon, 2022-06-27 at 15:50 +0800, CK Hu wrote:
+> Hi, Bo-Chen:
+> 
+> On Fri, 2022-06-24 at 11:09 +0800, Bo-Chen Chen wrote:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > 
+> > DP_INTF is similar to DPI but does not have the exact same feature
+> > set
+> > or register layouts.
+> > 
+> > DP_INTF is the sink of the display pipeline that is connected to
+> > the
+> > DisplayPort controller and encoder unit. It takes the same clocks
+> > as
+> > DPI.
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > [Bo-Chen: Modify reviewers' comments.]
+> 
+> Except this line,
+> 
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> 
 
-> On Wed, Jun 22, 2022 at 05:46:52PM +0200, Lino Sanfilippo wrote:
-> > In uart_get_rs485_mode() only try to get a termination GPIO if RS485 bus
-> > termination is supported by the driver.
-> [...]
-> > --- a/drivers/tty/serial/serial_core.c
-> > +++ b/drivers/tty/serial/serial_core.c
-> > @@ -3384,17 +3384,20 @@ int uart_get_rs485_mode(struct uart_port *port)
-> >  		rs485conf->flags |= SER_RS485_RTS_AFTER_SEND;
-> >  	}
+Hello CK,
+
+What do you mean?
+Do you mean I should drop this line?
+
+BRs,
+Bo-Chen
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > Reviewed-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
+> > ---
+> >  .../bindings/display/mediatek/mediatek,dpi.yaml       | 11 ++++++-
+> > --
+> > --
+> >  1 file changed, 6 insertions(+), 5 deletions(-)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > am
+> > l
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > am
+> > l
+> > index 77ee1b923991..8e526a4b134e 100644
+> > ---
+> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > am
+> > l
+> > +++
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > am
+> > l
+> > @@ -4,16 +4,16 @@
+> >  $id: 
+> > http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
+> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
 > >  
-> > -	/*
-> > -	 * Disabling termination by default is the safe choice:  Else if many
-> > -	 * bus participants enable it, no communication is possible at all.
-> > -	 * Works fine for short cables and users may enable for longer cables.
-> > -	 */
-> > -	port->rs485_term_gpio = devm_gpiod_get_optional(dev, "rs485-term",
-> > -							GPIOD_OUT_LOW);
-> > -	if (IS_ERR(port->rs485_term_gpio)) {
-> > -		ret = PTR_ERR(port->rs485_term_gpio);
-> > -		port->rs485_term_gpio = NULL;
-> > -		return dev_err_probe(dev, ret, "Cannot get rs485-term-gpios\n");
-> > +	if (port->rs485_supported->flags & SER_RS485_TERMINATE_BUS) {
+> > -title: mediatek DPI Controller Device Tree Bindings
+> > +title: mediatek DPI and DP_INTF Controller
+> >  
+> >  maintainers:
+> >    - CK Hu <ck.hu@mediatek.com>
+> >    - Jitao shi <jitao.shi@mediatek.com>
+> >  
+> >  description: |
+> > -  The Mediatek DPI function block is a sink of the display
+> > subsystem
+> > and
+> > -  provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a
+> > parallel
+> > -  output bus.
+> > +  The Mediatek DPI and DP_INTF function blocks are a sink of the
+> > display
+> > +  subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422
+> > pixel data on a
+> > +  parallel output bus.
+> >  
+> >  properties:
+> >    compatible:
+> > @@ -24,6 +24,7 @@ properties:
+> >        - mediatek,mt8183-dpi
+> >        - mediatek,mt8186-dpi
+> >        - mediatek,mt8192-dpi
+> > +      - mediatek,mt8195-dp-intf
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -55,7 +56,7 @@ properties:
+> >      $ref: /schemas/graph.yaml#/properties/port
+> >      description:
+> >        Output port node. This port should be connected to the input
+> > port of an
+> > -      attached HDMI or LVDS encoder chip.
+> > +      attached HDMI, LVDS or DisplayPort encoder chip.
+> >  
+> >  required:
+> >    - compatible
 > 
-> So I think linux-next commit be2e2cb1d281 ("serial: Sanitize rs485_struct")
-> contains a mistake in that it forces drivers to set SER_RS485_TERMINATE_BUS
-> in their rs485_supported->flags to allow enabling bus termination.
 > 
-> That's wrong because *every* rs485-capable driver can enable bus
-> termination if a GPIO has been defined for that in the DT.
-
-Do you mean every em485 using driver? Otherwise I don't see this "forces 
-drivers to set" happening anywhere in the code?
-
-You're partially right because there are other bugs in this area such 
-as the one you propose a fix below. While I was making the sanitization 
-series, I entirely missed some parts related to termination because 
-SER_RS485_TERMINATE_BUS is seemingly not set/handled correctly by the 
-core.
-
-Another thing that looks a bug is that on subsequent call to TIOCSRS485, 
-w/o SER_RS485_TERMINATE_BUS nothing happens (for non-em485 driver, that 
-is)? It seems to be taken care by 2/8 of this series though, I think. But 
-it should be properly marked as Fixes: ... in that case although nobody 
-has complained about it so likely not a huge issue to anyone.
-
-> In fact, another commit which was applied as part of the same series,
-> ebe2cf736a04 ("serial: pl011: Fill in rs485_supported") does not set
-> SER_RS485_TERMINATE_BUS in amba-pl011.c's flags and thus forbids the
-> driver from enabling bus termination, even though we know there are
-> products out there which support bus termination on the pl011 through
-> a GPIO (Revolution Pi RevPi Compact, Revpi Flat).
->
-> I think what you want to do is amend uart_get_rs485_mode() to set
-> SER_RS485_TERMINATE_BUS in port->rs485_supported_flags if a GPIO
-> was found in the DT.  Instead of the change proposed above.
-
-That seems appropriate (and is a fix).
-
-What makes it a bit complicated though is that it's a pointer currently
-and what it points to is shared per driver (besides being const):
-	const struct serial_rs485       *rs485_supported;
-While it could be embedded into uart_port, there's the .padding which we 
-might not want to bloat uart_port with. Perhaps create non-uapi struct 
-kserial_rs485 w/o .padding and add static_assert()s to ensure the 
-layout is identical to serial_rs485?
-
-
--- 
- i.
 
