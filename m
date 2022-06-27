@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C83255E240
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:35:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F034155CD3D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:02:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238691AbiF0UDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S240794AbiF0UDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 27 Jun 2022 16:03:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44458 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240794AbiF0UDR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:03:17 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 991F119C33
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:03:16 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id w193so14332572oie.5
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:03:16 -0700 (PDT)
+        with ESMTP id S240775AbiF0UDS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:03:18 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76A9F1A04E
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:03:17 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id h65so14300484oia.11
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:03:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=VPBtP8O1NCKFrWC7IwgvW5NewXUbLSOkqLdfABadWfA=;
-        b=dMgUYGh2K6cZb8P/yVnlDCfIIBO4RQ5LhVIgqL/WxRpqdgd3G7SCZ5AplYWN4ApqBW
-         F9DmVWEYl2Qv3SLwS8kGyroPCMlprCEfzLi/8/1eDVvtU3d6+9JlhzgXj3yFbDa+WYFO
-         PMbbZcB1v1730V7ti1bziaPqehnXoEU/MLSO1zO92d2LOpXWzW2XJTVz5PRPLci00xDa
-         M7RDAgDR71DkhYG284F8/adT2lqoRsbc9v76ijNfGNiCRm4SsQZqK0jsYzx/hr1grk2J
-         mrZPt9QdmYAiVqKAIPl2Ocje3H1+3QBUoRioovdtbZm0oTfpw1eLaPtGas01gTf08Lnf
-         M+0A==
+        bh=UhPhl+t5/ktAw8kSs3VVHsTa2VujQ4O2ZgSbpa+CTK8=;
+        b=wo6k1nvz2uAijMO/X2kzzMChd0/6KzyQXO2e+Y1CE5FncOKxMZFzEPzPaaBoWwDMJf
+         CC0Q6rWWmtRXEXZ8XC0TdzI9DBcKTlTRUIgd8NH2hHRavpKbC88uftAEqP0FdPzV9cDh
+         vNk8P+yLmimbZmwuivS5Ia04qxZ65t4WXQYjI4t+wn6v0nLLeQ1XUP2FGQwn3i0SOh/C
+         ip5UFuSd02tKk4L/9gLFoRM3dRl8MUcDObFV/pMB7QDL4IasCF5aIPORT6qw9yzXeOKL
+         /G+1ZpOuQO6EJDs/MlMzJTHkuXg5kGXtJlEsyruF17NlQL9nXV1eIAAqBzWML5OQcnvW
+         oosg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=VPBtP8O1NCKFrWC7IwgvW5NewXUbLSOkqLdfABadWfA=;
-        b=c7NMLhW1JuAx40lepA05Lr9qnL0w2sn3k5xW+zwbTIg/gWHLXeQgYUUoq1xjlO7tii
-         8ZLachQ7B/Vj7ovRkNkePE+3CyFcvaMj0rooUdOifYnNgpbzH2mgLXvrrAb9WhI234KD
-         QUbP2gXpwzPu40PPrEIsGZU2UVrNdAaCJvO35kF/wutNyUoFQdL2IN5giZeldVNC/Yo7
-         1p0HeQnUepgZ6rmc2WIyF0CJ6+rrlLdPmpeu0gMJhGWXB3vm6SplrTiA0gzKo0JyDWFR
-         Pe1K16lbvXkVAH8v0ANIlyShDYQp9LuHghWAMMWuxrsuwEWEpJcpgc/siaDmgZdehu0O
-         153A==
-X-Gm-Message-State: AJIora8pWo8kYmxzIbzCaO9fcb9JuVVqwVCqK5BIQ4oNQs36hMmwHgxw
-        8MYT3pQfqQXX78/+m/Q3blGe9g==
-X-Google-Smtp-Source: AGRyM1vDmJmYyWM+kHHBQQayL5p1IvECtpBdyHBZN+PEmWbH8Oe2DldM+0bzJ28PnxHnyrlC/qP9cA==
-X-Received: by 2002:a05:6808:f12:b0:32f:7be5:9d5a with SMTP id m18-20020a0568080f1200b0032f7be59d5amr12135239oiw.150.1656360195862;
-        Mon, 27 Jun 2022 13:03:15 -0700 (PDT)
+        bh=UhPhl+t5/ktAw8kSs3VVHsTa2VujQ4O2ZgSbpa+CTK8=;
+        b=kLq+SMn5LXVO4TywlaqkIL7dHmfn+pX6P6M2BVXp4GOyA0DuIKmGzlyDaHmzKYtmTs
+         UA9c+yq1tXmuJHZ3dehXQO6vMvdLQTBUhyoTCs87bZknKS4W4EEBOPyzIp19uyl9EsSS
+         /tbenLN0JLK7tMrLpwXMOWaOMOD9QT6zRs67EhWTLSKbNrPMO6xMmJ3hC78x8QrSIj0M
+         Dtb3ZdjOOP2NlBm5fUeRnN5CZi+s2ybrgenBWhDtVhsSOec5csd1jWFgvyiCcwxea59g
+         zCJBnaJnR6lhQLvzhd8zh4lj3Y36zyTXym5lYc6rILaRWoHqkXEkbTbODweuDiYQZwzV
+         k9+Q==
+X-Gm-Message-State: AJIora9JU2H2wmKok42+bOcBUgRSS5XLnqg+LxithL+HaUABg7boXgGm
+        7sr0vJG4YhifY83vqscyThXo/Q==
+X-Google-Smtp-Source: AGRyM1se0SWBIF0TKW3xdl58Pn1tRqQwQ5vhssxGx+H/Jb8lwDq6ufWHQ1lzQZ06XrUuuwvFLMqHcQ==
+X-Received: by 2002:a05:6808:3096:b0:335:796f:abc2 with SMTP id bl22-20020a056808309600b00335796fabc2mr3044152oib.173.1656360197115;
+        Mon, 27 Jun 2022 13:03:17 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m16-20020a4a9510000000b0041bdf977c6dsm6428729ooi.31.2022.06.27.13.03.14
+        by smtp.gmail.com with ESMTPSA id m16-20020a4a9510000000b0041bdf977c6dsm6428729ooi.31.2022.06.27.13.03.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 13:03:15 -0700 (PDT)
+        Mon, 27 Jun 2022 13:03:16 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Douglas Anderson <dianders@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        mka@chromium.org, swboyd@chromium.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+Cc:     linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-arm-msm@vger.kernel.org, quic_khsieh@quicinc.com,
+        quic_sbillaka@quicinc.com, Rob Herring <robh+dt@kernel.org>,
+        quic_aravindh@quicinc.com, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>
-Subject: Re: (subset) [PATCH] arm64: dts: qcom: sc7280: Set SPI flash to 50 MHz for herobrine boards
-Date:   Mon, 27 Jun 2022 15:02:37 -0500
-Message-Id: <165636016348.3080661.18047211127885086217.b4-ty@linaro.org>
+        Matthias Kaehlcke <mka@chromium.org>,
+        quic_abhinavk@quicinc.com, Stephen Boyd <swboyd@chromium.org>
+Subject: Re: (subset) [PATCH] arm64: qcom: sc7280-herobrine: Enable DP
+Date:   Mon, 27 Jun 2022 15:02:38 -0500
+Message-Id: <165636016348.3080661.15532387701959292161.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220505161425.1.Icf6f3796d2fa122b4c0566d9317b461bfbc24b7f@changeid>
-References: <20220505161425.1.Icf6f3796d2fa122b4c0566d9317b461bfbc24b7f@changeid>
+In-Reply-To: <20220513065704.1.I9b9b9d4d1a3e0350a89221892261881a1771ad15@changeid>
+References: <20220513065704.1.I9b9b9d4d1a3e0350a89221892261881a1771ad15@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,20 +75,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 5 May 2022 16:14:30 -0700, Douglas Anderson wrote:
-> sc7280-herobrine based boards are specced to be able to access their
-> SPI flash at 50 MHz with the drive strength of the pins set at 8. The
-> drive strength is already set to 8 in "sc7280-herobrine.dtsi", so
-> let's bump up the clock. The matching firmware change for this is at:
+On Fri, 13 May 2022 06:57:14 -0700, Douglas Anderson wrote:
+> This enables DisplayPort for herobrine boards.
 > 
-> https://review.coreboot.org/c/coreboot/+/63948
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc7280: Set SPI flash to 50 MHz for herobrine boards
-      commit: d756a0b29f4013badc9d3b4ee7c24d4a700cbac9
+[1/1] arm64: qcom: sc7280-herobrine: Enable DP
+      commit: 4ab03ef8b33c2c80ac39da32c05f90f594b32e79
 
 Best regards,
 -- 
