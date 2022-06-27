@@ -2,141 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DAB855DB27
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:24:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E97955C509
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:50:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240460AbiF0WsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 18:48:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57096 "EHLO
+        id S241873AbiF0XAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 19:00:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242955AbiF0WsF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:48:05 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE9651178;
-        Mon, 27 Jun 2022 15:48:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1656370083; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=xknAKzgfYNpXnYc+9+SUOkimvItPUBqAGTB2HGXSU5A=;
-        b=BGgeaq19W1NDn8qeFhzGAlv/jtBXfWAX6YXqdVWU7Sx5gmJtGAWeUQqFjQmMJbZvLL9+1E
-        yMwpkH5xuCRmJS37mbQetzTaLoOwod2bVmsP1sdsFhOo/HL2qLpiTDNG+4Q21nlnXmy7JJ
-        VwXX/8+4esBkBEGueuMxrAMWVScRYSA=
-Date:   Mon, 27 Jun 2022 23:47:52 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v4 1/3] dt-bindings: adc-joystick: add poll-interval
-To:     Chris Morgan <macromorgan@hotmail.com>
-Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, contact@artur-rojek.eu,
-        maccraft123mc@gmail.com, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        dmitry.torokhov@gmail.com, jic23@kernel.org,
-        linux-iio@vger.kernel.org
-Message-Id: <SBR5ER.1Q6Y9XTXJWIK2@crapouillou.net>
-In-Reply-To: <SN6PR06MB5342127A5A94A0DB3507E27AA5B99@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20220627221444.3638-1-macroalpha82@gmail.com>
-        <20220627221444.3638-2-macroalpha82@gmail.com>
-        <SNQ5ER.4MEKNEQLW6H11@crapouillou.net>
-        <SN6PR06MB5342127A5A94A0DB3507E27AA5B99@SN6PR06MB5342.namprd06.prod.outlook.com>
+        with ESMTP id S241243AbiF0XAQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 19:00:16 -0400
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95B9120F61;
+        Mon, 27 Jun 2022 16:00:15 -0700 (PDT)
+Received: by mail-il1-f172.google.com with SMTP id p9so6749546ilj.7;
+        Mon, 27 Jun 2022 16:00:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=BBFolvCCjJnxhxohRNSfL/AQrqOPHqKgSw2LBcN2NnQ=;
+        b=bfXVza1My8NSlUM8fMnH6rlEd9095RBvJGqKsD3Zsdz7rTOiJnG252FT3Sb/axL2E1
+         cHTl+aYPFp1SNDQZ79q/9KrLR+p9sndPKTqGIup2ydW+V02jbfongpRrmXx8ENLS4mJX
+         UXAVwVviNmomi0kmLf/qNF+iKR46jlnAMlNQxomIuBW8UFtK7nhAtfBdaS627M1KdopS
+         xqSfRf+57ma3Z8tHl6DljT5HQbtiNsQMtK66X46s15KUPRzyupoTB4rdTn2cdQdLNhmu
+         bR94PUVvOqY4TUyaEffV8Xr3x4sDAta0ybSrJC/b55lV//7JLUEUj9HaTJ6mjtS2/mHs
+         YysQ==
+X-Gm-Message-State: AJIora+Yhm21t4Q9bqmh40J4StOcbHE0IldgvsqGTP3tAVuV90qX8tA4
+        2bnHhiiSFVT/MbdvomkViw==
+X-Google-Smtp-Source: AGRyM1s3mDmWtHR9KacZ3brBzVulekXmlkOSi7niZLvqZ3o/vbqhjQZ0fgaGh7zEyYExAh29I7iuRQ==
+X-Received: by 2002:a05:6e02:154d:b0:2da:9539:3093 with SMTP id j13-20020a056e02154d00b002da95393093mr4813252ilu.131.1656370814723;
+        Mon, 27 Jun 2022 16:00:14 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id u18-20020a92ccd2000000b002d8d813892csm5083745ilq.8.2022.06.27.16.00.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jun 2022 16:00:14 -0700 (PDT)
+Received: (nullmailer pid 3126600 invoked by uid 1000);
+        Mon, 27 Jun 2022 23:00:12 -0000
+Date:   Mon, 27 Jun 2022 17:00:12 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        shengjiu.wang@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+        perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
+        krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] ASoC: dt-bindings: fsl-sai: Add new property to
+ configure dataline
+Message-ID: <20220627230012.GA3122063-robh@kernel.org>
+References: <1655451877-16382-1-git-send-email-shengjiu.wang@nxp.com>
+ <1655451877-16382-7-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1655451877-16382-7-git-send-email-shengjiu.wang@nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jun 17, 2022 at 03:44:36PM +0800, Shengjiu Wang wrote:
+> "fsl,dataline" is added to configure the dataline of SAI.
+> It has 3 value for each configuration, first one means the type:
+> I2S(1) or PDM(2), second one is dataline mask for 'rx', third one is
+> dataline mask for 'tx'. for example:
+> 
+> fsl,dataline = <1 0xff 0xff 2 0xff 0x11>,
+> 
+> it means I2S type rx mask is 0xff, tx mask is 0xff, PDM type
+> rx mask is 0xff, tx mask is 0x11 (dataline 1 and 4 enabled).
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/sound/fsl-sai.txt | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/fsl-sai.txt b/Documentation/devicetree/bindings/sound/fsl-sai.txt
+> index c71c5861d787..4c66e6a1a533 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl-sai.txt
+> +++ b/Documentation/devicetree/bindings/sound/fsl-sai.txt
+> @@ -49,6 +49,14 @@ Required properties:
+>  			  receive data by following their own bit clocks and
+>  			  frame sync clocks separately.
+>  
+> +  - fsl,dataline        : configure the dataline. it has 3 value for each configuration
+> +                          first one means the type: I2S(1) or PDM(2)
+> +                          second one is dataline mask for 'rx'
+> +                          third one is dataline mask for 'tx'.
+> +                          for example: fsl,dataline = <1 0xff 0xff 2 0xff 0x11>;
+> +                          it means I2S type rx mask is 0xff, tx mask is 0xff, PDM type
+> +                          rx mask is 0xff, tx mask is 0x11 (dataline 1 and 4 enabled).
 
+You mean 0 and 4 enabled? Or 1 and 4?
 
-Le lun., juin 27 2022 at 17:41:37 -0500, Chris Morgan=20
-<macromorgan@hotmail.com> a =E9crit :
-> On Mon, Jun 27, 2022 at 11:33:28PM +0100, Paul Cercueil wrote:
->>  Hi Chris,
->>=20
->>  Le lun., juin 27 2022 at 17:14:42 -0500, Chris Morgan
->>  <macroalpha82@gmail.com> a =E9crit :
->>  > Add poll-interval support for the adc-joystick documentation.=20
->> This is
->>  > an optional value and if not provided the adc-joystick works as it
->>  > does today (with triggered buffers). If this value is provided,=20
->> the
->>  > adc-joystick driver is polled at the specified interval.
->>  >
->>  > Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
->>  > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->>  > ---
->>  >  Documentation/devicetree/bindings/input/adc-joystick.yaml | 6=20
->> ++++++
->>  >  1 file changed, 6 insertions(+)
->>  >
->>  > diff --git=20
->> a/Documentation/devicetree/bindings/input/adc-joystick.yaml
->>  > b/Documentation/devicetree/bindings/input/adc-joystick.yaml
->>  > index 2ee04e03bc22..2d755091e46d 100644
->>  > --- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
->>  > +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
->>  > @@ -18,6 +18,12 @@ properties:
->>  >    compatible:
->>  >      const: adc-joystick
->>  >
->>  > +  poll-interval:
->>  > +    description:
->>  > +      Poll interval time in milliseconds. If not specified,=20
->> device will
->>  > use
->>  > +      triggered buffer.
->>=20
->>  It doesn't have to use *triggered* buffer - it can use regular=20
->> buffer as
->>  well.
->>=20
->>  The property should use a unit suffix, as explained here:
->> =20
->> https://nam12.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgith=
-ub.com%2Fdevicetree-org%2Fdt-schema%2Fblob%2Fmain%2Fdtschema%2Fschemas%2Fpr=
-operty-units.yaml&data=3D05%7C01%7C%7Cf6306210eda84b58f7f408da588d1627%7C84=
-df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C637919660856597552%7CUnknown%7CTWF=
-pbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D=
-%7C3000%7C%7C%7C&sdata=3DNVqhWKdycQsv0ksiILD8aH%2BnZ6aji%2BhNxSEwBkQlZC0%3D=
-&reserved=3D0
->>=20
->>  So it should be named poll-interval-ms.
->>=20
->>  Cheers,
->>  -Paul
->=20
-> Understood, though the logic here was to be consistent with existing
-> implementations (such as adc-keys and gpio-keys-polled) which all
-> use poll-interval (no ms). Honest question, would it be better to be
-> right (poll-interval-ms) or consistent (poll-interval) in this case?
+How many 3 cell entries can you have?
 
-I guess those don't have a suffix for legacy reasons, and newly=20
-introduced properties should follow the standard.
-
-But I guess that's a question for DT maintainers.
-
-Cheers,
--Paul
-
->=20
-> Thank you.
->=20
->>=20
->>  > +    $ref: /schemas/types.yaml#/definitions/uint32
->>  > +
->>  >    io-channels:
->>  >      minItems: 1
->>  >      maxItems: 1024
->>  > --
->>  > 2.34.1
->>  >
->>=20
->>=20
-
-
+Rob
