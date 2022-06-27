@@ -2,189 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AAC855DAFB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BED8D55DEFC
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:29:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233455AbiF0Koq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 06:44:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45180 "EHLO
+        id S234278AbiF0KuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 06:50:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232895AbiF0Kop (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 06:44:45 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F3D563B2;
-        Mon, 27 Jun 2022 03:44:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1656326684; x=1687862684;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=lx+sq5BrYtlEATfMj2qSuWCQq/LYicVL0fuwLFTf85k=;
-  b=qnM245RDku6rbAxyGynWMv2J6zFQ3WHGBzUTOMGzpmLtwndtoY7XFY50
-   Ye/+ISVGiDME7CZsY9FIfSCNf2ExkmYNaVfFKAEzXgqU9AVdBJVYDzTlH
-   iJLS0IKZ9Q3SAlWlOOtwOCRbS6Zo0Mcp22xWnqz83YqCPdQfqwM6bctYJ
-   I=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 27 Jun 2022 03:44:44 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2022 03:44:43 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 27 Jun 2022 03:44:42 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 27 Jun 2022 03:44:37 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        <devicetree@vger.kernel.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: [PATCH v2] ASoC: qcom: Add driver support for audioreach solution
-Date:   Mon, 27 Jun 2022 16:14:22 +0530
-Message-ID: <1656326662-14524-1-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        with ESMTP id S233298AbiF0KuT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 06:50:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B45FC62E0;
+        Mon, 27 Jun 2022 03:50:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5B57761359;
+        Mon, 27 Jun 2022 10:50:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B72C0C341C7;
+        Mon, 27 Jun 2022 10:50:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656327017;
+        bh=8LxALkYX99QM0o3OZgiKgB0ILjh8O2RMDXaPQIHDGUI=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=mcSm99tpafBJecQ/I28UXwi0I5xqsZKQLuRriUF/iDPwE/EgWmjNAtNJakzD9w9gt
+         EVhCwLH/ujOiWejPqgmTGSQWqt+t4Hs6ydYu2eySUQjAC/fZ/PEhe+gReMco8Kh9I3
+         xcA2dWf+XIuItslFOzZaAgO1I3MtkiT/7if+F0beNz10j0M0Ph05IH7fbB7sHi/WwB
+         ObNhdNvX1mjgd9I37Scd1YvXo6I0hjxSA65z0cQtsxvz83yTV4zGVcr9MSZfxki8t0
+         AzcsI1YE39xOGwNaCnGR5P7eNSiy4tXH88tKdBxdQJhaJW/q2czsmSGIm8AkzeJ9p7
+         mV7xKm3AxW0yA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 99722E49BBB;
+        Mon, 27 Jun 2022 10:50:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v9 00/16] add support for Renesas RZ/N1 ethernet
+ subsystem devices
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165632701762.8538.13185906941735942250.git-patchwork-notify@kernel.org>
+Date:   Mon, 27 Jun 2022 10:50:17 +0000
+References: <20220624144001.95518-1-clement.leger@bootlin.com>
+In-Reply-To: <20220624144001.95518-1-clement.leger@bootlin.com>
+To:     =?utf-8?b?Q2zDqW1lbnQgTMOpZ2VyIDxjbGVtZW50LmxlZ2VyQGJvb3RsaW4uY29tPg==?=@ci.codeaurora.org
+Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        olteanv@gmail.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzk+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk,
+        alexandre.torgue@foss.st.com, peppe.cavallaro@st.com,
+        joabreu@synopsys.com, thomas.petazzoni@bootlin.com,
+        herve.codina@bootlin.com, miquel.raynal@bootlin.com,
+        milan.stevanovic@se.com, jimmy.lalande@se.com,
+        pascal.eberhard@se.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        netdev@vger.kernel.org
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Machine driver support for audioreach solution, which uses
-ADSP in SC7280 based paltforms.
+Hello:
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
----
-Changes Since V1:
-    -- Remove audioreach compatible name.
-    -- Remove dt-binding patch.
+This series was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
- sound/soc/qcom/sc7280.c | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+On Fri, 24 Jun 2022 16:39:45 +0200 you wrote:
+> The Renesas RZ/N1 SoCs features an ethernet subsystem which contains
+> (most notably) a switch, two GMACs, and a MII converter [1]. This
+> series adds support for the switch and the MII converter.
+> 
+> The MII converter present on this SoC has been represented as a PCS
+> which sit between the MACs and the PHY. This PCS driver is probed from
+> the device-tree since it requires to be configured. Indeed the MII
+> converter also contains the registers that are handling the muxing of
+> ports (Switch, MAC, HSR, RTOS, etc) internally to the SoC.
+> 
+> [...]
 
-diff --git a/sound/soc/qcom/sc7280.c b/sound/soc/qcom/sc7280.c
-index 34cdb99..da7469a 100644
---- a/sound/soc/qcom/sc7280.c
-+++ b/sound/soc/qcom/sc7280.c
-@@ -19,9 +19,11 @@
- #include "../codecs/rt5682s.h"
- #include "common.h"
- #include "lpass.h"
-+#include "qdsp6/q6afe.h"
- 
- #define DEFAULT_MCLK_RATE              19200000
- #define RT5682_PLL_FREQ (48000 * 512)
-+#define MI2S_BCLK_RATE		1536000
- 
- struct sc7280_snd_data {
- 	struct snd_soc_card card;
-@@ -79,6 +81,7 @@ static int sc7280_headset_init(struct snd_soc_pcm_runtime *rtd)
- 	case MI2S_PRIMARY:
- 	case LPASS_CDC_DMA_RX0:
- 	case LPASS_CDC_DMA_TX3:
-+	case TX_CODEC_DMA_TX_3:
- 		for_each_rtd_codec_dais(rtd, i, codec_dai) {
- 			rval = snd_soc_component_set_jack(component, &pdata->hs_jack, NULL);
- 			if (rval != 0 && rval != -ENOTSUPP) {
-@@ -164,10 +167,14 @@ static int sc7280_init(struct snd_soc_pcm_runtime *rtd)
- 	switch (cpu_dai->id) {
- 	case MI2S_PRIMARY:
- 	case LPASS_CDC_DMA_TX3:
-+	case TX_CODEC_DMA_TX_3:
- 		return sc7280_headset_init(rtd);
- 	case LPASS_CDC_DMA_RX0:
- 	case LPASS_CDC_DMA_VA_TX0:
- 	case MI2S_SECONDARY:
-+	case RX_CODEC_DMA_RX_0:
-+	case SECONDARY_MI2S_RX:
-+	case VA_CODEC_DMA_TX_0:
- 		return 0;
- 	case LPASS_DP_RX:
- 		return sc7280_hdmi_init(rtd);
-@@ -195,6 +202,10 @@ static int sc7280_snd_hw_params(struct snd_pcm_substream *substream,
- 	switch (cpu_dai->id) {
- 	case LPASS_CDC_DMA_TX3:
- 	case LPASS_CDC_DMA_RX0:
-+	case RX_CODEC_DMA_RX_0:
-+	case SECONDARY_MI2S_RX:
-+	case TX_CODEC_DMA_TX_3:
-+	case VA_CODEC_DMA_TX_0:
- 		for_each_rtd_codec_dais(rtd, i, codec_dai) {
- 			sruntime = snd_soc_dai_get_stream(codec_dai, substream->stream);
- 			if (sruntime != ERR_PTR(-ENOTSUPP))
-@@ -245,6 +256,9 @@ static int sc7280_snd_prepare(struct snd_pcm_substream *substream)
- 	switch (cpu_dai->id) {
- 	case LPASS_CDC_DMA_RX0:
- 	case LPASS_CDC_DMA_TX3:
-+	case RX_CODEC_DMA_RX_0:
-+	case TX_CODEC_DMA_TX_3:
-+	case VA_CODEC_DMA_TX_0:
- 		return sc7280_snd_swr_prepare(substream);
- 	default:
- 		break;
-@@ -263,6 +277,9 @@ static int sc7280_snd_hw_free(struct snd_pcm_substream *substream)
- 	switch (cpu_dai->id) {
- 	case LPASS_CDC_DMA_RX0:
- 	case LPASS_CDC_DMA_TX3:
-+	case RX_CODEC_DMA_RX_0:
-+	case TX_CODEC_DMA_TX_3:
-+	case VA_CODEC_DMA_TX_0:
- 		if (sruntime && data->stream_prepared[cpu_dai->id]) {
- 			sdw_disable_stream(sruntime);
- 			sdw_deprepare_stream(sruntime);
-@@ -291,6 +308,10 @@ static void sc7280_snd_shutdown(struct snd_pcm_substream *substream)
- 					       SNDRV_PCM_STREAM_PLAYBACK);
- 		}
- 		break;
-+	case SECONDARY_MI2S_RX:
-+		snd_soc_dai_set_sysclk(cpu_dai, Q6AFE_LPASS_CLK_ID_SEC_MI2S_IBIT,
-+					       0, SNDRV_PCM_STREAM_PLAYBACK);
-+		break;
- 	default:
- 		break;
- 	}
-@@ -298,14 +319,26 @@ static void sc7280_snd_shutdown(struct snd_pcm_substream *substream)
- 
- static int sc7280_snd_startup(struct snd_pcm_substream *substream)
- {
-+	unsigned int fmt = SND_SOC_DAIFMT_CBS_CFS;
-+	unsigned int codec_dai_fmt = SND_SOC_DAIFMT_CBS_CFS;
- 	struct snd_soc_pcm_runtime *rtd = substream->private_data;
- 	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
- 	int ret = 0;
- 
- 	switch (cpu_dai->id) {
- 	case MI2S_PRIMARY:
- 		ret = sc7280_rt5682_init(rtd);
- 		break;
-+	case SECONDARY_MI2S_RX:
-+		codec_dai_fmt |= SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_I2S;
-+
-+		snd_soc_dai_set_sysclk(cpu_dai, Q6AFE_LPASS_CLK_ID_SEC_MI2S_IBIT,
-+			MI2S_BCLK_RATE, SNDRV_PCM_STREAM_PLAYBACK);
-+
-+		snd_soc_dai_set_fmt(cpu_dai, fmt);
-+		snd_soc_dai_set_fmt(codec_dai, codec_dai_fmt);
-+		break;
- 	default:
- 		break;
- 	}
+Here is the summary with links:
+  - [net-next,v9,01/16] net: dsa: allow port_bridge_join() to override extack message
+    https://git.kernel.org/netdev/net-next/c/1c6e8088d9a7
+  - [net-next,v9,02/16] net: dsa: add support for ethtool get_rmon_stats()
+    https://git.kernel.org/netdev/net-next/c/67f38b1c7324
+  - [net-next,v9,03/16] net: dsa: add Renesas RZ/N1 switch tag driver
+    https://git.kernel.org/netdev/net-next/c/a08d6a6dc820
+  - [net-next,v9,04/16] dt-bindings: net: pcs: add bindings for Renesas RZ/N1 MII converter
+    https://git.kernel.org/netdev/net-next/c/c823c2bf9156
+  - [net-next,v9,05/16] net: pcs: add Renesas MII converter driver
+    https://git.kernel.org/netdev/net-next/c/7dc54d3b8d91
+  - [net-next,v9,06/16] dt-bindings: net: dsa: add bindings for Renesas RZ/N1 Advanced 5 port switch
+    https://git.kernel.org/netdev/net-next/c/8956e96c1d4d
+  - [net-next,v9,07/16] net: dsa: rzn1-a5psw: add Renesas RZ/N1 advanced 5 port switch driver
+    https://git.kernel.org/netdev/net-next/c/888cdb892b61
+  - [net-next,v9,08/16] net: dsa: rzn1-a5psw: add statistics support
+    https://git.kernel.org/netdev/net-next/c/c7243fd4a62f
+  - [net-next,v9,09/16] net: dsa: rzn1-a5psw: add FDB support
+    https://git.kernel.org/netdev/net-next/c/5edf246c6869
+  - [net-next,v9,10/16] dt-bindings: net: snps,dwmac: add "power-domains" property
+    https://git.kernel.org/netdev/net-next/c/955fe312a9d2
+  - [net-next,v9,11/16] dt-bindings: net: snps,dwmac: add "renesas,rzn1" compatible
+    https://git.kernel.org/netdev/net-next/c/d7cc14bc9802
+  - [net-next,v9,12/16] ARM: dts: r9a06g032: describe MII converter
+    https://git.kernel.org/netdev/net-next/c/066c3bd35835
+  - [net-next,v9,13/16] ARM: dts: r9a06g032: describe GMAC2
+    https://git.kernel.org/netdev/net-next/c/3f5261f1c2a8
+  - [net-next,v9,14/16] ARM: dts: r9a06g032: describe switch
+    https://git.kernel.org/netdev/net-next/c/cf9695d8a7e9
+  - [net-next,v9,15/16] ARM: dts: r9a06g032-rzn1d400-db: add switch description
+    https://git.kernel.org/netdev/net-next/c/9aab31d66ec9
+  - [net-next,v9,16/16] MAINTAINERS: add Renesas RZ/N1 switch related driver entry
+    https://git.kernel.org/netdev/net-next/c/717a5c56deec
+
+You are awesome, thank you!
 -- 
-2.7.4
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
