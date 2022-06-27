@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0B4255D6F7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:17:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 692A955DFA7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:31:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240433AbiF0TlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 15:41:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54408 "EHLO
+        id S240443AbiF0TlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 15:41:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240438AbiF0TlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 15:41:20 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9047417066
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 12:41:18 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id i1so9994449wrb.11
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 12:41:18 -0700 (PDT)
+        with ESMTP id S240448AbiF0TlW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 15:41:22 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B851705A
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 12:41:20 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id h14-20020a1ccc0e000000b0039eff745c53so6246782wmb.5
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 12:41:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=VGm3r1/aMg071qi73xSEXzAaqTqN1Q+VH+odYYMqRVE=;
-        b=FmdzQcLScOE7xshMTy28wDYxBHGh156q88xgv8DvJGtaoVXs94Ajvtj68WvL98tuvb
-         vD4z/NBhb5gQyAY8pzg4pwT4b7P8PQoZ6VcCVTofL3oGGsMUVaU07u9bd+rODCS5JTHx
-         gg7jm0QmQc1pNXbFPuCn2+Rg97W2LILIhAdxIPc9W0472EQUOwVX8l7AmaRg60uZkRV2
-         BKycwPuhq1ThPXmXsgRQtn6ac0MypToNr6HW1Vswet0JbXEdEBvPMB90U1BGkFztK97i
-         B3CSNGwJeSLCsF1+oF9Zt8VPEG0bCZjumCEq9TfFIE1gLoa4VXUDTkKoIrEXbt64KB35
-         W7fw==
+        bh=wA+ekkpjde0Zx9cXanks0YsUmdtDvWig/ia7r5xRwsg=;
+        b=QizeLMoa4P+K5NRfW783uv00QZQ9FUl1yrJSFvTDQ91NxzrJIEoQC1vyn7V6UN1aBI
+         KC47cW6AyaaQsZOVeSRRRcDH6KVsIokTGyvzOhvNcwVXXmO9A5cBaI7DAxVPi39AhkBc
+         suh5GymLQ6pb0Omy1yzYvTL9j0If9mnJhIDj0ku/aQjAl5BJ1s4s5lX4boSmhT/3axFd
+         9BaZlYgOo9FI3fxMT4EBBRC7Mae04h+WHW7wbDtw8HercIYexvTAN752j8mUDTucVOX3
+         dyTU0rPZKbAWUOVQJDUXIMdakema1v4gXRBDbYJnKue0E1FRC9jfhN3HZzfcP4SKHOku
+         6lwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=VGm3r1/aMg071qi73xSEXzAaqTqN1Q+VH+odYYMqRVE=;
-        b=hOZozhqSAYUFBpZdKO9wcf7T5xPqe/p0Ti1PGNDAXkzzQN0uYYAneFsQ9eT3kzX+z8
-         mZharFXCgOnnHE6YTyjh/kUe97/3zb1F3HGbPhcdDWzsOY6FJzX1eEOY8ITFEIf5oHEz
-         iakxu7cobmiZEmET6j1N9EwyWJtIKGqLh4Nmvrb7mfHjernGAkMHu2PiX9gKEu/2fs7/
-         dooJhVqw1kAqC051L/WzVWkglT8CbDemS+KdU4/PDDOZzgvoSDml6p+4dgYYrOsAJxvE
-         sW9pfOH5pTOBEZL5ekfkD4F2y+W9uvjJFcXZ6DwN0y3HSHeySal7wA+huFTUzICFam6R
-         OHVg==
-X-Gm-Message-State: AJIora9qsqYbB1DhFI8BwuNvOcC0xtZL72Ebv5lv9SAbdmCUtfGEc5za
-        MRNt1uucwvHyx19HFBV2/EmVag==
-X-Google-Smtp-Source: AGRyM1vus8hVoBWOcIJ9lewpoyCt3XDOz/41UI30omHu2t3PlhVS8pwp6J1kL6+nWV7ots/5HElA4Q==
-X-Received: by 2002:adf:e952:0:b0:21b:b0b8:2e5c with SMTP id m18-20020adfe952000000b0021bb0b82e5cmr13833927wrn.218.1656358877077;
-        Mon, 27 Jun 2022 12:41:17 -0700 (PDT)
+        bh=wA+ekkpjde0Zx9cXanks0YsUmdtDvWig/ia7r5xRwsg=;
+        b=Vwow1OnrsfiBn1EiAuauXJ74GUk/Vg0hZNl27XgIBbCGKgkSch3uw6wKWxTUSJNiOw
+         2rI4x/9SkA2o/gfT/3ERc42wfZebmFDWgfUhy0Cy3b3rtGCFLFcp/cc4XLAa85y+sqSX
+         hWQDTBbOIDQ6R5BcJO74saVy9xElrqVY6VjHSE2P+nc7SukL3GfSSKYO1y/Du3/GziCX
+         i1zgX7sD0prRpFyN5ButxbQUpyBvRWqGZ04JAEkV4iwzKWXK8/Jwe0MBDxNlP+Jta03+
+         zhhRELQo2hN2dBgbYlnnZX/P5caz9hLQA3cCs69c3wpZueuJrX+/jp5wNgt7gedfLFJE
+         zkSw==
+X-Gm-Message-State: AJIora/ROx9cItasNdKpFNoNz+aGK/2ejfZNsUCmjjgJLjfeDwvQu9t6
+        7ba0vpIht+pV8JvdRZOcMNrg2Q==
+X-Google-Smtp-Source: AGRyM1sGEP9IS4aUetkgrW5cPwURwUYGFTM9jMyAFxw9F86IEWrWl9NXn+BD46xMXN0gtp4uxfYclw==
+X-Received: by 2002:a05:600c:4e04:b0:39c:66bc:46d2 with SMTP id b4-20020a05600c4e0400b0039c66bc46d2mr22594341wmq.71.1656358878796;
+        Mon, 27 Jun 2022 12:41:18 -0700 (PDT)
 Received: from henark71.. ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id e9-20020a5d4e89000000b0021a3a87fda9sm11428047wru.47.2022.06.27.12.41.15
+        by smtp.gmail.com with ESMTPSA id e9-20020a5d4e89000000b0021a3a87fda9sm11428047wru.47.2022.06.27.12.41.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 12:41:16 -0700 (PDT)
+        Mon, 27 Jun 2022 12:41:18 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
 To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
@@ -76,9 +76,9 @@ Cc:     Thomas Gleixner <tglx@linutronix.de>,
         linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
         alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
         linux-riscv@lists.infradead.org
-Subject: [PATCH v2 01/16] dt-bindings: display: convert ilitek,ili9341.txt to dt-schema
-Date:   Mon, 27 Jun 2022 20:39:49 +0100
-Message-Id: <20220627194003.2395484-2-mail@conchuod.ie>
+Subject: [PATCH v2 02/16] dt-bindings: display: panel: allow ilitek,ili9341 in isolation
+Date:   Mon, 27 Jun 2022 20:39:50 +0100
+Message-Id: <20220627194003.2395484-3-mail@conchuod.ie>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220627194003.2395484-1-mail@conchuod.ie>
 References: <20220627194003.2395484-1-mail@conchuod.ie>
@@ -86,7 +86,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,134 +96,45 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-A dt-schema binding for the Ilitek ili9341 was created as
-panel/ilitek,ili9341.yaml but the txt binding was ignored in the
-process. Move the remaining items in the txt binding to the yaml one &
-delete it.
+The dt-binding for the ilitek,ili9341 does not allow it to be used as a
+compatible in isolation. This generates a warning for the Canaan kd233
+devicetree:
+arch/riscv/boot/dts/canaan/canaan_kd233.dtb: panel@0: compatible:0: 'ilitek,ili9341' is not one of ['st,sf-tc240t-9370-t']
+        From schema: Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
+arch/riscv/boot/dts/canaan/canaan_kd233.dtb: panel@0: compatible: ['ilitek,ili9341'] is too short
+        From schema: Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
+Allow ilitek,ili9341 to be selected in isolation.
 
-The example in the txt binding has a spi-max-frequency which disagrees
-with the yaml replacement (and its own documentation) so change that to
-conform with the binding. There are no users in tree of the Adafruit
-yx240qv29 to check against.
-
-Link: https://cdn-learn.adafruit.com/assets/assets/000/046/879/original/SPEC-YX240QV29-T_Rev.A__1_.pdf
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- .../bindings/display/ilitek,ili9341.txt       | 27 -----------
- .../display/panel/ilitek,ili9341.yaml         | 48 +++++++++++++------
- 2 files changed, 34 insertions(+), 41 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+ .../bindings/display/panel/ilitek,ili9341.yaml     | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/ilitek,ili9341.txt b/Documentation/devicetree/bindings/display/ilitek,ili9341.txt
-deleted file mode 100644
-index 169b32e4ee4e..000000000000
---- a/Documentation/devicetree/bindings/display/ilitek,ili9341.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--Ilitek ILI9341 display panels
--
--This binding is for display panels using an Ilitek ILI9341 controller in SPI
--mode.
--
--Required properties:
--- compatible:	"adafruit,yx240qv29", "ilitek,ili9341"
--- dc-gpios:	D/C pin
--- reset-gpios:	Reset pin
--
--The node for this driver must be a child node of a SPI controller, hence
--all mandatory properties described in ../spi/spi-bus.txt must be specified.
--
--Optional properties:
--- rotation:	panel rotation in degrees counter clockwise (0,90,180,270)
--- backlight:	phandle of the backlight device attached to the panel
--
--Example:
--	display@0{
--		compatible = "adafruit,yx240qv29", "ilitek,ili9341";
--		reg = <0>;
--		spi-max-frequency = <32000000>;
--		dc-gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
--		reset-gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
--		rotation = <270>;
--		backlight = <&backlight>;
--	};
 diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-index 6058948a9764..94ca92878434 100644
+index 94ca92878434..c402bedaa37a 100644
 --- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
 +++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-@@ -23,6 +23,7 @@ properties:
-       - enum:
-           # ili9341 240*320 Color on stm32f429-disco board
-           - st,sf-tc240t-9370-t
-+          - adafruit,yx240qv29
-       - const: ilitek,ili9341
+@@ -19,12 +19,14 @@ allOf:
+ 
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          # ili9341 240*320 Color on stm32f429-disco board
+-          - st,sf-tc240t-9370-t
+-          - adafruit,yx240qv29
+-      - const: ilitek,ili9341
++    oneOf:
++      - items:
++          - const: ilitek,ili9341
++      - items:
++          - enum:
++              - st,sf-tc240t-9370-t
++              - adafruit,yx240qv29
++          - const: ilitek,ili9341
  
    reg: true
-@@ -47,31 +48,50 @@ properties:
-   vddi-led-supply:
-     description: Voltage supply for the LED driver (1.65 .. 3.3 V)
  
--additionalProperties: false
-+unevaluatedProperties: false
- 
- required:
-   - compatible
-   - reg
-   - dc-gpios
--  - port
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - st,sf-tc240t-9370-t
-+then:
-+  required:
-+    - port
- 
- examples:
-   - |+
-+    #include <dt-bindings/gpio/gpio.h>
-     spi {
-         #address-cells = <1>;
-         #size-cells = <0>;
-         panel: display@0 {
--                 compatible = "st,sf-tc240t-9370-t",
--                              "ilitek,ili9341";
--                 reg = <0>;
--                 spi-3wire;
--                 spi-max-frequency = <10000000>;
--                 dc-gpios = <&gpiod 13 0>;
--                 port {
--                         panel_in: endpoint {
--                           remote-endpoint = <&display_out>;
--                      };
--                 };
--             };
-+            compatible = "st,sf-tc240t-9370-t",
-+                         "ilitek,ili9341";
-+            reg = <0>;
-+            spi-3wire;
-+            spi-max-frequency = <10000000>;
-+            dc-gpios = <&gpiod 13 0>;
-+            port {
-+                panel_in: endpoint {
-+                    remote-endpoint = <&display_out>;
-+                };
-+            };
-+        };
-+        display@1{
-+            compatible = "adafruit,yx240qv29", "ilitek,ili9341";
-+            reg = <1>;
-+            spi-max-frequency = <10000000>;
-+            dc-gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
-+            reset-gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
-+            rotation = <270>;
-+            backlight = <&backlight>;
-         };
-+    };
- ...
 -- 
 2.36.1
 
