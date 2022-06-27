@@ -2,61 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 459D955DF5A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:30:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8278E55E2DF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240416AbiF0TOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 15:14:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33720 "EHLO
+        id S240339AbiF0Tfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 15:35:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240375AbiF0TOg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 15:14:36 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E48462D7;
-        Mon, 27 Jun 2022 12:14:29 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id a10so10563760ioe.9;
-        Mon, 27 Jun 2022 12:14:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=VKesCXfY04/5OFDon+mnSwk30hKS4yzZQW5j1iQ74Mw=;
-        b=7uPcl0OKipmgAwT1zirTq/ukYXdfxIPe0VwprdRnryCYJ30zVFoIE0CEZaqZuNvcI3
-         mNQ8y97MJ4J3i1WkH3tPU8xdeTwwG2+eA9v/SefM0/td58ceYLv4QP0PYoPdi/6ij6wX
-         S+jsk5pZauR6t/sO+wm9tlflcK8Lv5KK+Ro+ElGebRTSWHwCCrkdurGMdQKMfHiydOoX
-         LVq+mDmOlxygMPah5twSPbVcwzDMCzE+JGMZIhdRPzkOfGMAA0ICteww/iEZ/Hi4wWlb
-         CIYt/znZ6lmDDH06V87Qn+Dl97X3KQaCS6bEKWVx+EHvp790OZiSfleGZTFCELWaYbUB
-         6jbg==
-X-Gm-Message-State: AJIora+SiS9X1WIICjHpo/3qZhkTN7enl8eTtFV6AdwTIevDL45Z2JvV
-        /dr8AHHno0g27CYyLYCDrA==
-X-Google-Smtp-Source: AGRyM1szasLJONCvA4WTwr8Z5fqYjv+SfDLCHX6hp3qABewkH9cCoQk8RJkFDuKHg7FszYv6EDT/2A==
-X-Received: by 2002:a05:6602:14cb:b0:669:e8a5:71b3 with SMTP id b11-20020a05660214cb00b00669e8a571b3mr7625062iow.150.1656357268879;
-        Mon, 27 Jun 2022 12:14:28 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id t9-20020a056e02010900b002d928e265ffsm1917811ilm.81.2022.06.27.12.14.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 12:14:28 -0700 (PDT)
-Received: (nullmailer pid 2788947 invoked by uid 1000);
-        Mon, 27 Jun 2022 19:14:27 -0000
-Date:   Mon, 27 Jun 2022 13:14:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Subject: Re: [PATCH] dt-bindings: leds: lp50xx: fix LED children names
-Message-ID: <20220627191427.GA2788859-robh@kernel.org>
-References: <20220624111325.96478-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S236184AbiF0Tfm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 15:35:42 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5766A62EC;
+        Mon, 27 Jun 2022 12:35:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1656358541; x=1687894541;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=PZ6plud3Rf5fEMbZRuJvL10vqzgxzYsgamogPc/ulSs=;
+  b=zi+neXZS5Tfo8fYmWYaZOlttgNGauVp6rk2ICfxqGMGlQse7BKBO7maI
+   eN5wZGHT8LvaOr6ITx1HFWxxGYmFMckpxD0oewFFbcRNNQfEBHQ2M5Lua
+   GqUZfBFVk/15lH2LNTw1JuzUqSUBPQVIqubt+ixvOSNDPq/3LahM1Xvqf
+   0=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 27 Jun 2022 12:35:41 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2022 12:35:40 -0700
+Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 27 Jun 2022 12:35:40 -0700
+Received: from [10.216.11.205] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 27 Jun
+ 2022 12:35:35 -0700
+Message-ID: <1a58e260-773e-754c-6f85-b4b2cbd19d2a@quicinc.com>
+Date:   Tue, 28 Jun 2022 01:05:31 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220624111325.96478-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH V2 5/8] pinctrl: qcom: Add IPQ5018 pinctrl driver
+Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     <agross@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
+        <catalin.marinas@arm.com>, <p.zabel@pengutronix.de>,
+        <quic_varada@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220621161126.15883-1-quic_srichara@quicinc.com>
+ <20220621161126.15883-6-quic_srichara@quicinc.com>
+ <YrU1b+37DeZqIMTh@builder.lan>
+From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <YrU1b+37DeZqIMTh@builder.lan>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,16 +73,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Jun 2022 13:13:25 +0200, Krzysztof Kozlowski wrote:
-> The lp50xx LEDs expects to have single-color LED children with unit
-> addresses.  This is required by the driver and provided by existing
-> DTSes.  Fix the binding to match actual usage.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Fixes: dce1452301e7 ("dt: bindings: lp50xx: Introduce the lp50xx family of RGB drivers")
-> ---
->  Documentation/devicetree/bindings/leds/leds-lp50xx.yaml | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
+Thanks Bjorn for your review
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 6/24/2022 9:24 AM, Bjorn Andersson wrote:
+> On Tue 21 Jun 11:11 CDT 2022, Sricharan R wrote:
+> [..]
+>> +
+>> +static const struct of_device_id ipq5018_pinctrl_of_match[] = {
+>> +	{ .compatible = "qcom,ipq5018-pinctrl", },
+> Please make this qcom,ipq5018-tlmm, as requested in the binding.
+
+
+  Sure will do.
+
+>
+> With that:
+>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+
+   Thanks for that.
+
+Regards,
+   Sricharan
+
