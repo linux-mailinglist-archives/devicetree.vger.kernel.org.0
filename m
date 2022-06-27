@@ -2,106 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAFA955DD05
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:26:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C76EC55DDFB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:28:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237304AbiF0O0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 10:26:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44242 "EHLO
+        id S237382AbiF0O35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 10:29:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237007AbiF0O0c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 10:26:32 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A04A013F21
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 07:26:30 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id v14so13325617wra.5
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 07:26:30 -0700 (PDT)
+        with ESMTP id S237312AbiF0O34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 10:29:56 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BFE1B53;
+        Mon, 27 Jun 2022 07:29:55 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id u12so19536183eja.8;
+        Mon, 27 Jun 2022 07:29:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ErDQFXWdYs2zULfkFMONKNeCe/Dj1t+LSS/N2wVv994=;
-        b=w0dvdBO/UupcFBr03m7tcptBHVgqV2TEN0CQY1a6OGskByAIoXaRhP13MhIaPE30YA
-         E5LZ0INJyUKJyz4Sd+TUyuv1TrLhbX5NrgvRa+wnde/7JDnBLei8PeDXe1kPa1MMvW4f
-         oSZk7L8ftqsfsUsEDCFou6UEv+uJN78lLeeyOlWzK87sFjCNCSG/QR16koVGo85joDyD
-         bbEjYulHyedUDdmcSC+5JkQYYiLB/wqkl4mlGRg0T3IPeYUeIRi7aWDjEIN+p42lBRcB
-         WoCzbxruL3iszTMBFbNLlKu31d/6d7tGTrWKjlJpdodJEaKOllYoz5xy9a6blKJfHjOk
-         Dmlg==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0RQuo68FMs3Ewydqyi9IiONXYW4rMeUPNWTwYPpOosc=;
+        b=MzdoIB26iFVkILG/Mt1s4LYfQHztPMX/C175dvEV/uVJscpVucKtWQ97vnpCaAWfSU
+         CpwChSeVLUhGL2n/eTsAriuJAwzs7oBqz24JQCXnw2p/Bnbr7ZZCpxnPM2GrK+74+NSN
+         KewxQkzDoIgCIVL85Wk9C2SjShc6hPsL5iCNBCxgua3NId6txqObxC8rq1qWhRiOIFl8
+         N0hnSamEe3u5/VIoR6JKFFEj8+xjXYdRw9Zsn2+M+jipeb7NlFK2V8HV+swBFEwdRkUs
+         ftWitiLffThm52kMhgYnxog0xp2seWLjSpwIQ7bxCftk7UMtiId2MMuHS/1LYDgsNUqD
+         Uxag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ErDQFXWdYs2zULfkFMONKNeCe/Dj1t+LSS/N2wVv994=;
-        b=wQq3S9Kz9pNZC/FdY7ac6r/BNRmCwMztY5DTAkepR3XLF+Mx605kc6jawXo6uaf9nS
-         gFaE8nPcf2u8ZRpfDTD3AjwzAWk0DAViXU93xysVNNfr2AHcc6Dohg9wEPkk3Hp3R0iC
-         3xWOSwqAL8gA6A4a6B0fFw8nEFxEc6irMkOEHnc+0x5i/xE88Pf2WDVTllTlxPMCSRKK
-         Li08mo1AtwKEjshZ4kktOVApLUoLtZAEkhrZIquGDqlW8NJwNaRHV9ieXcOzy6sADIId
-         mejjvYf6Fo8YE2aoOxF9OCLwmR/INw3OWTvuzQZNWgnlF05e607QX30yawu3pe+Zqc3v
-         iBcg==
-X-Gm-Message-State: AJIora/hUVrQEZHxfJLNZuipzLbBqH1TFoasQxSSW/dRq0dk1w2peqnw
-        cEtSMg3UQiQKQ+VFpiIQb8ye5A==
-X-Google-Smtp-Source: AGRyM1sMb750QwH5Pp1X9ererXrUAT1rhhISnkjarGTROXCA7GWXOOkLoYMhrHh5S6yLFHJfSwQZqA==
-X-Received: by 2002:a5d:598c:0:b0:218:3fe6:40bd with SMTP id n12-20020a5d598c000000b002183fe640bdmr13514630wri.373.1656339989229;
-        Mon, 27 Jun 2022 07:26:29 -0700 (PDT)
-Received: from [192.168.0.251] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id t18-20020a1c7712000000b0039749b01ea7sm16226662wmi.32.2022.06.27.07.26.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jun 2022 07:26:28 -0700 (PDT)
-Message-ID: <53066f1e-0a0f-de98-571d-759c7be5c835@linaro.org>
-Date:   Mon, 27 Jun 2022 16:26:27 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0RQuo68FMs3Ewydqyi9IiONXYW4rMeUPNWTwYPpOosc=;
+        b=ZkyWkZQ9gP9ulm30pkQHnC2k1MRK+4Rc+gNKfrxR2sGGfqx9rlGdZ72pl3VSI+68WQ
+         0rsOF0QNld/kd77wRXQjg1kUZR5rd49is0oeQmhZHfnjNwUPcoE645B7ZPY6KA+ElGpk
+         d2Kw303QNOflweasg2CjtCFX+s1ru3xoO03E5yZuhzOEpwnqeLnFY4+zOmFvbj8+to61
+         UzOdqDSf/5Dbn5VLZV7vaoJeh5pufpDvp0zjlcCzXRN18VJsK68xlOC51eE/0EoV49SJ
+         kwY348ncD8W9VcdI8fBFvU3PNZZmw8b1lHGcRBdQt0MWOj+CW3poxox9L+36QJGIXYRm
+         Ns7w==
+X-Gm-Message-State: AJIora+6cjd4oBhGIsngjnqGadiWpZ/1V/q4/jPY0ZAF2OEpKmozU3/E
+        LxJCL4DN4lLNApxYw4fR8ajVxkLeycWSt5LnlkM=
+X-Google-Smtp-Source: AGRyM1v6HvBJpI2zjqwnkNHhBqV1cK4hlM/aYv8C+uEiiVwmn1Os3FAYlv54APEOIV/+t60608gsPU0byrK9p/yBglY=
+X-Received: by 2002:a17:907:72c4:b0:726:9406:f760 with SMTP id
+ du4-20020a17090772c400b007269406f760mr9624040ejc.247.1656340193621; Mon, 27
+ Jun 2022 07:29:53 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 04/12] dt-bindings: arm: qcom: add missing QCS404 board
- compatibles
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+References: <20220626004326.8548-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220626004326.8548-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <87tu87eh5h.wl-maz@kernel.org> <CA+V-a8sihw9=Ychakh6tV+1+MpRayr=1VSnhSYZNp0F+f4Hdnw@mail.gmail.com>
+ <1eb7b6525a98b330894b6ce2f9167dc2@kernel.org>
+In-Reply-To: <1eb7b6525a98b330894b6ce2f9167dc2@kernel.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 27 Jun 2022 15:29:27 +0100
+Message-ID: <CA+V-a8upv16o86RFCcPVRjucM3WJUOwOejF_TzPwLibjq1_SXg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: sifive,plic:
+ Document Renesas RZ/Five SoC
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220521164550.91115-1-krzysztof.kozlowski@linaro.org>
- <20220521164550.91115-4-krzysztof.kozlowski@linaro.org>
- <CAL_JsqKXDs=QHKob2Xy6vAFZfnkM9ggfmqf9TNA1hv8TScTmgQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAL_JsqKXDs=QHKob2Xy6vAFZfnkM9ggfmqf9TNA1hv8TScTmgQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2022 15:41, Rob Herring wrote:
-> On Sat, May 21, 2022 at 10:46 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> Document board compatibles already present in Linux kernel.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  Documentation/devicetree/bindings/arm/qcom.yaml | 8 ++++++++
->>  1 file changed, 8 insertions(+)
-> 
-> This is now failing in linux-next:
-> 
-> /builds/robherring/linux-dt/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.example.dtb:
-> /: compatible: 'oneOf' conditional failed, one must be fixed:
->  ['qcom,qcs404'] is too short
->  'qcom,qcs404' is not one of ['qcom,apq8016-sbc']
-> ...
->  'qcom,qcs404' is not one of ['qcom,sm8450-hdk', 'qcom,sm8450-qrd']
->  From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/arm/qcom.yaml
+Hi Marc,
 
-I'll fix it.
+On Mon, Jun 27, 2022 at 3:22 PM Marc Zyngier <maz@kernel.org> wrote:
+>
+> On 2022-06-27 13:27, Lad, Prabhakar wrote:
+> > Hi Marc,
+> >
+> > Thank you for the review.
+> >
+> > On Sun, Jun 26, 2022 at 1:35 PM Marc Zyngier <maz@kernel.org> wrote:
+> >>
+> >> On Sun, 26 Jun 2022 01:43:25 +0100,
+> >> Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> >> >
+> >> > Document Renesas RZ/Five (R9A07G043) SoC.
+> >> >
+> >> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >> > ---
+> >> > v1->v2:
+> >> > * Fixed binding doc
+> >> > * Fixed review comments pointed by Krzysztof.
+> >> >
+> >> > RFC->v1:
+> >> > * Fixed Review comments pointed by Geert and Rob
+> >> > ---
+> >> >  .../sifive,plic-1.0.0.yaml                    | 44 +++++++++++++++++--
+> >> >  1 file changed, 41 insertions(+), 3 deletions(-)
+> >> >
+> >> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> >> > index 27092c6a86c4..59df367d1e44 100644
+> >> > --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> >> > +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> >> > @@ -28,7 +28,10 @@ description:
+> >> >
+> >> >    While the PLIC supports both edge-triggered and level-triggered interrupts,
+> >> >    interrupt handlers are oblivious to this distinction and therefore it is not
+> >> > -  specified in the PLIC device-tree binding.
+> >> > +  specified in the PLIC device-tree binding for SiFive PLIC (and similar PLIC's),
+> >> > +  but for the Renesas RZ/Five Soc (AX45MP AndesCore) which has NCEPLIC100 we need
+> >> > +  to specify the interrupt type as the flow for EDGE interrupts is different
+> >> > +  compared to LEVEL interrupts.
+> >> >
+> >> >    While the RISC-V ISA doesn't specify a memory layout for the PLIC, the
+> >> >    "sifive,plic-1.0.0" device is a concrete implementation of the PLIC that
+> >> > @@ -57,6 +60,7 @@ properties:
+> >> >            - enum:
+> >> >                - allwinner,sun20i-d1-plic
+> >> >            - const: thead,c900-plic
+> >> > +      - const: renesas,r9a07g043-plic
+> >>
+> >> Since it is the NCEPLIC100 that is broken, shouldn't the compatible
+> >> string actually reflect that? I'd rather see 'andes,nceplic100' once
+> >> and for all instead of starting with Renesas, quickly followed by all
+> >> the other licensees that will inevitably integrate the same IP (which
+> >> isn't even specific to the AX45MP).
+> >>
+> >> This IP also comes with all sort of added (mis-)features, which may or
+> >> may not be used in the future, and it would make sense to identify it
+> >> specifically.
+> >>
+> > Agreed, I'll update it as above.
+>
+> Please synchronise with Samuel to have a common series that fixes
+> both the Renesas and Thead platforms.
+>
+Yes Ive dropped an email to Samuel.
 
-Best regards,
-Krzysztof
+Cheers,
+Prabhakar
