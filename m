@@ -2,73 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05A6455D5C8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:15:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6809655D3D1
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:13:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233305AbiF0IGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 04:06:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40944 "EHLO
+        id S233403AbiF0IKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 04:10:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233412AbiF0IGM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 04:06:12 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A1A26C9;
-        Mon, 27 Jun 2022 01:06:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S233398AbiF0IKt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 04:10:49 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7457F6172;
+        Mon, 27 Jun 2022 01:10:48 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E9DD4B80FAF;
-        Mon, 27 Jun 2022 08:06:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 709B8C341C8;
-        Mon, 27 Jun 2022 08:06:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656317166;
-        bh=jRJeG0UgGCqTiw19wratxT9u3xhT6kGN/PnIBlE+ovc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=C5gmMqmH0T+Xv1vVuJ3g1uCQp3ePOTYYL1GTJggiYnA+RxVr8UBfrL9JK3aHUb80g
-         fyvz8euG44gkVtDLb2DVqtcwOdp49B0FB6MWZ83U4ERy+kXeIj3PH+uhoykBuqYCJR
-         yuIDBFFqI64p3RI/vRkUaVvheKWDCbx8ea0buvPSu1MHfe2EKoBpBls/ixNLkfdJ2w
-         kYN4apUcecxPFtsNfQitTZrmwROhsOGkUZZ4+zYsloP78czpvGInkmO9fyX6jnx7l+
-         3l0dsHHIQKNyqCb/PdP2mMMTUKv1EHtNHGAczVaxqqZB9Ed+bTQ/hRodUZbqPBctWX
-         gYZ7heQ0LElNQ==
-Date:   Mon, 27 Jun 2022 16:05:59 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Philippe Schenker <dev@pschenker.ch>
-Cc:     devicetree@vger.kernel.org,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8m{m,p}-verdin: use IT temperatures
-Message-ID: <20220627080559.GI819983@dragon>
-References: <20220622164410.457249-1-dev@pschenker.ch>
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 1883C221D4;
+        Mon, 27 Jun 2022 10:10:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1656317445;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=I2VAxSPrHm4atr5mS01AVBWDO/CW+jJR8HyKyYrpRcc=;
+        b=IQ9CJ6rL6muD5kAIpenW6vu4duRtV/uY1jpJR+9FHnUtrYXjRFqbEujuiw9KK28VMychXv
+        3rMq87zA2kMSWlVcS5++exhxs7ZSSEf6CMJZwZQrq0yav+HT6BInM4kf8fFhrSIxij5rTg
+        wQMmcsuRYGUet5hEW/5VwMi43GFjGNg=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220622164410.457249-1-dev@pschenker.ch>
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 27 Jun 2022 10:10:41 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wens@csie.org, jic23@kernel.org,
+        lee.jones@linaro.org, sre@kernel.org, broonie@kernel.org,
+        gregkh@linuxfoundation.org, lgirdwood@gmail.com, lars@metafoo.de,
+        rafael@kernel.org, quic_gurus@quicinc.com,
+        sebastian.reichel@collabora.com, andy.shevchenko@gmail.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 13/16] pinctrl: Add AXP192 pin control driver
+In-Reply-To: <20220618214009.2178567-14-aidanmacdonald.0x0@gmail.com>
+References: <20220618214009.2178567-1-aidanmacdonald.0x0@gmail.com>
+ <20220618214009.2178567-14-aidanmacdonald.0x0@gmail.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <cafd8a40ad35dcf8a35350261af6031c@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 22, 2022 at 06:44:10PM +0200, Philippe Schenker wrote:
-> From: Philippe Schenker <philippe.schenker@toradex.com>
-> 
-> Use IT temperature threshold for critical/passive trip point
-> on Verdin iMX8M Plus and Mini.
-> 
-> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
-> Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+Hi,
 
-Applied, thanks!
+As Linus suggested you could have a look at devm_gpio_regmap_register()
+with a custom xlate() callback and some improvements. But I've never
+worked with pinctrl so I might be wrong. See below.
+
+> +static int axp192_gpio_get(struct gpio_chip *chip, unsigned int 
+> offset)
+> +{
+> +	struct axp192_pctl *pctl = gpiochip_get_data(chip);
+> +	const struct axp192_pctl_reg_info *reginfo = 
+> &pctl->desc->in_regs[offset];
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret = regmap_read(pctl->regmap, reginfo->reg, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return !!(val & reginfo->mask);
+> +}
+
+This should work.
+
+> +
+> +static int axp192_gpio_get_direction(struct gpio_chip *chip, unsigned
+> int offset)
+> +{
+> +	struct axp192_pctl *pctl = gpiochip_get_data(chip);
+> +	const struct axp192_pctl_reg_info *reginfo = 
+> &pctl->desc->ctrl_regs[offset];
+> +	const u8 *input_muxvals = 
+> pctl->desc->functions[AXP192_FUNC_INPUT].muxvals;
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret = regmap_read(pctl->regmap, reginfo->reg, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if ((val & reginfo->mask) == (input_muxvals[offset] <<
+> (ffs(reginfo->mask) - 1)))
+> +		return GPIO_LINE_DIRECTION_IN;
+
+This isn't supported (yet) in gpio-regmap...
+
+> +
+> +	return GPIO_LINE_DIRECTION_OUT;
+> +}
+> +
+> +static void axp192_gpio_set(struct gpio_chip *chip, unsigned int
+> offset, int value)
+> +{
+> +	struct axp192_pctl *pctl = gpiochip_get_data(chip);
+> +	const struct axp192_pctl_reg_info *reginfo = 
+> &pctl->desc->out_regs[offset];
+> +
+> +	regmap_update_bits(pctl->regmap, reginfo->reg, reginfo->mask, value
+> ? reginfo->mask : 0);
+> +}
+> +
+> +static int axp192_gpio_direction_input(struct gpio_chip *chip,
+> unsigned int offset)
+> +{
+> +	return pinctrl_gpio_direction_input(chip->base + offset);
+> +}
+
+..as well as this.
+
+> +
+> +static int axp192_gpio_direction_output(struct gpio_chip *chip,
+> unsigned int offset, int value)
+> +{
+> +	chip->set(chip, offset, value);
+
+Why don't you call pinctrl_gpio_direction_output() here?
+
+
+I *think* what is needed for gpio-regmap to support this is:
+  - support values and masks for the direction, for now, we
+    only support single bits.
+  - support the pinctrl_gpio_direction_{input,output} calls
+
+-michael
