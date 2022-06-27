@@ -2,692 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19E3555CD67
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:02:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6510555D4EB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:14:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232441AbiF0Ka7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 06:30:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37892 "EHLO
+        id S232542AbiF0Ke7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 06:34:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232718AbiF0Ka7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 06:30:59 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB5BE62D7;
-        Mon, 27 Jun 2022 03:30:48 -0700 (PDT)
-X-UUID: 0bafa932750b4551b7c5197945cce3bf-20220627
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.7,REQID:dcfe5252-9fd0-41bd-b998-846f539e1025,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:87442a2,CLOUDID:16d2252e-1756-4fa3-be7f-474a6e4be921,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 0bafa932750b4551b7c5197945cce3bf-20220627
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1823173727; Mon, 27 Jun 2022 18:30:41 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Mon, 27 Jun 2022 18:30:39 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Mon, 27 Jun 2022 18:30:39 +0800
-Message-ID: <5f94612c26c79604fe62550808c481c0031456e5.camel@mediatek.com>
-Subject: Re: [PATCH v12 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "deller@gmx.de" <deller@gmx.de>,
-        "airlied@linux.ie" <airlied@linux.ie>
-CC:     "msp@baylibre.com" <msp@baylibre.com>,
-        "granquet@baylibre.com" <granquet@baylibre.com>,
-        "Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?=" 
-        <jitao.shi@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "CK Hu =?UTF-8?Q?=28=E8=83=A1=E4=BF=8A=E5=85=89=29?=" 
-        <ck.hu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S231252AbiF0Ke5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 06:34:57 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 950565F9A;
+        Mon, 27 Jun 2022 03:34:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1656326095; x=1687862095;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=JdVq0hqPjYw1SoGZyBtnr0ST4uGBGDGPp+1fV+lNhGI=;
+  b=WrFdXCCn9rDz85iFgmuzhhFVwRO7k0NTCdekhdCM6nkCHWxyZ8UZ22mb
+   uaulpW2xUj6LIsvySEQh6GvhLdG6m5N7IHBt4Os7zhduKhkTzZOkcXgXo
+   X6ibYVIebvp6CbxJ7UlVVaWoXLq5TDMhRLlFB7seujs0mNuxHjw8Uky0v
+   slPrk3tXdzukWWGV4dxzLe2ASDh2lF3xb8XpUY/TKiISMiXFMDmXGLzP/
+   /NxIM02YTbYqFycuti9U7V2ECadBjItsIeeUF3Rq+TLA7jEpNMvdscPR5
+   ILySWoNmqyb9yvC3s5ObMM3AJPXaeMWSW+UGIn2DtDAvA1YB04i/WomTd
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.92,226,1650956400"; 
+   d="scan'208";a="101871777"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jun 2022 03:34:54 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 27 Jun 2022 03:34:53 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
+ Transport; Mon, 27 Jun 2022 03:34:53 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DTLaSzYTrSx2G0Jjh7B3kRu7CjdcR8TNOY9GvRptu6vDBh+eU4u0pTfudxcR4Ku7zyrPWNeyyXqStLieKRxPGQ86k6RR5sD4g2YnhDmlhc4DAlya632MzNWVnrptNB9e2Wo9NTW2vVSMNTDNK2tIBlc9lhIHp7AjUOjuAW7GCYc5pXNpa2T7SR68DmVjdHcluj9z6XOznlhSGbdHs+TC9VzqcCQonX9hsbNYpmPSgP+0ILzfrBz2JXFlQqDZx5StrS9H/I6Yif94RMbjzMO3Rn3BqHfhcj1a2lp8kZ8EqXFY3FLdBO/pCScgNipErFaQ/1BcmDoUvJHmoN0Yn+kMLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JdVq0hqPjYw1SoGZyBtnr0ST4uGBGDGPp+1fV+lNhGI=;
+ b=iihBq1lBZBx/4PqNtQHL9IqT0OC0cdR3ZkxpHQwDRE8V31UM+vST9RGgWaWO8PjkSUpITa6Hz4yF18XhcGgvawkOl5NUPmJzFZc8P5uqiS/U2lhI6QLhlueTiGsc/psOzBL5HyK4Tw+e2NC8260WtjzGS+i4YhuWGVCNhcO4hlNz7/JA46zsEpkUSFDo/Angvceb7X+5SiAdjacUSUhvI9mQpDMc5hLms1rNiq7fFq4+eJNQ8epStl8QKrZHzgt+vQ5LhpS4FJowRaqdwlmPBG5PfuqbSQ3obSxOOhte8tiyslsnnw5TyFOPvkQhsRdn60WnzybSssBhiJ52i9DoXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JdVq0hqPjYw1SoGZyBtnr0ST4uGBGDGPp+1fV+lNhGI=;
+ b=ur43t5+6dPnCe+a61WlWuwTxCSeFHU3uDaECodDK8w15xRVSvjaPtdGPOinsp92la6j8PygyLczr4SdYCoynMG6JQi7JEMqsFygjvDhpdCetip/sMrJ7vMb/vmDt6b/k4rfRCeEMNBq3+PWWTARzAH/Yrex+AU1Sb18q0AZN9/4=
+Received: from BN6PR11MB1953.namprd11.prod.outlook.com (2603:10b6:404:105::14)
+ by BL1PR11MB5239.namprd11.prod.outlook.com (2603:10b6:208:31a::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.17; Mon, 27 Jun
+ 2022 10:34:51 +0000
+Received: from BN6PR11MB1953.namprd11.prod.outlook.com
+ ([fe80::5c8c:c31f:454d:824c]) by BN6PR11MB1953.namprd11.prod.outlook.com
+ ([fe80::5c8c:c31f:454d:824c%8]) with mapi id 15.20.5373.015; Mon, 27 Jun 2022
+ 10:34:51 +0000
+From:   <Claudiu.Beznea@microchip.com>
+To:     <Kavyasree.Kotagiri@microchip.com>,
+        <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
+        <Nicolas.Ferre@microchip.com>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <UNGLinuxDriver@microchip.com>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 27 Jun 2022 18:30:39 +0800
-In-Reply-To: <269ba882-1975-7148-524a-2bb8eb8667b7@collabora.com>
-References: <20220627080341.5087-1-rex-bc.chen@mediatek.com>
-         <20220627080341.5087-6-rex-bc.chen@mediatek.com>
-         <269ba882-1975-7148-524a-2bb8eb8667b7@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 3/3] mfd: atmel-flexcom: Add support for lan966x
+ flexcom chip-select configuration
+Thread-Topic: [PATCH v5 3/3] mfd: atmel-flexcom: Add support for lan966x
+ flexcom chip-select configuration
+Thread-Index: AQHYihGI8mFobqnFUkSUiLJldqI61g==
+Date:   Mon, 27 Jun 2022 10:34:51 +0000
+Message-ID: <7110531a-36bd-3904-dc54-4697fd6a7316@microchip.com>
+References: <20220620144634.25464-1-kavyasree.kotagiri@microchip.com>
+ <20220620144634.25464-4-kavyasree.kotagiri@microchip.com>
+In-Reply-To: <20220620144634.25464-4-kavyasree.kotagiri@microchip.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 181c64f2-87d8-45d3-bde0-08da5828aac1
+x-ms-traffictypediagnostic: BL1PR11MB5239:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: UOnzThIFbog+oqmq+N442wwm6AtbiLmBm21Sl0Ue+kz34Cnm3W+QAYPjTClvfynPODQzDoL9QAwAvGmY/fSHlvUVIfaz9sQJQnpl6+VYYibtbwd2T0+FmsEOx2gPKgGTfVF3e/BPjXWTaQvqaapBT6F9XAY2FBCtRejIY6fEd1NCFO/Tbam8fdtJcvthg4+/ZhUHT/Hp02YKCbTz44kxi86XJA5zWMoDp8FpqTP8DVLwvSHCuzmu3+CpIhkSqkBapuTAwga/AP1lXJn1wmB9mGfdzdVK3WzJAPZuYAci6glBnZ6CLLA6AAYrT1pPxo/J8meNaTiICBGEDS6Pln3RCbLpeYKcIpkMye+3HV4irL9Ep4UTQw8XbAD2Zl6KjIBma7jwsdb2kPKP4cF8vJmWIO+NH9Cr1XJJyEyN64YuKrPD62UZSMyeRJRLggfJsmTPXkRqs4vGKR5jGh+TyTCAd+rp6TexmnM6qeE6NvahiD+8r3oyN+iuX+z9k50k1qXSllyUqr41iPn68KL0pUhb/9y0FKUw7/RkxavoSeAnzfwkX4CK/haC/wIBIXY5fbHpLxHj+/gUUYxFs1TnglgQpsGQ25ScY9aD1k0o1qtZmcWBzA4SFkgZRbDcwxdEuEv+6vLr/C00AilBs4l3SL+D4HWcUZH/kdi8AEjauwO18e2vB3LilmfYFD/nVqNzTiRDzPQ8I9lxZ9V713k1Nftn6cbsKig+Y0uyTKPQnX7gILCR8bq1BXSo2XisnMlQT4OyoZGhGfw6zs+1hdykUReXmupmW/e2YlnSTNvWDLRYcwSY3rjU/eS2eSC03y5ipuw+QHhRcrH7+9RKx2owLhFwXHiK/Fd+njrj65hf6gPnLV8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR11MB1953.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(376002)(366004)(346002)(39860400002)(396003)(136003)(38100700002)(6506007)(71200400001)(2616005)(2906002)(53546011)(86362001)(8936002)(5660300002)(186003)(478600001)(41300700001)(76116006)(38070700005)(122000001)(6486002)(26005)(83380400001)(36756003)(91956017)(6512007)(64756008)(8676002)(54906003)(110136005)(66556008)(66946007)(66446008)(66476007)(316002)(4326008)(31696002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?U2s5SUh4TFI5TFlRVXhGeFliVXk1cWRMZHpDd0dQNnhuV1N4UU9LUUtIWGo0?=
+ =?utf-8?B?VUNpS2w3RWIzSWl4YUo1S2YydmpBRUt1Mk1qSTgvUnk5enpwajZza1RqS2xQ?=
+ =?utf-8?B?a3lYQU1GcWxxT1J5UzZtNUsyYUlqbFhyemV0Z0g3bEYvM0c1QUV6Z2g4RDFG?=
+ =?utf-8?B?VVNqUUZCeElCNnNkZTdXcDVTWHBJWFpFanZ4MjBDZml0QXRIQ3FzQ0s4VXgw?=
+ =?utf-8?B?NGxhb01wQllYTlVCUUdXMCtHQS8xMmRWMEY4dDVpaWFVOHVDd0syT2JMa0NC?=
+ =?utf-8?B?dXl6WGRia3dNMW9sNmwwNlZDRU1SQTUyN1dtZVlzRk1GMUhpVjgrd1cxTGFk?=
+ =?utf-8?B?OERhMXY1bkRuaWdJc2ozVytiRmU4VEQ0aW9tdDJ5UTI4aTJVUlpLTnVydnQ4?=
+ =?utf-8?B?VWUvcjZFZ0o5QS9lWS9uZ3ZPcUpsamEydHFlWkdHRUtYUHZOY3o5ekJpZE9x?=
+ =?utf-8?B?N1dRbU51NS9ESm0za1ZZdlA5WGJPYnlZd0hvbWlNN2pBQVhXS1BVTUo3TmV3?=
+ =?utf-8?B?ejFVWDlycDBYbitJQ1ZMM1VLYk5va0FYcXpDcHVSM3VXWklERFFOUmtFSEl2?=
+ =?utf-8?B?NG81S2RVL09rKzJhc3B1N0hESWRjMlQ3YW1zT01LVWpzN0NPWXJwSEsyaSsy?=
+ =?utf-8?B?SXA1bElzb3BWeGRsK0tNM0JDRlhvTk04UzNocmFZOThsWUcxb25LdnZLUGNi?=
+ =?utf-8?B?VGI2L2YxczFYeE9LaWMzbDBLbnNKQ0VITVBUaVhKWTRCa1R0Ukt3dnBoWWx1?=
+ =?utf-8?B?aXo5L1NCbVM3Z1ZzVnNBRVlNaEEvRlBEVmdMWnd4R2hxeWdQbTd3cmNmOWJj?=
+ =?utf-8?B?Q25XTlp0aTVxZHU0eldsNGh6anpaS1B4VDhMWlVDWkNreHdPUFRqanpMYnN3?=
+ =?utf-8?B?RXFtOXRWYlBObE5TSUl0NkMwUHVOUjE4ZHF1dHpYMTR2Zkl2dFR5L3hZbTQv?=
+ =?utf-8?B?RXdMK0NtSFdQR2xwMEkwVTBBb1pZWXgxUmtQSThpb1gzSXl3SDZpWlVZS0th?=
+ =?utf-8?B?TzQ1WE9OSGI2Sk5KTnJEU2RiV01oZjY5MkI5N0lYVU9NUGZNV2FrbW1jcU9L?=
+ =?utf-8?B?V0RMQUE3Q2wyTnd2UjRKWjgrS2E3NElaUWdNajJhbGx6YXVhWkxMNVlkeGxC?=
+ =?utf-8?B?SHdIU0dISzBPT1VoY1pOUVVSU3p1TGkwV0lMSXljdWExbUUvQ1VjMUJMRUFr?=
+ =?utf-8?B?MnU5SFk3SmR0Wnh2d0l5MUY2WVJLeGt1cEM0OEZES3RlZjRDSFkyRHVPSHh2?=
+ =?utf-8?B?bHJodFgvY2dYTDMySUtWSktibzU3dTdUTk1hMC8rR1l4TWEzTXZtODNObWRI?=
+ =?utf-8?B?U1pGQXFycVdXd294MWRUV1B2WFV4M29mSUZ4QzJpSS9zRW9zellsN1pVaHQ1?=
+ =?utf-8?B?elpHSURyaXFobHAxc2lrYWJWRXBuZEtCY0lSdCtjTnAyK0czamwvQXRDUFdw?=
+ =?utf-8?B?eEYxLzVkYnd6blIvQXp3RUhRLzVhcjduTENBbG1KVEVMOEt4Ti9hZUpTbDRv?=
+ =?utf-8?B?T3kvR2pqQlg0MjFCRDVrQWkva3Z1MmZPTXNJKzZ0UWF6VklMOGo5VVJINEcz?=
+ =?utf-8?B?UXNrWVpQYjg3cS8rWmxwdkRFS2JvTzcwUjlLeGJiTUN1dklaZUlmdUFGN0w3?=
+ =?utf-8?B?dWdtd2xKVUNaRkZpNldORUtkZ0RkRlQySmJzS0ZjMVRBcU5BNWhEQmNkdjRE?=
+ =?utf-8?B?VnIxczNldmNQYkV5SjVrMmRLWVVjSTE2NVNGcUdvZERGUEgvZ3lvaVdmS2JQ?=
+ =?utf-8?B?VFZ1YmZ2MWxGVlJaZldnbXk3am5zcHBJd2JaSzNrVUJqSVNJS2QvTkU2c1pW?=
+ =?utf-8?B?bVNsckpJMWNEWDZ3eFhnRzh0MVFxTEtxVkE0bVpDUlRlTWFJcUdLdkkxMFRo?=
+ =?utf-8?B?VzBsYVFkS1lYRTlmcHA4VmhJVUJhM2RISmI3d0NTS3YrZ3IyNTQ5MjMrV0xH?=
+ =?utf-8?B?TFRHS2tJZmx1N1BKR0VBdy85eDc1OVorekx1TVZlVFRaN1YzYU5ONUxSZkhp?=
+ =?utf-8?B?VjU4TnF3eG83YVpxNzIxYWp4aUR6cytGM2RZQkZlcmxDT25ibHpHQWlZdXM3?=
+ =?utf-8?B?anlRamtJN1kxeU1EOW9yK2xaRTRXRG9sdVc0aHFCYk0xRDNRcHd1M1ZUd2Uz?=
+ =?utf-8?B?eHdzWm0vTUdsb05mVjJRNlR1N1lRZkpraEI4cmllbjdiZjZDVFQ2N2NKQkV3?=
+ =?utf-8?B?dVE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F6C19D766807834AB6932FBDCD5A3968@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN6PR11MB1953.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 181c64f2-87d8-45d3-bde0-08da5828aac1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jun 2022 10:34:51.2950
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 11ZZQ5dc4BiF+mOlhOE9N5e71h2OBEE2OhbfZIqGj43NjHqA/eHZzIDe8ik6jhVaLlPk809uErhf+0vOHK8sULS69zzu9SBFd6Yiz4cBn9I=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5239
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-06-27 at 18:07 +0800, AngeloGioacchino Del Regno wrote:
-> Il 27/06/22 10:03, Bo-Chen Chen ha scritto:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > 
-> > This patch adds a embedded displayport driver for the MediaTek
-> > mt8195 SoC.
-> > 
-> > It supports the MT8195, the embedded DisplayPort units. It offers
-> > DisplayPort 1.4 with up to 4 lanes.
-> > 
-> > The driver creates a child device for the phy. The child device
-> > will
-> > never exist without the parent being active. As they are sharing a
-> > register range, the parent passes a regmap pointer to the child so
-> > that
-> > both can work with the same register range. The phy driver sets
-> > device
-> > data that is read by the parent to get the phy device that can be
-> > used
-> > to control the phy properties.
-> > 
-> > This driver is based on an initial version by
-> > Jitao shi <jitao.shi@mediatek.com>
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >   drivers/gpu/drm/mediatek/Kconfig       |   10 +
-> >   drivers/gpu/drm/mediatek/Makefile      |    1 +
-> >   drivers/gpu/drm/mediatek/mtk_dp.c      | 2198
-> > ++++++++++++++++++++++++
-> >   drivers/gpu/drm/mediatek/mtk_dp_reg.h  |  543 ++++++
-> >   drivers/gpu/drm/mediatek/mtk_drm_drv.c |    3 +
-> >   drivers/gpu/drm/mediatek/mtk_drm_drv.h |    3 +
-> >   6 files changed, 2758 insertions(+)
-> >   create mode 100644 drivers/gpu/drm/mediatek/mtk_dp.c
-> >   create mode 100644 drivers/gpu/drm/mediatek/mtk_dp_reg.h
-> > 
-> 
-> 
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c
-> > b/drivers/gpu/drm/mediatek/mtk_dp.c
-> > new file mode 100644
-> > index 000000000000..9e9b516409e2
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-> > @@ -0,0 +1,2198 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (c) 2019-2022 MediaTek Inc.
-> > + * Copyright (c) 2022 BayLibre
-> > + */
-> > +
-> > +#include <drm/display/drm_dp.h>
-> > +#include <drm/display/drm_dp_helper.h>
-> > +#include <drm/drm_atomic_helper.h>
-> > +#include <drm/drm_bridge.h>
-> > +#include <drm/drm_crtc.h>
-> > +#include <drm/drm_edid.h>
-> > +#include <drm/drm_of.h>
-> > +#include <drm/drm_panel.h>
-> > +#include <drm/drm_print.h>
-> > +#include <drm/drm_probe_helper.h>
-> > +#include <linux/arm-smccc.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/errno.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/nvmem-consumer.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_irq.h>
-> > +#include <linux/of_platform.h>
-> > +#include <linux/phy/phy.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pm_runtime.h>
-> > +#include <linux/regmap.h>
-> > +#include <sound/hdmi-codec.h>
-> > +#include <video/videomode.h>
-> > +
-> > +#include "mtk_dp_reg.h"
-> > +
-> > +#define MTK_DP_SIP_CONTROL_AARCH32 0x82000523
-> 
-> Why have you forced this SIP call to AArch32 SMC convention?
-> Is there any particular reason why this should always be AA32 and
-> *never* AA64?
-> 
-> In any case, you've got MediaTek SIP macros in
-> include/soc/mediatek/mtk_sip_svc.h
-> so, please, include that header and either redefine this as
-> 
-> MTK_SIP_CMD(0x523) or add a new macro in there to force
-> ARM_SMCCC_SMC_32
-> convention with a very explanatory comment saying why some calls need
-> to
-> be forced to use the AArch32 SMC convention.
-> 
-
-Hello Angelo,
-
-Thanks for your review.
-ok, I will do this in next version.
-
-> > +
-> > +#define MTK_VDOSYS1_MAX_FRAMERATE 60
-> > +#define MTK_DP_4P1T 4
-> > +#define MTK_DP_HDE 2
-> > +#define MTK_DP_PIX_PER_ADDR 2
-> > +#define MTK_DP_AUX_WAIT_REPLY_COUNT 20
-> > +#define MTK_DP_CHECK_SINK_CAP_TIMEOUT_COUNT 3
-> > +#define MTK_DP_TBC_BUF_READ_START_ADDR 0x08
-> > +#define MTK_DP_TRAIN_RETRY_LIMIT 8
-> > +#define MTK_DP_TRAIN_MAX_ITERATIONS 5
-> > +#define MTK_DP_DP_VERSION_11 0x11
-> 
-> MTK_DP_HW_VERSION_11 0x11 ?
-> 
-> ...but anyway, this definition is unused, so please either use it or
-> drop it.
-> 
-
-it's fro audio patch, and I will move this there.
-
-> > +
-> > +enum mtk_dp_train_state {
-> > +	MTK_DP_TRAIN_STATE_TRAINING,
-> > +	MTK_DP_TRAIN_STATE_NORMAL,
-> > +};
-> > +
-> > +struct mtk_dp_timings {
-> > +	struct videomode vm;
-> > +	u8 frame_rate;
-> > +};
-> > +
-> > +struct mtk_dp_irq_sta {
-> > +	bool hpd_disconnect;
-> > +	bool hpd_inerrupt;
-> > +};
-> > +
-> > +struct mtk_dp_train_info {
-> > +	bool tps3;
-> > +	bool tps4;
-> > +	bool sink_ssc;
-> > +	bool cable_plugged_in;
-> > +	bool cable_state_change;
-> > +	bool cr_done;
-> > +	bool eq_done;
-> > +	/* link_rate is in multiple of 0.27Gbps */
-> > +	int link_rate;
-> > +	int lane_count;
-> > +	struct mtk_dp_irq_sta irq_sta;
-> > +};
-> > +
-> > +struct mtk_dp_info {
-> > +	u32 depth;
-> > +	enum dp_pixelformat format;
-> > +	struct mtk_dp_timings timings;
-> > +};
-> > +
-> > +struct dp_cal_data {
-> > +	unsigned int glb_bias_trim;
-> > +	unsigned int clktx_impse;
-> > +
-> > +	unsigned int ln_tx_impsel_pmos[4];
-> > +	unsigned int ln_tx_impsel_nmos[4];
-> > +};
-> > +
-> > +struct mtk_dp {
-> > +	struct device *dev;
-> > +	struct platform_device *phy_dev;
-> > +	struct phy *phy;
-> > +	struct dp_cal_data cal_data;
-> > +	u8 max_lanes;
-> > +	u8 max_linkrate;
-> > +
-> > +	struct drm_device *drm_dev;
-> > +	struct drm_bridge bridge;
-> > +	struct drm_bridge *next_bridge;
-> > +	struct drm_dp_aux aux;
-> > +
-> > +	u8 rx_cap[DP_RECEIVER_CAP_SIZE];
-> > +
-> > +	struct mtk_dp_info info;
-> > +
-> > +	struct mtk_dp_train_info train_info;
-> > +	enum mtk_dp_train_state train_state;
-> > +
-> > +	struct regmap *regs;
-> > +
-> > +	bool enabled;
-> > +
-> > +	struct drm_connector *conn;
-> > +};
-> > +
-> > +static struct regmap_config mtk_dp_regmap_config = {
-> > +	.reg_bits = 32,
-> > +	.val_bits = 32,
-> > +	.reg_stride = 4,
-> > +	.max_register = SEC_OFFSET + 0x90,
-> > +	.name = "mtk-dp-registers",
-> > +};
-> > +
-> > +static struct mtk_dp *mtk_dp_from_bridge(struct drm_bridge *b)
-> > +{
-> > +	return container_of(b, struct mtk_dp, bridge);
-> > +}
-> > +
-> > +static u32 mtk_dp_read(struct mtk_dp *mtk_dp, u32 offset)
-> > +{
-> > +	u32 read_val;
-> > +	int ret;
-> > +
-> > +	ret = regmap_read(mtk_dp->regs, offset, &read_val);
-> > +	if (ret) {
-> > +		dev_err(mtk_dp->dev, "Failed to read register 0x%x:
-> > %d\n",
-> > +			offset, ret);
-> > +		return 0;
-> > +	}
-> > +
-> > +	return read_val;
-> > +}
-> > +
-> > +static void mtk_dp_write(struct mtk_dp *mtk_dp, u32 offset, u32
-> > val)
-> > +{
-> 
-> This should be int... you should propagate the error to the caller,
-> and also
-> eventually take action in case you get an error.
-> 
-> > +	if (regmap_write(mtk_dp->regs, offset, val))
-> > +		dev_err(mtk_dp->dev,
-> > +			"Failed to write register 0x%x with value
-> > 0x%x\n",
-> > +			offset, val);
-> > +}
-> > +
-> > +static void mtk_dp_update_bits(struct mtk_dp *mtk_dp, u32 offset,
-> > +			       u32 val, u32 mask)
-> > +{
-> 
-> Same here.
-> 
-
-I don't think we need to control this.
-From most drivers, I see there are many example which are not control
-the error of write register function.
-
-If there is any error, the root cause is power domain is not enabled.
-In this case, we can not go to these register setting. Besides, we also
-can saves hundreds of driver lines to handle the write register error.
-
-> > +	if (regmap_update_bits(mtk_dp->regs, offset, mask, val))
-> > +		dev_err(mtk_dp->dev,
-> > +			"Failed to update register 0x%x with value
-> > 0x%x, mask 0x%x\n",
-> > +			offset, val, mask);
-> > +}
-> > +
-> > +static void mtk_dp_bulk_16bit_write(struct mtk_dp *mtk_dp, u32
-> > offset, u8 *buf,
-> > +				    size_t length)
-> > +{
-> > +	int i;
-> > +	int num_regs = (length + 1) / 2;
-> > +
-> 
-> ... and here.
-> 
-> > +	/* 2 bytes per register */
-> > +	for (i = 0; i < num_regs; i++) {
-> > +		u32 val = buf[i * 2] |
-> > +			  (i * 2 + 1 < length ? buf[i * 2 + 1] << 8 :
-> > 0);
-> > +
-> > +		mtk_dp_write(mtk_dp, offset + i * 4, val);
-> 
-> P.S.: Does it make sense to keep writing if you get an error?
->        I'd say that doing this may lead to unexpected hardware
-> status.
-> 
-
-If one register failed to write, it should be for *all* registers and
-not only for *one* register.
-
-> > +	}
-> > +}
-> > +
-> > +static unsigned long mtk_dp_sip_atf_call(struct mtk_dp *mtk_dp,
-> > +					 unsigned int cmd, unsigned int
-> > para)
-> > +{
-> > +	struct arm_smccc_res res;
-> > +
-> > +	arm_smccc_smc(MTK_DP_SIP_CONTROL_AARCH32, cmd, para, 0, 0, 0,
-> > 0, 0,
-> > +		      &res);
-> > +
-> > +	dev_dbg(mtk_dp->dev, "sip cmd 0x%x, p1 0x%x, ret 0x%lx-0x%lx",
-> > +		cmd, para, res.a0, res.a1);
-> > +
-> > +	return res.a1;
-> 
-> We have SIP_SVC_E_(xxxxx) error codes defined in mtk_sip_svc.h...
-> this makes me
-> think that res.a1 is not an unsigned long for real: please confirm.
-> 
-
-ok, I will confirm that.
-
-> > +}
-> > +
-> 
-> ..snip..
-> 
-> > +
-> > +static void mtk_dp_set_color_format(struct mtk_dp *mtk_dp,
-> > +				    enum dp_pixelformat color_format)
-> > +{
-> > +	u32 val;
-> > +
-> > +	mtk_dp->info.format = color_format;
-> > +
-> > +	/* update MISC0 */
-> > +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3034,
-> > +			   color_format << DP_TEST_COLOR_FORMAT_SHIFT,
-> > +			   DP_TEST_COLOR_FORMAT_MASK);
-> > +
-> > +	switch (color_format) {
-> > +	case DP_PIXELFORMAT_YUV422:
-> > +		val = PIXEL_ENCODE_FORMAT_DP_ENC0_P0_YCBCR422;
-> > +		break;
-> > +	case DP_PIXELFORMAT_YUV420:
-> > +		val = PIXEL_ENCODE_FORMAT_DP_ENC0_P0_YCBCR420;
-> > +		break;
-> > +	case DP_PIXELFORMAT_RGB:
-> > +	case DP_PIXELFORMAT_YUV444:
-> > +		val = PIXEL_ENCODE_FORMAT_DP_ENC0_P0_RGB;
-> > +		break;
-> > +	case DP_PIXELFORMAT_Y_ONLY:
-> > +	case DP_PIXELFORMAT_RAW:
-> > +	case DP_PIXELFORMAT_RESERVED:
-> > +	default:
-> > +		drm_warn(mtk_dp->drm_dev, "Unsupported color format:
-> > %d\n",
-> > +			 color_format);
-> > +		return;
-> 
-> return -EINVAL here?
-> 
-
-ok, I will take care the error handle.
-
-> > +	}
-> > +
-> > +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_303C,
-> > +			   val, PIXEL_ENCODE_FORMAT_DP_ENC0_P0_MASK);
-> 
-> ... and return 0 here.
-> 
-> > +}
-> > +
-> > +static void mtk_dp_set_color_depth(struct mtk_dp *mtk_dp)
-> > +{
-> > +	u32 val;
-> > +	/* Only support 8 bits currently */
-> > +	u32 color_depth = DP_MSA_MISC_8_BPC;
-> > +
-> > +	mtk_dp->info.depth = color_depth;
-> > +
-> > +	/* Update MISC0 */
-> > +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3034,
-> > +			   color_depth, DP_TEST_BIT_DEPTH_MASK);
-> > +
-> > +	switch (color_depth) {
-> > +	case DP_MSA_MISC_6_BPC:
-> > +		val = VIDEO_COLOR_DEPTH_DP_ENC0_P0_6BIT;
-> > +		break;
-> > +	case DP_MSA_MISC_8_BPC:
-> > +		val = VIDEO_COLOR_DEPTH_DP_ENC0_P0_8BIT;
-> > +		break;
-> > +	case DP_MSA_MISC_10_BPC:
-> > +		val = VIDEO_COLOR_DEPTH_DP_ENC0_P0_10BIT;
-> > +		break;
-> > +	case DP_MSA_MISC_12_BPC:
-> > +		val = VIDEO_COLOR_DEPTH_DP_ENC0_P0_12BIT;
-> > +		break;
-> > +	case DP_MSA_MISC_16_BPC:
-> > +		val = VIDEO_COLOR_DEPTH_DP_ENC0_P0_16BIT;
-> > +		break;
-> 
-> ditto
-> 
-> > +	default:
-> > +		drm_warn(mtk_dp->drm_dev, "Unsupported color depth
-> > %d\n",
-> > +			 color_depth);
-> > +		return;
-> > +	}
-> > +
-> > +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_303C, val,
-> > +			   VIDEO_COLOR_DEPTH_DP_ENC0_P0_MASK);
-> > +}
-> > +
-> 
-> ..snip..
-> 
-> > +
-> > +static int mtk_dp_phy_configure(struct mtk_dp *mtk_dp,
-> > +				u32 link_rate, int lane_count)
-> > +{
-> > +	int ret;
-> > +	union phy_configure_opts phy_opts = {
-> > +		.dp = {
-> > +			.link_rate = link_rate_to_mb_per_s(mtk_dp,
-> > link_rate),
-> > +			.set_rate = 1,
-> > +			.lanes = lane_count,
-> > +			.set_lanes = 1,
-> > +			.ssc = mtk_dp->train_info.sink_ssc,
-> > +		}
-> > +	};
-> > +
-> > +	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
-> > DP_PWR_STATE_BANDGAP,
-> > +			   DP_PWR_STATE_MASK);
-> > +
-> > +	ret = phy_configure(mtk_dp->phy, &phy_opts);
-> > +
-> 
-> This new blank line is unnecessary, please remove.
-> 
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	mtk_dp_set_cal_data(mtk_dp);
-> > +	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
-> > +			   DP_PWR_STATE_BANDGAP_TPLL_LANE,
-> > DP_PWR_STATE_MASK);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> 
-> ..snip..
-> 
-> > +
-> > +static void mtk_dp_calculate_pixrate(struct mtk_dp *mtk_dp)
-> > +{
-> > +	u8 target_frame_rate = 60;
-> 
-> Don't assign any value here: this will make sure to avoid double
-> assignments later.
-> 
-> > +	u32 target_pixel_clk;
-> > +	struct drm_display_mode mode;
-> > +	struct mtk_dp_timings *timings = &mtk_dp->info.timings;
-> > +
-> > +	drm_display_mode_from_videomode(&timings->vm, &mode);
-> > +
-> > +	if (mtk_dp->info.timings.frame_rate > 0) {
-> > +		target_frame_rate = mtk_dp->info.timings.frame_rate;
-> > +		target_pixel_clk = mode.htotal * mode.vtotal *
-> > +				   target_frame_rate;
-> > +	} else {
-> > +		target_pixel_clk = mode.htotal * mode.vtotal *
-> > +				   target_frame_rate;
-> > +	}
-> 
-> This should be
-> 
-> 	if (mtk_dp->info.timings.frame_rate > 0)
-> 		target_frame_rate = mtk_dp->info.timings.frame_rate;
-> 	else
-> 		target_frame_rate = 60;
-> 
-> 	target_pixel_clk = mode.htotal * mode.vtotal *
-> target_frame_rate;
-> 
-
-ok.
-
-> > +}
-> > +
-> > +static void mtk_dp_set_tx_out(struct mtk_dp *mtk_dp)
-> > +{
-> > +	mtk_dp_msa_bypass_disable(mtk_dp);
-> > +	mtk_dp_calculate_pixrate(mtk_dp);
-> > +	mtk_dp_pg_disable(mtk_dp);
-> > +	mtk_dp_setup_tu(mtk_dp);
-> > +}
-> > +
-> > +static ssize_t mtk_dp_hpd_sink_event(struct mtk_dp *mtk_dp)
-> > +{
-> > +	ssize_t ret;
-> > +	u8 sink_count;
-> > +	bool locked;
-> > +	u8 link_status[DP_LINK_STATUS_SIZE] = {};
-> > +	u32 sink_count_reg = DP_SINK_COUNT_ESI;
-> > +	u32 link_status_reg = DP_LANE0_1_STATUS;
-> > +
-> > +	ret = drm_dp_dpcd_readb(&mtk_dp->aux, sink_count_reg,
-> > &sink_count);
-> > +	if (ret < 0) {
-> 
-> This function can never return anything > 1, so this should probably
-> be:
-> 
-> 	if (ret < 1) {
-> 		drm_err ....
-> 		return ret == 0 ? -EIO : ret;
-> 	}
-> 
-
-ok, I will check this.
-
-BRs,
-Bo-Chen
-
-> > +		drm_err(mtk_dp->drm_dev, "Read sink count failed\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret = drm_dp_dpcd_read(&mtk_dp->aux, link_status_reg,
-> > link_status,
-> > +			       sizeof(link_status));
-> > +	if (!ret) {
-> > +		drm_err(mtk_dp->drm_dev, "Read link status failed\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	locked = drm_dp_channel_eq_ok(link_status,
-> > +				      mtk_dp->train_info.lane_count);
-> > +	if (!locked && mtk_dp->train_state >
-> > MTK_DP_TRAIN_STATE_TRAINING)
-> > +		mtk_dp->train_state = MTK_DP_TRAIN_STATE_TRAINING;
-> > +
-> > +	if (link_status[1] & DP_REMOTE_CONTROL_COMMAND_PENDING)
-> > +		drm_dp_dpcd_writeb(&mtk_dp->aux,
-> > DP_DEVICE_SERVICE_IRQ_VECTOR,
-> > +				   DP_REMOTE_CONTROL_COMMAND_PENDING);
-> > +
-> > +	if (DP_GET_SINK_COUNT(sink_count) &&
-> > +	    (link_status[2] & DP_DOWNSTREAM_PORT_STATUS_CHANGED)) {
-> > +		mtk_dp->train_state = MTK_DP_TRAIN_STATE_TRAINING;
-> > +		msleep(20);
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> 
-> ..snip..
-> 
-> > +
-> > +static int mtk_dp_train_flow(struct mtk_dp *mtk_dp, u8
-> > target_link_rate,
-> > +			     u8 target_lane_count)
-> > +{
-> > +	u8 lane_adjust[2] = {};
-> > +	bool pass_tps1 = false;
-> > +	bool pass_tps2_3 = false;
-> > +	int train_retries;
-> > +	int status_control;
-> > +	int iteration_count;
-> > +	int ret;
-> > +	u8 prev_lane_adjust;
-> > +
-> > +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_LINK_BW_SET,
-> > target_link_rate);
-> > +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_LANE_COUNT_SET,
-> > +			   target_lane_count |
-> > DP_LANE_COUNT_ENHANCED_FRAME_EN);
-> > +
-> > +	if (mtk_dp->train_info.sink_ssc)
-> > +		drm_dp_dpcd_writeb(&mtk_dp->aux, DP_DOWNSPREAD_CTRL,
-> > +				   DP_SPREAD_AMP_0_5);
-> > +
-> > +	train_retries = 0;
-> > +	status_control = 0;
-> > +	iteration_count = 1;
-> > +	prev_lane_adjust = 0xFF;
-> > +
-> > +	mtk_dp_set_lanes(mtk_dp, target_lane_count / 2);
-> > +	ret = mtk_dp_phy_configure(mtk_dp, target_link_rate,
-> > target_lane_count);
-> > +	if (ret)
-> > +		return -EINVAL;
-> 
-> Why are you overriding the error value here?
-> 
-> > +
-> > +	dev_dbg(mtk_dp->dev,
-> > +		"Link train target_link_rate = 0x%x, target_lane_count
-> > = 0x%x\n",
-> > +		target_link_rate, target_lane_count);
-> > +
-> 
-> Cheers,
-> Angelo
-
+T24gMjAuMDYuMjAyMiAxNzo0NiwgS2F2eWFzcmVlIEtvdGFnaXJpIHdyb3RlOg0KPiBMQU45NjZ4
+IFNvQyBoYXZlIDUgZmxleGNvbXMuIEVhY2ggZmxleGNvbSBoYXMgMiBjaGlwLXNlbGVjdHMNCj4g
+d2hpY2ggYXJlIG9wdGlvbmFsIEkvTyBsaW5lcy4gRm9yIGVhY2ggY2hpcCBzZWxlY3Qgb2YgZWFj
+aA0KPiBmbGV4Y29tIHRoZXJlIGlzIGEgY29uZmlndXJhdGlvbiByZWdpc3RlciBGTEVYQ09NX1NI
+QVJFRFswLTRdOlNTX01BU0tbMC0xXS4NCj4gVGhlIHdpZHRoIG9mIGNvbmZpZ3VyYXRpb24gcmVn
+aXN0ZXIgaXMgMjEgYmVjYXVzZSB0aGVyZSBhcmUNCj4gMjEgc2hhcmVkIHBpbnMgb24gZWFjaCBv
+ZiB3aGljaCB0aGUgY2hpcCBzZWxlY3QgY2FuIGJlIG1hcHBlZC4NCj4gRWFjaCBiaXQgb2YgdGhl
+IHJlZ2lzdGVyIHJlcHJlc2VudHMgYSBkaWZmZXJlbnQgRkxFWENPTV9TSEFSRUQgcGluLg0KPiAN
+Cj4gU2lnbmVkLW9mZi1ieTogS2F2eWFzcmVlIEtvdGFnaXJpIDxrYXZ5YXNyZWUua290YWdpcmlA
+bWljcm9jaGlwLmNvbT4NCg0KUmV2aWV3ZWQtYnk6IENsYXVkaXUgQmV6bmVhIDxjbGF1ZGl1LmJl
+em5lYUBtaWNyb2NoaXAuY29tPg0KDQoNCj4gLS0tDQo+IHY0IC0+IHY1Og0KPiAgLSBObyBjaGFu
+Z2VzLg0KPiANCj4gdjMgLT4gdjQ6DQo+ICAtIEFkZCBjb25kaXRpb24gZm9yIGEgZmxleGNvbSB3
+aGV0aGVyIHRvIGNvbmZpZ3VyZSBjaGlwLXNlbGVjdCBsaW5lcw0KPiAgICBvciBub3QsIGJhc2Vk
+IG9uICJtaWNyb2NoaXAsZmx4LXNocmQtcGlucyIgcHJvcGVydHkgZXhpc3RlbmNlIGJlY2F1c2UN
+Cj4gICAgY2hpcC1zZWxlY3QgbGluZXMgYXJlIG9wdGlvbmFsLg0KPiANCj4gdjIgLT4gdjM6DQo+
+ICAtIHVzZWQgZ290byBsYWJlbCBmb3IgY2xrX2Rpc2FibGUgaW4gZXJyb3IgY2FzZXMuDQo+IA0K
+PiB2MSAtPiB2MjoNCj4gIC0gdXNlIEdFTk1BU0sgZm9yIG1hc2ssIG1hY3JvcyBmb3IgbWF4aW11
+bSBhbGxvd2VkIHZhbHVlcy4NCj4gIC0gdXNlIHUzMiB2YWx1ZXMgZm9yIGZsZXhjb20gY2hpcHNl
+bGVjdHMgaW5zdGVhZCBvZiBzdHJpbmdzLg0KPiAgLSBkaXNhYmxlIGNsb2NrIGluIGNhc2Ugb2Yg
+ZXJyb3JzLg0KPiANCj4gIGRyaXZlcnMvbWZkL2F0bWVsLWZsZXhjb20uYyB8IDk0ICsrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKy0NCj4gIDEgZmlsZSBjaGFuZ2VkLCA5MyBpbnNl
+cnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tZmQv
+YXRtZWwtZmxleGNvbS5jIGIvZHJpdmVycy9tZmQvYXRtZWwtZmxleGNvbS5jDQo+IGluZGV4IDMz
+Y2FhNGZiYTZhZi4uNDMwYjY3ODNiNWE3IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL21mZC9hdG1l
+bC1mbGV4Y29tLmMNCj4gKysrIGIvZHJpdmVycy9tZmQvYXRtZWwtZmxleGNvbS5jDQo+IEBAIC0y
+OCwxNSArMjgsNjggQEANCj4gICNkZWZpbmUgRkxFWF9NUl9PUE1PREUob3Btb2RlKQkoKChvcG1v
+ZGUpIDw8IEZMRVhfTVJfT1BNT0RFX09GRlNFVCkgJglcDQo+ICAJCQkJIEZMRVhfTVJfT1BNT0RF
+X01BU0spDQo+ICANCj4gKy8qIExBTjk2NnggZmxleGNvbSBzaGFyZWQgcmVnaXN0ZXIgb2Zmc2V0
+cyAqLw0KPiArI2RlZmluZSBGTEVYX1NIUkRfU1NfTUFTS18wCTB4MA0KPiArI2RlZmluZSBGTEVY
+X1NIUkRfU1NfTUFTS18xCTB4NA0KPiArI2RlZmluZSBGTEVYX1NIUkRfUElOX01BWAkyMA0KPiAr
+I2RlZmluZSBGTEVYX0NTX01BWAkJMQ0KPiArI2RlZmluZSBGTEVYX1NIUkRfTUFTSwkJR0VOTUFT
+SygyMCwgMCkNCj4gKw0KPiArc3RydWN0IGF0bWVsX2ZsZXhfY2FwcyB7DQo+ICsJYm9vbCBoYXNf
+Zmx4X2NzOw0KPiArfTsNCj4gKw0KPiAgc3RydWN0IGF0bWVsX2ZsZXhjb20gew0KPiAgCXZvaWQg
+X19pb21lbSAqYmFzZTsNCj4gKwl2b2lkIF9faW9tZW0gKmZsZXhjb21fc2hhcmVkX2Jhc2U7DQo+
+ICAJdTMyIG9wbW9kZTsNCj4gIAlzdHJ1Y3QgY2xrICpjbGs7DQo+ICB9Ow0KPiAgDQo+ICtzdGF0
+aWMgaW50IGF0bWVsX2ZsZXhjb21fbGFuOTY2eF9jc19jb25maWcoc3RydWN0IHBsYXRmb3JtX2Rl
+dmljZSAqcGRldikNCj4gK3sNCj4gKwlzdHJ1Y3QgYXRtZWxfZmxleGNvbSAqZGRhdGEgPSBkZXZf
+Z2V0X2RydmRhdGEoJnBkZXYtPmRldik7DQo+ICsJc3RydWN0IGRldmljZV9ub2RlICpucCA9IHBk
+ZXYtPmRldi5vZl9ub2RlOw0KPiArCXUzMiBmbHhfc2hyZF9waW5zWzJdLCBmbHhfY3NbMl0sIHZh
+bDsNCj4gKwlpbnQgZXJyLCBpLCBjb3VudDsNCj4gKw0KPiArCWNvdW50ID0gb2ZfcHJvcGVydHlf
+Y291bnRfdTMyX2VsZW1zKG5wLCAibWljcm9jaGlwLGZseC1zaHJkLXBpbnMiKTsNCj4gKwlpZiAo
+Y291bnQgPD0gMCB8fCBjb3VudCA+IDIpIHsNCj4gKwkJZGV2X2VycigmcGRldi0+ZGV2LCAiSW52
+YWxpZCAlcyBwcm9wZXJ0eSAoJWQpXG4iLCAiZmx4LXNocmQtcGlucyIsDQo+ICsJCQkJY291bnQp
+Ow0KPiArCQlyZXR1cm4gLUVJTlZBTDsNCj4gKwl9DQo+ICsNCj4gKwllcnIgPSBvZl9wcm9wZXJ0
+eV9yZWFkX3UzMl9hcnJheShucCwgIm1pY3JvY2hpcCxmbHgtc2hyZC1waW5zIiwgZmx4X3NocmRf
+cGlucywgY291bnQpOw0KPiArCWlmIChlcnIpDQo+ICsJCXJldHVybiBlcnI7DQo+ICsNCj4gKwll
+cnIgPSBvZl9wcm9wZXJ0eV9yZWFkX3UzMl9hcnJheShucCwgIm1pY3JvY2hpcCxmbHgtY3MiLCBm
+bHhfY3MsIGNvdW50KTsNCj4gKwlpZiAoZXJyKQ0KPiArCQlyZXR1cm4gZXJyOw0KPiArDQo+ICsJ
+Zm9yIChpID0gMDsgaSA8IGNvdW50OyBpKyspIHsNCj4gKwkJaWYgKGZseF9zaHJkX3BpbnNbaV0g
+PiBGTEVYX1NIUkRfUElOX01BWCkNCj4gKwkJCXJldHVybiAtRUlOVkFMOw0KPiArDQo+ICsJCWlm
+IChmbHhfY3NbaV0gPiBGTEVYX0NTX01BWCkNCj4gKwkJCXJldHVybiAtRUlOVkFMOw0KPiArDQo+
+ICsJCXZhbCA9IH4oMSA8PCBmbHhfc2hyZF9waW5zW2ldKSAmIEZMRVhfU0hSRF9NQVNLOw0KPiAr
+DQo+ICsJCWlmIChmbHhfY3NbaV0gPT0gMCkNCj4gKwkJCXdyaXRlbCh2YWwsIGRkYXRhLT5mbGV4
+Y29tX3NoYXJlZF9iYXNlICsgRkxFWF9TSFJEX1NTX01BU0tfMCk7DQo+ICsJCWVsc2UNCj4gKwkJ
+CXdyaXRlbCh2YWwsIGRkYXRhLT5mbGV4Y29tX3NoYXJlZF9iYXNlICsgRkxFWF9TSFJEX1NTX01B
+U0tfMSk7DQo+ICsJfQ0KPiArDQo+ICsJcmV0dXJuIDA7DQo+ICt9DQo+ICsNCj4gIHN0YXRpYyBp
+bnQgYXRtZWxfZmxleGNvbV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KPiAg
+ew0KPiAgCXN0cnVjdCBkZXZpY2Vfbm9kZSAqbnAgPSBwZGV2LT5kZXYub2Zfbm9kZTsNCj4gKwlj
+b25zdCBzdHJ1Y3QgYXRtZWxfZmxleF9jYXBzICpjYXBzOw0KPiAgCXN0cnVjdCByZXNvdXJjZSAq
+cmVzOw0KPiAgCXN0cnVjdCBhdG1lbF9mbGV4Y29tICpkZGF0YTsNCj4gIAlpbnQgZXJyOw0KPiBA
+QCAtNzYsMTMgKzEyOSw1MiBAQCBzdGF0aWMgaW50IGF0bWVsX2ZsZXhjb21fcHJvYmUoc3RydWN0
+IHBsYXRmb3JtX2RldmljZSAqcGRldikNCj4gIAkgKi8NCj4gIAl3cml0ZWwoRkxFWF9NUl9PUE1P
+REUoZGRhdGEtPm9wbW9kZSksIGRkYXRhLT5iYXNlICsgRkxFWF9NUik7DQo+ICANCj4gKwljYXBz
+ID0gb2ZfZGV2aWNlX2dldF9tYXRjaF9kYXRhKCZwZGV2LT5kZXYpOw0KPiArCWlmICghY2Fwcykg
+ew0KPiArCQlkZXZfZXJyKCZwZGV2LT5kZXYsICJDb3VsZCBub3QgcmV0cmlldmUgZmxleGNvbSBj
+YXBzXG4iKTsNCj4gKwkJZXJyID0gLUVJTlZBTDsNCj4gKwkJZ290byBjbGtfZGlzYWJsZTsNCj4g
+Kwl9DQo+ICsNCj4gKwlpZiAoY2Fwcy0+aGFzX2ZseF9jcyAmJiBvZl9wcm9wZXJ0eV9yZWFkX2Jv
+b2wobnAsICJtaWNyb2NoaXAsZmx4LXNocmQtcGlucyIpKSB7DQo+ICsJCWRkYXRhLT5mbGV4Y29t
+X3NoYXJlZF9iYXNlID0gZGV2bV9wbGF0Zm9ybV9nZXRfYW5kX2lvcmVtYXBfcmVzb3VyY2UocGRl
+diwgMSwgTlVMTCk7DQo+ICsJCWlmIChJU19FUlIoZGRhdGEtPmZsZXhjb21fc2hhcmVkX2Jhc2Up
+KSB7DQo+ICsJCQllcnIgPSBkZXZfZXJyX3Byb2JlKCZwZGV2LT5kZXYsDQo+ICsJCQkJCVBUUl9F
+UlIoZGRhdGEtPmZsZXhjb21fc2hhcmVkX2Jhc2UpLA0KPiArCQkJCQkiZmFpbGVkIHRvIGdldCBm
+bGV4Y29tIHNoYXJlZCBiYXNlIGFkZHJlc3NcbiIpOw0KPiArCQkJZ290byBjbGtfZGlzYWJsZTsN
+Cj4gKwkJfQ0KPiArDQo+ICsJCWVyciA9IGF0bWVsX2ZsZXhjb21fbGFuOTY2eF9jc19jb25maWco
+cGRldik7DQo+ICsJCWlmIChlcnIpDQo+ICsJCQlnb3RvIGNsa19kaXNhYmxlOw0KPiArCX0NCj4g
+Kw0KPiArY2xrX2Rpc2FibGU6DQo+ICAJY2xrX2Rpc2FibGVfdW5wcmVwYXJlKGRkYXRhLT5jbGsp
+Ow0KPiArCWlmIChlcnIpDQo+ICsJCXJldHVybiBlcnI7DQo+ICANCj4gIAlyZXR1cm4gZGV2bV9v
+Zl9wbGF0Zm9ybV9wb3B1bGF0ZSgmcGRldi0+ZGV2KTsNCj4gIH0NCj4gIA0KPiArc3RhdGljIGNv
+bnN0IHN0cnVjdCBhdG1lbF9mbGV4X2NhcHMgYXRtZWxfZmxleGNvbV9jYXBzID0ge307DQo+ICsN
+Cj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgYXRtZWxfZmxleF9jYXBzIGxhbjk2NnhfZmxleGNvbV9j
+YXBzID0gew0KPiArCS5oYXNfZmx4X2NzID0gdHJ1ZSwNCj4gK307DQo+ICsNCj4gIHN0YXRpYyBj
+b25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIGF0bWVsX2ZsZXhjb21fb2ZfbWF0Y2hbXSA9IHsNCj4g
+LQl7IC5jb21wYXRpYmxlID0gImF0bWVsLHNhbWE1ZDItZmxleGNvbSIgfSwNCj4gKwl7DQo+ICsJ
+CS5jb21wYXRpYmxlID0gImF0bWVsLHNhbWE1ZDItZmxleGNvbSIsDQo+ICsJCS5kYXRhID0gJmF0
+bWVsX2ZsZXhjb21fY2FwcywNCj4gKwl9LA0KPiArDQo+ICsJew0KPiArCQkuY29tcGF0aWJsZSA9
+ICJtaWNyb2NoaXAsbGFuOTY2eC1mbGV4Y29tIiwNCj4gKwkJLmRhdGEgPSAmbGFuOTY2eF9mbGV4
+Y29tX2NhcHMsDQo+ICsJfSwNCj4gKw0KPiAgCXsgLyogc2VudGluZWwgKi8gfQ0KPiAgfTsNCj4g
+IE1PRFVMRV9ERVZJQ0VfVEFCTEUob2YsIGF0bWVsX2ZsZXhjb21fb2ZfbWF0Y2gpOw0KDQo=
