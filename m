@@ -2,73 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE56055E23E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:35:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FD6C55DE10
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:28:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238829AbiF0Wd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 18:33:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40984 "EHLO
+        id S235716AbiF0WkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 18:40:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238985AbiF0Wd4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:33:56 -0400
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39630186DD;
-        Mon, 27 Jun 2022 15:33:55 -0700 (PDT)
-Received: by mail-io1-f47.google.com with SMTP id m13so11208329ioj.0;
-        Mon, 27 Jun 2022 15:33:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=32Nxg6F78wS9IwAB+Cxihgn8oha1HxjScddi+4nCHG4=;
-        b=MFjl4T8BhY+ZkdPda+caNxtnUdckkOz6NIz5Mxzvw2HAj9PYycbXNKcFd7cbmj3XDO
-         HauwaYrdjrtnZIk73vXETqvWJnXIbolQ9SG3GUuRiFhgRkgy2WxoTz8SlMDUoQdxAzaT
-         XHH4nbbPCzgf32z3fGsYNmo4gzqF3GqeOKG00VgNp9/UfSqsdBi7a2p4GFQ3Ae1dhKKu
-         XxaEpoa62hpCqkJK5KW13DCYGpwfZFK48uL3DUVS8jRd/mMNjCkgfeEWwsB/tu/BvoMO
-         8f8UzjuHQM/8OHWKlHVR1e7XvVzjOqG5ISDP2vYDa536yh5tBc5hbgG879nHzwQT0orP
-         LPFw==
-X-Gm-Message-State: AJIora/PN1bRV5F54WcXHnTw5QQ53dZvnpVsb8ZzQWbIPC7JRUklHWOY
-        iH9ypoTtgmLFw+tTieuumw==
-X-Google-Smtp-Source: AGRyM1uizCsd2c8405104reVZ4+WqtbFQDYdp2onLnzKzFfvElEFQ48+N7iSI1kQlWIgwkVWg4FWcw==
-X-Received: by 2002:a05:6638:d4d:b0:333:1aea:4b9f with SMTP id d13-20020a0566380d4d00b003331aea4b9fmr9645855jak.149.1656369234311;
-        Mon, 27 Jun 2022 15:33:54 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id q4-20020a5d87c4000000b0066961821575sm5863196ios.34.2022.06.27.15.33.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 15:33:53 -0700 (PDT)
-Received: (nullmailer pid 3088698 invoked by uid 1000);
-        Mon, 27 Jun 2022 22:33:52 -0000
-Date:   Mon, 27 Jun 2022 16:33:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Stefan Berger <stefanb@linux.ibm.com>
-Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, nayna@linux.ibm.com,
-        nasastry@in.ibm.com
-Subject: Re: [PATCH v2 0/3] tpm: Preserve TPM measurement log across kexec
-Message-ID: <20220627223352.GA3082294-robh@kernel.org>
-References: <20220616154130.2052541-1-stefanb@linux.ibm.com>
+        with ESMTP id S232475AbiF0WkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:40:02 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C9A192BC;
+        Mon, 27 Jun 2022 15:40:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1656369595; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:references; bh=7e2lsFGEULtsP9T93yoqJTdu2saIeqgwp9dJtuGRnXs=;
+        b=kavfuw1+wEjWteLwesG40+Mk/78NO6WUEfXRuJ2vSX/DSgMd50agRO1XFt5EA8kPIBG64C
+        LezXJGTLPotxwprsBJKgO4KKUYQPCzq4ox1diRhYcggAX4QqrQ1AaJeNNCrnQVCIZo0vq6
+        QFgPeW2ilh5tn4j/+M6RT+lXRB+c4Bo=
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Paul Cercueil <paul@crapouillou.net>
+Subject: [PATCH] docs: dt: writing-bindings: Update URL to DT schemas
+Date:   Mon, 27 Jun 2022 23:39:50 +0100
+Message-Id: <20220627223950.35748-1-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220616154130.2052541-1-stefanb@linux.ibm.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 16, 2022 at 11:41:27AM -0400, Stefan Berger wrote:
-> The of-tree driver does not currently preserve the IBM vTPM 1.2 and
-> vTPM 2.0 measurement logs across a kexec. This series fixes this for the
-> kexec_file_load() syscall using the flattened device tree (fdt) to
-> carry the measurement log's buffer across kexec.
+The previous URL was giving a 404 error.
 
-As mentioned in v1, please Cc other folks that might care about TPMs 
-and kexec. I'm sure it's not only IBM.
+Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+---
+ Documentation/devicetree/bindings/writing-bindings.rst | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Rob
+diff --git a/Documentation/devicetree/bindings/writing-bindings.rst b/Documentation/devicetree/bindings/writing-bindings.rst
+index 5465eced2af1..1ad081de2dd0 100644
+--- a/Documentation/devicetree/bindings/writing-bindings.rst
++++ b/Documentation/devicetree/bindings/writing-bindings.rst
+@@ -53,7 +53,7 @@ Properties
+ 
+ - DO use common property unit suffixes for properties with scientific units.
+   Recommended suffixes are listed at
+-  https://github.com/devicetree-org/dt-schema/blob/master/schemas/property-units.yaml
++  https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+ 
+ - DO define properties in terms of constraints. How many entries? What are
+   possible values? What is the order?
+-- 
+2.35.1
+
