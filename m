@@ -2,187 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5BA655E047
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:31:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B52655CE68
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234300AbiF0ORF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 10:17:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33782 "EHLO
+        id S237066AbiF0OUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 10:20:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234732AbiF0ORD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 10:17:03 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B976513EBC;
-        Mon, 27 Jun 2022 07:16:59 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id o9so13215636edt.12;
-        Mon, 27 Jun 2022 07:16:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mxDYyaY89H5EEfQVpEFxonV022j7M6z20MFWKjTlNFg=;
-        b=Qk0/EglqTX5KDRowJv35NcK7NDq76PkEU72HzKvwT77kpEL65fNlFFuC8njT9TUmVv
-         oprUM/cV0SpRVAwIqHxCIfR3jTxTN2rheZ75ZX4i1Fbt6sylkGae3VDGg6zLxLRYVDOQ
-         UIoHYKzRCM3jY1kUFzsWyiGkveLVr2u43nyoEhxTV00D1aKwPyzyjSdpIadRfqtowDqd
-         HcYTrrbNUK+JGJrcYh2KzAOf/iKYc2oCPrPZJUK36KBQiPZe9CoAJiP4q1z+eEqOFyWw
-         T1bgSkFTgCUqLunj0XMMO0gvldNMl09Ib9pKcPhbi6Tz0UU8DhLKBym8dJEOWlcQkKnZ
-         73Hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mxDYyaY89H5EEfQVpEFxonV022j7M6z20MFWKjTlNFg=;
-        b=d/m+91Z3QY6BwFACV2+NMKT2Y1rmNFjAWpvoXc9/hcYlScRRHkQr6BJiUXs8tWMzLC
-         ZFHFge7OL2aSA6wrIUqy9dG+HIwxmwryLn8yrhKRFpM5Jy8yowcgDrxmgoKAF3pbjlk/
-         Wo43ymwZXITsVk2LGmo0NKb5mJbviCoztx5W9fTFDJ1OqDNsByEsaLhmQdEhmOzSQNVd
-         2GdD+Z4eKOkFPGor7Pnn+t8g6yqSPVNm2TePav+18r1/HvwgxJ+QVv1T53MJwfMY9Cqz
-         Rv2+GvYRHxYITTcum211nhMgRM68tnuxuj7A4APvGXa9+1pUgkl8az8bymMRG7C0Zidu
-         LgkA==
-X-Gm-Message-State: AJIora+GgkpNcZTEwB0EN51LSAudeaJBLzAN7jHnpnEjF1ErL9Qm/8e2
-        +9YzznrhBwioo8P02DrHplq7QFJqstNYYP/wYCE=
-X-Google-Smtp-Source: AGRyM1smieOYkbwkdYTJgUqEsMZQclsTD1DaOkAuXXPHKDskOVgnam8GfZY8mVRNQRLOv4PDHfacH1xT6lu8DV40k4s=
-X-Received: by 2002:a05:6402:42d3:b0:435:2c49:313d with SMTP id
- i19-20020a05640242d300b004352c49313dmr16224916edc.86.1656339418100; Mon, 27
- Jun 2022 07:16:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220626004326.8548-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220626004326.8548-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <87wnd3erab.wl-maz@kernel.org> <CA+V-a8tcxj_N0sBHhgAZAN8WSJ12JnDzAvUUnCXto3wHLqNVwg@mail.gmail.com>
- <87v8snehwi.wl-maz@kernel.org> <CAMuHMdVt9FjCtvMgJcCh=g2b+8b-fgabGbOLDcXNrrPMpC+3jQ@mail.gmail.com>
- <CA+V-a8uLzLJ=wB6oUu0b2oZO=FPSCTSrqb=3m9=BJxATFKmjMw@mail.gmail.com>
- <CAMuHMdUWC_7MPnP6LcOqi96FAhrAENC4iwtv2ksZVnvR8BC4ww@mail.gmail.com> <0fdbfdd0ee1c7ca39f8d3e2f86af1194@kernel.org>
-In-Reply-To: <0fdbfdd0ee1c7ca39f8d3e2f86af1194@kernel.org>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 27 Jun 2022 15:16:31 +0100
-Message-ID: <CA+V-a8u8X+bne_a3LY13zGTKr-hOWhm=R9gGX1JyE8PzWRNXpQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] irqchip/sifive-plic: Add support for Renesas
- RZ/Five SoC
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236982AbiF0OUm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 10:20:42 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FBCDFD05;
+        Mon, 27 Jun 2022 07:20:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+        s=20161220; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=2C7bvwZpbY0eq72GTwKLtH/NuxtYOf5fz40pL8puD8w=; b=idFX+Wyxs1EEtPItu5TJ0lYju3
+        KikYXV0VpCQyyPbnaZ6eyArNasehnnCxD7HQ2e5f/s16ZnBTodEClCTCCiFEnNgWXmMdDg7zvna6O
+        tylN2mm0Lb7OHkSlX5wx7Il8ji9b3+PyNWtxkmKZcM61IX+6fi2BF0Pv5Aj33o1q4cpjtvFpGy4Zz
+        6dVgw50B3lFuq8lnhuTChNT12GlqO6jTBfOv+WYU6kZQlxixlbyjo/jCge+7clCsJJCeYuMqXCvb6
+        TljMp8PLF2UQYBbh6NZcolxmZZ57UDmgdnPe5RX0UcbH1LJLQ7iWjUd3Eog20EBj4kZeg3KDfUKAG
+        DcGH/YhA==;
+Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=toshino.localdomain)
+        by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1o5pbK-003N2J-As; Mon, 27 Jun 2022 17:20:29 +0300
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v7/v3 00/22] Host1x context isolation / Tegra234 support
+Date:   Mon, 27 Jun 2022 17:19:46 +0300
+Message-Id: <20220627142008.2072474-1-cyndis@kapsi.fi>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 91.158.25.70
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+From: Mikko Perttunen <mperttunen@nvidia.com>
 
-On Mon, Jun 27, 2022 at 2:53 PM Marc Zyngier <maz@kernel.org> wrote:
->
-> On 2022-06-27 14:12, Geert Uytterhoeven wrote:
-> > Hi Prabhakar,
-> >
-> > On Mon, Jun 27, 2022 at 3:06 PM Lad, Prabhakar
-> > <prabhakar.csengg@gmail.com> wrote:
-> >> On Mon, Jun 27, 2022 at 9:53 AM Geert Uytterhoeven
-> >> <geert@linux-m68k.org> wrote:
-> >> > On Sun, Jun 26, 2022 at 2:19 PM Marc Zyngier <maz@kernel.org> wrote:
-> >> > > On Sun, 26 Jun 2022 10:38:18 +0100,
-> >> > > "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> >> > > > On Sun, Jun 26, 2022 at 9:56 AM Marc Zyngier <maz@kernel.org> wrote:
-> >> > > > > On Sun, 26 Jun 2022 01:43:26 +0100,
-> >> > > > > Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> >> > > > > > The Renesas RZ/Five SoC has a RISC-V AX45MP AndesCore with NCEPLIC100. The
-> >> > > > > > NCEPLIC100 supports both edge-triggered and level-triggered interrupts. In
-> >> > > > > > case of edge-triggered interrupts NCEPLIC100 ignores the next interrupt
-> >> > > > > > edge until the previous completion message has been received and
-> >> > > > > > NCEPLIC100 doesn't support pending interrupt counter, hence losing the
-> >> > > > > > interrupts if not acknowledged in time.
-> >> > > > > >
-> >> > > > > > So the workaround for edge-triggered interrupts to be handled correctly
-> >> > > > > > and without losing is that it needs to be acknowledged first and then
-> >> > > > > > handler must be run so that we don't miss on the next edge-triggered
-> >> > > > > > interrupt.
-> >> > > > > >
-> >> > > > > > This patch adds a new compatible string for Renesas RZ/Five SoC and adds
-> >> > > > > > support to change interrupt flow based on the interrupt type. It also
-> >> > > > > > implements irq_ack and irq_set_type callbacks.
-> >> > > > > >
-> >> > > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >> >
-> >> > > > > > +     if (of_device_is_compatible(node, "renesas,r9a07g043-plic")) {
-> >> > > > > > +             priv->of_data = RENESAS_R9A07G043_PLIC;
-> >> > > > > > +             plic_chip.name = "Renesas RZ/Five PLIC";
-> >> > > > >
-> >> > > > > NAK. The irq_chip structure isn't the place for platform marketing.
-> >> > > > > This is way too long anyway (and same for the edge version), and you
-> >> > > > > even sent me a patch to make that structure const...
-> >> > > > >
-> >> > > > My bad will drop this.
-> >> > >
-> >> > > And why you're at it, please turn this rather random 'of_data' into
-> >> > > something like:
-> >> > >
-> >> > > diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
-> >> > > index bb87e4c3b88e..cd1683b77caf 100644
-> >> > > --- a/drivers/irqchip/irq-sifive-plic.c
-> >> > > +++ b/drivers/irqchip/irq-sifive-plic.c
-> >> > > @@ -64,6 +64,10 @@ struct plic_priv {
-> >> > >         struct cpumask lmask;
-> >> > >         struct irq_domain *irqdomain;
-> >> > >         void __iomem *regs;
-> >> > > +       enum {
-> >> > > +               VANILLA_PLIC,
-> >> > > +               RENESAS_R9A07G043_PLIC,
-> >> > > +       } flavour;
-> >> > >  };
-> >> > >
-> >> > >  struct plic_handler {
-> >> > >
-> >> > > to give some structure to the whole thing, because I'm pretty sure
-> >> > > we'll see more braindead implementations as time goes by.
-> >> >
-> >> > What about using a feature flag (e.g. had_edge_irqs) instead?
-> >>
-> >> diff --git a/drivers/irqchip/irq-sifive-plic.c
-> >> b/drivers/irqchip/irq-sifive-plic.c
-> >> index 9f16833dcb41..247c3c98b655 100644
-> >> --- a/drivers/irqchip/irq-sifive-plic.c
-> >> +++ b/drivers/irqchip/irq-sifive-plic.c
-> >> @@ -60,13 +60,13 @@
-> >>  #define        PLIC_DISABLE_THRESHOLD          0x7
-> >>  #define        PLIC_ENABLE_THRESHOLD           0
-> >>
-> >> +#define PLIC_QUIRK_EDGE_INTERRUPT      BIT(0)
-> >>
-> >>  struct plic_priv {
-> >>         struct cpumask lmask;
-> >>         struct irq_domain *irqdomain;
-> >>         void __iomem *regs;
-> >> +       u32 plic_quirks;
-> >>  };
-> >>
-> >> What about something like above?
-> >
-> > LGTM.
-> >
-> > Marc suggested to make this unsigned long, but TBH, that won't make
-> > much of a difference.  PLICs are present on RV32 SoCs, too, so you
-> > cannot rely on having more than 32 bits anyway.
->
-> But it will make a difference on a 64bit platform, as we want to
-> use test_bit() and co to check for features.
->
-Ok will change that to unsigned long and use the test_bit/set_bit instead.
+Integrated the Host1x context isolation series (patches 1 to 8) and
+Tegra234 support series (patches 9 to 22) in one email thread for
+the benefit of automatic testers.
 
-Cheers,
-Prabhakar
+Changes from previous versions:
+
+Context isolation:
+* Improved check to ensure context devices are attached to IOMMU
+* Fixed build failure when CONFIG_IOMMU_API=n as reported by bot
+* Dropped Thierry's Host1x schema YAML conversion from this series
+  -- it was accidentally included in the previous
+* Also dropped arm-smmu change for now. It can be merged later if
+  necessary.
+
+Tegra234:
+* Split bracketing fix in DT schema to separate patch
+* Added Acked-by
+
+Thanks,
+Mikko
+
+Mikko Perttunen (22):
+  dt-bindings: host1x: Add iommu-map property
+  gpu: host1x: Add context device management code
+  gpu: host1x: Program context stream ID on submission
+  arm64: tegra: Add Host1x context stream IDs on Tegra186+
+  drm/tegra: falcon: Set DMACTX field on DMA transactions
+  drm/tegra: nvdec: Fix TRANSCFG register offset
+  drm/tegra: Support context isolation
+  drm/tegra: Implement stream ID related callbacks on engines
+  dt-bindings: Add bindings for Tegra234 Host1x and VIC
+  dt-bindings: host1x: Fix bracketing in example
+  dt-bindings: Add headers for Host1x and VIC on Tegra234
+  arm64: tegra: Add Host1x and VIC on Tegra234
+  gpu: host1x: Deduplicate hardware headers
+  gpu: host1x: Simplify register mapping and add common aperture
+  gpu: host1x: Program virtualization tables
+  gpu: host1x: Allow reset to be missing
+  gpu: host1x: Program interrupt destinations on Tegra234
+  gpu: host1x: Tegra234 device data and headers
+  gpu: host1x: Rewrite job opcode sequence
+  gpu: host1x: Add MLOCK release code on Tegra234
+  gpu: host1x: Use RESTART_W to skip timed out jobs on Tegra186+
+  drm/tegra: vic: Add Tegra234 support
+
+ .../display/tegra/nvidia,tegra124-vic.yaml    |   1 +
+ .../display/tegra/nvidia,tegra20-host1x.yaml  | 115 +++++++++--
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi      |  11 ++
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  11 ++
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |  46 +++++
+ drivers/gpu/drm/tegra/drm.c                   |   1 +
+ drivers/gpu/drm/tegra/drm.h                   |  11 ++
+ drivers/gpu/drm/tegra/falcon.c                |   8 +
+ drivers/gpu/drm/tegra/falcon.h                |   1 +
+ drivers/gpu/drm/tegra/nvdec.c                 |  13 +-
+ drivers/gpu/drm/tegra/submit.c                |  48 ++++-
+ drivers/gpu/drm/tegra/uapi.c                  |  43 ++++-
+ drivers/gpu/drm/tegra/vic.c                   |  79 +++++++-
+ drivers/gpu/host1x/Makefile                   |   6 +-
+ drivers/gpu/host1x/cdma.c                     |  19 +-
+ drivers/gpu/host1x/context.c                  | 160 ++++++++++++++++
+ drivers/gpu/host1x/context.h                  |  38 ++++
+ drivers/gpu/host1x/dev.c                      | 124 ++++++++----
+ drivers/gpu/host1x/dev.h                      |  13 ++
+ drivers/gpu/host1x/hw/cdma_hw.c               |  34 ++++
+ drivers/gpu/host1x/hw/channel_hw.c            | 136 +++++++++----
+ drivers/gpu/host1x/hw/host1x01_hardware.h     | 114 +----------
+ drivers/gpu/host1x/hw/host1x02_hardware.h     | 113 +----------
+ drivers/gpu/host1x/hw/host1x04_hardware.h     | 113 +----------
+ drivers/gpu/host1x/hw/host1x05_hardware.h     | 113 +----------
+ drivers/gpu/host1x/hw/host1x06_hardware.h     | 118 +-----------
+ drivers/gpu/host1x/hw/host1x07_hardware.h     | 118 +-----------
+ drivers/gpu/host1x/hw/host1x08.c              |  33 ++++
+ drivers/gpu/host1x/hw/host1x08.h              |  15 ++
+ drivers/gpu/host1x/hw/host1x08_hardware.h     |  21 ++
+ drivers/gpu/host1x/hw/hw_host1x08_channel.h   |  11 ++
+ drivers/gpu/host1x/hw/hw_host1x08_common.h    |  11 ++
+ .../gpu/host1x/hw/hw_host1x08_hypervisor.h    |   9 +
+ drivers/gpu/host1x/hw/hw_host1x08_uclass.h    | 181 ++++++++++++++++++
+ drivers/gpu/host1x/hw/hw_host1x08_vm.h        |  36 ++++
+ drivers/gpu/host1x/hw/intr_hw.c               |  11 ++
+ drivers/gpu/host1x/hw/opcodes.h               | 150 +++++++++++++++
+ include/dt-bindings/clock/tegra234-clock.h    |   4 +
+ include/dt-bindings/memory/tegra234-mc.h      |   5 +
+ .../dt-bindings/power/tegra234-powergate.h    |   1 +
+ include/dt-bindings/reset/tegra234-reset.h    |   1 +
+ include/linux/host1x.h                        |  42 ++++
+ 42 files changed, 1357 insertions(+), 781 deletions(-)
+ create mode 100644 drivers/gpu/host1x/context.c
+ create mode 100644 drivers/gpu/host1x/context.h
+ create mode 100644 drivers/gpu/host1x/hw/host1x08.c
+ create mode 100644 drivers/gpu/host1x/hw/host1x08.h
+ create mode 100644 drivers/gpu/host1x/hw/host1x08_hardware.h
+ create mode 100644 drivers/gpu/host1x/hw/hw_host1x08_channel.h
+ create mode 100644 drivers/gpu/host1x/hw/hw_host1x08_common.h
+ create mode 100644 drivers/gpu/host1x/hw/hw_host1x08_hypervisor.h
+ create mode 100644 drivers/gpu/host1x/hw/hw_host1x08_uclass.h
+ create mode 100644 drivers/gpu/host1x/hw/hw_host1x08_vm.h
+ create mode 100644 drivers/gpu/host1x/hw/opcodes.h
+
+-- 
+2.36.1
+
