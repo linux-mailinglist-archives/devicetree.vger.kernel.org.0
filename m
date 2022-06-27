@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B40B55C8AD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:55:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A0DC55CDD1
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:04:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241504AbiF0WER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 18:04:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40118 "EHLO
+        id S238131AbiF0WNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 18:13:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243104AbiF0WEJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:04:09 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3333DD4;
-        Mon, 27 Jun 2022 15:04:09 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id i17so6927752ils.12;
-        Mon, 27 Jun 2022 15:04:09 -0700 (PDT)
+        with ESMTP id S234577AbiF0WNA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:13:00 -0400
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAE1E13E8F;
+        Mon, 27 Jun 2022 15:12:59 -0700 (PDT)
+Received: by mail-il1-f182.google.com with SMTP id 9so6977888ill.5;
+        Mon, 27 Jun 2022 15:12:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=gzj1i2ACfifRLXBqezOQYrin0UkD3fmVgPjjmsk4L6I=;
-        b=Gt9xH+6MqXGA1DLmYfsezWN/EEM1ckLstF2ozFnbYhUDYiCv0OiUpY/JwHrwCRsIaF
-         2zWUl2iIBjvkE3shAyaF7TiCrsld1HubHtGZ83kdOgYoL8gLYYlC/AWI+Z9CyWNd82fO
-         Rb2v43MBeSZnIikST7FvJE6QqRYwY3JGvoacGOqRg+yxsHnxI6Z+RS908J71PYWAThH8
-         7YDX6l2U+Kp5GaJdjpKwkkwhB0P/MX9+zW5Zva1t4sYFThwIu2nAJyyYDoHaIug8PHGE
-         5cqLMsCfho2W1kCsbuUsMe8i9NyELKNogGIH5m9MeWFZwMxA6pLtpqkQsYgJ8YdDx/Nv
-         nQ6Q==
-X-Gm-Message-State: AJIora+DIgDUBfYIJuquob1bV+W9hvX6gCvSHSeZ3x5wXgZreDJc9Qdd
-        X4HlpV0NIttZBmkZ6ry++b7T1w45tw==
-X-Google-Smtp-Source: AGRyM1uINzS4DU532Ry7RtJUmYs2FXs5/54HYBoOfuzYF6twzs4C2JYfFahNn3jJbMDhsUku/vFXjg==
-X-Received: by 2002:a92:dc85:0:b0:2d9:1a4e:67b1 with SMTP id c5-20020a92dc85000000b002d91a4e67b1mr8449468iln.282.1656367448400;
-        Mon, 27 Jun 2022 15:04:08 -0700 (PDT)
+        bh=Q9EHtvpXO/rR/UwsAegXUt2kZ+QWagzbfNR/vsPSSqE=;
+        b=J+NpajjfNNhhHhCE/uWRUMcsivZdWYTPW29m0i1Az+jU1NYHjtC4JaxWb4vBsqhDja
+         lQPrPm/ZrA/gzbwavGk7nJkVocCrWD6N0zmo7T3SDqL8pRL0AMnfYSYhvmdYe32U+LHF
+         tEQBmKjtH8Q8feB+WAD7GiRn9n7CY1DUsC5gwkvqyf7/T/Xz7wQw6+Hd/+RpO4DPo6bu
+         TOKfkhVh17WmsZeh1DhHZUw4fIF/uz/G4QwM9DrE8wxlJxoHIB3R8CcAqmtGH5N3aNeK
+         vDLp2nRFkCznhuPJI+NfzkK654/BuDjYsSFTxQKidg4p5WHWcxEFJvJtXWLBVYzkAc0f
+         kVTQ==
+X-Gm-Message-State: AJIora8GMtGSyUb/coowZa1tGy2GJzdSTAyGiMlnY7IHaSKhJMDQlADe
+        AeTnXa214uB9MO5MXSvWag==
+X-Google-Smtp-Source: AGRyM1ttgJl6J3mqoPXF0Lh40LVHvAb/nsVTOsZFyo7O6MpuNXaqHqe24DDYYyxyNdPYVjf4dRC2Rg==
+X-Received: by 2002:a05:6e02:170b:b0:2d4:d764:bebe with SMTP id u11-20020a056e02170b00b002d4d764bebemr8390187ill.95.1656367978968;
+        Mon, 27 Jun 2022 15:12:58 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id n2-20020a056638110200b00339f2219720sm5154751jal.20.2022.06.27.15.04.07
+        by smtp.gmail.com with ESMTPSA id m2-20020a02cdc2000000b00339e6168237sm4802445jap.34.2022.06.27.15.12.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 15:04:08 -0700 (PDT)
-Received: (nullmailer pid 3046175 invoked by uid 1000);
-        Mon, 27 Jun 2022 22:04:06 -0000
-Date:   Mon, 27 Jun 2022 16:04:06 -0600
+        Mon, 27 Jun 2022 15:12:58 -0700 (PDT)
+Received: (nullmailer pid 3058109 invoked by uid 1000);
+        Mon, 27 Jun 2022 22:12:57 -0000
+Date:   Mon, 27 Jun 2022 16:12:57 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: renesas: Remove spaces before
- #define
-Message-ID: <20220627220406.GA3046117-robh@kernel.org>
-References: <5188ef93a911ce3781b16530fdebbf0f0af462b6.1655301264.git.geert+renesas@glider.be>
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc:     pavel@ucw.cz, sven.schwermer@disruptive-technologies.com,
+        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
+        marijn.suijten@somainline.org, bjorn.andersson@linaro.org,
+        andy.shevchenko@gmail.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] dt-bindings: leds: Add binding for a multicolor
+ group of LEDs
+Message-ID: <20220627221257.GA3046298-robh@kernel.org>
+References: <20220615154918.521687-1-jjhiblot@traphandler.com>
+ <20220615154918.521687-4-jjhiblot@traphandler.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5188ef93a911ce3781b16530fdebbf0f0af462b6.1655301264.git.geert+renesas@glider.be>
+In-Reply-To: <20220615154918.521687-4-jjhiblot@traphandler.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,16 +66,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Jun 2022 15:58:40 +0200, Geert Uytterhoeven wrote:
-> Remove spaces at the beginning of lines with #defines.
+On Wed, Jun 15, 2022 at 05:49:17PM +0200, Jean-Jacques Hiblot wrote:
+> This allows to group multiple monochromatic LEDs into a multicolor
+> LED, e.g. RGB LEDs.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
 > ---
-> To be queued in renesas-pinctrl for v5.20.
+>  .../bindings/leds/leds-group-multicolor.yaml  | 94 +++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
 > 
->  include/dt-bindings/pinctrl/r7s9210-pinctrl.h | 2 +-
->  include/dt-bindings/pinctrl/rzg2l-pinctrl.h   | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> new file mode 100644
+> index 000000000000..30a67985ae33
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> @@ -0,0 +1,94 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-group-multicolor.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Multi-color LED built with monochromatic LEDs
+> +
+> +maintainers:
+> +  - Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+> +
+> +description: |
+> +  This driver combines several monochromatic LEDs into one multi-color
+> +  LED using the multicolor LED class.
+> +
+> +properties:
+> +  compatible:
+> +    const: leds-group-multicolor
+> +
+> +  multi-led:
+> +    type: object
+> +
+> +    patternProperties:
+> +      "^led-[0-9a-z]+$":
+> +        type: object
+> +        $ref: common.yaml#
+> +
+> +        additionalProperties: false
+> +
+> +        properties:
+> +          leds:
 
-Acked-by: Rob Herring <robh@kernel.org>
+Not a standard property. What is the type?
+
+Really, just do a GPIO multi-color LED binding similar to the PWM one 
+rather than adding this layer. I suppose you could combine LEDs from all 
+different controllers, but that seems somewhat unlikely to me.
+
+Rob
