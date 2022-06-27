@@ -2,68 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0264F55D8C0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:20:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B32D255DAAA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:23:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242404AbiF0WOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 18:14:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48222 "EHLO
+        id S242433AbiF0WO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 18:14:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242400AbiF0WOU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:14:20 -0400
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C452360DC
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 15:14:19 -0700 (PDT)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-101e1a33fe3so14685942fac.11
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 15:14:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=Z6ww6juoCRIbq0+Y6gYs7fGnPeiVmyjMhEvtBazZscA=;
-        b=VLg2e9n/ueeBcU2fxR9VinIwBdphy0I6lt0vM9EwP6SkwBaEAxgL0Xcn2ibhztQVOH
-         ykyJlrrCcGM/bHaZnb+dfrgWvst8LXQghu6vGg3dUKpo38rKC67HOZ6+QBJTXW8eVyt0
-         UZmzZToLeb2/RbwW5tEPrx/pXMdGMTYQeZLaQ=
+        with ESMTP id S242401AbiF0WOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:14:23 -0400
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 701D1F8;
+        Mon, 27 Jun 2022 15:14:22 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id u20so11099365iob.8;
+        Mon, 27 Jun 2022 15:14:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=Z6ww6juoCRIbq0+Y6gYs7fGnPeiVmyjMhEvtBazZscA=;
-        b=ChcrtwLQIpcNFHc7pBSQ6duQoP7ZgYrx30XBU1DtGtYmzkeyH/fxZR0Fo1QB3UmRt8
-         9n7Oir81G8ubwnrzXVNDsCIj2dwZYZJfrhD0GcEbM7fJlvJknXb8PNefB0MEO5Cj7MnK
-         YqdqLC0f3V5tcSIv8FCcsaB1tcMQkfd1txgbPvrl40bZ52hmjgrLEmgmpk57aUdLpT9J
-         xK0lHEAtTiWl47Ys/61/aUpW7/F3EQxAxuOYloz2wM7GV4fu/TxRkYndLINwgWMtTbre
-         q9I5sfK++GrJWIy9Rocsao4GFV9znImoX77RAe4mN8R1CR/xSaGwJJ85SyqoP6fv1dwT
-         fpjw==
-X-Gm-Message-State: AJIora+mypWiTAotd1I1yJk1FXusaDPAmTaWZqm3SyKGcso1kKW44F07
-        X5vZWbhHnukp8iENGPiM+Av2AfOsFyJSChZpfZH+Bw==
-X-Google-Smtp-Source: AGRyM1uvlI1kKQnAqsojLGszZzDWWLRpyRDvZU5IV0nMaJKmKmLRyH63v6PKs4oCrRwyIj1eyUJ3xKaPKVkvrjzvZ3U=
-X-Received: by 2002:a05:6870:b627:b0:102:f25:a460 with SMTP id
- cm39-20020a056870b62700b001020f25a460mr9001035oab.193.1656368059192; Mon, 27
- Jun 2022 15:14:19 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 27 Jun 2022 15:14:18 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=G12kGKFA/CC0l12PAeYd8LEhOH1k7I1L6ZkakBc+ZaE=;
+        b=PwQ8iiYM5gU/WAe+4/Bg71eodFDSElTIPGYRUrldF8KC73LxBvklyNNNKddk4ztuZl
+         66CWo+XgxkuyJdmp9tHluKRQ/WMKeaqfsFWZFYmiQqebWEJDIjmXWGmhNiFx50g++aC4
+         9RYylOANJB8FawW+jD/tudHKVY3BbhtLATWLAk59clAcrsBe+OyQyD9Sal98fivkfyKD
+         fZZMu0A/0ctnnVHG/aPd5XYlYyFAuLRvwOqSIrDHXT6tz43aQL66hKIkZqA7YXL7ClHQ
+         NShKX1yCTyXuhgNjN13WBGDC9u9feGgkaM4KELraTLhF8IwtzKkMc77ybEZHgKO1ZGN7
+         Azog==
+X-Gm-Message-State: AJIora82v3uDjKDZ6KlNQEsfCtZNPadIfbodi5V2DFaxXue0+jN6tANy
+        QoCihN+Pf88BskoeAC5VNw==
+X-Google-Smtp-Source: AGRyM1s7sLRMoI6Hg6U6o9gmGtVMRF0iqeZHfuCAeN+Ad0FhLWRj2d7vrR77fK5XmD7LJXLIDhC24w==
+X-Received: by 2002:a05:6638:25c8:b0:332:1f0e:3e50 with SMTP id u8-20020a05663825c800b003321f0e3e50mr9222054jat.5.1656368061682;
+        Mon, 27 Jun 2022 15:14:21 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id e39-20020a022127000000b0032e49fcc241sm5274423jaa.176.2022.06.27.15.14.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jun 2022 15:14:21 -0700 (PDT)
+Received: (nullmailer pid 3060344 invoked by uid 1000);
+        Mon, 27 Jun 2022 22:14:19 -0000
+Date:   Mon, 27 Jun 2022 16:14:19 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 1/6] dt-bindings: media: Add macros for video
+ interface bus types
+Message-ID: <20220627221419.GA3060280-robh@kernel.org>
+References: <20220615221410.27459-1-laurent.pinchart@ideasonboard.com>
+ <20220615221410.27459-2-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
-In-Reply-To: <20220625183538.v14.2.I0977b1a08830d0caa8bfb1bdedb4ecceac709a7f@changeid>
-References: <20220626013906.885523-1-joebar@chromium.org> <20220625183538.v14.2.I0977b1a08830d0caa8bfb1bdedb4ecceac709a7f@changeid>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Mon, 27 Jun 2022 15:14:18 -0700
-Message-ID: <CAE-0n539qHJ-7igqC7jVvHudd6j7zmrxGXbNch4DYkS3WWA-7g@mail.gmail.com>
-Subject: Re: [PATCH v14 2/5] arm64: dts: qcom: sc7180: Add quackingstick dts files
-To:     "Joseph S. Barrera III" <joebar@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     Alexandru M Stan <amstan@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220615221410.27459-2-laurent.pinchart@ideasonboard.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,12 +73,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Joseph S. Barrera III (2022-06-25 18:39:03)
-> Quackingstick is a trogdor-based board. These dts files are copies from
-> the downstream Chrome OS 5.4 kernel, but with downstream bits removed.
->
-> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
->
+On Thu, 16 Jun 2022 01:14:05 +0300, Laurent Pinchart wrote:
+> Add a new dt-bindings/media/video-interfaces.h header that defines
+> macros corresponding to the bus types from media/video-interfaces.yaml.
+> This allows avoiding hardcoded constants in device tree sources.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
+> Changes since v2:
+> 
+> - Go back to PARALLEL
+> 
+> Changes since v1:
+> 
+> - Dual-license under GPL-2.0-only or MIT
+> - Rename PARALLEL TO BT601
+> ---
+>  include/dt-bindings/media/video-interfaces.h | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+>  create mode 100644 include/dt-bindings/media/video-interfaces.h
+> 
 
-Tested-by: Stephen Boyd <swboyd@chromium.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
