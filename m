@@ -2,96 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B32D255DAAA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D9C655D172
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:09:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242433AbiF0WO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 18:14:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48242 "EHLO
+        id S242449AbiF0WOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 18:14:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242401AbiF0WOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:14:23 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 701D1F8;
-        Mon, 27 Jun 2022 15:14:22 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id u20so11099365iob.8;
-        Mon, 27 Jun 2022 15:14:22 -0700 (PDT)
+        with ESMTP id S242401AbiF0WOy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:14:54 -0400
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB76060DC;
+        Mon, 27 Jun 2022 15:14:52 -0700 (PDT)
+Received: by mail-io1-xd29.google.com with SMTP id p69so11085284iod.10;
+        Mon, 27 Jun 2022 15:14:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n8YqZKMnu5wFfAYg9KKwPbiYeb43yaP+RoJqTw94+ew=;
+        b=o7yff7z0RiTZCe4SsxtEJUGOsiujoqFc8vkFuA7GehOJF+MNt6m8mQNYV7nGH9hhcU
+         wodNt2xbZ7D6U+pteGrRRSDjwUdfGTi22C2sJ9k2k0eDANpC2+zAWb4FVNHFdE/ZVOQ0
+         WUCLoBpL5R3A7A+bQjU9EQkKZCopyTphNAholVNTXOe1v7eVQyVlhHu7YGANnWooRNis
+         7/Mip94mOIvlZgERChobMJNRTMw7E1P7W6uAQsg94iQDKB2aAUe+4ULxAeCr8Gt2KPgv
+         +wXuj/t2zfiD6z52GaFLDCziLDmkQjUEKJFnoodXH7MEK8WwCynpW+yBLzI+1q8MaFwu
+         U1sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=G12kGKFA/CC0l12PAeYd8LEhOH1k7I1L6ZkakBc+ZaE=;
-        b=PwQ8iiYM5gU/WAe+4/Bg71eodFDSElTIPGYRUrldF8KC73LxBvklyNNNKddk4ztuZl
-         66CWo+XgxkuyJdmp9tHluKRQ/WMKeaqfsFWZFYmiQqebWEJDIjmXWGmhNiFx50g++aC4
-         9RYylOANJB8FawW+jD/tudHKVY3BbhtLATWLAk59clAcrsBe+OyQyD9Sal98fivkfyKD
-         fZZMu0A/0ctnnVHG/aPd5XYlYyFAuLRvwOqSIrDHXT6tz43aQL66hKIkZqA7YXL7ClHQ
-         NShKX1yCTyXuhgNjN13WBGDC9u9feGgkaM4KELraTLhF8IwtzKkMc77ybEZHgKO1ZGN7
-         Azog==
-X-Gm-Message-State: AJIora82v3uDjKDZ6KlNQEsfCtZNPadIfbodi5V2DFaxXue0+jN6tANy
-        QoCihN+Pf88BskoeAC5VNw==
-X-Google-Smtp-Source: AGRyM1s7sLRMoI6Hg6U6o9gmGtVMRF0iqeZHfuCAeN+Ad0FhLWRj2d7vrR77fK5XmD7LJXLIDhC24w==
-X-Received: by 2002:a05:6638:25c8:b0:332:1f0e:3e50 with SMTP id u8-20020a05663825c800b003321f0e3e50mr9222054jat.5.1656368061682;
-        Mon, 27 Jun 2022 15:14:21 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id e39-20020a022127000000b0032e49fcc241sm5274423jaa.176.2022.06.27.15.14.20
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n8YqZKMnu5wFfAYg9KKwPbiYeb43yaP+RoJqTw94+ew=;
+        b=cEe1db0UCDelmQitsq+VpPIqB7S5YZgmLGGixdahzFXLJ0KUYhxFgenXwY0m1ddReH
+         chMq/GV4WeuJ4xnMNtKNJW8eCXXMeE75Fn6e8JvStX6xRePLpzuxMpltWcHeXGulChUd
+         vqg8+T9/dWZ1UbymGrLZ1oYwOFyd5O6qRZ1VNu05k6AlTtl0EM+cmV8wwmDWcHN8yoTL
+         VI2Fuh3VHkMrjgRJPuqSzLjq6jmENPdpmxIpoii0N91/SSfL1in+eCsEZJpTJErS5SBM
+         uJmAebJqi/xZUiKC2dpY0CP6jzem6nLPS+FkyysWbvaKMp9wAueG6vGl524K0+pfvDBk
+         fNew==
+X-Gm-Message-State: AJIora8dXwlFZKrodZ3xu5UE9AkxJPZ6lBLtV3Zl/94eBSXPfg+7xlYc
+        hSRMosIX5dwFDLjYumVejg3Y4NN1o/o=
+X-Google-Smtp-Source: AGRyM1smQ8WKzL9VAmB83IiGVy7A50zr1UpQGf81NWwuE/kN7d0OEPeGmRJo1rm9GQ719TG0bp1UiA==
+X-Received: by 2002:a05:6638:1354:b0:33a:cc7a:d0b3 with SMTP id u20-20020a056638135400b0033acc7ad0b3mr9259829jad.163.1656368091920;
+        Mon, 27 Jun 2022 15:14:51 -0700 (PDT)
+Received: from Dixie.. ([2604:2d80:a188:fd00:7a85:cf35:f4b3:542f])
+        by smtp.gmail.com with ESMTPSA id p7-20020a02b007000000b00339dd3976absm5255589jah.110.2022.06.27.15.14.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 15:14:21 -0700 (PDT)
-Received: (nullmailer pid 3060344 invoked by uid 1000);
-        Mon, 27 Jun 2022 22:14:19 -0000
-Date:   Mon, 27 Jun 2022 16:14:19 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 1/6] dt-bindings: media: Add macros for video
- interface bus types
-Message-ID: <20220627221419.GA3060280-robh@kernel.org>
-References: <20220615221410.27459-1-laurent.pinchart@ideasonboard.com>
- <20220615221410.27459-2-laurent.pinchart@ideasonboard.com>
+        Mon, 27 Jun 2022 15:14:51 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-input@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, contact@artur-rojek.eu,
+        maccraft123mc@gmail.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        dmitry.torokhov@gmail.com, paul@crapouillou.net, jic23@kernel.org,
+        linux-iio@vger.kernel.org, Chris Morgan <macroalpha82@gmail.com>
+Subject: [PATCH v4 0/3] adc-joystick: Add polled support
+Date:   Mon, 27 Jun 2022 17:14:41 -0500
+Message-Id: <20220627221444.3638-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220615221410.27459-2-laurent.pinchart@ideasonboard.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Jun 2022 01:14:05 +0300, Laurent Pinchart wrote:
-> Add a new dt-bindings/media/video-interfaces.h header that defines
-> macros corresponding to the bus types from media/video-interfaces.yaml.
-> This allows avoiding hardcoded constants in device tree sources.
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
-> Changes since v2:
-> 
-> - Go back to PARALLEL
-> 
-> Changes since v1:
-> 
-> - Dual-license under GPL-2.0-only or MIT
-> - Rename PARALLEL TO BT601
-> ---
->  include/dt-bindings/media/video-interfaces.h | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->  create mode 100644 include/dt-bindings/media/video-interfaces.h
-> 
+Add support to the existing adc-joystick driver to support polling
+rather than relying on triggered buffers. This is useful for devices
+that do not offer triggered buffers in hardware. Code adapted from
+changes made by Maya Matuszczyk <maccraft123mc@gmail.com>.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Changes from V3:
+ - After lengthy discussion decided to support with existing attribute
+   of "poll-interval". If present, the driver will use polling and if
+   not present, it will use triggered buffers (as the driver does
+   today).
+ - Corrected some lines to honor the 80 character line-limit.
+ - Check return value from polling method and return early if there
+   is an error reading the data.
+
+Changes from V2:
+ - Changed parameter from "adc-joystick,polled" to
+   "adc-joystick,no-hardware-trigger" as it is more representative of
+   what the driver and hardware are doing.
+
+Changes from V1:
+ - Removed driver compatible string of "adc-joystick-polled".
+ - Added new optional boolean value of "adc-joystick,polled".
+ - Cleaned up if statements regarding polling behavior.
+
+Chris Morgan (3):
+  dt-bindings: adc-joystick: add poll-interval
+  Input: adc-joystick - Add polled input device support
+  arm64: dts: rockchip: Update joystick to polled for Odroid-Go2
+
+ .../bindings/input/adc-joystick.yaml          |  6 +++
+ .../boot/dts/rockchip/rk3326-odroid-go2.dts   |  1 +
+ drivers/input/joystick/adc-joystick.c         | 49 ++++++++++++++-----
+ 3 files changed, 45 insertions(+), 11 deletions(-)
+
+-- 
+2.34.1
+
