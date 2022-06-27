@@ -2,192 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F38D55D08E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E514455CC35
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:00:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240136AbiF0SOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 14:14:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37422 "EHLO
+        id S240185AbiF0SVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 14:21:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237249AbiF0SOv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 14:14:51 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4284BDF22
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 11:14:50 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id a11-20020a17090acb8b00b001eca0041455so10461835pju.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 11:14:50 -0700 (PDT)
+        with ESMTP id S240176AbiF0SVV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 14:21:21 -0400
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2F9FEE36
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 11:21:19 -0700 (PDT)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-3176b6ed923so93686297b3.11
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 11:21:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=YDu+rnzv/wK9KMXyP+OWEFPMR3eGHlB5shg9D6MCzeY=;
-        b=JBXLeZp4mtmOWzRgE7UX5PSOgKH/UmtDdwVz6xHMHWYuupKW+grq9s2SVVcQ3TL14S
-         S2Inz2nMS46xy2+pxsHf8UjURC9u0MP4F2P/dMfrz1qPk6J1v9Bxj+FA0boi600YqvBc
-         TiPwkugWCE40PGeW0VkF/83AwoF5NXuSZ7wGk=
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zAvy14WQSJajEvtEq9Z9V458WL9rypKqsSWZ5e8ff+Q=;
+        b=QfczmHRT9/HR8HyazKLbsqrs7cCP2iZKaxG/OXGSPnAc8W5YAiaVA0WqjZ3/6QtXqU
+         42K81l24QIf3XynW/JKjRGJ7dmfzwI2FUm73m5CnsNDIqxjEz+NWZjbRqeUpE3CO+oZH
+         +WHVevlpyQHs4NMeAMNGbQrzcjZNAN6YiP+T/yfSSMD0p0fn3Nshe7kDoUKHwoSYa4N3
+         VnE5Z7u+uJPgYCZdcfgQYEKpStJa5alN/Ge9h9ME6zGeGt1uUwucGuzxD4iyBvikWn6I
+         UNKi3EkIpSabWBkxoc2zg+IeRkTOZHzN8h/RLyTzMjG2hCOwCIaltZxdV6oluuLg1E7j
+         RMQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YDu+rnzv/wK9KMXyP+OWEFPMR3eGHlB5shg9D6MCzeY=;
-        b=IlC8AM8gepFgj78eY1ktzb5K6pEqwbys6rJczsYgcpUPDN1jUiah4e3cLMVb+dwMfi
-         4O8VXxyJhybMnJiwHCvowhhc0N+7srZG3EIGy7US4AwZk8pXnOWUGIFl859PcDBnJNDY
-         g5tN8K4JoL1Xxegc3otdkyx4xfDY1imYLKb3XbDtndPI+iv15VbY3IP8ra7JKraTDAHe
-         W1bV3n163c9+jn5JabsHKCWEj7ZEI1z90BfEaIsLRBlNocFY+cv16JFkBKisUpB2/snP
-         KWTCu1u1XXyK/jEMUpI9XrSU1J4ESt2o1447i7zjy3Al8UG/GxLZqENc2cYNvRx31j7U
-         DrrQ==
-X-Gm-Message-State: AJIora9ZU1fwOvSfpVaGxRiEcUwXxgfncVpmx0NJD3OKMdqZX1uj1FZl
-        RI3IIsDxqMU37bBRMLM9pJhTxl2yekgqnQ==
-X-Google-Smtp-Source: AGRyM1ttfaRHnKvsy/Dd2GaC6fMPgvM5TU9FqTHfpPQHimpwJCPbF2nsZ2Qq9eTV3MPQFZggGBtONA==
-X-Received: by 2002:a17:90b:278e:b0:1ee:f086:9c9d with SMTP id pw14-20020a17090b278e00b001eef0869c9dmr2816272pjb.182.1656353689781;
-        Mon, 27 Jun 2022 11:14:49 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:f31c:687c:3a61:62c5])
-        by smtp.gmail.com with UTF8SMTPSA id b1-20020a17090a12c100b001ec71258838sm9932330pjg.27.2022.06.27.11.14.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jun 2022 11:14:49 -0700 (PDT)
-Date:   Mon, 27 Jun 2022 11:14:47 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Bastien Nocera <hadess@hadess.net>,
-        Peter Chen <peter.chen@kernel.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Subject: Re: [PATCH v22 2/3] usb: misc: Add onboard_usb_hub driver
-Message-ID: <Yrnzl8k81f9JTMIQ@google.com>
-References: <YqpprpUHmlD62YzI@google.com>
- <CAD=FV=VNDamV4+j07TrnX3cUs2-D5ySbeQ-zfU=Eef8+WagGig@mail.gmail.com>
- <Yqub17iT4O7aqFMi@google.com>
- <CAD=FV=VEztPLhsrJecZUdyHCW7ZfFTVvxyqY5CqRVv2mWyrLog@mail.gmail.com>
- <YquoSMiQS+RG8rOM@google.com>
- <CAD=FV=W81pSEUbzw2ZQgs_TJ9MLnHQHiDopZXZ6bHdS7QMzAyA@mail.gmail.com>
- <YqvMffveCPiKQEUk@google.com>
- <CAD=FV=UJOStPfRR3Hq2DmRBSH-HCtZ16hAU9eVH5w6Hm=WSJRQ@mail.gmail.com>
- <YqytDNB2y4+qT8GD@google.com>
- <CAD=FV=UT0XtMjZ9syQPGXeTEaUrwGTb_LgDow+cofgmx4D30VA@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zAvy14WQSJajEvtEq9Z9V458WL9rypKqsSWZ5e8ff+Q=;
+        b=Fj2fcl/GP81XdI0RPef9cBjMUN8jacpA/qlLQFo0WUSGR1ghdWXdVA/0wJNhbSWlYx
+         TyRt+RwkCbNR8LiqNQnXW08Yc7MbLJor/TfSlAHGcSiqvkTXiJEZ0QlDZTYu24yrs7OZ
+         2/naJxmJV11iXRqBzolsK3U16SDowmFmIf+nVKdY6mJmtQzPd3gnbc+wrvfd/1U+gpq5
+         d1dX7hSfued/7U912rsj70q6ioz5FRE86pifO0bYH99Cedvy9vpA5uIAsy+mAWTkFzzT
+         Nof8qurQbqCxnp7SF06exlmFBrnbNgdirMqrg53L54zQ8XOJfrnSMucO/OYUIZ8QihCb
+         r+MQ==
+X-Gm-Message-State: AJIora8iAK4Ainh1JloZGbAhL0fBw6iRKzTnchwyttggdMbpN4cAG564
+        5lszi4IfYBNhGyy/BZPuTffQhiSgZS7QXsC8EM/oVw==
+X-Google-Smtp-Source: AGRyM1ut1mmdvIzz+fGssaCHywTk0zdoNUyWRaIm6VKkay06+F6yyhsbCZbfM6hX7GjWG5RLUmdofYrPpF5aZ5NeSXg=
+X-Received: by 2002:a0d:eace:0:b0:317:87ac:b3a8 with SMTP id
+ t197-20020a0deace000000b0031787acb3a8mr16855244ywe.126.1656354078827; Mon, 27
+ Jun 2022 11:21:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=UT0XtMjZ9syQPGXeTEaUrwGTb_LgDow+cofgmx4D30VA@mail.gmail.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220623080344.783549-1-saravanak@google.com> <20220623080344.783549-3-saravanak@google.com>
+ <20220623100421.GY1615@pengutronix.de> <20220627175046.GA2644138-robh@kernel.org>
+In-Reply-To: <20220627175046.GA2644138-robh@kernel.org>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 27 Jun 2022 11:20:42 -0700
+Message-ID: <CAGETcx8YSuq+_tiWwShjZBeHd7+CHwLRdvdT6yb3xfEUD7DB0Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] of: base: Avoid console probe delay when fw_devlink.strict=1
+To:     Rob Herring <robh@kernel.org>
+Cc:     sascha hauer <sha@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>, peng fan <peng.fan@nxp.com>,
+        kevin hilman <khilman@kernel.org>,
+        ulf hansson <ulf.hansson@linaro.org>,
+        len brown <len.brown@intel.com>, pavel machek <pavel@ucw.cz>,
+        joerg roedel <joro@8bytes.org>, will deacon <will@kernel.org>,
+        andrew lunn <andrew@lunn.ch>,
+        heiner kallweit <hkallweit1@gmail.com>,
+        russell king <linux@armlinux.org.uk>,
+        "david s. miller" <davem@davemloft.net>,
+        eric dumazet <edumazet@google.com>,
+        jakub kicinski <kuba@kernel.org>,
+        paolo abeni <pabeni@redhat.com>,
+        linus walleij <linus.walleij@linaro.org>,
+        hideaki yoshifuji <yoshfuji@linux-ipv6.org>,
+        david ahern <dsahern@kernel.org>, kernel-team@android.com,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        iommu@lists.linux-foundation.org, netdev@vger.kernel.org,
+        linux-gpio@vger.kernel.org, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 24, 2022 at 01:33:19PM -0700, Doug Anderson wrote:
-> Hi,
-> 
-> On Fri, Jun 17, 2022 at 9:34 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+On Mon, Jun 27, 2022 at 10:50 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Jun 23, 2022 at 12:04:21PM +0200, sascha hauer wrote:
+> > On Thu, Jun 23, 2022 at 01:03:43AM -0700, Saravana Kannan wrote:
+> > > Commit 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
+> > > enabled iommus and dmas dependency enforcement by default. On some
+> > > systems, this caused the console device's probe to get delayed until the
+> > > deferred_probe_timeout expires.
+> > >
+> > > We need consoles to work as soon as possible, so mark the console device
+> > > node with FWNODE_FLAG_BEST_EFFORT so that fw_delink knows not to delay
+> > > the probe of the console device for suppliers without drivers. The
+> > > driver can then make the decision on where it can probe without those
+> > > suppliers or defer its probe.
+> > >
+> > > Fixes: 71066545b48e ("driver core: Set fw_devlink.strict=1 by default")
+> > > Reported-by: Sascha Hauer <sha@pengutronix.de>
+> > > Reported-by: Peng Fan <peng.fan@nxp.com>
+> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > Tested-by: Peng Fan <peng.fan@nxp.com>
+> > > ---
+> > >  drivers/of/base.c | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git a/drivers/of/base.c b/drivers/of/base.c
+> > > index d4f98c8469ed..a19cd0c73644 100644
+> > > --- a/drivers/of/base.c
+> > > +++ b/drivers/of/base.c
+> > > @@ -1919,6 +1919,8 @@ void of_alias_scan(void * (*dt_alloc)(u64 size, u64 align))
+> > >                     of_property_read_string(of_aliases, "stdout", &name);
+> > >             if (name)
+> > >                     of_stdout = of_find_node_opts_by_path(name, &of_stdout_options);
+> > > +           if (of_stdout)
+> > > +                   of_stdout->fwnode.flags |= FWNODE_FLAG_BEST_EFFORT;
 > >
-> > > Looking at the "companion-hub" case with fresh eyes, too, I wonder if
-> > > that can be simpler. If we find a companion hub, do we need both the
-> > > check for usb_hcd_is_primary_hcd() and the check to see whether the
-> > > pdev was already created?
+> > The device given in the stdout-path property doesn't necessarily have to
+> > be consistent with the console= parameter. The former is usually
+> > statically set in the device trees contained in the kernel while the
+> > latter is dynamically set by the bootloader. So if you change the
+> > console uart in the bootloader then you'll still run into this trap.
 > >
-> > I was also doubting about this and concluded that it is still needed.
+> > It's problematic to consult only the device tree for dependencies. I
+> > found several examples of drivers in the tree for which dma support
+> > is optional. They use it if they can, but continue without it when
+> > not available. "hwlock" is another property which consider several
+> > drivers as optional. Also consider SoCs in early upstreaming phases
+> > when the device tree is merged with "dmas" or "hwlock" properties,
+> > but the corresponding drivers are not yet upstreamed. It's not nice
+> > to defer probing of all these devices for a long time.
 > >
-> > Let's use once more the trogdor config as example, which has one physical
-> > onboard hub chip with a USB 3.1 hub and a USB 2.1 companion hub, connected
-> > to the dwc3 controller:
-> >
-> > &usb_1_dwc3 {
-> >         dr_mode = "host";
-> >         #address-cells = <1>;
-> >         #size-cells = <0>;
-> >
-> >         /* 2.x hub on port 1 */
-> >         usb_hub_2_x: hub@1 {
-> >                 compatible = "usbbda,5411";
-> >                 reg = <1>;
-> >                 vdd-supply = <&pp3300_hub>;
-> >                 companion-hub = <&usb_hub_3_x>;
-> >         };
-> >
-> >         /* 3.x hub on port 2 */
-> >         usb_hub_3_x: hub@2 {
-> >                 compatible = "usbbda,411";
-> >                 reg = <2>;
-> >                 vdd-supply = <&pp3300_hub>;
-> >                 companion-hub = <&usb_hub_2_x>;
-> >         };
-> > };
-> >
-> > Let's assume we don't check for the pdev. With our change above for root hubs
-> > the loop is now only executed for the primary HCD. In the first iteration
-> > we encounter the 2.x hub, it has a companion hub, but that alone doesn't
-> > tell us much, so we create a pdev. In the next iteration we encouter the
-> > 3.x hub, it also has a companion hub, but we don't know/check that the
-> > companion already has a pdev, so we create another one for the same
-> > physical hub.
-> 
-> Ah, you are correct. You only run into that case for the root hub,
-> correct? For everything else it's impossible?
-> 
-> ...and I guess things would be different if inside the loop you
-> actually set "hcd" to point to the "hcd" of the child device. I guess
-> that's where my confusion keeps stemming from. "hcd" is the parent's
-> host controller which is not always the same as the child's host
-> controller.
+> > I wonder if it wouldn't be a better approach to just probe all devices
+> > and record the device(node) they are waiting on. Then you know that you
+> > don't need to probe them again until the device they are waiting for
+> > is available.
+>
+> Can't we have a driver flag 'I have optional dependencies' that will
+> trigger probe without all dependencies and then the driver can defer
+> probe if required dependencies are not yet met.
 
-I'd phrase it differently: for root hubs the 'parent_hub' isn't necessarily
-the parent of each 'child' node.
+Haha... that's kinda what I'm working on right now. But named
+intentionally in a more limited sense of "I can't wait for the
+timeout" where fw_devlink will relax and allow the driver to probe
+(and have it make the call) once we hit late_initcall(). I'm
+explicitly limiting it to "timeout" because we don't want everyone
+adding this flag everytime they hit an issue. That'll beat the point
+of fw_devlink=on.
 
-> It would have been keen if we could somehow know the child's host
-> controller and get a pointer to that, but we can't because the child
-> device hasn't been enumerated yet.
-> 
-> OK, I'm convinced. I'll mention it in your v23 but maybe I'll have a
-> slightly better chance of figuring this out if/when I look at this
-> again if we rename "hcd" to "parent_hcd".
+Also, setting the flag for a driver to fix one system might break
+another system because in the other system the user might want to wait
+for the timeout because the supplier drivers would be loaded before
+the timeout.
 
-I'm not convinced that this would generally help to reduce the confusion.
-To me 'parent_hcd' sounds as if there was a tree of HCDs, which isn't
-the case. Also one could still read 'parent_hcd' as the HCD of all
-'child' nodes.
+Another option is to restart the timer (if it hasn't expired) when
+filesystems get mounted (in addition to the current "when new driver
+gets registered). That way, we might be able to drop the timeout from
+10s to 5s.
 
-Maybe a bit more verbose documentation like this could help:
-
-  Some background about the logic in this function, which can be a bit hard
-  to follow:
-
-  Root hubs don't have dedicated device tree nodes, but use the node of their
-  HCD. The primary and secondary HCD are usually represented by a single DT
-  node. That means the root hubs of the primary and secondary HCD share the
-  same device tree node (the HCD node). As a result this function can be
-  called twice with the same DT node for root hubs. We only want to create a
-  single platform device for each physical onboard hub, hence for root hubs
-  the loop is only executed for the primary hub. Since the function scans
-  through all child nodes it still creates pdevs for onboard hubs connected
-  to the secondary hub if needed.
-
-  Further there must be only one platform device for onboard hubs with a
-  companion hub (the hub is a single physical device). To achieve this two
-  measures are taken: pdevs for onboard hubs with a companion are only
-  created when the function is called on behalf of the parent hub that is
-  connected to the primary HCD (directly or through other hubs). For onboard
-  hubs connected to root hubs the function processes the nodes of both
-  companions. A platform device is only created if the companion hub doesn't
-  have one already.
-
-
-When writing this I realized that the check for an existing platform device
-for companions could be put inside an 'if (!parent_hub->parent)' block. It
-isn't necessary for hubs deeper down in the chain, since their pdev will only
-be created for the hub (indirectly) connected to the primary HCD.
+-Saravana
