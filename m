@@ -2,39 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F26155C207
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:46:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D41C455DC21
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:25:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241226AbiF0U0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 16:26:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49024 "EHLO
+        id S241334AbiF0UdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 16:33:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241209AbiF0U0q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:26:46 -0400
-Received: from mail.bugwerft.de (mail.bugwerft.de [46.23.86.59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0C41E1AD94
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:26:44 -0700 (PDT)
-Received: from [192.168.178.106] (p57bc972b.dip0.t-ipconnect.de [87.188.151.43])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id 38719282FDC;
-        Mon, 27 Jun 2022 20:26:42 +0000 (UTC)
-Message-ID: <b59afe57-7608-f049-c075-1a95d65984c4@zonque.org>
-Date:   Mon, 27 Jun 2022 22:26:41 +0200
+        with ESMTP id S241315AbiF0UdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:33:17 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A30215FBF;
+        Mon, 27 Jun 2022 13:33:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5C10FB81B1A;
+        Mon, 27 Jun 2022 20:33:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF69CC385A5;
+        Mon, 27 Jun 2022 20:33:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656361994;
+        bh=UGNf3JQBQA1G3N3IKKt0DxZWbqRY9n/yeyxP0VBx39A=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=ToXkyagZiDbV2GVROo8aBKcl0Ma0D2GA7XJf36txPJmqqvFuuz0FRiQ/WxfA6qL7d
+         EkAK64B8DJ/ocfOM19SHtgE+ZyDYEqmS4iDzCVaVUJznvFoCSr6Jzvn4bkIevDECWT
+         DcD3GhVIxXvUgt8WUO9cGN20DW7qIudPOQj7M28i5NCJt9J/skW42u7cpHtOesrfZm
+         iBQLt13GIwsQdk/FdnvW6n9R+crurrX+5ws+f7pKsDKQOEc5IfbbkCGmPM3yGex2Mm
+         /TK2xtaodexcBDaFTsnJPS51NmSyQ3+xt5AxX1SG5HAJrnTh/81iJQkz9xkLZC376H
+         HysY2i4h5GkBw==
+From:   Mark Brown <broonie@kernel.org>
+To:     andi@etezian.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        krzysztof.kozlowski@linaro.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
+In-Reply-To: <20220626112838.19281-1-krzysztof.kozlowski@linaro.org>
+References: <20220626112838.19281-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] spi: dt-bindings: samsung: Add Exynos4210 SPI
+Message-Id: <165636199250.4094756.9720956481733870534.b4-ty@kernel.org>
+Date:   Mon, 27 Jun 2022 21:33:12 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: (subset) [PATCH 0/8] ASoC: max98396: Some assorted fixes and
- additions
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>, ryan.lee.analog@gmail.com
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org
-References: <20220624104712.1934484-1-daniel@zonque.org>
- <165636115333.3997797.6298161546515778991.b4-ty@kernel.org>
-From:   Daniel Mack <daniel@zonque.org>
-In-Reply-To: <165636115333.3997797.6298161546515778991.b4-ty@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -43,67 +54,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/27/22 22:19, Mark Brown wrote:
-> On Fri, 24 Jun 2022 12:47:04 +0200, Daniel Mack wrote:
->> This is a series of some patches that I collected while using the
->> max98396 driver is a TDM mode setup.
->>
->> They correct BSEL and PCM mode configs, add support for power supplies
->> and add some bits to the documentation.
->>
->> The code is tested in TDM-16 and TDM-8 mode with 32 channel width.
->>
->> [...]
+On Sun, 26 Jun 2022 13:28:38 +0200, Krzysztof Kozlowski wrote:
+> Document samsung,exynos4210-spi compatible which is already used on
+> several Exynos SoCs.
 > 
-> Applied to
 > 
->    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Umm, I was about to send out a new version of this series tomorrow to
-address the things you pointed out, and some more detected by the test bots.
+Applied to
 
-Which patches got applied now? I only see "Fix register access for PCM
-format settings" in for-next and for-5.19 currently?
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
+Thanks!
+
+[1/1] spi: dt-bindings: samsung: Add Exynos4210 SPI
+      commit: 595d68c1b7a81c6cfbdd7c8b50c1e047dc1087ac
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
 Thanks,
-Daniel
-
-
-
-> Thanks!
-> 
-> [1/8] ASoC: dt-bindings: max98396: add voltage supplies
->       (no commit info)
-> [2/8] ASoC: dt-bindings: max98396: Add #sound-dai-cells
->       (no commit info)
-> [3/8] ASoC: dt-bindings: max98396: Document adi,bypass-slot-no
->       (no commit info)
-> [4/8] ASoC: max98396: add voltage regulators
->       (no commit info)
-> [5/8] ASoC: max98396: Improve some error prints
->       (no commit info)
-> [6/8] ASoC: max98396: Fix register access for PCM format settings
->       commit: cf5c888539f353cb10e127d3a8754554cacd293a
-> [7/8] ASoC: max98396: Implement DSP speaker monitor
->       (no commit info)
-> 
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent to Linus during
-> the next merge window (or sooner if it is a bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.
-> 
-> You may get further e-mails resulting from automated or manual testing
-> and review of the tree, please engage with people reporting problems and
-> send followup patches addressing any issues that are reported if needed.
-> 
-> If any updates are required or you are submitting further changes they
-> should be sent as incremental updates against current git, existing
-> patches will not be replaced.
-> 
-> Please add any relevant lists and maintainers to the CCs when replying
-> to this mail.
-> 
-> Thanks,
-> Mark
-
+Mark
