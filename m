@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B80B55CAC0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1F4A55E2DD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:36:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233074AbiF0Jii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 05:38:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57710 "EHLO
+        id S233855AbiF0Jk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 05:40:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234059AbiF0Jie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:38:34 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F005D636B
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 02:38:32 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id ge10so17882197ejb.7
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 02:38:32 -0700 (PDT)
+        with ESMTP id S233788AbiF0Jkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:40:55 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B9CA6163
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 02:40:53 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id h23so17844416ejj.12
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 02:40:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=WmPX2C6ydtzsulgNUACIhoIyzrpbFjtqlAVmc9Cb5Y0=;
-        b=aehFofxjFQo/7cMNGFiQRHj1heiLQezTlyS2q5e0mcfPdcje6SDmN3OCD323zd5l6G
-         t4lNY8etAzjRwW+2k6WCNDhfobk6SjYlW1eBbXaVQnfVUgwBiAlqI4ThZx/eFDrzGGg3
-         fOfodhamDL2iguL5s5Hog2nZIQgq+Llz1Wzmz6NvZ2yfzQMSHj3QmS5msOsdRNT0BfMn
-         d0qze/kh9RW3HE2gg+o583cSUUhTW+6t+aJpWigvwALMUs4IxzimBWH3TIXVzOGIbohp
-         YnRCG25UorinNbTJVOwYRqwgkEUY/4exne6JyBvPianPxCt48I9Ym/j9ivFAlBdQbfK8
-         51rA==
+        bh=8w4Xd8HO2KMZ2SznJIKXdxvDaJuGbalrivg2cgjpMtA=;
+        b=P2y6wXBaX1Tp2M08YJa1SccUleXNyU8wB/IS61X04mzIIQvj8WLEYWmRsroReBrfN4
+         vuMqqGW6dhYqXLtb6oBq3aOvKsqOm4GyUrzUTuGI4aUOSRmx7BII2yv3on372cjpuakX
+         oLHj+paXdVGyZJAdj4T23rEPWBiWSIxr+CqrOJ6H25TkZ7eoerUfbzo02PPoDfcmHA0n
+         RzqI8gPGMEFhP3VD1ak0TFBN+NioJi+qB02j43G9xGxGOKvjb00A7IIU1qasNF6QvvAg
+         kuMqaMjrElUUNisMNzRlBvjm4GKz6teLVxLi3xmquP2q+KSp8lm6esTJhXtuHOZffg9m
+         yMzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=WmPX2C6ydtzsulgNUACIhoIyzrpbFjtqlAVmc9Cb5Y0=;
-        b=0/8cZbhp2/xZ5Luxyr0i4B1NEaH0hXWASAMQQmRR9Z9k2x9lxEXVopSfIT61SgIJ+S
-         ybUURpxJhS3n8T3Aoyc5/83n4qrArxeCyai3hapHwab5i4fHC+t4wuAMqGCAWQoDT33y
-         WhHbp8gZnz84PhQ9JktqoSbDBWdfOTrE/yLCBPW60OKmTp4z8q9D/EiweLwRKSq/o2Eo
-         6ZGGkhV31HttIhdi0ycbE6ZuXUSykmAr0KVs8rgblzWQtWiExi5j9PJqerduaVThDlTN
-         Ns/tc0RVvJ3CJM/2VJWOFsjQ6KLVlM3wkEeLimhaAww0s0clFpNwYYm8BfsCWNe/9O1G
-         dtLQ==
-X-Gm-Message-State: AJIora+ovnBF1hUluNhxyTxgoQRPKtg43tM8YLBWS17laookMh48ObDg
-        i9P+aASSZotSg+HbSg99gWhreQ==
-X-Google-Smtp-Source: AGRyM1sHkr1iOyFTh+U+1JlBUYNRakdWvy7dUV8jcw5eVFRDCLL0jT9Werrdh+jycbhYMlt0agE/+w==
-X-Received: by 2002:a17:906:77c8:b0:722:e753:fbbe with SMTP id m8-20020a17090677c800b00722e753fbbemr11400735ejn.692.1656322711506;
-        Mon, 27 Jun 2022 02:38:31 -0700 (PDT)
+        bh=8w4Xd8HO2KMZ2SznJIKXdxvDaJuGbalrivg2cgjpMtA=;
+        b=zUFMOECiCcUPp+6y1YwlRVF1uYlDQ4TjLiUN0FTPTJmL8q7ukItVEAQCylwM+eXlMB
+         Q95tLE18uPwtb97VJdQjc8DjHw9o/iyJ/NitRGGiagFPaQVwXX7vkzjWpeLCH6oLEZhZ
+         qTOanU3yL9PQTVPw9Z+GHZ2FssRD7lYdKRr3jmTrfxvYz7MlLqV9aT5vHot2kfTzdODh
+         /gqZORZmAqfravd5WjWXowJ3lMpuhtrblI5FoHeA+Y+ei1fRaXpoRp9KxZcP1TeH+U1k
+         /TgobTpykQV1rkt3C0qAFXXBR9m+GqwPBDcKKUn1ueN7LCAW74xSuaUvRMs367INAz1l
+         ue/g==
+X-Gm-Message-State: AJIora+PfjD3X3hY1hyGcNsTw+SbYGQdyQ8rODzTn3uy036UlGhaZAm0
+        dCkv2Y7nhrR4XxbxInM38itVYg==
+X-Google-Smtp-Source: AGRyM1szfH/v6uf2DT/NmAsXshg4fNP3SyxfQdiGt3oL4ArVLADr8sFpyki2vY1hNzmPLNzt+hMYkQ==
+X-Received: by 2002:a17:907:a424:b0:702:f94a:a897 with SMTP id sg36-20020a170907a42400b00702f94aa897mr11426858ejc.255.1656322851784;
+        Mon, 27 Jun 2022 02:40:51 -0700 (PDT)
 Received: from [192.168.0.247] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id m2-20020a50ef02000000b00435a997303bsm7142057eds.71.2022.06.27.02.38.30
+        by smtp.gmail.com with ESMTPSA id a18-20020a1709063a5200b007262d69543fsm4740892ejf.106.2022.06.27.02.40.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jun 2022 02:38:30 -0700 (PDT)
-Message-ID: <984a7287-16e5-8f46-9ea7-fa17623f26dd@linaro.org>
-Date:   Mon, 27 Jun 2022 11:38:29 +0200
+        Mon, 27 Jun 2022 02:40:51 -0700 (PDT)
+Message-ID: <3a7f2faa-0d42-02e6-fb1a-216be1120ff3@linaro.org>
+Date:   Mon, 27 Jun 2022 11:40:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 2/5] spi: s3c64xx: support loopback mode
+Subject: Re: [PATCH 3/5] spi: s3c64xx: support custom value of internal clock
+ divider
 Content-Language: en-US
 To:     Chanho Park <chanho61.park@samsung.com>,
         Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
@@ -63,15 +64,15 @@ Cc:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
         linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20220627064707.138883-1-chanho61.park@samsung.com>
- <CGME20220627064931epcas2p3052d80fd448aed36b9414e7733c251f5@epcas2p3.samsung.com>
- <20220627064707.138883-3-chanho61.park@samsung.com>
+ <CGME20220627064931epcas2p2e1dc352f41895b294d7945c2239de362@epcas2p2.samsung.com>
+ <20220627064707.138883-4-chanho61.park@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220627064707.138883-3-chanho61.park@samsung.com>
+In-Reply-To: <20220627064707.138883-4-chanho61.park@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,20 +81,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 27/06/2022 08:47, Chanho Park wrote:
-> Modern exynos SoCs can support self loopback mode via setting BIT(3) of
-> MODE_CFG register. Previous SoCs don't have the bit so we need to add
-> has_loopback field in the s3c64xx_spi_port_config. Exynos Auto v9 SoC
-> has the bit and it will define the field to "true".
-> When it is set, SPI_LOOP mode will be marked.
+> Modern exynos SoCs such as Exynos Auto v9 has different internal clock
+> divider, for example "4". To support this internal value, this adds
+> clk_div of the s3c64xx_spi_port_config and use it if it is specified.
+> Otherwise, use "2" which is the previous default value.
 > 
 > Signed-off-by: Chanho Park <chanho61.park@samsung.com>
 > ---
->  drivers/spi/spi-s3c64xx.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  drivers/spi/spi-s3c64xx.c | 23 +++++++++++++++--------
+>  1 file changed, 15 insertions(+), 8 deletions(-)
 > 
+> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
+> index e17c74c0d7de..dd5fc8570bce 100644
+> --- a/drivers/spi/spi-s3c64xx.c
+> +++ b/drivers/spi/spi-s3c64xx.c
+> @@ -131,6 +131,7 @@ struct s3c64xx_spi_dma_data {
+>   * @fifo_lvl_mask: Bit-mask for {TX|RX}_FIFO_LVL bits in SPI_STATUS register.
+>   * @rx_lvl_offset: Bit offset of RX_FIFO_LVL bits in SPI_STATUS regiter.
+>   * @tx_st_done: Bit offset of TX_DONE bit in SPI_STATUS regiter.
+> + * @clk_div: Internal clock divider, if not specified, use 2 as the default.
+>   * @quirks: Bitmask of known quirks
+>   * @high_speed: True, if the controller supports HIGH_SPEED_EN bit.
+>   * @clk_from_cmu: True, if the controller does not include a clock mux and
+> @@ -148,6 +149,7 @@ struct s3c64xx_spi_port_config {
+>  	int	rx_lvl_offset;
+>  	int	tx_st_done;
+>  	int	quirks;
+> +	int	clk_div;
+>  	bool	high_speed;
+>  	bool	clk_from_cmu;
+>  	bool	clk_ioclk;
+> @@ -620,6 +622,7 @@ static int s3c64xx_spi_config(struct s3c64xx_spi_driver_data *sdd)
+>  	void __iomem *regs = sdd->regs;
+>  	int ret;
+>  	u32 val;
+> +	u32 div = sdd->port_conf->clk_div ? sdd->port_conf->clk_div : 2;
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I would prefer to explicitly set '2' as clk_div for existing variants.
+Such assignments in the code are usually trickier to find/read.
+>  
 
 Best regards,
 Krzysztof
