@@ -2,95 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9863155E16E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B445855DF9A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241355AbiF0UeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 16:34:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55806 "EHLO
+        id S239143AbiF0Uk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 16:40:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239299AbiF0UeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:34:05 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BA046340;
-        Mon, 27 Jun 2022 13:34:05 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id o9so14690887edt.12;
-        Mon, 27 Jun 2022 13:34:04 -0700 (PDT)
+        with ESMTP id S235320AbiF0Uk0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:40:26 -0400
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF523DED5
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:40:25 -0700 (PDT)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-101ab23ff3fso14489578fac.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:40:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OLWwuKwhDGZ5AVt1p7fFud+w2xnXRC2cyekV81w3MDU=;
-        b=dheqE6WHwvec6tvb6t2RbF5VQNheGf73O7aOBbWBM90uPgRY7rjxLwdopKqx72QETI
-         9+X7x7jSPVLe35HXCDQldILySK6vIaAFKfnX3HPBP0/j95N8DUoKhHp7021brMu9adLG
-         yQGG2iTCry+dnpBEIfhwqQI3FsMWrs6gaWN1SzhlRdwlpU7TA0f87EBVzhZUvyEl9p+v
-         naGmnvUsNkzChfpTJPj4aM2kXkZNXpdjNvCCAz1DtdjOEQXU3H55lUVo3BTVg3PJr9qn
-         krDTRJOYoa/gMT7+yRFcL+eTIiPJv1z1iYTuQSFygvCy6I+O2QDSnCP6uUX6MCdwidHK
-         IKVw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=jmzqCLZEusFvK30GUvwarTPAI/2hAGgafpqukT2uCeY=;
+        b=F0+f2j6fH/kSwW8e/OqSf1WkPdi/HOLnWsY5Wc11wwGJIJHoHKiCOiRdy0CBi4xpC/
+         UjF8PzFLbSdglDlCkSvxR23w6DYPoR4VC8KvlNg6/+q8nXASFfihtjl1ntPTBtdvm0hp
+         GYW7SbFIoQ+kMeMbgcn3KJ6yRldtsLD7RvVe72K27HWOXBi/cgvEqJnn82d7Ikcsntuz
+         028Xoy0Q2Xzlfvvt+U8FwqmrZrIrhlL1GME62bwBqNf1FA8+Rz1/h5EJ2CowyRJs9ZPp
+         w5xofn+9XZmS2+3Y1W8XMNNk1lyHpBoy5T17Xt6Ut2iQT1WpCXXMG27pNoRSBx4Ic4CC
+         jslA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OLWwuKwhDGZ5AVt1p7fFud+w2xnXRC2cyekV81w3MDU=;
-        b=npCC/2A/rRewfTLLDahvlN07iqT6//+Cc3df09bfNy4n561wVLfxK0mjlTJrAqtgEg
-         xYWLSlwE2HtxaQcXytTcEKBvL+QIcpkvFcxTvbeIv3lnYfxcBqDoi94ZXEVk7dykap0F
-         H+blwsmATO0h6qHamCt9GMCQnW+tZUNGwou3OllmGIbH9/GlO+ZiWvOBeK3OPLNKutbN
-         r18JWkNxTuy8Pp73Hh8nN3iGiMbhNT6aTMPIiiU177VLQxCR4kHQIp9eF1J5Tp3gQFZa
-         CY+FpSQBuY6RT9eyJXtuicJQYIsCV0CySeDR2dvY/1ENrfnbI9Rc9q1SeD4R8l2QEfTn
-         aFIQ==
-X-Gm-Message-State: AJIora+5I/NoKCkc4jsfstWAuDdEiYKYYdG8u2lPD8RTzgPDBjMifSKd
-        cJDdv+CtSG+Tm6cAjXNseiYrC2jOjYo=
-X-Google-Smtp-Source: AGRyM1t+7vYQ+AGGmRmAHAA6HQWSIKQ56fM95D1r6YAj+WD+1Y+PPYMi6z7Zq+alDcC2KC05jXGFig==
-X-Received: by 2002:a05:6402:280b:b0:437:9efc:a065 with SMTP id h11-20020a056402280b00b004379efca065mr5648487ede.3.1656362043648;
-        Mon, 27 Jun 2022 13:34:03 -0700 (PDT)
-Received: from jernej-laptop.localnet (213-161-3-76.dynamic.telemach.net. [213.161.3.76])
-        by smtp.gmail.com with ESMTPSA id b9-20020aa7d489000000b004358243e752sm8120949edr.5.2022.06.27.13.34.01
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jmzqCLZEusFvK30GUvwarTPAI/2hAGgafpqukT2uCeY=;
+        b=em/Yg7tvv1FkqBg39DTbEdojlsR3euNtnSuU+LFW/FoAEk9SZcPLJfGGFBk3BH1Ke5
+         Bxgg/NTxOOmk7Sc/NM78q5ZWdzqt1dJ4RqZ9lNCTZ6pgV/McKJI9Y99qWKEPz97r1I1P
+         X1mfIkgPkip90kfQjq4rgCDvorIELoPF+mJ5NK4o0t0DwVM2InVYQzLMHo9zkjyXYZ9c
+         ujXyARou9eunsaWVzykiRWc1LhZOsOMlX8WsI4FplXf88SyDRyIV7zpXbMucO5eRt2d9
+         J2JxICNaegFyfzcjK9yNH+45hI+qUADAnU3KhwVGwfC9NF7Cn56tTzn+Ecq1NR6MtN4i
+         28+w==
+X-Gm-Message-State: AJIora+OSsc/z9KWckt3l75vBuQinUgUcFe4czBDZaogwvykpC9OTpNH
+        BtKHJhorojH8P+ZmvcvMqvf9Vw==
+X-Google-Smtp-Source: AGRyM1t6hiie7pEhqg3xvsIsHHhFpIuSUQyQD0JXZnqL06hesjet/y04wFsLleqR34mUqH2RbK0jUQ==
+X-Received: by 2002:a05:6870:f616:b0:f2:dac0:e339 with SMTP id ek22-20020a056870f61600b000f2dac0e339mr11702877oab.116.1656362425179;
+        Mon, 27 Jun 2022 13:40:25 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id c13-20020aca1c0d000000b003351dbf5e36sm5835177oic.43.2022.06.27.13.40.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 13:34:02 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>, Ondrej Jirman <x@xff.cz>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 2/6] pinctrl: sunxi: Add I/O bias setting for H6 R-PIO
-Date:   Mon, 27 Jun 2022 22:34:00 +0200
-Message-ID: <4405996.LvFx2qVVIh@jernej-laptop>
-In-Reply-To: <20220626021148.56740-3-samuel@sholland.org>
-References: <20220626021148.56740-1-samuel@sholland.org> <20220626021148.56740-3-samuel@sholland.org>
+        Mon, 27 Jun 2022 13:40:24 -0700 (PDT)
+Date:   Mon, 27 Jun 2022 15:40:22 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] ASoC: qcom: lpass: Fix apq8016 compat string to
+ match yaml
+Message-ID: <YroVtj4zXXcHygxD@builder.lan>
+References: <20220429220349.1142759-1-bryan.odonoghue@linaro.org>
+ <20220429220349.1142759-2-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220429220349.1142759-2-bryan.odonoghue@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne nedelja, 26. junij 2022 ob 04:11:43 CEST je Samuel Holland napisal(a):
-> H6 requires I/O bias configuration on both of its PIO devices.
-> Previously it was only done for the main PIO.
+On Fri 29 Apr 17:03 CDT 2022, Bryan O'Donoghue wrote:
+
+Adding the sound maintainers to To/Cc, please advice if you would prefer
+Bryan to resubmit the patch with proper recipients.
+
+> The documented yaml compat string for the apq8016 is
+> "qcom,apq8016-lpass-cpu" not "qcom,lpass-cpu-apq8016". Looking at the other
+> lpass compat strings the general form is "qcom,socnum-lpass-cpu".
 > 
-> The setting for Port L is at bit 0, so the bank calculation needs to
-> account for the pin base. Otherwise the wrong bit is used.
+> We need to fix both the driver and dts to match.
 > 
-> Fixes: cc62383fcebe ("pinctrl: sunxi: Support I/O bias voltage setting on
-> H6") Signed-off-by: Samuel Holland <samuel@sholland.org>
+> Fixes: dc1ebd1811e9 ("ASoC: qcom: Add apq8016 lpass driver support")
+> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Did you noticed any improvement with this properly set? In theory, 3.3 V bias 
-should always work, right?
+Once this patch is picked up I can merge the dts change.
 
-Best regards,
-Jernej
+Regards,
+Bjorn
 
-
+> ---
+>  sound/soc/qcom/lpass-apq8016.c | 1 +
+>  sound/soc/qcom/lpass-cpu.c     | 5 +++++
+>  2 files changed, 6 insertions(+)
+> 
+> diff --git a/sound/soc/qcom/lpass-apq8016.c b/sound/soc/qcom/lpass-apq8016.c
+> index 3efa133d1c64..abaf694ee9a3 100644
+> --- a/sound/soc/qcom/lpass-apq8016.c
+> +++ b/sound/soc/qcom/lpass-apq8016.c
+> @@ -293,6 +293,7 @@ static struct lpass_variant apq8016_data = {
+>  
+>  static const struct of_device_id apq8016_lpass_cpu_device_id[] __maybe_unused = {
+>  	{ .compatible = "qcom,lpass-cpu-apq8016", .data = &apq8016_data },
+> +	{ .compatible = "qcom,apq8016-lpass-cpu", .data = &apq8016_data },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, apq8016_lpass_cpu_device_id);
+> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+> index e6846ad2b5fa..53f9bf6581d3 100644
+> --- a/sound/soc/qcom/lpass-cpu.c
+> +++ b/sound/soc/qcom/lpass-cpu.c
+> @@ -1102,6 +1102,11 @@ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev)
+>  	if (!match || !match->data)
+>  		return -EINVAL;
+>  
+> +	if (of_device_is_compatible(dev->of_node, "qcom,lpass-cpu-apq8016")) {
+> +		dev_warn(dev, "%s compatible is deprecated\n",
+> +			 match->compatible);
+> +	}
+> +
+>  	drvdata->variant = (struct lpass_variant *)match->data;
+>  	variant = drvdata->variant;
+>  
+> -- 
+> 2.35.1
+> 
