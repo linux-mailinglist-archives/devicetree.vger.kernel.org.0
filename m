@@ -2,84 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 145B755D6F1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:17:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A493C55DEB6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:29:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237810AbiF0TIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 15:08:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54266 "EHLO
+        id S240105AbiF0TG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 15:06:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240354AbiF0THZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 15:07:25 -0400
-Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF6392734
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 12:07:24 -0700 (PDT)
-Received: from terra.. (unknown [IPv6:2a02:a03f:eaf9:8401:aa9f:5d01:1b2a:e3cd])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id 3A8F42EFBDC;
-        Mon, 27 Jun 2022 21:01:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1656356464;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=X/nk/AcDmx82xo8RzTdRHcXyQgpM8xWRgDJSooyf8KA=;
-        b=lXkikKT3QYWdAtg1FNl5bFN3FOKVw1Hl0xcjP5ham0WTgbyh0v/mVK/3kyFGr8ZqCGm6dd
-        ojkwMcq9sdaGQzK4Qfm7oYy0x8UxJrq2JfNqX7MpDYK2MKlPYMgdQeSlDNJk96Z1q/x/He
-        /UpR3cfOcx/+ajoo5s4dl9Uc8s7jxKd4Vjw0Pk2SifAW0BrgKoRfsdxdsC5ZseOd2rNI3Z
-        dLWuwzuifIBCEROuJCDVaECEEYDHMSWNNeL6T5L2e05hd5E/LKgenqwTrV5ZPe7oVqP6OU
-        vKXVXmByFnyL7tj+as8NEux7BjKf612cX5RCsBYq2+zAGZ2jSh4QduW6TC4Asw==
-From:   Sander Vanheule <sander@svanheule.net>
-To:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S240025AbiF0TGZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 15:06:25 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE5A02637
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 12:06:24 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id 9so9944572pgd.7
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 12:06:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=OwptFnOeVufNyWYVaUbNezAsNgxBLnSp5YRWWMPGeU4=;
+        b=Nep8adCrywMhk8ZutjZQ3tfryiXOviRDQw/MQJ/JqaCRwLAZt0pJQkuJPU5dUZf0T8
+         mzkjbRZ2Ht+PdUAcSPscDpb9zx/DbqWcULKOOejsjs9DKG/rTHE+7L/G+JDzAmlu5xbC
+         cXz3xW2lTdrodfN1MJJZBsb4eykNpRuRhXsMI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OwptFnOeVufNyWYVaUbNezAsNgxBLnSp5YRWWMPGeU4=;
+        b=mB4K3oLzJambM8uyEOWpDXYMmJCCSCnv/D4VxqQ+R6LYHBsUS54RJI4bdR9ZD4H5z+
+         UC4mWITthg+f5PKtCVSVvABgpY6hefejLkVHmG+b4Pr9Ty1I7ny237kxaJlgkF17pg9P
+         dmC3jxk95WF+XaTYbw2oa5B7r9YJ1aLYIk+/29lSjk3nMZy4Z4V4ERboaRAZjeuQY2/a
+         HC4WoJxqpOZNoyICUuOU5lP6sEk1ay0jsjL0+haP8i9bU2UOYM6OpoOaZiJCnK+F38G8
+         wcjlnSvOYppUYNb8Y0y4xRfxOz0aPlMyw1k+FIYB3RfKbgLbx5GQq8h0VrAUEJG2fAh6
+         mALQ==
+X-Gm-Message-State: AJIora8G7SknQR+VpJLvDdTc9fNn1VK2R2eM9Bhk3kIGG17oLr+WrIar
+        2w4shVIiERdX163Xz1EFV0eqJg==
+X-Google-Smtp-Source: AGRyM1uzKMX8lc3yOB65UK4bfLsFrTm5HeZk66lgKZ+5KpmhBSQTuno7q2Sp0F6BljBpXtnRsGe1DA==
+X-Received: by 2002:aa7:989a:0:b0:525:252f:3c51 with SMTP id r26-20020aa7989a000000b00525252f3c51mr510250pfl.39.1656356784404;
+        Mon, 27 Jun 2022 12:06:24 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:f31c:687c:3a61:62c5])
+        by smtp.gmail.com with UTF8SMTPSA id f9-20020a170902f38900b0016a51167b75sm7523839ple.286.2022.06.27.12.06.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jun 2022 12:06:24 -0700 (PDT)
+Date:   Mon, 27 Jun 2022 12:06:21 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alan Stern <stern@rowland.harvard.edu>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Sander Vanheule <sander@svanheule.net>
-Subject: [PATCH 2/2] watchdog: realtek-otto: add RTL9310 support
-Date:   Mon, 27 Jun 2022 21:00:56 +0200
-Message-Id: <629e95e16c8dc812dc5a4ea34a2e2e1ff2faf88c.1656356377.git.sander@svanheule.net>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <84d873d7dd375cd2392f89fa6bd9e0fe5dda4e1c.1656356377.git.sander@svanheule.net>
-References: <84d873d7dd375cd2392f89fa6bd9e0fe5dda4e1c.1656356377.git.sander@svanheule.net>
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Bastien Nocera <hadess@hadess.net>,
+        Peter Chen <peter.chen@kernel.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Subject: Re: [PATCH v22 2/3] usb: misc: Add onboard_usb_hub driver
+Message-ID: <Yrn/rfrzSWod5SCT@google.com>
+References: <Yqub17iT4O7aqFMi@google.com>
+ <CAD=FV=VEztPLhsrJecZUdyHCW7ZfFTVvxyqY5CqRVv2mWyrLog@mail.gmail.com>
+ <YquoSMiQS+RG8rOM@google.com>
+ <CAD=FV=W81pSEUbzw2ZQgs_TJ9MLnHQHiDopZXZ6bHdS7QMzAyA@mail.gmail.com>
+ <YqvMffveCPiKQEUk@google.com>
+ <CAD=FV=UJOStPfRR3Hq2DmRBSH-HCtZ16hAU9eVH5w6Hm=WSJRQ@mail.gmail.com>
+ <YqytDNB2y4+qT8GD@google.com>
+ <CAD=FV=UT0XtMjZ9syQPGXeTEaUrwGTb_LgDow+cofgmx4D30VA@mail.gmail.com>
+ <Yrnzl8k81f9JTMIQ@google.com>
+ <Yrn8y4GGZm+NyXIi@rowland.harvard.edu>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <Yrn8y4GGZm+NyXIi@rowland.harvard.edu>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RTL9310 SoC series has a watchdog timer identical to the already
-supported SoCs. The peripheral is memory mapped at 0x18003260 and driven
-by the Lexra bus clock.
+On Mon, Jun 27, 2022 at 02:54:03PM -0400, Alan Stern wrote:
+> On Mon, Jun 27, 2022 at 11:14:47AM -0700, Matthias Kaehlcke wrote:
+> > Maybe a bit more verbose documentation like this could help:
+> > 
+> >   Some background about the logic in this function, which can be a bit hard
+> >   to follow:
+> > 
+> >   Root hubs don't have dedicated device tree nodes, but use the node of their
+> >   HCD. The primary and secondary HCD are usually represented by a single DT
+> >   node. That means the root hubs of the primary and secondary HCD share the
+> >   same device tree node (the HCD node). As a result this function can be
+> >   called twice with the same DT node for root hubs. We only want to create a
+> >   single platform device for each physical onboard hub, hence for root hubs
+> >   the loop is only executed for the primary hub. Since the function scans
+> 
+> By "primary hub", you mean "root hub for the primary HCD", right?  This 
+> should be clarified.
 
-Signed-off-by: Sander Vanheule <sander@svanheule.net>
----
- drivers/watchdog/realtek_otto_wdt.c | 1 +
- 1 file changed, 1 insertion(+)
+Ok, thanks for the suggestion!
 
-diff --git a/drivers/watchdog/realtek_otto_wdt.c b/drivers/watchdog/realtek_otto_wdt.c
-index 60058a0c3ec4..2a5298c5e8e4 100644
---- a/drivers/watchdog/realtek_otto_wdt.c
-+++ b/drivers/watchdog/realtek_otto_wdt.c
-@@ -366,6 +366,7 @@ static const struct of_device_id otto_wdt_ids[] = {
- 	{ .compatible = "realtek,rtl8380-wdt" },
- 	{ .compatible = "realtek,rtl8390-wdt" },
- 	{ .compatible = "realtek,rtl9300-wdt" },
-+	{ .compatible = "realtek,rtl9310-wdt" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, otto_wdt_ids);
--- 
-2.36.1
+> >   through all child nodes it still creates pdevs for onboard hubs connected
+> >   to the secondary hub if needed.
+> 
+> And likewise for "secondary hub".
+>
+> > 
+> >   Further there must be only one platform device for onboard hubs with a
+> >   companion hub (the hub is a single physical device). To achieve this two
+> 
+> What do you mean by "companion hub"?  I think you are using the wrong 
+> word here.  If you're talking about the relation between the two logical 
+> hubs (one attached to the SuperSpeed bus and one attached to the 
+> Low/Full/High-speed bus) within a physical USB-3 hub, the correct term 
+> for this is "peer".  See the existing usages in hub.h, hub.c, and 
+> port.c.
+> 
+> "Companion" refers to something completely different (i.e., the UHCI or 
+> OHCI controllers that handle Low/Full-speed connections on behalf of a 
+> High-speed EHCI controller).
 
+Yes it's the relation between the two logical hub. The term 'companion-hub'
+stems from the binding and has been around since v6 of this series. I guess
+we should update the binding if the terminology isn't correct.
