@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C264455D896
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:20:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D239355CE86
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:05:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240949AbiF0UEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 16:04:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45478 "EHLO
+        id S241049AbiF0UEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 16:04:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240956AbiF0UDu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:03:50 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C2841CB14
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:03:49 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id s20-20020a056830439400b0060c3e43b548so8152884otv.7
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:03:49 -0700 (PDT)
+        with ESMTP id S240971AbiF0UDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:03:55 -0400
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 998621CB1F
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:03:51 -0700 (PDT)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-101bb9275bcso14292927fac.8
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:03:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=UWqi/2Fd9mBt21y7lsS0FXVlAccLBJZChsj63IUqSu4=;
-        b=zGrJ4hreZ4iGQhp9qU9Zb374QznewAE4U/GCqirFYeKT/pWmkSgHvHqEZg+HG8ZIIV
-         2sQ4SwWVdsqya/Lnt59fxCRUcQaUH14bHa48fL7LuZwzJltU15VwJmXZpTrcZWEnVh+k
-         C7f3Xd7W2+eUg8M9fjN27oYAIpDwG/ME73WNiPyL153T5hX6tO9qezSw8XrPDBrBtfzE
-         ORjdNQICSo5RXTWU7BdvS8VH2xMM1mXdKi8agmQ/r3w3Rq+aXya6pB/jvG26vcitKiFE
-         QwejX2StAX04wo8BBa32ByiFKvXU57FOcwPLZJ02yHllgdVei21J5HfHH/p/TgYg5YPg
-         0SLQ==
+        bh=uBL8T3g3R0Pq3whUkb/j5eJUSIuSh7+BTEsAjLrbttw=;
+        b=tByXVs4oLqp70UnWrAelQLgAZ02AjGHlRCOv88PrYBSqr+tpiHU5Q+f/xG7zbiFenC
+         tiSrYxs9TC477G06hNDlrjxga5jvL580iaOVQGS6EHHO8M55FCPlukXVJTUMpkwdzO5P
+         bt9xGTTeA+6oUcHAnORPIsaOH90m5W/HxuLc0sGWNLScVokcy2cOBVkXLeqZNkhZR/HJ
+         +9gIG3dMRBkp3pA91MTASZcI6SxfpD2vHTSBtwEsD9C/ME9MWc+SZNyA9AzpAgFu3TGm
+         QNnpCpBGzCQzCXk0nqqQ1th0UuAX4myDZ9b36KaYhbKCKvwhJMxcWNugDfPdLOUI5ira
+         AR2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=UWqi/2Fd9mBt21y7lsS0FXVlAccLBJZChsj63IUqSu4=;
-        b=tjQYXIGBh6f88W3nYKaz+tj+DsYeFzsWCtODlbopmnKbHS0nTVgiR572CXukfvvleS
-         rMUoR3orP+LgIDOGXLfCCTJ6wgvDsM/WiHAgjqdJVJOcoV0IyZfeA+0TZ0q6ePHAGt6N
-         LYHLgcDTi+0MYzFl/7WDDTqYNKDIGP4PhiO6YQ6Xd1aeIgT8i16xbriZGOQI3OOMyTeP
-         1vGBNg/t0uIQAi096YcKpcvbZzXwR/naDbcnn+feuA+uGVGNYO/iIRQkJ5wYLDr5In3r
-         /zgU998Ikp+LUkPhyGFIyeLv+BtxclVUgf300ZX2EeYUVpzwjEdwuKFuGi5irJlFQMYq
-         1D8Q==
-X-Gm-Message-State: AJIora/0QVy2p6xA7UMR/4s7IHXtf44uWJUyt0KkV8u0mWmjN6vlhBbr
-        swCjWwZnDFZuaUAmvdbdkgTgnQ==
-X-Google-Smtp-Source: AGRyM1sEmKjlDu5igrD1beTjFuleq5EpcMiMGrtfjytreE56MmhbZyTo3VY3nT5Wq7Cpi7pSnEn23Q==
-X-Received: by 2002:a05:6830:2706:b0:60c:7f84:8ab9 with SMTP id j6-20020a056830270600b0060c7f848ab9mr6611117otu.243.1656360229190;
-        Mon, 27 Jun 2022 13:03:49 -0700 (PDT)
+        bh=uBL8T3g3R0Pq3whUkb/j5eJUSIuSh7+BTEsAjLrbttw=;
+        b=wgwtVofPuZ/OKkq7Bq30wJBAlRXj0fndYEvDiENonWJGMXsP8g9x10bz/rpnFn/Qd8
+         aLsXcDa7buLYeygVJrsiVMjKte0L9rU8pLlBo8tO+hkSQY/mKI+omSyIdQrZFt/NXzhG
+         AuxAeZIXRAUvKdeMD5ytyzaz8dzTUTAzj6NI9v7HDv8n3x+nPHoDap3AbUIaviZx2UQ0
+         5OFV3Js8qhwC4sdQRpvVZBBomBa5TQOjAV11ELws0o5E+ZS9+Uq3o2tRg5S0ZuuVJCXL
+         bti7bCLcBitxFCzpBmEnKIc3phEXE381U0Axgf18q4Sqhn2/fLaRqnnG9DLsjzB5PG7i
+         jSdw==
+X-Gm-Message-State: AJIora+gcpojqQ2lb7xkkvOA3i8NxoKbeCSfGiU4zALFdZ9nFpuSGTFM
+        G/y9BK9QsOHXkrz7zp4ZKdPatg==
+X-Google-Smtp-Source: AGRyM1uyXxkCopnKmMrwc7YTmNhF77XP6v4iLuNzB3mcEoxBcwwNkqmrJxoiPfBIjXYpp1D8SYTD2Q==
+X-Received: by 2002:a05:6870:23a6:b0:f2:2dfd:d6d5 with SMTP id e38-20020a05687023a600b000f22dfdd6d5mr8502700oap.100.1656360230798;
+        Mon, 27 Jun 2022 13:03:50 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m16-20020a4a9510000000b0041bdf977c6dsm6428729ooi.31.2022.06.27.13.03.47
+        by smtp.gmail.com with ESMTPSA id m16-20020a4a9510000000b0041bdf977c6dsm6428729ooi.31.2022.06.27.13.03.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 13:03:48 -0700 (PDT)
+        Mon, 27 Jun 2022 13:03:49 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     quic_rohkumar@quicinc.com, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, srinivas.kandagatla@linaro.org,
-        robh+dt@kernel.org, swboyd@chromium.org, quic_rjendra@quicinc.com,
-        devicetree@vger.kernel.org,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        judyhsiao@chromium.org, agross@kernel.org, dianders@chromium.org
-Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: (subset) [PATCH v2] arm64: dts: qcom: sc7280-qcard: Add ldo_l17b regulator node
-Date:   Mon, 27 Jun 2022 15:03:03 -0500
-Message-Id: <165636016348.3080661.8833987764086571024.b4-ty@linaro.org>
+To:     freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Vinod Polimera <quic_vpolimer@quicinc.com>
+Cc:     linux-kernel@vger.kernel.org, quic_kalyant@quicinc.com,
+        robdclark@gmail.com, dmitry.baryshkov@linaro.org,
+        dianders@chromium.org
+Subject: Re: (subset) [PATCH v7 0/5] Update mdp clk to max supported value to support higher refresh rates
+Date:   Mon, 27 Jun 2022 15:03:04 -0500
+Message-Id: <165636016347.3080661.10709114868531823730.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <1650621734-10297-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1650621734-10297-1-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1647919631-14447-1-git-send-email-quic_vpolimer@quicinc.com>
+References: <1647919631-14447-1-git-send-email-quic_vpolimer@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,16 +73,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Apr 2022 15:32:14 +0530, Srinivasa Rao Mandadapu wrote:
-> Add pm7325 ldo_l17b regulator, which is required for
-> wcd codec vdd buck supply on sc7280-qcard board.
+On Tue, 22 Mar 2022 08:57:06 +0530, Vinod Polimera wrote:
+> Drop the assigned clock rate property and vote on the mdp clock to
+> max frequency during bind/probe sequence.
 > 
+> Changes in v2:
+> - Remove assigned-clock-rate property and set mdp clk during
+> resume sequence.
+> - Add fixes tag.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc7280-qcard: Add ldo_l17b regulator node
-      commit: a57de71f0980aeaef4c1c1e88bb2d396b9ccb650
+[2/5] arm64: dts: qcom: sm7280: remove assigned-clock-rate property for mdp clk
+      commit: 5241fd7fee9bee0cffa33f6d074194e94831e467
+[3/5] arm64: dts: qcom: sm7180: remove assigned-clock-rate property for mdp clk
+      commit: aa4ae511a760e66f22641d9b9b6052b469df3c10
+[4/5] arm64: dts: qcom: sdm845: remove assigned-clock-rate property for mdp clk
+      commit: 0b24829fd74cf954b3a02e9e4c4da3c098c69fbc
+[5/5] arm64: dts: qcom: sm8250: remove assigned-clock-rate property for mdp clk
+      commit: 6edb323837909462d493f22c07a38a23ef44f944
 
 Best regards,
 -- 
