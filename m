@@ -2,70 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2C2655DE40
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:28:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B2A455C497
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:50:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232712AbiF0JQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 05:16:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37766 "EHLO
+        id S233956AbiF0JRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 05:17:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233843AbiF0JQ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:16:29 -0400
+        with ESMTP id S233938AbiF0JRu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:17:50 -0400
 Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF466249
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 02:16:28 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id e2so12061286edv.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 02:16:28 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23144639C
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 02:17:40 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id eo8so12112401edb.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 02:17:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=4yCp6aTXqUcXVsV0Np3Dwjlcr0jYRXR8pM5bj50a/ow=;
-        b=A/AH+rqyBgloYrW3r5UfZDex8wxiYwvMlaBdRYE7DqkFvHJv1lz7pOR/uEcpmNDf9l
-         zoKpIHNYtN3yFJ228uMZNAnlykPHvFa+gNngWSmW2m3U5tHGDjyFU4fCRgLVZzCX+7v7
-         iR6YiT2ta/zahwUpgsriaTIUU8CowWzLoEqU2tRQxCpf26W4PdbMuwSkSY+07eDKgS1Y
-         CFBaeepxTVduRlMysqV8xzkmf0E/oeTQ5QJ5f3Q3Kdyq/jkfsZTJsuuge1K+u3xnN+wo
-         us/25Le2kjU2H/YI3g0DTEVpCEu+hydMJ5uDE9vI5MBrlPKjTo7RU45fA4UjsxPspsU3
-         xwKg==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=j45LSOHH3JiD4etOLa648Qq9hJpooPqyedr7q+VjXHU=;
+        b=ufwbGIdKNbXPH8Wz04so0lL3KGsbit4ttintNEHvPRPe+Kt4AdOJOOMOUYmCFo1tnu
+         eR14C9G92k19LoxmXRkN/ZJrgPVtIqoxjy5S5Cv41g9b+nRCSuZbV/E1IONtlHLgPxuX
+         lCdNMnCg9xD6MK5wLh3M4U38b3SCxZ2x8++tKsWkfhoBWgfjhLrAAtjC2RAiusWs7vws
+         /i2JY1CLzP7ma+mvGp/Lo66H8GP8SoVFsLo4fNQzttC2xq+bgfYojxKZVXf9ZxQe7Tp2
+         ZKFJ5Eyuwviit4SZjs4aD5R3T6bKWBgI1JIvBqDHCwlRwx5Eigju0gXmhOV4BgBTnt8Y
+         x6fQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4yCp6aTXqUcXVsV0Np3Dwjlcr0jYRXR8pM5bj50a/ow=;
-        b=PDWF4zzF8UZkmJ95Y5vyf1We9HqCY8Wt0mLsay/jGCifCtB8s9LDT7POr3RYt/n0Do
-         lfqQ4qJ4E/G0mOHCxG+LS7GBFdIYCImm42tJqfaIWi4qRiHDUl93Qn2U25hn6zqvpoFh
-         isUhIvgEuf+l03XS9+zB4G3PRS64mwYFmK7y1SWqUyWl/EoNT1E4XbjBDghnrg9opSV0
-         ZnfRWb8qgcvSxMUX4xSg9/kveC/Mimbc8QCH2b4ShR73Q4s74xhy0AXBF7Rs/SZhrx9O
-         Iq7+1XTknPI95xumGRS6WkztrLYqjZQg1Fa+/eyRzNSHe2ZjgED4va3Kklj82OAcJTXb
-         VuDQ==
-X-Gm-Message-State: AJIora+9ovHdQfcC3ppcPB95Qr25DGOXjATZMDBE2IoDYbSHazFRUQi6
-        z7rQHuv3b2+S38wwqKg+W+hs4g==
-X-Google-Smtp-Source: AGRyM1tGxNBHWOJWILt1IIISQWZABMsK2JgKp45IPF/kZntw7pMPmbIgZBPos3nCiw1YiVXFdIO6Nw==
-X-Received: by 2002:a05:6402:2549:b0:437:788d:b363 with SMTP id l9-20020a056402254900b00437788db363mr10845669edb.406.1656321387840;
-        Mon, 27 Jun 2022 02:16:27 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gy10-20020a170906f24a00b006f3ef214e2csm4805395ejb.146.2022.06.27.02.16.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 02:16:27 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
-        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
-        linux-kernel@vger.kernel.org, krzysztof.kozlowski@linaro.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        arm@kernel.org, alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        olof@lixom.net
-Subject: Re: (subset) [PATCH v3 40/40] ARM: dts: at91: drop unneeded status from gpio-keys
-Date:   Mon, 27 Jun 2022 11:16:00 +0200
-Message-Id: <165632135506.81841.16359602083216967103.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220616005333.18491-40-krzysztof.kozlowski@linaro.org>
-References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org> <20220616005333.18491-40-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=j45LSOHH3JiD4etOLa648Qq9hJpooPqyedr7q+VjXHU=;
+        b=DvmHA8+CpQVaNJrxOqrsDa75YxPt3v8O78KsBtCWjkCqIC42U2TjnQADPyDdKlPui+
+         gsycniHRffSe9S6SzHIygUVLdp1XfZVRyoI5sSD0KlOSHTFwi4hogX4TbNc23th+JndR
+         5hrD+DwEHq7QkGLjPQoIP/VdCDbe+OZHLBdA99zDqaTG9GpVI4y6P106A1B8KbmcCqtg
+         ACSgfh1Pfn5nKd3Yl4Ker93CRVE0a10tIo2PhMmZeqHAH804F9gx+uYH9mbLayY0TspG
+         iUZWrX5rHla7hV7vQP5mYpxSIEBVeoYkR3m4qglalWCaCAnDl+rzcLe3srZreWh7/S3p
+         ziVA==
+X-Gm-Message-State: AJIora8h7L7EeFhRuJHnsICobEcEQk4BrJe4HZXbI3Kd7OGrkciZ03JQ
+        JorzhrOd6Ct+bmA/SCf6X1E+jQ==
+X-Google-Smtp-Source: AGRyM1sywnG4AoJoUKNejA/e+NFvcRiA0U6+mWnexBl80A39LsB4bnm6VB95gY/41HlbVTxa8ZqdRw==
+X-Received: by 2002:aa7:d484:0:b0:435:65b0:e2d8 with SMTP id b4-20020aa7d484000000b0043565b0e2d8mr15314344edr.373.1656321458755;
+        Mon, 27 Jun 2022 02:17:38 -0700 (PDT)
+Received: from [192.168.0.247] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id l2-20020a170906078200b006fe89cafc42sm4840141ejc.172.2022.06.27.02.17.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jun 2022 02:17:38 -0700 (PDT)
+Message-ID: <227af263-e52e-d2bb-2467-77c6439bad79@linaro.org>
+Date:   Mon, 27 Jun 2022 11:17:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: Document RZ/V2M I2C controller
+Content-Language: en-US
+To:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20220624101736.27217-1-phil.edworthy@renesas.com>
+ <20220624101736.27217-2-phil.edworthy@renesas.com>
+ <2f2b2544-9c53-3a6a-d9c9-375e75b112f3@linaro.org>
+ <TYYPR01MB70869F902F8367DDFC4A9EDFF5B99@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <TYYPR01MB70869F902F8367DDFC4A9EDFF5B99@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,16 +82,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Jun 2022 17:53:33 -0700, Krzysztof Kozlowski wrote:
-> Nodes do not need explicit status=okay.
+On 27/06/2022 09:17, Phil Edworthy wrote:
+> Hi Krzysztof,
 > 
+> Thanks for you review.
 > 
+> On 25 June 2022 21:43 Krzysztof Kozlowski wrote:
+>> On 24/06/2022 12:17, Phil Edworthy wrote:
+>>> Document Renesas RZ/V2M (r9a09g011) I2C controller bindings.
+>>>
+>>> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+>>> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>> ---
+>>>  .../bindings/i2c/renesas,rzv2m.yaml           | 76 +++++++++++++++++++
+>>>  1 file changed, 76 insertions(+)
+>>>  create mode 100644
+>> Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+>> b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+>>> new file mode 100644
+>>> index 000000000000..9049461ad2f4
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+>>> @@ -0,0 +1,76 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/i2c/renesas,rzv2m.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Renesas RZ/V2M I2C Bus Interface
+>>> +
+>>> +maintainers:
+>>> +  - Phil Edworthy <phil.edworthy@renesas.com>
+>>> +
+>>> +allOf:
+>>> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - renesas,i2c-r9a09g011  # RZ/V2M
+>>> +      - const: renesas,rzv2m-i2c
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    items:
+>>> +      - description: Data transmission/reception interrupt
+>>> +      - description: Status interrupt
+>>> +
+>>> +  interrupt-names:
+>>> +    items:
+>>> +      - const: tia
+>>> +      - const: tis
+>>> +
+>>> +  clock-frequency:
+>>> +    description:
+>>> +      Desired I2C bus clock frequency in Hz. The absence of this
+>> property
+>>> +      indicates the default frequency 100 kHz.
+>>
+>> Instead of last sentence, just add "default: 100000".
+> Right, I'll also and an enum for this as the HW can only support 100
+> or 400kHz.
 
-Applied, thanks!
-
-[40/40] ARM: dts: at91: drop unneeded status from gpio-keys
-        https://git.kernel.org/krzk/linux/c/592feeea113553be142680a25a9c0850daae3567
+Sure, sounds good. Thank you.
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
