@@ -2,139 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08F1655D966
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:21:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB8FF55D2CB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:11:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233612AbiF0IpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 04:45:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39352 "EHLO
+        id S233368AbiF0It2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 04:49:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232831AbiF0IpI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 04:45:08 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3970C631E
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 01:45:07 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id q6so17515223eji.13
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 01:45:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=NGASEu1UuSCF/KBZiD+Xxr1++0cQqP/bZ9atPVdxcAE=;
-        b=zwOiD2QKTBHyIkb8zfy5wq7S5Mww4LyKRvCXX8L0AZh2gXCJhELBJ8f0A/XkDSVso8
-         L7FBqCQ1oH/jJ7cFNnDxOLM/sxfKCUrrkCofLhaw/momIYZMHhEHZpJOHEGUvzLRPMh4
-         rqABqqzgmYQTAm8yw7R/n9Gp1l3nYBMiMTmNfrZEKRXHZTTnQcnweoEk611FTXs1sScD
-         bvalF3SeBbnDxo1XZ1qikeONNl6gzZMDT5bG46uL+RNIiPovs1XXqW+jtfcH05Uy5ReG
-         T8MCvFHPt4EpHEJr1g0CDlWrQK1ioh748xirTzj8Kbs2i655NcUaO0jeW/cPQxhpyMJi
-         brBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=NGASEu1UuSCF/KBZiD+Xxr1++0cQqP/bZ9atPVdxcAE=;
-        b=60exnE0O8iw+UKyrl6fJPQmRz72XLpRgITEgnWEweWFkzW/bz5xNBdtq/kFVUwm7HT
-         wxX3NuOLBF2rWl7F0oke7lEeNwCSEvTlFVfDy35KG7MhWicNHc4ADAwMzVUAg3p6gCnx
-         Wa5AGE6uxNQ1r0kRa/fCbdPBoQKStIZXptMS/qXNPOZ1kXfh+tVRH3K/bV2W4bpXi/bO
-         x9x9LDBimZcugnZr65JVg3+D/juoSYGZ6F8ViCvt0t8i/vpVvNg9icYyANngzPvJ5M5T
-         sX8nnf7QhVCAe8Mncfqz/7+kKWyxItlBcAMedqAXXSIheE80sJFxkTdvwVYptny4X48P
-         U3Eg==
-X-Gm-Message-State: AJIora9ML8dQ3llcSz8Q5a+zle/fHwykaJ98JqZaT0PpQ5fmjSiYmqtP
-        DKjmy+XoVDP9/jAB+COu3KSarw==
-X-Google-Smtp-Source: AGRyM1v5eWfRK0YQoqHluU652Yu0VL9rjqD1R4mOxvp/6i3wbLE6ekpCxsFI+Ofij4URWX6raZwyEA==
-X-Received: by 2002:a17:906:8315:b0:726:38da:f0f with SMTP id j21-20020a170906831500b0072638da0f0fmr11685646ejx.462.1656319505768;
-        Mon, 27 Jun 2022 01:45:05 -0700 (PDT)
-Received: from [192.168.0.247] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g18-20020a170906595200b006f3ef214e20sm4685683ejr.134.2022.06.27.01.45.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jun 2022 01:45:05 -0700 (PDT)
-Message-ID: <724bca0f-2474-0aba-35df-6733bb5597d3@linaro.org>
-Date:   Mon, 27 Jun 2022 10:45:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 19/40] arm64: dts: tegra: align gpio-key node names
- with dtschema
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
+        with ESMTP id S232615AbiF0It1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 04:49:27 -0400
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6C8326F1;
+        Mon, 27 Jun 2022 01:49:26 -0700 (PDT)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 9C5CF1C0B8F; Mon, 27 Jun 2022 10:49:24 +0200 (CEST)
+Date:   Mon, 27 Jun 2022 10:49:09 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>, krzk+dt@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org>
- <20220616005333.18491-19-krzysztof.kozlowski@linaro.org>
- <YrXhb5izGPNXEmMK@orome> <dcd4be85-21ab-beb9-e6dc-bd7f570459fd@linaro.org>
-In-Reply-To: <dcd4be85-21ab-beb9-e6dc-bd7f570459fd@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/3] leds: Add driver for the TLC5925 LED controller
+Message-ID: <20220627084909.GA15970@duo.ucw.cz>
+References: <20220609162734.1462625-1-jjhiblot@traphandler.com>
+ <20220609162734.1462625-3-jjhiblot@traphandler.com>
+ <CAHp75Veurvhxi0Pg1Sjxav+3XpDTVOdan8WFFmZmdhJbZJiCaQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="UlVJffcvxoiEqYs2"
+Content-Disposition: inline
+In-Reply-To: <CAHp75Veurvhxi0Pg1Sjxav+3XpDTVOdan8WFFmZmdhJbZJiCaQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/06/2022 18:09, Krzysztof Kozlowski wrote:
-> On 24/06/2022 18:08, Thierry Reding wrote:
->> On Wed, Jun 15, 2022 at 05:53:12PM -0700, Krzysztof Kozlowski wrote:
->> [...]
->>> diff --git a/arch/arm64/boot/dts/nvidia/tegra132-norrin.dts b/arch/arm64/boot/dts/nvidia/tegra132-norrin.dts
->>> index f16acb4cabaa..62d58221ad3c 100644
->>> --- a/arch/arm64/boot/dts/nvidia/tegra132-norrin.dts
->>> +++ b/arch/arm64/boot/dts/nvidia/tegra132-norrin.dts
->>> @@ -1030,7 +1030,7 @@ clk32k_in: clock-32k {
->>>  	gpio-keys {
->>>  		compatible = "gpio-keys";
->>>  
->>> -		lid {
->>> +		switch-lid {
->>>  			label = "Lid";
->>>  			gpios = <&gpio TEGRA_GPIO(R, 4) GPIO_ACTIVE_LOW>;
->>>  			linux,input-type = <5>;
->>> @@ -1039,7 +1039,7 @@ lid {
->>>  			wakeup-source;
->>>  		};
->>>  
->>> -		power {
->>> +		switch-power {
->>
->> This one is actually a key.
->>
->> [...]
->>> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
->>> index a263d51882ee..8494c7b2961b 100644
->>> --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
->>> +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
->> [...]
->>> @@ -1772,7 +1772,7 @@ lid {
->>>  			wakeup-source;
->>>  		};
->>>  
->>> -		tablet_mode {
->>> +		key-tablet-mode {
->>>  			label = "Tablet Mode";
->>>  			gpios = <&gpio TEGRA_GPIO(Z, 2) GPIO_ACTIVE_HIGH>;
->>>  			linux,input-type = <EV_SW>;
->>
->> And this one more like a switch since it's triggered by a magnet, as far
->> as I understand.
->>
->> No need to resend, I can fix these up when I apply. Just let me know if
->> you have any objections to me making those changes.
-> 
-> Sounds good, thanks for catching these.
 
+--UlVJffcvxoiEqYs2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi Thierry,
+On Thu 2022-06-09 18:57:24, Andy Shevchenko wrote:
+> On Thu, Jun 9, 2022 at 6:30 PM Jean-Jacques Hiblot
+> <jjhiblot@traphandler.com> wrote:
+> >
+> > The TLC5925 is a 16-channels constant-current LED sink driver.
+> > It is controlled via SPI but doesn't offer a register-based interface.
+> > Instead it contains a shift register and latches that convert the
+> > serial input into a parallel output.
+>=20
+> Can you add Datasheet: tag here with the corresponding URL? Rationale
+> is to get a link to the datasheet by just browsing Git log without
+> browsing the source code, which will benefit via Web UIs.
 
-To be more explicit - no objects for taking these, please apply.
+If you want to add datasheet url, add it as a comment to the source,
+not to the git log.
 
-Best regards,
-Krzysztof
+Thanks,
+							Pavel
+						=09
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
+
+--UlVJffcvxoiEqYs2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYrlvBQAKCRAw5/Bqldv6
+8lMjAJ9QpuvQP9tiG3G3LO7oImmcxCl19ACeMx/G70Fqwya3O7MADn4ofhcKyhc=
+=n4C4
+-----END PGP SIGNATURE-----
+
+--UlVJffcvxoiEqYs2--
