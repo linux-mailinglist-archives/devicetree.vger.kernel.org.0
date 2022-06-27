@@ -2,65 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C6A355C486
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5F7255CC07
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:00:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbiF0H4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 03:56:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60706 "EHLO
+        id S233044AbiF0H5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 03:57:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232495AbiF0H4F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 03:56:05 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ED4D60E7;
-        Mon, 27 Jun 2022 00:56:02 -0700 (PDT)
-X-UUID: 2cdac14ec1bf4d66a921af120172e58a-20220627
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:0ee28835-190a-42a8-9798-4488fbbea4ea,OB:0,LO
-        B:0,IP:0,URL:25,TC:0,Content:20,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:45
-X-CID-META: VersionHash:b14ad71,CLOUDID:a8f698ea-f7af-4e69-92ee-0fd74a0c286c,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:3,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 2cdac14ec1bf4d66a921af120172e58a-20220627
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 438266948; Mon, 27 Jun 2022 15:55:58 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Mon, 27 Jun 2022 15:55:57 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Mon, 27 Jun 2022 15:55:57 +0800
-Message-ID: <a6163af1980ca55085163e8106d2c49294ecdddf.camel@mediatek.com>
-Subject: Re: [PATCH v14 02/15] dt-bindings: mediatek,dpi: Revise mediatek
- strings to correct format
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 27 Jun 2022 15:55:57 +0800
-In-Reply-To: <20220624030946.14961-3-rex-bc.chen@mediatek.com>
-References: <20220624030946.14961-1-rex-bc.chen@mediatek.com>
-         <20220624030946.14961-3-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S233016AbiF0H5H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 03:57:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2306260F7;
+        Mon, 27 Jun 2022 00:57:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9E89360F0E;
+        Mon, 27 Jun 2022 07:57:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFCF1C3411D;
+        Mon, 27 Jun 2022 07:57:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656316626;
+        bh=DJiLoJ+ThfWmCYlVKNNjdZDrpzinswGJz5dfkPUweZE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YQkLJyn5ctTg1rCesJhmoukogZXvCSvssX1tWrtVuxGunum6LgHXiBezSlw0PNz5+
+         z9bESCxa/JA+2GBT7KpNbaoWrCk1OF6G2Z1fqSs/HRr60tT99cWS/tF5F7w1ZcHHXl
+         IVcEA707HnFHkR0S6Tf4hfhjJYQ92Tm3mg7N37I4vXePm35irLB1Oo/X9bEC4/bQME
+         hkZsm7n3LgjB6vwGJgtxYAQ5q0eLcVt8fOKxszhsdR8H/IxqokSRyKOaAoiqCiKE12
+         FI/ZTq0hHGTPg6kOW6H9OKkRA+HZX3bLw5qGjM6oQWQxdo3uI+vdcBv2TbL6NC0KRD
+         WFZic3D6iW4Qw==
+Date:   Mon, 27 Jun 2022 15:56:58 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        hvilleneuve@dimonoff.com, l.stach@pengutronix.de,
+        abbaraju.manojsai@amarulasolutions.com, jagan@amarulasolutions.com,
+        matteo.lisi@engicam.com, tharvey@gateworks.com, t.remmet@phytec.de,
+        u.kleine-koenig@pengutronix.de, t.remmet@phytec.deh,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 00/14] arm64: dts: imx8mp: correct pad settings
+Message-ID: <20220627075658.GH819983@dragon>
+References: <20220622061410.853301-1-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220622061410.853301-1-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,53 +59,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
-
-On Fri, 2022-06-24 at 11:09 +0800, Bo-Chen Chen wrote:
-> Strings replacement:
-> - s/mediatek/MediaTek/ in title.
-> - s/Mediatek/MediaTek/ in description.
-
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
-
+On Wed, Jun 22, 2022 at 02:13:56PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
->  .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml    | 4
-> ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> i.MX8MP iomux pad BIT3 and BIT0 are reserved bits. Writing 1 to the
+> reserved bit will be ignored and reading will still return 0. Although
+> function not broken with reserved bits set, we should not set reserved
+> bits.
 > 
-> diff --git
-> a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam
-> l
-> b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam
-> l
-> index 8e526a4b134e..5bb23e97cf33 100644
-> ---
-> a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam
-> l
-> +++
-> b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yam
-> l
-> @@ -4,14 +4,14 @@
->  $id: 
-> http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: mediatek DPI and DP_INTF Controller
-> +title: MediaTek DPI and DP_INTF Controller
->  
->  maintainers:
->    - CK Hu <ck.hu@mediatek.com>
->    - Jitao shi <jitao.shi@mediatek.com>
->  
->  description: |
-> -  The Mediatek DPI and DP_INTF function blocks are a sink of the
-> display
-> +  The MediaTek DPI and DP_INTF function blocks are a sink of the
-> display
->    subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422
-> pixel data on a
->    parallel output bus.
->  
+> Peng Fan (13):
+>   arm64: dts: imx8mp-evk: correct mmc pad settings
+>   arm64: dts: imx8mp-evk: correct gpio-led pad settings
+>   arm64: dts: imx8mp-evk: correct vbus pad settings
+>   arm64: dts: imx8mp-evk: correct eqos pad settings
+>   arm64: dts: imx8mp-evk: correct vbus pad settings
+>   arm64: dts: imx8mp-evk: correct I2C5 pad settings
+>   arm64: dts: imx8mp-evk: correct I2C1 pad settings
+>   arm64: dts: imx8mp-evk: correct I2C3 pad settings
+>   arm64: dts: imx8mp-venice-gw74xx: correct pad settings
+>   arm64: dts: imx8mp-phyboard-pollux-rdk: correct uart pad settings
+>   arm64: dts: imx8mp-phyboard-pollux-rdk: correct eqos pad settings
+>   arm64: dts: imx8mp-phyboard-pollux-rdk: correct i2c2 & mmc settings
+>   arm64: dts: imx8mp-icore-mx8mp-edim2.2: correct pad settings
+> 
+> Sherry Sun (1):
+>   arm64: dts: imx8mp-evk: correct the uart2 pinctl value
 
+Applied all, thanks!
