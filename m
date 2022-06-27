@@ -2,102 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 111B755CA80
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0A7F55C1BB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:45:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236707AbiF0OHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 10:07:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47660 "EHLO
+        id S236792AbiF0OI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 10:08:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236697AbiF0OHx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 10:07:53 -0400
-Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5901312ACF;
-        Mon, 27 Jun 2022 07:07:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kernkonzept.com; s=mx1; h=In-Reply-To:Content-Type:MIME-Version:References:
-        Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=lo8YsPDdBOH9TT2g4EDcAKIrZ1oPIx9jlxewAjSpJR8=; b=GwztnKaqgVXNeLdjQ27GbjeQig
-        7IEjBiOFuO3QpNOJuRRs3caLXOo+ebAc77h1pDdN08p6caEyYaNPGznDtFiRCYh71WveiypxHc1ck
-        HwRHLzSD9q74rgZSmjJPIQa5EDbRWXuiYnhRL2RYgSTsQaWBsdMfEZf5FeStlEKepEY2GL91+Cvc9
-        5PAD5shGmKsn5yX+Q0MQpLJ4wKwm2NE0PtSXyzdAevrwN3gJI9qMW5l2k4ePRwoUO3+qp+yud/m4O
-        +Wzafhf/CHT/pUlcM/qhxWraqs/SRpvF9FZnSPKsZ0HrUW3MDPOR5lrfOJXwy+kxtp7muOMo24k2q
-        j+whfl2g==;
-Received: from [10.22.3.24] (helo=kernkonzept.com)
-        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
-        id 1o5pP0-006DLv-Bc; Mon, 27 Jun 2022 16:07:46 +0200
-Date:   Mon, 27 Jun 2022 16:07:39 +0200
-From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH 2/3] regulator: dt-bindings: qcom,smd-rpm: Add PM8909
-Message-ID: <Yrm5q/2giqUDd0oa@kernkonzept.com>
-References: <20220623094614.1410180-1-stephan.gerhold@kernkonzept.com>
- <20220623094614.1410180-3-stephan.gerhold@kernkonzept.com>
- <1656091594.427255.146351.nullmailer@robh.at.kernel.org>
+        with ESMTP id S236769AbiF0OIR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 10:08:17 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B4C6EE19
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 07:08:14 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id u12-20020a05600c210c00b003a02b16d2b8so5718241wml.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 07:08:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=mahcPko5Q/l61Ik8IYzCrdKLW0WVu7DFgtJr7eDzeMU=;
+        b=FpVYcfDzaK8POC7mxKA2Rffo95k0xE0S5j1XTSQtUsUfm3/jMF27ewxALX1PIk7kqX
+         c8HG6aIoRj9RFl24vtAvT4WOA9G0fDAORWX/EBZ6dBKMqPfFPKnMRam5b0i34zSN4T6g
+         rympXkeeGoK4mb4gE7fls9e0Ujdxa7WTQzdA3Wp2B1HPx7cF3S8Dgj/MyMX4+vBi+tnz
+         dSzW2QCTo2eHi19TZYVxBiSWI/9Qx0FW7+icVuPyDbG8kikrO+GZ0PRMGRPG2WaLQrKl
+         2atjwiKdqr+Z0kcPAi7UXR83ZRynYIZqQ+goItSRBB1HB5xEC5ECEOwaYMUnsoidfDX3
+         buDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=mahcPko5Q/l61Ik8IYzCrdKLW0WVu7DFgtJr7eDzeMU=;
+        b=IzIBgf6h0eGLi98Fjfzyv/gz2xEJb81vIUqh36t2I0hLS0P1RLEtDDRSAs3iRRNBso
+         lbDv1MPcOG6ohzi7lzykzBWaqBwQCWSwnEnvwOQxTwDlwG6lLJdKKY5dkqQ/7Wyfr+/t
+         W/M3ZRQ9pvMBfOnd+hWYU4FvpOh06+F/NaXfcUt40MR4NPTuU9RO3PEv5lXOExc4MqXu
+         AAsHJ+9PQeMMz5eOuCw5B8rNCjPKwnOoq+XPqEsC9GdzvT0M79UXqtvbsClUKOF8T8gK
+         9v7jG+b/pX5j2ZP+1ZKtMuNKhcIlHk0Nzdb3nRZfbMH/gn9OedOlkJMJX+koP5gTzwVC
+         TTaw==
+X-Gm-Message-State: AJIora9la41Ydn+ZRjfHxwzIwL8L4xeFsy9LXX3NJLuGgGHfD0kkRonu
+        qgLhIeu5MvddDxObWKBEpar/CQ==
+X-Google-Smtp-Source: AGRyM1vZFeymKInzIO+gklwemo43BkiJ8/H5fHHYi2uBglWy1rGRyAdw66xg6V+38wrpIbqKtAglGA==
+X-Received: by 2002:a7b:c1cb:0:b0:3a0:4aec:7eb7 with SMTP id a11-20020a7bc1cb000000b003a04aec7eb7mr5220948wmj.96.1656338892963;
+        Mon, 27 Jun 2022 07:08:12 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id v15-20020a5d43cf000000b0021badf3cb26sm12705119wrr.63.2022.06.27.07.08.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jun 2022 07:08:12 -0700 (PDT)
+Date:   Mon, 27 Jun 2022 15:08:10 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
+        deller@gmx.de, cy_huang@richtek.com, lucas_tsai@richtek.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] backlight: rt4831: Apply ocp level from devicetree
+Message-ID: <Yrm5yliOqzVtJoWk@google.com>
+References: <1655807788-24511-1-git-send-email-u0084500@gmail.com>
+ <1655807788-24511-3-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1656091594.427255.146351.nullmailer@robh.at.kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1655807788-24511-3-git-send-email-u0084500@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 24, 2022 at 11:26:34AM -0600, Rob Herring wrote:
-> On Thu, 23 Jun 2022 11:46:13 +0200, Stephan Gerhold wrote:
-> > Document the "qcom,rpm-pm8909-regulators" compatible for describing
-> > the regulators available in the PM8909 PMIC (controlled via the RPM
-> > firmware).
-> > 
-> > PM8909 is very similar to the existing PM8916 but lacks 3 of the
-> > regulators (s3, s4 and l16).
-> > 
-> > Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-> > ---
-> >  .../devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/
-> 
-> 
-> pm8994-regulators: 'vdd_lvs1_2' does not match any of the regexes: '.*-supply$', '^((s|l|lvs|5vs)[0-9]*)|(boost-bypass)|(bob)$', 'pinctrl-[0-9]+'
-> 	arch/arm64/boot/dts/qcom/msm8992-lg-bullhead-rev-101.dtb
-> 	arch/arm64/boot/dts/qcom/msm8992-lg-bullhead-rev-10.dtb
-> 	arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dtb
-> 
+On Tue, 21 Jun 2022, cy_huang wrote:
 
-Thanks for the (automated) report, Rob! :)
+> From: ChiYuan Huang <cy_huang@richtek.com>
+> 
+> Add 'richtek,bled-ocp-microamp' property parsing in
+> device_property_init function.
+> 
+> This value may configure prior to the kernel driver. If it's not specified in
+> devicetree, keep the original setting. Else, use clamp to align the
+> value in min/max range and also roundup to choose the best selector.
+> 
+> Reported-by: Lucas Tsai <lucas_tsai@richtek.com>
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
+> ---
+> Hi, Daniel:
+> 
+> I may use the wrong macro, must be 'DIV_ROUND_UP', not 'roundup'.
+> the v4 is to fix it.
+> 
+> Since v4
+> - Fix wrong macro usage, must be 'DIV_ROUND_UP', not 'roundup'
+> 
+> Since v2:
+> - Prase the 'richtek,bled-ocp-microamp', clamp the value in min/max range, and
+>   roundup to get the best selector.
+> 
+> ---
+>  drivers/video/backlight/rt4831-backlight.c | 33 +++++++++++++++++++++++++++++-
+>  1 file changed, 32 insertions(+), 1 deletion(-)
 
-The failure is unrelated to my patch. It seems to be a simple typo in
-the device tree (not a mistake in the DT schema) so I posted a quick fix
-in a separate patch:
+Applied, thanks.
 
-https://lore.kernel.org/linux-arm-msm/20220627135938.2901871-1-stephan.gerhold@kernkonzept.com/
-
-It should land separately through the Qualcomm tree so no need to wait
-for it to be applied. :)
-
-Thanks,
-Stephan
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
