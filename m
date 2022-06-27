@@ -2,127 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D9E155CEAC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:05:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6275F55D9C6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:21:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232892AbiF0HWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 03:22:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36054 "EHLO
+        id S232830AbiF0H1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 03:27:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232627AbiF0HWo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 03:22:44 -0400
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B9445592;
-        Mon, 27 Jun 2022 00:22:43 -0700 (PDT)
-Received: by mail-qv1-f45.google.com with SMTP id t16so13635867qvh.1;
-        Mon, 27 Jun 2022 00:22:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lf4yj+6FH3gNxqcU8txlBalUgOkWR6VEzFtr+kOB45w=;
-        b=r8SMDV+BhZ1EPLp/livoqkezb+I7n4kZcaMHomwrlNEJRheCmsv32HfK3N8FSCRQC0
-         va50nPKyB0j/ZzQq1VVQarLZML2cBvscG7Mg7FtrHFk0+7wKLEwX6vAz+L1UdJpNHNgd
-         pEWy2pbdP+drtYs9tYy0DSThilPXVLplDwR3SIrpDZAQaWngOX0lh41s/SuPL0bSf8FR
-         MwVg3gldGIrJlE03lgCDgQG6uJFxX3RaB2NZINuFQVYbUGqNcm4pKNRMUVURxRY7dFyM
-         JvMAdFKgysxkGWAUartu1CRFSB5HFtIqIOINGOqXTgUx855j/R4z/0A4QvxddPY8Z5ro
-         H+1g==
-X-Gm-Message-State: AJIora84feO3h55W2w1ffYNZQ0XSbkOdZ0ZLS/4cwBEihujXoGBEdnWb
-        tXLbKgfbxjcqOCR89kyVhNBGRLtTAjovjA==
-X-Google-Smtp-Source: AGRyM1szcE7hZ5EFRDS9XNeh//BOnMqjJs8qVxTnnkmuoEQBMmHl/yf8E+bGnS1KMPq3yqj/01yxqw==
-X-Received: by 2002:a05:6214:238d:b0:46e:6864:ac18 with SMTP id fw13-20020a056214238d00b0046e6864ac18mr7573467qvb.78.1656314562655;
-        Mon, 27 Jun 2022 00:22:42 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id c7-20020a05620a268700b006aef1e5eb87sm8349155qkp.24.2022.06.27.00.22.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jun 2022 00:22:42 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-3177f4ce3e2so76567857b3.5;
-        Mon, 27 Jun 2022 00:22:42 -0700 (PDT)
-X-Received: by 2002:a81:9bcc:0:b0:317:9ff1:5a39 with SMTP id
- s195-20020a819bcc000000b003179ff15a39mr13857699ywg.384.1656314561880; Mon, 27
- Jun 2022 00:22:41 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220213025739.2561834-1-liambeguin@gmail.com> <20220213025739.2561834-7-liambeguin@gmail.com>
-In-Reply-To: <20220213025739.2561834-7-liambeguin@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 27 Jun 2022 09:22:29 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVMhLRS+XuX_8O5UPHzoOp6a6XpTvysQS+nT+GLkL7gjQ@mail.gmail.com>
-Message-ID: <CAMuHMdVMhLRS+XuX_8O5UPHzoOp6a6XpTvysQS+nT+GLkL7gjQ@mail.gmail.com>
-Subject: Re: [PATCH v15 06/10] iio: test: add basic tests for the iio-rescale driver
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S232645AbiF0H1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 03:27:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C9015FC9;
+        Mon, 27 Jun 2022 00:27:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EF1A5B80F52;
+        Mon, 27 Jun 2022 07:27:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DE15C341C8;
+        Mon, 27 Jun 2022 07:27:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656314831;
+        bh=vFTJr/Grkt0LPk+fK8N93Ca4STI3uSOJVk5tMqMebJc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=d7v0PEBOh17WjF9MSisjH3YTaAM1Evn76Ekut3ReYQxI+GPCwE/Hga60X9d2+brFG
+         vPSq95wvhLbs4xInjjAxWgx8wf7OGh95Y+Kb1CVQeDFE9fqWAcvts95HaGREO9ltTa
+         tJqRoUtNOWQMekg0IOCOdLzMf92yfbzgOW+G17SyOMK+4ah+4fNTI1+l1jmsawNL7M
+         mCqgD8SrjVYlUxEDK+0oqen/Sl+TXfpBlu4i+4SfctduI8UE4WN+nhJgEGAQYR7uo0
+         gOMokqyUPERCoKe3Q66wH5c5lGpn3KyQc3vb2EhlvRTcHyWohHgIZDFau7yEwr0oZg
+         TKwsW/Sp9HkYQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1o5j9J-003LCY-82;
+        Mon, 27 Jun 2022 08:27:09 +0100
+Date:   Mon, 27 Jun 2022 08:27:08 +0100
+Message-ID: <87edza36sz.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-renesas-soc@vger.kernel.org, Guo Ren <guoren@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v1 3/3] irqchip/sifive-plic: Fix T-HEAD PLIC edge trigger handling
+In-Reply-To: <20220627051257.38543-4-samuel@sholland.org>
+References: <20220627051257.38543-1-samuel@sholland.org>
+        <20220627051257.38543-4-samuel@sholland.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: samuel@sholland.org, prabhakar.mahadev-lad.rj@bp.renesas.com, prabhakar.csengg@gmail.com, sagar.kadam@sifive.com, paul.walmsley@sifive.com, palmer@dabbelt.com, linux-renesas-soc@vger.kernel.org, guoren@kernel.org, geert+renesas@glider.be, tglx@linutronix.de, biju.das.jz@bp.renesas.com, aou@eecs.berkeley.edu, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liam,
+On Mon, 27 Jun 2022 06:12:57 +0100,
+Samuel Holland <samuel@sholland.org> wrote:
+> 
+> The T-HEAD PLIC ignores additional edges seen while an edge-triggered
+> interrupt is being handled. Because of this behavior, the driver needs
+> to complete edge-triggered interrupts in the .irq_ack callback before
+> handling them, instead of in the .irq_eoi callback afterward. Otherwise,
+> it could miss some interrupts.
+> 
+> Co-developed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+> 
+> Changes in v1:
+>  - Use a flag for enabling the changes instead of a variant ID
+>  - Use handle_edge_irq instead of handle_fasteoi_ack_irq
+>  - Do not set the handler name, as RISC-V selects GENERIC_IRQ_SHOW_LEVEL
 
-On Mon, Feb 14, 2022 at 12:00 AM Liam Beguin <liambeguin@gmail.com> wrote:
-> The iio-rescale driver supports various combinations of scale types and
-> offsets. These can often result in large integer multiplications. Make
-> sure these calculations are done right by adding a set of kunit test
-> cases that build on top of iio-test-format.
+Where is the Renesas handling gone? Can you, at the very least work,
+with Lad instead of proposing an alternative series that ignores the
+goal of the first one, however good it is (and it is admittedly
+better)?
+
 >
-> To run these tests, add the following to .kunitconfig
->         $ cat .kunitconfig
->         CONFIG_IIO=y
->         CONFIG_IIO_RESCALE_KUNIT_TEST=y
->         CONFIG_KUNIT=y
->
-> Then run:
->         $ ./tools/testing/kunit/kunit.py run --kunitconfig .kunitconfig
->
-> Signed-off-by: Liam Beguin <liambeguin@gmail.com>
-> Reviewed-by: Peter Rosin <peda@axentia.se>
-
-Thanks for your patch, which is now commit 8e74a48d17d509bf
-("iio: test: add basic tests for the iio-rescale driver") in v5.18.
-
-> --- a/drivers/iio/test/Kconfig
-> +++ b/drivers/iio/test/Kconfig
-> @@ -4,6 +4,16 @@
->  #
->
->  # Keep in alphabetical order
-> +config IIO_RESCALE_KUNIT_TEST
-> +       bool "Test IIO rescale conversion functions"
-
-Is there any reason this cannot be tristate, so I can always enable
-this as a module, and run the test by loading the module whenever
-I want?
-
-> +       depends on KUNIT && !IIO_RESCALE
-> +       default KUNIT_ALL_TESTS
-> +       help
-> +         If you want to run tests on the iio-rescale code say Y here.
+>  drivers/irqchip/irq-sifive-plic.c | 76 +++++++++++++++++++++++++++++--
+>  1 file changed, 71 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
+> index 90515865af08..462a93b4b088 100644
+> --- a/drivers/irqchip/irq-sifive-plic.c
+> +++ b/drivers/irqchip/irq-sifive-plic.c
+> @@ -69,6 +69,7 @@ struct plic_priv {
+>  	struct cpumask lmask;
+>  	struct irq_domain *irqdomain;
+>  	void __iomem *regs;
+> +	bool needs_edge_handling;
+>  };
+>  
+>  struct plic_handler {
+> @@ -86,6 +87,9 @@ static int plic_parent_irq __ro_after_init;
+>  static bool plic_cpuhp_setup_done __ro_after_init;
+>  static DEFINE_PER_CPU(struct plic_handler, plic_handlers);
+>  
+> +static struct irq_chip plic_edge_chip;
+> +static struct irq_chip plic_chip;
 > +
-> +         This takes advantage of ARCH=um to run tests and should be used by
-> +         developers to tests their changes to the rescaling logic.
+>  static void __plic_toggle(void __iomem *enable_base, int hwirq, int enable)
+>  {
+>  	u32 __iomem *reg = enable_base + (hwirq / 32) * sizeof(u32);
+> @@ -181,6 +185,40 @@ static void plic_irq_eoi(struct irq_data *d)
+>  	}
+>  }
+>  
+> +static int plic_irq_set_type(struct irq_data *d, unsigned int flow_type)
+> +{
+> +	struct plic_priv *priv = irq_data_get_irq_chip_data(d);
 > +
->  config IIO_TEST_FORMAT
->          bool "Test IIO formatting functions"
->          depends on KUNIT=y
+> +	if (!priv->needs_edge_handling)
+> +		return IRQ_SET_MASK_OK_NOCOPY;
+> +
+> +	switch (flow_type) {
+> +	case IRQ_TYPE_EDGE_RISING:
+> +		irq_set_chip_handler_name_locked(d, &plic_edge_chip,
+> +						 handle_edge_irq, NULL);
+> +		break;
+> +	case IRQ_TYPE_LEVEL_HIGH:
+> +		irq_set_chip_handler_name_locked(d, &plic_chip,
+> +						 handle_fasteoi_irq, NULL);
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return IRQ_SET_MASK_OK;
+> +}
+> +
+> +static struct irq_chip plic_edge_chip = {
+> +	.name			= "PLIC",
+> +	.irq_ack		= plic_irq_eoi,
+> +	.irq_mask		= plic_irq_mask,
+> +	.irq_unmask		= plic_irq_unmask,
+> +#ifdef CONFIG_SMP
+> +	.irq_set_affinity	= plic_set_affinity,
+> +#endif
+> +	.irq_set_type		= plic_irq_set_type,
+> +};
+> +
+>  static struct irq_chip plic_chip = {
+>  	.name			= "PLIC",
+>  	.irq_mask		= plic_irq_mask,
+> @@ -189,8 +227,22 @@ static struct irq_chip plic_chip = {
+>  #ifdef CONFIG_SMP
+>  	.irq_set_affinity	= plic_set_affinity,
+>  #endif
+> +	.irq_set_type		= plic_irq_set_type,
+>  };
+>  
+> +static int plic_irq_domain_translate(struct irq_domain *d,
+> +				     struct irq_fwspec *fwspec,
+> +				     unsigned long *hwirq,
+> +				     unsigned int *type)
+> +{
+> +	struct plic_priv *priv = d->host_data;
+> +
+> +	if (priv->needs_edge_handling)
+> +		return irq_domain_translate_twocell(d, fwspec, hwirq, type);
+> +	else
+> +		return irq_domain_translate_onecell(d, fwspec, hwirq, type);
+> +}
+> +
+>  static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
+>  			      irq_hw_number_t hwirq)
+>  {
+> @@ -211,7 +263,7 @@ static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
+>  	unsigned int type;
+>  	struct irq_fwspec *fwspec = arg;
+>  
+> -	ret = irq_domain_translate_onecell(domain, fwspec, &hwirq, &type);
+> +	ret = plic_irq_domain_translate(domain, fwspec, &hwirq, &type);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -225,7 +277,7 @@ static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
+>  }
+>  
+>  static const struct irq_domain_ops plic_irqdomain_ops = {
+> -	.translate	= irq_domain_translate_onecell,
+> +	.translate	= plic_irq_domain_translate,
+>  	.alloc		= plic_irq_domain_alloc,
+>  	.free		= irq_domain_free_irqs_top,
+>  };
+> @@ -286,8 +338,9 @@ static int plic_starting_cpu(unsigned int cpu)
+>  	return 0;
+>  }
+>  
+> -static int __init plic_init(struct device_node *node,
+> -		struct device_node *parent)
+> +static int __init __plic_init(struct device_node *node,
+> +			      struct device_node *parent,
+> +			      bool needs_edge_handling)
+>  {
+>  	int error = 0, nr_contexts, nr_handlers = 0, i;
+>  	u32 nr_irqs;
+> @@ -298,6 +351,8 @@ static int __init plic_init(struct device_node *node,
+>  	if (!priv)
+>  		return -ENOMEM;
+>  
+> +	priv->needs_edge_handling = needs_edge_handling;
+> +
+>  	priv->regs = of_iomap(node, 0);
+>  	if (WARN_ON(!priv->regs)) {
+>  		error = -EIO;
+> @@ -415,6 +470,17 @@ static int __init plic_init(struct device_node *node,
+>  	return error;
+>  }
+>  
+> +static int __init plic_init(struct device_node *node,
+> +			    struct device_node *parent)
+> +{
+> +	return __plic_init(node, parent, false);
+> +}
+>  IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
+>  IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for legacy systems */
+> -IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", plic_init); /* for firmware driver */
+> +
+> +static int __init plic_edge_init(struct device_node *node,
+> +				     struct device_node *parent)
+> +{
+> +	return __plic_init(node, parent, true);
+> +}
+> +IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", plic_edge_init);
 
-Gr{oetje,eeting}s,
+No. You are breaking existing platforms with established DTs. You must
+at least be able to run a new kernel with an old DT. Ideally the
+opposite too, but it is hard to retrofit this.
 
-                        Geert
+	M.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Without deviation from the norm, progress is not possible.
