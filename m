@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4098255E106
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:33:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAFA955DD05
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:26:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236955AbiF0OXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 10:23:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39772 "EHLO
+        id S237304AbiF0O0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 10:26:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236934AbiF0OXG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 10:23:06 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34C4713F21
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 07:22:53 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id w17so13302401wrg.7
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 07:22:53 -0700 (PDT)
+        with ESMTP id S237007AbiF0O0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 10:26:32 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A04A013F21
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 07:26:30 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id v14so13325617wra.5
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 07:26:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=FeV1hNgcIlRD8vtoxkTZySTIebKF1oNgpi73Pm+Sqqw=;
-        b=hnVY5/tYmCOiBd+Gqly3Rjz9bsbVA75CKg3xCAgOyaGdffrQzR0Q9lwJB8tDl/9s6y
-         TdvCaH2YmBoxcd9PyJZgSi3pjdTwErqECq5Pgm5ivZPdaM50uI9YAAYbF/ZKeCTfQPoN
-         VsjziyH0TMtYKJEKVy9dIqQ01VXqhfRcSluv/SGK8H61f6nWLQNAlSaGlFCAv1RZ/cu0
-         W48fSZdiGvFkCK2ElrF9nnfD8VeoowhUUdrqVuLSduciVqzfwS3FCq1eZfGdaDw6G/LM
-         gZAWmFkjgikMvoOw/SOnDBaGZbuofeFOODU4uJr7eJSm6ofTRvefIySBwjRn8xbKEFCD
-         a90Q==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ErDQFXWdYs2zULfkFMONKNeCe/Dj1t+LSS/N2wVv994=;
+        b=w0dvdBO/UupcFBr03m7tcptBHVgqV2TEN0CQY1a6OGskByAIoXaRhP13MhIaPE30YA
+         E5LZ0INJyUKJyz4Sd+TUyuv1TrLhbX5NrgvRa+wnde/7JDnBLei8PeDXe1kPa1MMvW4f
+         oSZk7L8ftqsfsUsEDCFou6UEv+uJN78lLeeyOlWzK87sFjCNCSG/QR16koVGo85joDyD
+         bbEjYulHyedUDdmcSC+5JkQYYiLB/wqkl4mlGRg0T3IPeYUeIRi7aWDjEIN+p42lBRcB
+         WoCzbxruL3iszTMBFbNLlKu31d/6d7tGTrWKjlJpdodJEaKOllYoz5xy9a6blKJfHjOk
+         Dmlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=FeV1hNgcIlRD8vtoxkTZySTIebKF1oNgpi73Pm+Sqqw=;
-        b=y2xSkQj7h849mTcctIzK39KjbpNK8ldYUlQVBXJhhxKQkB0Fl052vl4HlbAq44eWNU
-         TvS+metyI1MupY431K+I7Bmk3XND2KeBxtXd8Psy3X1nE0jC/09T2MPIB9DLeqkrYGAj
-         YDKIlAsfk/VDNUX3oQECo9H947a4K5oZxrFbokmie3UBzvHhYuZTv37ZPr7wKI/vYrh6
-         +9UEBA+AfWMcG8O1Z3nwis9QIlf3EWgRQydDsS/qDrPzbsX4/xnbdAQ28WlJ1MjVxqXG
-         x9GLU7Ge/Fpa1pVuLxDvl+gWchpk6k3yuMwwwTvoVBtGfLp3N7+a3U2UcLdx4a6DRKKC
-         CB2A==
-X-Gm-Message-State: AJIora8fThV3SW+sYTieJMUYpPYjwb6nhxVNz4i/ryjiMq2upRgmaeQ5
-        k19cVs7QFeH4Swn6l3V2GhkhVxF9K8Sh0w==
-X-Google-Smtp-Source: AGRyM1sjI6M8T0da+YH6qaHw6hmjwF4LQrCjEPKNsXZM7MhPVYOv+/xv1jHeE9vsMc6PWjZh2kKoKQ==
-X-Received: by 2002:adf:d1c2:0:b0:21b:e465:1e36 with SMTP id b2-20020adfd1c2000000b0021be4651e36mr5818287wrd.271.1656339771707;
-        Mon, 27 Jun 2022 07:22:51 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id bg21-20020a05600c3c9500b003a046549a85sm8120659wmb.37.2022.06.27.07.22.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 07:22:51 -0700 (PDT)
-Date:   Mon, 27 Jun 2022 15:22:49 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     cy_huang <u0084500@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        broonie@kernel.org, dmitry.torokhov@gmail.com, lgirdwood@gmail.com,
-        cy_huang@richtek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] mfd: rt5120: Add Richtek PMIC support
-Message-ID: <Yrm9ObaltUiQUTqS@google.com>
-References: <1655892104-10874-1-git-send-email-u0084500@gmail.com>
- <1655892104-10874-3-git-send-email-u0084500@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ErDQFXWdYs2zULfkFMONKNeCe/Dj1t+LSS/N2wVv994=;
+        b=wQq3S9Kz9pNZC/FdY7ac6r/BNRmCwMztY5DTAkepR3XLF+Mx605kc6jawXo6uaf9nS
+         gFaE8nPcf2u8ZRpfDTD3AjwzAWk0DAViXU93xysVNNfr2AHcc6Dohg9wEPkk3Hp3R0iC
+         3xWOSwqAL8gA6A4a6B0fFw8nEFxEc6irMkOEHnc+0x5i/xE88Pf2WDVTllTlxPMCSRKK
+         Li08mo1AtwKEjshZ4kktOVApLUoLtZAEkhrZIquGDqlW8NJwNaRHV9ieXcOzy6sADIId
+         mejjvYf6Fo8YE2aoOxF9OCLwmR/INw3OWTvuzQZNWgnlF05e607QX30yawu3pe+Zqc3v
+         iBcg==
+X-Gm-Message-State: AJIora/hUVrQEZHxfJLNZuipzLbBqH1TFoasQxSSW/dRq0dk1w2peqnw
+        cEtSMg3UQiQKQ+VFpiIQb8ye5A==
+X-Google-Smtp-Source: AGRyM1sMb750QwH5Pp1X9ererXrUAT1rhhISnkjarGTROXCA7GWXOOkLoYMhrHh5S6yLFHJfSwQZqA==
+X-Received: by 2002:a5d:598c:0:b0:218:3fe6:40bd with SMTP id n12-20020a5d598c000000b002183fe640bdmr13514630wri.373.1656339989229;
+        Mon, 27 Jun 2022 07:26:29 -0700 (PDT)
+Received: from [192.168.0.251] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id t18-20020a1c7712000000b0039749b01ea7sm16226662wmi.32.2022.06.27.07.26.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jun 2022 07:26:28 -0700 (PDT)
+Message-ID: <53066f1e-0a0f-de98-571d-759c7be5c835@linaro.org>
+Date:   Mon, 27 Jun 2022 16:26:27 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1655892104-10874-3-git-send-email-u0084500@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 04/12] dt-bindings: arm: qcom: add missing QCS404 board
+ compatibles
+Content-Language: en-US
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220521164550.91115-1-krzysztof.kozlowski@linaro.org>
+ <20220521164550.91115-4-krzysztof.kozlowski@linaro.org>
+ <CAL_JsqKXDs=QHKob2Xy6vAFZfnkM9ggfmqf9TNA1hv8TScTmgQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAL_JsqKXDs=QHKob2Xy6vAFZfnkM9ggfmqf9TNA1hv8TScTmgQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,195 +80,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Jun 2022, cy_huang wrote:
-
-> From: ChiYuan Huang <cy_huang@richtek.com>
+On 27/06/2022 15:41, Rob Herring wrote:
+> On Sat, May 21, 2022 at 10:46 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> Document board compatibles already present in Linux kernel.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  Documentation/devicetree/bindings/arm/qcom.yaml | 8 ++++++++
+>>  1 file changed, 8 insertions(+)
 > 
-> Add Richtek RT5120 PMIC I2C driver.
-
-Why a whole new driver?
-
-How different is this to rt5033?
-
-Looks like this could easily be woven into this existing support?
-
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
->  drivers/mfd/Kconfig  |  12 +++++
->  drivers/mfd/Makefile |   1 +
->  drivers/mfd/rt5120.c | 125 +++++++++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 138 insertions(+)
->  create mode 100644 drivers/mfd/rt5120.c
+> This is now failing in linux-next:
 > 
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 3b59456..866619c 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -1127,6 +1127,18 @@ config MFD_RT5033
->  	  sub-devices like charger, fuel gauge, flash LED, current source,
->  	  LDO and Buck.
->  
-> +config MFD_RT5120
-> +	tristate "Richtek RT5120 Power Management IC"
-> +	depends on I2C
-> +	select MFD_CORE
-> +	select REGMAP_I2C
-> +	select REGMAP_IRQ
-> +	help
-> +	  The enables support for Richtek RT5120 PMIC. It includes four high
-> +	  efficiency buck converters and one LDO voltage regulator. The device
-> +	  is targeted at providing the CPU voltage, memory, I/O and peripheral
-> +	  power rails in home entertainment devices.
-> +
->  config MFD_RC5T583
->  	bool "Ricoh RC5T583 Power Management system device"
->  	depends on I2C=y
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index 858cacf..27e8add 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -234,6 +234,7 @@ obj-$(CONFIG_MFD_HI655X_PMIC)   += hi655x-pmic.o
->  obj-$(CONFIG_MFD_DLN2)		+= dln2.o
->  obj-$(CONFIG_MFD_RT4831)	+= rt4831.o
->  obj-$(CONFIG_MFD_RT5033)	+= rt5033.o
-> +obj-$(CONFIG_MFD_RT5120)	+= rt5120.o
->  obj-$(CONFIG_MFD_SKY81452)	+= sky81452.o
->  
->  intel-soc-pmic-objs		:= intel_soc_pmic_core.o intel_soc_pmic_crc.o
-> diff --git a/drivers/mfd/rt5120.c b/drivers/mfd/rt5120.c
-> new file mode 100644
-> index 00000000..e7c5f3c
-> --- /dev/null
-> +++ b/drivers/mfd/rt5120.c
-> @@ -0,0 +1,125 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/regmap.h>
-> +
-> +#define RT5120_REG_INTENABLE	0x1D
-> +#define RT5120_REG_INTSTAT	0x1E
-> +#define RT5120_REG_FZCMODE	0x44
-> +
-> +#define RT5120_INT_HOTDIE	0
-> +#define RT5120_INT_PWRKEY_REL	5
-> +#define RT5120_INT_PWRKEY_PRESS	6
-> +
-> +static const struct regmap_range rt5120_rd_yes_ranges[] = {
-> +	regmap_reg_range(0x03, 0x13),
-> +	regmap_reg_range(0x1c, 0x20),
-> +	regmap_reg_range(0x44, 0x44)
-> +};
-> +
-> +static const struct regmap_range rt5120_wr_yes_ranges[] = {
-> +	regmap_reg_range(0x06, 0x13),
-> +	regmap_reg_range(0x1c, 0x20),
-> +	regmap_reg_range(0x44, 0x44)
-> +};
-> +
-> +static const struct regmap_access_table rt5120_rd_table = {
-> +	.yes_ranges = rt5120_rd_yes_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(rt5120_rd_yes_ranges),
-> +};
-> +
-> +static const struct regmap_access_table rt5120_wr_table = {
-> +	.yes_ranges = rt5120_wr_yes_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(rt5120_wr_yes_ranges),
-> +};
-> +
-> +static const struct regmap_config rt5120_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = RT5120_REG_FZCMODE,
-> +
-> +	.wr_table = &rt5120_wr_table,
-> +	.rd_table = &rt5120_rd_table,
-> +};
-> +
-> +static const struct regmap_irq rt5120_irqs[] = {
-> +	REGMAP_IRQ_REG_LINE(RT5120_INT_HOTDIE, 8),
-> +	REGMAP_IRQ_REG_LINE(RT5120_INT_PWRKEY_REL, 8),
-> +	REGMAP_IRQ_REG_LINE(RT5120_INT_PWRKEY_PRESS, 8)
-> +};
-> +
-> +static const struct regmap_irq_chip rt5120_irq_chip = {
-> +	.name = "rt5120-pmic",
-> +	.status_base = RT5120_REG_INTSTAT,
-> +	.mask_base = RT5120_REG_INTENABLE,
-> +	.ack_base = RT5120_REG_INTSTAT,
-> +	.mask_invert = true,
-> +	.use_ack = true,
-> +	.num_regs = 1,
-> +	.irqs = rt5120_irqs,
-> +	.num_irqs = ARRAY_SIZE(rt5120_irqs),
-> +};
-> +
-> +static const struct resource rt5120_regulator_resources[] = {
-> +	DEFINE_RES_IRQ(RT5120_INT_HOTDIE)
-> +};
-> +
-> +static const struct resource rt5120_pwrkey_resources[] = {
-> +	DEFINE_RES_IRQ_NAMED(RT5120_INT_PWRKEY_PRESS, "pwrkey-press"),
-> +	DEFINE_RES_IRQ_NAMED(RT5120_INT_PWRKEY_REL, "pwrkey-release")
-> +};
-> +
-> +static const struct mfd_cell rt5120_devs[] = {
-> +	MFD_CELL_RES("rt5120-regulator", rt5120_regulator_resources),
-> +	MFD_CELL_OF("rt5120-pwrkey", rt5120_pwrkey_resources, NULL, 0, 0,
-> +		    "richtek,rt5120-pwrkey")
-> +};
-> +
-> +static int rt5120_probe(struct i2c_client *i2c)
-> +{
-> +	struct regmap *regmap;
-> +	struct regmap_irq_chip_data *irq_data;
-> +	int ret;
-> +
-> +	regmap = devm_regmap_init_i2c(i2c, &rt5120_regmap_config);
-> +	if (IS_ERR(regmap)) {
-> +		ret = PTR_ERR(regmap);
-> +		dev_err(&i2c->dev, "Failed to init regmap (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_regmap_add_irq_chip(&i2c->dev, regmap, i2c->irq,
-> +				       IRQF_ONESHOT, 0, &rt5120_irq_chip,
-> +				       &irq_data);
-> +	if (ret) {
-> +		dev_err(&i2c->dev, "Failed to add irq chip (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO, rt5120_devs,
-> +				    ARRAY_SIZE(rt5120_devs), NULL, 0,
-> +				    regmap_irq_get_domain(irq_data));
-> +}
-> +
-> +static const struct of_device_id rt5120_device_match_table[] = {
-> +	{ .compatible = "richtek,rt5120", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, rt5120_device_match_table);
-> +
-> +static struct i2c_driver rt5120_driver = {
-> +	.driver = {
-> +		.name = "rt5120",
-> +		.of_match_table = rt5120_device_match_table,
-> +	},
-> +	.probe_new = rt5120_probe,
-> +};
-> +module_i2c_driver(rt5120_driver);
-> +
-> +MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-> +MODULE_DESCRIPTION("Richtek RT5120 I2C driver");
-> +MODULE_LICENSE("GPL v2");
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.example.dtb:
+> /: compatible: 'oneOf' conditional failed, one must be fixed:
+>  ['qcom,qcs404'] is too short
+>  'qcom,qcs404' is not one of ['qcom,apq8016-sbc']
+> ...
+>  'qcom,qcs404' is not one of ['qcom,sm8450-hdk', 'qcom,sm8450-qrd']
+>  From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/arm/qcom.yaml
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+I'll fix it.
+
+Best regards,
+Krzysztof
