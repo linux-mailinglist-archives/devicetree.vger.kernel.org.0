@@ -2,170 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AB0055D3C7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:13:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F38D55D08E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:08:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240082AbiF0SFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 14:05:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34078 "EHLO
+        id S240136AbiF0SOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 14:14:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236927AbiF0SFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 14:05:50 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E03DEA3;
-        Mon, 27 Jun 2022 11:05:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1656353147; x=1687889147;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=jZk/JbbHouGijU0bHYxj5ANsT2FgUgoTS9HYC+K1d6Y=;
-  b=GcK0N0oJnj7RL8mpT4ijxIIF7RcWyD3MDSv1aZ+dq+F8fzov0YhlKxjx
-   QjeJuIiTqjNCMdJEl90wJ1eQd6tWZdTDKOAi/ARiJWgHJC4Q8U8Q9b86R
-   uk/rdHDfUr8obMGH/aoqYBkV5WhXuh8kogX/jdglskYJGfhk0fpNLHwz6
-   7jvZcmokMckUxwWChCha1mhFsFI5pnkY9Cy81IyPyd7+WRWcu65k6HIIF
-   9nDCAaSE18AAgMHKBJ0iRFsx8PIO9AMZnPIxUzP/dk9LM6vuxSHPg80LP
-   /Ll5aPW8XptAjhC8uPHEFWqGR3TamLqJ1ficUvd1x/tAt3rJl0A3ng7o4
-   w==;
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
-   d="scan'208";a="165295260"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jun 2022 11:05:46 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 27 Jun 2022 11:05:45 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
- Transport; Mon, 27 Jun 2022 11:05:45 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D4Pu7qCv4ShRgPzG/qrH3iWZm4ea+Fh0jguRU7bwEpDyjBj79pXWwmiIf5p6By4FMOrKlR+KY0DtyeV7PBKYH8sgUYGZ/Vijv58dsefpnQFqjwNcwdSdjs1Rpoz8E+HmQdxvKPJxc0Ti6SZcbkmYpCUo4vQfIFzOMoIxrn1KMCX2n7Tl61OeQee3JAiiXuwxdDELEMWMqTB0GbWORR5R5rcPB3cXoUVA3/xRr8sMdCewPDlkq//sA6vLpSFE5mkbzdzzINnvW9OHiSccq5Xrb98v9hT1EKjAWr/9FUq55LUwLK9AwzO23oSVdIF88g52OtUlEX1Ey9WsTd4Kth/OAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jZk/JbbHouGijU0bHYxj5ANsT2FgUgoTS9HYC+K1d6Y=;
- b=YltOrSiB2C2QO44BTvukxBIRlKGI6JQT7FAurheU5Jkr6p4Wg0WCzC6lkK8wDPvhIsoalcbefesmzTIaklEynNt6o2GgzkOSBhQQXI5zn+M+cYGedldNWOampWQ1lFROGPiwoSxHRf9+bbQJcxrOtoGDtYpC4k2g1KiMqMhR52UpkOSv0db9+EZhty9ixS4rP8iI04UF9K/g576omziAssc0nubG1nwcidJW0TPvIzssE2QrCVf+LT+Xix3FdeiYgruPCzVzCRdYBX7b3yoTGycmWo8dyGqlhZM+d4pCQDrCwqhzxkXu3n+8GlLZlpADZtQ/kKe09PtlNGuEsN39lg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        with ESMTP id S237249AbiF0SOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 14:14:51 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4284BDF22
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 11:14:50 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id a11-20020a17090acb8b00b001eca0041455so10461835pju.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 11:14:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jZk/JbbHouGijU0bHYxj5ANsT2FgUgoTS9HYC+K1d6Y=;
- b=fro4JrCMRGR3ZDhp2wQyWwdPkOTrNe1lJYvdUZ1aYVjjO/wb5TEzpLdxMfOWF89dY2dWBepka1y+PKPKRXL33jDl3kHBVChoqjLjIlmM29spapB6YWu2RmQcvFCjwmT/3eJuyZ97c6t8gFoJKY+F6CcIutatXZ9ic/knz6O/KuA=
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:99::15)
- by BL1PR11MB5382.namprd11.prod.outlook.com (2603:10b6:208:31c::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.17; Mon, 27 Jun
- 2022 18:05:40 +0000
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::699b:5c23:de4f:2bfa]) by CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::699b:5c23:de4f:2bfa%4]) with mapi id 15.20.5373.018; Mon, 27 Jun 2022
- 18:05:40 +0000
-From:   <Conor.Dooley@microchip.com>
-To:     <robh@kernel.org>
-CC:     <mail@conchuod.ie>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <krzysztof.kozlowski+dt@linaro.org>, <thierry.reding@gmail.com>,
-        <sam@ravnborg.org>, <Eugeniy.Paltsev@synopsys.com>,
-        <fancer.lancer@gmail.com>, <vkoul@kernel.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <daniel.lezcano@linaro.org>, <palmer@dabbelt.com>,
-        <palmer@rivosinc.com>, <tglx@linutronix.de>,
-        <paul.walmsley@sifive.com>, <aou@eecs.berkeley.edu>,
-        <masahiroy@kernel.org>, <damien.lemoal@opensource.wdc.com>,
-        <geert@linux-m68k.org>, <niklas.cassel@wdc.com>,
-        <dillon.minfei@gmail.com>, <jee.heng.sia@intel.com>,
-        <joabreu@synopsys.com>, <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-spi@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH 06/14] spi: dt-bindings: dw-apb-ssi: update
- spi-{r,t}x-bus-width for dwc-ssi
-Thread-Topic: [PATCH 06/14] spi: dt-bindings: dw-apb-ssi: update
- spi-{r,t}x-bus-width for dwc-ssi
-Thread-Index: AQHYgw+Pu1Tn+/2s8EmHi9NhXNIv361YymsAgAACs4CACr+gAIAADiaA
-Date:   Mon, 27 Jun 2022 18:05:40 +0000
-Message-ID: <4b143eab-9905-a926-b3bc-10627cf0098e@microchip.com>
-References: <20220618123035.563070-1-mail@conchuod.ie>
- <20220618123035.563070-7-mail@conchuod.ie>
- <20220620205654.g7fyipwytbww5757@mobilestation>
- <61b0fb86-078d-0262-b142-df2984ce0f97@microchip.com>
- <20220627171500.GA2600685-robh@kernel.org>
-In-Reply-To: <20220627171500.GA2600685-robh@kernel.org>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 583ddbaa-a6dd-417d-73be-08da5867a520
-x-ms-traffictypediagnostic: BL1PR11MB5382:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sAWGaL7b6OZclb+HIG47GQLdhiJbeMtdLTHwdJFK3Q2299qcSQKpKFoOq/9IxvqAlR5mcpk0J0KQpb49XsxGcsAgMRNEcm2NwLwGYb2+9B7QkM4zm+73sFAfwucC4VfmZ9psXON79xUsFARjAGzqrybbqtOJ59UndghqXMq9293PMh2KVvUUUfpTslUADzXuULlC3+6+UuMmV5K54d9/oYTK6PNAcjbEy/fir14ejOhR//npXSAgHi31G2FaquPJ9xjKw7n5J3jZVtDYDu5TFiPWNK+978S3Za+3vyUq8beyA8C+SId+t/bkEusW4574npsW5mrfDvfipjEiWvFMHj0ISxRKTEoURisxvvGoLkKKSyKKV/7OT1rUbfZ87yZRS26fgUy09jmQfqCD2/Cy+5QdZwZNm4lCHDS0NAi++8YkkMZ4Xf7rLlKC6zkDix1AkN0Qh3zWfDXvQgR1WVf+6NSRwqH+AYxO0OOE0LdsiQiI6MbYjPqXS7NPtIIBqDK54RmFDrDPdGvNDgVWhbvqinN8vmelg7v7ivVMvJEDtas3U6TYt8F+90UBJFDX9hvpjqYTNuMtp1X0qQpqDqtO3Rhsq8JTTuM72KizOUCdQxVFLXt3t8ZmtOWVUY7JFD+vUxcgmXkxXGjyuvI7rutUYCOJI3Re8gYTrMNNPlTdmLMb3Lqwezq4SNqMZuY2OM2hMUq3EWKzibZsO5Gx7ke1xi0UjejPApPwKPPOCHW7GmextnQghZtW3jCEZyCHLCEq+6TZwb4/GP0AAtFX6m3n+SY0ELCqLtQE7dFkpFq/JE2r2+f79kwXTcYo9zE+voGTIBx4EJsToU5Tnf3a/ylENzOJxduyUSoUY/yUODBVNWk=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(39860400002)(136003)(396003)(376002)(346002)(2906002)(6506007)(15650500001)(122000001)(6916009)(186003)(478600001)(36756003)(53546011)(7416002)(38070700005)(31696002)(41300700001)(86362001)(316002)(31686004)(54906003)(8936002)(38100700002)(66476007)(6512007)(5660300002)(2616005)(4326008)(8676002)(91956017)(71200400001)(26005)(76116006)(66946007)(6486002)(66446008)(66556008)(64756008)(7406005)(83380400001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bDB0MERITURHVHAwbWxmbW8yTDYxRU5wTkJzT0V0c1VBcGpnNXpocmJLRk9z?=
- =?utf-8?B?dzVGZkFqN1ovNmxlY1pmYnpnNHFUL0QrUTUycUVGTi9Ycno4Mmt2M3BIbVdF?=
- =?utf-8?B?alpvL0dBcitqTElUdGFHNFJCWWtINVdFb21XWHpuZy94ZEttM3I3M1h4cUxW?=
- =?utf-8?B?WFFDUjlHRjVMZjNmeW5vQVJCTWcrUlVoNlNCbFJLa1hsTnRFT3BuSFpNUUZY?=
- =?utf-8?B?S2xocVdwRmQ1a245bzJnMVVQalR4b05oSm8zUUUvbWJ5OUtBcWJ4SjN3Q0JU?=
- =?utf-8?B?QUY0QlF5dmd1OXJUTnM2emIxR1NRUlpyNWZkcFYvV0R0OGg2ejVUaEpZZ0ZU?=
- =?utf-8?B?WkhpbVRTZDJKQSt4T1Z3NTIvUXpDL3Q1cDlGeGRnc1BubnVGNkNuczlKVFJl?=
- =?utf-8?B?Vkw3SDl3MHJDcWo5NW9sdjlxN0FWenhvNlR3ejNFVFMvL0JnL21ZV24reGZW?=
- =?utf-8?B?WEd2clhodlJvczJmeE05ZE9RR3ZvSUVjZG9DdlVGSmRoUGxSdkJWQTRaWWFY?=
- =?utf-8?B?dG13ekREeWs0RW5JUEtVdmpaaXZRTTY1TisxL2dab3JKeHNlaWRrWm1wWjdt?=
- =?utf-8?B?bjJHSWRzSnJWcU1rWW1IMGlrZlA1cU9zQ2NYTXB1V0YwNjhVU0xjU3RESlhW?=
- =?utf-8?B?NC90OTIrNG9NUWhnajRvcEwvTzBJUElMcXRmbTBOUG5Qd1oxNzd6cWQ5THFx?=
- =?utf-8?B?RW1GSkJ4RmI5QUI5aEMzQTNaK1duTjhPUnpLMkEybmFmUzZ2UnlIaWxoZENY?=
- =?utf-8?B?MHRUeGFWaXl5SmdDRE1JTDJLMmFoR2FxN0MrcExSUC96aEl1SkhzSjhMTVc3?=
- =?utf-8?B?OERXTHV0UkIyZ3MwNFB5SUJEV2Y0OGVzZDlMOWJxTU8va2xHT0xJQyt5YlNF?=
- =?utf-8?B?MGxNRktOSTRFbmZrWnVNaVhHRjlBc3pUNFlhL09LamdNUWpleDl4dFJJTWdM?=
- =?utf-8?B?bS8yUmJvdmQ1Q2phZ3o1NXkwVzVDM1NVRHZIWi9MZ1RXdDhkNzFSK3RaWkhz?=
- =?utf-8?B?bFNGRHJoSXhVOTA5K29lVjJhS2ZvY0RPbmxMd2Z5WEZrbDZvZzVTclJWUWpF?=
- =?utf-8?B?a1ppbzh2YVp1RGhaWG91TUJxb0kvaUlyUXdIUmR1eUlpWG5xVXV0WnIrWXJt?=
- =?utf-8?B?ZUR6bmgrblpzTW5PUkFHalg1eHVVYkJCZHEzeHp6cG5XdURMam1pUDNObEs2?=
- =?utf-8?B?MVoyVmpLVGF0L3NtWWI1MERXUDVvV2FmbmxIU0c2V2EybFNoS0oyek5Ob09P?=
- =?utf-8?B?RFpKUnFxSUpydTVTZXk5S3BmS1pZNURaSzdlb1N1dFFybEgyK0pSa0FMZGtj?=
- =?utf-8?B?VnM1UXVjcDNkS3R6MllldXlWYUF1ME5LM2JYYzMrckh0MncrSzUybFlTQ1li?=
- =?utf-8?B?MUhTSjZPRXJwUWtxclMzWVRyOVlza3ZmVnI0ZnJNV0lHbW8rTTkwL1lOMUw0?=
- =?utf-8?B?aHVsYUI2NExWZzhKSnNiWmNIYzdyQzNZU1BSYmExMWNlZmlKMk1JOXlDZ0ow?=
- =?utf-8?B?cm9ZdW5sUHRyak1rMEFRcmZvUFRpVGpadmlXVFlaTWVkQS9VajlBbHdCS29H?=
- =?utf-8?B?S0pGdFNnRjNmbjE2T0JoTTVVODZvNFFoOXlBNm9ac0M1RnRKTGpNcHBCUDl0?=
- =?utf-8?B?Z0ZsdFVVL20zYTJxbXA1OFAvQXNYVEtoMFFzMVlkZUJDQjBRUTlHRjF1dEN5?=
- =?utf-8?B?UTNMTDBuVDN5dEJZbkp1d0lLN0Mrbis3UGtqdnlJMHVLNW4zSzA1RlpkVjRI?=
- =?utf-8?B?SGw3M2RwTHVENURtU3V4ZmNpcVM2azVLZjNST2g0Z0xyNk1VNERSdmZUTWto?=
- =?utf-8?B?NkhraDBhUUdJQU1Tbno1dm1iRkVLSUFTL1ZoelFLbThZTDRkcWgzKzV0VGo1?=
- =?utf-8?B?WVlSRFVGbkxqbUhyS3ZueHBVQ1huc0dCZ0RVd0pQWm1JNGNUT0pJdXRadVhJ?=
- =?utf-8?B?cHJFUnZRNHp2Sk1pb3haQUNxdWpFWWxnaDZjZ2pBbU1zUDIybDhvYVhNWEJh?=
- =?utf-8?B?anBqM0FncjJienJQeEJ3U0JqMmhQTmZ6dzdVMzh0a0xLRUZZSEFqS0tGSFU4?=
- =?utf-8?B?WXZHMm1PSUVUOEp6OU1kYTZOSndXZTFaVXZLNm1zMTVmYU9wN3QvM0tLenJ2?=
- =?utf-8?B?dTJwNlQrdVRXV2FxalU0V3ZSZUxQQnpOQkRDeURuMjQwSTZlaDVRK3EwNDNa?=
- =?utf-8?B?WGc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <671BECC7F1B437478D2868D3EB15E4DC@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=YDu+rnzv/wK9KMXyP+OWEFPMR3eGHlB5shg9D6MCzeY=;
+        b=JBXLeZp4mtmOWzRgE7UX5PSOgKH/UmtDdwVz6xHMHWYuupKW+grq9s2SVVcQ3TL14S
+         S2Inz2nMS46xy2+pxsHf8UjURC9u0MP4F2P/dMfrz1qPk6J1v9Bxj+FA0boi600YqvBc
+         TiPwkugWCE40PGeW0VkF/83AwoF5NXuSZ7wGk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YDu+rnzv/wK9KMXyP+OWEFPMR3eGHlB5shg9D6MCzeY=;
+        b=IlC8AM8gepFgj78eY1ktzb5K6pEqwbys6rJczsYgcpUPDN1jUiah4e3cLMVb+dwMfi
+         4O8VXxyJhybMnJiwHCvowhhc0N+7srZG3EIGy7US4AwZk8pXnOWUGIFl859PcDBnJNDY
+         g5tN8K4JoL1Xxegc3otdkyx4xfDY1imYLKb3XbDtndPI+iv15VbY3IP8ra7JKraTDAHe
+         W1bV3n163c9+jn5JabsHKCWEj7ZEI1z90BfEaIsLRBlNocFY+cv16JFkBKisUpB2/snP
+         KWTCu1u1XXyK/jEMUpI9XrSU1J4ESt2o1447i7zjy3Al8UG/GxLZqENc2cYNvRx31j7U
+         DrrQ==
+X-Gm-Message-State: AJIora9ZU1fwOvSfpVaGxRiEcUwXxgfncVpmx0NJD3OKMdqZX1uj1FZl
+        RI3IIsDxqMU37bBRMLM9pJhTxl2yekgqnQ==
+X-Google-Smtp-Source: AGRyM1ttfaRHnKvsy/Dd2GaC6fMPgvM5TU9FqTHfpPQHimpwJCPbF2nsZ2Qq9eTV3MPQFZggGBtONA==
+X-Received: by 2002:a17:90b:278e:b0:1ee:f086:9c9d with SMTP id pw14-20020a17090b278e00b001eef0869c9dmr2816272pjb.182.1656353689781;
+        Mon, 27 Jun 2022 11:14:49 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:f31c:687c:3a61:62c5])
+        by smtp.gmail.com with UTF8SMTPSA id b1-20020a17090a12c100b001ec71258838sm9932330pjg.27.2022.06.27.11.14.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jun 2022 11:14:49 -0700 (PDT)
+Date:   Mon, 27 Jun 2022 11:14:47 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Bastien Nocera <hadess@hadess.net>,
+        Peter Chen <peter.chen@kernel.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Subject: Re: [PATCH v22 2/3] usb: misc: Add onboard_usb_hub driver
+Message-ID: <Yrnzl8k81f9JTMIQ@google.com>
+References: <YqpprpUHmlD62YzI@google.com>
+ <CAD=FV=VNDamV4+j07TrnX3cUs2-D5ySbeQ-zfU=Eef8+WagGig@mail.gmail.com>
+ <Yqub17iT4O7aqFMi@google.com>
+ <CAD=FV=VEztPLhsrJecZUdyHCW7ZfFTVvxyqY5CqRVv2mWyrLog@mail.gmail.com>
+ <YquoSMiQS+RG8rOM@google.com>
+ <CAD=FV=W81pSEUbzw2ZQgs_TJ9MLnHQHiDopZXZ6bHdS7QMzAyA@mail.gmail.com>
+ <YqvMffveCPiKQEUk@google.com>
+ <CAD=FV=UJOStPfRR3Hq2DmRBSH-HCtZ16hAU9eVH5w6Hm=WSJRQ@mail.gmail.com>
+ <YqytDNB2y4+qT8GD@google.com>
+ <CAD=FV=UT0XtMjZ9syQPGXeTEaUrwGTb_LgDow+cofgmx4D30VA@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 583ddbaa-a6dd-417d-73be-08da5867a520
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jun 2022 18:05:40.1433
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tP+MJgXXrT/tWBavS26BJT/1QE6lkA08rEL/sVp9uk1pkzoK6yCl7pi+YFJijHEnYY8CteKlZ3ibGkc7R7R+W66PAe8zCnn0ifIu9gesWCQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5382
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=UT0XtMjZ9syQPGXeTEaUrwGTb_LgDow+cofgmx4D30VA@mail.gmail.com>
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -173,51 +91,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMjcvMDYvMjAyMiAxODoxNSwgUm9iIEhlcnJpbmcgd3JvdGU6DQo+IEVYVEVSTkFMIEVNQUlM
-OiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91IGtub3cg
-dGhlIGNvbnRlbnQgaXMgc2FmZQ0KPiANCj4gT24gTW9uLCBKdW4gMjAsIDIwMjIgYXQgMDk6MDY6
-MzRQTSArMDAwMCwgQ29ub3IuRG9vbGV5QG1pY3JvY2hpcC5jb20gd3JvdGU6DQo+PiBPbiAyMC8w
-Ni8yMDIyIDIxOjU2LCBTZXJnZSBTZW1pbiB3cm90ZToNCj4+PiBFWFRFUk5BTCBFTUFJTDogRG8g
-bm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSBrbm93IHRoZSBj
-b250ZW50IGlzIHNhZmUNCj4+Pg0KPj4+IE9uIFNhdCwgSnVuIDE4LCAyMDIyIGF0IDAxOjMwOjI4
-UE0gKzAxMDAsIENvbm9yIERvb2xleSB3cm90ZToNCj4+Pj4gRnJvbTogQ29ub3IgRG9vbGV5IDxj
-b25vci5kb29sZXlAbWljcm9jaGlwLmNvbT4NCj4+Pj4NCj4+Pj4gc25wcyxkd2Mtc3NpLTEuMDFh
-IGhhcyBhIHNpbmdsZSB1c2VyIC0gdGhlIENhbmFhbiBrMjEwLCB3aGljaCB1c2VzIGENCj4+Pj4g
-d2lkdGggb2YgNCBmb3Igc3BpLXtyLHR9eC1idXMtd2lkdGguIFVwZGF0ZSB0aGUgYmluZGluZyB0
-byByZWZsZWN0DQo+Pj4+IHRoaXMuDQo+Pj4+DQo+Pj4+IFNpZ25lZC1vZmYtYnk6IENvbm9yIERv
-b2xleSA8Y29ub3IuZG9vbGV5QG1pY3JvY2hpcC5jb20+DQo+Pj4+IC0tLQ0KPj4+PiAgLi4uL2Jp
-bmRpbmdzL3NwaS9zbnBzLGR3LWFwYi1zc2kueWFtbCAgICAgICAgIHwgNDggKysrKysrKysrKysr
-KystLS0tLQ0KPj4+PiAgMSBmaWxlIGNoYW5nZWQsIDM1IGluc2VydGlvbnMoKyksIDEzIGRlbGV0
-aW9ucygtKQ0KPj4+Pg0KPj4+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL3NwaS9zbnBzLGR3LWFwYi1zc2kueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9zcGkvc25wcyxkdy1hcGItc3NpLnlhbWwNCj4+Pj4gaW5kZXggZTI1ZDQ0
-YzIxOGYyLi5mMmI5ZTNmMDYyY2QgMTAwNjQ0DQo+Pj4+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy9zcGkvc25wcyxkdy1hcGItc3NpLnlhbWwNCj4+Pj4gKysrIGIvRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwaS9zbnBzLGR3LWFwYi1zc2kueWFtbA0K
-Pj4+PiBAQCAtMTM1LDE5ICsxMzUsNDEgQEAgcHJvcGVydGllczoNCj4+Pj4gICAgICAgIG9mIHRo
-ZSBkZXNpZ253YXJlIGNvbnRyb2xsZXIsIGFuZCB0aGUgdXBwZXIgbGltaXQgaXMgYWxzbyBzdWJq
-ZWN0IHRvDQo+Pj4+ICAgICAgICBjb250cm9sbGVyIGNvbmZpZ3VyYXRpb24uDQo+Pj4+DQo+Pj4+
-IC1wYXR0ZXJuUHJvcGVydGllczoNCj4+Pj4gLSAgIl4uKkBbMC05YS1mXSskIjoNCj4+Pj4gLSAg
-ICB0eXBlOiBvYmplY3QNCj4+Pj4gLSAgICBwcm9wZXJ0aWVzOg0KPj4+PiAtICAgICAgcmVnOg0K
-Pj4+PiAtICAgICAgICBtaW5pbXVtOiAwDQo+Pj4+IC0gICAgICAgIG1heGltdW06IDMNCj4+Pj4g
-LQ0KPj4+PiAtICAgICAgc3BpLXJ4LWJ1cy13aWR0aDoNCj4+Pj4gLSAgICAgICAgY29uc3Q6IDEN
-Cj4+Pj4gLQ0KPj4+PiAtICAgICAgc3BpLXR4LWJ1cy13aWR0aDoNCj4+Pj4gLSAgICAgICAgY29u
-c3Q6IDENCj4+Pj4gK2lmOg0KPj4+PiArICBwcm9wZXJ0aWVzOg0KPj4+PiArICAgIGNvbXBhdGli
-bGU6DQo+Pj4+ICsgICAgICBjb250YWluczoNCj4+Pj4gKyAgICAgICAgY29uc3Q6IHNucHMsZHdj
-LXNzaS0xLjAxYQ0KPj4+PiArDQo+Pj4+ICt0aGVuOg0KPj4+PiArICBwYXR0ZXJuUHJvcGVydGll
-czoNCj4+Pj4gKyAgICAiXi4qQFswLTlhLWZdKyQiOg0KPj4+PiArICAgICAgdHlwZTogb2JqZWN0
-DQo+Pj4+ICsgICAgICBwcm9wZXJ0aWVzOg0KPj4+PiArICAgICAgICByZWc6DQo+Pj4+ICsgICAg
-ICAgICAgbWluaW11bTogMA0KPj4+PiArICAgICAgICAgIG1heGltdW06IDMNCj4+Pj4gKw0KPj4+
-PiArICAgICAgICBzcGktcngtYnVzLXdpZHRoOg0KPj4+PiArICAgICAgICAgIGNvbnN0OiA0DQo+
-Pj4+ICsNCj4+Pj4gKyAgICAgICAgc3BpLXR4LWJ1cy13aWR0aDoNCj4+Pj4gKyAgICAgICAgICBj
-b25zdDogNA0KPj4+PiArDQo+Pj4+ICtlbHNlOg0KPj4+PiArICBwYXR0ZXJuUHJvcGVydGllczoN
-Cj4+Pj4gKyAgICAiXi4qQFswLTlhLWZdKyQiOg0KPj4+PiArICAgICAgdHlwZTogb2JqZWN0DQo+
-Pj4+ICsgICAgICBwcm9wZXJ0aWVzOg0KPj4+PiArICAgICAgICByZWc6DQo+Pj4+ICsgICAgICAg
-ICAgbWluaW11bTogMA0KPj4+PiArICAgICAgICAgIG1heGltdW06IDMNCj4+Pj4gKw0KPj4+PiAr
-ICAgICAgICBzcGktcngtYnVzLXdpZHRoOg0KPj4+PiArICAgICAgICAgIGNvbnN0OiAxDQo+Pj4+
-ICsNCj4+Pj4gKyAgICAgICAgc3BpLXR4LWJ1cy13aWR0aDoNCj4+Pj4gKyAgICAgICAgICBjb25z
-dDogMQ0KPj4+DQo+Pj4gWW91IGNhbiBqdXN0IHVzZSBhIG1vcmUgcmVsYXhlZCBjb25zdHJhaW50
-ICJlbnVtOiBbMSAyIDQgOF0iIGhlcmUNCj4+DQo+PiA4IHRvbz8gc3VyZS4NCj4gDQo+IFRoZW4g
-bm8gY29uc3RyYWludHMgbmVlZGVkIGJlY2F1c2UgdGhlIGNvbW1vbiBkZWZpbml0aW9uIGFscmVh
-ZHkgaGFzDQo+IHRoaXMgcHJlc3VtYWJseS4NCg0KQWxtb3N0LCB0aGUgZGVmYXVsdCBoYXMgMCBp
-biB0aGUgZW51bSB0b28uDQpJJ2xsIGdvIHdpdGggdGhhdCAtIHRoYW5rcyENCkNvbm9yLg0KDQo=
+On Fri, Jun 24, 2022 at 01:33:19PM -0700, Doug Anderson wrote:
+> Hi,
+> 
+> On Fri, Jun 17, 2022 at 9:34 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > > Looking at the "companion-hub" case with fresh eyes, too, I wonder if
+> > > that can be simpler. If we find a companion hub, do we need both the
+> > > check for usb_hcd_is_primary_hcd() and the check to see whether the
+> > > pdev was already created?
+> >
+> > I was also doubting about this and concluded that it is still needed.
+> >
+> > Let's use once more the trogdor config as example, which has one physical
+> > onboard hub chip with a USB 3.1 hub and a USB 2.1 companion hub, connected
+> > to the dwc3 controller:
+> >
+> > &usb_1_dwc3 {
+> >         dr_mode = "host";
+> >         #address-cells = <1>;
+> >         #size-cells = <0>;
+> >
+> >         /* 2.x hub on port 1 */
+> >         usb_hub_2_x: hub@1 {
+> >                 compatible = "usbbda,5411";
+> >                 reg = <1>;
+> >                 vdd-supply = <&pp3300_hub>;
+> >                 companion-hub = <&usb_hub_3_x>;
+> >         };
+> >
+> >         /* 3.x hub on port 2 */
+> >         usb_hub_3_x: hub@2 {
+> >                 compatible = "usbbda,411";
+> >                 reg = <2>;
+> >                 vdd-supply = <&pp3300_hub>;
+> >                 companion-hub = <&usb_hub_2_x>;
+> >         };
+> > };
+> >
+> > Let's assume we don't check for the pdev. With our change above for root hubs
+> > the loop is now only executed for the primary HCD. In the first iteration
+> > we encounter the 2.x hub, it has a companion hub, but that alone doesn't
+> > tell us much, so we create a pdev. In the next iteration we encouter the
+> > 3.x hub, it also has a companion hub, but we don't know/check that the
+> > companion already has a pdev, so we create another one for the same
+> > physical hub.
+> 
+> Ah, you are correct. You only run into that case for the root hub,
+> correct? For everything else it's impossible?
+> 
+> ...and I guess things would be different if inside the loop you
+> actually set "hcd" to point to the "hcd" of the child device. I guess
+> that's where my confusion keeps stemming from. "hcd" is the parent's
+> host controller which is not always the same as the child's host
+> controller.
+
+I'd phrase it differently: for root hubs the 'parent_hub' isn't necessarily
+the parent of each 'child' node.
+
+> It would have been keen if we could somehow know the child's host
+> controller and get a pointer to that, but we can't because the child
+> device hasn't been enumerated yet.
+> 
+> OK, I'm convinced. I'll mention it in your v23 but maybe I'll have a
+> slightly better chance of figuring this out if/when I look at this
+> again if we rename "hcd" to "parent_hcd".
+
+I'm not convinced that this would generally help to reduce the confusion.
+To me 'parent_hcd' sounds as if there was a tree of HCDs, which isn't
+the case. Also one could still read 'parent_hcd' as the HCD of all
+'child' nodes.
+
+Maybe a bit more verbose documentation like this could help:
+
+  Some background about the logic in this function, which can be a bit hard
+  to follow:
+
+  Root hubs don't have dedicated device tree nodes, but use the node of their
+  HCD. The primary and secondary HCD are usually represented by a single DT
+  node. That means the root hubs of the primary and secondary HCD share the
+  same device tree node (the HCD node). As a result this function can be
+  called twice with the same DT node for root hubs. We only want to create a
+  single platform device for each physical onboard hub, hence for root hubs
+  the loop is only executed for the primary hub. Since the function scans
+  through all child nodes it still creates pdevs for onboard hubs connected
+  to the secondary hub if needed.
+
+  Further there must be only one platform device for onboard hubs with a
+  companion hub (the hub is a single physical device). To achieve this two
+  measures are taken: pdevs for onboard hubs with a companion are only
+  created when the function is called on behalf of the parent hub that is
+  connected to the primary HCD (directly or through other hubs). For onboard
+  hubs connected to root hubs the function processes the nodes of both
+  companions. A platform device is only created if the companion hub doesn't
+  have one already.
+
+
+When writing this I realized that the check for an existing platform device
+for companions could be put inside an 'if (!parent_hub->parent)' block. It
+isn't necessary for hubs deeper down in the chain, since their pdev will only
+be created for the hub (indirectly) connected to the primary HCD.
