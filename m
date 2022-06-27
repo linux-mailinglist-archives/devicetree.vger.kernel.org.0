@@ -2,63 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D86055C69C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CB3B55C282
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:46:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240061AbiF0Wn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 18:43:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55304 "EHLO
+        id S242744AbiF0WqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 18:46:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239815AbiF0Wn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:43:28 -0400
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6E20B7D8;
-        Mon, 27 Jun 2022 15:43:27 -0700 (PDT)
-Received: by mail-il1-f180.google.com with SMTP id p9so6728199ilj.7;
-        Mon, 27 Jun 2022 15:43:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=91IKVoV34p2SaHjlsoXEsJdmKXFfmHWgI/e+86ORCdc=;
-        b=zq89+YDoReg3OHwi9fYgJKdc4lHgyvEXP0nFU0xLEN9B+h8TCDVZcbLV+JH3agYpUP
-         g+yg+GWkzaoTfxmmp8FRN4NmPDjZOZFc9l6+S3a9LRrJN24UucA2lvB12ms4nbHokI4y
-         Hh/7QR8EG90OAnlBHwvqDNegoyS1TCY4Z9XO44hGQLLK35r15E3nlNRM1UBKn5duxQVR
-         8nwanac2v6/4wcqe52IV1Zv+NWa3QxTJ7hklmfq5LD49x2Tehb2/a0Q7ZQg3D/97y000
-         Ru0/dwoXJOViUA1bI1XMzrcycZdf8f5KBUojHOnLairGywFmSCDRC9u0KYzASarRjMtm
-         VA6A==
-X-Gm-Message-State: AJIora92nh3l7W26VEMXsFa8NnmDbKyvDKiutTdYrzQTlLTo+PUpo/Xl
-        F/selTmo8M3/E7ZBveqxow==
-X-Google-Smtp-Source: AGRyM1thrWKms7c1c3mXmmen1uUthVUBGLRAbpm6KwkUZVHEbfzSNJO2k4D7fpl4siWOI9Aprr1yOg==
-X-Received: by 2002:a92:608:0:b0:2da:999:9014 with SMTP id x8-20020a920608000000b002da09999014mr8687392ilg.69.1656369807046;
-        Mon, 27 Jun 2022 15:43:27 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id u18-20020a92ccd2000000b002d8d813892csm5068217ilq.8.2022.06.27.15.43.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 15:43:26 -0700 (PDT)
-Received: (nullmailer pid 3101886 invoked by uid 1000);
-        Mon, 27 Jun 2022 22:43:25 -0000
-Date:   Mon, 27 Jun 2022 16:43:25 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Stefan Berger <stefanb@linux.ibm.com>
-Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, nayna@linux.ibm.com,
-        nasastry@in.ibm.com, Jarkko Sakkinen <jarkko@kernel.org>,
-        Jason Gunthorpe <jgg@ziepe.ca>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2 1/3] tpm: of: Move of-tree specific code from tpm
- driver into of driver
-Message-ID: <20220627224325.GB3082294-robh@kernel.org>
-References: <20220616154130.2052541-1-stefanb@linux.ibm.com>
- <20220616154130.2052541-2-stefanb@linux.ibm.com>
+        with ESMTP id S236537AbiF0WqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:46:06 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38B1C186E9;
+        Mon, 27 Jun 2022 15:46:03 -0700 (PDT)
+Received: (Authenticated sender: contact@artur-rojek.eu)
+        by mail.gandi.net (Postfix) with ESMTPA id A0525C0005;
+        Mon, 27 Jun 2022 22:45:59 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220616154130.2052541-2-stefanb@linux.ibm.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Date:   Tue, 28 Jun 2022 00:45:59 +0200
+From:   Artur Rojek <contact@artur-rojek.eu>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        maccraft123mc@gmail.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        dmitry.torokhov@gmail.com, paul@crapouillou.net, jic23@kernel.org,
+        linux-iio@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v4 2/3] Input: adc-joystick - Add polled input device
+ support
+In-Reply-To: <20220627221444.3638-3-macroalpha82@gmail.com>
+References: <20220627221444.3638-1-macroalpha82@gmail.com>
+ <20220627221444.3638-3-macroalpha82@gmail.com>
+Message-ID: <c1edc707902248dde5ae6717aa9a27a0@artur-rojek.eu>
+X-Sender: contact@artur-rojek.eu
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,159 +45,126 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 16, 2022 at 11:41:28AM -0400, Stefan Berger wrote:
-> Simplify tpm_read_log_of() by moving Openfirmware-specific code into
-> the Openfirmware driver to make the code reusable. Call the new
-
-There is no such 'Openfirmware driver'.
-
-> of_tpm_get_sml_parameters() function from the TPM Openfirmware driver.
+On 2022-06-28 00:14, Chris Morgan wrote:
+> Add polled input device support to the adc-joystick driver. This is
+> useful for devices which do not have hardware capable triggers on
+> their SARADC. Code modified from adc-joystick.c changes made by Maya
+> Matuszczyk.
 > 
-> Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
-> Cc: Jarkko Sakkinen <jarkko@kernel.org>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  drivers/char/tpm/eventlog/of.c | 31 +++++--------------------------
->  drivers/of/Makefile            |  2 +-
->  drivers/of/device_node.c       | 27 +++++++++++++++++++++++++++
+Hey Chris,
 
-Humm, definitely the wrong direction. Generally, code for specific 
-bindings does not go in drivers/of/. There used to be some, but we've 
-moved it to the appropriate subsystems. kexec was an exception to not 
-have 2 copies of the same code in arch/.
-
->  include/linux/of_device_node.h |  9 +++++++++
-
-of_tpm.h would be the right name assuming we kept this structure which 
-we shouldn't. Probably linux/tpm.h? Just a guess, I'm not familar with 
-the TPM code really.
-
-
->  4 files changed, 42 insertions(+), 27 deletions(-)
->  create mode 100644 drivers/of/device_node.c
->  create mode 100644 include/linux/of_device_node.h
+comments inline.
+>  drivers/input/joystick/adc-joystick.c | 49 +++++++++++++++++++++------
+>  1 file changed, 38 insertions(+), 11 deletions(-)
 > 
-> diff --git a/drivers/char/tpm/eventlog/of.c b/drivers/char/tpm/eventlog/of.c
-> index a9ce66d09a75..5b18f4333ad1 100644
-> --- a/drivers/char/tpm/eventlog/of.c
-> +++ b/drivers/char/tpm/eventlog/of.c
-> @@ -12,6 +12,7 @@
->  
->  #include <linux/slab.h>
->  #include <linux/of.h>
-> +#include <linux/of_device_node.h>
->  #include <linux/tpm_eventlog.h>
->  
->  #include "../tpm.h"
-> @@ -20,11 +21,10 @@
->  int tpm_read_log_of(struct tpm_chip *chip)
->  {
->  	struct device_node *np;
-> -	const u32 *sizep;
-> -	const u64 *basep;
->  	struct tpm_bios_log *log;
->  	u32 size;
->  	u64 base;
-> +	int ret;
->  
->  	log = &chip->log;
->  	if (chip->dev.parent && chip->dev.parent->of_node)
-> @@ -35,30 +35,9 @@ int tpm_read_log_of(struct tpm_chip *chip)
->  	if (of_property_read_bool(np, "powered-while-suspended"))
->  		chip->flags |= TPM_CHIP_FLAG_ALWAYS_POWERED;
->  
-> -	sizep = of_get_property(np, "linux,sml-size", NULL);
-> -	basep = of_get_property(np, "linux,sml-base", NULL);
-> -	if (sizep == NULL && basep == NULL)
-> -		return -ENODEV;
-> -	if (sizep == NULL || basep == NULL)
-> -		return -EIO;
-> -
-> -	/*
-> -	 * For both vtpm/tpm, firmware has log addr and log size in big
-> -	 * endian format. But in case of vtpm, there is a method called
-> -	 * sml-handover which is run during kernel init even before
-> -	 * device tree is setup. This sml-handover function takes care
-> -	 * of endianness and writes to sml-base and sml-size in little
-> -	 * endian format. For this reason, vtpm doesn't need conversion
-> -	 * but physical tpm needs the conversion.
-> -	 */
-> -	if (of_property_match_string(np, "compatible", "IBM,vtpm") < 0 &&
-> -	    of_property_match_string(np, "compatible", "IBM,vtpm20") < 0) {
-> -		size = be32_to_cpup((__force __be32 *)sizep);
-> -		base = be64_to_cpup((__force __be64 *)basep);
-> -	} else {
-> -		size = *sizep;
-> -		base = *basep;
-> -	}
-> +	ret = of_tpm_get_sml_parameters(np, &base, &size);
-> +	if (ret < 0)
-> +		return ret;
->  
->  	if (size == 0) {
->  		dev_warn(&chip->dev, "%s: Event log area empty\n", __func__);
-> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
-> index e0360a44306e..1c9feac450ad 100644
-> --- a/drivers/of/Makefile
-> +++ b/drivers/of/Makefile
-> @@ -1,5 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0
-> -obj-y = base.o device.o platform.o property.o
-> +obj-y = base.o device.o platform.o property.o device_node.o
->  obj-$(CONFIG_OF_KOBJ) += kobj.o
->  obj-$(CONFIG_OF_DYNAMIC) += dynamic.o
->  obj-$(CONFIG_OF_FLATTREE) += fdt.o
-> diff --git a/drivers/of/device_node.c b/drivers/of/device_node.c
-> new file mode 100644
-> index 000000000000..71a19bc1bac2
-> --- /dev/null
-> +++ b/drivers/of/device_node.c
-> @@ -0,0 +1,27 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +#include <linux/export.h>
-> +#include <linux/of_device_node.h>
-> +
-> +int of_tpm_get_sml_parameters(struct device_node *np, u64 *base, u32 *size)
+> diff --git a/drivers/input/joystick/adc-joystick.c
+> b/drivers/input/joystick/adc-joystick.c
+> index 78ebca7d400a..7e3c5083ec3c 100644
+> --- a/drivers/input/joystick/adc-joystick.c
+> +++ b/drivers/input/joystick/adc-joystick.c
+> @@ -26,8 +26,23 @@ struct adc_joystick {
+>  	struct adc_joystick_axis *axes;
+>  	struct iio_channel *chans;
+>  	int num_chans;
+> +	bool polled;
+>  };
+> 
+> +static void adc_joystick_poll(struct input_dev *input)
 > +{
-> +	const u32 *sizep;
-> +	const u64 *basep;
+> +	struct adc_joystick *joy = input_get_drvdata(input);
+> +	int i, val, ret;
 > +
-> +	sizep = of_get_property(np, "linux,sml-size", NULL);
-> +	basep = of_get_property(np, "linux,sml-base", NULL);
-> +	if (sizep == NULL && basep == NULL)
-> +		return -ENODEV;
-> +	if (sizep == NULL || basep == NULL)
-> +		return -EIO;
-> +
-> +	if (of_property_match_string(np, "compatible", "IBM,vtpm") < 0 &&
-> +	    of_property_match_string(np, "compatible", "IBM,vtpm20") < 0) {
-> +		*size = be32_to_cpup((__force __be32 *)sizep);
-> +		*base = be64_to_cpup((__force __be64 *)basep);
-> +	} else {
-> +		*size = *sizep;
-> +		*base = *basep;
+> +	for (i = 0; i < joy->num_chans; i++) {
+> +		ret = iio_read_channel_raw(&joy->chans[i], &val);
+> +		if (ret < 0)
+> +			return;
+> +		input_report_abs(input, joy->axes[i].code, val);
 > +	}
-> +	return 0;
+> +	input_sync(input);
 > +}
-> +EXPORT_SYMBOL_GPL(of_tpm_get_sml_parameters);
-> diff --git a/include/linux/of_device_node.h b/include/linux/of_device_node.h
-> new file mode 100644
-> index 000000000000..ae3faf023aab
-> --- /dev/null
-> +++ b/include/linux/of_device_node.h
-> @@ -0,0 +1,9 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +#ifndef _LINUX_OF_DEVICE_NODE_H
-> +#define _LINUX_OF_DEVICE_NODE_H
 > +
-> +#include <linux/of.h>
-> +
-> +int of_tpm_get_sml_parameters(struct device_node *np, u64 *base, u32 *size);
-> +
-> +#endif /* _LINUX_OF_DEVICE_NODE_H */
-> -- 
-> 2.35.1
+>  static int adc_joystick_handle(const void *data, void *private)
+>  {
+>  	struct adc_joystick *joy = private;
+> @@ -179,6 +194,7 @@ static int adc_joystick_probe(struct 
+> platform_device *pdev)
+>  	int error;
+>  	int bits;
+>  	int i;
+> +	int value;
+This name is not self-describing. How about `poll_interval` instead?
 > 
+>  	joy = devm_kzalloc(dev, sizeof(*joy), GFP_KERNEL);
+>  	if (!joy)
+> @@ -215,8 +231,15 @@ static int adc_joystick_probe(struct 
+> platform_device *pdev)
+>  	joy->input = input;
+>  	input->name = pdev->name;
+>  	input->id.bustype = BUS_HOST;
+> -	input->open = adc_joystick_open;
+> -	input->close = adc_joystick_close;
+> +
+> +	if (!device_property_read_u32(dev, "poll-interval", &value)) {
+> +		joy->polled = 1;
+> +		input_setup_polling(input, adc_joystick_poll);
+> +		input_set_poll_interval(input, value);
+> +	} else {
+> +		input->open = adc_joystick_open;
+> +		input->close = adc_joystick_close;
+> +	}
+Let's move the polling setup logic for after you establish the value of 
+`joy->polled`:
+```
+	joy->polled = !device_property_read_u32(dev, "poll-interval",
+						&poll_interval);
+	if (joy->polled) {
+		input_setup_polling(input, adc_joystick_poll);
+		input_set_poll_interval(input, poll_interval);
+	} else {
+		input->open = adc_joystick_open;
+		input->close = adc_joystick_close;
+	}
+```
+This makes the intention more clear and is consistent with the `if 
+(!joy->polled)` check later on.
+
+Cheers,
+Artur
 > 
+>  	error = adc_joystick_set_axes(dev, joy);
+>  	if (error)
+> @@ -229,16 +252,20 @@ static int adc_joystick_probe(struct
+> platform_device *pdev)
+>  		return error;
+>  	}
+> 
+> -	joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
+> -	if (IS_ERR(joy->buffer)) {
+> -		dev_err(dev, "Unable to allocate callback buffer\n");
+> -		return PTR_ERR(joy->buffer);
+> -	}
+> +	if (!joy->polled) {
+> +		joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle,
+> +						     joy);
+> +		if (IS_ERR(joy->buffer)) {
+> +			dev_err(dev, "Unable to allocate callback buffer\n");
+> +			return PTR_ERR(joy->buffer);
+> +		}
+> 
+> -	error = devm_add_action_or_reset(dev, adc_joystick_cleanup, 
+> joy->buffer);
+> -	if (error)  {
+> -		dev_err(dev, "Unable to add action\n");
+> -		return error;
+> +		error = devm_add_action_or_reset(dev, adc_joystick_cleanup,
+> +						 joy->buffer);
+> +		if (error)  {
+> +			dev_err(dev, "Unable to add action\n");
+> +			return error;
+> +		}
+>  	}
+> 
+>  	return 0;
