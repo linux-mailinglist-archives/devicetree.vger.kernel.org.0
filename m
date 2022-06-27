@@ -2,114 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38A4855D8EF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:20:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D446B55C524
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:50:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236264AbiF0Ndz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 09:33:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43182 "EHLO
+        id S236007AbiF0NlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 09:41:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236422AbiF0Ndx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 09:33:53 -0400
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A9A6362;
-        Mon, 27 Jun 2022 06:33:52 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id p136so10567648ybg.4;
-        Mon, 27 Jun 2022 06:33:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ztN9msliEJWcvQDVWkbiAiIE0Z0BrDUarJzwnIGzjC8=;
-        b=YMw94vLB9C1PkhH+V5lHE0rNhfmHkWJaK7kt3QhDenuKQWmlOhucJzTRK/EJtRlOFz
-         Z4g2MghMccb9BofygtQjvq9OZgzYxk5XUnE7BXcjXcLBe4fOgiG0T1uSsEyF7pZ/y5D7
-         Y0K5AhY2xgiMGskIMtjl3Bpz1fq/5WMAm9q4KnXqQmTB2pC/oVHN+vCICvOAB0CUOOAZ
-         X45fPwpS13QQljWbylupAd+bnSCQzSFaqS4Cb1g9VuESufeKYg+m6uj9B4mBZ0kKkpaD
-         eflb54zIg/XuaGOsi2kHXC2eRHI1/6KM94dep+34aylNVoV+BKMGGFWugk3tp01FQTKE
-         xCpw==
-X-Gm-Message-State: AJIora/VDoTB+FIrujhlgzNanPht2ZH2YhFobQkIuZabib40fWX4f1x+
-        0F3W2HZ7imnzrF99EXiVjNyEgw0YG0bu/Wmt0uTjOpZGsaQ=
-X-Google-Smtp-Source: AGRyM1u6nXPXMKry/ijjdna0qNq6kJB5nE2ej9khpTTJLBr+PLqFMi0SnjuJi+npHJWR1euI7/M9kBb9E9n/NceMoqk=
-X-Received: by 2002:a25:9004:0:b0:66c:97a4:3053 with SMTP id
- s4-20020a259004000000b0066c97a43053mr10112879ybl.137.1656336831002; Mon, 27
- Jun 2022 06:33:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <4e1d5db9dea68d82c94336a1d6aac404@walle.cc> <b8ec04dc-f803-ee2c-29b7-b0311eb8c5fb@linaro.org>
-In-Reply-To: <b8ec04dc-f803-ee2c-29b7-b0311eb8c5fb@linaro.org>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Mon, 27 Jun 2022 15:33:37 +0200
-Message-ID: <CAJZ5v0jz=ee5TrvYs0_ovWn9sT06bcKDucmmocD8L-d9ZZ5DzQ@mail.gmail.com>
-Subject: Re: fwnode_for_each_child_node() and OF backend discrepancy
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Michael Walle <michael@walle.cc>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232562AbiF0Nkq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 09:40:46 -0400
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E79065F44;
+        Mon, 27 Jun 2022 06:40:36 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id B7F9E5C00A0;
+        Mon, 27 Jun 2022 09:40:33 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Mon, 27 Jun 2022 09:40:33 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm3; t=1656337233; x=
+        1656423633; bh=VmH1ItcgdR9yLmtHIQblCwoWnqaK8QpzOYYSIYStQo8=; b=W
+        6ZgPzFSOSstzSlPkL96ySA528auJvAslWW8vDg5qezyJvV1+N9u6zuEuvAM+oaz+
+        ff2uSB//o7HZ1x7GS89mc6rF6Lkt6CpWLeykpnkB5Gg+MRmML1s6ug7ngz0huLCp
+        +15HPU6L/ZO5Lm4csRgW1UCzn6Wq7OyZFvDH/bHsmmH/GBuPIFn1Jdbc9Tz3dYsf
+        ilWgpvZimbSueJQ0wkpFMGwlBYdxuUkN6E/KB9KOWLtNSQT4DYRvdTzDHYsGzdA+
+        v5NJRLgwl9cPGCjryDawOjET0KV3KlA5J532XRMZpt8tB40wLY/XsOYxdkf6USe9
+        Emo6VoOLgbZj1874ASqfg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1656337233; x=
+        1656423633; bh=VmH1ItcgdR9yLmtHIQblCwoWnqaK8QpzOYYSIYStQo8=; b=J
+        l4m2ts68BiSTJYOGXO4PS2bCXxr52bv3awRlpRjZkVMApRevrN1swf91dK5VSzbi
+        vlDgC0174yQYu43xulPkY+aNZQ6yxecj/iRNlDm890XFGqRt87oTeOgFBMLrEdu8
+        N0iglfp90QEV5tuBoGtbZV5QEJjySJLN4Ukd7SHWXtI85+YVsnlA5sptVyFcmsHo
+        qD2JQdBScvSqrLlINFzjSqivKRYMytay9NLIozOzhmWvfB/NZ9LRLDCErDT7VrQv
+        wOp7ar1nUioXyXUzLJo8N5ZuPNx3yE4Q8BaUnijzTMTJhR56vPlSSDINd6ZK3pHr
+        o1yJ7E35bBgs0W8xhXdpQ==
+X-ME-Sender: <xms:ULO5YqQdhAP1iaqPyXjKmIfe46gbojhZoh7V4WqFnAoTAZMsMcnwVg>
+    <xme:ULO5YvwSCAXTiPZ0KOt0vTIwi1H2VF0NlI_zfOEoRSool3pmVgvyjL1q2XE5Wr7Ap
+    kjEkUry38moW9tWiw>
+X-ME-Received: <xmr:ULO5Yn3VLmXUeIRtIPSjjHtpzyDPH4S1Avt4qY0nA9yA1jTM37eLEA-n80lthjT_jK91vEsdPtS_QlqvmT8R6vMv8U-boIjBwhuyAbdSFYHwSr4dvPreA68Chw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudeghedgieelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
+    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
+    ggtffrrghtthgvrhhnpefftdevkedvgeekueeutefgteffieelvedukeeuhfehledvhfei
+    tdehudfhudehhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:ULO5YmCg3qKg3H2zkHxC8ggOnMAeXIu8t_lLi-c-SDYgpuvetJEgDw>
+    <xmx:ULO5YjhNpLHQNaLdXvKbXTN9bKfBNphIqrkKUcWqVGCgU60n4KhOkg>
+    <xmx:ULO5YirN24BuX9prBn5c0WfcVXsLwrOc2hXNdAzMG_oiY6o7XXBD9g>
+    <xmx:UbO5Yjyvm8HKhtO7p0wx_qWAmKqei6H_ClCvwYMPvfxjirzctg0fvA>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 27 Jun 2022 09:40:31 -0400 (EDT)
+Subject: Re: [PATCH v1 2/3] irqchip/sifive-plic: Name the chip more
+ generically
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-renesas-soc@vger.kernel.org, Guo Ren <guoren@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Saravana Kannan <saravanak@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20220627051257.38543-1-samuel@sholland.org>
+ <20220627051257.38543-3-samuel@sholland.org>
+ <20511a05f39408c8ffbcc98923c4abd2@kernel.org>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <b031cfb7-6a50-cc01-3b8c-5e75d01b4a43@sholland.org>
+Date:   Mon, 27 Jun 2022 08:40:30 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
+MIME-Version: 1.0
+In-Reply-To: <20511a05f39408c8ffbcc98923c4abd2@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 27, 2022 at 3:08 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 27/06/2022 14:49, Michael Walle wrote:
-> > Hi,
-> >
-> > I tired to iterate over all child nodes, regardless if they are
-> > available
-> > or not. Now there is that handy fwnode_for_each_child_node() (and the
-> > fwnode_for_each_available_child_node()). The only thing is the OF
-> > backend
-> > already skips disabled nodes [1], making fwnode_for_each_child_node()
-> > and
-> > fwnode_for_each_available_child_node() behave the same with the OF
-> > backend.
-> >
-> > Doesn't seem to be noticed by anyone for now. I'm not sure how to fix
-> > that
-> > one. fwnode_for_each_child_node() and also fwnode_get_next_child_node()
-> > are
-> > used by a handful of drivers. I've looked at some, but couldn't decide
-> > whether they really want to iterate over all child nodes or just the
-> > enabled
-> > ones.
->
-> If I get it correctly, this was introduced  by 8a0662d9ed29 ("Driver
-> core: Unified interface for firmware node properties")
-> .
+On 6/27/22 2:11 AM, Marc Zyngier wrote:
+> On 2022-06-27 06:12, Samuel Holland wrote:
+>> The interface for SiFive's PLIC was adopted and clarified by RISC-V as
+>> the standard PLIC interface. Now that several PLIC implementations by
+>> different vendors share this same interface, it is somewhat misleading
+>> to report "SiFive PLIC" to userspace, when no SiFive hardware may be
+>> present. This is especially the case when some implementations are
+>> subtly incompatible with the binding and behavior of the SiFive PLIC,
+>> yet are similar enough to share a driver.
+> 
+> Too late. This is ABI, and not changing, exactly because userspace
+> sees it.
 
-Originally it was, but then it has been reworked a few times.
+That makes sense. I will drop this patch.
 
-The backend callbacks were introduced by Sakari, in particular.
-
-> The question to Rafael - what was your intention when you added
-> device_get_next_child_node() looking only for available nodes?
-
-That depends on the backend.
-
-fwnode_for_each_available_child_node() is more specific and IIRC it
-was introduced for fw_devlink (CC Saravana).
-
-> My understanding is that this implementation should be consistent with
-> OF implementation, so fwnode_get_next_child_node=get any child.
-
-IIUC, the OF implementation is not consistent with the
-fwnode_get_next_child_node=get any child thing.
-
-> However maybe ACPI treats it somehow differently?
-
-acpi_get_next_subnode() simply returns the next subnode it can find.
+Regards,
+Samuel
