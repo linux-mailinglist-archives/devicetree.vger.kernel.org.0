@@ -2,222 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 490F555C356
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D368255DC8B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:26:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233826AbiF0LBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 07:01:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57184 "EHLO
+        id S233898AbiF0JpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 05:45:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233658AbiF0LBW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 07:01:22 -0400
-X-Greylist: delayed 4676 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 27 Jun 2022 04:01:21 PDT
-Received: from 3.mo548.mail-out.ovh.net (3.mo548.mail-out.ovh.net [188.165.32.156])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28D876471
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 04:01:21 -0700 (PDT)
-Received: from mxplan5.mail.ovh.net (unknown [10.108.16.62])
-        by mo548.mail-out.ovh.net (Postfix) with ESMTPS id 7066B21B82;
-        Mon, 27 Jun 2022 09:43:22 +0000 (UTC)
-Received: from kaod.org (37.59.142.96) by DAG4EX1.mxp5.local (172.16.2.31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Mon, 27 Jun
- 2022 11:43:20 +0200
-Authentication-Results: garm.ovh; auth=pass (GARM-96R001214c8b85-88ae-43d7-9f45-820f0b88e976,
-                    D5BAD815273CE4794DDBC5929823026F491AE39B) smtp.auth=clg@kaod.org
-X-OVh-ClientIp: 82.64.250.170
-Message-ID: <82015d89-cab5-3e9a-a40e-e5dafa17ec0c@kaod.org>
-Date:   Mon, 27 Jun 2022 11:43:15 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [RFC PATCH 3/6] mtd: spi-nor: core: run calibration when
- initialization is done
+        with ESMTP id S233930AbiF0JpB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:45:01 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2130.outbound.protection.outlook.com [40.107.244.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DA236397;
+        Mon, 27 Jun 2022 02:45:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MLDH6NnH+X/SOEVmyVUd8vngjC2oZq6YzEzHV2m23DvRGTAc11rWcl3I9xo74jmTWiV92gZ10BrsIHJfFGFxHm0gn4p8eWxqX9RNMekTIIQcEnJQY58LCCHLuBXLPB1DIy+FmIJdVn0zvpiYcOpqP+BcIkjkX5FtMfO6PZwJyvEqCaMERx31higqcZ54NJrNpc5rPFhqJM2uf+jSUasXd75xN0ZCL5z8+qXAWz+v9s6Zyh8yPwkSkUMZJzlPlLWGmwBdpmLvPVlvC7WtTF3B6KNiXnYSXAk1z9vJavyqmYX6/h+fqyFUFmRcvuulyLl0HaUDuZyNCJkqOUuiJ3YZYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8ssCWl642QdV+EnWX5bL1Nrrc0OCUCyXLPn/H6IcLhU=;
+ b=hhMOF1jXvFNGWcjk0HOSZNiBTZmqpPWhdvUlFNGAM7VzWIHp8ypLdeQre41tFzIj5FMf5SovQIlHRdUbB+cqYjEG/u8A5WSlDnBqS7XcEbwuRjqRIAKc1R9eMWhwRqwa/W7w2YsL9GI7edVPVQnEfzX53Oh03TixbY0rmj97VJ4uv2tBaPaEZGbw3SfcTaibDsBv+sCqEMqEmLOoR9WhfCYHsbc97MxZ7hCo7t8MtJIbIPPNo8aldFFmWX4Af21i9yEQhpkdY8hn/vZBXgEp8P9YLcTz4QmpOlA3KQOCGa0bnZkXOAI8gYLh/6wX3Bz96p1mzDQ6d2CX7Nyi0f+ZNA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8ssCWl642QdV+EnWX5bL1Nrrc0OCUCyXLPn/H6IcLhU=;
+ b=JWsS3Kp5RnC6RzbkT/Y5TJeMyKZQ0RdaKtRvEftECEYeGkOmpBFQIVziNvgkC7c2+0ecKspnPTtTN8KBIwv4fuFxia59MrW96V1cpJityExJiIglW2wuF3QDDobn5Uw3NnqPVaOKCf0adL+YYFn1JdPkmJ/G0+3hVl58bzjLHAc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
+ DM6PR01MB5435.prod.exchangelabs.com (2603:10b6:5:17a::14) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5373.17; Mon, 27 Jun 2022 09:44:56 +0000
+Received: from SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::7535:773:f979:893e]) by SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::7535:773:f979:893e%9]) with mapi id 15.20.5373.018; Mon, 27 Jun 2022
+ 09:44:56 +0000
+Message-ID: <624cd43b-af83-402d-86bb-68e7242da0f7@os.amperecomputing.com>
+Date:   Mon, 27 Jun 2022 16:44:43 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.10.0
+Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Ampere's Mt.
+ Mitchell BMC
 Content-Language: en-US
-To:     Pratyush Yadav <p.yadav@ti.com>
-CC:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        openbmc@lists.ozlabs.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Michael Walle <michael@walle.cc>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mark Brown <broonie@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>,
-        Joel Stanley <joel@jms.id.au>
-References: <20210311191216.7363-1-p.yadav@ti.com>
- <20210311191216.7363-4-p.yadav@ti.com> <20220517160226.4107f282@xps-13>
- <20220518060640.os5fp5rez4ie7qc4@ti.com> <20220518091931.279c5398@xps-13>
- <20220518075651.mvdhfnfbgutecgyq@ti.com>
- <b3bfa5a6-caac-94ed-6741-04db9c2a9ee0@kaod.org>
- <20220627091404.54257obrdazcjhre@ti.com>
-From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
-In-Reply-To: <20220627091404.54257obrdazcjhre@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [37.59.142.96]
-X-ClientProxiedBy: DAG3EX2.mxp5.local (172.16.2.22) To DAG4EX1.mxp5.local
- (172.16.2.31)
-X-Ovh-Tracer-GUID: d90d66d2-6dd4-4970-a538-40e48684ccd2
-X-Ovh-Tracer-Id: 8915438414617938820
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudeghedgvddtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgihesthekredttdefjeenucfhrhhomhepveorughrihgtpgfnvggpifhorghtvghruceotghlgheskhgrohgurdhorhhgqeenucggtffrrghtthgvrhhnpeekteejtdelkeejvdevffduhfetteelieefgeefffeugffhfeekheffueefledujeenucfkpheptddrtddrtddrtddpfeejrdehledrudegvddrleeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehmgihplhgrnhehrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheptghlgheskhgrohgurdhorhhgpdhnsggprhgtphhtthhopedupdhrtghpthhtohepjhhovghlsehjmhhsrdhiugdrrghupdfovfetjfhoshhtpehmohehgeek
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>
+Cc:     Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20220621092120.2427152-1-quan@os.amperecomputing.com>
+ <97934f38-4da5-ab9e-7089-d6e48edd5e6a@linaro.org>
+ <9120c167-38c2-f8c4-e039-4202d5844639@os.amperecomputing.com>
+ <aafd58d6-8705-96ee-7813-9b3bae7bb3d1@linaro.org>
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+In-Reply-To: <aafd58d6-8705-96ee-7813-9b3bae7bb3d1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR01CA0039.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::16) To SJ0PR01MB7282.prod.exchangelabs.com
+ (2603:10b6:a03:3f2::24)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 5cd06342-ea43-454e-a5bf-08da5821b17a
+X-MS-TrafficTypeDiagnostic: DM6PR01MB5435:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dj1lVZkCBYroVx+gO5rVhOT/ver2m+6iNkqcL8qw/n+i3omxTlKhrTuRNiILz5eAx/EfilHaySn/XSooCeBvNEsiFMuK1aX0uRKOVR3MLKtoAVFrAO60NFZwoc7ctg5ZCE5Ih0sZRmeppkagwOEfFK+To7IWEtQu1FPZjV8bPX8fWhiTeuoGLCIHAp2vLhGTXMo22SywND9JClTvs9JsV8gkWsS/hTnV8j49wTd+H4XrHWhpj2jBTLzYdzTJ5kJ3hq4NBnCIPEci02kUsBCDIXfc+vAbvpSs76zHuHAkw7Zt17ZLME4Ksk/IrGfsr6uTh+yb8ypWTzLMYYei05jY9kNRhXnJyOc5BS02PavVfEnFO0wtezD2n4Rb2iNYra2Ke0bjOInyk3Gr0YBA/zmK0CwXXmHnA/UPVz2x/1gSPgB0pDva+Oav3abCBmT1+i5OJj1L52q0GClEK0yBFEuvyfsHPyL8RTxsCmxCoJ0lJmuui8ziX0pyjP7V55CtloDjhIkEoSbhQ9zlYOMo/BwIOuu63mvjxSjMCoJy0xC9ShSTukRrvRhfAGB+j1xf/KF92nVNkODsv/hunCM7MdRJKDyVe8qciG54ggdQ9d+YHW8uWDz5zCUvhM5EbCmdMltAC1PNdGwkTOktshCoafkpc5Qk7UkWCmiXH8rVLWzxGy36Y6ro6bq10ItqVd0r9r4mS2DvPsnb9cmXTdHbZ19suX+yYAXBiKo8+aF3dpNfZDw0ttETsPU8JuJ/d4I7IxA6cxLbWuDVGJbsG1EKbm+WAW0mkruIa6lNe8uRziSpiBY/kJpXFpMPKmLv2C55YXBZK+aClg7yMYyGCw/IBcxJGzYZjNRhCGbzlZKI31Neq08=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(39840400004)(346002)(376002)(136003)(366004)(7416002)(5660300002)(186003)(4744005)(4326008)(66556008)(316002)(478600001)(8936002)(6486002)(26005)(2616005)(41300700001)(6512007)(107886003)(2906002)(83380400001)(6666004)(38100700002)(54906003)(52116002)(6506007)(86362001)(53546011)(31686004)(921005)(110136005)(38350700002)(8676002)(66946007)(66476007)(31696002)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZmxOU3Nwby9zQ0pxUUl0emQzeEZKRVl4YjNIRkVRU2xPcU44YWVuUnBCMk5C?=
+ =?utf-8?B?TWczbFJzMmN6T3lRcHExSGVFdVRxbHQvYzhmTllDMXRGWVN5cTJ5Slh1YWo3?=
+ =?utf-8?B?c2RudkJ0b0taeXBORERjN0NsbmZING5kVlVJeDRQNERXa09VUzA1eVBGMDJ5?=
+ =?utf-8?B?MkZaZHhvOWEydUIzaytVb1gyeDdrWXVRR0FxTHZyYS9CL3BGeSttVHFITEJu?=
+ =?utf-8?B?SlFkcTN4U2ZRaG9vTWdqcS93bHFHSXFUaVBWRHJPQ0NhS3hUbU1zb0ZmanNY?=
+ =?utf-8?B?Rlp2TUh2enE3bTAwUG11Y0t6c0dLdG4xaUw4NWYzK2pNRTlmNlAxdjV5Qi82?=
+ =?utf-8?B?QWpMK2g3TE1kbGRqd2hlM3RrdWNpdmdFMjVZaUswaEN6ODcxeXgrR1dUV3Ev?=
+ =?utf-8?B?VmxXMkhKNmFmT2NYanpIcWlPVWVlMzlTYlQ0aTdMZWp3ZWpVbE53TlAzdnBx?=
+ =?utf-8?B?QitaVklyZ0dzR05sSWFTZzVxdVNlTjlCOFdzcEZBNHdUR1ZLUmtBZXdrVTh4?=
+ =?utf-8?B?ZS9oejR2K2h0ZFg1RWgzRmp3akRwNDU5T3JDQWlmd1A2eE9STHhsQXZCc3N4?=
+ =?utf-8?B?eEJ5czIwc1lNYmVmbDdJeEZBRjVuL3VENzA1NkxqdnRTZ25acmNVdDFGZ0Zo?=
+ =?utf-8?B?Q2lsbGFTYnVUalJKOHdRcDdwME5BMUlqbXk2akt1S053UVd3azBVWjRrNkJK?=
+ =?utf-8?B?NkFVc3JGdnlRRmlQYkdiNklvRWVrZXowU251OUxVSHVMTmpoOWF1S0FwMTgx?=
+ =?utf-8?B?cTlwNlZINmdybWg2UHRRODNHQ0dUeFVmQmFISUF4VWc1bWhjRDFWZ1A3cTRB?=
+ =?utf-8?B?TWdhcGh4S1hGQmVFaStJYXpzTjVBSjAraEU4SGk2ZXVlc3dxc201ZHpDdU1S?=
+ =?utf-8?B?NlppT2oweVJ2NnJ3enJodnNHeXVGSE45aTdPanJJdEVHTjlEcytyN0I4UnpM?=
+ =?utf-8?B?ZnNYbmszNVVDUGhtQzNqbUsxMnhKeTdtQXgwMlE5dmp2K3F6dzE0NXd5VytJ?=
+ =?utf-8?B?ZlVtRTBMbzRlRWo0cGpGNzZKYTE3R3pvbnV3N3RuLy9yRkI1dklqdzN5eW0w?=
+ =?utf-8?B?eFFkTk5CRnZyUnVTRGRacW9mcFBpcHJzSHNENmlKeGNaL2xZQmVsUUY3cDF6?=
+ =?utf-8?B?Mi83TVZjQ1Rja1ByV3hIQUlkWkludmp6ZmdPS3k5eGw5b0hTb2U1UWxMdFpo?=
+ =?utf-8?B?a2FpY3F3OTAreCtjcU8wSHkxTDFiUjVkUlVaUkF1WlVuOXN3YWMvVnJSa2ta?=
+ =?utf-8?B?bVgxK0FueWhNUENhOVVBUEhQc1l1STdER2lwbXU1RkJZV3h5TkZCTVNBVmRT?=
+ =?utf-8?B?NDd2VHlrY2VIb2pubU1XdVQxczBrK0RwU05CMDg1ckpQbVhHWkJEa3dVaVE0?=
+ =?utf-8?B?cldGb3RKV3VHZHAvT0VKUUZlVU9YOHVPNUpRYTY2dVBRaHpINExOdU50OXZQ?=
+ =?utf-8?B?VmRNeHhVSktWMExPbWVYMzFrOFN6V1RwSlgzQzFtS1Yza3htVTM4WmVoSWJo?=
+ =?utf-8?B?ZFlJOUVLRzRjZ1RWZGh4YnRMZWdvNlBsL25vK3cxc1E1UC9rZS9rbm8rd2ls?=
+ =?utf-8?B?VExLNGN5c1dFb0NUcHhra3lMYzhiL2RuK0llcldVd2RPcnBkWnV3NkN6bEZH?=
+ =?utf-8?B?cHZ6blJGZUQwcTdmbjVjRWR4K1VkY29Pb0ZBY2V5MUNTNFRHUWxKUGF4YUpM?=
+ =?utf-8?B?T0o0cFNYcnYxVXdEeUNGL3NEOHBhaDAzY3ovUlJpczk0MXdoSnBEK01tS0ZH?=
+ =?utf-8?B?V0o3VzlsRjNIT2ZERVpMQUoxNVdXeHhtUEtPSlJBT0xBMURYeFh1bnBoWkdL?=
+ =?utf-8?B?b3l6UDY4U2s2MEZOQlFlUHV1aXBHd011TTdlcDhTcnJGLzJlem1Tc005SEtM?=
+ =?utf-8?B?c0hsQXVuRHQ5blRMU052dVg1U25URHhRZkJWdm1MVHgvRHBWQU8vL1BzUUtP?=
+ =?utf-8?B?L296dXMyV2VwdGZIV2xUazNjekJaYURrbGFKdGhPYWRLelpGa09QbHBGMDY0?=
+ =?utf-8?B?dk1BZi9FR0hCckFNM0JSSktzakNqK0JKNTVCcHEzM1FnK0tOTUM5VzNWTFZq?=
+ =?utf-8?B?VE1lUmMwWnI4R05lQ3FhTjMwRStGc2ZUU0ZyNFZZeG5oMG9MZUdnWEViUDRr?=
+ =?utf-8?B?NlFqUG0rTnpIbWU5a0NoODZyK3hUbjJrWmdNYXdNdXprd2Fjc2k4NHVPaUtW?=
+ =?utf-8?Q?ZwMqSSOkkiD10VHi5D81qRs=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5cd06342-ea43-454e-a5bf-08da5821b17a
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2022 09:44:56.4566
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: scddqReLQ/Id1q9V52OAC3Zvs/1afIc+1JtpvGrcE51G86i4kQABdHtPxxRgE8U7FE+TZdAmd1OZ1cKfmxDDJ83nGcjqoYGL9c37Iq9Qo2k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR01MB5435
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/27/22 11:14, Pratyush Yadav wrote:
-> On 18/05/22 10:51AM, Cédric Le Goater wrote:
->> Hello,
->>
->> On 5/18/22 09:56, Pratyush Yadav wrote:
->>> On 18/05/22 09:19AM, Miquel Raynal wrote:
->>>> Hi Pratyush,
->>>>
->>>> p.yadav@ti.com wrote on Wed, 18 May 2022 11:37:05 +0530:
->>>>
->>>>> +Cedric
->>>>>
->>>>> On 17/05/22 04:02PM, Miquel Raynal wrote:
->>>>>> Hi Pratyush,
->>>>>>
->>>>>> p.yadav@ti.com wrote on Fri, 12 Mar 2021 00:42:13 +0530:
->>>>>>> Once the flash is initialized tell the controller it can run
->>>>>>> calibration procedures if needed. This can be useful when calibration is
->>>>>>> needed to run at higher clock speeds.
->>>>>>>
->>>>>>> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
->>>>>>> ---
->>>>>>>    drivers/mtd/spi-nor/core.c | 12 ++++++++++--
->>>>>>>    1 file changed, 10 insertions(+), 2 deletions(-)
->>>>>>>
->>>>>>> diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
->>>>>>> index 88888df009f0..e0cbcaf1be89 100644
->>>>>>> --- a/drivers/mtd/spi-nor/core.c
->>>>>>> +++ b/drivers/mtd/spi-nor/core.c
->>>>>>> @@ -3650,6 +3650,7 @@ static int spi_nor_probe(struct spi_mem *spimem)
->>>>>>>    	 * checking what's really supported using spi_mem_supports_op().
->>>>>>>    	 */
->>>>>>>    	const struct spi_nor_hwcaps hwcaps = { .mask = SNOR_HWCAPS_ALL };
->>>>>>> +	struct spi_mem_op op;
->>>>>>>    	char *flash_name;
->>>>>>>    	int ret;
->>>>>>> @@ -3709,8 +3710,15 @@ static int spi_nor_probe(struct spi_mem *spimem)
->>>>>>>    	if (ret)
->>>>>>>    		return ret;
->>>>>>> -	return mtd_device_register(&nor->mtd, data ? data->parts : NULL,
->>>>>>> -				   data ? data->nr_parts : 0);
->>>>>>> +	ret = mtd_device_register(&nor->mtd, data ? data->parts : NULL,
->>>>>>> +				  data ? data->nr_parts : 0);
->>>>>>> +	if (ret)
->>>>>>> +		return ret;
->>>>>>> +
->>>>>>> +	op = spi_nor_spimem_get_read_op(nor);
->>>>>>
->>>>>> Isn't this too specific? I really don't know much about spi-nors, but I
->>>>>> find odd to have this op being created here, why not moving this into
->>>>>> the _do_calibration() helper?
->>>>>
->>>>> Maybe the naming confused you but this is a function in the SPI NOR
->>>>> core, not in SPI MEM. SPI NOR supports both SPI MEM based controllers
->>>>> and "legacy" controllers, so the convention is to add the "spimem"
->>>>> prefix before SPI MEM specific functions. So I don't get the comment
->>>>> about it being too specific. It is too specific to what?
->>>>
->>>> Mmh right, it's fine then.
->>>>
->>>>>
->>>>> And how can spi_mem_do_calibration() know what op the flash uses to read
->>>>> data? SPI NOR or SPI NAND would know it, but not SPI MEM. That is why we
->>>>> pass in that information to spi_mem_do_calibration().
->>>>
->>>> But here the op is "spi-nor wide", I would have expected a
->>>> per-device op. But that is not a big deal, that is something that can
->>>> also be updated later if needed I guess.
+On 27/06/2022 16:35, Krzysztof Kozlowski wrote:
+> On 27/06/2022 11:32, Quan Nguyen wrote:
+>>>> +
+>>>> +	ltc2497_reg: ltc2497_regulator {
 >>>
->>> It is per-device. The op is generated using nor->read_opcode,
->>> nor->addr_width, nor->read_dummy, etc. So if you have 2 NOR flashes on
->>> your system with different opcodes, it would work for both.
+>>> No underscores in node name, no specific names (Devicetree spec requires
+>>> generic), so ltc2497 has to go. You could add some more specific
+>>> prefix/suffix to describe the function.
 >>>
->>>>
->>>> One last question, is there something that mtd_device_register() does
->>>> that is really needed for the calibration to work? Otherwise I would
->>>> rather prefer to have that calibration happening before the user gets
->>>> access to the device.
->>
->> Which would mean calling it right after :
->>
->> 	ret = spi_nor_create_read_dirmap(nor);
->> 	if (ret)
->> 		return ret;
->>
->> 	ret = spi_nor_create_write_dirmap(nor);
->> 	if (ret)
->> 		return ret;
->>
->>> The calibration works by reading a known pattern that is already written
->>> to the flash again and again and seeing what delays work and what don't.
->>> For that to happen, the controller driver needs to know where the
->>> pattern is stored.
->>
->> Why don't you simply choose some random place, first 16KB for instance,
->> and check that the data is random enough ? If not, declare calibration
->> not possible and choose a default safe setting which is anyhow a
->> requirement for calibration. Retry at reboot as data might have changed.
+>> This is to monitor peripheral voltage so it would be updated to:
 > 
-> I did not come up with the pattern myself. But from what I can
-> understand, the pattern is not random at all, but is carefully chosen to
-> target certain ways a read can fail on the controller. So a random piece
-> of data won't work as well as this carefully designed pattern.
-
-True. I don't exactly remember how your proposal worked from the
-driver side but I imagine having a specific DT property to locate
-that pattern in the setup handler and to use it later on is not
-too complex.
-
->>> This series does that by looking at the MTD
->>> partitions. For that to happen, we need to create those partitions
->>> first, which happens after mtd_device_register().
->>
->> hmm, that might work for some boards. This is not at all the case for
->> the BMC boards. Vendors can put any kind of flash model and/or layout
->> and the driver needs to be more generic.
+> But it is a regulator, not a voltage monitor, so the node name could be:
+> regulator-0
+> regulator-voltage-mon
+> voltage-mon-regulator
 > 
-> Yes, vendors can choose any layout, but one partition on that layout
-> would be your calibration pattern. I think you can use a different
-> compatible for that partition. 
+Yes, I think I would pick the voltage-mon-regulator:
 
-OK. and that it would become more generic then.
-
-> I have not thought this through yet though.
-
-If a partition is required, that's a dependency on mtdpart.
-
-It could be done from spi_nor_probe() after mtd_device_register() with
-some spimem handler using the 'struct mtd_partition' for the {size,offset}
-parameters.
+            voltage_mon_reg: voltage-mon-monitor {
 
 >>
->>> But I am planning to use device tree to get that information now so this
->>> should no longer be needed and we can do calibration before registering
->>> the device with MTD.
+>>            voltage_monitor: voltage-monitor {
 >>
->> Perfect, we can move the calibration hook in spi_nor_create_read_dirmap()
->> then, or in devm_spi_mem_dirmap_create(), which would make more sense IMHO.
+>>>> +		compatible = "regulator-fixed";
+>>>> +		regulator-name = "ltc2497_reg";
+>>>> +		regulator-min-microvolt = <3300000>;
+>>>> +		regulator-max-microvolt = <3300000>;
+>>>> +		regulator-always-on;
+>>>> +	};
+>>>> +
 > 
-> Sorry, I still don't get why you want to tie dirmap and calibration
-> together. Just let them be independent and let flash drivers take care
-> of when to call what. SPI MEM should not care.
+> 
+Thanks a lot for the quick suggestion.
+- Quan
 
-I know you would prefer a specific handler and that can still be done.
-
-Thanks,
-
-C.
