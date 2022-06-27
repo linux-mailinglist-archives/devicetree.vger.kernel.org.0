@@ -2,125 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EFB955CA87
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C08FC55CD79
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:03:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233933AbiF0JR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 05:17:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39838 "EHLO
+        id S232846AbiF0JXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 05:23:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233936AbiF0JRz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:17:55 -0400
-Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 175E662F4;
-        Mon, 27 Jun 2022 02:17:53 -0700 (PDT)
-Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.56])
-        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4LWhsP34JVz1L8j0;
-        Mon, 27 Jun 2022 17:15:37 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Mon, 27 Jun 2022 17:17:50 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Mon, 27 Jun 2022 17:17:49 +0800
-Subject: Re: [PATCH 5/5] arm64: kdump: Don't defer the reservation of crash
- high memory
-To:     Baoquan He <bhe@redhat.com>,
-        Catalin Marinas <catalin.marinas@arm.com>
-CC:     Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        "Eric Biederman" <ebiederm@xmission.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Frank Rowand" <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>, <kexec@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Jonathan Corbet <corbet@lwn.net>, <linux-doc@vger.kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>,
-        "Dave Kleikamp" <dave.kleikamp@oracle.com>,
-        liushixin <liushixin2@huawei.com>
-References: <20220613080932.663-1-thunder.leizhen@huawei.com>
- <20220613080932.663-6-thunder.leizhen@huawei.com>
- <YrFYHYgX3mC//t2l@MiWiFi-R3L-srv>
- <3f66323d-f371-b931-65fb-edfae0f01c88@huawei.com> <YrIIJkhKWSuAqkCx@arm.com>
- <YrLUREAoBMSZo7RR@MiWiFi-R3L-srv> <YrRzvO5F0dumsbAU@arm.com>
- <Yrkbak66vYT55H4x@MiWiFi-R3L-srv>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <e3318551-4134-245a-c060-86ab81eb3e68@huawei.com>
-Date:   Mon, 27 Jun 2022 17:17:49 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        with ESMTP id S232824AbiF0JXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:23:47 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A10E2DE4;
+        Mon, 27 Jun 2022 02:23:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1656321826; x=1687857826;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=vtuj/GeBkHA5KwrozFoymb6ynohmJjqPDoiYReRC71M=;
+  b=Ont6+M/g9gEOW3MInanIlfh2bgHK14dowpLEaHepq3k85OOB9Nb7c7h7
+   HuNv+7bowbPtPDZWXMTOyU8uBMEYFbnFvgR6QIb7pJTd28kMjH8qkZftv
+   xeXMNUkGglVpIyUQD6CRMdLkh2Ex9gVwZeMG7Z92XsgS2zWWRNAcs2kXz
+   ySuKAPszvlgBUP+XMr69Fymu9p1JzNwcVKXboRWIC8WywmXSpGwLoGriv
+   RoVDeRO6chVOxmhMJri/cJBqwOaIAXRNSbfKy716yf9W8VvS+JLNMwFyO
+   ctSyw9yJhHFu8RJvDXVr25xNyWvzu8YTcVPf0xjIbunhWyKEhf71MTY4b
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10390"; a="345407303"
+X-IronPort-AV: E=Sophos;i="5.92,225,1650956400"; 
+   d="scan'208";a="345407303"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2022 02:23:45 -0700
+X-IronPort-AV: E=Sophos;i="5.92,225,1650956400"; 
+   d="scan'208";a="646353034"
+Received: from gretavix-mobl3.amr.corp.intel.com ([10.249.43.78])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2022 02:23:42 -0700
+Date:   Mon, 27 Jun 2022 12:23:42 +0300 (EEST)
+From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>,
+        Lukas Wunner <lukas@wunner.de>
+cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vz@mleia.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-serial <linux-serial@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Subject: Re: [PATCH 5/8] dt_bindings: rs485: Correct delay values
+In-Reply-To: <c8919968-74e8-fc9d-15b4-daa28b48d8d8@linux.intel.com>
+Message-ID: <9f3accf9-319-f0b-9035-9cff3c6cbf@linux.intel.com>
+References: <20220622154659.8710-1-LinoSanfilippo@gmx.de> <20220622154659.8710-6-LinoSanfilippo@gmx.de> <YrSU4eL9hgISg3Y1@smile.fi.intel.com> <6c50fdca-aac4-aaf5-ad34-18a60fcc0aa0@gmx.de> <c8919968-74e8-fc9d-15b4-daa28b48d8d8@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <Yrkbak66vYT55H4x@MiWiFi-R3L-srv>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/mixed; boundary="8323329-1944914680-1656321828=:1622"
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
+--8323329-1944914680-1656321828=:1622
+Content-Type: text/plain; charset=ISO-8859-15
+Content-Transfer-Encoding: 8BIT
 
-On 2022/6/27 10:52, Baoquan He wrote:
-> On 06/23/22 at 03:07pm, Catalin Marinas wrote:
->> On Wed, Jun 22, 2022 at 04:35:16PM +0800, Baoquan He wrote:
->>> On 06/21/22 at 07:04pm, Catalin Marinas wrote:
->>>> The problem with splitting is that you can end up with two entries in
->>>> the TLB for the same VA->PA mapping (e.g. one for a 4KB page and another
->>>> for a 2MB block). In the lucky case, the CPU will trigger a TLB conflict
->>>> abort (but can be worse like loss of coherency).
->>>
->>> Thanks for this explanation. Is this a drawback of arm64 design? X86
->>> code do the same thing w/o issue, is there way to overcome this on
->>> arm64 from hardware or software side?
->>
->> It is a drawback of the arm64 implementations. Having multiple TLB
->> entries for the same VA would need additional logic in hardware to
->> detect, so the microarchitects have pushed back. In ARMv8.4, some
->> balanced was reached with FEAT_BBM so that the only visible side-effect
->> is a potential TLB conflict abort that could be resolved by software.
-> 
-> I see, thx.
-> 
->>
->>> I ever got a arm64 server with huge memory, w or w/o crashkernel setting 
->>> have different bootup time. And the more often TLB miss and flush will
->>> cause performance cost. It is really a pity if we have very powerful
->>> arm64 cpu and system capacity, but bottlenecked by this drawback.
->>
->> Is it only the boot time affected or the runtime performance as well?
-> 
-> Sorry for late reply. What I observerd is the boot time serious latecy
-> with huge memory. Since the timestamp is not available at that time,
-> we can't tell the number. I didn't notice the runtime performance.
+On Sat, 25 Jun 2022, Ilpo Järvinen wrote:
 
-There's some data here, and I see you're not on the cc list.
-
-https://lore.kernel.org/linux-mm/1656241815-28494-1-git-send-email-guanghuifeng@linux.alibaba.com/T/
-
+> On Thu, 23 Jun 2022, Lino Sanfilippo wrote:
 > 
-> .
+> > On 23.06.22 at 18:29, Andy Shevchenko wrote:
+> > > On Wed, Jun 22, 2022 at 05:46:56PM +0200, Lino Sanfilippo wrote:
+> > >> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
+> > >>
+> > >> The maximum allowed delay for RTS before and RTS after send is 100 ms.
+> > >> Adjust the documentation accordingly.
+> > >
+> > >
+> > > Is it only documentation issue? If the code allows this to be set higher
+> > > than 100, we may not change the documentation since this an ABI (from
+> > > firmware <--> kernel perspective) we need to support old variants.
+> > >
+> > 
+> > Well currently the documentation claims that a maximum of 1000 msecs is allowed but
+> > nothing actually checks the values read from device tree/ACPI and so it is possible
+> > to set much higher values (note that the UART drivers dont check the delays read from
+> > DT/ACPI either, the only exception I found is max310x which clamps it to 15 ms).
+> > 
+> > We already have a maximum of 100 ms defined for RTS delays set via TIOCSRS485. To be
+> > consistent with TIOCSRS485 the same limit is used for DT/ACPI values in this patch.
+> > 
+> > I am aware that this changes the firmware/kernel ABI. But we had a similar situation when
+> > the sanity checks for TIOCSRS485 were introduced
+> > (see https://lore.kernel.org/all/20220410104642.32195-2-LinoSanfilippo@gmx.de/)
+> > since before we did not have those limits for all drivers (some drivers clamped the
+> > values itself but many did not care).
+> > Furthermore 100 ms is already a very high value for RTS delays (which are usually rather
+> > in usecs range). So IMHO the risk is very low to break anything when values are clamped
+> > that are higher than that.
 > 
+> Did you see this development direction (from Lukas):
+> 
+> https://lore.kernel.org/linux-serial/20220309125908.GA9283@wunner.de/
+> 
+> ?
+> 
+> Effectively, he wants to making a compat threshold at 1msec and beyond 
+> that the input value would be interpreted as nsecs.
+
+I was thinking this more the other day and came up with the idea of adding
+SER_RS485_DELAY_RTS_NSEC and SER_RS485_DELAY_RTS_MSEC flags instead of
+magic threshold and deprecate specifying those delays w/o either flag. 
+That way we'd not need to change behavior and we provide an easy way to 
+keep the delay in msec if somebody really wants (just for the sake of 
+getting rid of the warning).
 
 -- 
-Regards,
-  Zhen Lei
+ i.
+
+--8323329-1944914680-1656321828=:1622--
