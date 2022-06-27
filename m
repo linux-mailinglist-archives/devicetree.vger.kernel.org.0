@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C532E55E17F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 062FC55DAD6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234960AbiF0R1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 13:27:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42052 "EHLO
+        id S239575AbiF0R1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 13:27:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233236AbiF0R1O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 13:27:14 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E50A12AC6
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 10:27:13 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id g16-20020a17090a7d1000b001ea9f820449so13144089pjl.5
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 10:27:13 -0700 (PDT)
+        with ESMTP id S236222AbiF0R1T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 13:27:19 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C13A12AC6
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 10:27:19 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id 23so9709746pgc.8
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 10:27:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=lX+9x8o1ATQGRrnoWCnooIpNqC+XyTe4uOaunPrYXp0=;
-        b=e172Kbn7SNbIgFmPO/9snruChq2Ya87xeixkxHen5ZHKQKP/VblHUeh9E5emRNc8aF
-         EkrNDNyTvKYxDDMjcBAhIqMXkk95/nkdwZ7qsxXVEK/iZ4iElY+bwcZIYL1Ugm5HD/BX
-         EshiR9cPf++Y8jVlEk7PW6RCPkBZzHqnk8AxfZdOeurwJTRJGU7z8j+fiztWjuYUl9Ne
-         5krAT3SA487alcKmHARQgUguqhzoOjd+tBrGR6LwukeDJFt704KYq4Bf5IiM4FLGn6AW
-         RG4DAzw9u6TKp0Hgifqy024ZpHl8CVes5DP6qfi0mlADMMGcApKotrCi8yb/UF/LDJis
-         enXA==
+        bh=YZFByktlDHUegK4Y1EibTvitO2HLqQyl6p8Zr3+NPfE=;
+        b=Ti+gd4qdSMo0g5CDhmbylNdjPgpY4zL3sqv/rRg3RSNRQstbxcW6nyq6SGZSHBW64s
+         MXNTAnSvkrQ+iAMERJpFp1FptnQ2wTi4+y0SL9tjGSWxFT1qB96355Vi9QMYRlheL9IG
+         ASRME6d9oXVBuxKRNdt95t2oAydxZNtvnNSuf0+bMSOhRv4TWDGy/P+XSgfAcnRDfh8I
+         ZE/An3PMl3IDsSlhwl8JDbZd/l5jFeotp6M2mVBZ5bSI9LY6JGyVVSlHFA7ngc3UB0tD
+         vTrOU5Z0lBt2yt8YpT17dLKXKmoCNY/VJ4HVswD3KANpjPFLFf1cVZ2GcIUi7m9kjgWI
+         qWpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=lX+9x8o1ATQGRrnoWCnooIpNqC+XyTe4uOaunPrYXp0=;
-        b=G/hbY6nT2k6DcUKAATcGG2+QxRFiCWbR9iWjM+Jj+eIm5DTmMdFM9R2dgGuMvsRt9F
-         cicay3/OIJcDflsNgaseffaq3pHRcZUII4lwIi+BrfTfU3accJ2bp+4D+6Ti5e16x5iw
-         AUkV9H8sSnhiHilQeKCnUhne9913X4LJsey+dPeLj0cXnPiGDA47KBgEVOfhJu0vqffy
-         e/NWZ+MPD2Qo9yRpX9h0e4N8G5R9lyHXoFUkOd+MCmdcI/U8mKqDIg85fSJ+hNR/4X4P
-         rar4Aa++gt9Z7KbJMelupabS2dFYp50zUM8Wa/Ckh1N2Omop8zwS2hiHxXzCcx04e8Qs
-         vF/w==
-X-Gm-Message-State: AJIora8WTX3aei5MnsTbQ9wy8Ujb8UrtJs3rytCHMz9ReL5J293t9SuZ
-        YbwbKcmdInAPBZbjFy+oDCc=
-X-Google-Smtp-Source: AGRyM1tx9snSKMJwEsWrtodvXjOpMjHtIkJKvGhm8BWWtS8bcdX3LffgLr+lZfkRL4x3a9q18UrzsA==
-X-Received: by 2002:a17:902:ee55:b0:16a:5b2:a2b0 with SMTP id 21-20020a170902ee5500b0016a05b2a2b0mr513483plo.133.1656350832953;
-        Mon, 27 Jun 2022 10:27:12 -0700 (PDT)
+        bh=YZFByktlDHUegK4Y1EibTvitO2HLqQyl6p8Zr3+NPfE=;
+        b=Woxf9OEL3ZRI1fiPz2Gn6me9wD+v2ptcrrRS3BfeI3L6uHhD2DDX04Lhk3jOEC2KKB
+         SBH3YU4Q4RprYo7/vH1c0BT/kf1hGWrbRkBZfFpE4vlmNH4nANQbBs7DepBCr0dUWp1P
+         xN5EDzB7o+ptXYEHHnK1a/Qaxe7jWPSibHKk0GatDUxOh00Sq/vogtrXUmu8sUqqXNmL
+         9qgmY7C7Gcl57ePiIWfKYqa5ruhSdwemuAfXDj8IPh1ABxsMrq1MDbYawasXmzX2HCkh
+         rtAc5GSw27p4gIGdCLi6kUSsCWRl+GuYPW/7ULu7zpd6z38BMZBrZQmrtGLNizmuIXEW
+         JcPw==
+X-Gm-Message-State: AJIora+PcNXl9wZ8uyhbR+j79MIbGrEiJMF1YkJSU8fx9Bs2CxrUmTPm
+        8L5otRlGl2OMXUTYOOk9iH8=
+X-Google-Smtp-Source: AGRyM1vUHKfaC8PMZ/nu7VSX6xQTQsYbREkC9lAB5lQotKjJgrFEKJOT7RAU7IcLVyUjhBTJIAIv8g==
+X-Received: by 2002:a05:6a00:2450:b0:4f7:bf07:c063 with SMTP id d16-20020a056a00245000b004f7bf07c063mr16023064pfj.51.1656350838481;
+        Mon, 27 Jun 2022 10:27:18 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id lj4-20020a17090b344400b001ece32cbec9sm9829479pjb.24.2022.06.27.10.27.11
+        by smtp.gmail.com with ESMTPSA id y41-20020a056a001ca900b00518d06efbc8sm7723143pfw.98.2022.06.27.10.27.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 10:27:12 -0700 (PDT)
+        Mon, 27 Jun 2022 10:27:18 -0700 (PDT)
 From:   Florian Fainelli <f.fainelli@gmail.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
         Stefan Wahren <stefan.wahren@i2se.com>,
@@ -57,15 +57,13 @@ Cc:     Peter Robinson <pbrobinson@gmail.com>,
         Melissa Wen <melissa.srw@gmail.com>,
         Phil Elwell <phil@raspberrypi.com>,
         Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V4 02/11] dt-bindings: soc: bcm: bcm2835-pm: Introduce reg-names
-Date:   Mon, 27 Jun 2022 10:27:10 -0700
-Message-Id: <20220627172710.2172720-1-f.fainelli@gmail.com>
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH V4 03/11] dt-bindings: soc: bcm: bcm2835-pm: Add support for bcm2711
+Date:   Mon, 27 Jun 2022 10:27:16 -0700
+Message-Id: <20220627172716.2172828-1-f.fainelli@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220625113619.15944-3-stefan.wahren@i2se.com>
-References: <20220625113619.15944-1-stefan.wahren@i2se.com> <20220625113619.15944-3-stefan.wahren@i2se.com>
+In-Reply-To: <20220625113619.15944-4-stefan.wahren@i2se.com>
+References: <20220625113619.15944-1-stefan.wahren@i2se.com> <20220625113619.15944-4-stefan.wahren@i2se.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,16 +76,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 25 Jun 2022 13:36:10 +0200, Stefan Wahren <stefan.wahren@i2se.com> wrote:
-> From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+On Sat, 25 Jun 2022 13:36:11 +0200, Stefan Wahren <stefan.wahren@i2se.com> wrote:
+> Add a new compatible string for BCM2711 and the option to provide a
+> third reg property for the board's new RPiVid ASB.
 > 
-> Anticipating the introduction of BCM2711, of which we'll need to support
-> its new RPiVid ASB, introduce reg-names into bcm2835-pm's binding. This
-> will help to have a consistent mapping between resources and their
-> meaning.
+> In BCM2711 the new RPiVid ASB took over V3D, which is our only consumer
+> of this driver so far. The old ASB is still be present with ISP and H264
+> bits but no V3D.
 > 
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 > Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 > Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
 > ---
