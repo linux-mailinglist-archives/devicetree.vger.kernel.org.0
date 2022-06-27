@@ -2,229 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7155F55D9EF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:22:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95AF955C6FD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:53:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230455AbiF0GqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 02:46:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38614 "EHLO
+        id S232476AbiF0Gtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 02:49:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232218AbiF0GqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 02:46:09 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 838075598
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 23:46:08 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id fi2so16967062ejb.9
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 23:46:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ADBX8pzB7I4NVaAI/SWhyMsSxZmAZE/UmxR90sSNn3w=;
-        b=PuvvswSYGXHqs6gwAEwQpzWBAPQ0IpC9CnKE5r81hf2Si6B5l5738Css0MpGyYsoCx
-         hVygkdwfayTMifPN5OMvV40xwI4c5U/8apZQh2diqpRWr+2JHmenjtU2P2MJOEvLBeAS
-         hPtZZB44xXiRi1K6OC8FOgn8tib49180cgozu//0nBp6q95byr+poBjwAkPht8kk4TQv
-         RN+ddVIdoLUxNcgt8dImlfoJhB5RgpIpQKSP+Lp22zzvjV6ouIK1dQD2O8cxy1N8v/Yh
-         bbWsQONEmY63t9fX/VvPRqaouz5zHYKDbs5L9kHLA0OWS80v2IdsnymDUAqZAHXDAiCb
-         dXQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ADBX8pzB7I4NVaAI/SWhyMsSxZmAZE/UmxR90sSNn3w=;
-        b=7Ze+zPdBtjhuKEHF8ki5x87B39gVtsi5mVHS7ByIbOCwtnbtIK9pI0/i7p3Rjs2tJ1
-         dtE2i4cbfzyluVVNVnxxI6gEKBMoDMFaw0dIAmFedCq8HvqWMiH5ztBJV+MEJCTR42lI
-         /Rd5z7kuH5X2F+DfYEWgrNFT3gjt0Kxm6PcMCV/WdrH59xXCq8VFlyHWyK1TeGEG/q5j
-         KM6vZkgWQFOe6Zds2kFifjcBDPo++yvROHCQmfPx0LB4CCqP0o7iH1lt5I2NulHggPrE
-         LiHdiQutV2MMbmXHQW/KJajAxEBWPQN3EqRJoQUMDMtOzXVKmmQWMaFlD7NrBZHzZIQT
-         W+KQ==
-X-Gm-Message-State: AJIora8ncLXrug/X+XBUR0nGIxK/IbCn47ikd+I7UmwknzD9Jf+BG/AV
-        sjUXWif2G/bupf/PpTAExNDdGw==
-X-Google-Smtp-Source: AGRyM1vTDdRRHIDDxqaXUnByiIT8mDOmWurINlYJm6kz/6G9IyK97xle0oFuXHZrrn/3ao5xz2XK2w==
-X-Received: by 2002:a17:907:7678:b0:726:9fca:8106 with SMTP id kk24-20020a170907767800b007269fca8106mr4586490ejc.640.1656312367106;
-        Sun, 26 Jun 2022 23:46:07 -0700 (PDT)
-Received: from [192.168.0.246] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id jw14-20020a170906e94e00b007263481a43fsm4305504ejb.81.2022.06.26.23.46.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Jun 2022 23:46:06 -0700 (PDT)
-Message-ID: <97bb42c0-725f-3611-ff3f-0c7344aa0a00@linaro.org>
-Date:   Mon, 27 Jun 2022 08:46:05 +0200
+        with ESMTP id S232431AbiF0Gtm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 02:49:42 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EC2AF63
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 23:49:38 -0700 (PDT)
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220627064932epoutp033b825837ae7fab9486a5232eae531f93~8Z4Js5rAF1809318093epoutp03d
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 06:49:32 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220627064932epoutp033b825837ae7fab9486a5232eae531f93~8Z4Js5rAF1809318093epoutp03d
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1656312572;
+        bh=B/R4yfBkH5CP2rZdxW6UR9QRkk+o2aIAV9MsziGKGg8=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=XwAIfCLGmSlWIJfCdHPOluz+YWRSJlMdGI/DXOSSAm6r50ptR6tzKuYFDjKCeWoqI
+         x/SPytKkMK8xBdlLRazthKPvI/N+9UgpR91DBot+rmZ4nd63H0ZIZQhWg/NjFx6UUR
+         yo5TjdFjZtpx790RmHBwXm9iVu5HhfMOgdz14zDM=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+        20220627064932epcas2p3a76bdc88ffcf831db99bd02f08367846~8Z4JJU9Am2829428294epcas2p3E;
+        Mon, 27 Jun 2022 06:49:32 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.97]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4LWdcq6f7tz4x9Pw; Mon, 27 Jun
+        2022 06:49:31 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        4E.BB.09642.BF259B26; Mon, 27 Jun 2022 15:49:31 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220627064931epcas2p1944df2c6c54339de17e32c7116837f52~8Z4IaWAsN1429114291epcas2p1g;
+        Mon, 27 Jun 2022 06:49:31 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220627064931epsmtrp1079dfbc81ef4a57225adc6dc981cab2d~8Z4IZV1QD2249922499epsmtrp1U;
+        Mon, 27 Jun 2022 06:49:31 +0000 (GMT)
+X-AuditID: b6c32a47-5f7ff700000025aa-63-62b952fbb723
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        9C.89.08905.BF259B26; Mon, 27 Jun 2022 15:49:31 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220627064931epsmtip2774248f36d5e497f19797450d3e64b35~8Z4IJ4nGz3088130881epsmtip2V;
+        Mon, 27 Jun 2022 06:49:31 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH 0/5] spi support for Exynos Auto v9 SoC
+Date:   Mon, 27 Jun 2022 15:47:02 +0900
+Message-Id: <20220627064707.138883-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 1/5] dt-binding: clock: Document rockchip,rk3588-cru
- bindings
-Content-Language: en-US
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Elaine Zhang <zhangqing@rock-chips.com>, kernel@collabora.com
-References: <20220623160329.239501-1-sebastian.reichel@collabora.com>
- <20220623160329.239501-2-sebastian.reichel@collabora.com>
- <0841741a-22f6-40f6-c745-6065dfdbcb1d@linaro.org> <8081469.T7Z3S40VBb@diego>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8081469.T7Z3S40VBb@diego>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKJsWRmVeSWpSXmKPExsWy7bCmqe7voJ1JBn3vTS0ezNvGZrH4x3Mm
+        i6kPn7BZXN6vbTH/yDlWi74XD5kt9r7eym6x6fE1VosZ5/cxWTR+vMlu0br3CLsDt8f1JZ+Y
+        PTat6mTzuHNtD5vH5iX1Hn1bVjF6fN4kF8AWlW2TkZqYklqkkJqXnJ+SmZduq+QdHO8cb2pm
+        YKhraGlhrqSQl5ibaqvk4hOg65aZA3SdkkJZYk4pUCggsbhYSd/Opii/tCRVISO/uMRWKbUg
+        JafAvECvODG3uDQvXS8vtcTK0MDAyBSoMCE74968m2wF2zgrHp7maGA8xd7FyMkhIWAi8WDy
+        UkYQW0hgB6PEzp8+XYxcQPYnRonji9eyQTjfGCU6/89mg+no+jqRHSKxFyhxpJsJov0jo8S2
+        kw4gNpuArsSW568YQYpEBG4ySkw/28cE4jAL3GCU2DtjPdhCYQFziVP3roKNZRFQlWiZ8J8V
+        xOYVsJdY+Pc4M8Q6eYkN83uZIeKCEidnPmEBsZmB4s1bZzODDJUQ+Mgu0XBjA1SDi8TCo7+h
+        bhWWeHV8C9SnUhIv+9ug7GKJpbM+MUE0NzBKXN72C6rBWGLWs3ag6ziANmhKrN+lD2JKCChL
+        HLkFtZdPouPwX3aIMK9ER5sQRKO6xIHt01kgbFmJ7jmfWSFKPCROHaqFhE+sRFf3D/YJjPKz
+        kDwzC8kzsxDWLmBkXsUollpQnJueWmxUYAyP0+T83E2M4PSp5b6DccbbD3qHGJk4GA8xSnAw
+        K4nwvr6+NUmINyWxsiq1KD++qDQntfgQoykweCcyS4km5wMTeF5JvKGJpYGJmZmhuZGpgbmS
+        OK9XyoZEIYH0xJLU7NTUgtQimD4mDk6pBibubw42hq8+fw5ee/xe4+zpT0ynJ2ifPvX06bXK
+        5ed9V+h3pXa5bfy23DpPbNEsxSeRcakiRvPDYl/tqC2ccMXD+G/zt6W3HjoUZr17YnT7EsNd
+        efGzm///7t25VYRxUVHTl+TVfAXmRv6Hyma/N9qz3rFUoFdPdbdAbyhbxfW/XStfXeotvaTJ
+        oz6ba6avoHDXousLw5IK/vpsVdnqcbP19TzGyhzGr5q1XCkxTtnmDvwqEvmp7/4xS+899y1e
+        6bq9s+ipb8tUq+/8fzHRVWJJuzY/0ymPgPqAXt2F7JGHVE/PdZ/18GTdzIxJiyYLR7Z3J+0+
+        lPXswAq7VwFuhz9ql2VUsJquXXN73bKIzDAlluKMREMt5qLiRAAotbk4KAQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrOLMWRmVeSWpSXmKPExsWy7bCSvO7voJ1JBh/eiFo8mLeNzWLxj+dM
+        FlMfPmGzuLxf22L+kXOsFn0vHjJb7H29ld1i0+NrrBYzzu9jsmj8eJPdonXvEXYHbo/rSz4x
+        e2xa1cnmcefaHjaPzUvqPfq2rGL0+LxJLoAtissmJTUnsyy1SN8ugSvj3rybbAXbOCsenuZo
+        YDzF3sXIySEhYCLR9XUikM3FISSwm1FibeNFVoiErMSzdzugioQl7rccYYUoes8o0T/1JxNI
+        gk1AV2LL81eMIAkRgduMEn8bt7GBOMwCdxglHi3fA1YlLGAucereVTYQm0VAVaJlwn+wFbwC
+        9hIL/x5nhlghL7Fhfi8zRFxQ4uTMJywgNjNQvHnrbOYJjHyzkKRmIUktYGRaxSiZWlCcm55b
+        bFhgmJdarlecmFtcmpeul5yfu4kRHNZamjsYt6/6oHeIkYmD8RCjBAezkgjv6+tbk4R4UxIr
+        q1KL8uOLSnNSiw8xSnOwKInzXug6GS8kkJ5YkpqdmlqQWgSTZeLglGpgkmqf5svnp/7seP0i
+        k2NnrUtZKyxW5ed983Q+eTGc74oZ0wN1LvFTuhlSXEe3xjxkc3/67ubZBbs3f3G4d2Lth9uG
+        2zo4Foc4rz0V/8Wpfofhg/szj/Su10zJULzbp+bndcLQu9LomUWXs9S/97evSEUEBl7Yu1cs
+        bYkxk7rotIfdGUqpjyQZnWZX6jkfne70yTV9QUfq4zab83OUPKqnz6s/lej/z2Hz5BYPqVOv
+        V1daaR1x72wNCXAVqv9/2ofnVGdz1l+222JeF3uPaFrPZXxct+OozgmWR5qfG09XJeTmR17q
+        6JnwOnNfYrh19r1YDQENh5cLQ2R94rXVlTiTSzllrzrkqF0Pa9p1TECJpTgj0VCLuag4EQAp
+        6mHv2gIAAA==
+X-CMS-MailID: 20220627064931epcas2p1944df2c6c54339de17e32c7116837f52
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220627064931epcas2p1944df2c6c54339de17e32c7116837f52
+References: <CGME20220627064931epcas2p1944df2c6c54339de17e32c7116837f52@epcas2p1.samsung.com>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2022 08:14, Heiko Stübner wrote:
-> Hi Krzysztof,
-> 
-> Am Sonntag, 26. Juni 2022, 22:27:41 CEST schrieb Krzysztof Kozlowski:
->>> +#define PLL_V0PLL			4
->>> +#define PLL_AUPLL			5
->>> +#define PLL_CPLL			6
->>> +#define PLL_GPLL			7
->>> +#define PLL_NPLL			8
->>> +#define PLL_PPLL			9
->>> +#define ARMCLK_L			10
->>> +#define ARMCLK_B01			11
->>> +#define ARMCLK_B23			12
->>> +
->>> +/* cru clocks */
->>> +#define PCLK_BIGCORE0_ROOT		20
->>
->> These are abstract IDs, not register offsets, so no holes, incremented
->> by one.
-> 
-> I do believe Rockchip nowadays creates these automatically from soc design-
-> documents. I've looked up the thread in [0] as this seems to have started
-> with the rk3568.
-> 
-> So these are in fact not created as abstract IDs, but are part of the SoCs
-> manual.
-> 
-> [0] https://lore.kernel.org/all/b663994d-853b-4474-bd77-a444317bfffb@rock-chips.com/
+Add to support Exynos Auto v9 SoC's spi. By supporting USI(Universal
+Serial Interface) mode, the SoC can support up to 12 spi ports. Thus, we
+need to increase MAX_SPI_PORTS from 6 to 12. The spi of the SoC can
+support loopback mode unlike previous exynos SoCs. To separate the
+feature, we need to add .has_loopback to the s3c64xx_spi_port_config.
+Furthermore, it uses 4 as the default internal clock divider. We also
+need to clk_div field of the structure. If the value is specified, the
+value will be used. Otherwise, "2" will be the default value of the
+divider.
+Device tree definitions of exynosautov9-spi will be added in separated
+patchset to include usi(i2c/uart/spi) nodes all together.
 
-Nothing stops Rockchip to change the tools to generate incremental IDs
-without holes, right?
+Chanho Park (5):
+  spi: spi-s3c64xx: increase MAX_SPI_PORTS to 12
+  spi: s3c64xx: support loopback mode
+  spi: s3c64xx: support custom value of internal clock divider
+  dt-bindings: samsung,spi: define exynosautov9 compatible
+  spi: s3c64xx: add spi port configuration for Exynos Auto v9 SoC
 
-> 
-> 
->>> +#define PCLK_BIGCORE0_PVTM		21
->>> +#define PCLK_BIGCORE1_ROOT		22
->>> +#define PCLK_BIGCORE1_PVTM		23
-> 
-> [...]
-> 
->>> +
->>> +#define CLK_NR_CLKS			(HCLK_SDIO_PRE + 1)
->>> +
->>> +/********Name=SOFTRST_CON01,Offset=0xA04********/
->>> +#define SRST_A_TOP_BIU			19
->>
->> What are all these? Bindings should not store register values or offsets.
->>
->> Also, resets go to separate header.
-> 
-> I think the comments are misleading, these are not register offsets.
-> 
-> Which in turn is a set of registers SOFTRST_CON0, etc containing the
-> bits which to toggle to soft-reset individual blocks of the SoC.
+ .../devicetree/bindings/spi/samsung,spi.yaml  |  5 +-
+ drivers/spi/spi-s3c64xx.c                     | 49 +++++++++++++++----
+ 2 files changed, 44 insertions(+), 10 deletions(-)
 
-So these are IDs used by the driver, not hardware? Then they can be as
-IDs as well, don't they?
+-- 
+2.36.1
 
-> The CRU (clock-and-reset-unit) always also contains the softreset block,
-> so they have always been part of the cru dt binding as well.
-
-Separate header under reset would still be part of the CRU DT binding -
-I did not propose change that. However why storing reset IDs in a clock
-subsystem binding header, instead of reset subsystem?
-
-> 
-> 
->>> +#define SRST_P_TOP_BIU			20
->>> +#define SRST_P_CSIPHY0			22
->>> +#define SRST_CSIPHY0			23
->>> +#define SRST_P_CSIPHY1			24
->>> +#define SRST_CSIPHY1			25
->>> +#define SRST_A_TOP_M500_BIU		31
->>
->> No holes, but abstract IDs incremented from 0 or 1.
-> 
-> The IDs are not abstract but instead do describe the location of
-> the reset bit inside the soft-reset register block.
-> 
-> For reference see drivers/clk/rockchip/softrst.c and its
-> 
-> 	int bank = id / softrst->num_per_reg;
-> 	int offset = id % softrst->num_per_reg;
-
-So these are register offsets, as I mentioned before. Bindings are not
-for this, this is not the purpose of binding headers. You do not store
-as binding headers GPIO numbers, IRQ numbers, block unit addresses,
-right? There is only one case such offsets make sense - firmware also
-uses them and you cannot change it.
-
-This is not the case here, so these values should not be in bindings.
-
-To clarify - I don't ask you to change the driver, you can still code
-offset like that. Just don't store this as binding.
-
-> 
-> And as we're doing this since 2013 this way, including these bindings,
-> I guess it can't be too wrong :-)
-
-I guess no one raised the question...
-
-> 
-> And they're probably also done via tooling.
-> 
-> 
-> 
->>> +/********Name=PHPTOPSOFTRST_CON0,Offset=0x8A00********/
->>> +#define SRST_P_PHPTOP_CRU		131073
->>> +#define SRST_P_PCIE2_GRF0		131074
->>> +#define SRST_P_PCIE2_GRF1		131075
->>> +#define SRST_P_PCIE2_GRF2		131076
->>> +#define SRST_P_PCIE2_PHY0		131077
->>> +#define SRST_P_PCIE2_PHY1		131078
->>> +#define SRST_P_PCIE2_PHY2		131079
->>> +#define SRST_P_PCIE3_PHY		131080
->>> +#define SRST_P_APB2ASB_SLV_CHIP_TOP	131081
->>> +#define SRST_PCIE30_PHY			131082
->>> +
->>> +/********Name=PMU1SOFTRST_CON00,Offset=0x30A00********/
->>> +#define SRST_H_PMU1_BIU			786442
->>> +#define SRST_P_PMU1_BIU			786443
->>
->>
->> The numbering is getting quite unusual... As the value is not used by
->> the driver, it suggests it is some register offset or value, which are
->> not suitable for the bindings.
-> 
-> see above, it is used by the driver. Though it's still very much unusual.
-> 
-> Looking at the register offsets mentioned in the comments, the
-> main block handling softreset-ids starts at 0xA04 in the clock controller.
-> 
-> And historically the soft-reset block has been a compact set of registers
-> inside the device, though this time it seems someone tacked some more
-> registers into the CRU far behind everything else (0x8A00 and 0x30a00).
-> 
-> So the IDs are in-line with the how we handle reset-ids currently, but
-> I'm somewhat undecided if this counts as more of a hack.
-
-These are not IDs but register offsets. You do not use them in a meaning
-of ID. ID is a abstract number providing a mapping between this abstract
-number and actual value. You do not have mapping here - you directly
-decode this ID.
-
-Best regards,
-Krzysztof
