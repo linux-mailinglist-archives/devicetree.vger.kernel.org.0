@@ -2,107 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 339F555B588
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jun 2022 05:21:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0229455B5A1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jun 2022 05:21:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232298AbiF0C4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 22:56:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33196 "EHLO
+        id S232463AbiF0DRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 23:17:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232285AbiF0C4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 22:56:42 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C89C83894;
-        Sun, 26 Jun 2022 19:56:40 -0700 (PDT)
-X-UUID: cc74390bcb704e9c8308c2ef59ba4f8e-20220627
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.6,REQID:ab92f407-1417-47e3-8c38-dc653058bbe3,OB:0,LO
-        B:20,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,
-        ACTION:release,TS:95
-X-CID-INFO: VERSION:1.1.6,REQID:ab92f407-1417-47e3-8c38-dc653058bbe3,OB:0,LOB:
-        20,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,
-        ACTION:quarantine,TS:95
-X-CID-META: VersionHash:b14ad71,CLOUDID:798f90ea-f7af-4e69-92ee-0fd74a0c286c,C
-        OID:c502f5352a1d,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: cc74390bcb704e9c8308c2ef59ba4f8e-20220627
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <irui.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1182323452; Mon, 27 Jun 2022 10:56:36 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 27 Jun 2022 10:56:34 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 27 Jun 2022 10:56:33 +0800
-From:   Irui Wang <irui.wang@mediatek.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S232461AbiF0DRK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 23:17:10 -0400
+Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52A215F5A;
+        Sun, 26 Jun 2022 20:17:09 -0700 (PDT)
+Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Mon, 27 Jun 2022
+ 11:17:07 +0800
+From:   Liang Yang <liang.yang@amlogic.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        <linux-mtd@lists.infradead.org>
+CC:     Liang Yang <liang.yang@amlogic.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <nicolas.dufresne@collabora.com>, <wenst@chromium.org>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Tomasz Figa <tfiga@chromium.org>, <xia.jiang@mediatek.com>,
-        <maoguang.meng@mediatek.com>, kyrie wu <kyrie.wu@mediatek.com>,
-        <srv_heupstream@mediatek.com>
-Subject: [V10,7/7] mtk-jpegenc: add stop cmd interface for jpgenc
-Date:   Mon, 27 Jun 2022 10:56:25 +0800
-Message-ID: <20220627025625.8956-8-irui.wang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220627025625.8956-1-irui.wang@mediatek.com>
-References: <20220627025625.8956-1-irui.wang@mediatek.com>
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v8 0/5] fix the meson NFC clock
+Date:   Mon, 27 Jun 2022 11:16:58 +0800
+Message-ID: <20220627031703.33243-1-liang.yang@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7BIT
 Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.28.8.21]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: kyrie wu <kyrie.wu@mediatek.com>
+EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK'
+which is defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is
+the divider and bit6~7 is the mux for fix pll and xtal. At the beginning,
+a common MMC and NAND sub-clock was discussed and planed to be implemented
+as NFC clock provider, but now this series of patches of a common MMC and
+NAND sub-clock are never being accepted and the current binding was never
+valid. the reasons are:
+1. EMMC and NAND, which are mutually exclusive anyway
+2. coupling the EMMC and NAND.
+3. it seems that a common MMC and NAND sub-clock is over engineered.
+and let us see the link for more information:
+https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com
+so The meson nfc can't work now, let us rework the clock.
 
-Add stop cmd interface for jpgenc to stop stream
+Changes since v7 [8]
+ - use COMMON_CLK && (ARCH_MESON || COMPILE_TEST) instead of
+   ARCH_MESON || COMPILE_TEST || COMMON_CLK.
 
-Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
----
- drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Changes since v6 [7]
+ - use COMMON_CLK instead of !HAVE_LEGACY_CLK
 
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-index 24e3e69baec8..2696651b457b 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-@@ -612,6 +612,9 @@ static const struct v4l2_ioctl_ops mtk_jpeg_enc_ioctl_ops = {
- 	.vidioc_streamoff               = v4l2_m2m_ioctl_streamoff,
- 
- 	.vidioc_unsubscribe_event	= v4l2_event_unsubscribe,
-+
-+	.vidioc_encoder_cmd		= v4l2_m2m_ioctl_encoder_cmd,
-+	.vidioc_try_encoder_cmd		= v4l2_m2m_ioctl_try_encoder_cmd,
- };
- 
- static const struct v4l2_ioctl_ops mtk_jpeg_dec_ioctl_ops = {
-@@ -1381,6 +1384,7 @@ static int mtk_jpeg_open(struct file *file)
- 	} else {
- 		v4l2_ctrl_handler_init(&ctx->ctrl_hdl, 0);
- 	}
-+
- 	mtk_jpeg_set_default_params(ctx);
- 	mutex_unlock(&jpeg->lock);
- 	return 0;
+Changes since v5 [6]
+ - add change log for patch 3/5
+ - add patch 5/5 to fix the reporting error of test robot
+
+Changes since v4 [5]
+ - split the dt binding patch into two patches, one for fixing, 
+   clock, the other for coverting to yaml
+ - split the nfc driver patch into two patches, one for fixing 
+   clock, the other for refining the get nfc resource.
+
+Changes since v3 [4]
+ - use devm_platform_ioremap_resource_byname
+ - dt_binding_check for mtd/amlogic,meson-nand.yaml
+
+Changes since v2 [3]
+ - use fw_name from dts, instead the wrong way using __clk_get_name
+ - reg resource size change to 0x800
+ - use reg-names
+
+Changes since v1 [2]
+ - use clk_parent_data instead of parent_names
+ - define a reg resource instead of sd_emmc_c_clkc 
+
+[1] https://lore.kernel.org/r/20220106033130.37623-1-liang.yang@amlogic.com
+    https://lore.kernel.org/r/20220106032504.23310-1-liang.yang@amlogic.com
+[2] https://lore.kernel.org/all/20220217063346.21691-1-liang.yang@amlogic.com
+[3] https://lore.kernel.org/all/20220318124121.26117-1-liang.yang@amlogic.com
+[4] https://lore.kernel.org/all/20220402074921.13316-1-liang.yang@amlogic.com/
+[5] https://lore.kernel.org/all/20220513123404.48513-1-liang.yang@amlogic.com/
+[6] https://lore.kernel.org/all/20220607064731.13367-1-liang.yang@amlogic.com/
+[7] https://lore.kernel.org/all/20220624131257.29906-1-liang.yang@amlogic.com/
+
+Liang Yang (5):
+  dt-bindings: nand: meson: fix meson nfc clock
+  mtd: rawnand: meson: fix the clock
+  mtd: rawnand: meson: refine resource getting in probe
+  dt-bindings: nand: meson: convert txt to yaml
+  mtd: rawnand: meson: not support legacy clock
+
+ .../bindings/mtd/amlogic,meson-nand.txt       | 60 -------------
+ .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
+ drivers/mtd/nand/raw/Kconfig                  |  2 +-
+ drivers/mtd/nand/raw/meson_nand.c             | 86 +++++++++---------
+ 4 files changed, 131 insertions(+), 105 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+
 -- 
-2.18.0
+2.34.1
 
