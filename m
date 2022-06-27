@@ -2,98 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A378455D5B8
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:15:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5868855D256
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:10:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240858AbiF0WPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 18:15:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48602 "EHLO
+        id S242517AbiF0WQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 18:16:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242481AbiF0WO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:14:58 -0400
-Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F9C4F8;
-        Mon, 27 Jun 2022 15:14:57 -0700 (PDT)
-Received: by mail-il1-x133.google.com with SMTP id p9so6688772ilj.7;
-        Mon, 27 Jun 2022 15:14:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=pV2xTgdlxdd1ooYEnYbOQKVwbFMX8hVbxWQ2hIe3+xs=;
-        b=RcsQhNjF7KK48nc/jdZpKDrn3PkpNF1Vp/D0KYuAbR/ThnCcKdtSOS/iZheghJNA/I
-         BZ6/HIVLue3SZeKbjTUXPKaAXud0ihMjBDdAEIF//1ych74DYGKTejOsPluKYDW7upmy
-         5Pwm1gIPnp/zCN4BMyP8ec0q1kofbW3Y3PiMxyDQMusD9PtidpAK9CBsa6Tl2SXBCwf2
-         f+h9EsjWs8utxuB3OQRbgKfbR5a5g+/yFBaDqcg3bH27JJ3ZBPujaNysB4izspw6aTMu
-         bJx8pg17jStg7JjqH9O1aEio/7Bnv35TnVXdvdN4e6SkMMz8TqLuCGB4pzEzZS8Cr2Vp
-         QxEQ==
+        with ESMTP id S240366AbiF0WQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:16:12 -0400
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3ED66251;
+        Mon, 27 Jun 2022 15:16:10 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id p69so11088041iod.10;
+        Mon, 27 Jun 2022 15:16:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=pV2xTgdlxdd1ooYEnYbOQKVwbFMX8hVbxWQ2hIe3+xs=;
-        b=4RSsyFNCSZ2UTgEkzkOE8Vv6xmGOsQ1BRJKUNVIREnsStSotRRo6yeiEONEUZyTNst
-         w1yUvoBMEFh3aqv7RyOP2o+Dbi9MwKBQaqk8usFpzGnbtiJyx2WaVNHK+Tn9bnbZ8Dj2
-         tXk3P8NwnFmRCGmbK2K1APSDJ61Fl5hYBRnLP4DvsECH5Qt506D991dkl//97165GqDK
-         rIHgRCMqIU3Z+RcAiB585UhF1FQeWuKfEiBPnGTxMnvrUppOttY8iZOa2h9VdgxGnt3T
-         7vS0fVnvoyv30C79jBD7Fg8vL3iZNE+DW6ei6uJd3O9L8BSFKZ81/+oDGczE0Yhh9pM5
-         stnA==
-X-Gm-Message-State: AJIora8ytlai07F3rOVIG5HmP29yW5KHNDD+RjX9Oyneu/o4mkmYPz8f
-        RFXdCPS1aYF/bVmpSpNWaAn+KR8Vxvc=
-X-Google-Smtp-Source: AGRyM1sSYIygi5wqOxH0x/IcNyKAoeaN31dn0MrnKdLCpIL/Ttpyh63NcKCmhDOPUhpalw4VzNoTPw==
-X-Received: by 2002:a05:6e02:1608:b0:2d9:3f3e:f0c4 with SMTP id t8-20020a056e02160800b002d93f3ef0c4mr8918971ilu.249.1656368096528;
-        Mon, 27 Jun 2022 15:14:56 -0700 (PDT)
-Received: from Dixie.. ([2604:2d80:a188:fd00:7a85:cf35:f4b3:542f])
-        by smtp.gmail.com with ESMTPSA id p7-20020a02b007000000b00339dd3976absm5255589jah.110.2022.06.27.15.14.55
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=sEUUUlDAYju/2YLxlXSh5PX7GI5wJxClR/yx3HviGBQ=;
+        b=cb6PrlkbRo3vOv7wrhjDQBQjQ70Gewlgnw6Qv+BskiCEH5lafK5r8hK8XcRzs9252M
+         +HZ2JcpkiuEFXTTnee9qt888sIFbmoJRVM4k/zc+5fs+hozEOekljRy2zWnrDs5Hsf3/
+         fhnjNA28tNfBvwjk/lEOqdG0l5fN5JzoVuUueEa0uhFK1TPmkXe9HPTCdpBI7v0OKm0R
+         x/zkAZPUpCfbAiilxVTqKqC/E0VBCV7Qg0NN2QJcVvXSu9wfEgElbYwweKDXKuBGRuuq
+         2ECJ6O6wJcfM7rKXsLQ6rO9fNebbAWag3YrhHsQMKu10DMpwvP9kmWYcMzw8lL7RLK8b
+         10yQ==
+X-Gm-Message-State: AJIora/pX1WEoFIaQ28CJhT0xeqbZiX/yH4YXodEoPgizIR3//L2Ls9+
+        JBCnGARXgE4+zey0mqS7WQ==
+X-Google-Smtp-Source: AGRyM1ul6meQjPMho4PaYYVmeFu5wv9y8tgdGZfqXlC28iBRP2OmhPocanyd1Cb9iwo5OiHmJL6b0g==
+X-Received: by 2002:a05:6602:2d0e:b0:64f:d1ff:ac9c with SMTP id c14-20020a0566022d0e00b0064fd1ffac9cmr7870131iow.41.1656368170082;
+        Mon, 27 Jun 2022 15:16:10 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id m2-20020a02cdc2000000b00339e6168237sm4805432jap.34.2022.06.27.15.16.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 15:14:56 -0700 (PDT)
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     linux-input@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, contact@artur-rojek.eu,
-        maccraft123mc@gmail.com, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        dmitry.torokhov@gmail.com, paul@crapouillou.net, jic23@kernel.org,
-        linux-iio@vger.kernel.org, Chris Morgan <macroalpha82@gmail.com>,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v4 3/3] arm64: dts: rockchip: Update joystick to polled for Odroid-Go2
-Date:   Mon, 27 Jun 2022 17:14:44 -0500
-Message-Id: <20220627221444.3638-4-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220627221444.3638-1-macroalpha82@gmail.com>
-References: <20220627221444.3638-1-macroalpha82@gmail.com>
+        Mon, 27 Jun 2022 15:16:09 -0700 (PDT)
+Received: (nullmailer pid 3062972 invoked by uid 1000);
+        Mon, 27 Jun 2022 22:16:08 -0000
+Date:   Mon, 27 Jun 2022 16:16:08 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v3 2/6] dt-bindings: Use new video interface bus type
+ macros in examples
+Message-ID: <20220627221608.GA3060504-robh@kernel.org>
+References: <20220615221410.27459-1-laurent.pinchart@ideasonboard.com>
+ <20220615221410.27459-3-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220615221410.27459-3-laurent.pinchart@ideasonboard.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the Odroid Go Advance to use "poll-interval" from the
-adc-joystick driver.
+On Thu, Jun 16, 2022 at 01:14:06AM +0300, Laurent Pinchart wrote:
+> Now that a header exists with macros for the media interface bus-type
+> values, replace hardcoding numerical constants with the corresponding
+> macros in the DT binding examples.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> Changes since v2:
+> 
+> - Go back to PARALLEL
+> 
+> Changes since v1:
+> 
+> - Rename PARALLEL to BT601
+> ---
+>  .../devicetree/bindings/display/bridge/analogix,anx7625.yaml  | 1 +
+>  Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml     | 3 ++-
+>  Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml  | 3 ++-
+>  .../devicetree/bindings/media/marvell,mmp2-ccic.yaml          | 3 ++-
+>  Documentation/devicetree/bindings/media/microchip,xisc.yaml   | 3 ++-
+>  Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml    | 4 +++-
+>  6 files changed, 12 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> index 35a48515836e..b0e5585f93e2 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> @@ -118,6 +118,7 @@ additionalProperties: false
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+>  
+>      i2c0 {
+>          #address-cells = <1>;
+> diff --git a/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml b/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
+> index 39395ea8c318..edde4201116f 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
+> @@ -104,6 +104,7 @@ additionalProperties: false
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+>  
+>      i2c2 {
+>          #address-cells = <1>;
+> @@ -124,7 +125,7 @@ examples:
+>                      remote-endpoint = <&csi2a_ep>;
+>                      link-frequencies = /bits/ 64 <199200000 210000000
+>                                                    499200000>;
+> -                    bus-type = <4>;
+> +                    bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
+>                  };
+>              };
+>          };
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> index 44529425ce3a..161e6d598e1c 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> @@ -105,6 +105,7 @@ additionalProperties: false
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+>  
+>      i2c0 {
+>          #address-cells = <1>;
+> @@ -118,7 +119,7 @@ examples:
+>  
+>              port {
+>                  ov772x_0: endpoint {
+> -                    bus-type = <5>;
+> +                    bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
+>                      vsync-active = <0>;
+>                      hsync-active = <0>;
+>                      pclk-sample = <0>;
+> diff --git a/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml b/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
+> index b39b84c5f012..0e3478551e13 100644
+> --- a/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
+> +++ b/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
+> @@ -68,6 +68,7 @@ additionalProperties: false
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/marvell,mmp2.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+>      #include <dt-bindings/power/marvell,mmp2.h>
+>  
+>      camera@d420a000 {
+> @@ -83,7 +84,7 @@ examples:
+>        port {
+>          camera0_0: endpoint {
+>            remote-endpoint = <&ov7670_0>;
+> -          bus-type = <5>;      /* Parallel */
+> +          bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
+>            hsync-active = <1>;  /* Active high */
+>            vsync-active = <1>;  /* Active high */
+>            pclk-sample = <0>;   /* Falling */
+> diff --git a/Documentation/devicetree/bindings/media/microchip,xisc.yaml b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
+> index 8b37fccab5e2..25f5f79d40ce 100644
+> --- a/Documentation/devicetree/bindings/media/microchip,xisc.yaml
+> +++ b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
+> @@ -106,6 +106,7 @@ examples:
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      #include <dt-bindings/clock/at91.h>
+>      #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+>  
+>      xisc: xisc@e1408000 {
+>          compatible = "microchip,sama7g5-isc";
+> @@ -118,7 +119,7 @@ examples:
+>  
+>          port {
+>                  xisc_in: endpoint {
+> -                       bus-type = <5>; /* Parallel */
+> +                       bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
+>                         remote-endpoint = <&csi2dc_out>;
+>                         hsync-active = <1>;
+>                         vsync-active = <1>;
+> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> index 9c1262a276b5..285c6075950a 100644
+> --- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
+> @@ -90,7 +90,9 @@ examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      #include <dt-bindings/clock/stm32mp1-clks.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+>      #include <dt-bindings/reset/stm32mp1-resets.h>
+> +    #
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts | 1 +
- 1 file changed, 1 insertion(+)
+?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-index ea0695b51ecd..61583c3f24e6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-@@ -26,6 +26,7 @@ adc-joystick {
- 		compatible = "adc-joystick";
- 		io-channels = <&saradc 1>,
- 			      <&saradc 2>;
-+		poll-interval = <60>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--- 
-2.34.1
+In any case,
 
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+>      dcmi: dcmi@4c006000 {
+>          compatible = "st,stm32-dcmi";
+>          reg = <0x4c006000 0x400>;
+> @@ -104,7 +106,7 @@ examples:
+>          port {
+>               dcmi_0: endpoint {
+>                     remote-endpoint = <&ov5640_0>;
+> -                   bus-type = <5>;
+> +                   bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
+>                     bus-width = <8>;
+>                     hsync-active = <0>;
+>                     vsync-active = <0>;
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
+> 
