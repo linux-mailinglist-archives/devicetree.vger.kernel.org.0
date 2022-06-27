@@ -2,60 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78E7A55C457
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:49:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E107955DA4F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:23:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234874AbiF0Nbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 09:31:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41608 "EHLO
+        id S235896AbiF0NdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 09:33:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235866AbiF0Nba (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 09:31:30 -0400
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA0164E4;
-        Mon, 27 Jun 2022 06:31:24 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id h85so9547976iof.4;
-        Mon, 27 Jun 2022 06:31:24 -0700 (PDT)
+        with ESMTP id S236251AbiF0Ncn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 09:32:43 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 043389FC1
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 06:32:42 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id lw20so19239320ejb.4
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 06:32:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=MOugzhFcAjO+If2z96kba/vfySD/CKxYnEQLAZDDWG8=;
+        b=JlVP/Q8P2kDZ2Dj0GBc8YWFiJhJ0FEL+gAbkHJ84/Dtqa4qijiBspjfVN99losd6cS
+         4rsKyepUjljwHPnqK4l87Uog2dVeNnZ9Bogixfx5qIcVPF02HEMhYKX7YSBEfakvbgLN
+         1WuGPD0nYZ+AmSrgdBOanAFfloIltbml0IlF3hIrZUbLsZO+TaXEtZrSZakY8qzDGxxL
+         1Mb/RI6ncBhq8FkFHDYMy24uQcv0kNU/cxD8Vq7LD6v0alfCxSFjYU/4N1pIRpIo936H
+         H/jAwZa8tk/UMh0J/CZuociC/C2+5woT8bt4KE/h6xEH85IuNRjok8mZxHqA5iEPwmeA
+         mg6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=YBApyAZhryutkj1N0CgYhNXY1+WXUhBmjXDtALNVzOI=;
-        b=hCMvud/6mKxaJaYNG9R4UASuCTNtbY1pl/kUT8ZykgYNwOOgqh4ItVXsGpNB1hsKa6
-         sE3i8w4bmWA4hNWpsNofNyJuNoucj/z4MTCvevOyRytpI33SQfLrYBpGrN74Yg9nBsh4
-         Ot8qWBumWj8rdkfGCuA9NR9u5YqQZQmhhGAHdPoDvDpfaqzZRtYwFincFUbtBP9thpFA
-         REuGgRmQbvSkkwziQ1ayCKBzmpRb4OUhhfzblhhUxgl7mtaArhSFRgZiv5Nn19EuXtGG
-         ntILoFrPLAPfd5T2AW08M43fQz9g1m26Qz/biNonPF5oSeugMECaRoA2A0OB+GBXI04L
-         y5sA==
-X-Gm-Message-State: AJIora8hbRmjW31LblXkop6IR8KEInYQfQM0Fz31Hq/tBzF6QFT62xKU
-        ylherlwi5vim/SynW2ex3Efrzestpg==
-X-Google-Smtp-Source: AGRyM1smbEVZ88IdJlCAbanipzttn6crpX6AL3iQCbRbOLHyD61OgJYhYskFjkrchfE0bQdfdtAKcg==
-X-Received: by 2002:a5d:9ac4:0:b0:674:fca5:62db with SMTP id x4-20020a5d9ac4000000b00674fca562dbmr6517964ion.177.1656336683456;
-        Mon, 27 Jun 2022 06:31:23 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id d18-20020a056602185200b00669e1a9588esm5299273ioi.43.2022.06.27.06.31.22
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MOugzhFcAjO+If2z96kba/vfySD/CKxYnEQLAZDDWG8=;
+        b=2bkthME72xT4OaI4gQAgFWMtnou69LquvGzEdPOYdIoOPfFRicrnqbS5uMhFpXd9Ul
+         rcRCIb9ssviz6G5RyX4kkH/lr5ouDjsM5W4PwfTpwoWcv8vDrsvE0+kq0F2vbJzxnN2B
+         H0owATQ5o1dkmUnlm+lEYOkQMIBQ4iryZC1zMRF0z+vb6ZMkYN4Os/ls4N+nZb0W7kwO
+         SBIOJ4DMgax3J4ktjAmaDPseFZIeyHqEr939Pe0F++2/3L6cNaq1u8ZWYNhDVv8lJ8Yt
+         6On+bdRoZDQadSEB8zuN31OK5NVSKk0W5wuP0kSZJjG776zkSK1yQPD3YDtnshHDvMA4
+         ylCQ==
+X-Gm-Message-State: AJIora8oVj+3s2iEhIcKfQWdkbSLQanaU2ve+oqOB5CBvkJgDzjyyW7c
+        WGa/MksD13WbNvlXO1mv9XIDaw==
+X-Google-Smtp-Source: AGRyM1u3dZOndJbMOz1PnEKgh/KohhYGA8SFXR6A6ZFn1gSCIFjMIKmB5NvYcDU9vjOqSiLDYTVQYw==
+X-Received: by 2002:a17:907:97c9:b0:726:b4f8:f675 with SMTP id js9-20020a17090797c900b00726b4f8f675mr2718638ejc.427.1656336760410;
+        Mon, 27 Jun 2022 06:32:40 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id d25-20020a50fe99000000b004355998ec1asm7523587edt.14.2022.06.27.06.32.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 06:31:23 -0700 (PDT)
-Received: (nullmailer pid 2285166 invoked by uid 1000);
-        Mon, 27 Jun 2022 13:31:09 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-amarula@amarulasolutions.com,
-        Daniel Scally <djrscally@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        quentin.schulz@theobroma-systems.com, linuxfancy@googlegroups.com
-In-Reply-To: <20220624230307.3066530-8-tommaso.merciai@amarulasolutions.com>
-References: <20220624230307.3066530-1-tommaso.merciai@amarulasolutions.com> <20220624230307.3066530-8-tommaso.merciai@amarulasolutions.com>
-Subject: Re: [PATCH 7/7] media: dt-bindings: ov5693: document YAML binding
-Date:   Mon, 27 Jun 2022 07:31:09 -0600
-Message-Id: <1656336669.640985.2285165.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        Mon, 27 Jun 2022 06:32:39 -0700 (PDT)
+Date:   Mon, 27 Jun 2022 16:32:37 +0300
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     linux-imx@nxp.com, robh+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com,
+        stefan@agner.ch, linus.walleij@linaro.org,
+        daniel.lezcano@linaro.org, tglx@linutronix.de, olof@lixom.net,
+        linux@armlinux.org.uk, abel.vesa@nxp.com, dev@lynxeye.de,
+        marcel.ziswiler@toradex.com, tharvey@gateworks.com,
+        leoyang.li@nxp.com, sebastian.reichel@collabora.com,
+        cniedermaier@dh-electronics.com, clin@suse.com,
+        giulio.benetti@benettiengineering.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v4 08/13] clk: imx: Update pllv3 to support i.MXRT1170
+Message-ID: <YrmxdaSqHnEg28uG@linaro.org>
+References: <20220626064523.3683775-1-Mr.Bossman075@gmail.com>
+ <20220626064523.3683775-9-Mr.Bossman075@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220626064523.3683775-9-Mr.Bossman075@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,38 +80,187 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 25 Jun 2022 01:03:07 +0200, Tommaso Merciai wrote:
-> This patch adds documentation of device tree in YAML schema for the
-> OV5693 CMOS image sensor from Omnivision
-> 
-> Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+On 22-06-26 02:45:18, Jesse Taube wrote:
+> The i.MXRT1170 has a pll that has the multiplier bits inverted and
+> cannot be changed add IMX_PLLV3_GENERICV2.
+>
+> The i.MXRT1170 also has the lock bit moved as well as the
+> power bit inverted the power bit also is in different locations on each
+> pll control register.
+>
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
 > ---
->  .../bindings/media/i2c/ovti,ov5693.yaml       | 123 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 124 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml
-> 
+> V1 -> V2:
+>  - Nothing done
+> V2 -> V3:
+>  - Nothing done
+> V3 -> V4:
+>  - Nothing done
+> ---
+>  drivers/clk/imx/clk-pllv3.c | 57 +++++++++++++++++++++++++++++++++++--
+>  drivers/clk/imx/clk.h       |  4 +++
+>  2 files changed, 59 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/clk/imx/clk-pllv3.c b/drivers/clk/imx/clk-pllv3.c
+> index eea32f87c60a..740412ea2f7e 100644
+> --- a/drivers/clk/imx/clk-pllv3.c
+> +++ b/drivers/clk/imx/clk-pllv3.c
+> @@ -23,6 +23,7 @@
+>
+>  #define BM_PLL_POWER		(0x1 << 12)
+>  #define BM_PLL_LOCK		(0x1 << 31)
+> +#define BM_PLL_LOCK_V2		(0x1 << 29)
+>  #define IMX7_ENET_PLL_POWER	(0x1 << 5)
+>  #define IMX7_DDR_PLL_POWER	(0x1 << 20)
+>
+> @@ -34,6 +35,7 @@
+>   * @base:	 base address of PLL registers
+>   * @power_bit:	 pll power bit mask
+>   * @powerup_set: set power_bit to power up the PLL
+> + * @lock_bit:	 pll lock bit mask
+>   * @div_mask:	 mask of divider bits
+>   * @div_shift:	 shift of divider bits
+>   * @ref_clock:	reference clock rate
+> @@ -48,6 +50,7 @@ struct clk_pllv3 {
+>  	void __iomem	*base;
+>  	u32		power_bit;
+>  	bool		powerup_set;
+> +	u32		lock_bit;
+>  	u32		div_mask;
+>  	u32		div_shift;
+>  	unsigned long	ref_clock;
+> @@ -65,7 +68,7 @@ static int clk_pllv3_wait_lock(struct clk_pllv3 *pll)
+>  	if ((pll->powerup_set && !val) || (!pll->powerup_set && val))
+>  		return 0;
+>
+> -	return readl_relaxed_poll_timeout(pll->base, val, val & BM_PLL_LOCK,
+> +	return readl_relaxed_poll_timeout(pll->base, val, val & pll->lock_bit,
+>  					  500, PLL_LOCK_TIMEOUT);
+>  }
+>
+> @@ -101,7 +104,7 @@ static int clk_pllv3_is_prepared(struct clk_hw *hw)
+>  {
+>  	struct clk_pllv3 *pll = to_clk_pllv3(hw);
+>
+> -	if (readl_relaxed(pll->base) & BM_PLL_LOCK)
+> +	if (readl_relaxed(pll->base) & pll->lock_bit)
+>  		return 1;
+>
+>  	return 0;
+> @@ -155,6 +158,39 @@ static const struct clk_ops clk_pllv3_ops = {
+>  	.set_rate	= clk_pllv3_set_rate,
+>  };
+>
+> +static int clk_pllv3_genericv2_set_rate(struct clk_hw *hw, unsigned long rate,
+> +		unsigned long parent_rate)
+> +{
+> +	struct clk_pllv3 *pll = to_clk_pllv3(hw);
+> +	u32 val, div;
+> +
+> +	div = (readl_relaxed(pll->base) >> pll->div_shift) & pll->div_mask;
+> +	val = (div == 0) ? parent_rate * 22 : parent_rate * 20;
+> +
+> +	if (rate == val)
+> +		return 0;
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static unsigned long clk_pllv3_genericv2_recalc_rate(struct clk_hw *hw,
+> +					   unsigned long parent_rate)
+> +{
+> +	struct clk_pllv3 *pll = to_clk_pllv3(hw);
+> +	u32 div = (readl_relaxed(pll->base) >> pll->div_shift)  & pll->div_mask;
+> +
+> +	return (div == 0) ? parent_rate * 22 : parent_rate * 20;
+> +}
+> +
+> +static const struct clk_ops clk_pllv3_genericv2_ops = {
+> +	.prepare	= clk_pllv3_prepare,
+> +	.unprepare	= clk_pllv3_unprepare,
+> +	.is_prepared	= clk_pllv3_is_prepared,
+> +	.recalc_rate	= clk_pllv3_genericv2_recalc_rate,
+> +	.round_rate	= clk_pllv3_round_rate,
+> +	.set_rate	= clk_pllv3_genericv2_set_rate,
+> +};
+> +
+>  static unsigned long clk_pllv3_sys_recalc_rate(struct clk_hw *hw,
+>  					       unsigned long parent_rate)
+>  {
+> @@ -407,6 +443,13 @@ static const struct clk_ops clk_pllv3_enet_ops = {
+>  	.recalc_rate	= clk_pllv3_enet_recalc_rate,
+>  };
+>
+> +void imx_clk_hw_pll3_powerbit(struct clk_hw *hw, u8 shift)
+> +{
+> +	struct clk_pllv3 *pll = to_clk_pllv3(hw);
+> +
+> +	pll->power_bit = shift;
+> +}
+> +
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I can see why you need this, but I think the approach is not quite
+right.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/media/i2c/ovti,ov5693.yaml:123:7: [error] no new line character at the end of file (new-line-at-end-of-file)
+I suggest we rename the imx_clk_hw_pllv3 to __imx_clk_hw_pllv3 and add
+the power_bit parameter to it (and set it accordingly inside).
 
-dtschema/dtc warnings/errors:
+Then we should do the following in imx/clk.h:
 
-doc reference errors (make refcheckdocs):
+#define imx_clk_hw_pllv3(name, parent_names, num_parents, parent,	\
+				bypass1, bypass2, base, flags)		\
+	__imx_clk_hw_pllv3(name, parent_names, num_parents, parent,	\
+				bypass1, bypass2, base, flags, BM_PLL_POWER)
 
-See https://patchwork.ozlabs.org/patch/
+And then, the i.MXRT1170 can use the __imx_clk_hw_pllv3 and pass the
+right power_bit shift.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+>  struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
+>  			  const char *parent_name, void __iomem *base,
+>  			  u32 div_mask)
+> @@ -422,10 +465,20 @@ struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
+>  		return ERR_PTR(-ENOMEM);
+>
+>  	pll->power_bit = BM_PLL_POWER;
+> +	pll->lock_bit = BM_PLL_LOCK;
+>  	pll->num_offset = PLL_NUM_OFFSET;
+>  	pll->denom_offset = PLL_DENOM_OFFSET;
+>
+>  	switch (type) {
+> +	case IMX_PLLV3_GENERICV2:
+> +		pll->lock_bit = BM_PLL_LOCK_V2;
+> +		pll->powerup_set = true;
+> +		ops = &clk_pllv3_genericv2_ops;
+> +		break;
+> +	case IMX_PLLV3_SYSV2:
+> +		pll->lock_bit = BM_PLL_LOCK_V2;
+> +		pll->powerup_set = true;
+> +		fallthrough;
+>  	case IMX_PLLV3_SYS:
+>  		ops = &clk_pllv3_sys_ops;
+>  		break;
+> diff --git a/drivers/clk/imx/clk.h b/drivers/clk/imx/clk.h
+> index 5061a06468df..31e017248602 100644
+> --- a/drivers/clk/imx/clk.h
+> +++ b/drivers/clk/imx/clk.h
+> @@ -242,6 +242,8 @@ struct clk_hw *imx_clk_hw_sscg_pll(const char *name,
+>
+>  enum imx_pllv3_type {
+>  	IMX_PLLV3_GENERIC,
+> +	IMX_PLLV3_GENERICV2,
+> +	IMX_PLLV3_SYSV2,
+>  	IMX_PLLV3_SYS,
+>  	IMX_PLLV3_USB,
+>  	IMX_PLLV3_USB_VF610,
+> @@ -253,6 +255,8 @@ enum imx_pllv3_type {
+>  	IMX_PLLV3_AV_IMX7,
+>  };
+>
+> +void imx_clk_hw_pll3_powerbit(struct clk_hw *hw, u8 shift);
+> +
+>  struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
+>  		const char *parent_name, void __iomem *base, u32 div_mask);
+>
+> --
+> 2.36.1
+>
