@@ -2,97 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0831455D8D6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DBC055D5FB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:16:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241107AbiF0VSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 17:18:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57932 "EHLO
+        id S239898AbiF0VSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 17:18:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241114AbiF0VSN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 17:18:13 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96C9418B17
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 14:18:11 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id s1so14769148wra.9
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 14:18:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod.ie; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7fqf134knRgs1GXmfgOSjMnBIhN/vd4XYE5cKns7XrQ=;
-        b=HXbtK2wb/8k7BKwx03O3vJd+frVE8kbRJOxAidgzWU3+M46idUPj4JY/ji2or61qN6
-         iFQfdI2q9HbabuCUzIKyuCuZZP+svfWOurR7utrBBG8lxHgf64RUya9tYBYoq/IZnb3/
-         vASCFCOveG3OPw4M9ElkzqOYoiWkSkXpjjzjUUkhiJcB7Uovli7STe8/BYj4orSkm5AF
-         LTlyYI4wyNCu+hgP9xZwpFMXRxL0suMMMq/Wud/F2UCWdoxIQljh+9HLdF+xzDphLUPc
-         JhfNdVvIWSYHIRmsF16qeXPK1XW0ExS6lCFXaFznUtqNyynV9EM41UOdeXzlroAzAzkv
-         hWjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=7fqf134knRgs1GXmfgOSjMnBIhN/vd4XYE5cKns7XrQ=;
-        b=Y4tfINeCOqbGJZTJ3jVMX1/1YKFXU95iqqTuHUEdvG8QumQoeOnMxS8bfbWF5rNBFz
-         p34ROcEmg3PLxnxWX4zXkKdDYsX+/PYNhQtlShYAUDaDLhywtm+qN1F5kjX6obM9qt+o
-         /NbC9ktRDesFzabItql0XQ63Axtj/33VLQb5MMOQ2WkxJ3VpflhLxN0YMJI2P+CxnAxB
-         Gw6lVRz4oWTk1YtjV4W4PgigwBhjZpQt51EtU0/qyUp44jnfEBEs+geWRhR1NKQ2iD6f
-         4He5Ya+Y8kol1fkeXqWpGV7NB7NJOMX57fNdBBFVqUpdJ/0FboLIi4Lb3OH4JMn9/jTN
-         m8Bw==
-X-Gm-Message-State: AJIora8rA395a3akpWxQQKyAbBJQnqSHqE7Jb4jRsNrws8NG9BuEzL+Z
-        iCSNyDrz9al7gai8HVENtGH5UQ==
-X-Google-Smtp-Source: AGRyM1v3rnjEGEokBmIwXs+uwnFrAQV1ikK8BVpbbLHWxG5jXedwQJfIfb9jsTWa7DY6Tagub7QPEA==
-X-Received: by 2002:adf:d1ed:0:b0:21b:c74b:594 with SMTP id g13-20020adfd1ed000000b0021bc74b0594mr8958606wrd.221.1656364689777;
-        Mon, 27 Jun 2022 14:18:09 -0700 (PDT)
-Received: from [192.168.2.222] ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id az14-20020a05600c600e00b003a04c74efd1sm3048630wmb.21.2022.06.27.14.18.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jun 2022 14:18:09 -0700 (PDT)
-Message-ID: <ed893417-2c5e-c019-04c6-c7c7ee138ef1@conchuod.ie>
-Date:   Mon, 27 Jun 2022 22:18:07 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 06/16] dt-bindings: timer: add Canaan k210 to Synopsys
- DesignWare timer
-Content-Language: en-US
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S241163AbiF0VSu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 17:18:50 -0400
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [5.144.164.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38F5918E05
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 14:18:48 -0700 (PDT)
+Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 95447205A7;
+        Mon, 27 Jun 2022 23:18:45 +0200 (CEST)
+Date:   Mon, 27 Jun 2022 23:18:44 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Niklas Cassel <niklas.cassel@wdc.com>,
-        Dillon Min <dillon.minfei@gmail.com>,
-        Heng Sia <jee.heng.sia@intel.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20220627194003.2395484-1-mail@conchuod.ie>
- <20220627194003.2395484-7-mail@conchuod.ie>
- <20220627211314.dc2hempelyl5ayjg@mobilestation>
-From:   Conor Dooley <mail@conchuod.ie>
-In-Reply-To: <20220627211314.dc2hempelyl5ayjg@mobilestation>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH v3 5/7] clk: qcom: gcc-msm8916: move
+ gcc_mss_q6_bimc_axi_clk down
+Message-ID: <20220627211844.6kwk2kyalgyb3ysm@SoMainline.org>
+References: <20220619212735.1244953-1-dmitry.baryshkov@linaro.org>
+ <20220619212735.1244953-6-dmitry.baryshkov@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220619212735.1244953-6-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -101,42 +51,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2022 22:13, Serge Semin wrote:
-> On Mon, Jun 27, 2022 at 08:39:54PM +0100, Conor Dooley wrote:
->> From: Conor Dooley <conor.dooley@microchip.com>
->>
->> The Canaan k210 apparently has a Sysnopsys Designware timer but
->> according to the documentation & devicetree it has 2 interrupts rather
->> than the standard one. Add a custom compatible that supports the 2
->> interrupt configuration and falls back to the standard binding (which
->> is currently the one in use in the devicetree entry).
->>
+On 2022-06-20 00:27:33, Dmitry Baryshkov wrote:
+> The gcc_mss_q6_bimc_axi_clk clock depends on the bimc_ddr_clk_src clock.
+> Move it down in the file to come after the source clock.
 > 
->> Link: https://canaan-creative.com/wp-content/uploads/2020/03/kendryte_standalone_programming_guide_20190311144158_en.pdf #Page 58
-> 
-> Firstly, it's page 51 in the framework of the document pages
-> enumeration.
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Ah yes, sorry about that.
+Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 
+> ---
+>  drivers/clk/qcom/gcc-msm8916.c | 34 +++++++++++++++++-----------------
+>  1 file changed, 17 insertions(+), 17 deletions(-)
 > 
-> Judging by the comment in the document above and what the HW reference
-> manual says regarding the IRQ signals, what you really have on K210 is
-> the DW APB Timer IP-cores each configured with two embedded timers.
-> It's done by the IP-core synthesize parameter NUM_TIMERS={1..8}, which
-> in your case equals to 2. A similar situation is on our SoC and, for
-> instance, here:
-> 
-> arch/arm/boot/dts/berlin2q.dtsi
-> arch/arm/boot/dts/berlin2.dtsi
-> arch/arm/boot/dts/berlin2cd.dtsi
-> (Though the Berlin2 APB Timer have been configured with 8 timers.)
-> 
-> So the correct modification would be:
-> 1. Split up the nodes into two ones with one IRQ per each node.
-> 2. Make sure I was right by testing the new dts out.
-> 3. Update the DT-node only and leave the DT-bindings as is.
+> diff --git a/drivers/clk/qcom/gcc-msm8916.c b/drivers/clk/qcom/gcc-msm8916.c
+> index 7962edbdbcf6..4d726ca4b0da 100644
+> --- a/drivers/clk/qcom/gcc-msm8916.c
+> +++ b/drivers/clk/qcom/gcc-msm8916.c
+> @@ -2594,23 +2594,6 @@ static struct clk_branch gcc_mss_cfg_ahb_clk = {
+>  	},
+>  };
+>  
+> -static struct clk_branch gcc_mss_q6_bimc_axi_clk = {
+> -	.halt_reg = 0x49004,
+> -	.clkr = {
+> -		.enable_reg = 0x49004,
+> -		.enable_mask = BIT(0),
+> -		.hw.init = &(struct clk_init_data){
+> -			.name = "gcc_mss_q6_bimc_axi_clk",
+> -			.parent_names = (const char *[]){
+> -				"bimc_ddr_clk_src",
+> -			},
+> -			.num_parents = 1,
+> -			.flags = CLK_SET_RATE_PARENT,
+> -			.ops = &clk_branch2_ops,
+> -		},
+> -	},
+> -};
+> -
+>  static struct clk_branch gcc_oxili_ahb_clk = {
+>  	.halt_reg = 0x59028,
+>  	.clkr = {
+> @@ -2860,6 +2843,23 @@ static struct clk_branch gcc_bimc_gpu_clk = {
+>  	},
+>  };
+>  
+> +static struct clk_branch gcc_mss_q6_bimc_axi_clk = {
 
-Hmm, sounds good. Will give that a whirl tomorrow.
-Thanks for the info/suggestions Sergey.
+How'd you settle on placing it here?  It isn't right below
+bimc_ddr_clk_src, nor the last user of bimc_ddr_clk_src, doesn't seem to
+have any alphabetical or .enable_reg related ordering to the other clks
+either?
 
+> +	.halt_reg = 0x49004,
+> +	.clkr = {
+> +		.enable_reg = 0x49004,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(struct clk_init_data){
+> +			.name = "gcc_mss_q6_bimc_axi_clk",
+> +			.parent_names = (const char *[]){
+> +				"bimc_ddr_clk_src",
+> +			},
+> +			.num_parents = 1,
+> +			.flags = CLK_SET_RATE_PARENT,
+> +			.ops = &clk_branch2_ops,
+> +		},
+> +	},
+> +};
+> +
+>  static struct clk_branch gcc_jpeg_tbu_clk = {
+>  	.halt_reg = 0x12034,
+>  	.clkr = {
+> -- 
+> 2.35.1
+> 
