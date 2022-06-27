@@ -2,63 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A0DC55CDD1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:04:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0264F55D8C0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238131AbiF0WNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 18:13:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46752 "EHLO
+        id S242404AbiF0WOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 18:14:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234577AbiF0WNA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:13:00 -0400
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAE1E13E8F;
-        Mon, 27 Jun 2022 15:12:59 -0700 (PDT)
-Received: by mail-il1-f182.google.com with SMTP id 9so6977888ill.5;
-        Mon, 27 Jun 2022 15:12:59 -0700 (PDT)
+        with ESMTP id S242400AbiF0WOU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:14:20 -0400
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C452360DC
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 15:14:19 -0700 (PDT)
+Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-101e1a33fe3so14685942fac.11
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 15:14:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=Z6ww6juoCRIbq0+Y6gYs7fGnPeiVmyjMhEvtBazZscA=;
+        b=VLg2e9n/ueeBcU2fxR9VinIwBdphy0I6lt0vM9EwP6SkwBaEAxgL0Xcn2ibhztQVOH
+         ykyJlrrCcGM/bHaZnb+dfrgWvst8LXQghu6vGg3dUKpo38rKC67HOZ6+QBJTXW8eVyt0
+         UZmzZToLeb2/RbwW5tEPrx/pXMdGMTYQeZLaQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Q9EHtvpXO/rR/UwsAegXUt2kZ+QWagzbfNR/vsPSSqE=;
-        b=J+NpajjfNNhhHhCE/uWRUMcsivZdWYTPW29m0i1Az+jU1NYHjtC4JaxWb4vBsqhDja
-         lQPrPm/ZrA/gzbwavGk7nJkVocCrWD6N0zmo7T3SDqL8pRL0AMnfYSYhvmdYe32U+LHF
-         tEQBmKjtH8Q8feB+WAD7GiRn9n7CY1DUsC5gwkvqyf7/T/Xz7wQw6+Hd/+RpO4DPo6bu
-         TOKfkhVh17WmsZeh1DhHZUw4fIF/uz/G4QwM9DrE8wxlJxoHIB3R8CcAqmtGH5N3aNeK
-         vDLp2nRFkCznhuPJI+NfzkK654/BuDjYsSFTxQKidg4p5WHWcxEFJvJtXWLBVYzkAc0f
-         kVTQ==
-X-Gm-Message-State: AJIora8GMtGSyUb/coowZa1tGy2GJzdSTAyGiMlnY7IHaSKhJMDQlADe
-        AeTnXa214uB9MO5MXSvWag==
-X-Google-Smtp-Source: AGRyM1ttgJl6J3mqoPXF0Lh40LVHvAb/nsVTOsZFyo7O6MpuNXaqHqe24DDYYyxyNdPYVjf4dRC2Rg==
-X-Received: by 2002:a05:6e02:170b:b0:2d4:d764:bebe with SMTP id u11-20020a056e02170b00b002d4d764bebemr8390187ill.95.1656367978968;
-        Mon, 27 Jun 2022 15:12:58 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id m2-20020a02cdc2000000b00339e6168237sm4802445jap.34.2022.06.27.15.12.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 15:12:58 -0700 (PDT)
-Received: (nullmailer pid 3058109 invoked by uid 1000);
-        Mon, 27 Jun 2022 22:12:57 -0000
-Date:   Mon, 27 Jun 2022 16:12:57 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     pavel@ucw.cz, sven.schwermer@disruptive-technologies.com,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        marijn.suijten@somainline.org, bjorn.andersson@linaro.org,
-        andy.shevchenko@gmail.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: leds: Add binding for a multicolor
- group of LEDs
-Message-ID: <20220627221257.GA3046298-robh@kernel.org>
-References: <20220615154918.521687-1-jjhiblot@traphandler.com>
- <20220615154918.521687-4-jjhiblot@traphandler.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=Z6ww6juoCRIbq0+Y6gYs7fGnPeiVmyjMhEvtBazZscA=;
+        b=ChcrtwLQIpcNFHc7pBSQ6duQoP7ZgYrx30XBU1DtGtYmzkeyH/fxZR0Fo1QB3UmRt8
+         9n7Oir81G8ubwnrzXVNDsCIj2dwZYZJfrhD0GcEbM7fJlvJknXb8PNefB0MEO5Cj7MnK
+         YqdqLC0f3V5tcSIv8FCcsaB1tcMQkfd1txgbPvrl40bZ52hmjgrLEmgmpk57aUdLpT9J
+         xK0lHEAtTiWl47Ys/61/aUpW7/F3EQxAxuOYloz2wM7GV4fu/TxRkYndLINwgWMtTbre
+         q9I5sfK++GrJWIy9Rocsao4GFV9znImoX77RAe4mN8R1CR/xSaGwJJ85SyqoP6fv1dwT
+         fpjw==
+X-Gm-Message-State: AJIora+mypWiTAotd1I1yJk1FXusaDPAmTaWZqm3SyKGcso1kKW44F07
+        X5vZWbhHnukp8iENGPiM+Av2AfOsFyJSChZpfZH+Bw==
+X-Google-Smtp-Source: AGRyM1uvlI1kKQnAqsojLGszZzDWWLRpyRDvZU5IV0nMaJKmKmLRyH63v6PKs4oCrRwyIj1eyUJ3xKaPKVkvrjzvZ3U=
+X-Received: by 2002:a05:6870:b627:b0:102:f25:a460 with SMTP id
+ cm39-20020a056870b62700b001020f25a460mr9001035oab.193.1656368059192; Mon, 27
+ Jun 2022 15:14:19 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 27 Jun 2022 15:14:18 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220615154918.521687-4-jjhiblot@traphandler.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <20220625183538.v14.2.I0977b1a08830d0caa8bfb1bdedb4ecceac709a7f@changeid>
+References: <20220626013906.885523-1-joebar@chromium.org> <20220625183538.v14.2.I0977b1a08830d0caa8bfb1bdedb4ecceac709a7f@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Mon, 27 Jun 2022 15:14:18 -0700
+Message-ID: <CAE-0n539qHJ-7igqC7jVvHudd6j7zmrxGXbNch4DYkS3WWA-7g@mail.gmail.com>
+Subject: Re: [PATCH v14 2/5] arm64: dts: qcom: sc7180: Add quackingstick dts files
+To:     "Joseph S. Barrera III" <joebar@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Alexandru M Stan <amstan@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,58 +71,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 15, 2022 at 05:49:17PM +0200, Jean-Jacques Hiblot wrote:
-> This allows to group multiple monochromatic LEDs into a multicolor
-> LED, e.g. RGB LEDs.
-> 
-> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Quoting Joseph S. Barrera III (2022-06-25 18:39:03)
+> Quackingstick is a trogdor-based board. These dts files are copies from
+> the downstream Chrome OS 5.4 kernel, but with downstream bits removed.
+>
+> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
+>
 > ---
->  .../bindings/leds/leds-group-multicolor.yaml  | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
-> new file mode 100644
-> index 000000000000..30a67985ae33
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-group-multicolor.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Multi-color LED built with monochromatic LEDs
-> +
-> +maintainers:
-> +  - Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-> +
-> +description: |
-> +  This driver combines several monochromatic LEDs into one multi-color
-> +  LED using the multicolor LED class.
-> +
-> +properties:
-> +  compatible:
-> +    const: leds-group-multicolor
-> +
-> +  multi-led:
-> +    type: object
-> +
-> +    patternProperties:
-> +      "^led-[0-9a-z]+$":
-> +        type: object
-> +        $ref: common.yaml#
-> +
-> +        additionalProperties: false
-> +
-> +        properties:
-> +          leds:
 
-Not a standard property. What is the type?
-
-Really, just do a GPIO multi-color LED binding similar to the PWM one 
-rather than adding this layer. I suppose you could combine LEDs from all 
-different controllers, but that seems somewhat unlikely to me.
-
-Rob
+Tested-by: Stephen Boyd <swboyd@chromium.org>
