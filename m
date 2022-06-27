@@ -2,108 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6A1B55E0C0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:32:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CCA355D309
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:11:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233318AbiF0ILu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 04:11:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44986 "EHLO
+        id S231958AbiF0IMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 04:12:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233398AbiF0ILq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 04:11:46 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCE3C6160
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 01:11:44 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id fd6so11806232edb.5
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 01:11:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=h3Mdp7WZpjNWUbLLF/KYYtNmAa+cGw6y3XcuLyzAU8g=;
-        b=q5zVoP5clcIVDrY6ERK2vmP9OZfarqRkGci7A4OY51STVO6GItSzvcoNw2yUOg1pzf
-         uWCwOYwOpqK2kdRRsLnqGOj1sRNqw86F532Mk6NKDwsmyjKnbAteN8GFce0kuHx8nTZS
-         +O1deikonijJCWXPURdyN9w2XbTMjfe/Z6Q198aSE/8tPdNYVo8ZJqXmPwWbDdgZavZ4
-         RF2/XAmi7XGqB675rtl3JAO8nbKSfvE/1dXXCCw3zpnwuk+FfgHgn67sRzv+vcoDzzr+
-         u4Gy5tGwrAZi1vRxNkeGBHnVLXrSXLYI6DBsUIyR4pKuJTJOJ6LD9V6NkO94CFludcuA
-         aSSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=h3Mdp7WZpjNWUbLLF/KYYtNmAa+cGw6y3XcuLyzAU8g=;
-        b=Hyfs2uBRLZxY2O7RW5ADfd/vDj34twNqicvR5abnryX3ah6Xp6mP8H66KcCDyAwrjf
-         CHBjE40Ks1Bg6gnKS2K7w6NRgZti/FZsnFikO2ki62geK7iilF5IiD+HzXN3NteQJVoK
-         rVPUscXUx+zivpm0KE6PwiSD2R1cGMwyBRBWQWB8oJShYb8w/1qzboYcivxOVFenOkIy
-         pgz/Wz72XgTA3hZsvQtfBxI7ldHWgR8L9WuROCeZGde0z+y+kFw9TSYB1pZoXwjYV03D
-         k6N/lIKYLO1SujtbqW2sXjm1qzwLhpVf1I0rlSZVr+Z7S+Pftt7/JVPk8Ped40i0aniP
-         bNIg==
-X-Gm-Message-State: AJIora8I7V9fA1hDfWZcUGrON6LLzrY1TwB4hD14R3xLKTJjWhsk6IEH
-        Ct3ha7KYOIx2nM/XkIQ7w21cfQ==
-X-Google-Smtp-Source: AGRyM1sktl7RIZL1/G0JBzWDl6xiJ0SUDo+RA0dlLEqNiPs2faaTLxqZ1tas7kNDD7zvUSp224wxPw==
-X-Received: by 2002:a05:6402:5306:b0:437:8bbd:b313 with SMTP id eo6-20020a056402530600b004378bbdb313mr6563242edb.123.1656317503401;
-        Mon, 27 Jun 2022 01:11:43 -0700 (PDT)
-Received: from [192.168.0.246] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id h18-20020a1709060f5200b006fe9e717143sm4726972ejj.94.2022.06.27.01.11.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jun 2022 01:11:42 -0700 (PDT)
-Message-ID: <e1156747-e7ea-c35e-b24e-61f9318bf45f@linaro.org>
-Date:   Mon, 27 Jun 2022 10:11:41 +0200
+        with ESMTP id S233560AbiF0IMh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 04:12:37 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A01A56160
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 01:12:35 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <bst@pengutronix.de>)
+        id 1o5jrF-0007fD-04; Mon, 27 Jun 2022 10:12:33 +0200
+Message-ID: <0e7f616a-54ef-5b59-0068-87051189a7d7@pengutronix.de>
+Date:   Mon, 27 Jun 2022 10:12:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v7 1/2] dt-bindings: interconnect: Add MediaTek CCI
- dt-bindings
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 2/2] drm/panel: simple: add AM-800600P5TMQW-TB8H
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Johnson Wang <johnson.wang@mediatek.com>,
-        cw00.choi@samsung.com, krzk+dt@kernel.org, robh+dt@kernel.org,
-        kyungmin.park@samsung.com
-Cc:     khilman@kernel.org, djakov@kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, jia-wei.chang@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220607140556.6278-1-johnson.wang@mediatek.com>
- <20220607140556.6278-2-johnson.wang@mediatek.com>
- <4e452af8-e96d-fb06-7800-707f3bf75155@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4e452af8-e96d-fb06-7800-707f3bf75155@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     dri-devel@lists.freedesktop.org, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Yannick Fertre <yannick.fertre@st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+References: <20220610111511.1421067-1-bst@pengutronix.de>
+ <20220610111511.1421067-2-bst@pengutronix.de> <YrYWkdqZG1sazr2N@ravnborg.org>
+From:   Bastian Krause <bst@pengutronix.de>
+In-Reply-To: <YrYWkdqZG1sazr2N@ravnborg.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: bst@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/06/2022 12:43, AngeloGioacchino Del Regno wrote:
-> Il 07/06/22 16:05, Johnson Wang ha scritto:
->> Add devicetree binding of MediaTek CCI on MT8183 and MT8186.
+
+Hi Sam,
+
+On 6/24/22 21:54, Sam Ravnborg wrote:
+> On Fri, Jun 10, 2022 at 01:15:11PM +0200, Bastian Krause wrote:
+>> Add support for the Ampire AM-800600P5TMQW-TB8H 800x600 panel. Data
+>> sheet is currently not publicly available, unfortunately.
 >>
->> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
->> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
->> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
->> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> Acked-by: Georgi Djakov <djakov@kernel.org>
+>> Signed-off-by: Bastian Krause <bst@pengutronix.de>
+> 
+> Applied to drm-misc (drm-misc-next).
+> When applying I fixed up the compatible to match the binding.
+> You may need to fix your DT files if they used the old compatible.
+> The one from the binding had a dash like similar panels, so that is
+> the one I picked.
+
+Thanks! I changed the compatible in the yaml binding to resemble the
+other Ampire compabibles, but forgot to change that in the actual code,
+of course..
+
+> See below for the fix-up.
+> 
+> 	Sam
+> 
 >> ---
->>   .../bindings/interconnect/mediatek,cci.yaml   | 141 ++++++++++++++++++
-> 
-> Uhm, I've just noticed that this is being put in the bindings/interconnect folder.
-> The mediatek,cci is *not* an interconnect driver, but a devfreq one and is not
-> using any ICC APIs.
-> 
-> Shouldn't this go to bindings/devfreq/ instead?!
+>>   drivers/gpu/drm/panel/panel-simple.c | 33 ++++++++++++++++++++++++++++
+>>   1 file changed, 33 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+>> index 4a2e580a2f7b7..3a61873dd887c 100644
+>> --- a/drivers/gpu/drm/panel/panel-simple.c
+>> +++ b/drivers/gpu/drm/panel/panel-simple.c
+>> @@ -778,6 +778,36 @@ static const struct panel_desc ampire_am800480r3tmqwa1h = {
+>>   	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
+>>   };
+>>   
+>> +static const struct display_timing ampire_am800600p5tmqw_tb8h_timing = {
+>> +	.pixelclock = { 34500000, 39600000, 50400000 },
+>> +	.hactive = { 800, 800, 800 },
+>> +	.hfront_porch = { 12, 112, 312 },
+>> +	.hback_porch = { 87, 87, 48 },
+>> +	.hsync_len = { 1, 1, 40 },
+>> +	.vactive = { 600, 600, 600 },
+>> +	.vfront_porch = { 1, 21, 61 },
+>> +	.vback_porch = { 38, 38, 19 },
+>> +	.vsync_len = { 1, 1, 20 },
+>> +	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
+>> +		DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE |
+>> +		DISPLAY_FLAGS_SYNC_POSEDGE,
+>> +};
+>> +
+>> +static const struct panel_desc ampire_am800600p5tmqwtb8h = {
+>> +	.timings = &ampire_am800600p5tmqw_tb8h_timing,
+>> +	.num_timings = 1,
+>> +	.bpc = 6,
+>> +	.size = {
+>> +		.width = 162,
+>> +		.height = 122,
+>> +	},
+>> +	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
+>> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH |
+>> +		DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE |
+>> +		DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE,
+>> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
+>> +};
+>> +
+>>   static const struct display_timing santek_st0700i5y_rbslw_f_timing = {
+>>   	.pixelclock = { 26400000, 33300000, 46800000 },
+>>   	.hactive = { 800, 800, 800 },
+>> @@ -3754,6 +3784,9 @@ static const struct of_device_id platform_of_match[] = {
+>>   	}, {
+>>   		.compatible = "ampire,am800480r3tmqwa1h",
+>>   		.data = &ampire_am800480r3tmqwa1h,
+>> +	}, {
+>> +		.compatible = "ampire,am800600p5tmqwtb8h",
+> was changed to
+>> +		.compatible = "ampire,am800600p5tmqw-tb8h",
+>> +		.data = &ampire_am800600p5tmqwtb8h,
 
-No, devfreq is not a hardware subsystem.
+Your fixup is correct.
 
-Best regards,
-Krzysztof
+Regards,
+Bastian
+
+>>   	}, {
+>>   		.compatible = "arm,rtsm-display",
+>>   		.data = &arm_rtsm,
+>> -- 
+>> 2.30.2
+>>
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
