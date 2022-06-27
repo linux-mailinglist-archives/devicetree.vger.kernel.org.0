@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20ECE55D597
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:15:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F8EE55D396
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:12:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232313AbiF0Gsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 02:48:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40998 "EHLO
+        id S232515AbiF0Gun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 02:50:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230220AbiF0Gsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 02:48:36 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A84B6B30
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 23:48:34 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id h23so16954676ejj.12
-        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 23:48:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=RWjYnqvzKyDfj8b/7IK5P24LKA/09SVZpmj45NDb/k8=;
-        b=NYZ/s/Tb3UkyIWJGVPhIHRe0KWMNs9rwQ4YOsUw1UvszbA5TvQMvy+KyUh1UFtUoK7
-         /KOtH1L96WVtgL9WhUpN4VeybY8vsqKQ/koqr+bwHvw/HMGBuHEHDSKR5pKAYq46PmRP
-         JbVNxPjBKnofexI/kw5mShTGzugVNA3efhisLiMm6gTzwsf3OG54qwgRT0li2ULmi0q/
-         gVwOxsB3d25vCgr0kJKuve2crC1u0yjACp+L9VPIMAFKK1ijJ7cA2RkVa2dP1YknLbSS
-         3zcVxmOE1Os+4nCKlPdfd2BNeDbqWdnfJT5B8TKtRwbOtowOuEcNZPjPY1kp7uJmyE0U
-         Mdqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=RWjYnqvzKyDfj8b/7IK5P24LKA/09SVZpmj45NDb/k8=;
-        b=G3SIQGu8I2dLa4fxuYTDol3WL654MyvyfRHsw+5vAMTbN7fLFMd2eUbszV4z7e13P4
-         wfetmf0VIS2nOgE4Mg7uxRHCeonpUphVr4fz+S1hktHTSlee8IefDPXiEuVmO1vUP9P2
-         Y5co+dYGpV/GV5bcXE+QxqlK4i+qh7T1XEX+jTZ0qPyJKq2i8VQhTfIeiW9bdZtMmGZB
-         HN7pTGFo3kMX20LHVV1hTp6uc35+1+8PQTWotPqqFDtI3N2WKW5V5N6j1i47hj07UAtb
-         8gcIgmQEx0VByNEfPjspGVrb7gQJRgESZv8+9WglPWv2jnoMeNh1h096XYmChZVvNEk/
-         kvfA==
-X-Gm-Message-State: AJIora8RUx5J/J3ejAv6T8PuBPINgOhkakV6E+C3djLX333zlIG7ryE/
-        mA3X2eRT6TV504AU+iGeyoVnVA==
-X-Google-Smtp-Source: AGRyM1vJDZS0a5cPJDbxysakksp3r4tjzZ0oY+DetVZ8VFerGJs8WYrxYY1hEVLNOUj1BrAazRNjyA==
-X-Received: by 2002:a17:907:3e84:b0:6fe:8c5f:d552 with SMTP id hs4-20020a1709073e8400b006fe8c5fd552mr11407516ejc.710.1656312513224;
-        Sun, 26 Jun 2022 23:48:33 -0700 (PDT)
-Received: from [192.168.0.246] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id h26-20020aa7c61a000000b00435cfa7c6f5sm6794624edq.46.2022.06.26.23.48.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Jun 2022 23:48:32 -0700 (PDT)
-Message-ID: <9dbe7dc9-aac9-7d1b-eccf-5d4c8683065b@linaro.org>
-Date:   Mon, 27 Jun 2022 08:48:31 +0200
+        with ESMTP id S232320AbiF0Gum (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 02:50:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5021126C0;
+        Sun, 26 Jun 2022 23:50:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E0FA6612EE;
+        Mon, 27 Jun 2022 06:50:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52984C341CA;
+        Mon, 27 Jun 2022 06:50:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656312641;
+        bh=kD7SZF1jNAVPc0INxaOHFTvsDEVbYxB3CbbfNIpTB1w=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=BWRvRLt/oqeA2/Hmle5OVB6hEoiC86UQg676mPsNHKWzzof6dtBDZ0wk6/pFfHycH
+         m41UbhTCR8N8VMDQCRFHrtds/D1a0KtPApRKpJOVB00hfAbuyhYpMmKuCZI8cWi/9p
+         z0jJmIZ6CJF8XhVqSV+rv2kyzQUUh3I7AxBzgMEsSwlT06PdgD/AUtdeAmLu6s6FNE
+         YUUCpO/+M8U3se+4QjdTes5aZSkvcgvdfmTVJuY90L01DeSz6aRQ3TrlDPh64GyO08
+         DmkUCiSMCkJW0n+5r4gtnltfcVknBOGjheNWw+Dh3gblXROBSf+Gj1VB2ljGbdxgbJ
+         FlFWe8yMTzCoQ==
+Received: by mail-vs1-f49.google.com with SMTP id k25so8058589vso.6;
+        Sun, 26 Jun 2022 23:50:41 -0700 (PDT)
+X-Gm-Message-State: AJIora/J0tlk6qkur92YzNAivdPN0n75oOLNhu1X6xF4f85Nvymgm4qm
+        Z31wgGjAafrH68RfY6wBpkH/hOVQ4N+LIpQ+PeI=
+X-Google-Smtp-Source: AGRyM1sMPTXuLWt0JOCsNU6oMtoWPerFopULnWcC0H4jByn+qpMAeG/bE/AP0NKukPYSLKCka+W+5Qa2MkXg1Lte8Jk=
+X-Received: by 2002:a05:6102:366f:b0:356:352f:9de2 with SMTP id
+ bg15-20020a056102366f00b00356352f9de2mr2292856vsb.2.1656312640226; Sun, 26
+ Jun 2022 23:50:40 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] riscv: dts: align gpio-key node names with dtschema
-Content-Language: en-US
-To:     Conor.Dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220624170811.66395-1-krzysztof.kozlowski@linaro.org>
- <daf4a88e-ea33-be74-7e0a-b2ff20ea734f@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <daf4a88e-ea33-be74-7e0a-b2ff20ea734f@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20220627051257.38543-1-samuel@sholland.org> <20220627051257.38543-3-samuel@sholland.org>
+In-Reply-To: <20220627051257.38543-3-samuel@sholland.org>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Mon, 27 Jun 2022 14:50:29 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTjcP44+HHsNz8RHHEA_XqL2OjKqVHNK-e3sakFP2oW6w@mail.gmail.com>
+Message-ID: <CAJF2gTTjcP44+HHsNz8RHHEA_XqL2OjKqVHNK-e3sakFP2oW6w@mail.gmail.com>
+Subject: Re: [PATCH v1 2/3] irqchip/sifive-plic: Name the chip more generically
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,32 +75,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/06/2022 22:56, Conor.Dooley@microchip.com wrote:
-> 
-> 
-> On 24/06/2022 18:08, Krzysztof Kozlowski wrote:
->> The node names should be generic and DT schema expects certain pattern
->> (e.g. with key/button/switch).
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Are you planning to change them all & then change the pattern
-> property to complain if "key" is missing?
+Reviewed-by: Guo Ren <guoren@kernel.org>
 
-Yes, I put the link to original patchset doing this:
+On Mon, Jun 27, 2022 at 1:13 PM Samuel Holland <samuel@sholland.org> wrote:
+>
+> The interface for SiFive's PLIC was adopted and clarified by RISC-V as
+> the standard PLIC interface. Now that several PLIC implementations by
+> different vendors share this same interface, it is somewhat misleading
+> to report "SiFive PLIC" to userspace, when no SiFive hardware may be
+> present. This is especially the case when some implementations are
+> subtly incompatible with the binding and behavior of the SiFive PLIC,
+> yet are similar enough to share a driver.
+>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+>
+>  drivers/irqchip/irq-sifive-plic.c | 15 ++++++++++-----
+>  1 file changed, 10 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
+> index bb87e4c3b88e..90515865af08 100644
+> --- a/drivers/irqchip/irq-sifive-plic.c
+> +++ b/drivers/irqchip/irq-sifive-plic.c
+> @@ -28,6 +28,11 @@
+>   * The largest number supported by devices marked as 'sifive,plic-1.0.0', is
+>   * 1024, of which device 0 is defined as non-existent by the RISC-V Privileged
+>   * Spec.
+> + *
+> + * The PLIC behavior and memory map is futher formalized as an official RISC-V
+> + * specification:
+> + *
+> + *     https://github.com/riscv/riscv-plic-spec/blob/master/riscv-plic.adoc
+>   */
+>
+>  #define MAX_DEVICES                    1024
+> @@ -177,12 +182,12 @@ static void plic_irq_eoi(struct irq_data *d)
+>  }
+>
+>  static struct irq_chip plic_chip = {
+> -       .name           = "SiFive PLIC",
+> -       .irq_mask       = plic_irq_mask,
+> -       .irq_unmask     = plic_irq_unmask,
+> -       .irq_eoi        = plic_irq_eoi,
+> +       .name                   = "PLIC",
+> +       .irq_mask               = plic_irq_mask,
+> +       .irq_unmask             = plic_irq_unmask,
+> +       .irq_eoi                = plic_irq_eoi,
+>  #ifdef CONFIG_SMP
+> -       .irq_set_affinity = plic_set_affinity,
+> +       .irq_set_affinity       = plic_set_affinity,
+>  #endif
+>  };
+>
+> --
+> 2.35.1
+>
 
-> Thanks,
-> Conor.
-> 
->>
->> ---
->>
->> See: https://lore.kernel.org/all/20220616005224.18391-1-krzysztof.kozlowski@linaro.org/
 
-Specifically one of the first patches:
-https://lore.kernel.org/all/20220616005333.18491-1-krzysztof.kozlowski@linaro.org/
+-- 
+Best Regards
+ Guo Ren
 
-Best regards,
-Krzysztof
+ML: https://lore.kernel.org/linux-csky/
