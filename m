@@ -2,64 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCD7D55D861
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:19:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7397B55D312
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:11:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236872AbiF0R77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 13:59:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59902 "EHLO
+        id S233706AbiF0SFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 14:05:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233706AbiF0R76 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 13:59:58 -0400
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39903B7CA;
-        Mon, 27 Jun 2022 10:59:58 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id h85so10376528iof.4;
-        Mon, 27 Jun 2022 10:59:58 -0700 (PDT)
+        with ESMTP id S240093AbiF0SFe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 14:05:34 -0400
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62876DF3A;
+        Mon, 27 Jun 2022 11:05:08 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id p9so6269480ilj.7;
+        Mon, 27 Jun 2022 11:05:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=XogYVUgT3W3Q8+7OypuWUvQY31VgP/RT9SPk1+m3+FU=;
-        b=P1U5WA7glJBrsjBJuLAWdbBpoCGdAbSB/3LokD/2aLtZxdX/tUw6Nb05Q4uVYFSJ+Z
-         gGLUlqB6c4Khwma9dEe9gvHDHfyhT91L2PYLjKQ94bneP0O5PCvNvmoFMggtYQasmMIH
-         y2GxFpn6PrRGiofbD7V6loPG3ccC8Lk22jS8lSm6MIBmRJ+shSF2Y6O/tT88H6jvnSnb
-         9cV1GCBVW+bREy/Y1syWTOvLJhoL/k5NdDal32SeNhXgIBfR0lO2KNEy0Mbr6zlT6WtX
-         k1yd+QwTTsNfxIyFaV5WKnVkYEU5X4kZBneIR3ySTS2RkBmxgmrMJcFvmElzhedgXIfY
-         Ue/A==
-X-Gm-Message-State: AJIora8X2HMxP/FsDb8gyrFF0/cIZuQqGsrbnZtNO4nhBktHhmArifQ+
-        tmxBUlvagW01fEG+lhdvE3F64g0A/A==
-X-Google-Smtp-Source: AGRyM1vAnwCiFcCCYZPO4BGu1uNq+/KAgXdRX2IZdwF+ppESdewzYUfeD2cIKxI+ap3H/K+z1y5OaQ==
-X-Received: by 2002:a5d:9a84:0:b0:675:51d2:f1cd with SMTP id c4-20020a5d9a84000000b0067551d2f1cdmr1367241iom.173.1656352797431;
-        Mon, 27 Jun 2022 10:59:57 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=p57MlR8Ajo/G0laDaDGrGaJ0Gmeu35AovV055NwM3nA=;
+        b=YPRubnhSrQstu7OA2eQPisNZSFmkg3+aMVsRsEpf926awnGxedqB6l0k11clzb2WZM
+         wjZjibpS1e895casRdrLsf2jJXWSo2qN9LIQm3jhK6vWGfiCVgFOrLimjQlrG/0wVI2J
+         14mtWQLMZRiCK54xO75D8T7J+6RwEx2aTHAcLMQUVqMm5QkzXwBz0oBSTHFKtoc0xlXE
+         hdpmurELJMgKweaJZUlc9cxETjAg9okEZrkEPVNb3BrNNhuKNVcjqd7Ovk33VP7ai4PU
+         STD+xR4gS6xZLLK4VUbnHW/lMQyOW7jEfuOWm+gLBPN1fLSrKwPCjvdTIp8RwbLI3GFz
+         nyPg==
+X-Gm-Message-State: AJIora82DMXfUZ00BArBmugGSvem+qNs8ysrdKK5ulv9O7IG+coWYXsV
+        NqWTqv2wy4Qe4znec/vIZg==
+X-Google-Smtp-Source: AGRyM1uiE3p/EbR6rvUXP9RRxgnMAUSEd+jlUd0eBufVG4o/zNO73ycSuVBGie5SRtlHIpq5Axnz9w==
+X-Received: by 2002:a05:6e02:1c44:b0:2da:7235:983e with SMTP id d4-20020a056e021c4400b002da7235983emr7831516ilg.64.1656353107553;
+        Mon, 27 Jun 2022 11:05:07 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id x17-20020a056e020f1100b002d943793c68sm4849162ilj.56.2022.06.27.10.59.56
+        by smtp.gmail.com with ESMTPSA id a13-20020a02a00d000000b00339ce33f32csm5078977jah.102.2022.06.27.11.05.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 10:59:57 -0700 (PDT)
-Received: (nullmailer pid 2674770 invoked by uid 1000);
-        Mon, 27 Jun 2022 17:59:55 -0000
-Date:   Mon, 27 Jun 2022 11:59:55 -0600
+        Mon, 27 Jun 2022 11:05:07 -0700 (PDT)
+Received: (nullmailer pid 2682977 invoked by uid 1000);
+        Mon, 27 Jun 2022 18:05:06 -0000
+Date:   Mon, 27 Jun 2022 12:05:06 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lizhi Hou <lizhi.hou@xilinx.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 1/2] of: create of_root if no dtb provided
-Message-ID: <20220627175955.GA2665611-robh@kernel.org>
-References: <20220624034327.2542112-1-frowand.list@gmail.com>
- <20220624034327.2542112-2-frowand.list@gmail.com>
- <20220624141320.3c473605@fixe.home>
- <6d40876c-2751-01bb-94ab-7c9ab90e636f@gmail.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: Re: [PATCH 08/11] dt-bindings: display/msm: add mdp-opp-table to
+ dpu-sdm845
+Message-ID: <20220627180506.GA2679395-robh@kernel.org>
+References: <20220625232513.522599-1-dmitry.baryshkov@linaro.org>
+ <20220625232513.522599-9-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6d40876c-2751-01bb-94ab-7c9ab90e636f@gmail.com>
+In-Reply-To: <20220625232513.522599-9-dmitry.baryshkov@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -71,68 +68,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 24, 2022 at 11:44:07AM -0500, Frank Rowand wrote:
-> On 6/24/22 08:13, Clément Léger wrote:
-> > Le Thu, 23 Jun 2022 22:43:26 -0500,
-> > frowand.list@gmail.com a écrit :
-> > 
-> >>  
-> >> +/*
-> >> + * __dtb_empty_root_begin[] magically created by cmd_dt_S_dtb in
-> >> + * scripts/Makefile.lib
-> >> + */
-> >> +extern void *__dtb_empty_root_begin;
-> >> +
-> >>  /*
-> >>   * of_fdt_limit_memory - limit the number of regions in the /memory node
-> >>   * @limit: maximum entries
-> >> @@ -1332,8 +1338,13 @@ bool __init early_init_dt_scan(void *params)
-> >>   */
-> >>  void __init unflatten_device_tree(void)
-> >>  {
-> > 
-> > Hi Frank,
-> > 
-> > This function is only defined when CONFIG_OF_EARLY_FLATTREE is enabled.
+On Sun, Jun 26, 2022 at 02:25:10AM +0300, Dmitry Baryshkov wrote:
+> On SDM845 platforms DPU device tree node contains child object
+> mdp-opp-table providing OPP table for the DPU. Add it to the list of
+> properties to let sdm845.dtsi to validate.
 > 
-> More precisely, only if CONFIG_OF_FLATTREE is enabled.  But that would
-> most likely be seleved by CONFIG_OF_EARLY_FLATTREE, so in practice the
-> issue you raise is valid.
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/display/msm/dpu-sdm845.yaml      | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
 > 
-> > Which means that on platforms that do not select this, the default
-> > empty device-tree creation will not be done.
-> 
-> Yes, so platforms that need this functionality need to select this
-> option.
-> 
-> > 
-> > This configuration option is selected by the platform and not by the
-> > user. On x86, only one config enables this (X86_INTEL_CE) which means
-> > this won't work on all the other platforms even if CONFIG_OF is
-> > selected. I would need this to work by only selected CONFIG_OF.
-> 
-> Maybe this means that CONFIG_OF should be changed to select
-> CONFIG_OF_FLATTREE.  Any opinions on this Rob?
+> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+> index 0dc16326bf8e..cc95adcf8f11 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+> @@ -50,6 +50,10 @@ properties:
+>      maxItems: 1
+>  
+>    operating-points-v2: true
+> +
+> +  mdp-opp-table:
 
-I don't think that works in the PDT (Sparc) case.
+Is there another kind of opp-table besides mdp? Node names should be 
+generic.
 
-I think either CONFIG_OF_FLATTREE or CONFIG_OF_EARLY_FLATTREE will need 
-to become user selectable.
+> +    $ref: /schemas/opp/opp-v2.yaml#
+> +
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+>      description: |
+> @@ -116,11 +120,12 @@ examples:
+>                            <0x0aeb0000 0x2008>;
+>                      reg-names = "mdp", "vbif";
+>  
+> -                    clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +                    clocks = <&gcc GCC_DISP_AXI_CLK>,
+> +                             <&dispcc DISP_CC_MDSS_AHB_CLK>,
 
+What does the OPP table have to do with clocks? Adding a clock anywhere 
+but the end is an ABI break.
+
+>                               <&dispcc DISP_CC_MDSS_AXI_CLK>,
+>                               <&dispcc DISP_CC_MDSS_MDP_CLK>,
+>                               <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+> -                    clock-names = "iface", "bus", "core", "vsync";
+> +                    clock-names = "gcc-bus", "iface", "bus", "core", "vsync";
+>  
+>                      interrupt-parent = <&mdss>;
+>                      interrupts = <0>;
+> -- 
+> 2.35.1
 > 
-> > That's why I decided to add the of_root creation in of_core_init()
-> > using a function (of_fdt_unflatten()) that is provided if CONFIG_OF is
-> > defined.
 > 
-> I mentioned this in response to the previous patch series, but will
-> repeat here for those who might not have read that email thread.
-> 
-> I do not want the root live tree to be created buy different code in
-> different places; I want one central place where this occurs.  When
-> the tree can be created in multiple places by different code blocks,
-> it becomes more difficult to understand the code and more likely that
-> one of the tree creation code blocks is not updated when another is.
-
-+1
-
-Rob
