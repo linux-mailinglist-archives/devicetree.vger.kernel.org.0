@@ -2,155 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B2A455C497
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EFB955CA87
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:58:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233956AbiF0JRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 05:17:55 -0400
+        id S233933AbiF0JR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 05:17:57 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233938AbiF0JRu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:17:50 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23144639C
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 02:17:40 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id eo8so12112401edb.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 02:17:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=j45LSOHH3JiD4etOLa648Qq9hJpooPqyedr7q+VjXHU=;
-        b=ufwbGIdKNbXPH8Wz04so0lL3KGsbit4ttintNEHvPRPe+Kt4AdOJOOMOUYmCFo1tnu
-         eR14C9G92k19LoxmXRkN/ZJrgPVtIqoxjy5S5Cv41g9b+nRCSuZbV/E1IONtlHLgPxuX
-         lCdNMnCg9xD6MK5wLh3M4U38b3SCxZ2x8++tKsWkfhoBWgfjhLrAAtjC2RAiusWs7vws
-         /i2JY1CLzP7ma+mvGp/Lo66H8GP8SoVFsLo4fNQzttC2xq+bgfYojxKZVXf9ZxQe7Tp2
-         ZKFJ5Eyuwviit4SZjs4aD5R3T6bKWBgI1JIvBqDHCwlRwx5Eigju0gXmhOV4BgBTnt8Y
-         x6fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=j45LSOHH3JiD4etOLa648Qq9hJpooPqyedr7q+VjXHU=;
-        b=DvmHA8+CpQVaNJrxOqrsDa75YxPt3v8O78KsBtCWjkCqIC42U2TjnQADPyDdKlPui+
-         gsycniHRffSe9S6SzHIygUVLdp1XfZVRyoI5sSD0KlOSHTFwi4hogX4TbNc23th+JndR
-         5hrD+DwEHq7QkGLjPQoIP/VdCDbe+OZHLBdA99zDqaTG9GpVI4y6P106A1B8KbmcCqtg
-         ACSgfh1Pfn5nKd3Yl4Ker93CRVE0a10tIo2PhMmZeqHAH804F9gx+uYH9mbLayY0TspG
-         iUZWrX5rHla7hV7vQP5mYpxSIEBVeoYkR3m4qglalWCaCAnDl+rzcLe3srZreWh7/S3p
-         ziVA==
-X-Gm-Message-State: AJIora8h7L7EeFhRuJHnsICobEcEQk4BrJe4HZXbI3Kd7OGrkciZ03JQ
-        JorzhrOd6Ct+bmA/SCf6X1E+jQ==
-X-Google-Smtp-Source: AGRyM1sywnG4AoJoUKNejA/e+NFvcRiA0U6+mWnexBl80A39LsB4bnm6VB95gY/41HlbVTxa8ZqdRw==
-X-Received: by 2002:aa7:d484:0:b0:435:65b0:e2d8 with SMTP id b4-20020aa7d484000000b0043565b0e2d8mr15314344edr.373.1656321458755;
-        Mon, 27 Jun 2022 02:17:38 -0700 (PDT)
-Received: from [192.168.0.247] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l2-20020a170906078200b006fe89cafc42sm4840141ejc.172.2022.06.27.02.17.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jun 2022 02:17:38 -0700 (PDT)
-Message-ID: <227af263-e52e-d2bb-2467-77c6439bad79@linaro.org>
-Date:   Mon, 27 Jun 2022 11:17:37 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 1/2] dt-bindings: i2c: Document RZ/V2M I2C controller
-Content-Language: en-US
-To:     Phil Edworthy <phil.edworthy@renesas.com>,
+        with ESMTP id S233936AbiF0JRz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:17:55 -0400
+Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 175E662F4;
+        Mon, 27 Jun 2022 02:17:53 -0700 (PDT)
+Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.56])
+        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4LWhsP34JVz1L8j0;
+        Mon, 27 Jun 2022 17:15:37 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Mon, 27 Jun 2022 17:17:50 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Mon, 27 Jun 2022 17:17:49 +0800
+Subject: Re: [PATCH 5/5] arm64: kdump: Don't defer the reservation of crash
+ high memory
+To:     Baoquan He <bhe@redhat.com>,
+        Catalin Marinas <catalin.marinas@arm.com>
+CC:     Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        "Eric Biederman" <ebiederm@xmission.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-References: <20220624101736.27217-1-phil.edworthy@renesas.com>
- <20220624101736.27217-2-phil.edworthy@renesas.com>
- <2f2b2544-9c53-3a6a-d9c9-375e75b112f3@linaro.org>
- <TYYPR01MB70869F902F8367DDFC4A9EDFF5B99@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TYYPR01MB70869F902F8367DDFC4A9EDFF5B99@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+        "Frank Rowand" <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>, <kexec@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Jonathan Corbet <corbet@lwn.net>, <linux-doc@vger.kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        "Dave Kleikamp" <dave.kleikamp@oracle.com>,
+        liushixin <liushixin2@huawei.com>
+References: <20220613080932.663-1-thunder.leizhen@huawei.com>
+ <20220613080932.663-6-thunder.leizhen@huawei.com>
+ <YrFYHYgX3mC//t2l@MiWiFi-R3L-srv>
+ <3f66323d-f371-b931-65fb-edfae0f01c88@huawei.com> <YrIIJkhKWSuAqkCx@arm.com>
+ <YrLUREAoBMSZo7RR@MiWiFi-R3L-srv> <YrRzvO5F0dumsbAU@arm.com>
+ <Yrkbak66vYT55H4x@MiWiFi-R3L-srv>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <e3318551-4134-245a-c060-86ab81eb3e68@huawei.com>
+Date:   Mon, 27 Jun 2022 17:17:49 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <Yrkbak66vYT55H4x@MiWiFi-R3L-srv>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2022 09:17, Phil Edworthy wrote:
-> Hi Krzysztof,
-> 
-> Thanks for you review.
-> 
-> On 25 June 2022 21:43 Krzysztof Kozlowski wrote:
->> On 24/06/2022 12:17, Phil Edworthy wrote:
->>> Document Renesas RZ/V2M (r9a09g011) I2C controller bindings.
+
+
+On 2022/6/27 10:52, Baoquan He wrote:
+> On 06/23/22 at 03:07pm, Catalin Marinas wrote:
+>> On Wed, Jun 22, 2022 at 04:35:16PM +0800, Baoquan He wrote:
+>>> On 06/21/22 at 07:04pm, Catalin Marinas wrote:
+>>>> The problem with splitting is that you can end up with two entries in
+>>>> the TLB for the same VA->PA mapping (e.g. one for a 4KB page and another
+>>>> for a 2MB block). In the lucky case, the CPU will trigger a TLB conflict
+>>>> abort (but can be worse like loss of coherency).
 >>>
->>> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
->>> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
->>> ---
->>>  .../bindings/i2c/renesas,rzv2m.yaml           | 76 +++++++++++++++++++
->>>  1 file changed, 76 insertions(+)
->>>  create mode 100644
->> Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
->> b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
->>> new file mode 100644
->>> index 000000000000..9049461ad2f4
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
->>> @@ -0,0 +1,76 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/i2c/renesas,rzv2m.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Renesas RZ/V2M I2C Bus Interface
->>> +
->>> +maintainers:
->>> +  - Phil Edworthy <phil.edworthy@renesas.com>
->>> +
->>> +allOf:
->>> +  - $ref: /schemas/i2c/i2c-controller.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - renesas,i2c-r9a09g011  # RZ/V2M
->>> +      - const: renesas,rzv2m-i2c
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    items:
->>> +      - description: Data transmission/reception interrupt
->>> +      - description: Status interrupt
->>> +
->>> +  interrupt-names:
->>> +    items:
->>> +      - const: tia
->>> +      - const: tis
->>> +
->>> +  clock-frequency:
->>> +    description:
->>> +      Desired I2C bus clock frequency in Hz. The absence of this
->> property
->>> +      indicates the default frequency 100 kHz.
+>>> Thanks for this explanation. Is this a drawback of arm64 design? X86
+>>> code do the same thing w/o issue, is there way to overcome this on
+>>> arm64 from hardware or software side?
 >>
->> Instead of last sentence, just add "default: 100000".
-> Right, I'll also and an enum for this as the HW can only support 100
-> or 400kHz.
+>> It is a drawback of the arm64 implementations. Having multiple TLB
+>> entries for the same VA would need additional logic in hardware to
+>> detect, so the microarchitects have pushed back. In ARMv8.4, some
+>> balanced was reached with FEAT_BBM so that the only visible side-effect
+>> is a potential TLB conflict abort that could be resolved by software.
+> 
+> I see, thx.
+> 
+>>
+>>> I ever got a arm64 server with huge memory, w or w/o crashkernel setting 
+>>> have different bootup time. And the more often TLB miss and flush will
+>>> cause performance cost. It is really a pity if we have very powerful
+>>> arm64 cpu and system capacity, but bottlenecked by this drawback.
+>>
+>> Is it only the boot time affected or the runtime performance as well?
+> 
+> Sorry for late reply. What I observerd is the boot time serious latecy
+> with huge memory. Since the timestamp is not available at that time,
+> we can't tell the number. I didn't notice the runtime performance.
 
-Sure, sounds good. Thank you.
+There's some data here, and I see you're not on the cc list.
 
-Best regards,
-Krzysztof
+https://lore.kernel.org/linux-mm/1656241815-28494-1-git-send-email-guanghuifeng@linux.alibaba.com/T/
+
+> 
+> .
+> 
+
+-- 
+Regards,
+  Zhen Lei
