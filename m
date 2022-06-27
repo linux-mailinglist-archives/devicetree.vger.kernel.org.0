@@ -2,112 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 464A655C730
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:53:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0041D55E014
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:31:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233417AbiF0Ize (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 04:55:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48684 "EHLO
+        id S233670AbiF0I4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 04:56:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233024AbiF0Izc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 04:55:32 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D5C5636A
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 01:55:31 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id c13so11933365eds.10
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 01:55:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=RsBoiseaTkJc51iVjuUsait0HqgvtgtMrYkH57RHGCU=;
-        b=skhj6rL+UZnb3uqF9ljVTdtpJi84kWTrupgEdBvRS3QgaOVnezJVrkAGrGgv6lwF1/
-         3d+Cf7kpB4c6T3MDM1IHVWRw4zKkP5ErkBe5MiyNhOb3VHcLptGsyxMN86lyIkSPfLZ6
-         8lbuEjmq4yaQwnRR9fvPslm2+S20+4kxiGjZwpc5HTiLopSQPYwhe2WUmzi5Hdz+E5cL
-         gnhymObz/v31wdKPoKOsXoWXi99z7gzGLL6WwNDHZO+rx1vx9go6Z0/ebUX3FH4kM5JR
-         MAt9z+4m9z7+EVx/bFKLzfIMBbG6Bva2+NVmJO7WBVSc1PcdLs+t9Tx5QU8lIiLWXGJ+
-         LUrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=RsBoiseaTkJc51iVjuUsait0HqgvtgtMrYkH57RHGCU=;
-        b=TO4e3PqFYV3GPoBEE+tTZrBNCHXY2aVdkNLIULHYB0vy7TN624+qFpB/JTbptV20Jl
-         SoEkK8c0G1SB8/OXBHlXL6VKkog3NyKRLKfxM8n9l4+/hSFrFEA6KB91B5lapY0uA8v1
-         bWQyFPccv6gsEKCKh25XO+GWNJa5WhxOYOoATWb0G3J0hE4t8JGlusZC1xnJJS+fXAS/
-         i3aGfGV7HkWaF2xpIfy337PmHUISeIvUweHQVDMAsjMkJCWaTIlDrPh6ftBSE2pLhGUu
-         MUaytTLlKy919Qn0AzbsasBu98ghknRbbXv1YVRYX8CrMuR0RDBwqfRX1pdFAW0UZ+5Y
-         c5YA==
-X-Gm-Message-State: AJIora8q09cPIUwZRWHxo9q3gxsnsDqnT/QeIEI9mdU7X7tJbwfSIZIq
-        IC/A1GXabNnlowsFNLVpOtbNsw==
-X-Google-Smtp-Source: AGRyM1uHTpdt+MsqhWdxTZPyIYF7oRz48lzwDRSQCGhJKEvO+cfipqWJDMQS+cbwyV3uuOPXNkhmjA==
-X-Received: by 2002:a05:6402:452:b0:434:a373:f9f8 with SMTP id p18-20020a056402045200b00434a373f9f8mr15706814edw.290.1656320130078;
-        Mon, 27 Jun 2022 01:55:30 -0700 (PDT)
-Received: from [192.168.0.247] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id bg6-20020a170906a04600b00722e31fcf42sm4768843ejb.184.2022.06.27.01.55.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jun 2022 01:55:29 -0700 (PDT)
-Message-ID: <cd6fb785-50d4-8945-b7bc-951856f1c5ae@linaro.org>
-Date:   Mon, 27 Jun 2022 10:55:28 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 1/5] ARM: dts: exynos: align SDHCI node name with dtschema
-Content-Language: en-US
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        'Ulf Hansson' <ulf.hansson@linaro.org>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
-        'Jaehoon Chung' <jh80.chung@samsung.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S233673AbiF0I4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 04:56:43 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F766380;
+        Mon, 27 Jun 2022 01:56:41 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 699136601826;
+        Mon, 27 Jun 2022 09:56:38 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1656320199;
+        bh=rTb2BKGQFipvuxltOmZjku9+TmcuBbyadctbj6rJURw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=OXO/JGgTuxrppa3BBBZdxpbl+j/SQYfb3wmob9xb8HN/cCXaFT9NgxxsKM67mKbXV
+         2Hb/NsSQr1uleUlVD8UZRxNFZylfmrPM4TV2dPoNPeCaB2vPBnZTE27tw2jCrzRlv3
+         CIBmwysbVsouw9sGfiB1DDXIZmGtTqOShaIBkhspwpTjNGYAW6RTNb7tLoWYu4eNqH
+         hDckYfNG7QI1F+C6nGUMHa1juUTcArSYEc3av2p5GFD4Bd88ax9Jo+m2LcYxnhY1La
+         RGUiYV9vsfI6mzhzRdwKpVJUvVPOI9dWItO5C74idBSYhiAKlqB3JiTupU5FOWUabz
+         BLjWgFAuKWijg==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        y.oudjana@protonmail.com, angelogioacchino.delregno@collabora.com,
+        jason-jh.lin@mediatek.com, ck.hu@mediatek.com,
+        fparent@baylibre.com, rex-bc.chen@mediatek.com,
+        tinghan.shen@mediatek.com, chun-jie.chen@mediatek.com,
+        weiyi.lu@mediatek.com, ikjn@chromium.org, miles.chen@mediatek.com,
+        sam.shih@mediatek.com, wenst@chromium.org,
+        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20220626120342.38851-1-krzysztof.kozlowski@linaro.org>
- <CGME20220626120350epcas5p25a98e0669eeb11ce7959ace0f3634926@epcas5p2.samsung.com>
- <20220626120342.38851-2-krzysztof.kozlowski@linaro.org>
- <000a01d889c5$adb3bd30$091b3790$@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <000a01d889c5$adb3bd30$091b3790$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
+        kernel@collabora.com
+Subject: [PATCH v4 0/7] MediaTek Helio X10 MT6795 - Clock drivers
+Date:   Mon, 27 Jun 2022 10:56:25 +0200
+Message-Id: <20220627085632.23797-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2022 03:31, Alim Akhtar wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
->> Sent: Sunday, June 26, 2022 5:34 PM
->> To: Ulf Hansson <ulf.hansson@linaro.org>; Rob Herring
->> <robh+dt@kernel.org>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>; Alim Akhtar
->> <alim.akhtar@samsung.com>; Jaehoon Chung <jh80.chung@samsung.com>;
->> linux-mmc@vger.kernel.org; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
->> samsung-soc@vger.kernel.org
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Subject: [PATCH 1/5] ARM: dts: exynos: align SDHCI node name with
->> dtschema
->>
->> The node names should be generic and DT schema expects "mmc".
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
-> 
->  (for patch 1 ~ 4)
-> 
-> Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+In an effort to give some love to the apparently forgotten MT6795 SoC,
+I am upstreaming more components that are necessary to support platforms
+powered by this one apart from a simple boot to serial console.
 
-Tooling does not handle such cases.
+This (very big) series introduces system clock, multimedia clock drivers
+(including resets) for this SoC.
 
-Best regards,
-Krzysztof
+Tested on a MT6795 Sony Xperia M5 (codename "Holly") smartphone.
+
+This series depends on, and can be merged on top of:
+[1]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=640122
+[2]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=637849
+
+Changes in v4:
+ - Removed unnecessary examples for clock controllers in commit [4/7]
+ - Fixed one instance of 88 columns line wrap in commit [4/7]
+
+Changes in v3:
+ - Fixed typo in commit [4/7]
+
+Changes in v2:
+ - Fixed yaml clock bindings as per Rob's review
+ - Added ability to compile all MT6795 clock drivers as modules
+ - Added commits to export some symbols, required to compile as module
+
+AngeloGioacchino Del Regno (7):
+  dt-bindings: mediatek: Document MT6795 system controllers bindings
+  dt-bindings: clock: Add MediaTek Helio X10 MT6795 clock bindings
+  dt-bindings: reset: Add bindings for MT6795 Helio X10 reset
+    controllers
+  dt-bindings: clock: mediatek: Add clock driver bindings for MT6795
+  clk: mediatek: clk-apmixed: Remove unneeded __init annotation
+  clk: mediatek: Export required symbols to compile clk drivers as
+    module
+  clk: mediatek: Add MediaTek Helio X10 MT6795 clock drivers
+
+ .../arm/mediatek/mediatek,infracfg.yaml       |   2 +
+ .../bindings/arm/mediatek/mediatek,mmsys.yaml |   1 +
+ .../arm/mediatek/mediatek,pericfg.yaml        |   1 +
+ .../bindings/clock/mediatek,apmixedsys.yaml   |   1 +
+ .../bindings/clock/mediatek,mt6795-clock.yaml |  66 ++
+ .../clock/mediatek,mt6795-sys-clock.yaml      |  54 ++
+ .../bindings/clock/mediatek,topckgen.yaml     |   1 +
+ drivers/clk/mediatek/Kconfig                  |  37 ++
+ drivers/clk/mediatek/Makefile                 |   6 +
+ drivers/clk/mediatek/clk-apmixed.c            |   3 +-
+ drivers/clk/mediatek/clk-cpumux.c             |   2 +
+ drivers/clk/mediatek/clk-mt6795-apmixedsys.c  | 157 +++++
+ drivers/clk/mediatek/clk-mt6795-infracfg.c    | 148 +++++
+ drivers/clk/mediatek/clk-mt6795-mfg.c         |  50 ++
+ drivers/clk/mediatek/clk-mt6795-mm.c          | 106 +++
+ drivers/clk/mediatek/clk-mt6795-pericfg.c     | 160 +++++
+ drivers/clk/mediatek/clk-mt6795-topckgen.c    | 610 ++++++++++++++++++
+ drivers/clk/mediatek/clk-mt6795-vdecsys.c     |  55 ++
+ drivers/clk/mediatek/clk-mt6795-vencsys.c     |  50 ++
+ drivers/clk/mediatek/clk-mtk.c                |   2 +
+ drivers/clk/mediatek/reset.c                  |   1 +
+ include/dt-bindings/clock/mt6795-clk.h        | 275 ++++++++
+ include/dt-bindings/reset/mt6795-resets.h     |  50 ++
+ 23 files changed, 1837 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-apmixedsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-infracfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-mfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-mm.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-pericfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-topckgen.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-vdecsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6795-vencsys.c
+ create mode 100644 include/dt-bindings/clock/mt6795-clk.h
+ create mode 100644 include/dt-bindings/reset/mt6795-resets.h
+
+-- 
+2.35.1
+
