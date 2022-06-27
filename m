@@ -2,543 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E73B755E2BC
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:36:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89DE355C87A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:55:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234061AbiF0JqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 05:46:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36668 "EHLO
+        id S233049AbiF0Je0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 05:34:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234002AbiF0Jp6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:45:58 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA7D6397
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 02:45:55 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id eo8so12219390edb.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 02:45:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=aIP+1dZIiVOhC8HwHgj9eZ41EIvs9BjKGc4gdg2Yxtw=;
-        b=ZobDi1HTr1/FJ2bHX3cCm9OJoobcBDD9EtWkv16ThN7lMvsX3cEDiKfNQitQJ1uHQr
-         qIReIFQla6j2IiYPnjvBHeTiUzoDi/XZIMVp6FBKSXldn9luf1TaxrAE3bgozTpjBT2g
-         1pWt7muLGjkmg6bkKZxa2Ua/lysVxLrl7+XNMYIuqrJuqYDs1zMqhcRQs90K36VwIcJ3
-         7sBIbUb1A7n3Ikk9RjFIy+bhCdNHEct2ucvFpm0sDayFDjw9lt8l4CHO4Z22EpnZoKPZ
-         hq1a7yVLLOQHuSdJE4ybGazEo0TSi+lyZP47Ldo5s/y7RIBLj3N6RVdz/lK6NnMRvHlg
-         aHYQ==
+        with ESMTP id S233591AbiF0JeX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:34:23 -0400
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF0163D9;
+        Mon, 27 Jun 2022 02:34:21 -0700 (PDT)
+Received: by mail-qv1-f50.google.com with SMTP id y14so13877081qvs.10;
+        Mon, 27 Jun 2022 02:34:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=aIP+1dZIiVOhC8HwHgj9eZ41EIvs9BjKGc4gdg2Yxtw=;
-        b=A/v79M0EkZbD9+epdzcVJBJA8daB+wqGMOMP+05jt03imTbMTMrOTZQ1Twwtv1+tVH
-         lN4v8UBGqei27MIR93gho38127Mh55Jhq8Sty7GyMM2byx97WbSpVgpaaYOrc7fAItcS
-         d5WcGrn5bslMiNK78NOCficaxDf+UEL4A0j02vh1jBUgCCVoZh4/S4l+N1geviTJITEG
-         p7gCbf+URAaGMlWbqAMZcrVzdJkh1E/oqxVGzkzK54WI4aNgNumccRETPb8+vO1nbBCA
-         EaRt/f7hGotUKGEIcl3qSbWO6O2kdoKHLtBivdJknP17pVIdFbtzrq8pAglQT+SitzlT
-         Zn1Q==
-X-Gm-Message-State: AJIora+fw7grvwwod0oD+Rfbtekw+n7+1wAzEG4RavxcZfBCIpqpDwYC
-        wEuySX8jasIxSBD6g71wOFTMjw==
-X-Google-Smtp-Source: AGRyM1sSt2vWToLdyw975gx1SFJjCITh1OxEp4WePLXPlvyPLatSbRoN5L5V1Vw4/qWrZ1LLFPrTzA==
-X-Received: by 2002:a05:6402:354d:b0:435:93f9:fc0b with SMTP id f13-20020a056402354d00b0043593f9fc0bmr15108363edd.288.1656323154134;
-        Mon, 27 Jun 2022 02:45:54 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id lu4-20020a170906fac400b006fec69696a0sm4749907ejb.220.2022.06.27.02.45.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 02:45:53 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=R5th0qpP/J1ycxyypwJPUwSeLA3QY+9VgG/84MEtg00=;
+        b=LKmvaQuvjMNtr2jA3MZX5X+OVC62FMHIl/huLurFrECWr2caDZ4gw/8A+gNgbe6cfI
+         I1pLeabPlqAwpIyiIxX/97CM6MSQqPssYFz8EMl8RpoVoQSj2/yeHGuMoh7ZwWf4TJWc
+         ywyZreVkO4VQGuTSHX8P1aPrrGKe/D/f/AVroalK2FzHwNOBY2/ofwerz+E9NiGy9mM8
+         l02nSjj/Wwx9wknMAfWsdUauQ2hdAIqjIdhJiC+ekaIRJzIhvjoqiGqofYpr7Hb8VcYU
+         7QIWirmvEqhEqWnDy7SsTQU8pEhTdD+IfnTFbct123BeXt+8hMbAj2NWYPx7VDmyvFrG
+         U/IA==
+X-Gm-Message-State: AJIora803xRn0luYV7G7mQCuuUSiOefHJgUq+J1D1+AoAgbb8bAq7BAE
+        ccCjbPEjqZtHrAjuq5XZ+E6uyT9YUaGG8A==
+X-Google-Smtp-Source: AGRyM1utvzLdA+PTPQs9Kw/g22g0rpxqI/GgMV2tm1q04ZDXA/G7m7E5sr2HvGffP6r6mhKyo/q4Qg==
+X-Received: by 2002:a05:6214:21ce:b0:470:f4e:951b with SMTP id d14-20020a05621421ce00b004700f4e951bmr7793594qvh.14.1656322460566;
+        Mon, 27 Jun 2022 02:34:20 -0700 (PDT)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id p24-20020ac84098000000b00317ccf991a3sm5954243qtl.19.2022.06.27.02.34.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jun 2022 02:34:20 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-3177f4ce3e2so79475447b3.5;
+        Mon, 27 Jun 2022 02:34:20 -0700 (PDT)
+X-Received: by 2002:a0d:c787:0:b0:31b:a963:e1de with SMTP id
+ j129-20020a0dc787000000b0031ba963e1demr6407552ywd.283.1656322459903; Mon, 27
+ Jun 2022 02:34:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220623103024.24222-1-chris.paterson2@renesas.com>
+In-Reply-To: <20220623103024.24222-1-chris.paterson2@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 27 Jun 2022 11:34:07 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXeR_7gJb0PJVheUjyR68=a9yCD5ixtskKB0EZT3-HVrw@mail.gmail.com>
+Message-ID: <CAMuHMdXeR_7gJb0PJVheUjyR68=a9yCD5ixtskKB0EZT3-HVrw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a07g054l2-smarc: Correct SoC name
+ in comment
+To:     Chris Paterson <chris.paterson2@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2] arm64: dts: qcom: align OPP table names with DT schema
-Date:   Mon, 27 Jun 2022 11:32:50 +0200
-Message-Id: <20220627093250.84391-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Biju Das <biju.das@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT schema expects names of operating points tables to start with
-"opp-table":
+On Thu, Jun 23, 2022 at 12:30 PM Chris Paterson
+<chris.paterson2@renesas.com> wrote:
+> This dts is for the RZ/V2L SMARC EVK, not RZ/G2L.
+>
+> Fixes: f91c4c74796a ("arm64: dts: renesas: Add initial device tree for RZ/V2L SMARC EVK")
+> Signed-off-by: Chris Paterson <chris.paterson2@renesas.com>
 
-  ipq6018-cp01-c1.dtb: cpu_opp_table: $nodename:0: 'cpu_opp_table' does not match '^opp-table(-[a-z0-9]+)?$'
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.20.
 
-Use hyphens instead of underscores, fix the names to match DT schema or
-remove the prefix entirely when it is not needed.
+Gr{oetje,eeting}s,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+                        Geert
 
----
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Changes since v1:
-1. Extend commit msg.
----
- arch/arm64/boot/dts/qcom/ipq6018.dtsi |  2 +-
- arch/arm64/boot/dts/qcom/msm8916.dtsi |  2 +-
- arch/arm64/boot/dts/qcom/sc7180.dtsi  | 18 +++++++++---------
- arch/arm64/boot/dts/qcom/sc7280.dtsi  | 12 ++++++------
- arch/arm64/boot/dts/qcom/sdm630.dtsi  |  4 ++--
- arch/arm64/boot/dts/qcom/sdm845.dtsi  | 16 ++++++++--------
- arch/arm64/boot/dts/qcom/sm6350.dtsi  |  4 ++--
- arch/arm64/boot/dts/qcom/sm8150.dtsi  |  8 ++++----
- arch/arm64/boot/dts/qcom/sm8250.dtsi  | 16 ++++++++--------
- arch/arm64/boot/dts/qcom/sm8350.dtsi  |  4 ++--
- arch/arm64/boot/dts/qcom/sm8450.dtsi  |  2 +-
- 11 files changed, 44 insertions(+), 44 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 0034a20a9705..8f528b8a5fec 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -87,7 +87,7 @@ L2_0: l2-cache {
- 		};
- 	};
- 
--	cpu_opp_table: cpu_opp_table {
-+	cpu_opp_table: opp-table-cpu {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 05472510e29d..ec22668e641b 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -216,7 +216,7 @@ CLUSTER_PWRDN: cluster-gdhs {
- 		};
- 	};
- 
--	cpu_opp_table: cpu-opp-table {
-+	cpu_opp_table: opp-table-cpu {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 0abc765c615e..3a222ac71cca 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -398,7 +398,7 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
- 		};
- 	};
- 
--	cpu0_opp_table: cpu0_opp_table {
-+	cpu0_opp_table: opp-table-cpu0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -453,7 +453,7 @@ cpu0_opp10: opp-1804800000 {
- 		};
- 	};
- 
--	cpu6_opp_table: cpu6_opp_table {
-+	cpu6_opp_table: opp-table-cpu6 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -725,7 +725,7 @@ sdhc_1: sdhci@7c4000 {
- 
- 			status = "disabled";
- 
--			sdhc1_opp_table: sdhc1-opp-table {
-+			sdhc1_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-100000000 {
-@@ -744,7 +744,7 @@ opp-384000000 {
- 			};
- 		};
- 
--		qup_opp_table: qup-opp-table {
-+		qup_opp_table: opp-table-qup {
- 			compatible = "operating-points-v2";
- 
- 			opp-75000000 {
-@@ -2602,7 +2602,7 @@ sdhc_2: sdhci@8804000 {
- 
- 			status = "disabled";
- 
--			sdhc2_opp_table: sdhc2-opp-table {
-+			sdhc2_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-100000000 {
-@@ -2621,7 +2621,7 @@ opp-202000000 {
- 			};
- 		};
- 
--		qspi_opp_table: qspi-opp-table {
-+		qspi_opp_table: opp-table-qspi {
- 			compatible = "operating-points-v2";
- 
- 			opp-75000000 {
-@@ -2825,7 +2825,7 @@ video-encoder {
- 				compatible = "venus-encoder";
- 			};
- 
--			venus_opp_table: venus-opp-table {
-+			venus_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-150000000 {
-@@ -2963,7 +2963,7 @@ dpu_intf0_out: endpoint {
- 					};
- 				};
- 
--				mdp_opp_table: mdp-opp-table {
-+				mdp_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-200000000 {
-@@ -3042,7 +3042,7 @@ dsi0_out: endpoint {
- 					};
- 				};
- 
--				dsi_opp_table: dsi-opp-table {
-+				dsi_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-187500000 {
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index fbe0633a0841..b387fab78bd8 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -417,7 +417,7 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
- 		};
- 	};
- 
--	cpu0_opp_table: cpu0-opp-table {
-+	cpu0_opp_table: opp-table-cpu0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -477,7 +477,7 @@ cpu0_opp_2016mhz: opp-2016000000 {
- 		};
- 	};
- 
--	cpu4_opp_table: cpu4-opp-table {
-+	cpu4_opp_table: opp-table-cpu4 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -547,7 +547,7 @@ cpu4_opp_2611mhz: opp-2611200000 {
- 		};
- 	};
- 
--	cpu7_opp_table: cpu7-opp-table {
-+	cpu7_opp_table: opp-table-cpu7 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -763,7 +763,7 @@ psci {
- 		method = "smc";
- 	};
- 
--	qspi_opp_table: qspi-opp-table {
-+	qspi_opp_table: opp-table-qspi {
- 		compatible = "operating-points-v2";
- 
- 		opp-75000000 {
-@@ -787,7 +787,7 @@ opp-300000000 {
- 		};
- 	};
- 
--	qup_opp_table: qup-opp-table {
-+	qup_opp_table: opp-table-qup {
- 		compatible = "operating-points-v2";
- 
- 		opp-75000000 {
-@@ -3334,7 +3334,7 @@ video-firmware {
- 				iommus = <&apps_smmu 0x21a2 0x0>;
- 			};
- 
--			venus_opp_table: venus-opp-table {
-+			venus_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-133330000 {
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 2a2944e16945..b4367339d8b9 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -1405,7 +1405,7 @@ mmcc: clock-controller@c8c0000 {
- 					<0>;
- 		};
- 
--		dsi_opp_table: dsi-opp-table {
-+		dsi_opp_table: opp-table-dsi {
- 			compatible = "operating-points-v2";
- 
- 			opp-131250000 {
-@@ -1494,7 +1494,7 @@ mdp5_intf1_out: endpoint {
- 					};
- 				};
- 
--				mdp_opp_table: mdp-opp {
-+				mdp_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-150000000 {
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index b96d0aa9f10b..2e9d93d6b28a 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -462,7 +462,7 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
- 		};
- 	};
- 
--	cpu0_opp_table: cpu0_opp_table {
-+	cpu0_opp_table: opp-table-cpu0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -557,7 +557,7 @@ cpu0_opp18: opp-1766400000 {
- 		};
- 	};
- 
--	cpu4_opp_table: cpu4_opp_table {
-+	cpu4_opp_table: opp-table-cpu4 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -1104,7 +1104,7 @@ rng: rng@793000 {
- 			clock-names = "core";
- 		};
- 
--		qup_opp_table: qup-opp-table {
-+		qup_opp_table: opp-table-qup {
- 			compatible = "operating-points-v2";
- 
- 			opp-50000000 {
-@@ -3569,7 +3569,7 @@ sdhc_2: sdhci@8804000 {
- 
- 			status = "disabled";
- 
--			sdhc2_opp_table: sdhc2-opp-table {
-+			sdhc2_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-9600000 {
-@@ -3594,7 +3594,7 @@ opp-201500000 {
- 			};
- 		};
- 
--		qspi_opp_table: qspi-opp-table {
-+		qspi_opp_table: opp-table-qspi {
- 			compatible = "operating-points-v2";
- 
- 			opp-19200000 {
-@@ -3971,7 +3971,7 @@ video-core1 {
- 				compatible = "venus-encoder";
- 			};
- 
--			venus_opp_table: venus-opp-table {
-+			venus_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-100000000 {
-@@ -4208,7 +4208,7 @@ clock_camcc: clock-controller@ad00000 {
- 			clock-names = "bi_tcxo";
- 		};
- 
--		dsi_opp_table: dsi-opp-table {
-+		dsi_opp_table: opp-table-dsi {
- 			compatible = "operating-points-v2";
- 
- 			opp-19200000 {
-@@ -4310,7 +4310,7 @@ dpu_intf2_out: endpoint {
- 					};
- 				};
- 
--				mdp_opp_table: mdp-opp-table {
-+				mdp_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-19200000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index d4f8f33f3f0c..9297aa53d860 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -497,7 +497,7 @@ sdhc_1: sdhci@7c4000 {
- 
- 			status = "disabled";
- 
--			sdhc1_opp_table: sdhc1-opp-table {
-+			sdhc1_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-19200000 {
-@@ -941,7 +941,7 @@ sdhc_2: sdhci@8804000 {
- 
- 			status = "disabled";
- 
--			sdhc2_opp_table: sdhc2-opp-table {
-+			sdhc2_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-100000000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index d3fd0af61766..c0c96c557bb0 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -288,7 +288,7 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
- 		};
- 	};
- 
--	cpu0_opp_table: cpu0_opp_table {
-+	cpu0_opp_table: opp-table-cpu0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -383,7 +383,7 @@ cpu0_opp18: opp-1785600000 {
- 		};
- 	};
- 
--	cpu4_opp_table: cpu4_opp_table {
-+	cpu4_opp_table: opp-table-cpu4 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -473,7 +473,7 @@ cpu4_opp17: opp-2419200000 {
- 		};
- 	};
- 
--	cpu7_opp_table: cpu7_opp_table {
-+	cpu7_opp_table: opp-table-cpu7 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -3563,7 +3563,7 @@ sdhc_2: sdhci@8804000 {
- 
- 			status = "disabled";
- 
--			sdhc2_opp_table: sdhc2-opp-table {
-+			sdhc2_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-19200000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 8098330aeb4f..e13e0e8a786b 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -336,7 +336,7 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
- 		};
- 	};
- 
--	cpu0_opp_table: cpu0_opp_table {
-+	cpu0_opp_table: opp-table-cpu0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -426,7 +426,7 @@ cpu0_opp17: opp-1804800000 {
- 		};
- 	};
- 
--	cpu4_opp_table: cpu4_opp_table {
-+	cpu4_opp_table: opp-table-cpu4 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -521,7 +521,7 @@ cpu4_opp18: opp-2419200000 {
- 		};
- 	};
- 
--	cpu7_opp_table: cpu7_opp_table {
-+	cpu7_opp_table: opp-table-cpu7 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -914,7 +914,7 @@ rng: rng@793000 {
- 			clock-names = "core";
- 		};
- 
--		qup_opp_table: qup-opp-table {
-+		qup_opp_table: opp-table-qup {
- 			compatible = "operating-points-v2";
- 
- 			opp-50000000 {
-@@ -2937,7 +2937,7 @@ sdhc_2: sdhci@8804000 {
- 
- 			status = "disabled";
- 
--			sdhc2_opp_table: sdhc2-opp-table {
-+			sdhc2_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-19200000 {
-@@ -3123,7 +3123,7 @@ video-encoder {
- 				compatible = "venus-encoder";
- 			};
- 
--			venus_opp_table: venus-opp-table {
-+			venus_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
- 				opp-720000000 {
-@@ -3486,7 +3486,7 @@ dpu_intf2_out: endpoint {
- 					};
- 				};
- 
--				mdp_opp_table: mdp-opp-table {
-+				mdp_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-200000000 {
-@@ -3656,7 +3656,7 @@ dsi1_phy: dsi-phy@ae96400 {
- 
- 				status = "disabled";
- 
--				dsi_opp_table: dsi-opp-table {
-+				dsi_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
- 					opp-187500000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 743cba9b683c..db497b954f4c 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -638,7 +638,7 @@ ipcc: mailbox@408000 {
- 			#mbox-cells = <2>;
- 		};
- 
--		qup_opp_table_100mhz: qup-100mhz-opp-table {
-+		qup_opp_table_100mhz: opp-table-qup100mhz {
- 			compatible = "operating-points-v2";
- 
- 			opp-50000000 {
-@@ -657,7 +657,7 @@ opp-100000000 {
- 			};
- 		};
- 
--		qup_opp_table_120mhz: qup-120mhz-opp-table {
-+		qup_opp_table_120mhz: opp-table-qup120mhz {
- 			compatible = "operating-points-v2";
- 
- 			opp-50000000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 7d08fad76371..ab4ea6672b48 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -343,7 +343,7 @@ CLUSTER_PD: cpu-cluster0 {
- 		};
- 	};
- 
--	qup_opp_table_100mhz: qup-100mhz-opp-table {
-+	qup_opp_table_100mhz: opp-table-qup {
- 		compatible = "operating-points-v2";
- 
- 		opp-50000000 {
--- 
-2.34.1
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
