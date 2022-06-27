@@ -2,260 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D8D955C401
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:49:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F5A655D2F6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:11:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236705AbiF0NsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 09:48:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50226 "EHLO
+        id S234682AbiF0NSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 09:18:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236466AbiF0Nrj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 09:47:39 -0400
-Received: from mx.kernkonzept.com (serv1.kernkonzept.com [IPv6:2a01:4f8:1c1c:b490::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 148D16276;
-        Mon, 27 Jun 2022 06:47:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kernkonzept.com; s=mx1; h=Content-Transfer-Encoding:MIME-Version:References
-        :In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=l1b/kY+w6ocJyLqOmM3fFvnsEbyJyvpIJCaxuRyr2Pg=; b=qifHkXLquH/mXgjzggikJ18gI/
-        6PyBhinc5gisvID2XlT6Jb3cCyED69n+ji53QqmLLcFayUtag202WYEmp+kqr8sPyQflDy5czw19r
-        0pLC67xXRi9fuNmkqO1kZbPEmb3yHR1mNPUsIfersbgz6BmHe9y5QEx5cl3CC4B2Pj+Lny3xXzuUc
-        AXZa19k2b/nCzsqdd7eeGsxcqHvytLi4QkpeeOsYtWq26YifpbVkWBtgddahwZPW7Bcv+vm/5Mf7u
-        kbt7XHuxOyLbFIMs6p4ZvQJ67HhVVuE1JjD45x8LQcLIjriUQZP8x7TKfs3S0fYuXBHqPob8VqhGr
-        NncrQ5ig==;
-Received: from [10.22.3.24] (helo=kernkonzept.com)
-        by mx.kernkonzept.com with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim 4.94.2)
-        id 1o5oa7-006Cqx-Gn; Mon, 27 Jun 2022 15:15:11 +0200
-From:   Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Subject: [PATCH 3/3] thermal: qcom: tsens: Add data for MSM8909
-Date:   Mon, 27 Jun 2022 15:14:15 +0200
-Message-Id: <20220627131415.2868938-4-stephan.gerhold@kernkonzept.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220627131415.2868938-1-stephan.gerhold@kernkonzept.com>
-References: <20220627131415.2868938-1-stephan.gerhold@kernkonzept.com>
+        with ESMTP id S234961AbiF0NRl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 09:17:41 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF604B870;
+        Mon, 27 Jun 2022 06:17:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1656335825; x=1687871825;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=f4xxEul0YKd5rxrkLyEAwzdVgpps8n1/yZoBsxB6ax4=;
+  b=bkSAb6wFGgf9hkeDoXU1+Ul41cMU3Ycq4jfd+3dDAO1nd54MzS6TvyuL
+   q+EGa18fC37PgWnKA/oEuNnykdvZz+6YFIvsi8ZrvqNrRuIIVwEv699wl
+   G1yF+B4DL/CbHsRSpTp4F/D24kF4iTa6Ms9u/Q/vb25dUhqpCx1ux0sZz
+   NXJveKBdsP6TD1IpCUZdZBxGyawVclNrl+ymt75rJjG00H6jdshxNuJxl
+   +iOPRK2PmnIj2gNybow0nG116+RSxU/5AQn+QLRGTTOPQh36NmGs9ZbUS
+   XT5dSGloVLuaRBaGmOBeZMpz3V4msQzYtZMwIPYyK66EE8/xGZMpl4sZ8
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10390"; a="345446389"
+X-IronPort-AV: E=Sophos;i="5.92,226,1650956400"; 
+   d="scan'208";a="345446389"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2022 06:17:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,226,1650956400"; 
+   d="scan'208";a="732308958"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 27 Jun 2022 06:17:00 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 27 Jun 2022 16:17:00 +0300
+Date:   Mon, 27 Jun 2022 16:17:00 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        amelie.delaunay@foss.st.com, alexandre.torgue@foss.st.com
+Subject: Re: [PATCH 2/4] usb: typec: ucsi: stm32g0: add support for stm32g0
+ i2c controller
+Message-ID: <YrmtzDfFm17PFl2r@kuha.fi.intel.com>
+References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
+ <20220624155413.399190-3-fabrice.gasnier@foss.st.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220624155413.399190-3-fabrice.gasnier@foss.st.com>
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MSM8909 SoC has 5 thermal sensors in a TSENS v0.1 block similar to
-MSM8916, except that the bit offsets in the qfprom were changed.
-Also, some fixed correction factors are needed as workaround because the
-factory calibration apparently was not reliable enough.
+Hi,
 
-Add the defines and calibration function for MSM8909 in the existing
-tsens-v0_1.c driver to make the thermal sensors work on MSM8909.
-The changes are derived from the original msm-3.18 kernel [1] from
-Qualcomm but cleaned up and adapted to the driver in mainline.
+On Fri, Jun 24, 2022 at 05:54:11PM +0200, Fabrice Gasnier wrote:
+> +static int ucsi_stm32g0_probe(struct i2c_client *client, const struct i2c_device_id *id)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct ucsi_stm32g0 *g0;
+> +	int ret;
+> +
+> +	g0 = devm_kzalloc(dev, sizeof(*g0), GFP_KERNEL);
+> +	if (!g0)
+> +		return -ENOMEM;
+> +
+> +	g0->dev = dev;
+> +	g0->client = client;
+> +	init_completion(&g0->complete);
+> +	i2c_set_clientdata(client, g0);
+> +
+> +	g0->ucsi = ucsi_create(dev, &ucsi_stm32g0_ops);
+> +	if (IS_ERR(g0->ucsi))
+> +		return PTR_ERR(g0->ucsi);
+> +
+> +	ucsi_set_drvdata(g0->ucsi, g0);
+> +
+> +	/* Request alert interrupt */
+> +	ret = request_threaded_irq(client->irq, NULL, ucsi_stm32g0_irq_handler, IRQF_ONESHOT,
+> +				   dev_name(&client->dev), g0);
+> +	if (ret) {
+> +		dev_err_probe(dev, ret, "request IRQ failed\n");
+> +		goto destroy;
+> +	}
+> +
+> +	ret = ucsi_register(g0->ucsi);
+> +	if (ret) {
+> +		dev_err_probe(dev, ret, "ucsi_register failed\n");
+> +		goto freeirq;
+> +	}
 
-[1]: https://git.codelinaro.org/clo/la/kernel/msm-3.18/-/blob/LA.UM.7.7.c26-08600-8x09.0/drivers/thermal/msm-tsens.c
+If there isn't UCSI firmware, then ucsi_register() will always safely
+fail here, right?
 
-Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
----
- drivers/thermal/qcom/tsens-v0_1.c | 119 +++++++++++++++++++++++++++++-
- drivers/thermal/qcom/tsens.c      |   3 +
- drivers/thermal/qcom/tsens.h      |   2 +-
- 3 files changed, 122 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
-index f136cb350238..e17c4f9d9aa5 100644
---- a/drivers/thermal/qcom/tsens-v0_1.c
-+++ b/drivers/thermal/qcom/tsens-v0_1.c
-@@ -15,6 +15,48 @@
- #define TM_Sn_STATUS_OFF			0x0030
- #define TM_TRDY_OFF				0x005c
- 
-+/* eeprom layout data for 8909 */
-+#define MSM8909_CAL_SEL_MASK	0x00070000
-+#define MSM8909_CAL_SEL_SHIFT	16
-+
-+#define MSM8909_BASE0_MASK	0x000000ff
-+#define MSM8909_BASE1_MASK	0x0000ff00
-+#define MSM8909_BASE0_SHIFT	0
-+#define MSM8909_BASE1_SHIFT	8
-+
-+#define MSM8909_S0_P1_MASK	0x0000003f
-+#define MSM8909_S1_P1_MASK	0x0003f000
-+#define MSM8909_S2_P1_MASK	0x3f000000
-+#define MSM8909_S3_P1_MASK	0x000003f0
-+#define MSM8909_S4_P1_MASK	0x003f0000
-+
-+#define MSM8909_S0_P2_MASK	0x00000fc0
-+#define MSM8909_S1_P2_MASK	0x00fc0000
-+#define MSM8909_S2_P2_MASK_0_1	0xc0000000
-+#define MSM8909_S2_P2_MASK_2_5	0x0000000f
-+#define MSM8909_S3_P2_MASK	0x0000fc00
-+#define MSM8909_S4_P2_MASK	0x0fc00000
-+
-+#define MSM8909_S0_P1_SHIFT	0
-+#define MSM8909_S1_P1_SHIFT	12
-+#define MSM8909_S2_P1_SHIFT	24
-+#define MSM8909_S3_P1_SHIFT	4
-+#define MSM8909_S4_P1_SHIFT	16
-+
-+#define MSM8909_S0_P2_SHIFT	6
-+#define MSM8909_S1_P2_SHIFT	18
-+#define MSM8909_S2_P2_SHIFT_0_1	30
-+#define MSM8909_S2_P2_SHIFT_2_5	2
-+#define MSM8909_S3_P2_SHIFT	10
-+#define MSM8909_S4_P2_SHIFT	22
-+
-+#define MSM8909_D30_WA_S1	10
-+#define MSM8909_D30_WA_S3	9
-+#define MSM8909_D30_WA_S4	8
-+#define MSM8909_D120_WA_S1	6
-+#define MSM8909_D120_WA_S3	9
-+#define MSM8909_D120_WA_S4	10
-+
- /* eeprom layout data for 8916 */
- #define MSM8916_BASE0_MASK	0x0000007f
- #define MSM8916_BASE1_MASK	0xfe000000
-@@ -223,6 +265,68 @@
- #define MDM9607_CAL_SEL_MASK	0x00700000
- #define MDM9607_CAL_SEL_SHIFT	20
- 
-+static int calibrate_8909(struct tsens_priv *priv)
-+{
-+	u32 *qfprom_cdata, *qfprom_csel;
-+	int base0, base1, mode, i;
-+	u32 p1[5], p2[5];
-+
-+	qfprom_cdata = (u32 *)qfprom_read(priv->dev, "calib");
-+	if (IS_ERR(qfprom_cdata))
-+		return PTR_ERR(qfprom_cdata);
-+
-+	qfprom_csel = (u32 *)qfprom_read(priv->dev, "calib_sel");
-+	if (IS_ERR(qfprom_csel)) {
-+		kfree(qfprom_cdata);
-+		return PTR_ERR(qfprom_csel);
-+	}
-+
-+	mode = (qfprom_csel[0] & MSM8909_CAL_SEL_MASK) >> MSM8909_CAL_SEL_SHIFT;
-+	dev_dbg(priv->dev, "calibration mode is %d\n", mode);
-+
-+	switch (mode) {
-+	case TWO_PT_CALIB:
-+		base1 = (qfprom_csel[0] & MSM8909_BASE1_MASK) >> MSM8909_BASE1_SHIFT;
-+		p2[0] = (qfprom_cdata[0] & MSM8909_S0_P2_MASK) >> MSM8909_S0_P2_SHIFT;
-+		p2[1] = (qfprom_cdata[0] & MSM8909_S1_P2_MASK) >> MSM8909_S1_P2_SHIFT;
-+		p2[2] = (qfprom_cdata[0] & MSM8909_S2_P2_MASK_0_1) >> MSM8909_S2_P2_SHIFT_0_1;
-+		p2[2] |= (qfprom_cdata[1] & MSM8909_S2_P2_MASK_2_5) << MSM8909_S2_P2_SHIFT_2_5;
-+		p2[3] = (qfprom_cdata[1] & MSM8909_S3_P2_MASK) >> MSM8909_S3_P2_SHIFT;
-+		p2[4] = (qfprom_cdata[1] & MSM8909_S4_P2_MASK) >> MSM8909_S4_P2_SHIFT;
-+		for (i = 0; i < priv->num_sensors; i++)
-+			p2[i] = ((base1 + p2[i]) << 2);
-+		p2[1] -= MSM8909_D120_WA_S1;
-+		p2[3] -= MSM8909_D120_WA_S3;
-+		p2[4] -= MSM8909_D120_WA_S4;
-+		fallthrough;
-+	case ONE_PT_CALIB2:
-+		base0 = (qfprom_csel[0] & MSM8909_BASE0_MASK) >> MSM8909_BASE0_SHIFT;
-+		p1[0] = (qfprom_cdata[0] & MSM8909_S0_P1_MASK) >> MSM8909_S0_P1_SHIFT;
-+		p1[1] = (qfprom_cdata[0] & MSM8909_S1_P1_MASK) >> MSM8909_S1_P1_SHIFT;
-+		p1[2] = (qfprom_cdata[0] & MSM8909_S2_P1_MASK) >> MSM8909_S2_P1_SHIFT;
-+		p1[3] = (qfprom_cdata[1] & MSM8909_S3_P1_MASK) >> MSM8909_S3_P1_SHIFT;
-+		p1[4] = (qfprom_cdata[1] & MSM8909_S4_P1_MASK) >> MSM8909_S4_P1_SHIFT;
-+		for (i = 0; i < priv->num_sensors; i++)
-+			p1[i] = (((base0) + p1[i]) << 2);
-+		p1[1] -= MSM8909_D30_WA_S1;
-+		p1[3] -= MSM8909_D30_WA_S3;
-+		p1[4] -= MSM8909_D30_WA_S4;
-+		break;
-+	default:
-+		for (i = 0; i < priv->num_sensors; i++) {
-+			p1[i] = 500;
-+			p2[i] = 780;
-+		}
-+		break;
-+	}
-+
-+	compute_intercept_slope(priv, p1, p2, mode);
-+	kfree(qfprom_cdata);
-+	kfree(qfprom_csel);
-+
-+	return 0;
-+}
-+
- static int calibrate_8916(struct tsens_priv *priv)
- {
- 	int base0 = 0, base1 = 0, i;
-@@ -534,7 +638,7 @@ static int calibrate_9607(struct tsens_priv *priv)
- 	return 0;
- }
- 
--/* v0.1: 8916, 8939, 8974, 9607 */
-+/* v0.1: 8909, 8916, 8939, 8974, 9607 */
- 
- static struct tsens_features tsens_v0_1_feat = {
- 	.ver_major	= VER_0_1,
-@@ -580,6 +684,19 @@ static const struct reg_field tsens_v0_1_regfields[MAX_REGFIELDS] = {
- 	[TRDY] = REG_FIELD(TM_TRDY_OFF, 0, 0),
- };
- 
-+static const struct tsens_ops ops_8909 = {
-+	.init		= init_common,
-+	.calibrate	= calibrate_8909,
-+	.get_temp	= get_temp_common,
-+};
-+
-+struct tsens_plat_data data_8909 = {
-+	.num_sensors	= 5,
-+	.ops		= &ops_8909,
-+	.feat		= &tsens_v0_1_feat,
-+	.fields		= tsens_v0_1_regfields,
-+};
-+
- static const struct tsens_ops ops_8916 = {
- 	.init		= init_common,
- 	.calibrate	= calibrate_8916,
-diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
-index 7963ee33bf75..cb7bbaa72d89 100644
---- a/drivers/thermal/qcom/tsens.c
-+++ b/drivers/thermal/qcom/tsens.c
-@@ -973,6 +973,9 @@ static const struct of_device_id tsens_table[] = {
- 	}, {
- 		.compatible = "qcom,mdm9607-tsens",
- 		.data = &data_9607,
-+	}, {
-+		.compatible = "qcom,msm8909-tsens",
-+		.data = &data_8909,
- 	}, {
- 		.compatible = "qcom,msm8916-tsens",
- 		.data = &data_8916,
-diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
-index 1471a2c00f15..752d4718f26e 100644
---- a/drivers/thermal/qcom/tsens.h
-+++ b/drivers/thermal/qcom/tsens.h
-@@ -587,7 +587,7 @@ int get_temp_common(const struct tsens_sensor *s, int *temp);
- extern struct tsens_plat_data data_8960;
- 
- /* TSENS v0.1 targets */
--extern struct tsens_plat_data data_8916, data_8939, data_8974, data_9607;
-+extern struct tsens_plat_data data_8909, data_8916, data_8939, data_8974, data_9607;
- 
- /* TSENS v1 targets */
- extern struct tsens_plat_data data_tsens_v1, data_8976;
+> +	return 0;
+> +
+> +freeirq:
+> +	free_irq(client->irq, g0);
+> +destroy:
+> +	ucsi_destroy(g0->ucsi);
+> +
+> +	return ret;
+> +}
+
+
+thanks,
+
 -- 
-2.30.2
-
+heikki
