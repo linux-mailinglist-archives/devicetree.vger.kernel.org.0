@@ -2,140 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09C1D55B597
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jun 2022 05:21:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3450F55B5DE
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jun 2022 05:55:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232486AbiF0DRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jun 2022 23:17:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48628 "EHLO
+        id S231395AbiF0D3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jun 2022 23:29:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232469AbiF0DRL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 23:17:11 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 721015F61;
-        Sun, 26 Jun 2022 20:17:10 -0700 (PDT)
-Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Mon, 27 Jun 2022
- 11:17:09 +0800
-From:   Liang Yang <liang.yang@amlogic.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        <linux-mtd@lists.infradead.org>
-CC:     Liang Yang <liang.yang@amlogic.com>, Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v8 1/5] dt-bindings: nand: meson: fix meson nfc clock
-Date:   Mon, 27 Jun 2022 11:16:59 +0800
-Message-ID: <20220627031703.33243-2-liang.yang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220627031703.33243-1-liang.yang@amlogic.com>
-References: <20220627031703.33243-1-liang.yang@amlogic.com>
+        with ESMTP id S229953AbiF0D3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jun 2022 23:29:22 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0983D2DF6
+        for <devicetree@vger.kernel.org>; Sun, 26 Jun 2022 20:29:21 -0700 (PDT)
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220627032919epoutp04a396186298d20e6bce160e2a1686cc9e~8XJVZH8WL2563625636epoutp04w
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 03:29:19 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220627032919epoutp04a396186298d20e6bce160e2a1686cc9e~8XJVZH8WL2563625636epoutp04w
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1656300559;
+        bh=0Zir2TOrLPec4IhgCA/w7Csziv0B7jSkm3/emseDJRU=;
+        h=From:To:In-Reply-To:Subject:Date:References:From;
+        b=PHGzwO4wEcL9gzKXNIs15CjA0a+Q24kPFk1Rj8YVVoc1TQLWV+FmdoA5zCNKL11bW
+         8llWWHB2nGLnwAk6Uztzyl8Hi7fgT3J6eHor9owabXsVge4xwMVd6jQKelZn/LsUfq
+         J3jWaEO4Csqrz5ng+KnciihILQGDxPx65OlkJeV4=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+        20220627032919epcas2p492763ede5dcb9935739fdae9134348a3~8XJVKQvkG3233332333epcas2p4z;
+        Mon, 27 Jun 2022 03:29:19 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.68]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4LWY9p6hxQz4x9Pq; Mon, 27 Jun
+        2022 03:29:18 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        DE.F4.09642.E0429B26; Mon, 27 Jun 2022 12:29:18 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220627032918epcas2p1857d20843104e416d4b8cade63bf92a8~8XJUb_9qA1744917449epcas2p1b;
+        Mon, 27 Jun 2022 03:29:18 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220627032918epsmtrp2b862cad4e2b9b313223ee58fb778fdfb~8XJUbSwNT3269532695epsmtrp2t;
+        Mon, 27 Jun 2022 03:29:18 +0000 (GMT)
+X-AuditID: b6c32a47-5f7ff700000025aa-40-62b9240e57e8
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        8A.BE.08802.E0429B26; Mon, 27 Jun 2022 12:29:18 +0900 (KST)
+Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220627032918epsmtip23402a8760bf220fba3f322693d9b18e2~8XJUNQoct0930109301epsmtip2F;
+        Mon, 27 Jun 2022 03:29:18 +0000 (GMT)
+From:   "Chanho Park" <chanho61.park@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        "'Andi Shyti'" <andi@etezian.org>,
+        "'Mark Brown'" <broonie@kernel.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+In-Reply-To: <20220626112838.19281-1-krzysztof.kozlowski@linaro.org>
+Subject: RE: [PATCH] spi: dt-bindings: samsung: Add Exynos4210 SPI
+Date:   Mon, 27 Jun 2022 12:29:18 +0900
+Message-ID: <0f3c01d889d6$1567cb00$40376100$@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.21]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHKhtylZLYgnAF5CFmPmMFzASK26QHtgmKtrW8yLMA=
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprBJsWRmVeSWpSXmKPExsWy7bCmmS6fys4kg2lPjSwW/3jOZDH14RM2
+        i/lHzrFa7H29ld3i8q45bBYzzu9jsmj8eJPdonXvEXYHDo/rSz4xe2xa1cnmcefaHjaPz5vk
+        Aliism0yUhNTUosUUvOS81My89JtlbyD453jTc0MDHUNLS3MlRTyEnNTbZVcfAJ03TJzgM5Q
+        UihLzCkFCgUkFhcr6dvZFOWXlqQqZOQXl9gqpRak5BSYF+gVJ+YWl+al6+WlllgZGhgYmQIV
+        JmRnfHvzlLHgBFPF2jW72BoYJzF1MXJySAiYSBy/2w9kc3EICexglDh6cTcbhPOJUaL7/g8W
+        COczo8Tx90dZYFrO/nzBDJHYxSix+OEpKOcFo8T7h9vAqtgE9CVedmxjBUmICGxikmie1wm2
+        kVPARWLa4ydgtrCAk8SrR3PAGlgEVCX27DvBCGLzClhKbO/8wARhC0qcnPkErIZZQF5i+9s5
+        zBBnKEj8fLqMFcQWEbCS+HnyJRNEjYjE7M42sIskBHo5JDrOfod61UXi6twPUD8IS7w6voUd
+        wpaS+PxuLxuEXSyxdNYnJojmBkaJy9t+QSWMJWY9awe6jgNog6bE+l36IKaEgLLEkVtQt/FJ
+        dBz+yw4R5pXoaBOCaFSXOLB9OtRWWYnuOZ9ZIUo8JNq6IycwKs5C8uQsJE/OQvLMLIS1CxhZ
+        VjGKpRYU56anFhsVGMNjOzk/dxMjOIlque9gnPH2g94hRiYOxkOMEhzMSiK8r69vTRLiTUms
+        rEotyo8vKs1JLT7EaAoM9onMUqLJ+cA0nlcSb2hiaWBiZmZobmRqYK4kzuuVsiFRSCA9sSQ1
+        OzW1ILUIpo+Jg1OqgSnDaetnU53iJq36naduJzVKcdmlcWbe3xj/Z0d17Iqty9hTz8w5dp3b
+        I+NRR8ey87949NQWVQmIeF39HXE3/Q7D17Vl59K/d9Q23F7NbdmYNcOufnE2j7WFz26nPwY3
+        gpr6dx7qaMx8+uK5qrxD0VZnv+1cpvLKf/aXPZp13Yg1rLjb9MjFWKHo5HNcW2OZ39SaL5YS
+        +bgp1CDqW8UtkeQDMv3XzCT1X74TcJOcpenscM3gnovw7aCXl6/qvU0VqEh79XO9gsS5lZ2T
+        D5yq+SiyRtWT3dhXyTx7/ZL5Ps/ezFw/t/6Wh8Kz5nle2T+Y1R2/NaStnbv4s3XZQhabZRWh
+        pQ3yi+d93utWwDz1mRJLcUaioRZzUXEiAIkOdf4rBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrBLMWRmVeSWpSXmKPExsWy7bCSvC6fys4kg8dnRS0W/3jOZDH14RM2
+        i/lHzrFa7H29ld3i8q45bBYzzu9jsmj8eJPdonXvEXYHDo/rSz4xe2xa1cnmcefaHjaPz5vk
+        AliiuGxSUnMyy1KL9O0SuDK+vXnKWHCCqWLtml1sDYyTmLoYOTkkBEwkzv58wdzFyMUhJLCD
+        UeLWrtNsEAlZiWfvdrBD2MIS91uOsEIUPWOU6F1/F6yITUBf4mXHNrCEiMAOJol/s1+wgCSE
+        BKYySkw8rwBicwq4SEx7/ARsnbCAk8SrR3PAalgEVCX27DvBCGLzClhKbO/8wARhC0qcnPkE
+        rIZZQE9i/fo5jBC2vMT2t3OYIS5SkPj5dBkriC0iYCXx8+RLJogaEYnZnW3MExiFZiEZNQvJ
+        qFlIRs1C0rKAkWUVo2RqQXFuem6xYYFRXmq5XnFibnFpXrpecn7uJkZw5Ghp7WDcs+qD3iFG
+        Jg7GQ4wSHMxKIryvr29NEuJNSaysSi3Kjy8qzUktPsQozcGiJM57oetkvJBAemJJanZqakFq
+        EUyWiYNTqoEpVrsms+LvdovQNpe9MboTd53K9rN4+9MioXXNQXvfTBXXk8bqRVuiIlICRI9c
+        fqrpMPmI3a4NoeeczG5IaF191LFr68nvT59OXXZIz3q1+DuJ1yFlh3YuNfxlqrbyq9DGvmV+
+        PEtf/I72tbuxY05F5b2efi+7m49izdX1Z19ckFO4zCzmtLVYWYpfwRURjbI6+51PJ+u8sFH8
+        cPgV51O2/vbGm1YqHvdUcs/qfAjdNVsscBOHyMraN5Ed+exxWlN+mDK/35ahL96xfO8zbiGP
+        T15x/Qd/+pjuf/j765S9aycbx++1dxR/OHv14+WFzmFd5tq79ti/z5u7bYvj1+5Qs3rrXKeT
+        gkoRtawzLZOVWIozEg21mIuKEwFTpNW3CwMAAA==
+X-CMS-MailID: 20220627032918epcas2p1857d20843104e416d4b8cade63bf92a8
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220626113118epcas2p26b9fc5b2628e6ff307e2cc3bd9f5bf26
+References: <CGME20220626113118epcas2p26b9fc5b2628e6ff307e2cc3bd9f5bf26@epcas2p2.samsung.com>
+        <20220626112838.19281-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK'
-which is defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is
-the divider and bit6~7 is the mux for fix pll and xtal. At the beginning,
-a common MMC and NAND sub-clock was discussed and planed to be implemented
-as NFC clock provider, but now this series of patches of a common MMC and
-NAND sub-clock are never being accepted and the current binding was never
-valid. the reasons for giving up are:
-1. EMMC and NAND, which are mutually exclusive anyway
-2. coupling the EMMC and NAND.
-3. it seems that a common MMC and NAND sub-clock is over engineered.
-and let us see the link fot more information:
-https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com
-so The meson nfc can't work now, let us rework the clock.
+> Subject: [PATCH] spi: dt-bindings: samsung: Add Exynos4210 SPI
+> 
+> Document samsung,exynos4210-spi compatible which is already used on
+> several Exynos SoCs.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Liang Yang <liang.yang@amlogic.com>
----
- .../bindings/mtd/amlogic,meson-nand.txt       | 29 ++++++++-----------
- 1 file changed, 12 insertions(+), 17 deletions(-)
+Reviewed-by: Chanho Park <chanho61.park@samsung.com>
 
-diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-index 5794ab1147c1..5d5cdfef417f 100644
---- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-@@ -7,18 +7,19 @@ Required properties:
- - compatible : contains one of:
-   - "amlogic,meson-gxl-nfc"
-   - "amlogic,meson-axg-nfc"
-+
-+- reg        : Offset and length of the register set
-+
-+- reg-names  : "nfc" is the register set for NFC controller and "emmc"
-+		is the register set for MCI controller.
-+
- - clocks     :
- 	A list of phandle + clock-specifier pairs for the clocks listed
- 	in clock-names.
- 
- - clock-names: Should contain the following:
- 	"core" - NFC module gate clock
--	"device" - device clock from eMMC sub clock controller
--	"rx" - rx clock phase
--	"tx" - tx clock phase
--
--- amlogic,mmc-syscon	: Required for NAND clocks, it's shared with SD/eMMC
--				controller port C
-+	"device" - parent clock for internal NFC
- 
- Optional children nodes:
- Children nodes represent the available nand chips.
-@@ -28,24 +29,18 @@ see Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindi
- 
- Example demonstrate on AXG SoC:
- 
--	sd_emmc_c_clkc: mmc@7000 {
--		compatible = "amlogic,meson-axg-mmc-clkc", "syscon";
--		reg = <0x0 0x7000 0x0 0x800>;
--	};
--
- 	nand-controller@7800 {
- 		compatible = "amlogic,meson-axg-nfc";
--		reg = <0x0 0x7800 0x0 0x100>;
-+		reg = <0x0 0x7800 0x0 0x100>,
-+		      <0x0 0x7000 0x0 0x800>;
-+		reg-names = "nfc", "emmc";
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
- 
- 		clocks = <&clkc CLKID_SD_EMMC_C>,
--			<&sd_emmc_c_clkc CLKID_MMC_DIV>,
--			<&sd_emmc_c_clkc CLKID_MMC_PHASE_RX>,
--			<&sd_emmc_c_clkc CLKID_MMC_PHASE_TX>;
--		clock-names = "core", "device", "rx", "tx";
--		amlogic,mmc-syscon = <&sd_emmc_c_clkc>;
-+			 <&clkc CLKID_FCLK_DIV2>;
-+		clock-names = "core", "device";
- 
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&nand_pins>;
--- 
-2.34.1
+Best Regards,
+Chanho Park
 
