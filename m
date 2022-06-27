@@ -2,68 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AADB55D47B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:14:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FC3A55C439
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:49:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235525AbiF0Ody (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 10:33:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50338 "EHLO
+        id S237576AbiF0Opc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 10:45:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237563AbiF0Odw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 10:33:52 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5212DAE60
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 07:33:51 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id v14so13356607wra.5
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 07:33:51 -0700 (PDT)
+        with ESMTP id S236702AbiF0Opb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 10:45:31 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31FE5DFE7
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 07:45:30 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id o16-20020a05600c379000b003a02eaea815so4992767wmr.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 07:45:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sWc3J/CV8Dtuzf2S0I8qVO7xqFOXn3NKNC59Q9TMvRQ=;
-        b=UbLPodrqAHIe1Am49Jl0smN4f299SAzH8V94mbM/HXZOKBMiT2tDFem+KKm5Z9ammZ
-         a8mtrRODvmxRvsGtyhAIntCA2XzmMpGhcnzQK6C05F8qCy7PsDKWEJJ0dBDu3i2TWhFI
-         wiqov+jDEEdzVOQREep9skMioOzRBFWRx+hzDvEjR+4lTOu7CZAYyNe18UjbJQZU1gug
-         yq7AvsAph5EqbHGwi/YIKou3IE5CVQ6bzw1wyBD4v9ndoZaBJ+jHgXzrXTU49pEF1JQe
-         8LWZYVRoqsWZHfoFEinAN9A7hkYmBKVxa5ejeJDRa5D2EsXPxs6hexOOHpYBKhQh777n
-         xQkQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=IWftomwLpTiMw5geHf9NLR9Uy1YW4MKMGZNLZyCJ+bc=;
+        b=u58UnEiLCenA3bkmghyAMBZIb86SCyentNc7dQ60BekrjXgleen868tcyhopyZYiZ9
+         bnEl2TCSt53+J8VPJ/nhK2qrtAWWyhl+IHC+1g10BKZ0qE/ThORTfQtraJpM3Ws7ttPu
+         w87P/a2ClHh9YFEqB6sHhtd7ce/m3qj8LajwRgkyKutYiPuxkE8dXF2pepzbHaahr6IT
+         6mDSUtHC5qUYZ7uai++Xyxle2mVfaqg7T4wQx/jcyyhY1sC/ZUhZKnZF48VR/VZ6r6Ar
+         tjIRXb1mL5BkNNwkYffH4KURKN/0fTc+kZHEj2AVX3+N2DymnDdrQwQsRaeLpArVarS3
+         oMUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sWc3J/CV8Dtuzf2S0I8qVO7xqFOXn3NKNC59Q9TMvRQ=;
-        b=3k9Ao/015XRS3P1hKBETEK+s3BhANvxZGjT3Hzlqvub75D3Kg/hzdw6qeshnrxX8Nm
-         JZm5R2XAlOU022y78GekafbeGQfwjPAX91k7YyhCPEtaBMEP7Ev/NFIpyDpZ3A8dy4j1
-         3gH32meGQ2A8FXki0EIb8rnBGVu9BWgEdhGJQ+JEhcC+vnGbyEwkAxMb8umksNtjw15S
-         489M+IZsIQ3BA41j2AyIbTGR04cP/4DNpNqv0AyFGRSlw7Ce7vk4pw3UJ667dS+vE1Dq
-         FSHBGaVqMkyGa/+Hb/F7K8A9RS7tYU84Lm/gO5e5z5cEuJsdbvhGFXy9CIS9AyNkxnU+
-         cYsQ==
-X-Gm-Message-State: AJIora+OmwJjOyjQEyeS4cEjjW7Wfhf8Im74lKhv+nk8mNKnm9ZgdGoN
-        LExdJ81/axc8rLw0+wulr1yfDQ==
-X-Google-Smtp-Source: AGRyM1td5C3j6o9ZaJOP1OSfx0uzHnsd1SFmlzB3W+qSi+8mrcTsis3hcWPGR5bJVuGmc7yL4DdJtg==
-X-Received: by 2002:adf:e102:0:b0:21b:af5d:6f15 with SMTP id t2-20020adfe102000000b0021baf5d6f15mr12781924wrz.648.1656340429944;
-        Mon, 27 Jun 2022 07:33:49 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id r10-20020a05600c284a00b0039c41686421sm16890723wmb.17.2022.06.27.07.33.48
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=IWftomwLpTiMw5geHf9NLR9Uy1YW4MKMGZNLZyCJ+bc=;
+        b=pKtXibDuyVNkVCOHsSsVlnasFSf6msm4OU2To58+BZc8H1pwap58mEog3B7AhYWTEY
+         1TJPAYAFRp94K0QOmzDhZIYg1yHTldMIZxBUTAjEfy4YFay4JYdjJscdoBw0HvHFaFJ6
+         9AKiDw3/oXxCxnNTTL9uXJEcH2hXuXn08V1v1TwQVkQVd2QAenmb+cJ4Gm3xCl+YCDxm
+         /3oOA1gVLd2XiSk5ZvBquvMGvmvtgaqgw9PopGReGk03fBQg+rKaA87q7Wg6yO4//Wrr
+         gyzEBOtcpU2KFCsStPQXFCllYOOjKpLcJCxWpfFLD6nQFpF/GatGahc6a0/ojXKJkKJN
+         fIVw==
+X-Gm-Message-State: AJIora+pCpWIWhH6c+ABLMzLmekJp9Al4fk7nqvYXCTKBhBu1RqS+YIf
+        jiFUxzC2xqLg+JguMyoVN3+DYA==
+X-Google-Smtp-Source: AGRyM1sfNhSDiCgHA/3p6XuvTHhCHDdov0mWMWx5YqxERfwth6tRMz3r/f32ul0NmJFgm8TKdtMPKg==
+X-Received: by 2002:a05:600c:2207:b0:3a0:4659:a0b0 with SMTP id z7-20020a05600c220700b003a04659a0b0mr10689793wml.48.1656341128793;
+        Mon, 27 Jun 2022 07:45:28 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id t18-20020a1c7712000000b0039749b01ea7sm16304940wmi.32.2022.06.27.07.45.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 07:33:49 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Ilia Lin <ilia.lin@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH] dt-bindings: cpufreq: qcom-cpufreq-nvmem: fix board compatible in example
-Date:   Mon, 27 Jun 2022 16:33:40 +0200
-Message-Id: <20220627143340.477120-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Mon, 27 Jun 2022 07:45:28 -0700 (PDT)
+Date:   Mon, 27 Jun 2022 15:45:26 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Saravanan Sekar <sravanhome@gmail.com>
+Cc:     sre@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
+        lars@metafoo.de, andy.shevchenko@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH v3 2/6] dt-bindings: mfd: Add mp2733 compatible
+Message-ID: <YrnChlCiyzgcyyxl@google.com>
+References: <20220615145357.2370044-1-sravanhome@gmail.com>
+ <20220615145357.2370044-3-sravanhome@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220615145357.2370044-3-sravanhome@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -74,36 +75,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In the example, alone compatible "qcom,qcs404" is not correct.  Add
-proper board compatibles for QCS404 Evaluation Board.
+On Wed, 15 Jun 2022, Saravanan Sekar wrote:
 
-Reported-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add new compatible for mp2733 mfd driver.
+> 
+> Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/mps,mp2629.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 
----
+Applied in place of v1, thanks.
 
-Can be picked up independently, although the issue reported by Rob was
-caused by:
-https://lore.kernel.org/all/CAL_JsqKXDs=QHKob2Xy6vAFZfnkM9ggfmqf9TNA1hv8TScTmgQ@mail.gmail.com/
----
- .../devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml       | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml b/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-index a9a776da5505..10b3a7a4af36 100644
---- a/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-+++ b/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-@@ -63,8 +63,8 @@ additionalProperties: true
- examples:
-   - |
-     / {
--        model = "Qualcomm Technologies, Inc. QCS404";
--        compatible = "qcom,qcs404";
-+        model = "Qualcomm Technologies, Inc. QCS404 EVB 1000";
-+        compatible = "qcom,qcs404-evb-1000", "qcom,qcs404-evb", "qcom,qcs404";
-         #address-cells = <2>;
-         #size-cells = <2>;
- 
 -- 
-2.34.1
-
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
