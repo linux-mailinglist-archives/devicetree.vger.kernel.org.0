@@ -2,161 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B762B55C57F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:51:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F26155C207
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:46:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238422AbiF0UV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 16:21:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42498 "EHLO
+        id S241226AbiF0U0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 16:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239122AbiF0UV4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:21:56 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 601F31EC62;
-        Mon, 27 Jun 2022 13:21:55 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id z13so18483555lfj.13;
-        Mon, 27 Jun 2022 13:21:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=aEWNCuKRy84iEbBoB1dMIfYVeUetfldA1vTgDU/ZzpE=;
-        b=geDEG3yd1mYJXt6c1aZqzKWP/aSMvf/tfBT02vnFiFO+9ETRIt4umK1PW+NPrV4xAH
-         IPwGcjymmEkEzhhk9+XfpXmXGl1Hw9JVqezOplwRathZX7199rU+Z7wL341nIIuFtkZf
-         rX2nPa+o+ldHMvBiVu03vmITAtU3+Jlc/PAYiJ2mr2uSfK25+/LYPfwM6msaBK3V5YU+
-         /HKZtnsRBNWbAUETnWCFuG2fuIB/wg1zNavS4iltt3gKSZOGaTwwTY6EMCMZedVNKp41
-         XYAPLMzh0ibM9cjqHXGiaOyXJy6HDQQZ/imNX5A24xcPor78JRMcqOv2q4TJSZyyxRKh
-         dSnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aEWNCuKRy84iEbBoB1dMIfYVeUetfldA1vTgDU/ZzpE=;
-        b=G5n+ibalo6kWzvu9biI9vVVdqC/sCltrUBOma2Ozo7U+cefhIjt9Bq8fXaeAVMweX1
-         CXYRWQGCnP5oSVDpPni7lL4DtIl+u88a/y4dJ21ayaIUEkKGNiBkWH8lXGvqo5T54e0o
-         iN3SWBLWesFhLG5mA/Y6qdOJXPAaT/gga8jUKvWG6La7tSXijcraNXokC9fxaXKL2wrN
-         7dJ2nfEa8FtOxl5vUyHITIBrqTC3b5lChYm+FJ8K+/vxzFZgvt9jjNKwdv5xx0F8AEwK
-         dWB8ryUomKAgkPNpu/TJE9tSrnO8V658gQbAiCrXlmfFrvH2Zk92Mvd5Yd4ARD4VezUD
-         8uNQ==
-X-Gm-Message-State: AJIora/iVPLuBt0qRlLn2xAY4G4DJzJOIaNq6kvOOS0ajqrOj2h5HNz0
-        HfCsyRGcq1mmnRom2PQLHS0=
-X-Google-Smtp-Source: AGRyM1va63TpZ/BKlBrasRzo3hQuwImYd1Viwhj3pBKVD/eIotL0NPskkSjb7q5nOJbI3zAauoeozw==
-X-Received: by 2002:a05:6512:3d8f:b0:47f:a083:a989 with SMTP id k15-20020a0565123d8f00b0047fa083a989mr9505126lfv.646.1656361313593;
-        Mon, 27 Jun 2022 13:21:53 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id q4-20020a0565123a8400b004796e1555eesm1917694lfu.199.2022.06.27.13.21.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 13:21:52 -0700 (PDT)
-Date:   Mon, 27 Jun 2022 23:21:49 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Conor Dooley <mail@conchuod.ie>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Niklas Cassel <niklas.cassel@wdc.com>,
-        Dillon Min <dillon.minfei@gmail.com>,
-        Heng Sia <jee.heng.sia@intel.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 04/16] spi: dt-bindings: dw-apb-ssi: update
- spi-{r,t}x-bus-width
-Message-ID: <20220627202149.624eu7w2gzw7jchd@mobilestation>
-References: <20220627194003.2395484-1-mail@conchuod.ie>
- <20220627194003.2395484-5-mail@conchuod.ie>
+        with ESMTP id S241209AbiF0U0q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:26:46 -0400
+Received: from mail.bugwerft.de (mail.bugwerft.de [46.23.86.59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0C41E1AD94
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:26:44 -0700 (PDT)
+Received: from [192.168.178.106] (p57bc972b.dip0.t-ipconnect.de [87.188.151.43])
+        by mail.bugwerft.de (Postfix) with ESMTPSA id 38719282FDC;
+        Mon, 27 Jun 2022 20:26:42 +0000 (UTC)
+Message-ID: <b59afe57-7608-f049-c075-1a95d65984c4@zonque.org>
+Date:   Mon, 27 Jun 2022 22:26:41 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220627194003.2395484-5-mail@conchuod.ie>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: (subset) [PATCH 0/8] ASoC: max98396: Some assorted fixes and
+ additions
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>, ryan.lee.analog@gmail.com
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
+References: <20220624104712.1934484-1-daniel@zonque.org>
+ <165636115333.3997797.6298161546515778991.b4-ty@kernel.org>
+From:   Daniel Mack <daniel@zonque.org>
+In-Reply-To: <165636115333.3997797.6298161546515778991.b4-ty@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 27, 2022 at 08:39:52PM +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On 6/27/22 22:19, Mark Brown wrote:
+> On Fri, 24 Jun 2022 12:47:04 +0200, Daniel Mack wrote:
+>> This is a series of some patches that I collected while using the
+>> max98396 driver is a TDM mode setup.
+>>
+>> They correct BSEL and PCM mode configs, add support for power supplies
+>> and add some bits to the documentation.
+>>
+>> The code is tested in TDM-16 and TDM-8 mode with 32 channel width.
+>>
+>> [...]
 > 
-> Most users of dw-apb-ssi use spi-{r,t}x-bus-width of 1, however the
-> Canaan k210 is wired up for a width of 4.
-> Quoting Serge:
-> The modern DW APB SSI controllers of v.4.* and newer also support the
-> enhanced SPI Modes too (Dual, Quad and Octal). Since the IP-core
-> version is auto-detected at run-time there is no way to create a
-> DT-schema correctly constraining the Rx/Tx SPI bus widths.
-> /endquote
+> Applied to
 > 
-> As such, drop the restriction on only supporting a bus width of 1.
+>    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Umm, I was about to send out a new version of this series tomorrow to
+address the things you pointed out, and some more detected by the test bots.
+
+Which patches got applied now? I only see "Fix register access for PCM
+format settings" in for-next and for-5.19 currently?
+
+
+Thanks,
+Daniel
+
+
+
+> Thanks!
 > 
-> Link: https://lore.kernel.org/all/20220620205654.g7fyipwytbww5757@mobilestation/
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Serge, I dropped your R-b when I swapped to the default
-> property since it changed the enum.
-> ---
->  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 6 ------
->  1 file changed, 6 deletions(-)
+> [1/8] ASoC: dt-bindings: max98396: add voltage supplies
+>       (no commit info)
+> [2/8] ASoC: dt-bindings: max98396: Add #sound-dai-cells
+>       (no commit info)
+> [3/8] ASoC: dt-bindings: max98396: Document adi,bypass-slot-no
+>       (no commit info)
+> [4/8] ASoC: max98396: add voltage regulators
+>       (no commit info)
+> [5/8] ASoC: max98396: Improve some error prints
+>       (no commit info)
+> [6/8] ASoC: max98396: Fix register access for PCM format settings
+>       commit: cf5c888539f353cb10e127d3a8754554cacd293a
+> [7/8] ASoC: max98396: Implement DSP speaker monitor
+>       (no commit info)
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> index e25d44c218f2..0a43d6e0ef91 100644
-> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> @@ -143,12 +143,6 @@ patternProperties:
->          minimum: 0
->          maximum: 3
->  
-
-> -      spi-rx-bus-width:
-> -        const: 1
-> -
-> -      spi-tx-bus-width:
-> -        const: 1
-> -
-
-My comment was:
-> > > You can just use a more relaxed constraint "enum: [1 2 4 8]" here
-> >
-> > 8 too? sure.
-Then Rob said:
-> Then no constraints needed because the common definition already has
-> this presumably.
-
-IMO preserving the device-specific constraints even if they match the
-generic ones has some maintainability benefits. What if you get to
-discover a new HW which supports Hexal mode? Then you would have
-needed to update the common schema constraints. But that would have
-caused permitting the unsupported bus-mode for all the schemas, which
-isn't correct. So as I see it the explicit bus-width enumeration would
-be ok to have here. But I'll leave it for Rob to make a final
-decision.
-
-Rob
-
->  unevaluatedProperties: false
->  
->  required:
-> -- 
-> 2.36.1
+> All being well this means that it will be integrated into the linux-next
+> tree (usually sometime in the next 24 hours) and sent to Linus during
+> the next merge window (or sooner if it is a bug fix), however if
+> problems are discovered then the patch may be dropped or reverted.
 > 
+> You may get further e-mails resulting from automated or manual testing
+> and review of the tree, please engage with people reporting problems and
+> send followup patches addressing any issues that are reported if needed.
+> 
+> If any updates are required or you are submitting further changes they
+> should be sent as incremental updates against current git, existing
+> patches will not be replaced.
+> 
+> Please add any relevant lists and maintainers to the CCs when replying
+> to this mail.
+> 
+> Thanks,
+> Mark
+
