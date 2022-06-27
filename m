@@ -2,89 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A70C55C327
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5258455D2F5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:11:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235275AbiF0L3Y convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 27 Jun 2022 07:29:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45198 "EHLO
+        id S235807AbiF0LeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 07:34:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235278AbiF0L24 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 07:28:56 -0400
-Received: from mail.transporteandreu.com.ar (unknown [190.15.217.91])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3B6C7657
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 04:27:37 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.transporteandreu.com.ar (Postfix) with ESMTP id 0EB88406710CD
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 08:26:22 -0300 (-03)
-Received: from mail.transporteandreu.com.ar ([127.0.0.1])
-        by localhost (mail.transporteandreu.com.ar [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id 4ht9uDTpdaJ3 for <devicetree@vger.kernel.org>;
-        Mon, 27 Jun 2022 08:26:21 -0300 (-03)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.transporteandreu.com.ar (Postfix) with ESMTP id A44C340636171
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 08:26:20 -0300 (-03)
-X-Virus-Scanned: amavisd-new at transporteandreu.com.ar
-Received: from mail.transporteandreu.com.ar ([127.0.0.1])
-        by localhost (mail.transporteandreu.com.ar [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id JOLxbiOjFQD1 for <devicetree@vger.kernel.org>;
-        Mon, 27 Jun 2022 08:26:20 -0300 (-03)
-Received: from johnlewis.com (ec2-35-89-234-8.us-west-2.compute.amazonaws.com [35.89.234.8])
-        by mail.transporteandreu.com.ar (Postfix) with ESMTPSA id 9386C406D41C0
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 08:26:19 -0300 (-03)
-Reply-To: robert_turner@johnlewis-trades.com
-From:   John Lewis & Partners <robert_turner041@johnlewis.com>
-To:     devicetree@vger.kernel.org
-Subject: Pre Order Enquiry
-Date:   27 Jun 2022 21:26:15 +1000
-Message-ID: <20220627170710.865A8CAFB155916F@johnlewis.com>
+        with ESMTP id S236344AbiF0Ldj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 07:33:39 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75081DEB8
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 04:30:59 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id ge10so18481716ejb.7
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 04:30:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=l3ShECmhHBYGtTaNrFh8O7lxelsTpiudcEC3xdylX/o=;
+        b=WG2zDq3HZTzjze3fkNGpZfPEgvmcUtHem+gHJYjTO0HPeF4CD44nnkEuFvvCywvYqp
+         ywzkxVoh8JcH5fPkpgVweha1HGaZA0CFPnLZvf+Wrz/HWMij5gJV9OqKQ/HzcL3kXizt
+         cdem3MiT4P03vfxMWkkN8hId/4oyFwf4SkzZY57uUYj4Vnp3C9uDNNaOCVT+RXc/pC7/
+         NHm5F77NS/bNifp61dq/7p5cVlvfxhs3x0Tq4Z0AiBXgOSCk/AKcgf/60M0XL6PChFEf
+         05hG4QrYDKxZHZJNVZuu85kIyPCszfyt+eoCea0TGsBqHRage2Eab1AqaFFulCkrWeLX
+         kcug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=l3ShECmhHBYGtTaNrFh8O7lxelsTpiudcEC3xdylX/o=;
+        b=kQQZ1W6wap/WiywaRr9AgJhqa71ZlsyaYPv0ixFAaEEkJ+HQH8rPOmHFXBHysTQ9zI
+         Oln4h1Ccxm7Mfs4Lkrk6bWYUSnkvEIvLtvyZjoMZJrtu3UGui6NCmulg889GErAIZxL7
+         kIUTUiWOZG+WrQzd7TJ7Oc/c4BTt4JtYAlJaXmrDoOZcehI4utbKfaW+x3UFJFJDyPaG
+         rsYcg6m2RsX6xC5Ho5gt6+YDsQzP14QNBqDGOdyEULUOYUns0TY9ssza8DXvvuLM8o9x
+         P26kgMQUCXqSEBCUq6GupzTQOQwzroHpJn5BplzOWHgdy1PlPe21ox0Il6/+khaKHwwn
+         m5KA==
+X-Gm-Message-State: AJIora9KQ9pwmvOoYoDDCRzt0TEG6fTdEIVuRYnWWDZwx0aUUrYNuqoe
+        T2HD2zQrcA/WnnC+vWUtJ1QsEQ==
+X-Google-Smtp-Source: AGRyM1tS8F9/rptbLxOmuVEwJVg2EzfiYgzVz7ce4tu0rkW1+TrZ16suB/FnT+SU4tQ9fOBTUVGd2Q==
+X-Received: by 2002:a17:907:6294:b0:6e1:ea4:74a3 with SMTP id nd20-20020a170907629400b006e10ea474a3mr12573216ejc.168.1656329458079;
+        Mon, 27 Jun 2022 04:30:58 -0700 (PDT)
+Received: from [192.168.0.249] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id a27-20020a170906275b00b00722e57fa051sm4886163ejd.90.2022.06.27.04.30.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jun 2022 04:30:57 -0700 (PDT)
+Message-ID: <6d7b0ea7-7918-aea4-6f2f-46d4870d92ad@linaro.org>
+Date:   Mon, 27 Jun 2022 13:30:56 +0200
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=4.3 required=5.0 tests=ADVANCE_FEE_3_NEW,BAYES_50,
-        KHOP_HELO_FCRDNS,SPF_FAIL,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 2/3] clk: samsung: exynosautov9: add missing gate clks for
+ peric0/c1
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220627005210.6473-1-chanho61.park@samsung.com>
+ <CGME20220627005413epcas2p37d6b3cbea055cecade47ad304b40b7e3@epcas2p3.samsung.com>
+ <20220627005210.6473-3-chanho61.park@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220627005210.6473-3-chanho61.park@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear devicetree
+On 27/06/2022 02:52, Chanho Park wrote:
+> "gout_peric0_pclk_1" and "gout_peric1_pclk_1" should be added to peric0
+> and peric1 respectively.
 
+Where is exactly the bug? The commit msg suggests that they were added
+to different block, but there is no code removal.
 
- 
-The world famous brand John Lewis & Partners, is UK's largest 
-multi-channel retailer with over 126 shops and multiple expansion 
-in Africa furnished by European/Asian/American products. We are
-sourcing new products to attract new customers and also retain 
-our existing ones, create new partnerships with companies dealing 
-with different kinds of goods globally.
- 
-Your company's products are of interest to our market as we have 
-an amazing market for your products.Provide us your current 
-catalog through email to review more. We hope to be able to order
-with you and start a long-term friendly, respectable and solid 
-business partnership. Please we would appreciate it if you could 
-send us your stock availability via email if any.
+> 
+> Fixes: f2dd366992d0 ("clk: samsung: exynosautov9: add cmu_peric0 clock support")
+> Fixes: b35f27fe73d8 ("clk: samsung: exynosautov9: add cmu_peric1 clock support")
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  drivers/clk/samsung/clk-exynosautov9.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 
- 
-Our payment terms are 15 days net in Europe, 30 days Net in UK 
-and 30 days net in Asia/USA as we have operated with over 5297 
-suppliers around the globe for the past 50 years now. For
-immediate response Send your reply to "robert_turner@johnlewis-
-trades.com" for us to be able to treat with care and urgency.
- 
- 
-Best Regards
-Rob Turner
-Head Of Procurement Operations
-John Lewis & Partners.
-robert_turner@johnlewis-trades.com
-Tel: +44-7451-274090
-WhatsApp: +447497483925
-www.johnlewis.com
-REGISTERED OFFICE: 171 VICTORIA STREET, LONDON SW1E 5NN
-
+Best regards,
+Krzysztof
