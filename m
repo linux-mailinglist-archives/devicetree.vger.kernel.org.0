@@ -2,66 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96C8055CC86
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06EA155CA49
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:58:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241008AbiF0UEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 16:04:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45120 "EHLO
+        id S241034AbiF0UEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 16:04:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240943AbiF0UDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:03:44 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68BBF1C934
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:03:43 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id b23-20020a9d7557000000b00616c7999865so3692777otl.12
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:03:43 -0700 (PDT)
+        with ESMTP id S240909AbiF0UDq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 16:03:46 -0400
+Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 364C51C93F
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:03:45 -0700 (PDT)
+Received: by mail-oo1-xc32.google.com with SMTP id w3-20020a4ab6c3000000b0041c1e737283so2086134ooo.12
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 13:03:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=aSgkNr+Wy+cJE6ENGqoAt60f9q5wsqDQGZ0v1ZRCI0o=;
-        b=RUHsbVfHJq68hNJPmE2G5fMb1aR6hcE71G0i73jlyGh0YGNT6QGRK9tja+uoe+cfg8
-         FwspwSUtfMrylnku1mhd5mVCaFGfkIQEU6MbXfoFCG8cPcXEmH0g+x6fb/6JoSId2NnC
-         /WsEkcOe+i9Z63riIEFrBIafdANMwNeToLV0osq9udxbEOEsb+fNIhf6FNCpdRkiPX2Z
-         kt4f2kA6DOmliQtHzUP6Rhr2iAQkITeTKM40N/E4l6fo5Pk22sJ9Oz6HSbOXlzAJ3fPe
-         jJF/rU8wo9XaPtl08TL5oZj5KgWJGi9oeL4zll56zoiDgfjoB4fOuU8w8uOxfvTlChkf
-         22gw==
+        bh=Gj94jlKC6hmF1k0MguHsf5YQmPWRXBjppP7HpGrfnr4=;
+        b=dDRN1qevxaeyjCOrx1h+RyLv2brFKFENNGI8zZHgLtdqU3xS6l7XbDXrzJM0U4QUqT
+         KNT/thQ85lj4PKFptqupOCaCUZVBZX+mbyRGZw75jwfZv/QvyneHWncPm6DSSsDxxqT/
+         rFgeNUYpvkpvrjeZOJjoAi44g7nLOE/gTDMrd9CcmzFhLpYBhgVITJL4oh1Y3Zq3tQJ0
+         0wg+fGQEN9DB2Bj/kUudVpg0G/t5DcZUpSYE2yIyaGdlgpxeFwjUNDiP3qLYXN/Dbh6R
+         RnSUyTDMPYN/lOSvYVAuNDZ8U4kYwrNGd1oS2sEHGffbLGO0wmHA++vZD6xYtXsM7hHm
+         1LMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=aSgkNr+Wy+cJE6ENGqoAt60f9q5wsqDQGZ0v1ZRCI0o=;
-        b=Y3nrhqguVtmAbM015i7UzvwajbgWx3llPwzjpcrQz8/WnLBlrmz5O8cpiecN4+5BcW
-         O64czSJo8UnxAJKeM8l/t3zb1xHuGw0twoQl9DztUiCxvw3r8rcgMcGeA+JaskKDatIF
-         wprlcp3Li1WDFK9EI1dgaFfhibxDGN2ZU78HMSsFm7PlhT4WVmmhkJr4nNoTql51wX2R
-         36/617+P9ZpkH4fPb5Aub2GAVLVse7M1PLqkfqgBBKSU2idxt5LhCV0QL/6ra+5pNptg
-         Nkpw+hq2V7wzn/xuUYKws8hDKYdn+fDKZQqnUtnODmzRfJmo+9PtODxHQN65wNaFMDOM
-         s9Nw==
-X-Gm-Message-State: AJIora+j66VJjPc6wPCJfJm2wgMtcW2jGrlHTM2vxHjBmM7Tv0x2IP9j
-        B+66JNgBJwclJWaZa5VZcOmL2g==
-X-Google-Smtp-Source: AGRyM1tnCRlObEKTZrZ5Go+Vs6PTOOMFCWM2W7rY/m+h//3o7OsQoSpWp7DER4ShmmyVacPdE306Kw==
-X-Received: by 2002:a05:6830:1009:b0:616:cd1d:379e with SMTP id a9-20020a056830100900b00616cd1d379emr3469206otp.4.1656360223157;
-        Mon, 27 Jun 2022 13:03:43 -0700 (PDT)
+        bh=Gj94jlKC6hmF1k0MguHsf5YQmPWRXBjppP7HpGrfnr4=;
+        b=UActOAiXQ9y9NZ1Ns3QMoVgCfASjp0PZRljP24aT034tHS2leZisLeIb0be/dg91uG
+         eZXfiVLE8yEM+a8jobimZVedS72Pj+LAohYRlmb0ghasK+AJvJfu41EI/f8lgPC6ic2P
+         xDEeJpcX8zMcaF6vB8wCnPJHMieSF5Yfzs1Xq09wLmU3H/54iZEt5+yxU6EepOM941z4
+         FOLNSg/peTJz24k3P5NtC0nax9aOoOPMZ5kts7Xy/srRAS++AiBbJQjIn91SJMQNR2Wh
+         A7yqInz+olL4/ZE6mpX7GyAbgVmM+btpISx/b28SIfiYVV10mbogy7MTEnbZjDUJig62
+         ASGw==
+X-Gm-Message-State: AJIora8rUJ/dHt3YEJMz7uvZlNLxCiPW32hIBuNkjit9T3T7q8iLwqJq
+        kbQGGMzLR7rcKPPn5GGpgsnkKg==
+X-Google-Smtp-Source: AGRyM1tYrfIHTmIiIdujCndNAWXrywhkv7NOPnrSqmRkaZgn626fU1wCJz+c/Jazz/QHPQUT9n/+SA==
+X-Received: by 2002:a4a:6518:0:b0:425:81ce:3ba1 with SMTP id y24-20020a4a6518000000b0042581ce3ba1mr6531005ooc.59.1656360224449;
+        Mon, 27 Jun 2022 13:03:44 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m16-20020a4a9510000000b0041bdf977c6dsm6428729ooi.31.2022.06.27.13.03.41
+        by smtp.gmail.com with ESMTPSA id m16-20020a4a9510000000b0041bdf977c6dsm6428729ooi.31.2022.06.27.13.03.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 13:03:42 -0700 (PDT)
+        Mon, 27 Jun 2022 13:03:43 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Andy Gross <agross@kernel.org>,
         Matthias Kaehlcke <mka@chromium.org>
-Cc:     "Joseph S . Barrera III" <joebar@chromium.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org,
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>
-Subject: Re: (subset) [PATCH] arm64: dts: qcom: sc7280: Set modem FW path for Chrome OS boards
-Date:   Mon, 27 Jun 2022 15:02:59 -0500
-Message-Id: <165636016348.3080661.1609858570023001490.b4-ty@linaro.org>
+Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sc7280: herobrine: Don't disable the keyboard backlight node
+Date:   Mon, 27 Jun 2022 15:03:00 -0500
+Message-Id: <165636016347.3080661.9093137799641920527.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220510104656.1.Id98b473e08c950f9a461826dde187ef7705a928c@changeid>
-References: <20220510104656.1.Id98b473e08c950f9a461826dde187ef7705a928c@changeid>
+In-Reply-To: <20220523123157.v2.1.I47ec78581907f7ef024f10bc085f970abf01ec11@changeid>
+References: <20220523123157.v2.1.I47ec78581907f7ef024f10bc085f970abf01ec11@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -75,16 +74,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 May 2022 10:47:08 -0700, Matthias Kaehlcke wrote:
-> Specify the path of the modem FW for SC7280 Chrome OS boards in
-> the 'remoteproc_mpss' node.
+On Mon, 23 May 2022 12:32:03 -0700, Matthias Kaehlcke wrote:
+> On herobrine boards the keyboard backlight is controlled through the
+> PWM LED driver. Currently both the PWM LED node and the node for the
+> keyboard backlight are disabled in sc7280-herobrine.dtsi, which
+> requires boards with a backlit keyboard to enable both nodes. There
+> are no other PWM LEDs on herobrine boards besides the keyboard
+> backlight, delete the 'disabled' status from the keyboard backlight
+> node, with that boards only have to enable the 'pwmleds' node for
+> keyboard backlight support.
 > 
-> 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc7280: Set modem FW path for Chrome OS boards
-      commit: 1c20d3dbaa673a5d5dc6bcef06df0e0813b95c7d
+[1/2] arm64: dts: qcom: sc7280: herobrine: Don't disable the keyboard backlight node
+      commit: 426e81c7e6250723eb37c8a05187e28eef17484f
+[2/2] arm64: dts: qcom: sc7280: Enable keyboard backlight for villager
+      commit: 1a22eff4b429f9da9e4259d019cc809ba7b4593c
 
 Best regards,
 -- 
