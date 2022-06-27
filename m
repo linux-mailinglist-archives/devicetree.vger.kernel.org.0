@@ -2,128 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA61455D4A9
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:14:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A75CB55CB40
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:59:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233644AbiF0JAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 05:00:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52718 "EHLO
+        id S233168AbiF0JF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 05:05:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233593AbiF0JAA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:00:00 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3206396
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 01:59:59 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id o10so12012676edi.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 01:59:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=OJD3PXeQcR9dqZ5Y7yZVLU8WDdZSUs8hEAVEMiuij4s=;
-        b=mBcUp//R90f/Wq5aerXEP5Jb3KTttQ3I+AqwSlNt/W7te4T7VYw+iFp0bnSvhyclS5
-         SuaYvm9L+9uEl7UZwFbpIvCpwbiuSo6BhQ8jzrn/7Nl/3EBUqzMK1KEpc09m4+VuS9Ia
-         TXyP+XGJZKLTzLyq1Qyl4jyhHiiMz6S0NgesKDKGmDv1QhulRYmsCGo/BAVk5kb8NqJx
-         0q8wQgaqz43l3T+r/p1tHqEviIJYRfTiSvK8M0bHYs7qgkA5hfeHpPHUKo5lyc/MC+Oh
-         jLNPwkhR9c/Sh1h18sYqi0iQUaayC9xcNnwwzbcunlvd/UpaZ3A23OkZS2rDJxAtogBV
-         ikMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=OJD3PXeQcR9dqZ5Y7yZVLU8WDdZSUs8hEAVEMiuij4s=;
-        b=sl6IGAkdnzETdGZhdrIdzp9mJYfNeuPFBKsCXoXG2p65Qi5+yJANxeuzzRE5MDnRig
-         n1B6ZRmxF6dXl5MIjpkH5ieeYkvsnHM630ILNVu2oT6imHzao77mbnKWzL8XW93KHE93
-         U/duThXInM4uZyYbDyvEl0mddos2SP206nf+0k4LKkL9eE9TWlLMB81l4YZr4XQwftxS
-         SZfnT6KFqNlWyHCfZdCawGeYe6gWYABNObH77nyIlNdo34V9AxoKVJQ+389ostz1O1a5
-         KzScRTcsVzpfzTzVUMhs7WB8L+Hvro0RE90rVLneIfBL2/6qjto1G+3jSXO+L+ubKHhP
-         bRJg==
-X-Gm-Message-State: AJIora/IDCIlPmFcxjriQ0VOfr9WCRf9ABT0zCVqWqwJbm7U5G9U2Mcq
-        ZqLL5NhdFrT0p652OD7O0IRoSQ==
-X-Google-Smtp-Source: AGRyM1vx9hW9lzNzpgqm+U8e8cip5LlD6oegAC5bL8EXEcSPE33v/USYPPy/Vv76y2er5Hvfx5q6kg==
-X-Received: by 2002:a05:6402:1d50:b0:436:beac:a4e3 with SMTP id dz16-20020a0564021d5000b00436beaca4e3mr15491833edb.191.1656320398400;
-        Mon, 27 Jun 2022 01:59:58 -0700 (PDT)
-Received: from [192.168.0.247] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o19-20020a17090611d300b007109b15c109sm4806316eja.66.2022.06.27.01.59.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jun 2022 01:59:58 -0700 (PDT)
-Message-ID: <6fa1db53-6e4e-b6b1-2313-dee7aadad5ae@linaro.org>
-Date:   Mon, 27 Jun 2022 10:59:56 +0200
+        with ESMTP id S233086AbiF0JFz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 05:05:55 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35FE1634B;
+        Mon, 27 Jun 2022 02:05:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1656320754; x=1687856754;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=jcKmTKeNDN11ToKECGTcEIIGoAMkwCReSD4tvZEnNOU=;
+  b=gh89DNe4LlIV3cmFQXzkOR5I57fix3KhHHbqM5idztRcTyFZtuUk5W+5
+   DRHzumX06f2vLeVrABUuXKQfMHry2HtRYW/QDZLMW0040hF9y7dEyV15l
+   CLDl/LLRT/UJzeDvnpubz5QQfzJVKaqWIPjqGGdKsMgjH0c550WbEfJV1
+   /KParq2Eo93HyjRIVCoFdRWnICVbzhYHucW5QsikB0N4MySnwbqA6FNDx
+   d79zPv8cE73mNatcjAmW2JVYO1d650Vyab4Y7tj0XG4UsS/urrhdSO0ow
+   AvUqprzvoUlP3r/nRuh5HFG7RDpdFuurNCWmxpbJHyB0KVDpM6DG74owq
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10390"; a="367719636"
+X-IronPort-AV: E=Sophos;i="5.92,225,1650956400"; 
+   d="scan'208";a="367719636"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2022 02:05:53 -0700
+X-IronPort-AV: E=Sophos;i="5.92,225,1650956400"; 
+   d="scan'208";a="646348400"
+Received: from gretavix-mobl3.amr.corp.intel.com ([10.249.43.78])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2022 02:05:49 -0700
+Date:   Mon, 27 Jun 2022 12:05:50 +0300 (EEST)
+From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     Lukas Wunner <lukas@wunner.de>
+cc:     Lino Sanfilippo <LinoSanfilippo@gmx.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        vz@mleia.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        linux-serial <linux-serial@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Subject: Re: [PATCH 1/8] serial: core: only get RS485 termination gpio if
+ supported
+In-Reply-To: <20220625194951.GA2879@wunner.de>
+Message-ID: <fbce8d7e-86e-d47e-bcd8-5b99754d1d2e@linux.intel.com>
+References: <20220622154659.8710-1-LinoSanfilippo@gmx.de> <20220622154659.8710-2-LinoSanfilippo@gmx.de> <20220625194951.GA2879@wunner.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 2/7] dt-bindings: clock: Add MediaTek Helio X10 MT6795
- clock bindings
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        y.oudjana@protonmail.com, jason-jh.lin@mediatek.com,
-        ck.hu@mediatek.com, fparent@baylibre.com, rex-bc.chen@mediatek.com,
-        tinghan.shen@mediatek.com, chun-jie.chen@mediatek.com,
-        weiyi.lu@mediatek.com, ikjn@chromium.org, miles.chen@mediatek.com,
-        sam.shih@mediatek.com, wenst@chromium.org,
-        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        kernel@collabora.com, Rob Herring <robh@kernel.org>
-References: <20220624093525.243077-1-angelogioacchino.delregno@collabora.com>
- <20220624093525.243077-3-angelogioacchino.delregno@collabora.com>
- <de5a0e6f-411f-0c7b-ae1e-1117a4126d2d@linaro.org>
- <9554982a-c48b-e902-2d96-b317c46df698@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9554982a-c48b-e902-2d96-b317c46df698@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2022 10:49, AngeloGioacchino Del Regno wrote:
-> Il 25/06/22 22:30, Krzysztof Kozlowski ha scritto:
->> On 24/06/2022 11:35, AngeloGioacchino Del Regno wrote:
->>> Add the bindings for MT6795's clock controller.
->>>
->>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>> Acked-by: Rob Herring <robh@kernel.org>
->>> ---
->>>   include/dt-bindings/clock/mt6795-clk.h | 275 +++++++++++++++++++++++++
->>>   1 file changed, 275 insertions(+)
->>>   create mode 100644 include/dt-bindings/clock/mt6795-clk.h
->>>
->>> diff --git a/include/dt-bindings/clock/mt6795-clk.h b/include/dt-bindings/clock/mt6795-clk.h
->>> new file mode 100644
->>> index 000000000000..9902906ac902
->>> --- /dev/null
->>> +++ b/include/dt-bindings/clock/mt6795-clk.h
->>
->> Vendor prefix.
->>
+On Sat, 25 Jun 2022, Lukas Wunner wrote:
+
+> On Wed, Jun 22, 2022 at 05:46:52PM +0200, Lino Sanfilippo wrote:
+> > In uart_get_rs485_mode() only try to get a termination GPIO if RS485 bus
+> > termination is supported by the driver.
+> [...]
+> > --- a/drivers/tty/serial/serial_core.c
+> > +++ b/drivers/tty/serial/serial_core.c
+> > @@ -3384,17 +3384,20 @@ int uart_get_rs485_mode(struct uart_port *port)
+> >  		rs485conf->flags |= SER_RS485_RTS_AFTER_SEND;
+> >  	}
+> >  
+> > -	/*
+> > -	 * Disabling termination by default is the safe choice:  Else if many
+> > -	 * bus participants enable it, no communication is possible at all.
+> > -	 * Works fine for short cables and users may enable for longer cables.
+> > -	 */
+> > -	port->rs485_term_gpio = devm_gpiod_get_optional(dev, "rs485-term",
+> > -							GPIOD_OUT_LOW);
+> > -	if (IS_ERR(port->rs485_term_gpio)) {
+> > -		ret = PTR_ERR(port->rs485_term_gpio);
+> > -		port->rs485_term_gpio = NULL;
+> > -		return dev_err_probe(dev, ret, "Cannot get rs485-term-gpios\n");
+> > +	if (port->rs485_supported->flags & SER_RS485_TERMINATE_BUS) {
 > 
-> For consistency, I'd really like to keep the filename as it is.
+> So I think linux-next commit be2e2cb1d281 ("serial: Sanitize rs485_struct")
+> contains a mistake in that it forces drivers to set SER_RS485_TERMINATE_BUS
+> in their rs485_supported->flags to allow enabling bus termination.
 > 
-> At least in this directory, all of the MediaTek clock bindings
-> are using the format mtXXXX-clk.h... and that's not only seen
-> in MediaTek, but also in Broadcom, Renesas, RockChip, HiSilicon,
-> nVidia, etc.
+> That's wrong because *every* rs485-capable driver can enable bus
+> termination if a GPIO has been defined for that in the DT.
 
-Several new files are introduced with vendor prefix. The same as in
-bindings - old bindings were without vendor, so for consistency we would
-never switch to vendor one.
+Do you mean every em485 using driver? Otherwise I don't see this "forces 
+drivers to set" happening anywhere in the code?
 
-For consistency with Documentation/devicetree/bindings and with all new
-files in binding headers, please add vendor prefix.
+You're partially right because there are other bugs in this area such 
+as the one you propose a fix below. While I was making the sanitization 
+series, I entirely missed some parts related to termination because 
+SER_RS485_TERMINATE_BUS is seemingly not set/handled correctly by the 
+core.
 
-Best regards,
-Krzysztof
+Another thing that looks a bug is that on subsequent call to TIOCSRS485, 
+w/o SER_RS485_TERMINATE_BUS nothing happens (for non-em485 driver, that 
+is)? It seems to be taken care by 2/8 of this series though, I think. But 
+it should be properly marked as Fixes: ... in that case although nobody 
+has complained about it so likely not a huge issue to anyone.
+
+> In fact, another commit which was applied as part of the same series,
+> ebe2cf736a04 ("serial: pl011: Fill in rs485_supported") does not set
+> SER_RS485_TERMINATE_BUS in amba-pl011.c's flags and thus forbids the
+> driver from enabling bus termination, even though we know there are
+> products out there which support bus termination on the pl011 through
+> a GPIO (Revolution Pi RevPi Compact, Revpi Flat).
+>
+> I think what you want to do is amend uart_get_rs485_mode() to set
+> SER_RS485_TERMINATE_BUS in port->rs485_supported_flags if a GPIO
+> was found in the DT.  Instead of the change proposed above.
+
+That seems appropriate (and is a fix).
+
+What makes it a bit complicated though is that it's a pointer currently
+and what it points to is shared per driver (besides being const):
+	const struct serial_rs485       *rs485_supported;
+While it could be embedded into uart_port, there's the .padding which we 
+might not want to bloat uart_port with. Perhaps create non-uapi struct 
+kserial_rs485 w/o .padding and add static_assert()s to ensure the 
+layout is identical to serial_rs485?
+
+
+-- 
+ i.
+
