@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6617A55E120
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:33:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D39FB55C24A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:46:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242353AbiF0WBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 18:01:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32904 "EHLO
+        id S241878AbiF0WET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 18:04:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242227AbiF0V7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 17:59:39 -0400
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27B411CB2E;
-        Mon, 27 Jun 2022 14:57:23 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id k15so11056093iok.5;
-        Mon, 27 Jun 2022 14:57:23 -0700 (PDT)
+        with ESMTP id S242741AbiF0WDG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 18:03:06 -0400
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54DEA1E3F4;
+        Mon, 27 Jun 2022 15:01:01 -0700 (PDT)
+Received: by mail-il1-f177.google.com with SMTP id a16so6954104ilr.6;
+        Mon, 27 Jun 2022 15:01:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=GByTRovhreeBVcySF/6td5WnIoeUKJH8EVN0W2QYucY=;
-        b=gKrkD2reMY/KvDMNmxPtPyaMIMGlcP6HoJqXkBmqHnn04hPHz2i/8r1TDiliJO/sbr
-         0dz7kye4gnFG/XdWBTxshmvciOpz7YwE3JP8Is/CqQ3CyqgGsDjCoRC7/ZwAlLKwv2mc
-         WtOL+AgSnzAgrkOCrJ2iGDj9k+FYRQvt7B/78WKbbVxmWirNvoalQBdYRQ5ZBdJp6nll
-         tksE+q1YLZJHe8Rt9hV2RQOcCGCz0i+6vdWE2GuOvhbvzVAgX/78MZh8mpZj6XOxQSHF
-         b5S+IRvb65Hi0tbtbcjSeOEEKr3Uq2F4IGlEueK3JiXPPvIEvRn7Y21xpF+7eZHzOXRM
-         bkTg==
-X-Gm-Message-State: AJIora+KgyI+qr/WxduJ+t/AmOf4fJHsIdq42z9VHgIzHWuCEQ+vbTV5
-        44rac9ISt2UGdSDKbqw5aKQckFNjyQ==
-X-Google-Smtp-Source: AGRyM1uMna/0ZhSmeNlsBB7VjCYVusraceaPQMcCVlLmwH+8k6NuzZefhWbziP1Ag2HjwKDfsksPdg==
-X-Received: by 2002:a02:c619:0:b0:339:bc5a:205e with SMTP id i25-20020a02c619000000b00339bc5a205emr9510427jan.184.1656367042314;
-        Mon, 27 Jun 2022 14:57:22 -0700 (PDT)
+        bh=TZkUYB3BYeJsEsDSI6PmO4Ag8GHC0FQvV7iN+YB5Q0Q=;
+        b=zCp96mdzfFQ20ZZJPRmAEPFKrfLyyMs7EZ6is7dWfXsrtHO7OtKrjNg0wxaPeuz9ju
+         Z9yaEMaNFcFm7Cayu8tTQeKZFtgxQs5j/r+rzr1FGSec1/enyqQMRJoEY/3mOijncGXE
+         rpHKRK3/x2p6J8Z8zXi706446KG9/WEJjnSh9q7UMwwDp9YQBc4ZJpE4AIWE9OqHxi6L
+         qjU/zLR5rVIH/6wYzlXshsv2F65jfnRUT/OPDS8e5SIaj5oo55ZhApWuF/8i3CVa4HZw
+         VXasQ7qWsaH3YtSdRi//P+7fEzecaXW0FsdopgFl5oVf2UG+nfg7xgPjHQwCTOu2w3aj
+         K6zg==
+X-Gm-Message-State: AJIora/6z3SsFJ4Q4YYpArAv+GoMFZEQFfNrBf3bRE9WE1IOQMK+Ldw5
+        H4suWLQ2xww/0QPoDSc7Kg==
+X-Google-Smtp-Source: AGRyM1ssOJCADmXqWwlgb8kDzOGggbdItlatIWFU04SmaYPNYTJ0Nxv2RE7Xu59Xf0OzqmtEW0/lww==
+X-Received: by 2002:a05:6e02:188a:b0:2d4:7fd:dbf with SMTP id o10-20020a056e02188a00b002d407fd0dbfmr8113049ilu.217.1656367260514;
+        Mon, 27 Jun 2022 15:01:00 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id h8-20020a92d848000000b002da9f82c703sm956479ilq.5.2022.06.27.14.57.20
+        by smtp.gmail.com with ESMTPSA id bo22-20020a056638439600b0033c8edf022bsm2409410jab.144.2022.06.27.15.00.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 14:57:21 -0700 (PDT)
-Received: (nullmailer pid 3036027 invoked by uid 1000);
-        Mon, 27 Jun 2022 21:57:20 -0000
-Date:   Mon, 27 Jun 2022 15:57:20 -0600
+        Mon, 27 Jun 2022 15:01:00 -0700 (PDT)
+Received: (nullmailer pid 3041223 invoked by uid 1000);
+        Mon, 27 Jun 2022 22:00:58 -0000
+Date:   Mon, 27 Jun 2022 16:00:58 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>, patches@lists.linux.dev,
+To:     Quan Nguyen <quan@os.amperecomputing.com>
+Cc:     Corey Minyard <minyard@acm.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, chrome-platform@lists.linux.dev,
-        Guenter Roeck <groeck@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Tzung-Bi Shih <tzungbi@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH v6 2/2] dt-bindings: cros-ec: Add ChromeOS fingerprint
- binding
-Message-ID: <20220627215720.GA3004792-robh@kernel.org>
-References: <20220614195144.2794796-1-swboyd@chromium.org>
- <20220614195144.2794796-3-swboyd@chromium.org>
- <CAD=FV=UU-AENyChCvVAKH709E4hFtgo4Txa8zFDY=JM1UifA0g@mail.gmail.com>
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Wolfram Sang <wsa@kernel.org>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+Subject: Re: [PATCH v8 2/3] bindings: ipmi: Add binding for SSIF BMC driver
+Message-ID: <20220627220058.GA3036977-robh@kernel.org>
+References: <20220615090259.1121405-1-quan@os.amperecomputing.com>
+ <20220615090259.1121405-3-quan@os.amperecomputing.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAD=FV=UU-AENyChCvVAKH709E4hFtgo4Txa8zFDY=JM1UifA0g@mail.gmail.com>
+In-Reply-To: <20220615090259.1121405-3-quan@os.amperecomputing.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -75,112 +75,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 14, 2022 at 03:41:25PM -0700, Doug Anderson wrote:
-> Hi,
+On Wed, Jun 15, 2022 at 04:02:58PM +0700, Quan Nguyen wrote:
+> Add device tree binding document for the SSIF BMC driver.
 > 
-> On Tue, Jun 14, 2022 at 12:51 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > Add a binding to describe the fingerprint processor found on Chromebooks
-> > with a fingerprint sensor. Previously we've been describing this with
-> > the google,cros-ec-spi binding but it lacks gpio and regulator control
-> > used during firmware flashing.
-> >
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > Cc: <devicetree@vger.kernel.org>
-> > Cc: <chrome-platform@lists.linux.dev>
-> > Cc: Guenter Roeck <groeck@chromium.org>
-> > Cc: Douglas Anderson <dianders@chromium.org>
-> > Cc: Craig Hesling <hesling@chromium.org>
-> > Cc: Tom Hughes <tomhughes@chromium.org>
-> > Cc: Alexandru M Stan <amstan@chromium.org>
-> > Cc: Tzung-Bi Shih <tzungbi@kernel.org>
-> > Cc: Matthias Kaehlcke <mka@chromium.org>
-> > Cc: Benson Leung <bleung@chromium.org>
-> > Cc: Lee Jones <lee.jones@linaro.org>
-> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> > ---
-> >  .../bindings/chrome/google,cros-ec-fp.yaml    | 97 +++++++++++++++++++
-> >  .../bindings/mfd/google,cros-ec.yaml          |  9 ++
-> >  2 files changed, 106 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-> > new file mode 100644
-> > index 000000000000..48c02bd4585c
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-> > @@ -0,0 +1,97 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/chrome/google,cros-ec-fp.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ChromeOS Embedded Fingerprint Controller
-> > +
-> > +description:
-> > +  Google's ChromeOS embedded fingerprint controller is a device which
-> > +  implements fingerprint functionality such as unlocking a Chromebook
-> > +  without typing a password.
-> > +
-> > +maintainers:
-> > +  - Tom Hughes <tomhughes@chromium.org>
-> > +
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        const: google,cros-ec-spi
-> > +  required:
-> > +    - compatible
-> > +    - boot0-gpios
+> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+> ---
+> v8:
+>   + None
 > 
-> I've never personally used "select" before and I'm not sure where it's
-> documented. 
-
-Documentation/devicetree/bindings/writing-schema.rst
-
-> Without knowing anything, it seems weird to me that in
-> this file we're matching against a compatible that's not
-> google,cros-ec-fp. Randomly grabbing some other example that's similar
-> (panel-lvds.yaml) looks more like what I would have expected. AKA in
-> this file:
+> v7:
+>   + Change compatible string from "ampere,ssif-bmc" to "ssif-bmc"  [Jae]
 > 
-> select:
->   properties:
->     compatible:
->       contains:
->         const: google,cros-ec-fp
->   required:
->     - compatible
+> v6:
+>   + None
 > 
-> ...and then in the other file:
+> v5:
+>   + None
 > 
-> select:
->   properties:
->     compatible:
->       contains:
->         const: google,cros-ec-spi
+> v4:
+>   + Fix warning with dt_binding_check [Rob]
+>   + Change aspeed-ssif-bmc.yaml to ssif-bmc.yaml [Quan]
+> 
+> v3:
+>   + Switched to use DT schema format [Rob]
+> 
+> v2:
+>   + None
+> 
+>  .../devicetree/bindings/ipmi/ssif-bmc.yaml    | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
 
-What about i2c and rpmsg variants?
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
->   not:
->     properties:
->       compatible:
->         contains:
->           const: google,cros-ec-fp
->   required:
->     - compatible
-
-That is what is needed assuming the binding stands as-is. Otherwise, 
-boot0-gpios erroneously present or missing will give unexpected results.
-
-If we were starting from scratch, I would say you should just drop 
-'google,cros-ec-spi' from this binding. But I guess you want to preserve 
-compatibility here. In that case, I think all this should be added to 
-the existing doc with an if/then schema for conditional parts. That also 
-avoids defining the common properties twice or moving them to a common, 
-shared schema.
-
-Rob
+If a tag was not added on purpose, please state why and what changed.
