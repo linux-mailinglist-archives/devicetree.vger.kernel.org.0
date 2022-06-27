@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14F4355E001
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:31:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EC6355C89B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:55:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235696AbiF0Mbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 08:31:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34786 "EHLO
+        id S236050AbiF0Mgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 08:36:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235685AbiF0Mbu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 08:31:50 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B80DBF6C;
-        Mon, 27 Jun 2022 05:31:49 -0700 (PDT)
+        with ESMTP id S236191AbiF0Mgf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 08:36:35 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7259DDF00
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 05:36:33 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id w17so12857955wrg.7
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 05:36:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1656333109; x=1687869109;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=QWGOcmotvFMILL3babbGUoVabuKPsNJyo5INNJZ+rd0=;
-  b=mn+RLSDbxfwg+lbxalb7B11jOjrr/w2iUX4rfbiaIkhBW3mFPye4cD5J
-   jccWENa2eXLIpDUbFbfje4ubjXIadb/G9ulkYhx8zwgTPiQOVLgaMLSTA
-   AUPonisnf5AlzFOX9OuOodnuPxtVkmi9UDjzvTDjC0t9W4pFPCZtBjjwh
-   o=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 27 Jun 2022 05:31:49 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2022 05:31:48 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 27 Jun 2022 05:31:47 -0700
-Received: from [10.216.28.64] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 27 Jun
- 2022 05:31:42 -0700
-Message-ID: <7b532c96-e36b-207e-532c-8b41f7106831@quicinc.com>
-Date:   Mon, 27 Jun 2022 18:01:38 +0530
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=i1ndzNgCY4GqkVEeX6RYo9rjFL0JkDe5I7FI/QcOSjM=;
+        b=Kfo3AdhOwldgdZ27USi62BeBQlR9du9sDVboRXzq5ECBOFl408Bkc7ZLPNhPOd+LI5
+         t+skT06kwKkuFjVR0dowaN5FwY45YGwaDIsLp87OBsz6bQ/vtZCF2h+drDvHvSzB5IA4
+         1qr7EAd7Rs8GOPnJUAsSjBRhNo5+OQbuHFWp6p1um9pu2eMAi2Dh/ys0xiH/pDjs8fGR
+         dbSVkM9lVsuN/jvEnbCC/vivLPXQn1P+NIQbs5Ep8msLKSkCVi4kxGiRmGlkHWWnM2y+
+         pxqLTEZcs6/nneQTWNpNKtzCDfI9hLcRgsRiAobmzylaSGyL0+0pVP0W9nCTgm8T+mgk
+         C3AA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=i1ndzNgCY4GqkVEeX6RYo9rjFL0JkDe5I7FI/QcOSjM=;
+        b=DZkR9dsRKxqed5PGDVTCL6SVMk1BrK8a/VKHcDXlaYrnoh6kU2TiRLiM2A1wu22WG3
+         7gR/m0oGdYXvJP1jjx6TOU1cY9pjgMXqiU9fBEd7GbgBeRHzQ47clRzfPsZFPI9/EAGG
+         6yUv9KFUS7WE9koF3fkgdrWVGPKFXbZorAUxO/N4NgFDLuAqB5IF/37xa+iaSvYQ8tKF
+         zGtGVlrvn4paWNPY+Va6SZUqhYckiZGmp/02vvIfV/F5pfHEY7oK7orfd1h7HrGeN00l
+         qtK/4ZviGp3cg40oBU4yDqb9x3nIHZdFG2dEWxYHVHC/TPGZ/u4Or+2Gm4XoqrZha3Lq
+         UFWA==
+X-Gm-Message-State: AJIora9JSyS0ZfJIUR6hjPJfzw8s6TgCcuBaCYMETR7AQbj5VA6Q2KQB
+        yCZJ4y5F2Grcebo1CMAM2qUe+Dh+AZn8iw==
+X-Google-Smtp-Source: AGRyM1stzio1TY+sexJ0uCww5Nmk/BPGjw9oft61lO5oZjJtB5x0jk41hl29kaB9wKgzj5JxAFjubA==
+X-Received: by 2002:a05:6000:15ca:b0:21b:baca:5902 with SMTP id y10-20020a05600015ca00b0021bbaca5902mr12689887wry.294.1656333392022;
+        Mon, 27 Jun 2022 05:36:32 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id r4-20020a05600c158400b0039c457cea21sm12501452wmf.34.2022.06.27.05.36.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jun 2022 05:36:31 -0700 (PDT)
+Date:   Mon, 27 Jun 2022 13:36:29 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Saravanan Sekar <sravanhome@gmail.com>
+Cc:     sre@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
+        lars@metafoo.de, andy.shevchenko@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH v3 3/6] mfd: mp2629: Add support for mps mp2733 battery
+ charger
+Message-ID: <YrmkTSnOjB7tlGM/@google.com>
+References: <20220615145357.2370044-1-sravanhome@gmail.com>
+ <20220615145357.2370044-4-sravanhome@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v5 0/2] Add software clock gating requirement check
-Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>
-References: <1654863815-3970-1-git-send-email-quic_srivasam@quicinc.com>
- <YrQfs7HUIOV5x8Ub@matsya>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <YrQfs7HUIOV5x8Ub@matsya>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220615145357.2370044-4-sravanhome@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,16 +76,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 15 Jun 2022, Saravanan Sekar wrote:
 
-On 6/23/2022 1:39 PM, Vinod Koul wrote:
-Thanks for your time Vinod!!!
-> On 10-06-22, 17:53, Srinivasa Rao Mandadapu wrote:
->> This patch set is to add software clock gating requirement check
-> This fails to apply for me, please rebase on sdw-next and resend
->
-> Thanks
+> mp2733 is updated version of mp2629 battery charge management
+> device for single-cell Li-ion or Li-polymer battery. Additionally
+> supports USB fast-charge and higher range of input voltage.
+> 
+> Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> ---
+>  drivers/mfd/mp2629.c       | 5 ++++-
+>  include/linux/mfd/mp2629.h | 6 ++++++
+>  2 files changed, 10 insertions(+), 1 deletion(-)
 
-It seems one patch is missing in your branch, which accepted by Mark brown.
+For my own reference (apply this as-is to your sign-off block):
 
-https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/commit/?id=32882881078bd8f8fae47ff69c102d9e691f5bb9
+  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
 
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
