@@ -2,70 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A83B55EF50
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE78A55EF3E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232750AbiF1UWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 16:22:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59830 "EHLO
+        id S232757AbiF1UWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 16:22:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232282AbiF1UVj (ORCPT
+        with ESMTP id S231258AbiF1UVj (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:21:39 -0400
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B4B0FC8
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:33 -0700 (PDT)
-Received: by mail-ot1-x330.google.com with SMTP id cb12-20020a056830618c00b00616b871cef3so8263217otb.5
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:33 -0700 (PDT)
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E75462185
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:34 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id s13-20020a0568301e0d00b00616ad12fee7so9655479otr.10
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=86x1pCfc8rA3POoegBiHBkAv35qybvdQxmmuFQbL0RY=;
-        b=A6HkriEQVjr8xBuNaJxh8JbFRPp03vxUK0kdmszuwswcz3UumF7ltjqYHiPb5zguuv
-         kldVj/3VuIudYRuWWPOEGV6Ww2HO28uttd9nIej6BtkFUbARrqboOl5omXaEJDKUcbGu
-         NUlwAlhXGlPx/UJp+osIXmBD/cPWvb2j8b7fXR7gLBNBjLVXlkG4ZaFrII8ajmpj0FoY
-         /JDZTYHD3BuNjGJlSA6uaDsxtI1x3L7PA3m5oUGeENCqHfD3e4S+97nSMTbF2cYPcIAs
-         CiOqVKtC7EX+AM1w0fLIG/zKfFdSdTBYR5rKHSf3kzm/p4JdypB2ck6X1LNCNlgimwK8
-         V0fw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=gEvFuUJcgKjD1KK0O2ptd6IoziGK1DkrPBnMIs51Dlw=;
+        b=viMzckyLSxyumGDXuvwbZfAH+ZpVcpddnKGKjmRdiZ7c2R+4pUF7GTRI4GEZerLJll
+         9NZqbUSMRtLM2QyP3uKI4lsn42t40dCeV/aMayXiovylNS8+AtX73VbrJtYdodZ5c275
+         R9f+lh5b6yd3dJDgsay575pZ11Bk8zfxYcrGLNtHnZkaO7Ly5lj7p8iQRSQcWPGPGovB
+         X9VCCXVvkOq6AjNubZHRVVI0O3QaI+jwiIh6uGBib9951sMhZWBXZJp4UaTpVBl+PSah
+         cq1uE8+2yGGXcT+s8rs32s1nL3Bgtr7iXAKVpFm7YFIdPhOXtOQ3DeuPlRUPRB0khkH5
+         oqnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=86x1pCfc8rA3POoegBiHBkAv35qybvdQxmmuFQbL0RY=;
-        b=wc0c53qz04uiFXwxyv929YEMJd2i0WMWtNOwDrg+TPLSnW/F6bbl42ZJ+DvVcJeR2y
-         8undyuDabk4Es8Ge5IpA/RV4IBF/cWVOe+rs60cbfETN3KdAcGQtEWTzDSUXLGItHbm3
-         bRWiYBGv322kgLCrNj85L6WSWUoXxQoiETjPdh5bYSGHzSiMReaN0fhsIbx2TcwVoL7M
-         LwA1VfxltsLcl4SF6ZjAlWoZwRtGetyPSAHmgLWNMQH1QVk31BuwD4IfQJXHk2sl6+p5
-         yeTivG5rDGJKjUb2mVcVeD0UFDkHieiYFhZ16Mjua5fM9r8x7E5+H7GqyWBibPB8UZGd
-         //5w==
-X-Gm-Message-State: AJIora/oVdZRB+8Cu5BiNIjSz9AKXsp+JiYbSaP3rhhKd6tnQ0kFdMCC
-        9a3Dz52wODiWRI18aiWVSeafSw==
-X-Google-Smtp-Source: AGRyM1v2wSkt8bjJkTtoUzltW4b6g1kt7GztuslhqRHJPErlzBtKH9XduvJ8939ewp16ELTmMuJOQQ==
-X-Received: by 2002:a9d:6ac4:0:b0:616:b183:c7e6 with SMTP id m4-20020a9d6ac4000000b00616b183c7e6mr9307839otq.353.1656447572712;
-        Tue, 28 Jun 2022 13:19:32 -0700 (PDT)
+        bh=gEvFuUJcgKjD1KK0O2ptd6IoziGK1DkrPBnMIs51Dlw=;
+        b=FZFAO8scRuTl2OGJ2LWoF0p+oSpGgDgs5QaCB1g1Wk0NnwxUjCFq3U4CQu+CMjPQ8N
+         aA67c2uIwejCxLDnSIIH/AGwPyNA1PGLADAaFl3vW2S75Ms508wQLDiVLyO3fT67Qcr3
+         hV0FNOmCk9o7cT80LrWywHoRirN+o0M5S7qsG+YKz3zeZjqcYHmyi5cc15bXLx91bkZr
+         oEzv9xcHRgkRr+dbD+P2IiAsnQzKlybmzoOs2lLdOMfcDmvJKvhJ8oiyz5v0b6e5lNZb
+         6/KTqFB7jbxHPvh5hqs+Nf2nFTqkD5eiOha8+SiHffteSiZvmqfaABrD0IlV4LHmNWZh
+         XWPQ==
+X-Gm-Message-State: AJIora+qU3W3PeMEvyTvgIHotbbB9C8IX1ABzFlNvrFrS48/DA3UCImf
+        U8P9fcp/JbWgOKp5eEskzDeFjfn/QICR8Q==
+X-Google-Smtp-Source: AGRyM1t6GoZu1uEi97J1earoxokH7cav9I4fHY14+CKDIjkVDDzutLG1V153Sm7YjcURG36xlQccSA==
+X-Received: by 2002:a05:6830:438a:b0:616:f238:1562 with SMTP id s10-20020a056830438a00b00616f2381562mr419026otv.111.1656447574266;
+        Tue, 28 Jun 2022 13:19:34 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.31
+        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 13:19:32 -0700 (PDT)
+        Tue, 28 Jun 2022 13:19:33 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
+To:     linux-kernel@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
+        devicetree@vger.kernel.org, Nishanth Menon <nm@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH v2] arm64: dts: qcom: align OPP table names with DT schema
-Date:   Tue, 28 Jun 2022 15:19:03 -0500
-Message-Id: <165644753306.10525.17507331661457165326.b4-ty@linaro.org>
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-clk@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-scsi@vger.kernel.org,
+        Taniya Das <tdas@codeaurora.org>,
+        Avri Altman <avri.altman@wdc.com>,
+        Andy Gross <agross@kernel.org>, linux-pm@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: (subset) [PATCH v3 1/7] dt-bindings: clock: qcom,gcc-sdm845: add parent power domain
+Date:   Tue, 28 Jun 2022 15:19:04 -0500
+Message-Id: <165644753308.10525.1688009123553849699.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220627093250.84391-1-krzysztof.kozlowski@linaro.org>
-References: <20220627093250.84391-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220513061347.46480-2-krzysztof.kozlowski@linaro.org>
+References: <20220513061347.46480-1-krzysztof.kozlowski@linaro.org> <20220513061347.46480-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,21 +84,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Jun 2022 11:32:50 +0200, Krzysztof Kozlowski wrote:
-> DT schema expects names of operating points tables to start with
-> "opp-table":
+On Fri, 13 May 2022 08:13:41 +0200, Krzysztof Kozlowski wrote:
+> Allow Qualcomm GCC to register its parent power domain (e.g. RPMHPD) to
+> properly pass performance state from children.
 > 
->   ipq6018-cp01-c1.dtb: cpu_opp_table: $nodename:0: 'cpu_opp_table' does not match '^opp-table(-[a-z0-9]+)?$'
 > 
-> Use hyphens instead of underscores, fix the names to match DT schema or
-> remove the prefix entirely when it is not needed.
-> 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: align OPP table names with DT schema
-      commit: 0e3e654696074b304302c7cc2a67314b7875f1ae
+[1/7] dt-bindings: clock: qcom,gcc-sdm845: add parent power domain
+      commit: d62cac46b0184b8730c68b01359a33769fee821b
 
 Best regards,
 -- 
