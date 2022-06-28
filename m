@@ -2,105 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDEA755EF9A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3626855EF9D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:29:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232179AbiF1U3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 16:29:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46818 "EHLO
+        id S229545AbiF1U3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 16:29:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231861AbiF1U3A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:29:00 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F130DBF7F
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:28:13 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id e12so3119lfr.6
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:28:13 -0700 (PDT)
+        with ESMTP id S232574AbiF1U3S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:29:18 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D11BD1FCF1;
+        Tue, 28 Jun 2022 13:29:00 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-317a66d62dfso129018657b3.7;
+        Tue, 28 Jun 2022 13:29:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:user-agent:in-reply-to:references
-         :message-id:mime-version:content-transfer-encoding;
-        bh=czcHDitp/KKFpz2Zm7B25Ec2yqHhKnm9gQ8OoMXa6Wc=;
-        b=tW/MyVEei2l1iolFz/U/Z70Ud77JO4yugINvQHVlL6JM4y5ftJxU/6RupaieCpJ5Nr
-         NnA0M63Cq0GM07eZ2TNcKLGNNJyyk/73XPMnKc7C8OARb47V1rOLCIp4L4CDizeWyijd
-         SLHXzDXQIqvrtL/drSo+Z+mjq3zoampbQe7xuN5bpKAbxPdIcGMFszivolecvB1Fkj8E
-         HoUjLgwgT/OpxjSX0r0EdOuy1taGk5FCzbFeDQBDlAurcG3e3PYT2VWqsgWUQ+gcj2ku
-         669RC4co7zA86AC4jJz99ovbogSa028jSpgc+05S+8g7O1uide89QklKNTmt576PistC
-         IcLA==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VtWDCZqvy4TTvCWnlJoa1yPXQxkPEGRs7O1x1+Wk4xI=;
+        b=YlsTfLviybOfR+rjPn7jIq2SbwKZji90z44wO0lKYZeEhuo9RTvFxYChry9BQRHhrf
+         9bMSBahzUf7j0ARQZqGYw3BSF4iZaJncz4twzP2XkOzZjLYPyul7yR2Ads2hVaUPhGbx
+         wVHaEQ3bnGEnuQ/lnyTnx1aEOse4vZ2wsX1X7kOuT2DMLXurX9ptNd6C4mU104ISWsAG
+         +aL/4De0wvwi82+1usS1gz+NrzYXkym3ql/8Kd7NbAdQTeS/0tQRCgKC9xFaFtLpSmy4
+         LPlhWAMKjPv5r3BdhF+wEjMBMMRFe06ngiRt8mhYVf1FyrsyNsDo7cYzpSJXdMheXyvK
+         zK7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:user-agent:in-reply-to
-         :references:message-id:mime-version:content-transfer-encoding;
-        bh=czcHDitp/KKFpz2Zm7B25Ec2yqHhKnm9gQ8OoMXa6Wc=;
-        b=fWdM98WpL1AAsbdNldhGa6jKxWRmY1EKlrKWbrJ9+tVqI87LL8GjUfM9EGn7eQZTuK
-         MMoiTPyjHAmCxQQsvxWu2I2OucjowqCVNNnbyHEa9rAKwgjxZzEtJufjKB5vRsT1koY1
-         7HQDI8cI4VszvB/pwufHw+wuL5owopf1HfukCyfYSiwQDwWmRy6/18rpc/Ua+JvSPmvz
-         Q1HXcSYXHPFGMi7KQYeh8cPOcYgujlneYutvoGKW3ifqDO360LMNAopA3ySmgX7uGLcX
-         HI5EKcV7f9lTCZuDd0GiTUG+4feqqbRq+oVJnvKPaLIxkL5GaUuw80nv39d9gSdujw3Y
-         q4qw==
-X-Gm-Message-State: AJIora94l+rjfXw55wM0hVrq1/0bXGU79oHLPXkQTGKT8lUwTHxQUsKa
-        Vv6RkOog4Jbcu8MCX+fw3xTBsQ==
-X-Google-Smtp-Source: AGRyM1uzCk7QiPQhUl6l94ftELy4OD2BZOzucOCR4LCpMBHTFV6FghgZptYpAfmhlTfeNz2dVgYNWg==
-X-Received: by 2002:a05:6512:2810:b0:47f:a76c:8770 with SMTP id cf16-20020a056512281000b0047fa76c8770mr14390644lfb.116.1656448092338;
-        Tue, 28 Jun 2022 13:28:12 -0700 (PDT)
-Received: from [127.0.0.1] ([188.162.64.167])
-        by smtp.gmail.com with ESMTPSA id u10-20020ac258ca000000b004813963179fsm81965lfo.230.2022.06.28.13.28.11
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 28 Jun 2022 13:28:11 -0700 (PDT)
-Date:   Tue, 28 Jun 2022 23:28:05 +0300
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_02/11=5D_dt-bindings=3A_display/msm?= =?US-ASCII?Q?=3A_move_qcom=2Csdm845-mdss_schema_to_mdss=2Eyaml?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20220628143827.GA425727-robh@kernel.org>
-References: <20220625232513.522599-1-dmitry.baryshkov@linaro.org> <20220625232513.522599-3-dmitry.baryshkov@linaro.org> <20220628143827.GA425727-robh@kernel.org>
-Message-ID: <031FC304-6407-4CC2-B1B7-F7365CF2F4E7@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VtWDCZqvy4TTvCWnlJoa1yPXQxkPEGRs7O1x1+Wk4xI=;
+        b=HjjM7jDCf/PMUjwmR1b+yjgDXoan0sUKgIyD/SppbYNtXQQ3bavkhxy5hIARhcjZ5r
+         N6bqfJ2J8MemcdQZ8x6M7nzENT7HWnVwHVUDAbXVUjzJLiGS81Ewp166Qlxu8qN21/pR
+         7uVnXtQiMQ4f+vTnOuZ+ipGGIDBnvUL6afZjdIlPJYqGD5T2gPQVYS1YjUPQUiShdS02
+         7OMXzbIx72NpWzzihMw9vQwg39Z8PL/7lqlxdlOIXpfvZHoiyuDrge+cSGYSlHz/893D
+         VIWqIVMjvsYcUe1VLKMXebzQhDJKZsdquvajWdKhOxs0dFVIXN+lUwAAGHv0ntm2cuGm
+         3l3Q==
+X-Gm-Message-State: AJIora/V7KLfRxNqz/gpX3BaUGRr+UWW6Qq3DJdp9DBsl1pgHMotJQa8
+        RNBbVQFW1F4yeQH1C4cuM2uRAkE8R9NkaPwGlUs=
+X-Google-Smtp-Source: AGRyM1tuZyBuLff1iMKyDhmPPzrVYxfDfYpgHEfop8Gu1ugJVl2EbfJIbzBsjhmojigBvwwoSSdowcDFQcl+zpuHyO0=
+X-Received: by 2002:a81:1889:0:b0:317:987b:8e82 with SMTP id
+ 131-20020a811889000000b00317987b8e82mr23470162ywy.185.1656448140077; Tue, 28
+ Jun 2022 13:29:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <4e1d5db9dea68d82c94336a1d6aac404@walle.cc> <Yrrhs3D++V79/4Jk@smile.fi.intel.com>
+ <f17d3ecfecf4491dd15b1fa092205f3f@walle.cc> <CAHp75Vd6e3WwHPfyL=GP=vsoWhwGXadwQziiRRwfHPfjkX2eFg@mail.gmail.com>
+ <2f2d7685e0e43194270a310034004970@walle.cc> <CAHp75VcANMjxgS6S24Zh+mz66usb6LBnQk-ENvU9JHSXXsG1DA@mail.gmail.com>
+ <9e58f421c27121977d11381530757a6e@walle.cc> <3ab8afab-b6b7-46aa-06d4-6740cee422d7@linaro.org>
+ <288f56ba9cfad46354203b7698babe91@walle.cc> <daaddbd5-1cd4-d3ce-869a-249bdd8aecb9@linaro.org>
+ <96f40ae6abf76af3b643b1e1c60d1d9f@walle.cc> <f9eb6d94-c451-0c9f-f123-2f1324f68b68@linaro.org>
+In-Reply-To: <f9eb6d94-c451-0c9f-f123-2f1324f68b68@linaro.org>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 28 Jun 2022 22:28:23 +0200
+Message-ID: <CAHp75VdWdUY-XyGBsQb3i9thCswmBo4UEAEaZCO5MC_HMW+fSQ@mail.gmail.com>
+Subject: Re: fwnode_for_each_child_node() and OF backend discrepancy
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Michael Walle <michael@walle.cc>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jun 28, 2022 at 5:17 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 28/06/2022 17:09, Michael Walle wrote:
 
+...
 
-On 28 June 2022 17:38:27 GMT+03:00, Rob Herring <robh@kernel=2Eorg> wrote:
->On Sun, Jun 26, 2022 at 02:25:04AM +0300, Dmitry Baryshkov wrote:
->> Move schema for qcom,sdm845-mdss from dpu-sdm845=2Eyaml to mdss=2Eyaml =
-so
->> that the dpu file describes only the DPU schema=2E
->>=20
->> While we are at it, rename display-controller node to mdp to reflect
->> actual node name in the sdm845=2Edtsi file=2E
->>=20
->> Signed-off-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
->> ---
->>  =2E=2E=2E/bindings/display/msm/dpu-sdm845=2Eyaml      | 137 +++++-----=
---------
->>  =2E=2E=2E/devicetree/bindings/display/msm/mdss=2Eyaml | 112 ++++++++++=
-++--
->>  2 files changed, 135 insertions(+), 114 deletions(-)
+> > Mh. Assume a SoC with an integrated ethernet switch. Some ports
+> > are externally connected, some don't. I'd think they should be disabled,
+> > no? Until now, all bindings I know, treat them as disabled. But OTOH
+> > you still need to do some configurations on them, like disable port
+> > forwarding, disable them or whatever. So the hardware is present, but
+> > it is not connected to anything.
 >
->What's the base for this series? Patch 1 applied, the rest did not=2E
+> I see your point and the meaning is okay... except that drivers don't
+> touch disabled nodes. If a device (with some address space) is disabled,
+> you do not write there "please be power off". Here the case is a bit
+> different, because I think ports do not have their own address space.
+> Yet it contradicts the logic - something is disabled in DT and you
+> expect to perform actual operations on it.
 
-I was developing on top of the drm-msm-lumag tree, part of Linux-next=2E H=
-owever I think 5=2E19-rc + [1] will work=2E
+You beat me up to this comment, I also see a contradiction of what
+"disabled" means in your, Michael, case and what it should be.
 
-[1] https://lore=2Ekernel=2Eorg/all/1654166998-14907-1-git-send-email-quic=
-_mkrishn@quicinc=2Ecom/
+If you need to perform an operation on some piece of HW, it has not to
+be disabled.
 
+Or, you may deduce them by knowing how many ports in hardware (this is
+usually done not by counting the nodes, but by a property) and do
+whatever you want on ones, you have  not listed (by port_num) in the
+array of parsed children.
 
+-- 
+With Best Regards,
+Andy Shevchenko
