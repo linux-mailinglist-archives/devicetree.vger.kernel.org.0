@@ -2,201 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 860C755E925
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:40:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 833EB55E83C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:35:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347291AbiF1PJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 11:09:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43422 "EHLO
+        id S1346737AbiF1PO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 11:14:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347141AbiF1PJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 11:09:25 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1B1E95A8;
-        Tue, 28 Jun 2022 08:09:24 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 91B6222246;
-        Tue, 28 Jun 2022 17:09:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1656428963;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=9kEBJdoPP+ZathQ1a3NWo7Je/syyaPZVyg6lZYXe3rs=;
-        b=Wfq+AR9EfUagI4NWajhsfogZyWQpriwV3UdxYRqiy3HaMH7uABI87ieWD17CuMGzrpn1Gl
-        ahWd2s4pHf8u69MMXw2myhv/sTOOVkxvchTRDpgliweAvW6HsP9nkiVwDguLmQVUqZA3FJ
-        LOz/7fZAKUORwLwBMI7QD0rsYuUHSGw=
+        with ESMTP id S1347532AbiF1POX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 11:14:23 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E55F82D1D2;
+        Tue, 28 Jun 2022 08:14:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1656429260; x=1687965260;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=wMU0LIcd6S290PqHZw/nq7NIsUSg5LahG1AgMvpc6Lg=;
+  b=0RKNCEwfTAZY5HfMYfX8kesRRM1tPX/Kt/sGvuJEbhD3LGNFpGWuXmxX
+   NBGwYRUIsc4hncQjkzWRmphv4dSiiaT1vi2loP+IhB1S07z/7adLd/67A
+   VRChbHR6tLfWGCxljcD6SE3BiUe2KD+uokPpNpCmxY/WpbX5MiIhpSSgA
+   28lCDlntAZfzCqoSljsyyhyRrTNNRfu7Ts3St6CZF/CaAaBweXnutiEWD
+   iTM4mECzrV5PPKlLBfHLpVYDlpgAn5SgdExEJQlbaKZN4YxNz5+Adx33M
+   tScMOL+7FdFL/sMm3TAueyeM8uY4jr7Ed12i6l0pYRjDKMOXCBx+Dv56d
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,229,1650956400"; 
+   d="scan'208";a="165465211"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Jun 2022 08:14:18 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 28 Jun 2022 08:14:12 -0700
+Received: from localhost.localdomain (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Tue, 28 Jun 2022 08:14:09 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <eugen.hristev@microchip.com>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
+        <robh+dt@kernel.org>, <krzk+dt@kernel.org>
+CC:     <linux-iio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v2 00/19] iio: adc: at91-sama5d2_adc: add support for temperature sensor
+Date:   Tue, 28 Jun 2022 18:16:12 +0300
+Message-ID: <20220628151631.3116454-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 28 Jun 2022 17:09:22 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: Re: fwnode_for_each_child_node() and OF backend discrepancy
-In-Reply-To: <daaddbd5-1cd4-d3ce-869a-249bdd8aecb9@linaro.org>
-References: <4e1d5db9dea68d82c94336a1d6aac404@walle.cc>
- <Yrrhs3D++V79/4Jk@smile.fi.intel.com>
- <f17d3ecfecf4491dd15b1fa092205f3f@walle.cc>
- <CAHp75Vd6e3WwHPfyL=GP=vsoWhwGXadwQziiRRwfHPfjkX2eFg@mail.gmail.com>
- <2f2d7685e0e43194270a310034004970@walle.cc>
- <CAHp75VcANMjxgS6S24Zh+mz66usb6LBnQk-ENvU9JHSXXsG1DA@mail.gmail.com>
- <9e58f421c27121977d11381530757a6e@walle.cc>
- <3ab8afab-b6b7-46aa-06d4-6740cee422d7@linaro.org>
- <288f56ba9cfad46354203b7698babe91@walle.cc>
- <daaddbd5-1cd4-d3ce-869a-249bdd8aecb9@linaro.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <96f40ae6abf76af3b643b1e1c60d1d9f@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-06-28 16:36, schrieb Krzysztof Kozlowski:
-> On 28/06/2022 16:22, Michael Walle wrote:
->>>> I can't follow you here. Please note, that you need the actual
->>>> physical port number. It's not a made up number, but corresponds
->>>> to a physical port on that ethernet switch. So you can't just skip
->>>> the disabled ones. port@2 must have port number 2.
->>> 
->>> The number "2" you get from the reg property, so where is exactly the
->>> problem?
->> 
->> That you need to get the total number of ports of the hardware (which
->> is also used for things beyond validation, eg. during switch init
->> all ports will are disabled). And right now, that is done by counting
->> all the nodes - which is bad, I guess we agree here.
-> 
-> It's bad also from another reason - the DT node was explicitly 
-> disabled,
-> but you perform some operation on actual hardware representing this
-> node. I would assume that a disabled DT node means it is not
-> operational, e.g. hardware not present or missing clocks, so you should
-> not treat it as another meaning - power down/unused.
+Hi,
 
-Mh. Assume a SoC with an integrated ethernet switch. Some ports
-are externally connected, some don't. I'd think they should be disabled,
-no? Until now, all bindings I know, treat them as disabled. But OTOH
-you still need to do some configurations on them, like disable port
-forwarding, disable them or whatever. So the hardware is present, but
-it is not connected to anything.
+The following series add support for temperature sensor available on
+SAMA7G5.
 
->> But it works,
->> as long as no ports are disabled and all ports are described in the
->> device tree. But I have device trees where some are disabled.
-> 
-> I am not sure if I follow this. You have devices which
-> 1. have unused ports, but all DT nodes are available/okay,
-> 2. have unused ports, which are in DT status=disabled?
-> 
-> Doesn't case 2 break the bindings? If so, we don't care about such
-> out-of-tree users. We cannot support all of possible weird combinations
-> in out-of-tree DTS files...
+Temperature sensor available on SAMA7G5 provides 2 outputs VTEMP and VBG.
+VTEMP is proportional to the absolute temperature voltage and VBG is a
+quasi-temperature independent voltage. Both are necessary in computing
+the temperature (for better accuracy). Also, for better accuracy the
+following settings were imposed when measusing the temperature:
+oversampling rate of 256, sampling frequency of 10MHz, a startup time of
+512 ticks, MR.tracktim=0xf, EMR.trackx=0x3.
 
-Case 1 is invalid I think.
+For computing the temperature measured by ADC calibration data is
+necessary. This is provided via OTP memory available on SAMA7G5.
 
-How does case 2 break the binding? It breaks the driver, yes. But not
-the binding. I agree on the out-of-tree argument, *but* isn't that
-what the binding is for, that out-of-tree device trees gonna work as
-long as they follow the binding? And I don't see where it dictates that 
-all
-nodes must be enabled; nor that it must either be 2 or 8 children nodes.
+Patches 1/19-4/19 provides some fixes.
+Patches 5/19-16/19 prepares for the addition of temperature sensor
+support.
+Patch 17/16 adds the temperature sensor support.
 
->> I assume, you cannot read the hardware itself to get the number of
->> physical ports; and we have the compatible "microchip,lan966x-switch",
->> which is the generic one, so it could be the LAN9668 (with 8 ports)
->> or the LAN9662 (with 2 ports).
-> 
-> I'll keep that argument for future when I see again patches adding such
-> wildcard compatible. :) I had to discuss with some folks...
-> 
-> Although the compatible difference does not have to be important here,
-> because one could say the 9662 and 9668 programming model is exaclty 
-> the
-> same and they differ by number of ports. This number of ports can be a
-> dedicated property or counted from the children (if they were all
-> available).
+Along with temperature sensor support I took the chance and added
+runtime PM support in this series, too (handled in patch 19/19).
 
-Mh. Rob was always in favor of dedicated compatible strings. And I
-think there are also subtle differences. Eg. the LAN9662 has some kind
-of accelerating engine, if I'm not mistaken.
+The rest of patches in this series are minor cleanups.
 
-So what do you prefer:
+Thank you,
+Claudiu Beznea
 
-   compatible = "microchip,lan9668";
-and
-   compatible = "microchip,lan9662";
+Changes in v2:
+- addressed review comments
+- with this, new patches were intruced in this series: 2/19, 4/19,
+  8/19, 9,19
+- runtime pm support has been adapted to work also when CONFIG_PM
+  is not enabled
+- collected tags
 
-or
+Claudiu Beznea (19):
+  iio: adc: at91-sama5d2_adc: fix AT91_SAMA5D2_MR_TRACKTIM_MAX
+  iio: adc: at91-sama5d2_adc: check return status for pressure and touch
+  iio: adc: at91-sama5d2_adc: lock around oversampling and sample freq
+  iio: adc: at91-sama5d2_adc: disable/prepare buffer on suspend/resume
+  iio: adc: at91-sama5d2_adc: exit from write_raw() when buffers are
+    enabled
+  iio: adc: at91-sama5d2_adc: handle different EMR.OSR for different hw
+    versions
+  iio: adc: at91-sama5d2_adc: move the check of oversampling in its
+    function
+  iio: adc: at91-sama5d2_adc: drop AT91_OSR_XSAMPLES defines
+  iio: adc: at91-sama5d2_adc: add .read_avail() chan_info ops
+  iio: adc: at91-sama5d2_adc: adjust osr based on specific platform data
+  iio: adc: at91-sama5d2_adc: add 64 and 256 oversampling ratio
+  iio: adc: at91-sama5d2_adc: move oversampling storage in its function
+  iio: adc: at91-sama5d2_adc: update trackx on emr
+  iio: adc: at91-sama5d2_adc: add startup and tracktim as parameter for
+    at91_adc_setup_samp_freq()
+  iio: adc: at91-sama5d2_adc: lock around at91_adc_read_info_raw()
+  dt-bindings: iio: adc: at91-sama5d2_adc: add id for temperature
+    channel
+  iio: adc: at91-sama5d2_adc: add support for temperature sensor
+  iio: adc: at91-sama5d2_adc: add empty line after functions
+  iio: adc: at91-sama5d2_adc: add runtime pm support
 
-   compatible = "microchip,lan966x";
-   microchip,num-phys-ports = <8>;
-and
-   compatible = "microchip,lan966x";
-   microchip,num-phys-ports = <2>;
-   microchip,accelerating-engine;
-   ..
+ drivers/iio/adc/at91-sama5d2_adc.c            | 683 +++++++++++++++---
+ .../dt-bindings/iio/adc/at91-sama5d2_adc.h    |   3 +
+ 2 files changed, 566 insertions(+), 120 deletions(-)
 
-The argument here was always, we don't want too much properties if
-it can be deduced by the compatible string.
-
->> We somehow have to retain backwards
->> compatibility. Thus my idea was to at least make the handling slightly
->> better and count *any* child nodes. So it doesn't fall apart with
->> disabled
->> nodes. Then introduce proper compatible strings
->> "microchip,lan9668-switch"
->> and use that to hardcode the num_phys_ports to 8. But there will be
->> device trees with microchip,lan966x-switch out there, which we do want
->> to support.
->> 
->> I see the following options:
->>   (1) just don't care and get rid of the "microchip,lan966x-switch"
->>       compatible
->>   (2) quick fix for the older kernels by counting all the nodes and
->>       proper fix for the newer kernels with dedicated compatibles
->>   (3) no fix for older kernels, introduce new compatibles for new
->>       kernels
-> 
-> I propose this one. I would not care about out-of-tree DTSes which
-> decided to disable random stuff and expect things working. :)
-
-I'd argue, that is the usual case for all the switch bindings I
-know of; not some unusual config. E.g. the SoC dtsi disables all
-ports by default and only the ones which are actually connected
-by the board are then enabled in the board dts, see
-arch/arm/boot/dts/lan966x.dtsi
-arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-
-That being said, I don't care too much about the older kernels.
-So I'm fine with (3).
-
--michael
-
-> 
->>   (4) keep generic compatible if the hardware can be read out to get
->>       the number of ports.
->> 
->> I think (1) isn't the way to go. (2) was my try until I noticed
->> that odd fwnode behavior. But judging by this thread, I don't think
->> thats possible. I don't know if (4) is possible at all. If not we'd
->> be left with (3).
+-- 
+2.34.1
 
