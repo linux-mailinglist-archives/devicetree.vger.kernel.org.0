@@ -2,94 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A65355CDC7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6366155DC7C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:26:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344421AbiF1Mhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 08:37:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35482 "EHLO
+        id S243003AbiF1MkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 08:40:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345870AbiF1Mha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 08:37:30 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ED002ED77;
-        Tue, 28 Jun 2022 05:37:28 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id s1so17474548wra.9;
-        Tue, 28 Jun 2022 05:37:28 -0700 (PDT)
+        with ESMTP id S230200AbiF1MkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 08:40:19 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94AD82F39A
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 05:40:18 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id u14so1373809ljh.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 05:40:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hO4xZJ8wf0/DTFCvduIwbZI6kG2ObiNzhghsCYCED2Q=;
-        b=AH4KD7RJe/xPX4OlMAG12nnSAesrDxWjsbRIKrBU1Gcyhh8/9KPUyTgIQRR2cqreQb
-         Gd4u3y4m3C64UIffdcTKOX1nPbphiWX3S83wkuz/bRaP9Tye6jlVmnOtREu39tlnBe5k
-         HB7tNruryUNECrI5mgpePBpWtLJX2Fio7xGMV0fHZT/ULJYPdM0YInQeBBQx5j1BnyPj
-         jwiW7JN93XjZCqNV/zM2oNoQd7m+g8NXDBDySpDKJZqzeh98m0AlTgMeOpREGuKlot4N
-         qosX7FkFVExqyXlqN7/2jO5a8CDf+TgUvvg/Mycgs1VvqxSFX3Hq4p0Ne3NxTq61Uwrn
-         Ladg==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=MxGQ2YnHxmb3Xl+ErDnQ7bNnCMEH/xS4R9A6OhgAyBQ=;
+        b=D23p5i8aSaHruyf6k2IMFcGEVw+8l++o9fpr2kVhtnDcpjNwW53b4MxVpaSYrKQfCA
+         lFIk18dm3nwRm6BWYuw7qZ+54QM44tGSPjl2O/Hp2k/myW7McE5ho1R77JDl5BLrACn5
+         03AiPgzDEN12vz4+TgpTT4XECRmZ95Bfq/56ym9uf5jpoVnI03sBVNwRflympFMFaMwK
+         CfFz3TpiN+CTcM7lHFaK573lRwkRtOn0TCqBhaDduxGsQkJo4VwkSX9sf7GnfyTaOSYp
+         AJY5dyFp6SkbeW6nbLKjd8WrI4moyugEyd0vG0CoCJfOMv73+/2Wkiqu3B5jLjTFzGnp
+         s36Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=hO4xZJ8wf0/DTFCvduIwbZI6kG2ObiNzhghsCYCED2Q=;
-        b=IWB5oOFvEnU8ANt8NTwUAfHHztA9pdgkuUKQeWivhqVDEqjPQHmq/SdYyK8/W6j5jx
-         Rv3Dl3BGjBvUSANm+VlAK+tgNslEM6qmSagt16BSydKebj0WYWID78sHYZ3/DPX85JP7
-         cJF1k9uwkG8qkcVWjU0ke8jc/I0rasH3eL1paEDZZvrJNm9VFU2QJcJWIG1sLWdJXpPq
-         OJwiB/YiVOHjm0993eeKPp/Z7jeWNcSo7KdjHH/sylqQScvFJ8R8ukAiibjRn/mGwZE0
-         SLgFGVyIdcpxDYkwrQ/jSLxgtY53kCbu8lIXtuq5TbD4vluZWs1cOvj9r0gKnM0ZkDSm
-         dQmg==
-X-Gm-Message-State: AJIora+YNmbttUAUaGkJbh6OIGD9+1bWLQYdA6q392PAD+2KBt25iSez
-        F39rImEOdoEWsU2UBXN7x1E=
-X-Google-Smtp-Source: AGRyM1vS0j2HO+36idxzV49a+8a/zbG6qBBbnke5JHVFmt+B23ped614wbuLdrlFkQJJxWP1tLRqaA==
-X-Received: by 2002:a05:6000:1a8b:b0:219:ad61:f4e3 with SMTP id f11-20020a0560001a8b00b00219ad61f4e3mr19011337wry.190.1656419847027;
-        Tue, 28 Jun 2022 05:37:27 -0700 (PDT)
-Received: from localhost (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id c2-20020a1c3502000000b0039c5328ad92sm21771372wma.41.2022.06.28.05.37.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 05:37:25 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: [PATCH] dt-bindings: tegra-ccplex-cluster: Remove status from required properties
-Date:   Tue, 28 Jun 2022 14:37:22 +0200
-Message-Id: <20220628123722.3678140-1-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.36.1
+        bh=MxGQ2YnHxmb3Xl+ErDnQ7bNnCMEH/xS4R9A6OhgAyBQ=;
+        b=JJHkufvODednV/E/FjY7R03g96S5SQw9DzmjmHKROf/kbW5dMWI1X3jA3FQY4N5u2J
+         goZCDcXwgCqi5OhrtbwMxGex5J3nVsX9njDyntr1xtglGj/0y1JsLHsnAynwsXoswvbG
+         fOsUKY2LMEWYW+dP/FAgudc5379czRwmqssWTr6gAqKcRqvAgtIVB60vovyZJpK+0hIY
+         W4VM1M/u54AcYLquXDpIzRD42cC531dz1W33TOZzrC6G87fubR9pWvwhGgdQ+zvXPyOq
+         7SBhpKrldVIyXmzZmE8OvstUxpB0MvFH++dRA5w0c5fupGUslbX8aUuX76vSary5dkFv
+         2Qfg==
+X-Gm-Message-State: AJIora+bYuTe+u26f4YwTHvgryIHtx8NhzI4C/xPLNrDCfZjPNr+fXzO
+        gpq6w6tvT/lvMtASoZpp+kzU1A==
+X-Google-Smtp-Source: AGRyM1vBGhayZNdb04az1HWjpH7np+Pmdf/O+Yrv8cGXpzXHAcXN+fvKIgyHZkZ97fnqSTN58GATJg==
+X-Received: by 2002:a2e:9c9:0:b0:25a:6847:c9c8 with SMTP id 192-20020a2e09c9000000b0025a6847c9c8mr9194486ljj.266.1656420016865;
+        Tue, 28 Jun 2022 05:40:16 -0700 (PDT)
+Received: from [192.168.1.212] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id k18-20020a05651c061200b0025bcdb5f7a8sm424871lje.127.2022.06.28.05.40.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jun 2022 05:40:16 -0700 (PDT)
+Message-ID: <eb516b67-9c9e-251b-3fea-8d2830e1ab89@linaro.org>
+Date:   Tue, 28 Jun 2022 15:40:15 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v3 5/7] clk: qcom: gcc-msm8916: move
+ gcc_mss_q6_bimc_axi_clk down
+Content-Language: en-GB
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20220619212735.1244953-1-dmitry.baryshkov@linaro.org>
+ <20220619212735.1244953-6-dmitry.baryshkov@linaro.org>
+ <20220627211844.6kwk2kyalgyb3ysm@SoMainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220627211844.6kwk2kyalgyb3ysm@SoMainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On 28/06/2022 00:18, Marijn Suijten wrote:
+> On 2022-06-20 00:27:33, Dmitry Baryshkov wrote:
+>> The gcc_mss_q6_bimc_axi_clk clock depends on the bimc_ddr_clk_src clock.
+>> Move it down in the file to come after the source clock.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> 
+>> ---
+>>   drivers/clk/qcom/gcc-msm8916.c | 34 +++++++++++++++++-----------------
+>>   1 file changed, 17 insertions(+), 17 deletions(-)
+>>
+>> diff --git a/drivers/clk/qcom/gcc-msm8916.c b/drivers/clk/qcom/gcc-msm8916.c
+>> index 7962edbdbcf6..4d726ca4b0da 100644
+>> --- a/drivers/clk/qcom/gcc-msm8916.c
+>> +++ b/drivers/clk/qcom/gcc-msm8916.c
+>> @@ -2594,23 +2594,6 @@ static struct clk_branch gcc_mss_cfg_ahb_clk = {
+>>   	},
+>>   };
+>>   
+>> -static struct clk_branch gcc_mss_q6_bimc_axi_clk = {
+>> -	.halt_reg = 0x49004,
+>> -	.clkr = {
+>> -		.enable_reg = 0x49004,
+>> -		.enable_mask = BIT(0),
+>> -		.hw.init = &(struct clk_init_data){
+>> -			.name = "gcc_mss_q6_bimc_axi_clk",
+>> -			.parent_names = (const char *[]){
+>> -				"bimc_ddr_clk_src",
+>> -			},
+>> -			.num_parents = 1,
+>> -			.flags = CLK_SET_RATE_PARENT,
+>> -			.ops = &clk_branch2_ops,
+>> -		},
+>> -	},
+>> -};
+>> -
+>>   static struct clk_branch gcc_oxili_ahb_clk = {
+>>   	.halt_reg = 0x59028,
+>>   	.clkr = {
+>> @@ -2860,6 +2843,23 @@ static struct clk_branch gcc_bimc_gpu_clk = {
+>>   	},
+>>   };
+>>   
+>> +static struct clk_branch gcc_mss_q6_bimc_axi_clk = {
+> 
+> How'd you settle on placing it here?  It isn't right below
+> bimc_ddr_clk_src, nor the last user of bimc_ddr_clk_src, doesn't seem to
+> have any alphabetical or .enable_reg related ordering to the other clks
+> either?
 
-The "status" property is implied to be "okay" if it isn't present, so do
-not mark it as required.
+Hmm, I was looking for the last bimc_ddr_clk_src user. Let's see if I 
+can find a better place then.
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- .../bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml          | 1 -
- 1 file changed, 1 deletion(-)
+> 
+>> +	.halt_reg = 0x49004,
+>> +	.clkr = {
+>> +		.enable_reg = 0x49004,
+>> +		.enable_mask = BIT(0),
+>> +		.hw.init = &(struct clk_init_data){
+>> +			.name = "gcc_mss_q6_bimc_axi_clk",
+>> +			.parent_names = (const char *[]){
+>> +				"bimc_ddr_clk_src",
+>> +			},
+>> +			.num_parents = 1,
+>> +			.flags = CLK_SET_RATE_PARENT,
+>> +			.ops = &clk_branch2_ops,
+>> +		},
+>> +	},
+>> +};
+>> +
+>>   static struct clk_branch gcc_jpeg_tbu_clk = {
+>>   	.halt_reg = 0x12034,
+>>   	.clkr = {
+>> -- 
+>> 2.35.1
+>>
 
-diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
-index 8c6543b5c0dc..711bb4d08c60 100644
---- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
-+++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra-ccplex-cluster.yaml
-@@ -40,7 +40,6 @@ required:
-   - compatible
-   - reg
-   - nvidia,bpmp
--  - status
- 
- examples:
-   - |
+
 -- 
-2.36.1
-
+With best wishes
+Dmitry
