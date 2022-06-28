@@ -2,114 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1713555EA49
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:53:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0135055EA58
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:56:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229492AbiF1QxL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 12:53:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36216 "EHLO
+        id S232564AbiF1Qze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 12:55:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233947AbiF1QvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 12:51:09 -0400
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E5A21A4;
-        Tue, 28 Jun 2022 09:50:47 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 01377240007;
-        Tue, 28 Jun 2022 16:50:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1656435046;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=dz/PyMsuJCPlzxV0NdNxQF4B1f3xTrWyRIxj17TyzNE=;
-        b=VvSS27cpBdvgCLlVD9xXQyXFssPJf6KbUMFiYUU4391snY7ZSfiOBLTosXOIdnFkn7AWcC
-        aC3TGHr2tEWK+TqR4H6k15+Oy/YYtxGYkq5CTgIpRu/lU9LUBVOmr1AGxqDI1keeFvHZXi
-        Dvb71vdSVct1kNBF+U/xZKVI1ZeobWnNCzstTdlqIha1a6Z1dPcfs2dKhDA08H82xoaYqw
-        3grtBuceIP1rdakS2TqZNIHgpgzzWChSGoUSdaDeGMZUqUBLX43NCoX2mjCVYVQDx/4DnW
-        CoPvIbVqRju5u/9cX8+p914tpqEadfBZs33HAjjZFsySjB1gyyGwieDAmDI6sQ==
-Date:   Tue, 28 Jun 2022 18:49:54 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S232782AbiF1Qys (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 12:54:48 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 146E623164;
+        Tue, 28 Jun 2022 09:53:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1656435208; x=1687971208;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Lk9i+UFDFPdV2X5SBVGrwZ4ywWGVr3wZW7Ti7xnz5Js=;
+  b=LBnYK7pIdoOPEQsjFbnRHlbrJSuU2zdtucqQ8Ri4f724EuJ49Mb7iBvF
+   Ck7lMab4V0bq9/04SCIIbekqAAHU9qvF81g2wGRNE5SkU2lLk7rGZP04h
+   /cRrn2MWL84oKyQAjczLGpFMVK2jGXIxQeEriCCpyTV7wpc2ZNm/UMDkG
+   lH7+YV6YnMR+MttmRRWcKb41kne999ETvP6F5pI3qHZo6UL2ogn8zmkKd
+   rbg3htcwrsg7eQYj40gtuz8O84HpXSVEr5OLzLXs9bDdiTuIX4NC75kCN
+   mD2m9zsfSbkr+qIfMsKUYkxJbC/rWc2L+liyIgyPHwpgOpVmQLItQy30W
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10392"; a="279338975"
+X-IronPort-AV: E=Sophos;i="5.92,229,1650956400"; 
+   d="scan'208";a="279338975"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 09:53:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,229,1650956400"; 
+   d="scan'208";a="646993101"
+Received: from lkp-server01.sh.intel.com (HELO 68b931ab7ac1) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 28 Jun 2022 09:53:25 -0700
+Received: from kbuild by 68b931ab7ac1 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1o6ESq-000ARG-UR;
+        Tue, 28 Jun 2022 16:53:24 +0000
+Date:   Wed, 29 Jun 2022 00:53:11 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Stefan Berger <stefanb@linux.ibm.com>, kexec@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, nayna@linux.ibm.com, nasastry@in.ibm.com,
+        Stefan Berger <stefanb@linux.ibm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v9 05/16] net: pcs: add Renesas MII converter
- driver
-Message-ID: <20220628184954.6757ffe4@fixe.home>
-In-Reply-To: <YrsvkqBbzUvTYOeI@shell.armlinux.org.uk>
-References: <20220624144001.95518-1-clement.leger@bootlin.com>
-        <20220624144001.95518-6-clement.leger@bootlin.com>
-        <YrsvkqBbzUvTYOeI@shell.armlinux.org.uk>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        Frank Rowand <frowand.list@gmail.com>,
+        Eric Biederman <ebiederm@xmission.com>
+Subject: Re: [PATCH v2 3/3] tpm/kexec: Duplicate TPM measurement log in
+ of-tree for kexec
+Message-ID: <202206290021.AodC96Vc-lkp@intel.com>
+References: <20220616154130.2052541-4-stefanb@linux.ibm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220616154130.2052541-4-stefanb@linux.ibm.com>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Tue, 28 Jun 2022 17:42:58 +0100,
-"Russell King (Oracle)" <linux@armlinux.org.uk> a =C3=A9crit :
+Hi Stefan,
 
-> > +		break;
-> > +	default:
-> > +		return -EOPNOTSUPP;
-> > +	}
-> > +
-> > +	val =3D FIELD_PREP(MIIC_CONVCTRL_CONV_MODE, conv_mode) |
-> > +	      FIELD_PREP(MIIC_CONVCTRL_CONV_SPEED, speed);
-> > +
-> > +	miic_reg_rmw(miic, MIIC_CONVCTRL(port),
-> > +		     MIIC_CONVCTRL_CONV_MODE | MIIC_CONVCTRL_CONV_SPEED, val);
-> > +	miic_converter_enable(miic_port->miic, miic_port->port, 1);
-> > +
-> > +	return 0;
-> > +} =20
->=20
-> the stting of the speed here. As this function can be called as a result
-> of ethtool setting the configuration while the link is up, this could
-> have disasterous effects on the link. This will only happen if there is
-> no PHY present and we aren't using fixed-link mode.
->=20
-> Therefore, I'm willing to get this pass, but I think it would be better
-> if the speed was only updated if the interface setting is actually
-> being changed. So:
+Thank you for the patch! Yet something to improve:
 
-Hi Russell,
+[auto build test ERROR on char-misc/char-misc-testing]
+[also build test ERROR on linus/master v5.19-rc4 next-20220628]
+[cannot apply to robh/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Ok, I'll make a follow-up patch to handle that properly.
+url:    https://github.com/intel-lab-lkp/linux/commits/Stefan-Berger/tpm-Preserve-TPM-measurement-log-across-kexec/20220616-234240
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git 0a35780c755ccec097d15c6b4ff8b246a89f1689
+config: parisc-randconfig-r012-20220627 (https://download.01.org/0day-ci/archive/20220629/202206290021.AodC96Vc-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/c28e0f7321d0b7245454e811a3dd0f2134d9dd74
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Stefan-Berger/tpm-Preserve-TPM-measurement-log-across-kexec/20220616-234240
+        git checkout c28e0f7321d0b7245454e811a3dd0f2134d9dd74
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=parisc SHELL=/bin/bash drivers/of/
 
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   drivers/of/kexec.c: In function 'tpm_add_kexec_buffer':
+>> drivers/of/kexec.c:371:18: error: implicit declaration of function 'vmalloc'; did you mean 'kvmalloc'? [-Werror=implicit-function-declaration]
+     371 |         buffer = vmalloc(size);
+         |                  ^~~~~~~
+         |                  kvmalloc
+   drivers/of/kexec.c:371:16: warning: assignment to 'void *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     371 |         buffer = vmalloc(size);
+         |                ^
+   drivers/of/kexec.c: In function 'tpm_post_kexec':
+   drivers/of/kexec.c:446:42: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     446 |                 *(u64 *)newprop->value = (u64)phyaddr;
+         |                                          ^
+   cc1: some warnings being treated as errors
+
+
+vim +371 drivers/of/kexec.c
+
+   349	
+   350	void tpm_add_kexec_buffer(struct kimage *image)
+   351	{
+   352		struct kexec_buf kbuf = { .image = image, .buf_align = 1,
+   353					  .buf_min = 0, .buf_max = ULONG_MAX,
+   354					  .top_down = true };
+   355		struct device_node *np;
+   356		void *buffer;
+   357		u32 size;
+   358		u64 base;
+   359		int ret;
+   360	
+   361		if (!IS_ENABLED(CONFIG_PPC64))
+   362			return;
+   363	
+   364		np = of_find_node_by_name(NULL, "vtpm");
+   365		if (!np)
+   366			return;
+   367	
+   368		if (of_tpm_get_sml_parameters(np, &base, &size) < 0)
+   369			return;
+   370	
+ > 371		buffer = vmalloc(size);
+   372		if (!buffer)
+   373			return;
+   374		memcpy(buffer, __va(base), size);
+   375	
+   376		kbuf.buffer = buffer;
+   377		kbuf.bufsz = size;
+   378		kbuf.memsz = size;
+   379		ret = kexec_add_buffer(&kbuf);
+   380		if (ret) {
+   381			pr_err("Error passing over kexec TPM measurement log buffer: %d\n",
+   382			       ret);
+   383			return;
+   384		}
+   385	
+   386		image->tpm_buffer = buffer;
+   387		image->tpm_buffer_addr = kbuf.mem;
+   388		image->tpm_buffer_size = size;
+   389	}
+   390	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
