@@ -2,80 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6421955E3E4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:38:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A23855E406
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:38:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235806AbiF1M4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 08:56:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49526 "EHLO
+        id S235112AbiF1NGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 09:06:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345249AbiF1M4F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 08:56:05 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C7F22F660;
-        Tue, 28 Jun 2022 05:56:04 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id r3so22065082ybr.6;
-        Tue, 28 Jun 2022 05:56:04 -0700 (PDT)
+        with ESMTP id S236009AbiF1NGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 09:06:34 -0400
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3260F2DAB0;
+        Tue, 28 Jun 2022 06:06:33 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id d5so22114077yba.5;
+        Tue, 28 Jun 2022 06:06:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ggwF5g1h8Ead4FuQw5zkAX1BhU9Zyqolzn8TdYVGstg=;
-        b=KeCLJ5ykrnqYEpWJJO9nXzaPfE5yt0z4Iq/Nje/aq0a043RgdvwLLQV9N99LTC6o66
-         neO4UcQYMDBwdFwCXMIaMYvKQxZ6v1pFmZJsxFGltIYh2by2CXKx3NmpbLgaSmEp9iE2
-         xXp9GVm1KHZ8TIeaVu1XWRPW1IUGhAmRvk0VSWKgoeogO+AJEtl1dKvTIzv2Br+KO6iH
-         uknuFW/Dy88sbBADAhdqNAk/Rr7YAxjywb6zMGIJ/n5LOomZvFrMS5rD5f7UZGZSAmhH
-         rg7WjkZtrtjJyayI4yLWQIe4J0IY96As42R+OlnJwepW6Ie/omPO4jukd5ozyg4JMo+i
-         bDoQ==
+        bh=zcqCByKXgARY2vD4eS8cKcF5a2ZWnhYeLVSdnQBtrWc=;
+        b=WPC/xQpcR/kWgRayCE9njWpVeHlIkS0WnoUfidGH6VahgSUp68zySbYIT8TWDbXNZo
+         qVvQfEMHlfwrPrLaD2BD7V8MWPjnpT6Xa/6EoBiIlYAbH85viZZRy3us8vavFog5Ax3p
+         dyDhHBp7K/5kVNm+2ZoszS/3S0Fa/dBHR3kGJh0gx1VPMB+Ip/GgmstjjCbP3qgLnT5j
+         dn1JZ/JVq68huooyuuY9F7GgAjrN4U/6lwMN7FlFPE0jpVOw1HGPPFZ11jJ/2s9vv55m
+         WZjWTxX/+4MLEi1KJSbXD1iryWayU1eXW9QSb0YGVfy9LsBXZpvCmVvfSbb/qNT31cIB
+         +s9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ggwF5g1h8Ead4FuQw5zkAX1BhU9Zyqolzn8TdYVGstg=;
-        b=V10Q+hd9a0gB+/X90e6RGRt65TJLT3TwZS0xWBr2XnPKEwvEiXWO0qJ33VxDOyx+K4
-         xWG9IcPlez45YZttfKn/vLthk+mIcRazMzy+tvdQWvIfdM9NDgarLk7GFsRh8ZbWSoMr
-         K8tWbPOuedaPBUg8iOnae4U4FdFYDeA/mKAn/JBKNPVW0Qk2IEcicptyzOsUvIjsvp56
-         hGdIcDx8kbb7b4drGFa9b+rd9MwY65xX7p32xAHyOZBePiEEzFs7350BfwEPS9OpAXnY
-         2FYU5ETLq1/y2fi9W8WQPGHJE62KvE4VJc/yR+yNc0UkEOlJU+pU56nJxun4NDiSYiMQ
-         0s9A==
-X-Gm-Message-State: AJIora8u2hxeT9N0PfKRBPETtmOu6BgIQOzrY6ZzPSZs3q7UsuHJ6Jyp
-        R7TTeF2fvocg+eIkvbYz3LVabgwxEcOg/h5bQZ4=
-X-Google-Smtp-Source: AGRyM1tJmBePXIn17WC/ITK/MV0xG89V4LBimXqbrTG2bJTr+PdbMYfS52+jNtpI0qjpMFF1BO0XbyVnla79lsfFCWM=
-X-Received: by 2002:a25:b2a8:0:b0:66c:8110:3331 with SMTP id
- k40-20020a25b2a8000000b0066c81103331mr20100404ybj.460.1656420963675; Tue, 28
- Jun 2022 05:56:03 -0700 (PDT)
+        bh=zcqCByKXgARY2vD4eS8cKcF5a2ZWnhYeLVSdnQBtrWc=;
+        b=arJyC1XUaYbGwlVQKfVxMmR+klucocQthPcE0OWk/7xlABl5X7jXR7FDfQBqUI5eg/
+         iZIlBmoLbUXg7bHvzA2einsjpMIG2ADVdfVUIu/NmMsfFvyDSUWukGE7zbyGgKhBD5zh
+         a4HuDmYJE3GWnpuezbnr0OAjLQwmUoGNLAd4F9z5PQsLm853c1N7CHVHAv0Oj2Jdyfp6
+         81vNwJWWDYCor57sheQiosJOULhsTU0dQcf/S0hFc7fVRQD9BigQcvQPxdQhq2PYTq4J
+         VjWOSGsFp4Q496hxvnpOeNzbjeoPxQnDqHrXw4Vb9uEcYAvqTQb4nz/J4y5ciKuAZUeX
+         tp6A==
+X-Gm-Message-State: AJIora/EWdquI/9kspBMeFFr3pdb4TyGSwUQNZNoNXxqqoZYhBEOxXto
+        uKWRH66iMix9YIJK7zMtyNXz13Qeu0xMdyYT5xM=
+X-Google-Smtp-Source: AGRyM1tpwUDGq+GiED/Gpuk7Nl9aPYbFo0EksSIRGjB0oRbwmxWCa4cRBEiaaJjBESbjijRt4bGttKp4cS2B9eZ+nFE=
+X-Received: by 2002:a25:187:0:b0:66c:eaea:71ec with SMTP id
+ 129-20020a250187000000b0066ceaea71ecmr8966694ybb.570.1656421592101; Tue, 28
+ Jun 2022 06:06:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220628081709.829811-1-colin.foster@in-advantage.com> <20220628081709.829811-6-colin.foster@in-advantage.com>
-In-Reply-To: <20220628081709.829811-6-colin.foster@in-advantage.com>
+References: <20220609162734.1462625-1-jjhiblot@traphandler.com>
+ <20220609162734.1462625-3-jjhiblot@traphandler.com> <CAHp75Veurvhxi0Pg1Sjxav+3XpDTVOdan8WFFmZmdhJbZJiCaQ@mail.gmail.com>
+ <20220627084909.GA15970@duo.ucw.cz>
+In-Reply-To: <20220627084909.GA15970@duo.ucw.cz>
 From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 28 Jun 2022 14:55:23 +0200
-Message-ID: <CAHp75VcEcHxExFsdJGYu2FO0YZVOr5dNYPhCTqYNwRrE1wEQZA@mail.gmail.com>
-Subject: Re: [PATCH v11 net-next 5/9] pinctrl: microchip-sgpio: allow sgpio
- driver to be used as a module
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Lee Jones <lee.jones@linaro.org>,
+Date:   Tue, 28 Jun 2022 15:05:55 +0200
+Message-ID: <CAHp75Vc5PKay=OAcp+_9OZVpVAEketLbyJ5z8JJwEJXwY7CFvQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] leds: Add driver for the TLC5925 LED controller
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Terry Bowman <terry.bowman@amd.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
@@ -87,19 +71,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 28, 2022 at 10:17 AM Colin Foster
-<colin.foster@in-advantage.com> wrote:
+On Mon, Jun 27, 2022 at 10:49 AM Pavel Machek <pavel@ucw.cz> wrote:
 >
-> As the commit message suggests, this simply adds the ability to select
-> SGPIO pinctrl as a module. This becomes more practical when the SGPIO
-> hardware exists on an external chip, controlled indirectly by I2C or SPI.
-> This commit enables that level of control.
+> On Thu 2022-06-09 18:57:24, Andy Shevchenko wrote:
+> > On Thu, Jun 9, 2022 at 6:30 PM Jean-Jacques Hiblot
+> > <jjhiblot@traphandler.com> wrote:
+> > >
+> > > The TLC5925 is a 16-channels constant-current LED sink driver.
+> > > It is controlled via SPI but doesn't offer a register-based interface.
+> > > Instead it contains a shift register and latches that convert the
+> > > serial input into a parallel output.
+> >
+> > Can you add Datasheet: tag here with the corresponding URL? Rationale
+> > is to get a link to the datasheet by just browsing Git log without
+> > browsing the source code, which will benefit via Web UIs.
+>
+> If you want to add datasheet url, add it as a comment to the source,
+> not to the git log.
 
-...
+I don't see anything wrong with having it in the Git log. Do you?
+(Note, I'm not objecting to have it in the code at the same time)
 
->  builtin_platform_driver(microchip_sgpio_pinctrl_driver);
+P.S. Can you review the three patches of the series [1] that have been
+submitted day 1 after closing the merge window? It's already a few
+weeks passed, or even months if you take into account that the top of
+that series has been sent before separately.
 
-As per one of the previous patches. And repetitive if needed.
+[1]: https://lore.kernel.org/linux-leds/20220606164138.66535-1-andriy.shevchenko@linux.intel.com/
 
 -- 
 With Best Regards,
