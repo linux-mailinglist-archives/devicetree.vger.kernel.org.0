@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B31555C91B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:56:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3E0455D20C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:10:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241238AbiF1A3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 20:29:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32802 "EHLO
+        id S241423AbiF1A3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 20:29:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240515AbiF1A3F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 20:29:05 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E07C1
+        with ESMTP id S240515AbiF1A3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 20:29:06 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C83AE46
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 17:29:05 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id n185so6365623wmn.4
         for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 17:29:04 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id o16-20020a05600c379000b003a02eaea815so5520052wmr.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 17:29:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=loKOPYEWFVKgOL34le0TQOd8p13z6rW/uil4PBQiVZo=;
-        b=OhdpsxGnp2/q17T55ktpvb/b6MmmJXnaW2TaL51pjQydoKSVKvjp5C/WkAHat5kkc4
-         ogilw7mi9Je2FLlZZO1M8tw6LDovGZ2VHZRghSYs8liGrOFGL8ZkfXbZ5a9d/RKSWeqZ
-         8o3UOcjM6Jjv8JqEZIR971EdJQ4mFvqU+txeOQ7iCiw9Zo6/fuaCEmtjy4+SGunADfF5
-         AwlYhVQsHDhzqF27WZf3leCUgteQ9R1lnqTNy40DMpLXkEORtsrftXxXYn1NhhKBtnw0
-         GLLQ/87HJmD8ABw/8LQGvpvNpG2XCWsgk7s1ZzecS7k6AXtFy9mXvLDOwn8Fik4NNxKy
-         J9gA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=JhHo/c96RqUx3d1BSnJliVbZrX3rYoCTCoQbgEL1koc=;
+        b=aQqKlx2nvthEI5iO+lZtBomWQE46C7nR5V8+E0UX9CBiYyfEPrxs1FIWpkUD1uTrrJ
+         oDLPBcA4VNXrv/luMpXIUX2bsV/B0IxqbOXHcFdg1g6HdjWV+InlQrbQZPf/zd2KYxw4
+         xbkgSd9Mc1wAKEuAQLX6N+iqgnmX63Yre6PwwPudj0haEg7bs25bdRgSpCcRfbZm/t7c
+         +FDjRqmIh7XOedj/+n8RgCvDYwUWLBar7lL/Xb+lPFEEs8g6Fzz0MgnbMVDhuHoMqQd/
+         pCGZajqqPtOCi4jMzLjcpDEnCzJCh/4NID3+aPaqFogjkBu/G2rJlgEqTrUqRSdxrihc
+         viEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=loKOPYEWFVKgOL34le0TQOd8p13z6rW/uil4PBQiVZo=;
-        b=7lJ3psmadnhyGJMWe0qUPYjSnyf9RL02PLbSDj6g8WqTH6mopTfVvyUOkOUtlZBBel
-         6RPbtKRlOQXzMWIbwcDj/GKdF1UTt/rgXAMICGTuWQKMFcd8YMLqvsFLzfenyQaJo14E
-         q7YRFK/RNJTsAF3i12kTHKQFstAQR1Dm1aUBRpUggfomjVhgroZYrL8XgE6QA7Qh+HC2
-         K9Zv4+QYMW1LCfB7yb36ppIwR7E+5BdToThKkEMyt6OdCmAhgpdFd11x0LVsr+Ebpv96
-         ypOm21ceAcIJ6vFP1v/v73KhcE02MZ3qW/wD+y9GpoRzdBo3SMHwbapPPjOFhCggL8Xr
-         eLEQ==
-X-Gm-Message-State: AJIora9VQ0gmuqRXpGteKtsVsppwOFnNBKcwvcWF90hNn6lSZBHfY7Pc
-        R4sTrIDCURJeEhzdcDhjxB/Y8A==
-X-Google-Smtp-Source: AGRyM1trccyFgpOxm8KXrYfjR5QINHk1rCNh5iLz0EYzh8UxKqRWlYjP2MEwkDM3xR0Bez+UNxkvlA==
-X-Received: by 2002:a1c:2902:0:b0:3a0:2a05:c639 with SMTP id p2-20020a1c2902000000b003a02a05c639mr18924451wmp.31.1656376142540;
-        Mon, 27 Jun 2022 17:29:02 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=JhHo/c96RqUx3d1BSnJliVbZrX3rYoCTCoQbgEL1koc=;
+        b=HimywGEocatiUXWdAO2n258mRasAWvoHvqWiFHa5taYIdhb1RSxDEddcq3rt3f7Yur
+         rKEegcbfrr2bOpMrvTAnFyYQZ8VhYOiAbtXQsTdxPlvWmjN76VFEq+4AaV5O+UnH5kv8
+         BdbSwdXsutO3MvsnvaIcIBLhaWuFCzQCufYNUaTQQzo5N39tGXfhRTwEktWpGQv+7ELu
+         RqsTfnCZWZpqkv+/Rq+kEoXK7+vp30LRBmy+Z3UPlKAjI7ZcdXngRU1MOHIjFuo98EmY
+         oQrNd9IN5lEBpaePyUsBdbUU4o1vzH53q9QkZYEcpf1JXt36ZgmKdKMORv4+FYakCkbI
+         TR0A==
+X-Gm-Message-State: AJIora+FEwo4J25Q9kF2LltKQ1JAYdlgro2Rftjwh9U7iVARLT9T3FH7
+        J/WyOFKWj2CEdOCtRqvFevjaSQ==
+X-Google-Smtp-Source: AGRyM1sNO9bsuFeQ5fHsF8c8Qskqwu0+/VCb/SKdTn8IG3y/OOaVd5SNGjQXVdS7iZrotMfL+w1x8g==
+X-Received: by 2002:a05:600c:1906:b0:39c:7f82:3090 with SMTP id j6-20020a05600c190600b0039c7f823090mr22930876wmq.152.1656376143620;
+        Mon, 27 Jun 2022 17:29:03 -0700 (PDT)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id o42-20020a05600c512a00b0039c5cecf206sm15863560wms.4.2022.06.27.17.29.01
+        by smtp.gmail.com with ESMTPSA id o42-20020a05600c512a00b0039c5cecf206sm15863560wms.4.2022.06.27.17.29.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jun 2022 17:29:02 -0700 (PDT)
+        Mon, 27 Jun 2022 17:29:03 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     lgirdwood@gmail.com, broonie@kernel.org, bjorn.andersson@linaro.org
 Cc:     perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
         robh+dt@kernel.org, krzk+dt@kernel.org,
         alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, bryan.odonoghue@linaro.org
-Subject: [PATCH v4 0/2] Fix apq8016 compat string
-Date:   Tue, 28 Jun 2022 01:28:56 +0100
-Message-Id: <20220628002858.2638442-1-bryan.odonoghue@linaro.org>
+Subject: [PATCH v4 1/2] ASoC: qcom: lpass: Fix apq8016 compat string to match yaml
+Date:   Tue, 28 Jun 2022 01:28:57 +0100
+Message-Id: <20220628002858.2638442-2-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220628002858.2638442-1-bryan.odonoghue@linaro.org>
+References: <20220628002858.2638442-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -69,36 +71,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-V4:
-- Adds Bjorn's RB to first patch
-- Adds missing people to To/Cc list
+The documented yaml compat string for the apq8016 is
+"qcom,apq8016-lpass-cpu" not "qcom,lpass-cpu-apq8016". Looking at the other
+lpass compat strings the general form is "qcom,socnum-lpass-cpu".
 
-V3:
-- Marks qcom,lpass-cpu-apq8016 as deprecated instead of removing - Bjorn
+We need to fix both the driver and dts to match.
 
-V2:
-- Adds Reviewed-by: - Srini
-- Adds Fixes - Srini
+Fixes: dc1ebd1811e9 ("ASoC: qcom: Add apq8016 lpass driver support")
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ sound/soc/qcom/lpass-apq8016.c | 1 +
+ sound/soc/qcom/lpass-cpu.c     | 5 +++++
+ 2 files changed, 6 insertions(+)
 
-V1:
-Reusing the apq8016 on msm8939 I found running checkpatch that the compat
-string for the LPASS was throwing a warning.
-
-This is easily fixed by alinging the YAML, DTS and driver to the documented
-compat string
-
--			compatible = "qcom,lpass-cpu-apq8016";
-+			compatible = "qcom,apq8016-lpass-cpu";
-
-Bryan O'Donoghue (2):
-  ASoC: qcom: lpass: Fix apq8016 compat string to match yaml
-  arm64: dts: qcom: Fix apq8016 compat string to match yaml
-
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
- sound/soc/qcom/lpass-apq8016.c        | 1 +
- sound/soc/qcom/lpass-cpu.c            | 5 +++++
- 3 files changed, 7 insertions(+), 1 deletion(-)
-
+diff --git a/sound/soc/qcom/lpass-apq8016.c b/sound/soc/qcom/lpass-apq8016.c
+index 3efa133d1c641..abaf694ee9a3a 100644
+--- a/sound/soc/qcom/lpass-apq8016.c
++++ b/sound/soc/qcom/lpass-apq8016.c
+@@ -293,6 +293,7 @@ static struct lpass_variant apq8016_data = {
+ 
+ static const struct of_device_id apq8016_lpass_cpu_device_id[] __maybe_unused = {
+ 	{ .compatible = "qcom,lpass-cpu-apq8016", .data = &apq8016_data },
++	{ .compatible = "qcom,apq8016-lpass-cpu", .data = &apq8016_data },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, apq8016_lpass_cpu_device_id);
+diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+index e6846ad2b5fa4..53f9bf6581d33 100644
+--- a/sound/soc/qcom/lpass-cpu.c
++++ b/sound/soc/qcom/lpass-cpu.c
+@@ -1102,6 +1102,11 @@ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev)
+ 	if (!match || !match->data)
+ 		return -EINVAL;
+ 
++	if (of_device_is_compatible(dev->of_node, "qcom,lpass-cpu-apq8016")) {
++		dev_warn(dev, "%s compatible is deprecated\n",
++			 match->compatible);
++	}
++
+ 	drvdata->variant = (struct lpass_variant *)match->data;
+ 	variant = drvdata->variant;
+ 
 -- 
 2.36.1
 
