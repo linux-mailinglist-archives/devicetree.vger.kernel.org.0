@@ -2,233 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35B3955EC85
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 20:23:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1156255EC8F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 20:25:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232262AbiF1SXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 14:23:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33144 "EHLO
+        id S232593AbiF1SZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 14:25:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231223AbiF1SXl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 14:23:41 -0400
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1CC920F68;
-        Tue, 28 Jun 2022 11:23:40 -0700 (PDT)
-Received: by mail-il1-f182.google.com with SMTP id 9so8723471ill.5;
-        Tue, 28 Jun 2022 11:23:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=L8dLhWtyP9bNEnDeqAVxELfE92uyIseUX2/6UItTECE=;
-        b=Qwhq3o8IUIDFSOtksKehPoloqk+eMlkHSqnDO1uNr3XkvK9wkeAhGLrsBfdrXa/JuL
-         8gAnWZyVLs/WuGnFsS71+uqPFEo6/d2QYv8oQl1P1f0gcX33iEC16Bm8nhD+EjdN87wB
-         bONqp5TWDBVZukoXW5BOlg6buZDCSLxtc+gp/I8q6ePmg6L8BJLESRO+Xof/qA7eOkFh
-         eGgegOflFWqj2faPs+IEx8dNdwXxldVElZp9EuprWjHYBUmIe6tJfhDR0AGjHMx7/NnB
-         qeILTl/NyM3l8kgqhadXot6Su+Sj653a53ISwIwYCM8bU6nXBS0W3IGKvpO6IhPi63nG
-         z4IQ==
-X-Gm-Message-State: AJIora93t2v2RQlalEa8PnbK3xQ7R62XzwsJ+GR037Ea6WcuEf8RGbRT
-        IX91tDj8b8G9yoLk3BItAQ==
-X-Google-Smtp-Source: AGRyM1tXG8m32MD61k1cJ7tHSHABYN3CwZrRXoFc256eZb145SpZpYocyNn4hj/9uDJtyfBZfDaJrg==
-X-Received: by 2002:a92:ccc6:0:b0:2d9:445b:4f2f with SMTP id u6-20020a92ccc6000000b002d9445b4f2fmr11230557ilq.32.1656440619931;
-        Tue, 28 Jun 2022 11:23:39 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id h19-20020a056638063300b00339dc6d8f9bsm6575938jar.50.2022.06.28.11.23.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 11:23:39 -0700 (PDT)
-Received: (nullmailer pid 742574 invoked by uid 1000);
-        Tue, 28 Jun 2022 18:23:36 -0000
-Date:   Tue, 28 Jun 2022 12:23:36 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Prashant Malani <pmalani@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        bleung@chromium.org, swboyd@chromium.org,
-        heikki.krogerus@linux.intel.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
+        with ESMTP id S232224AbiF1SZk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 14:25:40 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2094.outbound.protection.outlook.com [40.107.243.94])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B2A621255;
+        Tue, 28 Jun 2022 11:25:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DP6v5VqworTZiCfA7R1eIhvoXgDqsTVDLkkySx7TuVDOuWp9470v/2w0sd5Pp0RdH8NAyN/2gr7vvlxGvPAWVWav0K0TcL6hxWYN4PIJau+0MqrV05XVgx+CYZZX3n6TBIxbV1/m1yVGZgCGbLwh4U/ptdyYuADGhk/HoKBohPoS1DhPKL3osCnyoR9QCavKbQntxwMSxF5CQDNGqJUnDf3/k6+q+JaTYkWW91M3WIeyZXS040Tf3qgGHn9NJLIEVf6DzRea9BbYDJ2cYUD/NBhX4ylaXPHruS3rOQ2M6g9fk0CjfPdjCD9Pt3OA3nOWfYSJWtXUwAEB462mRscwFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nqae2J7OweMNr4Uq7nLVRj3zRCqlzws5oh3MunKpBmI=;
+ b=Sriv51u0BJkTfm85NrhUnDvRHlL4rW2XtFcariG63tSdX6l9pvdiRc2Vh0uy9vshib5Hber+j1iA8y6WD1qDM3yzI2/8C/6EpDOFs2cQ6EKL+uiETnaIoyA/d3TXTm2biyhYfeXeUBcIsoqVw+bDMSbXitK+oK5osCvfsLy4UitY71HAkK0fQptsnTvP7agQ7hmLo6Ok/T8XBVdU3nxCoeTmIWqkK4YobgHxb3r6AUWMESmKFYiJ1pLQgg/QSPT3TVQrDoq7G34GGjnXMg2xLL53+ke1thBbmVphKNzrKvBnRiF7LxTAmtZ5QG7YenCHVFkGOTDkyB+5tlWHjMkbMw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nqae2J7OweMNr4Uq7nLVRj3zRCqlzws5oh3MunKpBmI=;
+ b=t5E0hs5THhiLY5QUnmZUVdpHRd8OVKPc+zn6dwFKluFns8cUFNtwRb6pRDX4Y/ityy8O4O92BsVMfpsDSUVB+wEnjvY6+yx+5JaW11njmUsIqTXpajM5s9KPhUA6bWYUyRnWzPVyf/oF5mOqcjlNOnfh6/DmZXwKEoQrJKp0U9A=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by BN6PR1001MB2258.namprd10.prod.outlook.com
+ (2603:10b6:405:2f::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.15; Tue, 28 Jun
+ 2022 18:25:38 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::712f:6916:3431:e74e]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::712f:6916:3431:e74e%6]) with mapi id 15.20.5373.018; Tue, 28 Jun 2022
+ 18:25:37 +0000
+Date:   Tue, 28 Jun 2022 11:25:35 -0700
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Pin-Yen Lin <treapking@chromium.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Xin Ji <xji@analogixsemi.com>
-Subject: Re: [PATCH v5 1/9] dt-bindings: usb: Add Type-C switch binding
-Message-ID: <20220628182336.GA711518-robh@kernel.org>
-References: <20220622173605.1168416-1-pmalani@chromium.org>
- <20220622173605.1168416-2-pmalani@chromium.org>
- <20220627210407.GA2905757-robh@kernel.org>
- <CACeCKackdbDZrk5fk7qyMwSdTdzyTS=m1vHPFnQOj672W=2nOA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Terry Bowman <terry.bowman@amd.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Subject: Re: [PATCH v11 net-next 3/9] pinctrl: ocelot: allow pinctrl-ocelot
+ to be loaded as a module
+Message-ID: <20220628182535.GC855398@euler>
+References: <20220628081709.829811-1-colin.foster@in-advantage.com>
+ <20220628081709.829811-4-colin.foster@in-advantage.com>
+ <CAHp75Vcm=Zopv2CZZFWwqgxQ_g8XqNRZB6zEcX3F4BhmcPGxFA@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACeCKackdbDZrk5fk7qyMwSdTdzyTS=m1vHPFnQOj672W=2nOA@mail.gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <CAHp75Vcm=Zopv2CZZFWwqgxQ_g8XqNRZB6zEcX3F4BhmcPGxFA@mail.gmail.com>
+X-ClientProxiedBy: MWHPR17CA0066.namprd17.prod.outlook.com
+ (2603:10b6:300:93::28) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 828fb0f3-1a82-4a9e-64e5-08da59339945
+X-MS-TrafficTypeDiagnostic: BN6PR1001MB2258:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: DBhXp9D+kasynNZU4SKDyZYx8Tsjd+TNhBMUEusxS5yoFMsGjTXGXV12liUcQhoALreS520aZdR5jQMyAc0K7CM1ceRjBSm0YPQMOr4i3cL+/RxQRvGTXWC5i782PWppX46q1l7QS1IS/HzzAdzAgSzNgvWtGVUMPcIgPeKWpdqPyFbXCP1Aprt6mpVYMB5B6FbOKzjgOYxGV++VyQYCEkYtGl1OL/U0UW2EMkFjNqIJtDTOhGTxxeFzKb6S8ZtTFOjUPJDnU0GViClGYqdYZn2hyNneVNpyy4zu6KIZ4OaOWX5kiBARHK2krA0j0rkImuDXNomowaqgpkk4RkphSBnYVFQ9CvytjGBitl+m2QcU82eCIuJmZwCeH7Sk8sirqUeq7zoFDQ9pi5V4eQos/ud9BZfk968Pc2t5HSy1S4yr+7THzLnO5911j0mLvJcK9HEyYjJjfDcZQIieTbnF7/0sD5Lpfm1Hx5E0mmQZ3pGhWsiAcFpPw2zUECP5ezWDMW79YXQufwMgNF2AIfUBhoWZs+adEiCHIRcRvQgyF0W1jsAOodhQ+aPpqmgWn4RR7WM07HTNvcM2Vdbivv1P+vavu4Vr48D8ZpO9vf+qumKaNKEoJ+BGjwHGm01j/4/llt7340HBOI0AXKYTMgCq5qsySqsvf9oBRH4xR4i5eKeHjlN/23Q3Y4ayR45SP6yXb1mjabiKtGx1jRvUJC5LVFpKfyShHdEpOlAyHO+B3xwbMDnlud2+rsiEQ0ShwPSpktU/AgSOMUNrRTgV51kpds0Q4XREd883ej5q9QhFQyE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(396003)(39830400003)(346002)(366004)(136003)(376002)(478600001)(2906002)(6486002)(33716001)(33656002)(4744005)(44832011)(7416002)(5660300002)(26005)(86362001)(8936002)(186003)(66476007)(6916009)(54906003)(66556008)(4326008)(8676002)(66946007)(53546011)(52116002)(6506007)(38350700002)(9686003)(41300700001)(6512007)(38100700002)(316002)(1076003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OA8d5YqKpnVxWs1W5DBSBDyeV5oVffMjg0i7DOMYY0EhUeNzZ/YeEpZ+peiU?=
+ =?us-ascii?Q?Ga7H2UEdaXhuUnlbD+YG7ufK0Bm3lnvXhKc0fnql5OG4G8L3FgE6iYNDBsSY?=
+ =?us-ascii?Q?Z2GKJyXCjujbGim2Tv/nZQ7KlBD2Y+XFd535Z8LWXAT+SU2maXwI1KEk1dFk?=
+ =?us-ascii?Q?8+MDNHIyaaUvAHl4k6xG1MCjNEMX36mC9Xu+ZpG6+0YU+Pt1Gn95Z+YrnYk3?=
+ =?us-ascii?Q?UPkUgKqTnZ7BDYKoFFcTd3k5Rb520aXk+herIWlU+A3gcI5TU8H4FAInvm+K?=
+ =?us-ascii?Q?gl4e0oPURszpwAJ79zbsV5bJZ1r7Nb72sXLMWvyFjY+UK/Q15EtxtA/9Tv5t?=
+ =?us-ascii?Q?DnfwldIlXvqQ9I51i6oYURt/HU+RvloiF3/E0bV0sPjQqP3Qf44QD2DoKax1?=
+ =?us-ascii?Q?YpyE85ZgvWONZWFXe5FdzpRd3QUo+c+tpo3j/F0OQguhokrs45azwWjicdPH?=
+ =?us-ascii?Q?AhkvJj6lYKLHoKEytckXa8NiFTBmj/xmg6n1MpnmpDlzMnFlpOotIqsvJavv?=
+ =?us-ascii?Q?8+cJmxclBeqBkqV+5bb+3MCKtVn3tMftJsgclAdxTtjgUxe6UfbYkGfAxCEa?=
+ =?us-ascii?Q?Jz8RZUWn6NGCvW7M6KGcpYbkNroRL/OmD+/aKpgaxi4bfDjReXWUJG4iig4M?=
+ =?us-ascii?Q?MdGHSUAXMGopb73dxPqcIUdO2kY79UxrF41fGMnl1ezFfQ7/CvRYkIw/bf56?=
+ =?us-ascii?Q?0w0ArGW28mKDAyjLqh0+2xQT9fRNp3vCE9g8g7aBysk+4jnFmspQOVDPUlaX?=
+ =?us-ascii?Q?BDznQOWE5U1yFKhJpBJtDgOd/lnvN8a7A5ZlllOV6p5+LUhjpRVjJ6B/HROk?=
+ =?us-ascii?Q?5u82ySkX7oActCfAc0VsnbN7gRe1MOhJ/gfxXIzIpV+aURCWj81cjrOPpe67?=
+ =?us-ascii?Q?/qtn15AXq1+ypzqBcLagaJbIILoG99Umwqu9Cb2mubW54RoDcyTOSg97oL2e?=
+ =?us-ascii?Q?MEsYHNw+vx8LipUaoc5ZYdMShfwT1FC5yjIUOHXBOfhCwvOkXRxTE0O3shoT?=
+ =?us-ascii?Q?Y5qth8ib8qnS5LcAygL81S3ePhzmjCLEY43rA0c81IK1BpTkH6nUQEi1JC2C?=
+ =?us-ascii?Q?iyrSj1UG/eCOC2YjvRg8b5JV8oFYEw5hX3TioL9ovySYjsfD9o5Ny9AhWIko?=
+ =?us-ascii?Q?E4seVglK7N2ucIMpl9+wCiLaFnBoZEvlKa6BL9jnVfHk54u0hrprg01mZvnV?=
+ =?us-ascii?Q?IMIQ6PmUVi1LLhUwUQmSZYs8wHr57kAOPLvQL6lYONetzpsFudAyvmv0ylvX?=
+ =?us-ascii?Q?/WSg8BCLWw03l8mfTMtucJ2MA23JoIZkK5gpOLpbql7qpTTh+YRJotSSkP3H?=
+ =?us-ascii?Q?boQWBWMKlBtMJqj/aAJZ+KcgiznYSkLerem/CcaK+Lm2NPdTzp59A9NL8Sxw?=
+ =?us-ascii?Q?7ihe81pJSI7IlJyEbQK8zF3ETm2TZo3zxSQHAF690RpSsEZJZuwL94lXUKEt?=
+ =?us-ascii?Q?A1SJyIzIHKpvL8Cm/Cqt/9/ogMsyOSV0+PHihTStiqjY3PVwkcHZonOZUs9d?=
+ =?us-ascii?Q?QAMkpjMZRwNYJbR8bAoHOvsuVUFDkWF9bEe/MekMkwYxMBJ3L3L5l4f/ukg7?=
+ =?us-ascii?Q?XgQfgTEE5EOq/vYfdjqzauoXdRqEh6qzJMQRYb5QLaVjsKugFrTzmdFxSR49?=
+ =?us-ascii?Q?bq1sowWT0TRRHJzBUfKEBfI=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 828fb0f3-1a82-4a9e-64e5-08da59339945
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2022 18:25:37.8199
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Or4Wzx3GA/WlLFbi/i2bWS7hwFarxfuiWs53EmXw5YUdY2Z3StopjtfMsmq31WEEwiXUdrGp2FT23ckuPeOmPgR3W9YjBrNRAYqP1WeVH5w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1001MB2258
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 27, 2022 at 02:43:39PM -0700, Prashant Malani wrote:
-> Hello Rob,
-> 
-> On Mon, Jun 27, 2022 at 2:04 PM Rob Herring <robh@kernel.org> wrote:
+Hi Andy,
+
+On Tue, Jun 28, 2022 at 02:53:49PM +0200, Andy Shevchenko wrote:
+> On Tue, Jun 28, 2022 at 10:17 AM Colin Foster
+> <colin.foster@in-advantage.com> wrote:
 > >
-> > On Wed, Jun 22, 2022 at 05:34:30PM +0000, Prashant Malani wrote:
-> > > Introduce a binding which represents a component that can control the
-> > > routing of USB Type-C data lines as well as address data line
-> > > orientation (based on CC lines' orientation).
-> > >
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > > Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > > Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > > Signed-off-by: Prashant Malani <pmalani@chromium.org>
-> > > ---
-> > >
-> > > Changes since v4:
-> > > - Added Reviewed-by tags.
-> > > - Patch moved to 1/9 position (since Patch v4 1/7 and 2/7 were
-> > >   applied to usb-next)
-> > >
-> > > Changes since v3:
-> > > - No changes.
-> > >
-> > > Changes since v2:
-> > > - Added Reviewed-by and Tested-by tags.
-> > >
-> > > Changes since v1:
-> > > - Removed "items" from compatible.
-> > > - Fixed indentation in example.
-> > >
-> > >  .../devicetree/bindings/usb/typec-switch.yaml | 74 +++++++++++++++++++
-> > >  1 file changed, 74 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/usb/typec-switch.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/usb/typec-switch.yaml b/Documentation/devicetree/bindings/usb/typec-switch.yaml
-> > > new file mode 100644
-> > > index 000000000000..78b0190c8543
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/usb/typec-switch.yaml
-> > > @@ -0,0 +1,74 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/usb/typec-switch.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: USB Type-C Switch
-> > > +
-> > > +maintainers:
-> > > +  - Prashant Malani <pmalani@chromium.org>
-> > > +
-> > > +description:
-> > > +  A USB Type-C switch represents a component which routes USB Type-C data
-> > > +  lines to various protocol host controllers (e.g USB, VESA DisplayPort,
-> > > +  Thunderbolt etc.) depending on which mode the Type-C port, port partner
-> > > +  and cable are operating in. It can also modify lane routing based on
-> > > +  the orientation of a connected Type-C peripheral.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: typec-switch
-> > > +
-> > > +  mode-switch:
-> > > +    type: boolean
-> > > +    description: Specify that this switch can handle alternate mode switching.
-> > > +
-> > > +  orientation-switch:
-> > > +    type: boolean
-> > > +    description: Specify that this switch can handle orientation switching.
-> > > +
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +    description: OF graph binding modelling data lines to the Type-C switch.
-> > > +
-> > > +    properties:
-> > > +      port@0:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: Link between the switch and a Type-C connector.
-> > > +
-> > > +    required:
-> > > +      - port@0
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - ports
-> > > +
-> > > +anyOf:
-> > > +  - required:
-> > > +      - mode-switch
-> > > +  - required:
-> > > +      - orientation-switch
-> > > +
-> > > +additionalProperties: true
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    drm-bridge {
-> > > +        usb-switch {
-> > > +            compatible = "typec-switch";
-> >
-> > Unless this child is supposed to represent what the parent output is
-> > connected to, this is just wrong as, at least for the it6505 chip, it
-> > doesn't know anything about Type-C functionality. The bridge is
-> > just a protocol converter AFAICT.
+> > Work is being done to allow external control of Ocelot chips. When pinctrl
+> > drivers are used internally, it wouldn't make much sense to allow them to
+> > be loaded as modules. In the case where the Ocelot chip is controlled
+> > externally, this scenario becomes practical.
 > 
-> I'll let Pin-Yen comment on the specifics of the it6505 chip.
-
-We're all waiting...
-
-> > If the child node represents what the output is connected to (like a
-> > bus), then yes that is a pattern we have used.
+> ...
 > 
-> For the anx7625 case, the child node does represent what the output is connected
-> to (the usb-c-connector via the switch). Does that not qualify? Or do you mean
-> the child node should be a usb-c-connector itself?
+> >  builtin_platform_driver(ocelot_pinctrl_driver);
 > 
-> > For example, a panel
-> > represented as child node of a display controller. However, that only
-> > works for simple cases, and is a pattern we have gotten away from in
-> > favor of using the graph binding.
+> This contradicts the logic behind this change. Perhaps you need to
+> move to module_platform_driver(). (Yes, I think functionally it won't
+> be any changes if ->remove() is not needed, but for the sake of
+> logical correctness...)
+
+I'll do this. Thanks.
+
+Process question: If I make this change is it typical to remove all
+Reviewed-By tags? I assume "yes"
+
 > 
-> The child node will still use a OF graph binding to connect to the
-> usb-c-connector.
-> Is that insufficient to consider a child node usage here?
-> By "using the graph binding", do you mean "only use the top-level ports" ?
-> I'm trying to clarify this, so that it will inform future versions and patches.
-
-What I want to see is block diagrams of possible h/w with different 
-scenarios and then what the binding looks like in those cases. The 
-switching/muxing could be in the SoC, a bridge chip, a Type C 
-controller, a standalone mux chip, or ????. If you want a somewhat 
-genericish binding, then you need to consider all of these.
-
-I don't really have the b/w to work thru all this (and switch/mux is 
-just one part of dealing with Type-C). This is just one of about a 
-hundred patches I get to review a week.
-
-Rob
+> -- 
+> With Best Regards,
+> Andy Shevchenko
