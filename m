@@ -2,78 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DE2D55E610
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:26:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3D9D55E9AD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:42:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244041AbiF1QN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 12:13:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34558 "EHLO
+        id S231758AbiF1QaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 12:30:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346176AbiF1QNh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 12:13:37 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8923238785;
-        Tue, 28 Jun 2022 09:09:31 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id z191so13319364iof.6;
-        Tue, 28 Jun 2022 09:09:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=rFXFTk3zyTECjTww8beA+ZxYRzlU0MGcOVZE+7ZSiOQ=;
-        b=NI0fezjkWcFZSWxJvDREQ+iEMZdJokt1czoQF9WJOCn/hzGeQMIYRoUEYu1iSfvqpn
-         tz4BbOY6MWOiCO3pl/SHgjBVDfd5O0GpcOooZdHhCgcScZ0Muj3i2A5wu2vhoj4XSAGj
-         a9Bkh8Av7LnKyG7dGx0RUf077z5mNhCXSXp3kIGxOR3PW1QVfMiDvtSnZGswfqRfYqx7
-         sNeZZ7neqkVwWVP19HDFtedSpkyiQrFl1wY+ggZVmuk3f9tI2wqoWlJ6x9wUws2H7ukR
-         gNQ0PNsZfz7AStNbtafO91HSbAO/N2ck5MxdK2CEmKxEEXMOeVfmdydbxo/Pgo/nr1vH
-         RjUA==
-X-Gm-Message-State: AJIora92PsQRR8qobp1YGldtUH59sv9g+3Kfn9d/5+PbRHgtgLIQbW/Q
-        jYmd5IG+czi3Emgr3CraVA==
-X-Google-Smtp-Source: AGRyM1tBc8crUdfJNgqGXpdzTPnUVWO/b1ksHuk1kAGanQCLTjvo8PiWpGgMndeJxLD+Y+MJvN3bFQ==
-X-Received: by 2002:a5d:83c7:0:b0:66c:cc68:2f2d with SMTP id u7-20020a5d83c7000000b0066ccc682f2dmr9561292ior.74.1656432570645;
-        Tue, 28 Jun 2022 09:09:30 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id u9-20020a056e021a4900b002d946b38ce2sm5885591ilv.46.2022.06.28.09.09.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 09:09:30 -0700 (PDT)
-Received: (nullmailer pid 547896 invoked by uid 1000);
-        Tue, 28 Jun 2022 16:09:27 -0000
-Date:   Tue, 28 Jun 2022 10:09:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, kernel@axis.com,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: reserved-memory: Print allocation/reservation
- failures as error
-Message-ID: <20220628160927.GA547820-robh@kernel.org>
-References: <20220628113540.2790835-1-vincent.whitchurch@axis.com>
+        with ESMTP id S1345817AbiF1Q27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 12:28:59 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26F8639B88;
+        Tue, 28 Jun 2022 09:19:39 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 71344C0006;
+        Tue, 28 Jun 2022 16:19:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1656433178;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=2Fr78hu1IzNkGovgp2ZyKWev5AVil0eVFYUNZCvLcQo=;
+        b=fCpk88xbvNBWFuPmASyduxc/42gf75Kb6dAIspiVcyyVpy977pyhaznBFNFwEhxYCsaLOo
+        lQzTL5/OOF9P88UP8itE44u4yNTb21E1erTUjc+trJQ27D2u8l/SMXaSDkh0vO2+Q6X2cG
+        aVzD0i5xhwN0sWx4jzTt7uUx3sXi3j/0LBcrl2e7I716/6nfGm3PTdPQCdumKA1Hv8jho6
+        ohQbKptnGjinSeiTxR30j0X6ka2eu16f4xdsFJKn/lJC4mGxua0cJBXEDVrExCAJNrZNwc
+        cUFTbPUFzKp9ueOO8fvFlkIH3fZ4fDrX+os9be0BtkYpZ6u2kBEK2pVyu1Z9yw==
+Date:   Tue, 28 Jun 2022 18:18:46 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH net-next v9 06/16] dt-bindings: net: dsa: add bindings
+ for Renesas RZ/N1 Advanced 5 port switch
+Message-ID: <20220628181846.05cf88b6@fixe.home>
+In-Reply-To: <CAMuHMdU9fpY5b9GGFYQ50KmFNu35J5d129F=9=LYZEN82R=cfw@mail.gmail.com>
+References: <20220624144001.95518-1-clement.leger@bootlin.com>
+        <20220624144001.95518-7-clement.leger@bootlin.com>
+        <CAMuHMdU9fpY5b9GGFYQ50KmFNu35J5d129F=9=LYZEN82R=cfw@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220628113540.2790835-1-vincent.whitchurch@axis.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Jun 2022 13:35:40 +0200, Vincent Whitchurch wrote:
-> If the allocation/reservation of reserved-memory fails, it is normally
-> an error, so print it as an error so that it doesn't get hidden from the
-> console due to the loglevel.  Also make the allocation failure include
-> the size just like the reservation failure.
-> 
-> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> ---
->  drivers/of/fdt.c             | 4 ++--
->  drivers/of/of_reserved_mem.c | 3 ++-
->  2 files changed, 4 insertions(+), 3 deletions(-)
-> 
+Le Tue, 28 Jun 2022 17:37:57 +0200,
+Geert Uytterhoeven <geert@linux-m68k.org> a =C3=A9crit :
 
-Applied, thanks!
+> > +++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+> > @@ -0,0 +1,134 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/dsa/renesas,rzn1-a5psw.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas RZ/N1 Advanced 5 ports ethernet switch
+> > +
+> > +maintainers:
+> > +  - Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+> > +
+> > +description: |
+> > +  The advanced 5 ports switch is present on the Renesas RZ/N1 SoC fami=
+ly and
+> > +  handles 4 ports + 1 CPU management port. =20
+>=20
+> While diving deeper into the RZ/N1 documentation, I noticed the switch
+> has 4 interrupts, which are currently not described in the bindings.
+> Presumably the driver has no need to use them, but as DT describes
+> hardware, I think it would be good to submit follow-up patches for
+> bindings and DTS to add the interrupts.
+
+Noted ;)
+
+Cl=C3=A9ment
+
+>=20
+> Thanks!
+>=20
+> Gr{oetje,eeting}s,
+
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
