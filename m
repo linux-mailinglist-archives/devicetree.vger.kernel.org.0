@@ -2,76 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6163555CC70
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:01:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 820F455D5C0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:15:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344307AbiF1K2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 06:28:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32768 "EHLO
+        id S244944AbiF1KbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 06:31:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237103AbiF1K2W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:28:22 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA2512AAD
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 03:28:20 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id v14so16981250wra.5
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 03:28:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=p/DPfFSM3jMKKRZmtfjvPDQnkcVkhnWQ37ffkh65f6Y=;
-        b=kbqssuFbstijiBxN6ukx6bRt4t+S2ydyiIOa+5yRebAeQDj9rv1637vsz8qbYjSvzY
-         1prScvFpP1aja07+ePjJLLSe0tcobzljhMEsQQ4HI4HrLoN+1E0WP6QJkMZpQm+3RqRt
-         JMAZ52JEFjzGjqKjextdPoPKNm+4ScuxsFvfA8DtYvRhIH/Owjmmn7p3+A4mJqESf8JM
-         JWK00NjnN3UGfMeOLoqNz6sHkONVnRBi+zWo7civeBkmuNb37qef44uOR0eVq136DO8y
-         TK16/3aXaOchaTNSlk8X7o51ojZvqdjD8HNrP+HOx6/ygJ5IDjTv31qhrwLbb4ePzLV/
-         lKSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=p/DPfFSM3jMKKRZmtfjvPDQnkcVkhnWQ37ffkh65f6Y=;
-        b=jJ5XwG/+/u3aUVqxthwb4KZs/UjMCrDPofbhtl6aJNKwUefgWcNWfiRY50dj/drv4Y
-         pTqF5fqWBL4bsKYnQTB5x/xqJLfQQYfcixZOqjrPnvbC6sD8nF3lWksxUlNYRZR6F8KJ
-         O9Bk3n0jrm2vC1QIck7vhYMQQiad3KC+DTshTeiPEh2Fwp+RlXoYM6UkchLj8pMHrv7U
-         L7fwPoOzvIWx/UR0oj5+zx3lfZ80OIrKpH5/m/SJjf/z+qC0pjVqFM2TG5Ta9QIxysu/
-         ajhViVdfAty+q93Krnj736QLvMVa+vh5YJYt3lvPdN6MLwDRs+hSW281M0GXq19wt5nG
-         6xwA==
-X-Gm-Message-State: AJIora9ZtVDjP9KTpplrluwnrbCZJPprXWQU4rD6CMHRTwTW4Ohd/rQG
-        quqQzbsPMr3VVzVzrKRauKhOYQ==
-X-Google-Smtp-Source: AGRyM1uVApxImBBVLBU8ZUemhn0pYLASxjCLbV2ScD5PAtjEBQfdswOb8laC00d1cYSYxMIRRCoQjQ==
-X-Received: by 2002:a5d:5483:0:b0:21b:88d5:e725 with SMTP id h3-20020a5d5483000000b0021b88d5e725mr17344077wrv.82.1656412099281;
-        Tue, 28 Jun 2022 03:28:19 -0700 (PDT)
-Received: from [192.168.0.252] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id 4-20020a1c1904000000b0039c4506bd25sm19611110wmz.14.2022.06.28.03.28.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jun 2022 03:28:18 -0700 (PDT)
-Message-ID: <286633b2-43d2-655e-b3f1-54bf5c7a4a21@linaro.org>
-Date:   Tue, 28 Jun 2022 12:28:17 +0200
+        with ESMTP id S244644AbiF1KbP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:31:15 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39C7C2F3B4;
+        Tue, 28 Jun 2022 03:31:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CD1BF61917;
+        Tue, 28 Jun 2022 10:31:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70334C3411D;
+        Tue, 28 Jun 2022 10:31:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656412274;
+        bh=FqQbficcDw7vk8SHlBe1Sw1FJiQ7bntADu1nU2HONhA=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=aPJCGn4iSnzaPYC52niBVyz2Z5O4eiCmxAI2bupQSBWrMtPxRB7tuerZPab/kJss/
+         owTupPs2hBaZdL8oFrvd9pcB+6WKUmXoKwJSR87JogfQunR1rUCH7uqZPjvJqzqulY
+         Hn0lWgAhasLz2S/ttikVHr8xXLaC+iq5FEVLpK5O9VhTJRPQ7Co84tilhs4J8JKoj+
+         Rhe6QnW81xLMNWmfVOl0llcR9aQxObDkL6XE1dY4Fohk3ZnSq+w7wOFjxuUjIerIOj
+         xz4rRl/snTGJXqnszDHjhvOqsvQYF6AwnykavkNgDJlQGHfF+cDQo5ZLlMpLyP7Zxr
+         pzpTxTRWh6Utg==
+From:   Mark Brown <broonie@kernel.org>
+To:     festevam@gmail.com, Xiubo.Lee@gmail.com, nicoleotsuka@gmail.com,
+        shengjiu.wang@gmail.com, alsa-devel@alsa-project.org,
+        perex@perex.cz, krzk+dt@kernel.org, shengjiu.wang@nxp.com,
+        robh+dt@kernel.org, lgirdwood@gmail.com, tiwai@suse.com,
+        devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+In-Reply-To: <1655179884-12278-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1655179884-12278-1-git-send-email-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH 0/7] Add PDM/DSD/dataline configuration support
+Message-Id: <165641227114.254424.14373197929735584783.b4-ty@kernel.org>
+Date:   Tue, 28 Jun 2022 11:31:11 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 1/4] dt-bindings: usb: typec: add bindings for stm32g0
- controller
-Content-Language: en-US
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>, robh+dt@kernel.org,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        amelie.delaunay@foss.st.com, alexandre.torgue@foss.st.com
-References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
- <20220624155413.399190-2-fabrice.gasnier@foss.st.com>
- <ddb0e946-c955-1404-c1cd-c2548f34ec35@linaro.org>
- <845d6817-d2e4-7925-f7f5-da1102514636@foss.st.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <845d6817-d2e4-7925-f7f5-da1102514636@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,213 +56,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2022 16:21, Fabrice Gasnier wrote:
-> On 6/24/22 18:16, Krzysztof Kozlowski wrote:
->> On 24/06/2022 17:54, Fabrice Gasnier wrote:
->>> This patch adds DT schema documentation for the STM32G0 Type-C controller.
->>
->> No "This patch"
+On Tue, 14 Jun 2022 12:11:17 +0800, Shengjiu Wang wrote:
+> Support PDM format and DSD format.
+> Add new dts property to configure dataline. The SAI has multiple
+> successive FIFO registers, but in some use
+> case the required dataline/FIFOs are not successive.
 > 
-> Hi Krzysztof,
+> Shengjiu Wang (7):
+>   ASoC: fsl_sai: Add PDM daifmt support
+>   ASoC: fsl_sai: Add DSD bit format support
+>   ASoC: fsl_sai: Add support for more sample rates
+>   ASoc: fsl_sai: Add pinctrl operation for PDM and DSD
+>   ASoC: fsl_sai: Move res variable to be global
+>   ASoC: dt-bindings: fsl-sai: Add new property to configure dataline
+>   ASoC: fsl_sai: Configure dataline/FIFO information from dts property
 > 
-> ack,
-> 
->>
->> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
->>
->>> STM32G0 provides an integrated USB Type-C and power delivery interface.
->>> It can be programmed with a firmware to handle UCSI protocol over I2C
->>> interface. A GPIO is used as an interrupt line.
->>> It may be used as a wakeup source, so use optional "wakeup-source" and
->>> "power-domains" properties to support wakeup.
->>>
->>> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
->>> ---
->>>  .../bindings/usb/st,typec-stm32g0.yaml        | 83 +++++++++++++++++++
->>>  1 file changed, 83 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml b/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
->>> new file mode 100644
->>> index 0000000000000..b2729bd015a1a
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
->>> @@ -0,0 +1,83 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: "http://devicetree.org/schemas/usb/st,typec-stm32g0.yaml#"
->>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>
->> No quotes.
-> 
-> ack,
-> 
->>
->>> +
->>> +title: STMicroelectronics STM32G0 Type-C controller bindings
->>
->> s/bindings//
-> 
-> ack,
-> 
->>
->>> +
->>> +description: |
->>> +  The STM32G0 MCU can be programmed to control Type-C connector(s) through I2C
->>> +  typically using the UCSI protocol over I2C, with a dedicated alert
->>> +  (interrupt) pin.
->>> +
->>> +maintainers:
->>> +  - Fabrice Gasnier <fabrice.gasnier@foss.st.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: st,stm32g0-typec
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  connector:
->>> +    type: object> +    allOf:
->>> +      - $ref: ../connector/usb-connector.yaml#
->>
->> Full path, so /schemas/connector/...
->>
->> unevaluatedProperties: false
-> 
-> ack,
-> 
->>
->>> +
->>> +  firmware-name:
->>> +    description: |
->>> +      Should contain the name of the default firmware image
->>> +      file located on the firmware search path
->>> +
->>> +  wakeup-source: true
->>> +  power-domains: true
->>
->> maxItems
-> 
-> Do you mean maxItems regarding the "power-domains" property ?
+> [...]
 
-Yes.
+Applied to
 
-> This will depend on the user platform, where it's used as an I2C device.
-> So I'm not sure this can / should be specified here.
-> Could please you clarify ?
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Then maybe this property is not valid here. Power domains usually are
-used for blocks of a SoC, having common power source and power gating.
-In your case it looks much more like a regulator supply.
+Thanks!
 
-> 
->>
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +    i2c5 {
->>
->> Just "i2c"
-> 
-> ack,
-> 
->>
->>> +      #address-cells = <1>;
->>> +      #size-cells = <0>;
->>> +
->>> +      stm32g0@53 {
->>
->> Generic node name describing class of the device.
-> 
-> 
-> I wasn't aware of generic node name for an I2C device (not talking of
-> the controller). I may have missed it.
-> 
-> Could you please clarify ?
+[1/7] ASoC: fsl_sai: Add PDM daifmt support
+      commit: c111c2ddb3fdfca06bb5c7a56db7f97d6d9ea640
+[2/7] ASoC: fsl_sai: Add DSD bit format support
+      commit: 4665770407de8af3b24250cec2209eaf58546f8a
+[3/7] ASoC: fsl_sai: Add support for more sample rates
+      commit: 0d11bab8ef3e5540dfba111947dbd8dcfb813150
+[4/7] ASoc: fsl_sai: Add pinctrl operation for PDM and DSD
+      commit: b4ee8a913e617a2d0f19226225bc025c8640bf34
+[5/7] ASoC: fsl_sai: Move res variable to be global
+      (no commit info)
+[6/7] ASoC: dt-bindings: fsl-sai: Add new property to configure dataline
+      commit: 6b878ac2711056dd07c712caf89f58449cf5a592
+[7/7] ASoC: fsl_sai: Configure dataline/FIFO information from dts property
+      commit: e3f4e5b1a3e654d518155b37c7b2084cbce9d1a7
 
-The class of a device is not a I2C device. I2C is just a bus. For
-example the generic name for Power Management IC connected over I2C
-(quite common case) is "pmic".
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-For USB HCD controllers the generic name is "usb". For USB
-ports/connectors this is "connector". So what is your hardware?
-"interface" is a bit too unspecific to figure it out.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> 
->>
->>> +        compatible = "st,stm32g0-typec";
->>> +        reg = <0x53>;
->>> +        /* Alert pin on GPIO PE12 */
->>> +        interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
->>> +        interrupt-parent = <&gpioe>;
->>> +
->>> +        /* Example with one type-C connector */
->>> +        connector {
->>> +          compatible = "usb-c-connector";
->>> +          label = "USB-C";
->>> +
->>> +          port {
->>
->> This does not look like proper schema of connector.yaml.
-> 
-> This refers to graph.yaml [1], where similar example is seen [2].
-> 
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/graph.yaml#L79
-> 
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/graph.yaml#L207
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-Just look at the usb-conector schema. It's different. You miss ports.
-Maybe other properties as well.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-> 
->     device-1 {
->         port {
->             device_1_output: endpoint {
->                 remote-endpoint = <&device_2_input>;
->             };
->         };
->     };
->     device-2 {
->         port {
->             device_2_input: endpoint {
->                 remote-endpoint = <&device_1_output>;
->             };
->         };
->     };
-> 
-> 
-> Could you please clarify this point too ?
-> 
->>
->>> +            con_usb_c_ep: endpoint {
->>> +              remote-endpoint = <&usbotg_hs_ep>;
->>> +            };
->>> +          };
->>> +        };
->>> +      };
->>> +    };
->>> +
->>> +    usbotg_hs {
->>
->> Generic node names, no underscores in node names.
-> 
-> ack, I guess you'd recommend "usb" here. I'll update it.
-
-Yes, looks like usb.
-
-
-Best regards,
-Krzysztof
+Thanks,
+Mark
