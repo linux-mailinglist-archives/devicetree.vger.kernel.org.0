@@ -2,112 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3626855EF9D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:29:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D70F55EFB8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:41:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbiF1U3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 16:29:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41444 "EHLO
+        id S230342AbiF1Ukw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 16:40:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232574AbiF1U3S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:29:18 -0400
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D11BD1FCF1;
-        Tue, 28 Jun 2022 13:29:00 -0700 (PDT)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-317a66d62dfso129018657b3.7;
-        Tue, 28 Jun 2022 13:29:00 -0700 (PDT)
+        with ESMTP id S230393AbiF1Ukv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:40:51 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC9F3248E3
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:40:45 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id l9-20020a056830268900b006054381dd35so10602629otu.4
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:40:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VtWDCZqvy4TTvCWnlJoa1yPXQxkPEGRs7O1x1+Wk4xI=;
-        b=YlsTfLviybOfR+rjPn7jIq2SbwKZji90z44wO0lKYZeEhuo9RTvFxYChry9BQRHhrf
-         9bMSBahzUf7j0ARQZqGYw3BSF4iZaJncz4twzP2XkOzZjLYPyul7yR2Ads2hVaUPhGbx
-         wVHaEQ3bnGEnuQ/lnyTnx1aEOse4vZ2wsX1X7kOuT2DMLXurX9ptNd6C4mU104ISWsAG
-         +aL/4De0wvwi82+1usS1gz+NrzYXkym3ql/8Kd7NbAdQTeS/0tQRCgKC9xFaFtLpSmy4
-         LPlhWAMKjPv5r3BdhF+wEjMBMMRFe06ngiRt8mhYVf1FyrsyNsDo7cYzpSJXdMheXyvK
-         zK7A==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=g7DzDcGO0C//Tm2mK6aKPbRwKZWmv3UtbhY+R8SWnp0=;
+        b=KWNEvpPfmo2SmKf5bhaztGdiQA6tvFbLTUxtrhK6rIjkzfNXr0keJwbndIKL9tV+kc
+         GJvLAH4zZhqCxZY5XcSqSB007mXJECoqbN7dcQdel3VfCXDBC+smGP7zRPJ+jnJwH0lC
+         EKUm1ID9cMqQTYUrXSF130ZWwW3VemS6uvCCk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VtWDCZqvy4TTvCWnlJoa1yPXQxkPEGRs7O1x1+Wk4xI=;
-        b=HjjM7jDCf/PMUjwmR1b+yjgDXoan0sUKgIyD/SppbYNtXQQ3bavkhxy5hIARhcjZ5r
-         N6bqfJ2J8MemcdQZ8x6M7nzENT7HWnVwHVUDAbXVUjzJLiGS81Ewp166Qlxu8qN21/pR
-         7uVnXtQiMQ4f+vTnOuZ+ipGGIDBnvUL6afZjdIlPJYqGD5T2gPQVYS1YjUPQUiShdS02
-         7OMXzbIx72NpWzzihMw9vQwg39Z8PL/7lqlxdlOIXpfvZHoiyuDrge+cSGYSlHz/893D
-         VIWqIVMjvsYcUe1VLKMXebzQhDJKZsdquvajWdKhOxs0dFVIXN+lUwAAGHv0ntm2cuGm
-         3l3Q==
-X-Gm-Message-State: AJIora/V7KLfRxNqz/gpX3BaUGRr+UWW6Qq3DJdp9DBsl1pgHMotJQa8
-        RNBbVQFW1F4yeQH1C4cuM2uRAkE8R9NkaPwGlUs=
-X-Google-Smtp-Source: AGRyM1tuZyBuLff1iMKyDhmPPzrVYxfDfYpgHEfop8Gu1ugJVl2EbfJIbzBsjhmojigBvwwoSSdowcDFQcl+zpuHyO0=
-X-Received: by 2002:a81:1889:0:b0:317:987b:8e82 with SMTP id
- 131-20020a811889000000b00317987b8e82mr23470162ywy.185.1656448140077; Tue, 28
- Jun 2022 13:29:00 -0700 (PDT)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=g7DzDcGO0C//Tm2mK6aKPbRwKZWmv3UtbhY+R8SWnp0=;
+        b=uQIy1stfzIoOrGUUghFRiV+TVGnH10uHvebtdzjdH9UYvBjo+sukwbqxN8NdPs2sC0
+         8XUAJc3PDGZINqL+4f8jeSVAr2ELRDIYbvYtl6wmTs87gfIJoe3ZSJRAp5JbUX+7Hxte
+         MWII/telXsYHN6SKxZI4tKEb0fds0QyWgTkALawEzdibPkI01pT6IoZ0UhakQle1B1UP
+         EYzU/SebRR50kp0x+PxWJmMNpsNAgwSnQSLsvv7mmsp6cpYQqiOGLOpw2o40iWeYQQhR
+         ZjYd4v637NJOMBCsG7lRlRfef9KqJ6SYYKwkky4xyEfrP5WtHuAFnPpj6YT40USpM6t8
+         B+OQ==
+X-Gm-Message-State: AJIora9Up5sXhVo97BCSAInWuub1TnikSRhSvBLhIiWKR/2KS88xcHP0
+        NRvukPPWAmWZ1Oq8ySMvAizKPrOSOpv5oD5dheEtGg==
+X-Google-Smtp-Source: AGRyM1tGIqN+N5fxU26uQPwuhb/+Q+PPDxiV9zB3lkXobvidTtjy4ULjamLp4gDIpHvSTR5pfmD19QEOr8obxLOLWwA=
+X-Received: by 2002:a9d:6484:0:b0:60b:eb0b:4054 with SMTP id
+ g4-20020a9d6484000000b0060beb0b4054mr9324278otl.159.1656448844842; Tue, 28
+ Jun 2022 13:40:44 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 28 Jun 2022 15:40:44 -0500
 MIME-Version: 1.0
-References: <4e1d5db9dea68d82c94336a1d6aac404@walle.cc> <Yrrhs3D++V79/4Jk@smile.fi.intel.com>
- <f17d3ecfecf4491dd15b1fa092205f3f@walle.cc> <CAHp75Vd6e3WwHPfyL=GP=vsoWhwGXadwQziiRRwfHPfjkX2eFg@mail.gmail.com>
- <2f2d7685e0e43194270a310034004970@walle.cc> <CAHp75VcANMjxgS6S24Zh+mz66usb6LBnQk-ENvU9JHSXXsG1DA@mail.gmail.com>
- <9e58f421c27121977d11381530757a6e@walle.cc> <3ab8afab-b6b7-46aa-06d4-6740cee422d7@linaro.org>
- <288f56ba9cfad46354203b7698babe91@walle.cc> <daaddbd5-1cd4-d3ce-869a-249bdd8aecb9@linaro.org>
- <96f40ae6abf76af3b643b1e1c60d1d9f@walle.cc> <f9eb6d94-c451-0c9f-f123-2f1324f68b68@linaro.org>
-In-Reply-To: <f9eb6d94-c451-0c9f-f123-2f1324f68b68@linaro.org>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 28 Jun 2022 22:28:23 +0200
-Message-ID: <CAHp75VdWdUY-XyGBsQb3i9thCswmBo4UEAEaZCO5MC_HMW+fSQ@mail.gmail.com>
-Subject: Re: fwnode_for_each_child_node() and OF backend discrepancy
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Michael Walle <michael@walle.cc>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+In-Reply-To: <CACeCKafR8hFke_tc2=1VGDNF-CFrZoAG1aUKuxGJG-6pd37hbg@mail.gmail.com>
+References: <20220622173605.1168416-1-pmalani@chromium.org>
+ <20220622173605.1168416-6-pmalani@chromium.org> <CAE-0n517BB8YbN5AZG6M3ZrZGOJDV=+t0R9d8wD+gVqO1aD1Xg@mail.gmail.com>
+ <CACeCKafR8hFke_tc2=1VGDNF-CFrZoAG1aUKuxGJG-6pd37hbg@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 28 Jun 2022 15:40:44 -0500
+Message-ID: <CAE-0n50XbO5Wu4-429Ao05A4QrbSXoi1wBjTpGFjKm3pZj1Ybg@mail.gmail.com>
+Subject: Re: [PATCH v5 5/9] drm/bridge: anx7625: Add typec_mux_set callback function
+To:     Prashant Malani <pmalani@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        bleung@chromium.org, heikki.krogerus@linux.intel.com,
+        Pin-Yen Lin <treapking@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Xin Ji <xji@analogixsemi.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 28, 2022 at 5:17 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 28/06/2022 17:09, Michael Walle wrote:
-
-...
-
-> > Mh. Assume a SoC with an integrated ethernet switch. Some ports
-> > are externally connected, some don't. I'd think they should be disabled,
-> > no? Until now, all bindings I know, treat them as disabled. But OTOH
-> > you still need to do some configurations on them, like disable port
-> > forwarding, disable them or whatever. So the hardware is present, but
-> > it is not connected to anything.
+Quoting Prashant Malani (2022-06-28 12:48:11)
+> On Tue, Jun 28, 2022 at 12:25 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> >
+> > Quoting Prashant Malani (2022-06-22 10:34:34)
+> > > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > > index bd21f159b973..5992fc8beeeb 100644
+> > > --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+[..]
+> > > +
+> > > +       if (ctx->num_typec_switches == 1)
+> >
+> > How do we handle the case where the usb-c-connector is directly
+> > connected to the RX1/TX1 and RX2/TX2 pins? This device would be an
+> > orientation (normal/reverse) and mode switch (usb/dp) in that scenario,
+> > but this code is written in a way that the orientation switch isn't
+> > going to flip the crosspoint switch for the different pin assignments.
 >
-> I see your point and the meaning is okay... except that drivers don't
-> touch disabled nodes. If a device (with some address space) is disabled,
-> you do not write there "please be power off". Here the case is a bit
-> different, because I think ports do not have their own address space.
-> Yet it contradicts the logic - something is disabled in DT and you
-> expect to perform actual operations on it.
+> If all 4 SS lanes are connected to 1 usb-c-connector; there would be
+> just 1 "typec-switch" node.
+> In that case, the DT would only specify it as an "orientation-switch"
+> and register
+> an orientation-switch with the Type-C framework. The orientation switch would
+> pretty much do what the mode-switch callback does here (configuring
+> the crosspoint
+> switch).
+> One could also register a "mode-switch" there but it wouldn't do
+> anything (all 4 lanes are already
+> connected so there is nothing to re-route in the crosspoint switch).
+> Hence the above "if" check.
 
-You beat me up to this comment, I also see a contradiction of what
-"disabled" means in your, Michael, case and what it should be.
+Would we still want to route the DP traffic out if the pin assignment
+didn't have DP? Does the hardware support some mode where the DP traffic
+is shutdown? Or maybe the HPD pin needs to be quieted unless DP is
+assigned?
 
-If you need to perform an operation on some piece of HW, it has not to
-be disabled.
+I suppose none of those things matter though as long as there is some
+typec switch registered here so that the driver can be informed of the
+pin assignment. Is it right that the "mode-switch" property is only
+required in DT if this device is going to control the mode of the
+connector, i.e. USB+DP, or just DP? Where this device can't do that
+because it doesn't support only DP.
 
-Or, you may deduce them by knowing how many ports in hardware (this is
-usually done not by counting the nodes, but by a property) and do
-whatever you want on ones, you have  not listed (by port_num) in the
-array of parsed children.
+>
+> Unfortunately, I don't have hardware which connects all 4 SS lanes
+> from 1 Type-C port
+> to the anx7625, so I didn't add the orientation switch handling to the
+> driver (since I have no way of verifying it).
 
--- 
-With Best Regards,
-Andy Shevchenko
+Alright. Maybe add a TODO then so it's more obvious that orientation
+isn't handled.
+
+>
+> Regarding DP alt-mode pin assignments : I think anx7625 will only support Pin D
+> (only 2 lane DP, no 4 lane DP).
+>
+
+Makes sense. Thanks!
