@@ -2,107 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AC2855E3AF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:37:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A6A355E3C2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:38:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345897AbiF1MqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 08:46:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42990 "EHLO
+        id S1345967AbiF1MvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 08:51:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345899AbiF1MqR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 08:46:17 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B58B122B0E
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 05:46:15 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-31bf3656517so24882967b3.12
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 05:46:15 -0700 (PDT)
+        with ESMTP id S240685AbiF1MvO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 08:51:14 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D50228E12;
+        Tue, 28 Jun 2022 05:51:13 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-3176b6ed923so115539847b3.11;
+        Tue, 28 Jun 2022 05:51:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+/o7h6HDeouJmmTiR7/vdU7nOVyyfqQGDGcnD2AIrn4=;
-        b=P+XLSx7yD8akGOAU998jjSG/8kO1Cz+yxlAH/FwcQbXDiaJXmDqgI3mMrkS7lIyapb
-         /NoF0vqvlp1YzbNRhwdpaV48X1uu4DcJEEwQfInGa3hosNqzHQHWXGSc75BJnrjdFkyO
-         1753LezlvlhuEnGgEQ1yKLDDXd4pKrLuRXeMkqGSUbnw27ndRq+PDLLZ6qqdZ5gxwuO7
-         p0iSwrXPeKhU3h1qZzdQYiIIahp25+uxTASMPTVovDcSJXD9xW1BWrCQ3HVYd2BSy1uS
-         AvUHT/jBURD3HeO82AyZ8Em257ivuuZpqgQcjnHvr4krG9DI4HBN9/U+LJY3Zk6H0/uu
-         m79Q==
+        bh=CH4Pyqj8qPmLBBURKSPKNXwIf78EfOj9Be5JNsbd8XM=;
+        b=deAEahjwrHbwfkQvJGhjE6repNNVh4eFNXQleZTBkNEFCYFe2wVgqh1M4cYNsVB3+T
+         qw8/tmDv3eOW2gHe+FpDVnMYKHcybPPA2wuXoA0aW/13r7EOmfY0I/V3WgAVGZiMs5h8
+         Q/6Z78eUd49B2FWnfOlyxXLWaJSf7zcayPGwzab8lM8i44AR/7S8yDVxUzH/IXuCOw57
+         WWdfxd6yPc39eHwWlD1zMnXnPBLEW8ZwhrinOn/H4hAXHsw0iUDy2NhGDlcMmj9XNSe+
+         JxDlXTjbPKy0CrPhD4f462cdPEWyDnbXGnb33QLaBAXeYzshiGSBvXUjhjYupzBjgMoH
+         nPcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+/o7h6HDeouJmmTiR7/vdU7nOVyyfqQGDGcnD2AIrn4=;
-        b=aRedSFeaQfftRlkuOwC+yt/IbmeIK5B0dvF9dIj47DDYgAmc6LEQ8dOzB7mStrbLyF
-         E5FC1lYrHv1bsnqblsQGVL++4a6yCF7rovGgjnDkmUaOPNauDUkpCN7BSvZh6iJMQDg1
-         FyGryny3UC6Im4qvTDTu9E9ufL+eQMrf4Qi57jr4biRrh9uzv5lsTvhjFdSSxY0cNwAw
-         ib5W2LfF7A2WI0obsd/qlfPwajjXWfgk3YSXkQFC5bPtOIHbpOxbqUz8VCbdTMrtVwNb
-         wlveHU17/czqQTtGMqE+GHtxnLRPeTaoV+UOH/IUnouhrWliHPK2WirG52EtVBEmQnzO
-         9dbw==
-X-Gm-Message-State: AJIora9CyNlPxWshNz/gSinfBdcIc9sVbKpB3rkzqZ/HMK6YxUrMfE4Y
-        afjq+Mgb2OHSJIb34lgJYlZJpr2nbRyV3WR55VPKtQ==
-X-Google-Smtp-Source: AGRyM1s7TJ7lIQB0P1Y0YWoiaMimpZET5SYEiRTwTddSx4NLLUKMWn0W0kXJByprycc3O4v/t6iZ2umtbvHx3WCkyis=
-X-Received: by 2002:a0d:eace:0:b0:317:87ac:b3a8 with SMTP id
- t197-20020a0deace000000b0031787acb3a8mr21730890ywe.126.1656420374836; Tue, 28
- Jun 2022 05:46:14 -0700 (PDT)
+        bh=CH4Pyqj8qPmLBBURKSPKNXwIf78EfOj9Be5JNsbd8XM=;
+        b=U1yJRJiCcT+w8QAwBep8P6hLQkX4AzG4E3YoHaI0hnVlkvBGOF9YvgSSROjWAuNUEv
+         DL2EtSbOvrAaYVxYkSwxcpJDOyg8de3K1XxdLBd69iQQUUj5xA0lu7MWU91PDvFOX/N2
+         QQHTDjSh/72HQ2uYutpFLr3SWexvDXrIUm7yuRsQj+s+D3azMqviYxI1x7z0fyWPeqgn
+         /wtAYDPlH1MLJQWP1h9W5bH5IIr7VOMHGNO4U22Eo8MA8LE86VDvjrlPgKpOgNmUNO3v
+         EmBnIAcGfvRj2uENTBmCDuR5GFwm5Tc/XPMPYfigwYkKJKT3l5DuiEhnex3c6vMo/tYS
+         GJZQ==
+X-Gm-Message-State: AJIora9cxoCTeBJQc0pX0eiuCbJE18CHqU2rPmrpBE7lPxZssazLP9GT
+        K1zcRZ53373top90iSYgXVrFEVSgNkLu3vtCg2k=
+X-Google-Smtp-Source: AGRyM1u78nzO/495LmpCbD3jzYw8jhD6TT86tdZOiYA5F6G7CuTbiqjb1VQ4pyl5h5lxl4EKmsU9zWLtaaOs2RwWTbM=
+X-Received: by 2002:a81:468b:0:b0:318:4cac:6576 with SMTP id
+ t133-20020a81468b000000b003184cac6576mr20543609ywa.277.1656420672775; Tue, 28
+ Jun 2022 05:51:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220201134108.2677578-1-vkoul@kernel.org> <YhUVAwtfjuIdKrRQ@matsya>
- <1c66890b-6736-61ef-7d16-619f90ced4a0@linaro.org> <4f1ae43c-0f22-19fe-0794-3cc268104396@linaro.org>
-In-Reply-To: <4f1ae43c-0f22-19fe-0794-3cc268104396@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 28 Jun 2022 14:46:03 +0200
-Message-ID: <CACRpkdaSC1dSgQYJEXfL9OG-Jq9Q1UeMwuM6tjozd_oCVF_oMQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] spmi: pmic-arb: Add support for PMIC v7
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+References: <20220628081709.829811-1-colin.foster@in-advantage.com> <20220628081709.829811-2-colin.foster@in-advantage.com>
+In-Reply-To: <20220628081709.829811-2-colin.foster@in-advantage.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 28 Jun 2022 14:50:36 +0200
+Message-ID: <CAHp75VevH4LODkF4AELH=E5tQRZZ8LjbWN62sA14PydLMeDRgA@mail.gmail.com>
+Subject: Re: [PATCH v11 net-next 1/9] mfd: ocelot: add helper to get regmap
+ from a resource
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        David Collins <quic_collinsd@quicinc.com>,
-        linux-arm-msm@vger.kernel.org,
-        David Dai <daidavid1@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Terry Bowman <terry.bowman@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 18, 2022 at 5:30 PM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
-> On 01/05/2022 22:41, Dmitry Baryshkov wrote:
-> > On 22/02/2022 19:53, Vinod Koul wrote:
-> >> On 01-02-22, 19:11, Vinod Koul wrote:
-> >>> Hello,
-> >>>
-> >>> The is version 3 of support for PMIC v7. I have added a new property
-> >>> qcom,bus-id for supporting v7 and then add driver changes for v7
-> >>>
-> >>> This depends on yaml conversion patch:
-> >>> https://lore.kernel.org/linux-arm-msm/20211227170151.73116-1-david@ixit.cz/
-> >>>
-> >>
-> >> Any feedback on this...
-> >
-> > Another gracious reminder about these patches. At this moment this is
-> > one of the important pieces lacking for the full SM8450 support in the
-> > upstream kernel.
+On Tue, Jun 28, 2022 at 10:17 AM Colin Foster
+<colin.foster@in-advantage.com> wrote:
 >
-> Stephen, yet another ping. This is the blocking point for the further
-> SM8450 progress.
+> Several ocelot-related modules are designed for MMIO / regmaps. As such,
+> they often use a combination of devm_platform_get_and_ioremap_resource and
+> devm_regmap_init_mmio.
+>
+> Operating in an MFD might be different, in that it could be memory mapped,
+> or it could be SPI, I2C... In these cases a fallback to use IORESOURCE_REG
+> instead of IORESOURCE_MEM becomes necessary.
+>
+> When this happens, there's redundant logic that needs to be implemented in
+> every driver. In order to avoid this redundancy, utilize a single function
+> that, if the MFD scenario is enabled, will perform this fallback logic.
 
-Pending since february!
+> +       regs = devm_platform_get_and_ioremap_resource(pdev, index, &res);
+> +
+> +       if (!res)
+> +               return ERR_PTR(-ENOENT);
 
-I would rather suspect something is wrong and it somehow goes
-into the spam or wrong inbox on Stephen's end.
+This needs a comment why the original error code from devm_ call above
+is not good here.
 
-Sounds like something Bjorn could solve if Stephen don't have time
-to manage the SPMI subsystem right now? If it's OK with Stephen
-or he simply don't respond we can just queue the stuff in the SoC
-tree I assume?
+> +       else if (IS_ERR(regs))
+> +               return ERR_CAST(regs);
+> +       else
+> +               return devm_regmap_init_mmio(&pdev->dev, regs, config);
+> +}
 
-Yours,
-Linus Walleij
+'else' is redundant in all cases above.
+
+-- 
+With Best Regards,
+Andy Shevchenko
