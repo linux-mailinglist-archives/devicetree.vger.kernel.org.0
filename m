@@ -2,126 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA11955D5CF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7FA255CC51
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:01:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238949AbiF1KCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 06:02:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57698 "EHLO
+        id S239927AbiF1KCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 06:02:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344698AbiF1KCX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:02:23 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0801A2E9ED;
-        Tue, 28 Jun 2022 03:01:56 -0700 (PDT)
-Received: from mercury (dyndsl-095-033-152-169.ewe-ip-backbone.de [95.33.152.169])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id AC26566015BF;
-        Tue, 28 Jun 2022 11:01:54 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656410514;
-        bh=B+3J166mE7yKiVnjSIyWp3uT7KdPeBK+33FGGWy9RJg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=M8saON4JHL9YGPUFK1egyrxL/8I/qsYZXe6LxdIs3ftZ5nLVb6f2GxpvYQYI1gwXE
-         Er8Li0/WGkZydvB3Qk+R21aLPz2KZjEa6eNgiMKI3M9PCTptid9HYSTA4v0K3RiT2a
-         Wf3GfKywmOT0WhMh4JB0oY1imBpu9Ec7LZr3NlfxSzqqSyExNPROSxXYtxGUtP7PXQ
-         16+dtthw8a12V5kqJcR2MSWd+obty7RK9U+4z6eAkllpVo1zcElPZwtUoL8j7vabIh
-         tCNs1KxSZUZcERzPF8Lu3fgWl/NKynNBUwfyCOPO9CXGLn4coDOwYj7SuJwa1PIIo+
-         TrMiFE8+UMOMQ==
-Received: by mercury (Postfix, from userid 1000)
-        id A946E106069D; Tue, 28 Jun 2022 12:01:52 +0200 (CEST)
-Date:   Tue, 28 Jun 2022 12:01:52 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        David Wu <david.wu@rock-chips.com>, kernel@collabora.com
-Subject: Re: [PATCHv2 1/2] net: ethernet: stmmac: dwmac-rk: Add gmac support
- for rk3588
-Message-ID: <20220628100152.hpugcvxtqdq7pfic@mercury.elektranox.org>
-References: <20220627170747.137386-1-sebastian.reichel@collabora.com>
- <20220627170747.137386-2-sebastian.reichel@collabora.com>
- <7314b028-3cda-d70c-80a1-25750235a907@linaro.org>
+        with ESMTP id S1343940AbiF1KCb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:02:31 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55DBB2F3AE
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 03:02:12 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id r20so16921819wra.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 03:02:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=3ZLTvjDl16WXAfxrYhPgAG4dx8YGkXCU/wb2ZjBGHxQ=;
+        b=msmzAW7PSUdijfx025BCp2/8s3pOGKHZjzRWntzmi6KAvV8jW6AQruHlpJe5hJBJ+T
+         EM36fcnz/XIBu2v5ab+3p5b9NWV5h9s4w+Y2RWsFE7tH3czqwpsz9Nr3RGgr7QXncXSv
+         IqLV58rvPzMwjDi88tiKUSd21vSifDdBvmsrqCLAje/NYaaR98WdoEfymvhd8dnDnIqD
+         vyxsP4pEjPBuji0NZGr+bHgoOIbvX8wbqQ4R5jSCelXDfwmjbKNLdBD3IVFK4DMOZAkr
+         ED6qGkg/LjDsKf6P3IrWkWIKh07p7qquUuFXS/yYJgTyDMy9zWksPt0WrKG+V4FZouU/
+         5n+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3ZLTvjDl16WXAfxrYhPgAG4dx8YGkXCU/wb2ZjBGHxQ=;
+        b=igDyW92HEI0LDYyuTprCjgEuBz3g62rii0wWRUH6fArMShkF5Hlp2gryk1mfhv/12n
+         5X71MoNYssz3E2FTqgVd88sJuNPNdWK/U7fumWt44EdamSZIwnLiUMrJxNnadUhax9A5
+         sDx9ei8U42C3uoerioAU165QYxJL+fLqK1uDm+VGgHzNnuXhtCCcrtCzDQ8f2u6TA71h
+         v/Nrq44IcLpQqJsni12ElEiRkENpFKQfbgoDUNLJ90DfqnhjCumxTdbYmCLmOaDY+Lf1
+         psw4OGEDlVCIkT+2XHRnN2CjXSRnSyBcUJDG3c4Xx52wsaybjbcs9qC3S/teCO6+waov
+         aTcQ==
+X-Gm-Message-State: AJIora/O7n6opWJiBOFjqDgOyJHy15lxR+/1Dr4WUUMwYhjN2po6YRPt
+        h3hrx9/pLBHT/QglYRd0PjrazA==
+X-Google-Smtp-Source: AGRyM1ticr0v/IxsOpoo3bMVweszhCvDeSWbd9rkPrNp8Fcov6Tmwht2shB+7n3Tz1p27DACrMqxkw==
+X-Received: by 2002:a05:6000:1d84:b0:20e:5fae:6e71 with SMTP id bk4-20020a0560001d8400b0020e5fae6e71mr16980710wrb.224.1656410530736;
+        Tue, 28 Jun 2022 03:02:10 -0700 (PDT)
+Received: from [192.168.0.252] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id c3-20020adfef43000000b0021bab0ba755sm13629129wrp.106.2022.06.28.03.02.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jun 2022 03:02:09 -0700 (PDT)
+Message-ID: <354b2ae2-92b4-bb56-387a-599f0451a1c0@linaro.org>
+Date:   Tue, 28 Jun 2022 12:02:08 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="c2yjj25avm3cvkmr"
-Content-Disposition: inline
-In-Reply-To: <7314b028-3cda-d70c-80a1-25750235a907@linaro.org>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/3] dt-bindings: clock: exynosautov9: correct clock
+ numbering of peric0/c1
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        'Sylwester Nawrocki' <s.nawrocki@samsung.com>,
+        'Tomasz Figa' <tomasz.figa@gmail.com>,
+        'Chanwoo Choi' <cw00.choi@samsung.com>,
+        'Stephen Boyd' <sboyd@kernel.org>,
+        'Michael Turquette' <mturquette@baylibre.com>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>
+Cc:     'Alim Akhtar' <alim.akhtar@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220627005210.6473-1-chanho61.park@samsung.com>
+ <CGME20220627005413epcas2p39750fb5876366881b8535ee516c1bebe@epcas2p3.samsung.com>
+ <20220627005210.6473-2-chanho61.park@samsung.com>
+ <0e9aab63-7ddf-dead-11b2-4ba81235dcb4@linaro.org>
+ <001901d88a94$e87208d0$b9561a70$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <001901d88a94$e87208d0$b9561a70$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 28/06/2022 04:15, Chanho Park wrote:
+>> Subject: Re: [PATCH 1/3] dt-bindings: clock: exynosautov9: correct clock
+>> numbering of peric0/c1
+>>
+>> On 27/06/2022 02:52, Chanho Park wrote:
+>>> There are duplicated definitions of peric0 and peric1 cmu blocks.
+>>> Thus, they should be defined correctly as numerical order.
+>>>
+>>> Fixes: 680e1c8370a2 ("dt-bindings: clock: add clock binding
+>>> definitions for Exynos Auto v9")
+>>> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+>>> ---
+>>>  .../dt-bindings/clock/samsung,exynosautov9.h  | 56
+>>> +++++++++----------
+>>>  1 file changed, 28 insertions(+), 28 deletions(-)
+>>>
+>>> diff --git a/include/dt-bindings/clock/samsung,exynosautov9.h
+>>> b/include/dt-bindings/clock/samsung,exynosautov9.h
+>>> index ea9f91b4eb1a..a7db6516593f 100644
+>>> --- a/include/dt-bindings/clock/samsung,exynosautov9.h
+>>> +++ b/include/dt-bindings/clock/samsung,exynosautov9.h
+>>> @@ -226,21 +226,21 @@
+>>>  #define CLK_GOUT_PERIC0_IPCLK_8		28
+>>>  #define CLK_GOUT_PERIC0_IPCLK_9		29
+>>>  #define CLK_GOUT_PERIC0_IPCLK_10	30
+>>> -#define CLK_GOUT_PERIC0_IPCLK_11	30
+>>> -#define CLK_GOUT_PERIC0_PCLK_0		31
+>>> -#define CLK_GOUT_PERIC0_PCLK_1		32
+>>> -#define CLK_GOUT_PERIC0_PCLK_2		33
+>>> -#define CLK_GOUT_PERIC0_PCLK_3		34
+>>> -#define CLK_GOUT_PERIC0_PCLK_4		35
+>>> -#define CLK_GOUT_PERIC0_PCLK_5		36
+>>> -#define CLK_GOUT_PERIC0_PCLK_6		37
+>>> -#define CLK_GOUT_PERIC0_PCLK_7		38
+>>> -#define CLK_GOUT_PERIC0_PCLK_8		39
+>>> -#define CLK_GOUT_PERIC0_PCLK_9		40
+>>> -#define CLK_GOUT_PERIC0_PCLK_10		41
+>>> -#define CLK_GOUT_PERIC0_PCLK_11		42
+>>> +#define CLK_GOUT_PERIC0_IPCLK_11	31
+>>> +#define CLK_GOUT_PERIC0_PCLK_0		32
+>>> +#define CLK_GOUT_PERIC0_PCLK_1		33
+>>
+>> Is this a fix for current cycle? If yes, it's ok, otherwise all other IDs
+>> should not be changed, because it's part of ABI.
+> 
+> What is the current cycle? 5.19-rc or 5.20?
+> I prefer this goes on 5.19-rc but if it's not possible due to the ABI breakage, I'm okay this can be going to v5.20.
 
---c2yjj25avm3cvkmr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The change was introduced indeed in v5.19-rc1, so this should go to
+current cycle as well (v5.19) and your patch is fine.
 
-Hi Krzysztof,
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Tue, Jun 28, 2022 at 10:55:04AM +0200, Krzysztof Kozlowski wrote:
-> On 27/06/2022 19:07, Sebastian Reichel wrote:
-> > From: David Wu <david.wu@rock-chips.com>
-> >=20
-> > Add constants and callback functions for the dwmac on RK3588 soc.
-> > As can be seen, the base structure is the same, only registers
-> > and the bits in them moved slightly.
-> >=20
-> > Signed-off-by: David Wu <david.wu@rock-chips.com>
-> > [rebase, squash fixes]
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> > Krzysztof asked what "php" means. The answer is: The datasheet
-> > calls the referenced syscon area "PHP_GRF" with GRF meaning
-> > "general register file". PHP is never written out in the datasheet,
-> > but is the name of a subsystem in the SoC which contains the ethernet
-> > controllers, USB and SATA with it's own MMU and power domain.
->=20
-> Maybe there was a typo and name is PPH? Like some kind of short cut of
-> "peripheral"?
+Sylwester or Stephen,
 
-Maybe, but then it is consistent throughout the datasheet and the
-vendor kernel. There is a few hundred instances of PHP_ in the
-datasheet and PPH is only found for Displayport PHYs (DPPHY).
+Please kindly grab it for fixes.
 
--- Sebastian
-
---c2yjj25avm3cvkmr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmK60YgACgkQ2O7X88g7
-+poNGA//fEqVCXbx8RU3oSYO8REyv6/VZBK5mmbgFGTRgfx6saGdL23ygwT5CwJV
-ONdL3BuHUBeSIOEVCe9HaTiE4LezWtdmNijAQm5dV47TIOyA2LYyoXtW+uYpWcc8
-G0Mv547WfztVhClFCP+EjNuP/krXiNOaQU+JsvtFEzGK3t2RiPzCzFqMCkDke4F1
-xE7Oz9UAgiFCFDxwKZdON1hP1rTYYBSKqiWT+6HuWY/kwSOPJxMK5/AQhKoEm9lC
-j3yPpI82w4lN1E643IdJ/OWmiQb7NFLJ3RL2BgNiy/RQ8UyrlXaNCn557KX+tD6A
-DFIIMVBmsjMwMxqb5tUanEydIH6I93vTBhKwRcztmJ6Gl6XZF0CuKXy5FqrhIABy
-nYmb2Bonj9wU0SGoOYd4OX6nrCZ/nwbjHLO+xBxgKdX5s109WOJL0VX637p6mTmZ
-XhweYOjZZGu+Or741RxiIfjoUjGKpbElbAbKApM7BaDmqO5VWhcZakq8oJ4TtH66
-B4Otqi/5YJJLmyizWNZsfJHI7K7rvB+pc4L896Ve77SXJZaePzA/9/zr7X45h+rW
-KfSiiP82YulVWYNXRNX5A1pMqOx8AG2P4R11IDZ3FnI+wVzDsAuz51IWFSk6q6XF
-NLHlLM70E9ZoVWIR9MDF6AenyA2iTNqgMVoN7GlynUCi8x5yqGg=
-=lyNm
------END PGP SIGNATURE-----
-
---c2yjj25avm3cvkmr--
+Best regards,
+Krzysztof
