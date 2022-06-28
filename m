@@ -2,206 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D42455EB5F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 19:54:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAE7155EB8B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 19:57:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230445AbiF1RyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 13:54:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42304 "EHLO
+        id S233598AbiF1R5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 13:57:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230292AbiF1RyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 13:54:20 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3476D6F;
-        Tue, 28 Jun 2022 10:54:19 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id u14so2470932ljh.2;
-        Tue, 28 Jun 2022 10:54:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YsbR8XD51+2fDUx1DJn2r9aSmkJF1zCJMEEsWt0x5vM=;
-        b=B3w6v5CCgKL41pcP+L2EqP7McAN7ZEWhXVobCQ0dUTE60bcgOwn6Q8f+c5O1e2Uxiw
-         apFzNVvwz2N6tmXHzs5TGZeD8peEZrx4cfaze9Soa8XDpIK6uoVnqQvbyDxNgvZh8rDe
-         nmcuyp58AN0coqb9rVIJ3MgAIQ+J28eiosYE40v8hq5IJJHcoPomcIY9atsa2q+LmiuU
-         bkHVc9GwytBXLjqfmKyeryaorexOFNajbKdFzhxpQ9q+7NV6Nk+5cz7/uH2lNNb47OTt
-         HpO7g5JevqN+629w3g/cEGgD4LSHUCcujOxc4BlMchbgk0vH0blQ6WI9y7B1qGbdFXhw
-         parw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YsbR8XD51+2fDUx1DJn2r9aSmkJF1zCJMEEsWt0x5vM=;
-        b=DbsB2wLQmBCYwBQEP9AqzQ/1VG76nRO0imC87eM7GW44k+0L64aiwavwN8rs/93rLx
-         hJeQQ/8ALIPKpsl4JWzTb0qseY1rybcnot0n5cf13VT4H6zOMbdewcyFuW7V0raSw3sX
-         XyI4uukQDVoZlmkrdGOsZ07BlJaqgAPvze3tgB/pGvRvmMVxA5PQ8Zf90mtxQgZt9cIZ
-         w8s8yhGLY2yURk0W0UelQuheXLGzlJcDGUrwxoGXIdcrlRgpCjINIp7tdAKDUHt0rYZt
-         t52Fen+oJVjjilBaE5N/zg1dDs0U9wybWN5yzlUwCVtf9REvGjau7+1smniohhs/0Ozr
-         nB+Q==
-X-Gm-Message-State: AJIora+na0ThwDdJTnhCS/NplwxHzYDwF0WiyknXBuVbYV3Uaysd/oq+
-        bYrKT+Nk6KlaNaIMnaBvP7uVwf6mHkhQaZ14E0w=
-X-Google-Smtp-Source: AGRyM1sc6rUvzMNS3CKVGGXthQEHrKyFKK272MHUdtCpLmeRrPJMb4swE1HCuDd+KRVsOiR0yo3ur2dSKywPSi48Sx0=
-X-Received: by 2002:a2e:bc22:0:b0:25b:c3b6:eb11 with SMTP id
- b34-20020a2ebc22000000b0025bc3b6eb11mr6134193ljf.122.1656438858054; Tue, 28
- Jun 2022 10:54:18 -0700 (PDT)
+        with ESMTP id S233583AbiF1R5p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 13:57:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91F0B64E4;
+        Tue, 28 Jun 2022 10:57:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2E44C619FA;
+        Tue, 28 Jun 2022 17:57:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16210C3411D;
+        Tue, 28 Jun 2022 17:57:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656439063;
+        bh=1JjIFtMxSAjXxKXlrad51iQP0xJ0nZGZHeaMFImOkzY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=WnhADcWq8IE1VbtDiU1HIgW/N4NCgUk8ASDoRNgqDK2Yy3wEgQwA90Wsd4jh1n2gR
+         GIn6urs2oxsxNfo1siBgV895ZuaJ1wkaNM7lpFLRSjHsUz/19nGoLJrOPFeGMH99kp
+         BGObeKo5gUWbc2ZUhbVwMExSWbZEXpzu9zhItXjDHryAKq03Xa0/dg4sPCKoZyqkE7
+         PPzAjhkvsSTVgzUhknswoTAqpPo/ykbdVYmSo+wfNZV8rHg8YSnFkX5FuHQeD/duQx
+         IwYPbcFcXxPN1vbOFJIJkA7c+2HYh9FjixrAsib4gPfzaePW1biRiTH99GyTd+FUdh
+         ZB49EgKXm2aFw==
+Message-ID: <ae4b19a2-0315-a748-d048-6eb3ed2cc65a@kernel.org>
+Date:   Tue, 28 Jun 2022 20:57:36 +0300
 MIME-Version: 1.0
-References: <20220518115541.38407-1-max.oss.09@gmail.com> <20220518115541.38407-2-max.oss.09@gmail.com>
- <20220601201658.GA342879-robh@kernel.org>
-In-Reply-To: <20220601201658.GA342879-robh@kernel.org>
-From:   Max Krummenacher <max.oss.09@gmail.com>
-Date:   Tue, 28 Jun 2022 19:54:06 +0200
-Message-ID: <CAEHkU3UFSUq3sFTX8wC4+PYCN9gG4Lbgkao3E3VkQGxQzRZy0g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: add new bus-format property
- for panel-dpi
-To:     Rob Herring <robh@kernel.org>
-Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH V2 8/9] interconnect: imx: configure NoC
+ mode/prioriry/ext_control
+Content-Language: en-US
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, abel.vesa@nxp.com,
+        abailon@baylibre.com, l.stach@pengutronix.de,
+        laurent.pinchart@ideasonboard.com, marex@denx.de,
+        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
+        aford173@gmail.com
+Cc:     kernel@pengutronix.de, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        abelvesa@kernel.org, Peng Fan <peng.fan@nxp.com>
+References: <20220616073320.2203000-1-peng.fan@oss.nxp.com>
+ <20220616073320.2203000-9-peng.fan@oss.nxp.com>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20220616073320.2203000-9-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
+Hi Peng,
 
-Thanks for the feedback.
+On 16.06.22 10:33, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Introduce imx_icc_noc_setting structure to describe a master port setting
+> Pass imx_icc_noc_setting as a parameter from specific driver
+> Set priority level, mode, ext control in imx_icc_node_set
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>   drivers/interconnect/imx/imx.c    | 43 ++++++++++++++++++++++++++----
+>   drivers/interconnect/imx/imx.h    | 44 ++++++++++++++++++++++++++++++-
+>   drivers/interconnect/imx/imx8mm.c |  2 +-
+>   drivers/interconnect/imx/imx8mn.c |  2 +-
+>   drivers/interconnect/imx/imx8mq.c |  2 +-
+>   5 files changed, 84 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/interconnect/imx/imx.c b/drivers/interconnect/imx/imx.c
+> index 78557fe6da2c..bd728caf2b85 100644
 
-On Wed, Jun 1, 2022 at 10:17 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, May 18, 2022 at 01:55:38PM +0200, Max Krummenacher wrote:
-> > From: Max Krummenacher <max.krummenacher@toradex.com>
-> >
-> > The property is used to set the enum bus_format and infer the bpc
-> > for a panel defined by 'panel-dpi'.
-> > This specifies how the panel is connected to the display interface.
-> >
-> > Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-> >
-> > ---
-> >
-> > Changes in v2:
-> >     - Fix errors found by dt_binding_check
-> >
-> >  .../bindings/display/panel/panel-dpi.yaml     | 11 +++++++++
-> >  .../dt-bindings/display/dt-media-bus-format.h | 23 +++++++++++++++++++
-> >  2 files changed, 34 insertions(+)
-> >  create mode 100644 include/dt-bindings/display/dt-media-bus-format.h
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml b/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-> > index dae0676b5c6e..a20b5898941e 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/panel-dpi.yaml
-> > @@ -21,6 +21,14 @@ properties:
-> >        - {}
-> >        - const: panel-dpi
-> >
-> > +  bus-format:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
->
-> Constraints?
+[..]
 
-Will limit the range to the one used for RGB formats in v3.
->
-> > +    description: |
-> > +      Describes how the display panel is connected to the display interface.
-> > +      Valid values are defined in <dt-bindings/display/dt-media-bus-format.h>.
-> > +      The mapping between the color/significance of the panel lines to the
-> > +      parallel data lines are defined in [1].
->
-> Just drop the [1] and use a colon.
+> @@ -37,8 +40,24 @@ static int imx_icc_node_set(struct icc_node *node)
+>   {
+>   	struct device *dev = node->provider->dev;
+>   	struct imx_icc_node *node_data = node->data;
+> +	void __iomem *base;
+> +	u32 prio;
+>   	u64 freq;
+>   
+> +	if (node_data->setting && !node_data->setting->ignore && node->peak_bw) {
+> +		base = node_data->setting->reg + node_data->imx_provider->noc_base;
+> +		if (node_data->setting->mode == IMX_NOC_MODE_FIXED) {
+> +			prio = node_data->setting->prio_level;
+> +			prio = PRIORITY_COMP_MARK | (prio << 8) | prio;
+> +			writel(prio, base + IMX_NOC_PRIO_REG);
+> +			writel(node_data->setting->mode, base + IMX_NOC_MODE_REG);
+> +			writel(node_data->setting->ext_control, base + IMX_NOC_EXT_CTL_REG);
+> +		} else {
+> +			dev_info(dev, "mode: %d not supported\n", node_data->setting->mode);
+> +			return -ENOTSUPP;
 
-Done in v3.
+Nit: I believe that -EOPNOTSUPP is the preferred error code.
 
->
-> > +      [1] https://www.kernel.org/doc/html/v5.17/userspace-api/media/v4l/subdev-formats.html#packed-rgb-formats
->
-> Why not just use the V4L number space rather than invent yet another
-> number space?
+> +		}
+> +	}
+> +
+>   	if (!node_data->qos_dev)
+>   		return 0;
+>   
 
-That was a proposal from here:
-https://lore.kernel.org/all/20220323155817.xcsqxothziot7ba3@houat/
-But probably it makes more sense to use the number space as is, changed in v3.
+[..]
 
->
-> Need a blank line here too.
->
-> >    backlight: true
-> >    enable-gpios: true
-> >    height-mm: true
-> > @@ -39,11 +47,14 @@ additionalProperties: false
-> >
-> >  examples:
-> >    - |
-> > +    #include <dt-bindings/display/dt-media-bus-format.h>
-> > +
-> >      panel {
-> >          compatible = "startek,startek-kd050c", "panel-dpi";
-> >          label = "osddisplay";
-> >          power-supply = <&vcc_supply>;
-> >          backlight = <&backlight>;
-> > +        bus-format = <DT_MEDIA_BUS_FMT_RGB888_1X24>;
->
-> Other properties describing the interface have been put in the endpoint
-> node. This should too I think.
+> @@ -237,7 +263,8 @@ static int get_max_node_id(struct imx_icc_node_desc *nodes, int nodes_count)
+>   }
+>   
+>   int imx_icc_register(struct platform_device *pdev,
+> -		     struct imx_icc_node_desc *nodes, int nodes_count)
+> +		     struct imx_icc_node_desc *nodes, int nodes_count,
+> +		     struct imx_icc_noc_setting *settings)
+>   {
+>   	struct device *dev = &pdev->dev;
+>   	struct icc_onecell_data *data;
+> @@ -267,13 +294,19 @@ int imx_icc_register(struct platform_device *pdev,
+>   	provider->dev->of_node = dev->parent->of_node;
+>   	platform_set_drvdata(pdev, imx_provider);
+>   
+> +	if (settings) {
+> +		imx_provider->noc_base = devm_of_iomap(dev, provider->dev->of_node, 0, NULL);
+> +		if (!imx_provider->noc_base)
 
-That makes a lot of sense. Changed to be part of the endpoint node in v3.
+devm_of_iomap() returns ERR_PTR(). So we should check it with IS_ERR().
 
-Cheers
-Max
+Thanks,
+Georgi
 
->
-> >
-> >          port {
-> >              lcd_in: endpoint {
-> > diff --git a/include/dt-bindings/display/dt-media-bus-format.h b/include/dt-bindings/display/dt-media-bus-format.h
-> > new file mode 100644
-> > index 000000000000..c0f2a7b59aa1
-> > --- /dev/null
-> > +++ b/include/dt-bindings/display/dt-media-bus-format.h
-> > @@ -0,0 +1,23 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
-> > +/*
-> > + * Copyright 2022 Max Krummenacher <max.krummenacher@toradex.com>
-> > + */
-> > +
-> > +#ifndef __DT_BINDINGS_DT_MEDIA_BUS_FORMAT_H
-> > +#define __DT_BINDINGS_DT_MEDIA_BUS_FORMAT_H
-> > +
-> > +/*
-> > + * Attention: Keep these macro names in sync with
-> > + * include/uapi/linux/media-bus-format.h
-> > + */
-> > +
-> > +#define DT_MEDIA_BUS_FMT_RGB565_1X16         1
-> > +#define DT_MEDIA_BUS_FMT_RGB666_1X18         2
-> > +#define DT_MEDIA_BUS_FMT_RBG888_1X24         3
-> > +#define DT_MEDIA_BUS_FMT_RGB666_1X24_CPADHI  4
-> > +#define DT_MEDIA_BUS_FMT_BGR888_1X24         5
-> > +#define DT_MEDIA_BUS_FMT_GBR888_1X24         6
-> > +#define DT_MEDIA_BUS_FMT_RGB888_1X24         7
-> > +#define DT_MEDIA_BUS_FMT_RGB888_1X32_PADHI   8
-> > +
-> > +#endif /* __DT_BINDINGS_DT_MEDIA_BUS_FORMAT_H */
-> > --
-> > 2.20.1
-> >
-> >
+> +			return PTR_ERR(imx_provider->noc_base);
+> +	}
+> +
+>   	ret = icc_provider_add(provider);
+>   	if (ret) {
+>   		dev_err(dev, "error adding interconnect provider: %d\n", ret);
+>   		return ret;
+>   	}
+>   
+> -	ret = imx_icc_register_nodes(imx_provider, nodes, nodes_count);
+> +	ret = imx_icc_register_nodes(imx_provider, nodes, nodes_count, settings);
+>   	if (ret)
+>   		goto provider_del;
+>   
