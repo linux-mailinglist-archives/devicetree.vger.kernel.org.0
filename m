@@ -2,86 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F20D155E94F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:41:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62CD355E888
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:36:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347170AbiF1PYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 11:24:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55860 "EHLO
+        id S1346859AbiF1P0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 11:26:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347743AbiF1PYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 11:24:38 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7F02D1EF
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 08:24:36 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id eq6so18067421edb.6
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 08:24:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=DL6UdLR7FEJazkCj2FBmbmojXNOORr6ZP3bxU8f4s34=;
-        b=mLdlN6f7kHSvYsaEQVd6iE+DmBvqMoY9HcpLvjNSK3WoR6AGCaEQt2gX4sL2ZTxHcq
-         aaYHRwiWiZuGfkrhNtG4qdnVLGKoLo6vSMRX+WvsB5byLc4HA3jUOw+7XGsx2jw8/DZA
-         PnCJ3hE50NmYdBaf2o9GbtsXNfRwShpIKfCYC3QFVhJ9shbkn9fzR+OyiaosjjQQlzIP
-         qOp/nRC2fwrScCe+RMWxpT6XBtqVm12yKJCVy2fn3YBFDH4JIkuCt4Jg/BszewumPeH5
-         iY6mZMvcVuuJUTLSGunPyg3kIoISLQbjJF8ZU+XPrV664H/518ZGFtfkxANmkvX+bYGZ
-         6WUw==
+        with ESMTP id S230499AbiF1P0G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 11:26:06 -0400
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09B742DA9D;
+        Tue, 28 Jun 2022 08:26:06 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id u20so13204462iob.8;
+        Tue, 28 Jun 2022 08:26:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=DL6UdLR7FEJazkCj2FBmbmojXNOORr6ZP3bxU8f4s34=;
-        b=0SF7+aGl8ZpkvCH6df+D3yN6BXs4YpNYapyvxIrcA4gDZddiaS5QqtvaWKVmH7U6Nm
-         doGitS4CzPtoZdPmn5SbvplNzmKmpZ+i2kItMPGwjhDPB1JqMXCYFUhYi7N3NgVlJ/KK
-         D+5++S2H4Z/ym4mqHwAC5xoTMaQ1FahL+x3YW8girdhdKzcXG5kfcKi8sOd7eN9n5s3g
-         LYtGHHF6LE5TNVv5KgkRl2hMvozie0tfmDiUpzYh2c+ijJCkDsM97uJ2fAj7CmsTDBv7
-         uzDpvqUsT4LOhFOa/D7DD/jIPxgo8QCyQJAl6vLjpt4rWR4AeV+KTCVjcvass/EQpj4E
-         0uyw==
-X-Gm-Message-State: AJIora8CSJp3Vna1h+PI9xLVmnpG+sXnNjXVuW1TcfZP2iUC/uB6wCV8
-        GkS3Y35mLe5QSqmFmaqoy6CZRQ==
-X-Google-Smtp-Source: AGRyM1sEbyTGDyJve5ZC+CP0x18qpcJRoRcJs9T3qxqz5nCvJi/mGytefg0YFs3qKNU4hFqDLDn+Tg==
-X-Received: by 2002:a05:6402:653:b0:435:5aaf:20e7 with SMTP id u19-20020a056402065300b004355aaf20e7mr24046225edx.125.1656429874732;
-        Tue, 28 Jun 2022 08:24:34 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id a21-20020a056402169500b004357063bf60sm9787470edv.41.2022.06.28.08.24.30
+        bh=wVoUetZ5S/GqO2CHeSuZD5HjqLM10h5uZxs1HR13hfg=;
+        b=hllCHjeYk/PZ7+/WyqC1MfqxXQ9ewqwhA6ZXUBM+25j5duk2wN0pXwb2EveaHJ2ALI
+         MZm08Rq7GqNUcBN31vHPEbeAYcHATm3d1p58cgIfRlfB2hLWrYf8lcyPSnq3KSfXrqcR
+         rHBlanjcYDd+gImPiIdivVXXuUeNj8WGzNOQBte+qLxcUQlIi67ESRoblUzaQMMHq4iW
+         pqvSJLzlK0LSd0p34TpDNt5hgppfws8LRgrJP+GhfZ+OXfY0IkOyYAFZU4yfGGchZtnf
+         yD2BiupWhxVhEsnRy/lrtOiMeCO0DGNMLFzaLETZyR35GcfUupSKp14Jbtyurt2u5I8y
+         m2uw==
+X-Gm-Message-State: AJIora8vjwLcQRxm33+vSw9jjsDpnCCfPLP7wceI4R2UhvDR/3WMiSke
+        ZozJohOZiabnmUOMnYumBA==
+X-Google-Smtp-Source: AGRyM1u30z6rjSQP/yfjddK3j5eb9UHQa30g9hrzhKsueFxERdQlxns3zeN/rJtosCIDlaE+/J+6ew==
+X-Received: by 2002:a05:6638:14c3:b0:331:8153:e5b with SMTP id l3-20020a05663814c300b0033181530e5bmr11835574jak.114.1656429965253;
+        Tue, 28 Jun 2022 08:26:05 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id y20-20020a6bd814000000b006751347e61bsm5482552iob.27.2022.06.28.08.26.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 08:24:31 -0700 (PDT)
-Date:   Tue, 28 Jun 2022 18:24:29 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
+        Tue, 28 Jun 2022 08:26:04 -0700 (PDT)
+Received: (nullmailer pid 491422 invoked by uid 1000);
+        Tue, 28 Jun 2022 15:26:01 -0000
+Date:   Tue, 28 Jun 2022 09:26:01 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Conor Dooley <mail@conchuod.ie>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        kernel-team@android.com, linux-acpi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, Andrei Damian <A.Damian@nxp.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 13/17] driver core: Use device's fwnode to check if it
- is waiting for suppliers
-Message-ID: <YrsdLQrOtg1qdaoE@linaro.org>
-References: <20201121020232.908850-1-saravanak@google.com>
- <20201121020232.908850-14-saravanak@google.com>
- <YrmXpcU1NTYW6T/n@linaro.org>
- <CAGETcx8dwNcZFFzhhv=kMhpuQnyaEekrycpAmGusD-s+qfvA9g@mail.gmail.com>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Niklas Cassel <niklas.cassel@wdc.com>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        Heng Sia <jee.heng.sia@intel.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 04/16] spi: dt-bindings: dw-apb-ssi: update
+ spi-{r,t}x-bus-width
+Message-ID: <20220628152601.GA465684-robh@kernel.org>
+References: <20220627194003.2395484-1-mail@conchuod.ie>
+ <20220627194003.2395484-5-mail@conchuod.ie>
+ <20220627202149.624eu7w2gzw7jchd@mobilestation>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAGETcx8dwNcZFFzhhv=kMhpuQnyaEekrycpAmGusD-s+qfvA9g@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220627202149.624eu7w2gzw7jchd@mobilestation>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,207 +89,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-06-27 15:30:25, Saravana Kannan wrote:
-> On Mon, Jun 27, 2022 at 4:42 AM Abel Vesa <abel.vesa@linaro.org> wrote:
-> >
-> > On 20-11-20 18:02:28, Saravana Kannan wrote:
-> > > To check if a device is still waiting for its supplier devices to be
-> > > added, we used to check if the devices is in a global
-> > > waiting_for_suppliers list. Since the global list will be deleted in
-> > > subsequent patches, this patch stops using this check.
+On Mon, Jun 27, 2022 at 11:21:49PM +0300, Serge Semin wrote:
+> On Mon, Jun 27, 2022 at 08:39:52PM +0100, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> > 
+> > Most users of dw-apb-ssi use spi-{r,t}x-bus-width of 1, however the
+> > Canaan k210 is wired up for a width of 4.
+> > Quoting Serge:
+> > The modern DW APB SSI controllers of v.4.* and newer also support the
+> > enhanced SPI Modes too (Dual, Quad and Octal). Since the IP-core
+> > version is auto-detected at run-time there is no way to create a
+> > DT-schema correctly constraining the Rx/Tx SPI bus widths.
+> > /endquote
+> > 
+> > As such, drop the restriction on only supporting a bus width of 1.
+> > 
+> > Link: https://lore.kernel.org/all/20220620205654.g7fyipwytbww5757@mobilestation/
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> > Serge, I dropped your R-b when I swapped to the default
+> > property since it changed the enum.
+> > ---
+> >  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 6 ------
+> >  1 file changed, 6 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> > index e25d44c218f2..0a43d6e0ef91 100644
+> > --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> > +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> > @@ -143,12 +143,6 @@ patternProperties:
+> >          minimum: 0
+> >          maximum: 3
+> >  
+> 
+> > -      spi-rx-bus-width:
+> > -        const: 1
+> > -
+> > -      spi-tx-bus-width:
+> > -        const: 1
+> > -
+> 
+> My comment was:
+> > > > You can just use a more relaxed constraint "enum: [1 2 4 8]" here
 > > >
-> > > Instead, this patch uses a more device specific check. It checks if the
-> > > device's fwnode has any fwnode links that haven't been converted to
-> > > device links yet.
-> > >
-> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > ---
-> > >  drivers/base/core.c | 18 ++++++++----------
-> > >  1 file changed, 8 insertions(+), 10 deletions(-)
-> > >
-> > > diff --git a/drivers/base/core.c b/drivers/base/core.c
-> > > index 395dece1c83a..1873cecb0cc4 100644
-> > > --- a/drivers/base/core.c
-> > > +++ b/drivers/base/core.c
-> > > @@ -51,6 +51,7 @@ static DEFINE_MUTEX(wfs_lock);
-> > >  static LIST_HEAD(deferred_sync);
-> > >  static unsigned int defer_sync_state_count = 1;
-> > >  static DEFINE_MUTEX(fwnode_link_lock);
-> > > +static bool fw_devlink_is_permissive(void);
-> > >
-> > >  /**
-> > >   * fwnode_link_add - Create a link between two fwnode_handles.
-> > > @@ -995,13 +996,13 @@ int device_links_check_suppliers(struct device *dev)
-> > >        * Device waiting for supplier to become available is not allowed to
-> > >        * probe.
-> > >        */
-> > > -     mutex_lock(&wfs_lock);
-> > > -     if (!list_empty(&dev->links.needs_suppliers) &&
-> > > -         dev->links.need_for_probe) {
-> > > -             mutex_unlock(&wfs_lock);
-> > > +     mutex_lock(&fwnode_link_lock);
-> > > +     if (dev->fwnode && !list_empty(&dev->fwnode->suppliers) &&
-> > > +         !fw_devlink_is_permissive()) {
-> > > +             mutex_unlock(&fwnode_link_lock);
-> >
-> > Hi Saravana,
-> >
-> > First of, sorry for going back to this.
->
-> No worries at all. If there's an issue with fw_devlink, I want to have it fixed.
->
-> > There is a scenario where this check will not work and probably should
-> > work. It goes like this:
-> >
-> > A clock controller is not allowed to probe because it uses a clock from a child device of a
-> > consumer, like so:
-> >
-> >         dispcc: clock-controller@af00000 {
-> >                 clocks = <&dsi0_phy 0>;
-> >         };
-> >
-> >         mdss: mdss@ae00000 {
-> >                 clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
-> >
-> >                 dsi0_phy: dsi-phy@ae94400 {
-> >                         clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> >                 };
-> >         };
-> >
-> > This is a real scenario actually, but I stripped it down to the essentials.
->
-> I'm well aware of this scenario and explicitly wrote code to address this :)
->
+> > > 8 too? sure.
+> Then Rob said:
+> > Then no constraints needed because the common definition already has
+> > this presumably.
+> 
+> IMO preserving the device-specific constraints even if they match the
+> generic ones has some maintainability benefits. What if you get to
+> discover a new HW which supports Hexal mode? 
 
-Actually, the problem seems to be when you have two dsi phys.
-Like so:
+x16? Wouldn't we be back to parallel NOR and the problems with parallel 
+buses?
 
-         dispcc: clock-controller@af00000 {
-                 clocks = <&dsi0_phy 0>;
-                 clocks = <&dsi1_phy 0>;
-         };
+> Then you would have
+> needed to update the common schema constraints. But that would have
+> caused permitting the unsupported bus-mode for all the schemas, which
+> isn't correct. So as I see it the explicit bus-width enumeration would
+> be ok to have here. But I'll leave it for Rob to make a final
+> decision.
 
-         mdss: mdss@ae00000 {
-                 clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
+Assuming a new width does appear, it's just a matter of time before the 
+DW block has a new rev supporting it too, so there's 2 places to update. 
+Also, a given platform may pinout less than the block supports, so you 
+can't ever be 100% sure an out of range value is in a DT.
 
-                 dsi0_phy: dsi-phy@ae94400 {
-                         clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-                 };
+But either way is okay with me. If you do keep constraints, you only 
+need 'maximum: 8'.
 
-		 dsi1_phy: dsi-phy@ae64400 {
-                         clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-                 };
-         };
+Acked-by: Rob Herring <robh@kernel.org>
 
-And from what I've seen happening so far is that the device_is_dependent
-check for the parent of the supplier (if it also a consumer) seems to return
-false on second pass of the same link due to the DL_FLAG_SYNC_STATE_ONLY
-being set this time around.
-
-> See this comment in fw_devlink_create_devlink()
->
->        /*
->          * If we can't find the supplier device from its fwnode, it might be
->          * due to a cyclic dependency between fwnodes. Some of these cycles can
->          * be broken by applying logic. Check for these types of cycles and
->          * break them so that devices in the cycle probe properly.
->          *
->          * If the supplier's parent is dependent on the consumer, then the
->          * consumer and supplier have a cyclic dependency. Since fw_devlink
->          * can't tell which of the inferred dependencies are incorrect, don't
->          * enforce probe ordering between any of the devices in this cyclic
->          * dependency. Do this by relaxing all the fw_devlink device links in
->          * this cycle and by treating the fwnode link between the consumer and
->          * the supplier as an invalid dependency.
->          */
->
-
-So when this thing you mentioned above is happening for the second dsi
-phy (order doesn't matter), since the dsi phy itself cannot be found,
-the device_is_dependent is run for the same link: dispcc -> mdss
-(supplier -> consumer), but again, since it has the
-DL_FLAG_SYNC_STATE_ONLY this time around, it will skip that specific
-link.
-
-> Applying this comment to your example, dispcc is the "consumer",
-> dsi0_phy is the "supplier" and mdss is the "supplier's parent".
->
-> And because we can't guarantee the order of addition of these top
-> level devices is why I also have this piece of recursive call inside
-> __fw_devlink_link_to_suppliers():
->
->                 /*
->                  * If a device link was successfully created to a supplier, we
->                  * now need to try and link the supplier to all its suppliers.
->                  *
->                  * This is needed to detect and delete false dependencies in
->                  * fwnode links that haven't been converted to a device link
->                  * yet. See comments in fw_devlink_create_devlink() for more
->                  * details on the false dependency.
->                  *
->                  * Without deleting these false dependencies, some devices will
->                  * never probe because they'll keep waiting for their false
->                  * dependency fwnode links to be converted to device links.
->                  */
->                 sup_dev = get_dev_from_fwnode(sup);
->                 __fw_devlink_link_to_suppliers(sup_dev, sup_dev->fwnode);
->                 put_device(sup_dev);
->
-> So when mdss gets added, we'll link it to dispcc and then check if
-> dispcc has any suppliers it needs to link to. And that's when the
-> logic will catch the cycle and fix it.
->
-> Can you tell me why this wouldn't unblock the probing of dispcc? Are
-> you actually hitting this on a device? If so, can you please check why
-> this logic isn't sufficient to catch and undo the cycle?
->
-
-This is happening on Qualcomm SDM845 with Linus's tree.
-
-> Thanks,
-> Saravana
->
-> > So, the dsi0_phy will be "device_add'ed" (through of_platform_populate) by the mdss probe.
-> > The mdss will probe defer waiting for the DISP_CC_MDSS_MDP_CLK, while
-> > the dispcc will probe defer waiting for the dsi0_phy (supplier).
-> >
-> > Basically, this 'supplier availability check' does not work when a supplier might
-> > be populated by a consumer of the device that is currently trying to probe.
-> >
-> >
-> > Abel
-> >
-> >
-> > >               return -EPROBE_DEFER;
-> > >       }
-> > > -     mutex_unlock(&wfs_lock);
-> > > +     mutex_unlock(&fwnode_link_lock);
-> > >
-> > >       device_links_write_lock();
-> > >
-> > > @@ -1167,10 +1168,7 @@ static ssize_t waiting_for_supplier_show(struct device *dev,
-> > >       bool val;
-> > >
-> > >       device_lock(dev);
-> > > -     mutex_lock(&wfs_lock);
-> > > -     val = !list_empty(&dev->links.needs_suppliers)
-> > > -           && dev->links.need_for_probe;
-> > > -     mutex_unlock(&wfs_lock);
-> > > +     val = !list_empty(&dev->fwnode->suppliers);
-> > >       device_unlock(dev);
-> > >       return sysfs_emit(buf, "%u\n", val);
-> > >  }
-> > > @@ -2202,7 +2200,7 @@ static int device_add_attrs(struct device *dev)
-> > >                       goto err_remove_dev_groups;
-> > >       }
-> > >
-> > > -     if (fw_devlink_flags && !fw_devlink_is_permissive()) {
-> > > +     if (fw_devlink_flags && !fw_devlink_is_permissive() && dev->fwnode) {
-> > >               error = device_create_file(dev, &dev_attr_waiting_for_supplier);
-> > >               if (error)
-> > >                       goto err_remove_dev_online;
-> > > --
-> > > 2.29.2.454.gaff20da3a2-goog
-> > >
-> > >
->
+Rob
