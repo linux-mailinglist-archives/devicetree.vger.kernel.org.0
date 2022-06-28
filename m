@@ -2,123 +2,367 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB85C55D838
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:19:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46C3455D35B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:12:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231248AbiF1Ho7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 03:44:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43450 "EHLO
+        id S231865AbiF1HqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 03:46:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242502AbiF1Ho5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 03:44:57 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E255C5FA4
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 00:44:56 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id b26so3963496wrc.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 00:44:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=5H1mguhlGlNE+GWEBFzmUzu3jZEIPkPLdTRT9w2uOKo=;
-        b=BJgrfuvwpW56jMN72obAVA/0xnNs8+8gUvT0DGMobWm10k01IUnnkXIlHvq8hitxjq
-         4p7H1zi628KcAUuDBSoFJf/gBFOIsbXRc6w4hXnWfGG0V2Cx4TdQeRM3ydj1mc9RT7I7
-         9tvj9qOPSI7H+ocEyWnpH18gizXlg3Yl1bVKV//jXuK7hKRpnUZuWDK2X+NybqXBNyCK
-         SHH9b8JRXd6JlJRlV3y6dV471yC8KdAYJSJ0Sww9xTYo39DffPofokP8ICy4XA6Z4NHZ
-         K+a1atmF1UVunHn2fZw4ELyICSxp85SJteX7Rpc6Impf6SBZt93wcvySrxtf0yddZ5c2
-         mfZA==
+        with ESMTP id S231815AbiF1HqC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 03:46:02 -0400
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33B50393;
+        Tue, 28 Jun 2022 00:46:01 -0700 (PDT)
+Received: by mail-qv1-f45.google.com with SMTP id 59so18887206qvb.3;
+        Tue, 28 Jun 2022 00:46:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=5H1mguhlGlNE+GWEBFzmUzu3jZEIPkPLdTRT9w2uOKo=;
-        b=12TApb9NlvNoqa1C8fTh5rg1Tt9eYwUxu+4VBeKwLM2Qqo11ZfwDHfSsoCl/EZRZgW
-         RigH4WPGR5+0z3xToh7xeIZfnqthv47W/KSltSdQQzyLLOz0M0m8JEi/eH2AqaJI+qn4
-         HYQdS2dsPqh1JmPufx3fhNjnI7/TCtv8z/Lw2vffT3pA8mf8tBZyZKycwaY7EhOxy5uE
-         8kggr+8jVSvm8fd65q3zoUhTxoDnIXq3AGIFPrqpdLSKhCcoOGsyP4DRZCJs+c2PKW4T
-         V+Uy4ebO3Ypl/2ZQ3o4YWcw0IrNZxyJIfqtGa3O49c/HaSJe4Tf+CQF01S9Yr452zCp2
-         xTLw==
-X-Gm-Message-State: AJIora8xqs22arH78IEi5pXj7PQH8QF6r6Ei9R90QyJtwgt/DO9fe+u1
-        b/cbMKToNeflqv08vkuoZ119Mw==
-X-Google-Smtp-Source: AGRyM1s7Qvx379UP+GqEp+cBmTCKDD9iL5YJ3vtgweBBsYExkbzbeVr/D3R6itSfsxK0g5/0q+qMmA==
-X-Received: by 2002:a5d:6487:0:b0:21b:983c:5508 with SMTP id o7-20020a5d6487000000b0021b983c5508mr15829304wri.185.1656402295454;
-        Tue, 28 Jun 2022 00:44:55 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id k31-20020a05600c1c9f00b0039c5642e430sm16508027wms.20.2022.06.28.00.44.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 00:44:54 -0700 (PDT)
-Date:   Tue, 28 Jun 2022 08:44:52 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Melissa Wen <melissa.srw@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: Re: [PATCH V4 06/11] mfd: bcm2835-pm: Use 'reg-names' to get
- resources
-Message-ID: <YrqxdAgCKRL3tCTg@google.com>
-References: <20220625113619.15944-1-stefan.wahren@i2se.com>
- <20220625113619.15944-7-stefan.wahren@i2se.com>
- <YrnZUqQsKVVGHUGh@google.com>
- <7ef987c7-1d99-bd63-f7fa-66bd12811716@gmail.com>
- <4607b996-51ac-0b3f-e046-5611774362ca@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kLWiFh12gh95e64oYxNRI8b+MQAMezyYlf+qfYtWf4Y=;
+        b=Ee3sqL4ujywC+gZRF3RW50O4yu5R7tw7kL0Lfiqwf2ILBO0JnVjkut2c+d/viEAKse
+         T7hZrbKohzxKzY8TGF1pJQxGHfK763Row/gGG9dOspvmM/L2gitOAoJq2LgwMGXVmRdO
+         M5nu80uJ4JwLMJQi7DfuH+oxvJL0BUZ1UQQU28amBF50P5WjDfXyNp/Sw6tuzEhmdMrX
+         m1fcGKvl1fiYcwIL8xQdaX2vU27wdJBcUyUjOYubeWu2T9y+/WzY68GVEVMxWsIbU6J8
+         VCQJgUenS2FglfMvBHRZzH4qCIn/um8ZyAbWUWUjLf+64XjY1g2WrWdhZOgbH2GgBbbP
+         FwMg==
+X-Gm-Message-State: AJIora/qynyq0S+D7zjChdUuwujU6IY9UyE9T8UPlIPXYcaZPA7YVGNH
+        pRFclj5O35TP5pvmScaHCAGyIdoigS6mxQ==
+X-Google-Smtp-Source: AGRyM1sOsj9lzS4wioxPz4ggmGIZYBawM3JOq7LzIxBt1+879UiVuMmyL4f9vnasOBJN4JtXRjDf6Q==
+X-Received: by 2002:ad4:57c6:0:b0:470:2a33:46df with SMTP id y6-20020ad457c6000000b004702a3346dfmr1187526qvx.35.1656402360179;
+        Tue, 28 Jun 2022 00:46:00 -0700 (PDT)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id n1-20020a05620a294100b006aedbb30947sm1173112qkp.122.2022.06.28.00.45.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jun 2022 00:45:58 -0700 (PDT)
+Received: by mail-yb1-f178.google.com with SMTP id q132so20769754ybg.10;
+        Tue, 28 Jun 2022 00:45:58 -0700 (PDT)
+X-Received: by 2002:a05:6902:905:b0:64a:2089:f487 with SMTP id
+ bu5-20020a056902090500b0064a2089f487mr18814093ybb.202.1656402357916; Tue, 28
+ Jun 2022 00:45:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4607b996-51ac-0b3f-e046-5611774362ca@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220627122417.809615-1-yoshihiro.shimoda.uh@renesas.com> <20220627122417.809615-10-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220627122417.809615-10-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 28 Jun 2022 09:45:45 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWKzjzRi_TmGAobPXu_Dk8dKaQeeZkssR_uk6jT4Hic5Q@mail.gmail.com>
+Message-ID: <CAMuHMdWKzjzRi_TmGAobPXu_Dk8dKaQeeZkssR_uk6jT4Hic5Q@mail.gmail.com>
+Subject: Re: [PATCH v2 09/13] PCI: renesas: Add R-Car Gen4 PCIe Host support
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Jun 2022, Florian Fainelli wrote:
+Hi Shimoda-san,
 
-> 
-> 
-> On 6/27/2022 9:28 AM, Florian Fainelli wrote:
-> > On 6/27/22 09:22, Lee Jones wrote:
-> > > On Sat, 25 Jun 2022, Stefan Wahren wrote:
-> > > 
-> > > > From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> > > > 
-> > > > If available in firmware, find resources by their 'reg-names' position
-> > > > instead of relying on hardcoded offsets. Care is taken to support old
-> > > > firmware nonetheless.
-> > > > 
-> > > > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> > > > Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> > > > ---
-> > > >   drivers/mfd/bcm2835-pm.c | 61 +++++++++++++++++++++++++++-------------
-> > > >   1 file changed, 41 insertions(+), 20 deletions(-)
-> > > 
-> > > Anything preventing me from applying the two MFD patches?
-> > > 
-> > 
-> > They are self contained and cater to being backward/forward compatible
-> > with Device Tree changes, so not really no. If that is how you want it,
-> > please proceed in taking the 2 MFD patches and I will apply the rest.
-> 
-> Actually there is a dependency between patch 10 which uses pm->rpivid_asb
-> and patch 7 which introduces it. I can give you my acked-by for patches 8-11
-> so you can take them via the MFD tree if you would like.
+On Mon, Jun 27, 2022 at 2:24 PM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Add R-Car Gen4 PCIe Host support. This controller is based on
+> Synopsys DesignWare PCIe.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-That works too.
+Thanks for your patch!
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> --- /dev/null
+> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4-host.c
+> @@ -0,0 +1,205 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * PCIe host controller driver for Renesas R-Car Gen4 Series SoCs
+> + * Copyright (C) 2022 Renesas Electronics Corporation
+> + */
+> +
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pci.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include "pcie-rcar-gen4.h"
+> +#include "pcie-designware.h"
+> +
+> +static int rcar_gen4_pcie_host_init(struct pcie_port *pp)
+> +{
+> +       struct dw_pcie *dw = to_dw_pcie_from_pp(pp);
+> +       struct rcar_gen4_pcie *rcar = to_rcar_gen4_pcie(dw);
+> +       int ret;
+> +       u32 val;
+> +
+> +       rcar_gen4_pcie_set_device_type(rcar, true, dw->num_lanes);
+> +
+> +       dw_pcie_dbi_ro_wr_en(dw);
+> +
+> +       /* Enable L1 Substates */
+> +       val = dw_pcie_readl_dbi(dw, L1PSCAP(PCI_L1SS_CTL1));
+> +       val &= ~PCI_L1SS_CTL1_L1SS_MASK;
+> +       val |= PCI_L1SS_CTL1_PCIPM_L1_2 | PCI_L1SS_CTL1_PCIPM_L1_1 |
+> +              PCI_L1SS_CTL1_ASPM_L1_2 | PCI_L1SS_CTL1_ASPM_L1_1;
+> +       dw_pcie_writel_dbi(dw, L1PSCAP(PCI_L1SS_CTL1), val);
+> +
+> +       rcar_gen4_pcie_disable_bar(dw, BAR0MASKF);
+> +       rcar_gen4_pcie_disable_bar(dw, BAR1MASKF);
+> +
+> +       /* Set Root Control */
+> +       val = dw_pcie_readl_dbi(dw, EXPCAP(PCI_EXP_RTCTL));
+> +       val |= PCI_EXP_RTCTL_SECEE | PCI_EXP_RTCTL_SENFEE |
+> +              PCI_EXP_RTCTL_SEFEE | PCI_EXP_RTCTL_PMEIE |
+> +              PCI_EXP_RTCTL_CRSSVE;
+> +       dw_pcie_writel_dbi(dw, EXPCAP(PCI_EXP_RTCTL), val);
+> +
+> +       /* Set Interrupt Disable, SERR# Enable, Parity Error Response */
+> +       val = dw_pcie_readl_dbi(dw, PCI_COMMAND);
+> +       val |= PCI_COMMAND_PARITY | PCI_COMMAND_SERR |
+> +              PCI_COMMAND_INTX_DISABLE;
+> +       dw_pcie_writel_dbi(dw, PCI_COMMAND, val);
+> +
+> +       /* Enable SERR */
+> +       val = dw_pcie_readb_dbi(dw, PCI_BRIDGE_CONTROL);
+> +       val |= PCI_BRIDGE_CTL_SERR;
+> +       dw_pcie_writeb_dbi(dw, PCI_BRIDGE_CONTROL, val);
+> +
+> +       /* Device control */
+> +       val = dw_pcie_readl_dbi(dw, EXPCAP(PCI_EXP_DEVCTL));
+> +       val |= PCI_EXP_DEVCTL_CERE | PCI_EXP_DEVCTL_NFERE |
+> +              PCI_EXP_DEVCTL_FERE | PCI_EXP_DEVCTL_URRE;
+> +       dw_pcie_writel_dbi(dw, EXPCAP(PCI_EXP_DEVCTL), val);
+> +
+> +       dw_pcie_dbi_ro_wr_dis(dw);
+> +
+> +       if (IS_ENABLED(CONFIG_PCI_MSI)) {
+> +               /* Enable MSI interrupt signal */
+> +               val = rcar_gen4_pcie_readl(rcar, PCIEINTSTS0EN);
+> +               val |= MSI_CTRL_INT;
+> +               rcar_gen4_pcie_writel(rcar, PCIEINTSTS0EN, val);
+> +       }
+> +
+> +       dw_pcie_setup_rc(pp);
+> +
+> +       dw_pcie_dbi_ro_wr_en(dw);
+> +       rcar_gen4_pcie_set_max_link_width(dw, dw->num_lanes);
+> +       dw_pcie_dbi_ro_wr_dis(dw);
+> +
+> +       if (!dw_pcie_link_up(dw)) {
+> +               ret = dw->ops->start_link(dw);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       /* Ignore errors, the link may come up later */
+> +       if (dw_pcie_wait_for_link(dw))
+> +               dev_info(dw->dev, "PCIe link down\n");
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct dw_pcie_host_ops rcar_gen4_pcie_host_ops = {
+> +       .host_init = rcar_gen4_pcie_host_init,
+> +};
+> +
+> +static int rcar_gen4_add_pcie_port(struct rcar_gen4_pcie *rcar,
+> +                                  struct platform_device *pdev)
+> +{
+> +       struct dw_pcie *dw = &rcar->dw;
+> +       struct pcie_port *pp = &dw->pp;
+> +       int ret;
+> +
+> +       if (IS_ENABLED(CONFIG_PCI_MSI)) {
+> +               pp->msi_irq = platform_get_irq_byname(pdev, "others");
+> +               if (pp->msi_irq < 0)
+> +                       return pp->msi_irq;
+> +       }
+> +
+> +       pp->ops = &rcar_gen4_pcie_host_ops;
+> +
+> +       ret = dw_pcie_host_init(pp);
+> +       if (ret) {
+> +               dev_err(&pdev->dev, "Failed to initialize host\n");
+> +               return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static void rcar_gen4_remove_pcie_port(struct rcar_gen4_pcie *rcar)
+> +{
+> +       dw_pcie_host_deinit(&rcar->dw.pp);
+> +}
+> +
+> +static int rcar_gen4_pcie_get_resources(struct rcar_gen4_pcie *rcar,
+> +                                       struct platform_device *pdev)
+> +{
+> +       struct dw_pcie *dw = &rcar->dw;
+> +
+> +       /* Renesas-specific registers */
+> +       rcar->base = devm_platform_ioremap_resource_byname(pdev, "app");
+> +       if (IS_ERR(rcar->base))
+> +               return PTR_ERR(rcar->base);
+> +
+> +       return rcar_gen4_pcie_devm_reset_get(rcar, dw->dev);
+> +}
+> +
+> +static int rcar_gen4_pcie_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct rcar_gen4_pcie *rcar;
+> +       int err;
+> +
+> +       rcar = rcar_gen4_pcie_devm_alloc(dev);
+> +       if (!rcar)
+> +               return -ENOMEM;
+> +
+> +       err = rcar_gen4_pcie_pm_runtime_enable(dev);
+> +       if (err < 0) {
+> +               dev_err(dev, "pm_runtime_get_sync failed\n");
+> +               return err;
+> +       }
+> +
+> +       err = rcar_gen4_pcie_get_resources(rcar, pdev);
+> +       if (err < 0) {
+> +               dev_err(dev, "failed to request resource: %d\n", err);
+> +               goto err_pm_put;
+> +       }
+> +
+> +       platform_set_drvdata(pdev, rcar);
+> +
+> +       err = rcar_gen4_pcie_prepare(rcar);
+> +       if (err < 0)
+> +               goto err_pm_put;
+> +
+> +       err = rcar_gen4_add_pcie_port(rcar, pdev);
+> +       if (err < 0)
+> +               goto err_host_disable;
+> +
+> +       return 0;
+> +
+> +err_host_disable:
+> +       rcar_gen4_pcie_unprepare(rcar);
+> +
+> +err_pm_put:
+> +       rcar_gen4_pcie_pm_runtime_disable(dev);
+> +
+> +       return err;
+> +}
+> +
+> +static int rcar_gen4_pcie_remove(struct platform_device *pdev)
+> +{
+> +       struct rcar_gen4_pcie *rcar = platform_get_drvdata(pdev);
+> +
+> +       rcar_gen4_remove_pcie_port(rcar);
+> +       rcar_gen4_pcie_unprepare(rcar);
+> +       rcar_gen4_pcie_pm_runtime_disable(&pdev->dev);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id rcar_gen4_pcie_of_match[] = {
+> +       { .compatible = "renesas,rcar-gen4-pcie", },
+> +       {},
+> +};
+> +
+> +static struct platform_driver rcar_gen4_pcie_driver = {
+> +       .driver = {
+> +               .name = "pcie-rcar-gen4",
+> +               .of_match_table = rcar_gen4_pcie_of_match,
+> +       },
+> +       .probe = rcar_gen4_pcie_probe,
+> +       .remove = rcar_gen4_pcie_remove,
+> +};
+> +module_platform_driver(rcar_gen4_pcie_driver);
+> +
+> +MODULE_DESCRIPTION("Renesas R-Car Gen4 PCIe host controller driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/pci/controller/dwc/pcie-rcar-gen4.c b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> new file mode 100644
+> index 000000000000..fa9588ed75e0
+> --- /dev/null
+> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4.c
+> @@ -0,0 +1,172 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * PCIe host/endpoint controller driver for Renesas R-Car Gen4 Series SoCs
+> + * Copyright (C) 2022 Renesas Electronics Corporation
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pci.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
+> +
+> +#include "pcie-rcar-gen4.h"
+> +#include "pcie-designware.h"
+> +
+> +/* Renesas-specific */
+> +#define PCIERSTCTRL1           0x0014
+> +#define  APP_HOLD_PHY_RST      BIT(16)
+> +#define  APP_LTSSM_ENABLE      BIT(0)
+> +
+> +#define DWC_VERSION            0x520a
+> +
+> +u32 rcar_gen4_pcie_readl(struct rcar_gen4_pcie *rcar, u32 reg)
+> +{
+> +       return readl(rcar->base + reg);
+> +}
+> +
+> +void rcar_gen4_pcie_writel(struct rcar_gen4_pcie *rcar, u32 reg, u32 val)
+> +{
+> +       writel(val, rcar->base + reg);
+> +}
+
+Do you really need helper functions for this? You need to type less
+when open-coding.
+If you insist, please make them static inline in the header file.
+
+> +int rcar_gen4_pcie_prepare(struct rcar_gen4_pcie *rcar)
+> +{
+> +       return reset_control_deassert(rcar->rst);
+> +}
+> +
+> +void rcar_gen4_pcie_unprepare(struct rcar_gen4_pcie *rcar)
+> +{
+> +       reset_control_assert(rcar->rst);
+> +}
+
+Static inline in header file?
+
+> +
+> +int rcar_gen4_pcie_pm_runtime_enable(struct device *dev)
+> +{
+> +       pm_runtime_enable(dev);
+> +       return pm_runtime_get_sync(dev);
+
+Please use pm_runtime_resume_and_get() in new code.
+
+> +}
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
