@@ -2,192 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A912C55D2C4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:11:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E33155C98E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:57:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233083AbiF1D2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 23:28:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48324 "EHLO
+        id S229721AbiF1DQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 23:16:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231728AbiF1D2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 23:28:01 -0400
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDF1E2529E;
-        Mon, 27 Jun 2022 20:27:57 -0700 (PDT)
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 21E522025A6;
-        Tue, 28 Jun 2022 05:27:56 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B257B2025A1;
-        Tue, 28 Jun 2022 05:27:55 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id C1C101820F45;
-        Tue, 28 Jun 2022 11:27:54 +0800 (+08)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     shengjiu.wang@gmail.com
-Subject: [PATCH v3] ASoC: dt-bindings: fsl,micfil: Convert format to json-schema
-Date:   Tue, 28 Jun 2022 11:13:25 +0800
-Message-Id: <1656386005-29376-1-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229711AbiF1DQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 23:16:27 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 638391B78F
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 20:16:26 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id n10so9927736plp.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 20:16:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=SLNRSXyYRsd6aNvQEIS7NIF4Za1XnoeqJ9TKbdyNnf4=;
+        b=XJvzRYwMdiDND7qoICsnOKpYPlIazqF8Z6VkC96n9ESn6x2ryv8W2LqE4vmkHqMNlV
+         IA7YczcAhdBwJrL0PpWdpWkqODlWtXPK9V30uuEpMwQE+SeIvnOtZeA93VzvLE0lvK9m
+         8/6nAUW9Jrfo3jWa5fi17vk8zexTuGLPG1+5LoX3QQzCEQM0KSvJj/Ktl/6BYG2B4fQl
+         DDNrz3vvNroqRxAFtzmCJ34A+sVpLlpCnOyc1O9gVVQK2xRCTeGPT8ZIcj1tgkYuv4Lg
+         8XTZo2+cIXf+uN5SnItN/DNVOJgC4WYpmOXGjcUa8tGs666ojxBVXqJIKHTKaQEsC2qg
+         33Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=SLNRSXyYRsd6aNvQEIS7NIF4Za1XnoeqJ9TKbdyNnf4=;
+        b=dUL/ylMYYRMOkpYtnoMYYCIjj5s3HJk47Q3+h4lWr7kV2R12a3K58yV4wZ2uGoDRIM
+         ngHZRyqAl7EdYyAtPuk3C5x6irPz5YHEJnJI6u1AicBgXQ645SXMdzprLiieeqLky7LK
+         cccTln+pRvGxLKf3HqOYfb0Wht5WSgw49/Vx24wLQt5da99Xbf94ZgaxjO9umPvAUHr3
+         8hbQ8a7qHiPUe0VJ0OKzgklA9sAmGi3yqTqJnOgsqekpXKG37XFUfzfnOFbBspkAMPPm
+         Tk4DwNC/jcFYJBXVtGDgu/YbwzroCnRqAg15QAQfJ4zJclT0Pq+0zHYs3kJTLnnZE8Sr
+         qE4Q==
+X-Gm-Message-State: AJIora8vV/+lEojWKz7xzsyE70XM61uNcIFOE45eOehVjLLNFCnYOIUk
+        2BwCiHnfCzoZtq07anRHFvm7Cfn/p5wgqZfOYg8=
+X-Google-Smtp-Source: AGRyM1sdXJ781HlCu07kSqKoo2SbdHHRlPmmCwV9QtVjaaVRatOAWgynta+ZCJgR+ZjLzHOf4AMXAXDFq39Htwdyepo=
+X-Received: by 2002:a17:90a:f015:b0:1ec:80f4:59d0 with SMTP id
+ bt21-20020a17090af01500b001ec80f459d0mr18961643pjb.57.1656386185807; Mon, 27
+ Jun 2022 20:16:25 -0700 (PDT)
+MIME-Version: 1.0
+Sender: ndaglayajohn@gmail.com
+Received: by 2002:a05:6a10:844c:0:0:0:0 with HTTP; Mon, 27 Jun 2022 20:16:25
+ -0700 (PDT)
+From:   mrs marie brigitte prouvost <mariebrigitteprouvost332@gmail.com>
+Date:   Mon, 27 Jun 2022 20:16:25 -0700
+X-Google-Sender-Auth: 2Eiu7VozajCRrbbcK1gmKNFOzeo
+Message-ID: <CAKucxWXnx7EM5voGsftdOkRK_cFLCLEgwaJZQtPync6fwW0B5g@mail.gmail.com>
+Subject: Dear Old Friend
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=7.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLY,
+        HK_SCAM,LOTS_OF_MONEY,MONEY_FRAUD_3,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_HK_NAME_FM_MR_MRS,T_SCC_BODY_TEXT_LINE,UNDISC_MONEY
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:629 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5004]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [ndaglayajohn[at]gmail.com]
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  0.0 HK_SCAM No description available.
+        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  0.0 LOTS_OF_MONEY Huge... sums of money
+        *  1.0 FREEMAIL_REPLY From and body contain different freemails
+        *  2.5 UNDISC_MONEY Undisclosed recipients + money/fraud signs
+        *  2.9 MONEY_FRAUD_3 Lots of money and several fraud phrases
+X-Spam-Level: ******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the NXP MICFIL binding to DT schema format using json-schema.
+I know you may have forgotten me, I am very happy to inform you about
+my success in getting the money transferred under the co-operation of
+a new partner from Venezuela.
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
-changes in v3
-- fix the issue with make dtbs_check
+Presently I am in Venezuela with my partner for a better treatment; I
+told you that I rather die than to miss this opportunity. Meanwhile, I
+didn't forget your past efforts and attempts to assist me in
+transferring the funds despite that it failed us somehow.
 
-changes in v2
-- add decription of interrupts.
+Before my living Burkina Faso I left a complete sum of Nine Hundred
+THousand Dollars
+with the western union money transfer to transfer to you as your
+compensation.
 
- .../devicetree/bindings/sound/fsl,micfil.txt  | 33 -------
- .../devicetree/bindings/sound/fsl,micfil.yaml | 85 +++++++++++++++++++
- 2 files changed, 85 insertions(+), 33 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/fsl,micfil.txt
- create mode 100644 Documentation/devicetree/bindings/sound/fsl,micfil.yaml
+Now you are to contact the western union for them to commence on your
+payments, Ask them to send you the nine hundred thousand dollars which
+I kept for
+your compensation for all the past efforts and attempts to assist me
+in this transfer.
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,micfil.txt b/Documentation/devicetree/bindings/sound/fsl,micfil.txt
-deleted file mode 100644
-index 1ea05d4996c7..000000000000
---- a/Documentation/devicetree/bindings/sound/fsl,micfil.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--NXP MICFIL Digital Audio Interface (MICFIL).
--
--The MICFIL digital interface provides a 16-bit audio signal from a PDM
--microphone bitstream in a configurable output sampling rate.
--
--Required properties:
--
--  - compatible		: Compatible list, contains "fsl,imx8mm-micfil"
--			  or "fsl,imx8mp-micfil"
--
--  - reg			: Offset and length of the register set for the device.
--
--  - interrupts		: Contains the micfil interrupts.
--
--  - clocks		: Must contain an entry for each entry in clock-names.
--
--  - clock-names		: Must include the "ipg_clk" for register access and
--			  "ipg_clk_app" for internal micfil clock.
--
--  - dmas		: Generic dma devicetree binding as described in
--			  Documentation/devicetree/bindings/dma/dma.txt.
--
--Example:
--micfil: micfil@30080000 {
--	compatible = "fsl,imx8mm-micfil";
--	reg = <0x0 0x30080000 0x0 0x10000>;
--	interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
--		     <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
--	clocks = <&clk IMX8MM_CLK_PDM_IPG>,
--		 <&clk IMX8MM_CLK_PDM_ROOT>;
--	clock-names = "ipg_clk", "ipg_clk_app";
--	dmas = <&sdma2 24 26 0x80000000>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/fsl,micfil.yaml b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
-new file mode 100644
-index 000000000000..64d57758ee67
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/fsl,micfil.yaml
-@@ -0,0 +1,85 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/fsl,micfil.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP MICFIL Digital Audio Interface (MICFIL)
-+
-+maintainers:
-+  - Shengjiu Wang <shengjiu.wang@nxp.com>
-+
-+description: |
-+  The MICFIL digital interface provides a 16-bit or 24-bit audio signal
-+  from a PDM microphone bitstream in a configurable output sampling rate.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,imx8mm-micfil
-+      - fsl,imx8mp-micfil
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Digital Microphone interface interrupt
-+      - description: Digital Microphone interface error interrupt
-+      - description: voice activity detector event interrupt
-+      - description: voice activity detector error interrupt
-+
-+  dmas:
-+    items:
-+      - description: DMA controller phandle and request line for RX
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+
-+  clocks:
-+    items:
-+      - description: The ipg clock for register access
-+      - description: internal micfil clock
-+      - description: PLL clock source for 8kHz series
-+      - description: PLL clock source for 11kHz series
-+      - description: External clock 3
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: ipg_clk
-+      - const: ipg_clk_app
-+      - const: pll8k
-+      - const: pll11k
-+      - const: clkext3
-+    minItems: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - dmas
-+  - dma-names
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/imx8mm-clock.h>
-+    micfil: audio-controller@30080000 {
-+        compatible = "fsl,imx8mm-micfil";
-+        reg = <0x30080000 0x10000>;
-+        interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clk IMX8MM_CLK_PDM_IPG>,
-+                 <&clk IMX8MM_CLK_PDM_ROOT>;
-+        clock-names = "ipg_clk", "ipg_clk_app";
-+        dmas = <&sdma2 24 25 0>;
-+        dma-names = "rx";
-+    };
--- 
-2.17.1
+Here is the Western Union money Transfer section
 
+Email. westernunionmoneytransfer.WU@financier.com
+
+Remember I have already forward this instruction to them and they will
+be expecting you to contact them to commence on your transfers.
+
+Bye and stay bless.
+
+But never forget to inform me whenever you received all your money
+because I have paid for the transfer fee.
+
+Thanks and God bless you
+
+Sincerely
+mrs marie brigitte prouvost
