@@ -2,130 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A76155E90F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90C0D55E78A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:33:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345914AbiF1OLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 10:11:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51454 "EHLO
+        id S229612AbiF1OQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 10:16:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345950AbiF1OLn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 10:11:43 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DC2A36140
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 07:11:40 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id f190so7148082wma.5
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 07:11:40 -0700 (PDT)
+        with ESMTP id S1346331AbiF1OQo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 10:16:44 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C05FF2ED65
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 07:16:40 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-3177f4ce3e2so118546177b3.5
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 07:16:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=z6rZSThE7hjHMykxwD6G3CLunLDgT8dkRZWO7hFrMlc=;
-        b=E14bCHFAJHEKjAz3a2lSSKKAKgMH8nSUaKpBBhdBtLPYkBu0W31aQtkY03sC1zEkVc
-         FiDofXOMIBM6p89lrcTgMas9mDeuNZ2IdHzWfFBULzcC45sbYJVkKgvhrufDwGDkwSby
-         mbNRGEjJ2jkCWZBxE+1M5f+xMG1cZFeiJeiWGhuCZcZedEV9Yee4Kij8RkBC9PhrLfj0
-         jzR8t7i4zLmaqwwRlVbW5uh5yAr+iVTRaNP2FGEOa72yoXEOY1DDzcVlb03F08k3F7C/
-         MaAJ3rAMWURmtIcyWHe+yyTuzKWiOEq6IjUKpQCN+SFhgMUN4uNUHhdkVX6DFfwXzc+c
-         Wp2w==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=we5ZALKIcZuWUs35jjg9o55Ctsjy2HnxYxmPXSuiDyg=;
+        b=Eyd9FyAYXxniWyCJYJAkq2hVEGZtwL37/io0dfps5oXoGF9tQvN0UI0xhOQzqpcDR+
+         81ACSPLs6vR9gNEPPX6mzpEqhfkqcFtcXODLCvSZ052+43VrQ6YhTXiSRbXCyeik8rXe
+         0miraYk+TxbuFt4D+8hs+jR/K47yYaYDtR7B1p1kMFpoK5KNd539fnbJRsIpGggfdKlD
+         gfcytA/R9tSBaSCamjLMxfwiinGImTqJcKtssfwHZgiPZS/zn95H9omu8G9a/rvnouiW
+         9Lt/am7oME2JJgyri8zSnjm3Stqp2jqUtKBN3pK62Q23qVibf0OGiel/85TyZzDwmKwb
+         GbfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=z6rZSThE7hjHMykxwD6G3CLunLDgT8dkRZWO7hFrMlc=;
-        b=BBT+HYo9nFpJHyIyFpfyF/+hxn+GeB4ZYN7DTQGSlK1eCpNSl1An+JARU+QQhG++FR
-         HMhnh5o4SEpnjvPqbWTcxMh8qFpPDywWPDHY7MAQ2ottAf8R2+r+2O0mLQ+TDYBHTR9w
-         Bi+dQKZgzWwukL1oGj9zNm3Ej4CQxG4WGgVw2Z36n+R9BR8ralrCF4Pyk7FXKjT8i1RN
-         9qzc3rDtbY/kCbsgMVLcSASUOdhdV+zA6vozU7cUBl94nVOb+0AJ4Su3c12ebsnJRvQn
-         r8rpDugPsVki1d7JaGO2z+NiJeiRMBVkIeCkvc26aURSnIsbFNdWDFfDPRp0pRcNZpzl
-         /c6w==
-X-Gm-Message-State: AJIora9COIurISoxd9t05vBfGvKv3ox3wsKghyuDoYOEb8Wt00uvTAd3
-        y+wjnoH0k+Erk6aqoBd2mf2npw==
-X-Google-Smtp-Source: AGRyM1sYVVXgAazao0K/lpqse9gQZXQrTog4KvhzBzsiHswnBk9UIffH0I3WCPb3MN3iprzQZzmnFQ==
-X-Received: by 2002:a05:600c:34d0:b0:3a0:2c07:73ac with SMTP id d16-20020a05600c34d000b003a02c0773acmr27247171wmq.85.1656425498512;
-        Tue, 28 Jun 2022 07:11:38 -0700 (PDT)
-Received: from google.com (44.232.78.34.bc.googleusercontent.com. [34.78.232.44])
-        by smtp.gmail.com with ESMTPSA id ay5-20020a05600c1e0500b003a04e900552sm3796880wmb.1.2022.06.28.07.11.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 07:11:38 -0700 (PDT)
-Date:   Tue, 28 Jun 2022 14:11:36 +0000
-From:   Sebastian Ene <sebastianene@google.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>, qperret@google.com,
-        maz@kernel.org, linux-watchdog@vger.kernel.org, will@kernel.org,
-        vdonnefort@google.com
-Subject: Re: [PATCH v8 2/2] misc: Add a mechanism to detect stalls on guest
- vCPUs
-Message-ID: <YrsMGAVljIcypDl4@google.com>
-References: <20220627102810.1811311-1-sebastianene@google.com>
- <20220627102810.1811311-3-sebastianene@google.com>
- <b87a4407-29fd-4715-1394-ae6afaf4a192@roeck-us.net>
- <YrrP3NvAuxso0rzO@google.com>
- <194f5edc-5877-af3f-9aa1-be1e275ea304@roeck-us.net>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=we5ZALKIcZuWUs35jjg9o55Ctsjy2HnxYxmPXSuiDyg=;
+        b=h1mBS91115nb6QAQUEKWEFvRnx9KNsHVZiCF2jX9hnYkr1oTdG88Is2g4GdJHLdDSQ
+         kGM9DMlivMcSyBrV/awF1IkZNrNmatDpvnRJGmoBgRyoQTT9yB7godBpiYBc6AgLRMfM
+         PWkqOHd+gm29Hv9CrOaIRoqXr+tm/hBJTWzNIt6uSdijReIAnPOJBgCDZ+b+KhLh+3YW
+         UWn1XSptp6ETbJgih4srCpCgUkxLnMnKNkSwkKqLemcdTlOlV6kLJFwq/XHWS9sPr7oH
+         hir2ZlpjEiUR9UDDoYH09qHJu42f4DMKZilcr/fUVaDFq74T4y4fB5Ies+KFAknT1pag
+         dprQ==
+X-Gm-Message-State: AJIora+Grds4jM9q2ssriaaUc468Ut4dlkMAKk0WBfYILEdQClIysDv4
+        73O7cvp2TUqzHRDdc/FdNqVqMDwwZGS6D0taB6QYow==
+X-Google-Smtp-Source: AGRyM1tUYDLFiLuFmKGH4vxI5KGQ3ut80NYRMBi3vRrXwmdeTwR14llzPy5yY/ZHPhJ3bpF4NVMUrneTqSzU7ULR33w=
+X-Received: by 2002:a0d:e20a:0:b0:317:ce36:a3a0 with SMTP id
+ l10-20020a0de20a000000b00317ce36a3a0mr22477892ywe.448.1656425799830; Tue, 28
+ Jun 2022 07:16:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <194f5edc-5877-af3f-9aa1-be1e275ea304@roeck-us.net>
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220627173209.604400-1-nfraprado@collabora.com>
+In-Reply-To: <20220627173209.604400-1-nfraprado@collabora.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 28 Jun 2022 16:16:28 +0200
+Message-ID: <CACRpkdbqfH5jG7jZdvoGhNGqWPMBB+ntHgBCL-Od1Y9f9tiiHg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: mt8192: Add RSEL values to bias-pull-{up,down}
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 28, 2022 at 07:00:05AM -0700, Guenter Roeck wrote:
-> On 6/28/22 02:54, Sebastian Ene wrote:
-> [ ... ]
-> > > > +static struct platform_device *virt_dev;
-> > > > +
+On Mon, Jun 27, 2022 at 7:32 PM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
 
-Hi,
+> Commit fe44e4984018 ("pinctrl: mediatek: add rsel setting on mt8192")
+> added RSEL bias type definition for some pins on mt8192. In order to be
+> able to configure the bias on those pins, add the RSEL values in the
+> bias-pull-up and bias-pull-down properties in the binding.
+>
+> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
 
-> > > 
-> > > virt_dev is only used to call platform_set_drvdata() and platform_get_drvdata()
-> > > on it. Why not just have a static variable named vm_stall_detect ?
-> > > 
-> > 
-> > I think this should also work. I wanted to make use of the provided APIs
-> > like platform_set/platform_get.
-> > 
-> 
-> That doesn't mean such APIs should be used just to get used, though.
-> 
+Patch applied as uncontroversial and you obviously need this.
 
-I will remove these calls and keep it static.
-
-> > > > +
-> > > > +	vm_stall_detect = (struct vm_stall_detect_s __percpu *)
-> > > > +		platform_get_drvdata(virt_dev);
-> > > 
-> > > platform_get_drvdata() returns void *; typecast to it is unnecessary.
-> > > 
-> > > 
-> > 
-> > I needed this typecast because the variable is per-cpu and some
-> > compilers(eg. gcc for ARCH=h8300) complain if we don't specify this
-> > hint.
-> > 
-> Hmm, interesting. I didn't know that. We live and learn.
-> Though h8300 is gone now :-)
-
-I had some Intel robot complaining about this in my previous series(v5) and
-I fixed the warnings by adding these compiler hints.
-
-> 
-> Did you reply in private on purpose ?
-> 
-
-I misused my CC list but I will fix this in my reply. 
-
-> Thanks,
-> Guenter
-
-Thanks for the response,
-Seb
+Yours,
+Linus Walleij
