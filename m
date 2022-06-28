@@ -2,128 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E33155C98E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:57:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2D8355C576
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:51:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbiF1DQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 23:16:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38408 "EHLO
+        id S231153AbiF1DTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 23:19:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbiF1DQ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 23:16:27 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 638391B78F
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 20:16:26 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id n10so9927736plp.0
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 20:16:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=SLNRSXyYRsd6aNvQEIS7NIF4Za1XnoeqJ9TKbdyNnf4=;
-        b=XJvzRYwMdiDND7qoICsnOKpYPlIazqF8Z6VkC96n9ESn6x2ryv8W2LqE4vmkHqMNlV
-         IA7YczcAhdBwJrL0PpWdpWkqODlWtXPK9V30uuEpMwQE+SeIvnOtZeA93VzvLE0lvK9m
-         8/6nAUW9Jrfo3jWa5fi17vk8zexTuGLPG1+5LoX3QQzCEQM0KSvJj/Ktl/6BYG2B4fQl
-         DDNrz3vvNroqRxAFtzmCJ34A+sVpLlpCnOyc1O9gVVQK2xRCTeGPT8ZIcj1tgkYuv4Lg
-         8XTZo2+cIXf+uN5SnItN/DNVOJgC4WYpmOXGjcUa8tGs666ojxBVXqJIKHTKaQEsC2qg
-         33Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=SLNRSXyYRsd6aNvQEIS7NIF4Za1XnoeqJ9TKbdyNnf4=;
-        b=dUL/ylMYYRMOkpYtnoMYYCIjj5s3HJk47Q3+h4lWr7kV2R12a3K58yV4wZ2uGoDRIM
-         ngHZRyqAl7EdYyAtPuk3C5x6irPz5YHEJnJI6u1AicBgXQ645SXMdzprLiieeqLky7LK
-         cccTln+pRvGxLKf3HqOYfb0Wht5WSgw49/Vx24wLQt5da99Xbf94ZgaxjO9umPvAUHr3
-         8hbQ8a7qHiPUe0VJ0OKzgklA9sAmGi3yqTqJnOgsqekpXKG37XFUfzfnOFbBspkAMPPm
-         Tk4DwNC/jcFYJBXVtGDgu/YbwzroCnRqAg15QAQfJ4zJclT0Pq+0zHYs3kJTLnnZE8Sr
-         qE4Q==
-X-Gm-Message-State: AJIora8vV/+lEojWKz7xzsyE70XM61uNcIFOE45eOehVjLLNFCnYOIUk
-        2BwCiHnfCzoZtq07anRHFvm7Cfn/p5wgqZfOYg8=
-X-Google-Smtp-Source: AGRyM1sdXJ781HlCu07kSqKoo2SbdHHRlPmmCwV9QtVjaaVRatOAWgynta+ZCJgR+ZjLzHOf4AMXAXDFq39Htwdyepo=
-X-Received: by 2002:a17:90a:f015:b0:1ec:80f4:59d0 with SMTP id
- bt21-20020a17090af01500b001ec80f459d0mr18961643pjb.57.1656386185807; Mon, 27
- Jun 2022 20:16:25 -0700 (PDT)
+        with ESMTP id S230513AbiF1DS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 23:18:57 -0400
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A51761EC68;
+        Mon, 27 Jun 2022 20:18:55 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.west.internal (Postfix) with ESMTP id 593873200956;
+        Mon, 27 Jun 2022 23:18:51 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Mon, 27 Jun 2022 23:18:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm3; t=1656386330; x=
+        1656472730; bh=/YpMypc4CtUEpSm1nrTuU0i+0ewy87iAcDekmp+xtcA=; b=U
+        BZcVDfchVaWFO56Wp9ddD3Kb5jzex7CQrh0fAzLw9+tJxlvf6RNiq1EHMZDE6z3Y
+        SCe/zhclh2hLgnv2273e5KEABKupjZjmdlmz0gDHI9S2CUJkRE+qeeVxMRd44XQ7
+        unUpKkqe+1A4iaRF5yV8pTsgbyObVdpX8JMQ7L3vhfmZzec0gJo8flQBc+SlEtmX
+        CjyZBdZml+uLp5oQb3enjovrte4QPB+jGwOSvE3dMlRsaA8oPt/4ywJcwcIV3Kdt
+        m+oZ8xgOW0Kuyav4Y+LGRQtDGX+IUhdImTSiKALNwQ7GJ93HwTt4AV8SdDbn6kwo
+        GF1QevF8+P6eipMt/HqDw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1656386330; x=
+        1656472730; bh=/YpMypc4CtUEpSm1nrTuU0i+0ewy87iAcDekmp+xtcA=; b=H
+        rDg86DII921aq69Gy4ZvLxZyipPCHUXDdsip8zmaFj43+zDzBaGgoKz7G19hxtC5
+        Vyn4al/oeY6p3IvbMaJV8u1dqG8qMdcnPILXYwG0XlEVWAmjtIs1JcH49BRwckR5
+        64CMBsQjOWPq3yZstOiEGJqiY8S7IzY+ltFhAEKOB9yqLxXWIg/0mwgnpO7PZ0vW
+        abp9UPhxqfX5C3SlGIhT/zN0d6uJOPaXuQ6CMkQI2zn6443ccHS2YZsKQtRGFoG2
+        E9r5VBieX9W4Q3SCBaT4ZsQ4x6byMAnXNBLK6gJh0/AcSDZQRMmDyd2h4H2QjWUs
+        lYzNGVb+RHe3e8hHk3tWw==
+X-ME-Sender: <xms:GXO6YhiTJQ0pARW7mR7Vjc1SCoVR9SVhQdWlC5hmJAIQ31SywnBakA>
+    <xme:GXO6YmBNPQ0wahjvTUpqMUjCjrmTLTsrifi3F8cPxPuhKu3kJqazk7vj6P5iMSutQ
+    9jR_RIt4lvMsqIj6A>
+X-ME-Received: <xmr:GXO6YhGKfkIiBUE5ripN-wkxAOW4rLpI_Zk_fwa3cIzNEdK6Hfd3iKTdGKlIgQwcgTWcSctczuWZJkcuHnK_SsegJdayF3DXoEayUopfd0V90OJ2RGMKTate4Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrudegiedgjeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefurghm
+    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
+    ggtffrrghtthgvrhhnpedtvefhheehgfdvkeetffeludeuudehudeuvddtveelleekvedv
+    uedviefhkeeuheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:GXO6YmR7e0p1cKQpM83Zlctpcw0hXu4RMLTHbNXC3sgW4zGSnvroEg>
+    <xmx:GXO6Yuwl41vWCtpt6pDw9_zQH4IZLDEYvMjARqO87SaPJcpQLemSHA>
+    <xmx:GXO6Ys7JP1K-CKiWyyoRbGYjv6YZ2BaYqUBn7chd8m6g6X5V7mRGFg>
+    <xmx:GnO6YjoLT1qGFihLtcLS91hOQUXo8535d0onk1DbP7Zov7R5dIcqcA>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 27 Jun 2022 23:18:49 -0400 (EDT)
+Subject: Re: [PATCH 2/6] pinctrl: sunxi: Add I/O bias setting for H6 R-PIO
+To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>, Ondrej Jirman <x@xff.cz>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
+References: <20220626021148.56740-1-samuel@sholland.org>
+ <20220626021148.56740-3-samuel@sholland.org>
+ <4405996.LvFx2qVVIh@jernej-laptop>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <bfb768a8-8286-c596-8b10-28222c962ec3@sholland.org>
+Date:   Mon, 27 Jun 2022 22:18:48 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Sender: ndaglayajohn@gmail.com
-Received: by 2002:a05:6a10:844c:0:0:0:0 with HTTP; Mon, 27 Jun 2022 20:16:25
- -0700 (PDT)
-From:   mrs marie brigitte prouvost <mariebrigitteprouvost332@gmail.com>
-Date:   Mon, 27 Jun 2022 20:16:25 -0700
-X-Google-Sender-Auth: 2Eiu7VozajCRrbbcK1gmKNFOzeo
-Message-ID: <CAKucxWXnx7EM5voGsftdOkRK_cFLCLEgwaJZQtPync6fwW0B5g@mail.gmail.com>
-Subject: Dear Old Friend
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=7.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLY,
-        HK_SCAM,LOTS_OF_MONEY,MONEY_FRAUD_3,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_HK_NAME_FM_MR_MRS,T_SCC_BODY_TEXT_LINE,UNDISC_MONEY
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:629 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5004]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [ndaglayajohn[at]gmail.com]
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        *  0.0 HK_SCAM No description available.
-        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  0.0 LOTS_OF_MONEY Huge... sums of money
-        *  1.0 FREEMAIL_REPLY From and body contain different freemails
-        *  2.5 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-        *  2.9 MONEY_FRAUD_3 Lots of money and several fraud phrases
-X-Spam-Level: ******
+In-Reply-To: <4405996.LvFx2qVVIh@jernej-laptop>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I know you may have forgotten me, I am very happy to inform you about
-my success in getting the money transferred under the co-operation of
-a new partner from Venezuela.
+On 6/27/22 3:34 PM, Jernej Škrabec wrote:
+> Dne nedelja, 26. junij 2022 ob 04:11:43 CEST je Samuel Holland napisal(a):
+>> H6 requires I/O bias configuration on both of its PIO devices.
+>> Previously it was only done for the main PIO.
+>>
+>> The setting for Port L is at bit 0, so the bank calculation needs to
+>> account for the pin base. Otherwise the wrong bit is used.
+>>
+>> Fixes: cc62383fcebe ("pinctrl: sunxi: Support I/O bias voltage setting on
+>> H6") Signed-off-by: Samuel Holland <samuel@sholland.org>
+> 
+> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> 
+> Did you noticed any improvement with this properly set? In theory, 3.3 V bias 
+> should always work, right?
 
-Presently I am in Venezuela with my partner for a better treatment; I
-told you that I rather die than to miss this opportunity. Meanwhile, I
-didn't forget your past efforts and attempts to assist me in
-transferring the funds despite that it failed us somehow.
+I think it matters for inputs, which may not detect a high level state if the
+bias (comparator reference) voltage is too high.
 
-Before my living Burkina Faso I left a complete sum of Nine Hundred
-THousand Dollars
-with the western union money transfer to transfer to you as your
-compensation.
+It looks like Orange Pi 3 has a 1.8 V supply for port M. I am not currently set
+up to test the behavior with different bias settings, but I may do that if I get
+the chance.
 
-Now you are to contact the western union for them to commence on your
-payments, Ask them to send you the nine hundred thousand dollars which
-I kept for
-your compensation for all the past efforts and attempts to assist me
-in this transfer.
-
-Here is the Western Union money Transfer section
-
-Email. westernunionmoneytransfer.WU@financier.com
-
-Remember I have already forward this instruction to them and they will
-be expecting you to contact them to commence on your transfers.
-
-Bye and stay bless.
-
-But never forget to inform me whenever you received all your money
-because I have paid for the transfer fee.
-
-Thanks and God bless you
-
-Sincerely
-mrs marie brigitte prouvost
+Regards,
+Samuel
