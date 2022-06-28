@@ -2,190 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0199655C183
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:45:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B638F55C2D7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:47:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344952AbiF1Kgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 06:36:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39510 "EHLO
+        id S1345022AbiF1KoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 06:44:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242533AbiF1Kgu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:36:50 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DF9231531;
-        Tue, 28 Jun 2022 03:36:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1656412608; x=1687948608;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=1h3Ad1P2uje3a2YC79vqJWHkfZs0sePiLmeOINXKY0I=;
-  b=bYojQsMGwmYcpeRNMwGn/lbCebUW8jnNBJQKm9ObEO+3VXHdEZralORF
-   MXSzEzO8M1LEI9xKWnhSEH0gtJmP6sZdR+HmDPTxWFM7xNEGXbnq+bZiU
-   48ztIzQsX2gFIfp/xiJ2QQG4KXVi+wqeE1qUW3ftDetfBMlHpceYoq48u
-   s=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 28 Jun 2022 03:36:48 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 03:36:47 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 28 Jun 2022 03:36:47 -0700
-Received: from [10.216.26.50] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 28 Jun
- 2022 03:36:40 -0700
-Message-ID: <59b5115e-0fe5-dbe1-552b-c29e771c0583@quicinc.com>
-Date:   Tue, 28 Jun 2022 16:06:36 +0530
+        with ESMTP id S241795AbiF1Kn7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:43:59 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75810313AB
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 03:43:54 -0700 (PDT)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220628104348epoutp03885d169404dfafe2cf7dcb0f572e8ee5~8wt_frR5N2162821628epoutp03k
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 10:43:48 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220628104348epoutp03885d169404dfafe2cf7dcb0f572e8ee5~8wt_frR5N2162821628epoutp03k
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1656413028;
+        bh=8siWDXvXbIxEDOLi9RbF0Oau9kIZ9qcJ/y4+IQQOilQ=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=E7xNZgIQUu4AUxofCo3M6dOOXO14Hxf/k3kUfAFtj3DVU71aYiEMqJ8na7u/XANpe
+         QU2wILlsQAFEyBuKLUN64yzP45fOt3Pud4kEpQT7CU+DghY1TY2yhxxM1wk3JAu9VS
+         8rY+bK9mCSAKeen9D7GivjvWVfbBx17fqSutw/x4=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20220628104347epcas2p2ddc54f0d5455a832cf93ffdaab9f406f~8wt90-9HR1795617956epcas2p2_;
+        Tue, 28 Jun 2022 10:43:47 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.92]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4LXLmg4Zjcz4x9Pv; Tue, 28 Jun
+        2022 10:43:47 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        4A.07.09642.36BDAB26; Tue, 28 Jun 2022 19:43:47 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220628104347epcas2p40f5b491f6c31b07300b5b17fe108bef7~8wt9EvTLZ1212012120epcas2p4g;
+        Tue, 28 Jun 2022 10:43:47 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220628104347epsmtrp18976b6bff250444cf63f700a37a9888c~8wt9DuI7M0764207642epsmtrp1H;
+        Tue, 28 Jun 2022 10:43:47 +0000 (GMT)
+X-AuditID: b6c32a47-5f7ff700000025aa-26-62badb63e3eb
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        4B.FC.08905.26BDAB26; Tue, 28 Jun 2022 19:43:47 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20220628104346epsmtip1db59ff898a2dd72592007d61a364672f~8wt80FQzv1975519755epsmtip1E;
+        Tue, 28 Jun 2022 10:43:46 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH v2 0/3] fixes for exynosautov9 clock
+Date:   Tue, 28 Jun 2022 19:41:35 +0900
+Message-Id: <20220628104138.152118-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: sdm845: Add CPU BWMON
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Andy Gross <agross@kernel.org>, Georgi Djakov <djakov@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Thara Gopinath" <thara.gopinath@linaro.org>
-References: <20220601101140.170504-1-krzysztof.kozlowski@linaro.org>
- <20220601101140.170504-5-krzysztof.kozlowski@linaro.org>
- <bc423d7b-df03-d4e2-2898-0873db710943@quicinc.com>
- <64eb52ee-b3ac-3d94-cfce-ceb1c88dddb6@linaro.org>
- <042cb765-113b-9335-edae-595addf50dd0@quicinc.com>
- <23320e3c-40c3-12bb-0a1c-7e659a1961f2@linaro.org>
- <YrfSWw9Wpq5TsRUt@builder.lan>
- <47e1fcb4-237b-b880-b1b2-3910cc19e727@linaro.org>
-From:   Rajendra Nayak <quic_rjendra@quicinc.com>
-In-Reply-To: <47e1fcb4-237b-b880-b1b2-3910cc19e727@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBJsWRmVeSWpSXmKPExsWy7bCmhW7y7V1JBkceylk8mLeNzeLyfm2L
+        61+es1rMP3KO1aLvxUNmi72vt7JbbHp8jdXiY889VosZ5/cxWVw85WrRuvcIu8XhN+2sFv+u
+        bWSxWLXrD6MDn8f7G63sHjtn3WX32LSqk83jzrU9bB6bl9R79G1ZxejxeZNcAHtUtk1GamJK
+        apFCal5yfkpmXrqtkndwvHO8qZmBoa6hpYW5kkJeYm6qrZKLT4CuW2YO0MFKCmWJOaVAoYDE
+        4mIlfTubovzSklSFjPziElul1IKUnALzAr3ixNzi0rx0vbzUEitDAwMjU6DChOyM5stP2Qpa
+        WCtu/uhla2DsZOli5OSQEDCRaHt4hq2LkYtDSGAHo8SRhqOsIAkhgU+MEo+WZkEkvjFKTPh8
+        lbGLkQOsY9N8G4j4XkaJe0cbmCCcj4wSP/acYATpZhPQldjy/BUjSEJE4DGTxOEjbWwgCWaB
+        G4wSh7cyg9jCQJOe/5oEZrMIqEps67gEVsMrYC/xYsFRNoj75CU2zO9lhogLSpyc+YQFYo68
+        RPPW2cwQNRM5JLbsKIGwXSRWT14O1Sss8er4FnYIW0riZX8blF0ssXTWJ7CrJQQaGCUub/sF
+        1WAsMetZO9ibzAKaEut36UN8rCxx5BbUWj6JjsN/2SHCvBIdbUIQjeoSB7ZPh4aorET3nM+s
+        ELaHxON7jxghARor0XvrGPsERvlZSJ6ZheSZWQh7FzAyr2IUSy0ozk1PLTYqMIbHaXJ+7iZG
+        cJLVct/BOOPtB71DjEwcjIcYJTiYlUR4F57ZmSTEm5JYWZValB9fVJqTWnyI0RQYvBOZpUST
+        84FpPq8k3tDE0sDEzMzQ3MjUwFxJnNcrZUOikEB6YklqdmpqQWoRTB8TB6dUA5Px59NHZ2W6
+        RDPuZL4Xuqddevuu6aoS7CKSFWf3BM+8evfpMknvRW8TdGZkffh9d236/6XLWNc/tO1xaNfZ
+        vee1Eg+nq3rI122f5f8vmf7gkvbxI63+hqkuf5pOPV935YNlrusFk+bVEzd/+ta+al/TryNz
+        JB7kV/PLPtNZ8yurvkpz6tOLtopnmUuT+vh1klZfaj1+LudBzUalx+FVsyuSGRQ+Hzjxn8v0
+        vIT/9ERvFx5vl0nmb+YVcCRN1ZvonH+ibu/ivAkqji0zj66JeJH0LOPZMjlLr3pXXb8L0smd
+        TLqFymUKU9uZY7PUAiL5nVawiIsY8mjP7s6XTnp+8M9h5RPxVlJfY6c26biqtCmxFGckGmox
+        FxUnAgB3nqJ8OwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrJLMWRmVeSWpSXmKPExsWy7bCSnG7y7V1JBjPuMFk8mLeNzeLyfm2L
+        61+es1rMP3KO1aLvxUNmi72vt7JbbHp8jdXiY889VosZ5/cxWVw85WrRuvcIu8XhN+2sFv+u
+        bWSxWLXrD6MDn8f7G63sHjtn3WX32LSqk83jzrU9bB6bl9R79G1ZxejxeZNcAHsUl01Kak5m
+        WWqRvl0CV0bz5adsBS2sFTd/9LI1MHaydDFycEgImEhsmm/TxcjJISSwm1Fi7dYwEFtCQFbi
+        2bsd7BC2sMT9liOsXYxcQDXvGSUud/QxgyTYBHQltjx/xQiSEBF4ziQxZcVBMIdZ4A6jxJTZ
+        s5lAqoSBNjz/NQmsg0VAVWJbxyU2EJtXwF7ixYKjbBAr5CU2zO9lhogLSpyc+YQFxGYGijdv
+        nc08gZFvFpLULCSpBYxMqxglUwuKc9Nziw0LDPNSy/WKE3OLS/PS9ZLzczcxgkNfS3MH4/ZV
+        H/QOMTJxMB5ilOBgVhLhXXhmZ5IQb0piZVVqUX58UWlOavEhRmkOFiVx3gtdJ+OFBNITS1Kz
+        U1MLUotgskwcnFINTP0e7BN8P9T9OWklXq/UFSW1taW3qPPAfp2SP5k72f0E9opdVJ6/ODDU
+        /8W7jwcKNh3SsHp9YYZo7TSXp2kpe36FuPvd1xNUnBfYXX/9/k+2yRFLFglPMjNWNGeYohEg
+        KpD/bPcKqTNF5s1VJ9+1MjzbtrRZ66Ka7DnOtr7HiQ/vtQTtN/XILn8V8PNin9dax0fsj20s
+        LSovLFRizX/ksC/VWfFrmX5Z8cHULpPvz18VbYqO+a0w0/Cnja/k8byZX2btfnXrfMfXRJ4z
+        DQc2Zt/2NX00/9BljjUSpdvTeJ/1Vn7pKbu49eu+e/Kfhd4EFCpzfapwXZinHvH1wiTTHCVO
+        5RUbZ31ctnvJGq1nfEosxRmJhlrMRcWJAPyP0D7sAgAA
+X-CMS-MailID: 20220628104347epcas2p40f5b491f6c31b07300b5b17fe108bef7
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220628104347epcas2p40f5b491f6c31b07300b5b17fe108bef7
+References: <CGME20220628104347epcas2p40f5b491f6c31b07300b5b17fe108bef7@epcas2p4.samsung.com>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+There are some fixes for exynosautov9 such as clock id numbering,
+missing clocks and register offsets.
 
-On 6/27/2022 6:09 PM, Krzysztof Kozlowski wrote:
-> On 26/06/2022 05:28, Bjorn Andersson wrote:
->> On Thu 23 Jun 07:58 CDT 2022, Krzysztof Kozlowski wrote:
->>
->>> On 23/06/2022 08:48, Rajendra Nayak wrote:
->>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>>>>>> index 83e8b63f0910..adffb9c70566 100644
->>>>>>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>>>>>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>>>>>> @@ -2026,6 +2026,60 @@ llcc: system-cache-controller@1100000 {
->>>>>>>     			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
->>>>>>>     		};
->>>>>>>     
->>>>>>> +		pmu@1436400 {
->>>>>>> +			compatible = "qcom,sdm845-cpu-bwmon";
->>>>>>> +			reg = <0 0x01436400 0 0x600>;
->>>>>>> +
->>>>>>> +			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
->>>>>>> +
->>>>>>> +			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
->>>>>>> +					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
->>>>>>> +			interconnect-names = "ddr", "l3c";
->>>>>>
->>>>>> Is this the pmu/bwmon instance between the cpu and caches or the one between the caches and DDR?
->>>>>
->>>>> To my understanding this is the one between CPU and caches.
->>>>
->>>> Ok, but then because the OPP table lists the DDR bw first and Cache bw second, isn't the driver
->>>> ending up comparing the bw values thrown by the pmu against the DDR bw instead of the Cache BW?
->>>
->>> I double checked now and you're right.
->>>
->>>> Atleast with my testing on sc7280 I found this to mess things up and I always was ending up at
->>>> higher OPPs even while the system was completely idle. Comparing the values against the Cache bw
->>>> fixed it.(sc7280 also has a bwmon4 instance between the cpu and caches and a bwmon5 between the cache
->>>> and DDR)
->>>
->>> In my case it exposes different issue - under performance. Somehow the
->>> bwmon does not report bandwidth high enough to vote for high bandwidth.
->>>
->>> After removing the DDR interconnect and bandwidth OPP values I have for:
->>> sysbench --threads=8 --time=60 --memory-total-size=20T --test=memory
->>> --memory-block-size=4M run
->>>
->>> 1. Vanilla: 29768 MB/s
->>> 2. Vanilla without CPU votes: 8728 MB/s
->>> 3. Previous bwmon (voting too high): 32007 MB/s
->>> 4. Fixed bwmon 24911 MB/s
->>> Bwmon does not vote for maximum L3 speed:
->>> bwmon report 9408 MB/s (thresholds set: <9216000 15052801>
->>> )
->>> osm l3 aggregate 14355 MBps -> 897 MHz, level 7, bw 14355 MBps
->>>
->>> Maybe that's just problem with missing governor which would vote for
->>> bandwidth rounding up or anticipating higher needs.
->>>
->>>>>> Depending on which one it is, shouldn;t we just be scaling either one and not both the interconnect paths?
->>>>>
->>>>> The interconnects are the same as ones used for CPU nodes, therefore if
->>>>> we want to scale both when scaling CPU, then we also want to scale both
->>>>> when seeing traffic between CPU and cache.
->>>>
->>>> Well, they were both associated with the CPU node because with no other input to decide on _when_
->>>> to scale the caches and DDR, we just put a mapping table which simply mapped a CPU freq to a L3 _and_
->>>> DDR freq. So with just one input (CPU freq) we decided on what should be both the L3 freq and DDR freq.
->>>>
->>>> Now with 2 pmu's, we have 2 inputs, so we can individually scale the L3 based on the cache PMU
->>>> counters and DDR based on the DDR PMU counters, no?
->>>>
->>>> Since you said you have plans to add the other pmu support as well (bwmon5 between the cache and DDR)
->>>> how else would you have the OPP table associated with that pmu instance? Would you again have both the
->>>> L3 and DDR scale based on the inputs from that bwmon too?
->>>
->>> Good point, thanks for sharing. I think you're right. I'll keep only the
->>> l3c interconnect path.
->>>
->>
->> If I understand correctly, <&osm_l3 MASTER_OSM_L3_APPS &osm_l3
->> SLAVE_OSM_L3> relates to the L3 cache speed, which sits inside the CPU
->> subsystem. As such traffic hitting this cache will not show up in either
->> bwmon instance.
->>
->> The path <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>
->> affects the DDR frequency. So the traffic measured by the cpu-bwmon
->> would be the CPU subsystems traffic that missed the L1/L2/L3 caches and
->> hits the memory bus towards DDR.
+Changes from v1:
+- Add Krzysztof's R-B tags for #1 and #3 patches
+- Drop fixes tag of #2 patch
 
-That seems right, looking some more into the downstream code and register definitions
-I see the 2 bwmon instances actually lie on the path outside CPU SS towards DDR,
-first one (bwmon4) is between the CPUSS and LLCC (system cache) and the second one
-(bwmon5) between LLCC and DDR. So we should use the counters from bwmon4 to
-scale the CPU-LLCC path (and not L3), on sc7280 that would mean splitting the
-<&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3> into
-<&gem_noc MASTER_APPSS_PROC 3 &gem_noc SLAVE_LLCC 3> (voting based on the bwmon4 inputs)
-and <&mc_virt MASTER_LLCC 3 &mc_virt SLAVE_EBI1 3> (voting based on the bwmon5 inputs)
-and similar for sdm845 too.
+Chanho Park (3):
+  dt-bindings: clock: exynosautov9: correct clock numbering of peric0/c1
+  clk: samsung: exynosautov9: add missing gate clks for peric0/c1
+  clk: samsung: exynosautov9: correct register offsets of peric0/c1
 
-L3 should perhaps still be voted based on the cpu freq as done today.
+ drivers/clk/samsung/clk-exynosautov9.c        | 28 ++++++----
+ .../dt-bindings/clock/samsung,exynosautov9.h  | 56 +++++++++----------
+ 2 files changed, 46 insertions(+), 38 deletions(-)
 
->> If this is the case it seems to make sense to keep the L3 scaling in the
->> opp-tables for the CPU and make bwmon only scale the DDR path. What do
->> you think?
-> 
-> The reported data throughput by this bwmon instance is beyond the DDR
-> OPP table bandwidth, e.g.: 16-22 GB/s, so it seems it measures still
-> within cache controller, not the memory bus.
-> 
-> Best regards,
-> Krzysztof
+-- 
+2.36.1
+
