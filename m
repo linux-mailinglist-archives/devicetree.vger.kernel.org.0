@@ -2,86 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62CD355E888
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:36:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FAA055E978
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:41:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346859AbiF1P0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 11:26:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57122 "EHLO
+        id S1346144AbiF1P0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 11:26:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230499AbiF1P0G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 11:26:06 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09B742DA9D;
-        Tue, 28 Jun 2022 08:26:06 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id u20so13204462iob.8;
-        Tue, 28 Jun 2022 08:26:05 -0700 (PDT)
+        with ESMTP id S1345550AbiF1P0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 11:26:49 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B562DA95
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 08:26:48 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id fi2so26486955ejb.9
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 08:26:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Kjcf0myN8xEQpjIbs4vYCmYvnjer77kYAUZMxxZfr54=;
+        b=MiqvpNPpX09362l61nV5eWebMheEbAXmxJOrBhDRX9t2YTF5o5w2iCtTbO1xXIH5nR
+         ASy9dmUFwVTdqmjxSF+6j6raG1Q+AFow9+pdiQfKvQSOG9FnVfm/Iars+cCsYTRDwWJ2
+         blL4bPLQKmBe41kTNFlNa3aGPvHmNMHmbNpdL7HfS+YfAaTOlO8pbzXSjqezxbtTGMZ8
+         V3Cm91faw349kLNwWbRfZ24EphQ6eUiegf/jmqv6CADm7866SFiOWCcI0lJit/6nzDzr
+         GuXsdCATpbqWgsp23sUBuS0b2O8DSdpl4ta0/Snjzwfw7LOF6yuzOCfs1+UHBZGsljsl
+         Fryw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wVoUetZ5S/GqO2CHeSuZD5HjqLM10h5uZxs1HR13hfg=;
-        b=hllCHjeYk/PZ7+/WyqC1MfqxXQ9ewqwhA6ZXUBM+25j5duk2wN0pXwb2EveaHJ2ALI
-         MZm08Rq7GqNUcBN31vHPEbeAYcHATm3d1p58cgIfRlfB2hLWrYf8lcyPSnq3KSfXrqcR
-         rHBlanjcYDd+gImPiIdivVXXuUeNj8WGzNOQBte+qLxcUQlIi67ESRoblUzaQMMHq4iW
-         pqvSJLzlK0LSd0p34TpDNt5hgppfws8LRgrJP+GhfZ+OXfY0IkOyYAFZU4yfGGchZtnf
-         yD2BiupWhxVhEsnRy/lrtOiMeCO0DGNMLFzaLETZyR35GcfUupSKp14Jbtyurt2u5I8y
-         m2uw==
-X-Gm-Message-State: AJIora8vjwLcQRxm33+vSw9jjsDpnCCfPLP7wceI4R2UhvDR/3WMiSke
-        ZozJohOZiabnmUOMnYumBA==
-X-Google-Smtp-Source: AGRyM1u30z6rjSQP/yfjddK3j5eb9UHQa30g9hrzhKsueFxERdQlxns3zeN/rJtosCIDlaE+/J+6ew==
-X-Received: by 2002:a05:6638:14c3:b0:331:8153:e5b with SMTP id l3-20020a05663814c300b0033181530e5bmr11835574jak.114.1656429965253;
-        Tue, 28 Jun 2022 08:26:05 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id y20-20020a6bd814000000b006751347e61bsm5482552iob.27.2022.06.28.08.26.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 08:26:04 -0700 (PDT)
-Received: (nullmailer pid 491422 invoked by uid 1000);
-        Tue, 28 Jun 2022 15:26:01 -0000
-Date:   Tue, 28 Jun 2022 09:26:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Conor Dooley <mail@conchuod.ie>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Niklas Cassel <niklas.cassel@wdc.com>,
-        Dillon Min <dillon.minfei@gmail.com>,
-        Heng Sia <jee.heng.sia@intel.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 04/16] spi: dt-bindings: dw-apb-ssi: update
- spi-{r,t}x-bus-width
-Message-ID: <20220628152601.GA465684-robh@kernel.org>
-References: <20220627194003.2395484-1-mail@conchuod.ie>
- <20220627194003.2395484-5-mail@conchuod.ie>
- <20220627202149.624eu7w2gzw7jchd@mobilestation>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Kjcf0myN8xEQpjIbs4vYCmYvnjer77kYAUZMxxZfr54=;
+        b=HTGH7Sff+l+2Ox9PDtGwl8Lg1w4YtIOARXHLfTQHdeq5+nmZ/RHN0BUc4+AkHVe0Vc
+         9ldU4GgSb/hc13VfOCn64Xl3lp6eaCoIgyPIAkHx6/AR5QmlN6IxkL69uhPEeu/w578u
+         eYnnI3tyi5GSeWPm63YQAWFhHZ0IiU/UJ02+JiCQD5rZFve5vz+PEjqTpjXlxpBFH9Us
+         Vlk84XOwpZ7hysyaKaCr5BNDHgJU41+KVTxBIEvtB7fLlNG6hBIC5hKkSkQ4OCoorGxi
+         WePnn4nTI86350Vh4ze64lSKU2TFf+HcIrtjl2fkhgQh/ZijV6okFN+xKM5XWk/a5qyo
+         E3bw==
+X-Gm-Message-State: AJIora+Vp/aY15gSXvN49xHNtA35eH9PUJRb33aL6O6wEaAyKnwA6wPT
+        ifn9nNPGBTef7zhOB4MdbhziPg==
+X-Google-Smtp-Source: AGRyM1uzxpsWrvBGixfnmSdbGTuYjpVh/2OxG/8e+M42tgEx0u0q8hE/de6Xy/LxgcLt473rap2OJQ==
+X-Received: by 2002:a17:907:1693:b0:726:4322:c330 with SMTP id hc19-20020a170907169300b007264322c330mr17576956ejc.9.1656430006883;
+        Tue, 28 Jun 2022 08:26:46 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id z15-20020a170906944f00b006fe8d8c54a7sm6527208ejx.87.2022.06.28.08.26.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jun 2022 08:26:46 -0700 (PDT)
+Message-ID: <c8dddfe6-6385-ed34-e789-9f845c8a32bd@linaro.org>
+Date:   Tue, 28 Jun 2022 17:26:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220627202149.624eu7w2gzw7jchd@mobilestation>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] dt-bindings: chosen: document rng-seed property
+Content-Language: en-US
+To:     "Jason A. Donenfeld" <Jason@zx2c4.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     robh@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        Kees Cook <keescook@chromium.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Will Deacon <will@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+References: <20220627152107.645860-1-Jason@zx2c4.com>
+ <CAJMQK-jGsobw7i4NjQ4oezA0rU03ECs_nY=Txr6TgsHFu2jXhg@mail.gmail.com>
+ <Yrsc+50Y2UX1wlYH@zx2c4.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Yrsc+50Y2UX1wlYH@zx2c4.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,76 +81,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 27, 2022 at 11:21:49PM +0300, Serge Semin wrote:
-> On Mon, Jun 27, 2022 at 08:39:52PM +0100, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> > 
-> > Most users of dw-apb-ssi use spi-{r,t}x-bus-width of 1, however the
-> > Canaan k210 is wired up for a width of 4.
-> > Quoting Serge:
-> > The modern DW APB SSI controllers of v.4.* and newer also support the
-> > enhanced SPI Modes too (Dual, Quad and Octal). Since the IP-core
-> > version is auto-detected at run-time there is no way to create a
-> > DT-schema correctly constraining the Rx/Tx SPI bus widths.
-> > /endquote
-> > 
-> > As such, drop the restriction on only supporting a bus width of 1.
-> > 
-> > Link: https://lore.kernel.org/all/20220620205654.g7fyipwytbww5757@mobilestation/
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> > Serge, I dropped your R-b when I swapped to the default
-> > property since it changed the enum.
-> > ---
-> >  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 6 ------
-> >  1 file changed, 6 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> > index e25d44c218f2..0a43d6e0ef91 100644
-> > --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> > @@ -143,12 +143,6 @@ patternProperties:
-> >          minimum: 0
-> >          maximum: 3
-> >  
+On 28/06/2022 17:23, Jason A. Donenfeld wrote:
+> Hi Hsin-Yi,
 > 
-> > -      spi-rx-bus-width:
-> > -        const: 1
-> > -
-> > -      spi-tx-bus-width:
-> > -        const: 1
-> > -
+> On Tue, Jun 28, 2022 at 11:39:38AM +0800, Hsin-Yi Wang wrote:
+>> On Mon, Jun 27, 2022 at 11:21 PM Jason A. Donenfeld <Jason@zx2c4.com> wrote:
+>>>
+>>> Document the /chosen/rng-seed property, which has existed for quite some
+>>> time but without an entry in this file.
+>>>
+>>> Fixes: 428826f5358c ("fdt: add support for rng-seed")
+>>> Cc: Hsin-Yi Wang <hsinyi@chromium.org>
+>>> Cc: Kees Cook <keescook@chromium.org>
+>>> Cc: Rob Herring <robh@kernel.org>
+>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
+>>> Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
+>>> ---
+>> It's currently documented in
+>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/chosen.yaml
+>>
+>> https://lore.kernel.org/lkml/CAL_Jsq+uSdk9YNbUW35yjN3q8-3FDobrxHmBpy=4RKmCfnB0KQ@mail.gmail.com/
 > 
-> My comment was:
-> > > > You can just use a more relaxed constraint "enum: [1 2 4 8]" here
-> > >
-> > > 8 too? sure.
-> Then Rob said:
-> > Then no constraints needed because the common definition already has
-> > this presumably.
+> Well, let's see. That email says:
 > 
-> IMO preserving the device-specific constraints even if they match the
-> generic ones has some maintainability benefits. What if you get to
-> discover a new HW which supports Hexal mode? 
+>> Already documented here[1]. I've been meaning to delete chosen.txt so
+>> that's a bit more obvious.
+>>
+>> I realize it's a bit harder to find what's documented where. Long term
+>> we'd like to generate documentation from the schema and integrate as
+>> part of the spec. Short term, it would be quite trivial to make a 'am
+>> I documented' utility.
+> 
+> That sounds reasonable. But when was that email written? April 2, 2020.
+> That's 817 days ago.
 
-x16? Wouldn't we be back to parallel NOR and the problems with parallel 
-buses?
+817 days And the field is documented, so nothing to do here regarding
+"rng-seed".
 
-> Then you would have
-> needed to update the common schema constraints. But that would have
-> caused permitting the unsupported bus-mode for all the schemas, which
-> isn't correct. So as I see it the explicit bus-width enumeration would
-> be ok to have here. But I'll leave it for Rob to make a final
-> decision.
 
-Assuming a new width does appear, it's just a matter of time before the 
-DW block has a new rev supporting it too, so there's 2 places to update. 
-Also, a given platform may pinout less than the block supports, so you 
-can't ever be 100% sure an out of range value is in a DT.
+> So I call BS on this being a continued justification for rejecting this
+> patch (which apparently was submitted by Florian over two years ago
+> too). 
 
-But either way is okay with me. If you do keep constraints, you only 
-need 'maximum: 8'.
+Because patch is not needed and is already done....
 
-Acked-by: Rob Herring <robh@kernel.org>
+> Rob clearly hasn't followed through.
 
-Rob
+You got there link to repo, what do you need more to follow? Remove the
+chosen.txt? Sure - submit a separate patch.
+
+>  So please apply this patch so
+> that chosen.txt remains maintained.
+
+Instead submit a patch removing it. There is no particular point to
+duplicate bindings and dt-schema is the core here, the main one.
+
+> 
+> Later if he moves forward with his plan, then no harm done, since the
+> file will be deleted anyway.
+> 
+> Sometimes it's best to reassess things based on the reality of the
+> situation, you know?
+
+
+Best regards,
+Krzysztof
