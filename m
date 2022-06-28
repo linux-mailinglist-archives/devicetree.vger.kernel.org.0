@@ -2,126 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDA9C55F03E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 23:17:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A95D55F0C2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 23:59:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230397AbiF1VRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 17:17:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58462 "EHLO
+        id S229800AbiF1V7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 17:59:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230245AbiF1VQm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 17:16:42 -0400
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 560B131DC9;
-        Tue, 28 Jun 2022 14:16:41 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id u20so14148917iob.8;
-        Tue, 28 Jun 2022 14:16:41 -0700 (PDT)
+        with ESMTP id S229484AbiF1V7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 17:59:19 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1225E2251A;
+        Tue, 28 Jun 2022 14:59:19 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id q6so28450836eji.13;
+        Tue, 28 Jun 2022 14:59:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=2rpwnPjlltrxBnhTO6X3iXYjEJte1aFjs9YX4vq4uj0=;
+        b=AY2ZtgJ+zx20TDaoSF0ooOu97YXXajZ22O4cf9ZA2B9z2f9vJ/aeB7v+c07qUEk1M5
+         vc31W2mpxCw4NmqfBVU3P/g3nlKgLEph4qUbSlL+bWAuRX6fKV+HiPNROnATM+CDSgI3
+         KA/4gGsMhWNjh3tuE8OL9eh3fLe+SszqeHS24odRQ9xVXHpOFs0EIiqpjunqsulLK8vn
+         Mx55h2+ZijNvLnT2jaehOXm9yI54ObK1wXP9Up0W6QMMOtotrGU5xLMkqqA4qXhL9nYv
+         4NCiNvcjhv7J98sjaaghu76BYrKgnrgNwy2D3szboGry+j0yPmqQqYzE9f9xhWfTLoQm
+         t8XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=6HD4W3yTR1trUTVfpbXVBov8MqgZQbqZwaTmCO/6Gyw=;
-        b=wLQHGsJXtlXwccwRQI1SR8mxxNazVK4as61a4owhedlUn+LJ6pMsR5Mg0Lp2NlTd+w
-         sVuqSjJZu18ErllNqcWLDxW6cFztPEynCnZ1j4zprmObGjWTUXS1nuKYAohvobfVtoXw
-         RgNptIy35N8lPjhN12Bbqyc3utB1npe38gczc0flvEVD50m2DD/GxGdmrZthk7VmvfOe
-         lQsq4vlD7b/t/Sjtx07RMf4VyOsIFwd9vX4CcXHuVW+ArUimiRFM9jmUn5CuRQVT9tT/
-         zR0ZnzJ6XT/LR9aLpTwY/Bkn1tVTcw0WlDyvlzDbg1IpAF4dft0TNSzyt4yYjCZ+Tfeb
-         Um5w==
-X-Gm-Message-State: AJIora8V2EZiQO0zaNzCvLR81l8XTYRo8Y+14SK1x1C8VraGas8T+rVC
-        WtbRTYDEsG/1l50ax6eLmA==
-X-Google-Smtp-Source: AGRyM1tAN+UKhd4ZNCy6ruF8nKrB14lOgEXw1PfT0QscrNfgDtA9XVc6TRWrOdw7ywOiRCTazGW4fA==
-X-Received: by 2002:a05:6638:218f:b0:33c:caf0:a61c with SMTP id s15-20020a056638218f00b0033ccaf0a61cmr67781jaj.198.1656451000493;
-        Tue, 28 Jun 2022 14:16:40 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id q4-20020a056e020c2400b002d95c4d56d3sm6141440ilg.76.2022.06.28.14.16.39
+        bh=2rpwnPjlltrxBnhTO6X3iXYjEJte1aFjs9YX4vq4uj0=;
+        b=3zpL6JB294+0471SQWswTF0XzQiO/e09XjodOBFByIwuft0Ej3yZrKaO54auBmqg1n
+         PS0lixvaQ4Mi87rJCyWJgPZXZu+5BjWpf3GIS9nSXJn+ZZ6yZq0+IE9FKGULCQ6SFnHI
+         4X1D6g71GyTT86LubkkpbYACjqiTDmR64aTKiaQmA8HPomc7P2C7CJ99ev0BwJvdD21L
+         MPhMhT98TIuwbX4DluzuG2cwbH4pbW+MIp6gHpiMTPpIRDPAo4J6RC3q9aRoZ+YDScxW
+         T9M2CSBNSXxgyNCBXE4QBZgDbMGe6T+s1cGzpwSPzifL5Vd/ueoAsi2xS3QZLPUSIaNk
+         LoTA==
+X-Gm-Message-State: AJIora+F9LbQTJtpk16qlsRnNIMy6LIhW40GuU0He/hMvxDjQw6I2Z3L
+        m9lP9jPA8a20caamkmQONOU=
+X-Google-Smtp-Source: AGRyM1sIiE0XB74Yp+H8Xw9TMex5dt4RM0hniaSZS/9XDRh/Vgs1J6yF3FDW1qlimWYlo6pSVgRBeA==
+X-Received: by 2002:a17:907:9620:b0:726:9316:54b7 with SMTP id gb32-20020a170907962000b00726931654b7mr221324ejc.73.1656453557501;
+        Tue, 28 Jun 2022 14:59:17 -0700 (PDT)
+Received: from skbuf ([188.25.231.135])
+        by smtp.gmail.com with ESMTPSA id t27-20020a17090616db00b0071cbc7487e1sm6901859ejd.69.2022.06.28.14.59.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 14:16:40 -0700 (PDT)
-Received: (nullmailer pid 990409 invoked by uid 1000);
-        Tue, 28 Jun 2022 21:16:38 -0000
-Date:   Tue, 28 Jun 2022 15:16:38 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kavyasree.Kotagiri@microchip.com
-Cc:     Nicolas.Ferre@microchip.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Claudiu.Beznea@microchip.com,
-        krzysztof.kozlowski@linaro.org, UNGLinuxDriver@microchip.com
-Subject: Re: [PATCH v4 1/3] dt-bindings: mfd: atmel,flexcom: Convert to
- json-schema
-Message-ID: <20220628211638.GC963202-robh@kernel.org>
-References: <20220617130729.12072-1-kavyasree.kotagiri@microchip.com>
- <20220617130729.12072-2-kavyasree.kotagiri@microchip.com>
- <1655474312.882258.1508989.nullmailer@robh.at.kernel.org>
- <CO1PR11MB48653378BAECD414F497D59592B09@CO1PR11MB4865.namprd11.prod.outlook.com>
+        Tue, 28 Jun 2022 14:59:16 -0700 (PDT)
+Date:   Wed, 29 Jun 2022 00:59:13 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: Re: fwnode_for_each_child_node() and OF backend discrepancy
+Message-ID: <20220628215913.d3oicaa6qkkgpdph@skbuf>
+References: <4e1d5db9dea68d82c94336a1d6aac404@walle.cc>
+ <Yrrhs3D++V79/4Jk@smile.fi.intel.com>
+ <f17d3ecfecf4491dd15b1fa092205f3f@walle.cc>
+ <CAHp75Vd6e3WwHPfyL=GP=vsoWhwGXadwQziiRRwfHPfjkX2eFg@mail.gmail.com>
+ <2f2d7685e0e43194270a310034004970@walle.cc>
+ <CAHp75VcANMjxgS6S24Zh+mz66usb6LBnQk-ENvU9JHSXXsG1DA@mail.gmail.com>
+ <9e58f421c27121977d11381530757a6e@walle.cc>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CO1PR11MB48653378BAECD414F497D59592B09@CO1PR11MB4865.namprd11.prod.outlook.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <9e58f421c27121977d11381530757a6e@walle.cc>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 20, 2022 at 11:45:31AM +0000, Kavyasree.Kotagiri@microchip.com wrote:
-> > > Convert the Atmel flexcom device tree bindings to json schema.
-> > >
-> > > Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> > > ---
-> > > v3 -> v4:
-> > >  - Corrected format of enum used for compatible string.
-> > >
-> > > v2 -> v3:
-> > >  - used enum for compatible string.
-> > >  - changed irq flag to IRQ_TYPE_LEVEL_HIGH in example.
-> > >  - fixed dtschema errors.
-> > >
-> > > v1 -> v2:
-> > >  - Fix title.
-> > >
-> > >  .../bindings/mfd/atmel,flexcom.yaml           | 104 ++++++++++++++++++
-> > >  .../devicetree/bindings/mfd/atmel-flexcom.txt |  63 -----------
-> > >  2 files changed, 104 insertions(+), 63 deletions(-)
-> > >  create mode 100644
-> > Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
-> > >  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-
-> > flexcom.txt
-> > >
-> > 
-> > Running 'make dtbs_check' with the schema in this patch gives the
-> > following warnings. Consider if they are expected or the schema is
-> > incorrect. These may not be new warnings.
-> > 
-> > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> > This will change in the future.
-> > 
-> > Full log is available here: https://patchwork.ozlabs.org/patch/
-> > 
-> > 
-> > flexcom@f0000000: spi@400:compatible:0: 'atmel,at91rm9200-spi' was
-> > expected
-> >         arch/arm/boot/dts/at91-sam9x60ek.dtb
-> > 
-> > flexcom@f0000000: spi@400:compatible: ['microchip,sam9x60-spi',
-> > 'atmel,at91rm9200-spi'] is too long
-> >         arch/arm/boot/dts/at91-sam9x60ek.dtb
-> 
-> These errors are expected because "microchip,sam9x60-spi" and "atmel,at91rm9200-spi"
-> are documented in Documentation/devicetree/bindings/spi/spi_atmel.txt.
-> which I added in description as
-> " description: See ../spi/spi_atmel.txt for details of SPI bindings."
+On Tue, Jun 28, 2022 at 03:47:59PM +0200, Michael Walle wrote:
+> Horatiu, can we determine the actual number of ports (or maybe
+> determine if its a LAN9668 or a LAN9662) from the hardware itself
+> in an easy way? That way we wouldn't need a new compatible string,
+> but could use the generic "lan966x" one.
 
-If that was still true, there would not be a warning because .txt files 
-don't cause warnings. You've defined the SPI compatible here and that 
-doesn't agree with the dts files. One of them is wrong.
+Never seen a lan966x switch, but if it's anything like the Ocelot-1
+family, you should be able to determine the port count by reading the
+out-of-reset value of any register that contains a port mask which has
+all ones by default (any of the PGIDs in the multicast/flooding
+destinations range, or the VLAN table port masks for any VLAN ID).
 
-Normally, child nodes either just reference another schema or document 
-everything locally. You've done a mixture which is not right. Presumably 
-that was to avoid 'undocumented compatible' warnings. To fix that you 
-either need to convert the SPI binding or don't use it in the example.
+Or you can read the size of the packet buffer and infer from that which
+switch model it is, based on a driver hardcoded lookup table. I fully
+expect a switch with fewer ports to have smaller packet buffer. See
+ocelot_detect_features() for an example of registers I am talking about.
+Maybe lan966x has something similar.
 
-Rob
+Of course these are just band aids and it would still be good to modify
+the device trees with the proper
+	compatible = "microchip,lan9668-switch", "microchip,lan966x-switch";
+rather than rely on educated guesswork (which is still guesswork, after all).
