@@ -2,153 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8150655E693
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A76155E90F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:40:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347368AbiF1OEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 10:04:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44038 "EHLO
+        id S1345914AbiF1OLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 10:11:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347363AbiF1OED (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 10:04:03 -0400
-Received: from smtp2.infineon.com (smtp2.infineon.com [IPv6:2a00:18f0:1e00:4::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8355723BF5;
-        Tue, 28 Jun 2022 07:04:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
-  t=1656425042; x=1687961042;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=Nwmp6fTrRlPdkRkvJ5PRlNiLaOSIpMk1wa/T6KNjPRI=;
-  b=EJqtDXbxaYFoLV+8+8RxYqMlEjmEq8Sxp/3Eg78Nh90+Fj8oRQxVN7Ds
-   7y8eDU88j+7P0p2crsFG1R62S1oypm3Rsu8FWkDUEyG/1uCKeELN6rwgk
-   0ItymCfDN8Qk0yC2XFweP20bXRk3R3d0//LUCxOs1yUGUG7i41nK8EOfg
-   M=;
-X-SBRS: None
-X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="186094378"
-X-IronPort-AV: E=Sophos;i="5.92,227,1650924000"; 
-   d="scan'208";a="186094378"
-Received: from unknown (HELO mucxv002.muc.infineon.com) ([172.23.11.17])
-  by smtp2.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 16:03:59 +0200
-Received: from MUCSE805.infineon.com (MUCSE805.infineon.com [172.23.29.31])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mucxv002.muc.infineon.com (Postfix) with ESMTPS;
-        Tue, 28 Jun 2022 16:03:59 +0200 (CEST)
-Received: from MUCSE807.infineon.com (172.23.29.33) by MUCSE805.infineon.com
- (172.23.29.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Tue, 28 Jun
- 2022 16:03:59 +0200
-Received: from [10.160.193.107] (172.23.8.247) by MUCSE807.infineon.com
- (172.23.29.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Tue, 28 Jun
- 2022 16:03:58 +0200
-Message-ID: <6e3a557a-fb0e-3b28-68f2-32804b071cfb@infineon.com>
-Date:   Tue, 28 Jun 2022 16:03:57 +0200
+        with ESMTP id S1345950AbiF1OLn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 10:11:43 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DC2A36140
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 07:11:40 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id f190so7148082wma.5
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 07:11:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=z6rZSThE7hjHMykxwD6G3CLunLDgT8dkRZWO7hFrMlc=;
+        b=E14bCHFAJHEKjAz3a2lSSKKAKgMH8nSUaKpBBhdBtLPYkBu0W31aQtkY03sC1zEkVc
+         FiDofXOMIBM6p89lrcTgMas9mDeuNZ2IdHzWfFBULzcC45sbYJVkKgvhrufDwGDkwSby
+         mbNRGEjJ2jkCWZBxE+1M5f+xMG1cZFeiJeiWGhuCZcZedEV9Yee4Kij8RkBC9PhrLfj0
+         jzR8t7i4zLmaqwwRlVbW5uh5yAr+iVTRaNP2FGEOa72yoXEOY1DDzcVlb03F08k3F7C/
+         MaAJ3rAMWURmtIcyWHe+yyTuzKWiOEq6IjUKpQCN+SFhgMUN4uNUHhdkVX6DFfwXzc+c
+         Wp2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=z6rZSThE7hjHMykxwD6G3CLunLDgT8dkRZWO7hFrMlc=;
+        b=BBT+HYo9nFpJHyIyFpfyF/+hxn+GeB4ZYN7DTQGSlK1eCpNSl1An+JARU+QQhG++FR
+         HMhnh5o4SEpnjvPqbWTcxMh8qFpPDywWPDHY7MAQ2ottAf8R2+r+2O0mLQ+TDYBHTR9w
+         Bi+dQKZgzWwukL1oGj9zNm3Ej4CQxG4WGgVw2Z36n+R9BR8ralrCF4Pyk7FXKjT8i1RN
+         9qzc3rDtbY/kCbsgMVLcSASUOdhdV+zA6vozU7cUBl94nVOb+0AJ4Su3c12ebsnJRvQn
+         r8rpDugPsVki1d7JaGO2z+NiJeiRMBVkIeCkvc26aURSnIsbFNdWDFfDPRp0pRcNZpzl
+         /c6w==
+X-Gm-Message-State: AJIora9COIurISoxd9t05vBfGvKv3ox3wsKghyuDoYOEb8Wt00uvTAd3
+        y+wjnoH0k+Erk6aqoBd2mf2npw==
+X-Google-Smtp-Source: AGRyM1sYVVXgAazao0K/lpqse9gQZXQrTog4KvhzBzsiHswnBk9UIffH0I3WCPb3MN3iprzQZzmnFQ==
+X-Received: by 2002:a05:600c:34d0:b0:3a0:2c07:73ac with SMTP id d16-20020a05600c34d000b003a02c0773acmr27247171wmq.85.1656425498512;
+        Tue, 28 Jun 2022 07:11:38 -0700 (PDT)
+Received: from google.com (44.232.78.34.bc.googleusercontent.com. [34.78.232.44])
+        by smtp.gmail.com with ESMTPSA id ay5-20020a05600c1e0500b003a04e900552sm3796880wmb.1.2022.06.28.07.11.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jun 2022 07:11:38 -0700 (PDT)
+Date:   Tue, 28 Jun 2022 14:11:36 +0000
+From:   Sebastian Ene <sebastianene@google.com>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>, qperret@google.com,
+        maz@kernel.org, linux-watchdog@vger.kernel.org, will@kernel.org,
+        vdonnefort@google.com
+Subject: Re: [PATCH v8 2/2] misc: Add a mechanism to detect stalls on guest
+ vCPUs
+Message-ID: <YrsMGAVljIcypDl4@google.com>
+References: <20220627102810.1811311-1-sebastianene@google.com>
+ <20220627102810.1811311-3-sebastianene@google.com>
+ <b87a4407-29fd-4715-1394-ae6afaf4a192@roeck-us.net>
+ <YrrP3NvAuxso0rzO@google.com>
+ <194f5edc-5877-af3f-9aa1-be1e275ea304@roeck-us.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 1/4] dt-bindings: net: broadcom-bluetooth: Add CYW55572 DT
- binding
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
-        <linux-bluetooth@vger.kernel.org>
-References: <cover.1655723462.git.hakan.jansson@infineon.com>
- <acd9e85b1ba82875e83ca68ae2aa62d828bfdfa3.1655723462.git.hakan.jansson@infineon.com>
- <2c753258-b68e-b2ad-c4cc-f0a437769bc2@linaro.org>
- <cb973352-36f9-8d70-95ac-5b63a566422c@infineon.com>
- <20220627173436.GA2616639-robh@kernel.org>
-From:   Hakan Jansson <hakan.jansson@infineon.com>
-In-Reply-To: <20220627173436.GA2616639-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [172.23.8.247]
-X-ClientProxiedBy: MUCSE803.infineon.com (172.23.29.29) To
- MUCSE807.infineon.com (172.23.29.33)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <194f5edc-5877-af3f-9aa1-be1e275ea304@roeck-us.net>
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Tue, Jun 28, 2022 at 07:00:05AM -0700, Guenter Roeck wrote:
+> On 6/28/22 02:54, Sebastian Ene wrote:
+> [ ... ]
+> > > > +static struct platform_device *virt_dev;
+> > > > +
 
-On 6/27/2022 7:34 PM, Rob Herring wrote:
-> On Mon, Jun 20, 2022 at 04:06:25PM +0200, Hakan Jansson wrote:
->> Hi Krzysztof,
->>
->> Thanks for replying.
->>
->> On 6/20/2022 2:32 PM, Krzysztof Kozlowski wrote:
->>>> CYW55572 is a Wi-Fi + Bluetooth combo device from Infineon.
->>>> Extend the binding with its DT compatible.
->>>>
->>>> Signed-off-by: Hakan Jansson <hakan.jansson@infineon.com>
->>>> ---
->>>>    Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml | 1 +
->>>>    1 file changed, 1 insertion(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
->>>> index df59575840fe..71fe9b17f8f1 100644
->>>> --- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
->>>> +++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
->>>> @@ -24,6 +24,7 @@ properties:
->>>>          - brcm,bcm43540-bt
->>>>          - brcm,bcm4335a0
->>>>          - brcm,bcm4349-bt
->>>> +      - infineon,cyw55572-bt
->>> Patch is okay, but just to be sure - is it entirely different device
->>> from Infineon or some variant of Broadcom block?
->> CYW55572 is a new device from Infineon. It is not the same as any Broadcom
->> device.
->>
->>>    Are all existing
->>> properties applicable to it as well?
->> Yes, all existing properties are applicable.
-> Including 'brcm,bt-pcm-int-params'?
+Hi,
 
-Yes, 'brcm,bt-pcm-int-params' is also applicable to CYW55572.
+> > > 
+> > > virt_dev is only used to call platform_set_drvdata() and platform_get_drvdata()
+> > > on it. Why not just have a static variable named vm_stall_detect ?
+> > > 
+> > 
+> > I think this should also work. I wanted to make use of the provided APIs
+> > like platform_set/platform_get.
+> > 
+> 
+> That doesn't mean such APIs should be used just to get used, though.
+> 
 
-> I don't see a BT reset signal
-> either, but maybe that's not pinned out in the AzureWave module which
-> was the only documentation details I could find[1].
+I will remove these calls and keep it static.
 
-That's correct, CYW55572 does not have a BT reset signal. Most of the 
-existing listed compatible devices does not seem to have a BT reset 
-signal either so I think this is in line with the intention of the 
-existing document and driver implementation.
+> > > > +
+> > > > +	vm_stall_detect = (struct vm_stall_detect_s __percpu *)
+> > > > +		platform_get_drvdata(virt_dev);
+> > > 
+> > > platform_get_drvdata() returns void *; typecast to it is unnecessary.
+> > > 
+> > > 
+> > 
+> > I needed this typecast because the variable is per-cpu and some
+> > compilers(eg. gcc for ARCH=h8300) complain if we don't specify this
+> > hint.
+> > 
+> Hmm, interesting. I didn't know that. We live and learn.
+> Though h8300 is gone now :-)
 
-> I think a separate doc will be better as it can be more precise as to
-> what's allowed or not. It's fine to reuse the same property names
-> though.
+I had some Intel robot complaining about this in my previous series(v5) and
+I fixed the warnings by adding these compiler hints.
 
-I don't really see anything besides the optional BT reset property that 
-would be changed in a separate doc.  As a separate doc would mean a 
-duplication of data that would need to be maintained in two more or less 
-identical docs, perhaps it would be better to modify the existing doc to 
-clarify for which compatible devices that the BT reset property applies? 
-(Which I believe are only these three: bcm20702a1, bcm4329-bt and 
-bcm4330-bt)
+> 
+> Did you reply in private on purpose ?
+> 
 
-> Rob
->
-> [1] https://www.azurewave.com/img/infineon/AW-XH316_DS_DF_A_STD.pdf
+I misused my CC list but I will fix this in my reply. 
 
-Thanks,
-Håkan
+> Thanks,
+> Guenter
+
+Thanks for the response,
+Seb
