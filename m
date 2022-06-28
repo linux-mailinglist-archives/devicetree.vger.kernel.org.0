@@ -2,45 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B728C55D498
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7182855E2AB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:35:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243377AbiF1CTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 22:19:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59010 "EHLO
+        id S243623AbiF1CVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 22:21:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243306AbiF1CS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 22:18:59 -0400
+        with ESMTP id S243624AbiF1CVC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 22:21:02 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8BB23BE6;
-        Mon, 27 Jun 2022 19:18:49 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B63A248ED;
+        Mon, 27 Jun 2022 19:20:42 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E4B90B81C0A;
-        Tue, 28 Jun 2022 02:18:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84E93C341D0;
-        Tue, 28 Jun 2022 02:18:45 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D7BA0B81C11;
+        Tue, 28 Jun 2022 02:20:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6637FC341CB;
+        Tue, 28 Jun 2022 02:20:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656382726;
-        bh=Ys0RJPZ4GxYz/5tskLY3MZu3a5KGfyWFRcYRdYGjEjU=;
+        s=k20201202; t=1656382839;
+        bh=Qh0S2NjYTifZ2sQz7K7IvjYLERBcnF9G+SrjoWyNTY8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=KtQE6WNxOpA89ZzVTtCjNDk/lrjftwTqTY/uEe5nw23o5Rx2QtRhtrkik/xXyVZEW
-         jfYyJeILjEvt+CX6x+MMGwzMeuKzOploGAPrCmFjdowgD88k1hTbG0qP/VHm1myG6/
-         f1AITnyit+34pIGvTZMV0Cq5RuxboU0bxRitH2TZoz9lg0dp5dbtFnBhOIjSTSXC0M
-         dbkXYkv8d0cAWDfNCLgx6wmVG5hckRA1quwM0YCoVtsrcHwJnP0hUbN5rdThLS7ToF
-         cDUCkaGqxOobHwKCcw0asoA7CIMn9+EGGPxOgljONdrHDYzn4V6ylChHvUuCIjZfcW
-         ZiGaX5rB/1MvQ==
+        b=XJrZClr1xs3Dtj51lZ6r/ZeVRFlquX5zD24i0daQDiG67nHTUKcXM+BzbDmalRPlA
+         TBDUUk9/DiG0dqdrE/OWXDVhIDwG2KExuMGVPcmMPCf00ZenfjiEHuA5/36zlVNzVa
+         EhcM0KGChjEL7GGsFzA4Pafswamw5F6h3OX0tAwWGY87vWR36+CpBq3NGpYshAzIXg
+         fWXqj/PKEukuyc3cqRZ+dVYKQ/Qp8DUT7gIifYxxKqxQHWgCqxMzAWqrCXHTfc33uD
+         GcuS+gUTL4C1zXoru5V1Jzig6SETRFP2PP86CcUnf4z6/FfRV/3BzF/109u9OKn8Zn
+         v42Mk/Bc9VsJA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Fabio Estevam <festevam@denx.de>, Chester Lin <clin@suse.com>,
+Cc:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.18 04/53] arm64: s32g2: Pass unit name to soc node
-Date:   Mon, 27 Jun 2022 22:17:50 -0400
-Message-Id: <20220628021839.594423-4-sashal@kernel.org>
+        krzysztof.kozlowski+dt@linaro.org, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.18 45/53] mips: dts: ingenic: Add TCU clock to x1000/x1830 tcu device node
+Date:   Mon, 27 Jun 2022 22:18:31 -0400
+Message-Id: <20220628021839.594423-45-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220628021839.594423-1-sashal@kernel.org>
 References: <20220628021839.594423-1-sashal@kernel.org>
@@ -58,36 +59,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@gmail.com>
+From: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
 
-[ Upstream commit 4266e2f70d4388b8c6a95056169954ff049ced94 ]
+[ Upstream commit db30dc1a5226eb74d52f748989e9a06451333678 ]
 
-Pass unit name to soc node to fix the following W=1 build warning:
+This clock is a gate for the TCU hardware block on these SoCs, but
+it wasn't included in the device tree since the ingenic-tcu driver
+erroneously did not request it.
 
-arch/arm64/boot/dts/freescale/s32g2.dtsi:82.6-123.4: Warning (unit_address_vs_reg): /soc: node has a reg or ranges property, but no unit name
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Reviewed-by: Chester Lin <clin@suse.com>
-Signed-off-by: Chester Lin <clin@suse.com>
-Link: https://lore.kernel.org/r/20220514143505.1554813-1-festevam@gmail.com
+Reviewed-by: Paul Cercueil <paul@crapouillou.net>
+Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/s32g2.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/mips/boot/dts/ingenic/x1000.dtsi | 5 +++--
+ arch/mips/boot/dts/ingenic/x1830.dtsi | 5 +++--
+ 2 files changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-index 59ea8a25aa4c..824d401e7a2c 100644
---- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-@@ -79,7 +79,7 @@ psci {
- 		};
- 	};
+diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi b/arch/mips/boot/dts/ingenic/x1000.dtsi
+index 8bd27edef216..c69df8eb158e 100644
+--- a/arch/mips/boot/dts/ingenic/x1000.dtsi
++++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
+@@ -111,8 +111,9 @@ tcu: timer@10002000 {
  
--	soc {
-+	soc@0 {
- 		compatible = "simple-bus";
- 		#address-cells = <1>;
- 		#size-cells = <1>;
+ 		clocks = <&cgu X1000_CLK_RTCLK>,
+ 			 <&cgu X1000_CLK_EXCLK>,
+-			 <&cgu X1000_CLK_PCLK>;
+-		clock-names = "rtc", "ext", "pclk";
++			 <&cgu X1000_CLK_PCLK>,
++			 <&cgu X1000_CLK_TCU>;
++		clock-names = "rtc", "ext", "pclk", "tcu";
+ 
+ 		interrupt-controller;
+ 		#interrupt-cells = <1>;
+diff --git a/arch/mips/boot/dts/ingenic/x1830.dtsi b/arch/mips/boot/dts/ingenic/x1830.dtsi
+index 2595df8671c7..4408df24ca98 100644
+--- a/arch/mips/boot/dts/ingenic/x1830.dtsi
++++ b/arch/mips/boot/dts/ingenic/x1830.dtsi
+@@ -104,8 +104,9 @@ tcu: timer@10002000 {
+ 
+ 		clocks = <&cgu X1830_CLK_RTCLK>,
+ 			 <&cgu X1830_CLK_EXCLK>,
+-			 <&cgu X1830_CLK_PCLK>;
+-		clock-names = "rtc", "ext", "pclk";
++			 <&cgu X1830_CLK_PCLK>,
++			 <&cgu X1830_CLK_TCU>;
++		clock-names = "rtc", "ext", "pclk", "tcu";
+ 
+ 		interrupt-controller;
+ 		#interrupt-cells = <1>;
 -- 
 2.35.1
 
