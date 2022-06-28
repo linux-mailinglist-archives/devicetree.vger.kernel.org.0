@@ -2,550 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B306855DA36
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:22:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6163555CC70
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:01:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245675AbiF1KJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 06:09:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40550 "EHLO
+        id S1344307AbiF1K2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 06:28:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344873AbiF1KJj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:09:39 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 662A62F651;
-        Tue, 28 Jun 2022 03:09:37 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9BDF766015BF;
-        Tue, 28 Jun 2022 11:09:35 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656410976;
-        bh=44Wt87Sdq1EpybZ6Tx2Xa0GYzDwrFKYuP265R5limRw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=hb3q+/tgQaZXU2PvKDaS0OcxVSF3x3NRa2/8WSDytJS3QWs6X0ZlLTGz28Nqear4S
-         MmMNEmJC68m+Yr63Zf5TDJZJ+NhNjzxvzCw9UY3F+ouRVpnVi98qOVFMqz4sb3rN3u
-         3wAp5F4sxhqeXDXlYdBD6V8ZxY6GzdkV9OiuDN8ENidGnRGopwonIyvxk73u+yg+Hm
-         hWSmBAMAc4qdKxu/6kGmJLiXDjUzFc5jkG31Dv9tGlUufsHzk9aDGK9BTnb2lCY7mT
-         AmJ36D7J//m95qgX0+dPrZmyZroOVZsc/IpBH2ymWvj0oQ+T3k0r3BXZmJ0S2aq1vL
-         2D0gNVoEmKmsA==
-Message-ID: <30e07350-ff56-a361-121e-3cb3a27643a1@collabora.com>
-Date:   Tue, 28 Jun 2022 12:09:33 +0200
+        with ESMTP id S237103AbiF1K2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:28:22 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA2512AAD
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 03:28:20 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id v14so16981250wra.5
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 03:28:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=p/DPfFSM3jMKKRZmtfjvPDQnkcVkhnWQ37ffkh65f6Y=;
+        b=kbqssuFbstijiBxN6ukx6bRt4t+S2ydyiIOa+5yRebAeQDj9rv1637vsz8qbYjSvzY
+         1prScvFpP1aja07+ePjJLLSe0tcobzljhMEsQQ4HI4HrLoN+1E0WP6QJkMZpQm+3RqRt
+         JMAZ52JEFjzGjqKjextdPoPKNm+4ScuxsFvfA8DtYvRhIH/Owjmmn7p3+A4mJqESf8JM
+         JWK00NjnN3UGfMeOLoqNz6sHkONVnRBi+zWo7civeBkmuNb37qef44uOR0eVq136DO8y
+         TK16/3aXaOchaTNSlk8X7o51ojZvqdjD8HNrP+HOx6/ygJ5IDjTv31qhrwLbb4ePzLV/
+         lKSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=p/DPfFSM3jMKKRZmtfjvPDQnkcVkhnWQ37ffkh65f6Y=;
+        b=jJ5XwG/+/u3aUVqxthwb4KZs/UjMCrDPofbhtl6aJNKwUefgWcNWfiRY50dj/drv4Y
+         pTqF5fqWBL4bsKYnQTB5x/xqJLfQQYfcixZOqjrPnvbC6sD8nF3lWksxUlNYRZR6F8KJ
+         O9Bk3n0jrm2vC1QIck7vhYMQQiad3KC+DTshTeiPEh2Fwp+RlXoYM6UkchLj8pMHrv7U
+         L7fwPoOzvIWx/UR0oj5+zx3lfZ80OIrKpH5/m/SJjf/z+qC0pjVqFM2TG5Ta9QIxysu/
+         ajhViVdfAty+q93Krnj736QLvMVa+vh5YJYt3lvPdN6MLwDRs+hSW281M0GXq19wt5nG
+         6xwA==
+X-Gm-Message-State: AJIora9ZtVDjP9KTpplrluwnrbCZJPprXWQU4rD6CMHRTwTW4Ohd/rQG
+        quqQzbsPMr3VVzVzrKRauKhOYQ==
+X-Google-Smtp-Source: AGRyM1uVApxImBBVLBU8ZUemhn0pYLASxjCLbV2ScD5PAtjEBQfdswOb8laC00d1cYSYxMIRRCoQjQ==
+X-Received: by 2002:a5d:5483:0:b0:21b:88d5:e725 with SMTP id h3-20020a5d5483000000b0021b88d5e725mr17344077wrv.82.1656412099281;
+        Tue, 28 Jun 2022 03:28:19 -0700 (PDT)
+Received: from [192.168.0.252] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id 4-20020a1c1904000000b0039c4506bd25sm19611110wmz.14.2022.06.28.03.28.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jun 2022 03:28:18 -0700 (PDT)
+Message-ID: <286633b2-43d2-655e-b3f1-54bf5c7a4a21@linaro.org>
+Date:   Tue, 28 Jun 2022 12:28:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [RFC PATCH 2/2] clk: mediatek: Add frequency hopping support
+Subject: Re: [PATCH 1/4] dt-bindings: usb: typec: add bindings for stm32g0
+ controller
 Content-Language: en-US
-To:     Edward-JW Yang <edward-jw.yang@mediatek.com>,
-        =?UTF-8?B?Sm9obnNvbiBXYW5nICjnjovogZbpkasp?= 
-        <Johnson.Wang@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        yu-chang.wang@mediatek.com, kuan-hsin.lee@mediatek.com
-References: <20220612135414.3003-1-johnson.wang@mediatek.com>
- <20220612135414.3003-3-johnson.wang@mediatek.com>
- <ca4b9a0e-b1ca-6861-e4c0-30a8c8a5c99c@collabora.com>
- <9addc9fb0c949e921f915fcf128783393214bfde.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <9addc9fb0c949e921f915fcf128783393214bfde.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>, robh+dt@kernel.org,
+        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        amelie.delaunay@foss.st.com, alexandre.torgue@foss.st.com
+References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
+ <20220624155413.399190-2-fabrice.gasnier@foss.st.com>
+ <ddb0e946-c955-1404-c1cd-c2548f34ec35@linaro.org>
+ <845d6817-d2e4-7925-f7f5-da1102514636@foss.st.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <845d6817-d2e4-7925-f7f5-da1102514636@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 24/06/22 09:12, Edward-JW Yang ha scritto:
-> Hi AngeloGioacchino,
+On 27/06/2022 16:21, Fabrice Gasnier wrote:
+> On 6/24/22 18:16, Krzysztof Kozlowski wrote:
+>> On 24/06/2022 17:54, Fabrice Gasnier wrote:
+>>> This patch adds DT schema documentation for the STM32G0 Type-C controller.
+>>
+>> No "This patch"
 > 
-> Thanks for all the advices.
+> Hi Krzysztof,
 > 
-> On Mon, 2022-06-13 at 17:43 +0800, AngeloGioacchino Del Regno wrote:
->> Il 12/06/22 15:54, Johnson Wang ha scritto:
->>> Add frequency hopping support and spread spectrum clocking
->>> control for MT8186.
+> ack,
+> 
+>>
+>> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+>>
+>>> STM32G0 provides an integrated USB Type-C and power delivery interface.
+>>> It can be programmed with a firmware to handle UCSI protocol over I2C
+>>> interface. A GPIO is used as an interrupt line.
+>>> It may be used as a wakeup source, so use optional "wakeup-source" and
+>>> "power-domains" properties to support wakeup.
 >>>
->>> Signed-off-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
->>> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
->>
->> Before going on with the review, there's one important consideration:
->> the Frequency Hopping control is related to PLLs only (so, no other clock
->> types get in the mix).
->>
->> Checking the code, the *main* thing that we do here is initializing the
->> FHCTL by setting some registers, and we're performing the actual frequency
->> hopping operation in clk-pll, which is right but, at this point, I think
->> that the best way to proceed is to add the "FHCTL superpowers" to clk-pll
->> itself, instead of adding multiple new files and devicetree bindings that
->> are specific to the FHCTL itself.
->>
->> This would mean that the `fh-id` and `perms` params that you're setting in
->> the devicetree get transferred to clk-mt8186 (and hardcoded there), as to
->> extend the PLL declarations to include these two: that will also simplify
->> the driver so that you won't have to match names here and there.
->>
->> Just an example:
->>
->> 	PLL(CLK_APMIXED_CCIPLL, "ccipll", 0x0224, 0x0230, 0,
->>
->> 	    PLL_AO, 0, 22, 0x0228, 24, 0, 0, 0, 0x0228, 2, FHCTL_PERM_DBG_DUMP),
->>
->> Besides, there are another couple of reasons why you should do that instead,
->> of which:
->>    - The devicetree should be "generic enough", we shall not see the direct value
->>      to write to the registers in there (yet, perms assigns exactly that)
->>    - These values won't change on a per-device basis, I believe? They're SoC-related,
->>      not board-related, right?
->>
->> In case they're board related (and/or related to TZ permissions), we can always add
->> a bool property to the apmixedsys to advertise that board X needs to use an
->> alternative permission (ex.: `mediatek,secure-fhctl`).
-> 
-> I think we should remain clk-fhctl files because FHCTL is a independent HW and is
-> not a necessary component of clk-pll.
-
-I know what FHCTL is, but thank you anyway for the explanation, that's appreciated.
-In any case, this not being a *mandatory* component doesn't mean that when it is
-enabled it's not changing the way we manage the PLLs..........
-
-> Frequency hopping function from FHCTL is not used to replace original flow of
-> set_rate in clk-pll. They are two different ways to change PLL's frequency. The
-
-I disagree: when we want to use FHCTL, we effectively hand-over PLL control from
-APMIXEDSYS to the Frequency Hopping controller - and we're effectively replacing
-the set_rate() logic of clk-pll.
-
-> current set_rate method in clk-pll changes PLL register setting directly. Another
-> way uses FHCTL to change PLL rate. 
-
-...and of course, if we change that, we're effectively mutating the functionality
-of the MediaTek clk-pll driver and please understand that seeing a clear mutation
-in that driver is a bit more human-readable.
-
-Besides, this makes me think about one question: is there any instance in which,
-when FHCTL rate setting fails, we fall back to direct register writes?
-
-I don't think that this is feasible because we have a register in FHCTL that
-effectively hands over control to it, so direct register writes should not work
-when the PLL is not under APMIXEDSYS control, but I'm asking just to be extremely
-sure that my understanding is right.
-
-> We will set some PLL's frequency be controlled
-> by clk-pll and some are controlled by FHCTL.
-
-Another question: is this also changing on a per-board basis?
-
-(note: the pll names in the example are random and not specific to anything)
-
-Example: board A wants FHCTL on MMPLL, TVDPLL, MPLL, but *shall not* hand over
-                  NNAPLL, MFGPLL
-          board B wants FHCTL on NNAPLL, TVDPLL but *shall not* hand over MMPLL
-
-Granted that the two A, B boards are using the same SoC, can that ever happen?
-
-> And use `perms` param to decide
-> whether a PLL is using FHCTL to change its frequency.
-
-The perms param seems to be about:
-  * Enabling debug (but you're not providing any way to actually use debugging
-    features, so what's the point?)
-  * Handing over PLL control to FHCTL for hopping (can be as well done with
-    simply using a different .set_rate() callback instead of a flag)
-  * Enabling/disabling Spread Spectrum Clocking (and I think that this is a
-    legit use for flags, but if it's just one flag, you can as well use a
-    bool and manage this with a devicetree param like "enable-ssc")
-
-That said, I think that the current way of enabling the FHCTL is more complicated
-than how it should really be.
-
-> 
-> FHCTL has another function called SSC(spread spectrum clocking) which is used to
-> solve PLL de-sense problem. De-sense problem is board-related so we introduce a
-> `ssc-rate` param in the devicetree to decide whether SSC is enabled and how many
-> rate should be set. Mixing SSC function into clk-pll may cause clk-pll more
-> complex.
-> 
-
-Thing is, I don't get why you think that adding SSC to clk-pll would complicate it
-so much... it's really just a few register writes and nothing else, so I really
-don't see where the problem is, here.
-
-Another issue is that this driver may be largely incomplete, so perhaps I can't
-really see the complications you're talking about? Is this the case?
-
-Regarding keeping the FHCTL code in separated files, that's fine, but I would still
-integrate it tightly in clk-pll and its registration flow, because - yes, this is
-for sure not mandatory, but the main parameters are constant, they never change for
-a specific PLL, as they're register offsets, bits and masks (which, again, will
-never change as long as we're using the same SoC).
-
->>
->> In any case, to speed up development (I believe that transferring this in clk-pll
->> means that the code will still be more or less the same), I've performed a review
->> on the code; check below.
->>
+>>> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
 >>> ---
->>>    drivers/clk/mediatek/Kconfig          |   8 +
->>>    drivers/clk/mediatek/Makefile         |   2 +
->>>    drivers/clk/mediatek/clk-fhctl-ap.c   | 347 ++++++++++++++++++++++++++
->>>    drivers/clk/mediatek/clk-fhctl-pll.c  | 209 ++++++++++++++++
->>>    drivers/clk/mediatek/clk-fhctl-pll.h  |  74 ++++++
->>>    drivers/clk/mediatek/clk-fhctl-util.h |  24 ++
->>>    drivers/clk/mediatek/clk-fhctl.c      | 191 ++++++++++++++
->>>    drivers/clk/mediatek/clk-fhctl.h      |  45 ++++
->>>    drivers/clk/mediatek/clk-pll.c        |   5 +-
->>>    drivers/clk/mediatek/clk-pll.h        |   5 +
->>>    10 files changed, 909 insertions(+), 1 deletion(-)
->>>    create mode 100644 drivers/clk/mediatek/clk-fhctl-ap.c
->>>    create mode 100644 drivers/clk/mediatek/clk-fhctl-pll.c
->>>    create mode 100644 drivers/clk/mediatek/clk-fhctl-pll.h
->>>    create mode 100644 drivers/clk/mediatek/clk-fhctl-util.h
->>>    create mode 100644 drivers/clk/mediatek/clk-fhctl.c
->>>    create mode 100644 drivers/clk/mediatek/clk-fhctl.h
+>>>  .../bindings/usb/st,typec-stm32g0.yaml        | 83 +++++++++++++++++++
+>>>  1 file changed, 83 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
 >>>
->>> diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
->>> index d5936cfb3bee..fd887c537a91 100644
->>> --- a/drivers/clk/mediatek/Kconfig
->>> +++ b/drivers/clk/mediatek/Kconfig
->>> @@ -622,4 +622,12 @@ config COMMON_CLK_MT8516_AUDSYS
->>>    	help
->>>    	  This driver supports MediaTek MT8516 audsys clocks.
->>>    
->>> +config COMMON_CLK_MTK_FREQ_HOPPING
->>> +	tristate "MediaTek frequency hopping driver"
->>
->> If this goes inside of clk-pll, this configuration option can be safely removed.
-> 
-> I think we should keep this for clk-fhctl* files.
-> 
->>
->>> +	depends on ARCH_MEDIATEK || COMPILE_TEST
->>> +	select COMMON_CLK_MEDIATEK
->>> +	help
->>> +	  This driver supports frequency hopping and spread spectrum clocking
->>> +	  control for some MediaTek SoCs.
->>> +
->>>    endmenu
->>> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
->>> index caf2ce93d666..3c0e9bd3978b 100644
->>> --- a/drivers/clk/mediatek/Makefile
->>> +++ b/drivers/clk/mediatek/Makefile
->>> @@ -99,3 +99,5 @@ obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-mt8195-topckgen.o
->>>    				   clk-mt8195-apusys_pll.o
->>>    obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
->>>    obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
->>> +obj-$(CONFIG_COMMON_CLK_MTK_FREQ_HOPPING) += fhctl.o
->>> +fhctl-objs += clk-fhctl.o clk-fhctl-ap.o clk-fhctl-pll.o
->>> diff --git a/drivers/clk/mediatek/clk-fhctl-ap.c b/drivers/clk/mediatek/clk-fhctl-ap.c
+>>> diff --git a/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml b/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
 >>> new file mode 100644
->>> index 000000000000..9e3226a9c1ca
+>>> index 0000000000000..b2729bd015a1a
 >>> --- /dev/null
->>> +++ b/drivers/clk/mediatek/clk-fhctl-ap.c
->>> @@ -0,0 +1,347 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (c) 2022 MediaTek Inc.
->>> + */
->>> +
->>> +#include <linux/device.h>
->>> +#include <linux/module.h>
->>> +#include <linux/of.h>
->>> +#include <linux/of_address.h>
->>> +#include <linux/of_device.h>
->>> +#include <linux/platform_device.h>
->>> +#include <linux/string.h>
->>> +#include <linux/slab.h>
->>> +#include "clk-fhctl.h"
->>> +#include "clk-fhctl-pll.h"
->>> +#include "clk-fhctl-util.h"
->>> +
->>> +#define FHCTL_TARGET FHCTL_AP
->>> +
->>> +#define PERCENT_TO_DDSLMT(dds, percent_m10) \
->>> +	((((dds) * (percent_m10)) >> 5) / 100)
->>> +
->>> +struct fh_ap_match {
->>> +	char *name;
->>> +	struct fh_hdlr *hdlr;
->>> +	int (*init)(struct pll_dts *array, struct fh_ap_match *match);
->>> +};
->>> +
->>> +struct hdlr_data {
->>> +	struct pll_dts *array;
->>> +	struct fh_pll_domain *domain;
->>> +	spinlock_t *lock;
->>> +};
->>> +
->>> +static int fhctl_set_ssc_regs(struct fh_pll_regs *regs,
->>> +			      struct fh_pll_data *data,
->>> +			      int fh_id, int rate)
->>> +{
->>> +	unsigned int updnlmt_val;
->>> +
->>> +	if (rate > 0) {
->>> +		fh_set_field(regs->reg_cfg, data->frddsx_en, 0);
->>> +		fh_set_field(regs->reg_cfg, data->sfstrx_en, 0);
->>> +		fh_set_field(regs->reg_cfg, data->fhctlx_en, 0);
+>>> +++ b/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
+>>> @@ -0,0 +1,83 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: "http://devicetree.org/schemas/usb/st,typec-stm32g0.yaml#"
+>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 >>
->> Are all of these writes to be performed with a barrier?
->> Can't we use writel_relaxed() for some, with a "final" writel() where ordering
->> *really* matters?
+>> No quotes.
 > 
-> Do this mean use writel_relaxed() on the first two and writel() on the thrid?
-> 
-
-If it's important that the hardware has frddsx_en, sfstrx_en, fhctlx_en *before*
-programming df_val/dt_val, then yes.... otherwise, just use writel_relaxed()
-everywhere until the last write has to happen.
-
-writel_relaxed(something,	a)
-writel_relaxed(something_else,	b)
-writel_relaxed(something_more,	a)
-writel_relaxed(another_one,	c)
-writel_relaxed(blah,		b)
-writel(reg_cfg, 		X)
-
-....but having a second look at it, this doesn't make a lot of sense because you
-are anyway performing multiple writes to the same `reg_cfg`, so I think that you
-can as well aggregate the writes in one and reduce the barriers like that, so
-we'd have something like:
-
-
-u32 pcw_val, val;
-
-/* Important: This assumes that the contents of reg_cfg never change during the
-    execution of this programming sequence. */
-val = readl_relaxed(regs->reg_cfg);
-pcw_val = readl_relaxed(regs->reg_con_pcw) & data->dds_mask;
-
-/* Pause/disable Frequency Hopping controller for reconfiguration */
-
-
-/* P.S.: can't we use FHCTLx_PAUSE instead of turning off?? */
-
-
-
-/* SSC: Disable free-run mode */
-val &= ~data->frddsx_en;
-
-/* Disable Soft-start mode */
-val &= ~data->sfstrx_en;
-
-/* Disable Frequency Hopping controller */
-val &= ~data->fhctlx_en;
-
-writel(val, regs->reg_cfg);
-
-/* **** warning: I'm covering only the enablement flow, not the disablement **** */
-
-/* SSC Slope: Set delta frequency, delta time (df/dt) */
-val |= data->df_val & data->msk_frddsx_dys;
-val |= data->dt_val & data->msk_frddsx_dts;
-
-/* is it important to write these before DDS?
-  * no -> writel_relaxed; yes -> writel
-  */
-writel_relaxed(val, regs->reg_cfg);
-
-/* Update PLL Toggle value */
-writel_relaxed(pcw_val | data->tgl_org, regs->reg_dds);
-
-/* SSC Swing: Calculate upper/lower limits */
-updnlmt_val = PERCENT_TO_DDSLMT((readl_relaxed(regs->reg_dds) & data->dds_mask),
-				rate << data->updnlmt_shft);
-writel_relaxed(updnlmt_val, regs->reg_updnlmt);
-
-/* Hand over PLL control to FHCTL */
-fh_set_field(regs->reg_hp_en, BIT(fh_id), 1);
-
-/* Re-Enable SSC and Hopping control */
-val |= data->frddsx_en | data->fhctlx_en;
-writel(val, data->reg_cfg);
-
-
-Roughly, that's the idea.
-Also, keep in mind that aggregating the writes when possible is already
-improving the flow... relaxing R/W is another improvement though... but
-beware that technically this is important only in performance paths (so
-if this function gets called only very few times in a kernel life, it's
-not really important to use _relaxed accessors).
-
-Besides... I don't *really* like seeing the fh_{set, get}_field helpers...
-they're confusing at best, and open-coding the R/W makes you able to
-aggregate fields in one write without impacting on human readability.
-
-
->>
->> Also, at least these three field settings are common between (rate > 0) and
->> (rate <= 0), so they can go outside of the conditional.
-> 
-> OK, we will move them to outside of conditional. Thanks.
+> ack,
 > 
 >>
 >>> +
->>> +		/* Set the relative parameter registers (dt/df/upbnd/downbnd) */
->>> +		fh_set_field(regs->reg_cfg, data->msk_frddsx_dys, data->df_val);
->>> +		fh_set_field(regs->reg_cfg, data->msk_frddsx_dts, data->dt_val);
->>> +
->>> +		writel((readl(regs->reg_con_pcw) & data->dds_mask) |
->>> +			data->tgl_org, regs->reg_dds);
->>> +
->>> +		/* Calculate UPDNLMT */
->>> +		updnlmt_val = PERCENT_TO_DDSLMT((readl(regs->reg_dds) &
->>> +						 data->dds_mask), rate) <<
->>> +						 data->updnlmt_shft;
->>> +
->>> +		writel(updnlmt_val, regs->reg_updnlmt);
->>> +
->>> +		fh_set_field(regs->reg_hp_en, BIT(fh_id), 1);
->>> +
->>> +		/* Enable SSC */
->>> +		fh_set_field(regs->reg_cfg, data->frddsx_en, 1);
->>> +		/* Enable Hopping control */
->>> +		fh_set_field(regs->reg_cfg, data->fhctlx_en, 1);
->>> +
->>> +	} else {
->>> +		fh_set_field(regs->reg_cfg, data->frddsx_en, 0);
->>> +		fh_set_field(regs->reg_cfg, data->sfstrx_en, 0);
->>> +		fh_set_field(regs->reg_cfg, data->fhctlx_en, 0);
->>> +
->>> +		/* Switch to APMIXEDSYS control */
->>> +		fh_set_field(regs->reg_hp_en, BIT(fh_id), 0);
->>> +
->>> +		/* Wait for DDS to be stable */
->>> +		udelay(30);
->>> +	}
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static int hopping_hw_flow(void *priv_data, char *domain_name, int fh_id,
->>> +			   unsigned int new_dds, int postdiv)
->>> +{
->>> +	struct fh_pll_domain *domain;
->>> +	struct fh_pll_regs *regs;
->>> +	struct fh_pll_data *data;
->>> +	unsigned int dds_mask;
->>> +	unsigned int mon_dds = 0;
->>> +	int ret = 0;
->>> +	unsigned int con_pcw_tmp;
->>> +	struct hdlr_data *d = (struct hdlr_data *)priv_data;
->>> +	struct pll_dts *array = d->array;
->>> +
->>> +	domain = d->domain;
->>> +	regs = &domain->regs[fh_id];
->>> +	data = &domain->data[fh_id];
->>> +	dds_mask = data->dds_mask;
+>>> +title: STMicroelectronics STM32G0 Type-C controller bindings
 >>
->> Just perform these assignments in the variable declarations... with some
->> reordering as well, and drop the zero assignment to ret.
->>
->> In few words:
->>
->> 	struct hdlr_data *d = (struct hdlr_data *)priv_data;
->>
->> 	struct fh_pll_domain *domain = d->domain;
->>
->> 	struct fh_pll_regs *regs = &domain->regs[fh_id];
->>
->> 	struct fh_pll_data *data = &domain->data[fh_id];
->>
->> 	struct pll_dts *array = d->array;
->>
->> 	u32 con_pcw_tmp, dds_mask;
->>
->> 	u32 mon_dds = 0;
->>
->> 	int ret;
->>
->> This comment is valid for some other functions as well - I won't repeat
->> this for every instance... :-)
+>> s/bindings//
 > 
-> OK, we will merge them. Thanks.
+> ack,
 > 
 >>
 >>> +
->>> +	if (array->ssc_rate)
->>> +		fhctl_set_ssc_regs(regs, data, fh_id, 0);
+>>> +description: |
+>>> +  The STM32G0 MCU can be programmed to control Type-C connector(s) through I2C
+>>> +  typically using the UCSI protocol over I2C, with a dedicated alert
+>>> +  (interrupt) pin.
 >>> +
->>> +	writel((readl(regs->reg_con_pcw) & dds_mask) |
->>> +		data->tgl_org, regs->reg_dds);
+>>> +maintainers:
+>>> +  - Fabrice Gasnier <fabrice.gasnier@foss.st.com>
 >>> +
->>> +	fh_set_field(regs->reg_cfg, data->sfstrx_en, 1);
->>> +	fh_set_field(regs->reg_cfg, data->fhctlx_en, 1);
->>> +	writel(data->slope0_value, regs->reg_slope0);
->>> +	writel(data->slope1_value, regs->reg_slope1);
+>>> +properties:
+>>> +  compatible:
+>>> +    const: st,stm32g0-typec
 >>> +
->>> +	fh_set_field(regs->reg_hp_en, BIT(fh_id), 1);
->>> +	writel((new_dds) | (data->dvfs_tri), regs->reg_dvfs);
+>>> +  reg:
+>>> +    maxItems: 1
 >>> +
->>> +	/* Wait 1000 us until DDS stable */
->>> +	ret = readl_poll_timeout_atomic(regs->reg_mon, mon_dds,
->>> +				(mon_dds & dds_mask) == new_dds, 10, 1000);
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  connector:
+>>> +    type: object> +    allOf:
+>>> +      - $ref: ../connector/usb-connector.yaml#
 >>
->> Why are you writing to CON_PCW even when this returns en error?
->> Please add a comment explaining the reasons.
+>> Full path, so /schemas/connector/...
+>>
+>> unevaluatedProperties: false
 > 
-> Oh, we will add a warning log and dump HW register when this returns an error
-> The reg_mon is a register reflects the current frequency rate. So, it's fine to
-> write the current rate back to CON_PCW. We will also add a comment on it. Thanks
+> ack,
 > 
 >>
 >>> +
->>> +	con_pcw_tmp = readl(regs->reg_con_pcw) & (~dds_mask);
->>> +	con_pcw_tmp = (con_pcw_tmp | (readl(regs->reg_mon) & dds_mask) |
->>> +		       data->pcwchg);
+>>> +  firmware-name:
+>>> +    description: |
+>>> +      Should contain the name of the default firmware image
+>>> +      file located on the firmware search path
 >>> +
->>> +	writel(con_pcw_tmp, regs->reg_con_pcw);
->>> +
->>> +	fh_set_field(regs->reg_hp_en, BIT(fh_id), 0);
->>> +
->>> +	if (array->ssc_rate)
->>> +		fhctl_set_ssc_regs(regs, data, fh_id, array->ssc_rate);
->>> +
->>> +	return ret;
->>> +}
->>> +
->>> +static unsigned int __get_postdiv(struct fh_pll_regs *regs,
->>> +				  struct fh_pll_data *data)
->>> +{
->>> +	unsigned int regval;
->>> +
->>> +	regval = (readl(regs->reg_con_postdiv) & data->postdiv_mask)
->>> +		  >> data->postdiv_offset;
->>> +
->>> +	return data->postdiv_table[regval];
+>>> +  wakeup-source: true
+>>> +  power-domains: true
 >>
->> Can we instead simply reuse `struct clk_div_table` from clk-provider.h?
+>> maxItems
 > 
-> "postdiv" is part of setting in PCW_CON, not a individual clk divider. I think
-> it's not suitable to use `struct clk_div_table` here.
-> 
+> Do you mean maxItems regarding the "power-domains" property ?
 
-Uhm, I don't think that `struct clk_div_table` is tied to individual clk dividers
-in its definition... I mean, it shouldn't be a problem to reuse it in this case...
-The advantage of it is that we are able to set a clear idx<->divider relation.
+Yes.
 
-Anyway, if you have strong feelings about not using clk_div_table, it's ok,
-unless anyone else has considerations about that.
+> This will depend on the user platform, where it's used as an I2C device.
+> So I'm not sure this can / should be specified here.
+> Could please you clarify ?
 
+Then maybe this property is not valid here. Power domains usually are
+used for blocks of a SoC, having common power source and power gating.
+In your case it looks much more like a regulator supply.
+
+> 
+>>
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>> +    i2c5 {
+>>
+>> Just "i2c"
+> 
+> ack,
+> 
+>>
+>>> +      #address-cells = <1>;
+>>> +      #size-cells = <0>;
+>>> +
+>>> +      stm32g0@53 {
+>>
+>> Generic node name describing class of the device.
+> 
+> 
+> I wasn't aware of generic node name for an I2C device (not talking of
+> the controller). I may have missed it.
+> 
+> Could you please clarify ?
+
+The class of a device is not a I2C device. I2C is just a bus. For
+example the generic name for Power Management IC connected over I2C
+(quite common case) is "pmic".
+
+For USB HCD controllers the generic name is "usb". For USB
+ports/connectors this is "connector". So what is your hardware?
+"interface" is a bit too unspecific to figure it out.
+
+> 
+>>
+>>> +        compatible = "st,stm32g0-typec";
+>>> +        reg = <0x53>;
+>>> +        /* Alert pin on GPIO PE12 */
+>>> +        interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
+>>> +        interrupt-parent = <&gpioe>;
+>>> +
+>>> +        /* Example with one type-C connector */
+>>> +        connector {
+>>> +          compatible = "usb-c-connector";
+>>> +          label = "USB-C";
+>>> +
+>>> +          port {
+>>
+>> This does not look like proper schema of connector.yaml.
+> 
+> This refers to graph.yaml [1], where similar example is seen [2].
+> 
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/graph.yaml#L79
+> 
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/graph.yaml#L207
+
+Just look at the usb-conector schema. It's different. You miss ports.
+Maybe other properties as well.
+
+> 
+>     device-1 {
+>         port {
+>             device_1_output: endpoint {
+>                 remote-endpoint = <&device_2_input>;
+>             };
+>         };
+>     };
+>     device-2 {
+>         port {
+>             device_2_input: endpoint {
+>                 remote-endpoint = <&device_1_output>;
+>             };
+>         };
+>     };
+> 
+> 
+> Could you please clarify this point too ?
+> 
+>>
+>>> +            con_usb_c_ep: endpoint {
+>>> +              remote-endpoint = <&usbotg_hs_ep>;
+>>> +            };
+>>> +          };
+>>> +        };
+>>> +      };
+>>> +    };
+>>> +
+>>> +    usbotg_hs {
+>>
+>> Generic node names, no underscores in node names.
+> 
+> ack, I guess you'd recommend "usb" here. I'll update it.
+
+Yes, looks like usb.
+
+
+Best regards,
+Krzysztof
