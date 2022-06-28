@@ -2,98 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7F0B55E9D2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03E2255EA40
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:53:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229973AbiF1QeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 12:34:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50834 "EHLO
+        id S234321AbiF1Qq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 12:46:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231995AbiF1QdW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 12:33:22 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E5F717E2B
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 09:26:53 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id jh14so11546673plb.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 09:26:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xetWrQq1CuXFaAf0qZ5D3ArvEX1faWi5mKIvWLTvWQs=;
-        b=p8DorE8Gy9KLiNMfTG0qguwtfSrmuTsg0lqagSDdmMXsSSM9vlMICeOBZU4BddhuhU
-         LlYKe40oval5N9xQ+Q25kEper3BKKqblLNJrqH/3csvMCNCr1eAPYROVgiQOMLLW1MKu
-         wpPmTTwX7SebsyitIW/H2MmXzGo3M27hPd2J6dro5M4G0YU80lQI6qPAOkD58UQxTTSO
-         0PrzadeLCz+C0mIzDAOpouxkpN30ZPLXrZ0yl8ID0lkL8vxwDq4nBz4tbJVifqJPVmpe
-         ItmDNaoo0TT5cpXREdGfOD8M0GlQ3suBg3Tq7Uj+T1tYiI7Q2kmr1MJlSp1xRKAu1rqw
-         pTvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xetWrQq1CuXFaAf0qZ5D3ArvEX1faWi5mKIvWLTvWQs=;
-        b=NtILPCTuUyqd6LnX1K0HxSwbAc8pf/wZp6Rz0YBYwIOGiNUGp+gIIgrFqV7UzLr04+
-         m7OD76V23agLNSSMnEDbHM/oidoknP/vdkgQGwCEI9kMWd6gYMde8UaGoPMI6DWlMff2
-         slFVDlHAJtWwqg9TFNRPHhC7WScBhioGpUz7BCb4kKrNAuIT9KTPC7j5MpJSF6UrSpvK
-         xIa/BXPvOLh4g/6ZRO1DYQXdt4XLztibDT59vjxQzXLD5ou5Ri9tMR//ZmidNv7/GRwn
-         h6MaolWiQdmq5Z3ars+RuchFvb9DBINAwx7GJDaen7RU+zBgUfRdNP2gP53qn0ub7r3S
-         9wZw==
-X-Gm-Message-State: AJIora+97/L3LCI6OiXptEQYdUZwPDbT5ESRJZsla8u1tUcKGXGTlz+k
-        IuiglKm+SlcCwLAuIK82Qcg=
-X-Google-Smtp-Source: AGRyM1uLFd+o2OSnlshwCqLNxQYiHvY5NEBrcyd/gviAvDGyJeVH2hn5FeHmzv4A6eaFWZge4SJNdQ==
-X-Received: by 2002:a17:90a:9cd:b0:1ec:7258:d01b with SMTP id 71-20020a17090a09cd00b001ec7258d01bmr468065pjo.244.1656433612949;
-        Tue, 28 Jun 2022 09:26:52 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id e22-20020a62aa16000000b005251dacdb9bsm9920361pff.14.2022.06.28.09.26.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jun 2022 09:26:52 -0700 (PDT)
-Message-ID: <80ab9176-ab8c-983b-7809-b0c45c7d156a@gmail.com>
-Date:   Tue, 28 Jun 2022 09:26:50 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH V4 11/11] soc: bcm: bcm2835-power: Bypass power_on/off()
- calls
-Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        with ESMTP id S231877AbiF1QpO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 12:45:14 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC12FE7;
+        Tue, 28 Jun 2022 09:43:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=2/M/g5u5jwnlXk0l7tYRn4YYZxyECZLA2UT2UxDh/rE=; b=vXjUkTHoKF9wG+0zPAswh9DSOb
+        RsQSXx7BoC5v/xQ14v1zMPvDwiKVB9Sv2pxEc+XWcncKgq0Z/HT8WubPMvV1qsxccdXwoaTvj3S7Z
+        NDXkr5OwavFOhntxOrMQE/BVQyD2h3QjHfMa5DIjvskJ5PHebKiMdjxEjgcs/JcMgj2jjBF6Cqefd
+        U04OBrXPApVGa3j0spj3ivPGv0+APH8fmUzv54/WWnTL1eDLSBkw3GFSMTttu5+ELD+HxNI/iBadG
+        e8axuok8t2CWG2iEnpAavMQR1vXUTjvpcsPBfiz+jk3khYCvd1qw7iBrOq/WNmg1KuMTd3a5KWtnc
+        9yB/LKPw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33068)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1o6EIu-0001r6-9p; Tue, 28 Jun 2022 17:43:08 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1o6EIk-00052x-LT; Tue, 28 Jun 2022 17:42:58 +0100
+Date:   Tue, 28 Jun 2022 17:42:58 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Lee Jones <lee.jones@linaro.org>
-Cc:     Peter Robinson <pbrobinson@gmail.com>,
-        Melissa Wen <melissa.srw@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-References: <20220625113619.15944-1-stefan.wahren@i2se.com>
- <20220625113619.15944-12-stefan.wahren@i2se.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220625113619.15944-12-stefan.wahren@i2se.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v9 05/16] net: pcs: add Renesas MII converter
+ driver
+Message-ID: <YrsvkqBbzUvTYOeI@shell.armlinux.org.uk>
+References: <20220624144001.95518-1-clement.leger@bootlin.com>
+ <20220624144001.95518-6-clement.leger@bootlin.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220624144001.95518-6-clement.leger@bootlin.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/25/22 04:36, Stefan Wahren wrote:
-> From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+On Fri, Jun 24, 2022 at 04:39:50PM +0200, Clément Léger wrote:
+> Add a PCS driver for the MII converter that is present on the Renesas
+> RZ/N1 SoC. This MII converter is reponsible for converting MII to
+> RMII/RGMII or act as a MII pass-trough. Exposing it as a PCS allows to
+> reuse it in both the switch driver and the stmmac driver. Currently,
+> this driver only allows the PCS to be used by the dual Cortex-A7
+> subsystem since the register locking system is not used.
 > 
-> Bypass power_on/power_off() when running on BCM2711 as they are not
-> needed.
-> 
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+Looks good to me, thanks.
+
+The only issue I haven't brought up is:
+
+> +static int miic_config(struct phylink_pcs *pcs, unsigned int mode,
+> +		       phy_interface_t interface,
+> +		       const unsigned long *advertising, bool permit)
+> +{
+> +	struct miic_port *miic_port = phylink_pcs_to_miic_port(pcs);
+> +	struct miic *miic = miic_port->miic;
+> +	int port = miic_port->port;
+> +	u32 speed, conv_mode, val;
+> +
+> +	switch (interface) {
+> +	case PHY_INTERFACE_MODE_RMII:
+> +		conv_mode = CONV_MODE_RMII;
+> +		speed = CONV_MODE_100MBPS;
+> +		break;
+> +	case PHY_INTERFACE_MODE_RGMII:
+> +	case PHY_INTERFACE_MODE_RGMII_ID:
+> +	case PHY_INTERFACE_MODE_RGMII_TXID:
+> +	case PHY_INTERFACE_MODE_RGMII_RXID:
+> +		conv_mode = CONV_MODE_RGMII;
+> +		speed = CONV_MODE_1000MBPS;
+> +		break;
+> +	case PHY_INTERFACE_MODE_MII:
+> +		conv_mode = CONV_MODE_MII;
+> +		/* When in MII mode, speed should be set to 0 (which is actually
+> +		 * CONV_MODE_10MBPS)
+> +		 */
+> +		speed = CONV_MODE_10MBPS;
+> +		break;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	val = FIELD_PREP(MIIC_CONVCTRL_CONV_MODE, conv_mode) |
+> +	      FIELD_PREP(MIIC_CONVCTRL_CONV_SPEED, speed);
+> +
+> +	miic_reg_rmw(miic, MIIC_CONVCTRL(port),
+> +		     MIIC_CONVCTRL_CONV_MODE | MIIC_CONVCTRL_CONV_SPEED, val);
+> +	miic_converter_enable(miic_port->miic, miic_port->port, 1);
+> +
+> +	return 0;
+> +}
+
+the stting of the speed here. As this function can be called as a result
+of ethtool setting the configuration while the link is up, this could
+have disasterous effects on the link. This will only happen if there is
+no PHY present and we aren't using fixed-link mode.
+
+Therefore, I'm willing to get this pass, but I think it would be better
+if the speed was only updated if the interface setting is actually
+being changed. So:
+
+Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+
 -- 
-Florian
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
