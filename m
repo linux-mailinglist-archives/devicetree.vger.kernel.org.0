@@ -2,84 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F0BF55E6DE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DAED55E8AB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:36:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346262AbiF1N6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 09:58:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36624 "EHLO
+        id S1346217AbiF1N7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 09:59:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344132AbiF1N6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 09:58:21 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A40142BB1F
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 06:58:20 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id i7so22302492ybe.11
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 06:58:20 -0700 (PDT)
+        with ESMTP id S1347138AbiF1N7Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 09:59:16 -0400
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69D9F35DCD
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 06:59:00 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id i7so22305592ybe.11
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 06:59:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2/l7W+OssRRYQModKHWxWKmgYil2AiQmmsO4Fs3j34E=;
-        b=kzEgPie5pY0c0ahz2zTJxPOw01bu71JnTCUESsurSekWEfS5exSW/cJqaS2kOLFZW+
-         IYpmXp4AnNxegO/cntNbrVoKNLN1a9RzN0hByEGTIGZ0L50g7PRTv0/vJx0CM+PPblJe
-         jK72CWBbaR5L/ROcbOoguxAUkN/Cnp8hmNqMKpGJQSZABtr43cdVlJ2RzFp5z1Ow1zws
-         O7+oGnxVXiWrkzHlM9OKxdq3zauWv5/gmlhxe0S0K8d618YrhFt356dAhBKX2q9KzgVL
-         zTfEDnUiI+5FpceqZCWDdH7on3X2Mw8lhq5R5Sb2Mdg4hlGbSrCtepCFMp5Ym+uwCDEk
-         Q8rw==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=Jh3M8LDovYWs/mBJiVJoI/DS8xun0EDDqspVSX/swmY=;
+        b=jQAXgSnagPhLa0/RHDp/Vda+mnh5fSh4KIVAJR023/ez96U0Jw9lB6F6fbYI/4mKgv
+         Dk0kZjL0BgUf1dQc6gvYNSQOkN4ab9sH0Pq4L9L8CA02hDAIjqcJmhfLkCQpnD1q6Ihx
+         OvBI7FYLKA2ED2/qB7hGNtOyotUhRwqLuCDXrc+54NKfMUHJr8+/03cx4tjwdbA/PL6e
+         kHogDtrq+FWBhjKxY/5KWs18SMNVpljkhRQFHWRf+u1s+HBCcrT+oJjW5JR4PvuqFBCP
+         JRn8ncNyuJiSO3BcRIEr41wGYJUwtBqsETiPTloVas/5HOSgG2CrqG96VopYj8AFYU8b
+         q11A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2/l7W+OssRRYQModKHWxWKmgYil2AiQmmsO4Fs3j34E=;
-        b=XFIL4fVuRFx+Uj0IGXyF0NDMiL3XjomJM9nwX7hc6taV+4P5tOjXX5PMyTRI3Yrdhn
-         PsWmXLURYxXe1E7tSd2J2dIXofDUmdFPhK3RsRut6c1Wg13u0/eBJ3wMvSaL62N+dew7
-         bbHjwChl8rRbyy6AeBrgwy94W0uqD7mJ0cdWKO7YQHqZ7B9dQocjvpqFSMzRaLi3TcSO
-         Dv0TW8kSr/KuAKmOX42krVrdziEqr9JIGz7zaKVttpMwyz87F81V/zTTFiFhbvB543+y
-         ++ZS2CHzni9/X1nDEd8qU4+WOUAtw5CrsipqIqTZmHpecLXnos5ntBC4iOUMfxlIb8M4
-         heuw==
-X-Gm-Message-State: AJIora+Q64Pnp8kQWSg3nTlKjpYlGOEy+EW4hzKbaSEL7GDgzIxN7iXm
-        oj9xCythLd07/5Jx7lmhyC5D+g/f4NrbbKEYh0p/6g==
-X-Google-Smtp-Source: AGRyM1s6T+OzQpi21xhADOxFCQu+HizTLSBGEeUHU6KCbRefmRdacgeQvdx2yDE1xwu1Y/sLnazE19sz7Mfsu8aAT08=
-X-Received: by 2002:a25:e7d4:0:b0:66c:899b:49c6 with SMTP id
- e203-20020a25e7d4000000b0066c899b49c6mr20150388ybh.291.1656424699840; Tue, 28
- Jun 2022 06:58:19 -0700 (PDT)
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=Jh3M8LDovYWs/mBJiVJoI/DS8xun0EDDqspVSX/swmY=;
+        b=Bwi9CR7NpJIlflWU+tHvowxObEjtEoQYXLb5rSTipLmKTkxnliTQGBVrIlFNPuEaNl
+         DPgNzMYAiaTEv3ungatkuIiq9eITbczvKVFtFgO+fKyIasYDCP+UEKp/RFewWXCH9AQg
+         q5lkSQCLIopzPsgIhOg40/ol/UylfR69idYRmB/5WuUqKAn8rD3lfUuXaw3ORxyZXg5W
+         CCQ6v1k0qP+MaJFx0RMiXJepIwyvrEbDauIHRqFIIB4/n6IAOGaSX6CC+MNjLgTpHtl6
+         Qm1Z9uHfrhjwoXR53QsfJhao2SfKUgvhgf0k2vAYMRqSR9b2mLUqmZCErP85ShNFRsnm
+         47IQ==
+X-Gm-Message-State: AJIora/JwPwwtZLI7mNLRtStTwLRFnQjA5v+ukvMJlW6x6kxuBYzf0XY
+        8izgqeiTD+5KpaO8OB8DdGWTfiOlrRVOMLxhat4=
+X-Google-Smtp-Source: AGRyM1sWEAhEZYBaHMWGK53kmZAbyyZLUzqLdGSBU6WNMJF+4owN/B8/rjs9m+t19SouWtYgn/Q3uuJu9NMyCQ0riGw=
+X-Received: by 2002:a05:6902:136c:b0:649:81aa:5f7b with SMTP id
+ bt12-20020a056902136c00b0064981aa5f7bmr19675058ybb.303.1656424739606; Tue, 28
+ Jun 2022 06:58:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220623160801.240779-1-sebastian.reichel@collabora.com> <20220623160801.240779-2-sebastian.reichel@collabora.com>
-In-Reply-To: <20220623160801.240779-2-sebastian.reichel@collabora.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 28 Jun 2022 15:58:08 +0200
-Message-ID: <CACRpkdausrTN2c3QXLFJu0R1B6WsUda6POeUG2XasqBB6hSCtA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: rockchip: add gpio-ranges
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        linux-gpio@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, kernel@collabora.com,
-        Rob Herring <robh@kernel.org>
+Received: by 2002:a05:7110:3248:b0:188:a53c:128 with HTTP; Tue, 28 Jun 2022
+ 06:58:59 -0700 (PDT)
+Reply-To: rahmanahmadmrabdul02@gmail.com
+From:   "Mr. Abdul Rahman Ahmad" <brigitteaoukpe@gmail.com>
+Date:   Tue, 28 Jun 2022 15:58:59 +0200
+Message-ID: <CAGE9d+HVYHqNYq5AF_Tv9-4-Hs48Q5+oihAz-NLAaKT2kPCL+g@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=4.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_HK_NAME_FM_MR_MRS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 23, 2022 at 6:08 PM Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
-
-> Allow usage of gpio-ranges with the rockchip gpio controller. The driver
-> already had support for this since it has been added to the mainline kernel
-> in the first place.
->
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
+Hi   are you available to  speak now
+Thanks
