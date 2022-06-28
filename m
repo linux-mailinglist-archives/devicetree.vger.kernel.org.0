@@ -2,146 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7FA255CC51
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:01:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F88155E28A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:35:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239927AbiF1KCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 06:02:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57286 "EHLO
+        id S1344713AbiF1KDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 06:03:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343940AbiF1KCb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:02:31 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55DBB2F3AE
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 03:02:12 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id r20so16921819wra.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 03:02:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=3ZLTvjDl16WXAfxrYhPgAG4dx8YGkXCU/wb2ZjBGHxQ=;
-        b=msmzAW7PSUdijfx025BCp2/8s3pOGKHZjzRWntzmi6KAvV8jW6AQruHlpJe5hJBJ+T
-         EM36fcnz/XIBu2v5ab+3p5b9NWV5h9s4w+Y2RWsFE7tH3czqwpsz9Nr3RGgr7QXncXSv
-         IqLV58rvPzMwjDi88tiKUSd21vSifDdBvmsrqCLAje/NYaaR98WdoEfymvhd8dnDnIqD
-         vyxsP4pEjPBuji0NZGr+bHgoOIbvX8wbqQ4R5jSCelXDfwmjbKNLdBD3IVFK4DMOZAkr
-         ED6qGkg/LjDsKf6P3IrWkWIKh07p7qquUuFXS/yYJgTyDMy9zWksPt0WrKG+V4FZouU/
-         5n+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=3ZLTvjDl16WXAfxrYhPgAG4dx8YGkXCU/wb2ZjBGHxQ=;
-        b=igDyW92HEI0LDYyuTprCjgEuBz3g62rii0wWRUH6fArMShkF5Hlp2gryk1mfhv/12n
-         5X71MoNYssz3E2FTqgVd88sJuNPNdWK/U7fumWt44EdamSZIwnLiUMrJxNnadUhax9A5
-         sDx9ei8U42C3uoerioAU165QYxJL+fLqK1uDm+VGgHzNnuXhtCCcrtCzDQ8f2u6TA71h
-         v/Nrq44IcLpQqJsni12ElEiRkENpFKQfbgoDUNLJ90DfqnhjCumxTdbYmCLmOaDY+Lf1
-         psw4OGEDlVCIkT+2XHRnN2CjXSRnSyBcUJDG3c4Xx52wsaybjbcs9qC3S/teCO6+waov
-         aTcQ==
-X-Gm-Message-State: AJIora/O7n6opWJiBOFjqDgOyJHy15lxR+/1Dr4WUUMwYhjN2po6YRPt
-        h3hrx9/pLBHT/QglYRd0PjrazA==
-X-Google-Smtp-Source: AGRyM1ticr0v/IxsOpoo3bMVweszhCvDeSWbd9rkPrNp8Fcov6Tmwht2shB+7n3Tz1p27DACrMqxkw==
-X-Received: by 2002:a05:6000:1d84:b0:20e:5fae:6e71 with SMTP id bk4-20020a0560001d8400b0020e5fae6e71mr16980710wrb.224.1656410530736;
-        Tue, 28 Jun 2022 03:02:10 -0700 (PDT)
-Received: from [192.168.0.252] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c3-20020adfef43000000b0021bab0ba755sm13629129wrp.106.2022.06.28.03.02.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jun 2022 03:02:09 -0700 (PDT)
-Message-ID: <354b2ae2-92b4-bb56-387a-599f0451a1c0@linaro.org>
-Date:   Tue, 28 Jun 2022 12:02:08 +0200
+        with ESMTP id S1344635AbiF1KDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:03:23 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 401642E9E9;
+        Tue, 28 Jun 2022 03:03:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1656410602; x=1687946602;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6F1wA0MP/XvdHSRksenwLF7TskHY3KOWwY3P9Ta6U+I=;
+  b=FtrVIO1vHiaP29zgONSRl4tI3ttpj3leE5JcAqttb5gNs+KQaH5WIHwo
+   dOvSOIsfcrMEYZj8ahsSV0GMUNccRY35Mg7QHMAbv5z7u746aGl3KU5iV
+   ax4KAs/0vh2T5JPkjDWSLzuHHuXs5pIDf+VNojsAu60ODycGYZCemPt19
+   ETJz0DrDp3R3PqQUn7jZJoGyAWTHJh7ef5FUxpNsZ+b8dPaAtH4G+nFO1
+   ULD6djPC4ZKciziPvW+gPICxAgRNuWK5AUd7lSBqf0jPfJy3bTiDAMEXI
+   XkRse2XdR1CwdRlbDzf+2eX3hwEDvJNxt9l/LzrLc1lXDn1JQev2JdOWZ
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="282790166"
+X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
+   d="scan'208";a="282790166"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 03:03:21 -0700
+X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
+   d="scan'208";a="590261183"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 03:03:18 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1o683u-000wgu-T2;
+        Tue, 28 Jun 2022 13:03:14 +0300
+Date:   Tue, 28 Jun 2022 13:03:14 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
+Cc:     gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        ilpo.jarvinen@linux.intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vz@mleia.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lukas@wunner.de, p.rosenberger@kunbus.com,
+        Lino Sanfilippo <l.sanfilippo@kunbus.com>
+Subject: Re: [PATCH 5/8] dt_bindings: rs485: Correct delay values
+Message-ID: <YrrR4hItCx56bpxI@smile.fi.intel.com>
+References: <20220622154659.8710-1-LinoSanfilippo@gmx.de>
+ <20220622154659.8710-6-LinoSanfilippo@gmx.de>
+ <YrSU4eL9hgISg3Y1@smile.fi.intel.com>
+ <6c50fdca-aac4-aaf5-ad34-18a60fcc0aa0@gmx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 1/3] dt-bindings: clock: exynosautov9: correct clock
- numbering of peric0/c1
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        'Sylwester Nawrocki' <s.nawrocki@samsung.com>,
-        'Tomasz Figa' <tomasz.figa@gmail.com>,
-        'Chanwoo Choi' <cw00.choi@samsung.com>,
-        'Stephen Boyd' <sboyd@kernel.org>,
-        'Michael Turquette' <mturquette@baylibre.com>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>
-Cc:     'Alim Akhtar' <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220627005210.6473-1-chanho61.park@samsung.com>
- <CGME20220627005413epcas2p39750fb5876366881b8535ee516c1bebe@epcas2p3.samsung.com>
- <20220627005210.6473-2-chanho61.park@samsung.com>
- <0e9aab63-7ddf-dead-11b2-4ba81235dcb4@linaro.org>
- <001901d88a94$e87208d0$b9561a70$@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <001901d88a94$e87208d0$b9561a70$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6c50fdca-aac4-aaf5-ad34-18a60fcc0aa0@gmx.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2022 04:15, Chanho Park wrote:
->> Subject: Re: [PATCH 1/3] dt-bindings: clock: exynosautov9: correct clock
->> numbering of peric0/c1
->>
->> On 27/06/2022 02:52, Chanho Park wrote:
->>> There are duplicated definitions of peric0 and peric1 cmu blocks.
->>> Thus, they should be defined correctly as numerical order.
->>>
->>> Fixes: 680e1c8370a2 ("dt-bindings: clock: add clock binding
->>> definitions for Exynos Auto v9")
->>> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
->>> ---
->>>  .../dt-bindings/clock/samsung,exynosautov9.h  | 56
->>> +++++++++----------
->>>  1 file changed, 28 insertions(+), 28 deletions(-)
->>>
->>> diff --git a/include/dt-bindings/clock/samsung,exynosautov9.h
->>> b/include/dt-bindings/clock/samsung,exynosautov9.h
->>> index ea9f91b4eb1a..a7db6516593f 100644
->>> --- a/include/dt-bindings/clock/samsung,exynosautov9.h
->>> +++ b/include/dt-bindings/clock/samsung,exynosautov9.h
->>> @@ -226,21 +226,21 @@
->>>  #define CLK_GOUT_PERIC0_IPCLK_8		28
->>>  #define CLK_GOUT_PERIC0_IPCLK_9		29
->>>  #define CLK_GOUT_PERIC0_IPCLK_10	30
->>> -#define CLK_GOUT_PERIC0_IPCLK_11	30
->>> -#define CLK_GOUT_PERIC0_PCLK_0		31
->>> -#define CLK_GOUT_PERIC0_PCLK_1		32
->>> -#define CLK_GOUT_PERIC0_PCLK_2		33
->>> -#define CLK_GOUT_PERIC0_PCLK_3		34
->>> -#define CLK_GOUT_PERIC0_PCLK_4		35
->>> -#define CLK_GOUT_PERIC0_PCLK_5		36
->>> -#define CLK_GOUT_PERIC0_PCLK_6		37
->>> -#define CLK_GOUT_PERIC0_PCLK_7		38
->>> -#define CLK_GOUT_PERIC0_PCLK_8		39
->>> -#define CLK_GOUT_PERIC0_PCLK_9		40
->>> -#define CLK_GOUT_PERIC0_PCLK_10		41
->>> -#define CLK_GOUT_PERIC0_PCLK_11		42
->>> +#define CLK_GOUT_PERIC0_IPCLK_11	31
->>> +#define CLK_GOUT_PERIC0_PCLK_0		32
->>> +#define CLK_GOUT_PERIC0_PCLK_1		33
->>
->> Is this a fix for current cycle? If yes, it's ok, otherwise all other IDs
->> should not be changed, because it's part of ABI.
+On Thu, Jun 23, 2022 at 10:17:06PM +0200, Lino Sanfilippo wrote:
+> On 23.06.22 at 18:29, Andy Shevchenko wrote:
+> > On Wed, Jun 22, 2022 at 05:46:56PM +0200, Lino Sanfilippo wrote:
+> >>
+> >> The maximum allowed delay for RTS before and RTS after send is 100 ms.
+> >> Adjust the documentation accordingly.
+> >
+> > Is it only documentation issue? If the code allows this to be set higher
+> > than 100, we may not change the documentation since this an ABI (from
+> > firmware <--> kernel perspective) we need to support old variants.
 > 
-> What is the current cycle? 5.19-rc or 5.20?
-> I prefer this goes on 5.19-rc but if it's not possible due to the ABI breakage, I'm okay this can be going to v5.20.
+> Well currently the documentation claims that a maximum of 1000 msecs is allowed but
+> nothing actually checks the values read from device tree/ACPI and so it is possible
+> to set much higher values (note that the UART drivers dont check the delays read from
+> DT/ACPI either, the only exception I found is max310x which clamps it to 15 ms).
+> 
+> We already have a maximum of 100 ms defined for RTS delays set via TIOCSRS485. To be
+> consistent with TIOCSRS485 the same limit is used for DT/ACPI values in this patch.
+> 
+> I am aware that this changes the firmware/kernel ABI. But we had a similar situation when
+> the sanity checks for TIOCSRS485 were introduced
+> (see https://lore.kernel.org/all/20220410104642.32195-2-LinoSanfilippo@gmx.de/)
+> since before we did not have those limits for all drivers (some drivers clamped the
+> values itself but many did not care).
+> Furthermore 100 ms is already a very high value for RTS delays (which are usually rather
+> in usecs range). So IMHO the risk is very low to break anything when values are clamped
+> that are higher than that.
 
-The change was introduced indeed in v5.19-rc1, so this should go to
-current cycle as well (v5.19) and your patch is fine.
+You need to elaborate all this in the commit message to justify the change.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Sylwester or Stephen,
 
-Please kindly grab it for fixes.
-
-Best regards,
-Krzysztof
