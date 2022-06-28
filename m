@@ -2,108 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8880E55E3AA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:37:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AC2855E3AF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:37:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345882AbiF1Mpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 08:45:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42478 "EHLO
+        id S1345897AbiF1MqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 08:46:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345849AbiF1Mpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 08:45:49 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37D41193ED;
-        Tue, 28 Jun 2022 05:45:49 -0700 (PDT)
-Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25SCScGf014511;
-        Tue, 28 Jun 2022 12:45:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=j6ch0D9CGVi5nh8PrSZAYmkusnozMgd1H3HBZpBxCkw=;
- b=oEx2MSO6y4fpuxdouhV6y0pic4OAs2diSXcqZmSY7yp1pPKXZ7V9GFaXg1XSXllLMlso
- VnEuAFxMPjdagv524DPMKkW1s7zGggjnCCvnu8XDHiaMZ/QPJmQwjCoeoDSXkc+PKEEJ
- WOa6zKE7h2cYOlXCOA7EHEU/IGvdcwFuwC/ZOo0h7DCW9JNZ/THcu9Svf6dRvGeAj8tm
- beg0lsl4AVKanekXaAvOxi04vOnPrIG+BWkFQAA+Btz1g4pO5q7hEBjRXwCZradCa39U
- 144tI6fG84SztLfpBAItS7oERyxWDWsVsUk+hoXCQGAxdwxaWqZp58iJxWd97B8PKg5l +A== 
-Received: from ppma01dal.us.ibm.com (83.d6.3fa9.ip4.static.sl-reverse.com [169.63.214.131])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3h01pb8mge-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Jun 2022 12:45:43 +0000
-Received: from pps.filterd (ppma01dal.us.ibm.com [127.0.0.1])
-        by ppma01dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 25SCbNmV020632;
-        Tue, 28 Jun 2022 12:45:42 GMT
-Received: from b01cxnp23034.gho.pok.ibm.com (b01cxnp23034.gho.pok.ibm.com [9.57.198.29])
-        by ppma01dal.us.ibm.com with ESMTP id 3gwt098127-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Jun 2022 12:45:42 +0000
-Received: from b01ledav006.gho.pok.ibm.com (b01ledav006.gho.pok.ibm.com [9.57.199.111])
-        by b01cxnp23034.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 25SCjfOY33685920
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 28 Jun 2022 12:45:41 GMT
-Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 4D0FBAC05E;
-        Tue, 28 Jun 2022 12:45:41 +0000 (GMT)
-Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 07371AC05B;
-        Tue, 28 Jun 2022 12:45:41 +0000 (GMT)
-Received: from [9.47.158.152] (unknown [9.47.158.152])
-        by b01ledav006.gho.pok.ibm.com (Postfix) with ESMTP;
-        Tue, 28 Jun 2022 12:45:40 +0000 (GMT)
-Message-ID: <01b52288-7fb4-3b4c-4e47-1f74a839818e@linux.ibm.com>
-Date:   Tue, 28 Jun 2022 08:45:40 -0400
+        with ESMTP id S1345899AbiF1MqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 08:46:17 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B58B122B0E
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 05:46:15 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-31bf3656517so24882967b3.12
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 05:46:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+/o7h6HDeouJmmTiR7/vdU7nOVyyfqQGDGcnD2AIrn4=;
+        b=P+XLSx7yD8akGOAU998jjSG/8kO1Cz+yxlAH/FwcQbXDiaJXmDqgI3mMrkS7lIyapb
+         /NoF0vqvlp1YzbNRhwdpaV48X1uu4DcJEEwQfInGa3hosNqzHQHWXGSc75BJnrjdFkyO
+         1753LezlvlhuEnGgEQ1yKLDDXd4pKrLuRXeMkqGSUbnw27ndRq+PDLLZ6qqdZ5gxwuO7
+         p0iSwrXPeKhU3h1qZzdQYiIIahp25+uxTASMPTVovDcSJXD9xW1BWrCQ3HVYd2BSy1uS
+         AvUHT/jBURD3HeO82AyZ8Em257ivuuZpqgQcjnHvr4krG9DI4HBN9/U+LJY3Zk6H0/uu
+         m79Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+/o7h6HDeouJmmTiR7/vdU7nOVyyfqQGDGcnD2AIrn4=;
+        b=aRedSFeaQfftRlkuOwC+yt/IbmeIK5B0dvF9dIj47DDYgAmc6LEQ8dOzB7mStrbLyF
+         E5FC1lYrHv1bsnqblsQGVL++4a6yCF7rovGgjnDkmUaOPNauDUkpCN7BSvZh6iJMQDg1
+         FyGryny3UC6Im4qvTDTu9E9ufL+eQMrf4Qi57jr4biRrh9uzv5lsTvhjFdSSxY0cNwAw
+         ib5W2LfF7A2WI0obsd/qlfPwajjXWfgk3YSXkQFC5bPtOIHbpOxbqUz8VCbdTMrtVwNb
+         wlveHU17/czqQTtGMqE+GHtxnLRPeTaoV+UOH/IUnouhrWliHPK2WirG52EtVBEmQnzO
+         9dbw==
+X-Gm-Message-State: AJIora9CyNlPxWshNz/gSinfBdcIc9sVbKpB3rkzqZ/HMK6YxUrMfE4Y
+        afjq+Mgb2OHSJIb34lgJYlZJpr2nbRyV3WR55VPKtQ==
+X-Google-Smtp-Source: AGRyM1s7TJ7lIQB0P1Y0YWoiaMimpZET5SYEiRTwTddSx4NLLUKMWn0W0kXJByprycc3O4v/t6iZ2umtbvHx3WCkyis=
+X-Received: by 2002:a0d:eace:0:b0:317:87ac:b3a8 with SMTP id
+ t197-20020a0deace000000b0031787acb3a8mr21730890ywe.126.1656420374836; Tue, 28
+ Jun 2022 05:46:14 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 0/3] tpm: Preserve TPM measurement log across kexec
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, nayna@linux.ibm.com,
-        nasastry@in.ibm.com
-References: <20220616154130.2052541-1-stefanb@linux.ibm.com>
- <20220627223352.GA3082294-robh@kernel.org>
-From:   Stefan Berger <stefanb@linux.ibm.com>
-In-Reply-To: <20220627223352.GA3082294-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: SGPpnHRj-qxe3KVt3yzFdN6iFHbYKRD4
-X-Proofpoint-ORIG-GUID: SGPpnHRj-qxe3KVt3yzFdN6iFHbYKRD4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-06-28_07,2022-06-28_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- mlxlogscore=999 spamscore=0 malwarescore=0 clxscore=1015
- priorityscore=1501 suspectscore=0 mlxscore=0 lowpriorityscore=0
- phishscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2204290000 definitions=main-2206280052
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220201134108.2677578-1-vkoul@kernel.org> <YhUVAwtfjuIdKrRQ@matsya>
+ <1c66890b-6736-61ef-7d16-619f90ced4a0@linaro.org> <4f1ae43c-0f22-19fe-0794-3cc268104396@linaro.org>
+In-Reply-To: <4f1ae43c-0f22-19fe-0794-3cc268104396@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 28 Jun 2022 14:46:03 +0200
+Message-ID: <CACRpkdaSC1dSgQYJEXfL9OG-Jq9Q1UeMwuM6tjozd_oCVF_oMQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] spmi: pmic-arb: Add support for PMIC v7
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Collins <quic_collinsd@quicinc.com>,
+        linux-arm-msm@vger.kernel.org,
+        David Dai <daidavid1@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Jun 18, 2022 at 5:30 PM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+> On 01/05/2022 22:41, Dmitry Baryshkov wrote:
+> > On 22/02/2022 19:53, Vinod Koul wrote:
+> >> On 01-02-22, 19:11, Vinod Koul wrote:
+> >>> Hello,
+> >>>
+> >>> The is version 3 of support for PMIC v7. I have added a new property
+> >>> qcom,bus-id for supporting v7 and then add driver changes for v7
+> >>>
+> >>> This depends on yaml conversion patch:
+> >>> https://lore.kernel.org/linux-arm-msm/20211227170151.73116-1-david@ixit.cz/
+> >>>
+> >>
+> >> Any feedback on this...
+> >
+> > Another gracious reminder about these patches. At this moment this is
+> > one of the important pieces lacking for the full SM8450 support in the
+> > upstream kernel.
+>
+> Stephen, yet another ping. This is the blocking point for the further
+> SM8450 progress.
 
+Pending since february!
 
-On 6/27/22 18:33, Rob Herring wrote:
-> On Thu, Jun 16, 2022 at 11:41:27AM -0400, Stefan Berger wrote:
->> The of-tree driver does not currently preserve the IBM vTPM 1.2 and
->> vTPM 2.0 measurement logs across a kexec. This series fixes this for the
->> kexec_file_load() syscall using the flattened device tree (fdt) to
->> carry the measurement log's buffer across kexec.
-> 
-> As mentioned in v1, please Cc other folks that might care about TPMs
-> and kexec. I'm sure it's not only IBM.
+I would rather suspect something is wrong and it somehow goes
+into the spam or wrong inbox on Stephen's end.
 
-That's why I cc'ed the linux-integrity mailing list now where all the 
-TPM related development is happening.
+Sounds like something Bjorn could solve if Stephen don't have time
+to manage the SPMI subsystem right now? If it's OK with Stephen
+or he simply don't respond we can just queue the stuff in the SoC
+tree I assume?
 
-    Stefan
-
-> 
-> Rob
+Yours,
+Linus Walleij
