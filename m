@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 976F755EF73
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C44855EF5C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229896AbiF1UXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 16:23:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33716 "EHLO
+        id S232449AbiF1UX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 16:23:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbiF1UVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:21:49 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8EA63D49D
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:38 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id t26-20020a9d775a000000b006168f7563daso10562168otl.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:38 -0700 (PDT)
+        with ESMTP id S232383AbiF1UVu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:21:50 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80D483D1EC
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:40 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id h65so18710997oia.11
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=drePDoRqqbzl6prpyVgk7AYX37yHicKnxyQR1OBjzI4=;
-        b=moXgRC1ZCmtAk43r30IRkCVOlO3m0Lgmoyisbtq3SUSBCEMyi6gvW1oUVWJiXmUfIc
-         6QtUcPpq/lDTeec6ygeym0stD3jSPRZ5J7RkMhqhLxOzTyTrw7AO0g7PH6An9eqMksyl
-         Ydj0GgrPhK4gfvM0wtSqoErrAjAx9jofILHyuntEs1Xyk7g+n4956V8AvZCN8oVgwn7P
-         qef3jWopwTNWnh6ho/WJuw93S9/3UdFe/rrZECqPDYCXAl49CjS5ZXRef73v7kqRB0/Q
-         JH4vUc2cm6xEcnud8rqSLSIMWMiQ5f8wDRQXw76WEk/Z8lPqcjtgUXSmbI67xkH/X1DJ
-         Nk8w==
+        bh=wQxdhK9VH2mOR/RqG890s8rdLEEOBchE5Ucgc50/nQo=;
+        b=a7D+OyQg3StX1iZZqgH24rDcNqnYEe5+rgiZdr7FJTrpK6RzDxq8QxRc/pMwhWXZZO
+         6vfIDKonQqkkslejc1RSH9/UmPq0obcTv5fF7lCfga56KC8AOPsCYV69iIMKXX7Qn+sG
+         hJWQXDRvVzWpKwIkwPIgUEnaqjWpavLItDL8KKQeAlMNuDT+4JNvL7pDMCrJI7C0Hk4g
+         FhYgYVaebKaFnGux7+viaF2sHEnGAA3dzy8HICmcfxoeXPVhqtjbaUKJlL8bw/LXleJm
+         HIIKm3gqgpg+IBorrZtS5mEiScdfuGqoqo3AYbjFfGTcdyhV4hI8QrnodVpcMvrrpMuJ
+         tOtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=drePDoRqqbzl6prpyVgk7AYX37yHicKnxyQR1OBjzI4=;
-        b=KTEfgMsyCgc+V1gRU+teyrGIVvQH851KcjY6BWDnabmJMN8rJaYiVWeWHms2UH20EV
-         Uf1pqbhQ05tUOEuWb9c+ogzBv7uU5q+JQPH4osmK5qyQ20oV0KH2v+nZWko/YMg0pW7j
-         vYRQBO0JiXbxaie7dbC+/o3tmo5EtWDxVORNQk4iRYy1UblTYqC+nUcJoNe8JU03lNAA
-         U+sV4ADwHCBI9wlPvWEqkVZ6nPZ86F+cacwgGFEFjusxDzeS0WIVl0C8oFrwi66rE/Oh
-         LLmif3NlCprnJlr44IDD33+A6Gwy3uaGcK6MG7TTf6mZ878Wp4flwx1cp0zQjMDJUP8C
-         qfjQ==
-X-Gm-Message-State: AJIora+4K4PJgMemuUoLhJz0kCQBm4HTdaXUq7VdfMJpwl2cSvv5e4tD
-        5+6tcr2/aP3ubuhBn4dnvArB0A==
-X-Google-Smtp-Source: AGRyM1tu7bDrRegeRjhgYkK5mcokV3KE8Y2lqVgXT/4kP1CoErcxfekA6u2mEhkTco3Or0B5ePUSkg==
-X-Received: by 2002:a9d:6750:0:b0:616:8fd5:bfdc with SMTP id w16-20020a9d6750000000b006168fd5bfdcmr9811390otm.322.1656447578602;
-        Tue, 28 Jun 2022 13:19:38 -0700 (PDT)
+        bh=wQxdhK9VH2mOR/RqG890s8rdLEEOBchE5Ucgc50/nQo=;
+        b=WUtygg27alpjAs0ACYDSDcwvgkozAmhsE4auQNKRHPQ4R4lV8YgbVqzPsMVoHpCTz5
+         FR84W6vpC1opvKIWbY+fiqPaTuxLRZAcbI6SLihSirhbGBJlw7l3w0SbYSjSmDc7B9re
+         TkXMLsQdiTV5V8rhsJHtaBwmKip+nZ+gPBJZpfqmqcKDWfmtU9O/+wskumuqZoUkO+EC
+         0Zy9Xf26a5ay6Kx3E5fPNYkUkrVMJmyJxvd46UNCQUuh3jFu0gHtIAsGYmR6rvNLNPCq
+         uyM6ntY+roGj+boO/G9YeuVZpaCU86rTaOB/NebyEyRlAaIHm1mYveolWrPfImVJOMRe
+         HYSA==
+X-Gm-Message-State: AJIora+bJceYi6LDLWKVu4f0E2VCEKe6bQXP+3YhFzRBoH+K0EUWr43b
+        ZpcUUrZUvVwAGis0qAjghZB+Qg==
+X-Google-Smtp-Source: AGRyM1uzOEv58aSoDC+68Uf8ok5EzQnSOVDGh8ZmTW18VNCNE+wvI04spUVfacSMXF2VjSQl7m8TLg==
+X-Received: by 2002:a05:6808:1a03:b0:330:5a56:46de with SMTP id bk3-20020a0568081a0300b003305a5646demr935988oib.76.1656447580264;
+        Tue, 28 Jun 2022 13:19:40 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.37
+        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 13:19:37 -0700 (PDT)
+        Tue, 28 Jun 2022 13:19:39 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Kaushal Kumar <quic_kaushalk@quicinc.com>,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        agross@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        manivannan.sadhasivam@linaro.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/4] Add QPIC BAM and QPIC NAND devicetree support for SDX65
-Date:   Tue, 28 Jun 2022 15:19:07 -0500
-Message-Id: <165644753307.10525.12384572322800872400.b4-ty@linaro.org>
+To:     wim@linux-watchdog.org, Rohit Agarwal <quic_rohiagar@quicinc.com>,
+        robh+dt@kernel.org, linux@roeck-us.net,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        manivannan.sadhasivam@linaro.org
+Subject: Re: (subset) [PATCH 00/11] Devicetree Changes SDX65
+Date:   Tue, 28 Jun 2022 15:19:08 -0500
+Message-Id: <165644753307.10525.7692596581954064633.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <1651511286-18690-1-git-send-email-quic_kaushalk@quicinc.com>
-References: <1651511286-18690-1-git-send-email-quic_kaushalk@quicinc.com>
+In-Reply-To: <1654080312-5408-1-git-send-email-quic_rohiagar@quicinc.com>
+References: <1654080312-5408-1-git-send-email-quic_rohiagar@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -72,29 +73,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 May 2022 10:08:02 -0700, Kaushal Kumar wrote:
-> This series adds and enables devicetree nodes for QPIC BAM
-> and QPIC NAND for Qualcomm SDX65 platform.
+On Wed, 1 Jun 2022 16:15:01 +0530, Rohit Agarwal wrote:
+> This series adds cpufreq, watchdog dt nodes and enables
+> remoteproc in sdx65 mtp.
 > 
-> Changes since v2:
->  - Modify status as "okay" for the nodes added for sdx65-mtp.
+> Thanks,
+> Rohit.
 > 
-> Changes since v1:
->  - Sort the nodes added for sdx65-mtp in alphabetical order.
->  - Rebased on top of 5.18-rc5.
+> Rohit Agarwal (11):
+>   ARM: dts: qcom: sdx65: Add CPUFreq support
+>   ARM: dts: qcom: sdx65: Add modem SMP2P node
+>   ARM: dts: qcom: sdx65: Add IMEM and PIL info region
+>   dt-bindings: firmware: scm: Add compatible for SDX65
+>   ARM: dts: qcom: sdx65: Add SCM node
+>   ARM: dts: qcom: sdx65: Add Modem remoteproc node
+>   ARM: dts: qcom: sdx65-mtp: Enable modem
+>   ARM: dts: qcom: sdx65-mtp: Increase the vmalloc size
+>   dt-bindings: watchdog: Add binding for Qcom SDX65
+>   ARM: dts: qcom: sdx65: Add Watchdog support
+>   ARM: dts: qcom: sdx65: Add pshold support
 > 
 > [...]
 
 Applied, thanks!
 
-[1/4] ARM: dts: qcom: sdx65: Add QPIC BAM support
-      commit: ab11b74d87ddadb1e6e6d8dc36f3145a26158ef2
-[2/4] ARM: dts: qcom: sdx65: Add QPIC NAND support
-      commit: 0ec15b6f7621c2e5ded3d3d1a67361da1895c26b
-[3/4] ARM: dts: qcom: sdx65-mtp: Enable QPIC BAM support
-      commit: eae61fddd64861fc496a7786b02449abe8188145
-[4/4] ARM: dts: qcom: sdx65-mtp: Enable QPIC NAND support
-      commit: 59e73f67e14b95eddbbff2f009c98a55cef47f8a
+[01/11] ARM: dts: qcom: sdx65: Add CPUFreq support
+        commit: b427679adcddf9d56b28175d435fc7ec4d4c99ef
+[02/11] ARM: dts: qcom: sdx65: Add modem SMP2P node
+        commit: 7f928c735880ed20e4d7670416aa7877b47a47d1
+[03/11] ARM: dts: qcom: sdx65: Add IMEM and PIL info region
+        commit: 69117a2abfe0b02c6828979e8a6f9b039908b42a
+[05/11] ARM: dts: qcom: sdx65: Add SCM node
+        commit: 261e09b4e3fb847b9a1e99538e31fdfdc2d1ee90
+[06/11] ARM: dts: qcom: sdx65: Add Modem remoteproc node
+        commit: a3ae01ed96e7efc2525125c36dc8e34186f0d7bc
+[07/11] ARM: dts: qcom: sdx65-mtp: Enable modem
+        commit: aae0f5314f95df66962acfcce23158e2a047b03c
+[11/11] ARM: dts: qcom: sdx65: Add pshold support
+        commit: df6d7b86f4885d370886a44339017e32c80556e7
 
 Best regards,
 -- 
