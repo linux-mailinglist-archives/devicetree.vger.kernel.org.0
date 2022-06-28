@@ -2,154 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 382B055EA9E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 19:08:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C40A655EAF9
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 19:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232124AbiF1RGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 13:06:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49748 "EHLO
+        id S232269AbiF1RZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 13:25:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229896AbiF1RGe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 13:06:34 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1814E2B1BE;
-        Tue, 28 Jun 2022 10:06:33 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id c1so20915600qvi.11;
-        Tue, 28 Jun 2022 10:06:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=8bQ8ei1JkcwOHR5YxHEw7aHiNSi0KYBwHi+TZqv03IU=;
-        b=i5dDrqOMKlZHRI0VmPlke/MZaZP5psV64tvfJ/TY/NYY10OAtco34+1btuy0I9jCiT
-         CYq/P/u4f8kZpFNXLFZ4dIHvQ8j7I4rdh69AcN7/jjE6sE6ZJI3m+q3FCX9bKxAQIu+Z
-         t2JRrw31ixhFlXaG13J7nLd8WwqLY4i1FhWobytrjeoMRtrVpSA1bXLbb9hPfQA629fF
-         dH2EfTdZTd52GWkXMwjhFJoPIWSKUIMZ8sh1bRqGHNYd4MmiW0LsxxqPBbyPheTaxj24
-         gSFi9jNL76HmCR2+K+UhSYYtPq5oKB3OFzy/rSNEiIv6VOnA5pUYBaEhjkRCMaG9ZZYC
-         yDrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8bQ8ei1JkcwOHR5YxHEw7aHiNSi0KYBwHi+TZqv03IU=;
-        b=y4CkdD1KV5OD7EFIxiyWw02wXswS82pbKP0UZN4rMsJBiCiAoQGGUH8zbeUH8/Bv5p
-         dCpXi/mH9sQ+IUEG3EA4LZcl0OyDaxKVhvirU54f67kwTwH4rFsWHIv9MQvJjkIpgpZh
-         6H6D2caW4b0o6XRLfbPRaE4F48EtvtEfcMMEl/w97eG26R5ZTKLcw0kzTxGIaOzcwrwe
-         2AL0reYSjUy03hRdAo2+Tsaa6APZQnloagNuxZU4oYoRrt5DeMbs2Pfi9x8yEFujkFrr
-         8MbyDh3l25g9BFOR0sUNxOq7yHYcH3OXP12msiHUDa4qxKt5TKUHdQXdcJ24Ki/nQzZH
-         XTiA==
-X-Gm-Message-State: AJIora8HgnQxgLs+O1mJgXAyNdgkABN7XR3LX5s6DfWc3t0Q3BE/Homy
-        TZWH+ep0rosutQNZLHFGKTsHEfiNvHI=
-X-Google-Smtp-Source: AGRyM1vBV0bhd9khvvCwxnpInVjHXx6m51xNDclsodRJzCWiltlCTvyGCEbQ62Nnhj+u8W8fc/Qcjw==
-X-Received: by 2002:ac8:5f4e:0:b0:31b:f5e3:6e97 with SMTP id y14-20020ac85f4e000000b0031bf5e36e97mr2093706qta.623.1656435992102;
-        Tue, 28 Jun 2022 10:06:32 -0700 (PDT)
-Received: from shaak (modemcable055.92-163-184.mc.videotron.ca. [184.163.92.55])
-        by smtp.gmail.com with ESMTPSA id br14-20020a05620a460e00b006a6ce613c7csm6250443qkb.89.2022.06.28.10.06.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 10:06:30 -0700 (PDT)
-Date:   Tue, 28 Jun 2022 13:06:26 -0400
-From:   Liam Beguin <liambeguin@gmail.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v15 06/10] iio: test: add basic tests for the iio-rescale
- driver
-Message-ID: <Yrs1EgYZMArqmdb0@shaak>
-References: <20220213025739.2561834-1-liambeguin@gmail.com>
- <20220213025739.2561834-7-liambeguin@gmail.com>
- <CAMuHMdVMhLRS+XuX_8O5UPHzoOp6a6XpTvysQS+nT+GLkL7gjQ@mail.gmail.com>
+        with ESMTP id S231738AbiF1RZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 13:25:27 -0400
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1A8539821;
+        Tue, 28 Jun 2022 10:25:25 -0700 (PDT)
+Received: from pps.filterd (m0127361.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25SH86e2016204;
+        Tue, 28 Jun 2022 17:25:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=m4j3y3RvkIM6SWeHtONEy1ljKBPfeHeA0FSrfKMn9qs=;
+ b=qG1qnycdUJJg71tCbFND6rP86rIil8j2PsHZFDbyZ8o+W943G/lE28lH8dW/PNV9k5G4
+ DHwuvG+dRZVoTu2WQKkq9549yZCg20G2hFWUJ4yocqecMdDa27z9dHQV8Ai2HlYguCVI
+ VLErP6tHcCJIIie1QvmsG6qO9zhjg/Xjj2D0Gf6dxSJ5nZRT75ntNuGW9YxFzixTRSqW
+ DyRnjZTpZl34dnRScCaqKiec+eVf9TLI9xdWMR0Yqw7Qzik6BDHVkMyBO4Uk6li/O1Tn
+ 05SAhXqdbtNf7hqrHEbB7Vz64UiI4RULlEoVDYcL4ttZAZE+nVWGtQA51qgsZ4gh3YrU HQ== 
+Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3h05sd0huq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Jun 2022 17:25:16 +0000
+Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
+        by ppma04wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 25SHLBC9021275;
+        Tue, 28 Jun 2022 17:25:15 GMT
+Received: from b03cxnp08026.gho.boulder.ibm.com (b03cxnp08026.gho.boulder.ibm.com [9.17.130.18])
+        by ppma04wdc.us.ibm.com with ESMTP id 3gwt09pxyg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Jun 2022 17:25:15 +0000
+Received: from b03ledav005.gho.boulder.ibm.com (b03ledav005.gho.boulder.ibm.com [9.17.130.236])
+        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 25SHPEOd33489318
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 28 Jun 2022 17:25:14 GMT
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 64E64BE04F;
+        Tue, 28 Jun 2022 17:25:14 +0000 (GMT)
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id C91D2BE054;
+        Tue, 28 Jun 2022 17:25:13 +0000 (GMT)
+Received: from [9.47.158.152] (unknown [9.47.158.152])
+        by b03ledav005.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Tue, 28 Jun 2022 17:25:13 +0000 (GMT)
+Message-ID: <4dec36a6-e4be-196c-1af7-3d84c964394f@linux.ibm.com>
+Date:   Tue, 28 Jun 2022 13:25:13 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdVMhLRS+XuX_8O5UPHzoOp6a6XpTvysQS+nT+GLkL7gjQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v3 0/3] tpm: Preserve TPM measurement log across kexec
+ (ppc64)
+Content-Language: en-US
+To:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Cc:     nayna@linux.ibm.com, nasastry@in.ibm.com, mpe@ellerman.id.au
+References: <20220628165820.883222-1-stefanb@linux.ibm.com>
+From:   Stefan Berger <stefanb@linux.ibm.com>
+In-Reply-To: <20220628165820.883222-1-stefanb@linux.ibm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: UPxcaoS2IWgnZEiR4HPlabB68h_GKNcO
+X-Proofpoint-GUID: UPxcaoS2IWgnZEiR4HPlabB68h_GKNcO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-06-28_10,2022-06-28_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
+ mlxlogscore=662 adultscore=0 malwarescore=0 clxscore=1015 mlxscore=0
+ spamscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2204290000 definitions=main-2206280068
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-On Mon, Jun 27, 2022 at 09:22:29AM +0200, Geert Uytterhoeven wrote:
-> Hi Liam,
+On 6/28/22 12:58, Stefan Berger wrote:
+> The of-tree subsystem does not currently preserve the IBM vTPM 1.2 and
+> vTPM 2.0 measurement logs across a kexec on ppc64. This series fixes this
+> for the kexec_file_load() syscall using the flattened device tree (fdt) to
+> carry the measurement log's buffer across kexec.
 > 
-> On Mon, Feb 14, 2022 at 12:00 AM Liam Beguin <liambeguin@gmail.com> wrote:
-> > The iio-rescale driver supports various combinations of scale types and
-> > offsets. These can often result in large integer multiplications. Make
-> > sure these calculations are done right by adding a set of kunit test
-> > cases that build on top of iio-test-format.
-> >
-> > To run these tests, add the following to .kunitconfig
-> >         $ cat .kunitconfig
-> >         CONFIG_IIO=y
-> >         CONFIG_IIO_RESCALE_KUNIT_TEST=y
-> >         CONFIG_KUNIT=y
-> >
-> > Then run:
-> >         $ ./tools/testing/kunit/kunit.py run --kunitconfig .kunitconfig
-> >
-> > Signed-off-by: Liam Beguin <liambeguin@gmail.com>
-> > Reviewed-by: Peter Rosin <peda@axentia.se>
+>     Stefan
 > 
-> Thanks for your patch, which is now commit 8e74a48d17d509bf
-> ("iio: test: add basic tests for the iio-rescale driver") in v5.18.
 
-Thanks!  I also recently sent a fix for this which recently made it
-upstream:
-7a2f6f61e8ee ("iio: test: fix missing MODULE_LICENSE for IIO_RESCALE=m")
+v3:
+  - Moved TPM Open Firmware related function to 
+drivers/char/tpm/eventlog/tpm_of.c
 
-> > --- a/drivers/iio/test/Kconfig
-> > +++ b/drivers/iio/test/Kconfig
-> > @@ -4,6 +4,16 @@
-> >  #
-> >
-> >  # Keep in alphabetical order
-> > +config IIO_RESCALE_KUNIT_TEST
-> > +       bool "Test IIO rescale conversion functions"
+v2:
+  - rearranged patches
+  - fixed compilation issues for x86
+
+
+> Stefan Berger (3):
+>    tpm: of: Make of-tree specific function commonly available
+>    of: kexec: Refactor IMA buffer related functions to make them reusable
+>    tpm/kexec: Duplicate TPM measurement log in of-tree for kexec
 > 
-> Is there any reason this cannot be tristate, so I can always enable
-> this as a module, and run the test by loading the module whenever
-> I want?
-
-I based this patch off of IIO_TEST_FORMAT, and also thought that Kunit
-tests had to be built-in to work with tools/testing/kunit/kunit.py
-
-Looking at the Documentation again, it seems I was (partially?) wrong,
-kunit tests can be run as module, but manually.
-
-I could give this a try and send a patch in the next few days.
-
-Cheers,
-Liam
-
-> > +       depends on KUNIT && !IIO_RESCALE
-> > +       default KUNIT_ALL_TESTS
-> > +       help
-> > +         If you want to run tests on the iio-rescale code say Y here.
-> > +
-> > +         This takes advantage of ARCH=um to run tests and should be used by
-> > +         developers to tests their changes to the rescaling logic.
-> > +
-> >  config IIO_TEST_FORMAT
-> >          bool "Test IIO formatting functions"
-> >          depends on KUNIT=y
+>   drivers/char/Makefile              |   1 +
+>   drivers/char/tpm/Makefile          |   1 +
+>   drivers/char/tpm/eventlog/of.c     |  31 +--
+>   drivers/char/tpm/eventlog/tpm_of.c |  27 +++
+>   drivers/of/kexec.c                 | 293 +++++++++++++++++++++++++----
+>   include/linux/kexec.h              |   6 +
+>   include/linux/of.h                 |   8 +-
+>   include/linux/tpm.h                |   5 +
+>   kernel/kexec_file.c                |   6 +
+>   9 files changed, 315 insertions(+), 63 deletions(-)
+>   create mode 100644 drivers/char/tpm/eventlog/tpm_of.c
 > 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
