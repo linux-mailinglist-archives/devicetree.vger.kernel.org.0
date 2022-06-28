@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86CFB55E9CB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:42:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0F1055E9CD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:42:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233929AbiF1Qd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 12:33:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48122 "EHLO
+        id S236746AbiF1Qdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 12:33:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238457AbiF1Qca (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 12:32:30 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842E92B252
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 09:25:01 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id 73-20020a17090a0fcf00b001eaee69f600so13228219pjz.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 09:25:01 -0700 (PDT)
+        with ESMTP id S239913AbiF1Qck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 12:32:40 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB3E31368
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 09:25:36 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id 9so12675522pgd.7
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 09:25:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=bUtATjVwpdEcWGl6tWLf8/GTsqtaV/x7C+7WaVvkNnc=;
-        b=OdRtjxE5+NmlSQUXvRIM4n6YhAM7Y+3nMmGxRHymMfIgxrakzjjeo0RLRKrFhxj7Z4
-         +Ijj8Bd06FChohElXpofx1DeFN+S/Ku1/RBaUuCnVYewjBVppU3Jch0Jj2tnhWrqZdUl
-         2GvFChDVQGGAqgQ2JlG4xsan9AmJpb1ZK0lW2BBZndjPU4s7hXixBwix5vfRInBa+He/
-         4vMy5/b6IF98B5Rs+/gp9lugnyjSbr6RaLzr4AYSEiE+L4ABb3JQuRcX+/mAPzlLssNO
-         XrlYfBuaRfaPfcXberIfGKfobU9mwo4lAqExt9Youi7OoPtTdf0MZ09RQ4+2Dh6w/I8r
-         xc7A==
+        bh=nbn8WFcjD4tsKxLe8YeMuinEUyIJltN2za4FFl31z2k=;
+        b=RjBX27p69XldpSmeTrBPIc/77OWDZ/fEU1BNH8oqZQYY9ypzrIsJigvp76oGZLbnLK
+         fpRYxdK62IoQ8JnDPXyxPHHvU0koFNh/2iKN9SiKvBcaFqMDAIwe0s3o+qrIpTGT0vc0
+         kOtwDL6iv8QLCeFieBvoLudaHw2CYW+ZLlBJ8pElD8dWwT22NH3/3eS18uer6w1veNJV
+         2CpzxsNihggsKMkLH+kcjYVUPvQDCj3ggjR6N93bhMAl/4oibgriFI36zTuJEJ4WZeSD
+         tKsfYgvKZndlgRltzwOVy0PUJ/yJU5vPOOOAMWpewzxHPFAOT1Cmn87sXjNfYHRjZJh1
+         C3vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=bUtATjVwpdEcWGl6tWLf8/GTsqtaV/x7C+7WaVvkNnc=;
-        b=Ry9taQ4pTyZVTnx+B7/UTSHgf0ut9qktXYkEBImk/JJIwRdOJXd6sIiHeQ3YNf7qXu
-         FHRQUO0Y3f2NgImBr8IZz4eTMQqiGstZ2W9FOvwrBrx11UY3RKv379CEj4l9a13pwVzg
-         6HBwzmGEuaXF4gc6awPziRQDx1OV6hrLtXI3F1OnlR9Y8yV7SqA7mHDsiB785hic3Tnc
-         xrSFHkWeSPBkRnC2J45F1QPB/cmTuoiuriJ/GBIk7WnSE1Y37I4m87kCKXORSgfMxLFr
-         lwwZXJUVviB2XuZ2cYJ/iIBAD2VPsSNYihGiSOlNpI5jwuwVVOmesxu9Km213Nz+xGtw
-         NJRg==
-X-Gm-Message-State: AJIora/Z2UVcgEUEi4ndRwFS8tycRpZO0SIMNTrMcIRRsYve6Ei3+RN7
-        iK+qeHKj5t5kXaR8pozjb5A=
-X-Google-Smtp-Source: AGRyM1un8CHF2yQx5AU8G1aGqih6tUjeCR8FZ1IQploNeFco3wW0Kq0Ksg6OtkvgN1BU5dJXIqoCdQ==
-X-Received: by 2002:a17:90a:2e03:b0:1ed:2cd5:6c4e with SMTP id q3-20020a17090a2e0300b001ed2cd56c4emr411616pjd.225.1656433501023;
-        Tue, 28 Jun 2022 09:25:01 -0700 (PDT)
+        bh=nbn8WFcjD4tsKxLe8YeMuinEUyIJltN2za4FFl31z2k=;
+        b=d0dDmGBtgf23+0yuqHH+7XHVbnL3D07EpsJDq3fyi8UebmyZ/nCW6UJpsCeRYf7W6e
+         SBJUnPDC2uuhw7bs9Q3TfiY8s7GDtI+sQRDnNDdZd1F9LJN1rOBwyWaR79MN536LdhX8
+         EhkcAcOkrFLvuV3qN0T9b5Cvsrt7FPnD9ntCL1qI9NCT161MGmzXzUrj9gdlkXuarUvG
+         1gyrFa4bkPxXZZtJsQ1tIdndFWYPQ8shTQtJA/AZaRUQszOyrruBhClZy+kljhsuKl0q
+         BN3DTe3s0N74UraBhxuYf7UUnglFfhgJjuACuvWZ0plAbesaim5MEWkMJHGCjADpC6h3
+         JRSg==
+X-Gm-Message-State: AJIora/1TunIL3OtmOQQ+hE+MFUOCpbR/KrxFqV0JiNciB5EoCAFGy+5
+        Lbjh09sah/eba8hk6cDFaJI=
+X-Google-Smtp-Source: AGRyM1sSbCwy8GnRkRKAic8TI7HukpqpRQ/zG6pI7rjds3wM9L+hi5E0dUW/DZUk4VOvbeserWdTKw==
+X-Received: by 2002:a05:6a00:1152:b0:4be:ab79:fcfa with SMTP id b18-20020a056a00115200b004beab79fcfamr4308620pfm.3.1656433536211;
+        Tue, 28 Jun 2022 09:25:36 -0700 (PDT)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id a20-20020a170903101400b001641670d1adsm9480729plb.131.2022.06.28.09.24.59
+        by smtp.googlemail.com with ESMTPSA id mh8-20020a17090b4ac800b001df264610c4sm2816247pjb.0.2022.06.28.09.25.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jun 2022 09:25:00 -0700 (PDT)
-Message-ID: <90f20e7a-f1d4-e50b-c86f-9fe222c718a9@gmail.com>
-Date:   Tue, 28 Jun 2022 09:24:58 -0700
+        Tue, 28 Jun 2022 09:25:35 -0700 (PDT)
+Message-ID: <1de40216-bf8c-ccb6-5c9c-d3d24c28d22b@gmail.com>
+Date:   Tue, 28 Jun 2022 09:25:30 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH V4 09/11] soc: bcm: bcm2835-power: Resolve ASB register
- macros
+Subject: Re: [PATCH V4 10/11] soc: bcm: bcm2835-power: Add support for
+ BCM2711's RPiVid ASB
 Content-Language: en-US
 To:     Stefan Wahren <stefan.wahren@i2se.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
@@ -68,9 +68,9 @@ Cc:     Peter Robinson <pbrobinson@gmail.com>,
         Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20220625113619.15944-1-stefan.wahren@i2se.com>
- <20220625113619.15944-10-stefan.wahren@i2se.com>
+ <20220625113619.15944-11-stefan.wahren@i2se.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220625113619.15944-10-stefan.wahren@i2se.com>
+In-Reply-To: <20220625113619.15944-11-stefan.wahren@i2se.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,9 +84,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 6/25/22 04:36, Stefan Wahren wrote:
-> The macros in order to access the ASB registers have a hard coded base
-> address. So extending them for other platforms would make them harder
-> to read. As a solution resolve these macros.
+> In BCM2711 the new RPiVid ASB took over V3D. The old ASB is still present
+> with the ISP and H264 bits, and V3D is in the same place in the new ASB
+> as the old one.
+> 
+> Use the fact that 'pm->rpivid_asb' is populated as a hint that we're on
+> BCM2711.
 > 
 > Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 > Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
