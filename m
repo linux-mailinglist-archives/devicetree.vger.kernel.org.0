@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE78A55EF3E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A22DE55EF83
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232757AbiF1UWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 16:22:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36518 "EHLO
+        id S230327AbiF1UY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 16:24:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231258AbiF1UVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:21:39 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E75462185
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:34 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id s13-20020a0568301e0d00b00616ad12fee7so9655479otr.10
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:34 -0700 (PDT)
+        with ESMTP id S232179AbiF1UVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:21:42 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60ADA3D1F6
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:37 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id p8so18720510oip.8
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=gEvFuUJcgKjD1KK0O2ptd6IoziGK1DkrPBnMIs51Dlw=;
-        b=viMzckyLSxyumGDXuvwbZfAH+ZpVcpddnKGKjmRdiZ7c2R+4pUF7GTRI4GEZerLJll
-         9NZqbUSMRtLM2QyP3uKI4lsn42t40dCeV/aMayXiovylNS8+AtX73VbrJtYdodZ5c275
-         R9f+lh5b6yd3dJDgsay575pZ11Bk8zfxYcrGLNtHnZkaO7Ly5lj7p8iQRSQcWPGPGovB
-         X9VCCXVvkOq6AjNubZHRVVI0O3QaI+jwiIh6uGBib9951sMhZWBXZJp4UaTpVBl+PSah
-         cq1uE8+2yGGXcT+s8rs32s1nL3Bgtr7iXAKVpFm7YFIdPhOXtOQ3DeuPlRUPRB0khkH5
-         oqnA==
+        bh=NQpND458z3IC4Odlss8f+0pJiS4X3ids1xb0R79Tk9s=;
+        b=ZRFTwiseNq/07y2wi0OcvM3bnWx2X0gHhB6RFo6uG1Ml786at6O7Yl3fnHiYIYtX8B
+         malpAvoCjImS9OETF4JennoN/1ilguvcVS8nip46MtxDXbS4hwHn9Km8EA+ZpBRANU3G
+         iLreEV+0MyO5pWjtVoK2I4SQPmKZ/PL5iXdUMEzuoY3ofWBRVNKKDEzYD4FtDuD8jLpg
+         91F4LZbIc36AFLa7cBS4UCx3UelRcXruGi4AYD3mby7i+9O7ytsMvO+G1Yy1oABlAmLZ
+         sG+8ifPMTgQ9CtmpOvoXdljQr5jWwyBml6GEp7+dLlNAnrm64AXWqOiMBpMMSrwWqktQ
+         Upmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=gEvFuUJcgKjD1KK0O2ptd6IoziGK1DkrPBnMIs51Dlw=;
-        b=FZFAO8scRuTl2OGJ2LWoF0p+oSpGgDgs5QaCB1g1Wk0NnwxUjCFq3U4CQu+CMjPQ8N
-         aA67c2uIwejCxLDnSIIH/AGwPyNA1PGLADAaFl3vW2S75Ms508wQLDiVLyO3fT67Qcr3
-         hV0FNOmCk9o7cT80LrWywHoRirN+o0M5S7qsG+YKz3zeZjqcYHmyi5cc15bXLx91bkZr
-         oEzv9xcHRgkRr+dbD+P2IiAsnQzKlybmzoOs2lLdOMfcDmvJKvhJ8oiyz5v0b6e5lNZb
-         6/KTqFB7jbxHPvh5hqs+Nf2nFTqkD5eiOha8+SiHffteSiZvmqfaABrD0IlV4LHmNWZh
-         XWPQ==
-X-Gm-Message-State: AJIora+qU3W3PeMEvyTvgIHotbbB9C8IX1ABzFlNvrFrS48/DA3UCImf
-        U8P9fcp/JbWgOKp5eEskzDeFjfn/QICR8Q==
-X-Google-Smtp-Source: AGRyM1t6GoZu1uEi97J1earoxokH7cav9I4fHY14+CKDIjkVDDzutLG1V153Sm7YjcURG36xlQccSA==
-X-Received: by 2002:a05:6830:438a:b0:616:f238:1562 with SMTP id s10-20020a056830438a00b00616f2381562mr419026otv.111.1656447574266;
-        Tue, 28 Jun 2022 13:19:34 -0700 (PDT)
+        bh=NQpND458z3IC4Odlss8f+0pJiS4X3ids1xb0R79Tk9s=;
+        b=oTBFUXRxo8NXtDWsfBWLMLChsaCwcx+Zd+rFoAcXXATOwBbEwvrORyd7d+YAJC8zrk
+         H4rmk9uzqooGaFuyuOum29O9+10XHasuVqNMovhvUGrjIMAeVgGka+ExlJ76zfMqRcZr
+         screW9wJkR3J9TFlX3gToYwbbGBkQ6bdbY9K5aWaG3wPA6SHFoHV8nnd2YubS/JhkAQn
+         Qvj6quVz9T5LthEJ4mhRhYdJrRholivqzvIkiWYj8z9ABT2L4fbPwpqR/jhTJpaJjyB+
+         8unh6NI6d2favKf537Wn2k5OitXH4k5yIn5h9TcDPXPPyxXuAIUJKq3HxRmz4zzQN/lM
+         f4Wg==
+X-Gm-Message-State: AJIora9rjRs/peHXDVwTC6nXYNdd2wRI2/iKbw7czaG8xOg3JWyXFGeq
+        oM0qd5KPlkulu/lk6hyvQbGr5n7zagKdvg==
+X-Google-Smtp-Source: AGRyM1tb2bgMKzTL3KVsVADswXMYQW0RxHDoAaWrKDmNgsaFPiiI8I0xppgl6dMjJpsaDJ8JBUpLeQ==
+X-Received: by 2002:a05:6808:115:b0:335:23c0:5460 with SMTP id b21-20020a056808011500b0033523c05460mr890192oie.117.1656447577147;
+        Tue, 28 Jun 2022 13:19:37 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.32
+        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 13:19:33 -0700 (PDT)
+        Tue, 28 Jun 2022 13:19:36 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     linux-kernel@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
-        devicetree@vger.kernel.org, Nishanth Menon <nm@ti.com>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Martin Botka <martin.botka@somainline.org>,
+        linux-arm-msm@vger.kernel.org,
+        Jami Kettunen <jami.kettunen@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-clk@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-scsi@vger.kernel.org,
-        Taniya Das <tdas@codeaurora.org>,
-        Avri Altman <avri.altman@wdc.com>,
-        Andy Gross <agross@kernel.org>, linux-pm@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: (subset) [PATCH v3 1/7] dt-bindings: clock: qcom,gcc-sdm845: add parent power domain
-Date:   Tue, 28 Jun 2022 15:19:04 -0500
-Message-Id: <165644753308.10525.1688009123553849699.b4-ty@linaro.org>
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-akatsuki: Round down l22a regulator voltage
+Date:   Tue, 28 Jun 2022 15:19:06 -0500
+Message-Id: <165644753307.10525.17092818321513559664.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220513061347.46480-2-krzysztof.kozlowski@linaro.org>
-References: <20220513061347.46480-1-krzysztof.kozlowski@linaro.org> <20220513061347.46480-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220620211212.269956-1-marijn.suijten@somainline.org>
+References: <20220620211212.269956-1-marijn.suijten@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -84,16 +80,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 May 2022 08:13:41 +0200, Krzysztof Kozlowski wrote:
-> Allow Qualcomm GCC to register its parent power domain (e.g. RPMHPD) to
-> properly pass performance state from children.
+On Mon, 20 Jun 2022 23:12:12 +0200, Marijn Suijten wrote:
+> 2700000 is not a multiple of pmic4_pldo's step size of 8000 (with base
+> voltage 1664000), resulting in pm8998-rpmh-regulators not probing.  Just
+> as we did with MSM8998's Sony Yoshino Poplar [1], round the voltages
+> down to err on the cautious side and leave a comment in place to
+> document this discrepancy wrt downstream sources.
 > 
+> [1]: https://lore.kernel.org/linux-arm-msm/20220507153627.1478268-1-marijn.suijten@somainline.org/
 > 
+> [...]
 
 Applied, thanks!
 
-[1/7] dt-bindings: clock: qcom,gcc-sdm845: add parent power domain
-      commit: d62cac46b0184b8730c68b01359a33769fee821b
+[1/1] arm64: dts: qcom: sdm845-akatsuki: Round down l22a regulator voltage
+      commit: 4148a9eeb15152865d60b0913d96beb7ca166f9a
 
 Best regards,
 -- 
