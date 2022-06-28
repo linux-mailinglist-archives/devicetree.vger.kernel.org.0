@@ -2,97 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88CD955DB21
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:24:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 201A955C9B3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:57:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343504AbiF1Geo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 02:34:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41918 "EHLO
+        id S1343604AbiF1Gmu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 02:42:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245712AbiF1GeC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 02:34:02 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7288DF6A;
-        Mon, 27 Jun 2022 23:34:00 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25S6XnhV075706;
-        Tue, 28 Jun 2022 01:33:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1656398029;
-        bh=gQpauwvT+3IQ8TE9iAJyxTmOdu5H7mkPZ8142Alt/ZQ=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=CcedCWVNtcXPfdTNMyDG/eZ3M3lIqIfACq25+4HoyA/5yjJdWG99LBrDnLMdYpz57
-         RRojxX1Ec3PV5Gl/B2hMWOaJrl2wSahEHyYhciFrmNcmnW2zqjge6q8iJGCMigsCXy
-         ZQxwbWSMN/tpoM2rEN7GZcIgGqicjP+dPFlLbJ4k=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25S6Xnhk036982
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 28 Jun 2022 01:33:49 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 28
- Jun 2022 01:33:48 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 28 Jun 2022 01:33:48 -0500
-Received: from [172.24.145.182] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25S6XjNn026376;
-        Tue, 28 Jun 2022 01:33:46 -0500
-Message-ID: <894d0c03-487b-40fc-5634-5b1a78b48701@ti.com>
-Date:   Tue, 28 Jun 2022 12:03:45 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] arm64: dts: ti: k3-j721s2-main: Enable crypto accelerator
-Content-Language: en-US
-To:     Jayesh Choudhary <j-choudhary@ti.com>, <devicetree@vger.kernel.org>
-CC:     <nm@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S1343623AbiF1Gmj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 02:42:39 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 575C726AC6;
+        Mon, 27 Jun 2022 23:42:35 -0700 (PDT)
+X-UUID: 7e03ed20222940d6844cd5bc1e17f222-20220628
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.7,REQID:afafa65f-2c04-4a56-b8c9-a3e66b72495c,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.7,REQID:afafa65f-2c04-4a56-b8c9-a3e66b72495c,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:87442a2,CLOUDID:3a4806d6-5d6d-4eaf-a635-828a3ee48b7c,C
+        OID:65e80b9b2c5b,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 7e03ed20222940d6844cd5bc1e17f222-20220628
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 609913103; Tue, 28 Jun 2022 14:42:28 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 28 Jun 2022 14:42:26 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 28 Jun 2022 14:42:26 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 28 Jun 2022 14:42:26 +0800
+Message-ID: <63abbd99c5d95daea7126328252e98a4b8cde2d9.camel@mediatek.com>
+Subject: Re: [PATCH v12 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220628054518.350717-1-j-choudhary@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20220628054518.350717-1-j-choudhary@ti.com>
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 28 Jun 2022 14:42:26 +0800
+In-Reply-To: <20220627080341.5087-6-rex-bc.chen@mediatek.com>
+References: <20220627080341.5087-1-rex-bc.chen@mediatek.com>
+         <20220627080341.5087-6-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi, Bo-Chen:
 
-On 28/06/22 11:15, Jayesh Choudhary wrote:
-> +	main_crypto: crypto@4e00000 {
-> +		compatible = "ti,j721e-sa2ul";
-> +		reg = <0x00 0x4e00000 0x00 0x1200>;
-> +		power-domains = <&k3_pds 297 TI_SCI_PD_SHARED>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges = <0x00 0x04e00000 0x00 0x04e00000 0x00 0x30000>;
+On Mon, 2022-06-27 at 16:03 +0800, Bo-Chen Chen wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> This patch adds a embedded displayport driver for the MediaTek mt8195
+> SoC.
+> 
+> It supports the MT8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
+> 
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
+> 
+> This driver is based on an initial version by
+> Jitao shi <jitao.shi@mediatek.com>
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> ---
+
+[snip]
+
 > +
-> +		dmas = <&main_udmap 0xca40>, <&main_udmap 0x4a40>,
-> +				<&main_udmap 0x4a41>;
-> +		dma-names = "tx", "rx1", "rx2";
-
-
-> +		dma-coherent;
-
-
-Crytpo device itself is not dma-coherent as it can never be bus master.
-Its the DMAengine that does data movement and the buffers are to be
-mapped to dmaengine provider. So this property should be dropped
-
-> +	};
+> +static int mtk_dp_training(struct mtk_dp *mtk_dp)
+> +{
+> +	bool training_done = false;
+> +	short max_retry = 50;
+> +	int ret = 0;
 > +
+> +	do {
+> +		switch (mtk_dp->train_state) {
+> +		case MTK_DP_TRAIN_STATE_TRAINING:
+> +			ret = mtk_dp_train_start(mtk_dp);
+> +			if (!ret)
+> +				mtk_dp->train_state =
+> MTK_DP_TRAIN_STATE_NORMAL;
+> +			break;
+> +		case MTK_DP_TRAIN_STATE_NORMAL:
+> +			mtk_dp_video_config(mtk_dp);
+> +			mtk_dp_video_enable(mtk_dp, true);
+> +			training_done = true;
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +
+> +		if (ret) {
+> +			if (ret == -EAGAIN)
+> +				continue;
+> +			/*
+> +			 * If we get any other error number, it doesn't
+> +			 * make any sense to keep iterating.
+> +			 */
+> +			break;
+> +		}
+> +	} while (!training_done || --max_retry);
+> +
+> +	return ret;
+> +}
 
--- 
-Regards
-Vignesh
+This function could re rewritten as:
+
+static bool mtk_dp_training(struct mtk_dp *mtk_dp)
+{
+	short max_retry = 50;
+
+	do {
+		ret = mtk_dp_train_start(mtk_dp);
+		if (!ret)
+			break;
+		else if (ret != -EAGAIN)
+			return false;
+	} while (--max_retry);
+
+	if (!max_retry)
+		return false;
+
+	mtk_dp_video_config(mtk_dp);
+	mtk_dp_video_enable(mtk_dp, true);
+
+	return true;
+}
+
+Regards,
+CK
+
+
+
