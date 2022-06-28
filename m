@@ -2,70 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D6E255EF77
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CB0055EF90
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:26:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231893AbiF1UXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 16:23:21 -0400
+        id S232893AbiF1UZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 16:25:07 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232577AbiF1UV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:21:58 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C11F13F7F
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:48 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id h65so18711643oia.11
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:48 -0700 (PDT)
+        with ESMTP id S233038AbiF1UYr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:24:47 -0400
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A522FCA
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:22:14 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-3177f4ce3e2so128870797b3.5
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:22:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=w9akEpWjpFO6hjhyJx9Y+tDRi/S2EVK4TDjKFYDvfs0=;
-        b=wpQUk82d9u+De26Krts5vTw3aFP+/sFRqhKM6bR5Rt0bo7K8mODmavPRQjlJ21LVpZ
-         tNeHxK0wGqcm0Sd+iR/w1iF0ATN5RvSAg+QTCgV3/OQEiFqE3l26ggM8KBBIyUbfRtws
-         FW4STg2ATuE/JCH+vazOpOvWU0yoe+rrrI3htYj0tX/FTTf5qMCP3yvtCJt3OicwFo/t
-         wj842ASlcJubglx83ENzBOpXBDCTOjgLOFuPBmIBHyk2CNB6bNNCwpQxL1MfosD8jlGv
-         4tsktTLGjW3MTQT+jAmInIWiFhanRDdCO+CYFOLoTryHd4Nuklr702SGVCnUMMsUf/p/
-         kyWQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=soRYWtsPJuPgBzgOfiqcgq8BhmfYCuH0eXHHZJEWVAM=;
+        b=j9BI7gp7y1yuGAEAYZQStxRnAob1tpvxFeSDkSnmrNlbTwJSmgUIl3fnciJfrbckqk
+         D5cvKn1H2wpz12SEOsSc9+zmLFQ+NMJUnl88UY/RcX6lzY85fPYGRi89xS4Mimgrf1Sn
+         h9YEc4m3Kjwqme/SeaRjDL9gpzHH4Pse4OmQoSaI6VXH1FUaJleQ8zTPNtBu/BZXiIDV
+         MMTbOUxxQB9WE9AQmJg+c9EVDFao8+NVG0P0VYTG/AhrmaYC0b3e96yL5URneROsPGbO
+         jV1kxin28RlbQshCTGOd2WuH9wF6TOnFs0/8UgJS0uz6QdNIJO/SJ2Sy0auCelmeRUna
+         KEjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=w9akEpWjpFO6hjhyJx9Y+tDRi/S2EVK4TDjKFYDvfs0=;
-        b=akWyJV3jLCyvqS5A6sMiKVUH0TaIAmGHhURkdjwCypcLX5Q/zeLiZi448yhs2SpFk7
-         tpH/qVekPoYPNs2J3131Lby9DPrBwDYApp6Qmj2FdXYomkKhWvddsU1BpimwblW1kjFS
-         F5zFdx/nncjLh8pugGhL8VcJMbGppflNC7JJhcjTL+qs8VkttYn/ufW0Fk+VC9XfYAgu
-         FDysYpgzmZHlCDXIsz4Y2HJrtpvJKiCEwKCA91GTV3Pl1JV48xkxnuUFYYHMoorg36TV
-         53BTm/E6tKFkH7ZQBRkHV7xXKwCWxM1neMkjlyUL0tceoEEcdrz58XQmS/AzbZiyyCXE
-         R7ng==
-X-Gm-Message-State: AJIora8kbuWRCf8uK3p9mCh9bV2RsBU6qPxVm9P52OuHwDGjmYUz1aWd
-        8HdJUFjo2mxStefSaj/zUXFwZw==
-X-Google-Smtp-Source: AGRyM1tBCCsVOK0J4ehYUt1GzQHkwGzVqAxQ+RwgiuwWLynjvWMrEyglSK38onq6bXg7jcl0NaeWvg==
-X-Received: by 2002:a05:6808:1392:b0:335:a45d:81fe with SMTP id c18-20020a056808139200b00335a45d81femr920778oiw.213.1656447587385;
-        Tue, 28 Jun 2022 13:19:47 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 13:19:46 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: (subset) [PATCH] arm64: dts: qcom: msm8992-*: Fix vdd_lvs1_2-supply typo
-Date:   Tue, 28 Jun 2022 15:19:13 -0500
-Message-Id: <165644753306.10525.17050921216384493070.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220627135938.2901871-1-stephan.gerhold@kernkonzept.com>
-References: <20220627135938.2901871-1-stephan.gerhold@kernkonzept.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=soRYWtsPJuPgBzgOfiqcgq8BhmfYCuH0eXHHZJEWVAM=;
+        b=MWxbJd5GOwDdo8WMp2SCUZKJRSPyWetdzHuNzrn3Cd0Ko4vcBqYwBiIxfUSaObyLfA
+         X7XfDgHggzXy7Fn28wrMutD0gKzEb/Cakc6AxwQEvxYBmYkpmc8XnQmNxqJ9EJ9kiguc
+         picq2VpG/xwPZruQlIlX2Dq+aIKFasal/qqHMjalZjscStZcx2/Q3bAn+sPGSOMNYfOX
+         VbCU0WOMZi8aWMhNGlWeHR31G48dZ16Oi2ewKfbZ/eXavRpAQge4eIINTUejltLuXq/E
+         DCBuL4PAXxd5+qAEpSEmDdzVyt2kEYemqPgmE8pZYw0tWvjYgsisadknirYiJJYw7A27
+         00Iw==
+X-Gm-Message-State: AJIora9aRnkjSmwtTXtAri0vY6MQc8220QUvDXQLTYGP8vVj3FdPrLOO
+        VEIfBNj2bSAwtVJ/zxnNIsPgGUMZZFjVfIxG5gyxvA==
+X-Google-Smtp-Source: AGRyM1tJUNZB01tRem3hFP43pssManUrJJQ/Uz/2Tk+U4lLvxJtyyxmRl/qMxGkw8ksXLo9a6CEpUAR3gTFGskb21IM=
+X-Received: by 2002:a0d:eace:0:b0:317:87ac:b3a8 with SMTP id
+ t197-20020a0deace000000b0031787acb3a8mr24231841ywe.126.1656447733193; Tue, 28
+ Jun 2022 13:22:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20220610204057.2203419-1-robh@kernel.org>
+In-Reply-To: <20220610204057.2203419-1-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 28 Jun 2022 22:22:01 +0200
+Message-ID: <CACRpkdZBozy5Z3UjQcAfiuDyuA-OESfmhWZ_YNv8Y5ZVLGqG5A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: arm/fvp-base-revc: Remove 'panel-dpi' compatible
+To:     Rob Herring <robh@kernel.org>
+Cc:     Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,24 +70,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Jun 2022 15:59:38 +0200, Stephan Gerhold wrote:
-> "make dtbs_check" complains about the missing "-supply" suffix for
-> vdd_lvs1_2 which is clearly a typo, originally introduced in the
-> msm8994-smd-rpm.dtsi file and apparently later copied to
-> msm8992-xiaomi-libra.dts:
-> 
-> msm8992-lg-bullhead-rev-10/101.dtb: pm8994-regulators: 'vdd_lvs1_2'
-> does not match any of the regexes:
->   '.*-supply$', '^((s|l|lvs|5vs)[0-9]*)|(boost-bypass)|(bob)$', 'pinctrl-[0-9]+'
-> From schema: regulator/qcom,smd-rpm-regulator.yaml
-> 
-> [...]
+On Fri, Jun 10, 2022 at 10:41 PM Rob Herring <robh@kernel.org> wrote:
 
-Applied, thanks!
+> The rtsm-display panel timing node was removed in commit 928faf5e3e8d
+> ("arm64: dts: fvp: Remove panel timings"). Without the node, 'panel-dpi'
+> is not needed either.
+>
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-[1/1] arm64: dts: qcom: msm8992-*: Fix vdd_lvs1_2-supply typo
-      commit: 5fb779558f1c97e2bf2794cb59553e569c38e2f9
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Best regards,
--- 
-Bjorn Andersson <bjorn.andersson@linaro.org>
+Yours,
+Linus Walleij
