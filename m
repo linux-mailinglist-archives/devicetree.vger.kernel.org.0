@@ -2,95 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE7E455C666
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:52:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF6D755C5CB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:51:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344609AbiF1Jt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 05:49:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39856 "EHLO
+        id S237153AbiF1J5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 05:57:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344511AbiF1JtA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 05:49:00 -0400
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12A9E2CDF0;
-        Tue, 28 Jun 2022 02:48:55 -0700 (PDT)
-Received: by mail-qv1-f46.google.com with SMTP id cs6so19172817qvb.6;
-        Tue, 28 Jun 2022 02:48:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qmsHjaT7nLNEUigJCn2XHg2FRw3Jceu7QHHPyWgnjqo=;
-        b=g5JAVx8ZIm1q8Y7AknFfm7h6VYFxH09KkZoOBIfWOZKJTFYcos7Mj/2Ot0ksGUnq3J
-         63pqG2OSuCnag4pUCj66FmuW+WlTlfH40MoBmmZ0v8Cb0uCp0k9dw/BNkFexGkAeU0jr
-         k9G7IJ5+3bPd5nMDYnQFxJ7RKW97kvvLfZjfcFmY/2c3c3evUBNSJxxE6xk84NBdPpoy
-         ZENdiMLHTK0i/R1L+TTaS9iekN6T5Jb+XZbLPKP4Vr4dPsdvOEZQDLtmNqg39uDthWhA
-         JEf23U9Aoucfr0dA2S9L8VRWbD75K/2IIJV5fKLMBvcVf+UuVA4YMjnSCxB1y+n1MEb3
-         cqpQ==
-X-Gm-Message-State: AJIora8m/03PPZOzQvuyJL1als/Wtbq1uHJf5SWj82h/6vWAqcJZHwv0
-        xKl9IHFqvCUf77vMg7ho/XFBV9QQRpM5Ew==
-X-Google-Smtp-Source: AGRyM1vv8FMtgbhpCc3DfK5B3yHX8YT5E/HLbE1yPAxs+AAoNh0T3/m3lJxflo9ovLN6I7FlIC0sLA==
-X-Received: by 2002:a05:622a:54a:b0:318:444c:d9cf with SMTP id m10-20020a05622a054a00b00318444cd9cfmr11919011qtx.646.1656409734082;
-        Tue, 28 Jun 2022 02:48:54 -0700 (PDT)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id s9-20020ac85289000000b00304efba3d84sm8748589qtn.25.2022.06.28.02.48.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jun 2022 02:48:53 -0700 (PDT)
-Received: by mail-yb1-f172.google.com with SMTP id v185so11759474ybe.8;
-        Tue, 28 Jun 2022 02:48:53 -0700 (PDT)
-X-Received: by 2002:a05:6902:a:b0:65c:b38e:6d9f with SMTP id
- l10-20020a056902000a00b0065cb38e6d9fmr19354286ybh.36.1656409733344; Tue, 28
- Jun 2022 02:48:53 -0700 (PDT)
+        with ESMTP id S242271AbiF1J5H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 05:57:07 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C98DB2FFC0;
+        Tue, 28 Jun 2022 02:56:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1656410198; x=1687946198;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=E8g6oATwOn9T0Tp0qEpsI5CmgdS7Yl7GaxAoiXWVZNk=;
+  b=CoFMyxXtUsCwpMRcWLxREQy0GpsI6BEY5vjggLEhlq6gxKfh9PztP9Bh
+   gHs/240mQivk4Ys6mHmrw3Us2tkcw5IE9j7SL6cm1Xs0CjIixAkCazN1J
+   PhbXKUU7LUwshBkfQuf6GYlVw0v+GBY2MXvIWxCleC4I06DVbGftrCL3V
+   bdtypczHgSg0kJR/6o6S1PEPn0rAO4yVIIoCshRlGB49OJdIzcGhPmiyd
+   ltdtO0RohtZzKM9DdlP66EDkt0G3Rppa0eE0k5uEa8IWAXVDmVNN5ISTF
+   NjwO5CZ/x21srfKZ7EYspOrFqXu30tT9snIcpuWr/GE2dfReLlPCKPGUG
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="270445391"
+X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
+   d="scan'208";a="270445391"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 02:56:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
+   d="scan'208";a="732691163"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 28 Jun 2022 02:56:30 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 28 Jun 2022 12:56:30 +0300
+Date:   Tue, 28 Jun 2022 12:56:30 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        amelie.delaunay@foss.st.com, alexandre.torgue@foss.st.com
+Subject: Re: [PATCH 2/4] usb: typec: ucsi: stm32g0: add support for stm32g0
+ i2c controller
+Message-ID: <YrrQTiCWsnRKAzn7@kuha.fi.intel.com>
+References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
+ <20220624155413.399190-3-fabrice.gasnier@foss.st.com>
+ <YrmtzDfFm17PFl2r@kuha.fi.intel.com>
+ <bd35eb19-cfda-4799-1ab0-0578d3c79466@foss.st.com>
 MIME-Version: 1.0
-References: <20220622181723.13033-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220622181723.13033-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220622181723.13033-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 28 Jun 2022 11:48:41 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX-yE3MAR8ugEj6CZ5u-Bfv81pvs0FC0gZ4WrXOt0DHzg@mail.gmail.com>
-Message-ID: <CAMuHMdX-yE3MAR8ugEj6CZ5u-Bfv81pvs0FC0gZ4WrXOt0DHzg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: r9a07g043-cpg: Add Renesas
- RZ/Five CPG Clock and Reset Definitions
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bd35eb19-cfda-4799-1ab0-0578d3c79466@foss.st.com>
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 22, 2022 at 8:17 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Renesas RZ/Five SoC has almost the same clock structure compared to the
-> Renesas RZ/G2UL SoC, re-use the r9a07g043-cpg.h header file and just
-> amend the RZ/Five CPG clock and reset definitions.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Tue, Jun 28, 2022 at 09:21:12AM +0200, Fabrice Gasnier wrote:
+> On 6/27/22 15:17, Heikki Krogerus wrote:
+> > Hi,
+> > 
+> > On Fri, Jun 24, 2022 at 05:54:11PM +0200, Fabrice Gasnier wrote:
+> >> +static int ucsi_stm32g0_probe(struct i2c_client *client, const struct i2c_device_id *id)
+> >> +{
+> >> +	struct device *dev = &client->dev;
+> >> +	struct ucsi_stm32g0 *g0;
+> >> +	int ret;
+> >> +
+> >> +	g0 = devm_kzalloc(dev, sizeof(*g0), GFP_KERNEL);
+> >> +	if (!g0)
+> >> +		return -ENOMEM;
+> >> +
+> >> +	g0->dev = dev;
+> >> +	g0->client = client;
+> >> +	init_completion(&g0->complete);
+> >> +	i2c_set_clientdata(client, g0);
+> >> +
+> >> +	g0->ucsi = ucsi_create(dev, &ucsi_stm32g0_ops);
+> >> +	if (IS_ERR(g0->ucsi))
+> >> +		return PTR_ERR(g0->ucsi);
+> >> +
+> >> +	ucsi_set_drvdata(g0->ucsi, g0);
+> >> +
+> >> +	/* Request alert interrupt */
+> >> +	ret = request_threaded_irq(client->irq, NULL, ucsi_stm32g0_irq_handler, IRQF_ONESHOT,
+> >> +				   dev_name(&client->dev), g0);
+> >> +	if (ret) {
+> >> +		dev_err_probe(dev, ret, "request IRQ failed\n");
+> >> +		goto destroy;
+> >> +	}
+> >> +
+> >> +	ret = ucsi_register(g0->ucsi);
+> >> +	if (ret) {
+> >> +		dev_err_probe(dev, ret, "ucsi_register failed\n");
+> >> +		goto freeirq;
+> >> +	}
+> > 
+> > If there isn't UCSI firmware, then ucsi_register() will always safely
+> > fail here, right?
+> 
+> Hi Heikki,
+> 
+> Yes, in such a case, the first i2c read (UCSI_VERSION) in
+> ucsi_register() will return an error and safely fail here.
 
-Will queue in renesas-clk-for-v5.20.
+Okay, thanks.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+heikki
