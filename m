@@ -2,83 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4146C55C572
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:51:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8423555CE82
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:05:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245184AbiF1IWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 04:22:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44472 "EHLO
+        id S243416AbiF1Iae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 04:30:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245195AbiF1IT6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 04:19:58 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AE322DD41
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 01:19:56 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id be14-20020a05600c1e8e00b003a04a458c54so3082477wmb.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 01:19:56 -0700 (PDT)
+        with ESMTP id S241524AbiF1Iad (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 04:30:33 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB28026540
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 01:30:31 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-317710edb9dso109533997b3.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 01:30:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=2RluQ/L1sN2XN4qAMgu7HWEvzSUWSILILWR4s/Bogvc=;
-        b=ooqY0pnK8R71VO+7Ww0uB5MQh1agwoZIC8aZTPQKa2MkQc+iFYSAFT+X9Dfz623HUM
-         BHHavib7dxrxW13FwpV0BwL4Rsz7Og1K04cE1HuG3rrytbMcPW23zrn5erjbHCFQONH+
-         jg+fzzg4LGgalcDL6Mx7g3/HYeQn64WSTV5hRh/P7HgkoWhGZw6C4qQHwb+r07daxqJB
-         MTRvqeX5qPKB27BpkB8nskNR7rUuQ+iSMiRouGAqNC6Xm/ECrPx02+Efez4F7sm59JXE
-         amhvq+MUDxs/g/g7UlaB+8uoKmA6AqwlaURewYpkpOkrnBvQxD2Ty+s/ndL8sN6qr0NG
-         AuRQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=e5Z/hG8NSQiNO2xEelBjBj++4NPTXkLY1E3WsIfZuUI=;
+        b=cFOT1JeSSqICBH1zsjVCn1t4/wd9526VEQ9A7gSgpYHLbvn2rhoMbjLoeB6tj9iewe
+         AdkecZgznE2OlgxJVBf+K5LIK1jfo3uTZjJciW4QBx7tGdAVy7sfhelYyFvIhLEXle4R
+         193RO7PBOkJT0a4ggra0cRHnp3jrtgdKbvlZVn0I7gWyBW3YaGmstvc/iD3877IBDudl
+         +zN4eg8tCA6O+k1W488D2HRbGUFsjC3CM5hc883woRtiCTjyeZgDj4oddUM02NRy8pyX
+         KN9M8thFWr4NWu3KWX05nx8tgySBNRE4e6GipfTrsvuW/F2A/30OvVYyI6IqG2eQ25dJ
+         Yjkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=2RluQ/L1sN2XN4qAMgu7HWEvzSUWSILILWR4s/Bogvc=;
-        b=1y2vHrGNYlJhDqj/gxK7ZoZlfvyBCI9MwHnC+R0DHUsgmLb/C+N/DulQ2pQWQcWwqj
-         BCKBu+Nz/9nwD+TV3htcshhPQmArxluUSLasb+YM+B7BBDn6Mzaagd7KXg5g26GpZVbg
-         bDr1/Gqkve6OpdrEL2+eCEWn7VYED0zyQL78wDZ+JWVZ2BvECfheHwcwMKzQPBGatA7B
-         SxPCMaMxDyWrpQF7wN/J7cNlp7K34CYsjLjg/7XRsC2yM9VFWt1PBon83nw6mUTboXN5
-         rPfs2+wesMLuFsjC1EhICl9e1GGBLBuMkiJUULXT8/SQuvIioCdaQV/VJLRNA+rxdFuY
-         RQhQ==
-X-Gm-Message-State: AJIora9gsrMTScbj09PSqqN7JF4RJqpFBwc2Lw2wPy95CfwKyCXuJ+sd
-        gnQAqNMwTZs5aeuqTsEHSbyiVA==
-X-Google-Smtp-Source: AGRyM1uAuKwujR1uouFcWum/Ytu8Qs/dMIQzH8FZfWG03qE+T2DBwc9Jj2/F5MWtm13KaATykAk/Dw==
-X-Received: by 2002:a05:600c:3493:b0:39c:8731:84c3 with SMTP id a19-20020a05600c349300b0039c873184c3mr25767140wmq.45.1656404395011;
-        Tue, 28 Jun 2022 01:19:55 -0700 (PDT)
-Received: from [192.168.0.252] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id z2-20020a5d44c2000000b0021a3d94c7bdsm12917841wrr.28.2022.06.28.01.19.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jun 2022 01:19:54 -0700 (PDT)
-Message-ID: <30badf7e-6e5c-16f9-9e46-566981a40e22@linaro.org>
-Date:   Tue, 28 Jun 2022 10:19:53 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=e5Z/hG8NSQiNO2xEelBjBj++4NPTXkLY1E3WsIfZuUI=;
+        b=HXAHtf37lYin5sADft07r3+3W/Igc2S8zowzXMU/bPdEUbXxlUBDEL8VYfmlgoBTQv
+         hG3feH4HiySOFwe923t+xhCtrSsIQc4LQfviFrO6FSe8lhdHEvN9XBia6O6yk6KEnsy9
+         8DwlRjFamkHaytA9NHbmfjoRHgLQG/ax+rB2ol+GYJ4PKJcr8+sKloe+ABKoY6I/Zh/e
+         rbwJQx28QCXhb7scSglTi9uf+FoajQP8zCytmrKzbrSkfl1fGxodh0dgKK7QTow9pz8B
+         j06rtrjXJkxE6wv893GkxID3eGsIy/HBvdCpU+e+Yjf4hXZbPK/5kCK+cOwfO8IaZ4a8
+         /dVw==
+X-Gm-Message-State: AJIora+XCW58aGvykYoCqBs4SAlki1lnXK3tDbUbSSn1i53sgFKBj6Zo
+        tzY+gbjUnfCYIvl8CTnGjNSWi4A3FtY0N/pxmmCUJLr1d8I=
+X-Google-Smtp-Source: AGRyM1uKl2WU9AxFxQXaBRZSVk2Jbhtzgz+hPFdf2a+y8B4wMh0z4Qb4XsuZBsPg7IrlqHvLAYY5VnUpxXIbYIjzF14=
+X-Received: by 2002:a0d:eace:0:b0:317:87ac:b3a8 with SMTP id
+ t197-20020a0deace000000b0031787acb3a8mr20429857ywe.126.1656405031018; Tue, 28
+ Jun 2022 01:30:31 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3] arm64: dts: qcom: sc8280xp: add Lenovo Thinkpad X13s
- devicetree
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <1655462819-28801-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+In-Reply-To: <1655462819-28801-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 28 Jun 2022 10:30:19 +0200
+Message-ID: <CACRpkdbgFaPxE+ZtSBPLdOeM_vj_qgf__Mk1Yb4KSWrzpup2Ug@mail.gmail.com>
+Subject: Re: [PATCH 0/4] pinctrl: pinctrl-zynqmp: Add tri-state configuration support
+To:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <YrMVqifgV4kZaP7F@hovoldconsulting.com>
- <20220622132617.24604-1-johan+linaro@kernel.org>
- <96394aa2-aefc-63c4-d86f-15c06d092d75@somainline.org>
- <Yrq1FAscp+jE7GQs@hovoldconsulting.com>
- <00aefa9b-5d91-629b-9fa6-fadd6df5a469@somainline.org>
- <Yrq4eOWAeKyGrQPo@hovoldconsulting.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yrq4eOWAeKyGrQPo@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        git@xilinx.com, saikrishna12468@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,30 +69,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2022 10:14, Johan Hovold wrote:
-> On Tue, Jun 28, 2022 at 10:09:57AM +0200, Konrad Dybcio wrote:
->> On 28.06.2022 10:00, Johan Hovold wrote:
->>> On Mon, Jun 27, 2022 at 01:38:47PM +0200, Konrad Dybcio wrote:
->>>> On 22.06.2022 15:26, Johan Hovold wrote:
->>>>> Add an initial devicetree for the Lenovo Thinkpad X13s with support for
->>>>> USB, backlight, keyboard, touchpad, touchscreen (to be verified), PMICs
->>>>> and remoteprocs.
->>>>>
->>>>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>> Krzysztof's tag wasn't here in the version I posted.
->> Patchwork recently started pulling them in automatically when
->> downloading a mbox file.
+On Fri, Jun 17, 2022 at 12:47 PM Sai Krishna Potthuri
+<lakshmi.sai.krishna.potthuri@xilinx.com> wrote:
 
-Uh, this can be a bit confusing. :)
+> This series update the Xilinx firmware, ZynqMP dt-binding and ZynqMP
+> pinctrl driver to handle 'output-enable' and 'bias-high-impedance'
+> configurations. As part of these configurations, ZynqMP pinctrl driver
+> takes care of pin tri-state setting.
+> Also fix the kernel doc warning in ZynqMP pinctrl driver.
+>
+> Note: Resending the series as i see this series didn't went out due
+> to some issue with my mail client. Please ignore if this series is
+> already received.
+>
+> Sai Krishna Potthuri (4):
+>   firmware: xilinx: Add configuration values for tri-state
+>   dt-bindings: pinctrl-zynqmp: Add output-enable configuration
+>   pinctrl: pinctrl-zynqmp: Add support for output-enable and
+>     bias-high-impedance
+>   pinctrl: pinctrl-zynqmp: Fix kernel-doc warning
 
-> 
-> Please consider using b4 instead if you need to reply to patches.
+Excellent work, patches applied!
 
-+1
-or find it on lore and save mbox from browser
-
-
-Best regards,
-Krzysztof
+Yours,
+Linus Walleij
