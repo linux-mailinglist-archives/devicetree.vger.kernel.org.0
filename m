@@ -2,94 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B83F55E477
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC3FD55E49C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:39:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241388AbiF1N2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 09:28:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57408 "EHLO
+        id S1346377AbiF1Nbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 09:31:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346395AbiF1N1Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 09:27:24 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC3B132ECF;
-        Tue, 28 Jun 2022 06:25:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8C49DB81E1D;
-        Tue, 28 Jun 2022 13:25:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34723C341CD;
-        Tue, 28 Jun 2022 13:25:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656422728;
-        bh=YkY3YRpWZjvY3kzFvaZglL+Asozb4pp9bZcELGWrGP8=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=fSjGTW16tfddElttpgXGHZGOCkexNrDlFnx52h3IqdSzQcDln9QZJ76un6mbTjaEi
-         3OpLPiRCAcgBBq8nggxSh4YZAJy/AlmjQF84WXQLTHO+iG3EG6pal8A3g56XJaIkPc
-         75abf7TZSzKL2MNgWxUfBjLpl59aK9G5tMxfbVyTj4GxIv1Pe4gD/6sw5gBhM3STX/
-         N6x8OrmFjOahz2y9YJFuOrh6MU3xkxkxiLZldmJu17w7+8Q77R1o5SEDRtvveXRWul
-         4Z/dSTQxmJeAgfSwdB5Y8GeVo0RRWJ166v9l7M1F6YYjbGj6/lftIgdSMuSjJ6+Nbj
-         VnQEi7jp74ayg==
-From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, bryan.odonoghue@linaro.org,
-        bjorn.andersson@linaro.org
-Cc:     perex@perex.cz, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, srinivas.kandagatla@linaro.org,
-        linux-arm-msm@vger.kernel.org, krzk+dt@kernel.org, tiwai@suse.com,
-        robh+dt@kernel.org
-In-Reply-To: <20220628002858.2638442-1-bryan.odonoghue@linaro.org>
-References: <20220628002858.2638442-1-bryan.odonoghue@linaro.org>
-Subject: Re: (subset) [PATCH v4 0/2] Fix apq8016 compat string
-Message-Id: <165642272593.1448965.607600751272662680.b4-ty@kernel.org>
-Date:   Tue, 28 Jun 2022 14:25:25 +0100
+        with ESMTP id S1346416AbiF1Nag (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 09:30:36 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF5E2F6;
+        Tue, 28 Jun 2022 06:29:51 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-31780ad7535so116914207b3.8;
+        Tue, 28 Jun 2022 06:29:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KUbAe9KIFqNmXcILHrcWkvl+JB7aEyvyKPLhAfKu+yI=;
+        b=EYWtZF+i6Zcnj76xFRShaz2PGKOXa9fUc+eipltW/9qVATRErYqeGw2VmCvJDEFjnq
+         yq2V0RYbZyYBnqirCknkhGQi7jpTnbaHOGi2PFUSy8dmBACe8eYQMMybnh3gL3GcuhbJ
+         4RrdxH/K1NsX9+StXC3j3754ifoOLqeAdSTLeD+o2gC8cQI5vGXzpJkBL7IhboosxOer
+         9zduLdvcUlN5AqXc959KFIL0FsKZ1B5NpnZozMYfqEIui1GtxE9zmmX9Bc9oGiZ/0sDn
+         W8NLffDBXll6gkzUI8sE+3QH9C1+H4u45pocqGttmv1KzOTLZLiKvW0SOdE8pHNeOiK6
+         cYTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KUbAe9KIFqNmXcILHrcWkvl+JB7aEyvyKPLhAfKu+yI=;
+        b=4VYDLy3LeICXcuGMOxdFkQS0Byxmw7aZbUEpu+0ULm9sb6VLL1pyy6PPhMAA1gBvdQ
+         KjAgHyUldBdQ4XLXjIiRtR86fmJZ1kvNzvFUkQRLnnylb4kwN2xNNgQr47FO5FQgwSTv
+         SoSff7OwYW0WM1/uaXzCZFwWeTk1xujOOcxLQr2RnXsHmuBhJs3u51jvA0WQJpznphk9
+         duT7QKM0ShB/+HGB25v93BkR1oSGMyDtY8Wt+FcFfWJrE20R4mmE/Eh+WhE2OIRlmvx8
+         QiIJTAVgihdEHrOWPVUT15dpymQ8WTAx5rpEaXBU+NVM+Q5282BJNdPFJ8rwE9PyRfZy
+         APrA==
+X-Gm-Message-State: AJIora92PUhQHOMQ5Q8tCG4IWb5oSmLPXsSGRrTfTrp7mYKN2gY1Bmv1
+        Uxxw+uOT5Uztjmn941Ix7wBTc9CPZu36Kxc8/a0=
+X-Google-Smtp-Source: AGRyM1uyI1MqWA/QXWHC0jhaD/UbFiTEhmx8+gai5WBCCuH8lYhSqwTebn0ILKcFasbx6avNiw20z1CX2VXexHTyQT4=
+X-Received: by 2002:a81:2386:0:b0:317:6586:8901 with SMTP id
+ j128-20020a812386000000b0031765868901mr21397834ywj.195.1656422991058; Tue, 28
+ Jun 2022 06:29:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <4e1d5db9dea68d82c94336a1d6aac404@walle.cc> <Yrrhs3D++V79/4Jk@smile.fi.intel.com>
+ <f17d3ecfecf4491dd15b1fa092205f3f@walle.cc> <CAHp75Vd6e3WwHPfyL=GP=vsoWhwGXadwQziiRRwfHPfjkX2eFg@mail.gmail.com>
+ <2f2d7685e0e43194270a310034004970@walle.cc>
+In-Reply-To: <2f2d7685e0e43194270a310034004970@walle.cc>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 28 Jun 2022 15:29:13 +0200
+Message-ID: <CAHp75VcANMjxgS6S24Zh+mz66usb6LBnQk-ENvU9JHSXXsG1DA@mail.gmail.com>
+Subject: Re: fwnode_for_each_child_node() and OF backend discrepancy
+To:     Michael Walle <michael@walle.cc>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Jun 2022 01:28:56 +0100, Bryan O'Donoghue wrote:
-> V4:
-> - Adds Bjorn's RB to first patch
-> - Adds missing people to To/Cc list
-> 
-> V3:
-> - Marks qcom,lpass-cpu-apq8016 as deprecated instead of removing - Bjorn
-> 
-> [...]
+On Tue, Jun 28, 2022 at 3:23 PM Michael Walle <michael@walle.cc> wrote:
+>
+> >> I was trying to fix the lan966x driver [1] which doesn't work if there
+> >> are disabled nodes in between.
+> >
+> > Can you elaborate what's wrong now in the behaviour of the driver? In
+> > the code it uses twice the _available variant.
+>
+> Imagine the following device tree snippet:
+>   port0 {
+>     reg = <0>;
+>     status = "okay";
+>   }
+>   port1 {
+>     reg = <1>;
+>     status = "disabled";
+>   }
+>   port@2 {
+>     reg = <2>;
+>     status = "okay";
+>   }
+>
+> The driver will set num_phys_ports to 2. When port@2 is probed, it
+> will have the (correct!) physical port number 2. That will then
+> trigger various EINVAL checks with "port_num >= num_phys_ports" or
+> WARN()s.
 
-Applied to
+It means the above mentioned condition is wrong: it should be
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+"port_idx >= num_phys_ports" (if the port_idx doesn't exists, that's
+the bug in the first place)
 
-Thanks!
+> So the easiest fix would be to actual count all the child nodes
+> (regardless if they are available or not), assuming there are as
+> many nodes as physical ports.
+>
+> But num_phys_ports being a property of the hardware
 
-[1/2] ASoC: qcom: lpass: Fix apq8016 compat string to match yaml
-      commit: 2a2ef688b1b03eea3a5b020d9bef50d015f619be
+So, name is wrong, that's how I read it, it should be
+num_of_acrive_phys_ports (or alike).
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> I don't
+> think it's good to deduce it by counting the child nodes anyway,
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Right.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> but it should rather be a (hardcoded) property of the driver.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Also good to update.
 
-Thanks,
-Mark
+> [1]
+> https://elixir.bootlin.com/linux/v5.19-rc4/source/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
+
+-- 
+With Best Regards,
+Andy Shevchenko
