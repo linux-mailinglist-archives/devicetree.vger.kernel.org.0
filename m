@@ -2,154 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F13D155E32A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:36:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8ECA55D237
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:10:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344222AbiF1JXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 05:23:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
+        id S1344207AbiF1JZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 05:25:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344173AbiF1JXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 05:23:17 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD92D18B08
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 02:23:10 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id o4so12789589wrh.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 02:23:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=czfPpDJHs7J+piUiFRqpKaLtdiOGZv8sTnfz/AiCY3E=;
-        b=bNlyXdNJMiDMSiGy4FDB/w5B0HJlkKjZEKHkPjtLIpJgbFeSniqTHKu5zE+Agd/XOT
-         sKSJNfC5yOvBJqhUm5pU8NENJOBPcvLq8fXPEpEa1W6STe5s5YXmUhsbBirORTOEwjk7
-         x9Ni8rwYBey+RkxvvtM44mZBb4Czrm9XHkGkypflD1/YMazjCGB2vVj3FcdIo74McBSF
-         pEi4SKMTfRbuBf972fNv4bcna+Qmgsi2r2EC3skUh0Y5RrE+L2P4QxJB44zVkB3Nw8cA
-         nv9PzMbJyVGymxbNCsJRcVHP0tPRrqafVC+d6reWFrDed8oLx0rbJTFqhOi4t0mAIDoT
-         UNvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=czfPpDJHs7J+piUiFRqpKaLtdiOGZv8sTnfz/AiCY3E=;
-        b=rXFjkKibZi5YkAKNMiBSfDxijZ6hv4oOdouxONf4szm8TYy9rY+K0BrVmVrf9CQske
-         WJO6hl0NAPB4Hez0ct7olDHGIZRB0MxGfvA/d2E5wz4NHP31rTpG3faW+grd49ACUrYF
-         DiMMWDxJE2/DS+2flNy9JtF1jldupfZl7jU0c8r7B0/fSuOvtuBQNJJV9jDx8+kbqyrN
-         RZ6vy7mvd5cHnN26AMwYNJYM7R7fXl5Rv0/a+OjYinzziOGmEQ1Z6Vgy6NCPTMoQ0q6+
-         Got8hRLJ31oqITNVLzTSRe8DVmZUjWzCqxx0J4VsSMFsZwCBKZWjpTOQa9pC5rp/zfBt
-         TR5g==
-X-Gm-Message-State: AJIora+S7k40o5734S1dJf/6AyXnd9mIvFXeBxGVUYe5j4gzKRRK3bKn
-        rli3re3RrRzIBweZcmQaYAByPJP0eIwEjQ==
-X-Google-Smtp-Source: AGRyM1tskEhayAStBRqLvIw37j7NKJYmUXe1595je1HJUJxMNs+fIvjanpQr6b3jJXdGXjKiKszGNg==
-X-Received: by 2002:a05:6000:2a5:b0:21d:2204:134a with SMTP id l5-20020a05600002a500b0021d2204134amr369727wry.67.1656408189470;
-        Tue, 28 Jun 2022 02:23:09 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id 5-20020a05600c230500b0039c8a22554bsm16235025wmo.27.2022.06.28.02.23.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 02:23:08 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: [GIT PULL] dt-bindings: qcom for v5.20, version 2
-Date:   Tue, 28 Jun 2022 11:22:53 +0200
-Message-Id: <20220628092253.21905-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S1344210AbiF1JYg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 05:24:36 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2049.outbound.protection.outlook.com [40.107.223.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C63732720;
+        Tue, 28 Jun 2022 02:24:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Q1DmFnQtPBZ2FWKlEXOw7FlfkclwTglfw7N5NN8NTO76sR4T3aH3aGGI/JwK4Unr6fPzR+PJEkLVv5fqr1+CgVrMTvQDiaymHtlcZ5vRlEUlImWMmFFgxfoQH5eh7LYjCOOuPw2p5cglkzVtbHYADlzdU1eTxduNF1fYRP/IsnT1S/KgjQ8bKRXWVCIM4Ld+nTOHg8364V50Kx22VfqT1W0JsLzQTqffYg2SxqB4Ju9Po0Eq/zib2bpMdc2NzHVqSsFPjG4hMgeNCxw1+RPTV5gYl60OPbJ2VaiZSrkyWlnHcpPA56V2GhbrlBeQwgQkkzqdB3wzDU7wOqkeyFQk4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6Ij2SnExPyD/dYwS6WJPhp8Z82lioqHAqdcTJyMDSxY=;
+ b=FTEvHwHsNFC2h5ZTc3bTW2A0UUMblcyFaUdpmUt3CCLpPiPpyUkkJHCtM1RsmFvGXRwc5aKIbFxfU5wZgXr7rLbwRqVlH+HXi6uh4R/CpH1lzmscj/ZYbYGhlSJp225daQ9nqM7/3Q/n1Y6UUjnmZJck4vtqS40flKFygDTgzhnlb7Gjh7AZx3Wrak/6FNn7e6LAJKQfFy3DvFKbuzvFHSaFIYKVFgtRtm0Xn1wQvQWbySp2f4zVuiqJ+fbLqTrlHromC+58J9Qp103OLwP18yYLQEAWqUJbWg59M05oCUGJJ9oPpWDLmM+sJYVH/16TY4aV51gxMpL1YcyrSZ88zA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.238) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com; dmarc=pass
+ (p=reject sp=reject pct=100) action=none header.from=nvidia.com; dkim=none
+ (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6Ij2SnExPyD/dYwS6WJPhp8Z82lioqHAqdcTJyMDSxY=;
+ b=knCvM768Qy0kUBxCJbHR5Be56zskPPxwOxu2UNQHhLw7dw3YTKQAq+D2xGRVSuTwaxJGVs0/yic0bgrxSmPKZhP27AUwR/nS4QOOnv31B7VJNhGfiMKcCPww+2Hotw+QON8fI1Aut6Hz71RgYPDzi81HN3fneZORxiyuCD5X4rx3fLO++TsoBIkihPU1DX1g+99bd8PxhlkHcavYFX2YtSjrGloECGfyRjwEqfVsbzP1HY8K1FbzKGOlKOYl87i9QCIhrqz/LXmh1ERXvvtmFXpXbOwDQTmIGeqQyqvCQVN0C7C+GR82HjQDfsjvlOxoEg0XSbYwswn/lbZYsJZc2g==
+Received: from DM6PR02CA0134.namprd02.prod.outlook.com (2603:10b6:5:1b4::36)
+ by BN8PR12MB3250.namprd12.prod.outlook.com (2603:10b6:408:99::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.18; Tue, 28 Jun
+ 2022 09:24:30 +0000
+Received: from DM6NAM11FT037.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:1b4:cafe::1e) by DM6PR02CA0134.outlook.office365.com
+ (2603:10b6:5:1b4::36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.16 via Frontend
+ Transport; Tue, 28 Jun 2022 09:24:29 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.238)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.238 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.238; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (12.22.5.238) by
+ DM6NAM11FT037.mail.protection.outlook.com (10.13.172.122) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.5373.15 via Frontend Transport; Tue, 28 Jun 2022 09:24:29 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL105.nvidia.com
+ (10.27.9.14) with Microsoft SMTP Server (TLS) id 15.0.1497.32; Tue, 28 Jun
+ 2022 09:24:29 +0000
+Received: from [10.41.21.79] (10.126.230.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Tue, 28 Jun
+ 2022 02:24:26 -0700
+Message-ID: <07382a5d-24c0-e83d-4de8-309e697cc0e6@nvidia.com>
+Date:   Tue, 28 Jun 2022 14:54:23 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [Patch v6 0/9] CBB driver for Tegra194, Tegra234 & Tegra-Grace
+Content-Language: en-US
+To:     <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
+        <kbuild-all@lists.01.org>
+CC:     <bbasu@nvidia.com>, <vsethi@nvidia.com>, <jsequeira@nvidia.com>,
+        "Sumit Gupta" <sumitg@nvidia.com>
+References: <20220511201651.30695-1-sumitg@nvidia.com>
+ <20220511201651.30695-2-sumitg@nvidia.com>
+From:   Sumit Gupta <sumitg@nvidia.com>
+In-Reply-To: <20220511201651.30695-2-sumitg@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.126.230.35]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 64e728a9-e154-403d-19e8-08da58e80100
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3250:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: j/dEOLhg+zhsaI+GxTTHqI+6ml6nUfwhHH16JjYlLGm1y9jzE/hoeCvuMMlxv1APlXpTZyonlGBHJqU/2eKBzZUiQ+G089xzj8/AeD/F+yCFjSK4F29CY/6VOoTxulNwQp8L/TX46/I6tjmKfv26Spg1Slai6/H1K3XtDHysZ0lA91wDTZQMqD7FPd1ytWINsYycqJ19lssWuo80h7yfE4IsiOFzfKO54O5CHxAnKR+VTtI4eldoKNxhvkNOTN1eMYgFUDH1KzutjyQ05s4tUVGsBi1S0R/wMBIcE/u8rM83BNVnVVt5p0l+paVtzKGy7vAZ03M6shEQ4dYBWI9XhPPjAJIWrvzse84CHlTqMuyDzAy0BFg7bZJ/+hw8iW0kLbmDivC8kJ9KjYjQZeVe4keAdziSV/+BAGXmgh/GRXbhrMRTsp7EYmp00+wIVSkLnaxlvB7Rmvj8xUaewtJ/cdaRibWZsNbk8cB4s9w/B0/FqXJJUsZdMemkzwLtUjQelY3Qet4/XufCiKa+FFWHy5VpKpFgrFLr4XODWx/m+pZT+AIRXapIP2Ivh+7ObolWktWkSuoFh1siEvvLGN+FpYJiHq99v9cr/fW8C1VfF7ye2WLaA6Dbz1szff5B93QG0GVyA7Vfg5UjnHhw8FvDcblw6hcQwWZ7AZI//0D37enhxOijHX4+SOvwLFqYe/XlLIlOuyxowcSLubJ2lBqcVh/PVGp3PyHQQOqi+JZU1EZWMEYMBS2bKN8ILJwaDpjxdjVMs8W2rc7wUF76OZq4rWTwS7wswnNk4olMrNyezcGNUm8d1+mF49gJVgTtG1EfjUOvwenNXNWzUPb2TluM7z63r1PXomk6mXx1R1QNzwk=
+X-Forefront-Antispam-Report: CIP:12.22.5.238;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230016)(4636009)(136003)(346002)(376002)(39860400002)(396003)(40470700004)(46966006)(36840700001)(26005)(70206006)(6666004)(316002)(53546011)(70586007)(54906003)(16576012)(4326008)(8676002)(110136005)(82310400005)(478600001)(36860700001)(41300700001)(31696002)(40460700003)(86362001)(2616005)(107886003)(426003)(83380400001)(186003)(16526019)(356005)(81166007)(47076005)(336012)(8936002)(2906002)(5660300002)(31686004)(40480700001)(36756003)(82740400003)(43740500002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2022 09:24:29.7537
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64e728a9-e154-403d-19e8-08da58e80100
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.238];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT037.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3250
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob and Bjorn,
+Hi Thierry,
 
-On top of my previous pull few days ago:
-https://lore.kernel.org/all/20220623145837.456817-1-krzysztof.kozlowski@linaro.org/
+Gentle Ping.
 
-Difference is only one new patch - the cpufreq bindings fix.
+As we have ACK from Rob for DT changes, Can we please queue the patch 
+series for 5.20.
+
+Best Regards,
+Sumit Gupta
 
 
-Message from previous pull:
-
-I am fixing/improving quite a lot of Qualcomm bindings and I produced several
-separate patchsets. They wait on mailing list for quite a long time, in some
-cases two months, so I decided to grab all them and send in one organized pull.
-
-All patches here got Rob's ack.
-
-This also brings compatibles for Qualcomm boards, therefore it might be
-desirable to merge everything through Bjorn's tree, however at this point I
-want to just get it merged as fast as possible, because I am really afraid they
-will miss the v5.20 cycle.  Therefore the pull is towards Rob, but maybe
-First-comes-first-served is also good approach.
-
-Best regards,
-Krzysztof
-
-The following changes since commit f2906aa863381afb0015a9eb7fefad885d4e5a56:
-
-  Linux 5.19-rc1 (2022-06-05 17:18:54 -0700)
-
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git tags/dt-bindings-qcom-5.20-2
-
-for you to fetch changes up to 062529700fdb843eee921961eb3cbc6a51419491:
-
-  dt-bindings: cpufreq: qcom-cpufreq-nvmem: fix board compatible in example (2022-06-28 10:28:50 +0200)
-
-----------------------------------------------------------------
-Devicetree bindings for Qualcomm for v5.20
-
-Cleanup, fixes and additions of missing pieces for Qualcomm bindings.
-These are address dtbs_check warnings and do not bring new hardware
-(new compatibles are added for existing boards/hardware).
-
-----------------------------------------------------------------
-Krzysztof Kozlowski (25):
-      dt-bindings: soc: qcom,rpmh-rsc: simplify qcom,tcs-config
-      spi: dt-bindings: qcom,spi-geni-qcom: allow three interconnects
-      dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
-      dt-bindings: soc: qcom: qcom,smd-rpm: add power-controller
-      dt-bindings: nvmem: qfprom: add IPQ8064 and SDM630 compatibles
-      dt-bindings: leds: qcom-wled: fix number of addresses
-      dt-bindings: arm: qcom: fix Alcatel OneTouch Idol 3 compatibles
-      dt-bindings: arm: qcom: fix Longcheer L8150 compatibles
-      dt-bindings: arm: qcom: fix MSM8916 MTP compatibles
-      dt-bindings: arm: qcom: fix MSM8994 boards compatibles
-      dt-bindings: arm: qcom: add missing MSM8916 board compatibles
-      dt-bindings: arm: qcom: add missing MSM8994 board compatibles
-      dt-bindings: arm: qcom: add missing SM8150 board compatibles
-      dt-bindings: arm: qcom: add missing SM8250 board compatibles
-      dt-bindings: arm: qcom: add missing SM8350 board compatibles
-      dt-bindings: vendor-prefixes: add Shift GmbH
-      dt-bindings: arm: qcom: add missing MSM8998 board compatibles
-      dt-bindings: arm: qcom: add missing MSM8992 board compatibles
-      dt-bindings: arm: qcom: add missing QCS404 board compatibles
-      dt-bindings: arm: qcom: add missing SDM630 board compatibles
-      dt-bindings: arm: qcom: add missing SDM636 board compatibles
-      dt-bindings: arm: qcom: add missing SDM845 board compatibles
-      dt-bindings: arm: qcom: add missing SM6125 board compatibles
-      dt-bindings: arm: qcom: add missing SM6350 board compatibles
-      dt-bindings: cpufreq: qcom-cpufreq-nvmem: fix board compatible in example
-
- Documentation/devicetree/bindings/arm/qcom.yaml    | 108 +++++++++++++++++++--
- .../bindings/cpufreq/qcom-cpufreq-nvmem.yaml       |   4 +-
- .../bindings/leds/backlight/qcom-wled.yaml         |   9 +-
- .../devicetree/bindings/nvmem/qcom,qfprom.yaml     |   2 +
- .../bindings/soc/qcom/qcom,aoss-qmp.yaml           |   1 +
- .../bindings/soc/qcom/qcom,rpmh-rsc.yaml           |  33 +++----
- .../devicetree/bindings/soc/qcom/qcom,smd-rpm.yaml |   3 +
- .../bindings/spi/qcom,spi-geni-qcom.yaml           |   5 +-
- .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
- 9 files changed, 135 insertions(+), 32 deletions(-)
+On 12/05/22 01:46, Sumit Gupta wrote:
+> The patch series adds Control BackBone(CBB) error handling
+> driver for Tegra194, Tegra234 and Tegra-Grace SOC's.
+> Tegra194 is using CBB version 1.0. Tegra234 and Tegra-Grace
+> are using CBB version 2.0. Both CBB1.0 and CBB2.0 have
+> different internal architecture. So, separate drivers are
+> required.
+> Tegra194 and Tegra234 are using Device Tree. Tegra-Grace is
+> using ACPI.
+> 
+> Request to queue the patch series for 5.19.
+> 
+> ---
+> v5 -> v6:
+> - Minor changes in yaml files in patch number 2 and 6.
+> 
+> v4 -> v5:
+> - fix warnings on diabling CONFIG_ACPI reported by kernel test robot.
+> 
+> v3 -> v4:
+> - rebased patches on 5.18-rc5.
+> 
+> v2 -> v3:
+> - fixed warnings with GCC 11.2 and W=1 reported by kernel test robot.
+> - changed some function names to make consistent with tegra_cbb_*.
+> 
+> v1 -> v2:
+> - moved err-notifier-base and off-mask-erd from DT to driver.
+> - yaml fixes by Thierry.
+> 
+> Sumit Gupta (9):
+>    soc: tegra: set ERD bit to mask inband errors
+>    dt-bindings: arm: tegra: Add NVIDIA Tegra194 CBB1.0 binding
+>    dt-bindings: arm: tegra: Add NVIDIA Tegra194 axi2apb binding
+>    arm64: tegra: Add node for CBB1.0 in Tegra194 SOC
+>    soc: tegra: cbb: Add CBB1.0 driver for Tegra194
+>    dt-bindings: arm: tegra: Add NVIDIA Tegra234 CBB2.0 binding
+>    arm64: tegra: Add node for CBB2.0 in Tegra234 SOC
+>    soc: tegra: cbb: Add driver for Tegra234 CBB2.0
+>    soc: tegra: cbb: Add support for tegra-grace SOC
+> 
+>   .../arm/tegra/nvidia,tegra194-axi2apb.yaml    |   40 +
+>   .../arm/tegra/nvidia,tegra194-cbb.yaml        |   98 +
+>   .../arm/tegra/nvidia,tegra234-cbb.yaml        |   74 +
+>   arch/arm64/boot/dts/nvidia/tegra194.dtsi      |   62 +-
+>   arch/arm64/boot/dts/nvidia/tegra234.dtsi      |   42 +
+>   drivers/soc/tegra/Kconfig                     |    9 +
+>   drivers/soc/tegra/Makefile                    |    1 +
+>   drivers/soc/tegra/cbb/Makefile                |    9 +
+>   drivers/soc/tegra/cbb/tegra-cbb.c             |  198 ++
+>   drivers/soc/tegra/cbb/tegra194-cbb.c          | 2261 +++++++++++++++++
+>   drivers/soc/tegra/cbb/tegra234-cbb.c          |  833 ++++++
+>   drivers/soc/tegra/fuse/tegra-apbmisc.c        |   29 +-
+>   include/soc/tegra/fuse.h                      |    6 +
+>   include/soc/tegra/tegra-cbb.h                 |   43 +
+>   include/soc/tegra/tegra-grace-cbb.h           |  219 ++
+>   include/soc/tegra/tegra194-cbb.h              |  158 ++
+>   include/soc/tegra/tegra234-cbb.h              |  342 +++
+>   17 files changed, 4421 insertions(+), 3 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-axi2apb.yaml
+>   create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-cbb.yaml
+>   create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra234-cbb.yaml
+>   create mode 100644 drivers/soc/tegra/cbb/Makefile
+>   create mode 100644 drivers/soc/tegra/cbb/tegra-cbb.c
+>   create mode 100644 drivers/soc/tegra/cbb/tegra194-cbb.c
+>   create mode 100644 drivers/soc/tegra/cbb/tegra234-cbb.c
+>   create mode 100644 include/soc/tegra/tegra-cbb.h
+>   create mode 100644 include/soc/tegra/tegra-grace-cbb.h
+>   create mode 100644 include/soc/tegra/tegra194-cbb.h
+>   create mode 100644 include/soc/tegra/tegra234-cbb.h
+> 
