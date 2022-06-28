@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E928E55EF7E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E76AA55EF5F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232343AbiF1UXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 16:23:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34506 "EHLO
+        id S232422AbiF1UXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 16:23:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231893AbiF1UVy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:21:54 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B7A2B7F1
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:45 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id be10so18752210oib.7
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:45 -0700 (PDT)
+        with ESMTP id S231373AbiF1UV6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:21:58 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B5FE3DA49
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:46 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id h65so18710997oia.11
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=L7X1tSt2iJ6DktLCRmPmCKw+/uL8cAeokrUaFc2RJPI=;
-        b=actnBH/LAbmAGmzjAjA8870t8pTv0++Ozgzd1b8av4QHdzi0Sdb2uSzk7UPp4Ps9W0
-         QpDYq+X8y9S53gjHtePp+LZQAN/MnSlmKdLkOy7gx3dj8SgiSl1rTSdznrxBPFt2/wRk
-         JvrPD4y6S4dGNjQdq9wkciNMfUdYb/iGsvbCGp+hqzJYKjqklN1w/WhDkJ7AoAjDf/9X
-         xnFWoBDTCSJ0nq/EQrtmMqAyS4UXDCaP18Jgq25spIEBe23YW/JhnplHURLHc6uLDBdV
-         KpkhTJi3KPWcDCNFSDsM7sGWHAqY/HIlM6X7tBVCBZbhziD9xUSFzkItAuHB9FINhbr3
-         Tzuw==
+        bh=4K1yIyRlfarxdrcJIzjiuU7hE/FjddqU64uWG9lU5uE=;
+        b=lbQqjU431Wi9OuZDFQyx7Bl/jXktkn19UGNRQGHrPqTpTVbR/33SCwCPq47m5ZEth9
+         BCG6LofI/0ryNHTqyqT2+EgPR9o27P8CYHE5JEl8RPKLAsB3cps5rDl5RGEwEtdzgDAf
+         qD3BY8oda35aPIcwoTO6gkviHFXrbPRgMzmp0T4faq5A6hISzUiyh3tOJdSrh7yrwIFU
+         K2bo+zS2ZVb3EF0SlOhM/VlsBDLevDVJ6QyVl9Q1XHfJBJJsM5fsQBn7saBG3WqnBw22
+         OS4C56JVs7ozuprOV5qjJW75+SKUHikTQcwrJcvGjbOzmq+Ot8Ccpk6EDmIT3Yr0aXpI
+         9gfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=L7X1tSt2iJ6DktLCRmPmCKw+/uL8cAeokrUaFc2RJPI=;
-        b=Qtt3e2wj1j2MmF6bVOYm8qyk+em5xdt00vyKVlDbA/2TjsZlMsDStl+u1tk9cSrtnl
-         u3cbxdWsqMhItUVm1tZ7/VYvMuYvJVeZakNe+SUFlTJQWjWLouZl8pxbqhITNpYJWUTP
-         UE36gNc2U1Ehsxjd3CkVD1vr1Tmukq9QdzJ4Za00xBN7td8k96YgV3CYg8nWLHmM9SsA
-         vK4ywOhAd9jtb/iCQ2RvRrub4aK2FRcEoFwbQTuoEW9TUahxi1YjVQL000YsRgSQC7tU
-         MprCYlpKk4kPSJujbbNGl9wxZmPG4rUSa+CZjosoPlKjLcz5ADM19xOoqLsQjRxETP09
-         m6aQ==
-X-Gm-Message-State: AJIora/2oIy4iQfBOIW3CthL9ZvtLHgiRt0D+8MUYSjjtQsq/Pg8mP5Y
-        xJYmgy7NaxE4C5jeTVnRru/p5g==
-X-Google-Smtp-Source: AGRyM1udZl9cYOZCTVRx2dP4aQ65DPh7kIknOz2yVcCQK0jjiEHNvsMvE3gxfKUp/+0eGVjssG4YBg==
-X-Received: by 2002:aca:abc9:0:b0:335:796f:abba with SMTP id u192-20020acaabc9000000b00335796fabbamr920913oie.35.1656447584789;
-        Tue, 28 Jun 2022 13:19:44 -0700 (PDT)
+        bh=4K1yIyRlfarxdrcJIzjiuU7hE/FjddqU64uWG9lU5uE=;
+        b=ag7WHXjDxyulGB6AlDj/efBzqzBGT140kYwLN/Xd/2Y8brDfMX4P538SlW86mQ6CSP
+         hqdpRtQNYtxJAIk7cSMNj+T4/OoJE//aty8N1SeSQGVYpOs2WYUdrZFhOnqhxfopCNpc
+         ooKr6PcaFVZn5PYox4OMtQsQ+tzSyRNyZd4enb0f7dna7UPV2Gvo0KnjT3lR+YR4T2H3
+         oRTpmjNeVXbK+zc+HPTAVFEobHj3yzSWQhsbnkhwhaxa12AxTf1ZbfCFDyY8FjIEl33N
+         zzlrKD6DEZdp+G5c4Z0GqmkR2a3U1G67H6jJMRPGdR7M0uuQqb9Im8BpPkGCOzC/ZZlz
+         I2wA==
+X-Gm-Message-State: AJIora9kRSnVdOw5XnWXGvB0T2C89E1oQKxvWEbS/fjQ6pdqGY4He9Ed
+        +jFp7qxLIzsyhT4cx7cEVZPUjA==
+X-Google-Smtp-Source: AGRyM1sV/uc5rapmEnvedSYRD9dxwsr83iT1JIXKk5etidOjlOK90qhSAkEX8h2nVT5NhEsf1HGvWQ==
+X-Received: by 2002:a05:6808:d50:b0:333:415e:2ca5 with SMTP id w16-20020a0568080d5000b00333415e2ca5mr948193oik.53.1656447586121;
+        Tue, 28 Jun 2022 13:19:46 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.43
+        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 13:19:43 -0700 (PDT)
+        Tue, 28 Jun 2022 13:19:45 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     will@kernel.org, Rohit Agarwal <quic_rohiagar@quicinc.com>,
-        robh+dt@kernel.org, adrian.hunter@intel.com,
-        bhupesh.sharma@linaro.org, joro@8bytes.org, ulf.hansson@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, robin.murphy@arm.com,
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, robh+dt@kernel.org,
+        gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
         agross@kernel.org
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-mmc@vger.kernel.org,
-        iommu@lists.linux-foundation.org
-Subject: Re: (subset) [PATCH 4/4] ARM: dts: qcom: sdx65: Add Shared memory manager support
-Date:   Tue, 28 Jun 2022 15:19:11 -0500
-Message-Id: <165644753307.10525.4712451269370492524.b4-ty@linaro.org>
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        manivannan.sadhasivam@linaro.org
+Subject: Re: (subset) [PATCH v2 0/4] Devicetree updates for Interconnect, USB3 and PHY support
+Date:   Tue, 28 Jun 2022 15:19:12 -0500
+Message-Id: <165644753307.10525.4732064519492926832.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <1651480665-14978-5-git-send-email-quic_rohiagar@quicinc.com>
-References: <1651480665-14978-1-git-send-email-quic_rohiagar@quicinc.com> <1651480665-14978-5-git-send-email-quic_rohiagar@quicinc.com>
+In-Reply-To: <1651482395-29443-1-git-send-email-quic_rohiagar@quicinc.com>
+References: <1651482395-29443-1-git-send-email-quic_rohiagar@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -76,15 +73,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 May 2022 14:07:45 +0530, Rohit Agarwal wrote:
-> Add smem node to support shared memory manager on SDX65 platform.
+On Mon, 2 May 2022 14:36:31 +0530, Rohit Agarwal wrote:
+> This series adds the devicetree nodes to support the interconnect, USB3 and PHY support.
 > 
+> Changes from v1:
+>  - Addressed Krzysztof's comments.
+>  - Rebased on top of 5.18-rc5.
 > 
+> Thanks,
+> Rohit.
+> 
+> [...]
 
 Applied, thanks!
 
-[4/4] ARM: dts: qcom: sdx65: Add Shared memory manager support
-      commit: e378b965330d99e8622eb369021d0dac01591046
+[1/4] ARM: dts: qcom: sdx65: Add interconnect nodes
+      commit: b456b5e7d1df276a4e1050680eec86ccb99d8a82
+[3/4] ARM: dts: qcom: sdx65: Add USB3 and PHY support
+      commit: fbb6447deba87dc409e274d9d6d90d9c79851fb7
+[4/4] ARM: dts: qcom: sdx65-mtp: Enable USB3 and PHY support
+      commit: eeaec4f2b926ffcb35a9c1c4af549ac9f7a6ce56
 
 Best regards,
 -- 
