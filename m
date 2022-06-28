@@ -2,99 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ED0B55D86D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:19:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16BE155D1BE
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:09:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239645AbiF1MFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 08:05:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34112 "EHLO
+        id S1345469AbiF1MHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 08:07:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245147AbiF1MFH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 08:05:07 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D11FB2FFCA
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 05:04:42 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id e28so12197998wra.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 05:04:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xyE1UAgMW31jME2wx6Txhct6npxMtKTSOZN3VWFZNHw=;
-        b=m3vTwS/dP8Fe6wpZeS/CQG9ugsk3/odZc3WP+Bfsr3fKin6P+AUs3nuxKWP+qOBk0k
-         Ofisb+kLd0uFcPR3clSCtQwkzAFzITwoh3AgAuAEuDpvpijcRVlaf9O9j9EB7r9zW9b5
-         vS8/IKQr9Vgqd7dfRGp4frugIvbrnZ0Yu6BeafktCNdj92hMX7G/Vr2TK+HjuT7QuKFO
-         Gw//2e/AfNzs2rma+RFnN5PcekzAKGkt+mmqmiKegpOa+8GtNLTSulPEcI233ZhWK6ye
-         81FWM0JrwlEqX0iG2s4h3lWis25+gG5YRtzfys8bLC73stUm1iBO3M8rL6WoH7/8VRix
-         biTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xyE1UAgMW31jME2wx6Txhct6npxMtKTSOZN3VWFZNHw=;
-        b=rxiS7S3c2d0PIQ/VO85xeJ5GzehfRK3LVphQxytoKHJ3RPWuSvHlKrrGs+HQORZTW4
-         nI/wjbyr5RU17xEo2PCzAx9RGk6dYGCY4XMHSgHGKgPqQgA070SrIVobTBi6qTkpp93s
-         FVoMrubBr7p0tEuTCMqs6WR+b2sfrdbklJ5UxjasMDtqnPfI9iSvBGYw6T6uQLQAR3Ug
-         Z+rVMxJTmHptktXuuVQ+ZOaT4ct+OODg4g/zjg4/wpLZVmevxun2TPpXyXSe/0RnsfLr
-         6fL8mcTAHVkXk9h4+wqW71jHqYBPZ+eao557kv+RUQjOa4yqsGnWqyB0U/MCJTOb0vA8
-         KJmg==
-X-Gm-Message-State: AJIora8eydz5b/FvzFrXN/+xgg+glouBwWRMQu1cCJkSnJb3QLXsNdMk
-        nmKr0NJ6l9xx3kT5CCkOyLdVIw==
-X-Google-Smtp-Source: AGRyM1sIGgkLsPSHOSBLRUUGIuQR0r+aLMYB45/sEFZDsRlArA/bkN9r0zZG2vSMYwT6ccthSxkwZA==
-X-Received: by 2002:a05:6000:1705:b0:21b:bcff:39d3 with SMTP id n5-20020a056000170500b0021bbcff39d3mr16525829wrc.502.1656417881302;
-        Tue, 28 Jun 2022 05:04:41 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id p20-20020a1c7414000000b003a05621dc53sm1457737wmc.29.2022.06.28.05.04.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 05:04:40 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     lgirdwood@gmail.com, broonie@kernel.org, bjorn.andersson@linaro.org
-Cc:     perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org,
-        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, bryan.odonoghue@linaro.org
-Subject: [PATCH v5 2/2] arm64: dts: qcom: Fix apq8016 compat string to match yaml
-Date:   Tue, 28 Jun 2022 13:04:35 +0100
-Message-Id: <20220628120435.3044939-3-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220628120435.3044939-1-bryan.odonoghue@linaro.org>
-References: <20220628120435.3044939-1-bryan.odonoghue@linaro.org>
+        with ESMTP id S238286AbiF1MHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 08:07:47 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 604F324BC1;
+        Tue, 28 Jun 2022 05:07:13 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id DE50D22246;
+        Tue, 28 Jun 2022 14:07:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1656418031;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=hgB07wGzzjuB/IETny6DvoS9YsWl3zMXH0wKA/TEMtI=;
+        b=PGqea9u+tKJb1Oyj8JGp5Vh1UajHV55/tTx4lPSaKiMFXdM07AGX+UJ8C9CAh++vRp97oA
+        OB+4q6/Vd8nwhbgd0k4l3NST7Wsm4nDIkKmFo6rFoG8wpiUHzkuljasgq8SAnkkA50BW1O
+        M7pTyBlgS12nVxUDE05Q5PXd1WMuNuk=
+From:   Michael Walle <michael@walle.cc>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org, Michael Walle <michael@walle.cc>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH RESEND v2] earlycon: prevent multiple register_console()
+Date:   Tue, 28 Jun 2022 14:07:05 +0200
+Message-Id: <20220628120705.200617-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The documented yaml compat string for the apq8016 is
-"qcom,apq8016-lpass-cpu" not "qcom,lpass-cpu-apq8016". Looking at the other
-lpass compat strings the general form is "qcom,socnum-lpass-cpu".
+If the earlycon parameter is given twice, the kernel will spit out a
+WARN() in register_console() because it was already registered. The
+non-dt variant setup_earlycon() already handles that gracefully. The dt
+variant of_setup_earlycon() doesn't. Add the check there and add the
+-EALREADY handling in early_init_dt_scan_chosen_stdout().
 
-We need to fix both the driver and dts to match.
+FWIW, this doesn't happen if CONFIG_ACPI_SPCR_TABLE is set. In that case
+the registration is delayed until after earlycon parameter(s) are
+parsed.
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Signed-off-by: Michael Walle <michael@walle.cc>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+changes since v1:
+ - add missing EALREADY handling in of_setup_earlycon()
+ - return 0 early as suggested by Rob
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 05472510e29d5..a101b2871d5f7 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -1422,7 +1422,7 @@ sound: sound@7702000 {
+For the curious, here is the backtrace:
+
+[    0.000000] ------------[ cut here ]------------
+[    0.000000] WARNING: CPU: 0 PID: 0 at kernel/printk/printk.c:3328 register_console+0x2b4/0x364
+[    0.000000] console 'atmel_serial0' already registered
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 5.18.0-next-20220601+ #652
+[    0.000000] Hardware name: Generic DT based system
+[    0.000000] Backtrace:
+[    0.000000]  dump_backtrace from show_stack+0x18/0x1c
+[    0.000000]  show_stack from dump_stack_lvl+0x48/0x54
+[    0.000000]  dump_stack_lvl from dump_stack+0x18/0x1c
+[    0.000000]  dump_stack from __warn+0xd0/0x148
+[    0.000000]  __warn from warn_slowpath_fmt+0x9c/0xc4
+[    0.000000]  warn_slowpath_fmt from register_console+0x2b4/0x364
+[    0.000000]  register_console from of_setup_earlycon+0x29c/0x2ac
+[    0.000000]  of_setup_earlycon from early_init_dt_scan_chosen_stdout+0x154/0x18c
+[    0.000000]  early_init_dt_scan_chosen_stdout from param_setup_earlycon+0x40/0x48
+[    0.000000]  param_setup_earlycon from do_early_param+0x88/0xc4
+[    0.000000]  do_early_param from parse_args+0x1a4/0x404
+[    0.000000]  parse_args from parse_early_options+0x40/0x48
+[    0.000000]  parse_early_options from parse_early_param+0x38/0x48
+[    0.000000]  parse_early_param from setup_arch+0x114/0x7a4
+[    0.000000]  setup_arch from start_kernel+0x74/0x6dc
+[    0.000000]  start_kernel from 0x0
+[    0.000000] ---[ end trace 0000000000000000 ]---
+
+ drivers/of/fdt.c              | 4 +++-
+ drivers/tty/serial/earlycon.c | 3 +++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index a8f5b6532165..043b12be22d6 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -1025,6 +1025,7 @@ int __init early_init_dt_scan_chosen_stdout(void)
+ 	int l;
+ 	const struct earlycon_id *match;
+ 	const void *fdt = initial_boot_params;
++	int ret;
  
- 		lpass: audio-controller@7708000 {
- 			status = "disabled";
--			compatible = "qcom,lpass-cpu-apq8016";
-+			compatible = "qcom,apq8016-lpass-cpu";
+ 	offset = fdt_path_offset(fdt, "/chosen");
+ 	if (offset < 0)
+@@ -1057,7 +1058,8 @@ int __init early_init_dt_scan_chosen_stdout(void)
+ 		if (fdt_node_check_compatible(fdt, offset, match->compatible))
+ 			continue;
  
- 			/*
- 			 * Note: Unlike the name would suggest, the SEC_I2S_CLK
+-		if (of_setup_earlycon(match, offset, options) == 0)
++		ret = of_setup_earlycon(match, offset, options);
++		if (!ret || ret == -EALREADY)
+ 			return 0;
+ 	}
+ 	return -ENODEV;
+diff --git a/drivers/tty/serial/earlycon.c b/drivers/tty/serial/earlycon.c
+index 57c70851f22a..88d08ba1ca83 100644
+--- a/drivers/tty/serial/earlycon.c
++++ b/drivers/tty/serial/earlycon.c
+@@ -253,6 +253,9 @@ int __init of_setup_earlycon(const struct earlycon_id *match,
+ 	bool big_endian;
+ 	u64 addr;
+ 
++	if (early_con.flags & CON_ENABLED)
++		return -EALREADY;
++
+ 	spin_lock_init(&port->lock);
+ 	port->iotype = UPIO_MEM;
+ 	addr = of_flat_dt_translate_address(node);
 -- 
-2.36.1
+2.30.2
 
