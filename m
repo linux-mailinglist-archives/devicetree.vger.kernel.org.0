@@ -2,123 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC83D55DE29
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18D7055CB2A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:59:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344201AbiF1KoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 06:44:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45342 "EHLO
+        id S1344620AbiF1KnR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 06:43:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345043AbiF1KoD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:44:03 -0400
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBB7E31371
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 03:43:55 -0700 (PDT)
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220628104349epoutp019371468f3a13bd104e0aec5fad5b3505~8wt_5A5Je0979009790epoutp01C
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 10:43:49 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220628104349epoutp019371468f3a13bd104e0aec5fad5b3505~8wt_5A5Je0979009790epoutp01C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1656413029;
-        bh=YFv9lgcSRhso3kr6bQpndwLFpoYghZyYPb5zfEzZU3Y=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=iTqwRq4YbhPd4p1lcfBIDI9Cc3eWwV5oTwA+axWVHVTLqdPrnKcJChGJy5XF1sov9
-         Y9NxLba+tdLpOifLow9IMMHb7eKC+0rjNXyt8maLTYaI2TiI38siX6xTwc9qrOohUu
-         Qwax1da7kwo15mAAyehIYZJHYtcUVkYKRdHCbt+A=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
-        20220628104348epcas2p3df730ae7f721cfa13494efcda477ca07~8wt_Tcdye1967919679epcas2p3d;
-        Tue, 28 Jun 2022 10:43:48 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.88]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4LXLmh0hy1z4x9Pt; Tue, 28 Jun
-        2022 10:43:48 +0000 (GMT)
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        02.4E.09666.36BDAB26; Tue, 28 Jun 2022 19:43:48 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-        20220628104347epcas2p48a7fe482ad82004c145fcf90e32eaec6~8wt9QALo00845308453epcas2p4C;
-        Tue, 28 Jun 2022 10:43:47 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220628104347epsmtrp26dcf56f1ac0cf38b7fb405c7ffe3b0e6~8wt9PGYR40643306433epsmtrp2L;
-        Tue, 28 Jun 2022 10:43:47 +0000 (GMT)
-X-AuditID: b6c32a45-471ff700000025c2-78-62badb632e06
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        D9.58.08802.36BDAB26; Tue, 28 Jun 2022 19:43:47 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.51]) by
-        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20220628104347epsmtip1c15e98d815f99ab2a106b37ac1470550~8wt9EuAL01977719777epsmtip1F;
-        Tue, 28 Jun 2022 10:43:47 +0000 (GMT)
-From:   Chanho Park <chanho61.park@samsung.com>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Chanho Park <chanho61.park@samsung.com>
-Subject: [PATCH v2 3/3] clk: samsung: exynosautov9: correct register offsets
- of peric0/c1
-Date:   Tue, 28 Jun 2022 19:41:38 +0900
-Message-Id: <20220628104138.152118-4-chanho61.park@samsung.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220628104138.152118-1-chanho61.park@samsung.com>
+        with ESMTP id S245069AbiF1KnQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:43:16 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 575702F398;
+        Tue, 28 Jun 2022 03:43:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1656412995; x=1687948995;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=MfHIr6ZUWBTFFLdaK7ESXAbC7f2cS5qTkodIJ8o5Ypg=;
+  b=nchn7YPfkBZ/2IzX2HG4WC/w0RJtk34QRaESRZVPPw16DQyhT9TJfVTl
+   FdZXqtNDZ7IV+wSb+XS8psYWplIFQ0M3DB+qqt9EfwA+jCAnYzwyl24CF
+   M0d0OrY1jV64JFjKE+UGW9U95NIqygDUm1Uh5yP0HjKZp1RtHDwmAjboy
+   E=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 28 Jun 2022 03:43:15 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 03:43:14 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 28 Jun 2022 03:43:13 -0700
+Received: from [10.216.26.50] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 28 Jun
+ 2022 03:43:06 -0700
+Message-ID: <c6a33d45-f210-4412-0a8a-45d89527b8aa@quicinc.com>
+Date:   Tue, 28 Jun 2022 16:13:01 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOJsWRmVeSWpSXmKPExsWy7bCmuW7K7V1JBnvfMVo8mLeNzeLyfm2L
-        61+es1rMP3KO1aLvxUNmi72vt7JbbHp8jdXiY889VosZ5/cxWVw85WrRuvcIu8XhN+2sFv+u
-        bWSxWLXrD6MDn8f7G63sHjtn3WX32LSqk83jzrU9bB6bl9R79G1ZxejxeZNcAHtUtk1GamJK
-        apFCal5yfkpmXrqtkndwvHO8qZmBoa6hpYW5kkJeYm6qrZKLT4CuW2YO0MFKCmWJOaVAoYDE
-        4mIlfTubovzSklSFjPziElul1IKUnALzAr3ixNzi0rx0vbzUEitDAwMjU6DChOyMw4u7GAsm
-        K1R8P7CCqYHxrmwXIyeHhICJxPkV/1m7GLk4hAR2MEoc3b6IHcL5xCjxdPE0qMxnRok1iy8x
-        wrQceT+dDSKxi1Fi7pmfUFUfGSXenJzCBFLFJqArseX5K0aQhIjAYyaJw0fa2EASzAI3GCUO
-        b2UGsYUFoiV+nJ4N1sAioCpx9/ZCFhCbV8Be4s6S38wQ6+QlNszvBbI5ODgFHCR27vGAKBGU
-        ODnzCQvESHmJ5q2zmUF2SQis5JDYvWgO1KkuEp+fHGODsIUlXh3fwg5hS0l8frcXKl4ssXTW
-        JyaI5gZGicvbfkEljCVmPWtnBFnMLKApsX6XPogpIaAsceQW1F4+iY7Df9khwrwSHW1CEI3q
-        Ege2T2eBsGUluud8ZoWwPSTeNhxigYTVZGDAdT9jmcCoMAvJO7OQvDMLYfECRuZVjGKpBcW5
-        6anFRgWG8ChOzs/dxAhOwVquOxgnv/2gd4iRiYPxEKMEB7OSCO/CMzuThHhTEiurUovy44tK
-        c1KLDzGaAsN6IrOUaHI+MAvklcQbmlgamJiZGZobmRqYK4nzeqVsSBQSSE8sSc1OTS1ILYLp
-        Y+LglGpgqtQx8n5b/uEqb+yHtB4djm1KevuvLTLI10w+yHIxIaY0iClIpjF5QbHkXgPeYyXT
-        Jq2vDErLVt0a6/Dk0L3nhwqcoz4rpe4qTPzrmRQ08aVCbbte2KnMeL9rvB/mZDoLHLj0cPqv
-        +cbmD0XfLXpstnF7yLPtNawLj0d8WqB0tPdmZIDxHXddBn8rz9dVVz9sNGNRnzG5hMP/uaZf
-        yVP1mJUntn2JKur90Lm8P5Ez44ePzBGrOV/bjxwqlwrmLuX5xazq9616P1+mwdONVQyuHN0B
-        PP8MGj+Fp312vrBjx9azoWprKh6ZlJfwyIVszz/3XPAk7xKf/5eu8YvM+h7+/NrVN1etbx6Y
-        rdDC5OikxFKckWioxVxUnAgA+p/DakoEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrILMWRmVeSWpSXmKPExsWy7bCSnG7y7V1JBl/vCFg8mLeNzeLyfm2L
-        61+es1rMP3KO1aLvxUNmi72vt7JbbHp8jdXiY889VosZ5/cxWVw85WrRuvcIu8XhN+2sFv+u
-        bWSxWLXrD6MDn8f7G63sHjtn3WX32LSqk83jzrU9bB6bl9R79G1ZxejxeZNcAHsUl01Kak5m
-        WWqRvl0CV8bhxV2MBZMVKr4fWMHUwHhXtouRk0NCwETiyPvpbF2MXBxCAjsYJe793cAEkZCV
-        ePZuBzuELSxxv+UIK0TRe0aJa/s7WUESbAK6Eluev2IESYgIPGeSmLLiIJjDLHCHUWLK7Nlg
-        o4QFIiV273vNCGKzCKhK3L29kAXE5hWwl7iz5DczxAp5iQ3ze4FsDg5OAQeJnXs8QEwhoJLD
-        3zIgqgUlTs58AtbJDFTdvHU28wRGgVlIUrOQpBYwMq1ilEwtKM5Nzy02LDDKSy3XK07MLS7N
-        S9dLzs/dxAiOFS2tHYx7Vn3QO8TIxMF4iFGCg1lJhHfhmZ1JQrwpiZVVqUX58UWlOanFhxil
-        OViUxHkvdJ2MFxJITyxJzU5NLUgtgskycXBKNTCtm5RuyMvYKbQvpPNrQI718YIyBp1tW+6J
-        dZ6ct1OGZb5VoI1Yq4iI4PF7pnMTrv0tfn7se4/iKYPpjx6vWfxil/uJ2fsr9Nd9jJ93XUZ1
-        88Yp6tK6V6xeHZvmt+r5k4f/xVf8Wfx1FnupEk9jWfhLJ6GGjcGlmySiCp4pmq/kqIv95Gr2
-        cuGHHSXfLc2NDvj12VXpMP3br+t/UtLpb8jmBMOEly7thXUl7y60Gn97L9i+rnuTyfxbcqxW
-        /wT9OScweDX1l50QFjqnfqz5jh//zJV9rIqbNz7lux8pvYjXoiHroseey2si5F3VdnF72uzL
-        Lr748qpffWLtROZA55O3WT1bOewYBapbXDqsZyixFGckGmoxFxUnAgDOBRsxBAMAAA==
-X-CMS-MailID: 20220628104347epcas2p48a7fe482ad82004c145fcf90e32eaec6
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220628104347epcas2p48a7fe482ad82004c145fcf90e32eaec6
-References: <20220628104138.152118-1-chanho61.park@samsung.com>
-        <CGME20220628104347epcas2p48a7fe482ad82004c145fcf90e32eaec6@epcas2p4.samsung.com>
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75 autolearn=unavailable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v4 1/4] dt-bindings: interconnect: qcom,sdm845-cpu-bwmon:
+ add BWMON device
+Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Rob Herring" <robh@kernel.org>
+References: <20220601101140.170504-1-krzysztof.kozlowski@linaro.org>
+ <20220601101140.170504-2-krzysztof.kozlowski@linaro.org>
+ <Yp5tjUICIEUptKSx@ripper> <3e4e504c-5a38-43cd-ea8d-afbbb72eacad@linaro.org>
+ <dbfe1e7c-19dc-2d20-700a-c26f0bf721e5@quicinc.com>
+ <YrfQXM7N/dn9odKL@builder.lan>
+From:   Rajendra Nayak <quic_rjendra@quicinc.com>
+In-Reply-To: <YrfQXM7N/dn9odKL@builder.lan>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -126,66 +78,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some register offsets of peric0 and peric1 cmu blocks need to be
-corrected and re-ordered by numerical order.
 
-Fixes: f2dd366992d0 ("clk: samsung: exynosautov9: add cmu_peric0 clock support")
-Fixes: b35f27fe73d8 ("clk: samsung: exynosautov9: add cmu_peric1 clock support")
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Chanho Park <chanho61.park@samsung.com>
----
- drivers/clk/samsung/clk-exynosautov9.c | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/clk/samsung/clk-exynosautov9.c b/drivers/clk/samsung/clk-exynosautov9.c
-index c5a4e1bee711..76c4841f2970 100644
---- a/drivers/clk/samsung/clk-exynosautov9.c
-+++ b/drivers/clk/samsung/clk-exynosautov9.c
-@@ -1170,9 +1170,9 @@ static const struct samsung_cmu_info fsys2_cmu_info __initconst = {
- #define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_2	0x2058
- #define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_3	0x205c
- #define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_4	0x2060
--#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_7	0x206c
- #define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_5	0x2064
- #define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_6	0x2068
-+#define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_7	0x206c
- #define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_8	0x2070
- #define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_9	0x2074
- #define CLK_CON_GAT_GOUT_BLK_PERIC0_UID_PERIC0_TOP0_IPCLKPORT_PCLK_10	0x204c
-@@ -1422,14 +1422,14 @@ static const struct samsung_cmu_info peric0_cmu_info __initconst = {
- #define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_IPCLK_11	0x2020
- #define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_0	0x2044
- #define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_1	0x2048
--#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_2	0x2058
--#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_3	0x205c
--#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_4	0x2060
--#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_7	0x206c
--#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_5	0x2064
--#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_6	0x2068
--#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_8	0x2070
--#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_9	0x2074
-+#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_2	0x2054
-+#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_3	0x2058
-+#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_4	0x205c
-+#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_5	0x2060
-+#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_6	0x2064
-+#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_7	0x2068
-+#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_8	0x206c
-+#define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_9	0x2070
- #define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_10	0x204c
- #define CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_11	0x2050
- 
-@@ -1467,9 +1467,9 @@ static const unsigned long peric1_clk_regs[] __initconst = {
- 	CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_2,
- 	CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_3,
- 	CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_4,
--	CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_7,
- 	CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_5,
- 	CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_6,
-+	CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_7,
- 	CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_8,
- 	CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_9,
- 	CLK_CON_GAT_GOUT_BLK_PERIC1_UID_PERIC1_TOP0_IPCLKPORT_PCLK_10,
--- 
-2.36.1
+On 6/26/2022 8:49 AM, Bjorn Andersson wrote:
+> On Wed 22 Jun 06:58 CDT 2022, Rajendra Nayak wrote:
+> 
+>>
+>>
+>> On 6/7/2022 12:20 PM, Krzysztof Kozlowski wrote:
+>>> On 06/06/2022 23:11, Bjorn Andersson wrote:
+>>>> On Wed 01 Jun 03:11 PDT 2022, Krzysztof Kozlowski wrote:
+>>>>
+>>>>> Add bindings for the Qualcomm Bandwidth Monitor device providing
+>>>>> performance data on interconnects.  The bindings describe only BWMON
+>>>>> version 4, e.g. the instance on SDM845 between CPU and Last Level Cache
+>>>>> Controller.
+>>>>>
+>>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>>>> Acked-by: Georgi Djakov <djakov@kernel.org>
+>>>>> ---
+>>>>>    .../interconnect/qcom,sdm845-cpu-bwmon.yaml   | 97 +++++++++++++++++++
+>>>>>    1 file changed, 97 insertions(+)
+>>>>>    create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..8c82e06ee432
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml
+>>>>> @@ -0,0 +1,97 @@
+>>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/interconnect/qcom,sdm845-cpu-bwmon.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Qualcomm Interconnect Bandwidth Monitor
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>> +
+>>>>> +description:
+>>>>> +  Bandwidth Monitor measures current throughput on buses between various NoC
+>>>>> +  fabrics and provides information when it crosses configured thresholds.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - qcom,sdm845-cpu-bwmon       # BWMON v4
+>>>>
+>>>> It seems the thing that's called bwmon v4 is compatible with a number of
+>>>> different platforms, should we add a generic compatible to the binding
+>>>> as well, to avoid having to update the implementation for each SoC?
+>>>>
+>>>> (I.e. "qcom,sdm845-cpu-bwmon", "qcom,bwmon-v4")
+>>
+>> it seems pretty useful to have the "qcom,bwmon-v4" and "qcom,bwmon-v5"
+>> compatibles, I tried these patches on a sc7280 device which has a bwmon4
+>> between the cpu and caches (and also has a bwmon5 between the caches and DDR)
+>> and the driver works with zero changes.
+>>
+> 
+> But does the '4' and '5' has a relation to the hardware? Or is just the
+> 4th and 5th register layout supported by the downstream driver?
 
+Right, it was just based on the downstream driver register layouts, i could not
+find these numbers in HW specs anywhere, but that said I do see 2 instances of
+these, one of them called the LAGG bwmon which is the one between the LLCC and DDR
+and is documented as part of the LLCC specs. I'll try and dig somemore into the
+documentation to see how we could define compatibles to match hw revs.
+
+> 
+> Regards,
+> Bjorn
