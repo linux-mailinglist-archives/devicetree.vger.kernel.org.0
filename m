@@ -2,60 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E36AE55EB95
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 19:58:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5455855EB9C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 20:01:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233685AbiF1R6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 13:58:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45546 "EHLO
+        id S233105AbiF1SBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 14:01:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233682AbiF1R6e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 13:58:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9299DB80;
-        Tue, 28 Jun 2022 10:58:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 30FB1619FD;
-        Tue, 28 Jun 2022 17:58:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E458C341C6;
-        Tue, 28 Jun 2022 17:58:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656439111;
-        bh=MSx95T8wk6hIGQguOGzuWr3N8RUGtzUumdkk9KklXOY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=RuKDnC/INZxED7Zwh8uh6bH5n5RUyeqluFiJFqUETDvSiQ17xNAA0RSCDdM6XeTyh
-         Lbd2NnCLLlYkQ4Umxwn/rkCSihbbKNv6Z2zZ10qESul2JXlp19JeB0UDR/4in6bBR0
-         jRTKr5VFHqYsz2AoBKN3JjLXZ8Ho0fC6mN+lLyof5wm5fbcNhcCvLZZbqsA60Yj+X7
-         EOLtYKZ+dZdRCvVABVmpt/1mYgA6fZXESTeIPjRPCDB064Jbz3GMDyxSj7v31/ID+x
-         nxjceBZKCSeDT/e00yLVZH4IQARqJXePYkT8f51NqI0JVKBxG9s/k5wbZ4zxAoas78
-         OtPdzFKnPmSNg==
-Message-ID: <685adda2-e76f-e2c4-2f58-04fb4b06c8cf@kernel.org>
-Date:   Tue, 28 Jun 2022 20:58:24 +0300
+        with ESMTP id S232040AbiF1SBV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 14:01:21 -0400
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C21113CDF;
+        Tue, 28 Jun 2022 11:01:20 -0700 (PDT)
+Received: by mail-il1-f169.google.com with SMTP id w10so8693704ilj.4;
+        Tue, 28 Jun 2022 11:01:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vyEzwvPI3BGxNhyGTBd05qTTzI+KUnXsrXGykLBGpWI=;
+        b=wScY8X+R3OFPKDMQSTnt1c8KopyPDckwZuWHsHCnlVqGpq1uUxnMEGX198bOHPtU2k
+         aQOQg1QpKVd8ZzdlgZL/z8wXAj/kE0onJvUu4xYFSzDZXSUqhxDqSkeDiPXTjHvhqaPB
+         BPbg7Ot8c+FEDrcaDTAjImyL+9MRaGQ5Ymwml0A7hz73QXRkO4PaK/xXENVM5EV6roxl
+         m8dSgxurVtER0SoxT8NwzaNiCcEY6PuBeX7DrVc4Oxq4mhNVqIIzX+lHPBUgwFdV8ZIx
+         pZFToHU/aRtX+Qpn16uXFHK0UPYzTyW/3Ip5uev3LCc3Ly+V/piHMhO8YmiKL5FVPvqP
+         yhMg==
+X-Gm-Message-State: AJIora8K5l0/dRQd2WuJHfZtieWjfVVQNTgW+i2VcYxvurG+EX1IL+x5
+        xKysJ0ZQrwxrBFJygeiaJQ==
+X-Google-Smtp-Source: AGRyM1sKk9gL4yQV/igOvLwe9uL1GmQw+zbPQ4Eb34tAfm5CB2E0YhZpPgDOmZvs3Bol0j9fAT7xow==
+X-Received: by 2002:a05:6e02:188a:b0:2d4:7fd:dbf with SMTP id o10-20020a056e02188a00b002d407fd0dbfmr10668739ilu.217.1656439279592;
+        Tue, 28 Jun 2022 11:01:19 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id e39-20020a022127000000b0032e49fcc241sm6317306jaa.176.2022.06.28.11.01.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jun 2022 11:01:19 -0700 (PDT)
+Received: (nullmailer pid 710546 invoked by uid 1000);
+        Tue, 28 Jun 2022 18:01:18 -0000
+Date:   Tue, 28 Jun 2022 12:01:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Mike Leach <mike.leach@linaro.org>, Leo Yan <leo.yan@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 0/3] dt-bindings: Arm CoreSight binding schema
+ conversions
+Message-ID: <20220628180118.GA703354-robh@kernel.org>
+References: <20220603011933.3277315-1-robh@kernel.org>
+ <20220620165541.GA1458883@p14s>
 MIME-Version: 1.0
-Subject: Re: [PATCH V2 9/9] interconnect: imx: Add platform driver for imx8mp
-Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, abel.vesa@nxp.com,
-        abailon@baylibre.com, l.stach@pengutronix.de,
-        laurent.pinchart@ideasonboard.com, marex@denx.de,
-        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
-        aford173@gmail.com
-Cc:     kernel@pengutronix.de, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        abelvesa@kernel.org, Peng Fan <peng.fan@nxp.com>
-References: <20220616073320.2203000-1-peng.fan@oss.nxp.com>
- <20220616073320.2203000-10-peng.fan@oss.nxp.com>
-From:   Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <20220616073320.2203000-10-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220620165541.GA1458883@p14s>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,47 +66,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 16.06.22 10:33, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Mon, Jun 20, 2022 at 10:55:41AM -0600, Mathieu Poirier wrote:
+> Hi Rob,
 > 
-> Add a platform driver for the i.MX8MP SoC describing bus topology, based
-> on internal documentation.
+> On Thu, Jun 02, 2022 at 08:19:30PM -0500, Rob Herring wrote:
+> > This series converts all the CoreSight debug bindings to DT schema
+> > format. These bindings are at the top of the list of occurrences of
+> > bindings without a schema. For arm64 dts files:
+> > 
+> >     702 ['arm,coresight-etm4x', 'arm,primecell']
+> >     536 ['arm,coresight-cpu-debug', 'arm,primecell']
+> >     509 ['arm,coresight-dynamic-funnel', 'arm,primecell']
+> >     213 ['arm,coresight-tmc', 'arm,primecell']
+> >     143 ['arm,coresight-dynamic-replicator', 'arm,primecell']
+> >      97 ['arm,coresight-stm', 'arm,primecell']
+> > 
+> > I'll send a reply to these with the errors in dts files that this
+> > causes. I've reviewed them and they all look legit. Xilinx Zynq though
+> > has 3 clocks instead of 2.
+> > 
+> > v2:
+> >  - Rename other Coresight bindings to use compatible string for filename
+> >  - Add missing arm,coresight-dynamic-replicator.yaml and
+> >    arm,coresight-static-funnel.yaml
+> >  - Update MAINTAINERS
+> >  - Fix coresight.txt references
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->   drivers/interconnect/imx/Kconfig  |   4 +
->   drivers/interconnect/imx/Makefile |   2 +
->   drivers/interconnect/imx/imx8mp.c | 259 ++++++++++++++++++++++++++++++
->   3 files changed, 265 insertions(+)
->   create mode 100644 drivers/interconnect/imx/imx8mp.c
+> What a massive undertaking... I have looked scrupulously and everything adds up.
+> Let me know if you were looking for me to pick this up.  Otherwise:
 > 
-[..]
-> +static int imx8mp_icc_probe(struct platform_device *pdev)
-> +{
-> +	return imx_icc_register(pdev, nodes, ARRAY_SIZE(nodes), noc_setting_nodes);
-> +}
-> +
-> +static int imx8mp_icc_remove(struct platform_device *pdev)
-> +{
-> +	return imx_icc_unregister(pdev);
-> +}
-> +
-> +static struct platform_driver imx8mp_icc_driver = {
-> +	.probe = imx8mp_icc_probe,
-> +	.remove = imx8mp_icc_remove,
-> +	.driver = {
-> +		.name = "imx8mp-interconnect",
-> +	},
-> +};
-> +
-> +module_platform_driver(imx8mp_icc_driver);
-> +MODULE_AUTHOR("Peng Fan <peng.fan@nxp.com>");
-> +MODULE_LICENSE("GPL v2");
+> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 
-Nit: According to Documentation/process/license-rules.rst this should be just "GPL".
+Can you apply. I think there was another series from QCom touching 
+the MAINTAINERS entry that will conflict. 
 
-> +MODULE_ALIAS("platform:imx8mp-interconnect");
+There's a couple of indentation fixups. Can you fix when applying or do 
+you want me to resend?
 
-Thanks,
-Georgi
+Rob
