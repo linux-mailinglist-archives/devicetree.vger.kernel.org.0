@@ -2,115 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A384355D869
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:19:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F10F955D8AB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:20:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345518AbiF1L2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 07:28:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52660 "EHLO
+        id S235292AbiF1Lfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 07:35:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345496AbiF1L2U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 07:28:20 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B85B410543;
-        Tue, 28 Jun 2022 04:28:18 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id r18so9230163edb.9;
-        Tue, 28 Jun 2022 04:28:18 -0700 (PDT)
+        with ESMTP id S230061AbiF1Lfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 07:35:45 -0400
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5AF632050;
+        Tue, 28 Jun 2022 04:35:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=wSWuOS2cAYv5FuJkZUEc6ND5j48qnvL32xgmlNFYci4=;
-        b=FvZMPG4RvTvduiJLbxdgkpBmHO0eivfuDB3c9SxChryaMNJW+RHsG0LmEDG9Dw19sU
-         +7kHR0ctkFPFGOzNyssScuN0/V6YJe1/jvh9gInfgAzF6JsMIKuFIEyXLrCsof1hI6uN
-         ZkQgi842QELzR98SBpzr4fT6W/EvvNFPTkJlL2EMmHMiuCjvTXVkGI+ZQgEeXhmKYkdd
-         zFWcZrdkpewXgyHVxaAEbaXRvd+LMr44fGqNdY4wToMrbyw8vJdaEaDMhAE92k31vfoq
-         igJWVXzBZ29TByMze6b7uWTfch6DYTBA4eItcWvNKFVAqGqKk/g6Vzz4ucX1bg8aMnps
-         vSsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=wSWuOS2cAYv5FuJkZUEc6ND5j48qnvL32xgmlNFYci4=;
-        b=zA+DBYjucJ6qe1DQ5fnduSRYG/JU41PaVOASftNJxEur2G0GSyt1Zw3NouOLbWsgsQ
-         tpgaxqYKyMVtBIIu1wZlYEUSExWJ6ilwboJibjjy7TOCZ1T+0B+xd3pgLIXYXpR80Iby
-         uzlC3HKVNIJiBpoPaSPwi7xF+Z3LkvzAlEvvT/Xix69YCXoZbelTbdOTWEauwpAn5Sas
-         iftMp9ZQ4syjiu12loojI7LGiUxg7CAg5eqMIpGdgL29pIwQipWJquDSQhabu5ohIHcB
-         Nk5tqB+vxhRq9Ksoplxrq91Rk4v6n4rvo1VmbJZ6tSy+9pYz4sJ+WroWoexd3nwrKkE0
-         nA8Q==
-X-Gm-Message-State: AJIora+MlmDy8YjMpGgNnnjUtzHBIuE5Pbk+s+U6pl5AqRG1I/Wg3ZsT
-        sNlS/s9k3o6XpLQm0U9OjkM=
-X-Google-Smtp-Source: AGRyM1tN9+xICqng9ViA9oB4fb9cf2sQb53hvOku9jNJTaaO+oR/dcUdswOIf+hv1Nr6y/+uWwoFfw==
-X-Received: by 2002:aa7:c7c4:0:b0:431:75d6:6b3 with SMTP id o4-20020aa7c7c4000000b0043175d606b3mr22099442eds.280.1656415698324;
-        Tue, 28 Jun 2022 04:28:18 -0700 (PDT)
-Received: from localhost.localdomain (dynamic-095-114-061-215.95.114.pool.telefonica.de. [95.114.61.215])
-        by smtp.googlemail.com with ESMTPSA id h6-20020aa7cdc6000000b00435720b7a1csm9456318edw.20.2022.06.28.04.28.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 04:28:17 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, tlanger@maxlinear.com,
-        rtanwar@maxlinear.com, miquel.raynal@bootlin.com, richard@nod.at,
-        vigneshr@ti.com,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH RFC v1 8/8] mtd: rawnand: intel: Use devm_platform_ioremap_resource_byname()
-Date:   Tue, 28 Jun 2022 13:27:31 +0200
-Message-Id: <20220628112731.2041976-9-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220628112731.2041976-1-martin.blumenstingl@googlemail.com>
-References: <20220628112731.2041976-1-martin.blumenstingl@googlemail.com>
+  d=axis.com; q=dns/txt; s=axis-central1; t=1656416144;
+  x=1687952144;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=a2olrKI9dv74tiDxlIp0R9yvFP+Oc1Key6NJAoQ/KUY=;
+  b=BTZIdJfQ0HVm/G3oxUsem30HH0di9jR67bceuMKKEB8F9kB8h2W9ZujE
+   3SPzb1X6UB/0RFsQ1KX2R3Q2VHFsx0YFUcU7tdCHKtPpnc1cTE8QQWuSo
+   H0lDJEkwJsLPmUwsN5mdbZ9Yn6M49r8JZsVBDdcDAB45Sy+K3r/Eh+XIh
+   BXqMnyhbE6aKSIZ24l25nV8s1F4ANf7jVFaAjFd+mi2YG8T4JlCGMBujK
+   gASeXevZx1RIvZ9PyDcBiNgXfytqyl8PhCpwLOCsEZeR5hi9XfXh7BhgT
+   KLNtxCUNsv3tTwJaHx8kupukrXodAyv9xvg+xpnXrvMr0IbinK3j5HLQc
+   w==;
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+CC:     <kernel@axis.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] of: reserved-memory: Print allocation/reservation failures as error
+Date:   Tue, 28 Jun 2022 13:35:40 +0200
+Message-ID: <20220628113540.2790835-1-vincent.whitchurch@axis.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch from open-coded platform_get_resource_byname() and
-devm_ioremap_resource() to devm_platform_ioremap_resource_byname() where
-possible to simplify the code.
+If the allocation/reservation of reserved-memory fails, it is normally
+an error, so print it as an error so that it doesn't get hidden from the
+console due to the loglevel.  Also make the allocation failure include
+the size just like the reservation failure.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
 ---
- drivers/mtd/nand/raw/intel-nand-controller.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+ drivers/of/fdt.c             | 4 ++--
+ drivers/of/of_reserved_mem.c | 3 ++-
+ 2 files changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/mtd/nand/raw/intel-nand-controller.c b/drivers/mtd/nand/raw/intel-nand-controller.c
-index e486db11ecc3..d4a0987e93ac 100644
---- a/drivers/mtd/nand/raw/intel-nand-controller.c
-+++ b/drivers/mtd/nand/raw/intel-nand-controller.c
-@@ -592,13 +592,11 @@ static int ebu_nand_probe(struct platform_device *pdev)
- 	ebu_host->dev = dev;
- 	nand_controller_init(&ebu_host->controller);
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index a8f5b6532165..4610729d2297 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -532,8 +532,8 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
+ 				kmemleak_alloc_phys(base, size, 0, 0);
+ 		}
+ 		else
+-			pr_info("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
+-				uname, &base, (unsigned long)(size / SZ_1M));
++			pr_err("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
++			       uname, &base, (unsigned long)(size / SZ_1M));
  
--	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "ebunand");
--	ebu_host->ebu = devm_ioremap_resource(&pdev->dev, res);
-+	ebu_host->ebu = devm_platform_ioremap_resource_byname(pdev, "ebunand");
- 	if (IS_ERR(ebu_host->ebu))
- 		return PTR_ERR(ebu_host->ebu);
+ 		len -= t_len;
+ 		if (first) {
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 75caa6f5d36f..65f3b02a0e4e 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -156,7 +156,8 @@ static int __init __reserved_mem_alloc_size(unsigned long node,
+ 	}
  
--	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hsnand");
--	ebu_host->hsnand = devm_ioremap_resource(&pdev->dev, res);
-+	ebu_host->hsnand = devm_platform_ioremap_resource_byname(pdev, "hsnand");
- 	if (IS_ERR(ebu_host->hsnand))
- 		return PTR_ERR(ebu_host->hsnand);
+ 	if (base == 0) {
+-		pr_info("failed to allocate memory for node '%s'\n", uname);
++		pr_err("failed to allocate memory for node '%s': size %lu MiB\n",
++		       uname, (unsigned long)(size / SZ_1M));
+ 		return -ENOMEM;
+ 	}
  
-@@ -620,8 +618,8 @@ static int ebu_nand_probe(struct platform_device *pdev)
- 	ebu_host->cs_num = cs;
- 
- 	resname = devm_kasprintf(dev, GFP_KERNEL, "nand_cs%d", cs);
--	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, resname);
--	ebu_host->cs[cs].chipaddr = devm_ioremap_resource(dev, res);
-+	ebu_host->cs[cs].chipaddr = devm_platform_ioremap_resource_byname(pdev,
-+									  resname);
- 	if (IS_ERR(ebu_host->cs[cs].chipaddr))
- 		return PTR_ERR(ebu_host->cs[cs].chipaddr);
- 
+
+base-commit: a111daf0c53ae91e71fd2bfe7497862d14132e3e
 -- 
-2.36.1
+2.34.1
 
