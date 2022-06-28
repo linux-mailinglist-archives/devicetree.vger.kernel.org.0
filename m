@@ -2,62 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FAFE55DCB5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:26:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B9D355C1A2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:45:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242781AbiF1IcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 04:32:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54756 "EHLO
+        id S230479AbiF1Ixs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 04:53:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241877AbiF1IcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 04:32:15 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9CE62D1D8;
-        Tue, 28 Jun 2022 01:32:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656405133; x=1687941133;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=2kqXa/uuLryKUFs3CLbGBD4etwbcUy4VHXIUo9tYGK4=;
-  b=LEVPB3/vXo+at6YRCU8O0vDKzzxD2b8WiylDwv6IZ/j3wVXsKiTELTAL
-   6AdS0clRVgvYc0bNHuq1g3iHegZW+qx4yODv3caqZ6GSLYCTbjxRLGg+k
-   n1QfU5pl04jkfCfW6dBY7lPGRbiM69X1U7AUQ5GxXSgjRqLXFHWrSi3oy
-   LAE5ZXaHtAE3PW89P86ITAjX1vw7xPyDl/PT0v2n8aYuRzC3sagdu467e
-   CJd45vSeabwfhL65mPsq+5TKHWi7xnyjpFuejxSdBXihKKcEMSI++gHTc
-   3utqS9PDS6voCnP4fk2fRPYkzqBb75c5u+05B+lX9NMwlFZqrE0W78HtF
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="264716123"
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
-   d="scan'208";a="264716123"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 01:32:13 -0700
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
-   d="scan'208";a="646818234"
-Received: from iannetti-mobl.ger.corp.intel.com ([10.251.216.215])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 01:32:09 -0700
-Date:   Tue, 28 Jun 2022 11:31:50 +0300 (EEST)
-From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To:     Lino Sanfilippo <LinoSanfilippo@gmx.de>
-cc:     Lukas Wunner <lukas@wunner.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        vz@mleia.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        linux-serial <linux-serial@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, p.rosenberger@kunbus.com,
-        Lino Sanfilippo <l.sanfilippo@kunbus.com>
-Subject: Re: [PATCH 2/8] serial: core, 8250: set RS485 termination gpio in
- serial core
-In-Reply-To: <067e6fa2-6015-2eea-5719-8b75fb08882c@gmx.de>
-Message-ID: <9239f2ea-1a1c-ff27-70b9-931ab99c16@linux.intel.com>
-References: <20220622154659.8710-1-LinoSanfilippo@gmx.de> <20220622154659.8710-3-LinoSanfilippo@gmx.de> <20220625195844.GB2879@wunner.de> <067e6fa2-6015-2eea-5719-8b75fb08882c@gmx.de>
+        with ESMTP id S243946AbiF1Ixr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 04:53:47 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5697C2D1CF;
+        Tue, 28 Jun 2022 01:53:46 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id q18so10449255pld.13;
+        Tue, 28 Jun 2022 01:53:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3IiMMMDPLwz9F3UeFSzYtl7u8epQnprjfnqcTqmPDdc=;
+        b=M7FwbiPTrRshJ5EgrsPP+VaYq1MR/BrHKsCNp7qXs2Gn3eknJyZQR1pI797nCEBhZ0
+         4QcsntzPyK7fynPM//y8CVknu8gqk/1DTCG2yjXz9uEKfUrWboN0zRKdUeL38lKfovY4
+         RNOy0ERd+CxpfopeTzXUGDbhSTg/txJXaZud9pVuSnG+gt5wP5MHVqxonqpWDQ+Br3KZ
+         tncEz7nyiYSo4CEe7eXGNHADuOXhcI0FRD/H2IsDyufXgmyZBnidDmVGMtOADgSleBgD
+         cHrxBvUOnuNSITpAUmbaqSKDfDIRuzJseLDwuXuXwLOkpGbLI1MEFb0tHUBAPMA1NNG4
+         vSsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3IiMMMDPLwz9F3UeFSzYtl7u8epQnprjfnqcTqmPDdc=;
+        b=XT4Zah7QDOx2UiISHo1kDclV9rxCDM3rQL1SOz6xp8dS+miEP63Y7qOdU+UN3rJouu
+         7uj03WulkoN3KrSc14HkG0WACIVXCGhk0hQVdgjGHBgFDQ8lwKVlLBsP6Pum3fILFcBu
+         yukme+u+6qo7V3W0OUEnpWJZ9oI4qEzu6sYey4swRyYVtIUW9/ellJjRxOYVDCgvxqkK
+         4ZUIz1QEdkhzdFPA3srbQXpluq9F8KDuKfRHrVxFgB9GuOdSr802UN3H4uk2biy6GNpO
+         VZp+iFQXR7zFLQ34TRYKw+fAetThaiUCCbJJ2ZcntBC1ZyXj2G/8/8nqla4vs65+Pyou
+         fLrQ==
+X-Gm-Message-State: AJIora+yIv/iLknAYePPqMTtIWF9yc8ebZ1ZZrEHS5iGMEdwiPyDCIzI
+        Xf4RP+R91J8r78luOSB1rSY=
+X-Google-Smtp-Source: AGRyM1tQQaTMMPE0J7kPg5DjNRTKWH4fPNaHPbowka1suIhUb1wyYd5iyqgMSyFEIQR/Xy2Qz8J/8w==
+X-Received: by 2002:a17:902:ccc4:b0:156:5d37:b42f with SMTP id z4-20020a170902ccc400b001565d37b42fmr2555328ple.157.1656406425734;
+        Tue, 28 Jun 2022 01:53:45 -0700 (PDT)
+Received: from chrome.huaqin.com ([101.78.151.222])
+        by smtp.gmail.com with ESMTPSA id md6-20020a17090b23c600b001e305f5cd22sm8875970pjb.47.2022.06.28.01.53.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jun 2022 01:53:45 -0700 (PDT)
+From:   Rex Nie <rexnie3@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, spanda@codeaurora.org, dianders@chromium.org,
+        devicetree@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        Rob Herring <robh@kernel.org>, Rex Nie <rexnie3@gmail.com>
+Subject: [PATCH 1/2] drm/panel-edp: Add eDP innolux panel support
+Date:   Tue, 28 Jun 2022 16:53:37 +0800
+Message-Id: <20220628085337.2147369-1-rexnie3@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,54 +73,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 26 Jun 2022, Lino Sanfilippo wrote:
+Add support for the 14" innolux,n140hca-eac eDP panel.
 
-> On 25.06.22 at 21:58, Lukas Wunner wrote:
-> > On Wed, Jun 22, 2022 at 05:46:53PM +0200, Lino Sanfilippo wrote:
-> >> From: Lino Sanfilippo <l.sanfilippo@kunbus.com>
-> >>
-> >> In serial8250_em485_config() the termination GPIO is set with the uart_port
-> >> spinlock held. This is an issue if setting the GPIO line can sleep (e.g.
-> >> since the concerning GPIO expander is connected via SPI or I2C).
-> >>
-> >> Fix this by setting the termination line outside of the uart_port spinlock
-> >> in the serial core.
-> > [...]
-> >> --- a/drivers/tty/serial/serial_core.c
-> >> +++ b/drivers/tty/serial/serial_core.c
-> >> @@ -1400,6 +1411,7 @@ static int uart_set_rs485_config(struct uart_port *port,
-> >>  	if (ret)
-> >>  		return ret;
-> >>  	uart_sanitize_serial_rs485(port, &rs485);
-> >> +	uart_set_rs485_termination(port, &rs485);
-> >>
-> >>  	spin_lock_irqsave(&port->lock, flags);
-> >>  	ret = port->rs485_config(port, &rs485);
-> >
-> > That's one way to solve the issue.  Another would be to push
-> > acquisition of the port spinlock down into drivers.
-> >
-> > I think in most drivers we don't need to take the port spinlock at all
-> > or only for a few specific register accesses.  So taking the lock here
-> > in the midlayer is likely unwarranted.  However, changing that requires
-> > going through every single driver's ->rs485_config() callback and
-> > checking whether it needs the lock or not.
-> 
-> As a first step its sufficient to take the lock in each drivers rs485_config()
-> function and remove it from uart_set_rs485_config(). Then after time sort out
-> the drivers that dont require the lock and remove it from their function.
-> 
-> However the point of this patch was also to generalize the handling of the
-> termination GPIO, so I would still see this placed in uart_set_rs485_config().
+Signed-off-by: Rex Nie <rexnie3@gmail.com>
+Acked-by: Hsin-Yi Wang <hsinyi@chromium.org>
+---
+ drivers/gpu/drm/panel/panel-edp.c | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-Additional thing to consider is that core currently handles also the 
-port->rs485 assignment under spinlock when ->rs485_config() was 
-successful. TIOCSRS485 ioctl calls are synchronized by other primitives 
-wrt. each other (port mutex and now also termios_rwsem) but drivers 
-probably would like to see consistent rs485 which can only be realized by 
-holding port->lock.
-
-
+diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
+index 3626469c4cc2..2a8fcdffe80c 100644
+--- a/drivers/gpu/drm/panel/panel-edp.c
++++ b/drivers/gpu/drm/panel/panel-edp.c
+@@ -1355,6 +1355,29 @@ static const struct panel_desc innolux_n125hce_gn1 = {
+ 	},
+ };
+ 
++static const struct display_timing innolux_n140hca_eac_timing = {
++	.pixelclock = { 72600000, 76420000, 80240000 },
++	.hactive = { 1920, 1920, 1920 },
++	.hfront_porch = { 80, 80, 80 },
++	.hback_porch = { 190, 190, 190 },
++	.hsync_len = { 60, 60, 60 },
++	.vactive = { 1080, 1080, 1080 },
++	.vfront_porch = { 6, 6, 6 },
++	.vback_porch = { 38, 38, 38 },
++	.vsync_len = { 8, 8, 8 },
++	.flags = DISPLAY_FLAGS_VSYNC_LOW | DISPLAY_FLAGS_HSYNC_LOW,
++};
++
++static const struct panel_desc innolux_n140hca_eac = {
++	.timings = &innolux_n140hca_eac_timing,
++	.num_timings = 1,
++	.bpc = 6,
++	.size = {
++		.width = 309,
++		.height = 174,
++	},
++};
++
+ static const struct drm_display_mode innolux_p120zdg_bf1_mode = {
+ 	.clock = 206016,
+ 	.hdisplay = 2160,
+@@ -1775,6 +1798,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "innolux,n125hce-gn1",
+ 		.data = &innolux_n125hce_gn1,
++	}, {
++		.compatible = "innolux,n140hca-eac",
++		.data = &innolux_n140hca_eac,
+ 	}, {
+ 		.compatible = "innolux,p120zdg-bf1",
+ 		.data = &innolux_p120zdg_bf1,
 -- 
- i.
+2.25.1
 
