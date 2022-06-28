@@ -2,197 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 247A455DC5B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21C1755D5B0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:15:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245482AbiF1CsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 22:48:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36644 "EHLO
+        id S231211AbiF1DAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 23:00:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245465AbiF1Cra (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 22:47:30 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 227D938BE;
-        Mon, 27 Jun 2022 19:42:57 -0700 (PDT)
-X-UUID: 1553b68d0833425089c4035f120b5932-20220628
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.7,REQID:37f521c1-64e3-4d9e-abf0-405f08e37050,OB:0,LO
-        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:25
-X-CID-META: VersionHash:87442a2,CLOUDID:b33ef085-57f0-47ca-ba27-fe8c57fbf305,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 1553b68d0833425089c4035f120b5932-20220628
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1812030426; Tue, 28 Jun 2022 10:42:54 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 28 Jun 2022 10:42:54 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 28 Jun 2022 10:42:54 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Tue, 28 Jun 2022 10:42:54 +0800
-Message-ID: <b025e0ffdedc46df69b08d39c1615d75c09f0774.camel@mediatek.com>
-Subject: Re: [PATCH v14 01/15] dt-bindings: mediatek,dpi: Add DP_INTF
- compatible
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 28 Jun 2022 10:42:53 +0800
-In-Reply-To: <5a5d11158dd45355e5e6c3b5decbe41495bd19ad.camel@mediatek.com>
-References: <20220624030946.14961-1-rex-bc.chen@mediatek.com>
-         <20220624030946.14961-2-rex-bc.chen@mediatek.com>
-         <a2612c2628eefbbf909d4847b3d0067746813f33.camel@mediatek.com>
-         <5a5d11158dd45355e5e6c3b5decbe41495bd19ad.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S230241AbiF1DAp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 23:00:45 -0400
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D44B3E3F
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 20:00:44 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-317a66d62dfso103387777b3.7
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 20:00:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=NGQFBKn6mTJLQJJQb0hf6HN+JadFUru77ofDSmMfQME=;
+        b=rc0n1c6TbIrQRNmMMiEnaFh0hkBAnLACeL7OVUBc1y63A9tRBXlkByzzujNZkWLuAc
+         J2OdWFCudl0xouJCt7hJmzZ8KtYihsfHhff9u1eCTd+ow+JMUq/fRL1W0lpGuZtcgNJt
+         NhXTHPFoB66MWty0x0OcTWKeq1qIoqHuUUtesJb6va754w3Of4LZFLBxocLfYxXqjZu2
+         18ez++TyOlnFMvyGG/xy/Ub89MG2F4WRe8IsXnAEBC03Jnkz7o0QfkU0XQaP7AONxHfy
+         NXOvOrb/Fq/Nz406VXbfwz3cuSSGLNExm8RydGxWaaAZBKsHiD3XQ8n9HbHHWECPvru5
+         xATQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=NGQFBKn6mTJLQJJQb0hf6HN+JadFUru77ofDSmMfQME=;
+        b=MTee1FGDLJvdEZLM5PclYDkEgpGp0wCR23ofuLxqRzQoBfsxoYsY6+m++zFdjjEDpq
+         2ykEPkFeImn1r0mnVoDCAdbcpE0ZByNDd12eSylQrk1G1jNCstu8IE7MEqq/Kckm8/HN
+         aaxAx1kmUQ42XQZrKkD9z+vd777ePC4f+rlQ5Nt4ov0JkqrXsX1rCLHSt6GGf061+8VT
+         lBAc7CVx0jP9fGYVG3rhkvjVDdzFeDw1r4hxS6x9//sYGpHT7tOaQXd/4thH1ITziyHd
+         iWDNErjNlHgr43w9bI6WrGVbL7kGk/4NQS8dRQdMRq+Kb0OTVtXAu8o6hKCsMkLSdwKy
+         eaLg==
+X-Gm-Message-State: AJIora94KO/HLWR9ep6TrBO8ZKve3uHyf3n5qvOzKda5dCYOQMDLMJ9A
+        yU/uZWNoy5L0f1sfgDSuF4tv1V0RQF2+YxPeB3h7CA==
+X-Google-Smtp-Source: AGRyM1vNTu5scvESmObYMGE7sPUp2Y8jmjQXh5dEqfRMki2YHOK/AUCj+at+NEttVXdfG4i+8ADKbHWvMr50nzzZPh8=
+X-Received: by 2002:a81:4896:0:b0:317:f767:95f8 with SMTP id
+ v144-20020a814896000000b00317f76795f8mr19057497ywa.218.1656385243830; Mon, 27
+ Jun 2022 20:00:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220622062027.994614-1-peng.fan@oss.nxp.com> <20220622072435.GT1615@pengutronix.de>
+ <CAGETcx_R0zr1PMgNO8HAqcWpaQNOBGzpYdnrMa2MD=HP6mzDqg@mail.gmail.com> <cb65069b-909a-7318-68d8-eaa23c316740@oss.nxp.com>
+In-Reply-To: <cb65069b-909a-7318-68d8-eaa23c316740@oss.nxp.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 27 Jun 2022 20:00:07 -0700
+Message-ID: <CAGETcx-=x=M8ULfJyLtKP11qXvjPYBGAVTD7RNhg1BOGx1UEYg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp: drop dmas property for uart console
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        festevam@gmail.com, linux-imx@nxp.com, hvilleneuve@dimonoff.com,
+        l.stach@pengutronix.de, abbaraju.manojsai@amarulasolutions.com,
+        jagan@amarulasolutions.com, matteo.lisi@engicam.com,
+        tharvey@gateworks.com, t.remmet@phytec.de,
+        u.kleine-koenig@pengutronix.de, t.remmet@phytec.deh,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-06-27 at 17:07 +0800, Rex-BC Chen wrote:
-> On Mon, 2022-06-27 at 15:50 +0800, CK Hu wrote:
-> > Hi, Bo-Chen:
-> > 
-> > On Fri, 2022-06-24 at 11:09 +0800, Bo-Chen Chen wrote:
-> > > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > 
-> > > DP_INTF is similar to DPI but does not have the exact same
-> > > feature
-> > > set
-> > > or register layouts.
-> > > 
-> > > DP_INTF is the sink of the display pipeline that is connected to
-> > > the
-> > > DisplayPort controller and encoder unit. It takes the same clocks
-> > > as
-> > > DPI.
-> > > 
-> > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > > [Bo-Chen: Modify reviewers' comments.]
-> > 
-> > Except this line,
-> > 
-> > Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> > 
-> 
-> Hello CK,
-> 
-> What do you mean?
-> Do you mean I should drop this line?
+On Mon, Jun 27, 2022 at 1:22 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote=
+:
+>
+> Hi Saravana,
+>
+> =E5=9C=A8 2022/6/25 15:15, Saravana Kannan =E5=86=99=E9=81=93:
+> > On Wed, Jun 22, 2022 at 12:24 AM Sascha Hauer <s.hauer@pengutronix.de> =
+wrote:
+> >> +Cc Saravana Kannan <saravanak@google.com>, the author of 71066545b48e=
+4
+> >>
+> >> On Wed, Jun 22, 2022 at 02:20:27PM +0800, Peng Fan (OSS) wrote:
+> >>> From: Peng Fan <peng.fan@nxp.com>
+> >>>
+> >>> Commit 71066545b48e4("driver core: Set fw_devlink.strict=3D1 by defau=
+lt")
+> >>> default set fw_devlink to true. This has a side effect to i.MX uart
+> >>> console. The sdma will make the i.MX8MP uart driver defer probe for s=
+ome
+> >>> time (~10s with i.MX8MP-EVK board) until sdma ready, because sdma is =
+a
+> >>> supplier with property dmas set in device tree node.
+> >> I just tested this on an i.MX6 board and observed the same behaviour.
+> >> The same will happen on any other i.MX board as well. This will also
+> >> likely happen on any other SoC on which the UART driver uses dmaengine=
+.
+> >>
+> >>> Since this uart is for console, we need log printed out as soon as
+> >>> possible, so remove the dmas property for the uart console node.
+> >> Fixing this at board level is not really an option because that means
+> >> fixing each and every, at least i.MX board in the tree. Furthermore
+> >> this would mean to bring the deleted property back in and to remove
+> >> another dmas property should a user want to switch to another console
+> >> port.
+> >>
+> >> For what it's worth: NACK for 71066545b48e4.
+> > Hi Peng/Sascha/Fabio,
+> >
+> > I was looking at a fix for this (even when stdout-path isn't set in
+> > DT) and looking at the older code (say, 5.18), and it looks like
+> > before my recent changes the console would still only get probed
+> > during late_initcall(). Does that match your experience?
+>
+> I could not get you. In driver, it is module init:
+> module_init(imx_uart_init), not late_initcall.
+>
 
-Yes, drop this line. I think every patch is reviewed and modified, so
-this line is redundant.
+Correct, the driver does use module_init(). However, because of how
+driver_deferred_probe_check_state() is implemented in 5.18, the
+console would get deferred probe until late_initcall(). In my earlier
+email, I'm trying to get you to confirm my analysis is what you were
+seeing in 5.18 (or 5.19-rcX without my series that deletes
+driver_deferred_probe_check_state()).
 
-Regards,
-CK
-
-> 
-> BRs,
-> Bo-Chen
-> > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > > Reviewed-by: AngeloGioacchino Del Regno <
-> > > angelogioacchino.delregno@collabora.com>
-> > > ---
-> > >  .../bindings/display/mediatek/mediatek,dpi.yaml       | 11
-> > > ++++++-
-> > > --
-> > > --
-> > >  1 file changed, 6 insertions(+), 5 deletions(-)
-> > > 
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi
-> > > .y
-> > > am
-> > > l
-> > > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi
-> > > .y
-> > > am
-> > > l
-> > > index 77ee1b923991..8e526a4b134e 100644
-> > > ---
-> > > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi
-> > > .y
-> > > am
-> > > l
-> > > +++
-> > > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi
-> > > .y
-> > > am
-> > > l
-> > > @@ -4,16 +4,16 @@
-> > >  $id: 
-> > > http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
-> > >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> > >  
-> > > -title: mediatek DPI Controller Device Tree Bindings
-> > > +title: mediatek DPI and DP_INTF Controller
-> > >  
-> > >  maintainers:
-> > >    - CK Hu <ck.hu@mediatek.com>
-> > >    - Jitao shi <jitao.shi@mediatek.com>
-> > >  
-> > >  description: |
-> > > -  The Mediatek DPI function block is a sink of the display
-> > > subsystem
-> > > and
-> > > -  provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on
-> > > a
-> > > parallel
-> > > -  output bus.
-> > > +  The Mediatek DPI and DP_INTF function blocks are a sink of the
-> > > display
-> > > +  subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422
-> > > pixel data on a
-> > > +  parallel output bus.
-> > >  
-> > >  properties:
-> > >    compatible:
-> > > @@ -24,6 +24,7 @@ properties:
-> > >        - mediatek,mt8183-dpi
-> > >        - mediatek,mt8186-dpi
-> > >        - mediatek,mt8192-dpi
-> > > +      - mediatek,mt8195-dp-intf
-> > >  
-> > >    reg:
-> > >      maxItems: 1
-> > > @@ -55,7 +56,7 @@ properties:
-> > >      $ref: /schemas/graph.yaml#/properties/port
-> > >      description:
-> > >        Output port node. This port should be connected to the
-> > > input
-> > > port of an
-> > > -      attached HDMI or LVDS encoder chip.
-> > > +      attached HDMI, LVDS or DisplayPort encoder chip.
-> > >  
-> > >  required:
-> > >    - compatible
-> > 
-> > 
-> 
-> 
-
+-Saravana
