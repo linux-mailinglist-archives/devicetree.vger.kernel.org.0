@@ -2,63 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC20C55C234
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:46:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5DB155DC98
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:26:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343990AbiF1LKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 07:10:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38428 "EHLO
+        id S245233AbiF1LV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 07:21:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343969AbiF1LKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 07:10:50 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 656FD2B252;
-        Tue, 28 Jun 2022 04:10:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656414649; x=1687950649;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Sh8CDNz7phFGpULk8cj2R1XFUA4dQiJJ0YaEGaFVak0=;
-  b=Qc+NoJCIbR0AqRnSi0VFFbJSG2IwiSZqh4dXBQ2hNi47vZKmqkEqbUFy
-   mxacw1wHbF+NZmfzlk2MohZUAWKPdmVEhoroDvBPSLh1Jjk61Y8s0UaDY
-   yOAcB/R5oxVAmjNH3W1qFFi/S0ehBYJJEC3c0TcAl7o/pycr+cNpQe41Z
-   vY38m0pEj6aKkpo+7MBSQwfdAvwK8sDTpB77YqrVWXTdaNAbyLR9HDqA8
-   WJvV+EOHXwLNAM68wfin4K0sTWJ3o5YtfeCvaa0tDBN2zhMiZnxTNvpKX
-   k1HTwz13WtY5eyyi6LEsfVQ8cL7nozYhYATa7iRXZYLgif/Gz81Dofeso
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="345708030"
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
-   d="scan'208";a="345708030"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 04:10:48 -0700
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
-   d="scan'208";a="693066778"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 04:10:46 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1o697E-000wkk-0d;
-        Tue, 28 Jun 2022 14:10:44 +0300
-Date:   Tue, 28 Jun 2022 14:10:43 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Michael Walle <michael@walle.cc>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: fwnode_for_each_child_node() and OF backend discrepancy
-Message-ID: <Yrrhs3D++V79/4Jk@smile.fi.intel.com>
-References: <4e1d5db9dea68d82c94336a1d6aac404@walle.cc>
+        with ESMTP id S231135AbiF1LV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 07:21:28 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E7612E096;
+        Tue, 28 Jun 2022 04:21:25 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 50C9022246;
+        Tue, 28 Jun 2022 13:21:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1656415283;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=o0W1KL9ji+DqAJcOrvQpkrdf1niwtlqNX9ZRyuRODlc=;
+        b=Uw/+x6420mcEOIknrJiEYJ4HEZ9UvXxfVZ6Pn1XCw8CkN8ZGwdtezuxBiGXY9vgiFgK+id
+        sco96ziMUq3tHBPtXx1MXH+QQqiDvIx8fvuL4jvAgnBNt55ZQvjmWQN85TQ3PPNa+fhfRq
+        BeLUsNnjDbN9kU5q2xkTkA5N5rh6MDc=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4e1d5db9dea68d82c94336a1d6aac404@walle.cc>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 28 Jun 2022 13:21:23 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org
+Subject: Re: [PATCH v2] earlycon: prevent multiple register_console()
+In-Reply-To: <20220602090038.3201897-1-michael@walle.cc>
+References: <20220602090038.3201897-1-michael@walle.cc>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <2386f29173c6a6d31e3e07630a44eafb@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,32 +57,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 27, 2022 at 02:49:51PM +0200, Michael Walle wrote:
-> Hi,
+Hi,
+
+Am 2022-06-02 11:00, schrieb Michael Walle:
+> If the earlycon parameter is given twice, the kernel will spit out a
+> WARN() in register_console() because it was already registered. The
+> non-dt variant setup_earlycon() already handles that gracefully. The dt
+> variant of_setup_earlycon() doesn't. Add the check there and add the
+> -EALREADY handling in early_init_dt_scan_chosen_stdout().
 > 
-> I tired to iterate over all child nodes, regardless if they are available
-> or not. Now there is that handy fwnode_for_each_child_node() (and the
-> fwnode_for_each_available_child_node()). The only thing is the OF backend
-> already skips disabled nodes [1], making fwnode_for_each_child_node() and
-> fwnode_for_each_available_child_node() behave the same with the OF backend.
+> FWIW, this doesn't happen if CONFIG_ACPI_SPCR_TABLE is set. In that 
+> case
+> the registration is delayed until after earlycon parameter(s) are
+> parsed.
 > 
-> Doesn't seem to be noticed by anyone for now. I'm not sure how to fix that
-> one. fwnode_for_each_child_node() and also fwnode_get_next_child_node() are
-> used by a handful of drivers. I've looked at some, but couldn't decide
-> whether they really want to iterate over all child nodes or just the enabled
-> ones.
-> 
-> Any thoughts?
+> Signed-off-by: Michael Walle <michael@walle.cc>
 
-It was discussed at least twice this year (in regard to some new IIO drivers)
-and Rob told that iterating over disabled (not available) nodes in OF kinda
-legacy/design mistake. That's why device_for_each_child_node() goes only
-over available nodes only.
+Ping :) Or do I have to resend this patch?
 
-So, why do you need to iterate over disabled ones?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+-michael
