@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7182855E2AB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:35:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A37D755C6B6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:53:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243623AbiF1CVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 22:21:36 -0400
+        id S244210AbiF1CXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 22:23:51 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243624AbiF1CVC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 22:21:02 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B63A248ED;
-        Mon, 27 Jun 2022 19:20:42 -0700 (PDT)
+        with ESMTP id S244104AbiF1CXA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 22:23:00 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A60325596;
+        Mon, 27 Jun 2022 19:22:25 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D7BA0B81C11;
-        Tue, 28 Jun 2022 02:20:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6637FC341CB;
-        Tue, 28 Jun 2022 02:20:38 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C92F6B81C13;
+        Tue, 28 Jun 2022 02:22:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E629C341CB;
+        Tue, 28 Jun 2022 02:22:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656382839;
-        bh=Qh0S2NjYTifZ2sQz7K7IvjYLERBcnF9G+SrjoWyNTY8=;
+        s=k20201202; t=1656382942;
+        bh=nwrR3WHan4fbIRem1b3D8PMhPSm7OyPpvcT0cJsGl0I=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=XJrZClr1xs3Dtj51lZ6r/ZeVRFlquX5zD24i0daQDiG67nHTUKcXM+BzbDmalRPlA
-         TBDUUk9/DiG0dqdrE/OWXDVhIDwG2KExuMGVPcmMPCf00ZenfjiEHuA5/36zlVNzVa
-         EhcM0KGChjEL7GGsFzA4Pafswamw5F6h3OX0tAwWGY87vWR36+CpBq3NGpYshAzIXg
-         fWXqj/PKEukuyc3cqRZ+dVYKQ/Qp8DUT7gIifYxxKqxQHWgCqxMzAWqrCXHTfc33uD
-         GcuS+gUTL4C1zXoru5V1Jzig6SETRFP2PP86CcUnf4z6/FfRV/3BzF/109u9OKn8Zn
-         v42Mk/Bc9VsJA==
+        b=SKfCEVnRky3LV+sXpObPIvKVNJnSp1tN2omUiVfz6Z693ahzqZ/JdmZblbgCSnTak
+         Fb7MlhkIeObcyXvFnDieU7EXwpiziKGnGqavOTDV1F+RQevBP2HXNrGKHHwiDFyKmy
+         YArWw6dFFU7HX0riGGQ9fRykZrRnifViwIVqJwa3PCpUFVPSRRHIbDaNVHcLqchtV3
+         BX4VptjpmTQ6m4ToqEuZ5Ak+4IrFRsNqEggSoyDfT8tB/KelkJtcKDh3pzX2UAXW4V
+         kInNNzc5rBXCLfbzcwyix7KzXCAflSNflxUNkQGhy7TxJRHC32lcZ0Pc1nalT2G/Px
+         kq1kL/WCbKt9Q==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
@@ -39,12 +39,12 @@ Cc:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, linux-mips@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.18 45/53] mips: dts: ingenic: Add TCU clock to x1000/x1830 tcu device node
-Date:   Mon, 27 Jun 2022 22:18:31 -0400
-Message-Id: <20220628021839.594423-45-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 33/41] mips: dts: ingenic: Add TCU clock to x1000/x1830 tcu device node
+Date:   Mon, 27 Jun 2022 22:20:52 -0400
+Message-Id: <20220628022100.595243-33-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220628021839.594423-1-sashal@kernel.org>
-References: <20220628021839.594423-1-sashal@kernel.org>
+In-Reply-To: <20220628022100.595243-1-sashal@kernel.org>
+References: <20220628022100.595243-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -77,7 +77,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  2 files changed, 6 insertions(+), 4 deletions(-)
 
 diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi b/arch/mips/boot/dts/ingenic/x1000.dtsi
-index 8bd27edef216..c69df8eb158e 100644
+index dec7909d4baa..ab86b3632687 100644
 --- a/arch/mips/boot/dts/ingenic/x1000.dtsi
 +++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
 @@ -111,8 +111,9 @@ tcu: timer@10002000 {
@@ -93,7 +93,7 @@ index 8bd27edef216..c69df8eb158e 100644
  		interrupt-controller;
  		#interrupt-cells = <1>;
 diff --git a/arch/mips/boot/dts/ingenic/x1830.dtsi b/arch/mips/boot/dts/ingenic/x1830.dtsi
-index 2595df8671c7..4408df24ca98 100644
+index 215257f8bb1a..dd70aa9d87ee 100644
 --- a/arch/mips/boot/dts/ingenic/x1830.dtsi
 +++ b/arch/mips/boot/dts/ingenic/x1830.dtsi
 @@ -104,8 +104,9 @@ tcu: timer@10002000 {
