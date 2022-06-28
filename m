@@ -2,133 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0599755D5E4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:16:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D63A55C5B5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:51:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344514AbiF1Lrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 07:47:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47470 "EHLO
+        id S1344308AbiF1Lsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 07:48:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344482AbiF1Lrx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 07:47:53 -0400
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC310B0F;
-        Tue, 28 Jun 2022 04:47:52 -0700 (PDT)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-31780ad7535so113920627b3.8;
-        Tue, 28 Jun 2022 04:47:52 -0700 (PDT)
+        with ESMTP id S1345345AbiF1Lsa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 07:48:30 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1B5A2F671
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 04:48:23 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id g39-20020a05600c4ca700b003a03ac7d540so6575587wmp.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 04:48:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=bBnFmZjZIoNFqqriC+iwFPBKJU61baPmyAFFIDagDFE=;
-        b=S5ySAPM3rocgZ/Ugszd1CJjXHRh/k51KEH6B+k1RaIub/lWTQSBPNs58VeCF0R88K1
-         tYGbwPBeKSKFou3r31LBzjOr3wFpuCiggyWWhCwjRvdX1zA9uSKSLMLVEtsdah3CUMCw
-         V3qB56dC/4DTnToVxBehqbA/CYk/XiuI7E//GHJlFiaGTWwhkLaUePbr8AbbM5WRhPmk
-         UJettY4vD6qoFbFMxlVATsEKXF55MR/u/bfsaAGQfl8zDJpE3ntCAk/t4NfdCamsUT1z
-         1IUj/p3F6T1awGq9UIJrZMhJW9JEDZ72Tpue7pLvnxGjWoJJ+/rFoFuFlByJrMK2kWVZ
-         0/mA==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ARDmPpFNeFd3U7QLTpOGaojt5BbAFGKGYsuOK9qTd/Y=;
+        b=QC3iqfjnPtGeUUoqjsBCAjO4k82ZGz5gPrW6KmnT8jqVZZFHuLfsTIWX7Ck3NZ7ovW
+         D5RN/7dMWONHz9D7GSa97LK0fHN+HrL12HNmKCp+rXZjSS24TKUVGTBHIJlIUhaZzl5I
+         z9If9u744CQNOaFLAOj3jhqegHVI9bRc6kiFwpNUy0kislXxzquNBEjd9XYzpjyRqAXx
+         QTPZV7Vx0amDskRQR0t6tn4jOa0x2g9SRNQzhHnltOsTEZIFBQbtFHSNfmWvYUOo4Dqw
+         J9aPeMlYfSU8QWVV5KnZawc7Mi+4nZJk5IiRJv8BDt2hyju+Sjx5F4bzBYy3J3wz9Kab
+         wZPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=bBnFmZjZIoNFqqriC+iwFPBKJU61baPmyAFFIDagDFE=;
-        b=kXl3wB7VtGpc69cgCcjx4Kev6L0Cm0SQzH8BnzV+PzuWV0qp5DHlZiNgmF+nzivBqN
-         Su50n/VBp3UHPjxMaI9tj+1OuP0ln9zv/M+g+3YHtO5EE/i7Mz/E7tcLV2vs1L4v8+2c
-         WEDsVuk9pbt6ynZOCsiYzo+odA4TfXMlQDonOM8n1SXr+0Mjwvidu5J+4Dlxu30YFhxh
-         cKNAchnlDKn6bZgZCqwkYOHbzM4OHa9lGuLRq2LWWQ4XCck/KPHFRDxS2niSduFJSUFL
-         Gu+WY8Nt3JmUG9lczvkEdRNV2bmf1B3jbAYfR2LBfZw1gs6mOP1TpYzqtcVWlYymUc8I
-         4rqQ==
-X-Gm-Message-State: AJIora/a1V54jHEVZqoQHcl+ZQmQqrNHF8FqUgK4WnJmWY9bZSrvcgPN
-        yCyiqR2O6ak/K/jha/K/aEnrLhfMcv/BIi3Xzx+UEJdX8PiCjg==
-X-Google-Smtp-Source: AGRyM1sI77zIPf/cv6+E7ghaqhb46auVskCT8U9VnPQcDZuNWFZhpI/LTOpehqZbUIHMZAMPVhomR3UMPvaQ7nGOgFg=
-X-Received: by 2002:a81:2386:0:b0:317:6586:8901 with SMTP id
- j128-20020a812386000000b0031765868901mr20837201ywj.195.1656416872035; Tue, 28
- Jun 2022 04:47:52 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ARDmPpFNeFd3U7QLTpOGaojt5BbAFGKGYsuOK9qTd/Y=;
+        b=BhfXNcbJE/xuVhpgCBl7qMG4ow4KQiL8Hw+M3d0oK32KhTokMnoakarBO+SAE3AD2J
+         +JmtxufnlIvsfAJH3dKWwq4q9Q3npX06bIDKK+u6xtP19xqpRXv/9JaLjXSMIcl9IUtx
+         K6J7gGsxZFS/FqcoimXl7V7/fvTgNSEA9QeYHIPXHAzF5JhzAyoEih3jTja24qw/0aw1
+         YIJBhFpwT0LX6G404PYXVfPdJ3ApQUulg/l2DcerG35iK7Z/wsfhQAFcCx1y3G2CAOqR
+         /QMt/1WMs4jqLWjC0p5l7d3PvpEdpobBCh/FWrdCVQ5/oKe44dvgJCtMAoa7z9We5MjQ
+         PLXQ==
+X-Gm-Message-State: AJIora9+fXWFTF+Wwd9e6FcHaP6sBrl1BG4Nd7g7nbgFiXrYSVY3ZpGR
+        TqtPUgfEWWxJ4W21PwngHxJLHQ==
+X-Google-Smtp-Source: AGRyM1vjuaRUvUxcebxJCjSQw/GD3dvJigLw9hhUiaZGLGlGKkF787hpFCshgyALl40zm7XgkZYmfw==
+X-Received: by 2002:a05:600c:583:b0:39c:3637:b9f with SMTP id o3-20020a05600c058300b0039c36370b9fmr26740830wmd.79.1656416902293;
+        Tue, 28 Jun 2022 04:48:22 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id bn24-20020a056000061800b0020fe35aec4bsm13115711wrb.70.2022.06.28.04.48.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jun 2022 04:48:21 -0700 (PDT)
+Message-ID: <14f6b7eb-cacb-91a5-ce06-9702618513b9@linaro.org>
+Date:   Tue, 28 Jun 2022 12:48:20 +0100
 MIME-Version: 1.0
-References: <1655458375-30478-1-git-send-email-u0084500@gmail.com>
- <1655458375-30478-3-git-send-email-u0084500@gmail.com> <CAHp75VfEQ6tu4-NQKwA+63Ae5busUwV+ZRqD6BtbUA+EkCZnWw@mail.gmail.com>
- <CADiBU3-wO0-0c9y-GpE15ra2AqkAG-ftqTh+hCvYEY-TojZ-pg@mail.gmail.com>
- <CAHp75VeBdgbyDQXEYb9ZZdi3AU=vPw6aKGWbNLnuA_QoN4LE4A@mail.gmail.com> <CADiBU3_jgoc9ZuVuVH_cvSeQkghOeUDxzLE_VZFtZ9eaTWeqgA@mail.gmail.com>
-In-Reply-To: <CADiBU3_jgoc9ZuVuVH_cvSeQkghOeUDxzLE_VZFtZ9eaTWeqgA@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 28 Jun 2022 13:47:15 +0200
-Message-ID: <CAHp75VejsNhgee0exMGzo3dqFxi8udO2GUbCTz9iNFJ7wZGvRw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] iio: adc: Add rtq6056 support
-To:     ChiYuan Huang <u0084500@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        cy_huang <cy_huang@richtek.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v4 1/2] ASoC: qcom: lpass: Fix apq8016 compat string to
+ match yaml
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     lgirdwood@gmail.com, bjorn.andersson@linaro.org, perex@perex.cz,
+        tiwai@suse.com, srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220628002858.2638442-1-bryan.odonoghue@linaro.org>
+ <20220628002858.2638442-2-bryan.odonoghue@linaro.org>
+ <Yrrf5X8wstW+DXHF@sirena.org.uk>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <Yrrf5X8wstW+DXHF@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 24, 2022 at 5:39 AM ChiYuan Huang <u0084500@gmail.com> wrote:
-> Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B46=E6=
-=9C=8819=E6=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=886:38=E5=AF=AB=E9=81=
-=93=EF=BC=9A
-> > On Sat, Jun 18, 2022 at 5:16 PM ChiYuan Huang <u0084500@gmail.com> wrot=
-e:
-> > > Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B46=
-=E6=9C=8818=E6=97=A5 =E9=80=B1=E5=85=AD =E5=87=8C=E6=99=A81:08=E5=AF=AB=E9=
-=81=93=EF=BC=9A
-> > > > On Fri, Jun 17, 2022 at 11:37 AM cy_huang <u0084500@gmail.com> wrot=
-e:
+On 28/06/2022 12:03, Mark Brown wrote:
+> On Tue, Jun 28, 2022 at 01:28:57AM +0100, Bryan O'Donoghue wrote:
+>> The documented yaml compat string for the apq8016 is
+>> "qcom,apq8016-lpass-cpu" not "qcom,lpass-cpu-apq8016". Looking at the other
+>> lpass compat strings the general form is "qcom,socnum-lpass-cpu".
+> 
+> This doesn't apply against current code, please check and resend.
 
-...
+What's the tree you are applying to here ?
 
-> > > > > +       struct device *dev;
-> > > > > +       struct regmap *regmap;
-> > > >
-> > > > Swapping these two might give less code in the generated binary. Ha=
-ve
-> > > > you run bloat-o-meter?
-> > > >
-> > > I never know about this tool.
-> > > I'll check it before I submit the next revision.
-> > > Thanks for the reminding.
-> > >
-> > > But from Jonathan's reply, I may remove 'struct regmap *regmap'.
-> > > If all function need the 'regmap', a local variable 'regmap' need to
-> > > be declared.
-> > > To use struct regmap *regmap =3D dev_get_regmap(dev, NULL) is more ef=
-fective.
-> >
-> > It's fine, but you may experiment with bloat-o-meter even in that case
-> > out of curiosity.
-> >
-> I tred to only swap these two line for *dev and *regmap.
-> Check the below two cases
-> 1. bloat-o-meter with rtq6056 as the builtin
-> add/remove: 0/0 grow/shrink: 0/0 up/down: 0/0 (0)
-> Function                                     old     new   delta
-> Total: Before=3D24428680, After=3D24428680, chg +0.00%
-> 2. size tool with rtq6056 as the kernel build
->    text    data     bss     dec     hex filename
->    5261    1155       0    6416    1910 drivers/iio/adc/rtq6056-adc.ko.ol=
-d
->    text    data     bss     dec     hex filename
->    5261    1155       0    6416    1910 drivers/iio/adc/rtq6056-adc.ko
->
-> It's weird that there's no difference.
->
-> Do I misunderstand something?
+I applied it to linux-next just last night..
 
-Nope, it means that in _current_ code this makes no change. Feel free
-to go with your variant if you prefer.
+https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-27-06-22-msm8939-no-cpr-v4
 
---=20
-With Best Regards,
-Andy Shevchenko
+https://git.linaro.org/people/bryan.odonoghue/kernel.git/commit/?h=linux-next-27-06-22-msm8939-no-cpr-v4&id=5822d52637eff65b826097634d9a99a9bf1bf2b7
+
+---
+bod
