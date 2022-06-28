@@ -2,144 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BA4055EDEA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 21:43:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E18455EE01
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 21:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229516AbiF1TnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 15:43:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37278 "EHLO
+        id S230342AbiF1Tow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 15:44:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230043AbiF1Tl5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 15:41:57 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9110A3B557;
-        Tue, 28 Jun 2022 12:34:57 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id h5so8848908ili.3;
-        Tue, 28 Jun 2022 12:34:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=NkSDg+lfWXixNOxx3cLuyU9hZDDj0D6UlVxzr8Nf8bk=;
-        b=m6bA5mZmSq21hnMWGlbnaX2FzXtihBT8jEtxpZ5oS8Gxbi8H02gUXalh0Akn8oIvXt
-         jMxGkEjqcBRdd2B8KSr1360aq0CnOLZJ2S4Q333HH39rJxKv36YJ9GAOXbteEs6TtMzM
-         aLpV+4iwoEg8TyxyJSQVQDfR6YlQduhNV4IaoNI7ScwIXprAHf7HxiIW9Fh5xoFArvxf
-         l3nIZoe6yqhIRq8GZsbTFpPj5GgsK2U+xgU1v6yh7iOCgiXmGohZ2+8CxBza4WBxx2tO
-         bnJPBT1sCHyWsOGu0Nqnh0RsTrQ95KaNRZx0AZ7gDp91WgaLmwL6RbqLC2BxCwbIn50u
-         wFUw==
+        with ESMTP id S232315AbiF1Toe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 15:44:34 -0400
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A206F3C71F;
+        Tue, 28 Jun 2022 12:37:21 -0700 (PDT)
+Received: by mail-il1-f178.google.com with SMTP id a7so3764855ilj.2;
+        Tue, 28 Jun 2022 12:37:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=NkSDg+lfWXixNOxx3cLuyU9hZDDj0D6UlVxzr8Nf8bk=;
-        b=i5ma0QBKfctFibW1X7xLpWECyhXZNB+mLZT1ZCMSHORMyTGR+g0ZxJNp5lgjwSjR4T
-         lga2TqMSZUiqdJ+XTo7RSLRiql8Du+0wLYPlK5/wfUPiSetMXhyzMIqZgUiawqhiP0u9
-         2BcBtSRXJB9CwyH/tkuNcj3VvCXnU4JWsMFG87T4lVye1uVu+neO7CW6k0eOge6i8rcZ
-         k8OnAlm8nX6xZQkqp8jq4c84T3GQW3C/vF+M3rpU0RmTfn3yRvGw02v87xsCmlJr3kAm
-         +UEER7v3NKFtE78i3RHrDXGi6vcPqyNVK+GwMLe64nt9n2U4r3n37ZQft5SHqKW7yTmQ
-         YX6A==
-X-Gm-Message-State: AJIora84F4W5CeSyGC0n/rl8E+Uh7mN94IXE5NH85b41rrp+F0bJbhGl
-        zV47Mgi0Auc3upxjQybqEdA=
-X-Google-Smtp-Source: AGRyM1vby4Jgopb5YEAsOIaRvMD94aL5SjFUjZUlNunvkcjragEb0l8hS4RjiTjoLJ7hHNEFb1ERSA==
-X-Received: by 2002:a05:6e02:1c4b:b0:2d9:5706:7a50 with SMTP id d11-20020a056e021c4b00b002d957067a50mr11235672ilg.257.1656444897015;
-        Tue, 28 Jun 2022 12:34:57 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:c1c4:e86e:486b:1642? ([2600:1700:2442:6db0:c1c4:e86e:486b:1642])
-        by smtp.gmail.com with ESMTPSA id ay7-20020a056638410700b0033ca8eb3736sm2142885jab.167.2022.06.28.12.34.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jun 2022 12:34:56 -0700 (PDT)
-Message-ID: <db1e0e98-ba52-51ef-071d-bda49b8ae0b6@gmail.com>
-Date:   Tue, 28 Jun 2022 14:34:55 -0500
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cO3ERK4XtbJUrNznv3o2iz6iblK9YD2fF9VbD6eP290=;
+        b=bRBf8yD3xU6YnLnP3cf5rKY9/QNBioiHm/blJBqW+hjTgO33PjDqsCGSHfnRyKNgOM
+         cXwor9UjBBfc4HCkHj6Ah1T8c2I3yJcMSsQtUGdovNk8W+bg0AaevPV/QdUT6/cIt8M6
+         fSq8p7qiPFv1Zm1J1lSoVxwLT46Tqbf9bodeEG1wbAyUp/mB5pnwTatUGJLkIRHacE85
+         Gn/X2IUHmHM7ZMYLwWvMAswFzkS0ybnC53KvPTkxDvJkhhlnIZodANy7i3MJTd+Y/V1M
+         +XMCIpLA17ZI1I61obPRLgFxVKe5IfkYPePNC+qVOKg9z62atPacuMqf+LFT+faUQxvW
+         11aA==
+X-Gm-Message-State: AJIora9SRQItduYXhc/D7LS4lfdFtM0UB4a3lP5d54ZZFW7BHgWnBrSl
+        RcKEaZ6k/m+emNdUBjfDfA==
+X-Google-Smtp-Source: AGRyM1tWmrYkETu7J79v1CMzaMfG8jQE/J3ICVZ7PYuE+lwFA6fFbPDw1GpXcmEA8PpxTOE+0bCtFQ==
+X-Received: by 2002:a05:6e02:190c:b0:2d6:5c98:d0e5 with SMTP id w12-20020a056e02190c00b002d65c98d0e5mr11018037ilu.193.1656445040891;
+        Tue, 28 Jun 2022 12:37:20 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id v17-20020a056e020f9100b002d6d8398e88sm6166005ilo.70.2022.06.28.12.37.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jun 2022 12:37:20 -0700 (PDT)
+Received: (nullmailer pid 852286 invoked by uid 1000);
+        Tue, 28 Jun 2022 19:37:19 -0000
+Date:   Tue, 28 Jun 2022 13:37:19 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, michals@xilinx.com,
+        bhelgaas@google.com, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, lorenzo.pieralisi@arm.com
+Subject: Re: [PATCH v5 1/2] dt-bindings: PCI: xilinx-cpm: Add Versal CPM5
+ Root Port
+Message-ID: <20220628193719.GA852253-robh@kernel.org>
+References: <20220621113653.2354462-1-bharat.kumar.gogada@xilinx.com>
+ <20220621113653.2354462-2-bharat.kumar.gogada@xilinx.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 2/2] of: unittest: treat missing of_root as error instead
- of fixing up
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lizhi Hou <lizhi.hou@xilinx.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20220624034327.2542112-1-frowand.list@gmail.com>
- <20220624034327.2542112-3-frowand.list@gmail.com>
- <20220628143659.GA424332-robh@kernel.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <20220628143659.GA424332-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220621113653.2354462-2-bharat.kumar.gogada@xilinx.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/28/22 10:36, Rob Herring wrote:
-> On Thu, Jun 23, 2022 at 10:43:27PM -0500, frowand.list@gmail.com wrote:
->> From: Frank Rowand <frank.rowand@sony.com>
->>
->>  setup_of() now ensures that of_root node is populated with the
->>  root of a default devicetree. Remove the unittest code that
->>  created of_root if it was missing.  Verify that of_root is
->>  valid before attempting to attach the testcase-data subtree.
+On Tue, 21 Jun 2022 17:06:52 +0530, Bharat Kumar Gogada wrote:
+> Xilinx Versal Premium series has CPM5 block which supports Root Port
+> functionality at Gen5 speed.
 > 
-> What happened with the formatting here?
-
-I'm guessing you are referring to the leading space?
-
-I pasted the text from another file into the commit message in
-my repo and failed to remove the leading blank. So a "typo"
-on my part.
-
--Frank
-
+> Add support for YAML schemas documentation for Versal CPM5 Root Port driver.
 > 
->>
->> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
->> ---
->>  drivers/of/unittest.c | 16 ++++++----------
->>  1 file changed, 6 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
->> index 7f6bba18c515..9d106998c1f2 100644
->> --- a/drivers/of/unittest.c
->> +++ b/drivers/of/unittest.c
->> @@ -1469,20 +1469,16 @@ static int __init unittest_data_add(void)
->>  		return -EINVAL;
->>  	}
->>  
->> -	if (!of_root) {
->> -		of_root = unittest_data_node;
->> -		for_each_of_allnodes(np)
->> -			__of_attach_node_sysfs(np);
->> -		of_aliases = of_find_node_by_path("/aliases");
->> -		of_chosen = of_find_node_by_path("/chosen");
->> -		of_overlay_mutex_unlock();
->> -		return 0;
->> -	}
->> -
->>  	EXPECT_BEGIN(KERN_INFO,
->>  		     "Duplicate name in testcase-data, renamed to \"duplicate-name#1\"");
->>  
->>  	/* attach the sub-tree to live tree */
->> +	if (!of_root) {
->> +		pr_warn("%s: no live tree to attach sub-tree\n", __func__);
->> +		kfree(unittest_data);
->> +		return -ENODEV;
->> +	}
->> +
->>  	np = unittest_data_node->child;
->>  	while (np) {
->>  		struct device_node *next = np->sibling;
->> -- 
->> Frank Rowand <frank.rowand@sony.com>
->>
->>
+> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
+> ---
+>  .../bindings/pci/xilinx-versal-cpm.yaml       | 38 ++++++++++++++++++-
+>  1 file changed, 37 insertions(+), 1 deletion(-)
+> 
 
+Reviewed-by: Rob Herring <robh@kernel.org>
