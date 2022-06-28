@@ -2,353 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1222655EA77
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 19:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 382B055EA9E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 19:08:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232134AbiF1RCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 13:02:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45118 "EHLO
+        id S232124AbiF1RGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 13:06:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233854AbiF1RC1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 13:02:27 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 279A824F36;
-        Tue, 28 Jun 2022 10:02:10 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25SCst7f003744;
-        Tue, 28 Jun 2022 19:01:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=BMotZWpCCfiO7PWNHjygZuqAvONIxCQdUg4VBGbS1Bk=;
- b=5W4XksWskcYGpqTB/7PPVNM2j59Uq8tmHtokmRoieiG+GLhnfzIKc8GOE8lwy72wwr3x
- b+KYTjGpT8y3kDbSoO1JjQhbSPAJ/OYK0i8r7NO8sJxhKDz3zD6GaUm47ytNREb8xtiI
- 8t/1zLFt0IUrmN0ctH9VLVJObE/pcnW0GdwxY/3bWu3QHrOpMfzwaijyKgfSpuv2iirR
- wclQn1degeZ6BwxwYCpEVlhdrad9BTW4a0+/nVrOGD5qoOCc3SGckt++qR6bG12OC8o0
- j+7nBQHgLoFbXcxZL5M5zFpJzsif4sfZQe8mqzz4aDairB5KA4lSv0mPoCBLUaC6i8QO uA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3gydcu7k2t-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Jun 2022 19:01:48 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E90DE10002A;
-        Tue, 28 Jun 2022 19:01:46 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 04786226FDF;
-        Tue, 28 Jun 2022 19:01:46 +0200 (CEST)
-Received: from [10.48.1.102] (10.75.127.47) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 28 Jun
- 2022 19:01:42 +0200
-Message-ID: <6ef58f1f-ee8a-b060-6fda-d1388b3ede6d@foss.st.com>
-Date:   Tue, 28 Jun 2022 19:01:42 +0200
+        with ESMTP id S229896AbiF1RGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 13:06:34 -0400
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1814E2B1BE;
+        Tue, 28 Jun 2022 10:06:33 -0700 (PDT)
+Received: by mail-qv1-xf35.google.com with SMTP id c1so20915600qvi.11;
+        Tue, 28 Jun 2022 10:06:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=8bQ8ei1JkcwOHR5YxHEw7aHiNSi0KYBwHi+TZqv03IU=;
+        b=i5dDrqOMKlZHRI0VmPlke/MZaZP5psV64tvfJ/TY/NYY10OAtco34+1btuy0I9jCiT
+         CYq/P/u4f8kZpFNXLFZ4dIHvQ8j7I4rdh69AcN7/jjE6sE6ZJI3m+q3FCX9bKxAQIu+Z
+         t2JRrw31ixhFlXaG13J7nLd8WwqLY4i1FhWobytrjeoMRtrVpSA1bXLbb9hPfQA629fF
+         dH2EfTdZTd52GWkXMwjhFJoPIWSKUIMZ8sh1bRqGHNYd4MmiW0LsxxqPBbyPheTaxj24
+         gSFi9jNL76HmCR2+K+UhSYYtPq5oKB3OFzy/rSNEiIv6VOnA5pUYBaEhjkRCMaG9ZZYC
+         yDrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8bQ8ei1JkcwOHR5YxHEw7aHiNSi0KYBwHi+TZqv03IU=;
+        b=y4CkdD1KV5OD7EFIxiyWw02wXswS82pbKP0UZN4rMsJBiCiAoQGGUH8zbeUH8/Bv5p
+         dCpXi/mH9sQ+IUEG3EA4LZcl0OyDaxKVhvirU54f67kwTwH4rFsWHIv9MQvJjkIpgpZh
+         6H6D2caW4b0o6XRLfbPRaE4F48EtvtEfcMMEl/w97eG26R5ZTKLcw0kzTxGIaOzcwrwe
+         2AL0reYSjUy03hRdAo2+Tsaa6APZQnloagNuxZU4oYoRrt5DeMbs2Pfi9x8yEFujkFrr
+         8MbyDh3l25g9BFOR0sUNxOq7yHYcH3OXP12msiHUDa4qxKt5TKUHdQXdcJ24Ki/nQzZH
+         XTiA==
+X-Gm-Message-State: AJIora8HgnQxgLs+O1mJgXAyNdgkABN7XR3LX5s6DfWc3t0Q3BE/Homy
+        TZWH+ep0rosutQNZLHFGKTsHEfiNvHI=
+X-Google-Smtp-Source: AGRyM1vBV0bhd9khvvCwxnpInVjHXx6m51xNDclsodRJzCWiltlCTvyGCEbQ62Nnhj+u8W8fc/Qcjw==
+X-Received: by 2002:ac8:5f4e:0:b0:31b:f5e3:6e97 with SMTP id y14-20020ac85f4e000000b0031bf5e36e97mr2093706qta.623.1656435992102;
+        Tue, 28 Jun 2022 10:06:32 -0700 (PDT)
+Received: from shaak (modemcable055.92-163-184.mc.videotron.ca. [184.163.92.55])
+        by smtp.gmail.com with ESMTPSA id br14-20020a05620a460e00b006a6ce613c7csm6250443qkb.89.2022.06.28.10.06.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jun 2022 10:06:30 -0700 (PDT)
+Date:   Tue, 28 Jun 2022 13:06:26 -0400
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v15 06/10] iio: test: add basic tests for the iio-rescale
+ driver
+Message-ID: <Yrs1EgYZMArqmdb0@shaak>
+References: <20220213025739.2561834-1-liambeguin@gmail.com>
+ <20220213025739.2561834-7-liambeguin@gmail.com>
+ <CAMuHMdVMhLRS+XuX_8O5UPHzoOp6a6XpTvysQS+nT+GLkL7gjQ@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/4] dt-bindings: usb: typec: add bindings for stm32g0
- controller
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <robh+dt@kernel.org>, <heikki.krogerus@linux.intel.com>,
-        <gregkh@linuxfoundation.org>
-CC:     <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <amelie.delaunay@foss.st.com>, <alexandre.torgue@foss.st.com>
-References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
- <20220624155413.399190-2-fabrice.gasnier@foss.st.com>
- <ddb0e946-c955-1404-c1cd-c2548f34ec35@linaro.org>
- <845d6817-d2e4-7925-f7f5-da1102514636@foss.st.com>
- <286633b2-43d2-655e-b3f1-54bf5c7a4a21@linaro.org>
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-In-Reply-To: <286633b2-43d2-655e-b3f1-54bf5c7a4a21@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-06-28_10,2022-06-28_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdVMhLRS+XuX_8O5UPHzoOp6a6XpTvysQS+nT+GLkL7gjQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/28/22 12:28, Krzysztof Kozlowski wrote:
-> On 27/06/2022 16:21, Fabrice Gasnier wrote:
->> On 6/24/22 18:16, Krzysztof Kozlowski wrote:
->>> On 24/06/2022 17:54, Fabrice Gasnier wrote:
->>>> This patch adds DT schema documentation for the STM32G0 Type-C controller.
->>>
->>> No "This patch"
->>
->> Hi Krzysztof,
->>
->> ack,
->>
->>>
->>> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
->>>
->>>> STM32G0 provides an integrated USB Type-C and power delivery interface.
->>>> It can be programmed with a firmware to handle UCSI protocol over I2C
->>>> interface. A GPIO is used as an interrupt line.
->>>> It may be used as a wakeup source, so use optional "wakeup-source" and
->>>> "power-domains" properties to support wakeup.
->>>>
->>>> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
->>>> ---
->>>>  .../bindings/usb/st,typec-stm32g0.yaml        | 83 +++++++++++++++++++
->>>>  1 file changed, 83 insertions(+)
->>>>  create mode 100644 Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml b/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
->>>> new file mode 100644
->>>> index 0000000000000..b2729bd015a1a
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/usb/st,typec-stm32g0.yaml
->>>> @@ -0,0 +1,83 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: "http://devicetree.org/schemas/usb/st,typec-stm32g0.yaml#"
->>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>>
->>> No quotes.
->>
->> ack,
->>
->>>
->>>> +
->>>> +title: STMicroelectronics STM32G0 Type-C controller bindings
->>>
->>> s/bindings//
->>
->> ack,
->>
->>>
->>>> +
->>>> +description: |
->>>> +  The STM32G0 MCU can be programmed to control Type-C connector(s) through I2C
->>>> +  typically using the UCSI protocol over I2C, with a dedicated alert
->>>> +  (interrupt) pin.
->>>> +
->>>> +maintainers:
->>>> +  - Fabrice Gasnier <fabrice.gasnier@foss.st.com>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: st,stm32g0-typec
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  interrupts:
->>>> +    maxItems: 1
->>>> +
->>>> +  connector:
->>>> +    type: object> +    allOf:
->>>> +      - $ref: ../connector/usb-connector.yaml#
->>>
->>> Full path, so /schemas/connector/...
->>>
->>> unevaluatedProperties: false
+Hi Geert,
 
-Hi Krzysztof,
-
-I Just figured out usb-connector schema has "additionalProperties:
-true". Adding "unevaluatedProperties: false" here seem to be useless.
-At least at my end, this make any dummy property added in the example
-below to be validated without error by the schema.
-
-Should this be updated in usb-connector.yaml instead ?
-
-Shall I omit it here in the end ?
-
->>
->> ack,
->>
->>>
->>>> +
->>>> +  firmware-name:
->>>> +    description: |
->>>> +      Should contain the name of the default firmware image
->>>> +      file located on the firmware search path
->>>> +
->>>> +  wakeup-source: true
->>>> +  power-domains: true
->>>
->>> maxItems
->>
->> Do you mean maxItems regarding the "power-domains" property ?
+On Mon, Jun 27, 2022 at 09:22:29AM +0200, Geert Uytterhoeven wrote:
+> Hi Liam,
 > 
-> Yes.
+> On Mon, Feb 14, 2022 at 12:00 AM Liam Beguin <liambeguin@gmail.com> wrote:
+> > The iio-rescale driver supports various combinations of scale types and
+> > offsets. These can often result in large integer multiplications. Make
+> > sure these calculations are done right by adding a set of kunit test
+> > cases that build on top of iio-test-format.
+> >
+> > To run these tests, add the following to .kunitconfig
+> >         $ cat .kunitconfig
+> >         CONFIG_IIO=y
+> >         CONFIG_IIO_RESCALE_KUNIT_TEST=y
+> >         CONFIG_KUNIT=y
+> >
+> > Then run:
+> >         $ ./tools/testing/kunit/kunit.py run --kunitconfig .kunitconfig
+> >
+> > Signed-off-by: Liam Beguin <liambeguin@gmail.com>
+> > Reviewed-by: Peter Rosin <peda@axentia.se>
 > 
->> This will depend on the user platform, where it's used as an I2C device.
->> So I'm not sure this can / should be specified here.
->> Could please you clarify ?
+> Thanks for your patch, which is now commit 8e74a48d17d509bf
+> ("iio: test: add basic tests for the iio-rescale driver") in v5.18.
+
+Thanks!  I also recently sent a fix for this which recently made it
+upstream:
+7a2f6f61e8ee ("iio: test: fix missing MODULE_LICENSE for IIO_RESCALE=m")
+
+> > --- a/drivers/iio/test/Kconfig
+> > +++ b/drivers/iio/test/Kconfig
+> > @@ -4,6 +4,16 @@
+> >  #
+> >
+> >  # Keep in alphabetical order
+> > +config IIO_RESCALE_KUNIT_TEST
+> > +       bool "Test IIO rescale conversion functions"
 > 
-> Then maybe this property is not valid here. Power domains usually are
-> used for blocks of a SoC, having common power source and power gating.
-> In your case it looks much more like a regulator supply.
+> Is there any reason this cannot be tristate, so I can always enable
+> this as a module, and run the test by loading the module whenever
+> I want?
 
-This property is used in our implementation to refer to SOC PM domain
-for GPIO that is used to wakeup the system. This isn't only a regulator,
-this PM domain serves various IPs such as I2C, GPIO, UART... (it manages
-regulator and clocks used in low power).
+I based this patch off of IIO_TEST_FORMAT, and also thought that Kunit
+tests had to be built-in to work with tools/testing/kunit/kunit.py
 
-I can limit to 1 item if this is fine for you ?
+Looking at the Documentation again, it seems I was (partially?) wrong,
+kunit tests can be run as module, but manually.
 
-e.g. maxItems: 1
+I could give this a try and send a patch in the next few days.
 
+Cheers,
+Liam
+
+> > +       depends on KUNIT && !IIO_RESCALE
+> > +       default KUNIT_ALL_TESTS
+> > +       help
+> > +         If you want to run tests on the iio-rescale code say Y here.
+> > +
+> > +         This takes advantage of ARCH=um to run tests and should be used by
+> > +         developers to tests their changes to the rescaling logic.
+> > +
+> >  config IIO_TEST_FORMAT
+> >          bool "Test IIO formatting functions"
+> >          depends on KUNIT=y
 > 
->>
->>>
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - reg
->>>> +  - interrupts
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>>> +    i2c5 {
->>>
->>> Just "i2c"
->>
->> ack,
->>
->>>
->>>> +      #address-cells = <1>;
->>>> +      #size-cells = <0>;
->>>> +
->>>> +      stm32g0@53 {
->>>
->>> Generic node name describing class of the device.
->>
->>
->> I wasn't aware of generic node name for an I2C device (not talking of
->> the controller). I may have missed it.
->>
->> Could you please clarify ?
+> Gr{oetje,eeting}s,
 > 
-> The class of a device is not a I2C device. I2C is just a bus. For
-> example the generic name for Power Management IC connected over I2C
-> (quite common case) is "pmic".
+>                         Geert
 > 
-> For USB HCD controllers the generic name is "usb". For USB
-> ports/connectors this is "connector". So what is your hardware?
-> "interface" is a bit too unspecific to figure it out.
-
-Thanks, I better understand your point now.
-
-A common definition for the hardware here could be "USB Type-C PD
-controller". I'll improve this schema title by the way.
-
-I had a quick look in various .dts files. I could find mainly:
-- typec-portc@hh
-- usb-typec@hh
-- typec@hh
-
-Not sure if this has already been discussed in other reviews, it lacks
-the "controller" idea in the naming IMHO.
-Perhaps something like "typec-pd-controller" or
-"usb-typec-pd-controller" could be used here ?
-
-Otherwise, I could adopt the shortest "typec" name if it's fine for you ?
-
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 > 
->>
->>>
->>>> +        compatible = "st,stm32g0-typec";
->>>> +        reg = <0x53>;
->>>> +        /* Alert pin on GPIO PE12 */
->>>> +        interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
->>>> +        interrupt-parent = <&gpioe>;
->>>> +
->>>> +        /* Example with one type-C connector */
->>>> +        connector {
->>>> +          compatible = "usb-c-connector";
->>>> +          label = "USB-C";
->>>> +
->>>> +          port {
->>>
->>> This does not look like proper schema of connector.yaml.
->>
->> This refers to graph.yaml [1], where similar example is seen [2].
->>
->> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/graph.yaml#L79
->>
->> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/graph.yaml#L207
-> 
-> Just look at the usb-conector schema. It's different. You miss ports.
-> Maybe other properties as well.
-
-
-(I may miss something, and got confused around port/ports earlier)
-The graph properties seems to allow both the 'port' and 'ports' syntax
-thanks to the graph definition.
-The "port" syntax is also used in other typec controller schemas.
-
-There's only one port in this example. Of course other example could use
-two or more ports (like for USB HS / SS / aux) which would require using
-the "ports" node (with port@0/1/2 childs).
-
-I can adopt the "ports" node if you prefer. As I see it just doesn't
-bring much in the current example (The only drawback is this adds one
-indentation/node level w.r.t. the bellow example, so not a big deal).
-
-Please advise,
-
-Thanks for reviewing,
-Best Regards,
-Fabrice
-
-> 
->>
->>     device-1 {
->>         port {
->>             device_1_output: endpoint {
->>                 remote-endpoint = <&device_2_input>;
->>             };
->>         };
->>     };
->>     device-2 {
->>         port {
->>             device_2_input: endpoint {
->>                 remote-endpoint = <&device_1_output>;
->>             };
->>         };
->>     };
->>
->>
->> Could you please clarify this point too ?
->>
->>>
->>>> +            con_usb_c_ep: endpoint {
->>>> +              remote-endpoint = <&usbotg_hs_ep>;
->>>> +            };
->>>> +          };
->>>> +        };
->>>> +      };
->>>> +    };
->>>> +
->>>> +    usbotg_hs {
->>>
->>> Generic node names, no underscores in node names.
->>
->> ack, I guess you'd recommend "usb" here. I'll update it.
-> 
-> Yes, looks like usb.
-> 
-> 
-> Best regards,
-> Krzysztof
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
