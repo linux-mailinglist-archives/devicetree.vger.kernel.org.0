@@ -2,120 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF6D755C5CB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA11955D5CF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:15:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237153AbiF1J5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 05:57:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47890 "EHLO
+        id S238949AbiF1KCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 06:02:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242271AbiF1J5H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 05:57:07 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C98DB2FFC0;
-        Tue, 28 Jun 2022 02:56:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656410198; x=1687946198;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=E8g6oATwOn9T0Tp0qEpsI5CmgdS7Yl7GaxAoiXWVZNk=;
-  b=CoFMyxXtUsCwpMRcWLxREQy0GpsI6BEY5vjggLEhlq6gxKfh9PztP9Bh
-   gHs/240mQivk4Ys6mHmrw3Us2tkcw5IE9j7SL6cm1Xs0CjIixAkCazN1J
-   PhbXKUU7LUwshBkfQuf6GYlVw0v+GBY2MXvIWxCleC4I06DVbGftrCL3V
-   bdtypczHgSg0kJR/6o6S1PEPn0rAO4yVIIoCshRlGB49OJdIzcGhPmiyd
-   ltdtO0RohtZzKM9DdlP66EDkt0G3Rppa0eE0k5uEa8IWAXVDmVNN5ISTF
-   NjwO5CZ/x21srfKZ7EYspOrFqXu30tT9snIcpuWr/GE2dfReLlPCKPGUG
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="270445391"
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
-   d="scan'208";a="270445391"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 02:56:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,227,1650956400"; 
-   d="scan'208";a="732691163"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 28 Jun 2022 02:56:30 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 28 Jun 2022 12:56:30 +0300
-Date:   Tue, 28 Jun 2022 12:56:30 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        amelie.delaunay@foss.st.com, alexandre.torgue@foss.st.com
-Subject: Re: [PATCH 2/4] usb: typec: ucsi: stm32g0: add support for stm32g0
- i2c controller
-Message-ID: <YrrQTiCWsnRKAzn7@kuha.fi.intel.com>
-References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
- <20220624155413.399190-3-fabrice.gasnier@foss.st.com>
- <YrmtzDfFm17PFl2r@kuha.fi.intel.com>
- <bd35eb19-cfda-4799-1ab0-0578d3c79466@foss.st.com>
+        with ESMTP id S1344698AbiF1KCX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:02:23 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0801A2E9ED;
+        Tue, 28 Jun 2022 03:01:56 -0700 (PDT)
+Received: from mercury (dyndsl-095-033-152-169.ewe-ip-backbone.de [95.33.152.169])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id AC26566015BF;
+        Tue, 28 Jun 2022 11:01:54 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1656410514;
+        bh=B+3J166mE7yKiVnjSIyWp3uT7KdPeBK+33FGGWy9RJg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=M8saON4JHL9YGPUFK1egyrxL/8I/qsYZXe6LxdIs3ftZ5nLVb6f2GxpvYQYI1gwXE
+         Er8Li0/WGkZydvB3Qk+R21aLPz2KZjEa6eNgiMKI3M9PCTptid9HYSTA4v0K3RiT2a
+         Wf3GfKywmOT0WhMh4JB0oY1imBpu9Ec7LZr3NlfxSzqqSyExNPROSxXYtxGUtP7PXQ
+         16+dtthw8a12V5kqJcR2MSWd+obty7RK9U+4z6eAkllpVo1zcElPZwtUoL8j7vabIh
+         tCNs1KxSZUZcERzPF8Lu3fgWl/NKynNBUwfyCOPO9CXGLn4coDOwYj7SuJwa1PIIo+
+         TrMiFE8+UMOMQ==
+Received: by mercury (Postfix, from userid 1000)
+        id A946E106069D; Tue, 28 Jun 2022 12:01:52 +0200 (CEST)
+Date:   Tue, 28 Jun 2022 12:01:52 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        David Wu <david.wu@rock-chips.com>, kernel@collabora.com
+Subject: Re: [PATCHv2 1/2] net: ethernet: stmmac: dwmac-rk: Add gmac support
+ for rk3588
+Message-ID: <20220628100152.hpugcvxtqdq7pfic@mercury.elektranox.org>
+References: <20220627170747.137386-1-sebastian.reichel@collabora.com>
+ <20220627170747.137386-2-sebastian.reichel@collabora.com>
+ <7314b028-3cda-d70c-80a1-25750235a907@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="c2yjj25avm3cvkmr"
 Content-Disposition: inline
-In-Reply-To: <bd35eb19-cfda-4799-1ab0-0578d3c79466@foss.st.com>
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <7314b028-3cda-d70c-80a1-25750235a907@linaro.org>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 28, 2022 at 09:21:12AM +0200, Fabrice Gasnier wrote:
-> On 6/27/22 15:17, Heikki Krogerus wrote:
-> > Hi,
-> > 
-> > On Fri, Jun 24, 2022 at 05:54:11PM +0200, Fabrice Gasnier wrote:
-> >> +static int ucsi_stm32g0_probe(struct i2c_client *client, const struct i2c_device_id *id)
-> >> +{
-> >> +	struct device *dev = &client->dev;
-> >> +	struct ucsi_stm32g0 *g0;
-> >> +	int ret;
-> >> +
-> >> +	g0 = devm_kzalloc(dev, sizeof(*g0), GFP_KERNEL);
-> >> +	if (!g0)
-> >> +		return -ENOMEM;
-> >> +
-> >> +	g0->dev = dev;
-> >> +	g0->client = client;
-> >> +	init_completion(&g0->complete);
-> >> +	i2c_set_clientdata(client, g0);
-> >> +
-> >> +	g0->ucsi = ucsi_create(dev, &ucsi_stm32g0_ops);
-> >> +	if (IS_ERR(g0->ucsi))
-> >> +		return PTR_ERR(g0->ucsi);
-> >> +
-> >> +	ucsi_set_drvdata(g0->ucsi, g0);
-> >> +
-> >> +	/* Request alert interrupt */
-> >> +	ret = request_threaded_irq(client->irq, NULL, ucsi_stm32g0_irq_handler, IRQF_ONESHOT,
-> >> +				   dev_name(&client->dev), g0);
-> >> +	if (ret) {
-> >> +		dev_err_probe(dev, ret, "request IRQ failed\n");
-> >> +		goto destroy;
-> >> +	}
-> >> +
-> >> +	ret = ucsi_register(g0->ucsi);
-> >> +	if (ret) {
-> >> +		dev_err_probe(dev, ret, "ucsi_register failed\n");
-> >> +		goto freeirq;
-> >> +	}
-> > 
-> > If there isn't UCSI firmware, then ucsi_register() will always safely
-> > fail here, right?
-> 
-> Hi Heikki,
-> 
-> Yes, in such a case, the first i2c read (UCSI_VERSION) in
-> ucsi_register() will return an error and safely fail here.
 
-Okay, thanks.
+--c2yjj25avm3cvkmr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-heikki
+Hi Krzysztof,
+
+On Tue, Jun 28, 2022 at 10:55:04AM +0200, Krzysztof Kozlowski wrote:
+> On 27/06/2022 19:07, Sebastian Reichel wrote:
+> > From: David Wu <david.wu@rock-chips.com>
+> >=20
+> > Add constants and callback functions for the dwmac on RK3588 soc.
+> > As can be seen, the base structure is the same, only registers
+> > and the bits in them moved slightly.
+> >=20
+> > Signed-off-by: David Wu <david.wu@rock-chips.com>
+> > [rebase, squash fixes]
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> > Krzysztof asked what "php" means. The answer is: The datasheet
+> > calls the referenced syscon area "PHP_GRF" with GRF meaning
+> > "general register file". PHP is never written out in the datasheet,
+> > but is the name of a subsystem in the SoC which contains the ethernet
+> > controllers, USB and SATA with it's own MMU and power domain.
+>=20
+> Maybe there was a typo and name is PPH? Like some kind of short cut of
+> "peripheral"?
+
+Maybe, but then it is consistent throughout the datasheet and the
+vendor kernel. There is a few hundred instances of PHP_ in the
+datasheet and PPH is only found for Displayport PHYs (DPPHY).
+
+-- Sebastian
+
+--c2yjj25avm3cvkmr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmK60YgACgkQ2O7X88g7
++poNGA//fEqVCXbx8RU3oSYO8REyv6/VZBK5mmbgFGTRgfx6saGdL23ygwT5CwJV
+ONdL3BuHUBeSIOEVCe9HaTiE4LezWtdmNijAQm5dV47TIOyA2LYyoXtW+uYpWcc8
+G0Mv547WfztVhClFCP+EjNuP/krXiNOaQU+JsvtFEzGK3t2RiPzCzFqMCkDke4F1
+xE7Oz9UAgiFCFDxwKZdON1hP1rTYYBSKqiWT+6HuWY/kwSOPJxMK5/AQhKoEm9lC
+j3yPpI82w4lN1E643IdJ/OWmiQb7NFLJ3RL2BgNiy/RQ8UyrlXaNCn557KX+tD6A
+DFIIMVBmsjMwMxqb5tUanEydIH6I93vTBhKwRcztmJ6Gl6XZF0CuKXy5FqrhIABy
+nYmb2Bonj9wU0SGoOYd4OX6nrCZ/nwbjHLO+xBxgKdX5s109WOJL0VX637p6mTmZ
+XhweYOjZZGu+Or741RxiIfjoUjGKpbElbAbKApM7BaDmqO5VWhcZakq8oJ4TtH66
+B4Otqi/5YJJLmyizWNZsfJHI7K7rvB+pc4L896Ve77SXJZaePzA/9/zr7X45h+rW
+KfSiiP82YulVWYNXRNX5A1pMqOx8AG2P4R11IDZ3FnI+wVzDsAuz51IWFSk6q6XF
+NLHlLM70E9ZoVWIR9MDF6AenyA2iTNqgMVoN7GlynUCi8x5yqGg=
+=lyNm
+-----END PGP SIGNATURE-----
+
+--c2yjj25avm3cvkmr--
