@@ -2,184 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D27CB55D0E2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:08:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DBF355CB5C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:59:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343658AbiF1Hzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 03:55:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51148 "EHLO
+        id S243412AbiF1H5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 03:57:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343659AbiF1Hzf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 03:55:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E441581C;
-        Tue, 28 Jun 2022 00:55:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9FE5560EC8;
-        Tue, 28 Jun 2022 07:55:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F06D4C341C6;
-        Tue, 28 Jun 2022 07:55:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656402933;
-        bh=IupijrcDgqt6dfkeSK5H+pNqJwXwR4adqvvRmmKP5sc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=paGx7XfbzxmoD6s8mMOY4mzGbS2u9WekunAOEYaz+9lezGJxV4BJ3ivCKJIMv12s2
-         sIG7TOcSHwTl/IhgC090IGhxSjQX/HvKsRipbz7GIQ9GSjYB4sn8dxAHNTr51LTY+I
-         6XUA2Mz0i/z4ZacC46QQM/aXopEgvL4qxGXimz5dD3/fcJe5BEpV04BkCr66vmARPG
-         KAnfMCt2Q0STLg6k6gG90Wp/xabYeF2/+odjNEUzZ+sE6wJivs4ej5VS8iU77M58dI
-         CXOTtjtKp9GtqzE/x+vzWb0PkcjWiiJEljuvb6/rVFvUVHrzi/upwI/dbFXHN7AfTv
-         rS+hYZCmVVUhg==
-Received: by mail-vs1-f45.google.com with SMTP id w187so11268297vsb.1;
-        Tue, 28 Jun 2022 00:55:32 -0700 (PDT)
-X-Gm-Message-State: AJIora/pljw6rbFqvhFH6AIcQ5gKmT4dbn+O/AzGl/gmwbit73ItCBt5
-        USi1ZVCjw7K7I9zEEd93smNFxVupDhUbM+Cvots=
-X-Google-Smtp-Source: AGRyM1sZHbrnSo9VFN7K3myYkXRhM98Iy11cmoI8nqJ+4ldlVk/ZiXXwVXgC4FMCw2mOFBDVLbXR+0jMWfuApvm2ZAg=
-X-Received: by 2002:a05:6102:f8b:b0:354:57e8:4c1b with SMTP id
- e11-20020a0561020f8b00b0035457e84c1bmr1315164vsv.8.1656402931955; Tue, 28 Jun
- 2022 00:55:31 -0700 (PDT)
+        with ESMTP id S243365AbiF1H5n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 03:57:43 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E8D215FE3;
+        Tue, 28 Jun 2022 00:57:43 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id dw10-20020a17090b094a00b001ed00a16eb4so11850386pjb.2;
+        Tue, 28 Jun 2022 00:57:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Stsk2/bOU7vOuNWE32xaiTWPsuWgFOSh1G81qAcroFs=;
+        b=efvDGc/ev+4cijhfPBF4Nvzs0ZZXbPwU0xQNMKkm4gKXuxNXfvFsypMVj9enPRWDqi
+         PAVEbSmWuTTvrK+kuBK9YqUjKTCVa2LFiyIPiuFg5BxhukouXY1SX9WVZrNJYo27/Mbg
+         oiJ9y2eoiqadbtnV2Y0wNyNmFSizMGZx4OjZBx2tJ2QgiCI+rqoIzOHfWwfyZU76EerD
+         CVG36y/FRvuye/I9qEQ6n7eCTMm/+87SaWW1VippGe/xUZncXJz4eohEo31TzBSNrrvH
+         CM74J7TPDHLRy0/Y+tTrgxuJqGZKQkztz+drwsES06Y0GR+KLgPxvj2I9D0I32t+1LjF
+         V6PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Stsk2/bOU7vOuNWE32xaiTWPsuWgFOSh1G81qAcroFs=;
+        b=ewuwpE0x6d1JV3QV6pchvYnfPVEmr/LdRWEaq9ejMdZagF0fSgW4wLlWTPpQAWxC62
+         3KuMyCIe1T58V2ZMr2WexPFmi7ZAHtCONgegA8f5y/FtU5O81dGvR8bI9uVYRV29Gj1F
+         rebfS3XXySc/c0wJRLpFM9t8Anm/0p0EIe6I2VmfNj9fH/YcqdvhNbATI8iW8Y8GMMf6
+         3uoYfiAd9Kwgz4KAiCCGWhb0AEbm07Nqz9mRyUiEHtLz10QDq0LOaJU6ujpxO5lo7wom
+         4cJLkhby5LOSoaSMzFaZVYPLLWvEnJL2w+6ABoV5ecosRIrf82ozO/I6wEPAihysw79w
+         bg8g==
+X-Gm-Message-State: AJIora8G9fctiAcfLeMyxERIYuDtJfM3VtHBH6y/juhibI5HN+se4soX
+        Pdn4UR4bEonWq18MqCOJ5a8=
+X-Google-Smtp-Source: AGRyM1uJlUVe1iOIyNUKGWDPgE10yf8e8d2ulYavyVmHfDTzgRpQbDfQXTH5ef6GSc7P2RmMP/oaMA==
+X-Received: by 2002:a17:90b:38cc:b0:1ed:474a:a675 with SMTP id nn12-20020a17090b38cc00b001ed474aa675mr18224216pjb.149.1656403062615;
+        Tue, 28 Jun 2022 00:57:42 -0700 (PDT)
+Received: from chrome.huaqin.com ([101.78.151.222])
+        by smtp.gmail.com with ESMTPSA id p31-20020a056a000a1f00b0051bdb735647sm8681944pfh.159.2022.06.28.00.57.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jun 2022 00:57:42 -0700 (PDT)
+From:   Rex Nie <rexnie3@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, spanda@codeaurora.org, dianders@chromium.org,
+        devicetree@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
+        Rex Nie <rexnie3@gmail.com>
+Subject: [PATCH 1/2] drm/panel-edp: Add eDP innolux panel support
+Date:   Tue, 28 Jun 2022 15:57:35 +0800
+Message-Id: <20220628075735.2142949-1-rexnie3@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220627051257.38543-1-samuel@sholland.org> <20220627051257.38543-2-samuel@sholland.org>
-In-Reply-To: <20220627051257.38543-2-samuel@sholland.org>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Tue, 28 Jun 2022 15:55:20 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTTuBagHb0SHZqFjUP9bryVs=AnOTF8z2pxqEfmX4g14zQ@mail.gmail.com>
-Message-ID: <CAJF2gTTuBagHb0SHZqFjUP9bryVs=AnOTF8z2pxqEfmX4g14zQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: interrupt-controller: Require trigger
- type for T-HEAD PLIC
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: Guo Ren <guoren@kernel.org>
+Add support for the 14" innolux,n140hca-eac eDP panel.
 
-On Mon, Jun 27, 2022 at 1:13 PM Samuel Holland <samuel@sholland.org> wrote:
->
-> The RISC-V PLIC specification unfortunately allows PLIC implementations
-> to ignore edges seen while an edge-triggered interrupt is being handled:
->
->   Depending on the design of the device and the interrupt handler,
->   in between sending an interrupt request and receiving notice of its
->   handler=E2=80=99s completion, the gateway might either ignore additiona=
-l
->   matching edges or increment a counter of pending interrupts.
->
-> For PLICs with that misfeature, software needs to know the trigger type
-> of each interrupt. This allows it to work around the issue by completing
-> edge-triggered interrupts before handling them. Such a workaround is
-> required to avoid missing any edges.
->
-> The T-HEAD C9xx PLIC is an example of a PLIC with this behavior.
->
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
->
->  .../sifive,plic-1.0.0.yaml                    | 31 ++++++++++++++++---
->  1 file changed, 27 insertions(+), 4 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifiv=
-e,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/=
-sifive,plic-1.0.0.yaml
-> index 27092c6a86c4..3c589cbca851 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-=
-1.0.0.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-=
-1.0.0.yaml
-> @@ -26,9 +26,13 @@ description:
->    with priority below this threshold will not cause the PLIC to raise it=
-s
->    interrupt line leading to the context.
->
-> -  While the PLIC supports both edge-triggered and level-triggered interr=
-upts,
-> -  interrupt handlers are oblivious to this distinction and therefore it =
-is not
-> -  specified in the PLIC device-tree binding.
-> +  The PLIC supports both edge-triggered and level-triggered interrupts. =
-For
-> +  edge-triggered interrupts, the RISC-V PLIC spec allows two responses t=
-o edges
-> +  seen while an interrupt handler is active; the PLIC may either queue t=
-hem or
-> +  ignore them. In the first case, handlers are oblivious to the trigger =
-type, so
-> +  it is not included in the interrupt specifier. In the second case, sof=
-tware
-> +  needs to know the trigger type, so it can reorder the interrupt flow t=
-o avoid
-> +  missing interrupts.
->
->    While the RISC-V ISA doesn't specify a memory layout for the PLIC, the
->    "sifive,plic-1.0.0" device is a concrete implementation of the PLIC th=
-at
-> @@ -65,7 +69,8 @@ properties:
->      const: 0
->
->    '#interrupt-cells':
-> -    const: 1
-> +    minimum: 1
-> +    maximum: 2
->
->    interrupt-controller: true
->
-> @@ -91,6 +96,24 @@ required:
->    - interrupts-extended
->    - riscv,ndev
->
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - thead,c900-plic
-> +
-> +    then:
-> +      properties:
-> +        '#interrupt-cells':
-> +          const: 2
-> +
-> +    else:
-> +      properties:
-> +        '#interrupt-cells':
-> +          const: 1
-> +
->  additionalProperties: false
->
->  examples:
-> --
-> 2.35.1
->
+Signed-off-by: Rex Nie <rexnie3@gmail.com>
+---
+ drivers/gpu/drm/panel/panel-edp.c | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
+diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
+index 3626469c4cc2..2a8fcdffe80c 100644
+--- a/drivers/gpu/drm/panel/panel-edp.c
++++ b/drivers/gpu/drm/panel/panel-edp.c
+@@ -1355,6 +1355,29 @@ static const struct panel_desc innolux_n125hce_gn1 = {
+ 	},
+ };
+ 
++static const struct display_timing innolux_n140hca_eac_timing = {
++	.pixelclock = { 72600000, 76420000, 80240000 },
++	.hactive = { 1920, 1920, 1920 },
++	.hfront_porch = { 80, 80, 80 },
++	.hback_porch = { 190, 190, 190 },
++	.hsync_len = { 60, 60, 60 },
++	.vactive = { 1080, 1080, 1080 },
++	.vfront_porch = { 6, 6, 6 },
++	.vback_porch = { 38, 38, 38 },
++	.vsync_len = { 8, 8, 8 },
++	.flags = DISPLAY_FLAGS_VSYNC_LOW | DISPLAY_FLAGS_HSYNC_LOW,
++};
++
++static const struct panel_desc innolux_n140hca_eac = {
++	.timings = &innolux_n140hca_eac_timing,
++	.num_timings = 1,
++	.bpc = 6,
++	.size = {
++		.width = 309,
++		.height = 174,
++	},
++};
++
+ static const struct drm_display_mode innolux_p120zdg_bf1_mode = {
+ 	.clock = 206016,
+ 	.hdisplay = 2160,
+@@ -1775,6 +1798,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "innolux,n125hce-gn1",
+ 		.data = &innolux_n125hce_gn1,
++	}, {
++		.compatible = "innolux,n140hca-eac",
++		.data = &innolux_n140hca_eac,
+ 	}, {
+ 		.compatible = "innolux,p120zdg-bf1",
+ 		.data = &innolux_p120zdg_bf1,
+-- 
+2.25.1
 
---=20
-Best Regards
- Guo Ren
-
-ML: https://lore.kernel.org/linux-csky/
