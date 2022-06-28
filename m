@@ -2,211 +2,328 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8381955D327
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:11:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2825555D5B3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:15:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244009AbiF1EtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 00:49:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40076 "EHLO
+        id S231416AbiF1Exa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 00:53:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243952AbiF1EtR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 00:49:17 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2093.outbound.protection.outlook.com [40.107.244.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 326D6DF27;
-        Mon, 27 Jun 2022 21:49:16 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mZcSkJdGC0K/2mYdKJidteAxfUzV6+A/NKUlEeLTiqGvKrr/OYxU74ZpJfyRydZrHI8gl1ZiDX1XhpZds0ZmFa/D+k+1fPKnDDKSR++3HWYGfaKP+GxxHbbQu/v4jjyOOit0IsbaTYf6l8LT6OXBnwyQJIgUlHAoL9gWrNO2zrC8YMYc/EHhJ5GTIe7NuQlbcIYMyymM7PatgkFmo8xYtQxMA86Nk9WzkeLcvJC1JuQlrEHq1NYt6YDmMl9xz5UCCTkQLE2Xboha1ZKao2LnsT0r0Q8PlVaKkC1wI8H2SWwz/xsLuOyDFPcreu8Cw3NtXMUaCrr7/GUTi4TLmc8MVg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3AE8IR/Q35SjIum4hi0AsFqvQnEf1l/8fXca+rNHjMk=;
- b=EUpyI+qtv9dZBIDHZxhux4wmxwh/8fI5MnqhRh6uC7/fkpYByBcU8uP57z3f//jHs9dsBMcCiJ9Gt74rgwz0Iu9lgupud3XrhHjJ0jryftgpj7R6eIM/yP7fG0b0hDF5m7/GFJdYeBI/fW8GGyZYeaD5bdbhD34F6otSqFsf3nUeJaOutT+hdDwlxneQT7F3Yy9ib653/5/46pUQAG8Px2/V5/Ag03CptjHbxy+Eao9jZ2sZpiJYPj5AO6zpNleZecGMzB01MOcXMaoFhYtQyWo8euxnwk8MHOs67EWNHNb47RVat5hQVXs5wIfKSJM73iS5L4NsYYUbDeLfoJak5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
- header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+        with ESMTP id S230252AbiF1Ex3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 00:53:29 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0686555BE;
+        Mon, 27 Jun 2022 21:53:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3AE8IR/Q35SjIum4hi0AsFqvQnEf1l/8fXca+rNHjMk=;
- b=FoABGHQMjVfWqoeyiteGucn2cOnzMLQ6Hs/v1orfCI46BY0OwlEys2GZ4argCsblKVs1abyHmHJmjQsDKoN9W7uWLbzdrpmO/pON9jS+O3uMTZ2h6WbY2lpIeUMFJR8IASDZZvSQf+1qoogDbFgGcWx3QnTxGdZXK4hwafwixcQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=analogixsemi.com;
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
- by DM6PR04MB5724.namprd04.prod.outlook.com (2603:10b6:5:163::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5373.17; Tue, 28 Jun
- 2022 04:49:14 +0000
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::ec96:5112:c2d5:9377]) by BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::ec96:5112:c2d5:9377%8]) with mapi id 15.20.5373.018; Tue, 28 Jun 2022
- 04:49:14 +0000
-From:   Xin Ji <xji@analogixsemi.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Xin Ji <xji@analogixsemi.com>
-Cc:     bliang@analogixsemi.com, qwen@analogixsemi.com,
-        jli@analogixsemi.com, Rob Herring <robh@kernel.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v12 2/3] dt-bindings: usb: Add analogix anx7411 PD binding
-Date:   Tue, 28 Jun 2022 12:48:41 +0800
-Message-Id: <20220628044843.2257885-2-xji@analogixsemi.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220628044843.2257885-1-xji@analogixsemi.com>
-References: <20220628044843.2257885-1-xji@analogixsemi.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: TYCPR01CA0020.jpnprd01.prod.outlook.com (2603:1096:405::32)
- To BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1656392008; x=1687928008;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=viPNkMdb58HG/W547EJ7J39/RXb62Uz7idjCzex5stE=;
+  b=gccBqND7ldkmWOWDBmyF8gsBSCjBOclNtNqrnSKpfKSNahrFHQDQiF89
+   50FM5nr09Y15ydnzY1FHQx+rnYvlnXs2ud2+OnhM1vxm5cONtnDgo9rwV
+   zlFRc6wGImaPz4ZzgfQWeaDpaFCR7hiAV8O4s7fBrmbRYwJWitoysZxy0
+   k=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 27 Jun 2022 21:53:27 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2022 21:53:27 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 27 Jun 2022 21:53:26 -0700
+Received: from [10.50.29.215] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 27 Jun
+ 2022 21:53:22 -0700
+Message-ID: <a1c6e3c9-962d-411e-7fbf-9e760e9dc8c0@quicinc.com>
+Date:   Tue, 28 Jun 2022 10:23:19 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 718e378b-cb21-45e1-3cf6-08da58c18ccb
-X-MS-TrafficTypeDiagnostic: DM6PR04MB5724:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: axX8QMpjG9V9yrO5eMvomVfAfHwkhGa58grDR+5CSH2CUTevT12RwK5548esqbKF0xMZO+gY5vTWplkxm8Hx74AtaT0Mqb1eFG7lLpwR5a5ZYwwm9PIH0Fjo8jQXV5eG+cDhy6yRM7bFxUmFVUf0ZuXV39yuYnYnWmZkcDSjfolGGwWma0XuqkWAeEXCjfAYJrWIV+AZ2HnKbolL9dqEGdmAfpwOmVAVUWxoiOgpy1qsCduaWXt/gr+cea9L6JqGBQ0tnMqE1Vsn3ujXdGpKr8Gyfd0TVp/PtSnRQ/r/AkJSxH4B3oSDyPD4fsE1FpIvnmIeQI3n1w2qXI1+DH31YGjifS5/kxuJPd39IgfymfLkSFNbiTb4TZu5ZP6pOAimQT4IjNeQ7vaA+yOQ7/YCOtFS+0VVpjY7kjah2GwlR1rysTs9pw2m5XgDGVtsNR/3gYqmQP33rbzlxlF/PpBT4tkod7KrDIVB7j4nTEWLWEmjFtYYjqeNa/tYAZZaT32p6tXpMMWi3jiaw9aq40nowmwV1ymiFR1oSh8PvUlGweHpDIHRn7JghorDpGp+ahsPFfUmaRjPkyI9AP/iG5TtxKHeVeqIt0hBDLYU5kwLAkrr8NWsNjbJeqO0wDOLM9MCf8i30NoJK6EdN41BPtxqdpJaxSvsP29VF9KZA9Ibb+rmuQ0+Km2xGIbidxH32T0S4gD4+8Mi0QF9+qkZmSLYTZk/x3EIQ4hoKq09spqQViO5MD1793JNd77aOADzzahrz1wx0Ohf6Lpr5SxsuhkFSkVhgOQBNYZIPBP+Ujn8Jnsm6ahWmewVQlsnEu04SE+Wj7cl+66qg/7XZZSQuR4jhA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(136003)(396003)(366004)(39840400004)(376002)(346002)(7049001)(6512007)(66556008)(52116002)(66946007)(316002)(66476007)(110136005)(8676002)(4326008)(26005)(6486002)(5660300002)(55236004)(38350700002)(8936002)(86362001)(2616005)(6506007)(38100700002)(2906002)(1076003)(6666004)(186003)(478600001)(36756003)(41300700001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?O4cAHgvXNcwpLkD8e4It1PQZ4iS1EDCGoI09t1PF5FFuDxKF/4zEJuHoxXUe?=
- =?us-ascii?Q?cpf2BKufN78VmRGmsrGH0aSwLu7hhENDcgOLzNCGrQU36LrTX9NM5wU0nEbA?=
- =?us-ascii?Q?36EDJK5OxjqzAN90Dygg/sAZho3xkXDgT0Ry9Qpn830a7/PbvZC6/O3cV4Nv?=
- =?us-ascii?Q?/fRMU5ElEaW83WyTHQgBMUr/jZ4oym7qwj/YiywJ63owpNeNAQgLxLdOgoup?=
- =?us-ascii?Q?NmsZeJDn7Y0wSZFtrVuSwJJ4lXkRdUQ+2H0R+vvW0YpCm+m/z8KgU7Ryx5jB?=
- =?us-ascii?Q?Aw3FQtEYf9hliOv3G93V7L0zI8BrLBHcRLmhzzat2MqgmavlD/LN8YWhhjak?=
- =?us-ascii?Q?Ji6Q7esPpFVkIFfQXsPQNUqFMOHouxEYgbRaZussT6WgWOoRRqGT73f1MMzw?=
- =?us-ascii?Q?3oDN+oLlU2ai9NmQR+njkFqV5+0vxrg7YpqnPw44xvhVt6tVVWlT5nYt/Wml?=
- =?us-ascii?Q?kummp/bhD1RPxjebgPApnqxOoZIW0W5c96JGKwdxtDUlk2dSjpoRfikQxHEF?=
- =?us-ascii?Q?85WHqM7MAIso2y7emz3n8qbX8VC71g7kWm1mveHk73frbTeX8Un6KOms6n6U?=
- =?us-ascii?Q?Rcvm+c8PoI08i54x9csYdqExzWtMbWMFCs82WAlUxNcU1bYmY/ty2TNp5J04?=
- =?us-ascii?Q?gSXS70XdMET6ASw1xr0xKPR2gj4qMYuxw8VUGmrPeUrfpsMJRoPc/1TsGfpz?=
- =?us-ascii?Q?iasrl/DkLnx6ndXZUTV/siFiy08l/wRaUG33hGO/EZlhp71nSFaqa7TtEPdv?=
- =?us-ascii?Q?atjXo0s1nCb2S6RWgMcA5oeMkSEdA+nC8CNKGb7XKxhfFVmU/vlrT1hFMQb9?=
- =?us-ascii?Q?clhIgPvURcFo4K2k3DD3m14jTdIz/0aSJJiEyZkiCBrSsHzcakwxXtx3KcqX?=
- =?us-ascii?Q?4RxrdMRtTehsC+JMVevfzFcv10w7HR8AijcFNyZO0CgPsjfhPonLVGGo0FUm?=
- =?us-ascii?Q?6S41oGZ+qtVpaYMmxANSB8XLq2ZO99jwF9XwQxZGjYU7DtsetVn8wTsSaB6D?=
- =?us-ascii?Q?DnPik+P+4AbOJLKief+OlL2IckrAeZZGhFb8NjawMS+UcWF4JJ9jIwnLJE8X?=
- =?us-ascii?Q?Cg8faK99U5ZMAMUQLA8o3oQ7QtM1Cd0jEznmR3mJ+O2qlSXOpGXgFgvwI2jL?=
- =?us-ascii?Q?NV68SODEAoFAT9Gg6b1mZQ5c2i3A4xqkgWAqnGlzIeKDEZCtBxycwgziUihP?=
- =?us-ascii?Q?8gRxnv0+PTrug1Ev1x3XktSORr3xFVeZmQ/fJtE4VYIMhi3vPAV4H7tf9vGy?=
- =?us-ascii?Q?mk3K32GMuV1OkKGeqsG6GDcwzugJ6HBt1y4EA3f3AA5GAtODaLvq77h5Sm8N?=
- =?us-ascii?Q?G3JGgvlvjbVgmImvCx4CakQZTYZxVudaPlO7V3v0EdcImD6IbBurkevWDkub?=
- =?us-ascii?Q?GlaAzAtCvhVtj8G3BTCd9npou3vkQjQhajzeXl5tfQqERUcSe5fRd5+2t2qT?=
- =?us-ascii?Q?Md1oXOhyY/4iIeQrpVmttFGJRIhw+sP7gLJIJlWE5yyh21Vz4vGK3A0Twe82?=
- =?us-ascii?Q?gLP4B0u4O45RJ7dW63nb3fAzNa4v8pXbvu6zExDViYiyY+JCAZRURXKdsHZ3?=
- =?us-ascii?Q?PCK0bJs3BKHl4IPk8IbkK1fjBf5sNhcI0basSsLW?=
-X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 718e378b-cb21-45e1-3cf6-08da58c18ccb
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2022 04:49:14.1970
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: olWFXjHSc+khPlR76TFod8OSKiGfuYKAeMkdRtBzz6lnjg9uoo9H3oq5iIbg1e9MzofbA1BO9Js9YJonn750zQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR04MB5724
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
+Content-Language: en-US
+To:     Lee Jones <lee.jones@linaro.org>
+CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_jprakash@quicinc.com>
+References: <1655200111-18357-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1655200111-18357-7-git-send-email-quic_c_skakit@quicinc.com>
+ <YquZRcuRCrdF+Q1z@google.com>
+ <eccbb030-97f7-3a6c-958e-05adcdca6210@quicinc.com>
+ <YrAt6dq6ty9p8d05@google.com>
+ <a11732d6-a9b1-7ead-e89a-564a57a7192b@quicinc.com>
+ <503f1a8b-eadb-d3a6-6e24-d60437f778b6@quicinc.com>
+ <YrlfF+DMlGFsVBdk@google.com>
+From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+In-Reply-To: <YrlfF+DMlGFsVBdk@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add analogix PD chip anx7411 device binding
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Xin Ji <xji@analogixsemi.com>
----
- .../bindings/usb/analogix,anx7411.yaml        | 76 +++++++++++++++++++
- 1 file changed, 76 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
+On 6/27/2022 1:11 PM, Lee Jones wrote:
+> On Mon, 27 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
+>
+>> Hi Lee,
+>>
+>>
+>> On 6/20/2022 4:37 PM, Satya Priya Kakitapalli (Temp) wrote:
+>>> On 6/20/2022 1:50 PM, Lee Jones wrote:
+>>>> On Mon, 20 Jun 2022, Satya Priya Kakitapalli (Temp) wrote:
+>>>>
+>>>>> On 6/17/2022 2:27 AM, Lee Jones wrote:
+>>>>>> On Tue, 14 Jun 2022, Satya Priya wrote:
+>>>>>>
+>>>>>>> Use i2c_new_dummy_device() to register pm8008-regulator
+>>>>>>> client present at a different address space, instead of
+>>>>>>> defining a separate DT node. This avoids calling the probe
+>>>>>>> twice for the same chip, once for each client pm8008-infra
+>>>>>>> and pm8008-regulator.
+>>>>>>>
+>>>>>>> As a part of this define pm8008_regmap_init() to do regmap
+>>>>>>> init for both the clients and define pm8008_get_regmap() to
+>>>>>>> pass the regmap to the regulator driver.
+>>>>>>>
+>>>>>>> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+>>>>>>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>>>>>>> ---
+>>>>>>> Changes in V15:
+>>>>>>>     - None.
+>>>>>>>
+>>>>>>> Changes in V14:
+>>>>>>>     - None.
+>>>>>>>
+>>>>>>> Changes in V13:
+>>>>>>>     - None.
+>>>>>>>
+>>>>>>>     drivers/mfd/qcom-pm8008.c       | 34
+>>>>>>> ++++++++++++++++++++++++++++++++--
+>>>>>>>     include/linux/mfd/qcom_pm8008.h |  9 +++++++++
+>>>>>>>     2 files changed, 41 insertions(+), 2 deletions(-)
+>>>>>>>     create mode 100644 include/linux/mfd/qcom_pm8008.h
+>>>>>>>
+>>>>>>> diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
+>>>>>>> index 569ffd50..55e2a8e 100644
+>>>>>>> --- a/drivers/mfd/qcom-pm8008.c
+>>>>>>> +++ b/drivers/mfd/qcom-pm8008.c
+>>>>>>> @@ -9,6 +9,7 @@
+>>>>>>>     #include <linux/interrupt.h>
+>>>>>>>     #include <linux/irq.h>
+>>>>>>>     #include <linux/irqdomain.h>
+>>>>>>> +#include <linux/mfd/qcom_pm8008.h>
+>>>>>>>     #include <linux/module.h>
+>>>>>>>     #include <linux/of_device.h>
+>>>>>>>     #include <linux/of_platform.h>
+>>>>>>> @@ -57,6 +58,7 @@ enum {
+>>>>>>>     struct pm8008_data {
+>>>>>>>         struct device *dev;
+>>>>>>> +    struct regmap *regulators_regmap;
+>>>>>>>         int irq;
+>>>>>>>         struct regmap_irq_chip_data *irq_data;
+>>>>>>>     };
+>>>>>>> @@ -150,6 +152,12 @@ static struct regmap_config
+>>>>>>> qcom_mfd_regmap_cfg = {
+>>>>>>>         .max_register    = 0xFFFF,
+>>>>>>>     };
+>>>>>>> +struct regmap *pm8008_get_regmap(const struct pm8008_data *chip)
+>>>>>>> +{
+>>>>>>> +    return chip->regulators_regmap;
+>>>>>>> +}
+>>>>>>> +EXPORT_SYMBOL_GPL(pm8008_get_regmap);
+>>>>>> Seems like abstraction for the sake of abstraction.
+>>>>>>
+>>>>>> Why not do the dereference inside the regulator driver?
+>>>>> To derefer this in the regulator driver, we need to have the
+>>>>> pm8008_data
+>>>>> struct definition in the qcom_pm8008 header file.
+>>>>>
+>>>>> I think it doesn't look great to have only that structure in
+>>>>> header and all
+>>>>> other structs and enum in the mfd driver.
+>>>> Then why pass 'pm8008_data' at all?
+>>>
+>>> There is one more option, instead of passing the pm8008_data, we could
+>>> pass the pdev->dev.parent and get the pm8008 chip data directly in the
+>>> pm8008_get_regmap() like below
+>>>
+>>>
+>>> struct regmap *pm8008_get_regmap(const struct device *dev)
+>>>   {
+>>>       const struct pm8008_data *chip = dev_get_drvdata(dev);
+>>>
+>>>       return chip->regulators_regmap;
+>>> }
+>>> EXPORT_SYMBOL_GPL(pm8008_get_regmap);
+>>>
+>>>
+>>> By doing this we can avoid having declaration of pm8008_data also in the
+>>> header. Please let me know if this looks good.
+>>>
+>> Could you please confirm on this?
+>>
+>>>> What's preventing you from passing 'regmap'?
+>>>
+>>> I didn't get what you meant here, could you please elaborate a bit?
+> Ah yes.  I authored you a patch, but became distracted. Here:
+>
+> -----8<--------------------8<-------
+>
+> From: Lee Jones <lee.jones@linaro.org>
+>
+> mfd: pm8008: Remove driver data structure pm8008_data
+>      
+> Maintaining a local driver data structure that is never shared
+> outside of the core device is an unnecessary complexity.  Half of the
+> attributes were not used outside of a single function, one of which
+> was not used at all.  The remaining 2 are generic and can be passed
+> around as required.
 
-diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-new file mode 100644
-index 000000000000..c5c6d5a9dc17
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
-@@ -0,0 +1,76 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/usb/analogix,anx7411.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Analogix ANX7411 Type-C controller bindings
-+
-+maintainers:
-+  - Xin Ji <xji@analogixsemi.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - analogix,anx7411
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  connector:
-+    type: object
-+
-+    allOf:
-+      - $ref: ../connector/usb-connector.yaml
-+
-+    properties:
-+      compatible:
-+        const: usb-c-connector
-+
-+      power-role: true
-+
-+      data-role: true
-+
-+      try-power-role: true
-+
-+    required:
-+      - compatible
-+
-+required:
-+  - compatible
-+  - reg
-+  - connector
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c1 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        typec: anx7411@2C {
-+            compatible = "analogix,anx7411";
-+            reg = <0x2C>;
-+            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
-+            interrupt-parent = <&gpio0>;
-+
-+            typec_con: connector {
-+                compatible = "usb-c-connector";
-+                power-role = "dual";
-+                data-role = "dual";
-+                try-power-role = "source";
-+
-+                port {
-+                    typec_con_ep: endpoint {
-+                        remote-endpoint = <&usbotg_hs_ep>;
-+                    };
-+                };
-+            };
-+        };
-+    };
-+...
--- 
-2.25.1
 
+Okay, but we still need to store the regulators_regmap, which is 
+required in the pm8008 regulator driver. Could we use a global variable 
+for it?
+
+
+> Signed-off-by: Lee Jones <lee.jones@linaro.org>
+> ---
+>   drivers/mfd/qcom-pm8008.c | 53 ++++++++++++++++++-----------------------------
+>   1 file changed, 20 insertions(+), 33 deletions(-)
+>
+> diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
+> index c472d7f8103c4..4b8ff947762f2 100644
+> --- a/drivers/mfd/qcom-pm8008.c
+> +++ b/drivers/mfd/qcom-pm8008.c
+> @@ -54,13 +54,6 @@ enum {
+>   
+>   #define PM8008_PERIPH_OFFSET(paddr)	(paddr - PM8008_PERIPH_0_BASE)
+>   
+> -struct pm8008_data {
+> -	struct device *dev;
+> -	struct regmap *regmap;
+> -	int irq;
+> -	struct regmap_irq_chip_data *irq_data;
+> -};
+> -
+>   static unsigned int p0_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_0_BASE)};
+>   static unsigned int p1_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_1_BASE)};
+>   static unsigned int p2_offs[] = {PM8008_PERIPH_OFFSET(PM8008_PERIPH_2_BASE)};
+> @@ -150,7 +143,7 @@ static struct regmap_config qcom_mfd_regmap_cfg = {
+>   	.max_register	= 0xFFFF,
+>   };
+>   
+> -static int pm8008_init(struct pm8008_data *chip)
+> +static int pm8008_init(struct regmap *regmap)
+>   {
+>   	int rc;
+>   
+> @@ -160,34 +153,31 @@ static int pm8008_init(struct pm8008_data *chip)
+>   	 * This is required to enable the writing of TYPE registers in
+>   	 * regmap_irq_sync_unlock().
+>   	 */
+> -	rc = regmap_write(chip->regmap,
+> -			 (PM8008_TEMP_ALARM_ADDR | INT_SET_TYPE_OFFSET),
+> -			 BIT(0));
+> +	rc = regmap_write(regmap, (PM8008_TEMP_ALARM_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+>   	if (rc)
+>   		return rc;
+>   
+>   	/* Do the same for GPIO1 and GPIO2 peripherals */
+> -	rc = regmap_write(chip->regmap,
+> -			 (PM8008_GPIO1_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+> +	rc = regmap_write(regmap, (PM8008_GPIO1_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+>   	if (rc)
+>   		return rc;
+>   
+> -	rc = regmap_write(chip->regmap,
+> -			 (PM8008_GPIO2_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+> +	rc = regmap_write(regmap, (PM8008_GPIO2_ADDR | INT_SET_TYPE_OFFSET), BIT(0));
+>   
+>   	return rc;
+>   }
+>   
+> -static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+> +static int pm8008_probe_irq_peripherals(struct device *dev,
+> +					struct regmap *regmap,
+>   					int client_irq)
+>   {
+>   	int rc, i;
+>   	struct regmap_irq_type *type;
+>   	struct regmap_irq_chip_data *irq_data;
+>   
+> -	rc = pm8008_init(chip);
+> +	rc = pm8008_init(regmap);
+>   	if (rc) {
+> -		dev_err(chip->dev, "Init failed: %d\n", rc);
+> +		dev_err(dev, "Init failed: %d\n", rc);
+>   		return rc;
+>   	}
+>   
+> @@ -207,10 +197,10 @@ static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+>   				IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_LEVEL_LOW);
+>   	}
+>   
+> -	rc = devm_regmap_add_irq_chip(chip->dev, chip->regmap, client_irq,
+> +	rc = devm_regmap_add_irq_chip(dev, regmap, client_irq,
+>   			IRQF_SHARED, 0, &pm8008_irq_chip, &irq_data);
+>   	if (rc) {
+> -		dev_err(chip->dev, "Failed to add IRQ chip: %d\n", rc);
+> +		dev_err(dev, "Failed to add IRQ chip: %d\n", rc);
+>   		return rc;
+>   	}
+>   
+> @@ -220,26 +210,23 @@ static int pm8008_probe_irq_peripherals(struct pm8008_data *chip,
+>   static int pm8008_probe(struct i2c_client *client)
+>   {
+>   	int rc;
+> -	struct pm8008_data *chip;
+> -
+> -	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
+> -	if (!chip)
+> -		return -ENOMEM;
+> +	struct device *dev;
+> +	struct regmap *regmap;
+>   
+> -	chip->dev = &client->dev;
+> -	chip->regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg);
+> -	if (!chip->regmap)
+> +	dev = &client->dev;
+> +	regmap = devm_regmap_init_i2c(client, &qcom_mfd_regmap_cfg);
+> +	if (!regmap)
+>   		return -ENODEV;
+>   
+> -	i2c_set_clientdata(client, chip);
+> +	i2c_set_clientdata(client, regmap);
+>   
+> -	if (of_property_read_bool(chip->dev->of_node, "interrupt-controller")) {
+> -		rc = pm8008_probe_irq_peripherals(chip, client->irq);
+> +	if (of_property_read_bool(dev->of_node, "interrupt-controller")) {
+> +		rc = pm8008_probe_irq_peripherals(dev, regmap, client->irq);
+>   		if (rc)
+> -			dev_err(chip->dev, "Failed to probe irq periphs: %d\n", rc);
+> +			dev_err(dev, "Failed to probe irq periphs: %d\n", rc);
+>   	}
+>   
+> -	return devm_of_platform_populate(chip->dev);
+> +	return devm_of_platform_populate(dev);
+>   }
+>   
+>   static const struct of_device_id pm8008_match[] = {
+>
