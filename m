@@ -2,83 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AD5855EDD7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 21:35:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BA4055EDEA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 21:43:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbiF1TfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 15:35:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49022 "EHLO
+        id S229516AbiF1TnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 15:43:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229897AbiF1Tb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 15:31:58 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06493A734
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 12:27:17 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id h187so21720001ybg.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 12:27:17 -0700 (PDT)
+        with ESMTP id S230043AbiF1Tl5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 15:41:57 -0400
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9110A3B557;
+        Tue, 28 Jun 2022 12:34:57 -0700 (PDT)
+Received: by mail-il1-x131.google.com with SMTP id h5so8848908ili.3;
+        Tue, 28 Jun 2022 12:34:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=walg9+X25Qf0Q2kOl7EPuRRmD7l8R+TPYwiRkuq/taA=;
-        b=r5dhjikOjoOSTxH7twYmSKEfHqErqjhxkSM9McqWoCouOgLOQB7kvkMdEEzxx/BDX6
-         TQrjLVB6hMIfuOa9g8Jq2JmzE97r9+o77os7tKeNZgQG+gQR3fBWEr5T9i+X01s9wRKF
-         poqPtQCKU93338RDg9n0sUG/ZEqcMMUZPZnDwkORaC63HcYlFTRnittAcohjRCM8pOOF
-         g/UPD7ABIbEWrLq01pVgh4ii12ETWhUPrCA8/9LHWHuLKXXESxjWthvXPWzyjMNL6Oot
-         Hlc8iuNIiurItn418+oTScTJhM5C5ncPhx/nMRn5oHIDm7HNscLwCkwchgANUMMiViBr
-         lmvg==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=NkSDg+lfWXixNOxx3cLuyU9hZDDj0D6UlVxzr8Nf8bk=;
+        b=m6bA5mZmSq21hnMWGlbnaX2FzXtihBT8jEtxpZ5oS8Gxbi8H02gUXalh0Akn8oIvXt
+         jMxGkEjqcBRdd2B8KSr1360aq0CnOLZJ2S4Q333HH39rJxKv36YJ9GAOXbteEs6TtMzM
+         aLpV+4iwoEg8TyxyJSQVQDfR6YlQduhNV4IaoNI7ScwIXprAHf7HxiIW9Fh5xoFArvxf
+         l3nIZoe6yqhIRq8GZsbTFpPj5GgsK2U+xgU1v6yh7iOCgiXmGohZ2+8CxBza4WBxx2tO
+         bnJPBT1sCHyWsOGu0Nqnh0RsTrQ95KaNRZx0AZ7gDp91WgaLmwL6RbqLC2BxCwbIn50u
+         wFUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=walg9+X25Qf0Q2kOl7EPuRRmD7l8R+TPYwiRkuq/taA=;
-        b=ss0Tct1EmEJ53LfIVorsm8OZRCQ12C3LkbJHi6+vtgcJGKMzh1/oLE/F0FN2GRGfaU
-         01HncIWtPBmTwt/ERHyGfk7PKu+xK6HEqO0OnRCJiN4m+RWjfDg+0DMtF0sLxr3f75Pv
-         pz9C+hnPDJqFz41Vf0QfKB1hZVf9uqVzK336d3Ml7XWwv03N/RqnnCuR9QQOSaRWfnJ0
-         fXSNzvzYOfLF2vpXSwxQOZ85jyQ3ra2jiogMFCm6rc1lnjYYPCh6rGELuMcGGJ1mSsaj
-         m0gmCrsfZWTpe/Q4L1fNw7O1hfPzlZ/mgU8FnTx/JwamHGJau2IRIP82HB4so0wEZ24M
-         qpgw==
-X-Gm-Message-State: AJIora9DG2fDoFVaLopR9Fo30xGAZLyaA1QZOOpBfYOFQFTvbKDB8pgz
-        qIQFdMxE6q+1/mZ9Rv4/IFQ+50noVfnINbJjGP3PaQ==
-X-Google-Smtp-Source: AGRyM1tix/MDbYpAocLhXqNa2cuD1sSvJJYVbcVLzqD1nAvkTSC00uKkSWSEB65C4UY4pgJ8yatan7ZYC8uyX2aYtAw=
-X-Received: by 2002:a25:e7d4:0:b0:66c:899b:49c6 with SMTP id
- e203-20020a25e7d4000000b0066c899b49c6mr21915704ybh.291.1656444414438; Tue, 28
- Jun 2022 12:26:54 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=NkSDg+lfWXixNOxx3cLuyU9hZDDj0D6UlVxzr8Nf8bk=;
+        b=i5ma0QBKfctFibW1X7xLpWECyhXZNB+mLZT1ZCMSHORMyTGR+g0ZxJNp5lgjwSjR4T
+         lga2TqMSZUiqdJ+XTo7RSLRiql8Du+0wLYPlK5/wfUPiSetMXhyzMIqZgUiawqhiP0u9
+         2BcBtSRXJB9CwyH/tkuNcj3VvCXnU4JWsMFG87T4lVye1uVu+neO7CW6k0eOge6i8rcZ
+         k8OnAlm8nX6xZQkqp8jq4c84T3GQW3C/vF+M3rpU0RmTfn3yRvGw02v87xsCmlJr3kAm
+         +UEER7v3NKFtE78i3RHrDXGi6vcPqyNVK+GwMLe64nt9n2U4r3n37ZQft5SHqKW7yTmQ
+         YX6A==
+X-Gm-Message-State: AJIora84F4W5CeSyGC0n/rl8E+Uh7mN94IXE5NH85b41rrp+F0bJbhGl
+        zV47Mgi0Auc3upxjQybqEdA=
+X-Google-Smtp-Source: AGRyM1vby4Jgopb5YEAsOIaRvMD94aL5SjFUjZUlNunvkcjragEb0l8hS4RjiTjoLJ7hHNEFb1ERSA==
+X-Received: by 2002:a05:6e02:1c4b:b0:2d9:5706:7a50 with SMTP id d11-20020a056e021c4b00b002d957067a50mr11235672ilg.257.1656444897015;
+        Tue, 28 Jun 2022 12:34:57 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:c1c4:e86e:486b:1642? ([2600:1700:2442:6db0:c1c4:e86e:486b:1642])
+        by smtp.gmail.com with ESMTPSA id ay7-20020a056638410700b0033ca8eb3736sm2142885jab.167.2022.06.28.12.34.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jun 2022 12:34:56 -0700 (PDT)
+Message-ID: <db1e0e98-ba52-51ef-071d-bda49b8ae0b6@gmail.com>
+Date:   Tue, 28 Jun 2022 14:34:55 -0500
 MIME-Version: 1.0
-References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org> <20220616005333.18491-4-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220616005333.18491-4-krzysztof.kozlowski@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 28 Jun 2022 21:26:43 +0200
-Message-ID: <CACRpkdawFWN_3EYV0p2AAgu54Lu1s0YgqiSiV3136wOSfSGhrg@mail.gmail.com>
-Subject: Re: [PATCH v3 04/40] dt-bindings: pinctrl: nuvoton,wpcm450-pinctrl:
- align key node name
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 2/2] of: unittest: treat missing of_root as error instead
+ of fixing up
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lizhi Hou <lizhi.hou@xilinx.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20220624034327.2542112-1-frowand.list@gmail.com>
+ <20220624034327.2542112-3-frowand.list@gmail.com>
+ <20220628143659.GA424332-robh@kernel.org>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <20220628143659.GA424332-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 16, 2022 at 2:54 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On 6/28/22 10:36, Rob Herring wrote:
+> On Thu, Jun 23, 2022 at 10:43:27PM -0500, frowand.list@gmail.com wrote:
+>> From: Frank Rowand <frank.rowand@sony.com>
+>>
+>>  setup_of() now ensures that of_root node is populated with the
+>>  root of a default devicetree. Remove the unittest code that
+>>  created of_root if it was missing.  Verify that of_root is
+>>  valid before attempting to attach the testcase-data subtree.
+> 
+> What happened with the formatting here?
 
-> gpio-keys schema requires keys to have more generic name.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I'm guessing you are referring to the leading space?
 
-Patch applied!
+I pasted the text from another file into the commit message in
+my repo and failed to remove the leading blank. So a "typo"
+on my part.
 
-Yours,
-Linus Walleij
+-Frank
+
+> 
+>>
+>> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+>> ---
+>>  drivers/of/unittest.c | 16 ++++++----------
+>>  1 file changed, 6 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+>> index 7f6bba18c515..9d106998c1f2 100644
+>> --- a/drivers/of/unittest.c
+>> +++ b/drivers/of/unittest.c
+>> @@ -1469,20 +1469,16 @@ static int __init unittest_data_add(void)
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> -	if (!of_root) {
+>> -		of_root = unittest_data_node;
+>> -		for_each_of_allnodes(np)
+>> -			__of_attach_node_sysfs(np);
+>> -		of_aliases = of_find_node_by_path("/aliases");
+>> -		of_chosen = of_find_node_by_path("/chosen");
+>> -		of_overlay_mutex_unlock();
+>> -		return 0;
+>> -	}
+>> -
+>>  	EXPECT_BEGIN(KERN_INFO,
+>>  		     "Duplicate name in testcase-data, renamed to \"duplicate-name#1\"");
+>>  
+>>  	/* attach the sub-tree to live tree */
+>> +	if (!of_root) {
+>> +		pr_warn("%s: no live tree to attach sub-tree\n", __func__);
+>> +		kfree(unittest_data);
+>> +		return -ENODEV;
+>> +	}
+>> +
+>>  	np = unittest_data_node->child;
+>>  	while (np) {
+>>  		struct device_node *next = np->sibling;
+>> -- 
+>> Frank Rowand <frank.rowand@sony.com>
+>>
+>>
+
