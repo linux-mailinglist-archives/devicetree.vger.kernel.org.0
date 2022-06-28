@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E76AA55EF5F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D6E255EF77
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232422AbiF1UXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 16:23:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34688 "EHLO
+        id S231893AbiF1UXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 16:23:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231373AbiF1UV6 (ORCPT
+        with ESMTP id S232577AbiF1UV6 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:21:58 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B5FE3DA49
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:46 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id h65so18710997oia.11
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:46 -0700 (PDT)
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C11F13F7F
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:48 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id h65so18711643oia.11
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=4K1yIyRlfarxdrcJIzjiuU7hE/FjddqU64uWG9lU5uE=;
-        b=lbQqjU431Wi9OuZDFQyx7Bl/jXktkn19UGNRQGHrPqTpTVbR/33SCwCPq47m5ZEth9
-         BCG6LofI/0ryNHTqyqT2+EgPR9o27P8CYHE5JEl8RPKLAsB3cps5rDl5RGEwEtdzgDAf
-         qD3BY8oda35aPIcwoTO6gkviHFXrbPRgMzmp0T4faq5A6hISzUiyh3tOJdSrh7yrwIFU
-         K2bo+zS2ZVb3EF0SlOhM/VlsBDLevDVJ6QyVl9Q1XHfJBJJsM5fsQBn7saBG3WqnBw22
-         OS4C56JVs7ozuprOV5qjJW75+SKUHikTQcwrJcvGjbOzmq+Ot8Ccpk6EDmIT3Yr0aXpI
-         9gfQ==
+        bh=w9akEpWjpFO6hjhyJx9Y+tDRi/S2EVK4TDjKFYDvfs0=;
+        b=wpQUk82d9u+De26Krts5vTw3aFP+/sFRqhKM6bR5Rt0bo7K8mODmavPRQjlJ21LVpZ
+         tNeHxK0wGqcm0Sd+iR/w1iF0ATN5RvSAg+QTCgV3/OQEiFqE3l26ggM8KBBIyUbfRtws
+         FW4STg2ATuE/JCH+vazOpOvWU0yoe+rrrI3htYj0tX/FTTf5qMCP3yvtCJt3OicwFo/t
+         wj842ASlcJubglx83ENzBOpXBDCTOjgLOFuPBmIBHyk2CNB6bNNCwpQxL1MfosD8jlGv
+         4tsktTLGjW3MTQT+jAmInIWiFhanRDdCO+CYFOLoTryHd4Nuklr702SGVCnUMMsUf/p/
+         kyWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=4K1yIyRlfarxdrcJIzjiuU7hE/FjddqU64uWG9lU5uE=;
-        b=ag7WHXjDxyulGB6AlDj/efBzqzBGT140kYwLN/Xd/2Y8brDfMX4P538SlW86mQ6CSP
-         hqdpRtQNYtxJAIk7cSMNj+T4/OoJE//aty8N1SeSQGVYpOs2WYUdrZFhOnqhxfopCNpc
-         ooKr6PcaFVZn5PYox4OMtQsQ+tzSyRNyZd4enb0f7dna7UPV2Gvo0KnjT3lR+YR4T2H3
-         oRTpmjNeVXbK+zc+HPTAVFEobHj3yzSWQhsbnkhwhaxa12AxTf1ZbfCFDyY8FjIEl33N
-         zzlrKD6DEZdp+G5c4Z0GqmkR2a3U1G67H6jJMRPGdR7M0uuQqb9Im8BpPkGCOzC/ZZlz
-         I2wA==
-X-Gm-Message-State: AJIora9kRSnVdOw5XnWXGvB0T2C89E1oQKxvWEbS/fjQ6pdqGY4He9Ed
-        +jFp7qxLIzsyhT4cx7cEVZPUjA==
-X-Google-Smtp-Source: AGRyM1sV/uc5rapmEnvedSYRD9dxwsr83iT1JIXKk5etidOjlOK90qhSAkEX8h2nVT5NhEsf1HGvWQ==
-X-Received: by 2002:a05:6808:d50:b0:333:415e:2ca5 with SMTP id w16-20020a0568080d5000b00333415e2ca5mr948193oik.53.1656447586121;
-        Tue, 28 Jun 2022 13:19:46 -0700 (PDT)
+        bh=w9akEpWjpFO6hjhyJx9Y+tDRi/S2EVK4TDjKFYDvfs0=;
+        b=akWyJV3jLCyvqS5A6sMiKVUH0TaIAmGHhURkdjwCypcLX5Q/zeLiZi448yhs2SpFk7
+         tpH/qVekPoYPNs2J3131Lby9DPrBwDYApp6Qmj2FdXYomkKhWvddsU1BpimwblW1kjFS
+         F5zFdx/nncjLh8pugGhL8VcJMbGppflNC7JJhcjTL+qs8VkttYn/ufW0Fk+VC9XfYAgu
+         FDysYpgzmZHlCDXIsz4Y2HJrtpvJKiCEwKCA91GTV3Pl1JV48xkxnuUFYYHMoorg36TV
+         53BTm/E6tKFkH7ZQBRkHV7xXKwCWxM1neMkjlyUL0tceoEEcdrz58XQmS/AzbZiyyCXE
+         R7ng==
+X-Gm-Message-State: AJIora8kbuWRCf8uK3p9mCh9bV2RsBU6qPxVm9P52OuHwDGjmYUz1aWd
+        8HdJUFjo2mxStefSaj/zUXFwZw==
+X-Google-Smtp-Source: AGRyM1tBCCsVOK0J4ehYUt1GzQHkwGzVqAxQ+RwgiuwWLynjvWMrEyglSK38onq6bXg7jcl0NaeWvg==
+X-Received: by 2002:a05:6808:1392:b0:335:a45d:81fe with SMTP id c18-20020a056808139200b00335a45d81femr920778oiw.213.1656447587385;
+        Tue, 28 Jun 2022 13:19:47 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.44
+        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 13:19:45 -0700 (PDT)
+        Tue, 28 Jun 2022 13:19:46 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, robh+dt@kernel.org,
-        gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
-        agross@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        manivannan.sadhasivam@linaro.org
-Subject: Re: (subset) [PATCH v2 0/4] Devicetree updates for Interconnect, USB3 and PHY support
-Date:   Tue, 28 Jun 2022 15:19:12 -0500
-Message-Id: <165644753307.10525.4732064519492926832.b4-ty@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: (subset) [PATCH] arm64: dts: qcom: msm8992-*: Fix vdd_lvs1_2-supply typo
+Date:   Tue, 28 Jun 2022 15:19:13 -0500
+Message-Id: <165644753306.10525.17050921216384493070.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <1651482395-29443-1-git-send-email-quic_rohiagar@quicinc.com>
-References: <1651482395-29443-1-git-send-email-quic_rohiagar@quicinc.com>
+In-Reply-To: <20220627135938.2901871-1-stephan.gerhold@kernkonzept.com>
+References: <20220627135938.2901871-1-stephan.gerhold@kernkonzept.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -73,26 +73,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 May 2022 14:36:31 +0530, Rohit Agarwal wrote:
-> This series adds the devicetree nodes to support the interconnect, USB3 and PHY support.
+On Mon, 27 Jun 2022 15:59:38 +0200, Stephan Gerhold wrote:
+> "make dtbs_check" complains about the missing "-supply" suffix for
+> vdd_lvs1_2 which is clearly a typo, originally introduced in the
+> msm8994-smd-rpm.dtsi file and apparently later copied to
+> msm8992-xiaomi-libra.dts:
 > 
-> Changes from v1:
->  - Addressed Krzysztof's comments.
->  - Rebased on top of 5.18-rc5.
-> 
-> Thanks,
-> Rohit.
+> msm8992-lg-bullhead-rev-10/101.dtb: pm8994-regulators: 'vdd_lvs1_2'
+> does not match any of the regexes:
+>   '.*-supply$', '^((s|l|lvs|5vs)[0-9]*)|(boost-bypass)|(bob)$', 'pinctrl-[0-9]+'
+> From schema: regulator/qcom,smd-rpm-regulator.yaml
 > 
 > [...]
 
 Applied, thanks!
 
-[1/4] ARM: dts: qcom: sdx65: Add interconnect nodes
-      commit: b456b5e7d1df276a4e1050680eec86ccb99d8a82
-[3/4] ARM: dts: qcom: sdx65: Add USB3 and PHY support
-      commit: fbb6447deba87dc409e274d9d6d90d9c79851fb7
-[4/4] ARM: dts: qcom: sdx65-mtp: Enable USB3 and PHY support
-      commit: eeaec4f2b926ffcb35a9c1c4af549ac9f7a6ce56
+[1/1] arm64: dts: qcom: msm8992-*: Fix vdd_lvs1_2-supply typo
+      commit: 5fb779558f1c97e2bf2794cb59553e569c38e2f9
 
 Best regards,
 -- 
