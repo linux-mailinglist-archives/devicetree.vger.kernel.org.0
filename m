@@ -2,56 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A37D755C6B6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D375355C370
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:48:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244210AbiF1CXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jun 2022 22:23:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33332 "EHLO
+        id S244965AbiF1C3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jun 2022 22:29:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244104AbiF1CXA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 22:23:00 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A60325596;
-        Mon, 27 Jun 2022 19:22:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C92F6B81C13;
-        Tue, 28 Jun 2022 02:22:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E629C341CB;
-        Tue, 28 Jun 2022 02:22:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656382942;
-        bh=nwrR3WHan4fbIRem1b3D8PMhPSm7OyPpvcT0cJsGl0I=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SKfCEVnRky3LV+sXpObPIvKVNJnSp1tN2omUiVfz6Z693ahzqZ/JdmZblbgCSnTak
-         Fb7MlhkIeObcyXvFnDieU7EXwpiziKGnGqavOTDV1F+RQevBP2HXNrGKHHwiDFyKmy
-         YArWw6dFFU7HX0riGGQ9fRykZrRnifViwIVqJwa3PCpUFVPSRRHIbDaNVHcLqchtV3
-         BX4VptjpmTQ6m4ToqEuZ5Ak+4IrFRsNqEggSoyDfT8tB/KelkJtcKDh3pzX2UAXW4V
-         kInNNzc5rBXCLfbzcwyix7KzXCAflSNflxUNkQGhy7TxJRHC32lcZ0Pc1nalT2G/Px
-         kq1kL/WCbKt9Q==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 33/41] mips: dts: ingenic: Add TCU clock to x1000/x1830 tcu device node
-Date:   Mon, 27 Jun 2022 22:20:52 -0400
-Message-Id: <20220628022100.595243-33-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220628022100.595243-1-sashal@kernel.org>
-References: <20220628022100.595243-1-sashal@kernel.org>
+        with ESMTP id S245202AbiF1C3E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jun 2022 22:29:04 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 149AE1AE;
+        Mon, 27 Jun 2022 19:29:01 -0700 (PDT)
+X-UUID: be4757cf47f44e05b59731bfa12648a2-20220628
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.7,REQID:11f3257e-e6aa-4990-8d72-ac6bd9625af4,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:87442a2,CLOUDID:42d4ef85-57f0-47ca-ba27-fe8c57fbf305,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: be4757cf47f44e05b59731bfa12648a2-20220628
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1070102612; Tue, 28 Jun 2022 10:28:57 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 28 Jun 2022 10:28:56 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 28 Jun 2022 10:28:56 +0800
+Message-ID: <5b0613b9cc983e24a997c122b2892b35cf8346d3.camel@mediatek.com>
+Subject: Re: [PATCH v14 12/15] drm/mediatek: dpi: Add YUV422 output support
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 28 Jun 2022 10:28:56 +0800
+In-Reply-To: <a59a61a81e45fd361774a28a66ffd3d673cb3148.camel@mediatek.com>
+References: <20220624030946.14961-1-rex-bc.chen@mediatek.com>
+         <20220624030946.14961-13-rex-bc.chen@mediatek.com>
+         <a59a61a81e45fd361774a28a66ffd3d673cb3148.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,55 +68,175 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+On Tue, 2022-06-28 at 10:15 +0800, CK Hu wrote:
+> Hi, Bo-Chen:
+> 
+> On Fri, 2022-06-24 at 11:09 +0800, Bo-Chen Chen wrote:
+> > Dp_intf supports YUV422 as output format. In MT8195 Chrome project,
+> > YUV422 output format is used for 4K resolution.
+> > 
+> > To support this, it is also needed to support color format
+> > transfer.
+> > Color format transfer is a new feature for both dpi and dpintf of
+> > MT8195.
+> > 
+> > The input format could be RGB888 and output format for dp_intf
+> > should
+> > be
+> > YUV422. Therefore, we add a mtk_dpi_matrix_sel() helper to update
+> > the
+> > DPI_MATRIX_SET register depending on the color format.
+> > 
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > Reviewed-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
+> > ---
+> >  drivers/gpu/drm/mediatek/mtk_dpi.c      | 34
+> > ++++++++++++++++++++++++-
+> >  drivers/gpu/drm/mediatek/mtk_dpi_regs.h |  3 +++
+> >  2 files changed, 36 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > index 9e4250356342..438bf3bc5e4a 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > @@ -128,6 +128,7 @@ struct mtk_dpi_yc_limit {
+> >   * @num_output_fmts: Quantity of supported output formats.
+> >   * @is_ck_de_pol: Support CK/DE polarity.
+> >   * @swap_input_support: Support input swap function.
+> > + * @color_fmt_trans_support: Enable color format transfer.
+> >   * @dimension_mask: Mask used for HWIDTH, HPORCH, VSYNC_WIDTH and
+> > VSYNC_PORCH
+> >   *		    (no shift).
+> >   * @hvsize_mask: Mask of HSIZE and VSIZE mask (no shift).
+> > @@ -144,6 +145,7 @@ struct mtk_dpi_conf {
+> >  	u32 num_output_fmts;
+> >  	bool is_ck_de_pol;
+> >  	bool swap_input_support;
+> > +	bool color_fmt_trans_support;
+> >  	u32 dimension_mask;
+> >  	u32 hvsize_mask;
+> >  	u32 channel_swap_shift;
+> > @@ -412,6 +414,31 @@ static void mtk_dpi_config_disable_edge(struct
+> > mtk_dpi *dpi)
+> >  		mtk_dpi_mask(dpi, dpi->conf->reg_h_fre_con, 0,
+> > EDGE_SEL_EN);
+> >  }
+> >  
+> > +static void mtk_dpi_matrix_sel(struct mtk_dpi *dpi,
+> > +			       enum mtk_dpi_out_color_format format)
+> > +{
+> > +	u32 matrix_sel = 0;
+> > +
+> > +	if (!dpi->conf->color_fmt_trans_support) {
+> > +		dev_info(dpi->dev, "matrix_sel is not supported.\n");
+> > +		return;
+> > +	}
+> > +
+> > +	switch (format) {
+> > +	case MTK_DPI_COLOR_FORMAT_YCBCR_422:
+> > +	case MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL:
+> > +	case MTK_DPI_COLOR_FORMAT_YCBCR_444:
+> > +	case MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL:
+> 
+> I think the transform formula are different for full range and non-
+> full 
+> range. Please make sure '0x2' is for full range or non-full range. If
+> you are not sure, you could provide the transform matrix of '0x2' so
+> we
+> could find out it's full or non-full.
+> 
+> > +	case MTK_DPI_COLOR_FORMAT_XV_YCC:
+> > +		if (dpi->mode.hdisplay <= 720)
+> > +			matrix_sel = 0x2;
+> 
+> Symbolize '0x2'.
+> 
+> > +		break;
+> > +	default:
+> > +		break;
+> > +	}
+> > +	mtk_dpi_mask(dpi, DPI_MATRIX_SET, matrix_sel,
+> > INT_MATRIX_SEL_MASK);
+> > +}
+> > +
+> >  static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
+> >  					enum mtk_dpi_out_color_format
+> > format)
+> >  {
+> > @@ -419,6 +446,7 @@ static void mtk_dpi_config_color_format(struct
+> > mtk_dpi *dpi,
+> >  	    (format == MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL)) {
+> >  		mtk_dpi_config_yuv422_enable(dpi, false);
+> >  		mtk_dpi_config_csc_enable(dpi, true);
+> > +		mtk_dpi_matrix_sel(dpi, format);
+> 
+> Why mt8173 support MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL but it does
+> not
+> call mtk_dpi_matrix_sel()? It seems that mt8173 also need to call
+> mtk_dpi_matrix_sel() but lost and this patch looks like a bug fix for
+> all SoC DPI driver.
+> 
+> Regards,
+> CK
+> 
 
-[ Upstream commit db30dc1a5226eb74d52f748989e9a06451333678 ]
+Hello CK,
 
-This clock is a gate for the TCU hardware block on these SoCs, but
-it wasn't included in the device tree since the ingenic-tcu driver
-erroneously did not request it.
+MT8173 does not support MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL as output
+format, the output format is:
 
-Reviewed-by: Paul Cercueil <paul@crapouillou.net>
-Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/mips/boot/dts/ingenic/x1000.dtsi | 5 +++--
- arch/mips/boot/dts/ingenic/x1830.dtsi | 5 +++--
- 2 files changed, 6 insertions(+), 4 deletions(-)
+static const u32 mt8173_output_fmts[] = {
+	MEDIA_BUS_FMT_RGB888_1X24,
+};
 
-diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi b/arch/mips/boot/dts/ingenic/x1000.dtsi
-index dec7909d4baa..ab86b3632687 100644
---- a/arch/mips/boot/dts/ingenic/x1000.dtsi
-+++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
-@@ -111,8 +111,9 @@ tcu: timer@10002000 {
- 
- 		clocks = <&cgu X1000_CLK_RTCLK>,
- 			 <&cgu X1000_CLK_EXCLK>,
--			 <&cgu X1000_CLK_PCLK>;
--		clock-names = "rtc", "ext", "pclk";
-+			 <&cgu X1000_CLK_PCLK>,
-+			 <&cgu X1000_CLK_TCU>;
-+		clock-names = "rtc", "ext", "pclk", "tcu";
- 
- 		interrupt-controller;
- 		#interrupt-cells = <1>;
-diff --git a/arch/mips/boot/dts/ingenic/x1830.dtsi b/arch/mips/boot/dts/ingenic/x1830.dtsi
-index 215257f8bb1a..dd70aa9d87ee 100644
---- a/arch/mips/boot/dts/ingenic/x1830.dtsi
-+++ b/arch/mips/boot/dts/ingenic/x1830.dtsi
-@@ -104,8 +104,9 @@ tcu: timer@10002000 {
- 
- 		clocks = <&cgu X1830_CLK_RTCLK>,
- 			 <&cgu X1830_CLK_EXCLK>,
--			 <&cgu X1830_CLK_PCLK>;
--		clock-names = "rtc", "ext", "pclk";
-+			 <&cgu X1830_CLK_PCLK>,
-+			 <&cgu X1830_CLK_TCU>;
-+		clock-names = "rtc", "ext", "pclk", "tcu";
- 
- 		interrupt-controller;
- 		#interrupt-cells = <1>;
--- 
-2.35.1
+or do I misunderstand?
+
+BRs,
+Bo-Chen
+
+> >  		if (dpi->conf->swap_input_support)
+> >  			mtk_dpi_config_swap_input(dpi, false);
+> >  		mtk_dpi_config_channel_swap(dpi,
+> > MTK_DPI_OUT_CHANNEL_SWAP_BGR);
+> > @@ -426,6 +454,7 @@ static void mtk_dpi_config_color_format(struct
+> > mtk_dpi *dpi,
+> >  		   (format == MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL)) {
+> >  		mtk_dpi_config_yuv422_enable(dpi, true);
+> >  		mtk_dpi_config_csc_enable(dpi, true);
+> > +		mtk_dpi_matrix_sel(dpi, format);
+> >  		if (dpi->conf->swap_input_support)
+> >  			mtk_dpi_config_swap_input(dpi, true);
+> >  		else
+> > @@ -673,7 +702,10 @@ static int mtk_dpi_bridge_atomic_check(struct
+> > drm_bridge *bridge,
+> >  	dpi->bit_num = MTK_DPI_OUT_BIT_NUM_8BITS;
+> >  	dpi->channel_swap = MTK_DPI_OUT_CHANNEL_SWAP_RGB;
+> >  	dpi->yc_map = MTK_DPI_OUT_YC_MAP_RGB;
+> > -	dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
+> > +	if (out_bus_format == MEDIA_BUS_FMT_YUYV8_1X16)
+> > +		dpi->color_format =
+> > MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL;
+> > +	else
+> > +		dpi->color_format = MTK_DPI_COLOR_FORMAT_RGB;
+> >  
+> >  	return 0;
+> >  }
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+> > b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+> > index 3a02fabe1662..cca0dccb84a2 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+> > @@ -217,4 +217,7 @@
+> >  
+> >  #define EDGE_SEL_EN			BIT(5)
+> >  #define H_FRE_2N			BIT(25)
+> > +
+> > +#define DPI_MATRIX_SET		0xB4
+> > +#define INT_MATRIX_SEL_MASK		GENMASK(4, 0)
+> >  #endif /* __MTK_DPI_REGS_H */
+> 
+> 
 
