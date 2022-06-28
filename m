@@ -2,164 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D7D955E967
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:41:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F35AF55E699
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346112AbiF1Olf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 10:41:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51490 "EHLO
+        id S1347177AbiF1OrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 10:47:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235217AbiF1Olf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 10:41:35 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EACF2A268;
-        Tue, 28 Jun 2022 07:41:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656427294; x=1687963294;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CbBZb/9UmDzoKbUZG8KAxpZDdd3qLqErglFpew+xVWo=;
-  b=Bll4hWDp+DyAP82LAdKbRLea3TMqrv8Nj/05uGaLiDykUSxH6t74ROOR
-   wYd93uPl9QOkiEuQnnS4UiCcKxP4lsV/5Osl1U1AGYhfTjE0B4oKg/363
-   19cD+0g/o3r8hqGAUgH4n7E9hnx5PJ4liOXveSgpsdfflGUKRx4Uxfoh+
-   /9jVbYKpBeV4PfK2zjCEaX3xNOZlhLRu+1dsVQJw8+db8axOKT1ARhxLM
-   wM2kvNpwPJ1WxYvMuBgHMlAh/rCabdeO1aRplVCeaR4NzBWrrVqukxqaQ
-   6jBhBBgyc/Bf3QqZ1nzsdvDc/Fp2KmeKzhs7l3dd0SpDUV0aE02dRxKf0
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10391"; a="264798783"
-X-IronPort-AV: E=Sophos;i="5.92,229,1650956400"; 
-   d="scan'208";a="264798783"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 07:41:17 -0700
-X-IronPort-AV: E=Sophos;i="5.92,229,1650956400"; 
-   d="scan'208";a="693136067"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 07:41:15 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id D4BD72015F;
-        Tue, 28 Jun 2022 17:41:12 +0300 (EEST)
-Date:   Tue, 28 Jun 2022 17:41:12 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        with ESMTP id S1347172AbiF1OrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 10:47:03 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B811F2E085;
+        Tue, 28 Jun 2022 07:47:02 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id r18so10056376edb.9;
+        Tue, 28 Jun 2022 07:47:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RvKr5j/dub3wuJesSofmLHXw6F64QcEksX3Kp+Javoc=;
+        b=RKxx5lIrgJKpT7BgPk7abz4kuj3DLCCMU7pE5aFCFtrzchYJ9OY/63IqU6m1P2zyGc
+         sCyZ3hN7QHRm2E00u6sogsNLK7VZ8xp2Kls0RxJhAGFKqZrG8E8ZwfgUTDagdekk/zQh
+         sEm9ORMFT781gbrXSKj70WBSWpEs85BPdK9ME21fclm65sndYjVyWV8ybE4ep5cf9uZA
+         fq62HgM3GmZeP66meaOp82Fj4A48YqF+uEA+xBIbgCntCsJbm/7o49jvzvEd8xG63nwL
+         DIHSMV8d2X0bQ3IbMrV7WFNfx/RTmgbHfGPZoVS4D60vPsrzBczygJdOTx8pTTgYiMCr
+         WQIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RvKr5j/dub3wuJesSofmLHXw6F64QcEksX3Kp+Javoc=;
+        b=w2NGichhvwQ3rqpyJJ+DYIUXSW8mf4KHhR75kfHY+WPVP/t/nG6o5Taqd0JpFP3LW8
+         xCmDbFBS4WrgviX/N3waYic7Mb/WIGNWITcrJpfTXxV9fX5GVDaj7cjBgrwSTEb080yH
+         GL6oQdPAJUKLFhkw0chXPbdy/xKrDcoUZIKdsVtmhLhf8he9he7htEegXqu8xd2+RN9X
+         hsSjfwaGQ3ZHBkVSfK/ZhpkQeV9tg7EgYK57PdhvdK1mKcscQ6tRlFkdEWBbvN6LAjFC
+         z1j7jvv6CVv1t93BnicqFNnNokaxXu/g6l9vv/ZUon+7xzugV1R77OGDSE6TItf4oY7p
+         PP+Q==
+X-Gm-Message-State: AJIora8xoP60z83S/O6i+a4NdABgLy6j4LsTd420iSmDHeyFi1sQUfTN
+        fEaKWH8aD36wL2s3mp4WGs7SZi68fn0=
+X-Google-Smtp-Source: AGRyM1uFDh5YebcLOf5IY7T7KFRlo6yv30GAubrbREsf25E0mWYjuI9s1slbjQNTqkhTLPqfCu4Ihw==
+X-Received: by 2002:a05:6402:2948:b0:42a:ae0c:2f26 with SMTP id ed8-20020a056402294800b0042aae0c2f26mr23704552edb.425.1656427621242;
+        Tue, 28 Jun 2022 07:47:01 -0700 (PDT)
+Received: from demon-pc.localdomain ([79.119.98.153])
+        by smtp.gmail.com with ESMTPSA id f19-20020a170906825300b0071160715917sm6460537ejx.223.2022.06.28.07.47.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jun 2022 07:47:00 -0700 (PDT)
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+X-Google-Original-From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Subject: Re: fwnode_for_each_child_node() and OF backend discrepancy
-Message-ID: <YrsTCJz/omf90h+Z@paasikivi.fi.intel.com>
-References: <4e1d5db9dea68d82c94336a1d6aac404@walle.cc>
- <b8ec04dc-f803-ee2c-29b7-b0311eb8c5fb@linaro.org>
- <CAJZ5v0jz=ee5TrvYs0_ovWn9sT06bcKDucmmocD8L-d9ZZ5DzQ@mail.gmail.com>
- <0b8e357d-1d8b-843f-d8b6-72c760bcd6fb@linaro.org>
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+Subject: [PATCH v7 0/2] AD4130
+Date:   Tue, 28 Jun 2022 17:46:47 +0300
+Message-Id: <20220628144649.3957286-1-cosmin.tanislav@analog.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0b8e357d-1d8b-843f-d8b6-72c760bcd6fb@linaro.org>
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof, Rafael,
+AD4130-8 is an ultra-low power, high precision, measurement solution for
+low bandwidth battery operated applications.
 
-On Tue, Jun 28, 2022 at 12:32:12PM +0200, Krzysztof Kozlowski wrote:
-> On 27/06/2022 15:33, Rafael J. Wysocki wrote:
-> > On Mon, Jun 27, 2022 at 3:08 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 27/06/2022 14:49, Michael Walle wrote:
-> >>> Hi,
-> >>>
-> >>> I tired to iterate over all child nodes, regardless if they are
-> >>> available
-> >>> or not. Now there is that handy fwnode_for_each_child_node() (and the
-> >>> fwnode_for_each_available_child_node()). The only thing is the OF
-> >>> backend
-> >>> already skips disabled nodes [1], making fwnode_for_each_child_node()
-> >>> and
-> >>> fwnode_for_each_available_child_node() behave the same with the OF
-> >>> backend.
-> >>>
-> >>> Doesn't seem to be noticed by anyone for now. I'm not sure how to fix
-> >>> that
-> >>> one. fwnode_for_each_child_node() and also fwnode_get_next_child_node()
-> >>> are
-> >>> used by a handful of drivers. I've looked at some, but couldn't decide
-> >>> whether they really want to iterate over all child nodes or just the
-> >>> enabled
-> >>> ones.
-> >>
-> >> If I get it correctly, this was introduced  by 8a0662d9ed29 ("Driver
-> >> core: Unified interface for firmware node properties")
-> >> .
-> > 
-> > Originally it was, but then it has been reworked a few times.
-> > 
-> > The backend callbacks were introduced by Sakari, in particular.
-> 
-> I see you as an author of 8a0662d9ed29 which adds
-> device_get_next_child_node() and uses of_get_next_available_child()
-> instead of of_get_next_child(). Although it was back in 2014, so maybe
-> it will be tricky to get original intention. :)
-> 
-> Which commit do you mean when you refer to Sakari's work?
-> 
-> > 
-> >> The question to Rafael - what was your intention when you added
-> >> device_get_next_child_node() looking only for available nodes?
-> > 
-> > That depends on the backend.
-> 
-> We talk about OF backend. In your commit device_get_next_child_node for
-> OF uses explicitly available node, not any node.
+The fully integrated AFE (Analog Front-End) includes a multiplexer for up
+to 16 single-ended or 8 differential inputs, PGA (Programmable Gain
+Amplifier), 24-bit Sigma-Delta ADC, on-chip reference and oscillator,
+selectable filter options, smart sequencer, sensor biasing and excitation
+options, diagnostics, and a FIFO buffer.
 
-Well spotted.
+V1 -> V2
+ * add kernel version to ABI file
+ * merge ABI patch into driver patch
+ * make copyright header similar to other drivers
+ * rearrange includes
+ * use units.h defines where possible and add unit sufix to
+   SOFT_RESET_SLEEP define
+ * remove ending comma to last members of enums / lists
+ * remove unused FILTER_MAX define
+ * use BIT macro for PIN_FN_*
+ * rearrange SETUP_SIZE definition
+ * group bools in ad4130_state and ad4130_chan_info
+ * put scale_tbls definition on one line
+ * remove newline before reg size == 0 check
+ * put mask used as value in a variable
+ * remove useless ret = 0 assignment
+ * make buffer attrs oneline
+ * use for_each_set_bit in update_scan_mode
+ * use if else for internal reference voltage error checking
+ * inline reference voltage check
+ * check number of vbias pins
+ * remove .has_int_pin = false
+ * remove avail_len for IIO_AVAIL_RANGE
+ * remove useless enabled_channels check in unlink_slot
+ * remove unused AD4130_RESET_CLK_COUNT define
+ * only call fwnode_handle_put for child in case of error
+ * default adi,reference-select to REFIN1
+ * default adi,int-ref-en to false
+ * of_irq_get_byname -> fwnode_irq_get_byname
+ * P1 -> P2 as interrupt pin options
+ * add missing comma in db3_freq_avail init
+ * cast values to u64 to make math using units.h work
+ * add datasheet reference to IRQ polarity
+ * add comment about disabling channels in predisable
+ * add part number prefix find_table_index
+ * return voltage from get_ref_voltage
+ * add datasheet reference for internal reference voltage selection
+ * add comment explaining AIN and GPIO pin sharing
+ * parse channel setup before parsing excitation pins
+ * only validate excitation pin if value is not off
+ * use FIELD_PREP for bipolar and int_ref_en
+ * put devm_regmap_init call on one line
+ * introduce a slot_info struct to contain setup_info for each slot
+ * enable internal reference automatically if needed
+ * decide mclk sel based on adi,ext-clk-freq and adi,int-clk-out
+ * dt-bindings: use internal reference explicitly
+ * dt-bindings: set type for adi,excitation-pin-0
+ * dt-bindings: set $ref for adi,vbias-pins
+ * dt-bindings: remove minItems from interrupts property
+ * dt-bindings: remove adi,int-ref-en default value
+ * dt-bindings: remove adi,bipolar default value
+ * dt-bindings: inline adi,int-ref-en description
+ * dt-bindings: default adi,reference-select to REFIN1
+ * dt-bindings: clean up description for diff-channels and
+   adi,reference-select
+ * dt-bindings: add more text to interrupt-names description
+ * dt-bindings: turn interrupt-names into a single string
+ * dt-bindings: add maxItems to adi,vbias-pins
 
-I suppose that when the only function to get the next (available) child was
-added, the expection was perhaps that only available child nodes did matter
-in this API. On ACPI the two are almost always the same thing --- the
-property API originates from OF and ACPI primarily uses different means to
-work with what's under the level of devices.
+V2 -> V3
+ * dt-bindings: add interrupt controller include to example
+ * dt-bindings: remove $ref in diff-channels
 
-What I'd perhaps do is to change the OF behaviour and switch callers to use
-a different variant for drivers that do not appear solely ACPI-oriented.
+V3 -> V4:
+  * handle watermark value as number of datum
+  * DOUT_OR_INT -> INT
+  * AD4130_8_NAME -> AD4130_NAME
+  * return early in case of failure when parsing fw channel
+  * use IIO_DMA_MINALIGN for aligning buffer
+  * add comments for fs_to_freq and freq_to_fs
+  * remove support for other variants because of unavailability of model
+    ids for future chip variants
+  * remove support for db3 frequency because of inaccuracy when calculating
+  * remove ternary where possible
+  * refactor defines
+  * dt-bindings: add unevaluatedProperties: true to channel node
 
-acpi_fwnode_device_is_available() should return true for data nodes.
-Otherwise getting the next available child isn't meaningful at all --- and
-property API is primarily dealing with data nodes when it comes to ACPI.
+V4 -> V5:
+ * simplify get_ref_voltage function and move print statement to first user
+ * inline statements not going over the 80 cols limit
+ * simplify scale table filling
+ * determine table length inside find table index macro
+ * current_na -> tmp inside ad4130_parse_fw_setup
+ * define full register set
+ * put range register size definitions on one line
+ * nanoamps -> nanoamp
+ * adi,ext-clk-freq -> adi,ext-clk-freq-hz
+ * return directly in ad4130_validate_vbias_pins
+ * place comment regarding irq_trigger at assignment
+ * inversed -> inverted inside irq_trigger comment
+ * do not initialize int_clk_out
+ * return directly in ad4130_validate_diff_channels
+ * add () after reference to update_scan_mode in comment
+ * use BIT() for channel offset
+ * comment nitpicks on slot finding
+ * return -EINVAL out of reg read for invalid sizes
+ * place regmap at start of ad4130_state
+ * place bools at the end of ad4130_setup_info
+ * remove commas after terminators
+ * dt-bindings: only allow one element in reg
+ * dt-bindings: inline reg description
+ * dt-bindings: remove $ref from adi,ext-clk-freq-hz
 
-I might not still try to backport the fixes as it matters more from API
-consistency point of view than being an actual problem _right now_.
+V5 -> V6:
+ * bump KernelVersion
+ * use IIO_DEVICE_ATTR_RO
+ * nitpick inside mutex comment
+ * use valid_mask for validating gpios
+ * improve DMA comment
 
-Also cc Heikki.
+V6 -> V7:
+ * remove $ref from -nanoamp properties (to be added to dtschema)
+ * use hexadecimal numbers for channel unit-addresses
 
-> 
-> > fwnode_for_each_available_child_node() is more specific and IIRC it
-> > was introduced for fw_devlink (CC Saravana).
-> > 
-> >> My understanding is that this implementation should be consistent with
-> >> OF implementation, so fwnode_get_next_child_node=get any child.
-> > 
-> > IIUC, the OF implementation is not consistent with the
-> > fwnode_get_next_child_node=get any child thing.
-> > 
-> >> However maybe ACPI treats it somehow differently?
-> > 
-> > acpi_get_next_subnode() simply returns the next subnode it can find.
+Cosmin Tanislav (2):
+  dt-bindings: iio: adc: add AD4130
+  iio: adc: ad4130: add AD4130 driver
+
+ .../ABI/testing/sysfs-bus-iio-adc-ad4130      |   36 +
+ .../bindings/iio/adc/adi,ad4130.yaml          |  256 +++
+ MAINTAINERS                                   |    8 +
+ drivers/iio/adc/Kconfig                       |   13 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/ad4130.c                      | 2014 +++++++++++++++++
+ 6 files changed, 2328 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad4130
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml
+ create mode 100644 drivers/iio/adc/ad4130.c
 
 -- 
-Kind regards,
+2.36.1
 
-Sakari Ailus
