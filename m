@@ -2,72 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C38B655CE54
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01F6955D62A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:16:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245213AbiF1Gnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 02:43:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52528 "EHLO
+        id S245485AbiF1G6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 02:58:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236257AbiF1Gnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 02:43:41 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D01D12ACE;
-        Mon, 27 Jun 2022 23:43:40 -0700 (PDT)
+        with ESMTP id S1343768AbiF1G6k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 02:58:40 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6116C2716C
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 23:58:39 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id n1so16167448wrg.12
+        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 23:58:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1656398620; x=1687934620;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=bjiMPtIDOxLn13ZNTZ0W8DPjgpykVkfABWg8ouNBT90=;
-  b=KR3byVAfRVNn4apD8S5/2sp0N4TehYG8b37CyPgKeHM0m2SI6RllGSQG
-   BZShG7XBVKeMTdI+TU+9OuHc/WviH8ySbF2A7BOHPsRwFDKCMUk8vZia9
-   CuNanMhfw+TvjHoKiia7FsZKGkRxC6da0AH3IOZdrfMezqfEVLrXIVrUb
-   M=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 27 Jun 2022 23:43:40 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2022 23:43:39 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 27 Jun 2022 23:43:39 -0700
-Received: from [10.216.62.9] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 27 Jun
- 2022 23:43:32 -0700
-Message-ID: <ac08061c-3e33-2263-27f9-f455d06f6ce8@quicinc.com>
-Date:   Tue, 28 Jun 2022 12:13:29 +0530
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=uWCwSBsZzcDsXerOmBKtj8q7pC0dytvTE5QF/VhPSWk=;
+        b=uMaTZlsfbzqjhEiVTj0O/iYD7nAQ1DmFCBbQIqU/xo28jBNsxWPGVfaJ7JpKcO8PYx
+         4WLYUtzmU7WIE1U0Zn9KXiJjDbJuqowo2U8MZ9vzM5HTlsMO4gCwYCI3SoiXVnlwjJ7v
+         A/N7vLB8ANExEvDVKHqabUxGnYCgAnvGbXPDOZoWVY2/U3oH0futdZga/r+c1wdehzkS
+         lf0rsv9tN5K/HXXZ4XsH1d2M/g/8QfZNBYbUTmQDYU4TA/Rzf0LuQrSi1zieE5SNIWsp
+         7CJ9rkB5ecjFAnLkt1mVIB3m3xCl76+di0kDmoLgMVB/lu5/CCtqUF2BlZA9LZz7LEsZ
+         I9zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=uWCwSBsZzcDsXerOmBKtj8q7pC0dytvTE5QF/VhPSWk=;
+        b=sfBUPa566YutX55caiPJ/uxdqAgrV5XNzh4Fp8c3SDreExDEnQgkQ+RrZfwp9P3xjA
+         AKeiBqXAMmoPdm0hSynUN9YeZq4bb9iEDob2zw9fGNjJi1MIfLSIjvTwmc2rdaDDWho1
+         DhkvzKn/wqwE8JFycrpPmUAz09kwGAttVjhjiHYDlMsjqB7JoqviZz8cksWbUaLgEmmZ
+         vjEK6W4f1snYXJ3ir3+dU6i0ekdbsOxIbBWg18wrojF603/WJgl+G9UOOWoQJRXC99/G
+         +UNkt6C/p9coyuvVu/xJikO9FTjWTqh9TPLPhbd+sda30H8puwNcbmABDrBumpbQTQZ5
+         USIw==
+X-Gm-Message-State: AJIora+HZs65hlpbtlTUT7X4uBKWtzklNUJXj8nk1PVZ3qcOZmxqSMH1
+        FPJnSOPAhri3V7BdUR93XhOHOQ==
+X-Google-Smtp-Source: AGRyM1s2XUn6XqdPxK0J7NgHSR6nFE03RvtcwySu69kLez+73qYwJFz8S3w5dEWFd7y0gRbfY+UlcA==
+X-Received: by 2002:a5d:4102:0:b0:21b:8a6f:ff64 with SMTP id l2-20020a5d4102000000b0021b8a6fff64mr15859102wrp.186.1656399517870;
+        Mon, 27 Jun 2022 23:58:37 -0700 (PDT)
+Received: from [192.168.0.251] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id t10-20020adfe10a000000b00210320d9fbfsm15092681wrz.18.2022.06.27.23.58.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jun 2022 23:58:37 -0700 (PDT)
+Message-ID: <b0468d5e-fa2d-c874-3daa-6670509c15a0@linaro.org>
+Date:   Tue, 28 Jun 2022 08:58:35 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v1 2/3] dt-bindings: pci: QCOM sc7280 add missing clocks.
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 2/3] clk: samsung: exynosautov9: add missing gate clks for
+ peric0/c1
 Content-Language: en-US
-To:     Bjorn Helgaas <helgaas@kernel.org>
-CC:     <linux-pci@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_vbadigan@quicinc.com>,
-        <quic_hemantk@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_ramkri@quicinc.com>,
-        <manivannan.sadhasivam@linaro.org>, <swboyd@chromium.org>,
-        <dmitry.baryshkov@linaro.org>, Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20220624165813.GA1541013@bhelgaas>
-From:   Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <20220624165813.GA1541013@bhelgaas>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Chanho Park <chanho61.park@samsung.com>,
+        'Sylwester Nawrocki' <s.nawrocki@samsung.com>,
+        'Tomasz Figa' <tomasz.figa@gmail.com>,
+        'Chanwoo Choi' <cw00.choi@samsung.com>,
+        'Stephen Boyd' <sboyd@kernel.org>,
+        'Michael Turquette' <mturquette@baylibre.com>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>
+Cc:     'Alim Akhtar' <alim.akhtar@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220627005210.6473-1-chanho61.park@samsung.com>
+ <CGME20220627005413epcas2p37d6b3cbea055cecade47ad304b40b7e3@epcas2p3.samsung.com>
+ <20220627005210.6473-3-chanho61.park@samsung.com>
+ <6d7b0ea7-7918-aea4-6f2f-46d4870d92ad@linaro.org>
+ <000301d88a94$37aa7320$a6ff5960$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <000301d88a94$37aa7320$a6ff5960$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,51 +86,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 28/06/2022 04:10, Chanho Park wrote:
+>> Subject: Re: [PATCH 2/3] clk: samsung: exynosautov9: add missing gate clks
+>> for peric0/c1
+>>
+>> On 27/06/2022 02:52, Chanho Park wrote:
+>>> "gout_peric0_pclk_1" and "gout_peric1_pclk_1" should be added to
+>>> peric0 and peric1 respectively.
+>>
+>> Where is exactly the bug? The commit msg suggests that they were added to
+>> different block, but there is no code removal.
+> 
+> I thought they should be added from previous patch because clock IDs were existing without implementations.
+> I can drop fixes tags next patchset.
 
-On 6/24/2022 10:28 PM, Bjorn Helgaas wrote:
-> On Fri, Jun 24, 2022 at 02:49:50PM +0530, Krishna chaitanya chundru wrote:
->> Add missing clocks.
-> When you revise this, please make your subject line match the history:
->
->    dt-bindings: PCI: qcom: Add schema for sc7280 chipset
->    dt-bindings: PCI: qcom: Specify reg-names explicitly
->    dt-bindings: PCI: qcom: Do not require resets on msm8996 platforms
->    dt-bindings: PCI: qcom: Convert to YAML
->
-> So your subject line should be something like:
->
->    dt-bindings: PCI: qcom: Add sc7280 aggre0 and aggre1 clocks
->
-> Please also include the names of the clocks you're adding in the
-> commit log.  This will make the commit log history more specific and
-> useful for future readers.
->
-> This also applies to the other patches.
-Thanks Bjorn, I will try to incorporate your comments in the next patch.
->> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->> index 0b69b12..313b981 100644
->> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->> @@ -438,6 +438,8 @@ allOf:
->>               - const: slave_q2a # Slave Q2A clock
->>               - const: tbu # PCIe TBU clock
->>               - const: ddrss_sf_tbu # PCIe SF TBU clock
->> +            - const: aggre0 # Aggre NoC PCIE CENTER SF AXI clock
->> +            - const: aggre1 # Aggre NoC PCIe1 AXI clock
-> I assume the stuff after "#" is comment and could thus be made
-> consistent: s/PCIE/PCIe/, is "PCIe1" a typo for "PCIe" or different?
-> Seems like weird/inconsistent capitalization in general ("CENTER"),
-> but if you're matching language in a spec, please do that and ignore
-> my comment :)
->
->>           resets:
->>             maxItems: 1
->>           reset-names:
->> -- 
->> 2.7.4
->>
+The clock IDs as bindings can be added upfront - it's independent from
+implementation. Please drop the fixes.
+
+Best regards,
+Krzysztof
