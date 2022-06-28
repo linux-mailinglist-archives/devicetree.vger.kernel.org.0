@@ -2,119 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 673F855DCB6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:26:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A83C55DA0F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:22:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245545AbiF1HuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 03:50:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45330 "EHLO
+        id S245695AbiF1HvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 03:51:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245504AbiF1HuV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 03:50:21 -0400
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E4010EC;
-        Tue, 28 Jun 2022 00:50:21 -0700 (PDT)
-Received: by mail-qv1-f45.google.com with SMTP id n15so18809527qvh.12;
-        Tue, 28 Jun 2022 00:50:20 -0700 (PDT)
+        with ESMTP id S245619AbiF1HvC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 03:51:02 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A7F55FA4
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 00:51:00 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id o16so16404189wra.4
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 00:51:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=FPuG2slX+fgnrij7UFSAjejroSuyzdpt+S2NxTs06r4=;
+        b=ms+DL1wuK8oZDIA1k/Phb+J3PG+BjucVp/a/8c+3ABKUt1yU4IYe1i7yTrZv+ru8WY
+         coDJwPsFyU/b213bbdPwkEmXGSBk7dCdZnRdBJrX5wNVa3N63+RSTT+RmYDPDhsKucsz
+         dG07nuD3ygNO5w0AvJCk/lBAymKgnzn6P0BzoTSDB62kYXsMQj0F18U5w/9Yzl3s/NaV
+         mplVKXuUPxrNN7SWUhKZ9j1YtpIqgXU8czDZDcIoO1S3k4x7ZI1oyKgSxqHgjK5Et8G5
+         23OjOJcgAjhXvHoA2H5IH33lOv+4vL6o4g0twneVOe2Y332BJyiDt1/WkpeMQQp4JvWj
+         td/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vXC8ZZByExp1UKOmIRpJ2BaYGiGLXHy6ZiWwn5gk6hw=;
-        b=XXLJAunFf3MBC9TXVUl4Qgc1PePe6ADKX2YFCItjSInZCXUDGIMwoi3ZQXSw2I8912
-         xSZpHhGnnXycP+1ano5qXU3u2K/uxZz1NJ3IMh6tusgRkbIzjnZ6Jrtm7+x6LXbdfkwI
-         xuXueZtTa7Ab5cOA/v67Rxv6oXCPG+kQ/hZoO6wTd46GYCdxbivYc94gieN5WfSkjPYY
-         uW0C/9+xnGu7NRBfCBSmgj0po9aJqHjnJaqNS5pllpF2K+foJaxhjcjLo87mMb9FYNR6
-         LRu9lk/Uc1P7LaofS6mBOIBfxnDzqSb5ATlkmsVR5auwIVJkrhPOX6EP/yh3DuY9fLPr
-         g6kA==
-X-Gm-Message-State: AJIora/EMaqgSiO/SOekY8MPa5TSsplUfJ8Imcb12YGEdRJeAIqs8l30
-        nkq+D6vjKnRt/cMWWyoRKmLaP7ZigcUxPA==
-X-Google-Smtp-Source: AGRyM1sN2gYuAW6VtkgXYQKQn5+0oE4QwaN3HqKjJnIFND88OuU6zshDdKmloB77/j2yKuFaAN9c1A==
-X-Received: by 2002:ad4:5944:0:b0:470:4083:3962 with SMTP id eo4-20020ad45944000000b0047040833962mr1421246qvb.107.1656402620078;
-        Tue, 28 Jun 2022 00:50:20 -0700 (PDT)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id bk32-20020a05620a1a2000b006af1d3e8080sm6328367qkb.85.2022.06.28.00.50.18
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=FPuG2slX+fgnrij7UFSAjejroSuyzdpt+S2NxTs06r4=;
+        b=E2lzhprzGNzBQsLhWcrS3pPwAS+a7Pg2j2g2ZSHGQidWcqlvFve7GM8x+fF9fDcVVS
+         q/y9nj3ItqpMavrKHyTopXscpWYMp5CfevRNGCRYBQZNUOrxKd6CybZnapI8UuCedLgh
+         18rXoU16NwWu4xUR2s0c3zJ/VyMSbvSUStq+IXhEvxPoirfygDyMO9Na5D1vfX/sEse8
+         kMehKpRHnHhFq0BoKvPp6mJ+BpHHTDEQfqAnztmcG4+4iYphYA0ngs5Tg53K41OdwY7d
+         J3Cjs/FHQqMhOQqbYBRsunkNigMan351qqlkyXTpHIQngQHa/jStz4caGhrqyPKMqu/6
+         p1IQ==
+X-Gm-Message-State: AJIora+VGMDrgoJfCTo2+7VgnFa76unuKS0eBrATCwslXEBzljC1fuid
+        cQit95O+rjQub/HfGl/VKrl+AA==
+X-Google-Smtp-Source: AGRyM1s+1Y2n+Dlb2cgUwS4/ez4e+dqiSQiRFZBd1i7u/YwBXsk4xreCIaxAwl8AEWTKNkag9hr6Fg==
+X-Received: by 2002:a5d:414a:0:b0:21b:81fd:6b7f with SMTP id c10-20020a5d414a000000b0021b81fd6b7fmr7126184wrq.309.1656402659016;
+        Tue, 28 Jun 2022 00:50:59 -0700 (PDT)
+Received: from [192.168.0.252] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id c17-20020a05600c0ad100b003973ea7e725sm28172553wmr.0.2022.06.28.00.50.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jun 2022 00:50:18 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-317710edb9dso108651157b3.0;
-        Tue, 28 Jun 2022 00:50:18 -0700 (PDT)
-X-Received: by 2002:a81:74c5:0:b0:31b:ca4b:4bc4 with SMTP id
- p188-20020a8174c5000000b0031bca4b4bc4mr9505996ywc.358.1656402618122; Tue, 28
- Jun 2022 00:50:18 -0700 (PDT)
+        Tue, 28 Jun 2022 00:50:50 -0700 (PDT)
+Message-ID: <93925a1d-19ca-9643-ca13-8de3a4e9ae0a@linaro.org>
+Date:   Tue, 28 Jun 2022 09:50:33 +0200
 MIME-Version: 1.0
-References: <20220627122417.809615-1-yoshihiro.shimoda.uh@renesas.com> <20220627122417.809615-11-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20220627122417.809615-11-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 28 Jun 2022 09:50:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW5M7tLaCg_=+mxybEyRVL=1T6FM-M6xshPM7yvXjjqMA@mail.gmail.com>
-Message-ID: <CAMuHMdW5M7tLaCg_=+mxybEyRVL=1T6FM-M6xshPM7yvXjjqMA@mail.gmail.com>
-Subject: Re: [PATCH v2 10/13] PCI: renesas: Add R-Car Gen4 PCIe Endpoint support
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] dt-bindings: nfc: nxp,nci: drop Charles Gorand's mail
+Content-Language: en-US
+To:     Michael Walle <michael@walle.cc>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220628070959.187734-1-michael@walle.cc>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220628070959.187734-1-michael@walle.cc>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+On 28/06/2022 09:09, Michael Walle wrote:
+> Mails to Charles get an auto reply, that he is no longer working at
+> Eff'Innov technologies. Remove the entry.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> ---
+>  Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml | 1 -
 
-On Mon, Jun 27, 2022 at 2:24 PM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Add R-Car Gen4 PCIe Endpoint support. This controller is based on
-> Synopsys DesignWare PCIe.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Thanks for your patch!
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> --- /dev/null
-> +++ b/drivers/pci/controller/dwc/pcie-rcar-gen4-ep.c
 
-> +static int rcar_gen4_pcie_ep_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct rcar_gen4_pcie *rcar;
-> +       int err;
-> +
-> +       rcar = rcar_gen4_pcie_devm_alloc(dev);
-> +       if (!rcar)
-> +               return -ENOMEM;
-> +
-> +       err = rcar_gen4_pcie_pm_runtime_enable(dev);
-> +       if (err < 0) {
-> +               dev_err(dev, "pm_runtime_get_sync failed\n");
-
-The error message doesn't match the function called
-(same for patch 9/13).
-As this is abstracted, perhaps "failed to enable Runtime PM"?
-
-> +               return err;
-> +       }
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
