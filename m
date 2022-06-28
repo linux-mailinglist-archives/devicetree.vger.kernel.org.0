@@ -2,412 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96FFD55C67D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:52:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7384155C7D0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:54:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231260AbiF1HPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 03:15:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48066 "EHLO
+        id S231265AbiF1HVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 03:21:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229566AbiF1HPA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 03:15:00 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E56382C12A;
-        Tue, 28 Jun 2022 00:14:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1656400499; x=1687936499;
-  h=message-id:date:mime-version:subject:to:references:from:
-   in-reply-to:content-transfer-encoding;
-  bh=lwXZcqdSLbWOAYvNr7FmnphJ8eGlnyLRMExAFU84AxA=;
-  b=ltyox8WnviG2e+S+kpvGUU5F/F05ebqqTKJt65x+AdKX/AnKKUrgfBbq
-   715SK6pUm6NxUD+v9vLeWRFxl5MqGdEADWDaD7B5VKe/88pRzyYo51SMP
-   C7K9wfG+lDIYMcWqkNYL8DKAW3A7coz5NbVH7lJFMbGH7H5MVe+4gQiIp
-   E=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 28 Jun 2022 00:14:58 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 00:14:58 -0700
-Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 28 Jun 2022 00:14:57 -0700
-Received: from [10.216.11.205] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 28 Jun
- 2022 00:14:51 -0700
-Message-ID: <2a16703b-5b1e-5ce9-0af0-2e08da49d8ed@quicinc.com>
-Date:   Tue, 28 Jun 2022 12:44:48 +0530
+        with ESMTP id S239944AbiF1HVc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 03:21:32 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 940422CE17;
+        Tue, 28 Jun 2022 00:21:31 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25S11cMf020483;
+        Tue, 28 Jun 2022 09:21:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=vrWQmttz471sHMcNs5New/QqP5VqrpeycGKyDRxFuXY=;
+ b=pqL1gw129gHc/+EfyrjHYyJnva20mjgFlZoccs1i0eS8PFtns+Tmqt+RNNIt1w6DSd0D
+ AftgGD14+iRqV/DafxjzPQPnmFaTXO2EWhEoTDBz12T+V+3Au9D9eNORESqTyxXrjanb
+ fXH1eZ9whgH6r0k75jLsk65g2fN5EfCV+kRIYssJufv0QRXvNbHLUF0aF86QRIKIZ9WW
+ zYBCZi5M4XLO+vJ6IkM6hscFk0yRoUB1otVHxxBgfONDdZ65glQ5WZA2XCPLMPjRVZyw
+ ZWwZ4bO9aqqA6kQJK/GZowpdtKOgjtHASvXemup4PO8E8UxJyqzn2lIqCweMo8r66Zbb 7Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3gwqg9ggac-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Jun 2022 09:21:16 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5733710002A;
+        Tue, 28 Jun 2022 09:21:14 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4348220FA3B;
+        Tue, 28 Jun 2022 09:21:14 +0200 (CEST)
+Received: from [10.48.1.102] (10.75.127.47) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 28 Jun
+ 2022 09:21:13 +0200
+Message-ID: <bd35eb19-cfda-4799-1ab0-0578d3c79466@foss.st.com>
+Date:   Tue, 28 Jun 2022 09:21:12 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH V2 7/8] arm64: dts: Add ipq5018 SoC and MP03 board support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 2/4] usb: typec: ucsi: stm32g0: add support for stm32g0
+ i2c controller
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linus.walleij@linaro.org>,
-        <catalin.marinas@arm.com>, <p.zabel@pengutronix.de>,
-        <quic_varada@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220621161126.15883-1-quic_srichara@quicinc.com>
- <20220621161126.15883-8-quic_srichara@quicinc.com>
- <f8aa5f81-e77c-db28-519d-7d9ee119dcf3@somainline.org>
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <f8aa5f81-e77c-db28-519d-7d9ee119dcf3@somainline.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
+CC:     <robh+dt@kernel.org>, <gregkh@linuxfoundation.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <amelie.delaunay@foss.st.com>, <alexandre.torgue@foss.st.com>
+References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
+ <20220624155413.399190-3-fabrice.gasnier@foss.st.com>
+ <YrmtzDfFm17PFl2r@kuha.fi.intel.com>
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+In-Reply-To: <YrmtzDfFm17PFl2r@kuha.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-06-27_09,2022-06-24_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Konrad for the review.
-
-On 6/27/2022 12:02 AM, Konrad Dybcio wrote:
->
-> On 21.06.2022 18:11, Sricharan R wrote:
->> From: Varadarajan Narayanan <quic_varada@quicinc.com>
->>
->> Add initial device tree support for the Qualcomm IPQ5018 SoC and
->> MP03.1-C2 board.
->>
->> Co-developed-by: Sricharan R <quic_srichara@quicinc.com>
->> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
->> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->>   .../arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts |  29 +++
->>   arch/arm64/boot/dts/qcom/ipq5018.dtsi         | 221 ++++++++++++++++++
->>   3 files changed, 251 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
->>   create mode 100644 arch/arm64/boot/dts/qcom/ipq5018.dtsi
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index f9e6343acd03..c44e701f093c 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c2.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-asus-z00l.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-huawei-g7.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-mp03.1-c2.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8150.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8910.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-mtp.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
->> new file mode 100644
->> index 000000000000..d1cd080ec3db
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
->> @@ -0,0 +1,29 @@
->> +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
->> +/*
->> + * IPQ5018 CP01 board device tree source
->> + *
->> + * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
->> + */
+On 6/27/22 15:17, Heikki Krogerus wrote:
+> Hi,
+> 
+> On Fri, Jun 24, 2022 at 05:54:11PM +0200, Fabrice Gasnier wrote:
+>> +static int ucsi_stm32g0_probe(struct i2c_client *client, const struct i2c_device_id *id)
+>> +{
+>> +	struct device *dev = &client->dev;
+>> +	struct ucsi_stm32g0 *g0;
+>> +	int ret;
 >> +
->> +/dts-v1/;
+>> +	g0 = devm_kzalloc(dev, sizeof(*g0), GFP_KERNEL);
+>> +	if (!g0)
+>> +		return -ENOMEM;
 >> +
->> +#include "ipq5018.dtsi"
+>> +	g0->dev = dev;
+>> +	g0->client = client;
+>> +	init_completion(&g0->complete);
+>> +	i2c_set_clientdata(client, g0);
 >> +
->> +/ {
->> +	model = "Qualcomm Technologies, Inc. IPQ5018/AP-MP03-C2";
->> +	compatible = "qcom,ipq5018-mp03", "qcom,ipq5018";
+>> +	g0->ucsi = ucsi_create(dev, &ucsi_stm32g0_ops);
+>> +	if (IS_ERR(g0->ucsi))
+>> +		return PTR_ERR(g0->ucsi);
 >> +
->> +	aliases {
->> +		serial0 = &blsp1_uart1;
->> +	};
+>> +	ucsi_set_drvdata(g0->ucsi, g0);
 >> +
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +};
+>> +	/* Request alert interrupt */
+>> +	ret = request_threaded_irq(client->irq, NULL, ucsi_stm32g0_irq_handler, IRQF_ONESHOT,
+>> +				   dev_name(&client->dev), g0);
+>> +	if (ret) {
+>> +		dev_err_probe(dev, ret, "request IRQ failed\n");
+>> +		goto destroy;
+>> +	}
 >> +
->> +&blsp1_uart1 {
->> +	pinctrl-0 = <&serial_1_pins>;
->> +	pinctrl-names = "default";
->> +	status = "ok";
->> +};
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->> new file mode 100644
->> index 000000000000..084fb7b30dfd
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->> @@ -0,0 +1,221 @@
->> +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
->> +/*
->> + * Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
->> + */
->> +/*
->> + * IPQ5018 SoC device tree source
->> + *
->> + * Copyright (c) 2019, The Linux Foundation. All rights reserved.
->> + */
+>> +	ret = ucsi_register(g0->ucsi);
+>> +	if (ret) {
+>> +		dev_err_probe(dev, ret, "ucsi_register failed\n");
+>> +		goto freeirq;
+>> +	}
+> 
+> If there isn't UCSI firmware, then ucsi_register() will always safely
+> fail here, right?
+
+Hi Heikki,
+
+Yes, in such a case, the first i2c read (UCSI_VERSION) in
+ucsi_register() will return an error and safely fail here.
+
+Thanks for reviewing,
+Best Regards,
+Fabrice
+
+> 
+> 
+>> +	return 0;
 >> +
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/clock/qcom,gcc-ipq5018.h>
->> +#include <dt-bindings/reset/qcom,gcc-ipq5018.h>
+>> +freeirq:
+>> +	free_irq(client->irq, g0);
+>> +destroy:
+>> +	ucsi_destroy(g0->ucsi);
 >> +
->> +/ {
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
->> +	interrupt-parent = <&intc>;
-> Hi!
->
-> interrupt-parent could go first.
-
-  ok.
-
-
->> +
->> +	sleep_clk: sleep-clk {
->> +		compatible = "fixed-clock";
->> +		clock-frequency = <32000>;
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	xo: xo {
->> +		compatible = "fixed-clock";
->> +		clock-frequency = <24000000>;
->> +		#clock-cells = <0>;
->> +	};
->> +
->> +	gen2clk0: gen2clk0 {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +		clock-frequency = <125000000>;
->> +		clock-output-names = "pcie20_phy0_pipe_clk";
->> +	};
->> +
->> +	gen2clk1: gen2clk1 {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +		clock-frequency = <125000000>;
->> +		clock-output-names = "pcie20_phy1_pipe_clk";
->> +	};
-> I am not sure what's the current stance on this, but previously clock nodes
-> used to be wrapped in a clocks {} node, as currently they are not sorted
-> properly.
->
-  hmm ok, yeah, see the clocks { node in some recent dts as well, will 
-add the wrapper.
-
-
->> +
->> +	cpus: cpus {
-> Is this label going to be used?
-   hmm, not used, will remove.
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		CPU0: cpu@0 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a53";
->> +			reg = <0x0>;
->> +			enable-method = "psci";
->> +			next-level-cache = <&L2_0>;
->> +		};
->> +
->> +		CPU1: cpu@1 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a53";
->> +			enable-method = "psci";
->> +			reg = <0x1>;
->> +			next-level-cache = <&L2_0>;
->> +		};
->> +
->> +		L2_0: l2-cache {
->> +			compatible = "cache";
->> +			cache-level = <0x2>;
-> This should probably be dec, as it's not a register.
-
-    'dec' ? Sorry, i did not get that.
-
-
->> +		};
->> +	};
->> +
->> +	pmuv8: pmu {
-> Are there any other PMUs? And is this label going to be used?
-
-   ok, will remove the label.
-
-
->> +		compatible = "arm,cortex-a53-pmu";
->> +		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) |
->> +					 IRQ_TYPE_LEVEL_HIGH)>;
-> I think this can fit in a single 100-char line.
->
-   ok.
-
-
->> +	};
->> +
->> +	psci: psci {
->> +		compatible = "arm,psci-1.0";
->> +		method = "smc";
->> +	};
->> +
->> +	memory@40000000 {
-> This node is not sorted properly.
-
-   ok, will sort for all nodes.
-
-
->> +		device_type = "memory";
->> +		/* We expect the bootloader to fill in the size */
->> +		reg = <0x0 0x40000000 0x0 0x0>;
->> +	};
->> +
->> +	reserved-memory {
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +
->> +		tz: tz@4ac00000 {
-> Please rename it to tz_memory or tz_region or something more
-> descriptive. Also, memory@
-
-  ok.
-
-
->> +			reg = <0x0 0x4ac00000 0x0 0x00400000>;
-> I don't think we tend to pad size to 8 hex digits.
-
-  ok.
-
-
->> +			no-map;
->> +		};
->> +	};
->> +
->> +	timer {
-> This is not sorted properly.
-
-  ok.
-
-
->> +		compatible = "arm,armv8-timer";
->> +		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
->> +	};
->> +
->> +	soc: soc@0 {
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +		ranges = <0 0 0 0xffffffff>;
-> Isn't that the default value?
-
-   ok, if omitting this would be retain the default, then will do it.
-
-
->> +		compatible = "simple-bus";
-> Please sort the properties.
-
-   ok.
-
-
->> +
->> +		tlmm: pinctrl@1000000 {
->> +			compatible = "qcom,ipq5018-pinctrl";
->> +			reg = <0x01000000 0x300000>;
->> +			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
->> +			gpio-controller;
->> +			#gpio-cells = <2>;
->> +			gpio-ranges = <&tlmm 0 80>;
->> +			interrupt-controller;
->> +			#interrupt-cells = <2>;
->> +
->> +			serial_1_pins: serial1-pinmux {
-> Other DTs call it uart pins, also this is the default/poweron
-> state but the hardware provides support for sleep/poweroff.
-> Please rename this accordingly.
-
-   ok.
-
-
->> +				pins = "gpio31", "gpio32", "gpio33", "gpio34";
->> +				function = "blsp1_uart1";
->> +				drive-strength = <8>;
->> +				bias-pull-down;
->> +			};
->> +		};
->> +
->> +		gcc: clock-controller@1800000 {
->> +			compatible = "qcom,gcc-ipq5018";
->> +			reg = <0x01800000 0x80000>;
->> +			clocks = <&xo>, <&sleep_clk>;
->> +			clock-names = "xo", "sleep_clk";
->> +			#clock-cells = <1>;
->> +			#reset-cells = <1>;
->> +		};
->> +
->> +		blsp1_uart1: serial@78af000 {
->> +			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
->> +			reg = <0x078af000 0x200>;
->> +			interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&gcc GCC_BLSP1_UART1_APPS_CLK>,
->> +				<&gcc GCC_BLSP1_AHB_CLK>;
-> Not sure whether thunderbird is dumb again, or the indentation
-> is off by 1 space.
-   indentation issue, will fix.
->> +			clock-names = "core", "iface";
->> +			status = "disabled";
->> +		};
->> +
->> +		intc: interrupt-controller@b000000 {
->> +			compatible = "qcom,msm-qgic2";
-> Please sort the properties (compatible and reg gotta go first, etc.).
-
-  ok.
-
-
->> +			interrupt-controller;
->> +			#interrupt-cells = <0x3>;
-> *-cells should be decimal.
->
-   ok.
-
-
->> +			reg =   <0x0b000000 0x1000>,  /*GICD*/
-> /* GICD */, please (and the next ones too)
-
-  ok.
-
-
->> +				<0x0b002000 0x1000>,  /*GICC*/
->> +				<0x0b001000 0x1000>,  /*GICH*/
->> +				<0x0b004000 0x1000>;  /*GICV*/
->> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
->> +		};
->> +
->> +		timer@b120000 {
->> +			#address-cells = <1>;
->> +			#size-cells = <1>;
->> +			ranges;
->> +			compatible = "arm,armv7-timer-mem";
->> +			reg = <0x0b120000 0x1000>;
->> +			clock-frequency = <19200000>;
-> Please sort the properties, also in subnodes.
-
-   ok, will do.
-
-Regards,
-   Sricharan
-
-
+>> +	return ret;
+>> +}
+> 
+> 
+> thanks,
+> 
