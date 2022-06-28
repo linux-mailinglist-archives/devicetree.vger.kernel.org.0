@@ -2,100 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0345655C8F7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:56:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5E455D92F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:21:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237229AbiF1JBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 05:01:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58844 "EHLO
+        id S238371AbiF1JKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 05:10:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245600AbiF1JBo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 05:01:44 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 828962EA0A;
-        Tue, 28 Jun 2022 02:01:42 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id g20-20020a17090a579400b001ed52939d72so6532667pji.4;
-        Tue, 28 Jun 2022 02:01:42 -0700 (PDT)
+        with ESMTP id S1343743AbiF1JKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 05:10:30 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC9E211C3C
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 02:10:29 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id b26so4296268wrc.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 02:10:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WC8mCwxcFPmaNTe2dlW1gLIl9Or1Z5lRzz4HZt059cU=;
-        b=cHOv2tnOzN5DjBKRhNofHljKi7umJ5Xm/g76iK9eSCTRrXh7h9QUV4ZpaSQIy4iHMK
-         gFauxi1NO/RZ/dqrZc0/7BXp2I4fI0FaxBcI4y0ixI74MDF8ooboITcKkadRq9sdUJaN
-         SYJBcK4flKPKxECgN0jMIcz3BRODURWZVmF+eZBzHQSF3vMAn4jxIxVDtV5MPs3lhBlo
-         /a0ZrY57Bl0+7gnWoQOK00/dlcNvCisyHckyR6/13P5V+VrXn/GEE2K0CyINlA86oImM
-         jElfY+wwNCz+fuK9kCWtHz8IFiYuDmYJq1IguwhS0ItGdqaww3ZnvoF6zOlhFrBa8BFk
-         Ttgw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=wbgN1CKL41QDae7eKkqr8BaTjawclCJDoaPr1MzFLwM=;
+        b=pOa5VprVzlXvuF7+FKxWG4/Uoqsz2AJ7EkRgukj2nJwxDesbw1fbQADxKm15sUsT7t
+         v1vX+r6h0258bMbm1sF5zL1rzzWrlabChUGHYDz8r+cDhwLehTcSHWUTeQwIqfjtIeiH
+         bBog9uFVAPw6fSLRV2fot7tuSY/Qi0XgkqH1eb4ARc+hjlKy8oBR/iosz4sW/vG8Eh08
+         myF3PYp21xqPDNj0qI3anxuiVt3xq6u71FHL3GXzY98kiPqk8l4xE/z1ATBKiw9yI17W
+         /7evqPeVzUU1qJDdcePkdsuo9u4iaMYpJsCusP6CLxAvW6CzfTc9wPJDuoLEcPoTpQji
+         GX4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WC8mCwxcFPmaNTe2dlW1gLIl9Or1Z5lRzz4HZt059cU=;
-        b=N857xCcpZ2yfuunQHQKz0EpSgkHFuc4vZAh9CN4MKiTZaK8kvf9rAc4JmpHH5BYBmq
-         +fsT2yK7e81N9NxvL3vB6XJv7COktEKVL3Fp6SH0wQsI/mIP/cvuWG1kjhJkuxDSPZec
-         09/La5PDStFZbfmu7wMjTQJpAJtzNQ70V2Ch823ef5cgkVajOEUh7chNSIj9frD8WiEc
-         Xi8Y7zn2sJ9HuzNw1gXJVHTqBPnJiqu/UsG/549cste0MQTZ4JUCYP7AwNJIQEbMdzk1
-         WdM0av7hwl/jkNG6Tn4DjmUREVjCUyJv1WyUGPYc4wbSMwLiTqhooeFiE87JgEth/XVe
-         +EKA==
-X-Gm-Message-State: AJIora9lUaAX+2XQXW3CWcYpvhO9VYCzQCP6UZ2KncOaZU3w1YBmDOcc
-        dkY6Bb1hEc0oaT3PSaFst8M=
-X-Google-Smtp-Source: AGRyM1uu7K7ZqUZpUVxaDaTHYPHo2j0dvxZYfU0UvSOI3CXJaRDKIP0kRZiYgo66dZ/5mvWwJIsEXA==
-X-Received: by 2002:a17:902:ea04:b0:16a:1f33:cb0d with SMTP id s4-20020a170902ea0400b0016a1f33cb0dmr3985871plg.103.1656406902005;
-        Tue, 28 Jun 2022 02:01:42 -0700 (PDT)
-Received: from chrome.huaqin.com ([101.78.151.222])
-        by smtp.gmail.com with ESMTPSA id w6-20020a17090aaf8600b001eee7950428sm3163530pjq.44.2022.06.28.02.01.38
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=wbgN1CKL41QDae7eKkqr8BaTjawclCJDoaPr1MzFLwM=;
+        b=wSgQYMCN4OJdzncORupHRGdHE10Yt5NDheSoPEDoHr8MJz6KWc3627gpAvP2/tCtcL
+         5nuTFmlh79lWPd6DM9Su28rTVP4pkN5ZgFLmWVK8VqvOKcQiR6I9Yf4+95P2iKENV94P
+         ivhmSvdLYcPEkA6VYsB2MVY0q3Oj1RyCRnfE5X28FMSaAAdX5CszvdIFqpaWy6ZTCCcT
+         VS/TE+YRKTw5Uu1ktVWEIhJu0iTFlM/AJCgkQueNH9r+y4fXfbhOQNAPzDmln9jCPyZy
+         RepN1kvqwnchhTqIeLO1gTObTr5qGP/3nQqqOMrZsQRBcTuUaOu42GodveqATC61TXY8
+         2ktQ==
+X-Gm-Message-State: AJIora9VJ7eMpSOKVNvxUxnxCRtQFAhSjdkQYqFoUFGmEVgipqy2zFZk
+        8AQkXn/yTESVQ6Sc9xd/SZbv+w==
+X-Google-Smtp-Source: AGRyM1v7gHQR+wVeyct8aWcBwub8IuK3R4svyt1Ip8itwvHfAfKR3WQQPvslk2AhBmSp5Bgh0RsEZg==
+X-Received: by 2002:a5d:6c64:0:b0:216:5680:b41e with SMTP id r4-20020a5d6c64000000b002165680b41emr16279405wrz.216.1656407428287;
+        Tue, 28 Jun 2022 02:10:28 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id d11-20020a5d4f8b000000b0020c7ec0fdf4sm15205819wru.117.2022.06.28.02.09.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 02:01:41 -0700 (PDT)
-From:   Rex Nie <rexnie3@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, spanda@codeaurora.org, dianders@chromium.org,
-        devicetree@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>, Rex Nie <rexnie3@gmail.com>
-Subject: [PATCH v2 2/2] dt-bindings: display: simple: Add InnoLux n140hca-eac panel
-Date:   Tue, 28 Jun 2022 17:01:17 +0800
-Message-Id: <20220628090117.2148016-1-rexnie3@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        Tue, 28 Jun 2022 02:09:09 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+        bjorn.andersson@linaro.org, agross@kernel.org,
+        linux-pm@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>,
+        rafael@kernel.org, ilia.lin@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     robh@kernel.org
+Subject: Re: [PATCH] dt-bindings: cpufreq: qcom-cpufreq-nvmem: fix board compatible in example
+Date:   Tue, 28 Jun 2022 11:09:07 +0200
+Message-Id: <165640734233.20304.15218544381740726576.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220627143340.477120-1-krzysztof.kozlowski@linaro.org>
+References: <20220627143340.477120-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for InnoLux n140hca-eac display panel. It is a 14" eDP panel
-with 1920x1080 display resolution.
+On Mon, 27 Jun 2022 16:33:40 +0200, Krzysztof Kozlowski wrote:
+> In the example, alone compatible "qcom,qcs404" is not correct.  Add
+> proper board compatibles for QCS404 Evaluation Board.
+> 
+> 
 
-Signed-off-by: Rex Nie <rexnie3@gmail.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+Applied, thanks!
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index a5568d1dc272..51e573615aab 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -186,6 +186,8 @@ properties:
-       - innolux,n116bge
-         # InnoLux 13.3" FHD (1920x1080) eDP TFT LCD panel
-       - innolux,n125hce-gn1
-+        # InnoLux 14" FHD (1920x1080) eDP TFT LCD panel
-+      - innolux,n140hca-eac
-         # InnoLux 15.6" WXGA TFT LCD panel
-       - innolux,n156bge-l21
-         # Innolux Corporation 7.0" WSVGA (1024x600) TFT LCD panel
+[1/1] dt-bindings: cpufreq: qcom-cpufreq-nvmem: fix board compatible in example
+      https://git.kernel.org/krzk/linux-dt/c/062529700fdb843eee921961eb3cbc6a51419491
+
+Best regards,
 -- 
-2.25.1
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
