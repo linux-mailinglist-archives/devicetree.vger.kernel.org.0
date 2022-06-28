@@ -2,84 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85E1255EDCF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 21:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AD5855EDD7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 21:35:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbiF1T2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 15:28:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39218 "EHLO
+        id S229997AbiF1TfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 15:35:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230399AbiF1T1b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 15:27:31 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A02B5B
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 12:25:40 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id u9so18502600oiv.12
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 12:25:40 -0700 (PDT)
+        with ESMTP id S229897AbiF1Tb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 15:31:58 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06493A734
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 12:27:17 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id h187so21720001ybg.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 12:27:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=+10FmmpqDQ0iNQ5Hk+84+aEcJCyKp/8SCF4Ixa+q6vY=;
-        b=iWoHl7bZvWLVEdyAkVHFeVQz5J5DMUAU7JZsWGv75MVdaQTPO4PjFEa73jbyeZ0a7T
-         xYdBhRWVXlgotRQhwz40G1SjZEJIh0jhxk77xoO/+75mFRYfwlh72OamED42p/y7jKds
-         eSCzvfYTzsMBJbT6sDnsmjSTUrcXfo223xgGo=
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=walg9+X25Qf0Q2kOl7EPuRRmD7l8R+TPYwiRkuq/taA=;
+        b=r5dhjikOjoOSTxH7twYmSKEfHqErqjhxkSM9McqWoCouOgLOQB7kvkMdEEzxx/BDX6
+         TQrjLVB6hMIfuOa9g8Jq2JmzE97r9+o77os7tKeNZgQG+gQR3fBWEr5T9i+X01s9wRKF
+         poqPtQCKU93338RDg9n0sUG/ZEqcMMUZPZnDwkORaC63HcYlFTRnittAcohjRCM8pOOF
+         g/UPD7ABIbEWrLq01pVgh4ii12ETWhUPrCA8/9LHWHuLKXXESxjWthvXPWzyjMNL6Oot
+         Hlc8iuNIiurItn418+oTScTJhM5C5ncPhx/nMRn5oHIDm7HNscLwCkwchgANUMMiViBr
+         lmvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=+10FmmpqDQ0iNQ5Hk+84+aEcJCyKp/8SCF4Ixa+q6vY=;
-        b=vBgypaqJUEHAH+9wp4/8jN+gI19zNlyXKq5eGg9jEdKhSEsZxUHXTeL4zsAtc/4CN3
-         1Acns5LoF5fN+d1aHNJJM4i7K7yRlnYlwMtuTgFcrQ3LS6VdZHwwPQAMdT+z42Tm+tK3
-         116l8g9XHSBmHlNvkckArgn+/eeHfhetnVgQ122Q6SUqrSH5QCgoQ5be7+1y0Oyq/gcJ
-         gUQJbuKIHg1PNrni4PnlY+KRpIt4nE+jLR7ZaMFHJa1J8zpGZL9oCnwtI1V+2GpDQYC0
-         INjMV8gRurfZwbm/7b20Q/n1EiXH4PESmrYXOQC02AOsalqpNLj2b5Bi6Knm14SSx/Zz
-         sNxQ==
-X-Gm-Message-State: AJIora8wYkeo3EpUrrreIYB2oAz49rr6mOwGuHYi3uhkCyK9pvP24qyW
-        dSplJw6axeSz1noz5HBmzf91HmmBqFZM5u2QjK5Ivg==
-X-Google-Smtp-Source: AGRyM1uK9sCuCgSQeIp27nBgEZ2sQNBvuCqqCtZe9EH/XnmRvoODP7KKek4LsMwjVWsoM1WCvJ7STbiQ7QLirJs4Wok=
-X-Received: by 2002:a05:6808:171c:b0:334:9342:63ef with SMTP id
- bc28-20020a056808171c00b00334934263efmr822636oib.63.1656444340248; Tue, 28
- Jun 2022 12:25:40 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 28 Jun 2022 14:25:39 -0500
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=walg9+X25Qf0Q2kOl7EPuRRmD7l8R+TPYwiRkuq/taA=;
+        b=ss0Tct1EmEJ53LfIVorsm8OZRCQ12C3LkbJHi6+vtgcJGKMzh1/oLE/F0FN2GRGfaU
+         01HncIWtPBmTwt/ERHyGfk7PKu+xK6HEqO0OnRCJiN4m+RWjfDg+0DMtF0sLxr3f75Pv
+         pz9C+hnPDJqFz41Vf0QfKB1hZVf9uqVzK336d3Ml7XWwv03N/RqnnCuR9QQOSaRWfnJ0
+         fXSNzvzYOfLF2vpXSwxQOZ85jyQ3ra2jiogMFCm6rc1lnjYYPCh6rGELuMcGGJ1mSsaj
+         m0gmCrsfZWTpe/Q4L1fNw7O1hfPzlZ/mgU8FnTx/JwamHGJau2IRIP82HB4so0wEZ24M
+         qpgw==
+X-Gm-Message-State: AJIora9DG2fDoFVaLopR9Fo30xGAZLyaA1QZOOpBfYOFQFTvbKDB8pgz
+        qIQFdMxE6q+1/mZ9Rv4/IFQ+50noVfnINbJjGP3PaQ==
+X-Google-Smtp-Source: AGRyM1tix/MDbYpAocLhXqNa2cuD1sSvJJYVbcVLzqD1nAvkTSC00uKkSWSEB65C4UY4pgJ8yatan7ZYC8uyX2aYtAw=
+X-Received: by 2002:a25:e7d4:0:b0:66c:899b:49c6 with SMTP id
+ e203-20020a25e7d4000000b0066c899b49c6mr21915704ybh.291.1656444414438; Tue, 28
+ Jun 2022 12:26:54 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20220622173605.1168416-6-pmalani@chromium.org>
-References: <20220622173605.1168416-1-pmalani@chromium.org> <20220622173605.1168416-6-pmalani@chromium.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Tue, 28 Jun 2022 14:25:39 -0500
-Message-ID: <CAE-0n517BB8YbN5AZG6M3ZrZGOJDV=+t0R9d8wD+gVqO1aD1Xg@mail.gmail.com>
-Subject: Re: [PATCH v5 5/9] drm/bridge: anx7625: Add typec_mux_set callback function
-To:     Prashant Malani <pmalani@chromium.org>,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Cc:     bleung@chromium.org, heikki.krogerus@linux.intel.com,
-        Pin-Yen Lin <treapking@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
+References: <20220616005224.18391-1-krzysztof.kozlowski@linaro.org> <20220616005333.18491-4-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220616005333.18491-4-krzysztof.kozlowski@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 28 Jun 2022 21:26:43 +0200
+Message-ID: <CACRpkdawFWN_3EYV0p2AAgu54Lu1s0YgqiSiV3136wOSfSGhrg@mail.gmail.com>
+Subject: Re: [PATCH v3 04/40] dt-bindings: pinctrl: nuvoton,wpcm450-pinctrl:
+ align key node name
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Xin Ji <xji@analogixsemi.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,73 +71,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Prashant Malani (2022-06-22 10:34:34)
-> From: Pin-Yen Lin <treapking@chromium.org>
->
-> Add the callback function when the driver receives state
-> changes of the Type-C port. The callback function configures the
-> crosspoint switch of the anx7625 bridge chip, which can change the
-> output pins of the signals according to the port state.
+On Thu, Jun 16, 2022 at 2:54 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-Can this be combined with the previous two patches? They really don't
-stand alone because the previous two patches are adding stubs that are
-filled out later.
-
-> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> index bd21f159b973..5992fc8beeeb 100644
-> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> @@ -15,6 +15,7 @@
->  #include <linux/regulator/consumer.h>
->  #include <linux/slab.h>
->  #include <linux/types.h>
-> +#include <linux/usb/typec_dp.h>
->  #include <linux/usb/typec_mux.h>
->  #include <linux/workqueue.h>
+> gpio-keys schema requires keys to have more generic name.
 >
-> @@ -2582,9 +2583,64 @@ static void anx7625_runtime_disable(void *data)
->         pm_runtime_disable(data);
->  }
->
-> +static void anx7625_set_crosspoint_switch(struct anx7625_data *ctx,
-> +                                         enum typec_orientation orientation)
-> +{
-> +       if (orientation == TYPEC_ORIENTATION_NORMAL) {
-> +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_0,
-> +                                 SW_SEL1_SSRX_RX1 | SW_SEL1_DPTX0_RX2);
-> +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_1,
-> +                                 SW_SEL2_SSTX_TX1 | SW_SEL2_DPTX1_TX2);
-> +       } else if (orientation == TYPEC_ORIENTATION_REVERSE) {
-> +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_0,
-> +                                 SW_SEL1_SSRX_RX2 | SW_SEL1_DPTX0_RX1);
-> +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_1,
-> +                                 SW_SEL2_SSTX_TX2 | SW_SEL2_DPTX1_TX1);
-> +       }
-> +}
-> +
-> +static void anx7625_typec_two_ports_update(struct anx7625_data *ctx)
-> +{
-> +       if (ctx->typec_ports[0].dp_connected && ctx->typec_ports[1].dp_connected)
-> +               /* Both ports available, do nothing to retain the current one. */
-> +               return;
-> +       else if (ctx->typec_ports[0].dp_connected)
-> +               anx7625_set_crosspoint_switch(ctx, TYPEC_ORIENTATION_NORMAL);
-> +       else if (ctx->typec_ports[1].dp_connected)
-> +               anx7625_set_crosspoint_switch(ctx, TYPEC_ORIENTATION_REVERSE);
-> +}
-> +
->  static int anx7625_typec_mux_set(struct typec_mux_dev *mux,
->                                  struct typec_mux_state *state)
->  {
-> +       struct anx7625_port_data *data = typec_mux_get_drvdata(mux);
-> +       struct anx7625_data *ctx = data->ctx;
-> +       struct device *dev = &ctx->client->dev;
-> +       bool new_dp_connected, old_dp_connected;
-> +
-> +       if (ctx->num_typec_switches == 1)
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-How do we handle the case where the usb-c-connector is directly
-connected to the RX1/TX1 and RX2/TX2 pins? This device would be an
-orientation (normal/reverse) and mode switch (usb/dp) in that scenario,
-but this code is written in a way that the orientation switch isn't
-going to flip the crosspoint switch for the different pin assignments.
+Patch applied!
+
+Yours,
+Linus Walleij
