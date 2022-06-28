@@ -2,99 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF50C55CA21
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:57:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 140EA55D2BC
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:11:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345661AbiF1M1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 08:27:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55416 "EHLO
+        id S1345873AbiF1Mcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 08:32:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345607AbiF1M1p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 08:27:45 -0400
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CD30248D8;
-        Tue, 28 Jun 2022 05:27:45 -0700 (PDT)
-Received: by mail-qk1-f176.google.com with SMTP id c137so9418399qkg.5;
-        Tue, 28 Jun 2022 05:27:45 -0700 (PDT)
+        with ESMTP id S1345700AbiF1Mc2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 08:32:28 -0400
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D64492ED54
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 05:32:27 -0700 (PDT)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-31772f8495fso115279257b3.4
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 05:32:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RVfbgOitG18bb87yWBkH35J4JenCkCxRi/ygXGcpbt4=;
+        b=tGDyMj1XdbwFx5ENUdMBx7m0pmv1IRVf63OHKrsDLJaeKTSSU2j33ObLxTEK/a1s7Y
+         jrOPoEx2nYoNwN/ceD5w9u66ehVEcvbB7E3vPaR+lDZvoKpzNs1eTK0ER7hkvQe6m/VL
+         vc+wfNUJ6WJ7Sye6jdDw4Ow3y/KAqjzKYuY6qwnQ9WhqpoeIWOqI32MWXDG6n7fy9Cpk
+         6D931yS1B2I3am70V095kXKMLaW15fL1j0Hmj65paVEps+dGjAg7uti5JJ/xTsZ3ffcU
+         /T1xlJJOoIPNCE4UuUNFGc1XtroA22QdqISWZXog6bvdHHDaXe0g6WdCDKQnW7q4V5ah
+         E3Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=fS98LCW4qTAzPueAfZNMOYZf3Q2ntP8LgD6kZPncPEw=;
-        b=1H4BjmbCFQkEYK29E2NgEjNJRpJ+JQC0JHjfhweh6iu83OosFg2lrjNKGFWeqFs+2L
-         jDTT4jMIkYmaTVtHX8sJTP+9cDyrtZ9LMvUdeh1ui98zLBfu9I5OwjqUGu/8ftKk8VST
-         vFV+GRkuZSDcDB9W4HAUINqNx5RJI3kgN+Tb1HWO3BPFJDo0fx86UeWRaKFn66aB7sHW
-         CCBMT+u/tylqQ1JP2dZS0zEdOM85Xhkb7tqUwAs1czvy2zmNYP/IDXTGU9qT2l+byIih
-         iPW5fE8IfugHFN7+6zods26SCybnrWHUwFBSaD6ERpQaNTvlvq8F2foZQB/+bRBRK0dS
-         auqQ==
-X-Gm-Message-State: AJIora/PB/0mI3/NHxuM95HihA/ttLeeMhRHsvRMcOhn1rfTgNzT1WEI
-        H//WxdUmerU2QejDtQ8vKmo/Ura6wdLKJA==
-X-Google-Smtp-Source: AGRyM1v0JPFIolFdz/tsmneLcs3n09Gx/DKhGsFa15Pn8XEkdoLwuqEhMcCWe+MuMQGwhLbTj88zLQ==
-X-Received: by 2002:a05:620a:1a23:b0:6af:6ceb:2ed with SMTP id bk35-20020a05620a1a2300b006af6ceb02edmr424873qkb.42.1656419264070;
-        Tue, 28 Jun 2022 05:27:44 -0700 (PDT)
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
-        by smtp.gmail.com with ESMTPSA id b20-20020ae9eb14000000b006aee8580a37sm10623545qkg.10.2022.06.28.05.27.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jun 2022 05:27:43 -0700 (PDT)
-Received: by mail-yb1-f182.google.com with SMTP id r3so21941940ybr.6;
-        Tue, 28 Jun 2022 05:27:43 -0700 (PDT)
-X-Received: by 2002:a05:6902:1141:b0:669:3f2a:c6bb with SMTP id
- p1-20020a056902114100b006693f2ac6bbmr18087185ybu.365.1656419263425; Tue, 28
- Jun 2022 05:27:43 -0700 (PDT)
+        bh=RVfbgOitG18bb87yWBkH35J4JenCkCxRi/ygXGcpbt4=;
+        b=DQtLbB/YTNyv9Eq4ISwLYEhuQV3vDWYEYaYvdivTO4nY3+XgK8bcmI8NOVYFNNJh5a
+         QXlFgANE9pZnu6Q7WqPJnBFvaV19uvVyztE2kFxp9V0UPIUQ++DtSW7FzpX7Z2yg85Dn
+         kpNvSXFupPx2AWfSC4HAqRi0PBE40x79ppFnTSG+Bl64ftIbmo0Cjxg+Up/NmYVGo9z3
+         uP0KQuhDsGXqYGnKQewXQWk5pFgs/FSj4JaWoMNcvl8umEeewxuioTECMOzHhfmeYXX/
+         vvCDgGWkXfBDa4FsGVXVHrFNxXwlMMkr/ieqT7K4aBRAYe6j5zX6U3t6fj7BKawLolnp
+         rJug==
+X-Gm-Message-State: AJIora/j1YqNPak3eGPO4sw/Za/Z3q6BQyqPBPf3ps7yIS5sZMLTwTRQ
+        xq9ZMl4M8/AEIPSAood5sAgkgBYtBfooZ16YduvgoQ==
+X-Google-Smtp-Source: AGRyM1tZOg8a8akbWJ6uq2aHl4kzEALWqREo/NhIhOnARsOJw9Xp0MQNW5ZunAPwLkiwJuL6LtQs7iavkhL0jCc/bFc=
+X-Received: by 2002:a81:d05:0:b0:317:76a1:9507 with SMTP id
+ 5-20020a810d05000000b0031776a19507mr21222754ywn.151.1656419547105; Tue, 28
+ Jun 2022 05:32:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220624084833.22605-1-phil.edworthy@renesas.com> <20220624084833.22605-2-phil.edworthy@renesas.com>
-In-Reply-To: <20220624084833.22605-2-phil.edworthy@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 28 Jun 2022 14:27:31 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXnRxxJGtExEiaXC=eo8+iqjo9+0j1xMU3GCf_WKm6jDg@mail.gmail.com>
-Message-ID: <CAMuHMdXnRxxJGtExEiaXC=eo8+iqjo9+0j1xMU3GCf_WKm6jDg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: renesas: Add DT bindings for
- RZ/V2M pinctrl
-To:     Phil Edworthy <phil.edworthy@renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+References: <cover.1655723462.git.hakan.jansson@infineon.com> <0e3c48f0f38b167d83feb102284eaf24caa8c500.1655723462.git.hakan.jansson@infineon.com>
+In-Reply-To: <0e3c48f0f38b167d83feb102284eaf24caa8c500.1655723462.git.hakan.jansson@infineon.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 28 Jun 2022 14:32:15 +0200
+Message-ID: <CACRpkdZu9RrmWN+AZi_wy-UsJtdsfBHW+27Nj+n7YRSRXpoSEQ@mail.gmail.com>
+Subject: Re: [PATCH 3/4] Bluetooth: hci_bcm: Prevent early baudrate setting in
+ autobaud mode
+To:     Hakan Jansson <hakan.jansson@infineon.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        linux-bluetooth@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 24, 2022 at 10:49 AM Phil Edworthy
-<phil.edworthy@renesas.com> wrote:
-> Add device tree binding documentation and header file for Renesas
-> RZ/V2M pinctrl.
+On Mon, Jun 20, 2022 at 2:02 PM Hakan Jansson
+<hakan.jansson@infineon.com> wrote:
+
+> Always prevent trying to set device baudrate before calling setup() when
+> using autobaud mode.
 >
-> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v2:
->  - Remove power-source as it is not supported
->  - Add enum and description for slew-rate
->  - Remove 'oneOf' and 'items' for compatible string
->  - Add description for the interrupts
->  - Remove input-enable property as it is not appropriate
+> This was previously happening for devices which had device specific data
+> with member no_early_set_baudrate set to 0.
+>
+> Signed-off-by: Hakan Jansson <hakan.jansson@infineon.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-pinctrl-for-v5.20.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Yours,
+Linus Walleij
