@@ -2,106 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01F6955D62A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:16:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19AA455CFFF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:07:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245485AbiF1G6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 02:58:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37596 "EHLO
+        id S1343739AbiF1HGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 03:06:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343768AbiF1G6k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 02:58:40 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6116C2716C
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 23:58:39 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id n1so16167448wrg.12
-        for <devicetree@vger.kernel.org>; Mon, 27 Jun 2022 23:58:39 -0700 (PDT)
+        with ESMTP id S1343698AbiF1HGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 03:06:33 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFDA160DA;
+        Tue, 28 Jun 2022 00:06:31 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id fi2so23732177ejb.9;
+        Tue, 28 Jun 2022 00:06:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uWCwSBsZzcDsXerOmBKtj8q7pC0dytvTE5QF/VhPSWk=;
-        b=uMaTZlsfbzqjhEiVTj0O/iYD7nAQ1DmFCBbQIqU/xo28jBNsxWPGVfaJ7JpKcO8PYx
-         4WLYUtzmU7WIE1U0Zn9KXiJjDbJuqowo2U8MZ9vzM5HTlsMO4gCwYCI3SoiXVnlwjJ7v
-         A/N7vLB8ANExEvDVKHqabUxGnYCgAnvGbXPDOZoWVY2/U3oH0futdZga/r+c1wdehzkS
-         lf0rsv9tN5K/HXXZ4XsH1d2M/g/8QfZNBYbUTmQDYU4TA/Rzf0LuQrSi1zieE5SNIWsp
-         7CJ9rkB5ecjFAnLkt1mVIB3m3xCl76+di0kDmoLgMVB/lu5/CCtqUF2BlZA9LZz7LEsZ
-         I9zw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=coq/7vnAq5AAKiy+JRJn8yCWHeyO1w5IBcA9B1tk73A=;
+        b=I8P3Xi33BP3BMxfE7Od5sVWn5KHPcp3e9D02zms7oD8kMgJDEhtvNNpDjp0fjhqhQ6
+         e5/O12Lol3R7P/Pt0s8SoLfIDUKLn2GOAf+mjMCu81/DfohdcAZ7OSnd4UWAu7ZRyOsM
+         ToGqMCeEI1pPKcpHLcPZMg7R8lv/Ddxyd+FZzC3a4mAMHw2Hmd1jVDZX949tHrVH09xc
+         d6AbbeLE3/Bc7nvhfab5YothtgarpirIsY3nIDyBKuDfY2D9yWaTnvbQo9mVnevCkcRA
+         UzOKxsoRsaADCVTC7at5m1mBeGkvCqOSPND1l5ZEZfDoZLcvrG7PmPul8GvLLUwKz0Ha
+         lBIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=uWCwSBsZzcDsXerOmBKtj8q7pC0dytvTE5QF/VhPSWk=;
-        b=sfBUPa566YutX55caiPJ/uxdqAgrV5XNzh4Fp8c3SDreExDEnQgkQ+RrZfwp9P3xjA
-         AKeiBqXAMmoPdm0hSynUN9YeZq4bb9iEDob2zw9fGNjJi1MIfLSIjvTwmc2rdaDDWho1
-         DhkvzKn/wqwE8JFycrpPmUAz09kwGAttVjhjiHYDlMsjqB7JoqviZz8cksWbUaLgEmmZ
-         vjEK6W4f1snYXJ3ir3+dU6i0ekdbsOxIbBWg18wrojF603/WJgl+G9UOOWoQJRXC99/G
-         +UNkt6C/p9coyuvVu/xJikO9FTjWTqh9TPLPhbd+sda30H8puwNcbmABDrBumpbQTQZ5
-         USIw==
-X-Gm-Message-State: AJIora+HZs65hlpbtlTUT7X4uBKWtzklNUJXj8nk1PVZ3qcOZmxqSMH1
-        FPJnSOPAhri3V7BdUR93XhOHOQ==
-X-Google-Smtp-Source: AGRyM1s2XUn6XqdPxK0J7NgHSR6nFE03RvtcwySu69kLez+73qYwJFz8S3w5dEWFd7y0gRbfY+UlcA==
-X-Received: by 2002:a5d:4102:0:b0:21b:8a6f:ff64 with SMTP id l2-20020a5d4102000000b0021b8a6fff64mr15859102wrp.186.1656399517870;
-        Mon, 27 Jun 2022 23:58:37 -0700 (PDT)
-Received: from [192.168.0.251] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id t10-20020adfe10a000000b00210320d9fbfsm15092681wrz.18.2022.06.27.23.58.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jun 2022 23:58:37 -0700 (PDT)
-Message-ID: <b0468d5e-fa2d-c874-3daa-6670509c15a0@linaro.org>
-Date:   Tue, 28 Jun 2022 08:58:35 +0200
+        bh=coq/7vnAq5AAKiy+JRJn8yCWHeyO1w5IBcA9B1tk73A=;
+        b=RfXYqWiYGhkO5LCF+gdKJGh3dYCYtaNGve51lqCCaAIBj07IojsuhEEJhgz35v4h3R
+         EgXF+c1Ei26yLYGd1lWr0lVvZ4RXf/jyiJk5R/7Mb8O3ZwquM06EqqHxg6dV+DMJAcUG
+         WnysCOHoMFa9ONesdZrkS+n4uZYOf+G4vp0/u1KmJL7SJn+xzt+hcS2a7JMaIPGafGzv
+         iq9vsw5tD68KlTTcnNTLWWXUT1Kp+lZOFaj1Yb3U4Y8zWUEmA1dAoVpfojZjnJxhb8OE
+         zM93EfIclrVZTiavQ7euDeeBgEPLDdmAKIoLZqyiKRcBa/6b4KpkSbBEhA2tbnv0vOOX
+         dD7A==
+X-Gm-Message-State: AJIora9iahWtMoAZkGaL5CuBeixWlR0YoYJhJllMYurFb3yDZeS+t/Gd
+        OgjNzVlIdVd5kGaFpndk2ZA=
+X-Google-Smtp-Source: AGRyM1sFYa5hMPGAhi+KvUvHpnnZXMuSNpdGu5gamm+cLp/Q9Ht/DBU0nPyOIqARkRBFQgOZL2vp9A==
+X-Received: by 2002:a17:906:37c6:b0:70c:f9f:f0c5 with SMTP id o6-20020a17090637c600b0070c0f9ff0c5mr16716876ejc.743.1656399990436;
+        Tue, 28 Jun 2022 00:06:30 -0700 (PDT)
+Received: from demon-pc.localdomain ([79.119.98.153])
+        by smtp.gmail.com with ESMTPSA id k11-20020a1709062a4b00b00726abf9a32bsm1834556eje.138.2022.06.28.00.06.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jun 2022 00:06:29 -0700 (PDT)
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+X-Google-Original-From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+Subject: [PATCH v6 0/2] AD4130
+Date:   Tue, 28 Jun 2022 10:05:51 +0300
+Message-Id: <20220628070553.3933748-1-cosmin.tanislav@analog.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 2/3] clk: samsung: exynosautov9: add missing gate clks for
- peric0/c1
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        'Sylwester Nawrocki' <s.nawrocki@samsung.com>,
-        'Tomasz Figa' <tomasz.figa@gmail.com>,
-        'Chanwoo Choi' <cw00.choi@samsung.com>,
-        'Stephen Boyd' <sboyd@kernel.org>,
-        'Michael Turquette' <mturquette@baylibre.com>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>
-Cc:     'Alim Akhtar' <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220627005210.6473-1-chanho61.park@samsung.com>
- <CGME20220627005413epcas2p37d6b3cbea055cecade47ad304b40b7e3@epcas2p3.samsung.com>
- <20220627005210.6473-3-chanho61.park@samsung.com>
- <6d7b0ea7-7918-aea4-6f2f-46d4870d92ad@linaro.org>
- <000301d88a94$37aa7320$a6ff5960$@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <000301d88a94$37aa7320$a6ff5960$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2022 04:10, Chanho Park wrote:
->> Subject: Re: [PATCH 2/3] clk: samsung: exynosautov9: add missing gate clks
->> for peric0/c1
->>
->> On 27/06/2022 02:52, Chanho Park wrote:
->>> "gout_peric0_pclk_1" and "gout_peric1_pclk_1" should be added to
->>> peric0 and peric1 respectively.
->>
->> Where is exactly the bug? The commit msg suggests that they were added to
->> different block, but there is no code removal.
-> 
-> I thought they should be added from previous patch because clock IDs were existing without implementations.
-> I can drop fixes tags next patchset.
+AD4130-8 is an ultra-low power, high precision, measurement solution for
+low bandwidth battery operated applications.
 
-The clock IDs as bindings can be added upfront - it's independent from
-implementation. Please drop the fixes.
+The fully integrated AFE (Analog Front-End) includes a multiplexer for up
+to 16 single-ended or 8 differential inputs, PGA (Programmable Gain
+Amplifier), 24-bit Sigma-Delta ADC, on-chip reference and oscillator,
+selectable filter options, smart sequencer, sensor biasing and excitation
+options, diagnostics, and a FIFO buffer.
 
-Best regards,
-Krzysztof
+V1 -> V2
+ * add kernel version to ABI file
+ * merge ABI patch into driver patch
+ * make copyright header similar to other drivers
+ * rearrange includes
+ * use units.h defines where possible and add unit sufix to
+   SOFT_RESET_SLEEP define
+ * remove ending comma to last members of enums / lists
+ * remove unused FILTER_MAX define
+ * use BIT macro for PIN_FN_*
+ * rearrange SETUP_SIZE definition
+ * group bools in ad4130_state and ad4130_chan_info
+ * put scale_tbls definition on one line
+ * remove newline before reg size == 0 check
+ * put mask used as value in a variable
+ * remove useless ret = 0 assignment
+ * make buffer attrs oneline
+ * use for_each_set_bit in update_scan_mode
+ * use if else for internal reference voltage error checking
+ * inline reference voltage check
+ * check number of vbias pins
+ * remove .has_int_pin = false
+ * remove avail_len for IIO_AVAIL_RANGE
+ * remove useless enabled_channels check in unlink_slot
+ * remove unused AD4130_RESET_CLK_COUNT define
+ * only call fwnode_handle_put for child in case of error
+ * default adi,reference-select to REFIN1
+ * default adi,int-ref-en to false
+ * of_irq_get_byname -> fwnode_irq_get_byname
+ * P1 -> P2 as interrupt pin options
+ * add missing comma in db3_freq_avail init
+ * cast values to u64 to make math using units.h work
+ * add datasheet reference to IRQ polarity
+ * add comment about disabling channels in predisable
+ * add part number prefix find_table_index
+ * return voltage from get_ref_voltage
+ * add datasheet reference for internal reference voltage selection
+ * add comment explaining AIN and GPIO pin sharing
+ * parse channel setup before parsing excitation pins
+ * only validate excitation pin if value is not off
+ * use FIELD_PREP for bipolar and int_ref_en
+ * put devm_regmap_init call on one line
+ * introduce a slot_info struct to contain setup_info for each slot
+ * enable internal reference automatically if needed
+ * decide mclk sel based on adi,ext-clk-freq and adi,int-clk-out
+ * dt-bindings: use internal reference explicitly
+ * dt-bindings: set type for adi,excitation-pin-0
+ * dt-bindings: set $ref for adi,vbias-pins
+ * dt-bindings: remove minItems from interrupts property
+ * dt-bindings: remove adi,int-ref-en default value
+ * dt-bindings: remove adi,bipolar default value
+ * dt-bindings: inline adi,int-ref-en description
+ * dt-bindings: default adi,reference-select to REFIN1
+ * dt-bindings: clean up description for diff-channels and
+   adi,reference-select
+ * dt-bindings: add more text to interrupt-names description
+ * dt-bindings: turn interrupt-names into a single string
+ * dt-bindings: add maxItems to adi,vbias-pins
+
+V2 -> V3
+ * dt-bindings: add interrupt controller include to example
+ * dt-bindings: remove $ref in diff-channels
+
+V3 -> V4:
+  * handle watermark value as number of datum
+  * DOUT_OR_INT -> INT
+  * AD4130_8_NAME -> AD4130_NAME
+  * return early in case of failure when parsing fw channel
+  * use IIO_DMA_MINALIGN for aligning buffer
+  * add comments for fs_to_freq and freq_to_fs
+  * remove support for other variants because of unavailability of model
+    ids for future chip variants
+  * remove support for db3 frequency because of inaccuracy when calculating
+  * remove ternary where possible
+  * refactor defines
+  * dt-bindings: add unevaluatedProperties: true to channel node
+
+V4 -> V5:
+ * simplify get_ref_voltage function and move print statement to first user
+ * inline statements not going over the 80 cols limit
+ * simplify scale table filling
+ * determine table length inside find table index macro
+ * current_na -> tmp inside ad4130_parse_fw_setup
+ * define full register set
+ * put range register size definitions on one line
+ * nanoamps -> nanoamp
+ * adi,ext-clk-freq -> adi,ext-clk-freq-hz
+ * return directly in ad4130_validate_vbias_pins
+ * place comment regarding irq_trigger at assignment
+ * inversed -> inverted inside irq_trigger comment
+ * do not initialize int_clk_out
+ * return directly in ad4130_validate_diff_channels
+ * add () after reference to update_scan_mode in comment
+ * use BIT() for channel offset
+ * comment nitpicks on slot finding
+ * return -EINVAL out of reg read for invalid sizes
+ * place regmap at start of ad4130_state
+ * place bools at the end of ad4130_setup_info
+ * remove commas after terminators
+ * dt-bindings: only allow one element in reg
+ * dt-bindings: inline reg description
+ * dt-bindings: remove $ref from adi,ext-clk-freq-hz
+
+V5 -> V6:
+ * bump KernelVersion
+ * use IIO_DEVICE_ATTR_RO
+ * nitpick inside mutex comment
+ * use valid_mask for validating gpios
+ * improve DMA comment
+
+Cosmin Tanislav (2):
+  dt-bindings: iio: adc: add AD4130
+  iio: adc: ad4130: add AD4130 driver
+
+ .../ABI/testing/sysfs-bus-iio-adc-ad4130      |   36 +
+ .../bindings/iio/adc/adi,ad4130.yaml          |  259 +++
+ MAINTAINERS                                   |    8 +
+ drivers/iio/adc/Kconfig                       |   13 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/ad4130.c                      | 2014 +++++++++++++++++
+ 6 files changed, 2331 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad4130
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml
+ create mode 100644 drivers/iio/adc/ad4130.c
+
+-- 
+2.36.1
+
