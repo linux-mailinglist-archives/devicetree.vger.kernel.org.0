@@ -2,144 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7384155C7D0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5981155D581
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:15:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231265AbiF1HVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 03:21:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53700 "EHLO
+        id S233156AbiF1Hko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 03:40:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239944AbiF1HVc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 03:21:32 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 940422CE17;
-        Tue, 28 Jun 2022 00:21:31 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25S11cMf020483;
-        Tue, 28 Jun 2022 09:21:16 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=vrWQmttz471sHMcNs5New/QqP5VqrpeycGKyDRxFuXY=;
- b=pqL1gw129gHc/+EfyrjHYyJnva20mjgFlZoccs1i0eS8PFtns+Tmqt+RNNIt1w6DSd0D
- AftgGD14+iRqV/DafxjzPQPnmFaTXO2EWhEoTDBz12T+V+3Au9D9eNORESqTyxXrjanb
- fXH1eZ9whgH6r0k75jLsk65g2fN5EfCV+kRIYssJufv0QRXvNbHLUF0aF86QRIKIZ9WW
- zYBCZi5M4XLO+vJ6IkM6hscFk0yRoUB1otVHxxBgfONDdZ65glQ5WZA2XCPLMPjRVZyw
- ZWwZ4bO9aqqA6kQJK/GZowpdtKOgjtHASvXemup4PO8E8UxJyqzn2lIqCweMo8r66Zbb 7Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3gwqg9ggac-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Jun 2022 09:21:16 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5733710002A;
-        Tue, 28 Jun 2022 09:21:14 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4348220FA3B;
-        Tue, 28 Jun 2022 09:21:14 +0200 (CEST)
-Received: from [10.48.1.102] (10.75.127.47) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 28 Jun
- 2022 09:21:13 +0200
-Message-ID: <bd35eb19-cfda-4799-1ab0-0578d3c79466@foss.st.com>
-Date:   Tue, 28 Jun 2022 09:21:12 +0200
+        with ESMTP id S242787AbiF1Hkn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 03:40:43 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 589992CDF3
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 00:40:41 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id pk21so23973615ejb.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 00:40:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=v4aAjKeEqKxV1NZCwNURdwE5iyyJ3850e9bBA4IL6TE=;
+        b=fZUVuR8MAnFt80lyGhLyLIoKAZ8EbaWnwlr6Dhqgnaz4qf8HDNGHcRaKlb+ffefFJF
+         +cK56e2+AQUxXYRmZkJPs9Gqn4upLMX4hOm36+ieqy54hngUL7kVsqXI62DzUFXdXpTu
+         bFIwTrnhyv1W1PB9ROoaFlzYiPc33SZesTzb87wFbCI41WzQZW124LjmMA+ilICi8hZ5
+         W1VgALipzx2vfLrhDkgYkIxOAsWCOu7Ki3ZCe44lF8apBfbyuJDn2mIyZxXW9XiQgrkO
+         3mxbj2T9gyOiNJeiKNwA5txvaY24VIS8tesvFf/gvUHlwo+G8y1RmTyqceXXzcOQcaIa
+         aEMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=v4aAjKeEqKxV1NZCwNURdwE5iyyJ3850e9bBA4IL6TE=;
+        b=B0gb2uIZCyXT3APdEI9IYJf1GHjCUJwPpTzO7Q4SdcRvUaLiJx3hzT/FkMYWXO4Fl2
+         cAJ3jX5vqEinURrpKje3iwCHoXrHepq+6/idtyNTU2EWBo55FfVq8GYNU5EWBDB/Wj4S
+         N8CNpq5zepYC0J8KpaSBfLIoXnIFddkEB3WlQI7HO7gcU8wV9REM/+3pM2PmiJtqKPWn
+         +jMBwoF7EfyXJdEspmrgySivkA+/v73H6PdTX3AeZyUC9bapuS92htf60WoxQ5tQ1TR6
+         CGMg7NmDn0Rd9dM0rpfVzcENz4esu2eHT8HsGkXfZrVu7SEHm3FDQNA0wXvECN9tZLMp
+         LPzw==
+X-Gm-Message-State: AJIora9Qwup0ihBJwfMMhUqW4IuvHDQB+95jnYAOJM9W6dK9q8ogPMjv
+        wzZn/l/wjRNy+7EQtp8MRHUByQ==
+X-Google-Smtp-Source: AGRyM1sJNF5OFItLhacBVarsuGoAnjScolptSzxQIcldwkpTgGDiPvm/BOZVSzA2WJLkg3Pl6IF0Cw==
+X-Received: by 2002:a17:906:7394:b0:722:e9c5:8e82 with SMTP id f20-20020a170906739400b00722e9c58e82mr16543887ejl.239.1656402039481;
+        Tue, 28 Jun 2022 00:40:39 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id cb25-20020a0564020b7900b004359dafe822sm9069835edb.29.2022.06.28.00.40.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jun 2022 00:40:38 -0700 (PDT)
+Date:   Tue, 28 Jun 2022 10:40:36 +0300
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     linux-imx@nxp.com, robh+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com,
+        stefan@agner.ch, linus.walleij@linaro.org,
+        daniel.lezcano@linaro.org, tglx@linutronix.de, olof@lixom.net,
+        linux@armlinux.org.uk, abel.vesa@nxp.com, dev@lynxeye.de,
+        marcel.ziswiler@toradex.com, tharvey@gateworks.com,
+        leoyang.li@nxp.com, sebastian.reichel@collabora.com,
+        cniedermaier@dh-electronics.com, clin@suse.com,
+        giulio.benetti@benettiengineering.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v4 08/13] clk: imx: Update pllv3 to support i.MXRT1170
+Message-ID: <YrqwdCsLgxJYPfOw@linaro.org>
+References: <20220626064523.3683775-1-Mr.Bossman075@gmail.com>
+ <20220626064523.3683775-9-Mr.Bossman075@gmail.com>
+ <YrmxdaSqHnEg28uG@linaro.org>
+ <c8f13238-c927-4aab-e54d-3a1a5c031877@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 2/4] usb: typec: ucsi: stm32g0: add support for stm32g0
- i2c controller
-Content-Language: en-US
-To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
-CC:     <robh+dt@kernel.org>, <gregkh@linuxfoundation.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <amelie.delaunay@foss.st.com>, <alexandre.torgue@foss.st.com>
-References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
- <20220624155413.399190-3-fabrice.gasnier@foss.st.com>
- <YrmtzDfFm17PFl2r@kuha.fi.intel.com>
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-In-Reply-To: <YrmtzDfFm17PFl2r@kuha.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-06-27_09,2022-06-24_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c8f13238-c927-4aab-e54d-3a1a5c031877@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/27/22 15:17, Heikki Krogerus wrote:
-> Hi,
-> 
-> On Fri, Jun 24, 2022 at 05:54:11PM +0200, Fabrice Gasnier wrote:
->> +static int ucsi_stm32g0_probe(struct i2c_client *client, const struct i2c_device_id *id)
->> +{
->> +	struct device *dev = &client->dev;
->> +	struct ucsi_stm32g0 *g0;
->> +	int ret;
->> +
->> +	g0 = devm_kzalloc(dev, sizeof(*g0), GFP_KERNEL);
->> +	if (!g0)
->> +		return -ENOMEM;
->> +
->> +	g0->dev = dev;
->> +	g0->client = client;
->> +	init_completion(&g0->complete);
->> +	i2c_set_clientdata(client, g0);
->> +
->> +	g0->ucsi = ucsi_create(dev, &ucsi_stm32g0_ops);
->> +	if (IS_ERR(g0->ucsi))
->> +		return PTR_ERR(g0->ucsi);
->> +
->> +	ucsi_set_drvdata(g0->ucsi, g0);
->> +
->> +	/* Request alert interrupt */
->> +	ret = request_threaded_irq(client->irq, NULL, ucsi_stm32g0_irq_handler, IRQF_ONESHOT,
->> +				   dev_name(&client->dev), g0);
->> +	if (ret) {
->> +		dev_err_probe(dev, ret, "request IRQ failed\n");
->> +		goto destroy;
->> +	}
->> +
->> +	ret = ucsi_register(g0->ucsi);
->> +	if (ret) {
->> +		dev_err_probe(dev, ret, "ucsi_register failed\n");
->> +		goto freeirq;
->> +	}
-> 
-> If there isn't UCSI firmware, then ucsi_register() will always safely
-> fail here, right?
+On 22-06-27 12:11:31, Jesse Taube wrote:
+>
+>
+> On 6/27/22 09:32, Abel Vesa wrote:
+> > On 22-06-26 02:45:18, Jesse Taube wrote:
+> > > The i.MXRT1170 has a pll that has the multiplier bits inverted and
+> > > cannot be changed add IMX_PLLV3_GENERICV2.
+> > >
+> > > The i.MXRT1170 also has the lock bit moved as well as the
+> > > power bit inverted the power bit also is in different locations on each
+> > > pll control register.
+> > >
+> > > Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> > > ---
+> > > V1 -> V2:
+> > >   - Nothing done
+> > > V2 -> V3:
+> > >   - Nothing done
+> > > V3 -> V4:
+> > >   - Nothing done
+> > > ---
+> > >   drivers/clk/imx/clk-pllv3.c | 57 +++++++++++++++++++++++++++++++++++--
+> > >   drivers/clk/imx/clk.h       |  4 +++
+> > >   2 files changed, 59 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/clk/imx/clk-pllv3.c b/drivers/clk/imx/clk-pllv3.c
+> > > index eea32f87c60a..740412ea2f7e 100644
+> > > --- a/drivers/clk/imx/clk-pllv3.c
+> > > +++ b/drivers/clk/imx/clk-pllv3.c
+> > > @@ -23,6 +23,7 @@
+> > >
+> > >   #define BM_PLL_POWER		(0x1 << 12)
+> > >   #define BM_PLL_LOCK		(0x1 << 31)
+> > > +#define BM_PLL_LOCK_V2		(0x1 << 29)
+> > >   #define IMX7_ENET_PLL_POWER	(0x1 << 5)
+> > >   #define IMX7_DDR_PLL_POWER	(0x1 << 20)
+> > >
+> > > @@ -34,6 +35,7 @@
+> > >    * @base:	 base address of PLL registers
+> > >    * @power_bit:	 pll power bit mask
+> > >    * @powerup_set: set power_bit to power up the PLL
+> > > + * @lock_bit:	 pll lock bit mask
+> > >    * @div_mask:	 mask of divider bits
+> > >    * @div_shift:	 shift of divider bits
+> > >    * @ref_clock:	reference clock rate
+> > > @@ -48,6 +50,7 @@ struct clk_pllv3 {
+> > >   	void __iomem	*base;
+> > >   	u32		power_bit;
+> > >   	bool		powerup_set;
+> > > +	u32		lock_bit;
+> > >   	u32		div_mask;
+> > >   	u32		div_shift;
+> > >   	unsigned long	ref_clock;
+> > > @@ -65,7 +68,7 @@ static int clk_pllv3_wait_lock(struct clk_pllv3 *pll)
+> > >   	if ((pll->powerup_set && !val) || (!pll->powerup_set && val))
+> > >   		return 0;
+> > >
+> > > -	return readl_relaxed_poll_timeout(pll->base, val, val & BM_PLL_LOCK,
+> > > +	return readl_relaxed_poll_timeout(pll->base, val, val & pll->lock_bit,
+> > >   					  500, PLL_LOCK_TIMEOUT);
+> > >   }
+> > >
+> > > @@ -101,7 +104,7 @@ static int clk_pllv3_is_prepared(struct clk_hw *hw)
+> > >   {
+> > >   	struct clk_pllv3 *pll = to_clk_pllv3(hw);
+> > >
+> > > -	if (readl_relaxed(pll->base) & BM_PLL_LOCK)
+> > > +	if (readl_relaxed(pll->base) & pll->lock_bit)
+> > >   		return 1;
+> > >
+> > >   	return 0;
+> > > @@ -155,6 +158,39 @@ static const struct clk_ops clk_pllv3_ops = {
+> > >   	.set_rate	= clk_pllv3_set_rate,
+> > >   };
+> > >
+> > > +static int clk_pllv3_genericv2_set_rate(struct clk_hw *hw, unsigned long rate,
+> > > +		unsigned long parent_rate)
+> > > +{
+> > > +	struct clk_pllv3 *pll = to_clk_pllv3(hw);
+> > > +	u32 val, div;
+> > > +
+> > > +	div = (readl_relaxed(pll->base) >> pll->div_shift) & pll->div_mask;
+> > > +	val = (div == 0) ? parent_rate * 22 : parent_rate * 20;
+> > > +
+> > > +	if (rate == val)
+> > > +		return 0;
+> > > +
+> > > +	return -EINVAL;
+> > > +}
+> > > +
+> > > +static unsigned long clk_pllv3_genericv2_recalc_rate(struct clk_hw *hw,
+> > > +					   unsigned long parent_rate)
+> > > +{
+> > > +	struct clk_pllv3 *pll = to_clk_pllv3(hw);
+> > > +	u32 div = (readl_relaxed(pll->base) >> pll->div_shift)  & pll->div_mask;
+> > > +
+> > > +	return (div == 0) ? parent_rate * 22 : parent_rate * 20;
+> > > +}
+> > > +
+> > > +static const struct clk_ops clk_pllv3_genericv2_ops = {
+> > > +	.prepare	= clk_pllv3_prepare,
+> > > +	.unprepare	= clk_pllv3_unprepare,
+> > > +	.is_prepared	= clk_pllv3_is_prepared,
+> > > +	.recalc_rate	= clk_pllv3_genericv2_recalc_rate,
+> > > +	.round_rate	= clk_pllv3_round_rate,
+> > > +	.set_rate	= clk_pllv3_genericv2_set_rate,
+> > > +};
+> > > +
+> > >   static unsigned long clk_pllv3_sys_recalc_rate(struct clk_hw *hw,
+> > >   					       unsigned long parent_rate)
+> > >   {
+> > > @@ -407,6 +443,13 @@ static const struct clk_ops clk_pllv3_enet_ops = {
+> > >   	.recalc_rate	= clk_pllv3_enet_recalc_rate,
+> > >   };
+> > >
+> > > +void imx_clk_hw_pll3_powerbit(struct clk_hw *hw, u8 shift)
+> > > +{
+> > > +	struct clk_pllv3 *pll = to_clk_pllv3(hw);
+> > > +
+> > > +	pll->power_bit = shift;
+> > > +}
+> > > +
+> >
+> > I can see why you need this, but I think the approach is not quite
+> > right.
+>
+> I wasn't sure if modifying the function like that was appropriate for this,
+> but sense it is I will do like you said.
+>
+> > I suggest we rename the imx_clk_hw_pllv3 to __imx_clk_hw_pllv3 and add
+> > the power_bit parameter to it (and set it accordingly inside).
+> >
+> > Then we should do the following in imx/clk.h:
+> >
+> > #define imx_clk_hw_pllv3(name, parent_names, num_parents, parent,	\
+> > 				bypass1, bypass2, base, flags)		\
+> > 	__imx_clk_hw_pllv3(name, parent_names, num_parents, parent,	\
+> > 				bypass1, bypass2, base, flags, BM_PLL_POWER)
+>
+> One problem BM_PLL_POWER will have to be in imx/clk.h, but then it will be
+> the only macro like it in the file, is line 9 ok for it.
+> I could also make a function instead of a macro.
+>
 
-Hi Heikki,
+Line 9 is OK. #define will do.
 
-Yes, in such a case, the first i2c read (UCSI_VERSION) in
-ucsi_register() will return an error and safely fail here.
+There are macros like that for the composite clocks too.
 
-Thanks for reviewing,
-Best Regards,
-Fabrice
-
-> 
-> 
->> +	return 0;
->> +
->> +freeirq:
->> +	free_irq(client->irq, g0);
->> +destroy:
->> +	ucsi_destroy(g0->ucsi);
->> +
->> +	return ret;
->> +}
-> 
-> 
 > thanks,
-> 
+> Jesse Taube
+> > And then, the i.MXRT1170 can use the __imx_clk_hw_pllv3 and pass the
+> > right power_bit shift.
+> >
+> > >   struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
+> > >   			  const char *parent_name, void __iomem *base,
+> > >   			  u32 div_mask)
+> > > @@ -422,10 +465,20 @@ struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
+> > >   		return ERR_PTR(-ENOMEM);
+> > >
+> > >   	pll->power_bit = BM_PLL_POWER;
+> > > +	pll->lock_bit = BM_PLL_LOCK;
+> > >   	pll->num_offset = PLL_NUM_OFFSET;
+> > >   	pll->denom_offset = PLL_DENOM_OFFSET;
+> > >
+> > >   	switch (type) {
+> > > +	case IMX_PLLV3_GENERICV2:
+> > > +		pll->lock_bit = BM_PLL_LOCK_V2;
+> > > +		pll->powerup_set = true;
+> > > +		ops = &clk_pllv3_genericv2_ops;
+> > > +		break;
+> > > +	case IMX_PLLV3_SYSV2:
+> > > +		pll->lock_bit = BM_PLL_LOCK_V2;
+> > > +		pll->powerup_set = true;
+> > > +		fallthrough;
+> > >   	case IMX_PLLV3_SYS:
+> > >   		ops = &clk_pllv3_sys_ops;
+> > >   		break;
+> > > diff --git a/drivers/clk/imx/clk.h b/drivers/clk/imx/clk.h
+> > > index 5061a06468df..31e017248602 100644
+> > > --- a/drivers/clk/imx/clk.h
+> > > +++ b/drivers/clk/imx/clk.h
+> > > @@ -242,6 +242,8 @@ struct clk_hw *imx_clk_hw_sscg_pll(const char *name,
+> > >
+> > >   enum imx_pllv3_type {
+> > >   	IMX_PLLV3_GENERIC,
+> > > +	IMX_PLLV3_GENERICV2,
+> > > +	IMX_PLLV3_SYSV2,
+> > >   	IMX_PLLV3_SYS,
+> > >   	IMX_PLLV3_USB,
+> > >   	IMX_PLLV3_USB_VF610,
+> > > @@ -253,6 +255,8 @@ enum imx_pllv3_type {
+> > >   	IMX_PLLV3_AV_IMX7,
+> > >   };
+> > >
+> > > +void imx_clk_hw_pll3_powerbit(struct clk_hw *hw, u8 shift);
+> > > +
+> > >   struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
+> > >   		const char *parent_name, void __iomem *base, u32 div_mask);
+> > >
+> > > --
+> > > 2.36.1
+> > >
