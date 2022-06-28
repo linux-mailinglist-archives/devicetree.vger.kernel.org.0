@@ -2,53 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17DD355D6D9
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3FAF55D0CD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:08:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344826AbiF1KbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 06:31:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34192 "EHLO
+        id S1344900AbiF1KcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 06:32:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244644AbiF1KbT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:31:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A012F3B4;
-        Tue, 28 Jun 2022 03:31:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E7E5261913;
-        Tue, 28 Jun 2022 10:31:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1C1BC341CC;
-        Tue, 28 Jun 2022 10:31:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656412277;
-        bh=ZsJrsMQjZ4r9bY/qw6CSC8P3WOviim42PDUT+zI3/RE=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=jHwLb/F2Gyn1FAYko4v2KVxR7of29E6qZReF/KZG0/5OudbeqiU9t4znFy3uRyv9E
-         rPl9JKYQ9rS/kX4tXVACcMtN+pgt+e/MELhEt0vd2MgMSRORnsnn7/DFrlAOTbqt/I
-         TDlhc570+LOVL3p5aiC8aZcfKj09Y3a6R3Xq/QkMMs4AFbU6R+m1MaIK64M8BcKYDt
-         ThR2feqOesBnJoFRSFXcTFPfanB9TyPivDNH9MPhKQmXw8YStQX1A50NpFczxavPgL
-         i0NNzIe827BIGbDtlUROyIBLmkK4prso+0J0nLUb4XvIFVoYcpPob8yyr5V4RbILhn
-         WtW642EXV0k+A==
-From:   Mark Brown <broonie@kernel.org>
-To:     Xiubo.Lee@gmail.com, festevam@gmail.com, nicoleotsuka@gmail.com,
-        shengjiu.wang@gmail.com, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org, krzk+dt@kernel.org,
-        shengjiu.wang@nxp.com, robh+dt@kernel.org, tiwai@suse.com,
-        lgirdwood@gmail.com
-Cc:     linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-In-Reply-To: <1655451877-16382-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1655451877-16382-1-git-send-email-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH v2 0/7] Add PDM/DSD/dataline configuration support
-Message-Id: <165641227438.254424.553872611116511612.b4-ty@kernel.org>
-Date:   Tue, 28 Jun 2022 11:31:14 +0100
+        with ESMTP id S1344057AbiF1KcR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 06:32:17 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5701D31DF2
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 03:32:16 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id m184so7061154wme.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 03:32:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=3APJSyQDW2CPdCYh4BrXZo+ifTGN0I3DidbMXQjqz5I=;
+        b=vVasOXgDpS5a8pzCA0h/1ViYnXIdn7+NlAKEK3sUfVy51nbhCu0E9yEsleWytaC8sP
+         Pkijhm3qUW+nnD7H0W+Z2rEae/Q2q8Fs68sR6TjxU4nk1/nQsetGr77azqSuIIvgVdM3
+         l3t/UXdHlFz5LmVGg9dfiIc9aGKjNRHLiJKNFEj5rLPZZDNZEq+7RmB65n76qp7q9RZA
+         vuT1f92PFP5+zzI12iQ0zrSlAFJzuJhO/L5ceh47zeOVQ19JVFcgIbXTxrxehHtt+MmT
+         xx0rymcuZwPqB/rhO66rev47zZGIqBYFfU9kMeqy95jtLCS37vwQHi5NNJ1mX9HK6n0S
+         9R7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3APJSyQDW2CPdCYh4BrXZo+ifTGN0I3DidbMXQjqz5I=;
+        b=Qt3YUU8TLa3Pt41QmgcYw0/Zj9KnbI4u/9jeJF7zgicC1FFN9Ba+JDxdJiBjn0fTfE
+         1waUSbfg5WEUICICJCV6c7ztVVL1WNTRXg528lzkS9pvT0QicGYtSA9Nh+9qvUjrKTPy
+         seIO6ADJlaxeTqMNVLmo3v8PlepMn3j7pGd0gRIdZXpfdIoQZcu5BFcQkAf1FjFzQxNz
+         TCp9QZhmA7Hp27Hpb2Ag5PDoQ9ZqUxAaGzb/27T9GY2jC07mwNoFN9FZUk50zzWyVH5z
+         7PCncp/FqF7G3/xppta62BG57hDDlzrRW2eIh2baJxdhM0mx2niX6sbZhuzHUcTMerPs
+         Skxw==
+X-Gm-Message-State: AJIora/5BN1v7y9J6WXDIVOeuniPjvBUalnlxFaEjKjA8RUq+NyaoL4U
+        k1dTjFxyL9XzCZIT2ASZv6VuFw==
+X-Google-Smtp-Source: AGRyM1s+JSkyq15GyyzT3xqY8Lc3g+1LuzQ7Glev3KcHkkBqiJAG558oaASpA9V5nhclnhGMPpDhog==
+X-Received: by 2002:a7b:c24c:0:b0:3a0:4d4c:dc96 with SMTP id b12-20020a7bc24c000000b003a04d4cdc96mr8098122wmj.111.1656412334966;
+        Tue, 28 Jun 2022 03:32:14 -0700 (PDT)
+Received: from [192.168.0.252] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id j13-20020a05600c1c0d00b003a0484c069bsm10920284wms.41.2022.06.28.03.32.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jun 2022 03:32:14 -0700 (PDT)
+Message-ID: <0b8e357d-1d8b-843f-d8b6-72c760bcd6fb@linaro.org>
+Date:   Tue, 28 Jun 2022 12:32:12 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: fwnode_for_each_child_node() and OF backend discrepancy
+Content-Language: en-US
+To:     "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Michael Walle <michael@walle.cc>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Saravana Kannan <saravanak@google.com>
+References: <4e1d5db9dea68d82c94336a1d6aac404@walle.cc>
+ <b8ec04dc-f803-ee2c-29b7-b0311eb8c5fb@linaro.org>
+ <CAJZ5v0jz=ee5TrvYs0_ovWn9sT06bcKDucmmocD8L-d9ZZ5DzQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAJZ5v0jz=ee5TrvYs0_ovWn9sT06bcKDucmmocD8L-d9ZZ5DzQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,53 +83,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Jun 2022 15:44:30 +0800, Shengjiu Wang wrote:
-> Support PDM format and DSD format.
-> Add new dts property to configure dataline. The SAI has multiple
-> successive FIFO registers, but in some use
-> case the required dataline/FIFOs are not successive.
+On 27/06/2022 15:33, Rafael J. Wysocki wrote:
+> On Mon, Jun 27, 2022 at 3:08 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 27/06/2022 14:49, Michael Walle wrote:
+>>> Hi,
+>>>
+>>> I tired to iterate over all child nodes, regardless if they are
+>>> available
+>>> or not. Now there is that handy fwnode_for_each_child_node() (and the
+>>> fwnode_for_each_available_child_node()). The only thing is the OF
+>>> backend
+>>> already skips disabled nodes [1], making fwnode_for_each_child_node()
+>>> and
+>>> fwnode_for_each_available_child_node() behave the same with the OF
+>>> backend.
+>>>
+>>> Doesn't seem to be noticed by anyone for now. I'm not sure how to fix
+>>> that
+>>> one. fwnode_for_each_child_node() and also fwnode_get_next_child_node()
+>>> are
+>>> used by a handful of drivers. I've looked at some, but couldn't decide
+>>> whether they really want to iterate over all child nodes or just the
+>>> enabled
+>>> ones.
+>>
+>> If I get it correctly, this was introduced  by 8a0662d9ed29 ("Driver
+>> core: Unified interface for firmware node properties")
+>> .
 > 
-> Changes in v2:
-> - refine the commit subject of patch 5/7
+> Originally it was, but then it has been reworked a few times.
 > 
-> [...]
+> The backend callbacks were introduced by Sakari, in particular.
 
-Applied to
+I see you as an author of 8a0662d9ed29 which adds
+device_get_next_child_node() and uses of_get_next_available_child()
+instead of of_get_next_child(). Although it was back in 2014, so maybe
+it will be tricky to get original intention. :)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Which commit do you mean when you refer to Sakari's work?
 
-Thanks!
+> 
+>> The question to Rafael - what was your intention when you added
+>> device_get_next_child_node() looking only for available nodes?
+> 
+> That depends on the backend.
 
-[1/7] ASoC: fsl_sai: Add PDM daifmt support
-      commit: c111c2ddb3fdfca06bb5c7a56db7f97d6d9ea640
-[2/7] ASoC: fsl_sai: Add DSD bit format support
-      commit: 4665770407de8af3b24250cec2209eaf58546f8a
-[3/7] ASoC: fsl_sai: Add support for more sample rates
-      commit: 0d11bab8ef3e5540dfba111947dbd8dcfb813150
-[4/7] ASoc: fsl_sai: Add pinctrl operation for PDM and DSD
-      commit: b4ee8a913e617a2d0f19226225bc025c8640bf34
-[5/7] ASoC: fsl_sai: Make res a member of struct fsl_sai
-      commit: cd640ca20095ed3b9306981f0064313a54fd4568
-[6/7] ASoC: dt-bindings: fsl-sai: Add new property to configure dataline
-      commit: 6b878ac2711056dd07c712caf89f58449cf5a592
-[7/7] ASoC: fsl_sai: Configure dataline/FIFO information from dts property
-      commit: e3f4e5b1a3e654d518155b37c7b2084cbce9d1a7
+We talk about OF backend. In your commit device_get_next_child_node for
+OF uses explicitly available node, not any node.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> fwnode_for_each_available_child_node() is more specific and IIRC it
+> was introduced for fw_devlink (CC Saravana).
+> 
+>> My understanding is that this implementation should be consistent with
+>> OF implementation, so fwnode_get_next_child_node=get any child.
+> 
+> IIUC, the OF implementation is not consistent with the
+> fwnode_get_next_child_node=get any child thing.
+> 
+>> However maybe ACPI treats it somehow differently?
+> 
+> acpi_get_next_subnode() simply returns the next subnode it can find.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+Krzysztof
