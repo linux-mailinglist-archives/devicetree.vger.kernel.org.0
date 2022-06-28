@@ -2,128 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DBF355CB5C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 14:59:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DFAE55DBCC
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 15:25:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243412AbiF1H5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 03:57:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52946 "EHLO
+        id S243514AbiF1IA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 04:00:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243365AbiF1H5n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 03:57:43 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E8D215FE3;
-        Tue, 28 Jun 2022 00:57:43 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id dw10-20020a17090b094a00b001ed00a16eb4so11850386pjb.2;
-        Tue, 28 Jun 2022 00:57:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Stsk2/bOU7vOuNWE32xaiTWPsuWgFOSh1G81qAcroFs=;
-        b=efvDGc/ev+4cijhfPBF4Nvzs0ZZXbPwU0xQNMKkm4gKXuxNXfvFsypMVj9enPRWDqi
-         PAVEbSmWuTTvrK+kuBK9YqUjKTCVa2LFiyIPiuFg5BxhukouXY1SX9WVZrNJYo27/Mbg
-         oiJ9y2eoiqadbtnV2Y0wNyNmFSizMGZx4OjZBx2tJ2QgiCI+rqoIzOHfWwfyZU76EerD
-         CVG36y/FRvuye/I9qEQ6n7eCTMm/+87SaWW1VippGe/xUZncXJz4eohEo31TzBSNrrvH
-         CM74J7TPDHLRy0/Y+tTrgxuJqGZKQkztz+drwsES06Y0GR+KLgPxvj2I9D0I32t+1LjF
-         V6PQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Stsk2/bOU7vOuNWE32xaiTWPsuWgFOSh1G81qAcroFs=;
-        b=ewuwpE0x6d1JV3QV6pchvYnfPVEmr/LdRWEaq9ejMdZagF0fSgW4wLlWTPpQAWxC62
-         3KuMyCIe1T58V2ZMr2WexPFmi7ZAHtCONgegA8f5y/FtU5O81dGvR8bI9uVYRV29Gj1F
-         rebfS3XXySc/c0wJRLpFM9t8Anm/0p0EIe6I2VmfNj9fH/YcqdvhNbATI8iW8Y8GMMf6
-         3uoYfiAd9Kwgz4KAiCCGWhb0AEbm07Nqz9mRyUiEHtLz10QDq0LOaJU6ujpxO5lo7wom
-         4cJLkhby5LOSoaSMzFaZVYPLLWvEnJL2w+6ABoV5ecosRIrf82ozO/I6wEPAihysw79w
-         bg8g==
-X-Gm-Message-State: AJIora8G9fctiAcfLeMyxERIYuDtJfM3VtHBH6y/juhibI5HN+se4soX
-        Pdn4UR4bEonWq18MqCOJ5a8=
-X-Google-Smtp-Source: AGRyM1uJlUVe1iOIyNUKGWDPgE10yf8e8d2ulYavyVmHfDTzgRpQbDfQXTH5ef6GSc7P2RmMP/oaMA==
-X-Received: by 2002:a17:90b:38cc:b0:1ed:474a:a675 with SMTP id nn12-20020a17090b38cc00b001ed474aa675mr18224216pjb.149.1656403062615;
-        Tue, 28 Jun 2022 00:57:42 -0700 (PDT)
-Received: from chrome.huaqin.com ([101.78.151.222])
-        by smtp.gmail.com with ESMTPSA id p31-20020a056a000a1f00b0051bdb735647sm8681944pfh.159.2022.06.28.00.57.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 00:57:42 -0700 (PDT)
-From:   Rex Nie <rexnie3@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, spanda@codeaurora.org, dianders@chromium.org,
-        devicetree@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Rex Nie <rexnie3@gmail.com>
-Subject: [PATCH 1/2] drm/panel-edp: Add eDP innolux panel support
-Date:   Tue, 28 Jun 2022 15:57:35 +0800
-Message-Id: <20220628075735.2142949-1-rexnie3@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S231845AbiF1IAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 04:00:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F53213D5B;
+        Tue, 28 Jun 2022 01:00:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B12496104E;
+        Tue, 28 Jun 2022 08:00:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17A9EC3411D;
+        Tue, 28 Jun 2022 08:00:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656403224;
+        bh=aijp6DmSOsxg3ML/b3u+5AynjVUvqqeBYGfLP419iiY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=G9hPPftkQRDi9dE8PgfFfmgGI4uMPXNZzI9LIXJm4MIyHQ/gwgVjhbVI2B688IhyL
+         v3qyt6Mzj6i7CXBlnkwDp3t4hyZ37hT0ndseXrxS0ewM2wloO+zasMTkrQOXAArBHT
+         whmR+vvGy0UFnIHU2H/5tetzqn5ovHGOzAtNcyRAABhyLRBzh8DkpQWmDvgoE1vUeL
+         k6OnQzAEljTP9b5fD4o+I4RD2i4bmx5z3F8d2MofYYvxhvqnpOJshicCQc0E4fdw7X
+         GxhlFVb0tFx+c5AhwFRKJvUYwt+/qKQuFmlKV7/XLo9z3gebxkeH4jbdF14by3jDec
+         Qhd/Z5s8kCCQQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1o668y-0005xl-Mz; Tue, 28 Jun 2022 10:00:21 +0200
+Date:   Tue, 28 Jun 2022 10:00:20 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: dts: qcom: sc8280xp: add Lenovo Thinkpad X13s
+ devicetree
+Message-ID: <Yrq1FAscp+jE7GQs@hovoldconsulting.com>
+References: <YrMVqifgV4kZaP7F@hovoldconsulting.com>
+ <20220622132617.24604-1-johan+linaro@kernel.org>
+ <96394aa2-aefc-63c4-d86f-15c06d092d75@somainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <96394aa2-aefc-63c4-d86f-15c06d092d75@somainline.org>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the 14" innolux,n140hca-eac eDP panel.
+On Mon, Jun 27, 2022 at 01:38:47PM +0200, Konrad Dybcio wrote:
+> On 22.06.2022 15:26, Johan Hovold wrote:
+> > Add an initial devicetree for the Lenovo Thinkpad X13s with support for
+> > USB, backlight, keyboard, touchpad, touchscreen (to be verified), PMICs
+> > and remoteprocs.
+> > 
+> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Rex Nie <rexnie3@gmail.com>
----
- drivers/gpu/drm/panel/panel-edp.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Krzysztof's tag wasn't here in the version I posted.
 
-diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
-index 3626469c4cc2..2a8fcdffe80c 100644
---- a/drivers/gpu/drm/panel/panel-edp.c
-+++ b/drivers/gpu/drm/panel/panel-edp.c
-@@ -1355,6 +1355,29 @@ static const struct panel_desc innolux_n125hce_gn1 = {
- 	},
- };
- 
-+static const struct display_timing innolux_n140hca_eac_timing = {
-+	.pixelclock = { 72600000, 76420000, 80240000 },
-+	.hactive = { 1920, 1920, 1920 },
-+	.hfront_porch = { 80, 80, 80 },
-+	.hback_porch = { 190, 190, 190 },
-+	.hsync_len = { 60, 60, 60 },
-+	.vactive = { 1080, 1080, 1080 },
-+	.vfront_porch = { 6, 6, 6 },
-+	.vback_porch = { 38, 38, 38 },
-+	.vsync_len = { 8, 8, 8 },
-+	.flags = DISPLAY_FLAGS_VSYNC_LOW | DISPLAY_FLAGS_HSYNC_LOW,
-+};
-+
-+static const struct panel_desc innolux_n140hca_eac = {
-+	.timings = &innolux_n140hca_eac_timing,
-+	.num_timings = 1,
-+	.bpc = 6,
-+	.size = {
-+		.width = 309,
-+		.height = 174,
-+	},
-+};
-+
- static const struct drm_display_mode innolux_p120zdg_bf1_mode = {
- 	.clock = 206016,
- 	.hdisplay = 2160,
-@@ -1775,6 +1798,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "innolux,n125hce-gn1",
- 		.data = &innolux_n125hce_gn1,
-+	}, {
-+		.compatible = "innolux,n140hca-eac",
-+		.data = &innolux_n140hca_eac,
- 	}, {
- 		.compatible = "innolux,p120zdg-bf1",
- 		.data = &innolux_p120zdg_bf1,
--- 
-2.25.1
+> > +	reserved-memory {
+> > +	};
+> You still haven't explained this weird node (I don't believe
+> the thing doesn't mind you poking at 'secure' regions, and even
+> if otherwise, it is unused for now).
 
+It's just unused for now, so sure, we can remove it until we need it.
+
+Johan
