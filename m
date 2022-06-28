@@ -2,148 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FAA055E978
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12CEE55E67D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 18:27:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346144AbiF1P0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 11:26:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57770 "EHLO
+        id S1346062AbiF1P24 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 28 Jun 2022 11:28:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345550AbiF1P0t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 11:26:49 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B562DA95
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 08:26:48 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id fi2so26486955ejb.9
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 08:26:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Kjcf0myN8xEQpjIbs4vYCmYvnjer77kYAUZMxxZfr54=;
-        b=MiqvpNPpX09362l61nV5eWebMheEbAXmxJOrBhDRX9t2YTF5o5w2iCtTbO1xXIH5nR
-         ASy9dmUFwVTdqmjxSF+6j6raG1Q+AFow9+pdiQfKvQSOG9FnVfm/Iars+cCsYTRDwWJ2
-         blL4bPLQKmBe41kTNFlNa3aGPvHmNMHmbNpdL7HfS+YfAaTOlO8pbzXSjqezxbtTGMZ8
-         V3Cm91faw349kLNwWbRfZ24EphQ6eUiegf/jmqv6CADm7866SFiOWCcI0lJit/6nzDzr
-         GuXsdCATpbqWgsp23sUBuS0b2O8DSdpl4ta0/Snjzwfw7LOF6yuzOCfs1+UHBZGsljsl
-         Fryw==
+        with ESMTP id S1345696AbiF1P2z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 11:28:55 -0400
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E4FBBF9;
+        Tue, 28 Jun 2022 08:28:54 -0700 (PDT)
+Received: by mail-qv1-f47.google.com with SMTP id q4so20506459qvq.8;
+        Tue, 28 Jun 2022 08:28:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Kjcf0myN8xEQpjIbs4vYCmYvnjer77kYAUZMxxZfr54=;
-        b=HTGH7Sff+l+2Ox9PDtGwl8Lg1w4YtIOARXHLfTQHdeq5+nmZ/RHN0BUc4+AkHVe0Vc
-         9ldU4GgSb/hc13VfOCn64Xl3lp6eaCoIgyPIAkHx6/AR5QmlN6IxkL69uhPEeu/w578u
-         eYnnI3tyi5GSeWPm63YQAWFhHZ0IiU/UJ02+JiCQD5rZFve5vz+PEjqTpjXlxpBFH9Us
-         Vlk84XOwpZ7hysyaKaCr5BNDHgJU41+KVTxBIEvtB7fLlNG6hBIC5hKkSkQ4OCoorGxi
-         WePnn4nTI86350Vh4ze64lSKU2TFf+HcIrtjl2fkhgQh/ZijV6okFN+xKM5XWk/a5qyo
-         E3bw==
-X-Gm-Message-State: AJIora+Vp/aY15gSXvN49xHNtA35eH9PUJRb33aL6O6wEaAyKnwA6wPT
-        ifn9nNPGBTef7zhOB4MdbhziPg==
-X-Google-Smtp-Source: AGRyM1uzxpsWrvBGixfnmSdbGTuYjpVh/2OxG/8e+M42tgEx0u0q8hE/de6Xy/LxgcLt473rap2OJQ==
-X-Received: by 2002:a17:907:1693:b0:726:4322:c330 with SMTP id hc19-20020a170907169300b007264322c330mr17576956ejc.9.1656430006883;
-        Tue, 28 Jun 2022 08:26:46 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id z15-20020a170906944f00b006fe8d8c54a7sm6527208ejx.87.2022.06.28.08.26.45
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=rWGuKnx4Ujs9MkjGuIowwwhdvBAe4X1vSQOEKzeoNPs=;
+        b=4DCbD1rF0scov5Ko7iDju9vfgg7rLsjW7qsJGtC8D6jre+pPsBC78/VT9hv3JGZOAt
+         34wSXyjcaeQwKqfBk81e8P4l+7PQ2q8QUxmcrBBn4gXrpgESafmFXlySYvuULJf0mxF1
+         tsVkNNxN8S7PMOo/6TULTnOHdDKxF/bF65JXC7e1g558pzmNdw5uQZCJh6KT+pwfLeCR
+         zh+vFHzhZFjVBzBbUetd+BxoFLq5qk2Q6N9j0/IpU4ulKe+UmChiU+bKe8tZNkje2yPw
+         ocje7m++kHyNCGrWFr8gJknXDGZbgEIzd+ueJgZltbtQ0BCpXAHZjHQqgw5Bi88Foqdw
+         JvQA==
+X-Gm-Message-State: AJIora+Ia7iN9nC1l+uansP/0g+kOmd8RmPF2bhIwI1n2XulP1/PrTEB
+        az5bSLIuee1Yj/XMQBoConNUcMxllDfxRQ==
+X-Google-Smtp-Source: AGRyM1tqwjvQCLtYoNT4ij+Qnjr0uI8ehRX4sKRW0KViu46Vu9lNJtAIA8G+uJH5CjOBrnraFMRByw==
+X-Received: by 2002:a05:622a:1108:b0:305:3092:b831 with SMTP id e8-20020a05622a110800b003053092b831mr13808695qty.624.1656430133241;
+        Tue, 28 Jun 2022 08:28:53 -0700 (PDT)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id m14-20020a05620a290e00b006a6b498e23esm12226163qkp.81.2022.06.28.08.28.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jun 2022 08:26:46 -0700 (PDT)
-Message-ID: <c8dddfe6-6385-ed34-e789-9f845c8a32bd@linaro.org>
-Date:   Tue, 28 Jun 2022 17:26:45 +0200
+        Tue, 28 Jun 2022 08:28:52 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id r3so22838484ybr.6;
+        Tue, 28 Jun 2022 08:28:52 -0700 (PDT)
+X-Received: by 2002:a05:6902:1141:b0:669:3f2a:c6bb with SMTP id
+ p1-20020a056902114100b006693f2ac6bbmr18971911ybu.365.1656430131905; Tue, 28
+ Jun 2022 08:28:51 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: chosen: document rng-seed property
-Content-Language: en-US
-To:     "Jason A. Donenfeld" <Jason@zx2c4.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     robh@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        Kees Cook <keescook@chromium.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-References: <20220627152107.645860-1-Jason@zx2c4.com>
- <CAJMQK-jGsobw7i4NjQ4oezA0rU03ECs_nY=Txr6TgsHFu2jXhg@mail.gmail.com>
- <Yrsc+50Y2UX1wlYH@zx2c4.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yrsc+50Y2UX1wlYH@zx2c4.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220624144001.95518-1-clement.leger@bootlin.com> <20220624144001.95518-13-clement.leger@bootlin.com>
+In-Reply-To: <20220624144001.95518-13-clement.leger@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 28 Jun 2022 17:28:39 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWDL7k9m_ephLsFtsfceKPkO5WF=bbp6iQMaU+608H-Ew@mail.gmail.com>
+Message-ID: <CAMuHMdWDL7k9m_ephLsFtsfceKPkO5WF=bbp6iQMaU+608H-Ew@mail.gmail.com>
+Subject: Re: [PATCH net-next v9 12/16] ARM: dts: r9a06g032: describe MII converter
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2022 17:23, Jason A. Donenfeld wrote:
-> Hi Hsin-Yi,
-> 
-> On Tue, Jun 28, 2022 at 11:39:38AM +0800, Hsin-Yi Wang wrote:
->> On Mon, Jun 27, 2022 at 11:21 PM Jason A. Donenfeld <Jason@zx2c4.com> wrote:
->>>
->>> Document the /chosen/rng-seed property, which has existed for quite some
->>> time but without an entry in this file.
->>>
->>> Fixes: 428826f5358c ("fdt: add support for rng-seed")
->>> Cc: Hsin-Yi Wang <hsinyi@chromium.org>
->>> Cc: Kees Cook <keescook@chromium.org>
->>> Cc: Rob Herring <robh@kernel.org>
->>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
->>> Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
->>> ---
->> It's currently documented in
->> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/chosen.yaml
->>
->> https://lore.kernel.org/lkml/CAL_Jsq+uSdk9YNbUW35yjN3q8-3FDobrxHmBpy=4RKmCfnB0KQ@mail.gmail.com/
-> 
-> Well, let's see. That email says:
-> 
->> Already documented here[1]. I've been meaning to delete chosen.txt so
->> that's a bit more obvious.
->>
->> I realize it's a bit harder to find what's documented where. Long term
->> we'd like to generate documentation from the schema and integrate as
->> part of the spec. Short term, it would be quite trivial to make a 'am
->> I documented' utility.
-> 
-> That sounds reasonable. But when was that email written? April 2, 2020.
-> That's 817 days ago.
+On Fri, Jun 24, 2022 at 4:41 PM Clément Léger <clement.leger@bootlin.com> wrote:
+> Add the MII converter node which describes the MII converter that is
+> present on the RZ/N1 SoC.
+>
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
 
-817 days And the field is documented, so nothing to do here regarding
-"rng-seed".
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.20.
 
+Gr{oetje,eeting}s,
 
-> So I call BS on this being a continued justification for rejecting this
-> patch (which apparently was submitted by Florian over two years ago
-> too). 
+                        Geert
 
-Because patch is not needed and is already done....
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> Rob clearly hasn't followed through.
-
-You got there link to repo, what do you need more to follow? Remove the
-chosen.txt? Sure - submit a separate patch.
-
->  So please apply this patch so
-> that chosen.txt remains maintained.
-
-Instead submit a patch removing it. There is no particular point to
-duplicate bindings and dt-schema is the core here, the main one.
-
-> 
-> Later if he moves forward with his plan, then no harm done, since the
-> file will be deleted anyway.
-> 
-> Sometimes it's best to reassess things based on the reality of the
-> situation, you know?
-
-
-Best regards,
-Krzysztof
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
