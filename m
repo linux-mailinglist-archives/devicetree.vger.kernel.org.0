@@ -2,82 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1E3655EE21
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 21:50:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8915255EEC9
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:07:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231698AbiF1Tuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 15:50:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46010 "EHLO
+        id S229450AbiF1UFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 16:05:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231727AbiF1Tum (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 15:50:42 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F8092CDF5
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 12:48:24 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id i7so23968116ybe.11
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 12:48:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YHXkpPXpFGHDlkGftgH4HXkL2OlNnjfvXug8uoS7Fl0=;
-        b=l0E1A0S5TJAdUvK/62+NNXFIajM3Sz1ign/Kl1cu5JyW6CIaA3WPeq0slPouEW5RQV
-         /8p62aOOxBZxOGw6Dv1T6u05mzKkylM378WT8lA141aXNqaarFcQ5Be6fPlHefoVMPO0
-         0478dk+Se/fCVhA/h3iNGvq3rRizWBN2g8Pjc=
+        with ESMTP id S234477AbiF1UDm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:03:42 -0400
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B29993DA77;
+        Tue, 28 Jun 2022 12:55:37 -0700 (PDT)
+Received: by mail-il1-f170.google.com with SMTP id f15so8413996ilj.11;
+        Tue, 28 Jun 2022 12:55:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YHXkpPXpFGHDlkGftgH4HXkL2OlNnjfvXug8uoS7Fl0=;
-        b=grz+BQ2l+HOryb6D4q62nts86rR95uREiuWt++JiuzFiJ35Tq5Wm1960CWLBKH4hag
-         o9Uu1sk02RTLi3ine8AP1canhDmTp7IVSNINyVohBqQoxDiaz7CfI5UEF+IezCGSzRTS
-         6aNZ+qZaSxcbmo7FoKLC8UT7qaIpFZSU83bRifbhyfeRGMppra9cuEjqi8nz7YpNUepy
-         Xi7XThKtfR9O+Ajs9lINB9oMtfzB3pPMQDDHv4xAg6Uj02Pea4Q1PkHzlcGPdT8AXFHx
-         Gtn08kNN7EUhx8lIjliPEEV5URo72IQ7XkT7CNTPutY8s4Zo5iDKLW2ltX6y983CiBZ7
-         Rokw==
-X-Gm-Message-State: AJIora82UWLOB0LYmioUXsfI4OzGGD+ZetJnuJc7MuH2+T+fM/hYsV1F
-        5XqgQG9fT3e1IAQkbhR1rFba8LKd/4q5Dfm1rAuxqQ==
-X-Google-Smtp-Source: AGRyM1srjCp28XBoQQO/p2NofxTCtxHZShc55UMxj4amOOUEmonQqY88CRzmE+TqGnV1wCssUZZtegMQ3CbuPE4Mbsk=
-X-Received: by 2002:a25:bcc:0:b0:66c:b80a:2d5 with SMTP id 195-20020a250bcc000000b0066cb80a02d5mr15517865ybl.196.1656445703313;
- Tue, 28 Jun 2022 12:48:23 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LX7czNIIECaWcTmLUpIGX+lZtnHxfK8JNdAd9YjZVdg=;
+        b=Ha6O5LMWso2Nmyrrw3D40bEhU5eMF3/4oO9YPp67yLPIGEJ2Ht9BFjvDC/9xascrqT
+         4wHv/dVEhB1IxPdk3guyuuIthNOXBgeHzHrDTwBmjbaJ6h3Pv2ITAUPy2i1BxfyNh9hW
+         k57WZjhhx1NFd3bQ9zpEWnms7D0OLMXXXWOKU9Z51HjUhiAWMcziPcyFdSJ6m5VCfJo+
+         xIxc8umi2tioAbcbLLDtewjxpavz9hI9y3LO7VIUxLhlFG95WcMSNOv37tc13gfWFxOJ
+         +B5wDkU+c5QEa1EhmfFcKsToy9gySAhtc4JcOgPallxzNTHjrOjsIp2/YS9loOSIFhVg
+         wdqw==
+X-Gm-Message-State: AJIora+uxGPTl8GxtrkFxAPoEkpAnTVCKn0Bsvh3aKsZ3nlCHGirTcch
+        FdhX8SsdHjLkpHmZUj+o0A==
+X-Google-Smtp-Source: AGRyM1ulObrciZ3EEVmkYx33s1pxZUaVWGOp+9HAVczVUBhN85O/CsOo4LXlBucDqzHRnXUE2QwiFg==
+X-Received: by 2002:a05:6e02:1be1:b0:2da:70ee:dde8 with SMTP id y1-20020a056e021be100b002da70eedde8mr11493265ilv.7.1656446136793;
+        Tue, 28 Jun 2022 12:55:36 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id t15-20020a92b10f000000b002d3ad9791dcsm6017212ilh.27.2022.06.28.12.55.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jun 2022 12:55:36 -0700 (PDT)
+Received: (nullmailer pid 878199 invoked by uid 1000);
+        Tue, 28 Jun 2022 19:55:34 -0000
+Date:   Tue, 28 Jun 2022 13:55:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Bhadram Varka <vbhadram@nvidia.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, kuba@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org
+Subject: Re: [PATCH net-next v1 5/9] dt-bindings: net: Add Tegra234 MGBE
+Message-ID: <20220628195534.GA868640-robh@kernel.org>
+References: <20220623074615.56418-1-vbhadram@nvidia.com>
+ <20220623074615.56418-5-vbhadram@nvidia.com>
 MIME-Version: 1.0
-References: <20220622173605.1168416-1-pmalani@chromium.org>
- <20220622173605.1168416-6-pmalani@chromium.org> <CAE-0n517BB8YbN5AZG6M3ZrZGOJDV=+t0R9d8wD+gVqO1aD1Xg@mail.gmail.com>
-In-Reply-To: <CAE-0n517BB8YbN5AZG6M3ZrZGOJDV=+t0R9d8wD+gVqO1aD1Xg@mail.gmail.com>
-From:   Prashant Malani <pmalani@chromium.org>
-Date:   Tue, 28 Jun 2022 12:48:11 -0700
-Message-ID: <CACeCKafR8hFke_tc2=1VGDNF-CFrZoAG1aUKuxGJG-6pd37hbg@mail.gmail.com>
-Subject: Re: [PATCH v5 5/9] drm/bridge: anx7625: Add typec_mux_set callback function
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        bleung@chromium.org, heikki.krogerus@linux.intel.com,
-        Pin-Yen Lin <treapking@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Xin Ji <xji@analogixsemi.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220623074615.56418-5-vbhadram@nvidia.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,104 +64,209 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 28, 2022 at 12:25 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Quoting Prashant Malani (2022-06-22 10:34:34)
-> > From: Pin-Yen Lin <treapking@chromium.org>
-> >
-> > Add the callback function when the driver receives state
-> > changes of the Type-C port. The callback function configures the
-> > crosspoint switch of the anx7625 bridge chip, which can change the
-> > output pins of the signals according to the port state.
->
-> Can this be combined with the previous two patches? They really don't
-> stand alone because the previous two patches are adding stubs that are
-> filled out later.
+On Thu, Jun 23, 2022 at 01:16:11PM +0530, Bhadram Varka wrote:
+> Add device-tree binding documentation for the Tegra234 MGBE ethernet
+> controller.
+> 
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> Signed-off-by: Bhadram Varka <vbhadram@nvidia.com>
+> ---
+>  .../bindings/net/nvidia,tegra234-mgbe.yaml    | 163 ++++++++++++++++++
+>  1 file changed, 163 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.yaml b/Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.yaml
+> new file mode 100644
+> index 000000000000..d6db43e60ab8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.yaml
+> @@ -0,0 +1,163 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-I split it out for ease of reviewing, but sure, I will combine it if
-there is a v6.
+Dual license. checkpatch.pl will tell you this.
 
->
-> > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > index bd21f159b973..5992fc8beeeb 100644
-> > --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > @@ -15,6 +15,7 @@
-> >  #include <linux/regulator/consumer.h>
-> >  #include <linux/slab.h>
-> >  #include <linux/types.h>
-> > +#include <linux/usb/typec_dp.h>
-> >  #include <linux/usb/typec_mux.h>
-> >  #include <linux/workqueue.h>
-> >
-> > @@ -2582,9 +2583,64 @@ static void anx7625_runtime_disable(void *data)
-> >         pm_runtime_disable(data);
-> >  }
-> >
-> > +static void anx7625_set_crosspoint_switch(struct anx7625_data *ctx,
-> > +                                         enum typec_orientation orientation)
-> > +{
-> > +       if (orientation == TYPEC_ORIENTATION_NORMAL) {
-> > +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_0,
-> > +                                 SW_SEL1_SSRX_RX1 | SW_SEL1_DPTX0_RX2);
-> > +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_1,
-> > +                                 SW_SEL2_SSTX_TX1 | SW_SEL2_DPTX1_TX2);
-> > +       } else if (orientation == TYPEC_ORIENTATION_REVERSE) {
-> > +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_0,
-> > +                                 SW_SEL1_SSRX_RX2 | SW_SEL1_DPTX0_RX1);
-> > +               anx7625_reg_write(ctx, ctx->i2c.tcpc_client, TCPC_SWITCH_1,
-> > +                                 SW_SEL2_SSTX_TX2 | SW_SEL2_DPTX1_TX1);
-> > +       }
-> > +}
-> > +
-> > +static void anx7625_typec_two_ports_update(struct anx7625_data *ctx)
-> > +{
-> > +       if (ctx->typec_ports[0].dp_connected && ctx->typec_ports[1].dp_connected)
-> > +               /* Both ports available, do nothing to retain the current one. */
-> > +               return;
-> > +       else if (ctx->typec_ports[0].dp_connected)
-> > +               anx7625_set_crosspoint_switch(ctx, TYPEC_ORIENTATION_NORMAL);
-> > +       else if (ctx->typec_ports[1].dp_connected)
-> > +               anx7625_set_crosspoint_switch(ctx, TYPEC_ORIENTATION_REVERSE);
-> > +}
-> > +
-> >  static int anx7625_typec_mux_set(struct typec_mux_dev *mux,
-> >                                  struct typec_mux_state *state)
-> >  {
-> > +       struct anx7625_port_data *data = typec_mux_get_drvdata(mux);
-> > +       struct anx7625_data *ctx = data->ctx;
-> > +       struct device *dev = &ctx->client->dev;
-> > +       bool new_dp_connected, old_dp_connected;
-> > +
-> > +       if (ctx->num_typec_switches == 1)
->
-> How do we handle the case where the usb-c-connector is directly
-> connected to the RX1/TX1 and RX2/TX2 pins? This device would be an
-> orientation (normal/reverse) and mode switch (usb/dp) in that scenario,
-> but this code is written in a way that the orientation switch isn't
-> going to flip the crosspoint switch for the different pin assignments.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/nvidia,tegra234-mgbe.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Tegra234 MGBE Device Tree Bindings
 
-If all 4 SS lanes are connected to 1 usb-c-connector; there would be
-just 1 "typec-switch" node.
-In that case, the DT would only specify it as an "orientation-switch"
-and register
-an orientation-switch with the Type-C framework. The orientation switch would
-pretty much do what the mode-switch callback does here (configuring
-the crosspoint
-switch).
-One could also register a "mode-switch" there but it wouldn't do
-anything (all 4 lanes are already
-connected so there is nothing to re-route in the crosspoint switch).
-Hence the above "if" check.
+s/Device Tree Bindings/???bit Ethernet Controller/
 
-Unfortunately, I don't have hardware which connects all 4 SS lanes
-from 1 Type-C port
-to the anx7625, so I didn't add the orientation switch handling to the
-driver (since I have no way of verifying it).
+> +
+> +maintainers:
+> +  - Thierry Reding <treding@nvidia.com>
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +
+> +properties:
+> +
+> +  compatible:
+> +    const: nvidia,tegra234-mgbe
+> +
+> +  reg:
+> +    minItems: 3
+> +    maxItems: 3
+> +
+> +  reg-names:
+> +    items:
+> +      - const: hypervisor
+> +      - const: mac
+> +      - const: xpcs
 
-Regarding DP alt-mode pin assignments : I think anx7625 will only support Pin D
-(only 2 lane DP, no 4 lane DP).
+Is this really part of the same block? You don't have a PHY (the one in 
+front of the ethernet PHY) and PCS is sometimes part of the PHY.
 
-BR,
+> +
+> +  interrupts:
+> +    minItems: 1
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: common
 
--Prashant
+Just drop interrupt-names. Not a useful name really.
+
+> +
+> +  clocks:
+> +    minItems: 12
+> +    maxItems: 12
+> +
+> +  clock-names:
+> +    minItems: 12
+> +    maxItems: 12
+> +    contains:
+> +      enum:
+> +        - mgbe
+> +        - mac
+> +        - mac-divider
+> +        - ptp-ref
+> +        - rx-input-m
+> +        - rx-input
+> +        - tx
+> +        - eee-pcs
+> +        - rx-pcs-input
+> +        - rx-pcs-m
+> +        - rx-pcs
+> +        - tx-pcs
+> +
+> +  resets:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  reset-names:
+> +    contains:
+> +      enum:
+> +        - mac
+> +        - pcs
+> +
+> +  interconnects:
+> +    items:
+> +      - description: memory read client
+> +      - description: memory write client
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: dma-mem # read
+> +      - const: write
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    items:
+> +      - description: MGBE power-domain
+
+What else would it be? Just 'maxItems: 1'.
+
+> +
+> +  phy-handle: true
+> +
+> +  phy-mode: true
+
+All possible modes are supported by this h/w? Not likely.
+
+> +
+> +  mdio:
+> +    $ref: mdio.yaml#
+> +    unevaluatedProperties: false
+> +    description:
+> +      Creates and registers an MDIO bus.
+
+That's OS behavior...
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - power-domains
+> +  - phy-handle
+> +  - phy-mode
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/tegra234-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/memory/tegra234-mc.h>
+> +    #include <dt-bindings/power/tegra234-powergate.h>
+> +    #include <dt-bindings/reset/tegra234-reset.h>
+> +
+> +    ethernet@6800000 {
+> +        compatible = "nvidia,tegra234-mgbe";
+> +        reg = <0x06800000 0x10000>,
+> +              <0x06810000 0x10000>,
+> +              <0x068a0000 0x10000>;
+> +        reg-names = "hypervisor", "mac", "xpcs";
+> +        interrupts = <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-names = "common";
+> +        clocks = <&bpmp TEGRA234_CLK_MGBE0_APP>,
+> +                 <&bpmp TEGRA234_CLK_MGBE0_MAC>,
+> +                 <&bpmp TEGRA234_CLK_MGBE0_MAC_DIVIDER>,
+> +                 <&bpmp TEGRA234_CLK_MGBE0_PTP_REF>,
+> +                 <&bpmp TEGRA234_CLK_MGBE0_RX_INPUT_M>,
+> +                 <&bpmp TEGRA234_CLK_MGBE0_RX_INPUT>,
+> +                 <&bpmp TEGRA234_CLK_MGBE0_TX>,
+> +                 <&bpmp TEGRA234_CLK_MGBE0_EEE_PCS>,
+> +                 <&bpmp TEGRA234_CLK_MGBE0_RX_PCS_INPUT>,
+> +                 <&bpmp TEGRA234_CLK_MGBE0_RX_PCS_M>,
+> +                 <&bpmp TEGRA234_CLK_MGBE0_RX_PCS>,
+> +                 <&bpmp TEGRA234_CLK_MGBE0_TX_PCS>;
+> +        clock-names = "mgbe", "mac", "mac-divider", "ptp-ref", "rx-input-m",
+> +                      "rx-input", "tx", "eee-pcs", "rx-pcs-input", "rx-pcs-m",
+> +                      "rx-pcs", "tx-pcs";
+> +        resets = <&bpmp TEGRA234_RESET_MGBE0_MAC>,
+> +                 <&bpmp TEGRA234_RESET_MGBE0_PCS>;
+> +        reset-names = "mac", "pcs";
+> +        interconnects = <&mc TEGRA234_MEMORY_CLIENT_MGBEARD &emc>,
+> +                        <&mc TEGRA234_MEMORY_CLIENT_MGBEAWR &emc>;
+> +        interconnect-names = "dma-mem", "write";
+> +        iommus = <&smmu_niso0 TEGRA234_SID_MGBE>;
+> +        power-domains = <&bpmp TEGRA234_POWER_DOMAIN_MGBEA>;
+> +
+> +        phy-handle = <&mgbe0_phy>;
+> +        phy-mode = "usxgmii";
+> +
+> +        mdio {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            mgbe0_phy: phy@0 {
+> +                compatible = "ethernet-phy-ieee802.3-c45";
+> +                reg = <0x0>;
+> +
+> +                #phy-cells = <0>;
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.17.1
+> 
+> 
