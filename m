@@ -2,126 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1088F55F02C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 23:08:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F7C955F033
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 23:09:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231586AbiF1VHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 17:07:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52832 "EHLO
+        id S229872AbiF1VJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 17:09:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231518AbiF1VHk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 17:07:40 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E78303A1A1;
-        Tue, 28 Jun 2022 14:07:38 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 8575822246;
-        Tue, 28 Jun 2022 23:07:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1656450456;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=bcnmTdzKIt3h8Y/cXjAdBaWMZpAGYim0e79RrQFMrHc=;
-        b=BxoSIxSld2y217J+0raDd+5Og1lRRU6snjcxB8pR7pJ9N56FXcy/LdBf0iJJjzT0+ozZTd
-        LsUaTNCqrOKVhp8xuIAdQFzQNEVE267QifIa7wW8it7dTsS3Rf2K4acGMboA46D06bCmPB
-        etoEeefURRQ2b/1U7cqikoNYBa7mQdY=
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 28 Jun 2022 23:07:34 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229506AbiF1VJX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 17:09:23 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F184B35DF7;
+        Tue, 28 Jun 2022 14:09:21 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id m13so14203934ioj.0;
+        Tue, 28 Jun 2022 14:09:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=U12Z4vhZw7H5Cr8clwAhRnGVpf0ZJMi2KclaKSIzIuc=;
+        b=5o73RqOiloAOCShhv7TphrWsTibe8y2rQo3Hfw+db6SmIfXl9su9G2OkT/GSquzQlv
+         d9tEq4iQz2/lZGPh1Go02mOpYdMQRKEffLtq8Tm3wSiEGuffnYJ1uYXDtYKlLu7mSQR+
+         c96Pq4moyzVZEG38IBEwKbeJjXew9X53AwxvAMBtfZKVbAxWGVYnyhAzmNOOtEd8MoQU
+         thHBypnTABgNBJtRoNIiGq1OGxgGD6sN3z7olT2f6w4+961RbSyRx1etaoIF9GrZO4Kp
+         2eKhMkAYXkQ+I1JgKz6Xyi0ZVEbIrz7XVdfs0jeKtTogDPMKosyiEHrWugKA9k82SxtO
+         64ZA==
+X-Gm-Message-State: AJIora+K6O8orZNh3Ho8mDWCQvUjo5iyz048EqWS1rGjChUnOtVlKiBj
+        2Coickl5DMFmS9wXj26A+Q==
+X-Google-Smtp-Source: AGRyM1tliiRnnklDEBtVXq44emC7wKr5Y6AIwfUauYZGzq3A+BpA7GBnq2zEPsDhJFPDba9ZY+wvlA==
+X-Received: by 2002:a05:6638:2113:b0:339:e689:6fb3 with SMTP id n19-20020a056638211300b00339e6896fb3mr25626jaj.169.1656450561190;
+        Tue, 28 Jun 2022 14:09:21 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id z7-20020a923207000000b002d1d3b1abbesm6156374ile.80.2022.06.28.14.09.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jun 2022 14:09:20 -0700 (PDT)
+Received: (nullmailer pid 980530 invoked by uid 1000);
+        Tue, 28 Jun 2022 21:09:19 -0000
+Date:   Tue, 28 Jun 2022 15:09:19 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: fwnode_for_each_child_node() and OF backend discrepancy
-In-Reply-To: <20220628205254.gnllvaz7w5jmpfe5@soft-dev3-1.localhost>
-References: <CAHp75Vd6e3WwHPfyL=GP=vsoWhwGXadwQziiRRwfHPfjkX2eFg@mail.gmail.com>
- <2f2d7685e0e43194270a310034004970@walle.cc>
- <CAHp75VcANMjxgS6S24Zh+mz66usb6LBnQk-ENvU9JHSXXsG1DA@mail.gmail.com>
- <9e58f421c27121977d11381530757a6e@walle.cc>
- <3ab8afab-b6b7-46aa-06d4-6740cee422d7@linaro.org>
- <288f56ba9cfad46354203b7698babe91@walle.cc>
- <daaddbd5-1cd4-d3ce-869a-249bdd8aecb9@linaro.org>
- <96f40ae6abf76af3b643b1e1c60d1d9f@walle.cc>
- <f9eb6d94-c451-0c9f-f123-2f1324f68b68@linaro.org>
- <CAHp75VdWdUY-XyGBsQb3i9thCswmBo4UEAEaZCO5MC_HMW+fSQ@mail.gmail.com>
- <20220628205254.gnllvaz7w5jmpfe5@soft-dev3-1.localhost>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <4782de1fc6692a98bd6c267c2714325f@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        linux-imx@nxp.com, linux-iio@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org
+Subject: Re: (EXT) Re: [PATCH] dt-bindings: iio: adc: Add imx6ul & imx6sx
+ compatibles
+Message-ID: <20220628210919.GB963202-robh@kernel.org>
+References: <20220613123529.466528-1-alexander.stein@ew.tq-group.com>
+ <20220617224448.GA2574775-robh@kernel.org>
+ <20220618180129.699b8601@jic23-huawei>
+ <12003373.O9o76ZdvQC@steina-w>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <12003373.O9o76ZdvQC@steina-w>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-06-28 22:52, schrieb Horatiu Vultur:
-> The 06/28/2022 22:28, Andy Shevchenko wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know 
->> the content is safe
->> 
->> On Tue, Jun 28, 2022 at 5:17 PM Krzysztof Kozlowski
->> <krzysztof.kozlowski@linaro.org> wrote:
->> > On 28/06/2022 17:09, Michael Walle wrote:
+On Mon, Jun 20, 2022 at 10:12:44AM +0200, Alexander Stein wrote:
+> Hello,
 > 
-> Hi,
+> Am Samstag, 18. Juni 2022, 19:01:29 CEST schrieb Jonathan Cameron:
+> > On Fri, 17 Jun 2022 16:44:48 -0600
+> > 
+> > Rob Herring <robh@kernel.org> wrote:
+> > > On Mon, Jun 13, 2022 at 11:34:46AM -0600, Rob Herring wrote:
+> > > > On Mon, 13 Jun 2022 14:35:29 +0200, Alexander Stein wrote:
+> > > > > Both are already using the vf610 compatible.
+> > > > > 
+> > > > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > > > ---
+> > > > > 
+> > > > >  .../devicetree/bindings/iio/adc/fsl,vf610-adc.yaml       | 9
+> > > > >  ++++++++-
+> > > > >  1 file changed, 8 insertions(+), 1 deletion(-)
+> > > > 
+> > > > Running 'make dtbs_check' with the schema in this patch gives the
+> > > > following warnings. Consider if they are expected or the schema is
+> > > > incorrect. These may not be new warnings.
+> > > > 
+> > > > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> > > > This will change in the future.
+> > > > 
+> > > > Full log is available here: https://patchwork.ozlabs.org/patch/
+> > > > 
+> > > > 
+> > > > adc@2198000: 'num-channels' does not match any of the regexes:
+> > > > 'pinctrl-[0-9]+'> 
+> > > Looks like you need to add 'num-channels'?
+> > 
+> > or a lot of wrong dtbs :)
+> > 
+> > By which I mean ones providing a property that may or may not be actually
+> > used by any drivers...
 > 
-> Sorry for joint this late.
-> 
->> 
->> ...
->> 
->> > > Mh. Assume a SoC with an integrated ethernet switch. Some ports
->> > > are externally connected, some don't. I'd think they should be disabled,
->> > > no? Until now, all bindings I know, treat them as disabled. But OTOH
->> > > you still need to do some configurations on them, like disable port
->> > > forwarding, disable them or whatever. So the hardware is present, but
->> > > it is not connected to anything.
->> >
->> > I see your point and the meaning is okay... except that drivers don't
->> > touch disabled nodes. If a device (with some address space) is disabled,
->> > you do not write there "please be power off". Here the case is a bit
->> > different, because I think ports do not have their own address space.
->> > Yet it contradicts the logic - something is disabled in DT and you
->> > expect to perform actual operations on it.
->> 
->> You beat me up to this comment, I also see a contradiction of what
->> "disabled" means in your, Michael, case and what it should be.
->> 
->> If you need to perform an operation on some piece of HW, it has not to
->> be disabled.
->> 
->> Or, you may deduce them by knowing how many ports in hardware (this is
->> usually done not by counting the nodes, but by a property) and do
->> whatever you want on ones, you have  not listed (by port_num) in the
->> array of parsed children.
-> 
-> It is not possible to have a defined for the MAX number of ports that
-> supported by lan966x. Which is 8. And assigned that define to
-> num_phys_ports instead of counting the entries in DT?
+> This got already fixed by Baruch's patch which is currently in Shawn's imx-
+> fixes-5.19 branch at [1]
 
-You mean also for the lan9662? I'm pretty sure that doesn't
-work. Have a look where num_phys_ports is used. One random
-example:
-https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet/microchip/lan966x/lan966x_main.c#L874
+Great!
 
-So if your switch only has 4 ports, then I'd guess you'll
-access a non-existing register.
-
--michael
+Reviewed-by: Rob Herring <robh@kernel.org>
