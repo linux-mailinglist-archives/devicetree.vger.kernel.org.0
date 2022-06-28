@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 020C955EF63
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95FA955EF80
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jun 2022 22:24:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232635AbiF1UX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 16:23:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33726 "EHLO
+        id S231373AbiF1UXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 16:23:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231359AbiF1UVw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:21:52 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18FC53D1EE
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:42 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id u9so18688267oiv.12
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:42 -0700 (PDT)
+        with ESMTP id S232531AbiF1UVx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 16:21:53 -0400
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03CF33DA43
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:44 -0700 (PDT)
+Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-101ec2d6087so18578625fac.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 13:19:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Kwf7QKhsDyHH90MDGkTbTlmNI8SrZ+37Blvr5GlXaPI=;
-        b=y1cM8/IiHTTUC+Fc0bOyOhR+Jjg+mVNGNXSAOeAReF6523wvK8KjhIBlDcXP5aJHff
-         VeNBfluxRO2oP2Xz59DdnmAQQvXHxCLkfrxWS6pChTYvW5+cZYJbrLPt++F92FZBBC/o
-         4wfYALd7EVvHwQttxrPw53iOmC7mvM8Gv7KomT/WeX6xBdkt54+5zTQ2+q1hFMZBSmoB
-         5PxoKXtqNh/M/KFlBABFuHZASpW/QSs1AyGEKEJfN6EyGtZIWQZh2WIA4DpEsq6mREG/
-         420KYhE22vwRVU3bcFPyewysqFixPgovKtA0i2k0wMNF8FE6GliFO6HWTlqdbAA7ScgG
-         iASg==
+        bh=T9Cx8w0rhio/ohewZOiPkphH/+aLsZ6/01SB1YTtLYI=;
+        b=p/DlhyfKCSFPcL6w9AzCO0KMH4C8H0pY9pmF8N8pz/4MoxdZ9EqTAOv7B7NiivqT1i
+         SHs+SVVvMAoKIkZkFXfcMNUIvzCweyDrMW5gV3X9Ea9cSBSTo4IrF6DgQfOxlGe5s/2Z
+         OzBrony0Z1wBKOBbOxSCO23m4jee23FzMMU8mci9o/dbWsYPHhSPLe4J/DOYYA+xyKX+
+         gWci7WQZtiRVCJ3o03NDR7omcHBeCbylncOj1lw4VyZkCF7dFI9+vlV7jO/alpzPSndJ
+         KPkatwjdW5hQxBwH6NFPH2p3BboC+z0ZmAFfQ7t60GNG8VltuO3BSuzhuh3KI3mbP8A1
+         3+JA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Kwf7QKhsDyHH90MDGkTbTlmNI8SrZ+37Blvr5GlXaPI=;
-        b=I+uh+gCxiOMZc4cxcGJJkxfsPbChAKpYjzUgQjA+qm7WY7yf624Tn4Cb3HElI/VclJ
-         2DJYZ5qCtocrh846+GYTsJ5Isy38h/erLdS8TS3BjUMR1WFPb6oncBPI83Waq9NvLyig
-         7ufYz5rlhXhGAhubSexaqzeLIllX2v+RinE47Zj6qKLfg8A19tmUu4m5HwTtH3NzG8SN
-         ikWcBuqyzCWnUZRJ56mDYz4ZDNtdZddyvzE1Ae8HpHXgXE5QC2RZvNybGwRP8ORtFc3b
-         R9GNNltdE0rhYL/tL8wFmIosElZjo7t6kNzykDxjkMj5PS64wlHI7aGxpxzOe2IoP6ch
-         bqzA==
-X-Gm-Message-State: AJIora+4/tSJsjOvl6yic5NxSbsE5ie1X76jNeFBe9LFT7y9O/bVvREV
-        pCdu4KicD4bLy2bPtwFcpLu6UQ==
-X-Google-Smtp-Source: AGRyM1ufg+aVItdlpRKRIptLonzc3w8TpyCDvkMzHM6RwubyuYqC7WBFbuib8PL2IXZEi3f4mqPw7g==
-X-Received: by 2002:a05:6808:612:b0:335:654c:1ebd with SMTP id y18-20020a056808061200b00335654c1ebdmr879609oih.211.1656447581856;
-        Tue, 28 Jun 2022 13:19:41 -0700 (PDT)
+        bh=T9Cx8w0rhio/ohewZOiPkphH/+aLsZ6/01SB1YTtLYI=;
+        b=K20Dgo7Y+6N3aNqO1nzKozNlWnKc8Cun7LZN1URCI3sI/6UEGvnZKUqd8f7zMMmkIe
+         hmk+DCnfC0GodbPtTv8Le38ppQNGIpOUDu6Dnzv7Eq9AtdU6KNUPV3AJweng89GLqWhk
+         OceqU4m7cn0SA9Fr6CPTnX+YjCKGQQL0q/UxSnT7U5bUb2fnaE+xgXLf7QRbu0qf/6aK
+         ptMDtCHT4xA4K+saNQMI/VXUbFmLmoyUt5xTbUq6zyfM8zcsz8g203ACaM4GY3nnT2r0
+         OCclQUXRL2WoeIAhOMMdpE1x8si33I9WMMp+I5/xvHL3ToK7/Mi/J85Ji8WM+VuojL8Q
+         PrbA==
+X-Gm-Message-State: AJIora+tQpPcb4CZcP81iz071/OIVLq5bPB2uALDjsaWkdMzifqTBFOd
+        UM2ETG+/vHPp+/DQfxSO9SUcLw==
+X-Google-Smtp-Source: AGRyM1tk8tFX5leFZcJMH675bmFyeUZelspx+usO0ZdCsH3TSfslgxEJsCegsEWOHJ4em5Yui/hnIQ==
+X-Received: by 2002:a05:6870:80c9:b0:102:e5ff:d9a8 with SMTP id r9-20020a05687080c900b00102e5ffd9a8mr965947oab.22.1656447583371;
+        Tue, 28 Jun 2022 13:19:43 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.40
+        by smtp.gmail.com with ESMTPSA id a12-20020a056870d60c00b000f30837129esm9536923oaq.55.2022.06.28.13.19.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 13:19:40 -0700 (PDT)
+        Tue, 28 Jun 2022 13:19:42 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     wim@linux-watchdog.org, Rohit Agarwal <quic_rohiagar@quicinc.com>,
         robh+dt@kernel.org, linux@roeck-us.net,
@@ -54,18 +54,18 @@ To:     wim@linux-watchdog.org, Rohit Agarwal <quic_rohiagar@quicinc.com>,
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
         manivannan.sadhasivam@linaro.org
-Subject: Re: (subset) [PATCH 04/11] dt-bindings: firmware: scm: Add compatible for SDX65
-Date:   Tue, 28 Jun 2022 15:19:09 -0500
-Message-Id: <165644753307.10525.13757217701045870006.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH 10/11] ARM: dts: qcom: sdx65: Add Watchdog support
+Date:   Tue, 28 Jun 2022 15:19:10 -0500
+Message-Id: <165644753307.10525.16816165065434330941.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <1654080312-5408-5-git-send-email-quic_rohiagar@quicinc.com>
-References: <1654080312-5408-1-git-send-email-quic_rohiagar@quicinc.com> <1654080312-5408-5-git-send-email-quic_rohiagar@quicinc.com>
+In-Reply-To: <1654080312-5408-11-git-send-email-quic_rohiagar@quicinc.com>
+References: <1654080312-5408-1-git-send-email-quic_rohiagar@quicinc.com> <1654080312-5408-11-git-send-email-quic_rohiagar@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,15 +73,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 1 Jun 2022 16:15:05 +0530, Rohit Agarwal wrote:
-> Add devicetree compatible for SCM present in SDX65 platform.
+On Wed, 1 Jun 2022 16:15:11 +0530, Rohit Agarwal wrote:
+> Enable Watchdog support for Application Processor Subsystem (APSS) block
+> on SDX65 platform.
 > 
 > 
 
 Applied, thanks!
 
-[04/11] dt-bindings: firmware: scm: Add compatible for SDX65
-        commit: 2ea6af6cc1f58f828180cf6124febbde47a10bad
+[10/11] ARM: dts: qcom: sdx65: Add Watchdog support
+        commit: 39eebfce4bdb88f53959d570ab9c8956bb9f0988
 
 Best regards,
 -- 
