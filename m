@@ -2,118 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3857655F5AC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 07:32:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8629555F5B9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 07:38:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbiF2FcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 01:32:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52736 "EHLO
+        id S231365AbiF2Fe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 01:34:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbiF2FcM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 01:32:12 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40F7527B2F;
-        Tue, 28 Jun 2022 22:32:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1656480731; x=1688016731;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=HIMONIVkKmgkvahLcy/boT057QXRUoGCDFGbCyd0dk0=;
-  b=k21jNLsOWiu2Uf+yr5ZbbfokNbBqDO9DGzCijuxQv9jWQJ619TlbEOtB
-   nKpSxjJjaeN2ejbuMZUcmMxIXaPIR2s1XqbE8SqUInGKKharzt5ubulrV
-   805Ef6ZBPViy37VEMBmHkK2kTaipZ2/yFSUAP52IDjLGEzkWt2dgbcNa/
-   w=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 28 Jun 2022 22:32:10 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 22:32:10 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 28 Jun 2022 22:32:09 -0700
-Received: from [10.216.41.7] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 28 Jun
- 2022 22:32:03 -0700
-Message-ID: <654c8819-5721-838e-4148-6fbdc5fc2dcd@quicinc.com>
-Date:   Wed, 29 Jun 2022 11:01:58 +0530
+        with ESMTP id S229511AbiF2FeZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 01:34:25 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCE827FD3;
+        Tue, 28 Jun 2022 22:34:19 -0700 (PDT)
+X-UUID: 37ddd689f04e49b9bcd731470b3f0d60-20220629
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.7,REQID:850cf4fb-fd0c-485d-b8b6-9c90c83c4667,OB:10,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:45
+X-CID-INFO: VERSION:1.1.7,REQID:850cf4fb-fd0c-485d-b8b6-9c90c83c4667,OB:10,LOB
+        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:45
+X-CID-META: VersionHash:87442a2,CLOUDID:27d60e86-57f0-47ca-ba27-fe8c57fbf305,C
+        OID:3081cad28a70,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 37ddd689f04e49b9bcd731470b3f0d60-20220629
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1882402547; Wed, 29 Jun 2022 13:34:12 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 29 Jun 2022 13:34:10 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 29 Jun 2022 13:34:10 +0800
+Message-ID: <78d71a052d214e0c11cab5c2f4dee39c4f67c0bc.camel@mediatek.com>
+Subject: Re: [PATCH v12 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 29 Jun 2022 13:34:10 +0800
+In-Reply-To: <20220627080341.5087-6-rex-bc.chen@mediatek.com>
+References: <20220627080341.5087-1-rex-bc.chen@mediatek.com>
+         <20220627080341.5087-6-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v2 1/2] drm/msm/a6xx: Add support for a new 7c3 sku
-Content-Language: en-US
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     freedreno <freedreno@lists.freedesktop.org>,
-        <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Chia-I Wu <olvaffe@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        "Jonathan Marek" <jonathan@marek.ca>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        "Sean Paul" <sean@poorly.run>, <linux-kernel@vger.kernel.org>
-References: <20220510132256.v2.1.Ibf12c1b99feecc4130f1e3130a3fc4ddd710a2e9@changeid>
- <YrvVPiLQL6d4MrFV@builder.lan>
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <YrvVPiLQL6d4MrFV@builder.lan>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/29/2022 9:59 AM, Bjorn Andersson wrote:
-> On Tue 10 May 02:53 CDT 2022, Akhil P Oommen wrote:
->
->> Add a new sku to the fuse map of 7c3 gpu.
->>
->> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> Is this series still needed/wanted? I've been waiting for patch 1 to be
-> merged in the driver so that I can pick up the dts change.
->
-> Regards,
-> Bjorn
-Internally, this sku is on hold. So we can drop this series for now. I 
-will resend it if required in future.
+Hi, Bo-Chen:
 
--Akhil.
+On Mon, 2022-06-27 at 16:03 +0800, Bo-Chen Chen wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> This patch adds a embedded displayport driver for the MediaTek mt8195
+> SoC.
+> 
+> It supports the MT8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
+> 
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
+> 
+> This driver is based on an initial version by
+> Jitao shi <jitao.shi@mediatek.com>
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> ---
 
->
->> ---
->>
->> (no changes since v1)
->>
->>   drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->> index 841e47a..61bb21d 100644
->> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
->> @@ -1771,6 +1771,8 @@ static u32 adreno_7c3_get_speed_bin(u32 fuse)
->>   		return 0;
->>   	else if (fuse == 190)
->>   		return 1;
->> +	else if (fuse == 96)
->> +		return 2;
->>   
->>   	return UINT_MAX;
->>   }
->> -- 
->> 2.7.4
->>
+[snip]
+
+> +
+> +static void mtk_dp_power_enable(struct mtk_dp *mtk_dp)
+> +{
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_RESET_AND_PROBE,
+> +			   0, SW_RST_B_PHYD);
+> +
+> +	/* Wait for power enable */
+> +	usleep_range(10, 200);
+> +
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_RESET_AND_PROBE,
+> +			   SW_RST_B_PHYD, SW_RST_B_PHYD);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
+> +			   DP_PWR_STATE_BANDGAP_TPLL,
+> DP_PWR_STATE_MASK);
+> +}
+> +
+> +static void mtk_dp_power_disable(struct mtk_dp *mtk_dp)
+> +{
+> +	mtk_dp_write(mtk_dp, MTK_DP_TOP_PWR_STATE, 0);
+> +
+> +	mtk_dp_write(mtk_dp, MTK_DP_0034,
+> +		     DA_CKM_CKTX0_EN_FORCE_EN |
+> +		     DA_CKM_BIAS_LPF_EN_FORCE_VAL |
+> +		     DA_CKM_BIAS_EN_FORCE_VAL |
+> +		     DA_XTP_GLB_LDO_EN_FORCE_VAL |
+> +		     DA_XTP_GLB_AVD10_ON_FORCE_VAL);
+> +
+> +	/* Disable RX */
+> +	mtk_dp_write(mtk_dp, MTK_DP_1040, 0);
+
+MTK_DP_1040 is set to 0 in mtk_dp_power_disable(), but it is not set to
+other value in mtk_dp_power_enable(). Does any thing would be wrong
+when mtk_dp_power_disable() and mtk_dp_power_enable()?
+
+Regards,
+CK
+
+> +	mtk_dp_write(mtk_dp, MTK_DP_TOP_MEM_PD,
+> +		     0x550 | BIT(FUSE_SEL_SHIFT) |
+> BIT(MEM_ISO_EN_SHIFT));
+> +}
+> +
 
