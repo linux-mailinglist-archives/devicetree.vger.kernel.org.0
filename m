@@ -2,59 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0248455F33D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 04:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A406A55F325
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 04:09:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231265AbiF2CKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 22:10:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59034 "EHLO
+        id S230449AbiF2CJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 22:09:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231189AbiF2CKB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 22:10:01 -0400
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2E883205E;
-        Tue, 28 Jun 2022 19:09:59 -0700 (PDT)
-Received: by mail-il1-f171.google.com with SMTP id f15so8912563ilj.11;
-        Tue, 28 Jun 2022 19:09:59 -0700 (PDT)
+        with ESMTP id S230359AbiF2CJn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 22:09:43 -0400
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C438B27B1D;
+        Tue, 28 Jun 2022 19:09:42 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id l24so14627708ion.13;
+        Tue, 28 Jun 2022 19:09:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=y+RTC0AjihlAiwWDvXzA47g2ErYV5HcVBpXJ4IiEfIU=;
-        b=qS+RBMGamTv2DLz/8uGD4vDJf6vx70fbgdzwAyt9VzzsCtwVj4mb1p+mc6iGusPBTH
-         V0uNIm3q02flh/KKjnMV3w6PKKwED2GJd2+YAHeFBjXqVoSjgJQa0p0IfhJS9Sq85ElX
-         XbQDMRblLMJMPz+sPj0SRHGawQqn+wCO8Iu1rFYcbYBBSL7wZoHZvRkDw3bASG7xcogo
-         rYBJyG79sUffIu5KlooFgLw5dXnb3ki5Zh5lp1lUYN83fsJ5aFQd7W/3SwPE1cE5uB3c
-         e2c5vfiMwFMwa3N3X4EvVEOTIFE8cZ4HnSwjysiUko3Q4xxLsYuPLkign2VOTPpbapm0
-         bsNQ==
-X-Gm-Message-State: AJIora/htHalyA2kewY/pQQYXGQdeAGmVXOjr4fgmZn7ZvsLDQelH9bK
-        2gCi3QmrKdjYHFgEfBfk+g==
-X-Google-Smtp-Source: AGRyM1uJFlnkUhRF4s/C169vokrsoZHMo0DUNb/hlCfpx9DWEDCPyVvbgorEGVHVkbMSerE3Kh7alg==
-X-Received: by 2002:a05:6e02:20c9:b0:2d9:4742:9411 with SMTP id 9-20020a056e0220c900b002d947429411mr622645ilq.302.1656468599198;
-        Tue, 28 Jun 2022 19:09:59 -0700 (PDT)
+        bh=3ww8IIJdv7f/OVWj83PtK7d2cH+9S36RhpLx7LDKL0k=;
+        b=rtAJnYongbcAVFY7m7g+oZvYQUCvd22g3O+oN+dfmDxarTCbSiUA96W42P5LCVQoX+
+         qNeKMxvDsxKBY3uB9yr31xl61+U2i765YVXGofAtxk5lb1XoHGlhXcjPbQTldLf4Gqd9
+         QkA8OWpd5way5fLXjhlTeeHF5cVwJ3tBfIY/OStMy8/iyUAcl519o0HLFIgLhnph+awI
+         OLA4vkxma+kHEV+phFfFHCxIyn1m2dAlH2dRJ+OtGwS7AUpvHKmQfoHnpv7Cb3JlU5Dc
+         86IEX1Tj5C5XNHC2BjYlfSxV5Hkn1nB99gOQCPBAJdMQ/gZZeQO1kt2IAwuNZ/hsXaYT
+         2gTQ==
+X-Gm-Message-State: AJIora/DimjXwk2kwxejUO0d/mwll84SF/7TC2x5mFFuNvAZ2O3q56bf
+        QLdvV3XCU+eFgNxyybTsiHRWVKwWnA==
+X-Google-Smtp-Source: AGRyM1uM6/M+XyyVT1BybyL1G5laT7fSjqJ92A94OIl6gk5IP9M1r72nNINaMr9MSibjz24mPvGRyQ==
+X-Received: by 2002:a05:6638:2494:b0:33c:cfb8:1e3c with SMTP id x20-20020a056638249400b0033ccfb81e3cmr299603jat.139.1656468581975;
+        Tue, 28 Jun 2022 19:09:41 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id u13-20020a5d870d000000b00669ceb1d521sm7348686iom.10.2022.06.28.19.09.56
+        by smtp.gmail.com with ESMTPSA id u16-20020a6b4910000000b00669384fcf88sm7377409iob.1.2022.06.28.19.09.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 19:09:58 -0700 (PDT)
-Received: (nullmailer pid 1403686 invoked by uid 1000);
+        Tue, 28 Jun 2022 19:09:41 -0700 (PDT)
+Received: (nullmailer pid 1403669 invoked by uid 1000);
         Wed, 29 Jun 2022 02:09:39 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        netdev@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>
-In-Reply-To: <20220628221404.1444200-3-sean.anderson@seco.com>
-References: <20220628221404.1444200-1-sean.anderson@seco.com> <20220628221404.1444200-3-sean.anderson@seco.com>
-Subject: Re: [PATCH net-next v2 02/35] dt-bindings: net: Convert FMan MAC bindings to yaml
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+In-Reply-To: <20220628144649.3957286-2-cosmin.tanislav@analog.com>
+References: <20220628144649.3957286-1-cosmin.tanislav@analog.com> <20220628144649.3957286-2-cosmin.tanislav@analog.com>
+Subject: Re: [PATCH v7 1/2] dt-bindings: iio: adc: add AD4130
 Date:   Tue, 28 Jun 2022 20:09:39 -0600
-Message-Id: <1656468579.946817.1403685.nullmailer@robh.at.kernel.org>
+Message-Id: <1656468579.876540.1403668.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,19 +61,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Jun 2022 18:13:31 -0400, Sean Anderson wrote:
-> This converts the MAC portion of the FMan MAC bindings to yaml.
+On Tue, 28 Jun 2022 17:46:48 +0300, Cosmin Tanislav wrote:
+> AD4130-8 is an ultra-low power, high precision, measurement solution for
+> low bandwidth battery operated applications.
 > 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> The fully integrated AFE (Analog Front-End) includes a multiplexer for up
+> to 16 single-ended or 8 differential inputs, PGA (Programmable Gain
+> Amplifier), 24-bit Sigma-Delta ADC, on-chip reference and oscillator,
+> selectable filter options, smart sequencer, sensor biasing and excitation
+> options, diagnostics, and a FIFO buffer.
+> 
+> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
 > ---
-> 
-> Changes in v2:
-> - New
-> 
->  .../bindings/net/fsl,fman-dtsec.yaml          | 144 ++++++++++++++++++
->  .../devicetree/bindings/net/fsl-fman.txt      | 128 +---------------
->  2 files changed, 145 insertions(+), 127 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
+>  .../bindings/iio/adc/adi,ad4130.yaml          | 256 ++++++++++++++++++
+>  1 file changed, 256 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -87,11 +84,90 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: patternProperties:^thermistor@:properties:adi,excitation-current-nanoamp: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: ignoring, error in schema: patternProperties: ^thermistor@: properties: adi,excitation-current-nanoamp
-Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.example.dtb:0:0: /example-0/spi/ltc2983@0: failed to match any schema with compatible: ['adi,ltc2983']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml: patternProperties:^channel@([0-9a-f])$:properties:adi,excitation-current-1-nanoamp: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('default', 'enum' were unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('default' was unexpected)
+		hint: A vendor string property with exact values has an implicit type
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml: patternProperties:^channel@([0-9a-f])$:properties:adi,excitation-current-1-nanoamp: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	0 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	100 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	10000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	20000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	50000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	100000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	150000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	200000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml: patternProperties:^channel@([0-9a-f])$:properties:adi,burnout-current-nanoamp: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('default', 'enum' were unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('default' was unexpected)
+		hint: A vendor string property with exact values has an implicit type
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml: patternProperties:^channel@([0-9a-f])$:properties:adi,burnout-current-nanoamp: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	0 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	500 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	2000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	4000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml: patternProperties:^channel@([0-9a-f])$:properties:adi,excitation-current-0-nanoamp: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('default', 'enum' were unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('default' was unexpected)
+		hint: A vendor string property with exact values has an implicit type
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml: patternProperties:^channel@([0-9a-f])$:properties:adi,excitation-current-0-nanoamp: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	0 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	100 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	10000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	20000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	50000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	100000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	150000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	200000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml: ignoring, error in schema: patternProperties: ^channel@([0-9a-f])$: properties: adi,excitation-current-1-nanoamp
+Documentation/devicetree/bindings/iio/adc/adi,ad4130.example.dtb:0:0: /example-0/spi/adc@0: failed to match any schema with compatible: ['adi,ad4130']
 
 doc reference errors (make refcheckdocs):
 
