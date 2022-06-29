@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63FCE560800
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 19:57:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB3A756080E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 19:58:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231938AbiF2R5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 13:57:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35738 "EHLO
+        id S232178AbiF2R6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 13:58:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232030AbiF2R5X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 13:57:23 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E9D33981D
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 10:57:21 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id n8so9319278eda.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 10:57:21 -0700 (PDT)
+        with ESMTP id S232035AbiF2R61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 13:58:27 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F7CF1CB1B
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 10:58:21 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id o25so1676974ejm.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 10:58:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :references:from:in-reply-to:content-transfer-encoding;
-        bh=T9Yk42NUx/MUY1DZAib6F0ViLRokZ/a41TvQe0kWdP4=;
-        b=bZGQ+PT2IEAXll5w9dKNVo+xwFIadVsQwP4mPenKcpxRPckz+DkuSGS07cVZ4Ky3da
-         xyOzlwLNQ8rk2i1DYGcmO5ufpqwPxs6oBI9umCtD0EELukpzT8/ZZGedDcP8dKbJEUBy
-         6btkeumLsawOSMsouc7yGsLOZ0XurlSzhtDS08Pr3NRP9+Vufd+q69l6MLrhHNTP0QYO
-         bBYlmpEN8lKmz530dXwgJGN90pu6N2HVRXl76+CgQDkXn9dLGMiGzcWHrVGLvMfuxksi
-         j0xgTQLMVOvfkfCKT02hJTmw1YILvlq/EYFxPLr2UemI4BD1U1JqkkS0PE+J6Rnk9hUt
-         GH0w==
+        bh=TO3Gnama9Pcg2SO6IJJkDI3yQUm4nzzhBUaaJ+8u4m4=;
+        b=U8P7GVcN+mATksB0WZAJBG7FkirhJVc/r4XngwH4+Rwlp/CzQUDTIxArRCnf9ypdWX
+         Co0dkneIn9UEGH4ZQBLz9BT8WJ8+R7q2L9DDQFwbiqbcTUMfsnlB8M4/9M5a3gBVVLrY
+         mMrGrpayYYOco0L2HjOuwJlI16VbMSZ9JC9pLZAwvOLq+u+qfrOihjvbmV3Bi5LNjAre
+         DwKTjYEwyfloNuIwtu0w7ObutFzBca500iyf0oTxLyhaTxT3ozVUzWgJejS0ydHY6L4j
+         mmZ/Wcvk6WTTJyQdlGItRoda+2+ECGHS9P8AFRgcBwGQ4K1kmga/XpbD43MZ6fdODgv/
+         8BaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=T9Yk42NUx/MUY1DZAib6F0ViLRokZ/a41TvQe0kWdP4=;
-        b=HQC2Uo6DccwoauwfOOuBbioF9uHwBAJVyAisjWL3vIXBuK0JrNJXafMXUKnlQKJaY9
-         Yus0aKhtlJSmZQlzvYIxo3M662E7ey6+n0/zkkPmkE3vfLs1qRlb33kpRhY4gPW/6eAd
-         CJFvrhFf1vN0Qci3ybH3sqQ3jGldxzXvgDf40khfVad0PW+ZDKld9lGsjYhrxSu98Qd9
-         WMG2r7kh2Gzbj3SbarUDvpL6sZ85Se1ePxEtzXVplvCXf3kUWNLUP4Fkr6ES6LHK6+Sd
-         M57CF4ebUXOnS8WQZ2pCaTjiOi+pnnmDB1b0YHhGoBJ9PN1G4iRght8eBNZNK230iG3n
-         sdBg==
-X-Gm-Message-State: AJIora/XI9nDZ7nWc7/xN2L/mhJgqQOz5DzHhrXZPCKDWWIylL0u8Fhw
-        csTo8OpEm5njo+jd7WtTU6dEbQ==
-X-Google-Smtp-Source: AGRyM1ttHQmSRv3obVLH5G+Up+jZjSldhz+fp757LYwAZjBqrotFQa2jBpRMngfGbbHSV/vTSkpI2Q==
-X-Received: by 2002:a05:6402:3907:b0:431:6776:64e7 with SMTP id fe7-20020a056402390700b00431677664e7mr5936886edb.0.1656525439814;
-        Wed, 29 Jun 2022 10:57:19 -0700 (PDT)
+        bh=TO3Gnama9Pcg2SO6IJJkDI3yQUm4nzzhBUaaJ+8u4m4=;
+        b=kDrP7+ImvkNR/GnyAZzSANoNZ1Ub/A3StL5VgD7v4Ms+5HEX7eMtM/YCPG2BwN1HZz
+         RqOl2RoJCNmxNmqXQzFl7iI8/pPB8MqHKX9wolN8wyBU+A2Zz26eVSD/HM3llJpNCPnc
+         R4oX+dfZyH8M5S8VoObbWE+6Ilf5JHrVlKFc/G2ccvG0qCnNMsSKuC3tIiy5AEmSdHWl
+         gPdQ3MVO0kUn+w81Qd5duNNECo3SEB04lQSRgBnkx5OQB6gaDv7tO6lPR1P4NfvLrFGF
+         B8oQbrjkHEHmSd7oShITUjdwyJJZd+jbAsVYwoHfRrra8B3a8Xj+m96BNuR2kdqK3Mdd
+         qN6A==
+X-Gm-Message-State: AJIora/udQBGg7Ly/yNpEJt21bAL37Syec0cAyYLx1Hfw8hQykfMJ4Em
+        IJXLvW/Z5N3H96HGz89M4NOloQ==
+X-Google-Smtp-Source: AGRyM1v+gAf4AWv37It7Rky/E4URQVzb6RJirGLCOYcVKDVk8+2jdsLHkGdkPyRS78jkOTTaGVKnpQ==
+X-Received: by 2002:a17:906:5d0d:b0:726:be8f:becc with SMTP id g13-20020a1709065d0d00b00726be8fbeccmr4459339ejt.323.1656525500445;
+        Wed, 29 Jun 2022 10:58:20 -0700 (PDT)
 Received: from [192.168.0.187] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id lj20-20020a170906f9d400b00722e771007fsm7934176ejb.37.2022.06.29.10.57.17
+        by smtp.gmail.com with ESMTPSA id lu4-20020a170906fac400b006fec69696a0sm7884910ejb.220.2022.06.29.10.58.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 10:57:19 -0700 (PDT)
-Message-ID: <efd0f383-c232-e58e-12b8-2e6ee9d9d287@linaro.org>
-Date:   Wed, 29 Jun 2022 19:57:17 +0200
+        Wed, 29 Jun 2022 10:58:19 -0700 (PDT)
+Message-ID: <ba3289b0-6c1f-6601-9f91-3f9e727459e5@linaro.org>
+Date:   Wed, 29 Jun 2022 19:58:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v6 05/14] dt-bindings: power: Add fsl,scu-pd yaml file
+Subject: Re: [PATCH v6 06/14] dt-bindings: rtc: Add fsl,scu-rtc yaml file
 Content-Language: en-US
 To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -90,14 +90,14 @@ To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>,
         linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20220629164414.301813-1-viorel.suman@oss.nxp.com>
- <20220629164414.301813-6-viorel.suman@oss.nxp.com>
+ <20220629164414.301813-7-viorel.suman@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220629164414.301813-6-viorel.suman@oss.nxp.com>
+In-Reply-To: <20220629164414.301813-7-viorel.suman@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -110,18 +110,42 @@ On 29/06/2022 18:44, Viorel Suman (OSS) wrote:
 > 
 > In order to replace the fsl,scu txt file from bindings/arm/freescale,
 > we need to split it between the right subsystems. This patch documents
-> separately the 'power controller' child node of the SCU main node.
+> separately the 'rtc' child node of the SCU main node.
 > 
 > Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
 > Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
 > ---
+>  .../devicetree/bindings/rtc/fsl,scu-rtc.yaml  | 31 +++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml b/Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml
+> new file mode 100644
+> index 000000000000..940588e278fb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml
+> @@ -0,0 +1,31 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/fsl,scu-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: i.MX SCU Client Device Node - RTC bindings based on SCU Message Protocol
+> +
+> +maintainers:
+> +  - Dong Aisheng <aisheng.dong@nxp.com>
+> +
+> +description: i.MX SCU Client Device Node
+> +  Client nodes are maintained as children of the relevant IMX-SCU device node.
+> +
+> +allOf:
+> +  - $ref: "rtc.yaml#"
 
-Assuming all patches are taken independently:
-
+No need for quotes.
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 
 Best regards,
 Krzysztof
