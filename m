@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F973560331
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:37:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEB44560336
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:38:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232695AbiF2Ohl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 10:37:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41516 "EHLO
+        id S232618AbiF2OiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 10:38:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233616AbiF2Ohg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:37:36 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0DB934BBB
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 07:37:35 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id e12so4127281lfr.6
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 07:37:35 -0700 (PDT)
+        with ESMTP id S233060AbiF2OiD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:38:03 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3C4393D3
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 07:38:01 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id z13so28337136lfj.13
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 07:38:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:user-agent:in-reply-to:references
          :message-id:mime-version:content-transfer-encoding;
-        bh=FhyPoEQz0RKtLndhys6lAY6EI+O9m3ogiGmUxKJbM9U=;
-        b=incvQV4gzroWunRWH8JH/05yomzIH8GiXh6/TrYmrMvtPWDllUAuIvwcnlDuxUIbdq
-         LfW69aXFkJpIp9QHztQ97hJeWtVX5/rsH4LW28XXqsuRY91gbcwXenJeddfsE1HkSxb+
-         JoxIIEmVm6m7b9SyvgfKTZvp+tcShFl3H9yuZIpZGgrHyeSycZUcw+3NoT+phs724gL4
-         DiBFyusivyJoZUogPfGR1WsnmiM5HKd5HVfsdr9NX6bR4iJqgFGKhHgsn07r2yIGaItQ
-         peOGw2taLt9lipJ/V0OA/2FpbYcJOOfDHfgFoRWMGfpzhgZBzSe3uxzOFqWI+LkzFCnA
-         9ZxA==
+        bh=ghmi5jsmPnP+ojwHTepYzlKyG3gtdAz3TucYsEdGWMs=;
+        b=d7nAx8GH5P30iidV+gOCv5+qTbaHk+5RhHFVnnUN8vnpf7EO5f1ZukxHVPi1Mz4LY1
+         +xGKk/fqFZf/jGS4x1HLo5vEdFOrnjUp0Lh/z7CGMyC59ybdVBg0etM/tWU9qmHheBlW
+         45tUL5vNNY4ABjYEj3UQy76z0l5h63ge09kzesgMpVUj0CF0XcGG0XDMebkfS+uvbcIy
+         994wI+oqKjGqgxUhf5d9hqz2+QF/4uRwfZMa9t/58EoCcc3fUJDIQI6mEQjNbiYzKwAq
+         FcCStgThmBMKJnA21G1jbyDEaS8i8hdIAYLrelxMWSUpZzsPqAFjFUqqkGXKyzY4AM7q
+         kmJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:user-agent:in-reply-to
          :references:message-id:mime-version:content-transfer-encoding;
-        bh=FhyPoEQz0RKtLndhys6lAY6EI+O9m3ogiGmUxKJbM9U=;
-        b=ipKkVwrIrDdQfYSA3XSfOqYD+WYJ+BOfFaFKGtaFKVGNiEiVUfdY3wWgOYNFS2lNQW
-         J58Wo5e2qCMsT+Caz0geZV8VCgPvr4sTxoKFivVOnlBymlZ0/CWtbDMnizWgJhz4gVXU
-         pi8pf3XXhxiz084pU7U0nrSSJZB5l+3ee/JzOElqldkGOB+QP5aXz2aLP33SWJAVbrjz
-         fFjg3ESX2fpnQVIqM3kiMmOYxVWW+CVT4LZHi5HVX2sxvIab7CwA6pGgwAK/v0AFLKlY
-         /Vgb512PmxcjRk+X2lqnWSt6rH9jWu6wmsKyr58EeD+vxEJZBG2/y4XPElRKK3jPHidV
-         AuXg==
-X-Gm-Message-State: AJIora/Jf+1XfXjIyRNwgXeYPnRe6s36HuhaAApqCeItzTdL7DdifzPS
-        tRc6iGC13OTLMbOeG7FbzU2Znw==
-X-Google-Smtp-Source: AGRyM1tRX9vLYv7X5Wt5cAG/cVVk1Xh7kH6Us7qiN8IfkK/y+f+CJd2oU+zmfCrZv6S0nyXj5/0cLg==
-X-Received: by 2002:a05:6512:2520:b0:47f:8512:19c1 with SMTP id be32-20020a056512252000b0047f851219c1mr2338958lfb.540.1656513454142;
-        Wed, 29 Jun 2022 07:37:34 -0700 (PDT)
+        bh=ghmi5jsmPnP+ojwHTepYzlKyG3gtdAz3TucYsEdGWMs=;
+        b=rhqa6cgTnqe4W1N0P9lPNiPvBYqRNYR9Y7jXZHkjruLTQ420b+8Y9jFqy0sbj0v2G0
+         N5fGd00HRv70peRB3XydpeQVkvHfZ6CX+cOFYqSPlVVa6ucAB3nTPW3kHkPQUlwpVtyI
+         e7nSBW+Vt35C39GP1IcvlX0H/Qs70cMZrrCnY6+mXOic6k+WmLKG8uzClTB6Rm//XFxT
+         1kmMMI4Fho1rW1YZSJ8xQOq9fYOThCLqp/LVQcPOK1re2koLkE/sGi9hhxJfCqNq6Zms
+         3I8Z1UfRCCL9kjHovJ9n7Fl2m8Gos+RFgLve4GCgTC28WAanYc4/vMCoYPHWwfKCaDhJ
+         S4xA==
+X-Gm-Message-State: AJIora/EZeT4hCsUM3O5hUEppEU0KylrgGio75BtDeaNZ6Mq/Zxn9d5y
+        oaeFsovGpdnazDwdgzqmEd29eQ==
+X-Google-Smtp-Source: AGRyM1tgFmsHBNq3ULmSu/tJbaPShocOAJ/4be0pZToDLOU5TviLycqBaqEM/rW6CPkVvbV+9LcvLw==
+X-Received: by 2002:ac2:4c19:0:b0:47f:9f39:768c with SMTP id t25-20020ac24c19000000b0047f9f39768cmr2310964lfq.285.1656513480049;
+        Wed, 29 Jun 2022 07:38:00 -0700 (PDT)
 Received: from [127.0.0.1] ([94.25.229.210])
-        by smtp.gmail.com with ESMTPSA id a19-20020ac25e73000000b0047255d21205sm2619414lfr.308.2022.06.29.07.37.33
+        by smtp.gmail.com with ESMTPSA id l7-20020a2e5707000000b0025a740b3c16sm2130692ljb.122.2022.06.29.07.37.59
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 29 Jun 2022 07:37:33 -0700 (PDT)
-Date:   Wed, 29 Jun 2022 17:37:30 +0300
+        Wed, 29 Jun 2022 07:37:59 -0700 (PDT)
+Date:   Wed, 29 Jun 2022 17:37:56 +0300
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Johan Hovold <johan+linaro@kernel.org>,
         Bjorn Helgaas <bhelgaas@google.com>,
@@ -60,18 +60,18 @@ CC:     Rob Herring <robh+dt@kernel.org>,
         =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
         linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/10] dt-bindings: PCI: qcom: Fix reset conditional
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_02/10=5D_dt-bindings=3A_PCI=3A?= =?US-ASCII?Q?_qcom=3A_Fix_msi-interrupt_conditional?=
 User-Agent: K-9 Mail for Android
-In-Reply-To: <20220629141000.18111-2-johan+linaro@kernel.org>
-References: <20220629141000.18111-1-johan+linaro@kernel.org> <20220629141000.18111-2-johan+linaro@kernel.org>
-Message-ID: <31EAC29D-77F4-4BED-B4DB-2B5718BD0009@linaro.org>
+In-Reply-To: <20220629141000.18111-3-johan+linaro@kernel.org>
+References: <20220629141000.18111-1-johan+linaro@kernel.org> <20220629141000.18111-3-johan+linaro@kernel.org>
+Message-ID: <9067A548-F8DF-484B-8DD4-94ACA581B191@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain;
  charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,40 +81,34 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 29 June 2022 17:09:51 GMT+03:00, Johan Hovold <johan+linaro@kernel=2Eor=
+On 29 June 2022 17:09:52 GMT+03:00, Johan Hovold <johan+linaro@kernel=2Eor=
 g> wrote:
->Fix the reset conditional which always evaluated to true due to a
->misspelled property name ("compatibles" in plural)=2E
+>Fix the msi-interrupt conditional which always evaluated to false due to
+>a misspelled property name ("compatibles" in plural)=2E
 >
->Fixes: 6700a9b00f0a ("dt-bindings: PCI: qcom: Do not require resets on ms=
-m8996 platforms")
 >Signed-off-by: Johan Hovold <johan+linaro@kernel=2Eorg>
 >---
 > Documentation/devicetree/bindings/pci/qcom,pcie=2Eyaml | 2 +-
 > 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Reviewed-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
+
+
 >
 >diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie=2Eyaml b/Doc=
 umentation/devicetree/bindings/pci/qcom,pcie=2Eyaml
->index 7e84063afe25=2E=2Eed9f9462a758 100644
+>index ed9f9462a758=2E=2Ea1b4fc70e162 100644
 >--- a/Documentation/devicetree/bindings/pci/qcom,pcie=2Eyaml
 >+++ b/Documentation/devicetree/bindings/pci/qcom,pcie=2Eyaml
->@@ -615,7 +615,7 @@ allOf:
+>@@ -628,7 +628,7 @@ allOf:
+>     # On older chipsets it's always 1 msi interrupt
 >   - if:
->       not:
->         properties:
->-          compatibles:
->+          compatible:
-
-
-Argh=2E Thanks for noticing and fixing the typo=2E
-If necessary I can respin MSI series in a few days=2E
-
-Anyway, for this patch:
-Reviewed-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
-
->             contains:
->               enum:
->                 - qcom,pcie-msm8996
+>       properties:
+>-        compatibles:
+>+        compatible:
+>           contains:
+>             enum:
+>               - qcom,pcie-msm8996
 
 --=20
 With best wishes
