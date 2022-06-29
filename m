@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1A11560073
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 14:55:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FBB35600F2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 15:10:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233434AbiF2Mu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 08:50:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49182 "EHLO
+        id S233556AbiF2NBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 09:01:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233441AbiF2MuZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 08:50:25 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4602333359;
-        Wed, 29 Jun 2022 05:50:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 5D140CE26B3;
-        Wed, 29 Jun 2022 12:50:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4B5E9C36AEB;
-        Wed, 29 Jun 2022 12:50:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656507020;
-        bh=22qbZjl+tGNRO/TXIBShg7yeUCuIna+Zbm1sCVa288s=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=pmYPMa5AmhgzWtFVALexiat96BVZmsO7B7kq77lmXZmB8fW7x7+9GuVPfNC7iC2Wd
-         KRvYFQ4fs0XDAlzIIzta2dBQxi0PF1QPl5VbIQtmSGq5he+8e8Ie09GZgZCqHImwUY
-         qaZupQXWStSFj5ZYIHN7Ly98YpjrJZ9qjSpEQW+8+VQCMCr3IDcb6Sc4qg54M1KMtA
-         vV5udrfEDEraUr+QwduI1n0ReExOXf47chKlOrjhMzz4cjO5fbqG6Z8XXjyK7w1VXj
-         xKJhSdM0po6eafMtrVCPGan9OATjf5+tB8xAyvYnlhdRyb9X6V5T0xuw2yT6dS+Brz
-         CAGReuXMW3BQw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 2B39CE49FA0;
-        Wed, 29 Jun 2022 12:50:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S233578AbiF2NBm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 09:01:42 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F76839835;
+        Wed, 29 Jun 2022 06:01:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1656507699; x=1688043699;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=XQI/NCJ05Qj6ATNW0MliX+9pwqsKL8TzUkGsAn8/txw=;
+  b=Wcq4GBj3YTbi1LNhZQPkv6Hf6/YF/Ys+9WxFJ2E4VrYWjev2CbS7tTYK
+   j9lh7wZjHm9FvrcrwxqutajevztTjHFc4p/jZ09bAB24IGSZlXzURAKxw
+   43lJg4YaMlwy0ozK6L4MzbwnHaXYZsMp2F2yG1xsAL7+PKlxNSK92VG/R
+   sXANjdMKpO7gSuRHNJvRIHrOUw6fOZQMlLNZRD/xF6TwPpZIEu3iaytuh
+   grMiDHevojkTbvQNWdLKhDa5ElMe6sNmBGtRa5yxuuJrK/r7HojA79jti
+   NGWMmtSAG5vSRwr0vnsKmjVcazAd6w/HvVh3Iq/BsqdRe2+9SnGnkhV1r
+   A==;
+X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; 
+   d="scan'208";a="162577998"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Jun 2022 06:01:37 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 29 Jun 2022 06:01:36 -0700
+Received: from ROB-ULT-M68701.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Wed, 29 Jun 2022 06:01:32 -0700
+From:   Sergiu Moga <sergiu.moga@microchip.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>
+CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <Kavyasree.Kotagiri@microchip.com>,
+        <UNGLinuxDriver@microchip.com>,
+        "Sergiu Moga" <sergiu.moga@microchip.com>
+Subject: [PATCH] dt-bindings: spi: convert spi_atmel to json-schema
+Date:   Wed, 29 Jun 2022 15:58:04 +0300
+Message-ID: <20220629125804.137099-1-sergiu.moga@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v5 00/10] add more features for mtk-star-emac
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <165650702016.9231.359699610048975854.git-patchwork-notify@kernel.org>
-Date:   Wed, 29 Jun 2022 12:50:20 +0000
-References: <20220629031743.22115-1-biao.huang@mediatek.com>
-In-Reply-To: <20220629031743.22115-1-biao.huang@mediatek.com>
-To:     Biao Huang <biao.huang@mediatek.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        brgl@bgdev.pl, fparent@baylibre.com, nbd@nbd.name,
-        john@phrozen.org, sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        matthias.bgg@gmail.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, ot_yinghua.pan@mediatek.com,
-        macpaul.lin@mediatek.com
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,46 +64,147 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Convert SPI binding for Atmel/Microchip SoCs to Device Tree Schema
+format.
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+---
+ .../devicetree/bindings/spi/atmel,spi.yaml    | 82 +++++++++++++++++++
+ .../devicetree/bindings/spi/spi_atmel.txt     | 36 --------
+ 2 files changed, 82 insertions(+), 36 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/atmel,spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi_atmel.txt
 
-On Wed, 29 Jun 2022 11:17:33 +0800 you wrote:
-> Changes in v5:
-> 1. correct spin_lock usage which are missed in v4.
-> 
-> Changes in v4:
-> 1. correct the usage of spin_lock/__napi_schedule.
-> 2. fix coding style issue as Jakub's comments.
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next,v5,01/10] net: ethernet: mtk-star-emac: store bit_clk_div in compat structure
-    https://git.kernel.org/netdev/net-next/c/c16cc6a06672
-  - [net-next,v5,02/10] net: ethernet: mtk-star-emac: modify IRQ trigger flags
-    https://git.kernel.org/netdev/net-next/c/9ccbfdefe716
-  - [net-next,v5,03/10] net: ethernet: mtk-star-emac: add support for MT8365 SoC
-    https://git.kernel.org/netdev/net-next/c/6cde23b3ace5
-  - [net-next,v5,04/10] dt-bindings: net: mtk-star-emac: add support for MT8365
-    https://git.kernel.org/netdev/net-next/c/43360697a276
-  - [net-next,v5,05/10] net: ethernet: mtk-star-emac: add clock pad selection for RMII
-    https://git.kernel.org/netdev/net-next/c/85ef60330d37
-  - [net-next,v5,06/10] net: ethernet: mtk-star-emac: add timing adjustment support
-    https://git.kernel.org/netdev/net-next/c/769c197b097c
-  - [net-next,v5,07/10] dt-bindings: net: mtk-star-emac: add description for new properties
-    https://git.kernel.org/netdev/net-next/c/320c49fe31b0
-  - [net-next,v5,08/10] net: ethernet: mtk-star-emac: add support for MII interface
-    https://git.kernel.org/netdev/net-next/c/0027340a239b
-  - [net-next,v5,09/10] net: ethernet: mtk-star-emac: separate tx/rx handling with two NAPIs
-    https://git.kernel.org/netdev/net-next/c/0a8bd81fd6aa
-  - [net-next,v5,10/10] net: ethernet: mtk-star-emac: enable half duplex hardware support
-    https://git.kernel.org/netdev/net-next/c/02e9ce07d8b8
-
-You are awesome, thank you!
+diff --git a/Documentation/devicetree/bindings/spi/atmel,spi.yaml b/Documentation/devicetree/bindings/spi/atmel,spi.yaml
+new file mode 100644
+index 000000000000..751618a47235
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/atmel,spi.yaml
+@@ -0,0 +1,82 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/atmel,spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Atmel SPI device
++
++maintainers:
++  - Mark Brown <broonie@kernel.org>
++
++allOf:
++  - $ref: "spi-controller.yaml#"
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - const: atmel,at91rm9200-spi
++      - items:
++          - const: microchip,sam9x60-spi
++      - items:
++          - const: microchip,sam9x60-spi
++          - const: atmel,at91rm9200-spi
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  cs-gpios: true
++
++  clock-names:
++    description:
++      Tuple listing input clock names, "spi_clk" is a required element.
++    contains:
++      const: spi_clk
++    additionalItems: true
++
++  clocks:
++    maxItems: 1
++
++  atmel,fifo-size:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      Maximum number of data the RX and TX FIFOs can store for FIFO
++      capable SPI controllers.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clock-names
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi1: spi@fffcc000 {
++        compatible = "atmel,at91rm9200-spi";
++        reg = <0xfffcc000 0x4000>;
++        interrupts = <13 IRQ_TYPE_LEVEL_HIGH 5>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        clocks = <&spi1_clk>;
++        clock-names = "spi_clk", "str2";
++        cs-gpios = <&pioB 3 GPIO_ACTIVE_HIGH>;
++        atmel,fifo-size = <32>;
++
++        mmc@0 {
++            compatible = "mmc-spi-slot";
++            reg = <0>;
++            gpios = <&pioC 4 GPIO_ACTIVE_HIGH>;    /* CD */
++            spi-max-frequency = <25000000>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/spi/spi_atmel.txt b/Documentation/devicetree/bindings/spi/spi_atmel.txt
+deleted file mode 100644
+index 5bb4a8f1df7a..000000000000
+--- a/Documentation/devicetree/bindings/spi/spi_atmel.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-Atmel SPI device
+-
+-Required properties:
+-- compatible : should be "atmel,at91rm9200-spi" or "microchip,sam9x60-spi".
+-- reg: Address and length of the register set for the device
+-- interrupts: Should contain spi interrupt
+-- cs-gpios: chipselects (optional for SPI controller version >= 2 with the
+-  Chip Select Active After Transfer feature).
+-- clock-names: tuple listing input clock names.
+-	Required elements: "spi_clk"
+-- clocks: phandles to input clocks.
+-
+-Optional properties:
+-- atmel,fifo-size: maximum number of data the RX and TX FIFOs can store for FIFO
+-  capable SPI controllers.
+-
+-Example:
+-
+-spi1: spi@fffcc000 {
+-	compatible = "atmel,at91rm9200-spi";
+-	reg = <0xfffcc000 0x4000>;
+-	interrupts = <13 4 5>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	clocks = <&spi1_clk>;
+-	clock-names = "spi_clk";
+-	cs-gpios = <&pioB 3 0>;
+-	atmel,fifo-size = <32>;
+-
+-	mmc-slot@0 {
+-		compatible = "mmc-spi-slot";
+-		reg = <0>;
+-		gpios = <&pioC 4 0>;	/* CD */
+-		spi-max-frequency = <25000000>;
+-	};
+-};
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.25.1
 
