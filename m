@@ -2,211 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59F6355FCCE
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 12:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65B6B55FCD8
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 12:07:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbiF2KEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 06:04:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49322 "EHLO
+        id S231194AbiF2KHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 06:07:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233163AbiF2KEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 06:04:12 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AC353DA49
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 03:04:10 -0700 (PDT)
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220629100408epoutp0421f316e3cc7e6c20960e4dd42167da8b~9D0oAQQE_1092110921epoutp04A
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 10:04:08 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220629100408epoutp0421f316e3cc7e6c20960e4dd42167da8b~9D0oAQQE_1092110921epoutp04A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1656497048;
-        bh=mfXEZIav+lKQ3SITbiYkNMcxmeLkUSvRgV44KIZ63jk=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=XPLiNjTyO4Phxi6rozCqvwgUVNjH0oDMro2OC+dy5l7iwfY0m2FU2oigIwVEvqaMS
-         hIb/B9h9008wBYllY3ruN8Dwp7/K8DQyzWhC+cqq5upK7fR4n+S3b+Q2dsvocJjAqX
-         rHgHQlXygfe+x8uFyBAT0bxSZZUE78i1jBfTkfHs=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-        20220629100408epcas2p24a1e56738e4247bbe8576ff8a4e2a36b~9D0nniifj0830208302epcas2p2g;
-        Wed, 29 Jun 2022 10:04:08 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.68]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4LXxrR58xRz4x9Q7; Wed, 29 Jun
-        2022 10:04:07 +0000 (GMT)
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        E4.17.09666.7932CB26; Wed, 29 Jun 2022 19:04:07 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-        20220629100407epcas2p3bb2c41e89024cafceff5a3d9b646d3a0~9D0m_Vfsw1681316813epcas2p3d;
-        Wed, 29 Jun 2022 10:04:07 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220629100407epsmtrp2ba2e88fa8f9d295274010eacc1d528ac~9D0m9gowy2437224372epsmtrp2F;
-        Wed, 29 Jun 2022 10:04:07 +0000 (GMT)
-X-AuditID: b6c32a45-471ff700000025c2-f8-62bc23970e14
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        26.A5.08905.7932CB26; Wed, 29 Jun 2022 19:04:07 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220629100407epsmtip12886762af6bfe594a56d4457d31b8593~9D0mwmmJB1085110851epsmtip1F;
-        Wed, 29 Jun 2022 10:04:07 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Andi Shyti'" <andi@etezian.org>
-Cc:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Mark Brown'" <broonie@kernel.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
-        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
-        <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-samsung-soc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-In-Reply-To: <YrweoNCL3BjqUNWV@jack.zhora.eu>
-Subject: RE: [PATCH v2 2/4] spi: s3c64xx: support custom value of internal
- clock divider
-Date:   Wed, 29 Jun 2022 19:04:07 +0900
-Message-ID: <026801d88b9f$91f01180$b5d03480$@samsung.com>
+        with ESMTP id S229861AbiF2KHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 06:07:20 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C1D3DA6A
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 03:07:19 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id pk21so31582956ejb.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 03:07:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=UI9cYbOS287xUrQaY8UIv5U4S9Lu0ZwNP7V9PXH0PV4=;
+        b=NCZHWN/cJfm3yny65P8YlLhwiDOO26ZGNIOI86H8qkah4/8sC2HH4UF0vcAQBvnhR/
+         JuzFrPrnGn7/VJSNEfJGL45unlg7C7ye2LcicTxY0l/+dyalv/069wFcagPKFYOMcQeK
+         V4zFV6PwhuwiL7Ra/0J9qJQ9BW26dVMAgqP8dqpYZgVm4srrH/kUApqswi6gyA64RmDs
+         MSGD66lRTRCTNHu0f2FfNzS7Acg9ZA1hk568F7ku7Jt1AkKOYJTLkXLYKx1qqKfx/hov
+         HPA146AMhxsHv1o9tnYM3yyQiPcUSYNYlvNaUjBw6ZkDxFMyQ4ktdIoL/Q+HXWFZg9XQ
+         lTDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=UI9cYbOS287xUrQaY8UIv5U4S9Lu0ZwNP7V9PXH0PV4=;
+        b=MNHc0QkH+k2YzXll1lCJayDBUgf/EDOPNPisYcyzgG1lZQV+WnJw6cA0YZLPiNw8RG
+         njqkVyvKnvRRy6z7hGmRXd1TW1npmyFAh7PPWhyhT2MfgxhOztmkLj8rfYHmj2WPbl4H
+         zbN4+kC+i8JdUYNxkBeSGvCdPfWO/8rCXitH++eR2Hx5wsSj/PZrtAqdhSQlVKOBEpEA
+         SSFCkYIwAJKLjEq/dS61WAowujmHvmVyZH9NmSAw5GAhXrAK1wjL0wGji93QvqjbaeCC
+         0E19cnatnULZelzAUeHKwz9r1wK97aAzGt5GNzdm+FrE+Ec2zGqhCXWyCLrDwuS15YT4
+         CLWg==
+X-Gm-Message-State: AJIora+N8AWz6zjTRa0wLkb7H9/i551m5sKY0eRXCv8xCQzR+Y07n8/h
+        Mvl0H2g3JAhtn9PBGOjol79bQQ==
+X-Google-Smtp-Source: AGRyM1t88ZULBHs8ccIHaDmNBddyVX1Qha12QXv8ndf/tZldlCtfEPBLrfk8gfi9BQDElKx1RSrzJw==
+X-Received: by 2002:a17:907:c1d:b0:726:3239:fe83 with SMTP id ga29-20020a1709070c1d00b007263239fe83mr2513343ejc.51.1656497237837;
+        Wed, 29 Jun 2022 03:07:17 -0700 (PDT)
+Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id k25-20020a170906971900b00724e6a55d1asm7469511ejx.197.2022.06.29.03.07.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jun 2022 03:07:17 -0700 (PDT)
+Message-ID: <fc685f00-41e5-e64c-09b8-662b01a46f6c@linaro.org>
+Date:   Wed, 29 Jun 2022 12:07:16 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/4] dt-bindings: misc: tmr-manager: Add device-tree
+ binding for TMR Manager
+Content-Language: en-US
+To:     Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        michal.simek@xilinx.com, derek.kiernan@xilinx.com,
+        dragan.cvetic@xilinx.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, linux-arm-kernel@lists.infradead.org
+Cc:     git@amd.com, git@xilinx.com
+References: <20220628054338.1631516-1-appana.durga.rao@xilinx.com>
+ <20220628054338.1631516-2-appana.durga.rao@xilinx.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220628054338.1631516-2-appana.durga.rao@xilinx.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: ko
-Thread-Index: AQHQezgfaORozkaflreY0gl9GrbVUwIO7M/nAkDRpz4Cfbaemq0/2M+g
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrFJsWRmVeSWpSXmKPExsWy7bCmue505T1JBp8a1C0ezNvGZrH4x3Mm
-        i6kPn7BZzD9yjtWi78VDZou9r7eyW2x6fI3VYsb5fUwWjR9vslu07j3C7sDlcX3JJ2aPTas6
-        2TzuXNvD5rF5Sb1H35ZVjB6fN8kFsEVl22SkJqakFimk5iXnp2TmpdsqeQfHO8ebmhkY6hpa
-        WpgrKeQl5qbaKrn4BOi6ZeYAXaakUJaYUwoUCkgsLlbSt7Mpyi8tSVXIyC8usVVKLUjJKTAv
-        0CtOzC0uzUvXy0stsTI0MDAyBSpMyM64/1au4KFoxbKvK5gbGK8KdjFyckgImEjs2f6XvYuR
-        i0NIYAejxOp9TWwQzidGiT1relkhnG+MEl82vWfuYuQAa5n/SwsivpdRomNfI1THC0aJZ2d3
-        soDMZRPQl3jZsY0VxBYRUJVY+ngmWBGzQCOzxJa9O5lBEpwCuhJ7Ti9mBLGFBaIkdj98zwRi
-        swA1dK5bDmbzClhKnDizgBHCFpQ4OfMJ2AJmAXmJ7W/nMEM8oSDx8+kyVoi4iMTszjZmiMVu
-        En/bnoM9JyGwlkNi0YPfbBANLhJbbn2FsoUlXh3fwg5hS0l8frcXKl4ssXTWJyaI5gZGicvb
-        fkEljCVmPWtnBIUFs4CmxPpd+pBgUZY4cgvqNj6JjsOgQAUJ80p0tAlBNKpLHNg+nQXClpXo
-        nvOZdQKj0iwkn81C8tksJN/MQti1gJFlFaNYakFxbnpqsVGBITyyk/NzNzGCE62W6w7GyW8/
-        6B1iZOJgPMQowcGsJMK78MzOJCHelMTKqtSi/Pii0pzU4kOMpsCwnsgsJZqcD0z1eSXxhiaW
-        BiZmZobmRqYG5krivF4pGxKFBNITS1KzU1MLUotg+pg4OKUamBhDmBtTfDZbRC/56Lczvfd5
-        zf/umd/u9bw/HxutsNHyzNEbk09uk/g864OpwGL9o1Y2R1rL53x70DWPsb3jaE6M+81dN5Je
-        5N4z2Gr9aLJLZEM1+8zt5yo7Sy61VX0q60lc2/zI8ouCwDM572cve8zDHnLVVS7ikfzPeLZw
-        /4/ACcqf86dZPCjKD7QVfhMXrqfn4r9XWf5t5N4t4qYSfZ/2a7b7GM7Y2/DK+WrFN12lvTs2
-        LOtc+HEtW7N71d24i+KPPFRjLqt8X6OsPPVfTe6HDxa8odNOG85kcvFhjJ6wk2kRR7Tza3M9
-        pfca83cX8Z6+/y3ZUk9a9cVimyuN/+4likvYxJw9VOE+xdnbUomlOCPRUIu5qDgRALtarTY9
-        BAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKIsWRmVeSWpSXmKPExsWy7bCSnO505T1JBhfm8Fk8mLeNzWLxj+dM
-        FlMfPmGzmH/kHKtF34uHzBZ7X29lt9j0+BqrxYzz+5gsGj/eZLdo3XuE3YHL4/qST8wem1Z1
-        snncubaHzWPzknqPvi2rGD0+b5ILYIvisklJzcksSy3St0vgyrj/Vq7goWjFsq8rmBsYrwp2
-        MXJwSAiYSMz/pdXFyMUhJLCbUWJh6zbmLkZOoLisxLN3O9ghbGGJ+y1HWCGKnjFKzH7azQaS
-        YBPQl3jZsY0VxBYRUJVY+ngmG0gRs0A7s8StS+fAEmAds1bWgticAroSe04vZgSxhQUiJCb/
-        vQdmswA1d65bzgRi8wpYSpw4s4ARwhaUODnzCQuIzSygJ7F+/RxGCFteYvvbOVCXKkj8fLqM
-        FSIuIjG7s40Z4iA3ib9tz9knMArPQjJqFpJRs5CMmoWkfQEjyypGydSC4tz03GLDAsO81HK9
-        4sTc4tK8dL3k/NxNjOCY09Lcwbh91Qe9Q4xMHIyHGCU4mJVEeBee2ZkkxJuSWFmVWpQfX1Sa
-        k1p8iFGag0VJnPdC18l4IYH0xJLU7NTUgtQimCwTB6dUA5OLgr22IcsEMY3bB9vtcrZcVNKI
-        T1ML9Nsc+FW4iDWzQLUy/07EqoUylt+XaF8xPp94WuLTIWXfx5f+v7+dySvQ9W3KRvULW2WD
-        a3Ln91XpL7xqeoSr8yHXxDv7+b5788wMLd17IGXphSWf1f3f+T+M3/7v/6I8p+NWx9ik3Te+
-        sjzvmOzaEWLM5PxKS+zrDPubl5M2lUdvsZtcILeG069jkrHu3atRj5q/xhe+k79ZzG3bdEmh
-        0urG/gdb7vbJ21oY2Zc9VQjeJNCQO1F0Zm/xtqDboibrV2/ITci8sYlrvhjjCctLVzmyPx17
-        GLzCVs4vgLcupLJ61lHbOXFTXz9Vzq85IDZ3bWjVgkn/LZVYijMSDbWYi4oTAbr550IoAwAA
-X-CMS-MailID: 20220629100407epcas2p3bb2c41e89024cafceff5a3d9b646d3a0
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220628044432epcas2p11e6f927321c30cf5557dbd41d749ef28
-References: <20220628044222.152794-1-chanho61.park@samsung.com>
-        <CGME20220628044432epcas2p11e6f927321c30cf5557dbd41d749ef28@epcas2p1.samsung.com>
-        <20220628044222.152794-3-chanho61.park@samsung.com>
-        <YrweoNCL3BjqUNWV@jack.zhora.eu>
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
-Thanks for your reviews :)
+On 28/06/2022 07:43, Appana Durga Kedareswara rao wrote:
+> This commit adds documentation for Triple Modular Redundancy(TMR) Manager
+> IP. The Triple Modular Redundancy(TMR) Manager is responsible for handling
+> the TMR subsystem state, including fault detection and error recovery
+> provides soft error detection, correction and recovery features.
+> 
+> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+> ---
+>  .../bindings/misc/xlnx,tmr-manager.yaml       | 48 +++++++++++++++++++
 
-> -----Original Message-----
-> From: Andi Shyti <andi@etezian.org>
-> Sent: Wednesday, June 29, 2022 6:43 PM
-> To: Chanho Park <chanho61.park@samsung.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; Andi Shyti
-> <andi@etezian.org>; Mark Brown <broonie@kernel.org>; Rob Herring
-> <robh+dt@kernel.org>; Krzysztof Kozlowski
-> <krzysztof.kozlowski+dt@linaro.org>; Alim Akhtar
-<alim.akhtar@samsung.com>;
-> devicetree@vger.kernel.org; linux-spi@vger.kernel.org; linux-samsung-
-> soc@vger.kernel.org; linux-arm-kernel@lists.infradead.org
-> Subject: Re: [PATCH v2 2/4] spi: s3c64xx: support custom value of internal
-> clock divider
-> 
-> Hi Chanho,
-> 
-> On Tue, Jun 28, 2022 at 01:42:20PM +0900, Chanho Park wrote:
-> > Modern exynos SoCs such as Exynos Auto v9 has different internal clock
-> 
-> /has/have/
+This is not a misc device. Find appropriate subsystem for it. It's not
+EDAC, right?
 
-I'll correct it.
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml b/Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml
+> new file mode 100644
+> index 000000000000..f6cb4d235981
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/xlnx,tmr-manager.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx TMR Microblaze Device Tree Bindings
 
-> 
-> > divider, for example "4". To support this internal value, this adds
-> > clk_div of the s3c64xx_spi_port_config and assign "2" as the default
-> > value to existing s3c64xx_spi_port_config.
-> >
-> > Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> > ---
-> >  drivers/spi/spi-s3c64xx.c | 28 ++++++++++++++++++++--------
-> >  1 file changed, 20 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
-> > index b3c50c7665fc..51a0e830441b 100644
-> > --- a/drivers/spi/spi-s3c64xx.c
-> > +++ b/drivers/spi/spi-s3c64xx.c
-> > @@ -131,6 +131,7 @@ struct s3c64xx_spi_dma_data {
-> >   * @fifo_lvl_mask: Bit-mask for {TX|RX}_FIFO_LVL bits in SPI_STATUS
-> register.
-> >   * @rx_lvl_offset: Bit offset of RX_FIFO_LVL bits in SPI_STATUS
-regiter.
-> >   * @tx_st_done: Bit offset of TX_DONE bit in SPI_STATUS regiter.
-> > + * @clk_div: Internal clock divider, if not specified, use 2 as the
-> default.
-> 
-> is it default? Is it not specified anywhere? I think you are assigning '2'
-> to everyone. I would just leave it "Internal clock divider."
+s/Device Tree Bindings//
 
-It has not been removed since v1.
+> +
+> +maintainers:
+> +  - Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+> +
+> +description: |
+> +  The Triple Modular Redundancy(TMR) Manager is responsible for handling the
+> +  TMR subsystem state, including fault detection and error recovery. The core
+> +  is triplicated in each of the sub-blocks in the TMR subsystem, and provides
+> +  majority voting of its internal state.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - xlnx,tmr-manager-1.0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  xlnx,magic1:
+> +    minimum: 0
+> +    maximum: 255
+> +    description:
+> +      Magic number 1, When writing to the control register the first write data
+> +      byte (bits 7:0) must match this value in order to have any effect on the
+> +      nominal recovery function.
 
-> 
-> [...]
-> 
-> > @@ -871,6 +873,7 @@ static int s3c64xx_spi_setup(struct spi_device *spi)
-> >  	struct s3c64xx_spi_csinfo *cs = spi->controller_data;
-> >  	struct s3c64xx_spi_driver_data *sdd;
-> >  	int err;
-> > +	u32 div = 2;
-> 
-> As per Krzystof review.
-> 
-> >  	sdd = spi_master_get_devdata(spi->master);
-> >  	if (spi->dev.of_node) {
-> > @@ -889,22 +892,24 @@ static int s3c64xx_spi_setup(struct spi_device
-> > *spi)
-> >
-> >  	pm_runtime_get_sync(&sdd->pdev->dev);
-> >
-> > +	div = sdd->port_conf->clk_div;
-> 
-> Can you please be consistent with the data type? div is u32, but clk_div
-> is int.
+Register values are usually not in the scope of bindings. We describe
+here hardware, not programming model, although in case of soft cores
+maybe it's a bit different.
 
-It should be int to be matched with any other types of
-s3c64xx_spi_port_config.
+Anyway you need to describe the actual feature, not OS behavior.
 
-Best Regards,
-Chanho Park
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - xlnx,magic1
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    tmr-manager@44a10000 {
 
+Depending on what is this, you should use appropriate generic node name.
+
+> +            compatible = "xlnx,tmr-manager-1.0";
+> +            reg = <0x44a10000 0x10000>;
+> +            xlnx,magic1 = <0x46>;
+> +    };
+
+
+Best regards,
+Krzysztof
