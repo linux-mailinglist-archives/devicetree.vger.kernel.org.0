@@ -2,100 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 892DF55FEF8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D93B55FEFC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:46:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231313AbiF2LmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 07:42:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48668 "EHLO
+        id S229952AbiF2LqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 07:46:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230383AbiF2LmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:42:15 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77EE13F331;
-        Wed, 29 Jun 2022 04:42:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1656502934; x=1688038934;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=PLZy6FdtWTJaBvqj0/Wf7kuuinfelYGkxatNVzCgqcU=;
-  b=lqUhrVno6mhftZZcVGHTkA3xpaA50B5UgmbOJ2SqgVeYFLD9O85sJNzE
-   6E6kuC9FSNSkd7K8IPaKLaQIS71BlthIje1iyowFAYCAsDwie+Z+JeOBi
-   4/RmDAFz5R1gIodN7Ru8TlPqdpUCiu0Vxz3RMYb9FWQUkPWwH4uHj3nlg
-   Izbki0BgXFS9tO+QVrWFkUddFV2ofAiKikM6Z+o6eP6noZznGRd1nZMQO
-   oLnoPJrb9y7z0GlOP1P7Qjd71IfJ9OiIUwGxEuOfn8R1CgWG+7ieo0RRK
-   bFKzeMTsxoBvVYYizZHtvqiF4Ki8kiHvGe9N+qLic44t/1kIxSRyhj2/4
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10392"; a="307502280"
-X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; 
-   d="scan'208";a="307502280"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2022 04:42:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; 
-   d="scan'208";a="595206522"
-Received: from black.fi.intel.com ([10.237.72.28])
-  by fmsmga007.fm.intel.com with ESMTP; 29 Jun 2022 04:41:53 -0700
-Received: by black.fi.intel.com (Postfix, from userid 1003)
-        id 50F0F109; Wed, 29 Jun 2022 14:41:59 +0300 (EEST)
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>,
-        Frank Rowand <frank.rowand@sony.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: [PATCH v2 1/1] of: unittest: Switch to use fwnode instead of of_node
-Date:   Wed, 29 Jun 2022 14:41:56 +0300
-Message-Id: <20220629114156.6001-1-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S230071AbiF2LqE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:46:04 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4AD63700B
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:46:02 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id mf9so32135729ejb.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:46:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=4lKS73oONkXnwY0YZYRbw8h2hFS6LtW7jnzsLImnhXQ=;
+        b=ITuvpCVger2Bc+LbRJbCr/HgtVVqWzVJFhxhfzZiKNlxrBwntALlK6Ow/FbKR7IwUB
+         w4dKOwydMm4wys5bMiv9xEDTJc6sml5myOALvY9HiTgClu0RHR0/ah8PUMEHGbjdHLLR
+         fdTb/equKNV7ko38NjLYyXpD8rrjCWEIITLHWRGYMwVix4/rD9VXmCNeyfBT5KQ56pNS
+         7OT6m6hRxLKrnDuhUYxciMeM6/vgJl4mhDOEoOciPmKih/9SJOzCzA88YKIAT/BuG/w4
+         8qoumwSfC0W2mWvRhvek2kgYj3GdHh0yHetxT0t3buNatGVgmIZuj4sGJzYhAltmpHPm
+         Ut3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=4lKS73oONkXnwY0YZYRbw8h2hFS6LtW7jnzsLImnhXQ=;
+        b=nqOV+vcSrorNL6ww1//pdhKdP6oc3TNDFJfPRnqB6QhPycVx7CCJCWdmKcbS16uCzy
+         xx9j0E0FLGeNhpfW3BPIsbBZIrrLLedFLG131Txd182N4lVY4Zpo2zs1R+pmFbnKm4bR
+         Ym0j6W49MmketMZvRpUw34581c+bVe8mq4xNfN6ackCmx3E9LTpA8JMPAOPvPKQCjPZ2
+         QCPaRjdDexgNTBjK2MfNrgR2fineXtNQuKDpAuinpT2JfleFZDaNfxQjpwLo6h1J0R+w
+         f7bItzECyw44R3wqm1ErgTVyXdjvhiukt+ERgKeudsTTERo4VEToJ2Lqcbc3rhXzojTk
+         M7xg==
+X-Gm-Message-State: AJIora955UFuo2nWw4X5pKqAh7FQoQcmaZk7C8TWFQ6p6obK04svDjzk
+        rO7Fn2x3TF9+7URTg3M7mvX6CQ==
+X-Google-Smtp-Source: AGRyM1vUlYebbTMRamSD9fDwW5W8uxd7AR03Q82IwJcEu53UNyVVIsF2mLPrKzinlGzkTsOAvGDTWw==
+X-Received: by 2002:a17:906:77c8:b0:722:e753:fbbe with SMTP id m8-20020a17090677c800b00722e753fbbemr2799637ejn.692.1656503161279;
+        Wed, 29 Jun 2022 04:46:01 -0700 (PDT)
+Received: from [192.168.0.184] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id hz11-20020a1709072ceb00b00722fc014e8csm7575004ejc.104.2022.06.29.04.45.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jun 2022 04:46:00 -0700 (PDT)
+Message-ID: <e43bede7-2a0a-5114-e9ec-9e1449bf4e47@linaro.org>
+Date:   Wed, 29 Jun 2022 13:45:59 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/4] dt-bindings: misc: tmr-manager: Add device-tree
+ binding for TMR Manager
+Content-Language: en-US
+To:     Michal Simek <michal.simek@amd.com>,
+        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        michal.simek@xilinx.com, derek.kiernan@xilinx.com,
+        dragan.cvetic@xilinx.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, linux-arm-kernel@lists.infradead.org
+Cc:     git@amd.com, git@xilinx.com
+References: <20220628054338.1631516-1-appana.durga.rao@xilinx.com>
+ <20220628054338.1631516-2-appana.durga.rao@xilinx.com>
+ <fc685f00-41e5-e64c-09b8-662b01a46f6c@linaro.org>
+ <6f5a1b1e-b484-3a15-00be-2c1ddc09468e@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <6f5a1b1e-b484-3a15-00be-2c1ddc09468e@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GPIO library now accepts fwnode as a firmware node, so
-switch the module to use it.
+On 29/06/2022 13:23, Michal Simek wrote:
+> 
+> 
+> On 6/29/22 12:07, Krzysztof Kozlowski wrote:
+>> On 28/06/2022 07:43, Appana Durga Kedareswara rao wrote:
+>>> This commit adds documentation for Triple Modular Redundancy(TMR) Manager
+>>> IP. The Triple Modular Redundancy(TMR) Manager is responsible for handling
+>>> the TMR subsystem state, including fault detection and error recovery
+>>> provides soft error detection, correction and recovery features.
+>>>
+>>> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+>>> ---
+>>>   .../bindings/misc/xlnx,tmr-manager.yaml       | 48 +++++++++++++++++++
+>>
+>> This is not a misc device. Find appropriate subsystem for it. It's not
+>> EDAC, right?
+> 
+> We were thinking where to put it but it is not EDAC driver.
+> If you have better suggestion for subsystem please let us know.
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
-v2: fixed parameter in debug message as well
- drivers/of/unittest.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I don't know what's the device about. The description does not help:
 
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index 7f6bba18c515..5a842dfc27e8 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -1602,7 +1602,7 @@ static int unittest_gpio_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, devptr);
- 
--	devptr->chip.of_node = pdev->dev.of_node;
-+	devptr->chip.fwnode = dev_fwnode(&pdev->dev);
- 	devptr->chip.label = "of-unittest-gpio";
- 	devptr->chip.base = -1; /* dynamic allocation */
- 	devptr->chip.ngpio = 5;
-@@ -1611,7 +1611,7 @@ static int unittest_gpio_probe(struct platform_device *pdev)
- 	ret = gpiochip_add_data(&devptr->chip, NULL);
- 
- 	unittest(!ret,
--		 "gpiochip_add_data() for node @%pOF failed, ret = %d\n", devptr->chip.of_node, ret);
-+		 "gpiochip_add_data() for node @%pfw failed, ret = %d\n", devptr->chip.fwnode, ret);
- 
- 	if (!ret)
- 		unittest_gpio_probe_pass_count++;
--- 
-2.35.1
+"TMR Manager is responsible for TMR subsystem state..."
 
+> 
+>>
+>>>   1 file changed, 48 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml b/Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml
+>>> new file mode 100644
+>>> index 000000000000..f6cb4d235981
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml
+>>> @@ -0,0 +1,48 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/misc/xlnx,tmr-manager.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Xilinx TMR Microblaze Device Tree Bindings
+>>
+>> s/Device Tree Bindings//
+>>
+>>> +
+>>> +maintainers:
+>>> +  - Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+>>> +
+>>> +description: |
+>>> +  The Triple Modular Redundancy(TMR) Manager is responsible for handling the
+>>> +  TMR subsystem state, including fault detection and error recovery. The core
+>>> +  is triplicated in each of the sub-blocks in the TMR subsystem, and provides
+>>> +  majority voting of its internal state.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - xlnx,tmr-manager-1.0
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  xlnx,magic1:
+>>> +    minimum: 0
+>>> +    maximum: 255
+>>> +    description:
+>>> +      Magic number 1, When writing to the control register the first write data
+>>> +      byte (bits 7:0) must match this value in order to have any effect on the
+>>> +      nominal recovery function.
+>>
+>> Register values are usually not in the scope of bindings. We describe
+>> here hardware, not programming model, although in case of soft cores
+>> maybe it's a bit different.
+> 
+> you need to setup this value for every instance in design tools and it is 
+> directly present in HW. It means this value is really describing HW.
+
+OK, thanks for clarification.
+
+Best regards,
+Krzysztof
