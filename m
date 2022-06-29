@@ -2,114 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEB44560336
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:38:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 473C8560393
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:48:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232618AbiF2OiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 10:38:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41918 "EHLO
+        id S233629AbiF2OrC convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 29 Jun 2022 10:47:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233060AbiF2OiD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:38:03 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3C4393D3
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 07:38:01 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id z13so28337136lfj.13
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 07:38:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:user-agent:in-reply-to:references
-         :message-id:mime-version:content-transfer-encoding;
-        bh=ghmi5jsmPnP+ojwHTepYzlKyG3gtdAz3TucYsEdGWMs=;
-        b=d7nAx8GH5P30iidV+gOCv5+qTbaHk+5RhHFVnnUN8vnpf7EO5f1ZukxHVPi1Mz4LY1
-         +xGKk/fqFZf/jGS4x1HLo5vEdFOrnjUp0Lh/z7CGMyC59ybdVBg0etM/tWU9qmHheBlW
-         45tUL5vNNY4ABjYEj3UQy76z0l5h63ge09kzesgMpVUj0CF0XcGG0XDMebkfS+uvbcIy
-         994wI+oqKjGqgxUhf5d9hqz2+QF/4uRwfZMa9t/58EoCcc3fUJDIQI6mEQjNbiYzKwAq
-         FcCStgThmBMKJnA21G1jbyDEaS8i8hdIAYLrelxMWSUpZzsPqAFjFUqqkGXKyzY4AM7q
-         kmJA==
+        with ESMTP id S232039AbiF2OrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:47:00 -0400
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1D18393FF;
+        Wed, 29 Jun 2022 07:46:56 -0700 (PDT)
+Received: by mail-qv1-f51.google.com with SMTP id cu16so25103772qvb.7;
+        Wed, 29 Jun 2022 07:46:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:user-agent:in-reply-to
-         :references:message-id:mime-version:content-transfer-encoding;
-        bh=ghmi5jsmPnP+ojwHTepYzlKyG3gtdAz3TucYsEdGWMs=;
-        b=rhqa6cgTnqe4W1N0P9lPNiPvBYqRNYR9Y7jXZHkjruLTQ420b+8Y9jFqy0sbj0v2G0
-         N5fGd00HRv70peRB3XydpeQVkvHfZ6CX+cOFYqSPlVVa6ucAB3nTPW3kHkPQUlwpVtyI
-         e7nSBW+Vt35C39GP1IcvlX0H/Qs70cMZrrCnY6+mXOic6k+WmLKG8uzClTB6Rm//XFxT
-         1kmMMI4Fho1rW1YZSJ8xQOq9fYOThCLqp/LVQcPOK1re2koLkE/sGi9hhxJfCqNq6Zms
-         3I8Z1UfRCCL9kjHovJ9n7Fl2m8Gos+RFgLve4GCgTC28WAanYc4/vMCoYPHWwfKCaDhJ
-         S4xA==
-X-Gm-Message-State: AJIora/EZeT4hCsUM3O5hUEppEU0KylrgGio75BtDeaNZ6Mq/Zxn9d5y
-        oaeFsovGpdnazDwdgzqmEd29eQ==
-X-Google-Smtp-Source: AGRyM1tgFmsHBNq3ULmSu/tJbaPShocOAJ/4be0pZToDLOU5TviLycqBaqEM/rW6CPkVvbV+9LcvLw==
-X-Received: by 2002:ac2:4c19:0:b0:47f:9f39:768c with SMTP id t25-20020ac24c19000000b0047f9f39768cmr2310964lfq.285.1656513480049;
-        Wed, 29 Jun 2022 07:38:00 -0700 (PDT)
-Received: from [127.0.0.1] ([94.25.229.210])
-        by smtp.gmail.com with ESMTPSA id l7-20020a2e5707000000b0025a740b3c16sm2130692ljb.122.2022.06.29.07.37.59
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 29 Jun 2022 07:37:59 -0700 (PDT)
-Date:   Wed, 29 Jun 2022 17:37:56 +0300
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_02/10=5D_dt-bindings=3A_PCI=3A?= =?US-ASCII?Q?_qcom=3A_Fix_msi-interrupt_conditional?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20220629141000.18111-3-johan+linaro@kernel.org>
-References: <20220629141000.18111-1-johan+linaro@kernel.org> <20220629141000.18111-3-johan+linaro@kernel.org>
-Message-ID: <9067A548-F8DF-484B-8DD4-94ACA581B191@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=lKCBOPrNloihbU1g4ZnMBHTpej5sTMCTVYThSbP4lGw=;
+        b=PC9JlThrQbhHwBPk3Jk/H01Pd55bdgWM9LeD1fOerfZnQjy8QGLmxt0VG2gnXssOQ3
+         UqFCnukA0M8DopB7/TCiEut1cY9iP8RHv3Xdsauem8gxdYYayr4JUQc5FFJHCvcd9FGz
+         MtWHU5O7cjdzcCLKSqKpfumoVfjMFfN/iIiyrcMTWulhp6kTsLEm+dSRRVDoOfLUpSYo
+         ngpPWV6D2F6xR2meZNth82sH5GZVJ4KN0T6B0sbIgnWeomzAtqQXqoJEJ6wEv1aAPWLm
+         KZoTpLmuR1QGL0KY+Wk0EW//U85ETRlJjDTAPyqBkX9Ox5U/1+/o2PAITNSxPmb08DEu
+         nekA==
+X-Gm-Message-State: AJIora94A2cMyQHNkyhkFqzoQ2OLVIKbhf4LShp09pQOHbBh4Y+RLakQ
+        Wx/YHM4akISLrtWMA0drCOSfIJV+Aa8VZA==
+X-Google-Smtp-Source: AGRyM1s43fyMd0KroXgg5HnVsInZDjNj+GDeg4cPT5ArtF4/b6kiLgOBt5DArEfzUzFfIT2YhLze0g==
+X-Received: by 2002:a05:622a:54b:b0:305:31e4:51fa with SMTP id m11-20020a05622a054b00b0030531e451famr2792548qtx.165.1656514015770;
+        Wed, 29 Jun 2022 07:46:55 -0700 (PDT)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id b20-20020ae9eb14000000b006aee8580a37sm12975109qkg.10.2022.06.29.07.46.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jun 2022 07:46:55 -0700 (PDT)
+Received: by mail-yb1-f179.google.com with SMTP id x184so25629142ybg.12;
+        Wed, 29 Jun 2022 07:46:55 -0700 (PDT)
+X-Received: by 2002:a81:3a81:0:b0:317:7dcf:81d4 with SMTP id
+ h123-20020a813a81000000b003177dcf81d4mr4187413ywa.47.1656513525966; Wed, 29
+ Jun 2022 07:38:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220624144001.95518-1-clement.leger@bootlin.com> <20220624144001.95518-5-clement.leger@bootlin.com>
+In-Reply-To: <20220624144001.95518-5-clement.leger@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 29 Jun 2022 16:38:33 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXw2zuu-Q30VDF16_sLFO8eU1u8HrbxkYnKyCHK6d41hw@mail.gmail.com>
+Message-ID: <CAMuHMdXw2zuu-Q30VDF16_sLFO8eU1u8HrbxkYnKyCHK6d41hw@mail.gmail.com>
+Subject: Re: [PATCH net-next v9 04/16] dt-bindings: net: pcs: add bindings for
+ Renesas RZ/N1 MII converter
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 29 June 2022 17:09:52 GMT+03:00, Johan Hovold <johan+linaro@kernel=2Eor=
-g> wrote:
->Fix the msi-interrupt conditional which always evaluated to false due to
->a misspelled property name ("compatibles" in plural)=2E
+On Fri, Jun 24, 2022 at 4:41 PM Clément Léger <clement.leger@bootlin.com> wrote:
+> This MII converter can be found on the RZ/N1 processor family. The MII
+> converter ports are declared as subnodes which are then referenced by
+> users of the PCS driver such as the switch.
 >
->Signed-off-by: Johan Hovold <johan+linaro@kernel=2Eorg>
->---
-> Documentation/devicetree/bindings/pci/qcom,pcie=2Eyaml | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  .../bindings/net/pcs/renesas,rzn1-miic.yaml   | 171 ++++++++++++++++++
+>  include/dt-bindings/net/pcs-rzn1-miic.h       |  33 ++++
+>  2 files changed, 204 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
+>  create mode 100644 include/dt-bindings/net/pcs-rzn1-miic.h
 
-Reviewed-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
+As the DT binding definitions are shared by driver and DT sources,
+I have queued this patch in renesas-devel for v5.20, too.
+Ideally, it should have been applied to a shared immutable branch.
 
+Gr{oetje,eeting}s,
 
->
->diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie=2Eyaml b/Doc=
-umentation/devicetree/bindings/pci/qcom,pcie=2Eyaml
->index ed9f9462a758=2E=2Ea1b4fc70e162 100644
->--- a/Documentation/devicetree/bindings/pci/qcom,pcie=2Eyaml
->+++ b/Documentation/devicetree/bindings/pci/qcom,pcie=2Eyaml
->@@ -628,7 +628,7 @@ allOf:
->     # On older chipsets it's always 1 msi interrupt
->   - if:
->       properties:
->-        compatibles:
->+        compatible:
->           contains:
->             enum:
->               - qcom,pcie-msm8996
+                        Geert
 
---=20
-With best wishes
-Dmitry
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
