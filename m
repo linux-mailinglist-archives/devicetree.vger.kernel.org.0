@@ -2,67 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C04256002C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 14:38:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A95C8560052
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 14:45:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231864AbiF2MiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 08:38:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39456 "EHLO
+        id S233247AbiF2MnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 08:43:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231404AbiF2MiL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 08:38:11 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0C3665BB
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 05:38:09 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id d2so20577021ejy.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 05:38:09 -0700 (PDT)
+        with ESMTP id S231735AbiF2MnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 08:43:18 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1454A22BC1
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 05:43:17 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id cw10so32363967ejb.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 05:43:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=xffDvQ4wmTlhbTHoSRY6CPrwO+KGNYtOQPheNUgMMls=;
-        b=isvoegge0G/3rLqgNYq1TraRhOBmwJk6sByRDFuEpY3HRuVM+EZXfxD73xlA9WGoqi
-         chksnKBcz6dUkwYYYo9jKQfmpBc+LrfCkDHgh/OnfXaONUcCUiqkvIlJMF/NjEX9+Cr2
-         Om36D7fL02bnlJjkvD1aKdXkqD2qeUxh2ggulHNxbLAppuPvidWe5OH1FbRRkcWi2Pom
-         a+bSXNF40aKMLqLjpg0oI+e2uRwi6HVkO4mx1MCJo3viI1YoglAKCYSovbHd382x0GRl
-         kHc2hyQtGGxENG1Kat8Hwsjw6ONb1rlLVIuB2mAP2SGwMs9+uBC9/W/68SMRCx4UWqQD
-         i5MQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=8IGT3XO8mbcnscwzaJJ/fju1+Y/JsHqAOuPdeXWHctc=;
+        b=mMjaPolO8e6kz36GKdQJsOiiFESlqqTfIh2LeMv8A6WG2Idy2x0+oIvs3YuYDHHT5P
+         d3o5SCSb+IQq4l6IfWXfoVlEbsZ3nSD1E7BZWk+FDoXNtWNhAikCILntUhgF43Hoxpye
+         pvi6rD3VUVI/DAgiuSWxnjfoOefX2jeOxpwp1Y286zFGjuW2qR6le8q8RasDokUukl0i
+         DubWw8ipwr2KpNynMpEMGvnatUpbaYCUJSqtHsOLLnlCbG62SHRbnmj0SErFXEqSaEaL
+         KRpjzdtpadzx7dKOW+yG4CTSkwg7UmT0d16DcdcR8hpWizPdczHr3ZfM7tiaxiT649DV
+         teKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=xffDvQ4wmTlhbTHoSRY6CPrwO+KGNYtOQPheNUgMMls=;
-        b=44/yqDFc+VdDwZVjZI6nsgTLTA747GfdLhCVfgW3VE/2alAVq5y35fFvNxLQJbbo+b
-         uK9PMjMSucu2cX1pVOvy3bPVYrWrkQRFYHIsJWT75IeXLZ/eiUAP/3/jwYK4farFGsDt
-         l9q0/DwUbWA9GokX3/+OhIl9WGfcaMWRSR3edh6ZDKcE+dDgSezfg+Tob72WAF5MzjU6
-         yqfaOE/GMZf6Bl3pA6QZZzN+bzMGpNYVLkdAPe/Jpqu3NrjoTP6F3+Yxjwo6NPiAEkps
-         2twFqQR83WZmwGqB8wA7AlF1VaL03stcMqZ4B5FpVR5w2Dd3Ii7H2S3Qiq9rj1RQZ2K9
-         vAOw==
-X-Gm-Message-State: AJIora/XCZEcPYJIhkKmlf/9PHMJqk0289ToNR/T7ayaV2yYVKIPrKPD
-        uKHG88uYNwU9ITr1n/M4xY9EaYPysTctyQ==
-X-Google-Smtp-Source: AGRyM1sbRmV7Ln3hOp7mKI5FGQ9uRHEZcWKjAdhQcMce0mwwiALmlGAElCFO91SZr84Kzu+ijhvbhA==
-X-Received: by 2002:a17:907:3e08:b0:726:2af1:1d5f with SMTP id hp8-20020a1709073e0800b007262af11d5fmr3174507ejc.235.1656506288542;
-        Wed, 29 Jun 2022 05:38:08 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id v5-20020a170906338500b006fed85c1a8fsm7729657eja.202.2022.06.29.05.38.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 05:38:07 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sebastian Reichel <sre@kernel.org>,
+        bh=8IGT3XO8mbcnscwzaJJ/fju1+Y/JsHqAOuPdeXWHctc=;
+        b=Uap04I/kEh32Aji9ULPFO1cMAOfdozrBOIwq4799BFK2ymMCILFM9bGHUsFM8CIPhL
+         tHfpPC5b/YpnhEf0yCzfiA+N6Zb+NQq+FaLv7wmSKoTHs2oPH7+1ldxNGYUKyOwhpWoU
+         2MbCErqbI/m6IYFL81juFiIM0lYgPajw/5qSxPe5gWOjxz9sNcVCE/PD+u4+ZSNIuPfO
+         1G/v9k/fTt45/KRapwlBN4z4kEJLMvbADOp+P2Ze18W6TFTpWu5w9E8fjo4pZYTaHvNI
+         SkddujG6spJeNyLBdyljNqEeUed31td+zUP+dj+xBR15Ci+Vaof/ac6SytlOAsz6YhEA
+         70+Q==
+X-Gm-Message-State: AJIora8ff1dtKF7eAWmahf1Lg2B4WuZTRs4hTdPNM83zRy7B0Lb0fGNb
+        towXv+xlVuAxiYkZwO9CPAk8KQ==
+X-Google-Smtp-Source: AGRyM1tEZX4qWtLp6ehowBV8ORmaWoRxrTI4PWpI3lto+2DFDjbGrVQ7xPUJM5AuV8OqHKDqUTGh4Q==
+X-Received: by 2002:a17:906:7386:b0:715:7024:3df7 with SMTP id f6-20020a170906738600b0071570243df7mr3223632ejl.543.1656506595658;
+        Wed, 29 Jun 2022 05:43:15 -0700 (PDT)
+Received: from [192.168.0.184] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id k18-20020a056402049200b0042dcbc3f302sm9836073edv.36.2022.06.29.05.43.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jun 2022 05:43:15 -0700 (PDT)
+Message-ID: <0a3f3b42-7d9b-d6bd-6afd-cd14bf909b32@linaro.org>
+Date:   Wed, 29 Jun 2022 14:43:13 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: Add DT schema for
+ qcom,msm8909-tlmm
+Content-Language: en-US
+To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: power: reset: qcom,pshold: convert to dtschema
-Date:   Wed, 29 Jun 2022 14:38:04 +0200
-Message-Id: <20220629123804.94906-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220628145502.4158234-1-stephan.gerhold@kernkonzept.com>
+ <20220628145502.4158234-2-stephan.gerhold@kernkonzept.com>
+ <91d972d2-689c-d357-869f-fbd826173e33@linaro.org>
+ <Yrw5UnFXKCZvAr2d@kernkonzept.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Yrw5UnFXKCZvAr2d@kernkonzept.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,80 +83,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Qualcomm Power Supply Hold Reset bindings to DT schema.
+On 29/06/2022 13:37, Stephan Gerhold wrote:
+> On Wed, Jun 29, 2022 at 11:38:01AM +0200, Krzysztof Kozlowski wrote:
+>> On 28/06/2022 16:55, Stephan Gerhold wrote:
+>>> Document the "qcom,msm8909-tlmm" compatible for the TLMM/pin control
+>>> block in the MSM8909 SoC, together with the allowed GPIOs and functions.
+>>>
+>>> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+>>> ---
+>>>  .../bindings/pinctrl/qcom,msm8909-tlmm.yaml   | 152 ++++++++++++++++++
+>>>  1 file changed, 152 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
+>>> new file mode 100644
+>>> index 000000000000..e03530091478
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
+>>> @@ -0,0 +1,152 @@
+>>> [...]
+>>> +patternProperties:
+>>> +  '-state$':
+>>> +    oneOf:
+>>> +      - $ref: "#/$defs/qcom-msm8909-tlmm-state"
+>>
+>> No quotes here and other places, should be needed. I know you copied
+>> from other bindings, but at least let's try new files to be proper.
+>>
+> 
+> The quotes are necessary, since # starts a comment in YAML and the
+> property would be effectively empty. :)
+> 
+> I tried it anyway but "dt_binding_check" complains as suspected:
+> qcom,msm8909-tlmm.yaml: patternProperties:-state$:oneOf:0:$ref: None is not of type 'string'
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/power/reset/msm-poweroff.txt     | 17 ---------
- .../bindings/power/reset/qcom,pshold.yaml     | 35 +++++++++++++++++++
- 2 files changed, 35 insertions(+), 17 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/power/reset/msm-poweroff.txt
- create mode 100644 Documentation/devicetree/bindings/power/reset/qcom,pshold.yaml
+Yes, you're right. Thanks for checking this.
 
-diff --git a/Documentation/devicetree/bindings/power/reset/msm-poweroff.txt b/Documentation/devicetree/bindings/power/reset/msm-poweroff.txt
-deleted file mode 100644
-index ce44ad357565..000000000000
---- a/Documentation/devicetree/bindings/power/reset/msm-poweroff.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--MSM Restart Driver
--
--A power supply hold (ps-hold) bit is set to power the msm chipsets.
--Clearing that bit allows us to restart/poweroff. The difference
--between poweroff and restart is determined by unique power manager IC
--settings.
--
--Required Properties:
---compatible: "qcom,pshold"
---reg: Specifies the physical address of the ps-hold register
--
--Example:
--
--	restart@fc4ab000 {
--		compatible = "qcom,pshold";
--		reg = <0xfc4ab000 0x4>;
--	};
-diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pshold.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pshold.yaml
-new file mode 100644
-index 000000000000..527962d54a8f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/reset/qcom,pshold.yaml
-@@ -0,0 +1,35 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/reset/qcom,pshold.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SoC restart and power off
-+
-+maintainers:
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+
-+description:
-+  A power supply hold (ps-hold) bit is set to power the Qualcomm chipsets.
-+  Clearing that bit allows us to restart/power off. The difference between
-+  power off and restart is determined by unique power manager IC settings.
-+
-+properties:
-+  compatible:
-+    const: qcom,pshold
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    reset-controller@fc4ab000 {
-+        compatible = "qcom,pshold";
-+        reg = <0xfc4ab000 0x4>;
-+    };
--- 
-2.34.1
-
+Best regards,
+Krzysztof
