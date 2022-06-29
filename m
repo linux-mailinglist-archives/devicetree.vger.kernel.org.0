@@ -2,89 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9005603C4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 17:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1168556043E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 17:14:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233712AbiF2PBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 11:01:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35522 "EHLO
+        id S234093AbiF2PK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 11:10:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232618AbiF2PBu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 11:01:50 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4042A25C7A;
-        Wed, 29 Jun 2022 08:01:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1656514907; x=1688050907;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=AFnpmXUgV9Lobv665HMdU2c+9Hcf3GrmG4/61iUM2Rc=;
-  b=KU09C2pYpASOHrpzAYPa2SrEksyyHuLqo0/7amnDZQW1lK1ZS63MPeW1
-   UEjRBR745sj+epv2rQcOhpIf+Tgv2d4u4OZH6zxyklpDmJQQV95NB/VTz
-   q5US1oL0WPATJNZl0nAFAsai0mHNRs3vUSJxy84f2H/vmT0BmX3GMxTA+
-   kSh0wMM3Wac4gAhD8hk6Vmw9EHNcbIQCDSdLxNeDZAq+h1zdAvuAzmRLG
-   U9KWeg5jj1zjbtWcgH6UrG9YoUrVYOeRFmL3YLxipwFKPYS5Zr78fAAlj
-   DAZUrXmrJWVxptAuc4B5CR/DdR8HjvPVZSQgbM8mv4xE/0lyn5h84t04S
-   g==;
-X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; 
-   d="scan'208";a="180037379"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Jun 2022 08:01:45 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 29 Jun 2022 08:01:43 -0700
-Received: from [10.12.73.52] (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Wed, 29 Jun 2022 08:01:40 -0700
-Message-ID: <f641fd0e-2da2-112e-f2fb-f5d89af00587@microchip.com>
-Date:   Wed, 29 Jun 2022 17:01:39 +0200
+        with ESMTP id S234134AbiF2PKf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 11:10:35 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 640803FDA8
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 08:09:20 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1o6ZJM-0003Ze-PG; Wed, 29 Jun 2022 17:09:00 +0200
+Message-ID: <3c773637f626877832041d3065f387261ba70816.camel@pengutronix.de>
+Subject: Re: [PATCH V2 7/9] interconnect: imx: set of_node for interconnect
+ provider
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, djakov@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        abel.vesa@nxp.com, abailon@baylibre.com,
+        laurent.pinchart@ideasonboard.com, marex@denx.de,
+        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
+        aford173@gmail.com
+Cc:     kernel@pengutronix.de, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        abelvesa@kernel.org, Peng Fan <peng.fan@nxp.com>
+Date:   Wed, 29 Jun 2022 17:08:58 +0200
+In-Reply-To: <20220616073320.2203000-8-peng.fan@oss.nxp.com>
+References: <20220616073320.2203000-1-peng.fan@oss.nxp.com>
+         <20220616073320.2203000-8-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] dt-bindings: spi: convert spi_atmel to json-schema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sergiu Moga <sergiu.moga@microchip.com>, <broonie@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>
-CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <claudiu.beznea@microchip.com>,
-        <alexandre.belloni@bootlin.com>,
-        <Kavyasree.Kotagiri@microchip.com>, <UNGLinuxDriver@microchip.com>
-References: <20220629125804.137099-1-sergiu.moga@microchip.com>
- <a2422718-2ec4-dbad-0245-1d78dbb39f25@linaro.org>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <a2422718-2ec4-dbad-0245-1d78dbb39f25@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sergiu,
+Am Donnerstag, dem 16.06.2022 um 15:33 +0800 schrieb Peng Fan (OSS):
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> The provider device is created using platform_device_register_data in
+> imx-bus driver, which not has of_node. With of_node set, it will be
+> easy to support QoS settings.
+> 
+That's a bit dangerous, as sharing a of_node between two devices can
+lead to some reference counting issues IIRC, but then I also don't see
+a good way to do this any differently.
 
-On 29/06/2022 at 15:23, Krzysztof Kozlowski wrote:
->> +title: Atmel SPI device
->> +
->> +maintainers:
->> +  - Mark Brown<broonie@kernel.org>
-> This should be rather someone from Microchip.
+Regards,
+Lucas
 
-Tudor Ambarus <tudor.ambarus@microchip.com> is our maintainer for SPI 
-controller, sorry for not having advised you internally about this ;-)
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/interconnect/imx/imx.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/interconnect/imx/imx.c b/drivers/interconnect/imx/imx.c
+> index 1f16eedea21c..78557fe6da2c 100644
+> --- a/drivers/interconnect/imx/imx.c
+> +++ b/drivers/interconnect/imx/imx.c
+> @@ -264,6 +264,7 @@ int imx_icc_register(struct platform_device *pdev,
+>  	provider->xlate = of_icc_xlate_onecell;
+>  	provider->data = data;
+>  	provider->dev = dev->parent;
+> +	provider->dev->of_node = dev->parent->of_node;
+>  	platform_set_drvdata(pdev, imx_provider);
+>  
+>  	ret = icc_provider_add(provider);
 
-Best regards,
-   Nicolas
 
--- 
-Nicolas Ferre
