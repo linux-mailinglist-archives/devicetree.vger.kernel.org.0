@@ -2,74 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6931155FE3C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C657355FE46
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:13:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229828AbiF2LJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 07:09:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47756 "EHLO
+        id S231391AbiF2LMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 07:12:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbiF2LJH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:09:07 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 719EC366AC
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:09:05 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id fi2so31800670ejb.9
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:09:05 -0700 (PDT)
+        with ESMTP id S231379AbiF2LMq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:12:46 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B4053B29B
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:12:41 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id cw10so31886013ejb.3
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:12:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=foG60lhNannT8P9dwW6kOYADdXZ/flWXxg5inptG7Kk=;
-        b=fOqmOi1CSnXz7riHqPSZPrFn2IWlV4hfw0pYjQPy5LkPoB3mqXKSLx2Nc1qRyI+pT3
-         ijTo0bflkgH6otLqB34F1P4BviJwWuPt0NcEMGguEEwqwYvfWwl1H8VTBvl2Vyy7wNVn
-         0rX6JnCqrwZFKl9kxgOZnDETW8QeqEUCgAwkDJY3V1yQzXxf41HlH5bSPvD3ux0yFoZ5
-         ZPjiOG8erfdIwHve8fhCGBPLQ19LqDjR/8j2qCx/rK0wQYbnnlrJhmkXdjIWPftZERTZ
-         5htviNG37n6y6bhmbWk+GqOHbCKRYY54eVuiyPcQgit0vFaOgifBZY0Zzo091U5LUugs
-         hE+w==
+        bh=ZklBbrhWeRu7F0FN0Aat62/hrdRJUTCtSkFm/hGOW5k=;
+        b=Cn585zu3809Rjl4M/+WAgSXANgY9EbR6kBiumg85SPIlAFcp2ij9ntr7mWL+wma/Oh
+         xXudPLJponuwkVBdm8CrU7H9IzMb8oRoeS+Frzi1yT1RvMofP0FgwTCn2JvUdez3GKCA
+         2O++VwJNa3uaaMZZdor2aoP0ayFFqYKbaUab2mqH2+kRRweYywTidyl3+g9bRtiIzMDe
+         a6Iu0JEPBZnPEARMY6JaS+uzcTT5jxphvnqyaJHkPrQ6VY07IoMVtcAsgs1yHz2/Kexv
+         d7m2dut6jAWbcPaqcx/aQppAFTGVSa8ue73kHVkRud5H9d3/DNt+RX9ViNIwLUwYZ/Yi
+         npHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=foG60lhNannT8P9dwW6kOYADdXZ/flWXxg5inptG7Kk=;
-        b=o5p5hRyYeVMOB76HD7YR4w7cCRhiL4R6XZ+8igowdBRgj7Jti90Mp9oPMKRm1FuoGT
-         wUs/3NZLpPfyNZI8UTF/dBG0ZFPzp3O3iAFA1piyoPWu8cs+9YRWmbSyzgX5/3AAsBdt
-         XI8XKQmgGtXlu5B1M4u+YDXKKQJk6SCqu5oBBiJw1sohhUQoUHzW5WHEJ9c14rUT9feg
-         iR1cx3V8HEOXuBYbwkGLt/T77aQAChwxN2BGUx/2fqisIqlOultIcvnferJkhvc/8QAi
-         1f71HdrDX198pyKLn+WVpFxmJrGT9ibtS+/YQguXC+/iTUP81VXxeZfY7+f6VHv/SK6S
-         1hrQ==
-X-Gm-Message-State: AJIora8SlgyJQNi6JuIxk8Vzb4ucv/DpgFDBkOkQBeTCeFRWYVKf+2bf
-        sSkzRf2g9bIFwQuqek0SDmrEgA==
-X-Google-Smtp-Source: AGRyM1tAc75CObf54+Dn1EXYo9rv7I8KdZ7F32RpNsq1ifASqeuEyIi397CtnC3Ibo8I2EE97xCsdw==
-X-Received: by 2002:a17:907:3dac:b0:722:e6ab:8d9 with SMTP id he44-20020a1709073dac00b00722e6ab08d9mr3076325ejc.20.1656500943955;
-        Wed, 29 Jun 2022 04:09:03 -0700 (PDT)
+        bh=ZklBbrhWeRu7F0FN0Aat62/hrdRJUTCtSkFm/hGOW5k=;
+        b=23d8RfvTMYZBJdZT0eOZEdeYvloXVYN/AW6iy2gjwP+XsO9KdRrtuxxytMtyYj8GDV
+         jTrDLj8J/0yhbP5Vv4/HaptYlpsxrXRD5RgDyh8QnCVcYFQudwdvkpZFXmwIgNnFuEW8
+         fD88qaxSnl5mMTkP8TI8TLOS1RXswRn1ldcwGTPzN9Lmut1bKENGI+hJjHzq7HIcnMNg
+         xyZuFIbasZEx+uK1aox2QHHMFw3LLi92tWwCN2j6HIyFxmvVH8RMo8YEscmB4NhTygBU
+         bJbSHZa5QvxYXKnJ2qoeEZRt2XQWXRKtPZJaWdKe1AIiyBHS2IL3EgXOwCfQtyYDAwPX
+         uk3w==
+X-Gm-Message-State: AJIora+KWWIJ4dtpowSJ4F2Cm0c6F19hK+r9WPK655GKEfDNZ1AwOo4D
+        MdLowhQxGzpnC7LUAM6A2cl6zw==
+X-Google-Smtp-Source: AGRyM1scRNZiTlfpuZxRNQgJz5mgfY4et1r59dsU2jOJq3RWl2MpKqBbzxXhl1VxC9ZRgy+vujVKEw==
+X-Received: by 2002:a17:906:6448:b0:723:2e05:af41 with SMTP id l8-20020a170906644800b007232e05af41mr2735760ejn.423.1656501159622;
+        Wed, 29 Jun 2022 04:12:39 -0700 (PDT)
 Received: from [192.168.0.184] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id a23-20020aa7d757000000b00437df2444f5sm174712eds.11.2022.06.29.04.09.02
+        by smtp.gmail.com with ESMTPSA id s1-20020aa7c541000000b004357171dcccsm11162081edr.12.2022.06.29.04.12.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 04:09:03 -0700 (PDT)
-Message-ID: <eb7275a0-3883-176f-fab0-b5cab5bb09ee@linaro.org>
-Date:   Wed, 29 Jun 2022 13:09:02 +0200
+        Wed, 29 Jun 2022 04:12:38 -0700 (PDT)
+Message-ID: <3ad4876b-1efa-c4c4-2139-3823cf80ff68@linaro.org>
+Date:   Wed, 29 Jun 2022 13:12:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 2/3] arm64: dts: exynosautov9: add exynosautov9-usi.dtsi
+Subject: Re: [PATCH v3 2/4] dt-bindings: arm: msm: Convert kpss-acc driver
+ Documentation to yaml
 Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
-        'Rob Herring' <robh+dt@kernel.org>
-Cc:     'Alim Akhtar' <alim.akhtar@samsung.com>,
-        'Sam Protsenko' <semen.protsenko@linaro.org>,
-        'Jaewon Kim' <jaewon02.kim@samsung.com>,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220629015650.138527-1-chanho61.park@samsung.com>
- <CGME20220629015913epcas2p1dcfcc81c026aa524a1f35c8e393be4f0@epcas2p1.samsung.com>
- <20220629015650.138527-3-chanho61.park@samsung.com>
- <acf6fb6d-46da-48f6-f064-1a08d323b0f1@linaro.org>
- <025601d88b9d$332049b0$9960dd10$@samsung.com>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>
+References: <20220628184137.21678-1-ansuelsmth@gmail.com>
+ <20220628184137.21678-3-ansuelsmth@gmail.com>
+ <e625e2c9-7321-51fa-b9bb-40ed9742ffcc@linaro.org>
+ <62bc2c1d.1c69fb81.09d2.e244@mx.google.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <025601d88b9d$332049b0$9960dd10$@samsung.com>
+In-Reply-To: <62bc2c1d.1c69fb81.09d2.e244@mx.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,144 +85,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 11:47, Chanho Park wrote:
->> On 29/06/2022 03:56, Chanho Park wrote:
->>> Universal Serial Interface (USI) supports three types of serial
->>> interface such as Universal Asynchronous Receiver and Transmitter
->>> (UART), Serial Peripheral Interface (SPI), and Inter-Integrated Circuit
->> (I2C).
->>> Each protocols can be working independently and configured as one of
->>> those using external configuration inputs.
->>> Exynos Auto v9 SoC support 12 USIs. When a USI uses two pins such as
->>> i2c and 3 wire uarts(RX/TX only), we can use remain two pins as i2c mode.
->>> So, we can define one USI node that includes serial/spi and hsi2c.
->>> usi_i2c nodes can be used only for i2c mode.
+On 29/06/2022 12:40, Christian Marangi wrote:
+> On Wed, Jun 29, 2022 at 08:14:12AM +0200, Krzysztof Kozlowski wrote:
+>> On 28/06/2022 20:41, Christian Marangi wrote:
+>>> Convert kpss-acc driver Documentation to yaml.
+>>> The original Documentation was wrong all along. Fix it while we are
+>>> converting it.
+>>> The example was wrong as kpss-acc-v2 should only expose the regs but we
+>>> don't have any driver that expose additional clocks. The kpss-acc driver
+>>> is only specific to v1. For this exact reason, limit all the additional
+>>> bindings (clocks, clock-names, clock-output-names and #clock-cells) to
+>>> v1 and also flag that these bindings should NOT be used for v2.
 >>>
->>> We can have below combinations for one USI.
->>> 1) The usi node is used either 4 pin uart or 4 pin spi  -> No usi_i2c
->>> can be used
->>> 2) The usi node is used 2 pin uart(RX/TX) and i2c(SDA/SCL)  -> usi_i2c
->>> should be enabled to use the latter i2c
->>> 3) The usi node is used i2c(SDA/SCL) and i2c(SDA/SCL)  -> usi_i2c
->>> should be enabled to use the latter i2c
->>>
->>> By default, all USIs are initially set to uart mode by below setting.
->>> samsung,mode = <USI_V2_UART>;
->>> You can change it either USI_V2_SPI or USI_V2_I2C.
->>>
->>> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
->>> ---
->>>  .../boot/dts/exynos/exynosautov9-usi.dtsi     | 1127 +++++++++++++++++
->>>  1 file changed, 1127 insertions(+)
->>>  create mode 100644 arch/arm64/boot/dts/exynos/exynosautov9-usi.dtsi
+>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+>>> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 >>
->> Put all this directly in exynosautov9.dtsi, because this is not a re-
->> usable piece among different DTSI.
-> 
-> Okay. I'll move them in the exynosautov9.dtsi. I thought they're too long to put in the exynosautov9.dtsi and I also found a similar case such as exynos5433-bus.dtsi and exynos5433-tmu.dtsi.
-
-Indeed we did like that... The tmu maybe was meant to be re-used,
-although it references specific clusters. But the split of bus I don't
-understand - it does not help.
-
-I don't think it improved readability.
-
-> 
+>> This is still not fixed and not tested. Since 4 versions of this
+>> patchset (previously was part of other set).
 >>
->>>
->>> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-usi.dtsi
->>> b/arch/arm64/boot/dts/exynos/exynosautov9-usi.dtsi
->>> new file mode 100644
->>> index 000000000000..0e4c6332770b
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/exynos/exynosautov9-usi.dtsi
->>> @@ -0,0 +1,1127 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Samsung's ExynosAutov9 SoC USI device tree source
->>> + *
->>> + * Copyright (c) 2022 Samsung Electronics Co., Ltd.
->>> + *
->>> + * Samsung's ExynosAutov9 SoC USI(Universal Serial Interface,
->>> +uart/spi/i2c)
->>> + * are listed as device tree nodes in this file.
->>> + */
->>> +
->>> +/* PERIC0 USIs */
->>> +&soc {
->>> +	syscon_peric0: syscon@10220000 {
->>> +		compatible = "samsung,exynosautov9-sysreg", "syscon";
->>> +		reg = <0x10220000 0x2000>;
->>> +	};
->>> +
->>> +	usi_0: usi@103000c0 {
->>> +		compatible = "samsung,exynos850-usi";
+>> I retract my review. Please test the bindings.
 >>
->> We should start adding dedicated compatible, so:
->> "samsung,exynosautov9-usi", "samsung,exynos850-usi"
+>> Best regards,
+>> Krzysztof
 > 
-> So, I need to add the compatible to the Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml, right?
-> 
-> - samsung,exynos850-usi   # for USIv2 (Exynos850, ExynosAutoV9)
-> 
-> To be>
-> - samsung,exynos850-usi
-> - samsung,exynosautov9-usi
+> Thing is that I tested them and on my side I don't have such errors.
 
-
-  compatible:
-
-    oneOf:
-     - items:
-         - const: samsung,exynosautov9-usi
-         - const: samsung,exynos850-usi
-     - enum:
-
-         - samsung,exynos850-usi   # for USIv2 (Exynos850, ExynosAutoV9)
+Then maybe update your dtschema because I can easily see them.
 
 > 
->>
->>> +		reg = <0x103000c0 0x20>;
->>> +		samsung,sysreg = <&syscon_peric0 0x1000>;
->>> +		samsung,mode = <USI_V2_UART>;
->>> +		#address-cells = <1>;
->>> +		#size-cells = <1>;
->>> +		ranges;
->>> +		clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PCLK_0>,
->>> +			 <&cmu_peric0 CLK_GOUT_PERIC0_IPCLK_0>;
->>> +		clock-names = "pclk", "ipclk";
->>> +		status = "disabled";
->>> +
->>> +		/* USI: UART */
->>
->> Skip the comments, they are obvious from device node name. Long time ago I
->> was not advocating this, but I see it's benefits - much easier to
->> introduce changes to DTS or binding in case of some differences.
-
-Eh, I think my reply got mixed up. The last sentence was about
-compatible, so it should be:
-
-We should start adding dedicated compatible, so:
-"samsung,exynosautov9-usi", "samsung,exynos850-usi".
-Long time ago I was not advocating this, but I see it's benefits - much
-easier to introduce changes to DTS or binding in case of some differences.
-
-and here only about the comment.
-
-> I'll drop them.
-
-Yes, please.
-
+> I'm using the linux-next branch. Should I use something else that have
+> newer schema files?
 > 
->>
->>> +		serial_0: serial@10300000 {
->>> +			compatible = "samsung,exynos850-uart";
->>
->> Here as well.
-> 
-> I'll add "samsung,exynosautov9-uart" to the yaml file.
-> 
->>
+> Also on other patch there are some error reported that are unrelated to
+> my change and that looks strange.
+
+The other might be not be relevant, but this one is real and reproducible.
 
 Best regards,
 Krzysztof
