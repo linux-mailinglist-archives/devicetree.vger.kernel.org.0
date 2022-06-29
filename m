@@ -2,206 +2,470 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88A0D55FC6A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 11:54:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30BF655FCAF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 11:59:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233149AbiF2JxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 05:53:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37308 "EHLO
+        id S231298AbiF2J6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 05:58:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233235AbiF2Jw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 05:52:56 -0400
-Received: from mx0b-00082601.pphosted.com (mx0b-00082601.pphosted.com [67.231.153.30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F386C3D4B9;
-        Wed, 29 Jun 2022 02:52:54 -0700 (PDT)
-Received: from pps.filterd (m0109331.ppops.net [127.0.0.1])
-        by mx0a-00082601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 25T4I1QC020672;
-        Wed, 29 Jun 2022 02:52:53 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : mime-version; s=facebook;
- bh=7Lef431669HQ8GUAygdqrZ30Z09bzM02ar1bF9uNg14=;
- b=IgzHWiM/HDDp92TtlGKM6VSsL+/iCm+MflYGBNUJqRSjjPTzlOtCmlX2xvwLd477Hpwg
- yctmPGOFvrnY7gq4esAr5BcIZSmosxAE+RpRUu5bVM+aKMko0V4EbmUt7UxEitBeTXao
- cL/Gpdj+IAfgubdxeszfQL/kfUXSFUubaKU= 
-Received: from nam12-bn8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2172.outbound.protection.outlook.com [104.47.55.172])
-        by mx0a-00082601.pphosted.com (PPS) with ESMTPS id 3h0dgqhuk8-2
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 29 Jun 2022 02:52:53 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OKp/m0IihZ4IjfzqUJVZCG5cbENLI52137BC95v7WM4/gjV+pEP+0mn5uYkkIbFGO/3me2ILBH6YFSaYsti3Etrdp1KQENYKMb/EjxmrBYNS/gllkXn5qMvNklkSbtN84mlL1aqUAC2TCF1a98SRKpM0bkW6uxUNhszQEu2hAWQA/aXHPOYf0eArR68rA9O53Nv3LKVVOV9QjbbgzE8fB8P78JQ0kMib5Rvw7kJQUap+VZpq1k7z9k5kD6LN21uubVFS5+3qL+5tUAoAwwfcXm4ZDSFe+EaCSeyedYA0ve50qQHCW7kSn6Thc0R9X8DLJMowsD+N+aWv5e9UnREHwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7Lef431669HQ8GUAygdqrZ30Z09bzM02ar1bF9uNg14=;
- b=FWU2HzGarPOkSdcw2ovmFphg9hWhSdzTy9ljSpqVGFtrHdywXAHZWs7F8GTX36Dru3bUzUlt4ghC7TRkWN1ni716mo9W2+YG3caBjjROKwpNfQ4ZOS447d7nP44z3tepert8pHxDGi8I6tqre38ymI9pqtdOmFXMWPBTmHTfmZHLQuyQ3wLjQmFpax9jhHck/8UAV16NhmF8FrzNy2N3P4KIiV8FVFGd/mlk0oNZ1/jhxHt49vWBeHcGhTdZuRiu3qlC9sbKtZyENtXwsyzvZboJw0pHbZdd7WllZpnQkiqYPrdlCIBsPp+ePHKCJqhnGOuLGN9tReGJsuwWu5IN1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=fb.com; dmarc=pass action=none header.from=fb.com; dkim=pass
- header.d=fb.com; arc=none
-Received: from SJ0PR15MB4552.namprd15.prod.outlook.com (2603:10b6:a03:379::12)
- by BN6PR15MB1427.namprd15.prod.outlook.com (2603:10b6:404:c6::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5395.14; Wed, 29 Jun
- 2022 09:52:50 +0000
-Received: from SJ0PR15MB4552.namprd15.prod.outlook.com
- ([fe80::81f9:c21c:c5bf:e174]) by SJ0PR15MB4552.namprd15.prod.outlook.com
- ([fe80::81f9:c21c:c5bf:e174%8]) with mapi id 15.20.5395.014; Wed, 29 Jun 2022
- 09:52:50 +0000
-From:   Jonathan McDowell <noodles@fb.com>
-To:     Borislav Petkov <bp@alien8.de>
-CC:     kernel test robot <lkp@intel.com>,
-        "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
-        "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "x86@kernel.org" <x86@kernel.org>,
-        Mimi Zohar <zohar@linux.ibm.com>, Baoquan He <bhe@redhat.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-integrity@vger.kernel.org" <linux-integrity@vger.kernel.org>,
-        "kexec@lists.infradead.org" <kexec@lists.infradead.org>
-Subject: [PATCH] of: Correctly annotate IMA kexec buffer functions
-Thread-Topic: [PATCH] of: Correctly annotate IMA kexec buffer functions
-Thread-Index: AQHYi53+57Uf9qOfm0WoCzCAOs74RA==
-Date:   Wed, 29 Jun 2022 09:52:50 +0000
-Message-ID: <Yrwg1aYEnFz38V6+@noodles-fedora.dhcp.thefacebook.com>
-References: <202206291039.yGgljGbx-lkp@intel.com> <YrwPjnxBk3Xyuakg@zn.tnic>
-In-Reply-To: <YrwPjnxBk3Xyuakg@zn.tnic>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7c5815ee-44d6-44e8-7847-08da59b52121
-x-ms-traffictypediagnostic: BN6PR15MB1427:EE_
-x-fb-source: Internal
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ql29pDw9WoyUR4EJaM+/Xn8uNBw26PQ8zouXAJDuKwhh6TAyWXW/hfm8eDfclmNGNfbWBGbDAv7gE3bxt48D7kMwgmFN/3fCOdRw2q3SJdJ7hFnZUEeOcuqERnpYfaEe9KuU5l1CPzc/7L5TAQ2bYycmpv5x1InXawckS9gmvP6Gw7mFGbLvG5ezBJ0zlxWmR5Bf+yZ6rLh3o1sTf07GoCh7xPyVVBr72BItO2IcjfTIvSNximZnjoUF+4yfF5FznGcy2xlMKvXplAbcm4r2t5pqNh9INZEP2Hq+BXQian4C4kJ65debJkeE++OuY5eETiALC/OKYzdKQLiJSBh5gZ1Ymp994VF94Yy9VSdleV3adBPfVWnmrmZ7ZdhDg6GV2vjBSOUB9hKKkEx39ze0zv0RsBGukpEfchU20rByDRGMwhs+y/m3Q/pABviEEYWWXQUH4hfYT9UunWNkshMKx9Yy9CjpRw7IP/eSNR6AE76nAlhUYb2fJVrPcnnU43RCUiuDA7wROz8+NMZ+N7MuhHjEejCcaaeEDsNPJlBn2LbHaR7gnz9HzPwBK+Ftz2Dkm+dxvwtUOFd0zp3hN/eU6fgfDI5H8TQ8NGBUqTlZJw0m03S1XRBHfxXtHsKl8WgEffqoGEVF4Oj7T+bU21r09TKF2rK4yJJoDqQPFd5GxlzX94mRbitJnQGfh7L9YL2v5iN/GlXLNl1KIRFcml3SiuspfvyxCs4P0teLjAaruUPqWDPqKyxcPFCgNhg4zdRIA+Ut9oP1zZ2rgNxYEpKg53Kwww4ULEgVXCLQtqFdP81LllbiFSWX4egT3KQZpmjZD6a0YTJVOnSw+tnEgeOIgw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR15MB4552.namprd15.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(376002)(39860400002)(396003)(136003)(366004)(66946007)(4326008)(66476007)(66556008)(8676002)(64756008)(66446008)(8936002)(5660300002)(2906002)(7416002)(83380400001)(86362001)(38070700005)(38100700002)(122000001)(71200400001)(966005)(6486002)(478600001)(91956017)(316002)(41300700001)(6916009)(54906003)(186003)(6506007)(76116006)(26005)(6512007)(9686003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?t8BUHcgXdaVItTADSYbP5Ia9pA4QwhzvGoAqGlbL8BZMTtoyooy/LWjNosAK?=
- =?us-ascii?Q?AghaIBEVvJGKzVopVitAAQJqbe4jBIalRreAkuaZWuzxxGTsq4t4IK+l8lxH?=
- =?us-ascii?Q?n+V40YlcAe/j0N7dnKGrniPaDZEviSKzecZLSTL2gWcz+p1TB8RkETJgx9a+?=
- =?us-ascii?Q?0dljzjCf96WxZNPXJOXg/Yp8arnvTEdkV+F6MslTXQJh6YdkLEf3YeReh2VB?=
- =?us-ascii?Q?5zKCfFhkdlDQdVPhX53KfNFisjorf23s+4f1pn8e92wGsLG/6LQfWmN0JGWq?=
- =?us-ascii?Q?mHq6pthHUThzhLdl5Ic35+ruhJU+E6jxV9NsrpUmNZydRK6XyNV33iCZD9qJ?=
- =?us-ascii?Q?96XdOpO731rmu92RBlppnw+gNWhnij9iomefnfbo8M8IqcemAWQ+56gZdIHn?=
- =?us-ascii?Q?QyOEtzIO4GPbZWWhD4cxVyu2r+Td00rE0o7gjl8sSmmENybBb9O78zRl07DF?=
- =?us-ascii?Q?0Z85duRVihX2nYrNDF0jGqyyyP/m4ufv+WSmyw+tYWRdj06ogIu/2vNuLEak?=
- =?us-ascii?Q?vqbnKGGkisnv1Rlbo46qrp86bu82XaY/TnYXQ6+GtdlJDASM5nBAk/JHMVle?=
- =?us-ascii?Q?VFsc2cUqbeZY8retGJRID4xGWPBVo5xrPgzX7chLEo6B3duqsx4fB86Ci0n6?=
- =?us-ascii?Q?5DK78jCa6H0YIKzE45t68ZGu6Oro1p7DmtbG5hy2NOQ1z9ouVq70yPJdW7ch?=
- =?us-ascii?Q?OT2c6eW6Xw1Qyv0zYsGjGOB8XlvWVNyIPHULYj/zO51hV0dmafkobWSDLRnn?=
- =?us-ascii?Q?qySHeu3a1+cB2RROStfMfXI/Io8XcOkLiMHJJvnklIGwF8fFb/5Wb/2TO70h?=
- =?us-ascii?Q?EvL1x+pRp9BSuYNAw8fte/c18JgqYe9i7ciVikgxBSMHzIX+W3TcFUvzpUVF?=
- =?us-ascii?Q?CEAua2/QKrTdJwzTj3/S8Wy+fTJcV887MRFXjNuZsEfBSY7Y3zkxrNTldmjW?=
- =?us-ascii?Q?8sXTj63HU3VaYT+SfkFYIp1oxv1CiCL3WB/ujQo5FyI4z5tLuIiBq7QA1UEV?=
- =?us-ascii?Q?PvycTVZinZLNAEuoNwBSPf76eZaHHP3J5oppl8zVxZSTDxSxzTG8TB2z7Y17?=
- =?us-ascii?Q?fPOGixJn21cojAwZTpNLvwdlrluZzFCfLdHmObX2IAm3eRb1PZ7Lh3LbF1rf?=
- =?us-ascii?Q?/M/kiowPr/3lSFYud0xW+opVeLE2tx9EQxOL7TsosZCS5zv2FaLAJ2Ac3dhK?=
- =?us-ascii?Q?uJBOzgyYLT728BRTRjJeZaVzAUXcsL6obEOcrpqP7PDF3srBP67eHk6us2HW?=
- =?us-ascii?Q?kp7EymdT/L9JGj8uibfYUw3erOfcA86bU3XvV5cIWi53jLLvOp1EqXKgGr36?=
- =?us-ascii?Q?RsOb6GAt6Zbs41RMynfcoD139PVVUDn2Et1cCdcMckcgzxJrZ6i6nHS8fh2s?=
- =?us-ascii?Q?wXcyNfHdyIm3ACLuiDBWwb16XE6w7IOPnZgfFMCJrIukzENDUwfFPyWXeliE?=
- =?us-ascii?Q?cQxypoVJwitzPTxrdy8NshUMVwUxd6aDxKGwemxwxkAw0U3AZzdQFhy9x4uD?=
- =?us-ascii?Q?XNAL/6LkPWMs8Y7z4qYwzpnm528q1D71rLCOqDfE2c6D3Fg81kWxQ2TCe17+?=
- =?us-ascii?Q?ajosjQP0FHWhZZP5z0Uv6EAJM8uhn7o3tdmiRrqn?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <13F63E006EFD0D4591762FB53D852F8A@namprd15.prod.outlook.com>
-X-OriginatorOrg: fb.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR15MB4552.namprd15.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c5815ee-44d6-44e8-7847-08da59b52121
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jun 2022 09:52:50.5828
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 8ae927fe-1255-47a7-a2af-5f3a069daaa2
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Z/gsaMmgM7t2dk0ZEEg5c2xaA1G/u0494LPSAuudJJESv+6+kL/WEyD8XMgqgyYm
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR15MB1427
-X-Proofpoint-ORIG-GUID: V-DtDs5NvFPnigEoQDiS_JYwgRLF21_J
-X-Proofpoint-GUID: V-DtDs5NvFPnigEoQDiS_JYwgRLF21_J
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+        with ESMTP id S230134AbiF2J6X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 05:58:23 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CFB9113A
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:58:22 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id k20so29496edj.13
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:58:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Q0hXybwVYyJJtShG3s2e1VSFC83nd6szT4kAIob75Sw=;
+        b=LKpu2yHFiRvrEnZapYQSuYenvUNEBYE3I1cR5EA3rgm9hglZyMvJ2I+iHMm/PhP0Jn
+         NF8t4zrVn1tBf8/mkBD7WOjeHSM1LrfnkU4BiRuem1bpFhUFi744B39AWsK3ybNGMW5o
+         QO+sCKPxdOZB3VpSRGEzVDAHW3v6OIfWz37Q/eHzpzP6upnr/DT1yvKGkeWB8Q3s10Um
+         IKUNcZw9x40xqPKU5mRRJ80+pDuRmcRnIaUJfjdHUDZV3VuVts19cR0fBlvduoWTmWAD
+         6G8VwYYWnRf7gzgpDWPHcu86rkhGicnTXJYWL+/Mu1of3JzOsFQVWkNF7RlePzYY/Y2c
+         9tJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Q0hXybwVYyJJtShG3s2e1VSFC83nd6szT4kAIob75Sw=;
+        b=RbL6IhJF3vDKAU0fhsry45sHuqOr7vv2bZiSbjcAeDmy2wborOwkQFchOQ61P/9d/C
+         kUccBhBDKcxrRmUiviX0FgJTyk/Sno2nIIEpUzjQkje166Ff/ARkU5aKRSXB+3O/Ojb0
+         OJVERC9bQQjUd2Lo/lI2/KFiN6Pg92v+q4BBcF3MlMsA+QobR2rCo+IJ9b8UEcwpt/uq
+         6GDrDWVMgINk9VA7XnBqdHchXLIJvS857tXH1APoKTNnAWjLxT0G5gMiYXTVWOJw91To
+         R58nusxL/XAL8i8WVrCqIEkOinHnaz/h4P0cAXzBAtfoJMKz6UKyo9RdNMVSP554GUsL
+         32HQ==
+X-Gm-Message-State: AJIora+qWxwizlv+RBJFlYzpxTZuuHAgFTC3fjK0htowEz5PlxTKBS9J
+        v/FvQiI/tA5mOawJetKT+Og/Gogjyx+Nnw==
+X-Google-Smtp-Source: AGRyM1vuENth8+BVV6epDv21UB66lX7OsmfGpsefU+XZem8sycJawvinAvmNj+V+ISVAa2nGTddMkw==
+X-Received: by 2002:aa7:c38d:0:b0:435:9257:99a5 with SMTP id k13-20020aa7c38d000000b00435925799a5mr3063222edq.204.1656496700585;
+        Wed, 29 Jun 2022 02:58:20 -0700 (PDT)
+Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id s22-20020a170906a19600b0071cef8bafc3sm7570775ejy.1.2022.06.29.02.58.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jun 2022 02:58:20 -0700 (PDT)
+Message-ID: <c760e444-57c3-0e1a-0e4d-f79d6ae9867a@linaro.org>
+Date:   Wed, 29 Jun 2022 11:58:18 +0200
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-06-28_11,2022-06-28_01,2022-06-22_01
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v3 02/12] powerpc: wiiu: device tree
+Content-Language: en-US
+To:     Ash Logan <ash@heyquark.com>, krzysztof.kozlowski+dt@linaro.org,
+        paulus@samba.org, mpe@ellerman.id.au, christophe.leroy@csgroup.eu,
+        robh+dt@kernel.org, benh@kernel.crashing.org
+Cc:     linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        j.ne@posteo.net, linkmauve@linkmauve.fr,
+        rw-r-r-0644@protonmail.com, devicetree@vger.kernel.org,
+        joel@jms.id.au
+References: <20220622131037.57604-1-ash@heyquark.com>
+ <20220628133144.142185-1-ash@heyquark.com>
+ <20220628133144.142185-3-ash@heyquark.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220628133144.142185-3-ash@heyquark.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 29, 2022 at 10:38:46AM +0200, Borislav Petkov wrote:
-> On Wed, Jun 29, 2022 at 10:52:13AM +0800, kernel test robot wrote:
-> > tree:   https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git x86/kdump
-> > head:   69243968bd526641e549ed231c750ce92e3eeb35
-> > commit: 69243968bd526641e549ed231c750ce92e3eeb35 [1/1] x86/kexec: Carry forward IMA measurement log on kexec
+On 28/06/2022 15:31, Ash Logan wrote:
+> Add a device tree source file for the Nintendo Wii U video game console.
 > 
-> I've zapped it from tip for the time being.
+> Signed-off-by: Ash Logan <ash@heyquark.com>
+> Co-developed-by: Roberto Van Eeden <rw-r-r-0644@protonmail.com>
+> Signed-off-by: Roberto Van Eeden <rw-r-r-0644@protonmail.com>
+> Co-developed-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> ---
+> v1->v2: Style and formatting changes suggested by Rob Herring.
+>  License remains GPL-2.0 as the other powerpc dtses are the same, happy
+>  to change if there is a different preferred default.
+> v2->v3: Re-added address-cells accidentally removed in v2.
+>  Marked latte as a simple-bus, since it is.
 
-This turns out to be the old OF code that can now be hit on x86 when
-CONFIG_OF=y because it defines HAVE_IMA_KEXEC. I suspect the warning
-already exists on ARM64/PowerPC. Fix is to mark those functions up in
-the same manner as the new x86 variants.
+Thank you for your patch. There is something to discuss/improve.
 
-Below is on top of what was in tip; I can roll a v7 if preferred but
-I think seeing the fix on its own is clearer.
----
+> 
+>  arch/powerpc/boot/dts/wiiu.dts | 326 +++++++++++++++++++++++++++++++++
+>  1 file changed, 326 insertions(+)
+>  create mode 100644 arch/powerpc/boot/dts/wiiu.dts
+> 
+> diff --git a/arch/powerpc/boot/dts/wiiu.dts b/arch/powerpc/boot/dts/wiiu.dts
+> new file mode 100644
+> index 000000000000..44a5a1469095
+> --- /dev/null
+> +++ b/arch/powerpc/boot/dts/wiiu.dts
+> @@ -0,0 +1,326 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Nintendo Wii U Device Tree Source
+> + *
+> + * Copyright (C) 2022 The linux-wiiu Team
+> + */
+> +
+> +/dts-v1/;
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +
+> +/ {
+> +	model = "nintendo,wiiu";
 
-ima_free_kexec_buffer() calls into memblock_phys_free() so must be
-annotated __meminit. Equally ima_kexec_get_buffer() is executed during
-__init so can be marked as such. This was already done in the new x86
-IMA kexec passing functions but not for the pre-existing OF based
-functions.
+It's not compatible, but user-visible string, e.g. "Nintendo Wii U"
 
-Signed-off-by: Jonathan McDowell <noodles@fb.com>
-Reported-by: kernel test robot <lkp@intel.com>
----
- drivers/of/kexec.c  | 4 ++--
- include/linux/ima.h | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+> +	compatible = "nintendo,wiiu";
+> +
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +
+> +	chosen {
+> +		bootargs = "root=/dev/sda1 rootwait";
 
-diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-index d3ec430fa403..95cd5532b503 100644
---- a/drivers/of/kexec.c
-+++ b/drivers/of/kexec.c
-@@ -124,7 +124,7 @@ static int do_get_kexec_buffer(const void *prop, int len, unsigned long *addr,
-  *
-  * Return: 0 on success, negative errno on error.
-  */
--int ima_get_kexec_buffer(void **addr, size_t *size)
-+int __init ima_get_kexec_buffer(void **addr, size_t *size)
- {
- 	int ret, len;
- 	unsigned long tmp_addr;
-@@ -148,7 +148,7 @@ int ima_get_kexec_buffer(void **addr, size_t *size)
- /**
-  * ima_free_kexec_buffer - free memory used by the IMA buffer
-  */
--int ima_free_kexec_buffer(void)
-+int __meminit ima_free_kexec_buffer(void)
- {
- 	int ret;
- 	unsigned long addr;
-diff --git a/include/linux/ima.h b/include/linux/ima.h
-index ff4bd993e432..8d4698e63190 100644
---- a/include/linux/ima.h
-+++ b/include/linux/ima.h
-@@ -141,8 +141,8 @@ static inline int ima_measure_critical_data(const char *event_label,
- #endif /* CONFIG_IMA */
- 
- #ifdef CONFIG_HAVE_IMA_KEXEC
--int ima_free_kexec_buffer(void);
--int ima_get_kexec_buffer(void **addr, size_t *size);
-+int __meminit ima_free_kexec_buffer(void);
-+int __init ima_get_kexec_buffer(void **addr, size_t *size);
- #endif
- 
- #ifdef CONFIG_IMA_SECURE_AND_OR_TRUSTED_BOOT
--- 
-2.36.1
+This does not belong to shared DTS. No bootargs.
+
+> +	};
+> +
+> +	memory {
+> +		device_type = "memory";
+> +		reg = <0x00000000 0x02000000	/* MEM1 - 32MiB */
+> +		       0x08000000 0x00300000	/* MEM0 - 3MiB  */
+> +		       0x10000000 0x80000000>;	/* MEM2 - 2GiB  */
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		/* TODO: Add SMP */
+> +		PowerPC,espresso@0 {
+
+Node name should be generic, so "cpu". Unless something needs the
+specific node name?
+
+> +			device_type = "cpu";
+> +			reg = <0>;
+> +			clock-frequency = <1243125000>;		/* 1.243125GHz */
+> +			bus-frequency = <248625000>;		/* 248.625MHz core-to-bus 5x */
+> +			timebase-frequency = <62156250>;	/* 1/4 of the bus clock */
+> +			i-cache-size = <32768>; /* 32K icache */
+> +			i-cache-line-size = <32>;
+> +			i-cache-block-size = <32>;
+> +			i-cache-sets = <128>;
+> +			d-cache-size = <32768>; /* 32K dcache */
+> +			d-cache-line-size = <32>;
+> +			d-cache-block-size = <32>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&L2_0>;
+> +			L2_0:l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +				cache-unified;
+> +				cache-size = <0x80000>; /* 512KB L2 */
+> +				cache-line-size = <64>;
+> +				cache-block-size = <32>;
+> +				cache-sets = <2048>;
+> +			};
+> +		};
+> +	};
+> +
+> +	latte {
+
+Generic node names.
+
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "nintendo,latte", "simple-bus";
+> +		ranges = <0x0c000000 0x0c000000 0x00400000	/* Espresso-only registers */
+> +			  0x0d000000 0x0d000000 0x00200000	/* Latte AHB deivces */
+> +			  0x0d800000 0x0d800000 0x00800000>;	/* Latte SoC registers */
+> +
+> +		latte_gpu: gpu@c200000 {
+> +			compatible = "nintendo,latte-gpu7";
+> +			reg = <0x0c200000 0x80000>;
+> +			interrupts = <2>;
+> +			interrupt-parent = <&espresso_pic>;
+> +		};
+> +
+> +		espresso_pic: pic@c000078 {
+
+interrupt-controller
+
+> +			#interrupt-cells = <1>;
+> +			interrupt-controller;
+> +
+> +			compatible = "nintendo,espresso-pic";
+> +			reg = <0x0c000078 0x18>;
+> +		};
+> +
+> +		latte_dsp: dsp@c005000 {
+> +			compatible = "nintendo,latte-dsp";
+> +			reg = <0x0c005000 0x200>;
+> +		};
+> +
+> +		ehci_0: usb@d040000 {
+> +			compatible = "nintendo,latte-usb-ehci", "usb-ehci";
+> +			reg = <0x0d040000 0x100>;
+> +			interrupts = <4>;
+> +			interrupt-parent = <&latte_pic>;
+> +			big-endian-regs;
+> +		};
+> +
+> +		ohci_0_0: usb@d050000 {
+> +			compatible = "nintendo,latte-usb-ohci";
+> +			reg = <0x0d050000 0x100>;
+> +			interrupts = <5>;
+> +			interrupt-parent = <&latte_pic>;
+> +
+> +			big-endian-regs;
+> +		};
+> +
+> +		ohci_0_1: usb@d060000 {
+> +			compatible = "nintendo,latte-usb-ohci";
+> +			reg = <0x0d060000 0x100>;
+> +			interrupts = <6>;
+> +			interrupt-parent = <&latte_pic>;
+> +
+> +			big-endian-regs;
+> +		};
+> +
+> +		ehci_1: usb@d120000 {
+> +			compatible = "nintendo,latte-usb-ehci", "usb-ehci";
+> +			reg = <0x0d120000 0x100>;
+> +			interrupts = <16>;
+> +			interrupt-parent = <&latte_pic>;
+> +			big-endian-regs;
+> +		};
+> +
+> +		ohci_1_0: usb@d130000 {
+> +			compatible = "nintendo,latte-usb-ohci";
+> +			reg = <0x0d130000 0x100>;
+> +			interrupts = <35>;
+> +			interrupt-parent = <&latte_pic>;
+> +
+> +			big-endian-regs;
+> +		};
+> +
+> +		ehci_2: usb@d140000 {
+> +			compatible = "nintendo,latte-usb-ehci", "usb-ehci";
+> +			reg = <0x0d140000 0x100>;
+> +			interrupts = <36>;
+> +			interrupt-parent = <&latte_pic>;
+> +			big-endian-regs;
+> +		};
+> +
+> +		ohci_2_0: usb@d150000 {
+> +			compatible = "nintendo,latte-usb-ohci";
+> +			reg = <0x0d150000 0x100>;
+> +			interrupts = <37>;
+> +			interrupt-parent = <&latte_pic>;
+> +
+> +			big-endian-regs;
+> +		};
+> +
+> +		sdcard_0: sdhci@d070000 {
+
+mmc
+
+> +			compatible = "nintendo,latte-sdhci","sdhci";
+> +			reg = <0x0d070000 0x200>;
+> +			interrupts = <7>;
+> +			interrupt-parent = <&latte_pic>;
+> +		};
+> +
+> +		wifi_0: sdhci@d080000 {
+
+mmc
+
+> +			compatible = "nintendo,latte-sdhci","sdhci";
+> +			reg = <0x0d080000 0x200>;
+> +			interrupts = <8>;
+> +			interrupt-parent = <&latte_pic>;
+> +		};
+> +
+> +		legacy_ipc: ipc@d800000 {
+> +			compatible = "nintendo,latte-ipc", "nintendo,hollywood-ipc";
+> +			reg = <0x0d800000 0x10>;
+> +			interrupts = <30 31>;
+> +			interrupt-parent = <&latte_pic>;
+> +		};
+> +
+> +		latte_otp: otp@d8001ec {
+> +			compatible = "nintendo,latte-otp";
+> +			reg = <0x0d8001ec 0x8>;
+> +		};
+> +
+> +		sata: ahci@d160400 {
+> +			compatible = "nintendo,latte-ahci";
+> +			reg = <0x0d160400 0x808>;
+> +
+> +			interrupt-parent = <&latte_pic>;
+> +			interrupts = <38 28>;
+> +		};
+> +
+> +		latte_pic: pic@d800440 {
+
+interrupt-controller
+
+> +			#interrupt-cells = <1>;
+> +			interrupt-controller;
+> +
+> +			compatible = "nintendo,latte-pic";
+> +			reg = <0x0d800440 0x30>;
+> +			interrupt-parent = <&espresso_pic>;
+> +			interrupts = <24>;
+> +		};
+> +
+> +		gpio: gpio@d8000c0 {
+> +			#gpio-cells = <2>;
+> +			compatible = "nintendo,latte-gpio", "nintendo,hollywood-gpio";
+> +
+> +			reg = <0x0d8000c0 0x40>;
+> +			gpio-controller;
+> +			/* TODO: There are actually 31 AHBALL GPIOs */
+> +			ngpios = <24>;
+> +
+> +			gpio-line-names =
+> +				"POWER", "DWIFI", "FAN", "DC_DC",
+> +				"", "Esp10WorkAround", "", "",
+> +				"PADPD", "", "EEP_CS", "EEP_CLK",
+> +				"EEP_MOSI", "EEP_MISO", "AVE_SCL", "AVE_SDA",
+> +				"DEBUG0", "DEBUG1", "DEBUG2", "DEBUG3",
+> +				"DEBUG4", "DEBUG5", "DEBUG6", "DEBUG7";
+> +
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +			interrupts = <10>;
+> +			interrupt-parent = <&latte_pic>;
+> +		};
+> +
+> +		gpio2: gpio@d800520 {
+> +			#gpio-cells = <2>;
+> +			compatible = "nintendo,latte-gpio", "nintendo,hollywood-gpio";
+> +
+> +			reg = <0x0d800520 0x40>;
+> +			gpio-controller;
+> +			ngpios = <7>;
+> +
+> +			gpio-line-names =
+> +				"FANSPEED", "SMC_SCL", "SMC_SDA", "DC_DC2",
+> +				"AVE_INT", "", "AVE_RESET";
+> +
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +			interrupts = <10>;
+> +			interrupt-parent = <&latte_pic>;
+> +		};
+> +	};
+> +
+> +	spi_gpio: spi-gpio {
+> +		compatible = "spi-gpio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cs-gpios = <&gpio 10 GPIO_ACTIVE_HIGH>;
+> +		gpio-sck = <&gpio 11 GPIO_ACTIVE_HIGH>;
+> +		gpio-mosi = <&gpio 12 GPIO_ACTIVE_HIGH>;
+> +		gpio-miso = <&gpio 13 GPIO_ACTIVE_HIGH>;
+> +		num-chipselects = <1>;
+> +
+> +		eeprom@0 {
+> +			compatible = "atmel,at93c66";
+> +			reg = <0>;
+> +			spi-max-frequency = <1000000>;
+> +			spi-cs-high;
+> +			/* TODO: wiiubrew says this is 16-bit, but I only get the correct
+> +			 * values in 8-bit...
+> +			 */
+> +			data-size = <8>;
+> +			read-only;
+> +
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			/* https://wiiubrew.org/wiki/Hardware/SEEPROM */
+> +			rng_seed: rng@12 { reg = <0x012 8>; };
+> +			ppc_pvr: pvr@20 { reg = <0x020 4>; };
+> +			seeprom_ver_str: sver-str@24 { reg = <0x024 6>; };
+> +			seeprom_ver: sver@2a { reg = <0x02A 2>; };
+> +			otp_ver: over@2c { reg = <0x02C 2>; };
+> +			otp_rev: orev@2e { reg = <0x02E 2>; };
+> +			otp_ver_str: over-str@30 { reg = <0x030 8>; };
+> +
+> +			bc_crc: bc-crc@38 { reg = <0x038 4>; };
+> +			bc_sz: bc-sz@3c { reg = <0x03C 2>; };
+> +			bc_ver: bc-ver@3e { reg = <0x03E 2>; };
+> +			bc_boardtype: boardtype@42 { reg = <0x042 2>; };
+> +			bc_boardrev: boardrev@44 { reg = <0x044 2>; };
+> +			bc_bootsource: bootsource@46 { reg = <0x046 2>; };
+> +			bc_ddr3size: ddr3size@48 { reg = <0x048 2>; };
+> +			bc_ddr3speed: ddr3speed@4a { reg = <0x04A 2>; };
+> +			bc_ppcclockmul: ppcclockmul@4c { reg = <0x04C 2>; };
+> +			bc_iopclockmul: iopclockmul@46 { reg = <0x04E 2>; };
+> +			bc_video1080p: video1080p@50 { reg = <0x050 2>; };
+> +			bc_ddr3vendor: ddr3vendor@52 { reg = <0x052 2>; };
+> +			bc_movpassivereset: movpassivereset@54 { reg = <0x054 2>; };
+> +			bc_syspllspd: syspllspd@56 { reg = <0x056 2>; };
+> +			bc_satadevice: satadevice@58 { reg = <0x058 2>; };
+> +			bc_consoletype: consoletype@5a { reg = <0x05A 2>; };
+> +			bc_deviceprescence: deviceprescence@5c { reg = <0x05C 2>; };
+> +
+> +			drive_key: drvkey@80 { reg = <0x080 16>; };
+> +			factory_key: fackey@90 { reg = <0x090 16>; };
+> +			shdd_key: shddkey@a0 { reg = <0x0A0 16>; };
+> +			usb_key_seed: usbkeyseed@b0 { reg = <0x0B0 16>; };
+> +			drive_key_flag: drvkeyf@c0 { reg = <0x0C0 2>; };
+> +			usb_key_flag: udbkeyf@c2 { reg = <0x0C2 2>; };
+> +			shdd_key_flag: shddkeyf@c4 { reg = <0x0C4 2>; };
+> +
+> +			sysprod_version: sp_ver@140 { reg = <0x140 4>; };
+> +			sysprod_eeprom_version: sp_ee_ver@144 { reg = <0x144 4>; };
+> +			sysprod_product_area: sp_parea@148 { reg = <0x148 4>; };
+> +			sysprod_game_region: sp_region@14c { reg = <0x14C 4>; };
+> +			sysprod_ntsc_pal: sp_ntscpal@150 { reg = <0x150 4>; };
+> +			sysprod_5ghz_country: sp_5ghz_c@154 { reg = <0x154 2>; };
+> +			sysprod_5ghz_country_rev: sp_5ghz_crev@156 { reg = <0x156 2>; };
+> +			sysprod_code: sp_code@158 { reg = <0x158 8>; };
+> +			sysprod_serial: sp_serial@160 { reg = <0x160 16>; };
+> +			sysprod_model: sp_model@170 { reg = <0x170 16>; };
+> +
+> +			prod_year: pyear@188 { reg = <0x188 2>; };
+> +			prod_date: pdate@18a { reg = <0x18A 2>; };
+> +			prod_time: ptime@18c { reg = <0x18C 2>; };
+> +
+> +			boot_params: boot_params@1c0 { reg = <0x1C0 48>; };
+> +		};
+> +	};
+> +
+> +	/* TODO make this gpio-keyed once hollywood-gpio supports interrupts */
+> +	gpio-keys-polled {
+
+gpio-keys
+
+> +		poll-interval = <50>;
+> +		compatible = "gpio-keys-polled";
+> +
+> +		power {
+
+key-power
+(will be enforced by schema)
+
+> +			label = "Power Button";
+> +			gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
+> +			linux,code = <KEY_POWER>;
+> +		};
+> +	};
+> +};
+
+
+Best regards,
+Krzysztof
