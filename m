@@ -2,75 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0624255FE39
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:07:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6931155FE3C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230140AbiF2LHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 07:07:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45660 "EHLO
+        id S229828AbiF2LJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 07:09:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229958AbiF2LHZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:07:25 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D01513D1EB
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:07:23 -0700 (PDT)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 66CA440189
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:07:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1656500842;
-        bh=Rbk3h/ZyQTcA1nhbUwjo+czhYffJ6+LSq1adnjDE8t4=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=vEMtHGMkTjYcfiF58KNfRoOUZsE6VJI38plBkCFW079KjbrAynKUtJubDr3aX7LLb
-         cR54z0ImCVkojXQrAAYF82bRTXQ7Lo1OtvaeyMyj9p0w1lB9Zpi4LO7phD1NiZze2S
-         fvEsesri5P3MNIhQRrsI58TsjoVEj3l8DtNr2NG0FeneSNxYemybX8tMiU8j1J0aNZ
-         Ha4En7K8Hpd2L/EtxTq2JlymgHO4KJpPdrlcWm4Y5NCOYd0YyHuM5WzBnYoya9/W3i
-         YibYiIacWUxgRD5lbN/BPtayOengkrGYzpxw3UYbk43nIg8qbvUsjQi6lNMe25LJmY
-         tiMSbAWJjEvMQ==
-Received: by mail-ej1-f69.google.com with SMTP id hs18-20020a1709073e9200b0072a3e7eb0beso345598ejc.10
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:07:22 -0700 (PDT)
+        with ESMTP id S229811AbiF2LJH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:09:07 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 719EC366AC
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:09:05 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id fi2so31800670ejb.9
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:09:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=foG60lhNannT8P9dwW6kOYADdXZ/flWXxg5inptG7Kk=;
+        b=fOqmOi1CSnXz7riHqPSZPrFn2IWlV4hfw0pYjQPy5LkPoB3mqXKSLx2Nc1qRyI+pT3
+         ijTo0bflkgH6otLqB34F1P4BviJwWuPt0NcEMGguEEwqwYvfWwl1H8VTBvl2Vyy7wNVn
+         0rX6JnCqrwZFKl9kxgOZnDETW8QeqEUCgAwkDJY3V1yQzXxf41HlH5bSPvD3ux0yFoZ5
+         ZPjiOG8erfdIwHve8fhCGBPLQ19LqDjR/8j2qCx/rK0wQYbnnlrJhmkXdjIWPftZERTZ
+         5htviNG37n6y6bhmbWk+GqOHbCKRYY54eVuiyPcQgit0vFaOgifBZY0Zzo091U5LUugs
+         hE+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Rbk3h/ZyQTcA1nhbUwjo+czhYffJ6+LSq1adnjDE8t4=;
-        b=Waolt74kN6Zeh22ZgT3VrtHu3mbGeQkwrkAvslXmE7E47J/9Nw33WHDIW5i9IWezxi
-         IaJ/qdxxIy3mAU5W83o0kAZ7UDqa0w29e0VYvxeFdWCsEyhZyUuoY56mM2uaz7s1xRz1
-         JKG5muS8AaKiBj9aEgOz8L3sO0Gbutm/3ht+MG7y8fdh+qxtQABXlUvVVOsnqw7kSYx2
-         01mKnbiZ+CvrQ8ajnHjw30EE3UBIGr6KEBjP37nZNzBE8IS+zp6h7ouptZkAW97Z3dUl
-         +FKJzHCOACMwiwQTZ0MQI6w3V03IxobQC3mL7TycI9R+Q7Gc3b4hUokCq4AGg4v4Tmzn
-         5Kgw==
-X-Gm-Message-State: AJIora+yJnzVU+jTfJKvKP62yP98Ma62jgBBe3NxpjoyW5uXhUwKj2vb
-        EERCq0htrlcWk6uxkjJgR8WoRN8fVqN2qsRTdyEKvgvoPmLpDmSvmKi6kGqa9Jy1RbwXr2OZYRK
-        UUd72xzR0y9J8aMbneP6Y2u1EvejO3AXoKrXvnCU=
-X-Received: by 2002:a05:6402:3909:b0:435:7a69:2cfd with SMTP id fe9-20020a056402390900b004357a692cfdmr3406349edb.166.1656500842003;
-        Wed, 29 Jun 2022 04:07:22 -0700 (PDT)
-X-Google-Smtp-Source: AGRyM1tThif8280wzXk6Ut9jXKYRnm02Yy/OjNEOJCEj1xRjX3WNRnkf7vJYfXD49sy7it1uTCKgpw==
-X-Received: by 2002:a05:6402:3909:b0:435:7a69:2cfd with SMTP id fe9-20020a056402390900b004357a692cfdmr3406323edb.166.1656500841846;
-        Wed, 29 Jun 2022 04:07:21 -0700 (PDT)
-Received: from Isaac-Laptop.fritz.box ([2a02:908:672:1020:dd2a:5258:a4c9:43ea])
-        by smtp.gmail.com with ESMTPSA id r1-20020aa7cb81000000b004357b717a96sm11127630edt.85.2022.06.29.04.07.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 04:07:21 -0700 (PDT)
-From:   Isaac True <isaac.true@canonical.com>
-To:     linux-watchdog@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, wim@linux-watchdog.org,
-        linux@roeck-us.net, Isaac True <isaac.true@canonical.com>
-Subject: [PATCH 2/2] watchdog: gpio: add configurable minimum interval
-Date:   Wed, 29 Jun 2022 13:06:26 +0200
-Message-Id: <20220629110626.2158127-2-isaac.true@canonical.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220629110626.2158127-1-isaac.true@canonical.com>
-References: <20220629110626.2158127-1-isaac.true@canonical.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=foG60lhNannT8P9dwW6kOYADdXZ/flWXxg5inptG7Kk=;
+        b=o5p5hRyYeVMOB76HD7YR4w7cCRhiL4R6XZ+8igowdBRgj7Jti90Mp9oPMKRm1FuoGT
+         wUs/3NZLpPfyNZI8UTF/dBG0ZFPzp3O3iAFA1piyoPWu8cs+9YRWmbSyzgX5/3AAsBdt
+         XI8XKQmgGtXlu5B1M4u+YDXKKQJk6SCqu5oBBiJw1sohhUQoUHzW5WHEJ9c14rUT9feg
+         iR1cx3V8HEOXuBYbwkGLt/T77aQAChwxN2BGUx/2fqisIqlOultIcvnferJkhvc/8QAi
+         1f71HdrDX198pyKLn+WVpFxmJrGT9ibtS+/YQguXC+/iTUP81VXxeZfY7+f6VHv/SK6S
+         1hrQ==
+X-Gm-Message-State: AJIora8SlgyJQNi6JuIxk8Vzb4ucv/DpgFDBkOkQBeTCeFRWYVKf+2bf
+        sSkzRf2g9bIFwQuqek0SDmrEgA==
+X-Google-Smtp-Source: AGRyM1tAc75CObf54+Dn1EXYo9rv7I8KdZ7F32RpNsq1ifASqeuEyIi397CtnC3Ibo8I2EE97xCsdw==
+X-Received: by 2002:a17:907:3dac:b0:722:e6ab:8d9 with SMTP id he44-20020a1709073dac00b00722e6ab08d9mr3076325ejc.20.1656500943955;
+        Wed, 29 Jun 2022 04:09:03 -0700 (PDT)
+Received: from [192.168.0.184] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id a23-20020aa7d757000000b00437df2444f5sm174712eds.11.2022.06.29.04.09.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jun 2022 04:09:03 -0700 (PDT)
+Message-ID: <eb7275a0-3883-176f-fab0-b5cab5bb09ee@linaro.org>
+Date:   Wed, 29 Jun 2022 13:09:02 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 2/3] arm64: dts: exynosautov9: add exynosautov9-usi.dtsi
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
+        'Rob Herring' <robh+dt@kernel.org>
+Cc:     'Alim Akhtar' <alim.akhtar@samsung.com>,
+        'Sam Protsenko' <semen.protsenko@linaro.org>,
+        'Jaewon Kim' <jaewon02.kim@samsung.com>,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220629015650.138527-1-chanho61.park@samsung.com>
+ <CGME20220629015913epcas2p1dcfcc81c026aa524a1f35c8e393be4f0@epcas2p1.samsung.com>
+ <20220629015650.138527-3-chanho61.park@samsung.com>
+ <acf6fb6d-46da-48f6-f064-1a08d323b0f1@linaro.org>
+ <025601d88b9d$332049b0$9960dd10$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <025601d88b9d$332049b0$9960dd10$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,52 +82,144 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the "min_hw_margin_ms" parameter to gpio_wdt devices, allowing a
-minimum interval to be specified, stopping watchdog devices from being
-fed too quickly if they require a certain interval between feeds.
+On 29/06/2022 11:47, Chanho Park wrote:
+>> On 29/06/2022 03:56, Chanho Park wrote:
+>>> Universal Serial Interface (USI) supports three types of serial
+>>> interface such as Universal Asynchronous Receiver and Transmitter
+>>> (UART), Serial Peripheral Interface (SPI), and Inter-Integrated Circuit
+>> (I2C).
+>>> Each protocols can be working independently and configured as one of
+>>> those using external configuration inputs.
+>>> Exynos Auto v9 SoC support 12 USIs. When a USI uses two pins such as
+>>> i2c and 3 wire uarts(RX/TX only), we can use remain two pins as i2c mode.
+>>> So, we can define one USI node that includes serial/spi and hsi2c.
+>>> usi_i2c nodes can be used only for i2c mode.
+>>>
+>>> We can have below combinations for one USI.
+>>> 1) The usi node is used either 4 pin uart or 4 pin spi  -> No usi_i2c
+>>> can be used
+>>> 2) The usi node is used 2 pin uart(RX/TX) and i2c(SDA/SCL)  -> usi_i2c
+>>> should be enabled to use the latter i2c
+>>> 3) The usi node is used i2c(SDA/SCL) and i2c(SDA/SCL)  -> usi_i2c
+>>> should be enabled to use the latter i2c
+>>>
+>>> By default, all USIs are initially set to uart mode by below setting.
+>>> samsung,mode = <USI_V2_UART>;
+>>> You can change it either USI_V2_SPI or USI_V2_I2C.
+>>>
+>>> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+>>> ---
+>>>  .../boot/dts/exynos/exynosautov9-usi.dtsi     | 1127 +++++++++++++++++
+>>>  1 file changed, 1127 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/exynos/exynosautov9-usi.dtsi
+>>
+>> Put all this directly in exynosautov9.dtsi, because this is not a re-
+>> usable piece among different DTSI.
+> 
+> Okay. I'll move them in the exynosautov9.dtsi. I thought they're too long to put in the exynosautov9.dtsi and I also found a similar case such as exynos5433-bus.dtsi and exynos5433-tmu.dtsi.
 
-Signed-off-by: Isaac True <isaac.true@canonical.com>
----
- drivers/watchdog/gpio_wdt.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Indeed we did like that... The tmu maybe was meant to be re-used,
+although it references specific clusters. But the split of bus I don't
+understand - it does not help.
 
-diff --git a/drivers/watchdog/gpio_wdt.c b/drivers/watchdog/gpio_wdt.c
-index 0923201ce874..309f66536a14 100644
---- a/drivers/watchdog/gpio_wdt.c
-+++ b/drivers/watchdog/gpio_wdt.c
-@@ -110,6 +110,7 @@ static int gpio_wdt_probe(struct platform_device *pdev)
- 	struct gpio_wdt_priv *priv;
- 	enum gpiod_flags gflags;
- 	unsigned int hw_margin;
-+	unsigned int min_hw_margin;
- 	const char *algo;
- 	int ret;
- 
-@@ -144,6 +145,16 @@ static int gpio_wdt_probe(struct platform_device *pdev)
- 	if (hw_margin < 2 || hw_margin > 65535)
- 		return -EINVAL;
- 
-+	ret = of_property_read_u32(np, "min_hw_margin_ms", &min_hw_margin);
-+	if (ret)
-+		min_hw_margin = 0;
-+
-+	if (min_hw_margin > hw_margin) {
-+		dev_err(dev,
-+			"Minimum interval cannot be greater than the watchdog interval");
-+		return -EINVAL;
-+	}
-+
- 	priv->always_running = of_property_read_bool(np,
- 						     "always-running");
- 
-@@ -152,6 +163,7 @@ static int gpio_wdt_probe(struct platform_device *pdev)
- 	priv->wdd.info		= &gpio_wdt_ident;
- 	priv->wdd.ops		= &gpio_wdt_ops;
- 	priv->wdd.min_timeout	= SOFT_TIMEOUT_MIN;
-+	priv->wdd.min_hw_heartbeat_ms = min_hw_margin;
- 	priv->wdd.max_hw_heartbeat_ms = hw_margin;
- 	priv->wdd.parent	= dev;
- 	priv->wdd.timeout	= SOFT_TIMEOUT_DEF;
--- 
-2.34.1
+I don't think it improved readability.
 
+> 
+>>
+>>>
+>>> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-usi.dtsi
+>>> b/arch/arm64/boot/dts/exynos/exynosautov9-usi.dtsi
+>>> new file mode 100644
+>>> index 000000000000..0e4c6332770b
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/exynos/exynosautov9-usi.dtsi
+>>> @@ -0,0 +1,1127 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Samsung's ExynosAutov9 SoC USI device tree source
+>>> + *
+>>> + * Copyright (c) 2022 Samsung Electronics Co., Ltd.
+>>> + *
+>>> + * Samsung's ExynosAutov9 SoC USI(Universal Serial Interface,
+>>> +uart/spi/i2c)
+>>> + * are listed as device tree nodes in this file.
+>>> + */
+>>> +
+>>> +/* PERIC0 USIs */
+>>> +&soc {
+>>> +	syscon_peric0: syscon@10220000 {
+>>> +		compatible = "samsung,exynosautov9-sysreg", "syscon";
+>>> +		reg = <0x10220000 0x2000>;
+>>> +	};
+>>> +
+>>> +	usi_0: usi@103000c0 {
+>>> +		compatible = "samsung,exynos850-usi";
+>>
+>> We should start adding dedicated compatible, so:
+>> "samsung,exynosautov9-usi", "samsung,exynos850-usi"
+> 
+> So, I need to add the compatible to the Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml, right?
+> 
+> - samsung,exynos850-usi   # for USIv2 (Exynos850, ExynosAutoV9)
+> 
+> To be>
+> - samsung,exynos850-usi
+> - samsung,exynosautov9-usi
+
+
+  compatible:
+
+    oneOf:
+     - items:
+         - const: samsung,exynosautov9-usi
+         - const: samsung,exynos850-usi
+     - enum:
+
+         - samsung,exynos850-usi   # for USIv2 (Exynos850, ExynosAutoV9)
+
+> 
+>>
+>>> +		reg = <0x103000c0 0x20>;
+>>> +		samsung,sysreg = <&syscon_peric0 0x1000>;
+>>> +		samsung,mode = <USI_V2_UART>;
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <1>;
+>>> +		ranges;
+>>> +		clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PCLK_0>,
+>>> +			 <&cmu_peric0 CLK_GOUT_PERIC0_IPCLK_0>;
+>>> +		clock-names = "pclk", "ipclk";
+>>> +		status = "disabled";
+>>> +
+>>> +		/* USI: UART */
+>>
+>> Skip the comments, they are obvious from device node name. Long time ago I
+>> was not advocating this, but I see it's benefits - much easier to
+>> introduce changes to DTS or binding in case of some differences.
+
+Eh, I think my reply got mixed up. The last sentence was about
+compatible, so it should be:
+
+We should start adding dedicated compatible, so:
+"samsung,exynosautov9-usi", "samsung,exynos850-usi".
+Long time ago I was not advocating this, but I see it's benefits - much
+easier to introduce changes to DTS or binding in case of some differences.
+
+and here only about the comment.
+
+> I'll drop them.
+
+Yes, please.
+
+> 
+>>
+>>> +		serial_0: serial@10300000 {
+>>> +			compatible = "samsung,exynos850-uart";
+>>
+>> Here as well.
+> 
+> I'll add "samsung,exynosautov9-uart" to the yaml file.
+> 
+>>
+
+Best regards,
+Krzysztof
