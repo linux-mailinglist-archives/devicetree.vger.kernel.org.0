@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47DAE560968
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 20:44:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9353356096D
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 20:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230323AbiF2Sot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231292AbiF2Sot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 29 Jun 2022 14:44:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55928 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230410AbiF2Sor (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 14:44:47 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45DDB275D0
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:44:44 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id i25so18272800wrc.13
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:44:44 -0700 (PDT)
+        with ESMTP id S231145AbiF2Sos (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 14:44:48 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB06D24BE7
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:44:45 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id v9so8193316wrp.7
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:44:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=lSAtLBVYvrx4+26h7+GvQLFIbOLj8yUyLWcfE4t8YDc=;
-        b=Gg05/t+/FXPkRenwx1qHvhlOMODtFpKL/no0hINP8JMW14scbGTJqbUefdhtwratgU
-         grEGM8eU4lWFIiPESGiueYpts7cjDlJRLBIzM5ZsXVuH9FzkMr9tHsBgVVqjWBN1GlvK
-         8Q8loTffgUn8dEzgkBiOh2xMyV0VFHVAZAtsSavWDwGncJhky3H7ImOtJQlzgOOWAqUY
-         iJQrWXeLhD8IqbgRQGGdxV35uefbG0o1zSbrLcVIYjgZlRqMq28pTN5szQsAw/tFRiJo
-         YAy9bH1NwbpaHtrgHoUWaU2YAC7ZpC+O10b5BEj7lUVsyLa3x39mZw6dh7g0gC0fT41X
-         T7gQ==
+        bh=1sKeykQQRtYj4kj+xEuSgs82fAmu7DyyvRULZ2/Pb6I=;
+        b=BMdHLMoOwn6zAxEtDDa7k0h1f/DZxYTgThu3U2sNuU1A+J2K+WADunh8MBK6GQasvX
+         bZvbX2AUE3WkwwdX1tNkMtXNA8L7f1blGzcC68saXHEBzsdK22yycaVeMLYkxq7AyhLL
+         0C4t2FTjsmp0VGR7E+AoaIvn0ZeON/zWIol2+bxphxTssK2+9gqxMql6G//GigObaYxf
+         /NoPS2HGfbugk99X8z9aoWaMuWtx6qv4eWquj/tnR5Pol/4lsSCRVCWYtIA+UAXYn6Mr
+         TDsy1g8lVTt47WmMpnvavQWY3UdJ+fGtNafwfqqmqUbeYTMgSgBnM66BgnnczfD5P+y+
+         Hv6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=lSAtLBVYvrx4+26h7+GvQLFIbOLj8yUyLWcfE4t8YDc=;
-        b=vp+kVoircTSgT2oAj+TiaoPOKZcr3VigYF7E4iFyIIUo7jISiVuC58le15okAQKyDc
-         Ms5KpnbNx3uKPc5TwVB9jNWiYY0J22CUfuPORWnF7hpRTl1tw3DI5rS4a5uJyuLvsSDv
-         V/LGVst6UfLWMQEiy9dq8XlimR/12bJzfg0KwlKlEZy/s/DI6AOUPwxwLl7SAub6FAl+
-         A2W/yPnckB5pn0PXfHCKanNVCIOB9/SNErVIHHzbqbV7nhqYhh7s39qODVyPm/39EMwI
-         /4gx20KAH9N4tv7xO4DnUwDiANkSjsPe4gZiM1NlcQy+h+LNV8CMb79bPCPlvihf/PH/
-         N1Kg==
-X-Gm-Message-State: AJIora8estNAcq2+c9VANa7QCiHwaEqU8OQBKQTISrdH6clAqMVgigPw
-        76jlAUTct3d0WRd01f5q3uLEWA==
-X-Google-Smtp-Source: AGRyM1sKo8OaJK8TbEgNGzQ3er/g31kuw/qeXLGUV3MKWqoytAx3LrG09RNZ7rN7G4m3of4rSEmYUA==
-X-Received: by 2002:a5d:4e47:0:b0:21a:39fd:5bb5 with SMTP id r7-20020a5d4e47000000b0021a39fd5bb5mr4583796wrt.712.1656528282726;
-        Wed, 29 Jun 2022 11:44:42 -0700 (PDT)
+        bh=1sKeykQQRtYj4kj+xEuSgs82fAmu7DyyvRULZ2/Pb6I=;
+        b=6zgaj9/copOCLOr04ETBkNgvHDBkI7B/rs1yZ4xvlndGG/6KT08WMkHqd2fMFG32W0
+         S8X84SRznKyeGkwZQGGP0p8+cW5LHxRlkftm8l7Fk1G0vtVM3VU6YjcRWRouKV/Pg8nB
+         +GXFj4S0w9Jmztw7uAeokYu3qqTO+S5t5BepKB/JTWu/4XxSH0wbPbJVFmhPT7MkjmHI
+         kGu37U4KG1Xo84ByHr/MJ34HrRSqGashPGPGmTxhtqOXxmPzdeFCiA42uql+1k/4j5M3
+         DZOeSXpM0tOUoUZJm1mO9BF3hjx4vP05yYIIroL9IPdl84uVuzTOgmlXWn8MiSVmpKZb
+         ntYw==
+X-Gm-Message-State: AJIora/zDHhJCLAgsXeuB77uh3gL20Fb5ot1lEsl3Eir58qD7+EYSrjd
+        uTFDYD1YztI3XqmIYog2hHsR4A==
+X-Google-Smtp-Source: AGRyM1txmcVZd3QPq2DQpn3PG07YMXIn7w8Wmsh9JviOd6mCe5xqRBVB6TunKvps0uLWXYGFL6mRJA==
+X-Received: by 2002:adf:d1c9:0:b0:20f:c3dc:e980 with SMTP id b9-20020adfd1c9000000b0020fc3dce980mr4479112wrd.552.1656528284293;
+        Wed, 29 Jun 2022 11:44:44 -0700 (PDT)
 Received: from henark71.. ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id u23-20020a7bcb17000000b0039aef592ca0sm3834371wmj.35.2022.06.29.11.44.41
+        by smtp.gmail.com with ESMTPSA id u23-20020a7bcb17000000b0039aef592ca0sm3834371wmj.35.2022.06.29.11.44.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 11:44:42 -0700 (PDT)
+        Wed, 29 Jun 2022 11:44:43 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
 To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
@@ -75,9 +75,9 @@ Cc:     Thomas Gleixner <tglx@linutronix.de>,
         linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
         alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
         linux-riscv@lists.infradead.org
-Subject: [PATCH v3 04/15] spi: dt-bindings: dw-apb-ssi: update spi-{r,t}x-bus-width
-Date:   Wed, 29 Jun 2022 19:43:33 +0100
-Message-Id: <20220629184343.3438856-5-mail@conchuod.ie>
+Subject: [PATCH v3 05/15] dt-bindings: dma: dw-axi-dmac: extend the number of interrupts
+Date:   Wed, 29 Jun 2022 19:43:34 +0100
+Message-Id: <20220629184343.3438856-6-mail@conchuod.ie>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220629184343.3438856-1-mail@conchuod.ie>
 References: <20220629184343.3438856-1-mail@conchuod.ie>
@@ -95,40 +95,34 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-Most users of dw-apb-ssi use spi-{r,t}x-bus-width of 1, however the
-Canaan k210 is wired up for a width of 4.
-Quoting Serge:
-The modern DW APB SSI controllers of v.4.* and newer also support the
-enhanced SPI Modes too (Dual, Quad and Octal). Since the IP-core
-version is auto-detected at run-time there is no way to create a
-DT-schema correctly constraining the Rx/Tx SPI bus widths.
-/endquote
+The Canaan k210 apparently has a Sysnopsys Designware AXI DMA
+controller, but according to the documentation & devicetree it has 6
+interrupts rather than the standard one. Support the 6 interrupt
+configuration by unconditionally extending the binding to a maximum of
+8 per-channel interrupts thereby matching the number of possible
+channels.
 
-As such, drop the restriction on only supporting a bus width of 1.
-
-Link: https://lore.kernel.org/all/20220620205654.g7fyipwytbww5757@mobilestation/
+Link: https://canaan-creative.com/wp-content/uploads/2020/03/kendryte_standalone_programming_guide_20190311144158_en.pdf #Page 51
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 6 ------
- 1 file changed, 6 deletions(-)
+ Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-index e25d44c218f2..0a43d6e0ef91 100644
---- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-+++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-@@ -143,12 +143,6 @@ patternProperties:
-         minimum: 0
-         maximum: 3
+diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+index 4324a94b26b2..e33ef22aec9c 100644
+--- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
++++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+@@ -34,7 +34,9 @@ properties:
+       - const: axidma_apb_regs
  
--      spi-rx-bus-width:
--        const: 1
--
--      spi-tx-bus-width:
--        const: 1
--
- unevaluatedProperties: false
+   interrupts:
+-    maxItems: 1
++    description: per channel interrupts
++    minItems: 1
++    maxItems: 8
  
- required:
+   clocks:
+     items:
 -- 
 2.36.1
 
