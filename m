@@ -2,194 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A47E560399
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1427E5603B3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 17:00:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232944AbiF2OuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 10:50:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56498 "EHLO
+        id S233060AbiF2PA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 11:00:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231345AbiF2OuN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:50:13 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 512821CFE6;
-        Wed, 29 Jun 2022 07:50:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=S3ju5Nr7hfd110iZmCLv9+gZbDbPEjWtum1B8GQGywA=; b=JG3jkP5Vv9Jim6Yb4RJlAq1uGD
-        3iBb15pzuTWKpyaU6yeJT0oBIMMv92MtP73oxfJcRyF5x1DsurCHy7GXVe57VO4/odKav7KKvOLyH
-        Dq/OdFTasqachW8KWVoy7njWx1JMoNeEFv18ogkZcZjyjNRgEpHRcd9qXIekW5OPnU789Ep2J/3c4
-        jo2PSV3Xg0CG376aUh2TsrOzr1X9l9mqYjjfgwUbUm8oBBn1lJZbqJzRd3yGTO0WhoDRVC2ioBDVp
-        KsJAfHmzSKVBEkujLqfY4NcU2sxad2hvYD0lqZ/DlGCnqRLeQg1t7k3/LGFG5YCUlTu99V1mAC4vR
-        IrzsOMnA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33102)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1o6Z11-0003IC-E3; Wed, 29 Jun 2022 15:50:03 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1o6Z0z-0005vu-EK; Wed, 29 Jun 2022 15:50:01 +0100
-Date:   Wed, 29 Jun 2022 15:50:01 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>, netdev@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Eric Dumazet <edumazet@google.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 02/35] dt-bindings: net: Convert FMan MAC
- bindings to yaml
-Message-ID: <YrxmmSXdKb3pD/Nv@shell.armlinux.org.uk>
-References: <20220628221404.1444200-1-sean.anderson@seco.com>
- <20220628221404.1444200-3-sean.anderson@seco.com>
+        with ESMTP id S232772AbiF2PA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 11:00:28 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C833D1EAC5;
+        Wed, 29 Jun 2022 08:00:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3A4BFB824F6;
+        Wed, 29 Jun 2022 15:00:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECDF3C34114;
+        Wed, 29 Jun 2022 15:00:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656514825;
+        bh=C99oNYplt1WvYeLmndjR6iicXGPvkgfMnkOoPBfW4/I=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=nGmcLvwbijS2KPQumHseuOPhSqO1YMl1BcDwtmKkgJSaPZcQKn32Gn2Cjtvt/Zvjq
+         qNbZXxCeptg8Hlwi9wGYTD5tOJuKS7o/YgdFx9WRS74YEFdvfz31x+bpWw10Q//OEW
+         I42QcXHM5mvQPh4rIqVgDZqBKJEf4vDCcUpKCv7d88JZZnnNDEMJlFzloe9QG/iikx
+         hRQZkOwMKOycuIeOk7ZBjvtOB7BnQE5xlD6pN4q/x59Ipw+Jlo34A1R1cjEQtNTAB4
+         8NQwJdWZWX0r3ycvK0GM0d1ewI86lr/uAjvmF4iFcblBrbudcS16YOPp+jcqoBVuJb
+         fdgmcTkN4rlhg==
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1o6ZB0-0046Na-LB;
+        Wed, 29 Jun 2022 16:00:22 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220628221404.1444200-3-sean.anderson@seco.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Date:   Wed, 29 Jun 2022 16:00:22 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v2 2/2] irqchip/sifive-plic: Add support for Renesas
+ RZ/Five SoC
+In-Reply-To: <20220629134147.GA16868@duo.ucw.cz>
+References: <20220626004326.8548-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220626004326.8548-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <87wnd3erab.wl-maz@kernel.org>
+ <CA+V-a8tcxj_N0sBHhgAZAN8WSJ12JnDzAvUUnCXto3wHLqNVwg@mail.gmail.com>
+ <87v8snehwi.wl-maz@kernel.org>
+ <CAMuHMdVt9FjCtvMgJcCh=g2b+8b-fgabGbOLDcXNrrPMpC+3jQ@mail.gmail.com>
+ <CA+V-a8uLzLJ=wB6oUu0b2oZO=FPSCTSrqb=3m9=BJxATFKmjMw@mail.gmail.com>
+ <CAMuHMdUWC_7MPnP6LcOqi96FAhrAENC4iwtv2ksZVnvR8BC4ww@mail.gmail.com>
+ <0fdbfdd0ee1c7ca39f8d3e2f86af1194@kernel.org>
+ <CA+V-a8u8X+bne_a3LY13zGTKr-hOWhm=R9gGX1JyE8PzWRNXpQ@mail.gmail.com>
+ <20220629134147.GA16868@duo.ucw.cz>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <632a70d4d9b434cb126cecb015c69797@kernel.org>
+X-Sender: maz@kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: pavel@ucw.cz, prabhakar.csengg@gmail.com, geert@linux-m68k.org, prabhakar.mahadev-lad.rj@bp.renesas.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, sagar.kadam@sifive.com, palmer@dabbelt.com, paul.walmsley@sifive.com, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, biju.das.jz@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 28, 2022 at 06:13:31PM -0400, Sean Anderson wrote:
-> This converts the MAC portion of the FMan MAC bindings to yaml.
+On 2022-06-29 14:41, Pavel Machek wrote:
+> Hi!
 > 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
+>> > >> +#define PLIC_QUIRK_EDGE_INTERRUPT      BIT(0)
+>> > >>
+>> > >>  struct plic_priv {
+>> > >>         struct cpumask lmask;
+>> > >>         struct irq_domain *irqdomain;
+>> > >>         void __iomem *regs;
+>> > >> +       u32 plic_quirks;
+>> > >>  };
+>> > >>
+>> > >> What about something like above?
+>> > >
+>> > > LGTM.
+>> > >
+>> > > Marc suggested to make this unsigned long, but TBH, that won't make
+>> > > much of a difference.  PLICs are present on RV32 SoCs, too, so you
+>> > > cannot rely on having more than 32 bits anyway.
+>> >
+>> > But it will make a difference on a 64bit platform, as we want to
+>> > use test_bit() and co to check for features.
+>> >
+>> Ok will change that to unsigned long and use the test_bit/set_bit 
+>> instead.
 > 
-> Changes in v2:
-> - New
-> 
->  .../bindings/net/fsl,fman-dtsec.yaml          | 144 ++++++++++++++++++
->  .../devicetree/bindings/net/fsl-fman.txt      | 128 +---------------
->  2 files changed, 145 insertions(+), 127 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml b/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
-> new file mode 100644
-> index 000000000000..809df1589f20
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
-> @@ -0,0 +1,144 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/fsl,fman-dtsec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP FMan MAC
-> +
-> +maintainers:
-> +  - Madalin Bucur <madalin.bucur@nxp.com>
-> +
-> +description: |
-> +  Each FMan has several MACs, each implementing an Ethernet interface. Earlier
-> +  versions of FMan used the Datapath Three Speed Ethernet Controller (dTSEC) for
-> +  10/100/1000 MBit/s speeds, and the 10-Gigabit Ethernet Media Access Controller
-> +  (10GEC) for 10 Gbit/s speeds. Later versions of FMan use the Multirate
-> +  Ethernet Media Access Controller (mEMAC) to handle all speeds.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,fman-dtsec
-> +      - fsl,fman-xgec
-> +      - fsl,fman-memac
-> +
-> +  cell-index:
-> +    maximum: 64
-> +    description: |
-> +      FManV2:
-> +      register[bit]           MAC             cell-index
-> +      ============================================================
-> +      FM_EPI[16]              XGEC            8
-> +      FM_EPI[16+n]            dTSECn          n-1
-> +      FM_NPI[11+n]            dTSECn          n-1
-> +              n = 1,..,5
-> +
-> +      FManV3:
-> +      register[bit]           MAC             cell-index
-> +      ============================================================
-> +      FM_EPI[16+n]            mEMACn          n-1
-> +      FM_EPI[25]              mEMAC10         9
-> +
-> +      FM_NPI[11+n]            mEMACn          n-1
-> +      FM_NPI[10]              mEMAC10         9
-> +      FM_NPI[11]              mEMAC9          8
-> +              n = 1,..8
-> +
-> +      FM_EPI and FM_NPI are located in the FMan memory map.
-> +
-> +      2. SoC registers:
-> +
-> +      - P2041, P3041, P4080 P5020, P5040:
-> +      register[bit]           FMan            MAC             cell
-> +                              Unit                            index
-> +      ============================================================
-> +      DCFG_DEVDISR2[7]        1               XGEC            8
-> +      DCFG_DEVDISR2[7+n]      1               dTSECn          n-1
-> +      DCFG_DEVDISR2[15]       2               XGEC            8
-> +      DCFG_DEVDISR2[15+n]     2               dTSECn          n-1
-> +              n = 1,..5
-> +
-> +      - T1040, T2080, T4240, B4860:
-> +      register[bit]                   FMan    MAC             cell
-> +                                      Unit                    index
-> +      ============================================================
-> +      DCFG_CCSR_DEVDISR2[n-1]         1       mEMACn          n-1
-> +      DCFG_CCSR_DEVDISR2[11+n]        2       mEMACn          n-1
-> +              n = 1,..6,9,10
-> +
-> +      EVDISR, DCFG_DEVDISR2 and DCFG_CCSR_DEVDISR2 are located in
-> +      the specific SoC "Device Configuration/Pin Control" Memory
-> +      Map.
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  fsl,fman-ports:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    maxItems: 2
-> +    description: |
-> +      An array of two references: the first is the FMan RX port and the second
-> +      is the TX port used by this MAC.
-> +
-> +  ptp-timer:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: A reference to the IEEE1588 timer
-> +
-> +  pcsphy-handle:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: A reference to the PCS (typically found on the SerDes)
+> Is there good enough reason for that? test_bit/... are when you need
+> atomicity, and that's not the case here. Plain old & ... should be
+> enough.
 
-This description includes ethernet-controller.yaml, which contains:
+On any save architecture, '&' and test_bit() are the same thing.
+Only RMW operations require atomicity.
 
-  pcs-handle:
-    $ref: /schemas/types.yaml#/definitions/phandle
-    description:
-      Specifies a reference to a node representing a PCS PHY device on a MDIO
-      bus to link with an external PHY (phy-handle) if exists.
+'unsigned long' is is.
 
-Is there a reason why a custom property is needed rather than using the
-pcs-handle property already provided by the ethernet-controller DT
-description?
-
-Thanks.
-
+         M.
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Jazz is not dead. It just smells funny...
