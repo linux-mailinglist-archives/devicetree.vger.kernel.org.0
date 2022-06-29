@@ -2,79 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A95C8560052
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 14:45:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1A11560073
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 14:55:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233247AbiF2MnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 08:43:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43264 "EHLO
+        id S233434AbiF2Mu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 08:50:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231735AbiF2MnS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 08:43:18 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1454A22BC1
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 05:43:17 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id cw10so32363967ejb.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 05:43:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8IGT3XO8mbcnscwzaJJ/fju1+Y/JsHqAOuPdeXWHctc=;
-        b=mMjaPolO8e6kz36GKdQJsOiiFESlqqTfIh2LeMv8A6WG2Idy2x0+oIvs3YuYDHHT5P
-         d3o5SCSb+IQq4l6IfWXfoVlEbsZ3nSD1E7BZWk+FDoXNtWNhAikCILntUhgF43Hoxpye
-         pvi6rD3VUVI/DAgiuSWxnjfoOefX2jeOxpwp1Y286zFGjuW2qR6le8q8RasDokUukl0i
-         DubWw8ipwr2KpNynMpEMGvnatUpbaYCUJSqtHsOLLnlCbG62SHRbnmj0SErFXEqSaEaL
-         KRpjzdtpadzx7dKOW+yG4CTSkwg7UmT0d16DcdcR8hpWizPdczHr3ZfM7tiaxiT649DV
-         teKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=8IGT3XO8mbcnscwzaJJ/fju1+Y/JsHqAOuPdeXWHctc=;
-        b=Uap04I/kEh32Aji9ULPFO1cMAOfdozrBOIwq4799BFK2ymMCILFM9bGHUsFM8CIPhL
-         tHfpPC5b/YpnhEf0yCzfiA+N6Zb+NQq+FaLv7wmSKoTHs2oPH7+1ldxNGYUKyOwhpWoU
-         2MbCErqbI/m6IYFL81juFiIM0lYgPajw/5qSxPe5gWOjxz9sNcVCE/PD+u4+ZSNIuPfO
-         1G/v9k/fTt45/KRapwlBN4z4kEJLMvbADOp+P2Ze18W6TFTpWu5w9E8fjo4pZYTaHvNI
-         SkddujG6spJeNyLBdyljNqEeUed31td+zUP+dj+xBR15Ci+Vaof/ac6SytlOAsz6YhEA
-         70+Q==
-X-Gm-Message-State: AJIora8ff1dtKF7eAWmahf1Lg2B4WuZTRs4hTdPNM83zRy7B0Lb0fGNb
-        towXv+xlVuAxiYkZwO9CPAk8KQ==
-X-Google-Smtp-Source: AGRyM1tEZX4qWtLp6ehowBV8ORmaWoRxrTI4PWpI3lto+2DFDjbGrVQ7xPUJM5AuV8OqHKDqUTGh4Q==
-X-Received: by 2002:a17:906:7386:b0:715:7024:3df7 with SMTP id f6-20020a170906738600b0071570243df7mr3223632ejl.543.1656506595658;
-        Wed, 29 Jun 2022 05:43:15 -0700 (PDT)
-Received: from [192.168.0.184] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id k18-20020a056402049200b0042dcbc3f302sm9836073edv.36.2022.06.29.05.43.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 05:43:15 -0700 (PDT)
-Message-ID: <0a3f3b42-7d9b-d6bd-6afd-cd14bf909b32@linaro.org>
-Date:   Wed, 29 Jun 2022 14:43:13 +0200
+        with ESMTP id S233441AbiF2MuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 08:50:25 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4602333359;
+        Wed, 29 Jun 2022 05:50:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 5D140CE26B3;
+        Wed, 29 Jun 2022 12:50:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4B5E9C36AEB;
+        Wed, 29 Jun 2022 12:50:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656507020;
+        bh=22qbZjl+tGNRO/TXIBShg7yeUCuIna+Zbm1sCVa288s=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=pmYPMa5AmhgzWtFVALexiat96BVZmsO7B7kq77lmXZmB8fW7x7+9GuVPfNC7iC2Wd
+         KRvYFQ4fs0XDAlzIIzta2dBQxi0PF1QPl5VbIQtmSGq5he+8e8Ie09GZgZCqHImwUY
+         qaZupQXWStSFj5ZYIHN7Ly98YpjrJZ9qjSpEQW+8+VQCMCr3IDcb6Sc4qg54M1KMtA
+         vV5udrfEDEraUr+QwduI1n0ReExOXf47chKlOrjhMzz4cjO5fbqG6Z8XXjyK7w1VXj
+         xKJhSdM0po6eafMtrVCPGan9OATjf5+tB8xAyvYnlhdRyb9X6V5T0xuw2yT6dS+Brz
+         CAGReuXMW3BQw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 2B39CE49FA0;
+        Wed, 29 Jun 2022 12:50:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: Add DT schema for
- qcom,msm8909-tlmm
-Content-Language: en-US
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220628145502.4158234-1-stephan.gerhold@kernkonzept.com>
- <20220628145502.4158234-2-stephan.gerhold@kernkonzept.com>
- <91d972d2-689c-d357-869f-fbd826173e33@linaro.org>
- <Yrw5UnFXKCZvAr2d@kernkonzept.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yrw5UnFXKCZvAr2d@kernkonzept.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v5 00/10] add more features for mtk-star-emac
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165650702016.9231.359699610048975854.git-patchwork-notify@kernel.org>
+Date:   Wed, 29 Jun 2022 12:50:20 +0000
+References: <20220629031743.22115-1-biao.huang@mediatek.com>
+In-Reply-To: <20220629031743.22115-1-biao.huang@mediatek.com>
+To:     Biao Huang <biao.huang@mediatek.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        brgl@bgdev.pl, fparent@baylibre.com, nbd@nbd.name,
+        john@phrozen.org, sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        matthias.bgg@gmail.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, ot_yinghua.pan@mediatek.com,
+        macpaul.lin@mediatek.com
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,41 +62,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 13:37, Stephan Gerhold wrote:
-> On Wed, Jun 29, 2022 at 11:38:01AM +0200, Krzysztof Kozlowski wrote:
->> On 28/06/2022 16:55, Stephan Gerhold wrote:
->>> Document the "qcom,msm8909-tlmm" compatible for the TLMM/pin control
->>> block in the MSM8909 SoC, together with the allowed GPIOs and functions.
->>>
->>> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
->>> ---
->>>  .../bindings/pinctrl/qcom,msm8909-tlmm.yaml   | 152 ++++++++++++++++++
->>>  1 file changed, 152 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
->>> new file mode 100644
->>> index 000000000000..e03530091478
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8909-tlmm.yaml
->>> @@ -0,0 +1,152 @@
->>> [...]
->>> +patternProperties:
->>> +  '-state$':
->>> +    oneOf:
->>> +      - $ref: "#/$defs/qcom-msm8909-tlmm-state"
->>
->> No quotes here and other places, should be needed. I know you copied
->> from other bindings, but at least let's try new files to be proper.
->>
-> 
-> The quotes are necessary, since # starts a comment in YAML and the
-> property would be effectively empty. :)
-> 
-> I tried it anyway but "dt_binding_check" complains as suspected:
-> qcom,msm8909-tlmm.yaml: patternProperties:-state$:oneOf:0:$ref: None is not of type 'string'
+Hello:
 
-Yes, you're right. Thanks for checking this.
+This series was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
-Best regards,
-Krzysztof
+On Wed, 29 Jun 2022 11:17:33 +0800 you wrote:
+> Changes in v5:
+> 1. correct spin_lock usage which are missed in v4.
+> 
+> Changes in v4:
+> 1. correct the usage of spin_lock/__napi_schedule.
+> 2. fix coding style issue as Jakub's comments.
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,v5,01/10] net: ethernet: mtk-star-emac: store bit_clk_div in compat structure
+    https://git.kernel.org/netdev/net-next/c/c16cc6a06672
+  - [net-next,v5,02/10] net: ethernet: mtk-star-emac: modify IRQ trigger flags
+    https://git.kernel.org/netdev/net-next/c/9ccbfdefe716
+  - [net-next,v5,03/10] net: ethernet: mtk-star-emac: add support for MT8365 SoC
+    https://git.kernel.org/netdev/net-next/c/6cde23b3ace5
+  - [net-next,v5,04/10] dt-bindings: net: mtk-star-emac: add support for MT8365
+    https://git.kernel.org/netdev/net-next/c/43360697a276
+  - [net-next,v5,05/10] net: ethernet: mtk-star-emac: add clock pad selection for RMII
+    https://git.kernel.org/netdev/net-next/c/85ef60330d37
+  - [net-next,v5,06/10] net: ethernet: mtk-star-emac: add timing adjustment support
+    https://git.kernel.org/netdev/net-next/c/769c197b097c
+  - [net-next,v5,07/10] dt-bindings: net: mtk-star-emac: add description for new properties
+    https://git.kernel.org/netdev/net-next/c/320c49fe31b0
+  - [net-next,v5,08/10] net: ethernet: mtk-star-emac: add support for MII interface
+    https://git.kernel.org/netdev/net-next/c/0027340a239b
+  - [net-next,v5,09/10] net: ethernet: mtk-star-emac: separate tx/rx handling with two NAPIs
+    https://git.kernel.org/netdev/net-next/c/0a8bd81fd6aa
+  - [net-next,v5,10/10] net: ethernet: mtk-star-emac: enable half duplex hardware support
+    https://git.kernel.org/netdev/net-next/c/02e9ce07d8b8
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
