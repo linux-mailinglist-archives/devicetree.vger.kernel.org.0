@@ -2,104 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 171F355FC4F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 11:43:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 069D8560123
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 15:19:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233028AbiF2Jmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 05:42:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54888 "EHLO
+        id S231872AbiF2NTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 09:19:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233033AbiF2Jmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 05:42:51 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 465473CFCD
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:42:49 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id z19so21337584edb.11
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:42:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YkE3fq4zHHBIP0Wimmvx31H6GwCLnjd0b8nNId/pgAQ=;
-        b=QuRfOCE+32quNyaAzH4XZ5+6NP0OeyICUyCahTtqC9SIuCwCWP+ls5rhSLzF25hQNm
-         ZYevxOnvYEERu8IiOvxUlYOHzr57odhPKxK/z3sY656otVWjt+vBWYHXlHwu9jMKnLlR
-         N+HaLV3qIjqG3gj6cKImr4DI4NBU1vl1NLZlYEl4YibDcIIRBLOIcQQo5lhXizZFgRAq
-         V9uhHl/2s0xYHeeMpL5E7d4nr/VwWr5fYeCWDQOEk43J9iIBOqLlxR+ESH6BqDuO+eTE
-         ZIAaLLPEM1/Znrk8kf36h/vKiBnfRQRk2FUkXONaI8u68LlcB42wQl8X1TuTlxgyutlO
-         0N+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YkE3fq4zHHBIP0Wimmvx31H6GwCLnjd0b8nNId/pgAQ=;
-        b=TBc9PgYAYGMXj012xFJBLiUkKzJLGLXYzOyM7Qym/OnXkAiVjlinEns9zgg8iNCUDY
-         1AixazRwwb2eepA5JCFrR/aA9BkX9nYKIxG88KYNQES98jl3XLiMn/25NSyPpr2HEnbi
-         kCSz7ou1PjHYmLjf9tWBuHnyYmZh1R6ZAaB2vAa9idU5n3Usj6VoQ84rQveCTszpwysY
-         VQ6t0P3UVTpiwtCG3zqj+tecBkI6jfTGchyosOBMUfbyiVhNDHq5RdGnjHs94uUZFQ3y
-         MmYNPrrjGx0RdVgMusUZ6RRPAUl1qqraJzyg+ZpJKfPqwzg2e/hBoeZHrzHS+6ZuNqbZ
-         8N7A==
-X-Gm-Message-State: AJIora/xDy6yzsBdqkEH5s5vpWMXkTMLfF1Hujkcsfcgcl92nROluVbe
-        oBuC89te/BQsSrlo17vV/YD4qg==
-X-Google-Smtp-Source: AGRyM1th7zSm2UAkK9P7kdVf6GKnbozGBNJb2QDcxoG7pO6lf89xibAxe9obppcdSZpMv9MiCKSWJw==
-X-Received: by 2002:a05:6402:400c:b0:437:d11f:f7d3 with SMTP id d12-20020a056402400c00b00437d11ff7d3mr3110664eda.256.1656495767900;
-        Wed, 29 Jun 2022 02:42:47 -0700 (PDT)
-Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id hx23-20020a170906847700b00722e84c3d44sm7467081ejc.118.2022.06.29.02.42.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 02:42:47 -0700 (PDT)
-Message-ID: <56976554-ddfe-d1d8-59a0-d7a7dd17f375@linaro.org>
-Date:   Wed, 29 Jun 2022 11:42:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 2/2] pinctrl: qcom: Add pinctrl driver for MSM8909
-Content-Language: en-US
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        with ESMTP id S230192AbiF2NTT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 09:19:19 -0400
+X-Greylist: delayed 12304 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 29 Jun 2022 06:19:17 PDT
+Received: from 14.mo550.mail-out.ovh.net (14.mo550.mail-out.ovh.net [178.32.97.215])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436B62E0B2
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 06:19:17 -0700 (PDT)
+Received: from player786.ha.ovh.net (unknown [10.111.172.91])
+        by mo550.mail-out.ovh.net (Postfix) with ESMTP id 472ED24D04
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 09:43:09 +0000 (UTC)
+Received: from etezian.org (bbcs-175-223.cust.wingo.ch [178.238.175.223])
+        (Authenticated sender: andi@etezian.org)
+        by player786.ha.ovh.net (Postfix) with ESMTPSA id 5A7DD2C05D303;
+        Wed, 29 Jun 2022 09:42:57 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-105G006ecb3de72-25dc-4105-8c80-3e4ff39ffe64,
+                    27473AD2557E96BAE247B01472F11916F8881100) smtp.auth=andi@etezian.org
+X-OVh-ClientIp: 178.238.175.223
+Date:   Wed, 29 Jun 2022 12:42:56 +0300
+From:   Andi Shyti <andi@etezian.org>
+To:     Chanho Park <chanho61.park@samsung.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220628145502.4158234-1-stephan.gerhold@kernkonzept.com>
- <20220628145502.4158234-3-stephan.gerhold@kernkonzept.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220628145502.4158234-3-stephan.gerhold@kernkonzept.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/4] spi: s3c64xx: support custom value of internal
+ clock divider
+Message-ID: <YrweoNCL3BjqUNWV@jack.zhora.eu>
+References: <20220628044222.152794-1-chanho61.park@samsung.com>
+ <CGME20220628044432epcas2p11e6f927321c30cf5557dbd41d749ef28@epcas2p1.samsung.com>
+ <20220628044222.152794-3-chanho61.park@samsung.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220628044222.152794-3-chanho61.park@samsung.com>
+X-Ovh-Tracer-Id: 2210422993221847576
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudegledgudekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucggtffrrghtthgvrhhnpeejgfelgeekieffjeegveeuvdehgeelveetveejudffvedvleehvdefleehudelueenucfkpheptddrtddrtddrtddpudejkedrvdefkedrudejhedrvddvfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhlrgihvghrjeekiedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheehtd
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,
+        T_SPF_PERMERROR autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2022 16:55, Stephan Gerhold wrote:
-> Make it possible to control pins using the TLMM block in the MSM8909 SoC
-> by adding the necessary definitions for GPIOs, groups and functions.
+Hi Chanho,
+
+On Tue, Jun 28, 2022 at 01:42:20PM +0900, Chanho Park wrote:
+> Modern exynos SoCs such as Exynos Auto v9 has different internal clock
+
+/has/have/
+
+> divider, for example "4". To support this internal value, this adds
+> clk_div of the s3c64xx_spi_port_config and assign "2" as the default
+> value to existing s3c64xx_spi_port_config.
 > 
-> The driver is originally taken from the msm-4.9 release [1] from Qualcomm,
-> but cleaned up significantly with several fixes and clarifications.
-> 
-> [1]: https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LF.UM.8.7-22500-8x09.0/drivers/pinctrl/qcom/pinctrl-msm8909.c
-> 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
 > ---
->  drivers/pinctrl/qcom/Kconfig           |   8 +
->  drivers/pinctrl/qcom/Makefile          |   1 +
->  drivers/pinctrl/qcom/pinctrl-msm8909.c | 956 +++++++++++++++++++++++++
+>  drivers/spi/spi-s3c64xx.c | 28 ++++++++++++++++++++--------
+>  1 file changed, 20 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
+> index b3c50c7665fc..51a0e830441b 100644
+> --- a/drivers/spi/spi-s3c64xx.c
+> +++ b/drivers/spi/spi-s3c64xx.c
+> @@ -131,6 +131,7 @@ struct s3c64xx_spi_dma_data {
+>   * @fifo_lvl_mask: Bit-mask for {TX|RX}_FIFO_LVL bits in SPI_STATUS register.
+>   * @rx_lvl_offset: Bit offset of RX_FIFO_LVL bits in SPI_STATUS regiter.
+>   * @tx_st_done: Bit offset of TX_DONE bit in SPI_STATUS regiter.
+> + * @clk_div: Internal clock divider, if not specified, use 2 as the default.
 
-I did not validate actual numbers/pins, but the driver structure looks good.
+is it default? Is it not specified anywhere? I think you are
+assigning '2' to everyone. I would just leave it "Internal
+clock divider."
 
+[...]
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> @@ -871,6 +873,7 @@ static int s3c64xx_spi_setup(struct spi_device *spi)
+>  	struct s3c64xx_spi_csinfo *cs = spi->controller_data;
+>  	struct s3c64xx_spi_driver_data *sdd;
+>  	int err;
+> +	u32 div = 2;
 
+As per Krzystof review.
 
-Best regards,
-Krzysztof
+>  	sdd = spi_master_get_devdata(spi->master);
+>  	if (spi->dev.of_node) {
+> @@ -889,22 +892,24 @@ static int s3c64xx_spi_setup(struct spi_device *spi)
+>  
+>  	pm_runtime_get_sync(&sdd->pdev->dev);
+>  
+> +	div = sdd->port_conf->clk_div;
+
+Can you please be consistent with the data type? div is u32, but
+clk_div is int.
+
+[...]
+
+Andi
