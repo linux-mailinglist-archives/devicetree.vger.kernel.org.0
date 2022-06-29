@@ -2,42 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49FF8560C06
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 00:00:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C00E3560C30
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jun 2022 00:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230463AbiF2WAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 18:00:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58838 "EHLO
+        id S229575AbiF2WPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 18:15:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230394AbiF2WAQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 18:00:16 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16C5A21E12;
-        Wed, 29 Jun 2022 15:00:15 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1o6fiy-0006yD-CA; Wed, 29 Jun 2022 23:59:52 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     palmer@dabbelt.com, paul.walmsley@sifive.com
-Cc:     linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        wefu@redhat.com, guoren@kernel.org, cmuellner@linux.com,
-        philipp.tomsich@vrull.eu, hch@lst.de, samuel@sholland.org,
-        atishp@atishpatra.org, anup@brainfault.org, mick@ics.forth.gr,
-        robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org,
-        drew@beagleboard.org, rdunlap@infradead.org,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: [PATCH v5 4/4] riscv: implement cache-management errata for T-Head SoCs
-Date:   Wed, 29 Jun 2022 23:59:44 +0200
-Message-Id: <20220629215944.397952-5-heiko@sntech.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220629215944.397952-1-heiko@sntech.de>
-References: <20220629215944.397952-1-heiko@sntech.de>
+        with ESMTP id S229952AbiF2WPW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 18:15:22 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B25B1340D6
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 15:15:20 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id w83so23562771oiw.1
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 15:15:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=mVoh40gI4rO7l5P610TuxYrPnSY080uxRzgBN6iYHPw=;
+        b=J1EwYJaAuhZYWSzaIMQPrFvichlEBV0wEJXVGgxiGkfuiW+LSAUKhLXvFor3y/gY1I
+         g3G55YwwfAtYsFNCQU8luQfEzkAkaPjhdlG7yLKWNA4GRVnA32+sM/PnVfP6m/I2yL3N
+         QBDpAhJJfkc47+mpEs2pdgJjynB//53l3WQeM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=mVoh40gI4rO7l5P610TuxYrPnSY080uxRzgBN6iYHPw=;
+        b=pvBGTtyaeC8DgBgZ9AW66xqH82bAZHANd/1laQAyQ0zkJddVURqhuFEwnUPl5IPQ7H
+         FySVgZexDUHP8p0xXKEZxYWPXFHuBIkMSjCtpCeeDgv7IxsTcsk05pfXbYNH5RR/ae97
+         LHSzjiMx5GTzQZcSzG7hHvefjbQ7szj9pipkNPsVu/9Db+IACsdk4At2RWH48QAbyvvx
+         vl3jw4Swtj3kW/9A9MFdEyYetDDrYwJBFrFmoKxHtiw7HuREeKECo6JNRnH9g/LR0utq
+         2B5i6BFt6Xyvp1PTdlrAgaLjC7UvepvBcoClQEBL4yrkWppjtN53KuOdygbwB5SBKocH
+         pcMQ==
+X-Gm-Message-State: AJIora/LwEmA69bSHuY1MKSKIFnLUchHdJIlezsfc8Tfhpb1eKjFAAPm
+        2OLLX/2StN3M2jUqVUTk3+TRxuhgVKsqR7zN+zIXAg==
+X-Google-Smtp-Source: AGRyM1tbuJ+dTBm80e52XefpYch+GdMWbSr4bA36AZQ68tY4ma07ZyFuFFne+0loAcndzlIIccRQmt/8JirxK9nrK/k=
+X-Received: by 2002:a05:6808:171c:b0:334:9342:63ef with SMTP id
+ bc28-20020a056808171c00b00334934263efmr3625283oib.63.1656540920035; Wed, 29
+ Jun 2022 15:15:20 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 29 Jun 2022 15:15:19 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+In-Reply-To: <20220628053148.GA21797@hu-pkondeti-hyd.qualcomm.com>
+References: <1654158277-12921-1-git-send-email-quic_kriskura@quicinc.com>
+ <YpkRDi2m7cLaKYEf@google.com> <Yp5nf2w8uVZ38/XZ@google.com>
+ <Yqd9IHQEj3Ex+FcF@google.com> <YqjLHyUVEjf7I3MI@google.com>
+ <20220616091110.GA24114@hu-pkondeti-hyd.qualcomm.com> <YqtlRQOwb3t6Xtd0@google.com>
+ <20220620085415.GA13744@hu-pkondeti-hyd.qualcomm.com> <CAE-0n52bq9feA6BVdAp791SWQtT1Yj4M2ppg3o_KOaRFO8r+0Q@mail.gmail.com>
+ <20220628053148.GA21797@hu-pkondeti-hyd.qualcomm.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Wed, 29 Jun 2022 15:15:19 -0700
+Message-ID: <CAE-0n50PGw_XSZ0-iV7gem6+-LENoq6ZVOwX3f+0XjkrHg-rLw@mail.gmail.com>
+Subject: Re: [PATCH v20 2/5] usb: dwc3: core: Host wake up support from system suspend
+To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, quic_ppratap@quicinc.com,
+        quic_vpulyala@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -45,151 +82,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The T-Head C906 and C910 implement a scheme for handling
-cache operations different from the generic Zicbom extension.
+Quoting Pavan Kondeti (2022-06-27 22:31:48)
+> On Mon, Jun 27, 2022 at 01:02:49PM -0700, Stephen Boyd wrote:
+> > Quoting Pavan Kondeti (2022-06-20 01:54:15)
+> > >
+> > > Would like to hear other people thoughts on this.
+> > >
+> >
+> > I'm not following very closely but it sounds like a problem that may be
+> > solved by using the component driver code (see
+> > include/linux/component.h). That would let you move anything that needs
+> > to be done once the child devices probe to the aggregate driver 'bind'
+> > function (see struct component_master_ops::bind).
+>
+> Thanks Stephen for letting us know about the component device framework.
+>
+> IIUC,
+>
+> - dwc3-qcom (parent of the dwc3 core) registers as a component master by
+> calling component_master_add_with_match() before calling
+> of_platform_populate(). The match callback could be as simple as comparing
+> the device against our child device.
+>
+> - The dwc3 core (child) at the end of its probe can add as a component by calling
+> component_add().
+>
+> - The above triggers the component_master_ops::bind callback implemented in
+>   dwc3-qcom driver which signals that we are good to go.
+>
+> - The dwc-qcom can call component_bind_all() to finish the formality i.e
+>   telling the dwc3 core that we are good to go.
+>
+> Is my understanding correct? This is what we are looking for i.e a way for
+> the child device(s) to signal the parent when the former is bounded.
 
-Add an errata for it next to the generic dma coherency ops.
+Sounds about right to me.
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-Reviewed-by: Samuel Holland <samuel@sholland.org>
-Tested-by: Samuel Holland <samuel@sholland.org>
----
- arch/riscv/Kconfig.erratas           | 11 +++++++
- arch/riscv/errata/thead/errata.c     | 20 ++++++++++++
- arch/riscv/include/asm/errata_list.h | 48 +++++++++++++++++++++++++---
- 3 files changed, 74 insertions(+), 5 deletions(-)
+>
+> Also what happens when the child device probe fails for any reason. i.e
+> component_add() would never be called so the master driver i.e dwc3-qcom would
+> wait indefinitely. May be it needs to implement a timeout or runtime suspend
+> etc should take care of keeping the resoures in suspend state.
 
-diff --git a/arch/riscv/Kconfig.erratas b/arch/riscv/Kconfig.erratas
-index 457ac72c9b36..3223e533fd87 100644
---- a/arch/riscv/Kconfig.erratas
-+++ b/arch/riscv/Kconfig.erratas
-@@ -55,4 +55,15 @@ config ERRATA_THEAD_PBMT
- 
- 	  If you don't know what to do here, say "Y".
- 
-+config ERRATA_THEAD_CMO
-+	bool "Apply T-Head cache management errata"
-+	depends on ERRATA_THEAD
-+	select RISCV_DMA_NONCOHERENT
-+	default y
-+	help
-+	  This will apply the cache management errata to handle the
-+	  non-standard handling on non-coherent operations on T-Head SoCs.
-+
-+	  If you don't know what to do here, say "Y".
-+
- endmenu
-diff --git a/arch/riscv/errata/thead/errata.c b/arch/riscv/errata/thead/errata.c
-index 852283460fb9..cf6bd44db656 100644
---- a/arch/riscv/errata/thead/errata.c
-+++ b/arch/riscv/errata/thead/errata.c
-@@ -29,6 +29,23 @@ static bool errata_probe_pbmt(unsigned int stage,
- 	return false;
- }
- 
-+static bool errata_probe_cmo(unsigned int stage,
-+			     unsigned long arch_id, unsigned long impid)
-+{
-+#ifdef CONFIG_ERRATA_THEAD_CMO
-+	if (arch_id != 0 || impid != 0)
-+		return false;
-+
-+	if (stage == RISCV_ALTERNATIVES_EARLY_BOOT)
-+		return false;
-+
-+	riscv_noncoherent_supported();
-+	return true;
-+#else
-+	return false;
-+#endif
-+}
-+
- static u32 thead_errata_probe(unsigned int stage,
- 			      unsigned long archid, unsigned long impid)
- {
-@@ -37,6 +54,9 @@ static u32 thead_errata_probe(unsigned int stage,
- 	if (errata_probe_pbmt(stage, archid, impid))
- 		cpu_req_errata |= (1U << ERRATA_THEAD_PBMT);
- 
-+	if (errata_probe_cmo(stage, archid, impid))
-+		cpu_req_errata |= (1U << ERRATA_THEAD_CMO);
-+
- 	return cpu_req_errata;
- }
- 
-diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/asm/errata_list.h
-index 79d89aeeaa6c..19a771085781 100644
---- a/arch/riscv/include/asm/errata_list.h
-+++ b/arch/riscv/include/asm/errata_list.h
-@@ -16,7 +16,8 @@
- 
- #ifdef CONFIG_ERRATA_THEAD
- #define	ERRATA_THEAD_PBMT 0
--#define	ERRATA_THEAD_NUMBER 1
-+#define	ERRATA_THEAD_CMO 1
-+#define	ERRATA_THEAD_NUMBER 2
- #endif
- 
- #define	CPUFEATURE_SVPBMT 0
-@@ -88,17 +89,54 @@ asm volatile(ALTERNATIVE(						\
- #define ALT_THEAD_PMA(_val)
- #endif
- 
-+/*
-+ * dcache.ipa rs1 (invalidate, physical address)
-+ * | 31 - 25 | 24 - 20 | 19 - 15 | 14 - 12 | 11 - 7 | 6 - 0 |
-+ *   0000001    01010      rs1       000      00000  0001011
-+ * dache.iva rs1 (invalida, virtual address)
-+ *   0000001    00110      rs1       000      00000  0001011
-+ *
-+ * dcache.cpa rs1 (clean, physical address)
-+ * | 31 - 25 | 24 - 20 | 19 - 15 | 14 - 12 | 11 - 7 | 6 - 0 |
-+ *   0000001    01001      rs1       000      00000  0001011
-+ * dcache.cva rs1 (clean, virtual address)
-+ *   0000001    00100      rs1       000      00000  0001011
-+ *
-+ * dcache.cipa rs1 (clean then invalidate, physical address)
-+ * | 31 - 25 | 24 - 20 | 19 - 15 | 14 - 12 | 11 - 7 | 6 - 0 |
-+ *   0000001    01011      rs1       000      00000  0001011
-+ * dcache.civa rs1 (... virtual address)
-+ *   0000001    00111      rs1       000      00000  0001011
-+ *
-+ * sync.s (make sure all cache operations finished)
-+ * | 31 - 25 | 24 - 20 | 19 - 15 | 14 - 12 | 11 - 7 | 6 - 0 |
-+ *   0000000    11001     00000      000      00000  0001011
-+ */
-+#define THEAD_inval_A0	".long 0x0265000b"
-+#define THEAD_clean_A0	".long 0x0245000b"
-+#define THEAD_flush_A0	".long 0x0275000b"
-+#define THEAD_SYNC_S	".long 0x0190000b"
-+
- #define ALT_CMO_OP(_op, _start, _size, _cachesize)			\
--asm volatile(ALTERNATIVE(						\
--	__nops(5),							\
-+asm volatile(ALTERNATIVE_2(						\
-+	__nops(6),							\
- 	"mv a0, %1\n\t"							\
- 	"j 2f\n\t"							\
- 	"3:\n\t"							\
- 	"cbo." __stringify(_op) " (a0)\n\t"				\
- 	"add a0, a0, %0\n\t"						\
- 	"2:\n\t"							\
--	"bltu a0, %2, 3b\n\t", 0,					\
--		CPUFEATURE_ZICBOM, CONFIG_RISCV_ISA_ZICBOM)		\
-+	"bltu a0, %2, 3b\n\t"						\
-+	"nop", 0, CPUFEATURE_ZICBOM, CONFIG_RISCV_ISA_ZICBOM,		\
-+	"mv a0, %1\n\t"							\
-+	"j 2f\n\t"							\
-+	"3:\n\t"							\
-+	THEAD_##_op##_A0 "\n\t"						\
-+	"add a0, a0, %0\n\t"						\
-+	"2:\n\t"							\
-+	"bltu a0, %2, 3b\n\t"						\
-+	THEAD_SYNC_S, THEAD_VENDOR_ID,					\
-+			ERRATA_THEAD_CMO, CONFIG_ERRATA_THEAD_CMO)	\
- 	: : "r"(_cachesize),						\
- 	    "r"((unsigned long)(_start) & ~((_cachesize) - 1UL)),	\
- 	    "r"((unsigned long)(_start) + (_size))			\
--- 
-2.35.1
+When the child fails probe, it should return -EPROBE_DEFER if probe
+needs to be deferred. Then the driver will attempt probe at a later
+time. If probe fails without defer then it will never work and dwc3-qcom
+will wait indefinitely. Not much we can do in that situation.
 
+dwc3-qcom should wait for dwc3 core to call component_add() and then do
+whatever needs to be done once the dwc3 core is registered in the
+dwc3-qcom bind callback. Honestly this may all be a little overkill if
+there's only two drivers here, dwc3-qcom and dwc3 core. It could
+probably just be some callback from dwc3 core at the end of probe that
+calls some function in dwc3-qcom.
