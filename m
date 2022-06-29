@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4704255FED7
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:41:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3234555FEEF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:41:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233225AbiF2LjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 07:39:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44924 "EHLO
+        id S229952AbiF2LkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 07:40:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233185AbiF2LjC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:39:02 -0400
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AEE423EF34;
-        Wed, 29 Jun 2022 04:39:01 -0700 (PDT)
-Received: from [192.168.87.140] (unknown [50.47.106.71])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 740FA20CDF40;
-        Wed, 29 Jun 2022 04:39:00 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 740FA20CDF40
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1656502741;
-        bh=nMMncbj7PcZxuOTOGA9EBSFftECnVGmkQTDJvUjK8Ao=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=CnfkjBSoe3VldwsxCa2rq1Jsqah/UaFoJnxR/eoaDuoljMrz6XIsBxzffBHx2LRBt
-         XbrRVRxkOlcRfKCLcL2Ngr1c0z9lARuha1sRI0C/ZOJ7SeCOdjDvRHqYaSPkISxdGG
-         c0XNzOpralATM0laJNwInmCQPg89bNR4IXsEXTxQ=
-Message-ID: <74981148-70ab-059b-6e77-b88ea908e703@linux.microsoft.com>
-Date:   Wed, 29 Jun 2022 04:39:00 -0700
+        with ESMTP id S230501AbiF2LkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:40:17 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63F003DA6F
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:40:16 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id d17so16380712wrc.10
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:40:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e12zOkbSl/TTgIy5byX+f+5dgcezW3bwpD9ZmWTyAuQ=;
+        b=NnBWNG44+SIlVbLxBipqsu96uM69+jGagVwRuG1a5sKywjFPz4bc6Sz9Yp2FwsCKTG
+         SS+3V6f47hyyDX1jUlIfUXWShQFnp0mz7BT7CHsM9c8lZ2fqaAx98iET7de6v/jviRfk
+         TakgO4GO1TBHaBMxEhvaBZ+YAoaZqXMP1AxwUoQzRKUsY/YAEHwnQomyqAA15JAB+pRh
+         aI87L2R3eU3Csu+vgIiEPs+QSiUJZsEoYdO29yNQVOywP4dkv8cJERWMy0v1YztOFz6C
+         s5S/Ufjt9mGeAMfwuDoxehqIq//vtzx2MqDpQpMi2YKPCaEF4U+TnXf8Pw4cF2ipS2do
+         SKXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e12zOkbSl/TTgIy5byX+f+5dgcezW3bwpD9ZmWTyAuQ=;
+        b=BXqQ25xbt9KoV4afzqEgFsMkmX1cYHRM1BbEXq8TscENn/je2XkUtfd916yHJn7GOf
+         EqBD51I6l4rs6/z41MVmDHzzNZYGT4uKg87sPW4PZeOrWmyzLIfyl5DgTbL8q8qBprbX
+         VXhFBO+w+2fX/51jmmWq6geDPlPmZ3LvADUward4lPcOTICQC7cGGOFgmkurX27p9erv
+         UaSxt+2MJNYIJBXorrwYvaZauALlUK1AMm0MYVJUeyqMhpgPPPO5Gy6CPu1xP7/XAYbE
+         tDeQYAALK5zhfNG8V1xzY8VKjEaRH7YIK1PptZIqOAI8K9nh1k3ge0WTRdDlRQmEgEqT
+         4aBw==
+X-Gm-Message-State: AJIora+Y3HlW2WycuFQo9kKQEOQJ4e8sCPUxJt6Sw9P0sf+FoeTKLa4I
+        HTkE5JgWDj2QViom/faSU1e29Q==
+X-Google-Smtp-Source: AGRyM1tJRec+suh/Fq+QJOybEcmANFgSQzjUGT4MbvFTQVpTbNTlOPIkzLoxXGoQPjcf121UTlpgFQ==
+X-Received: by 2002:a05:6000:a12:b0:21b:93b9:134f with SMTP id co18-20020a0560000a1200b0021b93b9134fmr2644810wrb.310.1656502814986;
+        Wed, 29 Jun 2022 04:40:14 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id q11-20020adfea0b000000b0020fff0ea0a3sm16136500wrm.116.2022.06.29.04.40.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jun 2022 04:40:14 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, srinivas.kandagatla@linaro.org
+Cc:     rohitkr@codeaurora.org, quic_srivasam@quicinc.com,
+        quic_potturu@quicinc.com, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        bryan.odonoghue@linaro.org
+Subject: [PATCH] ASoC: dt-bindings: Fix description for msm8916
+Date:   Wed, 29 Jun 2022 12:40:12 +0100
+Message-Id: <20220629114012.3282945-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v5 2/5] dt-bindings: clock: Add AST2500/AST2600 HACE reset
- definition
-Content-Language: en-US
-To:     Neal Liu <neal_liu@aspeedtech.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Johnny Huang <johnny_huang@aspeedtech.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220629032008.1579899-1-neal_liu@aspeedtech.com>
- <20220629032008.1579899-3-neal_liu@aspeedtech.com>
- <b70e06e7-81fc-dfc1-f9c5-f83cb4a18293@linaro.org>
- <HK0PR06MB32025ACEE605D1016DD3B99D80BB9@HK0PR06MB3202.apcprd06.prod.outlook.com>
- <409af908-5e03-8df7-fcd5-7fab75cdfb34@linaro.org>
- <HK0PR06MB32021F63833C4C482CC616D580BB9@HK0PR06MB3202.apcprd06.prod.outlook.com>
-From:   Dhananjay Phadke <dphadke@linux.microsoft.com>
-In-Reply-To: <HK0PR06MB32021F63833C4C482CC616D580BB9@HK0PR06MB3202.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,56 +71,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/29/2022 1:49 AM, Neal Liu wrote:
-[...]
->>>>> diff --git a/include/dt-bindings/clock/aspeed-clock.h
->>>>> b/include/dt-bindings/clock/aspeed-clock.h
->>>>> index 9ff4f6e4558c..6e040f7c3426 100644
->>>>> --- a/include/dt-bindings/clock/aspeed-clock.h
->>>>> +++ b/include/dt-bindings/clock/aspeed-clock.h
->>>>> @@ -46,11 +46,12 @@
->>>>>   #define ASPEED_RESET_MCTP		1
->>>>>   #define ASPEED_RESET_ADC		2
->>>>>   #define ASPEED_RESET_JTAG_MASTER	3
->>>>> -#define ASPEED_RESET_MIC		4
->>>>> +#define ASPEED_RESET_HACE		4
->>>>
->>>> I did not ack such change. This is a significant change from previous
->>>> version, invalidating my previous ack.
->>>>
->>>> This breaks the ABI, so NAK without proper explanation why ABI break
->>>> is accepted.
->>>
->>> I changed the original define (MIC) into different value (see below diff), and
->> add a new define for HACE.
->>> How does that break the ABI? I'll be appreciated if you can explain it more
->> details.
->>> And sorry for not remove ack with new change.
->>
->> Yes, this breaks ABI. Previously the ASPEED_RESET_MIC define had value of 4,
->> now it has value of something else.
-> 
-> Got your point. I'll re-define HACE without modifying ABI.
-> Thanks for your suggestion.
-> 
+For the existing msm8916 bindings the minimum reg/reg-names is 1 not 2.
+Similarly the minimum interrupt/interrupt-names is 1 not 2.
 
-As per HW manuals, new def is correct for AST2500, but not for AST2400.
+Fixes: f3fc4fbfa2d2 ("ASoC: dt-bindings: Add SC7280 lpass cpu bindings")
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ .../devicetree/bindings/sound/qcom,lpass-cpu.yaml         | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-AST2500:
-SCU04[4] = HACE
-SCU04[18] = MIC
-
-AST2400:
-SCU04[4] = MIC
-SCU04[18] = HACE
-
-The header file is shared between AST2400 and AST2500 (aspeed-g4.dtsi
-and aspeed-g5.dtsi), which needs to be split into separate header files
-given the collision.
-
-Also, It will be better to split AST2500 and AST2600 changes in separate
-patches.
-
-Regards,
-Dhananjay
+diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+index e9a533080b32d..ef18a572a1ff3 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+@@ -25,12 +25,12 @@ properties:
+       - qcom,sc7280-lpass-cpu
+ 
+   reg:
+-    minItems: 2
++    minItems: 1
+     maxItems: 6
+     description: LPAIF core registers
+ 
+   reg-names:
+-    minItems: 2
++    minItems: 1
+     maxItems: 6
+ 
+   clocks:
+@@ -42,12 +42,12 @@ properties:
+     maxItems: 10
+ 
+   interrupts:
+-    minItems: 2
++    minItems: 1
+     maxItems: 4
+     description: LPAIF DMA buffer interrupt
+ 
+   interrupt-names:
+-    minItems: 2
++    minItems: 1
+     maxItems: 4
+ 
+   qcom,adsp:
+-- 
+2.36.1
 
