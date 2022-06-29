@@ -2,54 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D22855F328
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 04:10:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09B4055F340
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 04:11:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230470AbiF2CJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jun 2022 22:09:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58546 "EHLO
+        id S231373AbiF2CKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jun 2022 22:10:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230359AbiF2CJr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 22:09:47 -0400
+        with ESMTP id S231165AbiF2CKI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jun 2022 22:10:08 -0400
 Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 538602CE38;
-        Tue, 28 Jun 2022 19:09:46 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A3EF326C5;
+        Tue, 28 Jun 2022 19:10:03 -0700 (PDT)
 Received: by mail-io1-f46.google.com with SMTP id h85so14683077iof.4;
-        Tue, 28 Jun 2022 19:09:46 -0700 (PDT)
+        Tue, 28 Jun 2022 19:10:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=JARNJ/aUAAWYF8Kp9K5vhEa9VQqjpKlqU+P1/PZeinw=;
-        b=m5tH2CVBLf67LXgaKfGIzaRr0/Sg/Usy2R+Xwglpjc5ezzlUm5ERzaO4VM9A7jpkcQ
-         rp1lvPx9iy1OAaErBthIswwJnUhUvT4m7hv5J1rvdMDQDGXD/XgDrX7XPHnzMgh6cnXn
-         F9XqKE5BdI+6FT8Po8DOh73eFhr9/uio7wTpFin3ErJ+JGuf7zQsDkn+bn1sUUu+A88s
-         qDafDYhBSTbg5HESvlbJ73A8HIk8VPu1GsQ1B8kY++wSthKFtOaaKp184hng0V7XQSeR
-         fXANRyHr0mOwPTuFEgPrheYa3oDBYClNk8/M4Z1m9ZWkYpvmKWZIew9WMjQCjpscvesV
-         xN6Q==
-X-Gm-Message-State: AJIora+PIZ4wSQ2WfuzdM+laKIs0HfY4ituSVlsUn1REV2FZztbsCqmS
-        vyUvcVSvIlkAPxu6ze2uEg==
-X-Google-Smtp-Source: AGRyM1slPM29QAD/Q6rfKGUPHPz46pGl5j8ASLSRBWb17aap3g6ZtMAMFFX/FUCNsC04wBp4fZMJAw==
-X-Received: by 2002:a6b:7a46:0:b0:675:7cc7:516b with SMTP id k6-20020a6b7a46000000b006757cc7516bmr546965iop.43.1656468585563;
-        Tue, 28 Jun 2022 19:09:45 -0700 (PDT)
+        bh=LN+78puhwYgKBtGz2TuDo+Xg7t/Ipevze3ieJ206j4Y=;
+        b=cQka8Kajrz27cvfwVqVCDOpDQ9f8zqznaxA+QKh0SxSrSkmE+cC4kMUTAtE02Cjawx
+         RmsAP5ZVOD2f9UtcwIBImaAL31DnadXG5/lZ9R+jtBgSkrKcohIF5laKd4vYzTb19kGx
+         4ZYjhQXbwxpJoVPIcaDbKkNJSpSTcDSBI7sZclWidqvmDLZCXbsdrXVKNXTc351cHyJL
+         hSw6h2UGsZVneAu95/9O2V3Bbb1uvZL8QP2Z70D4+XJT1YcJrPWTcxxyqfNwY+AjoOvq
+         /qtb/vJ/T7SKlxpQ43U/a1B86UiNukg+24YF7pUXFKZsYy7/vmx249A/d/Qsshc/Q2lj
+         M5DQ==
+X-Gm-Message-State: AJIora+tams5HpGwq4k7O1VCYmvCLpwalL0ueNR5Exx3SmJEcofi9QjJ
+        TgjBxWpn+TbnSK2evTqn5Q==
+X-Google-Smtp-Source: AGRyM1tYMYPFp2t74pAadIvPmONlKDfgpVJ9eVS2orkI/qmxrWCHXrzijGo4rGJR+DGI/H8yB6clFw==
+X-Received: by 2002:a05:6638:191b:b0:33c:8b14:e7e4 with SMTP id p27-20020a056638191b00b0033c8b14e7e4mr621920jal.212.1656468603517;
+        Tue, 28 Jun 2022 19:10:03 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id y7-20020a5d94c7000000b006752c67c7c3sm4738029ior.19.2022.06.28.19.09.42
+        by smtp.gmail.com with ESMTPSA id s10-20020a5ec64a000000b0067520155dedsm5407453ioo.15.2022.06.28.19.10.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 19:09:45 -0700 (PDT)
-Received: (nullmailer pid 1403672 invoked by uid 1000);
+        Tue, 28 Jun 2022 19:10:03 -0700 (PDT)
+Received: (nullmailer pid 1403680 invoked by uid 1000);
         Wed, 29 Jun 2022 02:09:39 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Vincent Knecht <vincent.knecht@mailoo.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org
-In-Reply-To: <20220628182147.2837180-2-vincent.knecht@mailoo.org>
-References: <20220628182147.2837180-1-vincent.knecht@mailoo.org> <20220628182147.2837180-2-vincent.knecht@mailoo.org>
-Subject: Re: [PATCH v1 RESEND 1/7] dt-bindings: leds: Convert is31fl319x to dtschema
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     heiko@sntech.de, contact@artur-rojek.eu,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        jic23@kernel.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>,
+        linux-input@vger.kernel.org, paul@crapouillou.net,
+        maccraft123mc@gmail.com, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org
+In-Reply-To: <20220628191500.69831-2-macroalpha82@gmail.com>
+References: <20220628191500.69831-1-macroalpha82@gmail.com> <20220628191500.69831-2-macroalpha82@gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: adc-joystick: add poll-interval-ms
 Date:   Tue, 28 Jun 2022 20:09:39 -0600
-Message-Id: <1656468579.884791.1403671.nullmailer@robh.at.kernel.org>
+Message-Id: <1656468579.916584.1403679.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -61,17 +63,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Jun 2022 20:21:39 +0200, Vincent Knecht wrote:
-> Convert leds-is31fl319x.txt to dtschema.
-> Set license to the one recommended by DT project.
+On Tue, 28 Jun 2022 14:14:58 -0500, Chris Morgan wrote:
+> New devicetree attribute of "poll-interval-ms".
 > 
-> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> Add poll-interval support for the adc-joystick documentation. This is
+> an optional value and if not provided the adc-joystick works as it
+> does today (with triggered buffers). If this value is provided, the
+> adc-joystick driver is polled at the specified interval. A new
+> attribute was added instead of using the existing attribute of
+> "poll-interval" to comply with rules detailed in property-units.yaml.
+> 
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  .../bindings/leds/issi,is31fl319x.yaml        | 113 ++++++++++++++++++
->  .../bindings/leds/leds-is31fl319x.txt         |  61 ----------
->  2 files changed, 113 insertions(+), 61 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/leds/issi,is31fl319x.yaml
->  delete mode 100644 Documentation/devicetree/bindings/leds/leds-is31fl319x.txt
+>  Documentation/devicetree/bindings/input/adc-joystick.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -80,10 +86,15 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/adc-joystick.yaml: properties:poll-interval-ms: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
 /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: patternProperties:^thermistor@:properties:adi,excitation-current-nanoamp: '$ref' should not be valid under {'const': '$ref'}
 	hint: Standard unit suffix properties don't need a type $ref
 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/adc-joystick.yaml: ignoring, error in schema: properties: poll-interval-ms
 /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml: ignoring, error in schema: patternProperties: ^thermistor@: properties: adi,excitation-current-nanoamp
+Documentation/devicetree/bindings/input/adc-joystick.example.dtb:0:0: /example-0/adc-joystick: failed to match any schema with compatible: ['adc-joystick']
 Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.example.dtb:0:0: /example-0/spi/ltc2983@0: failed to match any schema with compatible: ['adi,ltc2983']
 
 doc reference errors (make refcheckdocs):
