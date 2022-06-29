@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30137560208
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:07:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 161435601DF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:07:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233529AbiF2OF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 10:05:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34156 "EHLO
+        id S233814AbiF2OGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 10:06:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233548AbiF2OF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:05:58 -0400
+        with ESMTP id S233822AbiF2OGG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:06:06 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 981A12A703;
-        Wed, 29 Jun 2022 07:05:52 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AED32A25B;
+        Wed, 29 Jun 2022 07:05:58 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3443361EAC;
-        Wed, 29 Jun 2022 14:05:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1F6FC34114;
-        Wed, 29 Jun 2022 14:05:49 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DC20061EAF;
+        Wed, 29 Jun 2022 14:05:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9053C341C8;
+        Wed, 29 Jun 2022 14:05:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656511551;
-        bh=UTir4jvtX/Wc9f3wx5siduKUlp1IwFcyfl2zQub0Q54=;
+        s=k20201202; t=1656511557;
+        bh=1LQiXmBKTuoLLVX2WnRC35eSF4hNdTcSZ5mG47kAXVI=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=Dw1yUl6jJ7er1GoSbOqDxte5EKisctjZQcPmXUyqaQH1bY7xwW7YnFOeaq4U0mXSp
-         G4I02MyNDCl5svJ8CsA9h+q4xVSspolwODPkBvv6QiqTjmAcIkoxPgkE3gfqHs/kt6
-         WSHUJe0BTgDxI5Zvhlo/3ht1+i59FPyJmi1vYLZgznseboWsYn47Dt0RuZU6sSTK8j
-         zFsA9Kxmiil2q3OQTReiEEclNgQADZkTo5hHJjE/ge6bJJ1Mecto2cBwmFsbxetqvk
-         onok6aZT3wRCZHuOHZYOgAmeNkMharNuGXM1s9R/Q03NaQx7C1ca9wU8wj5PM8wgKn
-         px5Etqg2jrL7w==
+        b=QgK/lOflsccYXb2DJBBYJq/7Mf7JKwqYiQmoWe1I31oqon7gn4CZzZRX7yz2bdzwb
+         ezXucMoklN8+FlYHS7yTmoStl9c0pwLT0tSWEKF+/F2RuMRhmX64VcTIKw7/pr3SA3
+         1ADgB/CajiR/y6sC8dAXfQ69+ShA57b62pv5wCaYcb1E+71giUjBRcC00lRLBwoLli
+         O2QkbR71LCYwIdEC2Ih+b+O9NDpBl6AdpgDReTt9GQ3ZrD1BPx8SZdul65f4cuGNGQ
+         HOXL6/IW/YID0a1TFb596BKRZQIfilw3s+6GnaW6EptvB8yInPJNX2YPilmilC9RXn
+         yig/IWtz+Y7Kg==
 From:   Mark Brown <broonie@kernel.org>
 To:     alsa-devel@alsa-project.org, lgirdwood@gmail.com,
         krzysztof.kozlowski+dt@linaro.org, shengjiu.wang@nxp.com,
         linux-kernel@vger.kernel.org, robh+dt@kernel.org,
         devicetree@vger.kernel.org
 Cc:     shengjiu.wang@gmail.com
-In-Reply-To: <1655980125-24141-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1655980125-24141-1-git-send-email-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: fsl,micfil: Convert format to json-schema
-Message-Id: <165651154969.1437597.15028170773257315286.b4-ty@kernel.org>
-Date:   Wed, 29 Jun 2022 15:05:49 +0100
+In-Reply-To: <1656386005-29376-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1656386005-29376-1-git-send-email-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH v3] ASoC: dt-bindings: fsl,micfil: Convert format to json-schema
+Message-Id: <165651155548.1437597.5728269652830788201.b4-ty@kernel.org>
+Date:   Wed, 29 Jun 2022 15:05:55 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -55,7 +55,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Jun 2022 18:28:45 +0800, Shengjiu Wang wrote:
+On Tue, 28 Jun 2022 11:13:25 +0800, Shengjiu Wang wrote:
 > Convert the NXP MICFIL binding to DT schema format using json-schema.
 > 
 > 
