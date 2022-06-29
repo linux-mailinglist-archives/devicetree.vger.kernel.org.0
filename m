@@ -2,84 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F5D455FE54
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:14:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B77E55FE63
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 13:21:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229952AbiF2LN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 07:13:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50580 "EHLO
+        id S229643AbiF2LVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 07:21:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231613AbiF2LN5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:13:57 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C69A3E0FA
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:13:56 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id fi2so31826078ejb.9
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 04:13:56 -0700 (PDT)
+        with ESMTP id S229575AbiF2LVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 07:21:37 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 048AE2180A;
+        Wed, 29 Jun 2022 04:21:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=UhmgpOcezzyFajwTFaNzK7CkQEDuKl2reo2f9k791Ls=;
-        b=EPawy1i0Li88//He37rCi9is/lItqMERZZbwYPZER6pZyrNX1juDwsn0d9v+DtYeJB
-         LtMWBTswmNJ3hGiDDFMzXS1KU6olLcQLOpUJdrsDWRCDEZz2ai44lcCgMcxwhNcqfXBD
-         90ebxDEMsWs87RNeelHOwJeNgXOK9+T6kKjAQallgo/4U5JIJgCSv+aaTHjivaYSlJ21
-         jtGeq6KYeRslLak4eN/lP0CRGSwmjOUDi03hv3BGQ8+jx1GtZFKYpH+mAlDZUVF5NfSy
-         tO55q9QZUUxLAxySfmJCB/L3U07Z/k3fByuK0Q/DHBH9J2Y5+1os8ojHMFa9kLtBNaQs
-         ykpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=UhmgpOcezzyFajwTFaNzK7CkQEDuKl2reo2f9k791Ls=;
-        b=gyLG+B3R63osjIFaSyR6ug84a+93+c/Hh+vR9JGCePvfoYZcdkWxO/xDIIgXMHog04
-         5dDeXbJjlj1Z/+hsq6+dIczVJ7r8u9h+bXmKuZPsUHBQJf+7VZbDkn3MeuvoUTJsQb+M
-         TMZE2bzAqupk/QdcFaALSURfF/yXOz1oim19dn6ntOuHzHp9Rk7t/ExqutzlyWcwlm+I
-         qwZRA/g0EOh2faKPAU19K42y6OYeAf8/SH614cqhj/VpZ8q4yAEK4yFSyLRlJZU5SUuv
-         aLlO/AREsp8GVpF3Q8kKnZR2hfBQnLfudZunH+wQlCojtpexqoCAM2tP8aDPJ0I0xbAS
-         5YsA==
-X-Gm-Message-State: AJIora+qBidggRHpc4meF32nkTGRSKz2iMsSON6tlZ5ua748w1832L7Z
-        z0FQVw8TAa8UJqtZgTLLnDHADg==
-X-Google-Smtp-Source: AGRyM1unLZatMNde2GWDa2eWPWHi6q6KWw4D80BqHxdj1KohpSJH6cPJnOOKCZG5LBUtQr/6jbO1Qg==
-X-Received: by 2002:a17:906:284c:b0:727:3773:1a53 with SMTP id s12-20020a170906284c00b0072737731a53mr2710286ejc.765.1656501234848;
-        Wed, 29 Jun 2022 04:13:54 -0700 (PDT)
-Received: from [192.168.0.184] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ov24-20020a170906fc1800b006f3ef214d9fsm7552947ejb.5.2022.06.29.04.13.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 04:13:54 -0700 (PDT)
-Message-ID: <be1abd3a-5aa7-ec9c-5be7-e3c6bbd08979@linaro.org>
-Date:   Wed, 29 Jun 2022 13:13:53 +0200
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1656501697; x=1688037697;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=soRZiWgJEYz9g+xOWJUSfHpl49/BGUmZk2OJ+bta4pI=;
+  b=raNFQ+00jRGEVIIc0VwiU928J3p14bqzn/G7s+4d4EKipQ/xH1QjoovK
+   DWsTaYZK/i7yFvGmnZCwq2az8R/6Cu3oW4503jRqgT9SkZUC8LqGPPgZ4
+   Q5ajDv5I0KQK4EcDY4PQT061i3PYd+06YXiJCSxMM/4mAofzMXa+fFg2o
+   E=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 29 Jun 2022 04:21:35 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2022 04:21:35 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 29 Jun 2022 04:21:35 -0700
+Received: from [10.216.26.50] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 29 Jun
+ 2022 04:21:29 -0700
+Message-ID: <7d1fe567-6dd7-a6e0-08bf-225e8d515931@quicinc.com>
+Date:   Wed, 29 Jun 2022 16:51:25 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v6 2/5] dt-bindings: clock: Add AST2500/AST2600 HACE reset
- definition
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v5 1/4] dt-bindings: interconnect: qcom,msm8998-cpu-bwmon:
+ add BWMON device
 Content-Language: en-US
-To:     Neal Liu <neal_liu@aspeedtech.com>,
-        Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Georgi Djakov" <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Dhananjay Phadke <dhphadke@microsoft.com>,
-        Johnny Huang <johnny_huang@aspeedtech.com>
-Cc:     linux-aspeed@lists.ozlabs.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com
-References: <20220629094426.1930589-1-neal_liu@aspeedtech.com>
- <20220629094426.1930589-3-neal_liu@aspeedtech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220629094426.1930589-3-neal_liu@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Rob Herring <robh@kernel.org>
+References: <20220629075250.17610-1-krzysztof.kozlowski@linaro.org>
+ <20220629075250.17610-2-krzysztof.kozlowski@linaro.org>
+From:   Rajendra Nayak <quic_rjendra@quicinc.com>
+In-Reply-To: <20220629075250.17610-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,19 +75,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 11:44, Neal Liu wrote:
-> Add HACE reset bit definition for AST2500/AST2600.
-> 
-> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
-> Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
-> ---
->  include/dt-bindings/clock/aspeed-clock.h  | 1 +
->  include/dt-bindings/clock/ast2600-clock.h | 1 +
->  2 files changed, 2 insertions(+)
 
+> This BWMON device sits between
+> CPU and Last Level Cache Controller.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+[]...
 
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - qcom,sdm845-cpu-bwmon
 
-Best regards,
-Krzysztof
+should this be qcom,sdm845-llcc-bwmon instead since it actually
+tells us the llcc bw values?
+That way perhaps the other one between llcc and DDR can be
+qcom,sdm845-ddr-bwmon.
+
+> +          - const: qcom,msm8998-cpu-bwmon
+> +      - const: qcom,msm8998-cpu-bwmon       # BWMON v4
+> +
