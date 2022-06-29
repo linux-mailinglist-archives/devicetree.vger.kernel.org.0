@@ -2,183 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7371355FF91
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 14:15:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7097D55FFDC
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 14:27:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233141AbiF2MPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 08:15:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46092 "EHLO
+        id S233243AbiF2M0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 08:26:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232963AbiF2MPG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 08:15:06 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAF2A205FE;
-        Wed, 29 Jun 2022 05:15:05 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id mf9so32289442ejb.0;
-        Wed, 29 Jun 2022 05:15:05 -0700 (PDT)
+        with ESMTP id S232499AbiF2M0h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 08:26:37 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98D4935A96
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 05:26:36 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id q6so32166370eji.13
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 05:26:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=PoUQzbLJkyVrF51dotVxEGbCuNBkKwJlXvB0YY0dPUE=;
-        b=YDi6Wv3mbnMmqgVPxYDENBNCWxa+WZlsVZ6cRMfPegJzl5U2cJcJi1Ogi8ZNcNvl2W
-         g31PZ9M4bi+DR+cHVg7b8bfuRGWCxAKd2VdiAQ7AzGBbjkz6qvu9W8V+91sufRJMNZ04
-         KMHB47dBrdQ6urag65AAr3LMky6CPnakvBbNCOm3yIZyfHQlTGUaQj/sS9K4tUpMTJE1
-         N0ffnmIITwRqaAZLbHQNpfcRzlQrFZmCmJU2fz7mGPlTNWfAyYu6fRoYEc108H+p+Jca
-         si/MIJvucdPkNXSMksd35cjR5CK8iSFt2hVqZumYIK+uEkLeyHgkumgAXmOUSYkYMJIs
-         k4IQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=/VK9DE+fjlwvsGyviRj5FG4gJTmtxY9r+zyl+crkUSY=;
+        b=fdkOLbDNyEE6sBEjG9IcyIog5z7nlO9H6IcwUn2zxDl0CJArtFrBxq9nX3hW2Roygl
+         Q9q5rxX0IJFa0y/bn45c3+HRrS0r9uwdBjoXT7cju27MpxRv/nSKAi2PAF3OQwjbRh8W
+         pIPSKFnfyPlng3UtgJuckS6d7OhV76HWFlJswm+fONVqwOBf0Fk73mD2bfalk2mWiL5+
+         j2Jh71I/V2G77ynl6S32mX+aNSocMysI/G15zcmzEq0hkjHLw8hxL89yTdzOuhvnF2Wt
+         Dlk9Rd9kaOtrM4+XgsIkJDjCaKTgKek6xGE5jcF1WerE2UjRkoqhYM0nDxMqdMXf7ax4
+         1xGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=PoUQzbLJkyVrF51dotVxEGbCuNBkKwJlXvB0YY0dPUE=;
-        b=KwtJ0tXMt1J97L4ExGLkAgTBxZmPDaqtOOSvmj36+Hay7k67E5Kza+xwCw2U0Tpxzb
-         0CcrYAdBHcYlV0rRAoUR+RsHIGmXbyKtr9Rq/dT50h38bX3ZkMjhoOsdtz9ychuGaKQZ
-         M9+ZlFDckKuv9+oOgDX3V/TEAITkeKv7x9Rjqb/B/bSheoTTYFkOIcOX23RoY0dlI6uo
-         r5l8gPBBP6U2z95yshGxoD0cifvw4upI+5JQ1GKGSF5OTslXBDw69IG4jokS/4bXEfry
-         JDnNxxVeIRrF0aedDBrxRD56qNwVTQ98Dzdjz7gNjQM1m6QiaPMshRAQ7VvVL8rup1kp
-         cFOA==
-X-Gm-Message-State: AJIora9hmyZh4giEodyVn5dbDN/RCDJQanAnMdI8uc6NQptacDodMWKk
-        6EfBRHIQE40PcNbfapPaW10=
-X-Google-Smtp-Source: AGRyM1tRwdaaLJG8hlOcYxgWIDXdNiJA2IpXMR2o+03A05legWkmcDqnlHFdxFGHNG4dImDC98vpBw==
-X-Received: by 2002:a17:906:9c82:b0:6df:c5f0:d456 with SMTP id fj2-20020a1709069c8200b006dfc5f0d456mr3075377ejc.287.1656504904168;
-        Wed, 29 Jun 2022 05:15:04 -0700 (PDT)
-Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.googlemail.com with ESMTPSA id l23-20020aa7cad7000000b004356afc7009sm11224421edt.59.2022.06.29.05.15.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 05:15:03 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: [PATCH v4 5/5] ARM: dts: qcom: fix various wrong definition for kpss-acc
-Date:   Wed, 29 Jun 2022 14:14:41 +0200
-Message-Id: <20220629121441.6552-6-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220629121441.6552-1-ansuelsmth@gmail.com>
-References: <20220629121441.6552-1-ansuelsmth@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=/VK9DE+fjlwvsGyviRj5FG4gJTmtxY9r+zyl+crkUSY=;
+        b=q+J9Puhb2/A99PrNN8ykYzokFqcfygMse7WrgHlA+FzQWgCN++SYoqjKhSgusCDCV7
+         YS4R1h+bMco1SA46B0xzpJxPYCp7K4BhA9NEvt27R5GRYshD068QoikfiGUbSoDvCpCY
+         tXKTn4q6Y5M9Bz8bTUOxqJJvWRGWPNpGftMvcr5V9frnI8BAEJY/t9LA0is/btVH8mB5
+         Q7Zf7osyppdCByi57taCofIjtdrty0QiG3LBkWXIdeZXc/y6q/qbkeezOId4v1bMZXnb
+         /DepFqhDWoX/VUr7c/SLYVZ1lgoFSYelffWIUussBZHgj9CGChMz9sIPf409StLNmF+3
+         eUsw==
+X-Gm-Message-State: AJIora+IQ4mWgJY5xbybF+yDFuPlIqasrFslcSGfm6QZYZaVowpqgqk1
+        0iZS71gn3ZjNn9nvpYWaZ8qgxA==
+X-Google-Smtp-Source: AGRyM1segqOzgXb6PMP455BLIUdg79bBzmtmRagdnqlVA0EpCB3ku6EzDcPZ0q2RMKoDivXkRf+f/A==
+X-Received: by 2002:a17:907:7b87:b0:726:c868:cf38 with SMTP id ne7-20020a1709077b8700b00726c868cf38mr3127475ejc.580.1656505578137;
+        Wed, 29 Jun 2022 05:26:18 -0700 (PDT)
+Received: from [192.168.0.184] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id u9-20020aa7d989000000b004355cb1e77esm11097013eds.91.2022.06.29.05.26.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jun 2022 05:26:17 -0700 (PDT)
+Message-ID: <2cd3630b-3481-8647-a80b-b6c17a7979db@linaro.org>
+Date:   Wed, 29 Jun 2022 14:26:16 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] ASoC: dt-bindings: Fix description for msm8916
+Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, srinivas.kandagatla@linaro.org
+Cc:     rohitkr@codeaurora.org, quic_srivasam@quicinc.com,
+        quic_potturu@quicinc.com, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+References: <20220629114012.3282945-1-bryan.odonoghue@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220629114012.3282945-1-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix dtbs_check warning now that we have a correct kpss-acc yaml
-schema.
-Add missing clocks, clock-names, clock-output-names and #clock-cells
-bindings for each kpss-acc-v1 clock-controller.
+On 29/06/2022 13:40, Bryan O'Donoghue wrote:
+> For the existing msm8916 bindings the minimum reg/reg-names is 1 not 2.
+> Similarly the minimum interrupt/interrupt-names is 1 not 2.
+> 
+> Fixes: f3fc4fbfa2d2 ("ASoC: dt-bindings: Add SC7280 lpass cpu bindings")
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../devicetree/bindings/sound/qcom,lpass-cpu.yaml         | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- arch/arm/boot/dts/qcom-apq8064.dtsi | 16 ++++++++++++++++
- arch/arm/boot/dts/qcom-ipq8064.dtsi |  8 ++++++++
- arch/arm/boot/dts/qcom-msm8960.dtsi |  8 ++++++++
- 3 files changed, 32 insertions(+)
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index a5b4574be095..6cf36a171e6d 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -388,21 +388,37 @@ timer@200a000 {
- 		acc0: clock-controller@2088000 {
- 			compatible = "qcom,kpss-acc-v1";
- 			reg = <0x02088000 0x1000>, <0x02008000 0x1000>;
-+			clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
-+			clock-names = "pll8_vote", "pxo";
-+			clock-output-names = "acpu0_aux";
-+			#clock-cells = <0>;
- 		};
- 
- 		acc1: clock-controller@2098000 {
- 			compatible = "qcom,kpss-acc-v1";
- 			reg = <0x02098000 0x1000>, <0x02008000 0x1000>;
-+			clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
-+			clock-names = "pll8_vote", "pxo";
-+			clock-output-names = "acpu1_aux";
-+			#clock-cells = <0>;
- 		};
- 
- 		acc2: clock-controller@20a8000 {
- 			compatible = "qcom,kpss-acc-v1";
- 			reg = <0x020a8000 0x1000>, <0x02008000 0x1000>;
-+			clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
-+			clock-names = "pll8_vote", "pxo";
-+			clock-output-names = "acpu2_aux";
-+			#clock-cells = <0>;
- 		};
- 
- 		acc3: clock-controller@20b8000 {
- 			compatible = "qcom,kpss-acc-v1";
- 			reg = <0x020b8000 0x1000>, <0x02008000 0x1000>;
-+			clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
-+			clock-names = "pll8_vote", "pxo";
-+			clock-output-names = "acpu3_aux";
-+			#clock-cells = <0>;
- 		};
- 
- 		saw0: power-controller@2089000 {
-diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-index ba94fb4c3d55..7ed78a74fbf4 100644
---- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-@@ -468,11 +468,19 @@ IRQ_TYPE_EDGE_RISING)>,
- 		acc0: clock-controller@2088000 {
- 			compatible = "qcom,kpss-acc-v1";
- 			reg = <0x02088000 0x1000>, <0x02008000 0x1000>;
-+			clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
-+			clock-names = "pll8_vote", "pxo";
-+			clock-output-names = "acpu0_aux";
-+			#clock-cells = <0>;
- 		};
- 
- 		acc1: clock-controller@2098000 {
- 			compatible = "qcom,kpss-acc-v1";
- 			reg = <0x02098000 0x1000>, <0x02008000 0x1000>;
-+			clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
-+			clock-names = "pll8_vote", "pxo";
-+			clock-output-names = "acpu1_aux";
-+			#clock-cells = <0>;
- 		};
- 
- 		adm_dma: dma-controller@18300000 {
-diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
-index a11a0fe7e0a9..497bb45785e5 100644
---- a/arch/arm/boot/dts/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
-@@ -173,11 +173,19 @@ regulators {
- 		acc0: clock-controller@2088000 {
- 			compatible = "qcom,kpss-acc-v1";
- 			reg = <0x02088000 0x1000>, <0x02008000 0x1000>;
-+			clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
-+			clock-names = "pll8_vote", "pxo";
-+			clock-output-names = "acpu0_aux";
-+			#clock-cells = <0>;
- 		};
- 
- 		acc1: clock-controller@2098000 {
- 			compatible = "qcom,kpss-acc-v1";
- 			reg = <0x02098000 0x1000>, <0x02008000 0x1000>;
-+			clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
-+			clock-names = "pll8_vote", "pxo";
-+			clock-output-names = "acpu1_aux";
-+			#clock-cells = <0>;
- 		};
- 
- 		saw0: regulator@2089000 {
--- 
-2.36.1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+
+Best regards,
+Krzysztof
