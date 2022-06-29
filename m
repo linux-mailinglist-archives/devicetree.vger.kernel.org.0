@@ -2,113 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E9DB55F580
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 07:08:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 624D655F588
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 07:10:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbiF2FIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 01:08:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37482 "EHLO
+        id S229706AbiF2FKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 01:10:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbiF2FIK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 01:08:10 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 132759596;
-        Tue, 28 Jun 2022 22:08:09 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id jh14so13038303plb.1;
-        Tue, 28 Jun 2022 22:08:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=pDcLiFAR0Y0MAVJaCuzAgJQyO3ufSCiaxhtsTcfbAAY=;
-        b=iA7sbQOv1tBUQ5D3Ljfo3xyAX6CBTBHLjTIaQElKTO/tY1G1fu+bR4NlOUW4sxHZrT
-         mQni1ZohFaOcm75trXsJ5AaJYX480chy8sGZM8TP3PCyBznmn6Ww7iqlfUWbUMRNrwA+
-         BhvyFolvfi2O7E5VbH3LsjAMYs2v+4kR+WV3rqHOPFcb5HsZMjm396EIvslg5N0T8XC8
-         Xo2wk61haLtAOAS55tU3l2mImq8HXCbY6JilfgaYECK7t78aScSVAYhrl1DS25dWeyZb
-         vwue4yON1L1emXGKvomrp0dmeuFxP87uSBn0Djud6MqKBeesOTuRuNcVsRlDJdWU6/6h
-         qIwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pDcLiFAR0Y0MAVJaCuzAgJQyO3ufSCiaxhtsTcfbAAY=;
-        b=u/6ZcJkzSrLH2y2ZyuREiHWeJhEr4rkFo2V8qrQM0nJ1+OCjMmmmXSXhbTah0nxd44
-         k/4UWV6PE+FB7Y4SuPRc6yH5VChCF9QomkWno1l+o5PVi3WcAUTNN8vIXQiOH2AV2LGU
-         QiawJ6lTovq/3SJOcZH7Q7QfSEb1ur053VrVGxH+grO1LLhsJfnvvdo9RRm8pTNA+fMM
-         1aS2pyJqTttxE69wMJJQWSrXgUUDOB9gLgRn7PZYx2aKfwV9kc5fM8tFNHLrSayEJcML
-         Fg11UF5fMU/YHL0fQjUd+UQ2E6ZpulkVd7OyrWUvmOTsn7bFMByR8i+OhGR5dcoTPvkR
-         entQ==
-X-Gm-Message-State: AJIora+Nih0peqMLqNnCbrvP3aBTaJx0fam8Sj2W0Njrimcd7oshSEGv
-        NOiI7ClIZ6v1ZeHVMHFntUA=
-X-Google-Smtp-Source: AGRyM1vA84yyYKu6DsK2/zgj9k8TT3PwNLgfpm9qRH8ImuunwcczlD8LfWNtnzlfv7gNDA0L+saH6w==
-X-Received: by 2002:a17:90a:404a:b0:1ea:e936:b69 with SMTP id k10-20020a17090a404a00b001eae9360b69mr1760156pjg.133.1656479288493;
-        Tue, 28 Jun 2022 22:08:08 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:ff79:92cc:7905:3272])
-        by smtp.gmail.com with ESMTPSA id f9-20020a170902f38900b0016a51167b75sm10173655ple.286.2022.06.28.22.08.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jun 2022 22:08:07 -0700 (PDT)
-Date:   Tue, 28 Jun 2022 22:08:05 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-Subject: Re: [RESEND PATCH v4 0/6] Input: edt-ft5x06 - Improve configuration
-Message-ID: <YrveNToV1Sqs1X4X@google.com>
-References: <20220621123937.1330389-1-dario.binacchi@amarulasolutions.com>
+        with ESMTP id S229462AbiF2FKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 01:10:15 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 701112E086;
+        Tue, 28 Jun 2022 22:10:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0A74761629;
+        Wed, 29 Jun 2022 05:10:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 62457C3411E;
+        Wed, 29 Jun 2022 05:10:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1656479413;
+        bh=fH3KHSSPf/f1Sz+0BB9KsOfbCTRq1jMyu37S09YyXIo=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=bGpHiYwPHhEmiSgprJfcxktSY55yfG020yZtSnhmEP1vmvF+eio7enY0xaLp7vuG6
+         k/33HOzkFH7g2DIWHSz4jYwUrAypLyIob+Duh66f2QwAGLZHvPGEi7oPiLJC0ng9r+
+         /zndPUshYw+NSp3NWic67y0zhy7crTPwjdacmT6uXlPQrPF7vpaO0TMPJzJzoyNBEi
+         bGvGFXrqI8y+wrPrm6OvlQf5eicB1rXPDvIw+4DG6QVjb2z5+fGtY8W3axiOXs9vzt
+         1ba72ZvypwxcVlrsj10Rdc3ovbl9bAxhSTQhGsOVOasAr7zPm6JTgjL6OxhfQsFazj
+         hjAp/6iRIttOQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 43CA2E49F61;
+        Wed, 29 Jun 2022 05:10:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220621123937.1330389-1-dario.binacchi@amarulasolutions.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] Revert the ARM/dts changes for Renesas RZ/N1
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165647941327.13568.9977362848658590724.git-patchwork-notify@kernel.org>
+Date:   Wed, 29 Jun 2022 05:10:13 +0000
+References: <20220627173900.3136386-1-kuba@kernel.org>
+In-Reply-To: <20220627173900.3136386-1-kuba@kernel.org>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     davem@davemloft.net, netdev@vger.kernel.org, edumazet@google.com,
+        pabeni@redhat.com, geert+renesas@glider.be, magnus.damm@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 21, 2022 at 02:39:31PM +0200, Dario Binacchi wrote:
-> The series was born from the analysis and mitigation of a crc problem
-> raised by an M06 type device. The added sysfs attributes were helpful
-> in debugging the problem. Patches that change the report rate on driver
-> probing, mitigated crc errors on kernel bootup. The patch to get/set
-> report rate by sysfs for an M12 device, has been tested.
-> 
-> Changes in v4:
-> - Add Rob Herring 'Acked-by' tag.
-> 
-> Changes in v3:
-> - Add hz unit suffix.
-> - Add '|' to description.
-> - Check the lower and upper limits of the report-rate-hz value
-> - Convert the M06 report-rate-hz value
-> 
-> Changes in v2:
-> - Add Oliver Graute's 'Acked-by' tag to:
->   * Input: edt-ft5x06 - show model name by sysfs
->   * Input: edt-ft5x06 - show firmware version by sysfs
-> - Fix yaml file. Tested with `make DT_CHECKER_FLAGS=-m dt_binding_check'.
-> 
-> Dario Binacchi (6):
->   dt-bindings: input: touchscreen: edt-ft5x06: add report-rate-hz
->   Input: edt-ft5x06 - get/set M12 report rate by sysfs
->   Input: edt-ft5x06 - set report rate by dts property
->   Input: edt-ft5x06 - show model name by sysfs
->   Input: edt-ft5x06 - show firmware version by sysfs
->   Input: edt-ft5x06 - show crc and header errors by sysfs
-> 
->  .../input/touchscreen/edt-ft5x06.yaml         |   8 ++
->  drivers/input/touchscreen/edt-ft5x06.c        | 103 ++++++++++++++++--
->  2 files changed, 103 insertions(+), 8 deletions(-)
+Hello:
 
-Applied the lot with a few small adjustments, thank you.
+This patch was applied to netdev/net-next.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
 
+On Mon, 27 Jun 2022 10:39:00 -0700 you wrote:
+> Based on a request from Geert:
+> 
+> Revert "ARM: dts: r9a06g032-rzn1d400-db: add switch description"
+> This reverts commit 9aab31d66ec97d7047e42feacc356bc9c21a5bf5.
+> 
+> Revert "ARM: dts: r9a06g032: describe switch"
+> This reverts commit cf9695d8a7e927f7563ce6ea0a4e54b8214a12f1.
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next] Revert the ARM/dts changes for Renesas RZ/N1
+    https://git.kernel.org/netdev/net-next/c/eba3a9816ad1
+
+You are awesome, thank you!
 -- 
-Dmitry
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
