@@ -2,149 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8629555F5B9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 07:38:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A78755F5DB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 07:55:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231365AbiF2Fe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 01:34:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54758 "EHLO
+        id S229590AbiF2Fyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 01:54:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbiF2FeZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 01:34:25 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCE827FD3;
-        Tue, 28 Jun 2022 22:34:19 -0700 (PDT)
-X-UUID: 37ddd689f04e49b9bcd731470b3f0d60-20220629
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.7,REQID:850cf4fb-fd0c-485d-b8b6-9c90c83c4667,OB:10,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:45
-X-CID-INFO: VERSION:1.1.7,REQID:850cf4fb-fd0c-485d-b8b6-9c90c83c4667,OB:10,LOB
-        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:45
-X-CID-META: VersionHash:87442a2,CLOUDID:27d60e86-57f0-47ca-ba27-fe8c57fbf305,C
-        OID:3081cad28a70,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 37ddd689f04e49b9bcd731470b3f0d60-20220629
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1882402547; Wed, 29 Jun 2022 13:34:12 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 29 Jun 2022 13:34:10 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 29 Jun 2022 13:34:10 +0800
-Message-ID: <78d71a052d214e0c11cab5c2f4dee39c4f67c0bc.camel@mediatek.com>
-Subject: Re: [PATCH v12 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 29 Jun 2022 13:34:10 +0800
-In-Reply-To: <20220627080341.5087-6-rex-bc.chen@mediatek.com>
-References: <20220627080341.5087-1-rex-bc.chen@mediatek.com>
-         <20220627080341.5087-6-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229621AbiF2Fyk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 01:54:40 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B1C15803
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 22:54:35 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id d2so18593877ejy.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 22:54:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=oHw/+xoj6M1ZZO8v925Uv2hnFfP6UJZ/2begt2QtJMw=;
+        b=JNAnBoXi2m7HwUMHD+Kl0YKox5Ft9n7pvymCrPBxw9eL5lkcJH6Fo17IHjKPjUMEXX
+         e8PPfNme88MfJGJ5onIB2O1yOMlxzax8j9bmCPcP66mytFV0BrbeTol1VDZH8hHLb1pS
+         GrzLj4CX+QmzX8kwo3H26ZsEzdJJa5bmiepmRAI1q0xovkyeLj87wpazuljXzN7cAPvb
+         avmdbMpTks9P4Lb8U3Y1NFK9gT135/URjogUg7q1fRX26NsfKt6YL9YipdorHHNR3JYR
+         2GYX0CWYIZedB1ze4iPiw9DPBD2Oy9gHza1W1cTylAGiOVbSvOFuCf77MY4FqTUneD8P
+         WSKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=oHw/+xoj6M1ZZO8v925Uv2hnFfP6UJZ/2begt2QtJMw=;
+        b=nHHtH9IxkhiW1DFT3Xg0hKO+ofP6BVEAS2KJrHwANI/WCrLfIsx6ALxJEwZGa1hTnm
+         Zv1/az7e8vdUkSg7men113ApPhCYN2kJnjDs3ZlZLrJs4eqDP6FVy/NQZAfhTxiYJ6wJ
+         x4hrSfm+gnBD+NYKojGW9uqUKi/KxbSEi9v+TpsyTShrLL3akL1BslpN5F5D2nABNLfD
+         UwECClxfEz+zy5WhJEvi/XeL+enm/3/NBb7zOIccuN55fR+DrQTVpHyUkYTliu0GPOt8
+         050aOmwQ2Xqqy3hpGF/IrIgJmNVHwUhrQF5VUZ76i/BfB11DluWWZ0BgJ/I0R7rZ+Ylv
+         ILFg==
+X-Gm-Message-State: AJIora8p4iFNoT6CmxCo6CrViBxOqxWpWG6TMyGQ8/1LCCHJ0u7+64KU
+        SzELll45reoQAo/PvHX6wSNKmA==
+X-Google-Smtp-Source: AGRyM1uVMnNRwFRWLEyAWsZnCgUwfDa5H0WPXvalL8dPym5vOfaRVZAaEOX474g1jOofoa+0SDxCTQ==
+X-Received: by 2002:a17:907:1612:b0:722:e1b9:45d0 with SMTP id hb18-20020a170907161200b00722e1b945d0mr1601638ejc.439.1656482074020;
+        Tue, 28 Jun 2022 22:54:34 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id t23-20020a170906609700b006fed062c68esm7394505ejj.182.2022.06.28.22.54.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jun 2022 22:54:33 -0700 (PDT)
+Message-ID: <f86dd47c-0fc5-6c93-a49e-534610d10c49@linaro.org>
+Date:   Wed, 29 Jun 2022 07:54:31 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/4] dt-bindings: usb: typec: add bindings for stm32g0
+ controller
+Content-Language: en-US
+To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>, robh+dt@kernel.org,
+        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        amelie.delaunay@foss.st.com, alexandre.torgue@foss.st.com
+References: <20220624155413.399190-1-fabrice.gasnier@foss.st.com>
+ <20220624155413.399190-2-fabrice.gasnier@foss.st.com>
+ <ddb0e946-c955-1404-c1cd-c2548f34ec35@linaro.org>
+ <845d6817-d2e4-7925-f7f5-da1102514636@foss.st.com>
+ <286633b2-43d2-655e-b3f1-54bf5c7a4a21@linaro.org>
+ <6ef58f1f-ee8a-b060-6fda-d1388b3ede6d@foss.st.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <6ef58f1f-ee8a-b060-6fda-d1388b3ede6d@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+On 28/06/2022 19:01, Fabrice Gasnier wrote:
 
-On Mon, 2022-06-27 at 16:03 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
+>>>>> +  connector:
+>>>>> +    type: object> +    allOf:
+>>>>> +      - $ref: ../connector/usb-connector.yaml#
+>>>>
+>>>> Full path, so /schemas/connector/...
+>>>>
+>>>> unevaluatedProperties: false
 > 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
+> Hi Krzysztof,
 > 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
+> I Just figured out usb-connector schema has "additionalProperties:
+> true". Adding "unevaluatedProperties: false" here seem to be useless.
+> At least at my end, this make any dummy property added in the example
+> below to be validated without error by the schema.
+
+No, it's expected. The common schema allows additional properties. You
+specific device schema (including common) should not allow anything more
+and this is expressed like you mentioned.
+
+However depending on the version of dtschema, the
+unevaluatedProperties:false might still be not implemented. AFAIK, Rob
+added it quite recently.
+
 > 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
+> Should this be updated in usb-connector.yaml instead ?
+
+No
+
 > 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
+> Shall I omit it here in the end ?
+
+You need to add here unevaluatedProperties: false (on the level of this
+$ref)
+
 > 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
+>>>
+>>> ack,
+>>>
+>>>>
+>>>>> +
+>>>>> +  firmware-name:
+>>>>> +    description: |
+>>>>> +      Should contain the name of the default firmware image
+>>>>> +      file located on the firmware search path
+>>>>> +
+>>>>> +  wakeup-source: true
+>>>>> +  power-domains: true
+>>>>
+>>>> maxItems
+>>>
+>>> Do you mean maxItems regarding the "power-domains" property ?
+>>
+>> Yes.
+>>
+>>> This will depend on the user platform, where it's used as an I2C device.
+>>> So I'm not sure this can / should be specified here.
+>>> Could please you clarify ?
+>>
+>> Then maybe this property is not valid here. Power domains usually are
+>> used for blocks of a SoC, having common power source and power gating.
+>> In your case it looks much more like a regulator supply.
+> 
+> This property is used in our implementation to refer to SOC PM domain
+> for GPIO that is used to wakeup the system. This isn't only a regulator,
+> this PM domain serves various IPs such as I2C, GPIO, UART... (it manages
+> regulator and clocks used in low power).
+> 
+> I can limit to 1 item if this is fine for you ?
+> 
+> e.g. maxItems: 1
 
-[snip]
+Yes, it's good (assuming it is true :) ).
 
-> +
-> +static void mtk_dp_power_enable(struct mtk_dp *mtk_dp)
-> +{
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_RESET_AND_PROBE,
-> +			   0, SW_RST_B_PHYD);
-> +
-> +	/* Wait for power enable */
-> +	usleep_range(10, 200);
-> +
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_RESET_AND_PROBE,
-> +			   SW_RST_B_PHYD, SW_RST_B_PHYD);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
-> +			   DP_PWR_STATE_BANDGAP_TPLL,
-> DP_PWR_STATE_MASK);
-> +}
-> +
-> +static void mtk_dp_power_disable(struct mtk_dp *mtk_dp)
-> +{
-> +	mtk_dp_write(mtk_dp, MTK_DP_TOP_PWR_STATE, 0);
-> +
-> +	mtk_dp_write(mtk_dp, MTK_DP_0034,
-> +		     DA_CKM_CKTX0_EN_FORCE_EN |
-> +		     DA_CKM_BIAS_LPF_EN_FORCE_VAL |
-> +		     DA_CKM_BIAS_EN_FORCE_VAL |
-> +		     DA_XTP_GLB_LDO_EN_FORCE_VAL |
-> +		     DA_XTP_GLB_AVD10_ON_FORCE_VAL);
-> +
-> +	/* Disable RX */
-> +	mtk_dp_write(mtk_dp, MTK_DP_1040, 0);
+> 
+>>
+>>>
+>>>>
+>>>>> +
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - reg
+>>>>> +  - interrupts
+>>>>> +
+>>>>> +additionalProperties: false
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>>>> +    i2c5 {
+>>>>
+>>>> Just "i2c"
+>>>
+>>> ack,
+>>>
+>>>>
+>>>>> +      #address-cells = <1>;
+>>>>> +      #size-cells = <0>;
+>>>>> +
+>>>>> +      stm32g0@53 {
+>>>>
+>>>> Generic node name describing class of the device.
+>>>
+>>>
+>>> I wasn't aware of generic node name for an I2C device (not talking of
+>>> the controller). I may have missed it.
+>>>
+>>> Could you please clarify ?
+>>
+>> The class of a device is not a I2C device. I2C is just a bus. For
+>> example the generic name for Power Management IC connected over I2C
+>> (quite common case) is "pmic".
+>>
+>> For USB HCD controllers the generic name is "usb". For USB
+>> ports/connectors this is "connector". So what is your hardware?
+>> "interface" is a bit too unspecific to figure it out.
+> 
+> Thanks, I better understand your point now.
+> 
+> A common definition for the hardware here could be "USB Type-C PD
+> controller". I'll improve this schema title by the way.
+> 
+> I had a quick look in various .dts files. I could find mainly:
+> - typec-portc@hh
+> - usb-typec@hh
+> - typec@hh
+> 
+> Not sure if this has already been discussed in other reviews, it lacks
+> the "controller" idea in the naming IMHO.
+> Perhaps something like "typec-pd-controller" or
+> "usb-typec-pd-controller" could be used here ?
+> 
+> Otherwise, I could adopt the shortest "typec" name if it's fine for you ?
 
-MTK_DP_1040 is set to 0 in mtk_dp_power_disable(), but it is not set to
-other value in mtk_dp_power_enable(). Does any thing would be wrong
-when mtk_dp_power_disable() and mtk_dp_power_enable()?
+typec sounds good.
 
-Regards,
-CK
+> 
+>>
+>>>
+>>>>
+>>>>> +        compatible = "st,stm32g0-typec";
+>>>>> +        reg = <0x53>;
+>>>>> +        /* Alert pin on GPIO PE12 */
+>>>>> +        interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
+>>>>> +        interrupt-parent = <&gpioe>;
+>>>>> +
+>>>>> +        /* Example with one type-C connector */
+>>>>> +        connector {
+>>>>> +          compatible = "usb-c-connector";
+>>>>> +          label = "USB-C";
+>>>>> +
+>>>>> +          port {
+>>>>
+>>>> This does not look like proper schema of connector.yaml.
+>>>
+>>> This refers to graph.yaml [1], where similar example is seen [2].
+>>>
+>>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/graph.yaml#L79
+>>>
+>>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/graph.yaml#L207
+>>
+>> Just look at the usb-conector schema. It's different. You miss ports.
+>> Maybe other properties as well.
+> 
+> 
+> (I may miss something, and got confused around port/ports earlier)
+> The graph properties seems to allow both the 'port' and 'ports' syntax
+> thanks to the graph definition.
+> The "port" syntax is also used in other typec controller schemas.
+> 
+> There's only one port in this example. Of course other example could use
+> two or more ports (like for USB HS / SS / aux) which would require using
+> the "ports" node (with port@0/1/2 childs).
+> 
+> I can adopt the "ports" node if you prefer. As I see it just doesn't
+> bring much in the current example (The only drawback is this adds one
+> indentation/node level w.r.t. the bellow example, so not a big deal).
 
-> +	mtk_dp_write(mtk_dp, MTK_DP_TOP_MEM_PD,
-> +		     0x550 | BIT(FUSE_SEL_SHIFT) |
-> BIT(MEM_ISO_EN_SHIFT));
-> +}
-> +
+The graph schema allows, but you include here usb-connector schema which
+requires to put it under "ports". You should not use it differently, so
+I expect here "ports" property, even with one port.
 
+Best regards,
+Krzysztof
