@@ -2,85 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 624D655F588
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 07:10:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E2A755F596
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 07:11:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbiF2FKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 01:10:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39634 "EHLO
+        id S231187AbiF2FLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 01:11:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbiF2FKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 01:10:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 701112E086;
-        Tue, 28 Jun 2022 22:10:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0A74761629;
-        Wed, 29 Jun 2022 05:10:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 62457C3411E;
-        Wed, 29 Jun 2022 05:10:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656479413;
-        bh=fH3KHSSPf/f1Sz+0BB9KsOfbCTRq1jMyu37S09YyXIo=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=bGpHiYwPHhEmiSgprJfcxktSY55yfG020yZtSnhmEP1vmvF+eio7enY0xaLp7vuG6
-         k/33HOzkFH7g2DIWHSz4jYwUrAypLyIob+Duh66f2QwAGLZHvPGEi7oPiLJC0ng9r+
-         /zndPUshYw+NSp3NWic67y0zhy7crTPwjdacmT6uXlPQrPF7vpaO0TMPJzJzoyNBEi
-         bGvGFXrqI8y+wrPrm6OvlQf5eicB1rXPDvIw+4DG6QVjb2z5+fGtY8W3axiOXs9vzt
-         1ba72ZvypwxcVlrsj10Rdc3ovbl9bAxhSTQhGsOVOasAr7zPm6JTgjL6OxhfQsFazj
-         hjAp/6iRIttOQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 43CA2E49F61;
-        Wed, 29 Jun 2022 05:10:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230380AbiF2FLm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 01:11:42 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290B82ED7D;
+        Tue, 28 Jun 2022 22:11:40 -0700 (PDT)
+X-UUID: 9a1486d20bb3489990da920137bdb134-20220629
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.7,REQID:2071d344-248b-4313-a445-cbe165339b19,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:87442a2,CLOUDID:a65e0e86-57f0-47ca-ba27-fe8c57fbf305,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 9a1486d20bb3489990da920137bdb134-20220629
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 358576716; Wed, 29 Jun 2022 13:11:35 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 29 Jun 2022 13:11:34 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 29 Jun 2022 13:11:33 +0800
+Message-ID: <9c9e8e796abd339fe755cfa33ea14d137fd51257.camel@mediatek.com>
+Subject: Re: [PATCH v12 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 29 Jun 2022 13:11:33 +0800
+In-Reply-To: <20220627080341.5087-6-rex-bc.chen@mediatek.com>
+References: <20220627080341.5087-1-rex-bc.chen@mediatek.com>
+         <20220627080341.5087-6-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] Revert the ARM/dts changes for Renesas RZ/N1
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <165647941327.13568.9977362848658590724.git-patchwork-notify@kernel.org>
-Date:   Wed, 29 Jun 2022 05:10:13 +0000
-References: <20220627173900.3136386-1-kuba@kernel.org>
-In-Reply-To: <20220627173900.3136386-1-kuba@kernel.org>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     davem@davemloft.net, netdev@vger.kernel.org, edumazet@google.com,
-        pabeni@redhat.com, geert+renesas@glider.be, magnus.damm@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi, Bo-Chen:
 
-This patch was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Mon, 27 Jun 2022 10:39:00 -0700 you wrote:
-> Based on a request from Geert:
+On Mon, 2022-06-27 at 16:03 +0800, Bo-Chen Chen wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
 > 
-> Revert "ARM: dts: r9a06g032-rzn1d400-db: add switch description"
-> This reverts commit 9aab31d66ec97d7047e42feacc356bc9c21a5bf5.
+> This patch adds a embedded displayport driver for the MediaTek mt8195
+> SoC.
 > 
-> Revert "ARM: dts: r9a06g032: describe switch"
-> This reverts commit cf9695d8a7e927f7563ce6ea0a4e54b8214a12f1.
+> It supports the MT8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
 > 
-> [...]
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
+> 
+> This driver is based on an initial version by
+> Jitao shi <jitao.shi@mediatek.com>
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> [Bo-Chen: Cleanup the drivers and modify comments from reviewers]
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> ---
 
-Here is the summary with links:
-  - [net-next] Revert the ARM/dts changes for Renesas RZ/N1
-    https://git.kernel.org/netdev/net-next/c/eba3a9816ad1
+[snip]
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+> +
+> +static int link_rate_to_mb_per_s(struct mtk_dp *mtk_dp, u32
+> linkrate)
+> +{
+> +	switch (linkrate) {
+> +	case DP_LINK_BW_1_62:
+> +		return 1620;
+> +	case DP_LINK_BW_2_7:
+> +		return 2700;
+> +	case DP_LINK_BW_5_4:
+> +		return 5400;
+> +	case DP_LINK_BW_8_1:
+> +		return 8100;
+> +	default:
+> +		drm_err(mtk_dp->drm_dev,
+> +			"Implementation error, unknown linkrate %d\n",
+> +			linkrate);
+> +		return -EINVAL;
+> +	}
+> +}
+
+It looks like this function is equal to drm_dp_bw_code_to_link_rate(),
+so remove this function and use drm_dp_bw_code_to_link_rate().
+
+Regards,
+CK
 
 
