@@ -2,72 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A7E15605DA
+	by mail.lfdr.de (Postfix) with ESMTP id 81FA85605DB
 	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 18:31:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230079AbiF2Q2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 12:28:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41352 "EHLO
+        id S231365AbiF2Q3K convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 29 Jun 2022 12:29:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbiF2Q2i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 12:28:38 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E0221A83D
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 09:28:35 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id x20so8992312plx.6
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 09:28:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=5H2TncGeZHlVgF0rSy+eJip9+xYU/JmV0WmAXgh7ZSM=;
-        b=iQ8gweKuAZ5V6W28bDDyKzpxZFrV3Dpyy4y254On/3Db9I7vc9ssGwW3Mj3msP3fH/
-         36GQoHsTnNaZ+Us8G1yTix4PbWYfR8lP1XcqvQm0EmLYVTxCNefnlXQ83UPMXoMMSPRC
-         clN5GiPH+ktzdtyDsT9W9gquw+FWhkpZ97GnsMXcVxsDmgSWm5Tmw3HyqdQSlbBe8FMq
-         w+z4wB0r+pjRhFAoLJaIY0KxTd2mIH4+ChcbFRrQuuwCSuDMsXFTit1B3vVL3n+6Qh3k
-         IHVVx3JJnSwcmhBwzTy05G7/aBdFf/gDWGSc9SQtHnePnB64KEuNMZM7w5o0pMKer9zm
-         B68g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5H2TncGeZHlVgF0rSy+eJip9+xYU/JmV0WmAXgh7ZSM=;
-        b=lpoVEspwC3ZcqqgiIS1Hg/mwQD5I2bjyJB9AwC8LA3TPVRdVpvO/BC4wpuFlJGCiDC
-         8Lgy0ksX2ayzuaKvvmtdQWfsyCpkSwEbRpbhCGba3immbhiwfMWFA6q9ELub/r6piHE5
-         5/roN5g/wGSHpvA8+hu2sCNOHVdGAeiennfQaNdRJQiTnIlTf3ueSRdqI7hKJ832LrXT
-         wCDAkob16EguTgFesFe0Mb/APi04oG2QlQAfeFUbeyVZO/hCNUnE2xJQJ5IbNPft9BRa
-         19PvA+cf6W8+y6zIJChLUiEXyXb5tY7MHLLiBGYTFyUKDS7M+cjCUPSjK8Te07VY/vMR
-         KoPg==
-X-Gm-Message-State: AJIora8cuzlhA7iKeh/ApgbiWHG9vlOlZTu+fhRwSsspWnpbXqfiyFwd
-        /Iqdlu/yn2BAGTMO5vtFDBk/1Q==
-X-Google-Smtp-Source: AGRyM1uQlnixmQuuX5yZ8e4AcTn7YXgUCxjK/ku0GJgTHDXm2pRVLefUxGJ0ixDUObCpTattuXXqVw==
-X-Received: by 2002:a17:902:f642:b0:169:714:b079 with SMTP id m2-20020a170902f64200b001690714b079mr9833597plg.117.1656520114584;
-        Wed, 29 Jun 2022 09:28:34 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id b16-20020a170903229000b001696751796asm11660712plh.139.2022.06.29.09.28.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 09:28:33 -0700 (PDT)
-Date:   Wed, 29 Jun 2022 10:28:31 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mike Leach <mike.leach@linaro.org>, Leo Yan <leo.yan@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/3] dt-bindings: Arm CoreSight binding schema
- conversions
-Message-ID: <20220629162831.GB2013207@p14s>
-References: <20220603011933.3277315-1-robh@kernel.org>
- <20220620165541.GA1458883@p14s>
- <20220628180118.GA703354-robh@kernel.org>
+        with ESMTP id S230347AbiF2Q3I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 12:29:08 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F0A126133
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 09:29:07 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o6aYg-00071l-0G; Wed, 29 Jun 2022 18:28:54 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o6aYb-003QpM-5u; Wed, 29 Jun 2022 18:28:52 +0200
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1o6aYe-000Dhz-4j; Wed, 29 Jun 2022 18:28:52 +0200
+Message-ID: <f51a6ccda0f7b4596406789fa73e1bdad85186bc.camel@pengutronix.de>
+Subject: Re: [PATCH v6 2/5] irqchip: Add RZ/G2L IA55 Interrupt Controller
+ driver
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Date:   Wed, 29 Jun 2022 18:28:52 +0200
+In-Reply-To: <20220625200600.7582-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220625200600.7582-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+         <20220625200600.7582-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220628180118.GA703354-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,51 +63,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 28, 2022 at 12:01:18PM -0600, Rob Herring wrote:
-> On Mon, Jun 20, 2022 at 10:55:41AM -0600, Mathieu Poirier wrote:
-> > Hi Rob,
-> > 
-> > On Thu, Jun 02, 2022 at 08:19:30PM -0500, Rob Herring wrote:
-> > > This series converts all the CoreSight debug bindings to DT schema
-> > > format. These bindings are at the top of the list of occurrences of
-> > > bindings without a schema. For arm64 dts files:
-> > > 
-> > >     702 ['arm,coresight-etm4x', 'arm,primecell']
-> > >     536 ['arm,coresight-cpu-debug', 'arm,primecell']
-> > >     509 ['arm,coresight-dynamic-funnel', 'arm,primecell']
-> > >     213 ['arm,coresight-tmc', 'arm,primecell']
-> > >     143 ['arm,coresight-dynamic-replicator', 'arm,primecell']
-> > >      97 ['arm,coresight-stm', 'arm,primecell']
-> > > 
-> > > I'll send a reply to these with the errors in dts files that this
-> > > causes. I've reviewed them and they all look legit. Xilinx Zynq though
-> > > has 3 clocks instead of 2.
-> > > 
-> > > v2:
-> > >  - Rename other Coresight bindings to use compatible string for filename
-> > >  - Add missing arm,coresight-dynamic-replicator.yaml and
-> > >    arm,coresight-static-funnel.yaml
-> > >  - Update MAINTAINERS
-> > >  - Fix coresight.txt references
-> > 
-> > What a massive undertaking... I have looked scrupulously and everything adds up.
-> > Let me know if you were looking for me to pick this up.  Otherwise:
-> > 
-> > Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+On Sa, 2022-06-25 at 21:05 +0100, Lad Prabhakar wrote:
+> Add a driver for the Renesas RZ/G2L Interrupt Controller.
 > 
-> Can you apply. I think there was another series from QCom touching 
-> the MAINTAINERS entry that will conflict.
-
-I just tried a rebased on today's linux-next and it didn't blow up.
-
+> This supports external pins being used as interrupts. It supports
+> one line for NMI, 8 external pins and 32 GPIO pins (out of 123)
+> to be used as IRQ lines.
 > 
-> There's a couple of indentation fixups. Can you fix when applying or do 
-> you want me to resend?
-
-Fixed and applied.
-
-Thanks,
-Mathieu
-
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  drivers/irqchip/Kconfig             |   8 +
+>  drivers/irqchip/Makefile            |   1 +
+>  drivers/irqchip/irq-renesas-rzg2l.c | 393 ++++++++++++++++++++++++++++
+>  3 files changed, 402 insertions(+)
+>  create mode 100644 drivers/irqchip/irq-renesas-rzg2l.c
 > 
-> Rob
+[...]
+> diff --git a/drivers/irqchip/irq-renesas-rzg2l.c b/drivers/irqchip/irq-renesas-rzg2l.c
+> new file mode 100644
+> index 000000000000..cc16fcf2bbc6
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-renesas-rzg2l.c
+> @@ -0,0 +1,393 @@
+[...]
+> +static int rzg2l_irqc_init(struct device_node *node, struct device_node *parent)
+> +{
+> +	struct irq_domain *irq_domain, *parent_domain;
+> +	struct platform_device *pdev;
+> +	struct reset_control *resetn;
+> +	struct rzg2l_irqc_priv *priv;
+> +	int ret;
+> +
+> +	pdev = of_find_device_by_node(node);
+> +	if (!pdev)
+> +		return -ENODEV;
+> +
+> +	parent_domain = irq_find_host(parent);
+> +	if (!parent_domain) {
+> +		dev_err(&pdev->dev, "cannot find parent domain\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->base = devm_of_iomap(&pdev->dev, pdev->dev.of_node, 0, NULL);
+> +	if (IS_ERR(priv->base))
+> +		return PTR_ERR(priv->base);
+> +
+> +	ret = rzg2l_irqc_parse_interrupts(priv, node);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "cannot parse interrupts: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	resetn = devm_reset_control_get_exclusive_by_index(&pdev->dev, 0);
+
+Why is this by index? I'd expect
+
+	resetn = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+
+should work just as well?
+
+regards
+Philipp
