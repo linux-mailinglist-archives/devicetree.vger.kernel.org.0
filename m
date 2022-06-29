@@ -2,58 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73A0D560525
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 18:03:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE4D3560556
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 18:07:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234424AbiF2QBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 12:01:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40440 "EHLO
+        id S232700AbiF2QGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 12:06:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234058AbiF2QAm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 12:00:42 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48CE42C644;
-        Wed, 29 Jun 2022 09:00:33 -0700 (PDT)
-Received: from notapiano.myfiosgateway.com (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 61E6E66019AC;
-        Wed, 29 Jun 2022 17:00:30 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1656518431;
-        bh=fWpLVNkaRd2J8/GN0NiVTcm+/j+WzfBVE0/fxSI1x5A=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DY92GFjN3oeuKinw8Ew49bJgJxgOWoEzUt8A8bZVJPRHE59LO3545axbqRbXd5QI6
-         NOvolx1mgJgf+roEOHSN7NuOJQ0r6maVhCTo9p/20oueU1YT8lQYaE3TusW4e13aqr
-         Wgu7phTuv8d70Zc6IPA7puSWOvI4bWE4Ja98bu7eOeSwM4CGQ9n6g4oCbh/YlShGuW
-         KJ69HN2yvBHPBnC+GdC/nehh+L3J4vxiQ25nRQYnVCiERoBvR/UOVrNpAmN9USsz9c
-         G6OHQ6n+q17lHnOZDCbgPHHs/6yvDDjHN52lMDHILXCKmiCK5/ReyFXGzmOYbOelxW
-         TGpBJe7lQUP0g==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v4 19/19] arm64: dts: mediatek: asurada: Add SPI NOR flash memory
-Date:   Wed, 29 Jun 2022 11:59:56 -0400
-Message-Id: <20220629155956.1138955-20-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220629155956.1138955-1-nfraprado@collabora.com>
-References: <20220629155956.1138955-1-nfraprado@collabora.com>
+        with ESMTP id S232618AbiF2QGA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 12:06:00 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F20B2F46;
+        Wed, 29 Jun 2022 09:05:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1656518759; x=1688054759;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lbrc7F9sL6YCxOWkN0oDWBJ6MPHOZ5O2I+OeO5NRe3g=;
+  b=anSd0rmji61s5Z6ThD+aTOBOdZp75440Z6zDr3sVaF9//7z+14IKYo1o
+   s/s0Vzt7wKIiH4+WTiNx1z7hqZGuBEK/onZXgOvzCuNXkLZZdfsZP26r9
+   1OVP/EeBRC08+CzLLLZ7Sj26cuaQr6mLpTgNNYQk8uY/2FRbdFRrXUNbn
+   gm+ytAbXc+qefTMoRPbm0QGFBk+QvlwR9Tp2IzSwHvT9MH3WVvC2hMGn3
+   VWrP7148C73aIUhHaqGeQ5F9/iu8UUfzyaBhH7LaVkOEFhGJnryaYs3H7
+   UFefFH76FJ0cLKtg1w5lyy9wY15Yi2beB/4O7/4ZoXv4vbafDPYR21sSX
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10393"; a="307569225"
+X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; 
+   d="scan'208";a="307569225"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2022 09:05:58 -0700
+X-IronPort-AV: E=Sophos;i="5.92,231,1650956400"; 
+   d="scan'208";a="733232954"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2022 09:05:56 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1o6aCP-000xsR-Hl;
+        Wed, 29 Jun 2022 19:05:53 +0300
+Date:   Wed, 29 Jun 2022 19:05:53 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Rob Herring <robh@kernel.org>,
+        Frank Rowand <frank.rowand@sony.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v1 1/1] of: unittest: Switch to use fwnode instead of
+ of_node
+Message-ID: <Yrx4YfwLfaucYx36@smile.fi.intel.com>
+References: <20220629113839.4604-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220629113839.4604-1-andriy.shevchenko@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,78 +69,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the SPI NOR flash memory present on the Asurada
-platform.
+On Wed, Jun 29, 2022 at 02:38:39PM +0300, Andy Shevchenko wrote:
+> GPIO library now accepts fwnode as a firmware node, so
+> switch the module to use it.
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Sorry for a spam, here is v3 of this series, this one shouldn't be considered.
 
----
-
-Changes in v4:
-- Added this patch
-
- .../boot/dts/mediatek/mt8192-asurada.dtsi     | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-index a5625b3cb317..4b314435f8fd 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-@@ -241,6 +241,23 @@ &mt6359codec {
- 	mediatek,mic-type-2 = <2>; /* DMIC */
- };
- 
-+&nor_flash {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&nor_flash_pins>;
-+	assigned-clocks = <&topckgen CLK_TOP_SFLASH_SEL>;
-+	assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D6_D8>;
-+
-+	flash@0 {
-+		compatible = "winbond,w25q64jwm", "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <52000000>;
-+		spi-rx-bus-width = <2>;
-+		spi-tx-bus-width = <2>;
-+	};
-+};
-+
- &pcie {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie_pins>;
-@@ -658,6 +675,29 @@ pins-clk {
- 		};
- 	};
- 
-+	nor_flash_pins: nor-flash-default-pins {
-+		pins-cs-io1 {
-+			pinmux = <PINMUX_GPIO24__FUNC_SPINOR_CS>,
-+				 <PINMUX_GPIO28__FUNC_SPINOR_IO1>;
-+			input-enable;
-+			bias-pull-up;
-+			drive-strength = <10>;
-+		};
-+
-+		pins-io0 {
-+			pinmux = <PINMUX_GPIO27__FUNC_SPINOR_IO0>;
-+			bias-pull-up;
-+			drive-strength = <10>;
-+		};
-+
-+		pins-clk {
-+			pinmux = <PINMUX_GPIO25__FUNC_SPINOR_CK>;
-+			input-enable;
-+			bias-pull-up;
-+			drive-strength = <10>;
-+		};
-+	};
-+
- 	pcie_pins: pcie-default-pins {
- 		pins-pcie-wake {
- 			pinmux = <PINMUX_GPIO63__FUNC_PCIE_WAKE_N>;
 -- 
-2.36.1
+With Best Regards,
+Andy Shevchenko
+
 
