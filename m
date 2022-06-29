@@ -2,103 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECBCF55FC9C
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 11:54:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD0A655FC70
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 11:54:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232822AbiF2Jnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 05:43:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56730 "EHLO
+        id S233085AbiF2Jpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 05:45:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231338AbiF2Jnt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 05:43:49 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D6C3B2BD
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:43:48 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id cw10so31435414ejb.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 02:43:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Hhp4iRKsB2fd3GYkMrO2usPvXFHFBKKxfJTZ32PkYi8=;
-        b=uBHK1iXDpPOcx19wUFVC+45GKpJJVU45LOk7BiTSxcdCl5yz/NKu/Et9XqBXQue68i
-         rwMZNvBERx2PsEzpqQ0zfdRHqvoITqxj1vMJ72+fgFK9ifn9yXB+dV8TlZPJJiGZ845+
-         nZWvuDBRUiGh0WqXkzeKA/JOq9iWKHZ7JIxfnu+TCEXa32/E5kDFNySs82uLLoPSO/MZ
-         oxzh3j9QDqFDy/J1GlwpoAUe618+KPJnEWXIqhlTM/yaSDRw2BzS3Io+WeMEEY0V+Bn7
-         5GDIOhlyO4ObprlBmd1l1NTS932hKjxDIjDyeR246XaYMnneWcG31qwgjVTuS0RvcXFZ
-         5lMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Hhp4iRKsB2fd3GYkMrO2usPvXFHFBKKxfJTZ32PkYi8=;
-        b=bJ2eq1GhZ8t1k4nVzWIECaC096Gj5Bx1d1L14bI8BNPZs+z68rApL2yCCe4IfNpp6r
-         9G+B0x4Qm4UplTBgZ6TlIm1pC6kQmOKgk52MqPqqjrAhy8lWtSIgwQE+wnIdKy76Q5Ne
-         nFatsg5zC17r217fnQCRnCRM+auzX+/1YH0m9yEZSgIK/a1y1bbM7qIS21L84dqC9QI0
-         sQGTvAtz0KMKExKUqv3fcOPtoapSgMc7NE4S8gsxWvKVtzA3nWbtC7w7U4J+RjlsWTN5
-         Iet5ObhJ9Wi1+mLFxK9g0QiuU/hZyFGC3gtU3PDMVUzJao3im/fXMB2NbidOlNvyMpeo
-         MHNQ==
-X-Gm-Message-State: AJIora8SJNuOGro5GvaxVdZpzd1hryIw8VfxEdWq0ez59GaS01CLvush
-        VzQcSsbG6OlffG1ljFxdGxFOqA==
-X-Google-Smtp-Source: AGRyM1tVb5Pr3M9ohRSkQukBaigP2Svf1r1uvTIEe45lKwy0lFJ4Isx+daxWnNjOeIci/FPWsukU3Q==
-X-Received: by 2002:a17:907:2d8c:b0:726:2b37:6d44 with SMTP id gt12-20020a1709072d8c00b007262b376d44mr2450515ejc.224.1656495826870;
-        Wed, 29 Jun 2022 02:43:46 -0700 (PDT)
-Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id t4-20020a17090605c400b00706242d297fsm7379465ejt.212.2022.06.29.02.43.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 02:43:46 -0700 (PDT)
-Message-ID: <cf52fbf4-2105-8fa9-5f3b-601a6e132e97@linaro.org>
-Date:   Wed, 29 Jun 2022 11:43:45 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: thermal: tsens: Add msm8992/4
- compatibles
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+        with ESMTP id S233079AbiF2Jpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 05:45:35 -0400
+Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 427023BBC8;
+        Wed, 29 Jun 2022 02:45:34 -0700 (PDT)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 25T9SRxn051154;
+        Wed, 29 Jun 2022 17:28:27 +0800 (GMT-8)
+        (envelope-from neal_liu@aspeedtech.com)
+Received: from localhost.localdomain (192.168.10.10) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 29 Jun
+ 2022 17:44:31 +0800
+From:   Neal Liu <neal_liu@aspeedtech.com>
+To:     Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220628142359.93100-1-konrad.dybcio@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220628142359.93100-1-konrad.dybcio@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Joel Stanley <joel@jms.id.au>,
+        "Andrew Jeffery" <andrew@aj.id.au>,
+        Dhananjay Phadke <dhphadke@microsoft.com>,
+        "Johnny Huang" <johnny_huang@aspeedtech.com>
+CC:     <linux-aspeed@lists.ozlabs.org>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <BMC-SW@aspeedtech.com>
+Subject: [PATCH v6 0/5] Add Aspeed crypto driver for hardware acceleration
+Date:   Wed, 29 Jun 2022 17:44:21 +0800
+Message-ID: <20220629094426.1930589-1-neal_liu@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.10.10]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 25T9SRxn051154
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2022 16:23, Konrad Dybcio wrote:
-> Add the compatibles for msm8992/4 TSENS hardware.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
-> No changes.
+Aspeed Hash and Crypto Engine (HACE) is designed to accelerate the
+throughput of hash data digest, encryption and decryption.
 
-Rob's ack disappeared...
+These patches aim to add Aspeed hash & crypto driver support.
+The hash & crypto driver also pass the run-time self tests that
+take place at algorithm registration.
+
+The patch series are tested on both AST2500 & AST2600 evaluation boards.
+
+Tested-by below configs:
+- CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
+- CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
+- CONFIG_DMA_API_DEBUG=y
+- CONFIG_DMA_API_DEBUG_SG=y
+- CONFIG_CPU_BIG_ENDIAN=y
+
+Change since v5:
+- Re-define HACE clock define to fix breaking ABI.
+
+Change since v4:
+- Add AST2500 clock definition & dts node.
+- Add software fallback for handling corner cases.
+- Fix copy wrong key length.
+
+Change since v3:
+- Use dmam_alloc_coherent() instead to manage dma_alloc_coherent().
+- Add more error handler of dma_prepare() & crypto_engine_start().
+
+Change since v2:
+- Fix endianness issue. Tested on both little endian & big endian
+  system.
+- Use common crypto hardware engine for enqueue & dequeue requests.
+- Use pre-defined IVs for SHA-family.
+- Revise error handler flow.
+- Fix sorts of coding style problems.
+
+Change since v1:
+- Add more error handlers, including DMA memory allocate/free, DMA
+  map/unmap, clock enable/disable, etc.
+- Fix check dma_map error for config DMA_API_DEBUG.
+- Fix dt-binding doc & dts node naming.
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Neal Liu (5):
+  crypto: aspeed: Add HACE hash driver
+  dt-bindings: clock: Add AST2500/AST2600 HACE reset definition
+  ARM: dts: aspeed: Add HACE device controller node
+  dt-bindings: crypto: add documentation for aspeed hace
+  crypto: aspeed: add HACE crypto driver
 
+ .../bindings/crypto/aspeed,ast2500-hace.yaml  |   53 +
+ MAINTAINERS                                   |    7 +
+ arch/arm/boot/dts/aspeed-g5.dtsi              |    8 +
+ arch/arm/boot/dts/aspeed-g6.dtsi              |    8 +
+ drivers/crypto/Kconfig                        |    1 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/aspeed/Kconfig                 |   40 +
+ drivers/crypto/aspeed/Makefile                |    8 +
+ drivers/crypto/aspeed/aspeed-hace-crypto.c    | 1122 +++++++++++++
+ drivers/crypto/aspeed/aspeed-hace-hash.c      | 1428 +++++++++++++++++
+ drivers/crypto/aspeed/aspeed-hace.c           |  301 ++++
+ drivers/crypto/aspeed/aspeed-hace.h           |  293 ++++
+ include/dt-bindings/clock/aspeed-clock.h      |    1 +
+ include/dt-bindings/clock/ast2600-clock.h     |    1 +
+ 14 files changed, 3272 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/aspeed,ast2500-hace.yaml
+ create mode 100644 drivers/crypto/aspeed/Kconfig
+ create mode 100644 drivers/crypto/aspeed/Makefile
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace-crypto.c
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace-hash.c
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace.c
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace.h
 
-Best regards,
-Krzysztof
+-- 
+2.25.1
+
