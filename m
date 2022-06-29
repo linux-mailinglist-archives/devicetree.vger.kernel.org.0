@@ -2,77 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B8E55F6BA
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 08:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90CAB55F721
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 08:53:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232171AbiF2Gfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 02:35:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45320 "EHLO
+        id S231669AbiF2GwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 02:52:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232137AbiF2Gfh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 02:35:37 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 316CA2C135
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 23:35:36 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id z7so20735119edm.13
-        for <devicetree@vger.kernel.org>; Tue, 28 Jun 2022 23:35:36 -0700 (PDT)
+        with ESMTP id S230088AbiF2GwH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 02:52:07 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B8EB2E680;
+        Tue, 28 Jun 2022 23:52:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=kBQFkusmcz/SMOWRD7R4YKEzcrVSUMw7+0eTSwhhg8c=;
-        b=yFSGXOTThJGqGcl5Aqt8nukaqco/J/Pgq3+2L3gVKGxN1VDwiq1x4Up7LSaYhkD/TC
-         SCJNYdoD9W+xphqJ8K1JVRWSKGoSzf5V5h0ZAW2Je8pKFCX3qeNQzWGohjrSoeB7aDVr
-         5/1tbL02NJvJ5Or5SZsksmHCm7C5Ddp7tlwkMS9uZqM3Mh/jbnmdrFItF+nUUubxsan6
-         LqcSGLbEXPYtw0t7M0BDt4cglwyGnZit3M4g/J/OmreW3aLwm8N8n+B54EZff+XF3+QX
-         bo1yDSUHmJUZvDjm4nIEM5+98AdTJiFyH1Qhlts1LRsMVtxeZ92Bmj6+itR7oX5Bs20p
-         WH9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kBQFkusmcz/SMOWRD7R4YKEzcrVSUMw7+0eTSwhhg8c=;
-        b=4XSQpEce6nNYfbUU5pOAhzFHREMaxnuYJwIADCAlVRQpGGNuCs9zGpnapGhzxy8So6
-         VWftuOa0zqEx+PCiGx/PRcTLbloge7Ytn1REQu1o1fBDY4dmw+mnUhlP0T/IueU2Jsd5
-         ckaV5LgW/gVAAVHZ9FslPkH/mjbBu3pFj6/p8UXB1EBgL7+1gJXO+eUs2lFMGYKBMuU5
-         HzE6FYltufV+X50lThfFRJDYNRzQYX5PqH3MqjoL0PHAzQGpKGwFGUVQ0DW0vI82B0P4
-         KLEDaY0FzG8jr6aQq2xXcw+qqo/QmdO8HELQAf3qRehpAcccRTIE44W6Tpxadpj466wF
-         2FiQ==
-X-Gm-Message-State: AJIora9QSntkiV67COE+Drw7raoubNnREic/sF6Ek0pKZTgdD+jCXJ/y
-        AylEoTacNLUmFkMpk1h8SK57xg==
-X-Google-Smtp-Source: AGRyM1vnwG7UM1ZvSadQ2cbuw8dyvte78Wi8y82ra2acHs2+T3hSNHgNjjf/JkSlE3T81fgpoeGeJw==
-X-Received: by 2002:a05:6402:2404:b0:437:d11f:b9c7 with SMTP id t4-20020a056402240400b00437d11fb9c7mr2203046eda.176.1656484534706;
-        Tue, 28 Jun 2022 23:35:34 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id y20-20020a17090629d400b00704cf66d415sm7325538eje.13.2022.06.28.23.35.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jun 2022 23:35:34 -0700 (PDT)
-Message-ID: <07d2cbc3-07e2-85f4-1739-ffbe57d65519@linaro.org>
-Date:   Wed, 29 Jun 2022 08:35:32 +0200
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1656485526; x=1688021526;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=pDeFX0MitWJP5A/Gqlq5Jl1bM/EI4WOu64tF/J2XmMo=;
+  b=kWC54FNg3YnTxBuE6ezaJqaC4fLOrTjlbEL8cas+T7ONNRGoPCzFNzf7
+   /7ZeRM1HFxDiJ1qoeenhG3ObUaffmSVxFMnY0NxvfqKJAHsOFe9q0dU5E
+   efPTbn/Dp+/v3mt+5eTGwzaTpLgEBdKoizXquayeLvpU336n5rW6JiHLz
+   k=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 28 Jun 2022 23:52:06 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2022 23:52:05 -0700
+Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 28 Jun 2022 23:52:04 -0700
+Received: from [10.242.243.224] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 28 Jun
+ 2022 23:51:59 -0700
+Message-ID: <1bc6383a-4e82-342a-c458-4f2c847adf76@quicinc.com>
+Date:   Wed, 29 Jun 2022 12:21:56 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH V3 06/11] arm64: tegra: Add P2U and PCIe controller nodes
- to Tegra234 DT
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH V2 0/8] Add minimal boot support for IPQ5018
 Content-Language: en-US
-To:     Vidya Sagar <vidyas@nvidia.com>, bhelgaas@google.com,
-        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com
-Cc:     kishon@ti.com, vkoul@kernel.org, kw@linux.com,
-        p.zabel@pengutronix.de, mperttunen@nvidia.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, sagar.tv@gmail.com
-References: <20220629060435.25297-1-vidyas@nvidia.com>
- <20220629060435.25297-7-vidyas@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220629060435.25297-7-vidyas@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <agross@kernel.org>, <robh+dt@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <catalin.marinas@arm.com>, <p.zabel@pengutronix.de>,
+        <quic_varada@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220621161126.15883-1-quic_srichara@quicinc.com>
+ <CACRpkdZs=kwFciZaNGWR3t=Q4Vy08qg6UNH6obcyubC=6jkYuw@mail.gmail.com>
+From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
+In-Reply-To: <CACRpkdZs=kwFciZaNGWR3t=Q4Vy08qg6UNH6obcyubC=6jkYuw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,245 +73,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 08:04, Vidya Sagar wrote:
-> Add P2U (PIPE to UPHY) and PCIe controller nodes to device tree.
-> The Tegra234 SoC contains 10 PCIe controllers and 24 P2U instances
-> grouped into three different PHY bricks namely High-Speed IO (HSIO-8 P2Us)
-> NVIDIA High Speed (NVHS-8 P2Us) and Gigabit Ethernet (GBE-8 P2Us)
-> respectively.
-> 
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> ---
-> V3:
-> * Added entries for all controllers that can operate in EndPoint mode
-> 
-> V2:
-> * Added 'iommu-map', 'iommu-map-mask' and 'dma-coherent' entries for each
->   PCIe controller node
-> 
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 935 +++++++++++++++++++++++
->  1 file changed, 935 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> index 2ae2f11f289c..062417e3ede5 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> @@ -998,6 +998,198 @@
->  			status = "okay";
->  		};
->  
-> +		p2u_hsio_0: phy@3e00000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03e00000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_hsio_1: phy@3e10000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03e10000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_hsio_2: phy@3e20000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03e20000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_hsio_3: phy@3e30000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03e30000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_hsio_4: phy@3e40000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03e40000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_hsio_5: phy@3e50000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03e50000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_hsio_6: phy@3e60000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03e60000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_hsio_7: phy@3e70000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03e70000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_nvhs_0: phy@3e90000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03e90000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_nvhs_1: phy@3ea0000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03ea0000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_nvhs_2: phy@3eb0000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03eb0000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_nvhs_3: phy@3ec0000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03ec0000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_nvhs_4: phy@3ed0000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03ed0000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_nvhs_5: phy@3ee0000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03ee0000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_nvhs_6: phy@3ef0000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03ef0000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_nvhs_7: phy@3f00000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03f00000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_gbe_0: phy@3f20000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03f20000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_gbe_1: phy@3f30000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03f30000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_gbe_2: phy@3f40000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03f40000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_gbe_3: phy@3f50000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03f50000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_gbe_4: phy@3f60000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03f60000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_gbe_5: phy@3f70000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03f70000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_gbe_6: phy@3f80000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03f80000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		p2u_gbe_7: phy@3f90000 {
-> +			compatible = "nvidia,tegra234-p2u";
-> +			reg = <0x03f90000 0x10000>;
-> +			reg-names = "ctl";
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
->  		hsp_aon: hsp@c150000 {
->  			compatible = "nvidia,tegra234-hsp", "nvidia,tegra194-hsp";
->  			reg = <0x0c150000 0x90000>;
-> @@ -1384,6 +1576,749 @@
->  		status = "okay";
->  	};
->  
-> +	pcie@140a0000 {
-> +		compatible = "nvidia,tegra234-pcie";
-> +		power-domains = <&bpmp TEGRA234_POWER_DOMAIN_PCIEX4CA>;
-> +		reg = <0x00 0x140a0000 0x0 0x00020000>, /* appl registers (128K)      */
-> +		      <0x00 0x2a000000 0x0 0x00040000>, /* configuration space (256K) */
-> +		      <0x00 0x2a040000 0x0 0x00040000>, /* iATU_DMA reg space (256K)  */
-> +		      <0x00 0x2a080000 0x0 0x00040000>; /* DBI reg space (256K)       */
-> +		reg-names = "appl", "config", "atu_dma", "dbi";
-> +
-> +		status = "disabled";
+Hi Linus,
 
-Status goes to the end, not somewhere in the middle of properties.
+On 6/28/2022 6:25 PM, Linus Walleij wrote:
+> On Tue, Jun 21, 2022 at 6:11 PM Sricharan R <quic_srichara@quicinc.com> wrote:
+>
+>> The IPQ5018 is Qualcomm's 802.11ax SoC for Routers,
+>> Gateways and Access Points.
+>>
+>> This series adds minimal board boot support for ipq5018-mp03.1-c2 board.
+> Pretty cool!
+>
+>>    dt-bindings: pinctrl: qcom: Add ipq5018 pinctrl bindings
+>>    pinctrl: qcom: Add IPQ5018 pinctrl driver
+> I'm happy to merge the two pinctrl patches separately to the pinctrl
+> tree if I can get a review from Bjorn or Krzysztof.
 
+    Thanks. Have few review comments from Bjorn and Krzysztof on the 
+bindings.
+     Will post V3 and hopefully that should have their acks on that.
 
-Best regards,
-Krzysztof
+Regards,
+   Sricharan
+
