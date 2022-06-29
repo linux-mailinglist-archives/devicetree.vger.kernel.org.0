@@ -2,103 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 072C55608AA
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 20:07:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F00265608C7
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 20:13:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231765AbiF2SHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 14:07:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43952 "EHLO
+        id S229677AbiF2SNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 14:13:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231161AbiF2SGw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 14:06:52 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6A4403D7
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:06:14 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id sb34so34097223ejc.11
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:06:14 -0700 (PDT)
+        with ESMTP id S229617AbiF2SNR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 14:13:17 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6E21E3ED
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:13:16 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id c65so23346332edf.4
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 11:13:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=V9eIqMH/UAN6dsljysjHWEU7rRIzDBGxrqT4v4OSvk4=;
-        b=ES4ssmwCCmCw6EL7JkRYAPpCK/yFcI1PudrO9RMhoo7tFJ7LEghI2hIL5CqsI3esSJ
-         OXhd6HIz7Do26OEh55AqkgywyvAf2aduNRuUFdhnBXXn4lkd6sON7wg5UBVvjykHgg9g
-         MtsToh2Ag7mixFs/XhBTRPfm0jfAjY2lowruxRQh3C+PIOBhPxXb37/QE5ciUOA3VeTS
-         tyyB1CBpvTcUaAeZu7KzjhcKKh63gXW4iU5uek811a/SX+/rZlys0jUyGvWpkR4HSeET
-         YaXYp/ulJOL7e0g9/uiyZMXwVYk00NXl9jd7xDJfir6Z56pMzC/ZweJ9y6bMvqWjz5R+
-         F0zQ==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=NQV1i59mi4tYuil98CU1c0W6/nHmMnM5HHghJrHgau4=;
+        b=WNrFF9D7t/NeKPR2o263ccrZ4Kz2RDLA8sOsIoouM761+1rrT4cof++hldliKQiACV
+         hX3LySXE+ZSE33jC5CfHMcwYfym4jCLhPhtxseUmO7PgYE32cye9xBIOUfkh8pGoVVn2
+         krpgMJIqN+nxTOwpLj81I/uVydhVfoX2aSdell54CqeaGcqlDF7JPRWUBeC3hljz4Mzd
+         Ht+WZST6eV3cstYTNkXHep5D2gHL69WuPvHk2fRl1vThyAY5dF/d4mdQi0ISy7btrG2t
+         vfUnzuE/CkJ9gA6SA9GS0tu5tEBmTYfo0nwwsAHxEmXl+mGMkzStu+7B4CnpxDDtoTEl
+         UCTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=V9eIqMH/UAN6dsljysjHWEU7rRIzDBGxrqT4v4OSvk4=;
-        b=QXdzepfEgGE4w+opWzeyDfENbpo/8xCCUznnwdk2A9d+exHPQbImEqJ10gw+d3hvE5
-         NLOOCS1/h57AB9adVr8BWofNe+AiNdmDVs/WEAAsaYT9lELhJPW02DF39bqqdTiXdAn9
-         o+qHW+qXifk8QZerZPXAvB3pJFzhXxlzOZQ6zHaJJy9S3TGQA6kiIe8ebxONMDnBuuHC
-         BWZ+RPGjYp735zQOkpkYOYKEUjttVLLmumY0WXTB+wYbMouo1MrIbOSSKEi1pASHRKGv
-         X7fyaIUNejd+vIKFW0WWcVaZOZw6nhG6AFZrQGcdvT9vwBRFWBCEsA0vBUYbCjBUigd4
-         01UQ==
-X-Gm-Message-State: AJIora8ru/HIfrdJ5UtgwK+Dtz9IokxbLMisig8AXTzZANAGBCxE+RFY
-        er8/z0HXDJysq3iQKuNYboh6FA==
-X-Google-Smtp-Source: AGRyM1tpg8rA6f2qYr5TKClCnZ3sCdM2Nz9dPuhEn1xfE3ExT0QWIsQj5Weetm1BRqAkYa/dcz5Rwg==
-X-Received: by 2002:a17:907:3d92:b0:726:39f9:4a33 with SMTP id he18-20020a1709073d9200b0072639f94a33mr4466093ejc.766.1656525972845;
-        Wed, 29 Jun 2022 11:06:12 -0700 (PDT)
+        bh=NQV1i59mi4tYuil98CU1c0W6/nHmMnM5HHghJrHgau4=;
+        b=zGtninDknQsAvNiIHqD2E9WK0faP8XC2FaxWTTm6Gxr5iL7ksiB2vKjOjvGmktT5y0
+         EXy/V1hhl9FaeD6hBslu1LkcoMladGiBs9rAR9pH2q8XFTp6nSwhZcXqJf0om4gtFBey
+         E8ti7ywDqi6W1SZwImx0coeGoJdC5fg4ELAeXhJckdw3anDmO0OI2SD1pKxZtL7OmLrm
+         EXhb6SNMB2PEBMoW2QkUzcz+2YtpkWlUz0RUToTXlvxewyRD62ZQZ3I6eUaNgE+zDW3m
+         KLh5q9LM0t6/FdvjleRcWrFNRwxO/xtN/x03A07o0kDqqbXD+6bwkpb9aIAF0i3wnafG
+         yfBA==
+X-Gm-Message-State: AJIora//9t8yPWEzgM1GE4AS1eUMVdpDdXtAwDnO+hHivBK54zAC7NjD
+        MFst0DHmorhlGvojGbxfpmNIVGbrqhngRA==
+X-Google-Smtp-Source: AGRyM1vDnN5C5nuEB9Dh4LeQO94kOMTOgN6sZ3SPGH517QZb1tU5e/c3+vjlciBP8Wf5FDroAz1iKQ==
+X-Received: by 2002:a05:6402:5384:b0:431:6d84:b451 with SMTP id ew4-20020a056402538400b004316d84b451mr5899111edb.46.1656526395107;
+        Wed, 29 Jun 2022 11:13:15 -0700 (PDT)
 Received: from [192.168.0.187] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o3-20020aa7c503000000b0042de8155fa1sm12012803edq.0.2022.06.29.11.06.11
+        by smtp.gmail.com with ESMTPSA id zm9-20020a170906994900b006fee7b5dff2sm8127702ejb.143.2022.06.29.11.13.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jun 2022 11:06:12 -0700 (PDT)
-Message-ID: <1e484314-d7ea-a419-dc09-9f168122e1ec@linaro.org>
-Date:   Wed, 29 Jun 2022 20:06:10 +0200
+        Wed, 29 Jun 2022 11:13:14 -0700 (PDT)
+Message-ID: <908e7555-0090-84fe-4227-d6b349de1394@linaro.org>
+Date:   Wed, 29 Jun 2022 20:13:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v6 13/14] arm64: dts: freescale: imx8qxp: Fix the keys
- node name
+Subject: Re: [PATCH v3 02/12] powerpc: wiiu: device tree
 Content-Language: en-US
-To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        Liu Ying <victor.liu@nxp.com>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Ming Qian <ming.qian@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220629164414.301813-1-viorel.suman@oss.nxp.com>
- <20220629164414.301813-14-viorel.suman@oss.nxp.com>
+To:     Segher Boessenkool <segher@kernel.crashing.org>
+Cc:     Ash Logan <ash@heyquark.com>, krzysztof.kozlowski+dt@linaro.org,
+        paulus@samba.org, mpe@ellerman.id.au, christophe.leroy@csgroup.eu,
+        robh+dt@kernel.org, benh@kernel.crashing.org,
+        devicetree@vger.kernel.org, linkmauve@linkmauve.fr,
+        linux-kernel@vger.kernel.org, rw-r-r-0644@protonmail.com,
+        joel@jms.id.au, linuxppc-dev@lists.ozlabs.org, j.ne@posteo.net
+References: <20220622131037.57604-1-ash@heyquark.com>
+ <20220628133144.142185-1-ash@heyquark.com>
+ <20220628133144.142185-3-ash@heyquark.com>
+ <c760e444-57c3-0e1a-0e4d-f79d6ae9867a@linaro.org>
+ <20220629161302.GG25951@gate.crashing.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220629164414.301813-14-viorel.suman@oss.nxp.com>
+In-Reply-To: <20220629161302.GG25951@gate.crashing.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -106,17 +81,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2022 18:44, Viorel Suman (OSS) wrote:
-> From: Abel Vesa <abel.vesa@nxp.com>
+On 29/06/2022 18:13, Segher Boessenkool wrote:
+> On Wed, Jun 29, 2022 at 11:58:18AM +0200, Krzysztof Kozlowski wrote:
+>> On 28/06/2022 15:31, Ash Logan wrote:
+>>> +	model = "nintendo,wiiu";
+>>
+>> It's not compatible, but user-visible string, e.g. "Nintendo Wii U"
 > 
-> The proper name is 'keys', not 'scu-keys'.
+> The "model" property in OF is documented as:
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
+> ---
+> “model”                                                                S
+> Standard property name to define a manufacturer’s model number.
+> 
+> prop-encoded-array:
+>   Text string, encoded with encode-string.
+> A manufacturer-dependent string that generally specifies the model name
+> and number (including revision level) for this device. The format of the
+> text string is arbitrary, although in conventional usage the string
+> begins with the name of the device’s manufacturer as with the “name”
+> property.
+> Although there is no standard interpretation for the value of the
+> “model” property, a specific device driver might use it to learn, for
+> instance, the revision level of its particular device.
+> 
+> See also: property, model.
+> 
+> Used as: " XYZCO,1416-02" encode-string " model" property
 
+Hm, surprising to duplicate the compatible, but OK.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> 
+>>> +	cpus {
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <0>;
+>>> +
+>>> +		/* TODO: Add SMP */
+>>> +		PowerPC,espresso@0 {
+>>
+>> Node name should be generic, so "cpu". Unless something needs the
+>> specific node name?
+> 
+> This is how most other PowerPC firmwares do it.  The PowerPC processor
+> binding is older than the generic naming practice, so CPU nodes have
+> device_type "cpu" instead.  
 
+ePAPR 1.0 from 2008 explicitly asks for generic node names. So 4 years
+before Nintento Wii U. Maybe earlier ePAPR-s were also asking for this,
+no clue, don't have them.
+
+> This is a required property btw, with that
+> value.  (There is no requirement on the names of the CPU nodes).
+
+That's fine, I am not talking about property.
+
+> There is no added value in generic naming for CPU nodes anyway, since
+> you just find them as the children of the "/cpus" node :-)
+
+There is because you might have there caches. It also makes code easier
+to read.
 
 Best regards,
 Krzysztof
