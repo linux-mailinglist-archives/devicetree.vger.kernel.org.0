@@ -2,115 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 058F3560AEB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 22:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E53C2560B1C
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 22:36:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbiF2ULj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 16:11:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43546 "EHLO
+        id S230027AbiF2UgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 16:36:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbiF2ULi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 16:11:38 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 183091BE97;
-        Wed, 29 Jun 2022 13:11:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C8CF1B826FC;
-        Wed, 29 Jun 2022 20:11:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 649DFC341C8;
-        Wed, 29 Jun 2022 20:11:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656533495;
-        bh=cvPYtRkUJkulvF6B5y9/eaTzMux14ZpS/4VidSoHfTw=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Q2mBj6uWK3w/qZRbR2RL1/xLSLuKTWZAG20AhWAIlx5ImSxTk01+Grad9iYvlCQ2M
-         in6F9dSHbCuUFchM+Bqaxmdx6G2fEYTdksO9naSgJXxbXXG6aEW0n6tVX0xNBG5LC2
-         nWj8MQo/EhS/l/bw53az06UtPuyhUJ8DkS/1Bv6XBuYLsIxpUfVo1BLSjl1TtMS4mC
-         XN0WSDwAyQB+lyW+LqlrM5swx3vyRC5823oX3Zxjnpca073L4k8+0rVL6SSh/KzxTq
-         pPTrlzbOcS58UlolY/H0SUckJmQJFVfugsH5K0bpEEGKvng5iFAWtxyNS+ZN3Q7R0W
-         +Y1rmPjVss1Vw==
-From:   Conor Dooley <conor@kernel.org>
-To:     Daire McNamara <daire.mcnamara@microchip.com>,
-        Ivan Griffin <ivan.griffin@microchip.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        linux-riscv@lists.infradead.org
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Atish Patra <atishp@atishpatra.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] riscv: dts: microchip: hook up the mpfs' l2cache
-Date:   Wed, 29 Jun 2022 21:07:33 +0100
-Message-Id: <20220629200732.4039258-1-conor@kernel.org>
-X-Mailer: git-send-email 2.36.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229492AbiF2UgI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 16:36:08 -0400
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 733CA313BD;
+        Wed, 29 Jun 2022 13:36:06 -0700 (PDT)
+Received: from gate.crashing.org (localhost.localdomain [127.0.0.1])
+        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id 25TKS467028346;
+        Wed, 29 Jun 2022 15:28:04 -0500
+Received: (from segher@localhost)
+        by gate.crashing.org (8.14.1/8.14.1/Submit) id 25TKS1wF028345;
+        Wed, 29 Jun 2022 15:28:01 -0500
+X-Authentication-Warning: gate.crashing.org: segher set sender to segher@kernel.crashing.org using -f
+Date:   Wed, 29 Jun 2022 15:28:01 -0500
+From:   Segher Boessenkool <segher@kernel.crashing.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Ash Logan <ash@heyquark.com>, krzysztof.kozlowski+dt@linaro.org,
+        paulus@samba.org, mpe@ellerman.id.au, christophe.leroy@csgroup.eu,
+        robh+dt@kernel.org, benh@kernel.crashing.org,
+        devicetree@vger.kernel.org, linkmauve@linkmauve.fr,
+        linux-kernel@vger.kernel.org, rw-r-r-0644@protonmail.com,
+        joel@jms.id.au, linuxppc-dev@lists.ozlabs.org, j.ne@posteo.net
+Subject: Re: [PATCH v3 02/12] powerpc: wiiu: device tree
+Message-ID: <20220629202800.GJ25951@gate.crashing.org>
+References: <20220622131037.57604-1-ash@heyquark.com> <20220628133144.142185-1-ash@heyquark.com> <20220628133144.142185-3-ash@heyquark.com> <c760e444-57c3-0e1a-0e4d-f79d6ae9867a@linaro.org> <20220629161302.GG25951@gate.crashing.org> <908e7555-0090-84fe-4227-d6b349de1394@linaro.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <908e7555-0090-84fe-4227-d6b349de1394@linaro.org>
+User-Agent: Mutt/1.4.2.3i
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Wed, Jun 29, 2022 at 08:13:13PM +0200, Krzysztof Kozlowski wrote:
+> On 29/06/2022 18:13, Segher Boessenkool wrote:
+> > On Wed, Jun 29, 2022 at 11:58:18AM +0200, Krzysztof Kozlowski wrote:
+> >>> +		/* TODO: Add SMP */
+> >>> +		PowerPC,espresso@0 {
+> >>
+> >> Node name should be generic, so "cpu". Unless something needs the
+> >> specific node name?
+> > 
+> > This is how most other PowerPC firmwares do it.  The PowerPC processor
+> > binding is older than the generic naming practice, so CPU nodes have
+> > device_type "cpu" instead.  
+> 
+> ePAPR 1.0 from 2008 explicitly asks for generic node names. So 4 years
+> before Nintento Wii U. Maybe earlier ePAPR-s were also asking for this,
+> no clue, don't have them.
 
-The initial PolarFire SoC devicetree must have been forked off from
-the fu540 one prior to the addition of l2cache controller support being
-added there. When the controller node was added to mpfs.dtsi, it was
-not hooked up to the CPUs & thus sysfs reports an incorrect cache
-configuration. Hook it up.
+The majority of PowerPC 750 systems long predate that.  Many *current*
+systems implement the PowerPC Processor Binding, too (not the epapr
+thing, which is incompatible with the older standards!)
 
-Fixes: 0fa6107eca41 ("RISC-V: Initial DTS for Microchip ICICLE board")
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/microchip/mpfs.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+> > There is no added value in generic naming for CPU nodes anyway, since
+> > you just find them as the children of the "/cpus" node :-)
+> 
+> There is because you might have there caches. It also makes code easier
+> to read.
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index 3095d08453a1..496d3b7642bd 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -50,6 +50,7 @@ cpu1: cpu@1 {
- 			riscv,isa = "rv64imafdc";
- 			clocks = <&clkcfg CLK_CPU>;
- 			tlb-split;
-+			next-level-cache = <&cctrllr>;
- 			status = "okay";
- 
- 			cpu1_intc: interrupt-controller {
-@@ -77,6 +78,7 @@ cpu2: cpu@2 {
- 			riscv,isa = "rv64imafdc";
- 			clocks = <&clkcfg CLK_CPU>;
- 			tlb-split;
-+			next-level-cache = <&cctrllr>;
- 			status = "okay";
- 
- 			cpu2_intc: interrupt-controller {
-@@ -104,6 +106,7 @@ cpu3: cpu@3 {
- 			riscv,isa = "rv64imafdc";
- 			clocks = <&clkcfg CLK_CPU>;
- 			tlb-split;
-+			next-level-cache = <&cctrllr>;
- 			status = "okay";
- 
- 			cpu3_intc: interrupt-controller {
-@@ -131,6 +134,7 @@ cpu4: cpu@4 {
- 			riscv,isa = "rv64imafdc";
- 			clocks = <&clkcfg CLK_CPU>;
- 			tlb-split;
-+			next-level-cache = <&cctrllr>;
- 			status = "okay";
- 			cpu4_intc: interrupt-controller {
- 				#interrupt-cells = <1>;
--- 
-2.36.1
+In the processor binding the cache nodes were subnodes of cpu nodes or
+other cache nodes.  But in some server products you can have cache that
+is enabled while the corresponding core is disabled; and also, not all
+cache belongs to only one higher level anyway.  This was modelled pretty
+uncleanly, yup (cleaner would have been to have a /caches node as well
+as /cpus, for example).
 
+But on 750 you just have "l2-cache" subnodes, and all nodes in /cpus are
+CPUs :-)
+
+
+Segher
