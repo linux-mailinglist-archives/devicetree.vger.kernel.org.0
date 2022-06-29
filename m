@@ -2,184 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DC9C5602E9
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:34:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69102560304
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:34:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233581AbiF2Oa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 10:30:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58728 "EHLO
+        id S231230AbiF2Odp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 10:33:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232876AbiF2OaY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:30:24 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68F8C35DF2;
-        Wed, 29 Jun 2022 07:30:15 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id s1so22744601wra.9;
-        Wed, 29 Jun 2022 07:30:15 -0700 (PDT)
+        with ESMTP id S230234AbiF2Odk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:33:40 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2798121812
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 07:33:34 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id k22so22780107wrd.6
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 07:33:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=I/6knLBCspYoJbBWZ+ks97ukajAgwVFBs4o2jAnU4CE=;
-        b=F0whcHo7Zc3k+GEpoS8SmLr8tVyFTKmt1wCz/oaQlx6Ib7ZKEX063yRQrkxoZs0r67
-         WuH740v9d1VXR0yfCyonHdTDr8SULH4ZkFuzdySuwlPcuOZ3LaJDMsxWd41SESYBfEIv
-         H8ji5KUI/doCTfmHIKSZX+Np38hQVSim+qGxZGJwI8ju5NQQox6gytgsiS1hLzkxMhVe
-         oRMky2ppDq/8k+h45DL81Ypj1rsrXdhjxJ/CW3xMCD+sE4+iUveaR5KbVMxWVdpWMNDA
-         81k4aiE8tNaiW0ZsvzBSEG1sNt6/1tKZAl0RtIhF/GQjlSGVa8zdL/IIkkA54mS5jP5f
-         nTvQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=et3EcQEBUZk/CN1WmGC2ef8SgdBnOceUNyXQ8zegZnQ=;
+        b=NY9EhLcmVasQdduwhrTvgkuRlrqv9dJgtGE65oKC5nKzFPOe0dUvq9ndrReSc+wZCc
+         rquKt8aGLvTTm1TgX9rc4f4iV5YS0w9glfOVzwkDcoBQdePuJsaPQIfpghHFPjx6aFt3
+         Mq/HZLy7KVi0TOV4qL7+7nynumP71XEbhxXTc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=I/6knLBCspYoJbBWZ+ks97ukajAgwVFBs4o2jAnU4CE=;
-        b=QarWicW+fkgt/0GTNZH//6FRRqB2kd6Py7+WkTPz+arB9pbW8uR3bZa6daHDfiWzwD
-         KXVq19sZtMoa7nHI9cKB9CGosUnhcHdID3Lr5qgEGlXeIm4JCT0G963S9whz8kyDdhSd
-         9UC2KbOQgkDYjGO9CEY23Rb15WS2PbMjfZSS3/VIzpCDrpcGyV16TpNpNfZRleLH+Y+y
-         AsN25oyJSH0hWev5hziUxidkEcfwaYx6w2yz5ffKRE40g4/NwRVle6j/wIQpOfEMQE8W
-         h3F5SnPrq3XPkwfSTNogfZ//Ta7Ctvfj1wrb1oHl1EyOYS3RMcUdDfVu5puATWWD5/dX
-         8nSA==
-X-Gm-Message-State: AJIora8XkPWU9Px00XwtbiBCAt4Gf1yIcmBk0nD6LuB2NLi8uTRrN3iv
-        MyngoEuwrJNpMNCIV9gYURc=
-X-Google-Smtp-Source: AGRyM1ssJB+8a1pR4WAQ+kpPKxT8wl7jYM6SAD5uwinvRVog9qTcEzaMAvr1kw6gi5jmBcgoMiZX1g==
-X-Received: by 2002:a5d:528e:0:b0:21b:b85b:5873 with SMTP id c14-20020a5d528e000000b0021bb85b5873mr3425379wrv.191.1656513015000;
-        Wed, 29 Jun 2022 07:30:15 -0700 (PDT)
-Received: from localhost (92.40.168.16.threembb.co.uk. [92.40.168.16])
-        by smtp.gmail.com with ESMTPSA id c21-20020a05600c0a5500b0039c4d022a44sm3402041wmq.1.2022.06.29.07.30.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 07:30:14 -0700 (PDT)
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org, jic23@kernel.org,
-        sre@kernel.org, lee.jones@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org
-Cc:     lars@metafoo.de, quic_gurus@quicinc.com,
-        sebastian.reichel@collabora.com, andy.shevchenko@gmail.com,
-        michael@walle.cc, rdunlap@infradead.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: [PATCH v4 15/15] power: axp20x_battery: Add support for AXP192
-Date:   Wed, 29 Jun 2022 15:30:46 +0100
-Message-Id: <20220629143046.213584-16-aidanmacdonald.0x0@gmail.com>
-In-Reply-To: <20220629143046.213584-1-aidanmacdonald.0x0@gmail.com>
-References: <20220629143046.213584-1-aidanmacdonald.0x0@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=et3EcQEBUZk/CN1WmGC2ef8SgdBnOceUNyXQ8zegZnQ=;
+        b=bFw87q9K2aeYgfM75q0KDuCsW3HuR28DMeLpHrCjVm6IajFWk6QjrGPSDms4njGIsp
+         L9J52d74T8DCgUnI2FqYeBa6OSH9Vi78u5JjWHgdS4YdJpyyTjLruuYxEtjn7BRA3ZyE
+         wUQNmgltlCJJbbpyXYhKpm4pD9QjVIoBw+q6mKJTH3H17x4R98KUuAGWJz1o3EVN/u18
+         GmARo65ZOkiyAWcbUHFRmBk5mbpW3mQDo8UQpChsxTrYoJykK+dJBm/epGPtT6+igXzD
+         ld6jUAFkJHoXoW/yPRrzbTV8DMzyTNKwT9SsaPIC+pm/wSv32HO9X8OdVJRtSqULh6Wf
+         ZX3w==
+X-Gm-Message-State: AJIora8PF72gUViAMcI6VNNJs3lho+Q2N9qO3G7U9hm18RxCFYwRC/m1
+        q4GCo1+OQVy9V61JqwlmlqAeNCuNSyq1q2vnwffmYg==
+X-Google-Smtp-Source: AGRyM1sylKm/YHfEHJJKoNtk4iDXMychQ2hjNGZay0zkjmxmi8kAllmVuxZxqfR//wwsPw4FU0+o6d/8FykpLAogQcc=
+X-Received: by 2002:a05:6000:1245:b0:21b:83b2:191c with SMTP id
+ j5-20020a056000124500b0021b83b2191cmr3487570wrx.493.1656513213258; Wed, 29
+ Jun 2022 07:33:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220622173605.1168416-1-pmalani@chromium.org>
+ <20220622173605.1168416-2-pmalani@chromium.org> <20220627210407.GA2905757-robh@kernel.org>
+ <CACeCKackdbDZrk5fk7qyMwSdTdzyTS=m1vHPFnQOj672W=2nOA@mail.gmail.com> <20220628182336.GA711518-robh@kernel.org>
+In-Reply-To: <20220628182336.GA711518-robh@kernel.org>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Wed, 29 Jun 2022 22:33:22 +0800
+Message-ID: <CAEXTbpex9nxP-nyPWvSBchAW4j3C4MZfVHTb=5X0iSLY1bSAKg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/9] dt-bindings: usb: Add Type-C switch binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Prashant Malani <pmalani@chromium.org>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        bleung@chromium.org, swboyd@chromium.org,
+        heikki.krogerus@linux.intel.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Xin Ji <xji@analogixsemi.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AXP192 has a battery charger similar to other X-Powers PMICs,
-but unlike the other supported devices, it does not have a fuel
-gauge and can't report battery capacity directly.
+On Wed, Jun 29, 2022 at 2:23 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, Jun 27, 2022 at 02:43:39PM -0700, Prashant Malani wrote:
+> > Hello Rob,
+> >
+> > On Mon, Jun 27, 2022 at 2:04 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Wed, Jun 22, 2022 at 05:34:30PM +0000, Prashant Malani wrote:
+> > > > Introduce a binding which represents a component that can control t=
+he
+> > > > routing of USB Type-C data lines as well as address data line
+> > > > orientation (based on CC lines' orientation).
+> > > >
+> > > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@=
+collabora.com>
+> > > > Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> > > > Tested-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> > > > Signed-off-by: Prashant Malani <pmalani@chromium.org>
+> > > > ---
+> > > >
+> > > > Changes since v4:
+> > > > - Added Reviewed-by tags.
+> > > > - Patch moved to 1/9 position (since Patch v4 1/7 and 2/7 were
+> > > >   applied to usb-next)
+> > > >
+> > > > Changes since v3:
+> > > > - No changes.
+> > > >
+> > > > Changes since v2:
+> > > > - Added Reviewed-by and Tested-by tags.
+> > > >
+> > > > Changes since v1:
+> > > > - Removed "items" from compatible.
+> > > > - Fixed indentation in example.
+> > > >
+> > > >  .../devicetree/bindings/usb/typec-switch.yaml | 74 +++++++++++++++=
+++++
+> > > >  1 file changed, 74 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/usb/typec-swi=
+tch.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/usb/typec-switch.yam=
+l b/Documentation/devicetree/bindings/usb/typec-switch.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..78b0190c8543
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/usb/typec-switch.yaml
+> > > > @@ -0,0 +1,74 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/usb/typec-switch.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: USB Type-C Switch
+> > > > +
+> > > > +maintainers:
+> > > > +  - Prashant Malani <pmalani@chromium.org>
+> > > > +
+> > > > +description:
+> > > > +  A USB Type-C switch represents a component which routes USB Type=
+-C data
+> > > > +  lines to various protocol host controllers (e.g USB, VESA Displa=
+yPort,
+> > > > +  Thunderbolt etc.) depending on which mode the Type-C port, port =
+partner
+> > > > +  and cable are operating in. It can also modify lane routing base=
+d on
+> > > > +  the orientation of a connected Type-C peripheral.
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: typec-switch
+> > > > +
+> > > > +  mode-switch:
+> > > > +    type: boolean
+> > > > +    description: Specify that this switch can handle alternate mod=
+e switching.
+> > > > +
+> > > > +  orientation-switch:
+> > > > +    type: boolean
+> > > > +    description: Specify that this switch can handle orientation s=
+witching.
+> > > > +
+> > > > +  ports:
+> > > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > > +    description: OF graph binding modelling data lines to the Type=
+-C switch.
+> > > > +
+> > > > +    properties:
+> > > > +      port@0:
+> > > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > > +        description: Link between the switch and a Type-C connecto=
+r.
+> > > > +
+> > > > +    required:
+> > > > +      - port@0
+> > > > +
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - ports
+> > > > +
+> > > > +anyOf:
+> > > > +  - required:
+> > > > +      - mode-switch
+> > > > +  - required:
+> > > > +      - orientation-switch
+> > > > +
+> > > > +additionalProperties: true
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    drm-bridge {
+> > > > +        usb-switch {
+> > > > +            compatible =3D "typec-switch";
+> > >
+> > > Unless this child is supposed to represent what the parent output is
+> > > connected to, this is just wrong as, at least for the it6505 chip, it
+> > > doesn't know anything about Type-C functionality. The bridge is
+> > > just a protocol converter AFAICT.
+> >
+> > I'll let Pin-Yen comment on the specifics of the it6505 chip.
+>
+> We're all waiting...
 
-Acked-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
----
- drivers/power/supply/axp20x_battery.c | 49 +++++++++++++++++++++++++--
- 1 file changed, 46 insertions(+), 3 deletions(-)
+Yes it6505 is just a protocol converter. But in our use case, the output DP
+lines are connected to the Type-C ports and the chip has to know which
+port has DP Alt mode enabled. Does this justify a child node here?
 
-diff --git a/drivers/power/supply/axp20x_battery.c b/drivers/power/supply/axp20x_battery.c
-index 574c1d001556..1e84d26ce8e3 100644
---- a/drivers/power/supply/axp20x_battery.c
-+++ b/drivers/power/supply/axp20x_battery.c
-@@ -544,6 +544,19 @@ static int axp20x_battery_set_prop(struct power_supply *psy,
- 	}
- }
- 
-+static enum power_supply_property axp192_battery_props[] = {
-+	POWER_SUPPLY_PROP_PRESENT,
-+	POWER_SUPPLY_PROP_ONLINE,
-+	POWER_SUPPLY_PROP_STATUS,
-+	POWER_SUPPLY_PROP_VOLTAGE_NOW,
-+	POWER_SUPPLY_PROP_CURRENT_NOW,
-+	POWER_SUPPLY_PROP_CONSTANT_CHARGE_CURRENT,
-+	POWER_SUPPLY_PROP_CONSTANT_CHARGE_CURRENT_MAX,
-+	POWER_SUPPLY_PROP_HEALTH,
-+	POWER_SUPPLY_PROP_VOLTAGE_MAX_DESIGN,
-+	POWER_SUPPLY_PROP_VOLTAGE_MIN_DESIGN,
-+};
-+
- static enum power_supply_property axp20x_battery_props[] = {
- 	POWER_SUPPLY_PROP_PRESENT,
- 	POWER_SUPPLY_PROP_ONLINE,
-@@ -568,6 +581,16 @@ static int axp20x_battery_prop_writeable(struct power_supply *psy,
- 	       psp == POWER_SUPPLY_PROP_CONSTANT_CHARGE_CURRENT_MAX;
- }
- 
-+static const struct power_supply_desc axp192_batt_ps_desc = {
-+	.name = "axp192-battery",
-+	.type = POWER_SUPPLY_TYPE_BATTERY,
-+	.properties = axp192_battery_props,
-+	.num_properties = ARRAY_SIZE(axp192_battery_props),
-+	.property_is_writeable = axp20x_battery_prop_writeable,
-+	.get_property = axp20x_battery_get_prop,
-+	.set_property = axp20x_battery_set_prop,
-+};
-+
- static const struct power_supply_desc axp20x_batt_ps_desc = {
- 	.name = "axp20x-battery",
- 	.type = POWER_SUPPLY_TYPE_BATTERY,
-@@ -578,6 +601,19 @@ static const struct power_supply_desc axp20x_batt_ps_desc = {
- 	.set_property = axp20x_battery_set_prop,
- };
- 
-+static const int axp192_ccc_table[AXP20X_CHRG_CTRL1_TGT_CURR+1] = {
-+	100000,  190000,  280000,  360000,
-+	450000,  550000,  630000,  700000,
-+	780000,  880000,  960000,  1000000,
-+	1080000, 1160000, 1240000, 1320000,
-+};
-+
-+static const struct axp_data axp192_data = {
-+	.ccc_table = axp192_ccc_table,
-+	.get_max_voltage = axp20x_battery_get_max_voltage,
-+	.set_max_voltage = axp20x_battery_set_max_voltage,
-+};
-+
- static const struct axp_data axp209_data = {
- 	.ccc_scale = 100000,
- 	.ccc_offset = 300000,
-@@ -606,6 +642,9 @@ static const struct axp_data axp813_data = {
- 
- static const struct of_device_id axp20x_battery_ps_id[] = {
- 	{
-+		.compatible = "x-powers,axp192-battery-power-supply",
-+		.data = (void *)&axp192_data,
-+	}, {
- 		.compatible = "x-powers,axp209-battery-power-supply",
- 		.data = (void *)&axp209_data,
- 	}, {
-@@ -623,6 +662,7 @@ static int axp20x_power_probe(struct platform_device *pdev)
- 	struct axp20x_batt_ps *axp20x_batt;
- 	struct power_supply_config psy_cfg = {};
- 	struct power_supply_battery_info *info;
-+	const struct power_supply_desc *ps_desc;
- 	struct device *dev = &pdev->dev;
- 
- 	if (!of_device_is_available(pdev->dev.of_node))
-@@ -666,9 +706,12 @@ static int axp20x_power_probe(struct platform_device *pdev)
- 
- 	axp20x_batt->data = (struct axp_data *)of_device_get_match_data(dev);
- 
--	axp20x_batt->batt = devm_power_supply_register(&pdev->dev,
--						       &axp20x_batt_ps_desc,
--						       &psy_cfg);
-+	if (!axp20x_batt->data->has_fg)
-+		ps_desc = &axp192_batt_ps_desc;
-+	else
-+		ps_desc = &axp20x_batt_ps_desc;
-+
-+	axp20x_batt->batt = devm_power_supply_register(&pdev->dev, ps_desc, &psy_cfg);
- 	if (IS_ERR(axp20x_batt->batt)) {
- 		dev_err(&pdev->dev, "failed to register power supply: %ld\n",
- 			PTR_ERR(axp20x_batt->batt));
--- 
-2.35.1
-
+Does it make more sense if we we eliminate the usb-switch node here
+and list the ports in the top level?
+>
+> > > If the child node represents what the output is connected to (like a
+> > > bus), then yes that is a pattern we have used.
+> >
+> > For the anx7625 case, the child node does represent what the output is =
+connected
+> > to (the usb-c-connector via the switch). Does that not qualify? Or do y=
+ou mean
+> > the child node should be a usb-c-connector itself?
+> >
+> > > For example, a panel
+> > > represented as child node of a display controller. However, that only
+> > > works for simple cases, and is a pattern we have gotten away from in
+> > > favor of using the graph binding.
+> >
+> > The child node will still use a OF graph binding to connect to the
+> > usb-c-connector.
+> > Is that insufficient to consider a child node usage here?
+> > By "using the graph binding", do you mean "only use the top-level ports=
+" ?
+> > I'm trying to clarify this, so that it will inform future versions and =
+patches.
+>
+> What I want to see is block diagrams of possible h/w with different
+> scenarios and then what the binding looks like in those cases. The
+> switching/muxing could be in the SoC, a bridge chip, a Type C
+> controller, a standalone mux chip, or ????. If you want a somewhat
+> genericish binding, then you need to consider all of these.
+>
+> I don't really have the b/w to work thru all this (and switch/mux is
+> just one part of dealing with Type-C). This is just one of about a
+> hundred patches I get to review a week.
+>
+> Rob
