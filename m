@@ -2,68 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00AD35600C7
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 15:10:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12753560136
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 15:24:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233535AbiF2NDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 09:03:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34812 "EHLO
+        id S232733AbiF2NX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 09:23:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233583AbiF2NDK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 09:03:10 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3985C2181
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 06:03:09 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id o16so22407127wra.4
-        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 06:03:09 -0700 (PDT)
+        with ESMTP id S229982AbiF2NX4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 09:23:56 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5A01EEE4
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 06:23:55 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id q6so32495000eji.13
+        for <devicetree@vger.kernel.org>; Wed, 29 Jun 2022 06:23:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3AwBtfOYMYv3MKFwS6XRJvYCb+XS7virm8BOPqSNmpo=;
-        b=vXs1YtTUFgrXwv6BzDSmkZQIQSeDfXGrTalbB6cH5PWeIe7HkPMwx+ks9LDJC6GTy4
-         YzHTzDVwBBc+kKdbj8FMBLFBr/2MNyCbRKkrKDggN1SKoFNOFP0nZEGjMDemeM9DuQel
-         77MrWf6CIad1Hfa9gsNupl8VqH1+fO76WTLyTsKypsmOS5xYj7/pzvGQqWOAdTNbua35
-         bgYggYiWPng0amd/AdTBDPJxcblljL1FR90gdWu9Kj0Pq9VdZ6uqpnY6lrGGMT/8xBqF
-         PAkD8UQsNl+AlLqGSypOcKnmeCjrMbXUrXnH9bFUF7d+f7u9ZeH+9La8z2CyT0q81vIW
-         DUlg==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=bTc+9vraxg+Jp5bKZOKnmt3sZm7i9sLfDA3h0E40ZE0=;
+        b=kuTZc/BMdKAqCExUt2A8qTipZw8vfXBlk3C1NkvhN1p+yEqZmGRE8a1vRdzbc9HFHw
+         sJgEJreP4zorhl7lPCqvI4GvePU7NY9g3Q43XF2R6PBKJq074n7/I59hGjoGUHCDwSN/
+         rfAN3r9Ca8oan4l+NphL4xHs+QVMSBYWtqXWY5lHjakGRYWpFPX5iq0K/Oa/So+G7ihV
+         dnzn3CEbyb/ECUR/BsKu2rXe+Oc6DXNOB/+wGb4ld0OzLSbl6ipOXyIkekI+eKDJTvNW
+         D7WECRmatbLhomSFBeMGgEFnd+JYg7eX/itdHpvb/EmeDTUYbeMfGGFzcWK6vFgtb1bK
+         LCPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3AwBtfOYMYv3MKFwS6XRJvYCb+XS7virm8BOPqSNmpo=;
-        b=fOoit++RIluZZvMf0DilBHRh+hPG1zXByB0vNEASCqHnUqK9uRMZqorUfAp9/bWOny
-         D+FwFiN2IrjgVd3qt01GkvequP6bX/jwfANswRxeMmTG0peIB+YwWTdMFSANIeZad8++
-         ncOkUvGRQVSCfJfbg6kdl9AMMPlwGsugUCdB9lSyB6yT5TkL7anN0/5/Lk47wTV495VH
-         UKQ1OKAvq4C6fUBSZDRIKMgSJztKh5DcRoRa93QjGD5AfI/IFr8nx+rYDNnsFunLTHWy
-         knDEHbc/Z2OT3ySUgNHwBYv46NyJubZ2PNq07Uq+WVmBUvAfcLO1rATtCpf8WzbBDQ6U
-         WCMQ==
-X-Gm-Message-State: AJIora/w1PvRZcvS5qawtvMuXyYTeFMpjA3x+81PHhY0WGamQrZ1HLJW
-        0PxwmsX2uGsAfYuPPnYiCn8GP+taKvtlTw==
-X-Google-Smtp-Source: AGRyM1vtGJPoJn0iOSIvDsybyER+K7qSelOxtXN41Z2C9n6cc4fqXeYEwm81M46uJWyE1Ul0QGBKFQ==
-X-Received: by 2002:a5d:52c6:0:b0:21b:9f39:78de with SMTP id r6-20020a5d52c6000000b0021b9f3978demr3172858wrv.699.1656507787788;
-        Wed, 29 Jun 2022 06:03:07 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id g1-20020adffc81000000b00213ba3384aesm17056979wrr.35.2022.06.29.06.03.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jun 2022 06:03:07 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     ilia.lin@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
-        rafael@kernel.org, viresh.kumar@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        krzk+dt@kernel.org, devicetree@vger.kernel.org
-Subject: [RESEND PATCH 2/5] dt-bindings: opp: Add msm8939 to the compatible list
-Date:   Wed, 29 Jun 2022 14:03:00 +0100
-Message-Id: <20220629130303.3288306-3-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220629130303.3288306-1-bryan.odonoghue@linaro.org>
-References: <20220629130303.3288306-1-bryan.odonoghue@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=bTc+9vraxg+Jp5bKZOKnmt3sZm7i9sLfDA3h0E40ZE0=;
+        b=r/WDj+9MZ/C2Venit+wQvTFoqM/qIl6WsgjEzUwZ5f2m0XpyV30kOUU/NToJ+ZpwO4
+         PRWNqPAEtAy+/OFF3a0tsj0n7bX/fH5pRYmQ7+Pv3wjLuuc8UnF+lkVSovOCvWC4HQq1
+         ugI6fDlb9McKgXdasVNXG2GbHfJNVbKbOXXfZ/EYmdceF/yKO6ODy1Veqh131pX3RMRk
+         L8SG9zIFs+ETjL99rz5rv/YGcZSAR0Wa8NwmJDgMU5G0X5EvfPaoRJ9nUkCZB9+nGviY
+         mbgsDfDAZ2kF+Tm83ETJYXtYKO+i3bGDq7X7O/9xuH++P6ZaCCL9uEtQ17YVM6fvwBXH
+         Repw==
+X-Gm-Message-State: AJIora8jpeqwooT8yBmEzeWiIblCQh1cjO/mm9vg3PGdWDSq8EkGgiea
+        ON7x7MVX6dAICD0MsyIXOG/luQ==
+X-Google-Smtp-Source: AGRyM1v11VnSNbZ6+il0NcaTX8oa+GpOwQoB5uOk6h/4PSodDcPkMaY3ClrXxIlnVUVvaEiCBXZdvQ==
+X-Received: by 2002:a17:906:58cf:b0:722:e4e1:c174 with SMTP id e15-20020a17090658cf00b00722e4e1c174mr3326097ejs.85.1656509034201;
+        Wed, 29 Jun 2022 06:23:54 -0700 (PDT)
+Received: from [192.168.0.185] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id i25-20020a056402055900b00435681476c7sm11456559edx.10.2022.06.29.06.23.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jun 2022 06:23:53 -0700 (PDT)
+Message-ID: <a2422718-2ec4-dbad-0245-1d78dbb39f25@linaro.org>
+Date:   Wed, 29 Jun 2022 15:23:52 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] dt-bindings: spi: convert spi_atmel to json-schema
+Content-Language: en-US
+To:     Sergiu Moga <sergiu.moga@microchip.com>, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Kavyasree.Kotagiri@microchip.com, UNGLinuxDriver@microchip.com
+References: <20220629125804.137099-1-sergiu.moga@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220629125804.137099-1-sergiu.moga@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,30 +77,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-msm8939 will uses this driver instead of the generic dt-cpufreq. Add to the
-compatible list.
+On 29/06/2022 14:58, Sergiu Moga wrote:
+> Convert SPI binding for Atmel/Microchip SoCs to Device Tree Schema
+> format.
+> 
+> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> ---
+>  .../devicetree/bindings/spi/atmel,spi.yaml    | 82 +++++++++++++++++++
+>  .../devicetree/bindings/spi/spi_atmel.txt     | 36 --------
+>  2 files changed, 82 insertions(+), 36 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/spi/atmel,spi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi_atmel.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/atmel,spi.yaml b/Documentation/devicetree/bindings/spi/atmel,spi.yaml
+> new file mode 100644
+> index 000000000000..751618a47235
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/atmel,spi.yaml
+> @@ -0,0 +1,82 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/atmel,spi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel SPI device
+> +
+> +maintainers:
+> +  - Mark Brown <broonie@kernel.org>
 
-Cc: ilia.lin@kernel.org
-Cc: robh+dt@kernel.org
-Cc: krzk+dt@kernel.org
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml          | 1 +
- 1 file changed, 1 insertion(+)
+This should be rather someone from Microchip.
 
-diff --git a/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml b/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-index 5eb1dba13fe2b..7efae476c02e0 100644
---- a/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-+++ b/Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
-@@ -25,6 +25,7 @@ select:
-           - qcom,apq8064
-           - qcom,apq8096
-           - qcom,ipq8064
-+          - qcom,msm8939
-           - qcom,msm8960
-           - qcom,msm8974
-           - qcom,msm8996
--- 
-2.36.1
+> +
+> +allOf:
+> +  - $ref: "spi-controller.yaml#"
 
+No need for quotes.
+
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: atmel,at91rm9200-spi
+> +      - items:
+
+These are not items, just single entry. Should be combined with above
+and made an 'enum'.
+
+> +          - const: microchip,sam9x60-spi
+> +      - items:
+> +          - const: microchip,sam9x60-spi
+> +          - const: atmel,at91rm9200-spi
+
+This is wrong. Either this is a fallback or it is not. It's not the
+Schroedinger's cat... Maybe your DTS are wrong.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  cs-gpios: true
+
+No need, coming from spi-controller.yaml.
+
+> +
+> +  clock-names:
+> +    description:
+> +      Tuple listing input clock names, "spi_clk" is a required element.
+
+Skip description.
+
+> +    contains:
+> +      const: spi_clk
+> +    additionalItems: true
+
+no additionalItems.
+
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  atmel,fifo-size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Maximum number of data the RX and TX FIFOs can store for FIFO
+> +      capable SPI controllers.
+
+minimum and maximum for values, if it is known.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clock-names
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    spi1: spi@fffcc000 {
+> +        compatible = "atmel,at91rm9200-spi";
+> +        reg = <0xfffcc000 0x4000>;
+> +        interrupts = <13 IRQ_TYPE_LEVEL_HIGH 5>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        clocks = <&spi1_clk>;
+> +        clock-names = "spi_clk", "str2";
+
+This does not make really sense. You have one clock.
+
+> +        cs-gpios = <&pioB 3 GPIO_ACTIVE_HIGH>;
+> +        atmel,fifo-size = <32>;
+> +
+> +        mmc@0 {
+> +            compatible = "mmc-spi-slot";
+> +            reg = <0>;
+> +            gpios = <&pioC 4 GPIO_ACTIVE_HIGH>;    /* CD */
+> +            spi-max-frequency = <25000000>;
+> +        };
+
+
+Best regards,
+Krzysztof
