@@ -2,58 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3884C560370
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:44:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CC29560379
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jun 2022 16:44:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233650AbiF2Omv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jun 2022 10:42:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48110 "EHLO
+        id S230333AbiF2OoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jun 2022 10:44:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230192AbiF2Omt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:42:49 -0400
+        with ESMTP id S232039AbiF2OoG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jun 2022 10:44:06 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1945A3A1AD;
-        Wed, 29 Jun 2022 07:42:49 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 451F01C933;
+        Wed, 29 Jun 2022 07:44:06 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ACCA261F48;
-        Wed, 29 Jun 2022 14:42:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 065E6C341CB;
-        Wed, 29 Jun 2022 14:42:48 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D870D61F1F;
+        Wed, 29 Jun 2022 14:44:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42B5DC341CD;
+        Wed, 29 Jun 2022 14:44:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1656513768;
-        bh=e0/+toNpTdyz3yvvEA1CAPOw+ZoKsBqs7s7Gcj0cGps=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZbBgy1z7clhDff2k11cQNDfpk9iPtv98d5nlWMmwF5Y0NudSOAcjI5NfzCBqyB8kF
-         khIQqQHO8U2GrfYFWni6JWoPisgLSK38IU6llz4pvy3wxYsrc/yHa1otRuJ4QD2CrQ
-         ZrfIOnwc2wLq0PXAaoJCNPysPqecn7UET5S/aMAYaqCOo0LbRwTf8vEB3rRS3J5DbI
-         Cd+cCbwZAxUWkN9a8wJNNK7KawZP4LkYI8X6VWGys2aOn5dY0EeOB9ZGEwS6Q5Uj3v
-         rvOX15WJdZfebuBMHawv6IJ3JW3XJIZfoTUhGf84+0+GwWLGrw83TcaKJfFgrJxOFS
-         jjFOvh5g+KBnQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1o6Ytz-00058X-QW; Wed, 29 Jun 2022 16:42:47 +0200
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH v2 2/2] PCI: qcom: Rename host-init error label
-Date:   Wed, 29 Jun 2022 16:41:24 +0200
-Message-Id: <20220629144124.19693-3-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220629144124.19693-1-johan+linaro@kernel.org>
-References: <20220629144124.19693-1-johan+linaro@kernel.org>
+        s=k20201202; t=1656513845;
+        bh=nOwZTusFcv/EYtDIjBSt3qVjRLnbfqmzjz/wxrw87gM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=TCNfSU7xjjstRbo0Q57fM/83aVIGLEYh+Q9N3hjAPaEtHn8ewt9g8OX6jBMrq2sb7
+         fBh5mAT9sT7A1QqH2S7fAP/4pf61BgvasAm89O2QiQZRbrjQ/+SnHFFENlfH2DgTxK
+         BNobPrvWPd6N4y/sxCi2nuPfoRRGBwzqBA92Z4G3StqIQeEnBMNT1lXWgUC+PfCP6k
+         CFd/08r9NoFcPidNFCkPypsBqas5RnyLYpYL7JK5pDJjHZcLBMjFOvV7qpRuXqfKCJ
+         WxnRW1Gd+fbgGkdRaCICMiKIcBnQb3YnOKPFos+3IMTEMazaThsDnJrTYdfDbPRpTP
+         pXjwCcP6i+IQg==
+Received: by mail-vs1-f50.google.com with SMTP id o190so15410811vsc.5;
+        Wed, 29 Jun 2022 07:44:05 -0700 (PDT)
+X-Gm-Message-State: AJIora9styVjgAQ27a65CTtRYHdRyNp32uP2pNphf3nLjAIyAMbpXM7H
+        qGxgSnVcCkH53zsEldVXsSNej+9EkwQOt5fqbA==
+X-Google-Smtp-Source: AGRyM1v+y9DrAuOxQEZVR1hAanT0MwRi2QARCd9KFYqN6aXvz6C8qa122ImM5AlzqKYTYGlyVhZXbxHailnnstV8yYQ=
+X-Received: by 2002:a67:e407:0:b0:354:3d39:e0e7 with SMTP id
+ d7-20020a67e407000000b003543d39e0e7mr4552526vsf.0.1656513844236; Wed, 29 Jun
+ 2022 07:44:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220610213308.2288094-1-robh@kernel.org> <20220628201438.GC694214-robh@kernel.org>
+ <CAL_JsqJbZOAMPJDt3ha=rLw0tFuLJ57ZyaCeBJZfEqCHVbtSnw@mail.gmail.com> <20220629090956.muoonqm3okw5reiu@bogus>
+In-Reply-To: <20220629090956.muoonqm3okw5reiu@bogus>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 29 Jun 2022 08:43:53 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+1bpiuFiffXbq0KS8Uo8afT-_rX-jUVPqgoJd+gVLFwg@mail.gmail.com>
+Message-ID: <CAL_Jsq+1bpiuFiffXbq0KS8Uo8afT-_rX-jUVPqgoJd+gVLFwg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: arm/juno: Drop erroneous 'mbox-name' property
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -64,33 +66,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use a more descriptive name for the reset host-init error label for
-consistency.
+On Wed, Jun 29, 2022 at 3:11 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+>
+> On Tue, Jun 28, 2022 at 03:03:03PM -0600, Rob Herring wrote:
+> > On Tue, Jun 28, 2022 at 2:14 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Fri, Jun 10, 2022 at 03:33:07PM -0600, Rob Herring wrote:
+> > > > The 'mbox-name' property in the Juno mailbox node is undocumented and
+> > > > unused. It's the consumer side of the mailbox binding that have
+> > > > 'mbox-names' properties.
+> > > >
+> > > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > > ---
+> > > >  arch/arm64/boot/dts/arm/juno-scmi.dtsi | 1 -
+> > > >  1 file changed, 1 deletion(-)
+> > >
+> > > Ping!
+> >
+> > Sorry, I see this was applied. I need to figure out why 'lei' misses
+> > emails sometimes.
+>
+> Yes I did apply this and another patch IIRC.
+>
+> Sorry for naive question what is 'lei' ?
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Part of public-inbox which is what lore is:
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index c5e60f8c565d..7a5d15b2cff8 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -1345,12 +1345,12 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
- 	if (pcie->cfg->ops->config_sid) {
- 		ret = pcie->cfg->ops->config_sid(pcie);
- 		if (ret)
--			goto err;
-+			goto err_assert_reset;
- 	}
- 
- 	return 0;
- 
--err:
-+err_assert_reset:
- 	qcom_ep_reset_assert(pcie);
- err_disable_phy:
- 	phy_power_off(pcie->phy);
--- 
-2.35.1
+https://people.kernel.org/monsieuricon/lore-lei-part-1-getting-started
 
+Rob
